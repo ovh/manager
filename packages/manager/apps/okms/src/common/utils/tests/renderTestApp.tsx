@@ -58,34 +58,20 @@ import {
   getVersionsMock,
   updateVersionMock,
 } from '@secret-manager/mocks/versions/versions.handler';
-import { render, screen, waitFor } from '@testing-library/react';
-import { i18n } from 'i18next';
-import { I18nextProvider } from 'react-i18next';
+import { render } from '@testing-library/react';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  getAuthenticationMocks,
-  toMswHandlers,
-} from '@ovh-ux/manager-core-test-utils';
+import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
-import {
-  ShellContext,
-  ShellContextType,
-  initShellContext,
-} from '@ovh-ux/manager-react-shell-client';
 
 import {
   GetCatalogKmsMocksParams,
   getCatalogKmsMocks,
 } from '@/common/mocks/catalog/catalog.handler';
 import { getLocationsMock } from '@/common/mocks/locations/locations.handler';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { TestApp } from './TestApp';
-import { initTestI18n } from './init.i18n';
 import { removeHandlersDelay } from './msw';
-
-let context: ShellContextType;
-let i18nValue: i18n;
 
 export type RenderTestMockParams = GetOkmsMocksParams &
   GetServiceKeysMockParams &
@@ -147,31 +133,11 @@ export const renderTestApp = async (initialRoute = '/', mockParams: RenderTestMo
     ),
   );
 
-  if (!context) {
-    context = await initShellContext('okms');
-  }
+  const wrapper = await testWrapperBuilder()
+    .withQueryClient()
+    .withI18next()
+    .withShellContext()
+    .build();
 
-  if (!i18nValue) {
-    i18nValue = await initTestI18n();
-  }
-
-  const result = render(
-    <I18nextProvider i18n={i18nValue}>
-      <ShellContext.Provider value={context}>
-        <TestApp initialRoute={initialRoute} />
-      </ShellContext.Provider>
-    </I18nextProvider>,
-  );
-
-  if (!initialRoute || initialRoute === '/') {
-    await waitFor(
-      () =>
-        expect(
-          screen.getAllByText('Key Management Service', { exact: false }).length,
-        ).toBeGreaterThan(0),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-  }
-
-  return result;
+  return render(<TestApp initialRoute={initialRoute} />, { wrapper });
 };

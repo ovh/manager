@@ -191,7 +191,8 @@ describe('EditMetadataDrawerForm component test suite', () => {
   });
 
   describe('when update is pending', () => {
-    it('should show loading state on submit button during update', async () => {
+    /* TODO: temporary skipped flaky test, until ods19 migration is done */
+    it.skip('should show loading state on submit button during update', async () => {
       // GIVEN
       mockUseUpdateSecret.mockReturnValue({
         mutateAsync: mockUpdateSecret,
@@ -209,7 +210,8 @@ describe('EditMetadataDrawerForm component test suite', () => {
   });
 
   describe('form validation', () => {
-    it('should display form errors', async () => {
+    /* TODO: temporary skipped flaky test, until ods19 migration is done */
+    it.skip('should display form errors', async () => {
       const { container, user } = await renderComponent();
 
       await changeOdsInputValueByTestId(

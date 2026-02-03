@@ -4,7 +4,7 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { deleteSecretErrorMessage } from '@secret-manager/mocks/secrets/secrets.handler';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -62,6 +62,14 @@ describe('Delete secret modal test suite', () => {
     await act(async () => {
       await user.click(submitButton);
     });
+
+    // Wait for loading states to complete
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     // Check navigation
     await waitFor(() => {

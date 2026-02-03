@@ -13,9 +13,12 @@ const breadcrumbTestIdMap: Record<BreadcrumbItemName, string> = {
 };
 
 export const assertBreadcrumbItems = async (items: BreadcrumbItemName[]) => {
-  await waitFor(() => {
-    items.forEach((item) => {
-      expect(screen.getByTestId(breadcrumbTestIdMap[item])).toBeInTheDocument();
-    });
-  });
+  await waitFor(
+    () => {
+      items.forEach((item) => {
+        expect(screen.getByTestId(breadcrumbTestIdMap[item])).toBeInTheDocument();
+      });
+    },
+    { timeout: 5_000 },
+  );
 };

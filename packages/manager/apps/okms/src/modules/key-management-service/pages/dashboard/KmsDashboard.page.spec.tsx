@@ -70,9 +70,36 @@ describe('KMS dashboard test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
+    // Wait for ALL loading to complete:
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for tabs to be visible and rendered
+    await waitFor(
+      () => {
+        expect(screen.getByTestId(kmsDashboardTabNames.generalInformation)).toBeVisible();
+        expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeVisible();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Then wait for tab to be enabled
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.serviceKeys)).toBeEnabled());
 
     await act(() => user.click(screen.getByTestId(kmsDashboardTabNames.serviceKeys)));
+
+    // Wait for navigation and new page to load
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     await waitFor(() =>
       expect(
@@ -85,9 +112,34 @@ describe('KMS dashboard test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
+    // Wait for page to fully load
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for tabs to be visible
+    await waitFor(
+      () => {
+        expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeVisible();
+      },
+      { timeout: 10_000 },
+    );
+
     await waitFor(() => expect(screen.getByTestId(kmsDashboardTabNames.credentials)).toBeEnabled());
 
     await act(() => user.click(screen.getByText(labels.dashboard.access_certificates)));
+
+    // Wait for navigation and new page to load
+    await waitFor(
+      () => {
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
 
     await waitFor(() =>
       expect(
@@ -100,7 +152,32 @@ describe('KMS dashboard test suite', () => {
     const user = userEvent.setup();
     const { container } = await renderTestApp(mockPageUrl);
 
-    await waitFor(() => expect(screen.getByLabelText('edit')).toBeEnabled());
+    // Wait for page to fully load
+    await waitFor(
+      () => {
+        expect(screen.queryByTestId('page-spinner')).not.toBeInTheDocument();
+        expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for general information tab content to load
+    await waitFor(
+      () => {
+        expect(screen.getByTestId(kmsDashboardTabNames.generalInformation)).toBeVisible();
+      },
+      { timeout: 10_000 },
+    );
+
+    // Wait for edit button to be visible and enabled
+    await waitFor(
+      () => {
+        const editButton = screen.getByLabelText('edit');
+        expect(editButton).toBeVisible();
+        expect(editButton).toBeEnabled();
+      },
+      { timeout: 10_000 },
+    );
 
     await act(() => user.click(screen.getByLabelText('edit')));
 
