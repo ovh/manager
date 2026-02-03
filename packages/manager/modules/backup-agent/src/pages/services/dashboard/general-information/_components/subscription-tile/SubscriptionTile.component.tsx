@@ -10,11 +10,7 @@ import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDeta
 
 import { useTenantBackupStats } from './_hooks/useTenantBackupStats';
 
-type SubscriptionTileProps = {
-  tenantId?: string;
-};
-
-const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
+const SubscriptionTile = () => {
   const { t } = useTranslation([
     NAMESPACES.DASHBOARD,
     NAMESPACES.BILLING,
@@ -27,7 +23,6 @@ const SubscriptionTile = ({ tenantId }: SubscriptionTileProps) => {
     isPending: isStatsPending,
   } = useTenantBackupStats({
     tenantDetails: data,
-    vspcTenantIds: [tenantId ?? ''].filter(Boolean),
   });
 
   return (

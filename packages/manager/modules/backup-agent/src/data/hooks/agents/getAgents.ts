@@ -8,25 +8,23 @@ import { AgentResource } from '@/types/Resource.type';
 import { getBackupAgentsRoute } from '@/utils/apiRoutes';
 
 import { useBackupServicesId } from '../backup/useBackupServicesId';
+import { useVspcTenantId } from '../tenants/useVspcTenantId';
 
 type UseBackupAgentListParams = {
-  tenantId?: string;
   pageSize?: number;
 };
 
-export const BACKUP_AGENTS_LIST_QUERY_KEY = (tenantId?: string) =>
-  [...BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY(tenantId), 'agents'] as (QueryKey & string)[];
+export const BACKUP_AGENTS_LIST_QUERY_KEY = () =>
+  [...BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY(), 'agents'] as (QueryKey & string)[];
 
-export const useBackupAgentList = ({
-  tenantId = '',
-  pageSize = 9999,
-}: UseBackupAgentListParams) => {
+export const useBackupAgentList = ({ pageSize = 9999 }: UseBackupAgentListParams = {}) => {
   const { data: backupServicesId } = useBackupServicesId();
+  const { data: vspcTenantId } = useVspcTenantId();
 
   return useResourcesIcebergV2<AgentResource<Agent>>({
-    route: getBackupAgentsRoute(backupServicesId!, tenantId),
-    queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(tenantId),
-    enabled: !!backupServicesId && !!tenantId,
+    route: getBackupAgentsRoute(backupServicesId!, vspcTenantId!),
+    queryKey: BACKUP_AGENTS_LIST_QUERY_KEY(),
+    enabled: !!backupServicesId && !!vspcTenantId,
     pageSize,
   });
 };

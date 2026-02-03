@@ -8,7 +8,7 @@ const COLUMN_NAME = [labels.commonDashboard.name, labels.region.localisation, la
 describe('[INTEGRATION] - Bucket Listing page', () => {
   it('Listing page display datagrid', async () => {
     await renderTest({
-      initialRoute: '/vaults/dashboard/a1b2c3d4-1234-4000-82dc-5366d6786f80/buckets',
+      initialRoute: '/vaults/a1b2c3d4-1234-4000-82dc-5366d6786f80/buckets',
     });
 
     /* eslint-disable max-nested-callbacks */

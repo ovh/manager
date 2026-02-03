@@ -75,6 +75,11 @@ vi.mock('@/data/hooks/tenants/useVspcTenants', () => ({
   useVSPCTenantsOptions: vi.fn().mockReturnValue({}),
 }));
 
+vi.mock('@/data/hooks/tenants/useVspcTenantId', () => ({
+  useGetVspcTenantId: vi.fn().mockReturnValue(vi.fn().mockResolvedValue(TENANTS_MOCKS[0]!.id)),
+  useVspcTenantId: vi.fn().mockReturnValue({ data: TENANTS_MOCKS[0]!.id }),
+}));
+
 vi.mock('@tanstack/react-query', () => ({
   useQuery: useQueryMock,
 }));

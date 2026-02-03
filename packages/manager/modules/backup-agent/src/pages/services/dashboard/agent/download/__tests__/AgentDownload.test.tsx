@@ -121,6 +121,10 @@ vi.mock('@/data/hooks/agents/getDownloadLinkAgent', () => {
   };
 });
 
+vi.mock('@/data/hooks/tenants/useVspcTenantId', () => ({
+  useVspcTenantId: vi.fn().mockReturnValue({ data: TENANTS_MOCKS[0]!.id }),
+}));
+
 const getSelectOs = () =>
   screen.getByRole('combobox', { name: `translated_${BACKUP_AGENT_NAMESPACES.AGENT}:select_os` });
 
@@ -146,7 +150,6 @@ describe('AgentDownload', () => {
     expect(getSelectOs()).toHaveValue('LINUX');
 
     expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
-      tenantId: TENANTS_MOCKS[0]!.id,
       os: null,
     });
 
@@ -163,7 +166,6 @@ describe('AgentDownload', () => {
     await user.selectOptions(getSelectOs(), ['WINDOWS']);
 
     expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
-      tenantId: TENANTS_MOCKS[0]!.id,
       os: 'WINDOWS',
     });
 

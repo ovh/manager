@@ -10,19 +10,13 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { GeneralInformationTile } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
 import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
 import { LABELS } from '@/module.constants';
-import { urlParams, urls } from '@/routes/routes.constants';
+import { urls } from '@/routes/routes.constants';
 
-type GeneralInformationTenantTileProps = {
-  tenantId: string;
-};
-
-export function GeneralInformationTenantTile({ tenantId }: GeneralInformationTenantTileProps) {
+export function GeneralInformationTenantTile() {
   const { t } = useTranslation(BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD);
-  const { data, isPending, isError } = useBackupVSPCTenantDetails({ tenantId });
+  const { data, isPending, isError } = useBackupVSPCTenantDetails();
 
-  const resetPasswordHref = useHref(
-    urls.dashboardTenantResetPassword.replace(urlParams.tenantId, tenantId),
-  );
+  const resetPasswordHref = useHref(urls.dashboardTenantResetPassword);
 
   return (
     <GeneralInformationTile resourceDetails={data} isLoading={isPending}>

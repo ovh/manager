@@ -3,25 +3,27 @@ import { queryOptions, useQuery } from '@tanstack/react-query';
 import { getBackupAgentsDetails } from '@/data/api/agents/agents.requests';
 import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
 import { BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY } from '@/data/hooks/tenants/useVspcTenantDetails';
+import { useGetVspcTenantId } from '@/data/hooks/tenants/useVspcTenantId';
 
 export type GetBackupAgentDetailsParams = {
-  vspcTenantId: string;
   backupAgentId: string;
 };
 
-export const BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY = (
-  vspcTenantId: string,
-  agentId: string,
-) => [...BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY(vspcTenantId), agentId];
+export const BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY = (agentId: string) => [
+  ...BACKUP_VSPC_TENANT_DETAILS_QUERY_KEY(),
+  agentId,
+];
 
 export const useBackupVSPCTenantAgentDetailsOptions = ({
-  vspcTenantId,
   backupAgentId,
 }: GetBackupAgentDetailsParams) => {
   const getBackupServiceId = useGetBackupServicesId();
+  const getVspcTenantId = useGetVspcTenantId();
+
   return queryOptions({
     queryFn: async () => {
       const backupServicesId = await getBackupServiceId();
+      const vspcTenantId = await getVspcTenantId();
 
       return getBackupAgentsDetails({
         backupServicesId: backupServicesId!,
@@ -29,22 +31,14 @@ export const useBackupVSPCTenantAgentDetailsOptions = ({
         backupAgentId,
       });
     },
-    queryKey: BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY(vspcTenantId, backupAgentId),
-    enabled: !!vspcTenantId && !!backupAgentId,
+    queryKey: BACKUP_VSPC_TENANT_AGENT_DETAILS_QUERY_KEY(backupAgentId),
+    enabled: !!backupAgentId,
   });
 };
 
-export const useBackupVSPCTenantAgentDetails = ({
-  tenantId,
-  agentId,
-  ...options
-}: {
-  tenantId?: string;
-  agentId?: string;
-}) => {
+export const useBackupVSPCTenantAgentDetails = ({ agentId, ...options }: { agentId?: string }) => {
   return useQuery({
     ...useBackupVSPCTenantAgentDetailsOptions({
-      vspcTenantId: tenantId!,
       backupAgentId: agentId!,
     }),
     ...options,
