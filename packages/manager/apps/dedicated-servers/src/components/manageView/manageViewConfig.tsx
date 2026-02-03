@@ -1,28 +1,26 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-  Checkbox,
-  CheckboxControl,
-  CheckboxLabel,
-  Card,
-  Icon,
-  ICON_NAME,
-  CARD_COLOR,
   TEXT_PRESET,
   Text,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
+
+import { DndContext } from '@dnd-kit/core';
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from '@dnd-kit/sortable';
 import { ViewContext } from './viewContext';
-import style from './style.module.scss';
+import { SortableColumnCard } from './manageViewCard';
 
 export const ManageViewConfig = () => {
-  const { columnsConfig, setColumnVisibility } = useContext(ViewContext);
+  const { columnsConfig, setOrderedColumns } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
-  const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
 
   return (
     <Accordion>
@@ -33,50 +31,25 @@ export const ManageViewConfig = () => {
           </Text>
         </AccordionTrigger>
         <AccordionContent>
-          <ul className={style['column-list']}>
-            {columnsConfig.map(
-              (column) =>
-                column.label && (
-                  <li className={style['column-list__item']} key={column.id}>
-                    <Card
-                      className={[
-                        style['column-list__item__card'],
-                        !column.enableHiding && style.disabled,
-                        column.visible && column.enableHiding && style.selected,
-                      ].join(' ')}
-                      color={
-                        column.visible && column.enableHiding
-                          ? CARD_COLOR.primary
-                          : CARD_COLOR.neutral
-                      }
-                      onClick={() => {
-                        if (column.enableHiding) {
-                          setColumnVisibility((prev) => ({
-                            ...prev,
-                            [column.id]: !column.visible,
-                          }));
-                        }
-                      }}
-                    >
-                      <Checkbox
-                        disabled={!column.enableHiding}
-                        checked={column.visible}
-                      >
-                        <CheckboxControl />
-
-                        <CheckboxLabel>
-                          <Text preset={TEXT_PRESET.heading5}>
-                            {column.label}
-                          </Text>
-                        </CheckboxLabel>
-                      </Checkbox>
-                      {/* <Icon name={ICON_NAME.dragDrop} /> */}
-                      <Icon name={ICON_NAME.ellipsisVertical} />
-                    </Card>
-                  </li>
-                ),
-            )}
-          </ul>
+          <DndContext
+            onDragEnd={({ active, over }) => {
+              if (!over || active.id === over.id) return;
+              setOrderedColumns((prev) => {
+                const oldIndex = prev.findIndex((c) => c.id === active.id);
+                const newIndex = prev.findIndex((c) => c.id === over.id);
+                return arrayMove(prev, oldIndex, newIndex);
+              });
+            }}
+          >
+            <SortableContext
+              items={columnsConfig.map((c) => c.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              {columnsConfig.map((column) => (
+                <SortableColumnCard key={column.id} column={column} />
+              ))}
+            </SortableContext>
+          </DndContext>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

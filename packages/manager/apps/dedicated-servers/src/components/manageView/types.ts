@@ -5,4 +5,5 @@ export type ViewType = {
   id: string;
   default?: boolean;
   columnVisibility?: VisibilityState;
+  columnOrder?: string[];
 };

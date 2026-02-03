@@ -23,7 +23,7 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 import { MAX_VIEWS_NUMBER, STANDARD_VIEW_ID } from './manageView.constants';
 import { ViewType } from './types';
 import ManageViewDrawer from './manageViewDrawer';
@@ -56,7 +56,7 @@ export const ManageViewButton = () => {
         open={isOpoverOpen}
         onOpenChange={popoverChange}
       >
-        <PopoverTrigger aria-haspopup="manage-view-menu" asChild>
+        <PopoverTrigger aria-haspopup="menu" asChild>
           <Button
             variant={BUTTON_VARIANT.outline}
             size={BUTTON_SIZE.sm}
@@ -132,7 +132,6 @@ export const ManageViewButton = () => {
                 setIsDrawerOpen(true);
               }}
               disabled={views.length >= MAX_VIEWS_NUMBER}
-              tool
             >
               <Icon name={ICON_NAME.plus} aria-hidden={true} />
               <span>{t('add_new_view')}</span>

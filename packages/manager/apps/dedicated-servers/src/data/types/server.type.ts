@@ -1,4 +1,4 @@
-import { IamObject } from "@ovh-ux/muk";
+import { IamObject } from '@ovh-ux/muk';
 
 type Datacenter =
   | 'bhs1'
@@ -66,7 +66,7 @@ interface Tags {
   [key: string]: string;
 }
 
-export interface DedicatedServer extends Record<string, unknown>{
+export interface DedicatedServer extends Record<string, unknown> {
   availabilityZone: string;
   bootId?: number | null;
   bootScript?: string | null;

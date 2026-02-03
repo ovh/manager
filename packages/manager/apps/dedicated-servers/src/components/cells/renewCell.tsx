@@ -9,9 +9,7 @@ export const RenewCell = (server: DedicatedServer) => {
   const { t } = useTranslation('dedicated-servers');
   return (
     <DSBilling server={server}>
-      {(billingInfo) => (
-        <div>{t(getRenewWording(billingInfo))}</div>
-      )}
+      {(billingInfo) => <div>{t(getRenewWording(billingInfo))}</div>}
     </DSBilling>
   );
 };

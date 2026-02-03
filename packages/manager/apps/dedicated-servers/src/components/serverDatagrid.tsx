@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Datagrid, useDataApi, RedirectionGuard } from '@ovh-ux/muk';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { VisibilityState } from '@tanstack/react-table';
 import OrderMenu from '@/components/orderMenu';
 import { useColumns } from '@/components/dataGridColumns';
 import { useDedicatedServer } from '@/hooks/useDedicatedServer';
@@ -12,7 +11,9 @@ import { ViewContext } from '@/components/manageView/viewContext';
 
 export default function ServerDatagrid() {
   const columns = useColumns();
-  const { columnVisibility, setColumnVisibility } = useContext(ViewContext);
+  const { columnVisibility, setColumnVisibility, columnsConfig } = useContext(
+    ViewContext,
+  );
 
   const {
     flattenData,
@@ -48,7 +49,7 @@ export default function ServerDatagrid() {
           {flattenData && (
             <div>
               <Datagrid
-                columns={columns}
+                columns={columnsConfig}
                 data={flattenData}
                 totalCount={totalCount || 0}
                 hasNextPage={hasNextPage && !isLoading}
