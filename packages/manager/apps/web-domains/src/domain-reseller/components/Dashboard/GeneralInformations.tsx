@@ -12,7 +12,7 @@ export default function GeneralInformations({
 }: GeneralInformationsProps) {
   const { t } = useTranslation(['domain-reseller', NAMESPACES.DASHBOARD]);
   return (
-    <ManagerTile>
+    <ManagerTile className="h-fit">
       <ManagerTile.Title>
         {t(`${NAMESPACES.DASHBOARD}:general_information`)}
       </ManagerTile.Title>

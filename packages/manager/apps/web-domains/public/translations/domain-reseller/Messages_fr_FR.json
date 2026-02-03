@@ -5,5 +5,7 @@
   "domain_reseller_button_add_domain": "Ajouter un nom de domaine",
   "domain_reseller_button_download_catalog": "Télécharger le catalogue",
   "domain_reseller_general_informations_label": "Domaines enregistrés à tarifs préférentiels",
-  "domain_reseller_general_informations_domains_length": "{{ length }} domaines actifs"
+  "domain_reseller_general_informations_domains_length": "{{ length }} noms de domaine actifs",
+  "domain_reseller_renew_mode_label": "Mode de renouvellement",
+  "domain_reseller_renew_mode_automatic": "Automatique"
 }

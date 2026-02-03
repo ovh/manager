@@ -6,6 +6,7 @@ import {
 import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact, handleOrderClick } from '@/common/utils/utils';
 import GeneralInformations from '@/domain-reseller/components/Dashboard/GeneralInformations';
+import Subscription from '@/domain-reseller/components/Dashboard/Subscription';
 import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
 import Loading from '@/domain/components/Loading/Loading';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
@@ -43,11 +44,9 @@ export default function DomainResellerDashboard() {
     );
   }, [serviceInfo]);
 
-  const { data: domainslist = [], isLoading, isFetching } = useGetDomainsList(
-    nicAdmin,
-  );
+  const { data: domainslist = [], isLoading } = useGetDomainsList(nicAdmin);
 
-  if (isServiceInfoLoading || isLoading || isFetching) {
+  if (isServiceInfoLoading || isLoading) {
     return <Loading />;
   }
 
@@ -77,8 +76,14 @@ export default function DomainResellerDashboard() {
             <Icon name={ICON_NAME.download} />
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:!grid-cols-2">
-          <GeneralInformations domainsLength={domainslist?.length} />
+        <div className="grid grid-cols-1 gap-x-6 md:!grid-cols-2">
+          <GeneralInformations domainsLength={domainslist.length} />
+          <Subscription
+            creationDate={serviceInfo.billing.lifecycle.current.creationDate}
+            expirationDate={serviceInfo.billing.expirationDate}
+            contacts={serviceInfo.customer.contacts}
+            serviceName={serviceInfo.resource.name}
+          />
         </div>
       </section>
     </BaseLayout>
