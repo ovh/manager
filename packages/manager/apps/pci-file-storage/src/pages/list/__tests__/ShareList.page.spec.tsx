@@ -6,9 +6,9 @@ import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TShareListRow } from '@/adapters/shares/left/shareList.data';
 import { useShares } from '@/data/hooks/shares/useShares';
 import ShareListPage from '@/pages/list/ShareList.page';
+import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   Breadcrumb: () => <div>Breadcrumb</div>,
@@ -27,7 +27,10 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
         status: 'available',
         statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
-          ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+          [
+            'actions',
+            [{ labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } }],
+          ],
         ]),
       },
     ],
@@ -50,10 +53,7 @@ vi.mock('@ovh-ux/muk', () => ({
       <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
     </div>
   ),
-  DatagridColumn: () => null,
-  useBytes: () => ({
-    formatBytes: (bytes: number) => `${bytes} B`,
-  }),
+  Notifications: () => <div>Notifications</div>,
 }));
 
 describe('ShareList page', () => {
@@ -71,6 +71,7 @@ describe('ShareList page', () => {
     expect(datagrid).toBeVisible();
     expect(datagrid).toHaveTextContent('Rows: 1');
     expect(screen.getByRole('button', { name: 'list:actionButton' })).toBeVisible();
+    expect(screen.getByText('Notifications')).toBeVisible();
   });
 
   it('should redirect to onboarding when there are no shares', () => {

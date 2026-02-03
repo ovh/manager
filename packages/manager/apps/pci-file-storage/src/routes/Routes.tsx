@@ -13,8 +13,31 @@ const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const CreateSharePage = React.lazy(() => import('@/pages/create/CreateShare.page'));
 const ShareListPage = React.lazy(() => import('@/pages/list/ShareList.page'));
+const DashboardLayoutPage = React.lazy(() => import('@/pages/dashboard/Dashboard.layout'));
+const GeneralInformationPage = React.lazy(
+  () => import('@/pages/dashboard/GeneralInformation/GeneralInformation.page'),
+);
+const SnapshotsPage = React.lazy(() => import('@/pages/dashboard/Snapshots/Snapshots.page'));
+const AclPage = React.lazy(() => import('@/pages/dashboard/Acl/Acl.page'));
+const DeleteSharePage = React.lazy(() => import('@/pages/delete/DeleteShare.page'));
 
-export const Routes = (
+const getDeleteSubroute = () => (
+  <>
+    <Route index></Route>
+    <Route
+      path={subRoutes.shareDelete}
+      Component={DeleteSharePage}
+      handle={{
+        tracking: {
+          pageName: 'share-delete',
+          pageType: PageType.popup,
+        },
+      }}
+    />
+  </>
+);
+
+const Routes = (
   <>
     <Route
       id="root"
@@ -46,10 +69,52 @@ export const Routes = (
         path={subRoutes.list}
         Component={ShareListPage}
         handle={{
-          tracking: { pageName: 'list', pageType: PageType.dashboard },
+          tracking: { pageName: 'list', pageType: PageType.listing },
         }}
-      />
+      >
+        {getDeleteSubroute()}
+      </Route>
+      <Route
+        path={subRoutes.shareDetail}
+        Component={DashboardLayoutPage}
+        handle={{
+          tracking: { pageName: 'dashboard', pageType: PageType.dashboard },
+        }}
+      >
+        <Route
+          Component={GeneralInformationPage}
+          handle={{
+            tracking: {
+              pageName: 'general-information',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          {getDeleteSubroute()}
+        </Route>
+        <Route
+          path={subRoutes.shareSnapshots}
+          Component={SnapshotsPage}
+          handle={{
+            tracking: {
+              pageName: 'snapshots',
+              pageType: PageType.dashboard,
+            },
+          }}
+        />
+        <Route
+          path={subRoutes.shareAcl}
+          Component={AclPage}
+          handle={{
+            tracking: {
+              pageName: 'acl',
+              pageType: PageType.dashboard,
+            },
+          }}
+        />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
 );
+export default Routes;

@@ -1,14 +1,22 @@
 import { KeyboardEvent } from 'react';
 
+import clsx from 'clsx';
 import { Controller, ControllerRenderProps, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Checkbox, CheckboxControl, CheckboxGroup, CheckboxLabel, Text } from '@ovhcloud/ods-react';
+import {
+  BADGE_SIZE,
+  Checkbox,
+  CheckboxControl,
+  CheckboxGroup,
+  CheckboxLabel,
+  Text,
+  Tile,
+} from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { DeploymentModeBadge } from '@/components/new-lib/deploymentModeBadge/DeploymentModeBadge.component';
-import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { TDeploymentMode } from '@/domain/entities/catalog.entity';
 import { selectDeploymentModes } from '@/pages/create/view-model/shareCatalog.view-model';
@@ -51,7 +59,10 @@ export const DeploymentModeSelection = () => {
       selectedMode: TDeploymentMode,
     ) =>
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.code === 'Enter') handleSelect(field, selectedMode)();
+      if (event.code === 'Enter') {
+        event.preventDefault();
+        handleSelect(field, selectedMode)();
+      }
     };
 
   return (
@@ -62,35 +73,39 @@ export const DeploymentModeSelection = () => {
         render={({ field }) => (
           <CheckboxGroup
             name="deploymentModes"
-            className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
           >
-            {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
-              <PciCard
-                selectable
-                selected={field.value.includes(mode)}
-                className="h-full"
-                key={mode}
-                onClick={handleSelect(field, mode)}
-                onKeyDown={handleKeyDown(field, mode)}
-              >
-                <PciCard.Header>
-                  <Checkbox className="w-full" checked={field.value.includes(mode)}>
-                    <CheckboxControl />
-                    <CheckboxLabel className="text-lg font-bold text-[--ods-color-heading]">
-                      {t(`create:${labelKey}`)}
-                    </CheckboxLabel>
-                  </Checkbox>
-                  <DeploymentModeBadge mode={mode} />
-                </PciCard.Header>
-
-                <PciCard.Content className="justify-between">
-                  <Text>{t(`create:${descriptionKey}`)}</Text>
-                  <div className="mt-4 flex justify-center">
-                    <Image className="h-32" />
+            {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => {
+              const isSelected = field.value.includes(mode);
+              return (
+                <Tile
+                  key={mode}
+                  selected={isSelected}
+                  onClick={handleSelect(field, mode)}
+                  onKeyDown={handleKeyDown(field, mode)}
+                  className={clsx(
+                    'flex h-full flex-col p-4 !shadow-none',
+                    isSelected && '!border !border-[--ods-color-primary-600]',
+                  )}
+                >
+                  <div className="mb-4 flex flex-wrap items-center">
+                    <Checkbox className="flex w-full" checked={field.value.includes(mode)}>
+                      <CheckboxControl />
+                      <CheckboxLabel className="text-lg font-bold text-[--ods-color-heading]">
+                        {t(`create:${labelKey}`)}
+                      </CheckboxLabel>
+                      <DeploymentModeBadge mode={mode} size={BADGE_SIZE.sm} />
+                    </Checkbox>
                   </div>
-                </PciCard.Content>
-              </PciCard>
-            ))}
+
+                  <Text className="mb-4">{t(`create:${descriptionKey}`)}</Text>
+
+                  <div className="mt-auto flex w-full justify-center">
+                    <Image className="h-28" />
+                  </div>
+                </Tile>
+              );
+            })}
           </CheckboxGroup>
         )}
       />

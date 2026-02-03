@@ -1,10 +1,10 @@
 {
   "name": {
-    "title": "Nome della condivisione",
-    "label": "Scegli un nome per il tuo file di condivisione",
+    "title": "Nome dello share",
+    "label": "Scegli un nome per il tuo share",
     "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti e non superare i 255 caratteri.",
     "error": {
-      "too_small": "Il nome della condivisione non può essere vuoto. Si prega di inserire un nome.",
+      "too_small": "Il nome dello share non può essere vuoto. Si prega di inserire un nome.",
       "too_big": "Formato del nome non valido",
       "invalid_format": "Formato del nome non valido"
     }
@@ -16,20 +16,23 @@
       "modes": {
         "region": {
           "label": "Region 1-AZ",
-          "description": "Distribuzione resiliente ed economica su 1 zona di disponibilità."
+          "description": "Distribuzione resiliente ed economica su 1 zona."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Distribuzione ad alta resilienza/alta disponibilità per le tue applicazioni critiche su 3 zone di disponibilità."
+          "description": "Distribuzione il più vicina possibile per una bassa latenza."
         },
         "region-3-az": {
           "label": "Region 3-AZ",
-          "description": "Distribuzione delle tue applicazioni il più vicino possibile ai tuoi utenti per una bassa latenza e la residenza dei dati."
+          "description": "Distribuzione ad alta resilienza e alta disponibilità su 3 zone."
         }
       }
     },
+    "macroRegion": {
+      "title": "Scegli una posizione"
+    },
     "continents": {
-      "label": "",
+      "label": "Seleziona un'area geografica",
       "options": {
         "all": "Tutti",
         "asia_oceania": "Asia Pacifica",
@@ -47,29 +50,37 @@
       "informations": "È stata selezionata una zona di disponibilità predefinita. Hai la possibilità di personalizzare questa scelta.",
       "choice": {
         "company": "Scegli per me",
-        "user": "Scelgo la mia zona di disponibilità"
+        "user": "Scelgo la mia area di disponibilità"
       }
     }
   },
   "share": {
-    "title": "Modalità di prestazione della condivisione",
+    "title": "Modalità di prestazione dello share",
     "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Dimensione della condivisione",
-    "description": "Il 5% della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
-    "label": "Allocazione delle prestazioni lineare (GiB)",
+    "title": "Dimensione dello share",
+    "description": "Il 5 % della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
+    "label": "Allocazione delle prestazioni lineari (Gio)",
     "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "La dimensione della condivisione è inferiore al minimo consentito per questa offerta.",
-      "max_value": "La dimensione della condivisione supera il massimo consentito per questa offerta.",
-      "invalid_type": "Questo campo deve essere compilato."
+      "min_value": "La dimensione dello share è inferiore al minimo consentito per questa offerta.",
+      "max_value": "La dimensione dello share supera il massimo consentito per questa offerta.",
+      "invalid_type": "Questo campo deve essere compilato"
     }
   },
   "network": {
     "title": "Rete privata",
-    "description": "Seleziona la rete privata a cui desideri che le tue istanze si connettano al tuo file di condivisione",
+    "description": "Seleziona la rete privata a cui desideri collegare il tuo share",
     "label": "Seleziona una rete privata esistente",
-    "empty": "Spiacenti, ma non hai una rete privata per questa regione"
+    "empty": "Spiacente, ma non hai una rete privata per questa regione",
+    "subnet": {
+      "label": "Seleziona una sottorete privata esistente",
+      "empty": "Non hai una sottorete privata per questa rete"
+    }
+  },
+  "submit": {
+    "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}",
+    "success": "Lo share {{name}} è in fase di creazione"
   }
 }

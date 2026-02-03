@@ -1,8 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { TNetwork } from '@/domain/entities/network.entity';
-
-import { getPrivateNetworks } from '../network.service';
+import { getPrivateNetworks } from '@/domain/services/network.service';
 
 describe('network.service', () => {
   describe('getPrivateNetworks', () => {
@@ -16,6 +15,7 @@ describe('network.service', () => {
       name,
       region,
       visibility,
+      vlanId: null,
     });
 
     it.each([

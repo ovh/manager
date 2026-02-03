@@ -4,40 +4,26 @@ import { TNetwork } from '@/domain/entities/network.entity';
 
 import { generateAutoName, selectPrivateNetworksForRegion } from '../network.view-model';
 
-vi.mock('@/adapters/network/left/network.mapper', () => ({
-  mapNetworkToPrivateNetworkData: (network: TNetwork) => ({
-    label: network.name,
-    value: network.id,
-  }),
-}));
-
 vi.mock('@/domain/services/network.service', () => ({
-  getPrivateNetworks: (networks: TNetwork[]) =>
-    networks.filter((network) => network.visibility === 'private'),
+  getPrivateNetworks: (networks: TNetwork[]) => networks,
 }));
 
 describe('network.view-model', () => {
   describe('selectPrivateNetworksForRegion', () => {
-    const createNetwork = (
-      id: string,
-      name: string,
-      region: string,
-      visibility: 'private' | 'public',
-    ): TNetwork => ({
-      id,
-      name,
-      region,
-      visibility,
-    });
+    const createNetwork = (id: string, name: string, region: string): TNetwork =>
+      ({
+        id,
+        name,
+        region,
+      }) as TNetwork;
 
     it.each([
       {
         description: 'should return private networks mapped to UI data',
         region: 'GRA7',
         networks: [
-          createNetwork('net1', 'Private Network 1', 'GRA7', 'private'),
-          createNetwork('net2', 'Public Network', 'GRA7', 'public'),
-          createNetwork('net3', 'Private Network 2', 'GRA7', 'private'),
+          createNetwork('net1', 'Private Network 1', 'GRA7'),
+          createNetwork('net3', 'Private Network 2', 'GRA7'),
         ],
         expected: [
           { label: 'Private Network 1', value: 'net1' },
@@ -54,9 +40,8 @@ describe('network.view-model', () => {
         description: 'should return empty array when region is undefined',
         region: undefined,
         networks: [
-          createNetwork('net1', 'Private Network 1', 'GRA7', 'private'),
-          createNetwork('net2', 'Public Network', 'GRA7', 'public'),
-          createNetwork('net3', 'Private Network 2', 'GRA7', 'private'),
+          createNetwork('net1', 'Private Network 1', 'GRA7'),
+          createNetwork('net3', 'Private Network 2', 'GRA7'),
         ],
         expected: [],
       },
@@ -70,15 +55,6 @@ describe('network.view-model', () => {
         description: 'should return empty array when networks array is empty',
         region: 'GRA7',
         networks: [],
-        expected: [],
-      },
-      {
-        description: 'should return empty array when no private networks exist',
-        region: 'GRA7',
-        networks: [
-          createNetwork('net1', 'Public Network 1', 'GRA7', 'public'),
-          createNetwork('net2', 'Public Network 2', 'GRA7', 'public'),
-        ],
         expected: [],
       },
     ])('$description', ({ region, networks, expected }) => {
@@ -101,27 +77,27 @@ describe('network.view-model', () => {
       {
         description: 'should generate name with default specName',
         specName: undefined,
-        expectedPattern: /^share_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^share_2024_01_15$/,
       },
       {
         description: 'should generate name with provided specName',
-        specName: 'publiccloud-share-standard1',
-        expectedPattern: /^publiccloud-share-standard1_\d{2}_\d{2}_\d{4}$/,
+        specName: 'standard-1az',
+        expectedPattern: /^standard-1az_2024_01_15$/,
       },
       {
         description: 'should sanitize special characters in specName',
         specName: 'share@#$% ^&*()name',
-        expectedPattern: /^share_+name_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^share_+name_2024_01_15$/,
       },
       {
         description: 'should truncate long specName to 200 characters',
         specName: 'a'.repeat(250),
-        expectedPattern: new RegExp(`^a{200}_\\d{2}_\\d{2}_\\d{4}$`),
+        expectedPattern: /^a{200}_2024_01_15$/,
       },
       {
         description: 'should handle empty string specName',
         specName: '',
-        expectedPattern: /^_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^_2024_01_15$/,
       },
     ])('$description', ({ specName, expectedPattern }) => {
       const fixedDate = new Date('2024-01-15T10:30:00Z');
@@ -130,7 +106,7 @@ describe('network.view-model', () => {
       const result = generateAutoName(specName);
 
       expect(result).toMatch(expectedPattern);
-      expect(result).toContain('15_01_2024');
+      expect(result).toContain('2024_01_15');
     });
   });
 });

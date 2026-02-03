@@ -12,6 +12,10 @@ vi.mock('@ovh-ux/muk', () => ({
   DatagridColumn: () => null,
 }));
 
+vi.mock('@/hooks/useFormatShareSize', () => ({
+  useFormatGiBSize: (sizeInGiB: number) => `${sizeInGiB} GiB`,
+}));
+
 describe('useShareColumn', () => {
   it('should return an array of column definitions', () => {
     const { result } = renderHook(() => useShareColumn());
@@ -26,20 +30,21 @@ describe('useShareColumn', () => {
     expect(columns[5]!.id).toBe('actions');
   });
 
-  it('should use allocated_capacity column with cell that translates capacity in GiB', () => {
+  it('should use allocated_capacity column with cell that formats size via useFormatGiBSize', () => {
     const { result } = renderHook(() => useShareColumn());
     const columns = result.current ?? [];
     const capacityColumn = columns[3]! as {
       id: string;
-      cell?: (ctx: { getValue: () => number }) => string;
+      cell?: (ctx: { getValue: () => number }) => React.ReactNode;
     };
     expect(capacityColumn.id).toBe('allocated_capacity');
     expect(capacityColumn.cell).toBeDefined();
-    const sizeBytes = 150;
+    const sizeInGiB = 150;
     const cell = capacityColumn.cell?.({
-      getValue: () => sizeBytes,
+      getValue: () => sizeInGiB,
     } as never);
-    expect(cell).toBe('list:columns.allocated_capacity_value{"capacity":150}');
+    render(cell as React.ReactElement);
+    expect(screen.getByText('150 GiB')).toBeInTheDocument();
   });
 
   it('should use region column with cell that translates regionDisplayKey', () => {
@@ -88,7 +93,10 @@ describe('useShareColumn', () => {
         status: 'available',
         statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
-          ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+          [
+            'actions',
+            [{ labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } }],
+          ],
         ]),
       },
     };
@@ -130,8 +138,11 @@ describe('useShareColumn', () => {
           [
             'actions',
             [
-              { label: 'list:actions.manage', link: { path: './share-1' } },
-              { label: 'list:actions.delete', link: { path: './share-1/delete' } },
+              { labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } },
+              {
+                labelTranslationKey: 'share:actions.delete',
+                link: { path: './GRA9/share-1/delete' },
+              },
             ],
           ],
         ]),
@@ -150,7 +161,7 @@ describe('useShareColumn', () => {
     await act(async () => {
       await user.click(trigger);
     });
-    expect(screen.getByRole('link', { name: 'list:actions.manage' })).toBeVisible();
-    expect(screen.getByRole('link', { name: 'list:actions.delete' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.manage' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.delete' })).toBeVisible();
   });
 });

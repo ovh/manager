@@ -46,7 +46,7 @@ export const ActionsMenu: React.FC<TActionsMenuProps> = ({ items, actionButton }
           <div key={group}>
             {index !== 0 && <Divider className="m-0" />}
             {item.map((action: TShareAction) => (
-              <ActionMenuItem key={action.label} {...action} />
+              <ActionMenuItem key={action.labelTranslationKey} {...action} />
             ))}
           </div>
         ))}
