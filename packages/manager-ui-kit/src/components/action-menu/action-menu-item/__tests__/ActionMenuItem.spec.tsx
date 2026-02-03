@@ -34,7 +34,7 @@ describe('ActionMenuItem', () => {
         download: 'test-file.pdf',
       };
 
-      render(<ActionMenuItem item={itemWithHref} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={itemWithHref} closeMenu={() => {}} id={1} />);
 
       const link = screen.getByRole('link');
       expect(link).toBeInTheDocument();
@@ -57,7 +57,7 @@ describe('ActionMenuItem', () => {
         buildIamMock({ isAuthorized: true, isLoading: false }),
       );
 
-      render(<ActionMenuItem item={itemWithIam} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={itemWithIam} closeMenu={() => {}} id={1} />);
 
       const link = screen.getByText('Action 1');
       expect(link).toBeInTheDocument();
@@ -79,14 +79,14 @@ describe('ActionMenuItem', () => {
         buildIamMock({ isAuthorized: false, isLoading: false }),
       );
 
-      render(<ActionMenuItem item={itemWithIam} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={itemWithIam} closeMenu={() => {}} id={1} />);
       expect(screen.getByText('Action 1')).toBeInTheDocument();
     });
   });
 
   describe('Button rendering', () => {
     it('renders a regular button when no href or IAM actions', () => {
-      render(<ActionMenuItem item={mockItem} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={mockItem} closeMenu={() => {}} id={1} />);
 
       const button = screen.getByRole('button');
       expect(button).toBeInTheDocument();
@@ -105,25 +105,30 @@ describe('ActionMenuItem', () => {
         'data-testid': 'custom-button',
       };
 
-      render(<ActionMenuItem item={itemWithCustomProps} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={itemWithCustomProps} closeMenu={() => {}} id={1} />);
 
       const button = screen.getByTestId('custom-button');
       expect(button).toBeInTheDocument();
+      expect(button).toBeDisabled();
       expect(button).toHaveTextContent('Test Menu Item');
+      expect(button).not.toHaveAttribute('isDisabled');
+      expect(button).not.toHaveAttribute('isLoading');
     });
 
-    it('calls onClick when the button is clicked', () => {
+    it('calls onClick and closeMenu when the button is clicked', () => {
       const onClickMock = vi.fn();
+      const closeMenuMock = vi.fn();
       const clickableItem: ActionMenuItemProps = {
         ...mockItem,
         id: 1,
         onClick: onClickMock,
       };
 
-      render(<ActionMenuItem item={clickableItem} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={clickableItem} closeMenu={closeMenuMock} id={1} />);
       const button = screen.getByRole('button');
       fireEvent.click(button);
       expect(onClickMock).toHaveBeenCalledTimes(1);
+      expect(closeMenuMock).toHaveBeenCalledTimes(1);
     });
 
     it('renders an authorized IAM button', () => {
@@ -136,7 +141,7 @@ describe('ActionMenuItem', () => {
 
       mockUseAuthorizationIam.mockReturnValue(buildIamMock({ isAuthorized: true }));
 
-      render(<ActionMenuItem item={iamItem} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={iamItem} closeMenu={() => {}} id={1} />);
       expect(screen.getByText('Action 2')).toBeInTheDocument();
     });
 
@@ -150,7 +155,7 @@ describe('ActionMenuItem', () => {
 
       mockUseAuthorizationIam.mockReturnValue(buildIamMock({ isAuthorized: false }));
 
-      render(<ActionMenuItem item={iamItem} isTrigger={false} id={1} />);
+      render(<ActionMenuItem item={iamItem} closeMenu={() => {}} id={1} />);
       expect(screen.getByText('Action 2')).toBeInTheDocument();
     });
   });

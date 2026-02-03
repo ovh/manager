@@ -12,8 +12,8 @@
   "tableActionRestart": "Neu starten",
   "tableActionStop": "Anhalten",
   "tableActionDelete": "Löschen",
-  "shutdownLabel": "Stopp um {{timeout}}",
-  "restartLabel": "Neustart um {{timeout}}",
-  "timeOutLabel": "Ablauf",
+  "shutdownLabel": "Beenden am {{timeout}}",
+  "restartLabel": "Neustart am {{timeout}}",
+  "timeOutLabel": "Ablaufdatum",
   "tableActionClone": "Job klonen"
 }

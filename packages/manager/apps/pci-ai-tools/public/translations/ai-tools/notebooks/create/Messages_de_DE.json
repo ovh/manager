@@ -54,10 +54,10 @@
   "sshKeyConfigurationHelperBis": "Verwenden Sie die untenstehende Dropdown-Liste, um SSH-Schlüssel mit Ihrem Notebook zu verknüpfen",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "qpuQubits": "Qubits",
-  "defaultAutoRestartInfo": "Das Notebook wird nach 7 Tagen automatisch heruntergefahren. Ihre Einstellungen und Daten werden gespeichert.",
-  "fieldTimeOutLabel": "Ablauf",
+  "defaultAutoRestartInfo": "Das Notebook wird nach 7 Tagen automatisch beendet. Ihre Konfiguration und Daten werden gespeichert.",
+  "fieldTimeOutLabel": "Ablaufdatum",
   "fieldAutoRestartLabel": "Automatischer Neustart",
-  "fieldAutoRestartDescription": "Wenn aktiviert, wird das Notebook alle 7 Tage automatisch neu gestartet. Wenn deaktiviert, wird das Notebook nach 7 Tagen automatisch heruntergefahren. In beiden Fällen werden Ihre Einstellungen und Daten gespeichert.",
+  "fieldAutoRestartDescription": "Bei Aktivierung wird das Notebook alle 7 Tage automatisch neu gestartet. Bei Deaktivierung wird das Notebook nach 7 Tagen automatisch beendet. In jedem Fall werden Ihre Konfiguration und Daten gespeichert.",
   "filedEnable": "Aktiviert",
   "filedDisable": "Deaktiviert"
 }

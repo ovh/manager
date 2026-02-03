@@ -23,6 +23,6 @@
   "restartJobButtonConfirm": "Neu starten",
   "restartJobToastSuccessDescription": "Der Job {{name}} wurde gestartet.",
   "cloneJobTitle": "Einen neuen Job klonen",
-  "shutdownLabel": "Stoppen Sie den ",
+  "shutdownLabel": "Beenden am ",
   "restartLabel": "Neustart am "
 }

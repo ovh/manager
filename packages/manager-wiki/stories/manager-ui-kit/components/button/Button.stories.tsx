@@ -104,14 +104,6 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
     },
-    isIamTrigger: {
-      description: 'Whether this button triggers IAM authorization checks.',
-      control: { type: 'boolean' },
-      table: {
-        category: 'IAM Authorization',
-        defaultValue: { summary: 'false' },
-      },
-    },
     tooltipPosition: {
       description: 'Position of the tooltip relative to the button.',
       control: { type: 'select' },

@@ -23,13 +23,13 @@
   "keyFieldLabel": "Klucz",
   "valueFieldLabel": "Wartość",
   "deleteNotebookTooltip": "Notebook musi mieć status „zatrzymany”",
-  "activateAutoRestartButton": "Włącz automatyczne ponowne uruchamianie",
-  "deactivateAutoRestartButton": "Wyłącz automatyczne ponowne uruchamianie",
-  "autoRestartLabel": "Automatyczne ponowne uruchamianie",
-  "autoRestartEnabled": "Włączone",
-  "autoRestartDisabled": "Wyłączona",
-  "autoRestartToastSuccessTitle": "Zaktualizowane automatyczne ponowne uruchamianie",
-  "autoRestartToastSuccessDescription": "Ustawienie automatycznego ponownego uruchamiania zostało zaktualizowane dla {{name}}",
-  "disabledRestartButtonTooltip": "Automatyczne ponowne uruchamianie nie może być zmieniane, gdy notebook jest wyłączony.",
-  "modifyLabel": "Zmień"
+  "activateAutoRestartButton": "Włącz automatyczny restart",
+  "deactivateAutoRestartButton": "Wyłącz automatyczny restart",
+  "autoRestartLabel": "Automatyczny restart",
+  "autoRestartEnabled": "Włączony",
+  "autoRestartDisabled": "Wyłączony",
+  "autoRestartToastSuccessTitle": "Automatyczny restart został zaktualizowany",
+  "autoRestartToastSuccessDescription": "Ustawienie automatycznego restartu zostało zaktualizowane dla {{name}}",
+  "disabledRestartButtonTooltip": "Nie można zmienić ustawień automatycznego restartu, gdy notebook jest zatrzymany.",
+  "modifyLabel": "Zmodyfikuj"
 }

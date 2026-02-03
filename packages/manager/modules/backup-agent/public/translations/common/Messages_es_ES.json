@@ -11,6 +11,6 @@
   "primary": "Primario",
   "secondary": "Secundario",
   "baremetal_label_order_in_progress": "El pedido ha sido recibido correctamente, su producto está en camino y puede seguir su progreso <OrderLink>aquí</OrderLink>.",
-  "server": "Servidores",
+  "server": "Servidor",
   "billings_tab_description": "Aquí encontrará la facturación actualizada de su Tenant. Este se le facturará a principios del próximo mes. Para saber más, consulte la <Link>documentación del Agente de Backup de OVHcloud</Link>"
 }
