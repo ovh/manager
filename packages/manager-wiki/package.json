@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.21.2",
-    "@ovh-ux/muk": "^0.13.3",
-    "@ovhcloud/ods-react": "^19.2.0",
-    "@ovhcloud/ods-themes": "^19.2.0",
+    "@ovh-ux/muk": "^1.1.1",
+    "@ovhcloud/ods-react": "19.5.0",
+    "@ovhcloud/ods-themes": "19.5.0",
     "clsx": "^2.1.1",
     "lz-string": "^1.5.0",
     "react": "^18.2.0",
