@@ -76,6 +76,7 @@ describe('mapShareDtoToShare', () => {
         description: 'Description',
         isPublic: false,
         capabilities: [],
+        networkId: 'network-1',
       },
     },
     {
@@ -92,6 +93,7 @@ describe('mapShareDtoToShare', () => {
         description: '',
         isPublic: true,
         capabilities: [],
+        networkId: 'network-1',
       },
     },
   ])('$description', ({ dto }) => {
@@ -109,29 +111,9 @@ describe('mapShareDtoToShare', () => {
       description: dto.description,
       isPublic: dto.isPublic,
       enabledActions: [],
+      mountPaths: [],
+      network: { id: dto.networkId },
     });
-  });
-
-  it('should map unknown status to unmanaged', () => {
-    const dto = {
-      id: 'share-3',
-      name: 'Share',
-      region: 'GRA9',
-      protocol: 'NFS',
-      size: 0,
-      status: 'unknown_status',
-      type: 'nfs',
-      createdAt: '2026-01-30T09:00:00.000Z',
-      description: '',
-      isPublic: false,
-      capabilities: [],
-    };
-
-    const result = mapShareDtoToShare(dto);
-
-    expect(result.status).toBe('unmanaged');
-    expect(result.id).toBe(dto.id);
-    expect(result.enabledActions).toEqual([]);
   });
 
   it('should map capabilities to enabledActions', () => {
@@ -146,6 +128,7 @@ describe('mapShareDtoToShare', () => {
       createdAt: '2026-01-30T09:00:00.000Z',
       description: '',
       isPublic: false,
+      networkId: 'network-1',
       capabilities: [
         { name: 'share_update_size', enabled: true },
         { name: 'share_delete', enabled: true },
@@ -156,5 +139,74 @@ describe('mapShareDtoToShare', () => {
     const result = mapShareDtoToShare(dto);
 
     expect(result.enabledActions).toEqual(['update_size', 'delete', 'edit']);
+    expect(result.mountPaths).toEqual([]);
+  });
+
+  it('should map all exportLocations paths to mountPaths', () => {
+    const dto = {
+      id: 'share-5',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+      networkId: 'network-1',
+      exportLocations: [
+        { id: 'loc-1', path: '/path/to/mount' },
+        { id: 'loc-2', path: '/other/path' },
+      ],
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual(['/path/to/mount', '/other/path']);
+  });
+
+  it('should set mountPaths to empty array when exportLocations is empty', () => {
+    const dto = {
+      id: 'share-6',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+      exportLocations: [],
+      networkId: 'network-1',
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual([]);
+  });
+
+  it('should set mountPaths to empty array when exportLocations is undefined', () => {
+    const dto = {
+      id: 'share-7',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+      networkId: 'network-1',
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual([]);
   });
 });

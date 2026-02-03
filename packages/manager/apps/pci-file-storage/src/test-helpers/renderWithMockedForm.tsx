@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RenderOptions, render } from '@testing-library/react';
 import { DeepPartial, FormProvider, useForm } from 'react-hook-form';
 
@@ -20,6 +21,14 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
   ui,
   { defaultValues, onFormChange, ...renderOptions } = {},
 ) => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+
   const TestWrapper = ({ children }: { children: React.ReactNode }) => {
     const form = useForm<CreateShareFormValues>({
       resolver: zodResolver(createShareSchema),
@@ -49,7 +58,11 @@ export const renderWithMockedForm: TRenderWithMockedForm = (
       return () => subscription.unsubscribe();
     }, [form]);
 
-    return <FormProvider {...form}>{children}</FormProvider>;
+    return (
+      <QueryClientProvider client={queryClient}>
+        <FormProvider {...form}>{children}</FormProvider>
+      </QueryClientProvider>
+    );
   };
 
   return render(ui, {

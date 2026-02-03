@@ -1,0 +1,10 @@
+{
+  "cards": {
+    "informations": "Más información",
+    "properties": "Propiedades"
+  },
+  "clipboard": {
+    "copy": "Copiar al portapapeles",
+    "copy_success": "¡Copiado!"
+  }
+}

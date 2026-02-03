@@ -12,10 +12,10 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { TAvailabilityZoneData } from '@/adapters/catalog/left/shareCatalog.data';
 import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TAvailabilityZoneData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { selectAvailabilityZones } from '@/pages/create/view-model/shareCatalog.view-model';
 
 type TAvailabilityZoneChoice = 'companyChoice' | 'userChoice';
