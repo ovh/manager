@@ -7,7 +7,7 @@ import {
   Text,
   INPUT_TYPE,
   Input,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 

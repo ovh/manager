@@ -29,6 +29,11 @@ export type ViewContextType<T> = {
   columnsConfig: ColumnsConfig<T>[];
   columnVisibility: VisibilityState;
   setColumnVisibility: React.Dispatch<React.SetStateAction<VisibilityState>>;
+  setOrderedColumns: React.Dispatch<
+    React.SetStateAction<DatagridColumn<DedicatedServer>[]>
+  >;
+  setColumnsOrder: (order?: string[]) => void;
+  setViews: React.Dispatch<React.SetStateAction<ViewType[]>>;
 };
 
 export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
@@ -37,6 +42,9 @@ export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
   setCurrentView: () => {},
   columnsConfig: [],
   columnVisibility: {},
+  setViews: () => {},
+  setOrderedColumns: () => {},
+  setColumnsOrder: () => {},
   setColumnVisibility: () => {},
 });
 
@@ -47,12 +55,24 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
     DEFAULT_COLUMN_VISIBILITY,
   );
+  const initialColumns = useColumns();
+  const [orderedColumns, setOrderedColumns] = useState(initialColumns);
+  const columns = orderedColumns;
 
   // Fetch saved views preferences
   const { preferences, error, isLoading } = useGetViewsPreferences({
     key: PREFERENCES_KEY,
     enabled: true,
   });
+
+  const setColumnsOrder = (order?: string[]) => {
+    if (order) {
+      const currentOrderedColumns = order.map((key) =>
+        columns.find((column) => column.id === key),
+      );
+      setOrderedColumns(currentOrderedColumns);
+    }
+  };
 
   // When preferences are loaded, set views and current view
   useEffect(() => {
@@ -70,6 +90,10 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     setViews(viewList);
     setCurrentView(foundDefaultView || viewList[0]);
 
+    if (foundDefaultView?.columnOrder) {
+      setColumnsOrder(foundDefaultView?.columnOrder);
+    }
+
     // Make datagrid reflect current view column visibility
     if (foundDefaultView?.columnVisibility) {
       setColumnVisibility(foundDefaultView.columnVisibility);
@@ -83,10 +107,8 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     );
   }, [currentView]);
 
-  const columns = useColumns();
-
   const viewContext = useMemo(() => {
-    const columnsConfig = columns.map((column) => {
+    const columnsConfig = orderedColumns.map((column) => {
       return {
         ...column,
         visible: columnVisibility[column.id],
@@ -100,8 +122,11 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
       columnsConfig,
       columnVisibility,
       setColumnVisibility,
+      setOrderedColumns,
+      setColumnsOrder,
+      setViews,
     };
-  }, [views, currentView, columnVisibility]);
+  }, [views, currentView, columnVisibility, orderedColumns]);
 
   return (
     <ViewContext.Provider value={viewContext}>{children}</ViewContext.Provider>
