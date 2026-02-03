@@ -10,7 +10,7 @@ import {
   CheckboxLabel,
   Text,
   BUTTON_SIZE,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   DEFAULT_COLUMN_VISIBILITY,
@@ -38,7 +38,9 @@ export const ManageViewDrawer = ({
   handleConfirm,
   handleCancel,
 }: ManageViewDrawerProps) => {
-  const { setColumnVisibility, currentView } = useContext(ViewContext);
+  const { setColumnVisibility, currentView, setColumnsOrder } = useContext(
+    ViewContext,
+  );
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
@@ -79,6 +81,7 @@ export const ManageViewDrawer = ({
     setColumnVisibility(
       currentView?.columnVisibility || DEFAULT_COLUMN_VISIBILITY,
     );
+    setColumnsOrder(currentView.columnOrder);
     handleCancel();
   };
 
@@ -88,59 +91,59 @@ export const ManageViewDrawer = ({
         transition-all duration-300 ease-in-out bg-red-500
         ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
     >
-        <aside className="h-full w-full bg-white shadow-lg relative flex flex-col">
-          {isOpen && (
-            <div
-              className="absolute top-9 -left-12 h-12 w-12 z-50 bg-white rounded-l-md shadow-md flex items-center justify-center border-0 outline-none focus:outline-none"
-            >
-              <Button
-                role="button"
-                variant={BUTTON_VARIANT.ghost}
-                size={BUTTON_SIZE.xs}
-                aria-label={tCommon('close')}
-                onClick={cancelChanges}
-              >
-                <Icon name={ODS_ICON_NAME.chevronDoubleRight} />
-              </Button>
-              <span className="absolute -right-1 top-0 h-full w-2 bg-white pointer-events-none rounded-r-md"></span>
-            </div>
-          )}
-          {/* Drawer Content */}
-          <div className="p-4 flex-1 overflow-auto">
-            <div className="flex items-center gap-4">
-              <ManageViewDrawerTitle
-                value={editingView?.name}
-                onChange={handleNameChange}
-              />
-            </div>
-            <Checkbox
-              checked={editingView?.default}
-              onCheckedChange={handelSetDefault}
-            >
-              <CheckboxControl />
-              <CheckboxLabel><Text>{t('set_as_default')}</Text></CheckboxLabel>
-            </Checkbox>
-
-            <ManageViewConfig />
-          </div>
-          {/* Drawer footer */}
-          <div className="p-4 border-t flex justify-start gap-2">
+      <aside className="h-full w-full bg-white shadow-lg relative flex flex-col">
+        {isOpen && (
+          <div className="absolute top-9 -left-12 h-12 w-12 z-50 bg-white rounded-l-md shadow-md flex items-center justify-center border-0 outline-none focus:outline-none">
             <Button
-              aria-label={tCommon('cancel')}
+              role="button"
               variant={BUTTON_VARIANT.ghost}
+              size={BUTTON_SIZE.xs}
+              aria-label={tCommon('close')}
               onClick={cancelChanges}
             >
-              {tCommon('cancel')}
+              <Icon name={ODS_ICON_NAME.chevronDoubleRight} />
             </Button>
-            <Button
-              aria-label={tCommon('save')}
-              variant={BUTTON_VARIANT.primary}
-              onClick={saveViewChanges}
-            >
-              {tCommon('save')}
-            </Button>
+            <span className="absolute -right-1 top-0 h-full w-2 bg-white pointer-events-none rounded-r-md"></span>
           </div>
-        </aside>
+        )}
+        {/* Drawer Content */}
+        <div className="p-4 flex-1 overflow-auto">
+          <div className="flex items-center gap-4">
+            <ManageViewDrawerTitle
+              value={editingView?.name}
+              onChange={handleNameChange}
+            />
+          </div>
+          <Checkbox
+            checked={editingView?.default}
+            onCheckedChange={handelSetDefault}
+          >
+            <CheckboxControl />
+            <CheckboxLabel>
+              <Text>{t('set_as_default')}</Text>
+            </CheckboxLabel>
+          </Checkbox>
+
+          <ManageViewConfig />
+        </div>
+        {/* Drawer footer */}
+        <div className="p-4 border-t flex justify-start gap-2">
+          <Button
+            aria-label={tCommon('cancel')}
+            variant={BUTTON_VARIANT.ghost}
+            onClick={cancelChanges}
+          >
+            {tCommon('cancel')}
+          </Button>
+          <Button
+            aria-label={tCommon('save')}
+            variant={BUTTON_VARIANT.default}
+            onClick={saveViewChanges}
+          >
+            {tCommon('save')}
+          </Button>
+        </div>
+      </aside>
     </div>
   );
 };
