@@ -28,7 +28,7 @@ export const useSaveViewsPreference = ({
   onSettled,
 }: UseSaveViewsPreferenceParams) => {
   const queryClient = useQueryClient();
-  const { views, columnVisibility } = useContext(ViewContext);
+  const { views, columnVisibility, columnsConfig } = useContext(ViewContext);
   const { clearNotifications } = useNotifications();
 
   return useMutation({
@@ -39,6 +39,7 @@ export const useSaveViewsPreference = ({
       const updatedView = {
         ...view,
         columnVisibility,
+        columnOrder: columnsConfig.map((column) => column.id),
       };
 
       const updatedViews = [

@@ -11,7 +11,7 @@ export type ErrorBannerProps = {
 export type ErrorProps = { error: ApiError } | { error: ErrorBannerProps };
 
 export const ErrorComponent = ({ error }: ErrorProps) => {
-  if ("response" in error) {
+  if ('response' in error) {
     const { status, headers } = error.response;
 
     return (
@@ -20,7 +20,7 @@ export const ErrorComponent = ({ error }: ErrorProps) => {
           status,
           data: error,
           headers: Object.fromEntries(
-            Object.entries(headers ?? {}).map(([k, v]) => [k, String(v)])
+            Object.entries(headers ?? {}).map(([k, v]) => [k, String(v)]),
           ),
         }}
       />

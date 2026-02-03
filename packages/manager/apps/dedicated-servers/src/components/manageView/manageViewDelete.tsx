@@ -9,7 +9,7 @@ import {
   BUTTON_VARIANT,
   Icon,
   ICON_NAME,
-} from '@ovh-ux/muk';
+} from '@ovhcloud/ods-react';
 import { ViewType } from './types';
 import { useDeleteViewPreference } from '@/hooks/manage-views/useDeleteViewPreference';
 
