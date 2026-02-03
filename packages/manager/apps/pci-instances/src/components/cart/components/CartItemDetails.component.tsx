@@ -29,7 +29,7 @@ export const CartItemDetails = ({
   return (
     <AccordionContent className="bg-[--ods-color-neutral-050] px-8 py-5">
       <QuantitySelector quota={quota} type={type} region={translatedRegion} />
-      <Divider spacing="64" />
+      <Divider spacing="16" />
       {details.map(
         ({ name, description, price, priceUnit, isApproximate }, index) => (
           <div

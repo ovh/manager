@@ -1,6 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
-import { useEffect } from 'react';
 import {
   FormField,
   FormFieldLabel,
@@ -15,11 +14,9 @@ import {
   TInstanceCreationForm,
 } from '@/pages/instances/create/CreateInstance.schema';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
-import {
-  calculateQuantityValue,
-  normalizeQuantity,
-} from '@/pages/instances/create/utils/quantityUtils';
-import { ControllerRenderProps, UseFormSetValue } from 'react-hook-form';
+import { calculateQuantityValue } from '@/pages/instances/create/utils/quantityUtils';
+import { ControllerRenderProps } from 'react-hook-form';
+import clsx from 'clsx';
 
 type TQuantityProps = {
   quota: number;
@@ -30,17 +27,12 @@ type TQuantityProps = {
 type TCreateQuantityHandlersParams = {
   quota: number;
   quantity: number;
-  min: number;
   field: ControllerRenderProps<TInstanceCreationForm, 'quantity'>;
-  setValue: UseFormSetValue<TInstanceCreationForm>;
 };
 
 export const createQuantityHandlers = ({
   quota,
-  quantity,
-  min,
   field,
-  setValue,
 }: TCreateQuantityHandlersParams) => {
   const handleValueChange = ({ valueAsNumber }: { valueAsNumber: number }) => {
     const calculatedValue = calculateQuantityValue(quota, valueAsNumber);
@@ -49,42 +41,23 @@ export const createQuantityHandlers = ({
     }
   };
 
-  const handleBlur = () => {
-    const normalizedValue = normalizeQuantity(quota, quantity, min);
-    if (normalizedValue !== quantity) {
-      setValue('quantity', normalizedValue, { shouldValidate: true });
-    }
-    field.onBlur();
-  };
-
-  return { handleValueChange, handleBlur };
+  return { handleValueChange };
 };
 
 export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
   const { t } = useTranslation('creation');
   const projectUrl = useProjectUrl('public-cloud');
 
-  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const { control } = useFormContext<TInstanceCreationForm>();
   const quantity = useWatch({
     control,
     name: 'quantity',
   });
 
   const isDisabled = quota === 0;
-  const normalizedQuantity = normalizeQuantity(
-    quota,
-    quantity,
-    quantityDefaultValue,
-  );
-
-  useEffect(() => {
-    if (normalizedQuantity !== quantity) {
-      setValue('quantity', normalizedQuantity, { shouldValidate: true });
-    }
-  }, [normalizedQuantity, quantity, setValue]);
 
   return (
-    <article className="mb-8 flex w-full flex-col">
+    <article className="flex w-full flex-col">
       <div className="mt-4 pb-4 pt-3">
         <FormField>
           <FormFieldLabel>
@@ -94,12 +67,10 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
             control={control}
             name="quantity"
             render={({ field }) => {
-              const { handleValueChange, handleBlur } = createQuantityHandlers({
+              const { handleValueChange } = createQuantityHandlers({
                 quota,
                 quantity,
-                min: quantityDefaultValue,
                 field,
-                setValue,
               });
 
               return (
@@ -108,9 +79,9 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
                   max={quota}
                   disabled={isDisabled}
                   onValueChange={handleValueChange}
-                  onBlur={handleBlur}
-                  value={String(normalizedQuantity)}
+                  value={String(quantity)}
                   required
+                  invalid={quantity > quota}
                 >
                   <QuantityControl>
                     <QuantityInput />
@@ -121,7 +92,12 @@ export const QuantitySelector = ({ quota, type, region }: TQuantityProps) => {
           />
         </FormField>
       </div>
-      <Text preset="span">
+      <Text
+        className={clsx('text-sm', {
+          'text-[--ods-color-critical-500]': quantity > quota,
+        })}
+        preset="span"
+      >
         <Trans
           t={t}
           i18nKey="pci_instance_creation_quantity_rule"

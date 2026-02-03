@@ -10,7 +10,7 @@ describe('quantityUtils', () => {
     test.each([
       { quota: 0, input: 5, expected: 0, desc: 'quota is 0' },
       { quota: 10, input: 5, expected: 5, desc: 'input < quota' },
-      { quota: 10, input: 15, expected: 10, desc: 'input > quota' },
+      { quota: 10, input: 15, expected: 15, desc: 'input > quota' },
       { quota: 10, input: 10, expected: 10, desc: 'input equals quota' },
     ])('should return $expected when $desc', ({ quota, input, expected }) => {
       expect(calculateQuantityValue(quota, input)).toBe(expected);

@@ -1,6 +1,7 @@
 import {
   selectFlavorDetailsForCreation,
   selectLocalisationDetailsForCreation,
+  selectQuotaByRegionalizedFlavorId,
   selectWindowsImageLicensePriceForCreation,
   TSelectFlavorDetails,
   TSelectLocalizationDetails,
@@ -181,6 +182,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
     select: localizationDetailsSelect,
   });
 
+  const { data: quota = null } = useInstancesCatalogWithSelect({
+    select: (catalog) => selectQuotaByRegionalizedFlavorId(catalog)(flavorId),
+  });
+
   const flavorDetailsSelect = useMemo(
     () =>
       selectFlavorDetailsForCreation(
@@ -304,6 +309,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const hasBaseRequirements =
     !!name &&
     !!quantity &&
+    quota != null &&
+    quantity <= quota &&
     !!microRegion &&
     !!flavorDetails?.id &&
     !!distributionImageVersion.distributionImageVersionId;

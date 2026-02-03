@@ -200,18 +200,16 @@ export type TSelectQuantityHintParamsArgs = {
   macroRegionId: string | null;
   microRegionId: string | null;
   availabilityZone: string | null;
-  flavorType: string | null;
 };
 
 export const selectQuantityHintParams = (
-  catalog: TInstancesCatalog | undefined,
-) => (args: TSelectQuantityHintParamsArgs): TQuantityHintParams => {
+  args: TSelectQuantityHintParamsArgs,
+) => (catalog: TInstancesCatalog | undefined): TQuantityHintParams => {
   const {
     regionalizedFlavorId,
     macroRegionId,
     microRegionId,
     availabilityZone,
-    flavorType,
   } = args;
 
   if (!catalog) {
@@ -228,6 +226,7 @@ export const selectQuantityHintParams = (
     ? data.entities.regionalizedFlavors.byId.get(regionalizedFlavorId)
     : null;
   const quota = regionalizedFlavor?.quota ?? null;
+  const flavorId = regionalizedFlavor?.flavorId ?? null;
 
   const macroRegion = macroRegionId
     ? data.entities.macroRegions.byId.get(macroRegionId)
@@ -239,8 +238,18 @@ export const selectQuantityHintParams = (
 
   return {
     quota,
-    type: flavorType ?? null,
+    type: flavorId ?? null,
     region,
     regionId,
   };
+};
+
+export const selectQuotaByRegionalizedFlavorId = (
+  catalog: TInstancesCatalog | undefined,
+) => (regionalizedFlavorId: string | null): number | null => {
+  if (!catalog || !regionalizedFlavorId) return null;
+  const regionalizedFlavor = catalog.entities.regionalizedFlavors.byId.get(
+    regionalizedFlavorId,
+  );
+  return regionalizedFlavor?.quota ?? null;
 };

@@ -10,7 +10,7 @@ export const calculateQuantityValue = (
     return 0;
   }
 
-  return Math.min(quota, inputValue);
+  return inputValue;
 };
 
 export const normalizeQuantity = (
