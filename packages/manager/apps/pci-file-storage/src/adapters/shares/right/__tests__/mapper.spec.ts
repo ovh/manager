@@ -109,6 +109,7 @@ describe('mapShareDtoToShare', () => {
       description: dto.description,
       isPublic: dto.isPublic,
       enabledActions: [],
+      mountPaths: [],
     });
   });
 
@@ -132,6 +133,7 @@ describe('mapShareDtoToShare', () => {
     expect(result.status).toBe('unmanaged');
     expect(result.id).toBe(dto.id);
     expect(result.enabledActions).toEqual([]);
+    expect(result.mountPaths).toEqual([]);
   });
 
   it('should map capabilities to enabledActions', () => {
@@ -156,5 +158,71 @@ describe('mapShareDtoToShare', () => {
     const result = mapShareDtoToShare(dto);
 
     expect(result.enabledActions).toEqual(['update_size', 'delete', 'edit']);
+    expect(result.mountPaths).toEqual([]);
+  });
+
+  it('should map all exportLocations paths to mountPaths', () => {
+    const dto = {
+      id: 'share-5',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+      exportLocations: [
+        { id: 'loc-1', path: '/path/to/mount' },
+        { id: 'loc-2', path: '/other/path' },
+      ],
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual(['/path/to/mount', '/other/path']);
+  });
+
+  it('should set mountPaths to empty array when exportLocations is empty', () => {
+    const dto = {
+      id: 'share-6',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+      exportLocations: [],
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual([]);
+  });
+
+  it('should set mountPaths to empty array when exportLocations is undefined', () => {
+    const dto = {
+      id: 'share-7',
+      name: 'Share',
+      region: 'GRA9',
+      protocol: 'NFS',
+      size: 0,
+      status: 'available',
+      type: 'nfs',
+      createdAt: '2026-01-30T09:00:00.000Z',
+      description: '',
+      isPublic: false,
+      capabilities: [],
+    };
+
+    const result = mapShareDtoToShare(dto);
+
+    expect(result.mountPaths).toEqual([]);
   });
 });

@@ -1,6 +1,7 @@
 import { getMacroRegion } from '@ovh-ux/muk';
 
 import { TShare, TShareEnabledAction } from '@/domain/entities/share.entity';
+import { subRoutes } from '@/routes/Routes.constants';
 
 import { TShareListRow, TShareListRowAction } from './shareList.data';
 import { getShareStatusDisplay } from './shareStatusMapper';
@@ -9,15 +10,19 @@ const ACTIONS_GROUP_KEY = 'actions';
 
 export const shareEnabledActionsToMenuActions = (
   id: string,
+  region: string,
   enabledActions: readonly TShareEnabledAction[],
 ): Map<string, TShareListRowAction[]> => {
   const items: TShareListRowAction[] = [
-    { label: 'list:actions.manage', link: { path: `./${id}` } },
+    {
+      labelTranslationKey: 'list:actions.manage',
+      link: { path: `./${region}/${id}`, state: { region } },
+    },
   ];
   if (enabledActions.includes('delete')) {
     items.push({
-      label: 'list:actions.delete',
-      link: { path: `./${id}/delete` },
+      labelTranslationKey: 'list:actions.delete',
+      link: { path: `./${region}/${id}/${subRoutes.shareDelete}` },
       isCritical: true,
     });
   }
@@ -33,5 +38,5 @@ export const mapShareToShareListRow = (share: TShare): TShareListRow => ({
   size: share.size,
   status: share.status,
   statusDisplay: getShareStatusDisplay(share.status),
-  actions: shareEnabledActionsToMenuActions(share.id, share.enabledActions),
+  actions: shareEnabledActionsToMenuActions(share.id, share.region, share.enabledActions),
 });

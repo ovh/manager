@@ -23,7 +23,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         header: t('list:columns.name_id'),
         cell: ({ row }) => (
           <div className="max-w-[300px]">
-            <Link as={RouterLink} to={`../${row.original.id}`}>
+            <Link as={RouterLink} to={`./${row.original.region}/${row.original.id}`}>
               {row.original.name}
             </Link>
             <Text preset="paragraph">{row.original.id}</Text>
