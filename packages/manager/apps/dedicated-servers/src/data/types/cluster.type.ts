@@ -1,4 +1,4 @@
-import { IamObject } from "@ovh-ux/muk";
+import { IamObject } from '@ovh-ux/muk';
 
 type Status = 'pending' | 'in-progress' | 'done' | 'failed';
 
