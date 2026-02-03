@@ -1,6 +1,6 @@
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 
 import { ContinentCode } from '@/common/utils/location/continents';
 
@@ -17,19 +17,22 @@ export const RegionPickerContinentTabs = ({
 }: RegionPickerContinentTabsProps) => {
   const { translateGeographyName } = useRegionName();
   return (
-    <OdsTabs>
-      {continents.map((continent) => (
-        <OdsTab
-          key={continent}
-          id={continent}
-          data-testid={continent}
-          role="tab"
-          isSelected={activeContinent === continent}
-          onClick={() => setActiveContinent(continent)}
-        >
-          {translateGeographyName(continent)}
-        </OdsTab>
-      ))}
-    </OdsTabs>
+    <Tabs
+      value={activeContinent}
+      onValueChange={(event) => setActiveContinent(event.value as ContinentCode)}
+    >
+      <TabList>
+        {continents.map((continent) => (
+          <Tab
+            key={continent}
+            data-testid={continent}
+            value={continent}
+            onClick={() => setActiveContinent(continent)}
+          >
+            {translateGeographyName(continent)}
+          </Tab>
+        ))}
+      </TabList>
+    </Tabs>
   );
 };

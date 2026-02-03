@@ -1,6 +1,6 @@
 import { Secret, SecretVersion } from '@secret-manager/types/secret.type';
 
-import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { useActivateVersionItem } from './actions/activate-version/useActivateVersionMenuItem';
 import { useDeactivateVersionItem } from './actions/deactivate-version/useDeactivateVersionMenuItem';
@@ -38,7 +38,7 @@ export const VersionCellAction = ({
       id={`VersionActionMenu-${version.id}`}
       items={items}
       isCompact
-      icon={ICON_NAME.ellipsisVertical}
+      // icon={ICON_NAME.ellipsisVertical}
       variant={BUTTON_VARIANT.ghost}
       isDisabled={items.length === 0}
     />

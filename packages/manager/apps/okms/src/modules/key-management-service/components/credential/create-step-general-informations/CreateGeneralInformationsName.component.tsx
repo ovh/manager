@@ -1,9 +1,14 @@
 import { CredentialNameErrorsType } from '@key-management-service/utils/credential/validateCredentialName';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
-import { Text } from '@ovhcloud/ods-react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  Text,
+} from '@ovhcloud/ods-react';
 
 type CreateGeneralInformationsNameProps = {
   name: string | null;
@@ -32,29 +37,36 @@ export const CreateGeneralInformationsName = ({
     }
   };
 
+  const errorMessage = getNameErrorMessage(credentialNameError);
+
   return (
-    <OdsFormField error={getNameErrorMessage(credentialNameError)}>
-      <div slot="label" className="mb-2 space-y-2">
-        <Text className="block" preset="heading-5">
-          {t('key_management_service_credential_create_general_information_display_name_title')}
-        </Text>
-        <Text preset="paragraph">
-          {t('key_management_service_credential_create_general_information_display_name_subtitle')}
-        </Text>
-      </div>
-      <OdsInput
+    <FormField invalid={!!credentialNameError}>
+      <FormFieldLabel>
+        <div className="mb-2 space-y-2">
+          <Text className="block" preset="heading-5">
+            {t('key_management_service_credential_create_general_information_display_name_title')}
+          </Text>
+          <Text preset="paragraph">
+            {t(
+              'key_management_service_credential_create_general_information_display_name_subtitle',
+            )}
+          </Text>
+        </div>
+      </FormFieldLabel>
+      <Input
         data-testid="input-name"
         name="name"
         aria-label="name"
-        type={ODS_INPUT_TYPE.text}
-        hasError={!!credentialNameError}
-        isRequired
+        type={INPUT_TYPE.text}
+        invalid={!!credentialNameError}
+        required
         placeholder={t(
           'key_management_service_credential_create_general_information_display_name_placeholder',
         )}
-        value={name}
-        onOdsChange={(e) => setName(e.detail.value as string)}
+        value={name || ''}
+        onChange={(e) => setName(e.target.value || null)}
       />
-    </OdsFormField>
+      {errorMessage && <FormFieldError>{errorMessage}</FormFieldError>}
+    </FormField>
   );
 };

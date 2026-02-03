@@ -8,7 +8,7 @@ import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.typ
 
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { ActionMenu, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
 import { MukLink } from '@/common/components/link/Link.component';
@@ -107,7 +107,6 @@ export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: O
         id={`service-key-actions-${serviceKey.id}`}
         isCompact
         variant={BUTTON_VARIANT.ghost}
-        icon={ICON_NAME.ellipsisVertical}
         items={actionsWithId}
       />
     </div>

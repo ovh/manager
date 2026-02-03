@@ -3,10 +3,12 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
+import { Spinner } from '@ovhcloud/ods-react';
+
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Clipboard, Spinner } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';

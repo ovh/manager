@@ -70,8 +70,7 @@ vi.mock('@ovh-ux/muk', async () => {
     ...original,
     Button: vi.fn((props: ButtonProps & { 'data-testid'?: string }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { iamActions, isIamTrigger, displayTooltip, tooltipPosition, loading, ...htmlProps } =
-        props;
+      const { iamActions, displayTooltip, tooltipPosition, loading, ...htmlProps } = props;
       return (
         <OdsButton data-testid={props['data-testid']} data-loading={loading} {...htmlProps}>
           {props.children}
@@ -80,7 +79,7 @@ vi.mock('@ovh-ux/muk', async () => {
     }),
     Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { iamActions, isIamTrigger, displayTooltip, ...htmlProps } = props;
+      const { iamActions, displayTooltip, ...htmlProps } = props;
       return (
         <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
           {props.children}

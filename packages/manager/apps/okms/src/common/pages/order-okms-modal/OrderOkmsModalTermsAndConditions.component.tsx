@@ -3,8 +3,13 @@ import { useState } from 'react';
 import { useCheckoutOrder } from '@key-management-service/data/hooks/useCheckoutOrder';
 import { useTranslation } from 'react-i18next';
 
-import { OdsCheckbox } from '@ovhcloud/ods-components/react';
-import { Message } from '@ovhcloud/ods-react';
+import {
+  Checkbox,
+  CheckboxCheckedChangeDetail,
+  CheckboxControl,
+  CheckboxLabel,
+  Message,
+} from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -57,17 +62,22 @@ export const OrderOkmsModalTermsAndConditions = ({
             </ExternalLink>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          <OdsCheckbox
-            data-testid={ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID}
-            name="confirm-contract"
-            inputId="confirm-contract"
-            isChecked={isContractAccepted}
-            onOdsChange={(event) => setIsContractAccepted(event.detail.checked)}
-          />
-          <label className="cursor-pointer" htmlFor="confirm-contract">
-            <Text preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</Text>
-          </label>
+
+        <div className="flex">
+          <Checkbox
+            checked={isContractAccepted}
+            onCheckedChange={(detail: CheckboxCheckedChangeDetail) =>
+              setIsContractAccepted(detail.checked === true)
+            }
+          >
+            <CheckboxControl
+              data-testid={ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID}
+              className="shrink-0"
+            />
+            <CheckboxLabel>
+              <Text preset="span">{t('create_okms_terms_and_conditions_confirm_label')}</Text>
+            </CheckboxLabel>
+          </Checkbox>
         </div>
         {error && (
           <Message color="critical" dismissible={false} className="w-full">

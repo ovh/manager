@@ -3,7 +3,7 @@ import { Secret } from '@secret-manager/types/secret.type';
 
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
@@ -76,7 +76,6 @@ export const DatagridAction = (secret: Secret) => {
       id={`SecretActionMenu-${secret.path}`}
       items={items}
       isCompact
-      icon={ICON_NAME.ellipsisVertical}
       variant={BUTTON_VARIANT.ghost}
     />
   );

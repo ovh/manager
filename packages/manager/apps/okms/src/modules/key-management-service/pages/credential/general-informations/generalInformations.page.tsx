@@ -143,7 +143,6 @@ const CredentialGeneralInformations = () => {
                       actions: ['download', 'credential'],
                     })
                   }
-                  label={t('key_management_service_credential_download')}
                   data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.downloadButton}
                 >
                   <>

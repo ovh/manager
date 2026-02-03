@@ -6,10 +6,10 @@ import { useIdentityData } from '@key-management-service/hooks/credential/useIde
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { Icon, Text } from '@ovhcloud/ods-react';
+import { Divider, Icon, Message, Text } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Button, Divider } from '@ovh-ux/muk';
+import { Button } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
@@ -67,8 +67,8 @@ export const CreateAddIdentities = ({
 
   return (
     <div className="max-w-screen-lg">
-      <div className="flex flex-col gap-7 md:gap-9">
-        <div className="flex flex-col gap-6 md:gap-8">
+      <div className="flex flex-col gap-4 md:gap-9">
+        <div className="flex flex-col gap-4">
           <Text preset="heading-3">
             {t('key_management_service_credential_create_identities_title')}
           </Text>
@@ -81,12 +81,12 @@ export const CreateAddIdentities = ({
 
           {!isRootAccount && (
             <>
-              <div className="flex items-center gap-1">
+              <Message color="information" dismissible={false}>
                 <Icon name="circle-info" />
                 <Text preset="span">
                   {t('key_management_service_credential_create_identities_max_label')}
                 </Text>
-              </div>
+              </Message>
               <IdentitySelectionUsers identityURNs={identityURNs} />
               <IdentitySelectionGroups identityURNs={identityURNs} />
               <IdentitySelectionServiceAccounts identityURNs={identityURNs} />

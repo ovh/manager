@@ -10,8 +10,7 @@ import {
 import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { Button } from '@ovh-ux/muk';
 
@@ -85,7 +84,7 @@ export const KeyValuesEditor = <T extends FieldValues>({
 
   return (
     <div className="space-y-5">
-      <OdsFormField className="block w-full space-y-1" error={fieldState.error?.message}>
+      <div className="block w-full space-y-1">
         {keyValuePairs.map(({ key, value }, index) => (
           <KeyValuesEditorItem
             key={KEY_VALUES_EDITOR_TEST_IDS.pairItem(index)}
@@ -97,7 +96,10 @@ export const KeyValuesEditor = <T extends FieldValues>({
             isDeletable={allowDeleteLastItem ? true : keyValuePairs.length > 1}
           />
         ))}
-      </OdsFormField>
+        {fieldState.error?.message && (
+          <CustomFieldError>{fieldState.error?.message}</CustomFieldError>
+        )}
+      </div>
       <Button size="sm" variant="outline" onClick={handleAddItem}>
         <>
           <Icon name="plus" />
@@ -105,5 +107,19 @@ export const KeyValuesEditor = <T extends FieldValues>({
         </>
       </Button>
     </div>
+  );
+};
+
+// KeyValuesEditor is an assembly of input components.
+// Instead of targeting each inner input, CustomFieldError is used as a general error
+// and displayed at the bottom of the component.
+const CustomFieldError = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Text
+      aria-live="polite"
+      className="font-semibold text-[var(--ods-theme-input-text-color-invalid)]"
+    >
+      {children}
+    </Text>
   );
 };

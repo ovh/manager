@@ -53,7 +53,11 @@ const SecretValueDrawerPage = () => {
                 selectedVersion={selectedVersion}
                 setSelectedVersion={setSelectedVersion}
               />
-              {isCurrentVersion && <Message dismissible={false}>{t('current_version')}</Message>}
+              {isCurrentVersion && (
+                <Message className="w-fit" dismissible={false}>
+                  {t('current_version')}
+                </Message>
+              )}
               {selectedVersion && selectedVersion.state === 'ACTIVE' && (
                 <SecretValue
                   okmsId={okmsId}
