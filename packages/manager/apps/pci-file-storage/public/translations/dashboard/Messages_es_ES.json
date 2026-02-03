@@ -1,0 +1,14 @@
+{
+  "tabs": {
+    "general": "Datos generales",
+    "snapshots": "Snapshots",
+    "acl": "Lista de control de acceso (ACL)"
+  },
+  "actions": {
+    "back": "Página anterior",
+    "edit_name": "Modificar el nombre del recurso compartido"
+  },
+  "common": {
+    "coming_soon": "Próximamente"
+  }
+}

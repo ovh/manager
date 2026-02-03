@@ -1,0 +1,14 @@
+{
+  "tabs": {
+    "general": "General information",
+    "snapshots": "Snapshots",
+    "acl": "Access Control List (ACL)"
+  },
+  "actions": {
+    "back": "Previous page",
+    "edit_name": "Edit share name"
+  },
+  "common": {
+    "coming_soon": "Coming soon"
+  }
+}

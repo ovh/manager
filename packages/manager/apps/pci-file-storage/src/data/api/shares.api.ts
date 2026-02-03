@@ -9,3 +9,13 @@ export const getShares = async (projectId: string): Promise<TShare[]> => {
     .get<TShareDto[]>(`/cloud/project/${projectId}/region/GRA9/share`)
     .then((response) => response.data.map(mapShareDtoToShare));
 };
+
+export const getShare = async (
+  projectId: string,
+  shareRegion: string,
+  shareId: string,
+): Promise<TShare> => {
+  return v6
+    .get<TShareDto>(`/cloud/project/${projectId}/region/${shareRegion}/share/${shareId}`)
+    .then((response) => mapShareDtoToShare(response.data));
+};
