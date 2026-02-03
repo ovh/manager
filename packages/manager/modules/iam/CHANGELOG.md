@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.25.5...@ovh-ux/manager-iam@1.26.0) (2026-02-03)
+
+
+### Features
+
+* **iam:** add "Permanent tokens" page in identities ([5648701](https://github.com/ovh/manager/commit/56487010b89ae4ff399b5b412bf1f0e3c5780adf)), closes [#MAIAM-45](https://github.com/ovh/manager/issues/MAIAM-45)
+* **iam:** add reset button in policies advanced search ([0d2c052](https://github.com/ovh/manager/commit/0d2c052cdf6a64b1d1992a021a2f9ce41e17ad45)), closes [#MAIAM-63](https://github.com/ovh/manager/issues/MAIAM-63)
+* **iam:** add translations for backup agent resources ([af63c21](https://github.com/ovh/manager/commit/af63c21915edd64ce2262ccfb1c49d9d05882d87)), closes [#MAIAM-79](https://github.com/ovh/manager/issues/MAIAM-79)
+
+
+
+
+
 ## [1.25.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.25.4...@ovh-ux/manager-iam@1.25.5) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.180.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.4...@ovh-ux/manager-container-app@0.180.5) (2026-02-03)
+
+
+### Bug Fixes
+
+* **iam:** highlight "identities" in menu for PermanentTokens ([af1c8aa](https://github.com/ovh/manager/commit/af1c8aaf86ec88b6b0bf39562d5f44ebaa5098df)), closes [#MAIAM-64](https://github.com/ovh/manager/issues/MAIAM-64)
+
+
+
+
+
 ## [0.180.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.3...@ovh-ux/manager-container-app@0.180.4) (2026-02-02)
 
 
