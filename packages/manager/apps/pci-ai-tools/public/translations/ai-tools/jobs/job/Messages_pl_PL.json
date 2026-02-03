@@ -22,7 +22,7 @@
   "cliToastMessage": "Polecenie zostało skopiowane",
   "restartJobButtonConfirm": "Uruchom ponownie",
   "restartJobToastSuccessDescription": "Zadanie {{name}} zostało uruchomione",
-  "cloneJobTitle": "Skopiować nowe zadanie",
-  "shutdownLabel": "Zatrzymaj ",
-  "restartLabel": "Uruchom ponownie "
+  "cloneJobTitle": "Sklonuj nowe zadanie",
+  "shutdownLabel": "Zatrzymanie dnia ",
+  "restartLabel": "Restart dnia "
 }
