@@ -5,7 +5,7 @@ export type TShareActionLink = {
 };
 
 export type TShareAction = {
-  label: string;
+  labelTranslationKey: string;
   link: TShareActionLink;
   isCritical?: boolean;
 };

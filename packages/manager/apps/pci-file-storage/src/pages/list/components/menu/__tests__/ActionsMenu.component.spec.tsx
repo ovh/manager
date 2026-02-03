@@ -12,7 +12,7 @@ import type { TShareAction } from '../action.type';
 describe('ActionsMenu', () => {
   it('should render menu button enabled when items have actions', () => {
     const items = new Map<string, TShareAction[]>([
-      ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+      ['actions', [{ labelTranslationKey: 'list:actions.manage', link: { path: './share-1' } }]],
     ]);
 
     render(
@@ -45,8 +45,8 @@ describe('ActionsMenu', () => {
       [
         'actions',
         [
-          { label: 'list:actions.manage', link: { path: './share-1' } },
-          { label: 'list:actions.delete', link: { path: './share-1/delete' } },
+          { labelTranslationKey: 'list:actions.manage', link: { path: './share-1' } },
+          { labelTranslationKey: 'list:actions.delete', link: { path: './share-1/delete' } },
         ],
       ],
     ]);

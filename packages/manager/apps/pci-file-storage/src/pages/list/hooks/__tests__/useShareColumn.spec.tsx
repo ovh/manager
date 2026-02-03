@@ -88,7 +88,10 @@ describe('useShareColumn', () => {
         status: 'available',
         statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
-          ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+          [
+            'actions',
+            [{ labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } }],
+          ],
         ]),
       },
     };
@@ -130,8 +133,11 @@ describe('useShareColumn', () => {
           [
             'actions',
             [
-              { label: 'list:actions.manage', link: { path: './share-1' } },
-              { label: 'list:actions.delete', link: { path: './share-1/delete' } },
+              { labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } },
+              {
+                labelTranslationKey: 'list:actions.delete',
+                link: { path: './GRA9/share-1/delete' },
+              },
             ],
           ],
         ]),
