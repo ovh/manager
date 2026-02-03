@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 
-import { useParams } from 'react-router-dom';
-
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -18,13 +16,13 @@ import { Agent } from '@/types/Agent.type';
 import { AgentResource } from '@/types/Resource.type';
 
 export function useAgentsListingColumnsHooks() {
-  const { tenantId } = useParams();
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.COMMON,
     BACKUP_AGENT_NAMESPACES.SERVICE_LISTING,
     NAMESPACES.DASHBOARD,
     NAMESPACES.SYSTEM,
     NAMESPACES.STATUS,
+    NAMESPACES.REGION,
   ]);
 
   return useMemo(
@@ -71,12 +69,12 @@ export function useAgentsListingColumnsHooks() {
         cell: (agentResource: AgentResource<Agent>) => (
           <AgentDataLocationCell vaultId={agentResource.currentState.vaultId} />
         ),
-        label: t(`${BACKUP_AGENT_NAMESPACES.SERVICE_LISTING}:data_location`),
+        label: t(`${NAMESPACES.REGION}:localisation`),
       },
       {
         id: 'action',
         cell: (agentResource: AgentResource<Agent>) => (
-          <AgentActionsCell tenantId={tenantId!} agentId={agentResource.id} />
+          <AgentActionsCell agentId={agentResource.id} />
         ),
         label: '',
       },

@@ -79,7 +79,7 @@ export default function OnboardingPage() {
     <RedirectionGuard
       condition={!!isBackupAgentReady}
       isLoading={isVaultPending}
-      route={backupAgentUrls.listingTenants}
+      route={backupAgentUrls.dashboardTenant}
     >
       <OnboardingLayout
         title={title ?? t('onboarding:title_fallback', { productName })}

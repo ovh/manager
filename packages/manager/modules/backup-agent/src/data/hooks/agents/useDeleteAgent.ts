@@ -4,11 +4,11 @@ import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 
 import { deleteBackupAgent } from '@/data/api/agents/agents.requests';
 import { useGetBackupServicesId } from '@/data/hooks/backup/useBackupServicesId';
+import { useGetVspcTenantId } from '@/data/hooks/tenants/useVspcTenantId';
 
 import { BACKUP_TENANTS_QUERY_KEY } from '../tenants/useBackupTenants';
 
 type DeleteAgentParams = {
-  vspcTenantId: string;
   agentId: string;
 };
 
@@ -18,11 +18,13 @@ type UseDeleteTenantAgentParams = Partial<
 
 export const useDeleteTenantAgent = (options: UseDeleteTenantAgentParams = {}) => {
   const getBackupServiceId = useGetBackupServicesId();
+  const getVspcTenantId = useGetVspcTenantId();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ vspcTenantId, agentId }) => {
+    mutationFn: async ({ agentId }) => {
       const backupServicesId = await getBackupServiceId();
+      const vspcTenantId = await getVspcTenantId();
       return deleteBackupAgent({
         backupServicesId: backupServicesId!,
         vspcTenantId,

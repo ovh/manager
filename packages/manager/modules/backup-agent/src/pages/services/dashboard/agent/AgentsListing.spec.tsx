@@ -1,33 +1,31 @@
 import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { urls } from '@/routes/routes.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
+const checkAllColumnsAreDisplayed = () => {
+  const COLUMNS_NAME = [
+    labels.commonDashboard.name,
+    labels.status.status,
+    labels.common.server,
+    labels.system.address_ip,
+    labels.common.policy,
+    labels.region.localisation,
+  ];
+
+  COLUMNS_NAME.forEach((columnName) =>
+    expect(screen.getByRole('columnheader', { name: columnName })).toBeVisible(),
+  );
+};
+
+/* eslint-disable vitest/expect-expect */
 describe('[INTEGRATION] - Agent listing page', () => {
   it('display datagrid', async () => {
     // when
-    await renderTest({ initialRoute: urls.listingTenants });
+    await renderTest({ initialRoute: urls.dashboardAgents });
 
-    // then
-    const tenantId = TENANTS_MOCKS[0]?.id as string;
-    await waitFor(() => expect(screen.getByText(tenantId)).toBeVisible(), {
-      timeout: 10_000,
-    });
-
-    // and
-    const COLUMNS_NAME = [
-      labels.commonDashboard.name,
-      labels.region.localisation,
-      labels.region.region,
-      labels.commonDashboard.reference,
-      labels.status.status,
-    ];
-
-    COLUMNS_NAME.forEach((columnName) =>
-      expect(screen.getByRole('columnheader', { name: columnName })).toBeVisible(),
-    );
+    await waitFor(() => checkAllColumnsAreDisplayed());
   });
 });

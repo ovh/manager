@@ -6,7 +6,7 @@ import type { DashboardTabType } from '@/types/Dashboard.type';
 import { useVaultDashboardTabs } from './useVaultDashboardTabs';
 
 const { useLocationMock, useParamsMock, tabsWithActiveTabOrDefaultMock } = vi.hoisted(() => ({
-  useLocationMock: vi.fn().mockImplementation(() => ({ pathname: '/vaults/dashboard/123' })),
+  useLocationMock: vi.fn().mockImplementation(() => ({ pathname: '/vaults/123' })),
   useParamsMock: vi.fn().mockImplementation(() => ({ vaultId: '123' })),
   tabsWithActiveTabOrDefaultMock: vi.fn().mockImplementation((tabs: DashboardTabType[]) => tabs),
 }));
@@ -33,19 +33,19 @@ describe('useVaultDashboardTabs', () => {
     {
       description: 'maps tabs with general information active',
       vaultId: '123',
-      pathname: '/vaults/dashboard/123',
+      pathname: '/vaults/123',
       expectedTabs: [
         {
           name: 'generalInformations',
           title: 'translated_general_information',
-          to: '/vaults/dashboard/123',
+          to: '/vaults/123',
           isDefault: true,
           isActive: true,
         },
         {
           name: 'buckets',
           title: 'translated_buckets',
-          to: '/vaults/dashboard/123/buckets',
+          to: '/vaults/123/buckets',
           isActive: false,
         },
       ],
@@ -53,19 +53,19 @@ describe('useVaultDashboardTabs', () => {
     {
       description: 'maps tabs with buckets active via pathname match',
       vaultId: '456',
-      pathname: '/vaults/dashboard/456/buckets',
+      pathname: '/vaults/456/buckets',
       expectedTabs: [
         {
           name: 'generalInformations',
           title: 'translated_general_information',
-          to: '/vaults/dashboard/456',
+          to: '/vaults/456',
           isDefault: true,
           isActive: false,
         },
         {
           name: 'buckets',
           title: 'translated_buckets',
-          to: '/vaults/dashboard/456/buckets',
+          to: '/vaults/456/buckets',
           isActive: true,
         },
       ],
@@ -73,19 +73,19 @@ describe('useVaultDashboardTabs', () => {
     {
       description: 'maps tabs with buckets active via pathMatcher',
       vaultId: '789',
-      pathname: '/vaults/dashboard/789/buckets/agent-123',
+      pathname: '/vaults/789/buckets/agent-123',
       expectedTabs: [
         {
           name: 'generalInformations',
           title: 'translated_general_information',
-          to: '/vaults/dashboard/789',
+          to: '/vaults/789',
           isDefault: true,
           isActive: false,
         },
         {
           name: 'buckets',
           title: 'translated_buckets',
-          to: '/vaults/dashboard/789/buckets',
+          to: '/vaults/789/buckets',
           isActive: true,
         },
       ],
@@ -98,14 +98,14 @@ describe('useVaultDashboardTabs', () => {
         {
           name: 'generalInformations',
           title: 'translated_general_information',
-          to: '/vaults/dashboard/',
+          to: '/vaults/',
           isDefault: true,
           isActive: false,
         },
         {
           name: 'buckets',
           title: 'translated_buckets',
-          to: '/vaults/dashboard//buckets',
+          to: '/vaults//buckets',
           isActive: false,
         },
       ],

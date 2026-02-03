@@ -3,7 +3,6 @@ import React from 'react';
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
 
@@ -22,7 +21,7 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
 describe('[INTEGRATION] - Tenant agent add configuration page', () => {
   it('Tenant agent add configuration page display datagrid', async () => {
     const { container } = await renderTest({
-      initialRoute: `/services/dashboard/${TENANTS_MOCKS[0]!.id}/agents/add`,
+      initialRoute: `/agents/add`,
     });
 
     await waitFor(
