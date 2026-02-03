@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.6.0...@ovh-ux/manager-identity-access-management-app@0.7.0) (2026-02-03)
+
+
+### Features
+
+* **iam:** add "Permanent tokens" page in identities ([5648701](https://github.com/ovh/manager/commit/56487010b89ae4ff399b5b412bf1f0e3c5780adf)), closes [#MAIAM-45](https://github.com/ovh/manager/issues/MAIAM-45)
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.6...@ovh-ux/manager-identity-access-management-app@0.6.0) (2026-01-30)
 
 
