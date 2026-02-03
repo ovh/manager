@@ -2,21 +2,21 @@ import { urlToStringRegex } from '@/utils/urlToStringRegex';
 
 describe('urlToStringRegex', () => {
   it.each([
-    ['/services', '/services', ['/services']] as const,
+    ['/service', '/service', ['/service']] as const,
     [
-      '/services/:id',
-      '/services/[a-zA-Z0-9-]+',
-      ['/services/123', '/services/abc', '/services/xyz-123'],
+      '/service/:id',
+      '/service/[a-zA-Z0-9-]+',
+      ['/service/123', '/service/abc', '/service/xyz-123'],
     ] as const,
     [
-      '/services/:otherId',
-      '/services/[a-zA-Z0-9-]+',
-      ['/services/123', '/services/abc', '/services/xyz-123'],
+      '/service/:otherId',
+      '/service/[a-zA-Z0-9-]+',
+      ['/service/123', '/service/abc', '/service/xyz-123'],
     ] as const,
     [
-      '/services/:anotherId/agents',
-      '/services/[a-zA-Z0-9-]+/agents',
-      ['/services/123/agents', '/services/abc/agents', '/services/xyz-123/agents'],
+      '/service/:anotherId/agents',
+      '/service/[a-zA-Z0-9-]+/agents',
+      ['/service/123/agents', '/service/abc/agents', '/service/xyz-123/agents'],
     ] as const,
   ] as const)('convert url : $url to $regex and test regex', (url, regex, urlsExample) => {
     const urlString = urlToStringRegex(url);

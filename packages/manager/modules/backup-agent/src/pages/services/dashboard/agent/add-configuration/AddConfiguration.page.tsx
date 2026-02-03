@@ -21,7 +21,6 @@ import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDow
 import { useAddConfigurationVSPCTenantAgent } from '@/data/hooks/agents/postAgent';
 import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
 import { useVSPCTenantsOptions } from '@/data/hooks/tenants/useVspcTenants';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { OS_LABELS } from '@/module.constants';
 import { OS } from '@/types/Os.type';
 import { getProductResourceNames } from '@/utils/getProductResourceNamesSet';
@@ -39,7 +38,6 @@ const AddConfigurationPage = () => {
     NAMESPACES.FORM,
     NAMESPACES.ACTIONS,
   ]);
-  const { tenantId } = useRequiredParams('tenantId');
   const navigate = useNavigate();
   const goBack = () => navigate('..');
   const [formSubmitError, setFormSubmitError] = useState<string>();
@@ -92,17 +90,16 @@ const AddConfigurationPage = () => {
         region: serverDetails.region,
         ips: [`${serverDetails.ip}/32`],
         displayName: `agent-${serverDetails.name}`,
-        vspcTenantId: tenantId,
         productResourceName: serverDetails.name,
       });
     },
-    [mutate, baremetalList, setFormSubmitError, tenantId],
+    [mutate, baremetalList, setFormSubmitError],
   );
 
   const os = useWatch({ name: 'os', control });
 
   const { data: downloadLink, isLoading: isLoadingDownloadLink } =
-    useBackupVSPCTenantAgentDownloadLink({ tenantId, os: os as OS | undefined });
+    useBackupVSPCTenantAgentDownloadLink({ os: os as OS | undefined });
 
   const formRef = useRef<HTMLFormElement>(null);
 

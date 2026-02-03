@@ -1,6 +1,6 @@
 import { useContext, useRef, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import capitalize from 'lodash.capitalize';
@@ -19,7 +19,6 @@ import { RhfField } from '@/components/Fields/RhfField.component';
 import { useBackupVSPCTenantAgentDetails } from '@/data/hooks/agents/getAgentDetails';
 import { useEditConfigurationVSPCTenantAgent } from '@/data/hooks/agents/putAgent';
 import { useBackupTenantPolicies } from '@/data/hooks/tenants/useVspcTenantBackupPolicies';
-import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { LABELS } from '@/module.constants';
 
 const FORM_ID = 'form-link-agent-title' as const;
@@ -34,7 +33,7 @@ const ADD_CONFIGURATION_SCHEMA = z.object({
 export const EditConfigurationPage = () => {
   const { addSuccess } = useNotifications();
   const [serverErrorMessage, setServerErrorMessage] = useState<undefined | string>();
-  const { tenantId, agentId } = useRequiredParams('tenantId', 'agentId');
+  const { agentId } = useParams<{ agentId: string }>();
   const { t } = useTranslation([
     BACKUP_AGENT_NAMESPACES.AGENT,
     NAMESPACES.DASHBOARD,
@@ -53,14 +52,11 @@ export const EditConfigurationPage = () => {
     isSuccess,
     refetch,
   } = useBackupVSPCTenantAgentDetails({
-    tenantId: tenantId,
-    agentId: agentId,
+    agentId: agentId!,
   });
   const isAgentEnabled = resourceAgent?.status === 'ENABLED';
 
-  const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies({
-    tenantId: tenantId,
-  });
+  const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies();
 
   const { mutate, isPending } = useEditConfigurationVSPCTenantAgent({
     onSuccess: () => {
@@ -91,8 +87,7 @@ export const EditConfigurationPage = () => {
   });
   const onSubmit = (data: z.infer<typeof ADD_CONFIGURATION_SCHEMA>) =>
     mutate({
-      vspcTenantId: tenantId,
-      backupAgentId: agentId,
+      backupAgentId: agentId!,
       displayName: data.name,
       ips: resourceAgent!.currentState.ips,
       policy: data.policy,
