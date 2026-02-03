@@ -13,6 +13,7 @@ export { useLocationByName } from './location/useLocationByName/useLocationByNam
 export { useMe } from './me/useMe';
 export { isLocalZone, getMacroRegion } from './region/Regions.utils';
 export { useTranslatedMicroRegions } from './region/useTranslatedMicroRegions';
+export { useUrlParams } from './url-params/useUrlParams';
 export * from './iam/IAM.type';
 export * from './iam/useOvhIam';
 export type { CatalogPriceOptions } from './catalog-price/Catalog.type';

@@ -21,6 +21,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
   sizeRow,
   setColumnVisibility,
   sorting,
+  searchParams,
 }: UseDatagridTableProps<T>) => {
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     useMemo(() => {
@@ -29,7 +30,7 @@ export const useDatagrid = <T extends ExpandableRow<T>>({
       ): boolean => columns?.some((col) => Boolean(col[key])) ?? false;
       return {
         hasSortingFeature: has('isSortable'),
-        hasSearchFeature: has('isSearchable'),
+        hasSearchFeature: has('isSearchable') || searchParams !== '',
         hasColumnVisibilityFeature: has('enableHiding'),
         hasFilterFeature: has('isFilterable'),
       };
