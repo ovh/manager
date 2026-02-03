@@ -32,7 +32,6 @@ import WillPaymentComponent from '@/pages/creation/components/payment/WillPaymen
 import DiscoveryVoucher from '@/pages/creation/components/voucher/DiscoveryVoucher';
 import Voucher from '@/pages/creation/components/voucher/Voucher';
 import { useWillPayment } from '@/pages/creation/hooks/useWillPayment';
-import { useWillPaymentConfig } from '@/pages/creation/hooks/useWillPaymentConfig';
 import { TProject } from '@/types/pci-common.types';
 
 import { useProjectActivation } from './hooks/useActivateProject';
@@ -90,6 +89,8 @@ export default function ActivatePage() {
     });
 
   const {
+    isRedirectionNeeded,
+    redirectionTarget,
     isCreditPayment,
     needsSave,
     isSaved,
@@ -100,10 +101,6 @@ export default function ActivatePage() {
     handleNoUserActionNeeded,
     handleChallengeRequired,
   } = useWillPayment();
-
-  useWillPaymentConfig({
-    onPaymentStatusChange: handlePaymentStatusChange,
-  });
 
   const handleSubmit = () => {
     if (needsSave && !isCreditPayment) {
@@ -119,11 +116,16 @@ export default function ActivatePage() {
    * Auto-proceed with project creation when payment method is saved
    */
   useEffect(() => {
+    if (isRedirectionNeeded && redirectionTarget && window.top) {
+      window.top.location.href = redirectionTarget;
+      return;
+    }
+
     if (isSaved) {
       void handleActivateProject();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSaved]);
+  }, [isSaved, isRedirectionNeeded, redirectionTarget]);
 
   useEffect(() => {
     createAndAssignCart({ ovhSubsidiary });

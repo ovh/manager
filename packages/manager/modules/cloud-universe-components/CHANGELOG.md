@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.18.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.18.3...@ovh-ux/ng-ovh-cloud-universe-components@2.18.4) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components
+
+
+
+
+
 ## [2.18.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.18.2...@ovh-ux/ng-ovh-cloud-universe-components@2.18.3) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components

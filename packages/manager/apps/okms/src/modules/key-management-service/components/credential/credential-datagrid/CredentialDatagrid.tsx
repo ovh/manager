@@ -18,8 +18,9 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { Datagrid, DatagridColumn, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { Error } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 
@@ -34,7 +35,7 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
 
   const {
     data: credentials,
-    isLoading: isLoadingCredentials,
+    isPending: isPending,
     error: credentialsError,
   } = useOkmsCredentials({
     okmsId: okms.id,
@@ -49,11 +50,13 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
       .catch((error) => console.error(error));
   };
 
-  if (isLoadingCredentials) return <Loading />;
+  if (isPending) {
+    return <Loading />;
+  }
 
   if (credentialsError)
     return (
-      <ErrorBanner
+      <Error
         error={credentialsError}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={handleReloadPage}
@@ -108,8 +111,8 @@ const CredentialDatagrid = ({ okms }: CredentialDatagridProps) => {
   return (
     <Datagrid
       columns={columns}
-      items={credentials?.data || []}
-      totalItems={credentials?.data.length || 0}
+      items={credentials}
+      totalItems={credentials.length}
       contentAlignLeft
     />
   );

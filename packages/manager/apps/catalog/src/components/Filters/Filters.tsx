@@ -106,7 +106,7 @@ const Filters: React.FC<FiltersProps> = ({
 
   return (
     <>
-      <span className="filters-container filters-container grid grid-cols-1 md:flex text-left">
+      <span className="filters-container filters-container xs:grid grid-cols-1 md:flex text-left">
         <span className="filters-universes flex-2">
           <OsdsText
             level={ODS_TEXT_LEVEL.heading}
@@ -147,7 +147,7 @@ const Filters: React.FC<FiltersProps> = ({
           >
             {tNavigation('manager_navigation_categories')}
           </OsdsText>
-          <span className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <span className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {categories.length ? (
               categories.map((item: { category: string; count: number }) => {
                 return (

@@ -11,7 +11,7 @@
  *
  * Example integration:
  *   "scripts": {
- *     "lint:modern:fix": "yarn lint --fix && node ./scripts/muk-exports-order.mjs"
+ *     "lint:fix": "yarn lint --fix && node ./scripts/muk-exports-order.mjs"
  *   }
  */
 import { readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';

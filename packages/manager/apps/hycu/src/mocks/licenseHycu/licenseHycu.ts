@@ -28,6 +28,7 @@ export const getLicenseHycuMocks = ({
             .map((license) => ({ ...license, licenseStatus })),
       status: isGetLicenseHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
     {
       url: 'license/hycu/:serviceName',
@@ -47,6 +48,7 @@ export const getLicenseHycuMocks = ({
       },
       status: isGetLicenseHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
     {
       url: 'license/hycu/:serviceName/activate',
@@ -54,6 +56,7 @@ export const getLicenseHycuMocks = ({
       method: 'post',
       status: isPostLicenseHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
     {
       url: 'license/hycu/:serviceName/refresh',
@@ -61,6 +64,7 @@ export const getLicenseHycuMocks = ({
       method: 'post',
       status: isPostLicenseHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
     {
       url: 'license/hycu/:serviceName/license',
@@ -68,6 +72,7 @@ export const getLicenseHycuMocks = ({
       method: 'get',
       status: isPostLicenseHycuKo ? 500 : 200,
       api: 'v6',
+      delay: 0,
     },
   ];
 };

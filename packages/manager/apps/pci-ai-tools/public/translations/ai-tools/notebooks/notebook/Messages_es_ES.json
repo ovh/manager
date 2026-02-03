@@ -30,5 +30,20 @@
   "stopNotebookDescription3": "Nosotros restauraremos su espacio de trabajo y reasignaremos los recursos de cálculo.",
   "stopNotebookConfirmation": "¿Seguro que quiere detener el notebook {{name}} ?",
   "stopNotebookButtonConfirm": "Detener",
-  "stopNotebookToastSuccessDescription": "El notebook {{name}} se ha detenido"
+  "stopNotebookToastSuccessDescription": "El notebook {{name}} se ha detenido",
+  "restartNotebookTitle": "Reiniciar el notebook",
+  "restartNotebookDescription": "¿Seguro que quiere reiniciar el notebook {{name}} ? Una vez reiniciado, permanecerá activo durante 7 días más a partir del día del reinicio.",
+  "restartNotebookButtonConfirm": "Reiniciar",
+  "restartNotebookToastSuccessDescription": "Se ha reiniciado el notebook {{name}}",
+  "restartNotebookToastSuccess": "Se ha reiniciado el notebook {{name}}",
+  "enableAutoRestartTitle": "Activar el reinicio automático",
+  "enableAutoRestartDescription": "¿Seguro que quiere activar el reinicio automático para el notebook {{name}} ? Una vez activado, el notebook se reiniciará automáticamente cada 7 días.",
+  "enableAutoRestartButtonConfirm": "Activar",
+  "enableAutoRestartToastSuccessDescription": "Se ha habilitado el reinicio automático para el notebook {{name}}",
+  "disableAutoRestartTitle": "Desactivar el reinicio automático",
+  "disableAutoRestartDescription": "¿Seguro que quiere desactivar el reinicio automático para el notebook {{name}} ? Una vez desactivada esta opción, el notebook no se reiniciará automáticamente cada 7 días. ",
+  "disableAutoRestartButtonConfirm": "Desactivar",
+  "disableAutoRestartToastSuccessDescription": "Se ha deshabilitado el reinicio automático para el notebook {{name}}",
+  "shutdownLabel": "Detención el ",
+  "restartLabel": "Reinicio el "
 }

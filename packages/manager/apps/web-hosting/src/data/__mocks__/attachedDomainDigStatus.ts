@@ -15,8 +15,8 @@ export const attachedDomainDigStatusMock = {
     },
   },
   recommendedIps: {
-    A: ['192.168.1.1'],
-    AAAA: ['192.168.5.1'],
+    recommendedIpV4: ['192.168.1.1'],
+    recommendedIpV6: ['192.168.5.1'],
   },
 };
 

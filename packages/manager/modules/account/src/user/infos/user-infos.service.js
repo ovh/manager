@@ -1,5 +1,4 @@
 import set from 'lodash/set';
-import config from '../../config/config';
 
 export default class UserAccountInfosService {
   /* @ngInject */
@@ -7,7 +6,7 @@ export default class UserAccountInfosService {
     this.$http = $http;
     this.$q = $q;
     this.$window = $window;
-    this.swsUseraccountInfosPath = `${config.swsProxyRootPath}me`;
+    this.swsUseraccountInfosPath = '/me';
     this.cache = {
       me: 'UNIVERS_USER_ME',
     };
@@ -188,24 +187,22 @@ export default class UserAccountInfosService {
   }
 
   getListOfRulesFieldName() {
-    return this.$http
-      .get(`${config.swsProxyRootPath}newAccount.json`)
-      .then(({ data }) => {
-        const { models = {} } = data;
-        return Object.keys(models['nichandle.CreationRules']?.properties) || [];
-      });
+    return this.$http.get('/newAccount.json').then(({ data }) => {
+      const { models = {} } = data;
+      return Object.keys(models['nichandle.CreationRules']?.properties) || [];
+    });
   }
 
   postRules(params) {
     return this.$http
-      .post(`${config.swsProxyRootPath}newAccount/rules`, params)
+      .post('/newAccount/rules', params)
       .then(({ data }) => data);
   }
 
   getCreationRules(params) {
     // Get creation Rules by user
     return this.$http
-      .get([config.swsProxyRootPath, 'newAccount/creationRules'].join(''), {
+      .get('/newAccount/creationRules', {
         params,
       })
       .then(
@@ -230,14 +227,11 @@ export default class UserAccountInfosService {
       )
       .then((returnResponse) =>
         this.$http
-          .get(
-            [config.swsProxyRootPath, 'newAccount/corporationType'].join(''),
-            {
-              params: {
-                country: params.country,
-              },
+          .get('/newAccount/corporationType', {
+            params: {
+              country: params.country,
             },
-          )
+          })
           .then(
             (response) => {
               set(returnResponse, 'availableCorporationType', response.data);
@@ -251,7 +245,7 @@ export default class UserAccountInfosService {
       )
       .then((returnResponse) =>
         this.$http
-          .get([config.swsProxyRootPath, 'newAccount/legalform'].join(''), {
+          .get('/newAccount/legalform', {
             params: {
               country: params.country,
             },
@@ -269,7 +263,7 @@ export default class UserAccountInfosService {
       )
       .then((returnResponse) =>
         this.$http
-          .get([config.swsProxyRootPath, 'newAccount/area'].join(''), {
+          .get('/newAccount/area', {
             params: {
               country: params.country,
             },
@@ -286,28 +280,26 @@ export default class UserAccountInfosService {
           ),
       )
       .then((returnResponse) =>
-        this.$http
-          .get([config.swsProxyRootPath, 'newAccount.json'].join(''))
-          .then(
-            (response) => {
-              set(
-                returnResponse,
-                'availableGender',
-                response.data.models['nichandle.GenderEnum'].enum,
-              );
-              return returnResponse;
-            },
-            () => {
-              set(returnResponse, 'availableGender', []);
-              return returnResponse;
-            },
-          ),
+        this.$http.get('/newAccount.json').then(
+          (response) => {
+            set(
+              returnResponse,
+              'availableGender',
+              response.data.models['nichandle.GenderEnum'].enum,
+            );
+            return returnResponse;
+          },
+          () => {
+            set(returnResponse, 'availableGender', []);
+            return returnResponse;
+          },
+        ),
       );
   }
 
   getMeModels() {
     return this.$http
-      .get([config.swsProxyRootPath, 'me.json'].join(''), {
+      .get('/me.json', {
         cache: this.cache.me,
       })
       .then((response) => response.data.models);

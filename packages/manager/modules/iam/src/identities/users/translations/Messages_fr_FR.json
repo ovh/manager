@@ -14,6 +14,7 @@
   "user_users_description": "Description",
   "user_users_table_empty": "Aucun utilisateur",
   "user_users_update": "Modifier l'utilisateur",
+  "user_users_manage_tokens": "Gérer les tokens",
   "user_users_delete": "Supprimer l'utilisateur",
   "user_users_enable": "Activer l'utilisateur",
   "user_users_status_OK": "Activé",

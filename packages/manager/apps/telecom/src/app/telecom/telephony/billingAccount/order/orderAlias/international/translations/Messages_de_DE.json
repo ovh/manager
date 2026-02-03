@@ -1,0 +1,7 @@
+{
+  "telephony_order_international_title": "Internationale Nummer bestellen",
+  "telephony_order_international_order_success": "Internationale Nummer(n) bestellt. Bitte begleichen Sie Ihre Bestellung.",
+  "telephony_order_international_order_error": "Die Bestellung der geografischen Nummer(n) ist fehlgeschlagen. Bitte versuchen Sie es später noch einmal.",
+  "telephony_order_international_countries_error": "Die Länderliste kann nicht abgerufen werden.",
+  "telephony_order_international_address_message": "Um Ihre Nummer zu erhalten, geben Sie bitte gültige Kontaktdaten in dem betreffenden Land ein."
+}

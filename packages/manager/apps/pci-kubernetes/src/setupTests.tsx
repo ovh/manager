@@ -8,6 +8,10 @@ vi.mock('@/hooks/use3azPlanAvaible', () => ({
   default: vi.fn().mockReturnValue(true),
 }));
 
+vi.mock('@/hooks/useStandardPlanAvailable.ts', () => ({
+  default: vi.fn().mockReturnValue(true),
+}));
+
 vi.mock('@/hooks/useSavingPlanAvailable', () => ({
   default: vi.fn().mockReturnValue(true),
 }));

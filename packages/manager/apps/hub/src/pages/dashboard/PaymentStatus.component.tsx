@@ -1,4 +1,4 @@
-import { Suspense, lazy, useContext } from 'react';
+import { Suspense, lazy, useContext, useMemo, useState } from 'react';
 
 import { Await } from 'react-router-dom';
 
@@ -55,7 +55,7 @@ export default function PaymentStatus() {
     shell: { navigation },
   } = useContext(ShellContext);
   const { trackClick } = useOvhTracking();
-  const { format } = useDateFormat({
+  const dateFormat = useDateFormat({
     options: {
       year: 'numeric',
       month: 'long',
@@ -63,9 +63,17 @@ export default function PaymentStatus() {
     },
   });
 
-  const autorenewLink = availability?.[BILLING_FEATURE]
-    ? navigation.getURL('dedicated', '#/billing/autorenew', {})
-    : null;
+  const [hasAutorenewLink, setHasAutorenewLink] = useState<boolean>(false);
+
+  const autorenewLink = useMemo(() => {
+    if (availability?.[BILLING_FEATURE]) {
+      setHasAutorenewLink(true);
+      return navigation.getURL('dedicated', '#/billing/autorenew', {});
+    } else {
+      setHasAutorenewLink(false);
+      return null;
+    }
+  }, [availability?.[BILLING_FEATURE]]);
 
   const trackServiceAccess = () => {
     trackClick({
@@ -79,10 +87,10 @@ export default function PaymentStatus() {
 
   return (
     (isLoading || !isFreshCustomer) && (
-      <OsdsTile className="w-full flex flex-col p-6" inline data-testid="payment_status">
-        <div className="flex mb-2 gap-4 items-start">
+      <OsdsTile className="flex w-full flex-col p-6" inline data-testid="payment_status">
+        <div className="mb-2 flex items-start gap-4">
           <OsdsText
-            className="block flex-1 mb-6"
+            className="mb-6 block flex-1"
             level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
             size={ODS_TEXT_SIZE._400}
             hue={ODS_TEXT_COLOR_HUE._800}
@@ -108,7 +116,7 @@ export default function PaymentStatus() {
               </OsdsChip>
             )}
           </OsdsText>
-          {autorenewLink && (
+          {hasAutorenewLink && (
             <Suspense
               fallback={
                 <OsdsSkeleton
@@ -126,7 +134,7 @@ export default function PaymentStatus() {
                     href={link}
                     target={OdsHTMLAnchorElementTarget._top}
                     color={ODS_THEME_COLOR_INTENT.primary}
-                    className="font-bold text-right"
+                    className="text-right font-bold"
                     data-testid="my_services_link"
                   >
                     {tCommon('hub_support_see_more')}
@@ -146,7 +154,7 @@ export default function PaymentStatus() {
         </div>
         {isLoading || areBillingServicesLoading ? (
           <OsdsTable
-            className="block overflow-visible overflow-x-clip max-w-full"
+            className="block max-w-full overflow-visible overflow-x-clip"
             data-testid="payment_status_skeleton_table"
           >
             <table className="table-auto">
@@ -158,7 +166,7 @@ export default function PaymentStatus() {
                   >
                     <td scope="row" className="!p-5">
                       <OsdsSkeleton
-                        className="block mb-3"
+                        className="mb-3 block"
                         data-testid="service_name_skeleton"
                         inline
                         size={ODS_SKELETON_SIZE.xs}
@@ -171,15 +179,15 @@ export default function PaymentStatus() {
                       />
                     </td>
                     <td scope="row" className="!p-5">
-                      <div className="lg:inline mb-1">
+                      <div className="mb-1 lg:inline">
                         <OsdsSkeleton
-                          className="block mb-5"
+                          className="mb-5 block"
                           data-testid="service_status_skeleton"
                           inline
                           size={ODS_SKELETON_SIZE.xs}
                         />
                       </div>
-                      <div className="lg:inline mb-1" data-testid="service_expiration_date_message">
+                      <div className="mb-1 lg:inline" data-testid="service_expiration_date_message">
                         <OsdsSkeleton
                           className="block"
                           data-testid="service_date_skeleton"
@@ -207,14 +215,14 @@ export default function PaymentStatus() {
                 <TileError
                   contrasted
                   message={t('ovh_manager_hub_payment_status_tile_error')}
-                  refetch={refetch}
+                  refetch={void refetch}
                 />
               </Suspense>
             ) : (
               <>
                 {services?.length === 0 ? (
                   <OsdsText
-                    className="text-center mt-8"
+                    className="mt-8 text-center"
                     level={ODS_TEXT_LEVEL.subheading}
                     size={ODS_TEXT_SIZE._200}
                     color={ODS_THEME_COLOR_INTENT.text}
@@ -223,7 +231,7 @@ export default function PaymentStatus() {
                   </OsdsText>
                 ) : (
                   <OsdsTable
-                    className="block overflow-visible max-w-full"
+                    className="block max-w-full overflow-visible"
                     data-testid="payment_status_table"
                   >
                     <table className="table-auto">
@@ -233,7 +241,7 @@ export default function PaymentStatus() {
                             <td scope="row" className="!p-4">
                               {service.url ? (
                                 <OsdsLink
-                                  className="block mb-3 break-all"
+                                  className="mb-3 block break-all"
                                   href={service.url}
                                   onClick={trackServiceAccess}
                                   target={OdsHTMLAnchorElementTarget._top}
@@ -260,8 +268,8 @@ export default function PaymentStatus() {
                                 {tProducts(`manager_hub_products_${service.serviceType}`)}
                               </OsdsText>
                             </td>
-                            <td scope="row" className="!p-4 !min-w-min">
-                              <div className="lg:inline mb-1">
+                            <td scope="row" className="!min-w-min !p-4">
+                              <div className="mb-1 lg:inline">
                                 <Suspense
                                   fallback={
                                     <OsdsSkeleton
@@ -275,7 +283,7 @@ export default function PaymentStatus() {
                               </div>
                               {!service.isBillingSuspended() && (
                                 <div
-                                  className="lg:inline mb-1"
+                                  className="mb-1 lg:inline"
                                   data-testid="service_expiration_date_message"
                                 >
                                   {service.isOneShot() &&
@@ -288,14 +296,14 @@ export default function PaymentStatus() {
                                     !service.hasDebt() && (
                                       <span data-testid="service_valid_until_date">
                                         {t('ovh_manager_hub_payment_status_tile_before', {
-                                          date: format(service.formattedExpiration),
+                                          date: dateFormat.format(service.formattedExpiration),
                                         })}
                                       </span>
                                     )}
                                   {(service.isResiliated() || service.hasPendingResiliation()) && (
                                     <span data-testid="service_with_termination_date">
                                       {t('ovh_manager_hub_payment_status_tile_renew', {
-                                        date: format(service.formattedExpiration),
+                                        date: dateFormat.format(service.formattedExpiration),
                                       })}
                                     </span>
                                   )}
@@ -305,7 +313,7 @@ export default function PaymentStatus() {
                                     !service.isResiliated() &&
                                     !service.hasPendingResiliation() && (
                                       <span data-testid="service_with_expiration_date">
-                                        {format(service.formattedExpiration)}
+                                        {dateFormat.format(service.formattedExpiration)}
                                       </span>
                                     )}
                                   {service.hasDebt() && (
@@ -316,7 +324,7 @@ export default function PaymentStatus() {
                                 </div>
                               )}
                             </td>
-                            {autorenewLink && (
+                            {hasAutorenewLink && (
                               <td className="!min-w-min">
                                 <Suspense
                                   fallback={

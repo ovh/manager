@@ -34,6 +34,7 @@
   "sidebar_pci_settings": "Ajustes",
   "sidebar_pci_object_storage": "Object Storage",
   "sidebar_pci_block_storage": "Block Storage",
+  "sidebar_pci_file_storage": "File Storage",
   "sidebar_pci_databases": "Bases de datos",
   "sidebar_pci_cloud_archive": "Cloud Archive",
   "sidebar_pci_volume_snapshot": "Volume Snapshot",
@@ -227,5 +228,11 @@
   "sidebar_pci_quantum_qpu": "QPU",
   "sidebar_security_identity_operations_secret_manager": "Secret Manager",
   "sidebar_web_hosting_managed_wordpress": "Managed hosting for WordPress",
-  "sidebar_communication": "Mis mensajes"
+  "sidebar_communication": "Mis mensajes",
+  "sidebar_ovhcloud_backup": "OVHcloud Backup",
+  "sidebar_backup_billing": "Facturación",
+  "sidebar_backup_services": "Servicios",
+  "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
+  "sidebar_backup_agent_baremetal": "Backup Agent",
+  "sidebar_assistance_ai_chatbot": "Asistente IA"
 }

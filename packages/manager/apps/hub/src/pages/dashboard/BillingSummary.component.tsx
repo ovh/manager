@@ -83,7 +83,7 @@ export default function BillingSummary() {
     (isDataLoading || !isFreshCustomer) && (
       <div data-testid="billing_summary" className="manager-hub-billing-summary">
         <OsdsText
-          className="block mb-6"
+          className="mb-6 block"
           level={ODS_TEXT_LEVEL.subheading}
           size={ODS_TEXT_SIZE._200}
           color={ODS_THEME_COLOR_INTENT.text}
@@ -95,7 +95,7 @@ export default function BillingSummary() {
             <TileError
               contrasted
               message={t('hub_billing_summary_display_bills_error')}
-              refetch={refetch}
+              refetch={void refetch}
             />
           </Suspense>
         )}
@@ -103,7 +103,7 @@ export default function BillingSummary() {
           <div>
             <OsdsSelect
               data-testid="bills_period_selector"
-              className="w-full m-auto max-w-60 px-4 box-border"
+              className="m-auto box-border w-full max-w-60 px-4"
               value={months}
               onOdsValueChange={(event) => setMonths(Number(event.detail.value as string))}
             >
@@ -119,7 +119,7 @@ export default function BillingSummary() {
             </OsdsSelect>
             <span
               data-testid="bills_amount_container"
-              className="block whitespace-nowrap manager-hub-billing-summary__bill-total"
+              className="manager-hub-billing-summary__bill-total block whitespace-nowrap"
             >
               {!isDataLoading ? formattedPrice : <OsdsSkeleton inline />}
             </span>
@@ -143,7 +143,7 @@ export default function BillingSummary() {
                 <div className="mt-6">
                   {bills?.total > 0 && debt?.dueAmount?.value === 0 && (
                     <div className="flex flex-row justify-center">
-                      <span className="h-[24px] w-[24px] mr-4">
+                      <span className="mr-4 size-[24px]">
                         <OsdsIcon
                           name={ODS_ICON_NAME.SUCCESS_CIRCLE}
                           size={ODS_ICON_SIZE.sm}

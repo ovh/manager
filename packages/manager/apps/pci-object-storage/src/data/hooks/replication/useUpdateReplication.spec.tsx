@@ -4,7 +4,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as replicationApi from '@/data/api/replication/replication.api';
 import { useUpdateReplication } from './useUpdateReplication.hook';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
-import { mockedReplicationRule } from '@/__tests__/helpers/mocks/s3/replication';
+import { mockedReplicationRule } from '@/__tests__/helpers/mocks/storageContainer/replication';
 
 // Mock updateReplications API
 vi.mock('@/data/api/replication/replication.api', () => ({

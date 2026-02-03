@@ -1,5 +1,5 @@
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { CellRow, ColumnMetaType } from '@ovh-ux/muk';
 import { Link as OdsLink } from '@ovhcloud/ods-react';
 import { Link } from 'react-router-dom';
 import config from '@/web-domains.config';
@@ -15,7 +15,7 @@ export default function DatagridColumnServiceName({
   const { data: url } = useNavigationGetUrl([config.rootLabel, path, {}]);
 
   return (
-    <DataGridTextCell>
+    <CellRow type={'text' as ColumnMetaType}>
       <OdsLink
         href={url as string}
         data-testid={domainName}
@@ -24,6 +24,6 @@ export default function DatagridColumnServiceName({
       >
         {domainName}
       </OdsLink>
-    </DataGridTextCell>
+    </CellRow>
   );
 }

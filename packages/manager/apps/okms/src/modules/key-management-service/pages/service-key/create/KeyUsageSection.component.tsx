@@ -11,10 +11,13 @@ import {
 } from '@key-management-service/types/okmsServiceKeyReference.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsFormField } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 export type KeyUsageSectionProps = {
   serviceKey: OkmsServiceKeyReference | undefined;
@@ -30,7 +33,7 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
   setKeyOperations,
 }) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   React.useEffect(() => {
     serviceKey?.operations.forEach((operation) => {
@@ -45,11 +48,14 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
       const newOperations: OkmsServiceKeyOperations[][] = prev.includes(operation.value)
         ? prev.filter((op) => op !== operation.value)
         : [...prev, operation.value];
+
+      const newOperationsTrackingTag = newOperations.flat().join('-') as TrackingTags;
+
       trackClick({
         location: PageLocation.funnel,
         buttonType: ButtonType.button,
         actionType: 'action',
-        actions: ['select_use_key', newOperations.flat().join('_')],
+        actions: ['select', 'usage', newOperationsTrackingTag],
       });
       return newOperations;
     });
@@ -58,12 +64,12 @@ export const KeyUsageSection: React.FC<KeyUsageSectionProps> = ({
   return (
     <OdsFormField>
       <div slot="label" className="mb-2 space-y-2">
-        <OdsText className="block" preset={ODS_TEXT_PRESET.heading5}>
+        <Text className="block" preset="heading-5">
           {t('key_management_service_service-keys_create_crypto_field_usage_title')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        </Text>
+        <Text preset="paragraph">
           {t('key_management_service_service-keys_create_crypto_field_usage_subtitle')}
-        </OdsText>
+        </Text>
       </div>
       <div className="grid gap-2">
         {serviceKey?.operations.map((operation) => (

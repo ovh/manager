@@ -18,7 +18,11 @@ export const dataProtectionStatus = (
     return DataProtectionStatus.NONE;
   }
 
-  if (contacts.some((contact) => contact.disclosurePolicy?.forceDisclosure)) {
+  if (
+    contacts.some(
+      (contact) => contact.disclosurePolicy?.forcedDisclosureConfiguration,
+    )
+  ) {
     return DataProtectionStatus.DISABLED;
   }
 

@@ -34,7 +34,7 @@
   "activateEncryptionDescription": "Włącz szyfrowanie po stronie serwera za pomocą kluczy zarządzanych przez OVHcloud, aby zabezpieczyć dane w spoczynku.",
   "activateEncryptionWarning": "Po włączeniu szyfrowania będzie ono stosowane tylko do nowych przesyłanych obiektów i nie będzie można go już wyłączyć.",
   "activateEncryptionDocLink": "Dowiedz się więcej",
-  "versionningTitle": "Wersjonowanie",
+  "versionningTitle": "Versioning",
   "disableVersionning": "Chroń swoje dane. Włącz wersjonowanie, aby w prosty sposób przywracać obiekty w przypadku ich usunięcia lub przypadkowej modyfikacji.",
   "enableVersionning": "Twoje obiekty są wersjonowane. Ułatwia to ich śledzenie i odzyskiwanie w razie utraty lub zmiany.",
   "activateVersionningTitle": "Włącz wersjonowanie",
@@ -58,12 +58,13 @@
   "objectLockDurationUnitDays_one": "dzień",
   "objectLockDurationUnitDays_other": "dni",
   "objectLockDurationUnitYears_one": "rok",
-  "objectLockDurationUnitYears_other": "lat/-a",
+  "objectLockDurationUnitYears_other": "lat",
   "objectLockComplianceModeWarning": "W trybie Compliance obiekty są blokowane i pozostają niezmienione przez cały okres trwania retencji: nie można ich modyfikować ani usunąć. Usunięcie jest możliwe wyłącznie poprzez zamknięcie przypisanego konta. <0></0><1>Dowiedz się więcej o trybie Compliance</1>.",
   "objectLockRetentionModeDescription_governance": "Podczas trwania okresu retencji, użytkownicy posiadający odpowiednie uprawnienia mogą modyfikować lub usuwać obiekty.",
   "objectLockRetentionModeDescription_compliance": "Podczas trwania okresu retencji nie można modyfikować ani usuwać obiektów.",
   "editObjectLockToastSuccessDescription": "Opcje Object Lock zostały zaktualizowane",
   "errorDurationMin": "Minimalny czas trwania wynosi 1 dzień.",
   "errorDurationMax": "Maksymalny czas trwania wynosi 100 lat lub 36500 dni.",
-  "errorRuleRequired": "Aby można było domyślnie włączyć Object Lock, należy zdefiniować regułę retencji."
+  "errorRuleRequired": "Aby można było domyślnie włączyć Object Lock, należy zdefiniować regułę retencji.",
+  "deleteBucketButton": "Usuń bucket"
 }

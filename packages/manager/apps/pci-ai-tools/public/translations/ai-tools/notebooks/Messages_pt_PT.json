@@ -17,5 +17,9 @@
   "tableActionDelete": "Eliminar",
   "deleteTableTooltip": "O notebook deve encontrar-se no estado «parado»",
   "quantumTitle": "Emulators",
-  "qpuTitle": "QPU"
+  "qpuTitle": "QPU",
+  "tableActionRestart": "Reiniciar",
+  "shutdownLabel": "Interrupção a {{timeout}}",
+  "restartLabel": "Reinicialização a {{timeout}}",
+  "timeOutLabel": "Expiração"
 }

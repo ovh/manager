@@ -8,40 +8,48 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_INPUT_TYPE,
-  ODS_MESSAGE_COLOR,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsSelectChangeEvent,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsIcon,
-  OdsInput,
-  OdsMessage,
-  OdsRadio,
-  OdsSelect,
-  OdsText,
-  OdsToggle,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  Button,
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  ICON_NAME,
+  INPUT_TYPE,
+  Icon,
+  Input,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Radio,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  SPINNER_SIZE,
+  Select,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Text,
+  Toggle,
+  ToggleControl,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { Loading } from '@/components';
 import {
-  DomainType,
   MailingListBodyParamsType,
   ModerationChoices,
   ReplyToChoices,
@@ -113,22 +121,10 @@ export const MailingListForm = () => {
   const { data: domains, isLoading: isLoadingDomains } = useDomains({
     shouldFetchAll: true,
   });
-  //
-  // @TODO: remove this when OdsSelect is fixed ODS-1565
-  const [hackDomains, setHackDomains] = useState<DomainType[]>([]);
-  const [hackKeyDomains, setHackKeyDomains] = useState(Date.now());
 
-  useEffect(() => {
-    setHackDomains(
-      (domains || []).filter((domain) => domain.resourceStatus === ResourceStatus.READY),
-    );
-    setHackKeyDomains(Date.now());
-  }, [domains]);
-
-  const setSelectedOrganization = (e: OdsSelectChangeEvent) => {
-    const organizationLabel = domains?.find(
-      ({ currentState }) => currentState.name === e?.detail?.value,
-    )?.currentState.organizationLabel;
+  const setSelectedOrganization = (value: string) => {
+    const organizationLabel = domains?.find(({ currentState }) => currentState.name === value)
+      ?.currentState.organizationLabel;
     setSelectedDomainOrganization(organizationLabel);
   };
 
@@ -144,13 +140,13 @@ export const MailingListForm = () => {
         pageName: trackingName,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             mailingListId
               ? 'zimbra_mailinglist_edit_success_message'
               : 'zimbra_mailinglist_add_success_message',
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -160,7 +156,7 @@ export const MailingListForm = () => {
         pageName: trackingName,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t(
             mailingListId
               ? 'zimbra_mailinglist_edit_error_message'
@@ -169,7 +165,7 @@ export const MailingListForm = () => {
               error: error.response?.data?.message,
             },
           )}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -242,37 +238,40 @@ export const MailingListForm = () => {
       onSubmit={handleSubmit(handleSavelick)}
       className="flex w-full flex-col space-y-5 md:w-3/4"
     >
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         {!mailingListId ? t('zimbra_mailinglist_add_header') : t('zimbra_mailinglist_edit_header')}
-      </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</OdsText>
+      </Text>
+      <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
       <Controller
         control={control}
         name="account"
-        render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField className="w-full" error={errors?.[name]?.message}>
-            <label htmlFor={name} slot="label">
+        render={({
+          field: { name, value, onChange, onBlur },
+          fieldState: { isDirty, isTouched },
+        }) => (
+          <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
+            <FormFieldLabel htmlFor={name} slot="label">
               {t('zimbra_mailinglist_add_input_email_label')} *
-            </label>
+            </FormFieldLabel>
             <div className="flex">
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              <Input
+                type={INPUT_TYPE.text}
                 placeholder={t('zimbra_mailinglist_add_input_email_placeholder')}
                 data-testid="input-account"
                 className="flex-1"
                 id={name}
                 name={name}
-                hasError={!!errors[name]}
+                invalid={(isDirty || isTouched) && !!errors[name]}
                 value={value}
-                onOdsBlur={onBlur}
-                onOdsChange={onChange}
+                onBlur={onBlur}
+                onChange={onChange}
               />
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              <Input
+                type={INPUT_TYPE.text}
                 name="@"
                 value="@"
-                isReadonly
-                isDisabled
+                readOnly
+                disabled
                 className="input-at w-10"
               />
               <Controller
@@ -280,198 +279,220 @@ export const MailingListForm = () => {
                 name="domain"
                 render={({ field }) => (
                   <div className="flex flex-1">
-                    <OdsSelect
-                      key={hackKeyDomains}
+                    <Select
+                      items={domains
+                        ?.filter((domain) => domain.resourceStatus === ResourceStatus.READY)
+                        .map((domain) => ({
+                          label: domain?.currentState.name,
+                          value: domain?.currentState.name,
+                        }))}
                       id={name}
                       name={field.name}
-                      hasError={!!errors[field.name]}
-                      value={field.value}
-                      isDisabled={isLoadingDomains || !domains}
-                      placeholder={t('common:select_domain')}
-                      onOdsChange={(e) => {
-                        field.onChange(e);
-                        setSelectedOrganization(e);
+                      invalid={(isDirty || isTouched) && !!errors[field.name]}
+                      value={[field.value]}
+                      disabled={isLoadingDomains || !domains}
+                      onValueChange={({ value }) => {
+                        field.onChange(value[0]);
+                        setSelectedOrganization(value[0]);
                       }}
-                      onOdsBlur={field.onBlur}
+                      onBlur={field.onBlur}
                       data-testid="select-domain"
                       className="w-full"
                     >
-                      {hackDomains?.map(({ currentState: domain }) => (
-                        <option key={domain.name} value={domain.name}>
-                          {domain.name}
-                        </option>
-                      ))}
-                    </OdsSelect>
+                      <SelectControl placeholder={t('common:select_domain')} />
+                      <SelectContent />
+                    </Select>
                     {(isLoadingDomains || !domains) && (
-                      <Loading className="flex justify-center" size={ODS_SPINNER_SIZE.sm} />
+                      <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                     )}
                   </div>
                 )}
               />
             </div>
-          </OdsFormField>
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
       {selectedDomainOrganization && !organizationId && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.information} isDismissible={false}>
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('zimbra_mailinglist_add_message_organization', {
-              organization: selectedDomainOrganization,
-            })}
-          </OdsText>
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.information} dismissible={false}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>
+            <Text preset={TEXT_PRESET.paragraph}>
+              {t('zimbra_mailinglist_add_message_organization', {
+                organization: selectedDomainOrganization,
+              })}
+            </Text>
+          </MessageBody>
+        </Message>
       )}
       <Controller
         control={control}
         name="owner"
-        render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField error={errors?.[name]?.message}>
-            <label htmlFor={name} slot="label">
+        render={({
+          field: { name, value, onChange, onBlur },
+          fieldState: { isDirty, isTouched },
+        }) => (
+          <FormField invalid={(isDirty || isTouched) && !!errors?.[name]}>
+            <FormFieldLabel htmlFor={name} slot="label">
               {t('common:owner')} *
-            </label>
-            <OdsInput
+            </FormFieldLabel>
+            <Input
               placeholder={t('common:owner')}
               className="w-1/2"
               data-testid="input-owner"
-              type={ODS_INPUT_TYPE.text}
+              type={INPUT_TYPE.text}
               id={name}
               name={name}
-              hasError={!!errors[name]}
+              invalid={(isDirty || isTouched) && !!errors[name]}
               value={value}
-              onOdsBlur={onBlur}
-              onOdsChange={onChange}
+              onBlur={onBlur}
+              onChange={onChange}
             />
-          </OdsFormField>
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
       <Controller
         control={control}
         name="defaultReplyTo"
-        render={({ field: { name, value, onChange } }) => (
-          <OdsFormField error={errors?.[name]?.message}>
-            <label htmlFor={name} slot="label">
-              {t('zimbra_mailinglist_add_reply_to_label')} *
-            </label>
-            <div className="flex flex-col gap-4">
+        render={({ field: { name, value, onChange }, fieldState: { isDirty, isTouched } }) => (
+          <FormField invalid={(isDirty || isTouched) && !!errors?.[name]}>
+            <FormFieldLabel>{t('zimbra_mailinglist_add_reply_to_label')} *</FormFieldLabel>
+            <RadioGroup value={value} onValueChange={onChange}>
               {replyToChoices.map((choice) => (
                 <div key={choice.value} className="flex gap-4 leading-none">
-                  <OdsRadio
+                  <Radio
                     id={choice.value}
-                    name={choice.value}
-                    value={value}
-                    isChecked={value === (choice.value as string)}
-                    onClick={() => onChange(choice.value)}
+                    value={choice.value}
                     data-testid={`radio-reply-to-${choice.value}`}
-                  ></OdsRadio>
-                  <label htmlFor={choice.value} className="flex cursor-pointer flex-col">
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
-                  </label>
+                  >
+                    <RadioControl />
+                    <RadioLabel>
+                      <Text preset={TEXT_PRESET.paragraph}>{t(choice.key)}</Text>
+                    </RadioLabel>
+                  </Radio>
                 </div>
               ))}
-            </div>
-          </OdsFormField>
+            </RadioGroup>
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
       <Controller
         control={control}
         name="language"
-        render={({ field: { name, value, onChange, onBlur } }) => (
-          <OdsFormField error={errors?.[name]?.message}>
-            <label htmlFor={name} slot="label">
+        render={({
+          field: { name, value, onChange, onBlur },
+          fieldState: { isDirty, isTouched },
+        }) => (
+          <FormField invalid={(isDirty || isTouched) && !!errors?.[name]}>
+            <FormFieldLabel htmlFor={name} slot="label">
               {t('zimbra_mailinglist_add_language_label')} *
-            </label>
-            <OdsSelect
+            </FormFieldLabel>
+            <Select
               data-testid="select-language"
-              placeholder={t('zimbra_mailinglist_add_select_language_placeholder')}
+              items={languages?.map((lang) => ({ label: lang, value: lang }))}
               className="w-1/2"
               id={name}
               name={name}
-              value={value}
-              hasError={!!errors[name]}
-              onOdsChange={onChange}
-              onOdsBlur={onBlur}
+              value={[value]}
+              invalid={(isDirty || isTouched) && !!errors[name]}
+              onValueChange={(detail) => onChange(detail.value[0])}
+              onBlur={onBlur}
             >
-              {languages?.map((lang) => (
-                <option key={lang} value={lang}>
-                  {lang}
-                </option>
-              ))}
-            </OdsSelect>
-          </OdsFormField>
+              <SelectControl
+                placeholder={t('zimbra_mailinglist_add_select_language_placeholder')}
+              />
+              <SelectContent />
+            </Select>
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
       <Controller
         control={control}
         name="moderationOption"
-        render={({ field: { name, value, onChange } }) => (
-          <OdsFormField error={errors?.[name]?.message}>
-            <label htmlFor={name} slot="label">
+        render={({ field: { name, value, onChange }, fieldState: { isDirty, isTouched } }) => (
+          <FormField invalid={(isDirty || isTouched) && !!errors?.[name]}>
+            <FormFieldLabel htmlFor={name} slot="label">
               {t('zimbra_mailinglist_add_moderation_choice_label')} *
-            </label>
-            <div className="flex flex-col gap-4">
+            </FormFieldLabel>
+            <RadioGroup value={value} onValueChange={onChange}>
               {moderationChoices.map((choice) => (
-                <div key={choice.value} className="flex gap-4 leading-none">
-                  <OdsRadio
-                    id={choice.value}
-                    name={choice.value}
-                    value={value}
-                    isChecked={value === (choice.value as string)}
-                    onClick={() => onChange(choice.value)}
-                    data-testid={`radio-moderation-option-${choice.value}`}
-                  ></OdsRadio>
-                  <label htmlFor={choice.value} className="flex cursor-pointer flex-col">
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t(choice.key)}</OdsText>
-                  </label>
-                </div>
+                <Radio
+                  id={choice.value}
+                  key={value}
+                  value={value}
+                  data-testid={`radio-moderation-option-${choice.value}`}
+                >
+                  <RadioControl />
+                  <RadioLabel>
+                    <Text preset={TEXT_PRESET.paragraph}>{t(choice.key)}</Text>
+                  </RadioLabel>
+                </Radio>
               ))}
               <Controller
                 control={control}
                 name="subscriberModeration"
                 render={({ field }) => (
                   <div className="flex">
-                    <OdsToggle
+                    <Toggle
                       className="mt-4"
                       data-testid="toggle-subscriber-moderation"
-                      onOdsChange={(e) => field.onChange(e.detail.value)}
-                      withLabel
+                      onCheckedChange={(detail) => field.onChange(detail.checked)}
                       name={field.name}
-                    ></OdsToggle>
+                    >
+                      <ToggleControl />
+                    </Toggle>
                     <div className="ml-4 flex w-full flex-col">
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         {t('zimbra_mailinglist_add_subscriber_moderation')}
-                        <OdsIcon
-                          className="ml-3 text-xs"
-                          id="subs-tooltip-trigger"
-                          name={ODS_ICON_NAME.circleInfo}
-                        />
-                      </OdsText>
-                      <OdsTooltip triggerId="subs-tooltip-trigger">
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                          {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
-                        </OdsText>
-                      </OdsTooltip>
-                      <OdsText preset={ODS_TEXT_PRESET.caption}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Icon className="ml-3 text-xs" name={ICON_NAME.circleInfo} />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <Text preset={TEXT_PRESET.paragraph}>
+                              {t('zimbra_mailinglist_add_subscriber_moderation_tooltip')}
+                            </Text>
+                          </TooltipContent>
+                        </Tooltip>
+                      </Text>
+
+                      <Text preset={TEXT_PRESET.caption}>
                         {t('zimbra_mailinglist_add_subscriber_moderation_info', {
                           max: 250,
                         })}
-                      </OdsText>
+                      </Text>
                     </div>
                   </div>
                 )}
               />
-            </div>
-          </OdsFormField>
+            </RadioGroup>
+            {(isDirty || isTouched) && errors?.[name]?.message && (
+              <FormFieldError>{errors[name].message}</FormFieldError>
+            )}
+          </FormField>
         )}
       />
-      <OdsButton
+      <Button
         slot="actions"
         type="submit"
-        variant={ODS_BUTTON_VARIANT.default}
-        isDisabled={!isDirty || !isValid}
-        isLoading={isSending}
+        variant={BUTTON_VARIANT.default}
+        disabled={!isDirty || !isValid}
+        loading={isSending}
         data-testid="confirm-btn"
-        label={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      />
+      >
+        {t(`${NAMESPACES.ACTIONS}:confirm`)}
+      </Button>
     </form>
   );
 };

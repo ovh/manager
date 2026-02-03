@@ -22,7 +22,7 @@
   "telephony_alias_portability_order_desireDate_pattern_error": "Invalid date entered.",
   "telephony_alias_portability_order_rio": "Porting Authorisation Code (PAC)",
   "telephony_alias_portability_order_rio_pattern_error": "The PAC entered is invalid.",
-  "telephony_alias_portability_order_rio_info": "Porting Authorisation Code (PAC): call 3179 to obtain your PAC.",
+  "telephony_alias_portability_order_rio_info": "Call 3179 from your line to get your PAC by SMS or email. If you do not have access to the line concerned, call 0805 69 3179 to get another PAC.",
   "telephony_alias_portability_order_contact_help": "Carefully enter the information stated on the bill from your current operator",
   "telephony_alias_portability_order_contact_personal_infos": "Personal information",
   "telephony_alias_portability_order_contact_social_reason": "Legal status",

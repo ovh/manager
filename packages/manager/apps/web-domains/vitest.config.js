@@ -3,7 +3,7 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
-  defaultDedupedDependencies,
+	defaultDedupedDependencies,
   defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
@@ -24,14 +24,14 @@ export default mergeConfig(
         ],
       },
       setupFiles: 'src/common/setupTests.tsx',
+      css: false,
       server: {
         deps: {
-          inline: ['@ovhcloud/ods-react'],
+          inline: ['@ovhcloud/ods-react', '@ovh-ux/manager-react-shell-client', '@ovh-ux/muk'],
         },
       },
     },
-    resolve: {
-      dedupe: [...defaultDedupedDependencies],
+    resolve: { dedupe: [...defaultDedupedDependencies],
       alias: {
         '@/public': path.resolve(__dirname, 'public'),
         '@': path.resolve(__dirname, 'src'),

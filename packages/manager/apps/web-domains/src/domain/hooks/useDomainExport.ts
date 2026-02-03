@@ -1,44 +1,56 @@
-import { v6 } from '@ovh-ux/manager-core-api';
-import punycode from 'punycode/punycode';
 import { getDomainService } from '@/domain/data/api/domainResources';
-import { getDomainContact } from '@/common/data/api/common.api';
-import { getServiceDnssec } from '@/domain/data/api/domainZone';
+import { TDomainResource, DomainService } from '@/domain/types/domainResource';
 import {
-  DomainService,
-  NameServer,
-  NameServerTypeEnum,
-} from '@/domain/types/domainResource';
-
-interface ExportSelection {
-  domainColumns: string[];
-  contactColumns: string[];
-}
+  fetchDomainColumns,
+  fetchContactColumns,
+  fetchDnssecData,
+} from '@/domain/data/api/exportDataFetchers';
+import { ExportSelection, ExportRowData } from '@/domain/types/export.types';
+import { v2 } from '@ovh-ux/manager-core-api';
 
 export const useDomainExport = () => {
-  const fetchAllDomains = async (): Promise<DomainService[]> => {
+  const fetchAllDomains = async (
+    onProgress?: (current: number, total?: number) => void,
+  ): Promise<TDomainResource[]> => {
     try {
-      const { data: domainNames } = await v6.get<string[]>('/domain');
+      const allDomains: TDomainResource[] = [];
+      let cursor: string | undefined;
+      let totalCount: number | undefined;
 
-      return domainNames.map((domainName) => ({
-        domain: domainName,
-      })) as DomainService[];
+      do {
+        const response = await v2.get<TDomainResource[]>('/domain/name', {
+          headers: {
+            'X-Pagination-Size': '1000',
+            ...(cursor ? { 'X-Pagination-Cursor': cursor } : {}),
+          },
+        });
+
+        if (!totalCount) {
+          const totalHeader = response.headers['x-pagination-elements'];
+          totalCount = totalHeader
+            ? parseInt(totalHeader as string, 10)
+            : undefined;
+        }
+
+        const page = response.data;
+        allDomains.push(...page);
+        onProgress?.(allDomains.length, totalCount);
+
+        cursor = response.headers['x-pagination-cursor-next'] as
+          | string
+          | undefined;
+      } while (cursor);
+
+      return allDomains;
     } catch (error) {
       return [];
     }
   };
 
   const fetchDomainDetails = async (
-    domain: DomainService,
+    domain: TDomainResource,
     selection: ExportSelection,
-  ): Promise<Record<string, string>> => {
-    const row: Record<string, string> = {};
-    if (selection.domainColumns.includes('domain')) {
-      row['domain'] = domain.domain || '';
-    }
-    if (selection.domainColumns.includes('domain-utf8')) {
-      row['domain utf-8'] = punycode.toUnicode(domain.domain || '');
-    }
-
+  ): Promise<ExportRowData> => {
     const needsExpiration = selection.domainColumns.includes('expiration');
     const needsContacts = selection?.contactColumns?.length > 0;
     const needsOtherDetails =
@@ -50,95 +62,30 @@ export const useDomainExport = () => {
     const needsDomainService =
       needsExpiration || needsContacts || needsOtherDetails;
 
-    const hasFullDomainData = domain?.expirationDate || domain?.lastUpdate;
-
-    let domainDetails = domain;
-    if (needsDomainService && !hasFullDomainData) {
+    let domainServices: DomainService | undefined;
+    if (needsDomainService) {
       try {
-        domainDetails = await getDomainService(domain.domain);
+        domainServices = await getDomainService(domain.id);
       } catch {
-        domainDetails = domain;
+        // Silent failure - will use domain data as fallback
       }
     }
 
-    // Domain Services
-    if (selection.domainColumns.includes('expiration')) {
-      row['expiration'] = domainDetails.expirationDate || '';
-    }
-    if (selection.domainColumns.includes('creation')) {
-      row['creation'] = domainDetails.lastUpdate || '';
-    }
+    const [domainData, contactData, dnssecStatus] = await Promise.all([
+      fetchDomainColumns(domain, domainServices, selection.domainColumns),
+      fetchContactColumns(domain, selection.contactColumns),
+      selection.domainColumns.includes('dnssec')
+        ? fetchDnssecData(domain.id)
+        : Promise.resolve(''),
+    ]);
 
-    if (selection.domainColumns.includes('dns-server')) {
-      row['dns-server'] =
-        domainDetails.nameServers
-          ?.map((ns: NameServer) => ns.nameServer)
-          .join(', ') || '';
-    }
-    if (selection.domainColumns.includes('dns-type')) {
-      row['dns-type'] = domainDetails.nameServerType || '';
-    }
-    if (selection.domainColumns.includes('dns-anycast')) {
-      row['dns-anycast'] = String(
-        domainDetails.nameServerType === NameServerTypeEnum.ANYCAST,
-      );
-    }
+    const row: ExportRowData = {
+      ...domainData,
+      ...contactData,
+    };
 
-    // DNSSEC
     if (selection.domainColumns.includes('dnssec')) {
-      try {
-        const dnssec = await getServiceDnssec(domainDetails.domain);
-        row.DNSSEC = dnssec?.status || '';
-      } catch {
-        row.DNSSEC = '';
-      }
-    }
-
-    // Contacts
-    if (selection?.contactColumns?.length > 0) {
-      const contactPromises = selection.contactColumns.map(
-        async (contactType) => {
-          const contactFieldMap: Record<string, keyof DomainService> = {
-            owner: 'contactOwner',
-            admin: 'contactAdmin',
-            tech: 'contactTech',
-            billing: 'contactBilling',
-          };
-
-          const contactField = contactFieldMap[contactType];
-          const contactData = domainDetails[contactField] as
-            | { id: string }
-            | undefined;
-          const contactId = contactData?.id;
-
-          if (!contactId) {
-            row[`Contact ${contactType}`] = '';
-            return;
-          }
-
-          if (contactType === 'owner') {
-            try {
-              const contactDetails = await getDomainContact(contactId);
-              const details = `${contactDetails?.organisationName ||
-                contactDetails?.firstName} ${
-                contactDetails?.lastName
-              } ${Object.values(contactDetails?.address)
-                .map((v) => v || '')
-                .join(' ')} ${contactDetails?.email} ${
-                contactDetails?.phone
-              }`.trim();
-              row[`Contact ${contactType}`] = details || contactId;
-            } catch {
-              row[`Contact ${contactType}`] = contactId;
-            }
-            return;
-          }
-
-          row[`Contact ${contactType}`] = contactId;
-        },
-      );
-
-      await Promise.all(contactPromises);
+      row.DNSSEC = dnssecStatus;
     }
 
     return row;

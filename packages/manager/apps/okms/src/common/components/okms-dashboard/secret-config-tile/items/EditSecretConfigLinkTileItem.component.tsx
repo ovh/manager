@@ -4,23 +4,35 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { LinkType, Links, ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Tile } from '@ovh-ux/muk';
+
+import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type EditSecretConfigTileItemProps = { okms: OKMS };
 
 export const EditSecretConfigLinkTileItem = ({ okms }: EditSecretConfigTileItemProps) => {
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
   const { t } = useTranslation('secret-manager');
 
   return (
-    <ManagerTile.Item>
-      <Links
-        type={LinkType.next}
-        label={t('edit_metadata')}
-        onClickReturn={() =>
-          navigate(SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(okms.id))
-        }
-      />
-    </ManagerTile.Item>
+    <Tile.Item.Root>
+      <MukLink
+        type={MukLinkType.next}
+        onClick={() => {
+          navigate(SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(okms.id));
+          trackClick({
+            location: PageLocation.tile,
+            buttonType: ButtonType.link,
+            actionType: 'action',
+            actions: ['edit', 'secret-config'],
+          });
+        }}
+      >
+        {t('edit_metadata')}
+      </MukLink>
+    </Tile.Item.Root>
   );
 };

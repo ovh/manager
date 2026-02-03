@@ -1,7 +1,7 @@
 {
   "autorenew_service_update_modal_title": "Configurar la renovación",
   "autorenew_service_update_modal_description": "Establezca una frecuencia de renovación para su servicio: {{ serviceName }} ",
-  "autorenew_service_update_modal_period_manual": "Sin frecuencia (renovación manual)",
+  "autorenew_service_update_modal_period_manual": "Renovación manual",
   "autorenew_service_update_modal_period_every_month": "Todos los meses",
   "autorenew_service_update_modal_period_every_x_months": "Cada {{ months }} meses",
   "autorenew_service_update_modal_period_every_year": "Todos los años",

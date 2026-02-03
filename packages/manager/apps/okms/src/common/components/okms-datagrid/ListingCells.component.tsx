@@ -1,17 +1,17 @@
-import { OkmsServiceState } from '@key-management-service/components/layout-helpers/dashboard/okms-service-state/OkmsServiceState.component';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { Clipboard, DataGridTextCell } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard, Spinner } from '@ovh-ux/muk';
 
-import { Link } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
+import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { TrackingTags } from '@/tracking.constant';
 
 import { OKMS_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 import { OkmsDatagridType } from './okmsDatagrid.type';
@@ -27,34 +27,34 @@ export const DatagridCellId = (okms: OKMS) => {
 };
 
 export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => {
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
-  const urls: Record<OkmsDatagridType, string> = {
-    kms: KMS_ROUTES_URLS.kmsDashboard(okms.id),
-    'secret-manager': SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
-  };
-  const tracking: Record<OkmsDatagridType, string> = {
-    kms: 'go-to-kms',
-    'secret-manager': '',
+  const links: Record<OkmsDatagridType, { href: string; tracking: TrackingTags[] }> = {
+    kms: {
+      href: KMS_ROUTES_URLS.kmsDashboard(okms.id),
+      tracking: ['okms'],
+    },
+    'secret-manager': {
+      href: SECRET_MANAGER_ROUTES_URLS.secretList(okms.id),
+      tracking: ['secret', 'list'],
+    },
   };
 
   return (
-    <Link
-      href={urls[type]}
-      label={okms.iam.displayName}
-      isRouterLink
+    <InternalLink
+      to={links[type].href}
       data-testid={OKMS_LIST_CELL_TEST_IDS.name(okms.id)}
       onClick={() => {
-        if (tracking[type].length > 0) {
-          trackClick({
-            location: PageLocation.datagrid,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: [tracking[type]],
-          });
-        }
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.link,
+          actionType: 'navigation',
+          actions: links[type].tracking,
+        });
       }}
-    />
+    >
+      {okms.iam.displayName}
+    </InternalLink>
   );
 };
 
@@ -76,7 +76,7 @@ export const DatagridCellStatus = (okms: OKMS) => {
     resourceName: okms.id,
   });
   if (isPending) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
+    return <Spinner size="sm" />;
   }
   if (isError) {
     return <></>;

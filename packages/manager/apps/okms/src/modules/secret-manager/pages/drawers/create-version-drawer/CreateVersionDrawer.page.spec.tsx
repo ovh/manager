@@ -4,27 +4,21 @@ import * as secretVersionsApi from '@secret-manager/data/api/secretVersions';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { getSecretMockWithData } from '@secret-manager/mocks/secrets/secretsMock.utils';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import {
-  WAIT_FOR_DEFAULT_OPTIONS,
-  assertTextVisibility,
-  getOdsButtonByLabel,
-} from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
-
-import { CREATE_VERSION_DRAWER_TEST_IDS } from './CreateVersionDrawer.constants';
+import { assertDrawerVisibility, clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
+import { invariant } from '@/common/utils/tools/invariant';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockedSecret = mockSecret1;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   mockOkmsId,
   mockedSecret.path,
+  1,
 );
 
 // Mocking ODS components
@@ -47,31 +41,34 @@ vi.mock('@ovhcloud/ods-components/react', async () => {
  */
 const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   const user = userEvent.setup();
-  const { container } = await renderTestApp(url);
+  await renderTestApp(url);
 
   // Check if the drawer is open
-  expect(
-    await screen.findByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer, {}, WAIT_FOR_DEFAULT_OPTIONS),
-  ).toBeInTheDocument();
+  const drawer = await assertDrawerVisibility({ state: 'visible' });
 
-  // wait for the content to be displayed
-  await assertTextVisibility(labels.secretManager.add_new_version);
-  await assertTextVisibility(labels.secretManager.key_value);
+  // Wait for the title to appear (drawer content to load)
+  await waitFor(() => {
+    expect(within(drawer).getByText(labels.secretManager.add_new_version)).toBeInTheDocument();
+  });
 
-  return { user, container };
+  // switch label
+  await waitFor(() => {
+    expect(within(drawer).getByText(labels.secretManager.key_value)).toBeInTheDocument();
+  });
+
+  return { user };
 };
 
 describe('Secret create version drawer page test suite', () => {
   it('should display the create version drawer', async () => {
-    const { container } = await renderPage();
+    await renderPage();
 
     // Check disabled sumbit button
-    const button = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.add,
-      disabled: true,
+    const button = screen.getByRole('button', {
+      name: labels.common.actions.add,
     });
     expect(button).toBeInTheDocument();
+    expect(button).toBeDisabled();
   });
 
   it('should display the current secret value', async () => {
@@ -83,14 +80,32 @@ describe('Secret create version drawer page test suite', () => {
     // Check if the data input contains the secret value
     const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
-    expect(dataInput).toHaveValue(JSON.stringify(getSecretMockWithData(mockedSecret).version.data));
+    expect(dataInput).toHaveValue(
+      JSON.stringify(getSecretMockWithData(mockedSecret).version?.data),
+    );
+  });
+
+  it('should display no value if the url does not specify a default version id', async () => {
+    const { user } = await renderPage({
+      url: SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(mockOkmsId, mockedSecret.path),
+    });
+
+    // Click on the JSON toggle to switch to the JSON editor
+    await clickJsonEditorToggle(user);
+
+    // Check if the data input is empty
+    const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
+    expect(dataInput).toBeInTheDocument();
+    expect(dataInput).toHaveValue('');
   });
 
   it('should add cas to the createSecretVersion request and close the drawer after submission', async () => {
-    const { container, user } = await renderPage();
-    vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(
-      getSecretMockWithData(mockedSecret).version,
-    );
+    const { user } = await renderPage();
+
+    // Mock the createSecretVersion request
+    const version = getSecretMockWithData(mockedSecret).version;
+    invariant(version, 'Version is required');
+    vi.spyOn(secretVersionsApi, 'createSecretVersion').mockResolvedValue(version);
 
     // Click on the JSON toggle to switch to the JSON editor
     await clickJsonEditorToggle(user);
@@ -100,20 +115,22 @@ describe('Secret create version drawer page test suite', () => {
     const input = await screen.findByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
 
     // clean first the input
-    await act(() => user.clear(input));
+    await user.clear(input);
     // then type the new value
     const escaped = MOCK_NEW_DATA.replace(/{/g, '{{');
-    await act(() => user.type(input, escaped));
+    await user.type(input, escaped);
 
     // Submit the form
     // Button should be enabled after input change
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.add,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.add,
     });
     expect(submitButton).toBeInTheDocument();
+    expect(submitButton).toBeEnabled();
 
-    await act(() => user.click(submitButton));
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // Wait for the createSecretVersion to be called
     await waitFor(() => {
@@ -126,8 +143,6 @@ describe('Secret create version drawer page test suite', () => {
     });
 
     // Wait for the drawer to close
-    await waitFor(() => {
-      expect(screen.queryByTestId(CREATE_VERSION_DRAWER_TEST_IDS.drawer)).not.toBeInTheDocument();
-    });
+    await assertDrawerVisibility({ state: 'hidden' });
   });
 });

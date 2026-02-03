@@ -40,6 +40,12 @@ export const yarnAppsPlaybookPath = path.join(
   'src/playbook/catalog/yarn-catalog.json',
 );
 
+/** Workspace tools catalog. */
+export const toolsPlaybookPath = path.join(
+  managerPMPath,
+  'src/playbook/catalog/tools-catalog.json',
+);
+
 /** Path to pnpm normalized versions path. */
 export const normalizedVersionsPath = path.join(
   managerPMPath,

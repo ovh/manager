@@ -5,7 +5,7 @@
   "pci_projects_project_activate_cta": "Ativar o seu projeto",
   "pci_projects_project_activate_banner_promotion_title": "Beneficie de </br> {{ amount }} de oferta",
   "pci_projects_project_activate_banner_no_promotion_title": "Bem-vindo ao ecossistema Public Cloud",
-  "pci_projects_project_activate_banner_promotion_description_1": "<strong>Válido por 1 mês</strong> para testar os nossos serviços após a abertura do seu projeto.",
+  "pci_projects_project_activate_banner_promotion_description_1": "<strong>Válido por 1 mês</strong> para testar os nossos serviços após a criação do seu projeto.",
   "pci_projects_project_activate_banner_promotion_description_2": "Apenas lhe serão cobrados valores se continuar a utilizar os nossos produtos para além desse montante ou dessa data. Tudo o que precisa para começar tranquilamente.",
   "pci_projects_project_activate_banner_no_promotion_description": "Os nossos serviços são consumíveis a pedido. Pode facilmente iniciar um serviço para o testar durante algumas horas e desativá-lo quando já não precisar.",
   "pci_projects_project_activate_banner_section_1_title": "Faturação granular",
@@ -16,8 +16,7 @@
   "pci_projects_project_activate_message_fail": "Ocorreu um erro aquando da ativação do seu projeto: {{ message }}.",
   "pci_projects_project_activate_credit_payment_title": "Crédito necessário",
   "pci_projects_project_activate_credit_payment_description": "Para ativar o seu projeto, deve adicionar {{ amount }} de crédito à sua conta.",
-  "pci_projects_project_activate_credit_payment_info": "Será redirecionado para a página de pagamento para finalizar esta transação.",
-
+  "pci_projects_project_activate_credit_payment_info": "Será redirecionado para a página de pagamento para concluir esta transação.",
   "pci_projects_project_activateDiscovery_heading": "Ativar um projeto",
   "pci_projects_project_activateDiscovery_info": "Antes de criar um novo projeto, deve ativar este projeto. Ainda não se sente pronto? Pode continuar a explorar o universo Public Cloud no modo Descoberta."
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
 import { Navigate, Outlet, useLocation, useMatches } from 'react-router-dom';
 import {
@@ -6,8 +6,8 @@ import {
   useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
-import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import { TDomainResource } from '@/domain/types/domainResource';
+import { useDataApi } from '@ovh-ux/muk';
 
 export default function Layout() {
   const location = useLocation();
@@ -15,13 +15,17 @@ export default function Layout() {
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
   useRouteSynchro();
-  const { data, isLoading, isFetched } = useResourcesIcebergV2<TDomainResource>(
-    {
-      route: '/domain/name',
-      queryKey: ['/domain/name'],
-      pageSize: 10,
-    },
-  );
+
+  const { flattenData, isLoading, isSuccess } = useDataApi<TDomainResource>({
+    version: 'v2',
+    route: '/domain/name',
+    cacheKey: ['/domain/name'],
+    disableCache: true,
+    defaultSorting: [{ id: 'id', desc: false }],
+    iceberg: false,
+    enabled: true,
+    pageSize: 1,
+  });
   useEffect(() => {
     const match = matches.slice(-1);
     defineCurrentPage(`app.web-domains-${match[0]?.id}`);
@@ -38,7 +42,7 @@ export default function Layout() {
   return (
     <>
       <Outlet />
-      {isFetched && !data && !isLoading && (
+      {isSuccess && (!flattenData || flattenData?.length === 0) && (
         <Navigate key={location.pathname} to="onboarding" replace={true} />
       )}
     </>

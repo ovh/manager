@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Cancelar la baja del servicio {{serviceName}}",
   "allDom_cancel_terminate_subtitle": "¿Quiere cancelar la baja del servicio {{serviceName}} ?",
   "allDom_cancel_terminate_success": "La cancelación de la baja del servicio {{serviceName}} se ha registrado correctamente",
-  "allDom_cancel_terminate_error": "No se ha podido cancelar la baja del servicio {{serviceName}}."
+  "allDom_cancel_terminate_error": "No se ha podido cancelar la baja del servicio {{serviceName}}.",
+  "allDom_detail_page_renew_information_advantage": "La renovación de la oferta AllDom prolonga su ventaja tarifaria.",
+  "allDom_detail_page_renew_information_renew": "Los nombres de dominio conservan cada uno su modo de renovación y su fecha de expiración."
 }

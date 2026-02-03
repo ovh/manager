@@ -10,7 +10,7 @@ import {
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
 import { OsdsDivider, OsdsText } from '@ovhcloud/ods-components/react';
-import { Card } from '@ovh-ux/manager-react-components';
+import { LinkCard } from '@ovh-ux/muk';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { Product } from '@/api';
@@ -22,6 +22,8 @@ import { getSearchUrlFromFilterParams } from '@/utils/utils';
 
 import Loading from '../components/Loading/Loading';
 
+import './index.scss';
+
 export default function Catalog() {
   const { t: tNavigation } = useTranslation(NAMESPACES.NAVIGATION);
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
@@ -29,7 +31,9 @@ export default function Catalog() {
   const [searchText, setSearchText] = React.useState('');
   const [categories, setCategories] = React.useState<string[]>([]);
   const [universes, setUniverses] = React.useState<string[]>([]);
-  const [isRouterInitialized, setIsRouterInitialized] = React.useState<boolean>(false);
+  const [isRouterInitialized, setIsRouterInitialized] = React.useState<boolean>(
+    false,
+  );
   const { results, products, isLoading, error } = useCatalog({
     categories,
     universes,
@@ -38,7 +42,11 @@ export default function Catalog() {
 
   useEffect(() => {
     if (products.length > 0) {
-      const customSearchParams = getSearchUrlFromFilterParams(searchText, categories, universes);
+      const customSearchParams = getSearchUrlFromFilterParams(
+        searchText,
+        categories,
+        universes,
+      );
       if (isRouterInitialized) {
         setSearchParams(customSearchParams);
       }
@@ -70,12 +78,13 @@ export default function Catalog() {
         setIsRouterInitialized={setIsRouterInitialized}
       />
       <OsdsDivider separator />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-5 pt-3">
         {isLoading && <Loading />}
         {!isLoading && results.length > 0 && (
           <>
             {results.map((item: Product) => (
-              <Card
+              <LinkCard
+                className={'card'}
                 key={`${item.productName
                   .replace(' ', '')
                   .trim()}-${item.universe.replace(' ', '').trim()}`}
@@ -85,6 +94,7 @@ export default function Catalog() {
                   description: item.description,
                 }}
                 href={item.order}
+                externalHref={true}
                 hoverable
                 trackingLabel={`manager_product_cards::more_info::${item.productName}`}
               />

@@ -7,5 +7,6 @@ export const getFeaturesMocks = (): Handler[] => [
     response: (_: unknown, params: PathParams) => [params.feature],
     api: 'aapi',
     method: 'get',
+    delay: 0,
   },
 ];

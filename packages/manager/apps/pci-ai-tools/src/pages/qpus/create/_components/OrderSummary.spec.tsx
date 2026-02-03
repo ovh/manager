@@ -22,6 +22,7 @@ const mockedOrder = {
   framework: mockedFramework,
   qpuFlavor: mockedCapabilitiesQpuFlavor,
   version: 'version',
+  timeoutAutoRestart: false,
   editor: mockedEditor,
   notebookName: 'myNotebook',
   unsecureHttp: false,

@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
-import { SECRET_MANAGER_SEARCH_PARAMS } from '@secret-manager/routes/routes.constants';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { filterOkmsListByRegion } from '@secret-manager/utils/okms';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+import { Message, Spinner } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -22,7 +23,8 @@ type OkmsManagementProps = {
 };
 
 export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManagementProps) => {
-  const { t } = useTranslation(['secret-manager', NAMESPACES.ERROR]);
+  const { t } = useTranslation(NAMESPACES.ERROR);
+  const [_, setSearchParams] = useSearchParams();
 
   // Poll for new OKMS and handle the pending order
   // Then select the new OKMS when it's available
@@ -32,49 +34,63 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
     },
   });
 
-  const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
-
   const { data: okmsList, error: okmsError, isPending: isOkmsListLoading } = useOkmsList();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // Filters the okms list to only include active okms
+  const okmsActiveList = okmsList?.filter((okms) => okms.iam.state === 'OK');
 
-  // INITIAL REGION AND OKMS SELECTION
-  // when the okms list is fetched and there's an okms id as a search param
-  // -> select the query okms Region
-  // -> set the region's okms List
-  // -> select the okms
+  // Unselects the selected okms id if it is not in the okms list
+  // This prevents invalid okmsId coming from the url to be selected
   useEffect(() => {
-    // okms from the secret list page
-    const okmsIdSearchParam = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId) ?? undefined;
-
-    if (!okmsList || selectedRegion) return;
-
-    const okmsFromSearchParam = okmsList.find((okms) => okms.id === okmsIdSearchParam);
-
-    if (!okmsFromSearchParam) {
-      setSearchParams({});
-      // Code smell, but hard to fix right now
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setSelectedRegion(undefined);
-      setSelectedOkmsId(undefined);
+    if (!selectedOkmsId) {
       return;
     }
+    const isSelectedOkmsInList = okmsActiveList?.some((okms) => okms.id === selectedOkmsId);
+    if (isSelectedOkmsInList === false) {
+      setSelectedOkmsId(undefined);
+      setSearchParams({});
+    }
+  }, [okmsActiveList, selectedOkmsId, setSearchParams, setSelectedOkmsId]);
 
-    setSelectedRegion(okmsFromSearchParam.region);
-    setSelectedOkmsId(okmsIdSearchParam);
-  }, [
-    okmsList,
-    searchParams,
-    selectedRegion,
-    setSearchParams,
-    setSelectedRegion,
-    setSelectedOkmsId,
-  ]);
+  if (okmsError) {
+    return (
+      <Message color="critical">
+        {t('error_message', {
+          message: okmsError.response?.data?.message,
+        })}
+      </Message>
+    );
+  }
+
+  if (isOkmsListLoading) {
+    return <Spinner data-testid="regionsSpinner" />;
+  }
+
+  return (
+    <OkmsManagementContent
+      selectedOkmsId={selectedOkmsId}
+      setSelectedOkmsId={setSelectedOkmsId}
+      okmsList={okmsActiveList ?? []}
+    />
+  );
+};
+
+type OkmsManagementContentProps = OkmsManagementProps & {
+  okmsList: OKMS[];
+};
+
+export const OkmsManagementContent = ({
+  selectedOkmsId,
+  setSelectedOkmsId,
+  okmsList,
+}: OkmsManagementContentProps) => {
+  const { t } = useTranslation('secret-manager');
+
+  const preSelectedOkms = okmsList.find((okms) => okms.id === selectedOkmsId);
+  const [selectedRegion, setSelectedRegion] = useState<string | undefined>(preSelectedOkms?.region);
 
   const handleRegionSelection = (region: string | undefined) => {
     setSelectedRegion(region);
-
-    if (!okmsList) return;
 
     const regionOkmsList = region ? filterOkmsListByRegion(okmsList, region) : [];
 
@@ -85,24 +101,10 @@ export const OkmsManagement = ({ selectedOkmsId, setSelectedOkmsId }: OkmsManage
     setSelectedOkmsId(regionOkmsList[0]?.id);
   };
 
-  if (okmsError) {
-    return (
-      <OdsMessage color="danger">
-        {t(`${NAMESPACES.ERROR}:error_message`, {
-          message: okmsError.response?.data?.message,
-        })}
-      </OdsMessage>
-    );
-  }
-
-  if (isOkmsListLoading) {
-    return <OdsSpinner data-testid="regionsSpinner" />;
-  }
-
   return (
     <div className="space-y-10">
       <div className="space-y-5">
-        <OdsText preset="heading-2">{t('create_secret_form_region_section_title')}</OdsText>
+        <Text preset="heading-2">{t('create_secret_form_region_section_title')}</Text>
         <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={handleRegionSelection} />
       </div>
       <OkmsSelector

@@ -53,7 +53,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Basic Drawer
@@ -64,7 +64,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render basic drawer with h
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Basic Drawer
@@ -115,6 +115,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
         hidden=
         id=dialog::r2::content
         role=dialog
+        style=opacity: 0;
         tabindex=-1
       >
         <div
@@ -143,7 +144,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Closed Drawer
@@ -154,7 +155,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render closed drawer 1`] =
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Closed Drawer
@@ -224,7 +225,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Complex Content Drawer
@@ -235,7 +236,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with complex
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Complex Content Drawer
@@ -335,7 +336,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Complete Drawer
@@ -346,7 +347,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with header,
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Drawer with all components
@@ -459,7 +460,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Drawer with Trigger
@@ -470,7 +471,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer with trigger
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Drawer with trigger button
@@ -547,7 +548,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   No Portal Drawer
@@ -558,7 +559,7 @@ exports[`Drawer Snapshot Tests > Drawer.Root > should render drawer without crea
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Rendered without portal
@@ -635,7 +636,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Collapsible Drawer
@@ -646,7 +647,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render basic co
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Collapsible Drawer
@@ -713,6 +714,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
         hidden=
         id=dialog::r8::content
         role=dialog
+        style=opacity: 0;
         tabindex=-1
       >
         <div
@@ -741,7 +743,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Closed Collapsible
@@ -752,7 +754,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render closed c
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Closed Collapsible Drawer
@@ -822,7 +824,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Full Collapsible Drawer
@@ -833,7 +835,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Complete Collapsible Drawer
@@ -946,7 +948,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
                 class=flex items-center w-full py-6 space-x-2
               >
                 <h2
-                  class=_text--heading-2
+                  class=_text _text--heading-2
                   data-ods=text
                 >
                   Complex Collapsible
@@ -957,7 +959,7 @@ exports[`Drawer Snapshot Tests > Drawer.RootCollapsible > should render collapsi
               class=px-6 flex-1 overflow-y-auto outline-none
             >
               <h3
-                class=_text--heading-3
+                class=_text _text--heading-3
                 data-ods=text
               >
                 Complex Collapsible Drawer

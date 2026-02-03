@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom-styles",
-  "version": "4.8.7",
+  "version": "4.8.8",
   "private": true,
   "description": "[DEPRECATED] - Collection of stylesheets for the Telecom control panel.",
   "repository": {
@@ -11,12 +11,17 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "@ovh-ux/ui-kit": "^6.10.5",
     "bootstrap": "~3.3.7",
     "ovh-ui-kit-bs": "^4.2.0"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   }
 }

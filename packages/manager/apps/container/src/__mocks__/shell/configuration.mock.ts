@@ -285,6 +285,18 @@ export const ConfigurationMock: Configuration = {
           'url': 'https://www.ovh.com/manager/pci-block-storage/',
           'universe': 'public-cloud'
       },
+      'pci-file-storage': {
+          'container': {
+              'enabled': true,
+              'hash': '/pci/projects/:projectId/storages/files',
+              'isDefault': false,
+              'path': 'public-cloud',
+              containerURL: '',
+          },
+          'publicURL': 'https://www.ovh.com/manager/#/public-cloud',
+          'url': 'https://www.ovh.com/manager/pci-file-storage/',
+          'universe': 'public-cloud'
+      },
       'pci-cold-archive': {
           'container': {
               'enabled': true,
@@ -850,6 +862,7 @@ export const ConfigurationMock: Configuration = {
       'pci-ai-tools': 'https://www.ovh.com/manager/pci-ai-tools/',
       'pci-billing': 'https://www.ovh.com/manager/pci-billing/',
       'pci-block-storage': 'https://www.ovh.com/manager/pci-block-storage/',
+      'pci-file-storage': 'https://www.ovh.com/manager/pci-file-storage/',
       'pci-cold-archive': 'https://www.ovh.com/manager/pci-cold-archive/',
       'pci-databases-analytics': 'https://www.ovh.com/manager/pci-databases-analytics/',
       'pci-dataplatform': 'https://www.ovh.com/manager/pci-dataplatform/',

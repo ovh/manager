@@ -10,13 +10,13 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 401 unauthorize
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
     Oups ! Une erreur interne est survenue
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
@@ -86,13 +86,13 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with 500 server erro
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
     Oups ! Une erreur interne est survenue
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
@@ -162,13 +162,13 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with all props 1`] =
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
     Oups ! Une erreur interne est survenue
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
@@ -239,13 +239,13 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with complex error m
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
     Oups ! Une erreur interne est survenue
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
@@ -315,14 +315,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom classNam
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Page introuvable.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Erreur 404. La page que vous recherchez semble introuvable.
@@ -360,14 +360,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with custom label tr
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Page introuvable.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Erreur 404. La page que vous recherchez semble introuvable.
@@ -405,14 +405,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with default 404 err
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Page introuvable.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Erreur 404. La page que vous recherchez semble introuvable.
@@ -450,13 +450,13 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without d
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
     Oups ! Une erreur interne est survenue
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Une erreur s'est produite, vous pouvez nous contacter avec le code d'erreur ci dessous.
@@ -519,14 +519,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with error without q
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Page introuvable.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Erreur 404. La page que vous recherchez semble introuvable.
@@ -564,14 +564,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with minimal error o
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Page introuvable.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
     Erreur 404. La page que vous recherchez semble introuvable.
@@ -609,14 +609,14 @@ exports[`ErrorBanner Snapshot Tests > should match snapshot with null error 1`] 
     src=/public/assets/error-banner-oops.png
   />
   <h1
-    class=_text--heading-1 pt-2
+    class=_text _text--heading-1 pt-2
     data-ods=text
   >
      
     Oups ! Une erreur est survenue.
   </h1>
   <h2
-    class=_text--heading-2 pt-1 pb-2
+    class=_text _text--heading-2 pt-1 pb-2
     data-ods=text
   >
      

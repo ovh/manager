@@ -2464,6 +2464,14 @@ const links = {
     'feature-request':
       'https://github.com/ovh/infrastructure-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
   },
+  dbaas_logs: {
+    changelog:
+      'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    roadmap:
+      'https://github.com/orgs/ovh/projects/16/views/1?sliceBy%5Bvalue%5D=Logs+Data+Platform',
+    'feature-request':
+      'https://github.com/ovh/management-security-operations-roadmap/issues/new/choose',
+  },
 };
 
 const changelogConfig = {
@@ -2526,6 +2534,10 @@ const changelogConfig = {
   cdn: {
     links: links.cdn,
     chapters: ['Network', 'network', 'cdn'],
+  },
+  dbaas_logs: {
+    links: links.dbaas_logs,
+    chapters: [''],
   },
 };
 constants.EU.CHANGELOG = changelogConfig;

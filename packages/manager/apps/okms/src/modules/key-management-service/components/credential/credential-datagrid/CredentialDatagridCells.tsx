@@ -7,38 +7,35 @@ import { OkmsCredential } from '@key-management-service/types/okmsCredential.typ
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
+import { Clipboard } from '@ovh-ux/muk';
 
-import {
-  ActionMenu,
-  ActionMenuItem,
-  Clipboard,
-  DataGridTextCell,
-  Links,
-} from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
+import { MukLink } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
-import { CredentialStatus } from '../credential-status/CredentialStatus.component';
+import { CredentialStatus } from '../credential-status-badge/CredentialStatusBadge.component';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   return (
     <div>
-      <Links
-        onClickReturn={() => {
+      <MukLink
+        onClick={() => {
           trackClick({
             location: PageLocation.datagrid,
             buttonType: ButtonType.link,
             actionType: 'action',
-            actions: ['details_access_certificate'],
+            actions: ['credential'],
           });
           navigate(`${credential.id}`);
         }}
-        label={credential.name}
-      />
+      >
+        {credential.name}
+      </MukLink>
     </div>
   );
 };
@@ -91,10 +88,10 @@ export const DatagridCredentialCellStatus = (credential: OkmsCredential) => {
 export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: OKMS) => {
   const { t } = useTranslation('key-management-service/credential');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   const { filename, href, isDisabled } = getDownloadCredentialParameters(credential);
 
-  const items: ActionMenuItem[] = [
+  const items: ActionMenuItemProps[] = [
     {
       id: 1,
       label: t('key_management_service_credential_download'),
@@ -106,7 +103,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'action',
-          actions: ['download_access_certificate'],
+          actions: ['download', 'credential'],
         }),
     },
     {
@@ -119,7 +116,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'action',
-          actions: ['delete_access_certificate'],
+          actions: ['delete', 'credential'],
         });
         navigate(`${KMS_ROUTES_URIS.credentialDelete}/${credential.id}`);
       },
@@ -130,7 +127,7 @@ export const DatagridCredentialCellActions = (credential: OkmsCredential, okms: 
     <ActionMenu
       id={`credentialsActions-${credential.id}`}
       items={items}
-      variant={ODS_BUTTON_VARIANT.ghost}
+      variant={BUTTON_VARIANT.ghost}
       isCompact
     />
   );

@@ -280,3 +280,33 @@ export const restoreS3Object = async ({
       days,
     },
   );
+
+export interface BulkDeleteS3ObjectsParams extends S3Data {
+  objects: Array<{ key: string; versionId?: string }>;
+}
+
+export const bulkDeleteS3Objects = async ({
+  projectId,
+  region,
+  name,
+  objects,
+}: BulkDeleteS3ObjectsParams) =>
+  apiClient.v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/bulkDeleteObjects`,
+    { objects },
+  );
+export interface CreateStorageJobParams {
+  projectId: string;
+  region: string;
+  name: string;
+}
+
+export const createStorageJob = async ({
+  projectId,
+  region,
+  name,
+}: CreateStorageJobParams) => {
+  return apiClient.v6.post(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/job/replication`,
+  );
+};

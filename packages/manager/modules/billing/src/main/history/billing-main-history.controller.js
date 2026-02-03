@@ -8,6 +8,7 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
     $q,
     $translate,
     $uibModal,
+    $window,
     Alerter,
     atInternet,
     ouiDatagridService,
@@ -15,8 +16,22 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
     super($q, ouiDatagridService);
     this.$translate = $translate;
     this.$uibModal = $uibModal;
+    this.$window = $window;
     this.Alerter = Alerter;
     this.atInternet = atInternet;
+  }
+
+  downloadInvoices(url, format) {
+    this.trackInvoiceOpening(format);
+    if (this.canDownloadInvoices) {
+      this.$window.open(url);
+    } else {
+      this.showEInvoicingWarningModal = true;
+    }
+  }
+
+  closeEInvoicingWarningModal() {
+    this.showEInvoicingWarningModal = false;
   }
 
   trackInvoiceOpening(format) {

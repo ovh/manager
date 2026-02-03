@@ -39,8 +39,7 @@ vi.mock('react-router-dom', () => ({
   ],
 }));
 
-vi.mock('@/context/user/useUser', () => {
-  return {
+vi.mock('@/context/user/useUser', () => ({
     useUserContext: () => ({
       country: 'FR',
       ovhSubsidiary,
@@ -48,8 +47,7 @@ vi.mock('@/context/user/useUser', () => {
       setLegalForm,
       language,
     }),
-  };
-});
+  }));
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module: any = await importOriginal();

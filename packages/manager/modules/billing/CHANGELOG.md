@@ -3,6 +3,96 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.3...@ovh-ux/manager-billing@0.63.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **billing:** si ([7ca6f91](https://github.com/ovh/manager/commit/7ca6f9145f26824cb0020b51d90b231854ac29bc)), closes [#MANAGER-20736](https://github.com/ovh/manager/issues/MANAGER-20736)
+
+
+### Features
+
+* **billing:** add tracking on actions ([6ac2024](https://github.com/ovh/manager/commit/6ac2024216b59ff67b624e7b1032f22a5c5387d1)), closes [#MANAGER-20471](https://github.com/ovh/manager/issues/MANAGER-20471)
+* **billing:** corrective invoices poland ([449466e](https://github.com/ovh/manager/commit/449466e64208d04e767ffd521138d4927b6ace17)), closes [#MANAGER-20736](https://github.com/ovh/manager/issues/MANAGER-20736)
+
+
+
+
+
+## [0.62.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.2...@ovh-ux/manager-billing@0.62.3) (2026-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4626] ([1b5dfd3](https://github.com/ovh/manager/commit/1b5dfd35a8e263cadc37107312a95e54304a3ad4))
+
+
+
+
+
+## [0.62.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.1...@ovh-ux/manager-billing@0.62.2) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+* **i18n:** add missing translations [CDS 4609] ([54b7e4a](https://github.com/ovh/manager/commit/54b7e4a775df6cdd4b2de0a6bf0528fec1f6e948))
+
+
+
+
+
+## [0.62.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.0...@ovh-ux/manager-billing@0.62.1) (2026-01-20)
+
+
+### Bug Fixes
+
+* **billing:** allow belbium customer to access their bills ([1271dda](https://github.com/ovh/manager/commit/1271ddaaa31536dd1618145d38d892f705190e71))
+
+
+
+
+
+# [0.62.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.61.0...@ovh-ux/manager-billing@0.62.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* **billing:** replace go back with go to autorenew ([808fe35](https://github.com/ovh/manager/commit/808fe3540b573499c01d06fc7319fc422d5196c5)), closes [#MANAGER-20665](https://github.com/ovh/manager/issues/MANAGER-20665)
+* **i18n:** add missing translations [CDS 4598] ([aac4367](https://github.com/ovh/manager/commit/aac4367eea0565956bd630b12a97c7377dfbe63b))
+* **i18n:** add missing translations [CDS 4599] ([2f7b5b8](https://github.com/ovh/manager/commit/2f7b5b891c5df9aa3e3de4922962ff0f35ff1706))
+
+
+### Features
+
+* **billing:** add redirection to bills page for a service ([af82232](https://github.com/ovh/manager/commit/af82232e1deb511709c52384dc6e2fd91424246b)), closes [#MANAGER-17709](https://github.com/ovh/manager/issues/MANAGER-17709)
+* **billing:** block invoices download for fr corporation without siret ([809b7de](https://github.com/ovh/manager/commit/809b7de6e2b2623b1d7b73145e7136ed4c56b920)), closes [#MANAGER-20838](https://github.com/ovh/manager/issues/MANAGER-20838)
+
+
+
+
+
+# [0.61.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.60.0...@ovh-ux/manager-billing@0.61.0) (2026-01-13)
+
+
+### Bug Fixes
+
+* **billing:** properly manage messages and button state on bulk autorenew ([b6f20b5](https://github.com/ovh/manager/commit/b6f20b50a80c6ec65eb7a1ce0b2e504d20ddea8a)), closes [#MANAGER-20667](https://github.com/ovh/manager/issues/MANAGER-20667)
+* **billing:** use user class to check postal invoices availability ([d47ca6b](https://github.com/ovh/manager/commit/d47ca6b2699a2205823d041abcf9afcd09874944)), closes [#MANAGER-20677](https://github.com/ovh/manager/issues/MANAGER-20677)
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+### Features
+
+* **billing:** add badge for indicating renewal mode ([#21219](https://github.com/ovh/manager/issues/21219)) ([85e303b](https://github.com/ovh/manager/commit/85e303b5afa0c8b202df2312cbbc7cdce4675af8)), closes [#MANAGER-20437](https://github.com/ovh/manager/issues/MANAGER-20437)
+* **billing:** add filter renew in services ([ffee5b1](https://github.com/ovh/manager/commit/ffee5b1f8b5b22b9cc974545a77222914131a0c0)), closes [#MANAGER-20467](https://github.com/ovh/manager/issues/MANAGER-20467)
+* **billing:** add link from orders to bills ([7289b70](https://github.com/ovh/manager/commit/7289b707a81650174fbe7883d27ef7fb00de56e4)), closes [#MANAGER-20386](https://github.com/ovh/manager/issues/MANAGER-20386)
+
+
+
+
+
 # [0.60.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.59.4...@ovh-ux/manager-billing@0.60.0) (2026-01-12)
 
 

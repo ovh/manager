@@ -38,9 +38,6 @@ export const useObjectLockOptionsForm = ({
     defaultValues,
   });
 
-  // Track if user has interacted with retention toggle
-  const hasUserToggledRetention = useRef(false);
-
   // watchers
   const retention = form.watch('retention');
   form.watch('rule.mode');

@@ -1,0 +1,16 @@
+{
+  "vaults": "Vault",
+  "services": "Servizi",
+  "billing": "Fatturazione",
+  "agents": "Agent",
+  "buckets": "Bucket",
+  "policy": "Policy",
+  "actions": "Azioni",
+  "without_engagement": "senza impegno",
+  "primary": "Primario",
+  "secondary": "Secondario",
+  "backup_agent_guide": "Guide di Backup Agent",
+  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto, il tuo prodotto è in fase di consegna e puoi seguire il suo progresso <OrderLink>qui</OrderLink>.",
+  "server": "Server",
+  "billings_tab_description": "Troverete qui la vostra fatturazione aggiornata del vostro Tenant. Questo vi sarà addebitato all'inizio del mese prossimo. Per saperne di più, consultate la <Link>documentazione di OVHcloud Backup Agent</Link>"
+}

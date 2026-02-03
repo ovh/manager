@@ -1,6 +1,9 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useTranslation } from 'react-i18next';
-import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Trans, useTranslation } from 'react-i18next';
+import {
+  Datagrid,
+  useAuthorizationIam,
+} from '@ovh-ux/manager-react-components';
 import {
   Button,
   BUTTON_SIZE,
@@ -9,21 +12,20 @@ import {
   MESSAGE_COLOR,
   MessageBody,
   MessageIcon,
+  Spinner,
 } from '@ovhcloud/ods-react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import {
+  useGetDnssecStatus,
   useGetDomainResource,
   useGetDomainZone,
+  useUpdateDnssecService,
 } from '@/domain/hooks/data/query';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 import { StatusEnum } from '@/domain/enum/Status.enum';
-import {
-  areDsRecordsEqual,
-  getSupportedAlgorithm,
-  isDsRecordActionDisabled,
-} from '@/domain/utils/utils';
+import { areDsRecordsEqual, getSupportedAlgorithm } from '@/domain/utils/utils';
 import { DrawerBehavior } from '@/common/types/common.types';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import DsRecordsDrawer from '@/domain/components/DsRecords/DsRecordsDrawer';
@@ -32,14 +34,44 @@ import { flagsValue } from '@/domain/constants/dsRecords';
 import DsRecordsDeleteModal from '@/domain/components/DsRecords/DsRecordsDeleteModal';
 import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
+import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
+import DnssecModal from '@/domain/components/ConfigurationCards/DnssecModal';
+import LinkToOngoingOperations from '@/domain/components/LinkToOngoingOperations/LinkToOngoingOperations';
+import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
+import Loading from '@/alldoms/components/loading/Loading';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export default function DsRecordsListing() {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
   const navigate = useNavigate();
   const { serviceName } = useParams();
-  const { domainResource } = useGetDomainResource(serviceName);
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
+  const { domainResource, isFetchingDomainResource } = useGetDomainResource(
+    serviceName,
+  );
+  const { data: dnsZoneIAMRessources } = useGetIAMResource(
+    domainResource.id,
+    'dnsZone',
+  );
+  const urn = dnsZoneIAMRessources?.[0]?.urn;
+  const { isPending, isAuthorized } = useAuthorizationIam(
+    ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
+    urn,
+  );
+
+  const isInternalDnsConfiguration =
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.EXTERNAL &&
+    domainResource?.currentState?.dnsConfiguration.configurationType !==
+      DnsConfigurationTypeEnum.MIXED;
+
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    isInternalDnsConfiguration,
+  );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isDnssecModalOpen, setIsDnssecModalOpen] = useState<boolean>(false);
   const [items, setItems] = useState<TDsDataInterface[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [drawer, setDrawer] = useState<DrawerBehavior>({
@@ -144,6 +176,82 @@ export default function DsRecordsListing() {
     activeConfiguration,
   });
 
+  const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
+    domainResource.currentState,
+    domainResource.targetSpec,
+  );
+
+  let message: JSX.Element = <></>;
+  const actionButton = (actionMessage: string) => (
+    <span
+      className="font-bold flex gap-x-2 items-center cursor-pointer"
+      onClick={() => setIsDnssecModalOpen(true)}
+    >
+      {t(actionMessage)}
+    </span>
+  );
+
+  if (isInternalDnsConfiguration) {
+    switch (dnssecStatus) {
+      case DnssecStatusEnum.DISABLED:
+        message = actionButton(
+          'domain_tab_general_information_dnssec_activation_modal',
+        );
+        break;
+      case DnssecStatusEnum.ENABLED:
+        message = actionButton(
+          'domain_tab_general_information_dnssec_deactivate_modal',
+        );
+        break;
+      case DnssecStatusEnum.NOT_SUPPORTED:
+        message = <span>{t('domain_tab_name_not_supported')}</span>;
+        break;
+      default:
+        // enable/disable in progress
+        message = (
+          <Trans
+            i18nKey="domain_tab_dsrecords_message_information_action_in_progress"
+            t={t}
+            values={{
+              action:
+                dnssecStatus === DnssecStatusEnum.ENABLE_IN_PROGRESS
+                  ? t(
+                      'domain_tab_dsrecords_message_information_action_in_progress_activate',
+                    )
+                  : t(
+                      'domain_tab_dsrecords_message_information_action_in_progress_deactivate',
+                    ),
+            }}
+            components={{
+              Link: <LinkToOngoingOperations target="dns" />,
+            }}
+          />
+        );
+    }
+  }
+
+  const { updateServiceDnssec } = useUpdateDnssecService(
+    serviceName,
+    dnssecStatus === DnssecStatusEnum.DISABLED,
+  );
+
+  const updateDnssec = () => {
+    updateServiceDnssec();
+    setIsDnssecModalOpen(false);
+  };
+
+  if (!isPending && !isAuthorized) {
+    return <UnauthorizedBanner />;
+  }
+
+  if (
+    isDnssecStatusLoading ||
+    isFetchingDomainResource ||
+    isFetchingDomainZone
+  ) {
+    return <Loading />;
+  }
+
   return (
     <div data-testid="datagrid">
       <Datagrid
@@ -153,17 +261,31 @@ export default function DsRecordsListing() {
         isLoading={isLoading || isFetchingDomainZone}
         topbar={
           <div className="flex flex-col gap-y-6 items-start">
-            {isDsRecordActionDisabled(activeConfiguration) ? (
-              <Message
-                color={MESSAGE_COLOR.information}
-                dismissible={false}
-                className="w-full"
-              >
-                <MessageIcon name={ICON_NAME.circleInfo} />
-                <MessageBody>
-                  {t('domain_tab_dsrecords_actions_disabled')}
-                </MessageBody>
-              </Message>
+            {isInternalDnsConfiguration ? (
+              // If the DNS configuration is internal, the customer should not be able to modify their DNSSEC configuration manually
+              <>
+                <Message
+                  color={MESSAGE_COLOR.information}
+                  dismissible={false}
+                  className="w-full"
+                  data-testid="internalConfigMessage"
+                >
+                  <MessageIcon name={ICON_NAME.circleInfo} />
+                  <MessageBody className="flex flex-col items-start">
+                    {t('domain_tab_dsrecords_message_information_content')}
+                    <br />
+                    {isDnssecStatusLoading ? <Spinner /> : message}
+                  </MessageBody>
+                </Message>
+                <DnssecModal
+                  isEnableDnssecAction={
+                    dnssecStatus === DnssecStatusEnum.DISABLED
+                  }
+                  open={isDnssecModalOpen}
+                  onClose={() => setIsDnssecModalOpen(false)}
+                  updateDnssec={updateDnssec}
+                />
+              </>
             ) : (
               <Button
                 size={BUTTON_SIZE.sm}

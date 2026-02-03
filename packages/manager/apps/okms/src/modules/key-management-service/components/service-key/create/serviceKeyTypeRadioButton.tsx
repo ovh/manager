@@ -4,8 +4,9 @@ import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/ser
 import { OkmsKeyTypes } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET, OdsRadio as OdsRadioType } from '@ovhcloud/ods-components';
-import { OdsRadio, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsRadio as OdsRadioType } from '@ovhcloud/ods-components';
+import { OdsRadio } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
 type TServiceKeyTypeRadioButton = {
   name: string;
@@ -22,14 +23,14 @@ export const ServiceKeyTypeRadioButton = ({ type, ...props }: TServiceKeyTypeRad
     <div className="flex items-center gap-3">
       <OdsRadio inputId={buttonId} {...props} />
       <label htmlFor={buttonId}>
-        <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="block" preset="paragraph">
           {translatedType}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        </Text>
+        <Text preset="caption">
           {t(
             `key_management_service_service-keys_create_crypto_field_type_description_${type.toLowerCase()}`,
           )}
-        </OdsText>
+        </Text>
       </label>
     </div>
   );

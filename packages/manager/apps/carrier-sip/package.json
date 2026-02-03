@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-carrier-sip-app",
-  "version": "4.0.53",
+  "version": "4.0.57",
   "private": true,
   "description": "Carrier SIP Trunk standalone application.",
   "repository": {
@@ -13,22 +13,24 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --env production",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-carrier-sip": "^2.3.1",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core": "^13.3.9",
-    "@ovh-ux/manager-telecom-styles": "^4.8.7",
+    "@ovh-ux/manager-carrier-sip": "^2.3.2",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core": "^13.4.3",
+    "@ovh-ux/manager-telecom-styles": "^4.8.8",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
-    "@ovh-ux/ng-ovh-checkbox-table": "^2.1.6",
-    "@ovh-ux/ng-ovh-http": "^5.1.6",
-    "@ovh-ux/ng-ovh-mondial-relay": "^8.8.8",
-    "@ovh-ux/ng-ovh-request-tagger": "^2.0.16",
-    "@ovh-ux/ng-ovh-sso-auth": "^4.10.0",
-    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.6",
-    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.29.3",
-    "@ovh-ux/ng-translate-async-loader": "^2.2.6",
+    "@ovh-ux/ng-ovh-checkbox-table": "^2.1.7",
+    "@ovh-ux/ng-ovh-http": "^5.1.7",
+    "@ovh-ux/ng-ovh-mondial-relay": "^8.8.9",
+    "@ovh-ux/ng-ovh-request-tagger": "^2.0.17",
+    "@ovh-ux/ng-ovh-sso-auth": "^4.10.1",
+    "@ovh-ux/ng-ovh-swimming-poll": "^5.1.7",
+    "@ovh-ux/ng-ovh-telecom-universe-components": "^7.29.4",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.7",
     "@ovh-ux/request-tagger": "^0.6.0",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
@@ -72,6 +74,7 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
     "glob": "^7.1.6",
     "webpack-merge": "^4.2.2"

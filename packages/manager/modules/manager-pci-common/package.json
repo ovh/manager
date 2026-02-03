@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-common",
-  "version": "2.7.32",
+  "version": "2.8.0",
   "private": false,
   "description": "Public Cloud Common components",
   "homepage": "https://github.com/ovh/manager/blob/master/packages/manager/modules/manager-pci-common/README.md",
@@ -24,8 +24,8 @@
     "build": "tsc --noEmit && vite build",
     "clean": "rimraf node_modules && rimraf dist && yarn cache clean",
     "dev": "tsc --noEmit && vite build",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "tsc --noEmit && vite build",
     "prettier": "prettier --write \"src/**/*.{ts,tsx,js,mdx}\"",
     "test": "vitest run",
@@ -41,9 +41,10 @@
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-components": "^2.43.1",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",

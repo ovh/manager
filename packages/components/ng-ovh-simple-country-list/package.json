@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/ng-ovh-simple-country-list",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "OVH simple country list provide a 'full' (ISO-3166-1) list of countries with translation possibility.",
   "keywords": [
     "angularjs",
@@ -30,6 +30,8 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "rollup -c --environment BUILD:production"
   },
   "resolutions": {
@@ -39,7 +41,8 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@ovh-ux/component-rollup-config": "^13.2.0"
+    "@ovh-ux/component-rollup-config": "^13.2.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "angular": "1.6.10"

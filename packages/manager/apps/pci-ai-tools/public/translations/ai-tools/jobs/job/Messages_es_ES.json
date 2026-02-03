@@ -21,5 +21,8 @@
   "cliTitle": "Comando CLI equivalente",
   "cliToastMessage": "Pedido copiado",
   "restartJobButtonConfirm": "Reanudar",
-  "restartJobToastSuccessDescription": "El job {{name}} se ha iniciado"
+  "restartJobToastSuccessDescription": "El job {{name}} se ha iniciado",
+  "cloneJobTitle": "Clonar un nuevo job",
+  "shutdownLabel": "Detención el ",
+  "restartLabel": "Reinicio el "
 }

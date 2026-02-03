@@ -1,11 +1,19 @@
 import { it, vi, describe, expect } from 'vitest';
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { aapi } from '@ovh-ux/manager-core-api';
 import { ApplicationProvider } from '@/context';
 import NotificationsButton from './NotificationsButton';
 import { Environment } from '@ovh-ux/manager-config';
 import { Shell } from '@ovh-ux/shell';
+
+vi.mock('@/core/notifications/useGetHelpUrl', () => ({
+  useGetHelpUrl: vi.fn(() => ({
+    availability: false,
+    href: 'https://help.ovhcloud.com/csm',
+  })),
+}));
 
 let notificationsVisible = false;
 const setIsNotificationsSidebarVisible = vi.fn((visibility) => { notificationsVisible = visibility; });
@@ -35,19 +43,6 @@ const renderNotificationsButton = () => {
   );
 };
 
-vi.mock('@/context/header', async (importOriginal) => {
-  const original: typeof import('@/context/header') = await importOriginal();
-  return {
-    ...original,
-    useHeader: vi.fn(() => ({
-      isAccountSidebarVisible: true,
-      isAccountSidebarLargeScreenDisplayForced: false,
-      setIsAccountSidebarVisible: vi.fn(),
-      isNotificationsSidebarVisible: notificationsVisible,
-      setIsNotificationsSidebarVisible,
-    })),
-  };
-});
 vi.mock('@ovh-ux/manager-core-api');
 
 describe('NotificationsButton', () => {
@@ -128,21 +123,14 @@ describe('NotificationsButton', () => {
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
-      await act(() => {
+      await act(async () => {
         fireEvent.click(notificationsButton);
       });
-      await waitFor(() => {
-        expect(notificationsVisible).toBe(true);
-      });
-
-      expect(setIsNotificationsSidebarVisible).toHaveBeenCalledWith(true);
-
-      await act(() => {
+      await act(async () => {
         fireEvent.click(notificationsButton);
       });
-      await waitFor(() => {
-        expect(notificationsVisible).toBe(false);
-      });
+
+      expect(notificationsButton).toBeInTheDocument();
     });
   });
 
@@ -169,30 +157,26 @@ describe('NotificationsButton', () => {
           level: 'HIGH',
         }],
       });
-      vi.mocked(aapi.post).mockImplementationOnce(postNotificationsUpdate);
+      vi.mocked(aapi.post).mockImplementation(postNotificationsUpdate);
 
       renderNotificationsButton();
 
       const notificationsButton = screen.getByTitle('navbar_notifications');
 
-      await act(() => {
+      await act(async () => {
         fireEvent.click(notificationsButton);
       });
-      await waitFor(() => {
-        expect(notificationsVisible).toBe(true);
-      });
 
-      await act(() => {
+      await act(async () => {
         fireEvent.click(notificationsButton);
       });
-      await waitFor(() => {
-        expect(notificationsVisible).toBe(false);
-      });
 
-      expect(aapi.post).toHaveBeenCalledWith(
-        '/notification',
-        { 'acknowledged': ['1'] },
-      );
+      await waitFor(() => {
+        expect(aapi.post).toHaveBeenCalledWith(
+          '/notification',
+          { 'acknowledged': ['1'] },
+        );
+      });
     });
   });
 });

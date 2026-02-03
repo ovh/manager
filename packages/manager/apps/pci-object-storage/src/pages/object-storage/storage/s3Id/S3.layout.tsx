@@ -41,7 +41,6 @@ export function breadcrumb() {
 }
 
 const HIDE_HEADER_ROUTE_PATTERNS = ['s3.object.'];
-const HIDE_TABS_ROUTE_PATTERNS = ['s3.object.'];
 
 const shouldHideS3Header = (
   matches: ReturnType<typeof useMatches>,

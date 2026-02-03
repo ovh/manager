@@ -1,11 +1,12 @@
 {
   "title": "Kontoeinstellungen auswählen",
-  "description": "Sie haben bereits einen Account? <Link label=\"Connectez-vous\"></Link>",
+  "description": "Sie haben bereits einen Account?",
   "country_setting": "Land des steuerlichen Wohnsitzes",
   "currency_setting": "Währung",
   "site_setting": "Website (Sprache)",
   "setting_description": "Je nach Wohnsitzland können Sie die Website zum Bestellen und Wählen Ihrer Produkte auswählen. Die Abrechnungswährung ist ebenfalls mit der gewählten Website verknüpft.",
   "setting_description_list_first": "1. Wenn Sie für die MwSt., GST oder ähnliche Steuern registriert sind, entspricht Ihr Wohnsitzland dem Land, in dem Sie registriert sind.",
   "setting_description_list_second": "2. Wenn Sie nicht nicht für die MwSt., GST oder ähnliche Steuern registriert sind, Sie aber dennoch als „Unternehmer“ registriert sind, entspricht Ihr Wohnsitzland dem Land, in dem Sie als Unternehmer registriert sind (Steuernummer).",
-  "setting_description_list_last": "3. Wenn Sie nicht für die Mehrwertsteuer, GST oder ähnliche Steuern registriert sind, entspricht Ihr Wohnsitzland in der Regel dem Land Ihrer Rechnungsadresse. Gemäß den geltenden Gesetzen muss OVHcloud diese Informationen gegebenenfalls mit Ihrer IP-Adresse oder dem Banksitz Ihres Zahlungsmittels abgleichen. Im Falle einer Abweichung kann OVHcloud Sie kontaktieren, um Ihr Wohnsitzland zu bestätigen."
+  "setting_description_list_last": "3. Wenn Sie nicht für die Mehrwertsteuer, GST oder ähnliche Steuern registriert sind, entspricht Ihr Wohnsitzland in der Regel dem Land Ihrer Rechnungsadresse. Gemäß den geltenden Gesetzen muss OVHcloud diese Informationen gegebenenfalls mit Ihrer IP-Adresse oder dem Banksitz Ihres Zahlungsmittels abgleichen. Im Falle einer Abweichung kann OVHcloud Sie kontaktieren, um Ihr Wohnsitzland zu bestätigen.",
+  "connect": "Loggen Sie sich ein"
 }

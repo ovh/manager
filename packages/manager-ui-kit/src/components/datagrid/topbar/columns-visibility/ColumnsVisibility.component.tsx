@@ -21,7 +21,7 @@ import { Button } from '../../../button/Button.component';
 import { Text } from '../../../text/Text.component';
 import { ColumnsVisibilityProps } from './ColumnsVisiblity.props';
 
-export const INTERNAL_COLUMNS = ['expander', 'actions'];
+export const INTERNAL_COLUMNS = ['expander', 'actions', 'row-selection'];
 
 const ColumnsVisibilityComponent = <T,>({
   getIsAllColumnsVisible,

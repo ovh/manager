@@ -5,7 +5,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest';
 
 import HubSupport from '@/components/hub-support/HubSupport.component';
-import { Ticket } from '@/types/support.type';
+import { SupportDataResponse, Ticket } from '@/types/support.type';
 
 const { refetch } = vi.hoisted(() => {
   return { refetch: vi.fn() };
@@ -16,9 +16,7 @@ vi.mock('../skeletons/Skeletons.component', () => ({
 }));
 
 vi.mock('./hub-support-table/HubSupportTable.component', () => ({
-  HubSupportTable: ({ tickets }: { tickets: Ticket[] }) => (
-    <div data-testid="hub-support-table"></div>
-  ),
+  HubSupportTable: ({}: { tickets: Ticket[] }) => <div data-testid="hub-support-table"></div>,
 }));
 
 vi.mock('../tile-error/TileError.component', () => ({
@@ -29,10 +27,11 @@ vi.mock('./hub-support-help/HubSupportHelp.component', () => ({
   HubSupportHelp: () => <div data-testid="hub-support-help"></div>,
 }));
 
-const useFetchMockValue: any = {
-  data: { count: 3, data: [] },
+const useFetchMockValue = {
+  data: { count: 3, data: [] } as SupportDataResponse,
   isFetched: true,
   isLoading: false,
+  error: false,
   refetch,
 };
 
@@ -66,7 +65,7 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
 }));
 
 describe('HubSupport Component', () => {
-  it('renders correctly with data for EU', async () => {
+  it('renders correctly with data for EU', () => {
     mocks.environment.getRegion.mockReturnValue('EU');
 
     render(<HubSupport />);
@@ -147,6 +146,6 @@ describe('HubSupport Component', () => {
     const { container } = render(<HubSupport />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

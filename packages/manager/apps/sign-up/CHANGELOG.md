@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.6.14](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.13...@ovh-ux/sign-up-app@4.6.14) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.6.13](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.12...@ovh-ux/sign-up-app@4.6.13) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.6.12](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.11...@ovh-ux/sign-up-app@4.6.12) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.6.11](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.10...@ovh-ux/sign-up-app@4.6.11) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
+## [4.6.10](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.9...@ovh-ux/sign-up-app@4.6.10) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/sign-up-app
+
+
+
+
+
 ## [4.6.9](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.8...@ovh-ux/sign-up-app@4.6.9) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app

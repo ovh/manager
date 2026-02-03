@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import GeneralInformationsCards from '@/domain/components/InformationsCards/GeneralInformations';
@@ -13,7 +13,7 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 describe('General Informations Tile component', () => {
   it('renders tile with domain states when domain is OK and NOT_SUSPENDED', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoOK,
     });
 

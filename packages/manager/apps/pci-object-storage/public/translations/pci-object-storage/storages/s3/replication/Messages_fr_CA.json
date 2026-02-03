@@ -76,5 +76,8 @@
   "destinationFieldLabel": "Conteneur de destination",
   "replicationButtonCancel": "Annuler",
   "warning1AZTo3AZ": "La classe de stockage High Performance n’est pas disponible avec le mode de déploiement 3-AZ. Vos objets source stockés en High performance seront ainsi répliqués par défaut vers la classe de stockage standard qui est la classe de stockage la plus proche termes d'usage.",
-  "warning3AZTo1AZ": "La classe de stockage Cold Archive n'est disponible que sur le mode de déploiement 3-AZ et sur la region Paris. Vos objets source stockés en Cold Archive seront ainsi répliqués par défaut vers Infrequent Access qui est la classe de stockage la plus proche termes d'usage."
+  "warning3AZTo1AZ": "La classe de stockage Cold Archive n'est disponible que sur le mode de déploiement 3-AZ et sur la region Paris. Vos objets source stockés en Cold Archive seront ainsi répliqués par défaut vers Infrequent Access qui est la classe de stockage la plus proche termes d'usage.",
+  "inconsistentReplicationRulesAlert": "Certaines règles de réplication ont une destination qui a été supprimée. Veuillez supprimer ces règles avant de créer de nouvelles réplications.",
+  "deletedDestinationTooltip": "Le conteneur de destination a été supprimé",
+  "createSyncRule": "Créer une règle de synchronisation"
 }

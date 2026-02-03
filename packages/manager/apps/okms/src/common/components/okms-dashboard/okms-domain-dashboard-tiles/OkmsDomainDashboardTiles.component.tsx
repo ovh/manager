@@ -1,8 +1,13 @@
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+
+import { SECRET_MANAGER_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
+
+import { PageSpinner } from '../../page-spinner/PageSpinner.component';
 import { BillingTile } from '../billing-tile/BillingTile.component';
 import { GeneralInformationsTile } from '../general-informations-tile/GeneralInformationsTile.component';
 import { KmipObjectsTile } from '../kmip-objects-tile/KmipObjectsTile.component';
@@ -19,6 +24,11 @@ type OkmsDomainDashboardTilesProps = {
 
 export const OkmsDomainDashboardTiles = ({ okms }: OkmsDomainDashboardTilesProps) => {
   const { t } = useTranslation('key-management-service/dashboard');
+  const { data: features, isPending } = useFeatureAvailability([SECRET_MANAGER_FEATURES.PRODUCT]);
+
+  if (isPending) {
+    return <PageSpinner />;
+  }
 
   return (
     <div
@@ -29,13 +39,13 @@ export const OkmsDomainDashboardTiles = ({ okms }: OkmsDomainDashboardTilesProps
         <GeneralInformationsTile okms={okms} />
         <KmipTile okms={okms} />
         <RestApiTile okms={okms} />
-        <SecretConfigTile okms={okms} />
+        {features?.[SECRET_MANAGER_FEATURES.PRODUCT] && <SecretConfigTile okms={okms} />}
       </section>
       <section className="flex flex-col gap-4">
-        <OdsText preset="heading-3">{t('okms_services')}</OdsText>
+        <Text preset="heading-3">{t('okms_services')}</Text>
         <div className="grid grid-cols-1 items-start gap-4 md:grid-cols-2 xxl:grid-cols-4">
           <BillingTile okms={okms} />
-          <SecretsTile okms={okms} />
+          {features?.[SECRET_MANAGER_FEATURES.PRODUCT] && <SecretsTile okms={okms} />}
           <ServiceKeysTile okms={okms} />
           <KmipObjectsTile okms={okms} />
         </div>

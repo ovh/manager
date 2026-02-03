@@ -5,15 +5,20 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_COLOR,
-  ODS_MESSAGE_COLOR,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsIcon, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import {
   Loading,
@@ -50,9 +55,7 @@ const TabTitle = ({ title, hasError }: { title: string; hasError?: boolean }) =>
   return (
     <>
       {title}
-      {hasError && (
-        <OdsIcon className="diag-dns-icon ml-4" name={ODS_ICON_NAME.hexagonExclamation} />
-      )}
+      {hasError && <Icon className="diag-dns-icon ml-4" name={ICON_NAME.hexagonExclamation} />}
     </>
   );
 };
@@ -184,12 +187,10 @@ export const DomainDiagnostics = () => {
 
   return (
     <div className="flex w-full flex-col gap-4" data-testid="domain-diagnostic-page">
-      <Links
-        iconAlignment={IconLinkAlignmentType.left}
+      <Link
         type={LinkType.back}
         href={goBackUrl}
-        color={ODS_LINK_COLOR.primary}
-        onClickReturn={() => {
+        onClick={() => {
           trackClick({
             location: PageLocation.page,
             buttonType: ButtonType.button,
@@ -197,31 +198,34 @@ export const DomainDiagnostics = () => {
             actions: [DOMAIN_DIAGNOSTICS, BACK_PREVIOUS_PAGE],
           });
         }}
-        label={t('zimbra_domain_diagnostic_cta_back')}
-      />
-      <OdsText preset="heading-3">
+      >
+        {t('zimbra_domain_diagnostic_cta_back')}
+      </Link>
+      <Text preset={TEXT_PRESET.heading3}>
         {t('zimbra_domain_diagnostic_subtitle', {
           domain: domain?.domainName,
         })}
-      </OdsText>
+      </Text>
       <div className="mt-6">
-        <OdsButton
+        <Button
           data-testid="refresh"
-          label={t('zimbra_domain_diagnostic_cta_refresh')}
-          icon={ODS_ICON_NAME.refresh}
-          variant={ODS_BUTTON_VARIANT.outline}
-          isLoading={isFetching}
+          variant={BUTTON_VARIANT.outline}
+          loading={isFetching}
           onClick={handleRefreshClick}
-        ></OdsButton>
+        >
+          <Icon name={ICON_NAME.refresh} />
+          {t('zimbra_domain_diagnostic_cta_refresh')}
+        </Button>
       </div>
       <div className="mb-8 mt-5">
         <TabsPanel tabs={tabsList} />
       </div>
       {isFetching && !isError && <Loading />}
       {!isFetching && isError && (
-        <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
-          {t('zimbra_domain_diagnostics_loading_error')}
-        </OdsMessage>
+        <Message className="md:w-1/2" dismissible={false} color={MESSAGE_COLOR.critical}>
+          <MessageIcon name={ICON_NAME.hexagonExclamation} />
+          <MessageBody>{t('zimbra_domain_diagnostics_loading_error')}</MessageBody>
+        </Message>
       )}
       {!isFetching && !isError && domain && currentTab}
     </div>

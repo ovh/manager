@@ -14,8 +14,8 @@ vi.mock('@/common/utils/guides/useGuideLink', () => ({
   useGuideLink: vi.fn(() => MOCKED_LINK),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useOvhTracking: () => ({ trackClick: vi.fn() }),
+vi.mock('@/common/hooks/useOkmsTracking', () => ({
+  useOkmsTracking: () => ({ trackClick: vi.fn() }),
 }));
 
 describe('useGuideItemKmip test suite', () => {
@@ -30,7 +30,7 @@ describe('useGuideItemKmip test suite', () => {
       expect.objectContaining({
         id: MOCKED_ID,
         href: MOCKED_LINK,
-        label: labels.guide.guides_header_connect_kmip_product,
+        children: labels.guide.guides_header_connect_kmip_product,
         target: '_blank',
       }),
     );

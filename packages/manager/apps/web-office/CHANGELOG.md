@@ -3,6 +3,101 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.8...@ovh-ux/manager-web-office-app@0.7.9) (2026-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4626] ([1b5dfd3](https://github.com/ovh/manager/commit/1b5dfd35a8e263cadc37107312a95e54304a3ad4))
+
+
+
+
+
+## [0.7.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.7...@ovh-ux/manager-web-office-app@0.7.8) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+## [0.7.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.6...@ovh-ux/manager-web-office-app@0.7.7) (2026-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.7.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.5...@ovh-ux/manager-web-office-app@0.7.6) (2026-01-21)
+
+
+### Bug Fixes
+
+* **web-office:** add feature availability for order ([0a6f7ff](https://github.com/ovh/manager/commit/0a6f7ff76a7799389ec3ca4ce26e656fbe9e53eb)), closes [#PRDCOL-314](https://github.com/ovh/manager/issues/PRDCOL-314)
+* **web-office:** fix french typo error ([767fc18](https://github.com/ovh/manager/commit/767fc18bf3c16563c695f96ded0111395c852961)), closes [#PRDCOL-364](https://github.com/ovh/manager/issues/PRDCOL-364)
+* **web-office:** update tailwind config MUK for web-office ([9dfd9bc](https://github.com/ovh/manager/commit/9dfd9bc6bee6227f2d97f346747798115c47e065)), closes [#PRDCOL-365](https://github.com/ovh/manager/issues/PRDCOL-365)
+
+
+
+
+
+## [0.7.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.4...@ovh-ux/manager-web-office-app@0.7.5) (2026-01-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4600] ([8197e3c](https://github.com/ovh/manager/commit/8197e3c83e558eb4ffc8537376a1e68e4527d91a))
+* **i18n:** add missing translations [CDS 4603] ([7cf2ef9](https://github.com/ovh/manager/commit/7cf2ef91526851c766dbd7d0d1c9163d9bd2f0a5))
+
+
+
+
+
+## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.3...@ovh-ux/manager-web-office-app@0.7.4) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4592] ([38d2827](https://github.com/ovh/manager/commit/38d2827e468711e67eab72c1e09a4a2dd6db1f4c))
+* **i18n:** add missing translations [CDS 4595] ([3dafa65](https://github.com/ovh/manager/commit/3dafa65b3d5ed08b90a9f6e603acfb6ada7bdae3))
+
+
+
+
+
+## [0.7.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.2...@ovh-ux/manager-web-office-app@0.7.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
+## [0.7.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.1...@ovh-ux/manager-web-office-app@0.7.2) (2026-01-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4590] ([12b5fa6](https://github.com/ovh/manager/commit/12b5fa6b301d2b53f177c3095cf4ebfb72a4e9d2))
+
+
+
+
+
+## [0.7.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.0...@ovh-ux/manager-web-office-app@0.7.1) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-office-app
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.6.8...@ovh-ux/manager-web-office-app@0.7.0) (2026-01-05)
 
 

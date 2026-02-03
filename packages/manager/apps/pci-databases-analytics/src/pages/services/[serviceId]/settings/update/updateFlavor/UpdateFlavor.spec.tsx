@@ -95,26 +95,13 @@ describe('Update Flavor modal', () => {
               pricings: [{ price: 1000, tax: 200 }],
             },
             {
-              planCode: 'databases.mysql-business-db1-4.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
-            },
-            {
               planCode: 'databases.mysql-business-db1-7.hour.consumption',
               pricings: [{ price: 1000, tax: 200 }],
-            },
-            {
-              planCode: 'databases.mysql-business-db1-7.month.consumption',
-              pricings: [{ price: 20000, tax: 4000 }],
             },
             {
               planCode:
                 'databases.mysql-business-additionnal-storage-gb.hour.consumption',
               pricings: [{ price: 100, tax: 200 }],
-            },
-            {
-              planCode:
-                'databases.mysql-business-additionnal-storage-gb.month.consumption',
-              pricings: [{ price: 200, tax: 400 }],
             },
           ],
         },

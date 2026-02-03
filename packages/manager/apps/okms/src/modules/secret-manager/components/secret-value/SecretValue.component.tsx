@@ -5,7 +5,7 @@ import { SecretData, SecretVersion } from '@secret-manager/types/secret.type';
 import { isKeyValueObject } from '@secret-manager/utils/key-value/keyValue';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Message, Spinner } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -25,20 +25,20 @@ export const SecretValue = ({ okmsId, secretPath, version }: SecretValueProps) =
     data: secretVersion,
     isPending,
     error,
-  } = useSecretVersionWithData(okmsId, secretPath, version.id);
+  } = useSecretVersionWithData({ okmsId, secretPath, version: version.id });
 
   if (isPending)
     return (
       <div className="flex h-48 items-center justify-center">
-        <OdsSpinner />
+        <Spinner data-testid="spinner" />
       </div>
     );
 
   if (error)
     return (
-      <OdsMessage className="mt-4" color="critical">
-        {t('error_message', { message: error.message, ns: NAMESPACES.ERROR })}
-      </OdsMessage>
+      <Message className="mt-4" color="critical">
+        {t('error_message', { message: error.response.data.message, ns: NAMESPACES.ERROR })}
+      </Message>
     );
 
   return <SecretValueContent data={secretVersion.data} />;

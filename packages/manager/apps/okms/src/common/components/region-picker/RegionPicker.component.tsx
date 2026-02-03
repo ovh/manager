@@ -3,12 +3,15 @@ import { useMemo, useState } from 'react';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
+import { RegionCertificationBadges } from '@/common/components/region-certification-badge/RegionCertificationBadges.component';
 import { RegionTypeBadge } from '@/common/components/region-type-badge/RegionTypeBadge.component';
 import { useLocations } from '@/common/data/hooks/useLocation';
 import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
+import { useReferenceRegions } from '@/common/data/hooks/useReferenceRegions';
 import { Location } from '@/common/types/location.type';
+import { ReferenceRegion } from '@/common/types/referenceRegions.type';
 import { ContinentCode } from '@/common/utils/location/continents';
 import { groupLocationsByContinent } from '@/common/utils/location/continents';
 
@@ -30,18 +33,24 @@ export const RegionPicker = ({ selectedRegion, setSelectedRegion }: RegionPicker
     error: errorCatalogOkms,
   } = useOrderCatalogOkms();
 
-  const error = errorCatalogOkms || errorLocations;
+  const {
+    data: referenceRegions,
+    isPending: isPendingReferenceRegions,
+    error: errorReferenceRegions,
+  } = useReferenceRegions();
+
+  const error = errorCatalogOkms || errorLocations || errorReferenceRegions;
   useNotificationAddErrorOnce(error);
 
   if (error) {
     return null;
   }
 
-  const isPending = isPendingLocations || isPendingCatalogOkms;
+  const isPending = isPendingLocations || isPendingCatalogOkms || isPendingReferenceRegions;
   if (isPending) {
     return (
       <div>
-        <OdsSpinner size="md" data-testid={REGION_PICKER_TEST_IDS.SPINNER} />
+        <Spinner data-testid={REGION_PICKER_TEST_IDS.SPINNER} />
       </div>
     );
   }
@@ -57,18 +66,21 @@ export const RegionPicker = ({ selectedRegion, setSelectedRegion }: RegionPicker
       selectedRegion={selectedRegion}
       setSelectedRegion={setSelectedRegion}
       locations={filteredLocations}
+      referenceRegions={referenceRegions}
     />
   );
 };
 
 type RegionPickerContentProps = RegionPickerProps & {
   locations: Location[];
+  referenceRegions: ReferenceRegion[];
 };
 
 const RegionPickerContent = ({
   selectedRegion,
   setSelectedRegion,
   locations,
+  referenceRegions,
 }: RegionPickerContentProps) => {
   const { translateRegionName } = useRegionName();
 
@@ -76,6 +88,12 @@ const RegionPickerContent = ({
   const { locationsByContinent, continents } = useMemo(
     () => groupLocationsByContinent(locations),
     [locations],
+  );
+
+  // Create a mapping from region id to certifications
+  const regionCertificationsMap = useMemo(
+    () => new Map(referenceRegions?.map((region) => [region.id, region.certifications])),
+    [referenceRegions],
   );
 
   const [activeContinent, setActiveContinent] = useState<ContinentCode>(continents[0] ?? 'EUROPE');
@@ -96,7 +114,14 @@ const RegionPickerContent = ({
           name="region"
           title={translateRegionName(location.name)}
           subTitle={location.name}
-          badges={<RegionTypeBadge type={location.type} />}
+          badges={
+            <div className="flex items-center gap-2">
+              <RegionTypeBadge type={location.type} />
+              <RegionCertificationBadges
+                certifications={regionCertificationsMap.get(location.name) ?? []}
+              />
+            </div>
+          }
         />
       ))}
     </div>

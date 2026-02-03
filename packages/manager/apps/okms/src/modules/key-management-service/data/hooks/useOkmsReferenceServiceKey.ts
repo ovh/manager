@@ -6,7 +6,7 @@ import { ErrorResponse } from '@/common/types/api.type';
 import { getOkmsServiceKeyReferenceQueryKey, getServiceKeyReference } from '../api/okmsReference';
 
 export const useOkmsServiceKeyReference = (okmsRegion: string) => {
-  return useQuery<{ data: OkmsServiceKeyReference[] }, ErrorResponse>({
+  return useQuery<OkmsServiceKeyReference[], ErrorResponse>({
     queryKey: getOkmsServiceKeyReferenceQueryKey(okmsRegion),
     queryFn: () => getServiceKeyReference(okmsRegion),
     enabled: okmsRegion.length > 0,

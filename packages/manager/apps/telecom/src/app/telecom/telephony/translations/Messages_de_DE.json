@@ -139,5 +139,6 @@
   "telephony_status_label_deleted": "Gelöscht",
   "telephony_status_label_enabled": "OK",
   "telephony_status_label_expired": "Abgelaufen",
-  "telephony_view_billing_account_label": "Details der Abrechnungsgruppe"
+  "telephony_view_billing_account_label": "Details der Abrechnungsgruppe",
+  "telephony_rio_label": "RIO (Betreiberausweis)"
 }

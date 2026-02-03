@@ -8,63 +8,69 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
-import { Drawer } from '@ovh-ux/manager-react-components';
+import { Drawer } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
-import { SECRET_VALUE_DRAWER_TEST_ID } from './SecretValueDrawer.constants';
 import { VersionSelector } from './VersionSelector.component';
 
-const useIsCurrentVersion = (version: SecretVersion | undefined) => {
-  const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
-  const { data: secret } = useSecret(okmsId, decodeSecretPath(secretPath));
-
-  if (!version || !secret) {
-    return false;
-  }
-  return secret.metadata.currentVersion === version.id;
-};
-
 const SecretValueDrawerPage = () => {
+  const navigate = useNavigate();
+  const { t } = useTranslation('secret-manager');
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
   const secretPathDecoded = decodeSecretPath(secretPath);
   const { versionId } = useParams();
-  const { t } = useTranslation('secret-manager');
-  const navigate = useNavigate();
+
+  const { data: secret, isPending: isSecretPending } = useSecret(
+    okmsId,
+    decodeSecretPath(secretPath),
+  );
 
   const [selectedVersion, setSelectedVersion] = useState<SecretVersion | undefined>(undefined);
 
-  const isCurrentVersion = useIsCurrentVersion(selectedVersion);
+  const isCurrentVersion = secret?.metadata.currentVersion === selectedVersion?.id;
+  const hasVersion = secret?.metadata.currentVersion !== undefined;
 
   return (
-    <Drawer
-      data-testid={SECRET_VALUE_DRAWER_TEST_ID}
-      heading={t('values')}
+    <Drawer.Root
       onDismiss={() => {
         navigate('..');
       }}
+      isLoading={isSecretPending}
       isOpen
     >
-      <Suspense>
-        <div className="flex flex-col gap-4 pb-10">
-          <VersionSelector
-            okmsId={okmsId}
-            secretPath={secretPath}
-            versionId={versionId}
-            selectedVersion={selectedVersion}
-            setSelectedVersion={setSelectedVersion}
-          />
-          {isCurrentVersion && (
-            <OdsMessage isDismissible={false}>{t('current_version')}</OdsMessage>
+      <Drawer.Header title={t('values')} />
+      <Drawer.Content>
+        <Suspense>
+          {hasVersion && (
+            <div className="flex flex-col gap-4 pb-10">
+              <VersionSelector
+                okmsId={okmsId}
+                secretPath={secretPath}
+                defaultVersionId={versionId}
+                selectedVersion={selectedVersion}
+                setSelectedVersion={setSelectedVersion}
+              />
+              {isCurrentVersion && <Message dismissible={false}>{t('current_version')}</Message>}
+              {selectedVersion && selectedVersion.state === 'ACTIVE' && (
+                <SecretValue
+                  okmsId={okmsId}
+                  secretPath={secretPathDecoded}
+                  version={selectedVersion}
+                />
+              )}
+            </div>
           )}
-          {selectedVersion && selectedVersion.state === 'ACTIVE' && (
-            <SecretValue okmsId={okmsId} secretPath={secretPathDecoded} version={selectedVersion} />
+          {!hasVersion && (
+            <Message className="w-full" color="warning" dismissible={false}>
+              {t('no_version_message')}
+            </Message>
           )}
-        </div>
-      </Suspense>
-    </Drawer>
+        </Suspense>
+      </Drawer.Content>
+    </Drawer.Root>
   );
 };
 

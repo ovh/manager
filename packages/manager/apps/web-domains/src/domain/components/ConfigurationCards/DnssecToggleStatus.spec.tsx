@@ -1,9 +1,9 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import DnssecToggleStatus from './DnssecToggleStatus';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TDomainResource } from '@/domain/types/domainResource';
@@ -14,6 +14,10 @@ import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
+
+vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
+  useGetIAMResource: vi.fn(),
+}));
 
 describe('DnssecToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
@@ -86,13 +90,21 @@ describe('DnssecToggleStatus component', () => {
     },
   };
 
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:dnsZone:123' }],
+    });
+  });
+
   it('renders loading state', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isAuthorized: true,
+      isPending: false,
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={true}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -104,13 +116,13 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders unauthorized state', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: false,
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -124,13 +136,13 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC enabled', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.ENABLED }}
+        dnssecStatus={DnssecStatusEnum.ENABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -145,13 +157,13 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC disabled', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={mockDomainResource}
         dnssecModalOpened={false}
@@ -166,13 +178,13 @@ describe('DnssecToggleStatus component', () => {
   });
 
   it('renders authorized state with DNSSEC not supported', () => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isPending: false,
       isAuthorized: true,
     });
     render(
       <DnssecToggleStatus
-        dnssecStatus={{ status: DnssecStatusEnum.DISABLED }}
+        dnssecStatus={DnssecStatusEnum.DISABLED}
         isDnssecStatusLoading={false}
         domainResource={{
           ...mockDomainResource,

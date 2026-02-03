@@ -4,7 +4,6 @@ coverage
 .turbo
 build
 .type-coverage
-packages/components/ovh-shell
 www
 screenshot
 loader
@@ -43,7 +42,10 @@ packages/manager-tools/manager-vite-config
 packages/manager-tools/manager-pm
 packages/manager-tools/manager-cli-core
 packages/manager/apps/cloud-shell/src/wasm_exec.js
+packages/manager/modules/backup-agent
 packages/manager/apps/okms
+packages/manager/apps/hpc-backup-agent-iaas
+packages/manager/apps/bmc-backup-agent-baremetal
 packages/manager/apps/pci-instances
 packages/manager/apps/pci-kubernetes
 packages/manager/apps/pci-workflow
@@ -55,6 +57,7 @@ packages/manager/apps/zimbra
 packages/manager-tools/manager-static-analysis-kit
 packages/manager-tools/manager-forge-cli
 packages/manager-tools/manager-forge-cli/template
+packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config
 packages/manager-tools/manager-legacy-tools/test-utils/src/utils/ui-test-helpers-ods18.ts
 packages/manager-ui-kit
 packages/manager-wiki
@@ -62,6 +65,9 @@ packages/manager-wiki
 lint-runner.js
 lint-html-runner.js
 lint-cli.js
+lint-staged.mjs
 packages/manager/apps/web-ongoing-operations
 packages/manager/apps/communication
 packages/manager/apps/pci-project
+packages/manager/apps/hub
+packages/manager/apps/pci-file-storage

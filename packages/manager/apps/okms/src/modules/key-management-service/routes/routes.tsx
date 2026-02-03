@@ -2,17 +2,15 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import NotFound from '@key-management-service/pages/404';
-
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
+import { getRouteTracking } from '@/common/utils/tracking/tracking';
 
 import { KMS_ROUTES_URIS, KMS_URL_PARAMS } from './routes.constants';
 
 export const COMMON_PATH = '/key-management-service';
 
 // Kms
-const KmsLayout = React.lazy(() => import('@key-management-service/pages/layout'));
 const KmsListing = React.lazy(
   () => import('@key-management-service/pages/listing/KmsListing.page'),
 );
@@ -118,141 +116,74 @@ const CredentialsCreateServiceAccountListModal = React.lazy(
 );
 
 export default (
-  <Route
-    path={KMS_ROUTES_URIS.root}
-    Component={KmsLayout}
-    id={'kms-root'}
-    errorElement={
-      <ErrorBoundary redirectionApp="okms" isPreloaderHide={true} isRouteShellSync={true} />
-    }
-  >
-    <Route
-      path=""
-      Component={KmsListing}
-      handle={{
-        tracking: {
-          pageName: '',
-          pageType: PageType.listing,
-        },
-      }}
-    />
+  <Route path={KMS_ROUTES_URIS.root} id={'kms-root'}>
+    <Route path="" Component={KmsListing} handle={getRouteTracking(['okms'], PageType.listing)} />
     <Route
       path={KMS_ROUTES_URIS.kmsCreate}
       Component={KmsCreate}
-      handle={{
-        tracking: {
-          pageName: 'create_kms',
-          pageType: PageType.funnel,
-        },
-      }}
+      handle={getRouteTracking(['create', 'okms'], PageType.funnel)}
     >
       <Route path={KMS_URL_PARAMS.region} Component={KmsCreateOrderOkmsModal} />
     </Route>
     <Route
       path={KMS_ROUTES_URIS.kmsOnboarding}
       Component={KmsOnboarding}
-      handle={{
-        tracking: {
-          pageName: 'onboarding',
-          pageType: PageType.onboarding,
-        },
-      }}
+      handle={getRouteTracking([], PageType.onboarding)}
     />
     <Route path={KMS_URL_PARAMS.okmsId} Component={KmsDashboard}>
       <Route
         path={''}
         Component={KmsGeneralInformations}
-        handle={{
-          tracking: {
-            pageName: 'general_informations',
-            pageType: PageType.dashboard,
-          },
-        }}
+        handle={getRouteTracking(['okms'], PageType.dashboard)}
       >
         <Route
           path={KMS_ROUTES_URIS.kmsEditName}
           Component={KmsRenameModal}
-          handle={{
-            tracking: {
-              pageName: 'rename_kms',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={getRouteTracking(['rename', 'okms'], PageType.popup)}
         />
         <Route
           path={KMS_ROUTES_URIS.kmsTerminate}
           Component={KmsTerminateModal}
-          handle={{
-            tracking: {
-              pageName: 'terminate',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={getRouteTracking(['terminate', 'okms'], PageType.popup)}
         />
       </Route>
       <Route
         path={KMS_ROUTES_URIS.serviceKeys}
         Component={ServiceKeyList}
-        handle={{
-          tracking: {
-            pageName: 'encryption_keys',
-            pageType: PageType.listing,
-          },
-        }}
+        handle={getRouteTracking(['service-key'], PageType.listing)}
       >
         <Route
           path={`${KMS_ROUTES_URIS.serviceKeyDeactivate}/${KMS_URL_PARAMS.keyId}`}
           Component={ServiceKeyDeactivateModal}
-          handle={{
-            tracking: {
-              pageName: 'deactivate_encryption_key',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={getRouteTracking(['deactivate', 'service-key'], PageType.listing)}
         />
       </Route>
       <Route
         path={KMS_ROUTES_URIS.credentials}
         Component={CredentialsList}
-        handle={{
-          tracking: {
-            pageName: 'access_certificates',
-            pageType: PageType.listing,
-          },
-        }}
+        handle={getRouteTracking(['credential'], PageType.listing)}
       >
         <Route
           path={`${KMS_ROUTES_URIS.credentialDelete}/${KMS_URL_PARAMS.credentialId}`}
           Component={CredentialsListDeleteModal}
-          handle={{
-            tracking: {
-              pageName: 'delete_access_certificate',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={getRouteTracking(['delete', 'credential'], PageType.popup)}
         />
       </Route>
-      <Route path={`${KMS_ROUTES_URIS.kmsLogs}/*`} Component={KmsLogs} />
+      <Route
+        path={`${KMS_ROUTES_URIS.kmsLogs}/*`}
+        Component={KmsLogs}
+        handle={getRouteTracking(['logs'], PageType.dashboard)}
+      />
     </Route>
     <Route
       path={`${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_ROUTES_URIS.serviceKeyCreate}`}
       Component={ServiceKeyCreate}
-      handle={{
-        tracking: {
-          pageName: 'create_encryption_key',
-          pageType: PageType.funnel,
-        },
-      }}
+      handle={getRouteTracking(['create', 'service-key'], PageType.funnel)}
     />
     <Route
       path={`${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.credentials}/${KMS_ROUTES_URIS.credentialCreate}`}
       Component={CredentialsCreate}
-      handle={{
-        tracking: {
-          pageName: 'create_access_certificate',
-          pageType: PageType.funnel,
-        },
-      }}
+      handle={getRouteTracking(['create', 'credential'], PageType.funnel)}
     >
       <Route
         path={KMS_ROUTES_URIS.credentialCreateAddUserModal}
@@ -274,66 +205,35 @@ export default (
       <Route
         path={''}
         Component={CredentialsGeneralInformations}
-        handle={{
-          tracking: {
-            pageName: 'details_access_certificate',
-            pageType: PageType.dashboard,
-          },
-        }}
+        handle={getRouteTracking(['credential'], PageType.dashboard)}
       >
         <Route
           path={KMS_ROUTES_URIS.credentialDelete}
           Component={CredentialsDashboardDeleteModal}
-          handle={{
-            tracking: {
-              pageName: 'delete_access_certificate',
-              pageType: PageType.popup,
-            },
-          }}
+          handle={getRouteTracking(['delete', 'credential'], PageType.popup)}
         />
       </Route>
       <Route
         path={KMS_ROUTES_URIS.credentialIdentities}
         Component={CredentialsIdentities}
-        handle={{
-          tracking: {
-            pageName: 'details_identities',
-            pageType: PageType.dashboard,
-          },
-        }}
+        handle={getRouteTracking(['identity'], PageType.listing)}
       />
     </Route>
     <Route
       path={`${KMS_URL_PARAMS.okmsId}/${KMS_ROUTES_URIS.serviceKeys}/${KMS_URL_PARAMS.keyId}`}
       Component={ServiceKeyDashboard}
-      handle={{
-        tracking: {
-          pageName: 'details_encryption_key',
-          pageType: PageType.dashboard,
-        },
-      }}
+      handle={getRouteTracking(['service-key'], PageType.dashboard)}
     >
       <Route
         path={KMS_ROUTES_URIS.serviceKeyEditName}
         Component={ServiceKeyRenameModal}
-        handle={{
-          tracking: {
-            pageName: 'rename_encryption_key',
-            pageType: PageType.popup,
-          },
-        }}
+        handle={getRouteTracking(['rename', 'service-key'], PageType.popup)}
       />
       <Route
         path={KMS_ROUTES_URIS.serviceKeyDeactivate}
         Component={ServiceKeyDeactivateModal}
-        handle={{
-          tracking: {
-            pageName: 'deactivate_encryption_key',
-            pageType: PageType.popup,
-          },
-        }}
+        handle={getRouteTracking(['deactivate', 'service-key'], PageType.popup)}
       />
     </Route>
-    <Route path={'*'} element={<NotFound />} />
   </Route>
 );

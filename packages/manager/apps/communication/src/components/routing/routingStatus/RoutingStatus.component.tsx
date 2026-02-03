@@ -1,6 +1,5 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { Badge, BADGE_COLOR } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 
 type RoutingStatusChipProps = {
@@ -10,9 +9,10 @@ type RoutingStatusChipProps = {
 export default function RoutingStatusChip({ active }: RoutingStatusChipProps) {
   const { t } = useTranslation(NAMESPACES.STATUS);
   return (
-    <OdsBadge
-      color={active ? ODS_BADGE_COLOR.success : ODS_BADGE_COLOR.critical}
-      label={t(active ? 'ok' : 'disabled')}
-    />
+    <Badge
+      color={active ? BADGE_COLOR.success : BADGE_COLOR.critical}
+    >
+      {t(active ? 'ok' : 'disabled')}
+    </Badge>
   );
 }

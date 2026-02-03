@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { TNetworkRegion } from '@/api/data/network';
 import { TGateway } from '@/api/data/subnets';
-import { DeploymentMode } from '@/types';
+import { TClusterPlanEnum } from '@/types';
 
 import NoGatewayLinkedMessage from './NoGatewayLinkedWarning.component';
 
@@ -13,7 +13,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 
 describe('NoGatewayLinkedMessage', () => {
   it('should show message when no private network exists', () => {
-    render(<NoGatewayLinkedMessage network={[]} gateways={[]} type={DeploymentMode.MULTI_ZONES} />);
+    render(<NoGatewayLinkedMessage network={[]} gateways={[]} plan={TClusterPlanEnum.FREE} />);
     expect(screen.getByText('kubernetes_network_form_no_private_network')).toBeInTheDocument();
     expect(screen.getByText('kubernetes_network_form_add')).toHaveAttribute(
       'href',
@@ -26,7 +26,7 @@ describe('NoGatewayLinkedMessage', () => {
       <NoGatewayLinkedMessage
         network={[{ id: 'net1' } as TNetworkRegion]}
         gateways={[]}
-        type={DeploymentMode.MULTI_ZONES}
+        plan={TClusterPlanEnum.STANDARD}
       />,
     );
     expect(screen.getByText('kubernetes_network_form_no_associated_gateway')).toBeInTheDocument();
@@ -41,7 +41,7 @@ describe('NoGatewayLinkedMessage', () => {
       <NoGatewayLinkedMessage
         network={[{ id: 'net1' } as TNetworkRegion]}
         gateways={[{ id: 'valid' } as TGateway]}
-        type={DeploymentMode.MULTI_ZONES}
+        plan={TClusterPlanEnum.FREE}
       />,
     );
     expect(container).toBeEmptyDOMElement();

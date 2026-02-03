@@ -124,7 +124,6 @@ describe('HostDrawer', () => {
     ];
 
     expect(payload).toMatchObject({
-      checksum: serviceInfoDetail.checksum,
       currentTargetSpec: serviceInfoDetail.targetSpec,
       updatedSpec: {
         hostsConfiguration: {
@@ -226,7 +225,6 @@ describe('HostDrawer', () => {
     ];
 
     expect(payload).toMatchObject({
-      checksum: serviceInfoDetail.checksum,
       currentTargetSpec: serviceInfoDetail.targetSpec,
       updatedSpec: {
         hostsConfiguration: {

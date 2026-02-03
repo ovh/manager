@@ -3,7 +3,7 @@ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { routes } from './routes/routes';
 
 const queryClient = new QueryClient({

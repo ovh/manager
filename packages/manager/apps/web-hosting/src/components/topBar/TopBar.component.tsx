@@ -108,7 +108,12 @@ export default function Topbar() {
             <SelectControl placeholder={t('hosting_dashboard_ssl_selected_item')} />
             <SelectContent />
           </Select>
-          <Button size={BUTTON_SIZE.sm} variant={BUTTON_VARIANT.outline} onClick={handleSslEncrypt}>
+          <Button
+            size={BUTTON_SIZE.sm}
+            variant={BUTTON_VARIANT.outline}
+            onClick={handleSslEncrypt}
+            disabled={selectedDomains.length === 0}
+          >
             {t('enable_ssl_encrypt')}
           </Button>
         </div>

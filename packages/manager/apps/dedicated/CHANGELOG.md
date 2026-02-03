@@ -3,6 +3,181 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.74.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.5...@ovh-ux/manager-dedicated@20.74.0) (2026-02-02)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1062] ([cf5d87f](https://github.com/ovh/manager/commit/cf5d87f02cebaab18d6a5268f99dd3651b167f78))
+
+
+### Features
+
+* **dedicated.licenses:** add SQL servers 2025 ([c583536](https://github.com/ovh/manager/commit/c583536a6664bd0adc3c709585fd18292824aafd)), closes [#MANAGER-20691](https://github.com/ovh/manager/issues/MANAGER-20691)
+* **dedicated.licenses:** licenses name fallback ([282f96e](https://github.com/ovh/manager/commit/282f96e2d52aff82d3be79c6a582016128a36b89)), closes [#MANAGER-17741](https://github.com/ovh/manager/issues/MANAGER-17741)
+* **dedicated:** fill whitelist ip with user ip ([0046ee6](https://github.com/ovh/manager/commit/0046ee60bcacb6af34a9fbed5d509538de1e1128)), closes [#MANAGER-20544](https://github.com/ovh/manager/issues/MANAGER-20544)
+
+
+
+
+
+## [20.73.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.4...@ovh-ux/manager-dedicated@20.73.5) (2026-02-02)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.73.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.3...@ovh-ux/manager-dedicated@20.73.4) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.73.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.2...@ovh-ux/manager-dedicated@20.73.3) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.73.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.1...@ovh-ux/manager-dedicated@20.73.2) (2026-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** fix backup agent wording on baremetal ([10cd69b](https://github.com/ovh/manager/commit/10cd69bc8bd6b6c3d9c343abbee457bc6ba1cdd6)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
+## [20.73.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.73.0...@ovh-ux/manager-dedicated@20.73.1) (2026-01-27)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.73.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.7...@ovh-ux/manager-dedicated@20.73.0) (2026-01-26)
+
+
+### Features
+
+* **dedicated:** add backup-agent on dashboard baremetal ([f80ee0c](https://github.com/ovh/manager/commit/f80ee0c3fabe95aef10da126d868865e9fc071b5)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
+## [20.72.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.6...@ovh-ux/manager-dedicated@20.72.7) (2026-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.5...@ovh-ux/manager-dedicated@20.72.6) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.4...@ovh-ux/manager-dedicated@20.72.5) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.3...@ovh-ux/manager-dedicated@20.72.4) (2026-01-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.2...@ovh-ux/manager-dedicated@20.72.3) (2026-01-21)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.1...@ovh-ux/manager-dedicated@20.72.2) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.72.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.72.0...@ovh-ux/manager-dedicated@20.72.1) (2026-01-19)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.72.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.71.1...@ovh-ux/manager-dedicated@20.72.0) (2026-01-19)
+
+
+### Features
+
+* **ldp:** add roadmap feature request and changelog ([e55c8c7](https://github.com/ovh/manager/commit/e55c8c72265084d63142029fc0f52d4baa6c7f15)), closes [#MAOBS-38](https://github.com/ovh/manager/issues/MAOBS-38)
+
+
+
+
+
+## [20.71.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.71.0...@ovh-ux/manager-dedicated@20.71.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4595] ([3dafa65](https://github.com/ovh/manager/commit/3dafa65b3d5ed08b90a9f6e603acfb6ada7bdae3))
+
+
+
+
+
+# [20.71.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.9...@ovh-ux/manager-dedicated@20.71.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* **dedicated:** replace wrong distribution wording with OS ([359d392](https://github.com/ovh/manager/commit/359d39260eeb8e2033ace7eb7bab9697a304f065)), closes [#MANAGER-20225](https://github.com/ovh/manager/issues/MANAGER-20225)
+* **i18n:** add missing translations [CDS 4519] ([0342dae](https://github.com/ovh/manager/commit/0342dae1c3002016785fcf3d348b7b240f72c794))
+
+
+### Features
+
+* **dedicated:** custom error page ([05782d7](https://github.com/ovh/manager/commit/05782d795953c4c8c84b056da9c74f0374cc85e0)), closes [#MANAGER-14423](https://github.com/ovh/manager/issues/MANAGER-14423)
+
+
+
+
+
+## [20.70.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.8...@ovh-ux/manager-dedicated@20.70.9) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.70.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.70.7...@ovh-ux/manager-dedicated@20.70.8) (2026-01-12)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

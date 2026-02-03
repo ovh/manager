@@ -162,7 +162,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="storages-action-trigger"
+                data-testid="swift-objects-action-trigger"
                 variant="menu"
                 size="menu"
                 className="p-1 size-6"
@@ -179,6 +179,7 @@ const SwiftObjectFileRenderer = ({ object }: SwiftObjectFileRendererProps) => {
                 <>
                   {a.withSeparator && <DropdownMenuSeparator />}
                   <DropdownMenuItem
+                    data-testid={`swift-objects-action-${a.id}`}
                     key={a.id}
                     onClick={a.onClick}
                     variant={a.variant}

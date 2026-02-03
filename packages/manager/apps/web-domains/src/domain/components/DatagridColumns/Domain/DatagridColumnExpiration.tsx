@@ -21,7 +21,11 @@ export default function DatagridColumnExpiration({
   const formatDate = useFormatDate();
 
   if (isServiceInfoLoading) {
-    return <Skeleton />;
+    return (
+      <div className="w-full">
+        <Skeleton />
+      </div>
+    );
   }
 
   if (!serviceInfo?.billing?.expirationDate) {

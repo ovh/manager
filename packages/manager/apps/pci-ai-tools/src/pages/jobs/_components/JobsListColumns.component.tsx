@@ -15,6 +15,7 @@ import ai from '@/types/AI';
 import Link from '@/components/links/Link.component';
 import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
+import { AutoRestartColumn } from '@/components/auto-restart/AutoRestartColumn';
 import JobStatusBadge from './JobStatusBadge.component';
 import { isRunningJob, isStoppedJob } from '@/lib/statusHelper';
 import { convertSecondsToTimeString } from '@/lib/durationHelper';
@@ -151,6 +152,22 @@ export const getColumns = ({
         return <JobStatusBadge status={row.original.status.state} />;
       },
     },
+    {
+      id: 'autorestart',
+      accessorFn: (row) => row.spec.timeoutAutoRestart,
+      header: ({ column }) => (
+        <DataTable.SortableHeader column={column}>
+          {t('timeOutLabel')}
+        </DataTable.SortableHeader>
+      ),
+      cell: ({ row }) => (
+        <AutoRestartColumn
+          timeoutAutoRestart={row.original.spec.timeoutAutoRestart}
+          timeoutAt={row.original.status.timeoutAt}
+          translationNamespace="ai-tools/jobs"
+        />
+      ),
+    },
 
     {
       id: 'actions',
@@ -198,7 +215,7 @@ export const getColumns = ({
                   onRestartClicked(row.original);
                 }}
               >
-                {t('tableActionRestart')}
+                {t('tableActionClone')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 data-testid="job-action-stop-button"

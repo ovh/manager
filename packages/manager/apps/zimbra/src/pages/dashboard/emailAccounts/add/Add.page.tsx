@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { IconLinkAlignmentType, LinkType, Links } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Link, LinkType } from '@ovh-ux/muk';
 
 import { useGenerateUrl } from '@/hooks';
 import { ADD_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE } from '@/tracking.constants';
@@ -18,11 +18,10 @@ export const AddEmailAccount = () => {
   return (
     <>
       <div className="mb-6 flex flex-col items-start space-y-4" data-testid="page-title">
-        <Links
-          iconAlignment={IconLinkAlignmentType.left}
+        <Link
           type={LinkType.back}
           href={goBackUrl}
-          onClickReturn={() => {
+          onClick={() => {
             trackClick({
               location: PageLocation.funnel,
               buttonType: ButtonType.link,
@@ -30,9 +29,10 @@ export const AddEmailAccount = () => {
               actions: [ADD_EMAIL_ACCOUNT, BACK_PREVIOUS_PAGE],
             });
           }}
-          label={t('zimbra_account_add_cta_back')}
-        />
-        <OdsText preset="heading-3">{t('common:add_email_account')}</OdsText>
+        >
+          {t('zimbra_account_add_cta_back')}
+        </Link>
+        <Text preset={TEXT_PRESET.heading3}>{t('common:add_email_account')}</Text>
       </div>
       <EmailAccountForm />
     </>

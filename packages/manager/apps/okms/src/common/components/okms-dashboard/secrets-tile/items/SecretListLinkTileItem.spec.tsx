@@ -4,8 +4,7 @@ import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { LinkType, LinksProps } from '@ovh-ux/manager-react-components';
-
+import { MukLinkType } from '@/common/components/link/Link.component';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
@@ -22,25 +21,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
-  return {
-    ...actual,
-    Links: ({ onClickReturn, ...rest }: LinksProps) => (
-      <a data-testid={'secret-list-link'} onClick={onClickReturn} {...rest} />
-    ),
-  };
-});
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
-
-  return {
-    ...mod,
-    useOvhTracking: () => ({ trackClick: vi.fn() }),
-  };
-});
-
 describe('OKMS Secret List link Tile Item test suite', () => {
   it('should render the tile item correctly', async () => {
     const user = userEvent.setup();
@@ -50,11 +30,10 @@ describe('OKMS Secret List link Tile Item test suite', () => {
     await renderWithI18n(<SecretListLinkTileItem okms={okmsMocked} />);
 
     // THEN
-    const secretListLink = screen.getByTestId('secret-list-link');
+    const secretListLink = screen.getByText(labels.kmsCommon.manage_secrets_link);
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute('label', labels.kmsCommon.manage_secrets_link);
-    expect(secretListLink).toHaveAttribute('type', LinkType.next);
+    expect(secretListLink).toHaveAttribute('type', MukLinkType.next);
 
     await act(async () => {
       await user.click(secretListLink);

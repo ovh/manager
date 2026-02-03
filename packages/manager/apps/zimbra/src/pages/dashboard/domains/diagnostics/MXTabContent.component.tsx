@@ -1,10 +1,18 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Button,
+  ICON_NAME,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -38,9 +46,10 @@ const MXTabContent = ({
 
   if (!diagnostic) {
     return (
-      <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
-        {t('zimbra_domain_diagnostic_loading_error')}
-      </OdsMessage>
+      <Message className="md:w-1/2" dismissible={false} color={MESSAGE_COLOR.critical}>
+        <MessageIcon name={ICON_NAME.hexagonExclamation} />
+        <MessageBody>{t('zimbra_domain_diagnostic_loading_error')}</MessageBody>
+      </Message>
     );
   }
 
@@ -49,16 +58,21 @@ const MXTabContent = ({
 
   return (
     <div className="flex flex-col gap-4 md:w-1/2" data-testid={`tab-content-${recordType}`}>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <strong>{t('zimbra_domain_diagnostic_status')}</strong>
         <StatusBadge className="ml-4" status={diagnostic.status} />
-      </OdsText>
+      </Text>
       {!isOk && (
-        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-          {t(`zimbra_domain_diagnostic_information_banner_mx_${diagnostic?.status.toLowerCase()}`)}
-        </OdsMessage>
+        <Message className="w-full" dismissible={false} color={MESSAGE_COLOR.warning}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>
+            {t(
+              `zimbra_domain_diagnostic_information_banner_mx_${diagnostic?.status.toLowerCase()}`,
+            )}
+          </MessageBody>
+        </Message>
       )}
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey={`zimbra_domain_diagnostic_information_message_mx_${diagnostic?.status.toLowerCase()}`}
@@ -67,13 +81,12 @@ const MXTabContent = ({
             errorCode: error?.code,
           }}
         />
-      </OdsText>
+      </Text>
       {!isOk && (
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
-            <OdsButton
-              label={t('zimbra_domain_diagnostic_cta_auto_configure')}
+            <Button
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -82,34 +95,36 @@ const MXTabContent = ({
                   actions: [trackingName, AUTO_CONFIGURE_DOMAIN],
                 });
               }}
-            />
+            >
+              {t('zimbra_domain_diagnostic_cta_auto_configure')}
+            </Button>
           ) : (
             <table className="dns-fields table-auto">
               <tbody>
                 <tr key="type">
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <Text preset={TEXT_PRESET.paragraph}>
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_type')}</strong>
-                      <OdsText preset={ODS_TEXT_PRESET.span}>{recordType}</OdsText>
-                    </OdsText>
+                      <Text preset={TEXT_PRESET.span}>{recordType}</Text>
+                    </Text>
                   </td>
                 </tr>
                 {expectedDNSConfig?.mx?.map(({ priority, target }) => (
                   <tr key={target}>
                     <td>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                      <Text preset={TEXT_PRESET.paragraph}>
                         <strong className="mr-4">
                           {t('zimbra_domain_diagnostic_field_priority')}
                         </strong>
                         {priority}
-                      </OdsText>
+                      </Text>
                     </td>
-                    <td>
-                      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <td className="flex items-center">
+                      <Text preset={TEXT_PRESET.paragraph}>
                         <strong className="mr-4">
                           {t('zimbra_domain_diagnostic_field_target')}
                         </strong>
-                      </OdsText>
+                      </Text>
                       <Clipboard value={target.toString()} />
                     </td>
                   </tr>

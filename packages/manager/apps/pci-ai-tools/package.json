@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ai-tools-app",
-  "version": "1.17.8",
+  "version": "1.19.0",
   "private": true,
   "description": "pci-ai-tools",
   "repository": {
@@ -14,7 +14,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
     "coverage": "vitest run --coverage",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "vite",
     "test": "vitest run --pool=threads",
     "test-ui": "vitest --ui --coverage.enabled=true --pool=threads"
@@ -24,11 +25,11 @@
     "@datatr-ux/ovhcloud-types": "^1.0.83",
     "@datatr-ux/uxlib": "^0.0.11-beta-8",
     "@hookform/resolvers": "5.0.1",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.3",
+    "@ovh-ux/shell": "^4.10.5",
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-table": "8.21.3",
     "clsx": "^2.1.0",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@jest/globals": "29.7.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-tests-setup": "^0.6.2",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@testing-library/react": "14.2.2",
@@ -58,8 +60,6 @@
     "@types/node": "20.12.5",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.0.0",
-    "@typescript-eslint/parser": "^7.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "typescript": "5.4.4",

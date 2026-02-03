@@ -81,5 +81,15 @@
   "version_state_delete": "Usuń",
   "version_state_deleted": "Usunięta",
   "version_state_reactivate": "Przywróć",
-  "versions": "Wersje"
+  "versions": "Wersje",
+  "no_version": "Brak wersji",
+  "no_version_message": "Ta poufna dana nie ma wersji.",
+  "create_okms_domain": "Utwórz domenę OKMS",
+  "create_secret_form_okms_not_selected": "Brak dostępnych domen OKMS w tym regionie. Proszę utworzyć domenę OKMS przed utworzeniem sekretu.",
+  "enable_deactivate_version_after": "Ustaw czas wygaśnięcia",
+  "enable_max_versions": "Ustaw maksymalną liczbę wersji",
+  "enable_cas_required": "Skonfiguruj CAS",
+  "form_helper_max_versions_default": "Podaj \"0\", aby użyć wartości domyślnej ({{value}}).",
+  "form_helper_max_versions_domain": "Podaj \"0\", aby użyć wartości domeny OKMS ({{value}}).",
+  "secret_settings": "Ustawienia sekretu"
 }

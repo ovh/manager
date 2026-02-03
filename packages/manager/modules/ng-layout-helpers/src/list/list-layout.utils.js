@@ -18,6 +18,8 @@ export const FILTER_OPERATORS = {
   bigger: 'gt',
   startsWith: 'like',
   endsWith: 'like',
+  in: 'in',
+  notIn: 'nin',
 };
 
 export const mapFilterForIceberg = (comparator, reference) =>

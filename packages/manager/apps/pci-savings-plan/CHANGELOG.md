@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.14...@ovh-ux/manager-pci-savings-plan-app@1.23.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [1.22.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.13...@ovh-ux/manager-pci-savings-plan-app@1.22.14) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.12...@ovh-ux/manager-pci-savings-plan-app@1.22.13) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
+## [1.22.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.11...@ovh-ux/manager-pci-savings-plan-app@1.22.12) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
+
+
+
+
+
 ## [1.22.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.22.10...@ovh-ux/manager-pci-savings-plan-app@1.22.11) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app

@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { OdsBadge, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ActionMenu,
   ActionMenuItem,
   Datagrid,
   DatagridColumn,
   DataGridTextCell,
-  ManagerButton,
   Notifications,
   useNotifications,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
+import { Button as ManagerButton} from '@ovh-ux/muk';
+import { Badge, Icon, Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
 import { ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useMemo } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -200,15 +200,17 @@ function ContactsPage() {
       size: 400,
       isSortable: false,
       cell: ({ description, default: isDefault }) => (
-        <DataGridTextCell className="truncate">
-          {description || '-'}
-          {isDefault && (
-            <OdsBadge
-              className="ml-5"
-              label={t('default_badge_label')}
-              color="information"
-            />
-          )}
+        <DataGridTextCell>
+          <div className="flex flex-wrap items-center gap-5">
+            {description || '-'}
+            {isDefault && (
+              <Badge
+                color="information"
+              >
+                {t('default_badge_label')}
+              </Badge>
+            )}
+          </div>
         </DataGridTextCell>
       ),
     },
@@ -226,7 +228,9 @@ function ContactsPage() {
       label: t('table_column_contact_mean'),
       /* TODO: replace with component once new contact means are defined */
       cell: (contactMean) => (
-        <DataGridTextCell>{contactMean.email || '-'}</DataGridTextCell>
+        <div className="break-all">
+          <DataGridTextCell>{contactMean.email || '-'}</DataGridTextCell>
+        </div>
       ),
     },
     {
@@ -273,9 +277,12 @@ function ContactsPage() {
   return (
     <div className="flex flex-col gap-4">
       {!isLoading && !isAuthorized && (
-        <OdsMessage color="warning" isDismissible={false} className="w-full">
-          {tCommon('iam_display_content_message')}
-        </OdsMessage>
+        <Message color="warning" dismissible={false} className="w-full">
+          <MessageIcon name="triangle-exclamation" />
+          <MessageBody>
+            {tCommon('iam_display_content_message')}
+          </MessageBody>
+        </Message>
       )}
 
       <Notifications clearAfterRead />
@@ -292,8 +299,6 @@ function ContactsPage() {
             id="add-contact-button"
             iamActions={['account:apiovh:notification/contactMean/create']}
             urn={accountUrn}
-            icon="plus"
-            label={t('add_contact_button')}
             aria-label={t('add_contact_button')}
             size="sm"
             onClick={() => {
@@ -306,7 +311,12 @@ function ContactsPage() {
               });
               navigate(urls.contact.create);
             }}
-          />
+          >
+            <>
+              <Icon name="plus" />
+              {t('add_contact_button')}
+            </>
+          </ManagerButton>
         }
         totalItems={flattenData?.length || 0}
         hasNextPage={hasNextPage}

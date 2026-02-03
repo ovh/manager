@@ -1,5 +1,4 @@
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
@@ -12,13 +11,13 @@ import DatagridColumnRenewMode from '@/alldoms/components/allDomDatagridColumns/
 import ServiceActionMenu from '@/alldoms/components/actionMenu/ServiceActionMenu';
 import { ActionEnum } from '@/alldoms/enum/service.enum';
 import DatagridColumnSkeleton from '@/alldoms/components/allDomDatagridColumns/DatagridColumnSkeleton';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { CANCEL_TERMINATE_URL, TERMINATE_URL } from '@/alldoms/constants';
+import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
 
 export const useAllDomDatagridColumns = () => {
   const { t } = useTranslation('allDom');
-  const { nichandleInformation } = useNichandleInformation();
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
+  const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
 
   const columns = [
     {
@@ -81,7 +80,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicAdmin}
             url={
-              props.nicAdmin === nichandleInformation?.nichandle &&
+              props.nicAdmin === connectedNichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -96,7 +95,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicTechnical}
             url={
-              props.nicTechnical === nichandleInformation?.nichandle &&
+              props.nicTechnical === connectedNichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />
@@ -112,7 +111,7 @@ export const useAllDomDatagridColumns = () => {
           <DatagridColumnContact
             contact={props.nicBilling}
             url={
-              props.nicBilling === nichandleInformation?.nichandle &&
+              props.nicBilling === connectedNichandle &&
               `${accountUrl as string}/useraccount/infos`
             }
           />

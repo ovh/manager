@@ -147,6 +147,7 @@ export const FEATURES = {
   LB_DELETE_FEATURE: `${APP}:delete`,
   LB_SUBSCRIPTION_CONTACT_SECTION: `${APP}:lb-contact-section`,
   LB_TEMPORARY_WARNING_BANNER_FEATURE: `${APP}:lb-temporary-warning-banner`,
+  LB_FRONTEND_UDP_AVAILABILITY: `${APP}:lb-frontend-udp`,
 };
 
 export default {

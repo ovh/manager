@@ -1,36 +1,39 @@
-import { defaultDedupedDependencies } from '@ovh-ux/manager-tests-setup';
 import path from 'path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    coverage: {
-      include: ['src'],
-      exclude: [
-        'src/interface',
-        'src/__tests__',
-        'src/guides-header.constants.ts',
-        'src/vite-*.ts',
-        'src/App.tsx',
-        'src/core/ShellRoutingSync.tsx',
-        'src/i18n.ts',
-        'src/main.tsx',
-        'src/routes.tsx',
-        'src/**/*constants.ts',
-      ],
+import {
+  createConfig,
+  mergeConfig,
+  sharedConfig,
+  defaultDedupedDependencies,
+} from '@ovh-ux/manager-tests-setup';
+
+export default mergeConfig(
+  sharedConfig,
+  createConfig({
+    test: {
+      setupFiles: './src/setupTests.ts',
+      coverage: {
+        include: ['src'],
+        exclude: [
+          'src/interface',
+          'src/__tests__',
+          'src/guides-header.constants.ts',
+          'src/vite-*.ts',
+          'src/App.tsx',
+          'src/core/ShellRoutingSync.tsx',
+          'src/i18n.ts',
+          'src/main.tsx',
+          'src/routes.tsx',
+          'src/**/*constants.ts',
+        ],
+      },
     },
-  },
-  resolve: {
-    dedupe: [...defaultDedupedDependencies],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
+    resolve: {
+      dedupe: [...defaultDedupedDependencies],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
+      mainFields: ['module'],
     },
-    mainFields: ['module'],
-  },
-});
+  }),
+);

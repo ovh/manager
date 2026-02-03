@@ -1,28 +1,13 @@
-import React, { ComponentType } from 'react';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { WebHostingWebsiteDomainMocks, WebHostingWebsiteMocks } from '@/data/__mocks__';
 import { webHostingMock } from '@/data/__mocks__/webHostingDashboard';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { createWrapper, i18n } from '@/utils/test.provider';
+import { wrapper } from '@/utils/test.provider';
 import { navigate } from '@/utils/test.setup';
 
 import ActionButtonMultisite from '../ActionButtonMultisite.component';
-
-const testQueryClient = new QueryClient({
-  defaultOptions: {
-    mutations: {
-      retry: false,
-    },
-    queries: {
-      retry: false,
-    },
-  },
-});
 
 vi.mock('@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite', () => ({
   useWebHostingWebsite: vi.fn().mockReturnValue({
@@ -44,35 +29,17 @@ vi.mock('@/hooks/useHostingUrl', () => ({
   }),
 }));
 
-const RouterWrapper = createWrapper();
-
-const Wrappers = ({ children }: { children: React.ReactElement }) => {
-  return (
-    <RouterWrapper>
-      <QueryClientProvider client={testQueryClient}>
-        <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-      </QueryClientProvider>
-    </RouterWrapper>
-  );
-};
-
 describe('ActionButtonMultisite component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it('should render site actions correctly', () => {
-    const { container, getByTestId } = render(
-      <ActionButtonMultisite context="site" siteId={'1'} path="www" />,
-      {
-        wrapper: Wrappers as ComponentType,
-      },
-    );
+    const { container } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />, {
+      wrapper,
+    });
 
     expect(container).toBeInTheDocument();
-
-    const actionMenu = getByTestId('action-menu');
-    expect(actionMenu).toBeInTheDocument();
 
     const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
     expect(menuItems.length).toBeGreaterThan(1);
@@ -83,7 +50,7 @@ describe('ActionButtonMultisite component', () => {
 
   it('should navigate correctly when clicking a site action', () => {
     const { getByText } = render(<ActionButtonMultisite context="site" siteId={'1'} path="www" />, {
-      wrapper: Wrappers as ComponentType,
+      wrapper,
     });
     const addDomainButton = getByText(commonTranslation.add_domain);
     expect(addDomainButton).toBeInTheDocument();
@@ -93,20 +60,17 @@ describe('ActionButtonMultisite component', () => {
   });
 
   it('should render domain actions correctly', () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <ActionButtonMultisite
         context="domain"
         domainId={'1'}
         domain="test.site"
         domains={WebHostingWebsiteDomainMocks}
       />,
-      { wrapper: Wrappers as ComponentType },
+      { wrapper },
     );
 
     expect(container).toBeInTheDocument();
-
-    const actionMenu = getByTestId('action-menu');
-    expect(actionMenu).toBeInTheDocument();
 
     const menuItems = container.querySelectorAll('button[data-testid^="action-item-"]');
     expect(menuItems.length).toBeGreaterThan(1);

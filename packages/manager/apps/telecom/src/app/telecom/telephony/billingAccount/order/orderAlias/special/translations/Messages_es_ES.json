@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Contratar un número especial",
+  "telephony_order_special_submit_title": "Contratar un número especial",
+  "telephony_order_special_amount_title": "Número de números:",
+  "telephony_order_special_range_title": "Rango",
+  "telephony_order_special_typology_title": "Tipología:",
+  "telephony_order_special_specific_title": "Elección del número",
+  "telephony_order_special_retractation_title": "Derecho de desistimiento",
+  "telephony_order_special_address_title": "Datos del titular del número",
+  "telephony_order_special_zone_tip": "Ciudad o código postal",
+  "telephony_order_special_numbers_error": "No se puede cargar la lista de presintonías de números.",
+  "telephony_order_special_order_error": "No se ha podido contratar un número(s) especial(aux). Por favor, vuelva a intentarlo más adelante.",
+  "telephony_order_special_order_success": "Número(s) geográfico(s) contratado(s) Por favor, abone su pedido.",
+  "telephony_order_special_range_error": "No se pueden cargar intervalos de números."
+}

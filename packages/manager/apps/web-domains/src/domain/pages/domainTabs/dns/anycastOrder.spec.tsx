@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@/common/utils/test.provider';
-import { describe, expect, vi } from 'vitest';
+import { describe, expect, Mock, vi } from 'vitest';
 import {
   useGetDomainResource,
   useGetDomainZone,
@@ -20,11 +20,11 @@ vi.mock('@/domain/components/AnycastOrder/AnycastOrder', () => ({
 
 describe('Anycast Order Page', () => {
   it('Render Anycast order page loading', () => {
-    (useGetDomainZone as jest.Mock).mockReturnValue({
+    (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: true,
     });
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
       isFetchingDomainZone: true,
     });
@@ -35,11 +35,11 @@ describe('Anycast Order Page', () => {
   });
 
   it('Render Anycast order page', () => {
-    (useGetDomainZone as jest.Mock).mockReturnValue({
+    (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: false,
     });
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    (useGetDomainResource as Mock).mockReturnValue({
       domainResource: serviceInfoDetail,
       isFetchingDomainZone: false,
     });

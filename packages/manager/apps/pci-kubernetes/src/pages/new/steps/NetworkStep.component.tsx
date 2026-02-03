@@ -7,8 +7,8 @@ import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton } from '@ovhcloud/ods-components/react';
 
 import { ModeEnum } from '@/components/network/GatewayModeSelector.component';
-import { isMonoDeploymentZone, isMultiDeploymentZones } from '@/helpers';
-import { DeploymentMode } from '@/types';
+import { isStandardPlan } from '@/helpers';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 import { StepState } from '../hooks/useStep';
 import NetworkClusterStep, { TNetworkFormState } from './NetworkClusterStep.component';
@@ -18,21 +18,23 @@ export type TNetworkStepProps = {
   type: DeploymentMode;
   onSubmit: (networkForm: TNetworkFormState) => void;
   step: StepState;
+  plan: TClusterPlanEnum;
 };
 
-export function NetworkStep({ region, type, onSubmit, step }: Readonly<TNetworkStepProps>) {
+export function NetworkStep({ region, type, onSubmit, step, plan }: Readonly<TNetworkStepProps>) {
   const { t: tStepper } = useTranslation('stepper');
   const [state, setState] = useState<TNetworkFormState>({});
+
   const isGatewayValid =
     !state.gateway?.isEnabled || state.gateway?.mode === ModeEnum.AUTO || state.gateway?.ip;
   const hasPrivateNetwork = state.privateNetwork;
   const isValid =
-    (isMonoDeploymentZone(type) && (!hasPrivateNetwork || isGatewayValid)) ||
-    (isMultiDeploymentZones(type) && hasPrivateNetwork && state.gateway?.isEnabled);
+    (!isStandardPlan(plan) && (!hasPrivateNetwork || isGatewayValid)) ||
+    (isStandardPlan(plan) && hasPrivateNetwork && state.gateway?.isEnabled);
 
   return (
     <>
-      <NetworkClusterStep region={region} type={type} onChange={setState} />
+      <NetworkClusterStep region={region} type={type} onChange={setState} plan={plan} />
       {!step.isLocked && (
         <OsdsButton
           className="mt-8 w-fit"

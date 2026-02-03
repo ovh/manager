@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.1...@ovh-ux/manager-bm-server-components@2.20.2) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-bm-server-components
+
+
+
+
+
+## [2.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.0...@ovh-ux/manager-bm-server-components@2.20.1) (2026-01-27)
+
+
+### Bug Fixes
+
+* **dedicated:** fix backup agent wording on baremetal ([10cd69b](https://github.com/ovh/manager/commit/10cd69bc8bd6b6c3d9c343abbee457bc6ba1cdd6)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
+# [2.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.10...@ovh-ux/manager-bm-server-components@2.20.0) (2026-01-26)
+
+
+### Features
+
+* **dedicated:** add backup-agent on dashboard baremetal ([f80ee0c](https://github.com/ovh/manager/commit/f80ee0c3fabe95aef10da126d868865e9fc071b5)), closes [#BKP-655](https://github.com/ovh/manager/issues/BKP-655)
+
+
+
+
+
+## [2.19.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.9...@ovh-ux/manager-bm-server-components@2.19.10) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4595] ([3dafa65](https://github.com/ovh/manager/commit/3dafa65b3d5ed08b90a9f6e603acfb6ada7bdae3))
+
+
+
+
+
+## [2.19.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.8...@ovh-ux/manager-bm-server-components@2.19.9) (2026-01-14)
+
+
+### Bug Fixes
+
+* **dedicated:** fix iam displayName ([2e88853](https://github.com/ovh/manager/commit/2e8885336d2eb10a0fc8389612e402c455abd37f)), closes [#MANAGER-18367](https://github.com/ovh/manager/issues/MANAGER-18367)
+* **dedicated:** replace wrong distribution wording with OS ([359d392](https://github.com/ovh/manager/commit/359d39260eeb8e2033ace7eb7bab9697a304f065)), closes [#MANAGER-20225](https://github.com/ovh/manager/issues/MANAGER-20225)
+* **i18n:** add missing translations [CDS 4519] ([0342dae](https://github.com/ovh/manager/commit/0342dae1c3002016785fcf3d348b7b240f72c794))
+
+
+
+
+
 ## [2.19.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.19.7...@ovh-ux/manager-bm-server-components@2.19.8) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components

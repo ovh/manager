@@ -6,6 +6,7 @@ import {
   getCommand,
   getNotebook,
   getNotebooks,
+  restartNotebook,
   startNotebook,
   stopNotebook,
   updateNotebook,
@@ -78,6 +79,17 @@ describe('notebook functions', () => {
     });
     expect(apiClient.v6.put).toHaveBeenCalledWith(
       '/cloud/project/projectId/ai/notebook/notebookId/start',
+    );
+  });
+
+  it('should call restartNotebook', async () => {
+    expect(apiClient.v6.put).not.toHaveBeenCalled();
+    await restartNotebook({
+      projectId: 'projectId',
+      notebookId: 'notebookId',
+    });
+    expect(apiClient.v6.put).toHaveBeenCalledWith(
+      '/cloud/project/projectId/ai/notebook/notebookId/restart',
     );
   });
 

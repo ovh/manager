@@ -3,7 +3,7 @@ import '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 
-import routing from './guides.routing';
+import component from './guides.component';
 
 const moduleName = 'ovhManagerTelecomTelephonyBillingAccountGuides';
 
@@ -13,7 +13,7 @@ angular
     'pascalprecht.translate',
     'ui.router',
   ])
-  .config(routing)
+  .component('telecomTelephonyBillingAccountGuides', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 
 export default moduleName;

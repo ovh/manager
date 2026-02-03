@@ -21,11 +21,17 @@
   "billing_autorenew_service_expiration_months": "Expirant dans un mois",
   "billing_autorenew_service_expiration_renew_month": "Renouvelés dans un mois",
   "billing_autorenew_service_actions": "Actions",
+  "billing_autorenew_service_renew_automatic": "Automatique",
+  "billing_autorenew_service_renew_manual": "Manuel",
+  "billing_autorenew_service_renew": "Renouvellement",
+
   "billing_autorenew_criterion_serviceType": "Service",
   "billing_autorenew_criterion_status": "Statut",
   "billing_autorenew_criterion_state": "Disponibilité",
   "billing_autorenew_criterion_expiration": "Date d'effet",
   "billing_autorenew_nic_all": "Tous",
+  "billing_autorenew_criterion_renew": "Renouvellement",
+
   "autorenew_service_deleteAtExpiration_banner": "La résiliation à l’expiration du service « {{ serviceName }} » a bien été prise en compte. Vous pouvez annuler cette opération jusqu’à 24 heures avant expiration du service.",
   "autorenew_service_deleteAtExpiration_banner_cancel": "Annuler la resiliation à l’expiration",
   "billing_autorenew_service": "Type",

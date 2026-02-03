@@ -28,7 +28,20 @@ vi.mock('react-router-dom', async (importOriginal) => {
     useLocation: vi.fn().mockReturnValue({
       pathname: 'pathname',
     }),
-    NavLink: ({ ...params }: NavLinkProps) => <>{params.children}</>,
+    NavLink: (props: NavLinkProps) => {
+      const { children } = props;
+      return (
+        <>
+          {typeof children === 'function'
+            ? children({
+                isActive: false,
+                isPending: false,
+                isTransitioning: false,
+              })
+            : children}
+        </>
+      );
+    },
   };
 });
 

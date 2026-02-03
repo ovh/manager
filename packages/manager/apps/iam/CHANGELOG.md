@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.18...@ovh-ux/manager-iam-app@3.2.19) (2026-02-03)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.2.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.17...@ovh-ux/manager-iam-app@3.2.18) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.2.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.16...@ovh-ux/manager-iam-app@3.2.17) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.2.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.15...@ovh-ux/manager-iam-app@3.2.16) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
+## [3.2.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.14...@ovh-ux/manager-iam-app@3.2.15) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-iam-app
+
+
+
+
+
 ## [3.2.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam-app@3.2.13...@ovh-ux/manager-iam-app@3.2.14) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-iam-app

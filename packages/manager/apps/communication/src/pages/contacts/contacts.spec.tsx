@@ -7,9 +7,6 @@ import ContactsPage from './Contacts.page';
 
 vi.mock('@ovhcloud/ods-components/react', () => ({
   OdsSpinner: () => <div data-testid="ods-spinner" />,
-  OdsButton: vi.fn().mockReturnValue(<div></div>),
-  OdsText: vi.fn().mockReturnValue(<div></div>),
-  OdsLink: vi.fn().mockReturnValue(<div></div>),
 }));
 
 customElements.define(
@@ -51,13 +48,15 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ActionMenu: ({ items }: { items: ActionMenuItem[] }) => (
     <div>{items.map((item) => item.label).join(', ')}</div>
   ),
-  ManagerButton: vi.fn().mockReturnValue(<div></div>),
   useAuthorizationIam: vi.fn().mockReturnValue({
     isAuthorized: true,
     data: {},
   }),
 }));
 
+vi.mock('@ovh-ux/muk', () => ({
+  Button: vi.fn().mockReturnValue(<div></div>),
+}));
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
   Outlet: vi.fn().mockReturnValue(() => <></>),

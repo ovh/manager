@@ -5,18 +5,25 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsFormField, OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldLabel,
+  INPUT_TYPE,
+  Input,
+  MODAL_COLOR,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { deleteZimbraPlatformAccount, getZimbraPlatformListQueryKey } from '@/data/api';
 import { useGenerateUrl } from '@/hooks';
@@ -52,7 +59,7 @@ export const DeleteAllEmailAccountModal = () => {
         pageName: DELETE_EMAIL_ACCOUNT,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:delete_success_message')}</Text>,
         true,
       );
     },
@@ -62,11 +69,11 @@ export const DeleteAllEmailAccountModal = () => {
         pageName: DELETE_EMAIL_ACCOUNT,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:delete_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -102,38 +109,42 @@ export const DeleteAllEmailAccountModal = () => {
   return (
     <Modal
       heading={t('common:delete_email_accounts')}
-      type={ODS_MODAL_COLOR.critical}
-      onDismiss={() => onClose(false)}
-      isOpen
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:delete`)}
-      isPrimaryButtonLoading={step === 1 ? false : isSending}
-      isPrimaryButtonDisabled={step === 2 && !isConfirmed}
-      onPrimaryButtonClick={step === 1 ? () => setStep(2) : handleDeleteClick}
-      primaryButtonTestId="primary-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleCancelClick}
+      type={MODAL_COLOR.critical}
+      onOpenChange={() => onClose(false)}
+      open
+      primaryButton={{
+        label: t('${NAMESPACES.ACTIONS}:delete'),
+        disabled: step === 2 && !isConfirmed,
+        loading: step === 1 ? false : isSending,
+        onClick: step === 1 ? () => setStep(2) : handleDeleteClick,
+        testId: 'primary-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleCancelClick,
+      }}
     >
       <>
         {step === 1 && (
           <div className="flex flex-col">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-1" className="mb-4">
+            <Text preset={TEXT_PRESET.paragraph} data-testid="text-step-1" className="mb-4">
               {t('zimbra_account_delete_all_modal_content_step1')}
-            </OdsText>
+            </Text>
             {selectedEmailAccounts?.map((account) => (
-              <OdsText key={account.id} preset={ODS_TEXT_PRESET.paragraph} className="font-bold">
+              <Text key={account.id} preset={TEXT_PRESET.paragraph} className="font-bold">
                 {account.email}
-              </OdsText>
+              </Text>
             ))}
           </div>
         )}
 
         {step === 2 && (
           <div className="flex select-none flex-col gap-6">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph} data-testid="text-step-2" className="mb-4">
+            <Text preset={TEXT_PRESET.paragraph} data-testid="text-step-2" className="mb-4">
               {t('zimbra_account_delete_all_modal_content_step2')}
-            </OdsText>
-            <OdsFormField className="w-full">
-              <label htmlFor="confirmation-delete" slot="label">
+            </Text>
+            <FormField className="w-full">
+              <FormFieldLabel htmlFor="confirmation-delete" slot="label">
                 <Trans
                   t={t}
                   i18nKey={'zimbra_account_delete_all_confirm_label'}
@@ -141,21 +152,21 @@ export const DeleteAllEmailAccountModal = () => {
                     label: t(`${NAMESPACES.ACTIONS}:delete`),
                   }}
                 />
-              </label>
-              <OdsInput
-                type={ODS_INPUT_TYPE.text}
+              </FormFieldLabel>
+              <Input
+                type={INPUT_TYPE.text}
                 data-testid="input-delete-confirm"
                 name="confirmation-delete"
                 id="confirmation-delete"
                 onPaste={(e) => e.preventDefault()}
-                onOdsChange={(e) =>
+                onChange={(e) =>
                   seIsConfirmed(
                     String(e.target.value).toLocaleLowerCase() ===
                       t(`${NAMESPACES.ACTIONS}:delete`).toLowerCase(),
                   )
                 }
               />
-            </OdsFormField>
+            </FormField>
           </div>
         )}
       </>

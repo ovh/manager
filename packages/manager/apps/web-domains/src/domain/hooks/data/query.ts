@@ -22,6 +22,7 @@ import {
   ServiceType,
   TDomainOption,
   TDomainResource,
+  TCurrentState,
   TTargetSpec,
   TUpdateDomainVariables,
 } from '@/domain/types/domainResource';
@@ -37,6 +38,7 @@ import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
+  getRedirectionEmail,
   getZimbra,
   updateServiceOption,
 } from '@/common/data/api/common.api';
@@ -53,6 +55,7 @@ import {
 } from '@/domain/data/api/hosting';
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -66,11 +69,16 @@ export const useGetDomainResource = (serviceName: string) => {
   };
 };
 
-export const useGetDomainZone = (serviceName: string) => {
+export const useGetDomainZone = (
+  serviceName: string,
+  domainResource: TDomainResource,
+  enabled: boolean = false,
+) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
+    enabled: enabled,
   });
   return {
     domainZone: data,
@@ -158,8 +166,6 @@ export const useTerminateAnycastMutation = (
 
 export const useUpdateDomainResource = (serviceName: string) => {
   const queryClient = useQueryClient();
-  const { addSuccess, addError } = useNotifications();
-  const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const { mutate, isPending, error, reset } = useMutation<
     void,
@@ -167,22 +173,24 @@ export const useUpdateDomainResource = (serviceName: string) => {
     TUpdateDomainVariables
   >({
     mutationKey: ['domain', 'resource', 'update', serviceName],
-    mutationFn: ({
-      checksum,
-      currentTargetSpec,
-      updatedSpec,
-    }: {
-      checksum: string;
-      currentTargetSpec: TTargetSpec;
-      updatedSpec: Partial<TTargetSpec>;
-    }) => {
+    mutationFn: async ({ currentTargetSpec, updatedSpec }) => {
+      await queryClient.refetchQueries({
+        queryKey: ['domain', 'resource', serviceName],
+        exact: true,
+      });
+
+      const domainResource = await queryClient.ensureQueryData({
+        queryKey: ['domain', 'resource', serviceName],
+        queryFn: () => getDomainResource(serviceName),
+      });
+
       const newTargetSpec: TTargetSpec = {
         ...currentTargetSpec,
         ...updatedSpec,
       };
 
       return updateDomainResource(serviceName, {
-        checksum,
+        checksum: domainResource.checksum,
         targetSpec: newTargetSpec,
       });
     },
@@ -254,8 +262,22 @@ export function useEmailService(serviceName: string) {
         // MXplan not found return redirect
       }
 
+      try {
+        const redirection = await getRedirectionEmail(serviceName);
+        if (redirection) {
+          if (redirection.length > 0) {
+            return {
+              serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+              data: redirection[0],
+            };
+          }
+        }
+      } catch (_) {
+        // Redirection not found return nothing
+      }
+
       return {
-        serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION,
+        serviceDetected: AssociatedEmailsServicesEnum.NOTHING,
         data: serviceName,
       };
     },
@@ -315,10 +337,12 @@ export function useOrderFreeHosting() {
 export function useInitialOrderFreeHosting(
   serviceName: string,
   subsidiary: Subsidiary,
+  pricingMode: string,
 ) {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
-    queryFn: () => initialOrderFreeHosting(serviceName, subsidiary),
+    queryFn: () =>
+      initialOrderFreeHosting(serviceName, subsidiary, pricingMode),
     enabled: false,
   });
 
@@ -356,22 +380,75 @@ export function useGetSubDomainsAndMultiSites(serviceNames: string[]) {
   });
 }
 
-export const useGetDnssecStatus = (serviceName: string) => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['domain', 'zone', 'dnssec', serviceName],
-    queryFn: () => getServiceDnssec(serviceName),
+export const useGetDnssecStatus = (
+  resourceCurrentState: TCurrentState,
+  resourceTargetSpec: TTargetSpec,
+): { dnssecStatus: DnssecStatusEnum; isDnssecStatusLoading: boolean } => {
+  if (!resourceCurrentState.dnssecConfiguration?.dnssecSupported) {
+    return {
+      dnssecStatus: DnssecStatusEnum.NOT_SUPPORTED,
+      isDnssecStatusLoading: false,
+    };
+  }
+
+  if (
+    resourceCurrentState?.dnsConfiguration?.configurationType ===
+      DnsConfigurationTypeEnum.EXTERNAL ||
+    resourceCurrentState?.dnsConfiguration?.configurationType ===
+      DnsConfigurationTypeEnum.MIXED
+  ) {
+    // If the configuration is not hosted by OVH, check the registry declaration to know whether DNSSEC is activated
+    let status: DnssecStatusEnum;
+    const isCurrentDsData =
+      resourceCurrentState?.dnssecConfiguration?.dsData?.length > 0;
+    const isTargetDsData =
+      resourceTargetSpec?.dnssecConfiguration?.dsData?.length > 0;
+
+    if (isCurrentDsData) {
+      if (isTargetDsData) {
+        // DNSSEC is enabled and not being deleted
+        status = DnssecStatusEnum.ENABLED;
+      } else {
+        // DNSSEC is enabled and disabling has been asked
+        status = DnssecStatusEnum.DISABLE_IN_PROGRESS;
+      }
+    }
+
+    if (!isCurrentDsData) {
+      if (isTargetDsData) {
+        // DNSSEC is not enabled yet, but enabling has been asked
+        status = DnssecStatusEnum.ENABLE_IN_PROGRESS;
+      } else {
+        // DNSSEC is not enabled and activation has not been asked
+        status = DnssecStatusEnum.DISABLED;
+      }
+    }
+
+    return {
+      dnssecStatus: status,
+      isDnssecStatusLoading: false,
+    };
+  }
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['domain', 'zone', 'dnssec', resourceCurrentState.name],
+    queryFn: () => getServiceDnssec(resourceCurrentState.name),
     retry: false,
   });
 
+  // This call ends up in error if the customer has not registered their DNS zone yet.
+  // In this case, the DNSSEC status should be "DISABLED"
+  const dnssecStatus = isError ? DnssecStatusEnum.DISABLED : data?.status;
+
   return {
-    dnssecStatus: data,
+    dnssecStatus,
     isDnssecStatusLoading: isLoading,
   };
 };
 
 export const useUpdateDnssecService = (
   serviceName: string,
-  action: DnssecStatusEnum,
+  isEnableDnssecAction: boolean,
 ) => {
   const queryClient = useQueryClient();
   const { addSuccess, addError } = useNotifications();
@@ -379,7 +456,7 @@ export const useUpdateDnssecService = (
 
   const { mutate, isPending } = useMutation({
     mutationFn: () => {
-      if (action === DnssecStatusEnum.ENABLED) {
+      if (isEnableDnssecAction) {
         return activateServiceDnssec(serviceName);
       }
 
@@ -391,10 +468,10 @@ export const useUpdateDnssecService = (
       });
       addSuccess(t('domain_tab_general_information_dnssec_result'));
     },
-    onError: (error: Error) => {
+    onError: (error: DomainUpdateApiError) => {
       addError(
         t('domain_tab_general_information_dnssec_error', {
-          error: error.message,
+          error: error.response.data.message,
         }),
       );
     },
@@ -406,10 +483,11 @@ export const useUpdateDnssecService = (
   };
 };
 
-export const useGetDomainAuthInfo = (serviceName: string) => {
+export const useGetDomainAuthInfo = (serviceName: string, fetch: boolean) => {
   const { data, isLoading } = useQuery({
     queryKey: ['domain', 'service', serviceName, 'authInfo'],
     queryFn: () => getDomainAuthInfo(serviceName),
+    enabled: fetch,
   });
 
   return {
@@ -421,7 +499,7 @@ export const useGetDomainAuthInfo = (serviceName: string) => {
 export const useTransferTag = (serviceName: string, tag: string) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess } = useNotifications();
 
   const { mutate, isPending, error } = useMutation({
     mutationFn: () => transferTag(tag, serviceName),

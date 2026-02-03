@@ -12,7 +12,10 @@ import uniq from 'lodash/uniq';
 import sortBy from 'lodash/sortBy';
 
 import { SPECIAL_NUMBER_PREFIX } from '../../special/repayments/repayments.constants';
-import { REGEX } from '../portabilities/portabilities.constants';
+import {
+  REGEX,
+  PORTABILITY_STREET_NUMBER_EXTRA_ENUM,
+} from '../portabilities/portabilities.constants';
 
 export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtrl(
   $q,
@@ -66,6 +69,7 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
   function init() {
     self.canOrderSpecialPortability = canOrderSpecialPortability;
     self.goToSvaWallet = goToSvaWallet;
+    self.regex = REGEX;
 
     self.order = {
       // default values
@@ -84,6 +88,10 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
       autoPay: false,
       addressTooLong: false,
     };
+    self.autoCompleteCity = null;
+    self.autoCompleteStreetName = null;
+    self.countryCode = 'fr';
+    self.streetNumberExtraEnum = PORTABILITY_STREET_NUMBER_EXTRA_ENUM.OTHER;
 
     self.stepsList = ['number', 'contact', 'config', 'summary'];
     self.step = 'number';
@@ -215,12 +223,15 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     const number = self.normalizeNumber(self.order.callNumber);
     if (startsWith(number, '0033')) {
       self.order.country = 'france';
+      self.countryCode = 'fr';
     } else if (startsWith(number, '0032')) {
       self.order.country = 'belgium';
       self.order.rio = null;
+      self.countryCode = 'be';
     } else if (startsWith(number, '0041')) {
       self.order.country = 'switzerland';
       self.order.rio = null;
+      self.countryCode = 'ch';
     }
 
     // handle special number
@@ -236,6 +247,9 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
     self.order.translatedCountry = $translate.instant(
       `telephony_alias_portability_order_contact_country_${self.order.country}`,
     );
+    self.streetNumberExtraEnum =
+      PORTABILITY_STREET_NUMBER_EXTRA_ENUM[self.countryCode.toUpperCase()] ||
+      PORTABILITY_STREET_NUMBER_EXTRA_ENUM.OTHER;
   };
 
   self.onChooseRedirectToLine = function onChooseRedirectToLine(result) {
@@ -371,6 +385,75 @@ export default /* @ngInject */ function TelecomTelephonyAliasPortabilityOrderCtr
         TucToast.error(get(err, 'data.message', ''));
         return $q.reject(err);
       });
+  };
+
+  self.onZipcodeChange = function() {
+    // Fetch cities for given post code
+    if (self.order.zip?.length >= 3) {
+      $q.resolve(
+        TelephonyPortabilitiesService.getCityAvailable(
+          self.order.zip,
+          self.countryCode,
+        ),
+      ).then((cities) => {
+        // automatically select city if there is only one
+        if (cities?.length === 1) {
+          self.order.city = head(cities).name;
+          self.getStreetNameList(head(cities).administrationCode);
+        }
+
+        self.autoCompleteCity =
+          cities?.length > 1
+            ? cities.sort((a, b) => {
+                if (a.name < b.name) {
+                  return -1;
+                }
+                if (a.name > b.name) {
+                  return 1;
+                }
+                return 0;
+              })
+            : [];
+      });
+    }
+  };
+
+  self.onCityNameChange = function(modelValue) {
+    self.order.city = modelValue?.name;
+    self.getStreetNameList(modelValue?.administrationCode);
+    self.order.streetName = '';
+  };
+
+  self.onStreetNameChange = function(modelValue) {
+    self.order.streetName = modelValue.streetName;
+  };
+
+  self.getStreetNameList = function(inseeCode) {
+    // Available only if it is a FR service
+    if (self.countryCode === 'fr') {
+      // we have to poll because api call is not synchronous :(
+      self
+        .getStreetNameListFunction(inseeCode)
+        .then((streets) => {
+          self.autoCompleteStreetName =
+            streets?.result?.length > 0 ? streets.result : [];
+        })
+        .catch(() => null);
+    }
+  };
+
+  self.getStreetNameListFunction = function(inseeCode) {
+    return TelephonyPortabilitiesService.getStreetsAvailable(inseeCode).then(
+      (streets) => {
+        if (streets.status === 'pending') {
+          return self.$timeout(
+            () => self.getStreetNameListFunction(inseeCode),
+            500,
+          );
+        }
+        return streets;
+      },
+    );
   };
 
   self.submitOrder = function submitOrder() {

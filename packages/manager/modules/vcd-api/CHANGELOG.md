@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.11.2...@ovh-ux/manager-module-vcd-api@0.11.3) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.11.1...@ovh-ux/manager-module-vcd-api@0.11.2) (2026-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.11.0...@ovh-ux/manager-module-vcd-api@0.11.1) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-module-vcd-api
+
+
+
+
+
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.10.0...@ovh-ux/manager-module-vcd-api@0.11.0) (2026-01-20)
+
+
+### Features
+
+* **vcfaas:** setting blocks ip from generate informations tab ([aee7e8b](https://github.com/ovh/manager/commit/aee7e8b4b10ff55ed07ca73dd582940a043d891e)), closes [#MANAGER-20163](https://github.com/ovh/manager/issues/MANAGER-20163)
+
+
+
+
+
 # [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.9.7...@ovh-ux/manager-module-vcd-api@0.10.0) (2026-01-12)
 
 

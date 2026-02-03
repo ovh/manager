@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
-
+import { useDataApi } from '@ovh-ux/muk';
 import { getDSVrack } from '@/data/api/vrack';
 import { getBillingInfo } from '@/data/api/billingInfo';
 import { BillingInfo } from '@/data/types/billing.type';
@@ -25,7 +24,7 @@ type FullDedicatedServerType = DedicatedServer & {
 const getAsyncData = {
   vrack: (name: string) =>
     getDSVrack(name)
-      .then(({ data = [] }) => data[0])
+      .then((data) => data[0])
       .catch(() => {}),
   billing: (name: string) =>
     getBillingInfo(name)
@@ -68,11 +67,13 @@ export default ({ totalCount, columns }: ExportCsvDataType) => {
     },
   });
 
-  const { flattenData, totalCount: newTotalCount } = useResourcesIcebergV6({
+  const { flattenData, totalCount: newTotalCount } = useDataApi({
+    version: 'v6',
+    iceberg: true,
+    enabled: true,
     pageSize: totalCount,
-    columns,
     route: '/dedicated/server',
-    queryKey: ['dedicated-servers', '/dedicated/server'],
+    cacheKey: ['dedicated-servers', '/dedicated/server'],
   });
 
   const [csvColumns, setCsvColumns] = useState<string[][]>();
@@ -94,7 +95,7 @@ export default ({ totalCount, columns }: ExportCsvDataType) => {
     if (flattenData) {
       (async () => {
         const [vrackPromises, billingInfoPromises] = flattenData.reduce(
-          ([prevVrack, prevBillingInfo], { name }) => [
+          ([prevVrack, prevBillingInfo], { name }: { name: string }) => [
             [...prevVrack, () => getAsyncData.vrack(name)],
             [...prevBillingInfo, () => getAsyncData.billing(name)],
           ],

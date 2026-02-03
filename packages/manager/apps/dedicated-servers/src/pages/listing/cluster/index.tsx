@@ -5,17 +5,14 @@ import { OdsButton, OdsLink } from '@ovhcloud/ods-components/react';
 import { ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   Datagrid,
-  DataGridTextCell,
-  ErrorBanner,
-  useResourcesIcebergV6,
+  useDataApi,
   DatagridColumn,
-  ColumnSort,
-  useDataGrid,
   RedirectionGuard,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { SortingState } from '@tanstack/react-table';
 import useLinkUtils, { UrlEntry } from '@/hooks/useLinkUtils';
 import { orderLinks } from '@/data/constants/orderLinks';
 import { Cluster } from '@/data/types/cluster.type';
@@ -28,10 +25,13 @@ export default function Listing() {
   const { t } = useTranslation('cluster');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const links = useLinkUtils<UrlEntry>(orderLinks);
-  const { sorting, setSorting } = useDataGrid({
-    id: 'iam.displayName',
-    desc: false,
-  });
+  const [sorting, setSorting] = useState<SortingState>([
+    {
+      id: columns[0]?.iam?.displayName || '',
+      desc: false,
+    },
+  ]);
+
   const {
     flattenData,
     isError,
@@ -43,19 +43,22 @@ export default function Listing() {
     isSuccess,
     search,
     filters,
-  } = useResourcesIcebergV6<Cluster[]>({
+  } = useDataApi<Cluster[]>({
+    version: 'v6',
+    iceberg: true,
+    enabled: true,
     columns,
     route: `/dedicated/cluster`,
-    queryKey: ['dedicated-servers', `/dedicated/cluster`],
+    cacheKey: ['dedicated-servers', `/dedicated/cluster`],
   });
 
   const sortClusterListing = (
-    cluSorting: ColumnSort,
+    cluSorting: SortingState,
     originalList: Cluster[] = [],
   ) => {
     const clusterList = [...originalList];
     clusterList.sort((item1, item2) => {
-      switch (cluSorting?.id) {
+      switch (cluSorting[0]?.id) {
         case 'iam.displayName':
           return (item1.iam?.displayName).localeCompare(item2.iam?.displayName);
         case 'model':
@@ -67,7 +70,7 @@ export default function Listing() {
       }
     });
 
-    return cluSorting?.desc ? clusterList.reverse() : clusterList;
+    return cluSorting[0]?.desc ? clusterList.reverse() : clusterList;
   };
 
   const clusterColumns: DatagridColumn<Cluster>[] = [
@@ -78,8 +81,9 @@ export default function Listing() {
       enableHiding: false,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_name'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>
+      header: t('dedicated_clusters_name'),
+      cell: ({ row: { original: item } }) => (
+        <div>
           <OdsLink
             color="primary"
             href={`#/cluster/${item.id}`}
@@ -92,7 +96,7 @@ export default function Listing() {
             }}
             label={t(item.iam.displayName)}
           ></OdsLink>
-        </DataGridTextCell>
+        </div>
       ),
     },
     {
@@ -102,9 +106,8 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_model'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>{t(item.model)}</DataGridTextCell>
-      ),
+      header: t('dedicated_clusters_model'),
+      cell: ({ row: { original: item } }) => <div>{t(item.model)}</div>,
     },
     {
       id: 'region',
@@ -113,20 +116,13 @@ export default function Listing() {
       enableHiding: true,
       type: FilterTypeCategories.String,
       label: t('dedicated_clusters_region'),
-      cell: (item: Cluster) => (
-        <DataGridTextCell>{t(item.region)}</DataGridTextCell>
-      ),
+      header: t('dedicated_clusters_region'),
+      cell: ({ row: { original: item } }) => <div>{t(item.region)}</div>,
     },
   ];
 
   if (isError) {
-    const { response }: any = error;
-    const errorObj = {
-      data: error,
-      headers: response.headers,
-      status: response.status,
-    };
-    return <ErrorBanner error={errorObj} />;
+    return <ErrorComponent error={error as ApiError} />;
   }
 
   const TopbarCTA = () => (
@@ -148,23 +144,21 @@ export default function Listing() {
       {!isError && (
         <RedirectionGuard
           isLoading={isLoading || !flattenData}
-          condition={isSuccess && flattenData?.length === 0}
+          condition={flattenData && flattenData?.length === 0}
           route={urls.onboarding}
-          isError={isError}
         >
           <React.Suspense>
             {columns && (
               <Datagrid
                 columns={clusterColumns}
-                items={sortClusterListing(
+                data={sortClusterListing(
                   sorting,
                   (flattenData as unknown) as Cluster[],
                 )}
-                totalItems={totalCount || 0}
+                totalCount={totalCount || 0}
                 hasNextPage={hasNextPage && !isLoading}
                 onFetchNextPage={fetchNextPage}
-                sorting={sorting}
-                onSortChange={setSorting}
+                sorting={{ sorting, setSorting }}
                 isLoading={isLoading}
                 filters={filters}
                 search={search}

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-sap-features-hub-app",
-  "version": "0.6.9",
+  "version": "0.6.16",
   "private": true,
   "description": "Manage SAP workloads in HostedPrivateCloud",
   "repository": {
@@ -13,17 +13,19 @@
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "TZ=UTC manager-test run --coverage",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
     "test": "TZ=UTC manager-test run"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
-    "@ovh-ux/manager-common-translations": "^0.27.0",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "^0.5.0",
     "@ovh-ux/manager-react-components": "^2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.14.3",
+    "@ovh-ux/manager-react-core-application": "^0.15.3",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",
     "@ovhcloud/ods-components": "^18.6.4",
@@ -44,7 +46,8 @@
     "zod": "3.25.76"
   },
   "devDependencies": {
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@types/file-saver": "2.0.7",

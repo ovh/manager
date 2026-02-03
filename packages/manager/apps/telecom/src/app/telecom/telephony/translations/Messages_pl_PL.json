@@ -139,5 +139,6 @@
   "telephony_status_label_deleted": "Usunięto",
   "telephony_status_label_enabled": "OK",
   "telephony_status_label_expired": "Wygasła",
-  "telephony_view_billing_account_label": "Szczegóły grupy płatności"
+  "telephony_view_billing_account_label": "Szczegóły grupy płatności",
+  "telephony_rio_label": "RIO (Dowód tożsamości operatora)"
 }

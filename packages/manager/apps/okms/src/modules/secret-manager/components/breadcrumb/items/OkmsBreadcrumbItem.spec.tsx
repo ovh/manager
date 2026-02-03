@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { createErrorResponseMock, renderWithClient } from '@/common/utils/tests/testUtils';
@@ -38,7 +38,7 @@ describe('OkmsBreadcrumbItem test suite', () => {
   it('should display okms displayname and have the correct href link', async () => {
     // GIVEN
     mockUseOkmsById.mockReturnValue({
-      data: { data: mockedOkms },
+      data: mockedOkms,
       isPending: false,
       error: null,
     });
@@ -47,15 +47,11 @@ describe('OkmsBreadcrumbItem test suite', () => {
     renderWithClient(<OkmsBreadcrumbItem />);
 
     const breadcrumbItem = screen.getByTestId(BREADCRUMB_ITEM_TEST_IDS.OKMS);
+    const link = within(breadcrumbItem).getByRole('link');
 
     // THEN
-    await waitFor(() =>
-      expect(breadcrumbItem).toHaveAttribute('label', mockedOkms.iam.displayName),
-    );
-    expect(breadcrumbItem).toHaveAttribute(
-      'href',
-      SECRET_MANAGER_ROUTES_URLS.secretList(mockedOkms.id),
-    );
+    await waitFor(() => expect(link).toHaveTextContent(mockedOkms.iam.displayName));
+    expect(link).toHaveAttribute('href', SECRET_MANAGER_ROUTES_URLS.secretList(mockedOkms.id));
   });
 
   it('should display okmsId when the api call fails', async () => {
@@ -71,9 +67,10 @@ describe('OkmsBreadcrumbItem test suite', () => {
     renderWithClient(<OkmsBreadcrumbItem />);
 
     const breadcrumbItem = screen.getByTestId(BREADCRUMB_ITEM_TEST_IDS.OKMS);
+    const link = within(breadcrumbItem).getByRole('link');
 
     // THEN
-    await waitFor(() => expect(breadcrumbItem).toHaveAttribute('label', mockedOkms.id));
+    await waitFor(() => expect(link).toHaveTextContent(mockedOkms.id));
   });
 
   it('should display a skeleton while loading', async () => {

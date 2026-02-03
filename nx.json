@@ -3,6 +3,11 @@
   "cacheDirectory": ".nx/cache",
   "defaultBase": "master",
   "plugins": [],
+  "pluginsConfig": {
+    "@nx/js": {
+      "projectsAffectedByDependencyUpdates": "auto"
+    }
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
@@ -16,14 +21,25 @@
       "!{projectRoot}/**/*.test.tsx"
     ],
     "sharedGlobals": [
-      "{workspaceRoot}/package.json",
-      "{workspaceRoot}/nx.json",
-      "{workspaceRoot}/turbo.json",
       "{workspaceRoot}/yarn.lock",
       "{workspaceRoot}/pnpm-lock.yaml"
     ],
     "buildEnv": [
       { "env": "VERSION" }
+    ],
+    
+    "lintGlobals": [
+      "{workspaceRoot}/.eslintrc*",
+      "{workspaceRoot}/.eslintignore",
+      "{workspaceRoot}/eslint.config.*",
+
+      "{workspaceRoot}/.stylelintrc*",
+      "{workspaceRoot}/.stylelintignore",
+
+      "{workspaceRoot}/.htmlhintrc*",
+
+      "{workspaceRoot}/.remarkrc*",
+      "{workspaceRoot}/.remarkignore"
     ]
   },
   "targetDefaults": {
@@ -68,16 +84,17 @@
       "dependsOn": ["^dev"],
       "cache": false
     },
-
-    "lint:modern": {
-      "dependsOn": ["^lint:modern", "^build"],
-      "inputs": ["default", "^default"],
+    
+    "lint": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default", "lintGlobals"],
+      "outputs": [],
       "cache": true
     },
-
-    "lint:modern:fix": {
-      "dependsOn": ["^lint:modern", "^build"],
-      "inputs": ["default", "^default"],
+    "lint:fix": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default", "lintGlobals"],
+      "outputs": [],
       "cache": true
     }
   }

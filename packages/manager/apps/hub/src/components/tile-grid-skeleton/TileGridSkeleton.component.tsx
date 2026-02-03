@@ -14,7 +14,7 @@ export default function TileGridSkeleton() {
         className="my-6"
       />
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-3 mb-4"
+        className="mb-4 grid grid-cols-1 gap-5 pt-3 md:grid-cols-2 lg:grid-cols-3"
         data-testid="tile_grid_content_skeletons"
       >
         <TileSkeleton />

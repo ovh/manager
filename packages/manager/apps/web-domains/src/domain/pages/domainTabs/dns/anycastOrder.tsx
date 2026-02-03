@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import {
@@ -21,8 +21,6 @@ import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { UserLocales } from '@ovh-ux/manager-config';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
-import { getLanguageKey } from '@/domain/utils/utils';
 import DnsZoneOrder from '@/domain/components/AnycastOrder/DnsZoneOrder';
 import AnycastOrderComponent from '@/domain/components/AnycastOrder/AnycastOrder';
 import {
@@ -37,22 +35,25 @@ import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import config from '@/web-domains.config';
 import { BreadcrumbAnyCast } from './breadcrumb';
 import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function AnycastOrder() {
-  const { t, i18n } = useTranslation(['domain', 'web-domains/error']);
+  const { t } = useTranslation(['domain', 'web-domains/error']);
   const { serviceName } = useParams<{ serviceName: string }>();
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
+  );
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    true,
   );
   const [dnssecSelected, setDnssecSelected] = useState<boolean>(false);
   const [orderURL, setOrderURL] = useState<string>('');
 
   const navigate = useNavigate();
-  const langCode = getLanguageKey(i18n.language);
   const context = useContext(ShellContext);
-  const ovhSubsidiary = context.environment.getUser()
-    .ovhSubsidiary as OvhSubsidiary;
+  const { ovhSubsidiary } = context.environment.getUser();
   const userLocal = context.environment.getUserLocale() as UserLocales;
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
   const location = useLocation();
@@ -68,6 +69,8 @@ export default function AnycastOrder() {
     )}`,
   );
 
+  const guideUrls = useLinks(ovhSubsidiary);
+
   const region = context.environment.getRegion();
   const orderBaseUrl = getExpressOrderURL(region, ovhSubsidiary);
   const onCheckBoxChange = () => {
@@ -76,7 +79,7 @@ export default function AnycastOrder() {
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: GUIDES_LIST.domains.url[langCode],
+      href: guideUrls.DOMAINS_LINK,
       target: '_blank',
       label: t('domain_guide_button_label'),
     },
@@ -141,7 +144,7 @@ export default function AnycastOrder() {
             )}
             <AnycastOrderComponent
               displayTitle={!domainZone}
-              subsidiary={ovhSubsidiary}
+              subsidiary={ovhSubsidiary as OvhSubsidiary}
               userLocal={userLocal}
             />
           </Order.Configuration>

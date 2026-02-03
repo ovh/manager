@@ -1,7 +1,7 @@
 {
   "autorenew_service_update_modal_title": "Verlängerung konfigurieren",
   "autorenew_service_update_modal_description": "Definieren Sie ein Verlängerungsintervall für Ihren Dienst: {{ serviceName }} ",
-  "autorenew_service_update_modal_period_manual": "Keine Frequenz (manuelle Verlängerung)",
+  "autorenew_service_update_modal_period_manual": "Manuelle Verlängerung",
   "autorenew_service_update_modal_period_every_month": "Jeden Monat",
   "autorenew_service_update_modal_period_every_x_months": "Alle {{ months }} Monate",
   "autorenew_service_update_modal_period_every_year": "Jedes Jahr",

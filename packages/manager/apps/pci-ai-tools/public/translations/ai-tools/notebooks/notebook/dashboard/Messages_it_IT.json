@@ -22,5 +22,14 @@
   "addLabelTitle": "Aggiungere un label",
   "keyFieldLabel": "Chiave",
   "valueFieldLabel": "Valore",
-  "deleteNotebookTooltip": "Il notebook deve essere in stato “Arrestato”"
+  "deleteNotebookTooltip": "Il notebook deve essere in stato “Arrestato”",
+  "activateAutoRestartButton": "Attivare il riavvio automatico",
+  "deactivateAutoRestartButton": "Disattivare il riavvio automatico",
+  "autoRestartLabel": "Riavvio automatico",
+  "autoRestartEnabled": "Attivato",
+  "autoRestartDisabled": "Disattivato",
+  "autoRestartToastSuccessTitle": "Riavvio automatico aggiornato",
+  "autoRestartToastSuccessDescription": "Il parametro di riavvio automatico è stato aggiornato per {{name}}",
+  "disabledRestartButtonTooltip": "Il riavvio automatico non può essere modificato quando il notebook è arrestato.",
+  "modifyLabel": "Modificare"
 }

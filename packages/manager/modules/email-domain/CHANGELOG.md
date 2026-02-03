@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.16...@ovh-ux/manager-email-domain@1.11.17) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-email-domain
+
+
+
+
+
+## [1.11.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.15...@ovh-ux/manager-email-domain@1.11.16) (2026-01-23)
+
+
+### Bug Fixes
+
+* **web:** remove dubplicate import on email ([0b426d5](https://github.com/ovh/manager/commit/0b426d51091832f22734885226dbe330d2e23e56)), closes [#INC0184652](https://github.com/ovh/manager/issues/INC0184652)
+
+
+
+
+
+## [1.11.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.14...@ovh-ux/manager-email-domain@1.11.15) (2026-01-22)
+
+
+### Bug Fixes
+
+* **web:** remove duplicated directive on email ([e034be7](https://github.com/ovh/manager/commit/e034be7f9879d9c3140343e19e550222d497428e)), closes [#INC0184072](https://github.com/ovh/manager/issues/INC0184072)
+
+
+
+
+
 ## [1.11.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.13...@ovh-ux/manager-email-domain@1.11.14) (2025-12-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-email-domain

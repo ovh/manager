@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.43...@ovh-ux/manager-pci-gateway-app@0.26.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [0.25.43](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.42...@ovh-ux/manager-pci-gateway-app@0.25.43) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.25.42](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.41...@ovh-ux/manager-pci-gateway-app@0.25.42) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
+## [0.25.41](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.40...@ovh-ux/manager-pci-gateway-app@0.25.41) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app
+
+
+
+
+
 ## [0.25.40](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.25.39...@ovh-ux/manager-pci-gateway-app@0.25.40) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

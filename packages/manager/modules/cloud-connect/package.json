@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-cloud-connect",
-  "version": "1.27.0",
+  "version": "1.27.1",
   "private": true,
   "description": "OVHcloud CloudConnect product",
   "repository": {
@@ -11,10 +11,17 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "./src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "date-fns": "^3.6.0",
     "lodash": "^4.17.14"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

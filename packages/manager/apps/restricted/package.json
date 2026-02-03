@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.14.7",
+  "version": "0.14.8",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {
@@ -12,13 +12,14 @@
   "author": "OVH SAS",
   "scripts": {
     "build": "tsc && vite build",
-    "lint": "eslint ./src",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "tsc && vite build",
     "start": "tsc && vite"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-sso": "^0.7.1",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-sso": "^0.7.2",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@ovh-ux/request-tagger": "^0.6.0",
     "@ovh-ux/ui-kit": "^6.10.5",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@ovh-ux/manager-dev-server-config": "^6.2.3",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@types/dompurify": "^2.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-legacy": "^1.3.2",

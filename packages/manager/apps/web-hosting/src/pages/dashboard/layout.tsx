@@ -39,11 +39,12 @@ import {
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { EmailOptionType } from '@/data/types/product/service';
 import { DashboardTab } from '@/data/types/product/ssl';
-import { useEmailsUrl, useHostingUrl } from '@/hooks';
+import { useHostingUrl } from '@/hooks';
 import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
+import { useEmailsUrl } from '@/hooks/useEmailsUrl';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
-import { GUIDE_URL } from '../websites/websites.constants';
+import { GUIDE_URL } from '../websites/constant/websites.constants';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
@@ -155,13 +156,14 @@ export default function Layout() {
     [
       t,
       generalUrl,
+      availability,
       multisiteUrl,
       sslPathname,
+      moduleUrl,
       logsUrl,
       ftpUrl,
       databaseUrl,
       taskUrl,
-      moduleUrl,
       automatedEmailsUrl,
       cronUrl,
       seoUrl,

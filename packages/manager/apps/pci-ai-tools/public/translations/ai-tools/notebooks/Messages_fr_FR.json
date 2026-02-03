@@ -15,7 +15,11 @@
   "tableHeaderStatus": "Statut",
   "tableActionManage": "Gérer",
   "tableActionStart": "Démarrer",
+  "tableActionRestart": "Redémarrer",
   "tableActionStop": "Arrêter",
+  "shutdownLabel": "Arrêt le {{timeout}}",
+  "restartLabel": "Redémarrage le {{timeout}}",
+  "timeOutLabel": "Expiration",
   "tableActionDelete": "Supprimer",
   "deleteTableTooltip": "Le notebook doit être en statut arrêté"
 }

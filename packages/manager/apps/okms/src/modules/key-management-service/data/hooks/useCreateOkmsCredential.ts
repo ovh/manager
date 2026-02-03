@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { createOkmsCredential } from '../api/okmsCredential';
 import { getOkmsCredentialsQueryKey } from './useOkmsCredential';
@@ -30,7 +30,7 @@ export const useCreateOkmsCredential = ({
   const { mutate: createKmsCredential, isPending } = useMutation({
     mutationFn: async (data: OkmsCredentialCreation) => {
       const okmsCredential = await createOkmsCredential({ okmsId, data });
-      return okmsCredential.data;
+      return okmsCredential;
     },
     onSuccess: async (credential: OkmsCredential) => {
       await queryClient.invalidateQueries({

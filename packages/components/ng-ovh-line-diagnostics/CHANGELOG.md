@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.3.7](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.3.6...@ovh-ux/ng-ovh-line-diagnostics@5.3.7) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/ng-ovh-line-diagnostics
+
+
+
+
+
 ## [5.3.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-line-diagnostics@5.3.5...@ovh-ux/ng-ovh-line-diagnostics@5.3.6) (2025-11-16)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-line-diagnostics

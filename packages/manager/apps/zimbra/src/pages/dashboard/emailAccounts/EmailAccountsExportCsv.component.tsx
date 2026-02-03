@@ -4,19 +4,20 @@ import { download, generateCsv, mkConfig } from 'export-to-csv';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_ICON_ALIGNMENT,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_LINK_ICON_ALIGNMENT,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsLink, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  Icon,
+  Link,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerButton, useBytes, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useBytes, useNotifications } from '@ovh-ux/muk';
+import { Button } from '@ovh-ux/muk';
 
 import { AccountType } from '@/data/api';
 import { SlotWithService, useAccounts, usePlatform, useSlotsWithService } from '@/data/hooks';
@@ -277,14 +278,10 @@ export const EmailAccountsExportCsv = () => {
         <div>
           {t('common:export_success')}
 
-          <OdsLink
-            href={url}
-            download={csvConfig.filename}
-            label={t('common:export_download_manually')}
-            className="ml-4"
-            icon={ODS_ICON_NAME.download}
-            iconAlignment={ODS_LINK_ICON_ALIGNMENT.right}
-          />
+          <Link href={url} download={csvConfig.filename} className="ml-4">
+            {t('common:export_download_manually')}
+            <Icon name={ICON_NAME.download} />
+          </Link>
         </div>
       );
       addSuccess(successMessage);
@@ -292,11 +289,11 @@ export const EmailAccountsExportCsv = () => {
       setIsCSVLoading(false);
     } catch (err) {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:export_error', {
             error: err,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     }
@@ -330,20 +327,22 @@ export const EmailAccountsExportCsv = () => {
   ]);
 
   return (
-    <ManagerButton
+    <Button
       id="export-csv"
-      color={ODS_BUTTON_COLOR.primary}
-      size={ODS_BUTTON_SIZE.sm}
-      variant={ODS_BUTTON_VARIANT.outline}
+      color={BUTTON_COLOR.primary}
+      size={BUTTON_SIZE.sm}
+      variant={BUTTON_VARIANT.outline}
       urn={platformUrn}
       iamActions={[IAM_ACTIONS.account.get, IAM_ACTIONS.slot.get]}
-      isLoading={isCSVLoading}
+      loading={isCSVLoading}
       onClick={handleExportAllWithExportToCsv}
       data-testid="export-csv"
-      icon={ODS_ICON_NAME.download}
-      label={t(`${NAMESPACES.ACTIONS}:export_as`, { format: 'CSV' })}
-      isDisabled={isCSVLoading}
-      iconAlignment={ODS_BUTTON_ICON_ALIGNMENT.right}
-    />
+      disabled={isCSVLoading}
+    >
+      <>
+        {t(`${NAMESPACES.ACTIONS}:export_as`, { format: 'CSV' })}
+        <Icon name={ICON_NAME.download} />
+      </>
+    </Button>
   );
 };

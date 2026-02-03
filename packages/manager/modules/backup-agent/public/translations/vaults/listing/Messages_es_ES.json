@@ -1,0 +1,14 @@
+{
+  "home": "Inicio",
+  "order": "Contratar",
+  "open": "Abrir el panel de control",
+  "title": "Lista",
+  "resource_name_label": "Nombre",
+  "location_label": "Localización",
+  "region_label": "Región",
+  "buckets_label": "Número de buckets",
+  "status_label": "Estado",
+  "order_vault": "Contratar un vault",
+  "more_action": "Acción adicional",
+  "vaults_tab_description": "Sus Vaults se basan en el Almacenamiento de Objetos de OVHcloud. Están configurados con cifrado e inmutabilidad (14 días) para datos seguros e inalterados. Para saber más, consulte la <Link>documentación del Agente de Copia de Seguridad de OVHcloud</Link>"
+}

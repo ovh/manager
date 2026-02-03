@@ -7,17 +7,9 @@ export default /* @ngInject */ ($stateProvider) => {
     component: 'billingConfirmTermination',
     resolve: {
       cancelResiliationUrl: /* @ngInject */ ($state, serviceId) =>
-        $state.href('billing.autorenew.cancelResiliation', {
+        $state.href('billing.autorenew.services.cancel-resiliation', {
           serviceId,
         }),
-      engagement: /* @ngInject */ ($http, service) =>
-        (service.canHaveEngagement()
-          ? $http
-              .get(`/services/${service.id}/billing/engagement`)
-              .then((data) => ({ engagement: data }))
-              .catch(() => ({ engagement: null }))
-          : Promise.resolve({ engagement: null })
-        ).then(({ engagement }) => engagement),
       goBack: /* @ngInject */ (
         $translate,
         cancelResiliationUrl,
@@ -46,8 +38,6 @@ export default /* @ngInject */ ($stateProvider) => {
               serviceId: service.id,
             }),
         ),
-      supportPhoneNumber: /* @ngInject */ (constants, currentUser) =>
-        constants.SUPPORT[currentUser.ovhSubsidiary],
       confirmTermination: /* @ngInject */ (
         $http,
         atInternet,

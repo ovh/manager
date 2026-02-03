@@ -15,7 +15,7 @@ import {
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import UserSecretKey from '@/pages/object-storage/users/show-secret/UserSecretKey.component';
+import UserSecretKey from '@/pages/object-storage/users/show-secret/_components/UserSecretKey.component';
 import AddUserForm from '@/pages/object-storage/users/create/AddUserForm.component';
 
 import * as TUser from '@/types/User';
@@ -36,7 +36,7 @@ const UserStep = React.forwardRef<HTMLButtonElement, UserStepProps>(
       enabled: !!currentUser?.id,
     });
     return (
-      <div>
+      <div data-testid="user-step-container">
         <Combobox value={`${value}`} onValueChange={(val) => onChange?.(+val)}>
           <ComboboxTrigger ref={ref}>
             <ComboboxValue

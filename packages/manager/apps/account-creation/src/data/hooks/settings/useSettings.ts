@@ -71,8 +71,7 @@ export const useSubsidiarySettings = (
   country?: string,
   currency?: string,
   language?: string,
-) => {
-  return useSettingsQuery<string | null>((settings) => {
+) => useSettingsQuery<string | null>((settings) => {
     if (!(country && currency && language)) {
       return null;
     }
@@ -86,4 +85,3 @@ export const useSubsidiarySettings = (
 
     return foundCountry ? foundCountry.ovhSubsidiary : null;
   });
-};

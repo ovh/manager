@@ -1,0 +1,34 @@
+{
+  "title_fallback": "La Sauvegarde, En Toute Simplicité",
+  "description_part1": "Obtenez une solution de sauvegarde avec des sauvegardes distantes automatiques quotidiennes, des alertes proactives et une surveillance centralisée, le tout stocké de manière sécurisée dans un Vault sur l'OVHcloud Object Storage. Installez l'agent de sauvegarde en moins de 15 minutes, sans frais. Vous ne payez que pour le stockage Object Storage que vous utilisez.",
+  "description_part2": "Suivez nos guides pour démarrer rapidement.",
+  "guides": {
+    "guide1": {
+      "category": "Coût",
+      "title": "Coût et Facturation",
+      "description": "Documentation expliquant le coût et la facturation de Backup Agent.",
+      "cta": "Découvrir"
+    },
+    "guide2": {
+      "category": "Tutoriel",
+      "title": "Première configuration",
+      "description": "Un guide étape par étape pour vous aider à mettre en place et exécuter votre première sauvegarde.",
+      "cta": "Voir le tutoriel"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Questions fréquentes",
+      "description": "Un guide avec les questions fréquentes traitant des problématiques les plus communes.",
+      "cta": "Lire la FAQ"
+    }
+  },
+  "no_baremetal_available": "Commander un serveur Bare Metal, et protéger le avec Backup Agent",
+  "select_baremetal": "Sélectionner votre serveur BareMetal",
+  "save_a_baremetal_server": "Sauvegarder un serveur Bare Metal",
+  "baremetal_label_delay_order": "Après la validation de votre commande, cet écran sera mis à jour et vous recevrez un mail dès que votre produit Backup Agent sera livré. Vous pourrez consulter la progression de votre commande <OrderLink>ici</OrderLink>.",
+  "baremetal_label_order_in_progress": "La commande a bien été reçue, votre produit est en cours de livraison et vous pouvez suivre sa progression <OrderLink>ici</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Activation du Backup Tenant",
+  "first_order_terms_and_conditions_description": "Pour activer votre service il est nécessaire de créer un Backup Tenant. Souhaitez-vous continuer l'activation de votre service ?",
+  "first_order_terms_and_conditions_confirm_label": "J'ai pris connaissance et j'accepte les conditions générales, l'annexe relative au traitement des données personnelles et les conditions particulières de services d'OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Annexe Traitement de données à caractère personnel"
+}

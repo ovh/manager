@@ -112,6 +112,24 @@ export default class ExchangeAddDomainController {
     }
   }
 
+  checkDomainZones() {
+    this.loading = true;
+    this.services.ExchangeDomains.getDomainZones()
+      .then((data) => {
+        this.loading = false;
+        this.availableDomains = this.availableDomains.filter((domain) =>
+          data.includes(domain.name),
+        );
+      })
+      .catch((failure) => {
+        this.services.navigation.resetAction();
+        this.services.messaging.writeError(
+          this.services.$translate.instant('exchange_tab_domain_add_failure'),
+          failure,
+        );
+      });
+  }
+
   check2010Provider() {
     if (this.exchange == null) {
       return;
@@ -205,6 +223,7 @@ export default class ExchangeAddDomainController {
         this.loading = false;
         this.prepareData(data);
         this.check2010Provider();
+        this.checkDomainZones();
       })
       .catch((failure) => {
         this.services.navigation.resetAction();

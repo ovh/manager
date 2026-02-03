@@ -271,6 +271,15 @@ export default [
                       ),
                     ),
                   },
+                  {
+                    path: 'bulk-delete',
+                    id: 's3.objects.bulk-delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {
@@ -337,6 +346,15 @@ export default [
                           ),
                         ),
                       },
+                      {
+                        path: 'bulk-delete',
+                        id: 'versions.bulk-delete',
+                        ...lazyLoadRoute(() =>
+                          import(
+                            '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
+                          ),
+                        ),
+                      },
                     ],
                   },
                 ],
@@ -352,6 +370,15 @@ export default [
               ),
             ),
             children: [
+              {
+                path: 'delete',
+                id: 's3.dashboard.delete',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/dashboard/delete/Delete.modal'
+                  ),
+                ),
+              },
               {
                 path: 'active-encryption',
                 id: 'settings.encryption',
@@ -391,6 +418,28 @@ export default [
             ),
             children: [
               {
+                id: 'replication.list',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/replication/list/List.page'
+                  ),
+                ),
+                children: [
+                  {
+                    index: true,
+                  },
+                  {
+                    path: 'delete/:ruleId',
+                    id: 'replication.delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                      ),
+                    ),
+                  },
+                ],
+              },
+              {
                 path: 'new',
                 id: 'replication.new',
                 ...lazyLoadRoute(() =>
@@ -409,11 +458,11 @@ export default [
                 ),
               },
               {
-                path: 'delete/:ruleId',
-                id: 'replication.delete',
+                path: 'storage-job',
+                id: 'replication.storage-job',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                    '@/pages/object-storage/storage/s3Id/replication/storage-job/StorageJob.modal'
                   ),
                 ),
               },

@@ -1,9 +1,13 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen, waitFor, act } from '@/common/utils/test.provider';
+import {
+  render,
+  screen,
+  waitFor,
+  act,
+  wrapper,
+} from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import DataProtectionDrawer from './DataProtectionDrawer';
 import {
   TDomainResource,
@@ -61,7 +65,7 @@ const mockDomainResource: TDomainResource = {
         id: 'owner-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: ['EMAIL', 'NAME'],
           visibleViaRdds: true,
         },
@@ -70,7 +74,7 @@ const mockDomainResource: TDomainResource = {
         id: 'admin-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: ['PHONE', 'ADDRESS'],
           visibleViaRdds: true,
         },
@@ -79,7 +83,7 @@ const mockDomainResource: TDomainResource = {
         id: 'tech-id',
         disclosurePolicy: {
           disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-          forceDisclosure: false,
+          forcedDisclosureConfiguration: false,
           disclosedFields: [],
           visibleViaRdds: false,
         },

@@ -1,11 +1,12 @@
 {
   "title": "Scegli i paametri dell'account",
-  "description": "Ha già un account? <Link label=\"Connectez-vous\"></Link>",
+  "description": "Ha già un account?",
   "country_setting": "Paese di residenza fiscale",
   "currency_setting": "Valuta",
   "site_setting": "Sito web (lingua)",
   "setting_description": "In base al Paese di residenza, hai la possibilità di scegliere il sito web su cui acquistare e scegliere i servizi. Anche la valuta di fatturazione dipenderà dal sito web scelto.",
   "setting_description_list_first": "1. Se sei un cliente con partita IVA, GST o imposta simile, il tuo Paese di residenza corrisponde al Paese in cui sei registrato",
   "setting_description_list_second": "2. Se sei un cliente senza partita IVA, GST o imposta simile ma sei comunque registrato come \"imprenditore\", il tuo Paese di residenza corrisponde al Paese in cui sei registrato (numero di identificazione fiscale)",
-  "setting_description_list_last": "3. Se sei un cliente senza partita IVA, GST o imposta simile,il tuo Paese di residenza corrisponde in linea di principio a quello del tuo indirizzo di fatturazione. In applicazione della legislazione vigente, OVHcloud potrebbe incrociare questa informazione con quella del tuo indirizzo IP o della domiciliazione bancaria del tuo metodo di pagamento e, in caso di discrepanze, potrà contattarti per confermare il tuo Paese di residenza."
+  "setting_description_list_last": "3. Se sei un cliente senza partita IVA, GST o imposta simile,il tuo Paese di residenza corrisponde in linea di principio a quello del tuo indirizzo di fatturazione. In applicazione della legislazione vigente, OVHcloud potrebbe incrociare questa informazione con quella del tuo indirizzo IP o della domiciliazione bancaria del tuo metodo di pagamento e, in caso di discrepanze, potrà contattarti per confermare il tuo Paese di residenza.",
+  "connect": "Accedi"
 }

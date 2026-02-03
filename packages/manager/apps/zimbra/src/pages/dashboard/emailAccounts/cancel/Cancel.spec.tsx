@@ -2,12 +2,13 @@ import React from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { describe, expect, vi } from 'vitest';
 
 import { accountMock, platformMock, slotMock } from '@/data/api';
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import CancelSlotModal from './Cancel.modal';
 

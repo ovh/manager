@@ -12,6 +12,7 @@ interface ReplicationFormContextProps {
   form: UseFormReturn<ReplicationFormValues>;
   isPending: boolean;
   isEditMode: boolean;
+  replicationTitle: string;
   showScopeFields: boolean;
   showStorageClassField: boolean;
   isDeleteMarkerDisabled: boolean;
@@ -38,6 +39,7 @@ interface ReplicationFormProviderProps {
   form: UseFormReturn<ReplicationFormValues>;
   isPending: boolean;
   isEditMode?: boolean;
+  replicationTitle: string;
   children: React.ReactNode;
 }
 
@@ -45,6 +47,7 @@ export const ReplicationFormProvider = ({
   form,
   isPending,
   isEditMode = false,
+  replicationTitle,
   children,
 }: ReplicationFormProviderProps) => {
   const { projectId } = useParams();
@@ -52,11 +55,7 @@ export const ReplicationFormProvider = ({
   const regionsQuery = useGetRegions(projectId);
   const formValues = form.watch();
 
-  const hasTags =
-    formValues.tags &&
-    Object.values(formValues.tags).some(
-      (tag) => tag.key.trim() !== '' || tag.value.trim() !== '',
-    );
+  const hasTags = formValues.tags?.some((tag) => tag.key.trim() !== '');
   const isDeleteMarkerEnabled =
     formValues.deleteMarkerReplication === 'enabled';
 
@@ -93,6 +92,7 @@ export const ReplicationFormProvider = ({
     form,
     isPending,
     isEditMode,
+    replicationTitle,
     showScopeFields: formValues.isReplicationApplicationLimited,
     showStorageClassField: formValues.useStorageClass,
     availableStorageClasses,

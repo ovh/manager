@@ -4,20 +4,14 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn, ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus, LabelChip } from '@/components';
-import { MailingListType } from '@/data/api';
+import { MailingListType, ResourceStatus } from '@/data/api';
 import { useMailingLists, usePlatform } from '@/data/hooks';
 import { useGenerateUrl, useOverridePage } from '@/hooks';
 import { ADD_MAILING_LIST } from '@/tracking.constants';
@@ -30,45 +24,47 @@ import { MailingListItem } from './MailingLists.types';
 const columns: DatagridColumn<MailingListItem>[] = [
   {
     id: 'domains',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.name}</OdsText>,
+    accessorKey: 'name',
     label: 'common:mailing_list',
   },
   {
     id: 'organization',
-    cell: (item) =>
-      item.organizationLabel && (
-        <LabelChip id={item.organizationId}>{item.organizationLabel}</LabelChip>
-      ),
+    accessorKey: 'organizationLabel',
+    cell: ({ getValue }) => <LabelChip id={getValue<string>()}>{getValue<string>()}</LabelChip>,
     label: 'common:organization',
   },
   {
     id: 'owner',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.owner}</OdsText>,
+    accessorKey: 'owner',
     label: 'common:owner',
   },
   {
     id: 'alias',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.aliases}</OdsText>,
+    accessorKey: 'aliases',
     label: 'common:alias',
   },
   {
     id: 'moderators',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.moderators}</OdsText>,
+    accessorKey: 'moderators',
     label: 'zimbra_mailinglists_datagrid_moderators_label',
   },
   {
     id: 'subscribers',
-    cell: (item) => <OdsText preset={ODS_TEXT_PRESET.paragraph}>{item.subscribers}</OdsText>,
+    accessorKey: 'subscribers',
     label: 'zimbra_mailinglists_datagrid_subscribers_label',
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
+    accessorKey: 'status',
+    cell: ({ getValue }) => (
+      <BadgeStatus status={getValue<keyof typeof ResourceStatus>()}></BadgeStatus>
+    ),
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'tooltip',
-    cell: (item) => <ActionButtonMailingList item={item} />,
+    maxSize: 50,
+    cell: ({ row }) => <ActionButtonMailingList item={row.original} />,
     label: '',
   },
 ];
@@ -125,35 +121,37 @@ export const MailingLists = () => {
       {!isOverridedPage && (
         <>
           <div className="mb-6 flex flex-col items-start">
-            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-              <OdsText preset={ODS_TEXT_PRESET.heading6} className="mr-4">
+            <Text preset={TEXT_PRESET.paragraph}>
+              <Text preset={TEXT_PRESET.heading6} className="mr-4">
                 {t('zimbra_mailinglists_quota_label')}
                 {' :'}
-              </OdsText>
+              </Text>
               {`${quota} / 1000`}
-            </OdsText>
+            </Text>
           </div>
           <Datagrid
             topbar={
-              <ManagerButton
+              <Button
                 id="add-mailinglist-btn"
-                color={ODS_BUTTON_COLOR.primary}
-                inline-block
-                size={ODS_BUTTON_SIZE.sm}
+                color={BUTTON_COLOR.primary}
+                size={BUTTON_SIZE.sm}
                 onClick={handleAddMailingListClick}
                 urn={platformUrn}
                 iamActions={[IAM_ACTIONS.mailingList.create]}
                 data-testid="add-mailinglist-btn"
-                icon={ODS_ICON_NAME.plus}
-                label={t('common:add_mailing_list')}
-              />
+              >
+                <>
+                  <Icon name={ICON_NAME.plus} />
+                  {t('common:add_mailing_list')}
+                </>
+              </Button>
             }
             columns={columns.map((column) => ({
               ...column,
-              label: t(column.label),
+              header: t(column.label),
             }))}
-            items={items}
-            totalItems={items.length}
+            data={items}
+            totalCount={items.length}
             isLoading={isLoading}
           />
         </>

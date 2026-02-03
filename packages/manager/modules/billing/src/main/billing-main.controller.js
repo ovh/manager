@@ -4,6 +4,7 @@ export default class BillingMainCtrl {
     $translate,
     coreConfig,
     isPayAsYouGoAvailable,
+    isPolandAccount,
     guides,
     trackClick,
   ) {
@@ -12,6 +13,7 @@ export default class BillingMainCtrl {
     this.isPayAsYouGoAvailable = isPayAsYouGoAvailable;
     this.guides = guides;
     this.trackClick = trackClick;
+    this.isPolandAccount = isPolandAccount;
   }
 
   descriptionOfHeading() {

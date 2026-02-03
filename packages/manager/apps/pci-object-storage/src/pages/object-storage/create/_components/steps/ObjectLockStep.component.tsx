@@ -66,6 +66,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
           {/* Disabled option */}
           <div className="flex items-center gap-3">
             <RadioGroupItem
+              data-testid="object-lock-disabled-option"
               value={storages.ObjectLockStatusEnum.disabled}
               id="object-lock-disabled-option"
             />
@@ -82,6 +83,7 @@ const ObjectLockStep = React.forwardRef<HTMLInputElement, ObjectLockStepProps>(
           {/* Enabled option with versioning constraint */}
           <div className="flex items-center gap-3">
             <RadioGroupItem
+              data-testid="object-lock-enabled-option"
               value={storages.ObjectLockStatusEnum.enabled}
               id="object-lock-enabled-option"
             />

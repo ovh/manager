@@ -33,11 +33,11 @@
   "ok": "OK",
   "optional": "optional",
   "step_number": "Step {{step}}",
-  "required": "mandatory",
-  "all_fields_are_required": "All fields are mandatory.",
+  "required": "Mandatory",
+  "all_fields_are_required": "All fields are mandatory",
   "companyName": "Name of organisation",
   "language": "Language",
   "country": "Country",
-  "phone": "Telephone",
-  "email": "Email"
+  "phone": "Phone",
+  "email": "Email address"
 }

@@ -19,7 +19,7 @@ vi.mock('@/hooks/useHubNavigation/useHubNavigation', () => ({
   })),
 }));
 
-const mocks: any = vi.hoisted(() => ({
+const mocks = vi.hoisted(() => ({
   isAccountSidebarVisible: false,
   region: 'EU',
   shellContext: {
@@ -90,6 +90,6 @@ describe('Changelog.page', () => {
     const { container } = renderComponent();
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

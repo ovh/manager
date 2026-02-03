@@ -324,6 +324,19 @@ export default [
                     ),
                   },
                   {
+                    path: 'restart/:notebookId',
+                    id: 'notebooks.restart',
+                    handle: {
+                      tracking: {
+                        id: 'ai_notebooks.popup.restart',
+                        category: 'listing',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/notebooks/restart/Restart.modal'),
+                    ),
+                  },
+                  {
                     path: 'stop/:notebookId',
                     id: 'notebooks.stop',
                     handle: {
@@ -447,6 +460,22 @@ export default [
                         ...lazyRouteConfig(() =>
                           import(
                             '@/pages/notebooks/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-auto-restart',
+                        id: 'notebooks.notebook.dashboard.update-auto-restart',
+                        handle: {
+                          tracking: {
+                            id:
+                              'ai_notebooks.notebook.dashboard.popup.update-auto-restart',
+                            category: 'dashboard',
+                          },
+                        },
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/components/auto-restart/UpdateAutorestart.modal'
                           ),
                         ),
                       },
@@ -1139,6 +1168,19 @@ export default [
                     ),
                   },
                   {
+                    path: 'restart/:notebookId',
+                    id: 'qpusNotebooks.restart',
+                    handle: {
+                      tracking: {
+                        id: 'qpus_ai_notebooks.popup.restart',
+                        category: 'listing',
+                      },
+                    },
+                    ...lazyRouteConfig(() =>
+                      import('@/pages/notebooks/restart/Restart.modal'),
+                    ),
+                  },
+                  {
                     path: 'stop/:notebookId',
                     id: 'qpusNotebooks.stop',
                     handle: {
@@ -1258,6 +1300,22 @@ export default [
                         ...lazyRouteConfig(() =>
                           import(
                             '@/pages/notebooks/[notebookId]/dashboard/_components/update-flavor/UpdateFlavor.modal'
+                          ),
+                        ),
+                      },
+                      {
+                        path: 'update-auto-restart',
+                        id: 'ai_notebooks.qpus.dashboard.update-auto-restart',
+                        handle: {
+                          tracking: {
+                            id:
+                              'ai_notebooks.qpus.dashboard.popup.update-auto-restart',
+                            category: 'dashboard',
+                          },
+                        },
+                        ...lazyRouteConfig(() =>
+                          import(
+                            '@/components/auto-restart/UpdateAutorestart.modal'
                           ),
                         ),
                       },

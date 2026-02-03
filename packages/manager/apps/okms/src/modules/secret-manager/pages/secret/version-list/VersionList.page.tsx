@@ -9,14 +9,14 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, ErrorBanner } from '@ovh-ux/manager-react-components';
+import { Datagrid } from '@ovh-ux/manager-react-components';
+import { Error } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { isErrorResponse } from '@/common/utils/api/api';
 
+import { AddVersionButton } from './AddVersionButton.component';
 import { VersionCellAction } from './VersionCellAction.component';
 import {
   VersionCreatedAtCell,
@@ -29,12 +29,13 @@ const VersionListPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
   const { okmsId, secretPath } = useRequiredParams('okmsId', 'secretPath');
-  const secretPathDecoded = decodeSecretPath(secretPath);
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
 
-  const { data, error, hasNextPage, fetchNextPage, sorting, isPending, setSorting, refetch } =
-    useSecretVersionList({ okmsId, path: secretPathDecoded });
+  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretVersionList({
+    okmsId,
+    path: decodeSecretPath(secretPath),
+  });
 
   const versions = data?.pages.flatMap((page) => page.data);
 
@@ -65,9 +66,8 @@ const VersionListPage = () => {
       cell: (version: SecretVersion) =>
         VersionCellAction({
           okmsId,
-          secretPath: secretPathDecoded,
+          secret,
           version,
-          urn: secret?.iam?.urn,
         }),
       label: '',
     },
@@ -75,7 +75,7 @@ const VersionListPage = () => {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
         onReloadPage={refetch}
@@ -91,23 +91,8 @@ const VersionListPage = () => {
         isLoading={isPending}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
-        sorting={sorting}
-        onSortChange={setSorting}
         contentAlignLeft
-        topbar={
-          <OdsButton
-            label={t('add_new_version')}
-            onClick={() =>
-              navigate(
-                SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
-                  okmsId,
-                  secretPathDecoded,
-                ),
-              )
-            }
-            icon={'plus'}
-          />
-        }
+        topbar={<AddVersionButton okmsId={okmsId} secret={secret} />}
       />
       <Suspense>
         <Outlet />

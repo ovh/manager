@@ -1,9 +1,10 @@
-import { Drawer, useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { Drawer } from '@ovh-ux/muk';
+import { Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   ButtonType,
   PageLocation,
@@ -80,50 +81,59 @@ export default function EditContactPage() {
   });
 
   return (
-    <Drawer
-      heading={t('edit_contact_modal_title')}
+    <Drawer.Root
       isOpen={true}
       onDismiss={() => navigate(urls.contact.listing)}
-      onSecondaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['rename_contact', 'cancel'],
-          subApp: TrackingSubApps.Contacts,
-        });
-        navigate(urls.contact.listing);
-      }}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['rename_contact', 'confirm'],
-          subApp: TrackingSubApps.Contacts,
-        });
-        return formRef.current?.submit();
-      }}
-      secondaryButtonLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryButtonLabel={t('validate', { ns: NAMESPACES.ACTIONS })}
-      isPrimaryButtonLoading={isPendingRename}
       isLoading={isLoading}
     >
+      <Drawer.Header title={t('edit_contact_modal_title')} />
+      <Drawer.Content>
       {error && (
-        <OdsMessage
-          color="danger"
-          isDismissible={true}
+        <Message
+          color="critical"
+          dismissible={true}
           className="w-full"
-          onOdsRemove={() => setError(null)}
+          onRemove={() => setError(null)}
         >
-          {error}
-        </OdsMessage>
+          <MessageIcon name="triangle-exclamation" />
+          <MessageBody>{error}</MessageBody>
+        </Message>
       )}
       <ContactForm
         contactMean={contactMean}
         onSubmit={onSubmit}
         ref={formRef}
       />
-    </Drawer>
+      </Drawer.Content>
+      <Drawer.Footer
+        primaryButton={{
+          label: t('validate', { ns: NAMESPACES.ACTIONS }),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.popup,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['rename_contact', 'confirm'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            return formRef.current?.submit();
+          },
+          isLoading: isPendingRename,
+        }}
+        secondaryButton={{
+          label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+          onClick: () => {
+            trackClick({
+              location: PageLocation.popup,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['rename_contact', 'cancel'],
+              subApp: TrackingSubApps.Contacts,
+            });
+            navigate(urls.contact.listing);
+          },
+        }}
+      />
+    </Drawer.Root>
   );
 }

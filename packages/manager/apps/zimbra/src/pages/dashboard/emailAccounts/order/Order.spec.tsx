@@ -1,11 +1,12 @@
 import React from 'react';
 
+import { waitFor } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 import { describe, expect } from 'vitest';
 
 import emailAccountOrderTranslation from '@/public/translations/accounts/order/Messages_fr_FR.json';
-import { render, waitFor } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 
 import OrderEmailAccounts from './Order.page';
 

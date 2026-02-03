@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.3](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@2.4.2...@ovh-ux/url-builder@2.4.3) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/url-builder
+
+
+
+
+
+## [2.4.2](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@2.4.1...@ovh-ux/url-builder@2.4.2) (2026-01-29)
+
+
+### Bug Fixes
+
+* fix sentry issues on common parts ([c87b11a](https://github.com/ovh/manager/commit/c87b11a80f1ee24cc59799398e0618abdf36aa1c)), closes [#MANAGER-EU-188](https://github.com/ovh/manager/issues/MANAGER-EU-188)
+
+
+
+
+
 ## [2.4.1](https://github.com/ovh/manager/compare/@ovh-ux/url-builder@2.4.0...@ovh-ux/url-builder@2.4.1) (2026-01-02)
 
 **Note:** Version bump only for package @ovh-ux/url-builder

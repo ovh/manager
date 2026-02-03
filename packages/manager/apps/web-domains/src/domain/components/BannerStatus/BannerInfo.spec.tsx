@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { render } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import BannerInfo from './BannerInfo';
@@ -16,7 +15,7 @@ vi.mock('@/common/hooks/data/query', () => ({
 
 describe('BannerInfo component', () => {
   it('renders info banner with link when MANUAL renew mode', () => {
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: serviceInfoManuel,
     });
 
@@ -28,7 +27,7 @@ describe('BannerInfo component', () => {
   });
 
   it('renders nothing when renew mode is not MANUAL', () => {
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: serviceInfoAuto,
     });
 

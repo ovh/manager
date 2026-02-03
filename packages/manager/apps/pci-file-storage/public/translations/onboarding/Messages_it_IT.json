@@ -1,0 +1,25 @@
+{
+  "guides": {
+    "learn-more": {
+      "category": "Piano",
+      "title": "Scopri di più",
+      "description": "Pagina Labs che spiega le funzionalità e la tariffazione di File Storage.",
+      "link-text": "Scopri di più"
+    },
+    "get-started": {
+      "category": "Guida",
+      "title": "Per iniziare",
+      "description": "Una guida passo passo per aiutarti a creare il tuo primo share.",
+      "link-text": "Scopri di più"
+    },
+    "discord": {
+      "category": "Discord",
+      "title": "Resta aggiornato sulle ultime novità",
+      "description": "Contattaci direttamente su #beta-file-storage: poni le tue domande e condividi i tuoi feedback.",
+      "link-text": "Scopri di più"
+    }
+  },
+  "title": "Prova File Storage gratis!",
+  "description": "Hai bisogno di uno storage condiviso per i tuoi cluster o le tue istanze? La nostra soluzione File Storage per Public Cloud totalmente gestita offre volumi NFS da <strong>150 GiB a 10 TiB</strong>, fino a <strong>16.000 IOPS</strong> e <strong>128 Mbps</strong>. Compatibile con <strong>Managed Kubernetes</strong> (PVCs RWX) e le <strong>istanze Public Cloud</strong> (mount NFS), consente di condividere file in modo trasparente tra nodi, zone e applicazioni, con una tariffazione trasparente.",
+  "action-button": "Scopri la Beta"
+}

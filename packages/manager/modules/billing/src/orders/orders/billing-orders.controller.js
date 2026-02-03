@@ -18,6 +18,7 @@ export default class BillingOrdersCtrl {
     getOrderTrackingHref,
     goToOrder,
     goToOrderRetractation,
+    goToCorrespondingBill,
     updateFilterParam,
     billingFeatureAvailability,
     timeNow,
@@ -35,6 +36,7 @@ export default class BillingOrdersCtrl {
     this.getOrderTrackingHref = getOrderTrackingHref;
     this.goToOrder = goToOrder;
     this.goToOrderRetractation = goToOrderRetractation;
+    this.goToCorrespondingBill = goToCorrespondingBill;
     this.updateFilterParam = updateFilterParam;
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
     this.timeNow = timeNow;

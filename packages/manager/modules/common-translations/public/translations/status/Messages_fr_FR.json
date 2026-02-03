@@ -15,13 +15,13 @@
   "deleting": "En cours de suppression",
   "suspended": "Suspendu",
   "suspending": "En cours de suspension",
+  "error": "Erreur",
   "errorMessage": "Votre demande n'a pas pu aboutir. {{ error }}",
   "pay_as_you_go": "Paiement à l'utilisation",
   "prepaid": "Prépayé",
   "creating": "En cours de création",
   "updating": "Mise à jour",
   "unconfigured": "Non configuré",
-  "error": "Erreur",
   "ready": "Actif",
   "awaiting_signature": "Attente de signature"
 }

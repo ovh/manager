@@ -31,7 +31,8 @@ const DeleteSwiftObject = () => {
   const toast = useToast();
   const [confirmationInput, setConfirmationInput] = useState('');
 
-  if (!objectName) return navigate('../');
+  if (!objectName) navigate('../');
+
   const { deleteSwiftObject, isPending: deletePending } = useDeleteSwiftObject({
     onError: (err) => {
       toast.toast({
@@ -80,7 +81,9 @@ const DeleteSwiftObject = () => {
     <RouteModal isLoading={!projectId && !objectName}>
       <DialogContent variant="warning">
         <DialogHeader>
-          <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>
+          <DialogTitle data-testid="delete-object-modal">
+            {t('deleteObjectTitle')}
+          </DialogTitle>
         </DialogHeader>
         <DialogBody>
           <p className="mt-2">
@@ -91,7 +94,9 @@ const DeleteSwiftObject = () => {
 
           <div className="flex flex-col gap-2 mt-2">
             <Label htmlFor="terminateInput" className="font-semibold">
-              {t('deleteObjectConfirmation')}
+              {t('deleteObjectConfirmation', {
+                confirmation: PERMANENT_DELETE_CONFIRMATION,
+              })}
             </Label>
             <Input
               id="terminateInput"
@@ -110,6 +115,7 @@ const DeleteSwiftObject = () => {
             </Button>
           </DialogClose>
           <Button
+            data-testid="delete-object-submit-button"
             type="button"
             disabled={
               deletePending ||

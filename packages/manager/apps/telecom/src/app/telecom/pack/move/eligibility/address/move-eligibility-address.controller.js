@@ -1,5 +1,3 @@
-import assign from 'lodash/assign';
-
 import {
   AUTHORIZED_ABBREVIATIONS,
   BUILDING,
@@ -175,99 +173,53 @@ export default class {
   }
 
   /**
-   * Test address for copper eligibility
-   * @returns Promise
-   */
-  testAddress() {
-    if (this.isReseller) {
-      // If current offer is a reseller offer,
-      // launch eligibility test address for partners (reseller)
-      return this.OvhApiConnectivityEligibility.v6().testAddressPartners(
-        this.$scope,
-        {
-          streetCode: this.address.street.streetCode,
-          streetNumber: this.address.streetNumber.number,
-        },
-      );
-    }
-    return this.OvhApiConnectivityEligibility.v6().testAddress(this.$scope, {
-      streetCode: this.address.street.streetCode,
-      streetNumber: this.address.streetNumber.number,
-    });
-  }
-
-  /**
    * Copper eligibility by address
    */
   copperEligibilityByAddress() {
-    return this.testAddress()
+    return this.moveEligibilityAddressService
+      .testAddress(
+        this.address.streetNumber.hexacle,
+        this.address.street.streetAltCode,
+        this.address.street.streetCode,
+        this.address.streetNumber.number,
+        this.isReseller,
+      )
       .then(({ result }) => ({ result }))
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);
+        return Promise.reject(error);
       });
   }
 
   /**
    * Retrieve buildings for the address
    */
-  searchBuildings(copper) {
-    this.moveEligibilityAddressService
+  searchBuildings() {
+    return this.moveEligibilityAddressService
       .searchBuildings(
         this.address.streetNumber.hexacle,
+        this.address.street.streetAltCode,
         this.address.street.streetCode,
         this.address.streetNumber.number,
       )
       .then((response) => {
         if (response.status === 'pending') {
-          setTimeout(() => {
-            this.searchBuildings(copper);
-          }, 5000);
-        } else {
-          const buildings = response.result;
-          if (buildings?.length) {
-            if (buildings.length === 1) {
-              // Eligibility fiber
-              const [building] = buildings;
-              this.testFiberEligibility(building.reference).then(() => {
-                // send line offers
-                this.sendLineOffers(
-                  copper,
-                  this.fiber,
-                  'address',
-                  ELIGIBILITY_LINE_STATUS.create,
-                  building,
-                );
-                this.displayResult = true;
-                this.displaySearchResult = true;
-                this.displaySearch = false;
-                this.loading = false;
-              });
-            } else {
-              // Display buildings list
-              this.buildings = buildings;
-
-              this.copper = copper;
-              this.displayListOfBuildings = true;
-              this.loading = false;
-              this.displaySearch = false;
-              this.displayResult = true;
-              this.displaySearchResult = true;
-            }
-          } else {
-            // send line offers
-            this.sendLineOffers(
-              copper,
-              this.fiber,
-              'address',
-              ELIGIBILITY_LINE_STATUS.create,
-            );
-            this.displayResult = true;
-            this.displaySearchResult = true;
-            this.displaySearch = false;
-            this.loading = false;
-          }
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              this.searchBuildings()
+                .then(resolve)
+                .catch(reject);
+            }, 5000);
+          });
         }
+        return response.result;
+      })
+      .catch(() => {
+        this.loading = false;
+        this.TucToast.error(
+          this.$translate.instant('pack_move_eligibility_building_error'),
+        );
       });
   }
 
@@ -276,21 +228,59 @@ export default class {
    * @param {*} building
    */
   testBuilding(building) {
+    this.loading = true;
     return this.testFiberEligibility(building.reference).then(() => {
       this.displayListOfBuildings = false;
-
-      this.sendLineOffers(
-        this.copper,
-        this.fiber,
-        'address',
-        ELIGIBILITY_LINE_STATUS.create,
-        building,
-      );
-      this.displayResult = true;
-      this.displaySearchResult = true;
-      this.displaySearch = false;
-      this.loading = false;
+      return this.handleEligibilityResult(building);
     });
+  }
+
+  /**
+   * Handle eligibility result after fiber test
+   * @param {*} building
+   */
+  handleEligibilityResult(building) {
+    // Explicit verification of fiber optic offers
+    const hasFiberOffers = this.fiber?.offers?.length > 0;
+
+    // Copper test only if no fiber offer is available
+    if (!hasFiberOffers) {
+      return this.copperEligibilityByAddress()
+        .then((copper) => {
+          this.sendLineOffers(
+            copper,
+            this.fiber,
+            'address',
+            ELIGIBILITY_LINE_STATUS.create,
+            building,
+          );
+          this.displayResult = true;
+          this.displaySearchResult = true;
+          this.displaySearch = false;
+          this.loading = false;
+        })
+        .catch((error) => {
+          this.displayResult = false;
+          this.displaySearchResult = false;
+          this.loading = false;
+          this.TucToast.error(error);
+        });
+    }
+
+    // Fiber offers available, ignore the copper test
+    this.sendLineOffers(
+      null,
+      this.fiber,
+      'address',
+      ELIGIBILITY_LINE_STATUS.create,
+      building,
+    );
+    this.displayResult = true;
+    this.displaySearchResult = true;
+    this.displaySearch = false;
+    this.loading = false;
+
+    return Promise.resolve();
   }
 
   /**
@@ -334,10 +324,11 @@ export default class {
 
   /**
    * Launch eligibility by address
-   * - retrieve fiber eligibility by address
-   * - retrieve copper eligibility by address which can return lines associated to the address or nothing
-   * - if no line, retrieve the copper eligibility by address and send offers to create new line to this address
-   * - if lines, display them to the user
+   * - retrieve buildings eligibility by address first
+   * - if buildings found, test fiber eligibility
+   * - if fiber offers available, skip copper test
+   * - if no fiber offers, fallback to copper eligibility
+   * - if no buildings found, fallback to copper eligibility only
    */
   submitAddress() {
     this.displayResult = false;
@@ -350,13 +341,49 @@ export default class {
       OFFERS: [],
     });
 
-    this.copperEligibilityByAddress().then((copper) => {
-      this.searchBuildings(copper);
-    });
+    this.searchBuildings()
+      .then((buildings) => {
+        if (buildings?.length) {
+          if (buildings.length === 1) {
+            // Single building: test fiber eligibility directly
+            const [building] = buildings;
+            return this.testFiberEligibility(building.reference).then(() => {
+              return this.handleEligibilityResult(building);
+            });
+          }
+          // Multiple buildings: display list, don't test eligibility yet
+          this.buildings = buildings;
+          this.displayListOfBuildings = true;
+          this.loading = false;
+          this.displaySearch = false;
+          this.displayResult = true;
+          this.displaySearchResult = true;
+          return Promise.resolve();
+        }
+        // No buildings found: fallback to copper eligibility only
+        return this.copperEligibilityByAddress().then((copper) => {
+          this.sendLineOffers(
+            copper,
+            this.fiber,
+            'address',
+            ELIGIBILITY_LINE_STATUS.create,
+          );
+          this.displayResult = true;
+          this.displaySearchResult = true;
+          this.displaySearch = false;
+          this.loading = false;
+        });
+      })
+      .catch((error) => {
+        this.displayResult = false;
+        this.displaySearchResult = false;
+        this.loading = false;
+        this.TucToast.error(error);
+      });
   }
 
   /**
-   * Create the offer response which is sent to the move-eligilibility controller
+   * Create the offer response which is sent to the move-eligibility controller
    * @param { Object } copper copper eligibility result
    * @param { Object } fiber fiber eligibility result
    * @param { Object } eligType type of eligibility: 'address' | 'number'
@@ -364,7 +391,7 @@ export default class {
    * @param { Object } building building eligibility result
    */
   sendLineOffers(copper, fiber, eligType, status, building) {
-    const copperOffers = copper.result
+    const copperOffers = copper?.result
       ? copper.result.offers.filter(
           (offer) => offer.eligibility.eligible === true,
         )
@@ -372,15 +399,15 @@ export default class {
     const offer = {
       eligType,
       status,
-      eligibilityReference: copper.result
+      eligibilityReference: copper?.result
         ? copper.result.eligibilityReference
         : null,
       offers: copperOffers,
       endpoint: {
-        copperInfo: copper.result ? copper.result.endpoint.copperInfo : null,
-        portability: copper.result ? copper.result.endpoint.portability : null,
-        reference: copper.result ? copper.result.endpoint.reference : null,
-        referenceType: copper.result
+        copperInfo: copper?.result ? copper.result.endpoint.copperInfo : null,
+        portability: copper?.result ? copper.result.endpoint.portability : null,
+        reference: copper?.result ? copper.result.endpoint.reference : null,
+        referenceType: copper?.result
           ? copper.result.endpoint.referenceType
           : null,
       },
@@ -388,41 +415,25 @@ export default class {
       building,
     };
     if (fiber) {
-      if (
-        !copper.result ||
-        copper.result.endpoint.address !== fiber.addressFiber
-      ) {
-        assign(offer.endpoint, {
-          address: fiber.addressFiber,
-          neighbourAddress: copper.result
-            ? copper.result.endpoint.address
-            : null,
-        });
-      } else {
-        assign(offer.endpoint, {
-          address: copper.result.endpoint.address,
-        });
+      if (copper?.result?.endpoint?.address !== fiber.addressFiber) {
+        offer.endpoint.neighbourAddress =
+          copper?.result?.endpoint?.address || null;
       }
+      offer.eligibilityReferenceFiber = fiber.eligibilityReferenceFiber;
+      offer.fiberInfo = fiber.fiberInfo;
+      offer.referenceFiber = fiber.referenceFiber;
+      offer.referenceTypeFiber = fiber.referenceTypeFiber;
+      offer.addressFiber = fiber.addressFiber;
+      offer.offers = fiber.offers;
+      offer.endpoint.address = fiber.addressFiber;
       offer.buildingReference =
         fiber.referenceTypeFiber === BUILDING
           ? fiber.referenceFiber
           : fiber.fiberInfo.buildingReference;
     } else {
-      assign(offer.endpoint, {
-        address: copper.result.endpoint.address,
-      });
-    }
-
-    if (this.isFiberOffers) {
-      offer.eligibilityReferenceFiber = fiber.eligibilityReferenceFiber;
-      offer.offers = copperOffers
-        ? [...copperOffers, ...fiber.offers]
-        : [...fiber.offers];
-      assign(offer.endpoint, {
-        fiberInfo: fiber.fiberInfo,
-        referenceFiber: fiber.referenceFiber,
-        referenceTypeFiber: fiber.referenceTypeFiber,
-      });
+      offer.eligibilityReference = copper?.result?.eligibilityReference;
+      offer.endpoint.address = copper?.result?.endpoint?.address;
+      offer.offers = copperOffers;
     }
 
     this.offersChange({

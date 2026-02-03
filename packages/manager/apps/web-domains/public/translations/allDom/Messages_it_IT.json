@@ -55,5 +55,7 @@
   "allDom_cancel_terminate_title": "Annullare la disattivazione del servizio {{serviceName}}",
   "allDom_cancel_terminate_subtitle": "Vuoi annullare la disattivazione del servizio {{serviceName}}?",
   "allDom_cancel_terminate_success": "L'annullamento della disattivazione del tuo servizio {{serviceName}} è stato preso in carico",
-  "allDom_cancel_terminate_error": "L’annullamento della disattivazione del tuo servizio {{serviceName}} non è riuscito"
+  "allDom_cancel_terminate_error": "L’annullamento della disattivazione del tuo servizio {{serviceName}} non è riuscito",
+  "allDom_detail_page_renew_information_advantage": "Il rinnovo dell'offerta AllDom prolunga il tuo vantaggio tariffario.",
+  "allDom_detail_page_renew_information_renew": "I nomi di dominio mantengono ciascuno il proprio modo di rinnovo e la propria data di scadenza."
 }

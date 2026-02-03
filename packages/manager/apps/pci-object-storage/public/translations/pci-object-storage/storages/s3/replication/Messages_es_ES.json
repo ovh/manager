@@ -76,5 +76,8 @@
   "replicationButtonCancel": "Cancelar",
   "disabledClassDestinationHelper": "Seleccione un contenedor de destino para activar esta opción",
   "warning1AZTo3AZ": "La clase de almacenamiento High Performance no está disponible con el modo de despliegue 3-AZ. Por defecto, los objetos de origen almacenados en High Performance se replican en la clase de almacenamiento Standard, optimizada para los casos de uso más comunes.",
-  "warning3AZTo1AZ": "La clase de almacenamiento Cold Archive solo está disponible en el modo de despliegue 3-AZ y en la región de París. Por defecto, los objetos de origen almacenados en Cold Archive se replican en Infrequent Access, la clase de almacenamiento más adecuada para este tipo de usos."
+  "warning3AZTo1AZ": "La clase de almacenamiento Cold Archive solo está disponible en el modo de despliegue 3-AZ y en la región de París. Por defecto, los objetos de origen almacenados en Cold Archive se replican en Infrequent Access, la clase de almacenamiento más adecuada para este tipo de usos.",
+  "inconsistentReplicationRulesAlert": "Algunas reglas de replicación tienen un destino que ha sido eliminado. Por favor, elimine estas reglas antes de crear nuevas replicaciones.",
+  "deletedDestinationTooltip": "El contenedor de destino ha sido eliminado.",
+  "createSyncRule": "Crear una regla de sincronización"
 }

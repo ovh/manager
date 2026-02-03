@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.5...@ovh-ux/manager-catalog-app@1.28.6) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.4...@ovh-ux/manager-catalog-app@1.28.5) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.3...@ovh-ux/manager-catalog-app@1.28.4) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.2...@ovh-ux/manager-catalog-app@1.28.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.1...@ovh-ux/manager-catalog-app@1.28.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+## [1.28.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.0...@ovh-ux/manager-catalog-app@1.28.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-catalog-app
+
+
+
+
+
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.8...@ovh-ux/manager-catalog-app@1.28.0) (2026-01-13)
+
+
+### Features
+
+* **catalog:** migrate from mrc 1 to muk ([9c7da98](https://github.com/ovh/manager/commit/9c7da984427b7c6fac5db1e2ad89ea7447e6338b)), closes [#MANAGER-20332](https://github.com/ovh/manager/issues/MANAGER-20332)
+
+
+
+
+
 ## [1.27.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.27.7...@ovh-ux/manager-catalog-app@1.27.8) (2026-01-07)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app

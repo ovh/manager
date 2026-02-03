@@ -1,0 +1,22 @@
+{
+  "home": "Página inicial",
+  "order": "Encomendar",
+  "back": "Retroceder",
+  "title": "Dashboard",
+  "email": "E-mail",
+  "subject": "Objeto",
+  "message": "Mensagem",
+  "submitButton": "Enviar",
+  "successMessage": "O seu pedido foi enviado com sucesso.",
+  "errors": {
+    "emailRequired": "O e-mail é obrigatório.",
+    "emailInvalid": "Introduza um endereço de e-mail válido.",
+    "subjectRequired": "O assunto é obrigatório.",
+    "messageRequired": "A mensagem é obrigatória."
+  },
+  "general-information": "Informações gerais",
+  "help": "Ajuda",
+  "type_billing": "Tipo de faturação",
+  "consumption_tooltip": "O armazenamento suplementar não está disponível em self-service. Para aumentar a capacidade de armazenamento, contacte o suporte.",
+  "vault_price": "Ou seja, {{vaultPrice}} /mês + IVA"
+}

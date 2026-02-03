@@ -1,0 +1,70 @@
+.wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+  transition: right 0.3s ease-in-out;
+  background-color: #fff;
+
+  &.open {
+    right: 0;
+  }
+
+  &.closed {
+    right: -100%;
+  }
+
+  @media (min-width: 80rem) {
+    width: 25rem;
+    height: 37.5rem;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.open {
+      right: 0;
+    }
+
+    &.closed {
+      right: -25rem;
+    }
+  }
+}
+
+.buttonContainer {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+  pointer-events: auto;
+}
+
+.chatbotContainer {
+  pointer-events: auto;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  width: 100%;
+  height: 100%;
+
+  @media (min-width: 80rem) {
+    width: 25rem;
+    height: 37.5rem;
+  }
+
+  &.reduced {
+    display: none;
+  }
+
+  &.visible {
+    display: block;
+  }
+
+  :global(> div > div > div.flex.flex-col.relative) {
+    height: calc(100% - 5rem) !important;
+  }
+}

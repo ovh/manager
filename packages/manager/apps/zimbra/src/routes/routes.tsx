@@ -3,11 +3,11 @@ import React from 'react';
 
 import { Route, UIMatch } from 'react-router-dom';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import NotFound from '@/pages/404';
 import DashboardLayout from '@/pages/dashboard/Dashboard.layout';
@@ -70,7 +70,7 @@ export type RouteHandle = {
   };
   breadcrumb?: {
     label: string;
-    icon?: ODS_ICON_NAME;
+    icon?: ICON_NAME;
   };
 };
 

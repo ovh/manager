@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
@@ -105,7 +104,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -114,7 +113,7 @@ describe('DataProtection component', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -145,7 +144,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -181,7 +180,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.REDACTED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: [],
             visibleViaRdds: true,
           },
@@ -190,7 +189,7 @@ describe('DataProtection component', () => {
           id: 'admin-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL', 'PHONE'],
             visibleViaRdds: true,
           },
@@ -222,7 +221,7 @@ describe('DataProtection component', () => {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: false,
+            forcedDisclosureConfiguration: false,
             disclosedFields: ['EMAIL', 'NAME'],
             visibleViaRdds: true,
           },
@@ -249,13 +248,13 @@ describe('DataProtection component', () => {
   });
 
   describe('when data protection is DISABLED', () => {
-    it('should display disabled status when forceDisclosure is true', () => {
+    it('should display only generic information when forceDisclosure is true', () => {
       const domainResource = createMockDomainResource({
         contactOwner: {
           id: 'owner-id',
           disclosurePolicy: {
             disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: true,
+            forcedDisclosureConfiguration: true,
             disclosedFields: ['EMAIL', 'NAME'],
             visibleViaRdds: true,
           },
@@ -278,36 +277,12 @@ describe('DataProtection component', () => {
       expect(
         screen.getByText('domain_tab_general_information_data_protection'),
       ).toBeInTheDocument();
-    });
 
-    it('should disable manage button when protection is disabled', async () => {
-      const domainResource = createMockDomainResource({
-        contactOwner: {
-          id: 'owner-id',
-          disclosurePolicy: {
-            disclosureConfiguration: DisclosureConfigurationEnum.DISCLOSED,
-            forceDisclosure: true,
-            disclosedFields: [],
-            visibleViaRdds: true,
-          },
-        },
-        contactAdministrator: { id: 'admin-id' },
-        contactTechnical: { id: 'tech-id' },
-        contactBilling: { id: 'billing-id' },
-      });
-
-      render(
-        <DataProtection
-          domainResource={domainResource}
-          setDataProtectionDrawerOpened={mockSetDataProtectionDrawerOpened}
-        />,
-        {
-          wrapper,
-        },
-      );
-
-      const manageButton = screen.getByTestId('action-menu-button');
-      expect(manageButton).toBeDisabled();
+      expect(
+        screen.getByText(
+          'domain_tab_general_information_data_protection_disabled',
+        ),
+      ).toBeInTheDocument();
     });
   });
 });

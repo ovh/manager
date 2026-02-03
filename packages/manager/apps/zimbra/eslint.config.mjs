@@ -71,6 +71,10 @@ export default [
     rules: {
       'max-nested-callbacks': 'off',
       'max-lines-per-function': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   {
@@ -81,6 +85,21 @@ export default [
 
       'max-lines-per-function': 'off',
       'max-lines': 'off',
+    },
+  },
+  {
+    files: ['**/__tests__/**'],
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
+  },
+  {
+    files: ['vitest.config.js', 'vite.config.mjs'],
+    rules: {
+      'import/no-nodejs-modules': 'off',
     },
   },
 ];

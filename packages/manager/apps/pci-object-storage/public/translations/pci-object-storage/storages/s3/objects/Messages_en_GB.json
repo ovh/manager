@@ -60,5 +60,21 @@
   "restoreAvailableUntil": "Item will be available until",
   "seeVersionsSwitchLabel": "See versions",
   "searchPlaceholder": "Search...",
-  "changeStorageClassWarningInfrequentAccess": "Warning: The Infrequent Access and Cold Archive classes have a minimum retention period. <0>Learn more</0>"
+  "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>",
+  "selectObject": "Select {{name}} object",
+  "selectAll": "Select all",
+  "bulkDeleteTitle": "Delete multiple objects",
+  "bulkDeleteDescription_one": "You are about to delete {{count}} objects.",
+  "bulkDeleteDescription_other": "You are about to delete {{count}} objects.",
+  "bulkDeleteButtonConfirm_one": "Delete {{count}} object",
+  "bulkDeleteButtonConfirm_other": "Delete {{count}} objects",
+  "bulkDeleteToastSuccessDescription_one": "{{count}} object deleted.",
+  "bulkDeleteToastSuccessDescription_other": "{{count}} objects deleted.",
+  "bulkDeleteVersionsTitle": "Delete multiple versions",
+  "bulkDeleteVersionsDescription_one": "Do you want to permanently delete {{count}} version? This action cannot be reversed.",
+  "bulkDeleteVersionsDescription_other": "Do you want to permanently delete {{count}} versions? This action cannot be reversed.",
+  "bulkDeleteVersionsConfirmation": "Enter {{confirmation}} to confirm",
+  "downloadErrorDescription": "Error while uploading the file",
+  "downloadErrorStatus": "Error while uploading: {{status}}",
+  "downloadErrorUnknownType": "Unknown upload type"
 }

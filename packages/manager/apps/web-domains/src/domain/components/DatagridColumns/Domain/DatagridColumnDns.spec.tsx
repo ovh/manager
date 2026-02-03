@@ -2,8 +2,9 @@ import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi } from 'vitest';
 import DatagridColumnDns from './DatagridColumnDns';
-import { NameServer, NameServerTypeEnum } from '@/domain/types/domainResource';
+import { TNameServerWithType } from '@/domain/types/domainResource';
 import { wrapper } from '@/common/utils/test.provider';
+import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
@@ -11,17 +12,18 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   ),
 }));
 
-const createMockNameServer = (nameServer: string): NameServer => ({
-  id: Math.floor(Math.random() * 1000),
+const createMockNameServer = (nameServer: string): TNameServerWithType => ({
   ipv4: null,
   ipv6: null,
   nameServer,
-  nameServerType: NameServerTypeEnum.HOSTED,
+  nameServerType: DnsConfigurationTypeEnum.HOSTING,
 });
 
 describe('DatagridColumnDns', () => {
   it('should render single DNS server', () => {
-    const mockDns: NameServer[] = [createMockNameServer('dns1.example.com')];
+    const mockDns: TNameServerWithType[] = [
+      createMockNameServer('dns1.example.com'),
+    ];
 
     render(<DatagridColumnDns dns={mockDns} />, { wrapper });
 
@@ -30,7 +32,7 @@ describe('DatagridColumnDns', () => {
   });
 
   it('should render multiple DNS servers separated by semicolon', () => {
-    const mockDns: NameServer[] = [
+    const mockDns: TNameServerWithType[] = [
       createMockNameServer('dns1.example.com'),
       createMockNameServer('dns2.example.com'),
       createMockNameServer('dns3.example.com'),
@@ -45,7 +47,7 @@ describe('DatagridColumnDns', () => {
   });
 
   it('should render empty string when no DNS servers', () => {
-    const mockDns: NameServer[] = [];
+    const mockDns: TNameServerWithType[] = [];
 
     render(<DatagridColumnDns dns={mockDns} />, { wrapper });
 
@@ -54,7 +56,7 @@ describe('DatagridColumnDns', () => {
   });
 
   it('should handle DNS servers with empty nameServer values', () => {
-    const mockDns: NameServer[] = [
+    const mockDns: TNameServerWithType[] = [
       createMockNameServer(''),
       createMockNameServer('dns1.example.com'),
       createMockNameServer(''),
@@ -67,7 +69,9 @@ describe('DatagridColumnDns', () => {
   });
 
   it('should render DataGridTextCell component', () => {
-    const mockDns: NameServer[] = [createMockNameServer('test.dns.com')];
+    const mockDns: TNameServerWithType[] = [
+      createMockNameServer('test.dns.com'),
+    ];
 
     render(<DatagridColumnDns dns={mockDns} />, { wrapper });
 

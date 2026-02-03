@@ -9,11 +9,9 @@ describe('Route Modal component', () => {
   });
   it('renders Route Modal Skeleton on isLoading', async () => {
     render(
-      <RouteModal
-        backUrl={'../'}
-        isLoading={true}
-        children={<>HelloWorld</>}
-      />,
+      <RouteModal backUrl={'../'} isLoading={true}>
+        <>HelloWorld</>
+      </RouteModal>,
     );
     await waitFor(() => {
       expect(screen.getByTestId('dialog-container')).toBeTruthy();
@@ -22,11 +20,10 @@ describe('Route Modal component', () => {
 
   it('renders Route Modal HelloWorld', async () => {
     render(
-      <RouteModal
-        backUrl={'../'}
-        isLoading={false}
-        children={<div>HelloWorld</div>}
-      />,
+      <RouteModal backUrl={'../'} isLoading={false}>
+        {' '}
+        <div>HelloWorld</div>
+      </RouteModal>,
     );
     await waitFor(() => {
       expect(screen.getByText('HelloWorld')).toBeTruthy();

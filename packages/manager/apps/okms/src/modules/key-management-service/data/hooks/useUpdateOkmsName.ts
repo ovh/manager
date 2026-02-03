@@ -3,8 +3,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { okmsQueryKeys } from '../api/okms';
 import {
@@ -39,7 +39,7 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
   } = useMutation({
     mutationKey: updateOkmsNameQueryKey(),
     mutationFn: async ({ displayName }: UpdateOkmsNameMutationParams) => {
-      const { data: servicesId } = await queryClient.fetchQuery<ApiResponse<number[]>>({
+      const servicesId = await queryClient.fetchQuery<number[]>({
         queryKey: getOkmsServiceIdQueryKey(okms.id),
         queryFn: () => getOkmsServiceId(okms.id),
       });
@@ -53,15 +53,15 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
 
       // To handle the delay in which the new name is propagated to the OKMS databases, we need to:
       // 1. Optimistically update the OKMS domain cache so that the user sees the new name on the OKMS dashboard immediately.
-      queryClient.setQueryData(okmsQueryKeys.detail(okms.id), {
-        data: {
-          ...previousData?.data,
+      if (previousData?.data) {
+        queryClient.setQueryData<OKMS>(okmsQueryKeys.detail(okms.id), {
+          ...previousData.data,
           iam: {
-            ...previousData?.data?.iam,
+            ...previousData.data.iam,
             displayName,
           },
-        },
-      });
+        });
+      }
 
       // 2. Invalidate the OKMS list query so that the list is refetched when the user returns to it.
       queryClient

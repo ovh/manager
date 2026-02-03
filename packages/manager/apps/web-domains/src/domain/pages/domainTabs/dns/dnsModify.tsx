@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import {
   BaseLayout,
   Breadcrumb,
@@ -20,9 +20,7 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import { getLanguageKey } from '@/domain/utils/utils';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
-import { GUIDES_LIST } from '@/domain/constants/guideLinks';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 import Loading from '@/domain/components/Loading/Loading';
@@ -33,22 +31,30 @@ import {
 import DnsConfigurationRadio from '@/domain/components/ModifyNameServer/DnsConfigurationRadio';
 import { TNameServer } from '@/domain/types/domainResource';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function DnsModifyPage() {
-  const { t, i18n } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
+  const { t } = useTranslation(['domain', NAMESPACES.ONBOARDING]);
   const { serviceName } = useParams<{ serviceName: string }>();
   const navigate = useNavigate();
-  const langCode = getLanguageKey(i18n.language);
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
-  const { domainZone, isFetchingDomainZone } = useGetDomainZone(serviceName);
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
     serviceName,
   );
+  const { domainZone, isFetchingDomainZone } = useGetDomainZone(
+    serviceName,
+    domainResource,
+    true,
+  );
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const guideUrls = useLinks(ovhSubsidiary);
 
   const guideItems: GuideItem[] = [
     {
       id: 1,
-      href: GUIDES_LIST.domains.url[langCode],
+      href: guideUrls.DOMAINS_LINK,
       target: '_blank',
       label: t('domain_guide_button_label'),
     },
@@ -105,7 +111,7 @@ export default function DnsModifyPage() {
             {t('domain_tab_DNS_modification_warning_message_description2')}
             <br />
             <Link
-              href={GUIDES_LIST.modifyDns.url[langCode]}
+              href={guideUrls.MODIFY_DNS_LINK}
               className="text-[--ods-color-primary-500]"
               target="_blank"
             >

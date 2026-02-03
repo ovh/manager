@@ -3,9 +3,9 @@
   "sms_senders_configure_auto_response": "Respostas automáticas",
   "sms_senders_configure_contact_info_title": "1. Se o utilizador final responder «contacto» à mensagem",
   "sms_senders_configure_contact_info_subtitle": "Receberá imediatamente as seguintes informações.",
-  "sms_senders_configure_contact_info_label_commercial_name": "Nome comercial",
-  "sms_senders_configure_contact_info_label_phonenumber": "Número de telefone (no formato internacional 00351 ou +351)",
-  "sms_senders_configure_contact_info_label_website": "Website",
+  "sms_senders_configure_contact_info_label_commercial_name": "Nome da empresa",
+  "sms_senders_configure_contact_info_label_phonenumber": "Número da empresa",
+  "sms_senders_configure_contact_info_label_website": "Website da empresa",
   "sms_senders_configure_kyc_label_company_name": "Denominação social",
   "sms_senders_configure_kyc_label_brand_name": "Marca que utiliza o serviço",
   "sms_senders_configure_kyc_label_primary_use_case": "Caso de uso principal",
@@ -20,5 +20,6 @@
   "sms_senders_configure_contact_info_update_success": "A atualização das informações de resposta automática foi registada.",
   "sms_senders_configure_auto_response_update_success": "A atualização da mensagem de resposta automática foi registada.",
   "sms_senders_configure_kyc_update_success": "A atualização do KYC foi registada.",
-  "sms_senders_configure_loading_error": "Ocorreu um erro aquando da recuperação das informações. {{ error }}"
+  "sms_senders_configure_loading_error": "Ocorreu um erro aquando da recuperação das informações. {{ error }}",
+  "sms_senders_configure_contact_info_helper_phonenumber": "Introduza o número no formato internacional (0033123456789 ou +33123456789)"
 }

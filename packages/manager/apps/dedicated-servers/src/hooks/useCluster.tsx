@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { getClusters, getClusterQueryKey } from '@/data/api/cluster';
 
 export const useCluster = () => {

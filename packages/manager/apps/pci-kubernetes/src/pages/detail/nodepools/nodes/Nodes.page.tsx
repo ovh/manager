@@ -40,7 +40,6 @@ import { getNodesQueryKey, usePaginatedNodes } from '@/api/hooks/nodes';
 import { useKubernetesCluster } from '@/api/hooks/useKubernetes';
 import { useRegionInformations } from '@/api/hooks/useRegionInformations';
 import LoadingSkeleton from '@/components/LoadingSkeleton.component';
-import { isMultiDeploymentZones } from '@/helpers';
 import queryClient from '@/queryClient';
 
 import { useDatagridColumns } from './useDatagridColumns';
@@ -211,11 +210,7 @@ export default function NodesPage(): ReactElement {
       <LoadingSkeleton when={!isNodesPending || !isPendingRegionInfo} spinner={{ centered: true }}>
         <div>
           <Datagrid
-            columns={
-              isMultiDeploymentZones(regionInformations?.type)
-                ? columns.filter((column) => column.id !== 'actions')
-                : columns
-            }
+            columns={columns}
             items={nodes?.rows || []}
             totalItems={nodes?.totalRows || 0}
             pagination={pagination}

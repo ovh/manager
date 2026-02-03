@@ -1,4 +1,4 @@
-import { ServiceDetails } from '@ovh-ux/manager-react-components';
+import { ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { ZimbraPlanCodes } from '../type';
 import { ServiceBillingState, SlotService } from './type';

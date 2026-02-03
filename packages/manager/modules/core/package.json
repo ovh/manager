@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-core",
-  "version": "13.3.9",
+  "version": "13.4.3",
   "private": true,
   "description": "Core functionalities shared across all control panel.",
   "homepage": "https://github.com/ovh/manager/tree/master/packages/manager/modules/core#readme",
@@ -22,17 +22,20 @@
     "build": "rollup -c --environment BUILD:production",
     "dev": "rollup -c --environment BUILD:development",
     "dev:watch": "rollup -c --environment BUILD:development --watch",
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-sso": "^0.7.1",
-    "@ovh-ux/ng-translate-async-loader": "^2.2.6",
-    "@ovh-ux/url-builder": "^2.4.1",
+    "@ovh-ux/manager-core-sso": "^0.7.2",
+    "@ovh-ux/ng-translate-async-loader": "^2.2.7",
+    "@ovh-ux/url-builder": "^2.4.3",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {
     "@ovh-ux/component-rollup-config": "^13.2.0",
-    "@ovh-ux/manager-models": "^2.7.8"
+    "@ovh-ux/manager-models": "^2.7.10",
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-config": "^5.0.0 || ^6.0.0",

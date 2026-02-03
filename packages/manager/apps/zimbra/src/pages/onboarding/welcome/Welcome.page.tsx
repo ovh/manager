@@ -4,16 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { BUTTON_SIZE, Button, Text } from '@ovhcloud/ods-react';
 
-import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { usePlatform } from '@/data/hooks';
 import {
@@ -84,22 +83,23 @@ export const OnboardingWelcome = () => {
       img={{ src: onboardingImgSrc }}
       description={
         <>
-          <OdsText className="text-center" id="welcome-description">
+          <Text className="text-center" id="welcome-description">
             {t('welcome_description')}
-          </OdsText>
+          </Text>
           <div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-            <OdsButton
+            <Button
               className="sm:w-auto [&::part(button)]:w-full"
-              size={ODS_BUTTON_SIZE.md}
-              label={t('common:configure_now')}
+              size={BUTTON_SIZE.md}
               onClick={onPrimaryClick}
-            />
+            >
+              {t('common:configure_now')}
+            </Button>
           </div>
         </>
       }
     >
       {onboardingGuides.map(({ href, key, tracking }) => (
-        <Card
+        <LinkCard
           key={key}
           href={href}
           texts={{

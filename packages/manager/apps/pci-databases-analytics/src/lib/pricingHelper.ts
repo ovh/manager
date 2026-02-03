@@ -1,11 +1,9 @@
 import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
 
-type Price = Pick<order.publicOrder.Pricing, 'price' | 'tax'>;
-export interface Pricing {
-  hourly?: Price;
-  monthly?: Price;
-}
+export const hourlyToMonthlyFactor = 730;
+
+export type Pricing = Pick<order.publicOrder.Pricing, 'price' | 'tax'>;
 
 interface ComputeFlavorPriceProps {
   offerPricing: Pricing;
@@ -36,14 +34,8 @@ export const computeFlavorPrice = ({
   nbNodes,
 }: ComputeFlavorPriceProps) => {
   return {
-    hourly: {
-      price: offerPricing.hourly.price * nbNodes,
-      tax: offerPricing.hourly.tax * nbNodes,
-    },
-    monthly: {
-      price: offerPricing.monthly.price * nbNodes,
-      tax: offerPricing.monthly.tax * nbNodes,
-    },
+    price: offerPricing.price * nbNodes,
+    tax: offerPricing.tax * nbNodes,
   };
 };
 export const computeStoragePrice = ({
@@ -52,16 +44,10 @@ export const computeStoragePrice = ({
   storageMode = database.capabilities.engine.storage.StrategyEnum.distributed,
   additionalStorage = 0,
 }: ComputeStoragePriceProps) => {
-  if (!storagePricing?.hourly)
+  if (!storagePricing)
     return {
-      hourly: {
-        price: 0,
-        tax: 0,
-      },
-      monthly: {
-        price: 0,
-        tax: 0,
-      },
+      price: 0,
+      tax: 0,
     };
   const storageFactor =
     storageMode ===
@@ -69,14 +55,8 @@ export const computeStoragePrice = ({
       ? 1
       : nbNodes;
   return {
-    hourly: {
-      price: additionalStorage * storagePricing.hourly.price * storageFactor,
-      tax: additionalStorage * storagePricing.hourly.tax * storageFactor,
-    },
-    monthly: {
-      price: additionalStorage * storagePricing.monthly.price * storageFactor,
-      tax: additionalStorage * storagePricing.monthly.tax * storageFactor,
-    },
+    price: additionalStorage * storagePricing.price * storageFactor,
+    tax: additionalStorage * storagePricing.tax * storageFactor,
   };
 };
 
@@ -95,14 +75,8 @@ export const computeServicePrice = ({
     nbNodes,
   });
   const servicePrice = {
-    hourly: {
-      price: flavorPrice.hourly.price + storagePrice.hourly.price,
-      tax: flavorPrice.hourly.tax + storagePrice.hourly.tax,
-    },
-    monthly: {
-      price: flavorPrice.monthly.price + storagePrice.monthly.price,
-      tax: flavorPrice.monthly.tax + storagePrice.monthly.tax,
-    },
+    price: flavorPrice.price + storagePrice.price,
+    tax: flavorPrice.tax + storagePrice.tax,
   };
   return {
     flavorPrice,

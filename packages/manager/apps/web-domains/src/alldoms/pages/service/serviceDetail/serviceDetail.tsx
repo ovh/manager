@@ -23,6 +23,7 @@ import {
   Text,
   TEXT_PRESET,
   Link as OdsLink,
+  MessageBody,
 } from '@ovhcloud/ods-react';
 import ServiceDetailDomains from '@/alldoms/components/serviceDetail/ServiceDetailDomains';
 import ServiceDetailInformation from '@/alldoms/components/serviceDetail/ServiceDetailInformation';
@@ -108,6 +109,14 @@ export default function ServiceDetail() {
       }
     >
       <section>
+        <Message className="w-full mb-6">
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          <MessageBody>
+            {t('allDom_detail_page_renew_information_advantage')}
+            <br />
+            {t('allDom_detail_page_renew_information_renew')}
+          </MessageBody>
+        </Message>
         {hasTerminateAtExpirationDateAction(alldomService.pendingActions) &&
           isManualRenewMessage && (
             <Message
@@ -144,7 +153,7 @@ export default function ServiceDetail() {
               </div>
             </Message>
           )}
-        <div className="grid grid-cols-1 gap-6 items-start mb-8 lg:grid-cols-2">
+        <div className="grid gap-6 items-start mb-8 grid-cols-1 lg:!grid-cols-2">
           <ServiceDetailInformation currentState={alldomService.currentState} />
           <ServiceDetailSubscribing alldomService={alldomService} />
         </div>

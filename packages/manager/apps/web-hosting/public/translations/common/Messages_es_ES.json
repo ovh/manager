@@ -168,6 +168,6 @@
   "hosting_tab_DOMAINS_configuration_remove_success": "El dominio va a ser desvinculado de su alojamiento compartido.",
   "activate_cdn": "Activar el CDN",
   "multisite_delete_site_modal_description_part1": "Para eliminar este sitio, primero debe desvincular todos los dominios asociados a él.",
-  "multisite_delete_site_modal_description_part2": "Su sitio se desactivará automáticamente.",
+  "multisite_delete_site_modal_description_part2": "El sitio web se desactivará automáticamente.",
   "multisite_delete_site_modal_description_part3": "Los directorios y archivos no se eliminarán."
 }

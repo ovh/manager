@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.10...@ovh-ux/manager-pci-private-registry-app@0.13.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [0.12.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.9...@ovh-ux/manager-pci-private-registry-app@0.12.10) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.12.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.8...@ovh-ux/manager-pci-private-registry-app@0.12.9) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-private-registry-app
+
+
+
+
+
+## [0.12.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.7...@ovh-ux/manager-pci-private-registry-app@0.12.8) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+
+
+
 ## [0.12.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-private-registry-app@0.12.6...@ovh-ux/manager-pci-private-registry-app@0.12.7) (2026-01-09)
 
 

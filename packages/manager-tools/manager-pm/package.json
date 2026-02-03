@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pm",
-  "version": "0.46.0",
+  "version": "0.51.1",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -12,8 +12,8 @@
     "manager-pm-validation": "./bin/manager-pm-validation.js"
   },
   "scripts": {
-    "lint:modern": "manager-lint --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\"",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\""
+    "lint": "manager-lint --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\"",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\""
   },
   "dependencies": {
     "commander": "^14.0.0",

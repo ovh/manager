@@ -3,12 +3,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
 import IdentitiesStatusBadge from '../badge/IdentitiesStatusBadge.component';
 import IdentitiesBaseTile from './IdentitiesBaseTile.component';
-import IdentitiesTileText from './IdentitiesTileText.component';
+import { IdentityRow } from './IdentityRow.component';
 
 type IdentitiesUserTileProps = {
   user: IdentityUser;
@@ -49,23 +46,19 @@ const IdentitiesUserTile = ({
       isChecked={isChecked}
       setIsChecked={setIsChecked}
     >
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('key_management_service_credential_create_identities_user_tile_email_label')}:
-        </OdsText>
-        <IdentitiesTileText>{user.email}</IdentitiesTileText>
-      </div>
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('key_management_service_credential_create_identities_user_tile_group_label')}:
-        </OdsText>
-        <IdentitiesTileText>{user.group} </IdentitiesTileText>
-      </div>
-      <div>
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
-          {t('key_management_service_credential_create_identities_user_tile_identity_label')}:
-        </OdsText>
-        <IdentitiesTileText>{user.urn}</IdentitiesTileText>
+      <div className="mb-2 space-y-1">
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_email_label')}
+          value={user.email}
+        />
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_group_label')}
+          value={user.group}
+        />
+        <IdentityRow
+          label={t('key_management_service_credential_create_identities_user_tile_identity_label')}
+          value={user.urn}
+        />
       </div>
       <IdentitiesStatusBadge status={user.status} />
     </IdentitiesBaseTile>

@@ -135,14 +135,14 @@ export default function NotificationsCarousel() {
             <>
               <OsdsIcon
                 data-testid="next-notification-button"
-                className="absolute top-1/2 right-4 -mt-6 cursor-pointer"
+                className="absolute right-4 top-1/2 -mt-6 cursor-pointer"
                 name={ODS_ICON_NAME.ARROW_RIGHT}
                 size={ODS_ICON_SIZE.sm}
                 color={ODS_THEME_COLOR_INTENT.primary}
                 onClick={showNextNotification}
               />
               <div
-                className="absolute block w-full text-center right-0 left-0 bottom-1"
+                className="absolute inset-x-0 bottom-1 block w-full text-center"
                 data-testid="notification-navigation"
               >
                 {notifications.map((notification: Notification, index: number) => (
@@ -153,7 +153,7 @@ export default function NotificationsCarousel() {
                     size={ODS_ICON_SIZE.xxs}
                     color={getTextColor(notification.level)}
                     contrasted={currentIndex === index || undefined}
-                    onClick={() => setCurrentIndex((previousIndex) => index)}
+                    onClick={() => setCurrentIndex(() => index)}
                   />
                 ))}
               </div>

@@ -1,13 +1,13 @@
 {
-  "key_management_service_create_title": "Ordinare un KMS",
-  "key_management_service_create_subtitle": "Indica la Region in cui sarà attivato. In seguito potrai creare e gestire i tuoi Service Keys e certificati di accesso in questo KMS.",
+  "key_management_service_create_title": "Ordina un dominio OKMS",
+  "key_management_service_create_subtitle": "Si prega di indicare la regione in cui sarà distribuito. Potrai quindi creare e gestire le tue chiavi di servizio e i certificati di accesso in questo dominio OKMS.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "Gli oggetti crittografici di questo KMS saranno salvati nella Region indicata. Potranno essere utilizzati in tutti i prodotti OVHcloud, indipendentemente dalla Region.",
+  "key_management_service_create_region_description": "Gli oggetti crittografici di questo dominio OKMS saranno archiviati nella regione indicata. Possono essere utilizzati in tutti i prodotti OVHcloud senza distinzione di regione.",
   "key_management_service_create_cta_cancel": "Annullare",
   "key_management_service_create_cta_order": "Ordinare",
-  "key_management_service_create_order_initiated_title": "Ordine del tuo KMS avviato",
+  "key_management_service_create_order_initiated_title": "Ordine del tuo dominio OKMS avviato",
   "key_management_service_create_order_initiated_subtitle": "Se non hai potuto finalizzare l’ordine, completalo cliccando sul seguente link:",
-  "key_management_service_create_order_initiated_info": "Ti informeremo della disponibilità del tuo KMS via email.",
+  "key_management_service_create_order_initiated_info": "Ti informeremo della disponibilità del tuo dominio OKMS via e-mail.",
   "key_management_service_create_order_initiated_cta_done": "Terminare",
   "key_management_service_create_select_placeholder": "Selezionare una Region",
   "key_management_service_create_region_eu_west_par": "Europa (Francia - Parigi)",
@@ -30,5 +30,5 @@
   "key_management_service_create_region_labeu_west_1_dev_1": "LABEU (Francia - Croix) (DEV-1)",
   "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (Francia - Croix) (DEV-2)",
   "region_selection": "Selezione della Region",
-  "region_selection_description": "Indica la Region in cui sarà attivato. In seguito potrai creare e gestire i tuoi Service Keys e certificati di accesso in questo KMS. Gli oggetti crittografici di questo KMS saranno salvati nella Region indicata. Potranno essere utilizzati in tutti i prodotti OVHcloud, indipendentemente dalla Region."
+  "region_selection_description": "Si prega di indicare la regione in cui sarà distribuito. Potrai quindi creare e gestire le tue chiavi di servizio e i certificati di accesso in questo dominio OKMS. Gli oggetti crittografici di questo dominio OKMS saranno archiviati nella regione indicata. Possono essere utilizzati in tutti i prodotti OVHcloud senza distinzione di regione."
 }

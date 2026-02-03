@@ -11,7 +11,7 @@ export const BANNER_GUIDE_LINK = {
   ES:
     'https://help.ovhcloud.com/csm/es-es-web-hosting-database-overquota?id=kb_article_view&sysparm_article=KB0056173',
   FR:
-    'https://help.ovhcloud.com/csm/fr-web-hosting-database-overquota?id=kb_article_view&sysparm_article=KB0056072',
+    'https://help.ovhcloud.com/csm/fr-web-hosting-database-diagnosis?id=kb_article_view&sysparm_article=KB0052554',
   IE:
     'https://help.ovhcloud.com/csm/en-ie-web-hosting-database-overquota?id=kb_article_view&sysparm_article=KB0056071',
   IT:

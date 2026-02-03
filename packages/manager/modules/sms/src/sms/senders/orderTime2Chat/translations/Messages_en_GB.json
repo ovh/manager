@@ -3,13 +3,14 @@
   "sms_order_time2chat_description": "Please fill in the information below so that we can process your order.",
   "sms_order_time2chat_action_order": "Continue",
   "sms_order_time2chat_action_cancel": "Cancel",
-  "sms_order_time2chat_label_phonenumber": "Telephone number (in international format 0033 or +33)",
-  "sms_order_time2chat_label_website": "Website",
-  "sms_order_time2chat_label_name": "Name",
+  "sms_order_time2chat_label_phonenumber": "Company telephone number",
+  "sms_order_time2chat_label_website": "Company website",
+  "sms_order_time2chat_label_name": "Company name",
   "sms_order_time2chat_label_company_name": "Company name",
   "sms_order_time2chat_label_brand_name": "Trademark using the service",
   "sms_order_time2chat_label_primary_use_case": "Primary use cases",
   "sms_order_time2chat_label_operational_contact_name": "Contact name",
   "sms_order_time2chat_label_operational_contact_email": "Contact email",
-  "sms_order_time2chat_message_error": "An error has occurred: {{error}}"
+  "sms_order_time2chat_message_error": "An error has occurred: {{error}}",
+  "sms_order_time2chat_helper_phonenumber": "Please enter a number in international format (0044123456789 or +44123456789)."
 }

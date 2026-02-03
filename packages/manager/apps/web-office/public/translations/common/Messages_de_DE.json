@@ -51,7 +51,7 @@
   "state_suspended": "Ausgesetzt",
   "state_suspending": "Wird ausgesetzt",
   "error_message": "Ihre Anfrage ist fehlgeschlagen. {{ error }}",
-  "agreement": "Unterzeichnung des Vertrags",
-  "contract_signature": "Unterzeichnung des Vertrags",
-  "contract_signature_tooltip": "Um auf Ihren Dienst zuzugreifen, müssen Sie den Microsoft-Nutzervertrag akzeptieren"
+  "agreement": "Vertragsunterzeichnung",
+  "contract_signature": "Vertragsunterzeichnung",
+  "contract_signature_tooltip": "Um auf Ihren Dienst zuzugreifen, müssen Sie den Microsoft-Nutzervertrag akzeptieren."
 }

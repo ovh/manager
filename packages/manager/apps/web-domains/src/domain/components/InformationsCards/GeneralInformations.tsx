@@ -1,14 +1,5 @@
-import React from 'react';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
-import {
-  Badge,
-  BADGE_COLOR,
-  Icon,
-  ICON_NAME,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@ovhcloud/ods-react';
+import { Badge } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { domainStatusToBadge } from '@/domain/utils/domainStatus';
@@ -16,6 +7,7 @@ import {
   DOMAIN_STATUS,
   SUSPENSION_STATUS,
 } from '@/domain/constants/serviceDetail';
+import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
 
 interface GeneralInformationsCardsProps {
   readonly serviceName: string;
@@ -50,20 +42,14 @@ export default function GeneralInformationsCards({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
           {t('domain_tab_general_information_tile_title_domain_state')}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Icon
-                className="pl-3 text-[--ods-color-primary-500]"
-                name={ICON_NAME.circleQuestion}
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              {t('domain_tab_general_information_tooltip_domain_state')}
-            </TooltipContent>
-          </Tooltip>
+          <CircleQuestionTooltip
+            translatedMessage={t(
+              'domain_tab_general_information_tile_title_domain_state',
+            )}
+          />
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <Badge color={domainState.statusColor} className="mt-4">
+          <Badge color={domainState.statusColor}>
             {t(`${domainState.i18nKey}`)}
           </Badge>
         </ManagerTile.Item.Description>
@@ -72,20 +58,14 @@ export default function GeneralInformationsCards({
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
           {t('domain_tab_general_information_tile_title_tech_state')}
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Icon
-                className="pl-3 text-[--ods-color-primary-500]"
-                name={ICON_NAME.circleQuestion}
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              {t('domain_tab_general_information_tooltip_domain_tech_state')}
-            </TooltipContent>
-          </Tooltip>
+          <CircleQuestionTooltip
+            translatedMessage={t(
+              'domain_tab_general_information_tooltip_domain_tech_state',
+            )}
+          />
         </ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          <Badge color={techState.statusColor} className="mt-4">
+          <Badge color={techState.statusColor}>
             {t(`${techState.i18nKey}`)}
           </Badge>
         </ManagerTile.Item.Description>

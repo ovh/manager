@@ -24,7 +24,7 @@ export type SecretVersionWithData = SecretVersion & SecretVersionDataField;
 export type SecretMetadata = {
   casRequired: boolean;
   createdAt: string;
-  currentVersion: number;
+  currentVersion?: number;
   customMetadata?: Record<string, string>;
   deactivateVersionAfter: string;
   maxVersions: number;
@@ -34,13 +34,13 @@ export type SecretMetadata = {
 
 export type Secret = {
   path: string;
-  version: SecretVersion;
+  version?: SecretVersion;
   metadata: SecretMetadata;
   iam: IAM;
 };
 
 export type SecretWithData = Omit<Secret, 'version'> & {
-  version: SecretVersionWithData;
+  version?: SecretVersionWithData;
 };
 
 export type SecretConfig = {

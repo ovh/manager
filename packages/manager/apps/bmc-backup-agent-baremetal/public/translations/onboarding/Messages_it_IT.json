@@ -1,0 +1,34 @@
+{
+  "title_fallback": "I backup, in tutta semplicità",
+  "description_part1": "Usufruisci di una soluzione di backup con copie remote automatiche giornaliere, alert proattivi e monitoraggio centralizzato, il tutto archiviato in modo sicuro in un Vault su Object Storage di OVHcloud. Installa l'Agent di backup in meno di 15 minuti, senza spese. Paghi solo per lo storage Object Storage utilizzato.",
+  "description_part2": "Segui le nostre guide per iniziare rapidamente.",
+  "guides": {
+    "guide1": {
+      "category": "Costo",
+      "title": "Costi e fatturazione",
+      "description": "Documentazione su costi e fatturazione di Backup Agent.",
+      "cta": "Scopri"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Prima configurazione",
+      "description": "Una guida passo passo per installare ed eseguire il tuo primo backup.",
+      "cta": "Guarda il tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Domande frequenti",
+      "description": "Una guida con le domande frequenti sulle problematiche più comuni.",
+      "cta": "Leggi le FAQ"
+    }
+  },
+  "no_baremetal_available": "Ordinare un server Bare Metal e proteggerlo con Backup Agent",
+  "select_baremetal": "Selezionare il tuo server Bare Metal",
+  "save_a_baremetal_server": "Effettuare il backup di un server Bare Metal",
+  "baremetal_label_delay_order": "Una volta confermato il tuo ordine, questa schermata verrà aggiornata e riceverai un'email quando il servizio Backup Agent sarà disponibile. Lo stato di avanzamento dell'ordine è disponibile <OrderLink>qui</OrderLink> .",
+  "baremetal_label_order_in_progress": "L'ordine è stato ricevuto correttamente. Il servizio è in fase di consegna e lo stato di avanzamento è disponibile <OrderLink>qui</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Attivazione del Backup Tenant",
+  "first_order_terms_and_conditions_description": "Per attivare il tuo servizio è necessario creare un Backup Tenant. Vuoi continuare l'attivazione del tuo servizio?",
+  "first_order_terms_and_conditions_confirm_label": "Ho preso visione e accetto le Condizioni Generali, l'Appendice relativa al trattamento dei dati e le Condizioni Particolari di Servizio di OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Allegato Trattamento dei dati a carattere personale"
+}

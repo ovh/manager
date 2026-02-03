@@ -1,0 +1,34 @@
+{
+  "title_fallback": "Backups, ganz einfach",
+  "description_part1": "Sichern Sie sich eine Backup-Lösung mit täglichen automatischen Remote-Backups, proaktiven Warnmeldungen und zentraler Überwachung, alles sicher in einem Vault im OVHcloud Object Storage gespeichert. Installieren Sie den Sicherungsagenten in weniger als 15 Minuten, ohne Gebühren. Sie zahlen nur für den von Ihnen genutzten Object Storage.",
+  "description_part2": "Befolgen Sie unsere Guides für einen schnellen Einstieg.",
+  "guides": {
+    "guide1": {
+      "category": "Kosten",
+      "title": "Kosten und Abrechnung",
+      "description": "Dokumentation zu den Kosten und der Abrechnung von Backup Agent.",
+      "cta": "Jetzt entdecken"
+    },
+    "guide2": {
+      "category": "Anleitung",
+      "title": "Erste Konfiguration",
+      "description": "Ein Schritt-für-Schritt-Guide zum Einrichten und Ausführen Ihres ersten Backups.",
+      "cta": "Zum Tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Häufig gestellte Fragen",
+      "description": "Ein Guide mit häufig gestellten Fragen zu den gängigsten Themen.",
+      "cta": "FAQs lesen"
+    }
+  },
+  "no_baremetal_available": "Einen Bare-Metal-Server bestellen und mit Backup Agent absichern",
+  "select_baremetal": "Ihren Bare-Metal-Server auswählen",
+  "save_a_baremetal_server": "Einen Bare-Metal-Server absichern",
+  "baremetal_label_delay_order": "Nach der Validierung Ihrer Bestellung wird dieser Bildschirm aktualisiert und Sie erhalten eine E-Mail, sobald Ihr Backup Agent Produkt bereitgestellt wurde. Den Fortschritt Ihrer Bestellung können Sie <OrderLink>hier</OrderLink> einsehen.",
+  "baremetal_label_order_in_progress": "Die Bestellung ist eingegangen. Ihr Produkt wird gerade bereitgestellt und Sie können den Fortschritt <OrderLink>hier</OrderLink> nachverfolgen.",
+  "first_order_terms_and_conditions_title": "Aktivierung des Backup-Tenants",
+  "first_order_terms_and_conditions_description": "Um Ihren Dienst zu aktivieren, ist es notwendig, einen Backup-Tenant zu erstellen. Möchten Sie mit der Aktivierung Ihres Dienstes fortfahren?",
+  "first_order_terms_and_conditions_confirm_label": "Ich habe die allgemeinen Bedingungen, die Anlage zur Verarbeitung personenbezogener Daten sowie die besonderen Dienstleistungsbedingungen von OVH zur Kenntnis genommen und akzeptiere diese.",
+  "first_order_terms_and_conditions_annexe_label": "Anhang Verarbeitung personenbezogener Daten"
+}

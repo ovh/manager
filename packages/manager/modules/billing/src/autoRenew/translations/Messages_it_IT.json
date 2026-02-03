@@ -171,5 +171,9 @@
   "billing_autorenew_service_every_x_years": "Ogni {{ years }} anni",
   "billing_autorenew_engagement_none": "Senza impegno contrattuale",
   "billing_autorenew_service_type_DOMAIN_RESELLER": "Programma Rivenditori di domini",
-  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC"
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC",
+  "billing_autorenew_service_renew_automatic": "Automatico",
+  "billing_autorenew_service_renew_manual": "Manuale",
+  "billing_autorenew_service_renew": "Rinnovo",
+  "billing_autorenew_criterion_renew": "Rinnovo"
 }

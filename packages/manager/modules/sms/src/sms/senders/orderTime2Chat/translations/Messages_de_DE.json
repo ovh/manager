@@ -3,13 +3,14 @@
   "sms_order_time2chat_description": "Bitte füllen Sie die nachstehenden Informationen aus, damit wir Ihre Bestellung bearbeiten können.",
   "sms_order_time2chat_action_order": "Weiter",
   "sms_order_time2chat_action_cancel": "Abbrechen",
-  "sms_order_time2chat_label_phonenumber": "Telefonnummer (im internationalen Format 0033 oder +33)",
-  "sms_order_time2chat_label_website": "Website",
-  "sms_order_time2chat_label_name": "Name",
+  "sms_order_time2chat_label_phonenumber": "Unternehmensnummer",
+  "sms_order_time2chat_label_website": "Website des Unternehmens",
+  "sms_order_time2chat_label_name": "Name des Unternehmens",
   "sms_order_time2chat_label_company_name": "Firmenname",
   "sms_order_time2chat_label_brand_name": "Marke, die den Dienst verwendet",
   "sms_order_time2chat_label_primary_use_case": "Primärer Use Case",
   "sms_order_time2chat_label_operational_contact_name": "Name des Kontakts",
   "sms_order_time2chat_label_operational_contact_email": "E-Mail-Adresse des Kontakts",
-  "sms_order_time2chat_message_error": "Es ist ein Fehler aufgetreten: {{error}}"
+  "sms_order_time2chat_message_error": "Es ist ein Fehler aufgetreten: {{error}}",
+  "sms_order_time2chat_helper_phonenumber": "Geben Sie die Nummer im internationalen Format ein (0033123456789 oder +33123456789)."
 }

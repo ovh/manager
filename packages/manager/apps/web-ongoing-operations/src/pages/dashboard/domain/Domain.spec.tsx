@@ -1,7 +1,7 @@
 import '@/setupTests';
 import React from 'react';
 import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import { Mock, vi } from 'vitest';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { render, waitFor, screen, fireEvent } from '@testing-library/react';
 import { domain } from '@/__mocks__/domain';
@@ -17,10 +17,10 @@ vi.mock('react-router-dom', () => ({
 
 describe('Domain datagrid', () => {
   it('fetch in a good way using useResourcesIcebergV6', () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
       data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
     }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,
@@ -44,10 +44,10 @@ describe('Domain datagrid', () => {
   });
 
   it('Display the datagrid element', async () => {
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
       data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
     }),
-    (useResourcesIcebergV6 as jest.Mock).mockReturnValue({
+    (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: domain,
       isLoading: false,
       totalCount: domain.length,

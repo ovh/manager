@@ -1,6 +1,5 @@
 import '@/setupTests';
-import React from 'react';
-import { describe, it, vi } from 'vitest';
+import { describe, it, Mock, vi } from 'vitest';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import {
@@ -19,15 +18,15 @@ vi.mock('@/hooks/iam/iam', () => ({
 
 describe('dashboard test', () => {
   it('should display the tabs', async () => {
-    (useGetIAMResourceAllDom as jest.Mock).mockReturnValue({
+    (useGetIAMResourceAllDom as Mock).mockReturnValue({
       data: allDomIamResource,
     });
 
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
+    (useAuthorizationIam as Mock).mockReturnValue({
       isAuthorized: true,
     });
 
-    (useFeatureAvailability as jest.Mock).mockReturnValue({
+    (useFeatureAvailability as Mock).mockReturnValue({
       data: { [allDomFeatureAvailibility]: true },
     });
 

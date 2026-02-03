@@ -4,9 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
 
-import { ErrorBanner, ErrorMessage } from '@ovh-ux/manager-react-components';
-
-import { useSendErrorTracking } from '@/utils/trackingError';
+import { Error, ErrorMessage } from '@ovh-ux/muk';
+import { formatError } from '@/helpers/error.helper';
 
 export interface ErrorObject {
   error: AxiosError<unknown, unknown> | ErrorMessage;
@@ -15,11 +14,11 @@ export interface ErrorObject {
 const Errors: React.FC<ErrorObject> = ({ error }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  useSendErrorTracking({ error });
+  const errorObject = formatError(error);
 
   return (
-    <ErrorBanner
-      error={error}
+    <Error
+      error={errorObject}
       onReloadPage={() => navigate(location.pathname, { replace: true })}
       onRedirectHome={() => navigate('/', { replace: true })}
     />

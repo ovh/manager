@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -9,21 +9,18 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  Label,
   useToast,
 } from '@datatr-ux/uxlib';
-import PriceUnitSwitch from '@/components/price-unit-switch/PriceUnitSwitch.component';
-import Price from '@/components/price/Price.component';
 import { Pricing } from '@/lib/pricingHelper';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useDeleteNode } from '@/hooks/api/database/node/useDeleteNode.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
+import Price from '@/components/price/Price.component';
 
 const DeleteNode = () => {
   const { service, projectId } = useServiceData();
-  const [showMonthly, setShowMonthly] = useState(false);
   const catalogQuery = useGetCatalog();
   const navigate = useNavigate();
 
@@ -53,13 +50,12 @@ const DeleteNode = () => {
     const prefix = `databases.${service.engine.toLowerCase()}-${service.plan}-${
       service.flavor
     }`;
+    const pricingCatalog = catalogQuery.data?.addons?.find(
+      (a) => a.planCode === `${prefix}.hour.consumption`,
+    )?.pricings[0];
     return {
-      hourly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.hour.consumption`,
-      ).pricings[0],
-      monthly: catalogQuery.data?.addons.find(
-        (a) => a.planCode === `${prefix}.month.consumption`,
-      ).pricings[0],
+      price: pricingCatalog?.price,
+      tax: pricingCatalog?.tax,
     };
   }, [catalogQuery.data]);
 
@@ -81,38 +77,28 @@ const DeleteNode = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
-          <Label>{t('priceUnitSwitchLabel')}</Label>
-          <PriceUnitSwitch
-            showMonthly={showMonthly}
-            onChange={setShowMonthly}
-          />
-          <p>
-            {price && (
+          {price && (
+            <p>
               <Trans
                 t={t}
                 i18nKey={'deleteNodeDescription'}
                 values={{
                   nbNodes: service.nodes.length,
-                  unit: showMonthly
-                    ? t('deleteNodeDescriptionUnitMonth')
-                    : t('deleteNodeDescriptionUnitHour'),
+                  unit: t('deleteNodeDescriptionUnitHour'),
                 }}
                 components={{
                   price: (
                     <Price
-                      priceInUcents={
-                        price[showMonthly ? 'monthly' : 'hourly'].price
-                      }
-                      taxInUcents={
-                        price[showMonthly ? 'monthly' : 'hourly'].tax
-                      }
-                      decimals={showMonthly ? 2 : 3}
+                      className="inline"
+                      priceInUcents={price.price}
+                      taxInUcents={price.tax}
+                      decimals={3}
                     />
                   ),
                 }}
               ></Trans>
-            )}
-          </p>
+            </p>
+          )}
         </DialogBody>
         <DialogFooter>
           <DialogClose asChild>

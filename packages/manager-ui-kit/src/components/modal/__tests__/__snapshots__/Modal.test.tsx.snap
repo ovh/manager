@@ -10,6 +10,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
     data-state=open
     dir=ltr
     id=dialog::r3::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -17,6 +18,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
     data-scope=dialog
     dir=ltr
     id=dialog::r3::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -60,7 +62,7 @@ exports[`Modal Snapshot Tests > displays disabled primary and secondary buttons 
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading
@@ -123,6 +125,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r2::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -130,6 +133,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r2::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -173,7 +177,7 @@ exports[`Modal Snapshot Tests > displays loading Modal 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading
@@ -238,6 +242,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
     data-state=open
     dir=ltr
     id=dialog::r4::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -245,6 +250,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
     data-scope=dialog
     dir=ltr
     id=dialog::r4::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -288,7 +294,7 @@ exports[`Modal Snapshot Tests > displays loading primary and secondary buttons 1
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading
@@ -433,6 +439,7 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r0::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -440,6 +447,7 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r0::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -483,7 +491,7 @@ exports[`Modal Snapshot Tests > displays the basic modal 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading
@@ -527,6 +535,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r1::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -534,6 +543,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r1::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -577,7 +587,7 @@ exports[`Modal Snapshot Tests > displays the modal with actions 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading
@@ -638,6 +648,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
     data-state=open
     dir=ltr
     id=dialog::r5::backdrop
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 2);
   />
   <div
     class=_modal-positioner
@@ -645,6 +656,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
     data-scope=dialog
     dir=ltr
     id=dialog::r5::positioner
+    style=z-index: calc(var(--ods-theme-overlay-z-index) - 1);
   >
     <div
       aria-describedby=
@@ -688,7 +700,7 @@ exports[`Modal Snapshot Tests > displays the modal with critical type 1`] = `
           class=flex items-center mb-4
         >
           <h4
-            class=_text--heading-4 block mr-3 flex-1
+            class=_text _text--heading-4 block mr-3 flex-1
             data-ods=text
           >
             Example Heading

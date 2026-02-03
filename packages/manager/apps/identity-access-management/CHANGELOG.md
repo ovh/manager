@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.6.0...@ovh-ux/manager-identity-access-management-app@0.7.0) (2026-02-03)
+
+
+### Features
+
+* **iam:** add "Permanent tokens" page in identities ([5648701](https://github.com/ovh/manager/commit/56487010b89ae4ff399b5b412bf1f0e3c5780adf)), closes [#MAIAM-45](https://github.com/ovh/manager/issues/MAIAM-45)
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.6...@ovh-ux/manager-identity-access-management-app@0.6.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [0.5.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.5...@ovh-ux/manager-identity-access-management-app@0.5.6) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.4...@ovh-ux/manager-identity-access-management-app@0.5.5) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.3...@ovh-ux/manager-identity-access-management-app@0.5.4) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.2...@ovh-ux/manager-identity-access-management-app@0.5.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.1...@ovh-ux/manager-identity-access-management-app@0.5.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.5.0...@ovh-ux/manager-identity-access-management-app@0.5.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
+
+
+
+
+
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.11...@ovh-ux/manager-identity-access-management-app@0.5.0) (2026-01-13)
+
+
+### Features
+
+* replacing nx with turbo ([4c91a10](https://github.com/ovh/manager/commit/4c91a102cc7717f68751d7768748faaeff878696))
+
+
+
+
+
 ## [0.4.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.4.10...@ovh-ux/manager-identity-access-management-app@0.4.11) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app

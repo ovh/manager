@@ -81,5 +81,15 @@
   "version_state_delete": "Delete",
   "version_state_deleted": "Deleted",
   "version_state_reactivate": "Reactivate ",
-  "versions": "Versions"
+  "versions": "Versions",
+  "no_version": "No version",
+  "no_version_message": "There is no version associated with this secret.",
+  "create_okms_domain": "Create an OKMS domain",
+  "create_secret_form_okms_not_selected": "No OKMS domain is available in this region. Please create an OKMS domain before you can create a secret.",
+  "enable_deactivate_version_after": "Set the expiration duration",
+  "enable_max_versions": "Set the maximum number of versions",
+  "enable_cas_required": "Configure the CAS",
+  "form_helper_max_versions_default": "Enter \"0\" to use the default value ({{value}}).",
+  "form_helper_max_versions_domain": "Enter \"0\" to use the OKMS domain value ({{value}}).",
+  "secret_settings": "Secret settings"
 }

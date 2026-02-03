@@ -1,0 +1,23 @@
+{
+  "telephony_order_geographical_title_country": "Eine geographische Nummer bestellen ({{country}})",
+  "telephony_order_geographical_title": "Geografische Nummer bestellen",
+  "telephony_order_geographical_submit_title": "Geografische Nummer bestellen",
+  "telephony_order_geographical_back_link": "Zurück zur Wahl der Zahlentypen",
+  "telephony_order_geographical_amount_title": "Anzahl der Nummern:",
+  "telephony_order_geographical_zone_title": "Geografisches Gebiet:",
+  "telephony_order_geographical_zone_error": "Das geografische Gebiet ist falsch.",
+  "telephony_order_geographical_specific_title": "Wahl der Rufnummer",
+  "telephony_order_geographical_retractation_title": "Widerrufsrecht",
+  "telephony_order_geographical_address_title": "Kontaktdaten des Nummerninhabers",
+  "telephony_order_geographical_zone_tip": "Ort oder Postleitzahl",
+  "telephony_order_geographical_numbers_error": "Die Liste der Nummernvoreinstellungen kann nicht geladen werden.",
+  "telephony_order_geographical_order_error": "Die Bestellung der geografischen Nummer(n) ist fehlgeschlagen. Bitte versuchen Sie es später noch einmal.",
+  "telephony_order_geographical_order_error_city": "{{city}} gehört nicht zur Zone ({{zone}})",
+  "telephony_order_geographical_order_success": "Geografische Nummer(n), die bestellt wurden. Bitte begleichen Sie Ihre Bestellung.",
+  "telephony_order_geographical_order_alias": "Alle Konfigurationen",
+  "telephony_order_geographical_order_sda_only": "Nur Weiterleitungen (SDAs)",
+  "telephony_order_geographical_prices_error": "Der Preis für die feste SDA-Weiterleitungsnummer kann nicht abgerufen werden.",
+  "telephony_order_geographical_order_periodicy": "Bestellen ({{total}} inkl. MwSt. / {{period}})",
+  "telephony_order_geographical_order_periodicy_annual": "Jahr",
+  "telephony_order_geographical_order_periodicy_month": "Monat"
+}

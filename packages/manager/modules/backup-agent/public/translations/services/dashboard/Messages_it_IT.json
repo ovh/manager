@@ -1,0 +1,12 @@
+{
+  "installed_agents": "Agenti installati",
+  "connected_vaults": "Vaults connessi",
+  "billing_more_info": "Ulteriori informazioni sulla fatturazione",
+  "number_of_connected_vaults": "{{connectedVaultCount}} connesso(i)",
+  "number_of_installed_agents": "{{installedAgentsCount}} installato(i)",
+  "linked_server": "Server collegati",
+  "linked_vaults": "Vault collegati",
+  "number_of_linked_vaults": "{{connectedVaultCount}} Vault",
+  "number_of_linked_server": "{{installedAgentsCount}} server",
+  "access_to_vspc": "Accedere al VSPC"
+}

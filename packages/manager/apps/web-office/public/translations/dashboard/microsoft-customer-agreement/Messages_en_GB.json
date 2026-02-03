@@ -1,10 +1,10 @@
 {
-  "signatory_informations": "Signatory information",
-  "signatory_informations_description": "To issue your licenses, you must accept the Microsoft customer agreement. Please check that the information below matches the signatory.",
-  "signatory_informations_message": "By clicking \"Confirm\", you will be redirected to the Microsoft site to validate your request. After validation, close the tab, then return to this setup tunnel.",
-  "signatory_step2_description": "To deliver your service, confirm that you have signed your contract with Microsoft.",
+  "signatory_informations": "Signatory’s details",
+  "signatory_informations_description": "You need to accept the Microsoft Customer Agreement to get your licence(s). Please check that the signatory’s details are correct.",
+  "signatory_informations_message": "By clicking “Confirm”, you will be redirected to the Microsoft website to finalise your request. Once you have confirmed, close the tab, then return to this configuration tunnel.",
+  "signatory_step2_description": "Before we can start providing the service, you need to confirm that you have signed a contract with Microsoft.",
   "signatory_step2_link": "Link to Microsoft",
-  "signatory_step2_button": "I have signed the Microsoft contract",
-  "signatory_success_message": "Your service has been successfully delivered and is now available!",
+  "signatory_step2_button": "I have signed a Microsoft contract",
+  "signatory_success_message": "Your service has been delivered and is now available!",
   "signatory_success_link": "My first steps with Microsoft 365"
 }

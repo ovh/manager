@@ -4,16 +4,11 @@ import { Outlet, useLocation, useNavigate, useParams, useSearchParams } from 're
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  Datagrid,
-  DatagridColumn,
-  ManagerButton,
-  Subtitle,
-} from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus } from '@/components';
 import { ResourceStatus } from '@/data/api';
@@ -46,32 +41,35 @@ const items: AutoReplyItem[] = [
 const columns: DatagridColumn<AutoReplyItem>[] = [
   {
     id: 'name',
-    cell: (item) => <div>{item.name}</div>,
+    accessorKey: 'name',
     label: 'zimbra_auto_replies_name',
   },
   {
     id: 'from',
-    cell: (item) => <div>{item.from}</div>,
+    accessorKey: 'form',
     label: 'common:from',
   },
   {
     id: 'until',
-    cell: (item) => <div>{item.until}</div>,
+    accessorKey: 'until',
     label: 'common:until',
   },
   {
     id: 'copyTo',
-    cell: (item) => <div>{item.copyTo}</div>,
+    accessorKey: 'copyTo',
     label: 'zimbra_auto_replies_copyTo',
   },
   {
     id: 'status',
-    cell: (item) => <BadgeStatus status={item.status}></BadgeStatus>,
+    accessorKey: 'status',
+    cell: ({ row }) => <BadgeStatus status={row.original.status}></BadgeStatus>,
     label: `${NAMESPACES.STATUS}:status`,
   },
   {
     id: 'actions',
-    cell: (item) => <ActionButtonAutoReply item={item} />,
+    maxSize: 50,
+    accessorKey: 'actions',
+    cell: ({ row }) => <ActionButtonAutoReply item={row.original} />,
     label: '',
   },
 ];
@@ -106,29 +104,32 @@ export const AutoReplies = () => {
         <>
           {accountId && (
             <div className="mb-6">
-              <Subtitle>{t('zimbra_auto_replies_account_title')}</Subtitle>
+              <Text preset={TEXT_PRESET.heading3}>{t('zimbra_auto_replies_account_title')}</Text>
             </div>
           )}
           <Datagrid
             topbar={
-              <ManagerButton
+              <Button
                 id="add-auto-reply-btn"
                 data-testid="add-auto-reply-btn"
-                color={ODS_BUTTON_COLOR.primary}
-                size={ODS_BUTTON_SIZE.sm}
+                color={BUTTON_COLOR.primary}
+                size={BUTTON_SIZE.sm}
                 onClick={handleAddClick}
                 urn={platformUrn}
                 iamActions={[IAM_ACTIONS.autoReply.create]}
-                icon={ODS_ICON_NAME.plus}
-                label={t('common:add_auto_reply')}
-              />
+              >
+                <>
+                  <Icon name={ICON_NAME.plus} />
+                  {t('common:add_auto_reply')}
+                </>
+              </Button>
             }
             columns={columns.map((column) => ({
               ...column,
-              label: t(column.label),
+              header: t(column.label),
             }))}
-            items={items}
-            totalItems={items.length}
+            data={items}
+            totalCount={items.length}
           />
         </>
       )}

@@ -1,0 +1,14 @@
+{
+  "home": "Home",
+  "order": "Order",
+  "open": "Open dashboard",
+  "title": "List",
+  "resource_name_label": "Name",
+  "location_label": "Location",
+  "region_label": "Region",
+  "buckets_label": "Number of buckets",
+  "status_label": "Status",
+  "order_vault": "Order a vault",
+  "more_action": "Additional action",
+  "vaults_tab_description": "Your Vaults rely on OVHcloud's Object Storage. They are configured with encryption and immutability (14 days) for safe and unaltered data. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>"
+}

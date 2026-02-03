@@ -1,0 +1,4 @@
+{
+  "e_invoicing_warning_introduction": "Atualmente, não pode transferir a sua fatura. Necessitamos de um número SIRET válido associado à sua conta para gerar e transferir faturas. Assim que o número SIRET estiver atualizado, poderá descarregar as suas faturas.",
+  "e_invoicing_warning_action": "Pode atualizar o seu número SIRET <a href={{href}}>aqui.</a>"
+}

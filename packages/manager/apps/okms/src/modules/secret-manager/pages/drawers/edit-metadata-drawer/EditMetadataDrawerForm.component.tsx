@@ -16,14 +16,13 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import z from 'zod';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { Drawer } from '@ovh-ux/muk';
 
-import {
-  DrawerContent,
-  DrawerFooter,
-} from '@/common/components/drawer/DrawerInnerComponents.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 type EditMetadataDrawerFormProps = {
   secret: Secret;
@@ -41,6 +40,7 @@ export const EditMetadataDrawerForm = ({
   onDismiss,
 }: EditMetadataDrawerFormProps) => {
   const { t } = useTranslation(['secret-manager', NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
 
   const {
     mutateAsync: updateSecret,
@@ -61,12 +61,18 @@ export const EditMetadataDrawerForm = ({
   });
 
   const handleSubmitForm = async (data: FormSchema) => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit', 'metadata', 'confirm'],
+    });
     try {
       await updateSecret({
         okmsId,
         path: decodeSecretPath(secretPath),
         cas: addCurrentVersionToCas(
-          secret?.metadata?.currentVersion,
+          secret?.metadata?.currentVersion ?? 0,
           secretConfig.casRequired.value,
           formValueToCasRequired(data.casRequired),
         ),
@@ -83,35 +89,41 @@ export const EditMetadataDrawerForm = ({
     }
   };
 
+  const handleDismiss = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.link,
+      actionType: 'navigation',
+      actions: ['edit', 'metadata', 'cancel'],
+    });
+    onDismiss();
+  };
+
   return (
-    <div className="flex h-full flex-col">
-      <DrawerContent>
-        <form className="flex flex-col gap-4 p-1">
+    <>
+      <Drawer.Content>
+        <form className="flex flex-col gap-4 p-1" onSubmit={handleSubmit(handleSubmitForm)}>
           {updateError && (
-            <OdsMessage color="danger" className="mb-4">
+            <Message color="critical" className="mb-4">
               {updateError?.response?.data?.message || t('error_update_settings')}
-            </OdsMessage>
+            </Message>
           )}
           <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
-          <SecretMaxVersionsFormField
-            name="maxVersions"
-            control={control}
-            defaultMaxVersions={secretConfig.maxVersionsDefault}
-          />
-          <SecretCasRequiredFormField
-            name="casRequired"
-            control={control}
-            isCasRequiredSetOnOkms={secretConfig?.isCasRequiredSetOnOkms}
-          />
+          <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />
+          <SecretCasRequiredFormField name="casRequired" control={control} okmsId={okmsId} />
         </form>
-      </DrawerContent>
-      <DrawerFooter
-        primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
-        isPrimaryButtonLoading={isUpdating}
-        onPrimaryButtonClick={handleSubmit(handleSubmitForm)}
-        secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-        onSecondaryButtonClick={onDismiss}
+      </Drawer.Content>
+      <Drawer.Footer
+        primaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:validate`),
+          onClick: handleSubmit(handleSubmitForm),
+          isLoading: isUpdating,
+        }}
+        secondaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:close`),
+          onClick: handleDismiss,
+        }}
       />
-    </div>
+    </>
   );
 };

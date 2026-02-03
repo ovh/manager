@@ -126,7 +126,7 @@ export default class ExchangeUpdateRenewCtrl {
         };
       })
       .catch((failure) => {
-        this.goBack(
+        this.goToAutorenew(
           `${this.$translate.instant(
             'exchange_tab_ACCOUNTS_error_message',
           )} ${failure}`,
@@ -191,10 +191,10 @@ export default class ExchangeUpdateRenewCtrl {
           ),
         };
 
-        this.goBack(updateRenewMessages[state]);
+        this.goToAutorenew(updateRenewMessages[state]);
       })
       .catch((failure) => {
-        this.goBack(
+        this.goToAutorenew(
           `${this.$translate.instant(
             'exchange_update_billing_periode_failure',
           )} ${failure}`,

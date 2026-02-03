@@ -3,16 +3,15 @@ import {
   OkmsCredentialCreation,
 } from '@key-management-service/types/okmsCredential.type';
 
-import apiClient, { ApiResponse } from '@ovh-ux/manager-core-api';
+import apiClient from '@ovh-ux/manager-core-api';
 
 /**
  *  Get okms Credential list
  */
 
-export const getOkmsCredentials = async (
-  okmsId: string,
-): Promise<ApiResponse<OkmsCredential[]>> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/credential`);
+export const getOkmsCredentials = async (okmsId: string): Promise<OkmsCredential[]> => {
+  const { data } = await apiClient.v2.get<OkmsCredential[]>(`okms/resource/${okmsId}/credential`);
+  return data;
 };
 
 /**
@@ -25,8 +24,11 @@ export const getOkmsCredential = async ({
 }: {
   okmsId: string;
   credentialId: string;
-}): Promise<ApiResponse<OkmsCredential>> => {
-  return apiClient.v2.get(`okms/resource/${okmsId}/credential/${credentialId}`);
+}): Promise<OkmsCredential> => {
+  const { data } = await apiClient.v2.get<OkmsCredential>(
+    `okms/resource/${okmsId}/credential/${credentialId}`,
+  );
+  return data;
 };
 
 /**
@@ -40,7 +42,11 @@ export const createOkmsCredential = async ({
   okmsId: string;
   data: OkmsCredentialCreation;
 }) => {
-  return apiClient.v2.post<OkmsCredential>(`okms/resource/${okmsId}/credential`, data);
+  const { data: response } = await apiClient.v2.post<OkmsCredential>(
+    `okms/resource/${okmsId}/credential`,
+    data,
+  );
+  return response;
 };
 
 export const createOkmsCredentialQueryKey = ({ okmsId }: { okmsId: string }) => [
@@ -51,20 +57,17 @@ export const createOkmsCredentialQueryKey = ({ okmsId }: { okmsId: string }) => 
  *  delete okms Credential
  */
 
+export type DeleteOkmsCredentialParams = {
+  okmsId: string;
+  credentialId: string;
+};
+
 export const deleteOkmsCredential = async ({
   okmsId,
   credentialId,
-}: {
-  okmsId: string;
-  credentialId: string;
-}) => {
-  return apiClient.v2.delete(`okms/resource/${okmsId}/credential/${credentialId}`);
+}: DeleteOkmsCredentialParams) => {
+  const { data } = await apiClient.v2.delete<OkmsCredential>(
+    `okms/resource/${okmsId}/credential/${credentialId}`,
+  );
+  return data;
 };
-
-export const deleteOkmsCredentialQueryKey = ({
-  okmsId,
-  credentialId,
-}: {
-  okmsId: string;
-  credentialId: string;
-}) => [`/okms/resource/${okmsId}/credential/${credentialId}`];

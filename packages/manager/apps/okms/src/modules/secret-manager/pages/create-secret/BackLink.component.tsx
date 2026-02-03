@@ -7,10 +7,14 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
+import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 export const SecretFormBackLink = () => {
   const { t } = useTranslation([NAMESPACES.ACTIONS]);
+  const { trackClick } = useOkmsTracking();
   /* okms from the secret list */
   const [searchParams] = useSearchParams();
   const backOkmsId = searchParams.get(SECRET_MANAGER_SEARCH_PARAMS.okmsId);
@@ -22,6 +26,19 @@ export const SecretFormBackLink = () => {
   const backLink = useHref(url);
 
   return (
-    <Links label={t('back', { ns: NAMESPACES.ACTIONS })} type={LinkType.back} href={backLink} />
+    <MukLink
+      type={MukLinkType.back}
+      href={backLink}
+      onClick={() => {
+        trackClick({
+          location: PageLocation.funnel,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['cancel'],
+        });
+      }}
+    >
+      {t('back', { ns: NAMESPACES.ACTIONS })}
+    </MukLink>
   );
 };

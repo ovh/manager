@@ -117,12 +117,12 @@ export const HOSTING_GUIDES = [
 ];
 
 export const SQL_PERSO = 'sqlPerso';
-export const EXTRA_SQL_PERSO = 'extraSqlPerso256';
+export const EXTRA_SQL_PERSO_PREFIX = 'extraSqlPerso';
 
 export default {
   NEW_OFFERS_NAME,
   OFFERS_UNELIGIBLE_FOR_MODULE,
   HOSTING_GUIDES,
   SQL_PERSO,
-  EXTRA_SQL_PERSO,
+  EXTRA_SQL_PERSO_PREFIX,
 };

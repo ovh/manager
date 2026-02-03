@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange",
-  "version": "4.17.0",
+  "version": "4.18.3",
   "private": true,
   "description": "Exchange product.",
   "repository": {
@@ -11,11 +11,18 @@
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
   "main": "src/index.js",
+  "scripts": {
+    "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+  },
   "dependencies": {
     "ckeditor": "^4.7.2",
     "filesize": "^3.6.1",
     "lodash": "^4.17.15",
     "punycode": "^1.4.1"
+  },
+  "devDependencies": {
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-advices": "^0.0.0 || ^1.0.0",
@@ -26,7 +33,7 @@
     "@ovh-ux/ng-at-internet": "^5.9.1",
     "@ovh-ux/ng-log-live-tail": "^2.6.0",
     "@ovh-ux/ng-ovh-chart": "^1.0.0",
-    "@ovh-ux/ng-ovh-export-csv": "^2.0.4",
+    "@ovh-ux/ng-ovh-export-csv": "^2.1.6",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.6",
     "@ovh-ux/ng-ovh-http": "^5.0.4",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.0.5",

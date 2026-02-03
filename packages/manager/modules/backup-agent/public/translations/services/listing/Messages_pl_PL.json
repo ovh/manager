@@ -1,0 +1,14 @@
+{
+  "home": "Strona główna",
+  "order": "Zamów usługę",
+  "open": "Otwórz dashboard",
+  "title": "Usługi",
+  "delete_tenant_modal_title": "Usuń „tenant",
+  "delete_tenant_modal_content": "Czy na pewno chcesz usunąć „tenant” {{tenantName}}?",
+  "delete_tenant_banner_success": "„Tenant” {{tenantName}} został poprawnie usunięty",
+  "delete_tenant_banner_error": "Wystąpił błąd. Poczekaj kilka minut i spróbuj ponownie.",
+  "unable_to_delete_tenant_feature_unavailable": "Usunięcie Tenant'a nie jest dostępne z interfejsu z powodów bezpieczeństwa. Jeśli chcesz usunąć Tenant'a, skontaktuj się z pomocą techniczną.",
+  "data_location": "Lokalizacja danych",
+  "delete_tenant_feature_unavailable": "Ze względów bezpieczeństwa usunięcie „tenanta” w interfejsie jest niemożliwe. Jeśli chcesz usunąć „tenant”, skontaktuj się z pomocą techniczną.",
+  "services_tab_description": "Twój Tenant oparty jest na konsoli Veeam Service Provider i łączy Twoje Agenty z Twoimi Skarbcami. Będziesz mógł znaleźć wszystkie swoje Agenty, skonfigurować je i pobrać swojego Agenta w tej części. Aby uzyskać więcej informacji, prosimy zapoznać się z <Link>dokumentacją OVHcloud Backup Agent</Link>"
+}

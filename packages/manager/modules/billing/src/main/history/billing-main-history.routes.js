@@ -181,6 +181,10 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             .checkFeatureAvailability(featureName)
             .then((feature) => !feature.isFeatureAvailable(featureName));
         },
+        canDownloadInvoices: /* @ngInject */ (currentUser) =>
+          currentUser.country !== 'FR' ||
+          currentUser.legalform !== 'corporation' ||
+          currentUser.companyNationalIdentificationNumber,
         breadcrumb: () => null,
         hideBreadcrumb: () => true,
       },

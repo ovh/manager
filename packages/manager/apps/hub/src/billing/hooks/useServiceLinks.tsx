@@ -181,7 +181,7 @@ export const useServiceLinks = (service: BillingService, autoRenewLink?: string)
       }
       return availableLinks;
     };
-    determineLinks().then(setLinks);
+    void determineLinks().then(setLinks);
   }, [service, autoRenewLink]);
 
   return links;

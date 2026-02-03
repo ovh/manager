@@ -1,0 +1,9 @@
+{
+  "delete_vault_modal_title": "Usuń Vault",
+  "delete_vault_modal_content": "Czy na pewno chcesz usunąć Vault {{vaultName}}?",
+  "delete_vault_modal_warning": "Uwaga: ta operacja spowoduje usunięcie wszystkich przypisanych usług.",
+  "delete_vault_banner_success": "Vault {{vaultName}} został poprawnie usunięty.",
+  "delete_vault_banner_error": "Wystąpił błąd. Poczekaj kilka minut i spróbuj ponownie.",
+  "delete_vault_disabled_tooltip": "Nie możesz usunąć przestrzeni Vault powiązanej z „tenantami” VSPC.",
+  "unable_to_delete_vault_feature_unavailable": "Usunięcie przestrzeni Vault w interfejsie jest niemożliwe ze względów bezpieczeństwa. Jeśli chcesz usunąć Vault, skontaktuj się z pomocą techniczną."
+}

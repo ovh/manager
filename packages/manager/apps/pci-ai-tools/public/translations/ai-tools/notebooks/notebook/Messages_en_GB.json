@@ -31,5 +31,20 @@
   "stopNotebookDescription3": "We'll restore your workspace and reallocate computing resources.",
   "stopNotebookConfirmation": "Are you sure you want to stop the {{name}} notebook?",
   "stopNotebookButtonConfirm": "Stop",
-  "stopNotebookToastSuccessDescription": "The {{name}} notebook has been stopped"
+  "stopNotebookToastSuccessDescription": "The {{name}} notebook has been stopped",
+  "restartNotebookTitle": "Restart notebook",
+  "restartNotebookDescription": "Are you sure you want to restart the {{name}} notebook? After restarting, it will remain active for an additional 7 days.",
+  "restartNotebookButtonConfirm": "Restart",
+  "restartNotebookToastSuccessDescription": "The {{name}} notebook has restarted",
+  "restartNotebookToastSuccess": "The {{name}} notebook has restarted",
+  "enableAutoRestartTitle": "Enable automatic restart",
+  "enableAutoRestartDescription": "Are you sure you want to enable automatic restart for the {{name}} notebook? Once this option is enabled, the notebook will automatically restart every 7 days.",
+  "enableAutoRestartButtonConfirm": "Enable",
+  "enableAutoRestartToastSuccessDescription": "Automatic restart has been enabled for the {{name}} notebook",
+  "disableAutoRestartTitle": "Disable automatic restart",
+  "disableAutoRestartDescription": "Are you sure you want to disable automatic restart for the {{name}} notebook? Once this option is disabled, the notebook will no longer automatically restart every 7 days. ",
+  "disableAutoRestartButtonConfirm": "Disable",
+  "disableAutoRestartToastSuccessDescription": "Automatic restart has been disabled for the {{name}} notebook",
+  "shutdownLabel": "Stops on ",
+  "restartLabel": "Restarts on "
 }

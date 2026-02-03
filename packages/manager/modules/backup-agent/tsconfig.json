@@ -1,0 +1,32 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "lib": ["dom", "es2021"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
+    },
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "declarationDir": "./dist/types",
+    "isolatedModules": true,
+    "allowJs": true,
+    "noEmit": false
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
+  "include": [
+    "public/**/*.json",
+    "src",
+    "src/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "types",
+    "src/__tests__"
+  ]
+}

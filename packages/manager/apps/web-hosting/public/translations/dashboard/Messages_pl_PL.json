@@ -1,6 +1,6 @@
 {
   "hosting_tab_GENERAL_INFORMATIONS": "Informacje ogólne",
-  "hosting_tab_MULTISITE": "Multisite",
+  "hosting_tab_MULTISITE": "MultiSite",
   "hosting_tab_SSL": "Certyfikaty SSL",
   "hosting_tab_MODULE": "Moduły CMS",
   "hosting_tab_USER_LOGS": "Statystyki i logi",
@@ -216,5 +216,5 @@
   "deploy_git_description": "Jesteś gotowy do wdrożenia lub ręcznej aktualizacji zawartości swojego zdalnego repozytorium na swoim hostingu.",
   "deploy_git_overwrite_local_changes": "W przypadku konfliktu zmian wymuś zmiany zdalne na swoim lokalnym repozytorium.",
   "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Utwórz subdomenę",
-  "hosting_tab_WEBSITE": "Moje strony"
+  "hosting_tab_WEBSITE": "Moje strony WWW"
 }

@@ -13,10 +13,10 @@ import {
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
 import {
-  ChangelogButton,
+  ChangelogMenu,
   BaseLayout,
-  GuideButton,
-} from '@ovh-ux/manager-react-components';
+  GuideMenu,
+} from '@ovh-ux/muk';
 import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { CHANGELOG_LINKS } from '@/data/constants/changelogLinks';
@@ -71,8 +71,8 @@ export default function Layout() {
       <BaseLayout
         header={{
           title: t('title'),
-          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-          headerButton: <GuideButton items={guides} />,
+          changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
+          guideMenu: <GuideMenu items={guides} />
         }}
         tabs={
           <div>

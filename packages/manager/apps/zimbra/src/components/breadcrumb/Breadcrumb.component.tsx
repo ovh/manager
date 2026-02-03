@@ -4,8 +4,7 @@ import { useMatches, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME, ODS_LINK_COLOR } from '@ovhcloud/ods-components';
-import { OdsBreadcrumb, OdsBreadcrumbItem } from '@ovhcloud/ods-components/react';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { useAccount, useDomain, useOrganization } from '@/data/hooks';
 import { RouteMatch } from '@/routes/routes';
@@ -13,11 +12,11 @@ import { buildURLSearchParams } from '@/utils';
 
 export type BreadcrumbItem = {
   label?: string;
-  icon?: ODS_ICON_NAME;
+  icon?: ICON_NAME;
   href: string;
 };
 
-export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
+export const BreadcrumbComponent: React.FC<{ namespace?: string | string[] }> = (
   { namespace } = { namespace: 'common' },
 ) => {
   const { t } = useTranslation(namespace);
@@ -84,16 +83,13 @@ export const Breadcrumb: React.FC<{ namespace?: string | string[] }> = (
   }, [matches, organization, account, domain]);
 
   return (
-    <OdsBreadcrumb key={items.length} data-testid="breadcrumb">
+    <Breadcrumb key={items.length} data-testid="breadcrumb">
       {items.map((item, index) => (
-        <OdsBreadcrumbItem
-          {...item}
-          color={ODS_LINK_COLOR.primary}
-          target="_self"
-          key={`${item.label}-${index}`}
-        />
+        <BreadcrumbItem {...item} key={`${item.label}-${index}`}>
+          <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+        </BreadcrumbItem>
       ))}
-    </OdsBreadcrumb>
+    </Breadcrumb>
   );
 };
 

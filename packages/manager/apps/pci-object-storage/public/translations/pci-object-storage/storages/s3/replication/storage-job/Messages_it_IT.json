@@ -1,0 +1,11 @@
+{
+  "storageJobTitle": "Crea una regola di sincronizzazione",
+  "storageJobDescription": "Applica retroattivamente la tua configurazione di replica per replicare gli oggetti caricati prima della creazione delle regole di replica. Questa azione attiva un lavoro eseguito in background, incaricato di sincronizzare i tuoi bucket. Per saperne di più sulla replica asincrona, consulta la documentazione",
+  "storageJobDescriptionLink": "qui.",
+  "storageJobButtonConfirm": "Replicare gli oggetti esistenti",
+  "storageJobButtonCancel": "Annulla",
+  "storageJobToastSuccessTitle": "Regola di sincronizzazione creata",
+  "storageJobToastSuccessMessage": "La regola di sincronizzazione è stata creata con successo.",
+  "storageJobToastErrorTitle": "Errore durante la creazione",
+  "storageJobToastErrorMessage": "Si è verificato un errore durante la creazione della regola di sincronizzazione: {{message}}."
+}

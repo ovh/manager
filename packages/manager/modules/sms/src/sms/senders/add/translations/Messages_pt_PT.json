@@ -15,7 +15,7 @@
   "sms_senders_add_sender_label": "Expéditeur : ",
   "sms_senders_add_sender_placeholder": "Remetente",
   "sms_senders_add_sender_error_required": "Le champ \"expéditeur\" est obligatoire.",
-  "sms_senders_add_sender_error_pattern": "Le champ \"expéditeur\" doit être composé uniquement de caractères alphabétiques.",
+  "sms_senders_add_sender_error_pattern": "O campo \"remetente\" deve ser composto unicamente por caracteres alfabéticos e números, incluindo pelo menos um caráter alfabético.",
   "sms_senders_add_sender_error_maxlength": "Le champ \"expéditeur\" ne peut excéder les 11 caractères.",
   "sms_senders_add_sender_description_label": "Description : ",
   "sms_senders_add_sender_description_placeholder": "Description (facultatif)",
@@ -34,5 +34,6 @@
   "sms_senders_add_senders_success": "Ajout en cours…",
   "sms_senders_add_sender_supporting_document": "Documentos necessários",
   "sms_senders_add_sender_supporting_document_help": "Solicitamos-lhe um comprovativo no quadro da nossa política de segurança. Trata-se, por predefinição, de um papel timbrado da empresa ou da marca, incluindo a autorização de um responsável com assinatura e carimbo da mesma empresa, de um papel de identificação ou extrato Kbis, se não for uma marca registada.",
-  "sms_senders_add_sender_supporting_document_info": "No máximo 10 ficheiros com um tamanho máximo de 10 MB, cujo formato requerido é pdf, jpg, jpeg ou png."
+  "sms_senders_add_sender_supporting_document_info": "No máximo 10 ficheiros com um tamanho máximo de 10 MB, cujo formato requerido é pdf, jpg, jpeg ou png.",
+  "sms_senders_add_sender_info": "Utilize apenas caracteres alfabéticos e números com um máximo de 11 caracteres e pelo menos um caráter alfabético."
 }

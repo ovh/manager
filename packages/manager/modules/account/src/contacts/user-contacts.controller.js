@@ -1,6 +1,4 @@
-import get from 'lodash/get';
 import includes from 'lodash/includes';
-import config from '../config/config';
 
 export default class AccountUserContactsController {
   /* @ngInject */
@@ -57,15 +55,6 @@ export default class AccountUserContactsController {
 
     this.user = this.coreConfig.getUser();
     this.loaders.init = false;
-  }
-
-  getAccountCreationUrl() {
-    const subs = get(this.user, 'ovhSubsidiary', 'default');
-    const languageSpecificSubs = '{$language}_{$subs}';
-    const newNicUrl =
-      config.constants.accountCreation[languageSpecificSubs] ||
-      config.constants.accountCreation[subs];
-    return newNicUrl;
   }
 
   trackAccountCreation() {

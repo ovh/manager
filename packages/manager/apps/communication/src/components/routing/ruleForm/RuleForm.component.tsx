@@ -8,25 +8,8 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trans, useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsToggle,
-  OdsText,
-  OdsDivider,
-  OdsLink,
-  OdsIcon,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_TEXT_PRESET,
-  OdsToggleChangeEventDetail,
-  OdsToggleCustomEvent,
-} from '@ovhcloud/ods-components';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
-import { Combobox, ComboboxContent, ComboboxControl } from '@ovh-ux/muk';
+import { Button, Combobox, ComboboxContent, ComboboxControl, Divider, FormField, FormFieldError, FormFieldLabel, Icon, Link, Text, TEXT_PRESET, Input, Toggle, ToggleCheckedChangeDetail, Tooltip, TooltipTrigger, TooltipContent } from '@ovhcloud/ods-react';
 import {
   NotificationRouting,
   CreateRouting,
@@ -76,7 +59,23 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
   const {
     data: reference,
     isLoading: isLoadingReference,
-  } = useNotificationReference();
+  } = useNotificationReference({
+    select: (data) => {
+      const categories = data.categories.map((category) => ({
+        label: t(`category_${category.name.toLowerCase()}`, { ns: 'common' }),
+        value: category.name,
+      }));
+
+      const priorities = data.priorities.map((priority) => ({
+        label: t(`priority_${priority.name.toLowerCase()}`, { ns: 'common' }),
+        value: priority.name,
+      }));
+
+      return { categories, priorities };
+
+    }
+  });
+
   const {
     flattenData: contactMeans,
     isLoading: isLoadingContactMeans,
@@ -97,21 +96,6 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
       }));
   }, [contactMeans]);
 
-  const categoryItems = useMemo(() => {
-    if (!Array.isArray(reference?.categories)) return [];
-    return reference?.categories.map((category) => ({
-      label: t(`category_${category.name.toLowerCase()}`, { ns: 'common' }),
-      value: category.name,
-    }));
-  }, [reference]);
-
-  const priorityItems = useMemo(() => {
-    if (!Array.isArray(reference?.priorities)) return [];
-    return reference?.priorities.map((priority) => ({
-      label: t(`priority_${priority.name.toLowerCase()}`, { ns: 'common' }),
-      value: priority.name,
-    }));
-  }, [reference]);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -137,31 +121,30 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
           control={control}
           name="name"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField
-              error={
-                errors.name &&
-                t(errors.name.message || 'error_required_field', {
-                  ns: NAMESPACES.FORM,
-                })
-              }
-            >
-              <label
+            <FormField invalid={!!errors.name}>
+              <FormFieldLabel
                 htmlFor={name}
-                slot="label"
                 aria-label={t('rule_form_name_label')}
               >
                 {t('rule_form_name_label')}*
-              </label>
-              <OdsInput
+              </FormFieldLabel>
+              <Input
                 name={name}
                 value={value}
                 onBlur={onBlur}
-                onOdsChange={onChange}
-                hasError={!!errors.name}
+                onChange={onChange}
+                invalid={!!errors.name}
                 placeholder={t('rule_form_name_placeholder')}
-                isRequired
+                required
               />
-            </OdsFormField>
+              {errors.name && (
+                <FormFieldError>
+                  {t(errors.name.message || 'error_required_field', {
+                    ns: NAMESPACES.FORM,
+                  })}
+                </FormFieldError>
+              )}
+            </FormField>
           )}
         />
 
@@ -169,55 +152,56 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
           control={control}
           name="active"
           render={({ field: { onChange, value, onBlur, name } }) => (
-            <OdsFormField>
-              <label
+            <FormField>
+              <FormFieldLabel
                 htmlFor={name}
-                slot="label"
                 aria-label={t('rule_form_active_label')}
               >
                 {t('rule_form_active_label')}{' '}
-                <OdsIcon
-                  name="circle-question"
-                  id={`${name}-tooltip`}
-                  color="primary"
-                />
-                <OdsTooltip triggerId={`${name}-tooltip`}>
-                  {t('rule_form_active_label_tooltip')}
-                </OdsTooltip>
-              </label>
-              <OdsToggle
+                <Tooltip position='bottom-start'>
+                  <TooltipTrigger asChild>
+                    <Icon
+                      name="circle-question"
+                      color="primary"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent withArrow className="max-w-md">
+                      {t('rule_form_active_label_tooltip')}
+                  </TooltipContent>
+                </Tooltip>
+              </FormFieldLabel>
+              <Toggle
                 name={name}
-                value={Boolean(value)}
+                checked={value}
                 onBlur={onBlur}
-                onOdsChange={(
-                  e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
+                onCheckedChange={(
+                  detail: ToggleCheckedChangeDetail,
                 ) => {
-                  onChange(!!e.detail.value);
+                  onChange(!!detail.checked);
                 }}
-                withLabel
-                hasError={!!errors.active}
+                withLabels
+                invalid={!!errors.active}
               />
-            </OdsFormField>
+            </FormField>
           )}
         />
       </div>
       <div className="grid grid-cols-1 gap-8 items-center">
         {fields.map((field, index) => (
           <div key={field.id}>
-            <OdsDivider />
+            <Divider />
             <div className="flex flex-row justify-between gap-4 items-center mt-4">
-              <OdsText preset={ODS_TEXT_PRESET.heading5}>
+              <Text preset={TEXT_PRESET.heading5}>
                 {t('rule_form_condition_label')}
-              </OdsText>
-              <OdsButton
-                icon="trash"
-                variant={ODS_BUTTON_VARIANT.default}
-                label=""
+              </Text>
+              <Button
+                variant="default"
                 size="sm"
                 onClick={() => remove(index)}
+                aria-label={t('rule_form_rule_delete_button')}
               >
-                {t('rule_form_rule_delete_button')}
-              </OdsButton>
+                <Icon name="trash" />
+              </Button>
             </div>
 
             <div className="flex-grow flex flex-col gap-4 w-full">
@@ -226,28 +210,19 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                   control={control}
                   name={`rules.${index}.condition.category`}
                   render={({ field: { onChange, value, name, onBlur } }) => (
-                    <OdsFormField
-                      error={
-                        errors.rules?.[index]?.condition?.priority &&
-                        t(
-                          errors.rules?.[index]?.condition?.priority?.message ||
-                            'error_required_field',
-                          {
-                            ns: NAMESPACES.FORM,
-                          },
-                        )
-                      }
+                    <FormField
+                      invalid={!!errors.rules?.[index]?.condition?.category}
                     >
-                      <label
+                      <FormFieldLabel
                         htmlFor={name}
-                        slot="label"
                         aria-label={t('rule_form_condition_category_label')}
                       >
                         {t('rule_form_condition_category_label')}
-                      </label>
+                      </FormFieldLabel>
                       <Combobox
                         name={name}
-                        items={categoryItems}
+                        key={`${name}_${reference?.categories.length}`}
+                        items={reference?.categories || []}
                         multiple
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
@@ -263,35 +238,33 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         <ComboboxControl loading={isLoadingReference} />
                         <ComboboxContent />
                       </Combobox>
-                    </OdsFormField>
+                      {errors.rules?.[index]?.condition?.category && (
+                        <FormFieldError>
+                          {t(errors.rules?.[index]?.condition?.category?.message || 'error_required_field', {
+                            ns: NAMESPACES.FORM,
+                          })}
+                        </FormFieldError>
+                      )}
+                    </FormField>
                   )}
                 />
                 <Controller
                   control={control}
                   name={`rules.${index}.condition.priority`}
                   render={({ field: { onChange, value, name, onBlur } }) => (
-                    <OdsFormField
-                      error={
-                        errors.rules?.[index]?.condition?.priority &&
-                        t(
-                          errors.rules?.[index]?.condition?.priority?.message ||
-                            'error_required_field',
-                          {
-                            ns: NAMESPACES.FORM,
-                          },
-                        )
-                      }
+                    <FormField
+                      invalid={!!errors.rules?.[index]?.condition?.priority}
                     >
-                      <label
+                      <FormFieldLabel
                         htmlFor={name}
-                        slot="label"
                         aria-label={t('rule_form_condition_priority_label')}
                       >
                         {t('rule_form_condition_priority_label')}
-                      </label>
+                      </FormFieldLabel>
                       <Combobox
                         name={name}
-                        items={priorityItems}
+                        key={`${name}_${reference?.priorities.length}`}
+                        items={reference?.priorities || []}
                         multiple
                         onValueChange={(e: { value: string[] }) =>
                           onChange(e.value)
@@ -307,34 +280,31 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         <ComboboxControl loading={isLoadingReference} />
                         <ComboboxContent />
                       </Combobox>
-                    </OdsFormField>
+                      {errors.rules?.[index]?.condition?.priority && (
+                        <FormFieldError>
+                          {t(errors.rules?.[index]?.condition?.priority?.message || 'error_required_field', {
+                            ns: NAMESPACES.FORM,
+                          })}
+                        </FormFieldError>
+                      )}
+                    </FormField>
                   )}
                 />
                 <Controller
                   control={control}
                   name={`rules.${index}.contactMeans`}
                   render={({ field: { onChange, value, name, onBlur } }) => (
-                    <OdsFormField
-                      error={
-                        errors.rules?.[index]?.contactMeans &&
-                        t(
-                          errors.rules?.[index]?.contactMeans?.message ||
-                            'error_required_field',
-                          {
-                            ns: NAMESPACES.FORM,
-                          },
-                        )
-                      }
+                    <FormField
+                      invalid={!!errors.rules?.[index]?.contactMeans}
                     >
-                      <label
+                      <FormFieldLabel
                         htmlFor={name}
-                        slot="label"
                         aria-label={t(
                           'rule_form_condition_contact_means_label',
                         )}
                       >
                         {t('rule_form_condition_contact_means_label')}*
-                      </label>
+                      </FormFieldLabel>
 
                       <Combobox
                         name={name}
@@ -357,7 +327,14 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                         <ComboboxControl loading={isLoadingContactMeans} />
                         <ComboboxContent />
                       </Combobox>
-                    </OdsFormField>
+                      {errors.rules?.[index]?.contactMeans && (
+                        <FormFieldError>
+                          {t(errors.rules?.[index]?.contactMeans?.message || 'error_required_field', {
+                            ns: NAMESPACES.FORM,
+                          })}
+                        </FormFieldError>
+                      )}
+                    </FormField>
                   )}
                 />
               </div>
@@ -375,42 +352,45 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                   control={control}
                   name={`rules.${index}.continue`}
                   render={({ field: { onChange, value, onBlur, name } }) => (
-                    <OdsFormField className="flex flex-row gap-4 items-center">
-                      <OdsToggle
+                    <FormField className="flex flex-row gap-4 items-center">
+                      <Toggle
                         name={name}
-                        withLabel
-                        value={Boolean(value)}
+                        withLabels
+                        checked={value}
                         onBlur={onBlur}
-                        onOdsChange={(
-                          e: OdsToggleCustomEvent<OdsToggleChangeEventDetail>,
+                        onCheckedChange={(
+                          detail: ToggleCheckedChangeDetail,
                         ) => {
-                          onChange(!!e.detail.value);
+                          onChange(!!detail.checked);
                         }}
-                        hasError={!!errors.rules?.[index]?.continue}
+                        invalid={!!errors.rules?.[index]?.continue}
                       />
                       <label
                         htmlFor={name}
                         aria-label={t('rule_form_rule_continue_label')}
                       >
-                        <OdsText preset="span">
+                        <Text preset={TEXT_PRESET.span}>
                           {t('rule_form_rule_continue_label')}{' '}
-                          <OdsIcon
-                            name="circle-question"
-                            id={`${name}-tooltip`}
-                            color="primary"
-                          />
-                          <OdsTooltip triggerId={`${name}-tooltip`}>
-                            <Trans
-                              i18nKey="rule_form_rule_continue_tooltip"
-                              t={t}
-                              components={{
-                                br: <br />,
-                              }}
-                            />
-                          </OdsTooltip>
-                        </OdsText>
+                          <Tooltip position="bottom-start">
+                            <TooltipTrigger asChild>
+                              <Icon
+                                name="circle-question"
+                                color="primary"
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent withArrow>
+                              <Trans
+                                i18nKey="rule_form_rule_continue_tooltip"
+                                t={t}
+                                components={{
+                                  br: <br />,
+                                }}
+                              />
+                            </TooltipContent>
+                          </Tooltip>
+                        </Text>
                       </label>
-                    </OdsFormField>
+                    </FormField>
                   )}
                 />
               )}
@@ -418,13 +398,11 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
           </div>
         ))}
         <div className="flex flex-row justify-start">
-          <OdsFormField
-            error={errors.rules?.root && t('rule_form_rules_error_message')}
+          <FormField
+            invalid={!!errors.rules?.root}
           >
-            <OdsLink
-              href=""
-              label={t('rule_form_rule_add_button')}
-              onClick={(e) => {
+            <Link
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
                 append({
                   condition: {
@@ -436,8 +414,13 @@ const RuleForm = forwardRef(({ rule, onSubmit }: RuleFormProps, ref) => {
                 });
                 return false;
               }}
-            ></OdsLink>
-          </OdsFormField>
+            >{t('rule_form_rule_add_button')}</Link>
+            {errors.rules?.root && (
+              <FormFieldError>
+                {t('rule_form_rules_error_message')}
+              </FormFieldError>
+            )}
+          </FormField>
         </div>
       </div>
     </form>

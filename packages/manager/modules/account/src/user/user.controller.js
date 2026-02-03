@@ -6,7 +6,6 @@ export default class UserAccountCtrl {
     $state,
     $timeout,
     $translate,
-    constants,
     coreConfig,
     supportLevel,
     guides,
@@ -19,7 +18,6 @@ export default class UserAccountCtrl {
     this.$state = $state;
     this.$timeout = $timeout;
     this.$translate = $translate;
-    this.constants = constants;
     this.coreConfig = coreConfig;
     this.supportLevel = supportLevel;
     this.USERACCOUNT_BASE_URL = 'account/user/';

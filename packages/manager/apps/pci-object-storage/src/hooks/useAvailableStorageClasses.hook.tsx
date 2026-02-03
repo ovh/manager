@@ -1,10 +1,19 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { RegionTypeEnum } from '@datatr-ux/ovhcloud-types/cloud';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import storages from '@/types/Storages';
+import {
+  COLD_ARCHIVE_REGIONS,
+  GLACIER_IR_REGIONS,
+} from '@/configuration/region.const';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
 export function useAvailableStorageClasses(region: string) {
+  const { data: featuresAvailable } = useFeatureAvailability([
+    'pci-object-storage:storage-class-active-archive',
+  ]);
+
+  const isActiveArchiveFeatureAvailable = featuresAvailable?.['pci-object-storage:storage-class-active-archive'];
   const { projectId } = useParams();
   const regionQuery = useGetRegions(projectId);
 
@@ -27,8 +36,10 @@ export function useAvailableStorageClasses(region: string) {
 
     switch (st) {
       case storages.StorageClassEnum.DEEP_ARCHIVE:
-        return s3Region.name === 'EU-WEST-PAR';
-      // Cold archive is only available in EU-WEST-PAR
+        return COLD_ARCHIVE_REGIONS.includes(s3Region.name);
+
+      case storages.StorageClassEnum.GLACIER_IR:
+        return isActiveArchiveFeatureAvailable ? GLACIER_IR_REGIONS.includes(s3Region.name) : false;
 
       case storages.StorageClassEnum.HIGH_PERF:
         return regionType !== RegionTypeEnum['region-3-az'];

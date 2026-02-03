@@ -6,15 +6,19 @@ import { GuideRestApiCard } from '@secret-manager/components/guides/guide-rest-a
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { OnboardingLayout } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { OnboardingLayout } from '@ovh-ux/muk';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import onboardingImage from './onboarding.png';
 
 export default function SecretManagerOnboardingPage() {
   const { t } = useTranslation('secret-manager');
   const navigate = useNavigate();
+  const { trackClick } = useOkmsTracking();
 
   return (
     <OnboardingLayout
@@ -22,12 +26,20 @@ export default function SecretManagerOnboardingPage() {
       img={{ src: onboardingImage }}
       description={
         <div className="flex flex-col gap-2">
-          <OdsText className="text-center">{t('onboarding_description_1')}</OdsText>
-          <OdsText className="text-center">{t('onboarding_description_2')}</OdsText>
+          <Text className="text-center">{t('onboarding_description_1')}</Text>
+          <Text className="text-center">{t('onboarding_description_2')}</Text>
         </div>
       }
       orderButtonLabel={t('create_a_secret')}
-      onOrderButtonClick={() => navigate(SECRET_MANAGER_ROUTES_URLS.createSecret)}
+      onOrderButtonClick={() => {
+        trackClick({
+          location: PageLocation.page,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['create', 'secret'],
+        });
+        navigate(SECRET_MANAGER_ROUTES_URLS.createSecret);
+      }}
     >
       <GuideManagerCard />
       <GuideRestApiCard />

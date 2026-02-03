@@ -1,6 +1,7 @@
 {
   "title": "Choisissez les paramètres du compte",
-  "description": "Vous avez déjà un compte ? <Link label=\"Connectez-vous\"></Link>",
+  "description": "Vous avez déjà un compte ?",
+  "connect": "Connectez-vous",
   "country_setting": "Pays de résidence fiscale",
   "setting_description": "Selon votre pays de résidence, vous avez la possibilité de choisir le site web sur lequel vous pouvez contracter et choisir vos produits. La devise de facturation sera également liée au site web choisi",
   "setting_description_list_first": "1 . Si vous êtes un client immatriculé à la TVA, à la GST ou à une taxe assimilée, votre pays de résidence correspond au pays dans lequel vous êtes immatriculé",

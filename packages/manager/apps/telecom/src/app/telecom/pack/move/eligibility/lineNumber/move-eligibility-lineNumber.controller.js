@@ -94,9 +94,10 @@ export default class {
           const fiberOffers = fiber.result.offers.filter(
             (el) => el.eligibility.eligible === true,
           );
-          const copperOffers = offer.offers;
           if (fiberOffers.length > 0) {
-            offer.offers = [...copperOffers, ...fiberOffers];
+            offer.offers = fiberOffers;
+            // We just keep fiber eligibility reference only
+            offer.eligibilityReference = null;
             offer.eligibilityReferenceFiber = fiber.result.eligibilityReference;
             offer.endpoint.fiberInfo = fiber.result.endpoint.fiberInfo;
             offer.endpoint.referenceFiber = fiber.result.endpoint.reference;
@@ -128,7 +129,6 @@ export default class {
     return this.fiberSearchBuildingByNumber(this.lineNumber, offer.status)
       .then((buildings) => {
         this.buildingsList = buildings && buildings.length > 0 ? buildings : [];
-        const copperOffers = offer.offers;
         if (buildings) {
           if (buildings.length === 1) {
             const [building] = buildings;
@@ -139,7 +139,8 @@ export default class {
                     (el) => el.eligibility.eligible === true,
                   );
                   if (fiberOffers.length > 0) {
-                    offer.offers = [...copperOffers, ...fiberOffers];
+                    offer.offers = fiberOffers;
+                    offer.eligibilityReference = null;
                     offer.eligibilityReferenceFiber =
                       fiber.result.eligibilityReference;
                     offer.endpoint.fiberInfo = fiber.result.endpoint.fiberInfo;

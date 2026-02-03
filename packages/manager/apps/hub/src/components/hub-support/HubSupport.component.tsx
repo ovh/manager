@@ -36,7 +36,7 @@ export default function HubSupport() {
   const [urlSeeAll, setUrlSeeAll] = useState<string>('');
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const url = isEUOrCA
         ? SUPPORT_URLS.allTickets + ovhSubsidiary
         : ((await navigation.getURL('dedicated', '#/ticket', {})) as string);
@@ -45,18 +45,22 @@ export default function HubSupport() {
   }, []);
 
   return (
-    <OsdsTile className="w-full block p-6" inline>
+    <OsdsTile className="block w-full p-6" inline>
       {isLoading ? (
         <Skeletons />
       ) : (
         <div className="flex flex-col">
           {error && (
-            <TileError className="block p-4" message={t('hub_support_error')} refetch={refetch} />
+            <TileError
+              className="block p-4"
+              message={t('hub_support_error')}
+              refetch={void refetch}
+            />
           )}
           {!error && !data.count && <HubSupportHelp />}
           {!error && !!data.count && (
             <>
-              <div className="flex mb-2 gap-4 items-center">
+              <div className="mb-2 flex items-center gap-4">
                 <OsdsText
                   color={ODS_THEME_COLOR_INTENT.primary}
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
@@ -73,7 +77,7 @@ export default function HubSupport() {
                     hoverable
                     data-testid="refresh-icon"
                     className="cursor-pointer"
-                    onClick={() => refetch()}
+                    onClick={() => void refetch()}
                     name={ODS_ICON_NAME.REFRESH}
                     size={ODS_ICON_SIZE.xs}
                     color={ODS_THEME_COLOR_INTENT.primary}
@@ -87,7 +91,7 @@ export default function HubSupport() {
                     }
                     rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
                     color={ODS_THEME_COLOR_INTENT.primary}
-                    className="font-bold text-right"
+                    className="text-right font-bold"
                   >
                     {tCommon('hub_support_see_more')}
                     <span slot="end">

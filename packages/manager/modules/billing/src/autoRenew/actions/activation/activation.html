@@ -2,10 +2,10 @@
     data-heading="{{:: 'billing_autorenew_service_activation_title' | translate }}"
     data-primary-action=":: $ctrl.activate()"
     data-primary-label="{{:: 'billing_autorenew_service_activation_confirm' | translate }}"
-    data-secondary-action=":: $ctrl.goBack()"
+    data-secondary-action=":: $ctrl.goToAutorenew()"
     data-secondary-label="{{:: 'billing_autorenew_service_activation_cancel' | translate }}"
     data-loading="$ctrl.isActivating"
-    data-on-dismiss=":: $ctrl.goBack()"
+    data-on-dismiss=":: $ctrl.goToAutorenew()"
 >
     <p data-translate="billing_autorenew_service_activation_confirmation"></p>
 </oui-modal>

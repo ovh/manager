@@ -1,8 +1,6 @@
 import { vi } from 'vitest';
 import '@/common/setupTests';
-import React from 'react';
-import { render, screen, waitFor } from '@/common/utils/test.provider';
-import { wrapper } from '@/common/utils/test.provider';
+import { render, screen, waitFor, wrapper } from '@/common/utils/test.provider';
 import SubscriptionCards from '@/domain/components/SubscriptionCards/SubscriptionCards';
 import {
   useGetDomainContact,
@@ -95,12 +93,12 @@ describe('SubscriptionCards component', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          /admin-id: domain_tab_general_information_subscription_contact_technical/i,
+          /admin-id: domain_tab_general_information_subscription_contact_administrator/i,
         ),
       ).toBeInTheDocument();
       expect(
         screen.getByText(
-          /tech-id: domain_tab_general_information_subscription_contact_administrator/i,
+          /tech-id: domain_tab_general_information_subscription_contact_technical/i,
         ),
       ).toBeInTheDocument();
       expect(

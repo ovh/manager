@@ -1,5 +1,6 @@
 import { ParamValueType } from '@ovh-ux/url-builder';
 import { BADGE_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
+import { AxiosError } from 'axios';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import {
   AdditionalDomainStateEnum,
@@ -15,7 +16,6 @@ import { OptionEnum } from '../../common/enum/option.enum';
 import { AssociatedEmailsServicesEnum } from '../enum/associatedServices.enum';
 import { THost, THostsconfiguration } from './host';
 import { TDnssecConfiguration, TDsDataInterface } from './dnssecConfiguration';
-import { AxiosError } from 'axios';
 
 export interface TNameServer {
   ipv4?: string | null;
@@ -60,26 +60,28 @@ interface IAMResource {
 
 export interface TDomainResource {
   checksum: string;
-  currentState: {
-    additionalStates: AdditionalDomainStateEnum[] | [];
-    authInfoManagedByOVHcloud: boolean;
-    authInfoSupported: boolean;
-    dnsConfiguration: DNSConfiguration;
-    extension: string;
-    mainState: DomainStateEnum;
-    name: string;
-    protectionState: ProtectionStateEnum;
-    suspensionState: SuspensionStateEnum;
-    contactsConfiguration: TContactsConfiguration;
-    hostsConfiguration: THostsconfiguration;
-    dnssecConfiguration: TDnssecConfiguration;
-    createdAt: string;
-  };
+  currentState: TCurrentState;
   currentTasks: Task[];
   iam: IAMResource | null;
   id: string;
   resourceStatus: ResourceStatusEnum;
   targetSpec?: TTargetSpec;
+}
+
+export interface TCurrentState {
+  additionalStates: AdditionalDomainStateEnum[] | [];
+  authInfoManagedByOVHcloud: boolean;
+  authInfoSupported: boolean;
+  dnsConfiguration: DNSConfiguration;
+  extension: string;
+  mainState: DomainStateEnum;
+  name: string;
+  protectionState: ProtectionStateEnum;
+  suspensionState: SuspensionStateEnum;
+  contactsConfiguration: TContactsConfiguration;
+  hostsConfiguration: THostsconfiguration;
+  dnssecConfiguration: TDnssecConfiguration;
+  createdAt: string;
 }
 
 export interface TTargetSpec {
@@ -98,7 +100,7 @@ export interface TTargetSpec {
 
 export interface TContactDisclosurePolicy {
   disclosureConfiguration: DisclosureConfigurationEnum;
-  forceDisclosure: boolean;
+  forcedDisclosureConfiguration: boolean;
   disclosedFields: string[];
   visibleViaRdds: boolean;
 }
@@ -156,7 +158,8 @@ export type StatusDetails = {
 export type ServiceType =
   | { serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA; data: string }
   | { serviceDetected: AssociatedEmailsServicesEnum.MXPLAN; data: string }
-  | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string };
+  | { serviceDetected: AssociatedEmailsServicesEnum.REDIRECTION; data: string }
+  | { serviceDetected: AssociatedEmailsServicesEnum.NOTHING; data: string };
 
 export enum DnssecStateEnum {
   DISABLED = 'disabled',
@@ -305,7 +308,6 @@ export type DomainService = {
 };
 
 export type TUpdateDomainVariables = {
-  checksum: string;
   currentTargetSpec: TTargetSpec;
   updatedSpec: Partial<TTargetSpec>;
 };

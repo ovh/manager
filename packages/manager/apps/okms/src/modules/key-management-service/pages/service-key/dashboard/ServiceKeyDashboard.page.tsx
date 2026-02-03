@@ -9,18 +9,12 @@ import { okmsQueryKeys } from '@key-management-service/data/api/okms';
 import { getOkmsServiceKeyResourceQueryKey } from '@key-management-service/data/api/okmsServiceKey';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import {
-  BaseLayout,
-  DashboardGridLayout,
-  ErrorBanner,
-  Notifications,
-} from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Error, GridLayout, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
 import {
@@ -38,7 +32,6 @@ export default function ServiceKeyDashboard() {
   const { t } = useTranslation('key-management-service/serviceKeys');
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
 
   const { data: okms, isPending: isLoadingOkms, error: okmsError } = useOkmsById(okmsId);
 
@@ -55,7 +48,7 @@ export default function ServiceKeyDashboard() {
 
   if (okmsError) {
     return (
-      <ErrorBanner
+      <Error
         error={okmsError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
@@ -69,7 +62,7 @@ export default function ServiceKeyDashboard() {
 
   if (serviceKeyError)
     return (
-      <ErrorBanner
+      <Error
         error={serviceKeyError.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.kmsListing)}
         onReloadPage={() =>
@@ -80,21 +73,19 @@ export default function ServiceKeyDashboard() {
       />
     );
 
-  const kms = okms?.data;
-  const kmsKey = serviceKey?.data;
-
   const tabsList: TabNavigationItem[] = [
     {
       name: 'general-information',
       title: t('key_management_service_service-keys_dashboard_tab_informations'),
       url: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
+      tracking: ['general-informations'],
     },
   ];
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
-      label: kms.iam.displayName,
+      label: okms.iam.displayName,
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -104,7 +95,7 @@ export default function ServiceKeyDashboard() {
     },
     {
       id: keyId,
-      label: kmsKey.name || kmsKey.id,
+      label: serviceKey.name || serviceKey.id,
       navigateTo: KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, keyId),
     },
     {
@@ -119,27 +110,23 @@ export default function ServiceKeyDashboard() {
       <BaseLayout
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
-          title: kmsKey.name || kmsKey.id,
-          headerButton: <KmsGuidesHeader />,
+          title: serviceKey.name || serviceKey.id,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
-        onClickReturn={() => {
-          navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
-          trackClick({
-            location: PageLocation.page,
-            buttonType: ButtonType.link,
-            actionType: 'navigation',
-            actions: ['return_listing_page'],
-          });
+        backLink={{
+          label: t('key_management_service_service_keys_back_link'),
+          onClick: () => {
+            navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
+          },
         }}
-        backLinkLabel={t('key_management_service_service_keys_back_link')}
         message={<Notifications />}
         tabs={<TabNavigation tabs={tabsList} />}
       >
-        <DashboardGridLayout>
-          <GeneralInformationTile kms={kms} serviceKey={kmsKey} />
-          <CryptoPropertiesTile serviceKey={kmsKey} />
-        </DashboardGridLayout>
+        <GridLayout>
+          <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
+          <CryptoPropertiesTile serviceKey={serviceKey} />
+        </GridLayout>
         <Outlet />
       </BaseLayout>
     </Suspense>

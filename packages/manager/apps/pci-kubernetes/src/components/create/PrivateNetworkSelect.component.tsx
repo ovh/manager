@@ -31,17 +31,18 @@ import {
   getListGatewaysQueryKey,
   getQueryKeyPrivateNetworksByRegion,
 } from '@/api/hooks/useNetwork';
-import { isMonoDeploymentZone } from '@/helpers';
+import { isStandardPlan } from '@/helpers';
 import queryClient from '@/queryClient';
-import { DeploymentMode } from '@/types';
+import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 export type PrivateNetworkSelectProps = {
-  network: TNetworkRegion;
+  network?: TNetworkRegion;
   onSelect: (network: TNetworkRegion) => void;
-  networks: TNetworkRegion[];
+  networks?: TNetworkRegion[];
   type: DeploymentMode;
+  plan: TClusterPlanEnum;
   region: string;
-  subnet: TPrivateNetworkSubnet;
+  subnet?: TPrivateNetworkSubnet | null;
 };
 
 export default function PrivateNetworkSelect({
@@ -49,7 +50,7 @@ export default function PrivateNetworkSelect({
   onSelect,
   networks,
   region,
-  type,
+  plan,
   subnet,
 }: Readonly<PrivateNetworkSelectProps>) {
   const { t } = useTranslation('network-add');
@@ -113,14 +114,14 @@ export default function PrivateNetworkSelect({
             className="mt-4"
             name="privateNetwork"
             size={ODS_SELECT_SIZE.md}
-            value={network?.id || (isMonoDeploymentZone(type) ? defaultNetwork.id : null)}
+            value={network?.id || (!isStandardPlan(plan) ? defaultNetwork.id : null)}
             onOdsValueChange={(ev) => {
               const networkId = `${ev.detail.value}`;
               onSelect(networks?.find((net) => net.id === networkId));
             }}
           >
             <span slot="placeholder">{t('kubernetes_network_form_select_private_option')}</span>
-            {isMonoDeploymentZone(type) && (
+            {!isStandardPlan(plan) && (
               <OsdsSelectOption value={defaultNetwork.id}>{defaultNetwork.name}</OsdsSelectOption>
             )}
             {networks?.map((net) => (

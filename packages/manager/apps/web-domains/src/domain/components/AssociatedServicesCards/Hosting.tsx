@@ -7,7 +7,7 @@ import {
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { Link, Skeleton, Text } from '@ovhcloud/ods-react';
-import { Subsidiary } from '@ovh-ux/manager-config';
+import { Region, Subsidiary } from '@ovh-ux/manager-config';
 import {
   useGetAssociatedHosting,
   useGetFreeHostingServices,
@@ -20,12 +20,14 @@ import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
 import { useNavigate } from 'react-router-dom';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
+import { ServiceRoutes } from '@/common/enum/common.enum';
+import { useGetServiceInformation } from '@/common/hooks/data/query';
 
 interface HostingProps {
   readonly serviceName: string;
 }
 
-function HostingLink({ hosting }: { hosting: string }) {
+function HostingLink({ hosting }: Readonly<{ hosting: string }>) {
   const { data: hostingUrl } = useNavigationGetUrl([
     'web',
     `/hosting/${hosting}`,
@@ -43,6 +45,7 @@ export interface FreeHostingOptions {
 export default function Hosting({ serviceName }: HostingProps) {
   const { t } = useTranslation(['domain']);
   const context = useContext(ShellContext);
+  const region = context.environment.getRegion();
   const ovhSubsidiary = context.environment.getUser()
     .ovhSubsidiary as Subsidiary;
   const [isFreeHostingOpen, setIsFreeHostingOpen] = useState(false);
@@ -54,13 +57,22 @@ export default function Hosting({ serviceName }: HostingProps) {
     consent: false,
   });
   const navigate = useNavigate();
-
+  const { serviceInfo } = useGetServiceInformation(
+    'domain',
+    serviceName,
+    ServiceRoutes.Domain,
+  );
   const { data: associatedHosting } = useGetAssociatedHosting(serviceName);
   const {
     orderCartDetails,
     isInitialOrderFreeHostingPending,
     getInitialOrder,
-  } = useInitialOrderFreeHosting(serviceName, ovhSubsidiary);
+  } = useInitialOrderFreeHosting(
+    serviceName,
+    ovhSubsidiary,
+    serviceInfo?.billing?.pricing?.pricingMode,
+  );
+
   const {
     orderFreeHosting,
     isOrderFreeHostingPending,
@@ -91,7 +103,7 @@ export default function Hosting({ serviceName }: HostingProps) {
     });
 
   const actionMenuItems = [
-    ...(!hasFreeHosting
+    ...(region === Region.EU && !hasFreeHosting
       ? [
           {
             id: 1,
@@ -154,7 +166,6 @@ export default function Hosting({ serviceName }: HostingProps) {
         </div>
       </ManagerTile.Item>
       <FreeHostingDrawer
-        serviceName={serviceName}
         isDrawerOpen={isFreeHostingOpen}
         onClose={() => setIsFreeHostingOpen(false)}
         freeHostingOptions={freeHostingOptions}

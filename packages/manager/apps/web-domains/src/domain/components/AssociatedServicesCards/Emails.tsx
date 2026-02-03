@@ -1,12 +1,22 @@
 import { Text } from '@ovhcloud/ods-react';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import {
+  ShellContext,
+  useNavigationGetUrl,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import { useEmailService } from '@/domain/hooks/data/query';
 import { AssociatedEmailsServicesEnum } from '@/domain/enum/associatedServices.enum';
+import { useContext } from 'react';
+import { getOrderURL } from '@ovh-ux/manager-module-order';
 
 interface EmailsProps {
   readonly serviceName: string;
+}
+
+interface EmailUrlProps {
+  readonly href: string;
+  readonly target?: string;
 }
 
 export default function Emails({ serviceName }: EmailsProps) {
@@ -31,14 +41,21 @@ export default function Emails({ serviceName }: EmailsProps) {
     {},
   ]);
 
-  const getEmailsURL = (): string => {
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const region = context.environment.getRegion();
+  const orderUrl = getOrderURL('orderEmailPro', region, ovhSubsidiary);
+
+  const getEmailsURL = (): EmailUrlProps => {
     switch (data?.serviceDetected) {
       case AssociatedEmailsServicesEnum.MXPLAN:
-        return mxPlanURL as string;
+        return { href: mxPlanURL as string };
       case AssociatedEmailsServicesEnum.ZIMBRA:
-        return zimbraURL as string;
+        return { href: zimbraURL as string };
+      case AssociatedEmailsServicesEnum.REDIRECTION:
+        return { href: redirectionURL as string };
       default:
-        return redirectionURL as string;
+        return { href: orderUrl, target: '_blank' };
     }
   };
 
@@ -62,7 +79,7 @@ export default function Emails({ serviceName }: EmailsProps) {
               label: t(
                 'domain_tab_general_information_associated_services_emails_action',
               ),
-              href: getEmailsURL(),
+              ...getEmailsURL(),
             },
           ]}
         />

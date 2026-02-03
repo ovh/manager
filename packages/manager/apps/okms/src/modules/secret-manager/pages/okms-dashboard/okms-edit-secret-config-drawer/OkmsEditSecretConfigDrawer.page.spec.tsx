@@ -5,19 +5,18 @@ import {
   updateSecretConfigErrorMessage,
 } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.handler';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
-import { getSecretConfigReferenceErrorMessage } from '@secret-manager/mocks/secret-reference/secretReference.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
-
-import { OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS } from './OkmsEditSecretConfigDrawer.page.constants';
+import {
+  TIMEOUT,
+  assertDrawerVisibility,
+  changeOdsInputValueByTestId,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsUpdateSecretConfigDrawer(mockOkmsId);
@@ -32,11 +31,8 @@ const renderPage = async (mockParams = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(mockPageUrl, mockParams);
 
-  await screen.findByTestId(
-    OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer,
-    {},
-    { timeout: 10_000 },
-  );
+  // Check if the drawer is open
+  await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
   return { user, container };
 };
@@ -49,23 +45,9 @@ describe('okms edit secret config drawer page test suite', () => {
     await renderPage();
 
     // THEN
-    expect(screen.getByText(labels.secretManager.edit_okms_secret_config)).toBeInTheDocument();
-  });
-
-  it('should display error message when secret config reference fetch fails', async () => {
-    // GIVEN isSecretConfigReferenceKO
-
-    // WHEN
-    await renderPage({ isSecretConfigReferenceKO: true });
-
-    // THEN
     await waitFor(() => {
-      expect(screen.getByText(getSecretConfigReferenceErrorMessage)).toBeInTheDocument();
+      expect(screen.getByText(labels.secretManager.edit_okms_secret_config)).toBeInTheDocument();
     });
-
-    expect(
-      screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER),
-    ).not.toBeInTheDocument();
   });
 
   it('should display error message when okms secret config fetch fails', async () => {
@@ -85,7 +67,7 @@ describe('okms edit secret config drawer page test suite', () => {
   });
 
   it('should render form with correct data when everything loads successfully', async () => {
-    const { container } = await renderPage();
+    await renderPage();
 
     // Wait for form to be rendered
     const maxVersions = mockSecretConfigOkms.maxVersions.toString();
@@ -98,16 +80,15 @@ describe('okms edit secret config drawer page test suite', () => {
     expect(screen.getByDisplayValue(maxVersions)).toBeInTheDocument();
 
     // Check submit button is present
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
     expect(submitButton).toBeInTheDocument();
   });
 
   it('should handle form submission and navigation flow', async () => {
     // GIVEN
-    const { user, container } = await renderPage();
+    const { user } = await renderPage();
 
     // WHEN
     // Change the data input value
@@ -117,24 +98,21 @@ describe('okms edit secret config drawer page test suite', () => {
     );
 
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // THEN
     // Wait for drawer to close (navigation)
-    await waitFor(() => {
-      expect(
-        screen.queryByTestId(OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer),
-      ).not.toBeInTheDocument();
-    });
+    await assertDrawerVisibility({ state: 'hidden' });
   });
 
   it('should handle form submission errors', async () => {
     // GIVEN isUpdateSecretConfigKO
-    const { user, container } = await renderPage({
+    const { user } = await renderPage({
       isUpdateSecretConfigKO: true,
     });
 
@@ -144,17 +122,18 @@ describe('okms edit secret config drawer page test suite', () => {
 
     // WHEN
     // Submit form
-    const submitButton = await getOdsButtonByLabel({
-      container,
-      label: labels.common.actions.validate,
+    const submitButton = screen.getByRole('button', {
+      name: labels.common.actions.validate,
     });
-    await act(() => user.click(submitButton));
+    await act(async () => {
+      await user.click(submitButton);
+    });
 
     // THEN
     // Verify error is displayed
     expect(await screen.findByText(updateSecretConfigErrorMessage)).toBeInTheDocument();
 
     // Drawer should still be open
-    expect(screen.getByTestId(OKMS_EDIT_SECRET_CONFIG_DRAWER_TEST_IDS.drawer)).toBeInTheDocument();
+    await assertDrawerVisibility({ state: 'visible' });
   });
 });

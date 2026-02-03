@@ -14,7 +14,7 @@
   "deleteObjectToastSuccessDescription": "The object {{ name }} has been deleted.",
   "deleteObjectTitle": "Delete an object",
   "deleteObjectDescription": "Do you want to permanently delete the object {{- name }}? This action cannot be reversed.",
-  "deleteObjectConfirmation": "Type PERMANENTLY DELETE to confirm",
+  "deleteObjectConfirmation": "Enter {{confirmation}} to confirm",
   "deleteObjectButtonCancel": "Cancel",
   "deleteObjectButtonConfirm": "Delete",
   "seeVersionsSwitchLabel": "See versions"

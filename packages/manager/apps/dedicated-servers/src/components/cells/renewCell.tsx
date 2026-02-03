@@ -1,5 +1,4 @@
 import React from 'react';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { DedicatedServer } from '@/data/types/server.type';
 import { DSBilling } from './billingCell';
@@ -11,7 +10,7 @@ export const RenewCell = (server: DedicatedServer) => {
   return (
     <DSBilling server={server}>
       {(billingInfo) => (
-        <DataGridTextCell>{t(getRenewWording(billingInfo))}</DataGridTextCell>
+        <div>{t(getRenewWording(billingInfo))}</div>
       )}
     </DSBilling>
   );

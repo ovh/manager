@@ -14,7 +14,7 @@ export const useProducts = (services: ProductList, expand = false) => {
   const servicesByProducts = services?.data || {};
   const productNames = Object.keys(servicesByProducts);
   const products: HubProduct[] = productNames
-    .map((name: string & keyof typeof servicesByProducts) => {
+    .map((name: string) => {
       const { application, hash } = productListingPages[name] || {
         application: null,
         hash: null,

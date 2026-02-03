@@ -17,7 +17,7 @@ describe('BillingStatus W3C Validation', () => {
     const { container } = render(<BillingStatus service={serviceResiliated} />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 
   it('should have a valid html for service With Manual Renew Not ResiliatedWithoutDebt', () => {
@@ -26,20 +26,20 @@ describe('BillingStatus W3C Validation', () => {
     );
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 
   it('should have a valid html for service OneSho tWithout Resiliation', () => {
     const { container } = render(<BillingStatus service={serviceOneShotWithoutResiliation} />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 
   it('should have a valid html for service Without Url And Suspended Billing', () => {
     const { container } = render(<BillingStatus service={serviceWithoutUrlAndSuspendedBilling} />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

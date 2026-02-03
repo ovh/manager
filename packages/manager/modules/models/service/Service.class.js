@@ -50,10 +50,10 @@ export default class Service {
 
   get productType() {
     return this.route.path
-      .replace(/{.*}/, '')
-      .split('/')
-      .filter((item) => !!item)
-      .join('_');
+      ?.replace(/{.*}/, '')
+      ?.split('/')
+      ?.filter((item) => !!item)
+      ?.join('_');
   }
 
   get monthlyPrice() {

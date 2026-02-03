@@ -70,6 +70,10 @@ export default class ServicesCtrl {
         hideOperators: true,
         values: this.BillingAutoRenew.getStatusTypes(),
       },
+      renew: {
+        hideOperators: true,
+        values: this.BillingAutoRenew.getRenewMode(),
+      },
       expiration: {
         hideOperators: true,
         values: this.BillingAutoRenew.getExpirationFilterTypes(),

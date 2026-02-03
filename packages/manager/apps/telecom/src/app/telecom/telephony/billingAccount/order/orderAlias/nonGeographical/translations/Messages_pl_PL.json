@@ -1,0 +1,19 @@
+{
+  "telephony_order_nongeographical_title": "Zamów numer niegeograficzny",
+  "telephony_order_nongeographical_submit_title": "Zamów numer niegeograficzny",
+  "telephony_order_nongeographical_amount_title": "Liczba numerów:",
+  "telephony_order_nongeographical_specific_title": "Wybór numeru",
+  "telephony_order_nongeographical_retractation_title": "Prawo do odstąpienia od umowy",
+  "telephony_order_nongeographical_address_title": "Dane właściciela numeru",
+  "telephony_order_nongeographical_zone_tip": "Miejscowość lub kod pocztowy",
+  "telephony_order_nongeographical_numbers_error": "Nie można załadować listy wyboru wstępnego numerów.",
+  "telephony_order_nongeographical_order_error": "Zamówienie numeru(-ów) niegeograficznego(-ych) nie powiodło się. Spróbuj ponownie później.",
+  "telephony_order_nongeographical_order_error_city": "{{city}} nie należy do strefy ({{zone}})",
+  "telephony_order_nongeographical_order_success": "Zamówiony(-e) numer(-y) niegeograficzny(-e). Prosimy o opłacenie zamówienia.",
+  "telephony_order_nongeographical_order_alias": "Wszystkie konfiguracje",
+  "telephony_order_nongeographical_order_sda_only": "Tylko przekierowania (SDA)",
+  "telephony_order_nongeographical_prices_error": "Nie można pobrać cennika za numer stacjonarny SDA Redirection",
+  "telephony_order_nongeographical_order_periodicy": "Zamów ({{total}} brutto / {{period}})",
+  "telephony_order_nongeographical_order_periodicy_annual": "rok",
+  "telephony_order_nongeographical_order_periodicy_month": "miesiąc"
+}

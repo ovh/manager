@@ -20,7 +20,7 @@ export const useOkmsCredentials = ({
   okmsId: string;
   deletingCredentialId?: OkmsCredential['id'];
 }) => {
-  return useQuery<{ data: OkmsCredential[] }, ApiError>({
+  return useQuery<OkmsCredential[], ApiError>({
     queryKey: getOkmsCredentialsQueryKey(okmsId),
     queryFn: () => getOkmsCredentials(okmsId),
     retry: false,
@@ -29,7 +29,7 @@ export const useOkmsCredentials = ({
     },
     refetchInterval: (query) => {
       return deletingCredentialId &&
-        query?.state?.data?.data?.find((credential) => credential.id === deletingCredentialId)
+        query?.state?.data?.find((credential) => credential.id === deletingCredentialId)
         ? 2000
         : false;
     },
@@ -53,7 +53,7 @@ export const useOkmsCredentialById = ({
   okmsId: string;
   credentialId: string;
 }) => {
-  return useQuery<{ data: OkmsCredential }, ErrorResponse>({
+  return useQuery<OkmsCredential, ErrorResponse>({
     queryKey: getOkmsCredentialQueryKey({ okmsId, credentialId }),
     queryFn: () => getOkmsCredential({ okmsId, credentialId }),
     retry: false,

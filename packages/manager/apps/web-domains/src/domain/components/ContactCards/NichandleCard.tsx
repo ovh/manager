@@ -1,21 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { User } from '@ovh-ux/manager-config/dist/types/environment/user';
 import {
   Card,
-  CARD_COLOR,
-  Spinner,
-  SPINNER_SIZE,
-  TEXT_PRESET,
+  CARD_COLOR, TEXT_PRESET,
   Text,
   BUTTON_SIZE,
   Button,
-  BUTTON_VARIANT,
+  BUTTON_VARIANT
 } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { ServiceInfoContactEnum } from '@/common/enum/common.enum';
 import NichandleInformation from './NichandleInformation';
-import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
 
 interface NichandleCardProps {
   readonly serviceName: string;
@@ -45,7 +41,7 @@ export default function NichandleCard({
 }: NichandleCardProps) {
   const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
   const { navigateTo } = useNavigation();
-  const { nichandleInformation } = useNichandleInformation();
+  const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
 
   const translations: ServiceInfoContactContactTranslations = {
     [ServiceInfoContactEnum.Administrator]: {
@@ -62,10 +58,6 @@ export default function NichandleCard({
     },
   };
 
-  if (!nichandleInformation) {
-    return <Spinner size={SPINNER_SIZE.xs} />;
-  }
-
   return (
     <Card
       data-testid="nichandle-card"
@@ -78,7 +70,6 @@ export default function NichandleCard({
         </Text>
         <NichandleInformation
           nichandle={nichandle}
-          nichandleInformation={nichandleInformation}
         />
         <div>{translations[cardType].description}</div>
       </div>
@@ -86,7 +77,7 @@ export default function NichandleCard({
         <Button
           size={BUTTON_SIZE.sm}
           data-testid="modify-button"
-          disabled={nichandleInformation.nichandle !== nichandle}
+          disabled={connectedNichandle !== nichandle}
           onClick={() => navigateTo('account', '/useraccount/infos', {})}
         >
           {t(`${NAMESPACES.ACTIONS}:modify`)}
@@ -94,7 +85,7 @@ export default function NichandleCard({
         <Button
           size={BUTTON_SIZE.sm}
           data-testid="reassign-button"
-          disabled={nichandleInformation.nichandle !== nichandle}
+          disabled={connectedNichandle !== nichandle}
           onClick={() =>
             navigateTo('account', '/contacts/services/edit', {
               serviceName,

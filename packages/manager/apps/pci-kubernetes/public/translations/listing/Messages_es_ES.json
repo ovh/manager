@@ -24,8 +24,8 @@
   "kube_common_node_pool_autoscaling_title": "Configurar el tamaño del pool de nodos",
   "kube_common_node_pool_title_multiple": "Configurar uno o varios pools de nodos (opcional)",
   "kubernetes_containers_deployment_mode_label": "Modo de despliegue",
-  "kube_list_node_pools": "¿Necesita volúmenes persistentes para varios pods a través de diferentes nodos y zonas de disponibilidad? Pruebe nuestro servicio <strong>File Storage</strong>, completamente gestionado, compatible con Managed Kubernetes Service. Disfrute de volúmenes «Read Write Many» </strong>a partir de 10 GB</strong> y evolucione de manera transparente con sus clústeres.",
-  "kube_list_node_pools_discover": "Descubrir el alfa",
+  "kube_list_node_pools": "¿Necesita volúmenes persistentes para varios pods a través de diferentes nodos y zonas de disponibilidad? Pruebe nuestro servicio <strong>File Storage</strong>, completamente gestionado, compatible con Managed Kubernetes Service. Disfrute de volúmenes «Read Write Many» <strong>a partir de 150 GiB</strong> y escale sus clústeres de forma transparente.",
+  "kube_list_node_pools_discover": "Descubrir la beta",
   "READY": "Listo",
   "DISABLED": "Desactivado",
   "UPDATING": "Actualización en progreso",
@@ -33,8 +33,8 @@
   "DELETING": "Eliminando...",
   "CREATING": "Creando...",
   "ENABLED": "Activado",
-  "kube_list_node_pools_floating_ip_warning_enable_title": "Impacto sobre los precios",
-  "kube_list_node_pools_floating_ip_warning_enable_description": "La activación de las Floating IP conlleva un coste adicional. A cada instancia actual y futura de este pool de nodos se le asignará una Floating IP con un coste de {{price}}.",
-  "kube_list_node_pools_floating_ip_warning_disable_title": "Atención: Pérdida de las Floating IP",
-  "kube_list_node_pools_floating_ip_warning_disable_description": "La desactivación provocará la desconexión inmediata de las Floating IP. Estas direcciones se liberarán definitivamente y no podrán recuperarse."
+  "kube_list_node_pools_floating_ip_warning_enable_title": "Impact tarifario",
+  "kube_list_node_pools_floating_ip_warning_enable_description": "La activación de las Floating IPs implica un costo adicional. Cada instancia actual y futura de este grupo de nodos se le asignará una Floating IP facturada {{price}}.",
+  "kube_list_node_pools_floating_ip_warning_disable_title": "Atención: Pérdida de las Floating IPs",
+  "kube_list_node_pools_floating_ip_warning_disable_description": "La desactivación provocará la separación inmediata de las Floating IPs. Estas direcciones serán liberadas definitivamente y no podrán ser recuperadas."
 }

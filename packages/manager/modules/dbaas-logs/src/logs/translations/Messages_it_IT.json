@@ -801,5 +801,7 @@
   "streams_subscriptions_resource_products_webhosting": "Hosting Web",
   "streams_subscriptions_resource_products_account-api": "Spazio Cliente OVHcloud e API OVHcloud",
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
-  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes"
+  "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
+  "logs_roles_enable_iam": "Attivare IAM OVHcloud",
+  "logs_iam_policies_get_error": "Si è verificato un errore durante il caricamento delle politiche IAM."
 }

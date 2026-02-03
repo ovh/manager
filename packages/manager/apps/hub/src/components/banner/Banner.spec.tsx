@@ -42,18 +42,18 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
 });
 
 describe('Banner.component', () => {
-  it('should not display the banner if none is returned by the api', async () => {
+  it('should not display the banner if none is returned by the api', () => {
     loading = false;
     const { queryByTestId } = renderComponent();
 
     expect(queryByTestId('queryByText')).not.toBeInTheDocument();
   });
 
-  it('should call api with user locale', async () => {
+  it('should call api with user locale', () => {
     expect(useFetchHubBanner).toHaveBeenCalledWith(locale);
   });
 
-  it('should display the banner if one is returned by the api', async () => {
+  it('should display the banner if one is returned by the api', () => {
     banner = {
       alt: 'Summit Banner',
       images: {
@@ -91,6 +91,6 @@ describe('Banner.component', () => {
     const { container } = renderComponent();
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 });

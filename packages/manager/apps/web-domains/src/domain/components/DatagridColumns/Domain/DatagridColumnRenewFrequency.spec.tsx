@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, wrapper } from '@/common/utils/test.provider';
-import { describe, expect, it, vi, beforeEach } from 'vitest';
+import { describe, expect, it, vi, beforeEach, Mock } from 'vitest';
 import DatagridColumnRenewFrequency from './DatagridColumnRenewFrequency';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import { ServiceInfoRenewModeEnum } from '@/common/enum/common.enum';
@@ -65,6 +65,9 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {name}
     </span>
   ),
+  Text: ({ children }: { children?: React.ReactNode }) => (
+    <span data-testid="text">{children}</span>
+  ),
   Tooltip: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="tooltip">{children}</div>
   ),
@@ -86,6 +89,9 @@ vi.mock('@ovhcloud/ods-react', () => ({
     success: 'success',
     warning: 'warning',
   },
+  TEXT_PRESET: {
+    paragraph: 'paragraph',
+  },
 }));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
@@ -102,7 +108,7 @@ describe('DatagridColumnRenewFrequency', () => {
   });
 
   it('should render loading skeleton when service info is loading', () => {
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: null,
       isServiceInfoLoading: true,
     });
@@ -115,7 +121,7 @@ describe('DatagridColumnRenewFrequency', () => {
   });
 
   it('should render empty when no service info', () => {
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: null,
       isServiceInfoLoading: false,
     });
@@ -139,7 +145,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -165,7 +171,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -191,7 +197,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -217,7 +223,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -244,7 +250,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -271,7 +277,7 @@ describe('DatagridColumnRenewFrequency', () => {
       },
     };
 
-    (useGetServiceInformation as jest.Mock).mockReturnValue({
+    (useGetServiceInformation as Mock).mockReturnValue({
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     });
@@ -305,7 +311,7 @@ describe('DatagridColumnRenewFrequency', () => {
         },
       };
 
-      (useGetServiceInformation as jest.Mock).mockReturnValue({
+      (useGetServiceInformation as Mock).mockReturnValue({
         serviceInfo: mockServiceInfo,
         isServiceInfoLoading: false,
       });

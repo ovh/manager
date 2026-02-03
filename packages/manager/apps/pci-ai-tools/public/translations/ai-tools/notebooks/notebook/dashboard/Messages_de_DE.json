@@ -22,5 +22,14 @@
   "addLabelTitle": "Ein Label hinzufügen",
   "keyFieldLabel": "Schlüssel",
   "valueFieldLabel": "Wert",
-  "deleteNotebookTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden"
+  "deleteNotebookTooltip": "Das Notebook muss sich im Status „Angehalten“ befinden",
+  "activateAutoRestartButton": "Automatischen Neustart aktivieren",
+  "deactivateAutoRestartButton": "Automatischen Neustart deaktivieren",
+  "autoRestartLabel": "Automatischer Neustart",
+  "autoRestartEnabled": "Aktiviert",
+  "autoRestartDisabled": "Deaktiviert",
+  "autoRestartToastSuccessTitle": "Automatischer Neustart aktualisiert",
+  "autoRestartToastSuccessDescription": "Die Einstellung für den automatischen Neustart wurde für {{name}} aktualisiert",
+  "disabledRestartButtonTooltip": "Der automatische Neustart kann nicht geändert werden, wenn das Notebook ausgeschaltet ist.",
+  "modifyLabel": "Ändern"
 }

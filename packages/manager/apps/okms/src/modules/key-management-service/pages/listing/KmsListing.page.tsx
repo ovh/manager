@@ -6,19 +6,14 @@ import { useOkmsDatagridList } from '@key-management-service/data/hooks/useOkms'
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_COLOR, ODS_BUTTON_SIZE, ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
-import {
-  BaseLayout,
-  HeadersProps,
-  Notifications,
-  RedirectionGuard,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Button, HeaderProps, Notifications, RedirectionGuard } from '@ovh-ux/muk';
 
 import { OkmsDatagrid } from '@/common/components/okms-datagrid/OkmsDatagrid.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
 
 import kmsListingTestIds from './KmsListing.constants';
@@ -27,7 +22,7 @@ export default function Listing() {
   const { t } = useTranslation(['key-management-service/listing', 'common']);
   const { t: tError } = useTranslation('error');
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
 
   const { clearNotifications, notifications } = useNotifications();
   const { hasPendingOrder } = usePendingOkmsOrder();
@@ -39,9 +34,9 @@ export default function Listing() {
   const flattenData = data?.pages.flatMap((page) => page.data);
   const okmsList = flattenData || [];
 
-  const headerProps: HeadersProps = {
+  const headerProps: HeaderProps = {
     title: t('key_management_service_listing_title'),
-    headerButton: <KmsGuidesHeader />,
+    guideMenu: <KmsGuidesHeader />,
     changelogButton: <KmsChangelogButton />,
   };
 
@@ -53,9 +48,9 @@ export default function Listing() {
       route={KMS_ROUTES_URLS.kmsOnboarding}
       isError={isError}
       errorComponent={
-        <OdsMessage className="mt-4" color={ODS_MESSAGE_COLOR.critical}>
+        <Message className="mt-4" color="critical">
           {tError('manager_error_page_default')}
-        </OdsMessage>
+        </Message>
       }
     >
       <BaseLayout
@@ -64,9 +59,9 @@ export default function Listing() {
           hasNotifications ? (
             <div>
               {hasPendingOrder && (
-                <OdsMessage color="information" className="mb-4" isDismissible={false}>
+                <Message color="information" className="mb-4" dismissible={false}>
                   {t('common:okms_order_pending')}
-                </OdsMessage>
+                </Message>
               )}
               <Notifications />
             </div>
@@ -74,23 +69,23 @@ export default function Listing() {
         }
       >
         <div className="flex flex-col gap-6">
-          <OdsButton
+          <Button
             className="w-fit"
-            size={ODS_BUTTON_SIZE.sm}
-            color={ODS_BUTTON_COLOR.primary}
+            color="primary"
             onClick={() => {
               clearNotifications();
               trackClick({
                 location: PageLocation.page,
                 buttonType: ButtonType.button,
                 actionType: 'navigation',
-                actions: ['create_kms'],
+                actions: ['create', 'okms'],
               });
               navigate(KMS_ROUTES_URLS.kmsCreate);
             }}
-            label={t('key_management_service_listing_add_kms_button')}
             data-testid={kmsListingTestIds.ctaOrder}
-          />
+          >
+            {t('key_management_service_listing_add_kms_button')}
+          </Button>
 
           <OkmsDatagrid
             type="kms"

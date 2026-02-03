@@ -9,6 +9,7 @@ import {
   organizationList,
 } from '@ovh-ux/manager-module-vcd-api';
 import { vi } from 'vitest';
+import * as vrackHooks from '@ovh-ux/manager-network-common/src/vrack/hooks/useVrackIpList';
 
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -37,9 +38,7 @@ describe('Datacentre General Information Page Updates', () => {
       initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}`,
     });
 
-    await assertTextVisibility(
-      labels.dashboard.managed_vcd_dashboard_general_information,
-    );
+    await assertTextVisibility(labels.commun.dashboard.general_information);
   });
 });
 
@@ -100,5 +99,40 @@ describe('Datacentre General Information Page Updates', () => {
 
     await assertOdsModalVisibility({ container, isVisible: true });
     await assertOdsModalText({ container, text: 'Datacentre update error' });
+  });
+});
+
+describe('AddPublicIpBlock Modal', () => {
+  beforeEach(() => {
+    vi.spyOn(vrackHooks, 'useVrackIpList').mockReturnValue({
+      ip: ['192.168.1.0/24', '10.0.0.0/24'],
+      isLoading: false,
+    } as any);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('renders modal add up block correctly with a list of vrack', async () => {
+    const { container } = await renderTest({
+      initialRoute: `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/add-public-ip-block`,
+    });
+
+    await assertOdsModalVisibility({ container, isVisible: true });
+
+    await assertTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_add_ip_public_block_modal_heading,
+    );
+
+    await assertTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_add_ip_public_block_information,
+    );
+
+    await assertTextVisibility(
+      labels.dashboard.managed_vcd_dashboard_add_ip_public_block_description,
+    );
+    const submitCta = await getElementByTestId(TEST_IDS.modalSubmitCta);
+    expect(submitCta).toBeDisabled();
   });
 });

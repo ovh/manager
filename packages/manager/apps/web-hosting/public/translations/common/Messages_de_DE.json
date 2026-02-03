@@ -167,7 +167,7 @@
   "hosting_tab_DOMAINS_configuration_remove_failure": "Ein Fehler ist aufgetreten, als die Domain von Ihrem Shared Hosting getrennt wurde. {{error}}",
   "hosting_tab_DOMAINS_configuration_remove_success": "Die Domain wird von Ihrem Shared Hosting getrennt.",
   "activate_cdn": "CDN aktivieren",
-  "multisite_delete_site_modal_description_part1": "Um diese Website zu löschen, müssen Sie zuerst alle damit verbundenen Domains trennen.",
+  "multisite_delete_site_modal_description_part1": "Um diese Website zu löschen, müssen zuerst alle mit ihr verbundenen Domains getrennt werden.",
   "multisite_delete_site_modal_description_part2": "Ihre Website wird dann automatisch deaktiviert.",
-  "multisite_delete_site_modal_description_part3": "Die Verzeichnisse und Dateien werden nicht gelöscht."
+  "multisite_delete_site_modal_description_part3": "Verzeichnisse und Dateien werden nicht gelöscht."
 }

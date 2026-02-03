@@ -6,8 +6,8 @@ import {
   screen,
   fireEvent,
   waitFor,
+  wrapper,
 } from '@/common/utils/test.provider';
-import { wrapper } from '@/common/utils/test.provider';
 import FreeHostingDrawer from './FreeHostingDrawer';
 import { FreeHostingOptions } from './Hosting';
 import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
@@ -151,7 +151,6 @@ describe('FreeHostingDrawer Component', () => {
   const mockSetFreeHostingOptions = vi.fn();
 
   const defaultProps = {
-    serviceName: 'test-domain.com',
     isDrawerOpen: true,
     freeHostingOptions: {
       dnsA: false,
@@ -341,15 +340,29 @@ describe('FreeHostingDrawer Component', () => {
   });
 
   describe('Footer buttons', () => {
-    it('should display cancel and validate buttons', () => {
+    it('should display cancel and validate buttons', async () => {
       renderComponent();
-      expect(screen.getByTestId('button-ghost')).toHaveTextContent('Annuler');
-      expect(screen.getByTestId('button-default')).toHaveTextContent('Valider');
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            '@ovh-ux/manager-common-translations/actions:cancel',
+          ),
+        ).toBeInTheDocument();
+      });
+      await waitFor(() => {
+        expect(
+          screen.getByText(
+            '@ovh-ux/manager-common-translations/actions:validate',
+          ),
+        ).toBeInTheDocument();
+      });
     });
 
     it('should call onClose when cancel button is clicked', async () => {
       renderComponent();
-      const cancelButton = screen.getByTestId('button-ghost');
+      const cancelButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:cancel',
+      );
       fireEvent.click(cancelButton);
 
       await waitFor(() => {
@@ -366,7 +379,9 @@ describe('FreeHostingDrawer Component', () => {
         },
       });
 
-      const validateButton = screen.getByTestId('button-default');
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
+      );
       expect(validateButton).toBeDisabled();
     });
 
@@ -379,7 +394,9 @@ describe('FreeHostingDrawer Component', () => {
         },
       });
 
-      const validateButton = screen.getByTestId('button-default');
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
+      );
       expect(validateButton).not.toBeDisabled();
     });
 
@@ -394,7 +411,9 @@ describe('FreeHostingDrawer Component', () => {
         freeHostingOptions: options,
       });
 
-      const validateButton = screen.getByTestId('button-default');
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
+      );
       fireEvent.click(validateButton);
 
       await waitFor(() => {
@@ -424,7 +443,9 @@ describe('FreeHostingDrawer Component', () => {
         />,
       );
 
-      const validateButton = screen.getByTestId('button-default');
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
+      );
       expect(validateButton).not.toBeDisabled();
     });
 

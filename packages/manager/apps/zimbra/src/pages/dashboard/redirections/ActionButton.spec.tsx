@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { screen } from '@testing-library/dom';
 import { describe, expect } from 'vitest';
 
 import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
@@ -11,7 +12,7 @@ import ActionButtonRedirection from './ActionButton.component';
 
 describe('Redirections datagrid action menu', () => {
   it('renders with menu enabled and 2 items', () => {
-    const { container } = render(
+    render(
       <ActionButtonRedirection
         item={{
           id: '1',
@@ -23,9 +24,7 @@ describe('Redirections datagrid action menu', () => {
       />,
     );
 
-    const menuItems = container.querySelectorAll('ods-popover ods-button');
-
-    expect(menuItems.length).toBe(1);
-    expect(menuItems[0]).toHaveAttribute('label', actionsCommonTranslation.delete);
+    const deleteButton = screen.getByTestId('manager-button');
+    expect(deleteButton).toHaveTextContent(actionsCommonTranslation.delete);
   });
 });

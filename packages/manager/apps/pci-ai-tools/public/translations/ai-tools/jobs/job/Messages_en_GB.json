@@ -21,5 +21,8 @@
   "cliTitle": "Equivalent CLI command",
   "cliToastMessage": "Order copied",
   "restartJobButtonConfirm": "Relaunch",
-  "restartJobToastSuccessDescription": "The {{name}} job has been launched"
+  "restartJobToastSuccessDescription": "The {{name}} job has been launched",
+  "cloneJobTitle": "Clone a new job",
+  "shutdownLabel": "Stops on ",
+  "restartLabel": "Restarts on "
 }

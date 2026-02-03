@@ -3,6 +3,122 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.40.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.7...@ovh-ux/manager-pci-databases-analytics-app@1.40.8) (2026-02-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4633] ([b0adee9](https://github.com/ovh/manager/commit/b0adee9cabb30077119603428dd863c5943e3428))
+
+
+
+
+
+## [1.40.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.6...@ovh-ux/manager-pci-databases-analytics-app@1.40.7) (2026-01-30)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4626] ([1b5dfd3](https://github.com/ovh/manager/commit/1b5dfd35a8e263cadc37107312a95e54304a3ad4))
+
+
+
+
+
+## [1.40.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.5...@ovh-ux/manager-pci-databases-analytics-app@1.40.6) (2026-01-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4617] ([927a2d3](https://github.com/ovh/manager/commit/927a2d384a06dd66f87992fdb8811c15db4ca3ca))
+* **i18n:** add missing translations [CDS 4623] ([5b32c60](https://github.com/ovh/manager/commit/5b32c60cf7da76e65614bcf49feeb1ac7c6b03ad))
+
+
+
+
+
+## [1.40.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.4...@ovh-ux/manager-pci-databases-analytics-app@1.40.5) (2026-01-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4606] ([8a702ab](https://github.com/ovh/manager/commit/8a702ab6db65f6b4ec2c301cac5c1a80bb76b7ba))
+* **i18n:** add missing translations [CDS 4608] ([23f8e2c](https://github.com/ovh/manager/commit/23f8e2c61eb1ab781a37e2506279a648fce10acc))
+* **i18n:** add missing translations [CDS 4609] ([54b7e4a](https://github.com/ovh/manager/commit/54b7e4a775df6cdd4b2de0a6bf0528fec1f6e948))
+
+
+
+
+
+## [1.40.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.3...@ovh-ux/manager-pci-databases-analytics-app@1.40.4) (2026-01-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4601] ([9c3eee5](https://github.com/ovh/manager/commit/9c3eee5045299f68f45ba2d2dad4448feb79d9e2))
+* **i18n:** add missing translations [CDS 4603] ([7cf2ef9](https://github.com/ovh/manager/commit/7cf2ef91526851c766dbd7d0d1c9163d9bd2f0a5))
+
+
+
+
+
+## [1.40.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.2...@ovh-ux/manager-pci-databases-analytics-app@1.40.3) (2026-01-20)
+
+
+### Bug Fixes
+
+* **database:** missing translation for continent and border style ([3ae8d1b](https://github.com/ovh/manager/commit/3ae8d1bf02c9f8308d853d4ee0025a20d34945f7)), closes [#DATATR-2864](https://github.com/ovh/manager/issues/DATATR-2864)
+* **database:** rework matching subregion to get region Id ([edf2b39](https://github.com/ovh/manager/commit/edf2b39dc1f7c6c6fb1aba13abe120fa8f219708)), closes [#DATATR-2358](https://github.com/ovh/manager/issues/DATATR-2358)
+
+
+
+
+
+## [1.40.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.1...@ovh-ux/manager-pci-databases-analytics-app@1.40.2) (2026-01-15)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4592] ([38d2827](https://github.com/ovh/manager/commit/38d2827e468711e67eab72c1e09a4a2dd6db1f4c))
+
+
+
+
+
+## [1.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.0...@ovh-ux/manager-pci-databases-analytics-app@1.40.1) (2026-01-14)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4590] ([12b5fa6](https://github.com/ovh/manager/commit/12b5fa6b301d2b53f177c3095cf4ebfb72a4e9d2))
+
+
+
+
+
+# [1.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.39.5...@ovh-ux/manager-pci-databases-analytics-app@1.40.0) (2026-01-13)
+
+
+### Features
+
+* **pci.databases:** onboarding pages wording ([b30e6a2](https://github.com/ovh/manager/commit/b30e6a27f0f54c32b5465774c6edef18bc029389)), closes [#DATATR-2661](https://github.com/ovh/manager/issues/DATATR-2661)
+* **pci.db:** stop using monthly plan code in pricing ([16a3f22](https://github.com/ovh/manager/commit/16a3f220a5c5c1daae91877453da740ed1023811)), closes [#DATATR-2814](https://github.com/ovh/manager/issues/DATATR-2814) [#DATATR-2815](https://github.com/ovh/manager/issues/DATATR-2815)
+
+
+
+
+
+## [1.39.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.39.4...@ovh-ux/manager-pci-databases-analytics-app@1.39.5) (2026-01-13)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4588] ([8ce4d06](https://github.com/ovh/manager/commit/8ce4d0691a5bb4dfa32d3b76ce1dc57b217df929))
+
+
+
+
+
 ## [1.39.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.39.3...@ovh-ux/manager-pci-databases-analytics-app@1.39.4) (2026-01-09)
 
 

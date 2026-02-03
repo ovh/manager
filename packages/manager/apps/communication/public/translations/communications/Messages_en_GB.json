@@ -4,5 +4,7 @@
   "table_column_priority": "Priority",
   "table_column_date": "Date",
   "table_column_categories": "Categories",
-  "contact_status_warning": "There seems to be a problem with the {{ contactType }} delivery method. You can <anchor>manage your receive settings</anchor> to fix this problem."
+  "contact_status_warning": "There seems to be a problem with the {{ contactType }} delivery method. You can <anchor>manage your receive settings</anchor> to fix this problem.",
+  "sender_email_banner_text": "We’ve updated our sender email addresses. To verify that messages are genuinely from us, ",
+  "sender_email_banner_link": "please review our anti-phishing guidance."
 }

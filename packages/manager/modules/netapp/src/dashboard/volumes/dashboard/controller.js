@@ -30,7 +30,7 @@ export default class {
     };
 
     this.volume = {
-      size: this.volumeCapacityInfos.volume_size,
+      ...this.volume,
       used: (
         this.volumeCapacityInfos.volume_size_used -
         this.volumeCapacityInfos.volume_snapshot_reserve_overflow
@@ -50,6 +50,7 @@ export default class {
         this.volumeCapacityInfos.volume_size,
       ),
     };
+
     this.snapshot = {
       size: this.volumeCapacityInfos.volume_snapshot_reserve_size,
       used: this.volumeCapacityInfos.volume_snapshot_reserve_used,

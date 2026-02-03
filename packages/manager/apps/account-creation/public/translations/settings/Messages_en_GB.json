@@ -1,11 +1,12 @@
 {
   "title": "Choose account settings",
-  "description": "Already have an account? <Link label=\"Connectez-vous\"></Link>",
+  "description": "Already have an account?",
   "country_setting": "Country of tax residence",
   "currency_setting": "Currency",
   "site_setting": "Website (language)",
   "setting_description": "Your country of residence determines which website you will use to access your chosen products and sign your contract. It also determines the billing currency for the website chosen",
   "setting_description_list_first": "1. If you are a customer registered for VAT, GST or an equivalent tax, your country of registration is considered your country of residence",
   "setting_description_list_second": "2. If you are a customer not registered for VAT, GST or an equivalent tax, but are registered as a “contractor”, your country of residence is the one where your contractor tax identification number is issued.",
-  "setting_description_list_last": "3. If you are a customer not registered for VAT, GST or an equivalent tax, your country of residence is generally considered to be the one listed in your billing address. In accordance with applicable laws, OVH may be required to cross-check this information with your IP address or the bank address linked to your payment method. If there is a discrepancy, OVH may contact you to confirm your country of residence"
+  "setting_description_list_last": "3. If you are a customer not registered for VAT, GST or an equivalent tax, your country of residence is generally considered to be the one listed in your billing address. In accordance with applicable laws, OVH may be required to cross-check this information with your IP address or the bank address linked to your payment method. If there is a discrepancy, OVH may contact you to confirm your country of residence",
+  "connect": "Log in"
 }

@@ -77,7 +77,7 @@ angular.module('App').controller(
       );
       this.dnssecLink = coreURLBuilder.buildURL(
         'web-domains',
-        '#/domain/:serviceName/dnssec',
+        '#/domain/:serviceName/ds-records',
         { serviceName: this.$stateParams.productId },
       );
       this.contactManagementLink = coreURLBuilder.buildURL(

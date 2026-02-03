@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { AxiosError } from 'axios';
 import { describe, expect, it, vi } from 'vitest';
 
 import { OdsSelectValueChangeEventDetail, OsdsSelect } from '@ovhcloud/ods-components';
@@ -13,6 +14,7 @@ import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-clie
 
 import { FourServices, NoServices, TwoServices } from '@/__mocks__/billingServices';
 import { catalogData } from '@/__mocks__/catalog';
+import { HubBillingServices } from '@/billing/types/billingServices.type';
 import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBillingServices';
 import * as UseBillsHook from '@/data/hooks/bills/useBills';
 import BillingSummary from '@/pages/dashboard/BillingSummary.component';
@@ -27,7 +29,7 @@ import * as HubContext from '@/pages/dashboard/context';
 import Layout from '@/pages/dashboard/dashboard';
 import { ApiEnvelope } from '@/types/apiEnvelope.type';
 import { CatalogItem } from '@/types/catalog';
-import { KycStatus } from '@/types/kyc.type';
+import { KycStatus, KycStatuses } from '@/types/kyc.type';
 import { Notification, NotificationType } from '@/types/notifications.type';
 import { LastOrder } from '@/types/order.type';
 import { ProductList } from '@/types/services.type';
@@ -38,7 +40,7 @@ const queryClient = new QueryClient();
 
 const trackClickMock = vi.fn();
 const trackPageMock = vi.fn();
-const mocks: any = vi.hoisted(() => ({
+const mocks = vi.hoisted(() => ({
   bills: {
     data: {
       currency: {
@@ -229,7 +231,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const module: typeof ReactComponentsModule = await importOriginal();
   return {
     ...module,
-    useFeatureAvailability: (): { data: any; isPending: boolean } => ({
+    useFeatureAvailability: () => ({
       data: mocks.hubContext.availability,
       isPending: false,
     }),
@@ -294,11 +296,12 @@ vi.mock('@/pages/dashboard/context', async (importOriginal) => {
   };
 });
 
-const useBillingServicesMockValue: any = {
-  data: null,
+const useBillingServicesMockValue = {
+  data: null as HubBillingServices,
   isLoading: true,
-  error: null,
-};
+  error: null as Error,
+} as UseQueryResult<HubBillingServices, AxiosError>;
+
 vi.spyOn(UseBillingServicesHook, 'useFetchHubBillingServices').mockReturnValue(
   useBillingServicesMockValue,
 );
@@ -390,11 +393,9 @@ describe('Layout.page', () => {
 
   it('should have correct css class if account sidebard is closed', async () => {
     const { getByTestId } = renderComponent(<Layout />);
-
-    expect(getByTestId('hub_main_div')).toHaveAttribute(
-      'class',
-      'absolute hub-main w-full h-full ',
-    );
+    await waitFor(() => {
+      expect(getByTestId('hub_main_div')).toHaveAttribute('class', 'hub-main absolute size-full ');
+    });
   });
 
   it('should have correct css class if account sidebard is open', async () => {
@@ -404,7 +405,7 @@ describe('Layout.page', () => {
     await waitFor(() => {
       expect(getByTestId('hub_main_div')).toHaveAttribute(
         'class',
-        'absolute hub-main w-full h-full hub-main-view_sidebar_expanded',
+        'hub-main absolute size-full hub-main-view_sidebar_expanded',
       );
     });
   });
@@ -421,11 +422,11 @@ describe('Layout.page', () => {
     const { container } = renderComponent(<Layout />);
     const html = container.innerHTML;
 
-    expect(html).toBeValidHtml();
+    void expect(html).toBeValidHtml();
   });
 
   describe('BillingSummary component', () => {
-    it('should render skeletons while loading', async () => {
+    it('should render skeletons while loading', () => {
       const { getByText, getByTestId } = renderComponent(<BillingSummary />);
 
       expect(getByText('hub_billing_summary_title')).not.toBeNull();
@@ -512,7 +513,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<BillingSummary />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
@@ -538,7 +539,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<EnterpriseBillingSummary />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
@@ -549,7 +550,7 @@ describe('Layout.page', () => {
       expect(getByTestId('payment_status_title')).not.toBeNull();
     });
 
-    it('should render table with skeletons while loading', async () => {
+    it('should render table with skeletons while loading', () => {
       mocks.hubContext.isLoading = true;
       mocks.hubContext.availability['billing:management'] = true;
       const { getAllByTestId, getByTestId } = renderComponent(<PaymentStatus />);
@@ -568,7 +569,7 @@ describe('Layout.page', () => {
       expect(tileError).not.toBeNull();
     });
 
-    it('should render a message if loading is done and user has no services', async () => {
+    it('should render a message if loading is done and user has no services', () => {
       useBillingServicesMockValue.data = NoServices;
       const { getByText } = renderComponent(<PaymentStatus />);
 
@@ -588,19 +589,19 @@ describe('Layout.page', () => {
       expect(getAllByTestId('service_expiration_date_message').length).toBe(2);
     });
 
-    it('should display the correct message for service in debt', async () => {
+    it('should display the correct message for service in debt', () => {
       const { getByTestId } = renderComponent(<PaymentStatus />);
 
       expect(getByTestId('service_with_debt')).not.toBeNull();
     });
 
-    it('should display the correct message for service in automatic renew without debt and not resiliated', async () => {
+    it('should display the correct message for service in automatic renew without debt and not resiliated', () => {
       const { getByTestId } = renderComponent(<PaymentStatus />);
 
       expect(getByTestId('service_with_expiration_date')).not.toBeNull();
     });
 
-    it('should display service type for each service', async () => {
+    it('should display service type for each service', () => {
       useBillingServicesMockValue.data = FourServices;
       const { getByText } = renderComponent(<PaymentStatus />);
 
@@ -610,7 +611,7 @@ describe('Layout.page', () => {
       expect(getByText('manager_hub_products_DEDICATED_CLOUD')).not.toBeNull();
     });
 
-    it('should display the correct information for resiliated service', async () => {
+    it('should display the correct information for resiliated service', () => {
       const { getByTestId, getByText } = renderComponent(<PaymentStatus />);
       const serviceLink = getByText('serviceResiliated');
       expect(serviceLink).not.toBeNull();
@@ -622,7 +623,7 @@ describe('Layout.page', () => {
       expect(getByTestId('service_with_termination_date')).not.toBeNull();
     });
 
-    it('should display the correct information for service in manual renew without debt and not resiliated', async () => {
+    it('should display the correct information for service in manual renew without debt and not resiliated', () => {
       const { getByTestId, getByText } = renderComponent(<PaymentStatus />);
       const serviceLink = getByText('serviceWithManualRenewNotResiliatedWithoutDebt');
       expect(serviceLink).not.toBeNull();
@@ -634,7 +635,7 @@ describe('Layout.page', () => {
       expect(getByTestId('service_valid_until_date')).not.toBeNull();
     });
 
-    it('should display the correct information for one shot service not resiliated', async () => {
+    it('should display the correct information for one shot service not resiliated', () => {
       const { getByTestId, getByText } = renderComponent(<PaymentStatus />);
       const serviceLink = getByText('serviceOneShotWithoutResiliation');
       expect(serviceLink).not.toBeNull();
@@ -646,7 +647,7 @@ describe('Layout.page', () => {
       expect(getByTestId('service_without_expiration_date')).not.toBeNull();
     });
 
-    it('should display the correct information for service without url and billing suspended', async () => {
+    it('should display the correct information for service without url and billing suspended', () => {
       const { getByText } = renderComponent(<PaymentStatus />);
       const serviceWithoutUrlAndSuspendedBillingLink = getByText(
         'serviceWithoutUrlAndSuspendedBilling',
@@ -671,7 +672,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<PaymentStatus />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
 
     describe('With billing management', () => {
@@ -696,7 +697,7 @@ describe('Layout.page', () => {
         const { container } = renderComponent(<PaymentStatus />);
         const html = container.innerHTML;
 
-        expect(html).toBeValidHtml();
+        void expect(html).toBeValidHtml();
       });
     });
 
@@ -705,7 +706,7 @@ describe('Layout.page', () => {
         mocks.hubContext.availability['billing:management'] = false;
       });
 
-      it('should not render "see all" link', async () => {
+      it('should not render "see all" link', () => {
         const { queryAllByTestId, queryByTestId } = renderComponent(<PaymentStatus />);
         expect(queryByTestId('my_services_link_skeleton')).not.toBeInTheDocument();
         expect(queryAllByTestId('services_actions_skeleton').length).toBe(0);
@@ -715,7 +716,7 @@ describe('Layout.page', () => {
         const { container } = renderComponent(<PaymentStatus />);
         const html = container.innerHTML;
 
-        expect(html).toBeValidHtml();
+        void expect(html).toBeValidHtml();
       });
     });
   });
@@ -728,7 +729,7 @@ describe('Layout.page', () => {
       expect(link).not.toBeNull();
     });
 
-    it('should send tracking hit when displayed', async () => {
+    it('should send tracking hit when displayed', () => {
       trackPageMock.mockReset();
       renderComponent(<SiretBanner />);
 
@@ -751,22 +752,22 @@ describe('Layout.page', () => {
       });
     });
 
-    it('should not be displayed for non company customer', async () => {
+    it('should not be displayed for non company customer', () => {
       mocks.shellContext.environment.user.legalform = 'individual';
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
 
-    it('should not be displayed for customer not residing in France', async () => {
+    it('should not be displayed for customer not residing in France', () => {
       mocks.shellContext.environment.user.legalform = 'corporation';
       mocks.shellContext.environment.user.country = 'GB';
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
 
-    it('should not be displayed for french company with national company identification number', async () => {
+    it('should not be displayed for french company with national company identification number', () => {
       mocks.shellContext.environment.user.country = 'FR';
-      mocks.shellContext.environment.user.companyNationalIdentificationNumber = 99999;
+      mocks.shellContext.environment.user.companyNationalIdentificationNumber = '99999';
       const { queryByTestId } = renderComponent(<SiretBanner />);
       expect(queryByTestId('siret_banner')).not.toBeInTheDocument();
     });
@@ -775,7 +776,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<SiretBanner />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
@@ -801,14 +802,14 @@ describe('Layout.page', () => {
       });
     });
 
-    it('should render the banner and track display if user has started his KYC validation', async () => {
+    it('should render the banner and track display if user has started his KYC validation', () => {
       mocks.kycStatus.ticketId = 'CS0013982';
       const { getByTestId } = renderComponent(<KycIndiaBanner />);
       expect(getByTestId('kyc_india_banner')).not.toBeNull();
     });
 
-    it('should render nothing if user already validated his KYC', async () => {
-      mocks.kycStatus.status = 'ok';
+    it('should render nothing if user already validated his KYC', () => {
+      mocks.kycStatus.status = KycStatuses.OK;
       const { queryByTestId } = renderComponent(<KycIndiaBanner />);
       expect(queryByTestId('kyc_india_banner')).not.toBeInTheDocument();
     });
@@ -817,13 +818,13 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<KycIndiaBanner />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
   describe('KycFraudBanner component', () => {
     it('should render the banner if user is required to validated his KYC', async () => {
-      mocks.kycStatus.status = 'required';
+      mocks.kycStatus.status = KycStatuses.REQUIRED;
       delete mocks.kycStatus.ticketId;
       const { findByTestId, getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
@@ -851,9 +852,9 @@ describe('Layout.page', () => {
       });
     });
 
-    it('should render the banner and track display if user has started his KYC validation', async () => {
+    it('should render the banner and track display if user has started his KYC validation', () => {
       mocks.shellContext.shell.tracking.trackImpression.mockReset();
-      mocks.kycStatus.status = 'open';
+      mocks.kycStatus.status = KycStatuses.OPEN;
       mocks.kycStatus.ticketId = 'CS0013982';
       const { getByTestId } = renderComponent(<KycFraudBanner />);
       expect(getByTestId('kyc_fraud_banner')).not.toBeNull();
@@ -867,8 +868,8 @@ describe('Layout.page', () => {
       });
     });
 
-    it('should render nothing if user already validated his KYC', async () => {
-      mocks.kycStatus.status = 'ok';
+    it('should render nothing if user already validated his KYC', () => {
+      mocks.kycStatus.status = KycStatuses.OK;
       const { queryByTestId } = renderComponent(<KycFraudBanner />);
       expect(queryByTestId('kyc_fraud_banner')).not.toBeInTheDocument();
     });
@@ -877,12 +878,12 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<KycFraudBanner />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
   describe('NotificationsCarousel component', () => {
-    it('should render a single notification without "navigation"', async () => {
+    it('should render a single notification without "navigation"', () => {
       const { getByTestId, queryByTestId } = renderComponent(<NotificationsCarousel />);
 
       expect(getByTestId('notification_content')).not.toBeNull();
@@ -894,7 +895,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<NotificationsCarousel />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
@@ -909,13 +910,13 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<NotificationsEmailUnreachable />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 
   describe('Catalog component', () => {
     mocks.catalog.data = catalogData as Record<string, CatalogItem[]>;
-    it('should display a title and a description', async () => {
+    it('should display a title and a description', () => {
       const { getByText } = renderComponent(<Catalog />);
 
       expect(getByText('manager_hub_catalog_title')).not.toBeNull();
@@ -940,7 +941,7 @@ describe('Layout.page', () => {
       expect(tileGridContentSkeleton).not.toBeNull();
     });
 
-    it('should display correct amount of elements', async () => {
+    it('should display correct amount of elements', () => {
       mocks.catalog.isLoading = false;
       const { getAllByTestId } = renderComponent(<Catalog />);
 
@@ -952,7 +953,7 @@ describe('Layout.page', () => {
       const { container } = renderComponent(<Catalog />);
       const html = container.innerHTML;
 
-      expect(html).toBeValidHtml();
+      void expect(html).toBeValidHtml();
     });
   });
 });

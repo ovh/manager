@@ -24,5 +24,6 @@
   "period_current": "The current month",
   "period_last": "Last month ",
   "period_last_months": "The last {{ value }} months",
-  "no_result_found": "No results found"
+  "no_result_found": "No results found",
+  "reference": "Reference"
 }

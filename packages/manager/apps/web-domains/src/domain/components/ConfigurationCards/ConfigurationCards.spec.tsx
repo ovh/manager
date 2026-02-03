@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen, fireEvent, act } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
@@ -119,10 +118,6 @@ describe('ConfigurationCards component', () => {
     },
   };
 
-  const mockDnssecStatus = {
-    status: DnssecStatusEnum.ENABLED,
-  };
-
   beforeEach(() => {
     (useAuthorizationIam as jest.Mock).mockReturnValue({
       isPending: false,
@@ -138,7 +133,7 @@ describe('ConfigurationCards component', () => {
       isAuthInfoLoading: false,
     });
     (useGetDnssecStatus as jest.Mock).mockReturnValue({
-      dnssecStatus: mockDnssecStatus,
+      dnssecStatus: DnssecStatusEnum.ENABLED,
       isDnssecStatusLoading: false,
     });
     (useGetDomainAnycastOption as jest.Mock).mockReturnValue({
@@ -302,7 +297,7 @@ describe('ConfigurationCards component', () => {
         name: /service_state_enabled/i,
       });
       act(() => {
-        fireEvent.click(transferToggles[1]);
+        fireEvent.click(transferToggles[0]);
       });
       expect(
         screen.getByText(

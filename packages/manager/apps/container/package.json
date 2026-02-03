@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.174.7",
+  "version": "0.180.5",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {
@@ -13,9 +13,8 @@
   "scripts": {
     "build": "tsc && vite build",
     "build:strict": "tsc --project tsconfig.strict.json && vite build",
-    "lint": "eslint ./src",
-    "lint:modern": "manager-lint --config eslint.config.mjs ./src",
-    "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs ./src",
+    "lint": "manager-lint --config eslint.config.mjs ./src",
+    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src",
     "start": "vite",
     "test": "manager-test --config vitest.config.mjs run",
     "test:watch": "manager-test --config vitest.config.mjs watch"
@@ -23,15 +22,16 @@
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@ovh-ux/manager-config": "^8.8.6",
-    "@ovh-ux/manager-core-api": "^0.21.1",
+    "@module-federation/runtime": "^0.21.2",
+    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-components": "1.48.0",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
-    "@ovh-ux/ovh-payment-method": "^0.7.1",
-    "@ovh-ux/ovh-product-icons": "^0.15.1",
-    "@ovh-ux/ovh-reket": "^2.1.27",
+    "@ovh-ux/ovh-payment-method": "^0.7.3",
+    "@ovh-ux/ovh-product-icons": "^0.17.1",
+    "@ovh-ux/ovh-reket": "^2.1.28",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.3",
+    "@ovh-ux/shell": "^4.10.5",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
@@ -64,10 +64,10 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-test-utils": "^0.11.6",
+    "@ovh-ux/manager-core-test-utils": "^0.11.8",
     "@ovh-ux/manager-dev-server-config": "^6.2.3",
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/manager-tests-setup": "^0.7.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@types/dompurify": "^2.3.3",
     "@types/lodash-es": "^4.17.12",

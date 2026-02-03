@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.1.0...@ovh-ux/muk@1.1.1) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+# [1.1.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.1...@ovh-ux/muk@1.1.0) (2026-01-29)
+
+
+### Features
+
+* **muk:** accept children in TileRoot component ([139716b](https://github.com/ovh/manager/commit/139716bd633e4b1366467c4e7b904ca7315d3313)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add displayValue for FilterList Compo ([b8df973](https://github.com/ovh/manager/commit/b8df973e997cb334fae70e0d7e2ba7a19026b006)), closes [#MANAGER-18416](https://github.com/ovh/manager/issues/MANAGER-18416)
+* **muk:** add modalOpenChangeDetail param in openChange callback ([a91fd8f](https://github.com/ovh/manager/commit/a91fd8f5ab9e2fd52af5f8019c7768dc5d2146b6)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add onMoreInfoButtonClick on onboarding layout button ([673f497](https://github.com/ovh/manager/commit/673f497b351499add964e86105c4bd905253a4d7)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** add typing for error-detail ([0094f8b](https://github.com/ovh/manager/commit/0094f8bc0ca49933c1040531a4692d42001380b3)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** display github icon on Roadmap and Changelog button ([933b876](https://github.com/ovh/manager/commit/933b87637094360a14a0c0e858d6695bf17a4bb1)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+* **muk:** export ods types for muk components ([4f00d1a](https://github.com/ovh/manager/commit/4f00d1af9cdceba289e0ab8d3042ca5b32f7e90e)), closes [#MANAGER-20045](https://github.com/ovh/manager/issues/MANAGER-20045)
+
+
+
+
+
+## [1.0.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0...@ovh-ux/muk@1.0.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* **muk:** add min height in the datagrid ([e8a3fc8](https://github.com/ovh/manager/commit/e8a3fc8495c0c59e0a7e8fcf871a914f64961553)), closes [#MANAGER-20783](https://github.com/ovh/manager/issues/MANAGER-20783)
+
+
+
+
+
+# [1.0.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@1.0.0-alpha.0...@ovh-ux/muk@1.0.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **muk:** datagrid delete row selection in column viiblity ([d1035c1](https://github.com/ovh/manager/commit/d1035c18e002d6f81ccbd081e75caa505b5b8d40)), closes [#MANAGER-20734](https://github.com/ovh/manager/issues/MANAGER-20734)
+* **muk:** link component polymorphism ability ([da29275](https://github.com/ovh/manager/commit/da2927530ddb5bd3b7ffe7dfed4b04ff81a51677)), closes [#EK-2554](https://github.com/ovh/manager/issues/EK-2554)
+
+
+* feat(muk)!: delete ods components ([06a0163](https://github.com/ovh/manager/commit/06a0163addfbe26d81f48edf8b759f107dea6af8)), closes [#MANAGER-20371](https://github.com/ovh/manager/issues/MANAGER-20371)
+
+
+### Features
+
+* **muk:** manually bump muk to v1 ([19ca460](https://github.com/ovh/manager/commit/19ca460f4755e874e4044e64ae95eb43e9d4f929)), closes [#MANAGER-20371](https://github.com/ovh/manager/issues/MANAGER-20371)
+* **muk:** update error boundary component ([2dff7fa](https://github.com/ovh/manager/commit/2dff7fa3a127bdcbc0f3721c028161d3b266df05)), closes [#MANAGER-20684](https://github.com/ovh/manager/issues/MANAGER-20684)
+
+
+### BREAKING CHANGES
+
+* delete export of ods components
+
+Signed-off-by: Alex Boungnaseng <alex.boungnaseng.ext@corp.ovh.com>
+
+
+
+
+
+## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.2...@ovh-ux/muk@0.13.3) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.1...@ovh-ux/muk@0.13.2) (2026-01-15)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.13.0...@ovh-ux/muk@0.13.1) (2026-01-14)
+
+**Note:** Version bump only for package @ovh-ux/muk
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/muk@0.12.0...@ovh-ux/muk@0.13.0) (2026-01-09)
 
 

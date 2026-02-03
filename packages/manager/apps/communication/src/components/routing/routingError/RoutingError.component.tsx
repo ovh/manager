@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
-import { OdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { NotificationRoutingRule } from '@/data/types';
+import { Icon } from '@ovhcloud/ods-react';
 
 type RoutingErrorProps = {
   rules: NotificationRoutingRule[];
@@ -21,8 +20,8 @@ export default function RoutingError({
   }
 
   return (
-    <OdsIcon
-      name={ODS_ICON_NAME.triangleExclamation}
+    <Icon
+      name="triangle-exclamation"
       className="text-[1.5rem] cursor-pointer text-[--ods-color-critical-500]"
       id="routing-error"
     />

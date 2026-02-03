@@ -1,4 +1,6 @@
 [
+  "packages/manager/apps/bmc-backup-agent-baremetal",
+  "packages/manager/apps/hpc-backup-agent-iaas",
   "packages/manager/apps/account",
   "packages/manager/apps/account-creation",
   "packages/manager/apps/web-office",
@@ -8,7 +10,10 @@
   "packages/manager/apps/carbon-calculator",
   "packages/manager/apps/catalog",
   "packages/manager/apps/container",
+  "packages/manager/apps/communication",
   "packages/manager/apps/dedicated",
+  "packages/manager/apps/email-domain",
+  "packages/manager/apps/email-pro",
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
   "packages/manager/apps/okms",
@@ -39,8 +44,14 @@
   "packages/manager/apps/pci-volume-snapshot",
   "packages/manager/apps/pci-vouchers",
   "packages/manager/apps/pci-workflow",
+  "packages/manager/apps/telecom",
+  "packages/manager/apps/telecom-dashboard",
+  "packages/manager/apps/telecom-task",
   "packages/manager/apps/veeam-backup",
+  "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/ips",
+  "packages/manager/apps/pci-file-storage"
 ]

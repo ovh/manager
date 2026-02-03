@@ -1,0 +1,15 @@
+{
+  "telephony_order_special_title": "Encomendar um número especial",
+  "telephony_order_special_submit_title": "Encomendar um número especial",
+  "telephony_order_special_amount_title": "Número de números:",
+  "telephony_order_special_range_title": "Intervalo",
+  "telephony_order_special_typology_title": "Tipologia:",
+  "telephony_order_special_specific_title": "Escolha do número",
+  "telephony_order_special_retractation_title": "Direito de retratação",
+  "telephony_order_special_address_title": "Informações de contacto do titular do número",
+  "telephony_order_special_zone_tip": "Localidade ou código postal",
+  "telephony_order_special_numbers_error": "Não foi possível carregar a lista de predefinições de números.",
+  "telephony_order_special_order_error": "A encomenda do(s) número(s) especial(ais) falhou. Tente novamente mais tarde.",
+  "telephony_order_special_order_success": "Número(s) geográfico(s) encomendado(s). Queira pagar a sua encomenda.",
+  "telephony_order_special_range_error": "Não foi possível carregar os intervalos de números."
+}

@@ -1,0 +1,34 @@
+{
+  "title_fallback": "Proste tworzenie kopii zapasowych",
+  "description_part1": "Skorzystaj z rozwiązania do backupu, które obejmuje: codzienne automatyczne kopie zapasowe bezpiecznie przechowywane w Vault na Object Storage od OVHcloud, proaktywne alerty oraz centralny monitoring. Zainstaluj agenta kopii zapasowych w czasie krótszym niż 15 minut, bez dodatkowych kosztów. Płacisz tylko za wykorzystaną przestrzeń dyskową Object Storage.",
+  "description_part2": "Zapoznaj się z naszymi przewodnikami, aby szybko wystartować.",
+  "guides": {
+    "guide1": {
+      "category": "Koszt",
+      "title": "Koszt i fakturowanie",
+      "description": "Dokumentacja zawierająca informacje dotyczące kosztów i fakturowania usługi Backup Agent.",
+      "cta": "Sprawdź"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Pierwsza konfiguracja",
+      "description": "Przewodnik krok po kroku, który pomoże Ci uruchomić pierwszą kopię zapasową.",
+      "cta": "Sprawdź tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Najczęściej zadawane pytania",
+      "description": "Przewodnik z najczęściej zadawanymi pytaniami dotyczącymi typowych problemów.",
+      "cta": "Przeczytaj FAQ"
+    }
+  },
+  "no_baremetal_available": "Zamów serwer Bare Metal i chroń go za pomocą Backup Agent",
+  "select_baremetal": "Wybierz serwer Bare Metal",
+  "save_a_baremetal_server": "Tworzenie kopii zapasowej serwera Bare Metal",
+  "baremetal_label_delay_order": "Po zatwierdzeniu zamówienia ekran zaktualizuje się automatycznie. Gdy produkt Backup Agent będzie gotowy, otrzymasz wiadomość e-mail. Status zamówienia sprawdzisz <OrderLink>tutaj</OrderLink>.",
+  "baremetal_label_order_in_progress": "Zamówienie zostało przyjęte. Produkt jest w trakcie przygotowania. Sprawdź status <OrderLink>tutaj</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Aktywacja Backup Tenant",
+  "first_order_terms_and_conditions_description": "Aby aktywować usługę, konieczne jest utworzenie Backup Tenant. Czy chcesz kontynuować aktywację swojej usługi?",
+  "first_order_terms_and_conditions_confirm_label": "Zapoznałem się z ogólnymi i szczegółowymi warunkami świadczenia usług OVH oraz dokumentem dotyczącym przetwarzania danych osobowych i akceptuję je.",
+  "first_order_terms_and_conditions_annexe_label": "Aneks Przetwarzanie danych osobowych"
+}

@@ -8,7 +8,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (translationKey: string) => translationKey,
     i18n: {
-      changeLanguage: () => new Promise(() => {}),
+      changeLanguage: () => new Promise(() => { }),
     },
   }),
   getI18n: () => ({
@@ -109,6 +109,7 @@ vi.mock('@/hooks/nichandle/useNichandle', () => ({
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
+  useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
   Navigate: vi.fn(() => null),
   useLocation: vi.fn(() => ({
     pathname: '',

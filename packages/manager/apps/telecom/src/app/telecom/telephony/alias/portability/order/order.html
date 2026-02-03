@@ -151,7 +151,7 @@
                         name="callNumber"
                         class="form-control"
                         data-ng-model="PortabilityOrderCtrl.order.callNumber"
-                        data-ng-pattern="/^(0033|\+33|0032|\+32|0041|\+41)\d{8,}$/"
+                        data-ng-pattern="PortabilityOrderCtrl.regex.phoneNumber"
                         data-ng-change="PortabilityOrderCtrl.onNumberChange()"
                         required
                     />
@@ -233,7 +233,7 @@
                     >
                         <label for="rio" class="control-label">
                             <span
-                                data-translate="telephony_alias_portability_order_rio"
+                                data-translate="telephony_rio_label"
                             ></span>
                             <i
                                 class="ovh-font ovh-font-filled-info"
@@ -515,149 +515,161 @@
                     </select>
                 </div>
 
-                <!-- LAST NAME -->
                 <div
-                    class="form-group"
+                    class="form-group d-flex"
                     data-ng-if="PortabilityOrderCtrl.order.socialReason === 'individual'"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.name.$invalid && portabilityContactForm.name.$touched
-                         }"
                 >
-                    <label for="lastName" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_lastname"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        class="form-control"
-                        data-ng-model="PortabilityOrderCtrl.order.name"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.name.$touched"
-                        data-ng-messages="portabilityContactForm.name.$error"
+                    <!-- LAST NAME -->
+                    <div
+                        class="col-md-6 pl-0"
+                        data-ng-class="{
+                                 'has-error': portabilityContactForm.name.$invalid && portabilityContactForm.name.$touched
+                             }"
                     >
+                        <label for="lastName" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_lastname"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            name="name"
+                            class="form-control"
+                            data-ng-model="PortabilityOrderCtrl.order.name"
+                            required
+                        />
                         <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.name.$touched"
+                            data-ng-messages="portabilityContactForm.name.$error"
                         >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
                         </span>
-                    </span>
+                    </div>
+
+                    <!-- FIRST NAME -->
+                    <div
+                        class="col-md-6 pr-0"
+                        data-ng-class="{
+                                 'has-error': portabilityContactForm.firstName.$invalid && portabilityContactForm.firstName.$touched
+                             }"
+                    >
+                        <label for="firstName" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_firstname"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            name="firstName"
+                            class="form-control"
+                            data-ng-model="PortabilityOrderCtrl.order.firstName"
+                            required
+                        />
+                        <span
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.firstName.$touched"
+                            data-ng-messages="portabilityContactForm.firstName.$error"
+                        >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
+                        </span>
+                    </div>
                 </div>
 
-                <!-- FIRST NAME -->
                 <div
-                    class="form-group"
-                    data-ng-if="PortabilityOrderCtrl.order.socialReason === 'individual'"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.firstName.$invalid && portabilityContactForm.firstName.$touched
-                         }"
-                >
-                    <label for="firstName" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_firstname"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        class="form-control"
-                        data-ng-model="PortabilityOrderCtrl.order.firstName"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.firstName.$touched"
-                        data-ng-messages="portabilityContactForm.firstName.$error"
-                    >
-                        <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
-                        >
-                        </span>
-                    </span>
-                </div>
-
-                <!-- SIRET -->
-                <div
-                    class="form-group"
+                    class="form-group d-flex"
                     data-ng-if="PortabilityOrderCtrl.order.socialReason === 'corporation'"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.siret.$invalid && portabilityContactForm.siret.$touched
-                         }"
                 >
-                    <label for="companyId" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_siret"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="companyId"
-                        name="companyId"
-                        class="form-control"
-                        data-ng-model="PortabilityOrderCtrl.order.siret"
-                        data-ng-change="PortabilityOrderCtrl.onSiretChange()"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.siret.$touched"
-                        data-ng-messages="portabilityContactForm.siret.$error"
+                    <!-- SIRET -->
+                    <div
+                        class="col-md-6 pl-0"
+                        data-ng-class="{
+                                 'has-error': portabilityContactForm.siret.$invalid && portabilityContactForm.siret.$touched
+                             }"
                     >
+                        <label for="companyId" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_siret"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="companyId"
+                            name="siret"
+                            class="form-control"
+                            data-ng-model="PortabilityOrderCtrl.order.siret"
+                            data-ng-change="PortabilityOrderCtrl.onSiretChange()"
+                            data-ng-pattern="PortabilityOrderCtrl.regex.siret"
+                            required
+                        />
                         <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.siret.$touched"
+                            data-ng-messages="portabilityContactForm.siret.$error"
                         >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="telephony_service_contact_siret_invalid"
+                            >
+                            </span>
                         </span>
-                    </span>
-                </div>
+                    </div>
 
-                <!-- COMPANY NAME -->
-                <div
-                    class="form-group"
-                    data-ng-if="PortabilityOrderCtrl.order.socialReason === 'corporation'"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.name.$invalid && portabilityContactForm.name.$touched
-                         }"
-                >
-                    <label for="name" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_corporation_name"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        class="form-control"
-                        data-ng-model="PortabilityOrderCtrl.order.name"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.name.$touched"
-                        data-ng-messages="portabilityContactForm.name.$error"
+                    <!-- COMPANY NAME -->
+                    <div
+                        class="col-md-6 pr-0"
+                        data-ng-class="{
+                                 'has-error': portabilityContactForm.name.$invalid && portabilityContactForm.name.$touched
+                             }"
                     >
+                        <label for="name" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_corporation_name"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            data-ng-model="PortabilityOrderCtrl.order.name"
+                            required
+                        />
                         <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.name.$touched"
+                            data-ng-messages="portabilityContactForm.name.$error"
                         >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
                         </span>
-                    </span>
+                    </div>
                 </div>
 
                 <!-- CONTACT NUMBER -->
@@ -736,85 +748,102 @@
                     </span>
                 </div>
 
-                <!-- ZIP -->
-                <div
-                    class="form-group"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.zip.$invalid && portabilityContactForm.zip.$touched
-                         }"
-                >
-                    <label for="zip" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_zip"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="zip"
-                        name="zip"
-                        class="form-control"
-                        data-ng-pattern="/^\d+$/"
-                        data-ng-model="PortabilityOrderCtrl.order.zip"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.zip.$touched"
-                        data-ng-messages="portabilityContactForm.zip.$error"
+                <div class="form-group d-flex">
+                    <!-- ZIP -->
+                    <div
+                        class="col-md-6 pl-0"
+                        data-ng-class="{
+                                 'has-error': portabilityContactForm.zip.$invalid && portabilityContactForm.zip.$touched
+                             }"
                     >
+                        <label for="zip" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_zip"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="zip"
+                            name="zip"
+                            class="form-control"
+                            data-ng-pattern="/^\d+$/"
+                            data-ng-change="PortabilityOrderCtrl.onZipcodeChange()"
+                            data-ng-model="PortabilityOrderCtrl.order.zip"
+                            required
+                        />
                         <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.zip.$touched"
+                            data-ng-messages="portabilityContactForm.zip.$error"
                         >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
+                            <span
+                                data-ng-message="pattern"
+                                data-translate="telephony_alias_portability_order_contact_zip_pattern_error"
+                            >
+                            </span>
                         </span>
+                    </div>
+
+                    <!-- CITY -->
+                    <div
+                        class="col-md-6 pr-0"
+                        data-ng-class="{
+                            'has-error': portabilityContactForm.city.$invalid && portabilityContactForm.city.$touched
+                        }"
+                    >
+                        <label for="city" class="control-label">
+                            <span
+                                data-translate="telephony_alias_portability_order_contact_city"
+                            ></span>
+                            <span aria-hidden="true">&#42;</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            class="form-control"
+                            data-ng-if="!PortabilityOrderCtrl.autoCompleteCity || PortabilityOrderCtrl.autoCompleteCity.length===0"
+                            data-ng-model="PortabilityOrderCtrl.order.city"
+                            required
+                        />
+                        <oui-select
+                            data-ng-if="PortabilityOrderCtrl.autoCompleteCity.length > 0"
+                            match="name"
+                            id="citySelect"
+                            items="PortabilityOrderCtrl.autoCompleteCity"
+                            model="PortabilityOrderCtrl.order.city"
+                            data-on-change="PortabilityOrderCtrl.onCityNameChange(modelValue)"
+                            name="city"
+                            required
+                            searchable
+                        >
+                        </oui-select>
                         <span
-                            data-ng-message="pattern"
-                            data-translate="telephony_alias_portability_order_contact_zip_pattern_error"
+                            class="help-block"
+                            role="alert"
+                            data-ng-if="portabilityContactForm.city.$touched"
+                            data-ng-messages="portabilityContactForm.city.$error"
                         >
+                            <span
+                                data-ng-message="required"
+                                data-translate="telephony_alias_portability_order_contact_required"
+                            >
+                            </span>
                         </span>
-                    </span>
+                    </div>
                 </div>
 
-                <!-- CITY -->
-                <div
-                    class="form-group"
-                    data-ng-class="{
-                             'has-error': portabilityContactForm.city.$invalid && portabilityContactForm.city.$touched
-                         }"
-                >
-                    <label for="city" class="control-label">
-                        <span
-                            data-translate="telephony_alias_portability_order_contact_city"
-                        ></span>
-                        <span aria-hidden="true">&#42;</span>
-                    </label>
-                    <input
-                        type="text"
-                        id="city"
-                        name="city"
-                        class="form-control"
-                        data-ng-model="PortabilityOrderCtrl.order.city"
-                        required
-                    />
-                    <span
-                        class="help-block"
-                        role="alert"
-                        data-ng-if="portabilityContactForm.city.$touched"
-                        data-ng-messages="portabilityContactForm.city.$error"
-                    >
-                        <span
-                            data-ng-message="required"
-                            data-translate="telephony_alias_portability_order_contact_required"
-                        >
-                        </span>
-                    </span>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group d-flex">
                     <!-- STREET NUMBER -->
                     <div
+                        class="col-md-6 pl-0"
                         data-ng-class="{ 'has-error': portabilityContactForm.streetNumber.$invalid && portabilityContactForm.streetNumber.$touched }"
                     >
                         <label for="streetNumber" class="control-label">
@@ -824,7 +853,7 @@
                             <span aria-hidden="true">&#42;</span>
                         </label>
                         <input
-                            type="text"
+                            type="number"
                             id="streetNumber"
                             name="streetNumber"
                             class="form-control"
@@ -853,6 +882,7 @@
 
                     <!-- STREET NUMBER EXTRA -->
                     <div
+                        class="col-md-6 pr-0"
                         data-ng-class="{ 'has-error': portabilityContactForm.streetNumberExtra.$invalid && portabilityContactForm.streetNumberExtra.$touched }"
                     >
                         <label
@@ -860,20 +890,23 @@
                             class="control-label"
                             data-translate="telephony_alias_portability_order_contact_street_number_extra"
                         ></label>
-                        <input
-                            type="text"
+                        <oui-select
                             id="streetNumberExtra"
                             name="streetNumberExtra"
-                            class="form-control"
-                            data-ng-model="PortabilityOrderCtrl.order.streetNumberExtra"
-                        />
+                            class="text-uppercase"
+                            model="PortabilityOrderCtrl.order.streetNumberExtra"
+                            items="PortabilityOrderCtrl.streetNumberExtraEnum"
+                            match="key"
+                        ></oui-select>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group d-flex">
                     <!-- STREET TYPE -->
                     <div
+                        class="col-md-6 pl-0"
                         data-ng-class="{ 'has-error': portabilityContactForm.streetType.$invalid && portabilityContactForm.streetType.$touched }"
+                        data-ng-if="!PortabilityOrderCtrl.autoCompleteStreetName || PortabilityOrderCtrl.autoCompleteStreetName.length===0"
                     >
                         <label for="streetType" class="control-label">
                             <span
@@ -905,7 +938,11 @@
 
                     <!-- STREET NAME -->
                     <div
-                        data-ng-class="{ 'has-error': portabilityContactForm.streetName.$invalid && portabilityContactForm.streetName.$touched }"
+                        data-ng-class="{
+                            'has-error': portabilityContactForm.streetName.$invalid && portabilityContactForm.streetName.$touched,
+                            'col-md-6 pr-0': !PortabilityOrderCtrl.autoCompleteStreetName || PortabilityOrderCtrl.autoCompleteStreetName.length===0,
+                            'col-md-12 p-0': PortabilityOrderCtrl.autoCompleteStreetName.length > 0
+                        }"
                     >
                         <label for="streetName" class="control-label">
                             <span
@@ -918,9 +955,21 @@
                             id="streetName"
                             name="streetName"
                             class="form-control"
+                            data-ng-if="!PortabilityOrderCtrl.autoCompleteStreetName || PortabilityOrderCtrl.autoCompleteStreetName.length===0"
                             data-ng-model="PortabilityOrderCtrl.order.streetName"
                             required
                         />
+                        <oui-select
+                            data-ng-if="PortabilityOrderCtrl.autoCompleteStreetName.length > 0"
+                            match="streetName"
+                            items="PortabilityOrderCtrl.autoCompleteStreetName"
+                            model="PortabilityOrderCtrl.order.streetName"
+                            data-on-change="PortabilityOrderCtrl.onStreetNameChange(modelValue)"
+                            name="streetName"
+                            required
+                            searchable
+                        >
+                        </oui-select>
                         <span
                             class="help-block"
                             role="alert"
@@ -936,9 +985,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group d-flex">
                     <!-- BUILDING-->
                     <div
+                        class="col-md-4 pl-0"
                         data-ng-class="{ 'has-error': portabilityContactForm.building.$invalid && portabilityContactForm.building.$touched }"
                     >
                         <label
@@ -957,6 +1007,7 @@
 
                     <!-- STAIR -->
                     <div
+                        class="col-md-4"
                         data-ng-class="{ 'has-error': portabilityContactForm.stair.$invalid && portabilityContactForm.stair.$touched }"
                     >
                         <label
@@ -965,9 +1016,10 @@
                             data-translate="telephony_alias_portability_order_contact_stair"
                         ></label>
                         <input
-                            type="text"
+                            type="number"
                             id="stair"
                             name="stair"
+                            maxlength="2"
                             class="form-control"
                             data-ng-model="PortabilityOrderCtrl.order.stair"
                         />
@@ -975,6 +1027,7 @@
 
                     <!-- FLOOR -->
                     <div
+                        class="col-md-4 pr-0"
                         data-ng-class="{ 'has-error': portabilityContactForm.floor.$invalid && portabilityContactForm.floor.$touched }"
                     >
                         <label
@@ -983,10 +1036,11 @@
                             data-translate="telephony_alias_portability_order_contact_floor"
                         ></label>
                         <input
-                            type="text"
+                            type="number"
                             id="floor"
                             name="floor"
                             class="form-control"
+                            maxlength="2"
                             data-ng-model="PortabilityOrderCtrl.order.floor"
                         />
                     </div>
@@ -1066,7 +1120,7 @@
                         data-ng-if="PortabilityOrderCtrl.order.lineToRedirectAliasTo"
                     >
                         <span
-                            data-ng-if="PortabilityOrderCtrl.order.lineToRedirectAliasToDescription"
+                            data-ng-if="PortabilityOrderCtrl.order.lineToRedirectAliasToDescription && PortabilityOrderCtrl.order.lineToRedirectAliasToDescription !== PortabilityOrderCtrl.order.lineToRedirectAliasTo"
                             data-ng-bind="PortabilityOrderCtrl.order.lineToRedirectAliasToDescription"
                         ></span>
                         <span

@@ -5,12 +5,20 @@ import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import {
+  Button,
+  ICON_NAME,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Clipboard, useNotifications } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Clipboard, useNotifications } from '@ovh-ux/muk';
 
 import { GuideLink } from '@/components';
 import {
@@ -75,21 +83,21 @@ const DKIMTabContent = ({
         actions: [DOMAIN_DIAGNOSTICS_DKIM],
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {isDkimDisabled
             ? t('zimbra_domain_diagnostic_banner_enable_success_message')
             : t('zimbra_domain_diagnostic_banner_disable_success_message')}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
     onError: (error: ApiError) => {
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:edit_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -109,9 +117,10 @@ const DKIMTabContent = ({
 
   if (!diagnostic) {
     return (
-      <OdsMessage className="md:w-1/2" isDismissible={false} color={ODS_MESSAGE_COLOR.danger}>
-        {t('zimbra_domain_diagnostic_loading_error')}
-      </OdsMessage>
+      <Message className="md:w-1/2" dismissible={false} color={MESSAGE_COLOR.critical}>
+        <MessageIcon name={ICON_NAME.hexagonExclamation} />
+        <MessageBody>{t('zimbra_domain_diagnostic_loading_error')}</MessageBody>
+      </Message>
     );
   }
 
@@ -119,18 +128,21 @@ const DKIMTabContent = ({
 
   return (
     <div className="flex flex-col gap-4 md:w-1/2" data-testid={`tab-content-${recordType}`}>
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <strong>{t('zimbra_domain_diagnostic_status')}</strong>
         <StatusBadge className="ml-4" status={diagnosticStatus} />
-      </OdsText>
+      </Text>
       {!isOk && (
-        <OdsMessage className="w-full" isDismissible={false} color={ODS_MESSAGE_COLOR.warning}>
-          {t(
-            `zimbra_domain_diagnostic_information_banner_dkim_${diagnostic?.status.toLowerCase()}`,
-          )}
-        </OdsMessage>
+        <Message className="w-full" dismissible={false} color={MESSAGE_COLOR.warning}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>
+            {t(
+              `zimbra_domain_diagnostic_information_banner_dkim_${diagnostic?.status.toLowerCase()}`,
+            )}
+          </MessageBody>
+        </Message>
       )}
-      <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+      <Text preset={TEXT_PRESET.paragraph}>
         <Trans
           t={t}
           i18nKey={`zimbra_domain_diagnostic_information_message_dkim_${diagnosticStatus?.toLowerCase()}`}
@@ -139,25 +151,23 @@ const DKIMTabContent = ({
             errorCode: error?.code,
           }}
         />
-      </OdsText>
+      </Text>
       {isOk ? (
-        <OdsButton
+        <Button
           data-test-id="dkim_enable_disable"
           className="mt-4"
-          label={
-            isDkimDisabled
-              ? t('zimbra_domain_diagnostic_dkim_enable')
-              : t('zimbra_domain_diagnostic_dkim_disable')
-          }
           onClick={() => enableOrDisableDkim(isDkimDisabled)}
-          isLoading={isSending}
-        ></OdsButton>
+          loading={isSending}
+        >
+          {isDkimDisabled
+            ? t('zimbra_domain_diagnostic_dkim_enable')
+            : t('zimbra_domain_diagnostic_dkim_disable')}
+        </Button>
       ) : (
         <>
           {guide && <GuideLink label={t('zimbra_domain_diagnostic_access_guide')} guide={guide} />}
           {isAutoConfigurable ? (
-            <OdsButton
-              label={t('zimbra_domain_diagnostic_cta_auto_configure')}
+            <Button
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -166,43 +176,49 @@ const DKIMTabContent = ({
                   actions: [trackingName, AUTO_CONFIGURE_DOMAIN],
                 });
               }}
-            />
+            >
+              {t('zimbra_domain_diagnostic_cta_auto_configure')}
+            </Button>
           ) : (
             <table className="dns-fields table-auto">
               <tbody>
                 <tr key="type">
                   <td>
-                    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                    <Text preset={TEXT_PRESET.paragraph}>
                       <strong className="mr-4">{t('zimbra_domain_diagnostic_type')}</strong>
-                      <OdsText preset={ODS_TEXT_PRESET.span}>{'CNAME'}</OdsText>
-                    </OdsText>
+                      <Text preset={TEXT_PRESET.span}>{'CNAME'}</Text>
+                    </Text>
                   </td>
                 </tr>
                 {expectedDNSConfig?.dkim?.cnames?.map((cname, index) => (
                   <Fragment key={cname?.name}>
                     <tr key={`CNAME ${index + 1}`}>
-                      <td>
-                        <OdsText preset={ODS_TEXT_PRESET.heading5}>{`CNAME ${index + 1}`}</OdsText>
+                      <td className="w-36">
+                        <Text preset={TEXT_PRESET.heading5}>{`CNAME ${index + 1}`}</Text>
                       </td>
                     </tr>
                     <tr key={cname?.name}>
                       <td>
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           <strong className="mr-4">
                             {t('zimbra_domain_diagnostic_field_subdomain')}
                           </strong>
-                        </OdsText>
-                        <Clipboard value={cname?.name} />
+                        </Text>
+                      </td>
+                      <td>
+                        <Clipboard value={cname?.name} className="w-full" />
                       </td>
                     </tr>
                     <tr key={cname?.value}>
                       <td>
-                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                        <Text preset={TEXT_PRESET.paragraph}>
                           <strong className="mr-4">
                             {t('zimbra_domain_diagnostic_field_value')}
                           </strong>
-                        </OdsText>
-                        <Clipboard value={cname?.value} />
+                        </Text>
+                      </td>
+                      <td>
+                        <Clipboard value={cname?.value} className="w-full" />
                       </td>
                     </tr>
                   </Fragment>

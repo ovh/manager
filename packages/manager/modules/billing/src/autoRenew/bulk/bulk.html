@@ -11,13 +11,14 @@
             data-ng-pluralize
             data-count="$ctrl.servicesCount"
             data-when="{
+                '0': ('billing_autorenew_bulk' | translate:{ count: $ctrl.servicesCount }),
                 'one': ('billing_autorenew_bulk_one' | translate),
                 'other': ('billing_autorenew_bulk' | translate:{ count: $ctrl.servicesCount })
             }"
         >
         </strong>
         <p
-            data-ng-if="$ctrl.unavailableServicesCount === 0"
+            data-ng-if="$ctrl.unavailableServicesCount === 0 && $ctrl.availableServices.length"
             data-ng-pluralize
             data-count="$ctrl.availableServices.length"
             data-when="{
@@ -65,6 +66,7 @@
             <button
                 type="button"
                 class="oui-link"
+                data-ng-if="$ctrl.availableServices.length"
                 data-ng-click="$ctrl.expand.available = !$ctrl.expand.available"
                 data-ng-bind="($ctrl.expand.available ? 'billing_autorenew_bulk_available_less' : 'billing_autorenew_bulk_available_more') | translate"
             ></button>
@@ -82,7 +84,7 @@
             <oui-button
                 data-variant="primary"
                 data-on-click="$ctrl.updateRenew({ services: $ctrl.availableServices })"
-                data-disabled="!$ctrl.availableServices"
+                data-disabled="!$ctrl.availableServices.length"
             >
                 <span data-translate="billing_autorenew_bulk_confirm"></span>
             </oui-button>

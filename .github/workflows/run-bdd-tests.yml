@@ -2,7 +2,16 @@ name: Run tests
 
 on:
   push:
-    branches-ignore: [master]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Test mode"
+        required: true
+        default: heavy
+        type: choice
+        options:
+          - light
+          - heavy
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -85,6 +94,18 @@ jobs:
         run: mkdir -p ~/.cache/yarn
 
       # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
       # Install deps (always deterministic)
       # ------------------------------------------
       - name: Install repository
@@ -102,33 +123,37 @@ jobs:
           yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
 
       # ------------------------------------------
-      # RUN TESTS ON CHANGED PACKAGES
+      # RUN TESTS (light/heavy)
       # ------------------------------------------
-      - name: Run tests on changed packages
+      - name: Run tests (light/heavy)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
+          MODE: ${{ github.event.inputs.mode || 'heavy' }}
         run: |
+          set -euo pipefail
+
           BRANCH=$(git branch --show-current)
           echo "Current branch is $BRANCH"
+          echo "Selected MODE=$MODE"
 
           if [[ "$BRANCH" == "master" ]]; then
-            echo "Current branch is master and no unit test to run, exit ..."
+            echo "Current branch is master -> skipping"
             exit 0
           fi
 
-          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+          if [[ "$MODE" == "light" ]]; then
+            echo "LIGHT mode: test last commit only (HEAD~1..HEAD)"
 
-          if [[ -z "$BASE_BRANCH" ]]; then
-            BASE_BRANCH="master"
-            CURRENT_BRANCH="$BRANCH"
-            echo "NO PR FOUND for branch $BRANCH from $BASE_BRANCH"
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="HEAD~1" \
+              --head="HEAD"
           else
-            BASE_BRANCH="${BASE_BRANCH//\"/}"
-            CURRENT_BRANCH="${BRANCH//\"/}"
-            echo "Base Branch is $BASE_BRANCH"
-            echo "Current Branch is $CURRENT_BRANCH"
-          fi
+            echo "HEAVY mode: test full diff (NX_BASE..NX_HEAD)"
+            echo "NX_BASE=$NX_BASE"
+            echo "NX_HEAD=$NX_HEAD"
 
-          yarn test --concurrency=1 \
-            --filter=...[origin/${BASE_BRANCH}...origin/${CURRENT_BRANCH}] --runner nx
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="$NX_BASE" \
+              --head="$NX_HEAD"
+          fi

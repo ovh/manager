@@ -10,6 +10,11 @@
         </oui-checkbox>
     </div>
 
+    <e-invoicing-warning
+        ng-if="$ctrl.showEInvoicingWarningModal"
+        close="$ctrl.closeEInvoicingWarningModal()"
+    ></e-invoicing-warning>
+
     <oui-message
         class="mb-3"
         type="{{ $ctrl.hasDefaultPaymentMethod ? 'info' : 'warning' }}"
@@ -135,33 +140,45 @@
         <oui-action-menu compact data-placement="end">
             <oui-action-menu-item
                 ng-if="$row.url && $ctrl.isHtmlInvoiceAvailable"
-                href="{{ :: $row.url }}"
-                external
-                on-click="$ctrl.trackInvoiceOpening('html')"
+                on-click="$ctrl.downloadInvoices($row.url, 'html')"
             >
                 <span
                     data-translate="billing_main_history_table_download_html"
                 ></span>
+                <span
+                    data-ng-if="$ctrl.canDownloadInvoices"
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                >
+                </span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 ng-if="$row.pdfUrl"
-                href="{{ :: $row.pdfUrl }}"
-                external
-                on-click="$ctrl.trackInvoiceOpening('pdf')"
+                on-click="$ctrl.downloadInvoices($row.pdfUrl, 'pdf')"
             >
                 <span
                     data-translate="billing_main_history_table_download_pdf"
                 ></span>
+                <span
+                    data-ng-if="$ctrl.canDownloadInvoices"
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                >
+                </span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 ng-if="$row.pdfBetaUrl"
-                href="{{ :: $row.pdfBetaUrl }}"
-                external
-                on-click="$ctrl.trackInvoiceOpening('pdf')"
+                on-click="$ctrl.downloadInvoices($row.pdfBetaUrl, 'pdf')"
             >
                 <span
                     data-translate="billing_main_history_table_download_pdf_beta"
                 ></span>
+                <span
+                    data-ng-if="$ctrl.canDownloadInvoices"
+                    class="oui-icon oui-icon-external-link"
+                    aria-hidden="true"
+                >
+                </span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 ng-if="$row.debt.debtId"

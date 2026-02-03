@@ -11,5 +11,7 @@
   "billing_autorenew_service_modal_debt_warning_sub_title_no_reason": "Ci dispiace, questa azione non è disponibile.",
   "billing_autorenew_service_modal_debt_warning_sub_title_with_reason": "Ci dispiace, questa azione non è disponibile perché ",
   "reason_billing_right": "Non sei il contatto di fatturazione <b>{{contactBilling}}</b>",
-  "reason_admin_right": "Non sei il contatto amministratore <b>{{contactAdmin}}</b>"
+  "reason_admin_right": "Non sei il contatto amministratore <b>{{contactAdmin}}</b>",
+  "billing_autorenew_service_no_bills": "Nessuna fattura trovata per questo servizio",
+  "billing_autorenew_service_bills_retrieval_failure": "Impossibile recuperare le fatture del servizio: {{ message }}"
 }

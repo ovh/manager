@@ -1,7 +1,7 @@
 {
   "autorenew_service_update_modal_title": "Skonfiguruj odnowienie",
   "autorenew_service_update_modal_description": "Ustaw częstotliwość odnawiania dla usługi: {{serviceName}} ",
-  "autorenew_service_update_modal_period_manual": "Brak częstotliwości odnawiania (odnowienie ręczne)",
+  "autorenew_service_update_modal_period_manual": "Odnowienie ręczne",
   "autorenew_service_update_modal_period_every_month": "Co miesiąc",
   "autorenew_service_update_modal_period_every_x_months": "Co {{months}} m-ce / m-cy",
   "autorenew_service_update_modal_period_every_year": "Co rok",

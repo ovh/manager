@@ -7,7 +7,7 @@ import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesH
 import { KmsChangelogButton } from '@key-management-service/components/kms-changelog-button/KmsChangelogButton.component';
 import { useCreateOkmsCredential } from '@key-management-service/data/hooks/useCreateOkmsCredential';
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
-import { BreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
+import { KmsBreadcrumbItem } from '@key-management-service/hooks/breadcrumb/useBreadcrumb';
 import { IdentityDataProvider } from '@key-management-service/hooks/credential/useIdentityData';
 import CreateAddIdentities from '@key-management-service/pages/credential/create/CreateAddIdentities.component';
 import CreateGeneralInformations from '@key-management-service/pages/credential/create/CreateGeneralInformations.component';
@@ -16,15 +16,16 @@ import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes
 import { CertificateType, OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, ErrorBanner, Notifications } from '@ovh-ux/manager-react-components';
-import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import Loading from '@/common/components/loading/Loading';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 const CreateCredential = () => {
   const navigate = useNavigate();
-  const { trackPage } = useOvhTracking();
+  const { trackPage } = useOkmsTracking();
   const { okmsId } = useRequiredParams('okmsId');
   const { data: okms, isLoading, error } = useOkmsById(okmsId);
   const { t } = useTranslation('key-management-service/credential');
@@ -50,21 +51,21 @@ const CreateCredential = () => {
       }
       trackPage({
         pageType: PageType.bannerSuccess,
-        pageName: 'create_access_certificate',
+        pageTags: ['create', 'credential'],
       });
     },
     onError: () => {
       trackPage({
         pageType: PageType.bannerError,
-        pageName: 'create_access_certificate',
+        pageTags: ['create', 'credential'],
       });
     },
   });
 
-  const breadcrumbItems: BreadcrumbItem[] = [
+  const breadcrumbItems: KmsBreadcrumbItem[] = [
     {
       id: okmsId,
-      label: okms?.data?.iam?.displayName || '',
+      label: okms?.iam?.displayName || '',
       navigateTo: KMS_ROUTES_URLS.kmsDashboard(okmsId),
     },
     {
@@ -98,7 +99,7 @@ const CreateCredential = () => {
 
   if (error)
     return (
-      <ErrorBanner
+      <Error
         error={error.response}
         onRedirectHome={() => navigate(KMS_ROUTES_URLS.credentialListing(okmsId))}
       />
@@ -110,10 +111,10 @@ const CreateCredential = () => {
         breadcrumb={<Breadcrumb items={breadcrumbItems} />}
         header={{
           title: t('key_management_service_credential_create_title'),
-          description: t('key_management_service_credential_create_subtitle'),
-          headerButton: <KmsGuidesHeader />,
+          guideMenu: <KmsGuidesHeader />,
           changelogButton: <KmsChangelogButton />,
         }}
+        description={t('key_management_service_credential_create_subtitle')}
         message={<Notifications />}
       >
         <IdentityDataProvider>
@@ -147,7 +148,9 @@ const CreateCredential = () => {
               <CreateCredentialConfirmation okmsCredential={okmsCredential} />
             )}
           </div>
-          <Outlet />
+          <Suspense fallback={null}>
+            <Outlet />
+          </Suspense>
         </IdentityDataProvider>
       </BaseLayout>
     </Suspense>

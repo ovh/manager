@@ -19,6 +19,7 @@ const mockedOrder = {
   image: mockedPresetImage.id,
   resourcesQuantity: 2,
   jobName: 'myJob',
+  timeoutAutoRestart: false,
   unsecureHttp: false,
   dockerCommand: ['run', 'docker'],
   sshKey: ['myNewSSHKEY'],

@@ -18,5 +18,9 @@
   "pci_project_flavors_zone_3AZ_tooltip": "Region 3-AZ składa się z trzech stref dostępności zlokalizowanych w tej samej aglomeracji, oddalonych od siebie o kilka kilometrów. Spełnia on najwyższe wymagania w zakresie odporności i gwarantuje wyjątkowo krótki czas odpowiedzi między AZ.",
   "pci_project_flavors_desactivated_region": "Wybrana lokalizacja nie jest aktywna. Kliknij „Dalej”, aby dodać ją do projektu Public Cloud i kontynuować tworzenie klastra Kubernetes.",
   "pci_projects_project_storages_containers_add_add_region_error": "Wystąpił błąd podczas dodawania lokalizacji: {{message}}.",
-  "pci_projects_project_regions_add_region_success": "Lokalizacja {{code } została dodana do Twojego projektu."
+  "pci_projects_project_regions_add_region_success": "Lokalizacja {{code } została dodana do Twojego projektu.",
+  "pci_projects_project_filter_by_region": "Filtruj według lokalizacji",
+  "pci_projects_project_filter_by_plan_all": "Wszystkie",
+  "pci_projects_project_regions_filter_plan_message": "Plan Free jest dostępny tylko w regionach 1-AZ, plan Standard jest dostępny we wszystkich regionach 3-AZ oraz w niektórych regionach 1-AZ.",
+  "pci_projects_project_regions_filter_plan_compare": "Porównaj plany"
 }

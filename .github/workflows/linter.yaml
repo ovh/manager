@@ -1,6 +1,17 @@
 name: Lint Code Base
 
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Lint mode"
+        required: true
+        default: heavy
+        type: choice
+        options:
+          - light
+          - heavy
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -32,7 +43,7 @@ jobs:
       # ------------------------------------------
       # Checkout
       # ------------------------------------------
-      - name: Checkout Code
+      - name: Checkout latest code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -84,6 +95,18 @@ jobs:
         run: mkdir -p ~/.cache/yarn
 
       # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
       # Install deps (always deterministic)
       # ------------------------------------------
       - name: Install dependencies
@@ -92,8 +115,37 @@ jobs:
         run: yarn ci:install
 
       # ------------------------------------------
-      # Lint
+      # RUN LINT (heavy by default)
       # ------------------------------------------
-      - name: Lint Code Base
+      - name: Run lint (light/heavy)
+        env:
+          MODE: ${{ github.event.inputs.mode || 'heavy' }}
         run: |
-          yarn lint --runner nx --verbose
+          set -euo pipefail
+
+          BRANCH=$(git branch --show-current)
+          echo "Current branch is $BRANCH"
+          echo "Selected MODE=$MODE"
+
+          if [[ "$BRANCH" == "master" ]]; then
+            echo "Current branch is master and no unit test to run, exit ..."
+            exit 0
+          fi
+
+          if [[ "$MODE" == "light" ]]; then
+            echo "LIGHT mode: lint last commit only (HEAD~1..HEAD)"
+
+            yarn lint --concurrency=1 \
+              --runner nx \
+              --base="HEAD~1" \
+              --head="HEAD"
+          else
+            echo "HEAVY mode: lint full diff (NX_BASE..NX_HEAD)"
+            echo "NX_BASE=$NX_BASE"
+            echo "NX_HEAD=$NX_HEAD"
+
+            yarn lint --concurrency=1 \
+              --runner nx \
+              --base="$NX_BASE" \
+              --head="$NX_HEAD"
+          fi

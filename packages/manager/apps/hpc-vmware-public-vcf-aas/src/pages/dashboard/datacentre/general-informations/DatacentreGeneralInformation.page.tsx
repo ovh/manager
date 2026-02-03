@@ -5,6 +5,8 @@ import {
   useVcdOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
 import DatacentreGenerationInformationTile from '@/components/tiles/datacentre-general-information-tile/DatacentreGeneralInformationTile.component';
+import DatacentrePublicIpBlocksTile from '@/components/tiles/datacentre-public-ip-blocks/DatacentrePublicIpBlocksTile.component';
+
 import Loading from '@/components/loading/Loading.component';
 import Errors from '@/components/error/Error.component';
 
@@ -42,6 +44,9 @@ export default function DatacentresGeneralInformationPage() {
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
         />
+        {!!vcdDatacentre?.data?.currentState?.vrack && (
+          <DatacentrePublicIpBlocksTile id={id} vdcId={vdcId} />
+        )}
       </div>
       <Outlet />
     </React.Suspense>

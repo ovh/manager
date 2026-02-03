@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.102.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.102.0...@ovh-ux/manager-pci@6.102.1) (2026-01-30)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci
+
+
+
+
+
+# [6.102.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.101.0...@ovh-ux/manager-pci@6.102.0) (2026-01-20)
+
+
+### Features
+
+* **pci.cold-archive:** remove unused angular code for cold archive ([8ef7615](https://github.com/ovh/manager/commit/8ef76159300c5d1b77c0a4b6b4cbf1903f1406b8)), closes [#DATATR-2867](https://github.com/ovh/manager/issues/DATATR-2867)
+
+
+
+
+
 # [6.101.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.100.4...@ovh-ux/manager-pci@6.101.0) (2025-11-27)
 
 

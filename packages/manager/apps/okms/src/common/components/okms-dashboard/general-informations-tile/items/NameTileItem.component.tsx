@@ -5,10 +5,10 @@ import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { Button, Tile } from '@ovh-ux/muk';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
@@ -34,26 +34,26 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
   const renameLink = useRenameLink(okms);
 
   return (
-    <ManagerTile.Item>
-      <ManagerTile.Item.Label>{t('display_name')}</ManagerTile.Item.Label>
-      <ManagerTile.Item.Description>
+    <Tile.Item.Root>
+      <Tile.Item.Term label={t('display_name')} />
+      <Tile.Item.Description>
         <div className="flex items-center justify-between gap-2">
-          <OdsText preset="span" className="break-all">
+          <Text preset="span" className="break-all">
             {okms.iam.displayName}
-          </OdsText>
+          </Text>
           <div className="min-w-fit">
-            <OdsButton
+            <Button
               aria-label="edit"
               size="sm"
               variant="ghost"
               color="primary"
               onClick={() => navigate(renameLink)}
-              icon="pen"
-              label=""
-            />
+            >
+              <Icon name="pen" />
+            </Button>
           </div>
         </div>
-      </ManagerTile.Item.Description>
-    </ManagerTile.Item>
+      </Tile.Item.Description>
+    </Tile.Item.Root>
   );
 };

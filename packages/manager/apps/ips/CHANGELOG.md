@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.7...@ovh-ux/manager-ips-app@0.4.0) (2026-01-30)
+
+
+### Features
+
+* resolve flaky tests and lint staged enhancement ([28b920f](https://github.com/ovh/manager/commit/28b920f6ac5e1180b9c7c4c23a9e3b5b920be7ca))
+
+
+
+
+
+## [0.3.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.6...@ovh-ux/manager-ips-app@0.3.7) (2026-01-29)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
+## [0.3.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.5...@ovh-ux/manager-ips-app@0.3.6) (2026-01-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
+## [0.3.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.4...@ovh-ux/manager-ips-app@0.3.5) (2026-01-23)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
+## [0.3.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.3...@ovh-ux/manager-ips-app@0.3.4) (2026-01-20)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
+## [0.3.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.2...@ovh-ux/manager-ips-app@0.3.3) (2026-01-15)
+
+
+### Bug Fixes
+
+* build and tests issues ([cd57c66](https://github.com/ovh/manager/commit/cd57c66a949dadbf7ec144bfd7b623303ea499b1)), closes [#MANAGER-20410](https://github.com/ovh/manager/issues/MANAGER-20410)
+
+
+
+
+
+## [0.3.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.1...@ovh-ux/manager-ips-app@0.3.2) (2026-01-13)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
 ## [0.3.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.0...@ovh-ux/manager-ips-app@0.3.1) (2026-01-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-ips-app

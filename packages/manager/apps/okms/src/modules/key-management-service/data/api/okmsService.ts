@@ -20,10 +20,12 @@ export const getOkmsServiceIdQueryKey = (okmsId: string) => [`get/okms/services`
  */
 export const getOkmsServiceId = async (okmsId: string) => {
   const resourceName = okmsId ? `?resourceName=${okmsId}` : '';
-  return apiClient.v6.get<number[]>(`/services${resourceName}`);
+  const { data } = await apiClient.v6.get<number[]>(`/services${resourceName}`);
+  return data;
 };
 
 export const getServiceInfos = async (okmsId: string) => {
   const serviceId = await getOkmsServiceId(okmsId);
-  return apiClient.v6.get<ServiceDetails>(`/services/${serviceId.data[0]}`);
+  const { data } = await apiClient.v6.get<ServiceDetails>(`/services/${serviceId[0]}`);
+  return data;
 };

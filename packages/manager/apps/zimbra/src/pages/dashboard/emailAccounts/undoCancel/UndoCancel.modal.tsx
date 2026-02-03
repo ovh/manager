@@ -5,18 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MODAL_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { MODAL_COLOR, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useFormatDate, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Modal, useFormatDate, useNotifications } from '@ovh-ux/muk';
 
 import { SlotServiceRenewMode, getZimbraPlatformListQueryKey, putService } from '@/data/api';
 import { useSlotWithService } from '@/data/hooks';
@@ -50,9 +49,7 @@ export const UndoCancelSlotModal = () => {
         pageName: UNDO_CANCEL_SLOT,
       });
       addSuccess(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {t('common:cancel_slot_success_message')}
-        </OdsText>,
+        <Text preset={TEXT_PRESET.paragraph}>{t('common:cancel_slot_success_message')}</Text>,
         true,
       );
     },
@@ -62,11 +59,11 @@ export const UndoCancelSlotModal = () => {
         pageName: UNDO_CANCEL_SLOT,
       });
       addError(
-        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+        <Text preset={TEXT_PRESET.paragraph}>
           {t('common:cancel_slot_error_message', {
             error: error?.response?.data?.message,
           })}
-        </OdsText>,
+        </Text>,
         true,
       );
     },
@@ -104,27 +101,31 @@ export const UndoCancelSlotModal = () => {
       heading={t('common:undo_cancel_slot_title', {
         offer: capitalize(slotWithService?.offer),
       })}
-      type={ODS_MODAL_COLOR.information}
-      onDismiss={onClose}
-      isLoading={isLoading}
-      isOpen
-      primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={handleSlotUndoCancelClick}
-      isPrimaryButtonLoading={isSending || isLoading}
-      primaryButtonTestId="primary-btn"
-      secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={handleUndoCancelClick}
+      type={MODAL_COLOR.information}
+      onOpenChange={onClose}
+      loading={isLoading}
+      open
+      primaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:confirm`),
+        onClick: handleSlotUndoCancelClick,
+        loading: isSending || isLoading,
+        testId: 'primary-btn',
+      }}
+      secondaryButton={{
+        label: t(`${NAMESPACES.ACTIONS}:cancel`),
+        onClick: handleUndoCancelClick,
+      }}
     >
       <>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        <Text
+          preset={TEXT_PRESET.paragraph}
           data-testid="text-slot-undo-cancel-content"
           className="mb-4"
         >
           {t('zimbra_slot_undo_cancel_modal_content')}
-        </OdsText>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        </Text>
+        <Text
+          preset={TEXT_PRESET.paragraph}
           data-testid="text-slot-undo-cancel-renew-date"
           className="mb-4"
         >
@@ -134,14 +135,14 @@ export const UndoCancelSlotModal = () => {
               format: 'P',
             }),
           })}
-        </OdsText>
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        </Text>
+        <Text
+          preset={TEXT_PRESET.paragraph}
           data-testid="text-slot-undo-cancel-confirm"
           className="mb-4"
         >
           {t('zimbra_slot_undo_cancel_modal_confirm')}
-        </OdsText>
+        </Text>
       </>
     </Modal>
   );

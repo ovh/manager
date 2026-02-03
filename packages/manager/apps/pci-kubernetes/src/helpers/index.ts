@@ -6,7 +6,7 @@ import { ZodObject, ZodRawShape } from 'zod';
 import { PaginationState } from '@ovh-ux/manager-react-components';
 
 import { NodePool, NodePoolPrice } from '@/api/data/kubernetes';
-import { DeploymentMode, SigningAlgorithms, TOidcProvider } from '@/types';
+import { DeploymentMode, SigningAlgorithms, TClusterPlanEnum, TOidcProvider } from '@/types';
 
 export const REFETCH_INTERVAL_DURATION = 15_000;
 export const QUOTA_ERROR_URL = 'https://docs.ovh.com/gb/en/kubernetes/etcd-quota-error/';
@@ -220,3 +220,5 @@ export function cn(...inputs: ClassValue[]) {
 export const isMonoDeploymentZone = (type: DeploymentMode) => type === DeploymentMode.MONO_ZONE;
 export const isMultiDeploymentZones = (type: DeploymentMode) => type === DeploymentMode.MULTI_ZONES;
 export const isLocalDeploymentZone = (type: DeploymentMode) => type === DeploymentMode.LOCAL_ZONE;
+
+export const isStandardPlan = (plan: TClusterPlanEnum) => plan === TClusterPlanEnum.STANDARD;

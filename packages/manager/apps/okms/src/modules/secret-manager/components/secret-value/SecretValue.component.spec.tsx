@@ -4,10 +4,9 @@ import { SecretData, SecretVersion } from '@secret-manager/types/secret.type';
 import { screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { ApiError } from '@ovh-ux/manager-core-api';
-
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 
 import { SecretValue } from './SecretValue.component';
 import { SECRET_RAW_VALUE_TEST_ID } from './secretValueRaw.constants';
@@ -18,15 +17,6 @@ const errorLabels = allLabels.common.error;
 // Mock the hook
 vi.mock('@secret-manager/data/hooks/useSecretVersion');
 const mockUseSecretVersionWithData = vi.mocked(useSecretVersionWithData);
-
-// Mock ODS components
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsSpinner: vi.fn(() => <div data-testid="ods-spinner">Loading...</div>),
-  };
-});
 
 // Mock child components
 vi.mock('./SecretValueClipboards.component', () => ({
@@ -76,7 +66,7 @@ describe('SecretValue', () => {
       await renderTest();
 
       // Then
-      expect(screen.getByTestId('ods-spinner')).toBeInTheDocument();
+      expect(screen.getByTestId('spinner')).toBeInTheDocument();
       expect(screen.queryByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle)).not.toBeInTheDocument();
     });
   });
@@ -85,7 +75,7 @@ describe('SecretValue', () => {
     test('should display error message when hook returns error', async () => {
       // Given
       const fetchErrorMessage = 'Failed to fetch secret';
-      const mockError = new Error(fetchErrorMessage) as ApiError;
+      const mockError = createErrorResponseMock(fetchErrorMessage);
       mockUseSecretVersionWithData.mockReturnValue({
         data: undefined,
         isPending: false,
@@ -119,8 +109,7 @@ describe('SecretValue', () => {
 
       // Then
       expect(screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.toggle)).toBeInTheDocument();
-      expect(screen.queryByTestId('ods-spinner')).not.toBeInTheDocument();
-      expect(screen.queryByTestId('ods-message')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
     });
 
     test('should initialize toggle state as key-value for valid key-value objects', async () => {

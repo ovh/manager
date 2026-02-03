@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { act, fireEvent } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
-import { act, fireEvent, render } from '@/utils/test.provider';
+import { render } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
 
 import AddEditRedirectionModal from './AddEdit.modal';

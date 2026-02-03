@@ -4,12 +4,11 @@ import {
   OkmsServiceKey,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
-import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
-import useServiceKeyActionsList from './useServiceKeyActionsList';
+import { useServiceKeyActionsList } from './useServiceKeyActionsList';
 
 const okmsItemMock = okmsRoubaix1Mock;
 
@@ -25,6 +24,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     useNotifications: vi.fn().mockReturnValue({
       addError: vi.fn(),
       addSuccess: vi.fn(),
+      clearNotifications: vi.fn(),
     }),
   };
 });
@@ -32,15 +32,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(() => vi.fn()),
 }));
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
-
-  return {
-    ...mod,
-    useOvhTracking: vi.fn(() => vi.fn()),
-  };
-});
 
 vi.mock('@key-management-service/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
@@ -54,6 +45,25 @@ vi.mock('@key-management-service/data/hooks/useUpdateOkmsServiceKey', () => ({
     updateKmsServiceKey: vi.fn(),
     isPending: false,
   })),
+}));
+
+vi.mock('./useServiceKeyDownload', () => ({
+  useServiceKeyDownload: vi.fn(({ keyType, keyState }) => {
+    // Oct keys are not downloadable
+    if (keyType === OkmsKeyTypes.oct) {
+      return undefined;
+    }
+    return {
+      name: 'download_encryption_key',
+      label:
+        'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
+      loading: false,
+      disabled: keyState !== OkmsServiceKeyState.active,
+      icon: 'download',
+      color: 'primary',
+      onClick: vi.fn(),
+    };
+  }),
 }));
 
 describe('useServiceKeyActionsList', () => {
@@ -80,23 +90,25 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          id: 1,
-          label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
-          download: 'testKeyName.jwk',
+          name: 'download_encryption_key',
+          label:
+            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
+          color: 'primary',
+          disabled: false,
+          icon: 'download',
         },
         {
-          id: 2,
+          name: 'deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
+          icon: 'lock-close',
         },
         {
-          id: 4,
+          name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
+          icon: 'trash',
         },
       ],
     },
@@ -109,23 +121,25 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          id: 1,
-          label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
-          download: 'testKeyName.jwk',
+          name: 'download_encryption_key',
+          label:
+            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
+          color: 'primary',
+          disabled: true,
+          icon: 'download',
         },
         {
-          id: 3,
+          name: 'reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
+          icon: 'refresh',
         },
         {
-          id: 4,
+          name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
+          color: 'primary',
+          disabled: false,
+          icon: 'trash',
         },
       ],
     },
@@ -138,23 +152,25 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          id: 1,
-          label: 'key_management_service_service-keys_link_download_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
-          href: `data:text/json;charset=utf-8,${encodeURIComponent(JSON.stringify([]))}`,
-          download: 'testKeyName.jwk',
+          name: 'download_encryption_key',
+          label:
+            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
+          color: 'primary',
+          disabled: true,
+          icon: 'download',
         },
         {
-          id: 3,
+          name: 'reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
+          icon: 'refresh',
         },
         {
-          id: 4,
+          name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: false,
+          color: 'primary',
+          disabled: false,
+          icon: 'trash',
         },
       ],
     },
@@ -176,15 +192,17 @@ describe('useServiceKeyActionsList', () => {
       },
       expectedActions: [
         {
-          id: 2,
+          name: 'deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: ODS_BUTTON_COLOR.primary,
+          color: 'primary',
+          icon: 'lock-close',
         },
         {
-          id: 4,
+          name: 'delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: ODS_BUTTON_COLOR.primary,
-          isDisabled: true,
+          color: 'primary',
+          disabled: true,
+          icon: 'trash',
         },
       ],
     },
@@ -192,7 +210,9 @@ describe('useServiceKeyActionsList', () => {
 
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
     it(description, () => {
-      const { result } = renderHook(() => useServiceKeyActionsList(okmsItemMock, okmsKey));
+      const { result } = renderHookWithClient(() =>
+        useServiceKeyActionsList(okmsItemMock, okmsKey, 'list'),
+      );
       expect(result.current).toEqual(
         expect.arrayContaining(
           expectedActions.map((action) => expect.objectContaining(action) as unknown),

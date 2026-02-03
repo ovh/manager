@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       servicesId: /* @ngInject */ ($transition$) =>
         $transition$.params().services.split(','),
+      // This might not work if you try to access the url directly: since we rely on the billingServices (fetched on services route) if the ids we pass here are not present in billingServices we'll have an empty servicesList
+      // We probably should request /services using iceberg to fetch services, however the result from the API is currently not compatible with the BillingService model we're expecting the services to be.
       servicesList: /* @ngInject */ (
         BillingAutorenewDisable,
         billingServices,

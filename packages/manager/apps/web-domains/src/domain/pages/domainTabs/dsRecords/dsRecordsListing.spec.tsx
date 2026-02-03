@@ -1,35 +1,63 @@
 import '@/common/setupTests';
-import { vi, describe, it, expect } from 'vitest';
+import { vi, describe, it, expect, Mock } from 'vitest';
 import { fireEvent, render, renderHook } from '@testing-library/react';
 import { wrapper } from '@/common/utils/test.provider';
 import DsRecordsListing from '@/domain/pages/domainTabs/dsRecords/dsRecordsListing';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 import { useDomainDsRecordsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDsRecordsDatagridColumns';
 import { domainZoneMock } from '@/domain/__mocks__/dnsDetails';
-import { ActiveConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import {
+  ActiveConfigurationTypeEnum,
+  DnsConfigurationTypeEnum,
+} from '@/domain/enum/dnsConfigurationType.enum';
+import * as dataHooks from '@/domain/hooks/data/query';
+import { TDomainResource } from '@/domain/types/domainResource';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
-vi.mock('@/domain/hooks/data/query', () => ({
-  useGetDomainResource: vi.fn(() => ({
-    domainResource: serviceInfoDetail,
-  })),
-  useUpdateDomainResource: vi.fn(() => ({
-    updateDomain: vi.fn(),
-    isUpdateDomainPending: false,
-  })),
-  useGetDomainZone: vi.fn(() => ({
-    domainZone: domainZoneMock,
-    isFetchingDomainZone: false,
-  })),
-}));
-
-vi.mock('@/domain/utils/utils', async () => {
-  const actual = await vi.importActual<typeof import('@/domain/utils/utils')>(
-    '@/domain/utils/utils',
-  );
+vi.mock('@/domain/hooks/data/query', async () => {
+  const actual = await vi.importActual('@/domain/hooks/data/query');
 
   return {
     ...actual,
-    isDsRecordActionDisabled: vi.fn(() => false),
+    useGetDomainResource: vi.fn(() => ({
+      domainResource: serviceInfoDetail,
+      isFetchingDomainResource: false,
+      domainResourceError: null,
+    })),
+    useUpdateDomainResource: vi.fn(() => ({
+      updateDomain: vi.fn(),
+      isUpdateDomainPending: false,
+    })),
+    useGetDomainZone: vi.fn(() => ({
+      domainZone: domainZoneMock,
+      isFetchingDomainZone: false,
+    })),
+    useUpdateDnssecService: vi.fn(() => ({
+      updateServiceDnssec: vi.fn(),
+      isUpdateIsPending: false,
+    })),
+    useGetDnssecStatus: vi.fn(() => ({
+      dnssecStatus: { status: 'ENABLED' },
+      isDnssecStatusLoading: false,
+    })),
+  };
+});
+
+vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
+  useGetIAMResource: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual<
+    typeof import('@ovh-ux/manager-react-components')
+  >('@ovh-ux/manager-react-components');
+
+  return {
+    ...actual,
+    useAuthorizationIam: vi.fn(() => ({
+      isPending: false,
+      isAuthorized: true,
+    })),
   };
 });
 
@@ -38,6 +66,12 @@ describe('DS Records Columns', () => {
   const setDsRecordsData = vi.fn();
   const setIsModalOpen = vi.fn();
   const activeConfiguration = ActiveConfigurationTypeEnum.EXTERNAL;
+
+  beforeEach(() => {
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:dnsZone:123' }],
+    });
+  });
 
   it('should return the correct number of column', () => {
     const { result } = renderHook(
@@ -85,7 +119,39 @@ describe('DS Records Columns', () => {
 });
 
 describe('DS Records Datagrid', () => {
-  it('should display the content of host datagrid', () => {
+  beforeEach(() => {
+    (useGetIAMResource as Mock).mockReturnValue({
+      data: [{ urn: 'urn:dnsZone:123' }],
+    });
+  });
+
+  it('should display the content of host datagrid and an informative message when the config is internal', () => {
+    const { getByTestId } = render(<DsRecordsListing />, {
+      wrapper,
+    });
+    expect(getByTestId('datagrid')).toBeInTheDocument();
+
+    const message = getByTestId('internalConfigMessage');
+    expect(message).toBeInTheDocument();
+  });
+  it('should display the content of host datagrid and an allow actions when the config is not internal', () => {
+    const domainResourceWWithExternalConfig: TDomainResource = {
+      ...serviceInfoDetail,
+      currentState: {
+        ...serviceInfoDetail.currentState,
+        dnsConfiguration: {
+          ...serviceInfoDetail.currentState.dnsConfiguration,
+          configurationType: DnsConfigurationTypeEnum.EXTERNAL,
+        },
+      },
+    };
+
+    (dataHooks.useGetDomainResource as Mock).mockReturnValue({
+      domainResource: domainResourceWWithExternalConfig,
+      isFetchingDomainResource: false,
+      domainResourceError: null,
+    });
+
     const { getByTestId } = render(<DsRecordsListing />, {
       wrapper,
     });

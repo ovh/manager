@@ -22,7 +22,7 @@
   "telephony_alias_portability_order_desireDate_pattern_error": "Das angegebene Datum ist ungültig.",
   "telephony_alias_portability_order_rio": "RIO",
   "telephony_alias_portability_order_rio_pattern_error": "Das angegebene RIO ist ungültig.",
-  "telephony_alias_portability_order_rio_info": "Operator-Identitätsnachweis: Rufen Sie die 3179 an, um das RIO Ihrer Nummer zu erhalten.",
+  "telephony_alias_portability_order_rio_info": "Rufen Sie die 3179 über Ihre Leitung an, um Ihren RIO per SMS oder E-Mail zu erhalten. Wenn Sie keinen Zugriff auf die betreffende Leitung haben, rufen Sie 0805 69 3179 an, um einen anderen RIO zu erhalten.",
   "telephony_alias_portability_order_contact_help": "Geben Sie die auf der Rechnung Ihres derzeitigen Betreibers angegebenen Informationen genau ein",
   "telephony_alias_portability_order_contact_personal_infos": "Persönliche Angaben",
   "telephony_alias_portability_order_contact_social_reason": "Rechtsform",

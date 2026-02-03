@@ -30,6 +30,7 @@ export default function CdnEditUrlsModal() {
   const { data } = useGetCdnOption(serviceName, domain);
   const prewarmData = findOption(data, CdnOptionType.PREWARM);
   const [urlLists, setUrlLists] = useState(prewarmData?.config?.resources);
+
   const [selectedUrl, setSelectedUrl] = useState('');
   const [protocole] = useState(t('cdn_shared_change_edit_urls_modal_propdown_protocol_HTTP'));
   const [ressourcePath, setRessourcePath] = useState('');
@@ -124,7 +125,7 @@ export default function CdnEditUrlsModal() {
           data-testid="selectedUrl"
           className="mt-3 w-full"
           value={selectedUrl ? [selectedUrl] : []}
-          items={urlLists.map((item) => ({
+          items={urlLists?.map((item) => ({
             label: item,
             value: item,
           }))}

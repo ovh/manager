@@ -40,7 +40,6 @@ export default function DsRecordsDeleteModal({
       onPrimaryButtonClick={() => {
         updateDomain(
           {
-            checksum: domainResource?.checksum,
             currentTargetSpec: domainResource?.targetSpec,
             updatedSpec: {
               dnssecConfiguration: {

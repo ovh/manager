@@ -82,8 +82,8 @@ const SearchBar: React.FC<SearchbarProps> = ({
 
   return (
     <form>
-      <div className="grid gap-4 md:flex md:justify-end md:pt-4">
-        <span className="w-full md:w-[300px]">
+      <div className="xs:grid gap-4 md:flex md:justify-end md:pt-4">
+        <span className="xs:w-full md:w-[300px]">
           <OsdsSearchBar
             value={localSearchValue}
             placeholder={t('manager_catalog_search_placeholder')}

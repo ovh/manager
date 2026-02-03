@@ -7,12 +7,15 @@ import KmsGuidesHeader from '@key-management-service/components/guide/KmsGuidesH
 import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Notifications, useNotifications } from '@ovh-ux/manager-react-components';
-import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Button, Notifications } from '@ovh-ux/muk';
 
 import { RegionPicker } from '@/common/components/region-picker/RegionPicker.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { usePendingOkmsOrder } from '@/common/hooks/usePendingOkmsOrder/usePendingOkmsOrder';
 
 import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
@@ -20,7 +23,7 @@ import { CREATE_KMS_TEST_IDS } from './CreateKms.constants';
 export default function CreateKmsPage() {
   const { t } = useTranslation(['key-management-service/create', 'common']);
   const navigate = useNavigate();
-  const { trackClick } = useOvhTracking();
+  const { trackClick } = useOkmsTracking();
   const { hasPendingOrder } = usePendingOkmsOrder();
   const [selectedRegion, setSelectedRegion] = useState<string | undefined>();
   const { notifications } = useNotifications();
@@ -34,9 +37,9 @@ export default function CreateKmsPage() {
   const handleCancel = () => {
     trackClick({
       location: PageLocation.funnel,
-      buttonType: ButtonType.link,
-      actionType: 'navigation',
-      actions: ['create_kms', 'cancel'],
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['create', 'okms', 'cancel'],
     });
     navigate(KMS_ROUTES_URLS.kmsListing);
   };
@@ -62,34 +65,36 @@ export default function CreateKmsPage() {
     >
       <section className="max-w-2xl space-y-8">
         {hasPendingOrder && (
-          <OdsMessage color="information" isDismissible={false}>
+          <Message color="information" dismissible={false}>
             {t('common:okms_order_blocked')}
-          </OdsMessage>
+          </Message>
         )}
         <div className="space-y-8">
           <div>
-            <OdsText preset="heading-2" className="mb-2">
+            <Text preset="heading-2" className="mb-2">
               {t('region_selection')}
-            </OdsText>
-            <OdsText preset="paragraph">{t('region_selection_description')}</OdsText>
+            </Text>
+            <Text preset="paragraph">{t('region_selection_description')}</Text>
           </div>
 
           <RegionPicker selectedRegion={selectedRegion} setSelectedRegion={setSelectedRegion} />
         </div>
         <div className="flex justify-between">
-          <OdsButton
-            label={t('key_management_service_create_cta_cancel')}
+          <Button
             variant="ghost"
             onClick={handleCancel}
             data-testid={CREATE_KMS_TEST_IDS.CTA_CANCEL}
-          />
+          >
+            {t('key_management_service_create_cta_cancel')}
+          </Button>
 
-          <OdsButton
-            label={t('key_management_service_create_cta_order')}
-            isDisabled={!selectedRegion || hasPendingOrder}
+          <Button
+            disabled={!selectedRegion || hasPendingOrder}
             onClick={handleGenerateOrderLink}
             data-testid={CREATE_KMS_TEST_IDS.CTA_ORDER}
-          />
+          >
+            {t('key_management_service_create_cta_order')}
+          </Button>
         </div>
       </section>
       <Outlet />

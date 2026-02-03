@@ -54,7 +54,7 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
   const isEUOrCA = ['EU', 'CA'].includes(region);
 
   useEffect(() => {
-    (async () => {
+    void (async () => {
       const linkResult: string = isEUOrCA
         ? SUPPORT_URLS.viewTicket.replace('{ticketId}', ticket.ticketId) + ovhSubsidiary
         : ((await navigation.getURL(
@@ -78,7 +78,7 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
 
   return (
     <tr key={ticket.ticketId}>
-      <th scope="row" className="!font-bold break-all">
+      <th scope="row" className="break-all !font-bold">
         {ticket.serviceName}
       </th>
       <th scope="row">{ticket.subject}</th>
@@ -87,14 +87,14 @@ export const HubSupportTableItem: FunctionComponent<Props> = ({ ticket }) => {
           {t(`hub_support_state_${ticket.state}`)}
         </OsdsChip>
       </th>
-      <th scope="row" className="text-right !min-w-min">
+      <th scope="row" className="!min-w-min text-right">
         <OsdsLink
           href={url}
           onClick={handleClick}
           target={isEUOrCA ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self}
           rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
           color={ODS_THEME_COLOR_INTENT.primary}
-          className="font-bold text-right"
+          className="text-right font-bold"
         >
           {t('hub_support_read')}
         </OsdsLink>

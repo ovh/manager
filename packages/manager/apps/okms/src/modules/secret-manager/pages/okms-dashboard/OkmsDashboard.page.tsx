@@ -11,16 +11,12 @@ import { SecretManagerChangelogButton } from '@secret-manager/components/secret-
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { useTranslation } from 'react-i18next';
 
-import { OdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import { Breadcrumb } from '@ovhcloud/ods-react';
 
-import {
-  BaseLayout,
-  ErrorBanner,
-  Notifications,
-  useFeatureAvailability,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
+import { useNotifications } from '@ovh-ux/muk';
+import { BaseLayout, Error, Notifications } from '@ovh-ux/muk';
 
 import { PageSpinner } from '@/common/components/page-spinner/PageSpinner.component';
 import {
@@ -46,16 +42,18 @@ export default function OkmsDashboardPage() {
     KMS_FEATURES.LOGS,
   ]);
 
-  const tabsList: TabNavigationItem[] = filterFalsy([
+  const tabsList: TabNavigationItem[] = filterFalsy<TabNavigationItem>([
     {
       name: 'general-information',
       title: t('key-management-service/dashboard:general_informations'),
       url: SECRET_MANAGER_ROUTES_URLS.okmsDashboard(okmsId),
+      tracking: ['general-informations'],
     },
     features?.[KMS_FEATURES.LOGS] && {
       name: 'logs',
       title: t('key-management-service/dashboard:logs'),
       url: SECRET_MANAGER_ROUTES_URLS.okmsDashboardLogs(okmsId),
+      tracking: ['logs'],
     },
   ]);
 
@@ -65,7 +63,7 @@ export default function OkmsDashboardPage() {
 
   if (error) {
     return (
-      <ErrorBanner
+      <Error
         error={error.response}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.root)}
         onReloadPage={() =>
@@ -78,25 +76,25 @@ export default function OkmsDashboardPage() {
     );
   }
 
-  const contextValue: OkmsDashboardOutletContext = {
-    okms: okms.data,
-  };
+  const contextValue: OkmsDashboardOutletContext = { okms };
 
   return (
     <BaseLayout
       header={{
         title: t('okms_dashboard_title'),
         changelogButton: <SecretManagerChangelogButton />,
-        headerButton: <SecretManagerGuidesButton />,
+        guideMenu: <SecretManagerGuidesButton />,
       }}
-      backLinkLabel={t('back_to_secret_list')}
-      onClickReturn={() => navigate('..')}
+      backLink={{
+        label: t('back_to_secret_list'),
+        onClick: () => navigate('..'),
+      }}
       breadcrumb={
-        <OdsBreadcrumb>
+        <Breadcrumb>
           <RootBreadcrumbItem />
           <OkmsBreadcrumbItem />
           <OkmsDashboardBreadcrumbItem />
-        </OdsBreadcrumb>
+        </Breadcrumb>
       }
       message={notifications.length > 0 ? <Notifications /> : undefined}
       tabs={<TabNavigation tabs={tabsList} />}
