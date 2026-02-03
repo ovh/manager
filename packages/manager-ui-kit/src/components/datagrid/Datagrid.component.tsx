@@ -59,6 +59,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
     rowSelection,
     expandable,
     sizeRow: size,
+    searchParams: search?.searchParams ?? '',
   });
   const { hasSortingFeature, hasSearchFeature, hasColumnVisibilityFeature, hasFilterFeature } =
     features;

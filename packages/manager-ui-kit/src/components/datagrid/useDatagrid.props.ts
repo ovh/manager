@@ -26,4 +26,5 @@ export type UseDatagridTableProps<T extends ExpandableRow<T>> = {
   setColumnVisibility?: (columnVisibility: VisibilityState) => void;
   sorting?: ColumnSort[];
   sizeRow?: TABLE_SIZE;
+  searchParams?: string;
 };
