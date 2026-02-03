@@ -118,4 +118,36 @@ describe('DomainResellerDashboard', () => {
       screen.getByText('domain_reseller_general_informations_domains_length'),
     ).toBeInTheDocument();
   });
+
+  it('should display Subscription component', () => {
+    render(<DomainResellerDashboard />);
+    expect(screen.getByText('subscription')).toBeInTheDocument();
+  });
+
+  it('should display subscription creation date', () => {
+    render(<DomainResellerDashboard />);
+    expect(screen.getByText('creation_date')).toBeInTheDocument();
+  });
+
+  it('should display subscription expiration date', () => {
+    render(<DomainResellerDashboard />);
+    expect(
+      screen.getByText(
+        'domain:domain_tab_general_information_subscription_expiration_date',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('should display subscription renew mode', () => {
+    render(<DomainResellerDashboard />);
+    expect(
+      screen.getByText('domain-reseller:domain_reseller_renew_mode_automatic'),
+    ).toBeInTheDocument();
+  });
+
+  it('should display subscription contacts', () => {
+    render(<DomainResellerDashboard />);
+    expect(screen.getByText('contact')).toBeInTheDocument();
+    expect(screen.getByText(/admin-001/)).toBeInTheDocument();
+  });
 });
