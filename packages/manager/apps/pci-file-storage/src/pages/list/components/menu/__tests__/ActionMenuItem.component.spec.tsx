@@ -11,7 +11,7 @@ import type { TShareAction } from '../action.type';
 describe('ActionMenuItem', () => {
   it('should render translated label and internal link', () => {
     const action: TShareAction = {
-      label: 'list:actions.manage',
+      labelTranslationKey: 'list:actions.manage',
       link: { path: './share-1' },
     };
 
@@ -29,7 +29,7 @@ describe('ActionMenuItem', () => {
 
   it('should use external path when link is external', () => {
     const action: TShareAction = {
-      label: 'list:actions.delete',
+      labelTranslationKey: 'list:actions.delete',
       link: { path: 'https://example.com/delete', isExternal: true },
     };
 
@@ -45,7 +45,7 @@ describe('ActionMenuItem', () => {
 
   it('should set target _blank when isTargetBlank is true', () => {
     const action: TShareAction = {
-      label: 'list:actions.manage',
+      labelTranslationKey: 'list:actions.manage',
       link: { path: './share-1', isTargetBlank: true },
     };
 

@@ -8,19 +8,25 @@ vi.mock('@ovh-ux/muk', () => ({
 
 describe('shareEnabledActionsToMenuActions', () => {
   it('should return only manage action when enabledActions is empty', () => {
-    const result = shareEnabledActionsToMenuActions('share-1', []);
+    const result = shareEnabledActionsToMenuActions('share-1', 'GRA9', []);
     expect(result.get('actions')).toEqual([
-      { label: 'list:actions.manage', link: { path: './share-1' } },
+      {
+        labelTranslationKey: 'list:actions.manage',
+        link: { path: './GRA9/share-1', state: { region: 'GRA9' } },
+      },
     ]);
   });
 
   it('should return manage and delete when enabledActions includes delete', () => {
-    const result = shareEnabledActionsToMenuActions('share-2', ['delete']);
+    const result = shareEnabledActionsToMenuActions('share-2', 'GRA9', ['delete']);
     expect(result.get('actions')).toEqual([
-      { label: 'list:actions.manage', link: { path: './share-2' } },
       {
-        label: 'list:actions.delete',
-        link: { path: './share-2/delete' },
+        labelTranslationKey: 'list:actions.manage',
+        link: { path: './GRA9/share-2', state: { region: 'GRA9' } },
+      },
+      {
+        labelTranslationKey: 'list:actions.delete',
+        link: { path: './GRA9/share-2/delete' },
         isCritical: true,
       },
     ]);
@@ -41,6 +47,7 @@ describe('mapShareToShareListRow', () => {
       description: '',
       isPublic: false,
       enabledActions: [] as const,
+      mountPaths: [],
     };
 
     const result = mapShareToShareListRow(share);
@@ -57,7 +64,10 @@ describe('mapShareToShareListRow', () => {
       badgeColor: 'success',
     });
     expect(result.actions.get('actions')).toEqual([
-      { label: 'list:actions.manage', link: { path: './share-1' } },
+      {
+        labelTranslationKey: 'list:actions.manage',
+        link: { path: './GRA9/share-1', state: { region: 'GRA9' } },
+      },
     ]);
   });
 
@@ -74,15 +84,19 @@ describe('mapShareToShareListRow', () => {
       description: '',
       isPublic: false,
       enabledActions: ['delete'] as const,
+      mountPaths: [],
     };
 
     const result = mapShareToShareListRow(share);
 
     expect(result.actions.get('actions')).toEqual([
-      { label: 'list:actions.manage', link: { path: './share-2' } },
       {
-        label: 'list:actions.delete',
-        link: { path: './share-2/delete' },
+        labelTranslationKey: 'list:actions.manage',
+        link: { path: './GRA9/share-2', state: { region: 'GRA9' } },
+      },
+      {
+        labelTranslationKey: 'list:actions.delete',
+        link: { path: './GRA9/share-2/delete' },
         isCritical: true,
       },
     ]);

@@ -2,6 +2,7 @@
 import path from 'node:path';
 
 import {
+  INLINE_DEPS,
   createConfig,
   defaultDedupedDependencies,
   defaultExcludedFiles,
@@ -30,6 +31,11 @@ export default mergeConfig(
           '**/utils/tests/**',
           '**/Test.utils.tsx',
         ],
+      },
+      server: {
+        deps: {
+          inline: INLINE_DEPS,
+        },
       },
     },
     resolve: {
