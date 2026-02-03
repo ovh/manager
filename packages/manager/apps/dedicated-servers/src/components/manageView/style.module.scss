@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  touch-action: none; // empêche le scroll de bloquer le drag
 
   &__item {
     width: 100%;
@@ -12,6 +13,7 @@
     &__card {
       width: 100%;
       padding: 0.5rem 1rem;
+      margin: 0.3rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -25,4 +27,19 @@
       }
     }
   }
+}
+
+.column-list__item__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dragHandle {
+  cursor: grab;
+  user-select: none;
+}
+
+.dragHandle:active {
+  cursor: grabbing;
 }

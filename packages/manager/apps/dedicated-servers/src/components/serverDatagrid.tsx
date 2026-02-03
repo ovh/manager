@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Datagrid, useDataApi, RedirectionGuard } from '@ovh-ux/muk';
 import { ApiError, FilterComparator } from '@ovh-ux/manager-core-api';
 import { VisibilityState } from '@tanstack/react-table';
@@ -15,7 +15,9 @@ import { FilterWithLabel } from '@ovh-ux/muk/dist/types/src/components/filters/F
 export default function ServerDatagrid() {
   const { templateList } = useGetTemplateInfos();
   const columns = useColumns();
-  const { columnVisibility, setColumnVisibility } = useContext(ViewContext);
+  const { columnVisibility, setColumnVisibility, columnsConfig } = useContext(
+    ViewContext,
+  );
 
   const {
     flattenData,
@@ -76,7 +78,7 @@ export default function ServerDatagrid() {
           {flattenData && (
             <div>
               <Datagrid
-                columns={columns}
+                columns={columnsConfig}
                 data={flattenData}
                 totalCount={totalCount || 0}
                 hasNextPage={hasNextPage && !isLoading}
