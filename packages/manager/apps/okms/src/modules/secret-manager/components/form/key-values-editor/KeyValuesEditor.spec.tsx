@@ -1,10 +1,10 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FormProvider, useForm } from 'react-hook-form';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { KeyValuesEditor } from './KeyValuesEditor';
@@ -45,7 +45,7 @@ type TestWrapperProps = {
   onSubmit?: () => void;
 };
 
-const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
+const FormTestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
   const methods = useForm<TestWrapperDefaultValues>({ defaultValues });
   // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
@@ -62,12 +62,15 @@ const TestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapper
   );
 };
 
-const renderTest = async (
+const renderComponent = async (
   defaultValues: TestWrapperDefaultValues,
   allowDeleteLastItem?: boolean,
 ) => {
-  return renderWithI18n(
-    <TestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
+  const wrapper = await testWrapperBuilder().withI18next().build();
+
+  return render(
+    <FormTestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
+    { wrapper },
   );
 };
 
@@ -81,7 +84,7 @@ describe('KeyValuesEditor', () => {
       // Given
 
       // When
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // Then
       expect(
@@ -101,7 +104,7 @@ describe('KeyValuesEditor', () => {
       // Given
 
       // When
-      await renderTest(mockDefaultValues.invalid);
+      await renderComponent(mockDefaultValues.invalid);
 
       // Then
       await waitFor(() => {
@@ -111,7 +114,7 @@ describe('KeyValuesEditor', () => {
 
     test('should render an empty row when no data provided', async () => {
       // Given
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Then
       expect(
@@ -127,7 +130,7 @@ describe('KeyValuesEditor', () => {
     test('should add new key-value pair when add button is clicked', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
       const addButton = screen.getByRole('button', {
@@ -146,7 +149,7 @@ describe('KeyValuesEditor', () => {
   describe('Editing items', () => {
     test('should form data when input is changed', async () => {
       // Given
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
       await changeOdsInputValueByTestId(
@@ -169,7 +172,7 @@ describe('KeyValuesEditor', () => {
     test('should remove key-value pair when delete button is clicked', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       expect(
         screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1)),
@@ -192,7 +195,7 @@ describe('KeyValuesEditor', () => {
   describe('Duplicate key validation', () => {
     test('should show error when duplicate keys are detected', async () => {
       // Given
-      const { container } = await renderTest(mockDefaultValues.valid);
+      const { container } = await renderComponent(mockDefaultValues.valid);
 
       // When
       await changeOdsInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
@@ -209,7 +212,7 @@ describe('KeyValuesEditor', () => {
   describe('isDeletable state', () => {
     test('should disable delete button when only one item exists and allowDeleteLastItem is false', async () => {
       // Given
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -218,7 +221,7 @@ describe('KeyValuesEditor', () => {
 
     test('should enable delete button when only one item exists and allowDeleteLastItem is true', async () => {
       // Given
-      await renderTest(mockDefaultValues.empty, true);
+      await renderComponent(mockDefaultValues.empty, true);
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -227,7 +230,7 @@ describe('KeyValuesEditor', () => {
 
     test('should enable delete buttons when multiple items exist', async () => {
       // Given
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // Then
       const deleteButton0 = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -239,7 +242,7 @@ describe('KeyValuesEditor', () => {
     test('should disable delete button after deleting down to one item', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When - delete one item to leave only one remaining
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -257,7 +260,7 @@ describe('KeyValuesEditor', () => {
     test('should enable delete button after adding a second item', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Initial state - delete button should be disabled
       const initialDeleteButton = screen.getByTestId(
