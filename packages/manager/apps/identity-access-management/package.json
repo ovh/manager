@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-identity-access-management-app",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "private": true,
   "description": "manage iam policies users tags etc",
   "repository": {
@@ -19,7 +19,7 @@
     "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "^0.5.0",

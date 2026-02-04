@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-block-storage-app",
-  "version": "0.25.3",
+  "version": "0.25.4",
   "private": true,
   "description": "PCI Block storage react app",
   "type": "module",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
-    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-pci-common": "^0.20.1",

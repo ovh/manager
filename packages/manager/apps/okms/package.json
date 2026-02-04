@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-okms-app",
-  "version": "0.44.0",
+  "version": "0.44.1",
   "private": true,
   "description": "ovh okms",
   "repository": {
@@ -23,8 +23,8 @@
   "dependencies": {
     "@hookform/resolvers": "5.2.1",
     "@ovh-ux/logs-to-customer": "^1.10.10",
-    "@ovh-ux/manager-billing-informations": "^1.6.5",
-    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-billing-informations": "^1.6.6",
+    "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "0.5.0",

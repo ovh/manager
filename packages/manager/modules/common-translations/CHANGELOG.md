@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.28.3...@ovh-ux/manager-common-translations@0.29.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4628] ([916002e](https://github.com/ovh/manager/commit/916002ed84ffa4ca552da1bdc5b7e9cbf98524a8))
+
+
+### Features
+
+* **zimbra:** enhance ux in account section ([818c4f7](https://github.com/ovh/manager/commit/818c4f7b72cc9535449029a9f48427cba6b07fb1)), closes [#PRDCOL-301](https://github.com/ovh/manager/issues/PRDCOL-301)
+
+
+
+
+
 ## [0.28.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-common-translations@0.28.2...@ovh-ux/manager-common-translations@0.28.3) (2026-01-29)
 
 

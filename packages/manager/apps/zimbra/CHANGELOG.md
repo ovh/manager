@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.17...@ovh-ux/manager-zimbra-app@0.43.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4628] ([916002e](https://github.com/ovh/manager/commit/916002ed84ffa4ca552da1bdc5b7e9cbf98524a8))
+* **zimbra:** display organizations label in redirections page and manage filter ([09c47ae](https://github.com/ovh/manager/commit/09c47aeb6a8835fb2ce50756e7b17dad8fa6b22f)), closes [#PRDCOL-323](https://github.com/ovh/manager/issues/PRDCOL-323)
+* **zimbra:** rename email account by email address ([94f0676](https://github.com/ovh/manager/commit/94f0676fb94ffc3df676515a6f5f1c19435c3ed6)), closes [#PRDCOL-300](https://github.com/ovh/manager/issues/PRDCOL-300)
+
+
+### Features
+
+* **zimbra:** enhance ux in account section ([818c4f7](https://github.com/ovh/manager/commit/818c4f7b72cc9535449029a9f48427cba6b07fb1)), closes [#PRDCOL-301](https://github.com/ovh/manager/issues/PRDCOL-301)
+* **zimbra:** manage new advanced settings fields in create/update email ([1352e2a](https://github.com/ovh/manager/commit/1352e2a152bb49333cab68cd42d28ff57597482c)), closes [#PRDCOL-268](https://github.com/ovh/manager/issues/PRDCOL-268)
+
+
+
+
+
 ## [0.42.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.42.16...@ovh-ux/manager-zimbra-app@0.42.17) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app
