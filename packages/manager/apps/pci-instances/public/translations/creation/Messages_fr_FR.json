@@ -176,5 +176,8 @@
   "pci_instance_creation_cart_monthly_price_disclaimer": "Hors Savings plan",
   "pci_instance_creation_post_install_script_title": "Script de post-installation",
   "pci_instance_creation_post_install_script_description": "Saisissez votre script post-installation.",
-  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation"
+  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation",
+  "pci_instance_creation_in_progress": "La création d'instance est en cours, votre service sera disponible dans quelques instants",
+  "pci_instances_creations_in_progress": "Les créations d'instances sont en cours, vos services seront disponibles dans quelques instants",
+  "pci_instance_creation_error": "Nous avons rencontré une erreur lors de la création de votre instance…"
 }
