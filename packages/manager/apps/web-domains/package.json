@@ -55,7 +55,8 @@
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
-    "@tanstack/react-query-devtools": "^5.90.2"
+    "@tanstack/react-query-devtools": "^5.90.2",
+    "@types/punycode": "^2.1.4"
   },
   "regions": [
     "EU",
