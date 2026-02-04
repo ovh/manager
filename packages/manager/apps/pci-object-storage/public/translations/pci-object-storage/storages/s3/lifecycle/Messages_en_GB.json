@@ -1,0 +1,23 @@
+{
+  "title": "Lifecycle rules",
+  "createLifecycle": "Create a rule",
+  "columnName": "Rule name",
+  "columnStatus": "Status",
+  "columnScope": "Scope",
+  "columnCurrentVersionOperations": "Operations on current versions",
+  "columnNoncurrentVersionOperations": "Operations on non-current versions",
+  "columnDeleteMarker": "Auto deletion of expired delete markers",
+  "columnAbortMultipart": "Auto deletion of uncompleted MPUs",
+  "columnActions": "Actions",
+  "statusEnabled": "Enabled",
+  "statusDisabled": "Disabled",
+  "scopeAllObjects": "All objects",
+  "scopeFiltered": "Filtered",
+  "operationsCount": "{{count}} operation(s)",
+  "noOperations": "None",
+  "openMenu": "Open menu",
+  "actionEdit": "Modify",
+  "actionEnable": "Enable",
+  "actionDisable": "Disable",
+  "actionDelete": "Delete"
+}

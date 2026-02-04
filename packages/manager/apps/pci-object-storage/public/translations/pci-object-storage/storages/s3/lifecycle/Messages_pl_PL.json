@@ -1,0 +1,23 @@
+{
+  "title": "Reguły cyklu życia",
+  "createLifecycle": "Utwórz regułę",
+  "columnName": "Nazwa reguły",
+  "columnStatus": "Status",
+  "columnScope": "Zakres",
+  "columnCurrentVersionOperations": "Operacje na bieżących wersjach",
+  "columnNoncurrentVersionOperations": "Operacje na wersjach nieaktualnych",
+  "columnDeleteMarker": "Automatyczne usuwanie przestarzałych znaczników usunięcia",
+  "columnAbortMultipart": "Automatyczne usuwanie nieukończonych MPU",
+  "columnActions": "Operacje",
+  "statusEnabled": "Włączone",
+  "statusDisabled": "Wyłączona",
+  "scopeAllObjects": "Wszystkie obiekty",
+  "scopeFiltered": "Filtrowane",
+  "operationsCount": "{{count}} operacja(e)",
+  "noOperations": "Z żadnej",
+  "openMenu": "Otwórz menu",
+  "actionEdit": "Zmień",
+  "actionEnable": "Włącz",
+  "actionDisable": "Dezaktywuj",
+  "actionDelete": "Usuń"
+}

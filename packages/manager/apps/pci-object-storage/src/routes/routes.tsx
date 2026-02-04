@@ -468,6 +468,30 @@ export default [
               },
             ],
           },
+          {
+            path: 'lifecycle',
+            id: 's3.dashboard.lifecycle',
+            ...lazyLoadRoute(() =>
+              import(
+                '@/pages/object-storage/storage/s3Id/lifecycle/Lifecycle.page'
+              ),
+            ),
+            children: [
+              {
+                id: 'lifecycle.list',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/lifecycle/list/List.page'
+                  ),
+                ),
+                children: [
+                  {
+                    index: true,
+                  },
+                ],
+              },
+            ],
+          },
         ],
       },
     ],
