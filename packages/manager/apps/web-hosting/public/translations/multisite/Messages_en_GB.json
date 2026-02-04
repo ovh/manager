@@ -1,9 +1,9 @@
 {
   "multisite_git_state_tooltip_lastdeploy": "View the information of the latest deployment",
   "multisite_git_state_tooltip_disabled": "Click the action button to link Git",
-  "multisite_tooltip_diagnostic_good_configuration": "Your domain {{ domainName }} is configured to the IP address {{ ip }} of your hosting",
-  "multisite_tooltip_diagnostic_not_good_configuration": "Your domain {{ domainName }} is configured to the IP address {{ ip }} of another service",
-  "multisite_tooltip_diagnostic_unconfigured": "This entry in your DNS zone is not working. No configuration was found in your DNS zone",
+  "multisite_tooltip_diagnostic_good_configuration": "Your {{ domainName }} domain is correctly configured on your hosting plan’s {{ ip }} IP address",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Your {{ domainName }} domain currently points to the {{ externalIp }} IP address of another hosting plan. To correct this, update the {{ type }} record in the domain’s DNS zone, and replace it with the {{ ip }} IP address.",
+  "multisite_tooltip_diagnostic_unconfigured": "The DNS zone does not have any valid configuration. To fix this problem, add a {{ type }} record with the IP address {{ ip }} in the DNS zone of the {{ domainName }} domain.",
   "multisite_git_modal_delete_association_title": "Remove the Git association",
   "multisite_git_modal_delete_association_description1": "You are about to remove the Git association.",
   "multisite_git_modal_delete_association_description2": "<strong>The deletion will apply to all domains pointing to your directory.</strong>",
