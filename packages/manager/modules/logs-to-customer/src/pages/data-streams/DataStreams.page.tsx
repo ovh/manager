@@ -6,12 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { Select, SelectContent, SelectControl, Spinner, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/LogsToCustomer.translations';
-import ApiError from '@/components/apiError/ApiError.component';
+import ApiError from '@/components/api-error/ApiError.component';
 import KnowMoreLink from '@/components/services/KnowMoreLink.component';
 import OrderServiceButton from '@/components/services/OrderServiceButton.component';
 import ServiceLink from '@/components/services/ServiceLink.component';
 import { getLogServicesQueryKey, useLogServices } from '@/data/hooks/useLogService';
-import { Service } from '@/data/types/dbaas/logs';
+import { Service } from '@/data/types/dbaas/logs/Logs.type';
 import getServiceLabel from '@/helpers/getServiceLabel';
 import BackButton from '@/pages/data-streams/BackButton.component';
 import DataStreamsDatagrid from '@/pages/data-streams/DataStreamsDatagrid.component';

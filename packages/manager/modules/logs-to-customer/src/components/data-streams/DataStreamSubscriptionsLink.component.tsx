@@ -1,11 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { Icon, ICON_NAME, Link, Text, Tooltip, TooltipContent, TooltipTrigger } from '@ovhcloud/ods-react';
+import {
+  ICON_NAME,
+  Icon,
+  Link,
+  Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import { Service, Stream } from '@/data/types/dbaas/logs';
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import { Service, Stream } from '@/data/types/dbaas/logs/Logs.type';
 
 type TDataStreamSubscriptionsLink = Pick<Stream, 'nbSubscription' | 'streamId' | 'parentStreamId'> &
   Pick<Service, 'serviceName'>;
@@ -35,12 +45,7 @@ const DataStreamSubscriptionsLink = ({
       <Tooltip>
         <TooltipTrigger asChild>
           <Text preset="span">
-            <Link
-              data-testid="link-testStream"
-              href={subscriptionsURL}
-              target="_blank"
-              disabled
-            >
+            <Link data-testid="link-testStream" href={subscriptionsURL} target="_blank" disabled>
               {nbSubscription.toString()}
               <Icon name={ICON_NAME.externalLink} />
             </Link>
@@ -55,11 +60,7 @@ const DataStreamSubscriptionsLink = ({
 
   return (
     <Text preset="span">
-      <Link
-        data-testid="link-testStream"
-        href={subscriptionsURL}
-        target="_blank"
-      >
+      <Link data-testid="link-testStream" href={subscriptionsURL} target="_blank">
         {nbSubscription.toString()}
         <Icon name={ICON_NAME.externalLink} />
       </Link>

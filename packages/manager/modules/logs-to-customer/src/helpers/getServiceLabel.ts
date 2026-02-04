@@ -1,4 +1,4 @@
-import { Service } from '@/data/types/dbaas/logs';
+import { Service } from '@/data/types/dbaas/logs/Logs.type';
 
 const getServiceLabel = (service: Service) => {
   return service.displayName

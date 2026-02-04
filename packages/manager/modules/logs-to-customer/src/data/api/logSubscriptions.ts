@@ -1,11 +1,11 @@
-import { fetchIcebergV6, apiClient } from '@ovh-ux/manager-core-api';
+import { apiClient, fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 
 import { ApiUrls } from '@/LogsToCustomer.props';
 import {
   LogKind,
   LogSubscription,
   LogSubscriptionResponse,
-} from '@/data/types/dbaas/logs';
+} from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * LIST log subscription
@@ -62,13 +62,10 @@ export const postLogSubscriptionV2 = async (
   logKind?: LogKind,
   streamId?: string,
 ): Promise<LogSubscriptionResponse> => {
-  const { data } = await apiClient.v2.post<LogSubscriptionResponse>(
-    logSubscriptionUrl,
-    {
-      kind: logKind?.name,
-      streamId,
-    },
-  );
+  const { data } = await apiClient.v2.post<LogSubscriptionResponse>(logSubscriptionUrl, {
+    kind: logKind?.name,
+    streamId,
+  });
   return data;
 };
 
@@ -77,13 +74,10 @@ export const postLogSubscriptionV6 = async (
   logKind?: LogKind,
   streamId?: string,
 ): Promise<LogSubscriptionResponse> => {
-  const { data } = await apiClient.v6.post<LogSubscriptionResponse>(
-    logSubscriptionUrl,
-    {
-      kind: logKind?.name,
-      streamId,
-    },
-  );
+  const { data } = await apiClient.v6.post<LogSubscriptionResponse>(logSubscriptionUrl, {
+    kind: logKind?.name,
+    streamId,
+  });
   return data;
 };
 

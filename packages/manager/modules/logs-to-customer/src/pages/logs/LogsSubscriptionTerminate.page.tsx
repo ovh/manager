@@ -30,13 +30,13 @@ export default function DataStreamsTerminate() {
     navigate('..');
   };
 
-  const { mutate, isPending } = useDeleteLogSubscription(
-    logApiUrls.logSubscription,
-    logApiVersion,
-    subscriptionId ?? '',
-    currentLogKind,
-    closeModal,
-  );
+  const { mutate, isPending } = useDeleteLogSubscription({
+    logSubscriptionUrl: logApiUrls.logSubscription,
+    apiVersion: logApiVersion,
+    subscriptionId: subscriptionId ?? '',
+    logKind: currentLogKind,
+    onSettled: closeModal,
+  });
 
   return (
     <Modal open>
