@@ -22,6 +22,7 @@ export const RegionTiles = (props: RegionTilesProps) => {
         <RegionTile
           key={region}
           region={region}
+          serviceName={serviceName}
           bandwidthLimit={bandwidthLimit}
           ipv4List={ipv4List}
           ipv6List={ipv6List}

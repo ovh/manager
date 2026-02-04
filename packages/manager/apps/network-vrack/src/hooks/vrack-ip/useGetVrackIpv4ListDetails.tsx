@@ -2,9 +2,14 @@ import { UseQueryOptions, useQueries } from '@tanstack/react-query';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
-import { Ipv4Detail, getVrackIpv4Detail, getVrackIpv4DetailKey } from '@/data/api/get/vrackIp';
+import { Ipv4Detail, getVrackIpv4Detail } from '@/data/api/get/vrackIp';
 
-import { useGetVrackIpv4List } from './useGetVrackIpv4List';
+import { getVrackIpv4ListKey, useGetVrackIpv4List } from './useGetVrackIpv4List';
+
+export const getVrackIpv4DetailKey = (serviceName: string, ip: string) => [
+  getVrackIpv4ListKey(serviceName),
+  encodeURIComponent(ip),
+];
 
 export const useGetVrackIpv4ListDetails = (serviceName: string = '') => {
   const { ipv4List, isLoading: isLoadingList, isError } = useGetVrackIpv4List(serviceName);

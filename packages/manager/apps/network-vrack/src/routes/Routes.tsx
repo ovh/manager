@@ -13,6 +13,9 @@ import { redirectionApp, urls } from './Routes.constants';
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
+const DeleteVrackIpv4 = React.lazy(
+  () => import('@/pages/public-ip-routing/actions/DeleteVrackIpv4.page'),
+);
 
 export default (
   <>
@@ -38,8 +41,22 @@ export default (
               pageName: 'public-ip-routing',
               pageType: PageType.dashboard,
             },
+            currentPage: 'vrack.dashboard.publicIpRouting',
           }}
-        />
+        >
+          <Route
+            id="vrack.dashboard.detachIpv4"
+            path={urls.detachIpv4}
+            Component={DeleteVrackIpv4}
+            handle={{
+              tracking: {
+                pageName: 'detach-ipv4',
+                pageType: PageType.popup,
+              },
+              currentPage: 'vrack.dashboard.detachIpv4',
+            }}
+          />
+        </Route>
       </Route>
       <Route
         id="onboarding"

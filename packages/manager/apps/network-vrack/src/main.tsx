@@ -2,6 +2,7 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { appName } from '@/App.constants';
@@ -9,6 +10,7 @@ import { appName } from '@/App.constants';
 import App from './App';
 import { APP_NAME, LEVEL2, SUB_UNIVERSE, UNIVERSE } from './Tracking.constants';
 import './style.scss';
+import { TRANSLATION_NAMESPACES } from './utils/constants';
 import './vite-hmr';
 
 const trackingContext = {
@@ -29,7 +31,13 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['dashboard', 'onboarding', 'common', 'publicIpRouting'],
+    ns: [
+      NAMESPACES.ACTIONS,
+      TRANSLATION_NAMESPACES.dashboard,
+      TRANSLATION_NAMESPACES.onboarding,
+      TRANSLATION_NAMESPACES.common,
+      TRANSLATION_NAMESPACES.publicIpRouting,
+    ],
   });
 
   // Configure tracking per region
