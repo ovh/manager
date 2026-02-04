@@ -124,8 +124,8 @@ export const CATALOG_SHARE = {
           },
           iops: {
             guaranteed: false,
-            level: 30,
-            max: 20000,
+            level: 24,
+            max: 16_000,
             maxUnit: 'IOPS',
             unit: 'IOPS/GB',
           },
@@ -133,8 +133,8 @@ export const CATALOG_SHARE = {
         bandwidth: {
           guaranteed: false,
           level: 0.25,
-          min: 150,
-          max: 10240,
+          min: 25,
+          max: 128,
           maxUnit: 'MB/s',
           unit: 'MB/s/GB',
         },
@@ -165,8 +165,8 @@ export const CATALOG_SHARE = {
           },
           iops: {
             guaranteed: false,
-            level: 30,
-            max: 20000,
+            level: 24,
+            max: 16_000,
             maxUnit: 'IOPS',
             unit: 'IOPS/GB',
           },
@@ -174,8 +174,8 @@ export const CATALOG_SHARE = {
         bandwidth: {
           guaranteed: false,
           level: 0.25,
-          min: 150,
-          max: 10240,
+          min: 25,
+          max: 128,
           maxUnit: 'MB/s',
           unit: 'MB/s/GB',
         },
