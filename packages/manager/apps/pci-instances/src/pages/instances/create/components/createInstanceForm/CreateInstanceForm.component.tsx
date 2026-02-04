@@ -79,11 +79,11 @@ export const CreateInstanceForm = () => {
           {microRegion && <Backup microRegion={microRegion} />}
           <Divider spacing="64" />
           <Network />
-          <PostInstallScript />
           {billingTypes.length > 1 && (
             <BillingChoice billingTypes={billingTypes} />
           )}
           <AdvancedParameters />
+          <PostInstallScript />
         </section>
         <aside className="w-1/3 min-w-[280px] max-w-[640px]">
           <CreationCart />
