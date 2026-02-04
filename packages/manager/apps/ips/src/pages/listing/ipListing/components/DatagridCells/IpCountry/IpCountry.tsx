@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { useGetIpdetails } from '@/data/hooks/ip';
+
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 
 export type IpCountryProps = {

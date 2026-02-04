@@ -1,37 +1,42 @@
 import React, { useEffect, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
-  OdsText,
-  OdsMessage,
   OdsInput,
-  OdsTextarea,
+  OdsMessage,
   OdsSelect,
+  OdsText,
+  OdsTextarea,
 } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
+import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import {
-  useGetIpRipeInformation,
-  useGetOrganisationsList,
-  useGetIpOrganisation,
-} from '@/data/hooks';
-import { fromIdToIp, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
 import {
   changeIpOrganisation,
   getIpDetailsQueryKey,
   getIpRipeInformationQueryKey,
   upsertIpRipeInformation,
 } from '@/data/api';
+import {
+  useGetIpOrganisation,
+  useGetIpRipeInformation,
+  useGetOrganisationsList,
+} from '@/data/hooks';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 export default function UpsertIpBlockInformation() {
   const queryClient = useQueryClient();
@@ -39,9 +44,7 @@ export default function UpsertIpBlockInformation() {
   const [search] = useSearchParams();
   const { id } = useParams();
   const { trackClick, trackPage } = useOvhTracking();
-  const { ipGroup: ip } = id
-    ? ipFormatter(fromIdToIp(id))
-    : { ipGroup: undefined };
+  const { ipGroup: ip } = ipFormatter(fromIdToIp(id));
   const { ipRipeInfo, isLoading: isRipeLoading } = useGetIpRipeInformation({
     ip,
   });
@@ -211,7 +214,7 @@ export default function UpsertIpBlockInformation() {
               name="description"
               value={description}
               rows={4}
-              onOdsChange={(e) => setDescription(e.detail.value as string)}
+              onOdsChange={(e) => setDescription(e.detail.value)}
               isDisabled={isRipePending}
             />
           </OdsFormField>
@@ -233,7 +236,7 @@ export default function UpsertIpBlockInformation() {
               <OdsSelect
                 name="organisation"
                 value={organisation}
-                onOdsChange={(e) => setOrganisation(e.detail.value)}
+                onOdsChange={(e) => setOrganisation(e.detail.value || '')}
                 isDisabled={isOrgPending}
               >
                 {availableOrganisations?.map((org) => (

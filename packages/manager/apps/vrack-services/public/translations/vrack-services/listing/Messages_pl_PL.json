@@ -2,7 +2,7 @@
   "title": "vRack Services",
   "description": "Produkt vRack Services umożliwia korzystanie z usług sieciowych w sieci vRack. Tworząc Service Endpoint, możesz udostępnić, za pomocą prywatnego adresu IP, usługę zarządzaną przez OVHcloud w ramach Twojej sieci vRack.",
   "betaVrackServicesLimitMessage": "Aktualnie możesz utworzyć nie więcej niż 20 vRack Services.",
-  "createVrackServicesButtonLabel": "Włącz vRack Services",
+  "createVrackServicesButtonLabel": "Utwórz vRack Services",
   "emptyDataGridMessage": "Nie masz jeszcze dostępnej usługi vRack Services",
   "displayName": "Nazwa",
   "productStatus": "Status",

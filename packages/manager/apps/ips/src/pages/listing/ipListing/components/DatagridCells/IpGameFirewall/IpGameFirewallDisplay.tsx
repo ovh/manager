@@ -1,10 +1,9 @@
-import React from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import {
   ButtonType,
@@ -73,7 +72,7 @@ export const IpGameFirewallDisplay = ({
       actionType: 'action',
       actions: ['configure_game-firewall'],
     });
-    void navigate(
+    navigate(
       `${urls.configureGameFirewall
         .replace(urlDynamicParts.parentId, fromIpToId(ip))
         .replace(

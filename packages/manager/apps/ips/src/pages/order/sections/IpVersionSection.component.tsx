@@ -1,16 +1,21 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { OdsSpinner } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
-import { IpVersion } from '@/types';
-import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
-import { useCatalogLowestPrice } from '@/data/hooks/catalog';
-import { OrderContext } from '../order.context';
+
 import { IpVersionOptionCard } from '@/components/ipVersionOptionCard/IpVersionOptionCard.component';
+import { useCatalogLowestPrice } from '@/data/hooks/catalog';
+import { IpVersion } from '@/types';
+
+import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
+import { OrderContext } from '../order.context';
 
 export const IpVersionSection: React.FC = () => {
   const { ipVersion, setIpVersion } = React.useContext(OrderContext);
@@ -28,7 +33,7 @@ export const IpVersionSection: React.FC = () => {
         title={t('ip_version_title')}
         description={t('ip_version_description')}
       >
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4">
           <IpVersionOptionCard
             title={t('ipv4_card_title')}
             description={t('ipv4_card_description')}

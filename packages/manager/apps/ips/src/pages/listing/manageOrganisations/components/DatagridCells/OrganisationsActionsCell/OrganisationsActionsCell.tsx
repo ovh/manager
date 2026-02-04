@@ -1,15 +1,20 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+
 import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
 import { OrgDetails } from '@/data/api';
-import { urls, urlDynamicParts } from '@/routes/routes.constant';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
 
 export const OrganisationsActionsCell = (organisation: OrgDetails) => {
   const { t } = useTranslation('manage-organisations');

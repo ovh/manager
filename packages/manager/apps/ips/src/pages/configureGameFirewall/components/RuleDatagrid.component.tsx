@@ -1,23 +1,24 @@
 import React from 'react';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+
 import { IpGameFirewallRule } from '@/data/api';
-import { StatusColumn } from './StatusColumn.component';
-import { GameProtocolColumn } from './GameProtocolColumn.component';
-import { EndPortColumn, StartPortColumn } from './PortColumn.component';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { GameFirewallContext } from '../gamefirewall.context';
 import { ActionColumn } from './ActionColumn.component';
+import { GameProtocolColumn } from './GameProtocolColumn.component';
+import { EndPortColumn, StartPortColumn } from './PortColumn.component';
+import { StatusColumn } from './StatusColumn.component';
 
 export const RuleDatagrid: React.FC = () => {
-  const {
-    isNewRuleRowDisplayed,
-    isLoading,
-    isRulesLoading,
-    rules,
-  } = React.useContext(GameFirewallContext);
+  const { isNewRuleRowDisplayed, isLoading, isRulesLoading, rules } =
+    React.useContext(GameFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     NAMESPACES.STATUS,
@@ -58,7 +59,12 @@ export const RuleDatagrid: React.FC = () => {
         size={ODS_TABLE_SIZE.sm}
         columns={columns}
         items={
-          (isNewRuleRowDisplayed ? [{ isNew: true }, ...rules] : rules) || []
+          (isNewRuleRowDisplayed
+            ? [
+                { isNew: true } as IpGameFirewallRule & { isNew: boolean },
+                ...rules,
+              ]
+            : rules) || []
         }
         totalItems={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
         isLoading={isLoading || isRulesLoading}

@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { useGetIpdetails, useGetIpVmacWithIp } from '@/data/hooks';
-import { ipFormatter } from '@/utils/ipFormatter';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
+
+import { useGetIpVmacWithIp, useGetIpdetails } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isVmacAvailable } from '../enableCellsUtils';
 
 export type IpVmacProps = {

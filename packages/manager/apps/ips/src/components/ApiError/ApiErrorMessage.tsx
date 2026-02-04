@@ -1,15 +1,19 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
+import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
-export const useApiErrorMessage = (error?: ApiError) => {
+export const useApiErrorMessage = (error?: ApiError | null) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.error);
 
   const errorMessage = error?.response?.data?.message || error?.message;
-  const ovhQueryId = error?.response.headers?.['x-ovh-queryid'];
+  const ovhQueryId = error?.response?.headers?.['x-ovh-queryid'] as string;
 
   if (!errorMessage) {
     return undefined;
@@ -21,7 +25,7 @@ export const useApiErrorMessage = (error?: ApiError) => {
 };
 
 export type ApiErrorMessageProps = {
-  error: ApiError;
+  error?: ApiError | null;
   isDismissible?: boolean;
   className?: string;
 };

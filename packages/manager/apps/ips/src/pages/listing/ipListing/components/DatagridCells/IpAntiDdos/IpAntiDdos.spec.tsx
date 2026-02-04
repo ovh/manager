@@ -1,22 +1,33 @@
-import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { PropsWithChildren } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { ListingContext } from '@/pages/listing/listingContext';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
-import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
-import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
+import { IpDetails, IpMitigationStateEnum, IpMitigationType } from '@/data/api';
+import { ListingContext } from '@/pages/listing/listingContext';
 import { getOdsBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
+
+import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipMitigation: undefined, isLoading: true, error: undefined })),
+  vi.fn(() => ({
+    ipMitigation: undefined as IpMitigationType | undefined,
+    isLoading: true,
+    error: undefined,
+  })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -39,10 +50,10 @@ const renderComponent = (params: IpAntiDdosProps) => {
   );
 };
 
-describe('IpAntiDdos Component', async () => {
+describe('IpAntiDdos Component', () => {
   it('Should display automatic if no mitigation set', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
@@ -51,7 +62,7 @@ describe('IpAntiDdos Component', async () => {
       error: undefined,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList?.[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -67,7 +78,7 @@ describe('IpAntiDdos Component', async () => {
 
   it('Should display permanent if 1 mitigation is configured as Permanent', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
@@ -79,7 +90,7 @@ describe('IpAntiDdos Component', async () => {
       error: undefined,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList?.[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -95,7 +106,7 @@ describe('IpAntiDdos Component', async () => {
 
   it('Should display in action if 1 mitigation is configured as auto', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
@@ -107,7 +118,7 @@ describe('IpAntiDdos Component', async () => {
       error: undefined,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList?.[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,
@@ -123,7 +134,7 @@ describe('IpAntiDdos Component', async () => {
 
   it('Should display Pending if mitigation exist and state is not ok', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[0],
+      ipDetails: ipDetailsList[0] as IpDetails,
       isLoading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
@@ -134,7 +145,7 @@ describe('IpAntiDdos Component', async () => {
       error: undefined,
     });
     const { getByText, container } = renderComponent({
-      ip: ipDetailsList[0].ip,
+      ip: ipDetailsList?.[0]?.ip,
     });
     const badge = await getOdsBadgeByLabel({
       container,

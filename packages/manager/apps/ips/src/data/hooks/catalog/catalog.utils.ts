@@ -2,6 +2,7 @@ import {
   isRegionInEu,
   isRegionInUs,
 } from '@/components/RegionSelector/region-selector.utils';
+
 import { CatalogIpPlan } from '../../api/catalog';
 
 export const getContinentKeyFromRegion = (region: string) => {
@@ -43,7 +44,7 @@ export const getCatalogIpsQueryKey = (sub: string) => ['getCatalogIps', sub];
 export const isBlockIpPlan = (plan: CatalogIpPlan) => {
   const defaultPricing = plan.details.pricings.default[0];
   return (
-    defaultPricing.capacities.includes('renew') &&
+    defaultPricing?.capacities.includes('renew') &&
     defaultPricing.maximumQuantity === 1
   );
 };

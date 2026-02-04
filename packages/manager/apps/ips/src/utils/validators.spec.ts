@@ -1,9 +1,9 @@
 import {
+  isValidDomain,
   isValidIpv4Block,
   isValidIpv6Block,
-  isValidDomain,
-  isValidSubDomain,
   isValidReverseDomain,
+  isValidSubDomain,
 } from './validators';
 
 describe('isValidIpv4Block', () => {

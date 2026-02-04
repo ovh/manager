@@ -47,9 +47,7 @@ export const getIpMitigation = async (
 export const getIpMitigationWithoutIcebergQueryKey = (
   params: GetIpMitigationWithBlockParams,
 ) => [
-  `get/ip/${encodeURIComponent(
-    params.ipBlockip,
-  )}/mitigation/${encodeURIComponent(params.ip)}`,
+  `get/ip/${encodeURIComponent(params.ipBlockip)}/mitigation/${encodeURIComponent(params.ip)}`,
 ];
 
 /**
@@ -59,7 +57,5 @@ export const getIpMitigationWithoutIceberg = async (
   params: GetIpMitigationWithBlockParams,
 ): Promise<ApiResponse<IpMitigationType>> =>
   v6.get<IpMitigationType>(
-    `/ip/${encodeURIComponent(
-      params.ipBlockip,
-    )}/mitigation/${encodeURIComponent(params.ip)}`,
+    `/ip/${encodeURIComponent(params.ipBlockip)}/mitigation/${encodeURIComponent(params.ip)}`,
   );

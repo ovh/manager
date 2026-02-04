@@ -1,5 +1,8 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsMessage,
@@ -7,15 +10,16 @@ import {
   OdsSpinner,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import ModalButtonGroup from './ModalButtonGroup.component';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import {
   useDedicatedServerIpMigrationAvailableDurations,
   useGetProductService,
 } from '@/data/hooks';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
-import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import ModalButtonGroup from './ModalButtonGroup.component';
 
 export type Step2Props = {
   onCancel: () => void;
@@ -24,7 +28,9 @@ export type Step2Props = {
   ip: string;
   token: string;
   destinationServer?: string;
-  setDestinationServer: React.Dispatch<React.SetStateAction<string>>;
+  setDestinationServer: React.Dispatch<
+    React.SetStateAction<string | undefined>
+  >;
 };
 
 export default function Step2({
@@ -57,20 +63,20 @@ export default function Step2({
     <>
       <div className="flex flex-col">
         <OdsMessage
-          className="block mb-4"
+          className="mb-4 block"
           color={ODS_MESSAGE_COLOR.information}
           isDismissible={false}
         >
           {t('step2Description')}
         </OdsMessage>
-        <OdsFormField className="block mb-12">
+        <OdsFormField className="mb-12 block">
           <label htmlFor="destination-server" slot="label">
             {t('step2ServerLabel')}
           </label>
           {isServerListLoading && <OdsSpinner />}
           {serverList?.length && (
             <OdsSelect
-              className="mt-1 z-[3] min-w-[300px] md:min-w-[400px]"
+              className="z-[3] mt-1 min-w-[300px] md:min-w-[400px]"
               name="destination-server"
               id="destination-server"
               value={destinationServer}

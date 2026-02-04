@@ -1,6 +1,9 @@
-import React, { useEffect, startTransition, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { startTransition, useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
@@ -8,36 +11,37 @@ import {
   ODS_TEXT_PRESET,
   OdsCheckboxChangeEventDetail,
 } from '@ovhcloud/ods-components';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsButton,
+  OdsCheckbox,
   OdsModal,
   OdsText,
-  OdsCheckbox,
 } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useOrderURL } from '@ovh-ux/manager-module-order';
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { BYOIP_FAILOVER_V4, CONFIG_NAME } from '@/data/hooks/catalog';
 import { urls } from '@/routes/routes.constant';
+
 import { ByoipContext } from '../Byoip.context';
 import {
   ByoipPayloadParams,
   ConfigItem,
   getByoipProductSettings,
 } from '../Byoip.utils';
-import { BYOIP_FAILOVER_V4, CONFIG_NAME } from '@/data/hooks/catalog';
 
 interface DeclarationItem {
   declaration: string;
   translationKey: string;
 }
 
-export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
-  isOpen = true,
-}) => {
+export const ByoipOrderModal: React.FC = () => {
   const { t } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -110,11 +114,11 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
   }, [ipRir, selectedRegion, ipRange]);
 
   return (
-    <OdsModal isOpen={isOpen} isDismissible onOdsClose={handleClose}>
+    <OdsModal isOpen isDismissible onOdsClose={handleClose}>
       <OdsText className="mb-2" preset={ODS_TEXT_PRESET.heading4}>
         {t('ip_byoip_disclaimer_title')}
       </OdsText>
-      <div className="mb-3 flex flex-col gap-3">
+      <div className="mb-3 flex flex-col gap-4">
         <OdsText preset={ODS_TEXT_PRESET.span}>
           {t('ip_byoip_disclaimer_description')}
         </OdsText>
@@ -122,7 +126,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
         {declarationItems.map(({ declaration, translationKey }) => (
           <label
             key={declaration}
-            className="flex items-center hover:bg-gray-100 cursor-pointer"
+            className="flex cursor-pointer items-center hover:bg-gray-100"
             htmlFor={declaration}
             slot="label"
           >
@@ -145,7 +149,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
           {t('ip_byoip_disclaimer_ordering_delay_message')}
         </OdsText>
       </div>
-      <div className="flex gap-3 justify-end">
+      <div className="flex justify-end gap-4">
         <OdsButton
           color={ODS_BUTTON_COLOR.primary}
           size={ODS_BUTTON_SIZE.md}
@@ -163,7 +167,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
           label={t('confirm', { ns: NAMESPACES.ACTIONS })}
           isDisabled={!declaratiosChecked}
           onClick={() => {
-            const payload: ByoipPayloadParams = {
+            const payload = {
               ipRir,
               campus: {
                 name: selectedRegion,
@@ -172,7 +176,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
               ip: ipRange,
               ...(asOwnRirType && { asRir: asOwnRirType }),
               ...(asOwnNumberType && { asNumber: asOwnNumberType }),
-            };
+            } as ByoipPayloadParams;
             const keys = Object.keys(payload) as Array<
               keyof ByoipPayloadParams
             >;
@@ -194,7 +198,7 @@ export const ByoipOrderModal: React.FC<{ isOpen: boolean }> = ({
             const campusId = config.findIndex(
               ({ label }) => label === CONFIG_NAME.CAMPUS,
             );
-            if (campus) {
+            if (campus && updateConfig[campusId]) {
               updateConfig[campusId].values = [campus.name];
             }
             const settings = getByoipProductSettings(updateConfig);

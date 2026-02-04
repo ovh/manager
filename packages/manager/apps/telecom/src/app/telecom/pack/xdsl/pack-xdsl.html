@@ -46,6 +46,13 @@
             >
                 <span data-translate="xdsl_tabs_tasks"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                data-ng-if=":: $ctrl.isLogsAvailable"
+                href="{{ $ctrl.logsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.logsLink"
+            >
+                <span data-translate="xdsl_tabs_logs"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </div>
 

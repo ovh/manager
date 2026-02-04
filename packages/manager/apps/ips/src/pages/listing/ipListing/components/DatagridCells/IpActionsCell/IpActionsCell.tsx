@@ -1,34 +1,39 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
+
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import ipaddr from 'ipaddr.js';
-import { urlDynamicParts, urls } from '@/routes/routes.constant';
-import { fromIpToId, ipFormatter } from '@/utils';
+
 import { IpTypeEnum } from '@/data/constants';
-import { ListingContext } from '@/pages/listing/listingContext';
-import { isGameFirewallAvailable } from '../enableCellsUtils';
 import {
-  useGetIpdetails,
-  useGetIpGameFirewall,
-  useIpHasForcedMitigation,
   useGetAttachedServices,
-  useIpHasVmac,
+  useGetIpGameFirewall,
+  useGetIpdetails,
   useIpHasAlerts,
+  useIpHasVmac,
 } from '@/data/hooks';
 import {
   canAggregateByoipIp,
   canSliceByoipIp,
   canTerminateByoipIp,
 } from '@/pages/byoip/Byoip.utils';
+import { ListingContext } from '@/pages/listing/listingContext';
+import { urlDynamicParts, urls } from '@/routes/routes.constant';
+import { fromIpToId, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
+
+import { isGameFirewallAvailable } from '../enableCellsUtils';
 
 export type IpActionsCellParams = {
   ip: string;
@@ -106,7 +111,10 @@ export const IpActionsCell = ({
   });
   const navigate = useNavigate();
   const [search] = useSearchParams();
-  const { t } = useTranslation(['listing', NAMESPACES?.ACTIONS]);
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.listing,
+    NAMESPACES.ACTIONS,
+  ]);
   const { trackClick } = useOvhTracking();
 
   const serviceName = ipDetails?.routedTo?.serviceName;
@@ -115,6 +123,7 @@ export const IpActionsCell = ({
     hasCloudServiceAttachedToIP,
     hasDedicatedServiceAttachedToIp,
     hasHousingServiceAttachedToIp,
+    hasVrackAttachedToIp,
   } = useGetAttachedServices({
     serviceName,
   });
@@ -134,21 +143,14 @@ export const IpActionsCell = ({
   });
 
   useEffect(() => {
-    if (!serviceName) return;
-    const fetchUrl = async () => {
-      try {
-        const response = await shell.navigation.getURL(
-          'dedicated',
-          `#/vrack/${serviceName}`,
-          {},
-        );
-        setVrackPage(response as string);
-      } catch {
-        setVrackPage('#');
-      }
-    };
-    fetchUrl();
-  }, [serviceName, shell.navigation]);
+    if (!!serviceName && hasVrackAttachedToIp) {
+      shell.navigation
+        .getURL('dedicated', `#/vrack/${serviceName}`, {})
+        .then((response) => {
+          setVrackPage(response as string);
+        });
+    }
+  }, [serviceName, shell.navigation, hasVrackAttachedToIp]);
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const availableGetGameFirewall =
@@ -158,15 +160,10 @@ export const IpActionsCell = ({
   const { ipGameFirewall } = useGetIpGameFirewall({
     ip: parentIpGroup || ip,
     ipOnGame: parentIpGroup ? ip : ipAddress,
-    enabled: availableGetGameFirewall && !isByoipSlice,
+    enabled: availableGetGameFirewall,
   });
 
-  const { hasForcedMitigation } = useIpHasForcedMitigation({
-    ip,
-    enabled: !isIpExpired && !isByoipSlice,
-  });
-
-  const items: ActionMenuItem[] = [
+  const items = [
     !parentIpGroup && {
       id: 0,
       label: ipDetails?.description
@@ -202,7 +199,7 @@ export const IpActionsCell = ({
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
       !hasCloudServiceAttachedToIP &&
-      Boolean(ipGameFirewall?.ipOnGame) && {
+      !!ipGameFirewall?.ipOnGame && {
         id: 2,
         label: t('listingActionManageGameFirewall'),
         trackingLabel: 'configure_game-firewall',
@@ -215,23 +212,21 @@ export const IpActionsCell = ({
               )
               .replace(
                 urlDynamicParts.id,
-                parentIpGroup ? id : fromIpToId(ipAddress),
+                fromIpToId(ipGameFirewall.ipOnGame),
               )}?${search.toString()}`,
           ),
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
-      !hasForcedMitigation &&
       !hasHousingServiceAttachedToIp && {
         id: 3,
         label: t('listingActionConfigureEdgeNetworkFirewall'),
         trackingLabel: 'configure_edge-network-firewall',
         onClick: () =>
           navigate(
-            `${urls.configureEdgeNetworkFirewall.replace(
-              urlDynamicParts.id,
-              id,
-            )}?${search.toString()}`,
+            `${urls.configureEdgeNetworkFirewall
+              .replace(urlDynamicParts.parentId, parentIpGroup ? parentId : id)
+              .replace(urlDynamicParts.id, id)}?${search.toString()}`,
           ),
       },
     ipaddr.IPv6.isIPv6(ipAddress) &&
@@ -448,11 +443,14 @@ export const IpActionsCell = ({
           location: PageLocation.datagrid,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: [item.trackingLabel || item.label],
+          actions: [
+            (item as { trackingLabel: string }).trackingLabel ||
+              (item as ActionMenuItem)?.label,
+          ],
         });
-        item.onClick?.();
+        (item as ActionMenuItem).onClick?.();
       },
-    }));
+    })) as ActionMenuItem[];
 
   return (
     <ActionMenu

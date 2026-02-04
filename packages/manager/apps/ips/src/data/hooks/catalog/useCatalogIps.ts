@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+
 import { CatalogIpsResponse, getCatalogIps } from '../../api/catalog';
 import { getCatalogIpsQueryKey } from './catalog.utils';
 

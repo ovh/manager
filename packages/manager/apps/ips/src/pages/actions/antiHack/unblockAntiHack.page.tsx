@@ -1,14 +1,19 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useMemo } from 'react';
+
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   Modal,
-  useNotifications,
   useFormatDate,
+  useNotifications,
 } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -16,28 +21,24 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
 import {
-  unblockAntiHackIp,
-  getIpAntihackQueryKey,
   IpAntihackStateEnum,
+  getIpAntihackQueryKey,
+  unblockAntiHackIp,
 } from '@/data/api';
 import { useGetIpAntihack } from '@/data/hooks/ip';
-import { fromIdToIp, ipFormatter } from '@/utils';
+import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 const DEFAULT_LOG_DISPLAY_CLASS_NAMES =
   'whitespace-pre overflow-scroll bg-stone-200 p-2 rounded-md border-1 border-solid border-stone-300  min-w-full max-h-48';
 
 export default function AntiHackModal() {
-  const { t } = useTranslation(['anti-hack', NAMESPACES.ACTIONS, 'error']);
-  const [ipBlocked, setIpBlocked] = useState(undefined);
-  const [ipState, setIpState] = useState(undefined);
-  const [blockedSince, setBlockedSince] = useState(undefined);
-  const [time, setTime] = useState(0);
-  const [logs, setLogs] = useState('');
-  const [logsDisplayClasses, setLogsDisplayClasses] = useState(
-    DEFAULT_LOG_DISPLAY_CLASS_NAMES,
-  );
+  const { t } = useTranslation([
+    TRANSLATION_NAMESPACES.antiHack,
+    NAMESPACES.ACTIONS,
+    TRANSLATION_NAMESPACES.error,
+  ]);
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { id, parentId } = useParams();
@@ -50,28 +51,33 @@ export default function AntiHackModal() {
 
   const { ipAntihack, isLoading: isIpAntihackLoading } = useGetIpAntihack({
     ip: parentIp,
-    enabled: true,
   });
 
-  useEffect(() => {
-    if (ipAntihack) {
-      const toBeUnblocked = ipAntihack.find(
+  const toBeUnblocked = React.useMemo(
+    () =>
+      ipAntihack?.find(
         (antihack) =>
           antihack.ipBlocked === ip &&
           antihack.state === IpAntihackStateEnum.BLOCKED,
-      );
-      setIpBlocked(toBeUnblocked?.ipBlocked);
-      setIpState(toBeUnblocked?.state);
-      setBlockedSince(toBeUnblocked?.blockedSince);
-      setTime(toBeUnblocked?.time);
-      if (toBeUnblocked?.logs.length) {
-        setLogs(toBeUnblocked?.logs);
-      } else {
-        setLogs(t('anti_hack_no_log_available'));
-        setLogsDisplayClasses(`${DEFAULT_LOG_DISPLAY_CLASS_NAMES} text-center`);
-      }
-    }
-  }, [ipAntihack]);
+      ),
+    [ipAntihack, ip],
+  );
+
+  const logs = React.useMemo(
+    () =>
+      toBeUnblocked?.logs.length
+        ? toBeUnblocked?.logs
+        : t('anti_hack_no_log_available'),
+    [toBeUnblocked, t],
+  );
+
+  const logsDisplayClasses = React.useMemo(
+    () =>
+      toBeUnblocked?.logs.length
+        ? DEFAULT_LOG_DISPLAY_CLASS_NAMES
+        : `${DEFAULT_LOG_DISPLAY_CLASS_NAMES} text-center`,
+    [toBeUnblocked],
+  );
 
   const closeModal = () => {
     navigate(`..?${search.toString()}`);
@@ -79,39 +85,48 @@ export default function AntiHackModal() {
 
   const fields = useMemo(
     () =>
-      !!ipState && !!blockedSince
+      !!toBeUnblocked?.state &&
+      !!toBeUnblocked?.blockedSince &&
+      toBeUnblocked?.time
         ? [
             {
               label: t('anti_hack_status'),
-              value: ipState,
+              value: toBeUnblocked.state,
               key: 'antihack_ipState',
             },
             {
               label: t('anti_hack_blocked_since'),
-              value: format({ date: new Date(blockedSince), format: 'PPPpp' }),
+              value: format({
+                date: new Date(toBeUnblocked.blockedSince),
+                format: 'PPPpp',
+              }),
               key: 'antihack_blockedSince',
             },
             {
               label: t('anti_hack_time'),
-              value: time,
+              value: toBeUnblocked.time,
               key: 'antihack_time',
             },
           ]
         : [],
-    [ipState, blockedSince, time],
+    [toBeUnblocked, format, t],
   );
 
   const { isPending, mutate: unblockAntihackHandler } = useMutation({
     mutationFn: () => unblockAntiHackIp({ ip: parentIp, ipBlocked: ip }),
-    onSuccess: async () => {
+    onSuccess: () => {
       clearNotifications();
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: 'anti-hack-unblock_success',
       });
-      addSuccess(t('unblock_anti_hack_ip_success', { ipBlocked }));
+      addSuccess(
+        t('unblock_anti_hack_ip_success', {
+          ipBlocked: toBeUnblocked?.ipBlocked,
+        }),
+      );
 
-      await queryClient.invalidateQueries({
+      queryClient.invalidateQueries({
         queryKey: getIpAntihackQueryKey({ ip: parentIp }),
       });
       closeModal();
@@ -125,7 +140,7 @@ export default function AntiHackModal() {
       closeModal();
       addError(
         t('unblock_anti_hack_ip_error', {
-          ipBlocked,
+          ipBlocked: toBeUnblocked?.ipBlocked,
           error: err?.response?.data?.message,
         }),
         true,
@@ -163,11 +178,11 @@ export default function AntiHackModal() {
       onSecondaryButtonClick={closeHandler}
       isLoading={isIpAntihackLoading}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
-          <div className="flex mb-2 gap-x-4" key={key}>
+          <div className="mb-2 flex gap-x-4" key={key}>
             <OdsText
-              className="font-semibold text-right w-1/2"
+              className="w-1/2 text-right font-semibold"
               preset={ODS_TEXT_PRESET.heading6}
             >
               {label}
@@ -175,7 +190,7 @@ export default function AntiHackModal() {
             <OdsText className="w-1/2">{value}</OdsText>
           </div>
         ))}
-        <div className="flex mb-2">
+        <div className="mb-2 flex">
           <OdsText className={logsDisplayClasses} preset="code">
             {logs}
           </OdsText>

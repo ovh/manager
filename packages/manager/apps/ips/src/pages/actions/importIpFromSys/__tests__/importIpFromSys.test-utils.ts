@@ -1,7 +1,9 @@
-import { waitFor, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-import { getButtonByLabel, labels } from '@/test-utils';
+
 import { catalogDedicatedServerList } from '@/__mocks__/catalog/dedicated-server-catalog';
+import { getButtonByLabel, labels } from '@/test-utils';
 
 export const VALID_INPUT_VALUES = {
   ip: '23::',
@@ -50,7 +52,7 @@ export async function fillStep4(container: HTMLElement) {
   await waitFor(() => {
     const checkbox = container
       .querySelector('ods-modal')
-      .querySelector('ods-checkbox') as HTMLOdsCheckboxElement;
+      .querySelector('ods-checkbox');
     checkbox.setAttribute('is-checked', '');
     return fireEvent(checkbox, event);
   }, WAIT_FOR_DEFAULT_OPTIONS);

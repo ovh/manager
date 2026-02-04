@@ -1,7 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { apiClient } from '@ovh-ux/manager-core-api';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useContext } from 'react';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, apiClient } from '@ovh-ux/manager-core-api';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export const BYOIP_FAILOVER_V4 = 'byoip-failover-v4';
 export const BYOIP_PRODUCT_ID = 'bringYourOwnIp';
@@ -50,7 +52,7 @@ export const useGetCatalog = () => {
   const { shell } = useContext(ShellContext);
   const { environment } = shell;
 
-  return useQuery({
+  return useQuery<Plan, ApiError>({
     queryKey: ['catalog', 'bringYourOwnIp'],
     queryFn: async () => {
       const env = await environment.getEnvironment();
@@ -97,7 +99,7 @@ export const useGetCatalog = () => {
                     el.details.product.configurations.find(
                       ({ name }) => name === CONFIG_NAME.CAMPUS,
                     ),
-                  ].filter(Boolean) as ProductConfiguration[],
+                  ].filter(Boolean),
                 },
               },
               invoiceName: el.invoiceName,
@@ -126,12 +128,12 @@ export const useGetCatalog = () => {
         const index = plan.details.product.configurations.findIndex(
           ({ name }) => name === CONFIG_NAME.CAMPUS,
         );
-        if (index !== -1) {
+        if (index !== -1 && plan?.details?.product?.configurations?.[index]) {
           plan.details.product.configurations[index].values = campusList;
         }
       }
 
-      return plan;
+      return (plan as unknown) as Plan;
     },
   });
 };

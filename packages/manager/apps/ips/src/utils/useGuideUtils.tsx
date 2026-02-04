@@ -1,8 +1,10 @@
-import { useMemo, useContext } from 'react';
+import { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { CountryCode } from '@ovh-ux/manager-config';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { CardProps, ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
 
@@ -475,26 +477,21 @@ export function useGuideUtils(): {
   const { ovhSubsidiary } = environment.user;
   const { t } = useTranslation('onboarding');
 
-  const links = useMemo(() => getUrlListLink({ subsidiary: ovhSubsidiary }), [
-    ovhSubsidiary,
-  ]);
+  const links = getUrlListLink({ subsidiary: ovhSubsidiary });
+  const guides = Object.entries(links)
+    .filter(([title]) => title.includes('guide'))
+    .map(([, { link, trackingLabel }], index) => ({
+      href: link,
+      trackingLabel,
+      texts: {
+        title: t(`guide${index + 1}Title`),
+        description: t(`guide${index + 1}Description`),
+        category: t('guideCategory'),
+      },
+    }));
 
   return {
     links,
-    guides: useMemo(
-      () =>
-        Object.entries(links)
-          .filter(([title]) => title.includes('guide'))
-          .map(([, { link, trackingLabel }], index) => ({
-            href: link,
-            trackingLabel,
-            texts: {
-              title: t(`guide${index + 1}Title`),
-              description: t(`guide${index + 1}Description`),
-              category: t('guideCategory'),
-            },
-          })),
-      [ovhSubsidiary],
-    ),
+    guides,
   };
 }

@@ -1,4 +1,5 @@
 import head from 'lodash/head';
+import { FEATURES } from './pack-xdsl.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('telecom.packs.pack.xdsl', {
@@ -12,6 +13,8 @@ export default /* @ngInject */ ($stateProvider) => {
           xdslId: serviceName,
         }).$promise,
       breadcrumb: /* @ngInject */ (serviceName) => serviceName,
+      features: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping.checkFeatureAvailability(Object.values(FEATURES)),
     },
     redirectTo: (transition) =>
       transition
@@ -71,6 +74,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToPack) => goToPack,
       lineLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('telecom.packs.pack.xdsl.line', $transition$.params()),
+      logsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('telecom.packs.pack.xdsl.line.logs', $transition$.params()),
       modemLink: /* @ngInject */ ($state, $transition$) =>
         $state.href(
           'telecom.packs.pack.xdsl.line.modem',

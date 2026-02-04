@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { OrgDetails } from '@/data/api/get/organisationsDetails';
 import { useIpFeatureAvailability } from '@/utils/ipFeatureAvailbility';
 

@@ -1,15 +1,22 @@
-import '@/test-utils/setupUnitTests';
-import React, { PropsWithChildren } from 'react';
-import { describe, expect, it, vi } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { PropsWithChildren } from 'react';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
+import '@/test-utils/setupUnitTests';
+
 import { IpRegion, IpRegionProps } from './IpRegion';
+import { IpDetails } from '@/data/api';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
-  vi.fn(() => ({ ipDetails: undefined, isLoading: true })),
+  vi.fn(() => ({
+    ipDetails: undefined as IpDetails | undefined,
+    isLoading: true,
+  })),
 );
 
 vi.mock('@/data/hooks/ip', () => ({
@@ -29,17 +36,19 @@ const renderComponent = (params: IpRegionProps) => {
   );
 };
 
-describe('IpRegion Component', async () => {
+describe('IpRegion Component', () => {
   it('Should display all ip regions', async () => {
     useGetIpDetailsMock.mockReturnValue({
-      ipDetails: ipDetailsList[3],
+      ipDetails: ipDetailsList[3] as IpDetails,
       isLoading: false,
     });
-    const { getByText } = renderComponent({ ip: ipDetailsList[3].ip });
+    const { getByText } = renderComponent({
+      ip: ipDetailsList?.[3]?.ip,
+    });
     await waitFor(() => {
-      expect(getByText(ipDetailsList[3].regions[0])).toBeDefined();
-      expect(getByText(ipDetailsList[3].regions[1])).toBeDefined();
-      expect(getByText(ipDetailsList[3].regions[2])).toBeDefined();
+      expect(getByText(ipDetailsList?.[3]?.regions[0])).toBeDefined();
+      expect(getByText(ipDetailsList?.[3]?.regions[1])).toBeDefined();
+      expect(getByText(ipDetailsList?.[3]?.regions[2])).toBeDefined();
     });
   });
 });

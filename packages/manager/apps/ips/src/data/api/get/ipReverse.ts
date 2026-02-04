@@ -1,8 +1,8 @@
 import {
+  ApiResponse,
   IcebergFetchResultV6,
   fetchIcebergV6,
   v6,
-  ApiResponse,
 } from '@ovh-ux/manager-core-api';
 
 export type GetIpReverseParams = {
@@ -46,7 +46,5 @@ export const getIpReverse = async ({
   ipReverse,
 }: GetIpReverseParams): Promise<ApiResponse<IpReverseType>> =>
   v6.get<IpReverseType>(
-    `/ip/${encodeURIComponent(ip)}/reverse${
-      ipReverse ? `/${encodeURIComponent(ipReverse)}` : ''
-    }`,
+    `/ip/${encodeURIComponent(ip)}/reverse${ipReverse ? `/${encodeURIComponent(ipReverse)}` : ''}`,
   );

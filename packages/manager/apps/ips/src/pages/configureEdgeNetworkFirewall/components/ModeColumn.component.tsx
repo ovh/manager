@@ -1,13 +1,17 @@
 import React from 'react';
-import {
-  OdsText,
-  OdsSelect,
-  OdsFormField,
-} from '@ovhcloud/ods-components/react';
+
 import { useTranslation } from 'react-i18next';
+
+import {
+  OdsFormField,
+  OdsSelect,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
+
 import { IpEdgeFirewallRule } from '@/data/api';
-import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+
+import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 
 const validActions = ['deny', 'permit'];
 

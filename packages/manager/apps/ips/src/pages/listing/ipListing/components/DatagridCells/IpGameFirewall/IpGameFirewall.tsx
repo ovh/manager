@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+
 import { useGetIpGameFirewall, useGetIpdetails } from '@/data/hooks/ip';
-import { ipFormatter } from '@/utils/ipFormatter';
-import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { IpGameFirewallDisplay } from './IpGameFirewallDisplay';
+import { ipFormatter } from '@/utils/ipFormatter';
+
+import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
 import { isGameFirewallAvailable } from '../enableCellsUtils';
+import { IpGameFirewallDisplay } from './IpGameFirewallDisplay';
 
 export type IpGameFirewallProps = {
   ip: string;

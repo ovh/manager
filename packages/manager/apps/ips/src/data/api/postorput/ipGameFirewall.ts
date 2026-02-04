@@ -10,9 +10,7 @@ export const putIpGameFirewall = async (
   params: PutIpGameFirewallParams,
 ): Promise<ApiResponse<null>> =>
   apiClient.v6.put(
-    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-      params.ipOnGame,
-    )}`,
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}`,
     {
       firewallModeEnabled: params.firewallModeEnabled,
     },
@@ -30,9 +28,7 @@ export const addIpGameFirewallRule = async (
   params: PostIpGameFirewallParams,
 ): Promise<ApiResponse<null>> =>
   apiClient.v6.post(
-    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(
-      params.ipOnGame,
-    )}/rule`,
+    `/ip/${encodeURIComponent(params.ip)}/game/${encodeURIComponent(params.ipOnGame)}/rule`,
     {
       ports: {
         from: params.startPort,

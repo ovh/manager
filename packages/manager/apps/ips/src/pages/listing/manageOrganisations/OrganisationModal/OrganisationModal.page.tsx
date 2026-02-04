@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+
 import {
   useLocation,
   useNavigate,
   useParams,
   useSearchParams,
 } from 'react-router-dom';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 import {
-  ODS_TEXT_PRESET,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
   ODS_BUTTON_COLOR,
   ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_PRESET,
   OdsPhoneNumberCountryIsoCode,
 } from '@ovhcloud/ods-components';
 import {
-  OdsModal,
-  OdsText,
-  OdsSelect,
-  OdsInput,
-  OdsPhoneNumber,
-  OdsFormField,
   OdsButton,
+  OdsFormField,
+  OdsInput,
+  OdsModal,
+  OdsPhoneNumber,
+  OdsSelect,
+  OdsText,
 } from '@ovhcloud/ods-components/react';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
@@ -34,22 +38,25 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
-import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
+
+import { CountrySelector } from '@/components/CountrySelector/country-selector.component';
 import {
-  postorputOrganisations,
+  OrgDetails,
   getOrganisationListQueryKey,
   getOrganisationsDetailsQueryKey,
-  OrgDetails,
+  postorputOrganisations,
 } from '@/data/api';
-import Loading from '../components/Loading/Loading';
-import { CountrySelector } from '@/components/CountrySelector/country-selector.component';
+import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
+import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import '../../../../index.scss';
+import Loading from '../components/Loading/Loading';
 
 export default function OrganisationsModal() {
   const queryClient = useQueryClient();
-  const [registry, setRegistry] = useState([]);
-  const [countrylist, setCountrylist] = useState([]);
+  const [registry, setRegistry] = useState<string[]>([]);
+  const [countrylist, setCountrylist] = useState<string[]>([]);
   const { t } = useTranslation([
     'manage-organisations',
     NAMESPACES?.ACTIONS,
@@ -71,7 +78,7 @@ export default function OrganisationsModal() {
   const {
     control,
     handleSubmit,
-    formState: { isDirty, isValid, isSubmitted, errors },
+    formState: { isValid, errors },
     watch,
     setError,
     clearErrors,
@@ -85,8 +92,8 @@ export default function OrganisationsModal() {
 
   useEffect(() => {
     if (!models) return;
-    setRegistry(models['nichandle.IpRegistryEnum'].enum);
-    setCountrylist(models['nichandle.CountryEnum'].enum);
+    setRegistry(models?.['nichandle.IpRegistryEnum'].enum);
+    setCountrylist(models?.['nichandle.CountryEnum'].enum);
   }, [isLoading]);
 
   const cancel = () => {
@@ -150,16 +157,21 @@ export default function OrganisationsModal() {
           : t('manageOrganisationsAddOrgTitle')}
       </OdsText>
       <form
-        className="flex flex-col gap-2"
-        onSubmit={handleSubmit((data) => {
-          trackClick({
-            actionType: 'action',
-            buttonType: ButtonType.button,
-            location: PageLocation.popup,
-            actions: [`${isEditMode ? 'edit' : 'add'}_organization`, 'confirm'],
-          });
-          postManageOrganisation(data);
-        })}
+        className="flex flex-col gap-4"
+        onSubmit={(e) => {
+          handleSubmit((data) => {
+            trackClick({
+              actionType: 'action',
+              buttonType: ButtonType.button,
+              location: PageLocation.popup,
+              actions: [
+                `${isEditMode ? 'edit' : 'add'}_organization`,
+                'confirm',
+              ],
+            });
+            postManageOrganisation(data);
+          })(e);
+        }}
       >
         {/* ip organisation selection */}
         <div className="mt-8">
@@ -204,7 +216,7 @@ export default function OrganisationsModal() {
         </div>
 
         {/* firstName and surName */}
-        <div className="flex gap-2 mt-1">
+        <div className="mt-2 flex gap-4">
           <Controller
             control={control}
             name="firstname"
@@ -250,18 +262,18 @@ export default function OrganisationsModal() {
           <Controller
             control={control}
             name="country"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="w-full mt-1">
+            render={({ field: { name, value, onChange } }) => (
+              <OdsFormField className="mt-1 w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelCountryLabel')}
                 </label>
                 <CountrySelector
                   countryCodeList={countrylist?.sort((a, b) =>
                     t(`region-selector-country-name_${a}`, {
-                      ns: 'region-selector',
+                      ns: TRANSLATION_NAMESPACES.regionSelector,
                     }).localeCompare(
                       t(`region-selector-country-name_${b}`, {
-                        ns: 'region-selector',
+                        ns: TRANSLATION_NAMESPACES.regionSelector,
                       }),
                     ),
                   )}
@@ -283,7 +295,7 @@ export default function OrganisationsModal() {
             control={control}
             name="abuse_mailbox"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full mb-1">
+              <OdsFormField className="mb-1 w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelEmailLabel')}
                 </label>
@@ -307,7 +319,7 @@ export default function OrganisationsModal() {
             control={control}
             name="address"
             render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full mb-1">
+              <OdsFormField className="mb-1 w-full">
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelAddressLabel')}
                 </label>
@@ -326,7 +338,7 @@ export default function OrganisationsModal() {
         </div>
 
         {/* city and postcode */}
-        <div className="flex gap-2 mt-1">
+        <div className="mt-2 flex gap-4">
           <Controller
             control={control}
             name="city"
@@ -376,7 +388,7 @@ export default function OrganisationsModal() {
               field: { onChange, value, name },
               fieldState: { error },
             }) => (
-              <OdsFormField className="w-full my-1" error={error?.message}>
+              <OdsFormField className="my-1 w-full" error={error?.message}>
                 <label htmlFor={name} slot="label">
                   {t('manageOrganisationsOrgModelPhoneLabel')}
                 </label>
@@ -399,7 +411,9 @@ export default function OrganisationsModal() {
                         message: t('manageOrganisationsOrgModelPhoneInvalid', {
                           countryCode: t(
                             `region-selector-country-name_${selectedCountry}`,
-                            { ns: 'region-selector' },
+                            {
+                              ns: TRANSLATION_NAMESPACES.regionSelector,
+                            },
                           ),
                         }),
                       });
@@ -411,7 +425,7 @@ export default function OrganisationsModal() {
             )}
           />
         </div>
-        <div className="flex flex-row-reverse mt-1">
+        <div className="mt-1 flex flex-row-reverse">
           <OdsButton
             className="m-1"
             type="submit"
