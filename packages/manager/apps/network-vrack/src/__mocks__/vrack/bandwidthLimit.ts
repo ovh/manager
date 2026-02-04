@@ -71,9 +71,7 @@ export const bandwidthLimitMocks = [
 export const getBandwidthLimitMocks = (): Handler[] => [
   {
     url: '/vrack/:serviceName/publicRoutingBandwidthLimit',
-    response: () => {
-      return bandwidthLimitMocks;
-    },
+    response: bandwidthLimitMocks,
     status: 200,
     method: 'get',
     api: 'v6',

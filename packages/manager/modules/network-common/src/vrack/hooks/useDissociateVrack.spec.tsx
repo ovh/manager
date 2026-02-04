@@ -7,7 +7,7 @@ import { AxiosResponseHeaders, InternalAxiosRequestConfig } from 'axios';
 import { vi } from 'vitest';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTask } from '@ovh-ux/manager-react-components';
+import { useTask } from '@ovh-ux/manager-module-common-api';
 
 import { VrackServicesProductStatus, VrackServicesWithIAM } from '../../types';
 import { useVrackService } from '../../vrack-services';
@@ -32,7 +32,7 @@ vi.mock('../../vrack-services/hooks/useVrackServices', async () => {
   };
 });
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/manager-module-common-api', () => ({
   useTask: vi.fn(),
 }));
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { UseMutationResult, useMutation } from '@tanstack/react-query';
 
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useTask } from '@ovh-ux/manager-react-components';
+import { useTask } from '@ovh-ux/manager-module-common-api';
 
 import { Task } from '../../types';
 import { associateVrackServices, associateVrackServicesQueryKey } from '../api';
@@ -15,7 +15,11 @@ export type UseAssociateVrackParams = {
 };
 
 export type UseAssociateVrackReturn = {
-  associateVs: UseMutationResult<ApiResponse<Task>, ApiError, { vrackId: string }>['mutate'];
+  associateVs: UseMutationResult<
+    ApiResponse<Task>,
+    ApiError,
+    { vrackId: string }
+  >['mutate'];
   isPending: boolean;
   isError: boolean;
   error: ApiError | null;
@@ -46,12 +50,11 @@ export const useAssociateVrack = ({
     },
   }) as UseAssociateVrackReturn;
 
-  const {
-    mutate: associateVs,
-    isPending,
-    isError,
-    error,
-  } = useMutation<ApiResponse<Task>, ApiError, { vrackId: string }>({
+  const { mutate: associateVs, isPending, isError, error } = useMutation<
+    ApiResponse<Task>,
+    ApiError,
+    { vrackId: string }
+  >({
     mutationFn: async ({ vrackId }) => {
       setVrack(vrackId);
       return associateVrackServices({

@@ -7,9 +7,7 @@ interface DashboardHeaderTitleProps {
   vrack: Vrack;
 }
 
-export const DashboardHeaderTitle = (props: DashboardHeaderTitleProps) => {
-  const vrack = props.vrack;
-
+export const DashboardHeaderTitle = ({ vrack }: DashboardHeaderTitleProps) => {
   const { mutate: updateVrackDetails } = useUpdateVrackDetails(vrack.serviceName);
 
   const onVrackNameUpdate = (updatedName: string) => {
@@ -18,9 +16,14 @@ export const DashboardHeaderTitle = (props: DashboardHeaderTitleProps) => {
       description: vrack.description,
     });
   };
+
   return (
     <div>
-      <EditableText preset="heading-2" value={vrack.name} onUpdate={onVrackNameUpdate} />
+      <EditableText
+        preset="heading-2"
+        value={vrack.name || vrack.serviceName}
+        onUpdate={onVrackNameUpdate}
+      />
     </div>
   );
 };
