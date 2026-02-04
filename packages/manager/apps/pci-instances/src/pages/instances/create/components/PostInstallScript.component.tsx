@@ -29,7 +29,7 @@ const PostInstallScript: FC = () => {
 
   return (
     <div className="mt-4 flex flex-col">
-      <Divider spacing="64" />
+      <Divider spacing="16" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-4">
           {t('pci_instance_creation_post_install_script_title')}
