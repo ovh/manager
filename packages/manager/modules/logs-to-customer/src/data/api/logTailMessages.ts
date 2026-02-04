@@ -1,4 +1,4 @@
-import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs/Logs.type';
 
 export type TMessageLevel = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -23,5 +23,6 @@ export interface IGetLogTailMessages {
 export const getLogTailMessages = async ({
   logTailMessageUrl,
 }: IGetLogTailMessages): Promise<TGetLogTailMessagesResponse> => {
-  return fetch(`${logTailMessageUrl}`).then((response) => response.json());
+  const response = await fetch(`${logTailMessageUrl}`);
+  return response.json() as Promise<TGetLogTailMessagesResponse>;
 };

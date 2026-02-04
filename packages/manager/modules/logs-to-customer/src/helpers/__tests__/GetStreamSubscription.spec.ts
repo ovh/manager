@@ -1,5 +1,5 @@
 import { logSubscriptionsMock } from '@/__mocks__/logSubscription.mock';
-import { LogSubscription } from '@/data/types/dbaas/logs';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 import getStreamSubscription from '@/helpers/getStreamSubscription';
 
 describe('getStreamSubscription test', () => {

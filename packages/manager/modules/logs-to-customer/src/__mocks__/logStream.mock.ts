@@ -3,7 +3,7 @@ import {
   StreamColdStorageCompressionEnum,
   StreamColdStorageContentEnum,
   StreamColdStorageTargetEnum,
-} from '@/data/types/dbaas/logs';
+} from '@/data/types/dbaas/logs/Logs.type';
 
 export const logStreamsMock: Stream[] = [
   {
