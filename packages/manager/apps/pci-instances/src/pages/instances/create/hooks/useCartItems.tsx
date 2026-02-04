@@ -1,8 +1,6 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { FlavorDetails } from '../components/cart/FlavorDetails.component';
-import { useCatalogPrice } from '@ovh-ux/muk';
 import { useInstanceCreation } from './useInstanceCreation';
 import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -27,9 +25,9 @@ export type TCartItemDetail = {
   id: string;
   name: string;
   description?: JSX.Element;
-  displayPrice: boolean;
-  price?: number;
+  price: number | null;
   priceUnit?: string;
+  isApproximate?: boolean;
 };
 
 type TCartItems = {
@@ -37,7 +35,6 @@ type TCartItems = {
 };
 
 export const useCartItems = (): TCartItems => {
-  const { getTextPrice } = useCatalogPrice(4);
   const { t } = useTranslation([
     'common',
     'regions',
@@ -113,18 +110,18 @@ export const useCartItems = (): TCartItems => {
           id: 'region',
           name: t(`${NAMESPACES.REGION}:localisation`),
           description: (
-            <Text preset="heading-6" className="text-[--ods-color-heading]">
-              {`${t(`regions:${localizationDetails.cityKey}`)} (${
+            <CartOptionDetailItem
+              label={`${t(`regions:${localizationDetails.cityKey}`)} (${
                 localizationDetails.datacenterDetails
               })`}
-            </Text>
+            />
           ),
-          displayPrice: false,
+          price: null,
         },
       ]
     : [];
 
-  const flavor = flavorDetails
+  const flavor: TCartItemDetail[] = flavorDetails
     ? [
         {
           id: 'flavor',
@@ -133,13 +130,12 @@ export const useCartItems = (): TCartItems => {
             <FlavorDetails quantity={quantity} flavor={flavorDetails} />
           ),
           price: flavorDetails.price,
-          displayPrice: true,
           priceUnit,
         },
       ]
     : [];
 
-  const distributionImage =
+  const distributionImage: TCartItemDetail[] =
     distributionImageVariantId && distributionImageVersionName
       ? [
           {
@@ -148,33 +144,26 @@ export const useCartItems = (): TCartItems => {
               'creation:pci_instance_creation_cart_distribution_image_title',
             ),
             description: (
-              <Text preset="heading-6" className="text-[--ods-color-heading]">
-                {distributionImageVersionName}
-              </Text>
+              <CartOptionDetailItem label={distributionImageVersionName} />
             ),
             price: windowsImageLicensePrice,
-            displayPrice: !!windowsImageLicensePrice,
             priceUnit: windowsImageLicensePrice ? priceUnit : undefined,
           },
         ]
       : [];
 
-  const sshKey = sshKeyId
+  const sshKey: TCartItemDetail[] = sshKeyId
     ? [
         {
           id: 'sshKey',
           name: t('common:pci_instances_common_ssh_key_label'),
-          description: (
-            <Text preset="heading-6" className="text-[--ods-color-heading]">
-              {sshKeyId}
-            </Text>
-          ),
-          displayPrice: false,
+          description: <CartOptionDetailItem label={sshKeyId} />,
+          price: null,
         },
       ]
     : [];
 
-  const backup = backupConfigurationPrices?.localBackupPrice
+  const backup: TCartItemDetail[] = backupConfigurationPrices?.localBackupPrice
     ? [
         {
           id: 'backup',
@@ -185,24 +174,12 @@ export const useCartItems = (): TCartItems => {
                 label={t(
                   'creation:pci_instance_creation_backup_setting_local_label',
                 )}
-                price={`~${getTextPrice(
-                  backupConfigurationPrices.localBackupPrice,
-                )}`}
-                priceUnit={t(
-                  'creation:pci_instance_creation_backup_setting_price_unit',
-                )}
               />
               {backupConfigurationPrices.distantBackupPrice && (
                 <CartOptionDetailItem
                   className="mt-2"
                   label={t(
                     'creation:pci_instance_creation_backup_setting_distant_label',
-                  )}
-                  price={`~${getTextPrice(
-                    backupConfigurationPrices.distantBackupPrice,
-                  )}`}
-                  priceUnit={t(
-                    'creation:pci_instance_creation_backup_setting_price_unit',
                   )}
                 />
               )}
@@ -211,12 +188,15 @@ export const useCartItems = (): TCartItems => {
           price:
             backupConfigurationPrices.localBackupPrice +
             (backupConfigurationPrices.distantBackupPrice ?? 0),
-          displayPrice: false,
+          priceUnit: t(
+            'creation:pci_instance_creation_backup_setting_price_unit',
+          ),
+          isApproximate: true,
         },
       ]
     : [];
 
-  const network = privateNetwork
+  const network: TCartItemDetail[] = privateNetwork
     ? [
         {
           id: 'network',
@@ -232,20 +212,16 @@ export const useCartItems = (): TCartItems => {
                   label={t(
                     'creation:pci_instance_creation_network_gateway_title',
                   )}
-                  {...(privateNetwork.gatewayPrice && {
-                    price: getTextPrice(privateNetwork.gatewayPrice),
-                  })}
                 />
               )}
             </div>
           ),
-          //TODO: Add condition on public/private/gateway etc
-          displayPrice: true,
+          price: privateNetwork.gatewayPrice,
         },
       ]
     : [];
 
-  const publicNetworkDetails = publicNetwork
+  const publicNetworkDetails: TCartItemDetail[] = publicNetwork
     ? [
         {
           id: 'publicNetwork',
@@ -258,14 +234,10 @@ export const useCartItems = (): TCartItems => {
                     ? `${quantity} x ${t(publicNetwork.labelKey)}`
                     : t(publicNetwork.labelKey)
                 }
-                {...(publicNetwork.price !== null && {
-                  price: getTextPrice(publicNetwork.price * quantity),
-                })}
               />
             </div>
           ),
-          //TODO: Add condition on public/private/gateway etc
-          displayPrice: true,
+          price: publicNetwork.price ? publicNetwork.price * quantity : null,
         },
       ]
     : [];

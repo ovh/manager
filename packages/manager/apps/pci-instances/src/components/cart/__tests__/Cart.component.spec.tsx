@@ -15,7 +15,6 @@ const instanceDetails = [
         eu-west-par
       </Text>
     ),
-    displayPrice: true,
     price: 50,
   },
   {
@@ -26,7 +25,6 @@ const instanceDetails = [
         Linux
       </Text>
     ),
-    displayPrice: true,
     price: 10,
   },
 ];
@@ -40,7 +38,7 @@ const kubeDetails = [
         DE
       </Text>
     ),
-    displayPrice: false,
+    price: null,
   },
   {
     id: 'plan',
@@ -50,7 +48,6 @@ const kubeDetails = [
         free
       </Text>
     ),
-    displayPrice: true,
     price: 30,
   },
 ];
