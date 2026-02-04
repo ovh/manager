@@ -1,0 +1,1 @@
+export * as DashboardBox from './namespace';

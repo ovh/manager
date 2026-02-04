@@ -1,5 +1,13 @@
 [
   {
+    "turbo": "--filter @ovh-ux/muk",
+    "pnpm": "packages/manager-ui-kit"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-core-api",
+    "pnpm": "packages/manager/core/api"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-react-core-application",
     "pnpm": "packages/manager/core/application"
   },

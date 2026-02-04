@@ -1,4 +1,5 @@
 [
+  "packages/manager/apps/a-testo",
   "packages/manager/apps/bmc-backup-agent-baremetal",
   "packages/manager/apps/hpc-backup-agent-iaas",
   "packages/manager/apps/account",
@@ -64,5 +65,7 @@
   "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
-  "packages/manager/modules/logs-to-customer"
+  "packages/manager/modules/logs-to-customer",
+  "packages/manager/apps/ips",
+  "packages/manager/apps/pci-file-storage"
 ]

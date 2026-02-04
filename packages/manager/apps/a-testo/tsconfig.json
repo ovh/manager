@@ -1,0 +1,17 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/public/*": ["./public/*"],
+      "@/*": ["./src/*"]
+    },
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src", "package.json"],
+  "exclude": ["node_modules", "dist", "types", "src/__tests__"]
+}
