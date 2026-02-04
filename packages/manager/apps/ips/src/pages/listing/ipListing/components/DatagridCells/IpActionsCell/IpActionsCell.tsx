@@ -23,6 +23,7 @@ import {
   useGetAttachedServices,
   useIpHasVmac,
   useIpHasAlerts,
+  useCheckVmacAvailability,
 } from '@/data/hooks';
 import {
   canAggregateByoipIp,
@@ -125,6 +126,13 @@ export const IpActionsCell = ({
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
 
+  const {
+    isLoading: isVmacCheckLoading,
+    isVmacAvailable,
+  } = useCheckVmacAvailability({
+    serviceName,
+  });
+
   const isIpExpired = expiredIps?.indexOf(ip) !== -1;
 
   const { hasAlerts } = useIpHasAlerts({
@@ -149,6 +157,11 @@ export const IpActionsCell = ({
     };
     fetchUrl();
   }, [serviceName, shell.navigation]);
+
+  const supportedVmac = (ipdtail: any) => {
+    console.log(serviceName, ipdtail);
+    return true;
+  };
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const availableGetGameFirewall =
@@ -245,7 +258,9 @@ export const IpActionsCell = ({
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
-      ipDetails?.type === IpTypeEnum.ADDITIONAL && {
+      ipDetails?.type === IpTypeEnum.ADDITIONAL &&
+      !isVmacCheckLoading &&
+      isVmacAvailable[serviceName] && {
         id: 5,
         label: t('listingActionAddVirtualMac'),
         trackingLabel: 'add_virtual-mac',
