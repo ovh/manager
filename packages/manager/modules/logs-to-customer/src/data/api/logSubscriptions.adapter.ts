@@ -1,4 +1,8 @@
-import { LogSubscription, LogSubscriptionResponse } from '@/data/types/dbaas/logs';
+import {
+  DeleteSubscriptionProps,
+  GetSubscriptionsProps,
+  PostSubscriptionProps,
+} from '@/data/api/LogSubscriptions.props';
 import {
   deleteLogSubscriptionV2,
   deleteLogSubscriptionV6,
@@ -7,11 +11,7 @@ import {
   postLogSubscriptionV2,
   postLogSubscriptionV6,
 } from '@/data/api/logSubscriptions';
-import {
-  GetSubscriptionsProps,
-  PostSubscriptionProps,
-  DeleteSubscriptionProps,
-} from '@/data/api/logSubscriptions.props';
+import { LogSubscription, LogSubscriptionResponse } from '@/data/types/dbaas/logs/Logs.type';
 
 const isApiV2 = (apiVersion: string) => apiVersion === 'v2';
 

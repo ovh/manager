@@ -1,16 +1,19 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { Button, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { BUTTON_VARIANT, Button } from '@ovhcloud/ods-react';
+
 import {
   ButtonType,
   PageLocation,
-  useOvhTracking,
   useNavigationGetUrl,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const OrderServiceButton = () => {
   const { trackClick } = useOvhTracking();
@@ -32,7 +35,7 @@ const OrderServiceButton = () => {
           actionType: 'action',
           actions: [goToOrderLogs],
         });
-        window.open(`${dedicatedUrl}/dbaas/logs/order`, '_self');
+        window.open(`${String(dedicatedUrl)}/dbaas/logs/order`, '_self');
       }}
     >
       {t('log_service_create')}

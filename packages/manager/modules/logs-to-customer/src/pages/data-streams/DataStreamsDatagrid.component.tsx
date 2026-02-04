@@ -1,41 +1,29 @@
-import React, { useContext, useMemo, useRef, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Button,
-  BUTTON_VARIANT,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Spinner,
-} from '@ovhcloud/ods-react';
+import { Button, Spinner } from '@ovhcloud/ods-react';
 
-import {
-  Datagrid,
-  DatagridColumn,
-  useColumnFilters,
-  useDataApi,
-} from '@ovh-ux/muk';
+import { FilterTypeCategories, applyFilters } from '@ovh-ux/manager-core-api';
 import {
   ButtonType,
   PageLocation,
   ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { Datagrid, type DatagridColumn, useColumnFilters, useDataApi } from '@ovh-ux/muk';
 
-import ApiError from '@/components/apiError/ApiError.component';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
 import DataStreamActions from '@/components/data-streams/DataStreamActions.component';
 import DataStreamIndexingStatus from '@/components/data-streams/DataStreamIndexingStatus.component';
 import DataStreamRetention from '@/components/data-streams/DataStreamRetention.component';
 import DataStreamSubscriptionsLink from '@/components/data-streams/DataStreamSubscriptionsLink.component';
-import { Service, Stream } from '@/data/types/dbaas/logs';
+import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
+import { Service, Stream } from '@/data/types/dbaas/logs/Logs.type';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
-import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
-import { applyFilters, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 
 const STREAM_LIST_COLUMN_ID = {
   title: 'title',
@@ -55,16 +43,9 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     shell: { navigation },
   } = useContext(ShellContext);
   const { trackClick } = useOvhTracking();
-  const addDatastreamLogsAccess = useLogTrackingActions(
-    LogsActionEnum.add_datastream_logs_access,
-  );
+  const addDatastreamLogsAccess = useLogTrackingActions(LogsActionEnum.add_datastream_logs_access);
 
-  const {
-    flattenData,
-    error,
-    isError,
-    isLoading,
-  } = useDataApi<Stream>({
+  const { flattenData, error, isError, isLoading } = useDataApi<Stream>({
     route: `/dbaas/logs/${service.serviceName}/output/graylog/stream`,
     cacheKey: [logStreamsQueryKey, service.serviceName],
     version: 'v6',
@@ -73,7 +54,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
     enabled: !!service.serviceName,
   });
 
-  const {filters, addFilter: add, removeFilter: remove } = useColumnFilters();
+  const { filters, addFilter: add, removeFilter: remove } = useColumnFilters();
   const filtersProps = useMemo(() => ({ filters, add, remove }), [filters, add, remove]);
 
   const filteredData = useMemo(
@@ -181,11 +162,7 @@ const DataStreamsDatagrid = ({ service }: { service: Service }) => {
                 actions: [addDatastreamLogsAccess],
               });
               navigation
-                .getURL(
-                  'dedicated',
-                  `#/dbaas/logs/${service.serviceName}/streams/add`,
-                  {},
-                )
+                .getURL('dedicated', `#/dbaas/logs/${service.serviceName}/streams/add`, {})
                 .then((url) => window.open(url as string, '_blank'));
             }}
           >

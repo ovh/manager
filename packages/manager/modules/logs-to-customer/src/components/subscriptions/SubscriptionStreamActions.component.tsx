@@ -1,31 +1,26 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useQueryClient } from '@tanstack/react-query';
+
 import { useNavigate } from 'react-router-dom';
 
-import { Button, BUTTON_VARIANT, Icon, ICON_NAME, Link, Spinner } from '@ovhcloud/ods-react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  getLogStreamUrlQueryKey,
-  useLogStreamUrl,
-} from '@/data/hooks/useLogStreamUrl';
-import { LogSubscription } from '@/data/types/dbaas/logs';
-import ApiError from '@/components/apiError/ApiError.component';
-import { LogsActionEnum } from '@/types/logsTracking';
-import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { BUTTON_VARIANT, Button, ICON_NAME, Icon, Link, Spinner } from '@ovhcloud/ods-react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import { getLogStreamUrlQueryKey, useLogStreamUrl } from '@/data/hooks/useLogStreamUrl';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
+import useLogTrackingActions from '@/hooks/useLogTrackingActions';
+import { LogsActionEnum } from '@/types/logsTracking';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
 };
 
-const SubscriptionStreamActions = ({
-  subscription,
-}: SubscriptionStreamItemProps) => {
+const SubscriptionStreamActions = ({ subscription }: SubscriptionStreamItemProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { t } = useTranslation(NAMESPACES.LOG_STREAM);
@@ -37,9 +32,7 @@ const SubscriptionStreamActions = ({
   const graylogObserveLogsAccess = useLogTrackingActions(
     LogsActionEnum.graylog_observe_logs_access,
   );
-  const unsubscribeLogsAccess = useLogTrackingActions(
-    LogsActionEnum.unsubscribe_logs_access,
-  );
+  const unsubscribeLogsAccess = useLogTrackingActions(LogsActionEnum.unsubscribe_logs_access);
   const { trackClick } = useOvhTracking();
 
   if (isLoading || isPending) {
@@ -54,14 +47,11 @@ const SubscriptionStreamActions = ({
     return (
       <ApiError
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
-            queryKey: getLogStreamUrlQueryKey(
-              subscription.serviceName,
-              subscription.streamId,
-            ),
-          })
-        }
+        onRetry={() => {
+          void queryClient.refetchQueries({
+            queryKey: getLogStreamUrlQueryKey(subscription.serviceName, subscription.streamId),
+          });
+        }}
         testId="logStreamUrl-error"
       />
     );

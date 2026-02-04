@@ -1,5 +1,6 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { Service, Stream } from '@/data/types/dbaas/logs';
+
+import { Service, Stream } from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * GET log stream
