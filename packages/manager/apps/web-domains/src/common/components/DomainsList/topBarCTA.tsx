@@ -25,7 +25,11 @@ export default function TopBarCTA({
   openModal,
   openDrawer,
 }: TopBarCTAProps) {
-  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([
+    'domain',
+    NAMESPACES.ACTIONS,
+    'domain-reseller',
+  ]);
   const { region, ovhSubsidiary } = useGetEnvironmentData();
   const orderUrl = getOrderURL('orderDomain', region, ovhSubsidiary);
   const [openPopover, setOpenPopover] = useState<boolean>(false);
