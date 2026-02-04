@@ -524,6 +524,20 @@ export default function DedicatedSidebar() {
               />
             ),
           },
+          feature['observability:settings:managed-dashboards'] && {
+            id: 'managed-dashboards',
+            href: navigation.getURL('observability', '#/settings/managed-dashboards'),
+            label: t('sidebar_observability_settings_managed_dashboards'),
+            pathMatcher: new RegExp('^/observability/settings/managed-dashboards'),
+            ignoreSearch: true,
+            icon: (
+              <OsdsIcon
+                name={ODS_ICON_NAME.GRAPH_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
+              />
+            ),
+          },
         ].filter(Boolean),
       });
     }
