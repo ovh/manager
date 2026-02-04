@@ -1,9 +1,9 @@
 {
   "multisite_git_state_tooltip_lastdeploy": "Konsultieren Sie die Informationen zum letzten Deployment",
   "multisite_git_state_tooltip_disabled": "Klicken Sie auf die Schaltfläche Aktion, um Git zu verknüpfen",
-  "multisite_tooltip_diagnostic_good_configuration": "Ihre Domain {{ domainName }} ist auf die IP-Adresse {{ ip }} Ihres Hostings konfiguriert",
-  "multisite_tooltip_diagnostic_not_good_configuration": "Ihre Domain {{ domainName }} ist auf die IP-Adresse {{ ip }} eines anderen Dienstes konfiguriert",
-  "multisite_tooltip_diagnostic_unconfigured": "Dieser Eintrag in Ihrer DNS-Zone funktioniert nicht. Es wurde keine Konfiguration in Ihrer DNS-Zone gefunden",
+  "multisite_tooltip_diagnostic_good_configuration": "Ihre Domain {{ domainName }} ist auf der IP-Adresse {{ ip }} Ihres Hostings korrekt konfiguriert.",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Ihre Domain {{ domainName }} verweist derzeit auf die IP-Adresse {{ externalIp }} eines anderen Hostings. Aktualisieren Sie zum Beheben dieses Problems das Feld {{ type }} in der DNS-Zone der Domain und ersetzen Sie es durch die IP-Adresse {{ ip }}.",
+  "multisite_tooltip_diagnostic_unconfigured": "In der DNS-Zone wurde keine gültige Konfiguration gefunden. Fügen Sie in der DNS-Zone der Domain {{ domainName }} ein Feld {{ type }} mit der IP-Adresse {{ ip }} hinzu, um das Problem zu beheben.",
   "multisite_git_modal_delete_association_title": "Die Verknüpfung mit Git entfernen",
   "multisite_git_modal_delete_association_description1": "Sie sind dabei, die Verknüpfung mit Git zu entfernen.",
   "multisite_git_modal_delete_association_description2": "<strong>Die Löschung gilt für alle Domains, die auf Ihr Verzeichnis verweisen.</strong>",
