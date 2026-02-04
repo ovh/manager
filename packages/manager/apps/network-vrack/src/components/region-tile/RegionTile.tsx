@@ -12,15 +12,23 @@ import { IpTable } from '../ip-table/IpTable';
 
 interface RegionTileProps {
   region: string;
+  serviceName: string;
   bandwidthLimit: number;
   ipv4List: string[];
   ipv6List: string[];
 }
 
-export const RegionTile = ({ region, bandwidthLimit, ipv4List, ipv6List }: RegionTileProps) => {
+export const RegionTile = ({
+  region,
+  serviceName,
+  bandwidthLimit,
+  ipv4List,
+  ipv6List,
+}: RegionTileProps) => {
   const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting]);
   const displayedBandwidth = converToDisplayBandwidth(bandwidthLimit);
   const formattedBandwidth = `${displayedBandwidth.value} ${displayedBandwidth.unit}`;
+
   return (
     <Card className="w-96 flex-col p-6" color={CARD_COLOR.neutral}>
       <section className="flex w-full flex-col">
@@ -36,7 +44,7 @@ export const RegionTile = ({ region, bandwidthLimit, ipv4List, ipv6List }: Regio
           </Tile.Item.Root>
         </dl>
         <div>
-          <IpTable ipv4List={ipv4List} ipv6List={ipv6List} />
+          <IpTable serviceName={serviceName} ipv4List={ipv4List} ipv6List={ipv6List} />
         </div>
       </section>
     </Card>
