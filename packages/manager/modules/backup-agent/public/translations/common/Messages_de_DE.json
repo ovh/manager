@@ -12,5 +12,5 @@
   "backup_agent_guide": "Backup-Agenten-Leitfäden",
   "baremetal_label_order_in_progress": "Die Bestellung wurde erfolgreich erhalten, Ihr Produkt wird geliefert und Sie können den Fortschritt <OrderLink>hier</OrderLink> verfolgen.",
   "server": "Server",
-  "billings_tab_description": "Hier finden Sie die aktuelle Abrechnung Ihres Tenants. Diese wird Ihnen zu Beginn des nächsten Monats in Rechnung gestellt. Um mehr darüber zu erfahren, konsultieren Sie die <Link>Dokumentation des OVHcloud Backup Agent</Link>"
+  "billings_tab_description": "Sie finden hier Ihre aktuelle Abrechnung für Ihren Tenant. Diese wird Ihnen Anfang nächsten Monats in Rechnung gestellt. Weitere Informationen finden Sie in der <Link>Dokumentation zum OVHcloud Backup Agent.</Link>"
 }

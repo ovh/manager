@@ -21,5 +21,5 @@
   "add_agent_error_resource_not_found": "Es ist ein Fehler aufgetreten. Bitte überprüfen Sie, ob der Server gültig ist.",
   "update_agent_banner_success": "Die Änderung der Richtlinie wird durchgeführt, bitte warten Sie einige Sekunden.",
   "unable_edit_agent_not_enabled": "Die Konfiguration ist verfügbar, sobald der Agent aktiviert ist.",
-  "agents_tab_description": "Hier finden Sie alle Ihre geschützten Agenten. Es ist wichtig, Ihre Konfiguration abzuschließen, damit Ihr Server gesichert wird. Um mehr darüber zu erfahren, konsultieren Sie die <Link>OVHcloud Backup Agent-Dokumentation</Link>"
+  "agents_tab_description": "Hier finden Sie alle Ihre geschützten Agents. Es ist wichtig, die Konfiguration abzuschließen, damit Ihr Server gesichert werden kann. Weitere Informationen finden Sie in der <Link>Dokumentation zum OVHcloud Backup Agent.</Link>"
 }
