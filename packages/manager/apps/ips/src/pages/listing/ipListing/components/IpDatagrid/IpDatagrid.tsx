@@ -9,7 +9,7 @@ import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
 import { useGetIpList } from '@/data/hooks/ip';
 import { ListingContext } from '../../../listingContext';
 import { urls } from '@/routes/routes.constant';
-import { ipFormatter } from '@/utils';
+import { ipFormatter, isIpMatchingSearch } from '@/utils';
 import { IpGroupDatagrid } from '../ipGroupDatagrid/ipGroupDatagrid';
 import { useIpDatagridColumns } from './useIpDatagridColumns';
 
@@ -45,7 +45,7 @@ export const IpDatagrid = () => {
 
     // filter by apiFilter.ip if exists
     const filtered = apiFilter?.ip
-      ? uniqueIpList.filter((ip) => ip.includes(apiFilter.ip))
+      ? uniqueIpList.filter((ip) => isIpMatchingSearch(ip, apiFilter.ip))
       : uniqueIpList;
     setFilteredIpList(filtered);
     setPaginatedIpList(

@@ -99,3 +99,22 @@ export function isValidReverseDomain(domain?: string, opts?: DomainOptions) {
     isValidDomain(domain.slice(0, domain.length - 2), opts)
   );
 }
+
+/**
+ * Check if an IP block matches a search term.
+ * - For complete IP searches: exact match or subnet containment
+ * - For CIDR searches (e.g. 10.0.0.5/27): extract IP and match
+ * - For partial searches: substring matching
+ */
+export function isIpMatchingSearch(block: string, ip: string): boolean {
+  const blockSplit = block?.split('/');
+  const ipSplit = ip?.split('/');
+
+  // If search contains a valid IP, use exact match + subnet check
+  if (isValidIpv4(ipSplit[0])) {
+    return blockSplit[0] === ipSplit[0] || isIpInsideBlock(block, ipSplit[0]);
+  }
+
+  // For partial searches, use substring matching
+  return block.includes(ip);
+}
