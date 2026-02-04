@@ -5,6 +5,7 @@ import { getServicesMocks } from '@ovh-ux/manager-module-common-api';
 import type { GetServicesMocksParams } from '@ovh-ux/manager-module-common-api';
 import type { NetworkConfigParams } from '@ovh-ux/manager-network-common';
 
+import { getOrderCartServiceOptionMocks } from '@/__mocks__/order/cartServiceOption';
 import { getBandwidthLimitMocks } from '@/__mocks__/vrack/bandwidthLimit';
 import { GetVrackTaskMocksParam, getVrackTaskMocks } from '@/__mocks__/vrack/tasks';
 import { getVrackMocks } from '@/__mocks__/vrack/vrack';
@@ -27,6 +28,7 @@ export const setupMswMock = (mockParams: MockParams = {}) => {
         ...getVrackMocks(),
         ...getBandwidthLimitMocks(),
         ...getVrackIpMocks(),
+        ...getOrderCartServiceOptionMocks(),
         ...getIamMocks(mockParams),
         ...getVrackTaskMocks(mockParams),
       ].map((handler) => ({

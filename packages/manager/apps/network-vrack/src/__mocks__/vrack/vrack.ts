@@ -16,9 +16,7 @@ export const vrackMocks = [
 export const getVrackMocks = (): Handler[] => [
   {
     url: '/vrack/:id',
-    response: () => {
-      return vrackMocks[0];
-    },
+    response: vrackMocks[0],
     status: 200,
     method: 'get',
     api: 'v6',

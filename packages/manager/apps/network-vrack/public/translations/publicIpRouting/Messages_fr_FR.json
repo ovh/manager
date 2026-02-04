@@ -11,6 +11,16 @@
   "publicIpRouting_region_detach_ip_message": "Êtes-vous sûr de vouloir détacher {{ip}} de votre vRack ?",
   "publicIpRouting_region_detach_ip_pending": "Détachement de l'adresse IP en cours...",
   "publicIpRouting_region_detach_ip_success": "Adresse IP {{ip}} détachée avec succès (et placée dans le « Parking IP »)",
-  "publicIpRouting_region_detach_ip_error": "Impossible de détacher l'adresse IP du vRack : {{apiError}}"
+  "publicIpRouting_region_detach_ip_error": "Impossible de détacher l'adresse IP du vRack : {{apiError}}",
+  "publicIpRouting_modify_bandwidth_button": "Modifier la bande passante",
+  "publicIpRouting_modify_bandwidth_header1": "Modifier la bande passante pour {{ region }}",
+  "publicIpRouting_modify_bandwidth_header2": "Sélectionnez une nouvelle bande passante publique:",
+  "publicIpRouting_modify_bandwidth_content": "Veuillez sélectionner une nouvelle option de bande passante publique pour votre vRack {{ vrack }} dans {{ region }}. Veuillez noter que la date de début effective et la facturation peuvent varier.",
+  "publicIpRouting_effective_next_cycle_message": "En vigueur à partir du prochain cycle de facturation",
+  "publicIpRouting_effective_directly_message": "En vigueur immédiatement",
+  "publicIpRouting_modify_bandwidth_bottom_info": "Lorsque vous passez commande, un nouvel onglet s'ouvre et vous êtes automatiquement redirigé vers l'interface de paiement pour terminer le processus.",
+  "publicIpRouting_success_order_message": "Votre commande a commencé dans un nouvel onglet. Veuillez la terminer pour finaliser votre achat. Si le nouvel onglet ne s'ouvre pas, <Link>cliquez ici.</Link>",
+  "free_public_ip_routing_bandwidth_option_price": "Gratuit",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Votre bande passante sera ramenée à l’option par défaut au prochain cycle de facturation. Aucune commande n’est nécessaire."
 }
 

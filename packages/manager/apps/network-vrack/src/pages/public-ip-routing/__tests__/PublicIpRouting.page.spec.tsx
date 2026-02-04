@@ -24,7 +24,7 @@ describe('PublicIpRouting', () => {
     ];
     await Promise.all(expectedIps.map((ip) => checkTextInScreen(ip)));
 
-    await checkTextInScreen('5 GB', 4);
+    await checkTextInScreen('5 unit_size_GB', 4);
 
     const unExpectedRegions = [
       'eu-south-mil',

@@ -25,9 +25,7 @@
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
-  "dependencies": {
-    "@ovh-ux/manager-react-components": "^2.43.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-test-utils": "^0.11.8",
@@ -37,10 +35,13 @@
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "msw": "2.1.7",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-api": "^0.21.2",
+    "@ovh-ux/manager-module-common-api": "^0.6.7",
+    "@ovh-ux/manager-module-order": "^0.14.1",
     "@tanstack/react-query": "5.x",
     "react": "18.x"
   }

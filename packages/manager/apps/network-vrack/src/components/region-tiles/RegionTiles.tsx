@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { SPINNER_SIZE, Spinner, Text } from '@ovhcloud/ods-react';
 
+import { useVrackBandwidthCartOptions } from '@ovh-ux/manager-network-common';
+
 import { useGetBandwidthByRegions } from '@/hooks/vrack-ip/useGetBandwidthByRegions';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
@@ -15,8 +17,13 @@ export const RegionTiles = (props: RegionTilesProps) => {
   const serviceName = props.serviceName;
   const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting]);
   const { regionsWithBandwidth, isLoading } = useGetBandwidthByRegions(serviceName);
+  const { vrackCartBandwidthOptionListByRegion, isLoading: isVrackCartOptionLoading } =
+    useVrackBandwidthCartOptions({
+      serviceName,
+      regions: regionsWithBandwidth.map(({ region }) => region),
+    });
 
-  return isLoading ? (
+  return isLoading || isVrackCartOptionLoading ? (
     <div className="flex w-full justify-center">
       <Spinner size={SPINNER_SIZE.lg} />
     </div>
@@ -30,6 +37,7 @@ export const RegionTiles = (props: RegionTilesProps) => {
           bandwidthLimit={bandwidthLimit}
           ipv4List={ipv4List}
           ipv6List={ipv6List}
+          bandwidthOptionList={vrackCartBandwidthOptionListByRegion[region] || []}
         />
       ))}
     </div>

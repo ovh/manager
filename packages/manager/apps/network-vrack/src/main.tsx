@@ -33,10 +33,12 @@ const init = async (appName: string) => {
     defaultNS: appName,
     ns: [
       NAMESPACES.ACTIONS,
+      NAMESPACES.BYTES,
       TRANSLATION_NAMESPACES.dashboard,
       TRANSLATION_NAMESPACES.onboarding,
       TRANSLATION_NAMESPACES.common,
       TRANSLATION_NAMESPACES.publicIpRouting,
+      TRANSLATION_NAMESPACES.error,
     ],
   });
 
