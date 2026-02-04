@@ -7,9 +7,11 @@ import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWra
 import { TQuantityHintParams } from '@/pages/instances/create/view-models/cartViewModel';
 import { ComponentProps } from 'react';
 
+const getTextPriceMock = (price: number) => `${(price / 100).toFixed(4)} €`;
+
 vi.mock('@ovh-ux/muk', () => ({
   useCatalogPrice: () => ({
-    getTextPrice: (price: number) => `${(price / 100).toFixed(4)} €`,
+    getTextPrice: vi.fn().mockImplementation(getTextPriceMock),
   }),
 }));
 
@@ -26,25 +28,23 @@ const detailsData = [
     nameText: imageName,
     descriptionText: imageDescriptionName,
     price: imagePrice,
-    displayPrice: true,
     priceUnit: 'HT/heure',
   },
   {
     id: 'network',
     nameText: networkName,
     descriptionText: networkDescriptionName,
-    displayPrice: false,
+    price: null,
   },
 ];
 
 const details: TCartItemDetail[] = detailsData.map(
-  ({ id, nameText, descriptionText, price, displayPrice, priceUnit }) => ({
+  ({ id, nameText, descriptionText, price, priceUnit }) => ({
     id,
     name: nameText,
     description: (
       <p data-testid={`cart-item-description-${nameText}`}>{descriptionText}</p>
     ),
-    displayPrice,
     price,
     priceUnit,
   }),
@@ -70,7 +70,9 @@ describe('Considering CartItemDetails component', () => {
     const imageDetails = screen.getByTestId(`cart-item-details-${imageName}`);
     expect(imageDetails).toHaveTextContent(imageName);
     expect(imageDetails).toHaveTextContent(imageDescriptionName);
-    expect(imageDetails).toHaveTextContent(String(imagePrice));
+    expect(imageDetails).toHaveTextContent(
+      `${getTextPriceMock(imagePrice)} HT/heure`,
+    );
 
     const networkDetails = screen.getByTestId(
       `cart-item-details-${networkName}`,
@@ -107,5 +109,25 @@ describe('Considering CartItemDetails component', () => {
     const quantitySelector = screen.getByRole('spinbutton', { hidden: true });
     expect(quantitySelector).toBeInTheDocument();
     expect(quantitySelector).toHaveAttribute('aria-valuemax', '10');
+  });
+
+  test('Should display ~ prefix when price is approximate', () => {
+    const approximateDetails: TCartItemDetail[] = [
+      {
+        id: 'approx',
+        name: 'Approximate item',
+        description: <span>Description</span>,
+        price: 1000,
+        priceUnit: 'HT/heure',
+        isApproximate: true,
+      },
+    ];
+
+    renderCartItemDetails({ details: approximateDetails });
+
+    const priceElement = screen.getByTestId('cart-item-details-price');
+    expect(priceElement).toHaveTextContent(
+      `~${getTextPriceMock(1000)} HT/heure`,
+    );
   });
 });

@@ -16,7 +16,7 @@ const details: TCartItemDetail[] = [
   {
     id: 'localisation',
     name: 'localisation',
-    displayPrice: false,
+    price: null,
   },
 ];
 

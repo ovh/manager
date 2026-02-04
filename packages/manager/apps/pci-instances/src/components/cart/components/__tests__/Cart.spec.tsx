@@ -29,8 +29,7 @@ describe('Cart', () => {
     details: Array<{
       id: string;
       name: string;
-      displayPrice: boolean;
-      price?: number;
+      price: number | null;
       priceUnit?: string;
     }>,
   ): TCartItem => ({
@@ -44,12 +43,11 @@ describe('Cart', () => {
     it('should exclude backup prices from total in hourly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 1000 },
-          { id: 'image', name: 'Image', displayPrice: true, price: 500 },
+          { id: 'flavor', name: 'Flavor', price: 1000 },
+          { id: 'image', name: 'Image', price: 500 },
           {
             id: 'backup',
             name: 'Backup auto (local)',
-            displayPrice: false,
             price: 200,
           },
         ]),
@@ -71,17 +69,15 @@ describe('Cart', () => {
     it('should exclude backup prices from total in monthly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Modèle', displayPrice: true, price: 20000 },
+          { id: 'flavor', name: 'Modèle', price: 20000 },
           {
             id: 'backup',
             name: 'Sauvegarde auto (local)',
-            displayPrice: false,
             price: 300,
           },
           {
             id: 'backup',
             name: 'Sauvegarde auto (distant)',
-            displayPrice: false,
             price: 400,
           },
         ]),
@@ -103,9 +99,9 @@ describe('Cart', () => {
     it('should include all items when no backups in hourly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 1000 },
-          { id: 'image', name: 'Image', displayPrice: true, price: 500 },
-          { id: 'network', name: 'Network', displayPrice: true, price: 300 },
+          { id: 'flavor', name: 'Flavor', price: 1000 },
+          { id: 'image', name: 'Image', price: 500 },
+          { id: 'network', name: 'Network', price: 300 },
         ]),
       ];
 
@@ -125,9 +121,9 @@ describe('Cart', () => {
     it('should handle items without prices', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 1000 },
-          { id: 'sshKey', name: 'SSH Key', displayPrice: false },
-          { id: 'region', name: 'Region', displayPrice: false },
+          { id: 'flavor', name: 'Flavor', price: 1000 },
+          { id: 'sshKey', name: 'SSH Key', price: null },
+          { id: 'region', name: 'Region', price: null },
         ]),
       ];
 
@@ -149,7 +145,7 @@ describe('Cart', () => {
     it('should display hourly and monthly estimation in hourly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 1000 },
+          { id: 'flavor', name: 'Flavor', price: 1000 },
         ]),
       ];
 
@@ -170,7 +166,7 @@ describe('Cart', () => {
     it('should display only monthly estimation in monthly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Modèle', displayPrice: true, price: 2000 },
+          { id: 'flavor', name: 'Modèle', price: 2000 },
         ]),
       ];
 
@@ -193,8 +189,8 @@ describe('Cart', () => {
     it('should convert hourly items to monthly in monthly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 10000 },
-          { id: 'volume', name: 'Volume', displayPrice: true, price: 100 },
+          { id: 'flavor', name: 'Flavor', price: 10000 },
+          { id: 'volume', name: 'Volume', price: 100 },
         ]),
       ];
 
@@ -215,9 +211,9 @@ describe('Cart', () => {
     it('should treat all items as hourly in hourly mode', () => {
       const cartItems: TCartItem[] = [
         createMockCartItem('instance', 'Instance', [
-          { id: 'flavor', name: 'Flavor', displayPrice: true, price: 100 },
-          { id: 'volume', name: 'Volume', displayPrice: true, price: 50 },
-          { id: 'network', name: 'Network', displayPrice: true, price: 25 },
+          { id: 'flavor', name: 'Flavor', price: 100 },
+          { id: 'volume', name: 'Volume', price: 50 },
+          { id: 'network', name: 'Network', price: 25 },
         ]),
       ];
 

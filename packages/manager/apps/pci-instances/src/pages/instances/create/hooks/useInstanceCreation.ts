@@ -80,7 +80,7 @@ export const getPublicNetworkCartItem = ({
   ipPublicType,
   publicIpPrices,
 }: {
-  ipPublicType: 'basicIp' | 'floatingIp' | null;
+  ipPublicType: 'basicIp' | 'floatingIp' | 'existingFloatingIp' | null;
   publicIpPrices?: TPublicIpPrices | null;
 }) => {
   switch (ipPublicType) {
@@ -93,6 +93,11 @@ export const getPublicNetworkCartItem = ({
       return {
         labelKey: 'creation:pci_instance_creation_cart_public_ip_floating',
         price: publicIpPrices?.floatingIp ?? null,
+      };
+    case 'existingFloatingIp':
+      return {
+        labelKey: 'creation:pci_instance_creation_cart_public_ip_floating',
+        price: null,
       };
     default:
       return null;
@@ -269,10 +274,12 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const publicNetwork = useMemo(
     () =>
       getPublicNetworkCartItem({
-        ipPublicType,
+        ipPublicType: existingFloatingIpId
+          ? 'existingFloatingIp'
+          : ipPublicType,
         publicIpPrices,
       }),
-    [ipPublicType, publicIpPrices],
+    [ipPublicType, publicIpPrices, existingFloatingIpId],
   );
 
   const handleSuccess = () => {
