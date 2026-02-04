@@ -27,3 +27,8 @@ export const RENEW_URL: Record<string, string> = {
 };
 
 export const DOMAIN = 'DOMAIN';
+
+export const domainsListApiURl = '/domain/name';
+export const resellerDomainsListApiUrl = (contactBilling: string) => {
+  return `/domain/name?contactBilling=${contactBilling}`;
+};
