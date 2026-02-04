@@ -20,6 +20,7 @@ import { useGetIamUser } from '@/data/hooks/useGetIamUser';
 import { useParam } from '@/hooks/useParam';
 import { useIamUserTokenList } from '@/data/hooks/useGetIamUserTokens';
 import { useDatagridColumn } from '@/pages/permanentTokens/listing/useDatagridColumn';
+import { TokenSecretProvider } from '@/contexts/token-secret.context';
 import { subRoutes } from '@/routes/routes.constant';
 import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 
@@ -126,9 +127,11 @@ export default function PermanentTokensListing() {
           getRowId={(token) => token.name}
         />
       )}
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <TokenSecretProvider>
+        <Suspense>
+          <Outlet />
+        </Suspense>
+      </TokenSecretProvider>
     </BaseLayout>
   );
 }

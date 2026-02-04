@@ -7,6 +7,7 @@ export const subRoutes = {
   permanentTokensAdd: 'add',
   permanentTokensEdit: 'edit/:tokenId',
   permanentTokensDelete: 'delete/:tokenId',
+  permanentTokensView: 'view',
 };
 
 export const urls = {
@@ -20,4 +21,5 @@ export const urls = {
   permanentTokensAdd: `/${subRoutes.permanentTokens}/${subRoutes.permanentTokensAdd}`,
   permanentTokensEdit: `/${subRoutes.permanentTokens}/${subRoutes.permanentTokensEdit}`,
   permanentTokensDelete: `/${subRoutes.permanentTokens}/${subRoutes.permanentTokensDelete}`,
+  permanentTokensView: `/${subRoutes.permanentTokens}/${subRoutes.permanentTokensView}`,
 };
