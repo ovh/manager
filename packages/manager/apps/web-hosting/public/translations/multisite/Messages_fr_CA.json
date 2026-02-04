@@ -1,9 +1,9 @@
 {
   "multisite_git_state_tooltip_lastdeploy": "Consulter les informations du dernier déploiement",
   "multisite_git_state_tooltip_disabled": "Cliquez sur le bouton action pour associer Git",
-  "multisite_tooltip_diagnostic_good_configuration": "Votre domaine {{ domainName }} est configuré sur l'adresse IP {{ ip }} de votre hébergement",
-  "multisite_tooltip_diagnostic_not_good_configuration": "Votre domaine {{ domainName }} est configuré vers l'adresse IP {{ ip }} d'un autre service",
-  "multisite_tooltip_diagnostic_unconfigured": "Cette entrée dans votre zone DNS ne fonctionne pas. Aucune configuration n'a été trouvée dans votre zone DNS",
+  "multisite_tooltip_diagnostic_good_configuration": "Votre domaine {{ domainName }} est correctement configuré sur l'adresse IP {{ ip }} de votre hébergement",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Votre domaine {{ domainName }} pointe actuellement vers l'adresse IP {{ externalIp }} d'un autre hébergement. Pour corriger cela, mettez à jour le champ {{ type }} dans la zone DNS du domaine et remplacez-le par l'adresse IP {{ ip }}.",
+  "multisite_tooltip_diagnostic_unconfigured": "Aucune configuration valide n'a été trouvée dans la zone DNS. Pour résoudre le problème, ajoutez un champ {{ type }} avec l'adresse IP {{ ip }} dans la zone DNS du domaine {{ domainName }}.",
   "multisite_git_modal_delete_association_title": "Supprimer l'association de Git",
   "multisite_git_modal_delete_association_description1": "Vous êtes sur le point de supprimer l'association de Git.",
   "multisite_git_modal_delete_association_description2": "<strong>La suppression s'appliquera sur l'ensemble des domaines pointant sur votre répertoire.</strong>",
