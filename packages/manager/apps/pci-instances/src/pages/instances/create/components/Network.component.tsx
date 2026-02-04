@@ -73,7 +73,9 @@ const Network: FC = () => {
 
   const initializePrivateNetworkFields = useCallback(() => {
     setValue('subnetId', networks?.[0]?.value ?? null);
-    setValue('newPrivateNetwork', null);
+    setValue('newPrivateNetwork', null, {
+      shouldValidate: true,
+    });
   }, [networks, setValue]);
 
   useEffect(() => {
