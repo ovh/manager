@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-telecom",
-  "version": "16.23.2",
+  "version": "16.24.0",
   "private": true,
   "description": "OVHcloud Telecom control panel.",
   "repository": {
@@ -43,7 +43,7 @@
     "@ovh-ux/ng-ovh-browser-alert": "^2.1.7",
     "@ovh-ux/ng-ovh-chart": "^1.3.5",
     "@ovh-ux/ng-ovh-checkbox-table": "^2.1.7",
-    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.18.4",
+    "@ovh-ux/ng-ovh-cloud-universe-components": "^2.19.0",
     "@ovh-ux/ng-ovh-contact": "^5.3.3",
     "@ovh-ux/ng-ovh-contracts": "^4.6.6",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.1.8",

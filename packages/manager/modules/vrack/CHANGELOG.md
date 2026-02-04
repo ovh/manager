@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.21.3...@ovh-ux/manager-vrack@1.22.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4629] ([46e10f4](https://github.com/ovh/manager/commit/46e10f49fe1a719fe97016f4033c33b1a0e982e6))
+
+
+### Features
+
+* **vrack:** vcd service on vrack ([#21848](https://github.com/ovh/manager/issues/21848)) ([2c88ee0](https://github.com/ovh/manager/commit/2c88ee0366f216e2823f76f4cbfca9c737cbddd5)), closes [#MANAGER-17025](https://github.com/ovh/manager/issues/MANAGER-17025)
+
+
+
+
+
 ## [1.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.21.2...@ovh-ux/manager-vrack@1.21.3) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-vrack
