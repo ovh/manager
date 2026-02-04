@@ -16,6 +16,11 @@ describe('Modal Tests', () => {
     expect(screen.queryByTestId('test-input')).toBeInTheDocument();
   });
 
+  it('does not display modal-header if not provided', () => {
+    renderModal({ children: <ModalContent /> });
+    expect(screen.queryByRole('heading', { level: 4 })).not.toBeInTheDocument();
+  });
+
   it('displays the modal with actions and calls onClick', () => {
     renderModal({ heading, children: <ModalContent />, ...actions });
     const primaryButton = screen.getByTestId('primary-button');
@@ -102,7 +107,7 @@ describe('Modal Tests', () => {
     expect(secondaryButton.querySelector('[data-ods="spinner"]')).toBeInTheDocument();
   });
 
-  it('displays he modal whith new test ids', () => {
+  it('displays the modal with new test ids', () => {
     renderModal({
       heading,
       children: <ModalContent />,

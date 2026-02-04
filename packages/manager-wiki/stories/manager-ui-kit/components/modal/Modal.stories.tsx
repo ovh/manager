@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { MODAL_COLOR } from '@ovhcloud/ods-react';
-import { Modal, Button } from '@ovh-ux/muk';
+import { Modal, Button, MODAL_TYPE } from '@ovh-ux/muk';
 import {
   actions as actionsMock,
   basic as basicMock,
@@ -12,7 +11,7 @@ import {
 
 const ModalStory = ({
   heading,
-  type = MODAL_COLOR.neutral,
+  type = MODAL_TYPE.information,
   loading,
   primaryButton,
   secondaryButton,
@@ -108,7 +107,7 @@ Type.parameters = {
     source: {
       code: `<Modal
   heading="Example of modal"
-  type={MODAL_COLOR.warning}
+  type={MODAL_TYPE.critical}
   open={true}
   primaryButton={{
     label: 'Confirm',
