@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.14...@ovh-ux/manager-vps@2.50.15) (2026-02-04)
+
+
+### Bug Fixes
+
+* **dedicated:** handle additional disk price period in vps ([f361bb8](https://github.com/ovh/manager/commit/f361bb881fe82c4e5b1ad3ed3d8984a34aebb870)), closes [#PRDCOL-327](https://github.com/ovh/manager/issues/PRDCOL-327)
+
+
+
+
+
 ## [2.50.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.13...@ovh-ux/manager-vps@2.50.14) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-vps

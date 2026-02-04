@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.44.0...@ovh-ux/manager-okms-app@0.44.1) (2026-02-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-okms-app
+
+
+
+
+
 # [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.43.7...@ovh-ux/manager-okms-app@0.44.0) (2026-02-03)
 
 

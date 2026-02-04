@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-vmware-public-vcf-aas-app",
-  "version": "0.30.0",
+  "version": "0.30.1",
   "private": true,
   "description": "New managed VMware Public VCF aas offers",
   "repository": {
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.1",
-    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "^0.5.0",
