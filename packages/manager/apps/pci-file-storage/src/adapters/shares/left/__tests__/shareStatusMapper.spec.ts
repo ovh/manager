@@ -6,7 +6,6 @@ describe('getShareStatusDisplay', () => {
   it.each([
     { status: 'available', labelKey: 'list:status.active', badgeColor: 'success' },
     { status: 'creating', labelKey: 'list:status.pending', badgeColor: 'warning' },
-    { status: 'updating', labelKey: 'list:status.pending', badgeColor: 'warning' },
     { status: 'error', labelKey: 'list:status.error', badgeColor: 'critical' },
     { status: 'deleting', labelKey: 'list:status.pending', badgeColor: 'warning' },
     { status: 'deleted', labelKey: 'list:status.na', badgeColor: 'neutral' },

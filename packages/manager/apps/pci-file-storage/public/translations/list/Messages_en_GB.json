@@ -6,7 +6,12 @@
     "protocol": "Protocol",
     "allocated_capacity": "Allocated Capacity",
     "allocated_capacity_value": "{{capacity}} GiB",
-    "status": "Status"
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "actions": {
+    "manage": "Manage",
+    "delete": "Delete"
   },
   "status": {
     "active": "Active",

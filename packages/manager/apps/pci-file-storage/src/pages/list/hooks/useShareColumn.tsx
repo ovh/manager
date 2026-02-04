@@ -10,6 +10,7 @@ import { DatagridColumn } from '@ovh-ux/muk';
 
 import { TShareListRow } from '@/adapters/shares/left/shareList.data';
 import { ShareStatusBadge } from '@/components/status-badge/ShareStatusBadge.component';
+import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component';
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
   const { t } = useTranslation(['list', 'regions']);
@@ -28,7 +29,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
             <Text preset="paragraph">{row.original.id}</Text>
           </div>
         ),
-        size: 400,
+        minSize: 300,
       },
       {
         id: 'region',
@@ -50,6 +51,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           const capacity = getValue<number>() ?? 0;
           return t('list:columns.allocated_capacity_value', { capacity });
         },
+        size: 80,
       },
       {
         id: 'status',
@@ -59,6 +61,17 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           const { labelKey, badgeColor } = row.original.statusDisplay;
           return <ShareStatusBadge labelKey={labelKey} badgeColor={badgeColor} />;
         },
+        size: 50,
+      },
+      {
+        id: 'actions',
+        header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
+        cell: ({ row }) => (
+          <div className="flex justify-center">
+            <ActionsMenu items={row.original.actions} />
+          </div>
+        ),
+        size: 50,
       },
     ],
     [t],

@@ -1,37 +1,23 @@
-import { TShare, TShareStatus } from '@/domain/entities/share.entity';
+import { TShare, TShareEnabledAction, isValidShareStatus } from '@/domain/entities/share.entity';
 
-import { TShareDto } from './dto.type';
+import { TShareCapabilityDto, TShareDto } from './dto.type';
 
-const isValidShareStatus = (s: string): s is TShareStatus =>
-  [
-    'available',
-    'awaiting_transfer',
-    'backup_creating',
-    'backup_restoring',
-    'backup_restoring_error',
-    'creating',
-    'creating_from_snapshot',
-    'deleted',
-    'deleting',
-    'error',
-    'error_deleting',
-    'extending',
-    'extending_error',
-    'inactive',
-    'manage_error',
-    'manage_starting',
-    'migrating',
-    'migrating_to',
-    'replication_change',
-    'reverting',
-    'reverting_error',
-    'shrinking',
-    'shrinking_error',
-    'shrinking_possible_data_loss_error',
-    'unmanage_error',
-    'unmanage_starting',
-    'unmanaged',
-  ].includes(s);
+const CAPABILITY_TO_ACTION: Map<string, TShareEnabledAction> = new Map([
+  ['acl_management', 'acl_management'],
+  ['share_delete', 'delete'],
+  ['share_edit', 'edit'],
+  ['share_revert_from_snapshot', 'revert_from_snapshot'],
+  ['snapshot_management', 'snapshot_management'],
+  ['share_update_size', 'update_size'],
+]);
+
+export const capabilitiesToEnabledActions = (
+  capabilities: TShareCapabilityDto[],
+): readonly TShareEnabledAction[] =>
+  capabilities
+    .filter((c) => c.enabled)
+    .map((c) => CAPABILITY_TO_ACTION.get(c.name))
+    .filter((a) => !!a);
 
 export const mapShareDtoToShare = (dto: TShareDto): TShare => ({
   id: dto.id,
@@ -44,4 +30,5 @@ export const mapShareDtoToShare = (dto: TShareDto): TShare => ({
   createdAt: dto.createdAt,
   description: dto.description,
   isPublic: dto.isPublic,
+  enabledActions: capabilitiesToEnabledActions(dto.capabilities),
 });
