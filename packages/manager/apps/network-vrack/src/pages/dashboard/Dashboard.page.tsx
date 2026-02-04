@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Spinner, Tab, TabList, Tabs } from '@ovhcloud/ods-react';
 import type { TabsValueChangeEvent } from '@ovhcloud/ods-react';
 
-import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
+import { BaseLayout, ChangelogMenu, GuideMenu, Notifications } from '@ovh-ux/muk';
 
 import { DashboardHeaderTitle } from '@/components/DashboardHeaderTitle';
 import { DashboardSubtitle } from '@/components/DashboardSubtitle';
@@ -47,6 +47,7 @@ export default function DashboardPage() {
           changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} chapters={CHANGELOG_CHAPTERS} />,
           guideMenu: <GuideMenu items={guideItems} />,
         }}
+        message={<Notifications />}
         tabs={
           <>
             <span className="flex">

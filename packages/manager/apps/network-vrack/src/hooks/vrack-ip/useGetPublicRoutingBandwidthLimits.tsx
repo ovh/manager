@@ -5,8 +5,11 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   PublicRoutingBandwidthLimit,
   getPublicRoutingBandwidthLimit,
-  getPublicRoutingBandwidthLimitQueryKey,
 } from '@/data/api/get/publicRoutingBandwidthLimit';
+
+export const getPublicRoutingBandwidthLimitQueryKey = (serviceName: string) => [
+  `/vrack/${serviceName}/publicRoutingBandwidthLimit`,
+];
 
 export const useGetPublicRoutingBandwidthLimits = (serviceName: string = '') => {
   const { data, isLoading, isError } = useQuery<PublicRoutingBandwidthLimit[], ApiError>({

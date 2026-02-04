@@ -4,6 +4,12 @@
   "publicIpRouting_note_value": "La bande passante publique affichée est spécifique à ce vRack et à la région, et représente le trafic sortant (du réseau OVHcloud vers Internet) utilisé par l’ensemble des adresses IP supplémentaires de cet emplacement.",
   "publicIpRouting_purpose": "Utilisez le vRack pour exposer vos services à Internet lorsque cela est nécessaire.",
   "publicIpRouting_region_publicBandwidth": "Bande passante publique",
-  "publicIpRouting_region_attached_ip_addresses": "Adresses IP jointes"
+  "publicIpRouting_region_attached_ip_addresses": "Adresses IP jointes",
+  "publicIpRouting_region_detach_ip_tooltip": "Supprimer les adresses IP de votre vRack",
+  "publicIpRouting_region_detach_ip_title": "Détacher un service",
+  "publicIpRouting_region_detach_ip_message": "Êtes-vous sûr de vouloir détacher {{ip}} de votre vRack ?",
+  "publicIpRouting_region_detach_ip_pending": "Détachement de l'adresse IP en cours...",
+  "publicIpRouting_region_detach_ip_success": "Adresse IP {{ip}} détachée avec succès (et placée dans le « Parking IP »)",
+  "publicIpRouting_region_detach_ip_error": "Impossible de détacher l'adresse IP du vRack : {{apiError}}"
 }
 

@@ -11,32 +11,20 @@ export interface Ipv6Detail {
   region: string | null;
 }
 
-export const getVrackIpv4ListKey = (serviceName: string) => [`/vrack/${serviceName}/ip`];
-
 export const getVrackIpv4List = async (serviceName: string): Promise<string[]> => {
   const { data } = await v6.get<string[]>(`/vrack/${serviceName}/ip`);
   return data;
 };
-
-export const getVrackIpv4DetailKey = (serviceName: string, ip: string) => [
-  `/vrack/${serviceName}/ip/${encodeURIComponent(ip)}`,
-];
 
 export const getVrackIpv4Detail = async (serviceName: string, ip: string): Promise<Ipv4Detail> => {
   const { data } = await v6.get<Ipv4Detail>(`/vrack/${serviceName}/ip/${encodeURIComponent(ip)}`);
   return data;
 };
 
-export const getVrackIpv6ListKey = (serviceName: string) => [`/vrack/${serviceName}/ipv6`];
-
 export const getVrackIpv6List = async (serviceName: string): Promise<string[]> => {
   const { data } = await v6.get<string[]>(`/vrack/${serviceName}/ipv6`);
   return data;
 };
-
-export const getVrackIpv6DetailKey = (serviceName: string, ip: string) => [
-  `/vrack/${serviceName}/ipv6/${encodeURIComponent(ip)}`,
-];
 
 export const getVrackIpv6Detail = async (serviceName: string, ip: string): Promise<Ipv6Detail> => {
   const { data } = await v6.get<Ipv6Detail>(`/vrack/${serviceName}/ipv6/${encodeURIComponent(ip)}`);

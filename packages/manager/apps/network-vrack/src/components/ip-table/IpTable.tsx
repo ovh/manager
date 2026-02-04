@@ -1,39 +1,71 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { Table } from '@ovhcloud/ods-react';
 
+import { useVrackTasksContext } from '@/contexts/vrack-tasks/useVrackTasks';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 import { IpTableBlock } from './ip-table-block/IpTableBlock';
 
 interface IpTableProps {
+  serviceName: string;
   ipv4List: string[];
   ipv6List: string[];
 }
 
+type IpType = 'ipV4' | 'ipV6';
+
 type IpBlock = {
   ip: string;
+  ipType: IpType;
   bridgedSubrange: string[];
   opened: boolean;
+  hasTask: boolean;
 };
 
-export const IpTable = ({ ipv4List, ipv6List }: IpTableProps) => {
+export const IpTable = ({ serviceName, ipv4List, ipv6List }: IpTableProps) => {
   const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting]);
-  const [ipBlocks, setIpBlocks] = useState<IpBlock[]>([
-    ...ipv4List.map((ip) => ({ ip, bridgedSubrange: [], opened: false })),
-    ...ipv6List.map((ip) => ({ ip, bridgedSubrange: [], opened: false })),
-  ]);
+  const { vrackTasks } = useVrackTasksContext();
+  const [openedBlocks, setOpenedBlocks] = useState<string[]>([]);
+
+  const ipv4Blocks: IpBlock[] = useMemo(
+    () =>
+      ipv4List.map((ip) => ({
+        ip,
+        ipType: 'ipV4' as IpType,
+        bridgedSubrange: [],
+        opened: false,
+        hasTask: vrackTasks.some(({ targetDomain }) => targetDomain === ip),
+      })),
+    [ipv4List, vrackTasks],
+  );
+
+  const ipv6Blocks: IpBlock[] = useMemo(
+    () =>
+      ipv6List.map((ip) => ({
+        ip,
+        ipType: 'ipV6' as IpType,
+        bridgedSubrange: [],
+        opened: openedBlocks.includes(ip),
+        hasTask: false,
+      })),
+    [ipv6List, openedBlocks],
+  );
 
   const toggleDisplayIpBlock = useCallback(
     (ip: string) => {
-      const updatedIpBlocks = ipBlocks.map((block) =>
-        ip === block.ip ? { ...block, opened: !block.opened } : block,
-      );
-      setIpBlocks(updatedIpBlocks);
+      const updatedBlocks = [...openedBlocks];
+      const matchingIdx = openedBlocks.findIndex((openedIp) => openedIp === ip);
+      if (matchingIdx !== -1) {
+        updatedBlocks.splice(matchingIdx, 1);
+      } else {
+        updatedBlocks.push(ip);
+      }
+      setOpenedBlocks(updatedBlocks);
     },
-    [ipBlocks],
+    [openedBlocks],
   );
 
   return (
@@ -48,9 +80,19 @@ export const IpTable = ({ ipv4List, ipv6List }: IpTableProps) => {
         </tr>
       </thead>
       <tbody>
-        {ipBlocks.map((ipBlock, idx) => (
+        {ipv4Blocks.map((ipBlock, idx) => (
           <IpTableBlock
             {...ipBlock}
+            serviceName={serviceName}
+            rowIdx={idx}
+            onIpBlockToggled={toggleDisplayIpBlock}
+            key={ipBlock.ip}
+          />
+        ))}
+        {ipv6Blocks.map((ipBlock, idx) => (
+          <IpTableBlock
+            {...ipBlock}
+            serviceName={serviceName}
             rowIdx={idx}
             onIpBlockToggled={toggleDisplayIpBlock}
             key={ipBlock.ip}

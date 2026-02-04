@@ -6,10 +6,6 @@ export interface PublicRoutingBandwidthLimit {
   region: string;
 }
 
-export const getPublicRoutingBandwidthLimitQueryKey = (serviceName: string) => [
-  `/vrack/${serviceName}/publicRoutingBandwidthLimit`,
-];
-
 export const getPublicRoutingBandwidthLimit = async (
   serviceName: string,
 ): Promise<PublicRoutingBandwidthLimit[]> => {

@@ -19,3 +19,9 @@ export const ONBOARDING_CONFIG: OnboardingConfigType = {
     faq: docUrl,
   },
 };
+
+export const INVALIDATED_REFRESH_PERIOD = 5000;
+
+export const PENDING_TASKS_STATUSES = ['todo', 'init', 'doing'];
+
+export const REMOVE_BLOCK_FROM_BRIDGE_DOMAIN_TASK_FUNCTION = 'removeBlockFromBridgeDomain';
