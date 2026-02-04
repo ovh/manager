@@ -27,5 +27,8 @@
   "sms_order_account_channel_transactional_description": "Der transaktionale Kanal ist für den Versand von SMS über das SMPP-Protokoll zu nichtkommerziellen Zwecken (2FA, Benachrichtigungen, Termine usw.) bestimmt",
   "sms_order_account_channel_transactional_footer": "Sie unterliegt weniger strengen Vorschriften als der Marketing-Kanal (e.g. Versand zu jeder Stunde des möglichen Tages)",
   "sms_order_header_guide": "Anleitungen",
-  "sms_order_header_guide_start_with_sms": "Erste SMS von OVHcloud"
+  "sms_order_header_guide_start_with_sms": "Erste SMS von OVHcloud",
+  "sms_order_info_message": "Achtung: Ein Konto ist für Time2Chat erforderlich. Wenn Sie keins haben, aktivieren Sie das Willkommensangebot von 20 kostenlosen SMS, um Ihr Konto zu erstellen, und abonnieren Sie dann Time2Chat.",
+  "sms_order_info_welcome_link": "Erhalten Sie jetzt Ihre 20 kostenlosen SMS",
+  "sms_order_info_guide_link": "Sie brauchen Hilfe? Zur Anleitung"
 }

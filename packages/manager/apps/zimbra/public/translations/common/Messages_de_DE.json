@@ -48,7 +48,7 @@
   "define_members_mailing_list": "Mitglieder definieren",
   "configure_delegation_mailing_list": "Delegierung konfigurieren",
   "email_account": "E-Mail-Account",
-  "add_email_account": "Einen E-Mail-Account erstellen",
+  "add_email_account": "E-Mail-Account konfigurieren",
   "email_account_settings": "Account-Einstellungen",
   "delete_email_account": "Account löschen",
   "order_zimbra_accounts": "Zimbra-Accounts bestellen",
@@ -148,5 +148,9 @@
   "contactInformation_country": "Land",
   "redirections": "Weiterleitungen",
   "delete_redirections": "Weiterleitungen entfernen",
-  "delete_email_accounts": "Accounts löschen"
+  "delete_email_accounts": "Accounts löschen",
+  "email_address": "E-Mail-Adresse",
+  "email_account_company_information": "Angaben zum Unternehmen",
+  "email_account_contact_information": "Kontaktinformationen",
+  "email_account_advanced_settings": "Erweiterte Einstellungen"
 }
