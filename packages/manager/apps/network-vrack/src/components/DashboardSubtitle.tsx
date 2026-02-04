@@ -5,6 +5,7 @@ import { ICON_NAME, Icon, Text } from '@ovhcloud/ods-react';
 import { Vrack } from '@/data/api/get/vrackDetails';
 import { useWebPageLink } from '@/hooks/useWebPageLink';
 import { useUpdateVrackDetails } from '@/hooks/vrack/useUpdateVrackDetails';
+import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 import { EditableText } from './editable-text/EditableText';
 
@@ -13,7 +14,7 @@ interface DashboardHeaderTitleProps {
 }
 
 export const DashboardSubtitle = (props: DashboardHeaderTitleProps) => {
-  const { t } = useTranslation('dashboard');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.dashboard);
   const webPageLink = useWebPageLink();
   const vrack = props.vrack;
 

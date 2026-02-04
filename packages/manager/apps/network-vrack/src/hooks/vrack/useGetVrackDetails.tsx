@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
-import { Vrack, getVrackDetail, getVrackDetailQueryKey } from '@/data/api/get/vrackDetails';
+import { Vrack, getVrackDetail } from '@/data/api/get/vrackDetails';
+
+export const getVrackDetailQueryKey = (serviceName: string) => ['/vrack/', serviceName];
 
 export const useGetVrackDetails = (serviceName: string = '') => {
   const { data, isLoading, isError } = useQuery<Vrack, ApiError>({

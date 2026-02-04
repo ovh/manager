@@ -15,8 +15,6 @@ export interface Vrack {
   serviceName: string;
 }
 
-export const getVrackDetailQueryKey = (serviceName: string) => ['/vrack/', serviceName];
-
 export const getVrackDetail = async (serviceName: string): Promise<Vrack> => {
   const { data } = await v6.get<Vrack>(`/vrack/${serviceName}`);
   return data;
