@@ -28,7 +28,6 @@ export default function TenantsListTopbar() {
         variant={BUTTON_VARIANT.default}
         urn={selectedService?.iam?.urn ?? ''}
         iamActions={IAM_ACTIONS.CREATE_TENANT}
-        isIamTrigger={true}
         displayTooltip={true}
         disabled={isLoading}
         loading={isLoading}

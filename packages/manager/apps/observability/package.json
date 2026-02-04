@@ -27,7 +27,7 @@
     "@ovh-ux/manager-module-order": "*",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
-    "@ovh-ux/muk": "0.13.2",
+    "@ovh-ux/muk": "1.2.0",
     "@ovh-ux/request-tagger": "*",
     "@ovh-ux/shell": "^4.5.7",
     "@ovhcloud/ods-react": "19.5.0",
