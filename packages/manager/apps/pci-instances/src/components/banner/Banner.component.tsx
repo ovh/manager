@@ -9,12 +9,17 @@ import {
 
 type TBannerProps = PropsWithChildren<MessageProp>;
 
-const Banner: FC<TBannerProps> = ({ children, color, ...props }) => {
+const Banner: FC<TBannerProps> = ({
+  children,
+  color,
+  dismissible = false,
+  ...props
+}) => {
   const icon =
     color === 'warning' ? ICON_NAME.triangleExclamation : ICON_NAME.circleInfo;
 
   return (
-    <Message color={color} dismissible={false} {...props}>
+    <Message color={color} dismissible={dismissible} {...props}>
       <MessageIcon name={icon} />
       <MessageBody>{children}</MessageBody>
     </Message>
