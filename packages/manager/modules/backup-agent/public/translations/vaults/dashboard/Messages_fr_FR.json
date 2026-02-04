@@ -18,5 +18,9 @@
   "help": "Aide",
   "type_billing": "Type de facturation",
   "vault_price": "Soit {{vaultPrice}} HT/mois",
-  "consumption_tooltip": "Le stockage supplémentaire n'est pas disponible en libre-service. Pour augmenter votre capacité de stockage, veuillez contacter le support."
+  "consumption_tooltip": "Le stockage supplémentaire n'est pas disponible en libre-service. Pour augmenter votre capacité de stockage, veuillez contacter le support.",
+  "immutability": "Immutabilité",
+  "immutability_duration_enabled": "{{duration}} jours activé",
+  "encryption": "Chiffrement du Vault",
+  "encryption_enabled": "{{encryption}} activé"
 }
