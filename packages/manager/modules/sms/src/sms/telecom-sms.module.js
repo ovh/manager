@@ -37,7 +37,6 @@ const moduleName = 'ovhManagerSmsModule';
 angular
   .module(moduleName, [
     'ngOvhTelecomUniverseComponents',
-    'ngPaginationFront',
     ngOvhCheckboxTable,
     'ovh-api-services',
     'ngMessages',
