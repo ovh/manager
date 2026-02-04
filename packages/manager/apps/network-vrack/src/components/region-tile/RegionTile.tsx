@@ -2,11 +2,13 @@ import { useTranslation } from 'react-i18next';
 
 import { CARD_COLOR, Card, DIVIDER_SPACING, Divider, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
+import { BandwidthOption } from '@ovh-ux/manager-network-common';
 import { Tile } from '@ovh-ux/muk';
 
-import { converToDisplayBandwidth } from '@/utils/bandwidth';
+import { useBandwidthFormatConverter } from '@/hooks/useBandwidthFormatConverter';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
+import { BandwidthOrderDrawer } from '../bandwidth-order-drawer/BandwidthOrderDrawer';
 import { Flag } from '../flag/Flag';
 import { IpTable } from '../ip-table/IpTable';
 
@@ -16,18 +18,20 @@ interface RegionTileProps {
   bandwidthLimit: number;
   ipv4List: string[];
   ipv6List: string[];
+  bandwidthOptionList?: BandwidthOption[];
 }
 
 export const RegionTile = ({
   region,
   serviceName,
   bandwidthLimit,
+  bandwidthOptionList = [],
   ipv4List,
   ipv6List,
 }: RegionTileProps) => {
   const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting]);
-  const displayedBandwidth = converToDisplayBandwidth(bandwidthLimit);
-  const formattedBandwidth = `${displayedBandwidth.value} ${displayedBandwidth.unit}`;
+  const bandwidthConverter = useBandwidthFormatConverter();
+  const currentBandwidth = bandwidthConverter(bandwidthLimit);
 
   return (
     <Card className="w-96 flex-col p-6" color={CARD_COLOR.neutral}>
@@ -40,7 +44,14 @@ export const RegionTile = ({
         <dl className="m-0 flex flex-col">
           <Tile.Item.Root>
             <Tile.Item.Term label={t('publicIpRouting_region_publicBandwidth')} />
-            <Tile.Item.Description label={formattedBandwidth} />
+            <Tile.Item.Description label={currentBandwidth.simpleFormat}>
+              <BandwidthOrderDrawer
+                region={region}
+                serviceName={serviceName}
+                bandwidthLimit={bandwidthLimit}
+                bandwidthOptionList={bandwidthOptionList}
+              />
+            </Tile.Item.Description>
           </Tile.Item.Root>
         </dl>
         <div>
