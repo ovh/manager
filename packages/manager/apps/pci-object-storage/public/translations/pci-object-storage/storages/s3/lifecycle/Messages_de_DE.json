@@ -1,0 +1,23 @@
+{
+  "title": "Lebenszyklusregeln",
+  "createLifecycle": "Eine Regel erstellen",
+  "columnName": "Regelname",
+  "columnStatus": "Status",
+  "columnScope": "Geltungsbereich",
+  "columnCurrentVersionOperations": "Operationen an aktuellen Versionen",
+  "columnNoncurrentVersionOperations": "Operationen an nicht aktuellen Versionen",
+  "columnDeleteMarker": "Automatische Löschung abgelaufener Löschmarkierungen",
+  "columnAbortMultipart": "Automatische Löschung unvollständiger MPUs",
+  "columnActions": "Aktionen",
+  "statusEnabled": "Aktiviert",
+  "statusDisabled": "Deaktiviert",
+  "scopeAllObjects": "Alle Objekte",
+  "scopeFiltered": "Gefiltert",
+  "operationsCount": "{{count}} Operation(en)",
+  "noOperations": "Keine",
+  "openMenu": "Menü öffnen",
+  "actionEdit": "Ändern",
+  "actionEnable": "Aktivieren",
+  "actionDisable": "Deaktivieren",
+  "actionDelete": "Löschen"
+}

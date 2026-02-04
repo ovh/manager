@@ -2,6 +2,7 @@
   "dashboardTab": "Informations générales",
   "objectsTab": "Objets",
   "replicationTab": "Réplication",
+  "lifecycleTab": "Lifecycle",
   "logsTab": "Logs",
   "settingsTab": "Configuration"
 }

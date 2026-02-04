@@ -1,5 +1,6 @@
 import { ProductAvailability } from '@/types/Availability';
 import cloud from '@/types/Cloud';
+import { CountryCode2LettersEnum } from '@datatr-ux/ovhcloud-types';
 
 export const mockedAvailability: ProductAvailability = {
   plans: [
@@ -7,6 +8,7 @@ export const mockedAvailability: ProductAvailability = {
       code: 'storage',
       regions: [
         {
+          countryCode: CountryCode2LettersEnum.fr,
           availabilityZones: ['BHS1', 'BHS2', 'BHS3'],
           continentCode: cloud.RegionContinentEnum.EU,
           datacenter: 'BHS',
@@ -15,6 +17,7 @@ export const mockedAvailability: ProductAvailability = {
           type: cloud.RegionTypeEnum.region,
         },
         {
+          countryCode: CountryCode2LettersEnum.fr,
           availabilityZones: ['EU-WEST-PAR'],
           continentCode: cloud.RegionContinentEnum.EU,
           datacenter: 'EU-WEST-PAR',
@@ -23,6 +26,7 @@ export const mockedAvailability: ProductAvailability = {
           type: cloud.RegionTypeEnum['region-3-az'],
         },
         {
+          countryCode: CountryCode2LettersEnum.fr,
           availabilityZones: ['RBX'],
           continentCode: cloud.RegionContinentEnum.EU,
           datacenter: 'RBX',
@@ -38,6 +42,7 @@ export const mockedAvailability: ProductAvailability = {
       name: 'object-storage',
       regions: [
         {
+          countryCode: CountryCode2LettersEnum.fr,
           availabilityZones: ['BHS1', 'BHS2', 'BHS3'],
           continentCode: cloud.RegionContinentEnum.EU,
           datacenter: 'BHS',
@@ -46,6 +51,7 @@ export const mockedAvailability: ProductAvailability = {
           type: cloud.RegionTypeEnum.region,
         },
         {
+          countryCode: CountryCode2LettersEnum.fr,
           availabilityZones: ['EU-WEST-PAR'],
           continentCode: cloud.RegionContinentEnum.EU,
           datacenter: 'EU-WEST-PAR',
