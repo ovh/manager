@@ -1,29 +1,28 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { Spinner, Text } from '@ovhcloud/ods-react';
-import {
-  getLogStreamQueryKey,
-  useLogStream,
-} from '@/data/hooks/useLogStream';
-import { LogSubscription } from '@/data/types/dbaas/logs';
-import ApiError from '@/components/apiError/ApiError.component';
+
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import { getLogStreamQueryKey, useLogStream } from '@/data/hooks/useLogStream';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
 };
 
-const SubscriptionStreamTitle = ({
-  subscription,
-}: SubscriptionStreamItemProps) => {
+const SubscriptionStreamTitle = ({ subscription }: SubscriptionStreamItemProps) => {
   const { t } = useTranslation(NAMESPACES.LOG_STREAM);
   const queryClient = useQueryClient();
-  const { data: stream, isLoading, isPending, error } = useLogStream(
-    subscription.serviceName,
-    subscription.streamId,
-  );
+  const {
+    data: stream,
+    isLoading,
+    isPending,
+    error,
+  } = useLogStream(subscription.serviceName, subscription.streamId);
 
   if (isLoading || isPending) {
     return (
@@ -37,14 +36,11 @@ const SubscriptionStreamTitle = ({
     return (
       <ApiError
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
-            queryKey: getLogStreamQueryKey(
-              subscription.serviceName,
-              subscription.streamId,
-            ),
-          })
-        }
+        onRetry={() => {
+          void queryClient.refetchQueries({
+            queryKey: getLogStreamQueryKey(subscription.serviceName, subscription.streamId),
+          });
+        }}
         testId="logStream-error"
       />
     );

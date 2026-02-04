@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { HighlightSearch } from '@/components/log-tail/log-messages/log/highlight-search/HighlightSearch.component';
 import { TMessageLevel } from '@/data/api/logTailMessages';
-import { HighlightSearch } from '@/components/logTail/logMessages/log/highligthSearch/HighlightSearch.component';
 
 export const LogLevel = ({ level }: { level: TMessageLevel }) => {
   let label = 'UNKNOWN';

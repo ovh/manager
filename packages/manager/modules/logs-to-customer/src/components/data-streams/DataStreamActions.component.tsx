@@ -5,12 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton } from '@ovhcloud/ods-react';
 
 import { LogsContext } from '@/LogsToCustomer.context';
-import { useLogSubscriptions } from '@/data/hooks/useLogSubscriptions';
-import { Stream } from '@/data/types/dbaas/logs';
-import getStreamSubscription from '@/helpers/getStreamSubscription';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import SubscribeButton from '@/components/data-streams/DataStreamSubscribeButton.component';
 import UnsubscribeButton from '@/components/data-streams/DataStreamUnsubscribeButton.component';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
+import { useLogSubscriptions } from '@/data/hooks/useLogSubscriptions';
+import { Stream } from '@/data/types/dbaas/logs/Logs.type';
+import getStreamSubscription from '@/helpers/getStreamSubscription';
 
 export const DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID = 'data-stream-subscription-loading-test-id';
 

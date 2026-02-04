@@ -1,4 +1,4 @@
-import { ClusterRetention, RetentionTypeEnum } from '@/data/types/dbaas/logs';
+import { ClusterRetention, RetentionTypeEnum } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logRetentionsMock: ClusterRetention[] = [
   {

@@ -1,6 +1,7 @@
 import { fetchIcebergV6, v2 } from '@ovh-ux/manager-core-api';
-import { LogKind } from '@/data/types/dbaas/logs';
+
 import { ApiUrls } from '@/LogsToCustomer.props';
+import { LogKind } from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * LIST log kinds

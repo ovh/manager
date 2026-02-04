@@ -1,4 +1,4 @@
-import { LogSubscription, LogSubscriptionResource } from '@/data/types/dbaas/logs';
+import { LogSubscription, LogSubscriptionResource } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logSubscriptionsMock: LogSubscription[] = [
   {

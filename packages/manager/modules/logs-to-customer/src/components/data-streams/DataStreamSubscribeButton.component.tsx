@@ -1,15 +1,16 @@
 import React, { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@ovh-ux/muk';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { LogsContext } from '@/LogsToCustomer.context';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import { usePostLogSubscription } from '@/data/hooks/useLogSubscriptions';
-import { Stream } from '@/data/types/dbaas/logs';
+import { Stream } from '@/data/types/dbaas/logs/Logs.type';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscribeButton = ({ stream }: { stream?: Stream }) => {
   const { t } = useTranslation(NAMESPACES.LOG_STREAMS);

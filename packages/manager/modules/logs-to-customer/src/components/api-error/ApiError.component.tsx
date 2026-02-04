@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { Button, Message, MESSAGE_COLOR, MessageBody } from '@ovhcloud/ods-react';
+import { Button, MESSAGE_COLOR, Message, MessageBody } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@/LogsToCustomer.translations';
 

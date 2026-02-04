@@ -1,4 +1,4 @@
-import { Url, UrlTypeEnum } from '@/data/types/dbaas/logs';
+import { Url, UrlTypeEnum } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logStreamUrlMock: Url[] = [
   {
