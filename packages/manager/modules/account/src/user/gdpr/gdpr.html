@@ -7,14 +7,15 @@
         data-heading="{{ ::'gdpr_erasure_title' | translate }}"
         class="h-100 oui-tile-h-100"
     >
-        <p>
+        <p data-ng-if="$ctrl.canCreateErasureRequest">
             <strong data-translate="gdpr_erasure_description_emphasis"></strong>
         </p>
-        <p data-translate="gdpr_erasure_description"></p>
+        <p data-ng-if="$ctrl.canCreateErasureRequest" data-translate="gdpr_erasure_description"></p>
+        <p data-ng-if="!$ctrl.canCreateErasureRequest" data-translate="gdpr_erasure_not_possible_description" data-translate-values="{ url: $ctrl.gdprSupportUrl }" data-ng-class="{'text-danger': !$ctrl.canCreateErasureRequest}"></p>
         <oui-button
             type="button"
             variant="primary"
-            data-disabled="!$ctrl.canCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
+            data-disabled="!$ctrl.canCreateErasureRequest || !$ctrl.hasIamAuthotizationToCreateErasureRequest || $ctrl.loading.capabilities || !$ctrl.capabilities.canCreateErasureRequest"
             data-on-click="$ctrl.askErasureConfirmation()"
         >
             <oui-spinner
