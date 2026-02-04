@@ -6,7 +6,7 @@
   "description4": "Vos données sont sécurisées sur trois réplicas, afin de garantir leur durée de vie, et vous profitez d'une facturation à l'usage dès le premier Go.",
   "createButtonLabel": "Créer un conteneur d'objets",
   "cardTopGuide": "Tutoriel",
-  "cardFindOutMore": "En savroi plus",
+  "cardFindOutMore": "En savoir plus",
   "cardLeftTitle": "Placer un conteneur de l’Object Storage derrière un nom de domaine",
   "cardLeftDesc": "Découvrez comment configurer votre conteneur d'objet avec votre domaine",
   "cardMiddleTitle": "Configurer la suppression automatique d’objets",
