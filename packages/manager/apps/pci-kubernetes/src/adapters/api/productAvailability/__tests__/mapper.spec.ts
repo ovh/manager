@@ -198,7 +198,7 @@ describe('mapper', () => {
       const mockDto: TProductAvailabilityResponseDTO = {
         plans: [
           {
-            code: 'mks.free.hour.consumption.3az',
+            code: 'mks.standard.hour.consumption.3az',
             regions: [
               {
                 name: 'GRA9',

@@ -9,7 +9,11 @@ import {
 import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { TViewPlan, mapPlanCodeToDeploymentMode, mapPlanCodeToViewPlan } from './plans.viewmodel';
+import {
+  TViewPlan,
+  mapPlanCodeToDeploymentMode,
+  mapPlanCodeToViewPlan,
+} from './regionPlans.viewmodel';
 
 export type TRegionCard = {
   labelKey: string;
@@ -82,12 +86,7 @@ export const selectAvailableRegions =
   };
 
 export const selectAre3azRegionsAvailable = (regions?: TRegions): boolean => {
-  const hasFree3azRegions =
-    !!regions?.relations.planRegions['mks.free.hour.consumption.3az']?.length;
-  const hasStandard3azRegions =
-    !!regions?.relations.planRegions['mks.standard.hour.consumption.3az']?.length;
-
-  return hasFree3azRegions || hasStandard3azRegions;
+  return !!regions?.relations.planRegions['mks.standard.hour.consumption.3az']?.length;
 };
 
 const DEFAULT_EU_3AZ_MACRO_REGION_ID = 'PAR';

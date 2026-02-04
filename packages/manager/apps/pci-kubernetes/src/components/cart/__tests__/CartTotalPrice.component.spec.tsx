@@ -3,14 +3,6 @@ import { describe, expect, test } from 'vitest';
 
 import { CartTotalPrice } from '../components';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
-  }),
-}));
-
 const totalPriceText = 'Items Total Price';
 const totalPriceValue = 50;
 

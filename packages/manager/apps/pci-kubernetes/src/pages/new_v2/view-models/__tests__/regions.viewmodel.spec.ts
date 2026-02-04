@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { TContinentCode, TMacroRegion, TPlanCode, TRegions } from '@/domain/entities/regions';
+import { TPlanCode } from '@/domain/entities/cloudCatalog';
+import { TContinentCode, TMacroRegion, TRegions } from '@/domain/entities/regions';
 import { TClusterPlanEnum } from '@/types';
 
 import {
@@ -75,7 +76,7 @@ describe('regions.viewmodel', () => {
       const regions: TMacroRegion[] = [
         createMockMacroRegion('GRA', 'EU', [
           'mks.free.hour.consumption',
-          'mks.free.hour.consumption.3az',
+          'mks.standard.hour.consumption.3az',
         ]),
       ];
 
@@ -110,7 +111,7 @@ describe('regions.viewmodel', () => {
       const regions: TMacroRegion[] = [
         createMockMacroRegion('GRA', [
           'mks.free.hour.consumption',
-          'mks.free.hour.consumption.3az',
+          'mks.standard.hour.consumption',
         ]),
         createMockMacroRegion('SBG', [
           'mks.standard.hour.consumption',
@@ -124,7 +125,7 @@ describe('regions.viewmodel', () => {
 
       const filter3az = filterMacroRegionsByDeploymentMode('region-3-az');
       const result3az = filter3az(regions);
-      expect(result3az).toHaveLength(2);
+      expect(result3az).toHaveLength(1);
     });
 
     it('returns empty array when no regions match deployment mode', () => {
@@ -233,7 +234,7 @@ describe('regions.viewmodel', () => {
     it('composes filters correctly - kubeRegions then deploymentMode', () => {
       const regions = createMockRegions([
         createMockMacroRegion('GRA', ['mks.free.hour.consumption'], ['GRA9', 'GRA11']),
-        createMockMacroRegion('SBG', ['mks.free.hour.consumption.3az'], ['SBG5']),
+        createMockMacroRegion('SBG', ['mks.standard.hour.consumption.3az'], ['SBG5']),
         createMockMacroRegion('BHS', ['mks.standard.hour.consumption'], ['BHS3']),
       ]);
 
@@ -247,7 +248,7 @@ describe('regions.viewmodel', () => {
     it('applies both filters correctly', () => {
       const regions = createMockRegions([
         createMockMacroRegion('GRA', ['mks.free.hour.consumption'], ['GRA9']),
-        createMockMacroRegion('SBG', ['mks.free.hour.consumption.3az'], ['SBG5']),
+        createMockMacroRegion('SBG', ['mks.standard.hour.consumption.3az'], ['SBG5']),
         createMockMacroRegion('BHS', ['mks.standard.hour.consumption'], ['BHS3']),
       ]);
 
@@ -277,7 +278,7 @@ describe('regions.viewmodel', () => {
       relations: {
         planRegions: {
           ...(free3azRegions.length > 0 && {
-            'mks.free.hour.consumption.3az': free3azRegions,
+            'mks.standard.hour.consumption.3az': free3azRegions,
           }),
           ...(standard3azRegions.length > 0 && {
             'mks.standard.hour.consumption.3az': standard3azRegions,

@@ -167,6 +167,5 @@ export const usePlanTiles = (macroRegion: string, isMultiZone: boolean) => {
 
   return {
     plans,
-    // regionPlanTypes,
   };
 };

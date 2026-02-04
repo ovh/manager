@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { TContinentCode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
+import { TPlanCode } from '@/domain/entities/cloudCatalog';
+import { TContinentCode, TMacroRegion } from '@/domain/entities/regions';
 
-import { selectAvailablePlanOptions } from '../plans.viewmodel';
+import { selectAvailablePlanOptions } from '../regionPlans.viewmodel';
 
 describe('plans.viewmodel', () => {
   describe('selectAvailablePlanOptions', () => {
@@ -66,7 +67,7 @@ describe('plans.viewmodel', () => {
 
     it('handles 3az plans correctly', () => {
       const regions: TMacroRegion[] = [
-        createMockMacroRegion('GRA', ['mks.free.hour.consumption.3az']),
+        createMockMacroRegion('GRA', ['mks.free.hour.consumption']),
         createMockMacroRegion('SBG', ['mks.standard.hour.consumption.3az']),
       ];
 

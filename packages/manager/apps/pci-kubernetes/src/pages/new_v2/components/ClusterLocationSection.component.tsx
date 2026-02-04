@@ -14,7 +14,7 @@ import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { selectAvailableContinentOptions } from '../view-models/continents.viewmodel';
-import { selectAvailablePlanOptions } from '../view-models/plans.viewmodel';
+import { selectAvailablePlanOptions } from '../view-models/regionPlans.viewmodel';
 import {
   filterMacroRegions,
   findDefaultMacroRegion,

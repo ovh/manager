@@ -2,6 +2,7 @@ import { createContext } from 'react';
 
 import { RenderResult, act, render } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { TMacroRegion } from '@/domain/entities/regions';
 
@@ -50,35 +51,6 @@ const mockRegions = {
   },
 };
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
-  }),
-  convertHourlyPriceToMonthly: vi.fn((price: number) => price * 730), // Approximate: 24h * 30.42 days
-  useTranslatedMicroRegions: vi.fn().mockReturnValue({
-    translateMacroRegion: (name: string) => {
-      const translations: Record<string, string> = {
-        BHS: 'Beauharnois',
-        UK1: 'Londres',
-        GRA: 'Gravelines',
-      };
-      return translations[name] || name;
-    },
-    translateMicroRegion: (name: string) => name,
-    translateContinentRegion: (name: string) => name,
-  }),
-  useMe: vi.fn().mockReturnValue({
-    me: {
-      ovhSubsidiary: 'FR',
-      currency: {
-        code: 'EUR',
-      },
-    },
-  }),
-}));
-
 vi.mock('@/api/hooks/useAvailabilityRegions', () => ({
   useAvailabilityRegions: vi.fn().mockImplementation(
     ({ select }: any) =>
@@ -96,6 +68,16 @@ vi.mock('@/api/hooks/useKubeRegions', () => ({
     data: ['BHS5', 'UK1', 'GRA5', 'GRA7'],
     isLoading: false,
   }),
+}));
+
+vi.mock('@/api/hooks/useCloudCatalog', () => ({
+  useCloudCatalog: vi.fn().mockImplementation(({ select }: any) => ({
+    data: select ? select(undefined) : undefined,
+    isLoading: false,
+    isPending: false,
+    isError: false,
+    error: null,
+  })),
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
