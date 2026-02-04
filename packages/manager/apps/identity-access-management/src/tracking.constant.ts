@@ -44,6 +44,10 @@ export const PERMANENT_TOKENS_TRACKING = {
     REQUEST_FAIL: 'add_token_error',
     REQUEST_SUCCESS: 'add_token_success',
   },
+  VIEWER: {
+    PAGE_NAME: 'show_token',
+    CTA_CLOSE: ['pop-up', 'button', 'show_token', 'close'],
+  },
   EDIT: {
     PAGE_NAME: 'edit_token',
     CTA_CANCEL: ['pop-up', 'button', 'edit_token', 'cancel'],
@@ -57,5 +61,5 @@ export const PERMANENT_TOKENS_TRACKING = {
     CTA_CONFIRM: ['pop-up', 'button', 'delete_token', 'confirm'],
     REQUEST_FAIL: 'delete_token_error',
     REQUEST_SUCCESS: 'delete_token_success',
-  }
-}
+  },
+};

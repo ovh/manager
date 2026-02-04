@@ -19,6 +19,7 @@ export type IamUserToken = {
   creation: string;
   expiresAt: string;
   lastUsed: string;
+  token?: string;
 };
 
 export type IamUserTokenPayload = {

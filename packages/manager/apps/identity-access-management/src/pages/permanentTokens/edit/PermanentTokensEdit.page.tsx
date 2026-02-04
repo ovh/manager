@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
@@ -11,6 +11,7 @@ import {
 import { ODS_INPUT_TYPE, ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { subRoutes } from '@/routes/routes.constant';
 import {
   API_MESSAGE_TOKEN_ALREADY_EXISTS,
   PERMANENT_TOKENS_INPUT_MAX_LENGTH,
@@ -23,11 +24,12 @@ import {
   useGetIamUserToken,
   useUpdateIamUserToken,
 } from '@/data/hooks/useGetIamUserTokens';
-import { IamUserTokenPayload } from '@/data/api/iam-users';
+import { IamUserToken, IamUserTokenPayload } from '@/data/api/iam-users';
 import ExpiryDateInput from '@/pages/permanentTokens/components/ExpiryDateInput.component';
 import { ExpiryDateModel, ExpiryMode } from '@/types/expiryDate';
 import { DEFAULT_EXPIRY_DATE_MODEL } from '@/utils/expiryDateUtils';
 import { PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
+import TokenSecretContext from '@/contexts/token-secret.context';
 
 export default function PermanentTokensAdd() {
   const { t } = useTranslation([
@@ -48,6 +50,7 @@ export default function PermanentTokensAdd() {
   const [expiryModel, setExpiryModel] = useState<ExpiryDateModel>(
     DEFAULT_EXPIRY_DATE_MODEL,
   );
+  const { setTokenSecret } = useContext(TokenSecretContext);
 
   const {
     data: tokenData,
@@ -76,13 +79,14 @@ export default function PermanentTokensAdd() {
 
   const { createToken, isPending: isCreationPending } = useCreateIamUserToken({
     userId,
-    onSuccess: () => {
+    onSuccess: (newToken: IamUserToken) => {
       trackPage({
         pageType: PageType.bannerSuccess,
         pageName: PERMANENT_TOKENS_TRACKING.ADD.REQUEST_SUCCESS,
       });
       addSuccess(t('iam_user_token_modal_add_success'));
-      goBack();
+      setTokenSecret(newToken.token || null);
+      navigate(`../${subRoutes.permanentTokensView}`);
     },
     onError: (error) => {
       trackPage({

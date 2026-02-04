@@ -22,6 +22,9 @@ const PermanentTokensEdit = lazy(() =>
 const PermanentTokensDelete = lazy(() =>
   import('@/pages/permanentTokens/delete/PermanentTokensDelete.page'),
 );
+const PermanentTokensViewer = lazy(() =>
+  import('@/pages/permanentTokens/viewer/PermanentTokensViewer.page'),
+);
 
 export default (
   <Route
@@ -126,6 +129,16 @@ export default (
         handle={{
           tracking: {
             pageName: PERMANENT_TOKENS_TRACKING.DELETE.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        path={urls.permanentTokensView}
+        Component={PermanentTokensViewer}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.VIEWER.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
