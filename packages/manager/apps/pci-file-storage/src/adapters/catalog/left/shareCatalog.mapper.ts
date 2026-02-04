@@ -2,8 +2,14 @@ import {
   TDeploymentModeDataForCard,
   TRegionData,
   TSVGImage,
+  TShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.data';
-import { TDeploymentMode, TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
+import {
+  TDeploymentMode,
+  TMacroRegion,
+  TMicroRegion,
+  TShareSpecs,
+} from '@/domain/entities/catalog.entity';
 import {
   getMicroRegions,
   isMacroRegionAvailable,
@@ -69,3 +75,45 @@ export const mapRegionToLocalizationCard =
       firstAvailableMicroRegion: getFirstAvailableMicroRegion(region, microRegionsById),
     };
   };
+
+export const mapShareSpecsToShareSpecData = (spec: TShareSpecs): TShareSpecData => ({
+  name: spec.name,
+  capacityMin: spec.capacity.min,
+  capacityMax: spec.capacity.max,
+  iopsLevel: spec.iops.level,
+  iopsMax: spec.iops.max,
+  iopsGuaranteed: spec.iops.guaranteed,
+  iopsUnit: spec.iops.unit,
+  iopsMaxUnit: spec.iops.maxUnit,
+  bandwidthLevel: spec.bandwidth.level,
+  bandwidthMin: spec.bandwidth.min,
+  bandwidthMax: spec.bandwidth.max,
+  bandwidthUnit: spec.bandwidth.unit,
+  bandwidthGuaranteed: spec.bandwidth.guaranteed,
+  bandwidthMaxUnit: spec.bandwidth.maxUnit,
+  microRegionIds: spec.microRegionIds,
+  price: spec.pricing.price,
+  priceInterval: spec.pricing.interval,
+});
+
+export const mapShareSpecDataToShareSpecs = (data: TShareSpecData): TShareSpecs => ({
+  name: data.name,
+  microRegionIds: data.microRegionIds,
+  capacity: { min: data.capacityMin, max: data.capacityMax },
+  pricing: { price: data.price, interval: data.priceInterval },
+  iops: {
+    level: data.iopsLevel,
+    max: data.iopsMax,
+    guaranteed: data.iopsGuaranteed,
+    unit: data.iopsUnit,
+    maxUnit: data.iopsMaxUnit,
+  },
+  bandwidth: {
+    level: data.bandwidthLevel,
+    min: data.bandwidthMin,
+    max: data.bandwidthMax,
+    unit: data.bandwidthUnit,
+    guaranteed: data.bandwidthGuaranteed,
+    maxUnit: data.bandwidthMaxUnit,
+  },
+});

@@ -10,12 +10,14 @@ import {
 import {
   mapDeploymentModeForCard,
   mapRegionToLocalizationCard,
+  mapShareSpecDataToShareSpecs,
+  mapShareSpecsToShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
 import {
-  calculateProvisionedPerformance,
   getMicroRegions,
   isMicroRegionAvailable,
+  provisionedPerformanceCalculator,
 } from '@/domain/services/catalog.service';
 
 export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
@@ -135,24 +137,19 @@ export const selectShareSpecs =
 
     return Array.from(data.entities.shareSpecs.byId.values())
       .filter((spec) => spec.microRegionIds.includes(microRegionId))
-      .map((spec) => ({
-        name: spec.name,
-        capacityMin: spec.capacity.min,
-        capacityMax: spec.capacity.max,
-        iopsLevel: spec.iops.level,
-        bandwidthLevel: spec.bandwidth.level,
-        bandwidthUnit: spec.bandwidth.unit,
-      }));
+      .map(mapShareSpecsToShareSpecData);
   };
 
-export const formattedProvisionedPerformance = (sizeInGiB?: number) => {
-  if (sizeInGiB === undefined || sizeInGiB < 0 || isNaN(sizeInGiB)) return null;
-  const { iops, throughput } = calculateProvisionedPerformance(sizeInGiB);
-  const formattedIOPS = Math.round(iops).toString();
-  const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
+export const provisionedPerformancePresenter =
+  (shareSpecification: TShareSpecData) => (shareSize?: number) => {
+    if (shareSize === undefined || shareSize < 0 || isNaN(shareSize)) return null;
+    const shareSpec = mapShareSpecDataToShareSpecs(shareSpecification);
+    const { iops, throughput } = provisionedPerformanceCalculator(shareSpec)(shareSize);
+    const formattedIOPS = Math.round(iops).toString();
+    const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
 
-  return {
-    iops: formattedIOPS,
-    throughput: formattedThroughput,
+    return {
+      iops: formattedIOPS,
+      throughput: formattedThroughput,
+    };
   };
-};

@@ -34,6 +34,17 @@ export type TShareSpecData = {
   capacityMin: number;
   capacityMax: number;
   iopsLevel: number;
+  iopsMax: number;
+  iopsUnit: string;
+  iopsMaxUnit: string;
+  iopsGuaranteed: boolean;
   bandwidthLevel: number;
+  bandwidthMin: number;
+  bandwidthMax: number;
   bandwidthUnit: string;
+  bandwidthMaxUnit: string;
+  bandwidthGuaranteed: boolean;
+  microRegionIds: string[];
+  price: number;
+  priceInterval: string;
 };

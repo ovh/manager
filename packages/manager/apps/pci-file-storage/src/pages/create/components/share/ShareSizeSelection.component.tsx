@@ -9,7 +9,7 @@ import { SliderInput } from '@/components/slider/SliderInput.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import {
-  formattedProvisionedPerformance,
+  provisionedPerformancePresenter,
   selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
@@ -39,9 +39,13 @@ export const ShareSizeSelection = () => {
 
   const selectedSpec = shareOptions.find((spec) => spec.name === selectedSpecName);
 
+  const presentProvisionedPerformance = selectedSpec
+    ? provisionedPerformancePresenter(selectedSpec)
+    : null;
+
   const min = selectedSpec?.capacityMin ?? DEFAULT_MIN;
   const max = selectedSpec?.capacityMax ?? DEFAULT_MAX;
-  const performance = formattedProvisionedPerformance(selectedSize);
+  const performance = presentProvisionedPerformance?.(selectedSize);
 
   const handleChange = (value: number) => {
     if (value < min) {

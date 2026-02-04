@@ -1,4 +1,4 @@
-import { TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecs } from '@/domain/entities/catalog.entity';
 
 export const isMicroRegionAvailable = (microRegion: TMicroRegion): boolean =>
   microRegion.isActivated && !microRegion.isInMaintenance;
@@ -22,22 +22,11 @@ export const isMacroRegionAvailable = (
   return microRegions.some(isMicroRegionAvailable);
 };
 
-const IOPS_PER_GIB = 24;
-const MAX_IOPS = 16_000;
-const THROUGHPUT_MIB_PER_SECOND_PER_GIB = 0.25;
-const MIN_THROUGHPUT_MIB_PER_SECOND = 25;
-const MAX_THROUGHPUT_MIB_PER_SECOND = 128;
-
-export const calculateProvisionedPerformance = (storageSizeInGiB: number) => {
-  const iops = Math.min(storageSizeInGiB * IOPS_PER_GIB, MAX_IOPS);
-
-  const throughput =
-    storageSizeInGiB < 100
-      ? MIN_THROUGHPUT_MIB_PER_SECOND
-      : Math.min(
-          storageSizeInGiB * THROUGHPUT_MIB_PER_SECOND_PER_GIB,
-          MAX_THROUGHPUT_MIB_PER_SECOND,
-        );
-
-  return { iops, throughput };
-};
+export const provisionedPerformanceCalculator =
+  ({ iops, bandwidth }: Pick<TShareSpecs, 'iops' | 'bandwidth'>) =>
+  (shareSize: number) => {
+    const calculatedIops = Math.min(shareSize * iops.level, iops.max);
+    const dynamicThroughput = shareSize * bandwidth.level;
+    const throughput = Math.max(bandwidth.min, Math.min(dynamicThroughput, bandwidth.max));
+    return { iops: calculatedIops, throughput };
+  };
