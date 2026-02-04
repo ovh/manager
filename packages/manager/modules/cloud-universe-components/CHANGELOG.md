@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.19.0](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.18.4...@ovh-ux/ng-ovh-cloud-universe-components@2.19.0) (2026-02-04)
+
+
+### Features
+
+* **vrack:** add VmwareCloudDirectorVirtualDataCenter service on vrack ([3209dec](https://github.com/ovh/manager/commit/3209decda73e0f758ab10bca7ce44be930a9714e)), closes [#MANAGER-17025](https://github.com/ovh/manager/issues/MANAGER-17025)
+
+
+
+
+
 ## [2.18.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-cloud-universe-components@2.18.3...@ovh-ux/ng-ovh-cloud-universe-components@2.18.4) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-cloud-universe-components

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.23.2...@ovh-ux/manager-telecom@16.24.0) (2026-02-04)
+
+
+### Features
+
+* **xdsl.logs:** add logs to customer tab ([1fca22c](https://github.com/ovh/manager/commit/1fca22c1702d54b1335066864d5d8cf1dcda6b4c)), closes [#MANAGER-20557](https://github.com/ovh/manager/issues/MANAGER-20557)
+
+
+
+
+
 ## [16.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.23.1...@ovh-ux/manager-telecom@16.23.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom
