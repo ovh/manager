@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
-import { TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecs } from '@/domain/entities/catalog.entity';
 
 import {
-  calculateProvisionedPerformance,
   getMicroRegions,
   isMacroRegionAvailable,
   isMicroRegionAvailable,
+  provisionedPerformanceCalculator,
 } from '../catalog.service';
 
 describe('catalog.service', () => {
@@ -148,7 +148,29 @@ describe('catalog.service', () => {
     });
   });
 
-  describe('calculateProvisionedPerformance', () => {
+  describe('provisionedPerformanceCalculator', () => {
+    const generalShareSpec: TShareSpecs = {
+      name: 'share-spec',
+      microRegionIds: ['GRA1', 'GRA2'],
+      capacity: { min: 150, max: 10240 },
+      pricing: { price: 11900, interval: 'hour' },
+      iops: {
+        level: 24,
+        max: 16000,
+        guaranteed: false,
+        unit: 'IOPS',
+        maxUnit: 'IOPS',
+      },
+      bandwidth: {
+        level: 0.25,
+        min: 25,
+        max: 128,
+        unit: 'MB/s/GB',
+        maxUnit: 'MB/s/GB',
+        guaranteed: false,
+      },
+    };
+
     it.each([
       {
         description:
@@ -156,26 +178,35 @@ describe('catalog.service', () => {
         size: 99,
         expectedIOPS: 2376,
         expectedThroughput: 25,
-      },
-      {
-        description: 'should calculate IOPS and throughput relative to the size for size 104 GiB',
-        size: 104,
-        expectedIOPS: 2496,
-        expectedThroughput: 26,
+        shareSpec: generalShareSpec,
       },
       {
         description: 'should calculate IOPS and throughput relative to the size for size 500 GiB',
         size: 500,
         expectedIOPS: 12000,
         expectedThroughput: 125,
+        shareSpec: generalShareSpec,
       },
       {
         description: 'should return maximum values for IOPS and throughput',
         size: 670,
         expectedIOPS: 16000,
         expectedThroughput: 128,
+        shareSpec: generalShareSpec,
       },
-    ])('$description', ({ size, expectedIOPS, expectedThroughput }) => {
+      {
+        description:
+          'iops level of 1 should return the same value as the share size if it is less than the iops max',
+        size: 99,
+        expectedIOPS: 99,
+        expectedThroughput: 25,
+        shareSpec: {
+          ...generalShareSpec,
+          iops: { ...generalShareSpec.iops, level: 1 },
+        },
+      },
+    ])('$description', ({ size, expectedIOPS, expectedThroughput, shareSpec }) => {
+      const calculateProvisionedPerformance = provisionedPerformanceCalculator(shareSpec);
       const result = calculateProvisionedPerformance(size);
       expect(result.iops).toBe(expectedIOPS);
       expect(result.throughput).toBe(expectedThroughput);

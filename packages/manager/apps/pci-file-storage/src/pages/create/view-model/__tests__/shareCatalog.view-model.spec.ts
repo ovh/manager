@@ -10,7 +10,7 @@ import {
   TShareSpecs,
 } from '@/domain/entities/catalog.entity';
 import {
-  formattedProvisionedPerformance,
+  provisionedPerformancePresenter,
   selectAvailabilityZones,
   selectContinent,
   selectDeploymentModes,
@@ -19,10 +19,16 @@ import {
   selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
-vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
-  mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
-  mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
-}));
+vi.mock('@/adapters/catalog/left/shareCatalog.mapper', async (importOriginal) => {
+  const original: typeof import('@/adapters/catalog/left/shareCatalog.mapper') =
+    await importOriginal();
+
+  return {
+    ...original,
+    mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
+    mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
+  };
+});
 
 vi.mock('@/domain/services/catalog.service', () => ({
   getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
@@ -33,6 +39,10 @@ vi.mock('@/domain/services/catalog.service', () => ({
   },
   isMicroRegionAvailable: (microRegion: TMicroRegion) =>
     microRegion.isActivated && !microRegion.isInMaintenance,
+  provisionedPerformanceCalculator: (shareSpec: TShareSpecs) => (size: number) => ({
+    iops: shareSpec.iops.level * size,
+    throughput: shareSpec.bandwidth.level * size,
+  }),
 }));
 
 describe('share catalog selectors', () => {
@@ -411,6 +421,19 @@ describe('share catalog selectors', () => {
       },
     } as DeepPartial<TShareCatalog>;
 
+    const sharedSpec = {
+      bandwidthMin: 150,
+      bandwidthMax: 10240,
+      bandwidthGuaranteed: false,
+      bandwidthMaxUnit: 'MB/s',
+      iopsGuaranteed: false,
+      iopsMax: 20000,
+      iopsMaxUnit: 'IOPS',
+      iopsUnit: 'IOPS/GB',
+      price: 11900,
+      priceInterval: 'hour',
+    };
+
     it.each([
       {
         description: 'for a valid micro region with matching specs',
@@ -418,20 +441,24 @@ describe('share catalog selectors', () => {
         data: catalog as TShareCatalog,
         expected: [
           {
+            ...sharedSpec,
             name: 'spec1',
             capacityMin: 150,
             capacityMax: 10240,
             iopsLevel: 30,
             bandwidthLevel: 0.25,
             bandwidthUnit: 'MB/s/GB',
+            microRegionIds: ['GRA1', 'GRA2'],
           },
           {
+            ...sharedSpec,
             name: 'spec2',
             capacityMin: 200,
             capacityMax: 10240,
             iopsLevel: 50,
             bandwidthLevel: 0.5,
             bandwidthUnit: 'MB/s/GB',
+            microRegionIds: ['GRA1'],
           },
         ],
       },
@@ -460,7 +487,29 @@ describe('share catalog selectors', () => {
     });
   });
 
-  describe('formattedProvisionedPerformance', () => {
+  describe('provisionedPerformancePresenter', () => {
+    const shareSpec = {
+      name: 'spec1',
+      capacityMin: 150,
+      capacityMax: 10240,
+      iopsLevel: 24,
+      iopsMax: 16000,
+      iopsUnit: 'IOPS',
+      iopsMaxUnit: 'IOPS',
+      iopsGuaranteed: false,
+      bandwidthLevel: 0.25,
+      bandwidthMin: 25,
+      bandwidthMax: 128,
+      bandwidthUnit: 'MB/s/GB',
+      bandwidthMaxUnit: 'MB/s/GB',
+      bandwidthGuaranteed: false,
+      microRegionIds: ['GRA1', 'GRA2'],
+      price: 11900,
+      priceInterval: 'hour',
+    };
+
+    const presentProvisionedPerformance = provisionedPerformancePresenter(shareSpec);
+
     it.each([
       {
         description: 'should return integer iops value and single decimal throughput value',
@@ -489,7 +538,7 @@ describe('share catalog selectors', () => {
         expected: null,
       },
     ])('$description', ({ size, expected }) => {
-      const result = formattedProvisionedPerformance(size);
+      const result = presentProvisionedPerformance(size);
       expect(result).toEqual(expected);
     });
   });
