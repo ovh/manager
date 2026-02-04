@@ -10,10 +10,10 @@ import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-
 import { LogsContext } from '@/LogsToCustomer.context';
 import { ApiUrls, LogIamActions } from '@/LogsToCustomer.props';
 import { NAMESPACES } from '@/LogsToCustomer.translations';
-import ApiError from '@/components/apiError/ApiError.component';
+import ApiError from '@/components/api-error/ApiError.component';
 import { getLogKindsQueryKey, useLogKinds } from '@/data/hooks/useLogKinds';
 import { LogApiVersion } from '@/data/types/apiVersion';
-import { LogKind } from '@/data/types/dbaas/logs';
+import { LogKind } from '@/data/types/dbaas/logs/Logs.type';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { ZoomedInOutProvider } from '@/hooks/useZoomedInOut';
 import { LogsToCustomerRoutes } from '@/routes/routes';

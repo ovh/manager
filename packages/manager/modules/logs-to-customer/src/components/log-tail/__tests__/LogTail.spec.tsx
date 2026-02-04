@@ -23,7 +23,7 @@ const getDOMRect = (width: number, height: number) => ({
   right: 0,
   x: 0,
   y: 0,
-  toJSON: () => { },
+  toJSON: () => {},
 });
 
 beforeEach(() => {

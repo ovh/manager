@@ -1,6 +1,7 @@
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+
 import { getLogService, getLogServices } from '@/data/api/logService';
-import { Service } from '@/data/types/dbaas/logs';
+import { Service } from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * Use log Services list

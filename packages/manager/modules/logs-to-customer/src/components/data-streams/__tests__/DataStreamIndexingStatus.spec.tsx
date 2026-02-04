@@ -1,10 +1,13 @@
-import { BADGE_COLOR, BadgeProp } from '@ovhcloud/ods-react';
-import { render } from '@testing-library/react';
 import React from 'react';
-import { Stream } from '@/data/types/dbaas/logs';
+
+import { render } from '@testing-library/react';
+
+import { BADGE_COLOR, BadgeProp } from '@ovhcloud/ods-react';
+
 import DataStreamIndexingStatus, {
   DATA_STREAM_INDEXING_STATUS_TEST_ID,
 } from '@/components/data-streams/DataStreamIndexingStatus.component';
+import { Stream } from '@/data/types/dbaas/logs/Logs.type';
 
 describe('data-stream indexing status', () => {
   type TTestCases = {

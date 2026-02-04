@@ -1,10 +1,10 @@
 import React from 'react';
+
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
+
+import { ShellContext, type ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import DataStreamSubscriptionsLink from '@/components/data-streams/DataStreamSubscriptionsLink.component';
 
 vi.mock('react-i18next', () => ({
@@ -30,9 +30,7 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('renders a link with correct nbSubscription count', async () => {
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DataStreamSubscriptionsLink {...props} />
       </ShellContext.Provider>,
     );
@@ -45,9 +43,7 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('enables the link if this is not a substream (parentStreamId is not provided)', async () => {
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DataStreamSubscriptionsLink {...props} />
       </ShellContext.Provider>,
     );
@@ -60,13 +56,8 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('disables the link if this is a substream (parentStreamId is provided)', async () => {
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <DataStreamSubscriptionsLink
-          {...props}
-          parentStreamId="testParentStreamId"
-        />
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+        <DataStreamSubscriptionsLink {...props} parentStreamId="testParentStreamId" />
       </ShellContext.Provider>,
     );
 
@@ -78,29 +69,20 @@ describe('DataStreamSubscriptionsLink', () => {
 
   it('does not renders tooltip if this is not a substream (parentStreamId is not provided)', async () => {
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <DataStreamSubscriptionsLink {...props} />
       </ShellContext.Provider>,
     );
 
     await waitFor(() => {
-      expect(
-        screen.queryByTestId('popover-testStream'),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTestId('popover-testStream')).not.toBeInTheDocument();
     });
   });
 
   it('render tooltip if this is a substream (parentStreamId is provided)', async () => {
     render(
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <DataStreamSubscriptionsLink
-          {...props}
-          parentStreamId="testParentStreamId"
-        />
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+        <DataStreamSubscriptionsLink {...props} parentStreamId="testParentStreamId" />
       </ShellContext.Provider>,
     );
 

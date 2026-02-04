@@ -10,8 +10,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import DataStreamRetention, {
   DATA_STREAM_RETENTION_LOADING_TEST_ID,
 } from '@/components/data-streams/DataStreamRetention.component';
-import type { ClusterRetention } from '@/data/types/dbaas/logs';
-import { RetentionTypeEnum } from '@/data/types/dbaas/logs';
+import type { ClusterRetention } from '@/data/types/dbaas/logs/Logs.type';
+import { RetentionTypeEnum } from '@/data/types/dbaas/logs/Logs.type';
 
 const useLogRetentionMockValue = {
   data: {

@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { logStreamsMock } from '@/__mocks__/logStream.mock';
 import { renderTest } from '@/test-utils/render-test';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
