@@ -10,6 +10,7 @@ import {
   TRACKING_PAGE,
   TRACKING_PREFIX,
   TRACKING_LEVEL2,
+  GDPR_SUPPORT_URL,
 } from './gdpr.constants';
 
 export default class UserAccountGdprController {
@@ -33,6 +34,8 @@ export default class UserAccountGdprController {
   }
 
   $onInit() {
+    this.gdprSupportUrl =
+      GDPR_SUPPORT_URL[this.ovhSubsidiary] || GDPR_SUPPORT_URL.DEFAULT;
     this.viewTicketsUrl = this.getViewTicketsUrl();
     this.showErasureConfirmationModal = false;
     this.loading = {
@@ -72,6 +75,7 @@ export default class UserAccountGdprController {
     if (
       !(
         this.canCreateErasureRequest &&
+        this.hasIamAuthotizationToCreateErasureRequest &&
         this.capabilities.canCreateErasureRequest
       )
     ) {

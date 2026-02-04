@@ -12,7 +12,15 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('user_account_gdpr_features_title'),
-      canCreateErasureRequest: /* @ngInject */ (iamAuthorizations) =>
+      canCreateErasureRequest: /* @ngInject */ ($http) =>
+        $http
+          .get(`/billing/services`, {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => (!(data?.count > 0))),
+      hasIamAuthotizationToCreateErasureRequest: /* @ngInject */ (
+        iamAuthorizations,
+      ) =>
         iamAuthorizations.authorizedActions.includes(
           CREATE_ERASURE_REQUEST_ACTION,
         ),
