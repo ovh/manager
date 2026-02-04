@@ -209,6 +209,7 @@ export const TRANSLATION_NAMESPACES = {
   dashboard: 'dashboard',
   onboarding: 'onboarding',
   publicIpRouting: 'publicIpRouting',
+  error: 'error',
 };
 
 export const SURVEY_LANGUAGES = {

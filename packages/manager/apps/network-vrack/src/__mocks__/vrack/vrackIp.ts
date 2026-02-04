@@ -34,9 +34,7 @@ const vrackIpv6DetailMocks = [
 export const getVrackIpMocks = (): Handler[] => [
   {
     url: '/vrack/:id/ip',
-    response: () => {
-      return vrackIpV4Mocks;
-    },
+    response: vrackIpV4Mocks,
     status: 200,
     method: 'get',
     api: 'v6',
@@ -53,9 +51,7 @@ export const getVrackIpMocks = (): Handler[] => [
   },
   {
     url: '/vrack/:id/ipv6',
-    response: () => {
-      return vrackIpV6Mocks;
-    },
+    response: vrackIpV6Mocks,
     status: 200,
     method: 'get',
     api: 'v6',

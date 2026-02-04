@@ -10,7 +10,7 @@ export const Flag = ({ region }: FlagDisplayProps) => {
       style={{
         backgroundImage: `url('flags/${getCountryCode(region)}.svg')`,
       }}
-      className={`mr-3 w-10 bg-cover shadow-md`}
+      className="mr-3 w-10 bg-cover shadow-md"
     />
   );
 };

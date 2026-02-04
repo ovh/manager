@@ -8,7 +8,7 @@ import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useTask } from '@ovh-ux/manager-react-components';
+import { useTask } from '@ovh-ux/manager-module-common-api';
 
 import { useUpdateVrackServices } from './useUpdateVrackServices';
 
@@ -30,7 +30,7 @@ vi.mock('@tanstack/react-query', () => ({
   useQueryClient: vi.fn(),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/manager-module-common-api', () => ({
   useTask: vi.fn(),
 }));
 

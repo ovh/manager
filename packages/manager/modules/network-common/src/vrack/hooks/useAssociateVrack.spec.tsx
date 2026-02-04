@@ -4,13 +4,13 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { AxiosResponseHeaders, InternalAxiosRequestConfig } from 'axios';
 import { vi } from 'vitest';
 
-import { useTask } from '@ovh-ux/manager-react-components';
+import { useTask } from '@ovh-ux/manager-module-common-api';
 
 import { Status } from '../../types';
 import { associateVrackServices } from '../api';
 import { useAssociateVrack } from './useAssociateVrack';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/manager-module-common-api', () => ({
   useTask: vi.fn(),
 }));
 
