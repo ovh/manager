@@ -108,7 +108,10 @@ export const getPublicNetworkCartItem = ({
 export const useInstanceCreation = (): TInstanceCreation => {
   const navigate = useNavigate();
   const projectId = useProjectId();
-  const { control } = useFormContext<TInstanceCreationForm>();
+  const {
+    control,
+    formState: { isValid: isCreationFormValid },
+  } = useFormContext<TInstanceCreationForm>();
   const [
     name,
     macroRegion,
@@ -308,7 +311,10 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
 
   const isCreationEnabled =
-    hasBaseRequirements && hasSshRequirements && !isDiscoveryProject(project);
+    hasBaseRequirements &&
+    hasSshRequirements &&
+    !isDiscoveryProject(project) &&
+    isCreationFormValid;
 
   const networkId =
     privateNetworks?.find(({ value }) => subnetId === value)?.networkId ?? null;
