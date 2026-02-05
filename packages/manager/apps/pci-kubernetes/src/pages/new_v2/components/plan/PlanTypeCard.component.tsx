@@ -3,7 +3,7 @@ import { Divider } from '@ovhcloud/ods-react';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { TPlanTile } from '../../view-models/plans.viemodel';
+import { TPlanTile } from '../../view-models/plans.viewmodel';
 import { PlanTileContent } from './PlanContent.component';
 import { PlanTileFooter } from './PlanFooter.component';
 import { PlanTileHeader } from './PlanHeader.component';

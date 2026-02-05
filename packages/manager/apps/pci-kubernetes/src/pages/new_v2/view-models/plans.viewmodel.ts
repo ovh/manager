@@ -28,6 +28,7 @@ export type TPlanTile = TPlanContent & {
 const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
   switch (plan) {
     case 'mks.free.hour.consumption':
+    case 'mks.free.hour.consumption.3az':
       return {
         title: 'kube_add_plan_title_free',
         description: 'kube_add_plan_description_free',
@@ -40,7 +41,7 @@ const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
           'kube_add_plan_content_free_version',
           'kube_add_plan_content_free_100',
         ],
-        code: 'mks.free.hour.consumption',
+        code: plan,
         planType: 'free',
       };
     case 'mks.standard.hour.consumption':
@@ -80,7 +81,7 @@ const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
 
 const getPlanList = (isMultiZone: boolean = false): Array<TPlanCode> => {
   return isMultiZone
-    ? ['mks.standard.hour.consumption.3az', 'mks.free.hour.consumption']
+    ? ['mks.standard.hour.consumption.3az', 'mks.free.hour.consumption.3az']
     : ['mks.standard.hour.consumption', 'mks.free.hour.consumption'];
 };
 
@@ -151,6 +152,7 @@ export const selectRegionPlanType =
         case 'mks.standard.hour.consumption.3az':
           return 'standard';
         case 'mks.free.hour.consumption':
+        case 'mks.free.hour.consumption.3az':
           return 'free';
       }
     });

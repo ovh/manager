@@ -75,7 +75,7 @@ describe('regions.viewmodel', () => {
     it('handles regions with multiple plans including 3az correctly', () => {
       const regions: TMacroRegion[] = [
         createMockMacroRegion('GRA', 'EU', [
-          'mks.free.hour.consumption',
+          'mks.free.hour.consumption.3az',
           'mks.standard.hour.consumption.3az',
         ]),
       ];
@@ -110,11 +110,11 @@ describe('regions.viewmodel', () => {
     it('handles regions with multiple deployment modes correctly', () => {
       const regions: TMacroRegion[] = [
         createMockMacroRegion('GRA', [
-          'mks.free.hour.consumption',
+          'mks.free.hour.consumption.3az',
           'mks.standard.hour.consumption',
         ]),
         createMockMacroRegion('SBG', [
-          'mks.standard.hour.consumption',
+          'mks.free.hour.consumption',
           'mks.standard.hour.consumption.3az',
         ]),
       ];
@@ -125,7 +125,7 @@ describe('regions.viewmodel', () => {
 
       const filter3az = filterMacroRegionsByDeploymentMode('region-3-az');
       const result3az = filter3az(regions);
-      expect(result3az).toHaveLength(1);
+      expect(result3az).toHaveLength(2);
     });
 
     it('returns empty array when no regions match deployment mode', () => {
@@ -278,7 +278,7 @@ describe('regions.viewmodel', () => {
       relations: {
         planRegions: {
           ...(free3azRegions.length > 0 && {
-            'mks.standard.hour.consumption.3az': free3azRegions,
+            'mks.free.hour.consumption.3az': free3azRegions,
           }),
           ...(standard3azRegions.length > 0 && {
             'mks.standard.hour.consumption.3az': standard3azRegions,

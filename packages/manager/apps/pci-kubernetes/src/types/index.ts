@@ -81,7 +81,7 @@ export enum TClusterPlanEnum {
 
 export enum TClusterPlanCodeEnum {
   FREE1AZ = 'mks.free.hour.consumption',
-  FREE3AZ = 'mks.standard.hour.consumption.3az',
+  FREE3AZ = 'mks.free.hour.consumption.3az',
   STANDARD1AZ = 'mks.standard.hour.consumption',
   STANDARD3AZ = 'mks.standard.hour.consumption.3az',
 }

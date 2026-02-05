@@ -11,7 +11,7 @@ import { Cart, TCartItem } from '@/components/cart/Cart.component';
 import { selectMacroRegions } from '@/domain/services/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { selectPlanPrices } from '../view-models/plans.viemodel';
+import { selectPlanPrices } from '../view-models/plans.viewmodel';
 import { mapMacroRegionForCards } from '../view-models/regions.viewmodel';
 
 export const CreationCart = () => {

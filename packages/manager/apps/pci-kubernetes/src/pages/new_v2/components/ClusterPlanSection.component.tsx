@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { RadioGroup, Text } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { usePlanTiles } from '../view-models/plans.viemodel';
+import { usePlanTiles } from '../view-models/plans.viewmodel';
 import { PlanHelper } from './plan/PlanHelper.component';
 import { PlanTypeCard } from './plan/PlanTypeCard.component';
 

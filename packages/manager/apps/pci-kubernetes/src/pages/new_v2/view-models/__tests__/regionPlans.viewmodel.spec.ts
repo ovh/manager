@@ -67,7 +67,7 @@ describe('plans.viewmodel', () => {
 
     it('handles 3az plans correctly', () => {
       const regions: TMacroRegion[] = [
-        createMockMacroRegion('GRA', ['mks.free.hour.consumption']),
+        createMockMacroRegion('GRA', ['mks.free.hour.consumption.3az']),
         createMockMacroRegion('SBG', ['mks.standard.hour.consumption.3az']),
       ];
 

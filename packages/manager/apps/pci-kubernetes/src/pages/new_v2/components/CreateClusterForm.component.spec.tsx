@@ -1,9 +1,14 @@
 import { createContext } from 'react';
 
-import { RenderResult, act, render } from '@testing-library/react';
+import { RenderResult, act, render, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import {
+  TCloudCatalog,
+  TCloudCatalogPlan,
+  TCloudCatalogPricing,
+} from '@/domain/entities/cloudCatalog';
 import { TMacroRegion } from '@/domain/entities/regions';
 
 import { CreateClusterForm } from './CreateClusterForm.component';
@@ -17,7 +22,11 @@ const mockMacroRegions: Array<TMacroRegion> = [
     countryCode: 'ca',
     continentCode: 'NA',
     microRegionIds: ['BHS5'],
-    plans: ['mks.standard.hour.consumption.3az'],
+    plans: [
+      'mks.standard.hour.consumption.3az',
+      'mks.free.hour.consumption',
+      'mks.standard.hour.consumption',
+    ],
     enabled: true,
   },
   {
@@ -25,7 +34,11 @@ const mockMacroRegions: Array<TMacroRegion> = [
     countryCode: 'uk',
     continentCode: 'EU',
     microRegionIds: ['UK1'],
-    plans: ['mks.standard.hour.consumption.3az'],
+    plans: [
+      'mks.standard.hour.consumption.3az',
+      'mks.free.hour.consumption',
+      'mks.standard.hour.consumption',
+    ],
     enabled: true,
   },
   {
@@ -33,7 +46,11 @@ const mockMacroRegions: Array<TMacroRegion> = [
     countryCode: 'fr',
     continentCode: 'EU',
     microRegionIds: ['GRA5', 'GRA7'],
-    plans: ['mks.standard.hour.consumption.3az'],
+    plans: [
+      'mks.standard.hour.consumption.3az',
+      'mks.free.hour.consumption',
+      'mks.standard.hour.consumption',
+    ],
     enabled: true,
   },
 ];
@@ -47,6 +64,49 @@ const mockRegions = {
     microRegions: {
       byId: new Map(),
       allIds: [],
+    },
+  },
+};
+
+const createMockPricing = (price: number, tax: number = 0): TCloudCatalogPricing => ({
+  phase: 1,
+  capacities: [],
+  commitment: 0,
+  description: 'Test pricing',
+  interval: 1,
+  intervalUnit: 'hour',
+  price,
+  formattedPrice: `${price}`,
+  tax,
+  mode: 'default',
+  strategy: 'strategy',
+  mustBeCompleted: false,
+  type: 'purchase',
+});
+
+const createMockPlan = (
+  planCode: string,
+  price: number = 0,
+  tax: number = 0,
+): TCloudCatalogPlan => ({
+  planCode,
+  invoiceName: 'Test Plan',
+  product: 'kubernetes',
+  pricingType: 'consumption',
+  consumptionConfiguration: null,
+  pricings: [createMockPricing(price, tax)],
+});
+
+const mockCatalog: TCloudCatalog = {
+  entities: {
+    plans: {
+      'mks.free.hour.consumption': createMockPlan('mks.free.hour.consumption', 0, 0),
+      'mks.standard.hour.consumption': createMockPlan('mks.standard.hour.consumption', 0.04, 0.008),
+      'mks.standard.hour.consumption.3az': createMockPlan(
+        'mks.standard.hour.consumption.3az',
+        0.12,
+        0.024,
+      ),
     },
   },
 };
@@ -70,14 +130,16 @@ vi.mock('@/api/hooks/useKubeRegions', () => ({
   }),
 }));
 
+const mockUseCloudCatalog = vi.fn().mockImplementation(({ select }: any) => ({
+  data: select ? select(mockCatalog) : mockCatalog,
+  isLoading: false,
+  isPending: false,
+  isError: false,
+  error: null,
+}));
+
 vi.mock('@/api/hooks/useCloudCatalog', () => ({
-  useCloudCatalog: vi.fn().mockImplementation(({ select }: any) => ({
-    data: select ? select(undefined) : undefined,
-    isLoading: false,
-    isPending: false,
-    isError: false,
-    error: null,
-  })),
+  useCloudCatalog: mockUseCloudCatalog,
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => {
@@ -141,5 +203,82 @@ describe('CreateClusterForm location management', () => {
 
     const cartElement = renderedDom.getByTestId('cart');
     expect(cartElement).toHaveTextContent('regions:region_UK');
+  });
+});
+
+describe('CreateClusterForm plan management', () => {
+  it('keeps synchronized plan selection and cart display', async () => {
+    const user = userEvent.setup();
+    const renderedDom = render(<CreateClusterForm is3azAvailable />);
+
+    await waitFor(() => {
+      expect(renderedDom.getByTestId('cart')).toBeInTheDocument();
+    });
+
+    const cartElement = renderedDom.getByTestId('cart');
+
+    await waitFor(() => {
+      const freePlanTitle = renderedDom.queryByText('kube_add_plan_title_free');
+      expect(freePlanTitle).toBeInTheDocument();
+    });
+
+    const freePlanTitle = renderedDom.getByText('kube_add_plan_title_free');
+    const freePlanCard = freePlanTitle.closest('[role="radio"]') || freePlanTitle.closest('div');
+    if (!freePlanCard) {
+      throw new Error('Unable to find free plan card');
+    }
+
+    await act(() => user.click(freePlanCard));
+
+    await waitFor(() => {
+      expect(cartElement).toHaveTextContent('kube_add_plan_title_free');
+    });
+  });
+
+  it('selects first available plan automatically when plans are loaded', async () => {
+    const renderedDom = render(<CreateClusterForm is3azAvailable />);
+
+    await waitFor(() => {
+      expect(renderedDom.getByTestId('cart')).toBeInTheDocument();
+    });
+
+    const cartElement = renderedDom.getByTestId('cart');
+
+    await waitFor(() => {
+      expect(cartElement).toHaveTextContent('kube_add_plan_title_standard');
+    });
+  });
+
+  it('updates cart when plan changes from standard to free', async () => {
+    const user = userEvent.setup();
+    const renderedDom = render(<CreateClusterForm is3azAvailable />);
+
+    await waitFor(() => {
+      expect(renderedDom.getByTestId('cart')).toBeInTheDocument();
+    });
+
+    const cartElement = renderedDom.getByTestId('cart');
+
+    await waitFor(() => {
+      expect(cartElement).toHaveTextContent('kube_add_plan_title_standard');
+    });
+
+    await waitFor(() => {
+      const freePlanTitle = renderedDom.queryByText('kube_add_plan_title_free');
+      expect(freePlanTitle).toBeInTheDocument();
+    });
+
+    const freePlanTitle = renderedDom.getByText('kube_add_plan_title_free');
+    const freePlanCard = freePlanTitle.closest('[role="radio"]') || freePlanTitle.closest('div');
+    if (!freePlanCard) {
+      throw new Error('Unable to find free plan card');
+    }
+
+    await act(() => user.click(freePlanCard));
+
+    await waitFor(() => {
+      expect(cartElement).toHaveTextContent('kube_add_plan_title_free');
+      expect(cartElement).not.toHaveTextContent('kube_add_plan_title_standard');
+    });
   });
 });

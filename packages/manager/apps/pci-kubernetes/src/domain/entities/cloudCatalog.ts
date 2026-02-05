@@ -1,5 +1,6 @@
 export const PLAN_CODES = [
   'mks.free.hour.consumption',
+  'mks.free.hour.consumption.3az',
   'mks.standard.hour.consumption',
   'mks.standard.hour.consumption.3az',
 ] as const;

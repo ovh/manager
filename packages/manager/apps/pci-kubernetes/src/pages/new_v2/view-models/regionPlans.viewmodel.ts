@@ -13,11 +13,16 @@ export type PlanOption = {
 };
 
 export const mapPlanCodeToViewPlan = (planCode: TPlanCode): TViewPlan => {
-  return planCode === 'mks.free.hour.consumption' ? 'free' : 'standard';
+  return planCode === 'mks.free.hour.consumption' || planCode === 'mks.free.hour.consumption.3az'
+    ? 'free'
+    : 'standard';
 };
 
 export const mapPlanCodeToDeploymentMode = (planCode: TPlanCode): TDeploymentMode => {
-  return planCode === 'mks.standard.hour.consumption.3az' ? 'region-3-az' : 'region';
+  return planCode === 'mks.free.hour.consumption.3az' ||
+    planCode === 'mks.standard.hour.consumption.3az'
+    ? 'region-3-az'
+    : 'region';
 };
 
 const ALL_PLAN_OPTION: PlanOption = {

@@ -4,6 +4,7 @@ export type TContinentCodeDTO = 'AF' | 'ASIA' | 'EU' | 'NA' | 'US';
 
 export type TPlanCodeDTO =
   | 'mks.free.hour.consumption'
+  | 'mks.free.hour.consumption.3az'
   | 'mks.standard.hour.consumption'
   | 'mks.standard.hour.consumption.3az';
 
