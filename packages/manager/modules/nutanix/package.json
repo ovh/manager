@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-nutanix",
-  "version": "2.11.28",
+  "version": "2.11.29",
   "private": true,
   "description": "OVHcloud Nutanix product",
   "repository": {
@@ -16,7 +16,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
-    "@ovh-ux/manager-models": "^2.7.10",
+    "@ovh-ux/manager-models": "^2.7.11",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.9.1",
     "jsurl": "^0.1.4",

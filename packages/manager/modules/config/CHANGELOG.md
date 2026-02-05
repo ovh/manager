@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.8.7...@ovh-ux/manager-config@8.9.0) (2026-02-05)
+
+
+### Features
+
+* **manager-config:** add js extension to import/export in dist ([516c12f](https://github.com/ovh/manager/commit/516c12fabfad3e14cce977cafb9a3b4dabb88650))
+
+
+
+
+
 ## [8.8.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-config@8.8.6...@ovh-ux/manager-config@8.8.7) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-config

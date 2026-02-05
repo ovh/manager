@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-ssh-keys-app",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "private": true,
   "description": "PCI SSH Keys react app",
   "type": "module",
@@ -13,13 +13,13 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-pci-common": "^0.17.0",
     "@ovh-ux/manager-react-components": "1.48.0",
-    "@ovh-ux/manager-react-core-application": "^0.15.3",
+    "@ovh-ux/manager-react-core-application": "^0.15.4",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
-    "@ovh-ux/shell": "^4.10.5",
+    "@ovh-ux/shell": "^4.10.6",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-theming": "17.2.2",
     "@ovhcloud/ods-components": "17.2.2",

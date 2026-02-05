@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-netapp",
-  "version": "2.17.8",
+  "version": "2.17.9",
   "private": true,
   "description": "NetApp product.",
   "repository": {
@@ -16,7 +16,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-config": "^8.9.0",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "jsurl": "^0.1.5",
     "lodash-es": "^4.17.21"
