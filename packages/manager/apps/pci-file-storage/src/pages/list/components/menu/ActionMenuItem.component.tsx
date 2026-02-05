@@ -9,9 +9,6 @@ import { Icon, Link } from '@ovhcloud/ods-react';
 
 import { TShareAction } from '@/pages/list/components/menu/action.type';
 
-const linkClassname =
-  'w-full box-border p-4 bg-none hover:bg-none hover:bg-[--ods-color-primary-100] focus-visible:bg-[--ods-color-primary-100] focus-visible:rounded-sm focus-visible:outline-none';
-
 export const ActionMenuItem: React.FC<TShareAction> = ({ label, link, isCritical }) => {
   const { t } = useTranslation('list');
   const internalHref = useHref(link.path ?? '');
@@ -22,7 +19,7 @@ export const ActionMenuItem: React.FC<TShareAction> = ({ label, link, isCritical
     <Link
       href={href}
       className={clsx(
-        linkClassname,
+        'box-border w-full p-4 hover:bg-[--ods-color-primary-100] focus-visible:bg-[--ods-color-primary-100] focus-visible:outline-none',
         isCritical ? 'text-[--ods-color-critical-500]' : 'text-blue-700',
       )}
       {...(link.isTargetBlank && { target: '_blank' })}
