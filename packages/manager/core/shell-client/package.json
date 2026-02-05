@@ -21,8 +21,8 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.8.7",
-    "@ovh-ux/ovh-at-internet": "^0.28.2",
-    "@ovh-ux/request-tagger": "^0.4.1",
+    "@ovh-ux/ovh-at-internet": "^0.29.3",
+    "@ovh-ux/request-tagger": "^0.6.0",
     "@ovh-ux/shell": "^4.10.5",
     "@ovh-ux/url-builder": "^2.4.3",
     "i18next": "^23.8.2",
