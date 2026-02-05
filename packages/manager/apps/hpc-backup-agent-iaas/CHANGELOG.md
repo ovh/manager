@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-backup-agent-iaas-app@0.1.13...@ovh-ux/manager-hpc-backup-agent-iaas-app@0.1.14) (2026-02-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-hpc-backup-agent-iaas-app
+
+
+
+
+
 ## [0.1.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-backup-agent-iaas-app@0.1.12...@ovh-ux/manager-hpc-backup-agent-iaas-app@0.1.13) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-backup-agent-iaas-app
