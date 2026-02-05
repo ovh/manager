@@ -1,0 +1,138 @@
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import AddPublicNetworkConfiguration from '../AddPublicNetworkConfiguration.component';
+import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
+import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
+import {
+  mockedFloatingIpEntity,
+  mockedNetworkCatalog,
+  mockedPrivateNetworks,
+} from '@/__mocks__/instance/constants';
+import { getFloatingIps } from '@/data/api/floatingIps';
+import { getNetworkCatalog } from '@/data/api/networkCatalog';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
+
+const getNetworkCatalogMock = vi.fn();
+const getFloatingIpsMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
+
+vi.mock('@/data/api/networkCatalog');
+vi.mocked(getNetworkCatalog).mockImplementation(getNetworkCatalogMock);
+
+vi.mock('@/data/api/floatingIps');
+vi.mocked(getFloatingIps).mockImplementation(getFloatingIpsMock);
+
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
+
+const setupTest = ({
+  subnetId = null,
+  microRegion = 'fake-region',
+  deploymentMode = 'region',
+}: {
+  microRegion?: string | null;
+  subnetId?: string | null;
+  deploymentMode?: TDeploymentModeID;
+} = {}) => {
+  getNetworkCatalogMock.mockReturnValue(mockedNetworkCatalog);
+  getFloatingIpsMock.mockReturnValue(mockedFloatingIpEntity);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: deploymentMode,
+  });
+
+  renderWithMockedWrappers(
+    <TestCreateInstanceFormWrapper
+      defaultValues={{
+        microRegion,
+        subnetId,
+      }}
+    >
+      <AddPublicNetworkConfiguration privateNetworks={mockedPrivateNetworks} />
+    </TestCreateInstanceFormWrapper>,
+  );
+};
+
+describe('Considering AddPublicNetworkConfiguration component', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should have connectivity public checked by default', async () => {
+    setupTest();
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_network_add_public_connectivity.toggle_label/i,
+        ),
+      ).toBeChecked();
+    });
+  });
+
+  it('should hide basic public IP and floating IP blocks when toggle is off', async () => {
+    setupTest();
+
+    const toggle = screen.getByLabelText(
+      /creation:pci_instance_creation_network_add_public_connectivity.toggle_label/i,
+    );
+
+    expect(toggle).toBeChecked();
+
+    await userEvent.click(toggle);
+
+    await waitFor(() => {
+      expect(toggle).not.toBeChecked();
+
+      expect(
+        screen.queryByText(
+          /creation:pci_instance_creation_network_add_public_connectivity.basic_ip_label/i,
+        ),
+      ).not.toBeInTheDocument();
+
+      expect(
+        screen.queryByText(
+          /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
+        ),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it('should checked floating ip when basic ip is disabled', async () => {
+    setupTest({
+      subnetId: mockedPrivateNetworks[1]?.value,
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
+        ),
+      ).toBeChecked();
+
+      expect(
+        screen.getByText(
+          /creation:pci_instance_creation_network_add_public_connectivity.basic_ip_warning/i,
+        ),
+      ).toBeVisible();
+    });
+  });
+
+  it('should disable floating IP when selected region is localZone', async () => {
+    setupTest({
+      microRegion: 'fake-LZ',
+      deploymentMode: 'localzone',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          /creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label/i,
+        ),
+      ).toBeDisabled();
+    });
+  });
+});

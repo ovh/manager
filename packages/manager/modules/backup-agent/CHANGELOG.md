@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.12.3...@ovh-ux/backup-agent@1.13.0) (2026-02-05)
+
+
+### Bug Fixes
+
+* **backup-agent:** fix translations of details of status ([ed21caa](https://github.com/ovh/manager/commit/ed21caaa472a3ab841d1078db3336fb692f30a7d)), closes [#BKP-740](https://github.com/ovh/manager/issues/BKP-740)
+
+
+### Features
+
+* **backup-agent:** add agents and vaults columns ([076f681](https://github.com/ovh/manager/commit/076f68108a1a92d7ff4c2f4333f51a0e0383d0f2)), closes [#BKP-752](https://github.com/ovh/manager/issues/BKP-752)
+* **backup-agent:** add status legend in agent listing page ([8079eeb](https://github.com/ovh/manager/commit/8079eebd3ac836bc78fedec487627f03f7c9b416)), closes [#BKP-740](https://github.com/ovh/manager/issues/BKP-740)
+* **backup-agent:** update delete modal text ([3c84331](https://github.com/ovh/manager/commit/3c8433120d942f805f2313575814ca83768c1d00)), closes [#BKP-782](https://github.com/ovh/manager/issues/BKP-782)
+
+
+
+
+
 ## [1.12.3](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.12.2...@ovh-ux/backup-agent@1.12.3) (2026-02-04)
 
 **Note:** Version bump only for package @ovh-ux/backup-agent

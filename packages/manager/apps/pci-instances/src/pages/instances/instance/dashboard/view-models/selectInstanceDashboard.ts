@@ -15,6 +15,10 @@ import {
   TInstanceTaskStatus,
   TInstanceVolume,
 } from '@/types/instance/entity.type';
+import {
+  mapDisksToViewModel,
+  TDiskViewModel,
+} from '@/pages/instances/create/view-models/mappers/diskMapper';
 
 type TPrice = {
   label: string;
@@ -26,7 +30,7 @@ type TFlavor = {
   name: string;
   ram: string;
   cpu: string;
-  storage: string;
+  disks: TDiskViewModel[];
   publicBandwidth: string;
 };
 
@@ -84,7 +88,9 @@ const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
   name,
   ram: specs ? `${specs.ram.value} ${specs.ram.unit}` : '-',
   cpu: specs ? `${specs.cpu.value} ${specs.cpu.unit}` : '-',
-  storage: specs ? `${specs.storage.value} ${specs.storage.unit}` : '-',
+  disks: specs?.disks
+    ? mapDisksToViewModel(specs.disks)
+    : [{ id: 'no-disk', display: '-' }],
   publicBandwidth: specs
     ? `${specs.bandwidth.public.value} ${specs.bandwidth.public.unit}`
     : '-',

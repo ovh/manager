@@ -28,6 +28,10 @@ export const INSTANCE_PRICING_LINKS: { [Key in OvhSubsidiary]?: string } & {
 
 export const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;
 
+export const instanceNameRegex = /^[a-zA-Z0-9-_.]{0,255}$/;
+
+export const sshKeyRegex = /^(ssh-(rsa|ed\d+)|ecdsa-sha2-nistp\d+) [A-Za-z0-9+\/=]+(?: [^\s]+)?$/;
+
 export const CHANGELOG_LINKS = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Public+Cloud+Compute',
@@ -36,3 +40,5 @@ export const CHANGELOG_LINKS = {
   'feature-request':
     'https://github.com/ovh/public-cloud-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
 };
+
+export const HOUR_AVERAGE_IN_MONTH = 730;
