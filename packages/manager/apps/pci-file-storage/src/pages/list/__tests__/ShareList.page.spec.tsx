@@ -25,7 +25,7 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
         protocol: 'NFS',
         size: 161061273600,
         status: 'available',
-        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+        statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
           ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
         ]),

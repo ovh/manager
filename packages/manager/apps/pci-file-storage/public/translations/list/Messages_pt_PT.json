@@ -7,11 +7,5 @@
     "allocated_capacity": "Capacidade alocada",
     "allocated_capacity_value": "{{capacity}} GiB",
     "status": "Estado"
-  },
-  "status": {
-    "active": "Ativo",
-    "pending": "Em espera",
-    "error": "Erro",
-    "na": "N/D"
   }
 }

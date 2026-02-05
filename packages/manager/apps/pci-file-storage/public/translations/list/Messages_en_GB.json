@@ -12,11 +12,5 @@
   "actions": {
     "manage": "Manage",
     "delete": "Delete"
-  },
-  "status": {
-    "active": "Active",
-    "pending": "Pending",
-    "error": "Error",
-    "na": "N/A"
   }
 }

@@ -53,7 +53,7 @@ describe('mapShareToShareListRow', () => {
     expect(result.size).toBe(161061273600);
     expect(result.status).toBe('available');
     expect(result.statusDisplay).toEqual({
-      labelKey: 'list:status.active',
+      labelKey: 'status:active',
       badgeColor: 'success',
     });
     expect(result.actions.get('actions')).toEqual([

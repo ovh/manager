@@ -17,5 +17,8 @@ vi.mock('react-i18next', () => ({
       language: 'fr_FR',
     },
   }),
-  Trans: ({ i18nKey }: { i18nKey?: string }) => (<span>{i18nKey} ?? ''</span>),
+  Trans: ({ i18nKey, values }: { i18nKey: string; values?: Record<string, unknown> }) => {
+    const keyValuePairs = values ? Object.entries(values).map(([key, value]) => `${key}:${value}`) : null;
+    return `${i18nKey}${keyValuePairs ? ` ${keyValuePairs.join(' ')}` : ''}`.trim();
+  },
 }));

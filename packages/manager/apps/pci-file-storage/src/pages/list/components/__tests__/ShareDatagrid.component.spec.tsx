@@ -58,7 +58,7 @@ describe('ShareDatagrid', () => {
         protocol: 'NFS',
         size: 100,
         status: 'available',
-        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+        statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
           ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
         ]),

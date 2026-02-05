@@ -13,11 +13,5 @@
   "actions": {
     "manage": "Gérer",
     "delete": "Supprimer"
-  },
-  "status": {
-    "active": "Actif",
-    "pending": "En attente",
-    "error": "Erreur",
-    "na": "N/D"
   }
 }

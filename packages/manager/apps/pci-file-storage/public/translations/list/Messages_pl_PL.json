@@ -7,11 +7,5 @@
     "allocated_capacity": "Przydzielona pojemność",
     "allocated_capacity_value": "{{capacity}} GiB",
     "status": "Status"
-  },
-  "status": {
-    "active": "Aktywny",
-    "pending": "W oczekiwaniu",
-    "error": "Błąd",
-    "na": "N/D"
   }
 }

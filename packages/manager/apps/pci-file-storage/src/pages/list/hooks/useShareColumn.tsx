@@ -13,7 +13,7 @@ import { ShareStatusBadge } from '@/components/status-badge/ShareStatusBadge.com
 import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component';
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
-  const { t } = useTranslation(['list', 'regions']);
+  const { t } = useTranslation(['list', 'regions', 'status']);
 
   return useMemo(
     () => [
@@ -45,7 +45,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         accessorKey: 'protocol',
         header: t('list:columns.protocol'),
         minSize: 70,
-        size: 70
+        size: 70,
       },
       {
         id: 'allocated_capacity',
@@ -55,8 +55,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           const capacity = getValue<number>() ?? 0;
           return t('list:columns.allocated_capacity_value', { capacity });
         },
-        minSize: 120,
-        maxSize: 120,
+        minSize: 140,
+        maxSize: 140,
       },
       {
         id: 'status',

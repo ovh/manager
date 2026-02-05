@@ -64,7 +64,9 @@ describe('useShareColumn', () => {
     } as never);
     render(cell as React.ReactElement);
 
-    expect(screen.getByText('regions:manager_components_region_GRA_micro{"micro":"GRA11"}')).toBeInTheDocument();
+    expect(
+      screen.getByText('regions:manager_components_region_GRA_micro{"micro":"GRA11"}'),
+    ).toBeInTheDocument();
   });
 
   it('should render status column with Badge and mapped label', () => {
@@ -84,7 +86,7 @@ describe('useShareColumn', () => {
         protocol: 'NFS',
         size: 1000,
         status: 'available',
-        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+        statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
           ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
         ]),
@@ -101,7 +103,7 @@ describe('useShareColumn', () => {
 
     render(cell as React.ReactElement);
 
-    expect(screen.getByText('list:status.active')).toBeInTheDocument();
+    expect(screen.getByText('status:active')).toBeInTheDocument();
   });
 
   it('should render actions column with ActionsMenu using row.original.actions', async () => {
@@ -123,7 +125,7 @@ describe('useShareColumn', () => {
         protocol: 'NFS',
         size: 1000,
         status: 'available',
-        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+        statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
         actions: new Map([
           [
             'actions',
