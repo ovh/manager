@@ -118,7 +118,7 @@ describe('ShareSizeSelection', () => {
     });
   });
 
-  it('should update form description on change', async () => {
+  it('should update iops and throughput description on change', async () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
