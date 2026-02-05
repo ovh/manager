@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-const productTypes = ['key-management-service', 'secret-manager'] as const;
+const productTypes = ['key-management-service', 'secret-manager', 'service-keys'] as const;
 
 export type ProductType = (typeof productTypes)[number];
 

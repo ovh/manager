@@ -8,6 +8,7 @@ import secretManagerRoutes from '@secret-manager/routes/routes';
 import { ErrorBoundary } from '@ovh-ux/muk';
 
 import { APP_NAME } from '@/App.constants';
+import serviceKeysRoutes from '@/modules/service-keys/routes/routes';
 
 import MainLayout from '../pages/Main.layout';
 
@@ -24,6 +25,7 @@ export default (
     >
       {kmsRoutes}
       {secretManagerRoutes}
+      {serviceKeysRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>
