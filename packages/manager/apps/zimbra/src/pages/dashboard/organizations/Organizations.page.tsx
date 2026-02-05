@@ -4,11 +4,11 @@ import { Outlet, useNavigate } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME } from '@ovhcloud/ods-react';
+import { BUTTON_COLOR, BUTTON_SIZE, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { Button, Datagrid, DatagridColumn, Icon } from '@ovh-ux/muk';
+import { Button, Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { BadgeStatus, IdLink, LabelChip } from '@/components';
 import { ResourceStatus } from '@/data/api';

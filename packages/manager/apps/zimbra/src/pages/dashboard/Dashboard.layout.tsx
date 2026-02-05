@@ -4,7 +4,7 @@ import { Outlet, useResolvedPath, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { TAG_COLOR, TAG_SIZE, Tag } from '@ovhcloud/ods-react';
+import { Skeleton, TAG_COLOR, TAG_SIZE, Tag } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -19,7 +19,6 @@ import {
   GuideMenu,
   GuideMenuItem,
   Notifications,
-  Skeleton,
   useNotifications,
 } from '@ovh-ux/muk';
 
