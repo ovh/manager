@@ -11,6 +11,7 @@ import {
   TQuantityHintParams,
 } from '../view-models/cartViewModel';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { useCatalogPrice } from '@ovh-ux/muk';
 
 export type TCartItem = {
   id: string;
@@ -35,6 +36,7 @@ type TCartItems = {
 };
 
 export const useCartItems = (): TCartItems => {
+  const { getTextPrice } = useCatalogPrice(4);
   const { t } = useTranslation([
     'common',
     'regions',
@@ -191,11 +193,16 @@ export const useCartItems = (): TCartItems => {
                   label={t(
                     'creation:pci_instance_creation_network_gateway_title',
                   )}
+                  {...(privateNetwork.gatewayPrice && {
+                    price: `${getTextPrice(
+                      privateNetwork.gatewayPrice,
+                    )} ${priceUnit}`,
+                  })}
                 />
               )}
             </div>
           ),
-          price: privateNetwork.gatewayPrice,
+          price: null,
         },
       ]
     : [];
@@ -217,6 +224,7 @@ export const useCartItems = (): TCartItems => {
             </div>
           ),
           price: publicNetwork.price ? publicNetwork.price * quantity : null,
+          priceUnit,
         },
       ]
     : [];
