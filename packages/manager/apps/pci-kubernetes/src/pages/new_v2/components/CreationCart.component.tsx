@@ -60,7 +60,7 @@ export const CreationCart = () => {
             description: planTypeField ? (
               <Text preset="heading-6">{t(`add:kube_add_plan_title_${planTypeField}`)}</Text>
             ) : undefined,
-            price: planPrices ? planPrices.hourlyPrice : undefined,
+            price: planPrices?.hourlyPrice ? planPrices.hourlyPrice : undefined,
           },
         ],
         expanded: true,

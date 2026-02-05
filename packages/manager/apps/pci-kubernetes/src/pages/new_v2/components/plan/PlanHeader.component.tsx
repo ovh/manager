@@ -33,9 +33,11 @@ export function PlanTileHeader({
         <div className="mt-5 flex flex-wrap gap-4">
           <Text color="neutral" className="flex gap-2 font-semibold" preset="paragraph">
             <Icon name="circle-xmark" className="self-center" />
-            {t('kube_add_plan_content_not_available_AZ', {
-              mode: isMultiZone ? '3-AZ' : '1-AZ',
-            })}
+            {isMultiZone
+              ? t('kube_add_plan_content_not_available_AZ', {
+                  mode: '3-AZ',
+                })
+              : t('kube_add_plan_content_not_available_region')}
           </Text>
         </div>
       )}

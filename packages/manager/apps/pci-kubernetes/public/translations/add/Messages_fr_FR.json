@@ -139,6 +139,7 @@
   "kube_add_plan_helper_v2_warning_text_suffix": "dès maintenant.",
   "kube_add_plan_helper_v2_warning_consequence": "Si vous choisissez le plan Free, vous devrez recréer entièrement un nouveau cluster et migrer vos données manuellement pour bénéficier des avantages du Standard plus tard.",
   "kube_add_plan_content_not_available_AZ":  "Indisponible pour {{mode}}",
+  "kube_add_plan_content_not_available_region":  "Indisponible pour cette région",
   "kube_add_cart_total_price": "Total",
   "kube_add_cart_monthly_price": "Estimation au mois"
 }
