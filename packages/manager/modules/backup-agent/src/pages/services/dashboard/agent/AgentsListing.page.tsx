@@ -84,7 +84,7 @@ export default function AgentsListingPage() {
                   />
                 </div>
                 <div className="flex gap-4">
-                  <OdsButton id="details_of_status" variant="ghost" label="Détails des status" />
+                  <OdsButton id="details_of_status" variant="ghost" label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:details_of_status`)} />
                   <OdsPopover triggerId="details_of_status" withArrow>
                     <AgentStatusLegend />
                   </OdsPopover>

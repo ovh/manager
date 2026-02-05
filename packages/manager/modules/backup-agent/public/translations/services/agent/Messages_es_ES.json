@@ -23,5 +23,6 @@
   "agents_tab_description": "Encuentra aquí todos tus agentes protegidos. Es importante finalizar tu configuración para que tu servidor sea respaldado. Para saber más, consulta la <Link>documentación del Agente de Respaldo de OVHcloud</Link>",
   "update_agent_banner_success": "La modificación de la política está en curso, por favor espere unos segundos.",
   "delete_agent_modal_content_main": "Si ha utilizado su agente para guardar datos, nuestra política es bloquear su agente en estado desactivado durante 14 días, hasta que termine el período de inmutabilidad. Podrá volver a añadirlo al final de los 14 días.",
-  "delete_agent_modal_content_confirm": "¿Realmente desea eliminar su agente <span>{{agentName}}</span>?"
+  "delete_agent_modal_content_confirm": "¿Realmente desea eliminar su agente <span>{{agentName}}</span>?",
+  "details_of_status": "Detalles de los estados"
 }
