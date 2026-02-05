@@ -36,11 +36,17 @@ export type TCapabilityDTO = {
   enabled: boolean;
 };
 
+export type TNetworkGatewayOutDTO = {
+  externalGateway: boolean;
+  id: string;
+  name: string;
+};
+
 export type TSubnetDTO = {
   id: string;
   cidr: string;
-  gatewayIp: string | null;
   capabilities: TCapabilityDTO[] | null;
+  gateway?: TNetworkGatewayOutDTO;
 };
 
 export type TNetworkResourceDTO = {
