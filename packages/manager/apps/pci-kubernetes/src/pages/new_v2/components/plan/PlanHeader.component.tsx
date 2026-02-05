@@ -4,7 +4,7 @@ import { Icon, Radio, RadioControl, RadioLabel, Text } from '@ovhcloud/ods-react
 
 import { PciCard } from '@/components/pciCard/PciCard.component';
 
-import { TPlanTile } from '../../view-models/selectPlansFromCatalog';
+import { TPlanTile } from '../../view-models/plans.viemodel';
 
 type TPlanTileHeaderProps = {
   title: string;

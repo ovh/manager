@@ -11,8 +11,8 @@ import { Cart, TCartItem } from '@/components/cart/Cart.component';
 import { selectMacroRegions } from '@/domain/services/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
+import { selectPlanPrices } from '../view-models/plans.viemodel';
 import { mapMacroRegionForCards } from '../view-models/regions.viewmodel';
-import { selectPlanPrices } from '../view-models/selectPlansFromCatalog';
 
 export const CreationCart = () => {
   const { t } = useTranslation(['listing', 'add', 'regions']);
