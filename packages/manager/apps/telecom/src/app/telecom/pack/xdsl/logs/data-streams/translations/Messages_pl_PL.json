@@ -1,3 +1,3 @@
 {
-  "isp_xdsl_logs_data_streams_description": "Subskrybując logi bezpieczeństwa swojego konta klienta, zostaną one przeniesione do platformy danych logów. Ta platforma daje dostęp do zaawansowanych funkcji, takich jak zarządzanie alertami, wykonywanie wyszukiwań lub zarządzanie retencjami."
+  "isp_xdsl_logs_data_streams_description": "Po zasubskrybowaniu logów bezpieczeństwa konta klienta, zostaną one przeniesione do Logs Data Platform. Platforma ta zapewnia dostęp do zaawansowanych funkcji, takich jak zarządzanie alertami, wyszukiwanie lub zarządzanie czasem przechowywania."
 }
