@@ -16,6 +16,7 @@ import {
   MODAL_COLOR,
   Select,
   SelectContent,
+  SelectControl,
   TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
@@ -28,7 +29,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal, SelectControl, useNotifications } from '@ovh-ux/muk';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 
 import { getZimbraPlatformDomainQueryKey, putZimbraDomain } from '@/data/api';
 import { useDomain, useOrganizations } from '@/data/hooks';

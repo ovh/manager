@@ -241,7 +241,7 @@ export const AddEditOrganizationModal = () => {
                   <TooltipTrigger asChild>
                     <Icon className="ml-3 text-xs" name={ICON_NAME.circleQuestion} />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent createPortal={false}>
                     <Text preset={TEXT_PRESET.paragraph}>
                       {t('zimbra_organization_add_form_input_label_tooltip')}
                     </Text>

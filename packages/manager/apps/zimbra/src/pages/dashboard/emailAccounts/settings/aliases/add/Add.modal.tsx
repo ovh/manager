@@ -226,7 +226,7 @@ export const AddAliasModal = () => {
                         className="w-full"
                       >
                         <SelectControl placeholder={t('common:select_domain')} />
-                        <SelectContent />
+                        <SelectContent createPortal={false} />
                       </Select>
                       {(isLoadingDomains || !domains) && (
                         <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
