@@ -36,6 +36,7 @@ import {
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
 import { loadToolsCatalog } from '../src/kernel/utils/catalog-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import { resolveNxBinary } from '../src/kernel/utils/nx-binary-utils.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
@@ -295,53 +296,60 @@ function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } =
 
 /**
  * Resolve the runner from CLI options and validate if it's allowed.
+ * Special case: Nx can be resolved from local node_modules OR global (APT/PATH),
+ * but must satisfy the minimum version from the tools catalog.
  *
- * Rules:
- * - If no runner provided → return "turbo"
- * - If runner is "turbo" → always allowed
- * - If runner exists in tools catalog:
- *    - enforce supportedOs/ciSupportedOs
- * - If runner NOT in catalog:
- *    - assume it is a custom binary and allow it
- * - If runner not allowed → fallback to "turbo"
- *
- * @async
- * @function resolveRunnerFromOpts
- * @param {Record<string, string|boolean>} opts - Parsed CLI options.
- * @returns {Promise<string>} The validated runner name.
+ * @param {Record<string, string|boolean>} opts
+ * @returns {Promise<string>} Runner name or absolute path to runner binary
  */
 export async function resolveRunnerFromOpts(opts) {
-  const runnerValue = opts.runner;
+  const runnerOption = opts.runner;
 
-  if (typeof runnerValue !== 'string' || !runnerValue.trim()) {
+  if (typeof runnerOption !== 'string' || !runnerOption.trim()) {
     return DEFAULT_RUNNER;
   }
 
-  const requested = runnerValue.trim();
+  const requestedRunner = runnerOption.trim();
 
-  if (requested === DEFAULT_RUNNER) {
+  if (requestedRunner === DEFAULT_RUNNER) {
     return DEFAULT_RUNNER;
   }
 
   const toolsCatalog = await loadToolsCatalog();
-  const toolSpec = toolsCatalog?.[requested];
+  const toolSpec = toolsCatalog?.[requestedRunner];
 
-  // Unknown runner: allow it as custom binary (don’t block)
+  // Unknown runner: treat it as a custom binary and allow it
   if (!toolSpec) {
-    logger.info(`[runner] Using custom runner: "${requested}" (not found in tools catalog)`);
-    return requested;
+    logger.info(`[runner] Using custom runner: "${requestedRunner}" (not found in tools catalog)`);
+    return requestedRunner;
   }
 
   // Known runner: enforce OS constraints
   if (!isToolAllowed(toolSpec)) {
     logger.warn(
-      `⚠️ [runner] "${requested}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
+      `⚠️ [runner] "${requestedRunner}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
     );
     return DEFAULT_RUNNER;
   }
 
-  logger.info(`[runner] Using runner: "${requested}"`);
-  return requested;
+  // Nx: local >= minVersion → global >= minVersion → turbo
+  if (requestedRunner === 'nx') {
+    const minimumVersion = toolSpec.version || '0.0.0';
+    const nxMetaData = await resolveNxBinary({ minimumVersion });
+
+    if (nxMetaData.binaryPath) {
+      logger.info(
+        `[runner:nx] Using ${nxMetaData.source.toUpperCase()} Nx: ${nxMetaData.binaryPath} (v${nxMetaData.version})`,
+      );
+      return nxMetaData.binaryPath; // may be /usr/bin/nx or node_modules/.bin/nx
+    }
+
+    logger.warn(`[runner:nx] No suitable Nx found (>= ${minimumVersion}) -> fallback to turbo`);
+    return DEFAULT_RUNNER;
+  }
+
+  logger.info(`[runner] Using runner: "${requestedRunner}"`);
+  return requestedRunner;
 }
 
 /**
