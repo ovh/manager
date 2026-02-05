@@ -21,11 +21,9 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
     'dashboard',
   ]);
   const { data: vault, isLoading: isLoadingVault } = useBackupVaultDetails({ vaultId });
-  const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
+  const { data: locationData, isLoading: isLoadingLocation } = useLocationDetails(
     vault?.currentState.region,
   );
-
-  const isLoading = isLoadingVault;
 
   /*
   The code below is a copy of GeneralInformationTile component, made specifically for vaults.
@@ -41,14 +39,14 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
+          {isLoadingVault ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.STATUS}:status`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? (
+          {isLoadingVault ? (
             <OdsSkeleton />
           ) : (
             <ResourceStatusBadge resourceStatus={vault!.resourceStatus} />
@@ -59,7 +57,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:localisation`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isLoadingVault || isLoadingLocation ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.location ?? vault!.currentState.region}</OdsText>
@@ -70,7 +68,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:region`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isLoadingVault || isLoadingLocation ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.name ?? vault!.currentState.region}</OdsText>
@@ -81,11 +79,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:reference`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
-            <OdsSkeleton />
-          ) : (
-            <OdsText>{vault!.currentState.resourceName}</OdsText>
-          )}
+          {isLoadingVault ? <OdsSkeleton /> : <OdsText>{vault!.currentState.resourceName}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
     </ManagerTile>
