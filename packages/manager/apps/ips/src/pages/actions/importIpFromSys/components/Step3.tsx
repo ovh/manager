@@ -1,12 +1,15 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
   OdsFormField,
   OdsMessage,
   OdsRadio,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   IntervalUnitType,
@@ -14,15 +17,17 @@ import {
   useFormatDate,
 } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import { Price } from '@/components/price';
-import { TRANSLATION_NAMESPACES } from '@/utils';
-import ModalButtonGroup from './ModalButtonGroup.component';
 import {
   useDedicatedServerIpMigrationAvailableDurations,
   useDedicatedServerIpMigrationDetails,
 } from '@/data/hooks';
-import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+
 import { PRICE_MULTIPLIER } from '../importIpFromSys.constant';
+import ModalButtonGroup from './ModalButtonGroup.component';
 
 export type Step3Props = {
   onCancel: () => void;
@@ -32,7 +37,7 @@ export type Step3Props = {
   token: string;
   destinationServer?: string;
   selectedDuration?: string;
-  setSelectedDuration: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedDuration: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 export default function Step3({
@@ -77,13 +82,13 @@ export default function Step3({
     <>
       <div className="flex flex-col">
         <OdsMessage
-          className="block mb-4"
+          className="mb-4 block"
           color={ODS_MESSAGE_COLOR.information}
           isDismissible={false}
         >
           {t('step3Description')}
         </OdsMessage>
-        <OdsFormField className="block mb-3">
+        <OdsFormField className="mb-3 block">
           {availableDurations?.map((durationString) => (
             <div className="flex items-center" key={durationString}>
               <OdsRadio

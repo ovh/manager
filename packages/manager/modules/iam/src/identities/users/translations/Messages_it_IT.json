@@ -57,5 +57,6 @@
   "pagination_go": "OK",
   "pagination_display": "Mostrare",
   "user_modal_confirm": "Confermare",
-  "user_modal_cancel": "Annullare"
+  "user_modal_cancel": "Annullare",
+  "user_users_manage_tokens": "Gestire i token"
 }

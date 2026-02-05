@@ -1,4 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { IpTask } from '@/types';
 
 export type TokenParam = { campus: string };
@@ -21,7 +22,9 @@ export type AggregateResponse = {
   childrenIps: string[];
 }[];
 
-export const getAggregate = (ip: string) =>
+export const getAggregate = (
+  ip: string,
+): Promise<ApiResponse<AggregateResponse>> =>
   apiClient.v6.get<AggregateResponse>(
     `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
   );
@@ -32,7 +35,7 @@ export const postAggregate = ({
 }: {
   ip: string;
   aggregationIp: string;
-}) =>
+}): Promise<ApiResponse<IpTask>> =>
   apiClient.v6.post<IpTask>(
     `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/aggregate`,
     {
@@ -45,10 +48,8 @@ export type SliceResponse = {
   childrenIps: string[];
 }[];
 
-export const getSlice = (ip: string) =>
-  apiClient.v6.get<SliceResponse>(
-    `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
-  );
+export const getSlice = (ip: string): Promise<ApiResponse<SliceResponse>> =>
+  apiClient.v6.get(`/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`);
 
 export const postSlice = ({
   ip,
@@ -56,7 +57,7 @@ export const postSlice = ({
 }: {
   ip: string;
   slicingSize: number;
-}) =>
+}): Promise<ApiResponse<IpTask>> =>
   apiClient.v6.post<IpTask>(
     `/ip/${encodeURIComponent(ip)}/bringYourOwnIp/slice`,
     {

@@ -6,12 +6,24 @@ import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
-import { TrackPageName } from '@/tracking.constant';
+import { TrackPageName, PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
 const AssignTag = lazy(() =>
   import('@/pages/tagManager/assignTag/AssignTag.page'),
+);
+const PermanentTokensListing = lazy(() =>
+  import('@/pages/permanentTokens/listing/PermanentTokensListing.page'),
+);
+const PermanentTokensEdit = lazy(() =>
+  import('@/pages/permanentTokens/edit/PermanentTokensEdit.page'),
+);
+const PermanentTokensDelete = lazy(() =>
+  import('@/pages/permanentTokens/delete/PermanentTokensDelete.page'),
+);
+const PermanentTokensViewer = lazy(() =>
+  import('@/pages/permanentTokens/viewer/PermanentTokensViewer.page'),
 );
 
 export default (
@@ -81,5 +93,56 @@ export default (
         },
       }}
     />
+    <Route
+      path={urls.permanentTokens}
+      Component={PermanentTokensListing}
+      handle={{
+        tracking: {
+          pageName: PERMANENT_TOKENS_TRACKING.LISTING.PAGE_NAME,
+          pageType: PageType.listing,
+        },
+      }}
+    >
+      <Route
+        path={urls.permanentTokensAdd}
+        Component={PermanentTokensEdit}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.ADD.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        path={urls.permanentTokensEdit}
+        Component={PermanentTokensEdit}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.EDIT.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        path={urls.permanentTokensDelete}
+        Component={PermanentTokensDelete}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.DELETE.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+      <Route
+        path={urls.permanentTokensView}
+        Component={PermanentTokensViewer}
+        handle={{
+          tracking: {
+            pageName: PERMANENT_TOKENS_TRACKING.VIEWER.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
   </Route>
 );

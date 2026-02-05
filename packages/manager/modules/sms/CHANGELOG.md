@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.20.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.20.3...@ovh-ux/manager-sms@8.20.4) (2026-02-04)
+
+
+### Bug Fixes
+
+* **telecom:** add a banner in sms order when no sms account exists ([f23d359](https://github.com/ovh/manager/commit/f23d3590898de0d27d61f0eee7a00180deac8a68)), closes [#PRDCOL-321](https://github.com/ovh/manager/issues/PRDCOL-321)
+
+
+
+
+
 ## [8.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.20.2...@ovh-ux/manager-sms@8.20.3) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms

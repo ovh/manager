@@ -36,6 +36,7 @@ angular
     template: templateService,
     bindings: {
       headerGuideLink: '<',
+      smsFeatureAvailability: '<',
     },
   })
   .config(($stateProvider) => {
@@ -70,6 +71,8 @@ angular
             ),
             url: url[coreConfig.getUser().ovhSubsidiary] || url.DEFAULT,
           })),
+        smsFeatureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
+          ovhFeatureFlipping.checkFeatureAvailability(['sms:time2chat']),
         breadcrumb: /* @ngInject */ ($translate) =>
           $translate.instant('sms_order_title'),
       },

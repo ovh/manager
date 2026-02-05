@@ -1,18 +1,8 @@
 import ippadr from 'ipaddr.js';
 import { PathParams } from 'msw';
+
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import ipList from './get-ips.json';
-import icebergIpList from './iceberg-get-ip.json';
-import icebergIpListFull from './iceberg-get-ip-full';
-import ipDetails from './get-ip-details.json';
-import getIpReverseForBlock from './get-ip-reverse-for-block.json';
-import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
-import getIpMoveResponse from './get-ip-move.json';
-import {
-  getGameFirewallRuleListResponse,
-  getGameFirewallRuleResponse,
-  getIpGameFirewallResponse,
-} from './get-ip-game-firewall';
+
 import {
   IpAntihackType,
   IpEdgeFirewallRule,
@@ -26,7 +16,20 @@ import {
   IpSpamType,
 } from '@/data/api';
 import { IpTask, IpTaskFunction, IpTaskStatus } from '@/types';
+
 import { GetByoipMocksParams, getByoipMocks } from './byoip';
+import ipDetails from './get-ip-details.json';
+import {
+  getGameFirewallRuleListResponse,
+  getGameFirewallRuleResponse,
+  getIpGameFirewallResponse,
+} from './get-ip-game-firewall';
+import getIpMoveResponse from './get-ip-move.json';
+import getIpReverseForBlock from './get-ip-reverse-for-block.json';
+import ipList from './get-ips.json';
+import getIpv6ReverseForBlock from './get-ipv6-reverse-for-block.json';
+import icebergIpListFull from './iceberg-get-ip-full';
+import icebergIpList from './iceberg-get-ip.json';
 
 export type GetIpsMocksParams = {
   nbIp?: number;
@@ -233,7 +236,7 @@ export const getIpsMocks = ({
   },
   {
     url: '/ip/:ip/firewall/:ipOnFirewall',
-    response: (): void => null,
+    response: (): void => undefined,
     api: 'v6',
     method: 'put',
   },

@@ -61,5 +61,6 @@
   "reset": "Tout effacer",
   "filters_apply": "Appliquer les filtres",
   "show_hide_filters": "Afficher / Masquer les filtres",
-  "discover": "Découvrir"
+  "discover": "Découvrir",
+  "migrate": "Migrer"
 }

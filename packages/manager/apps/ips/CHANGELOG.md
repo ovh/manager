@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.4.0...@ovh-ux/manager-ips-app@0.5.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* **ips:** enable add rule button when mitigation ([8ba4c9c](https://github.com/ovh/manager/commit/8ba4c9cec90ddc9ffe50a378a25a0f994e4b4f95)), closes [#MANAGER-20493](https://github.com/ovh/manager/issues/MANAGER-20493)
+* **ips:** fix reverse dns for block ip ([c899522](https://github.com/ovh/manager/commit/c89952261b1600351a1c6aa88bc352f1d9716fdf)), closes [#INC0184679](https://github.com/ovh/manager/issues/INC0184679)
+
+
+### Features
+
+* **ips:** add missing firewall actions ([d7420d8](https://github.com/ovh/manager/commit/d7420d8d1f4452920668af9ab7b987505e362392)), closes [#MANAGER-20493](https://github.com/ovh/manager/issues/MANAGER-20493)
+* **ips:** migrate ips to new project structure ([32c73b1](https://github.com/ovh/manager/commit/32c73b147541c266aab6e77a32d9014d76a28223)), closes [#MANAGER-20493](https://github.com/ovh/manager/issues/MANAGER-20493)
+* **ips:** update routes to new format ([caf40ad](https://github.com/ovh/manager/commit/caf40ad7dd8832aad31643c37dfb0b4b14f88b5c)), closes [#MANAGER-20662](https://github.com/ovh/manager/issues/MANAGER-20662)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.3.7...@ovh-ux/manager-ips-app@0.4.0) (2026-01-30)
 
 

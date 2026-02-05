@@ -12,6 +12,7 @@ const DeleteNotebookModal = () => {
         navigate('../../');
       }}
       notebook={notebookQuery.data}
+      trackingCategory="dashboard"
     />
   );
 };

@@ -1,11 +1,14 @@
 import React from 'react';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
   ODS_ICON_NAME,
 } from '@ovhcloud/ods-components';
-import { IpGameFirewallRule, IpGameFirewallStateEnum } from '@/data/api';
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
+import { IpGameFirewallRule } from '@/data/api';
+
 import { GameFirewallContext } from '../gamefirewall.context';
 
 export const ActionColumn = (
@@ -16,7 +19,7 @@ export const ActionColumn = (
   );
 
   return rule?.isNew ? (
-    <div className="flex gap-3">
+    <div className="flex gap-4">
       <OdsButton
         size={ODS_BUTTON_SIZE.xs}
         label=""
@@ -37,7 +40,7 @@ export const ActionColumn = (
       label=""
       icon={ODS_ICON_NAME.trash}
       variant={ODS_BUTTON_VARIANT.ghost}
-      isDisabled={rule?.state !== IpGameFirewallStateEnum.OK}
+      isDisabled={rule?.state !== 'ok'}
       onClick={() => showConfirmDeleteModal(rule)}
     />
   );

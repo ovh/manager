@@ -7,9 +7,9 @@ import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsMessage } from '@ovhcloud/ods-components/react';
+import { Message } from '@ovhcloud/ods-react';
 
-import { Drawer } from '@ovh-ux/manager-react-components';
+import { Drawer } from '@ovh-ux/muk';
 
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
@@ -31,7 +31,7 @@ export default function EditMetadataDrawerPage() {
     secretConfig,
     isPending: isSecretSmartConfigPending,
     error: secretSmartConfigError,
-  } = useSecretSmartConfig(secret);
+  } = useSecretSmartConfig({ secret, okmsId });
 
   const isPending = isSecretPending || isSecretSmartConfigPending;
   const error = secretError || secretSmartConfigError;
@@ -41,18 +41,15 @@ export default function EditMetadataDrawerPage() {
   };
 
   return (
-    <Drawer
-      isOpen
-      heading={t('edit_metadata')}
-      onDismiss={handleDismiss}
-      isLoading={isPending}
-      data-testid="edit-metadata-drawer"
-    >
+    <Drawer.Root isOpen onDismiss={handleDismiss} isLoading={isPending}>
+      <Drawer.Header title={t('edit_metadata')} />
       <Suspense>
         {error && (
-          <OdsMessage color="danger" className="mb-4" isDismissible={false}>
-            {error?.response?.data?.message}
-          </OdsMessage>
+          <Drawer.Content>
+            <Message color="critical" className="mb-4" dismissible={false}>
+              {error?.response?.data?.message}
+            </Message>
+          </Drawer.Content>
         )}
         {!error && secret && secretConfig && (
           <EditMetadataDrawerForm
@@ -64,6 +61,6 @@ export default function EditMetadataDrawerPage() {
           />
         )}
       </Suspense>
-    </Drawer>
+    </Drawer.Root>
   );
 }

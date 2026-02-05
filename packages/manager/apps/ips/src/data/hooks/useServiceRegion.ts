@@ -1,5 +1,9 @@
-import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
+
+import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { ServiceType } from '@/types';
+
 import {
   DedicatedCloudLocation,
   DedicatedServer,
@@ -8,7 +12,6 @@ import {
   getDedicatedServerData,
   getVpsDatacenter,
 } from '../api';
-import { ServiceType } from '@/types';
 import { DATACENTER_TO_REGION } from './catalog';
 
 export const useServiceRegion = ({
@@ -16,7 +19,7 @@ export const useServiceRegion = ({
   serviceType,
   serviceStatus,
 }: {
-  serviceName?: string;
+  serviceName?: string | null;
   serviceType?: ServiceType;
   serviceStatus?: string;
 }) => {

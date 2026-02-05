@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.19...@ovh-ux/manager-public-cloud@7.11.0) (2026-02-04)
+
+
+### Features
+
+* **public-cloud:** add file storage deep link ([f714beb](https://github.com/ovh/manager/commit/f714bebba1d886736be89767df6918005ff1ddb8)), closes [#TAPC-5692](https://github.com/ovh/manager/issues/TAPC-5692)
+
+
+
+
+
+## [7.10.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.18...@ovh-ux/manager-public-cloud@7.10.19) (2026-02-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-public-cloud
+
+
+
+
+
 ## [7.10.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.10.17...@ovh-ux/manager-public-cloud@7.10.18) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud

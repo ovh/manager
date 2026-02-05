@@ -1,5 +1,6 @@
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
+
 import { ServiceStatus } from '@/types';
 
 export type DedicatedCloudLocation = {
@@ -47,11 +48,11 @@ export type DedicatedCloudServiceInfos = {
 };
 
 export const getDedicatedCloudServiceInfos = (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<ApiResponse<DedicatedCloudServiceInfos>> =>
   apiClient.v6.get(`/dedicatedCloud/${serviceName}/serviceInfos`);
 
 export const getDedicatedCloudOrderableIpCountries = (
-  serviceName: string,
+  serviceName?: string | null,
 ): Promise<ApiResponse<string[]>> =>
   apiClient.v6.get(`/dedicatedCloud/${serviceName}/orderableIpCountries`);

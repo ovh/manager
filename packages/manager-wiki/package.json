@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-wiki",
-  "version": "0.26.2",
+  "version": "0.26.5",
   "private": true,
   "description": "Manager Wiki",
   "license": "BSD-3-Clause",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-core-api": "^0.21.2",
-    "@ovh-ux/muk": "^0.13.3",
-    "@ovhcloud/ods-react": "^19.2.0",
-    "@ovhcloud/ods-themes": "^19.2.0",
+    "@ovh-ux/muk": "^1.2.1",
+    "@ovhcloud/ods-react": "19.5.0",
+    "@ovhcloud/ods-themes": "19.5.0",
     "clsx": "^2.1.1",
     "lz-string": "^1.5.0",
     "react": "^18.2.0",

@@ -10,6 +10,7 @@ const StartNotebookModal = () => {
     <StartNotebook
       onSuccess={() => navigate('../')}
       notebook={notebookQuery.data}
+      trackingCategory="listing"
     />
   );
 };

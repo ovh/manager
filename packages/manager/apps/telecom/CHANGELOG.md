@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.24.0...@ovh-ux/manager-telecom@16.25.0) (2026-02-04)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1077] ([d4bd6b7](https://github.com/ovh/manager/commit/d4bd6b7d27a3e7775674eb89ed7225bfc20c6365))
+* **telecom:** update portability form to match new mockups ([bfd9c57](https://github.com/ovh/manager/commit/bfd9c57a7e34e1f38af519505380a7e6875ad17d)), closes [#PRDCOL-346](https://github.com/ovh/manager/issues/PRDCOL-346)
+
+
+### Features
+
+* **telecom:** map new phones references ([d2d8a48](https://github.com/ovh/manager/commit/d2d8a48b14a670234e8d8e7b9408abd23450c6ad)), closes [#PRDCOL-368](https://github.com/ovh/manager/issues/PRDCOL-368)
+* **telecom:** show rio code in alias numbers ([48eb61b](https://github.com/ovh/manager/commit/48eb61bd98cdc0d14926a88a00bfd3ffeedbeef5)), closes [#PRDCOL-374](https://github.com/ovh/manager/issues/PRDCOL-374)
+
+
+
+
+
+# [16.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.23.2...@ovh-ux/manager-telecom@16.24.0) (2026-02-04)
+
+
+### Features
+
+* **xdsl.logs:** add logs to customer tab ([1fca22c](https://github.com/ovh/manager/commit/1fca22c1702d54b1335066864d5d8cf1dcda6b4c)), closes [#MANAGER-20557](https://github.com/ovh/manager/issues/MANAGER-20557)
+
+
+
+
+
 ## [16.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.23.1...@ovh-ux/manager-telecom@16.23.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

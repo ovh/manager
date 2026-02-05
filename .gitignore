@@ -41,5 +41,3 @@ CLAUDE.md
 .github/instructions/nx.instructions.md
 **/vite.config.*.timestamp-*.mjs
 **/vitest.config.*.timestamp-*.mjs
-
-.cursorignore

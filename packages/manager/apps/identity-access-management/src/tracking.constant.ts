@@ -28,3 +28,38 @@ export enum TrackPageName {
   TAG_MANAGEMENT_TAG_DETAIL = 'tag-management_tag-detail',
   TAG_MANAGEMENT_UNASSIGN_TAG = 'tag-management_unassign-tag',
 }
+
+export const PERMANENT_TOKENS_TRACKING = {
+  LISTING: {
+    PAGE_NAME: 'list_tokens',
+    GO_BACK: ['page', 'button', 'go_back_to_identities'],
+    ADD_TOKEN: ['page', 'button', 'add_token'],
+    EDIT_TOKEN: ['datagrid', 'button', 'edit_token'],
+    DELETE_TOKEN: ['datagrid', 'button', 'delete_token'],
+  },
+  ADD: {
+    PAGE_NAME: 'add_token',
+    CTA_CANCEL: ['pop-up', 'button', 'add_token', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'add_token', 'confirm'],
+    REQUEST_FAIL: 'add_token_error',
+    REQUEST_SUCCESS: 'add_token_success',
+  },
+  VIEWER: {
+    PAGE_NAME: 'show_token',
+    CTA_CLOSE: ['pop-up', 'button', 'show_token', 'close'],
+  },
+  EDIT: {
+    PAGE_NAME: 'edit_token',
+    CTA_CANCEL: ['pop-up', 'button', 'edit_token', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'edit_token', 'confirm'],
+    REQUEST_FAIL: 'edit_token_error',
+    REQUEST_SUCCESS: 'edit_token_success',
+  },
+  DELETE: {
+    PAGE_NAME: 'delete_token',
+    CTA_CANCEL: ['pop-up', 'button', 'delete_token', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'delete_token', 'confirm'],
+    REQUEST_FAIL: 'delete_token_error',
+    REQUEST_SUCCESS: 'delete_token_success',
+  },
+};

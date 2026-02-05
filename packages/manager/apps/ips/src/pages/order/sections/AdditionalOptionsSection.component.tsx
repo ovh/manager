@@ -1,17 +1,22 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsText } from '@ovhcloud/ods-components/react';
+
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsText } from '@ovhcloud/ods-components/react';
+
 import {
   ButtonType,
   PageLocation,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
-import { OrderContext } from '../order.context';
-import { Ipv6Options } from '../order.constant';
+
 import { OptionCard } from '@/components/OptionCard/OptionCard.component';
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
+
+import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
+import { Ipv6Options } from '../order.constant';
+import { OrderContext } from '../order.context';
 
 export const AdditionalOptionsSection: React.FC = () => {
   const { t } = useTranslation('order');
@@ -25,11 +30,11 @@ export const AdditionalOptionsSection: React.FC = () => {
       title={t('additional_options_selection_title')}
       description={t('additional_options_selection_description')}
     >
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-4">
         <OptionCard
           title={t('new_prefix_ipv6_card_title')}
           description={t('new_prefix_ipv6_card_description')}
-          isSelected={selectedOptions.includes(Ipv6Options.newPrefix56)}
+          isSelected={selectedOptions?.includes(Ipv6Options.newPrefix56)}
           onClick={() => {
             trackClick({
               actionType: 'action',

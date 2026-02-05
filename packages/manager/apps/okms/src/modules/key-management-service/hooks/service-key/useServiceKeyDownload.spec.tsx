@@ -5,8 +5,6 @@ import {
 } from '@key-management-service/types/okmsServiceKey.type';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ODS_BUTTON_COLOR, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-
 import { renderHookWithClient } from '@/common/utils/tests/testUtils';
 
 import { useServiceKeyDownload } from './useServiceKeyDownload';
@@ -25,8 +23,8 @@ vi.mock('react-i18next', () => ({
   })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@ovh-ux/muk')>();
 
   return {
     ...mod,
@@ -111,10 +109,8 @@ describe('useServiceKeyDownload', () => {
         name: 'download_encryption_key',
         label:
           'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-        isLoading: false,
-        isDisabled: false,
-        icon: ODS_ICON_NAME.download,
-        color: ODS_BUTTON_COLOR.primary,
+        icon: 'download',
+        color: 'primary',
       });
       expect(result.current?.onClick).toBeInstanceOf(Function);
     });
@@ -130,7 +126,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.isDisabled).toBe(true);
+      expect(result.current?.disabled).toBe(true);
     });
 
     it('should return action with isDisabled false when keyState is active', () => {
@@ -144,7 +140,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.isDisabled).toBe(false);
+      expect(result.current?.disabled).toBe(false);
     });
   });
 

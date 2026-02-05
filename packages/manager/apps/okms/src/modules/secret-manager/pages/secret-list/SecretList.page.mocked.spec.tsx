@@ -2,11 +2,9 @@ import {
   SECRET_MANAGER_ROUTES_URLS,
   SECRET_MANAGER_SEARCH_PARAMS,
 } from '@secret-manager/routes/routes.constants';
-import { act, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterAll, vi } from 'vitest';
-
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
@@ -25,14 +23,13 @@ describe('Secret list page test suite with mocked react-router-dom', () => {
   });
   it('should navigate to create a secret page with a okmsId search param', async () => {
     const user = userEvent.setup();
-    const { container } = await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretList(mockOkmsId));
+    await renderTestApp(SECRET_MANAGER_ROUTES_URLS.secretList(mockOkmsId));
 
-    const createSecretButton = await getOdsButtonByLabel({
-      container,
-      label: labels.secretManager.create_a_secret,
+    const createSecretButton = await screen.findByRole('button', {
+      name: labels.secretManager.create_a_secret,
     });
 
-    await act(() => user.click(createSecretButton));
+    await user.click(createSecretButton);
 
     await waitFor(() => {
       expect(navigateMock).toHaveBeenCalledTimes(1);

@@ -69,7 +69,7 @@
   "region_AP-SOUTH-MUM_micro": "Mumbai ({{ micro }})",
   "region_location_MUM": "Asia-Pacífico (Mumbai)",
   "region_continent_MUM": "Asia-Pacífico ",
-  "region_continent_AP-SOUTH-MUM": "Asia-Pacífico ",
+  "region_continent_AP-SOUTH-MUM": "Asia-Pacífico",
   "region_PAR": "París",
   "region_PAR_micro": "París ({{ micro }})",
   "region_location_PAR": "Europa occidental (Francia)",

@@ -10,6 +10,7 @@ const DeleteNotebookModal = () => {
     <DeleteNotebook
       onSuccess={() => navigate('../')}
       notebook={notebookQuery.data}
+      trackingCategory="listing"
     />
   );
 };

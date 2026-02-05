@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   BUTTON_COLOR,
-  Button,
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
@@ -44,7 +43,7 @@ import {
   PageType,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovh-ux/muk';
+import { Button, useNotifications } from '@ovh-ux/muk';
 
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
@@ -58,7 +57,7 @@ import {
   putZimbraPlatformAccount,
 } from '@/data/api';
 import { SlotWithService, useAccount, useDomains, useSlotsWithService } from '@/data/hooks';
-import { useGenerateUrl } from '@/hooks';
+import { useCountries, useGenerateUrl } from '@/hooks';
 import queryClient from '@/queryClient';
 import { ADD_EMAIL_ACCOUNT, CONFIRM, EDIT_EMAIL_ACCOUNT } from '@/tracking.constants';
 import {
@@ -71,7 +70,9 @@ import {
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
+  const [isAdvancedSettingsOpen, setIsAdvancedSettingsOpen] = useState(false);
   const { t } = useTranslation(['accounts/form', 'common', NAMESPACES.ACTIONS, NAMESPACES.FORM]);
+  const { countryKeys } = useCountries();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
   const { platformId, accountId } = useParams();
@@ -92,20 +93,20 @@ export const EmailAccountForm = () => {
 
   const groupedSlots: Record<string, SlotWithService[]> = useMemo(() => {
     // group slots by offer
-    const groupedSlots = groupBy<keyof typeof ZimbraOffer, SlotWithService>(
+    const slotsByOffer = groupBy<keyof typeof ZimbraOffer, SlotWithService>(
       slots,
       (slot) => slot.offer,
     );
     // we need to sort the dates manually because slots API
     // doesn't take into account the renewal date
-    Object.keys(groupedSlots).forEach((offer: keyof typeof ZimbraOffer) => {
-      groupedSlots[offer] = groupedSlots[offer].sort(
+    Object.keys(slotsByOffer).forEach((offer: keyof typeof ZimbraOffer) => {
+      slotsByOffer[offer] = slotsByOffer[offer].sort(
         (a, b) =>
           new Date(b.service?.nextBillingDate || 0).getTime() -
           new Date(a.service?.nextBillingDate || 0).getTime(),
       );
     });
-    return groupedSlots;
+    return slotsByOffer;
   }, [slots]);
 
   const [selectedDomainOrganization, setSelectedDomainOrganization] = useState('');
@@ -166,6 +167,9 @@ export const EmailAccountForm = () => {
           getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
         ],
       });
+      await queryClient.invalidateQueries({
+        queryKey: getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
+      });
     },
   });
 
@@ -188,7 +192,7 @@ export const EmailAccountForm = () => {
     control,
     handleSubmit,
     reset,
-    formState: { isDirty, isValid, errors },
+    formState: { isDirty: isFormDirty, isValid: isFormValid, errors },
     setValue,
   } = useForm({
     defaultValues: {
@@ -201,6 +205,7 @@ export const EmailAccountForm = () => {
       hideInGal: emailAccount?.currentState?.hideInGal || false,
       forceChangePasswordAfterLogin: !accountId,
       offer: emailAccount?.currentState?.offer,
+      contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
     },
     mode: 'onTouched',
     resolver: zodResolver(accountId ? editEmailAccountSchema : addEmailAccountSchema),
@@ -218,6 +223,7 @@ export const EmailAccountForm = () => {
         hideInGal: emailAccount?.currentState?.hideInGal,
         forceChangePasswordAfterLogin: !accountId,
         offer: emailAccount?.currentState?.offer,
+        contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
       });
     }
   }, [emailAccount]);
@@ -237,12 +243,12 @@ export const EmailAccountForm = () => {
         control={control}
         name="account"
         render={({
-          field: { name, value, onChange, onBlur },
+          field: { name, value: accountValue, onChange, onBlur },
           fieldState: { isDirty, isTouched },
         }) => (
           <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
             <label htmlFor={name} slot="label">
-              {t('common:email_account')} *
+              {t('common:email_address')} *
             </label>
             <div className="flex">
               <Input
@@ -253,7 +259,7 @@ export const EmailAccountForm = () => {
                 id={name}
                 name={name}
                 invalid={(isDirty || isTouched) && !!errors[name]}
-                value={value}
+                value={accountValue}
                 onBlur={onBlur}
                 onChange={onChange}
               />
@@ -597,10 +603,371 @@ export const EmailAccountForm = () => {
         </div>
       )}
       <Button
+        color={BUTTON_COLOR.primary}
+        variant="outline"
+        data-testid="toggle-btn"
+        onClick={() => setIsAdvancedSettingsOpen(!isAdvancedSettingsOpen)}
+      >
+        <>
+          {t('common:email_account_advanced_settings')}
+          <Icon name={isAdvancedSettingsOpen ? ICON_NAME.chevronUp : ICON_NAME.chevronDown} />
+        </>
+      </Button>
+      {isAdvancedSettingsOpen && (
+        <>
+          <div className="pt-6">
+            <Text preset="heading-4" className="block">
+              {t('common:email_account_company_information')}
+            </Text>
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.company"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pr-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_company')}
+                  </label>
+                  <Input
+                    placeholder={t('common:contactInformation_company')}
+                    data-testid="input-company"
+                    type={INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.service"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pl-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_service')}
+                  </label>
+                  <Input
+                    type={INPUT_TYPE.text}
+                    data-testid="input-service"
+                    placeholder={t('common:contactInformation_service')}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.profession"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pr-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_profession')}
+                  </label>
+                  <Input
+                    placeholder={t('common:contactInformation_profession')}
+                    data-testid="input-profession"
+                    type={INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.office"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pl-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_office')}
+                  </label>
+                  <Input
+                    type={INPUT_TYPE.text}
+                    data-testid="input-office"
+                    placeholder={t('common:contactInformation_office')}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+          </div>
+          <div className="pt-6">
+            <Text preset="heading-4" className="block">
+              {t('common:email_account_contact_information')}
+            </Text>
+          </div>
+          <div className="flex">
+            <Controller
+              control={control}
+              name="contactInformation.street"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pr-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_street')}
+                  </label>
+                  <Input
+                    placeholder={t('common:contactInformation_street')}
+                    data-testid="input-street"
+                    type={INPUT_TYPE.text}
+                    id={name}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.phoneNumber"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pl-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_phoneNumber')}
+                  </label>
+                  <Input
+                    type={INPUT_TYPE.text}
+                    placeholder={t('common:contactInformation_phoneNumber')}
+                    data-testid="input-phoneNumber"
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+          </div>
+          <div className="flex">
+            <div className="flex md:w-1/2">
+              <Controller
+                control={control}
+                name="contactInformation.postcode"
+                render={({
+                  field: { name, value, onChange, onBlur },
+                  fieldState: { isDirty, isTouched },
+                }) => (
+                  <FormField
+                    className="w-full pr-6 md:w-1/2"
+                    invalid={(isDirty || isTouched) && !!errors?.[name]}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_postcode')}
+                    </label>
+                    <Input
+                      placeholder={t('common:contactInformation_postcode')}
+                      data-testid="input-postcode"
+                      type={INPUT_TYPE.text}
+                      id={name}
+                      name={name}
+                      invalid={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onBlur={onBlur}
+                      onChange={onChange}
+                    />
+                  </FormField>
+                )}
+              />
+              <Controller
+                control={control}
+                name="contactInformation.city"
+                render={({
+                  field: { name, value, onChange, onBlur },
+                  fieldState: { isDirty, isTouched },
+                }) => (
+                  <FormField
+                    className="w-full pr-6 md:w-1/2"
+                    invalid={(isDirty || isTouched) && !!errors?.[name]}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_city')}
+                    </label>
+                    <Input
+                      placeholder={t('common:contactInformation_city')}
+                      data-testid="input-city"
+                      type={INPUT_TYPE.text}
+                      id={name}
+                      name={name}
+                      invalid={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onBlur={onBlur}
+                      onChange={onChange}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
+            <div className="flex md:w-1/2">
+              <Controller
+                control={control}
+                name="contactInformation.mobileNumber"
+                render={({
+                  field: { name, value, onChange, onBlur },
+                  fieldState: { isDirty, isTouched },
+                }) => (
+                  <FormField
+                    className="w-full pl-6"
+                    invalid={(isDirty || isTouched) && !!errors?.[name]}
+                  >
+                    <label htmlFor={name} slot="label">
+                      {t('common:contactInformation_mobileNumber')}
+                    </label>
+                    <Input
+                      type={INPUT_TYPE.text}
+                      data-testid="input-mobileNumber"
+                      placeholder={t('common:contactInformation_mobileNumber')}
+                      name={name}
+                      invalid={!!errors[name]}
+                      value={value}
+                      defaultValue=""
+                      onBlur={onBlur}
+                      onChange={onChange}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
+          </div>
+          <div className="flex items-center">
+            <Controller
+              control={control}
+              name="contactInformation.country"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pr-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_country')}
+                  </label>
+                  <div className="flex">
+                    <Select
+                      items={countryKeys.map((key) => ({
+                        label: t(`${NAMESPACES.COUNTRIES}:${key}`),
+                        value: key.split('_')[1],
+                      }))}
+                      data-testid="select-country"
+                      className="mt-2 flex-1"
+                      id={name}
+                      name={name}
+                      value={value ? [value] : []}
+                      invalid={!!errors[name]}
+                      onValueChange={(country) => onChange(country.value[0])}
+                      onBlur={onBlur}
+                    >
+                      <SelectControl placeholder={t('common:contactInformation_country')} />
+                      <SelectContent />
+                    </Select>
+                  </div>
+                </FormField>
+              )}
+            />
+            <Controller
+              control={control}
+              name="contactInformation.faxNumber"
+              render={({
+                field: { name, value, onChange, onBlur },
+                fieldState: { isDirty, isTouched },
+              }) => (
+                <FormField
+                  className="w-full pl-6 md:w-1/2"
+                  invalid={(isDirty || isTouched) && !!errors?.[name]}
+                >
+                  <label htmlFor={name} slot="label">
+                    {t('common:contactInformation_faxNumber')}
+                  </label>
+                  <Input
+                    type={INPUT_TYPE.text}
+                    data-testid="input-faxNumber"
+                    placeholder={t('common:contactInformation_faxNumber')}
+                    name={name}
+                    invalid={!!errors[name]}
+                    value={value}
+                    defaultValue=""
+                    onBlur={onBlur}
+                    onChange={onChange}
+                  />
+                </FormField>
+              )}
+            />
+          </div>
+        </>
+      )}
+      <Button
+        className="block"
         slot="actions"
         type="submit"
         color={BUTTON_COLOR.primary}
-        disabled={!isDirty || !isValid}
+        disabled={!isFormDirty || !isFormValid}
         loading={isSending}
         data-testid="confirm-btn"
       >

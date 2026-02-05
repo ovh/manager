@@ -1,4 +1,5 @@
 import { CurrencyCode } from '@ovh-ux/manager-react-components';
+
 import { PccCatalogResponse } from '@/data/api';
 
 export const catalogPcc: PccCatalogResponse = [

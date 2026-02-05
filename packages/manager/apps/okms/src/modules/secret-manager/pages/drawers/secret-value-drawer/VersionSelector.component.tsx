@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { VersionState } from '@secret-manager/components/version-state/VersionState.component';
+import { VersionState } from '@secret-manager/components/version-state-badge/VersionStateBadge.component';
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSelect, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsSelect } from '@ovhcloud/ods-components/react';
+import { Message, Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -50,25 +51,25 @@ export const VersionSelector = ({
     const message = isErrorResponse(error) ? error.response.data.message : undefined;
 
     return (
-      <OdsMessage className="mt-4" color="critical" data-testid={VERSION_SELECTOR_ERROR_TEST_ID}>
+      <Message className="mt-4" color="critical" data-testid={VERSION_SELECTOR_ERROR_TEST_ID}>
         {t('error_message', {
           message,
           ns: NAMESPACES.ERROR,
         })}
-      </OdsMessage>
+      </Message>
     );
   }
 
   return (
     <div className="flex flex-col gap-3 pt-2">
       <div className="flex h-8 items-center gap-2">
-        <OdsText preset="span" className="w-1/3">
+        <Text preset="span" className="w-1/3">
           {t('version')}
-        </OdsText>
+        </Text>
         {/*   isFetching forces to display the spinner when the version has changed
         otherwise when the ods-select component is refreshed, react breaks */}
         {isPending || isFetching ? (
-          <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
+          <Skeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
         ) : (
           <VersionSelectorSelect
             defaultVersionId={defaultVersionId}
@@ -78,11 +79,11 @@ export const VersionSelector = ({
         )}
       </div>
       <div className="flex h-8 items-center gap-2">
-        <OdsText preset="span" className="w-1/3">
+        <Text preset="span" className="w-1/3">
           {t('status', { ns: NAMESPACES.STATUS })}
-        </OdsText>
+        </Text>
         {isPending ? (
-          <OdsSkeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
+          <Skeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
         ) : (
           selectedVersion && <VersionState state={selectedVersion.state} />
         )}

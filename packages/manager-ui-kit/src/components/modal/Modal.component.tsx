@@ -12,9 +12,9 @@ import { useTranslation } from 'react-i18next';
 import {
   BUTTON_VARIANT,
   Button,
-  MODAL_COLOR,
   ModalBody,
   ModalContent,
+  ModalHeader,
   Modal as OdsModal,
   SPINNER_SIZE,
   Spinner,
@@ -24,6 +24,7 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { MODAL_TYPE } from '@/components/modal/Modal.constants';
 import { ModalProps } from '@/components/modal/Modal.props';
 
 type ModalRef = ElementRef<typeof ModalContent>;
@@ -32,7 +33,7 @@ export const Modal: ForwardRefExoticComponent<ModalProps & RefAttributes<ModalRe
   (
     {
       heading,
-      type = MODAL_COLOR.information,
+      type = MODAL_TYPE.information,
       loading,
       primaryButton,
       secondaryButton,
@@ -46,33 +47,31 @@ export const Modal: ForwardRefExoticComponent<ModalProps & RefAttributes<ModalRe
   ) => {
     const { t } = useTranslation(NAMESPACES.FORM);
     const buttonColor = useMemo(
-      () => (type === MODAL_COLOR.critical ? MODAL_COLOR.critical : MODAL_COLOR.primary),
+      () => (type === MODAL_TYPE.critical ? MODAL_TYPE.critical : MODAL_TYPE.primary),
       [type],
     );
 
     return (
       <OdsModal data-testid="modal" onOpenChange={onOpenChange} open={open}>
-        <ModalContent color={MODAL_COLOR[type]} dismissible={!!dismissible}>
-          <ModalBody ref={ref} className="text-left">
-            {heading && (
-              <div className="flex items-center mb-4">
-                <Text className="block mr-3 flex-1" preset={TEXT_PRESET.heading4}>
-                  {heading}
+        <ModalContent dismissible={!!dismissible}>
+          {heading && (
+            <ModalHeader>
+              <Text preset={TEXT_PRESET.heading4}>{heading}</Text>
+              {Number.isInteger(step?.current) && Number.isInteger(step?.total) && (
+                <Text
+                  className="ml-auto"
+                  preset={TEXT_PRESET.caption}
+                  data-testid="step-placeholder"
+                >
+                  {t('stepPlaceholder', {
+                    current: step?.current,
+                    total: step?.total,
+                  })}
                 </Text>
-                {Number.isInteger(step?.current) && Number.isInteger(step?.total) && (
-                  <Text
-                    className="ml-auto"
-                    preset={TEXT_PRESET.caption}
-                    data-testid="step-placeholder"
-                  >
-                    {t('stepPlaceholder', {
-                      current: step?.current,
-                      total: step?.total,
-                    })}
-                  </Text>
-                )}
-              </div>
-            )}
+              )}
+            </ModalHeader>
+          )}
+          <ModalBody ref={ref} className="text-left">
             {loading && (
               <div data-testid="spinner" className="flex justify-center my-5">
                 <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>

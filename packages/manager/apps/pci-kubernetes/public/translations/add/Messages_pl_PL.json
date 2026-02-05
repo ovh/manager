@@ -81,12 +81,12 @@
   "kube_add_plan_subtitle": "Wybierz pakiet dostosowany do Twoich potrzeb. Korzystaj z szerokiej gamy instancji używanych jako węzły Kubernetes, fakturowanych według zużycia lub na podstawie umowy terminowej.",
   "kubernetes_add_deployment_mode_card_beta": "Wersja beta",
   "kube_add_node_pool_name_title": "Nadaj nazwę puli węzłów",
-  "kube_add_plan_content_unavailable_1AZ_banner": "Plan {{ plan }} nie jest dostępny w regionach 1-AZ. Jeśli chcesz skorzystać z planu {{ plan }}, wybierz wdrożenie w 3-AZ.",
-  "kube_add_plan_content_unavailable_3AZ_banner": "Plan {{ plan }} nie jest dostępny w regionach 3-AZ. Jeśli chcesz skorzystać z planu {{ plan }}, wybierz wdrożenie w 1-AZ.",
+  "kube_add_plan_content_unavailable_1AZ_banner": "Oferta {{plan}} nie jest dostępna w regionach 1-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 3-AZ.",
+  "kube_add_plan_content_unavailable_3AZ_banner": "Oferta {{plan}} nie jest dostępna w regionach 3-AZ. Jeśli chcesz skorzystać z oferty {{plan}}, wybierz wdrożenie 1-AZ.",
   "kube_add_name_title": "Nadaj nazwę puli węzłów",
   "kube_add_node_pool_name_already_exist_validation_error": "Nazwa puli węzłów jest już używana. Wybierz inną.",
-  "kube_add_plan_content_standard_1AZ_control_plane": "Zarządzany plan kontrolny, wysoko dostępny (1-AZ) i dedykowany, z gwarantowanymi zasobami",
-  "kube_add_plan_content_not_available": "niedostępne w regionie",
-  "kubernetes_add_region_plan_select": "Filtruj według planów",
+  "kube_add_plan_content_standard_1AZ_control_plane": "Dedykowany, zarządzany control plane o wysokiej dostępności (1-AZ), z gwarantowanymi zasobami",
+  "kube_add_plan_content_not_available": "niedostępny w regionie",
+  "kubernetes_add_region_plan_select": "Filtruj według ofert",
   "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%"
 }

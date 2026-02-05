@@ -1,11 +1,13 @@
 import {
+  ApiResponse,
   Filter,
   FilterComparator,
-  apiClient,
   fetchIcebergV6,
+  v6,
 } from '@ovh-ux/manager-core-api';
-import { IpObject } from '@/types/ipObject';
+
 import { IpTypeEnum } from '@/data/constants';
+import { IpObject } from '@/types/ipObject';
 
 export type GetIpListParams = {
   /** Filter the value of campus property (ilike) (alpha) */
@@ -35,7 +37,7 @@ const getIpListParamToQueryString = (params: GetIpListParams) =>
     if (key === 'type' && value === IpTypeEnum.ADDITIONAL) {
       query.append('isAdditionalIp', 'true');
     } else if (value !== undefined) {
-      query.append(key, String(value));
+      query.append(key, String(value as string | null | number));
     }
     return query;
   }, new URLSearchParams());
@@ -43,8 +45,10 @@ const getIpListParamToQueryString = (params: GetIpListParams) =>
 /**
  * List the ip.Ip objects : Your OVH IPs
  */
-export const getIpList = (params: GetIpListParams) =>
-  apiClient.v6.get<string[]>(`/ip?${getIpListParamToQueryString(params)}`);
+export const getIpList = (
+  params: GetIpListParams,
+): Promise<ApiResponse<string[]>> =>
+  v6.get<string[]>(`/ip?${getIpListParamToQueryString(params)}`);
 
 export const getIcebergIpList = (params: GetIpListParams) => {
   const filters = [

@@ -1,20 +1,15 @@
-import { useParams } from 'react-router-dom';
-
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { mockSecret1, mockSecret2 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SecretSmartConfig, buildSecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
+import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
-import { createErrorResponseMock, renderHookWithClient } from '@/common/utils/tests/testUtils';
+import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
-import { useSecretSmartConfig } from './useSecretSmartConfig';
-
-// Mock react-router-dom
-vi.mock('react-router-dom', () => ({
-  useParams: vi.fn(),
-}));
+import { UseSecretSmartConfigParams, useSecretSmartConfig } from './useSecretSmartConfig';
 
 // Mock the useCurrentRegion hook
 const mockUseCurrentRegion = vi.fn();
@@ -42,8 +37,8 @@ vi.mock('@secret-manager/data/hooks/useSecretConfigReference', () => ({
 
 // Mock the useNotifications hook from external library
 const mockAddError = vi.fn();
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+vi.mock('@ovh-ux/muk', async () => {
+  const actual = await vi.importActual('@ovh-ux/muk');
   return {
     ...actual,
     useNotifications: () => ({ addError: mockAddError }),
@@ -59,7 +54,6 @@ vi.mock('@secret-manager/utils/secretSmartConfig', async () => {
   };
 });
 
-const mockUseParams = vi.mocked(useParams);
 const mockBuildSecretSmartConfig = vi.mocked(buildSecretSmartConfig);
 
 // Mock data
@@ -90,12 +84,17 @@ const mockSecretSmartConfig: SecretSmartConfig = {
   maxVersionsDefault: 10,
 };
 
+const renderTestHook = async (values: UseSecretSmartConfigParams) => {
+  const wrapper = await testWrapperBuilder().withQueryClient().build();
+
+  return renderHook(() => useSecretSmartConfig(values), { wrapper });
+};
+
 describe('useSecretSmartConfig', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
     // Default mock implementations
-    mockUseParams.mockReturnValue({ okmsId: mockOkmsId });
     mockUseOkmsById.mockReturnValue({
       data: okmsRoubaix1Mock,
       isPending: false,
@@ -117,14 +116,14 @@ describe('useSecretSmartConfig', () => {
   });
 
   describe('when data is loading', () => {
-    it('should return loading state when OKMS data is pending', () => {
+    it('should return loading state when OKMS data is pending', async () => {
       mockUseOkmsById.mockReturnValue({
         data: null,
         isPending: true,
         error: null,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: true,
@@ -133,14 +132,14 @@ describe('useSecretSmartConfig', () => {
       });
     });
 
-    it('should return loading state when secret config OKMS is pending', () => {
+    it('should return loading state when secret config OKMS is pending', async () => {
       mockUseOkmsSecretConfig.mockReturnValue({
         data: null,
         isPending: true,
         error: null,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: true,
@@ -149,14 +148,14 @@ describe('useSecretSmartConfig', () => {
       });
     });
 
-    it('should return loading state when secret config reference is pending', () => {
+    it('should return loading state when secret config reference is pending', async () => {
       mockUseSecretConfigReference.mockReturnValue({
         data: null,
         isPending: true,
         error: null,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: true,
@@ -165,7 +164,7 @@ describe('useSecretSmartConfig', () => {
       });
     });
 
-    it('should return loading state when any data is pending', () => {
+    it('should return loading state when any data is pending', async () => {
       mockUseOkmsById.mockReturnValue({
         data: null,
         isPending: true,
@@ -182,7 +181,7 @@ describe('useSecretSmartConfig', () => {
         error: null,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: true,
@@ -193,7 +192,7 @@ describe('useSecretSmartConfig', () => {
   });
 
   describe('when there are errors', () => {
-    it('should return error state when OKMS data has error', () => {
+    it('should return error state when OKMS data has error', async () => {
       const mockError = createErrorResponseMock('OKMS error');
       mockUseOkmsById.mockReturnValue({
         data: null,
@@ -201,7 +200,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: false,
@@ -212,7 +211,7 @@ describe('useSecretSmartConfig', () => {
       expect(mockAddError).toHaveBeenCalledWith('OKMS error');
     });
 
-    it('should return error state when secret config OKMS has error', () => {
+    it('should return error state when secret config OKMS has error', async () => {
       const mockError = createErrorResponseMock('Secret config OKMS error');
       mockUseOkmsSecretConfig.mockReturnValue({
         data: null,
@@ -220,7 +219,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: false,
@@ -231,7 +230,7 @@ describe('useSecretSmartConfig', () => {
       expect(mockAddError).toHaveBeenCalledWith('Secret config OKMS error');
     });
 
-    it('should return error state when secret config reference has error', () => {
+    it('should return error state when secret config reference has error', async () => {
       const mockError = createErrorResponseMock('Secret config reference error');
       mockUseSecretConfigReference.mockReturnValue({
         data: null,
@@ -239,7 +238,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: false,
@@ -250,7 +249,7 @@ describe('useSecretSmartConfig', () => {
       expect(mockAddError).toHaveBeenCalledWith('Secret config reference error');
     });
 
-    it('should return error state when any data has error', () => {
+    it('should return error state when any data has error', async () => {
       const mockError = createErrorResponseMock('OKMS error');
       mockUseOkmsById.mockReturnValue({
         data: null,
@@ -263,7 +262,7 @@ describe('useSecretSmartConfig', () => {
         error: mockError,
       });
 
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: false,
@@ -276,8 +275,8 @@ describe('useSecretSmartConfig', () => {
   });
 
   describe('when data is loaded successfully', () => {
-    it('should return secret smart config when all data is available', () => {
-      const { result } = renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+    it('should return secret smart config when all data is available', async () => {
+      const { result } = await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(result.current).toEqual({
         isPending: false,
@@ -286,38 +285,38 @@ describe('useSecretSmartConfig', () => {
       });
 
       expect(mockBuildSecretSmartConfig).toHaveBeenCalledWith(
-        mockSecret1,
         mockSecretConfigOkms,
         mockSecretConfigReference,
+        mockSecret1,
       );
     });
 
-    it('should call getSecretSmartConfig with correct parameters', () => {
-      renderHookWithClient(() => useSecretSmartConfig(mockSecret2));
+    it('should call getSecretSmartConfig with correct parameters', async () => {
+      await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret2 });
 
       expect(mockBuildSecretSmartConfig).toHaveBeenCalledWith(
-        mockSecret2,
         mockSecretConfigOkms,
         mockSecretConfigReference,
+        mockSecret2,
       );
     });
   });
 
   describe('error notification', () => {
-    it('should call addError with error message when there is an error', () => {
+    it('should call addError with error message when there is an error', async () => {
       mockUseOkmsById.mockReturnValue({
         data: null,
         isPending: false,
         error: createErrorResponseMock('Test error'),
       });
 
-      renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+      await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(mockAddError).toHaveBeenCalledWith('Test error');
     });
 
-    it('should not call addError when there is no error', () => {
-      renderHookWithClient(() => useSecretSmartConfig(mockSecret1));
+    it('should not call addError when there is no error', async () => {
+      await renderTestHook({ okmsId: mockOkmsId, secret: mockSecret1 });
 
       expect(mockAddError).not.toHaveBeenCalled();
     });
