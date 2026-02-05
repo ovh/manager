@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.19.1...@ovh-ux/manager-pci-ai-tools-app@1.20.0) (2026-02-05)
+
+
+### Features
+
+* **pci-ai-tools:** implement piano tagging for quantum on the manager ([99aeb03](https://github.com/ovh/manager/commit/99aeb0343eec1dcd44d7ebf11f1322f878360f78)), closes [#AIS-1900](https://github.com/ovh/manager/issues/AIS-1900)
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.19.0...@ovh-ux/manager-pci-ai-tools-app@1.19.1) (2026-02-03)
 
 
