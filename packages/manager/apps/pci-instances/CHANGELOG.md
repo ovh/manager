@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.23...@ovh-ux/manager-pci-instances-app@0.11.0) (2026-02-05)
+
+
+### Features
+
+* **pci-instances:** add instance creation page ([8cf696d](https://github.com/ovh/manager/commit/8cf696dde0f0cc92b092c4aaf4fe0547f1f18c95)), closes [#TAPC-4445](https://github.com/ovh/manager/issues/TAPC-4445)
+
+
+
+
+
 ## [0.10.23](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.10.22...@ovh-ux/manager-pci-instances-app@0.10.23) (2026-02-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
