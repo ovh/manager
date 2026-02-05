@@ -237,7 +237,7 @@ export function useEmailService(serviceName: string) {
         if (zimbra && zimbra.length > 0) {
           return {
             serviceDetected: AssociatedEmailsServicesEnum.ZIMBRA,
-            data: zimbra[0].id,
+            data: `${zimbra[0].plateformId}?organizationId=${zimbra[0].currentState.organizationId}`,
           };
         }
       } catch (_) {
