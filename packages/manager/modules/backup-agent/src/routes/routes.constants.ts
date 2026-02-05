@@ -15,6 +15,7 @@ export const subRoutes = Object.freeze({
   add: 'add',
   configure: 'configure',
   download: 'download',
+  resetPassword: 'reset-password',
 });
 
 export const urlParams = {
@@ -33,6 +34,7 @@ export const urls = {
   listingVaultBuckets: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}/${subRoutes.buckets}`,
   listingTenants: `/${subRoutes.services}`,
   dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
+  dashboardTenantResetPassword: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.resetPassword}`,
   dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
   addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
   dashboardTenantAgentDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.delete}/${urlParams.agentId}`,

@@ -5,6 +5,7 @@ export const LABELS = {
   VAULTS: 'Vaults',
   TENANT: 'Tenant',
   VAULT: 'Vault',
+  VSPC: 'VSPC',
 } as const;
 
 export const FEATURE_AVAILABILITY = Object.freeze({

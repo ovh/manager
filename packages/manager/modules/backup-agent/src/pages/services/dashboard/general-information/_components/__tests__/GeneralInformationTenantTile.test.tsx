@@ -6,6 +6,10 @@ import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 
 import { GeneralInformationTenantTile } from '../general-information-tenant-tile/GeneralInformationTenantTile.component';
 
+vi.mock('react-router-dom', () => ({
+  useHref: vi.fn().mockImplementation((url: string) => url),
+}));
+
 const { useBackupVSPCTenantDetailsMock } = vi.hoisted(() => ({
   useBackupVSPCTenantDetailsMock: vi.fn(),
 }));

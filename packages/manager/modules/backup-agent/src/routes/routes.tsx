@@ -17,6 +17,9 @@ const TenantDashboardPage = React.lazy(() => import('@/pages/services/dashboard/
 const TenantGeneralInformationPage = React.lazy(
   () => import('../pages/services/dashboard/general-information/GeneralInformation.page'),
 );
+const TenantResetPasswordPage = React.lazy(
+  () => import('../pages/services/dashboard/reset-password/ResetTenantPassword.page'),
+);
 const AgentListingPage = React.lazy(
   () => import('../pages/services/dashboard/agent/AgentsListing.page'),
 );
@@ -104,6 +107,7 @@ export default (
       <Route path={`${subRoutes.dashboard}/${urlParams.tenantId}`} Component={TenantDashboardPage}>
         <Route path="" Component={TenantGeneralInformationPage}>
           <Route path={subRoutes.delete} Component={DeleteTenantPage} />
+          <Route path={subRoutes.resetPassword} Component={TenantResetPasswordPage} />
         </Route>
         <Route path={subRoutes.agents} Component={AgentListingPage}>
           <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
