@@ -8,5 +8,10 @@
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "declarationDir": "./dist/types"
   },
+  /* Custom Config To Keep Extension */
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
+  },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

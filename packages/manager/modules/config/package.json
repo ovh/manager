@@ -21,22 +21,24 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
-    "dev:watch": "tsc --watch",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
+    "dev:watch": "tsc --watch && tsc-alias",
     "lint": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
     "lint:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "prepare": "tsc"
+    "prepare": "tsc && tsc-alias"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-sso": "^0.7.2"
   },
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
-    "@ovh-ux/request-tagger": "^0.6.0"
+    "@ovh-ux/request-tagger": "^0.6.0",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.9.2"
   },
   "peerDependencies": {
-    "@ovh-ux/request-tagger": "^0.4.0"
+    "@ovh-ux/request-tagger": "^0.6.0"
   }
 }
