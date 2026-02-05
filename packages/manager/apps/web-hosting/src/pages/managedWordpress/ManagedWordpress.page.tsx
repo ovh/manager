@@ -52,11 +52,9 @@ export default function ManagedWordpressPage() {
       },
       {
         id: 'plan',
-        accessorKey: 'currentState.plan',
+        accessorKey: 'currentState.quotas.websites.totalQuota',
         cell: ({ getValue }) => {
-          const plan = getValue<string>() || '';
-          const match = plan.match(/managed-cms-alpha-(\d+)/);
-          const numberOfSites = match ? match[1] : '?';
+          const numberOfSites = getValue<string>() || '';
           return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
         header: t('common:web_hosting_status_header_offer'),
@@ -107,7 +105,7 @@ export default function ManagedWordpressPage() {
         }}
       >
         <Datagrid
-          containerHeight={500}
+          containerHeight={700}
           isLoading={isLoading}
           columns={data ? columns : []}
           data={data ?? []}
