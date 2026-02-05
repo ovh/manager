@@ -22,7 +22,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         accessorKey: 'name',
         header: t('list:columns.name_id'),
         cell: ({ row }) => (
-          <div>
+          <div className="max-w-[300px]">
             <Link as={RouterLink} to={`../${row.original.id}`}>
               {row.original.name}
             </Link>
@@ -30,18 +30,22 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           </div>
         ),
         minSize: 300,
+        maxSize: 310,
       },
       {
         id: 'region',
         accessorKey: 'region',
         header: t('list:columns.region'),
         cell: ({ row }): string => t(row.original.regionDisplayKey, { micro: row.original.region }),
+        minSize: 250,
+        maxSize: 250,
       },
       {
         id: 'protocol',
         accessorKey: 'protocol',
         header: t('list:columns.protocol'),
-        size: 60,
+        minSize: 70,
+        size: 70
       },
       {
         id: 'allocated_capacity',
@@ -51,7 +55,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           const capacity = getValue<number>() ?? 0;
           return t('list:columns.allocated_capacity_value', { capacity });
         },
-        size: 80,
+        minSize: 120,
+        maxSize: 120,
       },
       {
         id: 'status',
@@ -61,7 +66,6 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
           const { labelKey, badgeColor } = row.original.statusDisplay;
           return <ShareStatusBadge labelKey={labelKey} badgeColor={badgeColor} />;
         },
-        size: 50,
       },
       {
         id: 'actions',
@@ -71,7 +75,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
             <ActionsMenu items={row.original.actions} />
           </div>
         ),
-        size: 50,
+        minSize: 60,
+        maxSize: 60,
       },
     ],
     [t],
