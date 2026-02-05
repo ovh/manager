@@ -356,7 +356,7 @@ export default class TelecomTelephonyAliasConfigurationAgentsOvhPabxCtrl {
       })
       .finally(() => {
         this.addAgentForm.isAdding = false;
-        this.addAgentForm.numbers = [null];
+        this.addAgentForm.numbers = [''];
       });
   }
 }

@@ -473,5 +473,6 @@
   "country_ZA": "South Africa",
   "country_ZM": "Zambia",
   "country_ZW": "Zimbabwe",
-  "common_field_label_required": "Mandatory"
+  "common_field_label_required": "Mandatory",
+  "country_AC": "Ascension Island"
 }
