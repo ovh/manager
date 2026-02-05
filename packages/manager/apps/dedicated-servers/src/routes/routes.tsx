@@ -1,63 +1,44 @@
-import React from 'react';
-import { RouteObject } from 'react-router-dom';
+import React, { lazy } from 'react';
+import { Route } from 'react-router-dom';
+import { urls } from './routes.constant';
+import { ErrorBoundary } from '@ovh-ux/muk';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import NotFound from '@/pages/404';
-import { urls } from '@/routes/routes.constant';
 
-const lazyRouteConfig = (importFn: CallableFunction): Partial<RouteObject> => {
-  return {
-    lazy: async () => {
-      const { default: moduleDefault, ...moduleExports } = await importFn();
-      return {
-        Component: moduleDefault,
-        ...moduleExports,
-      };
-    },
-  };
-};
+const LayoutPage = lazy(() => import('@/pages/listing'));
+const ServerListing = lazy(() => import('@/pages/listing/server'));
+const ClusterListing = lazy(() => import('@/pages/listing/cluster'));
+const OnboardingPage = lazy(() => import('@/pages/onboarding'));
 
-export const routes: any = [
-  {
-    path: urls.root,
-    ...lazyRouteConfig(() => import('@/pages/listing/index')),
-    children: [
-      {
-        id: 'server',
-        path: urls.server,
-        ...lazyRouteConfig(() => import('@/pages/listing/server')),
-        handle: {
-          tracking: {
-            pageName: 'all-servers',
-            pageType: PageType.listing,
-          },
-        },
-      },
-      {
-        id: 'cluster',
-        path: urls.cluster,
-        ...lazyRouteConfig(() => import('@/pages/listing/cluster')),
-        handle: {
-          tracking: {
-            pageName: 'cluster',
-            pageType: PageType.listing,
-          },
-        },
-      },
-    ],
-  },
-  {
-    id: 'onboarding',
-    path: urls.onboarding,
-    ...lazyRouteConfig(() => import('@/pages/onboarding')),
-    handle: {
-      tracking: {
-        pageName: 'onboarding',
-        pageType: PageType.onboarding,
-      },
-    },
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  },
-];
+export default (
+  <>
+    <Route
+      id="root"
+      path={urls.root}
+      Component={LayoutPage}
+      errorElement={<ErrorBoundary redirectionApp="dedicated-servers" />}
+    >
+      <Route
+        id="server-listing"
+        path={urls.server}
+        Component={ServerListing}
+        handle={{
+          tracking: { pageName: 'all-servers', pageType: PageType.listing },
+        }}
+      />
+      <Route
+        id="cluster-listing"
+        path={urls.cluster}
+        Component={ClusterListing}
+        handle={{
+          tracking: { pageName: 'cluster', pageType: PageType.listing },
+        }}
+      />
+    </Route>
+    <Route
+      id="onboarding"
+      path={urls.onboarding}
+      Component={OnboardingPage}
+      errorElement={<ErrorBoundary redirectionApp="dedicated-servers" />}
+    />
+  </>
+);
