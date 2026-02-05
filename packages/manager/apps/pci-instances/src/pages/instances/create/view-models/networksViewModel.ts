@@ -11,7 +11,7 @@ export type TPrivateNetworkData = {
   label: string;
   value: string;
   networkId: string;
-  hasGatewayIp: boolean;
+  hasGateway: boolean;
   capabilities: TCapability[];
 };
 
@@ -34,7 +34,7 @@ export const selectPrivateNetworks = (region: string | null) => (
         label: network.name,
         value: subnetId,
         networkId,
-        hasGatewayIp: !!subnet?.gatewayIp,
+        hasGateway: !!subnet?.hasGateway,
         capabilities: subnet?.capabilities ?? [],
       };
     });
@@ -115,10 +115,11 @@ export const getGatewayAvailability = ({
 }: TNetworkAvailabilityArgs) => {
   if (!deploymentMode) return null;
 
-  if (
-    privateNetworks.find((privateNetwork) => privateNetwork.value === subnetId)
-      ?.hasGatewayIp
-  )
+  const selectedNetwork = privateNetworks.find(
+    (privateNetwork) => privateNetwork.value === subnetId,
+  );
+
+  if (selectedNetwork?.hasGateway)
     return {
       isDisabled: true,
       unavailableReason:
