@@ -24,11 +24,17 @@ export const ToggleField = ({
     <Toggle {...toggleProps}>
       <ToggleControl />
 
-      <ToggleLabel className="flex">
-        <Text>{label}</Text>
+      <ToggleLabel className="flex items-center">
+        <Text
+          {...(toggleProps.disabled && {
+            className: 'text-[--ods-color-text-disabled-default]',
+          })}
+        >
+          {label}
+        </Text>
 
         {badges && badges.length && (
-          <span className="ml-4 flex flex-row gap-2 flex-wrap">
+          <span className="ml-4 flex flex-row flex-wrap gap-2">
             {badges.map(({ label: badgeLabel, size, ...restBadge }) => (
               <Badge key={badgeLabel} size={size ?? 'sm'} {...restBadge}>
                 {badgeLabel}
