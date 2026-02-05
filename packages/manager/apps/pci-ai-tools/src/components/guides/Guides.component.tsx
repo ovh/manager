@@ -12,7 +12,10 @@ import {
   CommandList,
   Skeleton,
 } from '@datatr-ux/uxlib';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useTrackAction } from '@/hooks/useTracking';
 import { useLocale } from '@/hooks/useLocale';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 import { Guide } from '@/types/Guides';
 import { useGetGuides } from '@/data/hooks/ai/guide/useGetGuides.hook';
 
@@ -25,6 +28,9 @@ const Guides = ({ category = 'ai', section, onGuideClick }: GuidesProps) => {
   const { projectId } = useParams();
   const { t } = useTranslation('ai-tools/components/guides');
   const locale = useLocale();
+  const { isQuantum, isQpu } = useQuantum('ai-tools/components/guides');
+  const track = useTrackAction();
+  const trackingProductPrefix = isQpu ? 'qpus' : 'emulators';
   const [open, setOpen] = useState(false);
   const guidesQuery = useGetGuides(
     projectId,
@@ -48,6 +54,9 @@ const Guides = ({ category = 'ai', section, onGuideClick }: GuidesProps) => {
 
   // open a guide in a new tab
   const openGuide = (guide: Guide) => {
+    if (isQpu || isQuantum) {
+      track(TRACKING[trackingProductPrefix].guide.guideLinkClick(guide.title));
+    }
     if (onGuideClick) {
       onGuideClick(guide);
     }
@@ -60,12 +69,20 @@ const Guides = ({ category = 'ai', section, onGuideClick }: GuidesProps) => {
   if (guidesQuery.isFetching)
     return <Skeleton data-testid="guide-skeleton" className="w-40 h-4" />;
   if (guidesQuery.data?.length === 0) return <></>;
+
+  const handleOpenClick = () => {
+    if (isQpu || isQuantum) {
+      track(TRACKING[trackingProductPrefix].guide.guideClick());
+    }
+    setOpen((prevValue) => !prevValue);
+  };
+
   return (
     <>
       <Button
         data-testid="guide-open-button"
         mode="ghost"
-        onClick={() => setOpen((prevValue) => !prevValue)}
+        onClick={handleOpenClick}
         className="inline-flex items-center whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 relative text-sm justify-between max-w-40 gap-2"
       >
         <div className="flex items-center gap-2">

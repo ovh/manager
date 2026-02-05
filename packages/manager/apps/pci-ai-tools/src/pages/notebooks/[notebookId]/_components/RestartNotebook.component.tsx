@@ -13,12 +13,16 @@ import ai from '@/types/AI';
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 import RouteModal from '@/components/route-modal/RouteModal';
 import { useRestartNotebook } from '@/data/hooks/ai/notebook/useRestartNotebook.hook';
+import { useTrackAction } from '@/hooks/useTracking';
+import { TRACKING } from '@/configuration/tracking.constants';
+import { useQuantum } from '@/hooks/useQuantum.hook';
 
 interface RestartNotebookProps {
   notebook: ai.notebook.Notebook;
   onSuccess?: () => void;
   onError?: (notebook: Error) => void;
   onClose?: () => void;
+  trackingCategory?: string;
 }
 
 const RestartNotebook = ({
@@ -26,11 +30,14 @@ const RestartNotebook = ({
   onError,
   onSuccess,
   onClose,
+  trackingCategory,
 }: RestartNotebookProps) => {
   const { projectId } = useParams();
 
   const { t } = useTranslation('ai-tools/notebooks/notebook');
   const toast = useToast();
+  const track = useTrackAction();
+  const { mode } = useQuantum();
 
   const { restartNotebook, isPending } = useRestartNotebook({
     onError: (err) => {
@@ -57,6 +64,17 @@ const RestartNotebook = ({
   });
 
   const handleRestart = () => {
+    if (mode === 'emulators') {
+      track(
+        TRACKING.emulators.popup.restartNotebookClick('confirm'),
+        trackingCategory,
+      );
+    } else if (mode === 'qpu') {
+      track(
+        TRACKING.qpus.popup.restartNotebookClick('confirm'),
+        trackingCategory,
+      );
+    }
     restartNotebook({
       projectId,
       notebookId: notebook.id,
@@ -83,6 +101,19 @@ const RestartNotebook = ({
                 data-testid="restart-notebook-cancel-button"
                 type="button"
                 mode="outline"
+                onClick={() => {
+                  if (mode === 'emulators') {
+                    track(
+                      TRACKING.emulators.popup.restartNotebookClick('cancel'),
+                      trackingCategory,
+                    );
+                  } else if (mode === 'qpu') {
+                    track(
+                      TRACKING.qpus.popup.restartNotebookClick('cancel'),
+                      trackingCategory,
+                    );
+                  }
+                }}
               >
                 {t('notebookButtonCancel')}
               </Button>
