@@ -1,20 +1,25 @@
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
 } from '@ovh-ux/manager-module-vcd-api';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ErrorBoundary, Modal } from '@ovh-ux/manager-react-components';
-import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
-import { subRoutes } from '@/routes/routes.constant';
-import { useMessageContext } from '@/context/Message.context';
-import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
+
 import { DeleteModal } from '@/components/deleteModal/DeleteModal.component';
+import { useMessageContext } from '@/context/Message.context';
+import { useVrackNetworkParams } from '@/hooks/params/useSafeParams';
+import { subRoutes } from '@/routes/routes.constant';
+import { decodeVrackNetwork } from '@/utils/encodeVrackNetwork';
 
 export default function DeleteVrackNetwork() {
-  const { id, vdcId, vrackSegmentId, vrackNetworkId } = useParams();
+  const { id, vdcId, vrackSegmentId, vrackNetworkId } = useVrackNetworkParams();
   const { t } = useTranslation('datacentres/vrack-segment');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
@@ -34,10 +39,7 @@ export default function DeleteVrackNetwork() {
 
   const { data: vrackSegment, isLoading, isError } = useQuery(queryOptions);
 
-  const {
-    mutate: updateVrackSegment,
-    isPending: isUpdatePending,
-  } = useUpdateVcdVrackSegment({
+  const { mutate: updateVrackSegment, isPending: isUpdatePending } = useUpdateVcdVrackSegment({
     id,
     vdcId,
     vrackSegmentId,
@@ -50,10 +52,7 @@ export default function DeleteVrackNetwork() {
           }),
         }),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
@@ -63,10 +62,7 @@ export default function DeleteVrackNetwork() {
           errorApi: error.message,
         }),
         includedSubRoutes: [vdcId],
-        excludedSubRoutes: [
-          subRoutes.datacentreCompute,
-          subRoutes.datacentreStorage,
-        ],
+        excludedSubRoutes: [subRoutes.datacentreCompute, subRoutes.datacentreStorage],
       });
       closeModal();
     },
@@ -81,6 +77,7 @@ export default function DeleteVrackNetwork() {
   }
 
   const handleSubmit = () => {
+    if (!vrackSegment) return;
     const filtered = vrackSegment.targetSpec.networks.filter(
       (network) => network !== decodeVrackNetwork(vrackNetworkId),
     );
@@ -102,9 +99,7 @@ export default function DeleteVrackNetwork() {
       confirmationKeyword={tActions('delete').toUpperCase()}
     >
       <div className="flex flex-col gap-2">
-        <OdsText>
-          {t('managed_vcd_dashboard_vrack_delete_network_content1')}
-        </OdsText>
+        <OdsText>{t('managed_vcd_dashboard_vrack_delete_network_content1')}</OdsText>
         <OdsMessage color="warning" isDismissible={false}>
           {t('managed_vcd_dashboard_vrack_delete_network_content2')}
         </OdsMessage>

@@ -1,5 +1,7 @@
-import { BackupResourceStatus } from '@ovh-ux/manager-module-vcd-api';
 import { OdsBadgeColor } from '@ovhcloud/ods-components';
+
+import { BackupResourceStatus } from '@ovh-ux/manager-module-vcd-api';
+
 import TEST_IDS from './testIds.constants';
 
 type BadgeStatus = BackupResourceStatus | 'none' | 'error';
@@ -46,9 +48,7 @@ const getBadgeTestId = (status: BadgeStatus) => {
   return TEST_IDS.backupBadgeStatus;
 };
 
-export const getBackupBadgeParams = (
-  status: BadgeStatus,
-): BackupBadgeParams => {
+export const getBackupBadgeParams = (status: BadgeStatus): BackupBadgeParams => {
   return {
     color: getBadgeColor(status),
     translationKey: getBadgeTranslationKey(status),
@@ -60,8 +60,8 @@ export const getBackupBadgeStatus = ({
   errorStatus,
   backupStatus,
 }: {
-  errorStatus: number;
-  backupStatus: BackupResourceStatus;
+  errorStatus?: number;
+  backupStatus?: BackupResourceStatus;
 }): BadgeStatus => {
   if (backupStatus) return backupStatus;
   return errorStatus === 404 ? 'none' : 'error';

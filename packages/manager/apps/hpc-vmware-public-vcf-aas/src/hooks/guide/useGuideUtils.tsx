@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { CountryCode } from '@ovh-ux/manager-config';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -20,93 +21,53 @@ const GUIDE_LIST: { [guideName: string]: Partial<GuideLinks> } = {
     GB: 'https://www.ovhcloud.com/en-gb/lp/vmware-vcd-evolution/',
     CA: 'https://www.ovhcloud.com/en-ca/lp/vmware-vcd-evolution/',
     QC: 'https://www.ovhcloud.com/fr/lp/vmware-vcd-evolution/',
-    US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/28330641929491-VMware-Cloud-Director-How-to-Use-the-vCD-User-Interface',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/28330641929491-VMware-Cloud-Director-How-to-Use-the-vCD-User-Interface',
   },
   fondamentals: {
-    DE:
-      'https://help.ovhcloud.com/csm/de-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062604',
-    ES:
-      'https://help.ovhcloud.com/csm/es-es-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062607',
+    DE: 'https://help.ovhcloud.com/csm/de-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062604',
+    ES: 'https://help.ovhcloud.com/csm/es-es-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062607',
 
-    FR:
-      'https://help.ovhcloud.com/csm/fr-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062577',
-    IE:
-      'https://help.ovhcloud.com/csm/en-ie-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062559',
-    IT:
-      'https://help.ovhcloud.com/csm/it-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062566',
-    PL:
-      'https://help.ovhcloud.com/csm/pl-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062568',
-    PT:
-      'https://help.ovhcloud.com/csm/pt-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062576',
-    GB:
-      'https://help.ovhcloud.com/csm/en-gb-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062606',
-    CA:
-      'https://help.ovhcloud.com/csm/en-ca-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062551',
-    QC:
-      'https://help.ovhcloud.com/csm/fr-ca-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062571',
-    US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
+    FR: 'https://help.ovhcloud.com/csm/fr-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062577',
+    IE: 'https://help.ovhcloud.com/csm/en-ie-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062559',
+    IT: 'https://help.ovhcloud.com/csm/it-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062566',
+    PL: 'https://help.ovhcloud.com/csm/pl-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062568',
+    PT: 'https://help.ovhcloud.com/csm/pt-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062576',
+    GB: 'https://help.ovhcloud.com/csm/en-gb-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062606',
+    CA: 'https://help.ovhcloud.com/csm/en-ca-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062551',
+    QC: 'https://help.ovhcloud.com/csm/fr-ca-vmware-vcd-concepts?id=kb_article_view&sysparm_article=KB0062571',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
   },
   tutorial: {
-    DE:
-      'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    ES:
-      'https://help.ovhcloud.com/csm/es-es-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    IE:
-      'https://help.ovhcloud.com/csm/en-ie-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    IT:
-      'https://help.ovhcloud.com/csm/it-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    PL:
-      'https://help.ovhcloud.com/csm/pl-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    PT:
-      'https://help.ovhcloud.com/csm/pt-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    FR:
-      'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
-    MA:
-      'https://help.ovhcloud.com/csm/fr-ma-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    SN:
-      'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    TN:
-      'https://help.ovhcloud.com/csm/fr-tn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    GB:
-      'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    CA:
-      'https://help.ovhcloud.com/csm/en-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    QC:
-      'https://help.ovhcloud.com/csm/fr-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
-    US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
+    DE: 'https://help.ovhcloud.com/csm/de-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    ES: 'https://help.ovhcloud.com/csm/es-es-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    IE: 'https://help.ovhcloud.com/csm/en-ie-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    IT: 'https://help.ovhcloud.com/csm/it-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    PL: 'https://help.ovhcloud.com/csm/pl-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    PT: 'https://help.ovhcloud.com/csm/pt-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    FR: 'https://help.ovhcloud.com/csm/fr-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad&spa=1',
+    MA: 'https://help.ovhcloud.com/csm/fr-ma-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    SN: 'https://help.ovhcloud.com/csm/fr-sn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    TN: 'https://help.ovhcloud.com/csm/fr-tn-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    GB: 'https://help.ovhcloud.com/csm/en-gb-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    CA: 'https://help.ovhcloud.com/csm/en-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    QC: 'https://help.ovhcloud.com/csm/fr-ca-documentation-hosted-private-cloud-hosted-private-cloud-powered-by-vmware-vcd?id=kb_browse_cat&kb_id=62e4cfed55d574502d4c6e78b7421953&kb_category=a249c12ef5adca941e11c2f7954b95ad',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/28330367397139-VMware-Cloud-Director-The-Fundamentals-of-VCD',
   },
   faq: {
-    DE:
-      'https://help.ovhcloud.com/csm/de-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062552',
-    ES:
-      '/https://help.ovhcloud.com/csm/es-es-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062605',
-    IE:
-      'https://help.ovhcloud.com/csm/en-ie-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062555',
-    IT:
-      'https://help.ovhcloud.com/csm/it-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062556',
-    PL:
-      'https://help.ovhcloud.com/csm/pl-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062561',
-    PT:
-      'https://help.ovhcloud.com/csm/pt-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062562',
-    FR:
-      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
-    MA:
-      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
-    SN:
-      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
-    TN:
-      'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
-    GB:
-      'https://help.ovhcloud.com/csm/en-gb-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062557',
-    CA:
-      'https://help.ovhcloud.com/csm/en-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062603',
-    QC:
-      'https://help.ovhcloud.com/csm/fr-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062601',
-    US:
-      'https://support.us.ovhcloud.com/hc/en-us/articles/28329887272467-VMware-Cloud-Director-FAQ',
+    DE: 'https://help.ovhcloud.com/csm/de-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062552',
+    ES: '/https://help.ovhcloud.com/csm/es-es-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062605',
+    IE: 'https://help.ovhcloud.com/csm/en-ie-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062555',
+    IT: 'https://help.ovhcloud.com/csm/it-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062556',
+    PL: 'https://help.ovhcloud.com/csm/pl-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062561',
+    PT: 'https://help.ovhcloud.com/csm/pt-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062562',
+    FR: 'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    MA: 'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    SN: 'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    TN: 'https://help.ovhcloud.com/csm/fr-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062602',
+    GB: 'https://help.ovhcloud.com/csm/en-gb-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062557',
+    CA: 'https://help.ovhcloud.com/csm/en-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062603',
+    QC: 'https://help.ovhcloud.com/csm/fr-ca-vmware-vcd-faq?id=kb_article_view&sysparm_article=KB0062601',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/28329887272467-VMware-Cloud-Director-FAQ',
   },
 };
 
@@ -116,14 +77,13 @@ type GetGuideLinkProps = {
 };
 
 function getGuideListLink({ subsidiary }: GetGuideLinkProps) {
-  const list: { [guideName: string]: string } = {};
-  const keys = Object.entries(GUIDE_LIST);
-  keys.forEach((key) => {
-    list[key[0]] =
-      GUIDE_LIST[key[0]][subsidiary as CountryCode] ??
-      GUIDE_LIST[key[0]][CountryCode.GB];
-  });
-  return list;
+  return Object.entries(GUIDE_LIST).reduce(
+    (acc, [guideName, guideLinks]) => {
+      acc[guideName] = guideLinks[subsidiary as CountryCode] ?? guideLinks[CountryCode.GB] ?? '';
+      return acc;
+    },
+    {} as { [guideName: string]: string },
+  );
 }
 
 interface GuideLinkProps {
@@ -142,8 +102,8 @@ function useGuideUtils() {
       const guideList = getGuideListLink({ subsidiary: ovhSubsidiary });
       setList(guideList);
     };
-    getSubSidiary();
-  }, []);
+    void getSubSidiary();
+  }, [environment]);
   return list as GuideLinkProps;
 }
 

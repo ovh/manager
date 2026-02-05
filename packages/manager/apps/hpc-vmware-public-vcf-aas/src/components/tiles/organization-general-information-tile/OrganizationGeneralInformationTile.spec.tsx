@@ -1,17 +1,20 @@
-import { act, render, screen } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
 import React from 'react';
-import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { describe, it, vi } from 'vitest';
+
 import {
   assertElementLabel,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import userEvent from '@testing-library/user-event';
-import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
-import TEST_IDS from '../../../utils/testIds.constants';
+import { VCDOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import { TRACKING } from '../../../tracking.constants';
+import TEST_IDS from '../../../utils/testIds.constants';
+import OrganizationGeneralInformationTile from './OrganizationGeneralInformationTile.component';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -77,22 +80,15 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
     elements.forEach(async (element) => assertTextVisibility(element));
 
     // and
-    const webUrlLink = await getElementByTestId(
-      TEST_IDS.dashboardVcdInterfaceLink,
-    );
+    const webUrlLink = await getElementByTestId(TEST_IDS.dashboardVcdInterfaceLink);
     await assertElementLabel({
       element: webUrlLink,
       label: 'managed_vcd_dashboard_management_interface_access',
     });
-    expect(webUrlLink).toHaveAttribute(
-      'href',
-      vcdOrg.currentState.webInterfaceUrl,
-    );
+    expect(webUrlLink).toHaveAttribute('href', vcdOrg.currentState.webInterfaceUrl);
 
     await act(() => user.click(webUrlLink));
-    expect(trackClickMock).toHaveBeenCalledWith(
-      TRACKING.dashboard.goToVcdPortal,
-    );
+    expect(trackClickMock).toHaveBeenCalledWith(TRACKING.dashboard.goToVcdPortal);
   });
 
   it('should not be able to update org VCD when service is suspended', () => {
@@ -107,8 +103,6 @@ describe('OrganizationGeneralInformationTile component unit test suite', () => {
 
     screen
       .getAllByTestId(TEST_IDS.editButton)
-      .forEach((element) =>
-        expect(element.getAttribute('is-disabled')).toBe('true'),
-      );
+      .forEach((element) => expect(element.getAttribute('is-disabled')).toBe('true'));
   });
 });

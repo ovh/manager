@@ -1,4 +1,9 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
+import React, { useState } from 'react';
+
+import { AxiosResponse } from 'axios';
+import { clsx } from 'clsx';
+import { useTranslation } from 'react-i18next';
+
 import {
   OdsButton,
   OdsFormField,
@@ -7,12 +12,13 @@ import {
   OdsModal,
   OdsText,
 } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { AxiosResponse } from 'axios';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Loading from '../loading/Loading.component';
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import TEST_IDS from '@/utils/testIds.constants';
+
+import Loading from '../loading/Loading.component';
 
 interface EditModalProps {
   detailValue: string;
@@ -37,7 +43,6 @@ export const EditDetailModal = ({
   error,
   isLoading,
 }: EditModalProps) => {
-  const { t } = useTranslation('dashboard');
   const { t: tError } = useTranslation(NAMESPACES.ERROR);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const [newDetail, setNewDetail] = useState<string>(detailValue || '');
@@ -50,7 +55,7 @@ export const EditDetailModal = ({
       try {
         await onEdit(newDetail);
       } catch (err) {
-        setUpdateError(err);
+        setUpdateError(err as ApiError);
       }
     }
   };
@@ -60,22 +65,14 @@ export const EditDetailModal = ({
       <div className="flex flex-col">
         <OdsText preset="heading-3">{headline}</OdsText>
         {!!updateError && (
-          <OdsMessage
-            color="danger"
-            isDismissible
-            onOdsRemove={() => setUpdateError(null)}
-          >
+          <OdsMessage color="danger" isDismissible onOdsRemove={() => setUpdateError(null)}>
             {tError('error_message', {
-              message:
-                updateError.response?.data?.message || updateError?.message,
+              message: updateError.response?.data?.message || updateError?.message,
             })}
           </OdsMessage>
         )}
       </div>
-      <OdsFormField
-        className="flex flex-col"
-        error={isValid ? undefined : errorHelper}
-      >
+      <OdsFormField className="flex flex-col" error={isValid ? undefined : errorHelper}>
         <OdsText className="mt-6" slot="label">
           {inputLabel}
         </OdsText>
@@ -90,18 +87,17 @@ export const EditDetailModal = ({
         <OdsText
           slot="helper"
           preset="caption"
-          className={`ods-field-helper ${isValid ? 'block' : 'hidden'}`}
+          className={clsx(
+            '[&::part(text)]:w-full [&::part(text)]:text-start',
+            isValid ? 'block' : 'hidden',
+          )}
         >
           {errorHelper}
         </OdsText>
       </OdsFormField>
-      {isLoading && <Loading slot="actions" className="w-9 mr-4" />}
-      <div className="flex gap-x-4 w-fit justify-self-center ml-auto mt-6">
-        <OdsButton
-          label={tActions('cancel')}
-          variant="ghost"
-          onClick={onCloseModal}
-        />
+      {isLoading && <Loading slot="actions" className="mr-4 w-9" />}
+      <div className="ml-auto mt-6 flex w-fit gap-x-4 justify-self-center">
+        <OdsButton label={tActions('cancel')} variant="ghost" onClick={onCloseModal} />
         <OdsButton
           label={tActions('modify')}
           onClick={handleSubmit}

@@ -1,24 +1,14 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { render } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import {
-  QueryClient,
-  QueryClientProvider,
-  UseQueryResult,
-} from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  useVcdOrganization,
-  VCDOrganization,
-} from '@ovh-ux/manager-module-vcd-api';
+
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
-import { labels } from '../../../test-utils';
+import { VCDOrganization, useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { subRoutes, urls } from '../../../routes/routes.constant';
+import OrganizationServiceManagementTile from './OrganizationServiceManagementTile.component';
 
 vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
@@ -52,9 +42,7 @@ const renderComponent = () => {
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
         <OrganizationServiceManagementTile />
       </ShellContext.Provider>
     </QueryClientProvider>,
@@ -69,24 +57,21 @@ describe('ServiceManagementTile component unit test suite', () => {
     renderComponent();
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_service_management,
-      labels.dashboard.managed_vcd_dashboard_service_renew,
-      labels.commun.billing.cancel_service,
-      labels.commun.system.password,
-      labels.commun.contact.contacts,
+    const texts = [
+      'managed_vcd_dashboard_service_management',
+      'managed_vcd_dashboard_service_renew',
+      'password',
+      'contacts',
     ];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 
   it('service actions should be disabled when the service is suspended', () => {
     const { container } = renderComponent();
 
     expect(useVcdOrganization).toHaveBeenCalledWith({ id: 'id' });
-    const cancelButton = container.querySelector(
-      'ods-button[label="cancel_service"]',
-    );
+    const cancelButton = container.querySelector('ods-button[label="cancel_service"]');
     expect(cancelButton?.getAttribute('is-disabled')).toBe('true');
     const renewPwdLink = container.querySelector(
       'ods-link[label="managed_vcd_dashboard_password_renew"]',

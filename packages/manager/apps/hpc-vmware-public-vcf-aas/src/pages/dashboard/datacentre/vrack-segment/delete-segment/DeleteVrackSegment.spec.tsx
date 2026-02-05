@@ -1,19 +1,22 @@
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect } from 'vitest';
-import { act, screen, waitFor, fireEvent } from '@testing-library/react';
-import {
-  organizationList,
-  datacentreList,
-  mockVrackSegmentList,
-} from '@ovh-ux/manager-module-vcd-api';
-import { labels, renderTest } from '../../../../../test-utils';
-import { urls, subRoutes } from '../../../../../routes/routes.constant';
 
-const testVrack = mockVrackSegmentList[0];
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
+
+import { subRoutes, urls } from '../../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../../test-utils';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+};
+
 const initialRoute = urls.vrackSegmentDelete
-  .replace(subRoutes.dashboard, organizationList[0].id)
-  .replace(subRoutes.vdcId, datacentreList[0].id)
-  .replace(subRoutes.vrackSegmentId, testVrack.id);
+  .replace(subRoutes.dashboard, config.org.id)
+  .replace(subRoutes.vdcId, config.vdc.id)
+  .replace(subRoutes.vrackSegmentId, config.vrackSegment.id);
 
 const {
   managed_vcd_dashboard_vrack_delete_segment: title,
@@ -65,7 +68,7 @@ describe('Delete Vrack Network Page', () => {
       screen.getByText(
         success.replace(
           varRegex('vrack'),
-          labelVrack.replace(varRegex('vlanId'), testVrack.currentState.vlanId),
+          labelVrack.replace(varRegex('vlanId'), config.vrackSegment.currentState.vlanId),
         ),
       ),
     ).toBeVisible();
@@ -73,7 +76,7 @@ describe('Delete Vrack Network Page', () => {
 
   // TODO : unskip when page is unmocked
   it.skip('should display an error if deleteService is KO', async () => {
-    const { debug, container } = await renderTest({
+    await renderTest({
       initialRoute,
       isVrackSegmentDeleteKo: true,
     });
@@ -84,17 +87,18 @@ describe('Delete Vrack Network Page', () => {
 
     // submit modal
     const submitCta = screen.getByTestId('primary-button');
-    await waitFor(async () => {
-      expect(submitCta).toBeEnabled();
-      debug(container, Infinity);
-      await act(() => userEvent.click(submitCta));
-    }, WAIT_OPTIONS);
+    expect(submitCta).toBeEnabled();
+    await act(() => userEvent.click(submitCta));
 
     // check modal visibility
     await waitFor(() => expect(modal).not.toBeInTheDocument(), WAIT_OPTIONS);
 
     // check error banner
     const testError = error.split(':')[0];
+    if (!testError) {
+      throw new Error('Error message is not defined');
+    }
+
     expect(screen.getByText(testError)).toBeVisible();
   });
 });

@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Modal } from '@ovh-ux/manager-react-components';
-import { OdsText, OdsInput } from '@ovhcloud/ods-components/react';
+
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
+import { OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+
+import { Modal } from '@ovh-ux/manager-react-components';
 
 type DeleteModalProps = React.ComponentProps<typeof Modal> & {
   confirmationKeyword?: string;
@@ -18,9 +20,7 @@ export function DeleteModal({
   const [inputValue, setInputValue] = useState('');
   const { t } = useTranslation('terminate');
 
-  const isConfirmationValid = confirmationKeyword
-    ? inputValue === confirmationKeyword
-    : true;
+  const isConfirmationValid = confirmationKeyword ? inputValue === confirmationKeyword : true;
 
   return (
     <Modal

@@ -1,4 +1,7 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
+import { VCDNetworkAcl } from '@ovh-ux/manager-module-vcd-api';
+
 import { checkHasActiveTasks, checkResourceStatus } from './NetworkAcl.context';
 
 describe('Network acl context checkHasActiveTasks', () => {
@@ -8,12 +11,12 @@ describe('Network acl context checkHasActiveTasks', () => {
       data: [
         { currentTasks: [{ status: 'PENDING' }] },
         { currentTasks: [{ status: 'DONE' }] },
-      ] as any,
+      ] as VCDNetworkAcl[],
       expected: true,
     },
     {
       description: 'returns false if no active tasks',
-      data: [{ currentTasks: [{ status: 'DONE' }] }] as any,
+      data: [{ currentTasks: [{ status: 'DONE' }] }] as unknown as VCDNetworkAcl[],
       expected: false,
     },
     {
@@ -29,15 +32,12 @@ describe('Network acl context checkResourceStatus', () => {
   it.each([
     {
       description: 'returns true if any resource has running status',
-      data: [
-        { resourceStatus: 'CREATING' },
-        { resourceStatus: 'READY' },
-      ] as any,
+      data: [{ resourceStatus: 'CREATING' }, { resourceStatus: 'READY' }] as VCDNetworkAcl[],
       expected: true,
     },
     {
       description: 'returns false if all statuses are stable',
-      data: [{ resourceStatus: 'READY' }] as any,
+      data: [{ resourceStatus: 'READY' }] as VCDNetworkAcl[],
       expected: false,
     },
     {

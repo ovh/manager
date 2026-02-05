@@ -1,25 +1,25 @@
+import React, { useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
+import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
 import {
   ChangelogButton,
   Datagrid,
   DatagridColumn,
-  ErrorBanner,
   useColumnFilters,
   useResourcesIcebergV2,
 } from '@ovh-ux/manager-react-components';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { icebergListingQueryKey } from '@ovh-ux/manager-module-vcd-api';
-import { OdsText } from '@ovhcloud/ods-components/react';
-import { applyFilters, FilterComparator } from '@ovh-ux/manager-core-api';
-import Loading from '@/components/loading/Loading.component';
-import TDatagridRoute from '@/types/datagrid-route.type';
-import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
-import {
-  hasResourceUpdatingTargetSpec,
-  UpdatableResource,
-} from '@/utils/refetchConditions';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
+import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
+import TDatagridRoute from '@/types/datagrid-route.type';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+import { UpdatableResource, hasResourceUpdatingTargetSpec } from '@/utils/refetchConditions';
 
 export type TDatagridContainerProps = {
   route: TDatagridRoute;
@@ -56,7 +56,7 @@ export default function DatagridContainer({
     flattenData,
     fetchNextPage,
     hasNextPage,
-    isError,
+    error,
     isLoading,
     status,
     sorting,
@@ -69,48 +69,31 @@ export default function DatagridContainer({
 
   useAutoRefetch({
     queryKey: listingQueryKey,
-    enabled: hasResourceUpdatingTargetSpec(
-      (flattenData as unknown) as UpdatableResource[],
-    ),
+    enabled: hasResourceUpdatingTargetSpec(flattenData as unknown as UpdatableResource[]),
     interval: 4000,
   });
 
   useEffect(() => {
-    if (
-      status === 'success' &&
-      data?.pages[0].data.length === 0 &&
-      onboarding
-    ) {
+    if (status === 'success' && data?.pages[0]?.data.length === 0 && onboarding) {
       navigate(onboarding);
     }
-  }, [data]);
+  }, [data, navigate, onboarding, status]);
 
-  if (isError) {
-    // return <ErrorBanner error={error} />;
-    // TODO temporary fix
+  if (isLoading) return <DisplayStatus variant="loading" />;
+  if (error || !flattenData?.length)
     return (
-      <ErrorBanner
-        error={{
-          status: 500,
-          data: { message: 'An error occured while fetching data' },
-        }}
+      <DisplayStatus
+        // TODO: Replace with a proper error message
+        variant="customError"
+        error={{ status: 500, data: { message: 'An error occured while fetching data' } }}
       />
     );
-  }
-
-  if (isLoading && !flattenData?.length) {
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
 
   const layoutCss = `px-10 pt-${isEmbedded ? '0' : '5'}`;
 
   return (
     <section className={layoutCss} aria-labelledby="datagrid-title">
-      <div className="flex items-center justify-between mt-4">
+      <div className="mt-4 flex items-center justify-between">
         <OdsText
           id="datagrid-title"
           preset={isEmbedded ? 'heading-3' : 'heading-1'}
@@ -125,9 +108,9 @@ export default function DatagridContainer({
           </div>
         )}
       </div>
-      {orderButton && <div className="w-fit mt-4 mb-8">{orderButton}</div>}
+      {orderButton && <div className="mb-8 mt-4 w-fit">{orderButton}</div>}
       <React.Suspense>
-        {flattenData?.length && (
+        {flattenData.length && (
           <Datagrid
             columns={columns}
             items={applyFilters(
@@ -136,7 +119,7 @@ export default function DatagridContainer({
                 ? filters
                 : [
                     {
-                      key: columnsSearchable,
+                      key: columnsSearchable || '',
                       value: searchInput,
                       comparator: FilterComparator.Includes,
                     },
@@ -150,11 +133,7 @@ export default function DatagridContainer({
             onSortChange={setSorting}
             manualSorting={false}
             contentAlignLeft
-            filters={
-              withFilter
-                ? { filters, add: addFilter, remove: removeFilter }
-                : undefined
-            }
+            filters={withFilter ? { filters, add: addFilter, remove: removeFilter } : undefined}
             search={{
               searchInput,
               setSearchInput,

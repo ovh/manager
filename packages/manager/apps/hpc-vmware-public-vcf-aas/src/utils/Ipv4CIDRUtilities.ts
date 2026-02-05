@@ -7,9 +7,13 @@ import ipaddr from 'ipaddr.js';
  */
 const ipToNumber = (ipAddr: ipaddr.IPv4): number => {
   const { octets } = ipAddr;
-  return (
-    octets[0] * 256 ** 3 + octets[1] * 256 ** 2 + octets[2] * 256 + octets[3]
-  );
+  const [o1, o2, o3, o4] = octets;
+
+  if (o1 === undefined || o2 === undefined || o3 === undefined || o4 === undefined) {
+    throw new Error('Invalid IPv4 address');
+  }
+
+  return o1 * 256 ** 3 + o2 * 256 ** 2 + o3 * 256 + o4;
 };
 
 /**
@@ -19,17 +23,9 @@ const ipToNumber = (ipAddr: ipaddr.IPv4): number => {
  * @returns Returns true if the CIDR networks overlap or are equal, false otherwise.
  * @throws Throws an error if either CIDR is invalid.
  */
-export const hasIpv4CIDRConflict = (
-  cidrNetworkA: string,
-  cidrNetworkB: string,
-): boolean => {
-  if (
-    !ipaddr.IPv4.isValidCIDR(cidrNetworkA) ||
-    !ipaddr.IPv4.isValidCIDR(cidrNetworkB)
-  ) {
-    throw new Error(
-      `Unable to parse CIDR (${cidrNetworkA} or ${cidrNetworkB})`,
-    );
+export const hasIpv4CIDRConflict = (cidrNetworkA: string, cidrNetworkB: string): boolean => {
+  if (!ipaddr.IPv4.isValidCIDR(cidrNetworkA) || !ipaddr.IPv4.isValidCIDR(cidrNetworkB)) {
+    throw new Error(`Unable to parse CIDR (${cidrNetworkA} or ${cidrNetworkB})`);
   }
 
   const minA = ipaddr.IPv4.networkAddressFromCIDR(cidrNetworkA);
@@ -58,7 +54,7 @@ export const normalizeToCIDR = (input: string): string => {
     const [ip, prefixStr] = cidr.split('/');
     const prefix = Number(prefixStr);
 
-    if (!ipaddr.IPv4.isValid(ip) || Number.isNaN(prefix)) {
+    if (!ip || !ipaddr.IPv4.isValid(ip) || Number.isNaN(prefix)) {
       throw new Error(`Invalid input: ${input}`);
     }
 

@@ -1,5 +1,6 @@
-import { Effect } from 'effect';
 import { expect } from '@effect/vitest';
+import { Effect } from 'effect';
+
 import { hasIpv4CIDRConflictInArray } from './hasIpv4CIDRConflictInArray';
 
 it.each([
@@ -14,14 +15,8 @@ it.each([
   [['10.0.0.0/8', ['8.8.8.8/32', '255.255.255.255/32']], false],
   [['10.0.0.0/8', ['8.8.8.8/32', '10.255.255.255/32']], false],
   [['10.0.0.0/8', ['8.8.8.8/32', '9.255.255.255/32']], false],
-] as const)(
-  'checkCIDRConflict with %s should return %s',
-  ([networkA, networkB], expected) => {
-    expect(
-      hasIpv4CIDRConflictInArray(networkA, networkB).pipe(
-        Effect.isSuccess,
-        Effect.runSync,
-      ),
-    ).toStrictEqual(expected);
-  },
-);
+] as const)('checkCIDRConflict with %s should return %s', ([networkA, networkB], expected) => {
+  expect(
+    hasIpv4CIDRConflictInArray(networkA, networkB).pipe(Effect.isSuccess, Effect.runSync),
+  ).toStrictEqual(expected);
+});

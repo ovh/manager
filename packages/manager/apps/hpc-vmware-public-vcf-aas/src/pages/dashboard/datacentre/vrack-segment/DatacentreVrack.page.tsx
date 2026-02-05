@@ -1,12 +1,16 @@
 import React from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+
+import { Outlet } from 'react-router-dom';
+
 import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
-import Loading from '@/components/loading/Loading.component';
+
 import Errors from '@/components/error/Error.component';
+import Loading from '@/components/loading/Loading.component';
 import { VrackSegmentDatagrid } from '@/components/vrackSegment/VrackSegmentDatagrid.component';
+import { useDatacentreParams } from '@/hooks/params/useSafeParams';
 
 export default function VrackListingPage() {
-  const { id, vdcId } = useParams();
+  const { id, vdcId } = useDatacentreParams();
 
   const { isError, error } = useVcdOrganization({ id });
 

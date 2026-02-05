@@ -1,27 +1,29 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { useServiceDetails } from '@ovh-ux/manager-react-components';
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+
+import { OdsText } from '@ovhcloud/ods-components/react';
+
+import { ApiResponse } from '@ovh-ux/manager-core-api';
+import { CustomerContact } from '@ovh-ux/manager-module-common-api';
+import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-react-components';
+
+import { DisplayStatus } from '@/components/status/DisplayStatus';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 
 export default function ServiceContactsTileItem() {
   const { t } = useTranslation('dashboard');
-  const { id } = useParams();
-  const { data: serviceDetails, isLoading, isError } = useServiceDetails({
-    resourceName: id,
-  });
-  const contactList = serviceDetails?.data?.customer?.contacts;
+  const { id } = useOrganisationParams();
+  const {
+    data: serviceDetails,
+    isLoading,
+    isError,
+  } = useServiceDetails({ resourceName: id }) as {
+    data?: ApiResponse<ServiceDetails>;
+    isLoading: boolean;
+    isError: boolean;
+  };
+  const contactList: CustomerContact[] = serviceDetails?.data?.customer?.contacts || [];
 
-  if (isLoading) {
-    return (
-      <>
-        <OdsSkeleton />
-        <OdsSkeleton />
-        <OdsSkeleton />
-      </>
-    );
-  }
-
+  if (isLoading) return <DisplayStatus variant="skeletonLoading" count={3} />;
   if (isError || !contactList?.length) {
     return <OdsText>-</OdsText>;
   }

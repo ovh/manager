@@ -1,12 +1,9 @@
-import ipaddr from 'ipaddr.js';
 import { Effect, Equal } from 'effect';
+import ipaddr from 'ipaddr.js';
 
 export const getNetworkAddressFromCIDR = (cidr: string) =>
   Effect.try({
-    try: () =>
-      ipaddr.IPv4.networkAddressFromCIDR(cidr)
-        .octets.join('.')
-        .toString(),
+    try: () => ipaddr.IPv4.networkAddressFromCIDR(cidr).octets.join('.').toString(),
     catch: () => `Invalid IP/CIDR: ${cidr}`,
   });
 

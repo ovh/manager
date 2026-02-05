@@ -1,22 +1,14 @@
-import React from 'react';
-import { act, render, screen } from '@testing-library/react';
-import { describe, it, vi, expect, afterEach, vitest } from 'vitest';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import {
-  ShellContext,
-  ShellContextType,
-} from '@ovh-ux/manager-react-shell-client';
-import {
-  assertTextVisibility,
-  getElementByTestId,
-} from '@ovh-ux/manager-core-test-utils';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import OrganizationOptionsTile from './OrganizationOptionsTile.component';
-import { labels } from '../../../test-utils';
+import { afterEach, describe, expect, it, vi, vitest } from 'vitest';
+
+import { assertTextVisibility, getElementByTestId } from '@ovh-ux/manager-core-test-utils';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
 import { TRACKING } from '../../../tracking.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
-
-vi.stubGlobal('open', vi.fn());
+import OrganizationOptionsTile from './OrganizationOptionsTile.component';
 
 const trackClickMock = vi.fn();
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -24,6 +16,12 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
+vi.mock('@/hooks/params/useSafeParams', () => {
+  return {
+    useOrganisationParams: () => vi.fn(),
   };
 });
 
@@ -49,13 +47,8 @@ const renderComponent = ({
 
   return render(
     <QueryClientProvider client={queryClient}>
-      <ShellContext.Provider
-        value={(shellContext as unknown) as ShellContextType}
-      >
-        <OrganizationOptionsTile
-          isLicenseActive={isLicenseActive}
-          isDisabled={isDisabled}
-        />
+      <ShellContext.Provider value={shellContext as unknown as ShellContextType}>
+        <OrganizationOptionsTile isLicenseActive={isLicenseActive} isDisabled={isDisabled} />
       </ShellContext.Provider>
     </QueryClientProvider>,
   );
@@ -67,12 +60,9 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     renderComponent({ isDisabled: false, isLicenseActive: false });
 
     // then
-    const elements = [
-      labels.dashboard.managed_vcd_dashboard_options,
-      labels.dashboard.managed_vcd_dashboard_windows_license,
-    ];
+    const texts = ['managed_vcd_dashboard_options', 'managed_vcd_dashboard_windows_license'];
 
-    elements.forEach(async (element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
   });
 
   it('should track click on activateLicense', async () => {
@@ -87,18 +77,14 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     await act(() => user.click(menu));
 
     // and
-    const activateLicenseButton = await getElementByTestId(
-      TEST_IDS.activateLicenseCta,
-    );
+    const activateLicenseButton = await getElementByTestId(TEST_IDS.activateLicenseCta);
 
     await act(() => user.click(activateLicenseButton));
-    expect(trackClickMock).toHaveBeenCalledWith(
-      TRACKING.dashboard.activateWindowsLicence,
-    );
+    expect(trackClickMock).toHaveBeenCalledWith(TRACKING.dashboard.activateWindowsLicence);
     expect(window.open).toHaveBeenCalledOnce();
   });
 
-  it('should not be able to activate license when service is disabled', async () => {
+  it('should not be able to activate license when service is disabled', () => {
     // when
     renderComponent({ isDisabled: true, isLicenseActive: false });
 
@@ -107,14 +93,12 @@ describe('OrganizationOptionsTile component unit test suite', () => {
     expect(menu.getAttribute('is-disabled')).toBe('true');
   });
 
-  it('should not display action menu when licence is active', async () => {
+  it('should not display action menu when licence is active', () => {
     // when
     renderComponent({ isDisabled: true, isLicenseActive: true });
 
     // then
-    expect(
-      screen.queryByText('managed_vcd_dashboard_windows_license_active'),
-    ).toBeDefined();
+    expect(screen.queryByText('managed_vcd_dashboard_windows_license_active')).toBeDefined();
     const menu = screen.queryByTestId('navigation-action-trigger-action');
     expect(menu).not.toBeInTheDocument();
   });

@@ -1,27 +1,31 @@
 import React from 'react';
+
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { ErrorBanner, ErrorMessage, TRACKING_LABELS } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ErrorMessage,
-  TRACKING_LABELS,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
+
 import { urls } from '@/routes/routes.constant';
 
-interface ErrorObject {
-  [key: string]: any;
-}
+// TODO: refactor this component, or use something from MRC
+// ErrorType expected by ErrorBanner and getTrackingTypology don't overlap
+type ErrorObject = {
+  status?: number | undefined;
+  data?: { [key: string]: unknown };
+  headers?: { [key: string]: unknown };
+};
 
-function getTrackingTypology(error: ErrorMessage) {
-  if (error?.detail?.status && Math.floor(error.detail.status / 100) === 4) {
-    return [401, 403].includes(error.detail.status)
+function getTrackingTypology(error?: ErrorMessage) {
+  const status = (error?.detail as { status: number } | undefined)?.status;
+  if (status && typeof status === 'number' && Math.floor(status / 100) === 4) {
+    return [401, 403].includes(status)
       ? TRACKING_LABELS.UNAUTHORIZED
       : TRACKING_LABELS.SERVICE_NOT_FOUND;
   }
   return TRACKING_LABELS.PAGE_LOAD;
 }
 
-const Errors: React.FC<ErrorObject> = ({ error }) => {
+const Errors = ({ error }: { error?: ErrorObject }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { shell } = React.useContext(ShellContext);
@@ -29,7 +33,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   const env = environment.getEnvironment();
 
   React.useEffect(() => {
-    env.then((response: any) => {
+    env.then((response: { applicationName: string }) => {
       const { applicationName } = response;
       const name = `errors::${getTrackingTypology(error)}::${applicationName}`;
       tracking.trackPage({
@@ -39,11 +43,11 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
         page_category: location.pathname,
       });
     });
-  }, []);
+  }, [env, error, location.pathname, tracking]);
 
   return (
     <ErrorBanner
-      error={error}
+      error={error || {}}
       onReloadPage={() => navigate(location.pathname, { replace: true })}
       onRedirectHome={() => navigate(urls.root, { replace: true })}
     />

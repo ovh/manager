@@ -1,8 +1,8 @@
 import React, {
-  createContext,
   Dispatch,
   ReactNode,
   SetStateAction,
+  createContext,
   useContext,
   useMemo,
   useState,
@@ -19,13 +19,9 @@ type DatacentreOrderProviderProps = {
   children: ReactNode;
 };
 
-const DatacentreOrderContext = createContext<
-  DatacentreOrderContextType | undefined
->(undefined);
+const DatacentreOrderContext = createContext<DatacentreOrderContextType | undefined>(undefined);
 
-export const DatacentreOrderProvider: React.FC<DatacentreOrderProviderProps> = ({
-  children,
-}) => {
+export const DatacentreOrderProvider: React.FC<DatacentreOrderProviderProps> = ({ children }) => {
   const [selectedResource, setSelectedResource] = useState<string>('');
   const [selectedQuantity, setSelectedQuantity] = useState<number>(1);
   const contextValue = useMemo(
@@ -48,9 +44,7 @@ export const DatacentreOrderProvider: React.FC<DatacentreOrderProviderProps> = (
 export const useDatacentreOrderContext = (): DatacentreOrderContextType => {
   const context = useContext(DatacentreOrderContext);
   if (context === undefined) {
-    throw new Error(
-      'useDatacentreOrderContext must be used within a DatacentreOrderProvider',
-    );
+    throw new Error('useDatacentreOrderContext must be used within a DatacentreOrderProvider');
   }
   return context;
 };

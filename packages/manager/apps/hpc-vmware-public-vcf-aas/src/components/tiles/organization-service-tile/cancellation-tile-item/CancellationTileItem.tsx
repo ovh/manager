@@ -1,15 +1,14 @@
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsButton } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
 import { subRoutes } from '@/routes/routes.constant';
 
-export default function CancellationTileItem({
-  isDisabled,
-}: {
-  isDisabled: boolean;
-}) {
-  const { t } = useTranslation('dashboard');
+export default function CancellationTileItem({ isDisabled }: { isDisabled: boolean }) {
   const { t: tBilling } = useTranslation(NAMESPACES.BILLING);
   const navigate = useNavigate();
 

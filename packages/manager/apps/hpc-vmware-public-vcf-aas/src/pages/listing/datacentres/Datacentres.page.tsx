@@ -1,37 +1,39 @@
-import {
-  DataGridTextCell,
-  Links,
-  LinkType,
-} from '@ovh-ux/manager-react-components';
+import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useHref, useParams } from 'react-router-dom';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import {
+  VCDDatacentre,
   getVcdDatacentreListQueryKey,
   getVcdDatacentresRoute,
-  VCDDatacentre,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
-  useOvhTracking,
-  useNavigationGetUrl,
-} from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+  DataGridTextCell,
+  DatagridColumn,
+  LinkType,
+  Links,
+} from '@ovh-ux/manager-react-components';
+import { useNavigationGetUrl, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
+import { FEATURE_FLAGS } from '@/app.constants';
 import DatagridContainer, {
   TDatagridContainerProps,
 } from '@/components/datagrid/container/DatagridContainer.component';
-import { subRoutes, urls } from '@/routes/routes.constant';
-import { capitalize } from '@/utils/capitalize';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
 import { ID_LABEL, VRACK_LABEL } from '@/pages/dashboard/dashboard.constants';
-import TEST_IDS from '@/utils/testIds.constants';
-import { TRACKING } from '@/tracking.constants';
 import { VIRTUAL_DATACENTERS_LABEL } from '@/pages/dashboard/organization/organizationDashboard.constants';
-import { VRACK_PATH, DEDICATED_PATH } from './Datacentres.constants';
-import { FEATURE_FLAGS } from '@/app.constants';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { TRACKING } from '@/tracking.constants';
+import { capitalize } from '@/utils/capitalize';
+import TEST_IDS from '@/utils/testIds.constants';
+
+import { DEDICATED_PATH, VRACK_PATH } from './Datacentres.constants';
 
 /* ========= datagrid cells ========= */
 const DatagridIdCell = (vcdDatacentre: VCDDatacentre) => {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const datacentreDashboardHref = useHref(
     urls.datacentreDashboard
       .replace(subRoutes.dashboard, id)
@@ -86,9 +88,7 @@ const DatagridRamCountCell = (vcdDatacentre: VCDDatacentre) => {
 };
 
 const DatagridCommercialRange = (vcdDatacentre: VCDDatacentre) => (
-  <DataGridTextCell>
-    {capitalize(vcdDatacentre.currentState?.commercialRange)}
-  </DataGridTextCell>
+  <DataGridTextCell>{capitalize(vcdDatacentre.currentState?.commercialRange)}</DataGridTextCell>
 );
 
 const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
@@ -115,13 +115,10 @@ const DatagridVrackCell = (vcdDatacentre: VCDDatacentre) => {
 };
 /* ======= listing page ======== */
 export default function DatacentresListing() {
-  const { t } = useTranslation('listing');
+  const { id } = useOrganisationParams();
   const { t: tVdc } = useTranslation('datacentres');
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
-  const { id } = useParams();
-  const { data: featuresAvailable } = useFeatureAvailability([
-    FEATURE_FLAGS.VRACK,
-  ]);
+  const { data: featuresAvailable } = useFeatureAvailability([FEATURE_FLAGS.VRACK]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
 
   const columns = [
@@ -155,12 +152,16 @@ export default function DatacentresListing() {
       cell: DatagridCpuSpeedCell,
       label: tVdc('managed_vcd_vdc_vcpu_speed'),
     },
-    isVrackFeatureAvailable && {
-      id: 'vRack',
-      cell: DatagridVrackCell,
-      label: VRACK_LABEL,
-    },
-  ].filter(Boolean);
+    ...(!isVrackFeatureAvailable
+      ? []
+      : [
+          {
+            id: 'vRack',
+            cell: DatagridVrackCell,
+            label: VRACK_LABEL,
+          },
+        ]),
+  ] as DatagridColumn<unknown>[];
 
   const datagridProps: TDatagridContainerProps = {
     title: VIRTUAL_DATACENTERS_LABEL,

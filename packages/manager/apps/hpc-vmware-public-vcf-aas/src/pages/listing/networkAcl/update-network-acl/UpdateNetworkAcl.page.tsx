@@ -1,34 +1,28 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useForm, Controller } from 'react-hook-form';
 import { Suspense, useMemo, useState } from 'react';
 
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
+import { OdsButton, OdsFormField, OdsInput, OdsMessage } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useUpdateVcdNetworkAcl } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 
-import {
-  OdsInput,
-  OdsFormField,
-  OdsMessage,
-  OdsButton,
-} from '@ovhcloud/ods-components/react';
-import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { useUpdateVcdNetworkAcl } from '@ovh-ux/manager-module-vcd-api';
-import {
-  normalizeToCIDR,
-  hasExistingIpOrCidrConflict,
-} from '@/utils/Ipv4CIDRUtilities';
-import { useCurrentIp } from '@/hooks/currentIp/useCurrentIp';
-
 import { useMessageContext } from '@/context/Message.context';
+import { useCurrentIp } from '@/hooks/currentIp/useCurrentIp';
+import { subRoutes } from '@/routes/routes.constant';
 import { NETWORK_ACL_SCHEMA } from '@/schemas/form.schema';
 import { NetworkAclFormData } from '@/types/form.type';
-import { useNetworkAclContext } from '../NetworkAcl.context';
-
-import { subRoutes } from '@/routes/routes.constant';
-import { CIDR_ANYWHERE } from './updateNetworkAcl.constants';
+import { hasExistingIpOrCidrConflict, normalizeToCIDR } from '@/utils/Ipv4CIDRUtilities';
 import TEST_IDS from '@/utils/testIds.constants';
+
+import { useNetworkAclContext } from '../NetworkAcl.context';
+import { CIDR_ANYWHERE } from './updateNetworkAcl.constants';
 
 export default function AddEditNetworkAcl() {
   const { t } = useTranslation('networkAcl');
@@ -36,17 +30,10 @@ export default function AddEditNetworkAcl() {
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
 
-  const [normalizedMessageInfo, setNormalizedMessageInfo] = useState<
-    string | null
-  >(null);
+  const [normalizedMessageInfo, setNormalizedMessageInfo] = useState<string | null>(null);
 
   const navigate = useNavigate();
-  const {
-    targetNetworks,
-    currentNetworks,
-    organisationId: id,
-    aclId,
-  } = useNetworkAclContext();
+  const { targetNetworks, currentNetworks, organisationId: id, aclId } = useNetworkAclContext();
   const closeModal = () => navigate('..');
   const { addSuccess } = useMessageContext();
 
@@ -55,10 +42,7 @@ export default function AddEditNetworkAcl() {
   const { retrieveCurrentIp, isLoading: isLoadingCurrentIp } = useCurrentIp();
 
   const searchParams = new URLSearchParams(search);
-  const currentSubRoute = pathname
-    .split('/')
-    .filter(Boolean)
-    .pop();
+  const currentSubRoute = pathname.split('/').filter(Boolean).pop();
 
   const {
     mutate: updateNetworkAcl,
@@ -94,6 +78,7 @@ export default function AddEditNetworkAcl() {
           path: ['network'],
         },
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [currentNetworks],
   );
 
@@ -117,9 +102,7 @@ export default function AddEditNetworkAcl() {
   const onSubmit = (data: NetworkAclFormData) => {
     const payload = {
       networks: [
-        ...targetNetworks.filter(
-          (net) => net.network !== searchParams.get('network'),
-        ),
+        ...targetNetworks.filter((net) => net.network !== searchParams.get('network')),
         { network: normalizeToCIDR(data.network), name: data.description },
       ],
     };
@@ -191,7 +174,7 @@ export default function AddEditNetworkAcl() {
               </OdsMessage>
             )}
 
-            <div className="flex justify-center gap-4 mt-4">
+            <div className="mt-4 flex justify-center gap-4">
               <OdsButton
                 size={ODS_BUTTON_SIZE.sm}
                 variant="outline"
@@ -210,9 +193,7 @@ export default function AddEditNetworkAcl() {
             </div>
             {/* Network */}
             <OdsFormField
-              error={
-                errors?.network?.message && tZodError(errors?.network?.message)
-              }
+              error={errors?.network?.message && tZodError(errors?.network?.message)}
               className="block w-full"
             >
               <label slot="label" htmlFor="network">
@@ -248,7 +229,7 @@ export default function AddEditNetworkAcl() {
             {/* Description */}
             <OdsFormField
               className="block w-full"
-              error={tZodError(errors?.description?.message)}
+              error={errors?.description?.message && tZodError(errors.description.message)}
             >
               <label slot="label" htmlFor="description">
                 {tDashboard('description')}

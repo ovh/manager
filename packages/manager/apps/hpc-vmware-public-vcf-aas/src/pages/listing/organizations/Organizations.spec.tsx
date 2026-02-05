@@ -1,17 +1,24 @@
+import { screen } from '@testing-library/dom';
+import { act, waitFor } from '@testing-library/react';
+import { MockInstance, vi } from 'vitest';
+
 import {
   assertElementLabel,
   assertElementVisibility,
   assertTextVisibility,
   getElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
-import { screen } from '@testing-library/dom';
-import { act, waitFor } from '@testing-library/react';
-import { vi } from 'vitest';
 
-import { organizationList } from '@ovh-ux/manager-module-vcd-api';
-import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
+
 import { labels, renderTest } from '../../../test-utils';
+import { ORDER_VCD_REDIRECTION_URL } from '../../../utils/orderVcdRedirection.constants';
 import TEST_IDS from '../../../utils/testIds.constants';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  orgSuspended: SAFE_MOCK_DATA.orgSuspended,
+};
 
 describe('Organizations Listing Page', () => {
   it('display the listing page if there is at least one organization', async () => {
@@ -19,7 +26,7 @@ describe('Organizations Listing Page', () => {
     await renderTest({ nbOrganization: 1 });
 
     // then
-    const headers = [
+    const texts = [
       labels.listing.managed_vcd_listing_name,
       labels.commun.dashboard.description,
       labels.commun.region.localisation,
@@ -27,10 +34,10 @@ describe('Organizations Listing Page', () => {
       labels.listing.managed_vcd_listing_web_interface_url,
     ];
 
-    headers.forEach((element) => assertTextVisibility(element));
+    await Promise.all(texts.map((text) => assertTextVisibility(text)));
 
     // and
-    const vcdDetails = organizationList[0].currentState;
+    const vcdDetails = config.org.currentState;
     const vcdNameLink = await getElementByTestId(TEST_IDS.listingVcdNameLink);
 
     await assertTextVisibility(vcdDetails.description);
@@ -47,7 +54,7 @@ describe('Organizations Listing Page', () => {
     const {
       id,
       currentState: { description },
-    } = organizationList[2];
+    } = config.orgSuspended;
 
     await assertTextVisibility(description);
     const terminateButton = screen.queryByTestId(`terminate-cta-${id}`);
@@ -58,7 +65,7 @@ describe('Organizations Listing Page', () => {
 });
 
 describe('VCD Order CTA redirection', () => {
-  let windowOpenSpy: any;
+  let windowOpenSpy: MockInstance;
 
   beforeEach(() => {
     windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
@@ -76,7 +83,7 @@ describe('VCD Order CTA redirection', () => {
 
     const expectedUrl = ORDER_VCD_REDIRECTION_URL.FR;
 
-    await act(async () => {
+    act(() => {
       orderButton.click();
     });
 

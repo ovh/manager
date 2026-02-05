@@ -1,6 +1,7 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { GuideButton, GuideItem } from '@ovh-ux/manager-react-components';
+
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 
 export default function VcdGuidesHeader() {
@@ -26,7 +27,9 @@ export default function VcdGuidesHeader() {
       target: '_blank',
       label: t('managed_vcd_listing_vcd_faq_guides'),
     },
-  ];
+    // Filter guides without href
+    // TODO: remove this once the useGuideUtils is updated and guaranteed to have a fallback href
+  ].flatMap(({ href, ...item }) => (href ? [{ ...item, href }] : []));
 
   return <GuideButton items={guides} />;
 }

@@ -1,28 +1,30 @@
+import { useNavigate, useResolvedPath } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useResolvedPath } from 'react-router-dom';
-import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  ChangelogButton,
-  HeadersProps,
-} from '@ovh-ux/manager-react-components';
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { ChangelogButton, HeadersProps } from '@ovh-ux/manager-react-components';
+
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-
-import { subRoutes, urls } from '@/routes/routes.constant';
-import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
-import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import VcdGuidesHeader from '@/components/guide/VcdGuidesHeader';
-import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { DisplayStatus } from '@/components/status/DisplayStatus';
+import { useOrganisationParams } from '@/hooks/params/useSafeParams';
+import { subRoutes, urls } from '@/routes/routes.constant';
+import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
+import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
+
+import { VIRTUAL_DATACENTERS_LABEL } from './organizationDashboard.constants';
 
 export default function DashboardPage() {
-  const { id } = useParams();
+  const { id } = useOrganisationParams();
   const { t } = useTranslation('dashboard');
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
-  const { data: vcdOrganisation } = useVcdOrganization({ id });
+  const { data: vcdOrganisation, isPending, error } = useVcdOrganization({ id });
   const navigate = useNavigate();
 
   const tabsList: DashboardTab[] = [
@@ -45,7 +47,10 @@ export default function DashboardPage() {
     },
   ];
 
-  const serviceName = vcdOrganisation?.data?.currentState?.fullName;
+  if (isPending) return <DisplayStatus variant="loading" />;
+  if (error) return <DisplayStatus variant="error" error={error} />;
+
+  const serviceName = vcdOrganisation.data.currentState.fullName;
   const hasServiceRenamed = id !== serviceName;
 
   const header: HeadersProps = hasServiceRenamed
@@ -65,11 +70,7 @@ export default function DashboardPage() {
     <VcdDashboardLayout
       tabs={tabsList}
       header={header}
-      message={
-        <MessageSuspendedService
-          status={vcdOrganisation?.data?.resourceStatus}
-        />
-      }
+      message={<MessageSuspendedService status={vcdOrganisation.data.resourceStatus} />}
       backLinkLabel={tActions('back_to_list')}
       onClickReturn={() => navigate(urls.listing)}
     />

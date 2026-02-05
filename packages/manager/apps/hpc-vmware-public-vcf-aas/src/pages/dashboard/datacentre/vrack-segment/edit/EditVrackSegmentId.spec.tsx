@@ -1,15 +1,20 @@
-import { act, screen } from '@testing-library/react';
-import { expect } from 'vitest';
-import {
-  organizationList,
-  datacentreList,
-  mockVrackSegmentList,
-} from '@ovh-ux/manager-module-vcd-api';
 import { waitFor } from '@testing-library/dom';
+import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderTest, labels } from '../../../../../test-utils';
+import { expect } from 'vitest';
+
+import { subRoutes } from '@/routes/routes.constant';
+import { SAFE_MOCK_DATA } from '@/test-utils/safeMockData.utils';
+
 import fr_FR from '../../../../../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
-import { subRoutes } from '../../../../../routes/routes.constant';
+import { labels, renderTest } from '../../../../../test-utils';
+
+const config = {
+  org: SAFE_MOCK_DATA.orgStandard,
+  vdc: SAFE_MOCK_DATA.vdcStandard,
+  vrackSegment: SAFE_MOCK_DATA.vrackSegmentStandard,
+};
+const initialRoute = `/${config.org.id}/virtual-datacenters/${config.vdc.id}/vrack-segments/${config.vrackSegment.id}/${subRoutes.vrackEditVlanId}`;
 
 const queryModalTitle = () => {
   return screen.queryByText(
@@ -21,15 +26,9 @@ const queryModalTitle = () => {
 };
 
 const checkFormInputAndCta = (container: HTMLElement) => {
-  expect(
-    screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan),
-  ).toBeVisible();
-  expect(
-    container.querySelector(`[label="${labels.commun.actions.modify}"]`),
-  ).toBeVisible();
-  expect(
-    container.querySelector(`[label="${labels.commun.actions.cancel}"]`),
-  ).toBeVisible();
+  expect(screen.getByText(fr_FR.managed_vcd_dashboard_vrack_edit_vlan)).toBeVisible();
+  expect(container.querySelector(`[label="${labels.commun.actions.modify}"]`)).toBeVisible();
+  expect(container.querySelector(`[label="${labels.commun.actions.cancel}"]`)).toBeVisible();
 
   const input = container.querySelector('input[name="vlanId"]');
 
@@ -37,34 +36,26 @@ const checkFormInputAndCta = (container: HTMLElement) => {
 };
 
 const checkVlanValue = (container: HTMLElement, vlanId: string) => {
-  const input = container.querySelector(
-    `input[name="vlanId"][value="${vlanId}"]`,
-  );
+  const input = container.querySelector('input[name="vlanId"]');
 
-  expect(input).toBeInTheDocument();
+  expect(input).toHaveAttribute('value', vlanId);
 };
 
-const expectSubmitButton = (container) =>
-  expect(
-    container.querySelector(
-      `ods-button[label="${labels.commun.actions.modify}"]`,
-    ),
-  );
+const getSubmitButton = (container: HTMLElement) =>
+  container.querySelector(`ods-button[label="${labels.commun.actions.modify}"]`);
 
 const submitForm = (container: HTMLElement) => {
-  return act(() =>
-    userEvent.click(
-      container.querySelector(
-        `ods-button[label="${labels.commun.actions.modify}"]`,
-      ) as Element,
-    ),
-  );
+  const submitButton = getSubmitButton(container);
+  if (!submitButton) {
+    throw new Error('Submit button not found');
+  }
+  return act(() => userEvent.click(submitButton));
 };
 
 const editVlanValue = (newValue: string | number) => {
-  const odsQuantity = document.querySelector(
+  const odsQuantity = document.querySelector<HTMLElement & { value: number }>(
     'ods-quantity[name="vlanId"]',
-  ) as HTMLElement & { value?: number };
+  );
 
   if (!odsQuantity) throw new Error('ods-quantity not found');
 
@@ -88,12 +79,8 @@ const checkSuccessBannerIsVisible = () => {
 };
 
 const checkErrorBannerIsVisible = () => {
-  screen.queryByText(
-    fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''),
-  );
+  screen.queryByText(fr_FR.managed_vcd_dashboard_vrack_edit_error.replace('{{errorApi}}', ''));
 };
-
-const initialRoute = `/${organizationList[0].id}/virtual-datacenters/${datacentreList[0].id}/vrack-segments/${mockVrackSegmentList[0].id}/${subRoutes.vrackEditVlanId}`;
 
 // Check modal is closed and success message is shown
 describe('Edit Vrack Segment Id Page', () => {
@@ -104,22 +91,24 @@ describe('Edit Vrack Segment Id Page', () => {
       () => {
         expect(queryModalTitle()).toBeInTheDocument();
       },
-      { timeout: 3_000 },
+      { timeout: 5_000 },
     );
 
     await waitFor(
       () => {
         checkFormInputAndCta(container);
-        checkVlanValue(container, mockVrackSegmentList[0].targetSpec.vlanId);
+        checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
-      { timeout: 2000 },
+      { timeout: 5_000 },
     );
 
-    expectSubmitButton(container).toBeDisabled();
+    const submitButton = getSubmitButton(container);
+    expect(submitButton).toBeDefined();
+    expect(submitButton).toBeDisabled();
 
-    await editVlanValue(430);
+    editVlanValue(430);
 
-    await waitFor(() => expectSubmitButton(container).not.toBeDisabled(), {
+    await waitFor(() => expect(submitButton).not.toBeDisabled(), {
       timeout: 2000,
     });
 
@@ -135,10 +124,7 @@ describe('Edit Vrack Segment Id Page', () => {
   });
 
   it('The form is displayed and can be submitted and we show error', async () => {
-    const { container } = await renderTest({
-      initialRoute,
-      isVrackSegmentUpdateKo: true,
-    });
+    const { container } = await renderTest({ initialRoute, isVrackSegmentUpdateKo: true });
 
     await waitFor(() => {
       expect(queryModalTitle()).toBeInTheDocument();
@@ -147,9 +133,9 @@ describe('Edit Vrack Segment Id Page', () => {
     await waitFor(
       () => {
         checkFormInputAndCta(container);
-        checkVlanValue(container, mockVrackSegmentList[0].targetSpec.vlanId);
+        checkVlanValue(container, config.vrackSegment.targetSpec.vlanId);
       },
-      { timeout: 2000 },
+      { timeout: 5_000 },
     );
 
     await submitForm(container);

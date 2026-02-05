@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 import { describe, vi } from 'vitest';
+
 import { VCDResourceStatus } from '@ovh-ux/manager-module-vcd-api';
+
 import { useMessageContext } from '../../context/Message.context';
 import MessageSuspendedService from './MessageSuspendedService.component';
 

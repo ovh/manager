@@ -1,13 +1,14 @@
-import { OdsMessageColor } from '@ovhcloud/ods-components';
 import React, {
-  createContext,
   FC,
   PropsWithChildren,
   ReactNode,
+  createContext,
   useContext,
   useMemo,
   useState,
 } from 'react';
+
+import { OdsMessageColor } from '@ovhcloud/ods-components';
 
 export type MessageOptions = {
   isDismissible?: boolean;
@@ -38,11 +39,11 @@ export type MessageContextType = {
 
 const MessageContext = createContext<MessageContextType>({
   messages: [],
-  addSuccess: () => null,
-  addError: () => null,
-  addWarning: () => null,
-  addInfo: () => null,
-  addCritical: () => null,
+  addSuccess: () => -1,
+  addError: () => -1,
+  addWarning: () => -1,
+  addInfo: () => -1,
+  addCritical: () => -1,
   clearMessage: () => null,
   clearMessages: () => null,
 });
@@ -81,19 +82,13 @@ export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
     [messages],
   );
 
-  return (
-    <MessageContext.Provider value={messageContextValue}>
-      {children}
-    </MessageContext.Provider>
-  );
+  return <MessageContext.Provider value={messageContextValue}>{children}</MessageContext.Provider>;
 };
 
 export const useMessageContext = (): MessageContextType => {
   const context = useContext(MessageContext);
   if (context === undefined) {
-    throw new Error(
-      'useMessageContext must be used within a MessageContextProvider',
-    );
+    throw new Error('useMessageContext must be used within a MessageContextProvider');
   }
   return context;
 };
