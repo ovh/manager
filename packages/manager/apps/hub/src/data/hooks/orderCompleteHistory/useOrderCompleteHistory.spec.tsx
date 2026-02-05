@@ -56,7 +56,7 @@ describe('useOrderCompleteHistory', () => {
     expect(getCompleteHistory).toHaveBeenCalledTimes(1);
   });
 
-  it('should not run the query when any input is undefined', async () => {
+  it('should not run the query when any input is undefined', () => {
     const { wrapper } = createWrapper();
 
     const { result } = renderHook(

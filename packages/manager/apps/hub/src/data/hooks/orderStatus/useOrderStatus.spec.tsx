@@ -37,7 +37,7 @@ describe('useOrderStatus', () => {
     const { wrapper } = createWrapper();
 
     const mockedStatus = 'delivered';
-    vi.mocked(getOrderStatus).mockResolvedValue(mockedStatus as any);
+    vi.mocked(getOrderStatus).mockResolvedValue(mockedStatus);
 
     const { result } = renderHook(() => useOrderStatus(1), { wrapper });
 

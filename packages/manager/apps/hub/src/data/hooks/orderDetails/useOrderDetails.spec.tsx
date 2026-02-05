@@ -74,7 +74,7 @@ describe('useOrderDetails', () => {
     expect(getOrderDetails).toHaveBeenCalledWith(1);
   });
 
-  it('should not run the query when orderId is undefined', async () => {
+  it('should not run the query when orderId is undefined', () => {
     const { wrapper } = createWrapper();
 
     const { result } = renderHook(() => useOrderDetails(undefined as unknown as number), {
