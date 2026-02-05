@@ -6753,15 +6753,15 @@
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
 
-"@ovh-ux/manager-react-shell-client@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.2.2.tgz#3977556d806bdb0b8797f94e6431017f3f44584a"
-  integrity sha512-xCTfzFx0wbwqtKyhEz1q9L5/XGZT0mDl4eK1zHwRBlOInb4eWqXPQUEZwfiKY58TFHndAsr6NdiWoEtmtl4A4w==
+"@ovh-ux/manager-react-shell-client@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-react-shell-client/-/manager-react-shell-client-1.2.3.tgz#31b7b1297eb192099e1e3d799b02dc5c04c1db49"
+  integrity sha512-n/FcrTcrki46yzP++tXmrp5+rlOFMl+BaBHrRbf6bvA+usBiUj9GbG5dewigIbnUDOegNzC2Ksrrx2EDU8SGzA==
   dependencies:
-    "@ovh-ux/manager-config" "^8.8.7"
-    "@ovh-ux/ovh-at-internet" "^0.28.2"
-    "@ovh-ux/request-tagger" "^0.4.1"
-    "@ovh-ux/shell" "^4.10.5"
+    "@ovh-ux/manager-config" "^8.9.0"
+    "@ovh-ux/ovh-at-internet" "^0.29.4"
+    "@ovh-ux/request-tagger" "^0.6.0"
+    "@ovh-ux/shell" "^4.10.6"
     "@ovh-ux/url-builder" "^2.4.3"
     i18next "^23.8.2"
     i18next-http-backend "^2.4.2"
@@ -6802,11 +6802,6 @@
   version "0.24.10"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.24.10.tgz#88926c05c7a5e0622605f651661d9a8ae633af17"
   integrity sha512-S8b0RO/KaVTgapWGxR21aqQe5jLe7BGy9KPPKDq5fZ+v+NGd0itieNAaeS9Cj8sohp7wiCpQmjUP9RIkaABSrw==
-
-"@ovh-ux/ovh-at-internet@^0.28.2":
-  version "0.28.3"
-  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.28.3.tgz#8d09ee974cb62c492f5a792ba0cd4a93e565db13"
-  integrity sha512-6Af3L+zdsCxBNmk1DXQZb3GS4oAqeL/grwAkbgVbxEw9BCzaRdrjbzFHS7GBGtNMfARsLIIHJxQIO4O5hcoaeQ==
 
 "@ovh-ux/request-tagger@^0.4.0", "@ovh-ux/request-tagger@^0.4.1":
   version "0.4.1"
