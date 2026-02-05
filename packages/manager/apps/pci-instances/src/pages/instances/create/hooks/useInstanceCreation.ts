@@ -256,7 +256,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
     const willGatewayBeAttached = assignNewGateway || !!network?.hasGatewayIp;
 
     const gatewayPrice =
-      !gatewayAvailability?.isDisabled && gatewayConfigurations
+      !gatewayAvailability?.isDisabled &&
+      gatewayConfigurations &&
+      willGatewayBeAttached
         ? gatewayConfigurations.price
         : null;
 
