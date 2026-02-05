@@ -2,7 +2,7 @@ const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const webpackConfig = require('@ovh-ux/manager-webpack-config');
 
 function readNgAppInjections(file) {
