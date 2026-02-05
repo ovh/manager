@@ -1,10 +1,14 @@
 import React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import { routes } from '../routes/routes';
+import {
+  createMemoryRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from 'react-router-dom';
+import routes from '../routes/routes';
 
 export function TestApp({ initialRoute = '/' }) {
-  const router = createMemoryRouter(routes, {
+  const router = createMemoryRouter(createRoutesFromElements(routes), {
     initialEntries: [initialRoute],
     initialIndex: 0,
   });

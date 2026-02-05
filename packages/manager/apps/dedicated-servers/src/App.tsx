@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
+import {
+  RouterProvider,
+  createHashRouter,
+  createRoutesFromElements,
+} from 'react-router-dom';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
-import { routes } from './routes/routes';
+import routes from './routes/routes';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +23,7 @@ const queryClient = new QueryClient({
 
 function Routes() {
   const { shell } = useContext(ShellContext);
-  const router = createHashRouter(routes);
+  const router = createHashRouter(createRoutesFromElements(routes));
   const { data, isLoading, isError } = useFeatureAvailability([
     'dedicated-servers',
   ]);
@@ -34,7 +38,13 @@ function Routes() {
     }
   }, [isLoading, isError, data, shell]);
 
-  return isLoading ? <></> : <RouterProvider router={router} />;
+  return isLoading ? (
+    <span>Loading...</span>
+  ) : (
+    <Suspense fallback={<span>Loading routes ...</span>}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 function App() {
