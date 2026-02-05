@@ -39,7 +39,7 @@ describe('useShareColumn', () => {
     const cell = capacityColumn.cell?.({
       getValue: () => sizeBytes,
     } as never);
-    expect(cell).toBe('list:columns.allocated_capacity_value');
+    expect(cell).toBe('list:columns.allocated_capacity_value{"capacity":150}');
   });
 
   it('should use region column with cell that translates regionDisplayKey', () => {
@@ -64,7 +64,7 @@ describe('useShareColumn', () => {
     } as never);
     render(cell as React.ReactElement);
 
-    expect(screen.getByText('regions:manager_components_region_GRA_micro')).toBeInTheDocument();
+    expect(screen.getByText('regions:manager_components_region_GRA_micro{"micro":"GRA11"}')).toBeInTheDocument();
   });
 
   it('should render status column with Badge and mapped label', () => {
