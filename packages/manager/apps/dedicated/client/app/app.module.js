@@ -79,7 +79,7 @@ import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
 import { registerCoreModule } from '@ovh-ux/manager-core';
-import { serverBandwidth, changelogButton } from '@ovh-ux/manager-components';
+import { serverBandwidth, changelogButton, feedbackButton } from '@ovh-ux/manager-components';
 import ovhManagerBanner from '@ovh-ux/manager-banner';
 import ovhManagerDbaasLogs from '@ovh-ux/manager-dbaas-logs';
 import ovhManagerNasha from '@ovh-ux/manager-nasha';
@@ -239,6 +239,7 @@ export default async (containerEl, shellClient) => {
         ovhManagerCda,
         networkSecurity,
         changelogButton,
+        feedbackButton,
       ].filter(isString),
     )
     .service('Polling', pollingService)

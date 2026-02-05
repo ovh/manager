@@ -5,10 +5,16 @@
                 class="oui-header__title"
                 data-translate="{{:: $ctrl.header }}"
             ></h1>
-            <changelog-button
-                links="$ctrl.constants.CHANGELOG.vps.links"
-                chapters="$ctrl.constants.CHANGELOG.vps.chapters"
-            ></changelog-button>
+            <div class="d-flex">
+                <changelog-button
+                    links="$ctrl.constants.CHANGELOG.vps.links"
+                    chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+                ></changelog-button>
+                <feedback-button
+                    application-key="vps"
+                    chapters="$ctrl.constants.CHANGELOG.vps.chapters"
+                ></feedback-button>
+            </div>
         </div>
     </oui-header-heading>
 </oui-header>
