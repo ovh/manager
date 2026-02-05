@@ -173,6 +173,15 @@ export const breadcrumbConfig: BreadcrumbConfig = {
         { hidden: true }, // onboarding label is hidden
       ],
     },
+
+    // Managed dashboards Listing
+    {
+      pattern: urls.managedDashboards,
+      items: [
+        { labelKey: 'breadcrumb:settings', path: urls.settings },
+        { labelKey: 'breadcrumb:dashboards' },
+      ],
+    },
   ],
 
   fallbackToPathBased: true,
