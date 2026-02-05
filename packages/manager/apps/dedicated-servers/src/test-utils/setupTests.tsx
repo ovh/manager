@@ -3,6 +3,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import { Navigate, NavLinkProps, Path, To } from 'react-router-dom';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 const shellMock = ({
   ux: {
@@ -260,6 +261,9 @@ vi.mock('@ovh-ux/muk', async () => {
         )}
         {children && <div>{children}</div>}
       </main>
+    ),
+    ErrorBoundary: ({ children }: React.PropsWithChildren) => (
+      <div>{children}</div>
     ),
     useDataApi: vi.fn(() => ({
       flattenData: [],
