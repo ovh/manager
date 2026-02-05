@@ -5,7 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsButton, OdsLink, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, Links, ManagerButton } from '@ovh-ux/manager-react-components';
@@ -16,6 +16,7 @@ import { BACKUP_AGENTS_LIST_QUERY_KEY, useBackupAgentList } from '@/data/hooks/a
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
+import { AgentStatusLegend } from '@/pages/services/dashboard/agent/_components/AgentStatusLegend';
 import { urlParams, urls } from '@/routes/routes.constants';
 
 import { useAgentsListingColumnsHooks } from './_hooks/useAgentsListingColumns.hooks';
@@ -82,10 +83,16 @@ export default function AgentsListingPage() {
                     onClick={handleDownloadButton}
                   />
                 </div>
-                <ReloadButton
-                  isLoading={isPending}
-                  queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY(tenantId)]}
-                />
+                <div className="flex gap-4">
+                  <OdsButton id="details_of_status" variant="ghost" label={t(`${BACKUP_AGENT_NAMESPACES.AGENT}:details_of_status`)} />
+                  <OdsPopover triggerId="details_of_status" withArrow>
+                    <AgentStatusLegend />
+                  </OdsPopover>
+                  <ReloadButton
+                    isLoading={isPending}
+                    queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY(tenantId)]}
+                  />
+                </div>
               </section>
             }
             columns={columns}
