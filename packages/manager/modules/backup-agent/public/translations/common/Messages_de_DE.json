@@ -12,5 +12,12 @@
   "backup_agent_guide": "Backup-Agenten-Leitfäden",
   "baremetal_label_order_in_progress": "Die Bestellung wurde erfolgreich erhalten, Ihr Produkt wird geliefert und Sie können den Fortschritt <OrderLink>hier</OrderLink> verfolgen.",
   "server": "Server",
-  "billings_tab_description": "Sie finden hier Ihre aktuelle Abrechnung für Ihren Tenant. Diese wird Ihnen Anfang nächsten Monats in Rechnung gestellt. Weitere Informationen finden Sie in der <Link>Dokumentation zum OVHcloud Backup Agent.</Link>"
+  "billings_tab_description": "Hier finden Sie die aktuelle Abrechnung Ihres Tenants. Diese wird Ihnen zu Beginn des nächsten Monats in Rechnung gestellt. Um mehr darüber zu erfahren, konsultieren Sie die <Link>Dokumentation des OVHcloud Backup Agent</Link>",
+  "go_to_general_informations": "Gehe zu den allgemeinen Informationen",
+  "agent_status_disabled_legend": "Ihr Agent wurde deaktiviert und wird in Kürze gelöscht.",
+  "agent_status_not_installed_legend": "Ihr Agent ist noch nicht auf Ihrem Server installiert, Sie müssen ihn herunterladen und installieren.",
+  "agent_status_not_configured_legend": "Ihr Agent wird als installiert erkannt, hat jedoch noch keine Richtlinie angewendet, wir kümmern uns so schnell wie möglich darum.",
+  "agent_status_creating_legend": "Ihr Agent wird erstellt.",
+  "agent_status_updating_legend": "Ihr Agent wird bearbeitet.",
+  "agent_status_enabled_legend": "Ihr Agent ist aktiv, Backups werden von Ihrem Server erstellt."
 }

@@ -16,9 +16,11 @@
   "delete_agent_banner_success": "Suppression de l'agent en cours, il ne sera plus visible dans ce tableau d'ici quelques minutes.",
   "delete_agent_banner_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",
   "delete_agent_modal_title": "Supprimer l'agent",
-  "delete_agent_modal_content": "Souhaitez-vous vraiment supprimer l'agent {{agentName}} ? Les données associées seront conservées jusqu'à 14 jours après la suppression.",
+  "delete_agent_modal_content_main": "Si vous avez utilisé votre agent pour sauvegarder de la data, notre politique est de bloquer votre agent en statut désactivé pour 14 jours, le temps que la période d'immutabilité soit terminée. Vous pourrez le rajouter à nouveau à la fin des 14 jours.",
+  "delete_agent_modal_content_confirm": "Est-ce que vous souhaitez vraiment supprimer votre agent <span>{{agentName}}</span> ?",
   "download_agent_with_executable": "Installer via executable",
   "download_agent_with_command_line": "Installer l'agent via terminal",
   "update_agent_banner_success": "La modification de la policy est en cours, veuillez patienter quelques secondes.",
-  "unable_edit_agent_not_enabled": "La configuration sera disponible une fois l'Agent activé."
+  "unable_edit_agent_not_enabled": "La configuration sera disponible une fois l'Agent activé.",
+  "details_of_status": "Détails des status"
 }
