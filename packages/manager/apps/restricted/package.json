@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-restricted-app",
-  "version": "0.14.8",
+  "version": "0.14.9",
   "private": true,
   "description": "OVHcloud Manager Restricted Access App.",
   "repository": {
@@ -18,7 +18,7 @@
     "start": "tsc && vite"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core-sso": "^0.7.2",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@ovh-ux/request-tagger": "^0.6.0",

@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-bm-server-components",
-  "version": "2.20.2",
+  "version": "2.20.3",
   "private": true,
   "description": "OVHcloud BmServerComponents product",
   "repository": {
@@ -16,7 +16,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.8.7",
+    "@ovh-ux/manager-config": "^8.9.0",
     "angular-ui-validate": "angular-ui/ui-validate#~1.2.2",
     "bootstrap4": "twbs/bootstrap#v4.6.2",
     "ipaddr.js": "^1.6.0",

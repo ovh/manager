@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-support",
-  "version": "2.1.44",
+  "version": "2.1.45",
   "private": true,
   "description": "Support component to manage tickets.",
   "repository": {
@@ -15,7 +15,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
-    "@ovh-ux/manager-models": "^2.7.10",
+    "@ovh-ux/manager-models": "^2.7.11",
     "bootstrap": "^4.3.1",
     "lodash": "^4.17.15"
   },
