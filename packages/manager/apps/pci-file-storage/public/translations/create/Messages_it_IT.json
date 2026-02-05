@@ -59,6 +59,7 @@
     "title": "Dimensione della condivisione",
     "description": "Il 5% della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
     "label": "Allocazione delle prestazioni lineare (GiB)",
+    "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "La dimensione della condivisione è inferiore al minimo consentito per questa offerta.",
       "max_value": "La dimensione della condivisione supera il massimo consentito per questa offerta.",
