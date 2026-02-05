@@ -6,5 +6,5 @@
   "xdsl_tabs_tasks": "Zadania",
   "xdsl_rename_error": "Nie można zmienić nazwy dla dostępu {{serviceName}}.",
   "xdsl_back_to_pack": "Szczegóły dotyczące pakietu",
-  "xdsl_tabs_logs": "logi"
+  "xdsl_tabs_logs": "Logi"
 }

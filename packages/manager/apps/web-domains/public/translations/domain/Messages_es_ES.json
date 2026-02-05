@@ -342,5 +342,5 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "de activación",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desactivación",
   "domain_tab_general_information_subscription_edit_owner": "Modificar los datos del contacto titular",
-  "domain_tab_general_information_data_protection_disabled": "El registro a cargo de este nombre de dominio no permite la gestión personalizada de la visualización de los datos."
+  "domain_tab_general_information_data_protection_disabled": "El registro encargado de este nombre de dominio no permite la gestión personalizada de la visualización de los datos"
 }

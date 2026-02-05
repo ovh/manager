@@ -342,5 +342,5 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacja",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacja",
   "domain_tab_general_information_subscription_edit_owner": "Zmień dane kontaktowe abonenta",
-  "domain_tab_general_information_data_protection_disabled": "Rejestr odpowiedzialny za tę nazwę domeny nie zezwala na niestandardowe zarządzanie wyświetlaniem danych."
+  "domain_tab_general_information_data_protection_disabled": "Rejestr obsługujący tę domenę nie pozwala na spersonalizowane zarządzanie wyświetlaniem danych"
 }

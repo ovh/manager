@@ -1,5 +1,5 @@
 {
   "terminate_managed_vcd_success": "La richiesta di disattivazione del servizio {{service}} è stata presa in carico. Riceverai un’email per confermarla.",
   "terminate_managed_vcd_ftc_success": "La richiesta di disattivazione del servizio {{service}} è stata presa in carico. Ti abbiamo inviato un'email di conferma.",
-  "terminate_confirm_deletion_service": "Inserisci <1>{{confirmationKeyword}}</1> per confermare la tua scelta."
+  "terminate_confirm_deletion_service": "Inserisci &lt;1>{{confirmationKeyword}}&lt;/1> per confermare la tua scelta."
 }
