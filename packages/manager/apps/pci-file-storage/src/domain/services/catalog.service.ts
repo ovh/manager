@@ -25,7 +25,8 @@ export const isMacroRegionAvailable = (
 export const provisionedPerformanceCalculator =
   ({ iops, bandwidth }: Pick<TShareSpecs, 'iops' | 'bandwidth'>) =>
   (shareSize: number) => {
-    const calculatedIops = Math.min(shareSize * iops.level, iops.max);
+    if (isNaN(shareSize)) return null;
+    const calculatedIops = shareSize > 0 ? Math.min(shareSize * iops.level, iops.max) : 0;
     const dynamicThroughput = shareSize * bandwidth.level;
     const throughput = Math.max(bandwidth.min, Math.min(dynamicThroughput, bandwidth.max));
     return { iops: calculatedIops, throughput };
