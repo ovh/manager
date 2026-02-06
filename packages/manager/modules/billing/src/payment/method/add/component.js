@@ -19,5 +19,6 @@ export default {
     onPaymentMethodAddError: '<',
     paymentMethods: '<',
     isDisplayableRupayCreditCardInfoBanner: '<',
+    setupPaymentAdd: '<',
   },
 };

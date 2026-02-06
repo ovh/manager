@@ -2,6 +2,7 @@
   "globals": {
     "__VERSION__": true,
     "__NG_APP_INJECTIONS__": true,
+    "__WP_LABEU_ENTRY_POINT__": true,
     "EprotectIframeClient": true,
     "ipaddr": true,
     "JSURL": true,

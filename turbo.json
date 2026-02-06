@@ -11,7 +11,7 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "types/**"],
       "outputLogs": "new-only",
-      "env": ["VERSION"]
+      "env": ["VERSION", "VITE_WP_LABEU_ENTRY_POINT"]
     },
     "test": {
       "dependsOn": ["^test", "@ovh-ux/manager-static-analysis-kit#build"],
@@ -36,11 +36,12 @@
         "local2API",
         "REGION",
         "VERSION",
-        "VITE_CONTAINER_APP"
+        "VITE_CONTAINER_APP",
+        "VITE_WP_LABEU_ENTRY_POINT"
       ],
       "dependsOn": ["^dev"]
     },
-    
+
     "lint": {
       "outputs": [],
       "outputLogs": "new-only",
