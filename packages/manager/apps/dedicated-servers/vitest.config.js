@@ -2,7 +2,8 @@ import path from 'path';
 import {
   sharedConfig,
   mergeConfig,
-  createConfig, 	defaultDedupedDependencies,
+  createConfig, 
+	defaultDedupedDependencies,
   defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
