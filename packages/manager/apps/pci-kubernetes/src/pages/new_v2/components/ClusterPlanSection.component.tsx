@@ -37,13 +37,7 @@ export const ClusterPlanSection = () => {
     if (!plans) return;
 
     const availablePlans = plans.filter((plan) => plan.disabled === false);
-    const sortedPlans = availablePlans.sort((a, b) => {
-      if (a.planType === 'standard' && b.planType !== 'standard') return -1;
-      if (a.planType !== 'standard' && b.planType === 'standard') return 1;
-      return 0;
-    });
-
-    const firstPlan = sortedPlans[0];
+    const firstPlan = availablePlans[0];
     if (!firstPlan) return;
 
     setValue('planType', firstPlan.planType);

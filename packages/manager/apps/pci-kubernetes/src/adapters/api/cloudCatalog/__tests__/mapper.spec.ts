@@ -1,51 +1,27 @@
 import { describe, expect, it } from 'vitest';
 
-import { TCloudCatalogResponseDTO } from '../dto.types';
+import {
+  TCloudCatalogAddonDTO,
+  TCloudCatalogPricingDTO,
+  TCloudCatalogResponseDTO,
+} from '../dto.types';
 import { mapCloudCatalogToEntity } from '../mapper';
 
-const createMockPricingDTO = (
-  price: number = 0,
-  tax: number = 0,
-): TCloudCatalogResponseDTO['addons'][number]['pricings'][number] => ({
-  phase: 1,
-  capacities: [],
-  commitment: 0,
-  description: 'Test pricing',
-  interval: 1,
-  intervalUnit: 'hour',
-  quantity: { min: 1, max: null },
-  repeat: { min: 1, max: null },
-  price,
-  formattedPrice: `${price}`,
-  tax,
-  mode: 'default',
-  strategy: 'strategy',
-  mustBeCompleted: false,
-  type: 'purchase',
-  promotions: [],
-  engagementConfiguration: null,
-});
+const createMockPricingDTO = (price: number = 0, tax: number = 0) =>
+  ({
+    price,
+    formattedPrice: `${price}`,
+    tax,
+  }) as unknown as TCloudCatalogPricingDTO;
 
-const createMockAddonDTO = (
-  planCode: string,
-  consumptionConfiguration:
-    | TCloudCatalogResponseDTO['addons'][number]['consumptionConfiguration']
-    | null = null,
-): TCloudCatalogResponseDTO['addons'][number] => ({
-  planCode,
-  invoiceName: 'Test Plan',
-  addonFamilies: [],
-  product: 'kubernetes',
-  pricingType: 'consumption',
-  consumptionConfiguration: consumptionConfiguration ?? {
-    billingStrategy: 'max',
-    prorataUnit: 'second',
-    pingEndPolicy: null,
-  },
-  pricings: [createMockPricingDTO(0.04, 0.008)],
-  configurations: [],
-  family: null,
-});
+const createMockAddonDTO = (planCode: string) =>
+  ({
+    planCode,
+    invoiceName: 'Test Plan',
+    addonFamilies: [],
+    product: 'kubernetes',
+    pricings: [createMockPricingDTO(0.04, 0.008)],
+  }) as unknown as TCloudCatalogAddonDTO;
 
 const createMockDTO = (
   addons: Array<TCloudCatalogResponseDTO['addons'][number]>,

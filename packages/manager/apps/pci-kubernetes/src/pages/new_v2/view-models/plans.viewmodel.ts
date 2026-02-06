@@ -158,6 +158,14 @@ export const selectRegionPlanType =
     });
   };
 
+const sortPlans = (plans: Array<TPlanTile>) => {
+  return plans.sort((a, b) => {
+    if (a.planType === 'standard' && b.planType !== 'standard') return -1;
+    if (a.planType !== 'standard' && b.planType === 'standard') return 1;
+    return 0;
+  });
+};
+
 export const usePlanTiles = (macroRegion: string, isMultiZone: boolean) => {
   const { data: regionPlanTypes } = useAvailabilityRegions({
     select: selectRegionPlanType(macroRegion ?? ''),
@@ -168,6 +176,6 @@ export const usePlanTiles = (macroRegion: string, isMultiZone: boolean) => {
   });
 
   return {
-    plans,
+    plans: plans ? sortPlans(plans) : [],
   };
 };

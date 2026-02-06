@@ -6,9 +6,7 @@ import { TCloudCatalogResponseDTO } from '../../adapters/api/cloudCatalog/dto.ty
 import { mapCloudCatalogToEntity } from '../../adapters/api/cloudCatalog/mapper';
 
 export const getCloudCatalog = async (ovhSubsidiary: string): Promise<TCloudCatalog> => {
-  const data = await v6
+  return await v6
     .get<TCloudCatalogResponseDTO>(`/order/catalog/public/cloud`, { params: { ovhSubsidiary } })
     .then(({ data }) => mapCloudCatalogToEntity(data));
-
-  return data;
 };
