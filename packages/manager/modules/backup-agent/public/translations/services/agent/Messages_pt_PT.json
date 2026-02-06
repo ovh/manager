@@ -21,7 +21,7 @@
   "add_agent_error_resource_not_found": "Ocorreu um erro. Obrigado por verificar se o servidor é válido.",
   "update_agent_banner_success": "A modificação da política está em andamento, por favor, aguarde alguns segundos.",
   "unable_edit_agent_not_enabled": "A configuração estará disponível assim que o Agent estiver ativo.",
-  "agents_tab_description": "Encontre aqui todos os seus agentes protegidos. É importante finalizar a sua configuração para que o seu servidor seja salvo. Para saber mais, consulte a <Link>documentação do OVHcloud Backup Agent</Link>",
+  "agents_tab_description": "Encontre aqui todos os seus agents protegidos. É importante finalizar a sua configuração para que o seu servidor seja guardado. Para saber mais, consulte a <Link>documentação OVHcloud Backup Agent</Link>",
   "delete_agent_modal_content_main": "Se você usou seu agente para salvar dados, nossa política é bloquear seu agente no status desativado por 14 dias, até que o período de imutabilidade termine. Você poderá adicioná-lo novamente após os 14 dias.",
   "delete_agent_modal_content_confirm": "Você realmente deseja excluir seu agente <span>{{agentName}}</span>?",
   "details_of_status": "Detalhes dos status"
