@@ -59,6 +59,7 @@
     "title": "Share size",
     "description": "5% of the storage capacity is dedicated to snapshot storage",
     "label": "Linear performance allocation (GiB)",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "The share size is below the minimum allowed for this offer.",
       "max_value": "The share size exceeds the maximum allowed for this offer.",

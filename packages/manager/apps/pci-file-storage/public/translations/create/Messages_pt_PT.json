@@ -59,6 +59,7 @@
     "title": "Tamanho do compartilhamento",
     "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
     "label": "Alocação de desempenho linear (GiB)",
+    "provisionedPerformance": "<strong>Desempenho provisionado :</strong> Até {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "O tamanho do compartilhamento está abaixo do mínimo permitido para esta oferta.",
       "max_value": "O tamanho do compartilhamento excede o máximo permitido para esta oferta.",

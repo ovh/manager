@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -25,8 +25,10 @@ export const ShareSelection = () => {
     name: ['shareData.microRegion', 'shareData.specName'],
   });
 
+  const select = useMemo(() => selectShareSpecs(selectedMicroRegion), [selectedMicroRegion]);
+
   const { data: shareOptions = [] } = useShareCatalog<TShareSpecData[]>({
-    select: selectShareSpecs(selectedMicroRegion),
+    select,
   });
 
   const handleShareSpecChange = useCallback(
