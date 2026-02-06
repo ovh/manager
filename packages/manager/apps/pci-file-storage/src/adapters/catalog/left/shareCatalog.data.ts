@@ -29,6 +29,11 @@ export type TMicroRegionData = { label: string; value: string; disabled: boolean
 
 export type TAvailabilityZoneData = { label: string; value: string };
 
+export type TProvisionedPerformanceData = {
+  iops: number;
+  throughput: number;
+};
+
 export type TShareSpecData = {
   name: string;
   capacityMin: number;
@@ -36,4 +41,5 @@ export type TShareSpecData = {
   iopsLevel: number;
   bandwidthLevel: number;
   bandwidthUnit: string;
+  calculateProvisionedPerformance: (shareSize: number) => TProvisionedPerformanceData | null;
 };

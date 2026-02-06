@@ -59,6 +59,7 @@
     "title": "Rozmiar udziału",
     "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
     "label": "Przydział wydajności liniowej (GiB)",
+    "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "Rozmiar udziału jest mniejszy niż minimalna dozwolona wartość dla tej oferty.",
       "max_value": "Rozmiar udziału przekracza maksymalną dozwoloną wartość dla tej oferty.",
