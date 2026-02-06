@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.11.2...@ovh-ux/manager-account-creation-app@0.11.3) (2026-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4647] ([0681dfe](https://github.com/ovh/manager/commit/0681dfedd238a31ffba0c256f47cd19969e99f7f))
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.11.1...@ovh-ux/manager-account-creation-app@0.11.2) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app

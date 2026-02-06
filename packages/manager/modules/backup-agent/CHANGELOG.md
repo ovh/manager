@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.13.1...@ovh-ux/backup-agent@1.13.2) (2026-02-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4647] ([0681dfe](https://github.com/ovh/manager/commit/0681dfedd238a31ffba0c256f47cd19969e99f7f))
+
+
+
+
+
 ## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.13.0...@ovh-ux/backup-agent@1.13.1) (2026-02-05)
 
 
