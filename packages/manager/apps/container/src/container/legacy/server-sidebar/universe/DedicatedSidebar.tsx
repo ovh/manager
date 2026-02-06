@@ -61,6 +61,7 @@ export const features = [
   'observability:metrics:tenants',
   'observability:settings',
   'observability:settings:services',
+  'observability:settings:managed-dashboards',
 ];
 
 export default function DedicatedSidebar() {
