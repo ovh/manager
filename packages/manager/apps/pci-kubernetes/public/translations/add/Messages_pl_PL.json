@@ -91,7 +91,7 @@
   "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%",
   "kubernetes_add_create_cluster": "Utwórz mój klaster",
   "kubernetes_add_cluster_name_input_helper": {
-    "introduction": "Musisz:",
+    "introduction": "Musisz :",
     "char_number": "zawierać od 2 do 64 znaków",
     "char_whitelist": "zawierać tylko litery, cyfry, myślniki lub podkreślenia",
     "first_char": "zaczynać się od litery",
@@ -137,5 +137,8 @@
   "kube_add_plan_content_not_available_AZ": "Niedostępne dla {{mode}}",
   "kube_add_plan_content_not_available_region": "Niedostępne dla tego regionu",
   "kube_add_cart_total_price": "Razem",
-  "kube_add_cart_monthly_price": "Szacowanie na miesiąc"
+  "kube_add_cart_monthly_price": "Szacowanie na miesiąc",
+  "kube_add_plan_helper_v2_intro_1": "Wybór planu określa dostępność twojego <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Uwaga : po utworzeniu klastra nie można przejść z planu Free na plan Standard (i odwrotnie).</b>",
+  "kube_add_plan_helper_v2_warning_text": "Jeśli planujesz, że twój projekt przejdzie do produkcji, wybierz <b>Plan Standard</b> już teraz."
 }

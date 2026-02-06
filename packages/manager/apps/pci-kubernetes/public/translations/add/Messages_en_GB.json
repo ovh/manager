@@ -137,5 +137,8 @@
   "kube_add_plan_content_not_available_AZ": "Unavailable for {{mode}}",
   "kube_add_plan_content_not_available_region": "Unavailable for this region",
   "kube_add_cart_total_price": "Total",
-  "kube_add_cart_monthly_price": "Monthly estimate"
+  "kube_add_cart_monthly_price": "Monthly estimate",
+  "kube_add_plan_helper_v2_intro_1": "The choice of plan determines the availability of your <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Warning: once the cluster is created, it is impossible to switch from the Free plan to the Standard plan (and vice versa).</b>",
+  "kube_add_plan_helper_v2_warning_text": "If you expect your project to go into production, choose the <b>Standard Plan</b> now."
 }

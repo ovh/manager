@@ -91,7 +91,7 @@
   "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA",
   "kubernetes_add_create_cluster": "Creare il mio cluster",
   "kubernetes_add_cluster_name_input_helper": {
-    "introduction": "Deve:",
+    "introduction": "Deve :",
     "char_number": "contenere tra 2 e 64 caratteri",
     "char_whitelist": "contenere solo lettere, numeri, trattini o underscore",
     "first_char": "iniziare con una lettera",
@@ -137,5 +137,8 @@
   "kube_add_plan_content_not_available_AZ": "Non disponibile per {{mode}}",
   "kube_add_plan_content_not_available_region": "Non disponibile per questa regione",
   "kube_add_cart_total_price": "Totale",
-  "kube_add_cart_monthly_price": "Stima mensile"
+  "kube_add_cart_monthly_price": "Stima mensile",
+  "kube_add_plan_helper_v2_intro_1": "La scelta del piano determina la disponibilità del <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Attenzione : una volta creato il cluster, non è possibile passare dal piano Free al piano Standard (e viceversa).</b>",
+  "kube_add_plan_helper_v2_warning_text": "Se prevedi che il tuo progetto passerà in produzione, scegli il <b>Piano Standard</b> adesso."
 }

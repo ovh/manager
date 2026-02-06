@@ -91,11 +91,11 @@
   "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA",
   "kubernetes_add_create_cluster": "Criar meu cluster",
   "kubernetes_add_cluster_name_input_helper": {
-    "introduction": "Deve:",
+    "introduction": "Deve :",
     "char_number": "conter entre 2 e 64 caracteres",
-    "char_whitelist": "conter apenas letras, números, hífens ou underscores",
-    "first_char": "começar com uma letra",
-    "last_char": "terminar com um caractere alfanumérico (a-z, A-Z, 0-9)"
+    "char_whitelist": "conter apenas letras, números, hífens ou sublinhados",
+    "first_char": "começar por uma letra",
+    "last_char": "terminar com um carácter alfanumérico (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "O nome do cluster é inválido",
   "kubernetes_add_cluster_name_input_error_empty": "O nome do cluster é obrigatório",
@@ -137,5 +137,8 @@
   "kube_add_plan_content_not_available_AZ": "Indisponível para {{mode}}",
   "kube_add_plan_content_not_available_region": "Indisponível para esta região",
   "kube_add_cart_total_price": "Total",
-  "kube_add_cart_monthly_price": "Estimativa mensal"
+  "kube_add_cart_monthly_price": "Estimativa mensal",
+  "kube_add_plan_helper_v2_intro_1": "A escolha do plano determina a disponibilidade do seu <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Atenção : uma vez que o cluster é criado, não é possível mudar do plano Free para o plano Standard (e vice-versa).</b>",
+  "kube_add_plan_helper_v2_warning_text": "Se você prevê que o seu projeto passará para produção, escolha o <b>Plano Standard</b> agora mesmo."
 }

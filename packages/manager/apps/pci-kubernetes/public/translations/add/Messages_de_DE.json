@@ -137,5 +137,8 @@
   "kube_add_plan_content_not_available_AZ": "Nicht verfügbar für {{mode}}",
   "kube_add_plan_content_not_available_region": "Nicht verfügbar für diese Region",
   "kube_add_cart_total_price": "Summe",
-  "kube_add_cart_monthly_price": "Monatsabschätzung"
+  "kube_add_cart_monthly_price": "Monatsabschätzung",
+  "kube_add_plan_helper_v2_intro_1": "Die Wahl des Plans bestimmt die Verfügbarkeit Ihres <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Hinweis: Sobald der Cluster erstellt ist, ist es unmöglich, vom Free-Plan zum Standard-Plan (und umgekehrt) zu wechseln.</b>",
+  "kube_add_plan_helper_v2_warning_text": "Wenn Sie planen, dass Ihr Projekt in Produktion geht, wählen Sie jetzt den <b>Standard-Plan</b>."
 }
