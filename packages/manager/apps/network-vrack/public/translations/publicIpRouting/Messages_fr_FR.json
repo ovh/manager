@@ -3,6 +3,7 @@
   "publicIpRouting_note_label": "Remarque :",
   "publicIpRouting_note_value": "La bande passante publique affichée est spécifique à ce vRack et à la région, et représente le trafic sortant (du réseau OVHcloud vers Internet) utilisé par l’ensemble des adresses IP supplémentaires de cet emplacement.",
   "publicIpRouting_purpose": "Utilisez le vRack pour exposer vos services à Internet lorsque cela est nécessaire.",
+  "publicIpRouting_no_eligible_region_found": "Aucune adresse IP supplémentaire n'a été routée vers ce vRack et aucune option de bande passante publique personnalisée n'a été trouvée.",
   "publicIpRouting_region_publicBandwidth": "Bande passante publique",
   "publicIpRouting_region_attached_ip_addresses": "Adresses IP jointes"
 }
