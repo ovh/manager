@@ -263,7 +263,7 @@ export const AddEditOrganizationModal = () => {
                           data-testid="select-domain"
                         >
                           <SelectControl placeholder={t('common:select_domain')} />
-                          <SelectContent />
+                          <SelectContent createPortal={false} />
                         </Select>
                         {isLoadingDomains && (
                           <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
@@ -291,9 +291,9 @@ export const AddEditOrganizationModal = () => {
               className="w-full"
               invalid={(isDirty || isTouched) && !!errors?.[name]}
             >
-              <label htmlFor={name} slot="label">
+              <FormFieldLabel htmlFor={name} slot="label">
                 {t('zimbra_redirections_add_form_input_to')} *
-              </label>
+              </FormFieldLabel>
               <Input
                 data-testid="input-to"
                 type={INPUT_TYPE.text}
