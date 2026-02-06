@@ -12,8 +12,10 @@ import process from 'node:process';
 
 import { buildCI } from './kernel/helpers/tasks-helper.js';
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
+import { isEnvOptionEnabled } from './kernel/utils/env-utils.js';
 import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+import { clearRootWorkspaces } from './kernel/utils/workspace-utils.js';
 
 attachCleanupSignals(handleProcessAbortSignals);
 
@@ -30,6 +32,12 @@ attachCleanupSignals(handleProcessAbortSignals);
  * @returns {Promise<void>} Resolves when the post-installation completes successfully.
  */
 async function main() {
+  if (isEnvOptionEnabled(process.env.SKIP_POST_INSTALL)) {
+    logger.info('⏭️  SKIP_POST_INSTALL is set — skipping manager-pm postinstall.');
+    await clearRootWorkspaces();
+    return;
+  }
+
   logger.info('🚀 manager-pm postinstall hook started...');
 
   const start = Date.now();
