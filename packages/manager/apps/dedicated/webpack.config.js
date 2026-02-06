@@ -107,8 +107,7 @@ module.exports = (env = {}) => {
     resolve: {
       modules: [
         './node_modules',
-        path.resolve(process.cwd(), './node_modules'),
-        path.resolve(process.cwd(), '../../../../node_modules'),
+        path.resolve(process.cwd(), './node_modules')
       ],
       mainFields: ['module', 'browser', 'main'],
       fallback: {
