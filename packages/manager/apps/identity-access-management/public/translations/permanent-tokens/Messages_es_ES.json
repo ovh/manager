@@ -36,7 +36,5 @@
   "iam_user_token_modal_field_expiry_date_type_timestamp": "Fecha",
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minutos",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Horas",
-  "iam_user_token_modal_field_expiry_date_unit_days": "Días",
-  "iam_user_token_modal_view_token_secret_label": "Token",
-  "key_management_service_credential_create_confirmation_private-key_warn": "Cuando salga del asistente de creación, ya no tendrá acceso a esta clave privada. Asegúrese de descargarla y almacenarla de forma segura."
+  "iam_user_token_modal_field_expiry_date_unit_days": "Días"
 }
