@@ -37,6 +37,6 @@
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minuten",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Stunden",
   "iam_user_token_modal_field_expiry_date_unit_days": "Tage",
-  "iam_user_token_modal_view_token_secret_label": "Token",
-  "key_management_service_credential_create_confirmation_private-key_warn": "Nach dem Beenden des Erstellungsassistenten haben Sie keinen Zugriff mehr auf diesen privaten Schlüssel. Denken Sie daran, diesen herunterzuladen und sicher zu speichern."
+  "iam_user_token_modal_view_token_secret_title": "Ihr Token wurde erfolgreich erstellt.",
+  "iam_user_token_modal_view_token_secret_warning": "Sie haben keinen Zugriff mehr auf den Inhalt des Tokens. Achten Sie darauf, diesen sicher zu speichern."
 }

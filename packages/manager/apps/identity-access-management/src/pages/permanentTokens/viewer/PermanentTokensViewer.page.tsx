@@ -31,7 +31,7 @@ export default function PermanentTokensViewer() {
   return (
     <Modal
       type={ODS_MODAL_COLOR.neutral}
-      heading={t('iam_user_token_modal_add_success')}
+      heading={t('iam_user_token_modal_view_token_secret_title')}
       secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
       onSecondaryButtonClick={handleClose}
       isOpen
@@ -48,9 +48,7 @@ export default function PermanentTokensViewer() {
         />
       </OdsFormField>
       <OdsMessage color={ODS_MODAL_COLOR.warning} isDismissible={false}>
-        {t(
-          'key_management_service_credential_create_confirmation_private-key_warn',
-        )}
+        {t('iam_user_token_modal_view_token_secret_warning')}
       </OdsMessage>
     </Modal>
   );
