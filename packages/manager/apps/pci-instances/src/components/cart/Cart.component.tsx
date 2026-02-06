@@ -98,7 +98,7 @@ export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {
   );
 
   return (
-    <BaseCart className="sticky right-0 top-8 bg-white">
+    <BaseCart className="sticky right-0 top-8 max-h-[calc(100vh-5rem)] overflow-y-auto bg-white">
       <CartContent
         items={items}
         renderCartItem={({ item, isExpanded }) => (
