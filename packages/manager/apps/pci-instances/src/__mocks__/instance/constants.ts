@@ -1015,16 +1015,16 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
 
 export const mockedContinentsSelectorData: TContinentData[] = [
   {
+    labelKey: 'pci_instances_common_instance_continent_all',
+    value: 'all',
+  },
+  {
     labelKey: 'pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
     labelKey: 'pci_instances_common_instance_continent_north_america',
     value: 'north_america',
-  },
-  {
-    labelKey: 'pci_instances_common_instance_continent_all',
-    value: 'all',
   },
 ];
 
