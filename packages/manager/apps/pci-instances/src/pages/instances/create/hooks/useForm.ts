@@ -1,7 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as useReactHookForm } from 'react-hook-form';
 import { deps } from '@/deps/deps';
-import { nameDefaultValue } from '../components/Name.component';
 import { quantityDefaultValue } from '../CreateInstance.schema';
 import { selectContinent } from '../view-models/continentsViewModel';
 import { selectLocalizations } from '../view-models/localizationsViewModel';
@@ -77,7 +76,6 @@ export const useForm = (projectId: string) => {
   const formMethods = useReactHookForm({
     resolver: zodResolver(instanceCreationSchema),
     defaultValues: {
-      name: nameDefaultValue,
       quantity: quantityDefaultValue,
       deploymentModes: deploymentModesDefaultValue,
       continent: continentDefaultValue,
