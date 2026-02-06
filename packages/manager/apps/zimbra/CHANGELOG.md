@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.1...@ovh-ux/manager-zimbra-app@0.43.2) (2026-02-06)
+
+
+### Bug Fixes
+
+* **zimbra:** update ods & muk version to fix modals style ([117eff3](https://github.com/ovh/manager/commit/117eff3d38684d7826bdf3434972fb94b959c7f9)), closes [#INC0187876](https://github.com/ovh/manager/issues/INC0187876)
+
+
+
+
+
 ## [0.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.0...@ovh-ux/manager-zimbra-app@0.43.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

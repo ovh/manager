@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.9...@ovh-ux/manager-web-domains-app@1.10.10) (2026-02-06)
+
+
+### Bug Fixes
+
+* **web-domain:** fix wrong link for zimbra mail ([bda8a3a](https://github.com/ovh/manager/commit/bda8a3a11e388c7f9005de46a3cb0f2ca5f83138)), closes [#INC0187604](https://github.com/ovh/manager/issues/INC0187604)
+
+
+
+
+
 ## [1.10.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.8...@ovh-ux/manager-web-domains-app@1.10.9) (2026-02-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app
