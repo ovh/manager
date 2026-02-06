@@ -1,5 +1,17 @@
 import type { TShareStatusDisplay } from './shareStatusMapper';
 
+export type TShareListRowActionLink = {
+  path: string;
+  isExternal?: boolean;
+  isTargetBlank?: boolean;
+};
+
+export type TShareListRowAction = {
+  label: string;
+  link: TShareListRowActionLink;
+  isCritical?: boolean;
+};
+
 export type TShareListRow = {
   id: string;
   name: string;
@@ -9,4 +21,5 @@ export type TShareListRow = {
   size: number;
   status: string;
   statusDisplay: TShareStatusDisplay;
+  actions: Map<string, TShareListRowAction[]>;
 };
