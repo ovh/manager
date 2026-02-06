@@ -25,9 +25,10 @@
       "{workspaceRoot}/pnpm-lock.yaml"
     ],
     "buildEnv": [
-      { "env": "VERSION" }
+      { "env": "VERSION" },
+      { "env": "VITE_WP_LABEU_ENTRY_POINT" }
     ],
-    
+
     "lintGlobals": [
       "{workspaceRoot}/.eslintrc*",
       "{workspaceRoot}/.eslintignore",
@@ -84,7 +85,7 @@
       "dependsOn": ["^dev"],
       "cache": false
     },
-    
+
     "lint": {
       "dependsOn": ["^build"],
       "inputs": ["default", "^default", "lintGlobals"],

@@ -95,6 +95,10 @@ module.exports = (env = {}) => {
           ? `'${process.env.NODE_ENV}'`
           : '"development"',
         __NG_APP_INJECTIONS__: getNgAppInjections(['EU', 'CA', 'US']),
+        __WP_LABEU_ENTRY_POINT__:
+          process.env.VITE_WP_LABEU_ENTRY_POINT != null
+            ? JSON.stringify(process.env.VITE_WP_LABEU_ENTRY_POINT)
+            : '',
       }),
     ],
   });
