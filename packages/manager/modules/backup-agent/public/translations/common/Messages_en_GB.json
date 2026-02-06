@@ -10,7 +10,7 @@
   "backup_agent_guide": "Backup Agent Guides",
   "baremetal_label_order_in_progress": "The order has been received, your product is on its way and you can track its progress <OrderLink>here</OrderLink>.",
   "server": "Server",
-  "billings_tab_description": "You will find your billing for your Tenant updated here. This will be billed to you at the beginning of next month. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>",
+  "billings_tab_description": "Here, you’ll find your current Tenant billing. You’ll be billed at the beginning of next month. For more information, see the <Link>OVHcloud Backup Agent documentation</Link>",
   "go_to_general_informations": "Go to general information",
   "agent_status_disabled_legend": "Your Agent has been disabled and will be removed shortly.",
   "agent_status_not_installed_legend": "Your Agent is not yet installed on your server, you need to download and install it.",

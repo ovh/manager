@@ -56,6 +56,6 @@
   "allDom_cancel_terminate_subtitle": "Are you sure you want to undo the cancellation of the {{serviceName}} service?",
   "allDom_cancel_terminate_success": "The cancellation of your {{serviceName}} service has been processed",
   "allDom_cancel_terminate_error": "Unable to undo the cancellation of your {{serviceName}} service",
-  "allDom_detail_page_renew_information_advantage": "The renewal of the AllDom offer extends your pricing advantage.",
-  "allDom_detail_page_renew_information_renew": "Domain names each retain their renewal method and expiration date."
+  "allDom_detail_page_renew_information_advantage": "Renewing your AllDom plan allows you to keep your existing rates.",
+  "allDom_detail_page_renew_information_renew": "Each domain name’s renewal mode and expiry date stays the same."
 }

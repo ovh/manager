@@ -10,5 +10,5 @@
   "status_label": "Estado",
   "order_vault": "Encomendar um vault",
   "more_action": "Ação adicional",
-  "vaults_tab_description": "Os seus Vaults baseiam-se no Object Storage da OVHcloud. Estão configurados com encriptação e imutabilidade (14 dias) para dados seguros e inalterados. Para saber mais, consulte a <Link>documentação do OVHcloud Backup Agent</Link>"
+  "vaults_tab_description": "Os seus Vaults baseiam-se no Object Storage da OVHcloud. Estão configurados com encriptação e imutabilidade (14 dias) para proporcionar dados seguros e inalterados. Para saber mais, consulte a <Link>documentação OVHcloud Backup Agent</Link>"
 }

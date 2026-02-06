@@ -20,7 +20,7 @@
   "add_agent_error_resource_not_found": "An error occurred. Please check that the server is valid.",
   "update_agent_banner_success": "The policy modification is in progress, please wait a few seconds.",
   "unable_edit_agent_not_enabled": "The configuration will be available once the Agent is activated.",
-  "agents_tab_description": "Find here all your protected agents. It is important to finalize your configuration so that your server is backed up. To get further information, consult the <Link>OVHcloud Backup Agent documentation</Link>",
+  "agents_tab_description": "Here, you can find all of your protected agents. You need to finish configuring your server to ensure it can be backed up. For more information, see the <Link>OVHcloud Backup Agent documentation</Link>",
   "delete_agent_modal_content_main": "If you have used your agent to back up data, our policy is to block your agent in a disabled status for 14 days, until the immutability period is over. You will be able to add it back again at the end of the 14 days.",
   "delete_agent_modal_content_confirm": "Do you really want to delete your agent <span>{{agentName}}</span>?",
   "details_of_status": "Status details"

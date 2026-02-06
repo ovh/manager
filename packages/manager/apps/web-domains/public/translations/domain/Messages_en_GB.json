@@ -342,5 +342,5 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "enabling",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "disabling",
   "domain_tab_general_information_subscription_edit_owner": "Edit holder contact details",
-  "domain_tab_general_information_data_protection_disabled": "The registrar for this domain name does not allow custom management of data display."
+  "domain_tab_general_information_data_protection_disabled": "The registry managing this domain name does not allow custom data display management"
 }
