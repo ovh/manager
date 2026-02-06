@@ -140,5 +140,8 @@
   "kube_add_plan_helper_v2_warning_plan_standard": "Plan Standard",
   "kube_add_plan_helper_v2_warning_text_suffix": "już teraz.",
   "kube_add_plan_helper_v2_warning_consequence": "Jeśli wybierzesz plan Free, będziesz musiał całkowicie odtworzyć nowy klaster i ręcznie przenieść swoje dane, aby skorzystać z zalet Standard później.",
-  "kube_add_plan_content_not_available_AZ": "Niedostępne dla {{mode}}"
+  "kube_add_plan_content_not_available_AZ": "Niedostępne dla {{mode}}",
+  "kube_add_plan_content_not_available_region": "Niedostępne dla tego regionu",
+  "kube_add_cart_total_price": "Razem",
+  "kube_add_cart_monthly_price": "Szacowanie na miesiąc"
 }

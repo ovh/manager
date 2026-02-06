@@ -92,17 +92,17 @@
   "kubernetes_add_create_cluster": "Criar meu cluster",
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Deve:",
-    "char_number": "ter entre 2 e 64 caracteres",
-    "char_whitelist": "ter apenas letras, números, hífens ou underscores",
+    "char_number": "conter entre 2 e 64 caracteres",
+    "char_whitelist": "conter apenas letras, números, hífens ou underscores",
     "first_char": "começar com uma letra",
-    "last_char": "terminar com um carácter alfanumérico (a-z, A-Z, 0-9)"
+    "last_char": "terminar com um caractere alfanumérico (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "O nome do cluster é inválido",
   "kubernetes_add_cluster_name_input_error_empty": "O nome do cluster é obrigatório",
   "kubernetes_add_location": "Localização",
   "kubernetes_add_location_subtitle": "Escolher um modo de implantação",
-  "kubernetes_add_region_title_region_alt": "Logotipo da região 1-AZ",
-  "kubernetes_add_region_title_region-3-az_alt": "Logotipo da região 3-AZ",
+  "kubernetes_add_region_title_region_alt": "Logotipo região 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Logotipo região 3-AZ",
   "kubernetes_add_region_continent_select": "Filtrar por zona geográfica",
   "kubernetes_add_region_plan_all": "Todos os planos",
   "kubernetes_add_micro_region_choose": "Escolher um datacenter",
@@ -117,7 +117,7 @@
   "kube_add_plan_helper_standard_description": "Recomendado para produção e aplicações críticas. Implantado em três zonas de disponibilidade (3-AZ) para alta resiliência.",
   "kube_add_plan_helper_difference_title": "Principais diferenças:",
   "kube_add_plan_helper_difference_sla": "SLA: 99,5% (Gratuito) vs 99,99% (Standard)",
-  "kube_add_plan_helper_difference_etcd": "Capacidade ETCD: 400 Mo (Gratuito) vs 8 Go (Standard)",
+  "kube_add_plan_helper_difference_etcd": "Capacidade ETCD: 400 MB (Gratuito) vs 8 GB (Standard)",
   "kube_add_plan_helper_difference_nodes": "Número de nós: até 100 (Gratuito) vs 500 (Standard)",
   "kube_add_plan_helper_difference_az": "Zonas de disponibilidade: 1-AZ (Gratuito) vs 3-AZ (Standard)",
   "kube_add_plan_helper_v2_title": "Qual plano escolher para o seu cluster Kubernetes?",
@@ -136,9 +136,12 @@
   "kube_add_plan_helper_v2_standard_availability_1az": "Monozone (1-AZ) : Alto desempenho em uma única zona geográfica (SLA 99.9%)",
   "kube_add_plan_helper_v2_standard_availability_3az": "Multizone (3-AZ) : Resiliência máxima. O cluster permanece operacional mesmo em caso de perda de uma zona de disponibilidade (SLA 99.99%)",
   "kube_add_plan_helper_v2_warning_title": "⚠️ Lembrete crucial :",
-  "kube_add_plan_helper_v2_warning_text": "Se você prevê que seu projeto entrará em produção, escolha o",
+  "kube_add_plan_helper_v2_warning_text": "Se você prevê que seu projeto passará para produção, escolha o",
   "kube_add_plan_helper_v2_warning_plan_standard": "Plano Standard",
   "kube_add_plan_helper_v2_warning_text_suffix": "já disponível.",
   "kube_add_plan_helper_v2_warning_consequence": "Se você escolher o plano Free, precisará recriar completamente um novo cluster e migrar seus dados manualmente para aproveitar os benefícios do Standard mais tarde.",
-  "kube_add_plan_content_not_available_AZ": "Indisponível para {{mode}}"
+  "kube_add_plan_content_not_available_AZ": "Indisponível para {{mode}}",
+  "kube_add_plan_content_not_available_region": "Indisponível para esta região",
+  "kube_add_cart_total_price": "Total",
+  "kube_add_cart_monthly_price": "Estimativa mensal"
 }
