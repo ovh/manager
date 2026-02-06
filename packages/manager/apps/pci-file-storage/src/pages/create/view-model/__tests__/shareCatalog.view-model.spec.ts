@@ -10,6 +10,7 @@ import {
   TShareSpecs,
 } from '@/domain/entities/catalog.entity';
 import {
+  provisionedPerformancePresenter,
   selectAvailabilityZones,
   selectContinent,
   selectDeploymentModes,
@@ -18,10 +19,16 @@ import {
   selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
-vi.mock('@/adapters/catalog/left/shareCatalog.mapper', () => ({
-  mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
-  mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
-}));
+vi.mock('@/adapters/catalog/left/shareCatalog.mapper', async (importOriginal) => {
+  const original: typeof import('@/adapters/catalog/left/shareCatalog.mapper') =
+    await importOriginal();
+
+  return {
+    ...original,
+    mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
+    mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
+  };
+});
 
 vi.mock('@/domain/services/catalog.service', () => ({
   getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
@@ -32,6 +39,10 @@ vi.mock('@/domain/services/catalog.service', () => ({
   },
   isMicroRegionAvailable: (microRegion: TMicroRegion) =>
     microRegion.isActivated && !microRegion.isInMaintenance,
+  provisionedPerformanceCalculator: (shareSpec: TShareSpecs) => (size: number) => ({
+    iops: shareSpec.iops.level * size,
+    throughput: shareSpec.bandwidth.level * size,
+  }),
 }));
 
 describe('share catalog selectors', () => {
@@ -423,6 +434,7 @@ describe('share catalog selectors', () => {
             iopsLevel: 30,
             bandwidthLevel: 0.25,
             bandwidthUnit: 'MB/s/GB',
+            calculateProvisionedPerformance: expect.any(Function),
           },
           {
             name: 'spec2',
@@ -431,6 +443,7 @@ describe('share catalog selectors', () => {
             iopsLevel: 50,
             bandwidthLevel: 0.5,
             bandwidthUnit: 'MB/s/GB',
+            calculateProvisionedPerformance: expect.any(Function),
           },
         ],
       },
@@ -456,6 +469,33 @@ describe('share catalog selectors', () => {
       const result = selectShareSpecs(microRegionId)(data);
 
       expect(result).toEqual(expected);
+    });
+  });
+
+  describe('provisionedPerformancePresenter', () => {
+    it.each([
+      {
+        description: 'should round iops value and truncate throughput value to 1 decimal place',
+        iops: 1.3,
+        throughput: 1.13,
+        expectedFormattedPerformance: {
+          iops: '1',
+          throughput: '1.1',
+        },
+      },
+      {
+        description:
+          'should return only integer throughput value when the truncated decimal point is 0',
+        iops: 1,
+        throughput: 1.01,
+        expectedFormattedPerformance: {
+          iops: '1',
+          throughput: '1',
+        },
+      },
+    ])('$description', ({ iops, throughput, expectedFormattedPerformance }) => {
+      const result = provisionedPerformancePresenter({ iops, throughput });
+      expect(result).toEqual(expectedFormattedPerformance);
     });
   });
 });
