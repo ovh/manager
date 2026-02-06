@@ -6,12 +6,12 @@
     "protocol": "Protokoll",
     "allocated_capacity": "Zugewiesene Kapazität",
     "allocated_capacity_value": "{{capacity}} GiB",
-    "status": "Status"
+    "status": "Status",
+    "actions": "Aktionen"
   },
-  "status": {
-    "active": "Aktiv",
-    "pending": "Warten",
-    "error": "Fehler",
-    "na": "N/V"
+  "actionButton": "Ein Share erstellen",
+  "actions": {
+    "manage": "Verwaltung der ",
+    "delete": "Löschen"
   }
 }

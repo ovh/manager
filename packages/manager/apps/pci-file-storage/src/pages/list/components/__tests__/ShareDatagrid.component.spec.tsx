@@ -13,13 +13,26 @@ vi.mock('@/hooks/useProjectId', () => ({
   useProjectId: () => 'test-project',
 }));
 
+vi.mock('@/pages/list/components/ShareDatagridTopbar.component', () => ({
+  ShareDatagridTopbar: () => <div data-testid="share-datagrid-topbar" />,
+}));
+
 vi.mock('@/data/hooks/shares/useShares', () => ({
   useShares: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
-  Datagrid: ({ data, isLoading }: { data: unknown[]; isLoading: boolean }) => (
+  Datagrid: ({
+    data,
+    isLoading,
+    topbar,
+  }: {
+    data: unknown[];
+    isLoading: boolean;
+    topbar?: React.ReactNode;
+  }) => (
     <div data-testid="datagrid">
+      {topbar}
       <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
     </div>
   ),
@@ -34,12 +47,8 @@ vi.mock('@/pages/list/hooks/useShareColumn', () => ({
   ],
 }));
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
-}));
-
 describe('ShareDatagrid', () => {
-  it('should render datagrid with data', () => {
+  it('should render datagrid with topbar and data', () => {
     const data: TShareListRow[] = [
       {
         id: 'share-1',
@@ -49,17 +58,21 @@ describe('ShareDatagrid', () => {
         protocol: 'NFS',
         size: 100,
         status: 'available',
-        statusDisplay: { labelKey: 'list:status.active', badgeColor: 'success' },
+        statusDisplay: { labelKey: 'status:active', badgeColor: 'success' },
+        actions: new Map([
+          ['actions', [{ label: 'list:actions.manage', link: { path: './share-1' } }]],
+        ]),
       },
     ];
 
     vi.mocked(useShares).mockReturnValue({
-      data: data,
+      data,
       isLoading: false,
     } as unknown as QueryObserverSuccessResult<TShareListRow[]>);
 
     render(<ShareDatagrid />);
 
+    expect(screen.getByTestId('share-datagrid-topbar')).toBeVisible();
     const datagrid = screen.getByTestId('datagrid');
     expect(datagrid).toBeVisible();
     expect(datagrid).toHaveTextContent('Rows: 1');

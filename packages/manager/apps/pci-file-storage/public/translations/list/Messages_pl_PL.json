@@ -6,12 +6,12 @@
     "protocol": "Protokół",
     "allocated_capacity": "Przydzielona pojemność",
     "allocated_capacity_value": "{{capacity}} GiB",
-    "status": "Status"
+    "status": "Status",
+    "actions": "Operacje"
   },
-  "status": {
-    "active": "Aktywny",
-    "pending": "W oczekiwaniu",
-    "error": "Błąd",
-    "na": "N/D"
+  "actionButton": "Utwórz udostępnienie",
+  "actions": {
+    "manage": "Administracja",
+    "delete": "Usuń"
   }
 }

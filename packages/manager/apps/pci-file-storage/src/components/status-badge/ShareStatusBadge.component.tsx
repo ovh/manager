@@ -17,7 +17,7 @@ type TShareStatusBadgeProps = {
 };
 
 export const ShareStatusBadge = ({ labelKey, badgeColor }: TShareStatusBadgeProps) => {
-  const { t } = useTranslation(['list', 'regions']);
+  const { t } = useTranslation(['status']);
 
   return (
     <Badge color={BADGE_COLOR_BY_STATUS[badgeColor]} size="md" className="text-nowrap">
