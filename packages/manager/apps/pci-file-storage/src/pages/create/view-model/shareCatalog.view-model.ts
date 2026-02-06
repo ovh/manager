@@ -4,12 +4,14 @@ import {
   TDeploymentModeData,
   TDeploymentModeDataForCard,
   TMicroRegionData,
+  TProvisionedPerformanceData,
   TRegionData,
   TShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import {
   mapDeploymentModeForCard,
   mapRegionToLocalizationCard,
+  mapShareSpecsToShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
 import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
@@ -131,12 +133,18 @@ export const selectShareSpecs =
 
     return Array.from(data.entities.shareSpecs.byId.values())
       .filter((spec) => spec.microRegionIds.includes(microRegionId))
-      .map((spec) => ({
-        name: spec.name,
-        capacityMin: spec.capacity.min,
-        capacityMax: spec.capacity.max,
-        iopsLevel: spec.iops.level,
-        bandwidthLevel: spec.bandwidth.level,
-        bandwidthUnit: spec.bandwidth.unit,
-      }));
+      .map(mapShareSpecsToShareSpecData);
   };
+
+export const provisionedPerformancePresenter = ({
+  iops,
+  throughput,
+}: TProvisionedPerformanceData) => {
+  const formattedIOPS = Math.round(iops).toString();
+  const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
+
+  return {
+    iops: formattedIOPS,
+    throughput: formattedThroughput,
+  };
+};

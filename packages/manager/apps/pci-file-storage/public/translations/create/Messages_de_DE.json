@@ -59,6 +59,7 @@
     "title": "Größe des Shares",
     "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
     "label": "Lineare Leistungszuweisung (GiB)",
+    "provisionedPerformance": "<strong>Bereitgestellte Leistung :</strong> Bis zu {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
       "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
