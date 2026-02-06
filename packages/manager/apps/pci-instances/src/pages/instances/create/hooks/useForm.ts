@@ -27,7 +27,9 @@ export const useForm = (projectId: string) => {
     deploymentModesDefaultValue,
   );
 
-  const continentDefaultValue = continents[0]!.value;
+  const continentDefaultValue =
+    continents.find((continent) => continent.value === 'all')?.value ??
+    continents[0]!.value;
 
   const { localizations } = selectLocalizations(deps)(
     projectId,
