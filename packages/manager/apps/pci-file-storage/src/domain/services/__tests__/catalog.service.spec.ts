@@ -176,21 +176,19 @@ describe('catalog.service', () => {
         description:
           'should return minimum throughput and calculate IOPS relative to the size for size 99 GiB',
         size: 99,
-        expectedIOPS: 2376,
-        expectedThroughput: 25,
+        expectedResult: { iops: 2376, throughput: 25 },
         shareSpec: generalShareSpec,
       },
       {
         description: 'should calculate IOPS and throughput relative to the size for size 500 GiB',
         size: 500,
-        expectedIOPS: 12000,
-        expectedThroughput: 125,
+        expectedResult: { iops: 12000, throughput: 125 },
         shareSpec: generalShareSpec,
       },
       {
         description: 'should return maximum values for IOPS and throughput',
         size: 670,
-        expectedIOPS: 16000,
+        expectedResult: { iops: 16000, throughput: 128 },
         expectedThroughput: 128,
         shareSpec: generalShareSpec,
       },
@@ -198,18 +196,34 @@ describe('catalog.service', () => {
         description:
           'iops level of 1 should return the same value as the share size if it is less than the iops max',
         size: 99,
-        expectedIOPS: 99,
-        expectedThroughput: 25,
+        expectedResult: { iops: 99, throughput: 25 },
         shareSpec: {
           ...generalShareSpec,
           iops: { ...generalShareSpec.iops, level: 1 },
         },
       },
-    ])('$description', ({ size, expectedIOPS, expectedThroughput, shareSpec }) => {
+      {
+        description: 'should return minimum throughput and 0 IOPS when size is 0',
+        size: 0,
+        expectedResult: { iops: 0, throughput: 25 },
+        shareSpec: generalShareSpec,
+      },
+      {
+        description: 'should return minimum throughput and 0 IOPS when size is negative',
+        size: -1,
+        expectedResult: { iops: 0, throughput: 25 },
+        shareSpec: generalShareSpec,
+      },
+      {
+        description: 'should return null when size is NaN',
+        size: NaN,
+        expectedResult: null,
+        shareSpec: generalShareSpec,
+      },
+    ])('$description', ({ size, expectedResult, shareSpec }) => {
       const calculateProvisionedPerformance = provisionedPerformanceCalculator(shareSpec);
       const result = calculateProvisionedPerformance(size);
-      expect(result.iops).toBe(expectedIOPS);
-      expect(result.throughput).toBe(expectedThroughput);
+      expect(result).toStrictEqual(expectedResult);
     });
   });
 });
