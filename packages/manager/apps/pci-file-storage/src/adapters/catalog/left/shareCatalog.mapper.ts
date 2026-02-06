@@ -2,12 +2,19 @@ import {
   TDeploymentModeDataForCard,
   TRegionData,
   TSVGImage,
+  TShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.data';
-import { TDeploymentMode, TMacroRegion, TMicroRegion } from '@/domain/entities/catalog.entity';
+import {
+  TDeploymentMode,
+  TMacroRegion,
+  TMicroRegion,
+  TShareSpecs,
+} from '@/domain/entities/catalog.entity';
 import {
   getMicroRegions,
   isMacroRegionAvailable,
   isMicroRegionAvailable,
+  provisionedPerformanceCalculator,
 } from '@/domain/services/catalog.service';
 
 import Region1azImage from '../../../../public/assets/1AZ.svg';
@@ -69,3 +76,17 @@ export const mapRegionToLocalizationCard =
       firstAvailableMicroRegion: getFirstAvailableMicroRegion(region, microRegionsById),
     };
   };
+
+export const mapShareSpecsToShareSpecData = (spec: TShareSpecs): TShareSpecData => {
+  const calculateProvisionedPerformance = provisionedPerformanceCalculator(spec);
+
+  return {
+    name: spec.name,
+    capacityMin: spec.capacity.min,
+    capacityMax: spec.capacity.max,
+    iopsLevel: spec.iops.level,
+    bandwidthLevel: spec.bandwidth.level,
+    bandwidthUnit: spec.bandwidth.unit,
+    calculateProvisionedPerformance,
+  };
+};
