@@ -29,22 +29,17 @@ export type TMicroRegionData = { label: string; value: string; disabled: boolean
 
 export type TAvailabilityZoneData = { label: string; value: string };
 
+export type TProvisionedPerformanceData = {
+  iops: number;
+  throughput: number;
+};
+
 export type TShareSpecData = {
   name: string;
   capacityMin: number;
   capacityMax: number;
   iopsLevel: number;
-  iopsMax: number;
-  iopsUnit: string;
-  iopsMaxUnit: string;
-  iopsGuaranteed: boolean;
   bandwidthLevel: number;
-  bandwidthMin: number;
-  bandwidthMax: number;
   bandwidthUnit: string;
-  bandwidthMaxUnit: string;
-  bandwidthGuaranteed: boolean;
-  microRegionIds: string[];
-  price: number;
-  priceInterval: string;
+  calculateProvisionedPerformance: (shareSize: number) => TProvisionedPerformanceData | null;
 };

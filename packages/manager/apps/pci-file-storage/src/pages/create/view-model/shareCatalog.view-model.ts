@@ -4,21 +4,17 @@ import {
   TDeploymentModeData,
   TDeploymentModeDataForCard,
   TMicroRegionData,
+  TProvisionedPerformanceData,
   TRegionData,
   TShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.data';
 import {
   mapDeploymentModeForCard,
   mapRegionToLocalizationCard,
-  mapShareSpecDataToShareSpecs,
   mapShareSpecsToShareSpecData,
 } from '@/adapters/catalog/left/shareCatalog.mapper';
 import { TMacroRegion, TShareCatalog } from '@/domain/entities/catalog.entity';
-import {
-  getMicroRegions,
-  isMicroRegionAvailable,
-  provisionedPerformanceCalculator,
-} from '@/domain/services/catalog.service';
+import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
 
 export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
 
@@ -140,16 +136,15 @@ export const selectShareSpecs =
       .map(mapShareSpecsToShareSpecData);
   };
 
-export const provisionedPerformancePresenter =
-  (shareSpecification: TShareSpecData) => (shareSize?: number) => {
-    if (shareSize === undefined || shareSize < 0 || isNaN(shareSize)) return null;
-    const shareSpec = mapShareSpecDataToShareSpecs(shareSpecification);
-    const { iops, throughput } = provisionedPerformanceCalculator(shareSpec)(shareSize);
-    const formattedIOPS = Math.round(iops).toString();
-    const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
+export const provisionedPerformancePresenter = ({
+  iops,
+  throughput,
+}: TProvisionedPerformanceData) => {
+  const formattedIOPS = Math.round(iops).toString();
+  const formattedThroughput = (Math.round(throughput * 100) / 100).toFixed(1).replace('.0', '');
 
-    return {
-      iops: formattedIOPS,
-      throughput: formattedThroughput,
-    };
+  return {
+    iops: formattedIOPS,
+    throughput: formattedThroughput,
   };
+};

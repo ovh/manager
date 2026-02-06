@@ -38,14 +38,10 @@ export const ShareSizeSelection = () => {
   });
 
   const selectedSpec = shareOptions.find((spec) => spec.name === selectedSpecName);
-
-  const presentProvisionedPerformance = selectedSpec
-    ? provisionedPerformancePresenter(selectedSpec)
-    : null;
-
+  const performance = selectedSpec?.calculateProvisionedPerformance(selectedSize);
+  const formattedPerformance = performance ? provisionedPerformancePresenter(performance) : null;
   const min = selectedSpec?.capacityMin ?? DEFAULT_MIN;
   const max = selectedSpec?.capacityMax ?? DEFAULT_MAX;
-  const performance = presentProvisionedPerformance?.(selectedSize);
 
   const handleChange = (value: number) => {
     if (value < min) {
@@ -77,9 +73,12 @@ export const ShareSizeSelection = () => {
           max={max}
           inputName="shareSize"
         />
-        {performance && (
+        {formattedPerformance && (
           <Text preset="paragraph" className="mt-2">
-            <Trans i18nKey="create:shareSize.provisionedPerformance" values={performance} />
+            <Trans
+              i18nKey="create:shareSize.provisionedPerformance"
+              values={formattedPerformance}
+            />
           </Text>
         )}
         <FormFieldError>{t(`create:shareSize.error.${sizeError?.type}`)}</FormFieldError>
