@@ -6,12 +6,12 @@
     "protocol": "Protocolo",
     "allocated_capacity": "Capacidad asignada",
     "allocated_capacity_value": "{{capacity}} GiB",
-    "status": "Estado"
+    "status": "Estado",
+    "actions": "Acciones"
   },
-  "status": {
-    "active": "Activo",
-    "pending": "En espera",
-    "error": "Error",
-    "na": "N/D"
+  "actionButton": "Crear un share",
+  "actions": {
+    "manage": "Gestionar",
+    "delete": "Eliminar"
   }
 }
