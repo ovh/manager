@@ -28,7 +28,7 @@ export const INSTANCE_PRICING_LINKS: { [Key in OvhSubsidiary]?: string } & {
 
 export const actionSectionRegex = /(?:rescue\/(start|end)|(?<!rescue\/)(start|stop|shelve|unshelve|delete|soft-reboot|hard-reboot|reinstall|backup|billing\/monthly\/activate))$/;
 
-export const instanceNameRegex = /^[a-zA-Z0-9-_.]{0,255}$/;
+export const instanceNameRegex = /^[a-zA-Z0-9-_.:\s]{0,255}$/;
 
 export const sshKeyRegex = /^(ssh-(rsa|ed\d+)|ecdsa-sha2-nistp\d+) [A-Za-z0-9+\/=]+(?: [^\s]+)?$/;
 
