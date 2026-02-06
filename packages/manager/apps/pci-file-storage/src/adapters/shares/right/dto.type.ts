@@ -1,3 +1,8 @@
+export type TShareCapabilityDto = {
+  name: string;
+  enabled: boolean;
+};
+
 export type TShareDto = {
   createdAt: string;
   description: string;
@@ -9,4 +14,5 @@ export type TShareDto = {
   size: number;
   status: string;
   type: string;
+  capabilities: TShareCapabilityDto[];
 };

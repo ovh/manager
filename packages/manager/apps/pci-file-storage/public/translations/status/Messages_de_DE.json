@@ -1,0 +1,9 @@
+{
+  "active": "Verfügbar",
+  "backup_creating": "Backup wird erstellt",
+  "creating": "Erstellung läuft",
+  "deleting": "Löschung wird ausgeführt",
+  "error": "Fehler",
+  "extending": "Erweiterung wird durchgeführt",
+  "inactive": "Inaktiv"
+}
