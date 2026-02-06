@@ -37,6 +37,6 @@
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minutes",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Hours",
   "iam_user_token_modal_field_expiry_date_unit_days": "Days",
-  "iam_user_token_modal_view_token_secret_label": "Token",
-  "key_management_service_credential_create_confirmation_private-key_warn": "Once you exit the creation wizard, you will lose access to this private key. Make sure you download and securely store it."
+  "iam_user_token_modal_view_token_secret_title": "Your token has been created.",
+  "iam_user_token_modal_view_token_secret_warning": "You will no longer have access to the contents of the token. Please save it securely."
 }
