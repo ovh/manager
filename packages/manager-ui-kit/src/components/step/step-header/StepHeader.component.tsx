@@ -14,7 +14,7 @@ export const StepHeader = () => {
       <div
         className={clsx(
           'font-normal leading-[43px] flex p-0 m-0 w-full md:w-5/6',
-          open ? 'text-[--ods-color-text]' : 'text-[--ods-color-neutral-500]',
+          open ? 'text-(--ods-color-text)' : 'text-(--ods-color-neutral-500)',
         )}
       >
         <Text preset={TEXT_PRESET.heading4}>{title}</Text>

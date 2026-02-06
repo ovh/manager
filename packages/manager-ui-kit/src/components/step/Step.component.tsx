@@ -37,7 +37,7 @@ export const Step = ({
         skip,
       }}
     >
-      <section className="flex flex-row border-0 border-t-[1px] border-solid border-t-[--ods-color-neutral-100] pt-5 mb-5">
+      <section className="flex flex-row border-0 border-t border-solid border-t-(--ods-color-neutral-100) pt-5 mb-5">
         <StepIndicator />
         <div className="basis-full px-5">
           <StepHeader />

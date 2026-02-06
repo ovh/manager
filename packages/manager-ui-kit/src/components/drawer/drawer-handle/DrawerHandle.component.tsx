@@ -30,16 +30,16 @@ const DrawerHandle = ({ onClick, collapseState }: DrawerHandleProps) => {
   return (
     <div
       className={clsx(
-        'fixed z-[100] top-[var(--mrc-drawer-header-height)] right-[var(--mrc-drawer-width)]',
-        'transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out',
+        'fixed z-100 top-(--mrc-drawer-header-height) right-(--mrc-drawer-width)',
+        'transition-all duration-(--mrc-drawer-collapse-duration) ease-in-out',
         'mrc-drawer-handle-fade-in',
         hasEscapeBeenPressed && 'hidden',
-        collapseState === 'collapsed' && 'translate-x-[var(--mrc-drawer-width)]',
+        collapseState === 'collapsed' && 'translate-x-(--mrc-drawer-width)',
       )}
     >
       <div
         className={clsx(
-          'w-[var(--mrc-drawer-handle-size)] h-[var(--mrc-drawer-handle-size)]',
+          'w-(--mrc-drawer-handle-size) h-(--mrc-drawer-handle-size)',
           'right-0 bg-white',
           'rounded-l-lg justify-center items-center',
           'mrc-drawer-handle-shadow',

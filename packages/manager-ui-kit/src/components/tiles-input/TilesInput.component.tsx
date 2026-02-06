@@ -26,7 +26,7 @@ export const TilesInputComponent = <T, S>({
   const activeClass = useMemo(
     () =>
       clsx(
-        `cursor-pointer font-bold bg-[--ods-color-blue-100] border-[--ods-color-blue-600] ${tileClass?.active}`,
+        `cursor-pointer font-bold bg-(--ods-color-blue-100) border-(--ods-color-blue-600) ${tileClass?.active}`,
       ),
     [tileClass?.active],
   );
@@ -34,7 +34,7 @@ export const TilesInputComponent = <T, S>({
   const inactiveClass = useMemo(
     () =>
       clsx(
-        `cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-100] hover:border-[--ods-color-blue-600] ${tileClass?.inactive}`,
+        `cursor-pointer border-(--ods-color-blue-100) hover:bg-(--ods-color-blue-100) hover:border-(--ods-color-blue-600) ${tileClass?.inactive}`,
       ),
     [tileClass?.inactive],
   );
@@ -145,7 +145,7 @@ export const TilesInputComponent = <T, S>({
         })() && (
           <>
             <div className="mt-6 ml-8">
-              <span className="text-[--ods-color-heading] leading-[22px] font-bold">
+              <span className="text-(--ods-color-heading) leading-[22px] font-bold">
                 {stack?.title(selectedStack, stacks.get(selectedStack) || [])}
               </span>
             </div>
