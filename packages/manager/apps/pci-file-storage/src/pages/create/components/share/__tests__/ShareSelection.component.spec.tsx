@@ -28,6 +28,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
       {
         name: 'publiccloud-share-standard2',
@@ -36,6 +37,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
     ];
 
@@ -64,6 +66,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
     ];
 
@@ -89,6 +92,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
       {
         name: 'publiccloud-share-standard2',
@@ -97,6 +101,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
     ];
 
@@ -136,6 +141,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
       {
         name: 'publiccloud-share-standard2',
@@ -144,6 +150,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
     ];
 
@@ -188,6 +195,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
       {
         name: 'publiccloud-share-standard2',
@@ -196,6 +204,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: () => null,
       },
     ];
 
