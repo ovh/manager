@@ -35,5 +35,6 @@
   "pci_instances_common_windows_image_type": "Distribuzioni Windows",
   "pci_instances_common_recommanded": "Consigliato",
   "pci_instances_common_backup": "Backup",
-  "pci_instances_common_unavailable": "Non disponibile"
+  "pci_instances_common_unavailable": "Non disponibile",
+  "pci_instances_common_coming_soon": "In arrivo"
 }
