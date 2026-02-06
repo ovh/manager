@@ -46,5 +46,6 @@
   "gdpr_erasure_confirmation_email_error_invalid_status": "Lo stato della richiesta non consente l'invio di una conferma.",
   "gdpr_erasure_confirmation_email_error_max_attempts": "Hai ricevuto il numero massimo di nuove email di conferma. Per confermare la richiesta, utilizza l’email di conferma che hai già ricevuto. Altrimenti, ti invitiamo ad annullare la richiesta corrente o a contattare il supporto.",
   "gdpr_erasure_confirm_error_invalid_code": "Il codice di conferma è errato.",
-  "gdpr_erasure_confirm_error_exhausted_attempts": "La richiesta è stata annullata a causa di diversi tentativi errati di inserimento del codice di conferma."
+  "gdpr_erasure_confirm_error_exhausted_attempts": "La richiesta è stata annullata a causa di diversi tentativi errati di inserimento del codice di conferma.",
+  "gdpr_erasure_not_possible_description": "Abbiamo rilevato servizi attivi legati al tuo account. Assicurati di aver rimosso tutti i tuoi servizi seguendo i passaggi descritti nella nostra guida (<a href=\"{{url}}\" target=\"_blank\">link</a>) prima di fare la tua richiesta di cancellazione."
 }
