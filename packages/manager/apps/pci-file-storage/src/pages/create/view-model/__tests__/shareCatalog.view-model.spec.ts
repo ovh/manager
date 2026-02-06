@@ -421,19 +421,6 @@ describe('share catalog selectors', () => {
       },
     } as DeepPartial<TShareCatalog>;
 
-    const sharedSpec = {
-      bandwidthMin: 150,
-      bandwidthMax: 10240,
-      bandwidthGuaranteed: false,
-      bandwidthMaxUnit: 'MB/s',
-      iopsGuaranteed: false,
-      iopsMax: 20000,
-      iopsMaxUnit: 'IOPS',
-      iopsUnit: 'IOPS/GB',
-      price: 11900,
-      priceInterval: 'hour',
-    };
-
     it.each([
       {
         description: 'for a valid micro region with matching specs',
@@ -441,24 +428,22 @@ describe('share catalog selectors', () => {
         data: catalog as TShareCatalog,
         expected: [
           {
-            ...sharedSpec,
             name: 'spec1',
             capacityMin: 150,
             capacityMax: 10240,
             iopsLevel: 30,
             bandwidthLevel: 0.25,
             bandwidthUnit: 'MB/s/GB',
-            microRegionIds: ['GRA1', 'GRA2'],
+            calculateProvisionedPerformance: expect.any(Function),
           },
           {
-            ...sharedSpec,
             name: 'spec2',
             capacityMin: 200,
             capacityMax: 10240,
             iopsLevel: 50,
             bandwidthLevel: 0.5,
             bandwidthUnit: 'MB/s/GB',
-            microRegionIds: ['GRA1'],
+            calculateProvisionedPerformance: expect.any(Function),
           },
         ],
       },
@@ -488,58 +473,29 @@ describe('share catalog selectors', () => {
   });
 
   describe('provisionedPerformancePresenter', () => {
-    const shareSpec = {
-      name: 'spec1',
-      capacityMin: 150,
-      capacityMax: 10240,
-      iopsLevel: 24,
-      iopsMax: 16000,
-      iopsUnit: 'IOPS',
-      iopsMaxUnit: 'IOPS',
-      iopsGuaranteed: false,
-      bandwidthLevel: 0.25,
-      bandwidthMin: 25,
-      bandwidthMax: 128,
-      bandwidthUnit: 'MB/s/GB',
-      bandwidthMaxUnit: 'MB/s/GB',
-      bandwidthGuaranteed: false,
-      microRegionIds: ['GRA1', 'GRA2'],
-      price: 11900,
-      priceInterval: 'hour',
-    };
-
-    const presentProvisionedPerformance = provisionedPerformancePresenter(shareSpec);
-
     it.each([
       {
-        description: 'should return integer iops value and single decimal throughput value',
-        size: 150.1,
-        expected: {
-          iops: '3602',
-          throughput: '37.5',
+        description: 'should round iops value and truncate throughput value to 1 decimal place',
+        iops: 1.3,
+        throughput: 1.13,
+        expectedFormattedPerformance: {
+          iops: '1',
+          throughput: '1.1',
         },
       },
       {
-        description: 'should format performance for 200 GiB share',
-        size: 200,
-        expected: {
-          iops: '4800',
-          throughput: '50',
+        description:
+          'should return only integer throughput value when the truncated decimal point is 0',
+        iops: 1,
+        throughput: 1.01,
+        expectedFormattedPerformance: {
+          iops: '1',
+          throughput: '1',
         },
       },
-      {
-        description: 'should return null when size is negative',
-        size: -1,
-        expected: null,
-      },
-      {
-        description: 'should return null when size is undefined',
-        size: undefined,
-        expected: null,
-      },
-    ])('$description', ({ size, expected }) => {
-      const result = presentProvisionedPerformance(size);
-      expect(result).toEqual(expected);
+    ])('$description', ({ iops, throughput, expectedFormattedPerformance }) => {
+      const result = provisionedPerformancePresenter({ iops, throughput });
+      expect(result).toEqual(expectedFormattedPerformance);
     });
   });
 });

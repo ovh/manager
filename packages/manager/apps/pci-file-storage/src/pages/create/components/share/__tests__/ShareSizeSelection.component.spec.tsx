@@ -42,6 +42,7 @@ describe('ShareSizeSelection', () => {
     microRegionIds: [],
     price: 0,
     priceInterval: '',
+    calculateProvisionedPerformance: () => null,
   };
 
   it('should render title, label, and current size', () => {
@@ -128,6 +129,11 @@ describe('ShareSizeSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        calculateProvisionedPerformance: (size: number) => {
+          if (size === 150) return { iops: 3600, throughput: 37.5 };
+          if (size === 500) return { iops: 12000, throughput: 125 };
+          return { iops: 12000, throughput: 125 };
+        },
       },
     ];
 
@@ -135,11 +141,12 @@ describe('ShareSizeSelection', () => {
       data: shareOptions,
     } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
 
-    mockProvisionedPerformancePresenter.mockImplementation(() => (size?: number) => {
-      if (size === 150) return { iops: '3600', throughput: '37.5' };
-      if (size === 500) return { iops: '12000', throughput: '125' };
-      return null;
-    });
+    mockProvisionedPerformancePresenter.mockImplementation(
+      ({ iops, throughput }: { iops: number; throughput: number }) => ({
+        iops: iops.toString(),
+        throughput: throughput.toString(),
+      }),
+    );
 
     renderWithMockedForm(<ShareSizeSelection />, {
       defaultValues: {
