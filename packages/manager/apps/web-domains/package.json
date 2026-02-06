@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-domains-app",
-  "version": "1.10.10",
+  "version": "1.10.11",
   "private": true,
   "description": "Domains and Alldom management",
   "repository": {
