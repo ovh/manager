@@ -12,7 +12,7 @@
   "backup_agent_guide": "Guide di Backup Agent",
   "baremetal_label_order_in_progress": "L'ordine è stato ricevuto, il tuo prodotto è in fase di consegna e puoi seguire il suo progresso <OrderLink>qui</OrderLink>.",
   "server": "Server",
-  "billings_tab_description": "Troverete qui la vostra fatturazione aggiornata del vostro Tenant. Questo vi sarà addebitato all'inizio del mese prossimo. Per saperne di più, consultate la <Link>documentazione di OVHcloud Backup Agent</Link>",
+  "billings_tab_description": "Qui troverai la fatturazione aggiornata del tuo Tenant. Questo importo sarà fatturato all'inizio del mese prossimo. Per maggiori informazioni, consulta la <Link>documentazione OVHcloud Backup Agent</Link>",
   "go_to_general_informations": "Vai alle informazioni generali",
   "agent_status_disabled_legend": "Il tuo agente è stato disattivato e verrà rimosso a breve.",
   "agent_status_not_installed_legend": "Il tuo agente non è ancora installato sul tuo server, devi scaricarlo e installarlo.",
