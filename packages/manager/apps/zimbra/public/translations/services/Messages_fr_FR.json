@@ -3,5 +3,6 @@
   "zimbra_services_linked_service": "Service lié",
   "zimbra_services_service_reference": "Référence du service",
   "zimbra_services_renew_date": "Date de renouvellement",
-  "zimbra_services_free": "Gratuit"
+  "zimbra_services_free": "Gratuit",
+  "zimbra_services_manage": "Gérer mes services"
 }
