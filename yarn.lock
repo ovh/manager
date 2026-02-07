@@ -12522,7 +12522,7 @@ angular-dynamic-locale@^0.1.37:
   dependencies:
     "@types/angular" "^1.8.4"
 
-angular-i18n@^1.6.0, angular-i18n@^1.7.5, angular-i18n@^1.7.8:
+angular-i18n@^1.7.5, angular-i18n@^1.7.8:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/angular-i18n/-/angular-i18n-1.8.3.tgz#15052b19a6c11de045b7d762d743731059e99373"
   integrity sha512-TWJXIRsq7Qkgyms5dHIgG3s2swn2YKGwJzrIC8u59P9BWV3+gorNhgXCR6nqutApldz7jGBmTNjMgpnF32CIVg==
@@ -31081,7 +31081,7 @@ webpack-merge@5.8.0:
     clone-deep "^4.0.1"
     wildcard "^2.0.0"
 
-webpack-merge@^4.1.4, webpack-merge@^4.2.2:
+webpack-merge@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/webpack-merge/-/webpack-merge-4.2.2.tgz#a27c52ea783d1398afd2087f547d7b9d2f43634d"
   integrity sha512-TUE1UGoTX2Cd42j3krGYqObZbOD+xF7u28WB7tfUordytSjbWTIjK/8V0amkBfTYN4/pB/GIDlJZZ657BGG19g==
