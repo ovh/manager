@@ -21,6 +21,7 @@
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-exchange": "^4.18.3",
     "@ovh-ux/manager-log-to-customer": "^2.8.2",
+    "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.1",
     "@ovh-ux/ng-at-internet": "^6.0.45",
     "@ovh-ux/ng-log-live-tail": "^2.7.2",
@@ -77,6 +78,7 @@
   "devDependencies": {
     "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
     "@ovh-ux/manager-webpack-config": "^7.2.2",
+    "babel-loader": "10.0.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
     "webpack-merge": "^4.2.2"
