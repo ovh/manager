@@ -12241,11 +12241,6 @@ JSONStream@^1.0.4, JSONStream@^1.3.5:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
 
-URIjs@^1.14.0:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/URIjs/-/URIjs-1.16.1.tgz#edebc678b8b74b26b05d2b481e12383f5ae04b8b"
-  integrity sha512-ycFsR7J7p7Q+iJA4oVQP9tEnBEA7N/JD5RiOkLAhEeAmR1djRvZBpKCsWhmDaEoBNJLMhaCVpfLcRgqfaG6COw==
-
 abab@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"
@@ -12549,11 +12544,6 @@ angular-resource@^1.7.5, angular-resource@^1.7.8:
   resolved "https://registry.yarnpkg.com/angular-resource/-/angular-resource-1.8.3.tgz#013994c332f0e084f2735fe28af7bccc82f0774c"
   integrity sha512-x3+4w2SyIDEIe6PUBTzcjDFI5MhZNWAPELUxkYK0QMOkOo4w3BN/qhpd+fO1deFiDS23mZKqT8kfctO1IDkCDA==
 
-angular-route@1.8.3:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.8.3.tgz#f24a700ebd462454ca83a8b765df55c87a4edde1"
-  integrity sha512-kpIcRmDR2+o1FxDVVYy8Rvfab86/7LDbOgTRb9T+X9ewPQiBRuDEnZtM3oJYBiQLvAXDYTJXHV48n/bGE9Mv2g==
-
 angular-sanitize@1.7.x:
   version "1.7.9"
   resolved "https://registry.yarnpkg.com/angular-sanitize/-/angular-sanitize-1.7.9.tgz#6b4d5e826abdabd352b13a7c65c8c74daf6a7b15"
@@ -12600,14 +12590,7 @@ angular-websocket@^2.0.1:
     angular "*"
     ws "^1.0.0"
 
-angular-xeditable@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/angular-xeditable/-/angular-xeditable-0.9.0.tgz#5eaa143058959a985de4475ce1d7c7539b60ee8a"
-  integrity sha512-ss1M4VGUmXeIxnPEKRhOE7iTkfPnjYQ0yYCjv8SdrM2WHet4ULw4IDTkr7vuq1WMn0Nd29QijTwTDZNZQFJfyw==
-  dependencies:
-    angular "~1.x"
-
-angular@*, "angular@>=1.3.0 <2.0.0", angular@^1.7.5, angular@^1.7.8, angular@^1.8.0, angular@~1.x:
+angular@*, "angular@>=1.3.0 <2.0.0", angular@^1.7.5, angular@^1.7.8, angular@^1.8.0:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.8.3.tgz#851ad75d5163c105a7e329555ef70c90aa706894"
   integrity sha512-5qjkWIQQVsHj4Sb5TcEs4WZWpFeVFHXwxEBHUhrny41D8UrBAd6T/6nPPAsLngJCReIOqi95W3mxdveveutpZw==
