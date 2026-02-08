@@ -50,6 +50,7 @@
   "packages/manager/apps/telecom-dashboard",
   "packages/manager/apps/telecom-task",
   "packages/manager/apps/veeam-backup",
+  "packages/manager/apps/vrack",
   "packages/manager/apps/web",
   "packages/manager/apps/web-domains",
   "packages/manager/core/shell-client",
