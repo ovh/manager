@@ -15,6 +15,7 @@
   "packages/manager/apps/dedicated",
   "packages/manager/apps/email-domain",
   "packages/manager/apps/email-pro",
+  "packages/manager/apps/freefax",
   "packages/manager/apps/hpc-vmware-vsphere",
   "packages/manager/apps/hycu",
   "packages/manager/apps/hub",
