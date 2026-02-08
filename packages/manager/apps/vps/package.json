@@ -79,6 +79,7 @@
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
     "ui-select": "^0.19.8",
+    "URIjs": "^1.14.0",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {

@@ -22,6 +22,7 @@
   "packages/manager/apps/hycu",
   "packages/manager/apps/ips",
   "packages/manager/apps/netapp",
+  "packages/manager/apps/nutanix",
   "packages/manager/apps/okms",
   "packages/manager/apps/nasha",
   "packages/manager/apps/pci-ai-endpoints",

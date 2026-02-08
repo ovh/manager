@@ -13,7 +13,6 @@
   "packages/manager/apps/identity-access-management",
   "packages/manager/apps/iplb",
   "packages/manager/apps/metrics",
-  "packages/manager/apps/nutanix",
   "packages/manager/apps/order-tracking",
   "packages/manager/apps/overthebox",
   "packages/manager/apps/pci",
