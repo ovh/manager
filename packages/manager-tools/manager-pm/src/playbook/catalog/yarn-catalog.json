@@ -12,7 +12,6 @@
   "packages/manager/apps/exchange",
   "packages/manager/apps/freefax",
   "packages/manager/apps/hpc-vmware-public-vcf-aas",
-  "packages/manager/apps/hub",
   "packages/manager/apps/iam",
   "packages/manager/apps/identity-access-management",
   "packages/manager/apps/iplb",
