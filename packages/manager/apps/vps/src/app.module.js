@@ -18,6 +18,8 @@ import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhManagerVps from '@ovh-ux/manager-vps';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngOvhPaymentMethod from '@ovh-ux/ng-ovh-payment-method';
+import { region } from '@ovh-ux/manager-components';
+import ngOvhUtils from '@ovh-ux/ng-ovh-utils';
 import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 
@@ -46,6 +48,8 @@ export default (containerEl, environment) => {
         ngOvhChart,
         ngOvhFeatureFlipping,
         ngOvhPaymentMethod,
+        region,
+        ngOvhUtils,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
