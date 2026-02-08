@@ -17,6 +17,7 @@
   "packages/manager/apps/email-pro",
   "packages/manager/apps/freefax",
   "packages/manager/apps/hpc-vmware-vsphere",
+  "packages/manager/apps/hub",
   "packages/manager/apps/hycu",
   "packages/manager/apps/ips",
   "packages/manager/apps/netapp",
