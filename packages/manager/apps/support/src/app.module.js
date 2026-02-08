@@ -9,7 +9,7 @@ import angular from 'angular';
 import uiRouterAngularJs from '@uirouter/angularjs';
 import managerSupport from '@ovh-ux/manager-support';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-
+import ngAtInternet from '@ovh-ux/ng-at-internet';
 import { registerCoreModule } from '@ovh-ux/manager-core';
 
 import { state } from './routing';
@@ -25,6 +25,7 @@ export default (containerEl, environment) => {
         uiRouterAngularJs,
         ngUiRouterBreadcrumb,
         registerCoreModule(environment),
+        ngAtInternet,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
