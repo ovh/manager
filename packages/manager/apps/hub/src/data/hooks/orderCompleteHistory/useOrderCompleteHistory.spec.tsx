@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getCompleteHistory } from '@/data/api/order/order';
 import { OrderHistory } from '@/types/order.type';
@@ -13,37 +13,52 @@ vi.mock('@/data/api/order/order', () => ({
   getCompleteHistory: vi.fn(),
 }));
 
-const queryClient = new QueryClient();
+const createWrapper = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
 
-const wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
+  const wrapper = ({ children }: PropsWithChildren) => (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
+
+  return { wrapper, queryClient };
+};
 
 describe('useOrderCompleteHistory', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    queryClient.clear();
   });
 
   it('should return complete order history when inputs are valid', async () => {
+    const { wrapper } = createWrapper();
+
     const mockedHistory: OrderHistory[] = [
       { date: '2025-10-22', label: 'Created' },
       { date: '2025-10-23', label: 'Processed' },
     ];
+
     vi.mocked(getCompleteHistory).mockResolvedValue(mockedHistory);
 
     const { result } = renderHook(() => useOrderCompleteHistory(1, 'processed', '2025-10-22'), {
       wrapper,
     });
 
-    await waitFor(() => !result.current.isLoading);
+    // wait for the query to actually succeed
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(mockedHistory);
     expect(result.current.error).toBeNull();
-    expect(result.current.isLoading).toBe(false);
+    expect(getCompleteHistory).toHaveBeenCalledTimes(1);
   });
 
   it('should not run the query when any input is undefined', () => {
+    const { wrapper } = createWrapper();
+
     const { result } = renderHook(
       () =>
         useOrderCompleteHistory(
@@ -51,12 +66,11 @@ describe('useOrderCompleteHistory', () => {
           undefined as unknown as string,
           undefined as unknown as string,
         ),
-      {
-        wrapper,
-      },
+      { wrapper },
     );
 
     expect(result.current.data).toBeUndefined();
     expect(result.current.isLoading).toBe(false);
+    expect(getCompleteHistory).not.toHaveBeenCalled();
   });
 });
