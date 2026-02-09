@@ -14,6 +14,7 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 
 import ngOvhApiWrappers from '@ovh-ux/ng-ovh-api-wrappers';
+import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import ovhManagerSms from '@ovh-ux/manager-sms';
 
 export default (containerEl, environment) => {
@@ -29,6 +30,7 @@ export default (containerEl, environment) => {
         ovhManagerSms,
         'pascalprecht.translate',
         uiRouter,
+        ngPaginationFront,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )
@@ -37,6 +39,19 @@ export default (containerEl, environment) => {
         $urlRouterProvider.otherwise('/sms');
       },
     )
+    .constant('CHANGELOG', {
+      sms: {
+        links: {
+          changelog:
+            'https://github.com/orgs/ovh/projects/18/views/2?pane=info&sliceBy%5Bvalue%5D=VoIP',
+          roadmap:
+            'https://github.com/orgs/ovh/projects/18/views/1?pane=info&sliceBy%5Bvalue%5D=VoIP',
+          'feature-request':
+            'https://github.com/ovh/collaborative-tools-roadmap/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=',
+        },
+        chapters: ['telecom', 'sms', ''],
+      },
+    })
     .run(
       /* @ngInject */ ($translate) => {
         let lang = $translate.use();
