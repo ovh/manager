@@ -2,14 +2,14 @@ import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import { changeInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
 
@@ -110,9 +110,13 @@ describe('EditMetadataDrawerForm component test suite', () => {
       expect(input1).toBeInTheDocument();
       expect(input1).toHaveValue(mockSecretConfig.deactivateVersionAfter.value);
 
-      const input2 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS);
-      expect(input2).toBeInTheDocument();
-      expect(input2).toHaveValue(mockSecretConfig.maxVersions.value);
+      // For ODS19 Quantity component, the test ID is on the wrapper, but the value is on the inner input
+      const quantityWrapper = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS);
+      expect(quantityWrapper).toBeInTheDocument();
+      // Find the actual input element inside the Quantity component
+      const input2 = within(quantityWrapper).getByRole('spinbutton');
+      // HTML input values are strings, so convert the number to string for comparison
+      expect(input2).toHaveValue(String(mockSecretConfig.maxVersions.value));
 
       const input3 = screen.getByRole('radio', {
         name: allLabels.secretManager.activated,
@@ -241,7 +245,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const user = userEvent.setup();
       const { container } = await renderComponent();
 
-      await changeOdsInputValueByTestId(
+      await changeInputValueByTestId(
         SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
         'invalid-duration',
       );
