@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { RadioGroup } from '@ovhcloud/ods-react';
+import { RadioGroup, Text } from '@ovhcloud/ods-react';
 
 import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { LocalizationCard } from '@/components/new-lib/localizationCard/LocalizationCard.component';
@@ -60,7 +60,8 @@ export const MacroRegionSelection = () => {
 
   return (
     <section>
-      <div className="flex justify-between py-5">
+      <div className="flex flex-col justify-between gap-4 py-5">
+        <Text preset="heading-4">{t('create:localisation.macroRegion.title')}</Text>
         <ContinentSelection />
       </div>
       {selectedMacroRegion && (

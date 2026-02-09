@@ -65,6 +65,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </div>
   ),
+  Text: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);

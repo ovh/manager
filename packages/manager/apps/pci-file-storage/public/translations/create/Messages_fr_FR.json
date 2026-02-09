@@ -30,8 +30,11 @@
         }
       }
     },
+    "macroRegion": {
+      "title": "Choisissez une localisation"
+    },
     "continents": {
-      "label": "",
+      "label": "Sélectionner une zone géographique",
       "options": {
         "all": "Tous",
         "asia_oceania": "Asie-Pacifique",
