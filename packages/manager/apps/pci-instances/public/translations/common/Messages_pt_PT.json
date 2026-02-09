@@ -11,7 +11,7 @@
   "pci_instances_common_search": "Procurar",
   "pci_instances_common_instance_title": "Instância",
   "pci_instances_common_instance_name": "Nome da instância",
-  "pci_instances_common_help": "Ajudas",
+  "pci_instances_common_help": "Ajuda",
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
   "pci_instances_common_instance_region_deployment_mode": "Região 1-AZ",
   "pci_instances_common_instance_region-3-az_deployment_mode": "Região 3-AZ",

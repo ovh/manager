@@ -196,9 +196,8 @@ export const useCartItems = (): TCartItems => {
                     'creation:pci_instance_creation_network_gateway_title',
                   )}
                   {...(privateNetwork.gatewayPrice && {
-                    price: `${getTextPrice(
-                      privateNetwork.gatewayPrice,
-                    )} ${priceUnit}`,
+                    price: `${getTextPrice(privateNetwork.gatewayPrice)}`,
+                    unit: priceUnit,
                   })}
                 />
               )}
@@ -215,7 +214,7 @@ export const useCartItems = (): TCartItems => {
           id: 'publicNetwork',
           name: t('creation:pci_instance_creation_cart_public_network_title'),
           description: (
-            <div className="w-full">
+            <div>
               <CartOptionDetailItem
                 label={
                   quantity > 1

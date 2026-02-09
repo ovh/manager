@@ -59,7 +59,7 @@ export function useFlavorCommon() {
               <Trans
                 t={t}
                 i18nKey="pci_instance_creation_flavor_unavailable_help"
-                components={{ 1: <span className="font-semibold" /> }}
+                components={{ sb: <span className="font-semibold" /> }}
               />
             ) : (
               t('pci_instance_creation_flavor_unavailable_quota_help')

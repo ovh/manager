@@ -54,7 +54,7 @@
   "pci_instance_creation_table_header_price_monthly_unit": "HT/mois",
   "pci_instance_creation_table_header_price_ht_by_month": "Prix HT/mois",
   "pci_instance_creation_flavor_unavailable": "Indisponible",
-  "pci_instance_creation_flavor_unavailable_help": "Ce modèle n'est pas disponible dans votre région sélectionnée. <1>Vous pouvez toutefois le sélectionner, mais vous devrez choisir une autre région pour ce modèle.</1>",
+  "pci_instance_creation_flavor_unavailable_help": "Ce modèle n'est pas disponible dans votre région sélectionnée. <sb>Vous pouvez toutefois le sélectionner, mais vous devrez choisir une autre région pour ce modèle.</sb>",
   "pci_instance_creation_flavor_unavailable_quota": "Quota indisponible",
   "pci_instance_creation_flavor_unavailable_quota_help": "Votre quota ne vous permet pas de choisir ce modèle d'instance. Veuillez augmenter votre quota.",
   "pci_instance_creation_choose_availabilityZone_title": "Choisissez votre zone de disponibilité",
