@@ -23,11 +23,17 @@ const ServicesBaseLayout = React.lazy(
 const OnboardingServiceLayout = React.lazy(
   () => import('@/pages/settings/services/onboarding/OnboardingService.layout'),
 );
+const ManagedDashboardsLayout = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/ManagedDashboards.layout'),
+);
 const OnboardingManagedDashboardsLayout = React.lazy(
   () => import('@/pages/settings/managed-dashboards/onboarding/OnboardingManagedDashboards.layout'),
 );
 const OnboardingManagedDashboardsPage = React.lazy(
   () => import('@/pages/settings/managed-dashboards/onboarding/OnboardingManagedDashboards.page'),
+);
+const ManagedDashboardsListingPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/listing/ManagedDashboardsListing.page'),
 );
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
@@ -129,6 +135,10 @@ export default (
                 },
               }}
             />
+          </Route>
+          {/* ManagedDashboard routes with ManagedDashboard layout*/}
+          <Route path={subroutes.managedDashboards} Component={ManagedDashboardsLayout}>
+            <Route path="" Component={ManagedDashboardsListingPage}></Route>
           </Route>
         </Route>
         {/* Metrics route */}
