@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.33.2...@ovh-ux/manager-pci-object-storage-app@0.34.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* **pci.os:** typo in onboarding page ([0fff2cf](https://github.com/ovh/manager/commit/0fff2cf4e5bfb1bc00683ca893c6ef9bd2de622a)), closes [#DATATR-2916](https://github.com/ovh/manager/issues/DATATR-2916)
+
+
+### Features
+
+* **pci.os:** object pagination ([885eb77](https://github.com/ovh/manager/commit/885eb77ce73899cd1c6bc38618a62df12c8320ac)), closes [#DATATR-1234](https://github.com/ovh/manager/issues/DATATR-1234)
+
+
+
+
+
 ## [0.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.33.1...@ovh-ux/manager-pci-object-storage-app@0.33.2) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

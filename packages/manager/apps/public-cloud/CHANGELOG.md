@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.11.1...@ovh-ux/manager-public-cloud@7.12.0) (2026-02-09)
+
+
+### Features
+
+* **pci.db:** add deeplink for clickhouse ([25d0d31](https://github.com/ovh/manager/commit/25d0d31fdaa478c3d23dc4083eaef15ce9b55a58)), closes [#DATATR-2910](https://github.com/ovh/manager/issues/DATATR-2910)
+
+
+
+
+
 ## [7.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@7.11.0...@ovh-ux/manager-public-cloud@7.11.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-public-cloud
