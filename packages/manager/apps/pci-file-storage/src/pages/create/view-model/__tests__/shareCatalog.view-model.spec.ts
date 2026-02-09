@@ -202,17 +202,17 @@ describe('share catalog selectors', () => {
       {
         deploymentModes: ['region'] as TDeploymentMode[],
         expected: [
+          { labelKey: 'localisation.continents.options.all', value: 'all' },
           { labelKey: 'localisation.continents.options.Europe', value: 'Europe' },
           { labelKey: 'localisation.continents.options.Asia', value: 'Asia' },
-          { labelKey: 'localisation.continents.options.all', value: 'all' },
         ],
       },
       {
         deploymentModes: ['region-3-az', 'localzone'] as TDeploymentMode[],
         expected: [
+          { labelKey: 'localisation.continents.options.all', value: 'all' },
           { labelKey: 'localisation.continents.options.Europe', value: 'Europe' },
           { labelKey: 'localisation.continents.options.North America', value: 'North America' },
-          { labelKey: 'localisation.continents.options.all', value: 'all' },
         ],
       },
     ])(
