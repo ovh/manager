@@ -10,7 +10,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
   assertDrawerVisibility,
-  changeOdsInputValueByTestId,
+  changeInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -80,7 +80,7 @@ describe('Edit Custom Metadata Drawer page test suite', () => {
     ).toBeInTheDocument();
 
     // Change a value in the KeyValuesEditor
-    await changeOdsInputValueByTestId(
+    await changeInputValueByTestId(
       KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(0),
       'updated-value',
     );
