@@ -1,19 +1,12 @@
 import { render } from '@testing-library/react';
-import { vi } from 'vitest';
 
+import { queryKeys } from '@/data/queries/queryKeys';
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
+import { VAULT_PLAN_CODE } from '@/module.constants';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 import { BillingType } from '../BillingType.component';
-
-const { useQuery } = vi.hoisted(() => ({
-  useQuery: vi.fn(),
-}));
-
-vi.mock('@tanstack/react-query', () => {
-  return {
-    useQuery: useQuery,
-  };
-});
 
 vi.mock('@/hooks/useRequiredParams', () => {
   return {
@@ -23,16 +16,16 @@ vi.mock('@/hooks/useRequiredParams', () => {
   };
 });
 
-vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
-  return {
-    useGetServiceConsumptionOptions: vi.fn().mockReturnValue(vi.fn()),
-  };
-});
-
 describe('BillingType component a11y', () => {
   it('Should render BillingType component', async () => {
-    useQuery.mockReturnValue({ data: [], isPending: false });
-    const { container } = render(<BillingType />);
+    const queryClient = createQueryClientTest();
+    queryClient.setQueryData(queryKeys.consumption.byResource(mockVaults[0]!.id), [
+      { planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €' } },
+    ]);
+
+    const wrapper = await testWrapperBuilder().withQueryClient(queryClient).build();
+
+    const { container } = render(<BillingType />, { wrapper });
 
     await expect(container).toBeAccessible();
   });

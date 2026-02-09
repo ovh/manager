@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -8,15 +9,16 @@ import { Datagrid, Links } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ReloadButton } from '@/components/ReloadButton/ReloadButton.component';
-import { SERVICE_CONSUMPTION_QUERY_KEY } from '@/data/hooks/consumption/useServiceConsumption';
-import { BACKUP_VAULTS_LIST_QUERY_KEY, useBackupVaultsList } from '@/data/hooks/vaults/getVault';
+import { queryKeys } from '@/data/queries/queryKeys';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 
 import { useColumns } from './_hooks/useBillingListingColumns.hooks';
 
 export default function ListingPage() {
   const { t } = useTranslation(BACKUP_AGENT_NAMESPACES.VAULT_LISTING);
-  const { data, isPending } = useBackupVaultsList();
+  const queryClient = useQueryClient();
+  const { data, isPending } = useQuery(vaultsQueries.withClient(queryClient).list());
   const columns = useColumns();
   const guide = useGuideUtils();
 
@@ -44,7 +46,7 @@ export default function ListingPage() {
             <div className="flex justify-end" role="toolbar" aria-label={t('more_action')}>
               <ReloadButton
                 isLoading={isPending}
-                queryKeys={[BACKUP_VAULTS_LIST_QUERY_KEY, SERVICE_CONSUMPTION_QUERY_KEY]}
+                queryKeys={[queryKeys.vaults.all, queryKeys.consumption.all]}
               />
             </div>
           }

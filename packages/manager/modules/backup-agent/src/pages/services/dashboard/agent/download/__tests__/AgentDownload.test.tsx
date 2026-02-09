@@ -1,18 +1,17 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { queryKeys } from '@/data/queries/queryKeys';
 import { BACKUP_AGENT_NAMESPACES } from '@/lib';
 import { mockAgentDownloadLinks } from '@/mocks/agents/agentDownloadLinks';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import DownloadAgentPage from '@/pages/services/dashboard/agent/download/AgentDownload.page';
-
-const { useBackupVSPCTenantAgentDownloadLinkMock } = vi.hoisted(() => ({
-  useBackupVSPCTenantAgentDownloadLinkMock: vi.fn(),
-}));
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 const codeTestId = 'ods-code';
 
-// --- Mock translation ---
+// --- Mock ODS ---
 vi.mock('@ovhcloud/ods-components/react', async () => {
   const actual = await vi.importActual('@ovhcloud/ods-components/react');
 
@@ -115,16 +114,6 @@ vi.mock('@/hooks/useRequiredParams', () => {
   };
 });
 
-vi.mock('@/data/hooks/agents/getDownloadLinkAgent', () => {
-  return {
-    useBackupVSPCTenantAgentDownloadLink: useBackupVSPCTenantAgentDownloadLinkMock,
-  };
-});
-
-vi.mock('@/data/hooks/tenants/useVspcTenantId', () => ({
-  useVspcTenantId: vi.fn().mockReturnValue({ data: TENANTS_MOCKS[0]!.id }),
-}));
-
 const getSelectOs = () =>
   screen.getByRole('combobox', { name: `translated_${BACKUP_AGENT_NAMESPACES.AGENT}:select_os` });
 
@@ -132,12 +121,14 @@ describe('AgentDownload', () => {
   it('Should render AgentDownload component', async () => {
     const emptyLinkLabel = 'curl -O "..."';
 
+    const queryClient = createQueryClientTest();
+    queryClient.setQueryData(queryKeys.agents.downloadLink(), mockAgentDownloadLinks);
+
+    const wrapper = await testWrapperBuilder().withQueryClient(queryClient).build();
+
     const user = userEvent.setup();
-    useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
-      data: mockAgentDownloadLinks.linuxUrl,
-      isLoading: false,
-    });
-    render(<DownloadAgentPage />);
+
+    render(<DownloadAgentPage />, { wrapper });
 
     await waitFor(() =>
       expect(
@@ -147,34 +138,17 @@ describe('AgentDownload', () => {
 
     expect(getSelectOs()).toBeVisible();
 
-    expect(getSelectOs()).toHaveValue('LINUX');
-
-    expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
-      os: null,
-    });
-
+    // Initially no OS selected → download code shows "..."
     expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(emptyLinkLabel);
 
-    // Prepare mock for change value
-    useBackupVSPCTenantAgentDownloadLinkMock.mockReturnValue({
-      data: mockAgentDownloadLinks.windowsUrl,
-      isLoading: false,
-    });
-    useBackupVSPCTenantAgentDownloadLinkMock.mockClear();
-
-    // Test update value on click on windows
+    // Select WINDOWS
     await user.selectOptions(getSelectOs(), ['WINDOWS']);
 
-    expect(useBackupVSPCTenantAgentDownloadLinkMock).toHaveBeenCalledWith({
-      os: 'WINDOWS',
-    });
-
-    expect(screen.getAllByTestId(codeTestId)[0]).not.toHaveTextContent(
-      mockAgentDownloadLinks.linuxUrl,
-    );
-
-    expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(
-      mockAgentDownloadLinks.windowsUrl,
+    // After selecting WINDOWS, the download link should show the windows URL
+    await waitFor(() =>
+      expect(screen.getAllByTestId(codeTestId)[0]).toHaveTextContent(
+        mockAgentDownloadLinks.windowsUrl,
+      ),
     );
   });
 });
