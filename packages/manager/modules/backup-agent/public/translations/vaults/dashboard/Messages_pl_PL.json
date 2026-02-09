@@ -9,14 +9,18 @@
   "submitButton": "Wyślij",
   "successMessage": "Twoja wiadomość została wysłana.",
   "errors": {
-    "emailRequired": "Wpisz adres e-mail.",
-    "emailInvalid": "Wpisz poprawny adres e-mail.",
-    "subjectRequired": "Wpisz tytuł wiadomości.",
-    "messageRequired": "Wpisz wiadomość."
+    "emailRequired": "E-mail jest obowiązkowy.",
+    "emailInvalid": "Prosimy o wprowadzenie poprawnego adresu e-mail.",
+    "subjectRequired": "Temat jest obowiązkowy.",
+    "messageRequired": "Wiadomość jest obowiązkowa."
   },
   "general-information": "Informacje ogólne",
   "help": "Pomoc",
   "type_billing": "Sposób rozliczania usługi",
   "consumption_tooltip": "Nie możesz samodzielnie dodać przestrzeni dyskowej. Aby zwiększyć przestrzeń dyskową, skontaktuj się z pomocą techniczną.",
-  "vault_price": "Czyli {{vaultPrice}} netto/m-c"
+  "vault_price": "Czyli {{vaultPrice}} netto/m-c",
+  "immutability": "Niezmienność",
+  "immutability_duration_enabled": "{{duration}} dni aktywowane",
+  "encryption": "Szyfrowanie Vault",
+  "encryption_enabled": "{{encryption}} aktywowane"
 }

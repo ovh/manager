@@ -9,14 +9,18 @@
   "submitButton": "Absenden",
   "successMessage": "Ihre Anfrage wurde erfolgreich gesendet.",
   "errors": {
-    "emailRequired": "Die E-Mail-Adresse muss angegeben werden.",
-    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-    "subjectRequired": "Der Betreff muss angegeben werden.",
-    "messageRequired": "Es muss eine Nachricht angegeben werden."
+    "emailRequired": "Die E-Mail ist erforderlich.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+    "subjectRequired": "Der Betreff ist erforderlich.",
+    "messageRequired": "Die Nachricht ist erforderlich."
   },
   "general-information": "Allgemeine Informationen",
   "help": "Hilfe",
   "type_billing": "Abrechnungstyp",
   "consumption_tooltip": "Der zusätzliche Speicher ist nicht zum Self-Service verfügbar. Um Ihre Speicherkapazität zu erhöhen, wenden Sie sich bitte an den Support.",
-  "vault_price": "Das entspricht {{vaultPrice}} zzgl. MwSt./Monat"
+  "vault_price": "Das entspricht {{vaultPrice}} zzgl. MwSt./Monat",
+  "immutability": "Unveränderlichkeit",
+  "immutability_duration_enabled": "{{duration}} Tage aktiviert",
+  "encryption": "Verschlüsselung des Tresors",
+  "encryption_enabled": "{{encryption}} aktiviert"
 }

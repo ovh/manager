@@ -9,14 +9,18 @@
   "submitButton": "Send",
   "successMessage": "Your request has been sent.",
   "errors": {
-    "emailRequired": "You need to enter an email address",
+    "emailRequired": "The email is mandatory.",
     "emailInvalid": "Please enter a valid email address.",
-    "subjectRequired": "You need to enter a subject.",
-    "messageRequired": "You need to write a message."
+    "subjectRequired": "The subject is mandatory.",
+    "messageRequired": "The message is mandatory."
   },
   "general-information": "General information",
   "help": "Help",
   "type_billing": "Billing type",
   "consumption_tooltip": "Additional storage is not available through self-service. To increase your storage capacity, please contact support.",
-  "vault_price": "I.E. {{vaultPrice}} ex. VAT/month"
+  "vault_price": "I.E. {{vaultPrice}} ex. VAT/month",
+  "immutability": "Immutability",
+  "immutability_duration_enabled": "{{duration}} days activated",
+  "encryption": "Vault encryption",
+  "encryption_enabled": "{{encryption}} activated"
 }
