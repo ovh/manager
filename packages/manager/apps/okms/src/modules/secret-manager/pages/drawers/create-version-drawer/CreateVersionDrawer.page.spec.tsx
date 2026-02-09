@@ -21,21 +21,6 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListCreateVersionDrawer(
   1,
 );
 
-// Mocking ODS components
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
-    '@/common/utils/tests/odsMocks'
-  );
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsInput: vi.fn(odsInputMock),
-    OdsTextarea: vi.fn(odsTextareaMock),
-    OdsSwitch: vi.fn(odsSwitchMock),
-    OdsSwitchItem: vi.fn(odsSwitchItemMock),
-  };
-});
-
 /**
  * Renders the create version drawer page
  */
