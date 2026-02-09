@@ -21,7 +21,7 @@ const OnboardingService: React.FC = () => {
         </Text>
       }
       img={ONBOARDING_IMG_SRC}
-      orderButtonLabel={t('metrics:onboarding.orderButtonLabel')}
+      orderButtonLabel={t('metrics:onboarding.orderButton')}
       orderHref={orderLink}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={'https://www.ovh.com'} // TODO

@@ -37,7 +37,7 @@ const TenantsOnboarding: React.FC = () => {
           iamActions: IAM_ACTIONS.CREATE_TENANT,
           displayTooltip: true,
         }}
-        orderButtonLabel={t('tenants:onboarding.orderButtonLabel')}
+        orderButtonLabel={t('tenants:onboarding.orderButton')}
         onOrderButtonClick={() =>
           navigate(getTenantCreationUrl({ resourceName: selectedService?.id ?? '' }))
         }

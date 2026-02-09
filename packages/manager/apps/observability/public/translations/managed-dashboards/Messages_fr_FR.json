@@ -1,0 +1,10 @@
+{
+  "title":  "Tableau de bord managés",
+  "description": "Les tableaux de bord managés vous permettent de visualiser et d'analyser simplement vos données d'Observabilité, ainsi que de configurer des alertes avec la plateforme Grafana®.",
+  "description_bis": "Vous pouvez pré-configurer les tenants de votre service Observabilité que vous souhaitez retrouver comme data source, et définir les droits d'accès à l'instance via les politiques d'accès de l'IAM d'OVHcloud.",  
+  "onboarding": {
+    "title":  "Tableau de bord managés avec la plateforme Grafana®",
+    "description": "Les tableaux de bord managés vous permettent de visualiser et d'analyser simplement vos données d'Observabilité, ainsi que de configurer des alertes avec la plateforme Grafana®. Vous pouvez pré-configurer les tenants de votre service Observabilité que vous souhaitez retrouver comme source de données et définir les droits d'accès à l'instance via les politiques d'accès de l'IAM d'OVHcloud.",
+    "orderButton": "Ajouter une instance"
+  }
+}
