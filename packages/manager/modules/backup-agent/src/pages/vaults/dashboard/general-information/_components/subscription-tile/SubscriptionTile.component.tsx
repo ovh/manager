@@ -1,3 +1,4 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsIcon, OdsSkeleton, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
@@ -6,7 +7,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 
 import { BillingType, ConsumptionDetails, ConsumptionRegionsList } from './_components';
 
@@ -22,7 +23,10 @@ export function SubscriptionTile({ vaultId }: SubscriptionTileProps) {
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
   ]);
-  const { isPending, data: vault } = useBackupVaultDetails({ vaultId });
+  const queryClient = useQueryClient();
+  const { isPending, data: vault } = useQuery(
+    vaultsQueries.withClient(queryClient).detail(vaultId),
+  );
   const tooltipId = 'consumption-tooltip';
 
   return (
