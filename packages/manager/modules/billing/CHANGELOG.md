@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.63.0...@ovh-ux/manager-billing@0.64.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1079] ([0682381](https://github.com/ovh/manager/commit/0682381dd2365b1345da29123925dbef14bfc593))
+
+
+### Features
+
+* **billing:** add voip consumption in billing manager view ([6229c69](https://github.com/ovh/manager/commit/6229c69e9eea67e897b245edf912181ee025bb8e)), closes [#PRDCOL-379](https://github.com/ovh/manager/issues/PRDCOL-379)
+
+
+
+
+
 # [0.63.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.62.3...@ovh-ux/manager-billing@0.63.0) (2026-02-02)
 
 
