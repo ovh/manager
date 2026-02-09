@@ -1,5 +1,5 @@
 import { managerRootPath } from '../../playbook/playbook-config.js';
-import { buildNxCiArgs } from '../utils/nx-utils.js';
+import { buildNxCiArgs, isNxRunner } from '../utils/nx-utils.js';
 import {
   resolveApplicationBuildFilter,
   resolveModuleBuildFilter,
@@ -47,7 +47,7 @@ async function withWorkspaces(fn) {
  */
 function getCiRunnerArgs(runner, task, options = []) {
   // Turbo and other runners: keep arguments as-is
-  if (runner !== 'nx') {
+  if (!isNxRunner(runner)) {
     return ['run', task, ...options];
   }
 
@@ -67,7 +67,7 @@ function getCiRunnerArgs(runner, task, options = []) {
  * @returns {string[]}
  */
 function getSingleRunnerArgs(runner, task, projectOrFilter, concurrency = 1) {
-  if (runner === 'nx') {
+  if (isNxRunner(runner)) {
     // Assumption: projectOrFilter is the Nx project name
     return ['run', `${projectOrFilter}:${task}`, `--parallel=${concurrency}`];
   }
@@ -95,7 +95,7 @@ function getSingleRunnerArgs(runner, task, projectOrFilter, concurrency = 1) {
  * @returns {string[]}
  */
 function getAllRunnerArgs(runner, task, concurrency = 1) {
-  if (runner === 'nx') {
+  if (isNxRunner(runner)) {
     return ['run-many', `--target=${task}`, '--all', `--parallel=${concurrency}`];
   }
 
