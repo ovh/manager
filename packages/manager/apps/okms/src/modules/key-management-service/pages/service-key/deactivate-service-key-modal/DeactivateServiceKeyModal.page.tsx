@@ -56,12 +56,6 @@ export const DisableServiceKeyModal = () => {
 
   const closeModal = () => navigate('..');
 
-  const handleClose = (detail: ModalOpenChangeDetail) => {
-    if (!detail.open) {
-      closeModal();
-    }
-  };
-
   const { updateKmsServiceKey, isPending } = useUpdateOkmsServiceKey({
     okmsId,
     keyId,
@@ -101,6 +95,22 @@ export const DisableServiceKeyModal = () => {
     });
   };
 
+  const handleCancel = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['cancel'],
+    });
+    closeModal();
+  };
+
+  const handleClose = (detail: ModalOpenChangeDetail) => {
+    if (!detail.open) {
+      closeModal();
+    }
+  };
+
   return (
     <Modal onOpenChange={handleClose} open>
       <ModalContent color="warning" dismissible>
@@ -134,25 +144,13 @@ export const DisableServiceKeyModal = () => {
             </Select>
           </FormField>
           <div className="flex justify-end gap-2">
-            <Button
-              variant="outline"
-              color="primary"
-              onClick={() => {
-                trackClick({
-                  location: PageLocation.popup,
-                  buttonType: ButtonType.button,
-                  actionType: 'action',
-                  actions: ['cancel'],
-                });
-                closeModal();
-              }}
-            >
+            <Button variant="outline" color="critical" onClick={handleCancel}>
               {tCommon('key_management_service_cancel')}
             </Button>
             <Button
               loading={isPending}
               disabled={!deactivationReason}
-              color="primary"
+              color="critical"
               onClick={handleSubmit}
               aria-label="edit-name-okms"
             >

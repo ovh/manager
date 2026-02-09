@@ -28,7 +28,7 @@ describe('Credential delete modal test suite', () => {
     await renderTestApp(mockPageUrl);
 
     // Check modal is opened
-    await assertModalVisibility({ role: 'alertdialog' });
+    await assertModalVisibility();
   });
 
   test('should navigate and show a notification after successful deletion', async () => {
@@ -36,7 +36,7 @@ describe('Credential delete modal test suite', () => {
     await renderTestApp(mockPageUrl);
 
     // Wait for modal to open
-    const modal = await assertModalVisibility({ role: 'alertdialog' });
+    const modal = await assertModalVisibility();
 
     const submitButton = within(modal).getByRole('button', {
       name: labels.common.actions.delete,
@@ -74,7 +74,7 @@ describe('Credential delete modal test suite', () => {
     });
 
     // Wait for modal to open
-    const modal = await assertModalVisibility({ role: 'alertdialog' });
+    const modal = await assertModalVisibility();
 
     let submitButton = within(modal).getByRole('button', {
       name: labels.common.actions.delete,

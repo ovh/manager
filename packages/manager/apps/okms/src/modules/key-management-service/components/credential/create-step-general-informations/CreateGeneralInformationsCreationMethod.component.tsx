@@ -53,8 +53,8 @@ export const CreateGeneralInformationsCreationMethod = ({
   return (
     <>
       <FormField>
-        <FormFieldLabel className="mb-2 space-y-2">
-          <Text className="block" preset="heading-5">
+        <FormFieldLabel className="mb-2 block space-y-2">
+          <Text preset="heading-5">
             {t('key_management_service_credential_create_general_creation_method_title')}
           </Text>
           <Text preset="paragraph">
@@ -117,8 +117,8 @@ export const CreateGeneralInformationsCreationMethod = ({
       </FormField>
       {isCustomCsr ? (
         <FormField invalid={!!credentialCreationMethodError}>
-          <FormFieldLabel className="mb-2 space-y-2">
-            <Text className="block" preset="heading-5">
+          <FormFieldLabel className="mb-2 block space-y-2">
+            <Text preset="heading-5">
               {t('key_management_service_credential_create_general_information_csr_title')}
             </Text>
             <Text preset="paragraph">
@@ -141,7 +141,7 @@ export const CreateGeneralInformationsCreationMethod = ({
         </FormField>
       ) : (
         <FormField className="flex flex-col gap-4">
-          <FormFieldLabel className="flex flex-col gap-2">
+          <FormFieldLabel className="block space-y-2">
             <Text className="block" preset="heading-5">
               {t(
                 'key_management_service_credential_create_general_information_certificate_type_title',

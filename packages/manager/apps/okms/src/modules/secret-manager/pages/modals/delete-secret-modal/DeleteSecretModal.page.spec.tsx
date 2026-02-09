@@ -30,7 +30,7 @@ describe('Delete secret modal test suite', () => {
   it('should display the delete modal', async () => {
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    await assertModalVisibility();
 
     const title = labels.secretManager.delete_secret_modal_title;
 
@@ -46,7 +46,7 @@ describe('Delete secret modal test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    await assertModalVisibility();
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
@@ -66,7 +66,7 @@ describe('Delete secret modal test suite', () => {
       isDeleteSecretKO: true,
     });
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    await assertModalVisibility();
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,

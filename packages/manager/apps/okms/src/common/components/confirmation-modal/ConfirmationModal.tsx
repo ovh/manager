@@ -4,8 +4,8 @@ import {
   Message,
   Modal,
   ModalBody,
-  ModalColor,
   ModalContent,
+  ModalHeader,
   ModalOpenChangeDetail,
   Spinner,
   Text,
@@ -19,7 +19,6 @@ type ConfirmationModalProps = {
   message?: string;
   onDismiss: () => void;
   onConfirm?: () => void;
-  type?: ModalColor;
   isLoading?: boolean;
   confirmButtonLabel?: string;
   isConfirmButtonLoading?: boolean;
@@ -31,7 +30,6 @@ type ConfirmationModalProps = {
 export const ConfirmationModal = ({
   title,
   message,
-  type = 'critical',
   onDismiss,
   isLoading,
   confirmButtonLabel,
@@ -51,7 +49,10 @@ export const ConfirmationModal = ({
 
   return (
     <Modal data-testid="confirmation-modal" onOpenChange={handleClose} open>
-      <ModalContent color={type} dismissible data-testid="confirmation-modal">
+      <ModalContent dismissible data-testid="confirmation-modal">
+        <ModalHeader>
+          <Text preset="heading-4">{title}</Text>
+        </ModalHeader>
         <ModalBody className="space-y-4">
           {error && (
             <Message
@@ -71,7 +72,6 @@ export const ConfirmationModal = ({
           )}
           {!isLoading && (
             <>
-              <Text preset="heading-4">{title}</Text>
               <Text preset="paragraph">{message}</Text>
               <div className="flex justify-end gap-2">
                 <Button

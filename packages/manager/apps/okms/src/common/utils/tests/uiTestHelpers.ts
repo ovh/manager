@@ -24,21 +24,17 @@ export const assertClipboardVisibility = async (value: string, timeout?: number)
   return clipboardInput;
 };
 
-type AssertModalVisibilityProps = {
-  role: 'alertdialog' | 'dialog';
+type AssertModalVisibilityParams = {
   state?: 'visible' | 'hidden';
   timeout?: number;
 };
 
-export const assertModalVisibility = async ({
-  role,
-  state = 'visible',
-  timeout = TIMEOUT.DEFAULT,
-}: AssertModalVisibilityProps) => {
+export const assertModalVisibility = async (params?: AssertModalVisibilityParams) => {
+  const { state = 'visible', timeout = TIMEOUT.DEFAULT } = params ?? {};
   let modal: HTMLElement | null = null;
   await waitFor(
     () => {
-      modal = screen.queryByRole(role);
+      modal = screen.queryByRole('dialog');
       if (state === 'visible') {
         expect(modal).toBeInTheDocument();
       } else {
@@ -50,10 +46,8 @@ export const assertModalVisibility = async ({
   return modal as unknown as HTMLElement;
 };
 
-export const assertDrawerVisibility = async ({
-  state = 'visible',
-  timeout = TIMEOUT.DEFAULT,
-}: Omit<AssertModalVisibilityProps, 'role'>) => {
+export const assertDrawerVisibility = async (params?: AssertModalVisibilityParams) => {
+  const { state = 'visible', timeout = TIMEOUT.DEFAULT } = params ?? {};
   let drawer: HTMLElement | null = null;
   await waitFor(
     () => {
