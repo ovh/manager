@@ -76,7 +76,7 @@ const Backup: FC<TBackupProps> = ({ microRegion }) => {
 
   return (
     <section>
-      <Divider spacing="64" />
+      <Divider spacing="48" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
           {t('creation:pci_instance_creation_backup_setting_title')}

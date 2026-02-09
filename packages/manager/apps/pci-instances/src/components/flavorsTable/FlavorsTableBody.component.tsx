@@ -13,6 +13,7 @@ type FlavorsTableBodyProps = {
   selectable: boolean;
   selectedRowId?: string | null;
   onClick?: (flavorName: string) => void;
+  emptyMessage?: string;
 };
 
 export const FlavorsTableBody = memo(
@@ -22,7 +23,23 @@ export const FlavorsTableBody = memo(
     selectable,
     onClick,
     selectedRowId,
+    emptyMessage,
   }: FlavorsTableBodyProps) => {
+    if (rows.length === 0 && emptyMessage) {
+      return (
+        <tbody>
+          <tr>
+            <td
+              colSpan={columns.length}
+              className="p-4 text-center text-[--ods-color-text-500]"
+            >
+              <Text>{emptyMessage}</Text>
+            </td>
+          </tr>
+        </tbody>
+      );
+    }
+
     return (
       <tbody>
         {rows.map((row) => {

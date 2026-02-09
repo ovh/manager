@@ -208,6 +208,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
               selectable
               selectedRowId={field.value}
               onRowClick={(flavorId) => handleSelect(field, flavorId)}
+              emptyMessage={t('creation:pci_instance_creation_flavor_no_results')}
             />
           </RadioGroup>
         )}

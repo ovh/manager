@@ -62,7 +62,7 @@ export const CreateInstanceForm = () => {
             </Text>
           </article>
           <Name />
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <Localization />
           <DeploymentModeSection />
           <LocalizationSelection />
@@ -72,12 +72,12 @@ export const CreateInstanceForm = () => {
           {!!availabilityZones.length && (
             <AvailabilityZoneSelection availabilityZones={availabilityZones} />
           )}
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <FlavorBlock />
           {microRegion && <DistributionImage microRegion={microRegion} />}
           {!isWindowsSelected && <SshKey />}
           {microRegion && <Backup microRegion={microRegion} />}
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <Network />
           {billingTypes.length > 1 && (
             <BillingChoice billingTypes={billingTypes} />
