@@ -9,7 +9,7 @@
   "submitButton": "Inviare",
   "successMessage": "La richiesta è stata inviata correttamente.",
   "errors": {
-    "emailRequired": "L'email è obbligatoria.",
+    "emailRequired": "L'email è obbligatorio.",
     "emailInvalid": "Inserisci un indirizzo email valido.",
     "subjectRequired": "L'oggetto è obbligatorio.",
     "messageRequired": "Il messaggio è obbligatorio."
@@ -18,5 +18,9 @@
   "help": "Aiuto",
   "type_billing": "Tipo di fatturazione",
   "consumption_tooltip": "Lo storage aggiuntivo non è disponibile in modalità self-service. Per aumentare la tua capacità di storage, contatta il supporto.",
-  "vault_price": "{{vaultPrice}} +IVA/mese"
+  "vault_price": "{{vaultPrice}} +IVA/mese",
+  "immutability": "Immutabilità",
+  "immutability_duration_enabled": "{{duration}} giorni attivato",
+  "encryption": "Crittografia del Vault",
+  "encryption_enabled": "{{encryption}} attivato"
 }
