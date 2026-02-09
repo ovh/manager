@@ -9,6 +9,8 @@ import React, {
   useState,
 } from 'react';
 
+export type MessageColor = OdsMessageColor;
+
 export type MessageOptions = {
   isDismissible?: boolean;
   includedSubRoutes?: string[];
@@ -27,6 +29,7 @@ type AddMessageProps = Omit<AddGenericMessageProps, 'type'>;
 
 export type MessageContextType = {
   messages: MessageType[];
+  addMessage: (props: AddGenericMessageProps) => number;
   addSuccess: (props: AddMessageProps) => number;
   addError: (props: AddMessageProps) => number;
   addWarning: (props: AddMessageProps) => number;
@@ -38,6 +41,7 @@ export type MessageContextType = {
 
 const MessageContext = createContext<MessageContextType>({
   messages: [],
+  addMessage: () => null,
   addSuccess: () => null,
   addError: () => null,
   addWarning: () => null,
@@ -70,6 +74,7 @@ export const MessageContextProvider: FC<PropsWithChildren> = ({ children }) => {
   const messageContextValue: MessageContextType = useMemo(
     () => ({
       messages,
+      addMessage,
       addSuccess: (props) => addMessage({ type: 'success', ...props }),
       addError: (props) => addMessage({ type: 'danger', ...props }),
       addInfo: (props) => addMessage({ type: 'information', ...props }),
