@@ -159,7 +159,7 @@ export const CreateKeyForm = ({
             </Button>
             <Button
               color="primary"
-              data-testid={CREATE_KEY_TEST_IDS.ctaConfirm}
+              data-testid={CREATE_KEY_TEST_IDS.buttonConfirm}
               onClick={handleSubmit}
               loading={isPending}
               disabled={!keyDisplayName || !!serviceKeyNameError || keyOperations?.length === 0}

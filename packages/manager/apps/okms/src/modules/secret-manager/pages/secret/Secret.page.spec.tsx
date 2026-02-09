@@ -6,11 +6,9 @@ import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/ver
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -25,7 +23,7 @@ describe('Secret page test suite', () => {
     await renderTestApp(mockPageUrl, { isSecretKO: true });
 
     // THEN
-    expect(await screen.findByAltText('OOPS', {}, WAIT_FOR_DEFAULT_OPTIONS)).toBeInTheDocument();
+    expect(await screen.findByAltText('OOPS', {}, { timeout: TIMEOUT.MEDIUM })).toBeInTheDocument();
   });
 
   it('should display the secret page', async () => {
@@ -69,18 +67,10 @@ describe('Secret page test suite', () => {
     );
 
     // Check labels appearing twice
-    expect(
-      await screen.findAllByText(
-        labels.common.dashboard.general_information,
-        {},
-        WAIT_FOR_DEFAULT_OPTIONS,
-      ),
-    ).toHaveLength(2);
+    expect(await screen.findAllByText(labels.common.dashboard.general_information)).toHaveLength(2);
 
     // Check labels appearing three times
-    expect(await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS)).toHaveLength(
-      3,
-    );
+    expect(await screen.findAllByText(mockSecret.path)).toHaveLength(3);
 
     // Check clipboard component
     await assertClipboardVisibility(mockSecret.iam.urn);
@@ -106,9 +96,7 @@ describe('Secret page test suite', () => {
       const user = userEvent.setup();
       await renderTestApp(mockPageUrl);
 
-      expect(
-        await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS),
-      ).toHaveLength(3);
+      expect(await screen.findAllByText(mockSecret.path)).toHaveLength(3);
 
       // WHEN
 
