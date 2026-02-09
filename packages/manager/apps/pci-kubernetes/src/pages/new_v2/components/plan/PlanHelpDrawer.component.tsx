@@ -67,8 +67,8 @@ export const PlanHelpDrawer = () => {
           <Text preset="heading-4" className="mt-9">
             {t(section.titleKey)}
           </Text>
-          {section.features.map((feature, index) => (
-            <Fragment key={index}>
+          {section.features.map((feature) => (
+            <Fragment key={feature.labelKey}>
               <Text preset="paragraph" className="mt-5">
                 <strong>{t(feature.labelKey)}</strong> {t(feature.textKey)}
               </Text>
