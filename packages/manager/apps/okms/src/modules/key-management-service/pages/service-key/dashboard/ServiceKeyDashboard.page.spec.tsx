@@ -52,7 +52,7 @@ describe('Service Key dashboard test suite', () => {
       timeout: TIMEOUT.MEDIUM,
     });
     await act(() => user.click(editNameButton));
-    await assertModalVisibility({ role: 'dialog' });
+    await assertModalVisibility();
 
     // Change the name of the service key
     const inputEditServiceKeyName = screen.getByLabelText('input-edit-service-key-name');
@@ -67,7 +67,7 @@ describe('Service Key dashboard test suite', () => {
     await act(() => user.click(validateButton));
 
     // Check for success message
-    await assertModalVisibility({ role: 'dialog', state: 'hidden' });
+    await assertModalVisibility({ state: 'hidden' });
     await assertTextVisibility(
       labels.serviceKeys['key_management_service_service-keys_update_name_success'],
     );

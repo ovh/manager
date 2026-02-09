@@ -53,7 +53,6 @@ export const OrderOkmsModalTermsAndConditions = ({
   return (
     <>
       <div className="flex flex-col gap-3 pb-6">
-        <Text preset="heading-4">{t('create_okms_terms_and_conditions_title')}</Text>
         <Text preset="paragraph">{t('create_okms_terms_and_conditions_description')}</Text>
         <div className="flex flex-col gap-2">
           {cart.contractList.map(({ name, url }) => (

@@ -110,7 +110,7 @@ describe('KMS dashboard test suite', () => {
     });
 
     // Wait for modal to open
-    await assertModalVisibility({ role: 'dialog' });
+    await assertModalVisibility();
 
     expect(await screen.findByText(labels.common.actions.modify_name)).toBeVisible();
   });

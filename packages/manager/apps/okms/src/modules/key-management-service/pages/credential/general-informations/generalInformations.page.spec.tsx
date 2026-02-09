@@ -42,7 +42,7 @@ describe('Credential general informations test suite', () => {
     const deleteButtonLabel = labels.credentials.key_management_service_credential_delete;
 
     // Check modal is closed
-    await assertModalVisibility({ role: 'alertdialog', state: 'hidden' });
+    await assertModalVisibility({ state: 'hidden' });
 
     // Wait for the delete button to be enabled by iam rights
     await waitFor(
@@ -66,6 +66,6 @@ describe('Credential general informations test suite', () => {
     });
 
     // Check modal is opened
-    await assertModalVisibility({ role: 'alertdialog', state: 'visible' });
+    await assertModalVisibility({ state: 'visible' });
   });
 });
