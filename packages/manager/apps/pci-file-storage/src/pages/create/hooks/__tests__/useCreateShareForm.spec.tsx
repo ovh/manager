@@ -8,6 +8,9 @@ import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import { TFirstAvailableLocation } from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
+vi.mock('@/pages/create/view-model/network.view-model', () => ({
+  generateAutoName: vi.fn((spec: string) => `${spec || ''}_09_02_2025`),
+}));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 

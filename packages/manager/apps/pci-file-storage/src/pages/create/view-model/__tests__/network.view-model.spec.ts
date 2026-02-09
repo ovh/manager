@@ -101,27 +101,27 @@ describe('network.view-model', () => {
       {
         description: 'should generate name with default specName',
         specName: undefined,
-        expectedPattern: /^share_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^share_2024_01_15$/,
       },
       {
         description: 'should generate name with provided specName',
         specName: 'publiccloud-share-standard1',
-        expectedPattern: /^publiccloud-share-standard1_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^publiccloud-share-standard1_2024_01_15$/,
       },
       {
         description: 'should sanitize special characters in specName',
         specName: 'share@#$% ^&*()name',
-        expectedPattern: /^share_+name_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^share_+name_2024_01_15$/,
       },
       {
         description: 'should truncate long specName to 200 characters',
         specName: 'a'.repeat(250),
-        expectedPattern: new RegExp(`^a{200}_\\d{2}_\\d{2}_\\d{4}$`),
+        expectedPattern: /^a{200}_2024_01_15$/,
       },
       {
         description: 'should handle empty string specName',
         specName: '',
-        expectedPattern: /^_\d{2}_\d{2}_\d{4}$/,
+        expectedPattern: /^_2024_01_15$/,
       },
     ])('$description', ({ specName, expectedPattern }) => {
       const fixedDate = new Date('2024-01-15T10:30:00Z');
@@ -130,7 +130,7 @@ describe('network.view-model', () => {
       const result = generateAutoName(specName);
 
       expect(result).toMatch(expectedPattern);
-      expect(result).toContain('15_01_2024');
+      expect(result).toContain('2024_01_15');
     });
   });
 });
