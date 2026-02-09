@@ -6,7 +6,7 @@ export const AdvancedParameters = () => {
 
   return (
     <section className="pt-4">
-      <Divider spacing="16" />
+      <Divider spacing="48" />
       <Text preset="heading-2">
         {t('pci_instances_creation_advanced_parameters')}
       </Text>
