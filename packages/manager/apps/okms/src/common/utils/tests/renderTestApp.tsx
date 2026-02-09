@@ -58,6 +58,7 @@ import {
   getVersionsMock,
   updateVersionMock,
 } from '@secret-manager/mocks/versions/versions.handler';
+import type { RenderResult } from '@testing-library/react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -111,7 +112,10 @@ export type RenderTestMockParams = GetOkmsMocksParams &
   CreateVersionMockParams &
   UpdateVersionMockParams;
 
-export const renderTestApp = async (initialRoute = '/', mockParams: RenderTestMockParams = {}) => {
+export const renderTestApp = async (
+  initialRoute = '/',
+  mockParams: RenderTestMockParams = {},
+): Promise<RenderResult> => {
   global.server?.resetHandlers(
     ...toMswHandlers(
       removeHandlersDelay([

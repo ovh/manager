@@ -28,7 +28,8 @@ declare global {
 }
 
 let context: ShellContextType;
-let i18nState: i18n;
+type AppI18n = React.ComponentProps<typeof I18nextProvider>['i18n'];
+let i18nState: AppI18n;
 
 export const renderTest = async ({
   initialRoute,
@@ -48,7 +49,7 @@ export const renderTest = async ({
   }
 
   if (!i18nState) {
-    i18nState = await initTestI18n(APP_NAME, translations);
+    i18nState = (await initTestI18n(APP_NAME, translations)) as AppI18n;
   }
 
   const result = render(
