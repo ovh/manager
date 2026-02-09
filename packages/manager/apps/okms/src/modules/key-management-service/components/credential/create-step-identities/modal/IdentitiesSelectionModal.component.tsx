@@ -8,6 +8,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalHeader,
   ModalOpenChangeDetail,
   Spinner,
   Text,
@@ -50,13 +51,11 @@ export const IdentitiesSelectionModal = <T,>({
 
   return (
     <Modal onOpenChange={handleClose} open>
-      <ModalContent
-        color="information"
-        dismissible
-        className="flex h-[90vh] max-h-[90vh] max-w-[800px] flex-col"
-      >
+      <ModalContent className="flex h-[90vh] max-h-[90vh] max-w-[800px] flex-col">
+        <ModalHeader>
+          <Text preset="heading-4">{title}</Text>
+        </ModalHeader>
         <ModalBody className="flex min-h-0 flex-col space-y-4">
-          <Text preset="heading-3">{title}</Text>
           <div className="mt-4 min-h-0 flex-1 overflow-y-auto p-1">
             {isLoading ? (
               <div className="flex justify-center">

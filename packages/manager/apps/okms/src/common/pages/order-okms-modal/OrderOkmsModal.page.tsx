@@ -11,8 +11,10 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalHeader,
   ModalOpenChangeDetail,
   Spinner,
+  Text,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -77,6 +79,9 @@ const OrderOkmsModal = () => {
   return (
     <Modal onOpenChange={handleClose} open>
       <ModalContent dismissible>
+        <ModalHeader>
+          <Text preset="heading-4">{t('create_okms_terms_and_conditions_title')}</Text>
+        </ModalHeader>
         <ModalBody className="space-y-4">
           {isPending && (
             <div className="flex items-center justify-center py-3">
