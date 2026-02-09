@@ -67,6 +67,18 @@ sioUniverse.children = [
           pathMatcher: /observability\/settings\/services/,
         },
       },
+      {
+        id: 'observability-settings-managed-dashboards',
+        idAttr: 'observability-settings-managed-dashboards-link',
+        translation: 'sidebar_observability_settings_managed_dashboards',
+        universe: sioUniverse.id,
+        features: ['observability:settings:managed-dashboards'],
+        routing: {
+          application: 'observability',
+          hash: '#/settings/managed-dashboards',
+          pathMatcher: /observability\/settings\/managed-dashboards/,
+        },
+      },
     ],
   },
 ];
