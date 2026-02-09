@@ -26,6 +26,7 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
+import { ExportCsv } from '@/components';
 import { useDomains, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST } from '@/guides.constants';
 import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
@@ -37,7 +38,6 @@ import {
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import { EmailAccountItem } from './EmailAccounts.types';
-import { EmailAccountsExportCsv } from './EmailAccountsExportCsv.component';
 
 export type DatagridTopbarProps = {
   selectedRows?: EmailAccountItem[];
@@ -171,6 +171,7 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           <Icon name={ICON_NAME.externalLink} />
         </>
       </Button>
+      <ExportCsv />
       {!!selectedRows?.length && (
         <Button
           id="ovh-mail-delete-selected-btn"
@@ -184,9 +185,6 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
           </>
         </Button>
       )}
-      <div className="ml-auto">
-        <EmailAccountsExportCsv />
-      </div>
     </div>
   );
 };

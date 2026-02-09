@@ -1,6 +1,5 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useMemo } from 'react';
 
-import { RowSelectionState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
 
 import { Skeleton } from '@ovhcloud/ods-react';
@@ -10,7 +9,6 @@ import {
   Clipboard,
   Datagrid,
   DatagridColumn,
-  IntervalUnit,
   OvhSubsidiary,
   Price,
   useFormatDate,
@@ -19,8 +17,11 @@ import {
 import { BillingStateBadge, LabelChip } from '@/components';
 import { SlotService } from '@/data/api';
 import { SlotWithService, useAccounts, useSlotsWithService } from '@/data/hooks';
+import { useDebouncedValue } from '@/hooks';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { getPriceUnit } from '@/utils/price';
+
+import DatagridTopbar from './DatagridTopBar.component';
 
 const Services = () => {
   const { t } = useTranslation(['services', 'common', 'accounts']);
@@ -29,7 +30,8 @@ const Services = () => {
   const locale = environment.getUserLocale();
   const { ovhSubsidiary } = environment.getUser();
 
-  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
+    useDebouncedValue('');
 
   const columns: DatagridColumn<SlotWithService>[] = useMemo(
     () => [
@@ -44,6 +46,7 @@ const Services = () => {
         id: 'email',
         accessorKey: 'email',
         label: 'common:email_account',
+        isSearchable: true,
       },
       {
         id: 'organization',
@@ -68,9 +71,16 @@ const Services = () => {
         accessorKey: 'cost',
         label: 'zimbra_services_cost',
         cell: ({ row }) => {
-          const { priceInUcents, duration } = row.original.service;
+          const service = row.original.service;
+
+          if (!service) {
+            return <Skeleton className="[&::part(skeleton)]:max-w-20" />;
+          }
+
+          const { priceInUcents, duration } = service;
+
           return priceInUcents === 0 ? (
-            t('zimbra_services_free')
+            t('services:zimbra_services_free')
           ) : (
             <Price
               value={priceInUcents}
@@ -109,8 +119,9 @@ const Services = () => {
   const { data: accounts } = useAccounts({ shouldFetchAll: true });
   const { slots, fetchAllPages, fetchNextPage, hasNextPage, isLoadingSlots, isFetchingNextPage } =
     useSlotsWithService({
-    refetchInterval: DATAGRID_REFRESH_INTERVAL,
-    refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+      email: debouncedSearchInput,
+      refetchInterval: DATAGRID_REFRESH_INTERVAL,
+      refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
     });
 
   const data = useMemo(() => {
@@ -125,6 +136,7 @@ const Services = () => {
         offer: slot.offer,
         service: slot.service,
         cost: slot.service?.price,
+        status: account?.resourceStatus,
       };
     });
   }, [slots, accounts]);
@@ -132,10 +144,11 @@ const Services = () => {
   return (
     <div>
       <Datagrid
-        rowSelection={{
-          rowSelection,
-          setRowSelection,
-          enableRowSelection: () => true,
+        topbar={<DatagridTopbar selectedRows={[]} />}
+        search={{
+          searchInput,
+          setSearchInput,
+          onSearch: (search) => setDebouncedSearchInput(search),
         }}
         columns={columns.map((column) => ({
           ...column,
