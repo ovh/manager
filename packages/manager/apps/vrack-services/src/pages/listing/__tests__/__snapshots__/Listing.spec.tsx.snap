@@ -36,6 +36,11 @@ exports[`Vrack Services listing test suite > should display a listing of vrack s
             tabindex="0"
             type="button"
           >
+            <span
+              class="_icon_1iyhc_2 _icon--github_1iyhc_319"
+              data-ods="icon"
+              role="presentation"
+            />
             Roadmap & Changelog
           </button>
         </div>
@@ -60,11 +65,11 @@ exports[`Vrack Services listing test suite > should display a listing of vrack s
         data-ods="icon"
         role="presentation"
       />
-      Activer vRack Services
+      Créer un vRack Services
     </button>
     <div
       class="overflow-auto relative w-full"
-      style="max-height: 100%; height: 100%;"
+      style="min-height: 150px; max-height: 100%; height: 100%;"
     >
       <table
         class="_table_4upov_2 _table--md_4upov_54 table table-fixed w-full"

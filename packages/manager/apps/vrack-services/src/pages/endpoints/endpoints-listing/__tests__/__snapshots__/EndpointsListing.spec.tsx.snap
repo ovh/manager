@@ -21,7 +21,7 @@ exports[`EndpointsListing > should display the endpoints listing 1`] = `
     <section>
       <div
         class="overflow-auto relative w-full"
-        style="max-height: 100%; height: 100%;"
+        style="min-height: 150px; max-height: 100%; height: 100%;"
       >
         <table
           class="_table_4upov_2 _table--md_4upov_54 table table-fixed w-full"

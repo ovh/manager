@@ -102,6 +102,7 @@ export const AssociateVrack: React.FC<AssociateVrackProps> = ({ vrackList, close
         disabled={isPending}
         onValueChange={(event) => setSelectedVrack(event.value[0] as string)}
         items={vrackList.map((vrack) => ({ label: vrack, value: vrack }))}
+        positionerStyle={{ zIndex: 'calc(var(--ods-theme-overlay-z-index) + 3)' }}
       >
         <SelectControl placeholder={t('vrackSelectPlaceholder')} />
         <SelectContent />

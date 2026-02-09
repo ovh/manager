@@ -53,7 +53,7 @@ exports[`Vrack Services create page test suite > should display the create form 
             aria-current="page"
             data-ods="breadcrumb-link"
           >
-            Activer vRack Services
+            Créer un vRack Services
           </span>
         </li>
       </ol>
@@ -62,7 +62,7 @@ exports[`Vrack Services create page test suite > should display the create form 
       class="_text_b5nz7_6 _text--heading-2_b5nz7_26 mb-7 block"
       data-ods="text"
     >
-      Activer vRack Services
+      Créer un vRack Services
     </h2>
     <form>
       <h4
@@ -125,7 +125,7 @@ exports[`Vrack Services create page test suite > should display the create form 
         disabled=""
         type="submit"
       >
-        Activer vRack Services
+        Créer un vRack Services
       </button>
     </form>
   </div>
