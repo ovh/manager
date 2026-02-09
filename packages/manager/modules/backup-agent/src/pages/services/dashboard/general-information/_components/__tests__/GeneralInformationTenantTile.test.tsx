@@ -6,6 +6,10 @@ import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 
 import { GeneralInformationTenantTile } from '../general-information-tenant-tile/GeneralInformationTenantTile.component';
 
+vi.mock('react-router-dom', () => ({
+  useHref: vi.fn().mockImplementation((url: string) => url),
+}));
+
 const { useBackupVSPCTenantDetailsMock } = vi.hoisted(() => ({
   useBackupVSPCTenantDetailsMock: vi.fn(),
 }));
@@ -28,7 +32,7 @@ vi.mock(
 describe('GeneralInformationTenantTile', () => {
   it('Should render GeneralInformationTenantTile component', async () => {
     useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isPending: false });
-    const { container } = render(<GeneralInformationTenantTile tenantId={TENANTS_MOCKS[0]!.id} />);
+    const { container } = render(<GeneralInformationTenantTile />);
 
     await expect(container).toBeAccessible();
 
@@ -37,7 +41,7 @@ describe('GeneralInformationTenantTile', () => {
 
   it('Should render GeneralInformationTenantTile component', async () => {
     useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isPending: true });
-    const { container } = render(<GeneralInformationTenantTile tenantId={TENANTS_MOCKS[0]!.id} />);
+    const { container } = render(<GeneralInformationTenantTile />);
 
     await expect(container).toBeAccessible();
 

@@ -4,8 +4,8 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { LABELS } from '@/module.constants';
 import { urlToStringRegex } from '@/utils/urlToStringRegex';
 
-export const subRoutes = Object.freeze({
-  services: 'services',
+export const subRoutes = {
+  service: 'service',
   vaults: 'vaults',
   billing: 'billing',
   dashboard: 'dashboard',
@@ -15,7 +15,8 @@ export const subRoutes = Object.freeze({
   add: 'add',
   configure: 'configure',
   download: 'download',
-});
+  resetPassword: 'reset-password',
+} as const;
 
 export const urlParams = {
   vaultId: ':vaultId' as const,
@@ -28,28 +29,35 @@ export const urls = {
   onboarding: `/onboarding`,
   listingVaults: `/${subRoutes.vaults}`,
   listingVaultsDelete: `/${subRoutes.vaults}/${subRoutes.delete}`,
-  dashboardVaults: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}`,
-  dashboardVaultsDelete: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}/${subRoutes.delete}`,
-  listingVaultBuckets: `/${subRoutes.vaults}/${subRoutes.dashboard}/${urlParams.vaultId}/${subRoutes.buckets}`,
-  listingTenants: `/${subRoutes.services}`,
-  dashboardTenants: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}`,
-  dashboardTenantAgents: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}`,
-  addAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.add}`,
-  dashboardTenantAgentDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.delete}/${urlParams.agentId}`,
-  editAgentConfiguration: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
-  downloadAgentBackup: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.agents}/${subRoutes.download}`,
-  listingTenantDelete: `/${subRoutes.services}/${subRoutes.delete}`,
-  dashboardTenantDelete: `/${subRoutes.services}/${subRoutes.dashboard}/${urlParams.tenantId}/${subRoutes.delete}`,
+  dashboardVaults: `/${subRoutes.vaults}/${urlParams.vaultId}`,
+  dashboardVaultsDelete: `/${subRoutes.vaults}/${urlParams.vaultId}/${subRoutes.delete}`,
+  listingVaultBuckets: `/${subRoutes.vaults}/${urlParams.vaultId}/${subRoutes.buckets}`,
+  dashboardTenant: `/${subRoutes.service}`,
+  dashboardAgents: `/${subRoutes.agents}`,
+  dashboardTenantResetPassword: `/${subRoutes.service}/${subRoutes.resetPassword}`,
+  addAgentConfiguration: `/${subRoutes.agents}/${subRoutes.add}`,
+  dashboardTenantAgentDelete: `/${subRoutes.agents}/${subRoutes.delete}/${urlParams.agentId}`,
+  editAgentConfiguration: `/${subRoutes.agents}/${subRoutes.configure}/${urlParams.agentId}`,
+  downloadAgentBackup: `/${subRoutes.agents}/${subRoutes.download}`,
+  listingTenantDelete: `/${subRoutes.service}/${subRoutes.delete}`,
+  dashboardTenantDelete: `/${subRoutes.service}/${subRoutes.delete}`,
   listingBilling: `/${subRoutes.billing}`,
 } as const;
 
 export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
   {
-    name: 'services',
-    title: `${BACKUP_AGENT_NAMESPACES.COMMON}:services`,
-    to: `${urls.root}${subRoutes.services}`,
-    pathMatchers: [/^\/services\/[^/]+$/],
-    trackingActions: ['click::services-tile-tab'],
+    name: 'service',
+    title: `${NAMESPACES.DASHBOARD}:general_information`,
+    to: `${urls.root}${subRoutes.service}`,
+    pathMatchers: [/^\/service\/[^/]+$/],
+    trackingActions: ['click::service-tile-tab'],
+  },
+  {
+    name: 'agents',
+    title: `${BACKUP_AGENT_NAMESPACES.COMMON}:agents`,
+    to: `${urls.root}${subRoutes.agents}`,
+    pathMatchers: [/^\/agents\/[^/]+$/],
+    trackingActions: ['click::agents-tile-tab'],
   },
   {
     name: 'vaults',
@@ -64,22 +72,6 @@ export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
     to: `${urls.root}${subRoutes.billing}`,
     pathMatchers: [/^\/billing\/[^/]+$/],
     trackingActions: ['click::billing-tile-tab'],
-  },
-]);
-
-export const TENANT_LAYOUT_NAV_TABS = Object.freeze([
-  {
-    name: 'generalInformations',
-    title: `${NAMESPACES.DASHBOARD}:general_information`,
-    to: urls.dashboardTenants,
-    pathMatchers: [],
-    isDefault: true,
-  },
-  {
-    name: 'agents',
-    title: `${BACKUP_AGENT_NAMESPACES.COMMON}:agents`,
-    to: urls.dashboardTenantAgents,
-    pathMatchers: [new RegExp(`^${urlToStringRegex(urls.dashboardTenantAgents)}/.+$`)],
   },
 ]);
 

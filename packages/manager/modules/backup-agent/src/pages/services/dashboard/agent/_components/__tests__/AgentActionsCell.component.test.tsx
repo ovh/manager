@@ -3,7 +3,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
 
-import { mockAgents } from '@/mocks/agents/agents';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { AgentActionsCell } from '@/pages/services/dashboard/agent/_components/AgentActionsCell.component';
 
@@ -47,7 +46,7 @@ vi.mock('react-i18next', async () => {
 
 describe('AgentActionCell', () => {
   it('renders agent action', () => {
-    render(<AgentActionsCell tenantId={mockAgents[0]!.id} agentId={TENANTS_MOCKS[0]!.id} />);
+    render(<AgentActionsCell agentId={TENANTS_MOCKS[0]!.id} />);
 
     expect(screen.getByText('translated_configure')).toBeVisible();
     expect(screen.getByText('translated_delete')).toBeVisible();

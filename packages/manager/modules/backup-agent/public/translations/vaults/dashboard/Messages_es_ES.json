@@ -9,8 +9,8 @@
   "submitButton": "Enviar",
   "successMessage": "Su solicitud se ha enviado correctamente.",
   "errors": {
-    "emailRequired": "La dirección de correo es obligatoria.",
-    "emailInvalid": "Introduzca una dirección de correo electrónico válida.",
+    "emailRequired": "El correo electrónico es obligatorio.",
+    "emailInvalid": "Por favor, introduzca una dirección de correo electrónico válida.",
     "subjectRequired": "El asunto es obligatorio.",
     "messageRequired": "El mensaje es obligatorio."
   },
@@ -18,5 +18,9 @@
   "help": "Ayuda",
   "type_billing": "Tipo de facturación",
   "consumption_tooltip": "El almacenamiento adicional no está disponible para autoservicio. Para aumentar su capacidad de almacenamiento, contacte con el equipo de soporte.",
-  "vault_price": "Es decir, {{vaultPrice}}/mes + IVA"
+  "vault_price": "Es decir, {{vaultPrice}}/mes + IVA",
+  "immutability": "Datos inalterables",
+  "immutability_duration_enabled": "{{duration}} días activados",
+  "encryption": "Cifrado del Vault",
+  "encryption_enabled": "{{encryption}} activado"
 }

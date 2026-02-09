@@ -10,7 +10,7 @@
   "successMessage": "O seu pedido foi enviado com sucesso.",
   "errors": {
     "emailRequired": "O e-mail é obrigatório.",
-    "emailInvalid": "Introduza um endereço de e-mail válido.",
+    "emailInvalid": "Queira introduzir um endereço de e-mail válido.",
     "subjectRequired": "O assunto é obrigatório.",
     "messageRequired": "A mensagem é obrigatória."
   },
@@ -18,5 +18,9 @@
   "help": "Ajuda",
   "type_billing": "Tipo de faturação",
   "consumption_tooltip": "O armazenamento suplementar não está disponível em self-service. Para aumentar a capacidade de armazenamento, contacte o suporte.",
-  "vault_price": "Ou seja, {{vaultPrice}} /mês + IVA"
+  "vault_price": "Ou seja, {{vaultPrice}} /mês + IVA",
+  "immutability": "Imutabilidade",
+  "immutability_duration_enabled": "{{duration}} dias ativado",
+  "encryption": "Criptografia do Vault",
+  "encryption_enabled": "{{encryption}} ativado"
 }

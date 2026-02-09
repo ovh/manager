@@ -5,6 +5,7 @@ export const LABELS = {
   VAULTS: 'Vaults',
   TENANT: 'Tenant',
   VAULT: 'Vault',
+  VSPC: 'VSPC',
 } as const;
 
 export const FEATURE_AVAILABILITY = Object.freeze({
@@ -18,6 +19,10 @@ export const OS_LABELS = {
 };
 
 export const VAULT_PLAN_CODE = 'backup-vault-paygo-consumption';
+export const VAULT_DEFAULT_IMMUTABILITY = {
+  duration: 14,
+  encryption: 'SSE-OMK',
+};
 
 export const BACKUP_AGENT_IAM_RULES = {
   'vault/edit': 'backupServices:apiovh:vault/edit',

@@ -10,12 +10,16 @@ const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 
 const VaultListingPage = React.lazy(() => import('../pages/vaults/listing/Listing.page'));
 
-const ServiceListingPage = React.lazy(() => import('../pages/services/listing/Listing.page'));
-
-const TenantDashboardPage = React.lazy(() => import('@/pages/services/dashboard/Dashboard.page'));
-
 const TenantGeneralInformationPage = React.lazy(
   () => import('../pages/services/dashboard/general-information/GeneralInformation.page'),
+);
+
+const DeleteTenantPage = React.lazy(
+  () => import('@/pages/services/dashboard/delete/DeleteTenant.page'),
+);
+
+const TenantResetPasswordPage = React.lazy(
+  () => import('../pages/services/dashboard/reset-password/ResetTenantPassword.page'),
 );
 const AgentListingPage = React.lazy(
   () => import('../pages/services/dashboard/agent/AgentsListing.page'),
@@ -28,9 +32,6 @@ const AgentEditConfigurationPage = React.lazy(
 );
 const AgentDownloadLinkPage = React.lazy(
   () => import('../pages/services/dashboard/agent/download/AgentDownload.page'),
-);
-const DeleteTenantPage = React.lazy(
-  () => import('../pages/services/listing/delete/DeleteTenant.page'),
 );
 const VaultDeletePage = React.lazy(() => import('@/pages/vaults/delete/DeleteVault.page'));
 
@@ -53,23 +54,22 @@ const BillingListingPage = React.lazy(() => import('../pages/billing/listing/Lis
 export default (
   <>
     <Route path="" Component={MainLayout}>
-      <Route
-        path={subRoutes.services}
-        Component={ServiceListingPage}
-        handle={{
-          tracking: {
-            pageName: 'services',
-            pageType: PageType.listing,
-          },
-        }}
-      >
+      <Route path={subRoutes.service} Component={TenantGeneralInformationPage}>
+        <Route path={subRoutes.resetPassword} Component={TenantResetPasswordPage} />
+        <Route path={subRoutes.delete} Component={DeleteTenantPage} />
+      </Route>
+      <Route path={subRoutes.agents} Component={AgentListingPage}>
+        <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
         <Route
-          path={subRoutes.delete}
-          Component={DeleteTenantPage}
-          handle={{
-            tracking: { pageName: 'deleteVSPC', pageType: PageType.popup },
-          }}
+          path={`${subRoutes.configure}/${urlParams.agentId}`}
+          Component={AgentEditConfigurationPage}
         />
+        <Route
+          path={`${subRoutes.delete}/${urlParams.agentId}`}
+          Component={AgentDeletePage}
+          handle={{ tracking: { pageName: 'delete-agent', pageType: PageType.popup } }}
+        />
+        <Route path={subRoutes.download} Component={AgentDownloadLinkPage} />
       </Route>
       <Route path={subRoutes.vaults}>
         <Route
@@ -100,29 +100,9 @@ export default (
         }}
       />
     </Route>
-    <Route path={subRoutes.services}>
-      <Route path={`${subRoutes.dashboard}/${urlParams.tenantId}`} Component={TenantDashboardPage}>
-        <Route path="" Component={TenantGeneralInformationPage}>
-          <Route path={subRoutes.delete} Component={DeleteTenantPage} />
-        </Route>
-        <Route path={subRoutes.agents} Component={AgentListingPage}>
-          <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
-          <Route
-            path={`${subRoutes.configure}/${urlParams.agentId}`}
-            Component={AgentEditConfigurationPage}
-          />
-          <Route
-            path={`${subRoutes.delete}/${urlParams.agentId}`}
-            Component={AgentDeletePage}
-            handle={{ tracking: { pageName: 'delete-agent', pageType: PageType.popup } }}
-          />
-          <Route path={subRoutes.download} Component={AgentDownloadLinkPage} />
-        </Route>
-      </Route>
-    </Route>
 
     <Route path={subRoutes.vaults}>
-      <Route path={`${subRoutes.dashboard}/${urlParams.vaultId}`} Component={VaultDashboardPage}>
+      <Route path={urlParams.vaultId} Component={VaultDashboardPage}>
         <Route path="" Component={VaultGeneralInformationPage}>
           <Route path={subRoutes.delete} Component={VaultDeletePage} />
         </Route>

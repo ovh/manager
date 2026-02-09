@@ -1,13 +1,15 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
 import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
 import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { VAULT_DEFAULT_IMMUTABILITY } from '@/module.constants';
 
 type GeneralInformationVaultTileProps = {
   vaultId: string;
@@ -19,13 +21,12 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
     NAMESPACES.STATUS,
     NAMESPACES.REGION,
     'dashboard',
+    BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
   ]);
   const { data: vault, isLoading: isLoadingVault } = useBackupVaultDetails({ vaultId });
-  const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
+  const { data: locationData, isLoading: isLoadingLocation } = useLocationDetails(
     vault?.currentState.region,
   );
-
-  const isLoading = isLoadingVault;
 
   /*
   The code below is a copy of GeneralInformationTile component, made specifically for vaults.
@@ -41,14 +42,14 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:name`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
+          {isLoadingVault ? <OdsSkeleton /> : <OdsText>{vault!.currentState.name}</OdsText>}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.STATUS}:status`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading ? (
+          {isLoadingVault ? (
             <OdsSkeleton />
           ) : (
             <ResourceStatusBadge resourceStatus={vault!.resourceStatus} />
@@ -59,7 +60,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:localisation`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isLoadingVault || isLoadingLocation ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.location ?? vault!.currentState.region}</OdsText>
@@ -70,7 +71,7 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.REGION}:region`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isLoadingVault || isLoadingLocation ? (
             <OdsSkeleton />
           ) : (
             <OdsText>{locationData?.name ?? vault!.currentState.region}</OdsText>
@@ -81,10 +82,42 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t(`${NAMESPACES.DASHBOARD}:reference`)}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
-          {isLoading || isLocationLoading ? (
+          {isLoadingVault ? <OdsSkeleton /> : <OdsText>{vault!.currentState.resourceName}</OdsText>}
+        </ManagerTile.Item.Description>
+      </ManagerTile.Item>
+      <ManagerTile.Divider />
+      <ManagerTile.Item>
+        <ManagerTile.Item.Label>
+          {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:immutability`)}
+        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Description>
+          {isLoadingVault || isLoadingLocation ? (
             <OdsSkeleton />
           ) : (
-            <OdsText>{vault!.currentState.resourceName}</OdsText>
+            <OdsBadge
+              color="success"
+              label={t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:immutability_duration_enabled`, {
+                duration: VAULT_DEFAULT_IMMUTABILITY.duration,
+              })}
+            />
+          )}
+        </ManagerTile.Item.Description>
+      </ManagerTile.Item>
+      <ManagerTile.Divider />
+      <ManagerTile.Item>
+        <ManagerTile.Item.Label>
+          {t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:encryption`)}
+        </ManagerTile.Item.Label>
+        <ManagerTile.Item.Description>
+          {isLoadingVault || isLoadingLocation ? (
+            <OdsSkeleton />
+          ) : (
+            <OdsBadge
+              color="success"
+              label={t(`${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:encryption_enabled`, {
+                encryption: VAULT_DEFAULT_IMMUTABILITY.encryption,
+              })}
+            />
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>

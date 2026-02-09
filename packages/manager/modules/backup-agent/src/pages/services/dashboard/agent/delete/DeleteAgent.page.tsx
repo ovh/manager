@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
-import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
+import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
@@ -18,8 +18,8 @@ export default function DeleteAgentPage() {
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
 
-  const { tenantId, agentId } = useParams<{ tenantId: string; agentId: string }>();
-  const { data } = useBackupVSPCTenantAgentDetails({ tenantId, agentId });
+  const { agentId } = useParams<{ agentId: string }>();
+  const { data } = useBackupVSPCTenantAgentDetails({ agentId: agentId! });
 
   const { mutate: deleteAgent, isPending } = useDeleteTenantAgent({
     onSuccess: () =>
@@ -33,7 +33,7 @@ export default function DeleteAgentPage() {
       isOpen
       heading={t('delete_agent_modal_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={() => agentId && deleteAgent({ vspcTenantId: tenantId!, agentId })}
+      onPrimaryButtonClick={() => agentId && deleteAgent({ agentId })}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isPending}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
@@ -41,16 +41,16 @@ export default function DeleteAgentPage() {
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.critical}
     >
-      <OdsMessage color="warning" isDismissible={false} className="mb-4">{t('delete_agent_modal_content_main')}</OdsMessage>
+      <OdsMessage color="warning" isDismissible={false} className="mb-4">
+        {t('delete_agent_modal_content_main')}
+      </OdsMessage>
       <OdsText className="[&::part(text)]:font-bold">
         <Trans
           ns={BACKUP_AGENT_NAMESPACES.AGENT}
           i18nKey="delete_agent_modal_content_confirm"
           values={{ agentName: data?.currentState.name }}
           components={{
-            span: (
-              <span className="whitespace-nowrap" />
-            ),
+            span: <span className="whitespace-nowrap" />,
           }}
         />
       </OdsText>
