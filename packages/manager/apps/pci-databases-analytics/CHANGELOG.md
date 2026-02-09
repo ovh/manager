@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.10...@ovh-ux/manager-pci-databases-analytics-app@1.41.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* **pci.database:** fix flaky test and optimize them ([ed1729a](https://github.com/ovh/manager/commit/ed1729a5b20928994af318583ad98924fc485ff8)), closes [#DATATR-2361](https://github.com/ovh/manager/issues/DATATR-2361)
+
+
+### Features
+
+* **database:** add clickhouse to order funnel ([78ab91c](https://github.com/ovh/manager/commit/78ab91c610abc123acf29c35e3be5552d4ad635c)), closes [#DATATR-2816](https://github.com/ovh/manager/issues/DATATR-2816)
+
+
+
+
+
 ## [1.40.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.9...@ovh-ux/manager-pci-databases-analytics-app@1.40.10) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
