@@ -1,4 +1,4 @@
-import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, ServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { okmsRoubaix1Mock } from '../kms/okms.mock';
 

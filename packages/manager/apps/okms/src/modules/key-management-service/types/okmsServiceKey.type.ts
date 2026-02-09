@@ -1,4 +1,4 @@
-import { IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/muk';
 
 export type OkmsServiceKeyOptions = {
   okmsId: string;
