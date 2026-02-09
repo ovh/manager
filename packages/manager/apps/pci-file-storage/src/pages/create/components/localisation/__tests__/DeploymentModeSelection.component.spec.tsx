@@ -5,10 +5,10 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TDeploymentModeDataForCard } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { TDeploymentMode } from '@/domain/entities/catalog.entity';
 import { DeploymentModeSelection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSelection.component';
+import { TDeploymentModeDataForCard } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');

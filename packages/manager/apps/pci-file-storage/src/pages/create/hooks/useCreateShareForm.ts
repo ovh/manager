@@ -1,9 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { TDeploymentModeData, TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { generateAutoName } from '@/pages/create/view-model/network.view-model';
+import {
+  TDeploymentModeData,
+  TShareSpecData,
+} from '@/pages/create/view-model/shareCatalog.view-model';
 import {
   TFirstAvailableLocation,
   selectDeploymentModes,

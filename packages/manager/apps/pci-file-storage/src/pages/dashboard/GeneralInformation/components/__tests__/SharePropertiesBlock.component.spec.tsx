@@ -6,9 +6,9 @@ import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import type { TShareDetailsView } from '@/adapters/shares/left/shareDetails.data';
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useShareParams } from '@/hooks/useShareParams';
+import type { TShareDetailsView } from '@/pages/dashboard/view-model/shareDetails.view-model';
 
 import { SharePropertiesBlock } from '../SharePropertiesBlock.component';
 
@@ -23,9 +23,7 @@ vi.mock('@/hooks/useShareParams', () => ({
 const mockUseShare = vi.mocked(useShare);
 const mockUseShareParams = vi.mocked(useShareParams);
 
-const createShareDetails = (
-  overrides: Partial<TShareDetailsView> = {},
-): TShareDetailsView =>
+const createShareDetails = (overrides: Partial<TShareDetailsView> = {}): TShareDetailsView =>
   ({
     id: 'share-1',
     name: 'My Share',
@@ -61,19 +59,16 @@ describe('SharePropertiesBlock', () => {
     expect(screen.getByText('cards.properties')).toBeVisible();
     expect(screen.getByText('NFS')).toBeVisible();
     expect(screen.getByText('100 GB')).toBeVisible();
-
   });
 
   it.each([
     {
       enabledActions: ['update_size'],
-      description:
-        'should render upgrade share link when enabledActions includes update_size',
+      description: 'should render upgrade share link when enabledActions includes update_size',
     },
     {
       enabledActions: [] as string[],
-      description:
-        'should not render upgrade share link when enabledActions excludes update_size',
+      description: 'should not render upgrade share link when enabledActions excludes update_size',
     },
   ])('$description', ({ enabledActions }) => {
     mockUseShare.mockReturnValue({
@@ -88,13 +83,9 @@ describe('SharePropertiesBlock', () => {
     );
 
     if (enabledActions.includes('update_size')) {
-      expect(
-        screen.getByRole('link', { name: 'actions.upgrade_share' }),
-      ).toBeVisible();
+      expect(screen.getByRole('link', { name: 'actions.upgrade_share' })).toBeVisible();
     } else {
-      expect(
-        screen.queryByRole('link', { name: 'actions.upgrade_share' }),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'actions.upgrade_share' })).not.toBeInTheDocument();
     }
   });
 

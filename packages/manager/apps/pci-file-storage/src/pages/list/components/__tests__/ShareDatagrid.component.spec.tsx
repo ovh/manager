@@ -4,8 +4,8 @@ import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { TShareListRow } from '@/adapters/shares/left/shareList.data';
 import { useShares } from '@/data/hooks/shares/useShares';
+import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 import { ShareDatagrid } from '../ShareDatagrid.component';
 

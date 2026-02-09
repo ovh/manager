@@ -1,8 +1,11 @@
 import { TShareStatus } from '@/domain/entities/share.entity';
 
-import type { TShareStatusDisplay } from './shareDetails.data';
-
 export type TShareStatusBadgeColor = 'success' | 'warning' | 'critical' | 'neutral';
+
+export type TShareStatusDisplay = {
+  labelKey: string;
+  badgeColor: TShareStatusBadgeColor;
+};
 
 const STATUS_TO_DISPLAY = new Map<TShareStatus, TShareStatusDisplay>([
   ['available', { labelKey: 'status:active', badgeColor: 'success' }],
