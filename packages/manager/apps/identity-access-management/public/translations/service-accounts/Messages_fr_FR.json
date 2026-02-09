@@ -1,0 +1,8 @@
+{
+  "iam_identities": "Identités",
+  "iam_identities_users": "Utilisateurs locaux",
+  "iam_identities_user_groups": "Groupes d'utilisateurs",
+  "iam_identities_service_accounts": "Compte de service",
+  "iam_identities_sso": "SSO",
+  "iam_service_accounts_add_account": "Ajouter un compte de service"
+}

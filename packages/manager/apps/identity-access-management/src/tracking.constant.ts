@@ -63,3 +63,37 @@ export const PERMANENT_TOKENS_TRACKING = {
     REQUEST_SUCCESS: 'delete_token_success',
   },
 };
+
+export const SERVICE_ACCOUNTS_TRACKING = {
+  LISTING: {
+    PAGE_NAME: 'list_service-accounts',
+    ADD_ACCOUNT: ['page', 'button', 'add_account'],
+    EDIT_ACCOUNT: ['datagrid', 'button', 'edit_account'],
+    DELETE_ACCOUNT: ['datagrid', 'button', 'delete_account'],
+  },
+  ADD: {
+    PAGE_NAME: 'add_service-account',
+    CTA_CANCEL: ['pop-up', 'button', 'add_account', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'add_account', 'confirm'],
+    REQUEST_FAIL: 'add_account_error',
+    REQUEST_SUCCESS: 'add_account_success',
+  },
+  VIEWER: {
+    PAGE_NAME: 'show_service-account',
+    CTA_CLOSE: ['pop-up', 'button', 'show_account', 'close'],
+  },
+  EDIT: {
+    PAGE_NAME: 'edit_service-account',
+    CTA_CANCEL: ['pop-up', 'button', 'edit_account', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'edit_account', 'confirm'],
+    REQUEST_FAIL: 'edit_account_error',
+    REQUEST_SUCCESS: 'edit_account_success',
+  },
+  DELETE: {
+    PAGE_NAME: 'delete_service-account',
+    CTA_CANCEL: ['pop-up', 'button', 'delete_account', 'cancel'],
+    CTA_CONFIRM: ['pop-up', 'button', 'delete_account', 'confirm'],
+    REQUEST_FAIL: 'delete_account_error',
+    REQUEST_SUCCESS: 'delete_account_success',
+  },
+};
