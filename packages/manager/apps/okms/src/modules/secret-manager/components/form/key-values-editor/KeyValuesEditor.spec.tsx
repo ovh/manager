@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import { changeInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
@@ -152,11 +152,8 @@ describe('KeyValuesEditor', () => {
       await renderComponent(mockDefaultValues.valid);
 
       // When
-      await changeOdsInputValueByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0),
-        'updatedKey',
-      );
-      await changeOdsInputValueByTestId(
+      await changeInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0), 'updatedKey');
+      await changeInputValueByTestId(
         KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(0),
         'updatedValue',
       );
@@ -195,16 +192,14 @@ describe('KeyValuesEditor', () => {
   describe('Duplicate key validation', () => {
     test('should show error when duplicate keys are detected', async () => {
       // Given
-      const { container } = await renderComponent(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
-      await changeOdsInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
+      await changeInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
 
       // Then
       await waitFor(() => {
-        expect(
-          container.querySelector(`ods-form-field[error="${labels.error_duplicate_keys}"]`),
-        ).toBeInTheDocument();
+        expect(screen.getByText(labels.error_duplicate_keys)).toBeInTheDocument();
       });
     });
   });
