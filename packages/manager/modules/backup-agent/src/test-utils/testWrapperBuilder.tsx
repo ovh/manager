@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { QueryClient } from '@tanstack/react-query';
+
 import { BackupAgentProviderProps } from '@/BackupAgent.context';
 
 import {
@@ -14,13 +16,14 @@ import {
 type BuilderConfig = {
   withI18next: boolean;
   withQueryClient: boolean;
+  withCustomQueryClient?: QueryClient;
   withShellContext: boolean;
   withAppContext: boolean;
   appContext?: BackupAgentProviderProps;
 };
 type TestWrapperBuilder = {
   withI18next: () => TestWrapperBuilder;
-  withQueryClient: () => TestWrapperBuilder;
+  withQueryClient: (queryClient?: QueryClient) => TestWrapperBuilder;
   withShellContext: () => TestWrapperBuilder;
   withAppContext: (customAppContext?: BackupAgentProviderProps) => TestWrapperBuilder;
   build: () => Promise<React.FC<React.PropsWithChildren>>;
@@ -35,7 +38,7 @@ export const testWrapperBuilder = (): TestWrapperBuilder => {
   const build = async (): Promise<React.FC<React.PropsWithChildren>> => {
     const providers: TestProvider[] = [];
     if (config.withI18next) await addI18nextProvider(providers);
-    if (config.withQueryClient) addQueryClientProvider(providers);
+    if (config.withQueryClient) addQueryClientProvider(providers, config.withCustomQueryClient);
     if (config.withShellContext) await addShellContextProvider(providers);
     if (config.withAppContext) addAppContextProvider(providers, config.appContext);
     return createProviderWrapper(providers);
@@ -45,8 +48,9 @@ export const testWrapperBuilder = (): TestWrapperBuilder => {
       config.withI18next = true;
       return builder;
     },
-    withQueryClient: () => {
+    withQueryClient: (queryClient?: QueryClient) => {
       config.withQueryClient = true;
+      config.withCustomQueryClient = queryClient;
       return builder;
     },
     withShellContext: () => {
