@@ -117,12 +117,12 @@ const testStep2Content = async () => {
 
 const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
   // Wait for modal to open
-  await assertModalVisibility({ role: 'dialog' });
+  await assertModalVisibility();
 
   // Check modal title
   await assertTitleVisibility({
     title: labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
-    level: 3,
+    level: 4,
   });
 
   // Wait for spinner to disappear
@@ -268,7 +268,7 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Wait for modal to close
-  await assertModalVisibility({ role: 'dialog', state: 'hidden' });
+  await assertModalVisibility({ state: 'hidden' });
 
   // Check user1 is added to the list
   expect(await screen.findByText(mockIdentityUser.login, {}, WAIT_TIMEOUT)).toBeInTheDocument();
