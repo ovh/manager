@@ -9,6 +9,7 @@ import {
   TShareCatalog,
   TShareSpecs,
 } from '@/domain/entities/catalog.entity';
+import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
 import {
   provisionedPerformancePresenter,
   selectAvailabilityZones,
@@ -19,35 +20,20 @@ import {
   selectShareSpecs,
 } from '@/pages/create/view-model/shareCatalog.view-model';
 
-vi.mock('@/adapters/catalog/left/shareCatalog.mapper', async (importOriginal) => {
-  const original: typeof import('@/adapters/catalog/left/shareCatalog.mapper') =
-    await importOriginal();
-
-  return {
-    ...original,
-    mapRegionToLocalizationCard: vi.fn(() => (region: TMacroRegion) => region.name),
-    mapDeploymentModeForCard: (mode: TDeploymentMode) => mode,
-  };
-});
-
 vi.mock('@/domain/services/catalog.service', () => ({
-  getMicroRegions: (macroRegion: TMacroRegion, microRegionsById: Map<string, TMicroRegion>) => {
-    if (!macroRegion?.microRegions) return [];
-    return macroRegion.microRegions
-      .map((id) => microRegionsById.get(id))
-      .filter((micro) => !!micro);
-  },
-  isMicroRegionAvailable: (microRegion: TMicroRegion) =>
-    microRegion.isActivated && !microRegion.isInMaintenance,
-  provisionedPerformanceCalculator: (shareSpec: TShareSpecs) => (size: number) => ({
-    iops: shareSpec.iops.level * size,
-    throughput: shareSpec.bandwidth.level * size,
-  }),
+  getMicroRegions: vi.fn(() => []),
+  isMacroRegionAvailable: vi.fn(() => true),
+  isMicroRegionAvailable: vi.fn(() => true),
+  provisionedPerformanceCalculator: vi.fn(() => vi.fn(() => ({ iops: 0, throughput: 0 }))),
 }));
+
+vi.mock('../../../../public/assets/1AZ.svg', () => ({ default: 'Region1azImage' }));
+vi.mock('../../../../public/assets/3AZ.svg', () => ({ default: 'Region3azImage' }));
+vi.mock('../../../../public/assets/LZ.svg', () => ({ default: 'LZImage' }));
 
 describe('share catalog selectors', () => {
   describe('selectDeploymentModes', () => {
-    it('should select modes', () => {
+    it('should select modes with card data', () => {
       const catalog = {
         entities: {
           deploymentModes: {
@@ -63,7 +49,13 @@ describe('share catalog selectors', () => {
 
       const result = selectDeploymentModes(catalog);
 
-      expect(result).toEqual(['region', 'localzone', 'region-3-az']);
+      expect(result).toHaveLength(3);
+      expect(result.map((r) => r.mode)).toEqual(['region', 'localzone', 'region-3-az']);
+      expect(result[0]).toMatchObject({
+        mode: 'region',
+        labelKey: 'localisation.deploymentMode.modes.region.label',
+        descriptionKey: 'localisation.deploymentMode.modes.region.description',
+      });
     });
   });
 
@@ -155,7 +147,7 @@ describe('share catalog selectors', () => {
           catalog as TShareCatalog,
         );
 
-        expect(result).toEqual(expected);
+        expect(result.map((r) => r.macroRegion)).toEqual(expected);
       },
     );
 
@@ -264,6 +256,13 @@ describe('share catalog selectors', () => {
     } as DeepPartial<TShareCatalog>;
 
     it('should return micro regions with disable if nopt activable or in maintenance', () => {
+      vi.mocked(getMicroRegions).mockImplementation((macro, byId) =>
+        (macro?.microRegions ?? []).map((id) => byId.get(id)).filter((m): m is TMicroRegion => !!m),
+      );
+      vi.mocked(isMicroRegionAvailable).mockImplementation(
+        (micro) => micro.isActivated && !micro.isInMaintenance,
+      );
+
       const selector = selectMicroRegions('GRA');
       const result = selector(catalog as TShareCatalog);
 

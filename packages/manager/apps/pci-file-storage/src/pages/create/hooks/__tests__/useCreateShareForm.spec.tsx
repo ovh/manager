@@ -2,9 +2,12 @@ import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TDeploymentModeData, TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
+import {
+  TDeploymentModeData,
+  TShareSpecData,
+} from '@/pages/create/view-model/shareCatalog.view-model';
 import { TFirstAvailableLocation } from '@/pages/create/view-model/shareCatalog.view-model';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');

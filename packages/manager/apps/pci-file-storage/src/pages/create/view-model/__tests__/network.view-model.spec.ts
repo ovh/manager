@@ -4,40 +4,26 @@ import { TNetwork } from '@/domain/entities/network.entity';
 
 import { generateAutoName, selectPrivateNetworksForRegion } from '../network.view-model';
 
-vi.mock('@/adapters/network/left/network.mapper', () => ({
-  mapNetworkToPrivateNetworkData: (network: TNetwork) => ({
-    label: network.name,
-    value: network.id,
-  }),
-}));
-
 vi.mock('@/domain/services/network.service', () => ({
-  getPrivateNetworks: (networks: TNetwork[]) =>
-    networks.filter((network) => network.visibility === 'private'),
+  getPrivateNetworks: (networks: TNetwork[]) => networks,
 }));
 
 describe('network.view-model', () => {
   describe('selectPrivateNetworksForRegion', () => {
-    const createNetwork = (
-      id: string,
-      name: string,
-      region: string,
-      visibility: 'private' | 'public',
-    ): TNetwork => ({
-      id,
-      name,
-      region,
-      visibility,
-    });
+    const createNetwork = (id: string, name: string, region: string): TNetwork =>
+      ({
+        id,
+        name,
+        region,
+      }) as TNetwork;
 
     it.each([
       {
         description: 'should return private networks mapped to UI data',
         region: 'GRA7',
         networks: [
-          createNetwork('net1', 'Private Network 1', 'GRA7', 'private'),
-          createNetwork('net2', 'Public Network', 'GRA7', 'public'),
-          createNetwork('net3', 'Private Network 2', 'GRA7', 'private'),
+          createNetwork('net1', 'Private Network 1', 'GRA7'),
+          createNetwork('net3', 'Private Network 2', 'GRA7'),
         ],
         expected: [
           { label: 'Private Network 1', value: 'net1' },
@@ -54,9 +40,8 @@ describe('network.view-model', () => {
         description: 'should return empty array when region is undefined',
         region: undefined,
         networks: [
-          createNetwork('net1', 'Private Network 1', 'GRA7', 'private'),
-          createNetwork('net2', 'Public Network', 'GRA7', 'public'),
-          createNetwork('net3', 'Private Network 2', 'GRA7', 'private'),
+          createNetwork('net1', 'Private Network 1', 'GRA7'),
+          createNetwork('net3', 'Private Network 2', 'GRA7'),
         ],
         expected: [],
       },
@@ -70,15 +55,6 @@ describe('network.view-model', () => {
         description: 'should return empty array when networks array is empty',
         region: 'GRA7',
         networks: [],
-        expected: [],
-      },
-      {
-        description: 'should return empty array when no private networks exist',
-        region: 'GRA7',
-        networks: [
-          createNetwork('net1', 'Public Network 1', 'GRA7', 'public'),
-          createNetwork('net2', 'Public Network 2', 'GRA7', 'public'),
-        ],
         expected: [],
       },
     ])('$description', ({ region, networks, expected }) => {

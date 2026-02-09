@@ -8,9 +8,9 @@ import { Link, Text } from '@ovhcloud/ods-react';
 
 import { DatagridColumn } from '@ovh-ux/muk';
 
-import { TShareListRow } from '@/adapters/shares/left/shareList.data';
 import { ShareStatusBadge } from '@/components/status-badge/ShareStatusBadge.component';
 import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component';
+import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
   const { t } = useTranslation(['list', 'regions', 'status']);

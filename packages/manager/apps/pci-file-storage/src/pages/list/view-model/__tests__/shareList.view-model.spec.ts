@@ -1,42 +1,62 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TShareListRow } from '@/adapters/shares/left/shareList.data';
-import { mapShareToShareListRow } from '@/adapters/shares/left/shareList.mapper';
 import { TShare } from '@/domain/entities/share.entity';
 
-import { selectHasShares, selectSharesForList } from '../shareList.view-model';
+import * as shareListViewModel from '../shareList.view-model';
 
-vi.mock('@/adapters/shares/left/shareList.mapper', () => ({
-  mapShareToShareListRow: vi.fn(),
+// Simple defaults; override in a test with vi.mocked(getMacroRegion).mockReturnValue(...) etc.
+const defaultMacroRegion = 'GRA';
+const defaultStatusDisplay = { labelKey: 'status:active', badgeColor: 'success' as const };
+
+vi.mock('@ovh-ux/muk', () => ({
+  getMacroRegion: vi.fn(() => defaultMacroRegion),
+}));
+
+vi.mock('@/pages/view-model/shareStatus.view-model', () => ({
+  getShareStatusDisplay: vi.fn(() => defaultStatusDisplay),
 }));
 
 describe('shareList view model', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   describe('selectSharesForList', () => {
-    it.each([
-      { data: undefined, expected: [] as TShareListRow[], mapperCalls: 0 },
-      { data: [], expected: [] as TShareListRow[], mapperCalls: 0 },
-      {
-        data: [{ id: 'share-1' }] as TShare[],
-        expected: [{ id: 'share-1' }] as TShareListRow[],
-        mapperCalls: 1,
-      },
-    ])('should return expected list when data is $data', ({ data, expected, mapperCalls }) => {
-      if (mapperCalls > 0) {
-        vi.mocked(mapShareToShareListRow).mockReturnValue(expected?.[0] ?? ({} as TShareListRow));
-      }
+    it('should return empty array when data is undefined', () => {
+      expect(shareListViewModel.selectSharesForList(undefined)).toEqual([]);
+    });
 
-      const result = selectSharesForList(data);
+    it('should return empty array when data is empty', () => {
+      expect(shareListViewModel.selectSharesForList([])).toEqual([]);
+    });
 
-      expect(result).toEqual(expected);
-      expect(mapShareToShareListRow).toHaveBeenCalledTimes(mapperCalls);
-      if (mapperCalls > 0) {
-        const shares = data ?? [];
-        expect(mapShareToShareListRow).toHaveBeenCalledWith(shares[0], 0, shares);
-      }
+    it('should return mapped rows when data has shares', () => {
+      const share = {
+        id: 'share-1',
+        name: 'My Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 161061273600,
+        status: 'available' as const,
+        type: 'nfs',
+        createdAt: '2026-01-30T09:35:49.615Z',
+        description: '',
+        isPublic: false,
+        enabledActions: [] as const,
+        mountPaths: [],
+      } as TShare;
+
+      const result = shareListViewModel.selectSharesForList([share]);
+
+      expect(result).toHaveLength(1);
+      const row = result[0]!;
+      expect(row).toMatchObject({
+        id: 'share-1',
+        name: 'My Share',
+        region: 'GRA9',
+        regionDisplayKey: `regions:manager_components_region_${defaultMacroRegion}_micro`,
+        protocol: 'NFS',
+        size: 161061273600,
+        status: 'available',
+      });
+      expect(row.statusDisplay).toEqual(defaultStatusDisplay);
+      expect(row.actions.get('actions')).toHaveLength(1);
     });
   });
 
@@ -48,7 +68,7 @@ describe('shareList view model', () => {
     ])(
       'should return $expected when data has length $(data?.length ?? "undefined")',
       ({ data, expected }) => {
-        expect(selectHasShares(data)).toBe(expected);
+        expect(shareListViewModel.selectHasShares(data)).toBe(expected);
       },
     );
   });

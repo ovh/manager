@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import { Radio, RadioControl, RadioGroup, RadioLabel, Text } from '@ovhcloud/ods-react';
 
-import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { generateAutoName } from '@/pages/create/view-model/network.view-model';
+import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { selectShareSpecs } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const ShareSelection = () => {
