@@ -24,29 +24,6 @@ const mockData = {
   },
 };
 
-// Mocking ODS components
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsFormField: vi.fn(
-      ({
-        children,
-        className,
-        'data-testid': dataTestId,
-      }: {
-        children: React.ReactNode;
-        className?: string;
-        'data-testid'?: string;
-      }) => (
-        <div className={className} data-testid={dataTestId}>
-          {children}
-        </div>
-      ),
-    ),
-  };
-});
-
 const renderTest = async (data: SecretData) => {
   return renderWithI18n(<SecretValueClipboards data={data} />);
 };

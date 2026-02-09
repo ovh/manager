@@ -26,21 +26,6 @@ const mockDefaultValues = {
   },
 };
 
-// Mocking ODS components
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock } = await import(
-    '@/common/utils/tests/odsMocks'
-  );
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsInput: vi.fn(odsInputMock),
-    OdsTextarea: vi.fn(odsTextareaMock),
-    OdsSwitch: vi.fn(odsSwitchMock),
-    OdsSwitchItem: vi.fn(odsSwitchItemMock),
-  };
-});
-
 // Test wrapper component that provides form context
 type TestWrapperProps = {
   defaultValues: FormFieldInput;

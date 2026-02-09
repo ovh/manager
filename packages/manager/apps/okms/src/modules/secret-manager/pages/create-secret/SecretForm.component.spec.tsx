@@ -33,21 +33,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-// Mocking ODS Input component
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock, odsTextareaMock, odsSwitchMock, odsSwitchItemMock, odsQuantityMock } =
-    await import('@/common/utils/tests/odsMocks');
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsInput: vi.fn(odsInputMock),
-    OdsTextarea: vi.fn(odsTextareaMock),
-    OdsSwitch: vi.fn(odsSwitchMock),
-    OdsSwitchItem: vi.fn(odsSwitchItemMock),
-    OdsQuantity: vi.fn(odsQuantityMock),
-  };
-});
-
 vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
 
 // Mock the useOkmsById hook
