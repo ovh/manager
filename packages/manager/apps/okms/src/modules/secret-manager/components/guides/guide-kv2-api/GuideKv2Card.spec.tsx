@@ -1,9 +1,9 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 import { labels } from '@/common/utils/tests/init.i18n';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { GuideKv2Card } from './GuideKv2Card.component';
 import { GUIDES_KV2 } from './guideKv2.constants';
@@ -18,7 +18,8 @@ describe('GuideKv2Card test suite', () => {
   it('should return a card with the correct link and text', async () => {
     // GIVEN
     // WHEN
-    await renderWithI18n(<GuideKv2Card />);
+    const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
+    render(<GuideKv2Card />, { wrapper });
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_KV2);

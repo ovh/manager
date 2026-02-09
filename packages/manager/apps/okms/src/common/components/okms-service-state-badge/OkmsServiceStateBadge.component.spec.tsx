@@ -3,7 +3,7 @@ import { describe, expect, test } from 'vitest';
 
 import { BadgeColor } from '@ovhcloud/ods-react';
 
-import { ResourceStatus } from '@ovh-ux/manager-react-components';
+import { ResourceStatus } from '@ovh-ux/muk';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';

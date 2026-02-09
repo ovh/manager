@@ -1,6 +1,6 @@
-import { ChangelogButton, ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ChangelogMenu, ChangelogMenuLinks } from '@ovh-ux/muk';
 
-const kmsChangelogLinks: ChangelogLinks = {
+const kmsChangelogLinks: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?sliceBy%5Bvalue%5D=Key+Management+Service',
   roadmap:
@@ -9,5 +9,5 @@ const kmsChangelogLinks: ChangelogLinks = {
 };
 
 export const KmsChangelogButton = () => {
-  return <ChangelogButton links={kmsChangelogLinks} />;
+  return <ChangelogMenu links={kmsChangelogLinks} />;
 };

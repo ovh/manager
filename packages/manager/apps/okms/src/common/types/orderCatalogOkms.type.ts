@@ -1,4 +1,4 @@
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 type OkmsCatalogPlanConfiguration = {
   isCustom: boolean;
@@ -18,7 +18,7 @@ type CatalogPricing = {
   tax: number;
   phase: number;
   interval: number;
-  intervalUnit: IntervalUnitType;
+  intervalUnit: IntervalUnit;
 };
 
 type OkmsCatalogAddon = {
