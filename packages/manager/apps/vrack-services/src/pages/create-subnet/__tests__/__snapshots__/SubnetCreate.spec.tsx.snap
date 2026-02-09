@@ -71,7 +71,7 @@ exports[`Vrack Services subnets page test suite > should display a subnet creati
         role="group"
       >
         <label
-          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1is41_2"
           data-ods="form-field-label"
           for="displayName"
           id=":r2:"
@@ -100,7 +100,7 @@ exports[`Vrack Services subnets page test suite > should display a subnet creati
         role="group"
       >
         <label
-          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1is41_2"
           data-ods="form-field-label"
           for="cidr"
           id=":r5:"
@@ -140,7 +140,7 @@ exports[`Vrack Services subnets page test suite > should display a subnet creati
         role="group"
       >
         <label
-          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1is41_2"
           data-ods="form-field-label"
           for="serviceRange"
           id=":r9:"
@@ -180,7 +180,7 @@ exports[`Vrack Services subnets page test suite > should display a subnet creati
         role="group"
       >
         <label
-          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1udkg_2"
+          class="_text_b5nz7_6 _text--label_b5nz7_56 _form-field-label_1is41_2"
           data-ods="form-field-label"
           for=":rc:"
           id=":rd:"

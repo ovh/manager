@@ -62,7 +62,6 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
       {goBackUrl && goBackLinkLabel && (
         <Link
           type={LinkType.back}
-          label={goBackLinkLabel}
           onClick={() => {
             trackClick({
               location: PageLocation.funnel,
@@ -71,7 +70,9 @@ export const CreatePageLayout: React.FC<CreatePageLayoutProps> = ({
             });
             navigate(goBackUrl);
           }}
-        />
+        >
+          {goBackLinkLabel}
+        </Link>
       )}
       <Text preset={TEXT_PRESET.heading2} className="mb-7 block">
         {title}

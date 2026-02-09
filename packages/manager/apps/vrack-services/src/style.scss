@@ -4,6 +4,11 @@
 /* eslint-disable-next-line css/no-invalid-at-rules */
 @tailwind utilities;
 
+:export {
+  selectPositionalZIndex: calc(var(--ods-theme-overlay-z-index) + 3);
+}
+
+
 html {
   font-family: var(--ods-font-family-default);
 }

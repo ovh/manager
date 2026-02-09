@@ -163,6 +163,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
               name="vrack-id"
               items={[{ label: vrackId || '', value: vrackId || '' }]}
               defaultValue={vrackId || ''}
+              positionerStyle={{ zIndex: 'calc(var(--ods-theme-overlay-z-index) + 3)' }}
               disabled
             >
               <SelectControl />
@@ -181,6 +182,7 @@ export const AssociateAnotherVrack: React.FC<AssociateAnotherVrackProps> = ({
                 .filter((vrack) => vrack !== vrackId)
                 .map((vrack) => ({ label: vrack, value: vrack }))}
               onValueChange={(event) => setSelectedVrack(event.value[0] as string)}
+              positionerStyle={{ zIndex: 'calc(var(--ods-theme-overlay-z-index) + 3)' }}
             >
               <SelectControl placeholder={t('vrackSelectPlaceholder')} />
               <SelectContent />
