@@ -32,12 +32,16 @@ const VersionListPage = () => {
 
   const { secret } = useOutletContext<SecretPageOutletContext>();
 
-  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretVersionList({
+  const {
+    flattenData: versions,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+  } = useSecretVersionList({
     okmsId,
     path: decodeSecretPath(secretPath),
   });
-
-  const versions = data?.pages.flatMap((page) => page.data);
 
   const columns = [
     {
@@ -78,7 +82,6 @@ const VersionListPage = () => {
       <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
-        onReloadPage={refetch}
       />
     );
 
@@ -88,7 +91,7 @@ const VersionListPage = () => {
         columns={columns}
         items={versions || []}
         totalItems={versions?.length ?? 0}
-        isLoading={isPending}
+        isLoading={isLoading}
         hasNextPage={hasNextPage}
         onFetchNextPage={fetchNextPage}
         contentAlignLeft
