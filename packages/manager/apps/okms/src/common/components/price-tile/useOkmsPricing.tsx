@@ -1,4 +1,4 @@
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
 
@@ -7,7 +7,7 @@ import { PricingProductCode } from './pricingTile.type';
 type OkmsPricingData = {
   price: number;
   tax: number;
-  intervalUnit: IntervalUnitType;
+  intervalUnit: IntervalUnit;
 };
 
 const PRODUCT_CODE_TO_ADDON_CODE: Record<PricingProductCode, string> = {

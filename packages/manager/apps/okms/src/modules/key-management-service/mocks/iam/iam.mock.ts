@@ -1,6 +1,6 @@
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 
-import { IamCheckResponse } from '@ovh-ux/manager-react-components';
+import { IamCheckResponse } from '@ovh-ux/muk';
 
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
