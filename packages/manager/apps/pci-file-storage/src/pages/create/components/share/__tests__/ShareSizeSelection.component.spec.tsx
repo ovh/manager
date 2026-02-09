@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import { DeepPartial } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { TShareSpecData } from '@/adapters/catalog/left/shareCatalog.data';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { provisionedPerformancePresenter } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 

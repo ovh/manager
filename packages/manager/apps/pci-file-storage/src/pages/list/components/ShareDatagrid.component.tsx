@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Datagrid } from '@ovh-ux/muk';
 
-import { TShareListRow } from '@/adapters/shares/left/shareList.data';
 import { useShares } from '@/data/hooks/shares/useShares';
 import { useShareColumn } from '@/pages/list/hooks/useShareColumn';
+import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 import { selectSharesForList } from '@/pages/list/view-model/shareList.view-model';
 
 import { ShareDatagridTopbar } from './ShareDatagridTopbar.component';
