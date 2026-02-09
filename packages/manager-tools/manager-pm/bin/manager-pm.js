@@ -35,11 +35,16 @@ import {
 } from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
 import { loadToolsCatalog } from '../src/kernel/utils/catalog-utils.js';
+import { parseCLIArgs } from '../src/kernel/utils/cli-utils.js';
 import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import { resolveNxBinary } from '../src/kernel/utils/nx-binary-utils.js';
+import { isNxRunner } from '../src/kernel/utils/nx-utils.js';
 import {
   attachCleanupSignals,
   handleProcessAbortSignals,
 } from '../src/kernel/utils/process-utils.js';
+import { isVersionSupported, readBinaryVersion } from '../src/kernel/utils/semver-utils.js';
+import { runCiTask } from '../src/kernel/utils/tasks-utils.js';
 import { isToolAllowed } from '../src/kernel/utils/tools-utils.js';
 import {
   clearRootWorkspaces,
@@ -48,63 +53,6 @@ import {
 
 const VERSION = '1.0.0';
 const DEFAULT_RUNNER = 'turbo';
-
-/**
- * Parse CLI arguments into options, rest args, and passthrough.
- *
- * Supported forms:
- *   --foo bar   → opts.foo = "bar"
- *   --flag      → opts.flag = true
- *   -x y        → opts.x = "y"
- *   -abc        → opts.a = true, opts.b = true, opts.c = true
- * Everything after `--` is passthrough.
- *
- * @param {string[]} argv - Command-line arguments (excluding node + script).
- * @returns {{opts: Record<string, string|boolean>, rest: string[], passthrough: string[]}}
- */
-function parseArgs(argv) {
-  const opts = {};
-  const rest = [];
-  let passthrough = [];
-
-  const dashdash = argv.indexOf('--');
-  if (dashdash !== -1) {
-    passthrough = argv.slice(dashdash + 1);
-    argv = argv.slice(0, dashdash);
-  }
-
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-    if (arg.startsWith('--')) {
-      const key = arg.slice(2);
-      const next = argv[i + 1];
-      if (next && !next.startsWith('-')) {
-        opts[key] = next;
-        i++;
-      } else {
-        opts[key] = true;
-      }
-    } else if (arg.startsWith('-') && arg.length > 1) {
-      const letters = arg.slice(1).split('');
-      if (letters.length > 1) {
-        letters.forEach((l) => (opts[l] = true));
-      } else {
-        const key = letters[0];
-        const next = argv[i + 1];
-        if (next && !next.startsWith('-')) {
-          opts[key] = next;
-          i++;
-        } else {
-          opts[key] = true;
-        }
-      }
-    } else {
-      rest.push(arg);
-    }
-  }
-
-  return { opts, rest, passthrough };
-}
 
 /**
  * Human-readable CLI help text for manager-pm.
@@ -297,51 +245,103 @@ function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } =
  * Resolve the runner from CLI options and validate if it's allowed.
  *
  * Rules:
- * - If no runner provided → return "turbo"
- * - If runner is "turbo" → always allowed
- * - If runner exists in tools catalog:
- *    - enforce supportedOs/ciSupportedOs
- * - If runner NOT in catalog:
- *    - assume it is a custom binary and allow it
- * - If runner not allowed → fallback to "turbo"
+ *  - Empty/undefined -> DEFAULT_RUNNER
+ *  - "turbo" -> DEFAULT_RUNNER
+ *  - "nx" or any nx binary path (e.g. /path/to/nx, C:\nx.cmd):
+ *      - validate against tools catalog minimum version
+ *      - prefer provided binary path if valid
+ *      - else auto-resolve local node_modules/.bin/nx, then global nx
+ *      - fallback to DEFAULT_RUNNER if none valid
+ *  - Any other known runner (present in tools catalog):
+ *      - enforce OS constraints via isToolAllowed()
+ *  - Unknown runner:
+ *      - treated as custom binary and returned as-is
  *
- * @async
- * @function resolveRunnerFromOpts
- * @param {Record<string, string|boolean>} opts - Parsed CLI options.
- * @returns {Promise<string>} The validated runner name.
+ * @param {Record<string, string|boolean>} opts
+ * @returns {Promise<string>} Runner name or absolute path to runner binary.
  */
 export async function resolveRunnerFromOpts(opts) {
-  const runnerValue = opts.runner;
+  const runnerOption = opts.runner;
 
-  if (typeof runnerValue !== 'string' || !runnerValue.trim()) {
+  // Default: turbo
+  if (typeof runnerOption !== 'string' || !runnerOption.trim()) {
     return DEFAULT_RUNNER;
   }
 
-  const requested = runnerValue.trim();
+  const requestedRunner = runnerOption.trim();
 
-  if (requested === DEFAULT_RUNNER) {
+  if (requestedRunner === DEFAULT_RUNNER) {
     return DEFAULT_RUNNER;
   }
 
+  // Load catalog once (used for nx minimumVersion + other runners)
   const toolsCatalog = await loadToolsCatalog();
-  const toolSpec = toolsCatalog?.[requested];
 
-  // Unknown runner: allow it as custom binary (don’t block)
+  // -----------------------------
+  // Nx special-case (path-aware)
+  // -----------------------------
+  // Accepts:
+  //  - "nx"
+  //  - "/usr/bin/nx"
+  //  - "/repo/node_modules/.bin/nx"
+  //  - "C:\\tools\\nx.cmd"
+  const isNxRequested = requestedRunner === 'nx' || isNxRunner(requestedRunner);
+
+  if (isNxRequested) {
+    const nxSpec = toolsCatalog?.nx;
+    const minimumVersion = nxSpec?.version || '0.0.0';
+
+    // If user provided an explicit binary path, prefer it if valid.
+    if (requestedRunner !== 'nx' && isNxRunner(requestedRunner)) {
+      const providedVersion = readBinaryVersion(requestedRunner);
+
+      if (isVersionSupported(providedVersion, minimumVersion)) {
+        logger.info(
+          `[runner:nx] Using provided Nx binary: ${requestedRunner} (v${providedVersion ?? 'unknown'})`,
+        );
+        return requestedRunner;
+      }
+
+      logger.warn(
+        `[runner:nx] Provided Nx binary unsupported (found=${providedVersion ?? 'unknown'} < ${minimumVersion}) -> trying auto-resolution`,
+      );
+    }
+
+    // Auto-resolve: local node_modules first, then global candidates
+    const nxMetaData = await resolveNxBinary({ minimumVersion });
+
+    if (nxMetaData.binaryPath) {
+      logger.info(
+        `[runner:nx] Using ${nxMetaData.source.toUpperCase()} Nx: ${nxMetaData.binaryPath} (v${nxMetaData.version ?? 'unknown'})`,
+      );
+      return nxMetaData.binaryPath;
+    }
+
+    logger.warn(`[runner:nx] No suitable Nx found (>= ${minimumVersion}) -> fallback to turbo`);
+    return DEFAULT_RUNNER;
+  }
+
+  // ----------------------------------------
+  // Other runners: enforce tools catalog rule
+  // ----------------------------------------
+  const toolSpec = toolsCatalog?.[requestedRunner];
+
+  // Unknown runner: treat as custom binary and allow it
   if (!toolSpec) {
-    logger.info(`[runner] Using custom runner: "${requested}" (not found in tools catalog)`);
-    return requested;
+    logger.info(`[runner] Using custom runner: "${requestedRunner}" (not found in tools catalog)`);
+    return requestedRunner;
   }
 
   // Known runner: enforce OS constraints
   if (!isToolAllowed(toolSpec)) {
     logger.warn(
-      `⚠️ [runner] "${requested}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
+      `⚠️ [runner] "${requestedRunner}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
     );
     return DEFAULT_RUNNER;
   }
 
-  logger.info(`[runner] Using runner: "${requested}"`);
-  return requested;
+  logger.info(`[runner] Using runner: "${requestedRunner}"`);
+  return requestedRunner;
 }
 
 /**
@@ -472,23 +472,14 @@ const actions = {
   async postinstall() {
     return runLifecycleTask('postinstall');
   },
-  async buildCI({ passthrough, filter, opts, runner }) {
-    const base = resolveBaseArgs({ passthrough, filter });
-    const forwarded = collectForwardedArgs(opts);
-
-    return buildCI([...base, ...forwarded], runner);
+  async buildCI(ctx) {
+    return runCiTask(buildCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
   },
-  async testCI({ passthrough, filter, opts, runner }) {
-    const base = resolveBaseArgs({ passthrough, filter });
-    const forwarded = collectForwardedArgs(opts);
-
-    return testCI([...base, ...forwarded], runner);
+  async testCI(ctx) {
+    return runCiTask(testCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
   },
-  async lintCI({ passthrough, filter, opts, runner }) {
-    const base = resolveBaseArgs({ passthrough, filter });
-    const forwarded = collectForwardedArgs(opts);
-
-    return lintCI([...base, ...forwarded], runner);
+  async lintCI(ctx) {
+    return runCiTask(lintCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
   },
   async perfBudgets({ passthrough, opts }) {
     const forwarded = collectForwardedArgs(opts, { includeApp: true });
@@ -624,7 +615,7 @@ async function executeAction(actionName, context) {
  * Parses args, validates options, and dispatches actions.
  */
 async function main() {
-  const { opts, passthrough } = parseArgs(process.argv.slice(2));
+  const { opts, passthrough } = parseCLIArgs(process.argv.slice(2));
 
   configureLoggerMode();
 
