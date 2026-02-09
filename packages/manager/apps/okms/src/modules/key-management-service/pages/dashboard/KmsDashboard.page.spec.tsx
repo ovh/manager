@@ -4,12 +4,14 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { TIMEOUT, assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertModalVisibility,
+  assertTextVisibility,
+} from '@/common/utils/tests/uiTestHelpers';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 import { kmsDashboardTabNames } from './kmsDashboard.constants';
