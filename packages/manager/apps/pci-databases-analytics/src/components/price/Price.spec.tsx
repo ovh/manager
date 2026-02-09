@@ -11,7 +11,6 @@ vi.mock('react-i18next', () => ({
       return `${key} ${options.price}`;
     },
   }),
-  Trans: ({ children }: { children: React.ReactNode }) => children,
 }));
 vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => {
   return {

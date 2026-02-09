@@ -7,30 +7,12 @@ import {
   act,
 } from '@testing-library/react';
 import TimeUpdate from '@/pages/services/[serviceId]/settings/_components/serviceConfiguration/TimeUpdate.component';
-
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
-import { Locale } from '@/hooks/useLocale';
 
 const mockedOnSubmit = vi.fn();
 describe('Time update component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
   });
   afterEach(() => {
     vi.clearAllMocks();

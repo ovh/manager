@@ -6,19 +6,6 @@ import {
   getRegionsCapabilities,
 } from './capabilities.api';
 
-vi.mock('@/data/api/api.client', () => {
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        get,
-      },
-    },
-  };
-});
-
 describe('capabilities api functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

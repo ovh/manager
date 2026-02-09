@@ -8,33 +8,6 @@ import {
 } from '@/data/api/database/connectionPool.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/data/api/api.client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@/data/api/api.client')>();
-  const get = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    ...mod,
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
-
 describe('connection pool service functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

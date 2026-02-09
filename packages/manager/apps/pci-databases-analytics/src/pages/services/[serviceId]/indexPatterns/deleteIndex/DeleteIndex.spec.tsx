@@ -14,6 +14,7 @@ import * as database from '@/types/cloud/project/database';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedIndex } from '@/__tests__/helpers/mocks/indexes';
 import * as indexesApi from '@/data/api/database/indexes.api';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import DeleteIndexModal from './DeleteIndex.modal';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
@@ -29,66 +30,29 @@ const mockedService = {
   },
 };
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: database.engine.CategoryEnum.analysis,
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('@/data/api/database/indexes.api', () => ({
+  getIndexes: vi.fn(() => [mockedIndex]),
+  deleteIndex: vi.fn(),
+}));
+
 describe('DeleteIndex modal', () => {
   beforeEach(async () => {
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: database.engine.CategoryEnum.analysis,
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          indexId: 'indexId',
-        }),
-      };
-    });
-
-    vi.mock('@/data/api/database/indexes.api', () => ({
-      getIndexes: vi.fn(() => [mockedIndex]),
-      deleteIndex: vi.fn(),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      indexId: 'indexId',
     });
   });
+  
   afterEach(() => {
     vi.clearAllMocks();
   });

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, afterEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import PrometheusEnabled from './PrometheusEnabled.component';
 import { PrometheusData } from '@/data/api/database/prometheus.api';
 import { useServiceData } from '../../Service.context';
@@ -13,21 +14,6 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 vi.mock('../../Service.context', () => ({
   useServiceData: vi.fn(),
 }));
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-const mockedUsedNavigate = vi.fn();
-vi.mock('react-router-dom', async () => {
-  const mod = await vi.importActual('react-router-dom');
-  return {
-    ...mod,
-    useNavigate: () => mockedUsedNavigate,
-  };
-});
 
 const mockServiceData = {
   ...mockedService,
@@ -58,6 +44,10 @@ const mockPrometheusSrvData: PrometheusData = {
 };
 
 describe('PrometheusEnabled', () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+  });
   afterEach(() => {
     vi.clearAllMocks();
   });

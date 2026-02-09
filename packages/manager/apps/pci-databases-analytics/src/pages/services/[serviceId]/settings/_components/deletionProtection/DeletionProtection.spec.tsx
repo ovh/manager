@@ -13,29 +13,21 @@ import DeletionProtection from './DeletionProtection.modal';
 import * as serviceApi from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    serviceId: 'serviceId',
+    service: mockedService,
+  })),
+}));
+vi.mock('@/data/api/database/service.api', () => ({
+  getService: vi.fn(() => mockedService),
+  editService: vi.fn((service) => service),
+}));
+
 describe('Settings delete modal', () => {
   beforeEach(() => {
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        serviceId: 'serviceId',
-        service: mockedService,
-      })),
-    }));
-    vi.mock('@/data/api/database/service.api', () => ({
-      getService: vi.fn(() => mockedService),
-      editService: vi.fn((service) => service),
-    }));
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
+    vi.restoreAllMocks();
   });
 
   afterEach(() => {

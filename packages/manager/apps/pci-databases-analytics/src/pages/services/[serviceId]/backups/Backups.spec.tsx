@@ -9,9 +9,9 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import { breadcrumb as Breadcrumb } from '@/pages/services/[serviceId]/backups/Backups.layout';
+import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import Backups from '@/pages/services/[serviceId]/backups/Backups.page';
 import * as database from '@/types/cloud/project/database';
-import { Locale } from '@/hooks/useLocale';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import { mockedBackup } from '@/__tests__/helpers/mocks/backup';
@@ -32,52 +32,24 @@ const mockedService = {
   },
 };
 
-const mockedUsedNavigate = vi.fn();
+vi.mock('@/data/api/database/backup.api', () => ({
+  getServiceBackups: vi.fn(() => [mockedBackup]),
+  restoreBackup: vi.fn((backup) => backup),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
 describe('Backups page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-    // Mock necessary hooks and dependencies
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-      };
-    });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/backup.api', () => ({
-      getServiceBackups: vi.fn(() => [mockedBackup]),
-      restoreBackup: vi.fn((backup) => backup),
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
+    mockedUsedNavigate();
   });
 
   it('renders the breadcrumb component', async () => {
@@ -184,12 +156,6 @@ describe('Open restore modals', () => {
       category: 'operational',
       serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
     });
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
     render(<Backups />, { wrapper: RouterWithQueryClientWrapper });
     await waitFor(() => {
       expect(screen.getByText(mockedBackup.description)).toBeInTheDocument();

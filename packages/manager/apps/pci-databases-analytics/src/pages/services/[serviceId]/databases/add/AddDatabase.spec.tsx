@@ -6,14 +6,14 @@ import {
   fireEvent,
   act,
 } from '@testing-library/react';
-import { useToast } from '@datatr-ux/uxlib';
+import { mockedUsedNavigate, setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import AddDatabase from './AddDatabase.modal';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as databaseApi from '@/data/api/database/database.api';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { useToast } from '@datatr-ux/uxlib';
 
-const mockedUsedNavigate = vi.fn();
 vi.mock('@/data/api/database/database.api', () => ({
   addDatabase: vi.fn(),
 }));
@@ -24,36 +24,12 @@ vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
   })),
 }));
 
-vi.mock('@datatr-ux/uxlib', async () => {
-  const mod = await vi.importActual('@datatr-ux/uxlib');
-  const toastMock = vi.fn();
-  return {
-    ...mod,
-    useToast: vi.fn(() => ({
-      toast: toastMock,
-    })),
-  };
-});
-
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
 describe('AddDatabase Component', () => {
-  const mockToast = useToast();
-
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useNavigate: () => mockedUsedNavigate,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
+    vi.restoreAllMocks();
+    mockedUsedNavigate();
+    setMockedUseParams({
+      projectId: 'projectId',
     });
   });
 
@@ -129,7 +105,7 @@ describe('AddDatabase Component', () => {
     });
 
     await waitFor(() => {
-      expect(mockToast.toast).toHaveBeenCalledWith({
+      expect(useToast().toast).toHaveBeenCalledWith({
         title: 'addDatabaseToastSuccessTitle',
         description: 'addDatabaseToastSuccessDescription',
       });
@@ -154,7 +130,7 @@ describe('AddDatabase Component', () => {
 
     await waitFor(() => {
       expect(databaseApi.addDatabase).toHaveBeenCalled();
-      expect(mockToast.toast).toHaveBeenCalledWith({
+      expect(useToast().toast).toHaveBeenCalledWith({
         title: 'addDatabaseToastErrorTitle',
         description: apiErrorMock.response.data.message,
         variant: 'critical',

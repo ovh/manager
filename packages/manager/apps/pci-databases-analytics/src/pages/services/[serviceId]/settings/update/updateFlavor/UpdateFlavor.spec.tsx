@@ -12,6 +12,7 @@ import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/Route
 import * as database from '@/types/cloud/project/database';
 import * as serviceApi from '@/data/api/database/service.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import UpdateFlavor from './UpdateFlavor.modal';
 import {
   mockedAvailabilitiesFlavor,
@@ -36,96 +37,63 @@ export const mockedCapabilitiesUpdate: database.Capabilities = {
   regions: ['gra'],
 };
 
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedServiceToUpdate,
+    category: database.engine.CategoryEnum.operational,
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('@/data/api/database/service.api', () => ({
+  editService: vi.fn(() => mockedServiceToUpdate),
+}));
+
+vi.mock('@/data/api/database/availability.api', () => ({
+  getAvailabilities: vi.fn(() => [
+    mockedAvailabilitiesFlavor,
+    mockedAvailabilitiesFlavorBis,
+  ]),
+  getSuggestions: vi.fn(() => [mockedSuggestionsUpdate]),
+}));
+
+vi.mock('@/data/api/database/capabilities.api', () => ({
+  getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilitiesUpdate]),
+  getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilitiesUpdate]),
+  getCapabilities: vi.fn(() => mockedCapabilitiesUpdate),
+}));
+
+vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => ({
+  useGetCatalog: vi.fn(() => ({
+    data: {
+      addons: [
+        {
+          planCode: 'databases.mysql-business-db1-4.hour.consumption',
+          pricings: [{ price: 1000, tax: 200 }],
+        },
+        {
+          planCode: 'databases.mysql-business-db1-7.hour.consumption',
+          pricings: [{ price: 1000, tax: 200 }],
+        },
+        {
+          planCode:
+            'databases.mysql-business-additionnal-storage-gb.hour.consumption',
+          pricings: [{ price: 100, tax: 200 }],
+        },
+      ],
+    },
+    isLoading: false,
+  })),
+}));
+
 describe('Update Flavor modal', () => {
   beforeEach(async () => {
-    vi.mock('react-i18next', async (importOriginal) => {
-      const mod = await importOriginal<typeof import('react-i18next')>();
-      return {
-        ...mod,
-        useTranslation: () => ({
-          t: (key: string) => key,
-        }),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      serviceId: 'serviceId',
     });
-
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedServiceToUpdate,
-        category: database.engine.CategoryEnum.operational,
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@/data/api/database/service.api', () => ({
-      editService: vi.fn(() => mockedServiceToUpdate),
-    }));
-
-    vi.mock('@/data/api/database/availability.api', () => ({
-      getAvailabilities: vi.fn(() => [
-        mockedAvailabilitiesFlavor,
-        mockedAvailabilitiesFlavorBis,
-      ]),
-      getSuggestions: vi.fn(() => [mockedSuggestionsUpdate]),
-    }));
-
-    vi.mock('@/data/api/database/capabilities.api', () => ({
-      getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilitiesUpdate]),
-      getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilitiesUpdate]),
-      getCapabilities: vi.fn(() => mockedCapabilitiesUpdate),
-    }));
-
-    vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => ({
-      useGetCatalog: vi.fn(() => ({
-        data: {
-          addons: [
-            {
-              planCode: 'databases.mysql-business-db1-4.hour.consumption',
-              pricings: [{ price: 1000, tax: 200 }],
-            },
-            {
-              planCode: 'databases.mysql-business-db1-7.hour.consumption',
-              pricings: [{ price: 1000, tax: 200 }],
-            },
-            {
-              planCode:
-                'databases.mysql-business-additionnal-storage-gb.hour.consumption',
-              pricings: [{ price: 100, tax: 200 }],
-            },
-          ],
-        },
-        isLoading: false,
-      })),
-    }));
-
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-          serviceId: 'serviceId',
-        }),
-      };
-    });
-
-    const ResizeObserverMock = vi.fn(() => ({
-      observe: vi.fn(),
-      unobserve: vi.fn(),
-      disconnect: vi.fn(),
-    }));
-    vi.stubGlobal('ResizeObserver', ResizeObserverMock);
   });
   afterEach(() => {
     vi.clearAllMocks();

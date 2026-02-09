@@ -3,23 +3,6 @@ import { apiClient } from '@/data/api/api.client';
 import { addNode, deleteNode } from '@/data/api/database/node.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/data/api/api.client', () => {
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    apiClient: {
-      v6: {
-        post,
-        delete: del,
-      },
-    },
-  };
-});
-
 describe('nodes service functions', () => {
   afterEach(() => {
     vi.clearAllMocks();

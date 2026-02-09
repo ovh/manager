@@ -15,65 +15,42 @@ import {
   mockMetricMem,
 } from '@/__tests__/helpers/mocks/metrics';
 
+vi.mock('@/data/api/database/metric.api', () => ({
+  getMetrics: vi.fn(() => [
+    mockMetric.name,
+    mockMetricCpu.name,
+    mockMetricDisk.name,
+    mockMetricMem.name,
+  ]),
+  getMetric: vi.fn(() => mockMetric),
+}));
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: {
+      ...mockedServiceOrig,
+      capabilities: {
+        ...mockedServiceOrig.capabilities,
+        prometheus: { read: database.service.capability.StateEnum.enabled },
+      },
+    },
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('/chart.js', () => ({
+  Chart: vi.fn(() => null),
+}));
+
+vi.mock('react-chartjs-2', () => ({
+  Line: vi.fn(() => null),
+}));
+
 describe('Metrics page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
-
-    // Mock necessary hooks and dependencies
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-
-    vi.mock('@/data/api/database/metric.api', () => ({
-      getMetrics: vi.fn(() => [
-        mockMetric.name,
-        mockMetricCpu.name,
-        mockMetricDisk.name,
-        mockMetricMem.name,
-      ]),
-      getMetric: vi.fn(() => mockMetric),
-    }));
-
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: {
-          ...mockedServiceOrig,
-          capabilities: {
-            ...mockedServiceOrig.capabilities,
-            prometheus: { read: database.service.capability.StateEnum.enabled },
-          },
-        },
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
-
-    vi.mock('/chart.js', () => ({
-      Chart: vi.fn(() => null),
-    }));
-
-    vi.mock('react-chartjs-2', () => ({
-      Line: vi.fn(() => null),
-    }));
   });
   afterEach(() => {
     vi.clearAllMocks();

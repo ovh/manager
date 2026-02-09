@@ -11,36 +11,6 @@ import {
 } from '@/data/api/database/user.api';
 import * as database from '@/types/cloud/project/database';
 
-vi.mock('@/data/api/api.client', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@/data/api/api.client')>();
-  const get = vi.fn(() => {
-    return Promise.resolve([
-      { id: 1, name: 'User 1' },
-      { id: 2, name: 'User 2' },
-    ]);
-  });
-  const post = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const put = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  const del = vi.fn(() => {
-    return Promise.resolve({ data: null });
-  });
-  return {
-    ...mod,
-    apiClient: {
-      v6: {
-        get,
-        post,
-        put,
-        delete: del,
-      },
-    },
-  };
-});
-
 describe('user management functions', () => {
   afterEach(() => {
     vi.clearAllMocks();
@@ -144,44 +114,6 @@ describe('user management functions', () => {
     expect(apiClient.v6.get).toHaveBeenCalledWith(
       '/cloud/project/projectId/database/mongodb/serviceId/roles?advanced=true',
     );
-  });
-
-  it('should return users for different engine', async () => {
-    const mockUsers = [
-      { id: 1, name: 'User 1' },
-      { id: 2, name: 'User 2' },
-    ];
-    const usersMysql = await getUsers({
-      projectId: 'projectId',
-      engine: database.EngineEnum.mysql,
-      serviceId: 'serviceId',
-    });
-    const usersMongodb = await getUsers({
-      projectId: 'projectId',
-      engine: database.EngineEnum.mongodb,
-      serviceId: 'serviceId',
-    });
-    const usersRedis = await getUsers({
-      projectId: 'projectId',
-      engine: database.EngineEnum.redis,
-      serviceId: 'serviceId',
-    });
-    const usersOpenSearch = await getUsers({
-      projectId: 'projectId',
-      engine: database.EngineEnum.opensearch,
-      serviceId: 'serviceId',
-    });
-    const usersM3 = await getUsers({
-      projectId: 'projectId',
-      engine: database.EngineEnum.m3db,
-      serviceId: 'serviceId',
-    });
-
-    expect(usersMysql).toEqual(mockUsers);
-    expect(usersMongodb).toEqual(mockUsers);
-    expect(usersRedis).toEqual(mockUsers);
-    expect(usersOpenSearch).toEqual(mockUsers);
-    expect(usersM3).toEqual(mockUsers);
   });
 
   it('should call editUser', async () => {

@@ -1,5 +1,5 @@
-import { vi } from 'vitest';
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 import { PointerEvent } from './helpers/pointerEvent';
 
 // use a custom pointerEvent as jest does not implement it.
@@ -7,20 +7,62 @@ import { PointerEvent } from './helpers/pointerEvent';
 // source: https://github.com/radix-ui/primitives/issues/856#issuecomment-928704064
 window.PointerEvent = PointerEvent as any;
 
-const originalConsoleError = console.error;
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (translationKey: string) => translationKey,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+    },
+  }),
+  Trans: ({ children }: { children: React.ReactNode }) => children,
+}));
 
-console.error = (...args) => {
-  if (typeof args[0] === 'string' && args[0].includes('connect ECONNREFUSED')) {
-    return;
-  }
-  originalConsoleError(...args);
-};
+vi.mock('@/data/api/api.client', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@/data/api/api.client')>();
+  const get = vi.fn(() => {
+    return Promise.resolve({ data: null });
+  });
+  const post = vi.fn(() => {
+    return Promise.resolve({ data: null });
+  });
+  const put = vi.fn(() => {
+    return Promise.resolve({ data: null });
+  });
+  const del = vi.fn(() => {
+    return Promise.resolve({ data: null });
+  });
+  return {
+    ...mod,
+    apiClient: {
+      v6: {
+        get,
+        post,
+        put,
+        delete: del,
+      },
+    },
+  };
+});
 
-const scrollMock = vi.fn();
+vi.mock('@datatr-ux/uxlib', async (importOriginal) => {
+  const toastMock = vi.fn();
+  const mod = await importOriginal<typeof import('@datatr-ux/uxlib')>();
+  return {
+    ...mod,
+    useToast: vi.fn(() => ({
+      toasts: [],
+      toast: toastMock,
+      dismiss: vi.fn(),
+    })),
+  };
+});
+
+const mockScrollIntoView = vi.fn();
+window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
+
 const ResizeObserverMock = vi.fn(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn(),
 }));
 vi.stubGlobal('ResizeObserver', ResizeObserverMock);
-window.HTMLElement.prototype.scrollIntoView = scrollMock;

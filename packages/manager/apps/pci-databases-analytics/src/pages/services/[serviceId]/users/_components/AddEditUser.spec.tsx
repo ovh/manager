@@ -21,54 +21,26 @@ import {
 } from '@/__tests__/helpers/mocks/databaseUser';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
+vi.mock('@/data/api/database/user.api', () => ({
+  getUsers: vi.fn(() => [mockedDatabaseUser]),
+  addUser: vi.fn((user) => user),
+  deleteUser: vi.fn(),
+  resetUserPassword: vi.fn(),
+  getRoles: vi.fn(() => mockedUserRoles),
+  editUser: vi.fn(),
+}));
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedService,
+    category: 'operational',
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
 describe('AddEdit user form', () => {
   beforeEach(async () => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/user.api', () => ({
-      getUsers: vi.fn(() => [mockedDatabaseUser]),
-      addUser: vi.fn((user) => user),
-      deleteUser: vi.fn(),
-      resetUserPassword: vi.fn(),
-      getRoles: vi.fn(() => mockedUserRoles),
-      editUser: vi.fn(),
-    }));
-    vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
-      useServiceData: vi.fn(() => ({
-        projectId: 'projectId',
-        service: mockedService,
-        category: 'operational',
-        serviceQuery: {} as UseQueryResult<database.Service, Error>,
-      })),
-    }));
-    vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-      const mod = await importOriginal<
-        typeof import('@ovh-ux/manager-react-shell-client')
-      >();
-      return {
-        ...mod,
-        useShell: vi.fn(() => ({
-          i18n: {
-            getLocale: vi.fn(() => Locale.fr_FR),
-            onLocaleChange: vi.fn(),
-            setLocale: vi.fn(),
-          },
-        })),
-      };
-    });
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
+    vi.restoreAllMocks();
   });
   afterEach(() => {
     vi.clearAllMocks();

@@ -9,42 +9,25 @@ import {
 import { useToast } from '@datatr-ux/uxlib';
 import * as serviceApi from '@/data/api/database/service.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import RenameService from './RenameService.component';
 import { mockedService } from '@/__tests__/helpers/mocks/services';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 
+
+vi.mock('@/data/api/database/service.api', () => ({
+  editService: vi.fn((s) => s),
+}));
+vi.mock('@/hooks/useTracking', () => ({
+  useTrackAction: vi.fn(() => vi.fn()),
+}));
+
 describe('Rename service modal', () => {
   beforeEach(() => {
-    vi.mock('react-router-dom', async () => {
-      const mod = await vi.importActual('react-router-dom');
-      return {
-        ...mod,
-        useParams: () => ({
-          projectId: 'projectId',
-        }),
-      };
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
     });
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-      }),
-    }));
-    vi.mock('@/data/api/database/service.api', () => ({
-      editService: vi.fn((s) => s),
-    }));
-    vi.mock('@datatr-ux/uxlib', async () => {
-      const mod = await vi.importActual('@datatr-ux/uxlib');
-      const toastMock = vi.fn();
-      return {
-        ...mod,
-        useToast: vi.fn(() => ({
-          toast: toastMock,
-        })),
-      };
-    });
-    vi.mock('@/hooks/useTracking', () => ({
-      useTrackAction: vi.fn(() => vi.fn()),
-    }));
   });
   afterEach(() => {
     vi.clearAllMocks();
