@@ -80,8 +80,8 @@ export const selectContinent =
 
     const continentsIds = deploymentModes.length
       ? [
-        'all',
-        ...new Set(
+          'all',
+          ...new Set(
             deploymentModes.flatMap(
               (mode) => data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
             ),
