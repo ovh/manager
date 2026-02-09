@@ -1,9 +1,17 @@
 import { format } from 'date-fns';
 
-import { TPrivateNetworkData } from '@/adapters/network/left/network.data';
-import { mapNetworkToPrivateNetworkData } from '@/adapters/network/left/network.mapper';
 import { TNetwork } from '@/domain/entities/network.entity';
 import { getPrivateNetworks } from '@/domain/services/network.service';
+
+export type TPrivateNetworkData = {
+  label: string;
+  value: string;
+};
+
+const mapNetworkToPrivateNetworkData = (network: TNetwork): TPrivateNetworkData => ({
+  label: network.name,
+  value: network.id,
+});
 
 export const selectPrivateNetworksForRegion =
   (region: string | undefined) =>

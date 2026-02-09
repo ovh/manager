@@ -1,32 +1,52 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { TShareDetailsView } from '@/adapters/shares/left/shareDetails.data';
-import { mapShareToShareDetailsView } from '@/adapters/shares/left/shareDetails.mapper';
 import { TShare } from '@/domain/entities/share.entity';
 
 import { selectShareDetails } from '../shareDetails.view-model';
 
-vi.mock('@/adapters/shares/left/shareDetails.mapper', () => ({
-  mapShareToShareDetailsView: vi.fn(),
+vi.mock('@ovh-ux/muk', () => ({
+  getMacroRegion: () => 'GRA',
 }));
 
 describe('shareDetails view model', () => {
   describe('selectShareDetails', () => {
     it('should return undefined when share is undefined', () => {
       expect(selectShareDetails(undefined)).toBeUndefined();
-      expect(mapShareToShareDetailsView).not.toHaveBeenCalled();
     });
 
     it('should return mapped view when share is defined', () => {
-      const share = { id: 'share-1', region: 'GRA9' } as TShare;
-      const expected = { id: 'share-1', name: 'My Share' } as TShareDetailsView;
-      vi.mocked(mapShareToShareDetailsView).mockReturnValue(expected);
+      const share: TShare = {
+        id: 'share-1',
+        name: 'My Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 161061273600,
+        status: 'available',
+        type: 'nfs',
+        createdAt: '2026-01-30T09:35:49.615Z',
+        description: '',
+        isPublic: false,
+        enabledActions: [],
+        mountPaths: [],
+      };
 
       const result = selectShareDetails(share);
 
-      expect(result).toBe(expected);
-      expect(mapShareToShareDetailsView).toHaveBeenCalledTimes(1);
-      expect(mapShareToShareDetailsView).toHaveBeenCalledWith(share);
+      expect(result).toBeDefined();
+      expect(result).toMatchObject({
+        id: 'share-1',
+        name: 'My Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 161061273600,
+        status: 'available',
+        regionDisplayKey: 'regions:manager_components_region_GRA_micro',
+      });
+      expect(result?.statusDisplay).toEqual({
+        labelKey: 'status:active',
+        badgeColor: 'success',
+      });
+      expect(result?.enabledActions).toEqual([]);
     });
   });
 });
