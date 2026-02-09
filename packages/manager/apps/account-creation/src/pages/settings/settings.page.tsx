@@ -14,7 +14,7 @@ import {
   OdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Currency } from '@ovh-ux/manager-config';
+import { Country, Currency } from '@ovh-ux/manager-config';
 import {
   ButtonType,
   PageLocation,
@@ -44,6 +44,7 @@ import {
   WEBSITE_LABEL_BY_LOCALE,
 } from './settings.constants';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
+import { useLocalCountry } from '@/hooks/useLocalCountry/useLocalCountry';
 
 type SettingsFormData = {
   country: string;
@@ -58,6 +59,8 @@ export default function Settings() {
     NAMESPACES.ONBOARDING,
     NAMESPACES.FORM,
   ]);
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [_, setLocalCountry] = useLocalCountry();
   const { trackClick } = useTrackingContext();
   const { trackError } = useTrackError('choose-preferences');
   const pageTracking = usePageTracking();
@@ -123,6 +126,15 @@ export default function Settings() {
     }
     input.autocomplete = 'off';
   }, [comboboxRef.current, countries]);
+
+  /**
+   * TODO: Remove this effect when the API is updated to return the country code
+   */
+  useEffect(() => {
+    if (selectedCountry && selectedCountry !== 'UNKNOWN') {
+      setLocalCountry(selectedCountry as Country);
+    }
+  }, [selectedCountry, setLocalCountry]);
 
   useEffect(() => {
     if (currencies?.length === 1) {
