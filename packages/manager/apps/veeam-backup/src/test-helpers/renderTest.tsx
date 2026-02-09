@@ -2,6 +2,7 @@ import React from 'react';
 import { SetupServer } from 'msw/node';
 import { i18n as i18nType } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import type { RenderResult } from '@testing-library/react';
 import {
   ShellContext,
   ShellContextType,
@@ -39,7 +40,7 @@ export const renderTest = async ({
 }: { initialRoute?: string } & GetOrganizationMocksParams &
   GetVeeamBackupMocksParams &
   GetCatalogMocksParams &
-  GetServicesMocksParams = {}) => {
+  GetServicesMocksParams = {}): Promise<RenderResult> => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),
