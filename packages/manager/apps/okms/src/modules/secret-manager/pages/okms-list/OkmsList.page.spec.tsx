@@ -7,11 +7,10 @@ import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { assertRegionSelectorIsVisible } from '@/modules/secret-manager/utils/tests/regionSelector';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.okmsList(regionWithMultipleOkms.region);
