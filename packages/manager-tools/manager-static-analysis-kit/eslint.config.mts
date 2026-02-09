@@ -1,8 +1,11 @@
 /* eslint-disable import/no-unresolved */
+import { a11yEslintConfig } from './src/adapters/eslint/rules/eslint-a11y';
+// import { biomeEslintConfig } from './src/adapters/eslint/rules/eslint-biome';
 import {
   complexityJsxTsxConfig,
   complexityTsJsConfig,
 } from './src/adapters/eslint/rules/eslint-complexity';
+import { htmlEslintConfig } from './src/adapters/eslint/rules/eslint-html';
 import { importEslintConfig } from './src/adapters/eslint/rules/eslint-imports';
 import { javascriptEslintConfig } from './src/adapters/eslint/rules/eslint-javascript';
 import { checkFileEslintConfig } from './src/adapters/eslint/rules/eslint-naming-conventions';
@@ -16,10 +19,13 @@ export default [
   javascriptEslintConfig,
   typescriptEslintConfig,
   reactEslintConfig,
+  htmlEslintConfig,
+  a11yEslintConfig,
   tanStackQueryEslintConfig,
   ...importEslintConfig,
   ...checkFileEslintConfig,
   vitestEslintConfig,
+  // biomeEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
   complexityTsJsConfig,

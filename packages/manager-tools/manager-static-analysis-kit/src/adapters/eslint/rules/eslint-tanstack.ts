@@ -1,5 +1,5 @@
 import pluginQuery from '@tanstack/eslint-plugin-query';
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { jsTsFiles } from '../../../configs/file-globs-config';
 

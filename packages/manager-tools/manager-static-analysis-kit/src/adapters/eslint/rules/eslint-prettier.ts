@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 import prettier from 'eslint-plugin-prettier';
 
 import { prettierConfig } from '../../../configs/code-formatter-config';
