@@ -31,6 +31,10 @@ global.ResizeObserver = class ResizeObserver {
   }
 } as typeof ResizeObserver;
 
+// For ODS Select - Mock scrollTo and scrollIntoView for HTMLElement
+HTMLElement.prototype.scrollTo = vi.fn();
+HTMLElement.prototype.scrollIntoView = vi.fn();
+
 const server = setupServer(
   ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
 );
