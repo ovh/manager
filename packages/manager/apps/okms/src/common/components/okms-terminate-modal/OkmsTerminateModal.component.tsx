@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
-import { DeleteModal } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
+import { DeleteModal } from '@ovh-ux/muk';
 import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
@@ -75,10 +75,10 @@ export default function OkmsTerminateModal({ okmsId }: OkmsTerminateModalProps) 
 
   return (
     <DeleteModal
-      isOpen
+      open
       isLoading={isPending}
       error={isError ? error?.message : undefined}
-      closeModal={() => {
+      onClose={() => {
         trackClick({
           location: PageLocation.popup,
           buttonType: ButtonType.button,

@@ -1,4 +1,4 @@
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 import { OkmsCatalog } from '@/common/types/orderCatalogOkms.type';
 
@@ -23,7 +23,7 @@ export const catalogMock: OkmsCatalog = {
         {
           phase: 0,
           interval: 1,
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
           price: 0,
           tax: 0,
         },
@@ -48,7 +48,7 @@ export const catalogMock: OkmsCatalog = {
         {
           phase: 0,
           interval: 0,
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
           price: SERVICE_KEY_PRICE,
           tax: SERVICE_KEY_TAX,
         },
@@ -63,7 +63,7 @@ export const catalogMock: OkmsCatalog = {
         {
           phase: 0,
           interval: 0,
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
           price: KMIP_OBJECT_PRICE,
           tax: KMIP_OBJECT_TAX,
         },
@@ -78,7 +78,7 @@ export const catalogMock: OkmsCatalog = {
         {
           phase: 0,
           interval: 0,
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
           price: SECRET_PRICE,
           tax: SECRET_TAX,
         },

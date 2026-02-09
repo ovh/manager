@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Card } from '@ovh-ux/manager-react-components';
+import { LinkCard } from '@ovh-ux/muk';
 
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 
@@ -12,7 +12,7 @@ export const GuideManagerCard = () => {
   const guideLink = useGuideLink(GUIDES_MANAGER);
 
   return (
-    <Card
+    <LinkCard
       data-testid="guide-manager-card"
       href={guideLink}
       texts={{
@@ -20,7 +20,7 @@ export const GuideManagerCard = () => {
         description: t('guide_use_in_manager_description'),
         category: t('tutorial', { ns: NAMESPACES.ONBOARDING }),
       }}
-      isExternalHref={true}
+      externalHref={true}
     />
   );
 };

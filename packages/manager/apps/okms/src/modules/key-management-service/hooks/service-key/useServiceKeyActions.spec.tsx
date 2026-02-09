@@ -19,8 +19,8 @@ vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@ovh-ux/muk')>();
 
   return {
     ...mod,
