@@ -6,9 +6,9 @@
   "legal_form_corporation": "Company",
   "legal_form_individual": "Private individual",
   "legal_form_personalcorporation": "Sole trader",
-  "legal_form_tooltip_corporation_description": "Set up an account for your business, whether you are a registered business or a sole trader.",
-  "legal_form_tooltip_individual_description": "Create an account as a private individual if you do not yet have a registered business or are in the process of getting your business set up.",
-  "legal_form_tooltip_administration_description": "Set up an account for your public organisation if you represent a state, local authority, international organisation or institution.",
-  "legal_form_tooltip_association_description": "Set up an account for your nonprofit if you are registered in the national directory of companies and establishments. If you are not registered, please set up an individual account.",
+  "legal_form_tooltip_corporation_description": "The “Company” account is intended and should be created by all <strong>legal persons</strong> (excluding public sector bodies and non-profit entities) and all <strong>natural persons (sole traders)</strong> purchasing OVHcloud products as part of their <strong>professional activity</strong>.",
+  "legal_form_tooltip_individual_description": "The “Individual” account should only be created by <strong>natural persons</strong> purchasing OVHcloud products for their <strong>private needs, outside the scope of a professional activity</strong>.",
+  "legal_form_tooltip_administration_description": "The “Public Sector” account should only be created by <strong>central government bodies, regional and local authorities, or public sector bodies</strong>.",
+  "legal_form_tooltip_association_description": "The “Non-Profit” account should only be created by <strong>non-profits and other not-for-profit organisations such as foundations, trade unions or religious congregations</strong>.",
   "legal_form_tooltip_personalcorporation_description": "Sole trader description."
 }
