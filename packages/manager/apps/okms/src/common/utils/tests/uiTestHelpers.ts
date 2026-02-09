@@ -1,6 +1,6 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { UserEvent } from '@testing-library/user-event';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import { expect } from 'vitest';
 
 import { BadgeColor } from '@ovhcloud/ods-react';
@@ -11,30 +11,7 @@ export const TIMEOUT = {
   LONG: 10000,
 };
 
-/* GET BY TEST ID */
-
-export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
-  // First try to get the input directly
-  let input = screen.queryByTestId(inputTestId);
-
-  // If the input is not found, try to find it with a findByTestId
-  // This can look silly, but the ODS input renders in a mysterious way
-  // and if you use a findByTestId when you need a getByTestId (and reverse), it won't work
-  if (!input) {
-    input = await screen.findByTestId(inputTestId);
-  }
-
-  act(() => {
-    fireEvent.change(input, {
-      target: { value },
-    });
-  });
-
-  // Wait for the data input to be updated
-  await waitFor(() => {
-    expect(input).toHaveValue(value);
-  });
-};
+/* ASSERT VISIBILITY */
 
 export const assertClipboardVisibility = async (value: string, timeout?: number) => {
   const clipboardInput = await screen.findByDisplayValue(value, {}, { timeout: timeout ?? 3000 });
@@ -105,12 +82,15 @@ export const assertTitleVisibility = async ({
   );
 };
 
-/**
- * Clicks on the JSON toggle
- */
-export const clickJsonEditorToggle = async (user: UserEvent) => {
-  const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
-  await act(() => user.click(jsonToggle));
+export const assertMessageVisibility = async (message: string, timeout = TIMEOUT.DEFAULT) => {
+  await waitFor(
+    () => {
+      const messages = screen.getAllByText(message);
+      const messageElement = messages.find((msg) => msg.getAttribute('data-ods') === 'message');
+      expect(messageElement).toBeVisible();
+    },
+    { timeout },
+  );
 };
 
 /**
@@ -123,4 +103,27 @@ export const assertBadgeColor = (badge: HTMLElement, color: BadgeColor) => {
   const className = badge.className || '';
 
   expect(className).toContain(colorClassFragment);
+};
+
+/**
+ * Clicks on the JSON toggle
+ */
+export const clickJsonEditorToggle = async (user: UserEvent) => {
+  const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
+  await act(() => user.click(jsonToggle));
+};
+
+/**
+ * Changes the value of an input by test id
+ */
+export const changeInputValueByTestId = async (inputTestId: string, value: string) => {
+  const user = userEvent.setup();
+  const input = await screen.findByTestId(inputTestId);
+
+  await act(async () => {
+    await user.clear(input);
+    await user.type(input, value);
+  });
+
+  await waitFor(() => expect(input).toHaveValue(value));
 };

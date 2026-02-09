@@ -18,7 +18,7 @@ import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 import {
-  changeOdsInputValueByTestId,
+  changeInputValueByTestId,
   clickJsonEditorToggle,
 } from '@/common/utils/tests/uiTestHelpers';
 
@@ -137,7 +137,7 @@ describe('Secrets creation form test suite', () => {
       await clickJsonEditorToggle(user);
 
       if (path) {
-        await changeOdsInputValueByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH, path);
+        await changeInputValueByTestId(SECRET_FORM_TEST_IDS.INPUT_PATH, path);
       }
       if (data) {
         const input = await screen.findByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);

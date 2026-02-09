@@ -4,7 +4,7 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
@@ -13,7 +13,7 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
   assertModalVisibility,
   assertTitleVisibility,
-  changeOdsInputValueByTestId,
+  changeInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
 const WAIT_TIMEOUT = { timeout: 5000 };
@@ -48,22 +48,30 @@ const testStep1Content = () => {
   const inputName = screen.getByTestId('input-name');
   const inputDescription = screen.getByTestId('input-description');
   const inputValidity = screen.getByTestId('input-validity-period');
-  const inputMethodKey = screen.getByTestId('radio-method-key');
-  const inputMethodNoKey = screen.getByTestId('radio-method-no-key');
-  const inputCertificateTypeEC = screen.getByTestId('radio-certificate-type-ec');
-  const inputCertificateTypeRSA = screen.getByTestId('radio-certificate-type-rsa');
+  const radioMethodKeyWrapper = screen.getByTestId('radio-method-key');
+  const radioMethodNoKeyWrapper = screen.getByTestId('radio-method-no-key');
+  const radioCertificateTypeECWrapper = screen.getByTestId('radio-certificate-type-ec');
+  const radioCertificateTypeRSAWrapper = screen.getByTestId('radio-certificate-type-rsa');
 
   expect(inputName).toBeInTheDocument();
   expect(inputDescription).toBeInTheDocument();
   expect(inputValidity).toBeInTheDocument();
-  expect(inputMethodKey).toBeInTheDocument();
-  expect(inputMethodKey).toHaveAttribute('is-checked', 'false');
-  expect(inputMethodNoKey).toBeInTheDocument();
-  expect(inputMethodNoKey).toHaveAttribute('is-checked', 'true');
-  expect(inputCertificateTypeEC).toBeInTheDocument();
-  expect(inputCertificateTypeEC).toHaveAttribute('is-checked', 'true');
-  expect(inputCertificateTypeRSA).toBeInTheDocument();
-  expect(inputCertificateTypeRSA).toHaveAttribute('is-checked', 'false');
+  expect(radioMethodKeyWrapper).toBeInTheDocument();
+  expect(radioMethodNoKeyWrapper).toBeInTheDocument();
+  expect(radioCertificateTypeECWrapper).toBeInTheDocument();
+  expect(radioCertificateTypeRSAWrapper).toBeInTheDocument();
+
+  // Get the radio input elements within the Radio components
+  const inputMethodKey = within(radioMethodKeyWrapper).getByRole('radio');
+  const inputMethodNoKey = within(radioMethodNoKeyWrapper).getByRole('radio');
+  const inputCertificateTypeEC = within(radioCertificateTypeECWrapper).getByRole('radio');
+  const inputCertificateTypeRSA = within(radioCertificateTypeRSAWrapper).getByRole('radio');
+
+  // Check checked state using ODS19 standard checked attribute
+  expect(inputMethodKey).not.toBeChecked();
+  expect(inputMethodNoKey).toBeChecked();
+  expect(inputCertificateTypeEC).toBeChecked();
+  expect(inputCertificateTypeRSA).not.toBeChecked();
 
   const buttonNextStep = screen.getByRole('button', {
     name: labels.credentials.key_management_service_credential_create_cta_add_identities,
@@ -183,7 +191,7 @@ const testStep1 = async (user: UserEvent) => {
   const { buttonNextStep } = testStep1Content();
 
   // Fill the name
-  await changeOdsInputValueByTestId('input-name', 'test-value-input');
+  await changeInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -202,7 +210,7 @@ const testStep1CustomCsr = async (user: UserEvent) => {
     testStep1Content();
 
   // Fill the name
-  await changeOdsInputValueByTestId('input-name', 'test-value-input');
+  await changeInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -224,7 +232,7 @@ const testStep1CustomCsr = async (user: UserEvent) => {
   });
 
   // Fill the csr
-  await changeOdsInputValueByTestId('textarea-csr', 'custom-csr-value');
+  await changeInputValueByTestId('textarea-csr', 'custom-csr-value');
 
   // Check submit button is enabled
   await waitFor(() => {

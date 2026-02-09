@@ -6,8 +6,6 @@ import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
 
-import { OdsCheckbox } from '@ovhcloud/ods-components';
-
 import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   Contract,
@@ -24,8 +22,8 @@ import {
   createErrorResponseMock,
   promiseWithDelayMock,
   renderWithClient,
-  wait,
 } from '@/common/utils/tests/testUtils';
+import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 
 import OrderOkmsModal from './OrderOkmsModal.page';
 import {
@@ -107,30 +105,30 @@ const renderOrderOkmsModal = async () => {
   );
 };
 
-const clickOnConfirmCheckbox = () => {
-  const confirmCheckbox = screen.getByTestId(
-    ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID,
-  ) as unknown as OdsCheckbox;
-  act(() => {
-    confirmCheckbox.odsChange.emit({
-      name: 'confirm-contract',
-      value: 'confirm-contract',
-      checked: true,
-    });
+const clickOnConfirmCheckbox = async (user: UserEvent) => {
+  // Click the checkbox
+  const checkbox = screen.getByRole('checkbox', {
+    name: labels.secretManager.create_okms_terms_and_conditions_confirm_label,
+  });
+
+  await act(async () => user.click(checkbox));
+
+  // Wait for the checkbox to be checked and the button to be enabled
+  await waitFor(() => {
+    expect(checkbox).toBeChecked();
+    const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
+    expect(confirmButton).not.toBeDisabled();
   });
 };
 
 const clickOnConfirmButton = async (user: UserEvent) => {
-  // Small wait to ensure state updates
-  // Fails intermittently without this - button click does not always works
-  await wait(300);
-
   let confirmButton: HTMLElement | undefined = undefined;
   await waitFor(() => {
     confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
     expect(confirmButton).not.toBeDisabled();
   });
-  await act(() => user.click(confirmButton!));
+
+  await act(async () => user.click(confirmButton!));
 
   return confirmButton;
 };
@@ -138,7 +136,7 @@ const clickOnConfirmButton = async (user: UserEvent) => {
 const submitOrder = async (user: UserEvent) => {
   await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
 
-  clickOnConfirmCheckbox();
+  await clickOnConfirmCheckbox(user);
   await clickOnConfirmButton(user);
 };
 
@@ -226,7 +224,11 @@ describe('Order Okms Modal test suite', () => {
 
       const confirmCheckbox = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_CHECKBOX_TEST_ID);
       expect(confirmCheckbox).toBeVisible();
-      expect(confirmCheckbox).toHaveAttribute('is-checked', 'false');
+      // Check that the checkbox is not checked
+      const checkboxInput = screen.getByRole('checkbox', {
+        name: labels.secretManager.create_okms_terms_and_conditions_confirm_label,
+      });
+      expect(checkboxInput).not.toBeChecked();
 
       expect(screen.getByTestId(ORDER_OKMS_CREATE_CANCEL_BUTTON_TEST_ID)).toBeVisible();
 
@@ -236,12 +238,14 @@ describe('Order Okms Modal test suite', () => {
     });
 
     it('should enable confirm button on condition approval', async () => {
+      const user = userEvent.setup();
+
       // GIVEN
       await renderOrderOkmsModal();
       await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
 
       // WHEN
-      clickOnConfirmCheckbox();
+      await clickOnConfirmCheckbox(user);
 
       // THEN
       const confirmButton = screen.getByTestId(ORDER_OKMS_TC_CONFIRM_BUTTON_TEST_ID);
@@ -259,15 +263,17 @@ describe('Order Okms Modal test suite', () => {
       await renderOrderOkmsModal();
       await assertTextVisibility(labels.secretManager.create_okms_terms_and_conditions_title);
 
-      // WHEN
-
-      // THEN - Test loading state
-      clickOnConfirmCheckbox();
+      // WHEN - Click checkbox and then button
+      await clickOnConfirmCheckbox(user);
       const confirmButton = await clickOnConfirmButton(user);
-      // THEN - Test loading state
-      await waitFor(() => {
-        expect(confirmButton).toHaveAttribute('data-loading', 'true');
-      });
+
+      // THEN - Test loading state (wait for the mutation to start and set loading state)
+      await waitFor(
+        () => {
+          expect(confirmButton).toHaveAttribute('data-loading', 'true');
+        },
+        { timeout: TIMEOUT.MEDIUM },
+      );
     });
 
     it('should register the pending order on success', async () => {

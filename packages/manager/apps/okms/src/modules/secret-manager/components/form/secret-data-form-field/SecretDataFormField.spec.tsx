@@ -114,18 +114,27 @@ describe('SecretDataFormField', () => {
       // Given
       await renderTest(mockDefaultValues.validKeyValue);
 
-      // Then
-      const keyValueToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle);
-      expect(keyValueToggle).toHaveAttribute('data-checked', 'true');
+      // Then - verify behavior: key-value editor is rendered, which means key-value toggle is active
+      expect(
+        screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(0)),
+      ).toBeInTheDocument();
+      // Verify raw editor is not shown
+      expect(screen.queryByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA)).not.toBeInTheDocument();
     });
 
     test('should show JSON as active when rendering raw editor', async () => {
       // Given
       await renderTest(mockDefaultValues.invalidKeyValue);
 
-      // Then
-      const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
-      expect(jsonToggle).toHaveAttribute('data-checked', 'true');
+      // Then - verify behavior: raw editor is rendered, which means JSON toggle is active
+      expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA)).toBeInTheDocument();
+      // Verify key-value editor is not shown
+      expect(
+        screen.queryByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
+      ).not.toBeInTheDocument();
     });
   });
 
