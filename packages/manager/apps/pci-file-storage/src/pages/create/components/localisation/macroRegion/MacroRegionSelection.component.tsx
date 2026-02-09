@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 
 import { RadioGroup } from '@ovhcloud/ods-react';
 
-import { TRegionData } from '@/adapters/catalog/left/shareCatalog.data';
 import { LocalizationCard } from '@/components/new-lib/localizationCard/LocalizationCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { ContinentSelection } from '@/pages/create/components/localisation/macroRegion/ContinentSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
+import { TRegionData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { selectLocalizations } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const MacroRegionSelection = () => {

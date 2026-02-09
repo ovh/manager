@@ -5,14 +5,14 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
+import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import {
   TAvailabilityZoneData,
   TMicroRegionData,
   TShareSpecData,
-} from '@/adapters/catalog/left/shareCatalog.data';
-import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
-import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
-import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
+} from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');

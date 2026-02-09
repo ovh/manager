@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BADGE_COLOR, Badge, type BadgeColor } from '@ovhcloud/ods-react';
 
-import { type TShareStatusBadgeColor } from '@/adapters/shares/left/shareStatusMapper';
+import { type TShareStatusBadgeColor } from '@/pages/view-model/shareStatus.view-model';
 
 const BADGE_COLOR_BY_STATUS: Record<TShareStatusBadgeColor, BadgeColor> = {
   success: BADGE_COLOR.success,
