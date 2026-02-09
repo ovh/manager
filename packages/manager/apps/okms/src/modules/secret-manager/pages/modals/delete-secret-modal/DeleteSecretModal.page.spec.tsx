@@ -8,11 +8,9 @@ import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { assertModalVisibility, assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
   okmsRoubaix1Mock.id,

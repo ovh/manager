@@ -5,11 +5,10 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { ActivateRegion, ActivateRegionParams } from './ActivateRegion.component';
 

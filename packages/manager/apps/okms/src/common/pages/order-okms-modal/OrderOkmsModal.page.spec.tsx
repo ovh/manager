@@ -6,7 +6,6 @@ import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import {
   Contract,
   Order,
@@ -23,6 +22,7 @@ import {
   promiseWithDelayMock,
   renderWithClient,
 } from '@/common/utils/tests/testUtils';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 
 import OrderOkmsModal from './OrderOkmsModal.page';

@@ -6,10 +6,9 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
 import { PATH_LABEL } from '@/constants';

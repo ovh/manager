@@ -1,5 +1,5 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
-import { act, fireEvent, screen, waitFor } from '@testing-library/react';
+import { Matcher, act, screen, waitFor } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { expect } from 'vitest';
 
@@ -12,6 +12,10 @@ export const TIMEOUT = {
 };
 
 /* ASSERT VISIBILITY */
+
+export const assertTextVisibility = async (text: Matcher, timeout = TIMEOUT.DEFAULT) => {
+  await waitFor(() => expect(screen.getByText(text)).toBeVisible(), { timeout });
+};
 
 export const assertClipboardVisibility = async (value: string, timeout?: number) => {
   const clipboardInput = await screen.findByDisplayValue(value, {}, { timeout: timeout ?? 3000 });

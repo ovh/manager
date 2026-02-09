@@ -11,9 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { Tile } from '@ovh-ux/muk';
-import { Button } from '@ovh-ux/muk';
-import { Clipboard } from '@ovh-ux/muk';
+import { Button, Clipboard, Tile } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -45,7 +43,6 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
               {serviceKey.name}
             </Text>
             <Button
-              id="editName"
               data-testid={SERVICE_KEY_TEST_IDS.editNameButton}
               size="sm"
               variant="ghost"

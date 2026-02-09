@@ -13,10 +13,9 @@ import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import {
   changeInputValueByTestId,
   clickJsonEditorToggle,

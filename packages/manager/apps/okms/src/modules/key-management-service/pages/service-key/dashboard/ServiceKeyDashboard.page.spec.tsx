@@ -4,10 +4,9 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS, changeOdsInputValue } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT, assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
@@ -20,10 +19,9 @@ describe('Service Key dashboard test suite', () => {
       isServiceKeyKO: true,
     });
 
-    await waitFor(
-      () => expect(screen.getByAltText('OOPS')).toBeInTheDocument(),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
+    await waitFor(() => expect(screen.getByAltText('OOPS')).toBeInTheDocument(), {
+      timeout: TIMEOUT.MEDIUM,
+    });
   });
 
   it('should display the kms dashboard page', async () => {
@@ -38,7 +36,7 @@ describe('Service Key dashboard test suite', () => {
           ).length,
         ).toBeGreaterThan(0),
 
-      WAIT_FOR_DEFAULT_OPTIONS,
+      { timeout: TIMEOUT.MEDIUM },
     );
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
@@ -48,46 +46,30 @@ describe('Service Key dashboard test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
-    await waitFor(
-      () =>
-        expect(screen.getByTestId(SERVICE_KEY_TEST_IDS.editNameButton)).not.toHaveAttribute(
-          'is-disabled',
-        ),
-      WAIT_FOR_DEFAULT_OPTIONS,
-    );
-
-    await act(() => user.click(screen.getByTestId(SERVICE_KEY_TEST_IDS.editNameButton)));
-
+    // Open the edit name modal
+    const editNameButton = await screen.findByTestId(SERVICE_KEY_TEST_IDS.editNameButton);
+    await waitFor(() => expect(editNameButton).toBeEnabled(), {
+      timeout: TIMEOUT.MEDIUM,
+    });
+    await act(() => user.click(editNameButton));
     await assertModalVisibility({ role: 'dialog' });
 
-    await changeOdsInputValue({
-      inputLabel: 'input-edit-service-key-name',
-      inputValue: 'Updated Encryption Key',
+    // Change the name of the service key
+    const inputEditServiceKeyName = screen.getByLabelText('input-edit-service-key-name');
+    await act(async () => {
+      await user.clear(inputEditServiceKeyName);
+      await user.type(inputEditServiceKeyName, 'New Service Key Name');
     });
 
-    // TEMP: skipped last part
-    // TEMP: waiting for fix on <OdsButton /> isDisabled prop
-    // TEMP: click impossible if isDisabled is set on <OdsButton />, regardless of its value
-    // await waitFor(
-    //   () =>
-    //     expect(
-    //       screen.getByTestId(serviceKeyTestIds.modifyNameButton),
-    //     ).toHaveAttribute('is-disabled', 'false'),
-    //   WAIT_FOR_DEFAULT_OPTIONS,
-    // );
-    // await act(() => user.click(screen.getByTestId(serviceKeyTestIds.modifyNameButton)));
-    // await waitFor(
-    //   () => assertOds18ModalVisibility({ container, isVisible: false }),
-    //   WAIT_FOR_DEFAULT_OPTIONS,
-    // );
-    // await waitFor(() => {
-    //   expect(
-    //     screen.getByText(
-    //       labels.serviceKeys[
-    //         'key_management_service_service-keys_update_name_success'
-    //       ],
-    //     ),
-    //   ).toBeVisible();
-    // }, WAIT_FOR_DEFAULT_OPTIONS);
+    // Validate the changes
+    const validateButton = screen.getByTestId(SERVICE_KEY_TEST_IDS.modifyNameButton);
+    await waitFor(() => expect(validateButton).toBeEnabled());
+    await act(() => user.click(validateButton));
+
+    // Check for success message
+    await assertModalVisibility({ role: 'dialog', state: 'hidden' });
+    await assertTextVisibility(
+      labels.serviceKeys['key_management_service_service-keys_update_name_success'],
+    );
   });
 });

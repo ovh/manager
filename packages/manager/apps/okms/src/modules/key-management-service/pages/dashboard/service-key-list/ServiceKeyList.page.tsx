@@ -99,7 +99,7 @@ export default function Keys() {
       )}
       <Button
         id="createEncryptionKey"
-        data-testid={SERVICE_KEY_LIST_TEST_IDS.ctaCreateKey}
+        data-testid={SERVICE_KEY_LIST_TEST_IDS.buttonCreateKey}
         color="primary"
         className="w-fit"
         onClick={() => {
