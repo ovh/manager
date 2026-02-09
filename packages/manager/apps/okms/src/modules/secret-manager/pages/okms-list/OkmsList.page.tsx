@@ -29,18 +29,17 @@ export default function OkmsListPage() {
   const { region } = useRequiredParams('region');
   const { trackClick } = useOkmsTracking();
 
-  const { data, error, isPending, refetch } = useOkmsDatagridList({
+  const { flattenData, error, isLoading } = useOkmsDatagridList({
     pageSize: 100,
   });
-  const flattenData = data?.pages.flatMap((page) => page.data) || [];
 
   // Filter okms by regionId
-  const okmsList = filterOkmsListByRegion(flattenData, region);
+  const okmsList = filterOkmsListByRegion(flattenData ?? [], region);
 
   // Redirections management
   useEffect(() => {
     // Wait for the data to be loaded
-    if (isPending) return;
+    if (isLoading) return;
 
     if (okmsList.length === 0) {
       // If no okms found for the region, redirect to secret-manager root
@@ -55,14 +54,13 @@ export default function OkmsListPage() {
         pathname: SECRET_MANAGER_ROUTES_URLS.secretList(okmsId),
       });
     }
-  }, [isPending, okmsList.length, navigate, okmsList]);
+  }, [isLoading, okmsList.length, navigate, okmsList]);
 
   if (error) {
     return (
       <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
-        onReloadPage={refetch}
       />
     );
   }
@@ -85,7 +83,7 @@ export default function OkmsListPage() {
         <RegionSelector />
         <OkmsDatagrid
           type="secret-manager"
-          isLoading={isPending}
+          isLoading={isLoading}
           okmsList={okmsList}
           topbar={
             <Button

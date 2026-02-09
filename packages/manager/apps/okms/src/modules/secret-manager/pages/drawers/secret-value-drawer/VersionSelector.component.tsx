@@ -38,7 +38,11 @@ export const VersionSelector = ({
 
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.ERROR]);
 
-  const { data, isPending, isFetching, error } = useSecretVersionList({
+  const {
+    flattenData: versions,
+    isLoading,
+    error,
+  } = useSecretVersionList({
     okmsId,
     path: secretPathDecoded,
     pageSize: 100,
@@ -63,16 +67,14 @@ export const VersionSelector = ({
         <Text preset="span" className="w-1/3">
           {t('version')}
         </Text>
-        {/*   isFetching forces to display the spinner when the version has changed
-        otherwise when the ods-select component is refreshed, react breaks */}
-        {isPending || isFetching ? (
+        {isLoading ? (
           <Skeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
         ) : (
           <VersionSelectorSelect
             defaultVersionId={defaultVersionId}
             selectedVersion={selectedVersion}
             setSelectedVersion={setSelectedVersion}
-            versions={data?.pages.flatMap((page) => page.data)}
+            versions={versions}
           />
         )}
       </div>
@@ -80,7 +82,7 @@ export const VersionSelector = ({
         <Text preset="span" className="w-1/3">
           {t('status', { ns: NAMESPACES.STATUS })}
         </Text>
-        {isPending ? (
+        {isLoading ? (
           <Skeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
         ) : (
           selectedVersion && <VersionState state={selectedVersion.state} />
