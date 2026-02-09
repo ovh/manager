@@ -2,6 +2,7 @@ import { useId, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
@@ -18,7 +19,7 @@ import { Modal } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
-import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDownloadLinkAgent';
+import { agentsQueries } from '@/data/queries/agents.queries';
 import { OS_LABELS } from '@/module.constants';
 import { OS } from '@/types/Os.type';
 
@@ -27,10 +28,21 @@ export default function DownloadAgentPage() {
   const [osSelected, setOsSelected] = useState<OS | null>(null);
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const closeModal = () => navigate('..');
 
-  const { data: downloadLink, isLoading } = useBackupVSPCTenantAgentDownloadLink({
-    os: osSelected,
+  const { data: downloadLink, isPending: isLoading } = useQuery({
+    ...agentsQueries.withClient(queryClient).downloadLink(),
+    enabled: !!osSelected,
+    select: (data) => {
+      switch (osSelected) {
+        case 'WINDOWS':
+          return data.windowsUrl;
+        case 'LINUX':
+        default:
+          return data.linuxUrl;
+      }
+    },
   });
 
   const handleChangeDownloadLink = (osKey: OS) => {
