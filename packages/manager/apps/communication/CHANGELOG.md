@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.10.2...@ovh-ux/manager-communication-app@0.11.0) (2026-02-09)
+
+
+### Features
+
+* **communication:** map links to components in text viewer ([1bee2fa](https://github.com/ovh/manager/commit/1bee2fa6fa06a4e11e2273f86b7c7af7aa3c16da)), closes [#MANAGER-207668](https://github.com/ovh/manager/issues/MANAGER-207668)
+
+
+
+
+
 ## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.10.1...@ovh-ux/manager-communication-app@0.10.2) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app
