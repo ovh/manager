@@ -342,5 +342,5 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktiviert",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "deaktiviert",
   "domain_tab_general_information_subscription_edit_owner": "Informationen des Inhaberkontakts bearbeiten",
-  "domain_tab_general_information_data_protection_disabled": "Der Registrar für diese Domain erlaubt keine benutzerdefinierte Verwaltung der Anzeige von Daten."
+  "domain_tab_general_information_data_protection_disabled": "Die für diesen Domainnamen zuständige Registry lässt keine benutzerdefinierte Verwaltung der Datenansicht zu."
 }
