@@ -164,10 +164,14 @@ export const breadcrumbConfig: BreadcrumbConfig = {
       items: [{ labelKey: 'breadcrumb:settings' }],
     },
 
-    // Dashboards
+    // Managed dashboards Onboarding
     {
-      pattern: urls.dashboards,
-      items: [{ labelKey: 'breadcrumb:dashboards' }],
+      pattern: urls.managedDashboardsOnboarding,
+      items: [
+        { labelKey: 'breadcrumb:settings', path: urls.settings },
+        { labelKey: 'breadcrumb:dashboards', path: urls.managedDashboards },
+        { hidden: true }, // onboarding label is hidden
+      ],
     },
   ],
 
