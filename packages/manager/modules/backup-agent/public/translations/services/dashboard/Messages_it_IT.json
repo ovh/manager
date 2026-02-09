@@ -8,5 +8,8 @@
   "linked_vaults": "Vault collegati",
   "number_of_linked_vaults": "{{connectedVaultCount}} Vault",
   "number_of_linked_server": "{{installedAgentsCount}} server",
-  "access_to_vspc": "Accedere al VSPC"
+  "access_to_vspc": "Accedi al VSPC",
+  "vspc_reset_password": "Reimposta la password per accedere al Tenant",
+  "vspc_reset_password_forgotten": "Se hai dimenticato la password: utilizza la funzione 'Password dimenticata' nella pagina di accesso VSPC.",
+  "vspc_reset_password_logged_in": "Se sei già connesso al VSPC: accedi a 'Modifica profilo' > 'Informazioni di accesso' nell'interfaccia."
 }
