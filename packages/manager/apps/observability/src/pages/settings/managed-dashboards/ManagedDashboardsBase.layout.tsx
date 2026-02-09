@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
+import GrafanaButton from '@/components/metrics/grafana-button/GrafanaButton.component';
 import MetricsGuideHeader from '@/components/metrics/guide-header/MetricsGuideHeader.component';
 import ServicesNavigation from '@/components/services/navigation/ServicesNavigation.component';
 import ObsBaseLayout from '@/pages/ObsBase.layout';
@@ -13,7 +14,7 @@ export default function ManagedDashboardsBaseLayout({ children }: { children?: R
       guideMenu={<MetricsGuideHeader />} // TODO: add guide menu for settings/services
     >
       {children}
-      <ServicesNavigation rootUrl={urls.managedDashboards} />
+      <ServicesNavigation button={<GrafanaButton />} rootUrl={urls.managedDashboards} />
     </ObsBaseLayout>
   );
 }
