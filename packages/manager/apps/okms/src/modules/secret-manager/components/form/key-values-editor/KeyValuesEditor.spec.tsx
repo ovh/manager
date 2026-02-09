@@ -24,16 +24,6 @@ const mockDefaultValues = {
   },
 };
 
-// Mocking ODS Input component
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock } = await import('@/common/utils/tests/odsMocks');
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsInput: vi.fn(odsInputMock),
-  };
-});
-
 type TestWrapperDefaultValues = {
   data: string;
 };
@@ -220,7 +210,7 @@ describe('KeyValuesEditor', () => {
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
-      expect(deleteButton).not.toHaveAttribute('is-disabled', 'true');
+      expect(deleteButton).toBeEnabled();
     });
 
     test('should enable delete buttons when multiple items exist', async () => {
