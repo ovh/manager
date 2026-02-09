@@ -995,10 +995,10 @@ export default function AccountDetailsPage() {
   const { t: tCommon } = useTranslation('common');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const [searchParams] = useSearchParams();
-  const { legalForm, organisation } = useUserContext();
-  const { data: currentUser } = useMe();
+  const { legalForm, organisation, country } = useUserContext();
+  const { data: currentUser, isLoading: isCurrentUserLoading } = useMe();
   const wentThroughOrganizationSearch = shouldAccessOrganizationSearch(
-    currentUser?.country,
+    country,
     legalForm,
   );
   const { trackBackButtonClick } = useTrackBackButtonClick();
@@ -1011,15 +1011,17 @@ export default function AccountDetailsPage() {
   };
 
   const [rulesParams, setRulesParams] = useState<RulesParam>({
-    country: currentUser?.country || 'GB',
-    language: currentUser?.language || 'en_GB',
-    legalform: legalForm || 'corporation',
-    ovhSubsidiary: currentUser?.ovhSubsidiary || 'GB',
-    phoneCountry: currentUser?.country || 'GB',
+    country,
+    language: currentUser?.language || undefined,
+    legalform: legalForm,
+    ovhSubsidiary: currentUser?.ovhSubsidiary,
+    phoneCountry: country,
   });
 
-  const { data: rules, refetch: refetchRules, isLoading, error } = useRules(
+  const { data: rules, refetch: refetchRules, isLoading: isRulesLoading, error, isEnabled: isRulesEnabled } = useRules(
     rulesParams,
+    undefined,
+    Boolean(currentUser) && Boolean(country) && Boolean(legalForm),
   );
 
   const updateRulesParams = useCallback(
@@ -1033,6 +1035,18 @@ export default function AccountDetailsPage() {
   );
 
   useEffect(() => {
+    if (!currentUser) return;
+    setRulesParams({
+      country: country ?? currentUser.country,
+      language: currentUser.language || undefined,
+      legalform: legalForm ?? currentUser.legalform,
+      ovhSubsidiary: currentUser.ovhSubsidiary || undefined,
+      phoneCountry: country ?? currentUser.country,
+    });
+  }, [currentUser, country, legalForm]);
+
+  useEffect(() => {
+    if (!isRulesEnabled) return;
     refetchRules();
   }, [rulesParams]);
 
@@ -1062,7 +1076,7 @@ export default function AccountDetailsPage() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
           {t('account_details_info_message')}
         </OdsText>
-        {(!rules || isLoading) && (
+        {(!rules || isRulesLoading || isCurrentUserLoading) ? (
           <div className="flex flex-col gap-8">
             <FormGroupSkeleton />
             <FormGroupSkeleton />
@@ -1071,12 +1085,13 @@ export default function AccountDetailsPage() {
             <CheckboxSkeleton />
             <ButtonSkeleton />
           </div>
-        )}
-        {rules && (
+        ) : (
           <AccountDetailsForm
             rules={rules}
-            isLoading={isLoading}
-            currentUser={{ ...(currentUser || {}) }}
+            isLoading={isRulesLoading || isCurrentUserLoading}
+            currentUser={{
+              ...(currentUser || {}),
+              country: country ?? currentUser?.country }}
             updateRulesParams={updateRulesParams}
           />
         )}

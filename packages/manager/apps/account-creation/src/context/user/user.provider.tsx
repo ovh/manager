@@ -15,6 +15,7 @@ import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
 import { isUserLoggedIn } from '@/helpers/flowHelper';
+import { useLocalCountry } from '@/hooks/useLocalCountry/useLocalCountry';
 
 const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
 const SMS_CONSENT_FEATURE = 'account:sms-consent';
@@ -38,6 +39,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
     undefined,
   );
+  const [localCountry] = useLocalCountry();
   const [country, setCountry] = useState<Country | undefined>(undefined);
   const [organisation, setOrganisation] = useState<string | undefined>(
     undefined,
@@ -62,7 +64,14 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     }
     setLegalForm(me?.legalform);
     setOvhSubsidiary(me?.ovhSubsidiary);
-    setCountry(me?.country);
+    /**
+     * TODO: Remove this when the API is updated to return the country
+     */
+    if ((me?.country === 'UNKNOWN' || !me?.country) && localCountry) {
+      setCountry(localCountry);
+    } else {
+      setCountry(me?.country);
+    }
     setLanguage(me?.language || undefined);
     // When we receive the user data, we will call setUser to update the tracking configuration
     setUser({
