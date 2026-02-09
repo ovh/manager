@@ -33,7 +33,7 @@ import { useChartWithData, useMetricToken } from '@/data/hooks';
 import '@/pages/metrics/styles.scss';
 
 const DashboardWidgetModal = <TData,>() => {
-  const { t } = useTranslation([NAMESPACES.DASHBOARDS, COMMON_NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([NAMESPACES.DASHBOARDS, NAMESPACES.DASHBOARD_TEXTS, COMMON_NAMESPACES.ACTIONS]);
 
   const navigate = useNavigate();
 
@@ -103,7 +103,7 @@ const DashboardWidgetModal = <TData,>() => {
       >
         <div className="flex items-center gap-4">
           <div>
-            <Text preset={TEXT_PRESET.heading3}>{title}</Text>
+            <Text preset={TEXT_PRESET.heading3}>{t(`${NAMESPACES.DASHBOARD_TEXTS}:${title}`)}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
             <TimeControls isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
