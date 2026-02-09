@@ -2,50 +2,88 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, Text } from '@ovhcloud/ods-react';
 
-import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useCatalogPrice } from '@ovh-ux/muk';
+
+import { TBillingType } from '@/types';
 
 type TCartTotalPriceProps = {
-  price: number;
-  text?: string;
-  displayMonthlyPrice?: boolean;
+  hourlyTotal: number | null;
+  monthlyTotal: number | null;
+  billingType: TBillingType;
 };
 
-export const CartTotalPrice = ({
-  text,
-  price,
-
-  displayMonthlyPrice,
-}: TCartTotalPriceProps) => {
-  const { t } = useTranslation(['add', 'order-price']);
-  const { getTextPrice } = useCatalogPrice();
-
-  const exclVatMonthlyLabel = `${t('order-price:order_catalog_price_tax_excl_label', { price: '' })} / ${t('order-price:order_catalog_price_interval_month')}`;
-  const exclVatHourlyLabel = `${t('order-price:order_catalog_price_tax_excl_label', { price: '' })} / ${t('order-price:order_catalog_price_interval_hour')}`;
+export const CartTotalPrice = ({ hourlyTotal, monthlyTotal }: TCartTotalPriceProps) => {
+  const { getTextPrice } = useCatalogPrice(4);
+  const { t } = useTranslation(['creation']);
 
   return (
-    <div data-testid="cart-total-price">
-      <div className="flex justify-between pt-7">
-        <Text preset="heading-5" className="self-end">
-          {text ?? t('add:kube_add_cart_total_price')}
-        </Text>
-        <Text preset="heading-3">{getTextPrice(price)}</Text>
-      </div>
-      <div className="flex flex-col items-end">
-        <Text preset="caption" data-testid="cart-hourly-total-price">
-          {exclVatHourlyLabel}
-        </Text>
-      </div>
-      {displayMonthlyPrice && (
+    <div data-testid="cart-total-price" className="pt-7">
+      {hourlyTotal !== null && (
         <>
-          <Divider spacing="32" />
-          <div className="flex justify-between" data-testid="cart-monthly-total-price">
-            <Text className="font-semibold">{t('add:kube_add_cart_monthly_price')}</Text>
-            <div>
-              <Text className="font-bold">{getTextPrice(convertHourlyPriceToMonthly(price))}</Text>
-              <Text preset="caption">{exclVatMonthlyLabel}</Text>
+          <div className="flex items-start justify-between">
+            <div className="flex flex-col">
+              <Text preset="heading-5">{t('add:kube_cart_total_label')}</Text>
+              <Text
+                data-testid="cart-hourly-total-price"
+                className="text-[--ods-color-neutral-600]"
+              >
+                {t('add:kube_cart_hourly_price_label')}
+              </Text>
+            </div>
+            <div className="flex flex-col items-end">
+              <Text preset="heading-3">{getTextPrice(hourlyTotal)}</Text>
+              <Text className="text-[--ods-color-neutral-600]">
+                {t('add:kube_cart_hourly_price_unit')}
+              </Text>
             </div>
           </div>
+
+          {monthlyTotal !== null && <Divider spacing="6" />}
+
+          {monthlyTotal !== null && (
+            <div className="flex items-start justify-between">
+              <div className="flex flex-col">
+                <Text
+                  data-testid="cart-monthly-total-price"
+                  className="text-[--ods-color-neutral-600]"
+                >
+                  {t('add:kube_cart_monthly_price_label')}
+                </Text>
+                <Text className="text-[--ods-color-neutral-600]">
+                  {t('add:kube_cart_monthly_price_disclaimer')}
+                </Text>
+              </div>
+              <div className="flex flex-col items-end">
+                <Text preset="heading-5" className="text-[--ods-color-neutral-600]">
+                  {getTextPrice(monthlyTotal)}
+                </Text>
+                <Text className="text-[--ods-color-neutral-600]">
+                  {t('add:kube_cart_monthly_price_unit')}
+                </Text>
+              </div>
+            </div>
+          )}
         </>
+      )}
+
+      {hourlyTotal === null && monthlyTotal !== null && (
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col">
+            <Text preset="heading-5">{t('add:kube_cart_total_label')}</Text>
+            <Text data-testid="cart-monthly-total-price" className="text-[--ods-color-neutral-600]">
+              {t('add:kube_cart_monthly_price_label')}
+            </Text>
+            <Text className="text-[--ods-color-neutral-600]">
+              {t('add:kube_cart_monthly_price_disclaimer')}
+            </Text>
+          </div>
+          <div className="flex flex-col items-end">
+            <Text preset="heading-3">{getTextPrice(monthlyTotal)}</Text>
+            <Text className="text-[--ods-color-neutral-600]">
+              {t('add:kube_cart_monthly_price_unit')}
+            </Text>
+          </div>
+        </div>
       )}
     </div>
   );

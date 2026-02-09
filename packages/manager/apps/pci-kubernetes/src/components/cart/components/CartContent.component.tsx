@@ -2,7 +2,7 @@ import { ReactNode, useState } from 'react';
 
 import { Accordion, AccordionChangeDetail } from '@ovhcloud/ods-react';
 
-import { TCartItem } from '../Cart.component';
+import { TCartItem } from '../Cart.model';
 
 export type TRenderCartItemParams = {
   item: TCartItem;
