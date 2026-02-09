@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.9...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.4.0) (2026-02-09)
+
+
+### Features
+
+* **backup-agent:** change routing of services and agents ([d95c618](https://github.com/ovh/manager/commit/d95c6185cc694fd37c0b0e8beb3ff5a3899eed99)), closes [#BKP-785](https://github.com/ovh/manager/issues/BKP-785)
+
+
+
+
+
 ## [0.3.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.8...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.3.9) (2026-02-06)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-agent-baremetal-app
