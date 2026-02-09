@@ -1,15 +1,15 @@
 import { useId } from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsProgressBar, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-import { useGetServiceConsumptionOptions } from '@/data/hooks/consumption/useServiceConsumption';
+import { consumptionQueries } from '@/data/queries/consumption.queries';
+import { selectConsumptionQuantity } from '@/data/selectors/consumption.selectors';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { CONSUMPTION_MAX_VALUE_IN_TB } from '../SubscriptionTile.component';
 
@@ -17,7 +17,11 @@ export const ConsumptionDetails = () => {
   const idLabel = useId();
   const { t } = useTranslation([NAMESPACES.BYTES]);
   const { vaultId } = useRequiredParams('vaultId');
-  const { data: consumptionData, isPending } = useQuery(useGetServiceConsumptionOptions()(vaultId));
+  const queryClient = useQueryClient();
+  const { data: consumptionInGB = 0, isPending } = useQuery({
+    ...consumptionQueries.withClient(queryClient).byResource(vaultId),
+    select: selectConsumptionQuantity,
+  });
 
   if (isPending) {
     return (
@@ -27,9 +31,6 @@ export const ConsumptionDetails = () => {
       </section>
     );
   }
-
-  const consumptionInGB =
-    consumptionData?.find((consumption) => consumption.planCode === VAULT_PLAN_CODE)?.quantity ?? 0;
   const consumptionInTB = consumptionInGB / 1000;
   const consumptionInPercentage = (consumptionInTB / CONSUMPTION_MAX_VALUE_IN_TB) * 100;
   const consumptionLabel = `${consumptionInGB} ${t('unit_size_GB')} / ${CONSUMPTION_MAX_VALUE_IN_TB} ${t('unit_size_TB')} (${consumptionInPercentage}%)`;
