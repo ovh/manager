@@ -6,9 +6,9 @@
   "legal_form_corporation": "Empresa",
   "legal_form_individual": "Particular",
   "legal_form_personalcorporation": "Empresa individual",
-  "legal_form_tooltip_corporation_description": "Cree una cuenta para su empresa si tiene una actividad registrada, incluidas las empresas unipersonales.",
-  "legal_form_tooltip_individual_description": "Cree una cuenta como particular si no tiene empresa inscrita o si está creando su empresa.",
-  "legal_form_tooltip_administration_description": "Cree una cuenta para su organización pública si representa a un Estado, una administración territorial, organización o institución internacional.",
-  "legal_form_tooltip_association_description": "Cree una cuenta para su asociación si está inscrita en el directorio nacional de empresas e instituciones. Si no está registrada, cree una cuenta como particular.",
+  "legal_form_tooltip_corporation_description": "La cuenta «Entreprise» debe ser creada por todas las <strong>personas jurídicas</strong> (excepto las administraciones públicas y las asociaciones) y todas las <strong>personas físicas (empresarios individuales)</strong> que compren productos de OVHcloud en el marco de su <strong>actividad profesional</strong>.",
+  "legal_form_tooltip_individual_description": "La cuenta «particular» debe ser creada únicamente por las <strong>personas físicas</strong> que compren productos de OVHcloud para sus <strong>necesidades privadas, al margen de una actividad profesional</strong>.",
+  "legal_form_tooltip_administration_description": "La cuenta «Administración pública» debe ser creada únicamente por las <strong>administraciones públicas, las administraciones territoriales o los establecimientos públicos</strong>.",
+  "legal_form_tooltip_association_description": "La cuenta «Asociación» debe ser creada únicamente por <strong>las asociaciones y otras organizaciones sin ánimo de lucro como fundaciones, sindicatos profesionales o congregaciones religiosas</strong>.",
   "legal_form_tooltip_personalcorporation_description": "Descripción empresa Individual."
 }
