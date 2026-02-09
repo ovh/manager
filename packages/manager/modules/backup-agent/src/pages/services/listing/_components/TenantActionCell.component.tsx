@@ -8,7 +8,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
-import { ArrowLinkCell } from '@/components/CommonCells/ArrowLinkCell/ArrowLinkCell.component';
+import { ArrowLink } from '@/components/ArrowLink/ArrowLink.component';
 import { urlParams, urls } from '@/routes/routes.constants';
 
 export const TenantActionCell: FC<{ id: string }> = ({ id }) => {
@@ -17,7 +17,7 @@ export const TenantActionCell: FC<{ id: string }> = ({ id }) => {
 
   return (
     <DataGridTextCell>
-      <ArrowLinkCell href={href} data-arialabel={t(`${BACKUP_AGENT_NAMESPACES.COMMON}:go_to_general_informations`)}/>
+      <ArrowLink href={href} data-arialabel={t(`${BACKUP_AGENT_NAMESPACES.COMMON}:go_to_general_informations`)}/>
     </DataGridTextCell>
   );
 };

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { ArrowLinkCell } from './ArrowLinkCell.component';
+import { ArrowLink } from './ArrowLink.component';
 
 describe('ArrowLinkCell', () => {
   it('should bind params & override default attributes', () => {
@@ -11,7 +11,7 @@ describe('ArrowLinkCell', () => {
     const label = 'new label';
 
     render(
-      <ArrowLinkCell
+      <ArrowLink
         href={href}
         isDisabled={true}
         className={className}
@@ -31,5 +31,24 @@ describe('ArrowLinkCell', () => {
     );
     expect(link).toHaveAttribute('label', label);
     expect(link).toHaveAttribute('data-arialabel', dataArialabel);
+  });
+
+  it('should override default className', () => {
+    const href = '#/test';
+    const fullClassName = 'class-test';
+    const dataTestid = 'link-test-id';
+
+    render(
+      <ArrowLink
+        href={href}
+        fullClassName={fullClassName}
+        data-testid={dataTestid}
+      />,
+    );
+
+    const link = screen.getByTestId(dataTestid);
+
+    expect(link).toHaveAttribute('href', href);
+    expect(link).toHaveAttribute('class', fullClassName);
   });
 });
