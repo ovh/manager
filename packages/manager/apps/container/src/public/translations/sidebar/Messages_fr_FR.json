@@ -227,5 +227,6 @@
   "sidebar_observability_metrics": "Métriques",
   "sidebar_observability_metrics_tenants": "Tenants",
   "sidebar_observability_settings": "Paramètres",
-  "sidebar_observability_settings_service_management": "Gestion des services"
+  "sidebar_observability_settings_service_management": "Gestion des services",
+  "sidebar_observability_settings_managed_dashboards": "Tableaux de bord managés"
 }
