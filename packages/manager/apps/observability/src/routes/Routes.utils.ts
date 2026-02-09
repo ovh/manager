@@ -29,6 +29,10 @@ export function getTenantTagsUrl(params: LocationPathParams) {
   return getURL(urls.tenantTags, params);
 }
 
+export function getManagedDashboardCreationUrl(params: LocationPathParams) {
+  return getURL(urls.managedDashboardCreation, params);
+}
+
 function getURL(url: UrlValue, params: LocationPathParams) {
   return url
     .replace(URL_PARAMS.resourceName, params.resourceName ?? '')

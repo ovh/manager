@@ -13,6 +13,7 @@ export const subroutes = {
   metrics: 'metrics',
   settings: 'settings',
   services: 'services',
+  managedDashboards: 'managed-dashboards',
   onboarding: 'onboarding',
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
@@ -27,7 +28,6 @@ export const subroutes = {
 
 export const urls = {
   root: getRoot(),
-  dashboards: `${getRoot()}/${subroutes.dashboards}`,
   metrics: `${getRoot()}/${subroutes.metrics}`,
   tenants: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}`,
   tenantsOnboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${
@@ -45,6 +45,11 @@ export const urls = {
   servicesOnboarding: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.onboarding}`,
   deleteService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.delete}`,
   editService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.edit}`,
+  managedDashboards: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}`,
+  managedDashboardsOnboarding: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${
+    subroutes.onboarding
+  }`,
+  managedDashboardCreation: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.creation}`,
 } as const;
 
 export type LocationPathParams = {
