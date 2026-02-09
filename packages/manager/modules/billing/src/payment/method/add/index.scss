@@ -1,0 +1,11 @@
+#billing-payment-method-add span > button[type='button'] {
+  color: var(--ods-color-primary-000);
+  border-radius: var(--ods-border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: normal;
+}
+#billing-payment-method-add label[data-scope='checkbox'] {
+  display: flex;
+  align-items: center;
+}
