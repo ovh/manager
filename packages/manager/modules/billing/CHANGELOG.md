@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.65.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.64.0...@ovh-ux/manager-billing@0.65.0) (2026-02-09)
+
+
+### Features
+
+* **billing:** integrate the federated will payment module ([#21586](https://github.com/ovh/manager/issues/21586)) ([1316848](https://github.com/ovh/manager/commit/1316848dfe357c824a2716e845ba5a15735094f5)), closes [#MANAGER-20149](https://github.com/ovh/manager/issues/MANAGER-20149)
+
+
+
+
+
 # [0.64.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.63.0...@ovh-ux/manager-billing@0.64.0) (2026-02-09)
 
 
