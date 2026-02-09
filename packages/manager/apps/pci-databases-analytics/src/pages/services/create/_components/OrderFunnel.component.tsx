@@ -3,11 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
   Form,
   FormControl,
   FormField,
@@ -15,7 +10,6 @@ import {
   FormLabel,
   FormMessage,
   useToast,
-  Separator,
 } from '@datatr-ux/uxlib';
 import { useOrderFunnel } from './useOrderFunnel.hook';
 import { order } from '@/types/catalog';
@@ -32,8 +26,6 @@ import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.components';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
-import OrderPrice from '@/components/order/price/OrderPrice.component';
-import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
 import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
 import usePciProject from '@/hooks/api/project/usePciProject.hook';
@@ -44,6 +36,8 @@ import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
 import OrderSection from '@/components/order/Section.component';
 import VersionSelect from '@/components/order/version/VersionSelect.component';
 import NameInput from '@/components/order/name/NameInput.component';
+import Cart from '@/components/cart/Cart.component';
+import { useCartItems } from './useCartItems.hook';
 
 interface OrderFunnelProps {
   availabilities: database.Availability[];
@@ -136,16 +130,11 @@ const OrderFunnel = ({
     },
   );
 
-  const scrollToDiv = (target: string) => {
-    const div = document.getElementById(target);
-    if (div) {
-      div.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const classNameLabel = 'scroll-m-20 text-xl font-semibold text-lg';
 
   const [isApiTerraformDialogOpen, setApiTerraformDialogOpen] = useState(false);
+
+  const cartItems = useCartItems({ order: model.result });
 
   return (
     <>
@@ -354,48 +343,36 @@ const OrderFunnel = ({
             </OrderSection>
           </div>
 
-          <Card className="sticky top-4 h-fit">
-            <CardHeader>
-              <CardTitle>{t('summaryTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 gap-2">
-              <OrderSummary
-                order={model.result}
-                onSectionClicked={(section) => scrollToDiv(section)}
-              />
-              <Separator className="my-2" />
-              {model.result.availability && (
-                <OrderPrice
-                  availability={model.result.availability}
-                  prices={model.result.price}
-                />
-              )}
-            </CardContent>
-            <CardFooter className="flex flex-col gap-2 justify-between">
-              <Button
-                data-testid="order-submit-button"
-                className="w-full"
-                disabled={isPendingAddService || isProjectDiscoveryMode}
-                onClick={onSubmit}
-              >
-                {t('orderButton')}
-              </Button>
-              <Button
-                type="button"
-                className="w-full break-words whitespace-normal"
-                mode="ghost"
-                onClick={() => setApiTerraformDialogOpen(true)}
-              >
-                {t('apiAndTerraformButton')}
-              </Button>
-              {isApiTerraformDialogOpen && (
-                <ApiTerraformDialog
-                  onRequestClose={() => setApiTerraformDialogOpen(false)}
-                  dialogData={model.result}
-                ></ApiTerraformDialog>
-              )}
-            </CardFooter>
-          </Card>
+          <Cart
+            items={cartItems}
+            currency={catalog.locale.currencyCode}
+            actionButtons={
+              <>
+                <Button
+                  data-testid="order-submit-button"
+                  className="w-full"
+                  disabled={isPendingAddService || isProjectDiscoveryMode}
+                  onClick={onSubmit}
+                >
+                  {t('orderButton')}
+                </Button>
+                <Button
+                  type="button"
+                  className="w-full break-words whitespace-normal"
+                  mode="ghost"
+                  onClick={() => setApiTerraformDialogOpen(true)}
+                >
+                  {t('apiAndTerraformButton')}
+                </Button>
+                {isApiTerraformDialogOpen && (
+                  <ApiTerraformDialog
+                    onRequestClose={() => setApiTerraformDialogOpen(false)}
+                    dialogData={model.result}
+                  ></ApiTerraformDialog>
+                )}
+              </>
+            }
+          />
         </div>
       </Form>
     </>
