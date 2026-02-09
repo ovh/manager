@@ -1,3 +1,7 @@
 {
-  "title": "Reseller program"
+  "domain_reseller_title": "Programme revendeur de noms de domaine",
+  "domain_reseller_message_title": "Votre programme est actif",
+  "domain_reseller_message_text": "En tant que membre du Programme revendeur de noms de domaine, vous bénéficiez actuellement de tarifs préférentiels sur vos noms de domaine.",
+  "domain_reseller_button_add_domain": "Ajouter un nom de domaine",
+  "domain_reseller_button_download_catalog": "Télécharger le catalogue"
 }
