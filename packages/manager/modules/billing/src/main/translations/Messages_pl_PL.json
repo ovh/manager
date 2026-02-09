@@ -5,5 +5,6 @@
   "billing_main_payments_tab": "Informacje o płatnościach",
   "billing_payment_refunds_title": "Moje należności",
   "billing_main_description": "Znajdź i pobierz swoje faktury. Monitoruj stan płatności. Sprawdź faktury korygujące.",
-  "billing_payment_corrective_invoices_title": "Faktury korygujące"
+  "billing_payment_corrective_invoices_title": "Faktury korygujące",
+  "billing_voip_consumption_tab": "Śledzenie zużycia telefonii"
 }

@@ -1,0 +1,104 @@
+<div data-ui-view>
+    <oui-header
+        heading="{{ :: 'voip_consumption_page_title' | translate }}"
+    >
+    </oui-header>
+    <oui-datagrid
+        id="voiceConsumptionDatagrid"
+        data-page-size="10"
+        data-page-size-max="100"
+        data-rows-loader="$ctrl.loadBillingAccount($config)"
+        data-row-loader="$ctrl.loadHistoryConsumption($row)"
+    >
+        <oui-datagrid-topbar>
+            <div class="w-25">
+                <!-- Because the enable date is one time binding -->
+                <oui-calendar
+                    data-ng-if="$ctrl.availableDatesLoading"
+                    disabled="true"
+                    data-model="$ctrl.selectedDate"
+                >
+                </oui-calendar>
+                <oui-calendar
+                    data-ng-if="!$ctrl.availableDatesLoading"
+                    data-options="{ monthSelectorType:'dropdown' }"
+                    data-enable-date="$ctrl.availableDates"
+                    data-max-date="$ctrl.availableDates[0]"
+                    data-min-date="$ctrl.availableDates[$ctrl.availableDates.length - 1]"
+                    data-model="$ctrl.selectedDate"
+                    data-on-change="$ctrl.refreshDatagrid('voiceConsumptionDatagrid', false)"
+                >
+                </oui-calendar>
+            </div>
+        </oui-datagrid-topbar>
+        <oui-datagrid-column
+            data-title=":: 'voip_consumption_header_billing_account' | translate"
+            data-property="billingAccount"
+            data-type="string"
+            data-sortable
+            data-filterable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'voip_consumption_header_description' | translate"
+            data-property="description"
+            data-type="string"
+            data-sortable="asc"
+            data-filterable
+            data-searchable
+        >
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'voip_consumption_header_total_amount' | translate"
+            data-property="price.text"
+        >
+            <span
+                data-ng-if="$row.price.text"
+                data-ng-bind="$row.price.text"
+            ></span>
+            <span
+                data-ng-if="!$row.price.text"
+                data-translate="voip_consumption_no_data_available"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column
+            data-title=":: 'voip_consumption_header_total_outplan' | translate"
+            data-property="priceOutplan.text"
+        >
+            <span
+                data-ng-if="$row.priceOutplan.text"
+                data-ng-bind="$row.priceOutplan.text"
+            ></span>
+            <span
+                data-ng-if="!$row.priceOutplan.text"
+                data-translate="voip_consumption_no_data_available"
+            ></span>
+        </oui-datagrid-column>
+        <oui-datagrid-column>
+            <oui-action-menu
+                data-disabled="!$row.price.text && !$row.priceOutplan.text"
+                data-placement="bottom-end"
+                compact
+            >
+                <oui-action-menu-item
+                    aria-label="{{ 'voip_consumption_action_download_csv' | translate }}"
+                    data-on-click="$ctrl.downloadFile($row, 'csv')"
+                >
+                    <span data-translate="voip_consumption_action_download_csv"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    aria-label="{{ 'voip_consumption_action_download_received_csv' | translate }}"
+                    data-on-click="$ctrl.downloadFile($row, 'received.csv')"
+                >
+                    <span data-translate="voip_consumption_action_download_received_csv"></span>
+                </oui-action-menu-item>
+                <oui-action-menu-item
+                    aria-label="{{ 'voip_consumption_action_download_pdf' | translate }}"
+                    data-on-click="$ctrl.downloadFile($row, 'pdf')"
+                >
+                    <span data-translate="voip_consumption_action_download_pdf"></span>
+                </oui-action-menu-item>
+            </oui-action-menu>
+        </oui-datagrid-column>
+    </oui-datagrid>
+</div>

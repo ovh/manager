@@ -1,0 +1,11 @@
+{
+  "voip_consumption_page_title": "Śledzenie zużycia telefonii",
+  "voip_consumption_header_billing_account": "Grupa rozliczeniowa",
+  "voip_consumption_header_description": "Opis",
+  "voip_consumption_header_total_amount": "Kwota całkowita (netto)",
+  "voip_consumption_header_total_outplan": "Kwota poza abonamentem (netto)",
+  "voip_consumption_action_download_csv": "Pobierz plik CSV",
+  "voip_consumption_action_download_received_csv": "Pobierz plik CSV połączeń przychodzących",
+  "voip_consumption_action_download_pdf": "Pobierz plik PDF",
+  "voip_consumption_no_data_available": "Niedostępne"
+}

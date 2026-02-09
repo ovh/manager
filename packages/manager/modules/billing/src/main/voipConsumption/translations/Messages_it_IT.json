@@ -1,0 +1,11 @@
+{
+  "voip_consumption_page_title": "Monitoraggio del consumo telefonico",
+  "voip_consumption_header_billing_account": "Gruppo di fatturazione",
+  "voip_consumption_header_description": "Descrizione",
+  "voip_consumption_header_total_amount": "Importo totale (escl. IVA)",
+  "voip_consumption_header_total_outplan": "Importo al di fuori del forfait (escl. IVA)",
+  "voip_consumption_action_download_csv": "Scarica il file CSV",
+  "voip_consumption_action_download_received_csv": "Scarica il file CSV delle chiamate ricevute",
+  "voip_consumption_action_download_pdf": "Scarica il file PDF",
+  "voip_consumption_no_data_available": "Non disponibile"
+}
