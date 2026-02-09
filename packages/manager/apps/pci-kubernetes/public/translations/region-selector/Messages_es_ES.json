@@ -22,5 +22,17 @@
   "pci_projects_project_filter_by_region": "Filtrar por localización",
   "pci_projects_project_filter_by_plan_all": "Todos",
   "pci_projects_project_regions_filter_plan_message": "El plan Free solo está disponible en las regiones 1-AZ, el plan Standard está disponible en todas las regiones 3-AZ y en algunas regiones 1-AZ.",
-  "pci_projects_project_regions_filter_plan_compare": "Comparar planes"
+  "pci_projects_project_regions_filter_plan_compare": "Comparar planes",
+  "cluster_location_help_drawer": {
+    "title": "Elección de la región de despliegue",
+    "intro": "La región determina la ubicación física de su clúster. Esta elección define la arquitectura de su <strong>plan de control</strong> y la distribución posible de sus <strong>nodos de trabajo</strong>.",
+    "3az_title": "Región 3-AZ",
+    "3az_control_plane": "<strong>Plan de control</strong> : Está <strong>regionalizado</strong>, es decir, distribuido de manera redundante en 3 zonas de disponibilidad distintas.",
+    "3az_worker_nodes": "<strong>Nodos de trabajo</strong> : Tiene la libertad de distribuir sus nodos en cualquier zona de la región para maximizar la tolerancia a fallos.",
+    "1az_title": "Región 1-AZ",
+    "1az_control_plane": "<strong>Plan de control</strong> : Está alojado en una <strong>única zona</strong> específica.",
+    "1az_worker_nodes": "<strong>Nodos de trabajo</strong> : Sus nodos se despliegan en la misma zona que el plan de control.",
+    "regions_title": "Más información sobre las regiones",
+    "deployment_types_title": "Más información sobre los tipos de región"
+  }
 }

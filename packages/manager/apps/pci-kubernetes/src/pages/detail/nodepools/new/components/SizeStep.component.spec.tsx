@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { use3azAvailability } from '@/hooks/useFeatureAvailability';
 import { TClusterPlanEnum } from '@/types';
 import { TRegionInformations } from '@/types/region';
 import { wrapper } from '@/wrapperRenders';
@@ -32,12 +33,6 @@ vi.mock('@/hooks/useFloatingIpsPrice', () => ({
   })),
 }));
 
-const mockUse3AZPlanAvailable = vi.fn(() => true);
-
-vi.mock('@/hooks/use3azPlanAvaible', () => ({
-  default: () => mockUse3AZPlanAvailable(),
-}));
-
 vi.mock('@/pages/new/steps/node-pool/DeploymentZone.component', () => ({
   default: () => <div data-testid="deployment-zone">DeploymentZone</div>,
 }));
@@ -62,10 +57,6 @@ describe('SizeStep', () => {
     onAttachFloatingIPs: vi.fn(),
     onAntiAffinityChange: vi.fn(),
   };
-
-  beforeEach(() => {
-    mockUse3AZPlanAvailable.mockReturnValue(true);
-  });
 
   it('should render NodePoolSize and NodePoolAntiAffinity components', () => {
     render(<SizeStep {...defaultProps} />, { wrapper });
@@ -126,7 +117,10 @@ describe('SizeStep', () => {
     ])(
       'should $shouldDisplay render PublicConnectivity when $description',
       ({ plan, has3AZFeature, shouldDisplay }) => {
-        mockUse3AZPlanAvailable.mockReturnValue(has3AZFeature);
+        vi.mocked(use3azAvailability).mockReturnValue({
+          data: has3AZFeature,
+          isPending: false,
+        } as ReturnType<typeof use3azAvailability>);
 
         render(<SizeStep {...defaultProps} regionInformations={createRegionInfo()} plan={plan} />, {
           wrapper,

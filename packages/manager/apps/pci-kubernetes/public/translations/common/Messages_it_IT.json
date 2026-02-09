@@ -89,5 +89,12 @@
   "common_dual_list_target_move_all": "Elimina tutto",
   "common_dual_list_target_search": "Cerca nel contenuto di destinazione",
   "common_save_button_label": "Registra",
-  "common_breadcrumb": "Briciole"
+  "common_breadcrumb": "Briciole",
+  "common_help": "Aiuto",
+  "common_continent_label_ALL": "Tutti",
+  "common_continent_label_AF": "Africa",
+  "common_continent_label_ASIA": "Asia Pacifica",
+  "common_continent_label_EU": "Europa",
+  "common_continent_label_NA": "Nord America",
+  "common_continent_label_US": "Stati Uniti"
 }

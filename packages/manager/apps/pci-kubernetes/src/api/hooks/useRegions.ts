@@ -116,7 +116,7 @@ export const useProjectLocalisation = (projectId: string, product: string) => {
       translateRef.current,
       t('pci_project_regions_list_continent_all'),
     );
-  }, [availability, projectRegions, t]);
+  }, [projectRegions, availability, t]);
 
   return {
     localisationData,

@@ -21,6 +21,18 @@
   "pci_projects_project_regions_add_region_success": "La localizzazione {{ code }} è stata aggiunta correttamente al tuo progetto.",
   "pci_projects_project_filter_by_region": "Filtrare per localizzazione",
   "pci_projects_project_filter_by_plan_all": "Tutti",
-  "pci_projects_project_regions_filter_plan_message": "Il piano Free è disponibile esclusivamente nelle Region 1-AZ, il piano Standard in tutte le Region 3-AZ e in alcune Region 1-AZ.",
-  "pci_projects_project_regions_filter_plan_compare": "Confrontare i piani"
+  "pci_projects_project_regions_filter_plan_message": "Il piano Free è disponibile solo nelle regioni 1-AZ, il piano Standard è disponibile in tutte le regioni 3-AZ e in alcune regioni 1-AZ.",
+  "pci_projects_project_regions_filter_plan_compare": "Confronta i piani",
+  "cluster_location_help_drawer": {
+    "title": "Scelta della regione di distribuzione",
+    "intro": "La regione determina la posizione fisica del tuo cluster. Questa scelta definisce l'architettura del tuo <strong>piano di controllo</strong> e la distribuzione possibile dei tuoi <strong>nodi di lavoro</strong>.",
+    "3az_title": "Region 3-AZ",
+    "3az_control_plane": "<strong>Piano di controllo</strong> : È <strong>regionalizzato</strong>, cioè distribuito in modo ridondante su 3 zone di disponibilità distinte.",
+    "3az_worker_nodes": "<strong>Nodi di lavoro</strong> : Hai la libertà di distribuire i tuoi nodi in qualsiasi zona della regione per massimizzare la tolleranza ai guasti.",
+    "1az_title": "Region 1-AZ",
+    "1az_control_plane": "<strong>Piano di controllo</strong> : È ospitato in una <strong>sola zona</strong> specifica.",
+    "1az_worker_nodes": "<strong>Nodi di lavoro</strong> : I tuoi nodi sono distribuiti nella stessa zona del piano di controllo.",
+    "regions_title": "Scopri di più sulle regioni",
+    "deployment_types_title": "Scopri di più sui tipi di regione"
+  }
 }

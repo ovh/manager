@@ -52,11 +52,7 @@ export const Cart = ({ items, isSubmitDisabled }: TCartProps) => {
                 {item.title.toUpperCase()}
               </Text>
               {item.name && (
-                <Text
-                  preset="label"
-                  className="break-all text-[--ods-color-heading]"
-                  data-testid="cart-header-subtitle"
-                >
+                <Text preset="label" className="break-all text-[--ods-color-heading]">
                   {item.name}
                 </Text>
               )}

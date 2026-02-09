@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Créer un cluster Kubernetes",
+  "kubernetes_add": "Créer un cluster MKS",
   "kubernetes_add_success": "Votre cluster a bien été créé",
   "kubernetes_add_error": "Une erreur est survenue lors de la création de votre cluster : {{ message }}",
   "kubernetes_add_error_InsufficientVCPUsQuota": "Le quota de vCPUs de votre projet est insuffisant pour réaliser l'opération. Merci d'augmenter votre quota ou demander moins de ressources.",
@@ -25,8 +25,17 @@
   "kubernetes_add_name_title": "Nommez votre cluster",
   "kubernetes_add_name_placeholder": "Nom du cluster",
   "kubernetes_add_name": "Nom",
+  "kubernetes_add_location": "Localisation",
+  "kubernetes_add_location_subtitle": "Choisir un mode de déploiement",
   "kubernetes_add_region_title_region": "Région 1-AZ",
   "kubernetes_add_region_title_region-3-az": "Région 3-AZ",
+  "kubernetes_add_region_title_region_alt": "Logo région 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Logo région 3-AZ",
+  "kubernetes_add_region_continent_select": "Filtrer par zone géographique",
+  "kubernetes_add_region_plan_select": "Filtrer par plans",
+  "kubernetes_add_region_plan_all": "Tous les plans",
+  "kubernetes_add_micro_region_choose": "Choisir un datacentre",
+  "kubernetes_add_micro_region_select": "Sélectionner un datacentre",
   "kubernetes_add_deployment_mode_card_beta": "Beta",
   "kubernetes_add_region_description_region": "Déploiement résilient et économique sur 1 zone de disponibilité.",
   "kubernetes_add_region_description_region-3-az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
@@ -95,6 +104,5 @@
   "kube_add_plan_content_coming_very_soon": "Bientôt disponible",
   "kube_add_plan_content_not_available": "indisponible dans la région",
   "kube_add_plan_subtitle": "Choisissez le plan adapté à vos besoins. Bénéficiez d'un large choix d'instances utilisées comme nœuds Kubernetes, facturées à l'usage ou avec engagement.",
-  "kube_add_node_pool_name_already_exist_validation_error": "Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre.",
-  "kubernetes_add_region_plan_select":"Filtrer par plans"
+  "kube_add_node_pool_name_already_exist_validation_error": "Le nom de nodepool est déjà utilisé. Veuillez en choisir un autre."
 }

@@ -1,5 +1,5 @@
 {
-  "kubernetes_add": "Crear un cluster Kubernetes",
+  "kubernetes_add": "Crear un clúster MKS",
   "kubernetes_add_success": "El cluster se ha creado correctamente.",
   "kubernetes_add_error": "¡Vaya! Se ha producido un error al crear el cluster: {{ message }}",
   "kubernetes_add_loading": "Creando el cluster...",
@@ -93,10 +93,18 @@
   "kubernetes_add_cluster_name_input_helper": {
     "introduction": "Debe:",
     "char_number": "contener entre 2 y 64 caracteres",
-    "char_whitelist": "contener solo letras, números, guiones o guiones bajos",
+    "char_whitelist": "contener únicamente letras, números, guiones o guiones bajos",
     "first_char": "comenzar con una letra",
     "last_char": "terminar con un carácter alfanumérico (a-z, A-Z, 0-9)"
   },
   "kubernetes_add_cluster_name_input_error": "El nombre del clúster no es válido",
-  "kubernetes_add_cluster_name_input_error_empty": "El nombre del clúster es obligatorio"
+  "kubernetes_add_cluster_name_input_error_empty": "El nombre del clúster es obligatorio",
+  "kubernetes_add_location": "Localización",
+  "kubernetes_add_location_subtitle": "Elegir un modo de despliegue",
+  "kubernetes_add_region_title_region_alt": "Logo región 1-AZ",
+  "kubernetes_add_region_title_region-3-az_alt": "Logo región 3-AZ",
+  "kubernetes_add_region_continent_select": "Filtrar por zona geográfica",
+  "kubernetes_add_region_plan_all": "Todos los planes",
+  "kubernetes_add_micro_region_choose": "Elegir un datacenter",
+  "kubernetes_add_micro_region_select": "Seleccionar un datacenter"
 }

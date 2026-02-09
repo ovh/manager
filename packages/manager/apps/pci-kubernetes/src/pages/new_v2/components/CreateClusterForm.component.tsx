@@ -4,15 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { Divider, Text } from '@ovhcloud/ods-react';
 
 import { useCreateClusterForm } from '../hooks/useCreateClusterForm/useCreateClusterForm';
+import { ClusterLocationSection } from './ClusterLocationSection.component';
 import { ClusterNameSection } from './ClusterNameSection.component';
 import { CreationCart } from './CreationCart.component';
 
 const dividerSpacing = '64';
 
-export const CreateClusterForm = () => {
+type TCreateClusterFormProps = {
+  is3azAvailable: boolean;
+};
+
+export const CreateClusterForm = ({ is3azAvailable }: TCreateClusterFormProps) => {
   const { t } = useTranslation('add');
 
-  const form = useCreateClusterForm();
+  const form = useCreateClusterForm(is3azAvailable);
 
   return (
     <FormProvider {...form}>
@@ -22,6 +27,8 @@ export const CreateClusterForm = () => {
             {t('kubernetes_add')}
           </Text>
           <ClusterNameSection />
+          <Divider spacing={dividerSpacing} />
+          <ClusterLocationSection is3azAvailable={is3azAvailable} />
           <Divider spacing={dividerSpacing} />
         </section>
         <aside className="flex-1">

@@ -10,7 +10,7 @@ export enum RegionType {
   Localzone = 'localzone',
   Region3Az = 'region-3-az',
 }
-
+/** @deprecated use useAvailabilityRegions with selectAre3azRegionsAvailable instead */
 const useHas3AZRegions = () => {
   const { projectId } = useParam('projectId');
 
