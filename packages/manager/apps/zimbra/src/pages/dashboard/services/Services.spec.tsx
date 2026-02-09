@@ -7,7 +7,7 @@ import { render } from '@/utils/test.provider';
 
 import Services from './Services.page';
 
-describe('Services DatagridTopbar component', () => {
+describe('Services page', () => {
   it('should display correctly', () => {
     const { getByTestId } = render(<Services />);
 

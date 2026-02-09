@@ -733,7 +733,21 @@ export default (
             label: 'common:service',
           },
         }}
-      />
+      >
+        <Route
+          path={'delete_all'}
+          Component={DeleteAllEmailAccountPage}
+          handle={{
+            tracking: {
+              pageName: DELETE_EMAIL_ACCOUNT,
+              pageType: PageType.popup,
+            },
+            breadcrumb: {
+              label: 'common:delete_email_account',
+            },
+          }}
+        />
+      </Route>
       <Route
         path={'redirections'}
         Component={RedirectionPage}

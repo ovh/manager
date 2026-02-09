@@ -1,6 +1,8 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 
+import { RowSelectionState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
+import { Outlet } from 'react-router';
 
 import { Skeleton } from '@ovhcloud/ods-react';
 
@@ -15,7 +17,7 @@ import {
 } from '@ovh-ux/muk';
 
 import { BillingStateBadge, LabelChip } from '@/components';
-import { SlotService } from '@/data/api';
+import { ResourceStatus, SlotService } from '@/data/api';
 import { SlotWithService, useAccounts, useSlotsWithService } from '@/data/hooks';
 import { useDebouncedValue } from '@/hooks';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
@@ -29,6 +31,8 @@ const Services = () => {
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
   const { ovhSubsidiary } = environment.getUser();
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [selectedRows, setSelectedRows] = useState<SlotWithService[]>([]);
 
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
@@ -137,18 +141,34 @@ const Services = () => {
         service: slot.service,
         cost: slot.service?.price,
         status: account?.resourceStatus,
+        accountId: account?.id,
       };
     });
   }, [slots, accounts]);
 
+  useEffect(() => {
+    setSelectedRows(data?.filter((item) => rowSelection[item.id]));
+  }, [data, rowSelection]);
+
+  const isRowSelectable = useCallback(
+    (item: SlotWithService) => item.status === ResourceStatus.READY,
+    [],
+  );
+
   return (
     <div>
+      <Outlet />
       <Datagrid
-        topbar={<DatagridTopbar selectedRows={[]} />}
+        topbar={<DatagridTopbar selectedRows={selectedRows} />}
         search={{
           searchInput,
           setSearchInput,
           onSearch: (search) => setDebouncedSearchInput(search),
+        }}
+        rowSelection={{
+          rowSelection,
+          setRowSelection,
+          enableRowSelection: ({ original: item }) => isRowSelectable(item),
         }}
         columns={columns.map((column) => ({
           ...column,

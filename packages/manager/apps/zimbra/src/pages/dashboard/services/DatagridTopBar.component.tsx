@@ -19,17 +19,19 @@ export type DatagridTopbarProps = {
   selectedRows?: SlotWithService[];
 };
 
-export const DatagridTopbar: React.FC<DatagridTopbarProps> = () => {
+export const DatagridTopbar: React.FC<DatagridTopbarProps> = ({
+  selectedRows,
+}: DatagridTopbarProps) => {
   const { t } = useTranslation(['accounts', 'common']);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
+  const hrefDeleteSelectedServices = useGenerateUrl('./delete_all', 'path');
+  const hrefAddEmailAccount = useGenerateUrl('../email_accounts/add', 'path');
 
   const { platformUrn } = usePlatform();
   const { accountsStatistics } = useAccountsStatistics();
 
   const { data: domains, isLoading: isLoadingDomains } = useDomains();
-
-  const hrefAddEmailAccount = useGenerateUrl('../email_accounts/add', 'path');
 
   const hasAvailableAccounts = useMemo(() => {
     return accountsStatistics
@@ -39,6 +41,10 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = () => {
       .some(Boolean);
   }, [accountsStatistics]);
 
+  const deletableSelectedRows = useMemo(
+    () => selectedRows.filter((row) => !!row.accountId),
+    [selectedRows],
+  );
   const canCreateAccount = !isLoadingDomains && !!domains?.length && hasAvailableAccounts;
 
   const handleAddEmailAccountClick = () => {
@@ -49,6 +55,19 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = () => {
       actions: [ADD_EMAIL_ACCOUNT],
     });
     navigate(hrefAddEmailAccount);
+  };
+
+  const handleDeleteSelectedServices = () => {
+    navigate(hrefDeleteSelectedServices, {
+      state: {
+        selectedEmailAccounts: selectedRows
+          .filter((row) => !!row.accountId)
+          .map((row) => ({
+            id: row.accountId,
+            email: row.email,
+          })),
+      },
+    });
   };
 
   return (
@@ -69,6 +88,20 @@ export const DatagridTopbar: React.FC<DatagridTopbarProps> = () => {
         </>
       </Button>
       <ExportCsv />
+      {!!deletableSelectedRows?.length && (
+        <Button
+          id="ovh-service-delete-selected-btn"
+          color={BUTTON_COLOR.critical}
+          size={BUTTON_SIZE.sm}
+          onClick={handleDeleteSelectedServices}
+          data-testid="delete-all-service-btn"
+        >
+          <>
+            {t('zimbra_account_delete_all', { count: deletableSelectedRows.length })}
+            <Icon name={ICON_NAME.trash} />
+          </>
+        </Button>
+      )}
     </div>
   );
 };
