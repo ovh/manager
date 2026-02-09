@@ -1,8 +1,14 @@
 import { TAG, CHANGELOG } from '../iam.constants';
 
 export default class IdentitiesController {
-  constructor() {
+  /* @ngInject */
+  constructor(coreURLBuilder) {
     this.CHANGELOG = CHANGELOG;
+    this.serviceAccountsHref = coreURLBuilder.buildURL(
+      'identity-access-management',
+      '#/service-accounts',
+      {},
+    );
   }
 
   /**

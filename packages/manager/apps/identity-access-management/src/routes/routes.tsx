@@ -6,7 +6,11 @@ import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
-import { TrackPageName, PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
+import {
+  TrackPageName,
+  PERMANENT_TOKENS_TRACKING,
+  SERVICE_ACCOUNTS_TRACKING,
+} from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -24,6 +28,18 @@ const PermanentTokensDelete = lazy(() =>
 );
 const PermanentTokensViewer = lazy(() =>
   import('@/pages/permanentTokens/viewer/PermanentTokensViewer.page'),
+);
+const ServiceAccountsListing = lazy(() =>
+  import('@/pages/serviceAccounts/listing/ServiceAccountsListing.page'),
+);
+const ServiceAccountsEdit = lazy(() =>
+  import('@/pages/serviceAccounts/edit/ServiceAccountsEdit.page'),
+);
+const ServiceAccountsDelete = lazy(() =>
+  import('@/pages/serviceAccounts/delete/ServiceAccountsDelete.page'),
+);
+const ServiceAccountsViewer = lazy(() =>
+  import('@/pages/serviceAccounts/viewer/ServiceAccountsViewer.page'),
 );
 
 export default (
@@ -139,6 +155,57 @@ export default (
         handle={{
           tracking: {
             pageName: PERMANENT_TOKENS_TRACKING.VIEWER.PAGE_NAME,
+            pageType: PageType.popup,
+          },
+        }}
+      />
+    </Route>
+    <Route
+      path={urls.serviceAccounts}
+      Component={ServiceAccountsListing}
+      handle={{
+        tracking: {
+          pageName: SERVICE_ACCOUNTS_TRACKING.LISTING.PAGE_NAME,
+          pageType: PageType.listing,
+        },
+      }}
+    >
+      <Route
+        path={urls.serviceAccountsAdd}
+        Component={ServiceAccountsEdit}
+        handle={{
+          tracking: {
+            pageName: SERVICE_ACCOUNTS_TRACKING.ADD.PAGE_NAME,
+            pageType: PageType.funnel,
+          },
+        }}
+      />
+      <Route
+        path={urls.serviceAccountsEdit}
+        Component={ServiceAccountsEdit}
+        handle={{
+          tracking: {
+            pageName: SERVICE_ACCOUNTS_TRACKING.EDIT.PAGE_NAME,
+            pageType: PageType.funnel,
+          },
+        }}
+      />
+      <Route
+        path={urls.serviceAccountsDelete}
+        Component={ServiceAccountsDelete}
+        handle={{
+          tracking: {
+            pageName: SERVICE_ACCOUNTS_TRACKING.DELETE.PAGE_NAME,
+            pageType: PageType.funnel,
+          },
+        }}
+      />
+      <Route
+        path={urls.serviceAccountsView}
+        Component={ServiceAccountsViewer}
+        handle={{
+          tracking: {
+            pageName: SERVICE_ACCOUNTS_TRACKING.VIEWER.PAGE_NAME,
             pageType: PageType.popup,
           },
         }}
