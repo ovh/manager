@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.13.2...@ovh-ux/backup-agent@1.14.0) (2026-02-09)
+
+
+### Bug Fixes
+
+* **backup-agent:** fix vault information tile loading declaration ([0a6cbe9](https://github.com/ovh/manager/commit/0a6cbe9d5e356617d3eb355745608b9374845da8)), closes [#BKP-738](https://github.com/ovh/manager/issues/BKP-738)
+* **i18n:** add missing translations [CDS 1100] ([7b9521b](https://github.com/ovh/manager/commit/7b9521bf504dc403cdb47b5aa74afc4c3b3d14c1)), closes [#BKP-787](https://github.com/ovh/manager/issues/BKP-787) [#BKP-738](https://github.com/ovh/manager/issues/BKP-738)
+
+
+### Features
+
+* **backup-agent:** add reset tenant password ([1510ee0](https://github.com/ovh/manager/commit/1510ee085b710591ad047aa0e01fcd2f63a233d4)), closes [#BKP-738](https://github.com/ovh/manager/issues/BKP-738)
+* **backup-agent:** change routing of services and agents ([d95c618](https://github.com/ovh/manager/commit/d95c6185cc694fd37c0b0e8beb3ff5a3899eed99)), closes [#BKP-785](https://github.com/ovh/manager/issues/BKP-785)
+* **backup-agent:** display vault immutability details ([e2fdd1d](https://github.com/ovh/manager/commit/e2fdd1ddc7e53d330dc592207b609c6df9cb42b7)), closes [#BKP-787](https://github.com/ovh/manager/issues/BKP-787)
+
+
+
+
+
 ## [1.13.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.13.1...@ovh-ux/backup-agent@1.13.2) (2026-02-06)
 
 
