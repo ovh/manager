@@ -13,7 +13,7 @@ import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component'
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
-  const { t } = useTranslation(['list', 'regions', 'status']);
+  const { t } = useTranslation(['list', 'regions']);
 
   return useMemo(
     () => [
@@ -29,8 +29,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
             <Text preset="paragraph">{row.original.id}</Text>
           </div>
         ),
-        minSize: 300,
-        maxSize: 310,
+        minSize: 310,
+        maxSize: 320,
       },
       {
         id: 'region',
@@ -44,8 +44,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         id: 'protocol',
         accessorKey: 'protocol',
         header: t('list:columns.protocol'),
-        minSize: 70,
-        size: 70,
+        minSize: 97,
+        size: 97,
       },
       {
         id: 'allocated_capacity',
@@ -69,14 +69,15 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       },
       {
         id: 'actions',
-        header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
+        // header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
+        header: t('list:columns.actions'),
         cell: ({ row }) => (
           <div className="flex justify-center">
             <ActionsMenu items={row.original.actions} />
           </div>
         ),
-        minSize: 60,
-        maxSize: 60,
+        minSize: 77,
+        maxSize: 77,
       },
     ],
     [t],
