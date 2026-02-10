@@ -15,6 +15,10 @@ import CreateListener from './Create.page';
 
 type UseCreateListenerReturn = ReturnType<typeof _useListenerModule.useCreateListener>;
 
+type UseCreateListenerReturn = ReturnType<
+  typeof _useListenerModule.useCreateListener
+>;
+
 describe('CreateListener component', () => {
   it('renders correctly and matches snapshot', () => {
     vi.spyOn(_usePoolModule, 'useAllLoadBalancerPools').mockReturnValue({

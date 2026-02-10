@@ -16,6 +16,10 @@ import EditListener from './Edit.page';
 
 type UseEditLoadBalancerReturn = ReturnType<typeof _useListenerModule.useEditLoadBalancer>;
 
+type UseEditLoadBalancerReturn = ReturnType<
+  typeof _useListenerModule.useEditLoadBalancer
+>;
+
 describe('EditListener component', () => {
   it('renders correctly and matches snapshot', () => {
     vi.spyOn(_usePoolModule, 'useAllLoadBalancerPools').mockReturnValue({
