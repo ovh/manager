@@ -38,7 +38,6 @@ export const VersionCellAction = ({
       id={`VersionActionMenu-${version.id}`}
       items={items}
       isCompact
-      // icon={ICON_NAME.ellipsisVertical}
       variant={BUTTON_VARIANT.ghost}
       isDisabled={items.length === 0}
     />

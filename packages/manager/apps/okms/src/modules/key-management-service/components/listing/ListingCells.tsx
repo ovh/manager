@@ -6,7 +6,8 @@ import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
@@ -52,9 +53,9 @@ export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
 export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
   return (
-    <DataGridTextCell data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.type(props.id)}>
+    <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.type(props.id)}>
       {translatedValue}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -75,9 +76,9 @@ export const DatagridCreationDate = (props: OkmsServiceKey) => {
   });
 
   return (
-    <DataGridTextCell data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.creationDate(props.id)}>
+    <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.creationDate(props.id)}>
       {formattedDate}
-    </DataGridTextCell>
+    </Text>
   );
 };
 

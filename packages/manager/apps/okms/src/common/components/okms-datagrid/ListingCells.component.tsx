@@ -3,10 +3,9 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { OKMS } from '@key-management-service/types/okms.type';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 
-import { Spinner } from '@ovhcloud/ods-react';
+import { Spinner, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Clipboard } from '@ovh-ux/muk';
 
@@ -63,9 +62,9 @@ export const DatagridCellName = (okms: OKMS, type: OkmsDatagridType = 'kms') => 
 export const DatagridCellRegion = (okms: OKMS) => {
   const { translateRegionName } = useRegionName();
   return (
-    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.region(okms.id)}>
+    <Text preset="span" data-testid={OKMS_LIST_CELL_TEST_IDS.region(okms.id)}>
       {translateRegionName(okms.region)}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -93,24 +92,24 @@ export const DatagridCellStatus = (okms: OKMS) => {
 
 export const DatagridCellKmipCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.kmipCount(okms.id)}>
+    <Text preset="span" data-testid={OKMS_LIST_CELL_TEST_IDS.kmipCount(okms.id)}>
       {okms.kmipObjectCount}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
 export const DatagridCellServiceKeyCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.serviceKeyCount(okms.id)}>
+    <Text preset="span" data-testid={OKMS_LIST_CELL_TEST_IDS.serviceKeyCount(okms.id)}>
       {okms.serviceKeyCount}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
 export const DatagridCellSecretCount = (okms: OKMS) => {
   return (
-    <DataGridTextCell data-testid={OKMS_LIST_CELL_TEST_IDS.secretCount(okms.id)}>
+    <Text preset="span" data-testid={OKMS_LIST_CELL_TEST_IDS.secretCount(okms.id)}>
       {okms.secretCount}
-    </DataGridTextCell>
+    </Text>
   );
 };
