@@ -33,6 +33,16 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   })),
 }));
 
+const { mockUseRancherEligibility } = vi.hoisted(() => ({
+  mockUseRancherEligibility: vi.fn(() => ({
+    data: { data: { freeTrial: false } },
+  })),
+}));
+
+vi.mock('@/data/hooks/useRancherEligibility/useRancherEligibility', () => ({
+  default: mockUseRancherEligibility,
+}));
+
 vi.spyOn(React, 'useEffect').mockImplementation((t) => vi.fn(t));
 
 const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
@@ -104,5 +114,38 @@ describe('Onboarding', () => {
     expectedResults.forEach((testCase) => {
       expect(guideUtils[testCase.key]).toBe(testCase.expectedValue);
     });
+  });
+
+  it('does not display free trial eligibility message when not eligible', async () => {
+    mockUseRancherEligibility.mockReturnValue({
+      data: { data: { freeTrial: false } },
+    });
+
+    const screen = await setupSpecTest();
+
+    expect(
+      screen.queryByText(onboardingTranslation.freeTrialEligibilityTitle),
+    ).not.toBeInTheDocument();
+  });
+
+  it('displays free trial eligibility message when eligible', async () => {
+    mockUseRancherEligibility.mockReturnValue({
+      data: { data: { freeTrial: true } },
+    });
+
+    const screen = await setupSpecTest();
+
+    expect(
+      screen.getByText(onboardingTranslation.freeTrialEligibilityTitle),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(onboardingTranslation.freeTrialCreditStandard),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(onboardingTranslation.freeTrialCreditOvhEdition),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(onboardingTranslation.freeTrialCreditApplied),
+    ).toBeInTheDocument();
   });
 });
