@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Tile } from '@ovh-ux/muk';
 
-import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
+import { InternalLink, LinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { SERVICE_KEYS_TILE_TEST_IDS } from '../ServiceKeysTile.constants';
@@ -17,17 +15,16 @@ type ServiceKeyListLinkTileItemProps = {
 };
 
 export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemProps) => {
-  const navigate = useNavigate();
   const { trackClick } = useOkmsTracking();
   const { t } = useTranslation('key-management-service/common');
 
   return (
     <Tile.Item.Root>
-      <MukLink
-        type={MukLinkType.next}
+      <InternalLink
+        type={LinkType.next}
         data-testid={SERVICE_KEYS_TILE_TEST_IDS.serviceKeyListLink}
+        to={KMS_ROUTES_URLS.serviceKeyListing(okms.id)}
         onClick={() => {
-          navigate(KMS_ROUTES_URLS.serviceKeyListing(okms.id));
           trackClick({
             location: PageLocation.tile,
             buttonType: ButtonType.link,
@@ -37,7 +34,7 @@ export const ServiceKeyListLinkTileItem = ({ okms }: ServiceKeyListLinkTileItemP
         }}
       >
         {t('manage_service_keys_link')}
-      </MukLink>
+      </InternalLink>
     </Tile.Item.Root>
   );
 };

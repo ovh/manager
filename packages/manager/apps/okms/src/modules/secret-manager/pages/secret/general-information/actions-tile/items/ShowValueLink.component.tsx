@@ -1,5 +1,3 @@
-import { useHref } from 'react-router-dom';
-
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
@@ -9,7 +7,7 @@ import { Skeleton } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -27,16 +25,16 @@ export const ShowValueLink = ({ secret }: ShowValueLinkProps) => {
   const { okmsId } = useRequiredParams('okmsId');
   const { t } = useTranslation('secret-manager');
   const { trackClick } = useOkmsTracking();
-  const href = useHref(SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(okmsId, secret.path));
+  const href = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(okmsId, secret.path);
 
   const { data: okms, isPending } = useOkmsById(okmsId);
 
   if (isPending) return <Skeleton data-testid={SHOW_VALUE_TEST_IDS.skeleton} />;
 
   return (
-    <MukLink
+    <InternalLink
       data-testid={SHOW_VALUE_TEST_IDS.showValueLink}
-      href={href}
+      to={href}
       onClick={() => {
         trackClick({
           location: PageLocation.tile,
@@ -49,6 +47,6 @@ export const ShowValueLink = ({ secret }: ShowValueLinkProps) => {
       iamActions={[kmsIamActions.secretGet, kmsIamActions.secretVersionGetData]}
     >
       {t('reveal_secret')}
-    </MukLink>
+    </InternalLink>
   );
 };
