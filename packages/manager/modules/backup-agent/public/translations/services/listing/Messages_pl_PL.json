@@ -10,5 +10,5 @@
   "unable_to_delete_tenant_feature_unavailable": "Usunięcie Tenant'a nie jest dostępne z interfejsu z powodów bezpieczeństwa. Jeśli chcesz usunąć Tenant'a, skontaktuj się z pomocą techniczną.",
   "data_location": "Lokalizacja danych",
   "delete_tenant_feature_unavailable": "Ze względów bezpieczeństwa usunięcie „tenanta” w interfejsie jest niemożliwe. Jeśli chcesz usunąć „tenant”, skontaktuj się z pomocą techniczną.",
-  "services_tab_description": "Twój Tenant oparty jest na konsoli Veeam Service Provider i łączy Twoje Agenty z Twoimi Skarbcami. Będziesz mógł znaleźć wszystkie swoje Agenty, skonfigurować je i pobrać swojego Agenta w tej części. Aby uzyskać więcej informacji, prosimy zapoznać się z <Link>dokumentacją OVHcloud Backup Agent</Link>"
+  "services_tab_description": "Tenant jest skonfigurowany w Veeam Service Provider Console i służy do zarządzania agentami oraz ich przypisywania do vaultów. W tej sekcji znajdziesz pełną listę agentów. Możesz je konfigurować i pobierać. Więcej informacji znajdziesz w <Link>dokumentacji OVHcloud Backup Agent</Link>"
 }
