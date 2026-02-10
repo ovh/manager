@@ -176,7 +176,7 @@ export const VrackSegmentDatagrid = ({
                     'datacentres/vrack-segment:managed_vcd_dashboard_vrack_add_network',
                   ),
                 },
-                ...(hasExtraSegments && item.targetSpec.type !== 'DEFAULT'
+                ...(hasExtraSegments && item.currentState.type !== 'DEFAULT'
                   ? [
                       {
                         id: 3,
