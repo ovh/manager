@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated-servers-app",
-  "version": "0.9.8",
+  "version": "0.10.0",
   "private": true,
   "description": "Dedicated server listing ",
   "repository": {
