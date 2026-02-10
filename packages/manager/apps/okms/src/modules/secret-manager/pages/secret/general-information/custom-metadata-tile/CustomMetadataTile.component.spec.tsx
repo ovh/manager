@@ -9,6 +9,7 @@ import { labels } from '@/common/utils/tests/init.i18n';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { CustomMetadataTile } from './CustomMetadataTile.component';
+import { EDIT_CUSTOM_METADATA_LINK_TEST_IDS } from './CustomMetadataTile.constants';
 
 vi.mock('@/common/hooks/useRequiredParams', () => ({
   useRequiredParams: vi.fn(() => ({ okmsId: 'mockedOkmsId' })),
@@ -62,11 +63,12 @@ describe('Secrets Custom Metadata Tile component tests suite', () => {
       mockSecret1.path,
     );
 
-    const link = await screen.findByRole('link', {
-      name: labels.secretManager.edit_custom_metadata,
-    });
+    const link = await screen.findByTestId(
+      EDIT_CUSTOM_METADATA_LINK_TEST_IDS.editCustomMetadataLink,
+    );
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', expectedHref);
+    expect(link).toHaveTextContent(labels.secretManager.edit_custom_metadata);
+    expect(link.getAttribute('to')).toBe(expectedHref);
   });
 
   it('should not display tags when custom metadata is not present and show a different link', async () => {
@@ -99,10 +101,11 @@ describe('Secrets Custom Metadata Tile component tests suite', () => {
       secretWithoutCustomMetadata.path,
     );
 
-    const link = await screen.findByRole('link', {
-      name: labels.secretManager.add_custom_metadata,
-    });
+    const link = await screen.findByTestId(
+      EDIT_CUSTOM_METADATA_LINK_TEST_IDS.editCustomMetadataLink,
+    );
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', expectedHref);
+    expect(link).toHaveTextContent(labels.secretManager.add_custom_metadata);
+    expect(link.getAttribute('to')).toBe(expectedHref);
   });
 });

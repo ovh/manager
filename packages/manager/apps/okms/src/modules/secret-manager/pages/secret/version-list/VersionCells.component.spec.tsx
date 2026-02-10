@@ -23,10 +23,14 @@ import { VERSION_LIST_CELL_TEST_IDS } from './VersionCells.constants';
 
 const mockOkmsId = 'test-okms-id';
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(),
-  useParams: vi.fn(),
-}));
+vi.mock('react-router-dom', async (importOriginal) => {
+  const module = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...module,
+    useNavigate: vi.fn(),
+    useParams: vi.fn(),
+  };
+});
 
 const renderVersionLink = async (versionMock: SecretVersion) => {
   // use global server to mock iam response

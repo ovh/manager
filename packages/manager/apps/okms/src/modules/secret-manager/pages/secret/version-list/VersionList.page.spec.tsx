@@ -27,13 +27,11 @@ describe('Version list page test suite', () => {
 
     const versionLink = await screen.findByText(versionActiveMock.id.toString());
 
-    expect(versionLink).toHaveAttribute(
-      'href',
-      SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
-        mockOkmsId,
-        mockSecret1.path,
-        versionActiveMock.id,
-      ),
+    const expectedHref = SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+      mockOkmsId,
+      mockSecret1.path,
+      versionActiveMock.id,
     );
+    expect(versionLink.getAttribute('to')).toBe(expectedHref);
   });
 });

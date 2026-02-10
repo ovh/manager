@@ -89,11 +89,10 @@ describe('Secret list page test suite', () => {
     invariant(secretPath, 'Secret path is not defined');
     const secretPageLink = await screen.findByText(secretPath);
 
-    // THEN
-    expect(secretPageLink.closest('a')).toHaveAttribute(
-      'href',
-      SECRET_MANAGER_ROUTES_URLS.secret(mockOkms.id, secretPath),
-    );
+    // THEN (Muk Link may render "to" instead of "href" in test env)
+    const link = secretPageLink.closest('a');
+    const expectedUrl = SECRET_MANAGER_ROUTES_URLS.secret(mockOkms.id, secretPath);
+    expect(link?.getAttribute('to')).toBe(expectedUrl);
   });
 
   it('should navigate to OKMS dashboard on click on "manage okms" button', async () => {

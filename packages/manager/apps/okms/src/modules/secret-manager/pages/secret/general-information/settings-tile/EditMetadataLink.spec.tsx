@@ -43,7 +43,7 @@ const renderComponent = async () => {
   return render(<EditMetadataLink secret={SECRET_MOCK} />, { wrapper });
 };
 
-describe('EditMetaodataLink test suite', () => {
+describe('EditMetadataLink test suite', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -84,10 +84,11 @@ describe('EditMetaodataLink test suite', () => {
         expect(link).not.toHaveAttribute('disabled');
       });
       expect(link).toHaveTextContent(labels.secretManager.edit_metadata);
-      expect(link).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(OKMS_OK_MOCK.id, SECRET_MOCK.path),
+      const expectedHref = SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(
+        OKMS_OK_MOCK.id,
+        SECRET_MOCK.path,
       );
+      expect(link.getAttribute('to')).toBe(expectedHref);
     });
 
     it('should be disabled when OKMS domain status is not OK', async () => {
