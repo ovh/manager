@@ -23,14 +23,14 @@ export const ManageViewConfig = () => {
   const { t } = useTranslation('manage-view');
 
   return (
-    <Accordion>
+    <Accordion multiple={false}>
       <AccordionItem value="0">
         <AccordionTrigger>
           <Text preset={TEXT_PRESET.heading6}>
             {t('select_columns_visibility')}
           </Text>
         </AccordionTrigger>
-        <AccordionContent>
+        <AccordionContent className="overflow-auto">
           <DndContext
             onDragEnd={({ active, over }) => {
               if (!over || active.id === over.id) return;
