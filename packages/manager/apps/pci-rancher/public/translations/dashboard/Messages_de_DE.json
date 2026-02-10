@@ -85,5 +85,13 @@
   "generateAccessModalIamWarning": "Im Falle einer <strong>Neugenerierung des „admin“-Passworts</strong> bei aktivierter IAM-Authentifizierung wird <strong>die Möglichkeit zur Anmeldung mit dem IAM-Root-User vorübergehend deaktiviert.</strong>",
   "iam_authentication_warning": "Bekannte Einschränkung",
   "generateAccessModalIamWarning2": "Um dieses Problem zu beheben, müssen Sie sich zuerst mit dem lokalen <strong>„admin“</strong>-User anmelden, um den Zugriff mit dem IAM-Root-User wiederherzustellen.",
-  "iam_modal_deactivation_warning_continue": "Möchten Sie fortfahren?"
+  "iam_modal_deactivation_warning_continue": "Möchten Sie fortfahren?",
+  "freeTrialBannerMessage": "Sie erhalten kostenloses Guthaben: • 100 € für OVHcloud Edition (entspricht 20 vCPU für 1 Monat) • 250 € für Standard (entspricht 20 vCPU für 1 Monat)",
+  "freeTrialBannerMessageLine1": "Sie erhalten kostenloses Guthaben:",
+  "freeTrialBannerMessageLine2": "100 € für OVHcloud Edition (entspricht 20 vCPU für 1 Monat)",
+  "freeTrialBannerMessageLine3": "250 € für Standard (entspricht 20 vCPU für 1 Monat)",
+  "freeTrialBadge": "Kostenlose Testversion",
+  "freeTrialPriceLabel": "Kostenlos*",
+  "freeTrialThenLabel": "Dann",
+  "freeTrialDisclaimer": "*Guthaben gültig für ~1 Monat je nach Nutzung. Sobald das Guthaben aufgebraucht ist, wird die Abrechnung automatisch entsprechend Ihrem Verbrauch fortgesetzt."
 }
