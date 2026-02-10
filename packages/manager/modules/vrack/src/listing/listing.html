@@ -57,6 +57,7 @@
 <div data-ng-bind-html="$ctrl.description"></div>
 <oui-datagrid
     id="{{ $ctrl.datagridId }}"
+    data-ng-if="!$ctrl.isNetworkVrackAvailable"
     data-row-loader="$ctrl.loadResource($row)"
     data-rows-loader="$ctrl.loadPage()"
     data-columns="$ctrl.columns"
@@ -70,6 +71,103 @@
     data-on-sort-change="$ctrl.onSortChange($sort)"
     data-navi-id="{{ $ctrl.dataNaviId }}"
 >
+    <oui-datagrid-topbar>
+        <oui-button
+            aria-label="{{:: 'vrack_order' | translate }}"
+            data-on-click="$ctrl.gotoVrackOrder()"
+        >
+            <span data-translate="vrack_order"></span>
+        </oui-button>
+    </oui-datagrid-topbar>
+    <oui-action-menu
+        data-compact
+        data-placement="end"
+        data-disabled="$row.state !== 'active'"
+        data-ng-if="$ctrl.isDeleteOptionsAvailable"
+    >
+        <oui-action-menu-item data-on-click="$ctrl.deleteVrack($row)">
+            <span data-translate="vrack_listing_action_delete"></span>
+        </oui-action-menu-item>
+    </oui-action-menu>
+</oui-datagrid>
+<oui-datagrid
+    data-ng-if="$ctrl.isNetworkVrackAvailable"
+    data-row-loader="$ctrl.loadResource($row)"
+    data-rows-loader="$ctrl.loadPage()"
+    data-customizable="$ctrl.customizableColumns"
+    data-criteria="$ctrl.criteria"
+    data-on-columns-parameters-change="$ctrl.onColumnChange(id, columns)"
+    data-on-page-change="$ctrl.onPageChange($pagination)"
+    data-on-criteria-change="$ctrl.onCriteriaChange($criteria)"
+    data-page-size="{{ $ctrl.paginationSize }}"
+    data-page="{{ $ctrl.paginationNumber }}"
+    data-on-sort-change="$ctrl.onSortChange($sort)"
+    data-navi-id="{{ $ctrl.dataNaviId }}"
+>
+    <oui-datagrid-column
+        title=":: 'vrack_listing_columns_header_serviceName' | translate"
+        property="serviceName"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+        data-prevent-customization
+    >
+        <a data-ng-href="{{ $ctrl.getServiceNameLink($row) }}">
+            {{ $row.serviceName }}
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'vrack_listing_columns_header_publicIpBandwidth' | translate"
+        data-type="string"
+        data-ng-if="$ctrl.isNetworkVrackAvailable"
+    >
+        <a
+            class="oui-link_icon"
+            data-ng-href="{{ $ctrl.getPublicIpUrl($row.serviceName) }}"
+            rel="noopener noreferrer"
+            target="_blank"
+        >
+            <span data-translate="vrack_listing_manage"></span>
+            <span class="oui-icon oui-icon-external-link" aria-hidden="true">
+            </span>
+        </a>
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'vrack_listing_columns_header_description' | translate"
+        property="description"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'vrack_listing_columns_header_name' | translate"
+        property="name"
+        data-searchable
+        data-filterable
+        data-sortable
+        data-type="string"
+    >
+    </oui-datagrid-column>
+    <oui-datagrid-column
+        title=":: 'vrack_listing_columns_header_state' | translate"
+        property="state"
+        data-searchable
+        data-type="string"
+    >
+        <span
+            class="oui-badge"
+            data-ng-class="{
+                'oui-badge_error': $value === 'suspended',
+                'oui-badge_warning': $value === 'deleted',
+                'oui-badge_success': $value === 'active'
+          }"
+        >
+            {{ $value}}
+        </span>
+    </oui-datagrid-column>
     <oui-datagrid-topbar>
         <oui-button
             aria-label="{{:: 'vrack_order' | translate }}"
