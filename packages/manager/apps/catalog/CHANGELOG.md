@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.8...@ovh-ux/manager-catalog-app@1.29.0) (2026-02-10)
+
+
+### Features
+
+* **cdsv2:** test deploy catalog with CDSv2 workflow ([4e7363a](https://github.com/ovh/manager/commit/4e7363a1f22369f3b3320a5b2b82013510956656))
+
+
+
+
+
 ## [1.28.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-catalog-app@1.28.7...@ovh-ux/manager-catalog-app@1.28.8) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-catalog-app
