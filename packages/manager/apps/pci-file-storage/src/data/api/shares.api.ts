@@ -2,6 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 
 import { TShareDto } from '@/adapters/shares/right/dto.type';
 import { mapShareDtoToShare } from '@/adapters/shares/right/mapper';
+import { TCreateSharePayload } from '@/data/api/schema/share.schema';
 import { TShare } from '@/domain/entities/share.entity';
 
 export const getShares = async (projectId: string): Promise<TShare[]> => {
@@ -27,3 +28,13 @@ export const deleteShare = async (
 ): Promise<void> => {
   await v6.delete(`/cloud/project/${projectId}/region/${region}/share/${shareId}`);
 };
+
+export const createShare = ({
+  projectId,
+  region,
+  payload,
+}: {
+  projectId: string;
+  region: string;
+  payload: TCreateSharePayload;
+}) => v6.post<null>(`/cloud/project/${projectId}/region/${region}/share`, payload);
