@@ -23,6 +23,7 @@ import { useDebouncedValue } from '@/hooks';
 import { DATAGRID_REFRESH_INTERVAL, DATAGRID_REFRESH_ON_MOUNT } from '@/utils';
 import { getPriceUnit } from '@/utils/price';
 
+import ActionButtonService from './ActionButton.component';
 import DatagridTopbar from './DatagridTopBar.component';
 
 const Services = () => {
@@ -116,6 +117,12 @@ const Services = () => {
               })}
             </span>
           ),
+      },
+      {
+        id: 'tooltip',
+        maxSize: 50,
+        accessorFn: (row) => row.id,
+        cell: ({ row }) => <ActionButtonService item={row.original} />,
       },
     ],
     [format, t, locale, ovhSubsidiary],

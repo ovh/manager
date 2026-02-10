@@ -747,6 +747,20 @@ export default (
             },
           }}
         />
+        <Route
+          path={'settings'}
+          Component={EmailAccountSettingsPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: EDIT_EMAIL_ACCOUNT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_settings',
+            },
+          }}
+        />
       </Route>
       <Route
         path={'redirections'}
