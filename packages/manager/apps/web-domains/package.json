@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-domains-app",
-  "version": "1.10.11",
+  "version": "1.10.12",
   "private": true,
   "description": "Domains and Alldom management",
   "repository": {
@@ -21,7 +21,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.10.10",
+    "@ovh-ux/logs-to-customer": "^1.11.0",
     "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core-api": "^0.19.4",
