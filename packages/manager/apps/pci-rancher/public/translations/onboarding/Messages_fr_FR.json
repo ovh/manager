@@ -15,5 +15,9 @@
   "guide2Title": "Monter votre NAS via un partage NFS",
   "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
   "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS",
+  "freeTrialEligibilityTitle": "🎉 Vous êtes éligible à un essai gratuit",
+  "freeTrialCreditStandard": "250€ de crédit pour le Plan Standard (~1 mois)",
+  "freeTrialCreditOvhEdition": "100€ de crédit pour le Plan OVHcloud Edition (~1 mois)",
+  "freeTrialCreditApplied": "Le crédit sera automatiquement appliqué à votre premier service."
 }
