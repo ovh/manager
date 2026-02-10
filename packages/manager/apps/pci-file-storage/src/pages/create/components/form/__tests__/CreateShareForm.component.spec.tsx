@@ -282,6 +282,6 @@ describe('CreateShareForm', () => {
     const cancelButton = screen.getByTestId('button-ghost');
     await userEvent.click(cancelButton);
 
-    expect(mockNavigate).toHaveBeenCalledWith('../onboarding');
+    expect(mockNavigate).toHaveBeenCalledWith('..');
   });
 });
