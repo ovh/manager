@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import {
   selectFlavorDetailsForCreation,
   selectLocalisationDetailsForCreation,
@@ -131,7 +132,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     billingType,
     localBackupRotation,
     distantBackupLocalization,
-    assignNewGateway,
+    willGatewayBeAttached,
     ipPublicType,
     floatingIpAssignment,
     existingFloatingIpId,
@@ -155,7 +156,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'billingType',
       'localBackupRotation',
       'distantBackupLocalization',
-      'assignNewGateway',
+      'willGatewayBeAttached',
       'ipPublicType',
       'floatingIpAssignment',
       'existingFloatingIpId',
@@ -258,12 +259,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const privateNetwork = useMemo(() => {
     const network = privateNetworks?.find(({ value }) => subnetId === value);
-    const willGatewayBeAttached = assignNewGateway || !!network?.hasGateway;
 
     const gatewayPrice =
-      !gatewayAvailability?.isDisabled &&
-      gatewayConfigurations &&
-      willGatewayBeAttached
+      !gatewayAvailability?.isDisabled && gatewayConfigurations
         ? gatewayConfigurations.price
         : null;
 
@@ -273,7 +271,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
     return { name, willGatewayBeAttached, gatewayPrice };
   }, [
-    assignNewGateway,
+    willGatewayBeAttached,
     gatewayAvailability?.isDisabled,
     gatewayConfigurations,
     newPrivateNetwork?.name,
@@ -325,7 +323,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
     isCreationFormValid;
 
   const networkId =
-    privateNetworks?.find(({ value }) => subnetId === value)?.networkId ?? null;
+    privateNetworks?.find(({ value }) => subnetId === value)?.customRendererData
+      ?.networkId ?? null;
 
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
@@ -343,7 +342,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
       localBackupRotation,
       existingFloatingIpId,
       floatingIpAssignment,
-      assignNewGateway,
+      assignNewGateway:
+        willGatewayBeAttached && !gatewayAvailability?.isDisabled,
       networkId,
       subnetId,
       newPrivateNetwork,

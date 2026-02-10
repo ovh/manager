@@ -185,5 +185,6 @@
     "title": "Instâncias Flex",
     "disk_capacity": "<span>Uma instância flex é uma instância de disco único (50 Go)</span> que oferece um processo mais rápido para os snapshots.",
     "resizing_explanation": "Permite um redimensionamento para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado"
 }

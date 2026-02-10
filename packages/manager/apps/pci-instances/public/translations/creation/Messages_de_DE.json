@@ -185,5 +185,6 @@
     "title": "Flex-Instanzen",
     "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzel-Disk-Instanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
     "resizing_explanation": "Sie ermöglicht eine Skalierung auf höhere oder niedrigere Modelle mit einem festen Speicherplatz, während klassische Modelle nur auf höhere Modelle skaliert werden können."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Angehängtes Gateway"
 }

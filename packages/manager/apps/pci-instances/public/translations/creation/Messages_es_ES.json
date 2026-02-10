@@ -185,5 +185,6 @@
     "title": "Instancias Flex",
     "disk_capacity": "<span>Una instancia flex es una instancia de disco único (50 Go)</span> que ofrece un proceso más rápido para las instantáneas.",
     "resizing_explanation": "Permite un redimensionamiento hacia los modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que los modelos clásicos solo pueden redimensionarse hacia los modelos superiores."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Puerta de enlace adjunta"
 }

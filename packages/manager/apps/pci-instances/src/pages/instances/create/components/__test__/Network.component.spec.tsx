@@ -48,7 +48,7 @@ const setupTest = (
           enableDhcp: true,
         },
         ipPublicType: null,
-        assignNewGateway: false,
+        willGatewayBeAttached: false,
       }}
     >
       <Network />

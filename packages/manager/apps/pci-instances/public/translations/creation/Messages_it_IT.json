@@ -137,7 +137,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Un backup viene eseguito ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "al mese/GB",
@@ -185,5 +185,6 @@
     "title": "Istanze Flex",
     "disk_capacity": "<span>Un'istanza flex è un'istanza a disco singolo (50 Go)</span> che offre un processo più veloce per gli snapshot.",
     "resizing_explanation": "Consente un ridimensionamento verso modelli superiori o inferiori con uno spazio di archiviazione fisso, mentre i modelli classici possono essere ridimensionati solo verso modelli superiori."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway allegata"
 }

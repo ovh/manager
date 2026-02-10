@@ -1091,32 +1091,44 @@ export const mockedFlavorTypesSelectorData: TOptionsData[] = [
   },
 ];
 
-export const mockedPrivateNetworks = [
+export const mockedPrivateNetworks: TPrivateNetworkData[] = [
   {
     label: 'Priv_roubaix_ovh',
     value: 'networkId-1',
-    hasGateway: false,
-    capabilities: ['PublicIP', 'FloatingIP'],
+    customRendererData: {
+      networkId: 'networkId-1',
+      hasGateway: false,
+      capabilities: ['PublicIP', 'FloatingIP'],
+    },
   },
   {
     label: 'test-waw1_2',
     value: 'networkId-2',
-    hasGateway: true,
-    capabilities: ['FloatingIP'],
+    customRendererData: {
+      networkId: 'networkId-2',
+      hasGateway: true,
+      capabilities: ['FloatingIP'],
+    },
   },
   {
     label: 'SGB1NET',
     value: 'networkId-3',
-    hasGateway: false,
-    capabilities: ['PublicIP'],
+    customRendererData: {
+      networkId: 'networkId-3',
+      hasGateway: false,
+      capabilities: ['PublicIP'],
+    },
   },
   {
     label: 'test-sbg7-gateway',
     value: 'networkId-4',
-    hasGateway: false,
-    capabilities: [],
+    customRendererData: {
+      networkId: 'networkId-4',
+      hasGateway: false,
+      capabilities: [],
+    },
   },
-] as TPrivateNetworkData[];
+];
 
 export const mockedDistantBackupLocalizations = [
   {
