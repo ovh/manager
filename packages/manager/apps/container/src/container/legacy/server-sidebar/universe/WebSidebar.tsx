@@ -20,6 +20,7 @@ export const webFeatures = [
   'web:domains:domains',
   'web-domains:alldoms',
   'web-domains:domains',
+  'web-domains:domain-reseller',
   'web-domains',
   'web-ongoing-operations',
   'web-hosting:websites',
@@ -71,11 +72,17 @@ export default function WebSidebar() {
               : [];
           const domains = await loadServices('/domain');
           const domainZones = features['web:domains:zone']
-            ? await loadServices('/domain/zone')
-            : [];
+              ? await loadServices('/domain/zone')
+              : [];
+          const domainReseller = features['web-domains:domain-reseller']
+              ? await loadServices('/domain/reseller')
+              : [];
 
           let webDomainsUrl = '';
-          if(features['web-domains'] && (features['web-domains:domains'] || features['web-domains:alldoms'])){
+          if(features['web-domains'] && (features['web-domains:domains'] ||
+            features['web-domains:alldoms'] ||
+            features['web-domains:domain-reseller']
+          )){
             webDomainsUrl = navigation.getURL('web-domains', '#/domain');
           }
 
@@ -112,6 +119,15 @@ export default function WebSidebar() {
                 icon: getIcon('ovh-font ovh-font-domain'),
                 ignoreSearch: true,
               },
+              features['web-domains:domain-reseller'] &&
+                domainReseller.length > 0 && {
+                  id: 'domain-reseller',
+                  label: t('sidebar_domain_reseller'),
+                  href: navigation.getURL('web-domains', '#/domain-reseller'),
+                  routeMatcher: new RegExp('^/web-domains/domain-reseller'),
+                  icon: getIcon('ovh-font ovh-font-domain'),
+                  ignoreSearch: true,
+                },
             ...allDom.map((item) => (features['web:domains:domains'] && {
               ...item,
               id: `legacy-${item.id}`,
