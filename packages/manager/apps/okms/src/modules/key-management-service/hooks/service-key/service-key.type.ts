@@ -1,15 +1,11 @@
-import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
-import { ButtonProps } from '@ovh-ux/muk';
+import { ActionMenuItemProps } from '@ovh-ux/muk';
 
-export type ServiceKeyAction = {
-  label: string;
-  color: BUTTON_COLOR;
-  onClick: () => void;
-  disabled?: boolean;
-  loading?: boolean;
-  iamActions?: ButtonProps['iamActions'];
-  urn?: ButtonProps['urn'];
+export type ServiceKeyAction = Pick<
+  ActionMenuItemProps,
+  'label' | 'color' | 'onClick' | 'isDisabled' | 'isLoading' | 'iamActions' | 'urn'
+> & {
   icon: ICON_NAME;
   buttonId:
     | 'service-key-download_encryption_key'

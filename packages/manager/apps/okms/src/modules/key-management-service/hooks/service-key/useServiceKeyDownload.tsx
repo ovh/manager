@@ -45,8 +45,8 @@ export const useServiceKeyDownload = ({
     label: t(
       'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
     ),
-    loading: isFetching,
-    disabled: keyState !== OkmsServiceKeyState.active,
+    isLoading: isFetching,
+    isDisabled: keyState !== OkmsServiceKeyState.active,
     icon: ICON_NAME.download,
     color: BUTTON_COLOR.primary,
     onClick: async () => {

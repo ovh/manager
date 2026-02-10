@@ -106,7 +106,7 @@ export const useServiceKeyActionsList = (
       buttonId: 'service-key-reactivate_encryption_key',
       label: t('key_management_service_service-keys_link_reactivate_key'),
       color: BUTTON_COLOR.primary,
-      loading: updateIsPending,
+      isLoading: updateIsPending,
       iamActions: [kmsIamActions.serviceKeyUpdate, kmsIamActions.serviceKeyActivate],
       urn: okmsKey?.iam.urn,
       onClick: () => {
@@ -131,8 +131,8 @@ export const useServiceKeyActionsList = (
       buttonId: 'service-key-delete_encryption_key',
       label: t('key_management_service_service-keys_link_delete_key'),
       color: BUTTON_COLOR.primary,
-      disabled: okmsKey?.state === OkmsServiceKeyState.active,
-      loading: deleteIsPending,
+      isDisabled: okmsKey?.state === OkmsServiceKeyState.active,
+      isLoading: deleteIsPending,
       iamActions: [kmsIamActions.serviceKeyDelete],
       urn: okmsKey?.iam.urn,
       onClick: () => {
