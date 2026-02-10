@@ -158,3 +158,7 @@ export type TRancherPricing = {
   hourlyPrice: number;
   monthlyPrice: number;
 };
+
+export type TRancherEligibility = {
+  freeTrial: boolean;
+};
