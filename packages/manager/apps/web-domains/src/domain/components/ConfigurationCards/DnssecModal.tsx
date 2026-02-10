@@ -5,6 +5,7 @@ import {
   BUTTON_COLOR,
   Modal,
   MODAL_COLOR,
+  ModalHeader,
   ModalBody,
   ModalContent,
   Text,
@@ -46,6 +47,9 @@ export default function DnssecModal({
   return (
     <Modal open={open}>
       <ModalContent color={modalColor} dismissible={false}>
+        <ModalHeader>
+          <Text preset={TEXT_PRESET.heading4}>{t(titleKey)}</Text>
+        </ModalHeader>
         <ModalBody
           style={{
             display: 'flex',

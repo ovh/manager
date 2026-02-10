@@ -47,7 +47,7 @@ export function LinkCard({
           )}
 
           <div className="flex flex-row leading-[28px]">
-            <Text preset={TEXT_PRESET.heading4} className="text-[--ods-color-primary-500]">
+            <Text preset={TEXT_PRESET.heading4} className="text-(--ods-color-primary-500)">
               {category}
             </Text>
 

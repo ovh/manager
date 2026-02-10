@@ -165,7 +165,7 @@ export function FilterAdd({ columns, onAddFilter, resourceType }: Readonly<Filte
       )}
       <div className="mt-4 w-full">
         <Button
-          className="w-full filter-add-button-submit z-[1]"
+          className="w-full filter-add-button-submit z-1"
           size={BUTTON_SIZE.sm}
           disabled={!isInputValid}
           onClick={submitAddFilter}
