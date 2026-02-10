@@ -100,13 +100,11 @@ describe('EditCustomMetadataLink test suite', () => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
       expect(link).toHaveTextContent(labels.secretManager.edit_custom_metadata);
-      expect(link).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.secretEditCustomMetadataDrawer(
-          OKMS_OK_MOCK.id,
-          SECRET_WITH_CUSTOM_METADATA_MOCK.path,
-        ),
+      const expectedHref = SECRET_MANAGER_ROUTES_URLS.secretEditCustomMetadataDrawer(
+        OKMS_OK_MOCK.id,
+        SECRET_WITH_CUSTOM_METADATA_MOCK.path,
       );
+      expect(link.getAttribute('to')).toBe(expectedHref);
     });
 
     it('should show add text when customMetadata does not exist', async () => {
@@ -127,13 +125,11 @@ describe('EditCustomMetadataLink test suite', () => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
       expect(link).toHaveTextContent(labels.secretManager.add_custom_metadata);
-      expect(link).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.secretEditCustomMetadataDrawer(
-          OKMS_OK_MOCK.id,
-          SECRET_WITHOUT_CUSTOM_METADATA_MOCK.path,
-        ),
+      const expectedHref = SECRET_MANAGER_ROUTES_URLS.secretEditCustomMetadataDrawer(
+        OKMS_OK_MOCK.id,
+        SECRET_WITHOUT_CUSTOM_METADATA_MOCK.path,
       );
+      expect(link.getAttribute('to')).toBe(expectedHref);
     });
   });
 });
