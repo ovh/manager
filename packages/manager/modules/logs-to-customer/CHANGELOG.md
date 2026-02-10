@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.10...@ovh-ux/logs-to-customer@1.11.0) (2026-02-10)
+
+
+### Features
+
+* **observability.logs:** update logs unsubscribe modal ([0597931](https://github.com/ovh/manager/commit/0597931de68ef067a6b95c0f61a824db091ea46f)), closes [#MAOBS-235](https://github.com/ovh/manager/issues/MAOBS-235)
+
+
+
+
+
 ## [1.10.10](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.9...@ovh-ux/logs-to-customer@1.10.10) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/logs-to-customer
