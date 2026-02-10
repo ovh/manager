@@ -178,5 +178,6 @@
   "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>",
   "pci_instance_creation_in_progress": "A criação da instância está em andamento, seu serviço estará disponível em alguns instantes",
   "pci_instances_creations_in_progress": "As criações de instâncias estão em andamento, seus serviços estarão disponíveis em alguns instantes",
-  "pci_instance_creation_error": "Encontramos um erro ao criar sua instância…"
+  "pci_instance_creation_error": "Encontramos um erro ao criar sua instância…",
+  "pci_instance_onboarding_page_creation_pending": "A sua instância está a ser criada, por favor aguarde alguns instantes..."
 }

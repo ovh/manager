@@ -4,8 +4,8 @@ import {
   isOperationInProgress,
   isOperationInError,
   isInstanceCreationOperationPendingOrInError,
-} from './operations.service';
-import { TOperation } from '../entities/operations';
+} from '../operations.service';
+import { TOperation } from '@/domain/entities/operations';
 
 describe('operations.service', () => {
   describe('isOperationInProgress', () => {

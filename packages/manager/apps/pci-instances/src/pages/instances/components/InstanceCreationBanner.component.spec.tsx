@@ -26,7 +26,9 @@ vi.mock('@/components/banner/Banner.component', () => ({
 describe('InstanceCreationBanner', () => {
   describe('when no operations and no error', () => {
     it('should not render any banner', () => {
-      render(<InstanceCreationBanner operationsCount={0} hasError={false} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={false} />,
+      );
 
       expect(
         screen.queryByTestId('banner-information'),
@@ -36,16 +38,20 @@ describe('InstanceCreationBanner', () => {
   });
 
   describe('when operations are in progress', () => {
-    it('should render info banner with singular message when operationsCount is 1', () => {
-      render(<InstanceCreationBanner operationsCount={1} hasError={false} />);
+    it('should render info banner with singular message when instancesCreationsCount is 1', () => {
+      render(
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
+      );
 
       const infoBanner = screen.getByTestId('banner-information');
       expect(infoBanner).toBeInTheDocument();
       expect(infoBanner).toHaveTextContent('pci_instance_creation_in_progress');
     });
 
-    it('should render info banner with plural message when operationsCount is greater than 1', () => {
-      render(<InstanceCreationBanner operationsCount={3} hasError={false} />);
+    it('should render info banner with plural message when instancesCreationsCount is greater than 1', () => {
+      render(
+        <InstanceCreationBanner instancesCreationsCount={3} hasError={false} />,
+      );
 
       const infoBanner = screen.getByTestId('banner-information');
       expect(infoBanner).toBeInTheDocument();
@@ -55,7 +61,9 @@ describe('InstanceCreationBanner', () => {
     });
 
     it('should render dismissible info banner', () => {
-      render(<InstanceCreationBanner operationsCount={1} hasError={false} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
+      );
 
       const infoBanner = screen.getByTestId('banner-information');
       expect(infoBanner).toHaveAttribute('data-dismissible', 'true');
@@ -64,7 +72,9 @@ describe('InstanceCreationBanner', () => {
 
   describe('when error is present', () => {
     it('should render error banner when hasError is true', () => {
-      render(<InstanceCreationBanner operationsCount={0} hasError={true} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={true} />,
+      );
 
       const errorBanner = screen.getByTestId('banner-critical');
       expect(errorBanner).toBeInTheDocument();
@@ -72,7 +82,9 @@ describe('InstanceCreationBanner', () => {
     });
 
     it('should render dismissible error banner', () => {
-      render(<InstanceCreationBanner operationsCount={0} hasError={true} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={true} />,
+      );
 
       const errorBanner = screen.getByTestId('banner-critical');
       expect(errorBanner).toHaveAttribute('data-dismissible', 'true');
@@ -81,7 +93,9 @@ describe('InstanceCreationBanner', () => {
 
   describe('when both operations and error are present', () => {
     it('should render both info and error banners', () => {
-      render(<InstanceCreationBanner operationsCount={2} hasError={true} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={2} hasError={true} />,
+      );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
       expect(screen.getByTestId('banner-critical')).toBeInTheDocument();
@@ -92,7 +106,7 @@ describe('InstanceCreationBanner', () => {
     it('should hide info banner when dismissed', async () => {
       const user = userEvent.setup();
       const { queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={1} hasError={false} />,
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
@@ -106,7 +120,7 @@ describe('InstanceCreationBanner', () => {
     it('should hide error banner when dismissed', async () => {
       const user = userEvent.setup();
       const { queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={0} hasError={true} />,
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={true} />,
       );
 
       expect(screen.getByTestId('banner-critical')).toBeInTheDocument();
@@ -120,7 +134,7 @@ describe('InstanceCreationBanner', () => {
     it('should hide info banner without affecting error banner', async () => {
       const user = userEvent.setup();
       const { queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={2} hasError={true} />,
+        <InstanceCreationBanner instancesCreationsCount={2} hasError={true} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
@@ -136,7 +150,7 @@ describe('InstanceCreationBanner', () => {
     it('should hide error banner without affecting info banner', async () => {
       const user = userEvent.setup();
       const { queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={1} hasError={true} />,
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={true} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
@@ -151,8 +165,10 @@ describe('InstanceCreationBanner', () => {
   });
 
   describe('edge cases', () => {
-    it('should not render info banner when operationsCount is 0', () => {
-      render(<InstanceCreationBanner operationsCount={0} hasError={false} />);
+    it('should not render info banner when instancesCreationsCount is 0', () => {
+      render(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={false} />,
+      );
 
       expect(
         screen.queryByTestId('banner-information'),
@@ -160,13 +176,20 @@ describe('InstanceCreationBanner', () => {
     });
 
     it('should not render error banner when hasError is false', () => {
-      render(<InstanceCreationBanner operationsCount={1} hasError={false} />);
+      render(
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
+      );
 
       expect(screen.queryByTestId('banner-critical')).not.toBeInTheDocument();
     });
 
-    it('should handle large operationsCount', () => {
-      render(<InstanceCreationBanner operationsCount={999} hasError={false} />);
+    it('should handle large instancesCreationsCount', () => {
+      render(
+        <InstanceCreationBanner
+          instancesCreationsCount={999}
+          hasError={false}
+        />,
+      );
 
       const infoBanner = screen.getByTestId('banner-information');
       expect(infoBanner).toBeInTheDocument();
@@ -177,21 +200,23 @@ describe('InstanceCreationBanner', () => {
   });
 
   describe('operations state transitions', () => {
-    it('should hide info banner when operationsCount goes from 1 to 0', () => {
+    it('should hide info banner when instancesCreationsCount goes from 1 to 0', () => {
       const { rerender, queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={1} hasError={false} />,
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
 
-      rerender(<InstanceCreationBanner operationsCount={0} hasError={false} />);
+      rerender(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={false} />,
+      );
 
       expect(queryByTestId('banner-information')).not.toBeInTheDocument();
     });
 
-    it('should hide info banner when operationsCount goes from multiple to 0', () => {
+    it('should hide info banner when instancesCreationsCount goes from multiple to 0', () => {
       const { rerender, queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={3} hasError={false} />,
+        <InstanceCreationBanner instancesCreationsCount={3} hasError={false} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
@@ -199,31 +224,35 @@ describe('InstanceCreationBanner', () => {
         'pci_instances_creations_in_progress',
       );
 
-      rerender(<InstanceCreationBanner operationsCount={0} hasError={false} />);
+      rerender(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={false} />,
+      );
 
       expect(queryByTestId('banner-information')).not.toBeInTheDocument();
     });
 
-    it('should update banner message when operationsCount goes from 1 to multiple', () => {
+    it('should update banner message when instancesCreationsCount goes from 1 to multiple', () => {
       const { rerender } = render(
-        <InstanceCreationBanner operationsCount={1} hasError={false} />,
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
       );
 
       expect(screen.getByTestId('banner-information')).toHaveTextContent(
         'pci_instance_creation_in_progress',
       );
 
-      rerender(<InstanceCreationBanner operationsCount={3} hasError={false} />);
+      rerender(
+        <InstanceCreationBanner instancesCreationsCount={3} hasError={false} />,
+      );
 
       expect(screen.getByTestId('banner-information')).toHaveTextContent(
         'pci_instances_creations_in_progress',
       );
     });
 
-    it('should not re-show banner if it was dismissed and operationsCount changes', async () => {
+    it('should not re-show banner if it was dismissed and instancesCreationsCount changes', async () => {
       const user = userEvent.setup();
       const { rerender, queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={1} hasError={false} />,
+        <InstanceCreationBanner instancesCreationsCount={1} hasError={false} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
@@ -233,20 +262,24 @@ describe('InstanceCreationBanner', () => {
 
       expect(queryByTestId('banner-information')).not.toBeInTheDocument();
 
-      rerender(<InstanceCreationBanner operationsCount={3} hasError={false} />);
+      rerender(
+        <InstanceCreationBanner instancesCreationsCount={3} hasError={false} />,
+      );
 
       expect(queryByTestId('banner-information')).not.toBeInTheDocument();
     });
 
-    it('should hide info banner but keep error banner when operationsCount goes to 0', () => {
+    it('should hide info banner but keep error banner when instancesCreationsCount goes to 0', () => {
       const { rerender, queryByTestId } = render(
-        <InstanceCreationBanner operationsCount={2} hasError={true} />,
+        <InstanceCreationBanner instancesCreationsCount={2} hasError={true} />,
       );
 
       expect(screen.getByTestId('banner-information')).toBeInTheDocument();
       expect(screen.getByTestId('banner-critical')).toBeInTheDocument();
 
-      rerender(<InstanceCreationBanner operationsCount={0} hasError={true} />);
+      rerender(
+        <InstanceCreationBanner instancesCreationsCount={0} hasError={true} />,
+      );
 
       expect(queryByTestId('banner-information')).not.toBeInTheDocument();
       expect(screen.getByTestId('banner-critical')).toBeInTheDocument();

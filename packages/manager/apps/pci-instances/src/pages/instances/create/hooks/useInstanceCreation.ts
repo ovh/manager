@@ -293,7 +293,6 @@ export const useInstanceCreation = (): TInstanceCreation => {
   );
 
   const handleSuccess = () => {
-    // TODO: update with new success specs to come
     navigate(instancesListUrl);
   };
 
