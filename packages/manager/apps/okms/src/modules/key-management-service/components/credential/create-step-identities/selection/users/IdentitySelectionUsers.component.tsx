@@ -5,7 +5,9 @@ import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants
 import { IdentityUser } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { IdentitiesStatusBadge } from '../../badge/IdentitiesStatusBadge.component';
 import { IdentitySelectionBase } from '../base/IdentitySelectionBase.component';
@@ -29,18 +31,18 @@ export const IdentitySelectionUsers = ({ identityURNs }: IdentitySelectionUsersP
     {
       id: 'login',
       cell: (user: IdentityUser) => (
-        <DataGridTextCell data-testid={IDENTITY_SELECTION_USERS_TEST_IDS.name(user.urn)}>
+        <Text preset="span" data-testid={IDENTITY_SELECTION_USERS_TEST_IDS.name(user.urn)}>
           {user.login}
-        </DataGridTextCell>
+        </Text>
       ),
       label: t('key_management_service_credential_user_list_column_name'),
     },
     {
       id: 'group',
       cell: (user: IdentityUser) => (
-        <DataGridTextCell data-testid={IDENTITY_SELECTION_USERS_TEST_IDS.group(user.urn)}>
+        <Text preset="span" data-testid={IDENTITY_SELECTION_USERS_TEST_IDS.group(user.urn)}>
           {user.group}
-        </DataGridTextCell>
+        </Text>
       ),
       label: t('key_management_service_credential_user_list_column_group'),
     },

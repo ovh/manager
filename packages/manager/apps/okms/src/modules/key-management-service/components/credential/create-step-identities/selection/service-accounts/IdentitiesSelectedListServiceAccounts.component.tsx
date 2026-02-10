@@ -5,7 +5,9 @@ import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants
 import { IdentityOauthClient } from '@key-management-service/types/identity.type';
 import { useTranslation } from 'react-i18next';
 
-import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
+import { DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { IdentitySelectionBase } from '../base/IdentitySelectionBase.component';
 import { RemoveIdentityButton } from '../base/RemoveIdentityButton.component';
@@ -34,24 +36,26 @@ export const IdentitySelectionServiceAccounts = ({
     {
       id: 'name',
       cell: (serviceAccount: IdentityOauthClient) => (
-        <DataGridTextCell
+        <Text
+          preset="span"
           data-testid={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.name(serviceAccount.identity)}
         >
           {serviceAccount.name}
-        </DataGridTextCell>
+        </Text>
       ),
       label: t('key_management_service_credential_user_list_column_name'),
     },
     {
       id: 'identity',
       cell: (serviceAccount: IdentityOauthClient) => (
-        <DataGridTextCell
+        <Text
+          preset="span"
           data-testid={IDENTITY_SELECTION_SERVICE_ACCOUNTS_TEST_IDS.identity(
             serviceAccount.identity,
           )}
         >
           {serviceAccount.identity}
-        </DataGridTextCell>
+        </Text>
       ),
       label: t(
         'key_management_service_credential_create_identities_service-account_tile_identity_label',
