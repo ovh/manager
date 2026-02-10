@@ -84,14 +84,12 @@ describe('CreateVersionLink test suite', () => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
       expect(link).toHaveTextContent(labels.secretManager.add_new_version);
-      expect(link).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.secretCreateVersionDrawer(
-          OKMS_OK_MOCK.id,
-          SECRET_MOCK.path,
-          SECRET_MOCK.metadata.currentVersion,
-        ),
+      const expectedHref = SECRET_MANAGER_ROUTES_URLS.secretCreateVersionDrawer(
+        OKMS_OK_MOCK.id,
+        SECRET_MOCK.path,
+        SECRET_MOCK.metadata.currentVersion,
       );
+      expect(link.getAttribute('to')).toBe(expectedHref);
     });
 
     it('should be disabled when OKMS domain status is not OK', async () => {

@@ -238,12 +238,10 @@ describe('EditMetadataDrawerForm component test suite', () => {
     });
   });
 
-  // TODO: [ODS19] Fix this test when ODS19 is migrated
-  // Test is flaky, and there is a lot of chance that is is somehow related to ODS19
-  describe.skip('form validation', () => {
+  describe('form validation', () => {
     it('should display form errors', async () => {
       const user = userEvent.setup();
-      const { container } = await renderComponent();
+      await renderComponent();
 
       await changeInputValueByTestId(
         SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
@@ -252,11 +250,9 @@ describe('EditMetadataDrawerForm component test suite', () => {
 
       await submitForm(user);
 
-      // Check if the error is displayed
+      // Check if the validation error message is displayed (ODS form-field-error span)
       await waitFor(() => {
-        expect(
-          container.querySelector(`ods-form-field[error="${labels.error_invalid_duration}"]`),
-        ).toBeInTheDocument();
+        expect(screen.getByText(labels.error_invalid_duration)).toBeInTheDocument();
       });
     });
   });
