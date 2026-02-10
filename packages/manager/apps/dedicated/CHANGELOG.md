@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.74.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.5...@ovh-ux/manager-dedicated@20.74.6) (2026-02-10)
+
+
+### Bug Fixes
+
+* **dedicated:** update pcc migration banner ([fdd9b38](https://github.com/ovh/manager/commit/fdd9b38697478e0363a88d4afa539979f0d4dffa)), closes [#MANAGER-20717](https://github.com/ovh/manager/issues/MANAGER-20717)
+
+
+
+
+
 ## [20.74.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.4...@ovh-ux/manager-dedicated@20.74.5) (2026-02-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
