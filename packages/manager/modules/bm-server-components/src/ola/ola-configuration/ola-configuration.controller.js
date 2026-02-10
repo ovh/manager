@@ -4,7 +4,7 @@ import {
   OLA_MODES,
   NEW_LACP_MODE_BANNER_FEATURE_ID,
   SCALE_HGR_MAC_COUNTER,
-  OLA_PREVIEW_ID
+  OLA_PREVIEW_ID,
 } from '../ola.constants';
 
 export default class {
@@ -50,10 +50,6 @@ export default class {
     this.configurationName = undefined;
     this.targetInterfaceType = OLA_MODES.VRACK_AGGREGATION;
 
-    this.notAllowedInterfaces = this.interfaces.filter(
-      (item) => item.hasFailoverIps() || item.hasVrack(),
-    );
-
     this.displayedInterfaces = this.interfaces.map((nic) => ({
       id: nic.id,
       name: nic.name,
@@ -85,10 +81,6 @@ export default class {
 
     this.hasObsoleteBandwithOption =
       this.specifications.bandwidth.type !== 'included';
-  }
-
-  isAggregationValid() {
-    return this.notAllowedInterfaces.length === 0;
   }
 
   configureInterface() {
