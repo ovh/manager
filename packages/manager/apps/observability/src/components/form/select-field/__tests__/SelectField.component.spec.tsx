@@ -42,11 +42,11 @@ vi.mock('@ovhcloud/ods-react', () => ({
       Loading...
     </div>
   ),
-  ComboboxControl: ({ placeholder, clearable }: { placeholder?: string; clearable?: boolean }) => (
-    <div data-testid="combobox-control" data-placeholder={placeholder} data-clearable={clearable} />
+  SelectControl: ({ placeholder }: { placeholder?: string }) => (
+    <div data-testid="select-control" data-placeholder={placeholder} />
   ),
-  ComboboxContent: () => <div data-testid="combobox-content" />,
-  Combobox: ({
+  SelectContent: () => <div data-testid="select-content" />,
+  Select: ({
     className,
     value,
     name,
@@ -54,7 +54,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
     invalid,
     disabled,
     items,
-    allowCustomValue,
     children,
   }: {
     className?: string;
@@ -64,7 +63,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
     invalid?: boolean;
     disabled?: boolean;
     items: Array<{ label: string; value: string }>;
-    allowCustomValue?: boolean;
     children?: React.ReactNode;
   }) => {
     const [selectValue, setSelectValue] = React.useState(value?.[0] || '');
@@ -75,16 +73,15 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
     return (
       <div
-        data-testid="combobox"
+        data-testid="select"
         className={className}
         data-name={name}
         data-invalid={invalid}
         data-disabled={disabled}
-        data-allow-custom-value={allowCustomValue}
       >
         {children}
         <select
-          data-testid="combobox-select"
+          data-testid="select-native"
           value={selectValue}
           name={name}
           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -146,8 +143,8 @@ describe('SelectField', () => {
       render(<SelectField {...defaultProps} />);
 
       expect(screen.getByTestId('form-field')).toBeInTheDocument();
-      expect(screen.getByTestId('combobox')).toBeInTheDocument();
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-name', 'test-select');
+      expect(screen.getByTestId('select')).toBeInTheDocument();
+      expect(screen.getByTestId('select')).toHaveAttribute('data-name', 'test-select');
     });
 
     it('should render with label when provided', () => {
@@ -167,7 +164,7 @@ describe('SelectField', () => {
     it('should render with placeholder when provided', () => {
       render(<SelectField {...defaultProps} placeholder="Select an option" />);
 
-      expect(screen.getByTestId('combobox-control')).toHaveAttribute(
+      expect(screen.getByTestId('select-control')).toHaveAttribute(
         'data-placeholder',
         'Select an option',
       );
@@ -181,25 +178,13 @@ describe('SelectField', () => {
 
       render(<SelectField {...defaultProps} value="test-value" options={testOptions} />);
 
-      expect(screen.getByTestId('combobox-select')).toHaveValue('test-value');
+      expect(screen.getByTestId('select-native')).toHaveValue('test-value');
     });
 
     it('should render with className when provided', () => {
       render(<SelectField {...defaultProps} className="custom-class" />);
 
-      expect(screen.getByTestId('combobox')).toHaveClass('custom-class');
-    });
-
-    it('should have allowCustomValue set to false', () => {
-      render(<SelectField {...defaultProps} />);
-
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-allow-custom-value', 'false');
-    });
-
-    it('should have clearable set to true on ComboboxControl', () => {
-      render(<SelectField {...defaultProps} />);
-
-      expect(screen.getByTestId('combobox-control')).toHaveAttribute('data-clearable', 'true');
+      expect(screen.getByTestId('select')).toHaveClass('custom-class');
     });
   });
 
@@ -207,7 +192,7 @@ describe('SelectField', () => {
     it('should render options from options prop', () => {
       render(<SelectField {...defaultProps} options={mockOptions} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       const options = select.querySelectorAll('option');
 
       // +1 for the default "Select..." option
@@ -220,10 +205,10 @@ describe('SelectField', () => {
       expect(options[3]).toHaveTextContent('Option 3');
     });
 
-    it('should render empty combobox when no options provided', () => {
+    it('should render empty select when no options provided', () => {
       render(<SelectField {...defaultProps} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       const options = select.querySelectorAll('option');
 
       // Only the default "Select..." option
@@ -236,7 +221,7 @@ describe('SelectField', () => {
       render(<SelectField {...defaultProps} isLoading />);
 
       expect(screen.getByTestId('skeleton')).toBeInTheDocument();
-      expect(screen.queryByTestId('combobox')).not.toBeInTheDocument();
+      expect(screen.queryByTestId('select')).not.toBeInTheDocument();
     });
 
     it('should render skeleton with className when isLoading is true', () => {
@@ -245,34 +230,34 @@ describe('SelectField', () => {
       expect(screen.getByTestId('skeleton')).toHaveClass('loading-class');
     });
 
-    it('should render combobox when isLoading is false', () => {
+    it('should render select when isLoading is false', () => {
       render(<SelectField {...defaultProps} isLoading={false} />);
 
       expect(screen.queryByTestId('skeleton')).not.toBeInTheDocument();
-      expect(screen.getByTestId('combobox')).toBeInTheDocument();
+      expect(screen.getByTestId('select')).toBeInTheDocument();
     });
   });
 
   describe('Disabled State', () => {
-    it('should set disabled on combobox when isDisabled is true', () => {
+    it('should set disabled on select when isDisabled is true', () => {
       render(<SelectField {...defaultProps} isDisabled />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-disabled', 'true');
-      expect(screen.getByTestId('combobox-select')).toBeDisabled();
+      expect(screen.getByTestId('select')).toHaveAttribute('data-disabled', 'true');
+      expect(screen.getByTestId('select-native')).toBeDisabled();
     });
 
-    it('should not set disabled on combobox when isDisabled is false', () => {
+    it('should not set disabled on select when isDisabled is false', () => {
       render(<SelectField {...defaultProps} isDisabled={false} />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-disabled', 'false');
-      expect(screen.getByTestId('combobox-select')).not.toBeDisabled();
+      expect(screen.getByTestId('select')).toHaveAttribute('data-disabled', 'false');
+      expect(screen.getByTestId('select-native')).not.toBeDisabled();
     });
 
     it('should not show error when isDisabled is true even if error is provided', () => {
       render(<SelectField {...defaultProps} isDisabled error="This field is required" />);
 
       // Error helper should still be shown but invalid should be false
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-invalid', 'false');
+      expect(screen.getByTestId('select')).toHaveAttribute('data-invalid', 'false');
     });
   });
 
@@ -286,10 +271,10 @@ describe('SelectField', () => {
       expect(errorText).toHaveAttribute('data-preset', 'caption');
     });
 
-    it('should set invalid on combobox when error is provided', () => {
+    it('should set invalid on select when error is provided', () => {
       render(<SelectField {...defaultProps} error="This field is required" />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-invalid', 'true');
+      expect(screen.getByTestId('select')).toHaveAttribute('data-invalid', 'true');
     });
 
     it('should not display error message when error is not provided', () => {
@@ -298,26 +283,26 @@ describe('SelectField', () => {
       expect(screen.queryByTestId('text-helper')).not.toBeInTheDocument();
     });
 
-    it('should not set invalid on combobox when error is not provided', () => {
+    it('should not set invalid on select when error is not provided', () => {
       render(<SelectField {...defaultProps} />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-invalid', 'false');
+      expect(screen.getByTestId('select')).toHaveAttribute('data-invalid', 'false');
     });
 
-    it('should not set invalid on combobox when error is empty string', () => {
+    it('should not set invalid on select when error is empty string', () => {
       render(<SelectField {...defaultProps} error="" />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-invalid', 'false');
+      expect(screen.getByTestId('select')).toHaveAttribute('data-invalid', 'false');
       expect(screen.queryByTestId('text-helper')).not.toBeInTheDocument();
     });
   });
 
   describe('Event Handling', () => {
-    it('should call onChange when combobox value changes', () => {
+    it('should call onChange when select value changes', () => {
       const mockOnChange = vi.fn();
       render(<SelectField {...defaultProps} options={mockOptions} onChange={mockOnChange} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       fireEvent.change(select, { target: { value: 'option2' } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
@@ -335,7 +320,7 @@ describe('SelectField', () => {
         />,
       );
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       fireEvent.change(select, { target: { value: '' } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
@@ -345,7 +330,7 @@ describe('SelectField', () => {
     it('should not throw error when onChange is not provided', () => {
       render(<SelectField {...defaultProps} options={mockOptions} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
 
       expect(() => {
         fireEvent.change(select, { target: { value: 'option1' } });
@@ -374,10 +359,10 @@ describe('SelectField', () => {
       const formField = container.querySelector('[data-testid="form-field"]');
       const children = Array.from(formField?.children || []);
 
-      // Should have label, combobox, and error helper
+      // Should have label, select, and error helper
       expect(children.length).toBeGreaterThanOrEqual(3);
       expect(children[0]).toHaveAttribute('data-testid', 'form-field-label');
-      expect(container.querySelector('[data-testid="combobox"]')).toBeInTheDocument();
+      expect(container.querySelector('[data-testid="select"]')).toBeInTheDocument();
       expect(container.querySelector('[data-testid="form-field-helper"]')).toBeInTheDocument();
     });
   });
@@ -386,8 +371,8 @@ describe('SelectField', () => {
     it('should have proper name attribute for form association', () => {
       render(<SelectField {...defaultProps} name="accessibility-test" />);
 
-      expect(screen.getByTestId('combobox')).toHaveAttribute('data-name', 'accessibility-test');
-      expect(screen.getByTestId('combobox-select')).toHaveAttribute('name', 'accessibility-test');
+      expect(screen.getByTestId('select')).toHaveAttribute('data-name', 'accessibility-test');
+      expect(screen.getByTestId('select-native')).toHaveAttribute('name', 'accessibility-test');
     });
   });
 
@@ -395,7 +380,7 @@ describe('SelectField', () => {
     it('should handle empty options array', () => {
       render(<SelectField {...defaultProps} options={[]} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       const options = select.querySelectorAll('option');
 
       // Only the default "Select..." option
@@ -411,7 +396,7 @@ describe('SelectField', () => {
 
       render(<SelectField {...defaultProps} options={specialOptions} />);
 
-      const select = screen.getByTestId('combobox-select');
+      const select = screen.getByTestId('select-native');
       const options = select.querySelectorAll('option');
 
       expect(options[1]).toHaveTextContent('Option with "quotes"');

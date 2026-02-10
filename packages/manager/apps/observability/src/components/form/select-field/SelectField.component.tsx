@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 
 import {
-  Combobox,
-  ComboboxContent,
-  ComboboxControl,
   FormField,
   FormFieldHelper,
   FormFieldLabel,
+  Select,
+  SelectContent,
+  SelectControl,
   Skeleton,
 } from '@ovhcloud/ods-react';
 
@@ -42,7 +42,7 @@ export const SelectField = ({
       ) : (
         <>
           {label && <FormFieldLabel htmlFor={name}>{label}</FormFieldLabel>}
-          <Combobox
+          <Select
             className={className}
             value={value ? [value] : []}
             name={name}
@@ -52,11 +52,10 @@ export const SelectField = ({
             invalid={!!error && !isDisabled}
             disabled={isDisabled}
             items={items}
-            allowCustomValue={false}
           >
-            <ComboboxControl placeholder={placeholder} clearable={true} />
-            <ComboboxContent />
-          </Combobox>
+            <SelectControl placeholder={placeholder} />
+            <SelectContent />
+          </Select>
           {error && (
             <FormFieldHelper>
               <Text preset={TEXT_PRESET.caption}>{error}</Text>
