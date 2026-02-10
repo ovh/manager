@@ -8,6 +8,7 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
@@ -19,6 +20,7 @@ export type AgentActionsCellProps = {
 export const AgentActionsCell = ({ agentId }: AgentActionsCellProps) => {
   const id = useId();
   const { t } = useTranslation([NAMESPACES.ACTIONS, BACKUP_AGENT_NAMESPACES.COMMON]);
+  const { trackClick } = useOvhTracking();
   const configurationHref = useHref(`${subRoutes.configure}/${agentId}`);
 
   const deleteHref = useHref(`${subRoutes.delete}/${agentId}`);
@@ -29,6 +31,13 @@ export const AgentActionsCell = ({ agentId }: AgentActionsCellProps) => {
       label: t(`${NAMESPACES.ACTIONS}:configure`),
       href: configurationHref,
       iamActions: [BACKUP_AGENT_IAM_RULES['vspc/edit']],
+      onClick: () =>
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actionType: 'navigation',
+          actions: ['configure-agent'],
+        }),
     },
     {
       id: 1,
@@ -36,6 +45,13 @@ export const AgentActionsCell = ({ agentId }: AgentActionsCellProps) => {
       href: deleteHref,
       color: ODS_BUTTON_COLOR.critical,
       iamActions: [BACKUP_AGENT_IAM_RULES['vspc/edit']],
+      onClick: () =>
+        trackClick({
+          location: PageLocation.datagrid,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['delete-agent'],
+        }),
     },
   ];
 
