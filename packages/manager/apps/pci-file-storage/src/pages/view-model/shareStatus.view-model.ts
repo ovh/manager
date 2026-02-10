@@ -22,7 +22,7 @@ const STATUS_TO_DISPLAY = new Map<TShareStatus, TShareStatusDisplay>([
 ]);
 
 export const getShareStatusDisplay = (status: string): TShareStatusDisplay =>
-  STATUS_TO_DISPLAY.get(status as TShareStatus) ?? {
+  STATUS_TO_DISPLAY.get(status) ?? {
     labelKey: status,
     badgeColor: 'neutral',
   };

@@ -5,7 +5,7 @@
     "region": "Localización",
     "protocol": "Protocolo",
     "allocated_capacity": "Capacidad asignada",
-    "allocated_capacity_value": "{{capacity}} GiB",
+    "allocated_capacity_value": "{{capacity}} Gio",
     "status": "Estado",
     "actions": "Acciones"
   },

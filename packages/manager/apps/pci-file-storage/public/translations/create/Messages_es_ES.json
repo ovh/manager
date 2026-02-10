@@ -2,7 +2,7 @@
   "name": {
     "title": "Nombre del recurso compartido",
     "label": "Elija un nombre para su archivo compartido",
-    "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos y no exceder los 255 caracteres.",
+    "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos y no debe exceder 255 caracteres.",
     "error": {
       "too_small": "El nombre del recurso compartido no puede estar vacío. Por favor, introduzca un nombre.",
       "too_big": "Formato de nombre no válido",
@@ -16,25 +16,28 @@
       "modes": {
         "region": {
           "label": "Región 1-AZ",
-          "description": "Implementación resiliente y económica en 1 zona de disponibilidad."
+          "description": "Implementación resiliente y económica en 1 zona."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Implementación de alta resiliencia/alta disponibilidad para sus aplicaciones críticas en 3 zonas de disponibilidad."
+          "description": "Implementación más cercana para una baja latencia."
         },
         "region-3-az": {
           "label": "Región 3-AZ",
-          "description": "Implementación de sus aplicaciones lo más cerca posible de sus usuarios para una baja latencia y la residencia de datos."
+          "description": "Implementación de alta resiliencia y alta disponibilidad en 3 zonas."
         }
       }
     },
+    "macroRegion": {
+      "title": "Elija una ubicación"
+    },
     "continents": {
-      "label": "",
+      "label": "Seleccionar una zona geográfica",
       "options": {
         "all": "Todos",
         "asia_oceania": "Asia-Pacífico",
         "europe": "Europe",
-        "north_africa": "Norte de África",
+        "north_africa": "África del Norte",
         "north_america": "Norteamérica"
       }
     },
@@ -52,23 +55,23 @@
     }
   },
   "share": {
-    "title": "Modo de rendimiento del recurso compartido",
+    "title": "Modo de rendimiento del share",
     "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS y {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Tamaño del recurso compartido",
-    "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de instantáneas",
-    "label": "Asignación de rendimiento lineal (GiB)",
+    "title": "Tamaño del share",
+    "description": "El 5 % de la capacidad de almacenamiento está dedicado al almacenamiento de snapshots",
+    "label": "Asignación de rendimiento lineal (Gio)",
     "provisionedPerformance": "<strong>Rendimiento provisionado :</strong> Hasta {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "El tamaño del recurso compartido es inferior al mínimo permitido para esta oferta.",
-      "max_value": "El tamaño del recurso compartido supera el máximo permitido para esta oferta.",
-      "invalid_type": "Este campo debe rellenarse."
+      "min_value": "El tamaño del share es inferior al mínimo permitido para esta oferta.",
+      "max_value": "El tamaño del share supera el máximo permitido para esta oferta.",
+      "invalid_type": "Este campo debe ser completado"
     }
   },
   "network": {
     "title": "Red privada",
-    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo de recurso compartido",
+    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo de compartir",
     "label": "Seleccionar una red privada existente",
     "empty": "Lo siento, pero no tiene una red privada para esta región"
   }

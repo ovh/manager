@@ -29,8 +29,8 @@ export const PciCard = ({
   ...rest
 }: TPciCardProps) => {
   const baseClasses = clsx(
-    'flex flex-col gap-6',
-    compact ? 'px-6 py-4' : 'p-6',
+    'flex flex-col',
+    compact ? 'gap-4 px-6 py-4' : 'gap-6 p-6',
     {
       'cursor-not-allowed bg-[--ods-color-neutral-100] [&_*]:text-neutral-500 [&_[class^=_badge]]:bg-[--ods-color-neutral-500]':
         disabled,
