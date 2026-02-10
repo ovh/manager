@@ -16,6 +16,8 @@ export const LEVEL2 = {
   },
 };
 
+export const GO_TO = (link: string) => `go-to-${link}`;
+
 export const UNIVERSE = 'Web_solutions';
 export const SUB_UNIVERSE = 'Emails';
 export const APP_NAME = 'zimbra';
@@ -128,7 +130,6 @@ export const GUIDE_HOW_TO_CONFIGURE = 'how-to-configure-guide';
 export const GUIDE_MAIL_CONFIGURE = 'mail-configure';
 export const GUIDE_MAIL_MIGRATE = 'mail-migrate';
 
-// SERVICES
+//SERVICES
 export const SERVICES = 'services';
-
-export const GO_TO = (link: string) => `go-to-${link}`;
+export const GO_TO_SERVICES = GO_TO('services');

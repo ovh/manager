@@ -2,25 +2,38 @@ import React, { useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { Divider } from '@ovhcloud/ods-react';
+import { Divider, ICON_NAME, Icon, ProgressBar } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { GridLayout, Text, Tile } from '@ovh-ux/muk';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { GridLayout, Link, Text, Tile } from '@ovh-ux/muk';
 
 import { BadgeStatus, GuideLink } from '@/components';
 import { useOrganization, usePlatform } from '@/data/hooks';
 import { GUIDES_LIST, Guide } from '@/guides.constants';
-import { useAccountsStatistics } from '@/hooks';
+import { useAccountsStatistics, useGenerateUrl } from '@/hooks';
+import { GO_TO_SERVICES, ORDER_ZIMBRA_EMAIL_ACCOUNT } from '@/tracking.constants';
 import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import { OngoingTasks } from './OngoingTasks.component';
 
 export const GeneralInformations = () => {
-  const { t } = useTranslation(['dashboard', 'common', NAMESPACES.STATUS, NAMESPACES.DASHBOARD]);
+  const { t } = useTranslation([
+    'dashboard',
+    'common',
+    'accounts',
+    'services',
+    NAMESPACES.STATUS,
+    NAMESPACES.DASHBOARD,
+  ]);
   const { platformUrn } = usePlatform();
   const { data: organisation } = useOrganization();
   const { accountsStatistics } = useAccountsStatistics();
+  const { trackClick } = useOvhTracking();
+
+  const hrefOrderEmailAccount = useGenerateUrl('./email_accounts/order', 'href');
+  const hrefManageServices = useGenerateUrl('./services', 'href');
 
   const links: Record<string, Guide> = {
     'common:webmail': GUIDES_LIST.webmail,
@@ -56,27 +69,65 @@ export const GeneralInformations = () => {
     return [
       {
         id: 'account-offer',
-        label: t('zimbra_dashboard_tile_serviceConsumption_accountOffer'),
         value: platformUrn ? (
           <Text
             data-testid="account-offers"
             urn={platformUrn}
             iamActions={[IAM_ACTIONS.account.get]}
           >
-            <div className="flex flex-col">
-              {accountsStatistics?.length > 0
-                ? accountsStatistics?.map((stats) => (
-                    <span key={stats.offer}>{`${stats.configuredAccountsCount} / ${
-                      stats.configuredAccountsCount + stats.availableAccountsCount
-                    } ${capitalize(stats.offer.toLowerCase())}`}</span>
-                  ))
-                : t('common:no_email_account')}
+            <div className="flex flex-col gap-6">
+              {accountsStatistics?.length > 0 &&
+                accountsStatistics.map((stats) => {
+                  const used = stats.configuredAccountsCount;
+                  const total = stats.configuredAccountsCount + stats.availableAccountsCount;
+
+                  return (
+                    <div key={stats.offer} className="flex flex-col gap-2">
+                      <Text preset="caption">{capitalize(stats.offer.toLowerCase())}</Text>
+                      <ProgressBar max={total} value={used}></ProgressBar>
+                      <Text preset="caption">
+                        {used}/{total}
+                      </Text>
+                    </div>
+                  );
+                })}
+
+              <div className="flex flex-col gap-2 pt-2">
+                <Link
+                  href={hrefOrderEmailAccount}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.button,
+                      actionType: 'navigation',
+                      actions: [ORDER_ZIMBRA_EMAIL_ACCOUNT],
+                    });
+                  }}
+                >
+                  {t('accounts:zimbra_account_account_order')}
+                  <Icon name={ICON_NAME.arrowRight} aria-hidden="true" />
+                </Link>
+                <Link
+                  href={hrefManageServices}
+                  onClick={() => {
+                    trackClick({
+                      location: PageLocation.page,
+                      buttonType: ButtonType.button,
+                      actionType: 'navigation',
+                      actions: [GO_TO_SERVICES],
+                    });
+                  }}
+                >
+                  {t('services:zimbra_services_manage')}
+                  <Icon name={ICON_NAME.arrowRight} aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </Text>
         ) : null,
       },
     ];
-  }, [platformUrn, accountsStatistics]);
+  }, [platformUrn, accountsStatistics, hrefOrderEmailAccount, t, hrefManageServices, trackClick]);
 
   const itemsUsefulLinks = useMemo(() => {
     return [
@@ -109,7 +160,7 @@ export const GeneralInformations = () => {
         ))}
       </Tile.Root>
       <Tile.Root
-        title={t('zimbra_dashboard_tile_serviceConsumption_title')}
+        title={t('zimbra_dashboard_tile_accounts_using_title')}
         data-testid="platform-accounts"
       >
         {itemsConsumption.map((item, index) => (
