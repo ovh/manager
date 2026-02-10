@@ -4,11 +4,12 @@ import {
   OkmsServiceKey,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
+import { renderHook } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { BUTTON_COLOR, ICON_NAME } from '@ovhcloud/ods-react';
 
-import { renderHookWithClient } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { ServiceKeyAction } from './service-key.type';
 import { useServiceKeyActionsList } from './useServiceKeyActionsList';
@@ -31,10 +32,6 @@ vi.mock('@ovh-ux/muk', async (importOriginal) => {
     }),
   };
 });
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(() => vi.fn()),
-}));
 
 vi.mock('@key-management-service/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
@@ -60,8 +57,8 @@ vi.mock('./useServiceKeyDownload', () => ({
       buttonId: 'service-key-download_encryption_key',
       label:
         'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-      loading: false,
-      disabled: keyState !== OkmsServiceKeyState.active,
+      isLoading: false,
+      isDisabled: keyState !== OkmsServiceKeyState.active,
       icon: 'download',
       color: 'primary',
       onClick: vi.fn(),
@@ -212,10 +209,11 @@ describe('useServiceKeyActionsList', () => {
   ];
 
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
-    it(description, () => {
-      const { result } = renderHookWithClient(() =>
-        useServiceKeyActionsList(okmsItemMock, okmsKey, 'list'),
-      );
+    it(description, async () => {
+      const wrapper = await testWrapperBuilder().withRouterContext().build();
+      const { result } = renderHook(() => useServiceKeyActionsList(okmsItemMock, okmsKey, 'list'), {
+        wrapper,
+      });
       expect(result.current).toEqual(
         expect.arrayContaining(
           expectedActions.map((action) => expect.objectContaining(action) as unknown),

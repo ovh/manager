@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { MemoryRouter, useSearchParams } from 'react-router-dom';
 
 import {
   SECRET_MANAGER_ROUTES_URLS,
@@ -26,8 +26,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-vi.mocked(useSearchParams).mockReturnValue([new URLSearchParams(), vi.fn()]);
-
 const renderBackLink = async () => {
   const queryClient = new QueryClient();
   if (!i18nValue) {
@@ -35,11 +33,13 @@ const renderBackLink = async () => {
   }
 
   return render(
-    <I18nextProvider i18n={i18nValue}>
-      <QueryClientProvider client={queryClient}>
-        <SecretFormBackLink />
-      </QueryClientProvider>
-    </I18nextProvider>,
+    <MemoryRouter>
+      <I18nextProvider i18n={i18nValue}>
+        <QueryClientProvider client={queryClient}>
+          <SecretFormBackLink />
+        </QueryClientProvider>
+      </I18nextProvider>
+    </MemoryRouter>,
   );
 };
 
@@ -59,19 +59,22 @@ describe('Secrets creation form test suite', () => {
     'backlink should have attribute href: $href if okmsId search param is $okmsId',
     async ({ okmsId, href }) => {
       // GIVEN
+      const urlParams = new URLSearchParams();
       if (okmsId) {
-        const urlParams = new URLSearchParams();
         urlParams.set(SECRET_MANAGER_SEARCH_PARAMS.okmsId, okmsId);
-        vi.mocked(useSearchParams).mockReturnValueOnce([urlParams, vi.fn()]);
       }
+      vi.mocked(useSearchParams).mockReturnValue([urlParams, vi.fn()]);
 
       await renderBackLink();
 
       // WHEN
       const backLink = await screen.findByText(labels.common.actions.back);
 
-      // THEN
-      await waitFor(() => expect(backLink).toHaveAttribute('href', href));
+      // THEN (Muk Link renders "to" in test env, not "href")
+      await waitFor(() => {
+        const linkTarget = backLink.getAttribute('to');
+        expect(linkTarget).toBe(href);
+      });
     },
   );
 });
