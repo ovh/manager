@@ -11,6 +11,9 @@ import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-mode
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
+vi.mock('@/pages/create/view-model/network.view-model', () => ({
+  generateAutoName: vi.fn((spec: string) => `${spec}_2025_02_09`),
+}));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
@@ -181,7 +184,7 @@ describe('ShareSelection', () => {
     await waitFor(() => {
       expect(formValues?.shareData?.specName).toEqual('publiccloud-share-standard2');
       expect(formValues?.shareData?.name).toMatch(
-        /^publiccloud-share-standard2_\d{2}_\d{2}_\d{4}$/,
+        /^publiccloud-share-standard2_\d{4}_\d{2}_\d{2}$/,
       );
     });
   });
