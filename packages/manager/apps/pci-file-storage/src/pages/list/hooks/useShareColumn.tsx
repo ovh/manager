@@ -69,8 +69,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       },
       {
         id: 'actions',
-        // header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
-        header: t('list:columns.actions'),
+        header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
         cell: ({ row }) => (
           <div className="flex justify-center">
             <ActionsMenu items={row.original.actions} />
