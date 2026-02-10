@@ -2,7 +2,7 @@
   "title": "Dateispeicher",
   "columns": {
     "name_id": "Name / ID",
-    "region": "Region",
+    "region": "Standort",
     "protocol": "Protokoll",
     "allocated_capacity": "Zugewiesene Kapazität",
     "allocated_capacity_value": "{{capacity}} GiB",
