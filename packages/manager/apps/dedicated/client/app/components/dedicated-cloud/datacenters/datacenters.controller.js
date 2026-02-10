@@ -31,62 +31,42 @@ export default class {
     return this.addDatacenter();
   }
 
-  loadWindowsVmCount(row) {
+  loadDatacenterVmStats(row) {
     return this.DedicatedCloud.getDatacenterInfoVm(
       this.dedicatedCloud.serviceName,
       row.id,
-      {
-        filters: [
-          {
-            field: 'guestOsFamily',
-            comparator: 'startsWith',
-            reference: ['windows'],
-          },
-        ],
-      },
     )
-      .then((res) => ({
-        windows: {
-          loading: false,
-          error: false,
-          value: res?.meta?.totalCount || 0,
-        },
-      }))
-      .catch(() => ({
-        windows: { loading: false, error: true, value: null },
-      }));
-  }
+      .then((res) => {
+        const vms = res?.data || [];
+        const totalCount = res?.meta?.totalCount || vms.length;
 
-  loadVmCount(row) {
-    return this.DedicatedCloud.getDatacenterInfoVm(
-      this.dedicatedCloud.serviceName,
-      row.id,
-    )
-      .then((res) => ({
-        vm: {
-          loading: false,
-          error: false,
-          value: res?.meta?.totalCount || 0,
-        },
-      }))
+        const windowsCount = vms.filter((vm) =>
+          vm.guestOsFamily?.toLowerCase().startsWith('windows'),
+        ).length;
+
+        const licensedCount = vms.filter((vm) => !!vm.license).length;
+
+        return {
+          vm: {
+            loading: false,
+            error: false,
+            value: totalCount,
+          },
+          windows: {
+            loading: false,
+            error: false,
+            value: windowsCount,
+          },
+          licensed: {
+            loading: false,
+            error: false,
+            value: licensedCount,
+          },
+        };
+      })
       .catch(() => ({
         vm: { loading: false, error: true, value: null },
-      }));
-  }
-
-  loadLicensedVmCount(row) {
-    return this.DedicatedCloud.getDatacenterInfoVmLicensed(
-      this.dedicatedCloud.serviceName,
-      row.id,
-    )
-      .then((res) => ({
-        licensed: {
-          loading: false,
-          error: false,
-          value: res?.meta?.totalCount || 0,
-        },
-      }))
-      .catch(() => ({
+        windows: { loading: false, error: true, value: null },
         licensed: { loading: false, error: true, value: null },
       }));
   }
@@ -116,9 +96,9 @@ export default class {
             licensed: { loading: true },
             windows: { loading: true },
           });
-          this.loadVmCount(row).then((res) => Object.assign(row, res));
-          this.loadLicensedVmCount(row).then((res) => Object.assign(row, res));
-          this.loadWindowsVmCount(row).then((res) => Object.assign(row, res));
+          this.loadDatacenterVmStats(row).then((res) =>
+            Object.assign(row, res),
+          );
         });
 
         return {
