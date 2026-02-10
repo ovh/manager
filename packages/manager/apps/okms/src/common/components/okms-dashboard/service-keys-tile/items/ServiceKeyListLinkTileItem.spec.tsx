@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { MukLinkType } from '@/common/components/link/Link.component';
+import { LinkType } from '@/common/components/link/Link.component';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
@@ -33,7 +33,7 @@ describe('OKMS Service Key List link Tile Item test suite', () => {
     const secretListLink = screen.getByText(labels.kmsCommon.manage_service_keys_link);
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute('type', MukLinkType.next);
+    expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
     await user.click(secretListLink);
     expect(mockNavigate).toHaveBeenCalledWith(KMS_ROUTES_URLS.serviceKeyListing(okmsMocked.id));
