@@ -22,7 +22,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });
