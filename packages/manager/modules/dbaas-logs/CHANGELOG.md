@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.37.0...@ovh-ux/manager-dbaas-logs@1.37.1) (2026-02-10)
+
+
+### Bug Fixes
+
+* **ldp:** i18n GiB not GB ([dff6229](https://github.com/ovh/manager/commit/dff6229199949529c5c40fe99634264218e36c3e))
+
+
+
+
+
 # [1.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.36.2...@ovh-ux/manager-dbaas-logs@1.37.0) (2026-02-02)
 
 
