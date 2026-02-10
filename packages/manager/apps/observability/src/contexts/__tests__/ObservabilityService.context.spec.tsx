@@ -352,20 +352,20 @@ describe('ObservabilityServiceContext', () => {
     });
 
     it('should allow updating selected service through context', () => {
-      // Arrange
+      // Arrange - services are sorted alphabetically, so 'Alpha Service' comes first
       const mockServices: ObservabilityService[] = [
         {
           id: 'service-1',
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
-          currentState: { displayName: 'Service 1' },
+          currentState: { displayName: 'Alpha Service' },
           resourceStatus: 'READY',
         },
         {
-          id: 'new-service-id',
+          id: 'service-2',
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
-          currentState: { displayName: 'New Service' },
+          currentState: { displayName: 'Beta Service' },
           resourceStatus: 'READY',
         },
       ];
@@ -383,22 +383,22 @@ describe('ObservabilityServiceContext', () => {
         wrapper: createWrapper(),
       });
 
-      // Initially should be first service
+      // Initially should be first service (alphabetically)
       expect(result.current.selectedService?.id).toBe('service-1');
 
       // Act
       act(() => {
         result.current.setSelectedService({
-          id: 'new-service-id',
+          id: 'service-2',
           createdAt: '2025-11-01T08:00:00.001Z',
           updatedAt: '2025-11-01T08:00:00.001Z',
-          currentState: { displayName: 'New Service' },
+          currentState: { displayName: 'Beta Service' },
           resourceStatus: 'READY',
         });
       });
 
       // Assert
-      expect(result.current.selectedService?.id).toBe('new-service-id');
+      expect(result.current.selectedService?.id).toBe('service-2');
     });
 
     it('should allow clearing selected service', () => {
@@ -484,7 +484,8 @@ describe('ObservabilityServiceContext', () => {
       });
 
       // Assert initial state
-      expect(result.current.services).toEqual(initialServices);
+      expect(result.current.services).toHaveLength(1);
+      expect(result.current.services?.[0]?.id).toBe('service-1');
 
       // Act - Update mock to return updated services
       mockUseObservabilityServices.mockReturnValue(
@@ -499,7 +500,94 @@ describe('ObservabilityServiceContext', () => {
       rerender();
 
       // Assert updated state
-      expect(result.current.services).toEqual(updatedServices);
+      expect(result.current.services).toHaveLength(2);
+    });
+
+    it('should sort services alphabetically by display name', () => {
+      // Arrange - services in non-alphabetical order
+      const unsortedServices: ObservabilityService[] = [
+        {
+          id: 'service-z',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Zebra Service' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-a',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Alpha Service' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-m',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Middle Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: unsortedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - services should be sorted alphabetically
+      expect(result.current.services?.[0]?.currentState.displayName).toBe('Alpha Service');
+      expect(result.current.services?.[1]?.currentState.displayName).toBe('Middle Service');
+      expect(result.current.services?.[2]?.currentState.displayName).toBe('Zebra Service');
+
+      // Assert - first selected service should be alphabetically first
+      expect(result.current.selectedService?.id).toBe('service-a');
+    });
+
+    it('should sort services by id when displayName is not available', () => {
+      // Arrange - services without displayName
+      const servicesWithoutDisplayName: ObservabilityService[] = [
+        {
+          id: 'zzz-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: null },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'aaa-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: null },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: servicesWithoutDisplayName,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - services should be sorted by id when displayName is missing
+      expect(result.current.services?.[0]?.id).toBe('aaa-service');
+      expect(result.current.services?.[1]?.id).toBe('zzz-service');
     });
 
     it('should update selectedService data when services list is refreshed', () => {
