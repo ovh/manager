@@ -78,21 +78,6 @@
     </oui-message>
 
     <!-- Forbidden interface -->
-    <oui-message
-        class="mb-3"
-        data-ng-if="$ctrl.notAllowedInterfaces.length"
-        data-type="warning"
-    >
-        <p
-            data-translate="dedicated_server_interfaces_ola_alert_not_allowed"
-        ></p>
-        <ul class="mb-0">
-            <li
-                data-ng-repeat="interface in $ctrl.notAllowedInterfaces track by $index"
-                data-ng-bind="interface.name"
-            ></li>
-        </ul>
-    </oui-message>
     <div class="d-flex align-items-center justify-content-between">
         <div class="mr-2">
             <strong
@@ -133,7 +118,7 @@
     <oui-button
         data-type="submit"
         data-variant="primary"
-        data-disabled="olaConfigurationForm.$invalid || !$ctrl.isAggregationValid()"
+        data-disabled="olaConfigurationForm.$invalid"
         data-size="l"
     >
         <span data-translate="dedicated_server_interfaces_ola_activate"></span>
