@@ -6,6 +6,8 @@ import {
   PageLayout,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import { getCreateRancherUrl } from '@/utils/route';
@@ -15,14 +17,16 @@ import {
 } from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
+import useRancherEligibility from '@/data/hooks/useRancherEligibility/useRancherEligibility';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
   const link = useGuideUtils();
   const navigate = useNavigate();
   const { projectId } = useParams();
+  const { data: eligibility } = useRancherEligibility();
   const title: string = t('title');
-  const description: string = t('description');
+  const descriptionText: string = t('description');
   useTrackingPage(TrackingPageView.Onboarding);
   const trackAction = useTrackingAction();
   const onOrderButtonClick = () => {
@@ -62,6 +66,28 @@ export default function Onboarding() {
     isExternalHref: true,
     hoverable: true,
   }));
+
+  const description = (
+    <>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{descriptionText}</OsdsText>
+      {eligibility?.data?.freeTrial && (
+        <div className="mt-4 flex flex-col">
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+            {t('freeTrialEligibilityTitle')}
+          </OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+            {t('freeTrialCreditStandard')}
+          </OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+            {t('freeTrialCreditOvhEdition')}
+          </OsdsText>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            {t('freeTrialCreditApplied')}
+          </OsdsText>
+        </div>
+      )}
+    </>
+  );
 
   return (
     <PageLayout>
