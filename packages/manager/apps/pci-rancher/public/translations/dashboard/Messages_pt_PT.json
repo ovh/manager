@@ -85,5 +85,13 @@
   "generateAccessModalIamWarning": "Em caso de <strong>regeneração da palavra-passe «admin»</strong> enquanto a autenticação IAM estiver ativada, o efeito será a <strong>desativação temporária da possibilidade de ligação com o utilizador root IAM</strong>.",
   "iam_authentication_warning": "Limitação conhecida",
   "generateAccessModalIamWarning2": "Para corrigir este problema, terá de iniciar sessão uma primeira vez com o utilizador local <strong>«admin»</strong>, de modo a restabelecer o acesso com o utilizador root IAM.",
-  "iam_modal_deactivation_warning_continue": "Deseja continuar?"
+  "iam_modal_deactivation_warning_continue": "Deseja continuar?",
+  "freeTrialBannerMessage": "Beneficia de crédito gratuito: • 100 € para OVHcloud Edition (equivalente a 20 vCPU durante 1 mês) • 250 € para Standard (equivalente a 20 vCPU durante 1 mês)",
+  "freeTrialBannerMessageLine1": "Beneficia de crédito gratuito:",
+  "freeTrialBannerMessageLine2": "100 € para OVHcloud Edition (equivalente a 20 vCPU durante 1 mês)",
+  "freeTrialBannerMessageLine3": "250 € para Standard (equivalente a 20 vCPU durante 1 mês)",
+  "freeTrialBadge": "Teste gratuito",
+  "freeTrialPriceLabel": "Grátis*",
+  "freeTrialThenLabel": "Depois",
+  "freeTrialDisclaimer": "*Crédito válido durante ~1 mês consoante a sua utilização. Após o esgotamento do crédito, a faturação retoma automaticamente de acordo com o consumo."
 }
