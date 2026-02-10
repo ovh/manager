@@ -6,6 +6,7 @@ import { Divider, Text } from '@ovhcloud/ods-react';
 import { useCreateClusterForm } from '../hooks/useCreateClusterForm/useCreateClusterForm';
 import { ClusterLocationSection } from './ClusterLocationSection.component';
 import { ClusterNameSection } from './ClusterNameSection.component';
+import { ClusterPlanSection } from './ClusterPlanSection.component';
 import { CreationCart } from './CreationCart.component';
 
 const dividerSpacing = '64';
@@ -30,7 +31,9 @@ export const CreateClusterForm = ({ is3azAvailable }: TCreateClusterFormProps) =
           <Divider spacing={dividerSpacing} />
           <ClusterLocationSection is3azAvailable={is3azAvailable} />
           <Divider spacing={dividerSpacing} />
+          <ClusterPlanSection />
         </section>
+
         <aside className="flex-1">
           <CreationCart />
         </aside>

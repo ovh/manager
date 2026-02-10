@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { TContinentCode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
+import { TPlanCode } from '@/domain/entities/cloudCatalog';
+import { TContinentCode, TMacroRegion } from '@/domain/entities/regions';
+import { TClusterPlanEnum } from '@/types';
 
 import { selectAvailableContinentOptions } from '../continents.viewmodel';
 
@@ -20,14 +22,14 @@ describe('continents.viewmodel', () => {
     });
 
     it('returns ALL option only when regions is undefined or empty', () => {
-      const resultUndefined = selectAvailableContinentOptions('all')(undefined);
+      const resultUndefined = selectAvailableContinentOptions(TClusterPlanEnum.ALL)(undefined);
       expect(resultUndefined).toHaveLength(1);
       expect(resultUndefined[0]).toEqual({
         labelKey: 'common_continent_label_ALL',
         continentCode: 'ALL',
       });
 
-      const resultEmpty = selectAvailableContinentOptions('all')([]);
+      const resultEmpty = selectAvailableContinentOptions(TClusterPlanEnum.ALL)([]);
       expect(resultEmpty).toHaveLength(1);
       expect(resultEmpty[0]).toEqual({
         labelKey: 'common_continent_label_ALL',
@@ -41,7 +43,7 @@ describe('continents.viewmodel', () => {
         createMockMacroRegion('BHS', 'NA'),
       ];
 
-      const result = selectAvailableContinentOptions('all')(regions);
+      const result = selectAvailableContinentOptions(TClusterPlanEnum.ALL)(regions);
 
       expect(result.length).toBeGreaterThan(1);
       expect(result[0]!.continentCode).toBe('ALL');
@@ -56,7 +58,7 @@ describe('continents.viewmodel', () => {
         createMockMacroRegion('SGP', 'ASIA', ['mks.free.hour.consumption']),
       ];
 
-      const result = selectAvailableContinentOptions('free')(regions);
+      const result = selectAvailableContinentOptions(TClusterPlanEnum.FREE)(regions);
 
       expect(result.length).toBe(3);
       expect(result[0]!.continentCode).toBe('ALL');
@@ -72,7 +74,7 @@ describe('continents.viewmodel', () => {
         createMockMacroRegion('SGP', 'ASIA', ['mks.standard.hour.consumption']),
       ];
 
-      const result = selectAvailableContinentOptions('standard')(regions);
+      const result = selectAvailableContinentOptions(TClusterPlanEnum.STANDARD)(regions);
 
       expect(result.length).toBe(3);
       expect(result[0]!.continentCode).toBe('ALL');
@@ -87,7 +89,7 @@ describe('continents.viewmodel', () => {
         createMockMacroRegion('BHS', 'NA', ['mks.free.hour.consumption']),
       ];
 
-      const result = selectAvailableContinentOptions('standard')(regions);
+      const result = selectAvailableContinentOptions(TClusterPlanEnum.STANDARD)(regions);
 
       expect(result).toHaveLength(1);
       expect(result[0]!).toEqual({

@@ -26,7 +26,7 @@
   "cluster_location_help_drawer": {
     "title": "Choice of deployment region",
     "intro": "The region determines the physical location of your cluster. This choice defines the architecture of your <strong>control plane</strong> and the possible distribution of your <strong>worker nodes</strong>.",
-    "3az_title": " 3-AZ Region",
+    "3az_title": "3-AZ Region",
     "3az_control_plane": "<strong>Control plane</strong> : It is <strong>regionalized</strong>, meaning redundantly distributed across 3 distinct availability zones.",
     "3az_worker_nodes": "<strong>Worker nodes</strong> : You have the freedom to distribute your nodes in any zone of the region to maximize fault tolerance.",
     "1az_title": "1-AZ Region",

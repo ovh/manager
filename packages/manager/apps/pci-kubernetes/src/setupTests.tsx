@@ -60,6 +60,25 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       trackClick: vi.fn(),
     })),
     PciGuidesHeader: vi.fn().mockReturnValue(null),
+    convertHourlyPriceToMonthly: vi.fn((price: number) => price * 730), // Approximate: 24h * 30.42 days
+    useCatalogPrice: vi.fn().mockReturnValue({
+      getTextPrice: vi.fn((price: number) => `${price}`),
+      getFormattedHourlyCatalogPrice: vi.fn(),
+      getFormattedMonthlyCatalogPrice: vi.fn(),
+    }),
+    useTranslatedMicroRegions: vi.fn().mockReturnValue({
+      translateMacroRegion: (name: string) => name,
+      translateMicroRegion: (name: string) => name,
+      translateContinentRegion: (name: string) => name,
+    }),
+    useMe: vi.fn().mockReturnValue({
+      me: {
+        ovhSubsidiary: 'FR',
+        currency: {
+          code: 'EUR',
+        },
+      },
+    }),
   };
 });
 

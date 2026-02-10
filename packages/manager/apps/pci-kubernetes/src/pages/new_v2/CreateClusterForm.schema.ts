@@ -5,7 +5,9 @@ import { CLUSTER_NAME_CONSTRAINTS } from '@/helpers/matchers/matchers';
 
 export const createClusterFormContinentCodes = ['ALL', ...CONTINENT_CODES] as const;
 
-export const createClusterFormPlanKeys = ['all', 'free', 'standard'] as const;
+export const createClusterFormPlanFilterKeys = ['all', 'free', 'standard'] as const;
+
+export const createClusterFormPlanTypes = ['free', 'standard'] as const;
 
 export const createClusterSchema = z.object({
   name: z
@@ -15,10 +17,11 @@ export const createClusterSchema = z.object({
   location: z.object({
     deploymentMode: z.enum(DEPLOYMENT_MODES),
     continent: z.enum(createClusterFormContinentCodes),
-    plan: z.enum(createClusterFormPlanKeys),
+    plan: z.enum(createClusterFormPlanFilterKeys),
     macroRegion: z.string().nullable(),
     microRegion: z.string().nullable(),
   }),
+  planType: z.enum(createClusterFormPlanTypes),
 });
 
 export type TCreateClusterSchema = z.infer<typeof createClusterSchema>;

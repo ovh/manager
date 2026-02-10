@@ -10,10 +10,11 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
 import { PLAN_DOC_LINKS } from '@/constants';
+import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { selectAvailableContinentOptions } from '../view-models/continents.viewmodel';
-import { selectAvailablePlanOptions } from '../view-models/plans.viewmodel';
+import { selectAvailablePlanOptions } from '../view-models/regionPlans.viewmodel';
 import {
   filterMacroRegions,
   findDefaultMacroRegion,
@@ -78,7 +79,7 @@ export const ClusterLocationSection: FC<TClusterLocationSectionProps> = ({ is3az
     if (value === deploymentModeField) return;
 
     setValue('location.continent', 'ALL');
-    setValue('location.plan', 'all');
+    setValue('location.plan', TClusterPlanEnum.ALL);
   };
 
   useEffect(() => {

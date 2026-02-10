@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, test, vi } from 'vitest';
+import { afterEach, describe, expect, test, vi } from 'vitest';
 
 import { Text } from '@ovhcloud/ods-react';
 
@@ -62,14 +62,6 @@ const cartItems = [
     expanded: false,
   },
 ];
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useCatalogPrice: vi.fn().mockReturnValue({
-    getTextPrice: vi.fn((price: number) => `${price}`),
-    getFormattedHourlyCatalogPrice: vi.fn(),
-    getFormattedMonthlyCatalogPrice: vi.fn(),
-  }),
-}));
 
 const renderCart = (items: TCartItem[]) => render(<Cart items={items} isSubmitDisabled={false} />);
 

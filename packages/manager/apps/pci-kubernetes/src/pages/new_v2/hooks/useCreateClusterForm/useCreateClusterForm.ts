@@ -22,6 +22,7 @@ export const useCreateClusterForm = (is3azAvailable: boolean) => {
         macroRegion: null,
         microRegion: null,
       },
+      planType: is3azAvailable ? 'standard' : 'free',
     },
   });
 };
