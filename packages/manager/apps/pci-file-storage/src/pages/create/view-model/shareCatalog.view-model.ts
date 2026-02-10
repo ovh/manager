@@ -198,12 +198,12 @@ export const selectContinent =
 
     const continentsIds = deploymentModes.length
       ? [
+          'all',
           ...new Set(
             deploymentModes.flatMap(
               (mode) => data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
             ),
           ),
-          'all',
         ]
       : ['all', ...data.entities.continents.allIds];
 
