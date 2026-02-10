@@ -1,0 +1,11 @@
+{
+  "activation_code_page_title": "Titolo: Conferma il tuo indirizzo e-mail",
+  "activation_code_page_text": "Testo: qui sotto Abbiamo inviato un codice al tuo indirizzo e-mail. Modifica il tuo indirizzo e-mail.",
+  "activation_code_page_enter_code": "Inserisci il codice",
+  "activation_code_page_question": "Non hai ricevuto il codice?",
+  "activation_code_page_help_info": "Controlla la tua cartella spam o clicca qui per ricevere il codice di attivazione. ",
+  "forgot_password_page_title": "Titolo: Ho dimenticato la password ",
+  "forgot_password_page_text": "Testo: Inserisci l'indirizzo e-mail o l'ID associato al tuo account e ti invieremo un link per reimpostare la tua password. ",
+  "password_reset_page_title": "Titolo: Reimpostazione della password",
+  "password_reset_page_text": "Testo qui sotto: password modificata con successo"
+}
