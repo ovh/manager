@@ -23,8 +23,19 @@ interface ObservabilityServiceProviderProps {
 export const ObservabilityServiceProvider: React.FC<ObservabilityServiceProviderProps> = ({
   children,
 }) => {
-  const { data: services, isLoading, error, isSuccess } = useObservabilityServices();
+  const { data, isLoading, error, isSuccess } = useObservabilityServices();
   const [selectedServiceId, setSelectedServiceId] = useState<string | null | undefined>(undefined);
+
+  // Sort services alphabetically by display name for consistent ordering
+  const services = useMemo(
+    () =>
+      data?.slice().sort((a, b) => {
+        const labelA = a.currentState.displayName ?? a.id;
+        const labelB = b.currentState.displayName ?? b.id;
+        return labelA.localeCompare(labelB);
+      }),
+    [data],
+  );
 
   // Derive selectedService from services list using the selected ID
   // This ensures the selected service is always up-to-date when the services list is refreshed
