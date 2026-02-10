@@ -118,6 +118,10 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
   ),
 }));
 
+const { mockToast } = vi.hoisted(() => ({
+  mockToast: vi.fn(),
+}));
+
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
     <div data-testid="divider" className={className} />
@@ -146,6 +150,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
+  toast: mockToast,
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
@@ -155,6 +160,7 @@ describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockNavigate.mockClear();
+    mockToast.mockClear();
     mockUseCreateShareForm({ isValid: true });
     mockUseCreateShare.mockReturnValue({
       createShare: vi.fn(),
@@ -308,6 +314,49 @@ describe('CreateShareForm', () => {
 
     expect(mockNavigate).toHaveBeenCalledWith('..');
   });
+
+  it('should display error toast when create share fails', async () => {
+    const mockCreateShare = vi.fn();
+    let onErrorCallback: ((error: Error) => void) | undefined;
+
+    mockUseCreateShare.mockImplementation(({ onError }) => {
+      onErrorCallback = onError;
+
+      return {
+        createShare: mockCreateShare,
+        isPending: false,
+      } as unknown as ReturnType<typeof useCreateShare>;
+    });
+
+    renderWithMockedForm(<CreateShareForm />, {
+      defaultValues: {
+        macroRegion: 'GRA',
+        shareData: {
+          name: 'test-share',
+          microRegion: 'GRA1',
+          specName: 'nfs',
+          size: 150,
+        },
+      },
+    });
+
+    const submitButton = screen.getByText(/actions:validate$/);
+    await userEvent.click(submitButton);
+
+    const error = new Error('Create share failed');
+    if (onErrorCallback) onErrorCallback(error);
+
+    expect(mockCreateShare).toHaveBeenCalled();
+
+    expect(mockToast).toHaveBeenCalledWith(
+      expect.stringContaining('create:submit.error'),
+      expect.objectContaining({
+        color: 'warning',
+        duration: Infinity,
+      }),
+    );
+  });
+
   it('should navigate back when create share succeeds', async () => {
     mockUseShareCatalog.mockReturnValue({
       data: [],
@@ -344,5 +393,6 @@ describe('CreateShareForm', () => {
     if (onSuccessCallback) onSuccessCallback();
     expect(mockCreateShare).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('..');
+    expect(mockToast).not.toHaveBeenCalled();
   });
 });
