@@ -13,7 +13,12 @@ import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card, Links, RedirectionGuard } from '@ovh-ux/manager-react-components';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  useNavigationGetUrl,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
@@ -24,6 +29,7 @@ import { urls } from '@/routes/Routes.constants';
 export default function OnboardingPage() {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
+  const { trackClick } = useOvhTracking();
   const { productName, title, tiles } = useOnboardingContent();
   const links = useGuideUtils();
   const queryClient = useQueryClient();
@@ -87,9 +93,23 @@ export default function OnboardingPage() {
         img={img}
         description={<OnboardingDescription message={orderInProgressMessage} />}
         orderButtonLabel={t(`onboarding:save_a_baremetal_server`)}
-        onOrderButtonClick={() => {}}
+        onOrderButtonClick={() =>
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.button,
+            actionType: 'navigation',
+            actions: ['order-baremetal'],
+          })
+        }
         moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
-        onMoreInfoButtonClick={() => {}}
+        onMoreInfoButtonClick={() =>
+          trackClick({
+            location: PageLocation.page,
+            buttonType: ButtonType.externalLink,
+            actionType: 'navigation',
+            actions: ['more-info'],
+          })
+        }
         isOrderLoading={isPending}
         orderHref={urls.firstOrder}
         moreInfoHref={links.website}

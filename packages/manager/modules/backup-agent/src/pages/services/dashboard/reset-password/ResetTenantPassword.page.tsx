@@ -7,12 +7,18 @@ import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 
 export default function ResetTenantPasswordPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const closeModal = () => navigate('..');
 
   return (
@@ -20,7 +26,15 @@ export default function ResetTenantPasswordPage() {
       isOpen
       heading={t('vspc_reset_password')}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:close`)}
-      onSecondaryButtonClick={closeModal}
+      onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['close-reset-password'],
+        });
+        closeModal();
+      }}
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.information}
     >

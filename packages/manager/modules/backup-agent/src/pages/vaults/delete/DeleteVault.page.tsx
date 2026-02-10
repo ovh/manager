@@ -9,6 +9,7 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteVault } from '@/data/hooks/useDeleteVault';
@@ -18,6 +19,7 @@ import { useGetFeaturesAvailabilityNames } from '@/hooks/useGetFeatureAvailabili
 export default function DeleteVaultPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_DELETE, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
   const [searchParams] = useSearchParams();
@@ -49,11 +51,27 @@ export default function DeleteVaultPage() {
       isOpen
       heading={t('delete_vault_modal_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={() => vaultId && deleteVault(vaultId)}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['confirm-delete-vault'],
+        });
+        if (vaultId) deleteVault(vaultId);
+      }}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isPending || !canDeleteVault}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={closeModal}
+      onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['cancel-delete-vault'],
+        });
+        closeModal();
+      }}
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.critical}
     >

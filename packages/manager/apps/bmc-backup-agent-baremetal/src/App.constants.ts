@@ -44,8 +44,8 @@ export const APP_FEATURES = {
       CA: { level2: '120' },
       US: { level2: '120' },
     } as const,
-    universe: '' as const,
-    subUniverse: '' as const,
+    universe: 'BareMetalCloud' as const,
+    subUniverse: 'StorageBackup' as const,
     appNameForTracking: appName,
   },
 } as const;

@@ -8,6 +8,7 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteTenantAgent } from '@/data/hooks/useDeleteTenantAgent';
@@ -17,6 +18,7 @@ export default function DeleteAgentPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { trackClick } = useOvhTracking();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
 
@@ -35,11 +37,27 @@ export default function DeleteAgentPage() {
       isOpen
       heading={t('delete_agent_modal_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={() => agentId && deleteAgent({ agentId })}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['confirm-delete-agent'],
+        });
+        if (agentId) deleteAgent({ agentId });
+      }}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isPending}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={closeModal}
+      onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['cancel-delete-agent'],
+        });
+        closeModal();
+      }}
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.critical}
     >

@@ -9,6 +9,7 @@ import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteVSPCTenant } from '@/data/hooks/useDeleteVSPCTenant';
@@ -18,6 +19,7 @@ import { useGetFeaturesAvailabilityNames } from '@/hooks/useGetFeatureAvailabili
 export default function DeleteTenantPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_LISTING, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
@@ -43,11 +45,27 @@ export default function DeleteTenantPage() {
       isOpen
       heading={t('delete_tenant_modal_title')}
       primaryLabel={t(`${NAMESPACES.ACTIONS}:confirm`)}
-      onPrimaryButtonClick={() => deleteTenant()}
+      onPrimaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['confirm-delete-tenant'],
+        });
+        deleteTenant();
+      }}
       isPrimaryButtonLoading={isPending}
       isPrimaryButtonDisabled={isPending || !isDeleteTenantFeatureAvailable}
       secondaryLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-      onSecondaryButtonClick={closeModal}
+      onSecondaryButtonClick={() => {
+        trackClick({
+          location: PageLocation.popup,
+          buttonType: ButtonType.button,
+          actionType: 'action',
+          actions: ['cancel-delete-tenant'],
+        });
+        closeModal();
+      }}
       onDismiss={closeModal}
       type={ODS_MODAL_COLOR.critical}
     >

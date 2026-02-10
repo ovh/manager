@@ -13,6 +13,11 @@ import { OdsMessage, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react'
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer, ErrorBoundary, useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
@@ -46,6 +51,7 @@ export const EditConfigurationPage = () => {
   const { appName } = useContext(BackupAgentContext);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { trackClick } = useOvhTracking();
   const goBack = () => navigate('..');
   const {
     data: resourceAgent,
@@ -113,11 +119,27 @@ export const EditConfigurationPage = () => {
         }
         onDismiss={goBack}
         primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:edit`)}
-        onPrimaryButtonClick={() => formRef.current?.requestSubmit()}
+        onPrimaryButtonClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['submit-edit-agent-configuration'],
+          });
+          formRef.current?.requestSubmit();
+        }}
         isPrimaryButtonDisabled={(isSubmitted && !isValid) || isLoading || !isAgentEnabled}
         isPrimaryButtonLoading={isPending}
         secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
-        onSecondaryButtonClick={goBack}
+        onSecondaryButtonClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['cancel-edit-agent-configuration'],
+          });
+          goBack();
+        }}
       >
         {isLoading && (
           <div className="flex justify-center items-center h-full">

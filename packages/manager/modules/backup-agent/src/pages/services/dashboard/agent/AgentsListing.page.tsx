@@ -10,6 +10,7 @@ import { OdsButton, OdsPopover, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Datagrid, Links, ManagerButton } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ReloadButton } from '@/components/ReloadButton/ReloadButton.component';
@@ -30,15 +31,28 @@ export default function AgentsListingPage() {
   ]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { trackClick } = useOvhTracking();
   const columns = useAgentsListingColumnsHooks();
   const { data, isPending } = useQuery(agentsQueries.withClient(queryClient).list());
   const guide = useGuideUtils();
 
   const handleDownloadButton = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['download-agent'],
+    });
     navigate(urls.downloadAgentBackup);
   };
 
   const handleAddConfiguration = () => {
+    trackClick({
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['add-agent-configuration'],
+    });
     navigate(urls.addAgentConfiguration);
   };
 

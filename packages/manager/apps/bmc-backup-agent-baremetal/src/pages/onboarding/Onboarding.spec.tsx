@@ -42,6 +42,11 @@ vi.mock('@tanstack/react-query', () => ({
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   ...(await vi.importActual('@ovh-ux/manager-react-shell-client')),
   useNavigationGetUrl: vi.fn().mockReturnValue({ isPending: false, data: '' }),
+  useOvhTracking: vi.fn().mockReturnValue({
+    trackClick: vi.fn(),
+    trackCurrentPage: vi.fn(),
+    trackPage: vi.fn(),
+  }),
 }));
 
 vi.mock('@ovh-ux/backup-agent/data/queries/baremetals.queries', () => ({
