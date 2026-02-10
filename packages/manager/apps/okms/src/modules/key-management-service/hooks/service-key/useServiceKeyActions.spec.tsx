@@ -97,7 +97,7 @@ describe('useServiceKeyActionsList', () => {
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
           color: BUTTON_COLOR.primary,
-          disabled: false,
+          isDisabled: false,
           icon: ICON_NAME.download,
         } satisfies Partial<ServiceKeyAction>,
         {
@@ -110,7 +110,7 @@ describe('useServiceKeyActionsList', () => {
           buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
           color: BUTTON_COLOR.primary,
-          disabled: true,
+          isDisabled: true,
           icon: ICON_NAME.trash,
         } satisfies Partial<ServiceKeyAction>,
       ],
@@ -128,7 +128,7 @@ describe('useServiceKeyActionsList', () => {
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
           color: BUTTON_COLOR.primary,
-          disabled: true,
+          isDisabled: true,
           icon: ICON_NAME.download,
         } satisfies Partial<ServiceKeyAction>,
         {
@@ -141,7 +141,7 @@ describe('useServiceKeyActionsList', () => {
           buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
           color: BUTTON_COLOR.primary,
-          disabled: false,
+          isDisabled: false,
           icon: ICON_NAME.trash,
         } satisfies Partial<ServiceKeyAction>,
       ],
@@ -159,7 +159,7 @@ describe('useServiceKeyActionsList', () => {
           label:
             'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
           color: BUTTON_COLOR.primary,
-          disabled: true,
+          isDisabled: true,
           icon: ICON_NAME.download,
         } satisfies Partial<ServiceKeyAction>,
         {
@@ -172,7 +172,7 @@ describe('useServiceKeyActionsList', () => {
           buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
           color: BUTTON_COLOR.primary,
-          disabled: false,
+          isDisabled: false,
           icon: ICON_NAME.trash,
         } satisfies Partial<ServiceKeyAction>,
       ],
@@ -204,7 +204,7 @@ describe('useServiceKeyActionsList', () => {
           buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
           color: BUTTON_COLOR.primary,
-          disabled: true,
+          isDisabled: true,
           icon: ICON_NAME.trash,
         } satisfies Partial<ServiceKeyAction>,
       ],
