@@ -25,7 +25,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
   return {
     ...module,
-    useHref: vi.fn((link: string) => link),
     useParams: () => ({ okmsId: OKMS_OK_MOCK.id }),
   };
 });

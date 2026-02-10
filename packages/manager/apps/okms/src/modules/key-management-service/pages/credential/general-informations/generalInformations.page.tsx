@@ -16,7 +16,7 @@ import { Tile } from '@ovh-ux/muk';
 import { Button, GridLayout } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
@@ -131,8 +131,8 @@ const CredentialGeneralInformations = () => {
           <Tile.Item.Description divider={false}>
             <div className="flex items-center gap-4">
               {downloadHref && (
-                <MukLink
-                  href={downloadHref}
+                <InternalLink
+                  to={downloadHref}
                   download={filename}
                   disabled={isDisabled}
                   onClick={() =>
@@ -149,7 +149,7 @@ const CredentialGeneralInformations = () => {
                     {t('key_management_service_credential_download')}
                     <Icon name="download" />
                   </>
-                </MukLink>
+                </InternalLink>
               )}
               <Button
                 id="deleteAccessCertificate"
