@@ -5,9 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import { RadioGroup, Text } from '@ovhcloud/ods-react';
 
+import { HelpDrawerDivider } from '@/components/helpDrawer/HelpDrawerDivider.component';
+
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
 import { usePlanTiles } from '../view-models/plans.viewmodel';
-import { PlanHelper } from './plan/PlanHelper.component';
+import { PlanHelpDrawer } from './plan/PlanHelpDrawer.component';
 import { PlanTypeCard } from './plan/PlanTypeCard.component';
 
 export const ClusterPlanSection = () => {
@@ -47,7 +49,8 @@ export const ClusterPlanSection = () => {
     <article>
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">{t('kube:kube_service_cluster_plan')}</Text>
-        <PlanHelper />
+        <HelpDrawerDivider />
+        <PlanHelpDrawer />
       </div>
 
       <div>

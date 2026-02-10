@@ -121,9 +121,6 @@
   "kube_add_plan_helper_difference_nodes": "Anzahl der Knoten: bis zu 100 (Free) vs 500 (Standard)",
   "kube_add_plan_helper_difference_az": "Verfügbarkeitszonen: 1-AZ (Free) vs 3-AZ (Standard)",
   "kube_add_plan_helper_v2_title": "Welchen Plan sollten Sie für Ihren Kubernetes-Cluster wählen?",
-  "kube_add_plan_helper_v2_intro_1": "Die Wahl des Plans bestimmt die Verfügbarkeit Ihres",
-  "kube_add_plan_helper_v2_intro_control_plane": "Control Plane",
-  "kube_add_plan_helper_v2_intro_2": "Achtung: Sobald der Cluster erstellt ist, ist es nicht möglich, vom Free-Plan zum Standard-Plan (und umgekehrt) zu wechseln.",
   "kube_add_plan_helper_v2_free_title": "Free-Plan (Kostenlos)",
   "kube_add_plan_helper_v2_free_ideal_label": "Ideal für:",
   "kube_add_plan_helper_v2_free_ideal_text": "Tests, Entwicklung und Lernen.",
@@ -136,12 +133,12 @@
   "kube_add_plan_helper_v2_standard_availability_1az": "Monozone (1-AZ) : Hohe Leistung in einer einzigen geografischen Zone (SLA 99,9%)",
   "kube_add_plan_helper_v2_standard_availability_3az": "Multizone (3-AZ) : Maximale Resilienz. Der Cluster bleibt auch bei Verlust einer Verfügbarkeitszone betriebsbereit (SLA 99,99%)",
   "kube_add_plan_helper_v2_warning_title": "⚠️ Wichtige Erinnerung :",
-  "kube_add_plan_helper_v2_warning_text": "Wenn Sie planen, dass Ihr Projekt in die Produktion geht, wählen Sie den",
-  "kube_add_plan_helper_v2_warning_plan_standard": "Standardplan",
-  "kube_add_plan_helper_v2_warning_text_suffix": "ab sofort.",
   "kube_add_plan_helper_v2_warning_consequence": "Wenn Sie den kostenlosen Plan wählen, müssen Sie einen neuen Cluster vollständig neu erstellen und Ihre Daten manuell migrieren, um später von den Vorteilen des Standardplans zu profitieren.",
   "kube_add_plan_content_not_available_AZ": "Nicht verfügbar für {{mode}}",
   "kube_add_plan_content_not_available_region": "Nicht verfügbar für diese Region",
   "kube_add_cart_total_price": "Summe",
-  "kube_add_cart_monthly_price": "Monatsabschätzung"
+  "kube_add_cart_monthly_price": "Monatsabschätzung",
+  "kube_add_plan_helper_v2_intro_1": "Die Wahl des Plans bestimmt die Verfügbarkeit Ihres <b>Control Plane</b>.",
+  "kube_add_plan_helper_v2_intro_2": "<b>Hinweis: Sobald der Cluster erstellt ist, ist es unmöglich, vom Free-Plan zum Standard-Plan (und umgekehrt) zu wechseln.</b>",
+  "kube_add_plan_helper_v2_warning_text": "Wenn Sie planen, dass Ihr Projekt in Produktion geht, wählen Sie jetzt den <b>Standard-Plan</b>."
 }
