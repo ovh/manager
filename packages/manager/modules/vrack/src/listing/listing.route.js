@@ -8,67 +8,69 @@ import {
 } from '../vrack.constant';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('vrack.index', {
-    url: `?${ListLayoutHelper.urlQueryParams}`,
-    component: 'vrackListing',
-    params: ListLayoutHelper.stateParams,
-    resolve: {
-      ...ListLayoutHelper.stateResolves,
-      apiPath: /* @ngInject */ () => '/vrack',
-      dataModel: () => 'vrack.vrack',
-      loadResource: /* @ngInject */ (vrackService) => (service) => {
-        return vrackService
-          .getVrackStatus(service.serviceName)
-          .then((state) => {
-            return {
-              ...service,
-              state,
-            };
-          });
-      },
-      defaultFilterColumn: () => 'serviceName',
-      columnConfig: /* @ngInject */ ($translate) => ({
-        data: [
-          {
-            label: $translate.instant(
-              `vrack_listing_columns_header_serviceName`,
-            ),
-            serviceLink: true,
-            property: 'serviceName',
-            hidden: false,
-          },
-          {
-            label: $translate.instant(
-              `vrack_listing_columns_header_description`,
-            ),
-            property: 'description',
-            hidden: false,
-          },
-          {
-            label: $translate.instant(`vrack_listing_columns_header_name`),
-            property: 'name',
-            hidden: false,
-          },
-          {
-            label: $translate.instant(`vrack_listing_columns_header_state`),
-            property: 'state',
-            sortable: false,
-            filterable: false,
-            hidden: false,
-            format: (value) => value.state,
-            map: (row) => {
-              switch (row.state) {
-                case 'active':
-                  return 'success';
-                case 'deleted':
-                  return 'warning';
-                case 'suspended':
-                  return 'error';
-                default:
-                  return 'info';
-              }
+  $stateProvider
+    .state('vrack.index', {
+      url: `?${ListLayoutHelper.urlQueryParams}`,
+      component: 'vrackListing',
+      params: ListLayoutHelper.stateParams,
+      resolve: {
+        ...ListLayoutHelper.stateResolves,
+        apiPath: /* @ngInject */ () => '/vrack',
+        dataModel: () => 'vrack.vrack',
+        loadResource: /* @ngInject */ (vrackService) => (service) => {
+          return vrackService
+            .getVrackStatus(service.serviceName)
+            .then((state) => {
+              return {
+                ...service,
+                state,
+              };
+            });
+        },
+        defaultFilterColumn: () => 'serviceName',
+        columnConfig: /* @ngInject */ ($translate) => ({
+          data: [
+            {
+              label: $translate.instant(
+                `vrack_listing_columns_header_serviceName`,
+              ),
+              serviceLink: true,
+              property: 'serviceName',
+              hidden: false,
             },
-          }],
+            {
+              label: $translate.instant(
+                `vrack_listing_columns_header_description`,
+              ),
+              property: 'description',
+              hidden: false,
+            },
+            {
+              label: $translate.instant(`vrack_listing_columns_header_name`),
+              property: 'name',
+              hidden: false,
+            },
+            {
+              label: $translate.instant(`vrack_listing_columns_header_state`),
+              property: 'state',
+              sortable: false,
+              filterable: false,
+              hidden: false,
+              format: (value) => value.state,
+              map: (row) => {
+                switch (row.state) {
+                  case 'active':
+                    return 'success';
+                  case 'deleted':
+                    return 'warning';
+                  case 'suspended':
+                    return 'error';
+                  default:
+                    return 'info';
+                }
+              },
+            },
+          ],
         }),
         header: /* @ngInject */ ($translate) =>
           $translate.instant('vrack_title'),
@@ -91,6 +93,16 @@ export default /* @ngInject */ ($stateProvider) => {
             )
             .catch(() => false);
         },
+        isNetworkVrackAvailable: /* @ngInject */ (ovhFeatureFlipping) => {
+          return ovhFeatureFlipping
+            .checkFeatureAvailability(['network-vrack'])
+            .then((featureAvailability) =>
+              featureAvailability.isFeatureAvailable('network-vrack'),
+            )
+            .catch(() => false);
+        },
+        shellClientUrl: /* @ngInject */ ($injector) =>
+          $injector.get('shellClient').navigation.getURL('network-vrack', `#/`),
       },
       atInternet: {
         rename: `${VRACK_TRACKING_PREFIX}vrack-private-network::listing::manage_vrack-private-network`,
