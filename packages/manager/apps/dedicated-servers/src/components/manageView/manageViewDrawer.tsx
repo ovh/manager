@@ -91,7 +91,7 @@ export const ManageViewDrawer = ({
         transition-all duration-300 ease-in-out bg-red-500
         ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
     >
-      <aside className="h-full w-full bg-white shadow-lg relative flex flex-col">
+      <aside className="h-full w-full bg-white shadow-lg grid grid-cols-1 grid-rows-[min-content_1fr_min-content] relative">
         {isOpen && (
           <div className="absolute top-9 -left-12 h-12 w-12 z-50 bg-white rounded-l-md shadow-md flex items-center justify-center border-0 outline-none focus:outline-none">
             <Button
@@ -106,8 +106,8 @@ export const ManageViewDrawer = ({
             <span className="absolute -right-1 top-0 h-full w-2 bg-white pointer-events-none rounded-r-md"></span>
           </div>
         )}
-        {/* Drawer Content */}
-        <div className="p-4 flex-1 overflow-auto">
+        {/* Drawer Header */}
+        <section className="p-4">
           <div className="flex items-center gap-4">
             <ManageViewDrawerTitle
               value={editingView?.name}
@@ -123,7 +123,9 @@ export const ManageViewDrawer = ({
               <Text>{t('set_as_default')}</Text>
             </CheckboxLabel>
           </Checkbox>
-
+        </section>
+        {/* Drawer Content */}
+        <div className="p-4 overflow-auto">
           <ManageViewConfig />
         </div>
         {/* Drawer footer */}
