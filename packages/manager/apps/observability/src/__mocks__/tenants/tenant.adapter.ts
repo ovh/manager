@@ -1,4 +1,5 @@
 import { apiConfig } from '@/__mocks__/mock.config';
+import { mockLogger } from '@/__mocks__/mock.logger';
 import {
   createTenant as createTenantsFromMock,
   deleteTenant as deleteTenantFromMock,
@@ -28,20 +29,20 @@ import { Tenant, TenantSubscription } from '@/types/tenants.type';
 
 export const getTenants = async (params: ObservabilityServiceParams): Promise<Tenant[]> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
-  console.info('[MOCK-ADAPTER][getTenants] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[getTenants] Mock enabled ->', isMockEnabled);
   return isMockEnabled ? getTenantsFromMock(params) : getTenantsFromApi(params);
 };
 
 export const getTenant = async (params: GetTenantPayload): Promise<Tenant> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
-  console.info('[MOCK-ADAPTER][getTenant] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[getTenant] Mock enabled ->', isMockEnabled);
   return isMockEnabled ? getTenantFromMock(params) : getTenantFromApi(params);
 };
 export const getTenantSubscriptions = async (
   params: GetTenantPayload,
 ): Promise<TenantSubscription[]> => {
   const isMockEnabled = apiConfig.tenantSubscription === 'mock';
-  console.info('[MOCK-ADAPTER][getTenantSubscriptions] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[getTenantSubscriptions] Mock enabled ->', isMockEnabled);
   return isMockEnabled
     ? getTenantSubscriptionsFromMock(params)
     : getTenantSubscriptionsFromApi(params);
@@ -49,7 +50,7 @@ export const getTenantSubscriptions = async (
 
 export const deleteTenant = async (params: GetTenantPayload): Promise<Tenant> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
-  console.info('[MOCK-ADAPTER][deleteTenant] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[deleteTenant] Mock enabled ->', isMockEnabled);
   return isMockEnabled ? deleteTenantFromMock(params) : deleteTenantFromApi(params);
 };
 
@@ -57,7 +58,7 @@ export const deleteTenantSubscription = async (
   params: DeleteTenantSubscriptionPayload,
 ): Promise<TenantSubscription> => {
   const isMockEnabled = apiConfig.tenantSubscription === 'mock';
-  console.info('[MOCK-ADAPTER][deleteTenantSubscription] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[deleteTenantSubscription] Mock enabled ->', isMockEnabled);
   return isMockEnabled
     ? deleteTenantSubscriptionFromMock(params)
     : deleteTenantSubscriptionFromApi(params);
@@ -65,12 +66,12 @@ export const deleteTenantSubscription = async (
 
 export const createTenants = async (payload: CreateTenantsPayload): Promise<Tenant> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
-  console.info('[MOCK-ADAPTER][createTenant] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[createTenant] Mock enabled ->', isMockEnabled);
   return isMockEnabled ? createTenantsFromMock(payload) : createTenantsFromApi(payload);
 };
 
 export const editTenant = async (payload: EditTenantPayload): Promise<Tenant> => {
   const isMockEnabled = apiConfig.tenant === 'mock';
-  console.info('[MOCK-ADAPTER][editTenant] Mock enabled -> ', isMockEnabled);
+  mockLogger.info('[editTenant] Mock enabled ->', isMockEnabled);
   return isMockEnabled ? editTenantFromMock(payload) : editTenantFromApi(payload);
 };
