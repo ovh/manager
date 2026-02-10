@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FormProvider, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Divider, Text } from '@ovhcloud/ods-react';
+import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -24,6 +24,7 @@ import {
   selectAvailabilityZones,
   selectMicroRegions,
 } from '@/pages/create/view-model/shareCatalog.view-model';
+import { isApiErrorResponse } from '@/utils';
 
 export const CreateShareForm = () => {
   const { t } = useTranslation(['create', NAMESPACES.ACTIONS]);
@@ -47,6 +48,14 @@ export const CreateShareForm = () => {
   const handleCreateShare = {
     onSuccess: () => {
       navigate('..');
+    },
+    onError: (error: Error) => {
+      const errorMessage = isApiErrorResponse(error) ? error.response?.data.message : error.message;
+
+      toast(t('create:submit.error', { error: errorMessage }), {
+        color: 'warning',
+        duration: Infinity,
+      });
     },
   };
 
