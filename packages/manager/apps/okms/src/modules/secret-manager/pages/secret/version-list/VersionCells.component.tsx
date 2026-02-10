@@ -5,9 +5,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { Secret, SecretVersion, SecretVersionState } from '@secret-manager/types/secret.type';
 import { useTranslation } from 'react-i18next';
 
-import { Badge } from '@ovhcloud/ods-react';
-
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Badge, Text } from '@ovhcloud/ods-react';
 
 import { MukLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
@@ -60,9 +58,9 @@ export const VersionCreatedAtCell = (version: SecretVersion) => {
   const { formatDate } = useFormatDate();
 
   return (
-    <DataGridTextCell data-testid={VERSION_LIST_CELL_TEST_IDS.createdAt(version)}>
+    <Text preset="span" data-testid={VERSION_LIST_CELL_TEST_IDS.createdAt(version)}>
       {formatDate(version.createdAt)}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -72,8 +70,8 @@ export const VersionDeactivatedAtCell = (version: SecretVersion) => {
   const date = version.deactivatedAt ? formatDate(version.deactivatedAt) : '-';
 
   return (
-    <DataGridTextCell data-testid={VERSION_LIST_CELL_TEST_IDS.deactivatedAt(version)}>
+    <Text preset="span" data-testid={VERSION_LIST_CELL_TEST_IDS.deactivatedAt(version)}>
       {date}
-    </DataGridTextCell>
+    </Text>
   );
 };
