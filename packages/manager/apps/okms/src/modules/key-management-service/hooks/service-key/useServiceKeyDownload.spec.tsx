@@ -126,7 +126,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.disabled).toBe(true);
+      expect(result.current?.isDisabled).toBe(true);
     });
 
     it('should return action with isDisabled false when keyState is active', () => {
@@ -140,7 +140,7 @@ describe('useServiceKeyDownload', () => {
         }),
       );
 
-      expect(result.current?.disabled).toBe(false);
+      expect(result.current?.isDisabled).toBe(false);
     });
   });
 
