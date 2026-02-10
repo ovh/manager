@@ -7,7 +7,8 @@ import { OkmsCredential } from '@key-management-service/types/okmsCredential.typ
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
 import { useTranslation } from 'react-i18next';
 
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
@@ -55,9 +56,9 @@ export const DatagridCredentialCellId = (credential: OkmsCredential) => {
 export const DatagridCredentialCellIdentities = (credential: OkmsCredential) => {
   const identities = credential.identityURNs.length;
   return (
-    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.nbUsersIds(credential.id)}>
+    <Text preset="span" data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.nbUsersIds(credential.id)}>
       {identities}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -80,9 +81,9 @@ export const DatagridCredentialCellCreationDate = (credential: OkmsCredential) =
   });
 
   return (
-    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.creationDate(credential.id)}>
+    <Text preset="span" data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.creationDate(credential.id)}>
       {formattedDate}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -95,9 +96,9 @@ export const DatagridCredentialCellExpirationDate = (credential: OkmsCredential)
   });
 
   return (
-    <DataGridTextCell data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.expirationDate(credential.id)}>
+    <Text preset="span" data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.expirationDate(credential.id)}>
       {formattedDate}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
