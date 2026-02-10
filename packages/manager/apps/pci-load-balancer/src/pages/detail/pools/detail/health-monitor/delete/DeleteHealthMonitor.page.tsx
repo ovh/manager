@@ -1,16 +1,17 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useDeleteHealthMonitor, useGetHealthMonitor } from '@/api/hook/useHealthMonitor';
 import { useGetPool } from '@/api/hook/usePool';
-import {
-  useDeleteHealthMonitor,
-  useGetHealthMonitor,
-} from '@/api/hook/useHealthMonitor';
 
 export default function DeleteHealthMonitorPage() {
   const { t } = useTranslation('health-monitor/delete');
@@ -26,22 +27,19 @@ export default function DeleteHealthMonitorPage() {
     poolId,
   });
 
-  const {
-    data: healthMonitor,
-    isPending: isGetHealthMonitorPending,
-  } = useGetHealthMonitor({
+  const { data: healthMonitor, isPending: isGetHealthMonitorPending } = useGetHealthMonitor({
     projectId,
     region,
     poolId,
   });
 
-  const {
-    deleteHealthMonitor,
-    isPending: isDeletePending,
-  } = useDeleteHealthMonitor({
+  const { deleteHealthMonitor, isPending: isDeletePending } = useDeleteHealthMonitor({
     projectId,
     region,
     onError(error: ApiError) {
+      const requestId = (error?.config?.headers as Record<string, string> | undefined)?.[
+        'X-OVH-MANAGER-REQUEST-ID'
+      ];
       navigate('..');
       addError(
         <Trans
@@ -49,7 +47,7 @@ export default function DeleteHealthMonitorPage() {
           ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
-            requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+            requestId,
           }}
         />,
         true,
@@ -70,22 +68,14 @@ export default function DeleteHealthMonitorPage() {
 
   return (
     <DeletionModal
-      title={t(
-        'octavia_load_balancer_health_monitor_detail_overview_delete_title',
-      )}
+      title={t('octavia_load_balancer_health_monitor_detail_overview_delete_title')}
       onConfirm={() => deleteHealthMonitor(healthMonitor?.id)}
       onClose={() => navigate('..')}
       onCancel={() => navigate('..')}
-      isPending={
-        isGetPoolPending || isGetHealthMonitorPending || isDeletePending
-      }
+      isPending={isGetPoolPending || isGetHealthMonitorPending || isDeletePending}
       type="warning"
-      submitText={t(
-        'octavia_load_balancer_health_monitor_detail_overview_delete_confirm',
-      )}
-      cancelText={t(
-        'octavia_load_balancer_health_monitor_detail_overview_delete_cancel',
-      )}
+      submitText={t('octavia_load_balancer_health_monitor_detail_overview_delete_confirm')}
+      cancelText={t('octavia_load_balancer_health_monitor_detail_overview_delete_cancel')}
     >
       <OsdsText
         level={ODS_TEXT_LEVEL.body}

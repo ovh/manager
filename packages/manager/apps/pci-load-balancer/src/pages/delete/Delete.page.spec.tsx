@@ -1,12 +1,12 @@
-import { render } from '@testing-library/react';
-import { beforeEach, describe, it, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import DeletePage from '@/pages/delete/Delete.page';
-import { wrapper } from '@/wrapperRenders';
+import { beforeEach, describe, it, vi } from 'vitest';
+
 import { TLoadBalancer } from '@/api/data/load-balancer';
 import { useLoadBalancer } from '@/api/hook/useLoadBalancer';
+import DeletePage from '@/pages/delete/Delete.page';
+import { wrapper } from '@/wrapperRenders';
 
 vi.mock('@/api/hook/useLoadBalancer', async () => {
   const mod = await vi.importActual('@/api/hook/useLoadBalancer');
@@ -16,8 +16,17 @@ vi.mock('@/api/hook/useLoadBalancer', async () => {
   };
 });
 
-const mockedTrackClick = vi.fn();
-vi.mocked(useOvhTracking().trackClick).mockImplementation(mockedTrackClick);
+const { mockedTrackClick } = vi.hoisted(() => ({
+  mockedTrackClick: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
+  return {
+    ...actual,
+    useOvhTracking: () => ({ trackClick: mockedTrackClick }),
+  };
+});
 
 describe('DeletePage', () => {
   beforeEach(() => {
@@ -29,9 +38,7 @@ describe('DeletePage', () => {
 
   it('renders deletion modal with correct title and description', () => {
     const { getByText } = render(<DeletePage />, { wrapper });
-    expect(
-      getByText('octavia_load_balancer_delete_description'),
-    ).toBeInTheDocument();
+    expect(getByText('octavia_load_balancer_delete_description')).toBeInTheDocument();
   });
 
   it('disables confirm button when pending', () => {

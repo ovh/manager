@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -39,7 +40,7 @@ export const deleteHealthMonitor = async (
   region: string,
   healthMonitorId: string,
 ) => {
-  const { data } = await v6.delete(
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
   );
   return data;
@@ -61,7 +62,7 @@ export const createHealthMonitor = (
   region: string,
   poolId: string,
   model: THealthMonitorFormState,
-) => {
+): Promise<unknown> => {
   const body = {
     maxRetries: model.maxRetries,
     maxRetriesDown: model.maxRetriesDown,
@@ -82,10 +83,7 @@ export const createHealthMonitor = (
       : {}),
   };
 
-  return v6.post(
-    `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
-    body,
-  );
+  return v6.post(`/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`, body);
 };
 
 export const editHealthMonitor = (
@@ -93,7 +91,7 @@ export const editHealthMonitor = (
   region: string,
   healthMonitorId: string,
   model: THealthMonitorFormState,
-) => {
+): Promise<unknown> => {
   const body = {
     maxRetries: model.maxRetries,
     maxRetriesDown: model.maxRetriesDown,
@@ -123,7 +121,7 @@ export const renameHealthMonitor = (
   region: string,
   healthMonitorId: string,
   name: string,
-) =>
+): Promise<unknown> =>
   v6.put(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
     { name },

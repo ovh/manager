@@ -1,12 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getL7Rules,
-  deleteL7Rule,
-  createL7Rule,
-  updateL7Rule,
-  getL7Rule,
   TL7Rule,
+  createL7Rule,
+  deleteL7Rule,
+  getL7Rule,
+  getL7Rules,
+  updateL7Rule,
 } from './l7Rules';
 import {
   LoadBalancerOperatingStatusEnum,
@@ -31,7 +33,7 @@ describe('L7 Rules API', () => {
 
   it('should get L7 rules', async () => {
     const mockData = [rule];
-    (v6.get as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.get).mockResolvedValue({ data: mockData });
 
     const result = await getL7Rules(projectId, region, policyId);
     expect(result).toEqual(mockData);
@@ -42,7 +44,7 @@ describe('L7 Rules API', () => {
 
   it('should delete an L7 rule', async () => {
     const mockData = {};
-    (v6.delete as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.delete).mockResolvedValue({ data: mockData });
 
     const result = await deleteL7Rule(projectId, region, policyId, ruleId);
     expect(result).toEqual(mockData);
@@ -53,7 +55,7 @@ describe('L7 Rules API', () => {
 
   it('should create an L7 rule', async () => {
     const mockData = rule;
-    (v6.post as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.post).mockResolvedValue({ data: mockData });
 
     const result = await createL7Rule(projectId, region, policyId, rule);
     expect(result).toEqual(mockData);
@@ -66,7 +68,7 @@ describe('L7 Rules API', () => {
   it('should update an L7 rule', async () => {
     const updatedRule = { ...rule, value: 'updated-value' };
     const mockData = updatedRule;
-    (v6.put as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.put).mockResolvedValue({ data: mockData });
 
     const result = await updateL7Rule(projectId, region, policyId, updatedRule);
     expect(result).toEqual(mockData);
@@ -84,7 +86,7 @@ describe('L7 Rules API', () => {
 
   it('should get a specific L7 rule', async () => {
     const mockData = rule;
-    (v6.get as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.get).mockResolvedValue({ data: mockData });
 
     const result = await getL7Rule(projectId, region, policyId, ruleId);
     expect(result).toEqual(mockData);

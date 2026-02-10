@@ -1,16 +1,17 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getPoolMembers,
+  LoadBalancerOperatingStatusEnum,
+  LoadBalancerProvisioningStatusEnum,
+} from './load-balancer';
+import {
+  TPoolMember,
+  createPoolMembers,
   deletePoolMember,
   getPoolMember,
+  getPoolMembers,
   updatePoolMemberName,
-  createPoolMembers,
-  TPoolMember,
 } from './pool-member';
-import {
-  LoadBalancerProvisioningStatusEnum,
-  LoadBalancerOperatingStatusEnum,
-} from './load-balancer';
 
 describe('Pool Member API', () => {
   const projectId = 'test-project';
@@ -67,17 +68,9 @@ describe('Pool Member API', () => {
     const mockData = { success: true };
     (v6.put as jest.Mock).mockResolvedValue({ data: mockData });
 
-    const result = await updatePoolMemberName(
-      projectId,
-      region,
-      poolId,
-      memberId,
-      newName,
-    );
+    const result = await updatePoolMemberName(projectId, region, poolId, memberId, newName);
 
-    expect(
-      v6.put,
-    ).toHaveBeenCalledWith(
+    expect(v6.put).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
       { name: newName },
     );
@@ -91,9 +84,7 @@ describe('Pool Member API', () => {
 
     const result = await createPoolMembers(projectId, region, poolId, members);
 
-    expect(
-      v6.post,
-    ).toHaveBeenCalledWith(
+    expect(v6.post).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member`,
       { members },
     );

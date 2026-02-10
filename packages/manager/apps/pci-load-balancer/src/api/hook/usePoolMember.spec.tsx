@@ -1,24 +1,27 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { applyFilters } from '@ovh-ux/manager-core-api';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+
 import {
-  useGetAllPoolMembers,
-  usePoolMembers,
-  useDeletePoolMember,
-  useGetPoolMember,
-  useUpdatePoolMember,
-  useCreatePoolMembers,
-} from './usePoolMember';
-import {
-  getPoolMembers,
-  getPoolMember,
-  deletePoolMember,
-  updatePoolMemberName,
-  createPoolMembers,
   TPoolMember,
+  createPoolMembers,
+  deletePoolMember,
+  getPoolMember,
+  getPoolMembers,
+  updatePoolMemberName,
 } from '@/api/data/pool-member';
+import { paginateResults, sortResults } from '@/helpers';
 import { wrapper } from '@/wrapperRenders';
-import { sortResults, paginateResults } from '@/helpers';
+
+import {
+  useCreatePoolMembers,
+  useDeletePoolMember,
+  useGetAllPoolMembers,
+  useGetPoolMember,
+  usePoolMembers,
+  useUpdatePoolMember,
+} from './usePoolMember';
 
 vi.mock('@/api/data/pool-member', () => ({
   getPoolMembers: vi.fn(),
@@ -36,10 +39,9 @@ describe('usePoolMember hooks', () => {
       ] as TPoolMember[];
       vi.mocked(getPoolMembers).mockResolvedValue(mockData);
 
-      const { result } = renderHook(
-        () => useGetAllPoolMembers('projectId', 'poolId', 'region'),
-        { wrapper },
-      );
+      const { result } = renderHook(() => useGetAllPoolMembers('projectId', 'poolId', 'region'), {
+        wrapper,
+      });
 
       await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -68,18 +70,10 @@ describe('usePoolMember hooks', () => {
 
       const pagination = { pageIndex: 0, pageSize: 10 };
       const sorting = { id: 'name', desc: false };
-      const filters = [];
+      const filters: Filter[] = [];
 
       const { result } = renderHook(
-        () =>
-          usePoolMembers(
-            'projectId',
-            'policyId',
-            'region',
-            pagination,
-            sorting,
-            filters,
-          ),
+        () => usePoolMembers('projectId', 'policyId', 'region', pagination, sorting, filters),
         { wrapper },
       );
 
@@ -112,16 +106,12 @@ describe('usePoolMember hooks', () => {
         { wrapper },
       );
 
-      await act(async () => {
-        await result.current.deletePoolMember();
+      act(() => {
+        void result.current.deletePoolMember();
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-      expect(deletePoolMember).toHaveBeenCalledWith(
-        'projectId',
-        'region',
-        'poolId',
-        'memberId',
-      );
+      expect(deletePoolMember).toHaveBeenCalledWith('projectId', 'region', 'poolId', 'memberId');
       expect(onSuccess).toHaveBeenCalled();
     });
   });
@@ -149,7 +139,7 @@ describe('usePoolMember hooks', () => {
 
   describe('useUpdatePoolMember', () => {
     it('should update a pool member name', async () => {
-      vi.mocked(updatePoolMemberName).mockResolvedValue({});
+      vi.mocked(updatePoolMemberName).mockResolvedValue({} as TPoolMember);
       const onError = vi.fn();
       const onSuccess = vi.fn();
 
@@ -167,9 +157,10 @@ describe('usePoolMember hooks', () => {
         { wrapper },
       );
 
-      await act(async () => {
-        await result.current.updatePoolMemberName();
+      act(() => {
+        void result.current.updatePoolMemberName();
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
       expect(updatePoolMemberName).toHaveBeenCalledWith(
         'projectId',
@@ -184,7 +175,7 @@ describe('usePoolMember hooks', () => {
 
   describe('useCreatePoolMembers', () => {
     it('should create pool members', async () => {
-      vi.mocked(createPoolMembers).mockResolvedValue({});
+      vi.mocked(createPoolMembers).mockResolvedValue([] as TPoolMember[]);
       const onError = vi.fn();
       const onSuccess = vi.fn();
 
@@ -204,16 +195,12 @@ describe('usePoolMember hooks', () => {
         { id: '2', name: 'member2', address: '127.0.0.2', protocolPort: 81 },
       ] as TPoolMember[];
 
-      await act(async () => {
-        await result.current.createPoolMembers(newMembers);
+      act(() => {
+        void result.current.createPoolMembers(newMembers);
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-      expect(createPoolMembers).toHaveBeenCalledWith(
-        'projectId',
-        'region',
-        'poolId',
-        newMembers,
-      );
+      expect(createPoolMembers).toHaveBeenCalledWith('projectId', 'region', 'poolId', newMembers);
       expect(onSuccess).toHaveBeenCalled();
     });
   });

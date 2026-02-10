@@ -1,9 +1,8 @@
-import { useMemo, useContext } from 'react';
-import {
-  TDeployment,
-  useFeaturedDeploymentModes,
-} from '@ovh-ux/manager-pci-common';
+import { useContext, useMemo } from 'react';
+
+import { TDeployment, useFeaturedDeploymentModes } from '@ovh-ux/manager-pci-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useAddons } from '../useAddons/useAddons';
 import { AGORA_ADDON_FAMILY } from '../useAddons/useAddons.constant';
 import { sortProductByPrice } from '../useAddons/useAddons.select';
@@ -30,9 +29,8 @@ export const useDeployments = (projectId: string) => {
     () =>
       deployments.map((deployment) => {
         const price =
-          addons.find((addon) =>
-            addon.regions.find(({ type }) => type === deployment.name),
-          )?.price || null;
+          addons.find((addon) => addon.regions.find(({ type }) => type === deployment.name))
+            ?.price || null;
 
         return {
           ...deployment,

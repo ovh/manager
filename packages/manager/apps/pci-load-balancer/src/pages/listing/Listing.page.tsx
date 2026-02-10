@@ -1,6 +1,32 @@
+import { Suspense, useMemo, useRef } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
+import {
+  OsdsBreadcrumb,
+  OsdsButton,
+  OsdsIcon,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsSpinner,
+} from '@ovhcloud/ods-components/react';
+
+import { FilterCategories } from '@ovh-ux/manager-core-api';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
+  DataGridTextCell,
   Datagrid,
+  DatagridColumn,
   FilterAdd,
   FilterList,
   Headers,
@@ -10,36 +36,15 @@ import {
   useDataGrid,
   useNotifications,
   useProjectUrl,
-  DatagridColumn,
-  DataGridTextCell,
 } from '@ovh-ux/manager-react-components';
-import { Suspense, useMemo, useRef } from 'react';
-import {
-  OsdsBreadcrumb,
-  OsdsButton,
-  OsdsIcon,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsSpinner,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { FilterCategories } from '@ovh-ux/manager-core-api';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
 import { TLoadBalancer } from '@/api/data/load-balancer';
-import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
-import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+import { useLoadBalancers } from '@/api/hook/useLoadBalancer';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import ActionsComponent from '@/components/listing/Actions.component';
 import CreationDate from '@/components/listing/CreationDate.component';
-import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
-import { useLoadBalancers } from '@/api/hook/useLoadBalancer';
+import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
+import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 
 export default function ListingPage() {
   const { t } = useTranslation(['load-balancer', 'filter']);
@@ -52,37 +57,32 @@ export default function ListingPage() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
 
-  const {
-    paginatedLoadBalancer,
-    allLoadBalancer,
-    isPending,
-  } = useLoadBalancers(projectId, pagination, sorting, filters);
+  const { paginatedLoadBalancer, allLoadBalancer, isPending } = useLoadBalancers(
+    projectId,
+    pagination,
+    sorting,
+    filters,
+  );
 
   const columns: DatagridColumn<TLoadBalancer>[] = useMemo(
     () => [
       {
         id: 'name',
         cell: ({ id, region, name }: TLoadBalancer) => (
-          <DataGridLinkCell href={`../${region}/${id}`}>
-            {name}
-          </DataGridLinkCell>
+          <DataGridLinkCell href={`../${region}/${id}`}>{name}</DataGridLinkCell>
         ),
         label: t('octavia_load_balancer_name'),
       },
       {
         id: 'region',
-        cell: (props: TLoadBalancer) => (
-          <DataGridTextCell>{props.region}</DataGridTextCell>
-        ),
+        cell: (props: TLoadBalancer) => <DataGridTextCell>{props.region}</DataGridTextCell>,
         label: t('octavia_load_balancer_region'),
       },
       {
         id: 'vipAddress',
-        cell: (props: TLoadBalancer) => (
-          <DataGridTextCell>{props.vipAddress}</DataGridTextCell>
-        ),
+        cell: (props: TLoadBalancer) => <DataGridTextCell>{props.vipAddress}</DataGridTextCell>,
         label: t('octavia_load_balancer_ip'),
       },
       {
@@ -93,20 +93,14 @@ export default function ListingPage() {
       {
         id: 'provisioningStatus',
         cell: (props: TLoadBalancer) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('octavia_load_balancer_provisioning_status'),
       },
       {
         id: 'operatingStatus',
         cell: (props: TLoadBalancer) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('octavia_load_balancer_operating_status'),
       },
@@ -169,7 +163,7 @@ export default function ListingPage() {
         </OsdsButton>
 
         <div className="justify-between flex">
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -215,11 +209,7 @@ export default function ListingPage() {
       </div>
 
       {isPending ? (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="List-spinner"
-        />
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
       ) : (
         <Datagrid
           columns={columns}

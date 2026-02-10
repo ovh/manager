@@ -1,11 +1,15 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useDeletePolicy, useGetPolicy } from '@/api/hook/useL7Policy';
 
 export default function DeletePage() {
@@ -16,11 +20,7 @@ export default function DeletePage() {
   const onClose = () => {
     navigate('..');
   };
-  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(
-    projectId,
-    policyId,
-    region,
-  );
+  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(projectId, policyId, region);
 
   const { deletePolicy, isPending: isPendingDelete } = useDeletePolicy({
     projectId,
@@ -33,8 +33,7 @@ export default function DeletePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
+                  message: error?.response?.data?.message || error?.message || null,
                   requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
                 }),
               }}
@@ -78,12 +77,8 @@ export default function DeletePage() {
       onCancel={onCancel}
       isPending={isPending}
       type="warning"
-      submitText={tDelete(
-        'octavia_load_balancer_list_l7_policies_delete_confirm',
-      )}
-      cancelText={tDelete(
-        'octavia_load_balancer_list_l7_policies_delete_cancel',
-      )}
+      submitText={tDelete('octavia_load_balancer_list_l7_policies_delete_confirm')}
+      cancelText={tDelete('octavia_load_balancer_list_l7_policies_delete_cancel')}
     >
       <OsdsText
         level={ODS_TEXT_LEVEL.body}

@@ -1,17 +1,18 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetApiSchema } from '@ovh-ux/manager-pci-common';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+
 import { Translation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useGetApiSchema } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useGetPool, useUpdatePool } from '@/api/hook/usePool';
-import {
-  PoolFormComponent,
-  TPoolFormData,
-} from '@/components/form/PoolForm.component';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { TLoadBalancerPool } from '@/api/data/pool';
+import { useGetPool, useUpdatePool } from '@/api/hook/usePool';
+import { PoolFormComponent, TPoolFormData } from '@/components/form/PoolForm.component';
 
 const TRACKING_HIT_PREFIX = 'edit';
 
@@ -67,8 +68,7 @@ export default function PoolsEditPage(): JSX.Element {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (cause?.response?.data as { message: string })
-                    ?.message,
+                  message: (cause?.response?.data as { message: string })?.message,
                   requestId: cause.response?.headers['x-ovh-queryid'],
                 }),
               }}
@@ -101,15 +101,10 @@ export default function PoolsEditPage(): JSX.Element {
 
   return (
     <PoolFormComponent
-      availableAlgorithms={
-        schema?.models?.['cloud.loadbalancing.PoolAlgorithmEnum']?.enum || []
-      }
-      availableProtocols={
-        schema?.models?.['cloud.loadbalancing.PoolProtocolEnum']?.enum || []
-      }
+      availableAlgorithms={schema?.models?.['cloud.loadbalancing.PoolAlgorithmEnum']?.enum || []}
+      availableProtocols={schema?.models?.['cloud.loadbalancing.PoolProtocolEnum']?.enum || []}
       availableSessionTypes={(
-        schema?.models?.['cloud.loadbalancing.PoolSessionPersistenceTypeEnum']
-          ?.enum || []
+        schema?.models?.['cloud.loadbalancing.PoolSessionPersistenceTypeEnum']?.enum || []
       ).filter((sessionType) => sessionType !== 'disabled')}
       name={pool.name}
       algorithm={pool.algorithm}

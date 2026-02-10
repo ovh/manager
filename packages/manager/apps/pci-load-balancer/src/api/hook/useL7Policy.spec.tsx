@@ -1,34 +1,37 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
 import { UseQueryResult } from '@tanstack/react-query';
-import { applyFilters } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@tanstack/react-table';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+
 import {
-  useGetAllL7Policies,
-  useL7Policies,
-  useGetPolicy,
-  useDeletePolicy,
-  useCreatePolicy,
-  getAttribute,
-  useUpdatePolicy,
-  mapSearchPolicy,
-} from './useL7Policy';
-import {
+  TL7Policy,
+  createPolicy,
+  deletePolicy,
   getL7Policies,
   getPolicy,
-  deletePolicy,
-  createPolicy,
   updatePolicy,
-  TL7Policy,
 } from '@/api/data/l7Policies';
-import { wrapper } from '@/wrapperRenders';
-import * as useL7PolicyModule from './useL7Policy';
-import { sortResults, paginateResults } from '@/helpers';
 import { ACTIONS } from '@/constants';
+import { paginateResults, sortResults } from '@/helpers';
+import { wrapper } from '@/wrapperRenders';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
 } from '../data/load-balancer';
+import {
+  getAttribute,
+  mapSearchPolicy,
+  useCreatePolicy,
+  useDeletePolicy,
+  useGetAllL7Policies,
+  useGetPolicy,
+  useL7Policies,
+  useUpdatePolicy,
+} from './useL7Policy';
+import * as useL7PolicyModule from './useL7Policy';
 
 vi.mock('@/api/data/l7Policies');
 
@@ -39,14 +42,13 @@ describe('useL7Policy hooks', () => {
   const policyId = 'test-policy';
   const pagination: PaginationState = { pageIndex: 0, pageSize: 10 };
   const sorting: ColumnSort = { id: 'position', desc: false };
-  const filters = [];
+  const filters: Filter[] = [];
 
   it('should fetch all L7 policies', async () => {
     vi.mocked(getL7Policies).mockResolvedValue([]);
-    const { result } = renderHook(
-      () => useGetAllL7Policies(projectId, listenerId, region),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetAllL7Policies(projectId, listenerId, region), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -57,10 +59,7 @@ describe('useL7Policy hooks', () => {
   it('should fetch a single L7 policy', async () => {
     const policy = { id: policyId } as TL7Policy;
     vi.mocked(getPolicy).mockResolvedValue(policy);
-    const { result } = renderHook(
-      () => useGetPolicy(projectId, policyId, region),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetPolicy(projectId, policyId, region), { wrapper });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -84,9 +83,10 @@ describe('useL7Policy hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.deletePolicy();
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(deletePolicy).toHaveBeenCalledWith(projectId, region, policyId);
     expect(onSuccess).toHaveBeenCalled();
@@ -109,16 +109,12 @@ describe('useL7Policy hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.createPolicy(newPolicy);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(createPolicy).toHaveBeenCalledWith(
-      projectId,
-      region,
-      listenerId,
-      newPolicy,
-    );
+    expect(createPolicy).toHaveBeenCalledWith(projectId, region, listenerId, newPolicy);
     expect(onSuccess).toHaveBeenCalledWith(newPolicy);
   });
 
@@ -138,9 +134,10 @@ describe('useL7Policy hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.updatePolicy(updatedPolicy);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(updatePolicy).toHaveBeenCalledWith(projectId, region, updatedPolicy);
     expect(onSuccess).toHaveBeenCalledWith(updatedPolicy);
@@ -165,15 +162,7 @@ describe('useL7Policy hooks', () => {
       data: [{ position: 1 }],
     } as UseQueryResult<TL7Policy[]>);
     const { result } = renderHook(
-      () =>
-        useL7Policies(
-          projectId,
-          listenerId,
-          region,
-          pagination,
-          sorting,
-          filters,
-        ),
+      () => useL7Policies(projectId, listenerId, region, pagination, sorting, filters),
       { wrapper },
     );
     await waitFor(() => expect(result.current.isLoading).toBe(false));
@@ -203,8 +192,7 @@ describe('useL7Policy hooks', () => {
       data: [{ position: 1 }],
     } as UseQueryResult<TL7Policy[]>);
     const { result } = renderHook(
-      () =>
-        useL7Policies(projectId, listenerId, region, pagination, null, filters),
+      () => useL7Policies(projectId, listenerId, region, pagination, null, filters),
       { wrapper },
     );
     await waitFor(() => expect(result.current.isLoading).toBe(false));

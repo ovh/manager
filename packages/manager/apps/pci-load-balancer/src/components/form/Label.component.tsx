@@ -1,9 +1,3 @@
-import {
-  OsdsIcon,
-  OsdsPopover,
-  OsdsPopoverContent,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -11,6 +5,12 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
+import {
+  OsdsIcon,
+  OsdsPopover,
+  OsdsPopoverContent,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 type TLabelProps = {
   text: string;
@@ -30,9 +30,7 @@ export default function LabelComponent({
   return (
     <div slot={slot} className={`flex gap-2 items-center ${className}`.trim()}>
       <OsdsText
-        color={
-          hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text
-        }
+        color={hasError ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
         className="font-bold"
         size={ODS_TEXT_SIZE._100}
         level={ODS_TEXT_LEVEL.caption}

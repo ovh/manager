@@ -1,28 +1,31 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
+
 import { applyFilters } from '@ovh-ux/manager-core-api';
+
 import {
-  useGetAllL7Rules,
-  useL7Rules,
-  useDeleteL7Rule,
-  useCreateL7Rule,
-  useUpdateL7Rule,
-  useGetL7Rule,
-} from './useL7Rule';
-import {
+  TL7Rule,
   createL7Rule,
   deleteL7Rule,
   getL7Rule,
   getL7Rules,
-  TL7Rule,
   updateL7Rule,
 } from '@/api/data/l7Rules';
+import { paginateResults, sortResults } from '@/helpers';
 import { wrapper } from '@/wrapperRenders';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
 } from '../data/load-balancer';
-import { sortResults, paginateResults } from '@/helpers';
+import {
+  useCreateL7Rule,
+  useDeleteL7Rule,
+  useGetAllL7Rules,
+  useGetL7Rule,
+  useL7Rules,
+  useUpdateL7Rule,
+} from './useL7Rule';
 
 vi.mock('@/api/data/l7Rules', () => ({
   createL7Rule: vi.fn(),
@@ -49,10 +52,9 @@ describe('useGetAllL7Rules', () => {
     ] as TL7Rule[];
     vi.mocked(getL7Rules).mockResolvedValueOnce(mockRules);
 
-    const { result } = renderHook(
-      () => useGetAllL7Rules('project1', 'policy1', 'region1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetAllL7Rules('project1', 'policy1', 'region1'), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -115,16 +117,12 @@ describe('useDeleteL7Rule', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.deleteL7Rule();
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(deleteL7Rule).toHaveBeenCalledWith(
-      'project1',
-      'region1',
-      'policy1',
-      'rule1',
-    );
+    expect(deleteL7Rule).toHaveBeenCalledWith('project1', 'region1', 'policy1', 'rule1');
     expect(onSuccess).toHaveBeenCalled();
   });
 });
@@ -149,16 +147,12 @@ describe('useCreateL7Rule', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.createL7Rule(newRule);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(createL7Rule).toHaveBeenCalledWith(
-      'project1',
-      'region1',
-      'policy1',
-      newRule,
-    );
+    expect(createL7Rule).toHaveBeenCalledWith('project1', 'region1', 'policy1', newRule);
     expect(onSuccess).toHaveBeenCalled();
   });
 });
@@ -183,16 +177,12 @@ describe('useUpdateL7Rule', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.updateL7Rule(updatedRule);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(updateL7Rule).toHaveBeenCalledWith(
-      'project1',
-      'region1',
-      'policy1',
-      updatedRule,
-    );
+    expect(updateL7Rule).toHaveBeenCalledWith('project1', 'region1', 'policy1', updatedRule);
     expect(onSuccess).toHaveBeenCalled();
   });
 });
@@ -202,10 +192,9 @@ describe('useGetL7Rule', () => {
     const mockRule = { id: '1', key: 'key1', value: 'value1' } as TL7Rule;
     vi.mocked(getL7Rule).mockResolvedValueOnce(mockRule);
 
-    const { result } = renderHook(
-      () => useGetL7Rule('project1', 'policy1', 'region1', 'rule1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetL7Rule('project1', 'policy1', 'region1', 'rule1'), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 

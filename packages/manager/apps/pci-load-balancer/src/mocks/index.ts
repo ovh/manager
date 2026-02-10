@@ -1,6 +1,7 @@
 import { TFlavor } from '@ovh-ux/manager-pci-common';
-import { TLoadBalancer } from '@/api/data/load-balancer';
+
 import { TLoadBalancerListener } from '@/api/data/listener';
+import { TLoadBalancer } from '@/api/data/load-balancer';
 
 export const mockLoadBalancer = {
   id: 'idLoadBalancer1',

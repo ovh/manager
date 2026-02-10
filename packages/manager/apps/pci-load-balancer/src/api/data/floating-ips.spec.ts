@@ -1,7 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getFloatingIps } from './floating-ips';
+
 import { TFloatingIp } from '@/types/floating.type';
+
+import { getFloatingIps } from './floating-ips';
 
 describe('getFloatingIps', () => {
   const projectId = 'test-project-id';
@@ -32,9 +35,7 @@ describe('getFloatingIps', () => {
 
     const result = await getFloatingIps(projectId, region);
 
-    expect(v6.get).toHaveBeenCalledWith(
-      `/cloud/project/${projectId}/region/${region}/floatingip`,
-    );
+    expect(v6.get).toHaveBeenCalledWith(`/cloud/project/${projectId}/region/${region}/floatingip`);
     expect(result).toEqual(mockFloatingIps);
   });
 
@@ -42,8 +43,6 @@ describe('getFloatingIps', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValue(new Error(errorMessage));
 
-    await expect(getFloatingIps(projectId, region)).rejects.toThrow(
-      errorMessage,
-    );
+    await expect(getFloatingIps(projectId, region)).rejects.toThrow(errorMessage);
   });
 });

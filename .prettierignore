@@ -33,3 +33,4 @@ packages/manager/apps/zimbra
 packages/manager/apps/pci-project
 packages/manager/apps/hub
 packages/manager/apps/pci-file-storage
+packages/manager/apps/pci-load-balancer

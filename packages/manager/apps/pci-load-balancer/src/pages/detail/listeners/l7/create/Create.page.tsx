@@ -1,17 +1,17 @@
-import {
-  Headers,
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
-import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import PolicyForm from '@/components/form/PolicyForm.component';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Headers, useNotifications, useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { useCreatePolicy } from '@/api/hook/useL7Policy';
 import { useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
+import PolicyForm from '@/components/form/PolicyForm.component';
 
 export default function CreatePage() {
   const { addSuccess, addError } = useNotifications();
@@ -44,8 +44,7 @@ export default function CreatePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
+                  message: error?.response?.data?.message || error?.message || null,
                   requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
                 }),
               }}
@@ -95,9 +94,7 @@ export default function CreatePage() {
           onSubmit={createPolicy}
           listener={listener}
           pools={pools}
-          submitButtonText={t(
-            'octavia_load_balancer_create_l7_policy_create_submit',
-          )}
+          submitButtonText={t('octavia_load_balancer_create_l7_policy_create_submit')}
         />
       )}
     </div>

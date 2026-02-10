@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { TFloatingIp } from '@/types/floating.type';
 
 export const getFloatingIps = async (projectId: string, region: string) => {

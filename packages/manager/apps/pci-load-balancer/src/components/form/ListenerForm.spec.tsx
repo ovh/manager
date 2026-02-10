@@ -1,13 +1,13 @@
-import {
-  OdsInputValueChangeEventDetail,
-  OsdsInput,
-} from '@ovhcloud/ods-components';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { wrapper } from '@/wrapperRenders';
-import { TLoadBalancerPool } from '@/api/data/pool';
+
+import { OdsInputValueChangeEventDetail, OsdsInput } from '@ovhcloud/ods-components';
+
 import { TProtocol } from '@/api/data/load-balancer';
+import { TLoadBalancerPool } from '@/api/data/pool';
+import { wrapper } from '@/wrapperRenders';
+
 import ListenerForm from './ListenerForm.component';
 
 const mockOnChange = vi.fn();
@@ -45,9 +45,7 @@ describe('ListenerForm', () => {
     );
 
     expect(screen.getByTestId('ListenerForm_name-input')).toHaveValue('');
-    expect(screen.getByTestId('ListenerForm_protocol-select')).toHaveValue(
-      'HTTP',
-    );
+    expect(screen.getByTestId('ListenerForm_protocol-select')).toHaveValue('HTTP');
     expect(screen.getByTestId('ListenerForm_port-input')).toHaveValue(80);
   });
 
@@ -67,7 +65,7 @@ describe('ListenerForm', () => {
     expect(screen.getByTestId('ListenerForm_spinner')).toBeVisible();
   });
 
-  it('should validate required name field and displays error if empty', async () => {
+  it('should validate required name field and displays error if empty', () => {
     render(
       <ListenerForm
         formState={{ ...defaultFormState, name: '' }}
@@ -83,10 +81,10 @@ describe('ListenerForm', () => {
     const nameInput = screen.getByTestId('ListenerForm_name-input');
 
     act(() => {
-      ((nameInput as unknown) as OsdsInput).odsValueChange.emit({
+      (nameInput as unknown as OsdsInput).odsValueChange.emit({
         value: '',
       } as OdsInputValueChangeEventDetail);
-      ((nameInput as unknown) as OsdsInput).odsInputBlur.emit();
+      (nameInput as unknown as OsdsInput).odsInputBlur.emit();
     });
 
     expect(screen.getByTestId('ListenerForm_name-field')).toHaveAttribute(
@@ -111,7 +109,7 @@ describe('ListenerForm', () => {
     const nameInput = screen.getByTestId('ListenerForm_name-input');
 
     act(() => {
-      ((nameInput as unknown) as OsdsInput).odsValueChange.emit({
+      (nameInput as unknown as OsdsInput).odsValueChange.emit({
         value: 'New Listener Name',
       } as OdsInputValueChangeEventDetail);
     });
@@ -119,7 +117,7 @@ describe('ListenerForm', () => {
     const portInput = screen.getByTestId('ListenerForm_port-input');
 
     act(() => {
-      ((portInput as unknown) as OsdsInput).odsValueChange.emit({
+      (portInput as unknown as OsdsInput).odsValueChange.emit({
         value: '8080',
       } as OdsInputValueChangeEventDetail);
     });
@@ -143,9 +141,7 @@ describe('ListenerForm', () => {
     const submitButton = screen.getByTestId('ListenerForm_submit-button');
     await userEvent.click(submitButton);
 
-    expect(mockOnSubmit).toHaveBeenCalledWith(
-      expect.objectContaining({ name: 'Valid Name' }),
-    );
+    expect(mockOnSubmit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Valid Name' }));
   });
 
   it('should call onCancel when the cancel button is clicked', async () => {

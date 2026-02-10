@@ -1,23 +1,25 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+import { wrapper } from '@/wrapperRenders';
+
 import {
-  usePrivateNetworkByRegion,
-  useSubnetByNetworkAndRegion,
-  useGetPrivateNetworks,
-  useGetPrivateNetworkSubnets,
-  useGetRegionPrivateNetworks,
-} from './useNetwork';
-import {
-  getPrivateNetworkByRegion,
-  getPrivateNetworks,
-  getPrivateNetworkSubnets,
-  getRegionPrivateNetworks,
-  getSubnetByNetworkAndRegion,
   TNetwork,
   TPrivateNetwork,
   TSubnet,
+  getPrivateNetworkByRegion,
+  getPrivateNetworkSubnets,
+  getPrivateNetworks,
+  getRegionPrivateNetworks,
+  getSubnetByNetworkAndRegion,
 } from '../data/network';
-import { wrapper } from '@/wrapperRenders';
+import {
+  useGetPrivateNetworkSubnets,
+  useGetPrivateNetworks,
+  useGetRegionPrivateNetworks,
+  usePrivateNetworkByRegion,
+  useSubnetByNetworkAndRegion,
+} from './useNetwork';
 
 vi.mock('../data/network');
 
@@ -92,10 +94,9 @@ describe('useNetwork hooks', () => {
     const mockData = [{ id: 'network-1' }] as TPrivateNetwork[];
     vi.mocked(getRegionPrivateNetworks).mockResolvedValue(mockData);
 
-    const { result } = renderHook(
-      () => useGetRegionPrivateNetworks('project-1', 'region-1'),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetRegionPrivateNetworks('project-1', 'region-1'), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 

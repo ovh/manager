@@ -1,20 +1,22 @@
-import { describe, Mock, vi } from 'vitest';
-import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+import React from 'react';
+
 import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import React from 'react';
-import { IpStep, TIpStepProps } from './IpStep';
-import { wrapper } from '@/wrapperRenders';
-import { useTracking } from '../../hooks/useTracking';
+import { Mock, describe, vi } from 'vitest';
+
+import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { FloatingIpSelectionId } from '@/types/floating.type';
+import { wrapper } from '@/wrapperRenders';
 
-vi.mock('./IpStepMessages', async () => ({
+import { useTracking } from '../../hooks/useTracking';
+import { IpStep, TIpStepProps } from './IpStep';
+
+vi.mock('./IpStepMessages', () => ({
   IpStepMessages: vi
     .fn()
-    .mockImplementation(({ ...props }) => (
-      <div data-testid="step-messages" {...props}></div>
-    )),
+    .mockImplementation(({ ...props }) => <div data-testid="step-messages" {...props}></div>),
 }));
 
 vi.mock('react-i18next', async () => {
@@ -27,7 +29,7 @@ vi.mock('react-i18next', async () => {
   };
 });
 
-vi.mock('../../hooks/useTracking', async () => ({
+vi.mock('../../hooks/useTracking', () => ({
   useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
@@ -100,13 +102,9 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   return {
     ...rest,
     useMe: vi.fn(),
-    StepComponent: vi
-      .fn()
-      .mockImplementation(ActualStepComponent as typeof StepComponent),
+    StepComponent: vi.fn().mockImplementation(ActualStepComponent as typeof StepComponent),
     useCatalogPrice: vi.fn().mockImplementation(() => ({
-      getFormattedHourlyCatalogPrice: vi
-        .fn()
-        .mockImplementation((param) => param),
+      getFormattedHourlyCatalogPrice: vi.fn().mockImplementation((param: number) => `${param}`),
     })),
   };
 });
@@ -179,7 +177,7 @@ describe('IpStep', () => {
     });
     describe('next', () => {
       describe('click', () => {
-        it('Should track on next click', async () => {
+        it('Should track on next click', () => {
           const trackStepSpy = vi.fn();
 
           (useTracking as Mock).mockImplementation(() => ({

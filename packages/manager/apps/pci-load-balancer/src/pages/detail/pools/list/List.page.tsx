@@ -1,13 +1,10 @@
-import {
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+import { Suspense, useMemo, useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -23,18 +20,26 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Suspense, useMemo, useRef, useState } from 'react';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { TLoadBalancerPool } from '@/api/data/pool';
+import { useLoadBalancerPools } from '@/api/hook/usePool';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
+
 import ActionsComponent from './Actions.component';
-import { TLoadBalancerPool } from '@/api/data/pool';
-import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
-import { useLoadBalancerPools } from '@/api/hook/usePool';
 
 export default function PoolList() {
   const { t } = useTranslation(['pools', 'filter', 'load-balancer']);
@@ -45,7 +50,7 @@ export default function PoolList() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
   const [searchField, setSearchField] = useState('');
 
   const { data, error, isPending } = useLoadBalancerPools(
@@ -68,9 +73,7 @@ export default function PoolList() {
       },
       {
         id: 'protocol',
-        cell: (props: TLoadBalancerPool) => (
-          <DataGridTextCell>{props.protocol}</DataGridTextCell>
-        ),
+        cell: (props: TLoadBalancerPool) => <DataGridTextCell>{props.protocol}</DataGridTextCell>,
         label: t('octavia_load_balancer_pools_protocol'),
       },
       {
@@ -85,20 +88,14 @@ export default function PoolList() {
       {
         id: 'provisioningStatus',
         cell: (props: TLoadBalancerPool) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_provisioning_status'),
       },
       {
         id: 'operatingStatus',
         cell: (props: TLoadBalancerPool) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_operating_status'),
         isSortable: false,
@@ -118,13 +115,7 @@ export default function PoolList() {
   );
 
   if (isPending && !error) {
-    return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="List-spinner"
-      />
-    );
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />;
   }
 
   return (
@@ -167,7 +158,7 @@ export default function PoolList() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}

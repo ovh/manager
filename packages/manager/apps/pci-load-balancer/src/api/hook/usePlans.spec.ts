@@ -1,9 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { IMe, useMe } from '@ovh-ux/manager-react-components';
 import { vi } from 'vitest';
-import { useGetPlans } from './usePlans';
-import { getPlans, TPlanResponse } from '../data/plans';
+
+import { IMe, useMe } from '@ovh-ux/manager-react-components';
+
 import { wrapper } from '@/wrapperRenders';
+
+import { TPlanResponse, getPlans } from '../data/plans';
+import { useGetPlans } from './usePlans';
 
 vi.mock('../data/plans', () => ({
   getPlans: vi.fn(),

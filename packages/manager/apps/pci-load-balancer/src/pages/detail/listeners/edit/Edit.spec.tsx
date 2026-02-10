@@ -1,16 +1,20 @@
+import { UseQueryResult } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
-import { UseQueryResult } from '@tanstack/react-query';
-import * as _useListenerModule from '@/api/hook/useListener';
-import * as _usePoolModule from '@/api/hook/usePool';
-import { wrapper } from '@/wrapperRenders';
-import EditListener from './Edit.page';
+
+import { TLoadBalancerListener } from '@/api/data/listener';
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
 } from '@/api/data/load-balancer';
 import { TLoadBalancerPool } from '@/api/data/pool';
-import { TLoadBalancerListener } from '@/api/data/listener';
+import * as _useListenerModule from '@/api/hook/useListener';
+import * as _usePoolModule from '@/api/hook/usePool';
+import { wrapper } from '@/wrapperRenders';
+
+import EditListener from './Edit.page';
+
+type UseEditLoadBalancerReturn = ReturnType<typeof _useListenerModule.useEditLoadBalancer>;
 
 describe('EditListener component', () => {
   it('renders correctly and matches snapshot', () => {
@@ -52,10 +56,10 @@ describe('EditListener component', () => {
       data: {},
     } as UseQueryResult<TLoadBalancerListener>);
 
-    vi.spyOn(_useListenerModule, 'useEditLoadBalancer').mockReturnValue(({
+    vi.spyOn(_useListenerModule, 'useEditLoadBalancer').mockReturnValue({
       editListener: vi.fn(),
       isPending: false,
-    } as unknown) as any);
+    } as unknown as UseEditLoadBalancerReturn);
 
     const { asFragment } = render(<EditListener />, { wrapper });
 

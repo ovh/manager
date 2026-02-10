@@ -1,17 +1,20 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import {
+  TL7Policy,
   createPolicy,
   deletePolicy,
   getL7Policies,
   getPolicy,
-  TL7Policy,
   updatePolicy,
 } from '@/api/data/l7Policies';
+import { ACTIONS, ACTION_LABELS } from '@/constants';
 import { paginateResults, sortResults } from '@/helpers';
-import { ACTION_LABELS, ACTIONS } from '@/constants';
 import queryClient from '@/queryClient';
 
 export const getAttribute = (policy: TL7Policy) => {
@@ -39,11 +42,7 @@ export const mapSearchPolicy = (l7Policies: TL7Policy[]): TL7Policy[] =>
     };
   });
 
-export const useGetAllL7Policies = (
-  projectId: string,
-  listenerId: string,
-  region: string,
-) =>
+export const useGetAllL7Policies = (projectId: string, listenerId: string, region: string) =>
   useQuery({
     queryKey: ['l7Policies', projectId, 'listeners', listenerId, region],
     queryFn: () => getL7Policies(projectId, listenerId, region),
@@ -85,11 +84,7 @@ export const useL7Policies = (
   );
 };
 
-export const useGetPolicy = (
-  projectId: string,
-  policyId: string,
-  region: string,
-) =>
+export const useGetPolicy = (projectId: string, policyId: string, region: string) =>
   useQuery({
     queryKey: ['l7Policies', projectId, policyId, region],
     queryFn: () => getPolicy(projectId, region, policyId),
@@ -141,9 +136,8 @@ export const useCreatePolicy = ({
   onError,
   onSuccess,
 }: CreatePolicyProps) => {
-  const mutation = useMutation({
-    mutationFn: async (policy: TL7Policy) =>
-      createPolicy(projectId, region, listenerId, policy),
+  const mutation = useMutation<TL7Policy, Error, TL7Policy>({
+    mutationFn: async (policy: TL7Policy) => createPolicy(projectId, region, listenerId, policy),
     onError,
     onSuccess: async (newPolicy) => {
       await queryClient.invalidateQueries({
@@ -165,15 +159,9 @@ type UpdatePolicyProps = {
   onSuccess: (policy: TL7Policy) => void;
 };
 
-export const useUpdatePolicy = ({
-  projectId,
-  region,
-  onError,
-  onSuccess,
-}: UpdatePolicyProps) => {
+export const useUpdatePolicy = ({ projectId, region, onError, onSuccess }: UpdatePolicyProps) => {
   const mutation = useMutation({
-    mutationFn: async (policy: TL7Policy) =>
-      updatePolicy(projectId, region, policy),
+    mutationFn: async (policy: TL7Policy) => updatePolicy(projectId, region, policy),
     onError,
     onSuccess: async (policy: TL7Policy) => {
       await queryClient.invalidateQueries({

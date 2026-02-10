@@ -1,5 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_ICON_NAME,
@@ -7,28 +10,31 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useMe } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { LogsView } from '@ovh-ux/manager-pci-common';
+import { useMe } from '@ovh-ux/manager-react-components';
+
 import { LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK } from '@/constants';
+
 import { LoadBalancerLogsProvider } from './LoadBalancerLogsProvider';
 
 export default function LogsPage() {
   const { t } = useTranslation('logs');
-  const { projectId, loadBalancerId, region } = useParams();
+  const { projectId, loadBalancerId, region } = useParams<{
+    projectId: string;
+    loadBalancerId: string;
+    region: string;
+  }>();
   const navigate = useNavigate();
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
   const infoLink =
-    LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK[ovhSubsidiary] ||
-    LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK.DEFAULT;
+    LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK[
+      (ovhSubsidiary ?? 'DEFAULT') as keyof typeof LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK
+    ] || LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK.DEFAULT;
 
   return (
-    <LoadBalancerLogsProvider
-      loadBalancerId={loadBalancerId}
-      projectId={projectId}
-      region={region}
-    >
+    <LoadBalancerLogsProvider loadBalancerId={loadBalancerId} projectId={projectId} region={region}>
       <OsdsText
         size={ODS_TEXT_SIZE._400}
         level={ODS_TEXT_LEVEL.body}

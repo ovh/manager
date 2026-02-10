@@ -1,7 +1,9 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ActionsComponent from './Actions.component';
+
 import { TLoadBalancer } from '@/api/data/load-balancer';
+
+import ActionsComponent from './Actions.component';
 
 describe('ActionsComponent', () => {
   const loadBalancer = {
@@ -10,9 +12,7 @@ describe('ActionsComponent', () => {
   } as TLoadBalancer;
 
   it('renders action menu with correct items', () => {
-    const { getByText } = render(
-      <ActionsComponent loadBalancer={loadBalancer} />,
-    );
+    const { getByText } = render(<ActionsComponent loadBalancer={loadBalancer} />);
     const deleteLink = getByText('octavia_load_balancer_actions_delete');
     const detailLink = getByText('octavia_load_balancer_actions_detail');
 

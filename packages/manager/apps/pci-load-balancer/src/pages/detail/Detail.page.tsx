@@ -1,3 +1,12 @@
+import { useEffect, useState } from 'react';
+
+import { Outlet, useHref, useLocation, useParams, useResolvedPath } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
@@ -5,38 +14,30 @@ import {
   useFeatureAvailability,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useHref,
-  useLocation,
-  useParams,
-  useResolvedPath,
-} from 'react-router-dom';
-import { ROUTE_PATHS } from '@/routes';
+
 import { useLoadBalancer } from '@/api/hook/useLoadBalancer';
 import TabsPanel, { TabsProps } from '@/components/detail/TabsPanel.component';
 import { LOGS_FEATURE_AVAILABILITY_KEY } from '@/constants';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function DetailPage() {
   const { t } = useTranslation('load-balancer');
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
+  const [activePanelTranslation, setActivePanelTranslation] = useState<string | null>(null);
 
   const location = useLocation();
   const { data: project } = useProject();
-  const { projectId, region, loadBalancerId } = useParams();
+  const { projectId, region, loadBalancerId } = useParams<{
+    projectId: string;
+    region: string;
+    loadBalancerId: string;
+  }>();
 
   const hrefProject = useProjectUrl('public-cloud');
   const hrefBack = useHref('..');
   const hrefGeneralInformation = useHref(ROUTE_PATHS.GENERAL_INFORMATION);
   const logsPath = useResolvedPath(ROUTE_PATHS.LOGS).pathname;
 
-  const { data: availability } = useFeatureAvailability([
-    LOGS_FEATURE_AVAILABILITY_KEY,
-  ]);
+  const { data: availability } = useFeatureAvailability([LOGS_FEATURE_AVAILABILITY_KEY]);
 
   const tabs: TabsProps['tabs'] = [
     {
@@ -74,7 +75,11 @@ export default function DetailPage() {
     });
   }
 
-  const { data: loadBalancerDetail, isPending, error } = useLoadBalancer({
+  const {
+    data: loadBalancerDetail,
+    isPending,
+    error,
+  } = useLoadBalancer({
     projectId,
     region,
     loadBalancerId,
@@ -105,7 +110,7 @@ export default function DetailPage() {
             label: loadBalancerDetail?.id,
             href: hrefGeneralInformation,
           },
-          { label: activePanelTranslation },
+          { label: activePanelTranslation ?? '' },
         ]}
       />
 

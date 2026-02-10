@@ -1,7 +1,10 @@
+import { useMemo } from 'react';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
 import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
+
 import {
   TPoolMember,
   createPoolMembers,
@@ -13,11 +16,7 @@ import {
 import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 
-export const useGetAllPoolMembers = (
-  projectId: string,
-  poolId: string,
-  region: string,
-) =>
+export const useGetAllPoolMembers = (projectId: string, poolId: string, region: string) =>
   useQuery({
     queryKey: ['members', projectId, region, poolId],
     queryFn: () => getPoolMembers(projectId, region, poolId),
@@ -48,10 +47,7 @@ export const usePoolMembers = (
       isPending,
       allPoolMembers,
       paginatedPoolMembers: paginateResults<TPoolMember>(
-        sortResults<TPoolMember>(
-          applyFilters(allPoolMembers || [], filters),
-          sorting,
-        ),
+        sortResults<TPoolMember>(applyFilters(allPoolMembers || [], filters), sorting),
         pagination,
       ),
       error,
@@ -78,8 +74,7 @@ export const useDeletePoolMember = ({
   onSuccess,
 }: DeletePoolMemberProps) => {
   const mutation = useMutation({
-    mutationFn: async () =>
-      deletePoolMember(projectId, region, poolId, memberId),
+    mutationFn: async () => deletePoolMember(projectId, region, poolId, memberId),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -125,8 +120,7 @@ export const useUpdatePoolMember = ({
   onSuccess,
 }: UpdatePoolMemberProps) => {
   const mutation = useMutation({
-    mutationFn: async () =>
-      updatePoolMemberName(projectId, region, poolId, memberId, name),
+    mutationFn: async () => updatePoolMemberName(projectId, region, poolId, memberId, name),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -171,8 +165,7 @@ export const useCreatePoolMembers = ({
     },
   });
   return {
-    createPoolMembers: (members: Partial<TPoolMember[]>) =>
-      mutation.mutate(members),
+    createPoolMembers: (members: Partial<TPoolMember[]>) => mutation.mutate(members),
     ...mutation,
   };
 };

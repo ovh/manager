@@ -1,22 +1,24 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import {
-  useGetHealthMonitor,
-  useDeleteHealthMonitor,
-  useCreateHealthMonitor,
-  useEditHealthMonitor,
-  useRenameHealthMonitor,
-} from './useHealthMonitor';
+
 import { wrapper } from '@/wrapperRenders';
+
 import {
+  THealthMonitor,
+  THealthMonitorFormState,
   createHealthMonitor,
   deleteHealthMonitor,
   editHealthMonitor,
   getHealthMonitor,
   renameHealthMonitor,
-  THealthMonitor,
-  THealthMonitorFormState,
 } from '../data/health-monitor';
+import {
+  useCreateHealthMonitor,
+  useDeleteHealthMonitor,
+  useEditHealthMonitor,
+  useGetHealthMonitor,
+  useRenameHealthMonitor,
+} from './useHealthMonitor';
 
 vi.mock('@/api/data/health-monitor');
 
@@ -28,14 +30,11 @@ describe('useHealthMonitor hooks', () => {
   const model = { name: 'test-name' } as THealthMonitorFormState;
 
   it('should fetch health monitor', async () => {
-    vi.mocked(getHealthMonitor).mockResolvedValue([
-      { id: healthMonitorId } as THealthMonitor,
-    ]);
+    vi.mocked(getHealthMonitor).mockResolvedValue([{ id: healthMonitorId } as THealthMonitor]);
 
-    const { result } = renderHook(
-      () => useGetHealthMonitor({ projectId, region, poolId }),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetHealthMonitor({ projectId, region, poolId }), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -44,9 +43,7 @@ describe('useHealthMonitor hooks', () => {
   });
 
   it('should delete health monitor', async () => {
-    vi.mocked(deleteHealthMonitor).mockResolvedValue([
-      { id: healthMonitorId } as THealthMonitor,
-    ]);
+    vi.mocked(deleteHealthMonitor).mockResolvedValue([{ id: healthMonitorId } as THealthMonitor]);
     const onError = vi.fn();
     const onSuccess = vi.fn();
 
@@ -55,15 +52,12 @@ describe('useHealthMonitor hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.deleteHealthMonitor(healthMonitorId);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(deleteHealthMonitor).toHaveBeenCalledWith(
-      projectId,
-      region,
-      healthMonitorId,
-    );
+    expect(deleteHealthMonitor).toHaveBeenCalledWith(projectId, region, healthMonitorId);
     expect(onSuccess).toHaveBeenCalled();
   });
 
@@ -84,16 +78,12 @@ describe('useHealthMonitor hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.createHealthMonitor(model);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(createHealthMonitor).toHaveBeenCalledWith(
-      projectId,
-      region,
-      poolId,
-      model,
-    );
+    expect(createHealthMonitor).toHaveBeenCalledWith(projectId, region, poolId, model);
     expect(onSuccess).toHaveBeenCalled();
   });
 
@@ -114,16 +104,12 @@ describe('useHealthMonitor hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.editHealthMonitor(model);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
-    expect(editHealthMonitor).toHaveBeenCalledWith(
-      projectId,
-      region,
-      healthMonitorId,
-      model,
-    );
+    expect(editHealthMonitor).toHaveBeenCalledWith(projectId, region, healthMonitorId, model);
     expect(onSuccess).toHaveBeenCalled();
   });
 
@@ -144,9 +130,10 @@ describe('useHealthMonitor hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.renameHealthMonitor('new-name');
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(renameHealthMonitor).toHaveBeenCalledWith(
       projectId,

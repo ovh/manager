@@ -1,29 +1,23 @@
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-  act,
-} from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import HealthMonitorForm, {
-  HealthMonitorFormProps,
-} from './HealthMonitorForm.component';
-import { TLoadBalancerPool } from '@/api/data/pool';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { THealthMonitorFormState } from '@/api/data/health-monitor';
+import { TLoadBalancerPool } from '@/api/data/pool';
+
+import HealthMonitorForm, { HealthMonitorFormProps } from './HealthMonitorForm.component';
 
 describe('HealthMonitorForm Component', () => {
   const mockProps = {
     title: 'Health Monitor Form',
-    associatedPool: ({ protocol: 'HTTP' } as unknown) as TLoadBalancerPool,
-    formState: ({
+    associatedPool: { protocol: 'HTTP' } as unknown as TLoadBalancerPool,
+    formState: {
       type: '',
       name: '',
       delay: 5,
       timeout: 3,
       maxRetries: 3,
       maxRetriesDown: 3,
-    } as unknown) as THealthMonitorFormState,
+    } as unknown as THealthMonitorFormState,
     isEditing: false,
     isPending: false,
     submitLabel: 'Submit',
@@ -74,9 +68,7 @@ describe('HealthMonitorForm Component', () => {
 
     expect(screen.getByTestId('HealthMonitorForm_urlPath_field')).toBeVisible();
 
-    expect(
-      screen.getByTestId('HealthMonitorForm_expectedCode_field'),
-    ).toBeVisible();
+    expect(screen.getByTestId('HealthMonitorForm_expectedCode_field')).toBeVisible();
   });
 
   it('should show urlPath and expectedCode fields when type is HTTPs', () => {
@@ -92,9 +84,7 @@ describe('HealthMonitorForm Component', () => {
 
     expect(screen.getByTestId('HealthMonitorForm_urlPath_field')).toBeVisible();
 
-    expect(
-      screen.getByTestId('HealthMonitorForm_expectedCode_field'),
-    ).toBeVisible();
+    expect(screen.getByTestId('HealthMonitorForm_expectedCode_field')).toBeVisible();
   });
 
   it('should hide urlPath and expectedCode when type is not HTTP or HTTPS', () => {
@@ -110,9 +100,7 @@ describe('HealthMonitorForm Component', () => {
 
     expect(screen.queryByTestId('HealthMonitorForm_urlPath_field')).toBeNull();
 
-    expect(
-      screen.queryByTestId('HealthMonitorForm_expectedCode_field'),
-    ).toBeNull();
+    expect(screen.queryByTestId('HealthMonitorForm_expectedCode_field')).toBeNull();
   });
 
   it('should display a spinner when isPending is true', () => {

@@ -1,17 +1,22 @@
+import { Suspense } from 'react';
+
+import { Outlet, useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
-  Links,
   LinkType,
+  Links,
   Notifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
-import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useParams } from 'react-router-dom';
-import { ROUTE_PATHS } from '@/routes';
+
 import { useListener } from '@/api/hook/useListener';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function L7Page() {
   const { t: tPciCommon } = useTranslation('pci-common');
@@ -33,9 +38,7 @@ export default function L7Page() {
   const hrefLoadBalancerDetail = useHref(
     `../${region}/${loadBalancerId}/${ROUTE_PATHS.GENERAL_INFORMATION}`,
   );
-  const hrefListeners = useHref(
-    `../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}`,
-  );
+  const hrefListeners = useHref(`../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}`);
 
   return (
     <>

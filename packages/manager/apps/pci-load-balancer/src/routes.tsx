@@ -1,6 +1,9 @@
 import { lazy } from 'react';
+
 import { Navigate, Route } from 'react-router-dom';
+
 import { PageType } from '@ovh-ux/manager-react-shell-client';
+
 import { ErrorBoundary } from './pages/ErrorBoundary';
 
 export const ROUTE_PATHS = {
@@ -55,133 +58,79 @@ const LayoutPage = lazy(() => import('@/pages/Layout'));
 const ListingPage = lazy(() => import('@/pages/listing/Listing.page'));
 const AddPage = lazy(() => import('@/pages/create/Create.page'));
 const OnBoardingPage = lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const NoPrivateNetworkPage = lazy(() =>
-  import('@/pages/onboarding/NoPrivateNetwork.page'),
-);
+const NoPrivateNetworkPage = lazy(() => import('@/pages/onboarding/NoPrivateNetwork.page'));
 const DetailPage = lazy(() => import('@/pages/detail/Detail.page'));
-const OverviewPage = lazy(() =>
-  import('@/pages/detail/overview/Overview.page'),
+const OverviewPage = lazy(() => import('@/pages/detail/overview/Overview.page'));
+const ListenersPage = lazy(() => import('@/pages/detail/listeners/Listeners.page'));
+const ListenersListPage = lazy(() => import('@/pages/detail/listeners/list/List.page'));
+const L7PoliciesListPage = lazy(() => import('@/pages/detail/listeners/l7/list/List.page'));
+const L7PRulesListPage = lazy(() => import('@/pages/detail/listeners/l7/rules/list/List.page'));
+const L7PoliciesDeletePage = lazy(() => import('@/pages/detail/listeners/l7/delete/Delete.page'));
+const L7RulesDeletePage = lazy(
+  () => import('@/pages/detail/listeners/l7/rules/delete/Delete.page'),
 );
-const ListenersPage = lazy(() =>
-  import('@/pages/detail/listeners/Listeners.page'),
-);
-const ListenersListPage = lazy(() =>
-  import('@/pages/detail/listeners/list/List.page'),
-);
-const L7PoliciesListPage = lazy(() =>
-  import('@/pages/detail/listeners/l7/list/List.page'),
-);
-const L7PRulesListPage = lazy(() =>
-  import('@/pages/detail/listeners/l7/rules/list/List.page'),
-);
-const L7PoliciesDeletePage = lazy(() =>
-  import('@/pages/detail/listeners/l7/delete/Delete.page'),
-);
-const L7RulesDeletePage = lazy(() =>
-  import('@/pages/detail/listeners/l7/rules/delete/Delete.page'),
-);
-const L7RulesEditPage = lazy(() =>
-  import('@/pages/detail/listeners/l7/rules/edit/Edit.page'),
-);
-const L7PoliciesEditPage = lazy(() =>
-  import('@/pages/detail/listeners/l7/edit/Edit.page'),
-);
-const L7PoliciesCreatePage = lazy(() =>
-  import('@/pages/detail/listeners/l7/create/Create.page'),
-);
-const L7RulesCreatePage = lazy(() =>
-  import('@/pages/detail/listeners/l7/rules/create/Create.page'),
+const L7RulesEditPage = lazy(() => import('@/pages/detail/listeners/l7/rules/edit/Edit.page'));
+const L7PoliciesEditPage = lazy(() => import('@/pages/detail/listeners/l7/edit/Edit.page'));
+const L7PoliciesCreatePage = lazy(() => import('@/pages/detail/listeners/l7/create/Create.page'));
+const L7RulesCreatePage = lazy(
+  () => import('@/pages/detail/listeners/l7/rules/create/Create.page'),
 );
 const L7Page = lazy(() => import('@/pages/detail/listeners/l7/L7.page'));
-const L7RulesPage = lazy(() =>
-  import('@/pages/detail/listeners/l7/rules/L7Rules.page'),
+const L7RulesPage = lazy(() => import('@/pages/detail/listeners/l7/rules/L7Rules.page'));
+const DeleteListenerPage = lazy(
+  () => import('@/pages/detail/listeners/delete/DeleteListener.page'),
 );
-const DeleteListenerPage = lazy(() =>
-  import('@/pages/detail/listeners/delete/DeleteListener.page'),
-);
-const ListenersCreatePage = lazy(() =>
-  import('@/pages/detail/listeners/create/Create.page'),
-);
-const ListenersEditPage = lazy(() =>
-  import('@/pages/detail/listeners/edit/Edit.page'),
-);
+const ListenersCreatePage = lazy(() => import('@/pages/detail/listeners/create/Create.page'));
+const ListenersEditPage = lazy(() => import('@/pages/detail/listeners/edit/Edit.page'));
 
 const PoolsPage = lazy(() => import('@/pages/detail/pools/Pools.page'));
-const PoolsMembersListPage = lazy(() =>
-  import('@/pages/detail/pools/detail/members/list/List.page'),
+const PoolsMembersListPage = lazy(
+  () => import('@/pages/detail/pools/detail/members/list/List.page'),
 );
-const PoolsMembersDeletePage = lazy(() =>
-  import('@/pages/detail/pools/detail/members/delete/Delete.page'),
+const PoolsMembersDeletePage = lazy(
+  () => import('@/pages/detail/pools/detail/members/delete/Delete.page'),
 );
-const PoolsMembersEditPage = lazy(() =>
-  import('@/pages/detail/pools/detail/members/edit/Edit.page'),
+const PoolsMembersEditPage = lazy(
+  () => import('@/pages/detail/pools/detail/members/edit/Edit.page'),
 );
-const PoolsMembersCreatePage = lazy(() =>
-  import('@/pages/detail/pools/detail/members/create/Create.page'),
+const PoolsMembersCreatePage = lazy(
+  () => import('@/pages/detail/pools/detail/members/create/Create.page'),
 );
-const AddIpInstancePage = lazy(() =>
-  import(
-    '@/pages/detail/pools/detail/members/add-ip-instance/AddIpInstance.page'
-  ),
+const AddIpInstancePage = lazy(
+  () => import('@/pages/detail/pools/detail/members/add-ip-instance/AddIpInstance.page'),
 );
-const PoolsMembersPage = lazy(() =>
-  import('@/pages/detail/pools/detail/members/Member.page'),
-);
-const PoolsCreatePage = lazy(() =>
-  import('@/pages/detail/pools/create/PoolsCreate.page'),
-);
-const PoolsEditPage = lazy(() =>
-  import('@/pages/detail/pools/edit/PoolsEdit.page'),
-);
+const PoolsMembersPage = lazy(() => import('@/pages/detail/pools/detail/members/Member.page'));
+const PoolsCreatePage = lazy(() => import('@/pages/detail/pools/create/PoolsCreate.page'));
+const PoolsEditPage = lazy(() => import('@/pages/detail/pools/edit/PoolsEdit.page'));
 const PoolListPage = lazy(() => import('@/pages/detail/pools/list/List.page'));
-const PoolDeletePage = lazy(() =>
-  import('@/pages/detail/pools/delete/DeletePool.page'),
+const PoolDeletePage = lazy(() => import('@/pages/detail/pools/delete/DeletePool.page'));
+const PoolEditNamePage = lazy(
+  () => import('@/pages/detail/pools/detail/overview/edit-name/EditName.page'),
 );
-const PoolEditNamePage = lazy(() =>
-  import('@/pages/detail/pools/detail/overview/edit-name/EditName.page'),
+const PoolDetailPage = lazy(() => import('@/pages/detail/pools/detail/Detail.page'));
+const PoolOverviewPage = lazy(() => import('@/pages/detail/pools/detail/overview/PoolOverview'));
+const PoolHealthMonitorPage = lazy(
+  () => import('@/pages/detail/pools/detail/health-monitor/HealthMonitor'),
 );
-const PoolDetailPage = lazy(() =>
-  import('@/pages/detail/pools/detail/Detail.page'),
+const HealthMonitorDeletePage = lazy(
+  () => import('@/pages/detail/pools/detail/health-monitor/delete/DeleteHealthMonitor.page'),
 );
-const PoolOverviewPage = lazy(() =>
-  import('@/pages/detail/pools/detail/overview/PoolOverview'),
+const HealthMonitorCreatePage = lazy(
+  () => import('@/pages/detail/pools/detail/health-monitor/create/HealthMonitorCreate.page'),
 );
-const PoolHealthMonitorPage = lazy(() =>
-  import('@/pages/detail/pools/detail/health-monitor/HealthMonitor'),
+const HealthMonitorEditPage = lazy(
+  () => import('@/pages/detail/pools/detail/health-monitor/edit/HealthMonitorEdit.page'),
 );
-const HealthMonitorDeletePage = lazy(() =>
-  import(
-    '@/pages/detail/pools/detail/health-monitor/delete/DeleteHealthMonitor.page'
-  ),
-);
-const HealthMonitorCreatePage = lazy(() =>
-  import(
-    '@/pages/detail/pools/detail/health-monitor/create/HealthMonitorCreate.page'
-  ),
-);
-const HealthMonitorEditPage = lazy(() =>
-  import(
-    '@/pages/detail/pools/detail/health-monitor/edit/HealthMonitorEdit.page'
-  ),
-);
-const HealthMonitorEditNamePage = lazy(() =>
-  import(
-    '@/pages/detail/pools/detail/health-monitor/rename/RenameHealthMonitor.page'
-  ),
+const HealthMonitorEditNamePage = lazy(
+  () => import('@/pages/detail/pools/detail/health-monitor/rename/RenameHealthMonitor.page'),
 );
 
-const StatisticsPage = lazy(() =>
-  import('@/pages/detail/statistics/Statistics.page'),
-);
-const CertificatesPage = lazy(() =>
-  import('@/pages/detail/certificates/Certificates.page'),
-);
+const StatisticsPage = lazy(() => import('@/pages/detail/statistics/Statistics.page'));
+const CertificatesPage = lazy(() => import('@/pages/detail/certificates/Certificates.page'));
 const LogsPage = lazy(() => import('@/pages/detail/log/Log.page'));
 const StreamsPage = lazy(() => import('@/pages/detail/log/Streams.page'));
 const DeletePage = lazy(() => import('@/pages/delete/Delete.page'));
-const EditLoadBalancerNamePage = lazy(() =>
-  import('@/pages/detail/edit/Edit.page'),
-);
+const EditLoadBalancerNamePage = lazy(() => import('@/pages/detail/edit/Edit.page'));
 
 const Routes = (
   <Route
@@ -204,10 +153,7 @@ const Routes = (
         },
       }}
     >
-      <Route
-        path={ROUTE_PATHS.NO_PRIVATE_NETWORK}
-        Component={NoPrivateNetworkPage}
-      />
+      <Route path={ROUTE_PATHS.NO_PRIVATE_NETWORK} Component={NoPrivateNetworkPage} />
     </Route>
     <Route
       path={ROUTE_PATHS.LISTING}
@@ -276,10 +222,7 @@ const Routes = (
         tracking: { pageName: 'listeners::policies::rules' },
       }}
     >
-      <Route
-        path=""
-        element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} replace />}
-      />
+      <Route path="" element={<Navigate to={ROUTE_PATHS.L7_RULES_LIST} replace />} />
       <Route
         path={ROUTE_PATHS.L7_RULES_CREATE}
         Component={L7RulesCreatePage}
@@ -304,15 +247,8 @@ const Routes = (
         />
       </Route>
     </Route>
-    <Route
-      id="pools-detail"
-      path={ROUTE_PATHS.POOL_DETAIL}
-      Component={PoolDetailPage}
-    >
-      <Route
-        path=""
-        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
-      />
+    <Route id="pools-detail" path={ROUTE_PATHS.POOL_DETAIL} Component={PoolDetailPage}>
+      <Route path="" element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />} />
       <Route
         path={ROUTE_PATHS.POOL_MEMBERS}
         Component={PoolsMembersPage}
@@ -320,14 +256,8 @@ const Routes = (
           tracking: { pageName: 'members' },
         }}
       >
-        <Route
-          path=""
-          element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} replace />}
-        />
-        <Route
-          path={ROUTE_PATHS.POOL_MEMBERS_LIST}
-          Component={PoolsMembersListPage}
-        >
+        <Route path="" element={<Navigate to={ROUTE_PATHS.POOL_MEMBERS_LIST} replace />} />
+        <Route path={ROUTE_PATHS.POOL_MEMBERS_LIST} Component={PoolsMembersListPage}>
           <Route
             path={ROUTE_PATHS.POOL_MEMBERS_DELETE}
             Component={PoolsMembersDeletePage}
@@ -351,10 +281,7 @@ const Routes = (
             }}
           />
         </Route>
-        <Route
-          path={ROUTE_PATHS.POOL_MEMBERS_ADD_IP_INSTANCE}
-          Component={AddIpInstancePage}
-        />
+        <Route path={ROUTE_PATHS.POOL_MEMBERS_ADD_IP_INSTANCE} Component={AddIpInstancePage} />
       </Route>
       <Route
         id="pools-detail-general-information"
@@ -423,10 +350,7 @@ const Routes = (
       />
     </Route>
     <Route id="detail" path={ROUTE_PATHS.DETAIL} Component={DetailPage}>
-      <Route
-        path=""
-        element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />}
-      />
+      <Route path="" element={<Navigate to={ROUTE_PATHS.GENERAL_INFORMATION} replace />} />
       <Route
         id="detail-general-information"
         path={ROUTE_PATHS.GENERAL_INFORMATION}
@@ -443,15 +367,8 @@ const Routes = (
           }}
         />
       </Route>
-      <Route
-        id="detail-listeners"
-        path={ROUTE_PATHS.LISTENERS}
-        Component={ListenersPage}
-      >
-        <Route
-          path=""
-          element={<Navigate to={ROUTE_PATHS.LISTENERS_LIST} replace />}
-        />
+      <Route id="detail-listeners" path={ROUTE_PATHS.LISTENERS} Component={ListenersPage}>
+        <Route path="" element={<Navigate to={ROUTE_PATHS.LISTENERS_LIST} replace />} />
         <Route
           id="listeners-list"
           path={ROUTE_PATHS.LISTENERS_LIST}
@@ -494,10 +411,7 @@ const Routes = (
           tracking: { pageName: 'pools' },
         }}
       >
-        <Route
-          path=""
-          element={<Navigate to={ROUTE_PATHS.POOL_LIST} replace />}
-        />
+        <Route path="" element={<Navigate to={ROUTE_PATHS.POOL_LIST} replace />} />
         <Route
           id="pool-list"
           path={ROUTE_PATHS.POOL_LIST}
@@ -536,11 +450,7 @@ const Routes = (
         />
       </Route>
 
-      <Route
-        id="detail-statistics"
-        path={ROUTE_PATHS.STATISTICS}
-        Component={StatisticsPage}
-      />
+      <Route id="detail-statistics" path={ROUTE_PATHS.STATISTICS} Component={StatisticsPage} />
       <Route
         id="detail-certificates"
         path={ROUTE_PATHS.CERTIFICATES}

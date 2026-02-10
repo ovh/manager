@@ -1,12 +1,14 @@
 import { create } from 'zustand';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { TRegion } from '@ovh-ux/manager-pci-common';
-import { TPrivateNetwork, TSubnet } from '@/api/data/network';
+
 import { TSubnetGateway } from '@/api/data/gateways';
-import { createLoadBalancer, TFlavor } from '@/api/data/load-balancer';
-import { TProductAddonDetail } from '@/types/product.type';
+import { TFlavor, createLoadBalancer } from '@/api/data/load-balancer';
+import { TPrivateNetwork, TSubnet } from '@/api/data/network';
 import { FloatingIpSelectionId } from '@/types/floating.type';
 import { ListenerConfiguration } from '@/types/listener.type';
+import { TProductAddonDetail } from '@/types/product.type';
 
 type TStep = {
   isOpen: boolean;
@@ -82,20 +84,16 @@ export const initialStoreState = () => ({
         isChecked: false,
       },
     ],
-    ...[
-      StepsEnum.SIZE,
-      StepsEnum.IP,
-      StepsEnum.NETWORK,
-      StepsEnum.INSTANCE,
-      StepsEnum.NAME,
-    ].map((step: StepsEnum) => [
-      step,
-      {
-        isOpen: false,
-        isLocked: false,
-        isChecked: false,
-      } as TStep,
-    ]),
+    ...[StepsEnum.SIZE, StepsEnum.IP, StepsEnum.NETWORK, StepsEnum.INSTANCE, StepsEnum.NAME].map(
+      (step: StepsEnum) => [
+        step,
+        {
+          isOpen: false,
+          isLocked: false,
+          isChecked: false,
+        } as TStep,
+      ],
+    ),
   ] as [[StepsEnum, TStep]]),
 });
 
@@ -260,7 +258,7 @@ export const useCreateStore = create<TCreateStore>()((set, get) => ({
       });
       onSuccess();
     } catch (e) {
-      onError(e);
+      onError(e as ApiError);
     }
   },
 }));

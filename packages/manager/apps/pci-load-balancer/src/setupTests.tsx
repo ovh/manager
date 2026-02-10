@@ -48,9 +48,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       setSorting: vi.fn(),
     }),
     PciGuidesHeader: vi.fn().mockReturnValue(<div></div>),
-    Notifications: vi
-      .fn()
-      .mockReturnValue(<div data-testid="notifications"></div>),
+    Notifications: vi.fn().mockReturnValue(<div data-testid="notifications"></div>),
     useNotifications: () => ({
       addError: vi.fn(),
       addSuccess: vi.fn(),

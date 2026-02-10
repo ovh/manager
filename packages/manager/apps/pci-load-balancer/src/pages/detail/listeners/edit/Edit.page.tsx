@@ -1,14 +1,16 @@
+import { useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation } from 'react-i18next';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useEffect, useState } from 'react';
-import { Translation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { TProtocol } from '@/api/data/load-balancer';
 import { useEditLoadBalancer, useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
-import ListenerForm, {
-  TListenerFormState,
-} from '@/components/form/ListenerForm.component';
+import ListenerForm, { TListenerFormState } from '@/components/form/ListenerForm.component';
 
 export default function EditListener() {
   const navigate = useNavigate();
@@ -46,12 +48,16 @@ export default function EditListener() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: ((error.response as unknown) as {
-                    data: { message: string };
-                  }).data.message,
-                  requestId: ((error.response as unknown) as {
-                    headers: Record<string, unknown>;
-                  }).headers['x-ovh-queryid'],
+                  message: (
+                    error.response as unknown as {
+                      data: { message: string };
+                    }
+                  ).data.message,
+                  requestId: (
+                    error.response as unknown as {
+                      headers: Record<string, unknown>;
+                    }
+                  ).headers['x-ovh-queryid'],
                 }),
               }}
             />
@@ -98,10 +104,7 @@ export default function EditListener() {
       onSubmit={(state) =>
         editListener({
           name: state.name !== listener.name ? state.name : undefined,
-          defaultPoolId:
-            state.pool?.id !== listener.defaultPoolId
-              ? state.pool?.id
-              : undefined,
+          defaultPoolId: state.pool?.id !== listener.defaultPoolId ? state.pool?.id : undefined,
         })
       }
     />

@@ -1,13 +1,17 @@
+import { Suspense, useMemo, useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -16,23 +20,24 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { Suspense, useMemo, useRef, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { TL7Rule } from '@/api/data/l7Rules';
+import { useL7Rules } from '@/api/hook/useL7Rule';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/pages/detail/listeners/l7/rules/list/Actions.component';
-import { TL7Rule } from '@/api/data/l7Rules';
-import { useL7Rules } from '@/api/hook/useL7Rule';
 
 export default function L7RulesList() {
   const { t } = useTranslation(['l7/rules/list', 'load-balancer', 'filter']);
@@ -44,7 +49,7 @@ export default function L7RulesList() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
 
   const { paginatedL7Rules, isPending } = useL7Rules(
     projectId,
@@ -59,30 +64,22 @@ export default function L7RulesList() {
     () => [
       {
         id: 'ruleType',
-        cell: (props: TL7Rule) => (
-          <DataGridTextCell>{props.ruleType}</DataGridTextCell>
-        ),
+        cell: (props: TL7Rule) => <DataGridTextCell>{props.ruleType}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_rules_type'),
       },
       {
         id: 'compareType',
-        cell: (props: TL7Rule) => (
-          <DataGridTextCell>{props.compareType}</DataGridTextCell>
-        ),
+        cell: (props: TL7Rule) => <DataGridTextCell>{props.compareType}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_rules_comparison_type'),
       },
       {
         id: 'key',
-        cell: (props: TL7Rule) => (
-          <DataGridTextCell>{props.key}</DataGridTextCell>
-        ),
+        cell: (props: TL7Rule) => <DataGridTextCell>{props.key}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_rules_key'),
       },
       {
         id: 'value',
-        cell: (props: TL7Rule) => (
-          <DataGridTextCell>{props.value}</DataGridTextCell>
-        ),
+        cell: (props: TL7Rule) => <DataGridTextCell>{props.value}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_rules_value'),
       },
       {
@@ -105,20 +102,14 @@ export default function L7RulesList() {
       {
         id: 'provisioningStatus',
         cell: (props: TL7Rule) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_provisioning_status'),
       },
       {
         id: 'operatingStatus',
         cell: (props: TL7Rule) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_operating_status'),
       },
@@ -176,7 +167,7 @@ export default function L7RulesList() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -201,9 +192,7 @@ export default function L7RulesList() {
                   },
                   {
                     id: 'compareType',
-                    label: t(
-                      'octavia_load_balancer_list_l7_rules_comparison_type',
-                    ),
+                    label: t('octavia_load_balancer_list_l7_rules_comparison_type'),
                     comparators: FilterCategories.String,
                   },
                   {
@@ -244,11 +233,7 @@ export default function L7RulesList() {
       </div>
 
       {isPending ? (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="List-spinner"
-        />
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
       ) : (
         <Datagrid
           columns={columns}

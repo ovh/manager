@@ -1,25 +1,24 @@
+import { useEffect, useState } from 'react';
+
+import { Outlet, useHref, useLocation, useParams, useResolvedPath } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Headers,
-  Links,
   LinkType,
+  Links,
   Notifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  Outlet,
-  useHref,
-  useLocation,
-  useParams,
-  useResolvedPath,
-} from 'react-router-dom';
-import { ROUTE_PATHS } from '@/routes';
-import TabsPanel from '@/components/detail/TabsPanel.component';
+
 import { useGetPool } from '@/api/hook/usePool';
+import TabsPanel from '@/components/detail/TabsPanel.component';
+import { ROUTE_PATHS } from '@/routes';
 
 export default function PoolDetailPage() {
   const { t: tCommon } = useTranslation('pci-common');
@@ -27,20 +26,23 @@ export default function PoolDetailPage() {
   const { t: tPools } = useTranslation('pools');
   const { t: tPoolsDetail } = useTranslation('pools/detail');
 
-  const [activePanelTranslation, setActivePanelTranslation] = useState(null);
+  const [activePanelTranslation, setActivePanelTranslation] = useState<string | null>(null);
 
   const location = useLocation();
   const { data: project } = useProject();
-  const { projectId, region, loadBalancerId, poolId } = useParams();
+  const { projectId, region, loadBalancerId, poolId } = useParams<{
+    projectId: string;
+    region: string;
+    loadBalancerId: string;
+    poolId: string;
+  }>();
 
   const hrefProject = useProjectUrl('public-cloud');
   const hrefLoadBalancers = useHref('..');
   const hrefLoadBalancerDetail = useHref(
     `../${region}/${loadBalancerId}/${ROUTE_PATHS.GENERAL_INFORMATION}`,
   );
-  const hrefPools = useHref(
-    `../${region}/${loadBalancerId}/${ROUTE_PATHS.POOLS}`,
-  );
+  const hrefPools = useHref(`../${region}/${loadBalancerId}/${ROUTE_PATHS.POOLS}`);
 
   const tabs = [
     {
@@ -50,9 +52,7 @@ export default function PoolDetailPage() {
     },
     {
       name: 'load_balancer_pools_detail_health_monitor_tab_title',
-      title: tPoolsDetail(
-        'load_balancer_pools_detail_health_monitor_tab_title',
-      ),
+      title: tPoolsDetail('load_balancer_pools_detail_health_monitor_tab_title'),
       to: useResolvedPath(ROUTE_PATHS.POOL_HEALTH_MONITOR).pathname,
     },
     {
@@ -62,7 +62,11 @@ export default function PoolDetailPage() {
     },
   ];
 
-  const { data: poolDetail, isPending, error } = useGetPool({
+  const {
+    data: poolDetail,
+    isPending,
+    error,
+  } = useGetPool({
     projectId,
     region,
     poolId,
@@ -70,7 +74,9 @@ export default function PoolDetailPage() {
 
   useEffect(() => {
     const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.to));
-    setActivePanelTranslation(tPoolsDetail(activeTab?.name));
+    setActivePanelTranslation(
+      tPoolsDetail(activeTab?.name ?? 'load_balancer_pools_detail_info_tab_title'),
+    );
   }, [location.pathname]);
 
   if (isPending && !error) {
@@ -99,7 +105,7 @@ export default function PoolDetailPage() {
           },
 
           { label: poolDetail?.name },
-          { label: activePanelTranslation },
+          { label: activePanelTranslation ?? '' },
         ]}
       />
 

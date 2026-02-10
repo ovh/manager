@@ -1,17 +1,15 @@
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
-import {
-  initI18n,
-  initShellContext,
-  ShellContext,
-} from '@ovh-ux/manager-react-shell-client';
-import App from './App';
 
 import '@ovh-ux/manager-pci-common/dist/style.css';
-import './index.css';
+import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
-import '@/vite-hmr.ts';
 import { TRACKING_CONTEXT } from '@/tracking.constants';
+import '@/vite-hmr.ts';
+
+import App from './App';
+import './index.css';
 
 const init = async (
   appName: string,
@@ -22,7 +20,7 @@ const init = async (
   const region = context.environment.getRegion();
   try {
     await import(`./config-${region}.js`);
-  } catch (error) {
+  } catch {
     // nothing to do
   }
 
@@ -42,4 +40,4 @@ const init = async (
   );
 };
 
-init('pci-load-balancer');
+void init('pci-load-balancer');

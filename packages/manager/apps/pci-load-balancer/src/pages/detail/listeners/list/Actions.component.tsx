@@ -1,19 +1,18 @@
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import {
-  OsdsTooltip,
-  OsdsTooltipContent,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OsdsTooltip, OsdsTooltipContent } from '@ovhcloud/ods-components/react';
+
+import { ActionMenu } from '@ovh-ux/manager-react-components';
+
 import { TLoadBalancerListener } from '@/api/data/listener';
 
 export type ActionsComponentProps = {
   listener: TLoadBalancerListener;
 };
 
-export default function ActionsComponent({
-  listener,
-}: Readonly<ActionsComponentProps>) {
+export default function ActionsComponent({ listener }: Readonly<ActionsComponentProps>) {
   const { id, protocol } = listener;
 
   const { t } = useTranslation('listeners');

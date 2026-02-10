@@ -1,19 +1,21 @@
-import { ApiError, applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import queryClient from '@/queryClient';
-import { paginateResults, sortResults } from '@/helpers';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { ApiError, Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
 
 import {
+  TLoadBalancerPool,
+  TUpdatePoolParam,
   createPool,
   deletePool,
   getLoadBalancerPools,
   getPool,
-  TLoadBalancerPool,
-  TUpdatePoolParam,
   updatePool,
 } from '@/api/data/pool';
+import { paginateResults, sortResults } from '@/helpers';
+import queryClient from '@/queryClient';
 
 export type TUsePoolParam = {
   projectId: string;
@@ -63,23 +65,12 @@ export const useLoadBalancerPools = (
       isLoading,
       isPending,
       data: paginateResults<TLoadBalancerPool>(
-        sortResults<TLoadBalancerPool>(
-          applyFilters(loadBalancerPools || [], filters),
-          sorting,
-        ),
+        sortResults<TLoadBalancerPool>(applyFilters(loadBalancerPools || [], filters), sorting),
         pagination,
       ),
       error,
     }),
-    [
-      loadBalancerPools,
-      error,
-      isLoading,
-      isPending,
-      pagination,
-      sorting,
-      filters,
-    ],
+    [loadBalancerPools, error, isLoading, isPending, pagination, sorting, filters],
   );
 };
 
@@ -106,12 +97,7 @@ type DeletePoolProps = {
   onSuccess: () => void;
 };
 
-export const useDeletePool = ({
-  projectId,
-  region,
-  onError,
-  onSuccess,
-}: DeletePoolProps) => {
+export const useDeletePool = ({ projectId, region, onError, onSuccess }: DeletePoolProps) => {
   const mutation = useMutation({
     mutationFn: async (poolId: string) => deletePool(projectId, region, poolId),
     onError,

@@ -1,9 +1,9 @@
-import {
-  getCatalogQuery,
-  getProductAvailabilityQuery,
-} from '@ovh-ux/manager-pci-common';
 import { useQueries } from '@tanstack/react-query';
+
+import { getCatalogQuery, getProductAvailabilityQuery } from '@ovh-ux/manager-pci-common';
+
 import { TProductAddonDetail } from '@/types/product.type';
+
 import { getAddonsRegions, getHourlyAddons } from './useAddons.select';
 
 type TUseAddonsParams = {
@@ -13,12 +13,7 @@ type TUseAddonsParams = {
   select?: (addons: TProductAddonDetail[]) => TProductAddonDetail[];
 };
 
-export const useAddons = ({
-  ovhSubsidiary,
-  projectId,
-  addonFamily,
-  select,
-}: TUseAddonsParams) =>
+export const useAddons = ({ ovhSubsidiary, projectId, addonFamily, select }: TUseAddonsParams) =>
   useQueries({
     queries: [
       getCatalogQuery(ovhSubsidiary),
@@ -31,15 +26,13 @@ export const useAddons = ({
       { data: plans, isFetching: isPlansFetching },
     ]) => {
       const addons = getAddonsRegions(plans?.plans ?? [], catalog);
-      const hourlyAddons = getHourlyAddons(addons).map(
-        ({ product, pricings, blobs, regions }) => ({
-          size: product.split('-').pop(),
-          price: pricings[0].price,
-          technicalName: blobs?.technical?.name,
-          bandwidth: blobs?.technical?.bandwidth?.level,
-          regions,
-        }),
-      );
+      const hourlyAddons = getHourlyAddons(addons).map(({ product, pricings, blobs, regions }) => ({
+        size: product.split('-').pop(),
+        price: pricings[0].price,
+        technicalName: blobs?.technical?.name,
+        bandwidth: blobs?.technical?.bandwidth?.level,
+        regions,
+      }));
 
       return {
         addons: select ? select(hourlyAddons) : hourlyAddons,

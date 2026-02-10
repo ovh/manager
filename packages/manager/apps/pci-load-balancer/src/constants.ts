@@ -1,7 +1,6 @@
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
 
-export const DISCOVER_LINK =
-  'https://horizon.cloud.ovh.net/project/load_balancer';
+export const DISCOVER_LINK = 'https://horizon.cloud.ovh.net/project/load_balancer';
 
 export const PROTOCOLS = ['http', 'https', 'tcp', 'udp', 'prometheus'] as const;
 
@@ -49,7 +48,8 @@ export const ACTION_LABELS = {
   [ACTIONS.REJECT]: 'Reject',
 };
 
-export const SIZE_FLAVOUR_REGEX = /octavia-loadbalancer.loadbalancer-([23]?xl|[sml]).hour.consumption/;
+export const SIZE_FLAVOUR_REGEX =
+  /octavia-loadbalancer.loadbalancer-([23]?xl|[sml]).hour.consumption/;
 export const NETWORK_PRIVATE_VISIBILITY = 'private';
 export const FLOATING_IP_TYPE = {
   NO_IP: 'none',
@@ -129,45 +129,28 @@ export const DATA_PLATFORM_GUIDE: OvhSubsidiaryRecord = {
   SG: 'https://www.ovhcloud.com/en-sg/logs-data-platform',
   ASIA: 'https://www.ovhcloud.com/asia/logs-data-platform',
   IN: 'https://www.ovhcloud.com/en-in/logs-data-platform',
-  US:
-    'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
+  US: 'https://us.ovhcloud.com/identity-security-operations/logs-data-platform/',
 };
 
 export const LOAD_BALANCER_LOGS_SERVICE_GUIDE_LINK: OvhSubsidiaryRecord = {
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062950',
-  FR:
-    'https://help.ovhcloud.com/csm/fr-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062936',
-  DE:
-    'https://help.ovhcloud.com/csm/de-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062949',
-  ES:
-    'https://help.ovhcloud.com/csm/es-es-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062945',
-  WE:
-    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062946',
-  IE:
-    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062946',
-  IT:
-    'https://help.ovhcloud.com/csm/it-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062940',
-  PL:
-    'https://help.ovhcloud.com/csm/pl-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062948',
-  PT:
-    'https://help.ovhcloud.com/csm/pt-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062947',
-  GB:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062942',
-  CA:
-    'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062943',
-  QC:
-    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062944',
-  WS:
-    'https://help.ovhcloud.com/csm/es-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062941',
-  AU:
-    'https://help.ovhcloud.com/csm/en-au-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062939',
-  SG:
-    'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062937',
-  ASIA:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062938',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/29793247356563-Public-Cloud-Load-Balancer-TCP-HTTP-HTTPS-Logs-Forwarding',
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062936',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062949',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062945',
+  WE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062946',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062946',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062940',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062948',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062947',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062942',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062943',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062944',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062941',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062939',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062937',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-network-loadbalancer-logs-forward?id=kb_article_view&sysparm_article=KB0062938',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/29793247356563-Public-Cloud-Load-Balancer-TCP-HTTP-HTTPS-Logs-Forwarding',
 };
 
 export const ACTIONS_LIST = [
@@ -198,36 +181,21 @@ export const URL_PATTERN = /^(http(s)?:\/\/)[\w.-]+[\w\-._~:/?#[\]@!$&'()*+,;=%]
 export const URL_PLACEHOLDER = 'https://example.com';
 
 export const GETTING_STARTED_LINK = {
-  FR:
-    'https://help.ovhcloud.com/csm/fr-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050200',
-  DE:
-    'https://help.ovhcloud.com/csm/de-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0037842',
-  ES:
-    'https://help.ovhcloud.com/csm/es-es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050208',
-  IE:
-    'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
-  IT:
-    'https://help.ovhcloud.com/csm/it-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050199',
-  PL:
-    'https://help.ovhcloud.com/csm/pl-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050201',
-  PT:
-    'https://help.ovhcloud.com/csm/pt-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050202',
-  GB:
-    'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050203',
-  CA:
-    'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050188',
-  QC:
-    'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050196',
-  WS:
-    'https://help.ovhcloud.com/csm/es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050197',
-  AU:
-    'https://help.ovhcloud.com/csm/en-au-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050198',
-  SG:
-    'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050206',
-  ASIA:
-    'https://help.ovhcloud.com/csm/asia-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050195',
-  US:
-    'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050200',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0037842',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050208',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050199',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050201',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050202',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050203',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050188',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050196',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050197',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050198',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050206',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050195',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/18610207964051-Getting-Started-with-Load-Balancer-on-Public-Cloud',
   DEFAULT:
     'https://help.ovhcloud.com/csm/en-ie-public-cloud-network-getting-started-load-balancer?id=kb_article_view&sysparm_article=KB0050193',
 };
@@ -239,8 +207,7 @@ export const FLOATING_IP_CREATE_DESCRIPTION =
   'FIP created by OVHCloud Control Panel (Manager) for Load Balancer';
 export const AGORA_GATEWAY_REGEX = /gateway.s.hour.consumption/;
 
-export const TRACKING_NAME =
-  'pci::projects::project::octavia-loadbalancer::add';
+export const TRACKING_NAME = 'pci::projects::project::octavia-loadbalancer::add';
 const TRACKING_ROOT = `PublicCloud::${TRACKING_NAME}`;
 export const LOAD_BALANCER_CREATION_TRACKING = {
   ROOT: TRACKING_ROOT,
@@ -357,18 +324,12 @@ export const RULE_COMPARE_TYPES_LIST = [
   },
 ];
 
-export const RULE_TYPES_WITH_KEY = [
-  RULE_TYPES.COOKIE,
-  RULE_TYPES.HEADER,
-  RULE_TYPES.SSL_DN_FIELD,
-];
+export const RULE_TYPES_WITH_KEY = [RULE_TYPES.COOKIE, RULE_TYPES.HEADER, RULE_TYPES.SSL_DN_FIELD];
 
 export const COMPARE_TYPES_AVAILABILITY_BY_TYPE = {
   [RULE_TYPES.COOKIE]: RULE_COMPARE_TYPES_LIST,
   [RULE_TYPES.FILE_TYPE]: RULE_COMPARE_TYPES_LIST.filter(
-    (type) =>
-      type.value === RULE_COMPARE_TYPES.EQUAL_TO ||
-      type.value === RULE_COMPARE_TYPES.REGEX,
+    (type) => type.value === RULE_COMPARE_TYPES.EQUAL_TO || type.value === RULE_COMPARE_TYPES.REGEX,
   ),
   [RULE_TYPES.HEADER]: RULE_COMPARE_TYPES_LIST,
   [RULE_TYPES.HOST_NAME]: RULE_COMPARE_TYPES_LIST,
@@ -384,11 +345,9 @@ export const COMPARE_TYPES_AVAILABILITY_BY_TYPE = {
 
 export const VALUE_REGEX_BY_TYPE = {
   [RULE_TYPES.COOKIE]: "^[a-zA-Z0-9!#$%&'()*+-./:<=>?@[\\]^_`{|}~]+$",
-  [RULE_TYPES.FILE_TYPE]:
-    '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
+  [RULE_TYPES.FILE_TYPE]: '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
   [RULE_TYPES.HEADER]: '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
-  [RULE_TYPES.HOST_NAME]:
-    '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
+  [RULE_TYPES.HOST_NAME]: '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
   [RULE_TYPES.PATH]: '^[a-zA-Z0-9!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}\\\\~]+$',
   [RULE_TYPES.SSL_CONN_HAS_CERT]: '^True$',
   [RULE_TYPES.SSL_VERIFY_RESULT]: '^[0-9]+$',
@@ -437,7 +396,8 @@ export const BOUNDS = {
 };
 
 export const HEALTH_MONITOR_NAME_REGEX = /^[A-Za-z0-9_.-]+$/;
-export const EXPECTED_STATUS_CODE_REGEX = /^([1-5][0-9]{2}(\s*,\s*[1-5][0-9]{2})*)$|^([1-5][0-9]{2}-[1-5][0-9]{2})$/;
+export const EXPECTED_STATUS_CODE_REGEX =
+  /^([1-5][0-9]{2}(\s*,\s*[1-5][0-9]{2})*)$|^([1-5][0-9]{2}-[1-5][0-9]{2})$/;
 
 export const POOL_HEALTH_MONITOR_TYPE = {
   http: [
@@ -489,10 +449,8 @@ export const POOL_HEALTH_MONITOR_TYPE = {
   ],
 };
 
-export const HORIZON_LINK =
-  'https://horizon.cloud.ovh.net/project/load_balancer';
+export const HORIZON_LINK = 'https://horizon.cloud.ovh.net/project/load_balancer';
 
-export const LOGS_FEATURE_AVAILABILITY_KEY =
-  'pci-load-balancer:logs-to-customer';
+export const LOGS_FEATURE_AVAILABILITY_KEY = 'pci-load-balancer:logs-to-customer';
 
 export const GATEWAY_SIZE_LABEL_ORDER = ['s', 'm', 'l', 'xl', '2xl'];

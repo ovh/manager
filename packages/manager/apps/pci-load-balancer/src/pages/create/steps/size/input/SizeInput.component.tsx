@@ -1,6 +1,8 @@
 import { ShapesInputComponent } from '@ovh-ux/manager-pci-common';
-import { LabelComponent } from './Label.component';
+
 import { TProductAddonDetail } from '@/types/product.type';
+
+import { LabelComponent } from './Label.component';
 
 export default function SizeInputComponent({
   addons,

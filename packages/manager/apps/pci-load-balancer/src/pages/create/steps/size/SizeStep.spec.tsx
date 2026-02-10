@@ -1,15 +1,19 @@
-import { describe, Mock, vi } from 'vitest';
-import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
-import { render, renderHook } from '@testing-library/react';
 import React from 'react';
+
+import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { SizeStep, TSizeStepProps } from './SizeStep';
-import { wrapper } from '@/wrapperRenders';
+import { Mock, describe, vi } from 'vitest';
+
+import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+
 import { PRODUCT_LINK } from '@/constants';
-import SizeInputComponent from './input/SizeInput.component';
-import { useTracking } from '../../hooks/useTracking';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { TProductAddonDetail } from '@/types/product.type';
+import { wrapper } from '@/wrapperRenders';
+
+import { useTracking } from '../../hooks/useTracking';
+import { SizeStep, TSizeStepProps } from './SizeStep';
+import SizeInputComponent from './input/SizeInput.component';
 
 vi.mock('react-i18next', async () => {
   const { ...rest } = await vi.importActual('react-i18next');
@@ -21,7 +25,7 @@ vi.mock('react-i18next', async () => {
   };
 });
 
-vi.mock('../../hooks/useTracking', async () => ({
+vi.mock('../../hooks/useTracking', () => ({
   useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
@@ -63,21 +67,15 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
   );
   return {
     ...rest,
-    StepComponent: vi
-      .fn()
-      .mockImplementation(ActualStepComponent as typeof StepComponent),
+    StepComponent: vi.fn().mockImplementation(ActualStepComponent as typeof StepComponent),
   };
 });
 
 vi.mock('./input/SizeInput.component', async () => {
-  const { default: ActualDefault, ...rest } = await vi.importActual(
-    './input/SizeInput.component',
-  );
+  const { default: ActualDefault, ...rest } = await vi.importActual('./input/SizeInput.component');
   return {
     ...rest,
-    default: vi
-      .fn()
-      .mockImplementation(ActualDefault as typeof SizeInputComponent),
+    default: vi.fn().mockImplementation(ActualDefault as typeof SizeInputComponent),
   };
 });
 
@@ -135,14 +133,10 @@ describe('SizeStep', () => {
     it('should render intro', () => {
       const { getByText } = renderStep();
       expect(
-        getByText(
-          'load-balancer/create,pci-common | octavia_load_balancer_create_size_intro',
-        ),
+        getByText('load-balancer/create,pci-common | octavia_load_balancer_create_size_intro'),
       ).toBeInTheDocument();
       expect(
-        getByText(
-          'load-balancer/create,pci-common | octavia_load_balancer_create_size_intro_link',
-        ),
+        getByText('load-balancer/create,pci-common | octavia_load_balancer_create_size_intro_link'),
       ).toBeInTheDocument();
     });
 
@@ -150,26 +144,24 @@ describe('SizeStep', () => {
       it('should render ovhSubsidiary product link if found', () => {
         const { getByTestId } = renderStep({ ovhSubsidiary: 'FR' });
 
-        expect(
-          getByTestId('osds-link').attributes.getNamedItem('href').value,
-        ).toBe(PRODUCT_LINK.FR);
+        expect(getByTestId('osds-link').attributes.getNamedItem('href').value).toBe(
+          PRODUCT_LINK.FR,
+        );
       });
 
       it('should render default product link if not found', () => {
         const { getByTestId } = renderStep();
 
-        expect(
-          getByTestId('osds-link').attributes.getNamedItem('href').value,
-        ).toBe(PRODUCT_LINK.DEFAULT);
+        expect(getByTestId('osds-link').attributes.getNamedItem('href').value).toBe(
+          PRODUCT_LINK.DEFAULT,
+        );
       });
     });
   });
 
   describe('Actions', () => {
     beforeAll(() => {
-      (SizeInputComponent as Mock).mockImplementationOnce(() => (
-        <div data-testid="input"></div>
-      ));
+      (SizeInputComponent as Mock).mockImplementationOnce(() => <div data-testid="input"></div>);
     });
 
     describe('next', () => {
@@ -180,9 +172,7 @@ describe('SizeStep', () => {
           const nextButton = getByText(
             'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
-          expect(
-            nextButton.attributes.getNamedItem('disabled').value,
-          ).toBeTruthy();
+          expect(nextButton.attributes.getNamedItem('disabled').value).toBeTruthy();
         });
 
         test('Next button should be enabled if addon is set', () => {
@@ -194,13 +184,11 @@ describe('SizeStep', () => {
           const nextButton = getByText(
             'load-balancer/create,pci-common | pci-common:common_stepper_next_button_label',
           );
-          expect(
-            nextButton.attributes.getNamedItem('disabled')?.value,
-          ).toBeFalsy();
+          expect(nextButton.attributes.getNamedItem('disabled')?.value).toBeFalsy();
         });
       });
       describe('click', () => {
-        it('Should track on next click', async () => {
+        it('Should track on next click', () => {
           const trackStepSpy = vi.fn();
 
           const { result } = renderStore();

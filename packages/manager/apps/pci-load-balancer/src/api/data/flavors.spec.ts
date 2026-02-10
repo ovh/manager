@@ -1,7 +1,10 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getFlavors } from './flavors';
+
 import { TFlavor } from '@/api/data/load-balancer';
+
+import { getFlavors } from './flavors';
 
 describe('getFlavors', () => {
   const projectId = 'test-project';
@@ -23,8 +26,6 @@ describe('getFlavors', () => {
   it('should handle API errors gracefully', async () => {
     vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-    await expect(getFlavors(projectId, regionName)).rejects.toThrow(
-      'API Error',
-    );
+    await expect(getFlavors(projectId, regionName)).rejects.toThrow('API Error');
   });
 });

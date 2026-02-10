@@ -1,17 +1,17 @@
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import {
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  Headers,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -20,21 +20,26 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  FilterAdd,
+  FilterList,
+  Headers,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { TL7Policy } from '@/api/data/l7Policies';
 import { useL7Policies } from '@/api/hook/useL7Policy';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
-import { TL7Policy } from '@/api/data/l7Policies';
 import ActionsComponent from '@/pages/detail/listeners/l7/list/Actions.component';
-import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 
 export default function L7PoliciesList() {
   const { t } = useTranslation(['l7', 'load-balancer', 'filter']);
@@ -46,7 +51,7 @@ export default function L7PoliciesList() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
 
   const { paginatedL7Policies, isPending } = useL7Policies(
     projectId,
@@ -92,16 +97,12 @@ export default function L7PoliciesList() {
       },
       {
         id: 'action',
-        cell: (props: TL7Policy) => (
-          <DataGridTextCell>{props.action}</DataGridTextCell>
-        ),
+        cell: (props: TL7Policy) => <DataGridTextCell>{props.action}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_policies_action'),
       },
       {
         id: 'attribute',
-        cell: (props: TL7Policy) => (
-          <DataGridTextCell>{props.attribute}</DataGridTextCell>
-        ),
+        cell: (props: TL7Policy) => <DataGridTextCell>{props.attribute}</DataGridTextCell>,
         label: t('octavia_load_balancer_list_l7_policies_attribute'),
         isSortable: false,
       },
@@ -116,10 +117,7 @@ export default function L7PoliciesList() {
       {
         id: 'provisioningStatus',
         cell: (props: TL7Policy) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_provisioning_status'),
         isSortable: false,
@@ -127,10 +125,7 @@ export default function L7PoliciesList() {
       {
         id: 'operatingStatus',
         cell: (props: TL7Policy) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_operating_status'),
         isSortable: false,
@@ -196,7 +191,7 @@ export default function L7PoliciesList() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -231,16 +226,12 @@ export default function L7PoliciesList() {
                   },
                   {
                     id: 'attribute',
-                    label: t(
-                      'octavia_load_balancer_list_l7_policies_attribute',
-                    ),
+                    label: t('octavia_load_balancer_list_l7_policies_attribute'),
                     comparators: FilterCategories.String,
                   },
                   {
                     id: 'redirectHttpCode',
-                    label: t(
-                      'octavia_load_balancer_list_l7_policies_redirect_code',
-                    ),
+                    label: t('octavia_load_balancer_list_l7_policies_redirect_code'),
                     comparators: FilterCategories.String,
                   },
                 ]}
@@ -266,11 +257,7 @@ export default function L7PoliciesList() {
       </div>
 
       {isPending ? (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="List-spinner"
-        />
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
       ) : (
         <Datagrid
           columns={columns}

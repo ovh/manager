@@ -1,27 +1,28 @@
-import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { PRODUCT_LINK } from '@/constants';
-import SizeInputComponent from './input/SizeInput.component';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTracking } from '@/pages/create/hooks/useTracking';
-import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { StepComponent } from '@ovh-ux/manager-react-components';
+
 import { useAddons } from '@/api/hook/useAddons/useAddons';
 import { AGORA_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
-import { TProductAddonDetail } from '@/types/product.type';
 import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
+import { PRODUCT_LINK } from '@/constants';
+import { useColumnsCount } from '@/pages/create/hooks/useColumnsCount';
+import { useTracking } from '@/pages/create/hooks/useTracking';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
+import { TProductAddonDetail } from '@/types/product.type';
+
+import SizeInputComponent from './input/SizeInput.component';
 
 export type TSizeStepProps = {
   ovhSubsidiary: string;
   projectId: string;
 };
 
-export const SizeStep = ({
-  ovhSubsidiary,
-  projectId,
-}: Readonly<TSizeStepProps>): JSX.Element => {
+export const SizeStep = ({ ovhSubsidiary, projectId }: Readonly<TSizeStepProps>): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
   const columnsCount = useColumnsCount();
@@ -80,7 +81,7 @@ export const SizeStep = ({
       >
         {t('octavia_load_balancer_create_size_intro')}{' '}
         <OsdsLink
-          href={PRODUCT_LINK[ovhSubsidiary] || PRODUCT_LINK.DEFAULT}
+          href={PRODUCT_LINK[ovhSubsidiary as keyof typeof PRODUCT_LINK] || PRODUCT_LINK.DEFAULT}
           color={ODS_THEME_COLOR_INTENT.primary}
         >
           {t('octavia_load_balancer_create_size_intro_link')}

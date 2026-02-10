@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import { AGORA_ADDON_FAMILY } from '../hook/useAddons/useAddons.constant';
 
 export type TPlanResponse = {

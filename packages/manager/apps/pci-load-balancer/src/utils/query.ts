@@ -1,8 +1,4 @@
-export const queryKeyBuilder = (
-  projectId: string,
-  region: string,
-  rest?: string[],
-): string[] => [
+export const queryKeyBuilder = (projectId: string, region: string, rest?: string[]): string[] => [
   'project',
   projectId,
   'region',

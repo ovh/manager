@@ -1,11 +1,13 @@
+import { Suspense, useContext } from 'react';
+
 import { useRouteError } from 'react-router-dom';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { ErrorBanner } from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { Suspense, useContext } from 'react';
-import ShellRoutingSync from '@/core/ShellRoutingSync';
+
 import HidePreloader from '@/core/HidePreloader';
+import ShellRoutingSync from '@/core/ShellRoutingSync';
 
 export const ErrorBoundary = () => {
   const error = useRouteError() as ApiError;

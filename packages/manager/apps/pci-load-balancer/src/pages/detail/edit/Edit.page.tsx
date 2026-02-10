@@ -1,16 +1,18 @@
-import { PciModal } from '@ovh-ux/manager-pci-common';
+import { useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
-import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import {
-  useLoadBalancer,
-  useRenameLoadBalancer,
-} from '@/api/hook/useLoadBalancer';
+
+import { useLoadBalancer, useRenameLoadBalancer } from '@/api/hook/useLoadBalancer';
 import LabelComponent from '@/components/form/Label.component';
 
 export default function Edit() {
@@ -23,10 +25,7 @@ export default function Edit() {
     navigate('..');
   };
 
-  const {
-    data: loadBalancer,
-    isPending: isPendingLoadBalancer,
-  } = useLoadBalancer({
+  const { data: loadBalancer, isPending: isPendingLoadBalancer } = useLoadBalancer({
     projectId,
     region,
     loadBalancerId,
@@ -34,10 +33,7 @@ export default function Edit() {
 
   const [loadBalancerName, setLoadBalancerName] = useState(loadBalancer?.name);
 
-  const {
-    renameLoadBalancer,
-    isPending: isPendingRename,
-  } = useRenameLoadBalancer({
+  const { renameLoadBalancer, isPending: isPendingRename } = useRenameLoadBalancer({
     projectId,
     loadBalancer,
     name: loadBalancerName,
@@ -48,8 +44,7 @@ export default function Edit() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
+                  message: error?.response?.data?.message || error?.message || null,
                   requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
                 }),
               }}
@@ -93,9 +88,7 @@ export default function Edit() {
       cancelText={tEditName('octavia_load_balancer_edit_name_cancel')}
     >
       <OsdsFormField>
-        <LabelComponent
-          text={tEditName('octavia_load_balancer_edit_name_label')}
-        />
+        <LabelComponent text={tEditName('octavia_load_balancer_edit_name_label')} />
         <OsdsInput
           value={loadBalancerName}
           onOdsValueChange={(event) => setLoadBalancerName(event.detail.value)}

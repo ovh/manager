@@ -1,10 +1,12 @@
-import { render, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import PolicyForm from './PolicyForm.component';
+import { fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TL7Policy } from '@/api/data/l7Policies';
+import { TLoadBalancerListener } from '@/api/data/listener';
 import { TLoadBalancerPool } from '@/api/data/pool';
 import { wrapper } from '@/wrapperRenders';
-import { TLoadBalancerListener } from '@/api/data/listener';
+
+import PolicyForm from './PolicyForm.component';
 
 const mockPolicy = {
   listenerId: 'listener-1',

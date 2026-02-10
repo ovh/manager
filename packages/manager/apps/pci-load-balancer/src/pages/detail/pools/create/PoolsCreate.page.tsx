@@ -1,17 +1,18 @@
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { Translation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { Translation } from 'react-i18next';
+
+import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useGetApiSchema } from '@ovh-ux/manager-pci-common';
-import { useCreatePool } from '@/api/hook/usePool';
-import {
-  PoolFormComponent,
-  TPoolFormData,
-} from '@/components/form/PoolForm.component';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { TLoadBalancerPool } from '@/api/data/pool';
+import { useCreatePool } from '@/api/hook/usePool';
+import { PoolFormComponent, TPoolFormData } from '@/components/form/PoolForm.component';
 
 const TRACKING_HIT_PREFIX = 'add';
 
@@ -62,8 +63,7 @@ export default function PoolsCreatePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (cause?.response?.data as { message: string })
-                    ?.message,
+                  message: (cause?.response?.data as { message: string })?.message,
                   requestId: cause.response?.headers['x-ovh-queryid'],
                 }),
               }}
@@ -75,12 +75,7 @@ export default function PoolsCreatePage() {
     },
   });
 
-  const create = ({
-    name,
-    algorithm,
-    protocol,
-    permanentSession,
-  }: TPoolFormData) => {
+  const create = ({ name, algorithm, protocol, permanentSession }: TPoolFormData) => {
     trackClick({
       actions: [`${TRACKING_HIT_PREFIX}`, 'confirm'],
       actionType: 'action',
@@ -101,15 +96,10 @@ export default function PoolsCreatePage() {
 
   return (
     <PoolFormComponent
-      availableAlgorithms={
-        schema?.models?.['cloud.loadbalancing.PoolAlgorithmEnum']?.enum || []
-      }
-      availableProtocols={
-        schema?.models?.['cloud.loadbalancing.PoolProtocolEnum']?.enum || []
-      }
+      availableAlgorithms={schema?.models?.['cloud.loadbalancing.PoolAlgorithmEnum']?.enum || []}
+      availableProtocols={schema?.models?.['cloud.loadbalancing.PoolProtocolEnum']?.enum || []}
       availableSessionTypes={(
-        schema?.models?.['cloud.loadbalancing.PoolSessionPersistenceTypeEnum']
-          ?.enum || []
+        schema?.models?.['cloud.loadbalancing.PoolSessionPersistenceTypeEnum']?.enum || []
       ).filter((sessionType) => sessionType !== 'disabled')}
       onSubmit={create}
       onCancel={cancel}

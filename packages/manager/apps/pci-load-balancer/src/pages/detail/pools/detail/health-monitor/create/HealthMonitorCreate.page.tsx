@@ -1,18 +1,16 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  RedirectionGuard,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import HealthMonitorForm from '@/components/form/HealthMonitorForm.component';
-import { useGetPool } from '@/api/hook/usePool';
-import {
-  useCreateHealthMonitor,
-  useGetHealthMonitor,
-} from '@/api/hook/useHealthMonitor';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { RedirectionGuard, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { THealthMonitorFormState } from '@/api/data/health-monitor';
+import { useCreateHealthMonitor, useGetHealthMonitor } from '@/api/hook/useHealthMonitor';
+import { useGetPool } from '@/api/hook/usePool';
+import HealthMonitorForm from '@/components/form/HealthMonitorForm.component';
 
 export default function HealthMonitorCreatePage() {
   const { t } = useTranslation('health-monitor/create');
@@ -35,30 +33,27 @@ export default function HealthMonitorCreatePage() {
     poolId,
   });
 
-  const {
-    data: healthMonitor,
-    isPending: isHealthMonitorPending,
-  } = useGetHealthMonitor({
+  const { data: healthMonitor, isPending: isHealthMonitorPending } = useGetHealthMonitor({
     projectId,
     region,
     poolId,
   });
 
-  const {
-    createHealthMonitor,
-    isPending: isCreationPending,
-  } = useCreateHealthMonitor({
+  const { createHealthMonitor, isPending: isCreationPending } = useCreateHealthMonitor({
     projectId,
     region,
     poolId,
     onError(error: ApiError) {
+      const requestId = (error?.config?.headers as Record<string, string> | undefined)?.[
+        'X-OVH-MANAGER-REQUEST-ID'
+      ];
       addError(
         <Trans
           i18nKey="octavia_load_balancer_global_error"
           ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
-            requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+            requestId,
           }}
         />,
         true,
@@ -94,9 +89,7 @@ export default function HealthMonitorCreatePage() {
         onCancel={() => navigate('../general-information')}
         onChange={setFormState}
         onSubmit={createHealthMonitor}
-        submitLabel={t(
-          'octavia_load_balancer_health_monitor_create_submit_label',
-        )}
+        submitLabel={t('octavia_load_balancer_health_monitor_create_submit_label')}
       />
     </RedirectionGuard>
   );

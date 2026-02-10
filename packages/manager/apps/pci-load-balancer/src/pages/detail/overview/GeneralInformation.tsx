@@ -1,3 +1,7 @@
+import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -15,8 +19,7 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useHref } from 'react-router-dom';
+
 import TileLine from '@/components/detail/TileLine.component';
 import { useFormattedDate } from '@/hooks/useFormattedDate';
 

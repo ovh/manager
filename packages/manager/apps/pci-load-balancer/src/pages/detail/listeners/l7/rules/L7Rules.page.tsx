@@ -1,11 +1,9 @@
 import { Suspense } from 'react';
+
 import { Outlet, useHref, useParams } from 'react-router-dom';
-import {
-  OsdsBreadcrumb,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+
+import { useTranslation } from 'react-i18next';
+
 import {
   ODS_ICON_NAME,
   ODS_ICON_SIZE,
@@ -13,13 +11,11 @@ import {
   ODS_TEXT_LEVEL,
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+import { OsdsBreadcrumb, OsdsIcon, OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { useProject } from '@ovh-ux/manager-pci-common';
-import {
-  Headers,
-  Notifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+import { Headers, Notifications, useProjectUrl } from '@ovh-ux/manager-react-components';
+
 import { useListener } from '@/api/hook/useListener';
 import { ROUTE_PATHS } from '@/routes';
 
@@ -42,9 +38,7 @@ export default function L7RulesPage() {
   const hrefLoadBalancerDetail = useHref(
     `../${region}/${loadBalancerId}/${ROUTE_PATHS.GENERAL_INFORMATION}`,
   );
-  const hrefListeners = useHref(
-    `../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}`,
-  );
+  const hrefListeners = useHref(`../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}`);
   const hrefL7Policies = useHref(
     `../${region}/${loadBalancerId}/${ROUTE_PATHS.LISTENERS}/${listenerId}/l7`,
   );

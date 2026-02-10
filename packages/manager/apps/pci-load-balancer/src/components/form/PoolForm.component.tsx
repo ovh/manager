@@ -1,4 +1,15 @@
 import { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -8,21 +19,14 @@ import {
   OsdsText,
   OsdsToggle,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import {
   APP_COOKIE_SESSION_PERSISTENCE,
   DEFAULT_ALGORITHM,
   DEFAULT_SESSION_PERSISTENCE_TYPE,
   PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION,
 } from '@/constants';
+
 import LabelComponent from './Label.component';
 
 export type TPoolFormData = {
@@ -98,24 +102,23 @@ export const PoolFormComponent = ({
   const { t: tCommon } = useTranslation('pci-common');
   const { t: tPools } = useTranslation('pools');
 
-  const sessionTypes = !protocol
+  const algorithms: string[] = Array.isArray(availableAlgorithms) ? availableAlgorithms : [];
+  const sessionTypesProp: string[] = Array.isArray(availableSessionTypes)
     ? availableSessionTypes
-    : availableSessionTypes.filter(
-        (sType) =>
-          protocol ||
-          PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[protocol].includes(
-            sType,
-          ),
-      );
+    : [];
+
+  const sessionTypes = !protocol
+    ? sessionTypesProp
+    : sessionTypesProp.filter((sType) => {
+        const allowed = (PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[protocol] ?? []) as string[];
+        return protocol || allowed.includes(sType);
+      });
 
   const [state, setState] = useState<TState>({
     name: { value: name, isTouched: false },
     algorithm: {
       value:
-        algorithm ||
-        (availableAlgorithms.includes(DEFAULT_ALGORITHM)
-          ? DEFAULT_ALGORITHM
-          : availableAlgorithms[0]),
+        algorithm || (algorithms.includes(DEFAULT_ALGORITHM) ? DEFAULT_ALGORITHM : algorithms[0]),
       isTouched: false,
     },
     protocol: { value: protocol, isTouched: false },
@@ -132,7 +135,7 @@ export const PoolFormComponent = ({
         isTouched: false,
       },
     },
-    algorithms: availableAlgorithms,
+    algorithms,
     protocols: availableProtocols,
     sessionTypes,
   });
@@ -142,12 +145,12 @@ export const PoolFormComponent = ({
     setState((prev) => ({
       ...prev,
       sessionTypes: !state.protocol.value
-        ? availableSessionTypes
-        : availableSessionTypes.filter((sType) =>
-            PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[
-              state.protocol.value
-            ].includes(sType),
-          ),
+        ? sessionTypesProp
+        : sessionTypesProp.filter((sType) => {
+            const allowed = (PROTOCOL_SESSION_PERSISTENCE_TYPE_COMBINATION[state.protocol.value] ??
+              []) as string[];
+            return allowed.includes(sType);
+          }),
     }));
   }, [state.protocol.value]);
 
@@ -155,9 +158,7 @@ export const PoolFormComponent = ({
     name: state.name.isTouched && state.name.value === '',
     algorithm: state.algorithm.isTouched && state.algorithm.value === '',
     protocol: state.protocol.isTouched && state.protocol.value === '',
-    sessionType:
-      state.permanentSession.type.isTouched &&
-      state.permanentSession.type.value === '',
+    sessionType: state.permanentSession.type.isTouched && state.permanentSession.type.value === '',
     cookieName:
       state.permanentSession.cookieName?.isTouched &&
       state.permanentSession.cookieName?.value === '',
@@ -168,14 +169,11 @@ export const PoolFormComponent = ({
     isAffirmative ? tCommon('common_field_error_required') : '';
 
   let isFormValid =
-    state.name.value !== '' &&
-    state.algorithm.value !== '' &&
-    state.protocol.value !== '';
+    state.name.value !== '' && state.algorithm.value !== '' && state.protocol.value !== '';
   if (state.permanentSession.isEnabled) {
     isFormValid = isFormValid && state.permanentSession.type.value !== '';
     if (state.permanentSession.type.value === APP_COOKIE_SESSION_PERSISTENCE) {
-      isFormValid =
-        isFormValid && state.permanentSession.cookieName.value !== '';
+      isFormValid = isFormValid && state.permanentSession.cookieName.value !== '';
     }
   }
 
@@ -213,11 +211,7 @@ export const PoolFormComponent = ({
 
   return (
     <>
-      <OsdsFormField
-        className="mt-4"
-        inline
-        error={getRequiredErrorMessage(error.name)}
-      >
+      <OsdsFormField className="mt-4" inline error={getRequiredErrorMessage(error.name)}>
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_name')}
           hasError={state.name.isTouched && state.name.value === ''}
@@ -254,11 +248,7 @@ export const PoolFormComponent = ({
         </OsdsText>
       </div>
 
-      <OsdsFormField
-        className="mt-4"
-        inline
-        error={getRequiredErrorMessage(error.algorithm)}
-      >
+      <OsdsFormField className="mt-4" inline error={getRequiredErrorMessage(error.algorithm)}>
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_algorithm')}
           helpText={t('octavia_load_balancer_pools_create_algorithm_tooltip')}
@@ -296,11 +286,7 @@ export const PoolFormComponent = ({
         </OsdsSelect>
       </OsdsFormField>
 
-      <OsdsFormField
-        className="mt-8"
-        inline
-        error={getRequiredErrorMessage(error.protocol)}
-      >
+      <OsdsFormField className="mt-8" inline error={getRequiredErrorMessage(error.protocol)}>
         <LabelComponent
           text={t('octavia_load_balancer_pools_create_protocol')}
           helpText={t('octavia_load_balancer_pools_create_protocol_tooltip')}
@@ -370,11 +356,7 @@ export const PoolFormComponent = ({
 
       {state.permanentSession.isEnabled && (
         <>
-          <OsdsFormField
-            className="mt-8"
-            inline
-            error={getRequiredErrorMessage(error.sessionType)}
-          >
+          <OsdsFormField className="mt-8" inline error={getRequiredErrorMessage(error.sessionType)}>
             <LabelComponent
               text={t('octavia_load_balancer_pools_create_persistent_session')}
               hasError={error.sessionType}
@@ -421,24 +403,19 @@ export const PoolFormComponent = ({
             >
               {state.sessionTypes.map((sType) => (
                 <OsdsSelectOption value={sType} key={sType}>
-                  {tPools(
-                    `octavia_load_balancer_pools_enum_persistent_session_${sType}`,
-                  )}
+                  {tPools(`octavia_load_balancer_pools_enum_persistent_session_${sType}`)}
                 </OsdsSelectOption>
               ))}
             </OsdsSelect>
           </OsdsFormField>
-          {state.permanentSession.type.value ===
-            APP_COOKIE_SESSION_PERSISTENCE && (
+          {state.permanentSession.type.value === APP_COOKIE_SESSION_PERSISTENCE && (
             <OsdsFormField
               className="mt-8"
               inline
               error={getRequiredErrorMessage(error.cookieName)}
             >
               <LabelComponent
-                text={t(
-                  'octavia_load_balancer_pools_create_persistent_session_cookie_name',
-                )}
+                text={t('octavia_load_balancer_pools_create_persistent_session_cookie_name')}
                 hasError={error.cookieName}
               />
               <OsdsInput
@@ -466,9 +443,7 @@ export const PoolFormComponent = ({
                     },
                   }));
                 }}
-                placeholder={t(
-                  'octavia_load_balancer_pools_create_persistent_session_cookie_name',
-                )}
+                placeholder={t('octavia_load_balancer_pools_create_persistent_session_cookie_name')}
                 type={ODS_INPUT_TYPE.text}
                 error={error.cookieName}
                 className="border w-[20rem]"
@@ -507,11 +482,7 @@ export const PoolFormComponent = ({
             })
           }
         >
-          {t(
-            `octavia_load_balancer_pools_create_submit${
-              isEditMode ? '_edition' : ''
-            }`,
-          )}
+          {t(`octavia_load_balancer_pools_create_submit${isEditMode ? '_edition' : ''}`)}
         </OsdsButton>
       </div>
     </>

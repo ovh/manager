@@ -1,4 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_VARIANT, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -8,10 +13,9 @@ import {
   OsdsText,
   OsdsToggle,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_VARIANT, ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import { TL7Rule } from '@/api/data/l7Rules';
+import LabelComponent from '@/components/form/Label.component';
 import {
   COMPARE_TYPES_AVAILABILITY_BY_TYPE,
   KEY_REGEX,
@@ -21,7 +25,6 @@ import {
   RULE_TYPES_WITH_KEY,
   VALUE_REGEX_BY_TYPE,
 } from '@/constants';
-import LabelComponent from '@/components/form/Label.component';
 
 export type RuleFormProps = {
   rule: TL7Rule | null;
@@ -117,7 +120,7 @@ export default function RuleForm({
       try {
         const regex = new RegExp(formState.value);
         return !!regex;
-      } catch (e) {
+      } catch {
         return false;
       }
     }
@@ -125,15 +128,8 @@ export default function RuleForm({
     if (!VALUE_REGEX_BY_TYPE[formState.ruleType]) {
       return true;
     }
-    return new RegExp(VALUE_REGEX_BY_TYPE[formState.ruleType]).test(
-      formState.value,
-    );
-  }, [
-    isTouched.value,
-    formState.value,
-    formState.ruleType,
-    formState.compareType,
-  ]);
+    return new RegExp(VALUE_REGEX_BY_TYPE[formState.ruleType]).test(formState.value);
+  }, [isTouched.value, formState.value, formState.ruleType, formState.compareType]);
 
   const valueError = useMemo(() => {
     if (!isTouched.value) return '';
@@ -144,9 +140,7 @@ export default function RuleForm({
       }
 
       if (formState.ruleType === RULE_TYPES.SSL_VERIFY_RESULT) {
-        return t(
-          'octavia_load_balancer_create_l7_rule_value_ssl_verify_result_pattern',
-        );
+        return t('octavia_load_balancer_create_l7_rule_value_ssl_verify_result_pattern');
       }
 
       if (formState.ruleType === RULE_TYPES.COOKIE) {
@@ -176,15 +170,13 @@ export default function RuleForm({
     return [];
   }, [formState.ruleType]);
 
-  const hasError =
-    !!ruleTypeError || !!compareTypeError || !!keyError || !!valueError;
+  const hasError = !!ruleTypeError || !!compareTypeError || !!keyError || !!valueError;
 
   const isDisabled = useMemo(() => {
     if (hasError) return true;
     if (!formState.ruleType) return true;
     if (!formState.compareType) return true;
-    if (RULE_TYPES_WITH_KEY.includes(formState.ruleType) && !formState.key)
-      return true;
+    if (RULE_TYPES_WITH_KEY.includes(formState.ruleType) && !formState.key) return true;
     if (!formState.value) return true;
     return false;
   }, [hasError, formState]);
@@ -213,9 +205,7 @@ export default function RuleForm({
             }));
           }}
         >
-          <span slot="placeholder">
-            {t('octavia_load_balancer_create_l7_rule_type_default')}
-          </span>
+          <span slot="placeholder">{t('octavia_load_balancer_create_l7_rule_type_default')}</span>
           {RULE_TYPES_LIST.map((ruleType) => (
             <OsdsSelectOption key={ruleType.value} value={ruleType.value}>
               {ruleType.label}
@@ -224,9 +214,7 @@ export default function RuleForm({
         </OsdsSelect>
         {formState.ruleType && (
           <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
-            {t(
-              `octavia_load_balancer_create_l7_rule_type_${formState.ruleType}`,
-            )}
+            {t(`octavia_load_balancer_create_l7_rule_type_${formState.ruleType}`)}
           </OsdsText>
         )}
       </OsdsFormField>
@@ -265,9 +253,7 @@ export default function RuleForm({
         </OsdsSelect>
         {formState.compareType && (
           <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
-            {t(
-              `octavia_load_balancer_create_l7_rule_compare_type_${formState.compareType}`,
-            )}
+            {t(`octavia_load_balancer_create_l7_rule_compare_type_${formState.compareType}`)}
           </OsdsText>
         )}
       </OsdsFormField>
@@ -280,9 +266,7 @@ export default function RuleForm({
         />
         <OsdsInput
           value={formState?.key}
-          disabled={
-            !RULE_TYPES_WITH_KEY.includes(formState.ruleType) || undefined
-          }
+          disabled={!RULE_TYPES_WITH_KEY.includes(formState.ruleType) || undefined}
           type={ODS_INPUT_TYPE.text}
           error={!!keyError}
           onOdsValueChange={(event) => {
@@ -308,9 +292,7 @@ export default function RuleForm({
         />
         <OsdsInput
           value={formState?.value}
-          disabled={
-            formState.ruleType === RULE_TYPES.SSL_CONN_HAS_CERT || undefined
-          }
+          disabled={formState.ruleType === RULE_TYPES.SSL_CONN_HAS_CERT || undefined}
           type={ODS_INPUT_TYPE.text}
           error={!!valueError}
           onOdsValueChange={(event) => {

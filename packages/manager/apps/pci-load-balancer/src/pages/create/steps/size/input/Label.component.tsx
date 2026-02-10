@@ -1,12 +1,13 @@
 import { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  useCatalogPrice,
-  convertHourlyPriceToMonthly,
-} from '@ovh-ux/manager-react-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import { TProductAddonDetail } from '@/types/product.type';
 
 const DIGIT_AFTER_DECIMAL = 4;
@@ -18,21 +19,15 @@ export const LabelComponent = ({
 }>) => {
   const { t: tCreate } = useTranslation('load-balancer/create');
 
-  const {
-    getFormattedHourlyCatalogPrice,
-    getFormattedMonthlyCatalogPrice,
-  } = useCatalogPrice(DIGIT_AFTER_DECIMAL);
+  const { getFormattedHourlyCatalogPrice, getFormattedMonthlyCatalogPrice } =
+    useCatalogPrice(DIGIT_AFTER_DECIMAL);
 
   const [priceValue, monthlyPrice] = useMemo(
     () => [
       getFormattedHourlyCatalogPrice(item.price),
       getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(item.price)),
     ],
-    [
-      getFormattedHourlyCatalogPrice,
-      getFormattedMonthlyCatalogPrice,
-      item.price,
-    ],
+    [getFormattedHourlyCatalogPrice, getFormattedMonthlyCatalogPrice, item.price],
   );
 
   return (
@@ -52,9 +47,7 @@ export const LabelComponent = ({
           level={ODS_TEXT_LEVEL.body}
           color={ODS_THEME_COLOR_INTENT.text}
         >
-          {tCreate(
-            `octavia_load_balancer_create_size_flavour_description_${item.size}`,
-          )}{' '}
+          {tCreate(`octavia_load_balancer_create_size_flavour_description_${item.size}`)}{' '}
         </OsdsText>
       </div>
       <div className="mt-4 pt-4 text-center border-solid border-t border-0 border-[--ods-color-blue-200]">

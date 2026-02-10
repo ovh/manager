@@ -1,11 +1,15 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsText } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useDeletePool } from '@/api/hook/usePool';
 
 export default function DeletePoolPage() {

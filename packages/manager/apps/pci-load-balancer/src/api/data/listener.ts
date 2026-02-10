@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -46,8 +47,8 @@ export const createListener = async ({
   protocol,
   port,
   defaultPoolId,
-}: CreateListenerProps) => {
-  const { data } = await v6.post(
+}: CreateListenerProps): Promise<TLoadBalancerListener> => {
+  const { data } = await v6.post<TLoadBalancerListener>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/listener`,
     {
       loadbalancerId: loadBalancerId,
@@ -75,8 +76,8 @@ export const editListener = async ({
   listenerId,
   name,
   defaultPoolId,
-}: EditListenerProps) => {
-  const { data } = await v6.put(
+}: EditListenerProps): Promise<TLoadBalancerListener> => {
+  const { data } = await v6.put<TLoadBalancerListener>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/listener/${listenerId}`,
     {
       name,
@@ -87,12 +88,8 @@ export const editListener = async ({
   return data;
 };
 
-export const deleteListener = async (
-  projectId: string,
-  region: string,
-  listenerId: string,
-) => {
-  const { data } = await v6.delete(
+export const deleteListener = async (projectId: string, region: string, listenerId: string) => {
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/listener/${listenerId}`,
   );
   return data;
@@ -103,7 +100,7 @@ export const getListener = async (
   region: string,
   listenerId: string,
 ): Promise<TLoadBalancerListener> => {
-  const { data } = await v6.get(
+  const { data } = await v6.get<TLoadBalancerListener>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/listener/${listenerId}`,
   );
   return data;

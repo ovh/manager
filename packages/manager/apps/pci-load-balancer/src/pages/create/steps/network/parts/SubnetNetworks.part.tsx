@@ -1,26 +1,23 @@
-import { useEffect, useContext, useMemo } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { useContext, useEffect, useMemo } from 'react';
+
 import { useParams } from 'react-router-dom';
-import { useCreateStore } from '@/pages/create/store';
-import { useSubnetGateways } from '@/api/hook/useGateways/useGateways';
-import { FloatingIpSelectionId } from '@/types/floating.type';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsMessage, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useCatalogPrice } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { useAddons } from '@/api/hook/useAddons/useAddons';
 import { GATEWAY_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
-import { TProductAddonDetail } from '@/types/product.type';
 import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
+import { useSubnetGateways } from '@/api/hook/useGateways/useGateways';
+import { useCreateStore } from '@/pages/create/store';
+import { FloatingIpSelectionId } from '@/types/floating.type';
+import { TProductAddonDetail } from '@/types/product.type';
 
 export const SubnetNetworksPart = (): JSX.Element => {
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
@@ -33,17 +30,17 @@ export const SubnetNetworksPart = (): JSX.Element => {
 
   const region = store.region?.name || '';
 
-  const {
-    data: subnetGateways,
-    isFetching: isSubnetGatewaysFetching,
-  } = useSubnetGateways(projectId, region, store.subnet?.id);
+  const { data: subnetGateways, isFetching: isSubnetGatewaysFetching } = useSubnetGateways(
+    projectId,
+    region,
+    store.subnet?.id,
+  );
 
   const { addons } = useAddons({
     ovhSubsidiary,
     projectId,
     addonFamily: GATEWAY_ADDON_FAMILY,
-    select: (products: TProductAddonDetail[]) =>
-      filterProductRegionBySize(products, region),
+    select: (products: TProductAddonDetail[]) => filterProductRegionBySize(products, region),
   });
 
   // the smallest gateway is always the first because it is already sorted by size
@@ -82,9 +79,7 @@ export const SubnetNetworksPart = (): JSX.Element => {
                   level={ODS_TEXT_LEVEL.body}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t(
-                    'octavia_load_balancer_create_private_network_no_gateway_text',
-                  )}
+                  {t('octavia_load_balancer_create_private_network_no_gateway_text')}
                 </OsdsText>
               </p>
               {gateway && (
@@ -93,13 +88,10 @@ export const SubnetNetworksPart = (): JSX.Element => {
                   level={ODS_TEXT_LEVEL.body}
                   color={ODS_THEME_COLOR_INTENT.text}
                 >
-                  {t(
-                    'octavia_load_balancer_create_private_network_no_gateway_text_price',
-                    {
-                      size: gateway.size.toUpperCase(),
-                      price: getFormattedHourlyCatalogPrice(gateway.price),
-                    },
-                  )}
+                  {t('octavia_load_balancer_create_private_network_no_gateway_text_price', {
+                    size: gateway.size.toUpperCase(),
+                    price: getFormattedHourlyCatalogPrice(gateway.price),
+                  })}
                 </OsdsText>
               )}
             </div>

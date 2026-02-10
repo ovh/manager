@@ -1,3 +1,9 @@
+import { useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsSelect,
@@ -5,22 +11,17 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  StepComponent,
-  useCatalogPrice,
-} from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTracking } from '@/pages/create/hooks/useTracking';
-import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
-import { useFloatingIps } from '@/api/hook/useFloatingIps/useFloatingIps';
-import { FloatingIpSelectionId } from '@/types/floating.type';
+
+import { StepComponent, useCatalogPrice } from '@ovh-ux/manager-react-components';
+
 import { useAddons } from '@/api/hook/useAddons/useAddons';
 import { FLOATING_IP_ADDON_FAMILY } from '@/api/hook/useAddons/useAddons.constant';
 import { filterProductRegionBySize } from '@/api/hook/useAddons/useAddons.select';
+import { useFloatingIps } from '@/api/hook/useFloatingIps/useFloatingIps';
+import { useTracking } from '@/pages/create/hooks/useTracking';
+import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
+import { FloatingIpSelectionId } from '@/types/floating.type';
 import { TProductAddonDetail } from '@/types/product.type';
 
 export type TIpStepProps = {
@@ -28,10 +29,7 @@ export type TIpStepProps = {
   projectId: string;
 };
 
-export const IpStep = ({
-  ovhSubsidiary,
-  projectId,
-}: TIpStepProps): JSX.Element => {
+export const IpStep = ({ ovhSubsidiary, projectId }: TIpStepProps): JSX.Element => {
   const { t } = useTranslation(['load-balancer/create', 'pci-common']);
 
   const { trackStep } = useTracking();
@@ -48,8 +46,7 @@ export const IpStep = ({
     ovhSubsidiary,
     projectId,
     addonFamily: FLOATING_IP_ADDON_FAMILY,
-    select: (products: TProductAddonDetail[]) =>
-      filterProductRegionBySize(products, region),
+    select: (products: TProductAddonDetail[]) => filterProductRegionBySize(products, region),
   });
 
   const price = useMemo(
@@ -112,9 +109,7 @@ export const IpStep = ({
             className="w-[20rem]"
             value={store.publicIp}
             error={false}
-            onOdsValueChange={(event) =>
-              store.set.publicIp(event.target.value as string)
-            }
+            onOdsValueChange={(event) => store.set.publicIp(event.target.value as string)}
             inline
           >
             <OsdsText
@@ -125,14 +120,10 @@ export const IpStep = ({
               {t('octavia_load_balancer_create_floating_ip_field')}
             </OsdsText>
             <OsdsSelectOption value={FloatingIpSelectionId.NEW}>
-              {t(
-                'octavia_load_balancer_create_floating_ip_field_new_floating_ip',
-              )}
+              {t('octavia_load_balancer_create_floating_ip_field_new_floating_ip')}
             </OsdsSelectOption>
             <OsdsSelectOption value={FloatingIpSelectionId.UNATTACHED}>
-              {t(
-                'octavia_load_balancer_create_floating_ip_field_no_floating_ip',
-              )}
+              {t('octavia_load_balancer_create_floating_ip_field_no_floating_ip')}
             </OsdsSelectOption>
             {floatingIps?.map(({ id, ip }) => (
               <OsdsSelectOption value={id} key={id}>
@@ -144,9 +135,7 @@ export const IpStep = ({
       )}
       {(FloatingIpSelectionId.NEW === store.publicIp ||
         FloatingIpSelectionId.UNATTACHED === store.publicIp) &&
-        !isFetchingAddons && (
-          <IpStepMessages publicIpId={store.publicIp} price={price} />
-        )}
+        !isFetchingAddons && <IpStepMessages publicIpId={store.publicIp} price={price} />}
     </StepComponent>
   );
 };

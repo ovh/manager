@@ -1,5 +1,6 @@
-import { Links } from '@ovh-ux/manager-react-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+
+import { Links } from '@ovh-ux/manager-react-components';
 
 const GuideLink = ({
   children,
@@ -9,11 +10,7 @@ const GuideLink = ({
   <Links
     label={children}
     href={href}
-    target={
-      isTargetBlank
-        ? OdsHTMLAnchorElementTarget._blank
-        : OdsHTMLAnchorElementTarget._self
-    }
+    target={isTargetBlank ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self}
   />
 );
 

@@ -1,21 +1,19 @@
-import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMemo, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsInput, OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
-import {
-  OsdsFormField,
-  OsdsInput,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import { ODS_INPUT_TYPE, ODS_TEXT_LEVEL } from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { useCreatePoolMembers } from '@/api/hook/usePoolMember';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { TPoolMember } from '@/api/data/pool-member';
+import { useCreatePoolMembers } from '@/api/hook/usePoolMember';
 import LabelComponent from '@/components/form/Label.component';
 import { REGEX } from '@/constants';
 
@@ -42,10 +40,7 @@ export default function CreatePage() {
 
   const [isAddressTouched, setIsAddressTouched] = useState(false);
 
-  const {
-    createPoolMembers,
-    isPending: isPendingCreate,
-  } = useCreatePoolMembers({
+  const { createPoolMembers, isPending: isPendingCreate } = useCreatePoolMembers({
     projectId,
     region,
     poolId,
@@ -56,8 +51,7 @@ export default function CreatePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (error?.response?.data as { message: string })
-                    ?.message,
+                  message: (error?.response?.data as { message: string })?.message,
                   requestId: error.response?.headers['x-ovh-queryid'],
                 }),
               }}
@@ -71,9 +65,7 @@ export default function CreatePage() {
     onSuccess() {
       addSuccess(
         <Translation ns="pools/members">
-          {(_t) =>
-            _t('octavia_load_balancer_pools_detail_members_create_success')
-          }
+          {(_t) => _t('octavia_load_balancer_pools_detail_members_create_success')}
         </Translation>,
         true,
       );
@@ -117,8 +109,7 @@ export default function CreatePage() {
     return '';
   }, [poolMember.protocolPort]);
 
-  const isFormValid =
-    isAddressTouched && !protocolPortErrorMessage && !addressIpErrorMessage;
+  const isFormValid = isAddressTouched && !protocolPortErrorMessage && !addressIpErrorMessage;
 
   return (
     <PciModal
@@ -126,12 +117,8 @@ export default function CreatePage() {
       onCancel={onCancel}
       onClose={onClose}
       isPending={isPendingCreate}
-      cancelText={tCreate(
-        'octavia_load_balancer_pools_detail_members_create_cancel',
-      )}
-      submitText={tCreate(
-        'octavia_load_balancer_pools_detail_members_create_confirm',
-      )}
+      cancelText={tCreate('octavia_load_balancer_pools_detail_members_create_cancel')}
+      submitText={tCreate('octavia_load_balancer_pools_detail_members_create_confirm')}
       title={tCreate('octavia_load_balancer_pools_detail_members_create_title')}
       isDisabled={!isFormValid}
     >
@@ -140,15 +127,11 @@ export default function CreatePage() {
         size={ODS_THEME_TYPOGRAPHY_SIZE._500}
         color={ODS_THEME_COLOR_INTENT.text}
       >
-        {tCreate(
-          'octavia_load_balancer_pools_detail_members_create_description',
-        )}
+        {tCreate('octavia_load_balancer_pools_detail_members_create_description')}
       </OsdsText>
       <OsdsFormField className="mt-8">
         <LabelComponent
-          text={tCreate(
-            'octavia_load_balancer_pools_detail_members_create_name_label',
-          )}
+          text={tCreate('octavia_load_balancer_pools_detail_members_create_name_label')}
         />
         <OsdsInput
           value={poolMember.name}
@@ -163,9 +146,7 @@ export default function CreatePage() {
       </OsdsFormField>
       <OsdsFormField className="mt-8" error={addressIpErrorMessage}>
         <LabelComponent
-          text={tCreate(
-            'octavia_load_balancer_pools_detail_members_create_address_ip_label',
-          )}
+          text={tCreate('octavia_load_balancer_pools_detail_members_create_address_ip_label')}
           hasError={!!addressIpErrorMessage}
         />
         <OsdsInput
@@ -183,9 +164,7 @@ export default function CreatePage() {
       </OsdsFormField>
       <OsdsFormField className="mt-8" error={protocolPortErrorMessage}>
         <LabelComponent
-          text={tCreate(
-            'octavia_load_balancer_pools_detail_members_create_port_label',
-          )}
+          text={tCreate('octavia_load_balancer_pools_detail_members_create_port_label')}
           hasError={!!protocolPortErrorMessage}
         />
         <OsdsInput
@@ -197,9 +176,7 @@ export default function CreatePage() {
           onOdsValueChange={(event) => {
             setPoolMember((state) => ({
               ...state,
-              protocolPort: event.detail.value
-                ? parseInt(event.detail.value, 10)
-                : 0,
+              protocolPort: event.detail.value ? parseInt(event.detail.value, 10) : 0,
             }));
           }}
         />

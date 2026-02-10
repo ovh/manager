@@ -1,30 +1,24 @@
-import { Headers, useNotifications } from '@ovh-ux/manager-react-components';
-import { Translation, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ApiError } from '@ovh-ux/manager-core-api';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { Headers, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useGetPolicy, useUpdatePolicy } from '@/api/hook/useL7Policy';
-import PolicyForm from '@/components/form/PolicyForm.component';
 import { useListener } from '@/api/hook/useListener';
 import { useAllLoadBalancerPools } from '@/api/hook/usePool';
+import PolicyForm from '@/components/form/PolicyForm.component';
 
 export default function EditPage() {
   const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation('l7/edit');
-  const {
-    listenerId,
-    projectId,
-    region,
-    loadBalancerId,
-    policyId,
-  } = useParams();
+  const { listenerId, projectId, region, loadBalancerId, policyId } = useParams();
   const navigate = useNavigate();
-  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(
-    projectId,
-    policyId,
-    region,
-  );
+  const { data: policy, isPending: isPendingPolicy } = useGetPolicy(projectId, policyId, region);
   const { data: listener, isPending: isPendingListener } = useListener({
     projectId,
     region,
@@ -48,8 +42,7 @@ export default function EditPage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
+                  message: error?.response?.data?.message || error?.message || null,
                   requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
                 }),
               }}
@@ -77,8 +70,7 @@ export default function EditPage() {
       navigate('..');
     },
   });
-  const isPending =
-    isPendingListener || isPendingPools || isPendingCreate || isPendingPolicy;
+  const isPending = isPendingListener || isPendingPools || isPendingCreate || isPendingPolicy;
   return (
     <div>
       <div className=" mt-8">

@@ -1,22 +1,25 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import {
+  TLoadBalancerListener,
   createListener,
   deleteListener,
   editListener,
   getListener,
   getLoadBalancerListeners,
-  TLoadBalancerListener,
 } from '@/api/data/listener';
-import queryClient from '@/queryClient';
 import { PROTOCOLS } from '@/constants';
 import { paginateResults, sortResults } from '@/helpers';
+import queryClient from '@/queryClient';
 
 export interface ListenerInfoProps {
   name: string;
-  protocol: typeof PROTOCOLS[number];
+  protocol: (typeof PROTOCOLS)[number];
   port: number;
   defaultPoolId?: string;
 }
@@ -70,15 +73,7 @@ export const useLoadBalancerListeners = (
       ),
       error,
     }),
-    [
-      loadBalancerListeners,
-      error,
-      isLoading,
-      isPending,
-      pagination,
-      sorting,
-      filters,
-    ],
+    [loadBalancerListeners, error, isLoading, isPending, pagination, sorting, filters],
   );
 };
 
@@ -114,8 +109,7 @@ export const useCreateListener = ({
     },
   });
   return {
-    createListener: (listenerInfo: ListenerInfoProps) =>
-      mutation.mutate(listenerInfo),
+    createListener: (listenerInfo: ListenerInfoProps) => mutation.mutate(listenerInfo),
     ...mutation,
   };
 };
@@ -136,13 +130,7 @@ export const useEditLoadBalancer = ({
   onSuccess,
 }: EditListenerProps) => {
   const mutation = useMutation({
-    mutationFn: ({
-      name,
-      defaultPoolId,
-    }: {
-      name: string;
-      defaultPoolId?: string;
-    }) =>
+    mutationFn: ({ name, defaultPoolId }: { name: string; defaultPoolId?: string }) =>
       editListener({
         projectId,
         region,
@@ -159,13 +147,7 @@ export const useEditLoadBalancer = ({
     },
   });
   return {
-    editListener: ({
-      name,
-      defaultPoolId,
-    }: {
-      name: string;
-      defaultPoolId?: string;
-    }) =>
+    editListener: ({ name, defaultPoolId }: { name: string; defaultPoolId?: string }) =>
       mutation.mutate({
         name,
         defaultPoolId,
