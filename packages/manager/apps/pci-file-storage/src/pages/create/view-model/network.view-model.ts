@@ -22,7 +22,7 @@ export const selectPrivateNetworksForRegion =
 
 export const generateAutoName = (specName: string = 'share'): string => {
   const now = new Date();
-  const datePart = format(now, 'dd_MM_yyyy');
+  const datePart = format(now, 'yyyy_MM_dd');
   const sanitizedSpecName = specName.replace(/[^a-zA-Z0-9_.-]/g, '_').substring(0, 200);
   return `${sanitizedSpecName}_${datePart}`;
 };

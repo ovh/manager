@@ -1,7 +1,7 @@
 import { TMacroRegion, TMicroRegion, TShareSpecs } from '@/domain/entities/catalog.entity';
 
 export const isMicroRegionAvailable = (microRegion: TMicroRegion): boolean =>
-  microRegion.isActivated && !microRegion.isInMaintenance;
+  microRegion.isActivable && !microRegion.isInMaintenance;
 
 export const getMicroRegions = (
   macroRegion: TMacroRegion | undefined,

@@ -14,22 +14,22 @@ describe('catalog.service', () => {
     it.each([
       {
         description: 'should return true when activated and not in maintenance',
-        microRegion: { isActivated: true, isInMaintenance: false } as TMicroRegion,
+        microRegion: { isActivable: true, isInMaintenance: false } as TMicroRegion,
         expected: true,
       },
       {
         description: 'should return false when not activated',
-        microRegion: { isActivated: false, isInMaintenance: false } as TMicroRegion,
+        microRegion: { isActivable: false, isInMaintenance: false } as TMicroRegion,
         expected: false,
       },
       {
         description: 'should return false when in maintenance',
-        microRegion: { isActivated: true, isInMaintenance: true } as TMicroRegion,
+        microRegion: { isActivable: true, isInMaintenance: true } as TMicroRegion,
         expected: false,
       },
       {
         description: 'should return false when not activated and in maintenance',
-        microRegion: { isActivated: false, isInMaintenance: true } as TMicroRegion,
+        microRegion: { isActivable: false, isInMaintenance: true } as TMicroRegion,
         expected: false,
       },
     ])('$description', ({ microRegion, expected }) => {
@@ -80,11 +80,11 @@ describe('catalog.service', () => {
   });
 
   describe('isMacroRegionAvailable', () => {
-    const createMicroRegion = (name: string, isInMaintenance: boolean, isActivated: boolean) =>
+    const createMicroRegion = (name: string, isInMaintenance: boolean, isActivable: boolean) =>
       ({
         name,
         isInMaintenance,
-        isActivated,
+        isActivable,
       }) as TMicroRegion;
 
     it.each([
