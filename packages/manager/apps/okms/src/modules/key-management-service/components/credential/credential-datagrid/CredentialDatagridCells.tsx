@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
-import { KMS_ROUTES_URIS } from '@key-management-service/routes/routes.constants';
+import { KMS_ROUTES_URIS, KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsCredential } from '@key-management-service/types/okmsCredential.type';
 import { getDownloadCredentialParameters } from '@key-management-service/utils/credential/credentialDownload';
@@ -13,19 +13,20 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { CredentialStatus } from '../credential-status-badge/CredentialStatusBadge.component';
 import { CREDENTIAL_LIST_CELL_TEST_IDS } from './CredentialDatagridCells.constants';
 
 export const DatagridCredentialCellName = (credential: OkmsCredential) => {
-  const navigate = useNavigate();
+  const { okmsId } = useRequiredParams('okmsId');
   const { trackClick } = useOkmsTracking();
   return (
     <div>
-      <MukLink
+      <InternalLink
         onClick={() => {
           trackClick({
             location: PageLocation.datagrid,
@@ -33,12 +34,12 @@ export const DatagridCredentialCellName = (credential: OkmsCredential) => {
             actionType: 'action',
             actions: ['credential'],
           });
-          navigate(`${credential.id}`);
         }}
+        to={KMS_ROUTES_URLS.credentialDashboard(okmsId, credential.id)}
         data-testid={CREDENTIAL_LIST_CELL_TEST_IDS.name(credential.id)}
       >
         {credential.name}
-      </MukLink>
+      </InternalLink>
     </div>
   );
 };

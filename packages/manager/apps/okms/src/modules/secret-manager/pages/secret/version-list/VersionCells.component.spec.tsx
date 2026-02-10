@@ -26,7 +26,6 @@ const mockOkmsId = 'test-okms-id';
 vi.mock('react-router-dom', () => ({
   useNavigate: vi.fn(),
   useParams: vi.fn(),
-  useHref: vi.fn(),
 }));
 
 const renderVersionLink = async (versionMock: SecretVersion) => {

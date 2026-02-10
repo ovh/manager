@@ -1,5 +1,3 @@
-import { useHref } from 'react-router-dom';
-
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
@@ -9,7 +7,7 @@ import { Skeleton } from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
@@ -28,16 +26,16 @@ export const EditMetadataLink = ({ secret }: EditMetadataButtonProps) => {
   const { okmsId } = useRequiredParams('okmsId');
   const { trackClick } = useOkmsTracking();
 
-  const href = useHref(SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(okmsId, secret.path));
+  const href = SECRET_MANAGER_ROUTES_URLS.secretEditMetadataDrawer(okmsId, secret.path);
 
   const { data: okms, isPending } = useOkmsById(okmsId);
 
   if (isPending) return <Skeleton data-testid={EDIT_METADATA_LINK_TEST_IDS.skeleton} />;
 
   return (
-    <MukLink
+    <InternalLink
       data-testid={EDIT_METADATA_LINK_TEST_IDS.editMetadataLink}
-      href={href}
+      to={href}
       disabled={!isOkmsActive(okms)}
       onClick={() => {
         trackClick({
@@ -51,6 +49,6 @@ export const EditMetadataLink = ({ secret }: EditMetadataButtonProps) => {
       iamActions={[kmsIamActions.secretEdit, kmsIamActions.secretMetadataUpdate]}
     >
       {t('edit_metadata')}
-    </MukLink>
+    </InternalLink>
   );
 };

@@ -13,7 +13,7 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 
 type CreateCredentialConfirmationPrivateKeyProps = {
   privateKey?: string;
@@ -43,8 +43,8 @@ export const CreateCredentialConfirmationPrivateKey = ({
         <Message color="warning" dismissible={false}>
           {t('key_management_service_credential_create_confirmation_private-key_warn')}
         </Message>
-        <MukLink
-          href={`data:text/plain;charset=utf-8,${encodeURIComponent(
+        <InternalLink
+          to={`data:text/plain;charset=utf-8,${encodeURIComponent(
             privateKey.replace(/\n/g, '\r\n'),
           )}`}
           download={`${credentialId}_privatekey.pem`}
@@ -53,7 +53,7 @@ export const CreateCredentialConfirmationPrivateKey = ({
             {t('key_management_service_credential_create_confirmation_private-key_download_label')}
             <Icon name="download" />
           </>
-        </MukLink>
+        </InternalLink>
         <FormField>
           <Checkbox
             data-testid="confirmation-private-key"

@@ -4,7 +4,7 @@ import { act, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { MukLinkType } from '@/common/components/link/Link.component';
+import { LinkType } from '@/common/components/link/Link.component';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 
@@ -33,7 +33,7 @@ describe('OKMS Secret List link Tile Item test suite', () => {
     const secretListLink = screen.getByText(labels.kmsCommon.manage_secrets_link);
 
     expect(secretListLink).toBeVisible();
-    expect(secretListLink).toHaveAttribute('type', MukLinkType.next);
+    expect(secretListLink).toHaveAttribute('type', LinkType.next);
 
     await act(async () => {
       await user.click(secretListLink);

@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-
 import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
@@ -12,18 +11,19 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { ActionMenu, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { ServiceKeyStatus } from '../service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
 import { SERVICE_KEY_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
-  const navigate = useNavigate();
+  const { okmsId } = useRequiredParams('okmsId');
   const { trackClick } = useOkmsTracking();
 
   return (
-    <MukLink
+    <InternalLink
       onClick={() => {
         trackClick({
           location: PageLocation.datagrid,
@@ -31,12 +31,12 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
           actionType: 'navigation',
           actions: ['service-key'],
         });
-        navigate(`${props?.id}`);
       }}
+      to={KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, props.id)}
       data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.name(props.id)}
     >
       {props?.name}
-    </MukLink>
+    </InternalLink>
   );
 };
 
