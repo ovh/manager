@@ -102,7 +102,7 @@ export const useForm = (projectId: string) => {
       newSshPublicKey: newSshPublicKeyDefaultValue,
       subnetId: null,
       newPrivateNetwork: null,
-      assignNewGateway: false,
+      willGatewayBeAttached: false,
       ipPublicType: null,
       floatingIpAssignment: null,
       existingFloatingIpId: null,

@@ -142,7 +142,7 @@ export const localBackupRotationSchema = z.string().nullable();
 
 export const distantBackupLocalizationSchema = z.string().nullable();
 
-export const assignNewGatewaySchema = z.boolean();
+export const willGatewayBeAttachedSchema = z.boolean();
 
 export const ipPublicTypeSchema = z.enum(['basicIp', 'floatingIp']).nullable();
 
@@ -176,7 +176,7 @@ export const instanceCreationSchema = z.object({
   newSshPublicKey: sshPublicKeySchema.nullable(),
   subnetId: subnetIdSchema,
   newPrivateNetwork: networkSchema,
-  assignNewGateway: assignNewGatewaySchema,
+  willGatewayBeAttached: willGatewayBeAttachedSchema,
   ipPublicType: ipPublicTypeSchema,
   floatingIpAssignment: floatingIpAssignmentSchema,
   existingFloatingIpId: existingFloatingIpIdSchema,

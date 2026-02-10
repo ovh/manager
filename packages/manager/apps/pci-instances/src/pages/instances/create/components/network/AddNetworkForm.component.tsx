@@ -53,6 +53,7 @@ const AddNetworkForm: FC = () => {
       setValue('newPrivateNetwork', networks.ovhPrivateNetwork, {
         shouldValidate: true,
       });
+    setValue('willGatewayBeAttached', false);
   }, [networks, setValue]);
 
   return (

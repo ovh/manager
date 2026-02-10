@@ -185,5 +185,6 @@
     "title": "Flex Instances",
     "disk_capacity": "<span>A flex instance is a single disk instance (50 GB)</span> offering a faster process for snapshots.",
     "resizing_explanation": "It allows resizing to higher or lower models with fixed storage space, while classic models can only be resized to higher models."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Attached gateway"
 }

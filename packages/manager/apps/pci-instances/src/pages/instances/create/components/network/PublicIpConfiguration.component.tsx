@@ -36,7 +36,7 @@ type TPublicIpTypeConfig = Record<
   {
     floatingIpAssignment: 'createNew' | 'reuseExisting' | null;
     existingFloatingIpId: null;
-    assignNewGateway: boolean;
+    willGatewayBeAttached: boolean;
   }
 >;
 
@@ -119,12 +119,12 @@ const PublicIpConfiguration: FC<{
       basicIp: {
         floatingIpAssignment: null,
         existingFloatingIpId: null,
-        assignNewGateway: false,
+        willGatewayBeAttached: false,
       },
       floatingIp: {
         floatingIpAssignment: 'createNew',
         existingFloatingIpId: null,
-        assignNewGateway: !gatewayAvailability?.isDisabled,
+        willGatewayBeAttached: !gatewayAvailability?.isDisabled,
       },
     };
 

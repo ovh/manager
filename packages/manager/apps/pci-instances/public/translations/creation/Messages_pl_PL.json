@@ -185,5 +185,6 @@
     "title": "Instancje Flex",
     "disk_capacity": "<span>Instancja flex to instancja z pojedynczym dyskiem (50 GB)</span>, oferująca szybszy proces dla zrzutów.",
     "resizing_explanation": "Umożliwia skalowanie w górę lub w dół do wyższych lub niższych modeli z ustaloną przestrzenią dyskową, podczas gdy klasyczne modele mogą być skalowane tylko w górę."
-  }
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Przyłączona brama"
 }
