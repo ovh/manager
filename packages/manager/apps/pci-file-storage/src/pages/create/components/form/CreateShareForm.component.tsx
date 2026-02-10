@@ -50,7 +50,7 @@ export const CreateShareForm = () => {
   };
 
   const handleCancel = () => {
-    navigate('../onboarding');
+    navigate('..');
   };
 
   const isFormValid = formMethods.formState.isValid;
