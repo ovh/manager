@@ -268,4 +268,58 @@ describe('CreateRancher', () => {
       expect(helperText).toHaveAttribute('color', ODS_THEME_COLOR_INTENT.text);
     });
   });
+
+  describe('Free Trial', () => {
+    it('Given that I am eligible for free trial, I should see the free trial banner', async () => {
+      const screen = await setupSpecTest({ isFreeTrialEligible: true });
+      const bannerLine1 = screen.getByText(
+        dashboardTranslation.freeTrialBannerMessageLine1,
+      );
+      const bannerLine2 = screen.getByText(
+        dashboardTranslation.freeTrialBannerMessageLine2,
+      );
+      const bannerLine3 = screen.getByText(
+        dashboardTranslation.freeTrialBannerMessageLine3,
+      );
+
+      expect(bannerLine1).toBeInTheDocument();
+      expect(bannerLine2).toBeInTheDocument();
+      expect(bannerLine3).toBeInTheDocument();
+    });
+
+    it('Given that I am not eligible for free trial, I should not see the free trial banner', async () => {
+      const screen = await setupSpecTest({ isFreeTrialEligible: false });
+      const bannerLine1 = screen.queryByText(
+        dashboardTranslation.freeTrialBannerMessageLine1,
+      );
+      const bannerLine2 = screen.queryByText(
+        dashboardTranslation.freeTrialBannerMessageLine2,
+      );
+      const bannerLine3 = screen.queryByText(
+        dashboardTranslation.freeTrialBannerMessageLine3,
+      );
+
+      expect(bannerLine1).not.toBeInTheDocument();
+      expect(bannerLine2).not.toBeInTheDocument();
+      expect(bannerLine3).not.toBeInTheDocument();
+    });
+
+    it('Given that I am eligible for free trial, I should see the free trial disclaimer below the plan cards', async () => {
+      const screen = await setupSpecTest({ isFreeTrialEligible: true });
+      const disclaimer = screen.getByText(
+        dashboardTranslation.freeTrialDisclaimer,
+      );
+
+      expect(disclaimer).toBeInTheDocument();
+    });
+
+    it('Given that I am not eligible for free trial, I should not see the free trial disclaimer', async () => {
+      const screen = await setupSpecTest({ isFreeTrialEligible: false });
+      const disclaimer = screen.queryByText(
+        dashboardTranslation.freeTrialDisclaimer,
+      );
+
+      expect(disclaimer).not.toBeInTheDocument();
+    });
+  });
 });

@@ -1,10 +1,11 @@
 // RancherPlanTile.tsx
 import React from 'react';
-import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsTile, OsdsText, OsdsChip } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useTranslation } from 'react-i18next';
 import { RancherPlan } from '@/types/api.type';
+import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 
 export interface RancherPlanTileProps {
   plan: RancherPlan;
@@ -15,6 +16,7 @@ export interface RancherPlanTileProps {
   formattedHourlyPrice: string;
   formattedMonthlyPrice: string;
   isPricing: boolean;
+  showFreeTrialBadge?: boolean;
 }
 
 const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
@@ -26,6 +28,7 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
   formattedHourlyPrice,
   formattedMonthlyPrice,
   isPricing,
+  showFreeTrialBadge = false,
 }) => {
   const { t } = useTranslation(['dashboard']);
   return (
@@ -52,7 +55,17 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
                 plan.name === selectedPlan?.name && 'font-bold',
               )}
             >
-              <span>{name}</span>
+              <div className="flex flex-wrap items-center gap-4">
+                <span>{name}</span>
+                {showFreeTrialBadge && (
+                  <OsdsChip
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    size={ODS_CHIP_SIZE.sm}
+                  >
+                    {t('freeTrialBadge')}
+                  </OsdsChip>
+                )}
+              </div>
             </div>
             <div
               className={clsx(
@@ -64,11 +77,24 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
             </div>
           </div>
           {isPricing && (
-            <div className="text-center border-t border-t-[#bef1ff]">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.text}
-                className="block pt-4"
-              >
+            <div className="text-center border-t border-t-[#bef1ff] pt-4">
+              {showFreeTrialBadge && (
+                <>
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    className="block"
+                  >
+                    <strong>{t('freeTrialPriceLabel')}</strong>
+                  </OsdsText>
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    className="block"
+                  >
+                    {t('freeTrialThenLabel')}
+                  </OsdsText>
+                </>
+              )}
+              <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
                 <strong>{formattedHourlyPrice}</strong>
               </OsdsText>
               <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="block">
