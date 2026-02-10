@@ -61,7 +61,7 @@ export const Cart = ({ items, isSubmitDisabled }: TCartProps) => {
           </CartItem>
         )}
       />
-      <CartTotalPrice price={getTotalPrice(details)} displayHourlyPrice displayMonthlyPrice />
+      <CartTotalPrice price={getTotalPrice(details)} displayMonthlyPrice />
       <CartActions className="flex-col gap-6">
         <Button disabled={isSubmitDisabled}>
           {t('kubernetes_add_create_cluster')} <Icon name="arrow-right" />

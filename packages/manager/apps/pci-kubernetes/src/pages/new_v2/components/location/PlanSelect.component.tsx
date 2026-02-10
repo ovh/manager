@@ -13,7 +13,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { TCreateClusterSchema } from '../../CreateClusterForm.schema';
-import { PlanOption } from '../../view-models/plans.viewmodel';
+import { PlanOption } from '../../view-models/regionPlans.viewmodel';
 
 type TPlanSelectProps = {
   options: Array<PlanOption>;

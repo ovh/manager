@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { TContinentCode, TMacroRegion, TPlanCode } from '@/domain/entities/regions';
+import { TPlanCode } from '@/domain/entities/cloudCatalog';
+import { TContinentCode, TMacroRegion } from '@/domain/entities/regions';
 import { TClusterPlanEnum } from '@/types';
 
 import { selectAvailableContinentOptions } from '../continents.viewmodel';

@@ -123,8 +123,8 @@
   "kube_add_plan_helper_v2_title": "¿Qué plan elegir para su clúster de Kubernetes?",
   "kube_add_plan_helper_v2_intro_1": "La elección del plan determina la disponibilidad de su",
   "kube_add_plan_helper_v2_intro_control_plane": "Plano de Control",
-  "kube_add_plan_helper_v2_intro_2": "Atención: una vez creado el clúster, no es posible pasar del plan Gratis al plan Estándar (y viceversa).",
-  "kube_add_plan_helper_v2_free_title": "Plan Gratis (Gratuito)",
+  "kube_add_plan_helper_v2_intro_2": "Atención: una vez creado el clúster, no es posible cambiar del plan Gratis al plan Estándar (y viceversa).",
+  "kube_add_plan_helper_v2_free_title": "Plan Gratis (Free)",
   "kube_add_plan_helper_v2_free_ideal_label": "Ideal para:",
   "kube_add_plan_helper_v2_free_ideal_text": "Pruebas, desarrollo y aprendizaje.",
   "kube_add_plan_helper_v2_free_availability_label": "Disponibilidad:",
@@ -140,5 +140,8 @@
   "kube_add_plan_helper_v2_warning_plan_standard": "Plan Estándar",
   "kube_add_plan_helper_v2_warning_text_suffix": "desde ahora.",
   "kube_add_plan_helper_v2_warning_consequence": "Si elige el plan Free, deberá recrear completamente un nuevo clúster y migrar sus datos manualmente para beneficiarse de las ventajas del Standard más tarde.",
-  "kube_add_plan_content_not_available_AZ": "No disponible para {{mode}}"
+  "kube_add_plan_content_not_available_AZ": "No disponible para {{mode}}",
+  "kube_add_plan_content_not_available_region": "No disponible para esta región",
+  "kube_add_cart_total_price": "Total",
+  "kube_add_cart_monthly_price": "Estimación mensual"
 }

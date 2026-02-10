@@ -112,7 +112,7 @@
   "kube_add_plan_helper_title": "Einen Plan wählen",
   "kube_add_plan_helper_description": "Der Plan bestimmt das Serviceniveau und die Funktionen Ihres Kubernetes-Clusters.",
   "kube_add_plan_helper_free_title": "Kostenloser Plan",
-  "kube_add_plan_helper_free_description": "Ideal für Entwicklung, Tests und nicht kritische Workloads. Bereitgestellt in einer einzigen Verfügbarkeitszone (1-AZ).",
+  "kube_add_plan_helper_free_description": "Ideal für Entwicklung, Tests und nicht kritische Arbeitslasten. Bereitgestellt in einer einzigen Verfügbarkeitszone (1-AZ).",
   "kube_add_plan_helper_standard_title": "Standardplan",
   "kube_add_plan_helper_standard_description": "Empfohlen für Produktion und kritische Anwendungen. Bereitgestellt in drei Verfügbarkeitszonen (3-AZ) für hohe Resilienz.",
   "kube_add_plan_helper_difference_title": "Hauptunterschiede:",
@@ -140,5 +140,8 @@
   "kube_add_plan_helper_v2_warning_plan_standard": "Standardplan",
   "kube_add_plan_helper_v2_warning_text_suffix": "ab sofort.",
   "kube_add_plan_helper_v2_warning_consequence": "Wenn Sie den kostenlosen Plan wählen, müssen Sie einen neuen Cluster vollständig neu erstellen und Ihre Daten manuell migrieren, um später von den Vorteilen des Standardplans zu profitieren.",
-  "kube_add_plan_content_not_available_AZ": "Nicht verfügbar für {{mode}}"
+  "kube_add_plan_content_not_available_AZ": "Nicht verfügbar für {{mode}}",
+  "kube_add_plan_content_not_available_region": "Nicht verfügbar für diese Region",
+  "kube_add_cart_total_price": "Summe",
+  "kube_add_cart_monthly_price": "Monatsabschätzung"
 }

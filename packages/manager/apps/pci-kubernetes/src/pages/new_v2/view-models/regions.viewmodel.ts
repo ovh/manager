@@ -9,7 +9,11 @@ import {
 import { TClusterPlanEnum } from '@/types';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
-import { TViewPlan, mapPlanCodeToDeploymentMode, mapPlanCodeToViewPlan } from './plans.viewmodel';
+import {
+  TViewPlan,
+  mapPlanCodeToDeploymentMode,
+  mapPlanCodeToViewPlan,
+} from './regionPlans.viewmodel';
 
 export type TRegionCard = {
   labelKey: string;
