@@ -6,6 +6,7 @@ export const mockedS3Object: cloud.StorageObject = {
   key: 'objectKey',
   lastModified: '2024-08-04',
   size: 157,
+  storageClass: cloud.storage.StorageClassEnum.STANDARD,
 };
 
 export const mockContainerObject: storages.ContainerObject = {
@@ -15,4 +16,9 @@ export const mockContainerObject: storages.ContainerObject = {
   retrievalDelay: 0,
   retrievalState: storages.RetrievalStateEnum.sealed,
   size: 1024,
+};
+
+export const mockedS3ObjectVersions: cloud.StorageObject = {
+  ...mockedS3Object,
+  versionId: 'versionId',
 };

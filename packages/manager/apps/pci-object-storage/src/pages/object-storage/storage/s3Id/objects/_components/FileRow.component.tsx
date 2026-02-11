@@ -100,7 +100,7 @@ export function FileRow({ item, showVersion }: FileRowProps) {
         )}
       </div>
 
-      <RowActions actions={actions} />
+      <RowActions actions={actions} testId={`s3-action-trigger-${item.key}`} />
     </div>
   );
 }
