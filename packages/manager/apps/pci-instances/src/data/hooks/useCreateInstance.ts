@@ -31,7 +31,7 @@ export const useCreateInstance = ({
     mutationFn: ({ regionName, instance }: TUseCreateInstanceMutationFnArgs) =>
       instanceAdapter.createInstance({ projectId, regionName, instance }),
     onSuccess: () => {
-      void queryClient.invalidateQueries({
+      void queryClient.resetQueries({
         queryKey: operationsQueryKey(projectId),
       });
       onSuccess?.();

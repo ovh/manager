@@ -179,5 +179,6 @@
   "pci_instance_creation_network_full_private_warning": "<p>This instance will not have public access to the Internet. You will not be able to connect to it or reach external services unless you use a bastion or add a gateway.</p><p>This improves security but limits connectivity. On your Windows instances, <semibold>you need to manually activate the license to access all services</semibold>.</p><Link>View the guide</Link>",
   "pci_instance_creation_in_progress": "Instance creation is in progress, your service will be available shortly",
   "pci_instances_creations_in_progress": "Instance creations are in progress, your services will be available shortly",
-  "pci_instance_creation_error": "We encountered an error while creating your instance…"
+  "pci_instance_creation_error": "We encountered an error while creating your instance…",
+  "pci_instance_onboarding_page_creation_pending": "Your instance is being created, please wait a moment..."
 }

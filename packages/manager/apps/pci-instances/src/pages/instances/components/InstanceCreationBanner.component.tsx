@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import Banner from '@/components/banner/Banner.component';
 
 type TInstanceCreationBannerProps = {
-  operationsCount: number;
+  instancesCreationsCount: number;
   hasError: boolean;
 };
 
 export const InstanceCreationBanner: FC<TInstanceCreationBannerProps> = ({
-  operationsCount,
+  instancesCreationsCount,
   hasError,
 }) => {
   const { t } = useTranslation('creation');
@@ -23,7 +23,7 @@ export const InstanceCreationBanner: FC<TInstanceCreationBannerProps> = ({
 
   return (
     <>
-      {operationsCount > 0 && showBanner.info && (
+      {instancesCreationsCount > 0 && showBanner.info && (
         <div className="mb-4">
           <Banner
             color="information"
@@ -31,7 +31,7 @@ export const InstanceCreationBanner: FC<TInstanceCreationBannerProps> = ({
             dismissible
             onRemove={removeBanner('info')}
           >
-            {operationsCount > 1
+            {instancesCreationsCount > 1
               ? t('pci_instances_creations_in_progress')
               : t('pci_instance_creation_in_progress')}
           </Banner>

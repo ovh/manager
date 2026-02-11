@@ -110,7 +110,7 @@ const Instances: FC = () => {
     filters,
   });
 
-  const { operationsCount, hasError } = useInstanceCreationPolling();
+  const { instancesCreationsCount, hasError } = useInstanceCreationPolling();
 
   const filterColumns = useMemo(
     () => [
@@ -177,7 +177,7 @@ const Instances: FC = () => {
           <Notifications />
           <SearchNotifications />
           <InstanceCreationBanner
-            operationsCount={operationsCount}
+            instancesCreationsCount={instancesCreationsCount}
             hasError={hasError}
           />
           <OsdsDivider />

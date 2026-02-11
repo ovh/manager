@@ -179,5 +179,6 @@
   "pci_instance_creation_network_full_private_warning": "<p>Diese Instanz hat keinen öffentlichen Internetzugang. Sie können sich nicht damit verbinden oder externe Dienste erreichen, es sei denn, Sie verwenden einen Bastion oder fügen ein Gateway hinzu.</p><p>Das verbessert die Sicherheit, schränkt jedoch die Konnektivität ein. Auf Ihren Windows-Instanzen müssen <semibold>Sie die Lizenz manuell aktivieren, um auf alle Dienste zugreifen zu können</semibold>.</p><Link>Zur Anleitung</Link>",
   "pci_instance_creation_in_progress": "Die Instanz wird erstellt, Ihr Dienst wird in wenigen Augenblicken verfügbar sein.",
   "pci_instances_creations_in_progress": "Die Instanzen werden erstellt, Ihre Dienste werden in wenigen Augenblicken verfügbar sein.",
-  "pci_instance_creation_error": "Wir haben einen Fehler bei der Erstellung Ihrer Instanz festgestellt..."
+  "pci_instance_creation_error": "Wir haben einen Fehler bei der Erstellung Ihrer Instanz festgestellt...",
+  "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment..."
 }

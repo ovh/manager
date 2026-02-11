@@ -13,5 +13,5 @@ export type TBaseOperation = {
 };
 
 export type TOperation = TBaseOperation & {
-  subOperations: TBaseOperation[];
+  subOperations?: TBaseOperation[];
 };

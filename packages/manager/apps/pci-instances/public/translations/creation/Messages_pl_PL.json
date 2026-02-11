@@ -179,5 +179,6 @@
   "pci_instance_creation_network_full_private_warning": "<p>Ta instancja nie będzie miała dostępu publicznego do Internetu. Nie będziesz mógł się z nią połączyć ani uzyskać dostępu do usług zewnętrznych, chyba że użyjesz bastionu lub dodasz bramę.</p><p>To poprawia bezpieczeństwo, ale ogranicza łączność. Na twoich instancjach Windows, <semibold>musisz ręcznie aktywować licencję, aby uzyskać dostęp do wszystkich usług</semibold>.</p><Link>Sprawdź przewodnik</Link>",
   "pci_instance_creation_in_progress": "Tworzenie instancji jest w toku, twoja usługa będzie dostępna za chwilę",
   "pci_instances_creations_in_progress": "Tworzenie instancji jest w toku, twoje usługi będą dostępne za chwilę",
-  "pci_instance_creation_error": "Napotkaliśmy błąd podczas tworzenia twojej instancji…"
+  "pci_instance_creation_error": "Napotkaliśmy błąd podczas tworzenia twojej instancji…",
+  "pci_instance_onboarding_page_creation_pending": "Twoja instancja jest w trakcie tworzenia, dziękujemy za chwilę cierpliwości..."
 }
