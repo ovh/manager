@@ -37,6 +37,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
   onStateChange,
   onRefresh,
   onCancel,
+  disabled = false,
 }): JSX.Element => {
   const { t } = useTranslation([NAMESPACES.TIME_CONTROLS, COMMON_NAMESPACES.ACTIONS]);
 
@@ -62,6 +63,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
         size={BUTTON_SIZE.md}
         variant={BUTTON_VARIANT.outline}
         onClick={onClickRefresh}
+        disabled={disabled}
       >
         {isLoading ? (
           <Spinner className="ps-2" size={SPINNER_SIZE.xs} />
@@ -76,6 +78,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
         fitControlWidth={false}
         onValueChange={onValueChange}
         defaultValue={defaultRefreshInterval.toString()}
+        disabled={disabled}
         positionerStyle={{
           zIndex: 102
         }}

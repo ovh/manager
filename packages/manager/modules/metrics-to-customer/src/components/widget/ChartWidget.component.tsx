@@ -23,10 +23,7 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import { ChartWidgetProps } from '@/components/widget/ChartWidget.props';
 
-const clamp = (value: number | undefined, min: number, max: number): number => {
-  if (typeof value !== 'number' || Number.isNaN(value)) return min;
-  return Math.min(Math.max(value, min), max);
-};
+import { clamp } from '@/utils/number.utils';
 
 export const ChartWidgetComponent = ({
   id,
@@ -34,6 +31,7 @@ export const ChartWidgetComponent = ({
   unit,
   tooltip,
   isLoading = false,
+  disabled = false,
   colspan = 1,
   rowspan = 1,
   children,
@@ -95,7 +93,7 @@ export const ChartWidgetComponent = ({
             slot="obs-metrics-dashboard-widget-maximize"
             variant={BUTTON_VARIANT.ghost}
             size={BUTTON_SIZE.md}
-            disabled={isLoading}
+            disabled={disabled || isLoading}
             aria-label="Maximize"
             onClick={() => {
               navigate(`${id}`);
