@@ -118,7 +118,7 @@ export const CreateShareForm = () => {
           <Button type="button" variant="ghost" onClick={handleCancel}>
             {t(`${NAMESPACES.ACTIONS}:cancel`)}
           </Button>
-          <Button type="submit" variant="default" disabled={!isFormValid || isPending}>
+          <Button type="submit" variant="default" disabled={!isFormValid} loading={isPending}>
             {t(`${NAMESPACES.ACTIONS}:validate`)}
           </Button>
         </section>
