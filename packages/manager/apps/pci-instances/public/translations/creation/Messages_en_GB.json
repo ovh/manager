@@ -180,5 +180,10 @@
   "pci_instance_creation_in_progress": "Instance creation is in progress, your service will be available shortly",
   "pci_instances_creations_in_progress": "Instance creations are in progress, your services will be available shortly",
   "pci_instance_creation_error": "We encountered an error while creating your instance…",
-  "pci_instance_onboarding_page_creation_pending": "Your instance is being created, please wait a moment..."
+  "pci_instance_onboarding_page_creation_pending": "Your instance is being created, please wait a moment...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Flex Instances",
+    "disk_capacity": "<span>A flex instance is a single disk instance (50 GB)</span> offering a faster process for snapshots.",
+    "resizing_explanation": "It allows resizing to higher or lower models with fixed storage space, while classic models can only be resized to higher models."
+  }
 }
