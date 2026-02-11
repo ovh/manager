@@ -26,7 +26,8 @@ export type RuleField =
   | 'smsConsent'
   | 'spareEmail'
   | 'vat'
-  | 'zip';
+  | 'zip'
+  | 'purposeOfPurchase';
 
 export type Rule = {
   defaultValue: string | null;
