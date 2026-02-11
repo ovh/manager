@@ -12,4 +12,5 @@ export interface TimeControlsProps {
   defaultValue?: string;
   onRefresh: () => void;
   onCancel: () => void;
+  disabled?: boolean;
 }
