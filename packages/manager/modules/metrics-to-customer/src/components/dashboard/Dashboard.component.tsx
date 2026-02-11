@@ -49,7 +49,7 @@ export const Dashboard = <TData,>({
       <div className="w-full flex flex-col gap-8">
         <div className="flex justify-end items-center">
           {enableConfigurationManagement && (
-            <ManageConfigurationButton configUrl={getSubscriptionsConfigUrl()} />
+            <ManageConfigurationButton configUrl={getSubscriptionsConfigUrl()} disabled={disabled} />
           )}
         </div>
         <div className="flex justify-end items-center">
