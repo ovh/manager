@@ -3,13 +3,13 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_write_requests",
-            "title": "Disk write IOPS",
+            "title": "disk_write_iops_title",
             "unit": "IOPS",
             "colspan": 2,
             "tooltip": {                
-                "title": "The average number of completed write operations over a specific period of time."
-            },
-            "query": "rate(ovhcloud_libvirtd_domain_local_block_write_requests{resource_urn=<resource_urn>}[5m])",                        
+                "title": "disk_write_iops_description_header"
+            },            
+            "query": "rate(ovhcloud_libvirtd_domain_local_block_write_requests{resource_urn=<resource_urn>}[5m])",
             "chart": {
                 "type": "TimeSeries",
                 "curveType": "linear",
