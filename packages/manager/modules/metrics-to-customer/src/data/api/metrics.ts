@@ -50,13 +50,8 @@ export async function fetchChartData<TData>(
   return buildChartData<TData>(metricResult);
 }
 
-export const getMetricToken = async ({  
-  resourceName,
-  signal,
-}: ObservabilityServiceParams): Promise<string> => {
-  const url = `/observability/resource/${resourceName}/metric/token`;
-  const { data: token } = await apiClient.v2.get<string>(url, {
-    signal,
-  });
-  return token;
+export const getMetricToken = async ({}: ObservabilityServiceParams): Promise<string> => {  
+  const url = `/auth/token/observability`;
+  const { data } = await apiClient.v6.post<{token: string}>(url);  
+  return data.token;
 };

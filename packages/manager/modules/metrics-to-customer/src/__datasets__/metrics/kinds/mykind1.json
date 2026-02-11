@@ -7,8 +7,7 @@
             "unit": "KiB/s",
             "colspan": 2,
             "tooltip": {
-                "title": "disk_read_bytes_description_header",
-                "content": "disk_read_bytes_description_content"
+                "title": "disk_read_bytes_description_header"
             },
             "query": "rate(ovhcloud_libvirtd_domain_local_block_read_bytes{resource_urn=<resource_urn>}[5m]) / 1024",
             "chart": {

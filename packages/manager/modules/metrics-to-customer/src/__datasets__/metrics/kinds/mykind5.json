@@ -3,9 +3,12 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_cpu_time",
-            "title": "CPU utilization",
+            "title": "cpu_utilization_title",
             "unit": "percent",
             "colspan": 2,
+            "tooltip": {                
+                "title": "cpu_utilization_description_header"
+            },
             "query": "rate(ovhcloud_libvirtd_domain_cpu_time_ns{resource_urn=<resource_urn>}[5m]) / 1e9",
             "chart": {
                 "type": "TimeSeries",
@@ -31,7 +34,7 @@
                 }
             }
         },
-        "displayName": "My kind 4",
-        "name": "mykind4"
+        "displayName": "My kind 5",
+        "name": "mykind5"
     }
 }

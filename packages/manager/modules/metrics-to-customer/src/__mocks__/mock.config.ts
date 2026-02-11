@@ -5,7 +5,6 @@ export type ApiEndpoint =
   | 'grafana'
   | 'dashboards'
   | 'metric'
-  | 'metric-token'
   | 'metrics-for-manager';
 
 export const apiConfig: Record<ApiEndpoint, ApiConfigMode> = {
@@ -14,6 +13,5 @@ export const apiConfig: Record<ApiEndpoint, ApiConfigMode> = {
   grafana: 'mock',
   dashboards: 'mock',
   metric: 'mock',
-  'metric-token': 'mock',
   'metrics-for-manager': 'api',
 };

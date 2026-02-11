@@ -3,9 +3,12 @@
     "currentState": {
         "chart": {
             "id": "neutron_port_tx_packets",
-            "title": "Network packets out",
+            "title": "network_packets_out_title",
             "unit": "packet/s",
-            "colspan": 2,            
+            "colspan": 2,
+            "tooltip": {
+                "title": "network_packets_out_description_header"
+            },
             "query": "rate(ovhcloud_neutron_port_tx_packets{resource_urn=<resource_urn>}[5m])",
             "chart": {
                 "type": "TimeSeries",
@@ -31,7 +34,7 @@
                 }
             }
         },
-        "displayName": "My kind 4",
-        "name": "mykind4"
+        "displayName": "My kind 9",
+        "name": "mykind9"
     }
 }
