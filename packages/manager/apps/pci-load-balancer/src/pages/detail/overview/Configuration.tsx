@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -10,6 +10,7 @@ import {
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import { OsdsDivider, OsdsSkeleton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+import { Button, Icon, Text } from '@ovhcloud/ods-react';
 
 import {
   LoadBalancerOperatingStatusEnum,
@@ -19,10 +20,13 @@ import TileLine from '@/components/detail/TileLine.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 
+import ResizeLoadBalancerDrawer from './ResizeLoadBalancerDrawer.component';
+
 export interface ConfigurationProps {
   loadBalancerProvisioningStatus: LoadBalancerProvisioningStatusEnum;
   loadBalancerOperatingStatus: LoadBalancerOperatingStatusEnum;
   flavorName: string;
+  flavorId: string;
   networkName: string;
   subnetCidr: string;
   loadBalancerVipAddress: string;
@@ -32,18 +36,21 @@ export default function Configuration({
   loadBalancerProvisioningStatus,
   loadBalancerOperatingStatus,
   flavorName,
+  flavorId,
   networkName,
   subnetCidr,
   loadBalancerVipAddress,
 }: ConfigurationProps) {
-  const { t: tOverview } = useTranslation('load-balancer/overview');
-  const { t } = useTranslation('load-balancer');
+  const { t } = useTranslation(['load-balancer/overview', 'load-balancer']);
+  const [isResizeDrawerOpen, setIsResizeDrawerOpen] = useState(false);
 
-  const translatedFlavorName = useMemo<string>(() => {
-    const key = `octavia_load_balancer_overview_config_size_${flavorName}`;
-    const translation = tOverview(key);
-    return key === translation ? flavorName : translation;
-  }, [flavorName]);
+  const handleOpenResizeDrawer = () => {
+    setIsResizeDrawerOpen(true);
+  };
+
+  const handleCloseResizeDrawer = () => {
+    setIsResizeDrawerOpen(false);
+  };
 
   return (
     <div>
@@ -59,13 +66,15 @@ export default function Configuration({
             level={ODS_TEXT_LEVEL.heading}
             color={ODS_THEME_COLOR_INTENT.text}
           >
-            {tOverview('octavia_load_balancer_overview_config_title')}
+            {t('load-balancer/overview:octavia_load_balancer_overview_config_title')}
           </OsdsText>
 
           <OsdsDivider separator />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_config_provisioning_status')}
+            title={t(
+              'load-balancer/overview:octavia_load_balancer_overview_config_provisioning_status',
+            )}
             type="other"
             value={
               <div>
@@ -82,7 +91,7 @@ export default function Configuration({
           />
 
           <TileLine
-            title={t('octavia_load_balancer_operating_status')}
+            title={t('load-balancer:octavia_load_balancer_operating_status')}
             type="other"
             value={
               <div>
@@ -98,23 +107,51 @@ export default function Configuration({
             }
           />
 
-          <TileLine
-            title={tOverview('octavia_load_balancer_overview_config_size')}
-            value={flavorName ? translatedFlavorName : undefined}
+          {flavorName && (
+            <TileLine
+              title={t('load-balancer/overview:octavia_load_balancer_overview_config_size')}
+              type="other"
+              value={
+                <div className="flex flex-col">
+                  <Text>
+                    {t(
+                      `load-balancer/overview:octavia_load_balancer_overview_config_size_${flavorName}`,
+                    )}
+                  </Text>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-fit p-0 text-left hover:bg-transparent"
+                    onClick={handleOpenResizeDrawer}
+                  >
+                    {t('load-balancer/overview:octavia_load_balancer_overview_config_modify_size')}
+                    <Icon name="arrow-right" />
+                  </Button>
+                </div>
+              }
+            />
+          )}
+
+          <ResizeLoadBalancerDrawer
+            isOpen={isResizeDrawerOpen}
+            selectedFlavorId={flavorId}
+            onDismiss={handleCloseResizeDrawer}
           />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_config_private_network')}
+            title={t(
+              'load-balancer/overview:octavia_load_balancer_overview_config_private_network',
+            )}
             value={networkName}
           />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_config_subnet')}
+            title={t('load-balancer/overview:octavia_load_balancer_overview_config_subnet')}
             value={subnetCidr}
           />
 
           <TileLine
-            title={tOverview('octavia_load_balancer_overview_config_private_ip')}
+            title={t('load-balancer/overview:octavia_load_balancer_overview_config_private_ip')}
             value={loadBalancerVipAddress}
           />
         </div>

@@ -48,6 +48,7 @@ export const ACTION_LABELS = {
   [ACTIONS.REJECT]: 'Reject',
 };
 
+export const OCTAVIA_LOADBALANCER_ADDON_FAMILY = 'octavia-loadbalancer';
 export const SIZE_FLAVOUR_REGEX =
   /octavia-loadbalancer.loadbalancer-([23]?xl|[sml]).hour.consumption/;
 export const NETWORK_PRIVATE_VISIBILITY = 'private';
