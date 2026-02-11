@@ -62,7 +62,7 @@
     "babel-loader": "9.1.0",
     "glob": "^7.1.6",
     "lodash": "^4.17.15",
-    "webpack": "5.101.3",
+    "webpack": "5.104.1",
     "webpack-merge": "5.8.0"
   },
   "regions": [
