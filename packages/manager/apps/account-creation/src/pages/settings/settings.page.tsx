@@ -51,7 +51,7 @@ type SettingsFormData = {
 };
 
 export default function Settings() {
-  const { t } = useTranslation([
+  const { t, i18n } = useTranslation([
     'settings',
     NAMESPACES.ACTIONS,
     NAMESPACES.ONBOARDING,
@@ -87,6 +87,7 @@ export default function Settings() {
   const {
     data: countries,
     isLoading: isLoadingCountries,
+    refetch: refetchCountries,
     error: errorCountries,
   } = useCountrySettings();
   const { data: currencies, error: errorCurrencies } = useCurrencySettings(
@@ -109,6 +110,14 @@ export default function Settings() {
   ];
 
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
+
+  useEffect(() => {
+    refetchCountries();
+    if (countries?.length) {
+      setValue('country', '', { shouldValidate: true });
+    }
+    comboboxRef.current?.clear();
+  }, [i18n.language, setValue, countries, comboboxRef.current]);
 
   useEffect(() => {
     if (!comboboxRef.current) {
@@ -253,6 +262,7 @@ export default function Settings() {
                 isLoading={isLoadingCountries}
                 hasError={!!errors[name]}
                 ref={comboboxRef}
+                key={`countries_${i18n.language}`}
                 data-testid="country-combobox"
               >
                 {countries?.map(({ code, label }) => (
@@ -287,7 +297,7 @@ export default function Settings() {
                 isDisabled={!currencies?.length}
                 onOdsChange={onChange}
                 onBlur={onBlur}
-                key={`currencies_for_${selectedCurrency}`}
+                key={`currencies_for_${selectedCountry}`}
                 hasError={Boolean(currencies?.length && errors[name])}
                 data-testid="currency-select"
               >
