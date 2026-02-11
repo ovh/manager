@@ -60,4 +60,10 @@ export default class NutanixNodeService {
       .get(`/nutanix/${serviceName}/nodes/${server}`)
       .then(({ data }) => data);
   }
+
+  getPublicNutanixCatalogs(ovhSubsidiary) {
+    return this.$http
+      .get(`/order/catalog/public/nutanix?ovhSubsidiary=${ovhSubsidiary}`)
+      .then(({ data: { addons } }) => addons);
+  }
 }
