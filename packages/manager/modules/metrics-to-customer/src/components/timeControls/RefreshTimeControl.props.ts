@@ -9,4 +9,5 @@ export interface RefreshTimeControlProps {
   onStateChange: <TValue>(key: string, value: TValue) => void;
   onRefresh: () => void;
   onCancel: () => void;
+  disabled?: boolean;
 }
