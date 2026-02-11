@@ -1,5 +1,23 @@
 {
     "disk_read_bytes_title": "Octets lus sur le disque",
-    "disk_read_bytes_description_header": "Nombre moyen d'octets lus pendant une période donnée",
-    "disk_read_bytes_description_content": "Nombre d'octets lus à partir de l'ensemble des volumes de stockage associés à l'instance. Cette métrique permet d'évaluer le volume de données que l'application lit depuis le stockage disque et peut être utilisée pour analyser les performances d'E/S. La valeur rapportée correspond au nombre total d'octets lus pendant la période. Avec la surveillance de base (période de 5 minutes), divisez cette valeur par 300 pour obtenir les octets par seconde."
+    "disk_read_bytes_description_header": "Nombre moyen d'octets lus sur une période donnée.",
+    "disk_read_iops_title": "IOPS de lecture du disque",
+    "disk_read_iops_description_header": "Nombre moyen d'opérations de lecture terminées sur une période donnée.",
+    "disk_write_bytes_title": "Octets d'écriture sur disque",
+    "disk_write_bytes_description_header": "Nombre moyen d'octets écrits sur une période donnée.",
+    "disk_write_iops_title": "IOPS d'écriture du disque",
+    "disk_write_iops_description_header": "Nombre moyen d'opérations d'écriture terminées sur une période donnée.",
+    "cpu_utilization_title": "Utilisation du processeur",
+    "cpu_utilization_description_header": "Pourcentage des ressources CPU utilisées par l'instance sur une période donnée, permettant d'identifier les tendances de charge et les goulots d'étranglement potentiels.",
+    "network_title": "Réseau",
+    "network_description_header": "Affiche le débit du trafic réseau entrant de l'instance en octets par seconde, utile pour surveiller le flux de données entrant et détecter les pics ou anomalies.",
+    "network_out_title": "Trafic réseau sortant",
+    "network_out_description_header": "Affiche le débit du trafic réseau sortant de l'instance en octets par seconde, permettant de suivre l'émission de données et d'identifier les transferts inhabituels ou volumineux.",
+    "network_packets_in_title": "Paquets réseau entrants",
+    "network_packets_in_description_header": "Affiche le nombre de paquets réseau entrants par seconde pour l'instance, utile pour analyser l'intensité du trafic et l'activité au niveau des paquets.",
+    "network_packets_out_title": "Paquets réseau sortants",
+    "network_packets_out_description_header": "Affiche le nombre de paquets réseau sortants par seconde pour l'instance, permettant de surveiller les tendances du trafic sortant et de détecter des débits de paquets anormaux.",
+    "memory_utilization_title": "Utilisation de la mémoire",
+    "memory_utilization_description_header": "Affiche le pourcentage de mémoire utilisée par l'instance au fil du temps, permettant d'identifier la pression mémoire, les fuites ou les limites de capacité.",
+    "number_of_attached_volume_title": "Nombre de volumes attachés"
 }

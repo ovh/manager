@@ -1,18 +1,19 @@
 {
   "tenants_drawer": {
     "title": "List of tenants",
-    "disclaimer": "You can only select members who are in the same region {{region}} as your resource",
+    "disclaimer": "Only tenants located in the same region \"{{region}}\" as your resource can be selected",
     "no_results_found": "No tenant found for the search \"{{searchQuery}}\"",
-    "region": "Region"
+    "region": "region"
   },
   "tenants_regions": {
-    "region_one": "Region: {{region}}",
-    "region_other": "Regions: {{region}}"
+    "region_one": "Region",
+    "region_other": "Regions"
   },
   "no_tenants_message": {
-    "title": "Collect metrics in your first tenant within this region",
-    "description": "To help you get started quickly, we’ll automatically create your first tenant with the following settings:",
-    "retention": "Retention: {{retention}}"
+    "title": "Collect metrics in your first tenant in this region",
+    "description": "To help you get started quickly, we will automatically create your first tenant with the following settings:",
+    "retention": "Retention: {{retention}}",
+    "create-and-subscribe-tenant": "Create and subscribe to your tenant"
   },
   "search": {
     "placeholder": "search"
@@ -24,5 +25,9 @@
     "unsubscribe": {
       "cta": "Unsubscribe"
     }
+  },
+  "listing": {
+    "service": "Observability Service",
+    "select_observability_service": "Select a service"
   }
 }

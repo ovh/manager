@@ -1,28 +1,33 @@
 {
   "tenants_drawer": {
-    "title": "Lista dos tenants",
-    "disclaimer": "Só podem ser selecionados os tenants situados na região {{region}} do seu recurso",
-    "no_results_found": "Nenhum tenant encontrado para a pesquisa \"{{searchQuery}}\"",
+    "title": "Lista de inquilinos",
+    "disclaimer": "Apenas os inquilinos localizados na mesma região \"{{region}}\" que o seu recurso podem ser selecionados",
+    "no_results_found": "Nenhum inquilino encontrado para a pesquisa \"{{searchQuery}}\"",
     "region": "região"
   },
   "tenants_regions": {
-    "region_one": "Região: {{region}}",
-    "region_other": "Regiões: {{region}}"
+    "region_one": "Area",
+    "region_other": "Regiões"
   },
   "no_tenants_message": {
-    "title": "Recolha métricas no seu primeiro tenant nesta região",
-    "description": "Para o ajudar a arrancar rapidamente, vamos criar o seu primeiro tenant de forma automática, com os seguintes parâmetros:",
-    "retention": "Retenção: {{retention}}"
+    "title": "Colete métricas no seu primeiro inquilino nesta região",
+    "description": "Para ajudá-lo a começar rapidamente, criaremos automaticamente o seu primeiro inquilino com os seguintes parâmetros:",
+    "retention": "Retenção: {{retention}}",
+    "create-and-subscribe-tenant": "Criar e subscrever ao seu inquilino"
   },
   "search": {
-    "placeholder": "A procurar..."
+    "placeholder": "pesquisa"
   },
   "subscription": {
     "subscribe": {
-      "cta": "Subscrever"
+      "cta": "Inscreva-se"
     },
     "unsubscribe": {
-      "cta": "Cancelar a subscrição"
+      "cta": "Cancelar subscrição"
     }
+  },
+  "listing": {
+    "service": "Serviço de Observabilidade",
+    "select_observability_service": "Selecione um serviço"
   }
 }
