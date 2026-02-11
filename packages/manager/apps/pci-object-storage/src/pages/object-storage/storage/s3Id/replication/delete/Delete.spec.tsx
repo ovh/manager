@@ -17,16 +17,6 @@ import * as replicationApi from '@/data/api/replication/replication.api';
 import DeleteReplication from './Delete.modal';
 import { mockedS3WithReplication } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 
-vi.mock('react-i18next', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('react-i18next')>();
-  return {
-    ...mod,
-    useTranslation: () => ({
-      t: (key: string) => key,
-    }),
-  };
-});
-
 vi.mock('@/pages/object-storage/storage/s3Id/S3.context', () => ({
   useS3Data: vi.fn(() => ({
     projectId: 'projectId',

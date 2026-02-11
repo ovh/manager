@@ -32,7 +32,7 @@ const RestoreServiceModal = ({
 
   return (
     <RouteModal backUrl={backUrl}>
-      <DialogContent variant="information">
+      <DialogContent variant="information" data-testid="restore-object-modal">
         <DialogHeader>
           <DialogTitle>{t('restoreModalTitle')}</DialogTitle>
         </DialogHeader>
@@ -68,7 +68,12 @@ const RestoreServiceModal = ({
               {t('restoreButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="submit" form="restore-s3-form" disabled={isPending}>
+          <Button
+            type="submit"
+            form="restore-s3-form"
+            disabled={isPending}
+            data-testid="restore-object-submit-button"
+          >
             {t('restoreButtonConfirm')}
           </Button>
         </DialogFooter>

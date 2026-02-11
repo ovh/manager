@@ -62,7 +62,7 @@ const Object = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card>
+        <Card data-testid="object-info-card">
           <CardHeader>
             <h5>
               <FileIcon
@@ -101,7 +101,7 @@ const Object = () => {
         </Card>
 
         {objectQuery.data.storageClass && (
-          <Card>
+          <Card data-testid="storage-class-card">
             <CardHeader>
               <h5>
                 <Archive className="size-4 inline mr-2" />
@@ -115,6 +115,7 @@ const Object = () => {
                 </Badge>
 
                 <Button
+                  data-testid="change-storage-class-button"
                   className="h-6"
                   mode="outline"
                   size="sm"
