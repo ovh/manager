@@ -21,6 +21,7 @@
     "test": "manager-test run"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
     "@ovh-ux/logs-to-customer": "^1.10.10",
     "@ovh-ux/manager-common-translations": "^0.28.3",
     "@ovh-ux/manager-config": "^8.8.7",

@@ -1,3 +1,6 @@
-export default function ResetModal() {
-    return <div>ResetModal</div>;
+export interface ResetModalProps {
+  onCloseCallback?: () => void;
 }
+
+export default function ResetModal({ onCloseCallback }: ResetModalProps = {}) {
+    return <div>ResetModal</div>;}

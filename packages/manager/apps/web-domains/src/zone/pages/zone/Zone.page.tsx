@@ -11,6 +11,9 @@ import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TE
 import { useContext, useMemo, useCallback, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
+import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
+import ModifyTtlModal from "./modify/ModifyTtl.modal";
+import ResetModal from "./reset/Reset.modal";
 import { RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
 
@@ -24,6 +27,7 @@ export default function ZonePage() {
   const { data, hasNextPage, fetchNextPage, fetchAllPages } = useGetDomainZoneRecords(serviceName);
   const tabsZone = domainUrls.domainTabZone;
   const [searchInput, setSearchInput] = useState('');
+  const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const handleAddFilter = useCallback((filterProps: Parameters<typeof addFilter>[0]) => {
@@ -102,12 +106,12 @@ export default function ZonePage() {
     {
       id: 2,
       label: t('zone_page_modify_textual'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/modify-textual-record`)),
+      onClick: () => setOpenModal('modify-textual-record'),
     },
     {
       id: 3,
       label: t('zone_page_modify_default_ttl'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/modify-ttl`)),
+      onClick: () => setOpenModal('modify-ttl'),
     },
     {
       id: 4,
@@ -117,9 +121,34 @@ export default function ZonePage() {
     {
       id: 5,
       label: t('zone_page_reset'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/reset`)),
+      onClick: () => setOpenModal('reset'),
     },
   ];
+
+  const closeModal = useCallback(() => {
+    setOpenModal(null);
+  }, []);
+
+  const zoneModals = (
+    <>
+      {openModal === 'modify-textual-record' && (
+        <ModifyTextualRecordModal
+          onCloseCallback={closeModal}
+        />
+      )}
+      {openModal === 'modify-ttl' && (
+        <ModifyTtlModal
+          onCloseCallback={closeModal}
+        />
+      )}
+      {openModal === 'reset' && (
+        <ResetModal
+          onCloseCallback={closeModal}
+        />
+      )}
+    </>
+  );
+
   const actionItemsDatagrid = (record: ZoneRecord) => [
     {
       id: 1,
@@ -206,6 +235,7 @@ export default function ZonePage() {
   }];
   return (
     <>
+      {zoneModals}
       <BannerStatus serviceName={serviceName ?? ''} />
       {isFetchingDomainZone ? null : domainZone ? (
         <>
@@ -221,7 +251,7 @@ export default function ZonePage() {
             columns={columns} topbar={
               <>
                 <div className="flex gap-2">
-                  <ActionMenu label={t('zone_page_actions')} items={actionItems} id="zone-action-menu" popoverPosition={POPOVER_POSITION.bottomEnd} />
+                  <ActionMenu key={openModal} label={t('zone_page_actions')} items={actionItems} id="zone-action-menu" popoverPosition={POPOVER_POSITION.bottomEnd} />
                   {hasSelectedRows && (
                     <Button
                       variant={BUTTON_VARIANT.outline}
