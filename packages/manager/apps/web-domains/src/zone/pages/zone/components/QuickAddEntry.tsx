@@ -1,6 +1,6 @@
 import { useMemo, useCallback } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
 import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Input, INPUT_TYPE, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, getRecordFields, RECORD_TYPES_WITHOUT_TTL } from "../../../utils/formSchema.utils";
@@ -19,6 +19,8 @@ import {
 import { ARecordForm } from "../add/components/forms/ARecordForm";
 import { AAAARecordForm } from "../add/components/forms/AAAARecordForm";
 import { NSRecordForm } from "../add/components/forms/NSRecordForm";
+import { CNAMERecordForm } from "../add/components/forms/CNAMERecordForm";
+import { DNAMERecordForm } from "../add/components/forms/DNAMERecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -63,7 +65,7 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
   const subDomain = watch("subDomain");
   const target = watch("target");
 
-  const fullDomain = subDomain ? `${subDomain}.${serviceName}` : serviceName;
+  const fullDomain = subDomain ? `${subDomain}.${serviceName}` : `[sous-domaine].${serviceName}`;
 
   const { mutate: addEntry, isPending } = useMutation({
     mutationFn: async (_data: AddEntrySchemaType) => {
@@ -171,7 +173,12 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             <>
               <Message color={MESSAGE_COLOR.information} dismissible={false}>
                 <MessageIcon name={ICON_NAME.circleInfo} />
-                {t("zone_page_quick_add_entry_description_A", { domain: fullDomain, ip: target || "[IPv4]" })}
+                <Trans
+                  t={t}
+                  i18nKey="zone_page_quick_add_entry_description_A"
+                  values={{ domain: fullDomain, ip: target || "[IPv4]" }}
+                  components={{ bold: <span className="font-bold" /> }}
+                />
               </Message>
               <ARecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
@@ -181,7 +188,12 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             <>
               <Message color={MESSAGE_COLOR.information} dismissible={false}>
                 <MessageIcon name={ICON_NAME.circleInfo} />
-                {t("zone_page_quick_add_entry_description_AAAA", { domain: fullDomain, ip: target || "[IPv6]" })}
+                <Trans
+                  t={t}
+                  i18nKey="zone_page_quick_add_entry_description_AAAA"
+                  values={{ domain: fullDomain, ip: target || "[IPv6]" }}
+                  components={{ bold: <span className="font-bold" /> }}
+                />
               </Message>
               <AAAARecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
@@ -191,9 +203,44 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             <>
               <Message color={MESSAGE_COLOR.information} dismissible={false}>
                 <MessageIcon name={ICON_NAME.circleInfo} />
-                {t("zone_page_quick_add_entry_description_NS", { domain: fullDomain, target: target || "[serveur DNS]" })}
+                <Trans
+                  t={t}
+                  i18nKey="zone_page_quick_add_entry_description_NS"
+                  values={{ domain: fullDomain, target: target || "[serveur DNS]" }}
+                  components={{ bold: <span className="font-bold" /> }}
+                />
               </Message>
               <NSRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypePointingRecordsEnum.CNAME && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <Trans
+                  t={t}
+                  i18nKey="zone_page_quick_add_entry_description_CNAME"
+                  values={{ domain: fullDomain, target: target || "[nom d'hôte]" }}
+                  components={{ bold: <span className="font-bold" /> }}
+                />
+              </Message>
+              <CNAMERecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypePointingRecordsEnum.DNAME && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <Trans
+                  t={t}
+                  i18nKey="zone_page_quick_add_entry_description_DNAME"
+                  values={{ domain: fullDomain, target: target || "[nom de domaine]" }}
+                  components={{ bold: <span className="font-bold" /> }}
+                />
+              </Message>
+              <DNAMERecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
@@ -203,7 +250,9 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypeExtendedRecordsEnum.LOC &&
             recordTypeStr !== FieldTypePointingRecordsEnum.A &&
             recordTypeStr !== FieldTypePointingRecordsEnum.AAAA &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.NS && (
+            recordTypeStr !== FieldTypePointingRecordsEnum.NS &&
+            recordTypeStr !== FieldTypePointingRecordsEnum.CNAME &&
+            recordTypeStr !== FieldTypePointingRecordsEnum.DNAME && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}

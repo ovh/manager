@@ -5,17 +5,17 @@ import { SubDomainField } from "../fields/SubDomainField";
 import { TextField } from "../fields/TextField";
 import { TtlField } from "../fields/TtlField";
 
-export interface NSRecordFormProps {
+export interface CNAMERecordFormProps {
   control: Control<AddEntrySchemaType>;
   watch: UseFormWatch<AddEntrySchemaType>;
   domainSuffix: string;
 }
 
-export function NSRecordForm({
+export function CNAMERecordForm({
   control,
   watch,
   domainSuffix,
-}: Readonly<NSRecordFormProps>) {
+}: Readonly<CNAMERecordFormProps>) {
   const { t } = useTranslation("zone");
 
   return (
@@ -24,12 +24,11 @@ export function NSRecordForm({
         control={control}
         domainSuffix={domainSuffix}
         className="w-full"
-        required
       />
       <TextField
         name="target"
         control={control}
-        label={t("zone_page_add_entry_modal_step_2_label_ns_target")}
+        label={t("zone_page_add_entry_modal_step_2_label_cname_target")}
         required
         className="w-full"
       />
