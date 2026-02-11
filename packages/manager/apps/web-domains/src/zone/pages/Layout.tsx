@@ -4,6 +4,7 @@ import {  Outlet, useLocation, useMatches,  } from 'react-router-dom';
 
 import { ShellContext, useOvhTracking, useRouteSynchro } from '@ovh-ux/manager-react-shell-client';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
+import { Notifications } from '@ovh-ux/muk';
 
 
 export default function Layout() {
@@ -26,6 +27,7 @@ export default function Layout() {
 
   return (
     <> 
+      <Notifications />
       <Outlet />
   </>
 );
