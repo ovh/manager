@@ -2,10 +2,10 @@
   "title": "File Storage",
   "columns": {
     "name_id": "Nazwa / ID",
-    "region": "Region",
+    "region": "Lokalizacja",
     "protocol": "Protokół",
     "allocated_capacity": "Przydzielona pojemność",
-    "allocated_capacity_value": "{{capacity}} GiB",
+    "allocated_capacity_value": "{{capacity}} Gio",
     "status": "Status",
     "actions": "Operacje"
   },

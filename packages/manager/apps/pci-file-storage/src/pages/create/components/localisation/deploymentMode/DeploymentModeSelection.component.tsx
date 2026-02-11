@@ -3,7 +3,15 @@ import { KeyboardEvent } from 'react';
 import { Controller, ControllerRenderProps, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Checkbox, CheckboxControl, CheckboxGroup, CheckboxLabel, Text } from '@ovhcloud/ods-react';
+import {
+  BADGE_SIZE,
+  Checkbox,
+  CheckboxControl,
+  CheckboxGroup,
+  CheckboxLabel,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
@@ -60,33 +68,31 @@ export const DeploymentModeSelection = () => {
         name="deploymentModes"
         control={control}
         render={({ field }) => (
-          <CheckboxGroup
-            name="deploymentModes"
-            className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3"
-          >
+          <CheckboxGroup name="deploymentModes" className="flex flex-row flex-wrap gap-4">
             {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
               <PciCard
                 selectable
                 selected={field.value.includes(mode)}
-                className="h-full"
+                className="h-44 w-56"
+                compact
                 key={mode}
                 onClick={handleSelect(field, mode)}
                 onKeyDown={handleKeyDown(field, mode)}
               >
                 <PciCard.Header>
-                  <Checkbox className="w-full" checked={field.value.includes(mode)}>
+                  <Checkbox className="flex w-full" checked={field.value.includes(mode)}>
                     <CheckboxControl />
                     <CheckboxLabel className="text-lg font-bold text-[--ods-color-heading]">
                       {t(`create:${labelKey}`)}
                     </CheckboxLabel>
+                    <DeploymentModeBadge mode={mode} size={BADGE_SIZE.sm} />
                   </Checkbox>
-                  <DeploymentModeBadge mode={mode} />
                 </PciCard.Header>
 
                 <PciCard.Content className="justify-between">
-                  <Text>{t(`create:${descriptionKey}`)}</Text>
+                  <Text preset={TEXT_PRESET.small}>{t(`create:${descriptionKey}`)}</Text>
                   <div className="mt-4 flex justify-center">
-                    <Image className="h-32" />
+                    <Image className="h-20" />
                   </div>
                 </PciCard.Content>
               </PciCard>
