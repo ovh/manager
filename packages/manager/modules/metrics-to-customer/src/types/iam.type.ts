@@ -17,3 +17,19 @@ export type IamTagFilter = {
 export type IamTagsFilter = {
   [tagKey: string]: IamTagFilter[];
 };
+
+export type IamResourceTags = {
+  [key: string]: string | undefined;
+};
+
+export type IamResource = {
+  id: string;
+  urn: string;
+  name: string;
+  displayName: string;
+  type: string;
+  owner: string;
+  tags: IamResourceTags;
+};
+
+export type IamResourcesResponse = IamResource[];

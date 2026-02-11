@@ -1,4 +1,6 @@
+import { Region } from "@/types/region.type";
+
 export interface NoTenantsMessageProps {
-    regions: string[];
+    regions: Region[];
     defaultRetention: string;
 }
