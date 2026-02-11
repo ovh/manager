@@ -76,15 +76,13 @@ describe('EditCustomMetadataDrawerForm component test suite', () => {
     it('should render form with correct default values', async () => {
       await renderComponent();
 
-      // Should render KeyValuesEditor
-      expect(
-        screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
-      ).toBeInTheDocument();
+      // Wait for form to be ready (avoids act warning from post-render state updates)
+      const firstKeyInput = await screen.findByTestId(
+        KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0),
+      );
+      expect(firstKeyInput).toBeInTheDocument();
 
       // We should see two key-value pairs (environment and application)
-      expect(
-        screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
-      ).toBeInTheDocument();
       expect(
         screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1)),
       ).toBeInTheDocument();
@@ -160,8 +158,8 @@ describe('EditCustomMetadataDrawerForm component test suite', () => {
       // WHEN
       await renderComponent();
 
-      // THEN
-      expect(screen.getByText('Update failed')).toBeInTheDocument();
+      // THEN - wait for error message so state updates are flushed (avoids act warning)
+      expect(await screen.findByText('Update failed')).toBeInTheDocument();
     });
 
     it('should not call onDismiss when update fails', async () => {
