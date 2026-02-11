@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "0.29.5",
+  "version": "0.29.6",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
