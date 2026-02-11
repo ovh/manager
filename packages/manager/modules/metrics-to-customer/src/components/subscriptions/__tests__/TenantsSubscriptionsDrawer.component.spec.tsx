@@ -490,7 +490,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -507,8 +507,8 @@ describe('TenantsSubscriptionsDrawer', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert - check for the region translation key
-      expect(screen.getByText('tenants_regions.region')).toBeInTheDocument();
+      // Assert - check for the region translation key (component renders it with colon and region names)
+      expect(screen.getByText(/tenants_regions\.region/)).toBeInTheDocument();
     });
 
     it('should update filter when service is selected', async () => {
@@ -527,7 +527,7 @@ describe('TenantsSubscriptionsDrawer', () => {
 
     it('should sync route param with service filter', async () => {
       // Arrange
-      const initialRoute = '/metrics/subscriptions/config/service-1';
+      const initialRoute = '/subscriptions/config/service-1';
 
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
@@ -644,7 +644,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -674,7 +674,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -702,7 +702,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -730,7 +730,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -761,7 +761,7 @@ describe('TenantsSubscriptionsDrawer', () => {
       
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -830,7 +830,7 @@ describe('TenantsSubscriptionsDrawer', () => {
 
       // Act
       render(<TenantsSubscriptionsDrawer {...defaultProps} />, {
-        wrapper: createWrapper(['/metrics/subscriptions/config/service-1']),
+        wrapper: createWrapper(['/subscriptions/config/service-1']),
       });
 
       // Assert
@@ -849,8 +849,8 @@ describe('TenantsSubscriptionsDrawer', () => {
         wrapper: createWrapper(),
       });
 
-      // Assert - check for the region translation key
-      expect(screen.getByText('tenants_regions.region')).toBeInTheDocument();
+      // Assert - check for the region translation key (component renders it with colon and region names)
+      expect(screen.getByText(/tenants_regions\.region/)).toBeInTheDocument();
     });
 
     it('should handle filter changes', () => {
