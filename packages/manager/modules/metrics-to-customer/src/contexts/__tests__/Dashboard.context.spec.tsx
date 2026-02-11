@@ -9,6 +9,7 @@ import {
   DashboardProvider,
   DashboardState,
   useDashboardContext,
+  MetricsToCustomerProvider,
 } from '@/contexts';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 
@@ -25,7 +26,9 @@ const createWrapper = (context?: Partial<DashboardState>) => {
 
   const TestWrapper = ({ children }: { children: React.ReactNode }) => (
     <QueryClientProvider client={queryClient}>
-      <DashboardProvider context={context}>{children}</DashboardProvider>
+      <MetricsToCustomerProvider context={{ regions: [] }}>
+        <DashboardProvider context={context}>{children}</DashboardProvider>
+      </MetricsToCustomerProvider>
     </QueryClientProvider>
   );
   TestWrapper.displayName = 'TestWrapper';

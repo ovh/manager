@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import { PrometheusResult } from '@/data/api/metricsClient';
-import { buildChartData } from '@/utils/metrics.utils';
+import { buildChartData, isRegionAvailable } from '@/utils/metrics.utils';
+import { Region } from '@/types/region.type';
 
 describe('metrics.utils', () => {
   describe('buildChartData', () => {
@@ -451,6 +452,107 @@ describe('metrics.utils', () => {
         { timestamp: 1704067320000, value: 999.999 },
         { timestamp: 1704067380000, value: 10000000000 },
       ]);
+    });
+  });
+
+  describe('isRegionAvailable', () => {
+    it('should return true for supported region', () => {
+      // Arrange
+      const regions: Region[] = [
+        {
+          code: 'eu-west-gra',
+          name: 'Gravelines',
+        },
+      ];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(true);
+    });
+
+    it('should return false for unsupported region', () => {
+      // Arrange
+      const regions: Region[] = [
+        {
+          code: 'us-east-1',
+          name: 'US East',
+        },
+      ];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(false);
+    });
+
+    it('should return false for empty regions array', () => {
+      // Arrange
+      const regions: Region[] = [];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(false);
+    });
+
+    it('should return false when region code is undefined', () => {
+      // Arrange
+      const regions: Region[] = [
+        {
+          code: undefined as any,
+          name: 'Unknown',
+        },
+      ];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(false);
+    });
+
+    it('should return true if at least one region is supported', () => {
+      // Arrange
+      const regions: Region[] = [
+        {
+          code: 'us-east-1',
+          name: 'US East',
+        },
+        {
+          code: 'eu-west-gra',
+          name: 'Gravelines',
+        },
+      ];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(true);
+    });
+
+    it('should return false if all regions are unsupported', () => {
+      // Arrange
+      const regions: Region[] = [
+        {
+          code: 'us-east-1',
+          name: 'US East',
+        },
+        {
+          code: 'ap-south-1',
+          name: 'Asia Pacific',
+        },
+      ];
+
+      // Act
+      const result = isRegionAvailable(regions);
+
+      // Assert
+      expect(result).toBe(false);
     });
   });
 });

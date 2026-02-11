@@ -10,6 +10,7 @@ import { ManageConfigurationButtonProps } from '@/components/cta/ManageConfigura
 
 export function ManageConfigurationButton({
   configUrl,
+  disabled = false,
 }: ManageConfigurationButtonProps) {
   const { t } = useTranslation(NAMESPACES.MODULE);
   
@@ -20,7 +21,7 @@ export function ManageConfigurationButton({
   }
 
   return (
-    <Button variant={BUTTON_VARIANT.default} onClick={onClickManageConfigurationButton}>
+    <Button variant={BUTTON_VARIANT.default} onClick={onClickManageConfigurationButton} disabled={disabled}>
       {t('manage_configuration_button')}
     </Button>
   );
