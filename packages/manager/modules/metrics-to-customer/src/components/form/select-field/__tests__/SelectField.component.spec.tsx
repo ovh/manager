@@ -6,6 +6,13 @@ import { vi } from 'vitest';
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { SelectFieldProps, SelectOption } from '@/components/form/select-field/SelectField.props';
 
+// Mock react-i18next
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
 // Mock ODS React components
 vi.mock('@ovhcloud/ods-react', () => ({
   FormField: ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -115,10 +122,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
       </div>
     );
   },
-}));
-
-// Mock MUK components
-vi.mock('@ovh-ux/muk', () => ({
   Text: ({
     children,
     preset,

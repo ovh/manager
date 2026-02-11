@@ -26,6 +26,7 @@ import { TimeControlsProps } from '@/components/timeControls/TimeControls.props'
 import TimeRangeSelector from '@/components/timeControls/TimeRangeSelector.component';
 
 export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
+  id,
   timeOptions = defaultTimeRangeOptions,
   customTimeOptionHidden = false,
   isLoading,
@@ -81,14 +82,16 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
                 onOpenChange={(detail: PopoverOpenChangeDetail) => setIsDateRangePopoverOpen(detail.open)} >
                 <PopoverTrigger asChild className="z-40">
                   <ButtonGroupItem value="custom"
+                    className="rounded-r-md rounded-l-none"
                     onClick={() => handleClick(TimeRangeOptionCustom)}
                   >
                     <Icon name={ICON_NAME.calendar} />
                     {t('option_custom')}
                   </ButtonGroupItem>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent createPortal={false}>
                   <TimeRangeSelector
+                    id={id}
                     startDateTime={startDateTime}
                     endDateTime={endDateTime}
                     onApply={onApplyTimeRange}

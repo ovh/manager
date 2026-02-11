@@ -3,6 +3,7 @@ import { TimeRangeOptionWithLabel } from '@/types/timeControls/TimeRangeOptionWi
 import { DashboardState } from '@/contexts';
 
 export interface TimeControlsProps {
+  id: string;
   timeOptions?: TimeRangeOptionWithLabel[];
   customTimeOptionHidden?: boolean;
   isLoading: boolean;
