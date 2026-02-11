@@ -3,9 +3,12 @@
     "currentState": {
         "chart": {
             "id": "neutron_port_tx_bytes",
-            "title": "Network out",
+            "title": "network_out_title",
             "unit": "bytes/s",
-            "colspan": 2,            
+            "colspan": 2,
+            "tooltip": {                
+                "title": "network_out_description_header"
+            },
             "query": "rate(ovhcloud_neutron_port_tx_bytes{resource_urn=<resource_urn>}[5m])",
             "chart": {
                 "type": "TimeSeries",
@@ -31,7 +34,7 @@
                 }
             }
         },
-        "displayName": "My kind 4",
-        "name": "mykind4"
+        "displayName": "My kind 7",
+        "name": "mykind7"
     }
 }

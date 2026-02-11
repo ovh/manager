@@ -3,11 +3,11 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_read_requests",
-            "title": "Disk read IOPS",
+            "title": "disk_read_iops_title",
             "unit": "IOPS",
             "colspan": 2,
             "tooltip": {                
-                "title": "The average number of completed read operations over a specific period of time."
+                "title": "disk_read_iops_description_header"
             },
             "query": "rate(ovhcloud_libvirtd_domain_local_block_read_requests{resource_urn=<resource_urn>}[5m])",
             "chart": {
