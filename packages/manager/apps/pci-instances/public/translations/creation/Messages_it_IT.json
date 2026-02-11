@@ -24,6 +24,7 @@
   "pci_instance_creation_table_header_vcore_unit": "(GB)",
   "pci_instance_creation_table_header_storage": "Storage",
   "pci_instance_creation_table_header_storage_unit": "(GB)",
+  "pci_instance_creation_table_header_storage_unit_tb": "(TB)",
   "pci_instance_creation_table_header_mode": "Deploy",
   "pci_instance_creation_table_header_price": "Prezzo",
   "pci_instance_creation_table_header_price_hourly_unit": "+IVA/ora",
@@ -53,6 +54,8 @@
   "pci_instance_creation_cart_flavor_vCore": "vCPU",
   "pci_instance_creation_cart_flavor_bandwidthPrivate": "(Privato)",
   "pci_instance_creation_cart_flavor_bandwidthPublic": "(Pubblico)",
+  "pci_instance_creation_bandwidth_mbit_s": "Mbps",
+  "pci_instance_creation_bandwidth_gbit_s": "Gbps",
   "pci_instance_creation_select_continent_label": "Seleziona un'area geografica",
   "pci_instance_creation_select_datacenter_label": "Seleziona un datacenter",
   "pci_instance_creation_choose_datacenter_label": "Scegli un datacenter",
@@ -164,7 +167,7 @@
     "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
     "floating_ip_create_new_label": "Crea un nuovo - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Riutilizza un'IP flottante esistente",
-    "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZones."
+    "floating_ip_unavailable_LZ_tooltip": "Le IP flottanti non sono disponibili nelle localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway non è disponibile nelle localZone.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway è già assegnato alla rete privata selezionata.",

@@ -19,11 +19,12 @@
   "pci_instance_creation_select_flavor_cart_section": "Modelo",
   "pci_instance_creation_table_header_name": "Nome",
   "pci_instance_creation_table_header_memory": "Memória",
-  "pci_instance_creation_table_header_memory_unit": "(Ir)",
+  "pci_instance_creation_table_header_memory_unit": "(GB)",
   "pci_instance_creation_table_header_vcore": "vCore",
-  "pci_instance_creation_table_header_vcore_unit": "(Ir)",
+  "pci_instance_creation_table_header_vcore_unit": "(GB)",
   "pci_instance_creation_table_header_storage": "Armazenamento",
-  "pci_instance_creation_table_header_storage_unit": "(Ir)",
+  "pci_instance_creation_table_header_storage_unit": "(GB)",
+  "pci_instance_creation_table_header_storage_unit_tb": "(TB)",
   "pci_instance_creation_table_header_mode": "Implementação",
   "pci_instance_creation_table_header_price": "Preço",
   "pci_instance_creation_table_header_price_hourly_unit": "s/IVA/h",
@@ -53,6 +54,8 @@
   "pci_instance_creation_cart_flavor_vCore": "vCPU",
   "pci_instance_creation_cart_flavor_bandwidthPrivate": "(Privado)",
   "pci_instance_creation_cart_flavor_bandwidthPublic": "(Público)",
+  "pci_instance_creation_bandwidth_mbit_s": "Mbps",
+  "pci_instance_creation_bandwidth_gbit_s": "Gbps",
   "pci_instance_creation_select_continent_label": "Selecione uma zona geográfica",
   "pci_instance_creation_select_datacenter_label": "Selecione um datacenter",
   "pci_instance_creation_choose_datacenter_label": "Escolha um datacenter",
@@ -186,7 +189,7 @@
   "pci_instance_creation_flex_flavor": {
     "title": "Instâncias Flex",
     "disk_capacity": "<span>Uma instância flex é uma instância de disco único (50 Go)</span> que oferece um processo mais rápido para os snapshots.",
-    "resizing_explanation": "Permite um redimensionamento para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
+    "resizing_explanation": "Permite redimensionar para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado"
 }

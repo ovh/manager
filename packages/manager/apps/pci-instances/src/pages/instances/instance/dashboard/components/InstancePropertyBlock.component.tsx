@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useBytes } from '@ovh-ux/manager-pci-common';
 import { useProjectUrl } from '@ovh-ux/manager-react-components';
 import { Link as RouterLink } from 'react-router-dom';
 import { Icon, Link, Text } from '@ovhcloud/ods-react';
@@ -8,9 +9,11 @@ import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './tile/DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
+import { formatDiskDisplay } from '@/pages/instances/create/view-models/mappers/diskMapper';
 
 const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
+  const { formatBytes } = useBytes();
   const projectUrl = useProjectUrl('public-cloud');
   const { region, instanceId } = useInstanceParams();
 
@@ -27,7 +30,7 @@ const InstancePropertyBlock: FC = () => {
       >
         <div className="flex flex-col">
           {instance?.flavor?.disks.map((disk) => (
-            <Text key={disk.id}>{disk.display}</Text>
+            <Text key={disk.id}>{formatDiskDisplay(disk, formatBytes)}</Text>
           ))}
         </div>
       </DashboardTileBlock>

@@ -84,13 +84,25 @@ const isEditionEnabled = (actions: TInstanceAction[]) =>
 const isVncEnabled = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'vnc');
 
+const emptyDisks: TDiskViewModel[] = [
+  {
+    id: 'no-disk',
+    display: '-',
+    number: 0,
+    capacityValue: 0,
+    capacityUnit: 'gb',
+    interface: null,
+  },
+];
+
 const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
   name,
   ram: specs ? `${specs.ram.value} ${specs.ram.unit}` : '-',
   cpu: specs ? `${specs.cpu.value} ${specs.cpu.unit}` : '-',
-  disks: specs?.disks
-    ? mapDisksToViewModel(specs.disks)
-    : [{ id: 'no-disk', display: '-' }],
+  disks:
+    specs?.disks && specs.disks.length > 0
+      ? mapDisksToViewModel(specs.disks)
+      : emptyDisks,
   publicBandwidth: specs
     ? `${specs.bandwidth.public.value} ${specs.bandwidth.public.unit}`
     : '-',
