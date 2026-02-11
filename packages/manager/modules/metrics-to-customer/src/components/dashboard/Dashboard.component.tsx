@@ -13,6 +13,7 @@ import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
 
 export const Dashboard = <TData,>({
   charts: widgets,
+  disabled = false,
   onRefresh,
   onCancel,
 }: Readonly<DashboardProps<TData>>): JSX.Element => {
@@ -60,6 +61,7 @@ export const Dashboard = <TData,>({
             onStateChange={onStateChange}
             onRefresh={onRefresh}
             onCancel={onCancel}
+            disabled={disabled}
           />
         </div>
         <div
@@ -82,6 +84,7 @@ export const Dashboard = <TData,>({
                 isLoading={isLoading}
                 colspan={colspan}
                 rowspan={rowspan}
+                disabled={disabled}
               >
                 <ChartRenderer
                   type={chart.type}
