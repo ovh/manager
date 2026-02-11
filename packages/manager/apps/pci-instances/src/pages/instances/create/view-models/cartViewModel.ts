@@ -60,7 +60,9 @@ export type TSelectFlavorDetails = {
   vCore: number;
   disks: TDiskViewModel[];
   bandwidthPublic: number;
+  bandwidthPublicUnit: string;
   bandwidthPrivate: number;
+  bandwidthPrivateUnit: string;
   price: number;
   gpu?: string;
   numberOfGpu?: number;
@@ -146,6 +148,8 @@ export const selectFlavorDetails = (catalog: TInstancesCatalog | undefined) => {
       disks: mapDisksToViewModel(foundFlavor.specifications.disks),
       bandwidthPublic: foundFlavor.specifications.bandwidth.public.value,
       bandwidthPrivate: foundFlavor.specifications.bandwidth.private.value,
+      bandwidthPublicUnit: foundFlavor.specifications.bandwidth.public.unit,
+      bandwidthPrivateUnit: foundFlavor.specifications.bandwidth.private.unit,
       gpu: foundFlavor.specifications.gpu?.model.unit,
       numberOfGpu: foundFlavor.specifications.gpu?.model.value,
       vRamTotal: foundFlavor.specifications.gpu?.memory.size.value,
