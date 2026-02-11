@@ -1,5 +1,8 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
+import { Ipv6BridgedSubrangeDetails } from './bridgedSubrange';
+import { Ipv6RoutedSubrangeDetails } from './routedSubrange';
+
 export interface Ipv4Detail {
   gateway: string | null;
   ip: string;
@@ -9,6 +12,8 @@ export interface Ipv4Detail {
 export interface Ipv6Detail {
   ipv6: string;
   region: string | null;
+  bridgedSubranges?: Ipv6BridgedSubrangeDetails[];
+  routedSubranges?: Ipv6RoutedSubrangeDetails[];
 }
 
 export const getVrackIpv4List = async (serviceName: string): Promise<string[]> => {

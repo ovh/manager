@@ -11,6 +11,7 @@ import { DashboardHeaderTitle } from '@/components/DashboardHeaderTitle';
 import { DashboardSubtitle } from '@/components/DashboardSubtitle';
 import { SurveyLink } from '@/components/SurveyLink';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb';
+import VrackTasksProvider from '@/contexts/vrack-tasks/VrackTasks.provider';
 import { useGuideLinks } from '@/hooks/useGuideLinks';
 import { useNavigateToLegacyApp } from '@/hooks/useNavigateToLegacyApp';
 import { useGetVrackDetails } from '@/hooks/vrack/useGetVrackDetails';
@@ -65,7 +66,9 @@ export default function DashboardPage() {
           </>
         }
       >
-        <Outlet />
+        <VrackTasksProvider serviceName={serviceName ?? ''}>
+          <Outlet />
+        </VrackTasksProvider>
       </BaseLayout>
     )
   );

@@ -7,9 +7,9 @@ import { Link, MESSAGE_COLOR, Message, MessageBody } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { Order } from '@ovh-ux/manager-module-order';
+import { isDefaultBandwidthOption } from '@ovh-ux/manager-network-common';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
-import { isDefaultBandwidthOption } from '@ovh-ux/manager-network-common';
 
 import { getUpgradedBandwidth } from '@/data/api/get/upgradedBandwidth';
 import {

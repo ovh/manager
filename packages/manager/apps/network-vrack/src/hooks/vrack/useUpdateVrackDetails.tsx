@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useNotifications } from '@ovh-ux/muk';
 
-import { VrackUpdate, putVrackDetail } from '@/data/api/put/vrack-details';
+import { VrackUpdate, putVrackDetail } from '@/data/api/put/vrackDetails';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 import { getVrackDetailQueryKey } from './useGetVrackDetails';

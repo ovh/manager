@@ -4,7 +4,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { deleteVrackIpv4 } from '@/data/api/delete/vrackIp';
 
-import { getVrackTaskListKey } from '../tasks/useGetVrackTasks';
+import { getVrackTaskListKey } from '../../tasks/useGetVrackTasks';
 
 export const useDeleteVrackIpv4 = ({
   serviceName,
@@ -14,16 +14,16 @@ export const useDeleteVrackIpv4 = ({
 }: {
   serviceName: string;
   ip: string;
-  onSuccess: () => void;
+  onSuccess: (taksId: number) => void;
   onError: (error: ApiError) => void;
 }) => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: () => deleteVrackIpv4(serviceName, ip),
-    onSuccess: () => {
+    onSuccess: (vrackTask) => {
       void queryClient.invalidateQueries({ queryKey: getVrackTaskListKey(serviceName) });
-      onSuccess();
+      onSuccess(vrackTask.id);
     },
     onError,
   });
