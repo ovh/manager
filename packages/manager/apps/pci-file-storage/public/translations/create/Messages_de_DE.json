@@ -74,5 +74,8 @@
     "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen eine Verbindung zu Ihrer Freigabedatei herstellen sollen",
     "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
     "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region"
+  },
+  "submit": {
+    "error": "Beim Hinzufügen des Shares ist ein Fehler aufgetreten: {{error}}"
   }
 }

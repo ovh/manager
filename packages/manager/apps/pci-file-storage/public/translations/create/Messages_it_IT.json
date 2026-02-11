@@ -74,5 +74,8 @@
     "description": "Seleziona la rete privata a cui desideri che le tue istanze si connettano al tuo file di condivisione",
     "label": "Seleziona una rete privata esistente",
     "empty": "Spiacente, ma non hai una rete privata per questa regione"
+  },
+  "submit": {
+    "error": "Si è verificato un errore durante l'aggiunta della condivisione: {{error}}"
   }
 }
