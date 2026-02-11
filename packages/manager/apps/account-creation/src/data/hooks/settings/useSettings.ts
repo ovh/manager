@@ -48,22 +48,29 @@ export const useCurrencySettings = (country?: string) =>
     );
   });
 
+export type LanguageOption = {
+  ietfLanguageTag: SupportLanguage;
+  ovhSubsidiary: string;
+};
+
 export const useLanguageSettings = (country?: string, currency?: string) =>
   useSettingsQuery((settings) => {
     if (!(country && currency)) return [];
-
+    const seen = new Set<SupportLanguage>();
     return (
-      settings
-        .get(country)
-        ?.reduce((languages: SupportLanguage[], billingCountry) => {
-          if (
-            currency === billingCountry.currency.code &&
-            !languages.includes(billingCountry.ietfLanguageTag)
-          ) {
-            languages.push(billingCountry.ietfLanguageTag);
-          }
-          return languages;
-        }, []) ?? []
+      settings.get(country)?.reduce((acc: LanguageOption[], billingCountry) => {
+        if (
+          currency === billingCountry.currency.code &&
+          !seen.has(billingCountry.ietfLanguageTag)
+        ) {
+          seen.add(billingCountry.ietfLanguageTag);
+          acc.push({
+            ietfLanguageTag: billingCountry.ietfLanguageTag,
+            ovhSubsidiary: billingCountry.ovhSubsidiary,
+          });
+        }
+        return acc;
+      }, []) ?? []
     );
   });
 
@@ -71,7 +78,8 @@ export const useSubsidiarySettings = (
   country?: string,
   currency?: string,
   language?: string,
-) => useSettingsQuery<string | null>((settings) => {
+) =>
+  useSettingsQuery<string | null>((settings) => {
     if (!(country && currency && language)) {
       return null;
     }
