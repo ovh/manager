@@ -2,7 +2,7 @@
   "name": {
     "title": "Share name",
     "label": "Choose a name for your share file",
-    "info": "Must only contain numbers, letters, underscores, dashes or dots and not exceed 255 characters.",
+    "info": "Must only contain numbers, letters, underscores, dashes or dots and must not exceed 255 characters.",
     "error": {
       "too_small": "The share name cannot be empty. Please enter a name.",
       "too_big": "Invalid name format",
@@ -16,20 +16,23 @@
       "modes": {
         "region": {
           "label": "1-AZ Region",
-          "description": "Resilient and cost-effective deployment in 1 availability zone."
+          "description": "Resilient and cost-effective deployment in 1 zone."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "High resilience/high availability deployment for your critical applications across 3 availability zones."
+          "description": "Deployment as close as possible for low latency."
         },
         "region-3-az": {
-          "label": " 3-AZ Region",
-          "description": "Deploy your applications closest to your users for low latency and data residency."
+          "label": "3-AZ Region",
+          "description": "High resilience and high availability deployment across 3 zones."
         }
       }
     },
+    "macroRegion": {
+      "title": "Choose a location"
+    },
     "continents": {
-      "label": "",
+      "label": "Select a geographical area",
       "options": {
         "all": "All",
         "asia_oceania": "Asia-Pacific",
@@ -58,18 +61,18 @@
   "shareSize": {
     "title": "Share size",
     "description": "5% of the storage capacity is dedicated to snapshot storage",
-    "label": "Linear performance allocation (GiB)",
+    "label": "Linear performance allocation (Gio)",
     "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
       "min_value": "The share size is below the minimum allowed for this offer.",
       "max_value": "The share size exceeds the maximum allowed for this offer.",
-      "invalid_type": "This field is required."
+      "invalid_type": "This field must be filled in"
     }
   },
   "network": {
     "title": "Private network",
     "description": "Select the private network you want your instances to connect to your share file",
     "label": "Select an existing private network",
-    "empty": "Sorry, but you do not have a private network for this region"
+    "empty": "Sorry but you do not have a private network for this region"
   }
 }

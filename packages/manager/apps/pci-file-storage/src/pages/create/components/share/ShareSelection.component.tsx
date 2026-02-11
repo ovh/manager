@@ -66,7 +66,7 @@ export const ShareSelection = () => {
                   selectable
                   selected={selectedSpecName === spec.name}
                   onClick={handleShareSpecChange(spec)}
-                  className="h-full"
+                  className="h-full min-w-min max-w-80"
                 >
                   <PciCard.Header>
                     <Radio value={spec.name}>

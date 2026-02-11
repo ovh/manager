@@ -2,7 +2,7 @@
   "name": {
     "title": "Nazwa udostępnienia",
     "label": "Wybierz nazwę dla swojego pliku udostępnienia",
-    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie przekraczać 255 znaków.",
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie może przekraczać 255 znaków.",
     "error": {
       "too_small": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
       "too_big": "Nieprawidłowy format nazwy",
@@ -16,20 +16,23 @@
       "modes": {
         "region": {
           "label": "Region 1-AZ",
-          "description": "Wdrożenie odporne i ekonomiczne w 1 strefie dostępności."
+          "description": "Wdrożenie odporne i ekonomiczne w 1 strefie."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Wdrożenie o wysokiej odporności/wysokiej dostępności dla Twoich krytycznych aplikacji w 3 strefach dostępności."
+          "description": "Wdrożenie jak najbliżej dla niskiej latencji."
         },
         "region-3-az": {
           "label": "Region 3-AZ",
-          "description": "Wdrożenie Twoich aplikacji jak najbliżej użytkowników dla niskiej latencji i lokalizacji danych."
+          "description": "Wdrożenie o wysokiej odporności i wysokiej dostępności w 3 strefach."
         }
       }
     },
+    "macroRegion": {
+      "title": "Wybierz lokalizację"
+    },
     "continents": {
-      "label": "",
+      "label": "Wybierz strefę geograficzną",
       "options": {
         "all": "Wszystkie",
         "asia_oceania": "Azja-Pacyfik",
@@ -58,17 +61,17 @@
   "shareSize": {
     "title": "Rozmiar udziału",
     "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
-    "label": "Przydział wydajności liniowej (GiB)",
+    "label": "Przydział wydajności liniowej (Gio)",
     "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "Rozmiar udziału jest mniejszy niż minimalna dozwolona wartość dla tej oferty.",
-      "max_value": "Rozmiar udziału przekracza maksymalną dozwoloną wartość dla tej oferty.",
-      "invalid_type": "To pole musi być wypełnione."
+      "min_value": "Rozmiar udziału jest mniejszy niż minimalny dozwolony dla tej oferty.",
+      "max_value": "Rozmiar udziału przekracza maksymalny dozwolony dla tej oferty.",
+      "invalid_type": "To pole musi być wypełnione"
     }
   },
   "network": {
     "title": "Sieć prywatna",
-    "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem plików",
+    "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem",
     "label": "Wybierz istniejącą prywatną sieć",
     "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie"
   }

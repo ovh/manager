@@ -3,7 +3,7 @@
   "actionButton": "Créer un share",
   "columns": {
     "name_id": "Nom / ID",
-    "region": "Région",
+    "region": "Localisation",
     "protocol": "Protocole",
     "allocated_capacity": "Capacité allouée",
     "allocated_capacity_value": "{{capacity}} Gio",

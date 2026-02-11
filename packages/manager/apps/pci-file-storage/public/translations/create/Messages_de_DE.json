@@ -10,26 +10,29 @@
     }
   },
   "localisation": {
-    "title": "Wählen Sie einen Standort aus",
+    "title": "Wählen Sie einen Standort",
     "deploymentMode": {
       "title": "Filtern Sie einen Bereitstellungsmodus",
       "modes": {
         "region": {
           "label": "1-AZ Region",
-          "description": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone."
+          "description": "Resiliente und kostengünstige Bereitstellung in 1 Zone."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Hochverfügbare Bereitstellung für Ihre kritischen Anwendungen in 3 Verfügbarkeitszonen."
+          "description": "Bereitstellung so nah wie möglich für geringe Latenz."
         },
         "region-3-az": {
           "label": "3-AZ Region",
-          "description": "Bereitstellung Ihrer Anwendungen so nah wie möglich an Ihren Benutzern für geringe Latenz und Datenresidenz."
+          "description": "Hochresiliente und hochverfügbare Bereitstellung in 3 Zonen."
         }
       }
     },
+    "macroRegion": {
+      "title": "Wählen Sie einen Standort"
+    },
     "continents": {
-      "label": "",
+      "label": "Wählen Sie eine geografische Zone",
       "options": {
         "all": "Alle",
         "asia_oceania": "Asiatisch-pazifischer Raum",
@@ -39,7 +42,7 @@
       }
     },
     "microRegion": {
-      "title": "Wählen Sie ein Rechenzentrum aus",
+      "title": "Wählen Sie ein Rechenzentrum",
       "label": "Wählen Sie ein Rechenzentrum"
     },
     "availabilityZone": {
@@ -58,17 +61,17 @@
   "shareSize": {
     "title": "Größe des Shares",
     "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
-    "label": "Lineare Leistungszuweisung (GiB)",
-    "provisionedPerformance": "<strong>Bereitgestellte Leistung :</strong> Bis zu {{iops}} IOPS - {{throughput}} MiB/s",
+    "label": "Lineare Leistungszuweisung (Gio)",
+    "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
-      "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
-      "invalid_type": "Dieses Feld muss ausgefüllt werden."
+      "min_value": "Die Größe des Shares liegt unter dem für dieses Angebot zulässigen Minimum.",
+      "max_value": "Die Größe des Shares überschreitet das für dieses Angebot zulässige Maximum.",
+      "invalid_type": "Dieses Feld muss ausgefüllt werden"
     }
   },
   "network": {
     "title": "Privates Netzwerk",
-    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen eine Verbindung zu Ihrem Share herstellen sollen",
+    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen eine Verbindung zu Ihrer Freigabedatei herstellen sollen",
     "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
     "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region"
   }
