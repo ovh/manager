@@ -30,8 +30,6 @@ import { SelectItemExtraData } from '@/types/timeControls/RefreshTimeControl.typ
 
 import { RefreshTimeControlProps } from '@/components/timeControls/RefreshTimeControl.props';
 
-import '@/components/timeControls/time-controls.scss';
-
 export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = ({
   refreshTimeOptions = defaultRefreshTimeOptions,
   defaultRefreshInterval = defaultRefreshTimeOption,
@@ -78,8 +76,34 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
         fitControlWidth={false}
         onValueChange={onValueChange}
         defaultValue={defaultRefreshInterval.toString()}
+        positionerStyle={{
+          zIndex: 102
+        }}
       >
         <SelectControl
+          className={`group
+                      h-10
+                      border
+                      border-l-0
+                      border-[var(--ods-color-primary-500)]
+                      rounded-l-none
+                      outline-none
+                      shadow-none
+                      text-[var(--ods-color-primary-500)]
+                      hover:bg-[var(--ods-color-primary-100)]                      
+                      hover:border-[var(--ods-color-primary-700)]
+                      focus:outline-none
+                      focus:shadow-none
+                      focus-visible:outline-none
+                      focus-visible:shadow-none
+                      disabled:border-[var(--ods-theme-border-color-disabled)]
+                      disabled:text-[var(--ods-theme-text-color-disabled)]
+                      disabled:hover:bg-[var(--ods-theme-background-color-disabled)]
+                      disabled:hover:border-[var(--ods-theme-border-color-disabled)]
+                      disabled:cursor-not-allowed
+                      `
+                    }
+
           customItemRenderer={({ selectedItems }) => {
             const itemsWithExtraData = selectedItems as SelectOptionItem<SelectItemExtraData>[];
 
@@ -88,7 +112,7 @@ export const RefreshTimeControl: React.FC<Readonly<RefreshTimeControlProps>> = (
                 {itemsWithExtraData.map((item, index) => (
                   <Text
                     key={`${item.value}_${index}`}
-                    className="font-semibold text-[var(--ods-color-primary-500)]"
+                    className="font-semibold text-[var(--ods-color-primary-500)] group-hover:text-[var(--ods-color-primary-700)] group-disabled:text-[var(--ods-theme-text-color-disabled)] group-disabled:group-hover:text-[var(--ods-theme-text-color-disabled)]"
                     preset={TEXT_PRESET.span}
                   >
                     {item.customRendererData?.selectLabel ?? item.label}

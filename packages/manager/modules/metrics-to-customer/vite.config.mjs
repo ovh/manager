@@ -33,13 +33,9 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: `${pathSrc}/**/*.scss`,
-          dest: 'src',
-          rename: (name, ext, fullPath) => {
-            const relativePath = path.relative(pathSrc, fullPath);
-            return relativePath;
-          },
-        },        
+          src: `${pathSrc}/index.scss`,
+          dest: '',
+        },
         {
           src: `${pathPublic}/translations`,
           dest: 'metrics-to-customer',

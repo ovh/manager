@@ -53,6 +53,7 @@ export const Dashboard = <TData,>({
         </div>
         <div className="flex justify-end items-center">
           <TimeControls
+            id="dashboard-time-controls"
             defaultValue={state.selectedTimeOption.value}
             isLoading={isDashboardLoading}
             state={state}
