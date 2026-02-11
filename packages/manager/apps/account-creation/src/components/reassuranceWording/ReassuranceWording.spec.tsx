@@ -80,7 +80,7 @@ describe('ReassuranceWording', () => {
       expect(descriptionElement).toHaveTextContent('generic_description');
     });
 
-    it('should display a generic message when on type route for customer with corporation legal form', async () => {
+    it('should display a corproration message when on type route for customer with corporation legal form', async () => {
       mockLocation('/type');
       renderComponent({ legalForm: 'corporation' });
 
@@ -88,11 +88,13 @@ describe('ReassuranceWording', () => {
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('generic_title');
-      expect(descriptionElement).toHaveTextContent('generic_description');
+      expect(titleElement).toHaveTextContent('details_title_corporation');
+      expect(descriptionElement).toHaveTextContent(
+        'details_description_corporation',
+      );
     });
 
-    it('should display a generic when on type route for customer with individual legal form', async () => {
+    it('should display a individual message when on type route for customer with individual legal form', async () => {
       mockLocation('/type');
       renderComponent({ legalForm: 'individual' });
 
@@ -100,8 +102,10 @@ describe('ReassuranceWording', () => {
       const descriptionElement = screen.getByTestId(
         'reassurance_wording_description',
       );
-      expect(titleElement).toHaveTextContent('generic_title');
-      expect(descriptionElement).toHaveTextContent('generic_description');
+      expect(titleElement).toHaveTextContent('details_title_individual');
+      expect(descriptionElement).toHaveTextContent(
+        'details_description_individual',
+      );
     });
 
     it('should display an info message when on details route for customer with corporation legal form', async () => {
