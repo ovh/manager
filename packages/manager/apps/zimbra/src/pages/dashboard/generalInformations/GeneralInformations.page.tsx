@@ -18,6 +18,12 @@ import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import { OngoingTasks } from './OngoingTasks.component';
 
+type ItemConsumption = {
+  id: string;
+  value: React.ReactNode;
+  label?: string;
+};
+
 export const GeneralInformations = () => {
   const { t } = useTranslation([
     'dashboard',
@@ -65,7 +71,7 @@ export const GeneralInformations = () => {
     ];
   }, [platformUrn, organisation]);
 
-  const itemsConsumption = useMemo(() => {
+  const itemsConsumption = useMemo<ItemConsumption[]>(() => {
     return [
       {
         id: 'account-offer',
