@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten.",
   "pci_instances_creation_advanced_parameters": "Erweiterte Einstellungen",
+  "pci_instance_creation_instance_flex_title": "Flexible Instanz",
+  "pci_instance_creation_instance_flex_description": "Die Auswahl der Flex-Option erzwingt einen Storage mit 50 GB Speicherplatz, was schnellere Snapshots und ein Downgrade zu einem späteren Zeitpunkt ermöglicht.",
   "pci_instances_creation_quantity_title": "Wählen Sie eine Menge",
   "pci_instances_creation_quantity_label": "Anzahl der zu erstellenden Instanzen",
   "pci_instance_creation_quantity_rule": "Ihr aktuelles Kontingent erlaubt es Ihnen, gleichzeitig bis zu {{ quota }} Instanz(en) vom Typ {{ type }} für die Region {{ region }} zu erstellen. <Link>Überprüfen Sie Ihr Kontingent.</Link>",

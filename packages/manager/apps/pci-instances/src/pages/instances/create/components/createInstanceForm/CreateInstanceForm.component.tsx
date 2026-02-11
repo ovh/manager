@@ -22,7 +22,6 @@ import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
 import Backup from '../Backup.component';
-import PostInstallScript from '../PostInstallScript.component';
 
 export const CreateInstanceForm = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -83,7 +82,6 @@ export const CreateInstanceForm = () => {
             <BillingChoice billingTypes={billingTypes} />
           )}
           <AdvancedParameters />
-          <PostInstallScript />
         </section>
         <aside className="w-1/3 min-w-[280px] max-w-[640px]">
           <CreationCart />

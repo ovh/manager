@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Must only contain numbers, letters, underscores, dashes, or dots.",
   "pci_instances_creation_advanced_parameters": "Advanced settings",
+  "pci_instance_creation_instance_flex_title": "Flexible instance",
+  "pci_instance_creation_instance_flex_description": "The Flex option opts for 50GB storage, providing faster snapshots and the ability to downgrade later on.",
   "pci_instances_creation_quantity_title": "Choose a quantity",
   "pci_instances_creation_quantity_label": "Number of instances to create",
   "pci_instance_creation_quantity_rule": "Your current quota allows you to create up to {{ quota }} instance(s) of type {{ type }} for the {{ region }} region simultaneously. <Link>Check your quota.</Link>",
