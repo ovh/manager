@@ -2,9 +2,8 @@ import {
   FormField,
   FormFieldError,
   FormFieldLabel,
-  Quantity,
-  QuantityControl,
-  QuantityInput,
+  Input,
+  INPUT_TYPE,
   Select,
   SelectContent,
   SelectControl,
@@ -71,67 +70,49 @@ export function LocFormContent() {
     max: number,
     step: number,
     required: boolean,
-    inline?: boolean,
-    suffix?: string,
   ) => (
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState: { error, invalid } }) => {
-        const numValue =
-          field.value !== undefined && field.value !== "" ? String(field.value) : undefined;
-        const inputControl = (
-          <Quantity
-            className="w-fit min-w-0"
+      render={({ field, fieldState: { error, invalid } }) => (
+        <FormField className="w-full" invalid={!!error && invalid}>
+          <FormFieldLabel>
+            {t(labelKey)}
+            {required ? " *" : ""}
+          </FormFieldLabel>
+          <Input
+            type={INPUT_TYPE.number}
+            className="w-full"
             name={field.name}
-            value={numValue}
-            onValueChange={({ valueAsNumber }) =>
-              field.onChange(Number.isNaN(valueAsNumber) ? undefined : valueAsNumber)
+            value={field.value !== undefined && field.value !== "" ? String(field.value) : ""}
+            onChange={(e) =>
+              field.onChange(
+                e.target?.value === "" ? undefined : Number(e.target?.value),
+              )
             }
+            onBlur={field.onBlur}
+            ref={field.ref}
             min={min}
             max={max}
             step={step}
             invalid={!!error}
-          >
-            <QuantityControl className="!w-auto min-w-[7rem] max-w-[10rem]">
-              <QuantityInput ref={field.ref} onBlur={field.onBlur} />
-            </QuantityControl>
-          </Quantity>
-        );
-        return (
-          <FormField className={inline ? "w-auto shrink-0" : "w-full"} invalid={!!error && invalid}>
-            <FormFieldLabel>
-              {t(labelKey)}
-              {required ? " *" : ""}
-            </FormFieldLabel>
-            {suffix ? (
-              <div className="flex flex-row items-center gap-2">
-                {inputControl}
-                <Text preset={TEXT_PRESET.span} className="pb-0.5">
-                  {suffix}
-                </Text>
-              </div>
-            ) : (
-              inputControl
-            )}
-            <FormFieldError>{error?.message}</FormFieldError>
-          </FormField>
-        );
-      }}
+          />
+          <FormFieldError>{error?.message}</FormFieldError>
+        </FormField>
+      )}
     />
   );
 
-  const locMetersCell = (field: (typeof LOC_METERS_FIELDS)[number]) =>
-    numField(
-      field.name,
-      field.labelKey,
-      field.min,
-      field.max,
-      field.step,
-      field.required,
-      false,
-      t("zone_page_add_entry_modal_step_2_label_loc_meters"),
-    );
+  const locMetersCell = (field: (typeof LOC_METERS_FIELDS)[number]) => (
+    <>
+      <FormField className="w-1/2">
+        {numField(field.name, field.labelKey, field.min, field.max, field.step, field.required)}
+      </FormField>
+      <Text preset={TEXT_PRESET.span} className="pb-2">
+        {t("zone_page_add_entry_modal_step_2_label_loc_meters")}
+      </Text>
+    </>
+  );
 
   return (
     <div className="mt-4 w-full space-y-4" data-testid="loc-form">
@@ -139,15 +120,15 @@ export function LocFormContent() {
         <FormFieldLabel slot="label">
           {t("zone_page_add_entry_modal_step_2_label_loc_lat")}
         </FormFieldLabel>
-        <div className="flex flex-row flex-wrap items-start gap-4">
-          {numField("lat_deg", "zone_page_add_entry_modal_step_2_label_loc_lat_deg", 0, 90, 1, true, true)}
-          {numField("lat_min", "zone_page_add_entry_modal_step_2_label_loc_lat_min", 0, 59, 1, true, true)}
-          {numField("lat_sec", "zone_page_add_entry_modal_step_2_label_loc_lat_sec", 0, 59.999, 0.001, true, true)}
+        <div className="grid grid-cols-2 gap-4">
+          {numField("lat_deg", "zone_page_add_entry_modal_step_2_label_loc_lat_deg", 0, 90, 1, true)}
+          {numField("lat_min", "zone_page_add_entry_modal_step_2_label_loc_lat_min", 0, 59, 1, true)}
+          {numField("lat_sec", "zone_page_add_entry_modal_step_2_label_loc_lat_sec", 0, 59.999, 0.001, true)}
           <Controller
             name="latitude"
             control={control}
             render={({ field, fieldState: { error, invalid } }) => (
-              <FormField className="w-auto shrink-0 min-w-[6rem]" invalid={!!error && invalid}>
+              <FormField className="w-full" invalid={!!error && invalid}>
                 <FormFieldLabel>
                   {t("zone_page_add_entry_modal_step_2_label_loc_lat_direction")} *
                 </FormFieldLabel>
@@ -176,15 +157,15 @@ export function LocFormContent() {
         <FormFieldLabel slot="label">
           {t("zone_page_add_entry_modal_step_2_label_loc_long")}
         </FormFieldLabel>
-        <div className="flex flex-row flex-wrap items-start gap-4">
-          {numField("long_deg", "zone_page_add_entry_modal_step_2_label_loc_long_deg", 0, 180, 1, true, true)}
-          {numField("long_min", "zone_page_add_entry_modal_step_2_label_loc_long_min", 0, 59, 1, true, true)}
-          {numField("long_sec", "zone_page_add_entry_modal_step_2_label_loc_long_sec", 0, 59.999, 0.001, true, true)}
+        <div className="grid grid-cols-2 gap-4">
+          {numField("long_deg", "zone_page_add_entry_modal_step_2_label_loc_long_deg", 0, 180, 1, true)}
+          {numField("long_min", "zone_page_add_entry_modal_step_2_label_loc_long_min", 0, 59, 1, true)}
+          {numField("long_sec", "zone_page_add_entry_modal_step_2_label_loc_long_sec", 0, 59.999, 0.001, true)}
           <Controller
             name="longitude"
             control={control}
             render={({ field, fieldState: { error, invalid } }) => (
-              <FormField className="w-auto shrink-0 min-w-[6rem]" invalid={!!error && invalid}>
+              <FormField className="w-full" invalid={!!error && invalid}>
                 <FormFieldLabel>
                   {t("zone_page_add_entry_modal_step_2_label_loc_long_direction")} *
                 </FormFieldLabel>

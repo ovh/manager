@@ -137,7 +137,6 @@ const RadioKeys= [
               <FormFieldLabel>a:</FormFieldLabel>
               <Textarea
                 {...field}
-                className="w-full min-h-24 resize-y"
                 value={
                   typeof field.value === "string" ||
                   typeof field.value === "number" ||
@@ -145,6 +144,7 @@ const RadioKeys= [
                     ? field.value
                     : ""
                 }
+                className="w-full"
               />
               <FormFieldError>
                 {typeof error?.message === "string" ? error.message : ""}
@@ -168,7 +168,7 @@ const RadioKeys= [
                     ? field.value
                     : ""
                 }
-                className="w-full min-h-24 resize-y"
+                className="w-full"
               />
               <FormFieldError>
                 {typeof error?.message === "string" ? error.message : ""}
@@ -186,7 +186,7 @@ const RadioKeys= [
               <Textarea
                 {...field}
                 value={typeof field.value === "string" || typeof field.value === "number" || Array.isArray(field.value) ? field.value : ""}
-                className="w-full min-h-24 resize-y"
+                className="w-full"
               />
               <FormFieldError>{typeof error?.message === "string" ? error.message : ""}</FormFieldError>
             </FormField>
@@ -208,7 +208,7 @@ const RadioKeys= [
                     ? field.value
                     : ""
                 }
-                className="w-full min-h-24 resize-y"
+                className="w-full"
               />
               <FormFieldError>
                 {typeof error?.message === "string" ? error.message : ""}
@@ -232,7 +232,7 @@ const RadioKeys= [
                     ? field.value
                     : ""
                 }
-                className="w-full min-h-24 resize-y"
+                className="w-full"
               />
               <FormFieldError>
                 {typeof error?.message === "string" ? error.message : ""}

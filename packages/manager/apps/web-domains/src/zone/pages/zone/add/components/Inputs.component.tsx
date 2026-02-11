@@ -6,13 +6,6 @@ import {
   ICON_NAME,
   Input,
   INPUT_TYPE,
-  Quantity,
-  QuantityControl,
-  QuantityInput,
-  Radio,
-  RadioControl,
-  RadioGroup,
-  RadioLabel,
   Select,
   SelectContent,
   SelectControl,
@@ -60,30 +53,17 @@ export function RecordFieldInputs({ fields, control }: RecordFieldInputsProps) {
 
 function RecordField({ fieldDef, control }: RecordFieldControllerRenderProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
-  const isRadioInline = fieldDef.inputType === "radio";
 
   return (
     <Controller name={fieldDef.name as keyof AddEntrySchemaType}
       control={control}
       render={({ field, fieldState: { error, invalid } }) => (
         <FormField className="mb-4 w-1/2" invalid={!!error && invalid}>
-          {isRadioInline ? (
-            <div className="flex flex-row items-start gap-4">
-              <FormFieldLabel className="mb-0 shrink-0 pt-0.5">
-                {t(fieldDef.labelKey)}
-                {fieldDef.required ? " *" : ""}
-              </FormFieldLabel>
-              <RecordInput fieldDef={fieldDef} field={field} invalid={!!error} />
-            </div>
-          ) : (
-            <>
-              <FormFieldLabel>
-                {t(fieldDef.labelKey)}
-                {fieldDef.required ? " *" : ""}
-              </FormFieldLabel>
-              <RecordInput fieldDef={fieldDef} field={field} invalid={!!error} />
-            </>
-          )}
+          <FormFieldLabel>
+            {t(fieldDef.labelKey)}
+            {fieldDef.required ? " *" : ""}
+          </FormFieldLabel>
+          <RecordInput fieldDef={fieldDef} field={field} invalid={!!error} />
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>
       )}
@@ -93,30 +73,6 @@ function RecordField({ fieldDef, control }: RecordFieldControllerRenderProps) {
 
 function RecordInput({ fieldDef, field, invalid }: RecordInputProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
-
-  if (fieldDef.inputType === "radio") {
-    const options = fieldDef.options ?? [];
-    return (
-      <RadioGroup
-        value={field.value != null ? String(field.value) : ""}
-        onValueChange={(detail) => field.onChange(detail.value ?? "")}
-        onBlur={() => field.onBlur?.()}
-        className="flex flex-col gap-2 shrink-0"
-      >
-        {options.map((option) => {
-          const label = option.labelKey ? t(option.labelKey) : option.value;
-          return (
-            <Radio key={option.value} value={option.value}>
-              <RadioControl />
-              <RadioLabel className="ml-2">
-                <Text preset={TEXT_PRESET.span}>{label}</Text>
-              </RadioLabel>
-            </Radio>
-          );
-        })}
-      </RadioGroup>
-    );
-  }
 
   if (fieldDef.inputType === "select") {
     const items = (fieldDef.options ?? []).map((option) => {
@@ -142,7 +98,7 @@ function RecordInput({ fieldDef, field, invalid }: RecordInputProps) {
   if (fieldDef.inputType === "textarea") {
     return (
       <Textarea
-        className="flex-1 min-h-24 w-full resize-y"
+        className="flex-1 min-h-24 w-full"
         name={field.name}
         value={(field.value as string) ?? ""}
         onChange={(event) => field.onChange(event.target?.value)}
@@ -156,52 +112,19 @@ function RecordInput({ fieldDef, field, invalid }: RecordInputProps) {
   const isNum = fieldDef.inputType === "number";
   const tooltipKey = fieldDef.tooltipKey;
 
-  if (isNum) {
-    const numValue = field.value != null && field.value !== "" ? String(field.value) : undefined;
-    return (
-      <div className="flex w-full gap-2 items-center">
-        <Quantity
-          className="w-fit min-w-0"
-          name={field.name}
-          value={numValue}
-          onValueChange={({ valueAsNumber }) =>
-            field.onChange(Number.isNaN(valueAsNumber) ? undefined : valueAsNumber)
-          }
-          min={fieldDef.min}
-          max={fieldDef.max}
-          step={typeof fieldDef.step === "number" ? fieldDef.step : Number(fieldDef.step) || 1}
-          invalid={invalid}
-        >
-          <QuantityControl className="!w-auto min-w-[7rem] max-w-[10rem]">
-            <QuantityInput ref={field.ref} onBlur={field.onBlur} />
-          </QuantityControl>
-        </Quantity>
-        {tooltipKey != null && (
-          <Text preset={TEXT_PRESET.span}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Icon name={ICON_NAME.circleQuestion} />
-              </TooltipTrigger>
-              <TooltipContent>
-                <Text preset={TEXT_PRESET.paragraph}>{t(tooltipKey)}</Text>
-              </TooltipContent>
-            </Tooltip>
-          </Text>
-        )}
-      </div>
-    );
-  }
-
   return (
     <div className="flex w-full gap-2">
       <Input
-        type={INPUT_TYPE.text}
+        type={isNum ? INPUT_TYPE.number : INPUT_TYPE.text}
         className="flex-1 min-w-0"
         name={field.name}
-        value={(field.value as string) ?? ""}
+        value={isNum ? (field.value as number | string) ?? "" : (field.value as string) ?? ""}
         onChange={(event) => field.onChange(event.target?.value)}
         onBlur={field.onBlur}
         ref={field.ref}
+        min={fieldDef.min}
+        max={fieldDef.max}
+        step={fieldDef.step}
         invalid={invalid}
       />
       {tooltipKey != null && (

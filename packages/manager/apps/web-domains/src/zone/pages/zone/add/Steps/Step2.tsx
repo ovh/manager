@@ -23,7 +23,6 @@ import {
 } from "../../../../utils/formSchema.utils";
 import { RecordFieldInputs } from "../components/Inputs.component";
 import { SubDomainField, TtlField } from "../components/SubDomainAndTtl.component";
-import Dkim from "./mailType/Dkim";
 import Spf from "./mailType/Spf";
 import Naptr from "./pointType/Naptr";
 import Loc from "./pointType/Loc";
@@ -51,8 +50,6 @@ export default function Step2() {
   let valuePart: string;
   if (recordType === "SPF" && formValues?.target) {
     valuePart = String(formValues.target);
-  } else if (recordType === "DKIM") {
-    valuePart = getTargetDisplayValue("DKIM", formValues);
   } else if (recordType === "NAPTR") {
     valuePart = getTargetDisplayValue("NAPTR", formValues);
   } else if (recordType === "LOC") {
@@ -85,7 +82,7 @@ export default function Step2() {
   return (
     <div className="w-full space-y-4">
       <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
-      {recordType !== "SPF" && recordType !== "DKIM" && recordType !== "NAPTR" && recordType !== "LOC" && (
+      {recordType !== "SPF" && recordType !== "NAPTR" && recordType !== "LOC" && (
         <SubDomainField
           control={control}
           domainSuffix={serviceName ?? ""}
@@ -94,13 +91,12 @@ export default function Step2() {
         />
       )}
       {recordType === "SPF" && <Spf />}
-      {recordType === "DKIM" && <Dkim />}
       {recordType === "NAPTR" && <Naptr />}
       {recordType === "LOC" && <Loc />}
-      {recordType !== "SPF" && recordType !== "DKIM" && recordType !== "NAPTR" && recordType !== "LOC" && showTtl && (
+      {recordType !== "SPF" && recordType !== "NAPTR" && recordType !== "LOC" && showTtl && (
         <TtlField control={control} watch={watch} className="mb-4" />
       )}
-      {recordType !== "SPF" && recordType !== "DKIM" && recordType !== "NAPTR" && recordType !== "LOC" && (
+      {recordType !== "NAPTR" && recordType !== "LOC" && (
         <RecordFieldInputs fields={fields} control={control} />
       )}
       <FormField className="w-1/2">

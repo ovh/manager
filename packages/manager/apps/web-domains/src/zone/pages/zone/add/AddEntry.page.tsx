@@ -1,17 +1,15 @@
 import { useMemo, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
-import { ApiError } from '@ovh-ux/manager-core-api';
 import { LinkType } from "@ovh-ux/manager-react-components";
 import { Button, BUTTON_SIZE, BUTTON_VARIANT, TEXT_PRESET, Text, FormField, FormFieldLabel, FormFieldError, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
 import Step2 from "./Steps/Step2";
 import Step3 from "./Steps/Step3";
-import { zForm, AddEntrySchemaType, AddEntryApiPayload, FIELD_TYPES_MAIL_RECORDS, buildAddEntryPayload, getRecordTypeDefaultValues, getTargetDisplayValue } from "../../../utils/formSchema.utils";
-import { checkIfRecordCanBeAdd, postDomainZoneRecord } from "../../../datas/api";
+import { zForm, AddEntrySchemaType, FIELD_TYPES_MAIL_RECORDS } from "../../../utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { Link, useNotifications } from "@ovh-ux/muk";
+import { Link } from "@ovh-ux/muk";
 
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
@@ -35,7 +33,9 @@ function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => 
     };
 }
 
-
+export interface AddEntryPageProps {
+    onSuccessCallback?: () => void;
+}
 
 const FIELD_TYPES_POINTING_RECORDS = [
     'A',
@@ -57,12 +57,10 @@ const FIELD_TYPES_EXTENDED_RECORDS = [
     'HTTPS'
 ];
 
-export default function AddEntryPage() {
+export default function AddEntryPage({ onSuccessCallback }: AddEntryPageProps = {}) {
     const { t } = useTranslation(["zone", "form", NAMESPACES.ACTIONS]);
     const navigate = useNavigate();
     const { serviceName } = useParams<{ serviceName: string }>();
-    const queryClient = useQueryClient();
-    const { addSuccess, addError } = useNotifications();
     const [showStep3, setShowStep3] = useState(false);
 
     const resolver = useMemo(() => addEntryResolver(t), [t]);
@@ -75,52 +73,13 @@ export default function AddEntryPage() {
 
     const { watch, formState: { isValid }, handleSubmit, setValue, control } = methods;
     const recordType = watch("recordType");
-    const formValues = watch();
-
-    const checkEntry = useMemo(() => {
-      const rt = String(formValues?.recordType ?? "");
-      const sub = String(formValues?.subDomain ?? "").trim();
-      const target = getTargetDisplayValue(rt, formValues ?? {});
-      return rt ? { fieldType: rt, subDomainToDisplay: sub || undefined, target } : null;
-    }, [formValues, recordType]);
-
-    const shouldCheckCname = String(recordType ?? "").toUpperCase() === "CNAME";
-    const { data: checkResult, isLoading: checkLoading } = useQuery({
-      queryKey: ["checkRecordCanBeAdd", serviceName, checkEntry],
-      queryFn: () => checkIfRecordCanBeAdd(serviceName ?? "", checkEntry!),
-      enabled: !!showStep3 && !!serviceName && !!checkEntry?.fieldType && shouldCheckCname,
-    });
-
-    const recordConflicts = shouldCheckCname ? (checkResult?.recordCanBeAdded ?? false) : true;
-    const conflictingRecords = checkResult?.conflictingRecords ?? [];
 
     const { mutate: addEntry, isPending } = useMutation({
-        mutationFn: async (payload: AddEntryApiPayload) => {
-            return postDomainZoneRecord(serviceName ?? "", payload);
+        mutationFn: async (_data: AddEntrySchemaType) => {
+            return Promise.resolve();
         },
         onSuccess: () => {
-            addSuccess(
-                <Text preset={TEXT_PRESET.paragraph}>
-                    {t("zone:zone_page_add_entry_success")}
-                </Text>,
-                true,
-            );
-            void queryClient.invalidateQueries({
-                queryKey: ["get", "domain", "zone", "records", serviceName],
-            });
-            onClose();
-        },
-        onError: (error: ApiError) => {
-            addError(
-                <Text>{t(`${NAMESPACES.ERROR}:error_message`, {
-                    message: error?.response?.data?.message,
-                })}</Text>,
-                true,
-            );
-            onClose();
-        },
-        onSettled: () => {
-            onClose();
+            onSuccessCallback?.();
         },
     });
 
@@ -136,23 +95,24 @@ export default function AddEntryPage() {
         setShowStep3(false);
     };
 
-    const isStep3Valid = !checkLoading && recordConflicts;
-
     const handleSelectRecordType = (fieldType: string) => {
         setValue('recordType', fieldType);
-        const defaults = getRecordTypeDefaultValues(fieldType);
-        Object.entries(defaults).forEach(([key, value]) => {
-            setValue(key as keyof AddEntrySchemaType, value as never);
-        });
+        setValue('ttlSelect', 'global');
+        setValue('ttl', undefined);
+        if (fieldType === 'SSHFP') {
+            setValue('algorithm', '1');
+            setValue('fptype', '1');
+        }
         setShowStep3(false);
     };
 
     const onSubmit = (data: AddEntrySchemaType) => {
-        const payload = buildAddEntryPayload(data);
+        const payload = { ...data, ttl: data.ttlSelect === "global" ? 0 : (data.ttl ?? 60) };
         addEntry(payload);
     };
 
     const isStep2Valid = isValid;
+    const isStep3Valid = true;
 
     const selectItems = [
         {
@@ -216,7 +176,7 @@ export default function AddEntryPage() {
                                         }}
                                         onBlur={field.onBlur}
                                     >
-                                        <SelectControl data-testid="select-record-type" placeholder={t('zone_page_add_entry_modal_step_1_select_title')} />
+                                        <SelectControl placeholder={t('zone_page_add_entry_modal_step_1_select_title')} />
                                         <SelectContent />
                                     </Select>
                                     {error?.message && <FormFieldError>{error.message}</FormFieldError>}
@@ -233,11 +193,7 @@ export default function AddEntryPage() {
 
                     {showStep3 && recordType && (
                         <div className="w-full">
-                            <Step3
-                                recordConflicts={recordConflicts}
-                                conflictingRecords={conflictingRecords}
-                                checkLoading={checkLoading}
-                            />
+                            <Step3 />
                         </div>
                     )}
 
@@ -258,7 +214,7 @@ export default function AddEntryPage() {
                                             size={BUTTON_SIZE.md}
                                             onClick={() => handleSubmit(onSubmit)()}
                                             loading={isPending}
-                                            disabled={!isStep3Valid || checkLoading}
+                                            disabled={!isStep3Valid}
                                         >
                                             {t(`${NAMESPACES.ACTIONS}:validate`)}
                                         </Button>

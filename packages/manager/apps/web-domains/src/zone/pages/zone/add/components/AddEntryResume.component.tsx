@@ -98,7 +98,6 @@ export function AddEntryResume({
       </dl>
 
       {!recordConflicts && (
-        <>
         <Message color={MESSAGE_COLOR.critical} className="w-full" dismissible={false}>
           <span>{t("zone_page_add_entry_modal_step_3_check_warning_info")}</span>
           <span>
@@ -107,17 +106,16 @@ export function AddEntryResume({
               ? t("zone_page_add_entry_modal_step_3_check_warning2")
               : t("zone_page_add_entry_modal_step_3_check_warning3")}
           </span>
+          {recordType === "CNAME" && conflictingRecords.length > 0 && (
+            <div className="mt-3">
+              <Datagrid<ConflictingRecord>
+                columns={conflictingRecordsColumns}
+                data={conflictingRecords}
+                containerHeight={Math.min(conflictingRecords.length * 50 + 56, 250)}
+              />
+            </div>
+          )}
         </Message>
-         {recordType === "CNAME" && conflictingRecords.length > 0 && (
-          <div className="mt-3">
-            <Datagrid<ConflictingRecord>
-              columns={conflictingRecordsColumns}
-              data={conflictingRecords}
-              containerHeight={Math.min(conflictingRecords.length * 50 + 56, 500)}
-            />
-          </div>
-        )}
-        </>
       )}
 
       {recordConflicts && (

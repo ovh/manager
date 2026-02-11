@@ -1,22 +1,10 @@
-import { Spinner } from "@ovhcloud/ods-react";
 import { useFormContext } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import type { AddEntrySchemaType } from "../../../../utils/formSchema.utils";
 import { getResumeDomain, getTargetDisplayValue } from "../../../../utils/formSchema.utils";
-import type { ConflictingRecordDisplay } from "../../../../datas/api";
 import { AddEntryResume } from "../components/AddEntryResume.component";
 
-export interface Step3Props {
-  recordConflicts: boolean;
-  conflictingRecords: ConflictingRecordDisplay[];
-  checkLoading?: boolean;
-}
-
-export default function Step3({
-  recordConflicts,
-  conflictingRecords,
-  checkLoading = false,
-}: Step3Props) {
+export default function Step3() {
   const { watch } = useFormContext<AddEntrySchemaType>();
   const { serviceName } = useParams();
   const formValues = watch() as Partial<AddEntrySchemaType>;
@@ -29,14 +17,6 @@ export default function Step3({
   const targetValue = getTargetDisplayValue(recordType, formValues ?? {});
   const hasSubDomain = String(subDomain ?? "").trim() !== "";
 
-  if (checkLoading) {
-    return (
-      <div className="flex w-full items-center justify-center py-8">
-        <Spinner />
-      </div>
-    );
-  }
-
   return (
     <AddEntryResume
       recordType={recordType}
@@ -45,8 +25,8 @@ export default function Step3({
       ttlSelect={ttlSelect}
       ttl={ttl}
       targetValue={targetValue}
-      recordConflicts={recordConflicts}
-      conflictingRecords={conflictingRecords}
+      recordConflicts={true}
+      conflictingRecords={[]}
     />
   );
 }

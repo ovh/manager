@@ -134,16 +134,19 @@ export default function ZonePage() {
       {openModal === 'modify-textual-record' && (
         <ModifyTextualRecordModal
           onCloseCallback={closeModal}
+          onSuccessCallback={closeModal}
         />
       )}
       {openModal === 'modify-ttl' && (
         <ModifyTtlModal
           onCloseCallback={closeModal}
+          onSuccessCallback={closeModal}
         />
       )}
       {openModal === 'reset' && (
         <ResetModal
           onCloseCallback={closeModal}
+          onSuccessCallback={closeModal}
         />
       )}
     </>

@@ -21,10 +21,10 @@
     "test": "manager-test run"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "^1.11.0",
-    "@ovh-ux/manager-common-translations": "^0.29.0",
-    "@ovh-ux/manager-config": "^8.9.0",
     "@hookform/resolvers": "^5.0.1",
+    "@ovh-ux/logs-to-customer": "^1.10.10",
+    "@ovh-ux/manager-common-translations": "^0.28.3",
+    "@ovh-ux/manager-config": "^8.8.7",
     "@ovh-ux/manager-core-api": "^0.19.4",
     "@ovh-ux/manager-core-utils": "^0.5.0",
     "@ovh-ux/manager-module-order": "^0.12.2",

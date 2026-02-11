@@ -3,7 +3,7 @@ import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-export type FieldInputType = 'text' | 'number' | 'select' | 'textarea' | 'radio';
+export type FieldInputType = 'text' | 'number' | 'select' | 'textarea';
 export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host';
 
 export interface RecordFieldDef {
@@ -91,15 +91,6 @@ function createSelectField(
   return { name, labelKey, inputType: 'select', options, ...overrides };
 }
 
-function createRadioField(
-  name: string,
-  labelKey: string,
-  options: { value: string; labelKey?: string }[],
-  overrides: RecordFieldOverrides = {},
-): RecordFieldDef {
-  return { name, labelKey, inputType: 'radio', options, ...overrides };
-}
-
 const CAA_TAG_OPTIONS = [{ value: 'issue' }, { value: 'issuewild' }, { value: 'iodef' }];
 const SSHFP_ALGORITHM_OPTIONS = [
   { value: '1', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_algorithm_1' },
@@ -112,10 +103,7 @@ const SSHFP_FPTYPE_OPTIONS = [
   { value: '2', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_fptype_2' },
 ];
 const DMARC_POLICY_OPTIONS = [{ value: 'none' }, { value: 'quarantine' }, { value: 'reject' }];
-const DMARC_ASPF_OPTIONS = [
-  { value: 'r', labelKey: 'zone_page_add_entry_modal_step_2_label_dmarc_aspf_relaxed' },
-  { value: 's', labelKey: 'zone_page_add_entry_modal_step_2_label_dmarc_aspf_strict' },
-];
+const DMARC_ASPF_OPTIONS = [{ value: 'r' }, { value: 's' }];
 const LOC_LATITUDE_OPTIONS = [{ value: 'N', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_lat_N' }, { value: 'S', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_lat_S' }];
 const LOC_LONGITUDE_OPTIONS = [{ value: 'E', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_long_E' }, { value: 'W', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_long_W' }];
 
@@ -191,7 +179,7 @@ const RECORD_TYPE_CONFIG: Partial<Record<string, RecordTypeConfig>> = {
     validation: { target: 'host' },
   },
   TXT: { fields: [FIELD.targetValue] },
-  DKIM: { fields: [] },
+  DKIM: { fields: [FIELD.targetValueTextarea] },
   CAA: {
     fields: [
       createNumberField('flags', LABEL_KEYS.CAA_FLAGS, { required: true, min: 0, max: 255 }),
@@ -246,7 +234,7 @@ const RECORD_TYPE_CONFIG: Partial<Record<string, RecordTypeConfig>> = {
       createNumberField('pct', LABEL_KEYS.DMARC_PCT, { min: 0, max: 100 }),
       createTextField('rua', LABEL_KEYS.DMARC_RUA),
       createSelectField('sp', LABEL_KEYS.DMARC_SP, DMARC_POLICY_OPTIONS),
-      createRadioField('aspf', LABEL_KEYS.DMARC_ASPF, DMARC_ASPF_OPTIONS),
+      createSelectField('aspf', LABEL_KEYS.DMARC_ASPF, DMARC_ASPF_OPTIONS),
     ],
   },
   NAPTR: {
@@ -306,8 +294,6 @@ const ALL_KEYS = [
   'order', 'pref', 'flag', 'service', 'regex', 'replace',
   'lat_deg', 'lat_min', 'lat_sec', 'latitude', 'long_deg', 'long_min', 'long_sec', 'longitude',
   'altitude', 'size', 'hp', 'vp',
-  'dkimV', 'dkimG', 'dkimHsha1', 'dkimHsha256', 'dkimKrsa', 'dkimN', 'dkimPublicKey', 'dkimPRevoke',
-  'dkimS', 'dkimTY', 'dkimTS',
 ] as const;
 
 const NUM_KEYS = new Set([
@@ -436,27 +422,14 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
     ttl: s.ttl,
   };
 
-  const DKIM_BOOL_KEYS = new Set(['dkimV', 'dkimHsha1', 'dkimHsha256', 'dkimKrsa', 'dkimPRevoke', 'dkimTY', 'dkimTS']);
-  const DKIM_STRING_KEYS = new Set(['dkimG', 'dkimN', 'dkimPublicKey', 'dkimS']);
-
   for (const key of ALL_KEYS) {
     if (key === 'recordType' || key === 'subDomain' || key === 'ttlSelect' || key === 'ttl') continue;
-    if (recordType === 'DKIM' && DKIM_BOOL_KEYS.has(key)) {
-      shape[key] = z.union([z.boolean(), z.string()]).optional();
-    } else if (recordType === 'DKIM' && DKIM_STRING_KEYS.has(key)) {
-      shape[key] = s.stringOptional;
-    } else {
-      shape[key] = fieldSet.has(key)
-        ? fieldSchema(key)
-        : NUM_KEYS.has(key)
-          ? s.numOpt()
-          : s.stringOptional;
-    }
+    shape[key] = fieldSet.has(key)
+      ? fieldSchema(key)
+      : NUM_KEYS.has(key)
+        ? s.numOpt()
+        : s.stringOptional;
   }
-
-  const DKIM_G_REGEX = /^[\w!#$%&"*+/=?^`{|}~.-]*$/;
-  const DKIM_N_REGEX = /^[^=;"]*$/;
-  const DKIM_P_REGEX = /^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
 
   return z
     .object(shape)
@@ -489,33 +462,6 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
         message: s.zone('zone_page_add_entry_modal_step_2_naptr_replace_valid'),
         path: ['replace'],
      },
-    )
-    .refine(
-      (data) => {
-        if (recordType !== 'DKIM') return true;
-        const pRevoke = data.dkimPRevoke === true || data.dkimPRevoke === 'true';
-        if (pRevoke) return true;
-        const pk = String(data.dkimPublicKey ?? '').replace(/\n/g, '');
-        if (!pk || pk.length < 32) return false;
-        return DKIM_P_REGEX.test(pk);
-      },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_publickey_valid'), path: ['dkimPublicKey'] },
-    )
-    .refine(
-      (data) => {
-        if (recordType !== 'DKIM') return true;
-        const g = String(data.dkimG ?? '').trim();
-        return !g || DKIM_G_REGEX.test(g);
-      },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_granularity_valid'), path: ['dkimG'] },
-    )
-    .refine(
-      (data) => {
-        if (recordType !== 'DKIM') return true;
-        const n = String(data.dkimN ?? '').trim();
-        return !n || DKIM_N_REGEX.test(n);
-      },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_notes_valid'), path: ['dkimN'] },
     );
 }
 
@@ -599,29 +545,6 @@ function formatNaptrTarget(formValues: Partial<AddEntrySchemaType>): string {
     .trim();
 }
 
-function transformDKIMTarget(formValues: Partial<AddEntrySchemaType>): string {
-  const toBool = (v: unknown) => v === true || v === 'true';
-  const hash: string[] = [];
-  if (toBool(formValues.dkimHsha1)) hash.push('sha1');
-  if (toBool(formValues.dkimHsha256)) hash.push('sha256');
-  const flags: string[] = [];
-  if (toBool(formValues.dkimTY)) flags.push('y');
-  if (toBool(formValues.dkimTS)) flags.push('s');
-  const pRevoke = toBool(formValues.dkimPRevoke);
-  let value = '';
-  value += toBool(formValues.dkimV) ? 'v=DKIM1;' : '';
-  value += formValues.dkimG ? `g=${formValues.dkimG};` : '';
-  value += hash.length > 0 ? `h=${hash.join(':')};` : '';
-  value += toBool(formValues.dkimKrsa) ? 'k=rsa;' : '';
-  value += formValues.dkimN ? `n=${formValues.dkimN};` : '';
-  value += formValues.dkimS ? `s=${formValues.dkimS};` : '';
-  const pk = String(formValues.dkimPublicKey ?? '').replace(/\n/g, '');
-  value += pk && !pRevoke ? `p=${pk};` : '';
-  value += pRevoke ? 'p=;' : '';
-  value += flags.length > 0 ? `t=${flags.join(':')};` : '';
-  return value;
-}
-
 export function getTargetDisplayValue(
   recordType: string,
   formValues: Partial<AddEntrySchemaType>,
@@ -629,10 +552,6 @@ export function getTargetDisplayValue(
   if (recordType === 'SPF' && formValues?.target) {
     const targetValue = String(formValues.target);
     return targetValue || '';
-  }
-
-  if (recordType === 'DKIM') {
-    return transformDKIMTarget(formValues);
   }
 
   if (recordType === 'NAPTR') {
@@ -656,101 +575,4 @@ export function getTargetDisplayValue(
   if (isTxtRecordType) return valuePart ? `"${valuePart}"` : '';
   if (rdataNeedsTrailingDot && valuePart) return `${valuePart}.`;
   return valuePart;
-}
-
-/**
- * Build payload for addDnsEntry/editDnsEntry API (alignée sur domain-zone-record.controller.js).
- * - setTtlConfiguration: global => ttl=0, sinon ttl ?? 60
- * - setTargetValue: target via getTargetDisplayValue pour tous les types
- * - subDomainToDisplay: valeur du formulaire (API utilise subDomain)
- */
-export interface AddEntryApiPayload {
-  fieldType: string;
-  subDomainToDisplay: string | undefined;
-  ttl: number;
-  target: string;
-}
-
-export function buildAddEntryPayload(data: AddEntrySchemaType): AddEntryApiPayload {
-  const recordType = String(data.recordType ?? '');
-  const ttlSelect = data.ttlSelect ?? 'global';
-  const ttl =
-    ttlSelect === 'global' ? 0 : (data.ttl != null && data.ttl !== '' ? Number(data.ttl) : 60);
-  const subDomainToDisplay = String(data.subDomain ?? '').trim() || undefined;
-  const target = getTargetDisplayValue(recordType, data);
-  return {
-    fieldType: recordType,
-    subDomainToDisplay,
-    ttl,
-    target,
-  };
-}
-
-/**
- * Valeurs par défaut à appliquer lors du changement de type d'enregistrement
- * (aligné sur initializeTarget et selectFieldType du controller Angular).
- */
-export function getRecordTypeDefaultValues(
-  recordType: string,
-): Partial<Record<string, string | number | boolean | undefined>> {
-  const common: Partial<Record<string, string | number | boolean | undefined>> = {
-    ttlSelect: 'global',
-    ttl: undefined,
-  };
-  const rt = recordType?.toUpperCase() ?? '';
-
-  if (rt === 'SSHFP') {
-    return { ...common, algorithm: '1', fptype: '1' };
-  }
-
-  if (rt === 'DKIM') {
-    return {
-      ...common,
-      dkimV: false,
-      dkimG: '',
-      dkimHsha1: false,
-      dkimHsha256: false,
-      dkimKrsa: false,
-      dkimN: '',
-      dkimPublicKey: '',
-      dkimPRevoke: false,
-      dkimS: '',
-      dkimTY: false,
-      dkimTS: true,
-    };
-  }
-
-  return common;
-}
-
-export function generateRecordPreview(
-  recordType: string,
-  formValues: Partial<AddEntrySchemaType>,
-): string {
-  const subDomain = formValues?.subDomain;
-  const subPart =
-    subDomain != null && String(subDomain).trim() !== ''
-      ? (() => {
-          try {
-            return toASCII(String(subDomain).trim());
-          } catch {
-            return String(subDomain).trim();
-          }
-        })()
-      : '';
-  const ttlSelect = formValues?.ttlSelect;
-  const ttl = formValues?.ttl;
-  const showTtl = ttlSelect === 'custom' && ttl != null && ttl !== '';
-  const type =
-    (RECORD_TYPES_AS_TXT as readonly string[]).indexOf(recordType) !== -1 ? 'TXT' : recordType;
-  const targetValue = getTargetDisplayValue(recordType, formValues ?? {});
-  const displayTarget =
-    (RECORD_TYPES_AS_TXT as readonly string[]).indexOf(recordType) !== -1
-      ? (targetValue ? `"${targetValue}"` : '')
-      : targetValue;
-
-  return [subPart, showTtl ? String(ttl) : '', 'IN', type, displayTarget]
-    .join(' ')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
 }
