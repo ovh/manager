@@ -170,7 +170,7 @@ export const useAttachConfigurationToCartItem = ({
   onError?: (error: ApiError) => void;
 } = {}) =>
   useMutation({
-    mutationFn: ({
+    mutationFn: async ({
       cartId,
       itemId,
       payload,
@@ -178,7 +178,17 @@ export const useAttachConfigurationToCartItem = ({
       cartId: string;
       itemId: number;
       payload: { label: string; value: string };
-    }) => attachConfigurationToCartItem(cartId, itemId, payload),
+    }) => {
+      const configs = await getCartConfiguration(cartId, itemId);
+      if (
+        configs &&
+        configs.length > 0 &&
+        configs.find((config) => config.label === payload.label)
+      ) {
+        throw new Error(`Configuration ${payload.label} already exists for this item`);
+      }
+      return attachConfigurationToCartItem(cartId, itemId, payload);
+    },
     onSuccess: (data: CartConfiguration) => {
       if (onSuccess) {
         onSuccess(data);
