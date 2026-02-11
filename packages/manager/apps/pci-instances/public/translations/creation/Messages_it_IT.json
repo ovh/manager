@@ -180,5 +180,10 @@
   "pci_instance_creation_in_progress": "La creazione dell'istanza è in corso, il tuo servizio sarà disponibile tra pochi istanti",
   "pci_instances_creations_in_progress": "Le creazioni delle istanze sono in corso, i tuoi servizi saranno disponibili tra pochi istanti",
   "pci_instance_creation_error": "Si è verificato un errore durante la creazione della tua istanza…",
-  "pci_instance_onboarding_page_creation_pending": "La tua istanza è in fase di creazione, ti preghiamo di attendere qualche istante..."
+  "pci_instance_onboarding_page_creation_pending": "La tua istanza è in fase di creazione, ti preghiamo di attendere qualche istante...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Istanze Flex",
+    "disk_capacity": "<span>Un'istanza flex è un'istanza a disco singolo (50 Go)</span> che offre un processo più veloce per gli snapshot.",
+    "resizing_explanation": "Consente un ridimensionamento verso modelli superiori o inferiori con uno spazio di archiviazione fisso, mentre i modelli classici possono essere ridimensionati solo verso modelli superiori."
+  }
 }

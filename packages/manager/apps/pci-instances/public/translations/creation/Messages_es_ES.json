@@ -180,5 +180,10 @@
   "pci_instance_creation_in_progress": "La creación de la instancia está en curso, su servicio estará disponible en unos momentos",
   "pci_instances_creations_in_progress": "Las creaciones de instancias están en curso, sus servicios estarán disponibles en unos momentos",
   "pci_instance_creation_error": "Hemos encontrado un error al crear su instancia…",
-  "pci_instance_onboarding_page_creation_pending": "Su instancia se está creando, por favor, espere unos momentos..."
+  "pci_instance_onboarding_page_creation_pending": "Su instancia se está creando, por favor, espere unos momentos...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Instancias Flex",
+    "disk_capacity": "<span>Una instancia flex es una instancia de disco único (50 Go)</span> que ofrece un proceso más rápido para las instantáneas.",
+    "resizing_explanation": "Permite un redimensionamiento hacia los modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que los modelos clásicos solo pueden redimensionarse hacia los modelos superiores."
+  }
 }

@@ -180,5 +180,10 @@
   "pci_instance_creation_in_progress": "Tworzenie instancji jest w toku, twoja usługa będzie dostępna za chwilę",
   "pci_instances_creations_in_progress": "Tworzenie instancji jest w toku, twoje usługi będą dostępne za chwilę",
   "pci_instance_creation_error": "Napotkaliśmy błąd podczas tworzenia twojej instancji…",
-  "pci_instance_onboarding_page_creation_pending": "Twoja instancja jest w trakcie tworzenia, dziękujemy za chwilę cierpliwości..."
+  "pci_instance_onboarding_page_creation_pending": "Twoja instancja jest w trakcie tworzenia, dziękujemy za chwilę cierpliwości...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Instancje Flex",
+    "disk_capacity": "<span>Instancja flex to instancja z pojedynczym dyskiem (50 GB)</span>, oferująca szybszy proces dla zrzutów.",
+    "resizing_explanation": "Umożliwia skalowanie w górę lub w dół do wyższych lub niższych modeli z ustaloną przestrzenią dyskową, podczas gdy klasyczne modele mogą być skalowane tylko w górę."
+  }
 }

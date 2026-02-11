@@ -180,5 +180,10 @@
   "pci_instance_creation_in_progress": "Die Instanz wird erstellt, Ihr Dienst wird in wenigen Augenblicken verfügbar sein.",
   "pci_instances_creations_in_progress": "Die Instanzen werden erstellt, Ihre Dienste werden in wenigen Augenblicken verfügbar sein.",
   "pci_instance_creation_error": "Wir haben einen Fehler bei der Erstellung Ihrer Instanz festgestellt...",
-  "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment..."
+  "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Flex-Instanzen",
+    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzel-Disk-Instanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
+    "resizing_explanation": "Sie ermöglicht eine Skalierung auf höhere oder niedrigere Modelle mit einem festen Speicherplatz, während klassische Modelle nur auf höhere Modelle skaliert werden können."
+  }
 }
