@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.1...@ovh-ux/manager-pci-project-app@0.2.2) (2026-02-11)
+
+
+### Bug Fixes
+
+* **pci-project:** ensure no duplicate in cart configs ([3049a40](https://github.com/ovh/manager/commit/3049a40adba20a677ee7496a2564617581b2d603)), closes [#MANAGER-20899](https://github.com/ovh/manager/issues/MANAGER-20899)
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.0...@ovh-ux/manager-pci-project-app@0.2.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-project-app
