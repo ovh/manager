@@ -57,21 +57,24 @@ export const DateTimePicker: React.FC<Readonly<DateTimePickerProps>> = ({
       <FormFieldLabel>{label}</FormFieldLabel>
       <div className="inline-flex gap-2">
         <Datepicker
+          positionerStyle={{
+            zIndex: 100
+          }}
           id={`datepicker-${id}`}
-          className='w-40'
+          className="w-40"
           defaultValue={defaultDate}
           onValueChange={onDateValueChange}
         >
-          <DatepickerControl />
-          <DatepickerContent />
+          <DatepickerControl  />
+          <DatepickerContent style={{position: "relative"}} />
         </Datepicker>
         <Timepicker
-          id={`timepicker-${id}`}          
+          id={`timepicker-${id}`}
           withSeconds={true}
           defaultValue={defaultTime}
           onValueChange={onTimeValueChange}
         >
-          <TimepickerControl className='w-34'/>
+          <TimepickerControl className="w-34" />
         </Timepicker>
       </div>
     </FormField>

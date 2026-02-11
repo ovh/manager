@@ -26,6 +26,7 @@ import { TimeControlsProps } from '@/components/timeControls/TimeControls.props'
 import TimeRangeSelector from '@/components/timeControls/TimeRangeSelector.component';
 
 export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
+  id,
   timeOptions = defaultTimeRangeOptions,
   customTimeOptionHidden = false,
   isLoading,
@@ -89,6 +90,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
                 </PopoverTrigger>
                 <PopoverContent>
                   <TimeRangeSelector
+                    id={id}
                     startDateTime={startDateTime}
                     endDateTime={endDateTime}
                     onApply={onApplyTimeRange}

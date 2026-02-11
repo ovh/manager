@@ -53,6 +53,7 @@ export const Dashboard = <TData,>({
         </div>
         <div className="flex justify-end items-center">
           <TimeControls
+            id="dashboard-time-controls"
             defaultValue={state.selectedTimeOption.value}
             isLoading={isDashboardLoading}
             state={state}
@@ -64,8 +65,8 @@ export const Dashboard = <TData,>({
         <div
           className="grid gap-8 grid-cols-1 lg:grid-cols-4
           overflow-auto items-stretch content-stretch
-          [grid-template-rows:repeat(2,calc((100vh-154px)/2))]
-          [grid-auto-rows:calc((100vh-154px)/2)]
+          [grid-template-rows:repeat(2,calc((100vh-154px)/4))]
+          [grid-auto-rows:calc((100vh-154px)/4)]
         "
         >
           {widgets.map((widget: ChartWidgetWithData<TData>, index: number) => {

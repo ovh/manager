@@ -7,7 +7,6 @@ import {
   BUTTON_VARIANT,
   Button,
   MESSAGE_COLOR,
-  MODAL_COLOR,
   Message,
   Modal,
   ModalBody,
@@ -30,8 +29,6 @@ import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
 
 import { useChartWithData, useMetricToken } from '@/data/hooks';
 
-import '@/pages/metrics/styles.scss';
-
 const DashboardWidgetModal = <TData,>() => {
   const { t } = useTranslation([NAMESPACES.DASHBOARDS, NAMESPACES.DASHBOARD_TEXTS, COMMON_NAMESPACES.ACTIONS]);
 
@@ -41,15 +38,15 @@ const DashboardWidgetModal = <TData,>() => {
 
   const { state } = useMetricsToCustomerContext();
 
-  const { state : dashboardState, setState : setDashboardState } = useDashboardContext();
+  const { state: dashboardState, setState: setDashboardState } = useDashboardContext();
 
   const resourceName = state.resourceName ?? '';
   const productType = state.productType ?? '';
   const resourceURN = state.resourceURN ?? '';
 
-  const { data: metricToken, isLoading: isMetricTokenLoading } = useMetricToken({resourceName});
+  const { data: metricToken, isLoading: isMetricTokenLoading } = useMetricToken({ resourceName });
 
-  const { 
+  const {
     startDateTime,
     endDateTime,
     selectedTimeOption,
@@ -94,19 +91,26 @@ const DashboardWidgetModal = <TData,>() => {
   const { id, title, chart } = config;
 
   return (
-    <Modal onOpenChange={onOpenChange} open={true}>
+    <Modal
+      onOpenChange={onOpenChange}
+      closeOnInteractOutside={false}
+      open={true}
+      backdropStyle={{
+        zIndex: 97
+      }}
+      positionerStyle={{
+        zIndex: 98
+      }}
+      data-modal-type="dashboard-widget">
       <ModalContent
-        id="dashboard-widget-modal-content"
         dismissible={false}
-        color={MODAL_COLOR.neutral}
-        className="pt-5 px-5 text-left"
-      >
+        className="pt-5 px-5 text-left m-auto max-w-[calc(100vw-128px)] max-h-[calc(100vh-128px)]">
         <div className="flex items-center gap-4">
           <div>
             <Text preset={TEXT_PRESET.heading3}>{t(`${NAMESPACES.DASHBOARD_TEXTS}:${title}`)}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
-            <TimeControls isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
+            <TimeControls id="widget-time-controls" isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
           </div>
         </div>
         <ModalBody>
@@ -115,7 +119,7 @@ const DashboardWidgetModal = <TData,>() => {
               <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
             </div>
           ) : (
-            <div className="w-full chart-component-wrapper flex flex-col text-left">
+            <div className="w-full h-[calc(100vh-256px)] flex flex-col text-left">
               <ChartRenderer<TData>
                 type={chart.type}
                 chartConfig={chart}

@@ -8,9 +8,8 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import DateTimePicker from '@/components/timeControls/DateTimePicker.component';
 import { TimeRangeSelectorProps } from '@/components/timeControls/TimeRangeSelector.props';
 
-import '@/components/timeControls/time-controls.scss';
-
 export const TimeRangeSelector: React.FC<Readonly<TimeRangeSelectorProps>> = ({
+  id,
   startDateTime,
   endDateTime,
   onApply,
@@ -27,14 +26,14 @@ export const TimeRangeSelector: React.FC<Readonly<TimeRangeSelectorProps>> = ({
   return (
     <div className="px-2 pb-2 flex flex-col gap-4">
       <DateTimePicker
-        id="time-range-date-picker-from"
+        id={`${id}_time-range-date-picker-from`}
         label={t('time_range_from')}
         defaultValue={startDateTime}
         onValueChange={(value: number) => setLocalStartDateTime(value)}
       />
 
       <DateTimePicker
-        id="time-range-date-picker-to"
+        id={`${id}_time-range-date-picker-to`}
         label={t('time_range_to')}
         defaultValue={endDateTime}
         onValueChange={(value: number) => setLocalEndDateTime(value)}
