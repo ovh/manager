@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-veeam-backup-app",
-  "version": "0.22.19",
+  "version": "0.22.20",
   "private": true,
   "description": "veeam backup app",
   "repository": {
