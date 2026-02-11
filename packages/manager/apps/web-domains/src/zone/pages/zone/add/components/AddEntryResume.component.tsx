@@ -3,8 +3,8 @@ import { Message, MESSAGE_COLOR, Text, TEXT_PRESET } from "@ovhcloud/ods-react";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-
-const RECORD_TYPES_AS_TXT = ["SPF", "DKIM", "DMARC"] as const;
+import { FieldTypeExtendedRecordsEnum, FieldTypePointingRecordsEnum } from "@/common/enum/zone.enum";
+import { RECORD_TYPES_AS_TXT } from "../../../../utils/formSchema.utils";
 
 export interface ConflictingRecord extends Record<string, unknown> {
   domainToDisplay: string;
@@ -61,7 +61,7 @@ export function AddEntryResume({
     [t],
   );
   const displayType = (RECORD_TYPES_AS_TXT as readonly string[]).includes(recordType)
-    ? "TXT"
+    ? FieldTypeExtendedRecordsEnum.TXT
     : recordType;
   const showTtl = ttlSelect === "custom" && ttl != null && ttl !== "";
 
@@ -102,11 +102,11 @@ export function AddEntryResume({
           <span>{t("zone_page_add_entry_modal_step_3_check_warning_info")}</span>
           <span>
             {" "}
-            {recordType === "CNAME" && hasSubDomain
+            {recordType === FieldTypePointingRecordsEnum.CNAME && hasSubDomain
               ? t("zone_page_add_entry_modal_step_3_check_warning2")
               : t("zone_page_add_entry_modal_step_3_check_warning3")}
           </span>
-          {recordType === "CNAME" && conflictingRecords.length > 0 && (
+          {recordType === FieldTypePointingRecordsEnum.CNAME && conflictingRecords.length > 0 && (
             <div className="mt-3">
               <Datagrid<ConflictingRecord>
                 columns={conflictingRecordsColumns}

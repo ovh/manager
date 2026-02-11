@@ -1,144 +1,97 @@
-import {
-  FormField,
-  FormFieldError,
-  FormFieldLabel,
-  Icon,
-  ICON_NAME,
-  Input,
-  INPUT_TYPE,
-  Select,
-  SelectContent,
-  SelectControl,
-  Text,
-  TEXT_PRESET,
-  Textarea,
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@ovhcloud/ods-react";
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { Controller, type ControllerRenderProps, type Control } from "react-hook-form";
+import { type Control } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 
-import type { AddEntrySchemaType } from "../../../../utils/formSchema.utils";
-import type { RecordFieldDef } from "../../../../utils/formSchema.utils";
+import type { AddEntrySchemaType, RecordFieldDef } from "../../../../utils/formSchema.utils";
+import { NumberField } from "./fields/NumberField";
+import { TextField } from "./fields/TextField";
+import { TextareaField } from "./fields/TextareaField";
+import { SelectField } from "./fields/SelectField";
 
 interface RecordFieldInputsProps {
   control: Control<AddEntrySchemaType>;
   fields: RecordFieldDef[];
+  fieldClassName?: string;
 }
 
-interface RecordFieldControllerRenderProps {
-  fieldDef: RecordFieldDef;
-  control: Control<AddEntrySchemaType>;
-}
-
-interface RecordInputProps {
-  fieldDef: RecordFieldDef;
-  field: ControllerRenderProps<AddEntrySchemaType, keyof AddEntrySchemaType>;
-  invalid?: boolean;
-}
-
-export function RecordFieldInputs({ fields, control }: RecordFieldInputsProps) {
+export function RecordFieldInputs({ fields, control, fieldClassName }: Readonly<RecordFieldInputsProps>) {
   if (fields.length === 0) return null;
 
   return (
     <>
       {fields.map((fieldDef) => (
-        <RecordField key={fieldDef.name} fieldDef={fieldDef} control={control} />
+        <RecordField key={fieldDef.name} fieldDef={fieldDef} control={control} fieldClassName={fieldClassName} />
       ))}
     </>
   );
 }
 
-function RecordField({ fieldDef, control }: RecordFieldControllerRenderProps) {
-  const { t } = useTranslation(["zone", NAMESPACES.FORM]);
-
-  return (
-    <Controller name={fieldDef.name as keyof AddEntrySchemaType}
-      control={control}
-      render={({ field, fieldState: { error, invalid } }) => (
-        <FormField className="mb-4 w-1/2" invalid={!!error && invalid}>
-          <FormFieldLabel>
-            {t(fieldDef.labelKey)}
-            {fieldDef.required ? " *" : ""}
-          </FormFieldLabel>
-          <RecordInput fieldDef={fieldDef} field={field} invalid={!!error} />
-          <FormFieldError>{error?.message}</FormFieldError>
-        </FormField>
-      )}
-    />
-  );
-}
-
-function RecordInput({ fieldDef, field, invalid }: RecordInputProps) {
-  const { t } = useTranslation(["zone", NAMESPACES.FORM]);
+function RecordField({
+  fieldDef,
+  control,
+  fieldClassName,
+}: Readonly<{
+  fieldDef: RecordFieldDef;
+  control: Control<AddEntrySchemaType>;
+  fieldClassName?: string;
+}>) {
+  const { t } = useTranslation(["zone", NAMESPACES.FORM, NAMESPACES.ACTIONS]);
+  const name = fieldDef.name;
+  const label = t(fieldDef.labelKey);
+  const cls = fieldClassName ?? "mb-4 w-1/2";
 
   if (fieldDef.inputType === "select") {
-    const items = (fieldDef.options ?? []).map((option) => {
-      const label = option.labelKey ? t(option.labelKey) : option.value;
-      return { label, value: option.value };
-    });
-
+    const items = (fieldDef.options ?? []).map((option) => ({
+      label: option.labelKey ? t(option.labelKey) : option.value,
+      value: option.value,
+    }));
     return (
-      <Select
-        name={field.name}
-        className="w-full"
-        value={field.value != null ? [String(field.value)] : []}
-        onValueChange={({ value }) => field.onChange(value[0] ?? "")}
-        onBlur={() => field.onBlur?.()}
+      <SelectField
+        name={name}
+        control={control}
+        label={label}
+        required={fieldDef.required}
         items={items}
-      >
-        <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)} />
-        <SelectContent />
-      </Select>
+        className={cls}
+      />
     );
   }
 
   if (fieldDef.inputType === "textarea") {
     return (
-      <Textarea
-        className="flex-1 min-h-24 w-full"
-        name={field.name}
-        value={(field.value as string) ?? ""}
-        onChange={(event) => field.onChange(event.target?.value)}
-        onBlur={field.onBlur}
-        ref={field.ref}
-        invalid={invalid}
+      <TextareaField
+        name={name}
+        control={control}
+        label={label}
+        required={fieldDef.required}
+        className={cls}
       />
     );
   }
 
-  const isNum = fieldDef.inputType === "number";
-  const tooltipKey = fieldDef.tooltipKey;
-
-  return (
-    <div className="flex w-full gap-2">
-      <Input
-        type={isNum ? INPUT_TYPE.number : INPUT_TYPE.text}
-        className="flex-1 min-w-0"
-        name={field.name}
-        value={isNum ? (field.value as number | string) ?? "" : (field.value as string) ?? ""}
-        onChange={(event) => field.onChange(event.target?.value)}
-        onBlur={field.onBlur}
-        ref={field.ref}
+  if (fieldDef.inputType === "number") {
+    return (
+      <NumberField
+        name={name}
+        control={control}
+        label={label}
+        required={fieldDef.required}
         min={fieldDef.min}
         max={fieldDef.max}
         step={fieldDef.step}
-        invalid={invalid}
+        className={cls}
       />
-      {tooltipKey != null && (
-        <Text preset={TEXT_PRESET.span}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Icon name={ICON_NAME.circleQuestion} />
-            </TooltipTrigger>
-            <TooltipContent>
-              <Text preset={TEXT_PRESET.paragraph}>{t(tooltipKey)}</Text>
-            </TooltipContent>
-          </Tooltip>
-        </Text>
-      )}
-    </div>
+    );
+  }
+
+  return (
+    <TextField
+      name={name}
+      control={control}
+      label={label}
+      required={fieldDef.required}
+      tooltipKey={fieldDef.tooltipKey ? t(fieldDef.tooltipKey) : undefined}
+      className={cls}
+    />
   );
 }

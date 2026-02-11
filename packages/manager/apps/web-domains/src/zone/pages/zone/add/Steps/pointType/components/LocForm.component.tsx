@@ -1,19 +1,15 @@
 import {
   FormField,
-  FormFieldError,
   FormFieldLabel,
-  Input,
-  INPUT_TYPE,
-  Select,
-  SelectContent,
-  SelectControl,
   Text,
   TEXT_PRESET,
 } from "@ovhcloud/ods-react";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { Controller, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
+import { NumberField } from "../../../components/fields/NumberField";
+import { SelectField } from "../../../components/fields/SelectField";
 
 const LOC_LATITUDE_ITEMS = [
   { labelKey: "zone_page_add_entry_modal_step_2_label_loc_lat_N", value: "N" },
@@ -59,60 +55,48 @@ const LOC_METERS_FIELDS = [
   },
 ] as const;
 
-export function LocFormContent() {
-  const { t } = useTranslation(["zone", NAMESPACES.FORM, NAMESPACES.ACTIONS]);
-  const { control } = useFormContext<AddEntrySchemaType>();
-
-  const numField = (
-    name: keyof AddEntrySchemaType,
-    labelKey: string,
-    min: number,
-    max: number,
-    step: number,
-    required: boolean,
-  ) => (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState: { error, invalid } }) => (
-        <FormField className="w-full" invalid={!!error && invalid}>
-          <FormFieldLabel>
-            {t(labelKey)}
-            {required ? " *" : ""}
-          </FormFieldLabel>
-          <Input
-            type={INPUT_TYPE.number}
-            className="w-full"
-            name={field.name}
-            value={field.value !== undefined && field.value !== "" ? String(field.value) : ""}
-            onChange={(e) =>
-              field.onChange(
-                e.target?.value === "" ? undefined : Number(e.target?.value),
-              )
-            }
-            onBlur={field.onBlur}
-            ref={field.ref}
-            min={min}
-            max={max}
-            step={step}
-            invalid={!!error}
-          />
-          <FormFieldError>{error?.message}</FormFieldError>
-        </FormField>
-      )}
-    />
-  );
-
-  const locMetersCell = (field: (typeof LOC_METERS_FIELDS)[number]) => (
+function LocMetersCell({
+  name,
+  labelKey,
+  min,
+  max,
+  step,
+  required,
+  control,
+}: (typeof LOC_METERS_FIELDS)[number] & { control: ReturnType<typeof useFormContext<AddEntrySchemaType>>["control"] }) {
+  const { t } = useTranslation("zone");
+  return (
     <>
       <FormField className="w-1/2">
-        {numField(field.name, field.labelKey, field.min, field.max, field.step, field.required)}
+        <NumberField
+          name={name}
+          control={control}
+          label={t(labelKey)}
+          required={required}
+          min={min}
+          max={max}
+          step={step}
+        />
       </FormField>
       <Text preset={TEXT_PRESET.span} className="pb-2">
         {t("zone_page_add_entry_modal_step_2_label_loc_meters")}
       </Text>
     </>
   );
+}
+
+export function LocFormContent() {
+  const { t } = useTranslation(["zone", NAMESPACES.FORM, NAMESPACES.ACTIONS]);
+  const { control } = useFormContext<AddEntrySchemaType>();
+
+  const latItems = LOC_LATITUDE_ITEMS.map(({ labelKey, value }) => ({
+    label: t(labelKey),
+    value,
+  }));
+  const longItems = LOC_LONGITUDE_ITEMS.map(({ labelKey, value }) => ({
+    label: t(labelKey),
+    value,
+  }));
 
   return (
     <div className="mt-4 w-full space-y-4" data-testid="loc-form">
@@ -121,34 +105,15 @@ export function LocFormContent() {
           {t("zone_page_add_entry_modal_step_2_label_loc_lat")}
         </FormFieldLabel>
         <div className="grid grid-cols-2 gap-4">
-          {numField("lat_deg", "zone_page_add_entry_modal_step_2_label_loc_lat_deg", 0, 90, 1, true)}
-          {numField("lat_min", "zone_page_add_entry_modal_step_2_label_loc_lat_min", 0, 59, 1, true)}
-          {numField("lat_sec", "zone_page_add_entry_modal_step_2_label_loc_lat_sec", 0, 59.999, 0.001, true)}
-          <Controller
+          <NumberField name="lat_deg" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_lat_deg")} required min={0} max={90} step={1} />
+          <NumberField name="lat_min" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_lat_min")} required min={0} max={59} step={1} />
+          <NumberField name="lat_sec" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_lat_sec")} required min={0} max={59.999} step={0.001} />
+          <SelectField
             name="latitude"
             control={control}
-            render={({ field, fieldState: { error, invalid } }) => (
-              <FormField className="w-full" invalid={!!error && invalid}>
-                <FormFieldLabel>
-                  {t("zone_page_add_entry_modal_step_2_label_loc_lat_direction")} *
-                </FormFieldLabel>
-                <Select
-                  name={field.name}
-                  className="w-full"
-                  value={field.value != null ? [String(field.value)] : []}
-                  onValueChange={({ value }) => field.onChange(value[0] ?? "")}
-                  onBlur={() => field.onBlur?.()}
-                  items={LOC_LATITUDE_ITEMS.map(({ labelKey: k, value }) => ({
-                    label: t(k),
-                    value,
-                  }))}
-                >
-                  <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)} />
-                  <SelectContent />
-                </Select>
-                <FormFieldError>{error?.message}</FormFieldError>
-              </FormField>
-            )}
+            label={t("zone_page_add_entry_modal_step_2_label_loc_lat_direction")}
+            required
+            items={latItems}
           />
         </div>
       </FormField>
@@ -158,41 +123,22 @@ export function LocFormContent() {
           {t("zone_page_add_entry_modal_step_2_label_loc_long")}
         </FormFieldLabel>
         <div className="grid grid-cols-2 gap-4">
-          {numField("long_deg", "zone_page_add_entry_modal_step_2_label_loc_long_deg", 0, 180, 1, true)}
-          {numField("long_min", "zone_page_add_entry_modal_step_2_label_loc_long_min", 0, 59, 1, true)}
-          {numField("long_sec", "zone_page_add_entry_modal_step_2_label_loc_long_sec", 0, 59.999, 0.001, true)}
-          <Controller
+          <NumberField name="long_deg" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_long_deg")} required min={0} max={180} step={1} />
+          <NumberField name="long_min" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_long_min")} required min={0} max={59} step={1} />
+          <NumberField name="long_sec" control={control} label={t("zone_page_add_entry_modal_step_2_label_loc_long_sec")} required min={0} max={59.999} step={0.001} />
+          <SelectField
             name="longitude"
             control={control}
-            render={({ field, fieldState: { error, invalid } }) => (
-              <FormField className="w-full" invalid={!!error && invalid}>
-                <FormFieldLabel>
-                  {t("zone_page_add_entry_modal_step_2_label_loc_long_direction")} *
-                </FormFieldLabel>
-                <Select
-                  name={field.name}
-                  className="w-full"
-                  value={field.value != null ? [String(field.value)] : []}
-                  onValueChange={({ value }) => field.onChange(value[0] ?? "")}
-                  onBlur={() => field.onBlur?.()}
-                  items={LOC_LONGITUDE_ITEMS.map(({ labelKey: k, value }) => ({
-                    label: t(k),
-                    value,
-                  }))}
-                >
-                  <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select_imperative`)} />
-                  <SelectContent />
-                </Select>
-                <FormFieldError>{error?.message}</FormFieldError>
-              </FormField>
-            )}
+            label={t("zone_page_add_entry_modal_step_2_label_loc_long_direction")}
+            required
+            items={longItems}
           />
         </div>
       </FormField>
 
       {LOC_METERS_FIELDS.slice(0, 1).map((field) => (
         <div key={field.name} className="flex w-1/2 flex-wrap items-end gap-2">
-          {locMetersCell(field)}
+          <LocMetersCell {...field} control={control} />
         </div>
       ))}
 
@@ -202,7 +148,7 @@ export function LocFormContent() {
       <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-3">
         {LOC_METERS_FIELDS.slice(1).map((field) => (
           <div key={field.name} className="flex flex-wrap items-end gap-2">
-            {locMetersCell(field)}
+            <LocMetersCell {...field} control={control} />
           </div>
         ))}
       </div>

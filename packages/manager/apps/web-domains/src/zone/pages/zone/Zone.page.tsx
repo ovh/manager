@@ -5,10 +5,10 @@ import { useGetDomainZoneRecords } from "@/zone/hooks/useGetDomainZoneRecords/us
 import { ZoneRecord, ZoneRecordFieldType } from "@/zone/types/zoneRecords.types";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { ShellContext } from "@ovh-ux/manager-react-shell-client";
-import { ActionMenu, Datagrid, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useDataApi, useNotifications } from "@ovh-ux/muk";
+import { ActionMenu, Datagrid, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
 import { FilterComparator, applyFilters } from "@ovh-ux/manager-core-api";
-import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text, Message, MESSAGE_COLOR } from "@ovhcloud/ods-react";
-import { useContext, useMemo, useCallback, useState, useEffect } from "react";
+import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text } from "@ovhcloud/ods-react";
+import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
@@ -16,6 +16,7 @@ import ModifyTtlModal from "./modify/ModifyTtl.modal";
 import ResetModal from "./reset/Reset.modal";
 import { RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
+import QuickAddEntry from "./components/QuickAddEntry";
 
 export default function ZonePage() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
@@ -28,7 +29,22 @@ export default function ZonePage() {
   const tabsZone = domainUrls.domainTabZone;
   const [searchInput, setSearchInput] = useState('');
   const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
+  const [showAddEntryDiv, setShowAddEntryDiv] = useState(false);
   const { filters, addFilter, removeFilter } = useColumnFilters();
+  const quickAddRef = useRef<HTMLDivElement>(null);
+
+  const handleQuickAddSuccess = useCallback(() => {
+    setShowAddEntryDiv(false);
+    // TODO: Refresh records
+  }, []);
+
+  const handleQuickAddCancel = useCallback(() => {
+    setShowAddEntryDiv(false);
+  }, []);
+
+  const handleToggleAddEntry = useCallback(() => {
+    setShowAddEntryDiv(prev => !prev);
+  }, []);
 
   const handleAddFilter = useCallback((filterProps: Parameters<typeof addFilter>[0]) => {
     addFilter(filterProps);
@@ -38,20 +54,17 @@ export default function ZonePage() {
     removeFilter(filter);
   }, [removeFilter]);
 
-  const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName, undefined, true);
+  const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName, true);
 
-  const { addWarning, addInfo, clearNotifications, notifications, clearNotification } = useNotifications();
+  const { addWarning, addInfo, clearNotifications } = useNotifications();
 
 
   useEffect(() => {
-    if (!isFetchingDomainZone && !domainZone && domainZoneError) {
+    if (!isFetchingDomainZone && domainZoneError) {
       addWarning(t('zone_page_error_message', { message: `(${domainZoneError.response?.data?.message})` }));
       addInfo(t('zone_page_message_no_zone'), false);
     }
-    return () => {
-      clearNotifications();
-    };
-  }, [domainZone, isFetchingDomainZone, domainZoneError, addWarning, serviceName, t]);
+  }, [isFetchingDomainZone, domainZoneError, addWarning, addInfo, t]);
 
   useEffect(() => {
     const hasFilters = filters.length > 0;
@@ -61,6 +74,18 @@ export default function ZonePage() {
       fetchAllPages();
     }
   }, [filters, searchInput, hasNextPage, fetchAllPages]);
+
+  useEffect(() => {
+    const topbarContainer = document.querySelector('[data-testid="topbar-container"]');
+    const quickAddDiv = quickAddRef.current;
+
+    if (topbarContainer && quickAddDiv && topbarContainer.parentNode) {
+      const nextSibling = topbarContainer.nextSibling;
+      if (nextSibling !== quickAddDiv) {
+        topbarContainer.parentNode.insertBefore(quickAddDiv, nextSibling);
+      }
+    }
+  }, [showAddEntryDiv]);
 
   const records = useMemo(() => {
     return data?.records ?? [];
@@ -240,7 +265,7 @@ export default function ZonePage() {
     <>
       {zoneModals}
       <BannerStatus serviceName={serviceName ?? ''} />
-      {isFetchingDomainZone ? null : domainZone ? (
+      {!isFetchingDomainZone && domainZone && (
         <>
           <div className="mb-4">
             <div className="flex items-center justify-between mb-4">
@@ -249,25 +274,34 @@ export default function ZonePage() {
             </div>
             <Text preset={TEXT_PRESET.paragraph} data-testid="zone-page-description-2">{t('zone_page_description_2')}</Text>
           </div>
-
+          <div
+            ref={quickAddRef}
+            className={`mb-4 p-4 border rounded bg-gray-50 ${showAddEntryDiv ? '' : 'hidden'}`}
+          >
+            <QuickAddEntry
+              serviceName={serviceName ?? ''}
+              onSuccess={handleQuickAddSuccess}
+              onCancel={handleQuickAddCancel}
+            />
+          </div>
           <Datagrid containerHeight={500}
-            columns={columns} topbar={
-              <>
-                <div className="flex gap-2">
-                  <ActionMenu key={openModal} label={t('zone_page_actions')} items={actionItems} id="zone-action-menu" popoverPosition={POPOVER_POSITION.bottomEnd} />
-                  {hasSelectedRows && (
-                    <Button
-                      variant={BUTTON_VARIANT.outline}
-                      color={BUTTON_COLOR.critical}
-                      size={BUTTON_SIZE.sm}
-                      onClick={handleDeleteClick}
-                      data-testid="zone-page-delete-button"
-                    >
-                      {t(`${NAMESPACES.ACTIONS}:delete`)}
-                    </Button>
-                  )}
-                </div>
-              </>
+            columns={columns}
+            topbar={
+              <div className="flex gap-2">
+                <ActionMenu key={openModal} label={t('zone_page_actions')} items={actionItems} id="zone-action-menu" popoverPosition={POPOVER_POSITION.bottomEnd} />
+                {hasSelectedRows && (
+                  <Button
+                    variant={BUTTON_VARIANT.outline}
+                    color={BUTTON_COLOR.critical}
+                    size={BUTTON_SIZE.sm}
+                    onClick={handleDeleteClick}
+                    data-testid="zone-page-delete-button"
+                  >
+                    {t(`${NAMESPACES.ACTIONS}:delete`)}
+                  </Button>
+                )}
+                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>{t('zone_page_add_entry')}</Button>
+              </div>
             }
             data={filteredRecords}
             hasNextPage={hasNextPage}
@@ -288,7 +322,11 @@ export default function ZonePage() {
               rowSelection,
               setRowSelection,
             }}
-          /></>) : (
+          />
+        </>
+      )}
+
+      {!isFetchingDomainZone && !domainZone && (
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-row items-start gap-4">
             <div className="w-full">

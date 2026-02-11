@@ -1,0 +1,71 @@
+import {
+  FormField,
+  FormFieldError,
+  FormFieldLabel,
+  Input,
+  INPUT_TYPE,
+} from "@ovhcloud/ods-react";
+import { Controller, type Control } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { NAMESPACES } from "@ovh-ux/manager-common-translations";
+import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
+
+export interface NumberFieldProps {
+  name: keyof AddEntrySchemaType;
+  control: Control<AddEntrySchemaType>;
+  label: string;
+  required?: boolean;
+  min?: number;
+  max?: number;
+  step?: number | string;
+  className?: string;
+  disabled?: boolean;
+}
+
+export function NumberField({
+  name,
+  control,
+  label,
+  required = false,
+  min,
+  max,
+  step,
+  className = "w-1/2",
+  disabled = false,
+}: Readonly<NumberFieldProps>) {
+  const { t } = useTranslation([NAMESPACES.FORM]);
+
+  return (
+    <Controller
+      name={name}
+      control={control}
+      render={({ field, fieldState: { error, invalid } }) => (
+        <FormField className={className} invalid={!!error && invalid}>
+          <FormFieldLabel>
+            {label}
+            {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
+          </FormFieldLabel>
+          <Input
+            type={INPUT_TYPE.number}
+            className="w-full"
+            name={field.name}
+            value={typeof field.value === "number" || typeof field.value === "string" ? String(field.value) : ""}
+            onChange={(e) =>
+              field.onChange(
+                e.target?.value === "" ? undefined : Number(e.target?.value),
+              )
+            }
+            onBlur={field.onBlur}
+            ref={field.ref}
+            min={min}
+            max={max}
+            step={step}
+            invalid={!!error}
+            disabled={disabled}
+          />
+          <FormFieldError>{error?.message}</FormFieldError>
+        </FormField>
+      )}
+    />
+  );
+}

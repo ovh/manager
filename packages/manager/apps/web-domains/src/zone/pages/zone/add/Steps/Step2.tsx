@@ -21,6 +21,11 @@ import {
   RECORD_TYPES_TARGET_WITH_TRAILING_DOT,
   RECORD_TYPES_WITHOUT_TTL,
 } from "../../../../utils/formSchema.utils";
+import {
+  FieldTypeExtendedRecordsEnum,
+  FieldTypeMailRecordsEnum,
+  FieldTypePointingRecordsEnum,
+} from "@/common/enum/zone.enum";
 import { RecordFieldInputs } from "../components/Inputs.component";
 import { SubDomainField, TtlField } from "../components/SubDomainAndTtl.component";
 import Spf from "./mailType/Spf";
@@ -36,7 +41,7 @@ export default function Step2() {
   const showTtl = !RECORD_TYPES_WITHOUT_TTL.includes(recordType);
 
   const isMailRecord = (FIELD_TYPES_MAIL_RECORDS as readonly string[]).includes(recordType);
-  const showMxHelp = isMailRecord && recordType === "MX";
+  const showMxHelp = isMailRecord && recordType === FieldTypeMailRecordsEnum.MX;
 
   const formValues = watch();
   const subDomainRaw = String(formValues?.subDomain ?? "").trim();
@@ -45,15 +50,15 @@ export default function Step2() {
   const ttl = formValues?.ttl;
   const ttlPart = ttlSelect === "custom" && ttl != null && ttl !== "" ? String(ttl) : "";
   const isTxtRecordType = (RECORD_TYPES_AS_TXT as readonly string[]).includes(recordType);
-  const displayType = isTxtRecordType ? "TXT" : recordType;
-  
+  const displayType = isTxtRecordType ? FieldTypeExtendedRecordsEnum.TXT : recordType;
+
   let valuePart: string;
-  if (recordType === "SPF" && formValues?.target) {
+  if (recordType === FieldTypeMailRecordsEnum.SPF && formValues?.target) {
     valuePart = String(formValues.target);
-  } else if (recordType === "NAPTR") {
-    valuePart = getTargetDisplayValue("NAPTR", formValues);
-  } else if (recordType === "LOC") {
-    valuePart = getTargetDisplayValue("LOC", formValues);
+  } else if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) {
+    valuePart = getTargetDisplayValue(FieldTypeExtendedRecordsEnum.NAPTR, formValues);
+  } else if (recordType === FieldTypeExtendedRecordsEnum.LOC) {
+    valuePart = getTargetDisplayValue(FieldTypeExtendedRecordsEnum.LOC, formValues);
   } else {
     const fieldValues = fields
       .map((f) => formValues?.[f.name as keyof AddEntrySchemaType])
@@ -61,17 +66,18 @@ export default function Step2() {
       .map(String);
     valuePart = fieldValues.join(" ");
   }
-  
+
   const rdataNeedsTrailingDot = (RECORD_TYPES_TARGET_WITH_TRAILING_DOT as readonly string[]).includes(
     recordType,
   );
-  const rdataPart = recordType === "SPF"
-    ? valuePart
-    : isTxtRecordType
-      ? `"${valuePart}"`
-      : rdataNeedsTrailingDot && valuePart
-        ? `${valuePart}.`
-        : valuePart;
+
+  const getRdataPart = (): string => {
+    if (recordType === FieldTypeMailRecordsEnum.SPF) return valuePart;
+    if (isTxtRecordType) return `"${valuePart}"`;
+    if (rdataNeedsTrailingDot && valuePart) return `${valuePart}.`;
+    return valuePart;
+  };
+  const rdataPart = getRdataPart();
   const recordPreview = [subDomainPart, ttlPart, "IN", displayType, rdataPart]
     .filter(Boolean)
     .join(" ")
@@ -82,21 +88,21 @@ export default function Step2() {
   return (
     <div className="w-full space-y-4">
       <Text preset={TEXT_PRESET.caption}>{t(`${NAMESPACES.FORM}:mandatory_fields`)}</Text>
-      {recordType !== "SPF" && recordType !== "NAPTR" && recordType !== "LOC" && (
+      {recordType !== FieldTypeMailRecordsEnum.SPF && recordType !== FieldTypeExtendedRecordsEnum.NAPTR && recordType !== FieldTypeExtendedRecordsEnum.LOC && (
         <SubDomainField
           control={control}
           domainSuffix={serviceName ?? ""}
           className="mb-4 w-full"
-          required={recordType === "NS"}
+          required={recordType === FieldTypePointingRecordsEnum.NS}
         />
       )}
-      {recordType === "SPF" && <Spf />}
-      {recordType === "NAPTR" && <Naptr />}
-      {recordType === "LOC" && <Loc />}
-      {recordType !== "SPF" && recordType !== "NAPTR" && recordType !== "LOC" && showTtl && (
+      {recordType === FieldTypeMailRecordsEnum.SPF && <Spf />}
+      {recordType === FieldTypeExtendedRecordsEnum.NAPTR && <Naptr />}
+      {recordType === FieldTypeExtendedRecordsEnum.LOC && <Loc />}
+      {recordType !== FieldTypeMailRecordsEnum.SPF && recordType !== FieldTypeExtendedRecordsEnum.NAPTR && recordType !== FieldTypeExtendedRecordsEnum.LOC && showTtl && (
         <TtlField control={control} watch={watch} className="mb-4" />
       )}
-      {recordType !== "NAPTR" && recordType !== "LOC" && (
+      {recordType !== FieldTypeExtendedRecordsEnum.NAPTR && recordType !== FieldTypeExtendedRecordsEnum.LOC && (
         <RecordFieldInputs fields={fields} control={control} />
       )}
       <FormField className="w-1/2">

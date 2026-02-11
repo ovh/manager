@@ -72,7 +72,6 @@ export const useGetDomainResource = (serviceName: string) => {
 
 export const useGetDomainZone = (
   serviceName: string,
-  domainResource: TDomainResource,
   enabled: boolean = false,
 ) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
@@ -394,9 +393,9 @@ export const useGetDnssecStatus = (
 
   if (
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-      DnsConfigurationTypeEnum.EXTERNAL ||
+    DnsConfigurationTypeEnum.EXTERNAL ||
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-      DnsConfigurationTypeEnum.MIXED
+    DnsConfigurationTypeEnum.MIXED
   ) {
     // If the configuration is not hosted by OVH, check the registry declaration to know whether DNSSEC is activated
     let status: DnssecStatusEnum;

@@ -61,13 +61,12 @@ export default function DsRecordsListing() {
 
   const isInternalDnsConfiguration =
     domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
+    DnsConfigurationTypeEnum.EXTERNAL &&
     domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
+    DnsConfigurationTypeEnum.MIXED;
 
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     isInternalDnsConfiguration,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -216,11 +215,11 @@ export default function DsRecordsListing() {
               action:
                 dnssecStatus === DnssecStatusEnum.ENABLE_IN_PROGRESS
                   ? t(
-                      'domain_tab_dsrecords_message_information_action_in_progress_activate',
-                    )
+                    'domain_tab_dsrecords_message_information_action_in_progress_activate',
+                  )
                   : t(
-                      'domain_tab_dsrecords_message_information_action_in_progress_deactivate',
-                    ),
+                    'domain_tab_dsrecords_message_information_action_in_progress_deactivate',
+                  ),
             }}
             components={{
               Link: <LinkToOngoingOperations target="dns" />,
