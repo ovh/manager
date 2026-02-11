@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
-import { getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
+import { DataValueType } from '@/types/metrics.type';
 
 import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
 
@@ -14,22 +14,10 @@ import { useMetricToken } from '@/data/hooks';
 
 import { Dashboard, Loader } from '@/components';
 
-type DataValueType = {
-  timestamp: number;
-  value: number | undefined;
-  value1: number | undefined;
-  value2: number | undefined;
-  value3: number | undefined;
-};
-
 const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
-  const { state } = useMetricsToCustomerContext();
-
-  const resourceName = state.resourceName;
-  const productType = state.productType;
-  const resourceURN = state.resourceURN;
+  const { state: { resourceName, productType, resourceURN, } } = useMetricsToCustomerContext();  
 
   const { data: metricToken } = useMetricToken({ resourceName });
 
@@ -56,7 +44,6 @@ const DashboardPage = () => {
     <>
       <Dashboard
         charts={charts}
-        configUrl={getSubscriptionsConfigUrl()}
         onRefresh={refetchAll}
         onCancel={cancelAll} />
       <Outlet />

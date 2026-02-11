@@ -52,6 +52,38 @@ vi.mock('@/routes/routes', () => ({
   getObservabilityRoute: getObservabilityRouteMock,
 }));
 
+// Mock useIamResourceLocation hook
+vi.mock('@/data/hooks', () => ({
+  useIamResourceLocation: () => ({
+    isLoading: false,
+    isSuccess: true,
+    isError: false,
+    data: {
+      name: 'test-region',
+      location: 'Test Location',
+    },
+    error: null,
+  }),
+}));
+
+// Mock react-i18next
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+// Mock @ovh-ux/muk
+vi.mock('@ovh-ux/muk', () => ({
+  Notifications: () => null,
+  useNotifications: () => ({
+    addError: vi.fn(),
+    addSuccess: vi.fn(),
+    addInfo: vi.fn(),
+    addWarning: vi.fn(),
+  }),
+}));
+
 // Test wrapper for React Query and Router
 const createWrapper = () => {
   const queryClient = new QueryClient({

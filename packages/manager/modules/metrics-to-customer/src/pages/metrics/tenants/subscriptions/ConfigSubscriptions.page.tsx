@@ -2,7 +2,11 @@ import { useMetricsToCustomerContext } from '@/contexts';
 import TenantsSubscriptionsDrawer from '@/components/subscriptions/TenantsSubscriptionsDrawer.component';
 
 const ManageConfigurationPage = () => {
-    const { state: { subscriptionUrls, regions, defaultRetention } } = useMetricsToCustomerContext();
+    const { state: { subscriptionUrls, regions, defaultRetention, enableConfigurationManagement } } = useMetricsToCustomerContext();
+
+    if (!enableConfigurationManagement || !subscriptionUrls || !defaultRetention) {
+        return null;
+    }
 
     return (
         <TenantsSubscriptionsDrawer

@@ -13,8 +13,8 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-// Mock @ovh-ux/muk
-vi.mock('@ovh-ux/muk', () => ({
+// Mock @ovhcloud/ods-react
+vi.mock('@ovhcloud/ods-react', () => ({
   Button: ({ children, onClick, loading, disabled, id, ...props }: any) => (
     <button
       data-testid={id}
@@ -57,7 +57,7 @@ describe('SubscriptionToggle', () => {
 
       // Assert
       expect(screen.getByTestId('create-subscription-cta')).toBeInTheDocument();
-      expect(screen.getByText('metrics-to-customer/subscriptions:subscription.subscribe-cta')).toBeInTheDocument();
+      expect(screen.getByText('metrics-to-customer/subscriptions:subscription.subscribe.cta')).toBeInTheDocument();
     });
 
     it('should render unsubscribe button when subscription exists', () => {
@@ -73,7 +73,7 @@ describe('SubscriptionToggle', () => {
 
       // Assert
       expect(screen.getByTestId('delete-subscription-cta')).toBeInTheDocument();
-      expect(screen.getByText('metrics-to-customer/subscriptions:subscription.unsubscribe-cta')).toBeInTheDocument();
+      expect(screen.getByText('metrics-to-customer/subscriptions:subscription.unsubscribe.cta')).toBeInTheDocument();
     });
 
     it('should have correct button id for create action', () => {
