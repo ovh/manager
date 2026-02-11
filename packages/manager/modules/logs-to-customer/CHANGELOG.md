@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.12.0-beta.0...@ovh-ux/logs-to-customer@1.12.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* **observability.logs:** fix unpublished version 1.11.0 ([b4905c9](https://github.com/ovh/manager/commit/b4905c9a9a9e92eb569ed8ec85bd294b5e8628fe)), closes [#MAOBS-235](https://github.com/ovh/manager/issues/MAOBS-235)
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.10.10...@ovh-ux/logs-to-customer@1.11.0) (2026-02-10)
 
 
