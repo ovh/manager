@@ -9,10 +9,13 @@ import {
   DatepickerValueChangeDetail,
   FormField,
   FormFieldLabel,
+  Locale,
   Timepicker,
   TimepickerControl,
   TimepickerValueChangeDetail,
 } from '@ovhcloud/ods-react';
+
+import { useDateFnsLocale } from '@ovh-ux/muk';
 
 import { calculateTimestamp } from '@/utils/dateTimeUtils';
 
@@ -24,6 +27,9 @@ export const DateTimePicker: React.FC<Readonly<DateTimePickerProps>> = ({
   defaultValue,
   onValueChange,
 }): JSX.Element => {
+
+  const dateFnsLocale = useDateFnsLocale();
+  const locale = dateFnsLocale.code as Locale;
 
   const defaultDate = useMemo(() => {
     return defaultValue ? new Date(defaultValue * 1000) : new Date();
@@ -57,21 +63,26 @@ export const DateTimePicker: React.FC<Readonly<DateTimePickerProps>> = ({
       <FormFieldLabel>{label}</FormFieldLabel>
       <div className="inline-flex gap-2">
         <Datepicker
+          positionerStyle={{
+            zIndex: 100
+          }}
           id={`datepicker-${id}`}
-          className='w-40'
+          className="w-40"
           defaultValue={defaultDate}
           onValueChange={onDateValueChange}
+          locale={locale}
         >
-          <DatepickerControl />
-          <DatepickerContent />
+          <DatepickerControl  />
+          <DatepickerContent createPortal={false} style={{position: "relative"}} />
         </Datepicker>
         <Timepicker
-          id={`timepicker-${id}`}          
+          id={`timepicker-${id}`}
           withSeconds={true}
           defaultValue={defaultTime}
           onValueChange={onTimeValueChange}
+          locale={locale}
         >
-          <TimepickerControl className='w-34'/>
+          <TimepickerControl className="w-34" />
         </Timepicker>
       </div>
     </FormField>
