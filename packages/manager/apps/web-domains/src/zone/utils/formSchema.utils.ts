@@ -2,6 +2,14 @@ import { toASCII } from 'punycode';
 import { z } from 'zod';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  FieldTypeExtendedRecordsEnum,
+  FieldTypePointingRecordsEnum,
+  FieldTypeMailRecordsEnum,
+  RecordTypesWithoutTTLEnum,
+  RecordTypesAsTxtEnum,
+  RecordTypesTargetWithTrailingDotEnum,
+} from '@/common/enum/zone.enum';
 
 export type FieldInputType = 'text' | 'number' | 'select' | 'textarea';
 export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host';
@@ -265,13 +273,18 @@ const RECORD_TYPE_CONFIG: Partial<Record<string, RecordTypeConfig>> = {
   },
 };
 
-export const FIELD_TYPES_MAIL_RECORDS = ['MX', 'SPF', 'DKIM', 'DMARC'] as const;
 
-export const RECORD_TYPES_WITHOUT_TTL: string[] = ['SPF', 'DKIM', 'DMARC'];
+export const FIELD_TYPES_POINTING_RECORDS: string[] = Object.values(FieldTypePointingRecordsEnum);
 
-export const RECORD_TYPES_AS_TXT = ['SPF', 'DKIM', 'DMARC'] as const;
+export const FIELD_TYPES_EXTENDED_RECORDS: string[] = Object.values(FieldTypeExtendedRecordsEnum);
 
-export const RECORD_TYPES_TARGET_WITH_TRAILING_DOT = ['NS', 'CNAME', 'DNAME'] as const;
+export const FIELD_TYPES_MAIL_RECORDS: string[] = Object.values(FieldTypeMailRecordsEnum);
+
+export const RECORD_TYPES_WITHOUT_TTL: string[] = Object.values(RecordTypesWithoutTTLEnum);
+
+export const RECORD_TYPES_AS_TXT: string[] = Object.values(RecordTypesAsTxtEnum);
+
+export const RECORD_TYPES_TARGET_WITH_TRAILING_DOT: string[] = Object.values(RecordTypesTargetWithTrailingDotEnum);
 
 export function getRecordFields(recordType: string): RecordFieldDef[] {
   return RECORD_TYPE_CONFIG[recordType]?.fields ?? [];
@@ -362,9 +375,9 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
     const f = fieldByKey[key];
     const kind = validation?.[key];
     const required = f?.required ?? false;
-    const targetOptionalForTxt = recordType === 'TXT' && key === 'target';
+    const targetOptionalForTxt = recordType === FieldTypeExtendedRecordsEnum.TXT && key === 'target';
 
-    if (recordType === 'NAPTR') {
+    if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) {
       if (key === 'flag') {
         return z
           .string()
@@ -391,15 +404,15 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
       }
     }
 
-    if (recordType === 'LOC') {
+    if (recordType === FieldTypeExtendedRecordsEnum.LOC) {
       if (key === 'latitude') {
-        return z.enum(['N', 'S'], { 
-          message: s.requiredMsg 
+        return z.enum(['N', 'S'], {
+          message: s.requiredMsg
         });
       }
       if (key === 'longitude') {
-        return z.enum(['E', 'W'], { 
-          message: s.requiredMsg 
+        return z.enum(['E', 'W'], {
+          message: s.requiredMsg
         });
       }
     }
@@ -417,7 +430,7 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
 
   const shape: Record<string, z.ZodTypeAny> = {
     recordType: z.string(),
-    subDomain: recordType === 'NS' ? s.subDomainRequired : s.subDomainOptional,
+    subDomain: recordType === FieldTypePointingRecordsEnum.NS ? s.subDomainRequired : s.subDomainOptional,
     ttlSelect: s.ttlSelect,
     ttl: s.ttl,
   };
@@ -439,7 +452,7 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
     )
     .refine(
       (data) => {
-        if (recordType !== 'SVCB' && recordType !== 'HTTPS') return true;
+        if (recordType !== FieldTypeExtendedRecordsEnum.SVCB && recordType !== FieldTypeExtendedRecordsEnum.HTTPS) return true;
         const priority = data.priority;
         const params = data.params;
         const priorityZero = priority === 0 || priority === '0' || Number(priority) === 0;
@@ -452,7 +465,7 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
     )
     .refine(
       (data) => {
-        if (recordType !== 'NAPTR') return true;
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
         const replace = data.replace;
         if (replace == null || String(replace).trim() === '') return true;
         const val = String(replace).trim();
@@ -461,7 +474,7 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
       {
         message: s.zone('zone_page_add_entry_modal_step_2_naptr_replace_valid'),
         path: ['replace'],
-     },
+      },
     );
 }
 
@@ -549,16 +562,16 @@ export function getTargetDisplayValue(
   recordType: string,
   formValues: Partial<AddEntrySchemaType>,
 ): string {
-  if (recordType === 'SPF' && formValues?.target) {
+  if (recordType === FieldTypeMailRecordsEnum.SPF && formValues?.target) {
     const targetValue = String(formValues.target);
     return targetValue || '';
   }
 
-  if (recordType === 'NAPTR') {
+  if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) {
     return formatNaptrTarget(formValues);
   }
 
-  if (recordType === 'LOC') {
+  if (recordType === FieldTypeExtendedRecordsEnum.LOC) {
     return formatLocTarget(formValues);
   }
 
