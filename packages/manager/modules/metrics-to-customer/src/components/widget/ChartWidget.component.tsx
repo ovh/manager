@@ -1,6 +1,5 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { useTranslation } from 'react-i18next';
 
 import clsx from 'clsx';
 
@@ -21,6 +20,8 @@ import {
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
+import { useNamespaceTranslation } from '@/hooks/useNamespaceTranslation';
+
 import { ChartWidgetProps } from '@/components/widget/ChartWidget.props';
 
 import { clamp } from '@/utils/number.utils';
@@ -36,7 +37,8 @@ export const ChartWidgetComponent = ({
   rowspan = 1,
   children,
 }: Readonly<ChartWidgetProps>): JSX.Element => {
-  const { t } = useTranslation(NAMESPACES.DASHBOARD_TEXTS);
+
+  const tDashboardTexts = useNamespaceTranslation(NAMESPACES.DASHBOARD_TEXTS);
   
   const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ export const ChartWidgetComponent = ({
     >
       <div className="px-6 pt-4 pb-3 flex justify-between items-center">
         <div className="flex justify-start items-center gap-2">
-          <Text preset={TEXT_PRESET.heading4}>{t(title)}</Text>
+          <Text preset={TEXT_PRESET.heading4}>{tDashboardTexts(title)}</Text>
           {unit && (
             <Text className="font-normal" preset={TEXT_PRESET.heading4}>
               ({unit})
@@ -71,17 +73,17 @@ export const ChartWidgetComponent = ({
               <TooltipContent className="px-5 py-4 max-w-xl">
                 {tooltip.title && (
                   <Text className="leading-tight" preset={TEXT_PRESET.label}>
-                    {t(tooltip.title)}
+                    {tDashboardTexts(tooltip.title)}
                   </Text>
                 )}
                 {tooltip.subTitle && (
                   <Text className="pt-2 font-bold" preset={TEXT_PRESET.paragraph}>
-                    {t(tooltip.subTitle)}
+                    {tDashboardTexts(tooltip.subTitle)}
                   </Text>
                 )}
                 {tooltip.content && (
                   <Text className="pt-3 text-justify" preset={TEXT_PRESET.paragraph}>
-                    {t(tooltip.content)}
+                    {tDashboardTexts(tooltip.content)}
                   </Text>
                 )}
               </TooltipContent>
