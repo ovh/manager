@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Bytes leídos del disco",
+  "disk_read_bytes_description_header": "Promedio de bytes leídos durante un período de tiempo determinado",
+  "disk_read_bytes_description_content": "Número de bytes leídos de todos los volúmenes de almacenamiento asociados a la instancia. Esta métrica se utiliza para evaluar la cantidad de datos que la aplicación lee del almacenamiento en disco y se puede utilizar para analizar el rendimiento de E/S. El valor informado es el número total de bytes leídos durante este período de tiempo. Con la supervisión básica (período de 5 minutos), divida este valor por 300 para obtener los bytes por segundo."
+}

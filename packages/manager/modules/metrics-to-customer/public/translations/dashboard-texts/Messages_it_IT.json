@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Byte letti dal disco",
+  "disk_read_bytes_description_header": "Numero medio di byte letti in un determinato periodo",
+  "disk_read_bytes_description_content": "Numero di byte letti da tutti i volumi di storage associati all'istanza. Questa metrica consente di valutare la quantità di dati che l'applicazione legge dal disco di storage e può essere utilizzata per analizzare le prestazioni di I/O. Il valore riportato è il numero totale di byte letti durante il periodo. Con il monitoraggio di base (periodo di 5 minuti), dividere questo valore per 300 per ottenere i byte al secondo."
+}

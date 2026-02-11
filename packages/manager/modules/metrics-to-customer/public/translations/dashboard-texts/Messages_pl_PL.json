@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Bajty odczytane na dysku",
+  "disk_read_bytes_description_header": "Średnia liczba bajtów odczytanych w danym okresie",
+  "disk_read_bytes_description_content": "Liczba bajtów odczytanych ze wszystkich wolumenów przestrzeni dyskowej powiązanych z instancją. Metryka ta pozwala oszacować ilość danych odczytywanych przez aplikację z pamięci dyskowej i może być używana do analizy wydajności operacji I/O. Podana wartość odpowiada całkowitej liczbie bajtów odczytanych w danym okresie. Przy podstawowym monitoringu (okres 5 minut), podziel tę wartość przez 300, żeby otrzymać bajty na sekundę."
+}

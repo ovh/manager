@@ -1,0 +1,28 @@
+{
+  "tenants_drawer": {
+    "title": "Lista de tenant",
+    "disclaimer": "Solo se pueden seleccionar los tenientes que estén en la misma región {{region}} que el recurso",
+    "no_results_found": "No se ha encontrado ningún tenant para la búsqueda \"{{searchQuery}}\"",
+    "region": "región"
+  },
+  "tenants_regions": {
+    "region_one": "Región: {{region}}",
+    "region_other": "Regiones: {{region}}"
+  },
+  "no_tenants_message": {
+    "title": "Recopile métricas en su primer tenant en esta región",
+    "description": "Para ayudarle a empezar rápidamente, crearemos automáticamente su primera tenant con los siguientes parámetros:",
+    "retention": "Retención: {{retention}}"
+  },
+  "search": {
+    "placeholder": "búsqueda"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "Suscribirse"
+    },
+    "unsubscribe": {
+      "cta": "Anular la suscripción"
+    }
+  }
+}

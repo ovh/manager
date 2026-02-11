@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Service management",
+    "enable_service": "Activate a service",
+    "links": {
+      "tenants": "Tenants",
+      "datastreams": "Data stream",
+      "managed_dashboards": "Managed dashboards",
+      "link": "Access list",
+      "title": "Linked objects"
+    }
+  },
+  "status": {
+    "title": "Status",
+    "READY": "Active",
+    "UPDATING": "Updating",
+    "ERROR": "Error",
+    "DELETING": "Deleting...",
+    "SUSPENDED": "Suspended",
+    "CREATING": "Creating...",
+    "UNKNOWN": "Unknown"
+  },
+  "delete": {
+    "success": "Your request to cancel the {{serviceName}} service has been processed. You have been sent an email detailing the steps to follow."
+  },
+  "edit": {
+    "title": "Edit service name",
+    "success": "The service name has been changed."
+  }
+}

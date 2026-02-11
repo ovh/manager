@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "All regions",
+      "eu": "Europe",
+      "us": "United States of America",
+      "ap": "Asia Pacific",
+      "ca": "North America",
+      "title": "Choose the region",
+      "zone": {
+        "local": "Deploy your applications as geographically close to your users as possible, for low latency and compliant data residency.",
+        "1_az": "Resilient and low cost deployment in 1 availability zone.",
+        "3_az": "High resilience/high availability deployment for your critical applications across 3 availability zones."
+      }
+    }
+  }
+}

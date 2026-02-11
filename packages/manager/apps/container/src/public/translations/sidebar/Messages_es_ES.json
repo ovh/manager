@@ -234,5 +234,12 @@
   "sidebar_backup_services": "Servicios",
   "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
   "sidebar_backup_agent_baremetal": "Backup Agent",
-  "sidebar_assistance_ai_chatbot": "AI Assistant"
+  "sidebar_assistance_ai_chatbot": "Asistente IA",
+  "sidebar_observability_settings": "Ajustes",
+  "sidebar_observability_settings_service_management": "Gestión de los servicios",
+  "sidebar_observability": "Observabilidad",
+  "sidebar_observability_dashboards": "Dashboards",
+  "sidebar_observability_metrics": "Métricas",
+  "sidebar_observability_metrics_tenants": "Tenant",
+  "sidebar_observability_short": "Observabilidad"
 }

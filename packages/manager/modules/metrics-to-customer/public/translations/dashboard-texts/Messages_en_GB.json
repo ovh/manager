@@ -1,0 +1,5 @@
+{
+  "disk_read_bytes_title": "Bytes read from disk",
+  "disk_read_bytes_description_header": "The average number of bytes read over a specific timeframe",
+  "disk_read_bytes_description_content": "The number of bytes read from all storage volumes linked to the instance. This metric helps estimate how much data the application reads from the disk storage, enabling I/O performance analysis. The reported value is the total number of bytes read during the specified timeframe. With basic monitoring (5 minutes), divide this value by 300 to get the bytes per second."
+}

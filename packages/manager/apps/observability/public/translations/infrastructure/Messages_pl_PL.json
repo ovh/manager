@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "Wszystkie regiony",
+      "eu": "Europa",
+      "us": "Stany Zjednoczone",
+      "ap": "Azja-Pacyfik",
+      "ca": "Ameryka Północna",
+      "title": "Wybierz region",
+      "zone": {
+        "local": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium.",
+        "1_az": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
+        "3_az": "Wdrożenia zapewniające odporność infrastruktury i dostępność krytycznych aplikacji w 3 strefach dostępności."
+      }
+    }
+  }
+}

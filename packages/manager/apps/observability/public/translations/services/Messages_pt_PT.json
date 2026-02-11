@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Gestão dos serviços",
+    "enable_service": "Ativar um serviço",
+    "links": {
+      "tenants": "Tenants",
+      "datastreams": "Fluxo de dados",
+      "managed_dashboards": "Painéis de controlo geridos",
+      "link": "Aceder à lista",
+      "title": "Objetos relacionados"
+    }
+  },
+  "status": {
+    "title": "Estado",
+    "READY": "Ativo",
+    "UPDATING": "Atualização",
+    "ERROR": "Erro",
+    "DELETING": "Eliminação em curso",
+    "SUSPENDED": "Suspenso",
+    "CREATING": "Criação em curso",
+    "UNKNOWN": "Desconhecido"
+  },
+  "delete": {
+    "success": "O seu pedido de rescisão do serviço {{serviceName}} foi registado. Um e-mail com o procedimento foi-lhe enviado."
+  },
+  "edit": {
+    "title": "Modificar o nome do serviço",
+    "success": "O nome do serviço foi modificado com sucesso."
+  }
+}

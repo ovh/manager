@@ -1,0 +1,14 @@
+{
+  "listing": {
+    "service": "Dienst",
+    "select_observability_service": "Dienst auswählen"
+  },
+  "onboarding": {
+    "description": "Erstellen Sie Ihren Dienst, um zu entdecken, wie Observability-Metriken Ihnen helfen, einen detaillierteren und granulareren Einblick in die Leistung Ihrer Infrastruktur und Anwendungen zu erhalten.",
+    "orderButtonLabel": "Dienst aktivieren"
+  },
+  "guide": {
+    "getting_started": "Erste Schritte",
+    "documentation": "Dokumentation"
+  }
+}

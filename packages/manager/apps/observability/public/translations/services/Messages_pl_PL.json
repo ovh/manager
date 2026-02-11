@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "title": "Zarządzanie usługami",
+    "enable_service": "Aktywuj usługę",
+    "links": {
+      "tenants": "Tenanty",
+      "datastreams": "Strumień danych",
+      "managed_dashboards": "Zarządzane dashboardy",
+      "link": "Dostęp do listy",
+      "title": "Powiązane obiekty"
+    }
+  },
+  "status": {
+    "title": "Status",
+    "READY": "Aktywny",
+    "UPDATING": "Aktualizacja",
+    "ERROR": "Błąd",
+    "DELETING": "Trwa usuwanie",
+    "SUSPENDED": "Zawieszona",
+    "CREATING": "Trwa tworzenie",
+    "UNKNOWN": "Nieznany"
+  },
+  "delete": {
+    "success": "Rezygnacja z usługi {{serviceName}} została zarejestrowana. Otrzymasz e-mail z opisem dalszej procedury."
+  },
+  "edit": {
+    "title": "Zmień nazwę usługi",
+    "success": "Nazwa usługi została zmieniona."
+  }
+}

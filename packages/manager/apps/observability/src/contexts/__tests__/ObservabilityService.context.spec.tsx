@@ -1,0 +1,713 @@
+import React from 'react';
+
+import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { act, render, renderHook } from '@testing-library/react';
+import { vi } from 'vitest';
+
+import {
+  ObservabilityServiceProvider,
+  useObservabilityServiceContext,
+} from '@/contexts/ObservabilityService.context';
+import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices.hook';
+import { ObservabilityService } from '@/types/observability.type';
+
+// Mock the useObservabilityServices hook
+vi.mock('@/data/hooks/services/useObservabilityServices.hook', () => ({
+  useObservabilityServices: vi.fn(),
+}));
+
+const mockUseObservabilityServices = vi.mocked(useObservabilityServices);
+
+// Helper function to create complete mock return value
+const createMockQueryResult = (
+  overrides: Partial<UseQueryResult<ObservabilityService[], Error>> = {},
+) =>
+  ({
+    data: undefined,
+    isLoading: false,
+    isSuccess: false,
+    error: null,
+    isError: false,
+    isPending: false,
+    isRefetching: false,
+    refetch: vi.fn(),
+    status: 'idle',
+    fetchStatus: 'idle',
+    isLoadingError: false,
+    isRefetchError: false,
+    dataUpdatedAt: 0,
+    errorUpdatedAt: 0,
+    failureCount: 0,
+    failureReason: null,
+    errorUpdateCount: 0,
+    isFetched: false,
+    isFetchedAfterMount: false,
+    isFetching: false,
+    isInitialLoading: false,
+    isPlaceholderData: false,
+    isStale: false,
+    ...overrides,
+  }) as UseQueryResult<ObservabilityService[], Error>;
+
+// Test wrapper for React Query
+const createWrapper = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+        gcTime: 0,
+      },
+    },
+  });
+
+  const TestWrapper = ({ children }: { children: React.ReactNode }) => (
+    <QueryClientProvider client={queryClient}>
+      <ObservabilityServiceProvider>{children}</ObservabilityServiceProvider>
+    </QueryClientProvider>
+  );
+  TestWrapper.displayName = 'TestWrapper';
+  return TestWrapper;
+};
+
+// Test component to test the context
+const TestComponent = () => {
+  const context = useObservabilityServiceContext();
+  return (
+    <div>
+      <span data-testid="selected-service">{context.selectedService?.id || 'none'}</span>
+      <span data-testid="services-count">{context.services?.length || 0}</span>
+      <span data-testid="is-loading">{context.isLoading.toString()}</span>
+      <span data-testid="is-success">{context.isSuccess.toString()}</span>
+      <span data-testid="error">{context.error?.message || 'none'}</span>
+      <button
+        data-testid="set-service"
+        onClick={() =>
+          context.setSelectedService({
+            id: 'test-service-id',
+            createdAt: '2025-11-01T08:00:00.001Z',
+            updatedAt: '2025-11-01T08:00:00.001Z',
+            currentState: { displayName: 'Test Service' },
+            resourceStatus: 'READY',
+          })
+        }
+      >
+        Set Service
+      </button>
+    </div>
+  );
+};
+
+describe('ObservabilityServiceContext', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  describe('ObservabilityServiceProvider', () => {
+    it('should provide initial context values', () => {
+      // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { getByTestId } = render(<TestComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - selectedService is auto-initialized to first service when services are loaded
+      expect(getByTestId('selected-service')).toHaveTextContent('service-1');
+      expect(getByTestId('services-count')).toHaveTextContent('2');
+      expect(getByTestId('is-loading')).toHaveTextContent('false');
+      expect(getByTestId('is-success')).toHaveTextContent('true');
+      expect(getByTestId('error')).toHaveTextContent('none');
+    });
+
+    it('should handle loading state', () => {
+      // Arrange
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          isLoading: true,
+          isPending: true,
+          status: 'pending',
+        }),
+      );
+
+      // Act
+      const { getByTestId } = render(<TestComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Assert
+      expect(getByTestId('is-loading')).toHaveTextContent('true');
+      expect(getByTestId('is-success')).toHaveTextContent('false');
+      expect(getByTestId('services-count')).toHaveTextContent('0');
+    });
+
+    it('should handle error state', () => {
+      // Arrange
+      const mockError = new Error('Failed to fetch services');
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          error: mockError,
+          isError: true,
+          status: 'error',
+        }),
+      );
+
+      // Act
+      const { getByTestId } = render(<TestComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Assert
+      expect(getByTestId('error')).toHaveTextContent('Failed to fetch services');
+      expect(getByTestId('is-loading')).toHaveTextContent('false');
+      expect(getByTestId('is-success')).toHaveTextContent('false');
+    });
+
+    it('should update selected service when setSelectedService is called', () => {
+      // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'test-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Test Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { getByTestId } = render(<TestComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Initially should be first service
+      expect(getByTestId('selected-service')).toHaveTextContent('service-1');
+
+      // Act
+      act(() => {
+        getByTestId('set-service').click();
+      });
+
+      // Assert - should now be the selected service
+      expect(getByTestId('selected-service')).toHaveTextContent('test-service-id');
+    });
+
+    it('should handle empty services array', () => {
+      // Arrange
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: [],
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { getByTestId } = render(<TestComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Assert
+      expect(getByTestId('services-count')).toHaveTextContent('0');
+      expect(getByTestId('is-success')).toHaveTextContent('true');
+    });
+
+    it('should memoize context value correctly', () => {
+      // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      let contextValue1: unknown;
+      let contextValue2: unknown;
+
+      const TestMemoComponent = () => {
+        const context = useObservabilityServiceContext();
+        if (!contextValue1) {
+          contextValue1 = context;
+        } else if (!contextValue2) {
+          contextValue2 = context;
+        }
+        return <div>Test</div>;
+      };
+
+      // Act - First render
+      const { rerender } = render(<TestMemoComponent />, {
+        wrapper: createWrapper(),
+      });
+
+      // Act - Second render with same data
+      rerender(<TestMemoComponent />);
+
+      // Assert - Context value should be memoized (same reference)
+      expect(contextValue1).toBe(contextValue2);
+    });
+  });
+
+  describe('useObservabilityServiceContext', () => {
+    it('should throw error when used outside provider', () => {
+      // Arrange
+      const consoleError = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+      // Act & Assert
+      expect(() => {
+        renderHook(() => useObservabilityServiceContext());
+      }).toThrow(
+        'useObservabilityServiceContext must be used within an ObservabilityServiceProvider',
+      );
+
+      consoleError.mockRestore();
+    });
+
+    it('should return context value when used within provider', () => {
+      // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - selectedService is auto-initialized to first service when services are loaded
+      expect(result.current).toEqual({
+        selectedService: mockServices[0],
+        setSelectedService: expect.any(Function) as unknown,
+        services: mockServices,
+        isLoading: false,
+        isSuccess: true,
+        error: null,
+      });
+    });
+
+    it('should allow updating selected service through context', () => {
+      // Arrange - services are sorted alphabetically, so 'Alpha Service' comes first
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Alpha Service' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Beta Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Initially should be first service (alphabetically)
+      expect(result.current.selectedService?.id).toBe('service-1');
+
+      // Act
+      act(() => {
+        result.current.setSelectedService({
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Beta Service' },
+          resourceStatus: 'READY',
+        });
+      });
+
+      // Assert
+      expect(result.current.selectedService?.id).toBe('service-2');
+    });
+
+    it('should allow clearing selected service', () => {
+      // Arrange
+      const mockServices: ObservabilityService[] = [
+        {
+          id: 'some-service-id',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Some Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: mockServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Initially should be first service (auto-selected)
+      expect(result.current.selectedService?.id).toBe('some-service-id');
+
+      // Act - Clear the service
+      act(() => {
+        result.current.setSelectedService(undefined);
+      });
+
+      // Assert
+      expect(result.current.selectedService).toBeUndefined();
+    });
+  });
+
+  describe('Integration with useObservabilityServices', () => {
+    it('should reflect changes in useObservabilityServices hook', () => {
+      // Arrange
+      const initialServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      const updatedServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      // Start with initial services
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: initialServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result, rerender } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert initial state
+      expect(result.current.services).toHaveLength(1);
+      expect(result.current.services?.[0]?.id).toBe('service-1');
+
+      // Act - Update mock to return updated services
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: updatedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      rerender();
+
+      // Assert updated state
+      expect(result.current.services).toHaveLength(2);
+    });
+
+    it('should sort services alphabetically by display name', () => {
+      // Arrange - services in non-alphabetical order
+      const unsortedServices: ObservabilityService[] = [
+        {
+          id: 'service-z',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Zebra Service' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-a',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Alpha Service' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-m',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Middle Service' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: unsortedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - services should be sorted alphabetically
+      expect(result.current.services?.[0]?.currentState.displayName).toBe('Alpha Service');
+      expect(result.current.services?.[1]?.currentState.displayName).toBe('Middle Service');
+      expect(result.current.services?.[2]?.currentState.displayName).toBe('Zebra Service');
+
+      // Assert - first selected service should be alphabetically first
+      expect(result.current.selectedService?.id).toBe('service-a');
+    });
+
+    it('should sort services by id when displayName is not available', () => {
+      // Arrange - services without displayName
+      const servicesWithoutDisplayName: ObservabilityService[] = [
+        {
+          id: 'zzz-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: null },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'aaa-service',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: null },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: servicesWithoutDisplayName,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      // Act
+      const { result } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert - services should be sorted by id when displayName is missing
+      expect(result.current.services?.[0]?.id).toBe('aaa-service');
+      expect(result.current.services?.[1]?.id).toBe('zzz-service');
+    });
+
+    it('should update selectedService data when services list is refreshed', () => {
+      // Arrange
+      const initialServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Old Name' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      const updatedServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'New Name' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      // Start with initial services
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: initialServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result, rerender } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Assert initial selected service
+      expect(result.current.selectedService?.currentState.displayName).toBe('Old Name');
+
+      // Act - Simulate services list refresh with updated data
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: updatedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      rerender();
+
+      // Assert - selectedService should have the updated data
+      expect(result.current.selectedService?.currentState.displayName).toBe('New Name');
+    });
+
+    it('should fallback to first service when selected service is deleted', () => {
+      // Arrange
+      const initialServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+        {
+          id: 'service-2',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 2' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      const updatedServices: ObservabilityService[] = [
+        {
+          id: 'service-1',
+          createdAt: '2025-11-01T08:00:00.001Z',
+          updatedAt: '2025-11-01T08:00:00.001Z',
+          currentState: { displayName: 'Service 1' },
+          resourceStatus: 'READY',
+        },
+      ];
+
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: initialServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      const { result, rerender } = renderHook(() => useObservabilityServiceContext(), {
+        wrapper: createWrapper(),
+      });
+
+      // Select service-2
+      act(() => {
+        result.current.setSelectedService(initialServices[1]);
+      });
+
+      expect(result.current.selectedService?.id).toBe('service-2');
+
+      // Act - Simulate service-2 being deleted
+      mockUseObservabilityServices.mockReturnValue(
+        createMockQueryResult({
+          data: updatedServices,
+          isSuccess: true,
+          status: 'success',
+          isFetched: true,
+        }),
+      );
+
+      rerender();
+
+      // Assert - should fallback to first available service
+      expect(result.current.selectedService?.id).toBe('service-1');
+    });
+  });
+});

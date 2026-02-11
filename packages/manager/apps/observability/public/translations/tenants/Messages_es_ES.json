@@ -1,0 +1,89 @@
+{
+  "listing": {
+    "title": "Lista de tenant",
+    "description": "Los tenant le permiten organizar sus métricas desde su llegada al servicio de observabilidad.",
+    "description_bis": "Con varios proveedores, puede estructurar sus datos según sus necesidades, niveles de confidencialidad, políticas de acceso, políticas de retención y de localización adecuada.",
+    "endpoint_cell": "URL del servidor Prometheus",
+    "retention_cell": "Retención",
+    "active_metrics_cell": "Métricas activas",
+    "tags_cell": "Etiquetas",
+    "clipboard_error_label": "Error",
+    "create_tenant_button": "Añadir un nuevo tenant",
+    "details_action": "Detalles",
+    "access_grafana_action": "Acceder a Grafana",
+    "copy_uid_action": "Copiar el UID del tenant",
+    "generate_access_token_action": "Generar token de acceso",
+    "filter_search_key": "búsqueda"
+  },
+  "delete": {
+    "delete_tenant_title": "Eliminar el Tenant",
+    "delete_tenant_description": "¿Seguro que quiere eliminar el tenant «{{tenantName}}»?",
+    "success": "Eliminando el tenant..."
+  },
+  "onboarding": {
+    "description": "Cree su nuevo tenant para seguir explorando todo el potencial de las métricas de observabilidad. Podrá enviar datos, crear paneles y configurar alertas adaptadas a sus necesidades específicas.",
+    "orderButtonLabel": "Cree su tenant"
+  },
+  "creation": {
+    "title": "Crear un tenant",
+    "success": "Creando el tenant...",
+    "tenantInformation": "Introducir la información del tenant",
+    "namePlaceholder": "Nombre del tenant",
+    "description": "Descripción (opcional)",
+    "descriptionPlaceholder": "Añada una descripción de las métricas que va a escribir en este tenant"
+  },
+  "configuration": {
+    "title": "Configure su tenant",
+    "retention": {
+      "title": "Retención"
+    },
+    "limit": {
+      "title": "Límite de ingesta (métricas activas)",
+      "description": "Establezca el límite máximo del número de métricas activas para este tenant."
+    }
+  },
+  "edition": {
+    "title": "Modificar el tenant",
+    "subtitle": "Cree un tenant en su servicio de observabilidad «{{tenantName}}»",
+    "success": "El tenant se ha modificado correctamente"
+  },
+  "dashboard": {
+    "subscription_tab": "Contratación",
+    "tags_tab": "Etiquetas",
+    "explore_in_grafana_button": "Explorar en Grafana®",
+    "general_information_tile": {
+      "name": "Nombre del tenant",
+      "endpoint": "Endpoint",
+      "updated_at": "Fecha de la última modificación",
+      "edit_information": "Modificar la información"
+    },
+    "configuration_tile": {
+      "title": "Configuración",
+      "retention": "Retención",
+      "active_metrics": "Métricas activas",
+      "ingestion_limit": "Límite de ingesta"
+    },
+    "tags_tile": {
+      "title": "Etiquetas",
+      "manage_tags": "Gestionar las etiquetas"
+    },
+    "subscription_tile": {
+      "title": "Objeto vinculado",
+      "subscriptions": "Suscripciones",
+      "access_subscription_page": "Acceder a la página de Suscripción"
+    },
+    "subscription_listing": {
+      "create_subscription": "Configurar la suscripción",
+      "kind_cell": "Tipo de producto",
+      "resource_cell": "Recurso",
+      "unsubscribe": {
+        "cta": "Anular la suscripción",
+        "title": "¿Anular la suscripción?",
+        "confirm": "Sí, anular la suscripción",
+        "cancel": "No, cancelar",
+        "warning": "Si anula la suscripción al tenant de métricas para este recurso, la recopilación se detendrá permanentemente y se eliminarán los datos asociados.",
+        "success": "Eliminando la suscripción..."
+      }
+    }
+  }
+}

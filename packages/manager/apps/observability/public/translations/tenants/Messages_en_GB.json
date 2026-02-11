@@ -1,0 +1,89 @@
+{
+  "listing": {
+    "title": "List of tenants",
+    "description": "Tenants allow you to organise your metrics as soon as they get to the observability service.",
+    "description_bis": "Using multiple tenants, you can structure your data according to your needs, confidentiality levels, access controls, retention policies, and chosen locations.",
+    "endpoint_cell": "Prometheus Server URL",
+    "retention_cell": "Retention",
+    "active_metrics_cell": "Active metrics",
+    "tags_cell": "Tags",
+    "clipboard_error_label": "Error",
+    "create_tenant_button": "Add a new tenant",
+    "details_action": "Details",
+    "access_grafana_action": "Access Grafana",
+    "copy_uid_action": "Copy tenant UID",
+    "generate_access_token_action": "Generate access token",
+    "filter_search_key": "search"
+  },
+  "delete": {
+    "delete_tenant_title": "Delete Tenant",
+    "delete_tenant_description": "Are you sure you want to delete the \"{{tenantName}}\" tenant?",
+    "success": "Deleting tenant..."
+  },
+  "onboarding": {
+    "description": "Create your new tenant to continue exploring the full potential of observability metrics. You can send data, create dashboards, and configure alerts to suit your specific needs.",
+    "orderButtonLabel": "Create your tenant"
+  },
+  "creation": {
+    "title": "Create a tenant",
+    "success": "Creating tenant...",
+    "tenantInformation": "Enter tenant details",
+    "namePlaceholder": "Tenant name",
+    "description": "Description (optional)",
+    "descriptionPlaceholder": "Add a description of the metrics you plan to track within this tenant"
+  },
+  "configuration": {
+    "title": "Configure your tenant",
+    "retention": {
+      "title": "Retention"
+    },
+    "limit": {
+      "title": "Ingestion limit (active metrics)",
+      "description": "Define the maximum number of active metrics for this tenant."
+    }
+  },
+  "edition": {
+    "title": "Edit tenant",
+    "subtitle": "You can create a tenant in your \"{{tenantName}}\" observability service",
+    "success": "The tenant has been updated"
+  },
+  "dashboard": {
+    "subscription_tab": "Subscription",
+    "tags_tab": "Tags",
+    "explore_in_grafana_button": "Explore in Grafana®",
+    "general_information_tile": {
+      "name": "Tenant name",
+      "endpoint": "Endpoint",
+      "updated_at": "Last updated",
+      "edit_information": "Edit details"
+    },
+    "configuration_tile": {
+      "title": "Configuration",
+      "retention": "Retention",
+      "active_metrics": "Active metrics",
+      "ingestion_limit": "Ingestion limit"
+    },
+    "tags_tile": {
+      "title": "Tags",
+      "manage_tags": "Manage tags"
+    },
+    "subscription_tile": {
+      "title": "Linked object",
+      "subscriptions": "Subscriptions",
+      "access_subscription_page": "Go to the Subscription page"
+    },
+    "subscription_listing": {
+      "create_subscription": "Set up the subscription",
+      "kind_cell": "Product type",
+      "resource_cell": "Resource",
+      "unsubscribe": {
+        "cta": "Unsubscribe",
+        "title": "Unsubscribe",
+        "confirm": "Yes, unsubscribe",
+        "cancel": "No, cancel",
+        "warning": "If you unsubscribe from the metrics tenant for this resource, data will no longer be collected, permanently, and the associated data will be deleted.",
+        "success": "Cancelling subscription..."
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "Alle Regionen",
+      "eu": "Europa",
+      "us": "USA",
+      "ap": "Asiatisch-pazifischer Raum",
+      "ca": "Nordamerika",
+      "title": "Region auswählen",
+      "zone": {
+        "local": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz.",
+        "1_az": "Resiliente und kostengünstige Bereitstellung in 1 Availability Zone.",
+        "3_az": "Bereitstellung mit hoher Resilienz/hoher Verfügbarkeit für Ihre kritischen Anwendungen in 3 Availability Zones"
+      }
+    }
+  }
+}
