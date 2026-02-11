@@ -1,0 +1,27 @@
+{
+  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/react-strict",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "node"
+    ],
+    "outDir": "dist",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "baseUrl": "." 
+  },
+  "include": [
+    "src",
+    "public/**/*.json",
+    "src/__mocks__/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
+  ]
+}
