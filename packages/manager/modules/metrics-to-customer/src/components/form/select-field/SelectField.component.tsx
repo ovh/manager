@@ -8,9 +8,9 @@ import {
   FormFieldError,
   FormFieldLabel,
   Skeleton,
+  TEXT_PRESET,
+  Text,
 } from '@ovhcloud/ods-react';
-
-import { TEXT_PRESET, Text } from '@ovh-ux/muk';
 
 import { SelectFieldProps } from '@/components/form/select-field/SelectField.props';
 
@@ -43,6 +43,7 @@ export const SelectField = ({
         <>
           {label && <FormFieldLabel htmlFor={name}>{label}</FormFieldLabel>}
           <Combobox
+            id="combobox-select-field"
             className={className}
             value={value ? [value] : []}
             name={name}
@@ -54,8 +55,8 @@ export const SelectField = ({
             items={items}
             allowCustomValue={false}
           >
-            <ComboboxControl placeholder={placeholder} clearable={true} />
-            <ComboboxContent />
+            <ComboboxControl id="combobox-control-select-field" placeholder={placeholder} clearable={true} />
+            <ComboboxContent id="combobox-content-select-field" />
           </Combobox>
           {error && (
             <FormFieldError>
