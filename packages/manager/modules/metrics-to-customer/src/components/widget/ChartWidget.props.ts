@@ -6,6 +6,7 @@ export interface ChartWidgetProps {
   unit?: string;
   tooltip?: WidgetTooltip;
   isLoading?: boolean;
+  disabled?: boolean;
   colspan?: number;
   rowspan?: number;
   children: React.ReactNode;

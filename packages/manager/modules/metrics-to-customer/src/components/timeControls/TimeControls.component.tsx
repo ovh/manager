@@ -35,6 +35,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
   defaultValue = '1h',
   onRefresh,
   onCancel,
+  disabled = false,
 }): JSX.Element => {
   const { t } = useTranslation(NAMESPACES.TIME_CONTROLS);
 
@@ -65,7 +66,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
     <div className='flex items-start gap-4'>
       <div className='flex flex-col gap-2'>
         <div className="flex items-center space-x-2">
-          <ButtonGroup value={[state.selectedTimeOption.value]}>
+          <ButtonGroup value={[state.selectedTimeOption.value]} disabled={disabled}>
             {timeOptions.map((range: TimeRangeOptionWithLabel, index: number) => (
               <ButtonGroupItem
                 key={`${range.value}_${index}`}
@@ -83,6 +84,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
                 <PopoverTrigger asChild className="z-40">
                   <ButtonGroupItem value="custom"
                     onClick={() => handleClick(TimeRangeOptionCustom)}
+                    disabled={disabled}
                   >
                     <Icon name={ICON_NAME.calendar} />
                     {t('option_custom')}
@@ -108,6 +110,7 @@ export const TimeControls: React.FC<Readonly<TimeControlsProps>> = ({
           onStateChange={onStateChange}
           onRefresh={onRefresh}
           onCancel={onCancel}
+          disabled={disabled}
         />
       </div>
     </div>

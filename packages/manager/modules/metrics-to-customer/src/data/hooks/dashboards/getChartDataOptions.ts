@@ -9,11 +9,13 @@ export const getChartDataOptions = <TData>(
   payload: RequestPayload,
   refreshInterval: number,
   metricToken: string,
+  enabled = true,
 ) => {
   return queryOptions({
     queryKey: getChartDataQueryKey(payload, metricToken),
     queryFn: (): Promise<MetricData<TData>> => fetchChartData<TData>(payload, metricToken),
     refetchInterval: refreshInterval > 0 ? refreshInterval * 1000 : false,
+    enabled,
   });
 };
 
