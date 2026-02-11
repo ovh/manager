@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 /**
  * @typedef {Object} NxCiState
  * @property {string[]} normalizedOptions
@@ -506,4 +508,21 @@ export function buildNxCiArgs(task, options = []) {
   }
 
   return args;
+}
+
+/**
+ * Check whether the provided runner represents Nx.
+ * Accepts: "nx", "/usr/bin/nx", "C:\\tools\\nx.cmd"
+ *
+ * @param {string} runner
+ * @returns {boolean}
+ */
+export function isNxRunner(runner) {
+  if (typeof runner !== 'string') return false;
+
+  const trimmed = runner.trim();
+  if (!trimmed) return false;
+
+  const baseName = path.basename(trimmed).toLowerCase();
+  return baseName === 'nx' || baseName === 'nx.cmd' || baseName === 'nx.exe';
 }

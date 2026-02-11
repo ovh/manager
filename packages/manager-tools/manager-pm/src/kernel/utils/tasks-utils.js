@@ -11,6 +11,7 @@ import {
   buildModuleWorkspacePath,
   getPackageNameFromModule,
 } from '../helpers/modules-workspace-helper.js';
+import { resolveCiArgsToRun } from './cli-utils.js';
 import { logger } from './log-manager.js';
 import { clearRootWorkspaces } from './workspace-utils.js';
 
@@ -219,4 +220,20 @@ export async function runTaskFromRoot(label, cmd, args) {
     logger.error(error.stack || error.message || error);
     throw error;
   }
+}
+
+/**
+ * Helper to run any CI task with centralized arg normalization.
+ *
+ * @param {(args: string[], runner: string) => Promise<void>} ciTaskFn
+ * @param {{ passthrough: string[], filter?: string|null, opts: Record<string, string|boolean>, runner: string }} ctx
+ * @param {{ resolveBaseArgs: Function, collectForwardedArgs: Function, isNxRunner: Function }} deps
+ */
+export async function runCiTask(ciTaskFn, ctx, deps) {
+  const argsToRun = resolveCiArgsToRun({
+    ...ctx,
+    ...deps,
+  });
+
+  return ciTaskFn(argsToRun, ctx.runner);
 }

@@ -1,7 +1,14 @@
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { RenderHookOptions, RenderHookResult, render, renderHook } from '@testing-library/react';
+import type { RenderResult } from '@testing-library/react';
+import {
+  Queries,
+  RenderHookOptions,
+  RenderHookResult,
+  render,
+  renderHook,
+} from '@testing-library/react';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 
@@ -87,7 +94,9 @@ export const renderHookWithClient = <TProps, TResult>(
  * Render a component with I18n provider
  */
 let i18nValue: i18n;
-export const renderWithI18n = async (ui: React.ReactElement) => {
+export const renderWithI18n = async (
+  ui: React.ReactElement,
+): Promise<RenderResult<Queries, HTMLElement>> => {
   if (!i18nValue) {
     i18nValue = await initTestI18n();
   }

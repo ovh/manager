@@ -91,6 +91,7 @@
     "@ovh-ux/shell": "^4.10.6",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
+    "URIjs": "^1.14.0",
     "angular": "1.7.x",
     "angular-aria": "1.7.x",
     "angular-cookies": "1.7.x",

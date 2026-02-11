@@ -7,7 +7,7 @@ import { registerCoreModule } from '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import ngOvhChart from '@ovh-ux/ng-ovh-chart';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
-
+import ngOvhExportCsv from '@ovh-ux/ng-ovh-export-csv';
 import Exchange from '@ovh-ux/manager-exchange';
 
 export default (containerEl, environment) => {
@@ -23,6 +23,7 @@ export default (containerEl, environment) => {
         ngUiRouterBreadcrumb,
         uiRouter,
         Exchange,
+        ngOvhExportCsv,
         ...get(__NG_APP_INJECTIONS__, environment.getRegion(), []),
       ].filter(isString),
     )

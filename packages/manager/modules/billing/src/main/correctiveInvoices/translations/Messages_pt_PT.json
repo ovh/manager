@@ -1,13 +1,13 @@
 {
   "billing_payment_corrective_invoices": "Faturas corretivas",
   "billing_corrective_invoices_table_id": "Referência",
-  "billing_corrective_invoices_table_order_id": "Número da encomenda",
+  "billing_corrective_invoices_table_order_id": "Número de encomenda",
   "billing_corrective_invoices_table_original_invoice": "Fatura original",
   "billing_corrective_invoices_table_date": "Data de emissão",
-  "billing_corrective_invoices_table_total": "Montante sem IVA",
-  "billing_corrective_invoices_table_total_with_vat": "Montante com IVA",
+  "billing_corrective_invoices_table_total": "Montante s/IVA",
+  "billing_corrective_invoices_table_total_with_vat": "Montante c/IVA",
   "billing_corrective_invoices_table_download_html": "Ver a versão HTML",
   "billing_corrective_invoices_table_download_pdf": "Ver a versão PDF",
-  "billing_corrective_invoices_load_error": "Ocorreu um erro ao carregar as faturas corretivas.",
-  "billing_corrective_invoices_empty": "Informamos que não há faturas corretivas emitidas para os períodos em questão."
+  "billing_corrective_invoices_load_error": "Ocorreu um erro aquando do carregamento das faturas corretivas.",
+  "billing_corrective_invoices_empty": "Gostaríamos de o informar que não existem faturas corretivas emitidas para os períodos em causa."
 }
