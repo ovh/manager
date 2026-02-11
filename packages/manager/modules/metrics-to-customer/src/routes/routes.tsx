@@ -19,12 +19,19 @@ const metricsSubscriptionsManageConfigurationPage = lazy(
 );
 
 export const getMetricsToCustomerRoutes = () => (
-  <Route path={urls.root} Component={metricsDashboardPage}>
-    <Route path={subroutes.dashboardWidget} Component={metricsDashboardWidgetModal} />
-    <Route
-      path={urls.subscriptionsConfig}
-      Component={metricsSubscriptionsManageConfigurationPage}
-    />
+  <Route path={urls.base}>
+    {/* Metrics */}
+    <Route path={subroutes.metrics} Component={metricsDashboardPage}>
+      <Route
+        path={subroutes.dashboardWidget}
+        Component={metricsDashboardWidgetModal}
+        index={true}
+      />
+      <Route
+        path={urls.subscriptionsConfig}
+        Component={metricsSubscriptionsManageConfigurationPage}
+      />
+    </Route>
   </Route>
 );
 

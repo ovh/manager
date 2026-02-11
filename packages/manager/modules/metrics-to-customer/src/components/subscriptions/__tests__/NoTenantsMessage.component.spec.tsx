@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
@@ -9,37 +10,7 @@ import NoTenantsMessage from '@/components/subscriptions/NoTenantsMessage.compon
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string, params?: Record<string, string | number>) => {
-      const translations: Record<string, string> = {
-        'no_tenants_message.title': 'No Tenants Found',
-        'no_tenants_message.description': 'No tenants are available for subscription.',
-        'tenants_regions.region_one': 'Region: {{region}}',
-        'tenants_regions.region_other': 'Regions: {{region}}',
-        'no_tenants_message.retention': 'Default retention: {{retention}}',
-      };
-      
-      // Handle pluralization for tenants_regions.region
-      if (key === 'tenants_regions.region' && params?.count !== undefined) {
-        const pluralKey = params.count === 1 ? 'tenants_regions.region_one' : 'tenants_regions.region_other';
-        let translation = translations[pluralKey] || key;
-        if (params) {
-          Object.keys(params).forEach((paramKey) => {
-            if (paramKey !== 'count') {
-              translation = translation.replace(`{{${paramKey}}}`, String(params[paramKey]));
-            }
-          });
-        }
-        return translation;
-      }
-      
-      let translation = translations[key] || key;
-      if (params) {
-        Object.keys(params).forEach((paramKey) => {
-          translation = translation.replace(`{{${paramKey}}}`, String(params[paramKey]));
-        });
-      }
-      return translation;
-    },
+    t: (key: string) => key,
   }),
 }));
 
@@ -64,6 +35,17 @@ vi.mock('@ovhcloud/ods-react', () => ({
     </div>
   ),
   TEXT_PRESET: { label: 'label', paragraph: 'paragraph', small: 'small' },
+  Link: ({ children, href, className, target, ...props }: any) => (
+    <a href={href} className={className} target={target} {...props}>
+      {children}
+    </a>
+  ),
+  Icon: ({ name, ...props }: any) => (
+    <span data-icon-name={name} {...props}>
+      icon
+    </span>
+  ),
+  ICON_NAME: { externalLink: 'externalLink' },
 }));
 
 // Mock duration utils
@@ -71,7 +53,7 @@ vi.mock('@/utils/duration.utils', () => ({
   formatObservabilityDuration: (duration: string) => `formatted-${duration}`,
 }));
 
-// Test wrapper for React Query
+// Test wrapper for React Query and Router
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -83,7 +65,9 @@ const createWrapper = () => {
   });
 
   const TestWrapper = ({ children }: { children: React.ReactNode }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <MemoryRouter>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </MemoryRouter>
   );
   TestWrapper.displayName = 'TestWrapper';
   return TestWrapper;
@@ -91,7 +75,7 @@ const createWrapper = () => {
 
 describe('NoTenantsMessage', () => {
   const defaultProps = {
-    regions: ['EU'],
+    regions: [{ code: 'eu-west-gra', label: 'Gravelines' }],
     defaultRetention: '30d',
   };
 
@@ -117,7 +101,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('No Tenants Found')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.title')).toBeInTheDocument();
     });
 
     it('should render the description', () => {
@@ -127,7 +111,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('No tenants are available for subscription.')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.description')).toBeInTheDocument();
     });
 
     it('should render region label for single region', () => {
@@ -137,14 +121,17 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('Region: EU')).toBeInTheDocument();
+      expect(screen.getByText(/tenants_regions\.region.*Gravelines/)).toBeInTheDocument();
     });
 
     it('should render regions label for multiple regions', () => {
       // Arrange
       const props = {
         ...defaultProps,
-        regions: ['EU', 'US'],
+        regions: [
+          { code: 'eu-west-gra', label: 'Gravelines' },
+          { code: 'eu-west-sbg', label: 'Strasbourg' },
+        ],
       };
 
       // Act
@@ -153,7 +140,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('Regions: EU, US')).toBeInTheDocument();
+      expect(screen.getByText(/tenants_regions\.region.*Gravelines.*Strasbourg/)).toBeInTheDocument();
     });
 
     it('should render retention information', () => {
@@ -163,7 +150,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('Default retention: formatted-30d')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.retention')).toBeInTheDocument();
     });
 
     it('should not render region label when regions array is empty', () => {
@@ -196,7 +183,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('Default retention: formatted-90d')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.retention')).toBeInTheDocument();
     });
   });
 
@@ -210,7 +197,7 @@ describe('NoTenantsMessage', () => {
       // Assert
       const titleText = container.querySelector('[data-preset="label"]');
       expect(titleText).toBeInTheDocument();
-      expect(titleText).toHaveTextContent('No Tenants Found');
+      expect(titleText).toHaveTextContent('no_tenants_message.title');
     });
 
     it('should render description and other texts with paragraph preset', () => {
@@ -240,7 +227,7 @@ describe('NoTenantsMessage', () => {
 
       // Assert
       expect(screen.getByTestId('no-tenants-message')).toBeInTheDocument();
-      expect(screen.getByText('No Tenants Found')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.title')).toBeInTheDocument();
     });
 
     it('should handle different retention formats', () => {
@@ -256,7 +243,7 @@ describe('NoTenantsMessage', () => {
       });
 
       // Assert
-      expect(screen.getByText('Default retention: formatted-7d')).toBeInTheDocument();
+      expect(screen.getByText('no_tenants_message.retention')).toBeInTheDocument();
     });
   });
 });

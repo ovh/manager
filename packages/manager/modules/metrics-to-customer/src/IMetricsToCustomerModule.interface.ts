@@ -1,11 +1,3 @@
-import { SubscriptionUrls } from '@/types/SubscriptionUrls.type';
+import { BaseM2CProperties, SubscriptionManagementConfig } from '@/contexts/MetricsToCustomer.type';
 
-export interface IMetricsToCustomerModule {
-  resourceName: string;
-  productType: string;
-  resourceURN: string;
-  regions: string[];
-  defaultRetention: string;
-  subscriptionUrls: SubscriptionUrls;
-  enableConfigurationManagement?: boolean;
-}
+export type IMetricsToCustomerModule = BaseM2CProperties & SubscriptionManagementConfig;
