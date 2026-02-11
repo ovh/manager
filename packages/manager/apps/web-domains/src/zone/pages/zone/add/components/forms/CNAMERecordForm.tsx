@@ -24,6 +24,7 @@ export function CNAMERecordForm({
         control={control}
         domainSuffix={domainSuffix}
         className="w-full"
+        tooltip={t("zone_page_tooltip_subdomain_cname")}
       />
       <TextField
         name="target"
@@ -31,8 +32,9 @@ export function CNAMERecordForm({
         label={t("zone_page_add_entry_modal_step_2_label_cname_target")}
         required
         className="w-full"
+        tooltipText={t("zone_page_tooltip_cname_target")}
       />
-      <TtlField control={control} watch={watch} />
+      <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
     </div>
   );
 }

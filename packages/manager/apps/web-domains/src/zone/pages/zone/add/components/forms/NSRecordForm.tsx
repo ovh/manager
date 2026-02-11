@@ -25,6 +25,7 @@ export function NSRecordForm({
         domainSuffix={domainSuffix}
         className="w-full"
         required
+        tooltip={t("zone_page_tooltip_subdomain_ns")}
       />
       <TextField
         name="target"
@@ -32,8 +33,9 @@ export function NSRecordForm({
         label={t("zone_page_add_entry_modal_step_2_label_ns_target")}
         required
         className="w-full"
+        tooltipText={t("zone_page_tooltip_ns_target")}
       />
-      <TtlField control={control} watch={watch} />
+      <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
     </div>
   );
 }
