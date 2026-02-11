@@ -14,5 +14,8 @@ export const useShares = <TData>(options?: SelectOption<TShare[], TData>) => {
     queryFn: () => getShares(projectId),
     enabled: !!projectId,
     select: options?.select,
+    refetchOnMount: 'always',
+    refetchOnWindowFocus: 'always',
+    refetchOnReconnect: 'always',
   });
 };

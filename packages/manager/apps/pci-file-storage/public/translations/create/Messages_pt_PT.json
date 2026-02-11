@@ -2,7 +2,7 @@
   "name": {
     "title": "Nome do share",
     "label": "Escolha um nome para o seu arquivo de partilha",
-    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não exceder 255 caracteres.",
+    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não deve exceder 255 caracteres.",
     "error": {
       "too_small": "O nome do share não pode estar vazio. Por favor, insira um nome.",
       "too_big": "Formato de nome inválido",
@@ -16,20 +16,23 @@
       "modes": {
         "region": {
           "label": "Região 1-AZ",
-          "description": "Implantação resiliente e económica em 1 zona de disponibilidade."
+          "description": "Implantação resiliente e económica em 1 zona."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Implantação de alta resiliência/alta disponibilidade para as suas aplicações críticas em 3 zonas de disponibilidade."
+          "description": "Implantação o mais próxima possível para uma baixa latência."
         },
         "region-3-az": {
           "label": "Região 3-AZ",
-          "description": "Implantação das suas aplicações o mais próximo possível dos seus utilizadores para uma baixa latência e residência dos dados."
+          "description": "Implantação de alta resiliência e alta disponibilidade em 3 zonas."
         }
       }
     },
+    "macroRegion": {
+      "title": "Escolha uma localização"
+    },
     "continents": {
-      "label": "",
+      "label": "Selecionar uma zona geográfica",
       "options": {
         "all": "Todos",
         "asia_oceania": "Ásia-Pacífico",
@@ -52,18 +55,18 @@
     }
   },
   "share": {
-    "title": "Modo de desempenho do compartilhamento",
+    "title": "Modo de desempenho do share",
     "description": "Mín. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Tamanho do compartilhamento",
+    "title": "Tamanho do share",
     "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
-    "label": "Alocação de desempenho linear (GiB)",
+    "label": "Alocação de desempenho linear (Gio)",
     "provisionedPerformance": "<strong>Desempenho provisionado :</strong> Até {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "O tamanho do compartilhamento está abaixo do mínimo permitido para esta oferta.",
-      "max_value": "O tamanho do compartilhamento excede o máximo permitido para esta oferta.",
-      "invalid_type": "Este campo deve ser preenchido."
+      "min_value": "O tamanho do share é inferior ao mínimo permitido para esta oferta.",
+      "max_value": "O tamanho do share excede o máximo permitido para esta oferta.",
+      "invalid_type": "Este campo deve ser preenchido"
     }
   },
   "network": {

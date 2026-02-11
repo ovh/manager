@@ -2,7 +2,7 @@
   "title": "File Storage",
   "columns": {
     "name_id": "Name / ID",
-    "region": "Region",
+    "region": "Location",
     "protocol": "Protocol",
     "allocated_capacity": "Allocated capacity",
     "allocated_capacity_value": "{{capacity}} GiB",
