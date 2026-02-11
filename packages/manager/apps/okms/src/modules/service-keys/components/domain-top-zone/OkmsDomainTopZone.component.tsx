@@ -5,9 +5,18 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useOkmsList } from '@key-management-service/data/hooks/useOkms';
 import { useNotificationAddErrorOnce } from '@key-management-service/hooks/useNotificationAddErrorOnce';
 import { useRegionName } from '@key-management-service/hooks/useRegionName';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 
 import { OdsFormField, OdsSelect } from '@ovhcloud/ods-components/react';
-import { Icon, Message, Popover, PopoverContent, PopoverTrigger, Text } from '@ovhcloud/ods-react';
+import {
+  Icon,
+  Link,
+  Message,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
@@ -115,6 +124,11 @@ export const OkmsDomainTopZone = () => {
                     <OkmsDomainStateBadge state={selectedDomain.iam.state} />
                   )}
                 </div>
+                {okmsId && (
+                  <div className="flex items-center justify-end">
+                    <Link to={KMS_ROUTES_URLS.kmsDashboard(okmsId)}>Go to OKM Dashboard</Link>
+                  </div>
+                )}
                 {selectedRegionInfo && (
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">

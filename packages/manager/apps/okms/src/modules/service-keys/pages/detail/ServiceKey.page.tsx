@@ -10,9 +10,8 @@ import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeyById } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import { CryptoPropertiesTile } from '@key-management-service/pages/service-key/dashboard/CryptoPropertiesTile.component';
 import { useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
 
-import { Breadcrumb, Icon, Link, Text } from '@ovhcloud/ods-react';
+import { Icon, Link, Text } from '@ovhcloud/ods-react';
 
 import { Error, GridLayout, Notifications } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
@@ -27,7 +26,6 @@ import { SERVICE_KEYS_ROUTES_URLS } from '../../routes/routes.constants';
 
 export default function ServiceKeyDashboardPage() {
   const { okmsId, keyId } = useRequiredParams('okmsId', 'keyId');
-  const { t } = useTranslation(['service-keys', 'key-management-service/serviceKeys']);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -82,17 +80,17 @@ export default function ServiceKeyDashboardPage() {
     <Suspense fallback={<Loading />}>
       <div className="px-4 py-8 md:mt-2 md:px-10 md:py-9">
         <OkmsDomainTopZone />
-        <div>
+        {/* <div>
           <Breadcrumb>
             <Text
               onClick={() => navigate(SERVICE_KEYS_ROUTES_URLS.serviceKeyList(okmsId))}
               className="cursor-pointer"
             >
-              {t('service-keys:service_keys', { defaultValue: 'Service Keys' })}
+              Service Keys
             </Text>
             <Text>{serviceKey.name || serviceKey.id}</Text>
           </Breadcrumb>
-        </div>
+        </div> */}
         <header className="my-[24px] flex items-start justify-between">
           <Text preset="heading-1">{serviceKey.name || serviceKey.id}</Text>
         </header>
@@ -105,7 +103,7 @@ export default function ServiceKeyDashboardPage() {
             target="_self"
           >
             <Icon name="arrow-left" />
-            {t('key-management-service/serviceKeys:key_management_service_service_keys_back_link')}
+            Back to the list of Service Keys
           </Link>
         </div>
         <div className="mb-5 max-w-[800px]">
@@ -113,17 +111,9 @@ export default function ServiceKeyDashboardPage() {
         </div>
         <div className="flex flex-col gap-6">
           <GridLayout>
-            <Tile.Root
-              title={t(
-                'key-management-service/serviceKeys:key_management_service_service-keys_dashboard_tile_general_informations',
-              )}
-            >
+            <Tile.Root title="General information">
               <Tile.Item.Root>
-                <Tile.Item.Term
-                  label={t(
-                    'key-management-service/serviceKeys:key_management_service_service-keys_dashboard_field_name',
-                  )}
-                />
+                <Tile.Item.Term label="Display name" />
                 <Tile.Item.Description>
                   <Text className="max-w-1/2 overflow-hidden text-ellipsis" preset="paragraph">
                     {serviceKey.name}
@@ -131,11 +121,7 @@ export default function ServiceKeyDashboardPage() {
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
-                <Tile.Item.Term
-                  label={t(
-                    'key-management-service/serviceKeys:key_management_service_service-keys_dashboard_field_id',
-                  )}
-                />
+                <Tile.Item.Term label="Service Key ID" />
                 <Tile.Item.Description>
                   <Clipboard className="w-full" value={serviceKey.id} />
                 </Tile.Item.Description>
@@ -147,21 +133,13 @@ export default function ServiceKeyDashboardPage() {
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
-                <Tile.Item.Term
-                  label={t(
-                    'key-management-service/serviceKeys:key_management_service_service-keys_dashboard_field_state',
-                  )}
-                />
+                <Tile.Item.Term label="Status" />
                 <Tile.Item.Description>
                   <ServiceKeyStatus state={serviceKey.state} />
                 </Tile.Item.Description>
               </Tile.Item.Root>
               <Tile.Item.Root>
-                <Tile.Item.Term
-                  label={t(
-                    'key-management-service/serviceKeys:key_management_service_service-keys_dashboard_field_created_at',
-                  )}
-                />
+                <Tile.Item.Term label="Creation" />
                 <Tile.Item.Description divider={false}>
                   <TileValueDate
                     value={serviceKey.createdAt}

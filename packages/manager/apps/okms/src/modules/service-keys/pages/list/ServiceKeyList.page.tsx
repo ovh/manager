@@ -11,9 +11,8 @@ import { getOkmsServiceKeyResourceListQueryKey } from '@key-management-service/d
 import { useOkmsById } from '@key-management-service/data/hooks/useOkms';
 import { useOkmsServiceKeys } from '@key-management-service/data/hooks/useOkmsServiceKeys';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
-import { useTranslation } from 'react-i18next';
 
-import { Breadcrumb, Text } from '@ovhcloud/ods-react';
+import { Text } from '@ovhcloud/ods-react';
 
 import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
@@ -27,7 +26,6 @@ import { OkmsDomainTopZone } from '../../components/domain-top-zone/OkmsDomainTo
 import { SERVICE_KEYS_ROUTES_URLS } from '../../routes/routes.constants';
 
 export default function ServiceKeyListPage() {
-  const { t } = useTranslation(['service-keys']);
   const navigate = useNavigate();
   const { notifications } = useNotifications();
   const { okmsId } = useRequiredParams('okmsId');
@@ -77,35 +75,27 @@ export default function ServiceKeyListPage() {
     {
       id: 'name',
       cell: DatagridServiceKeyCellName,
-      label: t(
-        'key-management-service/serviceKeys:key_management_service_service-keys_column_name',
-      ),
+      label: 'Name',
     },
     {
       id: 'id',
       cell: DatagridServiceKeyCellId,
-      label: t('key-management-service/serviceKeys:key_management_service_service-keys_column_id'),
+      label: 'ID',
     },
     {
       id: 'type',
       cell: DatagridCellType,
-      label: t(
-        'key-management-service/serviceKeys:key_management_service_service-keys_column_type',
-      ),
+      label: 'Type',
     },
     {
       id: 'creation_date',
       cell: DatagridCreationDate,
-      label: t(
-        'key-management-service/serviceKeys:key_management_service_service-keys_column_created-at',
-      ),
+      label: 'Created on',
     },
     {
       id: 'status',
       cell: DatagridStatus,
-      label: t(
-        'key-management-service/serviceKeys:key_management_service_service-keys_column_state',
-      ),
+      label: 'Status',
     },
   ];
 
@@ -113,12 +103,12 @@ export default function ServiceKeyListPage() {
     <div className="px-4 py-8 md:mt-2 md:px-10 md:py-9">
       <OkmsDomainTopZone />
       <div>
-        <Breadcrumb>
-          <Text>{t('service-keys:service_keys')}</Text>
-        </Breadcrumb>
+        {/* <Breadcrumb>
+          <Text>Service Keys</Text>
+        </Breadcrumb> */}
       </div>
       <header className="my-[24px] flex items-start justify-between">
-        <Text preset="heading-1">{t('service-keys:service_keys')}</Text>
+        <Text preset="heading-1">Service Keys</Text>
       </header>
       {notifications.length > 0 && (
         <div className="mb-5 max-w-[800px]">
@@ -126,7 +116,7 @@ export default function ServiceKeyListPage() {
         </div>
       )}
       <div className="flex flex-col gap-6">
-        <Text preset="paragraph">{t('service-keys:service_keys_headline')}</Text>
+        <Text preset="paragraph">Create and manage your Customer Managed Keys (CMKs).</Text>
         <Datagrid
           columns={columns}
           items={okmsServiceKeys || []}
