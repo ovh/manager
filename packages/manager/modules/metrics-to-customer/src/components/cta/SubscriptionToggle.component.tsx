@@ -50,7 +50,7 @@ export function SubscriptionToggle<TSubscription = unknown>({
       loading={isLoading}
       disabled={isLoading}
     >
-      {t(`${MODULE_NAMESPACES.SUBSCRIPTIONS}:subscription.${hasSubscription ? "unsubscribe" : "subscribe"}-cta`)}
+      {t(`${MODULE_NAMESPACES.SUBSCRIPTIONS}:subscription.${hasSubscription ? "unsubscribe" : "subscribe"}.cta`)}
     </Button>
   );
 }

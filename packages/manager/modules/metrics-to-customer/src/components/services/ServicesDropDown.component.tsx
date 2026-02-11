@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { SelectField } from '@/components/form/select-field/SelectField.component';
 import { ServicesDropDownProps } from '@/components/services/ServicesDropDown.props';
 import { ObservabilityService } from '@/types/observability.type';
+import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 export default function ServicesDropDown({ 
   services, 
@@ -10,7 +11,7 @@ export default function ServicesDropDown({
   isLoading, 
   onChange 
 }: ServicesDropDownProps) {
-  const { t } = useTranslation('metrics');
+  const { t } = useTranslation(NAMESPACES.SUBSCRIPTIONS);
 
   const isSuccess = services !== undefined;
   if (isSuccess && services?.length === 0) {
