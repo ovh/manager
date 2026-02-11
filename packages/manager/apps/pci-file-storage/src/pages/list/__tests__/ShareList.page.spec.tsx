@@ -53,10 +53,6 @@ vi.mock('@ovh-ux/muk', () => ({
       <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
     </div>
   ),
-  DatagridColumn: () => null,
-  useBytes: () => ({
-    formatBytes: (bytes: number) => `${bytes} B`,
-  }),
 }));
 
 describe('ShareList page', () => {

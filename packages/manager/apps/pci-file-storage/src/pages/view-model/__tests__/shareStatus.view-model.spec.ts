@@ -12,7 +12,7 @@ describe('shareStatus view model', () => {
       { status: 'creating', labelKey: 'status:creating', badgeColor: 'warning' },
       {
         status: 'creating_from_snapshot',
-        labelKey: 'creating_from_snapshot',
+        labelKey: 'status:creating',
         badgeColor: 'warning',
       },
       { status: 'deleting', labelKey: 'status:deleting', badgeColor: 'warning' },

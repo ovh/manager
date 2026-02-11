@@ -1,4 +1,4 @@
-import { TShare, TShareEnabledAction, isValidShareStatus } from '@/domain/entities/share.entity';
+import { TShare, TShareEnabledAction } from '@/domain/entities/share.entity';
 
 import { TShareCapabilityDto, TShareDto } from './dto.type';
 
@@ -25,7 +25,7 @@ export const mapShareDtoToShare = (dto: TShareDto): TShare => ({
   region: dto.region,
   protocol: dto.protocol,
   size: dto.size,
-  status: isValidShareStatus(dto.status) ? dto.status : 'unmanaged',
+  status: dto.status,
   type: dto.type,
   createdAt: dto.createdAt,
   description: dto.description,
