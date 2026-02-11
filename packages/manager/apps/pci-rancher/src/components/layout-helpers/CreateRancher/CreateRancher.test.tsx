@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsInput } from '@ovhcloud/ods-components';
 
+import i18n from 'i18next';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import {
@@ -276,10 +277,10 @@ describe('CreateRancher', () => {
         dashboardTranslation.freeTrialBannerMessageLine1,
       );
       const bannerLine2 = screen.getByText(
-        dashboardTranslation.freeTrialBannerMessageLine2,
+        i18n.t('dashboard:freeTrialBannerMessageLine2', { amount: '100€' }),
       );
       const bannerLine3 = screen.getByText(
-        dashboardTranslation.freeTrialBannerMessageLine3,
+        i18n.t('dashboard:freeTrialBannerMessageLine3', { amount: '250€' }),
       );
 
       expect(bannerLine1).toBeInTheDocument();
@@ -293,10 +294,10 @@ describe('CreateRancher', () => {
         dashboardTranslation.freeTrialBannerMessageLine1,
       );
       const bannerLine2 = screen.queryByText(
-        dashboardTranslation.freeTrialBannerMessageLine2,
+        i18n.t('dashboard:freeTrialBannerMessageLine2', { amount: '100€' }),
       );
       const bannerLine3 = screen.queryByText(
-        dashboardTranslation.freeTrialBannerMessageLine3,
+        i18n.t('dashboard:freeTrialBannerMessageLine3', { amount: '250€' }),
       );
 
       expect(bannerLine1).not.toBeInTheDocument();

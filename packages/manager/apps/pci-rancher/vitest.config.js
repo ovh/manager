@@ -5,15 +5,18 @@ import {
   mergeConfig,
   sharedConfig,
   defaultDedupedDependencies,
+  stubStylesPlugin,
+  INLINE_DEPS,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
+    plugins: [...(sharedConfig.plugins ?? []), stubStylesPlugin()],
     test: {
       server: {
         deps: {
-          inline: ['clsx'],
+          inline: INLINE_DEPS,
         },
       },
       setupFiles: './src/setupTests.ts',

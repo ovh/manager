@@ -18,6 +18,7 @@ import {
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 import useRancherEligibility from '@/data/hooks/useRancherEligibility/useRancherEligibility';
+import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -25,6 +26,7 @@ export default function Onboarding() {
   const navigate = useNavigate();
   const { projectId } = useParams();
   const { data: eligibility } = useRancherEligibility();
+  const freeTrialCreditText = useRancherFreeTrial();
   const title: string = t('title');
   const descriptionText: string = t('description');
   useTrackingPage(TrackingPageView.Onboarding);
@@ -76,12 +78,16 @@ export default function Onboarding() {
             {t('freeTrialEligibilityTitle')}
           </OsdsText>
           <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-            {t('freeTrialCreditStandard')}
+            {t('freeTrialCreditStandard', {
+              amount: freeTrialCreditText.standard,
+            })}
           </OsdsText>
           <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-            {t('freeTrialCreditOvhEdition')}
+            {t('freeTrialCreditOvhEdition', {
+              amount: freeTrialCreditText.ovhEdition,
+            })}
           </OsdsText>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-4">
             {t('freeTrialCreditApplied')}
           </OsdsText>
         </div>

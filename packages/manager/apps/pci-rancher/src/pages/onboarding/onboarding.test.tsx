@@ -1,6 +1,7 @@
 import { vi } from 'vitest';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
+import i18n from 'i18next';
 import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
 import Onboarding from './Onboarding.page';
 import { render, waitFor } from '@/utils/test/test.provider';
@@ -139,10 +140,14 @@ describe('Onboarding', () => {
       screen.getByText(onboardingTranslation.freeTrialEligibilityTitle),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(onboardingTranslation.freeTrialCreditStandard),
+      screen.getByText(
+        i18n.t('onboarding:freeTrialCreditStandard', { amount: '250€' }),
+      ),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(onboardingTranslation.freeTrialCreditOvhEdition),
+      screen.getByText(
+        i18n.t('onboarding:freeTrialCreditOvhEdition', { amount: '100€' }),
+      ),
     ).toBeInTheDocument();
     expect(
       screen.getByText(onboardingTranslation.freeTrialCreditApplied),
