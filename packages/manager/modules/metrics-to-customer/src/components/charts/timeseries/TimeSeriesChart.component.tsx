@@ -45,7 +45,7 @@ export const TimeSeriesChartComponent = <TData,>({
     timeseriesChartConfig.YAxis;
 
   const tooltipKeyFormatterConfig =
-    timeseriesChartConfig.tooltip?.key?.formatter;
+    timeseriesChartConfig.tooltip?.key?.formatter ?? "formatTimestampToDateTime";
 
   const tooltipValueFormatterConfig =
     timeseriesChartConfig.tooltip?.value?.formatter;
@@ -111,12 +111,12 @@ export const TimeSeriesChartComponent = <TData,>({
           {...(tooltipKeyFormatter && {
             labelFormatter: tooltipKeyFormatter,
           })}
-          formatter={(value: number, name: string) => {
+          formatter={(value: number) => {
             const formattedValue = tooltipValueFormatter
               ? tooltipValueFormatter(value)
               : value;
 
-            return [formattedValue, name];
+            return [formattedValue, null];
           }}
         />
 
