@@ -145,7 +145,10 @@ export const LZFileRow = ({ object }: S3ObjectFileRendererProps) => {
         )}
       </div>
 
-      <RowActions actions={actions} testId="storages-action-trigger" />
+      <RowActions
+        actions={actions}
+        testId={`storages-action-trigger-${object.key}`}
+      />
     </div>
   );
 };

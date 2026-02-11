@@ -22,6 +22,7 @@ export function BulkActionButton({ className }: BulkActionButtonProps) {
 
   return (
     <Button
+      data-testid="bulk-delete-button"
       mode="outline"
       variant="critical"
       className={className}

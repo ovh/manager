@@ -6,6 +6,7 @@ export const mockedS3Object: cloud.StorageObject = {
   key: 'objectKey',
   lastModified: '2024-08-04',
   size: 157,
+  storageClass: cloud.storage.StorageClassEnum.STANDARD,
 };
 
 export const mockContainerObject: storages.ContainerObject = {

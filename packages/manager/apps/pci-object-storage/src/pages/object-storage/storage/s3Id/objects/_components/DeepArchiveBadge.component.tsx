@@ -45,6 +45,7 @@ export const DeepArchiveBadge = ({ object }: DeepArchiveBadgeProps) => {
           }}
         />
         <button
+          data-testid="restore-object-button"
           onClick={(e) => {
             e.stopPropagation();
             onRestoreClicked();

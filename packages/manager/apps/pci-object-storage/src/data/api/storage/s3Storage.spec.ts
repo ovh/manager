@@ -15,6 +15,9 @@ import {
   getS3Storage,
   updateS3Storage,
   updateS3ObjectStorageClass,
+  restoreS3Object,
+  bulkDeleteS3Objects,
+  createStorageJob,
 } from './s3Storage.api';
 import { mockedUpdateS3Data } from '@/__tests__/helpers/mocks/s3/updateS3';
 import storages from '@/types/Storages';
@@ -283,6 +286,60 @@ describe('S3 Storage functions', () => {
         targetBucket: 's3Name',
         targetKey: 'objectKey',
       },
+      undefined,
+    );
+  });
+
+  it('should call restoreS3Object', async () => {
+    expect(apiClient.v6.post).not.toHaveBeenCalled();
+    await restoreS3Object({
+      projectId: 'projectId',
+      name: 's3Name',
+      region: 'BHS',
+      key: 'objectKey',
+      days: 7,
+    });
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/region/BHS/storage/s3Name/object/objectKey/restore',
+      {
+        days: 7,
+      },
+      undefined,
+    );
+  });
+
+  it('should call bulkDeleteS3Objects', async () => {
+    expect(apiClient.v6.post).not.toHaveBeenCalled();
+    await bulkDeleteS3Objects({
+      projectId: 'projectId',
+      region: 'BHS',
+      name: 's3Name',
+      objects: [{ key: 'objectKey', versionId: 'versionId' }],
+    });
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/region/BHS/storage/s3Name/bulkDeleteObjects',
+      {
+        objects: [
+          {
+            key: 'objectKey',
+            versionId: 'versionId',
+          },
+        ],
+      },
+      undefined,
+    );
+  });
+
+  it('should call createStorageJob', async () => {
+    expect(apiClient.v6.post).not.toHaveBeenCalled();
+    await createStorageJob({
+      projectId: 'projectId',
+      region: 'BHS',
+      name: 's3Name',
+    });
+    expect(apiClient.v6.post).toHaveBeenCalledWith(
+      '/cloud/project/projectId/region/BHS/storage/s3Name/job/replication',
+      undefined,
       undefined,
     );
   });

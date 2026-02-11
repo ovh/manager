@@ -73,6 +73,7 @@ export function RowActions({ actions, testId }: RowActionsProps) {
                 <div key={a.id}>
                   {a.withSeparator && <DropdownMenuSeparator />}
                   <DropdownMenuItem
+                    data-testid={a.id}
                     onClick={a.onClick}
                     variant={a.variant}
                     disabled={a.disabled}

@@ -17,6 +17,7 @@ export default mergeConfig(
         exclude: [
           'src/__tests__',
           'src/components/guides/guides.config.ts',
+          'src/components/data-table/translations',
           'src/vite-*.ts',
           'src/App.tsx',
           'src/i18n.ts',
@@ -39,5 +40,3 @@ export default mergeConfig(
     },
   }),
 );
-
-
