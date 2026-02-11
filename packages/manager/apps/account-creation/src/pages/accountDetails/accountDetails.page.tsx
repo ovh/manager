@@ -126,10 +126,14 @@ function AccountDetailsForm({
     smsConsent?: boolean;
   };
 
-  const zodSchema = useMemo(() => getZodSchemaFromRule(rules).extend({
-      confirmSend: z.literal(true),
-      smsConsent: z.boolean().optional(),
-    }), [rules]);
+  const zodSchema = useMemo(
+    () =>
+      getZodSchemaFromRule(rules).extend({
+        confirmSend: z.literal(true),
+        smsConsent: z.boolean().optional(),
+      }),
+    [rules],
+  );
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -520,6 +524,48 @@ function AccountDetailsForm({
                 </OdsFormField>
               )}
             />
+            {rules?.purposeOfPurchase && (
+              <Controller
+                control={control}
+                name="purposeOfPurchase"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField className="w-full">
+                    <OdsText
+                      preset="caption"
+                      aria-label={t('account_details_field_purchase_purpose')}
+                    >
+                      <label htmlFor={name}>
+                        {t('account_details_field_purchase_purpose')}
+                        {rules?.purposeOfPurchase?.mandatory && ' *'}
+                      </label>
+                    </OdsText>
+                    {!isLoading && (
+                      <>
+                        <OdsSelect
+                          name={name}
+                          value={value}
+                          onOdsChange={onChange}
+                          onOdsBlur={onBlur}
+                          isDisabled={!rules}
+                          className="flex-1"
+                          key={`purpose_purchase_${rules?.purposeOfPurchase.in?.join(
+                            '_',
+                          ) || 'empty'}`}
+                        >
+                          {rules?.purposeOfPurchase.in?.map((type) => (
+                            <option key={type} value={type}>
+                              {t(
+                                `account_details_field_purchase_purpose_reason_for_${type}`,
+                              )}
+                            </option>
+                          ))}
+                        </OdsSelect>
+                      </>
+                    )}
+                  </OdsFormField>
+                )}
+              />
+            )}
           </div>
         )}
 
