@@ -3,5 +3,8 @@
   "description": "Vous allez supprimer définitivement le share <strong>{{name}}</strong>. Toutes les données sur le share seront perdues.",
   "confirmLabel": "Entrez \"DELETE\" dans le champ ci-dessous pour confirmer",
   "confirmEmptyError": "Veuillez compléter ce champ.",
-  "submitButton": "Supprimer le share"
+  "submitButton": "Supprimer le share",
+  "error": "Une erreur est survenue lors de la suppression du share : {{errorMessage}}",
+  "successDeleting": "Le share {{shareName}} est en cours de suppression",
+  "cannotDelete": "Ce share ne peut pas être supprimé."
 }

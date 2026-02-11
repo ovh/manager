@@ -19,3 +19,11 @@ export const getShare = async (
     .get<TShareDto>(`/cloud/project/${projectId}/region/${shareRegion}/share/${shareId}`)
     .then((response) => mapShareDtoToShare(response.data));
 };
+
+export const deleteShare = async (
+  projectId: string,
+  region: string,
+  shareId: string,
+): Promise<void> => {
+  await v6.delete(`/cloud/project/${projectId}/region/${region}/share/${shareId}`);
+};

@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
+import { Notifications } from '@ovh-ux/muk';
+
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { useShares } from '@/data/hooks/shares/useShares';
 import { ShareDatagrid } from '@/pages/list/components/ShareDatagrid.component';
@@ -29,6 +31,9 @@ const ShareListPage: React.FC = () => {
         <Text preset="heading-2" className="mb-6">
           {t('list:title')}
         </Text>
+        <div>
+          <Notifications />
+        </div>
         <ShareDatagrid />
       </section>
       <Suspense>
