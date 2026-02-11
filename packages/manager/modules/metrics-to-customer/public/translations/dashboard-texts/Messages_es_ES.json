@@ -1,5 +1,24 @@
 {
   "disk_read_bytes_title": "Bytes leídos del disco",
-  "disk_read_bytes_description_header": "Promedio de bytes leídos durante un período de tiempo determinado",
-  "disk_read_bytes_description_content": "Número de bytes leídos de todos los volúmenes de almacenamiento asociados a la instancia. Esta métrica se utiliza para evaluar la cantidad de datos que la aplicación lee del almacenamiento en disco y se puede utilizar para analizar el rendimiento de E/S. El valor informado es el número total de bytes leídos durante este período de tiempo. Con la supervisión básica (período de 5 minutos), divida este valor por 300 para obtener los bytes por segundo."
+  "disk_read_bytes_description_header": "Número medio de bytes leídos en un período dado.",
+  "disk_read_bytes_description_content": "Número de bytes leídos de todos los volúmenes de almacenamiento asociados a la instancia. Esta métrica se utiliza para evaluar la cantidad de datos que la aplicación lee del almacenamiento en disco y se puede utilizar para analizar el rendimiento de E/S. El valor informado es el número total de bytes leídos durante este período de tiempo. Con la supervisión básica (período de 5 minutos), divida este valor por 300 para obtener los bytes por segundo.",
+  "disk_read_iops_title": "IOPS de lectura del disco",
+  "disk_read_iops_description_header": "Número medio de operaciones de lectura completadas en un período dado.",
+  "disk_write_bytes_title": "Bytes escritos en disco",
+  "disk_write_bytes_description_header": "Número medio de bytes escritos en un período dado.",
+  "disk_write_iops_title": "IOPS de escritura del disco",
+  "disk_write_iops_description_header": "Número medio de operaciones de escritura completadas en un período dado.",
+  "cpu_utilization_title": "Uso de la CPU",
+  "cpu_utilization_description_header": "Porcentaje de recursos de CPU utilizados por la instancia en un período dado, lo que permite identificar tendencias de carga y posibles cuellos de botella.",
+  "network_title": "Red",
+  "network_description_header": "Muestra el ancho de banda del tráfico de red entrante de la instancia en bytes por segundo, útil para monitorear el flujo de datos entrantes y detectar picos o anomalías.",
+  "network_out_title": "Tráfico de red saliente",
+  "network_out_description_header": "Muestra el ancho de banda del tráfico de red saliente de la instancia en bytes por segundo, lo que permite seguir la emisión de datos e identificar transferencias inusuales o grandes.",
+  "network_packets_in_title": "Paquetes de red entrantes",
+  "network_packets_in_description_header": "Muestra el número de paquetes de red entrantes por segundo para la instancia, útil para analizar la intensidad del tráfico y la actividad a nivel de paquetes.",
+  "network_packets_out_title": "Paquetes de red salientes",
+  "network_packets_out_description_header": "Muestra el número de paquetes de red salientes por segundo para la instancia, lo que permite monitorear las tendencias del tráfico saliente y detectar tasas de paquetes anormales.",
+  "memory_utilization_title": "Uso de la memoria",
+  "memory_utilization_description_header": "Muestra el porcentaje de memoria utilizada por la instancia a lo largo del tiempo, lo que permite identificar la presión de memoria, fugas o límites de capacidad.",
+  "number_of_attached_volume_title": "Número de volúmenes adjuntos"
 }

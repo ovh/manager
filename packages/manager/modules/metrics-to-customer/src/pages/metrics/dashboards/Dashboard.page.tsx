@@ -1,5 +1,6 @@
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Message, MessageBody } from '@ovhcloud/ods-react';
+import { Message, MessageBody, MessageIcon, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
@@ -7,6 +8,7 @@ import { NAMESPACES } from '@/MetricsToCustomer.translations';
 import { DataValueType } from '@/types/metrics.type';
 
 import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
+import { useDashboardContext } from '@/contexts';
 
 import { useDashboardData } from '@/hooks';
 
@@ -17,7 +19,8 @@ import { Dashboard, Loader } from '@/components';
 const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
-  const { state: { resourceName, productType, resourceURN, } } = useMetricsToCustomerContext();  
+  const { state: { resourceName, productType, resourceURN, regions, } } = useMetricsToCustomerContext();
+  const { state: { regionAvailable } } = useDashboardContext();
 
   const { data: metricToken } = useMetricToken({ resourceName });
 
@@ -26,6 +29,7 @@ const DashboardPage = () => {
     productType,
     resourceURN,
     metricToken ?? '',
+    regionAvailable,
   );
 
   if (configLoading) {
@@ -41,13 +45,26 @@ const DashboardPage = () => {
   }
 
   return (
-    <>
+    <Suspense>
+      {
+        !regionAvailable && (
+          <Message className='w-full mb-8' color="warning">
+            <MessageIcon name="triangle-exclamation" />
+            <MessageBody>
+              <Text preset={TEXT_PRESET.paragraph}>
+                {t(`${NAMESPACES.MODULE}:metrics_region_not_available`, { region: regions[0]?.label })}
+              </Text>
+            </MessageBody>
+          </Message>
+        )
+      }
       <Dashboard
         charts={charts}
+        disabled={!regionAvailable}
         onRefresh={refetchAll}
         onCancel={cancelAll} />
       <Outlet />
-    </>
+    </Suspense>
   );
 };
 

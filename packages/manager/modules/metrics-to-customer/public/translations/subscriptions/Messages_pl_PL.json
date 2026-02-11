@@ -1,28 +1,33 @@
 {
   "tenants_drawer": {
-    "title": "Lista tenantów",
-    "disclaimer": "Można wybrać wyłącznie tenanty znajdujące się w tym samym regionie {{region}}, co Twój zasób",
-    "no_results_found": "Nie znaleziono żadnego tenantu dla wyszukiwania „{{searchQuery}}”",
+    "title": "Lista najemców",
+    "disclaimer": "Tylko najemcy znajdujący się w tym samym regionie \"{{region}}\" co twoje zasoby mogą być wybrani",
+    "no_results_found": "Nie znaleziono najemcy dla wyszukiwania \"{{searchQuery}}\"",
     "region": "region"
   },
   "tenants_regions": {
-    "region_one": "Region: {{region}}",
-    "region_other": "Regiony: {{region}}"
+    "region_one": "Region",
+    "region_other": "Regiony"
   },
   "no_tenants_message": {
-    "title": "Zbierz metryki w Twoim pierwszym tenancie w tym regionie",
-    "description": "Aby umożliwić Ci szybki start, automatycznie tworzymy pierwszy tenant posiadający następujące ustawienia:",
-    "retention": "Retencja: {{retention}}"
+    "title": "Zbieraj metryki w swoim pierwszym najemcy w tym regionie",
+    "description": "Aby pomóc Ci szybko zacząć, automatycznie utworzymy Twojego pierwszego najemcę z następującymi ustawieniami:",
+    "retention": "Retencja: {{retention}}",
+    "create-and-subscribe-tenant": "Utwórz i subskrybuj swojego najemcę"
   },
   "search": {
     "placeholder": "wyszukiwanie"
   },
   "subscription": {
     "subscribe": {
-      "cta": "Subskrybuj"
+      "cta": "Zapisz się"
     },
     "unsubscribe": {
-      "cta": "Rezygnacja z subskrypcji"
+      "cta": "Wypisz się"
     }
+  },
+  "listing": {
+    "service": "Usługa Obserwowalności",
+    "select_observability_service": "Wybierz usługę"
   }
 }

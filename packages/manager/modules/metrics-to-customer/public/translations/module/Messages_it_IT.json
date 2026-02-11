@@ -1,4 +1,5 @@
 {
   "loading_metrics_module": "Caricamento del modulo delle metriche in corso...",
-  "manage_configuration_button": "Gestisci la configurazione"
+  "manage_configuration_button": "Gestisci la configurazione",
+  "metrics_region_not_available": "Le metriche non sono ancora disponibili per la regione {{region}} della tua istanza."
 }
