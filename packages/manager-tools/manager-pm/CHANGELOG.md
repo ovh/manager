@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.52.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.51.1...@ovh-ux/manager-pm@0.52.0) (2026-02-11)
+
+
+### Features
+
+* selective nx execution ([7c06c97](https://github.com/ovh/manager/commit/7c06c97f91dc1a419b60f0f56878f17b64aef421))
+
+
+
+
+
 ## [0.51.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.51.0...@ovh-ux/manager-pm@0.51.1) (2026-02-01)
 
 
