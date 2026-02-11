@@ -1,0 +1,7 @@
+{
+  "title": "Supprimer votre share",
+  "description": "Vous allez supprimer définitivement le share <strong>{{name}}</strong>. Toutes les données sur le share seront perdues.",
+  "confirmLabel": "Entrez \"DELETE\" dans le champ ci-dessous pour confirmer",
+  "confirmEmptyError": "Veuillez compléter ce champ.",
+  "submitButton": "Supprimer le share"
+}

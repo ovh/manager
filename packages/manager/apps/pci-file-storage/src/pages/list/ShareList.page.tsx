@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
@@ -31,6 +31,9 @@ const ShareListPage: React.FC = () => {
         </Text>
         <ShareDatagrid />
       </section>
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </main>
   );
 };
