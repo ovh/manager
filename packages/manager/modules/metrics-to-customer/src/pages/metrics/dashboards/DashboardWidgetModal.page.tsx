@@ -29,8 +29,11 @@ import { useDashboardContext, useMetricsToCustomerContext } from '@/contexts';
 
 import { useChartWithData, useMetricToken } from '@/data/hooks';
 
+import { useNamespaceTranslation } from '@/hooks';
+
 const DashboardWidgetModal = <TData,>() => {
-  const { t } = useTranslation([NAMESPACES.DASHBOARDS, NAMESPACES.DASHBOARD_TEXTS, COMMON_NAMESPACES.ACTIONS]);
+  const { t } = useTranslation([NAMESPACES.DASHBOARDS, COMMON_NAMESPACES.ACTIONS]);
+  const tDashboardTexts = useNamespaceTranslation(NAMESPACES.DASHBOARD_TEXTS);
 
   const navigate = useNavigate();
 
@@ -121,7 +124,7 @@ const DashboardWidgetModal = <TData,>() => {
         className="pt-5 px-5 text-left m-auto max-w-[calc(100vw-128px)] max-h-[calc(100vh-128px)]">
         <div className="flex items-center gap-4">
           <div>
-            <Text preset={TEXT_PRESET.heading3}>{t(`${NAMESPACES.DASHBOARD_TEXTS}:${title}`)}</Text>
+            <Text preset={TEXT_PRESET.heading3}>{tDashboardTexts(title)}</Text>
           </div>
           <div className="ml-auto flex justify-end gap-4">
             <TimeControls id="widget-time-controls" isLoading={globalLoading} state={dashboardState} onStateChange={onStateChange} onRefresh={refetch} onCancel={cancel} />
