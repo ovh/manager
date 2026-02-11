@@ -5,16 +5,6 @@ import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import Onboarding from './Onboarding.page';
 
-vi.mock('react-i18next', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('react-i18next')>();
-  return {
-    ...mod,
-    useTranslation: () => ({
-      t: (key: string) => key,
-    }),
-  };
-});
-
 describe('Onboarding page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();

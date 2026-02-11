@@ -21,24 +21,14 @@ import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   useObjectStorageData: vi.fn(() => ({
     projectId: 'projectId',
-    storages: [],
+    storages: [mockedStorageContainer],
     storagesQuery: { isLoading: false },
     users: [mockedCloudUser],
   })),
 }));
 
-vi.mock('@/data/hooks/s3-storage/useGetS3.hook', () => ({
-  useGetS3: vi.fn(() => ({
-    data: mockedStorageContainer,
-    isLoading: false,
-    isSuccess: true,
-    isError: false,
-    error: null,
-    refetch: vi.fn(),
-  })),
-}));
-
 vi.mock('@/data/api/storage/s3Storage.api', () => ({
+  getS3Storage: vi.fn(() => mockedStorageContainer),
   addS3UserPolicy: vi.fn((policy) => policy),
 }));
 

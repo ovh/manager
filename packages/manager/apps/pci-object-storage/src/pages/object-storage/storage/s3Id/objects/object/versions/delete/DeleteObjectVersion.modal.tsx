@@ -60,7 +60,7 @@ const DeleteObjectVersion = () => {
     },
   });
 
-  if (!objectKey) return navigate('../');
+  if (!objectKey) navigate('../');
 
   const handleDelete = () => {
     deleteS3ObjectVersion({
@@ -77,7 +77,10 @@ const DeleteObjectVersion = () => {
       backUrl={`../?objectKey=${encodeURIComponent(objectKey)}`}
       isLoading={!projectId && !objectKey && !versionObjectQuery.data.key}
     >
-      <DialogContent variant="warning">
+      <DialogContent
+        variant="warning"
+        data-testid="delete-object-version-modal"
+      >
         <DialogHeader>
           <DialogTitle>{t('deleteObjectVersionTitle')}</DialogTitle>
         </DialogHeader>
@@ -96,6 +99,7 @@ const DeleteObjectVersion = () => {
             </Label>
             <Input
               id="terminateInput"
+              data-testid="delete-object-version-confirmation-input"
               type="text"
               placeholder="PERMANENTLY DELETE"
               onChange={(event) => {
@@ -116,6 +120,7 @@ const DeleteObjectVersion = () => {
               isPending || confirmationInput !== PERMANENT_DELETE_CONFIRMATION
             }
             onClick={handleDelete}
+            data-testid="delete-object-version-submit-button"
           >
             {t('deleteObjectVersionButtonConfirm')}
           </Button>
