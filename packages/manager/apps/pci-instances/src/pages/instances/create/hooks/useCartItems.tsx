@@ -49,7 +49,12 @@ export const useCartItems = (): TCartItems => {
 
   const [flavorId, macroRegion, microRegion, availabilityZone] = useWatch({
     control,
-    name: ['flavorId', 'macroRegion', 'microRegion', 'availabilityZone'],
+    name: [
+      'flavorId',
+      'macroRegion',
+      'microRegion',
+      'availabilityZone',
+    ],
   });
 
   const quantityHintParamsSelect = useMemo(
@@ -108,7 +113,10 @@ export const useCartItems = (): TCartItems => {
           id: 'flavor',
           name: t('creation:pci_instance_creation_select_flavor_cart_section'),
           description: (
-            <FlavorDetails quantity={quantity} flavor={flavorDetails} />
+            <FlavorDetails
+              quantity={quantity}
+              flavor={flavorDetails}
+            />
           ),
           price: flavorDetails.price * quantity,
           priceUnit,

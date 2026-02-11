@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Divider, Text } from '@ovhcloud/ods-react';
+import { FlexInstance } from './FlexInstance.component';
+import PostInstallScript from './PostInstallScript.component';
 
 export const AdvancedParameters = () => {
   const { t } = useTranslation('creation');
@@ -10,6 +12,8 @@ export const AdvancedParameters = () => {
       <Text preset="heading-2">
         {t('pci_instances_creation_advanced_parameters')}
       </Text>
+      <FlexInstance />
+      <PostInstallScript />
     </section>
   );
 };

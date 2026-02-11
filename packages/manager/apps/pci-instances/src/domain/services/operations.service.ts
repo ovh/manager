@@ -1,7 +1,7 @@
 import { TBaseOperation } from '../entities/operations';
 
 export const isOperationInProgress = (operation?: TBaseOperation): boolean =>
-  operation?.status == 'pending' || operation?.status === 'created';
+  operation?.status === 'pending' || operation?.status === 'created';
 
 export const isOperationInError = (operation?: TBaseOperation): boolean =>
   operation?.status === 'error';

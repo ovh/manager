@@ -8,7 +8,10 @@ type TFlavorDetails = {
   flavor: TSelectFlavorDetails;
 };
 
-export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
+export const FlavorDetails: FC<TFlavorDetails> = ({
+  quantity,
+  flavor,
+}) => {
   const { t } = useTranslation('creation');
 
   return (

@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Deve contenere solo numeri, lettere, underscore, trattini o punti.",
   "pci_instances_creation_advanced_parameters": "Impostazioni avanzate",
+  "pci_instance_creation_instance_flex_title": "Istanza flessibile",
+  "pci_instance_creation_instance_flex_description": "L'opzione Flex forza uno storage di 50 GB, offrendo snapshot più rapidi e la possibilità di effettuare un downgrade successivamente.",
   "pci_instances_creation_quantity_title": "Scegli una quantità",
   "pci_instances_creation_quantity_label": "Numero di istanze da creare",
   "pci_instance_creation_quantity_rule": "Il tuo attuale quota ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione di {{ region }}. <Link>Controlla la tua quota.</Link>",
