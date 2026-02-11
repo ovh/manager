@@ -31,6 +31,7 @@ const Instance: FC = () => {
     region,
     instanceId,
   });
+  console.log('🚀 ~ test ~ instance:', instance);
 
   const tabs = useMemo(
     () => [
@@ -69,7 +70,7 @@ const Instance: FC = () => {
               </div>
             </div>
           </header>
-          <div className="mt-8 mb-8">
+          <div className="my-8">
             <Notifications />
             <SearchNotifications />
           </div>
