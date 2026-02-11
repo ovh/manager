@@ -24,5 +24,8 @@
   "freeTrialEligibilityTitle": "🎉 É elegível para um período de teste gratuito",
   "freeTrialCreditStandard": "{{amount}} de crédito para o Plano Standard (~1 mês)",
   "freeTrialCreditOvhEdition": "{{amount}} de crédito para o Plano OVHcloud Edition (~1 mês)",
-  "freeTrialCreditApplied": "O crédito será aplicado automaticamente ao seu primeiro serviço."
+  "freeTrialCreditApplied": "O crédito será aplicado automaticamente ao seu primeiro serviço.",
+  "orderButtonLabelFreeTrial": "Começar o meu período de teste gratuito",
+  "rancherGuidesLink": "Aceder aos guias Rancher",
+  "videoTitle": "Vídeo de apresentação Rancher"
 }

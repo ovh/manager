@@ -19,5 +19,8 @@
   "freeTrialEligibilityTitle": "🎉 Vous êtes éligible à un essai gratuit",
   "freeTrialCreditStandard": "{{amount}} de crédit pour le Plan Standard (~1 mois)",
   "freeTrialCreditOvhEdition": "{{amount}} de crédit pour le Plan OVHcloud Edition (~1 mois)",
-  "freeTrialCreditApplied": "Le crédit sera automatiquement appliqué à votre premier service."
+  "freeTrialCreditApplied": "Le crédit sera automatiquement appliqué à votre premier service.",
+  "orderButtonLabelFreeTrial": "Commencer mon Essai Gratuit",
+  "rancherGuidesLink": "Accéder aux guides Rancher",
+  "videoTitle": "Vidéo de présentation Rancher"
 }

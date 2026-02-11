@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Card,
@@ -6,10 +6,11 @@ import {
   PageLayout,
 } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
+import { OsdsLink, OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import onboardingImgSrc from '@/assets/onboarding-img.png';
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
+import { VideoEmbed } from '@/components/VideoEmbed/VideoEmbed.component';
 import { getCreateRancherUrl } from '@/utils/route';
 import {
   useTrackingAction,
@@ -19,6 +20,11 @@ import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
 import useRancherEligibility from '@/data/hooks/useRancherEligibility/useRancherEligibility';
 import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
+import { RANCHER_GUIDES_URL } from '@/utils/guides';
+import { OvhSubsidiary } from '@ovh-ux/muk';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
+const ONBOARDING_VIDEO_URL = 'https://www.youtube.com/embed/ZX8Pg4_ZH0Y';
 
 export default function Onboarding() {
   const { t } = useTranslation('onboarding');
@@ -33,8 +39,13 @@ export default function Onboarding() {
   const trackAction = useTrackingAction();
   const onOrderButtonClick = () => {
     trackAction(TrackingPageView.Onboarding, TrackingEvent.add);
-    navigate(getCreateRancherUrl(projectId));
+    navigate(getCreateRancherUrl(projectId ?? ''));
   };
+
+  const { environment } = useContext(ShellContext);
+  const guideLink =
+    RANCHER_GUIDES_URL[environment.getUser().ovhSubsidiary as OvhSubsidiary] ??
+    RANCHER_GUIDES_URL.DEFAULT;
 
   const tileData = [
     {
@@ -69,30 +80,29 @@ export default function Onboarding() {
     hoverable: true,
   }));
 
-  const description = (
-    <>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{descriptionText}</OsdsText>
-      {eligibility?.data?.freeTrial && (
-        <div className="mt-4 flex flex-col">
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-            {t('freeTrialEligibilityTitle')}
-          </OsdsText>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-            {t('freeTrialCreditStandard', {
-              amount: freeTrialCreditText.standard,
-            })}
-          </OsdsText>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-            {t('freeTrialCreditOvhEdition', {
-              amount: freeTrialCreditText.ovhEdition,
-            })}
-          </OsdsText>
-          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-4">
-            {t('freeTrialCreditApplied')}
-          </OsdsText>
-        </div>
-      )}
-    </>
+  const isFreeTrialAvailable = eligibility?.data?.freeTrial;
+
+  const description = isFreeTrialAvailable ? (
+    <div className="mt-4 flex flex-col">
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+        {t('freeTrialEligibilityTitle')}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+        {t('freeTrialCreditStandard', {
+          amount: freeTrialCreditText.standard,
+        })}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
+        {t('freeTrialCreditOvhEdition', {
+          amount: freeTrialCreditText.ovhEdition,
+        })}
+      </OsdsText>
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-4">
+        {t('freeTrialCreditApplied')}
+      </OsdsText>
+    </div>
+  ) : (
+    <OsdsText color={ODS_THEME_COLOR_INTENT.text}>{descriptionText}</OsdsText>
   );
 
   return (
@@ -102,18 +112,34 @@ export default function Onboarding() {
         title={title}
         img={{ src: onboardingImgSrc }}
         description={description}
-        orderButtonLabel={t('orderButtonLabel')}
+        orderButtonLabel={
+          isFreeTrialAvailable
+            ? t('orderButtonLabelFreeTrial')
+            : t('orderButtonLabel')
+        }
         onOrderButtonClick={onOrderButtonClick}
+        moreInfoButtonLabel={
+          isFreeTrialAvailable ? t('rancherGuidesLink') : undefined
+        }
+        moreInfoHref={isFreeTrialAvailable ? guideLink : undefined}
       >
-        {tileList.map((tile) => (
-          <Card
-            data-testid="tileCard"
-            key={tile.id}
-            href={tile.href}
-            texts={tile.texts}
-          />
-        ))}
+        {!isFreeTrialAvailable &&
+          tileList.map((tile) => (
+            <Card
+              data-testid="tileCard"
+              key={tile.id}
+              href={tile.href}
+              texts={tile.texts}
+            />
+          ))}
       </OnboardingLayout>
+      {isFreeTrialAvailable && (
+        <VideoEmbed
+          src={ONBOARDING_VIDEO_URL}
+          title={t('videoTitle')}
+          className="mx-auto max-w-[800px] pt-10"
+        />
+      )}
     </PageLayout>
   );
 }
