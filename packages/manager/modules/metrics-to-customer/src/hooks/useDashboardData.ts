@@ -14,6 +14,9 @@ import { buildQueryWithResourceUrn } from '@/utils/metrics.utils';
  * a complete dashboard widgets array with data, loading states, and layout properties.
  * @param resourceName
  * @param productType
+ * @param resourceURN
+ * @param metricToken
+ * @param fetchData - If false, only retrieves dashboard config without fetching chart data
  * @returns Object containing:
  *   - charts: Array of chart with data and layout properties
  *   - configLoading: Boolean indicating if dashboard config is still loading
@@ -23,6 +26,7 @@ export const useDashboardData = <TData>(
   productType: string,
   resourceURN: string,
   metricToken: string,
+  fetchData = true,
 ) => {
   const queryClient = useQueryClient();
   const { state: dashboardState } = useDashboardContext();
@@ -50,6 +54,7 @@ export const useDashboardData = <TData>(
     selectedTimeOption,
     refreshInterval,
     metricToken,
+    fetchData,
   });
 
   const charts = useMemo<ChartWidgetWithData<TData>[]>(() => {
