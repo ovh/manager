@@ -36,31 +36,46 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(mockOkmsI
 const renderPage = async ({
   url = mockPageUrl,
   mockParams,
+  waitForContent = true,
 }: {
   url?: string;
   mockParams?: RenderTestMockParams;
+  waitForContent?: boolean;
 } = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(url, mockParams);
 
-  // Check if the drawer is open
-  await assertDrawerVisibility({ state: 'visible' });
+  // Check if the drawer is open (use MEDIUM timeout for lazy-loaded route)
+  await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
-  // wait for the content to be displayed
-  await screen.findByText(labels.secretManager.values);
+  if (waitForContent) {
+    // wait for the content to be displayed
+    await screen.findByText(labels.secretManager.values);
+  }
 
   return { user, container };
 };
 
 describe('ValueDrawer test suite', () => {
   it('should display skeletons while loading secret versions', async () => {
-    // GIVEN
+    // GIVEN versions API delayed so loading state is visible
     // WHEN
-    await renderPage();
+    await renderPage({
+      waitForContent: false,
+      mockParams: { delay: 500 },
+    });
 
-    // THEN
-    const selectSkeleton = screen.getByTestId(VERSION_SELECTOR_SELECT_SKELETON_TEST_ID);
-    const statusSkeleton = screen.getByTestId(VERSION_SELECTOR_STATUS_SKELETON_TEST_ID);
+    // THEN skeletons are shown while versions are loading
+    const selectSkeleton = await screen.findByTestId(
+      VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
+    const statusSkeleton = await screen.findByTestId(
+      VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
     expect(selectSkeleton).toBeVisible();
     expect(statusSkeleton).toBeVisible();
   });

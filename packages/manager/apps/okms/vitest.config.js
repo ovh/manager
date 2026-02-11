@@ -14,6 +14,7 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
+      retry: 0, // We don't want to retry tests in local development
       setupFiles: './src/setupTests.tsx',
       deps: {
         inline: ['@ovh-ux/logs-to-customer', ...INLINE_DEPS],

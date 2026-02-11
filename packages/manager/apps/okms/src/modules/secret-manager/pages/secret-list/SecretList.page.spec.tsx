@@ -24,7 +24,7 @@ const renderPage = async () => {
   await assertTitleVisibility({
     title: labels.secretManager.secret_manager,
     level: 1,
-    timeout: TIMEOUT.MEDIUM,
+    timeout: TIMEOUT.LONG,
   });
 
   return results;

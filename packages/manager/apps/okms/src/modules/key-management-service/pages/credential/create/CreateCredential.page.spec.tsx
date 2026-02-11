@@ -11,12 +11,14 @@ import { describe, expect, it } from 'vitest';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
+  TIMEOUT,
   assertModalVisibility,
   assertTitleVisibility,
   changeInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
-const WAIT_TIMEOUT = { timeout: 5000 };
+const WAIT_TIMEOUT = { timeout: TIMEOUT.MEDIUM };
+
 const mockOkmsItem: OKMS = {
   ...okmsRoubaix1Mock,
   iam: {
@@ -35,16 +37,17 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
-  // Check title
+  // Check title (long timeout: lazy-loaded page + useOkmsById must complete)
   await assertTitleVisibility({
     title: labels.credentials.key_management_service_credential_create_title,
     level: 1,
+    timeout: TIMEOUT.LONG,
   });
 
   return { container };
 };
 
-const testStep1Content = () => {
+const testStep1Content = async () => {
   const inputName = screen.getByTestId('input-name');
   const inputDescription = screen.getByTestId('input-description');
   const inputValidity = screen.getByTestId('input-validity-period');
@@ -67,11 +70,13 @@ const testStep1Content = () => {
   const inputCertificateTypeEC = within(radioCertificateTypeECWrapper).getByRole('radio');
   const inputCertificateTypeRSA = within(radioCertificateTypeRSAWrapper).getByRole('radio');
 
-  // Check checked state using ODS19 standard checked attribute
+  // Check checked state (wait for useEffect to set default certificateType to ECDSA)
   expect(inputMethodKey).not.toBeChecked();
   expect(inputMethodNoKey).toBeChecked();
-  expect(inputCertificateTypeEC).toBeChecked();
-  expect(inputCertificateTypeRSA).not.toBeChecked();
+  await waitFor(() => {
+    expect(inputCertificateTypeEC).toBeChecked();
+    expect(inputCertificateTypeRSA).not.toBeChecked();
+  }, WAIT_TIMEOUT);
 
   const buttonNextStep = screen.getByRole('button', {
     name: labels.credentials.key_management_service_credential_create_cta_add_identities,
@@ -188,7 +193,7 @@ const assertCredentialListPageVisibility = async () => {
 
 const testStep1 = async (user: UserEvent) => {
   // Check and get content of step 1
-  const { buttonNextStep } = testStep1Content();
+  const { buttonNextStep } = await testStep1Content();
 
   // Fill the name
   await changeInputValueByTestId('input-name', 'test-value-input');
@@ -207,7 +212,7 @@ const testStep1 = async (user: UserEvent) => {
 const testStep1CustomCsr = async (user: UserEvent) => {
   // Check and get content of step 1
   const { buttonNextStep, inputMethodKey, inputCertificateTypeEC, inputCertificateTypeRSA } =
-    testStep1Content();
+    await testStep1Content();
 
   // Fill the name
   await changeInputValueByTestId('input-name', 'test-value-input');
@@ -310,7 +315,7 @@ const testStep3 = async (user: UserEvent) => {
 describe('Create Credentials Page test suite', () => {
   it('should display the page correctly', async () => {
     await renderPage({ fromCSR: false });
-    const { buttonNextStep } = testStep1Content();
+    const { buttonNextStep } = await testStep1Content();
     expect(buttonNextStep).toBeDisabled();
   });
 

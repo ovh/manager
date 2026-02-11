@@ -34,11 +34,12 @@ export function buildMswResponseMock<T = unknown>({
 }
 
 /**
- * Set all handlers to 0ms delay
- * This avoids the global utils function to set a default delay of 1000ms
+ * Set all handlers to 0ms delay unless a delay is explicitly set on the handler.
+ * This avoids the global utils function to set a default delay of 1000ms,
+ * while allowing tests to opt-in to a delay (e.g. for loading state assertions).
  */
 export const removeHandlersDelay = (handlers: Handler[]): Handler[] => {
   return handlers.map((handler) => {
-    return { ...handler, delay: 0 };
+    return { ...handler, delay: handler.delay !== undefined ? handler.delay : 0 };
   });
 };
