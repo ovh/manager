@@ -52,7 +52,7 @@ export const ApiErrorMessage: React.FC<ApiErrorMessageProps> = ({
     >
       <Icon name={ICON_NAME.hexagonExclamation} />
       <MessageBody>
-        <span className="text-sm break-all" dangerouslySetInnerHTML={{ __html: errorMessage }} />
+        <span className="break-all text-sm" dangerouslySetInnerHTML={{ __html: errorMessage }} />
       </MessageBody>
     </Message>
   );

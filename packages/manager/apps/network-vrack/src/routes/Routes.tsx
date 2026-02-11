@@ -14,7 +14,13 @@ const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 const DashboardPage = React.lazy(() => import('@/pages/dashboard/Dashboard.page'));
 const DeleteVrackIpv4 = React.lazy(
-  () => import('@/pages/public-ip-routing/actions/DeleteVrackIpv4.page'),
+  () => import('@/pages/public-ip-routing/actions/delete-vrack-ipv4/DeleteVrackIpv4.page'),
+);
+const DeleteVrackIpv6Subrange = React.lazy(
+  () =>
+    import(
+      '@/pages/public-ip-routing/actions/delete-vrack-ipv6-subrange/DeleteVrackIpv6Subrange.page'
+    ),
 );
 
 export default (
@@ -54,6 +60,18 @@ export default (
                 pageType: PageType.popup,
               },
               currentPage: 'vrack.dashboard.detachIpv4',
+            }}
+          />
+          <Route
+            id="vrack.dashboard.detachIpv6Subrange"
+            path={urls.detachIpv6Subrange}
+            Component={DeleteVrackIpv6Subrange}
+            handle={{
+              tracking: {
+                pageName: 'detach-ipv6-subrange',
+                pageType: PageType.popup,
+              },
+              currentPage: 'vrack.dashboard.detachIpv6Subrange',
             }}
           />
         </Route>

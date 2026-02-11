@@ -5,6 +5,7 @@ import { CARD_COLOR, Card, DIVIDER_SPACING, Divider, TEXT_PRESET, Text } from '@
 import { BandwidthOption } from '@ovh-ux/manager-network-common';
 import { Tile } from '@ovh-ux/muk';
 
+import { Ipv6Detail } from '@/data/api/get/vrackIp';
 import { useBandwidthFormatConverter } from '@/hooks/useBandwidthFormatConverter';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
@@ -17,7 +18,7 @@ interface RegionTileProps {
   serviceName: string;
   bandwidthLimit: number;
   ipv4List: string[];
-  ipv6List: string[];
+  ipv6List: Ipv6Detail[];
   bandwidthOptionList?: BandwidthOption[];
 }
 
@@ -34,7 +35,7 @@ export const RegionTile = ({
   const currentBandwidth = bandwidthConverter(bandwidthLimit);
 
   return (
-    <Card className="w-96 flex-col p-6" color={CARD_COLOR.neutral}>
+    <Card className="min-w-96 flex-col p-6" color={CARD_COLOR.neutral}>
       <section className="flex w-full flex-col">
         <div className="flex">
           <Flag region={region} />

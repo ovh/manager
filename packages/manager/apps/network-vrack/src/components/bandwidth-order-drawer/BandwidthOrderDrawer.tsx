@@ -130,13 +130,13 @@ export const BandwidthOrderDrawer = ({
       }}
     >
       <DrawerTrigger asChild>
-        <Link className="flex items-center my-4" disabled={bandwidthOptionList.length < 2}>
+        <Link className="my-4 flex items-center" disabled={bandwidthOptionList.length < 2}>
           {t('publicIpRouting_modify_bandwidth_button')}
           <Icon name={ICON_NAME.arrowRight} className="ml-2" />
         </Link>
       </DrawerTrigger>
       <DrawerContent position={DRAWER_POSITION.right}>
-        <DrawerBody className="flex flex-col h-[96%]">
+        <DrawerBody className="flex h-[96%] flex-col">
           <div>
             <Text preset={TEXT_PRESET.heading4} className="mb-10">
               {t('publicIpRouting_modify_bandwidth_header1', { region })}
@@ -157,7 +157,7 @@ export const BandwidthOrderDrawer = ({
                   aria-checked={selectedPlanCode === option.planCode}
                   tabIndex={option.state !== BandwidthOptionState.CURRENT ? 0 : -1}
                   key={option.planCode}
-                  className={`flex items-center mb-2 px-5 py-4 ${
+                  className={`mb-2 flex items-center px-5 py-4 ${
                     option.state !== BandwidthOptionState.CURRENT
                       ? 'cursor-pointer'
                       : 'cursor-not-allowed'
@@ -200,7 +200,7 @@ export const BandwidthOrderDrawer = ({
                     </Radio>
                     {option.state !== BandwidthOptionState.CURRENT && (
                       <Message
-                        className="mt-3 p-0 border-none text-sm"
+                        className="mt-3 border-none p-0 text-sm"
                         dismissible={false}
                         variant={MESSAGE_VARIANT.light}
                         color={
@@ -224,7 +224,7 @@ export const BandwidthOrderDrawer = ({
                       </Message>
                     )}
                   </div>
-                  <div className="ml-auto flex flex-col items-end justify-center min-w-[80px]">
+                  <div className="ml-auto flex min-w-[80px] flex-col items-end justify-center">
                     <Text
                       preset={TEXT_PRESET.heading6}
                       className="mt-4 text-[var(--ods-theme-information-color)]"
