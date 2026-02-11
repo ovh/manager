@@ -14,6 +14,7 @@ import ExpirationCell from './cells/expirationCell';
 import EngagementCell from './cells/engagementCell';
 import PriceCell from './cells/priceCell';
 import TagsCell from './cells/tagsCell';
+import OsCell from './cells/osCell';
 
 import { textByProductStatus } from './commonCellsWording';
 
@@ -107,7 +108,7 @@ export function useColumns(): DatagridColumn<DedicatedServer>[] {
       type: FilterTypeCategories.String,
       header: t('server_display_operating_system'),
       label: t('server_display_operating_system'),
-      cell: ({ row: { original: server } }) => <div>{t(server.os)}</div>,
+      cell: ({ row: { original: server } }) => OsCell(server),
     },
     {
       id: 'region',
