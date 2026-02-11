@@ -2,8 +2,15 @@ import {
   FormField,
   FormFieldError,
   FormFieldLabel,
+  Icon,
+  ICON_NAME,
   Input,
   INPUT_TYPE,
+  Text,
+  TEXT_PRESET,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@ovhcloud/ods-react";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { Controller, type Control } from "react-hook-form";
@@ -15,6 +22,7 @@ export interface SubDomainFieldProps {
   domainSuffix?: string;
   className?: string;
   required?: boolean;
+  tooltip?: string;
 }
 
 export function SubDomainField({
@@ -22,6 +30,7 @@ export function SubDomainField({
   domainSuffix = "",
   className,
   required = true,
+  tooltip,
 }: SubDomainFieldProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
   return (
@@ -33,6 +42,16 @@ export function SubDomainField({
           <FormFieldLabel>
             {t("zone_page_add_entry_modal_step_1_subdomain")}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
+            {tooltip && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Icon name={ICON_NAME.circleQuestion} className="text-[--ods-color-primary-500] ml-1" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
+                </TooltipContent>
+              </Tooltip>
+            )}
           </FormFieldLabel>
           <div className="flex w-full gap-2">
             <Input

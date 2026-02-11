@@ -2,6 +2,8 @@ import {
   FormField,
   FormFieldError,
   FormFieldLabel,
+  Icon,
+  ICON_NAME,
   Input,
   INPUT_TYPE,
   Select,
@@ -9,6 +11,9 @@ import {
   SelectControl,
   Text,
   TEXT_PRESET,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@ovhcloud/ods-react";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { Controller, type Control, type UseFormWatch } from "react-hook-form";
@@ -19,13 +24,26 @@ export interface TtlFieldProps {
   readonly control: Control<AddEntrySchemaType>;
   readonly watch: UseFormWatch<AddEntrySchemaType>;
   readonly className?: string;
+  readonly tooltip?: string;
 }
 
-export function TtlField({ control, watch, className }: TtlFieldProps) {
+export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
   return (
     <FormField className={`${(className ?? "").trim()} w-full`}>
-      <FormFieldLabel>{t("zone_page_add_entry_modal_step_1_ttl")}</FormFieldLabel>
+      <FormFieldLabel>
+        {t("zone_page_add_entry_modal_step_1_ttl")}
+        {tooltip && (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Icon name={ICON_NAME.circleQuestion} className="text-[--ods-color-primary-500] ml-1" />
+            </TooltipTrigger>
+            <TooltipContent>
+              <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
+            </TooltipContent>
+          </Tooltip>
+        )}
+      </FormFieldLabel>
       <div className="flex w-full flex-wrap items-center gap-2">
         <Controller
           name="ttlSelect"

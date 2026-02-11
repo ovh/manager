@@ -24,6 +24,7 @@ export function ARecordForm({
         control={control}
         domainSuffix={domainSuffix}
         className="w-full"
+        tooltip={t("zone_page_tooltip_subdomain")}
       />
       <TextField
         name="target"
@@ -31,8 +32,9 @@ export function ARecordForm({
         label={t("zone_page_add_entry_modal_step_2_label_ipv4")}
         required
         className="w-full"
+        tooltipText={t("zone_page_tooltip_ipv4")}
       />
-      <TtlField control={control} watch={watch} />
+      <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
     </div>
   );
 }

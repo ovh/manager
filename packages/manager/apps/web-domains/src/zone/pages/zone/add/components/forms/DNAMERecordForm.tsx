@@ -24,6 +24,7 @@ export function DNAMERecordForm({
         control={control}
         domainSuffix={domainSuffix}
         className="w-full"
+        tooltip={t("zone_page_tooltip_subdomain_dname")}
       />
       <TextField
         name="target"
@@ -31,8 +32,9 @@ export function DNAMERecordForm({
         label={t("zone_page_add_entry_modal_step_2_label_dname_target")}
         required
         className="w-full"
+        tooltipText={t("zone_page_tooltip_dname_target")}
       />
-      <TtlField control={control} watch={watch} />
+      <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
     </div>
   );
 }

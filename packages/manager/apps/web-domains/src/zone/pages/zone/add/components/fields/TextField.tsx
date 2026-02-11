@@ -54,33 +54,29 @@ export function TextField({
           <FormFieldLabel>
             {label}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
-          </FormFieldLabel>
-          <div className="flex w-full gap-2">
-            <Input
-              type={INPUT_TYPE.text}
-              className={inputClassName}
-              name={field.name}
-              value={typeof field.value === "string" || typeof field.value === "number" ? String(field.value) : ""}
-              onChange={(e) => field.onChange(e.target?.value)}
-              onBlur={field.onBlur}
-              ref={field.ref}
-              maxLength={maxLength}
-              invalid={!!error}
-              disabled={disabled}
-            />
             {tooltip != null && (
-              <Text preset={TEXT_PRESET.span}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Icon name={ICON_NAME.circleQuestion} />
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
-                  </TooltipContent>
-                </Tooltip>
-              </Text>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Icon name={ICON_NAME.circleQuestion} className="text-[--ods-color-primary-500] ml-1" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
+                </TooltipContent>
+              </Tooltip>
             )}
-          </div>
+          </FormFieldLabel>
+          <Input
+            type={INPUT_TYPE.text}
+            className={inputClassName}
+            name={field.name}
+            value={typeof field.value === "string" || typeof field.value === "number" ? String(field.value) : ""}
+            onChange={(e) => field.onChange(e.target?.value)}
+            onBlur={field.onBlur}
+            ref={field.ref}
+            maxLength={maxLength}
+            invalid={!!error}
+            disabled={disabled}
+          />
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>
       )}

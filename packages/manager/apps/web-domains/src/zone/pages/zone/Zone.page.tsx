@@ -192,17 +192,6 @@ export default function ZonePage() {
   const columns: DatagridColumn<ZoneRecord>[] = useMemo(
     () => [
       {
-        id: 'subDomain',
-        header: t('zone_page_subdomain'),
-        isSearchable: true,
-        cell: ({ row }) => <div>{row.original.subDomain ? `${row.original.subDomain}.${row.original.zoneToDisplay}` : row.original.zoneToDisplay}</div>,
-      },
-      {
-        id: 'ttl',
-        accessorKey: 'ttl',
-        header: t('zone_page_ttl'),
-      },
-      {
         id: 'fieldType',
         accessorKey: 'fieldType',
         header: t('zone_page_type'),
@@ -215,7 +204,17 @@ export default function ZonePage() {
             value: fieldType,
           }))
           .sort((a, b) => a.label.localeCompare(b.label)),
-
+      },
+      {
+        id: 'subDomain',
+        header: t('zone_page_subdomain'),
+        isSearchable: true,
+        cell: ({ row }) => <div>{row.original.subDomain ? `${row.original.subDomain}.${row.original.zoneToDisplay}` : row.original.zoneToDisplay}</div>,
+      },
+      {
+        id: 'ttl',
+        accessorKey: 'ttl',
+        header: t('zone_page_ttl'),
       },
       {
         id: 'targetToDisplay',
