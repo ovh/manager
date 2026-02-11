@@ -2,6 +2,9 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
+import '@ovhcloud/ods-themes/default/css';
+import '@ovhcloud/ods-themes/default/fonts';
+
 import '@ovh-ux/manager-pci-common/dist/style.css';
 import { ShellContext, initI18n, initShellContext } from '@ovh-ux/manager-react-shell-client';
 
