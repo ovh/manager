@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { ICON_NAME, Icon, Text } from '@ovhcloud/ods-react';
 
 import { RegionTiles } from '@/components/region-tiles/RegionTiles';
-import VrackTasksProvider from '@/contexts/vrack-tasks/VrackTasks.provider';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export default function PublicIpRouting() {
@@ -37,9 +36,7 @@ export default function PublicIpRouting() {
       </div>
       {serviceName && (
         <div className="w-full">
-          <VrackTasksProvider serviceName={serviceName}>
-            <RegionTiles serviceName={serviceName} />
-          </VrackTasksProvider>
+          <RegionTiles serviceName={serviceName} />
         </div>
       )}
       <Suspense>

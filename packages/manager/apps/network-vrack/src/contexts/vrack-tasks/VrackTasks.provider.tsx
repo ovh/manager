@@ -1,17 +1,8 @@
-import { useEffect, useMemo } from 'react';
+/* eslint-disable react-hooks/set-state-in-effect */
+import { useCallback, useEffect, useState } from 'react';
 
-import { useQueryClient } from '@tanstack/react-query';
-import { useTranslation } from 'react-i18next';
-
-import { Text } from '@ovhcloud/ods-react';
-
-import { useNotifications } from '@ovh-ux/muk';
-
-import { REMOVE_BLOCK_FROM_BRIDGE_DOMAIN_TASK_FUNCTION } from '@/App.constants';
 import { useGetVrackTasks } from '@/hooks/tasks/useGetVrackTasks';
-import usePrevious from '@/hooks/usePrevious';
-import { getVrackIpv4ListKey } from '@/hooks/vrack-ip/useGetVrackIpv4List';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { TrackedTask } from '@/types/Task.type';
 
 import tasksContext from './vrack-tasks.context';
 
@@ -21,45 +12,47 @@ type Props = {
 };
 
 export const VrackTasksProvider = ({ serviceName, children }: Props): JSX.Element => {
-  const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting]);
-  const queryClient = useQueryClient();
-  const { addInfo, addSuccess, clearNotifications } = useNotifications();
   const { vrackTasks } = useGetVrackTasks({ serviceName });
-  const deleteIpTasks = useMemo(
-    () =>
-      vrackTasks.filter((task) => task.function === REMOVE_BLOCK_FROM_BRIDGE_DOMAIN_TASK_FUNCTION),
-    [vrackTasks],
+  const [trackedTasks, setTrackedTasks] = useState<TrackedTask[]>([]);
+  const [toBeTrackedTask, setToBeTrackedTask] = useState<TrackedTask | undefined>(undefined);
+
+  const trackTask = (newTrackedTask: TrackedTask) => setToBeTrackedTask(newTrackedTask);
+
+  const untrackTask = useCallback(
+    (trackedTaskToBeRemoved: TrackedTask) => {
+      const updatedTrackedTasks = trackedTasks.filter(
+        ({ taskId }) => taskId !== trackedTaskToBeRemoved.taskId,
+      );
+      setTrackedTasks(updatedTrackedTasks);
+    },
+    [trackedTasks],
   );
-  const previousDeleteIpTasks = usePrevious(deleteIpTasks) ?? [];
 
   const context = {
-    vrackTasks,
+    trackedTasks,
+    trackTask,
   };
 
   useEffect(() => {
-    const updatedDeleteTasksId = deleteIpTasks.map(({ id }) => id);
-    const previousDeleteIpTasksIds = previousDeleteIpTasks.map(({ id }) => id);
-    const newDeleteTasks = deleteIpTasks.filter(({ id }) => !previousDeleteIpTasksIds.includes(id));
-
-    if (newDeleteTasks.length) {
-      clearNotifications();
-      addInfo(<Text>{t('publicIpRouting_region_detach_ip_pending')}</Text>);
+    if (
+      toBeTrackedTask !== undefined &&
+      vrackTasks.some(({ id }) => id === toBeTrackedTask?.taskId)
+    ) {
+      const updatedTrackedTasks = [...trackedTasks, toBeTrackedTask];
+      setTrackedTasks(updatedTrackedTasks);
+      setToBeTrackedTask(undefined);
     }
+  }, [toBeTrackedTask, vrackTasks, trackedTasks]);
 
-    const finishedDeleteTasks = previousDeleteIpTasks.filter(
-      ({ id }) => !updatedDeleteTasksId.includes(id),
+  useEffect(() => {
+    const finishedTask = trackedTasks.find(
+      ({ taskId }) => !vrackTasks.some(({ id }) => id === taskId),
     );
-    if (finishedDeleteTasks.length) {
-      finishedDeleteTasks.forEach(({ targetDomain }) => {
-        clearNotifications();
-        addSuccess(
-          <Text>{t('publicIpRouting_region_detach_ip_success', { ip: targetDomain })}</Text>,
-        );
-      });
-      void queryClient.invalidateQueries({ queryKey: getVrackIpv4ListKey(serviceName) });
+    if (finishedTask !== undefined) {
+      finishedTask.onFinished();
+      untrackTask(finishedTask);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deleteIpTasks, previousDeleteIpTasks]);
+  }, [vrackTasks, trackedTasks, untrackTask]);
 
   return <tasksContext.Provider value={context}>{children}</tasksContext.Provider>;
 };
