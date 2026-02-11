@@ -32,18 +32,6 @@ vi.mock('@tanstack/react-virtual', () => ({
   }),
 }));
 
-// Mock useTranslation
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-// Mock cn utility
-// vi.mock('@/lib/utils', () => ({
-//   cn: (...args: unknown[]) => args.filter(Boolean).join(' '),
-// }));
-
 describe('VirtualizedBrowser', () => {
   const mockItems = [
     { id: 1, name: 'Item 1' },

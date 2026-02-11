@@ -10,16 +10,6 @@ import {
 } from '@/__tests__/helpers/mocks/region/region';
 import { mockedCloudUser } from '@/__tests__/helpers/mocks/cloudUser/user';
 
-vi.mock('react-i18next', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('react-i18next')>();
-  return {
-    ...mod,
-    useTranslation: () => ({
-      t: (key: string) => key,
-    }),
-  };
-});
-
 describe('OrderSummary', () => {
   beforeEach(() => {
     vi.restoreAllMocks();

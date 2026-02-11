@@ -29,16 +29,6 @@ import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 import { mockedStorageContainer } from '@/__tests__/helpers/mocks/storageContainer/storageContainer';
 import { mockedSwiftContainer } from '@/__tests__/helpers/mocks/swift/swift';
 
-vi.mock('react-i18next', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('react-i18next')>();
-  return {
-    ...mod,
-    useTranslation: () => ({
-      t: (key: string) => key,
-    }),
-  };
-});
-
 vi.mock('@/data/hooks/project/usePciProject.hook', () => ({
   default: () => ({
     data: { project_id: 'projectId' },
