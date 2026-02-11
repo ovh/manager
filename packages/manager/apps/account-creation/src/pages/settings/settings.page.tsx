@@ -39,10 +39,8 @@ import {
 } from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
 import { useTrackError } from '@/hooks/tracking/useTracking';
-import {
-  DEFAULT_REDIRECT_URL,
-  WEBSITE_LABEL_BY_LOCALE,
-} from './settings.constants';
+import { DEFAULT_REDIRECT_URL } from './settings.constants';
+import { getWebsiteLabel } from './settings.utils';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 
 type SettingsFormData = {
@@ -132,7 +130,9 @@ export default function Settings() {
 
   useEffect(() => {
     if (languages?.length === 1) {
-      setValue('language', languages[0], { shouldValidate: true });
+      setValue('language', languages[0].ietfLanguageTag, {
+        shouldValidate: true,
+      });
     }
   }, [languages, selectedCountry, selectedCurrency, setValue]);
 
@@ -149,7 +149,7 @@ export default function Settings() {
   }, [setValue]);
 
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
-    ({ country, currency, language }: SettingsFormData) => {
+    ({ country, language }: SettingsFormData) => {
       if (pageTracking) {
         trackClick(pageTracking, {
           location: PageLocation.page,
@@ -161,7 +161,6 @@ export default function Settings() {
           ],
         });
       }
-      console.log({ country, currency, language });
       // In case the signup url is not valid, we will redirect to the website
       if (redirectToSignUpUrl !== null) {
         const params = `ovhSubsidiary=${ovhSubsidiary}&country=${country}&language=${language}`;
@@ -341,8 +340,11 @@ export default function Settings() {
                 data-testid="language-select"
               >
                 {(languages || []).map((language) => (
-                  <option key={`site_${language}`} value={language}>
-                    {WEBSITE_LABEL_BY_LOCALE[language]}
+                  <option
+                    key={`site_${language.ietfLanguageTag}`}
+                    value={language.ietfLanguageTag}
+                  >
+                    {getWebsiteLabel(language)}
                   </option>
                 ))}
               </OdsSelect>
