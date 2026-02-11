@@ -3,11 +3,11 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_write_bytes",
-            "title": "Disk write Bytes",
+            "title": "disk_write_bytes_title",
             "unit": "KiB/s",
             "colspan": 2,
             "tooltip": {                
-                "title": "Average written number of read bytes over a specific period of time"
+                "title": "disk_write_bytes_description_header"
             },
             "query": "rate(ovhcloud_libvirtd_domain_local_block_write_bytes{resource_urn=<resource_urn>}[5m]) / 1024",
             "chart": {

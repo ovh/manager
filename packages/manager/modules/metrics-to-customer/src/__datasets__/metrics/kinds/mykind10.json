@@ -3,9 +3,12 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_balloon_current",
-            "title": "Memory utilization",
+            "title": "memory_utilization_title",
             "unit": "percent",
-            "colspan": 2,            
+            "colspan": 2,
+            "tooltip": {
+                "title": "memory_utilization_description_header"
+            },
             "query": "ovhcloud_libvirtd_domain_balloon_current_bytes{resource_urn=<resource_urn>}",
             "chart": {
                 "type": "TimeSeries",
@@ -31,7 +34,7 @@
                 }
             }
         },
-        "displayName": "My kind 4",
-        "name": "mykind4"
+        "displayName": "My kind 10",
+        "name": "mykind10"
     }
 }
