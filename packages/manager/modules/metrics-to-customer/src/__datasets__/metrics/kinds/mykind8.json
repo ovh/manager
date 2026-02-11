@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "neutron_port_rx_packets",
-            "title": "Network packets in",
+            "title": "network_packets_in",
             "unit": "packet/s",
             "colspan": 2,            
             "query": "rate(ovhcloud_neutron_port_rx_packets{resource_urn=<resource_urn>}[5m])",

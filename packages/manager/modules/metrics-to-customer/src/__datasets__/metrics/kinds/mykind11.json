@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_balloon_current",
-            "title": "Number of attached volume",            
+            "title": "number_of_attached_volume",
             "colspan": 4,
             "query": "ovhcloud_libvirtd_domain_block_devices_count{resource_urn=<resource_urn>}",
             "chart": {

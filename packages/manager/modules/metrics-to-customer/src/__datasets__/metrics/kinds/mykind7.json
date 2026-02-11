@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "neutron_port_tx_bytes",
-            "title": "Network out",
+            "title": "network_out",
             "unit": "bytes/s",
             "colspan": 2,            
             "query": "rate(ovhcloud_neutron_port_tx_bytes{resource_urn=<resource_urn>}[5m])",

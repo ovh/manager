@@ -22,11 +22,3 @@ export const getMetricKind = async (params: ObservabilityMetricKindParams): Prom
 
   return Promise.resolve(data);
 };
-
-export const getMetricToken = async (params: ObservabilityServiceParams): Promise<string> => {  
-  console.info(`[MOCK-ADAPTER][getMetricToken] from url param for the resource ${params.resourceName} -> `);
-
-  const metricToken = window.localStorage.getItem('metric-token') ?? '';
-
-  return Promise.resolve(metricToken);
-};

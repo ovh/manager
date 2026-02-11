@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_balloon_current",
-            "title": "Memory utilization",
+            "title": "memory_utilization",
             "unit": "percent",
             "colspan": 2,            
             "query": "ovhcloud_libvirtd_domain_balloon_current_bytes{resource_urn=<resource_urn>}",

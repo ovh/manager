@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_read_requests",
-            "title": "Disk read IOPS",
+            "title": "disk_read_iops",
             "unit": "IOPS",
             "colspan": 2,
             "tooltip": {                

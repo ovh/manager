@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_write_requests",
-            "title": "Disk write IOPS",
+            "title": "cpu_utilization",
             "unit": "IOPS",
             "colspan": 2,
             "tooltip": {                

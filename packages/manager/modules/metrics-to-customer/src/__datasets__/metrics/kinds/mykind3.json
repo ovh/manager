@@ -3,7 +3,7 @@
     "currentState": {
         "chart": {
             "id": "libvirtd_domain_block_write_bytes",
-            "title": "Disk write Bytes",
+            "title": "disk_write_iops",
             "unit": "KiB/s",
             "colspan": 2,
             "tooltip": {                
