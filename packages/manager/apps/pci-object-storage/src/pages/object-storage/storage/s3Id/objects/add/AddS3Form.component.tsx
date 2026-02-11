@@ -125,7 +125,9 @@ const AddS3Form = ({ onSubmit, onError, initialValue }: AddS3FormProps) => {
             {t('fileUploaderButtonCancel')}
           </Button>
         </DialogClose>
-        <Button type="submit">{t('fileUploaderButtonConfirm')}</Button>
+        <Button type="submit" data-testid="add-object-submit-button">
+          {t('fileUploaderButtonConfirm')}
+        </Button>
       </DialogFooter>
     </form>
   );

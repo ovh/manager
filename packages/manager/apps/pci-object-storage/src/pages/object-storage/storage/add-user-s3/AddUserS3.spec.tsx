@@ -27,17 +27,6 @@ vi.mock('@/pages/object-storage/ObjectStorage.context', () => ({
   })),
 }));
 
-// vi.mock('@/data/hooks/s3-storage/useGetS3.hook', () => ({
-//   useGetS3: vi.fn(() => ({
-//     data: mockedStorageContainer,
-//     isLoading: false,
-//     isSuccess: true,
-//     isError: false,
-//     error: null,
-//     refetch: vi.fn(),
-//   })),
-// }));
-
 vi.mock('@/data/api/storage/s3Storage.api', () => ({
   getS3Storage: vi.fn(() => mockedStorageContainer),
   addS3UserPolicy: vi.fn((policy) => policy),

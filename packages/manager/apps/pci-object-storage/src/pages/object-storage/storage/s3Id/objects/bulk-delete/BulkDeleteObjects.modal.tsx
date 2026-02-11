@@ -82,7 +82,7 @@ const BulkDeleteObjects = () => {
 
   return (
     <RouteModal backUrl={`../${location.search}`}>
-      <DialogContent variant="warning">
+      <DialogContent variant="warning" data-testid="bulk-delete-objects-modal">
         <DialogHeader>
           <DialogTitle>
             {isDeletingVersions
@@ -105,6 +105,7 @@ const BulkDeleteObjects = () => {
               </Label>
               <Input
                 id="terminateInput"
+                data-testid="bulk-delete-confirmation-input"
                 type="text"
                 placeholder={PERMANENT_DELETE_CONFIRMATION}
                 onChange={handleConfirmationInputChange}
@@ -127,6 +128,7 @@ const BulkDeleteObjects = () => {
                 confirmationInput !== PERMANENT_DELETE_CONFIRMATION)
             }
             onClick={handleDelete}
+            data-testid="bulk-delete-submit-button"
           >
             {isPending && <Loader2 className="size-4 animate-spin" />}
             {t('deleteObjectButtonConfirm')}

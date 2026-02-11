@@ -29,7 +29,11 @@ const AddObjectModal = () => {
 
   return (
     <RouteModal>
-      <DialogContent className="sm:max-w-xl" variant="information">
+      <DialogContent
+        className="sm:max-w-xl"
+        variant="information"
+        data-testid="add-object-modal"
+      >
         <DialogHeader>
           <DialogTitle>{t('addNewObject')}</DialogTitle>
         </DialogHeader>

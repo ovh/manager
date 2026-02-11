@@ -86,7 +86,10 @@ const ChangeStorageClassModal = () => {
       isLoading={objectQuery.isLoading || !objectQuery.data}
       backUrl={`../../object?objectKey=${encodeURIComponent(objectKey)}`}
     >
-      <DialogContent variant="information">
+      <DialogContent
+        variant="information"
+        data-testid="change-storage-class-modal"
+      >
         <DialogHeader>
           <DialogTitle>{t('changeStorageClassTitle')}</DialogTitle>
         </DialogHeader>
@@ -114,6 +117,7 @@ const ChangeStorageClassModal = () => {
               storageClass === objectQuery.data?.storageClass ||
               !objectQuery.data
             }
+            data-testid="change-storage-class-submit-button"
           >
             {t('changeStorageClassConfirm')}
           </Button>
