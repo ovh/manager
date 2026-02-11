@@ -6,6 +6,7 @@ export { useDatagridSearchParams } from './data-api/useDatagridSearchParams';
 export { useDateFnsLocale } from './date/date-fns-locale/useDateFnsLocale';
 export { DEFAULT_UNKNOWN_DATE_LABEL } from './date/date-formatter/FormatDate.type';
 export { useFormatDate } from './date/date-formatter/useFormatDate';
+export { useEventSource } from './event-source/useEventSource';
 export { useAllCountries } from './location/useAllCountries/useAllCountries';
 export { useAllLocationsByType } from './location/useAllLocationsByType/useAllLocationsByType';
 export { useCityByCode } from './location/useCityByCode/useCityByCode';

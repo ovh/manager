@@ -1,4 +1,5 @@
-import { BaseLayout, Breadcrumb, useDataApi, Datagrid, useUrlParams } from '@ovh-ux/muk';
+import { useEffect } from 'react';
+import { useEventSource, BaseLayout, Breadcrumb, useDataApi, Datagrid, useUrlParams } from '@ovh-ux/muk';
 import { FilterCategories } from '@ovh-ux/manager-core-api';
 
 // URL to test search params
@@ -12,6 +13,37 @@ const WebDomainsPage = () => {
     const deleteParams = (key: string) => {
       deleteQueryParam(key as (typeof urlParamKeys)[number]);
     };
+
+    // Event source to listen to events
+    const { eventSource } = useEventSource();
+
+    useEffect(() => {
+      if (!eventSource) {
+        return undefined;
+      }
+
+      const handleMessage = (event: MessageEvent) => {
+        console.info('Event source message :', event.data);
+      };
+
+      const handleError = (event: Event) => {
+        console.info('Event source error :', event);
+      };
+
+      const handleOpen = () => {
+        console.info('Event source open :');
+      };
+
+      eventSource.onmessage = handleMessage;
+      eventSource.onerror = handleError;
+      eventSource.onopen = handleOpen;
+
+      return () => {
+        eventSource.onmessage = null;
+        eventSource.onerror = null;
+        eventSource.onopen = null;
+      };
+    }, [eventSource]);
 
     console.info('WebDomainsPage urlParamKeys :', urlParamKeys);
     console.info('WebDomainsPage params :', params);
