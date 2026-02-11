@@ -16,18 +16,15 @@ import { useTranslation } from "react-i18next";
 import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
 
 export interface TtlFieldProps {
-  control: Control<AddEntrySchemaType>;
-  watch: UseFormWatch<AddEntrySchemaType>;
-  className?: string;
+  readonly control: Control<AddEntrySchemaType>;
+  readonly watch: UseFormWatch<AddEntrySchemaType>;
+  readonly className?: string;
 }
 
 export function TtlField({ control, watch, className }: TtlFieldProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
-  const ttlSelectValue = watch("ttlSelect");
-  const isExtended = ttlSelectValue === "custom";
-  const widthClass = isExtended ? "w-full" : "w-1/2";
   return (
-    <FormField className={`${(className ?? "").trim()} ${widthClass}`.trim()}>
+    <FormField className={`${(className ?? "").trim()} w-full`}>
       <FormFieldLabel>{t("zone_page_add_entry_modal_step_1_ttl")}</FormFieldLabel>
       <div className="flex w-full flex-wrap items-center gap-2">
         <Controller
@@ -36,8 +33,8 @@ export function TtlField({ control, watch, className }: TtlFieldProps) {
           render={({ field: ttlSelectField }) => (
             <Select
               name={ttlSelectField.name}
-              className="w-full"
-              value={ttlSelectField.value == null ? ["global"] : [String(ttlSelectField.value)]}
+              className="w-[200px]"
+              value={ttlSelectField.value == null ? ["global"] : [ttlSelectField.value as string]}
               onValueChange={({ value }) => ttlSelectField.onChange(value[0] ?? "global")}
               onBlur={() => ttlSelectField.onBlur?.()}
               items={[
@@ -65,7 +62,7 @@ export function TtlField({ control, watch, className }: TtlFieldProps) {
                     name={ttlField.name}
                     value={
                       ttlField.value !== undefined && ttlField.value !== ""
-                        ? String(ttlField.value)
+                        ? ttlField.value as string
                         : ""
                     }
                     onChange={(e) =>

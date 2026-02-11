@@ -1,14 +1,9 @@
-import {
-  FormField,
-  FormFieldLabel,
-  Input,
-  INPUT_TYPE,
-} from "@ovhcloud/ods-react";
 import { type Control, type UseFormWatch } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
 import { SubDomainField } from "../fields/SubDomainField";
 import { TextField } from "../fields/TextField";
+import { TtlField } from "../fields/TtlField";
 
 export interface AAAARecordFormProps {
   control: Control<AddEntrySchemaType>;
@@ -18,6 +13,7 @@ export interface AAAARecordFormProps {
 
 export function AAAARecordForm({
   control,
+  watch,
   domainSuffix,
 }: Readonly<AAAARecordFormProps>) {
   const { t } = useTranslation("zone");
@@ -36,16 +32,7 @@ export function AAAARecordForm({
         required
         className="w-full"
       />
-      <FormField className="w-full">
-        <FormFieldLabel>{t("zone_page_add_entry_modal_step_1_ttl")}</FormFieldLabel>
-        <Input
-          type={INPUT_TYPE.text}
-          className="w-full"
-          value={t("zone_page_add_entry_modal_step_1_ttl_global")}
-          readOnly
-          disabled
-        />
-      </FormField>
+      <TtlField control={control} watch={watch} />
     </div>
   );
 }

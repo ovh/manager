@@ -12,13 +12,13 @@ import { useTranslation } from "react-i18next";
 import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
 
 export interface SelectFieldProps {
-  name: keyof AddEntrySchemaType;
-  control: Control<AddEntrySchemaType>;
-  label: string;
-  required?: boolean;
-  items: { label: string; value: string }[];
-  placeholder?: string;
-  className?: string;
+  readonly name: keyof AddEntrySchemaType;
+  readonly control: Control<AddEntrySchemaType>;
+  readonly label: string;
+  readonly required?: boolean;
+  readonly items: { label: string; value: string }[];
+  readonly placeholder?: string;
+  readonly className?: string;
 }
 
 export function SelectField({
@@ -45,7 +45,7 @@ export function SelectField({
           <Select
             name={field.name}
             className="w-full"
-            value={field.value == null ? [] : [String(field.value)]}
+            value={field.value == null ? [] : [field.value as string]}
             onValueChange={({ value }) => field.onChange(value[0] ?? "")}
             onBlur={() => field.onBlur?.()}
             items={items}
