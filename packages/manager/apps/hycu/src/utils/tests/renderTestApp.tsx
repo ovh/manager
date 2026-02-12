@@ -10,7 +10,7 @@ import { render, waitFor, screen, RenderResult } from '@testing-library/react';
 import {
   getServicesMocks,
   GetServicesMocksParams,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/manager-module-common-api';
 import {
   toMswHandlers,
   getAuthenticationMocks,

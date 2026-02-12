@@ -108,7 +108,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
       () => {
         expect(
           screen.getByTestId('dashboard-license-download-link'),
-        ).not.toHaveAttribute('disabled');
+        ).not.toHaveAttribute('aria-disabled', 'true');
       },
       { timeout: 30_000 },
     );
@@ -141,7 +141,7 @@ describe('License Hycu general informations tile for dashboard test suite', () =
         ).toBeVisible();
         expect(
           screen.getByTestId('dashboard-license-download-link'),
-        ).toHaveAttribute('disabled');
+        ).toHaveAttribute('aria-disabled', 'true');
       },
       { timeout: 30_000 },
     );

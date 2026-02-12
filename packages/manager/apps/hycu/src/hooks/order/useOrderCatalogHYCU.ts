@@ -1,5 +1,5 @@
 import { DefinedInitialDataOptions, useQuery } from '@tanstack/react-query';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { getOrderCatalogHYCU } from '../../data/api/orderCatalogHYCU';
 import { HYCUCatalog } from '@/types/orderCatalogHYCU.type';

@@ -1,11 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ErrorMessage,
-  TRACKING_LABELS,
-  ErrorBanner,
-} from '@ovh-ux/manager-react-components';
+import { ErrorMessage, TRACKING_LABELS, Error } from '@ovh-ux/muk';
 
 interface ErrorObject {
   [key: string]: any;
@@ -41,7 +37,7 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   }, []);
 
   return (
-    <ErrorBanner
+    <Error
       error={error}
       onReloadPage={() => navigate(location.pathname, { replace: true })}
       onRedirectHome={() => navigate('/', { replace: true })}

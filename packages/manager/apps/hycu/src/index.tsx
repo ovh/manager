@@ -6,7 +6,8 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import App from './App';
-import '@ovhcloud/ods-theme-blue-jeans/dist/index.css';
+import '@ovhcloud/ods-themes/default';
+import '@ovh-ux/muk/dist/style.css';
 import './index.scss';
 import './vite-hmr';
 

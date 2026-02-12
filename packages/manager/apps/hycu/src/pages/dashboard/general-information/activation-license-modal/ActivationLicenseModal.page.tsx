@@ -1,28 +1,17 @@
 import { AxiosError } from 'axios';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_LINK_REFERRER_POLICY,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  OsdsButton,
-  OsdsLink,
-  OsdsModal,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@ovhcloud/ods-react';
 import {
   Notifications,
   useNotifications,
-} from '@ovh-ux/manager-react-components';
+  Modal,
+  MODAL_TYPE,
+  Text,
+  TEXT_PRESET,
+} from '@ovh-ux/muk';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FileInputField } from '@/components/FileUpload/FileUpload.component';
 import { useActivateLicenseHYCUMutation } from '@/hooks/api/license';
@@ -73,73 +62,45 @@ export const ActivationHycuLicenseModal: React.FC<ActivationHycuLicenseModalProp
   };
 
   return (
-    <OsdsModal
-      dismissible
-      color={ODS_THEME_COLOR_INTENT.primary}
-      headline={t('hycu_dashboard_license_activate_heading')}
-      onOdsModalClose={() => closeModal()}
-    >
-      <Notifications />
-      <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
-        <div className="mt-8">
-          <>
-            <OsdsText
-              color={ODS_THEME_COLOR_INTENT.text}
-              level={ODS_TEXT_LEVEL.body}
-              className="block mb-3"
-            >
-              {t('hycu_dashboard_license_activate_description')}{' '}
-              <OsdsLink
-                href={link?.guideLink1}
-                color={ODS_THEME_COLOR_INTENT.info}
-                target={OdsHTMLAnchorElementTarget._blank}
-                referrerpolicy={
-                  ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-                }
-              >
-                {t('hycu_dashboard_license_more_information_link')}
-              </OsdsLink>
-            </OsdsText>
-            <FileInputField name="license" control={control} />
-          </>
-        </div>
-        <div className="flex justify-end">
-          <OsdsButton
-            slot="actions"
-            type={ODS_BUTTON_TYPE.button}
-            variant={ODS_BUTTON_VARIANT.ghost}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            onClick={() => {
-              closeModal();
-            }}
-            inline
-          >
-            {t(`${NAMESPACES.ACTIONS}:cancel`)}
-          </OsdsButton>
-          <OsdsButton
-            data-testid="hycu-dashboard-upload-confirm"
-            disabled={!isValid || isActivationPending ? true : undefined}
-            slot="actions"
-            type={ODS_BUTTON_TYPE.submit}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
-            inline
-          >
-            <span slot="start">
-              {isActivationPending && (
-                <OsdsSpinner
-                  className="pt-4"
-                  inline
-                  contrasted
-                  size={ODS_SPINNER_SIZE.sm}
-                ></OsdsSpinner>
-              )}
-            </span>
-            {t(`${NAMESPACES.ACTIONS}:confirm`)}
-          </OsdsButton>
-        </div>
-      </form>
-    </OsdsModal>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Modal
+        dismissible
+        type={MODAL_TYPE.primary}
+        heading={t('hycu_dashboard_license_activate_heading')}
+        onOpenChange={() => closeModal()}
+        primaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:confirm`),
+          loading: isActivationPending,
+          disabled: !isValid || isActivationPending ? true : undefined,
+          onClick: () => handleSubmit(onSubmit)(),
+        }}
+        secondaryButton={{
+          label: t(`${NAMESPACES.ACTIONS}:cancel`),
+          onClick: () => {
+            closeModal();
+          },
+        }}
+      >
+        <Notifications />
+        <form className="flex flex-col gap-10">
+          <div className="mt-8">
+            <>
+              <Text preset={TEXT_PRESET.paragraph} className="block mb-3">
+                {t('hycu_dashboard_license_activate_description')}{' '}
+                <Link
+                  href={link?.guideLink1}
+                  target="blank"
+                  referrer-policy="strict-origin-when-cross-origin"
+                >
+                  {t('hycu_dashboard_license_more_information_link')}
+                </Link>
+              </Text>
+              <FileInputField name="license" control={control} />
+            </>
+          </div>
+        </form>
+      </Modal>
+    </form>
   );
 };
 

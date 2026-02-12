@@ -1,35 +1,18 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { Link, Icon, ICON_NAME, Card, CARD_COLOR } from '@ovhcloud/ods-react';
 import {
   BaseLayout,
-  Description,
   OvhSubsidiary,
-  Subtitle,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
+  Text,
+  Button,
+  TEXT_PRESET,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+} from '@ovh-ux/muk';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_LEVEL,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_LINK_REFERRER_POLICY,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsButton,
-  OsdsIcon,
-  OsdsLink,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
@@ -115,31 +98,30 @@ export default function EditPack() {
     >
       {!isOrderInitiated ? (
         <>
-          <Subtitle className="block mb-6">
+          <Text preset={TEXT_PRESET.heading2} className="block mb-6">
             {t('hycu_edit_pack_subtitle', {
               displayName,
             })}
-          </Subtitle>
-          <Description className="mb-8">
+          </Text>
+          <Text className="block mb-8">
             <Trans
               t={t}
               i18nKey="hycu_edit_pack_subtitle_description"
               components={{
                 contact: (
-                  <OsdsLink
-                    color={ODS_THEME_COLOR_INTENT.primary}
+                  <Link
                     href={CONTACT_URL_BY_SUBSIDIARY[subsidiary]}
-                    target={OdsHTMLAnchorElementTarget._blank}
-                  ></OsdsLink>
+                    target="blank"
+                  ></Link>
                 ),
               }}
             ></Trans>
-          </Description>
+          </Text>
           <OrderTileWrapper>
             {sortPacksByPrice(orderCatalogHYCU?.plans).map((product) => (
               <OrderTile
-                checked={product.planCode === selectedPack || undefined}
-                disabled={product.planCode === currentPack || undefined}
+                checked={product.planCode === selectedPack}
+                disabled={product.planCode === currentPack}
                 key={product.planCode}
                 label={product.invoiceName}
                 pricing={getRenewPrice(product.pricings)}
@@ -151,84 +133,65 @@ export default function EditPack() {
             ))}
           </OrderTileWrapper>
           <div className="flex flex-row">
-            <OsdsButton
+            <Button
               className="mr-4"
-              color={ODS_THEME_COLOR_INTENT.primary}
+              color={BUTTON_COLOR.primary}
               onClick={() => {
                 navigate(
                   urls.dashboard.replace(subRoutes.serviceName, serviceName),
                 );
               }}
-              slot="actions"
-              variant={ODS_BUTTON_VARIANT.ghost}
+              variant={BUTTON_VARIANT.ghost}
             >
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
-            </OsdsButton>
-            <OsdsButton
-              color={ODS_THEME_COLOR_INTENT.primary}
+            </Button>
+            <Button
+              color={BUTTON_COLOR.primary}
               disabled={(!selectedPack && !orderLink) || undefined}
               onClick={() => {
                 setIsOrderInitiated(true);
                 redirectToOrder();
               }}
-              slot="actions"
             >
               {t(`${NAMESPACES.ACTIONS}:order`)}
-            </OsdsButton>
+            </Button>
           </div>
         </>
       ) : (
         <>
-          <OsdsTile className="mb-8">
+          <Card color={CARD_COLOR.neutral} className="mb-8 p-4">
             <span slot="start">
               <div className="flex flex-col gap-6 mb-6">
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.heading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._600}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+                <Text preset={TEXT_PRESET.heading2}>
                   {t('hycu_edit_pack_initiated_title')}
-                </OsdsText>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+                </Text>
+                <Text preset={TEXT_PRESET.paragraph}>
                   {t('hycu_edit_pack_initiated_description')}
-                </OsdsText>
-                <OsdsLink
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  target={OdsHTMLAnchorElementTarget._blank}
-                  referrerpolicy={
-                    ODS_LINK_REFERRER_POLICY.strictOriginWhenCrossOrigin
-                  }
+                </Text>
+                <Link
+                  className="w-full"
+                  target="blank"
+                  referrer-policy="strict-origin-when-cross-origin"
                   href={orderLink}
                 >
-                  {orderLink}
-                  <span slot="end">
-                    <OsdsIcon
+                  <div className="inline-flex items-center">
+                    {orderLink}
+                    <Icon
                       className="ml-4 cursor-pointer"
-                      name={ODS_ICON_NAME.EXTERNAL_LINK}
-                      size={ODS_ICON_SIZE.xs}
-                      hoverable
-                    ></OsdsIcon>
-                  </span>
-                </OsdsLink>
-                <OsdsText
-                  level={ODS_THEME_TYPOGRAPHY_LEVEL.subheading}
-                  size={ODS_THEME_TYPOGRAPHY_SIZE._800}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
+                      name={ICON_NAME.externalLink}
+                      aria-hidden="true"
+                    ></Icon>
+                  </div>
+                </Link>
+                <Text preset={TEXT_PRESET.span}>
                   {t('hycu_edit_pack_initiated_info')}
-                </OsdsText>
+                </Text>
               </div>
             </span>
-          </OsdsTile>
-          <OsdsButton
-            inline
-            size={ODS_BUTTON_SIZE.md}
-            variant={ODS_BUTTON_VARIANT.flat}
-            color={ODS_THEME_COLOR_INTENT.primary}
+          </Card>
+          <Button
+            variant={BUTTON_VARIANT.default}
+            color={BUTTON_COLOR.primary}
             onClick={() => {
               navigate(
                 urls.dashboard.replace(subRoutes.serviceName, serviceName),
@@ -236,7 +199,7 @@ export default function EditPack() {
             }}
           >
             {t(`${NAMESPACES.ACTIONS}:end`)}
-          </OsdsButton>
+          </Button>
         </>
       )}
     </BaseLayout>

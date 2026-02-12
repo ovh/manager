@@ -1,4 +1,4 @@
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 
 export const CONTACT_URL_BY_SUBSIDIARY: Record<OvhSubsidiary, string> = {
   ASIA: 'https://www.ovhcloud.com/asia/contact/',
