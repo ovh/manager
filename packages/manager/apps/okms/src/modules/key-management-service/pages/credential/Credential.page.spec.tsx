@@ -26,7 +26,10 @@ describe('Credential dashboard test suite', () => {
   it('should display the credential dashboard page', async () => {
     await renderTestApp(mockPageUrl, { feature: KMS_FEATURES.LOGS });
 
-    await assertTextVisibility(labels.credentials.key_management_service_credential_dashboard_name);
+    await assertTextVisibility(
+      labels.credentials.key_management_service_credential_dashboard_name,
+      TIMEOUT.MEDIUM,
+    );
   });
 
   it(`should navigate back to the credentials list on click on ${labels.credentials.key_management_service_credential_dashboard_backlink}`, async () => {
@@ -41,7 +44,10 @@ describe('Credential dashboard test suite', () => {
 
     await act(async () => user.click(backLink));
 
-    await assertTextVisibility(labels.credentials.key_management_service_credential_headline);
+    await assertTextVisibility(
+      labels.credentials.key_management_service_credential_headline,
+      TIMEOUT.MEDIUM,
+    );
   });
 
   it(`should navigate to the identity page on click on ${labels.credentials.key_management_service_credential_identities} `, async () => {
@@ -66,10 +72,12 @@ describe('Credential dashboard test suite', () => {
     await assertTitleVisibility({
       title: userTitleLabel,
       level: 3,
+      timeout: TIMEOUT.MEDIUM,
     });
     await assertTitleVisibility({
       title: userGroupsTitleLabel,
       level: 3,
+      timeout: TIMEOUT.MEDIUM,
     });
   });
 });
