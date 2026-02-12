@@ -11,7 +11,7 @@ import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
 
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { initiateTextFileDownload } from '@/common/utils/files/download';
 
 import { ServiceKeyAction } from './service-key.type';
 
