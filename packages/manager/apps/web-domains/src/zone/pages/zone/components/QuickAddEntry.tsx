@@ -26,6 +26,9 @@ import { SRVRecordForm } from "../add/components/forms/SRVRecordForm";
 import { LOCRecordForm } from "../add/components/forms/LOCRecordForm";
 import { SSHFPRecordForm } from "../add/components/forms/SSHFPRecordForm";
 import { TLSARecordForm } from "../add/components/forms/TLSARecordForm";
+import { RPRecordForm } from "../add/components/forms/RPRecordForm";
+import { SVCBRecordForm } from "../add/components/forms/SVCBRecordForm";
+import { HTTPSRecordForm } from "../add/components/forms/HTTPSRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -394,6 +397,63 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.RP && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_RP")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_RP"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <RPRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.SVCB && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_SVCB")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_SVCB"
+                    values={{ domain: fullDomain, target: target || "[cible]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <SVCBRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.HTTPS && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_HTTPS")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_HTTPS"
+                    values={{ domain: fullDomain, target: target || "[cible]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <HTTPSRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
           {recordTypeStr &&
             recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
@@ -407,7 +467,10 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.SRV &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.SSHFP &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.TLSA && (
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.TLSA &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.RP &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.SVCB &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.HTTPS && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}
