@@ -23,7 +23,7 @@ export const SequenceColumn = (
   );
 
   return rule?.isNew ? (
-    <OdsFormField className="w-full">
+    <OdsFormField className="flex w-full">
       <OdsSelect
         name="sequence-select"
         value={newSequence?.toString() ?? nextAvailableSequence?.toString()}
