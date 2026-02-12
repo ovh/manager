@@ -36,7 +36,7 @@
     "@tanstack/react-query": "5.90.12",
     "@tanstack/react-table": "8.21.3",
     "autoprefixer": "^10.4.22",
-    "axios": "1.12.0",
+    "axios": "1.13.5",
     "date-fns": "4.1.0",
     "export-to-csv": "^1.4.0",
     "i18next": "25.6.1",
