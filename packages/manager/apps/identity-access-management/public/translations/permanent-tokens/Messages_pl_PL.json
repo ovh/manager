@@ -36,7 +36,5 @@
   "iam_user_token_modal_field_expiry_date_type_timestamp": "Data",
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minut/y",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Godzin/y",
-  "iam_user_token_modal_field_expiry_date_unit_days": "Dni",
-  "iam_user_token_modal_view_token_secret_label": "Token",
-  "key_management_service_credential_create_confirmation_private-key_warn": "Po zamknięciu asystenta aktywacji nie będziesz mieć dostępu do tego klucza prywatnego. Pobierz go i przechowuj w bezpieczny sposób."
+  "iam_user_token_modal_field_expiry_date_unit_days": "Dni"
 }
