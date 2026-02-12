@@ -18,5 +18,6 @@
   "billing_confirm_termination_future_use_OTHER": "Outro (especifique)",
   "billing_confirm_termination_terminate": "Validar",
   "billing_confirm_termination_success": "O seu serviço foi rescindido. Uma confirmação ser-lhe-á enviada por e-mail nos próximos minutos. A nossa equipa de suporte está à sua disposição para qualquer questão.",
-  "billing_confirm_termination_error": "Ocorreu um erro durante a rescisão do serviço: {{ message }}"
+  "billing_confirm_termination_error": "Ocorreu um erro durante a rescisão do serviço: {{ message }}",
+  "billing_confirm_termination_unnecessary": "Este serviço já está configurado para uma renovação manual. Não precisa de pedir uma « Rescisão na data de expiração » : este serviço terminará automaticamente na data de expiração se não o renovar manualmente."
 }
