@@ -154,12 +154,12 @@
     "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network. <span>The creation of the floating IP will take place at the end of the configuration.</span></p>",
     "toggle_label": "Assign a public IP",
     "basic_ip_label": "Basic Public IP (Linked to the instance) - {{ price }}",
-    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifespan of the resource. ",
+    "basic_ip_description": "A basic public IP is an IP address that does not persist beyond the lifespan of the resource. ",
     "basic_ip_warning": "Activating the basic public IP is not compatible with a gateway.",
     "floating_ip_label": "Create a Floating IP (Reusable) - {{ price }}",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
     "floating_ip_warning": "By selecting this option, we will assign you a gateway size {{ size }}.",
-    "floating_ip_create_new_label": "Create a new one - {{ price }}",
+    "floating_ip_create_new_label": "Create a new - {{ price }}",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
   },
@@ -175,5 +175,8 @@
   "pci_instance_creation_cart_public_network_title": "Public network",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "Public IP",
-  "pci_instance_creation_network_full_private_warning": "<p>This instance will not have public access to the Internet. You will not be able to connect to it or reach external services unless you use a bastion or add a gateway.</p><p>This improves security but limits connectivity. On your Windows instances, <semibold>you need to manually activate the license to access all services</semibold>.</p><Link>View the guide</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>This instance will not have public access to the Internet. You will not be able to connect to it or reach external services unless you use a bastion or add a gateway.</p><p>This improves security but limits connectivity. On your Windows instances, <semibold>you need to manually activate the license to access all services</semibold>.</p><Link>View the guide</Link>",
+  "pci_instance_creation_in_progress": "Instance creation is in progress, your service will be available shortly",
+  "pci_instances_creations_in_progress": "Instance creations are in progress, your services will be available shortly",
+  "pci_instance_creation_error": "We encountered an error while creating your instance…"
 }

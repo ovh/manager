@@ -1,26 +1,39 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
-import { useFormContext } from 'react-hook-form';
-
-export const nameDefaultValue = 'default_name_to_add';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectOvhInstanceName } from '../view-models/instanceNameViewModel';
+import { TInstanceCreationForm } from '../CreateInstance.schema';
 
 export const Name = () => {
   const { t } = useTranslation(['common', 'creation']);
 
   const {
     register,
+    control,
+    setValue,
     formState: {
       errors: { name: error },
     },
-  } = useFormContext<{ name: string }>();
+  } = useFormContext<TInstanceCreationForm>();
+
+  const flavorId = useWatch({ control, name: 'flavorId' });
+
+  const { data: ovhInstanceName } = useInstancesCatalogWithSelect({
+    select: selectOvhInstanceName(flavorId),
+  });
+
+  useEffect(() => {
+    if (ovhInstanceName) setValue('name', ovhInstanceName);
+  }, [ovhInstanceName, setValue]);
 
   return (
     <article className="flex w-full flex-col">
       <Text preset="heading-2">
         {t('common:pci_instances_common_instance_name')}
       </Text>
-      {/* TODO: Pre-fill name with combination of {flavor_name region_id month day hour minute} */}
       <div className="mt-4 pb-4 pt-3">
         <FormField className="max-w-[50%]">
           <FormFieldLabel>

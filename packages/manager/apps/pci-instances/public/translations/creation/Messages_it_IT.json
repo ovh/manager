@@ -159,8 +159,8 @@
     "floating_ip_label": "Crea un'IP Flottante (Riutilizzabile) - {{ price }}",
     "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo rilasci esplicitamente. ",
     "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
-    "floating_ip_create_new_label": "Creare un nuovo - {{ price }}",
-    "floating_ip_reuse_existing_label": "Riutilizzare un'IP flottante esistente",
+    "floating_ip_create_new_label": "Crea un nuovo - {{ price }}",
+    "floating_ip_reuse_existing_label": "Riutilizza un'IP flottante esistente",
     "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway non è disponibile nelle localZone.",
@@ -175,5 +175,8 @@
   "pci_instance_creation_cart_public_network_title": "Rete pubblica",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "IP Pubblica",
-  "pci_instance_creation_network_full_private_warning": "<p>Questa istanza non avrà accesso pubblico a Internet. Non potrai connetterti né raggiungere servizi esterni, a meno che non utilizzi un bastione o aggiunga una gateway.</p><p>Questo migliora la sicurezza ma limita la connettività. Su istanze Windows, <semibold>devi attivare manualmente la licenza per avere accesso a tutti i servizi</semibold>.</p><Link>Consulta la guida</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>Questa istanza non avrà accesso pubblico a Internet. Non potrai connetterti né raggiungere servizi esterni, a meno che non utilizzi un bastione o aggiunga una gateway.</p><p>Questo migliora la sicurezza ma limita la connettività. Su istanze Windows, <semibold>devi attivare manualmente la licenza per avere accesso a tutti i servizi</semibold>.</p><Link>Consulta la guida</Link>",
+  "pci_instance_creation_in_progress": "La creazione dell'istanza è in corso, il tuo servizio sarà disponibile tra pochi istanti",
+  "pci_instances_creations_in_progress": "Le creazioni delle istanze sono in corso, i tuoi servizi saranno disponibili tra pochi istanti",
+  "pci_instance_creation_error": "Si è verificato un errore durante la creazione della tua istanza…"
 }

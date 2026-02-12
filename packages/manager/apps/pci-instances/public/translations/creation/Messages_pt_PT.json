@@ -136,7 +136,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotação 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizado",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Um backup é realizado todos os dias entre as 22h00 e as 6h00 (UTC) e a rotação mantém um histórico das {{ numEntries }} últimas entradas. Quando o novo backup estiver concluído, o mais antigo será removido.",
+    "predefined": "Um backup é realizado todos os dias entre as 22h00 e as 6h00 (UTC) e a rotação mantém um histórico das {{ numEntries }} últimas entradas. Quando o novo backup estiver concluído, o mais antigo será eliminado.",
     "custom": "Escolha você mesmo a programação (formato UNIX Cron), o número de rotações e as execuções máximas que deseja."
   },
   "pci_instance_creation_backup_setting_price_unit": "sem IVA/mês/GB",
@@ -154,7 +154,7 @@
     "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud. <span>A criação do IP flutuante será feita no final da configuração.</span></p>",
     "toggle_label": "Atribuir um IP público",
     "basic_ip_label": "IP Público Básico (Vinculado à instância) - {{ price }}",
-    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da duração da vida do recurso. ",
+    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da vida útil do recurso. ",
     "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
     "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - {{ price }}",
     "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
@@ -175,5 +175,8 @@
   "pci_instance_creation_cart_public_network_title": "Rede pública",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "IP Público",
-  "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>",
+  "pci_instance_creation_in_progress": "A criação da instância está em andamento, seu serviço estará disponível em alguns instantes",
+  "pci_instances_creations_in_progress": "As criações de instâncias estão em andamento, seus serviços estarão disponíveis em alguns instantes",
+  "pci_instance_creation_error": "Encontramos um erro ao criar sua instância…"
 }

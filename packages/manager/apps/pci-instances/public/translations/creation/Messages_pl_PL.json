@@ -136,7 +136,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotacja 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Spersonalizowana",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Kopia zapasowa jest wykonywana codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów. Gdy nowa kopia zapasowa jest zakończona, najstarsza jest usuwana.",
+    "predefined": "Kopia zapasowa jest tworzona codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów. Gdy nowa kopia zapasowa jest zakończona, najstarsza jest usuwana.",
     "custom": "Wybierz samodzielnie harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
   },
   "pci_instance_creation_backup_setting_price_unit": "netto/miesiąc/GB",
@@ -152,15 +152,15 @@
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Przydziel publiczną łączność",
     "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud. <span>Tworzenie floating IP odbędzie się na końcu konfiguracji.</span></p>",
-    "toggle_label": "Przydziel publiczne IP",
-    "basic_ip_label": "Podstawowe publiczne IP (powiązane z instancją) - {{ price }}",
-    "basic_ip_description": "Podstawowe publiczne IP to adres IP, który nie utrzymuje się poza czasem życia zasobu. ",
+    "toggle_label": "Przydziel publiczną IP",
+    "basic_ip_label": "Podstawowy publiczny IP (powiązany z instancją) - {{ price }}",
+    "basic_ip_description": "Podstawowy publiczny IP to adres IP, który nie utrzymuje się poza czasem życia zasobu. ",
     "basic_ip_warning": "Aktywacja podstawowego publicznego IP nie jest zgodna z bramą.",
     "floating_ip_label": "Utwórz Floating IP (do ponownego użycia) - {{ price }}",
     "floating_ip_description": "Rezerwacja adresu IP floating przydziela adres do twojego projektu, aż go jawnie zwolnisz. ",
     "floating_ip_warning": "Wybierając tę opcję, przydzielimy ci bramę o rozmiarze {{ size }}.",
     "floating_ip_create_new_label": "Utwórz nową - {{ price }}",
-    "floating_ip_reuse_existing_label": "Ponownie użyj istniejącego floating IP",
+    "floating_ip_reuse_existing_label": "Ponownie użyj istniejącej floating IP",
     "floating_ip_unavailable_LZ_tooltip": "Floating IP nie są dostępne w localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Brama nie jest dostępna w lokalnych strefach.",
@@ -175,5 +175,8 @@
   "pci_instance_creation_cart_public_network_title": "Sieć publiczna",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "Publiczne IP",
-  "pci_instance_creation_network_full_private_warning": "<p>Ta instancja nie będzie miała dostępu publicznego do Internetu. Nie będziesz mógł się z nią połączyć ani uzyskać dostępu do usług zewnętrznych, chyba że użyjesz bastionu lub dodasz bramę.</p><p>To poprawia bezpieczeństwo, ale ogranicza łączność. Na twoich instancjach Windows, <semibold>musisz ręcznie aktywować licencję, aby uzyskać dostęp do wszystkich usług</semibold>.</p><Link>Sprawdź przewodnik</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>Ta instancja nie będzie miała dostępu publicznego do Internetu. Nie będziesz mógł się z nią połączyć ani uzyskać dostępu do usług zewnętrznych, chyba że użyjesz bastionu lub dodasz bramę.</p><p>To poprawia bezpieczeństwo, ale ogranicza łączność. Na twoich instancjach Windows, <semibold>musisz ręcznie aktywować licencję, aby uzyskać dostęp do wszystkich usług</semibold>.</p><Link>Sprawdź przewodnik</Link>",
+  "pci_instance_creation_in_progress": "Tworzenie instancji jest w toku, twoja usługa będzie dostępna za chwilę",
+  "pci_instances_creations_in_progress": "Tworzenie instancji jest w toku, twoje usługi będą dostępne za chwilę",
+  "pci_instance_creation_error": "Napotkaliśmy błąd podczas tworzenia twojej instancji…"
 }

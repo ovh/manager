@@ -62,8 +62,8 @@ const mapSubnetDtoToSubnetEntity = (subnet: TSubnetDTO): TSubnet => {
   return {
     id: subnet.id,
     cidr: subnet.cidr,
-    gatewayIp: subnet.gatewayIp,
     capabilities,
+    hasGateway: !!subnet.gateway,
   };
 };
 
