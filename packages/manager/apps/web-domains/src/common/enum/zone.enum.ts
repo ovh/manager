@@ -20,9 +20,9 @@ export enum FieldTypeExtendedRecordsEnum {
 }
 
 export enum FieldTypeMailRecordsEnum {
+  MX = 'MX',
   DMARC = 'DMARC',
   DKIM = 'DKIM',
-  MX = 'MX',
   SPF = 'SPF',
 }
 
