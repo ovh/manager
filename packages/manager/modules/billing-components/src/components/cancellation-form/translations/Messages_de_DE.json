@@ -18,5 +18,6 @@
   "billing_confirm_termination_future_use_OTHER": "Sonstige (bitte angeben)",
   "billing_confirm_termination_terminate": "Bestätigen",
   "billing_confirm_termination_success": "Ihre Dienstleistung wurde gekündigt. Sie erhalten in den nächsten Minuten eine Bestätigung per E-Mail. Für weitere Fragen und Informationen steht Ihnen unser Team gerne zur Verfügung.",
-  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}"
+  "billing_confirm_termination_error": "Bei der Kündigung der Dienstleistung ist ein Fehler aufgetreten {{ message }}",
+  "billing_confirm_termination_unnecessary": "Dieser Dienst ist bereits für die manuelle Verlängerung konfiguriert. Sie müssen keine „Kündigung nach Ablauf“ beantragen: Dieser Dienst endet automatisch am Ablaufdatum, wenn Sie ihn nicht manuell verlängern."
 }
