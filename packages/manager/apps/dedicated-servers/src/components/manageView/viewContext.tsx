@@ -135,12 +135,14 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     setGroupBy(currentView?.groupBy);
   }, [currentView]);
   const viewContext = useMemo(() => {
-    const columnsConfig = orderedColumns.map((column) => {
-      return {
-        ...column,
-        visible: !!columnVisibility[column.id],
-      };
-    });
+    const columnsConfig = orderedColumns
+      .filter((element) => element !== null && element !== undefined)
+      .map((column) => {
+        return {
+          ...column,
+          visible: columnVisibility[column.id],
+        };
+      });
 
     return {
       views,

@@ -8,7 +8,7 @@ import {
   INPUT_TYPE,
   Input,
 } from '@ovhcloud/ods-react';
-import React, { useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export type ManageViewDrawerTitleProps = {
@@ -16,10 +16,15 @@ export type ManageViewDrawerTitleProps = {
   onChange: (value: string) => void;
 };
 
-export const ManageViewDrawerTitle = ({
-  value,
-  onChange,
-}: ManageViewDrawerTitleProps) => {
+export interface TitleEditorRef {
+  save: () => string;
+  isEditMode: boolean;
+}
+
+export const ManageViewDrawerTitle = forwardRef<
+  TitleEditorRef,
+  ManageViewDrawerTitleProps
+>(({ value, onChange }: ManageViewDrawerTitleProps, ref) => {
   const { t } = useTranslation('dedicated-servers');
   const [isEditMode, setEditMode] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -28,13 +33,30 @@ export const ManageViewDrawerTitle = ({
     setInputValue(e.target.value);
   };
 
+  const save = () => {
+    setEditMode(false);
+    onChange(inputValue);
+  };
+
+  const cancel = () => {
+    setEditMode(false);
+  };
+
+  useImperativeHandle(ref, () => ({
+    save: () => {
+      save();
+      return inputValue;
+    },
+    isEditMode,
+  }));
+
   return (
-    <div className="w-full flex justify-between items-baseline gap-2">
+    <div className="w-full flex justify-between items-baseline gap-2 my-3">
       {isEditMode && (
         <>
           <Input
             type={INPUT_TYPE.text}
-            placeholder="text"
+            placeholder={t('new_view')}
             value={inputValue}
             onChange={handleChange}
             className="flex-1 px-4 py-2"
@@ -44,18 +66,16 @@ export const ManageViewDrawerTitle = ({
               role="button"
               variant={BUTTON_VARIANT.ghost}
               aria-label={t('edit_view_name')}
-              onClick={() => {
-                setEditMode(false);
-                onChange(inputValue);
-              }}
+              onClick={save}
             >
               <Icon name={ICON_NAME.check} aria-hidden={true} />
             </Button>
             <Button
               role="button"
+              color="neutral"
               variant={BUTTON_VARIANT.ghost}
               aria-label={t('edit_view_name')}
-              onClick={() => setEditMode(false)}
+              onClick={cancel}
             >
               <Icon name={ICON_NAME.xmark} aria-hidden={true} />
             </Button>
@@ -64,9 +84,7 @@ export const ManageViewDrawerTitle = ({
       )}
       {!isEditMode && (
         <>
-          <Text preset={TEXT_PRESET.heading2} className="my-4">
-            {value}
-          </Text>
+          <Text preset={TEXT_PRESET.heading2}>{value}</Text>
           <Button
             role="button"
             className="max-w-fit max-h-fit"
@@ -83,6 +101,6 @@ export const ManageViewDrawerTitle = ({
       )}
     </div>
   );
-};
+});
 
 export default ManageViewDrawerTitle;
