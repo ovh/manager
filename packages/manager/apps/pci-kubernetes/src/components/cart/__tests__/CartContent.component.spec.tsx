@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 
-import { TCartItem, TCartItemDetail } from '../Cart.component';
+import { TCartItem, TCartItemDetail } from '../Cart.model';
 import { CartItem } from '../components';
 import { CartContent } from '../components/CartContent.component';
 
@@ -12,7 +12,9 @@ const kubeItemName = 'kube_01';
 
 const details: TCartItemDetail[] = [
   {
+    id: 'localisation',
     name: 'localisation',
+    price: null,
   },
 ];
 

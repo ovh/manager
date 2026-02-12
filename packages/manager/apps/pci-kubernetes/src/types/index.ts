@@ -283,3 +283,5 @@ export enum ResourceStatus {
 }
 
 export * from './region';
+
+export type TBillingType = 'hourly' | 'monthly';

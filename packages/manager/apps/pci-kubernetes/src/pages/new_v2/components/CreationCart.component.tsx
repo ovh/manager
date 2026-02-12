@@ -3,11 +3,12 @@ import { useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '@ovhcloud/ods-react';
+import { Button, Icon, Text } from '@ovhcloud/ods-react';
 
 import { useAvailabilityRegions } from '@/api/hooks/useAvailabilityRegions';
 import { useCloudCatalog } from '@/api/hooks/useCloudCatalog';
-import { Cart, TCartItem } from '@/components/cart/Cart.component';
+import { Cart } from '@/components/cart/Cart.component';
+import { TCartItem } from '@/components/cart/Cart.model';
 import { selectMacroRegions } from '@/domain/services/regions.service';
 
 import { TCreateClusterSchema } from '../CreateClusterForm.schema';
@@ -52,15 +53,18 @@ export const CreationCart = () => {
         name: nameField,
         details: [
           {
+            id: 'location',
             name: t('add:kubernetes_add_location'),
             description: regionLabel ? <Text preset="heading-6">{regionLabel}</Text> : undefined,
+            price: null,
           },
           {
+            id: 'plan',
             name: t('kube:kube_service_cluster_plan'),
             description: planTypeField ? (
               <Text preset="heading-6">{t(`add:kube_add_plan_title_${planTypeField}`)}</Text>
             ) : undefined,
-            price: planPrices?.hourlyPrice ? planPrices.hourlyPrice : undefined,
+            price: planPrices?.hourlyPrice ? planPrices.hourlyPrice : null,
           },
         ],
         expanded: true,
@@ -68,5 +72,15 @@ export const CreationCart = () => {
     ];
   }, [macroRegionField, microRegionField, nameField, planTypeField, planPrices, regions, t]);
 
-  return <Cart items={cartItems} isSubmitDisabled={!form.formState.isValid} />;
+  return (
+    <Cart
+      items={cartItems}
+      billingType="hourly"
+      actionsButtons={
+        <Button disabled={!form.formState.isValid}>
+          {t('add:kubernetes_add_create_cluster')} <Icon name="arrow-right" />
+        </Button>
+      }
+    />
+  );
 };

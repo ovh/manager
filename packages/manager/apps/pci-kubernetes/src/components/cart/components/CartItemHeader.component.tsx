@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { AccordionTrigger } from '@ovhcloud/ods-react';
 

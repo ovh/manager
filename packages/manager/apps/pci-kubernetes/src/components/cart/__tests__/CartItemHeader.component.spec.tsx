@@ -3,15 +3,15 @@ import { describe, expect, test } from 'vitest';
 
 import { Accordion, AccordionItem, Text } from '@ovhcloud/ods-react';
 
-import { CartItemHeader } from '../components';
+import { CartItemHeader } from '../components/CartItemHeader.component';
 
 const headerText = 'Header text';
 
 describe('Considering CartItemHeader component', () => {
   test('Should render children', () => {
     render(
-      <Accordion>
-        <AccordionItem value="">
+      <Accordion value={['test-item']}>
+        <AccordionItem value="test-item">
           <CartItemHeader>
             <Text>{headerText}</Text>
           </CartItemHeader>
