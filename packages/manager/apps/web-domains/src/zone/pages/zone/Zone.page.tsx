@@ -212,14 +212,14 @@ export default function ZonePage() {
         cell: ({ row }) => <div>{row.original.subDomain ? `${row.original.subDomain}.${row.original.zoneToDisplay}` : row.original.zoneToDisplay}</div>,
       },
       {
-        id: 'ttl',
-        accessorKey: 'ttl',
-        header: t('zone_page_ttl'),
-      },
-      {
         id: 'targetToDisplay',
         accessorKey: 'targetToDisplay',
         header: t('zone_page_target'),
+      },
+      {
+        id: 'ttl',
+        accessorKey: 'ttl',
+        header: t('zone_page_ttl'),
       },
       {
         id: 'actions',

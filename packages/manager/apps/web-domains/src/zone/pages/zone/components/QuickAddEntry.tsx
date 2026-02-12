@@ -23,6 +23,7 @@ import { DNAMERecordForm } from "../add/components/forms/DNAMERecordForm";
 import { CAARecordForm } from "../add/components/forms/CAARecordForm";
 import { TXTRecordForm } from "../add/components/forms/TXTRecordForm";
 import { NAPTRRecordForm } from "../add/components/forms/NAPTRRecordForm";
+import { SRVRecordForm } from "../add/components/forms/SRVRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -323,6 +324,25 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.SRV && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_SRV")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_SRV"
+                    values={{ domain: fullDomain, target: target || "[serveur]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <SRVRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
           {recordTypeStr &&
             recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
@@ -333,7 +353,8 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypePointingRecordsEnum.CNAME &&
             recordTypeStr !== FieldTypePointingRecordsEnum.DNAME &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT && (
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.SRV && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}
