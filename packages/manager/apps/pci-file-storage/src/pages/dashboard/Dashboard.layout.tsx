@@ -17,6 +17,8 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
+import { Notifications } from '@ovh-ux/muk';
+
 import { ActionLink } from '@/components/action-link/ActionLink.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { useShare } from '@/data/hooks/shares/useShare';
@@ -83,6 +85,10 @@ const DashboardLayout: React.FC = () => {
           withBackArrow
         />
       </header>
+
+      <div>
+        <Notifications />
+      </div>
 
       <nav aria-label={t('dashboard:tabs.general')}>
         <Tabs value={currentTab} onValueChange={handleTabChange}>

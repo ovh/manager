@@ -19,8 +19,25 @@ const GeneralInformationPage = React.lazy(
 );
 const SnapshotsPage = React.lazy(() => import('@/pages/dashboard/Snapshots/Snapshots.page'));
 const AclPage = React.lazy(() => import('@/pages/dashboard/Acl/Acl.page'));
+const DeleteSharePage = React.lazy(() => import('@/pages/delete/DeleteShare.page'));
 
-export const Routes = (
+const getDeleteSubroute = () => (
+  <>
+    <Route index></Route>
+    <Route
+      path={subRoutes.shareDelete}
+      Component={DeleteSharePage}
+      handle={{
+        tracking: {
+          pageName: 'share-delete',
+          pageType: PageType.popup,
+        },
+      }}
+    />
+  </>
+);
+
+const Routes = (
   <>
     <Route
       id="root"
@@ -52,32 +69,35 @@ export const Routes = (
         path={subRoutes.list}
         Component={ShareListPage}
         handle={{
-          tracking: { pageName: 'list', pageType: PageType.dashboard },
+          tracking: { pageName: 'list', pageType: PageType.listing },
         }}
-      />
+      >
+        {getDeleteSubroute()}
+      </Route>
       <Route
         path={subRoutes.shareDetail}
         Component={DashboardLayoutPage}
         handle={{
-          tracking: { pageName: 'share-detail', pageType: PageType.dashboard },
+          tracking: { pageName: 'dashboard', pageType: PageType.dashboard },
         }}
       >
         <Route
-          index
           Component={GeneralInformationPage}
           handle={{
             tracking: {
-              pageName: 'share-detail-general',
+              pageName: 'general-information',
               pageType: PageType.dashboard,
             },
           }}
-        />
+        >
+          {getDeleteSubroute()}
+        </Route>
         <Route
           path={subRoutes.shareSnapshots}
           Component={SnapshotsPage}
           handle={{
             tracking: {
-              pageName: 'share-detail-snapshots',
+              pageName: 'snapshots',
               pageType: PageType.dashboard,
             },
           }}
@@ -87,7 +107,7 @@ export const Routes = (
           Component={AclPage}
           handle={{
             tracking: {
-              pageName: 'share-detail-acl',
+              pageName: 'acl',
               pageType: PageType.dashboard,
             },
           }}
@@ -97,3 +117,4 @@ export const Routes = (
     </Route>
   </>
 );
+export default Routes;
