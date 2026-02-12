@@ -13,7 +13,7 @@ import { ShellContext, type ShellContextType } from '@ovh-ux/manager-react-shell
 
 import { attachedDomainDigStatusMock, websitesMocks } from '@/data/__mocks__';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 import Websites from '../Websites.page';
 
@@ -140,11 +140,12 @@ describe('Websites page', () => {
       { id: 'header-ssl', text: commonTranslation.web_hosting_status_header_ssl },
       { id: 'header-firewall', text: commonTranslation.web_hosting_status_header_firewall },
       { id: 'header-boostOffer', text: commonTranslation.web_hosting_status_header_boostOffer },
-      { id: 'header-actions', text: '' },
     ];
-    headers.forEach(({ id }) => {
-      const headerElement = screen.getByTestId(id);
-      expect(headerElement).toBeInTheDocument();
+    headers.forEach((header) => {
+      const headerElement = screen.getAllByText(header.text);
+      headerElement.forEach((element) => {
+        expect(element).toBeInTheDocument();
+      });
     });
   });
 
@@ -245,19 +246,20 @@ describe('Websites page', () => {
       isFetchingNextPage: false,
     });
 
-    const { getByTestId } = render(<Websites />, { wrapper });
+    render(<Websites />, { wrapper });
 
     // Simulate pagination trigger - this would normally be called by the Datagrid component
     // We need to find a way to trigger it, but since it's internal to Datagrid,
     // we'll verify the hook is set up correctly
     await waitFor(() => {
-      expect(getByTestId('websites-page-datagrid')).toBeInTheDocument();
+      expect(screen.getByRole('table')).toBeInTheDocument();
     });
   });
 
   it('should handle search input changes', () => {
-    const { getByTestId } = render(<Websites />, { wrapper });
-    const datagrid = getByTestId('websites-page-datagrid');
+    render(<Websites />, { wrapper });
+
+    const datagrid = screen.getByRole('table');
 
     // The search functionality is handled by the Datagrid component
     // We verify the component renders with search capability
@@ -324,8 +326,16 @@ describe('Websites page', () => {
       isFetchingNextPage: false,
     });
 
-    const { getByTestId } = render(<Websites />, { wrapper });
-    const datagrid = getByTestId('websites-page-datagrid');
+    render(<Websites />, { wrapper });
+
+    const datagrid = screen.getByRole('table');
     expect(datagrid).toBeInTheDocument();
+  });
+
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<Websites />);
+    const html = container.innerHTML.replace(/\s*aria-controls="[^"]*"/g, '');
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

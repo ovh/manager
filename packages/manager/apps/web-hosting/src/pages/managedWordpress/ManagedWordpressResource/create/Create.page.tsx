@@ -164,14 +164,14 @@ export default function CreatePage() {
           void handleSubmit(onCreateSubmit)(e);
         }}
       >
-        <Text preset={TEXT_PRESET.heading3} className="mb-4">
+        <Text preset={TEXT_PRESET.heading2} className="mb-4">
           {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_create_login')}
         </Text>
         <Controller
           name="cmsSpecific.wordpress.language"
           control={control}
           render={({ field }) => (
-            <FormField className="mb-4 w-full">
+            <FormField className="mb-4 w-full" id="input-language">
               <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin')}
               </FormFieldLabel>
@@ -192,6 +192,9 @@ export default function CreatePage() {
                 onBlur={() => field.onBlur?.()}
               >
                 <SelectControl
+                  aria-label={t(
+                    'managedWordpress:web_hosting_managed_wordpress_create_webiste_language_admin',
+                  )}
                   placeholder={t(
                     'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_language',
                   )}
@@ -205,7 +208,7 @@ export default function CreatePage() {
           name="phpVersion"
           control={control}
           render={({ field }) => (
-            <FormField className="mb-4 w-full">
+            <FormField className="mb-4 w-full" id="input-phpVersion">
               <FormFieldLabel>
                 {t('managedWordpress:web_hosting_managed_wordpress_create_webiste_php_version')}*
               </FormFieldLabel>
@@ -223,6 +226,9 @@ export default function CreatePage() {
                 onBlur={() => field.onBlur?.()}
               >
                 <SelectControl
+                  aria-label={t(
+                    'managedWordpress:web_hosting_managed_wordpress_create_webiste_php_version',
+                  )}
                   placeholder={t(
                     'managedWordpress:web_hosting_managed_wordpress_create_webiste_select_version',
                   )}
@@ -270,22 +276,37 @@ export default function CreatePage() {
                 className="w-full"
                 clearable
               />
-              <Text preset={TEXT_PRESET.paragraph} className="mt-6">
-                <div>{t(`${NAMESPACES.FORM}:change_password_helper1`)}</div>
+              <div className="mt-6">
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t(`${NAMESPACES.FORM}:change_password_helper1`)}
+                </Text>
                 <ul className="mt-0">
                   <li>
-                    {t(`${NAMESPACES.FORM}:min_chars`, {
-                      value: 8,
-                    })}
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t(`${NAMESPACES.FORM}:min_chars`, {
+                        value: 8,
+                      })}
+                    </Text>
                   </li>
                   <li>
-                    {t(`${NAMESPACES.FORM}:max_chars`, {
-                      value: 30,
-                    })}
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t(`${NAMESPACES.FORM}:max_chars`, {
+                        value: 30,
+                      })}
+                    </Text>
                   </li>
-                  <li>{t(`${NAMESPACES.FORM}:change_password_helper2`)}</li>
+                  <li>
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t(`${NAMESPACES.FORM}:change_password_helper2`)}
+                    </Text>
+                  </li>
+                  <li>
+                    <Text preset={TEXT_PRESET.paragraph}>
+                      {t(`${NAMESPACES.FORM}:change_password_helper3`)}
+                    </Text>
+                  </li>
                 </ul>
-              </Text>
+              </div>
               <FormFieldError>{errors?.adminPassword?.message}</FormFieldError>
             </FormField>
           )}

@@ -2,11 +2,17 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import ImportModal from '../importSsl.page';
 
 describe('ImportModal', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('render all text area', () => {
     const { getByTestId } = render(<ImportModal />, { wrapper });
 
@@ -58,5 +64,11 @@ describe('ImportModal', () => {
 
     fireEvent.click(getByTestId('secondary-button'));
     expect(navigate).toHaveBeenCalled();
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<ImportModal />, { wrapper });
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

@@ -8,6 +8,7 @@ import { ServiceStatus } from '@/data/types/status';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import multisiteTranslation from '@/public/translations/multisite/Messages_fr_FR.json';
 import { wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import Step1 from '../step1';
 import { FormValues } from '../types';
@@ -46,9 +47,12 @@ const mockWatch = vi.fn((field: string) => {
 
 describe('Step1', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(
       <TestWrapper>

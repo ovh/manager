@@ -2,6 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import SanModal from '../sanSsl.page';
 
@@ -16,6 +17,12 @@ vi.mock('react-router-dom', async (importActual) => {
 });
 
 describe('SanModal', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('call deleteDomainCertificate and close modal', async () => {
     Object.assign(window.navigator, {
       clipboard: {
@@ -36,5 +43,11 @@ describe('SanModal', () => {
 
     fireEvent.click(getByTestId('primary-button'));
     expect(mockNavigate).toHaveBeenCalled();
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<SanModal />, { wrapper });
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

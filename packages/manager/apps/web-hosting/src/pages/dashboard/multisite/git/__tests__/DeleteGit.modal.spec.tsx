@@ -5,7 +5,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import DeleteGitModal from '../DeleteGit.modal';
 
@@ -22,6 +22,7 @@ vi.mock('@/data/api/git', () => ({
 
 describe('DeleteGitModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     mockUseGetHostingServiceWebsite.mockReturnValue({
       data: ['website-id-1'],
@@ -39,7 +40,9 @@ describe('DeleteGitModal', () => {
       },
     } as ReturnType<typeof useLocation>);
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<DeleteGitModal />, { wrapper });
     expect(container).toBeInTheDocument();

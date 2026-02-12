@@ -11,11 +11,19 @@ import {
   getManagedCmsResourceWebsites,
 } from '@/data/api/managedWordpress';
 import { ManagedWordpressWebsites } from '@/data/types/product/managedWordpress/website';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import DeleteModal from '../ManagedWordpressResource/delete/Delete.modal';
 
 describe('DeleteModal Component', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+    vi.clearAllMocks();
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('deletion for a website', async () => {
     vi.mocked(useParams).mockReturnValue({ serviceName: 'test-service' });
     vi.mocked(useLocation).mockReturnValue({
@@ -42,5 +50,11 @@ describe('DeleteModal Component', () => {
     await waitFor(() => {
       expect(deleteManagedCmsResourceWebsite).toHaveBeenCalledWith('test-service', 'testID');
     });
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<DeleteModal />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

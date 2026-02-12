@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import ActivateCdnModal from '../ActivateCdn.modal';
 
@@ -17,6 +17,7 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
 
 describe('ActivateCdnModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     vi.mocked(useLocation).mockReturnValue({
       pathname: '/test',
@@ -29,7 +30,9 @@ describe('ActivateCdnModal', () => {
       },
     } as ReturnType<typeof useLocation>);
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<ActivateCdnModal />, { wrapper });
     expect(container).toBeInTheDocument();

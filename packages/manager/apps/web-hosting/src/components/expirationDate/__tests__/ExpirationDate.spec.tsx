@@ -7,6 +7,7 @@ import { Mock, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useGetServiceInfos } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { ServiceInfosType } from '@/data/types/product/service';
 import { SERVICE_INFOS_STATUS } from '@/data/types/product/ssl';
+import { renderWithRouter } from '@/utils/test.provider';
 
 import ExpirationDate from '../ExpirationDate.component';
 
@@ -102,5 +103,11 @@ describe('ExpirationDate', () => {
 
     const { container } = render(<ExpirationDate />);
     expect(container.childElementCount).to.equal(0);
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<ExpirationDate />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

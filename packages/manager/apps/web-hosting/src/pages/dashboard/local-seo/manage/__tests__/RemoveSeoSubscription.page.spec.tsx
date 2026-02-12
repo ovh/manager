@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useHostingDeleteLocation } from '@/data/hooks/webHostingLocalSeo/useWebHostingLocalSeo';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import RemoveSeoSubscriptionModal from '../RemoveSeoSubscription.page';
 
@@ -17,6 +17,7 @@ vi.mock('@/data/hooks/webHostingLocalSeo/useWebHostingLocalSeo', () => ({
 
 describe('RemoveSeoSubscriptionModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
     vi.mocked(useParams).mockReturnValue({
       serviceName: 'test-service',
@@ -46,7 +47,9 @@ describe('RemoveSeoSubscriptionModal', () => {
       hostingDeleteLocation: mockHostingDeleteLocation,
     } as unknown as ReturnType<typeof useHostingDeleteLocation>);
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<RemoveSeoSubscriptionModal />, { wrapper });
     expect(container).toBeInTheDocument();
@@ -131,5 +134,11 @@ describe('RemoveSeoSubscriptionModal', () => {
     await waitFor(() => {
       expect(navigate).toHaveBeenCalled();
     });
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<RemoveSeoSubscriptionModal />, { wrapper });
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

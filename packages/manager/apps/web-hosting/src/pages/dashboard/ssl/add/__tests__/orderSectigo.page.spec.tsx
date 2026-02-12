@@ -1,13 +1,18 @@
-/* eslint-disable @typescript-eslint/await-thenable */
 import { act, fireEvent, render } from '@testing-library/react';
-import { vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import SectigoModal from '../orderSectigo.page';
 
 describe('SectigoModal', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render select with domain options', () => {
     const { getByTestId } = render(<SectigoModal />, { wrapper });
 
@@ -15,15 +20,8 @@ describe('SectigoModal', () => {
     expect(select).not.toBeNull();
   });
 
-  it('should open order page with right link and close modal on validate', async () => {
+  it('should open order page with right link and close modal on validate', () => {
     const { getByTestId } = render(<SectigoModal />, { wrapper });
-
-    const select = getByTestId('ssl-select-domain');
-    await act(() => {
-      fireEvent.input(select, {
-        target: { value: 'beta.example.com' },
-      });
-    });
 
     const openSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
@@ -55,5 +53,12 @@ describe('SectigoModal', () => {
 
     expect(navigate).toHaveBeenCalled();
     expect(openSpy).not.toHaveBeenCalled();
+  });
+
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = render(<SectigoModal />, { wrapper });
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

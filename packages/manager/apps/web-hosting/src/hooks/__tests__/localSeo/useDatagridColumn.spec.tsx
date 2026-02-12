@@ -1,14 +1,16 @@
+/* eslint-disable max-lines */
 import * as reactRouterDom from 'react-router-dom';
 
 import type { CellContext, Row } from '@tanstack/react-table';
-import '@testing-library/jest-dom';
 import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
+import type { ActionMenuItemProps } from '@ovh-ux/muk';
 
 import { LocalSeoType, SeoCountry, SeoOffer } from '@/data/types/product/seo';
 import { SeoStatus } from '@/data/types/status';
 import useDatagridColumn, { DatagridActionCell } from '@/hooks/localSeo/useDatagridColumn';
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 const createMockCellContext = (original: LocalSeoType): CellContext<LocalSeoType, unknown> => {
   return {
@@ -25,6 +27,24 @@ const createMockCellContext = (original: LocalSeoType): CellContext<LocalSeoType
 
 const mockOpen = vi.fn();
 const originalOpen = window.open;
+const actionMenuMock = vi.fn(({ items }: { items: ActionMenuItemProps[] }) => (
+  <div data-testid="action-menu">
+    {items.map((item) => (
+      <button key={item.id} data-testid={`action-item-${item.id}`} onClick={item.onClick}>
+        {item.label}
+      </button>
+    ))}
+  </div>
+));
+
+vi.mock('@ovh-ux/muk', async (importActual) => {
+  const actual = await importActual<typeof import('@ovh-ux/muk')>();
+
+  return {
+    ...actual,
+    ActionMenu: (props: { items: ActionMenuItemProps[] }) => actionMenuMock(props),
+  };
+});
 
 describe('useDatagridColumn', () => {
   beforeEach(() => {
@@ -93,7 +113,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<AddressCell {...mockContext} />);
 
-    expect(screen.getByText('123 Test Street')).toBeInTheDocument();
+    expect(screen.getByText('123 Test Street')).not.toBeNull();
   });
 
   it('should render address cell with undefined badge when address is missing', () => {
@@ -117,7 +137,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<AddressCell {...mockContext} />, { wrapper });
 
-    expect(screen.getByText('hosting_tab_LOCAL_SEO_table_value_undefined')).toBeInTheDocument();
+    expect(screen.getByText('hosting_tab_LOCAL_SEO_table_value_undefined')).not.toBeNull();
   });
 
   it('should render email cell', () => {
@@ -140,7 +160,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     const { container } = render(<EmailCell {...mockContext} />, { wrapper });
 
-    expect(container).toBeInTheDocument();
+    expect(container).not.toBeNull();
   });
 
   it('should render status cell with created status', () => {
@@ -163,7 +183,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<StatusCell {...mockContext} />, { wrapper });
 
-    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_created')).toBeInTheDocument();
+    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_created')).not.toBeNull();
   });
 
   it('should render status cell with creating status', () => {
@@ -186,7 +206,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<StatusCell {...mockContext} />, { wrapper });
 
-    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_creating')).toBeInTheDocument();
+    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_creating')).not.toBeNull();
   });
 
   it('should render status cell with deleting status', () => {
@@ -209,7 +229,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<StatusCell {...mockContext} />, { wrapper });
 
-    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_deleting')).toBeInTheDocument();
+    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_deleting')).not.toBeNull();
   });
 
   it('should render status cell with updating status', () => {
@@ -232,7 +252,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     render(<StatusCell {...mockContext} />, { wrapper });
 
-    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_updating')).toBeInTheDocument();
+    expect(screen.getByText('hosting_tab_LOCAL_SEO_state_updating')).not.toBeNull();
   });
 
   it('should render actions cell', () => {
@@ -255,7 +275,7 @@ describe('useDatagridColumn', () => {
     const mockContext = createMockCellContext(mockRow.original);
     const { container } = render(<ActionsCell {...mockContext} />, { wrapper });
 
-    expect(container).toBeInTheDocument();
+    expect(container).not.toBeNull();
   });
 });
 
@@ -285,7 +305,7 @@ describe('DatagridActionCell', () => {
 
     render(<DatagridActionCell {...mockProps} />, { wrapper });
 
-    expect(screen.getByTestId('action-menu')).toBeInTheDocument();
+    expect(screen.getByTestId('action-menu')).not.toBeNull();
   });
 
   it('should open interface when access interface is clicked', async () => {
@@ -339,5 +359,23 @@ describe('DatagridActionCell', () => {
     button.click();
 
     expect(navigate).toHaveBeenCalled();
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const mockProps: LocalSeoType = {
+      accountId: 123,
+      id: 'test-id',
+      name: 'Test Company',
+      address: '123 Test Street',
+      status: SeoStatus.CREATED,
+      country: SeoCountry.FR,
+      creationDate: '2025-01-01',
+      lastUpdate: '2025-01-01',
+      offer: SeoOffer.NORMAL,
+      taskId: 0,
+    };
+    const { container } = renderWithRouter(<DatagridActionCell {...mockProps} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });
