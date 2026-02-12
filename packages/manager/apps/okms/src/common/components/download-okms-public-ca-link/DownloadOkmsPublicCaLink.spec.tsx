@@ -34,7 +34,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/common/utils/dom/download', () => ({
+vi.mock('@/common/utils/files/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
