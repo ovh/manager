@@ -45,7 +45,7 @@ export const SubnetSelection = () => {
   }
 
   return (
-    <div className="max-w-[32%]">
+    <div className="min-w-[320px] max-w-[370px] flex-1">
       <Controller
         name="shareData.subnetId"
         control={control}

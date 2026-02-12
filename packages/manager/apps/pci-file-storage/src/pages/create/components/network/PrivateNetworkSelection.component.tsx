@@ -51,7 +51,7 @@ export const PrivateNetworkSelection = () => {
     }
 
     return (
-      <div className="max-w-[32%]">
+      <div className="min-w-[320px] max-w-[370px] flex-1">
         <Controller
           name="shareData.privateNetworkId"
           control={control}
@@ -85,8 +85,10 @@ export const PrivateNetworkSelection = () => {
         <Text preset="paragraph">{t('create:network.description')}</Text>
       </div>
 
-      {renderContent()}
-      <SubnetSelection />
+      <div className="flex flex-row flex-wrap gap-4">
+        {renderContent()}
+        <SubnetSelection />
+      </div>
     </section>
   );
 };
