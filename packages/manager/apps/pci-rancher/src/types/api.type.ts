@@ -162,3 +162,24 @@ export type TRancherPricing = {
 export type TRancherEligibility = {
   freeTrial: boolean;
 };
+
+export interface TCredit {
+  text: string;
+  value: number;
+  currencyCode: string;
+}
+
+export type TVoucher = {
+  id: number;
+  bill: string | null;
+  products: string | null;
+  description: string;
+  voucher: string;
+  validity: {
+    from: Date | null;
+    to: Date | null;
+  };
+  total_credit: TCredit;
+  available_credit: TCredit;
+  used_credit: TCredit;
+};
