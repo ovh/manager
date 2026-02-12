@@ -17,3 +17,8 @@ export const mockContainerObject: storages.ContainerObject = {
   retrievalState: storages.RetrievalStateEnum.sealed,
   size: 1024,
 };
+
+export const mockedS3ObjectVersions: cloud.StorageObject = {
+  ...mockedS3Object,
+  versionId: 'versionId',
+};

@@ -196,7 +196,7 @@ export const getColumns = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                data-testid="storages-action-trigger"
+                data-testid="object-versions-action-trigger"
                 variant="menu"
                 size="menu"
               >
@@ -204,11 +204,9 @@ export const getColumns = ({
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              data-testid="storages-action-content"
-              align="end"
-            >
+            <DropdownMenuContent align="end">
               <DropdownMenuItem
+                data-testid="object-version-action-download-button"
                 variant="primary"
                 disabled={isPending || isDeepArchive(object)}
                 onClick={() => onDownloadClicked(object)}
@@ -217,6 +215,7 @@ export const getColumns = ({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
+                data-testid="object-version-action-delete-button"
                 variant="critical"
                 onClick={() => {
                   onDeleteClicked(object);

@@ -25,24 +25,26 @@ const mockedSwitftStorage: FormattedStorage = {
   storageType: ObjectStorageTypeEnum.swift,
 };
 
+vi.mock('@/hooks/useLocale', async () => {
+  const mod = await vi.importActual('@/hooks/useLocale');
+  return {
+    ...mod,
+    useLocale: vi.fn(() => 'fr_FR'),
+  };
+});
+
+vi.mock('@/data/api/storage/storages.api', () => ({
+  getStorages: vi.fn(() => mockedStorages),
+}));
+vi.mock('@/data/api/user/user.api', () => ({
+  getUsers: vi.fn(() => [mockedCloudUser]),
+  getUserS3Credentials: vi.fn(() => mockedS3CredentialsWithoutPwd),
+}));
+
 describe('Storage List page', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockedUsedNavigate();
-    vi.mock('@/hooks/useLocale', async () => {
-      const mod = await vi.importActual('@/hooks/useLocale');
-      return {
-        ...mod,
-        useLocale: vi.fn(() => 'fr_FR'),
-      };
-    });
-    vi.mock('@/data/api/storage/storages.api', () => ({
-      getStorages: vi.fn(() => mockedStorages),
-    }));
-    vi.mock('@/data/api/user/user.api', () => ({
-      getUsers: vi.fn(() => [mockedCloudUser]),
-      getUserS3Credentials: vi.fn(() => mockedS3CredentialsWithoutPwd),
-    }));
   });
 
   afterEach(() => {
