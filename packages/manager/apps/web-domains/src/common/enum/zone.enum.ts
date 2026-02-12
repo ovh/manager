@@ -1,29 +1,29 @@
 export enum FieldTypePointingRecordsEnum {
   A = 'A',
   AAAA = 'AAAA',
-  NS = 'NS',
   CNAME = 'CNAME',
   DNAME = 'DNAME',
+  NS = 'NS',
 }
 
 export enum FieldTypeExtendedRecordsEnum {
   CAA = 'CAA',
-  TXT = 'TXT',
-  NAPTR = 'NAPTR',
-  SRV = 'SRV',
-  LOC = 'LOC',
-  SSHFP = 'SSHFP',
-  TLSA = 'TLSA',
-  RP = 'RP',
-  SVCB = 'SVCB',
   HTTPS = 'HTTPS',
+  LOC = 'LOC',
+  NAPTR = 'NAPTR',
+  RP = 'RP',
+  SRV = 'SRV',
+  SSHFP = 'SSHFP',
+  SVCB = 'SVCB',
+  TLSA = 'TLSA',
+  TXT = 'TXT',
 }
 
 export enum FieldTypeMailRecordsEnum {
+  DMARC = 'DMARC',
+  DKIM = 'DKIM',
   MX = 'MX',
   SPF = 'SPF',
-  DKIM = 'DKIM',
-  DMARC = 'DMARC',
 }
 
 export enum RecordTypesWithoutTTLEnum {
