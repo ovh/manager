@@ -24,6 +24,7 @@ export default {
     totalVolumesStorage: '<',
     goToCreateReplications: '<',
     replicationsAvaibleServices: '<',
+    hasAvailableReplicationsServices: '<',
     isNetworkAvailable: '<',
   },
   template,

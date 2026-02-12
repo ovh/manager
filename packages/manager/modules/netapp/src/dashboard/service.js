@@ -381,7 +381,4 @@ export default class NetAppDashboardService {
       });
   }
 
-  hasAvailableReplicationsServices() {
-    return !!this.replicationsAvaibleServices.length;
-  }
 }

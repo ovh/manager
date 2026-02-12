@@ -179,6 +179,8 @@ export default /* @ngInject */ ($stateProvider) => {
           )
           .then(({ data = [] }) => data)
           .catch(() => []),
+      hasAvailableReplicationsServices: /* @ngInject */ (replicationsAvaibleServices) =>
+        !!replicationsAvaibleServices.length
     },
     atInternet: {
       ignore: true,

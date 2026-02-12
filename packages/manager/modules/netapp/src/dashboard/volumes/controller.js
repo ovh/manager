@@ -2,8 +2,6 @@ export default class {
   /* @ngInject */
   constructor(NetAppDashboardService) {
     this.NetAppDashboardService = NetAppDashboardService;
-    this.hasAvailableReplicationsServices =
-      NetAppDashboardService.hasAvailableReplicationsServices;
     this.selectedReplicationsCheckboxes = {};
     this.AWAITING_REPLICATION_STATUS = 'awaiting_replication';
   }
