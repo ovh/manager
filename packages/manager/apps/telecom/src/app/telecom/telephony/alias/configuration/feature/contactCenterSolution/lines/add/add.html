@@ -16,18 +16,16 @@
             data-translate="telephony_alias_config_contactCenterSolution_lines_number"
         ></span>
         <div
-            class="oui-input-group oui-input-group_xl"
+            class="oui-input-group oui-input-group_xl mb-4"
             aria-labelledby="addLine"
             data-ng-repeat="number in $ctrl.addLineForm.numbers track by $index"
         >
-            <input
-                id="number_{{::$index}}"
-                name="number_{{::$index}}"
-                type="text"
-                data-ng-model="$ctrl.addLineForm.numbers[$index].value"
-                class="oui-input"
-                placeholder="{{:: 'telephony_alias_config_contactCenterSolution_lines_line_number_placeholder' | translate }}"
-            />
+            <phonenumber
+                id="number_{{ $index }}"
+                name="number_{{ $index }}"
+                data-model="$ctrl.addLineForm.numbers[$index].value"
+                data-without-label="true"
+            ></phonenumber>
             <button
                 class="oui-button"
                 type="button"
