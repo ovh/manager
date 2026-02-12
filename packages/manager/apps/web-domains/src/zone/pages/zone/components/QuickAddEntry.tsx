@@ -29,6 +29,9 @@ import { TLSARecordForm } from "../add/components/forms/TLSARecordForm";
 import { RPRecordForm } from "../add/components/forms/RPRecordForm";
 import { SVCBRecordForm } from "../add/components/forms/SVCBRecordForm";
 import { HTTPSRecordForm } from "../add/components/forms/HTTPSRecordForm";
+import { MXRecordForm } from "../add/components/forms/MXRecordForm";
+import { DKIMRecordForm } from "../add/components/forms/DKIMRecordForm";
+import { DMARCRecordForm } from "../add/components/forms/DMARCRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -454,6 +457,63 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
+          {recordTypeStr === FieldTypeMailRecordsEnum.MX && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_MX")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_MX"
+                    values={{ domain: fullDomain, target: target || "[serveur]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <MXRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeMailRecordsEnum.DKIM && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_DKIM")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_DKIM"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <DKIMRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeMailRecordsEnum.DMARC && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_DMARC")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_DMARC"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <DMARCRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
           {recordTypeStr &&
             recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
@@ -470,7 +530,10 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypeExtendedRecordsEnum.TLSA &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.RP &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.SVCB &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.HTTPS && (
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.HTTPS &&
+            recordTypeStr !== FieldTypeMailRecordsEnum.MX &&
+            recordTypeStr !== FieldTypeMailRecordsEnum.DKIM &&
+            recordTypeStr !== FieldTypeMailRecordsEnum.DMARC && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}
