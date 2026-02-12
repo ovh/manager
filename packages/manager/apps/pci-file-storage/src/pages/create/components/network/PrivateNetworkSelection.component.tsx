@@ -16,6 +16,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { useNetworks } from '@/data/hooks/network/useNetworks';
+import { SubnetSelection } from '@/pages/create/components/network/SubnetSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { selectPrivateNetworksForRegion } from '@/pages/create/view-model/network.view-model';
 
@@ -82,6 +83,7 @@ export const PrivateNetworkSelection = () => {
       </div>
 
       {renderContent()}
+      <SubnetSelection />
     </section>
   );
 };

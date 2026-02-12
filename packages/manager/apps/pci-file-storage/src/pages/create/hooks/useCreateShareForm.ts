@@ -65,6 +65,7 @@ export const useCreateShareForm = () => {
         specName: defaultShareName,
         size: defaultSize,
         privateNetworkId: '',
+        subnetId: '',
       },
       deploymentModes: defaultDeploymentModes ?? [],
       continent: 'all',

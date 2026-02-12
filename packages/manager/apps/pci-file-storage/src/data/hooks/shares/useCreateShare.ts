@@ -11,6 +11,7 @@ export type CreateShareCommand = {
   networkId: string;
   size: number;
   region: string;
+  subnetId: string;
 };
 
 const mapCommandToEntity = (command: CreateShareCommand): TShareToCreate => ({

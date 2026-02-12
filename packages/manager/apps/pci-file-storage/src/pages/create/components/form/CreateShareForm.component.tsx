@@ -68,6 +68,7 @@ export const CreateShareForm = () => {
       networkId: data.shareData.privateNetworkId,
       size: data.shareData.size,
       region: data.shareData.microRegion,
+      subnetId: data.shareData.subnetId,
     });
   };
 
