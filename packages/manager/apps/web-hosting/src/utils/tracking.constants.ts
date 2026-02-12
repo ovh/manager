@@ -92,6 +92,9 @@ export const WEBSITE = 'website';
 // task
 export const TASK = 'task';
 
+// logs
+export const LOGS = 'logs';
+
 // local seo
 export const LOCAL_SEO = 'local-seo';
 export const REMOVE_SEO_SUBSCIPTION = 'remove-seo-subscription';
