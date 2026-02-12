@@ -52,4 +52,11 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
     });
     this.$state.go('vrack.index.terminateVrack', { serviceName });
   }
+
+  getPublicIpUrl(serviceName) {
+    if (this.isNetworkVrackAvailable) {
+      return `${this.shellClientUrl}${serviceName}`;
+    }
+    return `/vrack/${serviceName}`;
+  }
 }
