@@ -276,7 +276,7 @@ export default function ModalOrderUsers() {
                   data-testid="select-licence"
                 >
                   <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select`)} />
-                  <SelectContent />
+                  <SelectContent createPortal={false} />
                 </Select>
               )}
             />
