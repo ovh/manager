@@ -1,45 +1,8 @@
 import React from 'react';
-import { OdsMessage } from '@ovhcloud/ods-components/react';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
-import {
-  VrackServicesResourceStatus,
-  VrackServicesWithIAM,
-  useVrackServicesList,
-} from '@ovh-ux/manager-network-common';
-import { getDisplayName } from '@/utils/vrack-services';
-import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
-const shouldDisplayMessage = (vs: VrackServicesWithIAM) =>
-  vs.resourceStatus !== VrackServicesResourceStatus.READY;
+import { useVrackServicesList } from '@ovh-ux/manager-network-common';
 
-const OperationMessage: React.FC<{ vs?: VrackServicesWithIAM }> = ({ vs }) => {
-  const { t } = useTranslation(TRANSLATION_NAMESPACES.common);
-  const isError = vs?.resourceStatus === VrackServicesResourceStatus.ERROR;
-
-  if (!vs || !shouldDisplayMessage(vs)) {
-    return null;
-  }
-
-  return (
-    <OdsMessage
-      isDismissible={false}
-      color={
-        isError ? ODS_MESSAGE_COLOR.critical : ODS_MESSAGE_COLOR.information
-      }
-      className="block mb-8"
-    >
-      {t(
-        isError
-          ? 'vrackServicesInErrorMessage'
-          : 'vrackServicesNotReadyInfoMessage',
-        {
-          displayName: getDisplayName(vs),
-        },
-      )}
-    </OdsMessage>
-  );
-};
+import { OperationMessage } from './OperationMessage.component';
 
 export const OperationMessages: React.FC<{ id?: string }> = ({ id }) => {
   const { data: vrackServicesList } = useVrackServicesList();
