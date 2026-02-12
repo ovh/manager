@@ -6,11 +6,11 @@ import React, {
   useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DatagridColumn } from '@ovh-ux/muk';
+import { DatagridColumn, useGetResourceTags } from '@ovh-ux/muk';
 import { VisibilityState } from '@tanstack/react-table';
 import { useColumns } from '../dataGridColumns';
 import { DedicatedServer } from '@/data/types/server.type';
-import { ViewType } from './types';
+import { Categories, ViewType } from './types';
 import { useGetViewsPreferences } from '@/hooks/manage-views/useGetViewPreferences';
 import {
   DEFAULT_COLUMN_VISIBILITY,
@@ -35,6 +35,8 @@ export type ViewContextType<T> = {
   >;
   setColumnsOrder: (order?: string[]) => void;
   setViews: React.Dispatch<React.SetStateAction<ViewType[]>>;
+  groupBy: Categories;
+  setGroupBy: (category: Categories) => void;
 };
 
 export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
@@ -47,12 +49,16 @@ export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
   setOrderedColumns: () => {},
   setColumnsOrder: () => {},
   setColumnVisibility: () => {},
+  groupBy: undefined,
+  setGroupBy: () => {},
 });
 
 export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   const { t } = useTranslation('manage-view');
   const [views, setViews] = useState<ViewType[]>([]);
   const [currentView, setCurrentView] = useState<ViewType>(null);
+  const [groupBy, setGroupBy] = useState<Categories>(undefined);
+
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
     DEFAULT_COLUMN_VISIBILITY,
   );
@@ -113,18 +119,21 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
       if (foundDefaultView?.columnVisibility) {
         setColumnVisibility(foundDefaultView.columnVisibility);
       }
+
+      setGroupBy(foundDefaultView?.groupBy);
     }
   }, [preferences, isLoading, error]);
 
-  // When current view changes, update column visibility and order state
+  // When current view changes, update column visibility, order state and group by state
   useEffect(() => {
     setColumnVisibility({
       ...DEFAULT_COLUMN_VISIBILITY,
       ...currentView?.columnVisibility,
     });
     setColumnsOrder(currentView?.columnOrder);
-  }, [currentView]);
 
+    setGroupBy(currentView?.groupBy);
+  }, [currentView]);
   const viewContext = useMemo(() => {
     const columnsConfig = orderedColumns.map((column) => {
       return {
@@ -143,8 +152,10 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
       setOrderedColumns,
       setColumnsOrder,
       setViews,
+      groupBy,
+      setGroupBy,
     };
-  }, [views, currentView, columnVisibility, orderedColumns]);
+  }, [views, currentView, columnVisibility, orderedColumns, groupBy]);
 
   return (
     <ViewContext.Provider value={viewContext}>{children}</ViewContext.Provider>
