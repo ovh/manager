@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.3...@ovh-ux/manager-bm-server-components@2.21.0) (2026-02-12)
+
+
+### Features
+
+* **cdsv2:** test deploy uapp & monolithe with CDSv2 workflow ([9b9b7f3](https://github.com/ovh/manager/commit/9b9b7f3a634b3b5acd926074ae732553253f003e))
+
+
+
+
+
 ## [2.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.2...@ovh-ux/manager-bm-server-components@2.20.3) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-bm-server-components
