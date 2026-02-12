@@ -32,6 +32,9 @@ export const urls = {
   // TASK
   task: `/${subRoutes.serviceName}/task`,
 
+  // LOGS
+  logs: `/${subRoutes.serviceName}/user-logs`,
+
   // LOCAL SEO
   localSeo: `/${subRoutes.serviceName}/localSeo`,
   removeSeoSubsciption: `/${subRoutes.serviceName}/localSeo/${subRoutes.locationId}/terminate`,
