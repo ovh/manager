@@ -104,6 +104,21 @@ export const getDedicatedServerMocks = ({
     api: 'v6',
   },
   {
+    url: '/dedicated/server/:serviceName/specifications/network',
+    response: {
+      vmac: {
+        quota: 2,
+        supported: true,
+      },
+    },
+    api: 'v6',
+  },
+  {
+    url: '/dedicated/server/:serviceName/virtualMac',
+    response: ['00:16:3e:xx:xx:xx'],
+    api: 'v6',
+  },
+  {
     url: '/dedicated/server/:serviceName',
     response: (_: unknown, params: PathParams) =>
       dedicatedServerMockList.find(

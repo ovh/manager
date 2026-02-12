@@ -7,4 +7,5 @@ export * from './useGetProductServices';
 export * from './useGetServerModels';
 export * from './useDedicatedServerIpMigration';
 export * from './useCheckServiceAvailability';
+export * from './useCheckVmacAvailability';
 export * from './useExportIpToCsv';
