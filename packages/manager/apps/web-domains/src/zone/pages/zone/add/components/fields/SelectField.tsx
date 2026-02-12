@@ -36,7 +36,7 @@ export function SelectField({
   required = false,
   items,
   placeholder,
-  className = "w-1/2",
+  className,
   tooltip,
 }: SelectFieldProps) {
   const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.FORM]);

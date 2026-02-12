@@ -38,7 +38,7 @@ export function TextField({
   tooltipKey,
   tooltipText,
   maxLength,
-  className = "w-1/2",
+  className,
   inputClassName = "flex-1",
   disabled = false,
 }: Readonly<TextFieldProps>) {

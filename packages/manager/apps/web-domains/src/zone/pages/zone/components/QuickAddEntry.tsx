@@ -7,7 +7,6 @@ import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EX
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { SubDomainField, TtlField } from "../add/components/SubDomainAndTtl.component";
 import { RecordFieldInputs } from "../add/components/Inputs.component";
-import { LocFormContent } from "../add/Steps/pointType/components/LocForm.component";
 import { SpfFormContent } from "../add/Steps/mailType/SpfForm.component";
 import { SpfFormHeader } from "../add/Steps/mailType/SpfFormHeader";
 import {
@@ -24,6 +23,7 @@ import { CAARecordForm } from "../add/components/forms/CAARecordForm";
 import { TXTRecordForm } from "../add/components/forms/TXTRecordForm";
 import { NAPTRRecordForm } from "../add/components/forms/NAPTRRecordForm";
 import { SRVRecordForm } from "../add/components/forms/SRVRecordForm";
+import { LOCRecordForm } from "../add/components/forms/LOCRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -185,9 +185,20 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
           {recordTypeStr === FieldTypeExtendedRecordsEnum.LOC && (
             <>
-              <SubDomainField control={control} domainSuffix={serviceName} required={false} />
-              <TtlField control={control} watch={watch} />
-              <LocFormContent />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_LOC")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_LOC"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <LOCRecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
