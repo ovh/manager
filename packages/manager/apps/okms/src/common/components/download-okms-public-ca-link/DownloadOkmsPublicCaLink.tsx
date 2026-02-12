@@ -11,7 +11,7 @@ import { useNotifications } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { initiateTextFileDownload } from '@/common/utils/files/download';
 import { TrackingTags } from '@/tracking.constant';
 
 import { PUBLIC_CA_FILENAME, PUBLIC_RSA_CA_FILENAME } from './downloadOkmsPublicCaLink.constants';
