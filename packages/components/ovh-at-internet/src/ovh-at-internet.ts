@@ -43,6 +43,16 @@ function isTrackingDebug() {
   return window.localStorage?.getItem('MANAGER_TRACKING_DEBUG');
 }
 
+function deleteCookieOnAllDomains(cookieName: string) {
+  const parts = window.location.hostname?.split('.');
+  const expired = 'Expires=Thu, 01 Jan 1970 00:00:01 GMT';
+  ['', ...parts.map((_, i) => ` Domain=.${parts.slice(i + 1).join('.')};`)]
+    .filter((d) => d !== ' Domain=.;')
+    .forEach((domainPart) => {
+      document.cookie = `${cookieName}=; Path=/;${domainPart} ${expired};`;
+    });
+}
+
 export default class OvhAtInternet extends OvhAtInternetConfig {
   /**
    * Reference to ATInternet Tag object from their JS library.
@@ -229,6 +239,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       window.pa.privacy.include.event('*', 'beforeConsent');
       window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
       window.pa.privacy.setMode('beforeConsent');
+      deleteCookieOnAllDomains('pa_privacy');
     }
   }
 
@@ -256,8 +267,9 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       .finally(() => {
         this.setEnabled(consent);
         if (!consent && this.shouldUsePianoAnalytics()) {
-          document.cookie = `_pctx=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
-          document.cookie = `_pcid=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;`;
+          deleteCookieOnAllDomains('_pctx');
+          deleteCookieOnAllDomains('_pcid');
+          deleteCookieOnAllDomains('pa_privacy');
         }
       });
   }
