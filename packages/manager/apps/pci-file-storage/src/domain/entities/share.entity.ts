@@ -1,3 +1,5 @@
+import { TNetwork } from '@/domain/entities/network.entity';
+
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 export type TShareId = string;
 
@@ -52,4 +54,5 @@ export type TShare = {
   isPublic: boolean;
   enabledActions: readonly TShareEnabledAction[];
   mountPaths: string[];
+  network: (Partial<TNetwork> & Pick<TNetwork, 'id'>) | TNetwork;
 };
