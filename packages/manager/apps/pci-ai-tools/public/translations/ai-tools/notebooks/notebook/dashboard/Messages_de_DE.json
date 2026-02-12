@@ -29,7 +29,8 @@
   "autoRestartEnabled": "Aktiviert",
   "autoRestartDisabled": "Deaktiviert",
   "autoRestartToastSuccessTitle": "Automatischer Neustart aktualisiert",
-  "autoRestartToastSuccessDescription": "Die Einstellung für den automatischen Neustart für {{name}} wurde aktualisiert.",
-  "disabledRestartButtonTooltip": "Der automatische Neustart kann nicht geändert werden, wenn das Notebook beendet ist.",
-  "modifyLabel": "Ändern"
+  "autoRestartToastSuccessDescription": "Die Einstellung für den automatischen Neustart wurde für {{name}} aktualisiert",
+  "disabledRestartButtonTooltip": "Der automatische Neustart kann nicht geändert werden, wenn das Notebook ausgeschaltet ist.",
+  "modifyLabel": "Ändern",
+  "qpuAutoRestartNote": "QPU-Notebooks können nicht ohne automatischen Neustart ausgeschaltet werden. Diese Funktion ist standardmäßig aktiviert, um die Kontinuität Ihrer QPU-Berechnungen zu gewährleisten."
 }
