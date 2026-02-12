@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { matchPath, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Icon,
@@ -18,6 +18,7 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ServiceDetailTabsProps,
   legacyTabs,
+  DEFAULT_TAB,
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
@@ -54,8 +55,11 @@ export default function ServiceDetailsTabs({
   useEffect(() => {
     const tab =
       ServiceDetailTabsProps.find((tabName) =>
-        location.pathname.endsWith(tabName.value),
-      )?.value || 'information';
+        matchPath(
+          `/domain/:serviceName/${tabName.value}/*`,
+          location.pathname,
+        ),
+      )?.value || DEFAULT_TAB;
     if (location.pathname) {
       setValue(tab);
     }

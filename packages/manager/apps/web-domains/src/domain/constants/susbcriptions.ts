@@ -8,6 +8,9 @@ export const contactsMapping: Record<string, string> = {
 };
 
 export const domainIsPremium = (pricingMode: string) => {
+  if (!pricingMode) {
+    return false;
+  }
   return pricingMode.includes('premium');
 };
 

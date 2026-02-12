@@ -106,7 +106,7 @@ export default function SubscriptionCards({
         <ManagerTile.Item.Label>
           {t('domain_tab_general_information_subscription_expiration_date')}
         </ManagerTile.Item.Label>
-        <Text>{formatDate({ date: serviceInfo.billing?.expirationDate })}</Text>
+        <Text>{formatDate({ date: serviceInfo?.billing?.expirationDate })}</Text>
       </ManagerTile.Item>
       <ManagerTile.Divider />
       <RenewFrequency serviceInfo={serviceInfo} serviceName={serviceName} />
@@ -117,7 +117,7 @@ export default function SubscriptionCards({
         domainContact={domainContact}
         isFetchingDomainContact={isFetchingDomainContact}
       />
-      {domainIsPremium(serviceInfo.billing?.pricing?.pricingMode) && (
+      {domainIsPremium(serviceInfo?.billing?.pricing?.pricingMode) && (
         <>
           <ManagerTile.Divider />
           <ManagerTile.Item>
