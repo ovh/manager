@@ -111,6 +111,7 @@ import telephony from './telecom/telephony';
 import telephonyComponents from '../components/telecom/telephony';
 import popoverUtils from '../components/popover';
 import uibDropdownUtils from '../components/uib-dropdown-helper';
+import ngPhonenumber from '../components/ng-phonenumber';
 
 import errorPage from './error-page/error-page.module';
 import searchPage from './search/search.module';
@@ -223,6 +224,7 @@ export default async (containerEl, shellClient) => {
         'ui.sortable',
         'ui.validate',
         'validation.match',
+        ngPhonenumber,
         pack,
         telephony,
         telephonyComponents,

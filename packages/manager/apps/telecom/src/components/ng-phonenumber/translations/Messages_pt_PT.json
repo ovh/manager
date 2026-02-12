@@ -1,0 +1,5 @@
+{
+  "telephony_phonenumber_label": "Número de telefone",
+  "telephony_phonenumber_invalid": "O número de telefone é inválido",
+  "telephony_phonenumber_required": "O número de telefone é obrigatório"
+}

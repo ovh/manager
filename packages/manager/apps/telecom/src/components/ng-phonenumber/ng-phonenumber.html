@@ -1,0 +1,45 @@
+<oui-field
+    data-ng-attr-data-label="{{ !$ctrl.withoutLabel ? ($ctrl.label || ('telephony_phonenumber_label' | translate)) : undefined }}"
+    data-help-text="{{ $ctrl.helpText }}"
+    class="phonenumber-field"
+    data-error-messages="{ 'phoneValid': ( $ctrl.errorText || ('telephony_phonenumber_invalid' | translate)), required: ('telephony_phonenumber_required' | translate) }"
+    data-ng-class="{ 'has-error': $ctrl.phoneValid }"
+    data-inline="$ctrl.inline"
+>
+    <div class="oui-input-group phone-number-field">
+        <!-- Country Selector -->
+        <oui-select
+            name="{{ $ctrl.name }}-country"
+            id="{{ $ctrl.id }}-country"
+            searchable
+            data-model="$ctrl.selectedCountry"
+            data-items="$ctrl.countryList"
+            data-on-change="$ctrl.onPhoneCountryChange()"
+            data-placeholder="{{ $ctrl.placeholders.country || '+ XX' }}"
+            data-match="phoneCode">
+            <div>
+                <span
+                    class="d-inline-block align-middle"
+                    data-ng-class="'flag-icon flag-icon-' + $item.value.toLowerCase()"
+                ></span>
+                <span data-ng-bind="$item.label"></span>
+            </div>
+        </oui-select>
+
+        <!-- Phone Number Input -->
+        <input
+            type="text"
+            class="oui-input oui-input_phone m-0"
+            name="{{ $ctrl.name }}-number"
+            id="{{ $ctrl.id }}-number"
+            data-ng-model="$ctrl.phonenumber"
+            data-ng-change="$ctrl.onPhoneNumberChange()"
+            data-ui-validate="{ phoneValid: '$ctrl.validatePhoneNumber($value)' }"
+            data-ng-required="$ctrl.required"
+            data-ng-disabled="$ctrl.disabled"
+            data-ng-readonly="$ctrl.readonly"
+            placeholder="{{ $ctrl.placeholders.phone || $ctrl.phonePlaceholder || '' }}"
+            data-ng-class="$ctrl.inputClass"
+        />
+    </div>
+</oui-field>
