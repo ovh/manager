@@ -29,3 +29,7 @@ export const BACKUP_AGENT_IAM_RULES = {
   'vspc/edit': 'backupServices:apiovh:vspc/edit',
   'vspc/attach': 'backupServices:apiovh:vault/attach',
 };
+
+export const LOCAL_STORAGE_KEYS = {
+  SHOW_NO_AGENT_ENABLED_MESSAGE: 'ovh-backup-agent-show-no-agent-enabled-message',
+};

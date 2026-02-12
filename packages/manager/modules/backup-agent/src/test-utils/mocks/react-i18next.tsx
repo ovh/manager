@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { vi } from 'vitest';
 
 export const useTranslationMock = vi.fn().mockImplementation(() => ({
@@ -7,4 +9,24 @@ export const useTranslationMock = vi.fn().mockImplementation(() => ({
   },
 }));
 
-export const TransMock = vi.fn().mockImplementation(({ children }) => children);
+export const TransMock = vi
+  .fn()
+  .mockImplementation(
+    ({
+      i18nKey,
+      children,
+      components,
+    }: {
+      i18nKey?: string;
+      children?: React.ReactNode;
+      components?: Record<string, unknown>;
+    }) => (
+      <span data-testid={`trans-${i18nKey}`}>
+        {children}
+        {components &&
+          Object.entries(components).map(([key, component]) => (
+            <React.Fragment key={key}>{component as React.ReactNode}</React.Fragment>
+          ))}
+      </span>
+    ),
+  );

@@ -19,5 +19,6 @@
   "agent_status_not_configured_legend": "Su agente se detecta como instalado pero aún no tiene su política aplicada, nos ocuparemos de eso lo antes posible.",
   "agent_status_creating_legend": "Su agente está en proceso de creación.",
   "agent_status_updating_legend": "Su agente está en proceso de modificación.",
-  "agent_status_enabled_legend": "Su agente está activo, se realizarán copias de seguridad desde su servidor."
+  "agent_status_enabled_legend": "Su agente está activo, se realizarán copias de seguridad desde su servidor.",
+  "no_agent_enabled_banner": "¿Necesita ayuda para instalar su Agente? Puede seguir <Link>esta guía</Link>"
 }
