@@ -79,5 +79,6 @@
   "pci_instances_actions_instance_volume_attach_select": "Wybierz istniejący wolumen",
   "pci_instances_actions_instance_volume_attach_information": "Możesz przypisać istniejący wolumen lub utworzyć nowy, który będzie przypisany do Twojej instancji. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Utwórz wolumen",
-  "pci_instances_actions_instance_volume_attach_success_message": "Wolumen {{ volume }} został przypisany do instancji {{ instance }}."
+  "pci_instances_actions_instance_volume_attach_success_message": "Wolumen {{ volume }} został przypisany do instancji {{ instance }}.",
+  "pci_instances_actions_instance_volume_attach_detach_warning_message": "Ta objętość jest już przypisana do jednej lub kilku instancji. Zostanie odłączona od instancji, do której jest obecnie przypisana."
 }
