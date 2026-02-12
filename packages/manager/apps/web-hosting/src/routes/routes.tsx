@@ -35,6 +35,7 @@ import {
   IMPORT_SSL,
   LAST_DEPLOYEMENT_GIT,
   LOCAL_SEO,
+  LOGS,
   MODIFY_CDN,
   MODIFY_DOMAIN,
   MULTISITE,
@@ -76,6 +77,7 @@ import {
   LastDeploymentGitModal,
 } from './pages/git';
 import { LocalSeoPage, RemoveSeoSubscriptionPage } from './pages/localSeo';
+import { LogsPage } from './pages/logs';
 import {
   ManagedWordpressOnboardingPage,
   ManagedWordpressPage,
@@ -278,6 +280,20 @@ export default (
           },
           breadcrumb: {
             label: 'common:web_hosting_header_tasks',
+          },
+        }}
+      />
+      <Route
+        id={LOGS}
+        path={`${urls.logs}/*`}
+        Component={LogsPage}
+        handle={{
+          tracking: {
+            pageName: LOGS,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'logs',
           },
         }}
       />
