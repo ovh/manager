@@ -5,30 +5,29 @@ import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.typ
 
 import { Button } from '@ovh-ux/muk';
 
-type ServiceKeyStateActionsProps = {
+type ServiceKeyDownloadActionsProps = {
   okms: OKMS;
   okmsKey: OkmsServiceKey;
 };
 
-const STATE_ACTION_BUTTON_IDS: ServiceKeyAction['buttonId'][] = [
-  'service-key-deactivate_encryption_key',
-  'service-key-reactivate_encryption_key',
-  'service-key-delete_encryption_key',
+const DOWNLOAD_ACTION_BUTTON_IDS: ServiceKeyAction['buttonId'][] = [
+  'service-key-download_encryption_key_pem',
+  'service-key-download_encryption_key_jwk',
 ];
 
-const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) => {
+const ServiceKeyDownloadActions = ({ okms, okmsKey }: ServiceKeyDownloadActionsProps) => {
   const actionList = useServiceKeyActionsList(okms, okmsKey, 'detail');
-  const stateActions = actionList.filter((action) =>
-    STATE_ACTION_BUTTON_IDS.includes(action.buttonId),
+  const downloadActions = actionList.filter((action) =>
+    DOWNLOAD_ACTION_BUTTON_IDS.includes(action.buttonId),
   );
 
-  if (stateActions.length === 0) {
+  if (downloadActions.length === 0) {
     return null;
   }
 
   return (
     <div className="mt-3 space-y-3">
-      {stateActions.map((action) => (
+      {downloadActions.map((action) => (
         <Button
           className="block"
           key={action.buttonId}
@@ -50,4 +49,4 @@ const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) 
   );
 };
 
-export default ServiceKeyStateActions;
+export default ServiceKeyDownloadActions;

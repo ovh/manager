@@ -37,17 +37,19 @@ export const useOkmsServiceKeys = ({ okmsId }: OkmsServiceKeyOptions) => {
 type UseOkmsServiceKeyByIdParams = {
   okmsId: string;
   keyId: string;
+  format?: 'JWK' | 'PEM';
   enabled?: boolean;
 };
 
 export const useOkmsServiceKeyById = ({
   okmsId,
   keyId,
+  format,
   enabled = true,
 }: UseOkmsServiceKeyByIdParams) => {
   return useQuery<OkmsServiceKeyWithData, ErrorResponse>({
-    queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
-    queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId }),
+    queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId, format }),
+    queryFn: () => getOkmsServiceKeyResource({ okmsId, keyId, format }),
     retry: false,
     ...{
       keepPreviousData: true,
