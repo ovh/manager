@@ -75,13 +75,13 @@ describe('DeleteSharePage', () => {
 
     expect(screen.getByText('delete:title')).toBeVisible();
     expect(screen.getByText('delete:description{"name":"My Share"}')).toBeVisible();
-    expect(screen.getByText('delete:confirmLabel')).toBeVisible();
+    expect(screen.getByText('delete:input.label')).toBeVisible();
   });
 
   it('should display error and keep submit button disabled when input is empty', () => {
     render(<DeleteSharePage />);
 
-    expect(screen.getByText('delete:confirmEmptyError')).toBeVisible();
+    expect(screen.getByText('delete:input.error')).toBeVisible();
     expect(screen.getByRole('button', { name: 'delete:submitButton' })).toBeDisabled();
   });
 
@@ -113,7 +113,7 @@ describe('DeleteSharePage', () => {
     render(<DeleteSharePage />);
 
     expect(screen.getByText('delete:cannotDelete')).toBeVisible();
-    expect(screen.queryByText('delete:confirmLabel')).not.toBeInTheDocument();
+    expect(screen.queryByText('delete:input.label')).not.toBeInTheDocument();
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
   });
 
@@ -124,7 +124,7 @@ describe('DeleteSharePage', () => {
     const input = screen.getByRole('textbox');
     await user.type(input, 'other');
 
-    expect(screen.queryByText('delete:confirmEmptyError')).not.toBeInTheDocument();
+    expect(screen.queryByText('delete:input.error')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'delete:submitButton' })).toBeDisabled();
   });
 

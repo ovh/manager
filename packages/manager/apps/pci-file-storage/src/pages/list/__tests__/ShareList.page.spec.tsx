@@ -53,7 +53,7 @@ vi.mock('@ovh-ux/muk', () => ({
       <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
     </div>
   ),
-  Notifications: () => <div>Notifications</div>
+  Notifications: () => <div>Notifications</div>,
 }));
 
 describe('ShareList page', () => {

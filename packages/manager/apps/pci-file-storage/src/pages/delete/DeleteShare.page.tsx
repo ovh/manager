@@ -43,14 +43,14 @@ const DeleteSharePage: React.FC = () => {
 
   const onError = useCallback(
     (errorMessage: string) => {
-      addError(t('delete:error', { errorMessage }));
+      addError(t('delete:message.error', { errorMessage }));
       navigate('..');
     },
     [navigate, addError, t],
   );
 
   const onSuccess = useCallback(() => {
-    addSuccess(t('delete:successDeleting', { shareName }));
+    addSuccess(t('delete:message.success', { shareName }));
     navigate('..');
   }, [navigate, addSuccess, t, shareName]);
 
@@ -106,14 +106,14 @@ const DeleteSharePage: React.FC = () => {
                 <Skeleton className="py-8" />
               ) : (
                 <FormField invalid={isEmpty}>
-                  <FormFieldLabel>{t('delete:confirmLabel')}</FormFieldLabel>
+                  <FormFieldLabel>{t('delete:input.label')}</FormFieldLabel>
                   <Input
                     value={confirmInput}
                     onChange={(e) => setConfirmInput(e.target.value)}
                     aria-invalid={isEmpty}
                     className="w-full"
                   />
-                  <FormFieldError>{t('delete:confirmEmptyError')}</FormFieldError>
+                  <FormFieldError>{t('delete:input.error')}</FormFieldError>
                 </FormField>
               )}
             </section>
