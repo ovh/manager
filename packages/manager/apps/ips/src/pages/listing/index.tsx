@@ -7,9 +7,9 @@ import {
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Tab, Tabs, TabList } from '@ovhcloud/ods-react';
 
-import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
+import { BaseLayout, Notifications } from '@ovh-ux/muk';
 
 import { useHeader } from '@/components/Header/Header';
 import { SurveyLink } from '@/components/SurveyLink/SurveyLink';
@@ -46,22 +46,25 @@ export default function Listing() {
           <div className=" flex w-full justify-end">
             <SurveyLink />
           </div>
-          <OdsTabs className="mb-4">
-            {tabsList.map((tab: DashboardTabItemProps) => (
-              <OdsTab
-                key={`ods-tab-bar-item-${tab.to}`}
-                id={tab.to}
-                isSelected={[tab.to, `${tab.to}/`].includes(location.pathname)}
-                className="flex items-center justify-center px-3"
-                title={tab.title}
-                onClick={() => {
-                  navigate(tab.to);
-                }}
-              >
-                {tab.title}
-              </OdsTab>
-            ))}
-          </OdsTabs>
+          <Tabs
+            className="mb-4"
+            value={
+              location.pathname.endsWith('/')
+                ? location.pathname.slice(0, -1)
+                : location.pathname
+            }
+            onValueChange={(e) => {
+              navigate(e.value);
+            }}
+          >
+            <TabList>
+              {tabsList.map((tab: DashboardTabItemProps) => (
+                <Tab key={`ods-tab-bar-item-${tab.to}`} value={tab.to}>
+                  {tab.title}
+                </Tab>
+              ))}
+            </TabList>
+          </Tabs>
         </>
       }
       message={<Notifications />}

@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useGetIpVmacWithIp, useGetIpdetails } from '@/data/hooks';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { ipFormatter } from '@/utils/ipFormatter';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-import { isVmacAvailable } from '../enableCellsUtils';
-
-export type IpVmacProps = {
-  ip: string;
-};
+import { IpRowData, isVmacAvailable } from '../enableCellsUtils';
+import { ColumnDef } from '@tanstack/react-table';
 
 /**
  * Component to display the cell content for IP Vmac
@@ -21,15 +18,15 @@ export type IpVmacProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpVmac = ({ ip }: IpVmacProps) => {
+export const IpVmac: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
   const { expiredIps } = useContext(ListingContext);
   // Check if ip is a group
   const { isGroup } = ipFormatter(ip);
 
   // check if ip is routed to a dedicated server
-  const { ipDetails, isLoading: isIpDetailsLoading } = useGetIpdetails({
-    ip,
-    enabled: !isGroup,
+  const { ipDetails, loading: isIpDetailsLoading } = useGetIpdetails({
+    ip: ip || parentIpGroup,
   });
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
@@ -40,18 +37,30 @@ export const IpVmac = ({ ip }: IpVmacProps) => {
 
   // get vmacs if ip is routed to a dedicated server
   const serviceName = ipDetails?.routedTo?.serviceName;
-  const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
+  const { vmacsWithIp, loading } = useGetIpVmacWithIp({
     serviceName,
     enabled,
   });
 
+  if (parentIpGroup) {
+    const vmac = vmacsWithIp.find((vmacs) =>
+      vmacs?.ip?.some((vmacIp) => ip === vmacIp),
+    );
+
+    return (
+      <SkeletonCell loading={loading} ip={ip}>
+        {!vmac ? <>-</> : <div>{vmac.macAddress}</div>}
+      </SkeletonCell>
+    );
+  }
+
   return (
     <SkeletonCell
-      isLoading={isLoading || isIpDetailsLoading}
+      loading={loading || isIpDetailsLoading}
       enabled={!isGroup}
       ip={ip}
     >
-      {!enabled && null}
+      {!enabled && <></>}
       {enabled && !vmacsWithIp?.length && <>-</>}
       {enabled &&
         vmacsWithIp

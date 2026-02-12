@@ -6,14 +6,16 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Icon,
+  ICON_NAME,
+  TEXT_PRESET,
+  Button,
+  Text,
+} from '@ovhcloud/ods-react';
 
-import { ActionMenu } from '@ovh-ux/manager-react-components';
+import { ActionMenu } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -29,12 +31,6 @@ import { ListingContextProvider } from '../listingContext';
 import { IpDatagrid } from './components';
 import { FilterService, IpFilter, QuickFilter } from './components/filters';
 
-export type DashboardTabItemProps = {
-  name: string;
-  title: string;
-  to: string;
-};
-
 export default function IpListingPage() {
   const queryClient = useQueryClient();
   const { environment } = React.useContext(ShellContext);
@@ -46,15 +42,14 @@ export default function IpListingPage() {
   return (
     <ListingContextProvider>
       <div className="flex flex-col">
-        <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+        <Text preset={TEXT_PRESET.heading3} className="mb-4">
           {t('listingTabIpDescription')}
-        </OdsText>
+        </Text>
       </div>
       <div className="mb-4 flex gap-4">
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          icon={ODS_ICON_NAME.plus}
-          size={ODS_BUTTON_SIZE.sm}
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          size={BUTTON_SIZE.sm}
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -64,12 +59,13 @@ export default function IpListingPage() {
             });
             navigate(urls.order);
           }}
-          label={t('orderIpsButtonLabel')}
-        />
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          icon={ODS_ICON_NAME.plus}
-          size={ODS_BUTTON_SIZE.sm}
+        >
+          <Icon name={ICON_NAME.plus} className="mr-2" />
+          {t('orderIpsButtonLabel')}
+        </Button>
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          size={BUTTON_SIZE.sm}
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -79,18 +75,20 @@ export default function IpListingPage() {
             });
             navigate(urls.byoip);
           }}
-          label={t('orderByoipButtonLabel')}
-        />
+        >
+          <Icon name={ICON_NAME.plus} className="mr-2" />
+          {t('orderByoipButtonLabel')}
+        </Button>
       </div>
 
       <div className="flex flex-row">
-        <div className="mr-2 flex flex-1 flex-col gap-4 md:mr-8 md:flex-row">
+        <div className="mr-2 flex flex-1 flex-col gap-3 md:mr-8 md:flex-row md:items-start">
           <IpFilter className="min-w-[200px] max-w-[400px] flex-1" />
           <FilterService className="min-w-[200px] max-w-[400px] flex-1" />
-          <OdsButton
-            variant={ODS_BUTTON_VARIANT.outline}
-            icon={ODS_ICON_NAME.refresh}
-            size={ODS_BUTTON_SIZE.sm}
+          <Button
+            className="max-w-[40px]"
+            variant={BUTTON_VARIANT.outline}
+            size={BUTTON_SIZE.sm}
             onClick={() => {
               trackClick({
                 location: PageLocation.page,
@@ -100,15 +98,16 @@ export default function IpListingPage() {
               });
               queryClient.invalidateQueries();
             }}
-            label=""
-          />
+          >
+            <Icon name={ICON_NAME.refresh} />
+          </Button>
         </div>
 
-        <div className="ml-auto flex flex-col items-end gap-4">
-          <div className="ml-auto flex items-end gap-4">
+        <div className="ml-auto flex flex-col items-end gap-3">
+          <div className="ml-auto flex items-end gap-3">
             <ActionMenu
               id="settings"
-              icon={ODS_ICON_NAME.cog}
+              icon={ICON_NAME.cog}
               isCompact
               items={[
                 {
@@ -129,10 +128,9 @@ export default function IpListingPage() {
                 },
               ]}
             />
-            <OdsButton
-              variant={ODS_BUTTON_VARIANT.outline}
-              icon={ODS_ICON_NAME.download}
-              size={ODS_BUTTON_SIZE.sm}
+            <Button
+              variant={BUTTON_VARIANT.outline}
+              size={BUTTON_SIZE.sm}
               onClick={() => {
                 trackClick({
                   location: PageLocation.page,
@@ -142,14 +140,15 @@ export default function IpListingPage() {
                 });
                 navigate(`${urls.listingExportIpToCsv}?${search.toString()}`);
               }}
-              label=""
-            />
+            >
+              <Icon name={ICON_NAME.download} />
+            </Button>
           </div>
           <QuickFilter />
         </div>
       </div>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <React.Suspense fallback={<Loading />}>
           <IpDatagrid />
         </React.Suspense>

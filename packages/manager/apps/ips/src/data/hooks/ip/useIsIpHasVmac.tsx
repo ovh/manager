@@ -13,7 +13,7 @@ export const useIpHasVmac = ({
   ip,
   enabled = true,
 }: UseIpHasVmacParams) => {
-  const { vmacsWithIp, isLoading } = useGetIpVmacWithIp({
+  const { vmacsWithIp, loading } = useGetIpVmacWithIp({
     serviceName,
     enabled: Boolean(serviceName) && enabled,
   });
@@ -25,6 +25,6 @@ export const useIpHasVmac = ({
   return {
     isVmacAlreadyExist: vmacs.length > 0,
     ipvmac: vmacs,
-    isLoading,
+    loading,
   };
 };

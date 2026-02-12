@@ -5,16 +5,20 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsLink,
-  OdsMessage,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  MessageBody,
+  SelectContent,
+  SelectControl,
+  TEXT_PRESET,
+  Link,
+  Message,
+  Select,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -57,7 +61,7 @@ export default function AggregateModal() {
 
   const {
     aggregate,
-    isLoading,
+    loading,
     error,
     aggregateError,
     isAggregatePending,
@@ -106,36 +110,39 @@ export default function AggregateModal() {
 
   return (
     <Modal
-      isOpen
+      open
       heading={t('aggregateModalTitle', { ip: ipGroup })}
-      isLoading={isLoading}
-      onDismiss={cancel}
-      onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['aggregate', 'confirm'],
-        });
-        postAggregate({ aggregationIp });
+      loading={loading}
+      onOpenChange={cancel}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: cancel,
+        testId: 'cancel-button',
       }}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      primaryButtonTestId="confirm-button"
-      isPrimaryButtonLoading={isAggregatePending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      secondaryButtonTestId="cancel-button"
-      isPrimaryButtonDisabled={!aggregationIp}
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['aggregate', 'confirm'],
+          });
+          postAggregate({ aggregationIp });
+        },
+        testId: 'confirm-button',
+        loading: isAggregatePending,
+        disabled: !aggregationIp,
+      }}
     >
-      {!isLoading && aggregate.length === 0 && !apiError && (
-        <OdsMessage className="mb-4" color={ODS_MESSAGE_COLOR.warning}>
-          <div className="inline">
+      {!loading && aggregate.length === 0 && !apiError && (
+        <Message className="mb-4" color={MESSAGE_COLOR.warning}>
+          <MessageBody className="inline">
             {t('noAggregateSliceAvailable')}
-            <OdsLink
+            <Link
               href={links.aggreateSliceLink?.link}
               target="_blank"
               rel="noopener"
-              label={t('noAggregateLinkLabel')}
               onClick={() => {
                 trackClick({
                   actionType: 'action',
@@ -144,40 +151,43 @@ export default function AggregateModal() {
                   actions: [`go-to_${links?.aggreateSliceLink?.trackingLabel}`],
                 });
               }}
-            />
-          </div>
-        </OdsMessage>
+            >
+              {t('noAggregateLinkLabel')}
+            </Link>
+          </MessageBody>
+        </Message>
       )}
       {aggregate.length > 0 && (
         <>
-          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+          <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
             {t('aggregateModalDescription')}
-          </OdsText>
-          <OdsSelect
+          </Text>
+          <Select
             className="block"
             name="aggregation-ip"
-            value={aggregationIp}
-            onOdsChange={(e) => {
-              const newValue = e.detail.value;
+            value={[aggregationIp]}
+            onValueChange={(e) => {
+              const newValue = e.value;
               if (newValue) {
-                setAggregationIp(newValue);
+                setAggregationIp(newValue?.[0]);
               }
             }}
+            items={aggregate.map((a) => ({
+              label: a.aggregationIp,
+              value: a.aggregationIp,
+            }))}
           >
-            {aggregate.map((a) => (
-              <option key={a.aggregationIp} value={a.aggregationIp}>
-                {a.aggregationIp}
-              </option>
-            ))}
-          </OdsSelect>
+            <SelectControl />
+            <SelectContent />
+          </Select>
           <section className="mb-4 bg-neutral-100 p-4">
-            <OdsText>{t('aggregateModalChildrenIpsDescription')}</OdsText>
+            <Text>{t('aggregateModalChildrenIpsDescription')}</Text>
             <ul>
               {aggregate
                 .find((a) => a.aggregationIp === aggregationIp)
                 ?.childrenIps.map((ip) => (
                   <li key={ip}>
-                    <OdsText>{ip}</OdsText>
+                    <Text>{ip}</Text>
                   </li>
                 ))}
             </ul>

@@ -4,28 +4,28 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpDetails, IpMitigationStateEnum, IpMitigationType } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { getOdsBadgeByLabel } from '@/test-utils';
+import { getBadgeByLabel } from '@/test-utils';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
-import { IpAntiDdos, IpAntiDdosProps } from './IpAntiDdos';
+import { IpAntiDdos } from './IpAntiDdos';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 const useGetIpMitigationWithoutIcebergMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipMitigation: undefined as IpMitigationType | undefined,
-    isLoading: true,
+    loading: true,
     error: undefined,
   })),
 );
@@ -40,7 +40,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpAntiDdosProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ListingContext.Provider value={listingContextDefaultParams}>
@@ -54,22 +54,22 @@ describe('IpAntiDdos Component', () => {
   it('Should display automatic if no mitigation set', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
       ipMitigation: {} as IpMitigationType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAntiDDosAutomatic',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.neutral);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.neutral);
       expect(
         getByText(`listingColumnsIpAntiDDosAutomaticTooltip`),
       ).toBeDefined();
@@ -79,25 +79,25 @@ describe('IpAntiDdos Component', () => {
   it('Should display permanent if 1 mitigation is configured as Permanent', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
       ipMitigation: {
         permanent: true,
         state: IpMitigationStateEnum.OK,
       } as IpMitigationType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAntiDDosPermanent',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.warning);
       expect(
         getByText(`listingColumnsIpAntiDDosPermanentTooltip`),
       ).toBeDefined();
@@ -107,25 +107,25 @@ describe('IpAntiDdos Component', () => {
   it('Should display in action if 1 mitigation is configured as auto', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
       ipMitigation: {
         auto: true,
         state: IpMitigationStateEnum.OK,
       } as IpMitigationType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAntiDDosInAction',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.success);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.success);
       expect(
         getByText(`listingColumnsIpAntiDDosInActionTooltip`),
       ).toBeDefined();
@@ -135,24 +135,24 @@ describe('IpAntiDdos Component', () => {
   it('Should display Pending if mitigation exist and state is not ok', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     useGetIpMitigationWithoutIcebergMock.mockReturnValue({
       ipMitigation: {
         state: IpMitigationStateEnum.CREATION_PENDING,
       } as IpMitigationType,
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText, container } = renderComponent({
       ip: ipDetailsList?.[0]?.ip,
     });
-    const badge = await getOdsBadgeByLabel({
+    const badge = await getBadgeByLabel({
       container,
       label: 'listingColumnsIpAntiDDosPending',
     });
     await waitFor(() => {
-      expect(badge.getAttribute('color')).toBe(ODS_BADGE_COLOR.warning);
+      expect(badge.getAttribute('color')).toBe(BADGE_COLOR.warning);
       expect(getByText(`listingColumnsIpAntiDDosPendingTooltip`)).toBeDefined();
     });
   });

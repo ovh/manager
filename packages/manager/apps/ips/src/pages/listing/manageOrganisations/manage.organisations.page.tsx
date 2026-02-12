@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsButton, OdsText } from '@ovhcloud/ods-components/react';
+  BUTTON_VARIANT,
+  Icon,
+  ICON_NAME,
+  TEXT_PRESET,
+  Button,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -21,8 +23,6 @@ import Loading from '@/components/Loading/Loading';
 import { ManageOrganisationsDatagrid } from '@/pages/listing/manageOrganisations/components/OrganisationsDatagrid/manageOrganisationsDataGrid.component';
 import { urls } from '@/routes/routes.constant';
 
-import './manage.organisations.scss';
-
 export default function ManageOrganisationsPage() {
   const { t } = useTranslation('manage-organisations');
   const navigate = useNavigate();
@@ -31,21 +31,20 @@ export default function ManageOrganisationsPage() {
   return (
     <>
       <div className="flex flex-col">
-        <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+        <Text preset={TEXT_PRESET.heading3} className="mb-4">
           {t('manageOrganisationsTabDescription')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+        </Text>
+        <Text preset={TEXT_PRESET.paragraph} className="mb-4">
           {t('manageOrganisationsPageDescription')}
-        </OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-4">
+        </Text>
+        <Text preset={TEXT_PRESET.paragraph} className="mb-4">
           {t('manageOrganisationsPageHowto')}
-        </OdsText>
+        </Text>
       </div>
       <div className="mb-2 flex flex-row">
-        <OdsButton
+        <Button
           className="mb-5 mr-2"
-          variant={ODS_BUTTON_VARIANT.outline}
-          icon={ODS_ICON_NAME.plus}
+          variant={BUTTON_VARIANT.outline}
           onClick={() => {
             trackClick({
               actionType: 'action',
@@ -55,8 +54,10 @@ export default function ManageOrganisationsPage() {
             });
             navigate(urls.openOrganisationsModal);
           }}
-          label={t('manageOrganisationsOrderButtonLabel')}
-        />
+        >
+          <Icon name={ICON_NAME.plus} className="mr-2" />
+          {t('manageOrganisationsOrderButtonLabel')}
+        </Button>
       </div>
       <React.Suspense fallback={<Loading />}>
         <ManageOrganisationsDatagrid />

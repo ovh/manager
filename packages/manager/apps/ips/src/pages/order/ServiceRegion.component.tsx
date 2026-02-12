@@ -2,8 +2,13 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
-import { OdsMessage, OdsSpinner } from '@ovhcloud/ods-components/react';
+import {
+  MESSAGE_COLOR,
+  MessageBody,
+  SPINNER_SIZE,
+  Message,
+  Spinner,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -14,8 +19,11 @@ import { ServiceType } from '@/types';
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const ServiceRegion = () => {
-  const { selectedServiceType, selectedService, addDisabledService } =
-    React.useContext(OrderContext);
+  const {
+    selectedServiceType,
+    selectedService,
+    addDisabledService,
+  } = React.useContext(OrderContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.order,
     NAMESPACES.REGION,
@@ -25,27 +33,29 @@ export const ServiceRegion = () => {
     serviceType: selectedServiceType,
     onServiceUnavailable: addDisabledService,
   });
-  const { isLoading, region, isError, error } = useServiceRegion({
+  const { loading, region, isError, error } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
     serviceStatus,
   });
 
-  if (isServiceInfoLoading || isLoading) {
-    return <OdsSpinner size={ODS_SPINNER_SIZE.sm} />;
+  if (isServiceInfoLoading || loading) {
+    return <Spinner size={SPINNER_SIZE.sm} />;
   }
 
   if (isError) {
     return (
-      <OdsMessage
+      <Message
         className="block max-w-[384px]"
-        color={ODS_MESSAGE_COLOR.danger}
-        isDismissible={false}
+        color={MESSAGE_COLOR.critical}
+        dismissible={false}
       >
-        {t('error_message', {
-          error: error?.response?.data?.message,
-        })}
-      </OdsMessage>
+        <MessageBody>
+          {t('error_message', {
+            error: error?.response?.data?.message,
+          })}
+        </MessageBody>
+      </Message>
     );
   }
 

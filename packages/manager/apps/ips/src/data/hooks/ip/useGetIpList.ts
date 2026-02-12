@@ -31,5 +31,5 @@ export const useGetIpList = (params: GetIpListParams) => {
     retry: false,
   });
 
-  return { ipList: query?.data?.data, ...query };
+  return { ipList: query?.data?.data || [], ...query };
 };

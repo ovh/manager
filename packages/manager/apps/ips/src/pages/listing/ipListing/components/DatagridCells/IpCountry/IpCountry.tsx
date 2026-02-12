@@ -1,14 +1,11 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
+import { ColumnDef } from '@tanstack/react-table';
 
 import { useGetIpdetails } from '@/data/hooks/ip';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-
-export type IpCountryProps = {
-  ip: string;
-};
+import { TRANSLATION_NAMESPACES } from '@/utils';
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for IP Campus (country)
@@ -16,12 +13,17 @@ export type IpCountryProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpCountry = ({ ip }: IpCountryProps) => {
-  const { ipDetails, isLoading } = useGetIpdetails({ ip });
-  const { t } = useTranslation('region-selector');
+export const IpCountry: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.regionSelector);
+  const { ipDetails, loading } = useGetIpdetails({ ip });
+
+  if (parentIpGroup) {
+    return <></>;
+  }
 
   return (
-    <SkeletonCell isLoading={isLoading}>
+    <SkeletonCell loading={loading}>
       {ipDetails?.country ? (
         t(`region-selector-country-name_${ipDetails?.country?.toUpperCase()}`)
       ) : (

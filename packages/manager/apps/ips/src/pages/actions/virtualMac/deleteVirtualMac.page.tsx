@@ -5,12 +5,11 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -100,31 +99,34 @@ export default function DeleteVirtualMac() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeHandler}
+      onOpenChange={closeHandler}
       heading={t('deleteVirtualMacTitle')}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['delete_virtual-mac', 'confirm'],
-        });
-        deleteVirtualMacHandler();
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['delete_virtual-mac', 'confirm'],
+          });
+          deleteVirtualMacHandler();
+        },
+        loading: isPending,
       }}
-      isPrimaryButtonLoading={isPending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      isSecondaryButtonDisabled={isPending}
-      onSecondaryButtonClick={closeHandler}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        disabled: isPending,
+        onClick: closeHandler,
+      }}
     >
       <div>
-        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
           {t('deleteVirtualMacInfo')}
-        </OdsText>
-        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.heading6}>
+        </Text>
+        <Text className="mb-4 block" preset={TEXT_PRESET.heading6}>
           {t('deleteVirtualMacConfirmation')}
-        </OdsText>
+        </Text>
       </div>
     </Modal>
   );

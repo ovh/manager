@@ -1,5 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { IamObject } from '@ovh-ux/manager-react-components';
+import { IamObject } from '@ovh-ux/muk';
 
 import { IpTypeEnum } from '@/data/constants';
 
@@ -8,6 +8,7 @@ export type GetIpDetailsParams = {
 };
 
 export type IpDetails = {
+  ip: string;
   type: IpTypeEnum;
   regions: string[];
   campus: string;

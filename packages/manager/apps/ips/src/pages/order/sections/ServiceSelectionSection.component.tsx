@@ -2,14 +2,16 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
 import {
-  OdsCombobox,
-  OdsComboboxGroup,
-  OdsComboboxItem,
-  OdsFormField,
-  OdsMessage,
-} from '@ovhcloud/ods-components/react';
+  ComboboxContent,
+  ComboboxControl,
+  FormFieldLabel,
+  MESSAGE_COLOR,
+  MessageBody,
+  Combobox,
+  FormField,
+  Message,
+} from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -22,6 +24,7 @@ import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 import {
   ServiceInfo,
+  ServiceInfoWithId,
   useCheckServiceAvailability,
   useGetProductServices,
 } from '@/data/hooks';
@@ -29,6 +32,7 @@ import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 import { IpVersion, ServiceType, ipParkingOptionValue } from '@/types';
 
 import { OrderContext } from '../order.context';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 const getServiceType = (
   serviceId: string,
@@ -75,16 +79,15 @@ export const ServiceSelectionSection: React.FC = () => {
     disabledServices,
     addDisabledService,
   } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
 
-  const { serviceByCategory, isLoading, isError, error } =
-    useGetProductServices([
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.DEDICATED],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VPS],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.PCC],
-    ]);
+  const { serviceByCategory, loading, isError, error } = useGetProductServices([
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.DEDICATED],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VPS],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.PCC],
+  ]);
 
   const {
     [IpTypeEnum.DEDICATED]: server,
@@ -93,34 +96,51 @@ export const ServiceSelectionSection: React.FC = () => {
     [IpTypeEnum.PCC]: dedicatedCloud,
   } = serviceByCategory;
 
-  const { isServiceInfoLoading, hasServiceInfoError, serviceStatus } =
-    useCheckServiceAvailability({
-      serviceName: selectedService,
-      serviceType: selectedServiceType,
-      onServiceUnavailable: addDisabledService,
-    });
+  const {
+    isServiceInfoLoading,
+    hasServiceInfoError,
+    serviceStatus,
+  } = useCheckServiceAvailability({
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+    onServiceUnavailable: addDisabledService,
+  });
+
+  const toComboboxOption = (service: ServiceInfoWithId) => ({
+    label:
+      service.displayName && service.displayName !== service.serviceName
+        ? `${service.displayName} (${service.serviceName})`
+        : service.serviceName,
+    value: service.serviceName,
+    disabled: disabledServices.includes(service.serviceName),
+  });
 
   return (
     <OrderSection title={t('service_selection_title')}>
       {isError && (
-        <OdsMessage color={ODS_MESSAGE_COLOR.critical}>
-          {t('error_message', { error })}
-        </OdsMessage>
+        <Message color={MESSAGE_COLOR.critical}>
+          <MessageBody>{t('error_message', { error })}</MessageBody>
+        </Message>
       )}
-      <OdsFormField className="w-full">
-        <label htmlFor="service" slot="label">
-          {t('service_selection_select_label')}
-        </label>
-        <OdsCombobox
+      <FormField className="w-full">
+        <FormFieldLabel>{t('service_selection_select_label')}</FormFieldLabel>
+        <Combobox
           id="service"
           name="service"
           className="w-full max-w-[384px]"
-          onOdsChange={(event) => {
-            const serviceId = event.detail.value;
-            setSelectedService(serviceId);
-            setSelectedServiceType(
-              getServiceType(serviceId, serviceByCategory),
-            );
+          highlightResults
+          customOptionRenderer={ComboboxServiceItem}
+          onValueChange={(event) => {
+            const serviceId = event.value?.[0];
+            if (!disabledServices.includes(serviceId)) {
+              setSelectedService(serviceId);
+              setSelectedServiceType(
+                getServiceType(serviceId, serviceByCategory),
+              );
+            } else {
+              setSelectedService(undefined);
+              setSelectedServiceType(undefined);
+            }
             if (serviceId) {
               trackClick({
                 buttonType: ButtonType.button,
@@ -130,106 +150,73 @@ export const ServiceSelectionSection: React.FC = () => {
               });
             }
           }}
-          isClearable
-          allowNewElement={false}
-          hasError={isError}
-          isLoading={isLoading}
-          placeholder={t('service_selection_select_placeholder')}
-          value={selectedService}
+          allowCustomValue={false}
+          invalid={isError}
+          value={[selectedService]}
+          items={[
+            ipVersion === IpVersion.ipv4 && {
+              label: t(
+                'service_selection_select_dedicated_cloud_option_group_label',
+              ),
+              options: dedicatedCloud?.map(toComboboxOption),
+            },
+            ipVersion === IpVersion.ipv4 && {
+              label: t(
+                'service_selection_select_dedicated_server_option_group_label',
+              ),
+              options: server?.map(toComboboxOption),
+            },
+            ipVersion === IpVersion.ipv4 && {
+              label: t('service_selection_select_vps_option_group_label'),
+              options: vps?.map(toComboboxOption),
+            },
+            ipVersion === IpVersion.ipv4 && {
+              label: t(
+                'service_selection_select_ip_parking_option_group_label',
+              ),
+              options: [
+                {
+                  label: t('service_selection_select_ip_parking_option_label'),
+                  value: ipParkingOptionValue,
+                },
+              ],
+            },
+            {
+              label: t('service_selection_select_vrack_option_group_label'),
+              options: vrack?.map(toComboboxOption),
+            },
+          ].filter(Boolean)}
         >
-          {ipVersion === IpVersion.ipv4 && (
-            <OdsComboboxGroup>
-              <span slot="title">
-                {t(
-                  'service_selection_select_dedicated_cloud_option_group_label',
-                )}
-              </span>
-              {dedicatedCloud?.map((service) => (
-                <ComboboxServiceItem
-                  key={service.id}
-                  name={service.serviceName}
-                  {...service}
-                  isDisabled={disabledServices.includes(service.serviceName)}
-                />
-              ))}
-            </OdsComboboxGroup>
-          )}
-          {ipVersion === IpVersion.ipv4 && (
-            <OdsComboboxGroup>
-              <span slot="title">
-                {t(
-                  'service_selection_select_dedicated_server_option_group_label',
-                )}
-              </span>
-              {server?.map((service) => (
-                <ComboboxServiceItem
-                  key={service.id}
-                  name={service.serviceName}
-                  {...service}
-                  isDisabled={disabledServices.includes(service.serviceName)}
-                />
-              ))}
-            </OdsComboboxGroup>
-          )}
-          {ipVersion === IpVersion.ipv4 && (
-            <OdsComboboxGroup>
-              <span slot="title">
-                {t('service_selection_select_vps_option_group_label')}
-              </span>
-              {vps?.map((service) => (
-                <ComboboxServiceItem
-                  key={service.id}
-                  name={service.serviceName}
-                  {...service}
-                  isDisabled={disabledServices.includes(service.serviceName)}
-                />
-              ))}
-            </OdsComboboxGroup>
-          )}
-          {ipVersion === IpVersion.ipv4 && (
-            <OdsComboboxGroup>
-              <span slot="title">
-                {t('service_selection_select_ip_parking_option_group_label')}
-              </span>
-              <OdsComboboxItem value={ipParkingOptionValue}>
-                {t('service_selection_select_ip_parking_option_label')}
-              </OdsComboboxItem>
-            </OdsComboboxGroup>
-          )}
-          <OdsComboboxGroup>
-            <span slot="title">
-              {t('service_selection_select_vrack_option_group_label')}
-            </span>
-            {vrack?.map((service) => (
-              <ComboboxServiceItem
-                key={service.id}
-                name={service.serviceName}
-                {...service}
-                isDisabled={disabledServices.includes(service.serviceName)}
-              />
-            ))}
-          </OdsComboboxGroup>
-        </OdsCombobox>
+          <ComboboxControl
+            clearable
+            placeholder={t('service_selection_select_placeholder')}
+            loading={loading}
+          />
+          <ComboboxContent />
+        </Combobox>
         {!!selectedService && (
           <div slot="helper">
             <div className="mt-1">
               {!isServiceInfoLoading &&
                 (serviceStatus !== 'ok' || hasServiceInfoError) && (
-                  <OdsMessage
+                  <Message
                     className="block max-w-[384px]"
-                    color={ODS_MESSAGE_COLOR.danger}
-                    isDismissible={false}
+                    color={MESSAGE_COLOR.critical}
+                    dismissible={false}
                   >
-                    {t(
-                      `service_selection_${serviceStatus || 'expired'}_error_message`,
-                    )}
-                  </OdsMessage>
+                    <MessageBody>
+                      {t(
+                        `service_selection_${serviceStatus ||
+                          'expired'}_error_message`,
+                      )}
+                    </MessageBody>
+                  </Message>
                 )}
               <ServiceRegion />
             </div>
           </div>
         )}
-      </OdsFormField>
+      </FormField>
     </OrderSection>
   );
 };

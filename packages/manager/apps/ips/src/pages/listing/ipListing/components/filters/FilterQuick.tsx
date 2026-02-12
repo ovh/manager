@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCheckbox,
-  OdsDivider,
-  OdsPopover,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Checkbox,
+  Divider,
+  Popover,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Icon,
+  ICON_NAME,
+  CheckboxControl,
+  CheckboxLabel,
+  PopoverTrigger,
+  PopoverContent,
+  POPOVER_POSITION,
+} from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -29,84 +32,75 @@ export const QuickFilter = ({ className }: { className?: string }) => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <>
-      <OdsButton
-        className={className}
-        isLoading={!apiFilter}
-        id="quick-filters"
-        icon={ODS_ICON_NAME.filter}
-        size={ODS_BUTTON_SIZE.sm}
-        variant={ODS_BUTTON_VARIANT.outline}
-        aria-haspopup
-        label={t('listingQuickFilterLabel')}
-        data-testid="quick-filter"
-      />
-      <OdsPopover triggerId="quick-filters" withArrow>
-        <div className="gap-4">
-          <label
-            htmlFor="show-ipv4"
-            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
+    <Popover position={POPOVER_POSITION.top}>
+      <PopoverTrigger asChild>
+        <Button
+          className={className}
+          loading={!apiFilter}
+          id="quick-filters"
+          size={BUTTON_SIZE.sm}
+          variant={BUTTON_VARIANT.outline}
+          aria-haspopup
+          data-testid="quick-filter"
+        >
+          <Icon name={ICON_NAME.filter} />
+          {t('listingQuickFilterLabel')}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent withArrow>
+        <div className="grid gap-4">
+          <Checkbox
+            name="show-ipv4"
+            className="hover:bg-gray-100 w-full p-2"
+            checked={[4, undefined].includes(apiFilter?.version)}
+            onCheckedChange={(e) => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.page,
+                actions: ['Quick-filters', 'IPv4'],
+              });
+              setApiFilter((prev) => ({
+                ...prev,
+                version: !e.checked ? 6 : undefined,
+              }));
+            }}
+            disabled={apiFilter?.version === 4}
           >
-            <OdsCheckbox
-              name="show-ipv4"
-              inputId="show-ipv4"
-              isChecked={[4, undefined].includes(apiFilter?.version)}
-              onOdsChange={(e) => {
-                trackClick({
-                  actionType: 'action',
-                  buttonType: ButtonType.button,
-                  location: PageLocation.page,
-                  actions: ['Quick-filters', 'IPv4'],
-                });
-                setApiFilter((prev) => ({
-                  ...prev,
-                  version: !e.detail.checked ? 6 : undefined,
-                }));
-              }}
-              isDisabled={apiFilter?.version === 4}
-            />
-            <OdsText className="ml-1">
-              {t('listingQuickFilterShowIPv4')}
-            </OdsText>
-          </label>
+            <CheckboxControl />
+            <CheckboxLabel>{t('listingQuickFilterShowIPv4')}</CheckboxLabel>
+          </Checkbox>
 
-          <label
-            htmlFor="show-ipv6"
-            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
+          <Checkbox
+            className="hover:bg-gray-100 w-full p-2"
+            name="show-ipv6"
+            checked={[6, undefined].includes(apiFilter?.version)}
+            onCheckedChange={(e) => {
+              trackClick({
+                actionType: 'action',
+                buttonType: ButtonType.button,
+                location: PageLocation.page,
+                actions: ['Quick-filters', 'IPv6'],
+              });
+              setApiFilter((prev) => ({
+                ...prev,
+                version: !e.checked ? 4 : undefined,
+              }));
+            }}
+            disabled={apiFilter?.version === 6}
           >
-            <OdsCheckbox
-              name="show-ipv6"
-              inputId="show-ipv6"
-              isChecked={[6, undefined].includes(apiFilter?.version)}
-              onOdsChange={(e) => {
-                trackClick({
-                  actionType: 'action',
-                  buttonType: ButtonType.button,
-                  location: PageLocation.page,
-                  actions: ['Quick-filters', 'IPv6'],
-                });
-                setApiFilter((prev) => ({
-                  ...prev,
-                  version: !e.detail.checked ? 4 : undefined,
-                }));
-              }}
-              isDisabled={apiFilter?.version === 6}
-            />
-            <OdsText className="ml-1">
-              {t('listingQuickFilterShowIPv6')}
-            </OdsText>
-          </label>
-          <OdsDivider />
+            <CheckboxControl />
+            <CheckboxLabel>{t('listingQuickFilterShowIPv6')}</CheckboxLabel>
+          </Checkbox>
 
-          <label
-            htmlFor="show-parked-ips"
-            className="flex cursor-pointer items-center p-2 hover:bg-gray-100"
-          >
-            <OdsCheckbox
+          <div>
+            <Divider />
+
+            <Checkbox
+              className="hover:bg-gray-100 w-full p-2"
               name="show-parked-ips"
-              inputId="show-parked-ips"
-              isChecked={apiFilter?.['routedTo.serviceName'] === null}
-              onOdsChange={(e) => {
+              checked={apiFilter?.['routedTo.serviceName'] === null}
+              onCheckedChange={(e) => {
                 trackClick({
                   actionType: 'action',
                   buttonType: ButtonType.button,
@@ -116,16 +110,18 @@ export const QuickFilter = ({ className }: { className?: string }) => {
                 setApiFilter((prev) => ({
                   ...prev,
                   // Set routedToserviceName to null if showing ONLY parked IPs
-                  'routedTo.serviceName': e.detail.checked ? null : undefined,
+                  'routedTo.serviceName': e.checked ? null : undefined,
                 }));
               }}
-            />
-            <OdsText className="ml-1">
-              {t('listingQuickFilterShowParkedIps')}
-            </OdsText>
-          </label>
+            >
+              <CheckboxControl />
+              <CheckboxLabel>
+                {t('listingQuickFilterShowParkedIps')}
+              </CheckboxLabel>
+            </Checkbox>
+          </div>
         </div>
-      </OdsPopover>
-    </>
+      </PopoverContent>
+    </Popover>
   );
 };

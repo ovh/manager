@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 import { subRoutes, urls } from '@/routes/routes.constant';
 import NotFound from '@/pages/404';

@@ -83,7 +83,7 @@ export const useIpGameFirewallRules = ({
       ruleListQuery.isError || ruleQueries?.some((query) => query.isError),
     error:
       ruleListQuery.error || ruleQueries?.find((query) => query.error)?.error,
-    isLoading:
+    loading:
       ruleListQuery.isLoading || ruleQueries?.some((query) => query.isLoading),
     data:
       ruleQueries

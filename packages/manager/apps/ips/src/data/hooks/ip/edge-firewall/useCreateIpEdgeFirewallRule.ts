@@ -3,7 +3,7 @@ import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import {

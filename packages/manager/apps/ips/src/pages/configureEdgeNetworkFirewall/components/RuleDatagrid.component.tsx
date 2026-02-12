@@ -2,10 +2,10 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TABLE_SIZE } from '@ovhcloud/ods-components';
+import { TABLE_SIZE } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Datagrid, DatagridColumn } from '@ovh-ux/manager-react-components';
+import { Datagrid, DatagridColumn } from '@ovh-ux/muk';
 
 import { IpEdgeFirewallRule } from '@/data/api';
 import { TRANSLATION_NAMESPACES } from '@/utils';
@@ -22,10 +22,15 @@ import { SequenceColumn } from './SequenceColumn.component';
 import { SourceColumn } from './SourceColumn.component';
 import { StatusColumn } from './StatusColumn.component';
 import { TcpOptionColumn } from './TcpOptionColumn.component';
+import { TopBar } from './TopBar.component';
 
 export const RuleDatagrid: React.FC = () => {
-  const { isNewRuleRowDisplayed, isLoading, isRulesLoading, rules } =
-    React.useContext(EdgeNetworkFirewallContext);
+  const {
+    isNewRuleRowDisplayed,
+    loading,
+    isRulesLoading,
+    rules,
+  } = React.useContext(EdgeNetworkFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.edgeNetworkFirewall,
     NAMESPACES.STATUS,
@@ -35,57 +40,71 @@ export const RuleDatagrid: React.FC = () => {
   const columns: DatagridColumn<IpEdgeFirewallRule & { isNew?: boolean }>[] = [
     {
       id: 'sequence',
-      label: t('sequenceColumnLabel'),
-      cell: SequenceColumn,
+      accessorKey: 'sequence',
+      header: t('sequenceColumnLabel'),
+      size: 70,
+      cell: ({ row }) => <SequenceColumn {...row.original} />,
     },
     {
       id: 'mode',
-      label: t('modeColumnLabel'),
-      cell: ModeColumn,
+      accessorKey: 'mode',
+      header: t('modeColumnLabel'),
+      cell: ({ row }) => <ModeColumn {...row.original} />,
     },
     {
       id: 'protocol',
-      label: t('protocolColumnLabel'),
-      cell: ProtocolColumn,
+      accessorKey: 'protocol',
+      header: t('protocolColumnLabel'),
+      size: 100,
+      cell: ({ row }) => <ProtocolColumn {...row.original} />,
     },
     {
       id: 'source',
-      label: t('sourceColumnLabel'),
-      cell: SourceColumn,
+      accessorKey: 'source',
+      header: t('sourceColumnLabel'),
+      cell: ({ row }) => <SourceColumn {...row.original} />,
     },
     {
       id: 'source-port',
-      label: t('sourcePortColumnLabel'),
-      cell: SourcePortColumn,
+      accessorKey: 'sourcePort',
+      header: t('sourcePortColumnLabel'),
+      cell: ({ row }) => <SourcePortColumn {...row.original} />,
     },
     {
       id: 'destination-port',
-      label: t('destinationPortColumnLabel'),
-      cell: DestinationPortColumn,
+      accessorKey: 'destinationPort',
+      header: t('destinationPortColumnLabel'),
+      cell: ({ row }) => <DestinationPortColumn {...row.original} />,
     },
     {
       id: 'tcp-options',
-      label: t('tcpOptionsColumnLabel'),
-      cell: TcpOptionColumn,
+      accessorKey: 'tcpOptions',
+      header: t('tcpOptionsColumnLabel'),
+      cell: ({ row }) => <TcpOptionColumn {...row.original} />,
     },
     {
       id: 'status',
-      label: t('status', { ns: NAMESPACES.STATUS }),
-      cell: StatusColumn,
+      accessorKey: 'state',
+      header: t('status', { ns: NAMESPACES.STATUS }),
+      cell: ({ row }) => <StatusColumn {...row.original} />,
     },
     {
       id: 'action',
-      label: '',
-      cell: ActionColumn,
+      accessorKey: 'id',
+      header: '',
+      size: 70,
+      cell: ({ row }) => <ActionColumn {...row.original} />,
     },
   ];
 
   const datagrid = React.useMemo(() => {
     return (
       <Datagrid
-        size={ODS_TABLE_SIZE.sm}
+        size={TABLE_SIZE.sm}
         columns={columns}
-        items={
+        topbar={<TopBar />}
+        containerHeight={(rules?.length + 2) * 50}
+        data={
           (isNewRuleRowDisplayed
             ? [
                 { isNew: true } as IpEdgeFirewallRule & { isNew: boolean },
@@ -93,11 +112,10 @@ export const RuleDatagrid: React.FC = () => {
               ]
             : rules) || []
         }
-        totalItems={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
-        isLoading={isLoading || isRulesLoading}
-        numberOfLoadingRows={5}
+        totalCount={rules?.length + (isNewRuleRowDisplayed ? 1 : 0)}
+        isLoading={loading || isRulesLoading}
       />
     );
-  }, [isNewRuleRowDisplayed, isLoading, isRulesLoading, JSON.stringify(rules)]);
+  }, [isNewRuleRowDisplayed, loading, isRulesLoading, JSON.stringify(rules)]);
   return datagrid;
 };

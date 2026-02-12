@@ -17,7 +17,7 @@ import { getConfigValues } from '../Byoip.utils';
 
 export const RirSelectionSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const { data: catalog, isLoading } = useGetCatalog();
+  const { data: catalog, isLoading: loading } = useGetCatalog();
   const { ipRir, setIpRir } = React.useContext(ByoipContext);
   const { trackClick } = useOvhTracking();
 
@@ -30,7 +30,7 @@ export const RirSelectionSection: React.FC = () => {
     <OrderSection
       title={t('rir_selection_title')}
       description={t('rir_selection_description')}
-      isLoading={isLoading}
+      loading={loading}
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {ipRirValues.map((value) => (

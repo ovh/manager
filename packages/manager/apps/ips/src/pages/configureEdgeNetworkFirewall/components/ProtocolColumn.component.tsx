@@ -1,10 +1,13 @@
 import React from 'react';
 
 import {
-  OdsFormField,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormFieldError,
+  FormField,
+  Select,
+  Text,
+  SelectContent,
+  SelectControl,
+} from '@ovhcloud/ods-react';
 
 import {
   IpEdgeFirewallProtocol,
@@ -17,29 +20,35 @@ import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 export const ProtocolColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
-  const { newProtocol, setNewProtocol, protocolError, setProtocolError } =
-    React.useContext(EdgeNetworkFirewallContext);
+  const {
+    newProtocol,
+    setNewProtocol,
+    protocolError,
+    setProtocolError,
+  } = React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
-    <OdsFormField className="w-full" error={protocolError}>
-      <OdsSelect
+    <FormField className="w-full" invalid={!!protocolError}>
+      <Select
         className="block"
         name="protocol-select"
-        value={newProtocol}
-        hasError={!!protocolError}
-        onOdsChange={(e) => {
-          setNewProtocol(e.detail.value as IpEdgeFirewallProtocol);
+        value={[newProtocol]}
+        invalid={!!protocolError}
+        onValueChange={(e) => {
+          setNewProtocol(e.value?.[0] as IpEdgeFirewallProtocol);
           setProtocolError(undefined);
         }}
+        items={Object.entries(IpEdgeFirewallProtocol).map(([label, value]) => ({
+          label,
+          value,
+        }))}
       >
-        {Object.entries(IpEdgeFirewallProtocol).map(([label, value]) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </OdsSelect>
-    </OdsFormField>
+        <SelectContent />
+        <SelectControl />
+      </Select>
+      <FormFieldError>{protocolError}</FormFieldError>
+    </FormField>
   ) : (
-    <OdsText>{getIpEdgeFirewallProtocolLabelFromValue(rule?.protocol)}</OdsText>
+    <Text>{getIpEdgeFirewallProtocolLabelFromValue(rule?.protocol)}</Text>
   );
 };

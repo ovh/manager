@@ -12,26 +12,34 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_PRESET,
-  OdsPhoneNumberCountryIsoCode,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsFormField,
-  OdsInput,
-  OdsModal,
-  OdsPhoneNumber,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  FormField,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  PhoneNumber,
+  Select,
+  Text,
+  BUTTON_COLOR,
+  BUTTON_VARIANT,
+  INPUT_TYPE,
+  SPINNER_SIZE,
+  TEXT_PRESET,
+  FormFieldLabel,
+  FormFieldError,
+  PhoneNumberControl,
+  PhoneNumberCountryList,
+  PhoneNumberCountryIsoCode,
+  SelectContent,
+  SelectControl,
+  Spinner,
+  ModalHeader,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -49,9 +57,6 @@ import {
 import { useGetSingleOrganisationDetail } from '@/data/hooks/organisation';
 import { useGetMeModels } from '@/data/hooks/organisation/useGetMeModels';
 import { TRANSLATION_NAMESPACES } from '@/utils';
-
-import '../../../../index.scss';
-import Loading from '../components/Loading/Loading';
 
 export default function OrganisationsModal() {
   const queryClient = useQueryClient();
@@ -88,13 +93,13 @@ export default function OrganisationsModal() {
 
   const selectedCountry = watch('country');
 
-  const { models, isLoading } = useGetMeModels();
+  const { models, loading } = useGetMeModels();
 
   useEffect(() => {
     if (!models) return;
     setRegistry(models?.['nichandle.IpRegistryEnum'].enum);
     setCountrylist(models?.['nichandle.CountryEnum'].enum);
-  }, [isLoading]);
+  }, [loading]);
 
   const cancel = () => {
     trackClick({
@@ -145,307 +150,316 @@ export default function OrganisationsModal() {
   });
 
   return (
-    <OdsModal
-      class="ods-manage-org-modal"
-      isOpen
-      isDismissible
-      onOdsClose={cancel}
-    >
-      <OdsText preset={ODS_TEXT_PRESET.heading3} data-testid="modal-title">
-        {isEditMode
-          ? t('manageOrganisationsEditOrgTitle')
-          : t('manageOrganisationsAddOrgTitle')}
-      </OdsText>
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={(e) => {
-          handleSubmit((data) => {
-            trackClick({
-              actionType: 'action',
-              buttonType: ButtonType.button,
-              location: PageLocation.popup,
-              actions: [
-                `${isEditMode ? 'edit' : 'add'}_organization`,
-                'confirm',
-              ],
-            });
-            postManageOrganisation(data);
-          })(e);
-        }}
-      >
-        {/* ip organisation selection */}
-        <div className="mt-8">
-          <Controller
-            control={control}
-            name="registry"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField className="w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelTypeLabel')}
-                </label>
-                <div className="flex">
-                  <OdsSelect
-                    key={registry.join('-')}
-                    placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
-                    className="mt-1 flex-1"
-                    id={name}
-                    name={name}
-                    value={value}
-                    hasError={!!errors[name]}
-                    isDisabled={isLoading || isEditMode}
-                    isRequired
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                  >
-                    {registry?.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    )) || []}
-                  </OdsSelect>
-                  {isLoading && (
-                    <Loading
-                      className="flex justify-center"
-                      size={ODS_SPINNER_SIZE.sm}
+    <Modal open onOpenChange={cancel}>
+      <ModalContent>
+        <ModalHeader>
+          <Text preset={TEXT_PRESET.heading3}>
+            {isEditMode
+              ? t('manageOrganisationsEditOrgTitle')
+              : t('manageOrganisationsAddOrgTitle')}
+          </Text>
+        </ModalHeader>
+        <ModalBody>
+          <form
+            onSubmit={(e) => {
+              handleSubmit((data) => {
+                trackClick({
+                  actionType: 'action',
+                  buttonType: ButtonType.button,
+                  location: PageLocation.popup,
+                  actions: [
+                    `${isEditMode ? 'edit' : 'add'}_organization`,
+                    'confirm',
+                  ],
+                });
+                postManageOrganisation(data);
+              })(e);
+            }}
+          >
+            {/* ip organisation selection */}
+            <div>
+              <Controller
+                control={control}
+                name="registry"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <FormField className="w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelTypeLabel')}
+                    </FormFieldLabel>
+                    <div className="flex">
+                      <Select
+                        key={registry.join('-')}
+                        className="mt-1 flex-1"
+                        id={name}
+                        name={name}
+                        value={[value]}
+                        invalid={!!errors[name]}
+                        disabled={loading || isEditMode}
+                        required
+                        onValueChange={onChange}
+                        onBlur={onBlur}
+                        items={
+                          registry?.map((item) => ({
+                            label: item,
+                            value: item,
+                          })) || []
+                        }
+                      >
+                        <SelectContent />
+                        <SelectControl
+                          placeholder={t('select', { ns: NAMESPACES.ACTIONS })}
+                        />
+                      </Select>
+                      {loading && (
+                        <div className="flex justify-center">
+                          <Spinner size={SPINNER_SIZE.sm} />
+                        </div>
+                      )}
+                    </div>
+                  </FormField>
+                )}
+              />
+            </div>
+
+            {/* firstName and surName */}
+            <div className="mt-1 flex gap-2">
+              <Controller
+                control={control}
+                name="firstname"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelFirstnameLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      required
+                      onChange={(e) => onChange(e.target.value)}
+                      invalid={!!errors[name]}
                     />
-                  )}
-                </div>
-              </OdsFormField>
-            )}
-          />
-        </div>
+                  </FormField>
+                )}
+              />
+              <Controller
+                control={control}
+                name="lastname"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelSurnameLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      required
+                      onChange={(e) => onChange(e.target.value)}
+                      invalid={!!errors[name]}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
 
-        {/* firstName and surName */}
-        <div className="mt-2 flex gap-4">
-          <Controller
-            control={control}
-            name="firstname"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelFirstnameLabel')}
-                </label>
-                <OdsInput
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                />
-              </OdsFormField>
-            )}
-          />
-          <Controller
-            control={control}
-            name="lastname"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelSurnameLabel')}
-                </label>
-                <OdsInput
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                ></OdsInput>
-              </OdsFormField>
-            )}
-          />
-        </div>
+            {/*  Country selection */}
+            <div>
+              <Controller
+                control={control}
+                name="country"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="mt-1 w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelCountryLabel')}
+                    </FormFieldLabel>
+                    <CountrySelector
+                      countryCodeList={countrylist?.sort((a, b) =>
+                        t(`region-selector-country-name_${a}`, {
+                          ns: TRANSLATION_NAMESPACES.regionSelector,
+                        }).localeCompare(
+                          t(`region-selector-country-name_${b}`, {
+                            ns: TRANSLATION_NAMESPACES.regionSelector,
+                          }),
+                        ),
+                      )}
+                      name={name}
+                      key={registry.join('-')}
+                      value={value}
+                      onValueChange={onChange}
+                      readOnly={isSending}
+                      loading={loading}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
 
-        {/*  Country selection */}
-        <div>
-          <Controller
-            control={control}
-            name="country"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="mt-1 w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelCountryLabel')}
-                </label>
-                <CountrySelector
-                  countryCodeList={countrylist?.sort((a, b) =>
-                    t(`region-selector-country-name_${a}`, {
-                      ns: TRANSLATION_NAMESPACES.regionSelector,
-                    }).localeCompare(
-                      t(`region-selector-country-name_${b}`, {
-                        ns: TRANSLATION_NAMESPACES.regionSelector,
-                      }),
-                    ),
-                  )}
-                  name={name}
-                  key={registry.join('-')}
-                  value={value}
-                  onChange={onChange}
-                  isReadyOnly={isSending}
-                  isLoading={isLoading}
-                />
-              </OdsFormField>
-            )}
-          />
-        </div>
+            {/* Email address */}
+            <div>
+              <Controller
+                control={control}
+                name="abuse_mailbox"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="mb-1 w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelEmailLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      className="mt-1"
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      onChange={(e) => onChange(e.target.value)}
+                      required
+                      invalid={!!errors[name]}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
 
-        {/* Email address */}
-        <div>
-          <Controller
-            control={control}
-            name="abuse_mailbox"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="mb-1 w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelEmailLabel')}
-                </label>
-                <OdsInput
-                  className="mt-1"
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  isRequired={true}
-                  hasError={!!errors[name]}
-                ></OdsInput>
-              </OdsFormField>
-            )}
-          />
-        </div>
+            {/* Address */}
+            <div>
+              <Controller
+                control={control}
+                name="address"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="mb-1 w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelAddressLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      className="mt-1"
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      required
+                      onChange={(e) => onChange(e.target.value)}
+                      invalid={!!errors[name]}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
 
-        {/* Address */}
-        <div>
-          <Controller
-            control={control}
-            name="address"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="mb-1 w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelAddressLabel')}
-                </label>
-                <OdsInput
-                  className="mt-1"
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                ></OdsInput>
-              </OdsFormField>
-            )}
-          />
-        </div>
+            {/* city and postcode */}
+            <div className="mt-1 flex gap-2">
+              <Controller
+                control={control}
+                name="city"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelCityLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      required
+                      onChange={(e) => onChange(e.target.value)}
+                      invalid={!!errors[name]}
+                    />
+                  </FormField>
+                )}
+              />
+              <Controller
+                control={control}
+                name="zip"
+                render={({ field: { name, value, onChange } }) => (
+                  <FormField className="w-full">
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelPostcodeLabel')}
+                    </FormFieldLabel>
+                    <Input
+                      name={name}
+                      value={value}
+                      type={INPUT_TYPE.text}
+                      required
+                      onChange={(e) => onChange(e.target.value)}
+                      invalid={!!errors[name]}
+                    />
+                  </FormField>
+                )}
+              />
+            </div>
 
-        {/* city and postcode */}
-        <div className="mt-2 flex gap-4">
-          <Controller
-            control={control}
-            name="city"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelCityLabel')}
-                </label>
-                <OdsInput
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                />
-              </OdsFormField>
-            )}
-          />
-          <Controller
-            control={control}
-            name="zip"
-            render={({ field: { name, value, onChange } }) => (
-              <OdsFormField className="w-full">
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelPostcodeLabel')}
-                </label>
-                <OdsInput
-                  name={name}
-                  value={value}
-                  type={ODS_INPUT_TYPE.text}
-                  isRequired
-                  onOdsChange={(e) => onChange(e.detail.value)}
-                  hasError={!!errors[name]}
-                />
-              </OdsFormField>
-            )}
-          />
-        </div>
-
-        {/* Phone */}
-        <div>
-          <Controller
-            control={control}
-            name="phone"
-            render={({
-              field: { onChange, value, name },
-              fieldState: { error },
-            }) => (
-              <OdsFormField className="my-1 w-full" error={error?.message}>
-                <label htmlFor={name} slot="label">
-                  {t('manageOrganisationsOrgModelPhoneLabel')}
-                </label>
-                <OdsPhoneNumber
-                  className="block w-full"
-                  name={name}
-                  value={value}
-                  isRequired
-                  isClearable
-                  isoCode={
-                    selectedCountry?.toLowerCase() as OdsPhoneNumberCountryIsoCode
-                  }
-                  onOdsChange={(e) => {
-                    onChange(e.detail.value);
-                    if (e.detail.value && e.detail.validity?.valid) {
-                      clearErrors(name);
-                    } else if (selectedCountry) {
-                      setError(name, {
-                        type: 'manual',
-                        message: t('manageOrganisationsOrgModelPhoneInvalid', {
-                          countryCode: t(
-                            `region-selector-country-name_${selectedCountry}`,
-                            {
-                              ns: TRANSLATION_NAMESPACES.regionSelector,
-                            },
-                          ),
-                        }),
-                      });
-                    }
-                  }}
-                  hasError={!!error}
-                />
-              </OdsFormField>
-            )}
-          />
-        </div>
-        <div className="mt-1 flex flex-row-reverse">
-          <OdsButton
-            className="m-1"
-            type="submit"
-            slot="actions"
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.default}
-            isDisabled={isLoading || !isValid}
-            isLoading={isSending}
-            label={t('confirm', { ns: NAMESPACES.ACTIONS })}
-          />
-          <OdsButton
-            className="m-1"
-            slot="actions"
-            onClick={cancel}
-            color={ODS_BUTTON_COLOR.primary}
-            variant={ODS_BUTTON_VARIANT.outline}
-            label={t('cancel', { ns: NAMESPACES.ACTIONS })}
-          />
-        </div>
-      </form>
-    </OdsModal>
+            {/* Phone */}
+            <div>
+              <Controller
+                control={control}
+                name="phone"
+                render={({
+                  field: { onChange, value, name },
+                  fieldState: { error },
+                }) => (
+                  <FormField className="my-1 w-full" invalid={!!error?.message}>
+                    <FormFieldLabel>
+                      {t('manageOrganisationsOrgModelPhoneLabel')}
+                    </FormFieldLabel>
+                    <PhoneNumber
+                      className="block w-full"
+                      name={name}
+                      value={value}
+                      required
+                      country={
+                        selectedCountry?.toLowerCase() as PhoneNumberCountryIsoCode
+                      }
+                      onValueChange={(e) => {
+                        onChange(e.value);
+                        if (e.value && !e.parsingError && e.isNumberValid) {
+                          clearErrors(name);
+                        } else if (selectedCountry) {
+                          setError(name, {
+                            type: 'manual',
+                            message: t(
+                              'manageOrganisationsOrgModelPhoneInvalid',
+                              {
+                                countryCode: t(
+                                  `region-selector-country-name_${selectedCountry}`,
+                                  {
+                                    ns: TRANSLATION_NAMESPACES.regionSelector,
+                                  },
+                                ),
+                              },
+                            ),
+                          });
+                        }
+                      }}
+                      invalid={!!error}
+                    >
+                      <PhoneNumberCountryList />
+                      <PhoneNumberControl clearable />
+                    </PhoneNumber>
+                    <FormFieldError>{!!error?.message}</FormFieldError>
+                  </FormField>
+                )}
+              />
+            </div>
+            <div className="mt-1 flex flex-row-reverse">
+              <Button
+                className="m-1"
+                type="submit"
+                color={BUTTON_COLOR.primary}
+                variant={BUTTON_VARIANT.default}
+                disabled={loading || !isValid}
+                loading={isSending}
+              >
+                {t('confirm', { ns: NAMESPACES.ACTIONS })}
+              </Button>
+              <Button
+                className="m-1"
+                onClick={cancel}
+                color={BUTTON_COLOR.primary}
+                variant={BUTTON_VARIANT.outline}
+              >
+                {t('cancel', { ns: NAMESPACES.ACTIONS })}
+              </Button>
+            </div>
+          </form>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
   );
 }
