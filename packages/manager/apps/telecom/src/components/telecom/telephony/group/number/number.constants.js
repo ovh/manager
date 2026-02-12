@@ -27,8 +27,11 @@ export const JSPLUMB_CONNECTIONS_OPTIONS = {
   },
 };
 
+export const COMPLEX_FEATURES = ['cloudIvr', 'contactCenterSolutionExpert'];
+
 export default {
   JSPLUMB_INSTANCE_OPTIONS,
   JSPLUMB_ENDPOINTS_OPTIONS,
   JSPLUMB_CONNECTIONS_OPTIONS,
+  COMPLEX_FEATURES,
 };

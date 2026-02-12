@@ -78,6 +78,27 @@ export default class TelecomTelephonyAliasConfigurationCtrl {
       },
     ];
 
+    // Add first tab for contactCenterSolutionExpert and cloudIvr
+    if (['cloudIvr', 'contactCenterSolutionExpert'].includes(this.number.feature.featureType)) {
+      const translationKey =
+        this.number.feature.featureType === 'contactCenterSolutionExpert'
+          ? 'telephony_alias_config_change_type_label_contactCenterSolutionExpert'
+          : 'telephony_alias_config_change_type_label_cloudIvr';
+      ovhPabxActions.push({
+        name: 'dialplan_management',
+        sref:
+          'telecom.telephony.billingAccount.alias.details.configuration',
+        text: this.$translate.instant(translationKey),
+        showInTabsOnly: true,
+        onClick: () => {
+          this.atInternet.trackClick({
+            name: 'ccs::group-number::dialplan-management',
+            type: 'navigation',
+          });
+        },
+      });
+    }
+
     if (this.number.getFeatureFamily() === 'ovhPabx') {
       ovhPabxActions.push({ divider: true });
       // add member/agent and queues for cloudHunting

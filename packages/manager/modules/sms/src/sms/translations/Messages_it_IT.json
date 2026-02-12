@@ -42,5 +42,6 @@
   "sms_header_guide_start_with_sms": "Come utilizzare gli SMS OVHcloud",
   "sms_smpp_channel_qualification_marketing": "Marketing",
   "sms_smpp_channel_qualification_transactional": "Transazionale",
-  "sms_configure": "Configura"
+  "sms_configure": "Configura",
+  "sms_tabs_statistics": "Statistiche dettagliate"
 }

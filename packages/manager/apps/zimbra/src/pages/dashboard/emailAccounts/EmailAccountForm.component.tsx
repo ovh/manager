@@ -12,6 +12,9 @@ import {
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
   FormField,
   FormFieldError,
   FormFieldLabel,
@@ -276,29 +279,33 @@ export const EmailAccountForm = () => {
                 name="domain"
                 render={({ field, fieldState }) => (
                   <div className="flex flex-1">
-                    <Select
-                      items={domains
-                        ?.filter((domain) => domain.resourceStatus === ResourceStatus.READY)
-                        .map(({ currentState: domain }) => ({
-                          label: domain.name,
-                          value: domain.name,
-                        }))}
-                      id={name}
+                    <Combobox
+                      allowCustomValue={false}
+                      items={
+                        domains
+                          ?.filter((domain) => domain.resourceStatus === ResourceStatus.READY)
+                          .map(({ currentState: domain }) => ({
+                            label: domain.name,
+                            value: domain.name,
+                          })) || []
+                      }
                       name={field.name}
                       invalid={(fieldState.isDirty || fieldState.isTouched) && !!errors[field.name]}
-                      value={[field.value]}
+                      value={field.value ? [field.value] : []}
                       onValueChange={({ value }) => {
-                        field.onChange(value[0]);
-                        setSelectedOrganization(value[0]);
+                        const selectedValue =
+                          Array.isArray(value) && value.length > 0 ? value[0] : '';
+                        field.onChange(selectedValue);
+                        setSelectedOrganization(selectedValue);
                       }}
                       onBlur={field.onBlur}
                       disabled={isLoadingDomains || !domains || !!accountId}
                       className="w-full"
                       data-testid="select-domain"
                     >
-                      <SelectControl placeholder={t('common:select_domain')} />
-                      <SelectContent />
-                    </Select>
+                      <ComboboxControl placeholder={t('common:select_domain')} />
+                      <ComboboxContent />
+                    </Combobox>
                     {(isLoadingDomains || !domains) && (
                       <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                     )}

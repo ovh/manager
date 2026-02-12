@@ -13,6 +13,9 @@ import {
   Checkbox,
   CheckboxControl,
   CheckboxLabel,
+  Combobox,
+  ComboboxContent,
+  ComboboxControl,
   FormField,
   FormFieldError,
   FormFieldLabel,
@@ -29,9 +32,6 @@ import {
   RadioLabel,
   RadioValueChangeDetail,
   SPINNER_SIZE,
-  Select,
-  SelectContent,
-  SelectControl,
   TEXT_PRESET,
   Text,
 } from '@ovhcloud/ods-react';
@@ -237,26 +237,28 @@ export const DomainForm = ({
                 {t('common:organization')} *
               </FormFieldLabel>
               <div className="flex">
-                <Select
-                  items={organizations
-                    ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
-                    .map((org) => ({
-                      label: org.targetSpec?.name,
-                      value: org.id,
-                    }))}
+                <Combobox
+                  allowCustomValue={false}
+                  items={
+                    organizations
+                      ?.filter((org) => org.resourceStatus === ResourceStatus.READY)
+                      .map((org) => ({
+                        label: org.targetSpec?.name,
+                        value: org.id,
+                      })) || []
+                  }
                   data-testid="select-organization"
                   className="mt-2 flex-1"
-                  id={name}
-                  value={[value]}
+                  value={value ? [value] : []}
                   name={name}
                   invalid={(isDirty || isTouched) && !!errors[name]}
                   disabled={isLoading || !!organizationId}
                   onValueChange={(detail) => onChange(detail.value[0])}
                   onBlur={onBlur}
                 >
-                  <SelectControl placeholder={t('common:select_organization')} />
-                  <SelectContent />
-                </Select>
+                  <ComboboxControl placeholder={t('common:select_organization')} />
+                  <ComboboxContent />
+                </Combobox>
                 {isLoading && <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />}
               </div>
               {(isDirty || isTouched) && errors?.[name]?.message && (
@@ -268,23 +270,31 @@ export const DomainForm = ({
       )}
       {formValues.organizationId && (
         <FormField className="w-full gap-4">
-          <RadioGroup value={domainType} onValueChange={handleDomainTypeChange}>
-            <Radio value={DomainOwnership.OVH}>
-              <RadioControl />
-              <RadioLabel>
-                <Text preset={TEXT_PRESET.paragraph}>
-                  {t('zimbra_domains_add_domain_select_title')}
-                </Text>
-              </RadioLabel>
-            </Radio>
-            <Radio value={DomainOwnership.EXTERNAL}>
-              <RadioControl />
-              <RadioLabel>
-                <Text preset={TEXT_PRESET.paragraph}>
-                  {t('zimbra_domains_add_domain_input_title')}
-                </Text>
-              </RadioLabel>
-            </Radio>
+          <RadioGroup
+            value={domainType}
+            onValueChange={handleDomainTypeChange}
+            data-testid="radio-group"
+          >
+            <div data-testid="radio-ovh-domain">
+              <Radio value={DomainOwnership.OVH}>
+                <RadioControl />
+                <RadioLabel>
+                  <Text preset={TEXT_PRESET.paragraph}>
+                    {t('zimbra_domains_add_domain_select_title')}
+                  </Text>
+                </RadioLabel>
+              </Radio>
+            </div>
+            <div data-testid="radio-external-domain">
+              <Radio value={DomainOwnership.EXTERNAL}>
+                <RadioControl />
+                <RadioLabel>
+                  <Text preset={TEXT_PRESET.paragraph}>
+                    {t('zimbra_domains_add_domain_input_title')}
+                  </Text>
+                </RadioLabel>
+              </Radio>
+            </div>
           </RadioGroup>
         </FormField>
       )}
@@ -302,31 +312,33 @@ export const DomainForm = ({
               </FormFieldLabel>
               {isOvhDomain ? (
                 <>
-                  <Select
-                    items={domainZones
-                      ?.filter(
-                        (domain: string) =>
-                          !existingDomains?.some(
-                            (existingDomain) => existingDomain.currentState.name === domain,
-                          ),
-                      )
-                      ?.map((domain) => ({
-                        label: domain,
-                        value: domain,
-                      }))}
+                  <Combobox
+                    allowCustomValue={false}
+                    items={
+                      domainZones
+                        ?.filter(
+                          (domain: string) =>
+                            !existingDomains?.some(
+                              (existingDomain) => existingDomain.currentState.name === domain,
+                            ),
+                        )
+                        ?.map((domain) => ({
+                          label: domain,
+                          value: domain,
+                        })) || []
+                    }
                     className="flex-1"
                     data-testid="select-domain"
-                    id={name}
+                    value={value ? [value] : []}
                     name={name}
-                    value={[value]}
                     invalid={(isDirty || isTouched) && !!errors[name]}
                     disabled={isLoadingDomains}
                     onValueChange={(detail) => onChange(detail.value[0])}
                     onBlur={onBlur}
                   >
-                    <SelectControl placeholder={t('common:select_domain')} />
-                    <SelectContent />
-                  </Select>
+                    <ComboboxControl placeholder={t('common:select_domain')} />
+                    <ComboboxContent />
+                  </Combobox>
                   {(isLoadingExistingDomains || isLoadingDomainZones) && (
                     <Loading className="flex justify-center" size={SPINNER_SIZE.sm} />
                   )}
