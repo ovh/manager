@@ -28,8 +28,7 @@ export default function DomainDatagridColumnRenewMode({
     return <Spinner size={SPINNER_SIZE.xs} />;
   }
 
-  const mode = serviceInfo.billing.renew?.current.mode;
-  const { lifecycle } = serviceInfo.billing;
+  const mode = serviceInfo?.billing.renew?.current.mode;
 
   let label = t(`allDom_table_status_${mode}`);
   let badgeColor;
@@ -39,7 +38,7 @@ export default function DomainDatagridColumnRenewMode({
       : BADGE_COLOR.warning;
 
   if (
-    hasTerminateAtExpirationDateAction(lifecycle?.current.pendingActions ?? [])
+    hasTerminateAtExpirationDateAction(serviceInfo?.billing?.lifecycle?.current.pendingActions ?? [])
   ) {
     label = t('allDom_table_status_terminate');
     badgeColor = BADGE_COLOR.critical;

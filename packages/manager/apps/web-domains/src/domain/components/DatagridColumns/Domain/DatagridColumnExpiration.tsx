@@ -34,7 +34,7 @@ export default function DatagridColumnExpiration({
 
   return (
     <DataGridTextCell>
-      {formatDate({ date: serviceInfo.billing.expirationDate })}
+      {formatDate({ date: serviceInfo?.billing?.expirationDate })}
     </DataGridTextCell>
   );
 }

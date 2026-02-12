@@ -40,8 +40,8 @@ export default function BannerInfo({ serviceName }: BannerInfoProps) {
   if (
     isServiceInfoLoading ||
     (serviceInfo &&
-      serviceInfo.billing.renew?.current.mode !==
-        ServiceInfoRenewModeEnum.Manual)
+      serviceInfo?.billing?.renew?.current.mode !==
+      ServiceInfoRenewModeEnum.Manual)
   ) {
     return <></>;
   }

@@ -21,40 +21,78 @@
                 ></h2>
             </header>
 
-            <dl>
-                <dt
-                    data-ng-if="StatsOvhPabxCtrl.stats.callsTotal"
-                    data-translate="telephony_alias_configuration_stats_qos"
-                ></dt>
-                <dd
-                    data-ng-if="StatsOvhPabxCtrl.stats.callsTotal"
-                    data-ng-bind="StatsOvhPabxCtrl.getQoS() + ' %'"
-                ></dd>
-                <dt
-                    data-translate="telephony_alias_configuration_stats_calls_total"
-                ></dt>
-                <dd data-ng-bind="StatsOvhPabxCtrl.stats.callsTotal"></dd>
-                <dt
-                    data-translate="telephony_alias_configuration_stats_calls_answered"
-                ></dt>
-                <dd data-ng-bind="StatsOvhPabxCtrl.stats.callsAnswered"></dd>
-                <dt
-                    data-translate="telephony_alias_configuration_stats_calls_lost"
-                ></dt>
-                <dd data-ng-bind="StatsOvhPabxCtrl.stats.callsLost"></dd>
-                <dt
-                    data-translate="telephony_alias_configuration_stats_calls_wait_average"
-                ></dt>
-                <dd
-                    data-ng-bind="StatsOvhPabxCtrl.getAverageWaitTime() | tucDuration"
-                ></dd>
-                <dt
-                    data-translate="telephony_alias_configuration_stats_calls_duration_average"
-                ></dt>
-                <dd
-                    data-ng-bind="StatsOvhPabxCtrl.getAverageCallTime() | tucDuration"
-                ></dd>
-            </dl>
+            <div class="widget-presentation-card">
+                <div class="widget-presentation-card-item" data-ng-if="StatsOvhPabxCtrl.stats.callsTotal">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_qos"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.getQoS() + ' %'"
+                    ></div>
+                </div>
+                <div data-ng-class="{'widget-presentation-card-item--separator' : StatsOvhPabxCtrl.stats.callsTotal }" class="widget-presentation-card-item">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_calls_total"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.stats.callsTotal"
+                    ></div>
+                </div>
+                <div class="widget-presentation-card-item widget-presentation-card-item--separator">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_calls_answered"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.stats.getAnsweredPercentage() || 0 + ' %'"
+                    ></div>
+                    <progress class="oui-progress oui-progress_info" value="StatsOvhPabxCtrl.stats.getAnsweredPercentage()" max="100"></progress>
+                    <div
+                        class="widget-presentation-card-item-progres-label"
+                        data-ng-bind="StatsOvhPabxCtrl.stats.callsAnswered + '/' + StatsOvhPabxCtrl.stats.callsTotal"
+                    ></div>
+                </div>
+                <div class="widget-presentation-card-item widget-presentation-card-item--separator">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_calls_lost"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.stats.getLostPercentage() || 0 + ' %'"
+                    ></div>
+                    <progress class="oui-progress oui-progress_error" value="StatsOvhPabxCtrl.stats.getLostPercentage()" max="100"></progress>
+                    <div
+                        data-ng-bind="StatsOvhPabxCtrl.stats.callsLost + '/' + StatsOvhPabxCtrl.stats.callsTotal"
+                        class="widget-presentation-card-item-progres-label"
+                    ></div>
+                </div>
+                <div class="widget-presentation-card-item widget-presentation-card-item--separator">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_calls_wait_average"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.getAverageWaitTime() | tucDuration"
+                    ></div>
+                </div>
+                <div class="widget-presentation-card-item widget-presentation-card-item--separator">
+                    <div
+                        class="widget-presentation-card-item-title"
+                        data-translate="telephony_alias_configuration_stats_calls_duration_average"
+                    ></div>
+                    <div
+                        class="widget-presentation-card-item-value"
+                        data-ng-bind="StatsOvhPabxCtrl.getAverageCallTime() | tucDuration"
+                    ></div>
+                </div>
+            </div>
 
             <!-- QUEUE LIST -->
             <uib-accordion

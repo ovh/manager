@@ -19,6 +19,8 @@ import interceptController from './intercept/intercept.controller';
 import transferTemplate from './transfer/transfer.html';
 import transferController from './transfer/transfer.controller';
 
+import './live-calls.less';
+
 const moduleName = 'ovhManagerTelecomComponentsTelecomTelephonyAliasLiveCalls';
 
 angular

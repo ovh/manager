@@ -17,6 +17,8 @@ import Update from '@/pages/update/Update';
 import { useOperationArguments } from '@/hooks/update/useOperationArguments';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import { serviceInfo } from '@/__mocks__/serviceInfo';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { domainFeatureAvailibility } from '@/constants';
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
@@ -43,6 +45,9 @@ vi.mock('@/hooks/update/useOperationArguments', () => ({
 
 describe('Update page', () => {
   it('display the correct data related to the domain', async () => {
+    (useFeatureAvailability as Mock).mockReturnValue({
+      data: { [domainFeatureAvailibility]: true },
+    });
     (useOperationArguments as Mock).mockReturnValue({
       data: updateContactArgument,
       isLoading: false,

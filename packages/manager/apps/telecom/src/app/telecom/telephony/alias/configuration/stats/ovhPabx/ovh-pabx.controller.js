@@ -150,6 +150,16 @@ export default /* @ngInject */ function TelecomTelephonyAliasConfigurationStatsO
     return self.stats.totalCallDuration / self.stats.callsAnswered;
   };
 
+  self.getAnsweredPercentage = function() {
+    if (!self.stats.callsTotal || !self.stats.callsAnswered) return 0;
+    return Math.round((self.stats.callsAnswered / self.stats.callsTotal) * 100);
+  };
+
+  self.getLostPercentage = function() {
+    if (!self.stats.callsTotal || !self.stats.callsLost) return 0;
+    return Math.round((self.stats.callsLost / self.stats.callsTotal) * 100);
+  };
+
   self.getQoS = function getQoS() {
     // percentage rounded with two decimals
     return (

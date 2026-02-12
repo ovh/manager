@@ -2,14 +2,16 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Text } from '@ovhcloud/ods-react';
 import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
 import {
-  useNavigation,
-  useNavigationGetUrl,
+  useNavigationGetUrl
 } from '@ovh-ux/manager-react-shell-client';
 import { useTranslation } from 'react-i18next';
 import { TDomainResource } from '@/domain/types/domainResource';
 import { contactsMapping } from '@/domain/constants/susbcriptions';
 import { TDomainContact } from '@/common/types/common.types';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
+import { urls } from '@/domain/routes/routes.constant';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
+import { useNavigate } from 'react-router-dom';
 
 interface ContactsProps {
   readonly serviceName: string;
@@ -24,15 +26,13 @@ export default function Contacts({
   domainContact,
   isFetchingDomainContact,
 }: ContactsProps) {
+  const navigate = useNavigate();
   const { t } = useTranslation(['domain', NAMESPACES.CONTACT]);
   const contacts = domainResource?.currentState.contactsConfiguration;
-  const { navigateTo } = useNavigation();
 
   const { nichandleInformation } = useNichandleInformation();
   const account = nichandleInformation?.auth?.account;
-  const {
-    id,
-  } = domainResource?.currentState?.contactsConfiguration?.contactAdministrator;
+  const id = domainResource?.currentState?.contactsConfiguration?.contactAdministrator?.id;
 
   const { data: reassignContactUrl } = useNavigationGetUrl([
     'account',
@@ -46,6 +46,11 @@ export default function Contacts({
   ]);
 
   let ownerId = '';
+
+  const domainDetailUrl = useGenerateUrl(urls.domainTabContactManagementEdit, 'path', {
+    serviceName,
+    holderId: String(domainResource?.currentState?.contactsConfiguration?.contactOwner?.id ?? ''),
+  });
 
   const renderContactsList = () => {
     return Object.entries(contacts)
@@ -69,9 +74,8 @@ export default function Contacts({
         }
 
         return (
-          <Text key={`${contactDetail.id}-${contactType}`}>{`${
-            contactDetail.id
-          }: ${t(contactsMapping[contactType])}`}</Text>
+          <Text key={`${contactDetail.id}-${contactType}`}>{`${contactDetail.id
+            }: ${t(contactsMapping[contactType])}`}</Text>
         );
       })
       .filter(Boolean);
@@ -101,11 +105,7 @@ export default function Contacts({
                 'domain_tab_general_information_subscription_edit_owner',
               ),
               onClick: () => {
-                navigateTo(
-                  'web',
-                  `#/domain/${serviceName}/contact-management/edit-contact/${ownerId}/`,
-                  {},
-                );
+                navigate(domainDetailUrl);
               },
               isDisabled: id !== account,
             },

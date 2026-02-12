@@ -5,6 +5,8 @@ import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import 'ovh-api-services';
 
+import './ovh-pabx.less';
+
 import liveCallsComponent from '../../../../../../../components/telecom/telephony/alias/liveCalls';
 
 import routing from './ovh-pabx.routing';

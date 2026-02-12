@@ -37,18 +37,18 @@ export default function DatagridColumnRenewFrequency({
         <>
           <DataGridTextCell>
             {translateRenewPeriod(
-              serviceInfo.billing?.renew?.current.period,
+              serviceInfo?.billing?.renew?.current.period,
               t,
             )}
           </DataGridTextCell>
-          {serviceInfo.billing?.renew?.current.mode ===
+          {serviceInfo?.billing?.renew?.current.mode ===
             ServiceInfoRenewModeEnum.Manual && (
-            <CircleQuestionTooltip
-              translatedMessage={t(
-                'domain_tab_general_information_subscription_manual_renew_tooltip',
-              )}
-            />
-          )}
+              <CircleQuestionTooltip
+                translatedMessage={t(
+                  'domain_tab_general_information_subscription_manual_renew_tooltip',
+                )}
+              />
+            )}
         </>
       )}
     </>
