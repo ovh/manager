@@ -16,7 +16,7 @@ import { subRoutes } from '@/routes/Routes.constants';
 
 const ShareListPage: React.FC = () => {
   const { t } = useTranslation(['list']);
-  const { data: shares = [], isLoading } = useShares({
+  const { data: shares = [], isLoading, refetch , isFetching} = useShares({
     select: selectSharesForList,
   });
 

@@ -19,17 +19,20 @@ export const capabilitiesToEnabledActions = (
     .map((c) => CAPABILITY_TO_ACTION.get(c.name))
     .filter((a) => !!a);
 
-export const mapShareDtoToShare = (dto: TShareDto): TShare => ({
-  id: dto.id,
-  name: dto.name,
-  region: dto.region,
-  protocol: dto.protocol,
-  size: dto.size,
-  status: dto.status,
-  type: dto.type,
-  createdAt: dto.createdAt,
-  description: dto.description,
-  isPublic: dto.isPublic,
-  enabledActions: capabilitiesToEnabledActions(dto.capabilities),
-  mountPaths: (dto.exportLocations ?? []).map((loc) => loc.path),
-});
+export const mapShareDtoToShare = (dto: TShareDto): TShare =>{
+  console.log({dto});
+  return ({
+    id: dto.id,
+    name: dto.name,
+    region: dto.region,
+    protocol: dto.protocol,
+    size: dto.size,
+    status: dto.status,
+    type: dto.type,
+    createdAt: dto.createdAt,
+    description: dto.description,
+    isPublic: dto.isPublic,
+    enabledActions: capabilitiesToEnabledActions(dto.capabilities),
+    mountPaths: (dto.exportLocations ?? []).map((loc) => loc.path),
+  });
+};

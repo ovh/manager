@@ -22,3 +22,7 @@ export type TShareDto = {
   capabilities: TShareCapabilityDto[];
   exportLocations?: TShareExportLocationDto[];
 };
+
+export type TSharesDto = {
+  resources: TShareDto[];
+}
