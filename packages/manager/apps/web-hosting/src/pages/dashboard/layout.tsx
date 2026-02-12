@@ -5,7 +5,9 @@ import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
+  BADGE_COLOR,
   BUTTON_VARIANT,
+  Badge,
   Button,
   ICON_NAME,
   INPUT_TYPE,
@@ -52,7 +54,10 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
-  const { data: availability } = useFeatureAvailability(['web-hosting:multisite-react']);
+  const { data: availability } = useFeatureAvailability([
+    'web-hosting:multisite-react',
+    'web-hosting:osl-to-ldp',
+  ]);
 
   const { flattenData } = useDataApi<EmailOptionType>({
     version: 'v6',
@@ -72,7 +77,7 @@ export default function Layout() {
     ? `#/${serviceName}/multisite`
     : multisiteHostingUrl;
   const sslPathname = `#/${serviceName}/ssl`;
-  const logsUrl = useHostingUrl(serviceName, 'user-logs');
+  const logsUrl = `#/${serviceName}/user-logs`;
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
   const databaseUrl = useHostingUrl(serviceName, 'database');
   const moduleUrl = useHostingUrl(serviceName, 'module');
@@ -111,11 +116,19 @@ export default function Layout() {
         title: t('hosting_tab_MODULE'),
         to: moduleUrl,
       },
-      {
-        name: 'logs',
-        title: t('hosting_tab_USER_LOGS'),
-        to: logsUrl,
-      },
+      ...(availability?.['web-hosting:osl-to-ldp']
+        ? [
+            {
+              name: 'logs',
+              title: t('hosting_tab_USER_LOGS'),
+              to: logsUrl,
+              badge: {
+                label: 'Beta',
+                color: 'success' as const,
+              },
+            },
+          ]
+        : []),
       {
         name: 'ftp',
         title: t('hosting_tab_FTP'),
@@ -280,17 +293,25 @@ export default function Layout() {
           <div className=" mb-6 mt-8">
             <Tabs withArrows defaultValue={tabs[0].name}>
               <TabList>
-                {tabs.map((tab: DashboardTab) => (
-                  <a href={tab.to} className="no-underline" key={tab.name}>
-                    <Tab
-                      key={tab.name}
-                      value={tab.title}
-                      aria-selected={tab.name === activeTab?.name}
-                    >
-                      {tab.title}
-                    </Tab>
-                  </a>
-                ))}
+                {tabs
+                  .filter((tab) => tab.to)
+                  .map((tab: DashboardTab) => (
+                    <a href={tab.to} className="no-underline" key={tab.name}>
+                      <Tab
+                        key={tab.name}
+                        value={tab.title}
+                        aria-selected={tab.name === activeTab?.name}
+                        className="flex items-center gap-2"
+                      >
+                        <span>{tab.title}</span>
+                        {tab.badge && (
+                          <Badge color={BADGE_COLOR[tab.badge.color || 'beta']} size="sm">
+                            {tab.badge.label}
+                          </Badge>
+                        )}
+                      </Tab>
+                    </a>
+                  ))}
               </TabList>
             </Tabs>
           </div>
