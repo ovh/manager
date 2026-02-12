@@ -2,6 +2,19 @@ export type DashboardTab = {
   name: string;
   title: string;
   to: string;
+  badge?: {
+    label: string;
+    color?:
+      | 'beta'
+      | 'new'
+      | 'promotion'
+      | 'critical'
+      | 'information'
+      | 'neutral'
+      | 'primary'
+      | 'success'
+      | 'warning';
+  };
 };
 
 export const SERVICE_INFOS_STATUS = {
