@@ -28,13 +28,28 @@ export type TPlanTile = TPlanContent & {
 const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
   switch (plan) {
     case 'mks.free.hour.consumption':
+      return {
+        title: 'kube_add_plan_title_free',
+        description: 'kube_add_plan_description_free',
+        content: [
+          'kube_add_plan_content_free_control',
+          'kube_add_plan_content_free_high_availability_1AZ',
+          'kube_add_plan_content_free_SLO',
+          'kube_add_plan_content_free_auto_scaling',
+          'kube_add_plan_content_free_ETCD',
+          'kube_add_plan_content_free_version',
+          'kube_add_plan_content_free_100',
+        ],
+        code: plan,
+        planType: 'free',
+      };
     case 'mks.free.hour.consumption.3az':
       return {
         title: 'kube_add_plan_title_free',
         description: 'kube_add_plan_description_free',
         content: [
           'kube_add_plan_content_free_control',
-          'kube_add_plan_content_free_high_availability',
+          'kube_add_plan_content_free_high_availability_3AZ',
           'kube_add_plan_content_free_SLO',
           'kube_add_plan_content_free_auto_scaling',
           'kube_add_plan_content_free_ETCD',
@@ -50,7 +65,7 @@ const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
         description: 'kube_add_plan_description_standard',
         content: [
           `kube_add_plan_content_standard_1AZ_control_plane`,
-          'kube_add_plan_content_standard_disponibility',
+          'kube_add_plan_content_standard_disponibility_1AZ',
           'kube_add_plan_content_standard_1AZ_SLA',
           'kube_add_plan_content_free_auto_scaling',
           'kube_add_plan_content_standard_ETCD',
@@ -66,7 +81,7 @@ const getPlanDefinition = (plan: TPlanCode): TPlanContent => {
         description: 'kube_add_plan_description_standard',
         content: [
           `kube_add_plan_content_standard_3AZ_control_plane`,
-          'kube_add_plan_content_standard_disponibility',
+          'kube_add_plan_content_standard_disponibility_3AZ',
           'kube_add_plan_content_standard_3AZ_SLA',
           'kube_add_plan_content_free_auto_scaling',
           'kube_add_plan_content_standard_ETCD',

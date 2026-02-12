@@ -61,7 +61,7 @@ describe('usePlanData', () => {
         expectedDescription: 'kube_add_plan_description_free',
         expectedContent: [
           'kube_add_plan_content_free_control',
-          'kube_add_plan_content_free_high_availability',
+          'kube_add_plan_content_free_high_availability_1AZ',
           'kube_add_plan_content_free_SLO',
           'kube_add_plan_content_free_auto_scaling',
           'kube_add_plan_content_free_ETCD',
@@ -217,10 +217,12 @@ describe('usePlanData', () => {
         expect(standardPlan?.content).not.toContain(unexpectedControlPlane);
 
         if (hasDisponibility) {
-          expect(standardPlan?.content).toContain('kube_add_plan_content_standard_disponibility');
+          expect(standardPlan?.content).toContain(
+            'kube_add_plan_content_standard_disponibility_3AZ',
+          );
         } else {
           expect(standardPlan?.content).not.toContain(
-            'kube_add_plan_content_standard_disponibility',
+            'kube_add_plan_content_standard_disponibility_3AZ',
           );
         }
       },

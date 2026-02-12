@@ -28,7 +28,7 @@ const usePlanData = (
       description: 'kube_add_plan_description_free',
       content: [
         'kube_add_plan_content_free_control',
-        'kube_add_plan_content_free_high_availability',
+        'kube_add_plan_content_free_high_availability_1AZ',
         'kube_add_plan_content_free_SLO',
         'kube_add_plan_content_free_auto_scaling',
         'kube_add_plan_content_free_ETCD',
@@ -45,7 +45,7 @@ const usePlanData = (
         ...(isMutiZone
           ? [
               'kube_add_plan_content_standard_3AZ_control_plane',
-              'kube_add_plan_content_standard_disponibility',
+              'kube_add_plan_content_standard_disponibility_3AZ',
               'kube_add_plan_content_standard_3AZ_SLA',
             ]
           : [
