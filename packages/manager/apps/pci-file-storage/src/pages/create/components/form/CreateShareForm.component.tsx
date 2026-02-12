@@ -69,13 +69,11 @@ export const CreateShareForm = () => {
 
   const onSubmit = (data: CreateShareFormValues) => {
     createShare({
+      name: data.shareData.name,
+      type: data.shareData.specName,
+      networkId: data.shareData.privateNetworkId,
+      size: data.shareData.size,
       region: data.shareData.microRegion,
-      payload: {
-        type: data.shareData.specName,
-        name: data.shareData.name,
-        size: data.shareData.size,
-        networkId: data.shareData.privateNetworkId,
-      },
     });
   };
 

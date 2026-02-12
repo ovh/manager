@@ -56,3 +56,7 @@ export type TShare = {
   mountPaths: string[];
   network: (Partial<TNetwork> & Pick<TNetwork, 'id'>) | TNetwork;
 };
+
+export type CreateShare = Pick<TShare, 'name' | 'type' | 'size' | 'region'> & {
+  network: Pick<TShare['network'], 'id'>;
+};
