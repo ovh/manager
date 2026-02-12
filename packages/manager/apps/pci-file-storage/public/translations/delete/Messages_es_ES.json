@@ -1,0 +1,14 @@
+{
+  "title": "Eliminar su share",
+  "description": "Va a eliminar definitivamente el share <strong>{{name}}</strong>. Todos los datos sobre el share se perderán.",
+  "input": {
+    "label": "Introduzca \"DELETE\" en el campo a continuación para confirmar",
+    "error": "Por favor, complete este campo."
+  },
+  "submitButton": "Eliminar el share",
+  "message": {
+    "success": "El share {{shareName}} se está eliminando",
+    "error": "Se ha producido un error al eliminar el share: {{errorMessage}}"
+  },
+  "cannotDelete": "Este share no se puede eliminar."
+}

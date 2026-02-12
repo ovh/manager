@@ -162,8 +162,9 @@ describe('ShareSizeSelection', () => {
       exact: false,
     });
 
-    expect(provisionedPerformance).toHaveTextContent('iops:3600');
-    expect(provisionedPerformance).toHaveTextContent('throughput:37.5');
+    expect(provisionedPerformance).toHaveTextContent(
+      'create:shareSize.provisionedPerformance{"iops":"3600","throughput":"37.5"}',
+    );
 
     const input = screen.getByRole('spinbutton');
 
@@ -177,8 +178,9 @@ describe('ShareSizeSelection', () => {
         exact: false,
       });
 
-      expect(provisionedPerformance).toHaveTextContent('iops:12000');
-      expect(provisionedPerformance).toHaveTextContent('throughput:125');
+      expect(provisionedPerformance).toHaveTextContent(
+        'create:shareSize.provisionedPerformance{"iops":"12000","throughput":"125"}',
+      );
     });
   });
 

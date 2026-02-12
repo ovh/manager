@@ -48,7 +48,7 @@ export const shareEnabledActionsToMenuActions = (
   if (enabledActions.includes('delete')) {
     items.push({
       labelTranslationKey: 'list:actions.delete',
-      link: { path: `./${region}/${id}/${subRoutes.shareDelete}` },
+      link: { path: `./${subRoutes.shareDelete}?region=${region}&shareId=${id}` },
       isCritical: true,
     });
   }
