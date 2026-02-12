@@ -18,6 +18,7 @@ import {
   DELETE_EMAIL_ACCOUNT,
   EDIT_EMAIL_ACCOUNT,
   GO_EMAIL_ACCOUNT_ALIASES,
+  GO_TO_SERVICES,
   UNDO_CANCEL_SLOT,
   UPDATE_OFFER_SLOT,
 } from '@/tracking.constants';
@@ -97,6 +98,22 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
 
   const hrefUpdateOfferEmailAccount = useGenerateUrl(`./slot/${item?.slotId}/update_offer`, 'path');
 
+  const hrefManageService = useGenerateUrl(`../services`, 'path');
+
+  const handleManageServiceClick = () => {
+    trackClick({
+      location: PageLocation.datagrid,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: [GO_TO_SERVICES],
+    });
+    navigate(hrefManageService, {
+      state: {
+        email: item.email,
+      },
+    });
+  };
+
   const handleUpdateOfferEmailClick = () => {
     trackClick({
       location: PageLocation.datagrid,
@@ -131,6 +148,13 @@ export const ActionButtonEmailAccount: React.FC<ActionButtonEmailAccountProps> =
     },
     {
       id: 4,
+      onClick: handleManageServiceClick,
+      urn: platformUrn,
+      iamActions: [IAM_ACTIONS.account.get],
+      label: t('service_manage_action'),
+    },
+    {
+      id: 5,
       onClick: handleDeleteEmailClick,
       urn: platformUrn,
       iamActions: [IAM_ACTIONS.account.delete],

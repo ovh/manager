@@ -97,11 +97,16 @@ export const useSlots = (props: UseSlotsParams = {}) => {
   });
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const useSlotsWithService = (options: UseSlotsParams = {}) => {
   const { email, ...slotOptions } = options;
-  const query = useSlots(slotOptions);
+
   const [searchParams] = useSearchParams();
   const organizationId = searchParams.get('organizationId');
+  const query = useSlots({
+    ...slotOptions,
+    shouldFetchAll: !!email || !!organizationId || slotOptions.shouldFetchAll,
+  });
 
   const { data: accounts } = useAccounts({
     email,

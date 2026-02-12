@@ -132,5 +132,6 @@
   "contactInformation_postcode": "Code postal",
   "contactInformation_city": "Ville",
   "contactInformation_country": "Pays",
-  "service": "Service"
+  "service": "Service",
+  "service_manage_action": "Gérer mon service"
 }

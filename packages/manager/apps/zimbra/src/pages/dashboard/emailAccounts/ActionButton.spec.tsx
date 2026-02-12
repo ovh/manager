@@ -37,10 +37,11 @@ describe('EmailAccounts datagrid action menu', () => {
 
     const menuItems = screen.getAllByTestId('manager-button');
 
-    expect(menuItems.length).toBe(4);
+    expect(menuItems.length).toBe(5);
     expect(menuItems[0]).toHaveTextContent(actionsCommonTranslation.modify);
     expect(menuItems[1]).toHaveTextContent(commonTranslation.alias);
     expect(menuItems[2]).toHaveTextContent(commonTranslation.update_offer);
-    expect(menuItems[3]).toHaveTextContent(actionsCommonTranslation.delete);
+    expect(menuItems[3]).toHaveTextContent(commonTranslation.service_manage_action);
+    expect(menuItems[4]).toHaveTextContent(actionsCommonTranslation.delete);
   });
 });

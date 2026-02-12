@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useMemo, useState } from 're
 
 import { RowSelectionState } from '@tanstack/react-table';
 import { useTranslation } from 'react-i18next';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 
 import { Skeleton } from '@ovhcloud/ods-react';
 
@@ -30,13 +30,25 @@ const Services = () => {
   const { t } = useTranslation(['services', 'common', 'accounts']);
   const format = useFormatDate();
   const { environment } = useContext(ShellContext);
+  const location = useLocation();
+  const navigate = useNavigate();
   const locale = environment.getUserLocale();
   const { ovhSubsidiary } = environment.getUser();
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
   const [selectedRows, setSelectedRows] = useState<SlotWithService[]>([]);
 
+  const { email: emailFromState } = location.state ?? {};
+
   const [searchInput, setSearchInput, debouncedSearchInput, setDebouncedSearchInput] =
     useDebouncedValue('');
+
+  useEffect(() => {
+    if (emailFromState) {
+      setSearchInput(emailFromState);
+      setDebouncedSearchInput(emailFromState);
+      navigate(location.pathname, { replace: true });
+    }
+  }, [emailFromState, setSearchInput, setDebouncedSearchInput, navigate, location.pathname]);
 
   const columns: DatagridColumn<SlotWithService>[] = useMemo(
     () => [
@@ -133,6 +145,7 @@ const Services = () => {
       email: debouncedSearchInput,
       refetchInterval: DATAGRID_REFRESH_INTERVAL,
       refetchOnMount: DATAGRID_REFRESH_ON_MOUNT,
+      shouldFetchAll: !!emailFromState,
     });
 
   const data = useMemo(() => {
