@@ -7,7 +7,6 @@ import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EX
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { SubDomainField, TtlField } from "../add/components/SubDomainAndTtl.component";
 import { RecordFieldInputs } from "../add/components/Inputs.component";
-import { NaptrFormContent } from "../add/Steps/pointType/components/NaptrForm.component";
 import { LocFormContent } from "../add/Steps/pointType/components/LocForm.component";
 import { SpfFormContent } from "../add/Steps/mailType/SpfForm.component";
 import { SpfFormHeader } from "../add/Steps/mailType/SpfFormHeader";
@@ -22,6 +21,8 @@ import { NSRecordForm } from "../add/components/forms/NSRecordForm";
 import { CNAMERecordForm } from "../add/components/forms/CNAMERecordForm";
 import { DNAMERecordForm } from "../add/components/forms/DNAMERecordForm";
 import { CAARecordForm } from "../add/components/forms/CAARecordForm";
+import { TXTRecordForm } from "../add/components/forms/TXTRecordForm";
+import { NAPTRRecordForm } from "../add/components/forms/NAPTRRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -164,9 +165,20 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
           {recordTypeStr === FieldTypeExtendedRecordsEnum.NAPTR && (
             <>
-              <SubDomainField control={control} domainSuffix={serviceName} required={false} />
-              <TtlField control={control} watch={watch} />
-              <NaptrFormContent />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_NAPTR")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_NAPTR"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <NAPTRRecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
@@ -292,6 +304,25 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.TXT && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_TXT")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_TXT"
+                    values={{ domain: fullDomain, target: target || "[valeur]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <TXTRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
           {recordTypeStr &&
             recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
@@ -301,7 +332,8 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypePointingRecordsEnum.NS &&
             recordTypeStr !== FieldTypePointingRecordsEnum.CNAME &&
             recordTypeStr !== FieldTypePointingRecordsEnum.DNAME &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA && (
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}

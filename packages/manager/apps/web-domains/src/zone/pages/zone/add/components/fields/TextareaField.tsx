@@ -2,7 +2,14 @@ import {
   FormField,
   FormFieldError,
   FormFieldLabel,
+  Icon,
+  ICON_NAME,
+  Text,
+  TEXT_PRESET,
   Textarea,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@ovhcloud/ods-react";
 import { Controller, type Control } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -14,7 +21,8 @@ export interface TextareaFieldProps {
   readonly control: Control<AddEntrySchemaType>;
   readonly label: string;
   readonly required?: boolean;
-  className?: string;
+  readonly className?: string;
+  readonly tooltip?: string;
 }
 
 export function TextareaField({
@@ -23,7 +31,8 @@ export function TextareaField({
   label,
   required = false,
   className = "w-1/2",
-}: TextareaFieldProps) {
+  tooltip,
+}: Readonly<TextareaFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
 
   return (
@@ -35,6 +44,16 @@ export function TextareaField({
           <FormFieldLabel>
             {label}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
+            {tooltip != null && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Icon name={ICON_NAME.circleQuestion} className="text-[--ods-color-primary-500] ml-1" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
+                </TooltipContent>
+              </Tooltip>
+            )}
           </FormFieldLabel>
           <Textarea
             className="min-h-24 w-full"
