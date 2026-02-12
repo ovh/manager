@@ -2,6 +2,8 @@ import { OvhSubsidiary } from '@ovh-ux/muk';
 
 type GuideLinks = { [key in OvhSubsidiary]: string };
 
+export const ONBOARDING_VIDEO_URL = 'https://www.youtube.com/embed/ZX8Pg4_ZH0Y';
+
 export const RANCHER_GUIDES_URL: Partial<GuideLinks> = {
   FR:
     'https://help.ovhcloud.com/csm/fr-documentation-public-cloud-containers-orchestration-managed-rancher-service?id=kb_browse_cat&kb_id=574a8325551974502d4c6e78b7421938&kb_category=ba1cdc8ff1a082502d4cea09e7c8beb9&spa=1',

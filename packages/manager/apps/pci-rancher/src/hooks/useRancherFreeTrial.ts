@@ -1,6 +1,7 @@
 import { priceToUcent, useCatalogPrice } from '@ovh-ux/muk';
 import { useMemo } from 'react';
 
+// Todo : try to get this from the credit API
 const FREE_TRIAL_CREDIT_OVH_EDITION = priceToUcent(100);
 const FREE_TRIAL_CREDIT_STANDARD = priceToUcent(250);
 
