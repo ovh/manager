@@ -24,6 +24,8 @@ import { TXTRecordForm } from "../add/components/forms/TXTRecordForm";
 import { NAPTRRecordForm } from "../add/components/forms/NAPTRRecordForm";
 import { SRVRecordForm } from "../add/components/forms/SRVRecordForm";
 import { LOCRecordForm } from "../add/components/forms/LOCRecordForm";
+import { SSHFPRecordForm } from "../add/components/forms/SSHFPRecordForm";
+import { TLSARecordForm } from "../add/components/forms/TLSARecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -354,6 +356,44 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.SSHFP && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_SSHFP")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_SSHFP"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <SSHFPRecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.TLSA && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_TLSA")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_TLSA"
+                    values={{ domain: fullDomain }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <TLSARecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
           {recordTypeStr &&
             recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
@@ -365,7 +405,9 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypePointingRecordsEnum.DNAME &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA &&
             recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.SRV && (
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.SRV &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.SSHFP &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.TLSA && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}
