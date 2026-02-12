@@ -79,5 +79,7 @@
   "warning3AZTo1AZ": "La clase de almacenamiento Cold Archive solo está disponible en el modo de despliegue 3-AZ y en la región de París. Por defecto, los objetos de origen almacenados en Cold Archive se replican en Infrequent Access, la clase de almacenamiento más adecuada para este tipo de usos.",
   "inconsistentReplicationRulesAlert": "Algunas reglas de replicación incluyen un destino que ha sido eliminado. Elimine estas reglas antes de crear nuevas réplicas.",
   "deletedDestinationTooltip": "Se ha eliminado el contenedor de destino",
-  "createSyncRule": "Crear una regla de sincronización"
+  "createSyncRule": "Crear una regla de sincronización",
+  "addReplicationBreadcrumb": "Añadir",
+  "editReplicationBreadcrumb": "Modificar"
 }

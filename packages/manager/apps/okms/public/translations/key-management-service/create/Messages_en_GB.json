@@ -1,13 +1,13 @@
 {
   "key_management_service_create_title": "Order an OKMS domain",
-  "key_management_service_create_subtitle": "Please specify the region in which it will be deployed. You will then be able to create and manage your own Service Keys and access certificates in this OKMS domain.",
+  "key_management_service_create_subtitle": "Please specify the region where you plan to deploy it. You can then create and manage your own Service Keys and access certificates in this OKMS domain.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "The cryptographic objects of this OKMS domain will be stored in the specified region. They can be used in all OVHcloud products regardless of the region.",
+  "key_management_service_create_region_description": "The cryptographic objects for this OKMS domain will be stored in the specified region. They can be used with any OVHcloud product, no matter the region.",
   "key_management_service_create_cta_cancel": "Cancel",
   "key_management_service_create_cta_order": "Order",
-  "key_management_service_create_order_initiated_title": "Order of your OKMS domain initiated",
+  "key_management_service_create_order_initiated_title": "Your OKMS domain order has been placed.",
   "key_management_service_create_order_initiated_subtitle": "If you haven’t finalised your order, please click the link below to complete it.",
-  "key_management_service_create_order_initiated_info": "We will inform you of the availability of your OKMS domain by email.",
+  "key_management_service_create_order_initiated_info": "We will notify you via email once your OKMS domain is ready.",
   "key_management_service_create_order_initiated_cta_done": "Finish",
   "key_management_service_create_select_placeholder": "Select a region",
   "key_management_service_create_region_eu_west_par": "Europe (France – Paris)",
@@ -30,5 +30,5 @@
   "key_management_service_create_region_labeu_west_1_dev_1": "LABEU (France – Croix) (DEV-1)",
   "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (France – Croix) (DEV-2)",
   "region_selection": "Select region",
-  "region_selection_description": "Please specify the region in which it will be deployed. You will then be able to create and manage your own Service Keys and access certificates in this OKMS domain. The cryptographic objects of this OKMS domain will be stored in the specified region. They can be used in all OVHcloud products regardless of the region."
+  "region_selection_description": "Please specify the region where you plan to deploy it. You can then create and manage your own Service Keys, and access certificates in this OKMS domain. The cryptographic objects for this OKMS domain will be stored in the specified region. They can be used with any OVHcloud product, no matter the region."
 }
