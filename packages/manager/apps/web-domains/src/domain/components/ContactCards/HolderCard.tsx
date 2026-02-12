@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNavigation } from '@ovh-ux/manager-react-shell-client';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   BUTTON_SIZE,
@@ -13,6 +13,8 @@ import {
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import HolderInformation from './HolderInformation';
 import { useGetConnectedNichandleId } from '@/common/hooks/nichandle/useGetConnectedNichandleId';
+import { urls } from '@/domain/routes/routes.constant';
+import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 
 interface HolderCardProps {
   readonly serviceName: string;
@@ -23,14 +25,20 @@ export default function HolderCard({
   serviceName,
   administratorContact,
 }: HolderCardProps) {
-  const { t } = useTranslation(['domain']);
-  const { navigateTo } = useNavigation();
+  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
+  const navigate = useNavigate();
   const { domainResource } = useGetDomainResource(serviceName);
   const { nichandle: connectedNichandle } = useGetConnectedNichandleId();
   const isAuthorized = administratorContact === connectedNichandle;
 
   const contactID =
     domainResource.currentState.contactsConfiguration.contactOwner.id;
+
+  const editUrl = useGenerateUrl(
+    urls.domainTabContactManagementEdit,
+    'path',
+    { serviceName, holderId: String(contactID) },
+  );
 
   return (
     <Card
@@ -62,12 +70,7 @@ export default function HolderCard({
           size={BUTTON_SIZE.sm}
           disabled={!isAuthorized}
           onClick={() =>
-            isAuthorized &&
-            navigateTo(
-              'web',
-              `/domain/${serviceName}/contact-management/edit-contact/${contactID}/`,
-              {},
-            )
+            isAuthorized && navigate(editUrl)
           }
         >
           {t(`${NAMESPACES.ACTIONS}:modify`)}

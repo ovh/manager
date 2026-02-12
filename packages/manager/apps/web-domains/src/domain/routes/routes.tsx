@@ -42,6 +42,10 @@ const ContactManagementPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/contactManagement/contactManagement'),
 );
 
+const ContactEditPage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/contactManagement/contactEdit'),
+);
+
 const DsRecordListingPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
 );
@@ -114,6 +118,10 @@ export default (
         <Route
           path={urls.domainTabContactManagement}
           Component={ContactManagementPage}
+        />
+        <Route
+          path={urls.domainTabContactManagementEdit}
+          Component={ContactEditPage}
         />
       </Route>
       <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
