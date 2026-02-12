@@ -21,6 +21,7 @@ import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreferen
 import ManageViewDrawerTitle from './manageViewDrawerTitle';
 import ManageViewConfig from './manageViewConfig';
 import { ViewContext } from './viewContext';
+import ManageViewGroupBy from './manageViewGroupBy';
 
 export type ManageViewDrawerProps = {
   views: ViewType[];
@@ -125,8 +126,9 @@ export const ManageViewDrawer = ({
           </Checkbox>
         </section>
         {/* Drawer Content */}
-        <div className="p-4 overflow-auto">
+        <div className="flex flex-col gap-4 p-4 overflow-auto">
           <ManageViewConfig />
+          <ManageViewGroupBy />
         </div>
         {/* Drawer footer */}
         <div className="p-4 border-t flex justify-start gap-2">
