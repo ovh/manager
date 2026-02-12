@@ -9,6 +9,11 @@ import { OdsButton, OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-compo
 import { useBaremetalDetails } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalDetails';
 import { useRequiredParams } from '@ovh-ux/backup-agent/hooks/useRequiredParams';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { useCreateBackupAgentCart } from '@/hooks/useCreateBackupAgentCart';
 import { urls } from '@/routes/Routes.constants';
@@ -23,6 +28,7 @@ import { FirstOrderModalTermsAndConditions } from './_components/FirstOrderModal
 const FirstOrderConfirmationModal = () => {
   const { t } = useTranslation(['onboarding', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const { baremetalName } = useRequiredParams('baremetalName');
 
@@ -54,10 +60,22 @@ const FirstOrderConfirmationModal = () => {
   };
 
   const cancel = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['cancel-first-order'],
+    });
     navigate('..');
   };
 
   const handleRetry = () => {
+    trackClick({
+      location: PageLocation.popup,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['retry-first-order'],
+    });
     if (baremetal) {
       createCart({
         agentIp: baremetal.ip,

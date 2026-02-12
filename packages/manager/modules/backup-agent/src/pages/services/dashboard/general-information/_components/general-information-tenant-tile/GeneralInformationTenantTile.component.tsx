@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { OdsLink, OdsSkeleton } from '@ovhcloud/ods-components/react';
 
 import { ManagerTile } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { GeneralInformationTile } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
@@ -15,6 +16,7 @@ import { urls } from '@/routes/routes.constants';
 export function GeneralInformationTenantTile() {
   const { t } = useTranslation(BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD);
   const { data, isPending, isError } = useBackupVSPCTenantDetails();
+  const { trackClick } = useOvhTracking();
 
   const resetPasswordHref = useHref(urls.dashboardTenantResetPassword);
 
@@ -37,10 +39,26 @@ export function GeneralInformationTenantTile() {
               icon="external-link"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.tile,
+                  buttonType: ButtonType.externalLink,
+                  actionType: 'navigation',
+                  actions: ['access-vspc'],
+                })
+              }
             />
             <OdsLink
               href={resetPasswordHref}
               label={t(`${BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}:vspc_reset_password`)}
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.tile,
+                  buttonType: ButtonType.link,
+                  actionType: 'navigation',
+                  actions: ['reset-password'],
+                })
+              }
             />
           </div>
         )}

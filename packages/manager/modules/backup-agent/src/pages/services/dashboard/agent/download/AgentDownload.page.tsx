@@ -15,6 +15,11 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
@@ -27,6 +32,7 @@ export default function DownloadAgentPage() {
   const [osSelected, setOsSelected] = useState<OS | null>(null);
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const closeModal = () => navigate('..');
 
   const { data: downloadLink, isLoading } = useBackupVSPCTenantAgentDownloadLink({
@@ -68,7 +74,18 @@ export default function DownloadAgentPage() {
         <div className="flex flex-col gap-4">
           <OdsText>{t(`${BACKUP_AGENT_NAMESPACES.AGENT}:download_agent_with_executable`)}</OdsText>
           <div className="flex justify-center align-center">
-            <a href={isDownloadEnabled ? downloadLink : undefined} download>
+            <a
+              href={isDownloadEnabled ? downloadLink : undefined}
+              download
+              onClick={() =>
+                trackClick({
+                  location: PageLocation.popup,
+                  buttonType: ButtonType.link,
+                  actionType: 'action',
+                  actions: ['download-agent-executable'],
+                })
+              }
+            >
               <OdsButton
                 label={t(`${NAMESPACES.ACTIONS}:download`)}
                 isLoading={isLoading}

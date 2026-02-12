@@ -10,6 +10,11 @@ import { OdsButton, OdsCombobox, OdsFormField } from '@ovhcloud/ods-components/r
 import { BaremetalOption } from '@ovh-ux/backup-agent/components/CommonFields/BaremetalOption/BaremetalOption.component';
 import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
@@ -34,6 +39,7 @@ export default function FirstOrderPage() {
   const img = useOnboardingHeroImage();
   const { flattenData, isLoading } = useBaremetalsList();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   const {
     control,
@@ -48,6 +54,12 @@ export default function FirstOrderPage() {
     if (!dataForm.baremetal) {
       return;
     }
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['first-order-submit'],
+    });
     navigate(urls.firstOrderConfirmation.replace(urlParams.baremetalName, dataForm.baremetal));
   };
 

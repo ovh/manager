@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { useBackupVSPCTenantDetails } from '@/data/hooks/tenants/useVspcTenantDetails';
 import { urls } from '@/routes/routes.constants';
@@ -11,6 +12,7 @@ import SubscriptionTile from './_components/subscription-tile/SubscriptionTile.c
 export default function GeneralInformationPage() {
   const { data: tenantResource } = useBackupVSPCTenantDetails();
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
 
   return (
     <section className="flex md:flex-row flex-col gap-8">
@@ -19,6 +21,12 @@ export default function GeneralInformationPage() {
       <BillingInformationsTileStandard
         resourceName={tenantResource?.id}
         onResiliateLinkClick={() => {
+          trackClick({
+            location: PageLocation.tile,
+            buttonType: ButtonType.link,
+            actionType: 'navigation',
+            actions: ['delete-tenant'],
+          });
           navigate(urls.dashboardTenantDelete);
         }}
       />
