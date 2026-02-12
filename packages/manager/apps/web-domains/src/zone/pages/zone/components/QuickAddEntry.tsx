@@ -2,7 +2,7 @@ import { useMemo, useCallback } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
+import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS } from "../../../utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
@@ -109,14 +109,27 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
       options: FIELD_TYPES_POINTING_RECORDS.map((type) => ({ value: type, label: type })),
     },
     {
-      label: t('zone_page_add_entry_extended'),
-      options: FIELD_TYPES_EXTENDED_RECORDS.map((type) => ({ value: type, label: type })),
+      label: t('zone_page_add_entry_mail'),
+      options: ([...FIELD_TYPES_MAIL_RECORDS] as string[]).map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: type === FieldTypeMailRecordsEnum.SPF || type == FieldTypeMailRecordsEnum.DKIM ? true : false } })),
     },
     {
-      label: t('zone_page_add_entry_mail'),
-      options: ([...FIELD_TYPES_MAIL_RECORDS] as string[]).map((type) => ({ value: type, label: type })),
+      label: t('zone_page_add_entry_extended'),
+      options: FIELD_TYPES_EXTENDED_RECORDS.map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: true } })),
     },
   ];
+
+  function renderOption({ customData, label }: SelectCustomOptionRendererArg<{ isAdvanced?: boolean }>) {
+    return (
+      <div className="flex items-center gap-2">
+        {customData?.isAdvanced && (
+          <Badge color={BADGE_COLOR.warning} size={BADGE_SIZE.sm}>
+            {t('zone_page_add_entry_badge_advanced')}
+          </Badge>
+        )}
+        <span className="flex-1">{label}</span>
+      </div>
+    );
+  }
 
   const recordTypeStr = typeof recordType === 'string' ? recordType : '';
 
@@ -150,7 +163,7 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
                     onBlur={field.onBlur}
                   >
                     <SelectControl placeholder={t('zone_page_add_entry_modal_step_1_select_title')} />
-                    <SelectContent />
+                    <SelectContent customOptionRenderer={renderOption} />
                   </Select>
                   {error?.message && <FormFieldError>{error.message}</FormFieldError>}
                 </div>
