@@ -4,9 +4,8 @@ import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { getInfrastructures } from '@/__mocks__/infrastructures/infrastructures.adapter';
 import { InfrastructuresParams } from '@/data/api/infrastructures.props';
+import { useLocations } from '@/data/hooks/infrastructures/useLocations.hook';
 import { Infrastructure } from '@/types/infrastructures.type';
-
-import { useLocations } from './useLocations.hook';
 
 export const getInfrastructuresQueryKey = ({
   resourceName,

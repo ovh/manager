@@ -1,6 +1,65 @@
 import mockLogger from '@/__mocks__/mock.logger';
+import { CreateGrafanaPayload, GetGrafanaReleasesParams } from '@/data/api/grafana.props';
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
-import { Grafana } from '@/types/managedDashboards.type';
+import { Grafana, GrafanaReleasesResponse } from '@/types/managedDashboards.type';
+
+const grafanaReleasesDataset: GrafanaReleasesResponse = {
+  releases: [
+    {
+      id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
+      status: 'DEPRECATED',
+      version: '11.1.0rc1',
+      upgradableTo: [
+        {
+          id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+          status: 'SUPPORTED',
+          version: '12.2.1',
+        },
+        {
+          id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+          status: 'SUPPORTED',
+          version: '12.2.1rc1',
+        },
+      ],
+    },
+    {
+      id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+      status: 'SUPPORTED',
+      version: '11.1.0',
+      upgradableTo: [
+        {
+          id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+          status: 'SUPPORTED',
+          version: '12.2.1',
+        },
+        {
+          id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
+          status: 'SUPPORTED',
+          version: '12.2.1rc1',
+        },
+      ],
+    },
+    {
+      id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+      status: 'SUPPORTED',
+      version: '12.2.1',
+      downgradableTo: [
+        {
+          id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+          status: 'SUPPORTED',
+          version: '11.1.0',
+        },
+      ],
+      upgradableTo: [
+        {
+          id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
+          status: 'SUPPORTED',
+          version: '12.2.1rc1',
+        },
+      ],
+    },
+  ],
+};
 
 const grafanasDataset: Grafana[] = [
   {
@@ -105,4 +164,17 @@ export const getGrafanas = async ({
 }: ObservabilityServiceParams): Promise<Grafana[]> => {
   mockLogger.info(`[getGrafanas] for ${resourceName}`);
   return Promise.resolve(grafanasDataset);
+};
+
+export const createGrafana = async (payload: CreateGrafanaPayload): Promise<Grafana> => {
+  mockLogger.info(`[createGrafana] for ${payload.resourceName}`, { payload });
+  return Promise.resolve(grafanasDataset[0]!);
+};
+
+export const getGrafanaReleases = async ({
+  resourceName,
+  infrastructureId,
+}: GetGrafanaReleasesParams): Promise<GrafanaReleasesResponse> => {
+  mockLogger.info(`[getGrafanaReleases] for ${resourceName}, infrastructure ${infrastructureId}`);
+  return Promise.resolve(grafanaReleasesDataset);
 };

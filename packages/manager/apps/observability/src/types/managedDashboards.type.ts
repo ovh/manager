@@ -11,8 +11,17 @@ export type ManagedDashboardInfrastructure = InfrastructureSettings &
 
 export type ManagedDashboardDataSource = {
   fullySynced: boolean;
+  logs?: {
+    aliases: {
+      id: string;
+    }[];
+  };
+  metrics?: {
+    tenants: {
+      id: string;
+    }[];
+  };
 };
-
 
 export type GrafanaState = {
   title: string;
@@ -45,6 +54,14 @@ export type GrafanaListing = {
   updatedAt: string | null;
   search: string;
 } & TIdentifier;
+
+export type ManagedDashboardFormData = {
+  title: string;
+  description: string;
+  infrastructureId: string;
+  allowedNetworks?: string[];
+  releaseId: string;
+};
 
 export type GrafanaReleaseStatus = 'SUPPORTED' | 'DEPRECATED';
 

@@ -18,7 +18,7 @@ import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.
 import { useCreateTenants } from '@/data/hooks/tenants/useCreateTenants.hook';
 import { useEditTenant } from '@/data/hooks/tenants/useEditTenant.hook';
 import { useTenantsFormSchema } from '@/hooks/form/useTenantsFormSchema.hook';
-import { TenantFormLayout } from '@/pages/tenants/TenantForm.layout';
+import { MetricsFormLayout } from '@/pages/metrics/MetricsForm.layout';
 import { TenantFormProps } from '@/pages/tenants/TenantForm.props';
 import { urls } from '@/routes/Routes.constants';
 import type { TenantFormData } from '@/types/tenants.type';
@@ -139,7 +139,7 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
   }, [isEditionMode, tenant, initialValues, form]);
 
   return (
-    <TenantFormLayout>
+    <MetricsFormLayout>
       <FormProvider {...form}>
         <form
           onSubmit={(e) => {
@@ -193,6 +193,6 @@ export const TenantForm = ({ tenant }: TenantFormProps) => {
           </section>
         </form>
       </FormProvider>
-    </TenantFormLayout>
+    </MetricsFormLayout>
   );
 };

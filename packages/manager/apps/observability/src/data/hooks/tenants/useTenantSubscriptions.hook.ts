@@ -1,8 +1,8 @@
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import { getTenantSubscriptions } from '@/__mocks__/tenants/tenant.adapter';
+import { POLLING_INTERVAL, isPollingStatus } from '@/data/hooks/polling';
 import { getTenantQueryKey } from '@/data/hooks/tenants/useTenants.hook';
-import { POLLING_INTERVAL, isPollingStatus } from '@/data/hooks/tenants/useTenants.polling';
 import { TenantSubscription } from '@/types/tenants.type';
 
 export const getTenantSubscriptionsQueryKey = (resourceName: string, tenantId: string) => [

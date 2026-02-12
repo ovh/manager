@@ -35,6 +35,13 @@ const OnboardingManagedDashboardsPage = React.lazy(
 const ManagedDashboardsListingPage = React.lazy(
   () => import('@/pages/settings/managed-dashboards/listing/ManagedDashboardsListing.page'),
 );
+const ManagedDashboardLayoutPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboard.layout'),
+);
+const ManagedDashboardCreationPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboardCreation.page'),
+);
+
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
 const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
@@ -139,6 +146,14 @@ export default (
           {/* ManagedDashboard routes with ManagedDashboard layout*/}
           <Route path={subroutes.managedDashboards} Component={ManagedDashboardsLayout}>
             <Route path="" Component={ManagedDashboardsListingPage}></Route>
+          </Route>
+          {/* ManagedDashboard routes with ManagedDashboard layout*/}
+          <Route path={subroutes.managedDashboards} Component={ManagedDashboardLayoutPage}>
+            <Route path={subroutes.resource}>
+              {/* no dedicated page (only a dropdown) → redirect to managed dashboards */}
+              <Route index element={<Navigate to={urls.managedDashboards} replace />} />
+              <Route path="creation" Component={ManagedDashboardCreationPage}></Route>
+            </Route>
           </Route>
         </Route>
         {/* Metrics route */}

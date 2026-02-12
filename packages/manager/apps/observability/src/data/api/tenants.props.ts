@@ -1,7 +1,6 @@
+import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import { TIdentifier } from '@/types/observability.type';
 import { TenantState } from '@/types/tenants.type';
-
-import { ObservabilityServiceParams } from './observability.props';
 
 export type TTargetSpecPayload = Omit<TenantState, 'limits' | 'infrastructure'> & {
   limits: {
