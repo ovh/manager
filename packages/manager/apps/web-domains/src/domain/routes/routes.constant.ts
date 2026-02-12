@@ -15,4 +15,6 @@ export const urls = {
   domainTabDnssec: '/domain/:serviceName/dnssec',
   domainTabDsrecords: '/domain/:serviceName/ds-records',
   domainTabContactManagement: '/domain/:serviceName/contact-management',
+  domainTabContactManagementEdit:
+    '/domain/:serviceName/contact-management/:holderId/edit',
 };

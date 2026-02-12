@@ -3,34 +3,34 @@ import { useHref } from 'react-router-dom';
 /**
  * Generates a URL based on a base URL, a type, and optional parameters.
  * The hook can generate either a path or a full URL with query parameters.
- * @param {string} baseURL - The base URL, which may contain a :serviceName placeholder.
+ * @param {string} baseURL - The base URL, which may contain placeholders like :serviceName.
  * @param {'path' | 'href'} [type='path'] - The type of URL to generate ('path' or 'href').
- * @param {Record<string, string | number>} [params] - Optional parameters to replace placeholders or add as query parameters.
+ * @param {Record<string, string | number>} [pathParams] - Optional parameters to replace URL placeholders.
+ * @param {Record<string, string | number>} [queryParams] - Optional parameters to add as query parameters.
  * @returns {string} - The generated URL or path.
  */
 export const useGenerateUrl = (
   baseURL: string,
   type: 'path' | 'href' = 'path',
-  params?: Record<string, string | number>,
+  pathParams?: Record<string, string | number>,
+  queryParams?: Record<string, string | number>,
 ) => {
-  const URL = baseURL.replace(
-    ':serviceName',
-    (params?.serviceName as string) || '',
-  );
+  let URL = baseURL;
+  for (const [key, value] of Object.entries(pathParams || {})) {
+    URL = URL.replace(`:${key}`, (value as string) || '');
+  }
 
-  const queryParams = {
-    ...params,
-  };
-
-  const queryString = Object.entries(queryParams)
-    .filter(([key]) => key !== 'serviceName')
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&');
-
-  const fullURL = queryString ? `${URL}?${queryString}` : URL;
+  if (queryParams) {
+    const queryString = Object.entries(queryParams)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+    if (queryString) {
+      URL = `${URL}?${queryString}`;
+    }
+  }
 
   if (type === 'href') {
-    return useHref(fullURL);
+    return useHref(URL);
   }
-  return fullURL;
+  return URL;
 };

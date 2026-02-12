@@ -14,6 +14,7 @@ import './index.scss';
 import '@ovh-ux/muk/dist/style.css';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const trackingContext = {
   chapter1: UNIVERSE,
@@ -31,7 +32,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['allDom'],
+    ns: ['allDom', NAMESPACES.ACTIONS],
   });
 
   const region = context.environment.getRegion();

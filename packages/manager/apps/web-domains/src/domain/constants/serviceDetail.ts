@@ -17,6 +17,8 @@ import { LifecycleCapacitiesEnum } from '@/common/enum/common.enum';
 import { ProtectionStateEnum } from '../enum/protectionState.enum';
 import { DnssecStatusEnum } from '../enum/dnssecStatus.enum';
 
+export const DEFAULT_TAB = 'information';
+
 export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   {
     id: 'information',
