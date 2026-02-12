@@ -6,6 +6,8 @@ import { TShare } from '@/domain/entities/share.entity';
 import { useProjectId } from '@/hooks/useProjectId';
 import { SelectOption } from '@/types/select-option';
 
+import { getForceReloadUseQueryOptions } from '../utils';
+
 export const useShares = <TData>(options?: SelectOption<TShare[], TData>) => {
   const projectId = useProjectId();
 
@@ -14,8 +16,6 @@ export const useShares = <TData>(options?: SelectOption<TShare[], TData>) => {
     queryFn: () => getShares(projectId),
     enabled: !!projectId,
     select: options?.select,
-    refetchOnMount: 'always',
-    refetchOnWindowFocus: 'always',
-    refetchOnReconnect: 'always',
+    ...getForceReloadUseQueryOptions(),
   });
 };
