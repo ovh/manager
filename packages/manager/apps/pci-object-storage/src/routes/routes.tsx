@@ -490,6 +490,15 @@ export default [
                   },
                 ],
               },
+              {
+                path: 'new',
+                id: 'lifecycle.create',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/lifecycle/create/Create.page'
+                  ),
+                ),
+              },
             ],
           },
         ],

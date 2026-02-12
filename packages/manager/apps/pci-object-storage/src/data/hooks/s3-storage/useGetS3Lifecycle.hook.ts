@@ -3,6 +3,7 @@ import {
   OptionsFor,
   useQueryImmediateRefetch,
 } from '@/hooks/useImmediateRefetch';
+import { getLifecycleQueryKey } from '@/data/hooks/lifecycle/lifecycleQueryKey';
 
 export type UseGetS3LifecycleProps = {
   projectId: string;
@@ -17,9 +18,8 @@ export function useGetS3Lifecycle({
   name,
   options,
 }: UseGetS3LifecycleProps) {
-  const queryKey = [projectId, 'region', region, 'storage', name, 'lifecycle'];
   return useQueryImmediateRefetch({
-    queryKey,
+    queryKey: getLifecycleQueryKey({ projectId, region, name }),
     queryFn: () => getS3Lifecycle({ projectId, region, name }),
     ...options,
   });
