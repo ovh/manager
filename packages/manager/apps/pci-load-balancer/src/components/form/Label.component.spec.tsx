@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import LabelComponent from './Label.component';
 
 describe('LabelComponent', () => {
@@ -9,9 +10,7 @@ describe('LabelComponent', () => {
   });
 
   it('renders the help text when provided', () => {
-    const { getByText } = render(
-      <LabelComponent text="Test Label" helpText="Help Text" />,
-    );
+    const { getByText } = render(<LabelComponent text="Test Label" helpText="Help Text" />);
     expect(getByText('Help Text')).toBeInTheDocument();
   });
 
@@ -27,9 +26,7 @@ describe('LabelComponent', () => {
   });
 
   it('applies custom className when provided', () => {
-    const { getByText } = render(
-      <LabelComponent text="Test Label" className="custom-class" />,
-    );
+    const { getByText } = render(<LabelComponent text="Test Label" className="custom-class" />);
 
     const { parentElement } = getByText('Test Label');
     expect(parentElement).toHaveClass('custom-class');

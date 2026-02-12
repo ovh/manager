@@ -1,9 +1,10 @@
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { TInstance, useInstances } from '@ovh-ux/manager-pci-common';
-import {
-  StepComponent,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useCallback, useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+import { v4 as uuidV4 } from 'uuid';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_CHECKBOX_BUTTON_SIZE,
@@ -22,16 +23,14 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useCallback, useEffect, useState } from 'react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { v4 as uuidV4 } from 'uuid';
-import LabelComponent from '@/components/form/Label.component';
-import {
-  useCreatePoolMembers,
-  useGetAllPoolMembers,
-} from '@/api/hook/usePoolMember';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { TInstance, useInstances } from '@ovh-ux/manager-pci-common';
+import { StepComponent, useNotifications } from '@ovh-ux/manager-react-components';
+
 import { TPoolMember } from '@/api/data/pool-member';
+import { useCreatePoolMembers, useGetAllPoolMembers } from '@/api/hook/usePoolMember';
+import LabelComponent from '@/components/form/Label.component';
 
 type TMappedInstance = {
   uuid: string;
@@ -114,9 +113,7 @@ export default function AddIpInstancePage() {
     instance.label.toLowerCase().includes(formState.searchTerm.toLowerCase()),
   );
 
-  const checkedInstances = state.instances.filter(
-    (instance) => instance.checked,
-  );
+  const checkedInstances = state.instances.filter((instance) => instance.checked);
 
   const { projectId, region, poolId } = useParams();
   const { data } = useInstances(projectId);
@@ -149,18 +146,14 @@ export default function AddIpInstancePage() {
     }
 
     if (isIpAlreadyAssociatedWithPort(instance)) {
-      return t(
-        'octavia_load_balancer_pools_detail_members_protocol_port_existing',
-      );
+      return t('octavia_load_balancer_pools_detail_members_protocol_port_existing');
     }
 
     return '';
   };
 
   const isFormValid = useCallback(() => {
-    const errors = checkedInstances
-      .map(protocolPortError)
-      .filter((error) => error !== '');
+    const errors = checkedInstances.map(protocolPortError).filter((error) => error !== '');
 
     return errors.length === 0;
   }, [checkedInstances]);
@@ -177,8 +170,7 @@ export default function AddIpInstancePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (error?.response?.data as { message: string })
-                    ?.message,
+                  message: (error?.response?.data as { message: string })?.message,
                   requestId: error.response?.headers['x-ovh-queryid'],
                 }),
               }}
@@ -192,11 +184,7 @@ export default function AddIpInstancePage() {
       navigate('..');
       addSuccess(
         <Translation ns="pools/members">
-          {(_t) =>
-            _t(
-              'octavia_load_balancer_pools_detail_members_add_ip_instance_create_success',
-            )
-          }
+          {(_t) => _t('octavia_load_balancer_pools_detail_members_add_ip_instance_create_success')}
         </Translation>,
         true,
       );
@@ -224,12 +212,8 @@ export default function AddIpInstancePage() {
   return (
     <div>
       <StepComponent
-        title={tPoolDetail(
-          'octavia_load_balancer_pools_detail_add_ips_instances',
-        )}
-        subtitle={t(
-          'octavia_load_balancer_pools_detail_members_add_ip_instance_description',
-        )}
+        title={tPoolDetail('octavia_load_balancer_pools_detail_add_ips_instances')}
+        subtitle={t('octavia_load_balancer_pools_detail_members_add_ip_instance_description')}
         isOpen={state.steps.addIPStep.isOpen}
         isChecked={state.steps.addIPStep.isChecked}
         isLocked={state.steps.addIPStep.isLocked}
@@ -243,11 +227,8 @@ export default function AddIpInstancePage() {
                 editIPStep: { isOpen: true, isLocked: false, isChecked: false },
               },
             })),
-          label: t(
-            'octavia_load_balancer_pools_detail_members_add_ip_instance_action',
-          ),
-          isDisabled:
-            state.instances.filter((instance) => instance.checked).length === 0,
+          label: t('octavia_load_balancer_pools_detail_members_add_ip_instance_action'),
+          isDisabled: state.instances.filter((instance) => instance.checked).length === 0,
         }}
         edit={{
           action: () => {
@@ -273,9 +254,7 @@ export default function AddIpInstancePage() {
               type={ODS_MESSAGE_TYPE.warning}
               color={ODS_THEME_COLOR_INTENT.warning}
             >
-              {t(
-                'octavia_load_balancer_pools_detail_members_add_ip_instance_banner',
-              )}
+              {t('octavia_load_balancer_pools_detail_members_add_ip_instance_banner')}
             </OsdsMessage>
 
             <OsdsFormField className="min-w-[20rem] md:w-1/2 sm:w-1">
@@ -301,9 +280,7 @@ export default function AddIpInstancePage() {
                   size={ODS_TEXT_SIZE._400}
                   level={ODS_TEXT_LEVEL.body}
                 >
-                  {t(
-                    'octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found',
-                  )}
+                  {t('octavia_load_balancer_pools_detail_members_add_ip_instance_search_not_found')}
                 </OsdsText>
               ) : (
                 <>
@@ -322,9 +299,7 @@ export default function AddIpInstancePage() {
                         color={ODS_THEME_COLOR_INTENT.primary}
                       >
                         <OsdsText
-                          className={
-                            instance.checked ? 'font-bold' : 'font-normal'
-                          }
+                          className={instance.checked ? 'font-bold' : 'font-normal'}
                           color={ODS_THEME_COLOR_INTENT.text}
                           size={ODS_TEXT_SIZE._400}
                           level={ODS_TEXT_LEVEL.body}
@@ -344,25 +319,19 @@ export default function AddIpInstancePage() {
         )}
       </StepComponent>
       <StepComponent
-        title={t(
-          'octavia_load_balancer_pools_detail_members_add_ip_instance_port_title',
-        )}
+        title={t('octavia_load_balancer_pools_detail_members_add_ip_instance_port_title')}
         isOpen={state.steps.editIPStep.isOpen}
         isChecked={state.steps.editIPStep.isChecked}
         isLocked={state.steps.editIPStep.isLocked}
         order={2}
         next={{
           action: () => onSubmit(),
-          label: t(
-            'octavia_load_balancer_pools_detail_members_add_ip_instance_add_action',
-          ),
+          label: t('octavia_load_balancer_pools_detail_members_add_ip_instance_add_action'),
           isDisabled: !isFormValid(),
         }}
         skip={{
           action: () => navigate('..'),
-          label: t(
-            'octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action',
-          ),
+          label: t('octavia_load_balancer_pools_detail_members_add_ip_instance_cancel_action'),
         }}
       >
         <div className="md:w-2/3 sm:w-1">
@@ -391,9 +360,7 @@ export default function AddIpInstancePage() {
                 </OsdsFormField>
                 <OsdsFormField className="md:w-1/3">
                   <LabelComponent
-                    text={t(
-                      'octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label',
-                    )}
+                    text={t('octavia_load_balancer_pools_detail_members_add_ip_instance_ip_label')}
                   />
                   <OsdsInput
                     name={instance.address}
@@ -403,10 +370,7 @@ export default function AddIpInstancePage() {
                     disabled
                   />
                 </OsdsFormField>
-                <OsdsFormField
-                  className="md:w-1/3"
-                  error={protocolPortError(instance)}
-                >
+                <OsdsFormField className="md:w-1/3" error={protocolPortError(instance)}>
                   <LabelComponent
                     text={t(
                       'octavia_load_balancer_pools_detail_members_add_ip_instance_port_label',
@@ -428,9 +392,7 @@ export default function AddIpInstancePage() {
                         ? checkedInstances[0].protocolPort
                         : instance.protocolPort
                     }
-                    disabled={
-                      (index !== 0 && formState.isDuplicatePort) || undefined
-                    }
+                    disabled={(index !== 0 && formState.isDuplicatePort) || undefined}
                     onOdsValueChange={(event) => {
                       const toUpdate = instance;
                       toUpdate.protocolPort = Number(event.detail.value);
@@ -456,9 +418,7 @@ export default function AddIpInstancePage() {
                     color={ODS_THEME_COLOR_INTENT.primary}
                   >
                     <OsdsText
-                      className={
-                        formState.isDuplicatePort ? 'font-bold' : 'font-normal'
-                      }
+                      className={formState.isDuplicatePort ? 'font-bold' : 'font-normal'}
                       color={ODS_THEME_COLOR_INTENT.text}
                       size={ODS_TEXT_SIZE._400}
                       level={ODS_TEXT_LEVEL.body}

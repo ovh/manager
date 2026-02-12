@@ -1,12 +1,11 @@
-import { PaginationState } from '@ovh-ux/manager-react-components';
 import { ColumnSort } from '@tanstack/react-table';
+
+import { PaginationState } from '@ovh-ux/manager-react-components';
+
 import { THealthMonitorType } from '@/api/data/health-monitor';
 import { HEALTH_MONITOR_TYPE } from '@/constants';
 
-export const paginateResults = <T>(
-  items: T[],
-  pagination: PaginationState,
-) => ({
+export const paginateResults = <T>(items: T[], pagination: PaginationState) => ({
   rows: items.slice(
     pagination.pageIndex * pagination.pageSize,
     (pagination.pageIndex + 1) * pagination.pageSize,
@@ -15,15 +14,24 @@ export const paginateResults = <T>(
   totalRows: items.length,
 });
 
-export const compareFunction = <T>(key: keyof T) => (a: T, b: T) => {
-  const aValue = a[key] || '';
-  const bValue = b[key] || '';
+const toComparableString = (value: unknown): string => {
+  if (typeof value === 'string') return value;
+  if (typeof value === 'number') return String(value);
 
-  if (typeof aValue === 'number' && typeof bValue === 'number') {
-    return aValue - bValue;
-  }
-  return aValue.toString().localeCompare(bValue.toString());
+  return '';
 };
+
+export const compareFunction =
+  <T>(key: keyof T) =>
+  (a: T, b: T) => {
+    const aValue = a[key];
+    const bValue = b[key];
+
+    if (typeof aValue === 'number' && typeof bValue === 'number') {
+      return aValue - bValue;
+    }
+    return toComparableString(aValue).localeCompare(toComparableString(bValue));
+  };
 
 export const sortResults = <T>(items: T[], sorting: ColumnSort): T[] => {
   const data = [...items];

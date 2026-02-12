@@ -1,7 +1,8 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TInstance, TRegion } from '@ovh-ux/manager-pci-common';
-import { FLOATING_IP_CREATE_DESCRIPTION, PROTOCOLS } from '@/constants';
+
 import { TPrivateNetwork, TSubnet } from '@/api/data/network';
+import { FLOATING_IP_CREATE_DESCRIPTION, PROTOCOLS } from '@/constants';
 import { FloatingIpSelectionId } from '@/types/floating.type';
 import { ListenerConfiguration } from '@/types/listener.type';
 
@@ -43,9 +44,7 @@ export type TLoadBalancerResponse = {
   errors: unknown[];
 };
 
-export const getLoadBalancers = async (
-  projectId: string,
-): Promise<TLoadBalancerResponse> => {
+export const getLoadBalancers = async (projectId: string): Promise<TLoadBalancerResponse> => {
   const { data } = await v6.get<TLoadBalancerResponse>(
     `/cloud/project/${projectId}/aggregated/loadbalancer`,
   );
@@ -86,8 +85,8 @@ export const getLoadBalancerFlavor = async (
 export const deleteLoadBalancer = async (
   projectId: string,
   loadBalancer: TLoadBalancer,
-): Promise<void> => {
-  const { data } = await v6.delete(
+): Promise<unknown> => {
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${loadBalancer.region}/loadbalancing/loadbalancer/${loadBalancer.id}`,
   );
 
@@ -98,8 +97,8 @@ export const updateLoadBalancerName = async (
   projectId: string,
   loadBalancer: TLoadBalancer,
   name: string,
-) => {
-  const { data } = await v6.put(
+): Promise<TLoadBalancer> => {
+  const { data } = await v6.put<TLoadBalancer>(
     `/cloud/project/${projectId}/region/${loadBalancer.region}/loadbalancing/loadbalancer/${loadBalancer.id}`,
     {
       name,
@@ -109,7 +108,7 @@ export const updateLoadBalancerName = async (
   return data;
 };
 
-export type TProtocol = typeof PROTOCOLS[number];
+export type TProtocol = (typeof PROTOCOLS)[number];
 
 export type TCreateLoadBalancerParam = {
   projectId: string;
@@ -133,7 +132,7 @@ export const createLoadBalancer = async ({
   gateways,
   listeners,
   name,
-}: Readonly<TCreateLoadBalancerParam>) => {
+}: Readonly<TCreateLoadBalancerParam>): Promise<TLoadBalancer> => {
   type TNetworkParam = {
     private: {
       network: {
@@ -171,10 +170,7 @@ export const createLoadBalancer = async ({
     };
   }
 
-  if (
-    FloatingIpSelectionId.NEW !== floatingIp &&
-    FloatingIpSelectionId.UNATTACHED !== floatingIp
-  ) {
+  if (FloatingIpSelectionId.NEW !== floatingIp && FloatingIpSelectionId.UNATTACHED !== floatingIp) {
     network.private.floatingIp = {
       id: floatingIp,
     };
@@ -209,21 +205,24 @@ export const createLoadBalancer = async ({
             urlPath: string;
           };
         };
-        members?: TInstance[];
+        members?: TInstance[] | { address: string; protocolPort: number }[];
       } = {
         algorithm: 'roundRobin',
         protocol: listener.protocol,
       };
 
-      const instances = listener.instances?.reduce((filtered, instance) => {
-        if (Object.keys(instance).length > 0) {
-          filtered.push({
-            address: instance.instance.ipAddresses[0].ip,
-            protocolPort: instance.port,
-          });
-        }
-        return filtered;
-      }, []);
+      const instances = listener.instances?.reduce(
+        (filtered: { address: string; protocolPort: number }[], instance) => {
+          if (Object.keys(instance).length > 0) {
+            filtered.push({
+              address: instance.instance.ipAddresses[0].ip,
+              protocolPort: instance.port,
+            });
+          }
+          return filtered;
+        },
+        [],
+      );
 
       if (listener.healthMonitor) {
         pool.healthMonitor = {
@@ -250,7 +249,7 @@ export const createLoadBalancer = async ({
       };
     }) || [];
 
-  const { data } = await v6.post(
+  const { data } = await v6.post<TLoadBalancer>(
     `/cloud/project/${projectId}/region/${region.name}/loadbalancing/loadbalancer`,
     {
       flavorId: flavor.id,

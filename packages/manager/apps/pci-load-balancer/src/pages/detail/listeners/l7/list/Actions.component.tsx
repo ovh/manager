@@ -1,13 +1,13 @@
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 
 export type ActionsComponentProps = {
   l7PoliciesId: string;
 };
-export default function ActionsComponent({
-  l7PoliciesId,
-}: Readonly<ActionsComponentProps>) {
+export default function ActionsComponent({ l7PoliciesId }: Readonly<ActionsComponentProps>) {
   const { t } = useTranslation('l7');
 
   const items = [

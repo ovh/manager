@@ -1,8 +1,10 @@
 import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
+import { describe, expect, it, vi } from 'vitest';
+
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
+
 import CreationDate from './CreationDate.component';
 
 vi.mock('@ovh-ux/manager-core-utils', () => ({

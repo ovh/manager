@@ -1,18 +1,19 @@
-import { describe, Mock, vi } from 'vitest';
-import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+import React from 'react';
+
 import { render, renderHook } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import React from 'react';
-import { NetworkStep } from './NetworkStep';
-import { wrapper } from '@/wrapperRenders';
+import { Mock, describe, vi } from 'vitest';
+
+import { StepComponent, TStepProps } from '@ovh-ux/manager-react-components';
+
+import { floatingIps } from '@/__mocks__/floatingIps';
+import { getFloatingIps } from '@/api/data/floating-ips';
+import { useGetPrivateNetworkSubnets, useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 import { useTracking } from '@/pages/create/hooks/useTracking';
 import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import {
-  useGetPrivateNetworkSubnets,
-  useGetRegionPrivateNetworks,
-} from '@/api/hook/useNetwork';
-import { getFloatingIps } from '@/api/data/floating-ips';
-import { floatingIps } from '@/__mocks__/floatingIps';
+import { wrapper } from '@/wrapperRenders';
+
+import { NetworkStep } from './NetworkStep';
 
 vi.mock('react-i18next', async () => {
   const { ...rest } = await vi.importActual('react-i18next');
@@ -24,7 +25,7 @@ vi.mock('react-i18next', async () => {
   };
 });
 
-vi.mock('@/pages/create/hooks/useTracking', async () => ({
+vi.mock('@/pages/create/hooks/useTracking', () => ({
   useTracking: vi.fn().mockImplementation(() => ({ trackStep: vi.fn() })),
 }));
 
@@ -75,9 +76,7 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
     ...rest,
     useProjectUrl: vi.fn().mockReturnValue('projectHref'),
     useMe: vi.fn(),
-    StepComponent: vi
-      .fn()
-      .mockImplementation(ActualStepComponent as typeof StepComponent),
+    StepComponent: vi.fn().mockImplementation(ActualStepComponent as typeof StepComponent),
     useCatalogPrice: vi
       .fn()
       .mockImplementation(() => ({ getFormattedHourlyCatalogPrice: vi.fn() })),
@@ -102,9 +101,7 @@ vi.mock('@ovh-ux/manager-pci-common', async () => {
   const actual = await vi.importActual('@ovh-ux/manager-pci-common');
   return {
     ...actual,
-    useCatalog: vi
-      .fn()
-      .mockImplementation(() => ({ data: undefined, isPending: true })),
+    useCatalog: vi.fn().mockImplementation(() => ({ data: undefined, isPending: true })),
   };
 });
 
@@ -128,9 +125,7 @@ describe('NetworkStepStep', () => {
   });
   describe('should render', () => {
     beforeAll(() => {
-      (StepComponent as Mock).mockImplementationOnce(({ children }) => (
-        <div>{children}</div>
-      ));
+      (StepComponent as Mock).mockImplementationOnce(({ children }) => <div>{children}</div>);
 
       renderStep();
     });
@@ -176,9 +171,7 @@ describe('NetworkStepStep', () => {
           const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
-          expect(
-            nextButton.attributes.getNamedItem('disabled').value,
-          ).toBeTruthy();
+          expect(nextButton.attributes.getNamedItem('disabled').value).toBeTruthy();
         });
 
         test('Next button should be enabled if addon is set', () => {
@@ -187,13 +180,11 @@ describe('NetworkStepStep', () => {
           const { getByText } = renderStep();
 
           const nextButton = getByText('common_stepper_next_button_label');
-          expect(
-            nextButton.attributes.getNamedItem('disabled')?.value,
-          ).toBeFalsy();
+          expect(nextButton.attributes.getNamedItem('disabled')?.value).toBeFalsy();
         });
       });
       describe('click', () => {
-        it('Should track on next click', async () => {
+        it('Should track on next click', () => {
           const trackStepSpy = vi.fn();
 
           renderStore();

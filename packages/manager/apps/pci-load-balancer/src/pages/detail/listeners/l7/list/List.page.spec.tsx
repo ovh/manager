@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import L7PoliciesList from './List.page';
+import { describe, expect, it, vi } from 'vitest';
+
+import { TL7Policy } from '@/api/data/l7Policies';
 import { useL7Policies } from '@/api/hook/useL7Policy';
 import { wrapper } from '@/wrapperRenders';
-import { TL7Policy } from '@/api/data/l7Policies';
+
+import L7PoliciesList from './List.page';
 
 vi.mock('@/api/hook/useL7Policy', async () => {
   const mod = await vi.importActual('@/api/hook/useL7Policy');

@@ -1,4 +1,16 @@
 import { useEffect, useMemo, useState } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_VARIANT,
+  ODS_INPUT_TYPE,
+  OdsSelectValueChangeEventDetail,
+  OsdsSelectCustomEvent,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -7,17 +19,13 @@ import {
   OsdsSelectOption,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  OdsSelectValueChangeEventDetail,
-  OsdsSelectCustomEvent,
-} from '@ovhcloud/ods-components';
+
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
-import { useParams } from 'react-router-dom';
+
 import { TL7Policy } from '@/api/data/l7Policies';
+import { TLoadBalancerListener } from '@/api/data/listener';
+import { TLoadBalancerPool } from '@/api/data/pool';
+import LabelComponent from '@/components/form/Label.component';
 import {
   ACTIONS,
   ACTIONS_LIST,
@@ -27,9 +35,6 @@ import {
   URL_PATTERN,
   URL_PLACEHOLDER,
 } from '@/constants';
-import LabelComponent from '@/components/form/Label.component';
-import { TLoadBalancerPool } from '@/api/data/pool';
-import { TLoadBalancerListener } from '@/api/data/listener';
 
 type PolicyFormProps = {
   policy: TL7Policy | null;
@@ -66,9 +71,7 @@ export default function PolicyForm({
       return pools?.filter(
         (pool) =>
           !UNAVAILABLE_POOL_PROTOCOLS.includes(pool.protocol) &&
-          LISTENER_POOL_PROTOCOL_COMBINATION[listener?.protocol]?.includes(
-            pool.protocol,
-          ),
+          LISTENER_POOL_PROTOCOL_COMBINATION[listener?.protocol]?.includes(pool.protocol),
       );
     }
     return [];
@@ -83,9 +86,7 @@ export default function PolicyForm({
     setHasErrorName(isTouchedName && policyState.name === '');
   }, [policyState.name, isTouchedName]);
 
-  const onActionChange = (
-    event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>,
-  ) => {
+  const onActionChange = (event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>) => {
     const action = event.detail.value as string;
     const policyUpdate = {
       action,
@@ -126,15 +127,9 @@ export default function PolicyForm({
   const isDisabled = useMemo(() => {
     switch (policyState.action) {
       case ACTIONS.REDIRECT_TO_URL:
-        return (
-          !policyState.name ||
-          !RegExp(URL_PATTERN).test(policyState.redirectUrl)
-        );
+        return !policyState.name || !RegExp(URL_PATTERN).test(policyState.redirectUrl);
       case ACTIONS.REDIRECT_PREFIX:
-        return (
-          !policyState.name ||
-          !RegExp(URL_PATTERN).test(policyState.redirectPrefix)
-        );
+        return !policyState.name || !RegExp(URL_PATTERN).test(policyState.redirectPrefix);
       case ACTIONS.REJECT:
         return !policyState.name;
       case ACTIONS.REDIRECT_TO_POOL:
@@ -152,9 +147,7 @@ export default function PolicyForm({
 
   return (
     <div className="w-[20rem]">
-      <OsdsFormField
-        error={hasErrorName ? tPciCommon('common_field_error_required') : ''}
-      >
+      <OsdsFormField error={hasErrorName ? tPciCommon('common_field_error_required') : ''}>
         <LabelComponent
           text={t('octavia_load_balancer_create_l7_policy_name')}
           hasError={hasErrorName}
@@ -181,9 +174,7 @@ export default function PolicyForm({
         className="mt-8"
         min={1}
         label={t('octavia_load_balancer_create_l7_policy_position')}
-        description={t(
-          'octavia_load_balancer_create_l7_policy_position_description',
-        )}
+        description={t('octavia_load_balancer_create_l7_policy_position_description')}
         onValueChange={(quantity) => {
           setPolicyState((state) => ({
             ...state,
@@ -193,9 +184,7 @@ export default function PolicyForm({
       />
 
       <OsdsFormField className="mt-8">
-        <LabelComponent
-          text={t('octavia_load_balancer_create_l7_policy_action')}
-        />
+        <LabelComponent text={t('octavia_load_balancer_create_l7_policy_action')} />
         <OsdsSelect
           onOdsValueChange={onActionChange}
           value={policyState.action}
@@ -212,9 +201,7 @@ export default function PolicyForm({
         </OsdsSelect>
         {policyState.action && (
           <OsdsText slot="helper" color={ODS_THEME_COLOR_INTENT.text}>
-            {t(
-              `octavia_load_balancer_create_l7_policy_action_${policyState.action}`,
-            )}
+            {t(`octavia_load_balancer_create_l7_policy_action_${policyState.action}`)}
           </OsdsText>
         )}
       </OsdsFormField>
@@ -232,8 +219,7 @@ export default function PolicyForm({
               text={t('octavia_load_balancer_create_l7_policy_url')}
               hasError={
                 isTouchedURL &&
-                (!policyState.redirectUrl ||
-                  !RegExp(URL_PATTERN).test(policyState.redirectUrl))
+                (!policyState.redirectUrl || !RegExp(URL_PATTERN).test(policyState.redirectUrl))
               }
             />
             <OsdsInput
@@ -242,8 +228,7 @@ export default function PolicyForm({
               placeholder={URL_PLACEHOLDER}
               error={
                 isTouchedURL &&
-                (!policyState.redirectUrl ||
-                  !RegExp(URL_PATTERN).test(policyState.redirectUrl))
+                (!policyState.redirectUrl || !RegExp(URL_PATTERN).test(policyState.redirectUrl))
               }
               onOdsValueChange={(event) => {
                 setPolicyState((state) => ({
@@ -258,9 +243,7 @@ export default function PolicyForm({
           </OsdsFormField>
 
           <OsdsFormField className="mt-8">
-            <LabelComponent
-              text={t('octavia_load_balancer_create_l7_policy_http_code')}
-            />
+            <LabelComponent text={t('octavia_load_balancer_create_l7_policy_http_code')} />
             <OsdsSelect
               value={policyState?.redirectHttpCode}
               onOdsValueChange={(event) => {
@@ -313,9 +296,7 @@ export default function PolicyForm({
           </OsdsFormField>
 
           <OsdsFormField className="mt-8">
-            <LabelComponent
-              text={t('octavia_load_balancer_create_l7_policy_http_code')}
-            />
+            <LabelComponent text={t('octavia_load_balancer_create_l7_policy_http_code')} />
             <OsdsSelect
               value={policyState?.redirectHttpCode}
               onOdsValueChange={(event) => {
@@ -337,9 +318,7 @@ export default function PolicyForm({
 
       {policyState.action === ACTIONS.REDIRECT_TO_POOL && (
         <OsdsFormField className="mt-8">
-          <LabelComponent
-            text={t('octavia_load_balancer_create_l7_policy_pool')}
-          />
+          <LabelComponent text={t('octavia_load_balancer_create_l7_policy_pool')} />
           <OsdsSelect
             value={policyState?.redirectPoolId}
             onOdsValueChange={(event) => {
@@ -377,8 +356,7 @@ export default function PolicyForm({
           data-testid="policyForm-submit_button"
           onClick={() => onSubmit(policyState)}
         >
-          {submitButtonText ||
-            t('octavia_load_balancer_create_l7_policy_submit')}
+          {submitButtonText || t('octavia_load_balancer_create_l7_policy_submit')}
         </OsdsButton>
       </div>
     </div>

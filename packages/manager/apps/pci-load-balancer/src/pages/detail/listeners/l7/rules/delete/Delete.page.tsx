@@ -1,11 +1,15 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useDeleteL7Rule } from '@/api/hook/useL7Rule';
 
 export default function DeletePage() {

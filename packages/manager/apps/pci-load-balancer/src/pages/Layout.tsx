@@ -1,8 +1,10 @@
+import { Suspense, useEffect } from 'react';
+
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { useProject } from '@ovh-ux/manager-pci-common';
-import { Suspense, useEffect } from 'react';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import HidePreloader from '@/core/HidePreloader';
 import ShellRoutingSync from '@/core/ShellRoutingSync';
 

@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -45,12 +46,8 @@ export const getLoadBalancerPools = async (
   return data;
 };
 
-export const deletePool = async (
-  projectId: string,
-  region: string,
-  poolId: string,
-) => {
-  const { data } = await v6.delete(
+export const deletePool = async (projectId: string, region: string, poolId: string) => {
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
   );
   return data;
@@ -99,7 +96,7 @@ export const updatePool = async ({
   name,
   algorithm,
   permanentSession,
-}: TUpdatePoolParam) => {
+}: TUpdatePoolParam): Promise<TLoadBalancerPool> => {
   const { data } = await v6.put<TLoadBalancerPool>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}`,
     {

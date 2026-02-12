@@ -1,3 +1,7 @@
+import { useMemo } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_SKELETON_SIZE,
@@ -5,14 +9,8 @@ import {
   ODS_TEXT_SIZE,
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
-import {
-  OsdsDivider,
-  OsdsSkeleton,
-  OsdsText,
-  OsdsTile,
-} from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { OsdsDivider, OsdsSkeleton, OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -67,9 +65,7 @@ export default function Configuration({
           <OsdsDivider separator />
 
           <TileLine
-            title={tOverview(
-              'octavia_load_balancer_overview_config_provisioning_status',
-            )}
+            title={tOverview('octavia_load_balancer_overview_config_provisioning_status')}
             type="other"
             value={
               <div>
@@ -108,9 +104,7 @@ export default function Configuration({
           />
 
           <TileLine
-            title={tOverview(
-              'octavia_load_balancer_overview_config_private_network',
-            )}
+            title={tOverview('octavia_load_balancer_overview_config_private_network')}
             value={networkName}
           />
 
@@ -120,9 +114,7 @@ export default function Configuration({
           />
 
           <TileLine
-            title={tOverview(
-              'octavia_load_balancer_overview_config_private_ip',
-            )}
+            title={tOverview('octavia_load_balancer_overview_config_private_ip')}
             value={loadBalancerVipAddress}
           />
         </div>

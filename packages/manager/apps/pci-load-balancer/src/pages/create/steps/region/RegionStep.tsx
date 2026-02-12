@@ -1,24 +1,11 @@
 import { useMemo, useState } from 'react';
-import {
-  OsdsLink,
-  OsdsMessage,
-  OsdsSpinner,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  Links,
-  StepComponent,
-  Subtitle,
-  useCatalogPrice,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
+
 import { Trans, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsLink, OsdsMessage, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
+
 import {
   DeploymentTilesInput,
   PCICommonContext,
@@ -29,16 +16,20 @@ import {
   usePCICommonContextFactory,
 } from '@ovh-ux/manager-pci-common';
 import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { REGION_AVAILABILITY_LINK } from '@/constants';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
-import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
+  Links,
+  StepComponent,
+  Subtitle,
+  useCatalogPrice,
+  useProjectUrl,
+} from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useDeployments } from '@/api/hook/useDeployments/useDeployments';
+import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
 import GuideLink from '@/components/GuideLink/GuideLink.component';
+import { REGION_AVAILABILITY_LINK } from '@/constants';
+import useGuideLink from '@/hooks/useGuideLink/useGuideLink';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 
 export type TRegionStepProps = {
   regions: TProductAvailabilityRegion[];
@@ -56,21 +47,17 @@ export const RegionStep = ({
   ovhSubsidiary,
   projectId,
 }: Readonly<TRegionStepProps>): JSX.Element => {
-  const { t } = useTranslation([
-    'load-balancer/create',
-    'pci-common',
-    'regions-list',
-  ]);
+  const { t } = useTranslation(['load-balancer/create', 'pci-common', 'regions-list']);
   const projectUrl = useProjectUrl('public-cloud');
 
   const { trackClick } = useOvhTracking();
 
   const store = useCreateStore();
 
-  const {
-    list: networks,
-    isFetching: isSearchingNetwork,
-  } = useGetRegionPrivateNetworks(projectId, store.region?.name || '');
+  const { list: networks, isFetching: isSearchingNetwork } = useGetRegionPrivateNetworks(
+    projectId,
+    store.region?.name || '',
+  );
 
   const has3AZ = useMemo(() => {
     const allRegions = regions ? [...regions.values()] : [];
@@ -79,10 +66,7 @@ export const RegionStep = ({
 
   const metaProps = usePCICommonContextFactory({ has3AZ });
 
-  const [
-    selectedRegionGroup,
-    setSelectedRegionGroup,
-  ] = useState<TDeployment | null>(null);
+  const [selectedRegionGroup, setSelectedRegionGroup] = useState<TDeployment | null>(null);
 
   const filteredRegions = useMemo(
     () =>
@@ -117,7 +101,7 @@ export const RegionStep = ({
 
   const guides = useGuideLink();
 
-  const handleSelectRegion = async (region?: TRegion) => {
+  const handleSelectRegion = (region?: TRegion) => {
     store.set.region(null);
 
     if (region) {
@@ -135,7 +119,7 @@ export const RegionStep = ({
       next={{
         action: () => {
           trackClick({
-            actions: ['select_location', `add_${store.region!.name}`],
+            actions: ['select_location', `add_${store.region.name}`],
             actionType: 'action',
             buttonType: ButtonType.button,
             location: PageLocation.funnel,
@@ -152,10 +136,7 @@ export const RegionStep = ({
       edit={{
         action: () => {
           trackClick({
-            actions: [
-              'select_location',
-              `edit_step_location_${store.region!.name}`,
-            ],
+            actions: ['select_location', `edit_step_location_${store.region.name}`],
             actionType: 'action',
             buttonType: ButtonType.externalLink,
             location: PageLocation.funnel,
@@ -191,8 +172,9 @@ export const RegionStep = ({
           {t('octavia_load_balancer_create_region_intro')}
           <OsdsLink
             href={
-              REGION_AVAILABILITY_LINK[ovhSubsidiary] ||
-              REGION_AVAILABILITY_LINK.DEFAULT
+              REGION_AVAILABILITY_LINK[
+                (ovhSubsidiary ?? 'DEFAULT') as keyof typeof REGION_AVAILABILITY_LINK
+              ] || REGION_AVAILABILITY_LINK.DEFAULT
             }
             color={ODS_THEME_COLOR_INTENT.primary}
           >
@@ -205,8 +187,7 @@ export const RegionStep = ({
           projectId={projectId}
           onSelectRegion={handleSelectRegion}
           regionFilter={(region) =>
-            region.isMacro ||
-            filteredRegions?.some(({ name }) => name === region.name)
+            region.isMacro || filteredRegions?.some(({ name }) => name === region.name)
           }
         />
       </PCICommonContext.Provider>
@@ -249,9 +230,7 @@ export const RegionStep = ({
               components={{
                 link: (
                   <Links
-                    label={t(
-                      'octavia_load_balancer_create_private_network_label',
-                    )}
+                    label={t('octavia_load_balancer_create_private_network_label')}
                     href={`${projectUrl}/private-networks/new`}
                   />
                 ),

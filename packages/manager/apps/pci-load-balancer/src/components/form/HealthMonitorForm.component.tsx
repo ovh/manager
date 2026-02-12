@@ -1,3 +1,7 @@
+import { useMemo, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -16,15 +20,11 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { QuantitySelector } from '@ovh-ux/manager-pci-common';
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
-import {
-  THealthMonitorFormState,
-  THealthMonitorType,
-} from '@/api/data/health-monitor';
+import { LinkType, Links } from '@ovh-ux/manager-react-components';
+
+import { THealthMonitorFormState, THealthMonitorType } from '@/api/data/health-monitor';
 import { TLoadBalancerPool } from '@/api/data/pool';
 import LabelComponent from '@/components/form/Label.component';
 import {
@@ -50,7 +50,9 @@ export type HealthMonitorFormProps = {
   isEditing?: boolean;
   isPending: boolean;
   submitLabel: string;
-  onChange: (state) => void;
+  onChange: (
+    state: THealthMonitorFormState | ((prev: THealthMonitorFormState) => THealthMonitorFormState),
+  ) => void;
   onSubmit: (state: THealthMonitorFormState) => void;
   onCancel: () => void;
 };
@@ -74,8 +76,13 @@ export default function HealthMonitorForm({
     [formState?.type],
   );
 
-  const healthMonitorTypes = useMemo(
-    () => POOL_HEALTH_MONITOR_TYPE[associatedPool?.protocol] || [],
+  const healthMonitorTypes = useMemo<THealthMonitorType[]>(
+    () =>
+      (associatedPool?.protocol
+        ? (POOL_HEALTH_MONITOR_TYPE[
+            associatedPool.protocol as keyof typeof POOL_HEALTH_MONITOR_TYPE
+          ] ?? [])
+        : []) as THealthMonitorType[],
     [associatedPool?.protocol],
   );
 
@@ -83,13 +90,16 @@ export default function HealthMonitorForm({
 
   const [isNameTouched, setIsNameTouched] = useState(false);
 
-  const validateField = (name: keyof THealthMonitorFormState, value) => {
+  const validateField = (
+    name: keyof THealthMonitorFormState,
+    value: THealthMonitorFormState[keyof THealthMonitorFormState],
+  ) => {
     const newErrors: THealthMonitorFormErrors = { ...errors };
 
     if (name === 'name' && isNameTouched) {
       if (!value) {
         newErrors.name = tCommon('common_field_error_required');
-      } else if (!HEALTH_MONITOR_NAME_REGEX.test(value)) {
+      } else if (!HEALTH_MONITOR_NAME_REGEX.test(String(value))) {
         newErrors.name = tCommon('common_field_error_pattern');
       } else {
         delete newErrors.name;
@@ -100,7 +110,7 @@ export default function HealthMonitorForm({
       if (name === 'expectedCode') {
         if (!value) {
           newErrors.expectedCode = tCommon('common_field_error_required');
-        } else if (!EXPECTED_STATUS_CODE_REGEX.test(`${value}`)) {
+        } else if (!EXPECTED_STATUS_CODE_REGEX.test(String(value))) {
           newErrors.expectedCode = tCommon('common_field_error_pattern');
         } else {
           delete newErrors.expectedCode;
@@ -122,28 +132,31 @@ export default function HealthMonitorForm({
   const isFormValid = Object.keys(errors).length === 0 && formState?.type;
 
   const handle = {
-    change: (key: keyof THealthMonitorFormState, value) => {
+    change: (
+      key: keyof THealthMonitorFormState,
+      value: THealthMonitorFormState[keyof THealthMonitorFormState],
+    ) => {
       switch (key) {
         case 'delay':
           onChange((actual) => ({
             ...actual,
-            delay: value,
-            timeout: actual.timeout >= value ? value - 1 : actual.timeout,
+            delay: value as number,
+            timeout: actual.timeout >= (value as number) ? (value as number) - 1 : actual.timeout,
           }));
           break;
 
         case 'type':
-          if (isTypeHttpOrHttps(value)) {
+          if (isTypeHttpOrHttps(value as THealthMonitorType)) {
             onChange((actual) => ({
               ...actual,
-              type: value,
+              type: value as THealthMonitorType,
               urlPath: '/',
               expectedCode: 200,
             }));
           } else {
             onChange((actual) => {
-              const { urlPath, expectedCode, ...rest } = actual;
-              return { ...rest, type: value };
+              const { urlPath: _urlPath, expectedCode: _expectedCode, ...rest } = actual;
+              return { ...rest, type: value as THealthMonitorType };
             });
           }
           break;
@@ -169,11 +182,7 @@ export default function HealthMonitorForm({
 
   if (isPending) {
     return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="HealthMonitorForm-spinner"
-      />
+      <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="HealthMonitorForm-spinner" />
     );
   }
 
@@ -208,9 +217,7 @@ export default function HealthMonitorForm({
           href={HORIZON_LINK}
           type={LinkType.next}
           target={OdsHTMLAnchorElementTarget._blank}
-          label={t(
-            'octavia_load_balancer_health_monitor_form_description_link',
-          )}
+          label={t('octavia_load_balancer_health_monitor_form_description_link')}
         />
       </section>
 
@@ -227,9 +234,7 @@ export default function HealthMonitorForm({
             type={ODS_INPUT_TYPE.text}
             value={formState?.name}
             error={!!errors.name}
-            onOdsValueChange={(event) =>
-              handle.change('name', event.detail.value)
-            }
+            onOdsValueChange={(event) => handle.change('name', event.detail.value)}
             onKeyDown={() => handle.keyDown('name')}
           />
 
@@ -238,11 +243,7 @@ export default function HealthMonitorForm({
               {errors.name}
             </OsdsText>
             <OsdsText
-              color={
-                errors.name
-                  ? ODS_THEME_COLOR_INTENT.error
-                  : ODS_THEME_COLOR_INTENT.text
-              }
+              color={errors.name ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text}
             >
               {t('octavia_load_balancer_health_monitor_form_name_help')}
             </OsdsText>
@@ -250,17 +251,13 @@ export default function HealthMonitorForm({
         </OsdsFormField>
 
         <OsdsFormField className="my-8">
-          <LabelComponent
-            text={t('octavia_load_balancer_health_monitor_form_type')}
-          />
+          <LabelComponent text={t('octavia_load_balancer_health_monitor_form_type')} />
 
           <OsdsSelect
             name="type"
             value={formState?.type}
             inline
-            onOdsValueChange={(event) =>
-              handle.change('type', event.detail.value)
-            }
+            onOdsValueChange={(event) => handle.change('type', event.detail.value)}
             disabled={isEditing || undefined}
           >
             <span slot="placeholder">
@@ -281,10 +278,7 @@ export default function HealthMonitorForm({
               error={errors.urlPath}
               data-testid="HealthMonitorForm_urlPath_field"
             >
-              <LabelComponent
-                text={LABELS.URL_PATH}
-                hasError={!!errors.urlPath}
-              />
+              <LabelComponent text={LABELS.URL_PATH} hasError={!!errors.urlPath} />
 
               <OsdsInput
                 name="url-path"
@@ -292,9 +286,7 @@ export default function HealthMonitorForm({
                 type={ODS_INPUT_TYPE.text}
                 value={formState?.urlPath}
                 color={ODS_THEME_COLOR_INTENT.primary}
-                onOdsValueChange={(event) =>
-                  handle.change('urlPath', event.detail.value)
-                }
+                onOdsValueChange={(event) => handle.change('urlPath', event.detail.value)}
               />
             </OsdsFormField>
 
@@ -304,12 +296,8 @@ export default function HealthMonitorForm({
               data-testid="HealthMonitorForm_expectedCode_field"
             >
               <LabelComponent
-                text={t(
-                  'octavia_load_balancer_health_monitor_form_expected_code',
-                )}
-                helpText={t(
-                  'octavia_load_balancer_health_monitor_form_expected_code_tooltip',
-                )}
+                text={t('octavia_load_balancer_health_monitor_form_expected_code')}
+                helpText={t('octavia_load_balancer_health_monitor_form_expected_code_tooltip')}
                 hasError={!!errors.expectedCode}
               />
 
@@ -318,28 +306,19 @@ export default function HealthMonitorForm({
                 type={ODS_INPUT_TYPE.text}
                 value={formState?.expectedCode}
                 error={!!errors.expectedCode}
-                onOdsValueChange={(event) =>
-                  handle.change('expectedCode', event.detail.value)
-                }
+                onOdsValueChange={(event) => handle.change('expectedCode', event.detail.value)}
               />
 
               <div slot="helper">
-                <OsdsText
-                  className="block"
-                  color={ODS_THEME_COLOR_INTENT.error}
-                >
+                <OsdsText className="block" color={ODS_THEME_COLOR_INTENT.error}>
                   {errors.expectedCode}
                 </OsdsText>
                 <OsdsText
                   color={
-                    errors.expectedCode
-                      ? ODS_THEME_COLOR_INTENT.error
-                      : ODS_THEME_COLOR_INTENT.text
+                    errors.expectedCode ? ODS_THEME_COLOR_INTENT.error : ODS_THEME_COLOR_INTENT.text
                   }
                 >
-                  {t(
-                    'octavia_load_balancer_health_monitor_form_expected_code_help',
-                  )}
+                  {t('octavia_load_balancer_health_monitor_form_expected_code_help')}
                 </OsdsText>
               </div>
             </OsdsFormField>
@@ -355,9 +334,7 @@ export default function HealthMonitorForm({
             min={BOUNDS.MAX_RETRIES_DOWN.MIN}
             max={BOUNDS.MAX_RETRIES_DOWN.MAX}
             onValueChange={(value) => handle.change('maxRetriesDown', value)}
-            labelHelpText={t(
-              'octavia_load_balancer_health_monitor_form_max_retries_down_tooltip',
-            )}
+            labelHelpText={t('octavia_load_balancer_health_monitor_form_max_retries_down_tooltip')}
           />
 
           <QuantitySelector
@@ -367,18 +344,14 @@ export default function HealthMonitorForm({
             value={formState?.delay}
             min={BOUNDS.DELAY.MIN}
             onValueChange={(value) => handle.change('delay', value)}
-            labelHelpText={t(
-              'octavia_load_balancer_health_monitor_form_delay_tooltip',
-            )}
+            labelHelpText={t('octavia_load_balancer_health_monitor_form_delay_tooltip')}
           />
 
           <QuantitySelector
             className="w-[100%] my-8"
             contentClassName="flex justify-between items-center"
             label={LABELS.MAX_RETRIES}
-            labelHelpText={t(
-              'octavia_load_balancer_health_monitor_form_max_retries_tooltip',
-            )}
+            labelHelpText={t('octavia_load_balancer_health_monitor_form_max_retries_tooltip')}
             value={formState?.maxRetries}
             min={BOUNDS.MAX_RETRIES.MIN}
             max={BOUNDS.MAX_RETRIES.MAX}
@@ -389,9 +362,7 @@ export default function HealthMonitorForm({
             className="w-[100%] my-8"
             contentClassName="flex justify-between items-center"
             label={LABELS.TIMEOUT}
-            labelHelpText={t(
-              'octavia_load_balancer_health_monitor_form_timeout_tooltip',
-            )}
+            labelHelpText={t('octavia_load_balancer_health_monitor_form_timeout_tooltip')}
             value={formState?.timeout}
             min={BOUNDS.TIMEOUT.MIN}
             max={formState?.delay - 1}

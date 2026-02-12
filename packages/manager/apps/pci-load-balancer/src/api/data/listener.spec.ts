@@ -1,15 +1,18 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
+import { mockLoadBalancerListeners } from '@/mocks';
+
 import {
-  createListener,
   CreateListenerProps,
+  EditListenerProps,
+  createListener,
   deleteListener,
   editListener,
-  EditListenerProps,
   getListener,
   getLoadBalancerListeners,
 } from './listener';
-import { mockLoadBalancerListeners } from '@/mocks';
 
 const projectId = 'test-project';
 const region = 'test-region';
@@ -47,11 +50,7 @@ describe('getLoadBalancerListeners', () => {
   vi.mocked(v6.get).mockResolvedValue({ data: mockLoadBalancerListeners });
 
   it('should fetch load balancer for getLoadBalancerListeners success', async () => {
-    const result = await getLoadBalancerListeners(
-      projectId,
-      region,
-      loadBalancerId,
-    );
+    const result = await getLoadBalancerListeners(projectId, region, loadBalancerId);
     expect(v6.get).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/listener?loadbalancerId=${loadBalancerId}`,
     );
@@ -62,9 +61,9 @@ describe('getLoadBalancerListeners', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      getLoadBalancerListeners(projectId, region, loadBalancerId),
-    ).rejects.toThrow(errorMessage);
+    await expect(getLoadBalancerListeners(projectId, region, loadBalancerId)).rejects.toThrow(
+      errorMessage,
+    );
   });
 });
 describe('createListener', () => {

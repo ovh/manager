@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getPlans, TPlanResponse } from './plans';
+
+import { TPlanResponse, getPlans } from './plans';
 
 describe('getPlans', () => {
   it('should fetch plans successfully', async () => {
@@ -39,8 +41,6 @@ describe('getPlans', () => {
     const projectId = 'test-project';
     const ovhSubsidiary = 'FR';
 
-    await expect(getPlans(projectId, ovhSubsidiary)).rejects.toThrow(
-      'API Error',
-    );
+    await expect(getPlans(projectId, ovhSubsidiary)).rejects.toThrow('API Error');
   });
 });

@@ -1,17 +1,14 @@
-import { Trans, Translation } from 'react-i18next';
-import {
-  useNotifications,
-  useProjectUrl,
-} from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  isApiCustomError,
-  isMaxQuotaReachedError,
-} from '@ovh-ux/manager-core-api';
+
+import { Trans, Translation } from 'react-i18next';
+
+import { isApiCustomError, isMaxQuotaReachedError } from '@ovh-ux/manager-core-api';
+import { useNotifications, useProjectUrl } from '@ovh-ux/manager-react-components';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import queryClient from '@/queryClient';
+
 import { getAllLoadBalancersQueryKey } from '@/api/hook/useLoadBalancer';
 import GuideLink from '@/components/GuideLink/GuideLink.component';
+import queryClient from '@/queryClient';
 
 export const useCreateCallbacks = () => {
   const navigate = useNavigate();
@@ -32,7 +29,7 @@ export const useCreateCallbacks = () => {
         false,
       );
       navigate('..');
-      queryClient.invalidateQueries({
+      void queryClient.invalidateQueries({
         queryKey: getAllLoadBalancersQueryKey(projectId),
       });
     },
@@ -43,18 +40,16 @@ export const useCreateCallbacks = () => {
       });
 
       if (isApiCustomError(error)) {
+        const apiError = error as {
+          response: { data: { message: string }; headers: Record<string, string> };
+        };
         if (isMaxQuotaReachedError(error)) {
           addError(
             <Trans
               ns="load-balancer"
               i18nKey="octavia_load_balancer_quota_creation_error"
               components={{
-                Link: (
-                  <GuideLink
-                    href={`${hrefProject}/quota`}
-                    isTargetBlank={false}
-                  />
-                ),
+                Link: <GuideLink href={`${hrefProject}/quota`} isTargetBlank={false} />,
               }}
             />,
           );
@@ -64,8 +59,8 @@ export const useCreateCallbacks = () => {
               ns="load-balancer"
               i18nKey="octavia_load_balancer_global_error"
               values={{
-                message: error.response.data.message,
-                requestId: error.response.headers['x-ovh-queryid'],
+                message: apiError.response.data.message,
+                requestId: apiError.response.headers['x-ovh-queryid'],
               }}
             />,
             false,

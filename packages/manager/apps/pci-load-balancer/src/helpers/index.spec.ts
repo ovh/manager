@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
-import { paginateResults, sortResults } from './index';
+
 import { TLoadBalancer } from '@/api/data/load-balancer';
+
+import { paginateResults, sortResults } from './index';
 
 vi.unmock('@/helpers');
 

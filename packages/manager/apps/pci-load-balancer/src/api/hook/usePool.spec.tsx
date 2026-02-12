@@ -1,21 +1,23 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import {
-  useAllLoadBalancerPools,
-  useGetPool,
-  useDeletePool,
-  useCreatePool,
-  useUpdatePool,
-} from './usePool';
-import {
+  TLoadBalancerPool,
+  createPool,
+  deletePool,
   getLoadBalancerPools,
   getPool,
-  deletePool,
-  createPool,
   updatePool,
-  TLoadBalancerPool,
 } from '@/api/data/pool';
 import { wrapper } from '@/wrapperRenders';
+
+import {
+  useAllLoadBalancerPools,
+  useCreatePool,
+  useDeletePool,
+  useGetPool,
+  useUpdatePool,
+} from './usePool';
 
 vi.mock('@/api/data/pool');
 
@@ -56,10 +58,9 @@ describe('usePool hooks', () => {
     } as TLoadBalancerPool;
     vi.mocked(getPool).mockResolvedValue(mockPool);
 
-    const { result } = renderHook(
-      () => useGetPool({ projectId: '1', region: 'us', poolId: '1' }),
-      { wrapper },
-    );
+    const { result } = renderHook(() => useGetPool({ projectId: '1', region: 'us', poolId: '1' }), {
+      wrapper,
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
@@ -77,9 +78,10 @@ describe('usePool hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.deletePool('1');
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(deletePool).toHaveBeenCalledWith('1', 'us', '1');
     expect(onSuccess).toHaveBeenCalled();
@@ -109,7 +111,7 @@ describe('usePool hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.doCreatePool({
         name: 'pool1',
         algorithm: 'round-robin',
@@ -117,6 +119,7 @@ describe('usePool hooks', () => {
         permanentSession: { isEnabled: true },
       });
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(createPool).toHaveBeenCalledWith({
       projectId: '1',
@@ -154,13 +157,14 @@ describe('usePool hooks', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.doUpdatePool({
         name: 'pool1',
         algorithm: 'round-robin',
         permanentSession: { isEnabled: true },
       });
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(updatePool).toHaveBeenCalledWith({
       projectId: '1',

@@ -1,7 +1,9 @@
+import { useMemo, useRef } from 'react';
+
 import { format } from 'date-fns';
 import * as dateFnsLocales from 'date-fns/locale';
-import { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 
 export const useFormattedDate = (date: string | null, formatStr = 'PPpp') => {

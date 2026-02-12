@@ -1,19 +1,21 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { vi } from 'vitest';
-import {
-  getLoadBalancerPools,
-  deletePool,
-  createPool,
-  updatePool,
-  getPool,
-  TLoadBalancerPool,
-  TCreatePoolParam,
-  TUpdatePoolParam,
-} from './pool';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
 } from './load-balancer';
+import {
+  TCreatePoolParam,
+  TLoadBalancerPool,
+  TUpdatePoolParam,
+  createPool,
+  deletePool,
+  getLoadBalancerPools,
+  getPool,
+  updatePool,
+} from './pool';
 
 describe('Load Balancer Pool API', () => {
   const projectId = 'test-project';
@@ -38,11 +40,7 @@ describe('Load Balancer Pool API', () => {
   it('should fetch load balancer pools', async () => {
     vi.mocked(v6.get).mockResolvedValue({ data: [poolData] });
 
-    const result = await getLoadBalancerPools(
-      projectId,
-      region,
-      loadBalancerId,
-    );
+    const result = await getLoadBalancerPools(projectId, region, loadBalancerId);
 
     expect(v6.get).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/pool?loadbalancerId=${loadBalancerId}`,

@@ -1,8 +1,14 @@
+import { useMemo, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_VARIANT,
   ODS_INPUT_TYPE,
   ODS_SPINNER_SIZE,
+  OdsSelectValueChangeEventDetail,
+  OsdsSelectCustomEvent,
 } from '@ovhcloud/ods-components';
 import {
   OsdsButton,
@@ -12,16 +18,11 @@ import {
   OsdsSelectOption,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { useMemo, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import {
-  LISTENER_POOL_PROTOCOL_COMBINATION,
-  PROTOCOLS,
-  PROTOCOLS_PORT,
-} from '@/constants';
-import LabelComponent from '@/components/form/Label.component';
-import { TLoadBalancerPool } from '@/api/data/pool';
+
 import { TProtocol } from '@/api/data/load-balancer';
+import { TLoadBalancerPool } from '@/api/data/pool';
+import LabelComponent from '@/components/form/Label.component';
+import { LISTENER_POOL_PROTOCOL_COMBINATION, PROTOCOLS, PROTOCOLS_PORT } from '@/constants';
 
 export type TListenerFormState = {
   name: string;
@@ -36,7 +37,9 @@ export type ListenerFormProps = {
   isPending: boolean;
   isEditing?: boolean;
   onSubmit: (state: TListenerFormState) => void;
-  onChange: (state) => void;
+  onChange: (
+    state: TListenerFormState | ((prev: TListenerFormState) => TListenerFormState),
+  ) => void;
   onCancel: () => void;
 };
 
@@ -62,27 +65,28 @@ export default function ListenerForm({
     () =>
       pools?.filter(
         ({ listenerId, protocol }) =>
-          !listenerId &&
-          LISTENER_POOL_PROTOCOL_COMBINATION[formState.protocol]?.includes(
-            protocol,
-          ),
+          !listenerId && LISTENER_POOL_PROTOCOL_COMBINATION[formState.protocol]?.includes(protocol),
       ) || [],
     [pools, formState.protocol],
   );
 
   const handle = {
-    protocolChange: (event) => {
-      const selectedProtocol = event.detail.value as TProtocol;
+    protocolChange: (event: OsdsSelectCustomEvent<OdsSelectValueChangeEventDetail>) => {
+      const rawValue = event.detail?.value;
+      if (typeof rawValue !== 'string') {
+        return;
+      }
+      const selectedProtocol = rawValue as TProtocol;
+      const port: number = PROTOCOLS_PORT[selectedProtocol as keyof typeof PROTOCOLS_PORT] ?? 0;
 
       onChange((prev) => ({
         ...prev,
         protocol: selectedProtocol,
-        port: PROTOCOLS_PORT[selectedProtocol] || 0,
+        port,
       }));
 
       if (
-        (formState.pool &&
-          !filteredPools.find(({ id }) => id === formState.pool.id)) ||
+        (formState.pool && !filteredPools.find(({ id }) => id === formState.pool.id)) ||
         selectedProtocol === 'prometheus'
       ) {
         onChange((prev) => ({
@@ -122,13 +126,7 @@ export default function ListenerForm({
   const isFormValid = formState.name && formState.protocol && !portError;
 
   if (isPending) {
-    return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="ListenerForm_spinner"
-      />
-    );
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="ListenerForm_spinner" />;
   }
 
   return (
@@ -148,9 +146,7 @@ export default function ListenerForm({
           type={ODS_INPUT_TYPE.text}
           value={formState.name}
           error={isNameRequired}
-          onOdsValueChange={(event) =>
-            handle.change('name', event.detail.value)
-          }
+          onOdsValueChange={(event) => handle.change('name', event.detail.value)}
           onOdsInputBlur={() => handle.blur('name')}
         />
       </OsdsFormField>
@@ -158,9 +154,7 @@ export default function ListenerForm({
       <OsdsFormField className="my-8">
         <LabelComponent
           text={t('octavia_load_balancer_listeners_create_protocol')}
-          helpText={tListeners(
-            'octavia_load_balancer_listeners_protocol_helper',
-          )}
+          helpText={tListeners('octavia_load_balancer_listeners_protocol_helper')}
         />
 
         <OsdsSelect
@@ -194,33 +188,25 @@ export default function ListenerForm({
           max={PORT_MAX_VALUE}
           value={formState.port}
           error={!!portError}
-          onOdsValueChange={(event) =>
-            handle.change('port', Number(event.detail.value))
-          }
+          onOdsValueChange={(event) => handle.change('port', Number(event.detail.value))}
           onOdsInputBlur={() => handle.blur('port')}
           disabled={isEditing || undefined}
         />
       </OsdsFormField>
 
       <OsdsFormField className="my-8">
-        <LabelComponent
-          text={t('octavia_load_balancer_listeners_create_pool')}
-        />
+        <LabelComponent text={t('octavia_load_balancer_listeners_create_pool')} />
 
         <OsdsSelect
           value={formState.pool?.id}
           inline
           disabled={!filteredPools.length || undefined}
           onOdsValueChange={(event) => {
-            const selectedPool = filteredPools.find(
-              ({ id }) => id === event.detail.value,
-            );
+            const selectedPool = filteredPools.find(({ id }) => id === event.detail.value);
             handle.change('pool', selectedPool);
           }}
         >
-          <span slot="placeholder">
-            {t('octavia_load_balancer_listeners_create_pool_default')}
-          </span>
+          <span slot="placeholder">{t('octavia_load_balancer_listeners_create_pool_default')}</span>
           {filteredPools.map((pool) => (
             <OsdsSelectOption key={pool.id} value={pool.id}>
               {pool.name}

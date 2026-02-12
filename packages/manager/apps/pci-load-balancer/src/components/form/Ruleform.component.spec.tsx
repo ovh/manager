@@ -1,22 +1,19 @@
-import { render, fireEvent, act } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import RuleForm from './RuleForm.component';
-import { wrapper } from '@/wrapperRenders';
+import { act, fireEvent, render } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+
 import { TL7Rule } from '@/api/data/l7Rules';
+import { wrapper } from '@/wrapperRenders';
+
+import RuleForm from './RuleForm.component';
 
 describe('RuleForm Component', () => {
   const onSubmit = vi.fn();
   const onCancel = vi.fn();
   it('should render the form', () => {
-    const { getByText } = render(
-      <RuleForm rule={null} onSubmit={onSubmit} onCancel={onCancel} />,
-      {
-        wrapper,
-      },
-    );
-    expect(
-      getByText('octavia_load_balancer_create_l7_rule_type'),
-    ).toBeInTheDocument();
+    const { getByText } = render(<RuleForm rule={null} onSubmit={onSubmit} onCancel={onCancel} />, {
+      wrapper,
+    });
+    expect(getByText('octavia_load_balancer_create_l7_rule_type')).toBeInTheDocument();
   });
 
   it('should call onSubmit when form is submitted', () => {

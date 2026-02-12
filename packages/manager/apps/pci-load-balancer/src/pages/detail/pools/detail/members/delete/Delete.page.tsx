@@ -1,15 +1,16 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  useDeletePoolMember,
-  useGetPoolMember,
-} from '@/api/hook/usePoolMember';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
+import { useDeletePoolMember, useGetPoolMember } from '@/api/hook/usePoolMember';
 
 export default function DeletePage() {
   const { addSuccess, addError } = useNotifications();
@@ -37,8 +38,7 @@ export default function DeletePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (error?.response?.data as { message: string })
-                    ?.message,
+                  message: (error?.response?.data as { message: string })?.message,
                   requestId: error.response?.headers['x-ovh-queryid'],
                 }),
               }}

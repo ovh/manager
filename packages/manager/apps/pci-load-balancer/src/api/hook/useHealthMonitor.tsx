@@ -1,13 +1,15 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
+
+import queryClient from '@/queryClient';
+
 import {
+  THealthMonitorFormState,
   createHealthMonitor,
   deleteHealthMonitor,
   editHealthMonitor,
   getHealthMonitor,
   renameHealthMonitor,
-  THealthMonitorFormState,
 } from '../data/health-monitor';
-import queryClient from '@/queryClient';
 
 export const useGetHealthMonitor = ({
   projectId,
@@ -50,8 +52,7 @@ export const useDeleteHealthMonitor = ({
     },
   });
   return {
-    deleteHealthMonitor: (healthMonitorId: string) =>
-      mutation.mutate(healthMonitorId),
+    deleteHealthMonitor: (healthMonitorId: string) => mutation.mutate(healthMonitorId),
     ...mutation,
   };
 };
@@ -83,8 +84,7 @@ export const useCreateHealthMonitor = ({
     },
   });
   return {
-    createHealthMonitor: (model: THealthMonitorFormState) =>
-      mutation.mutate(model),
+    createHealthMonitor: (model: THealthMonitorFormState) => mutation.mutate(model),
     ...mutation,
   };
 };
@@ -116,8 +116,7 @@ export const useEditHealthMonitor = ({
     },
   });
   return {
-    editHealthMonitor: (model: THealthMonitorFormState) =>
-      mutation.mutate(model),
+    editHealthMonitor: (model: THealthMonitorFormState) => mutation.mutate(model),
     ...mutation,
   };
 };

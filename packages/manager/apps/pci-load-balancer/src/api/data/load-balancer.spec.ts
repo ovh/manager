@@ -1,17 +1,20 @@
-import { v6 } from '@ovh-ux/manager-core-api';
 import { describe, it, vi } from 'vitest';
-import {
-  getLoadBalancer,
-  getLoadBalancers,
-  getLoadBalancerFlavor,
-  TLoadBalancerResponse,
-  deleteLoadBalancer,
-  updateLoadBalancerName,
-  createLoadBalancer,
-  TCreateLoadBalancerParam,
-} from './load-balancer';
+
+import { v6 } from '@ovh-ux/manager-core-api';
+
 import { mockFlavor, mockLoadBalancer, mockLoadBalancers } from '@/mocks';
 import { FloatingIpSelectionId } from '@/types/floating.type';
+
+import {
+  TCreateLoadBalancerParam,
+  TLoadBalancerResponse,
+  createLoadBalancer,
+  deleteLoadBalancer,
+  getLoadBalancer,
+  getLoadBalancerFlavor,
+  getLoadBalancers,
+  updateLoadBalancerName,
+} from './load-balancer';
 
 export const projectId = 'test-project-id';
 const region = 'region1';
@@ -34,9 +37,7 @@ describe('getLoadBalancers', () => {
 
   it('should fetch load balancers for the given project ID', async () => {
     const result = await getLoadBalancers(projectId);
-    expect(v6.get).toHaveBeenCalledWith(
-      `/cloud/project/${projectId}/aggregated/loadbalancer`,
-    );
+    expect(v6.get).toHaveBeenCalledWith(`/cloud/project/${projectId}/aggregated/loadbalancer`);
     expect(result).toEqual(mockResponse);
   });
 
@@ -69,9 +70,7 @@ describe('getLoadBalancer', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      getLoadBalancer(projectId, region, loadBalancerId),
-    ).rejects.toThrow(errorMessage);
+    await expect(getLoadBalancer(projectId, region, loadBalancerId)).rejects.toThrow(errorMessage);
   });
 });
 
@@ -96,9 +95,7 @@ describe('getLoadBalancerFlavor', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.get).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      getLoadBalancerFlavor(projectId, region, flavorId),
-    ).rejects.toThrow(errorMessage);
+    await expect(getLoadBalancerFlavor(projectId, region, flavorId)).rejects.toThrow(errorMessage);
   });
 });
 
@@ -122,9 +119,7 @@ describe('deleteLoadBalancer', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.delete).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      deleteLoadBalancer(projectId, mockLoadBalancer),
-    ).rejects.toThrow(errorMessage);
+    await expect(deleteLoadBalancer(projectId, mockLoadBalancer)).rejects.toThrow(errorMessage);
   });
 });
 
@@ -135,9 +130,7 @@ describe('updateLoadBalancerName', () => {
 
   it('should fetch load balancer for updateLoadBalancerName success', async () => {
     await updateLoadBalancerName(projectId, mockLoadBalancer, 'newName');
-    expect(
-      v6.put,
-    ).toHaveBeenCalledWith(
+    expect(v6.put).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${mockLoadBalancer.region}/loadbalancing/loadbalancer/${mockLoadBalancer.id}`,
       { name: 'newName' },
     );
@@ -147,9 +140,9 @@ describe('updateLoadBalancerName', () => {
     const errorMessage = 'Network Error';
     vi.mocked(v6.put).mockRejectedValue(new Error(errorMessage));
 
-    await expect(
-      updateLoadBalancerName(projectId, mockLoadBalancer, 'newName'),
-    ).rejects.toThrow(errorMessage);
+    await expect(updateLoadBalancerName(projectId, mockLoadBalancer, 'newName')).rejects.toThrow(
+      errorMessage,
+    );
   });
 
   describe('createLoadBalancer', () => {
@@ -174,9 +167,7 @@ describe('updateLoadBalancerName', () => {
           {
             protocol: 'http',
             port: 80,
-            instances: [
-              { instance: { ipAddresses: [{ ip: '127.0.0.1' }] }, port: 80 },
-            ],
+            instances: [{ instance: { ipAddresses: [{ ip: '127.0.0.1' }] }, port: 80 }],
             healthMonitor: 'http',
           },
         ],

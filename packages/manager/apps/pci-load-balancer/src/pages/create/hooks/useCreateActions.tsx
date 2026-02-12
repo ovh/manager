@@ -1,33 +1,27 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { useCreateStore } from '@/pages/create/store';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useGetFlavor } from '@/api/hook/useFlavors';
-import { useCreateCallbacks } from './useCreateCallbacks';
+import { useCreateStore } from '@/pages/create/store';
 import { FloatingIpSelectionId } from '@/types/floating.type';
+
+import { useCreateCallbacks } from './useCreateCallbacks';
 
 export const useCreateActions = () => {
   const { trackClick } = useOvhTracking();
   const store = useCreateStore();
   const { projectId } = useParams();
-  const { data: flavor } = useGetFlavor(
-    projectId,
-    store.region?.name,
-    store.addon,
-  );
+  const { data: flavor } = useGetFlavor(projectId, store.region?.name, store.addon);
   const { onSuccess, onError } = useCreateCallbacks();
   const navigate = useNavigate();
 
   const storeTracikngInfo = useMemo(
     () =>
       `${store.region?.name}_private_${store.addon?.size}_${
-        store.publicIp === FloatingIpSelectionId.UNATTACHED
-          ? 'unavailable'
-          : 'available'
+        store.publicIp === FloatingIpSelectionId.UNATTACHED ? 'unavailable' : 'available'
       }_${store.listeners.length}`,
     [store.region, store.addon, store.publicIp, store.listeners.length],
   );
@@ -41,7 +35,7 @@ export const useCreateActions = () => {
         location: PageLocation.funnel,
       });
 
-      store.create(flavor, onSuccess, onError);
+      void store.create(flavor, onSuccess, onError);
     },
     cancel: () => {
       trackClick({

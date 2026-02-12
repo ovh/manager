@@ -1,24 +1,25 @@
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import queryClient from '@/queryClient';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import { paginateResults, sortResults } from '@/helpers';
+import queryClient from '@/queryClient';
+
 import {
+  TCreateLoadBalancerParam,
+  TLoadBalancer,
   createLoadBalancer,
   deleteLoadBalancer,
   getLoadBalancer,
   getLoadBalancerFlavor,
   getLoadBalancers,
-  TCreateLoadBalancerParam,
-  TLoadBalancer,
   updateLoadBalancerName,
 } from '../data/load-balancer';
 
-export const getAllLoadBalancersQueryKey = (projectId: string) => [
-  'load-balancers',
-  projectId,
-];
+export const getAllLoadBalancersQueryKey = (projectId: string) => ['load-balancers', projectId];
 
 export const useAllLoadBalancers = (projectId: string) =>
   useQuery({
@@ -33,12 +34,7 @@ export const useLoadBalancers = (
   sorting: ColumnSort,
   filters: Filter[],
 ) => {
-  const {
-    data: loadBalancers,
-    error,
-    isLoading,
-    isPending,
-  } = useAllLoadBalancers(projectId);
+  const { data: loadBalancers, error, isLoading, isPending } = useAllLoadBalancers(projectId);
 
   return useMemo(
     () => ({
@@ -131,17 +127,11 @@ export const useRenameLoadBalancer = ({
   onSuccess,
 }: RenameLoadBalancerProps) => {
   const mutation = useMutation({
-    mutationFn: async () =>
-      updateLoadBalancerName(projectId, loadBalancer, name),
+    mutationFn: async () => updateLoadBalancerName(projectId, loadBalancer, name),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [
-          'loadBalancer',
-          projectId,
-          loadBalancer.region,
-          loadBalancer.id,
-        ],
+        queryKey: ['loadBalancer', projectId, loadBalancer.region, loadBalancer.id],
       });
       onSuccess();
     },
@@ -182,7 +172,7 @@ export const useCreateLoadBalancer = ({
         name,
       }),
     onError,
-    onSuccess: async () => {
+    onSuccess: () => {
       onSuccess();
     },
   });

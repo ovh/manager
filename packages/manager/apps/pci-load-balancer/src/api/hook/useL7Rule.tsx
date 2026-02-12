@@ -1,23 +1,22 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
-import { applyFilters, Filter } from '@ovh-ux/manager-core-api';
 import { useMemo } from 'react';
-import { paginateResults, sortResults } from '@/helpers';
+
+import { useMutation, useQuery } from '@tanstack/react-query';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+import { ColumnSort, PaginationState } from '@ovh-ux/manager-react-components';
+
 import {
+  TL7Rule,
   createL7Rule,
   deleteL7Rule,
   getL7Rule,
   getL7Rules,
-  TL7Rule,
   updateL7Rule,
 } from '@/api/data/l7Rules';
+import { paginateResults, sortResults } from '@/helpers';
 import queryClient from '@/queryClient';
 
-export const useGetAllL7Rules = (
-  projectId: string,
-  policyId: string,
-  region: string,
-) =>
+export const useGetAllL7Rules = (projectId: string, policyId: string, region: string) =>
   useQuery({
     queryKey: ['l7Rules', projectId, 'policy', policyId, region],
     queryFn: () => getL7Rules(projectId, region, policyId),
@@ -36,11 +35,12 @@ export const useL7Rules = (
   sorting: ColumnSort,
   filters: Filter[],
 ) => {
-  const { data: allL7Rules, error, isLoading, isPending } = useGetAllL7Rules(
-    projectId,
-    policyId,
-    region,
-  );
+  const {
+    data: allL7Rules,
+    error,
+    isLoading,
+    isPending,
+  } = useGetAllL7Rules(projectId, policyId, region);
   return useMemo(
     () => ({
       isLoading,
@@ -105,8 +105,7 @@ export const useCreateL7Rule = ({
   onSuccess,
 }: CreateRuleProps) => {
   const mutation = useMutation({
-    mutationFn: async (rule: TL7Rule) =>
-      createL7Rule(projectId, region, policyId, rule),
+    mutationFn: async (rule: TL7Rule) => createL7Rule(projectId, region, policyId, rule),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -137,8 +136,7 @@ export const useUpdateL7Rule = ({
   onSuccess,
 }: UpdateRuleProps) => {
   const mutation = useMutation({
-    mutationFn: async (rule: TL7Rule) =>
-      updateL7Rule(projectId, region, policyId, rule),
+    mutationFn: async (rule: TL7Rule) => updateL7Rule(projectId, region, policyId, rule),
     onError,
     onSuccess: async () => {
       await queryClient.invalidateQueries({
@@ -152,12 +150,7 @@ export const useUpdateL7Rule = ({
     ...mutation,
   };
 };
-export const useGetL7Rule = (
-  projectId: string,
-  policyId: string,
-  region: string,
-  ruleId: string,
-) =>
+export const useGetL7Rule = (projectId: string, policyId: string, region: string, ruleId: string) =>
   useQuery({
     queryKey: ['l7Rules', projectId, policyId, region, ruleId],
     queryFn: () => getL7Rule(projectId, region, policyId, ruleId),

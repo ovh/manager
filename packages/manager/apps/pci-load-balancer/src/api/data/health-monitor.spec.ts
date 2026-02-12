@@ -1,12 +1,14 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getHealthMonitor,
-  deleteHealthMonitor,
-  createHealthMonitor,
-  editHealthMonitor,
-  renameHealthMonitor,
   THealthMonitorFormState,
+  createHealthMonitor,
+  deleteHealthMonitor,
+  editHealthMonitor,
+  getHealthMonitor,
+  renameHealthMonitor,
 } from './health-monitor';
 
 describe('Health Monitor API', () => {
@@ -30,11 +32,7 @@ describe('Health Monitor API', () => {
     const mockData = { success: true };
     vi.mocked(v6.delete).mockResolvedValue({ data: mockData });
 
-    const result = await deleteHealthMonitor(
-      projectId,
-      region,
-      healthMonitorId,
-    );
+    const result = await deleteHealthMonitor(projectId, region, healthMonitorId);
     expect(result).toEqual(mockData);
     expect(v6.delete).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
@@ -53,23 +51,30 @@ describe('Health Monitor API', () => {
       timeout: 10,
     };
     const mockData = { id: '1', name: 'test-monitor' };
-    (v6.post as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.post).mockResolvedValue({ data: mockData });
 
-    const result = await createHealthMonitor(projectId, region, poolId, model);
+    const result = (await createHealthMonitor(projectId, region, poolId, model)) as {
+      data: { id: string; name: string };
+    };
     expect(result).toEqual({ data: mockData });
+    const expectedCodes = String(model.expectedCode ?? '');
+    const urlPath = model.urlPath ?? '';
+    /* eslint-disable @typescript-eslint/no-unsafe-assignment -- vitest expect.objectContaining return type */
+    const expectedBody = {
+      name: model.name,
+      monitorType: model.type,
+      delay: model.delay,
+      timeout: model.timeout,
+      poolId,
+      httpConfiguration: expect.objectContaining({
+        expectedCodes,
+        urlPath,
+      }),
+    };
+    /* eslint-enable @typescript-eslint/no-unsafe-assignment */
     expect(v6.post).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor`,
-      expect.objectContaining({
-        name: model.name,
-        monitorType: model.type,
-        delay: model.delay,
-        timeout: model.timeout,
-        poolId,
-        httpConfiguration: expect.objectContaining({
-          expectedCodes: `${model.expectedCode}`,
-          urlPath: model.urlPath,
-        }),
-      }),
+      expect.objectContaining(expectedBody),
     );
   });
 
@@ -86,12 +91,9 @@ describe('Health Monitor API', () => {
     const mockData = { id: '1', name: 'updated-monitor' };
     vi.mocked(v6.put).mockResolvedValue({ data: mockData });
 
-    const result = await editHealthMonitor(
-      projectId,
-      region,
-      healthMonitorId,
-      model,
-    );
+    const result = (await editHealthMonitor(projectId, region, healthMonitorId, model)) as {
+      data: { id: string; name: string };
+    };
     expect(result).toEqual({ data: mockData });
     expect(v6.put).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
@@ -116,16 +118,9 @@ describe('Health Monitor API', () => {
     const mockData = { id: '1', name: newName };
     vi.mocked(v6.put).mockResolvedValue({ data: mockData });
 
-    const result = await renameHealthMonitor(
-      projectId,
-      region,
-      healthMonitorId,
-      newName,
-    );
+    const result = await renameHealthMonitor(projectId, region, healthMonitorId, newName);
     expect(result).toEqual({ data: mockData });
-    expect(
-      v6.put,
-    ).toHaveBeenCalledWith(
+    expect(v6.put).toHaveBeenCalledWith(
       `/cloud/project/${projectId}/region/${region}/loadbalancing/healthMonitor/${healthMonitorId}`,
       { name: newName },
     );

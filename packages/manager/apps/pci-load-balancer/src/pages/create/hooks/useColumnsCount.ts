@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { useWindowSize } from 'react-use';
 
 export const useColumnsCount = (): 1 | 2 | 3 => {

@@ -1,11 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation, useTranslation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import RuleForm from '@/components/form/RuleForm.component';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useCreateL7Rule } from '@/api/hook/useL7Rule';
+import RuleForm from '@/components/form/RuleForm.component';
 
 export default function CreatePage() {
   const { addSuccess, addError } = useNotifications();
@@ -48,9 +52,7 @@ export default function CreatePage() {
           rule={null}
           onCancel={() => navigate('..')}
           onSubmit={createL7Rule}
-          submitButtonText={t(
-            'octavia_load_balancer_create_l7_rule_submit_creation',
-          )}
+          submitButtonText={t('octavia_load_balancer_create_l7_rule_submit_creation')}
         />
       )}
     </>

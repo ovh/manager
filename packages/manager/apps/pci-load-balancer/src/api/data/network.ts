@@ -62,9 +62,7 @@ export type TSubnet = {
 };
 
 export const getPrivateNetworks = async (projectId: string) => {
-  const { data } = await v6.get<TPrivateNetwork[]>(
-    `/cloud/project/${projectId}/network/private`,
-  );
+  const { data } = await v6.get<TPrivateNetwork[]>(`/cloud/project/${projectId}/network/private`);
   return data;
 };
 
@@ -79,10 +77,7 @@ export const getPrivateNetworkSubnets = async (
   return data;
 };
 
-export const getRegionPrivateNetworks = async (
-  projectId: string,
-  region: string,
-) => {
+export const getRegionPrivateNetworks = async (projectId: string, region: string) => {
   const { data } = await v6.get<TPrivateNetwork[]>(
     `/cloud/project/${projectId}/region/${region}/network`,
   );

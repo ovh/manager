@@ -1,12 +1,15 @@
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepComponent } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { StepComponent } from '@ovh-ux/manager-react-components';
+
 import { useTracking } from '@/pages/create/hooks/useTracking';
-import { SubnetNetworksPart } from '@/pages/create/steps/network/parts/SubnetNetworks.part';
 import { PrivateNetworkPart } from '@/pages/create/steps/network/parts/PrivateNetwork.part';
+import { SubnetNetworksPart } from '@/pages/create/steps/network/parts/SubnetNetworks.part';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
 import { FloatingIpSelectionId } from '@/types/floating.type';
 
 export const NetworkStep = (): JSX.Element => {
@@ -33,8 +36,7 @@ export const NetworkStep = (): JSX.Element => {
           store.open(StepsEnum.INSTANCE);
         },
         label: t('pci-common:common_stepper_next_button_label'),
-        isDisabled:
-          !store.subnet && store.publicIp !== FloatingIpSelectionId.UNATTACHED,
+        isDisabled: !store.subnet && store.publicIp !== FloatingIpSelectionId.UNATTACHED,
       }}
       edit={{
         action: () => {

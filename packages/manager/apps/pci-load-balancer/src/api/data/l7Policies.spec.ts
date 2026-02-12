@@ -1,12 +1,14 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
+  TL7Policy,
+  createPolicy,
+  deletePolicy,
   getL7Policies,
   getPolicy,
-  deletePolicy,
-  createPolicy,
   updatePolicy,
-  TL7Policy,
 } from './l7Policies';
 import {
   LoadBalancerOperatingStatusEnum,
@@ -35,7 +37,7 @@ describe('l7Policies API', () => {
 
   it('should fetch L7 policies', async () => {
     const mockData = [policy];
-    (v6.get as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.get).mockResolvedValue({ data: mockData });
 
     const result = await getL7Policies(projectId, listenerId, region);
     expect(result).toEqual(mockData);
@@ -45,7 +47,7 @@ describe('l7Policies API', () => {
   });
 
   it('should fetch a single policy', async () => {
-    (v6.get as any).mockResolvedValue({ data: policy });
+    vi.mocked(v6.get).mockResolvedValue({ data: policy });
 
     const result = await getPolicy(projectId, region, policyId);
     expect(result).toEqual(policy);
@@ -56,7 +58,7 @@ describe('l7Policies API', () => {
 
   it('should delete a policy', async () => {
     const mockData = { success: true };
-    (v6.delete as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.delete).mockResolvedValue({ data: mockData });
 
     const result = await deletePolicy(projectId, region, policyId);
     expect(result).toEqual(mockData);
@@ -67,7 +69,7 @@ describe('l7Policies API', () => {
 
   it('should create a policy', async () => {
     const mockData = { id: 'new-policy' };
-    (v6.post as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.post).mockResolvedValue({ data: mockData });
 
     const result = await createPolicy(projectId, region, listenerId, policy);
     expect(result).toEqual(mockData);
@@ -82,7 +84,7 @@ describe('l7Policies API', () => {
 
   it('should update a policy', async () => {
     const mockData = { success: true };
-    (v6.put as any).mockResolvedValue({ data: mockData });
+    vi.mocked(v6.put).mockResolvedValue({ data: mockData });
 
     const result = await updatePolicy(projectId, region, policy);
     expect(result).toEqual(mockData);

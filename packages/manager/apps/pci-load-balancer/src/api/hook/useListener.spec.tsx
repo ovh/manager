@@ -1,25 +1,28 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { applyFilters } from '@ovh-ux/manager-core-api';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
+
 import {
-  useListener,
-  useDeleteListener,
-  useCreateListener,
+  TLoadBalancerListener,
+  createListener,
+  deleteListener,
+  editListener,
+  getListener,
+  getLoadBalancerListeners,
+} from '@/api/data/listener';
+import { paginateResults, sortResults } from '@/helpers';
+import { wrapper } from '@/wrapperRenders';
+
+import {
   ListenerInfoProps,
-  useEditLoadBalancer,
   useAllLoadBalancerListeners,
+  useCreateListener,
+  useDeleteListener,
+  useEditLoadBalancer,
+  useListener,
   useLoadBalancerListeners,
 } from './useListener';
-import {
-  getListener,
-  deleteListener,
-  createListener,
-  editListener,
-  getLoadBalancerListeners,
-  TLoadBalancerListener,
-} from '@/api/data/listener';
-import { wrapper } from '@/wrapperRenders';
-import { paginateResults, sortResults } from '@/helpers';
 
 vi.mock('@/api/data/listener');
 
@@ -54,7 +57,7 @@ describe('useDeleteListener', () => {
   const onError = vi.fn();
   const onSuccess = vi.fn();
 
-  it('deletes listener successfully', async () => {
+  it('deletes listener successfully', () => {
     vi.mocked(deleteListener).mockResolvedValueOnce({});
 
     const { result } = renderHook(
@@ -70,15 +73,15 @@ describe('useDeleteListener', () => {
       { wrapper },
     );
 
-    await act(async () => {
-      result.current.deleteListener();
+    act(() => {
+      void result.current.deleteListener();
     });
 
     expect(deleteListener).toHaveBeenCalledWith(projectId, region, listenerId);
     expect(onSuccess).toHaveBeenCalled();
   });
 
-  it('handles error while deleting listener', async () => {
+  it('handles error while deleting listener', () => {
     const error = new Error('Failed to delete');
     vi.mocked(deleteListener).mockRejectedValueOnce(error);
 
@@ -95,7 +98,7 @@ describe('useDeleteListener', () => {
       { wrapper },
     );
 
-    await act(async () => {
+    act(() => {
       result.current.deleteListener();
     });
 
@@ -106,7 +109,7 @@ describe('useDeleteListener', () => {
 
 describe('useCreateListener', () => {
   it('should create a listener', async () => {
-    vi.mocked(createListener).mockResolvedValue({});
+    vi.mocked(createListener).mockResolvedValue({} as TLoadBalancerListener);
     const onError = vi.fn();
     const onSuccess = vi.fn();
 
@@ -128,9 +131,10 @@ describe('useCreateListener', () => {
       port: 80,
     } as ListenerInfoProps;
 
-    await act(async () => {
-      await result.current.createListener(listenerInfo);
+    act(() => {
+      void result.current.createListener(listenerInfo);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(createListener).toHaveBeenCalledWith({
       projectId: 'projectId',
@@ -144,7 +148,7 @@ describe('useCreateListener', () => {
 
 describe('useEditLoadBalancer', () => {
   it('should edit a listener', async () => {
-    vi.mocked(editListener).mockResolvedValue({});
+    vi.mocked(editListener).mockResolvedValue({} as TLoadBalancerListener);
     const onError = vi.fn();
     const onSuccess = vi.fn();
 
@@ -165,9 +169,10 @@ describe('useEditLoadBalancer', () => {
       defaultPoolId: 'poolId',
     };
 
-    await act(async () => {
-      await result.current.editListener(listenerInfo);
+    act(() => {
+      void result.current.editListener(listenerInfo);
     });
+    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
     expect(editListener).toHaveBeenCalledWith({
       projectId: 'projectId',
@@ -181,9 +186,7 @@ describe('useEditLoadBalancer', () => {
 
 describe('useAllLoadBalancerListeners', () => {
   it('should fetch all load balancer listeners', async () => {
-    const mockData = [
-      { id: '1', name: 'listener1' },
-    ] as TLoadBalancerListener[];
+    const mockData = [{ id: '1', name: 'listener1' }] as TLoadBalancerListener[];
     vi.mocked(getLoadBalancerListeners).mockResolvedValue(mockData);
 
     const { result } = renderHook(
@@ -209,9 +212,7 @@ describe('useAllLoadBalancerListeners', () => {
 
 describe('useLoadBalancerListeners', () => {
   it('should return paginated and sorted load balancer listeners', async () => {
-    const mockData = [
-      { id: '1', name: 'listener1' },
-    ] as TLoadBalancerListener[];
+    const mockData = [{ id: '1', name: 'listener1' }] as TLoadBalancerListener[];
     vi.mocked(getLoadBalancerListeners).mockResolvedValue(mockData);
     vi.mocked(applyFilters).mockReturnValue(mockData);
     vi.mocked(sortResults).mockReturnValue(mockData);
@@ -223,7 +224,7 @@ describe('useLoadBalancerListeners', () => {
 
     const pagination = { pageIndex: 0, pageSize: 10 };
     const sorting = { id: 'name', desc: false };
-    const filters = [];
+    const filters: Filter[] = [];
 
     const { result } = renderHook(
       () =>

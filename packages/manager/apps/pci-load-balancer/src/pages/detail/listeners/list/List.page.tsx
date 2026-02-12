@@ -1,13 +1,10 @@
-import {
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+import { Suspense, useMemo, useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
@@ -23,19 +20,25 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import { Suspense, useMemo, useRef, useState } from 'react';
 
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { TLoadBalancerListener } from '@/api/data/listener';
+import { useLoadBalancerListeners } from '@/api/hook/useListener';
+import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 import ActionsComponent from '@/pages/detail/listeners/list/Actions.component';
-import { TLoadBalancerListener } from '@/api/data/listener';
-import DataGridLinkCell from '@/components/datagrid/DataGridLinkCell.component';
-
-import { useLoadBalancerListeners } from '@/api/hook/useListener';
 
 export default function ListenerList() {
   const { t } = useTranslation(['listeners', 'filter', 'load-balancer']);
@@ -46,7 +49,7 @@ export default function ListenerList() {
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
   const [searchField, setSearchField] = useState('');
 
   const { data, error, isPending } = useLoadBalancerListeners(
@@ -70,9 +73,7 @@ export default function ListenerList() {
       {
         id: 'defaultPoolId',
         cell: ({ defaultPoolId }: TLoadBalancerListener) => (
-          <DataGridLinkCell href={`../../pools/${defaultPoolId}`}>
-            {defaultPoolId}
-          </DataGridLinkCell>
+          <DataGridLinkCell href={`../../pools/${defaultPoolId}`}>{defaultPoolId}</DataGridLinkCell>
         ),
         label: t('octavia_load_balancer_listeners_default_pool'),
       },
@@ -85,28 +86,20 @@ export default function ListenerList() {
       },
       {
         id: 'port',
-        cell: (props: TLoadBalancerListener) => (
-          <DataGridTextCell>{props.port}</DataGridTextCell>
-        ),
+        cell: (props: TLoadBalancerListener) => <DataGridTextCell>{props.port}</DataGridTextCell>,
         label: t('octavia_load_balancer_listeners_port'),
       },
       {
         id: 'provisioningStatus',
         cell: (props: TLoadBalancerListener) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_provisioning_status'),
       },
       {
         id: 'operatingStatus',
         cell: (props: TLoadBalancerListener) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_operating_status'),
         isSortable: false,
@@ -126,13 +119,7 @@ export default function ListenerList() {
   );
 
   if (isPending && !error) {
-    return (
-      <OsdsSpinner
-        inline
-        size={ODS_SPINNER_SIZE.md}
-        data-testid="listeners-spinner"
-      />
-    );
+    return <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="listeners-spinner" />;
   }
 
   return (
@@ -175,7 +162,7 @@ export default function ListenerList() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}

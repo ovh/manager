@@ -1,7 +1,8 @@
 import { useContext, useMemo } from 'react';
 
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { GUIDES } from './useGuideLink.constants';
 
 type TGetGuideLinkProps = {
@@ -15,10 +16,7 @@ type UseGuideLinkProps = {
 
 function getGuideListLink({ subsidiary }: TGetGuideLinkProps) {
   return Object.fromEntries(
-    Object.entries(GUIDES).map(([key, value]) => [
-      key,
-      value[subsidiary] ?? value.DEFAULT,
-    ]),
+    Object.entries(GUIDES).map(([key, value]) => [key, value[subsidiary] ?? value.DEFAULT]),
   ) as UseGuideLinkProps;
 }
 

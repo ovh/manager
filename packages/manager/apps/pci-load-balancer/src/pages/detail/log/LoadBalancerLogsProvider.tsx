@@ -1,5 +1,6 @@
 import { LogProvider } from '@ovh-ux/manager-pci-common';
 import { useMe } from '@ovh-ux/manager-react-components';
+
 import { DATA_PLATFORM_GUIDE } from '@/constants';
 
 export interface KubeLogsProviderProps {
@@ -21,7 +22,8 @@ export function LoadBalancerLogsProvider({
       logsKeys={['message']}
       logsKind="haproxy"
       logsGuideURL={
-        DATA_PLATFORM_GUIDE[ovhSubsidiary] || DATA_PLATFORM_GUIDE.DEFAULT
+        DATA_PLATFORM_GUIDE[(ovhSubsidiary ?? 'DEFAULT') as keyof typeof DATA_PLATFORM_GUIDE] ||
+        DATA_PLATFORM_GUIDE.DEFAULT
       }
       logsTracking={
         {

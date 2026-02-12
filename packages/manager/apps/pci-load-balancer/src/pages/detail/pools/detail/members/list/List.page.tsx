@@ -1,13 +1,17 @@
+import { Suspense, useMemo, useRef, useState } from 'react';
+
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
-  Datagrid,
-  FilterAdd,
-  FilterList,
-  useColumnFilters,
-  useDataGrid,
-  useNotifications,
-  DatagridColumn,
-  DataGridTextCell,
-} from '@ovh-ux/manager-react-components';
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_SPINNER_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -16,31 +20,27 @@ import {
   OsdsSearchBar,
   OsdsSpinner,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_SPINNER_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+
 import { FilterCategories, FilterComparator } from '@ovh-ux/manager-core-api';
-import { Suspense, useMemo, useRef, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import {
+  DataGridTextCell,
+  Datagrid,
+  DatagridColumn,
+  FilterAdd,
+  FilterList,
+  useColumnFilters,
+  useDataGrid,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
+
+import { TPoolMember } from '@/api/data/pool-member';
 import { usePoolMembers } from '@/api/hook/usePoolMember';
+import ActionsComponent from '@/components/detail/pools/members/Actions.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
-import { TPoolMember } from '@/api/data/pool-member';
-import ActionsComponent from '@/components/detail/pools/members/Actions.component';
 
 export default function PoolMemberList() {
-  const { t } = useTranslation([
-    'pools/members/list',
-    'pools/detail',
-    'filter',
-    'load-balancer',
-  ]);
+  const { t } = useTranslation(['pools/members/list', 'pools/detail', 'filter', 'load-balancer']);
 
   const { projectId, region, poolId } = useParams();
   const { pagination, setPagination, sorting, setSorting } = useDataGrid();
@@ -49,7 +49,7 @@ export default function PoolMemberList() {
   const { clearNotifications } = useNotifications();
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const [searchField, setSearchField] = useState('');
-  const filterPopoverRef = useRef(undefined);
+  const filterPopoverRef = useRef<{ closeSurface: () => void } | null>(null);
 
   const { paginatedPoolMembers, isPending } = usePoolMembers(
     projectId,
@@ -64,42 +64,30 @@ export default function PoolMemberList() {
     () => [
       {
         id: 'name',
-        cell: (props: TPoolMember) => (
-          <DataGridTextCell>{props.name}</DataGridTextCell>
-        ),
+        cell: (props: TPoolMember) => <DataGridTextCell>{props.name}</DataGridTextCell>,
         label: t('octavia_load_balancer_pools_detail_members_name'),
       },
       {
         id: 'address',
-        cell: (props: TPoolMember) => (
-          <DataGridTextCell>{props.address}</DataGridTextCell>
-        ),
+        cell: (props: TPoolMember) => <DataGridTextCell>{props.address}</DataGridTextCell>,
         label: t('octavia_load_balancer_pools_detail_members_address'),
       },
       {
         id: 'protocolPort',
-        cell: (props: TPoolMember) => (
-          <DataGridTextCell>{props.protocolPort}</DataGridTextCell>
-        ),
+        cell: (props: TPoolMember) => <DataGridTextCell>{props.protocolPort}</DataGridTextCell>,
         label: t('octavia_load_balancer_pools_detail_members_protocol_port'),
       },
       {
         id: 'provisioningStatus',
         cell: (props: TPoolMember) => (
-          <ProvisioningStatusComponent
-            status={props.provisioningStatus}
-            className="w-fit"
-          />
+          <ProvisioningStatusComponent status={props.provisioningStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_provisioning_status'),
       },
       {
         id: 'operatingStatus',
         cell: (props: TPoolMember) => (
-          <OperatingStatusComponent
-            status={props.operatingStatus}
-            className="w-fit"
-          />
+          <OperatingStatusComponent status={props.operatingStatus} className="w-fit" />
         ),
         label: t('load-balancer:octavia_load_balancer_operating_status'),
         isSortable: false,
@@ -156,9 +144,7 @@ export default function PoolMemberList() {
               className="mr-2"
               color={ODS_THEME_COLOR_INTENT.primary}
             />
-            {t(
-              'pools/detail:octavia_load_balancer_pools_detail_add_ips_instances',
-            )}
+            {t('pools/detail:octavia_load_balancer_pools_detail_add_ips_instances')}
           </OsdsButton>
         </div>
 
@@ -180,7 +166,7 @@ export default function PoolMemberList() {
               setSearchField('');
             }}
           />
-          <OsdsPopover ref={filterPopoverRef}>
+          <OsdsPopover ref={filterPopoverRef as React.RefObject<HTMLOsdsPopoverElement>}>
             <OsdsButton
               slot="popover-trigger"
               size={ODS_BUTTON_SIZE.sm}
@@ -205,16 +191,12 @@ export default function PoolMemberList() {
                   },
                   {
                     id: 'address',
-                    label: t(
-                      'octavia_load_balancer_pools_detail_members_address',
-                    ),
+                    label: t('octavia_load_balancer_pools_detail_members_address'),
                     comparators: FilterCategories.String,
                   },
                   {
                     id: 'protocolPort',
-                    label: t(
-                      'octavia_load_balancer_pools_detail_members_protocol_port',
-                    ),
+                    label: t('octavia_load_balancer_pools_detail_members_protocol_port'),
                     comparators: FilterCategories.Numeric,
                   },
                 ]}
@@ -240,11 +222,7 @@ export default function PoolMemberList() {
       </div>
 
       {isPending ? (
-        <OsdsSpinner
-          inline
-          size={ODS_SPINNER_SIZE.md}
-          data-testid="List-spinner"
-        />
+        <OsdsSpinner inline size={ODS_SPINNER_SIZE.md} data-testid="List-spinner" />
       ) : (
         <Datagrid
           columns={columns}

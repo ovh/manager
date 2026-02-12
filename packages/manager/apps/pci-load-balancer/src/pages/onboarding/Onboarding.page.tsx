@@ -1,29 +1,26 @@
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_TEXT_LEVEL,
-  OdsBreadcrumbAttributeItem,
-} from '@ovhcloud/ods-components';
-import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
+import { Suspense, useContext } from 'react';
+
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, OdsBreadcrumbAttributeItem } from '@ovhcloud/ods-components';
+import { OsdsBreadcrumb, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { useProject } from '@ovh-ux/manager-pci-common';
 import {
   Card,
   OnboardingLayout,
   RedirectionGuard,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
-import { useProject } from '@ovh-ux/manager-pci-common';
-import { Suspense, useContext } from 'react';
-import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { useAllLoadBalancers } from '@/api/hook/useLoadBalancer';
-import { GUIDES } from './constant';
 import { useGetPrivateNetworks } from '@/api/hook/useNetwork';
+
+import { GUIDES } from './constant';
 
 export default function OnBoardingPage() {
   const { t } = useTranslation(['onboarding', 'load-balancer']);
@@ -36,15 +33,14 @@ export default function OnBoardingPage() {
   const { ovhSubsidiary } = context.environment.getUser();
   const { trackClick } = useOvhTracking();
 
-  const {
-    data: privateNetworks,
-    isPending: isPrivateNetworksPending,
-  } = useGetPrivateNetworks(projectId);
+  const { data: privateNetworks, isPending: isPrivateNetworksPending } =
+    useGetPrivateNetworks(projectId);
   const { data: allLoadBalancer, isPending } = useAllLoadBalancers(projectId);
 
   const tileItems = GUIDES.map((guide) => ({
     id: guide.title,
-    href: guide.links[ovhSubsidiary] || guide.links.DEFAULT,
+    href:
+      guide.links[(ovhSubsidiary ?? 'DEFAULT') as keyof typeof guide.links] || guide.links.DEFAULT,
     texts: {
       category: t('onboarding_guide_title'),
       description: t(guide.description),
@@ -99,7 +95,7 @@ export default function OnBoardingPage() {
             navigate(`./no-private-network`);
           }
           trackClick({
-            actions: ['onboarding', 'add'],
+            actions: ['onboarding', 'add'] as const,
             actionType: 'navigation',
           });
         }}

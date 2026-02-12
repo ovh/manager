@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -32,8 +33,8 @@ export const deleteL7Rule = async (
   region: string,
   policyId: string,
   ruleId: string,
-) => {
-  const { data } = await v6.delete(
+): Promise<unknown> => {
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${ruleId}`,
   );
   return data;
@@ -44,8 +45,8 @@ export const createL7Rule = async (
   region: string,
   policyId: string,
   rule: TL7Rule,
-) => {
-  const { data } = await v6.post(
+): Promise<TL7Rule> => {
+  const { data } = await v6.post<TL7Rule>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule`,
     rule,
   );
@@ -57,8 +58,8 @@ export const updateL7Rule = async (
   region: string,
   policyId: string,
   rule: TL7Rule,
-) => {
-  const { data } = await v6.put(
+): Promise<TL7Rule> => {
+  const { data } = await v6.put<TL7Rule>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/l7Policy/${policyId}/l7Rule/${rule.id}`,
     {
       ruleType: rule.ruleType,

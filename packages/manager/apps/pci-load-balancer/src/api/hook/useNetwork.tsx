@@ -1,15 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
-import {
-  getPrivateNetworkByRegion,
-  getPrivateNetworks,
-  getPrivateNetworkSubnets,
-  getRegionPrivateNetworks,
-  getSubnetByNetworkAndRegion,
-} from '../data/network';
+
+import { useQuery } from '@tanstack/react-query';
+
 import { NETWORK_PRIVATE_VISIBILITY } from '@/constants';
 import { useCreateStore } from '@/pages/create/store';
 import { FloatingIpSelectionId } from '@/types/floating.type';
+
+import {
+  getPrivateNetworkByRegion,
+  getPrivateNetworkSubnets,
+  getPrivateNetworks,
+  getRegionPrivateNetworks,
+  getSubnetByNetworkAndRegion,
+} from '../data/network';
 
 export const usePrivateNetworkByRegion = ({
   projectId,
@@ -39,18 +42,8 @@ export const useSubnetByNetworkAndRegion = ({
   subnetId: string;
 }) =>
   useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'region',
-      region,
-      'network',
-      networkId,
-      'subnet',
-      subnetId,
-    ],
-    queryFn: () =>
-      getSubnetByNetworkAndRegion(projectId, region, networkId, subnetId),
+    queryKey: ['project', projectId, 'region', region, 'network', networkId, 'subnet', subnetId],
+    queryFn: () => getSubnetByNetworkAndRegion(projectId, region, networkId, subnetId),
     enabled: !!networkId && !!subnetId,
     throwOnError: true,
   });
@@ -70,15 +63,7 @@ export const useGetPrivateNetworkSubnets = (
   const store = useCreateStore();
 
   const query = useQuery({
-    queryKey: [
-      'project',
-      projectId,
-      'region',
-      region,
-      'network',
-      networkId,
-      'subnets',
-    ],
+    queryKey: ['project', projectId, 'region', region, 'network', networkId, 'subnets'],
     queryFn: () => getPrivateNetworkSubnets(projectId, region, networkId),
     enabled: !!projectId && !!region && !!networkId,
   });
@@ -98,28 +83,19 @@ export const useGetPrivateNetworkSubnets = (
   };
 };
 
-export const getRegionPrivateNetworksQuery = (
-  projectId: string,
-  region: string,
-) => ({
+export const getRegionPrivateNetworksQuery = (projectId: string, region: string) => ({
   queryKey: ['project', projectId, 'region', region, 'networks'],
   queryFn: () => getRegionPrivateNetworks(projectId, region),
 });
 
-export const useGetRegionPrivateNetworks = (
-  projectId: string,
-  region: string,
-) => {
+export const useGetRegionPrivateNetworks = (projectId: string, region: string) => {
   const query = useQuery({
     ...getRegionPrivateNetworksQuery(projectId, region),
     enabled: !!projectId && !!region,
   });
 
   const list = useMemo(
-    () =>
-      (query.data || []).filter(
-        (network) => network.visibility === NETWORK_PRIVATE_VISIBILITY,
-      ),
+    () => (query.data || []).filter((network) => network.visibility === NETWORK_PRIVATE_VISIBILITY),
     [query.data],
   );
 

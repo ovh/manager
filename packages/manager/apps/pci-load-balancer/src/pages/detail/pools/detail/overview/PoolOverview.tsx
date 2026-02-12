@@ -1,3 +1,7 @@
+import { Outlet, useHref, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -18,11 +22,10 @@ import {
   OsdsText,
   OsdsTile,
 } from '@ovhcloud/ods-components/react';
-import { useTranslation } from 'react-i18next';
-import { Outlet, useHref, useParams } from 'react-router-dom';
+
 import { useGetPool } from '@/api/hook/usePool';
-import TileButton from '@/components/detail/pools/TileButton.component';
 import TileLine from '@/components/detail/TileLine.component';
+import TileButton from '@/components/detail/pools/TileButton.component';
 import OperatingStatusComponent from '@/components/listing/OperatingStatus.component';
 import ProvisioningStatusComponent from '@/components/listing/ProvisioningStatus.component';
 
@@ -43,9 +46,7 @@ export default function PoolOverview() {
   const hrefEditPool = useHref(`../edit`);
   const hrefAddMemberManually = useHref(`../members/list/create`);
   const hrefAddInstanceIps = useHref(`../members/list/add-ip-instance`);
-  const hrefDeletePool = useHref(
-    `./delete?poolId=${pool?.id}&poolName=${pool?.name}`,
-  );
+  const hrefDeletePool = useHref(`./delete?poolId=${pool?.id}&poolName=${pool?.name}`);
 
   return (
     <>
@@ -62,16 +63,12 @@ export default function PoolOverview() {
               color={ODS_THEME_COLOR_INTENT.text}
               className="mb-5"
             >
-              {tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_management_title',
-              )}
+              {tPoolOverview('octavia_load_balancer_pools_detail_overview_management_title')}
             </OsdsText>
             <OsdsDivider separator size={ODS_DIVIDER_SIZE.zero} />
 
             <TileButton
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_management_edit',
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_management_edit')}
               href={hrefEditPool}
               dataTestId="clusterManagement-edit"
             />
@@ -82,15 +79,11 @@ export default function PoolOverview() {
               href={hrefAddMemberManually}
             />
             <TileButton
-              title={tPoolDetail(
-                'octavia_load_balancer_pools_detail_add_ips_instances',
-              )}
+              title={tPoolDetail('octavia_load_balancer_pools_detail_add_ips_instances')}
               href={hrefAddInstanceIps}
             />
             <TileButton
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_management_delete',
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_management_delete')}
               href={hrefDeletePool}
             />
           </div>
@@ -108,17 +101,13 @@ export default function PoolOverview() {
               level={ODS_TEXT_LEVEL.heading}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_info_title',
-              )}
+              {tPoolOverview('octavia_load_balancer_pools_detail_overview_info_title')}
             </OsdsText>
 
             <OsdsDivider separator />
 
             <TileLine
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_info_name',
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_info_name')}
               value={
                 <div className="flex items-center gap-2 ">
                   <OsdsText
@@ -145,9 +134,7 @@ export default function PoolOverview() {
             />
 
             <TileLine
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_info_pool_id',
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_info_pool_id')}
               type="clipboard"
               value={pool?.id}
             />
@@ -184,10 +171,7 @@ export default function PoolOverview() {
               value={
                 <div>
                   {pool?.operatingStatus ? (
-                    <OperatingStatusComponent
-                      status={pool?.operatingStatus}
-                      className="w-fit"
-                    />
+                    <OperatingStatusComponent status={pool?.operatingStatus} className="w-fit" />
                   ) : (
                     <OsdsSkeleton size={ODS_SKELETON_SIZE.lg} />
                   )}
@@ -209,26 +193,18 @@ export default function PoolOverview() {
               level={ODS_TEXT_LEVEL.heading}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_options_title',
-              )}
+              {tPoolOverview('octavia_load_balancer_pools_detail_overview_options_title')}
             </OsdsText>
 
             <OsdsDivider separator />
 
             <TileLine
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_options_algorithm',
-              )}
-              value={tPools(
-                `octavia_load_balancer_pools_enum_algorithm_${pool?.algorithm}`,
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_options_algorithm')}
+              value={tPools(`octavia_load_balancer_pools_enum_algorithm_${pool?.algorithm}`)}
             />
 
             <TileLine
-              title={tPoolOverview(
-                'octavia_load_balancer_pools_detail_overview_options_protocol',
-              )}
+              title={tPoolOverview('octavia_load_balancer_pools_detail_overview_options_protocol')}
               value={pool?.protocol}
             />
 
@@ -247,9 +223,7 @@ export default function PoolOverview() {
 
             {pool?.sessionPersistence?.type !== 'disabled' && (
               <TileLine
-                title={tPoolOverview(
-                  'octavia_load_balancer_pools_detail_overview_cookie_name',
-                )}
+                title={tPoolOverview('octavia_load_balancer_pools_detail_overview_cookie_name')}
                 type="other"
                 value={
                   <OsdsText

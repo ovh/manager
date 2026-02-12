@@ -1,29 +1,38 @@
-import { describe, it, Mock, vi } from 'vitest';
-import { act } from 'react-dom/test-utils';
-import { renderHook } from '@testing-library/react';
-import { TRegion } from '@ovh-ux/manager-pci-common';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
 import { useNavigate } from 'react-router-dom';
-import { useCreateActions } from './useCreateActions';
-import { useCreateStore } from '@/pages/create/store';
+
+import { renderHook } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+import { Mock, describe, it, vi } from 'vitest';
+
+import { TRegion } from '@ovh-ux/manager-pci-common';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
+
 import { TFlavor } from '@/api/data/load-balancer';
 import { useGetFlavor } from '@/api/hook/useFlavors';
-import { TProductAddonDetail } from '@/types/product.type';
+import { useCreateStore } from '@/pages/create/store';
 import { ListenerConfiguration } from '@/types/listener.type';
+import { TProductAddonDetail } from '@/types/product.type';
+
+import { useCreateActions } from './useCreateActions';
 
 vi.mock('@/api/hook/useFlavors');
+
+const { mockedTrackClick } = vi.hoisted(() => ({
+  mockedTrackClick: vi.fn(),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
+  return {
+    ...actual,
+    useOvhTracking: () => ({ trackClick: mockedTrackClick }),
+  };
+});
 
 vi.mocked(useGetFlavor as Mock).mockReturnValue({
   data: undefined,
   isPending: true,
 });
-
-const mockedTrackClick = vi.fn();
-vi.mocked(useOvhTracking().trackClick).mockImplementation(mockedTrackClick);
 
 const mockedNavigate = vi.fn();
 vi.mocked(useNavigate).mockReturnValue(mockedNavigate);
@@ -45,13 +54,10 @@ vi.mock('@/pages/create/store', () => ({
       region: { name: 'region' } as TRegion,
       addon: { size: 'size' } as TProductAddonDetail,
       publicIp: 'ip',
-      listeners: [
-        { protocol: 'p1' },
-        { protocol: 'p2' },
-      ] as ListenerConfiguration[],
+      listeners: [{ protocol: 'p1' }, { protocol: 'p2' }] as ListenerConfiguration[],
       create: mockedCreate,
       reset: mockedReset,
-    } as Partial<ReturnType<typeof useCreateStore>>),
+    }) as Partial<ReturnType<typeof useCreateStore>>,
 }));
 
 describe('useCreateActions', () => {
@@ -62,10 +68,7 @@ describe('useCreateActions', () => {
 
       expect(mockedTrackClick).toHaveBeenCalledTimes(1);
       expect(mockedTrackClick).toHaveBeenCalledWith({
-        actions: [
-          'confirm',
-          `loadbalancer_added_region_private_size_available_2`,
-        ],
+        actions: ['confirm', `loadbalancer_added_region_private_size_available_2`],
         actionType: 'action',
         buttonType: ButtonType.button,
         location: PageLocation.funnel,
@@ -101,10 +104,7 @@ describe('useCreateActions', () => {
 
       expect(mockedTrackClick).toHaveBeenCalledWith({
         actionType: 'action',
-        actions: [
-          'confirm',
-          'loadbalancer_added_region_private_size_available_2',
-        ],
+        actions: ['confirm', 'loadbalancer_added_region_private_size_available_2'],
         buttonType: 'button',
         location: 'funnel',
       });

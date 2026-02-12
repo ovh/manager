@@ -1,7 +1,10 @@
-import { Headers } from '@ovh-ux/manager-react-components';
 import { Suspense } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { Outlet } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { Headers } from '@ovh-ux/manager-react-components';
 
 export default function MemberPage() {
   const { t } = useTranslation('pools/members');
@@ -9,9 +12,7 @@ export default function MemberPage() {
     <>
       <div className="header mt-8">
         <Headers
-          description={t(
-            'octavia_load_balancer_pools_detail_members_description_part_1',
-          )}
+          description={t('octavia_load_balancer_pools_detail_members_description_part_1')}
           title={t('octavia_load_balancer_pools_detail_members_info_title')}
         />
       </div>

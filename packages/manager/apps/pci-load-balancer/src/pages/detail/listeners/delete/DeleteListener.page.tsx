@@ -1,11 +1,15 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+
+import { Translation, useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useDeleteListener, useListener } from '@/api/hook/useListener';
 
 export default function DeleteListenerPage() {
@@ -39,12 +43,16 @@ export default function DeleteListenerPage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: ((error.response as unknown) as {
-                    data: { message: string };
-                  }).data.message,
-                  requestId: ((error.response as unknown) as {
-                    headers: Record<string, unknown>;
-                  }).headers['x-ovh-queryid'],
+                  message: (
+                    error.response as unknown as {
+                      data: { message: string };
+                    }
+                  ).data.message,
+                  requestId: (
+                    error.response as unknown as {
+                      headers: Record<string, unknown>;
+                    }
+                  ).headers['x-ovh-queryid'],
                 }),
               }}
             />

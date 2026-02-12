@@ -1,6 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
-import { getSubnetGateways, TSubnetGateway } from './gateways';
+
+import { TSubnetGateway, getSubnetGateways } from './gateways';
 
 describe('getSubnetGateways', () => {
   const projectId = 'test-project';
@@ -55,8 +57,6 @@ describe('getSubnetGateways', () => {
     const errorMessage = 'API Error';
     vi.mocked(v6.get).mockRejectedValueOnce(new Error(errorMessage));
 
-    await expect(
-      getSubnetGateways(projectId, regionName, subnetId),
-    ).rejects.toThrow(errorMessage);
+    await expect(getSubnetGateways(projectId, regionName, subnetId)).rejects.toThrow(errorMessage);
   });
 });

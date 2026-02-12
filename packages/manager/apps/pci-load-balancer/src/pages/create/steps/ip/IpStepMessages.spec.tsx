@@ -1,6 +1,8 @@
-import { describe, vi } from 'vitest';
-import { render, within } from '@testing-library/react';
 import React from 'react';
+
+import { render, within } from '@testing-library/react';
+import { describe, vi } from 'vitest';
+
 import { IpStepMessages } from '@/pages/create/steps/ip/IpStepMessages';
 import { FloatingIpSelectionId } from '@/types/floating.type';
 

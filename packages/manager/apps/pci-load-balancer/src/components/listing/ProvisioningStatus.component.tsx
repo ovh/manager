@@ -1,8 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { useMemo } from 'react';
-import { ODS_CHIP_SIZE, OdsChipAttribute } from '@ovhcloud/ods-components';
+
+import { useTranslation } from 'react-i18next';
+
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_CHIP_SIZE, OdsChipAttribute } from '@ovhcloud/ods-components';
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+
 import { LoadBalancerProvisioningStatusEnum } from '@/api/data/load-balancer';
 
 type ProvisioningStatusComponentProps = {

@@ -1,3 +1,19 @@
+import { useEffect, useState } from 'react';
+
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
+import {
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_INPUT_TYPE,
+  ODS_SPINNER_SIZE,
+  ODS_TEXT_LEVEL,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsFormField,
@@ -10,25 +26,12 @@ import {
   OsdsTooltip,
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_INPUT_TYPE,
-  ODS_SPINNER_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import clsx from 'clsx';
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+
 import { useInstances } from '@ovh-ux/manager-pci-common';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { ListenerConfiguration } from '@/types/listener.type';
+
 import {
   LISTENER_PROTOCOL_LIST,
   MAX_INSTANCES_BY_LISTENER,
@@ -36,7 +39,6 @@ import {
   PORT_RANGE,
   PROTOCOLS,
 } from './constants';
-import { ListenerConfiguration } from '@/types/listener.type';
 
 export interface InstanceTableProps {
   projectId: string;
@@ -78,9 +80,7 @@ export function InstanceTable({
           healthMonitor: listener.healthMonitor,
           instances: listener.instances
             .map(({ id, port }) => ({
-              instance: instances.find(
-                ({ id: instanceId }) => instanceId === id,
-              ),
+              instance: instances.find(({ id: instanceId }) => instanceId === id),
               port,
             }))
             .filter(({ instance }) => instance),
@@ -123,9 +123,7 @@ export function InstanceTable({
       >
         {t('octavia_load_balancer_add_listener')}
       </OsdsButton>
-      {isPending && (
-        <OsdsSpinner className="block" inline size={ODS_SPINNER_SIZE.md} />
-      )}
+      {isPending && <OsdsSpinner className="block" inline size={ODS_SPINNER_SIZE.md} />}
       {!isPending && listeners.length === 0 && (
         <div className="flex border border-solid border-[--ods-color-blue-200] p-4">
           <div className="min-w-[23rem]">
@@ -195,9 +193,7 @@ export function InstanceTable({
                       color={ODS_THEME_COLOR_INTENT.primary}
                     />
                     <OsdsTooltipContent slot="tooltip-content">
-                      {t(
-                        'octavia_load_balancer_instances_table_protocol_tooltip',
-                      )}
+                      {t('octavia_load_balancer_instances_table_protocol_tooltip')}
                     </OsdsTooltipContent>
                   </OsdsTooltip>
                 </OsdsText>
@@ -235,11 +231,8 @@ export function InstanceTable({
                   }}
                   inline
                 >
-                  {Object.keys(PROTOCOLS).map((protocol) => (
-                    <OsdsSelectOption
-                      value={PROTOCOLS[protocol]}
-                      key={protocol}
-                    >
+                  {(Object.keys(PROTOCOLS) as Array<keyof typeof PROTOCOLS>).map((protocol) => (
+                    <OsdsSelectOption value={PROTOCOLS[protocol]} key={protocol}>
                       {protocol.toUpperCase()}
                     </OsdsSelectOption>
                   ))}
@@ -270,10 +263,7 @@ export function InstanceTable({
                   type={ODS_INPUT_TYPE.number}
                   error={undefined}
                   onOdsInputBlur={() => {
-                    const port = Math.max(
-                      Math.min(listener.port, PORT_RANGE.MAX),
-                      PORT_RANGE.MIN,
-                    );
+                    const port = Math.max(Math.min(listener.port, PORT_RANGE.MAX), PORT_RANGE.MIN);
                     const newListeners = [...listeners];
                     const toUpdate = listener;
                     toUpdate.port = port;
@@ -299,9 +289,7 @@ export function InstanceTable({
                   inline
                   size={ODS_BUTTON_SIZE.sm}
                   onClick={() => {
-                    setListeners(
-                      listeners.filter((l) => l.uid !== listener.uid),
-                    );
+                    setListeners(listeners.filter((l) => l.uid !== listener.uid));
                     trackClick({
                       actions: [`delete-listener`],
                       actionType: 'action',
@@ -355,9 +343,7 @@ export function InstanceTable({
                   color={ODS_THEME_COLOR_INTENT.text}
                   level={ODS_TEXT_LEVEL.body}
                 >
-                  {t(
-                    'octavia_load_balancer_instances_table_health_monitor_label',
-                  )}
+                  {t('octavia_load_balancer_instances_table_health_monitor_label')}
                   <OsdsTooltip>
                     <OsdsIcon
                       className="ml-3"
@@ -366,9 +352,7 @@ export function InstanceTable({
                       color={ODS_THEME_COLOR_INTENT.primary}
                     />
                     <OsdsTooltipContent slot="tooltip-content">
-                      {t(
-                        'octavia_load_balancer_instances_table_health_monitor_tooltip',
-                      )}
+                      {t('octavia_load_balancer_instances_table_health_monitor_tooltip')}
                     </OsdsTooltipContent>
                   </OsdsTooltip>
                 </OsdsText>
@@ -380,15 +364,11 @@ export function InstanceTable({
                     toUpdate.healthMonitor = `${event?.detail?.value}`;
                     setListeners(newListeners);
                   }}
-                  disabled={
-                    listener.protocol === PROTOCOLS.PROMETHEUS || undefined
-                  }
+                  disabled={listener.protocol === PROTOCOLS.PROMETHEUS || undefined}
                   inline
                 >
                   <OsdsSelectOption value="none" key="none">
-                    {t(
-                      'octavia_load_balancer_instances_table_health_monitor_empty',
-                    )}
+                    {t('octavia_load_balancer_instances_table_health_monitor_empty')}
                   </OsdsSelectOption>
                   {LISTENER_PROTOCOL_LIST.find(
                     (list) => list.value === listener.protocol,
@@ -410,16 +390,12 @@ export function InstanceTable({
                       toUpdate.id = `${event?.detail?.value}`;
                       setListeners(newListeners);
                     }}
-                    disabled={
-                      listener.protocol === PROTOCOLS.PROMETHEUS || undefined
-                    }
+                    disabled={listener.protocol === PROTOCOLS.PROMETHEUS || undefined}
                     inline
                   >
                     {instance.id === 'none' && (
                       <OsdsSelectOption value="none" key="none">
-                        {t(
-                          'octavia_load_balancer_instances_table_pools_search_instance',
-                        )}
+                        {t('octavia_load_balancer_instances_table_pools_search_instance')}
                       </OsdsSelectOption>
                     )}
                     {instances?.map(({ name, id, ipAddresses }) => (
@@ -452,9 +428,7 @@ export function InstanceTable({
                       toUpdate.port = Number(event?.detail?.value);
                       setListeners(newListeners);
                     }}
-                    disabled={
-                      listener.protocol === PROTOCOLS.PROMETHEUS || undefined
-                    }
+                    disabled={listener.protocol === PROTOCOLS.PROMETHEUS || undefined}
                     inline
                   />
                   {idx > 0 && (
@@ -465,10 +439,7 @@ export function InstanceTable({
                         variant={ODS_BUTTON_VARIANT.ghost}
                         inline
                         size={ODS_BUTTON_SIZE.sm}
-                        disabled={
-                          listener.protocol === PROTOCOLS.PROMETHEUS ||
-                          undefined
-                        }
+                        disabled={listener.protocol === PROTOCOLS.PROMETHEUS || undefined}
                         onClick={() => {
                           const newListeners = [...listeners];
                           const toUpdate = listener;
@@ -489,9 +460,7 @@ export function InstanceTable({
                         />
                       </OsdsButton>
                       <OsdsTooltipContent slot="tooltip-content">
-                        {t(
-                          'octavia_load_balancer_instances_table_instance_delete',
-                        )}
+                        {t('octavia_load_balancer_instances_table_instance_delete')}
                       </OsdsTooltipContent>
                     </OsdsTooltip>
                   )}
@@ -530,9 +499,7 @@ export function InstanceTable({
                         />
                       </OsdsButton>
                       <OsdsTooltipContent slot="tooltip-content">
-                        {t(
-                          'octavia_load_balancer_instances_table_instance_add',
-                        )}
+                        {t('octavia_load_balancer_instances_table_instance_add')}
                       </OsdsTooltipContent>
                     </OsdsTooltip>
                   )}

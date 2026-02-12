@@ -1,7 +1,18 @@
+import { useContext } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
-  ShellContext,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
+  ODS_BUTTON_VARIANT,
+  ODS_ICON_NAME,
+  ODS_ICON_SIZE,
+  ODS_MESSAGE_TYPE,
+  ODS_TEXT_LEVEL,
+} from '@ovhcloud/ods-components';
 import {
   OsdsButton,
   OsdsIcon,
@@ -10,21 +21,9 @@ import {
   OsdsModal,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-} from '@ovhcloud/ods-components';
+
+import { ShellContext, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
 import { PRIVATE_NETWORK_HELP } from './constant';
 
 export default function NoPrivateNetworkPage() {
@@ -36,7 +35,8 @@ export default function NoPrivateNetworkPage() {
   const { environment, shell } = useContext(ShellContext);
   const { ovhSubsidiary } = environment.getUser();
   const helpLink =
-    PRIVATE_NETWORK_HELP[ovhSubsidiary] || PRIVATE_NETWORK_HELP.DEFAULT;
+    PRIVATE_NETWORK_HELP[(ovhSubsidiary ?? 'DEFAULT') as keyof typeof PRIVATE_NETWORK_HELP] ||
+    PRIVATE_NETWORK_HELP.DEFAULT;
   const creationUrlPromise = shell.navigation.getURL(
     'public-cloud',
     `#/pci/projects/${projectId}/private-networks/new`,
@@ -46,9 +46,7 @@ export default function NoPrivateNetworkPage() {
   return (
     <OsdsModal
       onOdsModalClose={onClose}
-      headline={t(
-        'octavia_load_balancer_onboarding_private_network_modal_title',
-      )}
+      headline={t('octavia_load_balancer_onboarding_private_network_modal_title')}
     >
       <slot name="content">
         <OsdsText
@@ -57,24 +55,20 @@ export default function NoPrivateNetworkPage() {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
           className="mt-6 block"
         >
-          {t(
-            'octavia_load_balancer_onboarding_private_network_modal_description',
-          )}
+          {t('octavia_load_balancer_onboarding_private_network_modal_description')}
         </OsdsText>
         <OsdsLink
           color={ODS_THEME_COLOR_INTENT.primary}
           href={helpLink}
           onClick={() => {
             trackClick({
-              actions: ['onboarding', 'create-private-network', 'know-more'],
+              actions: ['onboarding', 'create-private-network', 'know-more'] as const,
               actionType: 'navigation',
             });
           }}
           target={OdsHTMLAnchorElementTarget._blank}
         >
-          {t(
-            'octavia_load_balancer_onboarding_private_network_modal_more_link',
-          )}
+          {t('octavia_load_balancer_onboarding_private_network_modal_more_link')}
           <span slot="end">
             <OsdsIcon
               aria-hidden="true"
@@ -103,11 +97,7 @@ export default function NoPrivateNetworkPage() {
         color={ODS_THEME_COLOR_INTENT.primary}
         onClick={() => {
           trackClick({
-            actions: [
-              'onboarding',
-              'create-private-network',
-              'add-private-network',
-            ],
+            actions: ['onboarding', 'create-private-network', 'add-private-network'],
             actionType: 'navigation',
           });
           creationUrlPromise.then((url: string) => window.open(url, '_self'));

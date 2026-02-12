@@ -1,18 +1,15 @@
-import { Trans, Translation, useTranslation } from 'react-i18next';
-import {
-  OsdsMessage,
-  OsdsText,
-  OsdsLink,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_MESSAGE_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { StepComponent, useMe } from '@ovh-ux/manager-react-components';
 import { useState } from 'react';
+
 import { useParams } from 'react-router-dom';
+
+import { Trans, Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_MESSAGE_TYPE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { StepComponent, useMe } from '@ovh-ux/manager-react-components';
+
 import { InstanceTable } from '@/components/create/InstanceTable.component';
 import {
   GETTING_STARTED_LINK,
@@ -20,9 +17,10 @@ import {
   MAX_INSTANCES_BY_LISTENER,
   MAX_LISTENER,
 } from '@/constants';
-import { StepsEnum, useCreateStore } from '@/pages/create/store';
-import { useTracking } from '../hooks/useTracking';
 import { useTranslatedLinkReference } from '@/hooks/useTranslatedLinkReference';
+import { StepsEnum, useCreateStore } from '@/pages/create/store';
+
+import { useTracking } from '../hooks/useTracking';
 
 export const InstanceStep = (): JSX.Element => {
   const { t: tCommon } = useTranslation('pci-common');
@@ -101,10 +99,10 @@ export const InstanceStep = (): JSX.Element => {
                 i18nKey="octavia_load_balancer_create_instance_intro"
                 values={{
                   linkUrl:
-                    GETTING_STARTED_LINK[me?.ovhSubsidiary] ||
-                    GETTING_STARTED_LINK.DEFAULT,
-                  trackLabel:
-                    LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION,
+                    GETTING_STARTED_LINK[
+                      (me?.ovhSubsidiary ?? 'DEFAULT') as keyof typeof GETTING_STARTED_LINK
+                    ] || GETTING_STARTED_LINK.DEFAULT,
+                  trackLabel: LOAD_BALANCER_CREATION_TRACKING.GO_TO_INSTANCE_DOCUMENTATION,
                 }}
                 components={{
                   a: <OsdsLink color={ODS_THEME_COLOR_INTENT.info} />,
@@ -138,11 +136,7 @@ export const InstanceStep = (): JSX.Element => {
               level={ODS_TEXT_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              <b>
-                {tCreate(
-                  'octavia_load_balancer_create_instance_banner_text_bold',
-                )}
-              </b>
+              <b>{tCreate('octavia_load_balancer_create_instance_banner_text_bold')}</b>
             </OsdsText>
           </p>
           <p>
@@ -151,9 +145,7 @@ export const InstanceStep = (): JSX.Element => {
               level={ODS_TEXT_LEVEL.body}
               color={ODS_THEME_COLOR_INTENT.text}
             >
-              {tCreate(
-                'octavia_load_balancer_create_instance_banner_health_monitor_text',
-              )}
+              {tCreate('octavia_load_balancer_create_instance_banner_health_monitor_text')}
             </OsdsText>
           </p>
         </div>

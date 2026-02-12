@@ -1,14 +1,16 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
-  getPrivateNetworkByRegion,
-  getPrivateNetworks,
-  getPrivateNetworkSubnets,
-  getRegionPrivateNetworks,
-  getSubnetByNetworkAndRegion,
   TNetwork,
   TPrivateNetwork,
   TSubnet,
+  getPrivateNetworkByRegion,
+  getPrivateNetworkSubnets,
+  getPrivateNetworks,
+  getRegionPrivateNetworks,
+  getSubnetByNetworkAndRegion,
 } from './network';
 
 describe('API Data Network', () => {
@@ -23,11 +25,7 @@ describe('API Data Network', () => {
 
       vi.mocked(v6.get).mockResolvedValue({ data: mockNetwork });
 
-      const result = await getPrivateNetworkByRegion(
-        'project-id',
-        'region',
-        'network-id',
-      );
+      const result = await getPrivateNetworkByRegion('project-id', 'region', 'network-id');
       expect(result).toEqual(mockNetwork);
       expect(v6.get).toHaveBeenCalledWith(
         '/cloud/project/project-id/region/region/network/network-id',
@@ -37,9 +35,9 @@ describe('API Data Network', () => {
     it('should throw an error if the API call fails', async () => {
       vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-      await expect(
-        getPrivateNetworkByRegion('project-id', 'region', 'network-id'),
-      ).rejects.toThrow('API Error');
+      await expect(getPrivateNetworkByRegion('project-id', 'region', 'network-id')).rejects.toThrow(
+        'API Error',
+      );
     });
   });
 
@@ -69,12 +67,7 @@ describe('API Data Network', () => {
       vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
       await expect(
-        getSubnetByNetworkAndRegion(
-          'project-id',
-          'region',
-          'network-id',
-          'subnet-id',
-        ),
+        getSubnetByNetworkAndRegion('project-id', 'region', 'network-id', 'subnet-id'),
       ).rejects.toThrow('API Error');
     });
   });
@@ -102,17 +95,13 @@ describe('API Data Network', () => {
 
       const result = await getPrivateNetworks('project-id');
       expect(result).toEqual(mockNetworks);
-      expect(v6.get).toHaveBeenCalledWith(
-        '/cloud/project/project-id/network/private',
-      );
+      expect(v6.get).toHaveBeenCalledWith('/cloud/project/project-id/network/private');
     });
 
     it('should throw an error if the API call fails', async () => {
       vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-      await expect(getPrivateNetworks('project-id')).rejects.toThrow(
-        'API Error',
-      );
+      await expect(getPrivateNetworks('project-id')).rejects.toThrow('API Error');
     });
   });
 
@@ -139,11 +128,7 @@ describe('API Data Network', () => {
 
       vi.mocked(v6.get).mockResolvedValue({ data: mockSubnets });
 
-      const result = await getPrivateNetworkSubnets(
-        'project-id',
-        'region',
-        'network-id',
-      );
+      const result = await getPrivateNetworkSubnets('project-id', 'region', 'network-id');
       expect(result).toEqual(mockSubnets);
       expect(v6.get).toHaveBeenCalledWith(
         '/cloud/project/project-id/region/region/network/network-id/subnet',
@@ -153,9 +138,9 @@ describe('API Data Network', () => {
     it('should throw an error if the API call fails', async () => {
       vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-      await expect(
-        getPrivateNetworkSubnets('project-id', 'region', 'network-id'),
-      ).rejects.toThrow('API Error');
+      await expect(getPrivateNetworkSubnets('project-id', 'region', 'network-id')).rejects.toThrow(
+        'API Error',
+      );
     });
   });
 
@@ -183,17 +168,13 @@ describe('API Data Network', () => {
 
       const result = await getRegionPrivateNetworks('project-id', 'region');
       expect(result).toEqual(mockNetworks);
-      expect(v6.get).toHaveBeenCalledWith(
-        '/cloud/project/project-id/region/region/network',
-      );
+      expect(v6.get).toHaveBeenCalledWith('/cloud/project/project-id/region/region/network');
     });
 
     it('should throw an error if the API call fails', async () => {
       vi.mocked(v6.get).mockRejectedValue(new Error('API Error'));
 
-      await expect(
-        getRegionPrivateNetworks('project-id', 'region'),
-      ).rejects.toThrow('API Error');
+      await expect(getRegionPrivateNetworks('project-id', 'region')).rejects.toThrow('API Error');
     });
   });
 });

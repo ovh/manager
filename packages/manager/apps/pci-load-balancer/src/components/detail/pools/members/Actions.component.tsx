@@ -1,13 +1,13 @@
-import { ActionMenu } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ActionMenu } from '@ovh-ux/manager-react-components';
 
 export type ActionsComponentProps = {
   memberId: string;
 };
-export default function ActionsComponent({
-  memberId,
-}: Readonly<ActionsComponentProps>) {
+export default function ActionsComponent({ memberId }: Readonly<ActionsComponentProps>) {
   const { t } = useTranslation('pools/members/list');
 
   const items = [

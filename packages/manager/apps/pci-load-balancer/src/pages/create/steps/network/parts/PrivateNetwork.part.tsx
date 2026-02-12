@@ -1,4 +1,11 @@
 import { useEffect } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
   OsdsFormField,
   OsdsSelect,
@@ -6,13 +13,10 @@ import {
   OsdsSpinner,
   OsdsText,
 } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { useGetRegionPrivateNetworks } from '@/api/hook/useNetwork';
-import { useCreateStore } from '@/pages/create/store';
 import { SubnetsPart } from '@/pages/create/steps/network/parts/Subnets.part';
+import { useCreateStore } from '@/pages/create/store';
 
 export const PrivateNetworkPart = (): JSX.Element => {
   const { t: tCreate } = useTranslation('load-balancer/create');
@@ -54,9 +58,7 @@ export const PrivateNetworkPart = (): JSX.Element => {
               value={store.privateNetwork?.id}
               error={false}
               onOdsValueChange={(event) => {
-                const targetNetwork = (networks || []).find(
-                  (ip) => ip.id === event.target.value,
-                );
+                const targetNetwork = (networks || []).find((ip) => ip.id === event.target.value);
                 store.set.privateNetwork(targetNetwork);
               }}
               inline

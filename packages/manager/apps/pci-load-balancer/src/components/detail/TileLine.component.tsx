@@ -1,15 +1,8 @@
-import { Clipboard } from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_SKELETON_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  OsdsDivider,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+import { ODS_SKELETON_SIZE, ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsDivider, OsdsSkeleton, OsdsText } from '@ovhcloud/ods-components/react';
+
+import { Clipboard } from '@ovh-ux/manager-react-components';
 
 type TileLineProps = {
   title: string;
@@ -17,11 +10,7 @@ type TileLineProps = {
   type?: 'text' | 'clipboard' | 'other';
 };
 
-export default function TileLine({
-  title,
-  value,
-  type = 'text',
-}: Readonly<TileLineProps>) {
+export default function TileLine({ title, value, type = 'text' }: Readonly<TileLineProps>) {
   const renderContent = () => {
     if (!value) {
       return <OsdsSkeleton size={ODS_SKELETON_SIZE.lg} />;

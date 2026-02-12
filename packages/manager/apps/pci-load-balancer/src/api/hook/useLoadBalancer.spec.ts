@@ -1,30 +1,33 @@
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import { applyFilters } from '@ovh-ux/manager-core-api';
+
+import { Filter, applyFilters } from '@ovh-ux/manager-core-api';
 import { TRegion } from '@ovh-ux/manager-pci-common';
-import {
-  useAllLoadBalancers,
-  useLoadBalancers,
-  useLoadBalancer,
-  useLoadBalancerFlavor,
-  useDeleteLoadBalancer,
-  useRenameLoadBalancer,
-  useCreateLoadBalancer,
-} from './useLoadBalancer';
-import {
-  getLoadBalancers,
-  getLoadBalancer,
-  getLoadBalancerFlavor,
-  deleteLoadBalancer,
-  updateLoadBalancerName,
-  createLoadBalancer,
-  TLoadBalancer,
-  TFlavor,
-  TLoadBalancerResponse,
-} from '../data/load-balancer';
+
 import { paginateResults, sortResults } from '@/helpers';
 import { wrapper } from '@/wrapperRenders';
+
+import {
+  TFlavor,
+  TLoadBalancer,
+  TLoadBalancerResponse,
+  createLoadBalancer,
+  deleteLoadBalancer,
+  getLoadBalancer,
+  getLoadBalancerFlavor,
+  getLoadBalancers,
+  updateLoadBalancerName,
+} from '../data/load-balancer';
 import { TPrivateNetwork, TSubnet } from '../data/network';
+import {
+  useAllLoadBalancers,
+  useCreateLoadBalancer,
+  useDeleteLoadBalancer,
+  useLoadBalancer,
+  useLoadBalancerFlavor,
+  useLoadBalancers,
+  useRenameLoadBalancer,
+} from './useLoadBalancer';
 
 vi.mock('../data/load-balancer');
 
@@ -62,7 +65,7 @@ describe('useLoadBalancer hooks', () => {
 
       const pagination = { pageIndex: 0, pageSize: 10 };
       const sorting = { id: 'name', desc: false };
-      const filters = [];
+      const filters: Filter[] = [];
 
       const { result } = renderHook(
         () => useLoadBalancers('projectId', pagination, sorting, filters),
@@ -138,9 +141,10 @@ describe('useLoadBalancer hooks', () => {
         { wrapper },
       );
 
-      await act(async () => {
-        await result.current.deleteLoadBalancer();
+      act(() => {
+        void result.current.deleteLoadBalancer();
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
       expect(deleteLoadBalancer).toHaveBeenCalledWith('projectId', {
         id: '1',
@@ -152,7 +156,7 @@ describe('useLoadBalancer hooks', () => {
 
   describe('useRenameLoadBalancer', () => {
     it('should rename a load balancer', async () => {
-      vi.mocked(updateLoadBalancerName).mockResolvedValue({});
+      vi.mocked(updateLoadBalancerName).mockResolvedValue({} as TLoadBalancer);
       const onError = vi.fn();
       const onSuccess = vi.fn();
 
@@ -168,9 +172,10 @@ describe('useLoadBalancer hooks', () => {
         { wrapper },
       );
 
-      await act(async () => {
-        await result.current.renameLoadBalancer();
+      act(() => {
+        void result.current.renameLoadBalancer();
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
       expect(updateLoadBalancerName).toHaveBeenCalledWith(
         'projectId',
@@ -183,7 +188,7 @@ describe('useLoadBalancer hooks', () => {
 
   describe('useCreateLoadBalancer', () => {
     it('should create a load balancer', async () => {
-      vi.mocked(createLoadBalancer).mockResolvedValue({});
+      vi.mocked(createLoadBalancer).mockResolvedValue({} as TLoadBalancer);
       const onError = vi.fn();
       const onSuccess = vi.fn();
 
@@ -216,9 +221,10 @@ describe('useLoadBalancer hooks', () => {
         { wrapper },
       );
 
-      await act(async () => {
-        await result.current.doCreateLoadBalancer();
+      act(() => {
+        void result.current.doCreateLoadBalancer();
       });
+      await waitFor(() => expect(onSuccess).toHaveBeenCalled());
 
       expect(createLoadBalancer).toHaveBeenCalledWith({
         projectId: 'projectId',

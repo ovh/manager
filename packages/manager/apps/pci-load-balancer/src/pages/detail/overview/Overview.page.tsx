@@ -1,13 +1,10 @@
-import { Outlet, useParams } from 'react-router-dom';
 import { Suspense } from 'react';
-import {
-  useLoadBalancer,
-  useLoadBalancerFlavor,
-} from '@/api/hook/useLoadBalancer';
-import {
-  usePrivateNetworkByRegion,
-  useSubnetByNetworkAndRegion,
-} from '@/api/hook/useNetwork';
+
+import { Outlet, useParams } from 'react-router-dom';
+
+import { useLoadBalancer, useLoadBalancerFlavor } from '@/api/hook/useLoadBalancer';
+import { usePrivateNetworkByRegion, useSubnetByNetworkAndRegion } from '@/api/hook/useNetwork';
+
 import Configuration from './Configuration';
 import GeneralInformation from './GeneralInformation';
 

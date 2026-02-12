@@ -1,12 +1,16 @@
-import { Headers, Links } from '@ovh-ux/manager-react-components';
-import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { OsdsText } from '@ovhcloud/ods-components/react';
 import { Suspense } from 'react';
 
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
+import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { Headers, Links } from '@ovh-ux/manager-react-components';
+
 import { DISCOVER_LINK } from '@/constants';
 
 export default function Listeners() {

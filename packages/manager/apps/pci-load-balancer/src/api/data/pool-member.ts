@@ -1,4 +1,5 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+
 import {
   LoadBalancerOperatingStatusEnum,
   LoadBalancerProvisioningStatusEnum,
@@ -32,7 +33,7 @@ export const deletePoolMember = async (
   poolId: string,
   memberId: string,
 ) => {
-  const { data } = await v6.delete(
+  const { data } = await v6.delete<unknown>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
   );
   return data;
@@ -56,8 +57,8 @@ export const updatePoolMemberName = async (
   poolId: string,
   memberId: string,
   name: string,
-) => {
-  const { data } = await v6.put(
+): Promise<TPoolMember> => {
+  const { data } = await v6.put<TPoolMember>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member/${memberId}`,
     {
       name,
@@ -71,8 +72,8 @@ export const createPoolMembers = async (
   region: string,
   poolId: string,
   members: Partial<TPoolMember[]>,
-) => {
-  const { data } = await v6.post(
+): Promise<TPoolMember[]> => {
+  const { data } = await v6.post<TPoolMember[]>(
     `/cloud/project/${projectId}/region/${region}/loadbalancing/pool/${poolId}/member`,
     {
       members,

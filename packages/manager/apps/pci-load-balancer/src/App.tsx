@@ -1,15 +1,14 @@
-import { odsSetup } from '@ovhcloud/ods-common-core';
+import { RouterProvider, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import {
-  createHashRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom';
-import Routes from '@/routes';
-import queryClient from './queryClient';
 
+import { odsSetup } from '@ovhcloud/ods-common-core';
 import '@ovhcloud/ods-theme-blue-jeans';
+
+import Routes from '@/routes';
+
+import queryClient from './queryClient';
 
 odsSetup();
 

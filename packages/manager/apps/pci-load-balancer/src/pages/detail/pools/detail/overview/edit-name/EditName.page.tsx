@@ -1,13 +1,18 @@
+import { useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
+import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
 import { PciModal } from '@ovh-ux/manager-pci-common';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { OsdsFormField, OsdsInput } from '@ovhcloud/ods-components/react';
-import { Translation, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { ODS_INPUT_TYPE } from '@ovhcloud/ods-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import LabelComponent from '@/components/form/Label.component';
+
 import { useGetPool, useUpdatePool } from '@/api/hook/usePool';
+import LabelComponent from '@/components/form/Label.component';
 
 export default function EditName() {
   const { addSuccess, addError } = useNotifications();
@@ -26,9 +31,7 @@ export default function EditName() {
     onSuccess: () => {
       addSuccess(
         <Translation ns="pools/overview">
-          {(_t) =>
-            _t('octavia_load_balancer_pools_detail_overview_edit_name_success')
-          }
+          {(_t) => _t('octavia_load_balancer_pools_detail_overview_edit_name_success')}
         </Translation>,
         false,
       );
@@ -41,8 +44,7 @@ export default function EditName() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message: (cause?.response?.data as { message: string })
-                    ?.message,
+                  message: (cause?.response?.data as { message: string })?.message,
                   requestId: cause.response?.headers['x-ovh-queryid'],
                 }),
               }}
@@ -74,25 +76,17 @@ export default function EditName() {
   const isPending = isPendingPool || isPendingUpdatePool;
   return (
     <PciModal
-      title={tEditName(
-        'octavia_load_balancer_pools_detail_overview_edit_name_title',
-      )}
+      title={tEditName('octavia_load_balancer_pools_detail_overview_edit_name_title')}
       onCancel={() => navigate('..')}
       onClose={() => navigate('..')}
-      submitText={tEditName(
-        'octavia_load_balancer_pools_detail_overview_edit_name_confirm',
-      )}
-      cancelText={tEditName(
-        'octavia_load_balancer_pools_detail_overview_edit_name_cancel',
-      )}
+      submitText={tEditName('octavia_load_balancer_pools_detail_overview_edit_name_confirm')}
+      cancelText={tEditName('octavia_load_balancer_pools_detail_overview_edit_name_cancel')}
       isPending={isPending}
       onConfirm={onConfirm}
     >
       <OsdsFormField>
         <LabelComponent
-          text={tEditName(
-            'octavia_load_balancer_pools_detail_overview_edit_name_label',
-          )}
+          text={tEditName('octavia_load_balancer_pools_detail_overview_edit_name_label')}
         />
         <OsdsInput
           value={poolName}

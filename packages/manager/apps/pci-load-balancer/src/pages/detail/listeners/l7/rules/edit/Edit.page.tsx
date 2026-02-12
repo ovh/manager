@@ -1,11 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
+
 import { Translation } from 'react-i18next';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-import RuleForm from '@/components/form/RuleForm.component';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+
 import { useGetL7Rule, useUpdateL7Rule } from '@/api/hook/useL7Rule';
+import RuleForm from '@/components/form/RuleForm.component';
 
 export default function UpdatePage() {
   const { addSuccess, addError } = useNotifications();
@@ -50,11 +54,7 @@ export default function UpdatePage() {
       {isPending ? (
         <OsdsSpinner size={ODS_SPINNER_SIZE.md} inline />
       ) : (
-        <RuleForm
-          rule={rule}
-          onCancel={() => navigate('..')}
-          onSubmit={updateL7Rule}
-        />
+        <RuleForm rule={rule} onCancel={() => navigate('..')} onSubmit={updateL7Rule} />
       )}
     </>
   );

@@ -1,21 +1,19 @@
-import { Translation, useTranslation } from 'react-i18next';
-import { DeletionModal } from '@ovh-ux/manager-pci-common';
-import { useNavigate, useParams } from 'react-router-dom';
-import { OsdsText } from '@ovhcloud/ods-components/react';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNotifications } from '@ovh-ux/manager-react-components';
-import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
 import { useCallback } from 'react';
-import {
-  useDeleteLoadBalancer,
-  useLoadBalancer,
-} from '@/api/hook/useLoadBalancer';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Translation, useTranslation } from 'react-i18next';
+
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import { OsdsText } from '@ovhcloud/ods-components/react';
+
+import { ApiError } from '@ovh-ux/manager-core-api';
+import { DeletionModal } from '@ovh-ux/manager-pci-common';
+import { useNotifications } from '@ovh-ux/manager-react-components';
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { useDeleteLoadBalancer, useLoadBalancer } from '@/api/hook/useLoadBalancer';
 
 export default function DeletePage() {
   const { addInfo, addError } = useNotifications();
@@ -26,19 +24,13 @@ export default function DeletePage() {
   const onClose = () => {
     navigate('..');
   };
-  const {
-    data: loadBalancer,
-    isPending: isPendingLoadBalancer,
-  } = useLoadBalancer({
+  const { data: loadBalancer, isPending: isPendingLoadBalancer } = useLoadBalancer({
     projectId,
     region,
     loadBalancerId,
   });
 
-  const {
-    deleteLoadBalancer,
-    isPending: isPendingDelete,
-  } = useDeleteLoadBalancer({
+  const { deleteLoadBalancer, isPending: isPendingDelete } = useDeleteLoadBalancer({
     projectId,
     loadBalancer,
     onError(error: ApiError) {
@@ -48,8 +40,7 @@ export default function DeletePage() {
             <span
               dangerouslySetInnerHTML={{
                 __html: _t('octavia_load_balancer_global_error', {
-                  message:
-                    error?.response?.data?.message || error?.message || null,
+                  message: error?.response?.data?.message || error?.message || null,
                   requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
                 }),
               }}
@@ -74,7 +65,7 @@ export default function DeletePage() {
   const trackClickButton = useCallback(
     (button: 'confirm' | 'cancel') =>
       trackClick({
-        actions: ['delete_loadbalancer', button, loadBalancer!.region],
+        actions: ['delete_loadbalancer', button, loadBalancer.region],
         actionType: 'action',
         buttonType: ButtonType.button,
         location: PageLocation.popup,

@@ -1,15 +1,16 @@
+import { useEffect, useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { Trans, useTranslation } from 'react-i18next';
+
 import { ApiError } from '@ovh-ux/manager-core-api';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import HealthMonitorForm from '@/components/form/HealthMonitorForm.component';
-import { useGetPool } from '@/api/hook/usePool';
-import {
-  useEditHealthMonitor,
-  useGetHealthMonitor,
-} from '@/api/hook/useHealthMonitor';
+
 import { THealthMonitorFormState } from '@/api/data/health-monitor';
+import { useEditHealthMonitor, useGetHealthMonitor } from '@/api/hook/useHealthMonitor';
+import { useGetPool } from '@/api/hook/usePool';
+import HealthMonitorForm from '@/components/form/HealthMonitorForm.component';
 import { isTypeHttpOrHttps } from '@/helpers';
 
 export default function HealthMonitorEditPage() {
@@ -28,10 +29,7 @@ export default function HealthMonitorEditPage() {
     poolId,
   });
 
-  const {
-    data: healthMonitor,
-    isPending: isHealthMonitorPending,
-  } = useGetHealthMonitor({
+  const { data: healthMonitor, isPending: isHealthMonitorPending } = useGetHealthMonitor({
     projectId,
     region,
     poolId,
@@ -42,13 +40,16 @@ export default function HealthMonitorEditPage() {
     region,
     healthMonitorId: healthMonitor?.id,
     onError(error: ApiError) {
+      const requestId = (error?.config?.headers as Record<string, string> | undefined)?.[
+        'X-OVH-MANAGER-REQUEST-ID'
+      ];
       addError(
         <Trans
           i18nKey="octavia_load_balancer_global_error"
           ns="load-balancer"
           values={{
             message: error?.response?.data?.message || error?.message || null,
-            requestId: error?.config?.headers['X-OVH-MANAGER-REQUEST-ID'],
+            requestId,
           }}
         />,
         true,
@@ -68,8 +69,7 @@ export default function HealthMonitorEditPage() {
     },
   });
 
-  const isPending =
-    isPoolPending || isHealthMonitorPending || isEditPending || !formState;
+  const isPending = isPoolPending || isHealthMonitorPending || isEditPending || !formState;
 
   useEffect(() => {
     if (healthMonitor) {
@@ -80,8 +80,7 @@ export default function HealthMonitorEditPage() {
         delay: healthMonitor.delay,
         maxRetries: healthMonitor.maxRetries,
         timeout: healthMonitor.timeout,
-        ...(healthMonitor.httpConfiguration &&
-        isTypeHttpOrHttps(healthMonitor.monitorType)
+        ...(healthMonitor.httpConfiguration && isTypeHttpOrHttps(healthMonitor.monitorType)
           ? {
               urlPath: healthMonitor.httpConfiguration.urlPath,
               expectedCode: healthMonitor.httpConfiguration.expectedCodes,

@@ -1,9 +1,11 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { describe, it, vi } from 'vitest';
-import { useFloatingIps } from './useFloatingIps';
+
+import { floatingIps } from '@/__mocks__/floatingIps';
 import { useQueryWrapper } from '@/__tests__/wrapper';
 import { getFloatingIps } from '@/api/data/floating-ips';
-import { floatingIps } from '@/__mocks__/floatingIps';
+
+import { useFloatingIps } from './useFloatingIps';
 
 vi.mock('@/api/data/floating-ips');
 
@@ -13,12 +15,9 @@ vi.mock('@/api/hook/useAddons/useAddons');
 
 describe('useFloatingIps', () => {
   it('should return floating ips for the region', async () => {
-    const { result } = renderHook(
-      () => useFloatingIps('projectId', 'projectId-test'),
-      {
-        wrapper: useQueryWrapper,
-      },
-    );
+    const { result } = renderHook(() => useFloatingIps('projectId', 'projectId-test'), {
+      wrapper: useQueryWrapper,
+    });
 
     await waitFor(() =>
       expect(result.current.data).toEqual([
