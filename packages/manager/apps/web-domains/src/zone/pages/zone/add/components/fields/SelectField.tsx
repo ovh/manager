@@ -2,9 +2,16 @@ import {
   FormField,
   FormFieldError,
   FormFieldLabel,
+  Icon,
+  ICON_NAME,
   Select,
   SelectContent,
   SelectControl,
+  Text,
+  TEXT_PRESET,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from "@ovhcloud/ods-react";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { Controller, type Control } from "react-hook-form";
@@ -19,6 +26,7 @@ export interface SelectFieldProps {
   readonly items: { label: string; value: string }[];
   readonly placeholder?: string;
   readonly className?: string;
+  readonly tooltip?: string;
 }
 
 export function SelectField({
@@ -29,6 +37,7 @@ export function SelectField({
   items,
   placeholder,
   className = "w-1/2",
+  tooltip,
 }: SelectFieldProps) {
   const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.FORM]);
 
@@ -41,6 +50,16 @@ export function SelectField({
           <FormFieldLabel>
             {label}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
+            {tooltip != null && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Icon name={ICON_NAME.circleQuestion} className="text-[--ods-color-primary-500] ml-1" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <Text preset={TEXT_PRESET.paragraph}>{tooltip}</Text>
+                </TooltipContent>
+              </Tooltip>
+            )}
           </FormFieldLabel>
           <Select
             name={field.name}
