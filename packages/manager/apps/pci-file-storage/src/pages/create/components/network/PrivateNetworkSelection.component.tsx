@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -32,11 +32,14 @@ export const PrivateNetworkSelection = () => {
     select: selectPrivateNetworksForRegion(selectedMicroRegion),
   });
 
+  const firstPrivateNetworkId = useMemo(
+    () => privateNetworkOptions[0]?.value,
+    [privateNetworkOptions],
+  );
+
   useEffect(() => {
-    if (privateNetworkOptions[0]) {
-      setValue('shareData.privateNetworkId', privateNetworkOptions[0].value);
-    }
-  }, [privateNetworkOptions, setValue]);
+    setValue('shareData.privateNetworkId', firstPrivateNetworkId ?? '', { shouldValidate: true });
+  }, [firstPrivateNetworkId, setValue]);
 
   const renderContent = () => {
     if (isLoading) {
