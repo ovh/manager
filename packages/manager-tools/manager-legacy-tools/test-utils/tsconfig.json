@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2021"],
+    "target": "es2021",
+    "types": ["vite/client", "node", "jest"],
+    "module": "ES2020",
+    "outDir": "dist",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "Node",
+    "isolatedModules": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "jsx": "react-jsx"
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types",
+    "**/__tests__",
+    "src/**/*.spec.ts"
+  ]
+}

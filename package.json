@@ -7,7 +7,7 @@
   "workspaces": {
     "packages": []
   },
-  "scripts": {
+   "scripts": {
     "build": "yarn pm:build:ci",
     "build:turbo": "node -e \"console.warn('\\n[DEPRECATED] build:turbo is deprecated. Use: yarn pm:build:ci or yarn build\\n')\" && yarn pm:build:ci",
     "ci:install": "yarn install --non-interactive --prefer-offline",
@@ -107,8 +107,7 @@
     "stylelint-prettier": "^1.1.2",
     "turbo": "2.7.6",
     "vite": "^5.4.21",
-    "whatwg-fetch": "^3.6.2",
-    "nx": "22.3.3"
+    "whatwg-fetch": "^3.6.2"
   },
   "packageManager": "yarn@1.22.22",
   "engines": {

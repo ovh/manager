@@ -1,0 +1,168 @@
+export const applications = {
+  cloud: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/cloud/repsac/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/cloud/repsac/',
+  },
+  dedicated: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/dedicated/',
+    container: { isDefault: false, enabled: true, path: 'dedicated' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/dedicated',
+  },
+  hub: {
+    universe: 'hub',
+    url: 'https://manager.eu.ovhcloud.com/hub/',
+    container: { isDefault: true, enabled: true, path: 'hub' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/hub',
+  },
+  'public-cloud': {
+    universe: 'public-cloud',
+    url: 'https://manager.eu.ovhcloud.com/public-cloud/',
+    container: {
+      isDefault: false,
+      enabled: true,
+      path: 'public-cloud',
+    },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/public-cloud',
+  },
+  telecom: {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false, enabled: true, path: 'telecom' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/telecom',
+  },
+  web: {
+    universe: 'web',
+    url: 'https://manager.eu.ovhcloud.com/web/',
+    container: { isDefault: false, enabled: true, path: 'web' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/web',
+  },
+  sunrise: {
+    url: 'https://manager.eu.ovhcloud.com/sunrise/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/sunrise/',
+  },
+  billing: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/dedicated/#/billing',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/dedicated/#/billing',
+  },
+  user: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/dedicated/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/dedicated/',
+  },
+  exchange: {
+    universe: 'web',
+    url: 'https://manager.eu.ovhcloud.com/web/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/web/',
+  },
+  sharepoint: {
+    universe: 'web',
+    url: 'https://manager.eu.ovhcloud.com/web/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/web/',
+  },
+  office: {
+    universe: 'web',
+    url: 'https://manager.eu.ovhcloud.com/web/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/web/',
+  },
+  telephony: {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/telecom/',
+  },
+  'pack-xdsl': {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/telecom/',
+  },
+  overthebox: {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/telecom/',
+  },
+  freefax: {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/telecom/',
+  },
+  sms: {
+    universe: 'telecom',
+    url: 'https://manager.eu.ovhcloud.com/telecom/',
+    container: { isDefault: false },
+    publicURL: 'https://manager.eu.ovhcloud.com/telecom/',
+  },
+  catalog: {
+    universe: 'hub',
+    url: 'https://manager.eu.ovhcloud.com/catalog',
+    container: { isDefault: false, enabled: true, path: 'catalog' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/catalog',
+  },
+  iam: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/security',
+    container: { isDefault: false, enabled: true, path: 'iam' },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/iam',
+  },
+  'carbon-calculator': {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/carbon-calculator/',
+    container: {
+      isDefault: false,
+      enabled: true,
+      path: 'carbon-calculator',
+    },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/carbon-calculator',
+  },
+  'pci-vouchers': {
+    universe: 'public-cloud',
+    url: 'https://manager.eu.ovhcloud.com/pci-vouchers/',
+    container: {
+      isDefault: false,
+      enabled: true,
+      path: 'public-cloud',
+      hash: '/pci/projects/:projectId/vouchers',
+    },
+    publicURL: 'https://manager.eu.ovhcloud.com/#/public-cloud',
+  },
+  restricted: {
+    universe: 'server',
+    url: 'https://manager.eu.ovhcloud.com/restricted/',
+    container: { isDefault: false, path: 'restricted' },
+    publicURL: 'https://manager.eu.ovhcloud.com/restricted/',
+  },
+  'vrack-services': {
+    universe: 'server',
+    url: 'ttps://www.ovh.com/manager/vrack-services/',
+    container: {
+      isDefault: false,
+      path: 'dedicated',
+      hash: '/vrack-services',
+    },
+    publicURL: 'ttps://www.ovh.com/manager/vrack-services/',
+  },
+};
+
+export const applicationURLs = Object.entries(applications)
+  .map(([appName, app]) => ({ appName, url: app.publicURL }))
+  .reduce(
+    (result, { appName, url }) => ({
+      ...result,
+      [appName]: url,
+    }),
+    {},
+  );
+
+export default applications;

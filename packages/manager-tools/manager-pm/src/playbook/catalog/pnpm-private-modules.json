@@ -268,10 +268,6 @@
     "pnpm": "packages/manager/modules/web-universe-components"
   },
   {
-    "turbo": "--filter @ovh-ux/manager-cli-core",
-    "pnpm": "packages/manager-tools/manager-cli-core"
-  },
-  {
     "turbo": "--filter @ovh-ux/manager-static-analysis-kit",
     "pnpm": "packages/manager-tools/manager-static-analysis-kit"
   },
