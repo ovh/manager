@@ -32,13 +32,16 @@ export function CAARecordForm({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-[2fr_auto] items-start gap-4">
+      <div className="grid grid-cols-[2fr_200px] items-start gap-4">
         <SubDomainField
           control={control}
           domainSuffix={domainSuffix}
           className="w-full"
           tooltip={t("zone_page_tooltip_subdomain")}
         />
+        <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
+      </div>
+      <div className="grid grid-cols-[auto_minmax(300px,1fr)_minmax(200px,1fr)] items-start gap-4">
         <NumberField
           name="flags"
           control={control}
@@ -49,8 +52,6 @@ export function CAARecordForm({
           className="w-full"
           tooltip={t("zone_page_tooltip_caa_flags")}
         />
-      </div>
-      <div className="grid grid-cols-[minmax(300px,1fr)_minmax(200px,1fr)_200px] items-start gap-4">
         <SelectField
           name="tag"
           control={control}
@@ -72,7 +73,6 @@ export function CAARecordForm({
           className="w-full"
           tooltipText={t("zone_page_tooltip_caa_target")}
         />
-        <TtlField control={control} watch={watch} tooltip={t("zone_page_tooltip_ttl")} />
       </div>
     </div>
   );
