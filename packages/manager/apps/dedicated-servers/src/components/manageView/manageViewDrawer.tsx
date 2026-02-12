@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -18,7 +18,7 @@ import {
 } from './manageView.constants';
 import { ViewType } from './types';
 import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
-import ManageViewDrawerTitle from './manageViewDrawerTitle';
+import ManageViewDrawerTitle, { TitleEditorRef } from './manageViewDrawerTitle';
 import ManageViewConfig from './manageViewConfig';
 import { ViewContext } from './viewContext';
 
@@ -47,6 +47,7 @@ export const ManageViewDrawer = ({
   const { isPending, mutate: saveViews } = useSaveViewsPreference({
     key: PREFERENCES_KEY,
   });
+  const titleRef = useRef<TitleEditorRef>(null);
 
   useEffect(() => {
     setEditingView({
@@ -70,10 +71,18 @@ export const ManageViewDrawer = ({
     });
   };
 
-  const saveViewChanges = () => {
-    saveViews({
-      view: editingView,
-    });
+  const saveViewChanges = async () => {
+    if (titleRef.current?.isEditMode) {
+      const newTitle = titleRef.current?.save();
+      handleNameChange(newTitle);
+      saveViews({
+        view: { ...editingView, name: newTitle },
+      });
+    } else {
+      saveViews({
+        view: editingView,
+      });
+    }
     handleConfirm();
   };
 
@@ -110,6 +119,7 @@ export const ManageViewDrawer = ({
         <section className="p-4">
           <div className="flex items-center gap-4">
             <ManageViewDrawerTitle
+              ref={titleRef}
               value={editingView?.name}
               onChange={handleNameChange}
             />

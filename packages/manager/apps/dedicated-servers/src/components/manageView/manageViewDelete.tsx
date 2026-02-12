@@ -84,6 +84,7 @@ export default function ExportCsv({
             <OdsButton
               label={t('modal_delete_confirm')}
               slot="actions"
+              color="critical"
               variant="default"
               onClick={confirmDeleteView}
             />
