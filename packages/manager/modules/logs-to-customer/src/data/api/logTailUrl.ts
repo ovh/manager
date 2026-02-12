@@ -1,7 +1,7 @@
 import { v2, v6 } from '@ovh-ux/manager-core-api';
 
 import { ApiUrls } from '@/LogsToCustomer.props';
-import { LogUrlCreation, TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import { LogUrlCreation, TemporaryLogsLink } from '@/data/types/dbaas/logs/Logs.type';
 
 export interface IGetLogUrl {
   logTailUrl: ApiUrls['logUrl'];

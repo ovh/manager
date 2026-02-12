@@ -1,22 +1,20 @@
 import React from 'react';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { OdsButton, OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
+
+import { BUTTON_VARIANT, Button, Spinner, Text } from '@ovhcloud/ods-react';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import OrderServiceButton from '@/components/services/OrderServiceButton.component';
+import { getLogServicesQueryKey, useLogServices } from '@/data/hooks/useLogService';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
-import {
-  getLogServicesQueryKey,
-  useLogServices,
-} from '@/data/hooks/useLogService';
-import ApiError from '@/components/apiError/ApiError.component';
-import OrderServiceButton from '@/components/services/OrderServiceButton.component';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const SubscriptionAddSubcription = () => {
   const queryClient = useQueryClient();
@@ -24,42 +22,37 @@ const SubscriptionAddSubcription = () => {
   const { t: tService } = useTranslation(NAMESPACES.LOG_SERVICE);
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
-  const subscribeLogsAccess = useLogTrackingActions(
-    LogsActionEnum.subscribe_logs_access,
-  );
+  const subscribeLogsAccess = useLogTrackingActions(LogsActionEnum.subscribe_logs_access);
 
   const { data: logServices, isPending, error } = useLogServices();
 
-  if (isPending)
-    return <OdsSpinner size="sm" data-testid="logServices-spinner" />;
+  if (isPending) return <Spinner size="sm" data-testid="logServices-spinner" />;
 
   if (error)
     return (
       <ApiError
         testId="logServices-error"
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
+        onRetry={() => {
+          void queryClient.refetchQueries({
             queryKey: getLogServicesQueryKey(),
-          })
-        }
+          });
+        }}
       />
     );
 
   if (logServices.length === 0)
     return (
       <div className="flex flex-col gap-2">
-        <OdsText preset="paragraph">
-          {tService('log_service_no_service_description')}
-        </OdsText>
+        <Text preset="paragraph">{tService('log_service_no_service_description')}</Text>
         <OrderServiceButton />
       </div>
     );
 
   return (
-    <OdsButton
-      variant="outline"
-      className="[&::part(button)]:w-full"
+    <Button
+      variant={BUTTON_VARIANT.outline}
+      className="w-full"
       size="sm"
       onClick={() => {
         trackClick({
@@ -70,8 +63,9 @@ const SubscriptionAddSubcription = () => {
         });
         navigate('streams');
       }}
-      label={t('log_subscription_empty_tile_button_subscribe')}
-    />
+    >
+      {t('log_subscription_empty_tile_button_subscribe')}
+    </Button>
   );
 };
 

@@ -1,33 +1,33 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  getLogStreamQueryKey,
-  useLogStream,
-} from '@/data/hooks/useLogStream';
-import { LogSubscription } from '@/data/types/dbaas/logs';
-import ApiError from '@/components/apiError/ApiError.component';
+import { useTranslation } from 'react-i18next';
+
+import { Spinner, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import { getLogStreamQueryKey, useLogStream } from '@/data/hooks/useLogStream';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 
 type SubscriptionStreamItemProps = {
   subscription: LogSubscription;
 };
 
-const SubscriptionStreamTitle = ({
-  subscription,
-}: SubscriptionStreamItemProps) => {
+const SubscriptionStreamTitle = ({ subscription }: SubscriptionStreamItemProps) => {
   const { t } = useTranslation(NAMESPACES.LOG_STREAM);
   const queryClient = useQueryClient();
-  const { data: stream, isLoading, isPending, error } = useLogStream(
-    subscription.serviceName,
-    subscription.streamId,
-  );
+  const {
+    data: stream,
+    isLoading,
+    isPending,
+    error,
+  } = useLogStream(subscription.serviceName, subscription.streamId);
 
   if (isLoading || isPending) {
     return (
       <div className="flex justify-center w-full py-4">
-        <OdsSpinner size="sm" data-testid="logStream-spinner" />
+        <Spinner size="sm" data-testid="logStream-spinner" />
       </div>
     );
   }
@@ -36,21 +36,18 @@ const SubscriptionStreamTitle = ({
     return (
       <ApiError
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
-            queryKey: getLogStreamQueryKey(
-              subscription.serviceName,
-              subscription.streamId,
-            ),
-          })
-        }
+        onRetry={() => {
+          void queryClient.refetchQueries({
+            queryKey: getLogStreamQueryKey(subscription.serviceName, subscription.streamId),
+          });
+        }}
         testId="logStream-error"
       />
     );
   return (
     <div className="flex flex-row justify-between ">
-      <OdsText preset="heading-6">{t('log_stream_title_tile_label')}</OdsText>
-      <OdsText preset="paragraph">{stream?.title}</OdsText>
+      <Text preset="heading-6">{t('log_stream_title_tile_label')}</Text>
+      <Text preset="paragraph">{stream?.title}</Text>
     </div>
   );
 };

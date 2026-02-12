@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { render } from '@testing-library/react';
+
+import { LogLevel } from '@/components/log-tail/log-messages/log/log-level/LogLevel.component';
 import { TMessageLevel } from '@/data/api/logTailMessages';
-import { LogLevel } from '@/components/logTail/logMessages/log/logLevel/LogLevel.component';
 
 type TtestCases = {
   level: TMessageLevel;
@@ -55,7 +57,7 @@ const testCases: TtestCases[] = [
 describe('LogLevel test suite', () => {
   test.each(testCases)(
     'should render correct configuration for level: $level',
-    async ({ level, label, colorClass }) => {
+    ({ level, label, colorClass }) => {
       const { getByTestId } = render(<LogLevel level={level} />);
 
       const comp = getByTestId('logTail-level');

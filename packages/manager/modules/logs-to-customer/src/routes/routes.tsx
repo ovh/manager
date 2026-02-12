@@ -1,6 +1,8 @@
-import React, { ComponentType, lazy } from 'react';
+import React, { ComponentType, Suspense, lazy } from 'react';
 
 import { Route, Routes } from 'react-router-dom';
+
+import { Spinner } from '@ovhcloud/ods-react';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -30,31 +32,33 @@ export function lazyRouteConfig<T extends ComponentType<unknown>, E extends obje
 }
 
 export const LogsToCustomerRoutes = () => (
-  <Routes>
-    <Route
-      path=""
-      Component={logsPage}
-      handle={{
-        tracking: {
-          pageName: 'logs_access',
-          pageType: PageType.dashboard,
-        },
-      }}
-    >
+  <Suspense fallback={<Spinner size="md" />}>
+    <Routes>
       <Route
-        path="subscription/:subscriptionId/terminate"
-        Component={logsTerminateSubscriptionPage}
+        path=""
+        Component={logsPage}
+        handle={{
+          tracking: {
+            pageName: 'logs_access',
+            pageType: PageType.dashboard,
+          },
+        }}
+      >
+        <Route
+          path="subscription/:subscriptionId/terminate"
+          Component={logsTerminateSubscriptionPage}
+        />
+      </Route>
+      <Route
+        path="streams"
+        Component={logsDataStreamsPage}
+        handle={{
+          tracking: {
+            pageName: 'log_subscriptions',
+            pageType: PageType.dashboard,
+          },
+        }}
       />
-    </Route>
-    <Route
-      path="streams"
-      Component={logsDataStreamsPage}
-      handle={{
-        tracking: {
-          pageName: 'log_subscriptions',
-          pageType: PageType.dashboard,
-        },
-      }}
-    />
-  </Routes>
+    </Routes>
+  </Suspense>
 );

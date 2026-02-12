@@ -2,15 +2,15 @@ import React, { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
 import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { Button } from '@ovh-ux/muk';
 
 import { LogsContext } from '@/LogsToCustomer.context';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import { useDeleteLogSubscription } from '@/data/hooks/useLogSubscriptions';
-import { LogSubscription } from '@/data/types/dbaas/logs';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 const UnsubscribeButton = ({
   subscriptionId,
@@ -23,12 +23,12 @@ const UnsubscribeButton = ({
   const { currentLogKind, logApiUrls, logApiVersion, logIamActions, resourceURN } =
     useContext(LogsContext);
 
-  const { mutate, isPending } = useDeleteLogSubscription(
-    logApiUrls.logSubscription,
-    logApiVersion,
+  const { mutate, isPending } = useDeleteLogSubscription({
+    logSubscriptionUrl: logApiUrls.logSubscription,
+    apiVersion: logApiVersion,
     subscriptionId,
-    currentLogKind,
-  );
+    logKind: currentLogKind,
+  });
 
   const handleClick = () => {
     trackClick({
@@ -41,16 +41,17 @@ const UnsubscribeButton = ({
   };
 
   return (
-    <ManagerButton
+    <Button
       size="sm"
       variant="outline"
       onClick={handleClick}
-      isLoading={isPending}
+      loading={isPending}
       iamActions={logIamActions?.deleteSubscription}
       urn={resourceURN}
-      label={t('log_streams_unsubscribe')}
       id="data-stream-unsubscribe"
-    />
+    >
+      {t('log_streams_unsubscribe')}
+    </Button>
   );
 };
 

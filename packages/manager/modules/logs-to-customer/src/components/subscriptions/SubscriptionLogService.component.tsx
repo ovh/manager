@@ -1,32 +1,28 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useQueryClient } from '@tanstack/react-query';
-import {
-  getLogServiceQueryKey,
-  useLogService,
-} from '@/data/hooks/useLogService';
-import { LogSubscription } from '@/data/types/dbaas/logs';
-import ApiError from '@/components/apiError/ApiError.component';
+import { useTranslation } from 'react-i18next';
+
+import { Spinner, Text } from '@ovhcloud/ods-react';
+
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import { getLogServiceQueryKey, useLogService } from '@/data/hooks/useLogService';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 
 type SubscriptionLogServiceProps = {
   subscription: LogSubscription;
 };
 
-const SubscriptionLogService = ({
-  subscription,
-}: SubscriptionLogServiceProps) => {
+const SubscriptionLogService = ({ subscription }: SubscriptionLogServiceProps) => {
   const { t } = useTranslation(NAMESPACES.LOG_SERVICE);
   const queryClient = useQueryClient();
-  const { data: service, isLoading, isPending, error } = useLogService(
-    subscription.serviceName,
-  );
+  const { data: service, isLoading, isPending, error } = useLogService(subscription.serviceName);
 
   if (isLoading || isPending) {
     return (
       <div className="flex justify-center w-full py-4">
-        <OdsSpinner size="sm" data-testid="logService-spinner" />
+        <Spinner size="sm" data-testid="logService-spinner" />
       </div>
     );
   }
@@ -35,11 +31,11 @@ const SubscriptionLogService = ({
     return (
       <ApiError
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
+        onRetry={() => {
+          void queryClient.refetchQueries({
             queryKey: getLogServiceQueryKey(subscription.serviceName),
-          })
-        }
+          });
+        }}
         testId="logService-error"
       />
     );
@@ -47,16 +43,12 @@ const SubscriptionLogService = ({
   return (
     <>
       <div className="flex flex-row justify-between ">
-        <OdsText preset="heading-6">
-          {service?.displayName || subscription.serviceName}
-        </OdsText>
-        <OdsText preset="span">{subscription.serviceName}</OdsText>
+        <Text preset="heading-6">{service?.displayName || subscription.serviceName}</Text>
+        <Text preset="span">{subscription.serviceName}</Text>
       </div>
       <div className="flex flex-row justify-between ">
-        <OdsText preset="heading-6">
-          {t('log_service_username_tile_label')}
-        </OdsText>
-        <OdsText preset="span">{service?.username}</OdsText>
+        <Text preset="heading-6">{t('log_service_username_tile_label')}</Text>
+        <Text preset="span">{service?.username}</Text>
       </div>
     </>
   );

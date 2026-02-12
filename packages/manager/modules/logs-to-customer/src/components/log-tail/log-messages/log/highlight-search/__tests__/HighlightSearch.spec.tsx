@@ -2,8 +2,8 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import { searchContext } from '@/components/logTail/logMessages/LogMessages.component';
-import { HighlightSearch } from '@/components/logTail/logMessages/log/highligthSearch/HighlightSearch.component';
+import { searchContext } from '@/components/log-tail/log-messages/SearchContext';
+import { HighlightSearch } from '@/components/log-tail/log-messages/log/highlight-search/HighlightSearch.component';
 
 type TUseCase = {
   query: string | undefined;

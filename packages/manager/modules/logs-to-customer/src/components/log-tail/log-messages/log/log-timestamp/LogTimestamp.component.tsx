@@ -1,13 +1,11 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { HighlightSearch } from '@/components/logTail/logMessages/log/highligthSearch/HighlightSearch.component';
+
+import { HighlightSearch } from '@/components/log-tail/log-messages/log/highlight-search/HighlightSearch.component';
 import { Tmessage } from '@/data/api/logTailMessages';
 
-export const LogTimestamp = ({
-  timestamp,
-}: {
-  timestamp: Tmessage['timestamp'];
-}) => {
+export const LogTimestamp = ({ timestamp }: { timestamp: Tmessage['timestamp'] }) => {
   const { i18n } = useTranslation();
   const date = new Date(timestamp);
   const locale = i18n?.language?.replace('_', '-');

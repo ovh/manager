@@ -1,4 +1,4 @@
-import { Service, ServicePlanEnum, ServiceStateEnum } from '@/data/types/dbaas/logs';
+import { Service, ServicePlanEnum, ServiceStateEnum } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logServicesMock: Service[] = [
   {

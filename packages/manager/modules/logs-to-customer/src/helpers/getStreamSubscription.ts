@@ -1,4 +1,4 @@
-import { LogSubscription, Stream } from '@/data/types/dbaas/logs';
+import { LogSubscription, Stream } from '@/data/types/dbaas/logs/Logs.type';
 
 const getStreamSubscription = (subscriptions: LogSubscription[], streamId?: Stream['streamId']) =>
   subscriptions.find((sub) => sub.streamId === streamId);

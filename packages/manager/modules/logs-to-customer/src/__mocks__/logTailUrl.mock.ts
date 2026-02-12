@@ -1,4 +1,4 @@
-import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logTailUrlMock: TemporaryLogsLink = {
   url: 'https://get.logs.ovh.com/mock/messages',

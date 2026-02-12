@@ -1,4 +1,4 @@
-import { LogKind } from '@/data/types/dbaas/logs';
+import { LogKind } from '@/data/types/dbaas/logs/Logs.type';
 
 export const logKindsMock: LogKind[] = [
   {

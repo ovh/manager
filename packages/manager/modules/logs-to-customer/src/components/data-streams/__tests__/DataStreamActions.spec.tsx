@@ -4,14 +4,14 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ShellContext, type ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
 import { logStreamsMock } from '@/__mocks__/logStream.mock';
 import { logSubscriptionsMock } from '@/__mocks__/logSubscription.mock';
-import { LogSubscription } from '@/data/types/dbaas/logs';
 import DataStreamActions, {
   DATA_STREAM_SUBSCRIPTION_LOADING_TEST_ID,
 } from '@/components/data-streams/DataStreamActions.component';
+import { LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
 
 const useLogSubscriptionsMockValue: {
   data: typeof logSubscriptionsMock;

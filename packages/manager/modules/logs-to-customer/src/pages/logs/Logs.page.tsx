@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { Outlet } from 'react-router-dom';
-import LogTail from '@/components/logTail/LogTail.component';
+
+import LogTail from '@/components/log-tail/LogTail.component';
 import LogsSubscriptions from '@/components/subscriptions/Subscriptions.component';
 import { useZoomedInOut } from '@/hooks/useZoomedInOut';
 
