@@ -125,26 +125,21 @@ export default function ZonePage() {
   const actionItems = [
     {
       id: 1,
-      label: t('zone_page_add_entry'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/add-entry`)),
-    },
-    {
-      id: 2,
       label: t('zone_page_modify_textual'),
       onClick: () => setOpenModal('modify-textual-record'),
     },
     {
-      id: 3,
+      id: 2,
       label: t('zone_page_modify_default_ttl'),
       onClick: () => setOpenModal('modify-ttl'),
     },
     {
-      id: 4,
+      id: 3,
       label: t('zone_page_view_history'),
       onClick: () => navigate(buildUrl(`${tabsZone}/history`)),
     },
     {
-      id: 5,
+      id: 4,
       label: t('zone_page_reset'),
       onClick: () => setOpenModal('reset'),
     },

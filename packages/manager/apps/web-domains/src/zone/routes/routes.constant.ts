@@ -4,7 +4,6 @@ export const urls = {
   //activate zone
   zoneActivate: "/domain/:serviceName/zone/activate",
   //entry
-  zoneAddEntry: "/domain/:serviceName/zone/add-entry",
   zoneModifyEntry: "/domain/:serviceName/zone/modify-entry",
   zoneDeleteEntry: "/domain/:serviceName/zone/delete-entry",
   // modify 

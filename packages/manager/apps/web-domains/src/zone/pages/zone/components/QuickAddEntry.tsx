@@ -2,13 +2,9 @@ import { useMemo, useCallback } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Input, INPUT_TYPE, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
-import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, getRecordFields, RECORD_TYPES_WITHOUT_TTL } from "../../../utils/formSchema.utils";
+import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
+import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS } from "../../../utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { SubDomainField, TtlField } from "../add/components/SubDomainAndTtl.component";
-import { RecordFieldInputs } from "../add/components/Inputs.component";
-import { SpfFormContent } from "../add/Steps/mailType/SpfForm.component";
-import { SpfFormHeader } from "../add/Steps/mailType/SpfFormHeader";
 import {
   FieldTypeExtendedRecordsEnum,
   FieldTypeMailRecordsEnum,
@@ -32,6 +28,7 @@ import { HTTPSRecordForm } from "../add/components/forms/HTTPSRecordForm";
 import { MXRecordForm } from "../add/components/forms/MXRecordForm";
 import { DKIMRecordForm } from "../add/components/forms/DKIMRecordForm";
 import { DMARCRecordForm } from "../add/components/forms/DMARCRecordForm";
+import { SPFRecordForm } from "../add/components/forms/SPFRecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -122,8 +119,6 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
   ];
 
   const recordTypeStr = typeof recordType === 'string' ? recordType : '';
-  const fields = recordTypeStr ? getRecordFields(recordTypeStr) : [];
-  const showTtl = recordTypeStr ? !RECORD_TYPES_WITHOUT_TTL.includes(recordTypeStr) : false;
 
   return (
     <FormProvider {...methods}>
@@ -165,10 +160,20 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
           {recordTypeStr === FieldTypeMailRecordsEnum.SPF && (
             <>
-              <SpfFormHeader serviceName={serviceName} />
-              <SubDomainField control={control} domainSuffix={serviceName} required={false} />
-              <TtlField control={control} watch={watch} />
-              <SpfFormContent />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_SPF")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_SPF"
+                    values={{ domain: serviceName }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <SPFRecordForm serviceName={serviceName} />
             </>
           )}
 
@@ -514,49 +519,6 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             </>
           )}
 
-          {recordTypeStr &&
-            recordTypeStr !== FieldTypeMailRecordsEnum.SPF &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.NAPTR &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.LOC &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.A &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.AAAA &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.NS &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.CNAME &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.DNAME &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.TXT &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.SRV &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.SSHFP &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.TLSA &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.RP &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.SVCB &&
-            recordTypeStr !== FieldTypeExtendedRecordsEnum.HTTPS &&
-            recordTypeStr !== FieldTypeMailRecordsEnum.MX &&
-            recordTypeStr !== FieldTypeMailRecordsEnum.DKIM &&
-            recordTypeStr !== FieldTypeMailRecordsEnum.DMARC && (
-              <div className="grid grid-cols-3 items-start gap-4">
-                <SubDomainField
-                  control={control}
-                  domainSuffix={serviceName}
-                  className="w-full"
-                  required={recordTypeStr === FieldTypePointingRecordsEnum.NS}
-                />
-                <RecordFieldInputs fields={fields} control={control} fieldClassName="w-full" />
-                {showTtl && (
-                  <FormField className="w-full">
-                    <FormFieldLabel>{t("zone_page_add_entry_modal_step_1_ttl")}</FormFieldLabel>
-                    <Input
-                      type={INPUT_TYPE.text}
-                      className="w-full"
-                      value={t("zone_page_add_entry_modal_step_1_ttl_global")}
-                      readOnly
-                      disabled
-                    />
-                  </FormField>
-                )}
-              </div>
-            )}
-
           {recordTypeStr && (
             <div className="flex gap-2 justify-end pt-4 border-t">
               <Button
@@ -568,14 +530,31 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
               >
                 {t(`${NAMESPACES.ACTIONS}:cancel`)}
               </Button>
-              <Button
-                type="submit"
-                size={BUTTON_SIZE.sm}
-                disabled={!isValid || isPending}
-                loading={isPending}
-              >
-                {t(`${NAMESPACES.ACTIONS}:add`)}
-              </Button>
+              {recordTypeStr === FieldTypeMailRecordsEnum.SPF ? (
+                <Button
+                  type="button"
+                  size={BUTTON_SIZE.sm}
+                  disabled={isPending}
+                  loading={isPending}
+                  onClick={() => {
+                    const spfValue = "v=spf1 include:mx.ovh.com ~all";
+                    setValue("target", spfValue);
+                    setValue("subDomain", "");
+                    handleSubmit(onSubmit)();
+                  }}
+                >
+                  {t("zone_page_add_entry_modal_spf_button_use_spf_ovh")}
+                </Button>
+              ) : (
+                  <Button
+                    type="submit"
+                    size={BUTTON_SIZE.sm}
+                    disabled={!isValid || isPending}
+                    loading={isPending}
+                  >
+                    {t(`${NAMESPACES.ACTIONS}:add`)}
+                  </Button>
+              )}
             </div>
           )}
         </div>
