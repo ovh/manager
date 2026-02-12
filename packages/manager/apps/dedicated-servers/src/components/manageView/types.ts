@@ -6,4 +6,7 @@ export type ViewType = {
   default?: boolean;
   columnVisibility?: VisibilityState;
   columnOrder?: string[];
+  groupBy?: Categories;
 };
+
+export type Categories = 'commercialRange' | 'rack' | 'region' | 'datacenter';
