@@ -1,8 +1,7 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useForm, FormProvider, Control } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { CustomMetricsFields } from './CustomMetricsFields';
-import { FullScalingFormValues } from '../scalingHelper';
 import ai from '@/types/AI';
 
 const TestWrapper = ({
@@ -69,7 +68,7 @@ describe('CustomMetricsFields', () => {
     const input = screen.getByTestId(
       'target-metric-value-input',
     ) as HTMLInputElement;
-    fireEvent.change(input, { target: { value: '80' } });
+    fireEvent.input(input, { target: { value: '80' } });
 
     expect(input.value).toBe('80');
   });
@@ -81,8 +80,8 @@ describe('CustomMetricsFields', () => {
       'target-metric-value-input',
     ) as HTMLInputElement;
 
-    expect(input.type).toBe('number');
-    expect(input.min).toBe('0');
-    expect(input.step).toBe('0.5');
+    expect(input).toHaveAttribute('role', 'spinbutton');
+    expect(input).toHaveAttribute('inputmode', 'decimal');
+    expect(input).toHaveAttribute('aria-valuemin', '0');
   });
 });

@@ -21,7 +21,7 @@
   "dataLocationLabel": "Lokalizacja danych",
   "dataLocationInfo": "Lokalizacja wartości metryki ładunku (payload) odpowiedzi. Wartość zależy od lokalizacji.",
   "targetMetricValueLabel": "Wartość docelowa metryki",
-  "targetMetricValueInfo": "Wartość docelowa do skalowania. Jeżeli dostarczona przez API metryka jest równa lub większa od tej wartości, skalowanie ma miejsce w górę. Jeżeli metryka jest mniejsza lub równa 0, skalowanie jest wyrównywane do zera. (Wartość ta może być liczbą dziesiętną.)",
+  "targetMetricValueInfo": "Wartość docelowa do skalowania. Jeżeli dostarczona przez API metryka jest równa lub większa od tej wartości, skalowanie ma miejsce w górę. Jeżeli metryka jest mniejsza lub równa 0, skalowanie jest wyrównywane do zera. (Wartość ta może być liczbą dziesiętną)",
   "targetMetricValueMinimum": "Wartość docelowa metryki musi być większa niż 0",
   "targetMetricValueRequired": "Wartość docelowa metryki jest wymagana",
   "dataLocationRequired": "Lokalizacja danych jest wymagana",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Typ agregacji",
   "aggregationTypeInfo": " Typ agregacji do wykonania przed porównaniem zagregowanej wartości metryki z wartością docelową. Na przykład, jeśli wybierzesz AVERAGE, wartość porównana z wartością docelową dla skalowania będzie średnią wartości metryki każdej repliki aplikacji AI Deploy",
   "aggregationTypeRequired": "Typ agregacji jest wymagany",
-  "metricUrlInvalid": "URL metryki musi być ważnym adresem URL rozpoczynającym się od http:// lub https://"
+  "metricUrlInvalid": "URL metryki musi być ważnym adresem URL rozpoczynającym się od http:// lub https://",
+  "scaleToZeroInputLabel": "Czas przed skalowaniem do 0 (s)",
+  "scaleToZeroInputInfo": "Liczba sekund przed zmniejszeniem z 1 do 0 replik",
+  "scaleUpDelayInputLabel": "Czas przed skalowaniem w górę (s)",
+  "scaleUpDelayInputInfo": "Liczba sekund przed skalowaniem z N do N+1 replik",
+  "scaleDownDelayInputLabel": "Czas przed skalowaniem w dół (s)",
+  "scaleDownDelayInputInfo": "Liczba sekund przed skalowaniem z N do N-1 replik",
+  "scaleToZeroWarningFlavor": "Wybrałeś skalowanie do 0. Jeśli Twoja aplikacja jest skalowana do 0 i jeśli flavor nie jest już dostępny, być może nie będziemy mogli ponownie uruchomić Twojej aplikacji.",
+  "scaleToZeroWarningTraffic": "Liczba replik zostanie zmniejszona do 0, gdy Twoja aplikacja nie będzie otrzymywać więcej połączeń w określonym czasie.",
+  "replicasSectionTitle": "Liczba replik",
+  "triggerSectionTitle": "Wyzwalacz",
+  "scaleWindowSectionTitle": "Okno skalowania"
 }

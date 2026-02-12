@@ -148,6 +148,13 @@ export function useOrderFunnel(
     averageUsageTarget: form.watch('averageUsageTarget'),
     replicasMax: form.watch('replicasMax'),
     replicasMin: form.watch('replicasMin'),
+    cooldownPeriodSeconds: form.watch('cooldownPeriodSeconds'),
+    scaleUpStabilizationWindowSeconds: form.watch(
+      'scaleUpStabilizationWindowSeconds',
+    ),
+    scaleDownStabilizationWindowSeconds: form.watch(
+      'scaleDownStabilizationWindowSeconds',
+    ),
     resourceType: form.watch('resourceType'),
     metricUrl: form.watch('metricUrl') as string | undefined,
     dataFormat: form.watch('dataFormat'),

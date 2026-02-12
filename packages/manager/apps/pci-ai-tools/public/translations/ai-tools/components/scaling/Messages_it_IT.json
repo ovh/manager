@@ -21,7 +21,7 @@
   "dataLocationLabel": "Localizzazione dei dati",
   "dataLocationInfo": "Localizzazione del valore della metrica nel payload della risposta. Il valore dipende dalla localizzazione.",
   "targetMetricValueLabel": "Valore target della metrica",
-  "targetMetricValueInfo": "Valore target per lo scaling. Quando la metrica fornita dall'API è uguale o superiore a questo valore, viene eseguito uno scaling verso l'alto. Se la metrica è minore o uguale a 0, lo scaling è riportato a 0. (Questo valore può essere un numero decimale.)",
+  "targetMetricValueInfo": "Valore target per lo scaling. Quando la metrica fornita dall'API è uguale o superiore a questo valore, viene eseguito uno scaling verso l'alto. Se la metrica è minore o uguale a 0, lo scaling è riportato a 0. (Questo valore può essere un numero decimale)",
   "targetMetricValueMinimum": "Il valore target della metrica deve essere maggiore di 0",
   "targetMetricValueRequired": "Il valore target della metrica è obbligatorio",
   "dataLocationRequired": "La localizzazione dei dati è obbligatoria",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Tipo di aggregazione",
   "aggregationTypeInfo": " Tipo di aggregazione da effettuare prima di confrontare il valore aggregato della metrica con il valore target. Per esempio, se scegli AVERAGE, il valore confrontato al valore target per lo scaling sarà la media dei valori della metrica di ciascuna replica della tua app AI Deploy",
   "aggregationTypeRequired": "Il tipo di aggregazione è obbligatorio",
-  "metricUrlInvalid": "L'URL della metrica deve essere un URL valido che inizia con http:// o https://"
+  "metricUrlInvalid": "L'URL della metrica deve essere un URL valido che inizia con http:// o https://",
+  "scaleToZeroInputLabel": "Tempo prima della scalabilità a 0 (s)",
+  "scaleToZeroInputInfo": "Numero di secondi prima della riduzione da 1 a 0 repliche",
+  "scaleUpDelayInputLabel": "Tempo prima della scalabilità verso l'alto (s)",
+  "scaleUpDelayInputInfo": "Numero di secondi prima della scalabilità da N a N+1 repliche",
+  "scaleDownDelayInputLabel": "Tempo prima della scalabilità verso il basso (s)",
+  "scaleDownDelayInputInfo": "Numero di secondi prima della scalabilità da N a N-1 repliche",
+  "scaleToZeroWarningFlavor": "Hai selezionato la scalabilità a 0. Se la tua app è scalata a 0 e se il flavor non è più disponibile, potremmo non essere in grado di riavviare la tua app.",
+  "scaleToZeroWarningTraffic": "Il numero di repliche sarà ridotto a 0 quando la tua applicazione non riceverà più chiamate durante il periodo definito.",
+  "replicasSectionTitle": "Numero di repliche",
+  "triggerSectionTitle": "Attivatore",
+  "scaleWindowSectionTitle": "Finestra di scalabilità"
 }

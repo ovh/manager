@@ -14,6 +14,11 @@ export default mergeConfig(
       globals: true,
       environment: 'jsdom',
       setupFiles: ['./src/__tests__/setupTest.ts'],
+      server: {
+        deps: {
+          inline: ['@ovhcloud/ods-react'],
+        },
+      },
       coverage: {
         include: ['src'],
         exclude: [

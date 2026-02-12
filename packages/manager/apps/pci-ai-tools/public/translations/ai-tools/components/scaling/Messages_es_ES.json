@@ -21,7 +21,7 @@
   "dataLocationLabel": "Ubicación de los datos",
   "dataLocationInfo": "Ubicación del valor de la métrica en la carga de respuesta. El valor depende de la ubicación.",
   "targetMetricValueLabel": "Valor de destino de la métrica",
-  "targetMetricValueInfo": "Valor de destino para el escalado. Cuando la métrica proporcionada por la API es igual o mayor que este valor, el escalado se realiza hacia arriba. Si la métrica es menor o igual que 0, la escala se reduce a 0. (Este valor puede ser un número decimal.)",
+  "targetMetricValueInfo": "Valor de destino para el escalado. Cuando la métrica proporcionada por la API es igual o mayor que este valor, el escalado se realiza hacia arriba. Si la métrica es menor o igual que 0, la escala se reduce a 0. (Este valor puede ser un número decimal)",
   "targetMetricValueMinimum": "El valor de destino de la métrica debe ser mayor que 0",
   "targetMetricValueRequired": "Se requiere el valor de destino de la métrica",
   "dataLocationRequired": "Se requiere la ubicación de los datos",
@@ -31,5 +31,16 @@
   "aggregationTypeLabel": "Tipo de agregación",
   "aggregationTypeInfo": " Tipo de agregación que se debe realizar antes de comparar el valor de la métrica agregada con el valor de destino. Por ejemplo, si elige AVERAGE, el valor comparado con el valor de destino para el escalado será el promedio de los valores de métrica de cada réplica de su aplicación AI Deploy",
   "aggregationTypeRequired": "Tipo de agregación requerido",
-  "metricUrlInvalid": "La dirección URL de la métrica debe ser una dirección URL válida que empiece por http:// o https://"
+  "metricUrlInvalid": "La dirección URL de la métrica debe ser una dirección URL válida que empiece por http:// o https://",
+  "scaleToZeroInputLabel": "Tiempo antes de escalar a 0 (s)",
+  "scaleToZeroInputInfo": "Número de segundos antes de reducir de 1 a 0 réplicas",
+  "scaleUpDelayInputLabel": "Tiempo antes de escalar hacia arriba (s)",
+  "scaleUpDelayInputInfo": "Número de segundos antes de escalar de N a N+1 réplicas",
+  "scaleDownDelayInputLabel": "Tiempo antes de escalar hacia abajo (s)",
+  "scaleDownDelayInputInfo": "Número de segundos antes de escalar de N a N-1 réplicas",
+  "scaleToZeroWarningFlavor": "Has seleccionado escalar a 0. Si tu aplicación se escala a 0 y el sabor ya no está disponible, es posible que no podamos reiniciar tu aplicación.",
+  "scaleToZeroWarningTraffic": "El número de réplicas se reducirá a 0 cuando tu aplicación ya no reciba llamadas durante el período definido.",
+  "replicasSectionTitle": "Número de réplicas",
+  "triggerSectionTitle": "Desencadenador",
+  "scaleWindowSectionTitle": "Ventana de escalado"
 }
