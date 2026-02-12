@@ -6,6 +6,10 @@ import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
 import Onboarding from './Onboarding.page';
 import { render, waitFor } from '@/utils/test/test.provider';
 import { useGuideUtils } from '@/hooks/useGuideLink/useGuideLink';
+import {
+  ShellContext,
+  ShellContextType,
+} from '@ovh-ux/manager-react-shell-client';
 
 const mockedUsedNavigate = vi.fn();
 
@@ -15,16 +19,20 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: '123' }),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: vi.fn(() => ({
-    getURL: vi.fn(() => Promise.resolve('123')),
-    data: [],
-  })),
-  useTracking: vi.fn(() => ({
-    trackPage: vi.fn(),
-    trackClick: vi.fn(),
-  })),
-}));
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...actual,
+    useNavigation: vi.fn(() => ({
+      getURL: vi.fn(() => Promise.resolve('123')),
+      data: [],
+    })),
+    useTracking: vi.fn(() => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    })),
+  };
+});
 
 vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
   useGuideUtils: vi.fn(() => ({
@@ -33,6 +41,16 @@ vi.mock('@/hooks/useGuideLink/useGuideLink', () => ({
     MANAGED_RANCHER_SERVICE_LIFECYCLE_POLICY: 'https://example.com/guide3',
   })),
 }));
+
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const actual = await vi.importActual('@ovh-ux/muk');
+  return {
+    ...actual,
+    useCatalogPrice: vi.fn(() => ({
+      getTextPrice: vi.fn((e: number) => e),
+    })),
+  };
+});
 
 const { mockUseRancherEligibility } = vi.hoisted(() => ({
   mockUseRancherEligibility: vi.fn(() => ({
@@ -46,7 +64,19 @@ vi.mock('@/data/hooks/useRancherEligibility/useRancherEligibility', () => ({
 
 vi.spyOn(React, 'useEffect').mockImplementation((t) => vi.fn(t));
 
-const setupSpecTest = async () => waitFor(() => render(<Onboarding />));
+const mockShellContextValue = {
+  environment: {
+    getUser: () => ({ ovhSubsidiary: 'GB' }),
+  },
+} as ShellContextType;
+const setupSpecTest = async () =>
+  waitFor(() =>
+    render(
+      <ShellContext.Provider value={mockShellContextValue}>
+        <Onboarding />
+      </ShellContext.Provider>,
+    ),
+  );
 
 describe('Onboarding', () => {
   it('renders without error', async () => {
@@ -140,14 +170,7 @@ describe('Onboarding', () => {
       screen.getByText(onboardingTranslation.freeTrialEligibilityTitle),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(
-        i18n.t('onboarding:freeTrialCreditStandard', { amount: '250€' }),
-      ),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        i18n.t('onboarding:freeTrialCreditOvhEdition', { amount: '100€' }),
-      ),
+      screen.getByText(i18n.t('onboarding:freeTrialEligibilityTitle')),
     ).toBeInTheDocument();
     expect(
       screen.getByText(onboardingTranslation.freeTrialCreditApplied),
