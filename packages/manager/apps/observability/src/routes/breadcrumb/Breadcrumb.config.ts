@@ -182,6 +182,16 @@ export const breadcrumbConfig: BreadcrumbConfig = {
         { labelKey: 'breadcrumb:dashboards' },
       ],
     },
+
+    // Managed dashboards Creation
+    {
+      pattern: urls.managedDashboardCreation,
+      items: [
+        { labelKey: 'breadcrumb:settings', path: urls.settings },
+        { labelKey: 'breadcrumb:dashboards', path: urls.managedDashboards },
+        { labelKey: 'breadcrumb:creation' },
+      ],
+    },
   ],
 
   fallbackToPathBased: true,
