@@ -64,6 +64,7 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
+          release: { id: 'release-1' },
         },
         resourceStatus: 'READY',
         iam: {
@@ -94,6 +95,7 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
+          release: { id: 'release-2' },
         },
         resourceStatus: 'READY',
         iam: {
@@ -166,6 +168,7 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
+          release: { id: 'release-1' },
         },
         resourceStatus: 'READY',
         iam: {
@@ -196,6 +199,7 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
+          release: { id: 'release-2' },
         },
         resourceStatus: 'READY',
         iam: {
