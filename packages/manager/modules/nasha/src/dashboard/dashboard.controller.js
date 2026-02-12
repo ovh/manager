@@ -18,6 +18,9 @@ export default class NashaDashboardController {
   $onInit() {
     this.nashaGuidesUrl =
       GUIDES_URL[this.user.ovhSubsidiary] || GUIDES_URL.DEFAULT;
+
+    if (this.partitions?.error)
+      this.alertError(this.partitions.error.statusText);
   }
 
   get name() {
