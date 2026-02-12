@@ -11,7 +11,7 @@ const DomainResellerInformationsPage = React.lazy(() =>
   import('@/domain-reseller/pages/tabs/DomainResellerInformations'),
 );
 const DomainResellerListPage = React.lazy(() =>
-  import('@/domain-reseller/pages/tabs/DomainsList'),
+  import('@/domain-reseller/pages/tabs/ServiceList'),
 );
 
 export default (

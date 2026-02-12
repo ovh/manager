@@ -5,6 +5,7 @@ import {
   BUTTON_VARIANT,
   Icon,
   Popover,
+  POPOVER_POSITION,
   PopoverContent,
   PopoverTrigger,
 } from '@ovhcloud/ods-react';
@@ -13,22 +14,27 @@ import { useEffect, useRef, useState } from 'react';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { handleOrderClick } from '@/common/utils/utils';
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
+import { ActionMenu } from '@ovh-ux/muk';
 
 interface TopBarCTAProps {
   readonly serviceNames: string[];
   readonly openModal: (serviceNames: string[]) => void;
   readonly openDrawer: (serviceNames: string[]) => void;
+  readonly onAssociateModalChange?: (open: boolean) => void;
+  readonly isActionMenu: boolean;
 }
 
 export default function TopBarCTA({
   serviceNames,
+  isActionMenu,
   openModal,
   openDrawer,
+  onAssociateModalChange,
 }: TopBarCTAProps) {
   const { t } = useTranslation([
     'domain',
-    NAMESPACES.ACTIONS,
     'domain-reseller',
+    NAMESPACES.ACTIONS,
   ]);
   const { region, ovhSubsidiary } = useGetEnvironmentData();
   const orderUrl = getOrderURL('orderDomain', region, ovhSubsidiary);
@@ -52,9 +58,33 @@ export default function TopBarCTA({
 
   return (
     <div className="flex items-center gap-4">
-      <Button size={BUTTON_SIZE.sm} onClick={() => handleOrderClick(orderUrl)}>
-        {t(`${NAMESPACES.ACTIONS}:order`)}
-      </Button>
+      {isActionMenu ? (
+        <ActionMenu
+          items={[
+            {
+              id: 1,
+              label: t('domain-reseller:domain_reseller_order_domain'),
+              onClick: () => handleOrderClick(orderUrl),
+            },
+            {
+              id: 2,
+              label: t('domain-reseller:domain_reseller_associate'),
+              onClick: () => onAssociateModalChange?.(true),
+            },
+          ]}
+          id={'button-dropdown'}
+          variant={BUTTON_VARIANT.default}
+          label={t(`${NAMESPACES.ACTIONS}:add`)}
+          popoverPosition={POPOVER_POSITION.bottomStart}
+        />
+      ) : (
+        <Button
+          size={BUTTON_SIZE.sm}
+          onClick={() => handleOrderClick(orderUrl)}
+        >
+          {t(`${NAMESPACES.ACTIONS}:order`)}
+        </Button>
+      )}
       <div ref={popoverRef}>
         <Popover position="bottom" open={openPopover}>
           <PopoverTrigger asChild>
