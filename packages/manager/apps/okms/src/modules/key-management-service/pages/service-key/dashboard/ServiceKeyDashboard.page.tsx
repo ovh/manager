@@ -125,7 +125,7 @@ export default function ServiceKeyDashboard() {
       >
         <GridLayout>
           <GeneralInformationTile kms={okms} serviceKey={serviceKey} />
-          <CryptoPropertiesTile serviceKey={serviceKey} />
+          <CryptoPropertiesTile kms={okms} serviceKey={serviceKey} />
         </GridLayout>
         <Outlet />
       </BaseLayout>

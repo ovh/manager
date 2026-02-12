@@ -1,5 +1,7 @@
+import ServiceKeyDownloadActions from '@key-management-service/components/service-key/service-key-download-actions/ServiceKeyDownloadActions.component';
 import { ServiceKeyOperations } from '@key-management-service/components/service-key/service-key-operations/serviceKeyOperations.component';
 import { ServiceKeyType } from '@key-management-service/components/service-key/service-key-type/serviceKeyType.component';
+import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
@@ -10,10 +12,11 @@ import { Tile } from '@ovh-ux/muk';
 import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 
 type CryptoPropertiesTileProps = {
+  kms: OKMS;
   serviceKey: OkmsServiceKey;
 };
 
-export const CryptoPropertiesTile = ({ serviceKey }: CryptoPropertiesTileProps) => {
+export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTileProps) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   return (
@@ -56,10 +59,15 @@ export const CryptoPropertiesTile = ({ serviceKey }: CryptoPropertiesTileProps) 
         <Tile.Item.Term
           label={t('key_management_service_service-keys_dashboard_field_operations')}
         />
-        <Tile.Item.Description divider={false}>
+        <Tile.Item.Description>
           <div data-testid={SERVICE_KEY_TEST_IDS.usage}>
             <ServiceKeyOperations operations={serviceKey.operations} />
           </div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Description divider={false}>
+          <ServiceKeyDownloadActions okms={kms} okmsKey={serviceKey} />
         </Tile.Item.Description>
       </Tile.Item.Root>
     </Tile.Root>

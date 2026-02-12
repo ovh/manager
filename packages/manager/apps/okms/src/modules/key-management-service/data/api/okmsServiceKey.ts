@@ -27,20 +27,28 @@ export const getOkmsServiceKeyResourceListQueryKey = (okmsId: string) => [
 export const getOkmsServiceKeyResourceQueryKey = ({
   okmsId,
   keyId,
+  format,
 }: {
   okmsId: string;
   keyId: string;
-}) => [`get/okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`];
+  format?: 'JWK' | 'PEM';
+}) => {
+  const formatSuffix = format ? `?format=${format}` : '';
+  return [`get/okms/resource/${okmsId}/serviceKey/${keyId}${formatSuffix}`];
+};
 
 export const getOkmsServiceKeyResource = async ({
   okmsId,
   keyId,
+  format,
 }: {
   okmsId: string;
   keyId: string;
+  format?: 'JWK' | 'PEM';
 }): Promise<OkmsServiceKeyWithData> => {
+  const formatParam = format ? `?format=${format}` : '';
   const { data } = await apiClient.v2.get<OkmsServiceKeyWithData>(
-    `okms/resource/${okmsId}/serviceKey/${keyId}?format=JWK`,
+    `okms/resource/${okmsId}/serviceKey/${keyId}${formatParam}`,
   );
   return data;
 };
