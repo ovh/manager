@@ -9,6 +9,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { useCreateShare } from '@/data/hooks/shares/useCreateShare';
+import { isApiErrorResponse } from '@/data/utils';
 import { useProjectId } from '@/hooks/useProjectId';
 import { AvailabilityZoneSelection } from '@/pages/create/components/localisation/availabilityZone/AvailabilityZoneSelection.component';
 import { DeploymentModeSection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSection.component';
@@ -24,7 +25,6 @@ import {
   selectAvailabilityZones,
   selectMicroRegions,
 } from '@/pages/create/view-model/shareCatalog.view-model';
-import { isApiErrorResponse } from '@/utils';
 
 export const CreateShareForm = () => {
   const { t } = useTranslation(['create', NAMESPACES.ACTIONS]);
