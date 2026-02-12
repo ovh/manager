@@ -1,27 +1,19 @@
 import { useEffect, useMemo } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import {
-  OsdsModal,
-  OsdsButton,
-  OsdsFormField,
-  OsdsText,
-  OsdsInput,
-  OsdsTextarea,
-  OsdsDatepicker,
-  OsdsCheckbox,
-  OsdsCheckboxButton,
-  OsdsChip,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_INPUT_TYPE,
-  ODS_TEXT_LEVEL,
-  ODS_TEXT_SIZE,
-  ODS_CHECKBOX_BUTTON_SIZE,
-  ODS_CHIP_SIZE,
-} from '@ovhcloud/ods-components';
+import { OsdsModal, OsdsDatepicker } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import {
+  Button,
+  Checkbox,
+  CheckboxControl,
+  CheckboxLabel,
+  FormField,
+  Text,
+  Badge,
+  Textarea,
+  Input,
+} from '@ovhcloud/ods-react';
 import getLocaleForDatePicker from '@/components/utils/getLocaleForDatepicker';
 
 type UpdateModalProps = {
@@ -119,106 +111,79 @@ export default function UpdateModal({
       onOdsModalClose={onClose}
       headline={modalHeadline}
     >
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+      <FormField>
+        <Text preset="paragraph" className="mt-6">
           {t('ai_endpoints_token_name')}
-        </OsdsText>
+        </Text>
         <Controller
           control={control}
           name="tokenName"
           render={({ field: { value } }) => (
-            <OsdsInput
-              ariaLabel="token-name-input"
+            <Input
+              aria-label="token-name-input"
               color={ODS_THEME_COLOR_INTENT.primary}
-              type={ODS_INPUT_TYPE.text}
+              type="text"
               value={value || ''}
               disabled
               className="max-w-[23.125rem] mt-2"
             />
           )}
         />
-      </OsdsFormField>
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="flex mt-6"
-          slot="label"
-        >
+      </FormField>
+      <FormField>
+        <Text preset="paragraph" className="flex mt-6">
           {t('ai_endpoints_token_description')}
-        </OsdsText>
+        </Text>
         <Controller
           control={control}
           name="description"
           render={({ field: { onChange, onBlur, value, ref } }) => (
-            <OsdsTextarea
-              ariaLabel={t('ai_endpoints_token_description')}
+            <Textarea
+              aria-label={t('ai_endpoints_token_description')}
               rows={5}
               placeholder={t('ai_endpoints_token_description_placeholder')}
               className="mt-2"
               value={value || ''}
-              onOdsValueChange={(e: CustomEvent<{ value?: string }>) => {
-                const newVal =
-                  e.detail?.value ??
-                  ((e.target as unknown) as HTMLTextAreaElement)?.value ??
-                  '';
-                onChange(newVal);
+              onChange={(event) => {
+                onChange(event.target.value);
               }}
               onBlur={onBlur}
               ref={ref}
             />
           )}
         />
-      </OsdsFormField>
-      <OsdsFormField>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          className="mt-6"
-          slot="label"
-        >
+      </FormField>
+      <FormField className="mt-2">
+        <Text preset="paragraph" className="mt-6">
           <span className="pr-4">{t('ai_endpoints_token_expires')}</span>
-          <OsdsChip
+          <Badge
             className="inline-flex max-w-fit justify-center"
-            color={ODS_THEME_COLOR_INTENT.primary}
-            size={ODS_CHIP_SIZE.sm}
+            color="information"
           >
             {displayChipValue}
-          </OsdsChip>
-        </OsdsText>
-      </OsdsFormField>
-      <OsdsFormField>
+          </Badge>
+        </Text>
+      </FormField>
+      <FormField>
         <Controller
           control={control}
           name="isChecked"
           render={({ field: { value, onChange } }) => (
-            <OsdsCheckbox
+            <Checkbox
               checked={value}
-              onOdsCheckedChange={(e) => onChange(e.detail.checked)}
+              onCheckedChange={(e) => onChange(e.checked)}
               className="mt-2 -ml-2 max-w-fit"
             >
-              <OsdsCheckboxButton
-                size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-                color={ODS_THEME_COLOR_INTENT.text}
-              >
-                <span slot="end">
-                  <OsdsText
-                    color={ODS_THEME_COLOR_INTENT.text}
-                    level={ODS_TEXT_LEVEL.body}
-                    size={ODS_TEXT_SIZE._400}
-                  >
-                    {checkboxLabel}
-                  </OsdsText>
-                </span>
-              </OsdsCheckboxButton>
-            </OsdsCheckbox>
+              <CheckboxControl />
+              <CheckboxLabel>
+                <Text>{checkboxLabel}</Text>
+              </CheckboxLabel>
+            </Checkbox>
           )}
         />
-      </OsdsFormField>
+      </FormField>
       {isChecked && (
-        <OsdsFormField>
+        <FormField>
           <Controller
             control={control}
             name="expirationDate"
@@ -238,16 +203,11 @@ export default function UpdateModal({
               />
             )}
           />
-        </OsdsFormField>
+        </FormField>
       )}
-      <OsdsButton
-        slot="actions"
-        color={ODS_THEME_COLOR_INTENT.primary}
-        variant={ODS_BUTTON_VARIANT.flat}
-        onClick={handleSubmit(onFormSubmit)}
-      >
+      <Button slot="actions" onClick={handleSubmit(onFormSubmit)}>
         {actionLabel}
-      </OsdsButton>
+      </Button>
     </OsdsModal>
   );
 }

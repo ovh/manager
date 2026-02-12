@@ -2,19 +2,20 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
-  OsdsDatepicker,
-  OsdsText,
-  OsdsSelect,
-  OsdsSelectOption,
-  OsdsFormField,
-  OsdsMessage,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_TEXT_SIZE,
-  ODS_TEXT_LEVEL,
-  ODS_MESSAGE_TYPE,
-} from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+  FormField,
+  Datepicker,
+  DatepickerControl,
+  DatepickerContent,
+  Select,
+  SelectControl,
+  SelectContent,
+} from '@ovhcloud/ods-react';
 import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
 import Metric from '@/components/Metric';
 import { useDateLocale } from '@/hooks/metric/useDateLocale.hook';
@@ -60,102 +61,100 @@ export default function MetricPage() {
       : metricsData;
 
   const localDatePicker = getLocaleForDatePicker();
-
+  const allModelsItems = [
+    {
+      label: t('ai_endpoints_allModel'),
+      value: t('ai_endpoints_allModel'),
+    },
+    ...metricsData.map((metric: MetricData) => ({
+      label: metric.model,
+      value: metric.model,
+    })),
+  ];
   return (
     <>
       <div className="flex flex-col max-w-fit">
         {Array.isArray(metricsQuery?.data) && (
           <>
             {metricsQuery.data.length === 0 && (
-              <OsdsMessage
-                type={ODS_MESSAGE_TYPE.info}
+              <Message
+                color={MESSAGE_COLOR.information}
                 className="mb-6 max-w-[902px]"
               >
-                <OsdsText
-                  level={ODS_TEXT_LEVEL.body}
-                  size={ODS_TEXT_SIZE._400}
-                  color={ODS_THEME_COLOR_INTENT.text}
-                >
-                  {t('ai_endpoints_no_data_for_the_selected_period')}
-                </OsdsText>
-              </OsdsMessage>
+                <MessageIcon name="circle-info" />
+                <MessageBody>
+                  <Text preset={TEXT_PRESET.paragraph}>
+                    {t('ai_endpoints_no_data_for_the_selected_period')}
+                  </Text>
+                </MessageBody>
+              </Message>
             )}
           </>
         )}
         <div className="flex flex-col md:flex-row">
           <div className="flex mr-8 max-lg:pb-4">
-            <OsdsFormField>
-              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
-                {t('ai_endpoints_models')}
-              </OsdsText>
-              <OsdsSelect
-                id="model"
+            <FormField>
+              <Text preset={TEXT_PRESET.small}>{t('ai_endpoints_models')}</Text>
+              <Select
+                defaultValue={t('ai_endpoints_allModel')}
                 className="min-w-[250px] h-fit"
-                value={selectedModel}
-                onOdsValueChange={(v) =>
-                  setSelectedModel(String(v.detail.value))
-                }
+                items={allModelsItems}
+                onValueChange={(v) => setSelectedModel(String(v.value))}
               >
-                <OsdsSelectOption value={t('ai_endpoints_allModel')}>
-                  {t('ai_endpoints_allModel')}
-                </OsdsSelectOption>
-                {metricsData.map((metric: MetricData) => (
-                  <OsdsSelectOption key={metric.model} value={metric.model}>
-                    {metric.model}
-                  </OsdsSelectOption>
-                ))}
-              </OsdsSelect>
-            </OsdsFormField>
+                <SelectControl />
+                <SelectContent />
+              </Select>
+            </FormField>
           </div>
           <div className="flex flex-col lg:flex-row">
-            <OsdsFormField className="flex lg:mr-8 max-lg:pb-4">
-              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
+            <FormField className="flex lg:mr-8 max-lg:pb-4">
+              <Text preset={TEXT_PRESET.small}>
                 {t('ai_endpoints_startDate')}
-              </OsdsText>
-              <OsdsDatepicker
+              </Text>
+              <Datepicker
                 value={startTime}
-                onOdsDatepickerValueChange={(v) =>
-                  handleStartTimeChange(v.detail.value)
-                }
-                maxDate={endTime}
+                max={endTime}
                 locale={localDatePicker}
-              />
-            </OsdsFormField>
-            <OsdsFormField className="flex max-sm:pb-4">
-              <OsdsText slot="label" color={ODS_THEME_COLOR_INTENT.text}>
+                onValueChange={(v) => handleStartTimeChange(v.value)}
+              >
+                <DatepickerControl />
+                <DatepickerContent />
+              </Datepicker>
+            </FormField>
+            <FormField className="flex max-sm:pb-4">
+              <Text preset={TEXT_PRESET.small}>
                 {t('ai_endpoints_endDate')}
-              </OsdsText>
-              <OsdsDatepicker
+              </Text>
+              <Datepicker
                 value={endTime}
-                onOdsDatepickerValueChange={(v) =>
-                  handleEndTimeChange(v.detail.value)
-                }
-                maxDate={maxDate}
-                minDate={startTime}
                 locale={localDatePicker}
-              />
-            </OsdsFormField>
+                max={maxDate}
+                min={startTime}
+                onValueChange={(v) => handleEndTimeChange(v.value)}
+              >
+                <DatepickerControl />
+                <DatepickerContent />
+              </Datepicker>
+            </FormField>
           </div>
         </div>
         <div className="flex">
-          <OsdsText
-            color={ODS_THEME_COLOR_INTENT.primary}
-            className="pt-4 border-2 rounded-4 border-black"
-          >{`Timezone: ${timeZone}`}</OsdsText>
+          <Text
+            preset={TEXT_PRESET.small}
+            className="pt-4 border-2 rounded-4  text-[var(--ods-theme-primary-color)]"
+          >{`Timezone: ${timeZone}`}</Text>
         </div>
       </div>
       {Array.isArray(metricsQuery?.data) && (
         <>
           {metricsQuery.data.length === 0 ? (
             <div className="mt-[150px] flex justify-center w-[70vw] mx-auto">
-              <OsdsText
-                color={ODS_THEME_COLOR_INTENT.default}
-                level={ODS_TEXT_LEVEL.body}
-                size={ODS_TEXT_SIZE._600}
-                className=" text-center"
+              <Text
+                preset={TEXT_PRESET.label}
+                className="text-center text-[var(--ods-theme-neutral-color)]"
               >
                 {t('ai_endpoints_noData')}
-              </OsdsText>
+              </Text>
             </div>
           ) : (
             <div className="flex flex-wrap justify-center">
