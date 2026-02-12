@@ -28,7 +28,7 @@
   "sms_order_account_channel_transactional_footer": "It is subject to less restrictive regulations than the marketing channel (e.g. sending at any time of day possible)",
   "sms_order_header_guide": "Guides",
   "sms_order_header_guide_start_with_sms": "Getting started with OVHcloud SMS",
-  "sms_order_info_message": "Attention: an account is required for Time2Chat. If you don't have one, activate the welcome offer of 20 free SMS to create your account, then subscribe to Time2Chat.",
-  "sms_order_info_welcome_link": "Receive your 20 free SMS now",
-  "sms_order_info_guide_link": "Need help? See the guide"
+  "sms_order_info_message": "Important! You need an account to use Time2Chat. If you don’t have one, activate the free 20 SMS welcome pack to create your account, then subscribe to Time2Chat.",
+  "sms_order_info_welcome_link": "Get your free 20 SMS messages now",
+  "sms_order_info_guide_link": "Need help? Follow the guide."
 }

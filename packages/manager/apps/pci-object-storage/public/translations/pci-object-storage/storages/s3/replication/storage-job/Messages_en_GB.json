@@ -1,11 +1,11 @@
 {
-  "storageJobTitle": "Create a synchronisation rule",
-  "storageJobDescription": "Retroactively apply your replication configuration to replicate objects uploaded before the replication rules were created. This action triggers a job that runs in the background, tasked with synchronising your buckets. To learn more about asynchronous replication, refer to the documentation",
+  "storageJobTitle": "Create synchronisation rule",
+  "storageJobDescription": "Before creating your replication rules, ensure your replication configuration is applied retroactively to copy objects that were uploaded previously. This action triggers a job that runs in the background, and its purpose is to sync your buckets. To learn more about asynchronous replication, see the documentation",
   "storageJobDescriptionLink": "here",
   "storageJobButtonConfirm": "Replicate existing objects",
   "storageJobButtonCancel": "Cancel",
   "storageJobToastSuccessTitle": "Synchronisation rule created",
-  "storageJobToastSuccessMessage": "The synchronisation rule has been created successfully.",
-  "storageJobToastErrorTitle": "Error during creation",
+  "storageJobToastSuccessMessage": "The synchronisation rule has been created.",
+  "storageJobToastErrorTitle": "An error has occurred",
   "storageJobToastErrorMessage": "An error occurred while creating the synchronisation rule: {{message}}."
 }

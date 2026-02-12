@@ -57,7 +57,7 @@
   "key_management_service_dashboard_dashboard_field_state_toActivate": "Enabling required",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "To be deleted",
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "To be suspended",
-  "key_management_service_dashboard_back_link": "Return to the OKMS domain list",
+  "key_management_service_dashboard_back_link": "Back to OKMS domains list",
   "key_management_service_dashboard_field_label_kmip_count": "Number of KMIP objects",
   "key_management_service_dashboard_field_label_service-keys_count": "Number of Service Keys",
   "logs": "Logs",

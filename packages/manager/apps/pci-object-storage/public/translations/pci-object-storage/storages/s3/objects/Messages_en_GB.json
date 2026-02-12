@@ -80,8 +80,8 @@
   "bulkDeleteVersionsDescription_one": "Do you want to permanently delete {{count}} version? This action cannot be reversed.",
   "bulkDeleteVersionsDescription_other": "Do you want to permanently delete {{count}} versions? This action cannot be reversed.",
   "bulkDeleteVersionsConfirmation": "Enter {{confirmation}} to confirm",
-  "downloadErrorDescription": "Error while uploading the file",
-  "downloadErrorStatus": "Error while uploading: {{status}}",
-  "downloadErrorUnknownType": "Unknown upload type",
+  "downloadErrorDescription": "An error occurred while downloading the file",
+  "downloadErrorStatus": "Unable to download: {{status}}",
+  "downloadErrorUnknownType": "Unknown download type",
   "openFolder": "Open {{name}} folder"
 }

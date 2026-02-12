@@ -79,5 +79,7 @@
   "warning3AZTo1AZ": "The Cold Archive storage class is only available with the 3-AZ deployment mode and in the Paris region. By default, your source objects stored in the Cold Archive will be replicated to Infrequent Access, which is the closest storage class in terms of usage.",
   "inconsistentReplicationRulesAlert": "Some replication rules point to a destination that has been deleted. Please delete these rules before creating new replications.",
   "deletedDestinationTooltip": "The destination container has been deleted",
-  "createSyncRule": "Create a synchronisation rule"
+  "createSyncRule": "Create synchronisation rule",
+  "addReplicationBreadcrumb": "Add",
+  "editReplicationBreadcrumb": "Edit"
 }
