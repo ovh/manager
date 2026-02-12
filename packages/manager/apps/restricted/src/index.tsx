@@ -98,3 +98,4 @@ Promise.all([importConfig(), fetchAuth(), fetchMe()]).then(() => {
 });
 
 // Test Comment to verify new deploy model on 13/03
+// Test to deploy a dummy release and should be reverted

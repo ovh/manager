@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.9...@ovh-ux/manager-restricted-app@0.15.0) (2026-02-12)
+
+
+### Features
+
+* **cdsv2:** test deploy uapp & monolithe with CDSv2 workflow ([9b9b7f3](https://github.com/ovh/manager/commit/9b9b7f3a634b3b5acd926074ae732553253f003e))
+
+
+
+
+
 ## [0.14.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-restricted-app@0.14.8...@ovh-ux/manager-restricted-app@0.14.9) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-restricted-app
