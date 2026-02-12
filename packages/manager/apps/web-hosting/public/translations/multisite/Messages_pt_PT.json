@@ -1,9 +1,9 @@
 {
   "multisite_git_state_tooltip_lastdeploy": "Consulte as informações da última implementação",
   "multisite_git_state_tooltip_disabled": "Clique no botão de ação para associar o Git",
-  "multisite_tooltip_diagnostic_good_configuration": "O seu domínio {{ domainName }} está configurado para o endereço IP {{ ip }} da sua hospedagem",
-  "multisite_tooltip_diagnostic_not_good_configuration": "O seu domínio {{ domainName }} está configurado para o endereço IP {{ ip }} de outro serviço",
-  "multisite_tooltip_diagnostic_unconfigured": "Esta entrada na sua zona DNS não funciona. Nenhuma configuração foi encontrada na sua zona DNS",
+  "multisite_tooltip_diagnostic_good_configuration": "O seu domínio {{ domainName }} foi corretamente configurado no endereço IP {{ ip }} do seu alojamento",
+  "multisite_tooltip_diagnostic_not_good_configuration": "O seu domínio {{ domainName }} está atualmente a apontar para o endereço IP {{ externalIp }} de outro alojamento. Para corrigir esta situação, atualize o campo {{ type }} na zona DNS do domínio e substitua-o pelo endereço IP {{ ip }}.",
+  "multisite_tooltip_diagnostic_unconfigured": "Não foi encontrada nenhuma configuração válida na zona DNS. Para resolver o problema, adicione um campo {{ type }} com o endereço IP {{ ip }} na zona DNS do domínio {{ domainName }}.",
   "multisite_git_modal_delete_association_title": "Remover a associação do Git",
   "multisite_git_modal_delete_association_description1": "Você está prestes a remover a associação do Git.",
   "multisite_git_modal_delete_association_description2": "<strong>A remoção será aplicada a todos os domínios que apontam para o seu diretório.</strong>",
