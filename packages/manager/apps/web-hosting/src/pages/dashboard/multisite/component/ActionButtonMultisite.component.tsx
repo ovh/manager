@@ -12,6 +12,7 @@ import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import { useWebHostingWebsite } from '@/data/hooks/webHosting/webHostingWebsite/useWebHostingWebsite';
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import {
+  HostingOfferType,
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
 } from '@/data/types/product/webHosting';
@@ -57,30 +58,35 @@ const ActionButtonMultisite: React.FC<ActionButtonMultisiteProps> = ({
       const vcsStatus = website?.currentState?.git?.status;
       // @TODO FOR NEXT STEP
       // const hasModule = !!website?.currentState?.module?.name;
+      const isFreeOrStartOffer = [
+        HostingOfferType.HOSTING_FREE_100M,
+        HostingOfferType.START10M_ADDON_V1,
+      ].includes(service?.offer as HostingOfferType);
 
-      const canAssociateGit = [GitStatus.DISABLED, GitStatus.INITIALERROR].includes(vcsStatus);
+      const canAssociateGit =
+        [GitStatus.DISABLED, GitStatus.INITIALERROR].includes(vcsStatus) && !isFreeOrStartOffer;
 
-      const canConfigureGit = [GitStatus.CREATED, GitStatus.ERROR, GitStatus.DEPLOYING].includes(
-        vcsStatus,
-      );
+      const canConfigureGit =
+        [GitStatus.CREATED, GitStatus.ERROR, GitStatus.DEPLOYING].includes(vcsStatus) &&
+        !isFreeOrStartOffer;
 
       const canAddDomain = [ResourceStatus.READY].includes(website?.resourceStatus);
-      const canDeployGit = [GitStatus.CREATED, GitStatus.ERROR].includes(vcsStatus);
+      const canDeployGit =
+        [GitStatus.CREATED, GitStatus.ERROR].includes(vcsStatus) && !isFreeOrStartOffer;
 
-      const canViewLastDeploymentGit = [
-        GitStatus.CREATED,
-        GitStatus.ERROR,
-        GitStatus.INITIALERROR,
-        GitStatus.DEPLOYING,
-        GitStatus.DELETING,
-      ].includes(vcsStatus);
+      const canViewLastDeploymentGit =
+        [
+          GitStatus.CREATED,
+          GitStatus.ERROR,
+          GitStatus.INITIALERROR,
+          GitStatus.DEPLOYING,
+          GitStatus.DELETING,
+        ].includes(vcsStatus) && !isFreeOrStartOffer;
 
-      const canDeleteGit = [
-        GitStatus.CREATED,
-        GitStatus.ERROR,
-        GitStatus.INITIALERROR,
-        GitStatus.DEPLOYING,
-      ].includes(vcsStatus);
+      const canDeleteGit =
+        [GitStatus.CREATED, GitStatus.ERROR, GitStatus.INITIALERROR, GitStatus.DEPLOYING].includes(
+          vcsStatus,
+        ) && !isFreeOrStartOffer;
 
       const siteActions: ActionMenuItemProps[] = [
         {
