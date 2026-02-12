@@ -26,9 +26,16 @@ import { useDomainDataApiWithRouteParams } from '@/domain/hooks/useDomainDataApi
 
 interface DomainsListProps {
   baseRoute: string;
+  associateModalOpen?: boolean;
+  isActionMenu: boolean;
+  onAssociateModalChange?: (open: boolean) => void;
 }
 
-export default function DomainsList({ baseRoute }: DomainsListProps) {
+export default function DomainsList({
+  baseRoute,
+  isActionMenu,
+  onAssociateModalChange,
+}: DomainsListProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const {
@@ -189,6 +196,8 @@ export default function DomainsList({ baseRoute }: DomainsListProps) {
             serviceNames={selectedServiceNames}
             openModal={openModal}
             openDrawer={openDrawer}
+            onAssociateModalChange={onAssociateModalChange}
+            isActionMenu={isActionMenu}
           />
         }
         rowSelection={{

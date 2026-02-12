@@ -18,7 +18,7 @@ import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact, handleOrderClick } from '@/common/utils/utils';
 import GeneralInformations from '@/domain-reseller/components/Dashboard/GeneralInformations';
 import Subscription from '@/domain-reseller/components/Dashboard/Subscription';
-import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
+import { useGetDomainsListByNicBilling } from '@/domain-reseller/hooks/data/query';
 import Loading from '@/domain/components/Loading/Loading';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
@@ -40,7 +40,9 @@ export default function DomainResellerInformations() {
     );
   }, [serviceInfo]);
 
-  const { data: domainslist, isLoading } = useGetDomainsList(nicAdmin);
+  const { data: domainslist, isLoading } = useGetDomainsListByNicBilling(
+    nicAdmin,
+  );
 
   if (isServiceInfoLoading || isLoading) {
     return <Loading />;
@@ -68,14 +70,6 @@ export default function DomainResellerInformations() {
             data-testid="add-domain-button"
           >
             {t('domain_reseller_button_add_domain')}
-          </Button>
-          {/* The button is not usable for the moment, waiting for order API */}
-          <Button
-            variant={BUTTON_VARIANT.outline}
-            data-testid="download-catalog-button"
-          >
-            {t('domain_reseller_button_download_catalog')}
-            <Icon name={ICON_NAME.download} />
           </Button>
         </div>
         <div

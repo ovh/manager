@@ -8,5 +8,12 @@
   "domain_reseller_general_informations_domains_length": "{{ length }} noms de domaine actifs",
   "domain_reseller_renew_mode_label": "Mode de renouvellement",
   "domain_reseller_renew_mode_automatic": "Automatique",
-  "domain_reseller_tab_my_domains": "Mes noms de domaine"
+  "domain_reseller_tab_my_domains": "Mes noms de domaine",
+  "domain_reseller_associate": "Associer",
+  "domain_reseller_order_domain": "Commander un nom de domaine",
+  "domain_reseller_associate_modal_title": "Choisissez les noms de domaine à associer",
+  "domain_reseller_associate_modal_placeholder": "Sélectionner les noms de domaine",
+  "domain_reseller_associate_modal_description": "Êtes-vous sur de vouloir associer ces noms de domaine au NIC de facturation de ce compte ?",
+  "domain_reseller_associate_modal_associate_error": "Une erreur est survenue lors de la demande de changement de contact.",
+  "domain_reseller_associate_modal_associate_success": " La demande de changement de contact a été effectuée avec succès. Les contacts concernés par la demande recevront un e-mail contenant la procédure de validation."
 }
