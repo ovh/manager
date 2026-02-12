@@ -3,5 +3,6 @@
   "objectsTab": "Obiekty",
   "replicationTab": "Replikacja",
   "logsTab": "Logi",
-  "settingsTab": "Konfiguracja"
+  "settingsTab": "Konfiguracja",
+  "lifecycleTab": "Cykl życia"
 }

@@ -1,0 +1,23 @@
+{
+  "title": "Règles de cycle de vie",
+  "createLifecycle": "Créer une règle",
+  "columnName": "Nom de la règle",
+  "columnStatus": "Statut",
+  "columnScope": "Portée",
+  "columnCurrentVersionOperations": "Opérations sur les versions courantes",
+  "columnNoncurrentVersionOperations": "Opérations sur les versions non-courantes",
+  "columnDeleteMarker": "Suppression auto des marqueurs de suppression expirés",
+  "columnAbortMultipart": "Suppression auto des MPU non-complétés",
+  "columnActions": "Actions",
+  "statusEnabled": "Activé",
+  "statusDisabled": "Désactivé",
+  "scopeAllObjects": "Tous les objets",
+  "scopeFiltered": "Filtré",
+  "operationsCount": "{{count}} opération(s)",
+  "noOperations": "Aucune",
+  "openMenu": "Ouvrir le menu",
+  "actionEdit": "Modifier",
+  "actionEnable": "Activer",
+  "actionDisable": "Désactiver",
+  "actionDelete": "Supprimer"
+}
