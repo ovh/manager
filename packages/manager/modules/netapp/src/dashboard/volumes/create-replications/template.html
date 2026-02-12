@@ -2,14 +2,14 @@
     data-loading="$ctrl.onPostLoad"
     data-on-dismiss="$ctrl.goToVolumes()"
     data-heading="{{:: 'netapp_network_volumes_replications_title' | translate }}"
-    data-primary-label="{{:: !$ctrl.isNetworkAvailable && $ctrl.hasAvailableReplicationsServices() ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
+    data-primary-label="{{:: !$ctrl.isNetworkAvailable && $ctrl.hasAvailableReplicationsServices ? 'netapp_network_volumes_replications_button_sync' : 'netapp_network_volumes_replications_button_buy' | translate }}"
     data-primary-action="$ctrl.onPrimaryClick()"
     data-secondary-label="{{:: 'netapp_network_volumes_replications_button_cancel' | translate }}"
     data-secondary-action="$ctrl.goToVolumes()"
     data-primary-disabled="$ctrl.isPrimaryButtonDisabled()"
 >
     <div
-        data-ng-if="!$ctrl.replicationsSelectedVolumes.length && $ctrl.hasAvailableReplicationsServices()"
+        data-ng-if="!$ctrl.replicationsSelectedVolumes.length && $ctrl.hasAvailableReplicationsServices"
     >
         <strong
             data-translate="netapp_network_volumes_no_selected_volume_replications_subtitle"
@@ -18,7 +18,7 @@
             data-translate="netapp_network_volumes_no_selected_volume_replications_description"
         ></p>
     </div>
-    <div data-ng-if="!$ctrl.hasAvailableReplicationsServices()">
+    <div data-ng-if="!$ctrl.hasAvailableReplicationsServices">
         <strong
             data-translate="netapp_network_volumes_no_replications_subtitle"
         ></strong>
@@ -27,7 +27,7 @@
         ></p>
     </div>
     <div
-        data-ng-if="$ctrl.hasAvailableReplicationsServices() && $ctrl.replicationsSelectedVolumes.length"
+        data-ng-if="$ctrl.hasAvailableReplicationsServices && $ctrl.replicationsSelectedVolumes.length"
     >
         <p data-translate="netapp_network_volumes_replications_description"></p>
         <p

@@ -1,7 +1,6 @@
 export default class NetappVolumesCreateReplicationsCtrl {
-  /* @ngInject */ constructor(NetAppDashboardService, $translate) {
-    this.hasAvailableReplicationsServices =
-      NetAppDashboardService.hasAvailableReplicationsServices;
+  /* @ngInject */
+  constructor(NetAppDashboardService, $translate) {
     this.optionsReplicationsAvaibleServices = [];
     this.onPostLoad = false;
     this.replicationsSelectedVolumes =
@@ -61,7 +60,7 @@ export default class NetappVolumesCreateReplicationsCtrl {
   isPrimaryButtonDisabled() {
     return (
       this.onPostLoad ||
-      (this.hasAvailableReplicationsServices() && !this.destinationServiceId)
+      (this.hasAvailableReplicationsServices && !this.destinationServiceId)
     );
   }
 }
