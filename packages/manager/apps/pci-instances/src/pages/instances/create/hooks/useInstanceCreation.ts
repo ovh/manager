@@ -33,6 +33,11 @@ import {
 } from '../view-models/networksViewModel';
 import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { selectMicroRegionDeploymentMode } from '../view-models/microRegionsViewModel';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
@@ -109,6 +114,7 @@ export const getPublicNetworkCartItem = ({
 // eslint-disable-next-line max-lines-per-function
 export const useInstanceCreation = (): TInstanceCreation => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const projectId = useProjectId();
   const {
     control,
@@ -136,6 +142,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
     ipPublicType,
     floatingIpAssignment,
     existingFloatingIpId,
+    flavorCategory,
+    distributionImageType,
   ] = useWatch({
     control,
     name: [
@@ -160,6 +168,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'ipPublicType',
       'floatingIpAssignment',
       'existingFloatingIpId',
+      'flavorCategory',
+      'distributionImageType',
     ],
   });
   const { data: project } = useProject();
@@ -305,6 +315,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const needsSshKey = distributionImageOsType !== 'windows';
 
+  const hasImageRequirements =
+    !!backup?.id ||
+    (!!distributionImageVersion.distributionImageVersionId &&
+      !!distributionImageVersion.distributionImageVersionName);
+
   const hasBaseRequirements =
     !!name &&
     !!quantity &&
@@ -312,7 +327,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     quantity <= quota &&
     !!microRegion &&
     !!flavorDetails?.id &&
-    !!distributionImageVersion.distributionImageVersionId;
+    hasImageRequirements;
 
   const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
 
@@ -328,6 +343,27 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        'add_instance',
+        'instances_created',
+        billingType,
+        microRegion,
+        ...(deploymentMode === 'region-3-az'
+          ? [availabilityZone ? 'manually' : 'automated']
+          : []),
+        flavorDetails.name,
+        ...(flavorCategory ? [flavorCategory] : []),
+        distributionImageType,
+        backup
+          ? 'backup'
+          : distributionImageVersion.distributionImageVersionName!,
+      ],
+    });
 
     const instance = mapFlavorToDTO({
       name,
