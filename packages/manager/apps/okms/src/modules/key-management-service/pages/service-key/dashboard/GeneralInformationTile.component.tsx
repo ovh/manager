@@ -85,19 +85,10 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
         </Tile.Item.Description>
       </Tile.Item.Root>
       <Tile.Item.Root>
-        <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_state')} />
-        <Tile.Item.Description>
-          <div>
-            <ServiceKeyStatus state={serviceKey.state} data-testid={SERVICE_KEY_TEST_IDS.status} />
-            <ServiceKeyStateActions okms={kms} okmsKey={serviceKey} />
-          </div>
-        </Tile.Item.Description>
-      </Tile.Item.Root>
-      <Tile.Item.Root>
         <Tile.Item.Term
           label={t('key_management_service_service-keys_dashboard_field_created_at')}
         />
-        <Tile.Item.Description divider={false}>
+        <Tile.Item.Description>
           <div data-testid={SERVICE_KEY_TEST_IDS.creationDate}>
             <TileValueDate
               value={serviceKey.createdAt}
@@ -112,6 +103,17 @@ export const GeneralInformationTile = ({ kms, serviceKey }: GeneralInformationTi
               }}
             />
           </div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_state')} />
+        <Tile.Item.Description>
+          <ServiceKeyStatus state={serviceKey.state} data-testid={SERVICE_KEY_TEST_IDS.status} />
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Description divider={false}>
+          <ServiceKeyStateActions okms={kms} okmsKey={serviceKey} />
         </Tile.Item.Description>
       </Tile.Item.Root>
     </Tile.Root>

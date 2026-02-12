@@ -47,6 +47,8 @@ export type TrackingTags =
   | 'region'
   | 'value'
   | 'version'
+  | 'pem'
+  | 'jwk'
   // guides
   | 'guide-kmip'
   | 'guide-quick-start'
