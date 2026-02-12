@@ -63,7 +63,7 @@ export const ShareGeneralInfoBlock: React.FC = () => {
       {shareDetails?.enabledActions.includes('delete') && (
         <DashboardTileBlock isLoading={isLoading}>
           <ActionLink
-            path={`../${subRoutes.shareDelete}`}
+            path={`./${subRoutes.shareDelete}`}
             className="w-fit text-[--ods-color-critical-600]"
             label={t('general_information:actions.delete')}
           />
