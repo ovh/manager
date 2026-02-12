@@ -10,7 +10,8 @@ export const getWillPaymentUrl = () => {
   }
 
   return (
-    (isLabeuEnvironment() && __WP_LABEU_ENTRY_POINT__) ||
-    'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js'
+  (isLabeuEnvironment() &&
+    (typeof __WP_LABEU_ENTRY_POINT__ === 'string' ? __WP_LABEU_ENTRY_POINT__ : '')) ||
+  'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js'
   );
 };
