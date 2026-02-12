@@ -6,10 +6,12 @@ import {
 } from '@/common/enum/common.enum';
 import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact } from '@/common/utils/utils';
+import AssociateModal from '@/domain-reseller/components/Modal/AssociateModal';
 import Loading from '@/domain/components/Loading/Loading';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function DomainResellerDomainsList() {
+  const [associateModalOpen, setAssociateModalOpen] = useState<boolean>(false);
   const {
     serviceInfo,
     isServiceInfoLoading,
@@ -27,5 +29,20 @@ export default function DomainResellerDomainsList() {
     return <Loading />;
   }
 
-  return <DomainsList baseRoute={resellerDomainsListApiUrl(nicAdmin)} />;
+  return (
+    <div data-testid="domain-reseller-domains-list">
+      <DomainsList
+        baseRoute={resellerDomainsListApiUrl(nicAdmin)}
+        onAssociateModalChange={setAssociateModalOpen}
+        isActionMenu
+      />
+      {associateModalOpen && (
+        <AssociateModal
+          isOpen={associateModalOpen}
+          nicAdmin={nicAdmin}
+          onAssociateModalChange={setAssociateModalOpen}
+        />
+      )}
+    </div>
+  );
 }
