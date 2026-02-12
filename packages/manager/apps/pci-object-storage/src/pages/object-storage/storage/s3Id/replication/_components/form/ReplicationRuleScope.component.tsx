@@ -11,7 +11,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { Info } from 'lucide-react';
 import { FormField } from '@/components/form-field/FormField.component';
-import { TagInput } from './TagInput.component';
+import { TagInput } from '@/components/tag-input/TagInput.component';
 import { ReplicationRuleContainer } from './ReplicatationRuleContainer';
 import { useReplicationFormContext } from './ReplicationForm.context';
 
@@ -91,6 +91,7 @@ export const ReplicationRuleScope = () => {
                   setTags={(tags) => field.onChange(tags)}
                   isPending={isPending}
                   disabled={isTagsDisabled}
+                  t={t}
                 />
                 {isTagsDisabled && (
                   <Alert variant="information">

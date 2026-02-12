@@ -26,7 +26,8 @@ export default function ReplicationList({
     'pci-object-storage:replication-job',
   ]);
 
-  const isReplicationJobFeatureAvailable = featuresAvailable?.['pci-object-storage:replication-job'];
+  const isReplicationJobFeatureAvailable =
+    featuresAvailable?.['pci-object-storage:replication-job'];
 
   const columns: ColumnDef<storages.ReplicationRule>[] = getColumns({
     onEditClicked: (replication) => {

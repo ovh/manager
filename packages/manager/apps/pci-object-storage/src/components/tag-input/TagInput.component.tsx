@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import { Plus, X } from 'lucide-react';
 import { Button, Input } from '@datatr-ux/uxlib';
 import { Tag } from '@/types/Tag';
@@ -8,6 +8,8 @@ type TagInputProps = {
   setTags: (tags: Tag[]) => void;
   isPending: boolean;
   disabled?: boolean;
+  showHeader?: boolean;
+  t: TFunction;
 };
 
 export const TagInput = ({
@@ -15,9 +17,9 @@ export const TagInput = ({
   setTags,
   isPending,
   disabled = false,
+  showHeader = true,
+  t,
 }: TagInputProps) => {
-  const { t } = useTranslation('pci-object-storage/storages/s3/replication');
-
   const removeTag = (index: number) => {
     setTags(tags.filter((_, i) => i !== index));
   };
@@ -39,12 +41,14 @@ export const TagInput = ({
   const isDisabled = isPending || disabled;
   return (
     <div className="mt-2">
-      <div>
-        <h3 className="text-sm font-medium mb-2">{t('tagsLabel')}</h3>
-        <p className="text-sm text-muted-foreground mb-4">
-          {t('tagsDescription')}
-        </p>
-      </div>
+      {showHeader && (
+        <div>
+          <h3 className="text-sm font-medium mb-2">{t('tagsLabel')}</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            {t('tagsDescription')}
+          </p>
+        </div>
+      )}
 
       <div className="space-y-2">
         {tags.map((tag, index) => (
