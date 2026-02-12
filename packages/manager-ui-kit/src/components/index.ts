@@ -37,7 +37,12 @@ export { Text } from './text/Text.component';
 export { TilesInputGroupComponent } from './tiles-input-group/TilesInputGroup.component';
 export { TilesInputComponent } from './tiles-input/TilesInput.component';
 export { UpdateNameModal } from './update-name-modal/UpdateNameModal.component';
+export * from './badge/Badge.constants';
+export * from './breadcrumb/Breadcrumb.constants';
+export * from './button/Button.constants';
 export * as Drawer from './drawer/namespace';
+export * from './modal/Modal.constants';
+export * from './text/Text.constants';
 export * as Tiole from './tile/namespace';
 export * as Tile from './tile/namespace';
 export type { ActionBannerProps } from './action-banner/ActionBanner.props';
@@ -87,8 +92,3 @@ export type {
   RowSelectionProps,
   SearchProps,
 } from './datagrid/Datagrid.props';
-export * from './badge/Badge.constants';
-export * from './breadcrumb/Breadcrumb.constants';
-export * from './button/Button.constants';
-export * from './modal/Modal.constants';
-export * from './text/Text.constants';
