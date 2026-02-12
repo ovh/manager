@@ -38,7 +38,7 @@ export const useGetAllDom = ({
       }
 
       const { contacts } = serviceInfo.customer;
-      const { lifecycle, renew, expirationDate } = serviceInfo.billing;
+      const { lifecycle, renew, expirationDate } = serviceInfo?.billing ?? {};
 
       return {
         data: {

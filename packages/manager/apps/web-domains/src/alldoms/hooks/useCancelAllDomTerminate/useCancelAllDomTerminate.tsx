@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { useTranslation } from 'react-i18next'; import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { updateService } from '@/alldoms/data/api/web-domains';
 import { ServiceInfoUpdateEnum } from '@/alldoms/enum/service.enum';
 import {

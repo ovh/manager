@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { Link, Text } from '@ovhcloud/ods-react';
@@ -8,6 +7,7 @@ import { useNichandle } from '@/hooks/nichandle/useNichandle';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import Loading from '@/components/Loading/Loading';
 import { useTrackNavigation } from '@/hooks/tracking/useTrackDatagridNavivationLink';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 
 interface ActionMeContactComponentProps {
   readonly argumentKey: string;
@@ -26,7 +26,8 @@ export default function ActionMeContactComponent({
 }: ActionMeContactComponentProps) {
   const { trackPageNavivationLink } = useTrackNavigation();
   const { t } = useTranslation('dashboard');
-  const { data: webUrl } = useNavigationGetUrl(['web', '', {}]);
+  const { data: availability } = useFeatureAvailability(['web-domains:domains']);
+  const { data: webDomainsUrl } = useNavigationGetUrl(['web-domains', '', {}]);
   const { data: accountUrl } = useNavigationGetUrl(['account', '', {}]);
   const { nichandle } = useNichandle();
   const { data: serviceInfo, isLoading } = useGetDomainInformation(domainName);
@@ -39,16 +40,19 @@ export default function ActionMeContactComponent({
     return <Text>{t('domain_operations_update_contact_administrator')}</Text>;
   }
 
-  let url = `${webUrl as string}/domain/${domainName}/contact-management/edit-contact/${value}/`;
+  let url = '';
+  if (availability?.['web-domains:domains']) {
+    url = `${webDomainsUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
+  }
+
   if (
     [
       DomainOperationsEnum.DomainIncomingTransfer,
       DomainOperationsEnum.DomainCreate,
     ].includes(operationName as DomainOperationsEnum)
   ) {
-    url = `${accountUrl as string}/contact/${value}/${
-      fields.length ? getNicParams(fields) : ''
-    }`;
+    url = `${accountUrl as string}/contact/${value}/${fields.length ? getNicParams(fields) : ''
+      }`;
   }
 
   return (
@@ -77,8 +81,7 @@ export default function ActionMeContactComponent({
         }}
       >
         {t(
-          `domain_operations_update_nicowner_click_${
-            argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
+          `domain_operations_update_nicowner_click_${argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
           }`,
         )}
       </Link>

@@ -13,7 +13,7 @@ vi.mock('react-i18next', async (importOriginal) => {
       t: (translationKey: string) => translationKey,
       i18n: {
         language: 'fr_FR',
-        changeLanguage: () => new Promise(() => {}),
+        changeLanguage: () => new Promise(() => { }),
       },
     }),
     getI18n: () => ({
@@ -61,10 +61,10 @@ vi.mock('react-router-dom', async (importActual) => {
     ),
     useParams: vi.fn(
       () =>
-        ({
-          serviceName: 'serviceName',
-          domain: 'domain',
-        } as Record<string, string | undefined>),
+      ({
+        serviceName: 'serviceName',
+        domain: 'domain',
+      } as Record<string, string | undefined>),
     ),
   };
 });
@@ -87,7 +87,6 @@ const mocks = vi.hoisted(() => ({
     }),
   },
 }));
-const trackClickMock = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useContext: vi.fn(),
@@ -95,7 +94,31 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
     shell: mocks.shell,
     environment: mocks.environment,
   }),
-  useOvhTracking: () => ({ trackClick: trackClickMock }),
+  useOvhTracking: vi.fn(() => {
+    return {
+      trackClick: vi.fn(),
+      trackPage: vi.fn(),
+      trackCurrentPage: vi.fn(),
+    };
+  }),
+  PageLocation: {
+    page: "page",
+    funnel: "funnel",
+    banner: "banner",
+    popup: "pop-up",
+    datagrid: "datagrid",
+    tile: "tile",
+    mainTabnav: "main-tabnav",
+  },
+  ButtonType: {
+    button: "button",
+    link: "link",
+    select: "select",
+    externalLink: "external-link",
+    tile: "tile",
+    tutorial: "tile-tutorial",
+    tab: "go-to-tab",
+  },
   useNavigationGetUrl: (
     linkParams: [string, string, unknown],
   ): UseQueryResult<unknown, Error> => {
