@@ -70,4 +70,8 @@ export type RecordFormConfig = {
   readonly message: MessageConfig;
   readonly subDomainTooltipKey: string;
   readonly subDomainRequired?: boolean;
+  /** Per-field validation kind (ipv4, ipv6, host). Used by schema builder. */
+  readonly validation?: Readonly<Partial<Record<string, FieldValidationKind>>>;
 };
+
+export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host';

@@ -39,7 +39,7 @@ export function AddEntryResume({
       {
         id: "domainToDisplay",
         accessorKey: "domainToDisplay",
-        header: t("zone_page_add_entry_modal_step_3_table_field"),
+        header: t("zone_page_resume_table_field"),
         cell: ({ row }) => (
           <span className="break-all">{row.original.domainToDisplay}</span>
         ),
@@ -47,12 +47,12 @@ export function AddEntryResume({
       {
         id: "fieldType",
         accessorKey: "fieldType",
-        header: t("zone_page_add_entry_modal_step_3_table_type"),
+        header: t("zone_page_resume_table_type"),
       },
       {
         id: "targetToDisplay",
         accessorKey: "targetToDisplay",
-        header: t("zone_page_add_entry_modal_step_3_table_target"),
+        header: t("zone_page_resume_table_target"),
         cell: ({ row }) => (
           <span className="break-all">{row.original.targetToDisplay}</span>
         ),
@@ -68,43 +68,43 @@ export function AddEntryResume({
   return (
     <div className="w-full space-y-4">
       <Text preset={TEXT_PRESET.paragraph}>
-        {t("zone_page_add_entry_modal_step_3_info")}
+        {t("zone_page_resume_info")}
       </Text>
 
       <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2 text-sm md:gap-x-6">
         <Text preset={TEXT_PRESET.caption}>
-          {t("zone_page_add_entry_modal_step_1_type")}
+          {t("zone_page_form_type")}
         </Text>
         <Text className="break-words">{displayType}</Text>
 
         <Text preset={TEXT_PRESET.caption}>
-          {t("zone_page_add_entry_modal_step_1_domain")}
+          {t("zone_page_form_domain")}
         </Text>
         <Text className="break-all">{resumeDomain}</Text>
 
         {showTtl && (
           <>
             <Text preset={TEXT_PRESET.caption}>
-              {t("zone_page_add_entry_modal_step_1_ttl")}
+              {t("zone_page_form_ttl")}
             </Text>
             <Text>{String(ttl)}</Text>
           </>
         )}
 
         <Text preset={TEXT_PRESET.caption}>
-          {t("zone_page_add_entry_modal_step_1_target")}
+          {t("zone_page_form_target")}
         </Text>
         <Text className="break-all">{targetValue}</Text>
       </dl>
 
       {!recordConflicts && (
         <Message color={MESSAGE_COLOR.critical} className="w-full" dismissible={false}>
-          <span>{t("zone_page_add_entry_modal_step_3_check_warning_info")}</span>
+          <span>{t("zone_page_resume_check_warning_info")}</span>
           <span>
             {" "}
             {recordType === FieldTypePointingRecordsEnum.CNAME && hasSubDomain
-              ? t("zone_page_add_entry_modal_step_3_check_warning2")
-              : t("zone_page_add_entry_modal_step_3_check_warning3")}
+              ? t("zone_page_resume_check_warning2")
+              : t("zone_page_resume_check_warning3")}
           </span>
           {recordType === FieldTypePointingRecordsEnum.CNAME && conflictingRecords.length > 0 && (
             <div className="mt-3">
@@ -120,7 +120,7 @@ export function AddEntryResume({
 
       {recordConflicts && (
         <Message color={MESSAGE_COLOR.information} className="w-1/2" dismissible={false}>
-          {t("zone_page_add_entry_modal_step_3_alert")}
+          {t("zone_page_resume_alert")}
         </Message>
       )}
     </div>

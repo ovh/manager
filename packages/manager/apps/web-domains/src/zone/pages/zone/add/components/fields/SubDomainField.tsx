@@ -40,7 +40,7 @@ export function SubDomainField({
       render={({ field, fieldState: { error, invalid } }) => (
         <FormField className={className ?? "w-full"} invalid={!!error && invalid}>
           <FormFieldLabel>
-            {t("zone_page_add_entry_modal_step_1_subdomain")}
+            {t("zone_page_form_subdomain")}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
             {tooltip && (
               <Tooltip>

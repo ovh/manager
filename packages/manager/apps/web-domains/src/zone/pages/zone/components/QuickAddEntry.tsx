@@ -1,8 +1,8 @@
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg } from "@ovhcloud/ods-react";
+import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Text, TEXT_PRESET } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
@@ -12,6 +12,7 @@ import {
 import { RECORD_FORM_CONFIGS } from "@/zone/utils/recordFormConfig";
 import { DynamicRecordForm } from "./DynamicRecordForm";
 import { SPFRecordForm } from "@/zone/pages/zone/add/components/forms/SPFRecordForm";
+import { parseBindRecord } from "@/zone/utils/parseBindRecord";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -54,6 +55,49 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
   const { watch, formState: { isValid }, handleSubmit, setValue, control, reset } = methods;
   const recordType = watch("recordType");
 
+  // BIND paste feature
+  const [showBindInput, setShowBindInput] = useState(false);
+  const [bindInput, setBindInput] = useState('');
+  const [bindError, setBindError] = useState<string | null>(null);
+  const [bindSuccess, setBindSuccess] = useState(false);
+
+  const handleBindPaste = useCallback(() => {
+    setBindError(null);
+    setBindSuccess(false);
+    const result = parseBindRecord(bindInput);
+    if (!result.success) {
+      setBindError((result as { success: false; error: string }).error);
+      return;
+    }
+    const { values: parsedValues } = result;
+    // Reset the form first
+    reset();
+    // Set record type and trigger the select handler
+    if (parsedValues.recordType) {
+      setValue('recordType', parsedValues.recordType);
+      setValue('ttlSelect', parsedValues.ttlSelect ?? 'global');
+      if (parsedValues.ttl !== undefined) {
+        setValue('ttl', parsedValues.ttl);
+      }
+      if (parsedValues.recordType === FieldTypeExtendedRecordsEnum.CAA) {
+        setValue('flags', parsedValues.flags ?? 0);
+      }
+    }
+    // Set all parsed values
+    for (const [key, value] of Object.entries(parsedValues)) {
+      if (key !== 'recordType' && key !== 'ttlSelect' && key !== 'ttl' && value !== undefined) {
+        setValue(key as keyof AddEntrySchemaType, value as never, { shouldValidate: true });
+      }
+    }
+    setBindSuccess(true);
+    // Auto-close after short delay
+    setTimeout(() => {
+      setShowBindInput(false);
+      setBindInput('');
+      setBindSuccess(false);
+    }, 1500);
+  }, [bindInput, reset, setValue]);
+
   const { mutate: addEntry, isPending } = useMutation({
     mutationFn: async (_data: AddEntrySchemaType) => {
       // TODO: Replace with actual API call
@@ -84,15 +128,15 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
   const selectItems = [
     {
-      label: t('zone_page_add_entry_point'),
+      label: t('zone_page_record_pointing'),
       options: FIELD_TYPES_POINTING_RECORDS.map((type) => ({ value: type, label: type })),
     },
     {
-      label: t('zone_page_add_entry_mail'),
+      label: t('zone_page_record_mail'),
       options: ([...FIELD_TYPES_MAIL_RECORDS] as string[]).map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: type === FieldTypeMailRecordsEnum.SPF || type == FieldTypeMailRecordsEnum.DKIM ? true : false } })),
     },
     {
-      label: t('zone_page_add_entry_extended'),
+      label: t('zone_page_record_extended'),
       options: FIELD_TYPES_EXTENDED_RECORDS.map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: true } })),
     },
   ];
@@ -102,7 +146,7 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
       <div className="flex items-center gap-2">
         {customData?.isAdvanced && (
           <Badge color={BADGE_COLOR.warning} size={BADGE_SIZE.sm}>
-            {t('zone_page_add_entry_badge_advanced')}
+            {t('zone_page_record_badge_advanced')}
           </Badge>
         )}
         <span className="flex-1">{label}</span>
@@ -116,6 +160,66 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4">
+          {/* BIND paste section */}
+          <div className="flex flex-col gap-2">
+            <Button
+              type="button"
+              variant={BUTTON_VARIANT.outline}
+              size={BUTTON_SIZE.sm}
+              onClick={() => {
+                setShowBindInput(!showBindInput);
+                setBindError(null);
+                setBindSuccess(false);
+              }}
+            >
+              {t('zone_page_form_bind_paste_button')}
+            </Button>
+
+            {showBindInput && (
+              <div className="flex flex-col gap-2 p-4 border rounded-md bg-[--ods-color-surface-lighter]">
+                <Text preset={TEXT_PRESET.paragraph}>
+                  {t('zone_page_form_bind_paste_description')}
+                </Text>
+                <textarea
+                  className="w-full font-mono p-2 border rounded-md min-h-[60px] resize-y"
+                  placeholder={t('zone_page_form_bind_paste_placeholder')}
+                  value={bindInput}
+                  onChange={(e) => {
+                    setBindInput(e.target.value);
+                    setBindError(null);
+                    setBindSuccess(false);
+                  }}
+                />
+                {bindError && (
+                  <Message color={MESSAGE_COLOR.critical} variant={MESSAGE_VARIANT.light} dismissible={false}>
+                    <MessageIcon name={ICON_NAME.circleXmark} />
+                    <MessageBody>
+                      {t(`zone_page_form_bind_error_${bindError}`)}
+                    </MessageBody>
+                  </Message>
+                )}
+                {bindSuccess && (
+                  <Message color={MESSAGE_COLOR.success} variant={MESSAGE_VARIANT.light} dismissible={false}>
+                    <MessageIcon name={ICON_NAME.circleCheck} />
+                    <MessageBody>
+                      {t('zone_page_form_bind_success')}
+                    </MessageBody>
+                  </Message>
+                )}
+                <div className="flex justify-end">
+                  <Button
+                    type="button"
+                    size={BUTTON_SIZE.sm}
+                    onClick={handleBindPaste}
+                    disabled={!bindInput.trim()}
+                  >
+                    {t('zone_page_form_bind_apply')}
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+
           <FormField className="w-1/2">
             <FormFieldLabel>
               {t('zone_page_type')}
@@ -141,7 +245,7 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
                     }}
                     onBlur={field.onBlur}
                   >
-                    <SelectControl placeholder={t('zone_page_add_entry_modal_step_1_select_title')} />
+                    <SelectControl placeholder={t('zone_page_form_select_title')} />
                     <SelectContent customOptionRenderer={renderOption} />
                   </Select>
                   {error?.message && <FormFieldError>{error.message}</FormFieldError>}
@@ -155,11 +259,11 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
               <Message color={MESSAGE_COLOR.information} dismissible={false}>
                 <MessageIcon name={ICON_NAME.circleInfo} />
                 <div>
-                  {t("zone_page_quick_add_entry_explanation_SPF")}
+                  {t("zone_page_record_explanation_SPF")}
                   <br />
                   <Trans
                     t={t}
-                    i18nKey="zone_page_quick_add_entry_description_SPF"
+                    i18nKey="zone_page_record_description_SPF"
                     values={{ domain: serviceName }}
                     components={{ bold: <span className="font-bold" /> }}
                   />
@@ -202,7 +306,7 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
                     handleSubmit(onSubmit)();
                   }}
                 >
-                  {t("zone_page_add_entry_modal_spf_button_use_spf_ovh")}
+                  {t("zone_page_form_spf_button_use_spf_ovh")}
                 </Button>
               ) : (
                   <Button

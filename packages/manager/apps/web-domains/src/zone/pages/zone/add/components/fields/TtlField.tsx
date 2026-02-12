@@ -32,7 +32,7 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
   return (
     <FormField className={`${(className ?? "").trim()} w-full`}>
       <FormFieldLabel>
-        {t("zone_page_add_entry_modal_step_1_ttl")}
+        {t("zone_page_form_ttl")}
         {tooltip && (
           <Tooltip>
             <TooltipTrigger asChild>
@@ -56,8 +56,8 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
               onValueChange={({ value }) => ttlSelectField.onChange(value[0] ?? "global")}
               onBlur={() => ttlSelectField.onBlur?.()}
               items={[
-                { label: t("zone_page_add_entry_modal_step_1_ttl_global"), value: "global" },
-                { label: t("zone_page_add_entry_modal_step_1_ttl_custom"), value: "custom" },
+                { label: t("zone_page_form_ttl_global"), value: "global" },
+                { label: t("zone_page_form_ttl_custom"), value: "custom" },
               ]}
             >
               <SelectControl placeholder={t(`${NAMESPACES.FORM}:select_placeholder`)} />
