@@ -18,13 +18,19 @@ import {
 import { ViewContext } from './viewContext';
 import { SortableColumnCard } from './manageViewCard';
 import { ACCORDION_VALUES } from './manageView.constants';
+import ManageViewGroupBy from './manageViewGroupBy';
+import { Categories } from './types';
 
 export type ManageViewConfigProps = {
   drawerVisibility: boolean;
+  draftGroupBy?: Categories;
+  setDraftGroupBy: (groupBy: Categories) => void;
 };
 
 export const ManageViewConfig = ({
   drawerVisibility,
+  setDraftGroupBy,
+  draftGroupBy,
 }: ManageViewConfigProps) => {
   const [accordionValue, setAccordionValue] = useState<string[]>([
     ACCORDION_VALUES.order,
@@ -72,6 +78,10 @@ export const ManageViewConfig = ({
           </DndContext>
         </AccordionContent>
       </AccordionItem>
+      <ManageViewGroupBy
+        draftGroupBy={draftGroupBy}
+        setDraftGroupBy={setDraftGroupBy}
+      />
     </Accordion>
   );
 };

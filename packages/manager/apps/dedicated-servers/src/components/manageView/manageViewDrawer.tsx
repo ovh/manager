@@ -16,7 +16,7 @@ import {
   DEFAULT_COLUMN_VISIBILITY,
   PREFERENCES_KEY,
 } from './manageView.constants';
-import { ViewType } from './types';
+import { Categories, ViewType } from './types';
 import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
 import ManageViewDrawerTitle from './manageViewDrawerTitle';
 import ManageViewConfig from './manageViewConfig';
@@ -34,19 +34,26 @@ export const ManageViewDrawer = ({
   views,
   view,
   isOpen,
-  handleDismiss,
   handleConfirm,
   handleCancel,
 }: ManageViewDrawerProps) => {
-  const { setColumnVisibility, currentView, setColumnsOrder } = useContext(
-    ViewContext,
-  );
+  const {
+    setColumnVisibility,
+    currentView,
+    setColumnsOrder,
+    groupBy: contextGroupBy,
+    setGroupBy: setContextGroupBy,
+  } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
   const { t: tCommon } = useTranslation(NAMESPACES.ACTIONS);
   const [editingView, setEditingView] = useState<ViewType>(null);
-  const { isPending, mutate: saveViews } = useSaveViewsPreference({
+  const { mutate: saveViews } = useSaveViewsPreference({
     key: PREFERENCES_KEY,
   });
+  // Initialize the draft state for the grouping logic
+  const [draftGroupBy, setDraftGroupBy] = useState<Categories | undefined>(
+    contextGroupBy,
+  );
 
   useEffect(() => {
     let name = view?.name;
@@ -74,6 +81,10 @@ export const ManageViewDrawer = ({
       id: view?.id || `view-${views.length}`,
       default: view?.default,
     });
+
+    // Synchronize the draft with the global context when the drawer opens
+    // or when the underlying view changes.
+    setDraftGroupBy(contextGroupBy);
   }, [isOpen, view, views]);
 
   const handleNameChange = (value: string) => {
@@ -91,8 +102,14 @@ export const ManageViewDrawer = ({
   };
 
   const saveViewChanges = () => {
+    if (draftGroupBy !== undefined) {
+      setContextGroupBy(draftGroupBy);
+    }
     saveViews({
-      view: editingView,
+      view: {
+        ...editingView,
+        groupBy: draftGroupBy,
+      },
     });
     handleConfirm();
   };
@@ -102,6 +119,7 @@ export const ManageViewDrawer = ({
       currentView?.columnVisibility || DEFAULT_COLUMN_VISIBILITY,
     );
     setColumnsOrder(currentView.columnOrder);
+    setDraftGroupBy(contextGroupBy);
     handleCancel();
   };
 
@@ -145,8 +163,13 @@ export const ManageViewDrawer = ({
           </Checkbox>
         </section>
         {/* Drawer Content */}
-        <div className="p-4 overflow-auto">
-          <ManageViewConfig drawerVisibility={isOpen} />
+
+        <div className="flex flex-col gap-4 p-4 overflow-auto">
+          <ManageViewConfig
+            drawerVisibility={isOpen}
+            draftGroupBy={draftGroupBy}
+            setDraftGroupBy={setDraftGroupBy}
+          />
         </div>
         {/* Drawer footer */}
         <div className="p-4 border-t flex justify-start gap-2">
