@@ -105,7 +105,7 @@ export default function Step2() {
       {recordType !== FieldTypeExtendedRecordsEnum.NAPTR && recordType !== FieldTypeExtendedRecordsEnum.LOC && (
         <RecordFieldInputs fields={fields} control={control} />
       )}
-      <FormField className="w-1/2">
+      <FormField>
         <FormFieldLabel>{t('zone_page_add_entry_modal_step_2_record_type_label', { recordType })}</FormFieldLabel>
         <Textarea className="w-full" value={recordPreview} readOnly disabled />
       </FormField>

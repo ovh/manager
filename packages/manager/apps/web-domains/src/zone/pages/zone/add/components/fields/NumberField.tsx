@@ -28,6 +28,8 @@ export interface NumberFieldProps {
   className?: string;
   disabled?: boolean;
   tooltip?: string;
+  /** Unité affichée à droite de l'input (ex : "m", "s") */
+  suffix?: string;
 }
 
 export function NumberField({
@@ -38,9 +40,10 @@ export function NumberField({
   min,
   max,
   step,
-  className = "w-1/2",
+  className,
   disabled = false,
   tooltip,
+  suffix,
 }: Readonly<NumberFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
 
@@ -64,24 +67,30 @@ export function NumberField({
               </Tooltip>
             )}
           </FormFieldLabel>
-          <Input
-            type={INPUT_TYPE.number}
-            className="w-full"
-            name={field.name}
-            value={typeof field.value === "number" || typeof field.value === "string" ? String(field.value) : ""}
-            onChange={(e) =>
-              field.onChange(
-                e.target?.value === "" ? undefined : Number(e.target?.value),
-              )
-            }
-            onBlur={field.onBlur}
-            ref={field.ref}
-            min={min}
-            max={max}
-            step={step}
-            invalid={!!error}
-            disabled={disabled}
-          />
+          <div className={suffix ? "relative" : undefined}>
+            <Input
+              type={INPUT_TYPE.number}
+              className="w-full"
+              style={suffix ? { paddingRight: "3.5rem" } : undefined}
+              name={field.name}
+              value={typeof field.value === "number" || typeof field.value === "string" ? String(field.value) : ""}
+              onChange={(e) =>
+                field.onChange(
+                  e.target?.value === "" ? undefined : Number(e.target?.value),
+                )
+              }
+              onBlur={field.onBlur}
+              ref={field.ref}
+              min={min}
+              max={max}
+              step={step}
+              invalid={!!error}
+              disabled={disabled}
+            />
+            {suffix && (
+              <Text preset={TEXT_PRESET.span} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">{suffix}</Text>
+            )}
+          </div>
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>
       )}
