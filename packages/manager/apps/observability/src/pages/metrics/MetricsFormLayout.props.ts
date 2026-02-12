@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface TenantFormLayoutProps {
+export interface MetricsFormLayoutProps {
   children: ReactNode;
   className?: string;
 }

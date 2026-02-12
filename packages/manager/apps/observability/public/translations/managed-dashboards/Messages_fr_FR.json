@@ -17,11 +17,31 @@
     "description": "Les tableaux de bord managés vous permettent de visualiser et d'analyser simplement vos données d'Observabilité, ainsi que de configurer des alertes avec la plateforme Grafana®. Vous pouvez pré-configurer les tenants de votre service Observabilité que vous souhaitez retrouver comme source de données et définir les droits d'accès à l'instance via les politiques d'accès de l'IAM d'OVHcloud.",
     "orderButton": "Ajouter une instance"
   },
+  "creation": {
+    "title": "Créer un tableau de bord managé avec la plateforme Grafana®",
+    "information": "Saisir les informations du tableau de bord managé",
+    "namePlaceholder": "Nom du tableau de bord",
+    "descriptionPlaceholder": "Description du tableau de bord",
+    "success": "Le tableau de bord managé est en cours de création"
+  },
   "configuration": {
     "manual": "Manuelle",
     "automatic": "Automatique"
   },
   "version": {
     "end_of_support": "Fin du support"
+  },
+  "grafana": {
+    "title": "Configurez les paramètres",
+    "release": {
+      "label": "Version de Grafana",
+      "placeholder": "Sélectionnez une version"
+    },
+    "allowedNetworks": {
+      "label": "Réseaux de confiance",
+      "placeholder": "Renseignez vos adresses IP ici",
+      "helper": "Liste des adresses IPs clientes qui ont accès à l'outil de collecte (IPv4). Format : 1.2.3.4, 42.42.42.0/24",
+      "error": "Format d'adresse IP invalide. Utilisez le format IPv4 : 1.2.3.4 ou 42.42.42.0/24"
+    }
   }
 }
