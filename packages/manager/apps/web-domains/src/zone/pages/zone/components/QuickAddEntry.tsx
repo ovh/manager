@@ -1,8 +1,8 @@
 import { useMemo, useCallback } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, Input, INPUT_TYPE, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
+import { Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Input, INPUT_TYPE, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, getRecordFields, RECORD_TYPES_WITHOUT_TTL } from "../../../utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { SubDomainField, TtlField } from "../add/components/SubDomainAndTtl.component";
@@ -21,7 +21,7 @@ import { AAAARecordForm } from "../add/components/forms/AAAARecordForm";
 import { NSRecordForm } from "../add/components/forms/NSRecordForm";
 import { CNAMERecordForm } from "../add/components/forms/CNAMERecordForm";
 import { DNAMERecordForm } from "../add/components/forms/DNAMERecordForm";
-import { RecordTypeMessage } from "./RecordTypeMessage";
+import { CAARecordForm } from "../add/components/forms/CAARecordForm";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -82,6 +82,9 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
     setValue('recordType', fieldType);
     setValue('ttlSelect', 'global');
     setValue('ttl', undefined);
+    if (fieldType === FieldTypeExtendedRecordsEnum.CAA) {
+      setValue('flags', 0);
+    }
   }, [setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
@@ -177,56 +180,115 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
           {recordTypeStr === FieldTypePointingRecordsEnum.A && (
             <>
-              <RecordTypeMessage
-                recordType={FieldTypePointingRecordsEnum.A}
-                fullDomain={fullDomain}
-                target={target as string}
-              />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_A")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_A"
+                    values={{ domain: fullDomain, ip: target || "[IPv4]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
               <ARecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
           {recordTypeStr === FieldTypePointingRecordsEnum.AAAA && (
             <>
-              <RecordTypeMessage
-                recordType={FieldTypePointingRecordsEnum.AAAA}
-                fullDomain={fullDomain}
-                target={target as string}
-              />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_AAAA")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_AAAA"
+                    values={{ domain: fullDomain, ip: target || "[IPv6]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
               <AAAARecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
           {recordTypeStr === FieldTypePointingRecordsEnum.NS && (
             <>
-              <RecordTypeMessage
-                recordType={FieldTypePointingRecordsEnum.NS}
-                fullDomain={fullDomain}
-                target={target as string}
-              />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_NS")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_NS"
+                    values={{ domain: fullDomain, target: target || "[serveur DNS]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
               <NSRecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
           {recordTypeStr === FieldTypePointingRecordsEnum.CNAME && (
             <>
-              <RecordTypeMessage
-                recordType={FieldTypePointingRecordsEnum.CNAME}
-                fullDomain={fullDomain}
-                target={target as string}
-              />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_CNAME")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_CNAME"
+                    values={{ domain: fullDomain, target: target || "[nom d'hôte]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
               <CNAMERecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
           {recordTypeStr === FieldTypePointingRecordsEnum.DNAME && (
             <>
-              <RecordTypeMessage
-                recordType={FieldTypePointingRecordsEnum.DNAME}
-                fullDomain={fullDomain}
-                target={target as string}
-              />
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_DNAME")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_DNAME"
+                    values={{ domain: fullDomain, target: target || "[nom de domaine]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
               <DNAMERecordForm control={control} watch={watch} domainSuffix={serviceName} />
+            </>
+          )}
+
+          {recordTypeStr === FieldTypeExtendedRecordsEnum.CAA && (
+            <>
+              <Message color={MESSAGE_COLOR.information} dismissible={false}>
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <div>
+                  {t("zone_page_quick_add_entry_explanation_CAA")}
+                  <br />
+                  <Trans
+                    t={t}
+                    i18nKey="zone_page_quick_add_entry_description_CAA"
+                    values={{ domain: fullDomain, target: target || "[autorité de certification]" }}
+                    components={{ bold: <span className="font-bold" /> }}
+                  />
+                </div>
+              </Message>
+              <CAARecordForm control={control} watch={watch} domainSuffix={serviceName} />
             </>
           )}
 
@@ -238,7 +300,8 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
             recordTypeStr !== FieldTypePointingRecordsEnum.AAAA &&
             recordTypeStr !== FieldTypePointingRecordsEnum.NS &&
             recordTypeStr !== FieldTypePointingRecordsEnum.CNAME &&
-            recordTypeStr !== FieldTypePointingRecordsEnum.DNAME && (
+            recordTypeStr !== FieldTypePointingRecordsEnum.DNAME &&
+            recordTypeStr !== FieldTypeExtendedRecordsEnum.CAA && (
               <div className="grid grid-cols-3 items-start gap-4">
                 <SubDomainField
                   control={control}
