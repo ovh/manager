@@ -1,3 +1,5 @@
+/* global globalThis */
+
 const isLabeuEnvironment = (hostname = window.location.hostname) =>
   /\.labeu\./.test(hostname);
 
