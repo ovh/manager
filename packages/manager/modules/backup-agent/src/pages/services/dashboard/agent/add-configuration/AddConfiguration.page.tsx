@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -17,10 +17,10 @@ import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/BaremetalOption.component';
 import { DownloadCode } from '@/components/DownloadCode/DownloadCode.component';
 import { RhfField } from '@/components/Fields/RhfField.component';
-import { useBackupVSPCTenantAgentDownloadLink } from '@/data/hooks/agents/getDownloadLinkAgent';
-import { useAddConfigurationVSPCTenantAgent } from '@/data/hooks/agents/postAgent';
-import { useBaremetalsList } from '@/data/hooks/baremetal/useBaremetalsList';
-import { useVSPCTenantsOptions } from '@/data/hooks/tenants/useVspcTenants';
+import { useAddConfigurationVSPCTenantAgent } from '@/data/hooks/useAddConfigurationVSPCTenantAgent';
+import { agentsQueries } from '@/data/queries/agents.queries';
+import { baremetalsQueries } from '@/data/queries/baremetals.queries';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { OS_LABELS } from '@/module.constants';
 import { OS } from '@/types/Os.type';
 import { getProductResourceNames } from '@/utils/getProductResourceNamesSet';
@@ -39,6 +39,7 @@ const AddConfigurationPage = () => {
     NAMESPACES.ACTIONS,
   ]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const goBack = () => navigate('..');
   const [formSubmitError, setFormSubmitError] = useState<string>();
   const {
@@ -56,14 +57,14 @@ const AddConfigurationPage = () => {
   });
 
   const { data: productNameExcluded, isPending: isProductNameExcludedPending } = useQuery({
-    ...useVSPCTenantsOptions(),
+    ...tenantsQueries.withClient(queryClient).vspcAll(),
     select: (data) => getProductResourceNames(data),
   });
-  const { flattenData, isPending } = useBaremetalsList();
+  const { data, isPending } = useQuery(baremetalsQueries.all());
 
   const baremetalList =
     !isProductNameExcludedPending && !isPending
-      ? flattenData.filter(({ name }) => !productNameExcluded?.has(name))
+      ? (data ?? []).filter(({ name }) => !productNameExcluded?.has(name))
       : [];
 
   const {
@@ -98,8 +99,19 @@ const AddConfigurationPage = () => {
 
   const os = useWatch({ name: 'os', control });
 
-  const { data: downloadLink, isLoading: isLoadingDownloadLink } =
-    useBackupVSPCTenantAgentDownloadLink({ os: os as OS | undefined });
+  const { data: downloadLink, isPending: isLoadingDownloadLink } = useQuery({
+    ...agentsQueries.withClient(queryClient).downloadLink(),
+    enabled: !!os,
+    select: (downloadData) => {
+      switch (os) {
+        case 'WINDOWS':
+          return downloadData.windowsUrl;
+        case 'LINUX':
+        default:
+          return downloadData.linuxUrl;
+      }
+    },
+  });
 
   const formRef = useRef<HTMLFormElement>(null);
 

@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -6,7 +7,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
-import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
+import { locationsQueries } from '@/data/queries/locations.queries';
 import { Resource } from '@/types/Resource.type';
 import { WithRegion } from '@/types/Utils.type';
 
@@ -27,9 +28,11 @@ export function GeneralInformationTile<T extends { name: string }>({
     NAMESPACES.REGION,
     'dashboard',
   ]);
-  const { data: locationData, isLoading: isLocationLoading } = useLocationDetails(
-    resourceDetails?.currentState.region,
-  );
+  const region = resourceDetails?.currentState.region;
+  const { data: locationData, isPending: isLocationLoading } = useQuery({
+    ...locationsQueries.detail(region!),
+    enabled: !!region,
+  });
 
   return (
     <ManagerTile className="h-fit">

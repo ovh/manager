@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { OdsText } from '@ovhcloud/ods-components/react';
@@ -9,14 +10,15 @@ import { OdsText } from '@ovhcloud/ods-components/react';
 import { Datagrid, Links } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupVaultsList } from '@/data/hooks/vaults/getVault';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 
 import { useColumns } from './_hooks/useColumns.hooks';
 
 export default function ListingPage() {
   useTranslation([BACKUP_AGENT_NAMESPACES.VAULT_LISTING]);
-  const { data } = useBackupVaultsList();
+  const queryClient = useQueryClient();
+  const { data } = useQuery(vaultsQueries.withClient(queryClient).list());
   const columns = useColumns();
   const guide = useGuideUtils();
 

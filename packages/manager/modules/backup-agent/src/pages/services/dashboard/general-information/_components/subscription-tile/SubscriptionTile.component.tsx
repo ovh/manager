@@ -1,3 +1,4 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -6,7 +7,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupTenantDetails } from '@/data/hooks/tenants/useBackupTenantDetails';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 
 import { useTenantBackupStats } from './_hooks/useTenantBackupStats';
 
@@ -16,7 +17,8 @@ const SubscriptionTile = () => {
     NAMESPACES.BILLING,
     BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD,
   ]);
-  const { data, isPending } = useBackupTenantDetails();
+  const queryClient = useQueryClient();
+  const { data, isPending } = useQuery(tenantsQueries.withClient(queryClient).details());
   const {
     connectedVaultsText,
     installedAgentsText,

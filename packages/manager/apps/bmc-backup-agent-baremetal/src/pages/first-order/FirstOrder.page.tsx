@@ -1,6 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -8,7 +9,7 @@ import { z } from 'zod';
 import { OdsButton, OdsCombobox, OdsFormField } from '@ovhcloud/ods-components/react';
 
 import { BaremetalOption } from '@ovh-ux/backup-agent/components/CommonFields/BaremetalOption/BaremetalOption.component';
-import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
+import { baremetalsQueries } from '@ovh-ux/backup-agent/data/queries/baremetals.queries';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
@@ -32,7 +33,7 @@ export default function FirstOrderPage() {
 
   const { productName, title } = useOnboardingContent();
   const img = useOnboardingHeroImage();
-  const { flattenData, isLoading } = useBaremetalsList();
+  const { data: baremetals, isPending: isLoading } = useQuery(baremetalsQueries.all());
   const navigate = useNavigate();
 
   const {
@@ -84,7 +85,7 @@ export default function FirstOrderPage() {
                   onOdsBlur={field.onBlur}
                   onOdsChange={field.onChange}
                 >
-                  {flattenData?.map(({ name, ip, iam: { displayName } }) => (
+                  {baremetals?.map(({ name, ip, iam: { displayName } }) => (
                     <BaremetalOption key={name} name={name} ip={ip} displayName={displayName} />
                   ))}
                 </OdsCombobox>

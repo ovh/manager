@@ -1,5 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
@@ -10,8 +11,8 @@ import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupVaultsList } from '@/data/hooks/vaults/getVault';
-import { useDeleteVault } from '@/data/hooks/vaults/useDeleteVault';
+import { useDeleteVault } from '@/data/hooks/useDeleteVault';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { useGetFeaturesAvailabilityNames } from '@/hooks/useGetFeatureAvailability';
 
 export default function DeleteVaultPage() {
@@ -20,7 +21,8 @@ export default function DeleteVaultPage() {
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
   const [searchParams] = useSearchParams();
-  const { data: vaults } = useBackupVaultsList();
+  const queryClient = useQueryClient();
+  const { data: vaults } = useQuery(vaultsQueries.withClient(queryClient).list());
 
   const vaultId = searchParams.get('vaultId');
   const vault = vaults?.find(({ id }) => id === vaultId);

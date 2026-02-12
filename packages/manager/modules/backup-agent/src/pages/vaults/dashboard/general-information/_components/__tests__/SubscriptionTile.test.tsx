@@ -3,10 +3,12 @@ import { vi } from 'vitest';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { queryKeys } from '@/data/queries/queryKeys';
 import { BACKUP_AGENT_NAMESPACES } from '@/lib';
-import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VAULT_PLAN_CODE } from '@/module.constants';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 import { SubscriptionTile } from '../subscription-tile/SubscriptionTile.component';
 
@@ -15,27 +17,6 @@ const LABELS_VISIBLES = [
   `${NAMESPACES.DASHBOARD}:consumption`,
   `${BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD}:type_billing`,
 ];
-
-vi.mock('@/data/hooks/consumption/useServiceConsumption', () => {
-  return {
-    useGetServiceConsumptionOptions: vi.fn().mockReturnValue(vi.fn()),
-  };
-});
-
-const { useBackupVaultDetailsMock, useQuery } = vi.hoisted(() => ({
-  useBackupVaultDetailsMock: vi.fn(),
-  useQuery: vi.fn(),
-}));
-
-vi.mock('@/data/hooks/vaults/getVaultDetails', () => ({
-  useBackupVaultDetails: useBackupVaultDetailsMock,
-}));
-
-vi.mock('@tanstack/react-query', () => {
-  return {
-    useQuery: useQuery,
-  };
-});
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn().mockReturnValue({
@@ -46,19 +27,22 @@ vi.mock('react-i18next', () => ({
 vi.mock('@/hooks/useRequiredParams', () => {
   return {
     useRequiredParams: vi.fn().mockReturnValue({
-      tenantId: TENANTS_MOCKS[0]!.id,
+      vaultId: mockVaults[0]!.id,
     }),
   };
 });
 
 describe('SubscriptionTile', () => {
   it('Should render SubscriptionTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
-    useQuery.mockReturnValue({
-      data: [{ planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €' } }],
-      isPending: false,
-    });
-    const { container } = render(<SubscriptionTile vaultId={mockVaults[0]!.id} />);
+    const queryClient = createQueryClientTest();
+    queryClient.setQueryData(queryKeys.vaults.detail(mockVaults[0]!.id), mockVaults[0]!);
+    queryClient.setQueryData(queryKeys.consumption.byResource(mockVaults[0]!.id), [
+      { planCode: VAULT_PLAN_CODE, quantity: 100, price: { text: '100 €' } },
+    ]);
+
+    const wrapper = await testWrapperBuilder().withQueryClient(queryClient).build();
+
+    const { container } = render(<SubscriptionTile vaultId={mockVaults[0]!.id} />, { wrapper });
 
     await expect(container).toBeAccessible();
 

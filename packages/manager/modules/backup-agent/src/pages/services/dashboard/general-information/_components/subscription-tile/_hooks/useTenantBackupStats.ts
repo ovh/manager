@@ -1,10 +1,12 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useInstalledBackupAgents } from '@/data/hooks/tenants/useVspcTenants';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { WithRegion } from '@/types/Utils.type';
+import { countBackupAgents } from '@/utils/countBackupAgents';
 
 type UseTenantBackupStatsProps = {
   tenantDetails?: Resource<WithRegion<Tenant>>;
@@ -18,7 +20,14 @@ export function useTenantBackupStats({ tenantDetails }: UseTenantBackupStatsProp
     connectedVaultCount,
   });
 
-  const { installedBackupAgents, isPending } = useInstalledBackupAgents();
+  const queryClient = useQueryClient();
+  const { data: vspcTenantDetails, isPending } = useQuery(
+    tenantsQueries.withClient(queryClient).vspcDetail(),
+  );
+
+  const installedBackupAgents = countBackupAgents(
+    vspcTenantDetails?.currentState ? [vspcTenantDetails.currentState] : [],
+  );
 
   const installedAgentsText = t('number_of_linked_server', {
     installedAgentsCount: installedBackupAgents,

@@ -2,13 +2,13 @@ import { useMemo } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
-import { useBaremetalsList } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList';
-import { useBackupVaultsListOptions } from '@ovh-ux/backup-agent/data/hooks/vaults/getVault';
+import { baremetalsQueries } from '@ovh-ux/backup-agent/data/queries/baremetals.queries';
+import { vaultsQueries } from '@ovh-ux/backup-agent/data/queries/vaults.queries';
 import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -26,7 +26,8 @@ export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { productName, title, tiles } = useOnboardingContent();
   const links = useGuideUtils();
-  const { flattenData, isPending } = useBaremetalsList({ pageSize: 1 });
+  const queryClient = useQueryClient();
+  const { data: baremetals, isPending } = useQuery(baremetalsQueries.all());
   const isOrderSuccess = searchParams.get('orderSuccess') === 'true';
   const {
     data: isBackupAgentReady,
@@ -34,7 +35,7 @@ export default function OnboardingPage() {
     isSuccess: isVaultSuccess,
     isError: isVaultError,
   } = useQuery({
-    ...useBackupVaultsListOptions(),
+    ...vaultsQueries.withClient(queryClient).list(),
     retry: false,
     select: (vaults) =>
       vaults.filter(({ currentState: { status } }) => status === 'READY').length >= 1,
@@ -92,8 +93,8 @@ export default function OnboardingPage() {
         isOrderLoading={isPending}
         orderHref={urls.firstOrder}
         moreInfoHref={links.website}
-        isOrderDisabled={!flattenData?.length || !isVaultError || isVaultPending || isOrderSuccess}
-        tooltipContent={!flattenData?.length ? t('no_baremetal_available') : undefined}
+        isOrderDisabled={!baremetals?.length || !isVaultError || isVaultPending || isOrderSuccess}
+        tooltipContent={!baremetals?.length ? t('no_baremetal_available') : undefined}
       >
         {validTiles.map(({ id, key, linkKey }) => {
           const href = links[linkKey];

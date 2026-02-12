@@ -30,15 +30,13 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-const { useBaremetalsListMock, useQueryMock } = vi.hoisted(() => ({
-  useBaremetalsListMock: vi
-    .fn()
-    .mockReturnValue({ data: undefined, isPending: true, isError: false }),
+const { useQueryMock } = vi.hoisted(() => ({
   useQueryMock: vi.fn().mockReturnValue({ data: undefined, isPending: false, isError: false }),
 }));
 
 vi.mock('@tanstack/react-query', () => ({
   useQuery: useQueryMock,
+  useQueryClient: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
@@ -46,17 +44,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   useNavigationGetUrl: vi.fn().mockReturnValue({ isPending: false, data: '' }),
 }));
 
-vi.mock('@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalsList', () => {
-  return {
-    useBaremetalsList: useBaremetalsListMock,
-  };
-});
+vi.mock('@ovh-ux/backup-agent/data/queries/baremetals.queries', () => ({
+  baremetalsQueries: { all: vi.fn() },
+}));
 
-vi.mock('@ovh-ux/backup-agent/data/hooks/vaults/getVault', () => {
-  return {
-    useBackupVaultsListOptions: vi.fn(),
-  };
-});
+vi.mock('@ovh-ux/backup-agent/data/queries/vaults.queries', () => ({
+  vaultsQueries: { withClient: vi.fn().mockReturnValue({ list: vi.fn() }) },
+}));
 
 // --- Mock manager-react-components ---
 interface OnboardingLayoutProps {
@@ -136,6 +130,7 @@ vi.mock('@ovh-ux/backup-agent/hooks/useGuideUtils.ts', () => ({
 
 describe('FirstOrderPage', () => {
   beforeAll(() => {
+    // useQuery is called twice: 1st for baremetals, 2nd for vaults
     useQueryMock.mockReturnValue({
       data: mockVaults,
       isPending: false,
@@ -171,16 +166,18 @@ describe('FirstOrderPage', () => {
   ])(
     'renders onboarding and expected disabled if no baremetal : $expectedDisabled',
     async (mock, expectedDisabled) => {
-      useBaremetalsListMock.mockReturnValue({
-        flattenData: mock,
-        isPending: false,
-        isError: false,
-      });
-      useQueryMock.mockReturnValue({
-        flattenData: undefined,
-        isPending: false,
-        isError: true,
-      });
+      // useQuery is called twice: 1st for baremetals, 2nd for vaults
+      useQueryMock
+        .mockReturnValueOnce({
+          data: mock,
+          isPending: false,
+          isError: false,
+        })
+        .mockReturnValueOnce({
+          data: undefined,
+          isPending: false,
+          isError: true,
+        });
 
       render(<OnboardingPage />);
 

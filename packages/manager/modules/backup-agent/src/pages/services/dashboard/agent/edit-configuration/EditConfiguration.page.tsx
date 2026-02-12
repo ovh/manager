@@ -3,6 +3,7 @@ import { useContext, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import capitalize from 'lodash.capitalize';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -16,9 +17,9 @@ import { Drawer, ErrorBoundary, useNotifications } from '@ovh-ux/manager-react-c
 import { BackupAgentContext } from '@/BackupAgent.context';
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { RhfField } from '@/components/Fields/RhfField.component';
-import { useBackupVSPCTenantAgentDetails } from '@/data/hooks/agents/getAgentDetails';
-import { useEditConfigurationVSPCTenantAgent } from '@/data/hooks/agents/putAgent';
-import { useBackupTenantPolicies } from '@/data/hooks/tenants/useVspcTenantBackupPolicies';
+import { useEditConfigurationVSPCTenantAgent } from '@/data/hooks/useEditConfigurationVSPCTenantAgent';
+import { agentsQueries } from '@/data/queries/agents.queries';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { LABELS } from '@/module.constants';
 
 const FORM_ID = 'form-link-agent-title' as const;
@@ -44,19 +45,20 @@ export const EditConfigurationPage = () => {
 
   const { appName } = useContext(BackupAgentContext);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const goBack = () => navigate('..');
   const {
     data: resourceAgent,
-    isLoading,
+    isPending: isLoading,
     error,
     isSuccess,
     refetch,
-  } = useBackupVSPCTenantAgentDetails({
-    agentId: agentId!,
-  });
+  } = useQuery(agentsQueries.withClient(queryClient).detail(agentId!));
   const isAgentEnabled = resourceAgent?.status === 'ENABLED';
 
-  const { data: policies, isLoading: isPoliciesLoading } = useBackupTenantPolicies();
+  const { data: policies, isPending: isPoliciesLoading } = useQuery(
+    tenantsQueries.withClient(queryClient).vspcPolicies(),
+  );
 
   const { mutate, isPending } = useEditConfigurationVSPCTenantAgent({
     onSuccess: () => {

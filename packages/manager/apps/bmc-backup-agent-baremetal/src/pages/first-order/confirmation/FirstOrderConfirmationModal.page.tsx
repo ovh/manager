@@ -2,11 +2,12 @@ import { useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsButton, OdsMessage, OdsModal, OdsSpinner } from '@ovhcloud/ods-components/react';
 
-import { useBaremetalDetails } from '@ovh-ux/backup-agent/data/hooks/baremetal/useBaremetalDetails';
+import { baremetalsQueries } from '@ovh-ux/backup-agent/data/queries/baremetals.queries';
 import { useRequiredParams } from '@ovh-ux/backup-agent/hooks/useRequiredParams';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -27,9 +28,9 @@ const FirstOrderConfirmationModal = () => {
   const { baremetalName } = useRequiredParams('baremetalName');
 
   // Disable refetch to avoid creating multiple carts
-  const { data: baremetal, isPending: isBaremetalPending } = useBaremetalDetails({
-    serviceName: baremetalName,
-  });
+  const { data: baremetal, isPending: isBaremetalPending } = useQuery(
+    baremetalsQueries.detail(baremetalName),
+  );
 
   const {
     mutate: createCart,

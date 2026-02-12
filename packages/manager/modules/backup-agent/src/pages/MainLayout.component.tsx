@@ -2,7 +2,7 @@ import React, { Suspense, useContext, useMemo } from 'react';
 
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
@@ -18,7 +18,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
-import { useBackupVaultsListOptions } from '@/data/hooks/vaults/getVault';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
@@ -32,6 +32,7 @@ export default function MainLayout() {
   const location = useLocation();
   const { trackClick } = useOvhTracking();
 
+  const queryClient = useQueryClient();
   const tabs = useDashboardTabs();
 
   const activeTab = useMemo(
@@ -44,7 +45,7 @@ export default function MainLayout() {
     data: isBackupAgentReady,
     isError: isVautError,
   } = useQuery({
-    ...useBackupVaultsListOptions(),
+    ...vaultsQueries.withClient(queryClient).list(),
     retry: false,
     select: (vaults) => vaults.filter((vault) => vault.currentState.status === 'READY').length >= 1,
   });

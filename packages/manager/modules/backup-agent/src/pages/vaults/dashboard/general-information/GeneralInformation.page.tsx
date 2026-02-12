@@ -1,8 +1,10 @@
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { BillingInformationsTileStandard } from '@ovh-ux/manager-billing-informations';
 
-import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { subRoutes } from '@/routes/routes.constants';
 
 import { GeneralInformationVaultTile } from './_components/general-information-vault-tile/GeneralInformationVaultTile.component';
@@ -10,7 +12,8 @@ import { SubscriptionTile } from './_components/subscription-tile/SubscriptionTi
 
 export default function GeneralInformationPage() {
   const { vaultId } = useParams<{ vaultId: string }>();
-  const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! });
+  const queryClient = useQueryClient();
+  const { data: vaultResource } = useQuery(vaultsQueries.withClient(queryClient).detail(vaultId!));
   const navigate = useNavigate();
 
   return (

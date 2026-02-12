@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_SIZE } from '@ovhcloud/ods-components';
@@ -12,7 +13,8 @@ import { Datagrid, Links, ManagerButton } from '@ovh-ux/manager-react-components
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ReloadButton } from '@/components/ReloadButton/ReloadButton.component';
-import { BACKUP_AGENTS_LIST_QUERY_KEY, useBackupAgentList } from '@/data/hooks/agents/getAgents';
+import { agentsQueries } from '@/data/queries/agents.queries';
+import { queryKeys } from '@/data/queries/queryKeys';
 import { useGuideUtils } from '@/hooks/useGuideUtils';
 import { BACKUP_AGENT_IAM_RULES } from '@/module.constants';
 import { AgentStatusLegend } from '@/pages/services/dashboard/agent/_components/AgentStatusLegend';
@@ -27,8 +29,9 @@ export default function AgentsListingPage() {
     NAMESPACES.ACTIONS,
   ]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const columns = useAgentsListingColumnsHooks();
-  const { flattenData, isPending } = useBackupAgentList();
+  const { data, isPending } = useQuery(agentsQueries.withClient(queryClient).list());
   const guide = useGuideUtils();
 
   const handleDownloadButton = () => {
@@ -90,16 +93,13 @@ export default function AgentsListingPage() {
                   <OdsPopover triggerId="details_of_status" withArrow>
                     <AgentStatusLegend />
                   </OdsPopover>
-                  <ReloadButton
-                    isLoading={isPending}
-                    queryKeys={[BACKUP_AGENTS_LIST_QUERY_KEY()]}
-                  />
+                  <ReloadButton isLoading={isPending} queryKeys={[queryKeys.agents.all()]} />
                 </div>
               </section>
             }
             columns={columns}
-            items={flattenData || []}
-            totalItems={flattenData?.length || 0}
+            items={data || []}
+            totalItems={data?.length || 0}
             isLoading={isPending}
           />
         )}

@@ -1,3 +1,4 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsBadge, OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -7,8 +8,8 @@ import { ManagerTile } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { ResourceStatusBadge } from '@/components/ResourceStatusBadge/ResourceStatusBadge.component';
-import { useLocationDetails } from '@/data/hooks/location/getLocationDetails';
-import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { locationsQueries } from '@/data/queries/locations.queries';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { VAULT_DEFAULT_IMMUTABILITY } from '@/module.constants';
 
 type GeneralInformationVaultTileProps = {
@@ -23,10 +24,15 @@ export function GeneralInformationVaultTile({ vaultId }: GeneralInformationVault
     'dashboard',
     BACKUP_AGENT_NAMESPACES.VAULT_DASHBOARD,
   ]);
-  const { data: vault, isLoading: isLoadingVault } = useBackupVaultDetails({ vaultId });
-  const { data: locationData, isLoading: isLoadingLocation } = useLocationDetails(
-    vault?.currentState.region,
+  const queryClient = useQueryClient();
+  const { data: vault, isPending: isLoadingVault } = useQuery(
+    vaultsQueries.withClient(queryClient).detail(vaultId),
   );
+  const vaultRegion = vault?.currentState.region;
+  const { data: locationData, isPending: isLoadingLocation } = useQuery({
+    ...locationsQueries.detail(vaultRegion!),
+    enabled: !!vaultRegion,
+  });
 
   /*
   The code below is a copy of GeneralInformationTile component, made specifically for vaults.

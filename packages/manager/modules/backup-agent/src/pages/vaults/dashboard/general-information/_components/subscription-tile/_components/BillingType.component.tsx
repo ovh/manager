@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
@@ -6,9 +6,9 @@ import { OdsSkeleton, OdsText } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useGetServiceConsumptionOptions } from '@/data/hooks/consumption/useServiceConsumption';
+import { consumptionQueries } from '@/data/queries/consumption.queries';
+import { selectConsumptionPriceText } from '@/data/selectors/consumption.selectors';
 import { useRequiredParams } from '@/hooks/useRequiredParams';
-import { VAULT_PLAN_CODE } from '@/module.constants';
 
 import { CONSUMPTION_MAX_VALUE_IN_TB } from '../SubscriptionTile.component';
 
@@ -21,12 +21,13 @@ export const BillingType = () => {
     BACKUP_AGENT_NAMESPACES.COMMON,
   ]);
   const { vaultId } = useRequiredParams('vaultId');
-  const { data: consumptionData, isPending } = useQuery(useGetServiceConsumptionOptions()(vaultId));
+  const queryClient = useQueryClient();
+  const { data: priceHTText = '-', isPending } = useQuery({
+    ...consumptionQueries.withClient(queryClient).byResource(vaultId),
+    select: selectConsumptionPriceText,
+  });
 
   const bundleSize = `${CONSUMPTION_MAX_VALUE_IN_TB}${t(`${NAMESPACES.BYTES}:unit_size_TB`)}`;
-  const priceHTText =
-    consumptionData?.find((consumption) => consumption.planCode === VAULT_PLAN_CODE)?.price.text ??
-    '-';
 
   return (
     <div>

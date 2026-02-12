@@ -32,10 +32,16 @@ export const addI18nextProvider = async (providers: TestProvider[]) => {
   }
   providers.push(({ children }) => <I18nextProvider i18n={i18nState}>{children}</I18nextProvider>);
 };
-export const addQueryClientProvider = (providers: TestProvider[]) => {
-  const queryClient = new QueryClient({
-    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
+export const createQueryClientTest = () =>
+  new QueryClient({
+    defaultOptions: { queries: { retry: false, staleTime: Infinity }, mutations: { retry: false } },
   });
+
+export const addQueryClientProvider = (
+  providers: TestProvider[],
+  customQueryClient?: QueryClient,
+) => {
+  const queryClient = customQueryClient ?? createQueryClientTest();
   providers.push(({ children }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   ));

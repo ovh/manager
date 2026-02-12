@@ -2,6 +2,7 @@ import React, { Suspense, startTransition, useContext } from 'react';
 
 import { NavLink, Outlet, useNavigate, useParams } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
@@ -11,7 +12,8 @@ import { BaseLayout, Breadcrumb, GuideButton } from '@ovh-ux/manager-react-compo
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupAgentContext } from '@/BackupAgent.context';
-import { useBackupVaultDetails } from '@/data/hooks/vaults/getVaultDetails';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
+import { selectVaultName } from '@/data/selectors/vaults.selectors';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 
 import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
@@ -19,7 +21,11 @@ import { useVaultDashboardTabs } from './_hooks/useVaultDashboardTabs';
 export default function VaultDashboardPage() {
   const { appName } = useContext(BackupAgentContext);
   const { vaultId } = useParams<{ vaultId: string }>();
-  const { data: vaultResource } = useBackupVaultDetails({ vaultId: vaultId! });
+  const queryClient = useQueryClient();
+  const { data: vaultName } = useQuery({
+    ...vaultsQueries.withClient(queryClient).detail(vaultId!),
+    select: selectVaultName,
+  });
   const { t } = useTranslation(['common', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
 
@@ -36,7 +42,7 @@ export default function VaultDashboardPage() {
   return (
     <BaseLayout
       header={{
-        title: vaultResource?.currentState.name ?? vaultId,
+        title: vaultName ?? vaultId,
         headerButton: <GuideButton items={guideItems} />,
       }}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}

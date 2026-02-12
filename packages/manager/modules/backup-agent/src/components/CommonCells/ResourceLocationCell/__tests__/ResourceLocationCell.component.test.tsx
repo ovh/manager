@@ -1,64 +1,69 @@
 import React from 'react';
 
+import { QueryClient } from '@tanstack/react-query';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { queryKeys } from '@/data/queries/queryKeys';
 import { mockLocations } from '@/mocks/location/locations';
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
 import { DataGridTextCellMock } from '@/test-utils/mocks/manager-react-components';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 import { ResourceLocationCell } from '../ResourceLocationCell.component';
-
-const { mockLocationDetails } = vi.hoisted(() => {
-  return {
-    mockLocationDetails: vi.fn(),
-  };
-});
-
-vi.mock('@/data/hooks/location/getLocationDetails', () => ({
-  useLocationDetails: mockLocationDetails,
-}));
 
 vi.mock('@ovh-ux/manager-react-components', () => ({
   DataGridTextCell: DataGridTextCellMock,
 }));
 
 describe('ResourceLocationCell', () => {
-  it('renders resourceName from currentState', async () => {
-    mockLocationDetails.mockReturnValue({
-      data: mockLocations[0],
-      isLoading: false,
-      isError: false,
-    });
-    const vault = { ...mockVaults[0]! };
+  let queryClient: QueryClient;
+  const vault = mockVaults[0]!;
+  const region = vault.currentState.region;
 
-    render(<ResourceLocationCell region={vault.currentState.region} />);
+  const buildWrapper = () => testWrapperBuilder().withQueryClient(queryClient).build();
+
+  beforeEach(() => {
+    queryClient = createQueryClientTest();
+  });
+
+  it('renders resourceName from currentState', async () => {
+    queryClient.setQueryData(queryKeys.locations.detail(region), mockLocations[0]);
+
+    const wrapper = await buildWrapper();
+
+    render(<ResourceLocationCell region={region} />, { wrapper });
 
     await waitFor(() =>
       expect(screen.getByTestId('cell')).toHaveTextContent(mockLocations[0]!.location),
     );
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 
   it('renders during loading', async () => {
-    mockLocationDetails.mockReturnValue({ data: null, isLoading: true, isError: false });
-    const vault = mockVaults[0]!;
+    // Don't seed the cache so the query stays in loading state
 
-    const { container } = render(<ResourceLocationCell region={vault.currentState.region} />);
+    const wrapper = await buildWrapper();
+
+    const { container } = render(<ResourceLocationCell region={region} />, { wrapper });
 
     await waitFor(() => expect(container.querySelector('ods-skeleton')).toBeVisible());
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 
   it('renders during error', async () => {
-    mockLocationDetails.mockReturnValue({ data: null, isLoading: false, isError: true });
-    const vault = mockVaults[0]!;
+    // Seed the cache with an error state
+    queryClient.setQueryDefaults(queryKeys.locations.detail(region), { retry: false });
+    await queryClient.prefetchQuery({
+      queryKey: queryKeys.locations.detail(region),
+      queryFn: () => Promise.reject(new Error('fail')),
+    });
 
-    render(<ResourceLocationCell region={vault.currentState.region} />);
+    const wrapper = await buildWrapper();
+
+    render(<ResourceLocationCell region={region} />, { wrapper });
 
     await waitFor(() =>
-      expect(screen.getByTestId('cell')).toHaveTextContent(mockVaults[0]!.currentState.region),
+      expect(screen.getByTestId('cell')).toHaveTextContent(vault.currentState.region),
     );
-    expect(mockLocationDetails).toHaveBeenCalledWith(mockVaults[0]!.currentState.region);
   });
 });
