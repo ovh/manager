@@ -23,7 +23,7 @@ describe('Contacts', () => {
   it('should display the contact label', () => {
     render(<Contacts {...defaultProps} />);
     expect(
-      screen.getByText('@ovh-ux/manager-common-translations/contact:contact'),
+      screen.getByText('@ovh-ux/manager-common-translations/contact:contacts'),
     ).toBeInTheDocument();
   });
 
@@ -63,7 +63,7 @@ describe('Contacts', () => {
     const { container } = render(<Contacts {...emptyProps} />);
     expect(container).toBeInTheDocument();
     expect(
-      screen.getByText('@ovh-ux/manager-common-translations/contact:contact'),
+      screen.getByText('@ovh-ux/manager-common-translations/contact:contacts'),
     ).toBeInTheDocument();
   });
 

@@ -104,7 +104,7 @@ export const useDomainDatagridColumns = ({
           },
           label: t('domain_table_header_status'),
           header: t('domain_table_header_status'),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
           isFilterable: true,
           enableHiding: false,
           filterOptions: Object.entries(deduplicatedRecord)
@@ -137,7 +137,7 @@ export const useDomainDatagridColumns = ({
               value: statusDetails.value ?? state,
             }))
             .sort((a, b) => a.label.localeCompare(b.label)),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
         },
         {
           id: 'transferProtection',
@@ -250,7 +250,7 @@ export const useDomainDatagridColumns = ({
             );
           },
           header: t('domain_table_header_contact_owner'),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
           label: t('domain_table_header_contact_owner'),
           isFilterable: true,
           enableHiding: true,
@@ -270,7 +270,7 @@ export const useDomainDatagridColumns = ({
           },
           header: t('domain_table_header_contact_tech'),
           label: t('domain_table_header_contact_tech'),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
           isFilterable: true,
           enableHiding: true,
         },
@@ -290,7 +290,7 @@ export const useDomainDatagridColumns = ({
           },
           header: t('domain_table_header_contact_admin'),
           label: t('domain_table_header_contact_admin'),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
           isFilterable: true,
           enableHiding: true,
         },
@@ -309,7 +309,7 @@ export const useDomainDatagridColumns = ({
           },
           header: t('domain_table_header_contact_billing'),
           label: t('domain_table_header_contact_billing'),
-          comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
+          comparator: [FilterComparator.IsEqual],
           isFilterable: true,
           enableHiding: true,
         },

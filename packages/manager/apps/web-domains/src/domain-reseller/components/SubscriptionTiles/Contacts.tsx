@@ -27,7 +27,7 @@ export default function Contacts({ contacts, serviceName }: ContactsProps) {
       <div className="flex items-center justify-between">
         <div>
           <ManagerTile.Item.Label>
-            {t(`${NAMESPACES.CONTACT}:contact`)}
+            {t(`${NAMESPACES.CONTACT}:contacts`)}
           </ManagerTile.Item.Label>
           <ul className="list-none p-0 m-0">
             {contacts.map((contact) => (

@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import DomainResellerInformation from './DomainResellerInformation';
 import * as utils from '@/common/utils/utils';
 import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
-import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
+import { useGetDomainsListByResellerNicAdmin } from '@/domain-reseller/hooks/data/query';
 import { mockServiceInfoReseller } from '@/domain/__mocks__/serviceInfo';
 
 const mockDomainsList = ['domain1.com', 'domain2.com', 'domain3.com'];
@@ -23,7 +23,11 @@ vi.mock('@/common/hooks/data/query', () => ({
 }));
 
 vi.mock('@/domain-reseller/hooks/data/query', () => ({
-  useGetDomainsList: vi.fn(() => ({
+  useGetDomainsListByNicBilling: vi.fn(() => ({
+    data: mockDomainsList,
+    isLoading: false,
+  })),
+  useGetDomainsListByResellerNicAdmin: vi.fn(() => ({
     data: mockDomainsList,
     isLoading: false,
   })),
@@ -36,10 +40,10 @@ describe('DomainResellerInformation', () => {
       serviceInfo: mockServiceInfoReseller,
       isServiceInfoLoading: false,
     } as ReturnType<typeof useGetServiceInformationByRoutes>);
-    vi.mocked(useGetDomainsList).mockReturnValue({
+    vi.mocked(useGetDomainsListByResellerNicAdmin).mockReturnValue({
       data: mockDomainsList,
       isLoading: false,
-    } as ReturnType<typeof useGetDomainsList>);
+    } as ReturnType<typeof useGetDomainsListByResellerNicAdmin>);
   });
 
   it('should render without crashing', () => {
@@ -60,10 +64,10 @@ describe('DomainResellerInformation', () => {
   });
 
   it('should display loading state when domains list is loading', () => {
-    vi.mocked(useGetDomainsList).mockReturnValue({
+    vi.mocked(useGetDomainsListByResellerNicAdmin).mockReturnValue({
       data: [],
       isLoading: true,
-    } as ReturnType<typeof useGetDomainsList>);
+    } as ReturnType<typeof useGetDomainsListByResellerNicAdmin>);
 
     render(<DomainResellerInformation />);
     expect(
@@ -93,7 +97,7 @@ describe('DomainResellerInformation', () => {
     render(<DomainResellerInformation />);
     expect(screen.getByTestId('add-domain-button')).toBeInTheDocument();
     expect(
-      screen.getByText('domain_reseller_button_add_domain'),
+      screen.getByText('domain_reseller_order_domain'),
     ).toBeInTheDocument();
   });
 
@@ -104,14 +108,6 @@ describe('DomainResellerInformation', () => {
     screen.getByTestId('add-domain-button').click();
 
     expect(handleOrderClickSpy).toHaveBeenCalled();
-  });
-
-  it('should display download catalog button', () => {
-    render(<DomainResellerInformation />);
-    expect(screen.getByTestId('download-catalog-button')).toBeInTheDocument();
-    expect(
-      screen.getByText('domain_reseller_button_download_catalog'),
-    ).toBeInTheDocument();
   });
 
   it('should display dashboard grid', () => {
