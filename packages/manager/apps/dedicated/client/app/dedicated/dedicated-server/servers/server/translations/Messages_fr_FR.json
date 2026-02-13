@@ -840,7 +840,7 @@
   "server_guides": "Guides",
   "server_guide_ddos_game": "Protéger un serveur Game avec le firewall applicatif",
   "ovh_server_game_ddos_information_modal_title": "Protégez vos serveurs de jeu contre les attaques DDoS",
-  "ovh_server_game_ddos_information_modal_button_primary": "J'ai compris",
+  "ovh_server_game_ddos_information_modal_button_primary": "Gérer la protection de mon serveur",
   "ovh_server_game_ddos_information_modal_button_secondary": "Fermer",
   "ovh_server_game_ddos_information_modal_content_1": "Votre serveur GAME est doté d'une protection DDoS avancée pour garantir que vos serveurs de jeu restent disponibles, même pendant les attaques.",
   "ovh_server_game_ddos_information_modal_content_subtitle": "Principaux points à retenir",
