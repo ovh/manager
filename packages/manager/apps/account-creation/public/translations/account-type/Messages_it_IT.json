@@ -6,9 +6,9 @@
   "legal_form_corporation": "Società",
   "legal_form_individual": "Privato",
   "legal_form_personalcorporation": "Ditta individuale",
-  "legal_form_tooltip_corporation_description": "Crea un account per la tua azienda se disponi di un'attività registrata, incluse le imprese unipersonali.",
-  "legal_form_tooltip_individual_description": "Crea un account come privato se non disponi di un'azienda registrata o se stai creando la tua impresa.",
-  "legal_form_tooltip_administration_description": "Crea un account per la tua organizzazione pubblica se rappresenti uno Stato, una collettività territoriale, un'organizzazione o un'istituzione internazionale.",
-  "legal_form_tooltip_association_description": "Crea un account per la tua associazione se sei iscritto al Registro nazionale delle imprese. Se non sei iscritto, crea un account come privato.",
+  "legal_form_tooltip_corporation_description": "L'account \"Entreprise\" deve essere creato da tutte le <strong>persone giuridiche</strong> (escluse le amministrazioni pubbliche e le associazioni) e <strong>persone fisiche (imprenditori individuali)</strong> che acquistano servizi OVHcloud nell’ambito della propria <strong>attività professionale</strong>.",
+  "legal_form_tooltip_individual_description": "L'account \"Privato\" deve essere creato esclusivamente dalle <strong>persone fisiche</strong> che acquistano servizi OVHcloud per le proprie <strong>esigenze private, al di fuori di un'attività professionale</strong>.",
+  "legal_form_tooltip_administration_description": "L'account \"Amministrazione pubblica\" deve essere creato esclusivamente dalle <strong>amministrazioni statali, amministrazioni territoriali o istituzioni pubbliche</strong>.",
+  "legal_form_tooltip_association_description": "L'account \"Associazione\" deve essere creato esclusivamente dalle <strong>associazioni e altri organismi senza scopo di lucro come fondazioni, sindacati professionali o congregazioni religiose</strong>.",
   "legal_form_tooltip_personalcorporation_description": "Descrizione Ditta Individuale."
 }

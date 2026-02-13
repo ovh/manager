@@ -14,9 +14,11 @@ const generateQueryKey = (params: RulesParam) =>
 export const useRules = <T extends RuleField>(
   params: RulesParam,
   fields?: T[],
+  enabled?: boolean,
 ) =>
   useQuery({
     queryKey: ['/newAccount/rules', ...generateQueryKey(params)],
+    enabled: enabled !== undefined ? enabled : true,
     queryFn: () => getRules(params),
     placeholderData: (prev) => prev,
     select: fields

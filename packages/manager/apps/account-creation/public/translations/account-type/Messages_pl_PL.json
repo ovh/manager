@@ -6,9 +6,9 @@
   "legal_form_corporation": "Firma",
   "legal_form_individual": "Osoba fizyczna",
   "legal_form_personalcorporation": "Spółka jednoosobowa",
-  "legal_form_tooltip_corporation_description": "Utwórz konto firmowe, jeśli prowadzisz zarejestrowaną działalność, także jednoosobową.",
-  "legal_form_tooltip_individual_description": "Utwórz konto jako osoba prywatna, jeśli nie prowadzisz zarejestrowanej działalności albo dopiero zakładasz firmę.",
-  "legal_form_tooltip_administration_description": "Utwórz konto dla instytucji publicznej, jeśli reprezentujesz organ państwowy, jednostkę terytorialną lub organizację czy instytucję międzynarodową.",
-  "legal_form_tooltip_association_description": "Utwórz konto dla stowarzyszenia, jeśli jest ono wpisane do krajowego rejestru firm i instytucji. Jeśli nie masz jeszcze konta, utwórz konto jako osoba prywatna.",
+  "legal_form_tooltip_corporation_description": "Konto „Enterprise” powinny tworzyć <strong>osoby prawne</strong> (z wyłączeniem podmiotów administracji publicznej i stowarzyszeń) oraz <strong>osoby fizyczne (przedsiębiorcy indywidualni)</strong>, które kupują produkty OVHcloud w ramach  <strong>działalności gospodarczej</strong>.",
+  "legal_form_tooltip_individual_description": "Konto „Prywatne” powinny tworzyć wyłącznie <strong>osoby fizyczne</strong> kupujące produkty OVHcloud na <strong>własne potrzeby, niezwiązane z działalnością gospodarczą</strong>.",
+  "legal_form_tooltip_administration_description": "Konto „Administracja publiczna” powinny tworzyć wyłącznie <strong>jednostki administracji państwowej, terytorialnej oraz inne jednostki sektora publicznego</strong>.",
+  "legal_form_tooltip_association_description": "Konto „Stowarzyszenie” powinny tworzyć wyłącznie <strong>stowarzyszenia i inne podmioty niekomercyjne, takie jak fundacje, związki zawodowe lub zgromadzenia wyznaniowe</strong>.",
   "legal_form_tooltip_personalcorporation_description": "Opis jednoosobowej działalności gospodarczej."
 }

@@ -109,7 +109,7 @@ describe('useSettings', () => {
   });
 
   describe('useLanguageSettings', () => {
-    it('should give a list of unique languages available for the given country', async () => {
+    it('should give a list of unique languages with subsidiary available for the given country', async () => {
       getSettingsApiSpy.mockImplementationOnce(() =>
         Promise.resolve(mockedGetSettingsApiResult),
       );
@@ -118,7 +118,10 @@ describe('useSettings', () => {
       });
 
       await waitFor(() => {
-        expect(result.current.data).toStrictEqual(['fr-FR', 'en-IE']);
+        expect(result.current.data).toStrictEqual([
+          { ietfLanguageTag: 'fr-FR', ovhSubsidiary: 'FR' },
+          { ietfLanguageTag: 'en-IE', ovhSubsidiary: 'IE' },
+        ]);
       });
     });
     it('should give an empty list of languages if no country is given', async () => {

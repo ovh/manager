@@ -1,7 +1,5 @@
-import { useLocation } from 'react-router-dom';
 import { LegalForm } from '@ovh-ux/manager-config';
 import { useUserContext } from '@/context/user/useUser';
-import { urls } from '@/routes/routes.constant';
 
 const getLegalFormKey = (legalForm: LegalForm): LegalForm => {
   switch (legalForm) {
@@ -14,10 +12,9 @@ const getLegalFormKey = (legalForm: LegalForm): LegalForm => {
 };
 
 export const useReassuranceWording = () => {
-  const { pathname } = useLocation();
   const user = useUserContext();
 
-  if (pathname !== urls.accountDetails || !user?.legalForm) {
+  if (!user?.legalForm || user.legalForm === 'other') {
     return {
       title: 'generic_title',
       description: 'generic_description',

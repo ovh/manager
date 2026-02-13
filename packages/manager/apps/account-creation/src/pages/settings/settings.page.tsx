@@ -14,7 +14,7 @@ import {
   OdsPopover,
 } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Currency } from '@ovh-ux/manager-config';
+import { Country, Currency } from '@ovh-ux/manager-config';
 import {
   ButtonType,
   PageLocation,
@@ -39,11 +39,10 @@ import {
 } from '@/hooks/redirection/useSettingsRedirecions';
 import { useSettingsSchema } from '@/hooks/settings/useSettings';
 import { useTrackError } from '@/hooks/tracking/useTracking';
-import {
-  DEFAULT_REDIRECT_URL,
-  WEBSITE_LABEL_BY_LOCALE,
-} from './settings.constants';
+import { DEFAULT_REDIRECT_URL } from './settings.constants';
+import { getWebsiteLabel } from './settings.utils';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
+import { useLocalCountry } from '@/hooks/useLocalCountry/useLocalCountry';
 
 type SettingsFormData = {
   country: string;
@@ -52,12 +51,14 @@ type SettingsFormData = {
 };
 
 export default function Settings() {
-  const { t } = useTranslation([
+  const { t, i18n } = useTranslation([
     'settings',
     NAMESPACES.ACTIONS,
     NAMESPACES.ONBOARDING,
     NAMESPACES.FORM,
   ]);
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const [_, setLocalCountry] = useLocalCountry();
   const { trackClick } = useTrackingContext();
   const { trackError } = useTrackError('choose-preferences');
   const pageTracking = usePageTracking();
@@ -86,6 +87,7 @@ export default function Settings() {
   const {
     data: countries,
     isLoading: isLoadingCountries,
+    refetch: refetchCountries,
     error: errorCountries,
   } = useCountrySettings();
   const { data: currencies, error: errorCurrencies } = useCurrencySettings(
@@ -110,6 +112,14 @@ export default function Settings() {
   const comboboxRef = useRef<HTMLOdsComboboxElement | null>(null);
 
   useEffect(() => {
+    refetchCountries();
+    if (countries?.length) {
+      setValue('country', '', { shouldValidate: true });
+    }
+    comboboxRef.current?.clear();
+  }, [i18n.language, setValue, countries, comboboxRef.current]);
+
+  useEffect(() => {
     if (!comboboxRef.current) {
       return;
     }
@@ -124,6 +134,15 @@ export default function Settings() {
     input.autocomplete = 'off';
   }, [comboboxRef.current, countries]);
 
+  /**
+   * TODO: Remove this effect when the API is updated to return the country code
+   */
+  useEffect(() => {
+    if (selectedCountry && selectedCountry !== 'UNKNOWN') {
+      setLocalCountry(selectedCountry as Country);
+    }
+  }, [selectedCountry, setLocalCountry]);
+
   useEffect(() => {
     if (currencies?.length === 1) {
       setValue('currency', currencies[0].code, { shouldValidate: true });
@@ -132,7 +151,9 @@ export default function Settings() {
 
   useEffect(() => {
     if (languages?.length === 1) {
-      setValue('language', languages[0], { shouldValidate: true });
+      setValue('language', languages[0].ietfLanguageTag, {
+        shouldValidate: true,
+      });
     }
   }, [languages, selectedCountry, selectedCurrency, setValue]);
 
@@ -149,7 +170,7 @@ export default function Settings() {
   }, [setValue]);
 
   const submitSettings: SubmitHandler<SettingsFormData> = useCallback(
-    ({ country, currency, language }: SettingsFormData) => {
+    ({ country, language }: SettingsFormData) => {
       if (pageTracking) {
         trackClick(pageTracking, {
           location: PageLocation.page,
@@ -161,7 +182,6 @@ export default function Settings() {
           ],
         });
       }
-      console.log({ country, currency, language });
       // In case the signup url is not valid, we will redirect to the website
       if (redirectToSignUpUrl !== null) {
         const params = `ovhSubsidiary=${ovhSubsidiary}&country=${country}&language=${language}`;
@@ -242,6 +262,7 @@ export default function Settings() {
                 isLoading={isLoadingCountries}
                 hasError={!!errors[name]}
                 ref={comboboxRef}
+                key={`countries_${i18n.language}`}
                 data-testid="country-combobox"
               >
                 {countries?.map(({ code, label }) => (
@@ -276,7 +297,7 @@ export default function Settings() {
                 isDisabled={!currencies?.length}
                 onOdsChange={onChange}
                 onBlur={onBlur}
-                key={`currencies_for_${selectedCurrency}`}
+                key={`currencies_for_${selectedCountry}`}
                 hasError={Boolean(currencies?.length && errors[name])}
                 data-testid="currency-select"
               >
@@ -341,8 +362,11 @@ export default function Settings() {
                 data-testid="language-select"
               >
                 {(languages || []).map((language) => (
-                  <option key={`site_${language}`} value={language}>
-                    {WEBSITE_LABEL_BY_LOCALE[language]}
+                  <option
+                    key={`site_${language.ietfLanguageTag}`}
+                    value={language.ietfLanguageTag}
+                  >
+                    {getWebsiteLabel(language)}
                   </option>
                 ))}
               </OdsSelect>

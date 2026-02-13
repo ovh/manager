@@ -6,9 +6,9 @@
   "legal_form_corporation": "Empresa",
   "legal_form_individual": "Particular",
   "legal_form_personalcorporation": "Empresa individual",
-  "legal_form_tooltip_corporation_description": "Crie uma conta para a sua empresa se tiver uma atividade registada, incluindo empresas unipessoais.",
-  "legal_form_tooltip_individual_description": "Crie uma conta como particular se não tiver uma empresa registada ou se estiver a criar uma empresa.",
-  "legal_form_tooltip_administration_description": "Crie uma conta para a sua organização pública se representa um Estado, uma autarquia, uma organização ou uma instituição internacional.",
-  "legal_form_tooltip_association_description": "Crie uma conta para a sua associação se estiver inscrito no Registo Nacional de Pessoas Coletivas. Se não estiver inscrito, crie uma conta como particular.",
+  "legal_form_tooltip_corporation_description": "A conta «Empresa» deve ser criada por todas as <strong>pessoas coletivas</strong> (exceto administração pública e associações) e por todas as <strong>pessoas singulares (empresários individuais)</strong> que adquiram produtos da OVHcloud no âmbito da sua <strong>atividade profissional</strong>.",
+  "legal_form_tooltip_individual_description": "A conta «Particular» deve ser criada apenas pelas <strong>pessoas singulares</strong> que adquiram produtos da OVHcloud para as suas <strong>necessidades privadas, fora do âmbito de uma atividade profissional</strong>.",
+  "legal_form_tooltip_administration_description": "A conta «Administração pública» deve ser criada apenas por <strong>organismos públicos</strong>.",
+  "legal_form_tooltip_association_description": "A conta «Associação» deve ser criada apenas por <strong>associações e outras organizações sem fins lucrativos, como fundações, sindicatos profissionais ou congregações religiosas</strong>.",
   "legal_form_tooltip_personalcorporation_description": "Descrição dita individual."
 }

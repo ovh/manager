@@ -6,9 +6,9 @@
   "legal_form_corporation": "Unternehmen",
   "legal_form_individual": "Privatperson",
   "legal_form_personalcorporation": "Einzelfirma",
-  "legal_form_tooltip_corporation_description": "Erstellen Sie einen Account für Ihr Unternehmen, wenn Sie über eine registrierte Tätigkeit verfügen, einschließlich Einpersonenunternehmen.",
-  "legal_form_tooltip_individual_description": "Erstellen Sie einen Account als Privatperson, wenn Sie kein registriertes Unternehmen haben oder Ihr Unternehmen gerade gründen.",
-  "legal_form_tooltip_administration_description": "Erstellen Sie einen Account für Ihre öffentliche Organisation, wenn Sie einen Staat, eine Gebietskörperschaft oder eine internationale Organisation oder Institution vertreten.",
-  "legal_form_tooltip_association_description": "Erstellen Sie einen Account für Ihren Verein, wenn Sie im nationalen Verzeichnis der Unternehmen und Einrichtungen registriert sind. Wenn Sie nicht registriert sind, erstellen Sie bitte einen Account als Privatperson.",
+  "legal_form_tooltip_corporation_description": "Ein Account vom Typ „Unternehmen“ muss von allen <strong>juristischen Personen</strong> (mit Ausnahme von Behörden und Vereinen) und allen <strong>natürlichen Personen (Einzelunternehmer:innen)</strong> erstellt werden, die im Rahmen ihrer <strong>beruflichen Tätigkeit</strong> OVHcloud Produkte erwerben.",
+  "legal_form_tooltip_individual_description": "Ein Account vom Typ „Privat“ darf nur von <strong>natürlichen Personen</strong> erstellt werden, die OVHcloud Produkte für ihren<strong> privaten Bedarf</strong> erwerben.",
+  "legal_form_tooltip_administration_description": "Ein Account vom Typ „Behörde“ darf nur von <strong>staatlichen Behörden, Gebietskörperschaften oder öffentlichen Einrichtungen</strong> eingerichtet werden.",
+  "legal_form_tooltip_association_description": "Ein Account vom Typ „Verein“ darf nur von <strong>Vereinen und anderen gemeinnützigen Organisationen wie Stiftungen, Berufsgewerkschaften oder religiösen Vereinigungen</strong> erstellt werden.",
   "legal_form_tooltip_personalcorporation_description": "Beschreibung Ditta Individuale."
 }
