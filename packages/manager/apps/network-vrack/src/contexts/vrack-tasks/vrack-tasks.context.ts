@@ -1,9 +1,10 @@
 import { createContext } from 'react';
 
-import { VrackTask } from '@ovh-ux/manager-network-common';
+import { TrackedTask } from '@/types/Task.type';
 
 export type VrackTasksContext = {
-  vrackTasks: VrackTask[];
+  trackedTasks: TrackedTask[];
+  trackTask: (newTrackedTask: TrackedTask) => void;
 };
 
 const vrackTasksContext = createContext<VrackTasksContext | undefined>(undefined);

@@ -2,8 +2,12 @@ import { UseQueryOptions, useQueries } from '@tanstack/react-query';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
 
+import { Ipv6BridgedSubrangeDetails } from '@/data/api/get/bridgedSubrange';
+import { Ipv6RoutedSubrangeDetails } from '@/data/api/get/routedSubrange';
 import { Ipv6Detail, getVrackIpv6Detail } from '@/data/api/get/vrackIp';
 
+import { useGetBridgedSubranges } from './useGetBridgedSubranges';
+import { useGetRoutedSubranges } from './useGetRoutedSubranges';
 import { getVrackIpv6ListKey, useGetVrackIpv6List } from './useGetVrackIpv6List';
 
 export const getVrackIpv6DetailKey = (serviceName: string, ip: string) => [
@@ -24,9 +28,23 @@ export const useGetVrackIpv6ListDetails = (serviceName: string = '') => {
     ),
   });
 
+  const { detailedBridgedSubranges } = useGetBridgedSubranges(serviceName, ipv6List ?? []);
+  const { detailedRoutedSubranges } = useGetRoutedSubranges(serviceName, ipv6List ?? []);
+
   return {
     isLoading: isLoadingList || !!results.find((result) => !!result.isLoading),
     isError: isError || !!results.find((result) => !!result.isError),
-    ipsWithDetail: results.map(({ data }) => data).filter((ip) => !!ip),
+    ipsWithDetail: results
+      .map(({ data }) => data)
+      .filter((ip) => !!ip)
+      .map((ipDetail) => ({
+        ...ipDetail,
+        bridgedSubranges: detailedBridgedSubranges
+          .filter(({ data }) => data?.ipv6 === ipDetail.ipv6 && data?.subrange)
+          .map(({ data }) => data?.subrange) as Ipv6BridgedSubrangeDetails[],
+        routedSubranges: detailedRoutedSubranges
+          .filter(({ data }) => data?.ipv6 === ipDetail.ipv6 && data?.subrange)
+          .map(({ data }) => data?.subrange) as Ipv6RoutedSubrangeDetails[],
+      })),
   };
 };

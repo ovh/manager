@@ -23,6 +23,8 @@ export const GUIDE_LINKS = {
       'https://help.ovhcloud.com/csm/fr-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043347',
     link4:
       'https://help.ovhcloud.com/csm/fr-dedicated-servers-vrack-pci-ds?id=kb_article_view&sysparm_article=KB0043359',
+    slaac:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825',
   },
   GB: {
     link1:
@@ -201,6 +203,8 @@ export const GUIDE_LINKS = {
       'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-ip-block-vrack?id=kb_article_view&sysparm_article=KB0043337',
     link4:
       'https://help.ovhcloud.com/csm/en-gb-dedicated-servers-vrack-pci-ds?id=kb_article_view&sysparm_article=KB0043353',
+    slaac:
+      'https://help.ovhcloud.com/csm/fr-dedicated-servers-configure-an-ipv6-in-a-vrack?id=kb_article_view&sysparm_article=KB0062825',
   },
 };
 
