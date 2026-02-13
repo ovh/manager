@@ -116,7 +116,7 @@ export const CATALOG_SHARE = {
       areIOPSDynamic: true,
       isBandwidthDynamic: true,
       specs: {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         share: {
           capacity: {
             min: 150,
