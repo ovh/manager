@@ -25,11 +25,12 @@ export const SubnetSelection = () => {
   const selectedMicroRegion = useWatch({ control, name: 'shareData.microRegion' });
   const selectedNetworkId = useWatch({ control, name: 'shareData.privateNetworkId' });
 
-  const { data: subnetOptions = [], isLoading } = useSubnets(
-    selectedMicroRegion,
-    selectedNetworkId,
-    { select: selectSubnetsForNetwork(selectedNetworkId) },
-  );
+  const { data: subnetOptions = [], isLoading } = useSubnets({
+    region: selectedMicroRegion,
+    networkId: selectedNetworkId,
+    options: { select: selectSubnetsForNetwork(selectedNetworkId) },
+    enabled: !!selectedMicroRegion && !!selectedNetworkId,
+  });
 
   const firstSubnetId = useMemo(() => subnetOptions[0]?.value, [subnetOptions]);
 
