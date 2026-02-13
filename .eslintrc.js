@@ -15,10 +15,7 @@ module.exports = {
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: true, peerDependencies: true },
-    ],
+    'import/no-extraneous-dependencies': 'off',
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
