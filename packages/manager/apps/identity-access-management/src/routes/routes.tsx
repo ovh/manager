@@ -6,7 +6,11 @@ import { urls } from '@/routes/routes.constant';
 import TagDetail from '@/pages/tagManager/tagDetail/TagDetail.page';
 import TagDetailAssign from '@/pages/tagManager/tagDetailAssign/TagDetailAssign.page';
 import TagDetailUnassign from '@/pages/tagManager/tagDetailUnassign/TagDetailUnassign.modal';
-import { TrackPageName, PERMANENT_TOKENS_TRACKING } from '@/tracking.constant';
+import {
+  TrackPageName,
+  PERMANENT_TOKENS_TRACKING,
+  SERVICE_ACCOUNTS_TRACKING,
+} from '@/tracking.constant';
 
 const LayoutPage = lazy(() => import('@/pages/layout'));
 const TagManager = lazy(() => import('@/pages/tagManager/TagManager.page'));
@@ -24,6 +28,9 @@ const PermanentTokensDelete = lazy(() =>
 );
 const PermanentTokensViewer = lazy(() =>
   import('@/pages/permanentTokens/viewer/PermanentTokensViewer.page'),
+);
+const ServiceAccountsListing = lazy(() =>
+  import('@/pages/serviceAccounts/listing/ServiceAccountsListing.page'),
 );
 
 export default (
@@ -144,5 +151,15 @@ export default (
         }}
       />
     </Route>
+    <Route
+      path={urls.serviceAccounts}
+      Component={ServiceAccountsListing}
+      handle={{
+        tracking: {
+          pageName: SERVICE_ACCOUNTS_TRACKING.LISTING.PAGE_NAME,
+          pageType: PageType.listing,
+        },
+      }}
+    ></Route>
   </Route>
 );
