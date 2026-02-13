@@ -19,6 +19,7 @@ const fetchOnboardingPreferences = () =>
     )
     .then((response) => {
       const { data } = response;
+      // @ts-ignore
       return JSON.parse(data.value) as OnboardingPreferences;
     })
     .catch((error) => {
