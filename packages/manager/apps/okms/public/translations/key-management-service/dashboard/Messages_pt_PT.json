@@ -57,7 +57,7 @@
   "key_management_service_dashboard_dashboard_field_state_toActivate": "A ativar",
   "key_management_service_dashboard_dashboard_field_state_toDelete": "Eliminação pendente",
   "key_management_service_dashboard_dashboard_field_state_toSuspend": "Suspensão pendente",
-  "key_management_service_dashboard_back_link": "Voltar à lista de domínios OKMS",
+  "key_management_service_dashboard_back_link": "Voltar à lista dos domínios OKMS",
   "key_management_service_dashboard_field_label_kmip_count": "Número de objetos KMIP",
   "key_management_service_dashboard_field_label_service-keys_count": "Número de Service Keys",
   "logs": "Logs",

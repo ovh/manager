@@ -80,8 +80,8 @@
   "bulkDeleteVersionsDescription_one": "Deseja eliminar definitivamente {{count}} versão? Esta ação não pode ser anulada.",
   "bulkDeleteVersionsDescription_other": "Deseja eliminar definitivamente {{count}} versões? Esta ação não pode ser anulada.",
   "bulkDeleteVersionsConfirmation": "Introduza {{confirmation}} para confirmar",
-  "downloadErrorDescription": "Erro ao fazer o download do arquivo",
-  "downloadErrorStatus": "Erro ao fazer o download: {{status}}",
+  "downloadErrorDescription": "Ocorreu um erro durante o download do ficheiro",
+  "downloadErrorStatus": "Erro durante o download: {{status}}",
   "downloadErrorUnknownType": "Tipo de download desconhecido",
   "openFolder": "Abrir a pasta {{name}}"
 }

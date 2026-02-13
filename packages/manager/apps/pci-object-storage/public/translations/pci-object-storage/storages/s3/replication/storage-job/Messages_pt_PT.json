@@ -1,11 +1,11 @@
 {
   "storageJobTitle": "Criar uma regra de sincronização",
-  "storageJobDescription": "Aplique retroativamente a sua configuração de replicação para replicar os objetos carregados antes da criação das regras de replicação. Esta ação desencadeia um trabalho executado em segundo plano, encarregado de sincronizar os seus buckets. Para saber mais sobre replicação assíncrona, consulte a documentação",
-  "storageJobDescriptionLink": "aqui.",
+  "storageJobDescription": "Aplique retroativamente a sua configuração de replicação para replicar os objetos carregados antes da criação das regras de replicação. Esta ação ativa um job executado em segundo plano, encarregado de sincronizar os seus buckets. Para saber mais sobre a replicação assíncrona, consulte a documentação",
+  "storageJobDescriptionLink": "aqui",
   "storageJobButtonConfirm": "Replicar os objetos existentes",
   "storageJobButtonCancel": "Anular",
   "storageJobToastSuccessTitle": "Regra de sincronização criada",
   "storageJobToastSuccessMessage": "A regra de sincronização foi criada com sucesso.",
-  "storageJobToastErrorTitle": "Erro ao criar",
-  "storageJobToastErrorMessage": "Ocorreu um erro ao criar a regra de sincronização: {{message}}."
+  "storageJobToastErrorTitle": "Erro durante a criação",
+  "storageJobToastErrorMessage": "Ocorreu um erro durante a criação da regra de sincronização: {{message}}."
 }

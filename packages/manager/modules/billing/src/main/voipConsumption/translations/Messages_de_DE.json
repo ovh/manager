@@ -1,11 +1,11 @@
 {
-  "voip_consumption_page_title": "Verbrauchsüberwachung Telefonie",
+  "voip_consumption_page_title": "Nachverfolgung der Telefonie-Nutzung",
   "voip_consumption_header_billing_account": "Abrechnungsgruppe",
   "voip_consumption_header_description": "Beschreibung",
-  "voip_consumption_header_total_amount": "Gesamtbetrag (netto)",
-  "voip_consumption_header_total_outplan": "Betrag außerhalb des Pakets (netto)",
+  "voip_consumption_header_total_amount": "Gesamtbetrag (zzgl. MwSt.)",
+  "voip_consumption_header_total_outplan": "Betrag ohne Pauschale (zzgl. MwSt.)",
   "voip_consumption_action_download_csv": "CSV-Datei herunterladen",
-  "voip_consumption_action_download_received_csv": "CSV-Datei der empfangenen Anrufe herunterladen",
+  "voip_consumption_action_download_received_csv": "CSV-Datei für empfangene Anrufe herunterladen",
   "voip_consumption_action_download_pdf": "PDF-Datei herunterladen",
   "voip_consumption_no_data_available": "Nicht verfügbar"
 }
