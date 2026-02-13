@@ -1,25 +1,8 @@
 import '@/common/setupTests';
-import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
 import LinkToOngoingOperations from './LinkToOngoingOperations';
 import { TOngoingOperationTarget } from '@/domain/constants/serviceDetail';
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ href, children }: { href: string; children: React.ReactNode }) => (
-    <a href={href}>{children}</a>
-  ),
-  Icon: ({ name }: { name: string }) => <span data-testid={`icon-${name}`} />,
-  BADGE_COLOR: {
-    success: 'success',
-    critical: 'critical',
-    warning: 'warning',
-    information: 'information',
-  },
-  ICON_NAME: {
-    arrowRight: 'arrow-right',
-  },
-}));
 
 describe('LinkToOngoingOperations', () => {
   it('should display the link with the correct URL', () => {

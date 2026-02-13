@@ -1,5 +1,5 @@
 import '@/common/setupTests';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act, within } from '@testing-library/react';
 import { vi, describe, it, beforeEach, expect } from 'vitest';
 import React from 'react';
 
@@ -19,7 +19,7 @@ const supportedAlgorithms: TDnssecConfiguration['supportedAlgorithms'] = [
 
 const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const methods = useForm({
-    mode: 'onChange',
+    mode: 'all',
     defaultValues: {
       keyTag: '',
       flags: 257,
@@ -62,15 +62,21 @@ describe('DsRecordsForm', () => {
     });
 
     const keyTagInput = screen.getByPlaceholderText('32456');
+    const keyTagField = keyTagInput.closest('[data-testid="form-field"]') as HTMLElement;
 
-    fireEvent.change(keyTagInput, { target: { value: '123' } });
-    fireEvent.change(keyTagInput, { target: { value: '' } });
+    await act(async () => {
+      fireEvent.change(keyTagInput, { target: { value: '123' } });
+      fireEvent.change(keyTagInput, { target: { value: '' } });
+      fireEvent.blur(keyTagInput);
+    });
 
     await waitFor(() => {
-      expect(
-        screen.getByText('domain_tab_dsrecords_drawer_form_error_empty'),
-      ).toBeInTheDocument();
-    });
+      const errorElement = within(keyTagField).getByTestId('form-field-error');
+      expect(errorElement).toBeInTheDocument();
+     expect(errorElement).toHaveTextContent(
+        'domain_tab_dsrecords_drawer_form_error_empty',
+      );
+    }, { timeout: 3000 });
   });
 
   it('Display the getPublicKeyError error', async () => {
@@ -87,14 +93,20 @@ describe('DsRecordsForm', () => {
     const textarea = screen.getByPlaceholderText(
       'SreztregdhtfjghkvjbhlNcqityzfEZFjyfchgvkliYHELVBQSFHCJVD',
     );
+    const publicKeyField = textarea.closest('[data-testid="form-field"]') as HTMLElement;
 
-    fireEvent.change(textarea, { target: { value: 'invalid' } });
+    await act(async () => {
+      fireEvent.change(textarea, { target: { value: 'invalid' } });
+      fireEvent.blur(textarea);
+    });
 
     await waitFor(() => {
-      expect(
-        screen.getByText('domain_tab_dsrecords_drawer_form_publicKey_error'),
-      ).toBeInTheDocument();
-    });
+      const errorElement = within(publicKeyField).getByTestId('form-field-error');
+      expect(errorElement).toBeInTheDocument();
+     expect(errorElement).toHaveTextContent(
+        'domain_tab_dsrecords_drawer_form_publicKey_error',
+      );
+    }, { timeout: 3000 });
   });
 
   it('no error when getPublicKeyError input is valid', async () => {

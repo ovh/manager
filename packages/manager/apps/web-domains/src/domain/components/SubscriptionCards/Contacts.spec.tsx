@@ -27,7 +27,7 @@ describe('Contacts component', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/contacts/i)).toBeInTheDocument();
+      expect(screen.getByTestId('tile-label')).toHaveTextContent(/contacts/i);
       expect(
         screen.getByText(
           /firstname lastname: domain_tab_general_information_subscription_contact_owner/i,

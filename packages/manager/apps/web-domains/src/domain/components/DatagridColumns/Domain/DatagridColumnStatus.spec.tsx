@@ -16,27 +16,6 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/muk', () => ({
-  CellRow: ({
-    children,
-    'data-testid': testId,
-  }: {
-    children: React.ReactNode;
-    'data-testid'?: string;
-  }) => <div data-testid={testId}>{children}</div>,
-}));
-
-vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
-  return {
-    ...actual,
-    Badge: ({ children }: { children: React.ReactNode }) => (
-      <span data-testid="badge">{children}</span>
-    ),
-    Icon: ({ name }: { name: string }) => <span data-testid={`icon-${name}`} />,
-  };
-});
-
 vi.mock('@/domain/utils/domainStatus', () => ({
   domainStatusToBadge: vi.fn((mapping, state) => {
     const statusDetails = mapping[state];

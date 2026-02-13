@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
@@ -13,30 +14,6 @@ vi.mock('@/domain/hooks/data/query', () => ({
 
 vi.mock('@/common/hooks/nichandle/useNichandleInformation', () => ({
   useNichandleInformation: vi.fn(() => ({ nichandleInformation: null })),
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
-  return {
-    ...actual,
-    useNavigationGetUrl: vi.fn(),
-  };
-});
-
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href} role="link">
-      {children}
-    </a>
-  ),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
 }));
 
 describe('DatagridColumnContact', () => {

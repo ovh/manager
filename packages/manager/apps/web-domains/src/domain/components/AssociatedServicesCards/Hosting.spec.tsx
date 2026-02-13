@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React, { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   render,
@@ -7,7 +6,6 @@ import {
   fireEvent,
   waitFor,
 } from '@/common/utils/test.provider';
-import { UseQueryResult } from '@tanstack/react-query';
 import { wrapper } from '@/common/utils/test.provider';
 import Hosting from './Hosting';
 
@@ -18,57 +16,6 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetFreeHostingServices: vi.fn(),
   useGetServiceInformation: vi.fn(),
 }));
-
-interface ActionMenuItem {
-  id: number;
-  label: string;
-  onClick?: () => void;
-}
-interface ActionMenuProps {
-  id: string;
-  items: ActionMenuItem[];
-}
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-  const ActionMenu = ({ items, id }: ActionMenuProps) => (
-    <div data-testid={id}>
-      {items.map((item) => (
-        <button
-          key={item.id}
-          onClick={item.onClick}
-          data-testid={`action-item-${item.id}`}
-        >
-          {item.label}
-        </button>
-      ))}
-    </div>
-  );
-
-  type ManagerTileItemComponent = React.FC<{ children?: ReactNode }> & {
-    Label: React.FC<{ children?: ReactNode }>;
-  };
-  const ManagerTileItem: ManagerTileItemComponent = Object.assign(
-    ({ children }: { children?: ReactNode }) => (
-      <div data-testid="manager-tile-item">{children}</div>
-    ),
-    {
-      Label: ({ children }: { children?: ReactNode }) => (
-        <div data-testid="tile-label">{children}</div>
-      ),
-    },
-  );
-
-  return {
-    ...actual,
-    ActionMenu,
-    ManagerTile: {
-      Item: ManagerTileItem,
-    },
-  };
-});
 
 interface FreeHostingDrawerMockProps {
   isDrawerOpen: boolean;
@@ -98,38 +45,6 @@ vi.mock('./FreeHostingDrawer', () => ({
     );
   },
 }));
-
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ href, children }: { href: string; children?: ReactNode }) => (
-    <a href={href} data-testid="hosting-link">
-      {children}
-    </a>
-  ),
-  Text: ({ children }: { children?: ReactNode }) => (
-    <span data-testid="text">{children}</span>
-  ),
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
-  const mockShellContext = {
-    environment: {
-      getUser: () => ({
-        ovhSubsidiary: 'FR',
-      }),
-    },
-  };
-
-  return {
-    ShellContext: React.createContext(mockShellContext),
-    useNavigationGetUrl: (
-      linkParams: [string, string, unknown],
-    ): UseQueryResult<unknown, Error> => {
-      return {
-        data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
-      } as UseQueryResult<unknown, Error>;
-    },
-  };
-});
 
 const {
   useGetAssociatedHosting,

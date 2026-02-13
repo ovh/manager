@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
@@ -10,37 +11,6 @@ vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Badge: ({
-    children,
-    color,
-    'data-testid': testId,
-  }: {
-    children: React.ReactNode;
-    color: string;
-    'data-testid': string;
-  }) => (
-    <div data-testid={testId} data-color={color}>
-      {children}
-    </div>
-  ),
-  Icon: ({ name }: { name: string }) => (
-    <span data-testid={`icon-${name}`}>{name}</span>
-  ),
-  Skeleton: () => <div data-testid="skeleton" />,
-  BADGE_COLOR: {
-    alpha: 'alpha',
-    beta: 'beta',
-    critical: 'critical',
-    information: 'information',
-    neutral: 'neutral',
-    success: 'success',
-    warning: 'warning',
-  },
-  ICON_NAME: {
-    WARNING_TRIANGLE_FILL: 'warning-triangle-fill',
-  },
-}));
 
 describe('DatagridColumnPendingActions', () => {
   const mockServiceName = 'test-domain.com';

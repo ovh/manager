@@ -2,6 +2,7 @@ import '@/common/setupTests';
 import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { mockAddSuccess, mockAddError } from '@/common/setupTests';
 
 import DsRecordsDeleteModal from '@/domain/components/DsRecords/DsRecordsDeleteModal';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
@@ -9,59 +10,7 @@ import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 import { wrapper } from '@/common/utils/test.provider';
 
 const updateDomain = vi.fn();
-const addSuccess = vi.fn();
-const addError = vi.fn();
 const setIsModalOpen = vi.fn();
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-
-  type ModalProps = {
-    isOpen: boolean;
-    heading: string;
-    primaryLabel: string;
-    secondaryLabel: string;
-    onPrimaryButtonClick: () => void;
-    onSecondaryButtonClick: () => void;
-    children?: React.ReactNode;
-  };
-
-  return {
-    ...actual,
-    Modal: ({
-      isOpen,
-      heading,
-      primaryLabel,
-      secondaryLabel,
-      onPrimaryButtonClick,
-      onSecondaryButtonClick,
-      children,
-    }: ModalProps) =>
-      isOpen ? (
-        <div data-testid="modal">
-          <h1>{heading}</h1>
-          <button onClick={onSecondaryButtonClick}>{secondaryLabel}</button>
-          <button onClick={onPrimaryButtonClick}>{primaryLabel}</button>
-          {children}
-        </div>
-      ) : null,
-    useNotifications: () => ({
-      addSuccess,
-      addError,
-    }),
-  };
-});
-
-vi.mock('@ovhcloud/ods-react', () => ({
-  Text: ({ children }: { children?: React.ReactNode }) => (
-    <p data-testid="text">{children}</p>
-  ),
-  TEXT_PRESET: {
-    paragraph: 'paragraph',
-  },
-}));
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useUpdateDomainResource: vi.fn(),
@@ -150,8 +99,8 @@ describe('DsRecordsDeleteModal', () => {
     onSuccess();
     onSettled();
 
-    expect(addSuccess).toHaveBeenCalledTimes(1);
-    expect(addSuccess).toHaveBeenCalledWith(
+    expect(mockAddSuccess).toHaveBeenCalledTimes(1);
+    expect(mockAddSuccess).toHaveBeenCalledWith(
       'domain_tab_dsrecords_modal_delete_success_message',
     );
     expect(setIsModalOpen).toHaveBeenCalledWith(false);
@@ -167,8 +116,8 @@ describe('DsRecordsDeleteModal', () => {
     onError();
     onSettled();
 
-    expect(addError).toHaveBeenCalledTimes(1);
-    expect(addError).toHaveBeenCalledWith(
+    expect(mockAddError).toHaveBeenCalledTimes(1);
+    expect(mockAddError).toHaveBeenCalledWith(
       'domain_tab_dsrecords_modal_delete_error_message',
     );
     expect(setIsModalOpen).toHaveBeenCalledWith(false);

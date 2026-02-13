@@ -1,3 +1,4 @@
+import '@/common/setupTests';
 import React from 'react';
 import {
   render,
@@ -14,97 +15,6 @@ const mockOnExport = vi.fn();
 const mockDomainTreeViewOnChange = vi.fn();
 const mockContactTreeViewOnChange = vi.fn();
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Button: ({
-    children,
-    variant,
-    onClick,
-  }: {
-    children: React.ReactNode;
-    variant?: string;
-    onClick?: () => void;
-  }) => (
-    <button data-testid="button" data-variant={variant} onClick={onClick}>
-      {children}
-    </button>
-  ),
-  Drawer: ({
-    children,
-    open,
-    onOpenChange,
-  }: {
-    children: React.ReactNode;
-    open: boolean;
-    onOpenChange?: (detail: { open: boolean }) => void;
-  }) => (
-    <div
-      data-testid="drawer"
-      data-open={open}
-      onClick={() => onOpenChange?.({ open: false })}
-    >
-      {children}
-    </div>
-  ),
-  DrawerContent: ({
-    children,
-    position,
-    className,
-  }: {
-    children: React.ReactNode;
-    position?: string;
-    className?: string;
-  }) => (
-    <div
-      data-testid="drawer-content"
-      data-position={position}
-      className={className}
-    >
-      {children}
-    </div>
-  ),
-  DrawerBody: ({
-    children,
-    className,
-  }: {
-    children: React.ReactNode;
-    className?: string;
-  }) => (
-    <div data-testid="drawer-body" className={className}>
-      {children}
-    </div>
-  ),
-  Message: ({
-    children,
-    dismissible,
-  }: {
-    children: React.ReactNode;
-    dismissible?: boolean;
-  }) => (
-    <div data-testid="message" data-dismissible={dismissible}>
-      {children}
-    </div>
-  ),
-  Text: ({
-    children,
-    preset,
-  }: {
-    children: React.ReactNode;
-    preset?: string;
-  }) => (
-    <div data-testid="text" data-preset={preset}>
-      {children}
-    </div>
-  ),
-  TEXT_PRESET: {
-    heading2: 'heading2',
-    heading3: 'heading3',
-    heading5: 'heading5',
-    paragraph: 'paragraph',
-  },
-  DRAWER_POSITION: {
-    right: 'right',
-  },
-}));
 
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
@@ -206,10 +116,7 @@ describe('ExportDrawer', () => {
         wrapper,
       });
 
-      expect(screen.getByTestId('drawer')).toHaveAttribute(
-        'data-open',
-        'false',
-      );
+      expect(screen.queryByTestId('drawer')).not.toBeInTheDocument();
     });
 
     it('should render with correct drawer position', () => {

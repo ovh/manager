@@ -52,15 +52,14 @@ export default function ServiceDetailsTabs({
   };
 
   useEffect(() => {
-    const tab =
-      ServiceDetailTabsProps.find((tabName) =>
-        location.pathname.endsWith(tabName.value),
-      )?.value || 'information';
+    const tab =ServiceDetailTabsProps.find((tabName) =>
+      location.pathname.endsWith(tabName.value),
+    )?.value || 'information';
+    
     if (location.pathname) {
       setValue(tab);
     }
 
-    // Clear notifications on location change
     clearNotifications();
   }, [location.pathname]);
 

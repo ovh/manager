@@ -6,6 +6,7 @@ import {
   waitFor,
 } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
+import { mockAddSuccess, mockAddError, mockClearNotifications } from '@/common/setupTests';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
 import { DrawerActionEnum } from '@/common/enum/common.enum';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
@@ -14,23 +15,6 @@ import { useUpdateDomainResource } from '@/domain/hooks/data/query';
 vi.mock('@/domain/hooks/data/query', () => ({
   useUpdateDomainResource: vi.fn(),
 }));
-
-const addSuccess = vi.fn();
-const addError = vi.fn();
-const clearNotifications = vi.fn();
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = (await importOriginal()) as typeof import('@ovh-ux/manager-react-components');
-
-  return {
-    ...actual,
-    useNotifications: () => ({
-      addSuccess,
-      addError,
-      clearNotifications,
-    }),
-  };
-});
 
 describe('HostDrawer', () => {
   const updateDomain = vi.fn();
@@ -61,9 +45,21 @@ describe('HostDrawer', () => {
 
   const getPrimaryButton = () => {
     const drawer = screen.getByTestId('drawer');
-    const button = drawer.querySelector(
-      'ods-button[variant="default"]',
-    ) as HTMLElement | null;
+    // Try to find by data-testid first, then fallback to querySelector
+    let button = drawer.querySelector('[data-testid="drawer-primary-button"]') as HTMLElement | null;
+    if (!button) {
+      button = drawer.querySelector('ods-button[variant="default"]') as HTMLElement | null;
+    }
+    if (!button) {
+      // Last resort: find any button that's not the secondary button
+      const buttons = drawer.querySelectorAll('button, ods-button');
+      button = Array.from(buttons).find((btn) => {
+        const el = btn as HTMLElement;
+        return el.getAttribute('variant') === 'default' || 
+               el.getAttribute('data-variant') === 'default' ||
+               (buttons.length > 1 && btn !== buttons[0]);
+      }) as HTMLElement | null;
+    }
 
     if (!button) {
       throw new Error('Primary button not found');
@@ -138,12 +134,12 @@ describe('HostDrawer', () => {
     });
 
     callbacks.onSuccess();
-    expect(addSuccess).toHaveBeenCalledWith(
+    expect(mockAddSuccess).toHaveBeenCalledWith(
       'domain_tab_hosts_drawer_add_success_message',
     );
 
     callbacks.onSettled();
-    expect(clearNotifications).toHaveBeenCalled();
+    expect(mockClearNotifications).toHaveBeenCalled();
   });
 
   it('calls addError when updateDomain fails in Add mode', async () => {
@@ -178,7 +174,7 @@ describe('HostDrawer', () => {
     ];
 
     callbacks.onError('Some error');
-    expect(addError).toHaveBeenCalledWith(
+    expect(mockAddError).toHaveBeenCalledWith(
       'domain_tab_hosts_drawer_add_error_message',
     );
   });
@@ -190,13 +186,29 @@ describe('HostDrawer', () => {
       screen.getByText('domain_tab_hosts_drawer_modify_title'),
     ).toBeInTheDocument();
 
-    const [hostInput, ipsInput] = screen.getAllByRole('textbox');
-
     const expectedHostPrefix = sampleHost.host.split('.')[0];
     const expectedIps = String(sampleHost.ips);
 
-    expect(hostInput).toHaveValue(expectedHostPrefix);
-    expect(ipsInput).toHaveValue(expectedIps);
+    // Get inputs by their name attributes
+    const hostInput = document.querySelector('input[name="host"]') as HTMLInputElement;
+    const ipsInput = document.querySelector('input[name="ips"]') as HTMLInputElement;
+
+    expect(hostInput).toBeInTheDocument();
+    expect(ipsInput).toBeInTheDocument();
+
+    // Wait for react-hook-form to synchronize values with 'values' prop
+    await waitFor(
+      () => {
+        expect(hostInput.value).toBe(expectedHostPrefix);
+      },
+      { timeout: 3000 },
+    );
+    await waitFor(
+      () => {
+        expect(ipsInput.value).toBe(expectedIps);
+      },
+      { timeout: 3000 },
+    );
 
     fireEvent.change(hostInput, { target: { value: 'updated-host' } });
     fireEvent.change(ipsInput, { target: { value: '9.9.9.9' } });
@@ -239,11 +251,11 @@ describe('HostDrawer', () => {
     });
 
     callbacks.onSuccess();
-    expect(addSuccess).toHaveBeenCalledWith(
+    expect(mockAddSuccess).toHaveBeenCalledWith(
       'domain_tab_hosts_drawer_modify_success_message',
     );
 
     callbacks.onSettled();
-    expect(clearNotifications).toHaveBeenCalled();
+    expect(mockClearNotifications).toHaveBeenCalled();
   });
 });

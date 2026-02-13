@@ -1,6 +1,6 @@
 import '@/common/setupTests';
 import { render, screen, fireEvent, act } from '@/common/utils/test.provider';
-import { vi } from 'vitest';
+import { vi, Mock } from 'vitest';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
 import ConfigurationCards from './ConfigurationCards';
@@ -24,14 +24,6 @@ import { TDomainResource } from '@/domain/types/domainResource';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...actual,
-    useAuthorizationIam: vi.fn(),
-  };
-});
-
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainAnycastOption: vi.fn(),
   useGetDomainResource: vi.fn(),
@@ -42,6 +34,15 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useTransferTag: vi.fn(),
   useTerminateAnycastMutation: vi.fn(),
 }));
+
+// Ensure useAuthorizationIam is properly mocked
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    useAuthorizationIam: vi.fn(),
+  };
+});
 
 describe('ConfigurationCards component', () => {
   const mockUpdateServiceDnssec = vi.fn();
@@ -119,40 +120,49 @@ describe('ConfigurationCards component', () => {
   };
 
   beforeEach(() => {
-    (useAuthorizationIam as jest.Mock).mockReturnValue({
-      isPending: false,
+    (useAuthorizationIam as Mock).mockReturnValue({
       isAuthorized: true,
-    });
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+      data: { authorizedActions: ['domain:domain:update'], urn: '' },
+      isLoading: false,
+      isError: false,
+      isFetching: false,
+      refetch: vi.fn(),
+      status: 'success' as const,
+      error: null,
+    } as unknown as ReturnType<typeof useAuthorizationIam>);
+    vi.mocked(useGetDomainResource).mockReturnValue({
       domainResource: mockDomainResource,
       isFetchingDomainResource: false,
       domainResourceError: null,
-    });
-    (useGetDomainAuthInfo as jest.Mock).mockReturnValue({
+    } as ReturnType<typeof useGetDomainResource>);
+    vi.mocked(useGetDomainAuthInfo).mockReturnValue({
       authInfo: 'AUTH123456',
       isAuthInfoLoading: false,
     });
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    vi.mocked(useGetDnssecStatus).mockReturnValue({
       dnssecStatus: DnssecStatusEnum.ENABLED,
       isDnssecStatusLoading: false,
     });
-    (useGetDomainAnycastOption as jest.Mock).mockReturnValue({
+    vi.mocked(useGetDomainAnycastOption).mockReturnValue({
       anycastOption: null,
       isFetchingAnycastOption: false,
-    });
-    (useTerminateAnycastMutation as jest.Mock).mockReturnValue({
+      anycastOptionError: null,
+    } as unknown as ReturnType<typeof useGetDomainAnycastOption>);
+    vi.mocked(useTerminateAnycastMutation).mockReturnValue({
       terminateAnycast: vi.fn(),
       isTerminateAnycastPending: false,
-    });
-    (useUpdateDnssecService as jest.Mock).mockReturnValue({
+    } as ReturnType<typeof useTerminateAnycastMutation>);
+    vi.mocked(useUpdateDnssecService).mockReturnValue({
       updateServiceDnssec: mockUpdateServiceDnssec,
       isUpdateIsPending: false,
-    });
-    (useUpdateDomainResource as jest.Mock).mockReturnValue({
+    } as ReturnType<typeof useUpdateDnssecService>);
+    vi.mocked(useUpdateDomainResource).mockReturnValue({
       updateDomain: mockUpdateDomain,
       isUpdateDomainPending: false,
-    });
-    (useTransferTag as jest.Mock).mockReturnValue({
+      errorMessage: null,
+      resetError: vi.fn(),
+    } as unknown as ReturnType<typeof useUpdateDomainResource>);
+    vi.mocked(useTransferTag).mockReturnValue({
       transferTag: mockTransferTag,
       isTransferTagPending: false,
       transferTagError: null,
@@ -199,12 +209,12 @@ describe('ConfigurationCards component', () => {
   });
 
   it('does not render when domainResource and dnssecStatus are null', () => {
-    (useGetDomainResource as jest.Mock).mockReturnValue({
+    vi.mocked(useGetDomainResource).mockReturnValue({
       domainResource: null,
       isFetchingDomainResource: false,
       domainResourceError: null,
-    });
-    (useGetDnssecStatus as jest.Mock).mockReturnValue({
+    } as ReturnType<typeof useGetDomainResource>);
+    vi.mocked(useGetDnssecStatus).mockReturnValue({
       dnssecStatus: null,
       isDnssecStatusLoading: false,
     });
@@ -296,8 +306,9 @@ describe('ConfigurationCards component', () => {
       const transferToggles = screen.getAllByRole('checkbox', {
         name: /service_state_enabled/i,
       });
+      // Click on the second toggle (Transfer toggle) - first one is DNSSEC
       act(() => {
-        fireEvent.click(transferToggles[0]);
+        fireEvent.click(transferToggles[1]);
       });
       expect(
         screen.getByText(
@@ -315,11 +326,11 @@ describe('ConfigurationCards component', () => {
           authInfoSupported: true,
         },
       };
-      (useGetDomainResource as jest.Mock).mockReturnValue({
+      vi.mocked(useGetDomainResource).mockReturnValue({
         domainResource: mockDomainWithAuthInfo,
         isFetchingDomainResource: false,
         domainResourceError: null,
-      });
+      } as ReturnType<typeof useGetDomainResource>);
 
       render(<ConfigurationCards serviceName="example.com" />, { wrapper });
       const authInfoLink = screen.getByText(

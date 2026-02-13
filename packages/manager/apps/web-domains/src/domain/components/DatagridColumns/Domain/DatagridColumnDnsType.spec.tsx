@@ -1,15 +1,10 @@
+import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import DatagridColumnDnsType from './DatagridColumnDnsType';
 import { wrapper } from '@/common/utils/test.provider';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
-}));
 
 describe('DatagridColumnDnsType', () => {
   it('should render DNS type with first letter capitalized', () => {
