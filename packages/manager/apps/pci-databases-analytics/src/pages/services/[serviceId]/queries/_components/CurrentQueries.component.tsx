@@ -7,9 +7,9 @@ import DataTable from '@/components/data-table';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './CurrentQueriesTableColumns.component';
 import { POLLING } from '@/configuration/polling.constants';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
-import { useCancelCurrentQuery } from '@/hooks/api/database/query/useCancelCurrentQuery.hook';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
+import { useGetCurrentQueries } from '@/data/hooks/database/query/useGetCurrentQueries.hook';
+import { useCancelCurrentQuery } from '@/data/hooks/database/query/useCancelCurrentQuery.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 const CurrentQueries = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function ProgressLoader() {
+const ProgressLoader = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -32,4 +32,6 @@ export default function ProgressLoader() {
       ></div>
     </div>
   );
-}
+};
+
+export default ProgressLoader;

@@ -17,7 +17,7 @@ import DataTable from '@/components/data-table';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { humanizeEngine } from '@/lib/engineNameHelper';
 import Link from '@/components/links/Link.component';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { formatStorage } from '@/lib/bytesHelper';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';

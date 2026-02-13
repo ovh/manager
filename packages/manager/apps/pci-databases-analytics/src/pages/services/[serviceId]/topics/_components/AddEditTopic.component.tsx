@@ -28,12 +28,12 @@ import {
 import * as database from '@/types/cloud/project/database';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 import {
   UseAddTopic,
   useAddTopic,
-} from '@/hooks/api/database/topic/useAddTopic.hook';
-import { useEditTopic } from '@/hooks/api/database/topic/useEditTopic.hook';
+} from '@/data/hooks/database/topic/useAddTopic.hook';
+import { useEditTopic } from '@/data/hooks/database/topic/useEditTopic.hook';
 
 interface AddEditTopicProps {
   editedTopic?: database.kafka.Topic;

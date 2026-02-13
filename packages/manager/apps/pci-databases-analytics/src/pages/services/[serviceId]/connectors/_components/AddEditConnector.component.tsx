@@ -29,16 +29,16 @@ import { ArrowLeft } from 'lucide-react';
 import {
   UseAddConnector,
   useAddConnector,
-} from '@/hooks/api/database/connector/useAddConnector.hook';
+} from '@/data/hooks/database/connector/useAddConnector.hook';
 import { CdbError } from '@/data/api/database';
-import { useGetConnectorsCapabilities } from '@/hooks/api/database/connector/useGetConnectorsCapabilities.hook';
-import { useGetConnectorConfiguration } from '@/hooks/api/database/connector/useGetConnectorConfiguration.hook';
+import { useGetConnectorsCapabilities } from '@/data/hooks/database/connector/useGetConnectorsCapabilities.hook';
+import { useGetConnectorConfiguration } from '@/data/hooks/database/connector/useGetConnectorConfiguration.hook';
 import A from '@/components/links/A.component';
 import { useServiceData } from '../../Service.context';
 import ConnectorConfigurationEditor from '../add/ConnectorConfigurationEditor.component';
 import * as database from '@/types/cloud/project/database';
 import Link from '@/components/links/Link.component';
-import { useEditConnector } from '@/hooks/api/database/connector/useEditConnector.hook';
+import { useEditConnector } from '@/data/hooks/database/connector/useEditConnector.hook';
 
 interface IAddEditConnectorProps {
   connectorToEdit?: database.kafkaConnect.Connector;

@@ -19,12 +19,12 @@ import {
   DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import RouteModal from '@/components/route-modal/RouteModal';
-import { useRenameServiceForm } from './useRenameServiceForm';
+import RouteModal from '@/components/route-modal/RouteModal.component';
+import { useRenameServiceForm } from './useRenameServiceForm.hook';
 
 interface RenameServiceProps {
   service: database.Service;

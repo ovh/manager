@@ -1,0 +1,158 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { UseQueryResult } from '@tanstack/react-query';
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react';
+import { useToast } from '@datatr-ux/uxlib';
+import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import * as database from '@/types/cloud/project/database';
+import * as serviceApi from '@/data/api/database/service.api';
+import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
+import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+import UpdateFlavor from './UpdateFlavor.modal';
+import {
+  mockedAvailabilitiesFlavor,
+  mockedAvailabilitiesFlavorBis,
+  mockedEngineCapabilitiesUpdate,
+  mockedEngineUpdate,
+  mockedFlavorUpdate,
+  mockedFlavorUpdateBis,
+  mockedOptionUpdate,
+  mockedPlanUpdate,
+  mockedRegionCapabilitiesUpdate,
+  mockedServiceToUpdate,
+  mockedSuggestionsUpdate,
+} from '@/__tests__/helpers/mocks/updateMock';
+
+export const mockedCapabilitiesUpdate: database.Capabilities = {
+  disks: ['disk1'],
+  engines: [mockedEngineUpdate],
+  flavors: [mockedFlavorUpdate, mockedFlavorUpdateBis],
+  options: [mockedOptionUpdate],
+  plans: [mockedPlanUpdate],
+  regions: ['gra'],
+};
+
+vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
+  useServiceData: vi.fn(() => ({
+    projectId: 'projectId',
+    service: mockedServiceToUpdate,
+    category: database.engine.CategoryEnum.operational,
+    serviceQuery: {} as UseQueryResult<database.Service, Error>,
+  })),
+}));
+
+vi.mock('@/data/api/database/service.api', () => ({
+  editService: vi.fn(() => mockedServiceToUpdate),
+}));
+
+vi.mock('@/data/api/database/availability.api', () => ({
+  getAvailabilities: vi.fn(() => [
+    mockedAvailabilitiesFlavor,
+    mockedAvailabilitiesFlavorBis,
+  ]),
+  getSuggestions: vi.fn(() => [mockedSuggestionsUpdate]),
+}));
+
+vi.mock('@/data/api/database/capabilities.api', () => ({
+  getEnginesCapabilities: vi.fn(() => [mockedEngineCapabilitiesUpdate]),
+  getRegionsCapabilities: vi.fn(() => [mockedRegionCapabilitiesUpdate]),
+  getCapabilities: vi.fn(() => mockedCapabilitiesUpdate),
+}));
+
+vi.mock('@/data/hooks/catalog/useGetCatalog.hook', () => ({
+  useGetCatalog: vi.fn(() => ({
+    data: {
+      addons: [
+        {
+          planCode: 'databases.mysql-business-db1-4.hour.consumption',
+          pricings: [{ price: 1000, tax: 200 }],
+        },
+        {
+          planCode: 'databases.mysql-business-db1-7.hour.consumption',
+          pricings: [{ price: 1000, tax: 200 }],
+        },
+        {
+          planCode:
+            'databases.mysql-business-additionnal-storage-gb.hour.consumption',
+          pricings: [{ price: 100, tax: 200 }],
+        },
+      ],
+    },
+    isLoading: false,
+  })),
+}));
+
+describe('Update Flavor modal', () => {
+  beforeEach(async () => {
+    vi.restoreAllMocks();
+    setMockedUseParams({
+      projectId: 'projectId',
+      serviceId: 'serviceId',
+    });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('renders skeleton while loading', async () => {
+    render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('dialog-container')).toBeInTheDocument();
+    });
+  });
+
+  it('open and close update flavor modal', async () => {
+    render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('update-flavor-modal')).toBeInTheDocument();
+    });
+    act(() => {
+      fireEvent.click(screen.getByTestId('update-flavor-cancel-button'));
+    });
+    await waitFor(() => {
+      expect(
+        screen.queryByTestId('update-flavor-modal'),
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it('display error on update error', async () => {
+    const errorMsg = {
+      description: 'api error message',
+      title: 'updateFlavorToastErrorTitle',
+      variant: 'critical',
+    };
+    vi.mocked(serviceApi.editService).mockImplementationOnce(() => {
+      throw apiErrorMock;
+    });
+    render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
+    act(() => {
+      fireEvent.click(screen.getByTestId('update-flavor-submit-button'));
+    });
+    await waitFor(() => {
+      expect(serviceApi.editService).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
+    });
+  });
+
+  it('refetch data on updateFlavor success', async () => {
+    render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
+    expect(screen.getByTestId('flavor-table-row-db1-7')).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(screen.getByTestId('flavor-table-row-db1-7'));
+      fireEvent.click(screen.getByTestId('update-flavor-submit-button'));
+    });
+    await waitFor(() => {
+      expect(serviceApi.editService).toHaveBeenCalled();
+      expect(useToast().toast).toHaveBeenCalledWith({
+        title: 'updateFlavorToastSuccessTitle',
+        description: 'updateFlavorAndStorageToastSuccessDescription',
+      });
+    });
+  });
+});

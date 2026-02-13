@@ -1,5 +1,5 @@
 import { fr, de, enGB, es, frCA, it, pl, pt } from 'date-fns/locale';
-import { Locale, useLocale } from '@/hooks/useLocale';
+import { Locale, useLocale } from '@/hooks/useLocale.hook';
 
 export function useDateFnsLocale() {
   const locale = useLocale();

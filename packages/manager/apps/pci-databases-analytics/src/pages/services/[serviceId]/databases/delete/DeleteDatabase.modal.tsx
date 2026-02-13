@@ -11,11 +11,11 @@ import {
   DialogTitle,
   useToast,
 } from '@datatr-ux/uxlib';
-import { useDeleteDatabase } from '@/hooks/api/database/database/useDeleteDatabase.hook';
+import { useDeleteDatabase } from '@/data/hooks/database/database/useDeleteDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { useGetDatabases } from '@/data/hooks/database/database/useGetDatabases.hook';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 const DeleteDatabase = () => {
   // import translations

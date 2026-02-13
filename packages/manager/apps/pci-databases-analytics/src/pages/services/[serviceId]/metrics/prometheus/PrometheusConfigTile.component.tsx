@@ -14,9 +14,9 @@ import {
 } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { useGetPrometheusData } from '@/hooks/api/database/prometheus/useGetPrometheus.hook';
+import { useGetPrometheusData } from '@/data/hooks/database/prometheus/useGetPrometheus.hook';
 import queryClient from '@/query.client';
 import PrometheusDisabled from './PrometheusDisabled.component';
 import PrometheusEnabled from './PrometheusEnabled.component';

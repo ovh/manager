@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import {
   FullCapabilities,
   useGetFullCapabilities,
-} from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+} from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
 import * as database from '@/types/cloud/project/database';
 import { updateTags } from '@/lib/tagsHelper';
 

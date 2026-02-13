@@ -12,7 +12,7 @@ import {
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { useShell } from '@ovh-ux/manager-react-shell-client';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
-import { Locale } from '@/hooks/useLocale';
+import { Locale } from '@/hooks/useLocale.hook';
 
 // Mock the API functions
 vi.mock('@ovh-ux/manager-react-shell-client', () => {

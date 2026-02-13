@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton, Button } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { getColumns } from './ServiceListColumns.component';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { getFilters } from './ServiceListFilters.component';
 import DataTable from '@/components/data-table';
@@ -14,7 +14,7 @@ interface ServicesListProps {
   services: database.Service[];
 }
 
-export default function ServicesList({ services }: ServicesListProps) {
+const ServiceListTable = ({ services }: ServicesListProps) => {
   const { t } = useTranslation('pci-databases-analytics/services');
   const track = useTrackAction();
 
@@ -65,9 +65,9 @@ export default function ServicesList({ services }: ServicesListProps) {
       <DataTable.Pagination />
     </DataTable.Provider>
   );
-}
+};
 
-ServicesList.Skeleton = function ServicesListSkeleton() {
+ServiceListTable.Skeleton = () => {
   return (
     <>
       <div
@@ -84,3 +84,5 @@ ServicesList.Skeleton = function ServicesListSkeleton() {
     </>
   );
 };
+
+export default ServiceListTable;

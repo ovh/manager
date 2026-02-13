@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
+import { useGetMetric } from '@/data/hooks/database/metric/useGetMetric.hook';
 import * as database from '@/types/cloud/project/database';
 
 const MetricTitle = ({ metric }: { metric: string }) => {

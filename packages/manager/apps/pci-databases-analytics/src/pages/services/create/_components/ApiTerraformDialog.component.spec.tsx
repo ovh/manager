@@ -57,17 +57,17 @@ describe('ApiTerraformDialog', () => {
     },
   } as ReturnType<typeof useOrderFunnel>['result'];
 
-  vi.mock('@/hooks/useLocale', () => ({
+  vi.mock('@/hooks/useLocale.hook', () => ({
     useLocale: () => 'fr_FR',
   }));
 
-  vi.mock('@/hooks/api/project/usePciProject.hook', () => ({
+  vi.mock('@/data/hooks/project/usePciProject.hook', () => ({
     default: () => ({
       data: { project_id: projectId },
     }),
   }));
 
-  vi.mock('@/hooks/api/database/terraform/useServiceToTerraform', () => ({
+  vi.mock('@/data/hooks/database/terraform/useServiceToTerraform.hook', () => ({
     useServiceToTerraform: () => ({
       serviceToTerraform,
     }),
