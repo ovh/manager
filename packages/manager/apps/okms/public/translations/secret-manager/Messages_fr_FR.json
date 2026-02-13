@@ -41,6 +41,7 @@
   "editor": "Éditeur JSON",
   "error_duplicate_keys": "Vous ne pouvez pas avoir deux clés identiques.",
   "error_empty_keys": "Vous ne pouvez pas avoir de clé vide.",
+  "error_empty_key_or_value": "La clé ou la valeur ne doivent pas être vides.",
   "error_invalid_duration": "La durée d'expiration doit être une durée (ex: 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "JSON non valide",
   "error_key_value_conversion": "La valeur du secret ne peut pas être convertie en paires clé-valeur.",
