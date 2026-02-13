@@ -1,4 +1,9 @@
 import isFunction from 'lodash/isFunction';
+import ipaddr from 'ipaddr.js';
+import { GAME_DDOS_STATUS } from './constants';
+
+const parseIpGameUrl = (ipBlock, ip) =>
+  ['/ip', encodeURIComponent(ipBlock), 'game', ip, 'rule'].join('/');
 
 export default class BmServerComponentsNetworkTileController {
   /* @ngInject */
@@ -7,6 +12,7 @@ export default class BmServerComponentsNetworkTileController {
     this.$q = $q;
     this.atInternet = atInternet;
     this.coreURLBuilder = coreURLBuilder;
+    this.totalAssocietedIps = 0;
   }
 
   $onInit() {
@@ -28,6 +34,103 @@ export default class BmServerComponentsNetworkTileController {
       .finally(() => {
         this.loading = false;
       });
+    this.gameDDosGuide = this.dedicatedServer.gameDDosGuide;
+    this.isGameServer = this.dedicatedServer.isGameServer;
+    if (this.isGameServer) {
+      this.getGameDDoSStatus()
+        .then((status) => {
+          this.atInternet.trackPage({
+            name: `${this.trackingPrefix}::game_protection_status_viewed::${status.trackingSuffix}`,
+          });
+        })
+        .catch(() => {
+          this.atInternet.trackPage({
+            name: `${this.trackingPrefix}::game_protection_status_error`,
+          });
+        });
+    }
+  }
+
+  getGameDDoSStatus() {
+    return this.$http
+      .get(`/ip?routedTo.serviceName=${encodeURIComponent(this.server.name)}`)
+      .catch(() => null)
+      .then(({ data = [] }) => {
+        const ipv4Lists = data.reduce(
+          (prev, ipBlock) => {
+            const [ip, block] = ipBlock.split('/');
+
+            // filters IPV6
+            if (!ipaddr.IPv4.isValid(ip)) return prev;
+            // case no sub ip to fetch
+            if (!block || block === '32')
+              return {
+                ...prev,
+                withoutSubIP: [
+                  ...prev.withoutSubIP,
+                  parseIpGameUrl(ipBlock, ip),
+                ],
+              };
+            // case sub ips to fetch
+            return {
+              ...prev,
+              withSubIPs: [
+                ...prev.withSubIPs,
+                {
+                  ipBlock,
+                  fetchData: this.$http.get(
+                    `/ip/${encodeURIComponent(ipBlock)}/reverse`,
+                    { serviceType: 'apiv6' },
+                  ),
+                },
+              ],
+            };
+          },
+          { withoutSubIP: [], withSubIPs: [] },
+        );
+
+        return this.getAllGameIpUrls(ipv4Lists).then((allIpGameUrls = []) =>
+          this.fetchProtectedGameIpV4List(allIpGameUrls).then((result = []) => {
+            this.totalAssocietedIps = result.length;
+            const protectedIpv4Count = result.reduce(
+              (sum, curr) => (curr ? sum + 1 : sum),
+              0,
+            );
+
+            if (!protectedIpv4Count)
+              this.gameDDoSStatus = GAME_DDOS_STATUS.noIpConfigured;
+            else if (protectedIpv4Count < result.length)
+              this.gameDDoSStatus = GAME_DDOS_STATUS.someIpsConfigured;
+            else this.gameDDoSStatus = GAME_DDOS_STATUS.allIpsConfigured;
+
+            return this.gameDDoSStatus;
+          }),
+        );
+      });
+  }
+
+  getAllGameIpUrls({ withoutSubIP, withSubIPs }) {
+    if (!withSubIPs.length) return Promise.resolve(withoutSubIP);
+    return this.$q
+      .all(
+        withSubIPs.map(({ ipBlock, fetchData }) =>
+          fetchData.then(({ data }) =>
+            data.map((ip) => parseIpGameUrl(ipBlock, ip)),
+          ),
+        ),
+      )
+      .then((resp) => [...withoutSubIP, ...resp].flat());
+  }
+
+  fetchProtectedGameIpV4List(ipv4List) {
+    return this.$q.all(
+      ipv4List.map((url) => {
+        return this.$http
+          .get(url, { serviceType: 'apiv6' })
+          .then(({ data } = {}) => data.length > 0)
+          .catch(() => false);
+      }),
+    );
   }
 
   loadVrackInfos() {
@@ -62,6 +165,16 @@ export default class BmServerComponentsNetworkTileController {
     return this.coreURLBuilder.buildURL('dedicated', '#/vrack/:serviceName', {
       serviceName: vrackId,
     });
+  }
+
+  getIpUrl() {
+    return this.coreURLBuilder.buildURL(
+      'ips',
+      '#/ip?routedTo.serviceName=:serviceName',
+      {
+        serviceName: this.server.name,
+      },
+    );
   }
 
   handleError(error) {
