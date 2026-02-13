@@ -29,7 +29,14 @@ describe('CustomMetadataSchema test suite', () => {
     const jsonWithEmptyKey = '{"": "value", "key2": "value2"}';
     const result = await getSchemaParsingResult(jsonWithEmptyKey);
     expect(result.success).toBe(false);
-    expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_empty_keys);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_empty_key_or_value);
+  });
+
+  it('should return the correct error message for JSON with empty value', async () => {
+    const jsonWithEmptyValue = '{"key1": "", "key2": "value2"}';
+    const result = await getSchemaParsingResult(jsonWithEmptyValue);
+    expect(result.success).toBe(false);
+    expect(result.error?.issues?.[0]?.message).toBe(labels.secretManager.error_empty_key_or_value);
   });
 
   it('should validate invalid JSON (catch block returns true)', async () => {

@@ -44,6 +44,7 @@ export const EditCustomMetadataDrawerForm = ({
   const formSchema = z.object({ data: dataSchema });
   type FormSchema = z.infer<typeof formSchema>;
   const form = useForm<FormSchema>({
+    mode: 'onTouched',
     resolver: zodResolver(formSchema),
     defaultValues: {
       data: safeJsonStringify(secret.metadata.customMetadata),
