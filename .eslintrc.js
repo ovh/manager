@@ -1,6 +1,12 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    requireConfigFile: false,
+    babelOptions: {
+      presets: ['@babel/preset-env'],
+    },
+  },
   plugins: ['angular', 'markdown', 'prettier'],
   extends: ['airbnb-base', 'prettier'],
   env: {
@@ -21,6 +27,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-cycle': 'off',
     'import/prefer-default-export': 'off',
+    'class-methods-use-this': 'off',
   },
   ignorePatterns: [
     '**/vendor/**',
@@ -67,35 +74,16 @@ module.exports = {
         '@typescript-eslint/no-shadow': ['error'],
         '@typescript-eslint/naming-convention': [
           'error',
-          {
-            selector: 'variable',
-            format: ['camelCase', 'UPPER_CASE', 'PascalCase'],
-          },
-          {
-            selector: 'parameter',
-            format: ['camelCase'],
-            leadingUnderscore: 'allow',
-          },
-          {
-            selector: 'memberLike',
-            modifiers: ['private'],
-            format: ['camelCase'],
-            leadingUnderscore: 'allow',
-          },
-          {
-            selector: 'typeLike',
-            format: ['PascalCase'],
-          },
+          { selector: 'variable', format: ['camelCase', 'UPPER_CASE', 'PascalCase'] },
+          { selector: 'parameter', format: ['camelCase'], leadingUnderscore: 'allow' },
+          { selector: 'memberLike', modifiers: ['private'], format: ['camelCase'], leadingUnderscore: 'allow' },
+          { selector: 'typeLike', format: ['PascalCase'] },
         ],
       },
     },
     {
       files: ['*.spec.js', 'jest.config.js'],
-      env: {
-        mocha: true,
-        node: true,
-        jest: true,
-      },
+      env: { mocha: true, node: true, jest: true },
     },
     {
       files: ['*.test.ts', '*.step.ts', '*.spec.ts'],
@@ -103,14 +91,8 @@ module.exports = {
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
       ],
-      rules: {
-        'func-names': 'off',
-      },
-      env: {
-        mocha: true,
-        node: true,
-        jest: true,
-      },
+      rules: { 'func-names': 'off' },
+      env: { mocha: true, node: true, jest: true },
     },
   ],
 };

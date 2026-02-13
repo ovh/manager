@@ -57,7 +57,7 @@ function getCiRunnerArgs(runner, task, options = []) {
 /**
  * Build arguments for single-target tasks (module/app) depending on the runner.
  *
- * - For turbo (and unknown): `runner run <task> --concurrency=N --continue=always --filter <filter>`
+ * - For turbo (and unknown): `runner run <task> --concurrency=N --continue --filter <filter>`
  * - For nx: `nx run <project>:<task> --parallel=N`
  *
  * @param {string} runner
@@ -77,7 +77,7 @@ function getSingleRunnerArgs(runner, task, projectOrFilter, concurrency = 1) {
     'run',
     task,
     `--concurrency=${concurrency}`,
-    '--continue=always',
+    '--continue',
     '--filter',
     projectOrFilter,
   ];
@@ -86,7 +86,7 @@ function getSingleRunnerArgs(runner, task, projectOrFilter, concurrency = 1) {
 /**
  * Build arguments for "all" tasks (build all / test all) depending on the runner.
  *
- * - For turbo (and unknown): `runner run <task> --concurrency=N --continue=always`
+ * - For turbo (and unknown): `runner run <task> --concurrency=N --continue`
  * - For nx: `nx run-many --target=<task> --all --parallel=N`
  *
  * @param {string} runner
@@ -100,7 +100,7 @@ function getAllRunnerArgs(runner, task, concurrency = 1) {
   }
 
   // Default (turbo and others)
-  return ['run', task, `--concurrency=${concurrency}`, '--continue=always'];
+  return ['run', task, `--concurrency=${concurrency}`, '--continue'];
 }
 
 /**
