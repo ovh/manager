@@ -68,8 +68,10 @@ export const DeploymentModeSelection = () => {
         name="deploymentModes"
         control={control}
         render={({ field }) => (
-          <CheckboxGroup name="deploymentModes" className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-
+          <CheckboxGroup
+            name="deploymentModes"
+            className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+          >
             {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
               <PciCard
                 selectable
@@ -93,7 +95,7 @@ export const DeploymentModeSelection = () => {
                   <Text preset={TEXT_PRESET.small}>{t(`create:${descriptionKey}`)}</Text>
                 </PciCard.Content>
 
-                <PciCard.Footer className="flex justify-center w-full">
+                <PciCard.Footer className="flex w-full justify-center">
                   <Image className="h-20" />
                 </PciCard.Footer>
               </PciCard>

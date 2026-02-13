@@ -7,7 +7,7 @@
     "allocated_capacity_value": "{{capacity}} Gio",
     "status": "Status",
     "id": "ID",
-    "share_name": "Nome della condivisione",
+    "share_name": "Nome dello share",
     "location": "Localizzazione",
     "creation_date": "Data di creazione",
     "mount_path": "Percorso di montaggio"

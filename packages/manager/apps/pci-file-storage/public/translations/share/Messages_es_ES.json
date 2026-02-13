@@ -7,7 +7,7 @@
     "allocated_capacity_value": "{{capacity}} Gio",
     "status": "Estado",
     "id": "ID",
-    "share_name": "Nombre del recurso compartido",
+    "share_name": "Nombre del share",
     "location": "Localización",
     "creation_date": "Fecha de creación",
     "mount_path": "Ruta de montaje"
