@@ -2,8 +2,7 @@ import { v6 } from '@ovh-ux/manager-core-api';
 
 import { TNetworkDto, TSubnetDto } from '@/adapters/network/right/dto.type';
 import { mapNetworkDtoToNetwork, mapSubnetDtoToSubnet } from '@/adapters/network/right/mapper';
-import { TNetwork } from '@/domain/entities/network.entity';
-import { NetworkRepository } from '@/domain/ports/networkRepository.port';
+import { TNetwork, TSubnet } from '@/domain/entities/network.entity';
 
 export const getNetworks = async ({
   projectId,
@@ -17,11 +16,15 @@ export const getNetworks = async ({
     .then((response) => response.data.map(mapNetworkDtoToNetwork));
 };
 
-export const getSubnets: NetworkRepository['getSubnets'] = async ({
+export const getSubnets = async ({
   projectId,
   region,
   networkId,
-}) =>
+}: {
+  projectId: string;
+  region: string;
+  networkId: string;
+}): Promise<TSubnet[]> =>
   v6
     .get<TSubnetDto[]>(`/cloud/project/${projectId}/region/${region}/network/${networkId}/subnet`)
     .then((response) => response.data.map(mapSubnetDtoToSubnet));
