@@ -22,8 +22,11 @@ import { selectSubnetsForNetwork } from '@/pages/create/view-model/network.view-
 export const SubnetSelection = () => {
   const { t } = useTranslation(['create']);
   const { control, setValue } = useFormContext<CreateShareFormValues>();
-  const selectedMicroRegion = useWatch({ control, name: 'shareData.microRegion' });
-  const selectedNetworkId = useWatch({ control, name: 'shareData.privateNetworkId' });
+
+  const [selectedMicroRegion, selectedNetworkId] = useWatch({
+    control,
+    name: ['shareData.microRegion', 'shareData.privateNetworkId'],
+  });
 
   const { data: subnetOptions = [], isLoading } = useSubnets({
     region: selectedMicroRegion,
