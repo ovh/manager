@@ -73,7 +73,11 @@
     "title": "Sieć prywatna",
     "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem",
     "label": "Wybierz istniejącą prywatną sieć",
-    "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie"
+    "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
+    "subnet": {
+      "label": "Wybierz istniejący prywatny podsieć",
+      "empty": "Nie masz prywatnej podsieci dla tej sieci"
+    }
   },
   "submit": {
     "error": "Wystąpił błąd podczas dodawania udostępnienia: {{error}}"

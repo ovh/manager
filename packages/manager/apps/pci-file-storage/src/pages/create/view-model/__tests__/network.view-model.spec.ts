@@ -81,8 +81,8 @@ describe('network.view-model', () => {
       },
       {
         description: 'should generate name with provided specName',
-        specName: 'publiccloud-share-standard1',
-        expectedPattern: /^publiccloud-share-standard1_2024_01_15$/,
+        specName: 'standard-1az',
+        expectedPattern: /^standard-1az_2024_01_15$/,
       },
       {
         description: 'should sanitize special characters in specName',

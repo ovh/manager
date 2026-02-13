@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,7 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { useNetworks } from '@/data/hooks/network/useNetworks';
+import { SubnetSelection } from '@/pages/create/components/network/SubnetSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { selectPrivateNetworksForRegion } from '@/pages/create/view-model/network.view-model';
 
@@ -31,11 +32,14 @@ export const PrivateNetworkSelection = () => {
     select: selectPrivateNetworksForRegion(selectedMicroRegion),
   });
 
+  const firstPrivateNetworkId = useMemo(
+    () => privateNetworkOptions[0]?.value,
+    [privateNetworkOptions],
+  );
+
   useEffect(() => {
-    if (privateNetworkOptions[0]) {
-      setValue('shareData.privateNetworkId', privateNetworkOptions[0].value);
-    }
-  }, [privateNetworkOptions, setValue]);
+    setValue('shareData.privateNetworkId', firstPrivateNetworkId ?? '', { shouldValidate: true });
+  }, [firstPrivateNetworkId, setValue]);
 
   const renderContent = () => {
     if (isLoading) {
@@ -47,7 +51,7 @@ export const PrivateNetworkSelection = () => {
     }
 
     return (
-      <div className="max-w-[32%]">
+      <div className="min-w-[320px] max-w-[370px] flex-1">
         <Controller
           name="shareData.privateNetworkId"
           control={control}
@@ -81,7 +85,10 @@ export const PrivateNetworkSelection = () => {
         <Text preset="paragraph">{t('create:network.description')}</Text>
       </div>
 
-      {renderContent()}
+      <div className="flex flex-row flex-wrap gap-4">
+        {renderContent()}
+        <SubnetSelection />
+      </div>
     </section>
   );
 };

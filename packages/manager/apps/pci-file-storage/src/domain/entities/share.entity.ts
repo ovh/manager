@@ -58,5 +58,5 @@ export type TShare = {
 };
 
 export type TShareToCreate = Pick<TShare, 'name' | 'type' | 'size' | 'region'> & {
-  network: Pick<TShare['network'], 'id'>;
+  network: Pick<TShare['network'], 'id'> & { subnetId: string };
 };
