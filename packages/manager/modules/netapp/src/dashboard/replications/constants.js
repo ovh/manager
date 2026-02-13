@@ -12,6 +12,7 @@ export const REPLICATION_API_STATUS = {
   completed: 'completed',
   error: 'error',
   deleting: 'deleting',
+  cutting_over: 'cutting_over',
 };
 
 export const REPLICATION_API_REPLICASTATE = {
@@ -25,6 +26,10 @@ export const REPLICATION_STATUS_DISPLAY = {
   pending: {
     color: 'warning',
     wording: 'pending',
+  },
+  cutting_over: {
+    color: 'info',
+    wording: 'cuttingover',
   },
   cutover: {
     color: 'info',
