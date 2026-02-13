@@ -28,6 +28,7 @@ describe('shareDetails view model', () => {
         isPublic: false,
         enabledActions: [],
         mountPaths: [],
+        network: { id: 'network-1' },
       };
 
       const result = selectShareDetails(share);

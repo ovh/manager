@@ -76,5 +76,8 @@
     "description": "Sélectionnez le réseau privé auquel vous souhaitez que vos instances se connectent à votre fichier de partage",
     "label": "Sélectionner un réseau privé existant",
     "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région"
+  },
+  "submit": {
+    "error": "Une erreur est survenue lors de l'ajout du share : {{error}}"
   }
 }

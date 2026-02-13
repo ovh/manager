@@ -203,15 +203,15 @@ describe('catalog.service', () => {
         },
       },
       {
-        description: 'should return minimum throughput and 0 IOPS when size is 0',
+        description: 'should return null when size is 0',
         size: 0,
-        expectedResult: { iops: 0, throughput: 25 },
+        expectedResult: null,
         shareSpec: generalShareSpec,
       },
       {
-        description: 'should return minimum throughput and 0 IOPS when size is negative',
+        description: 'should return null when size is negative',
         size: -1,
-        expectedResult: { iops: 0, throughput: 25 },
+        expectedResult: null,
         shareSpec: generalShareSpec,
       },
       {
