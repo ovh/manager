@@ -91,3 +91,25 @@ export const getRegionalizedGatewayId = (size: string, regionName: string) =>
 
 export const getRegionalizedPublicIpId = (type: string, regionName: string) =>
   `${type}_${regionName}`;
+
+const MBIT_PER_GBIT = 1000;
+
+export type TBandwidthDisplay = {
+  value: number;
+  unit: 'mbit_s' | 'gbit_s';
+};
+
+export const formatBandwidthDisplay = (
+  value: number,
+  unit: string,
+): TBandwidthDisplay => {
+  const isMbit = /Mbit/i.test(unit);
+  if (isMbit && value >= MBIT_PER_GBIT) {
+    const gbit = value / MBIT_PER_GBIT;
+    return {
+      value: Number.isInteger(gbit) ? gbit : Number(gbit.toFixed(1)),
+      unit: 'gbit_s',
+    };
+  }
+  return { value, unit: 'mbit_s' };
+};

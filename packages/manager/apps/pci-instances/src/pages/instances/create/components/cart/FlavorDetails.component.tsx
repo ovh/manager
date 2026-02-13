@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { formatBandwidthDisplay } from '@/utils';
 import { TSelectFlavorDetails } from '../../view-models/cartViewModel';
 
 type TFlavorDetails = {
@@ -8,11 +9,18 @@ type TFlavorDetails = {
   flavor: TSelectFlavorDetails;
 };
 
-export const FlavorDetails: FC<TFlavorDetails> = ({
-  quantity,
-  flavor,
-}) => {
+export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
   const { t } = useTranslation('creation');
+
+  const formatBandwidth = (value: number, unit: string) => {
+    const {
+      value: valueFormatted,
+      unit: unitFormatted,
+    } = formatBandwidthDisplay(value, unit);
+    return `${valueFormatted} ${t(
+      `pci_instance_creation_bandwidth_${unitFormatted}`,
+    )}`;
+  };
 
   return (
     <div className="flex flex-row gap-2">
@@ -49,16 +57,25 @@ export const FlavorDetails: FC<TFlavorDetails> = ({
               key={disk.id}
               className="font-semibold text-[--ods-color-heading]"
             >
-              {disk.display}
+              {disk.id === 'no-disk'
+                ? disk.display
+                : `${disk.number}x ${disk.capacityValue} ${t(
+                    disk.capacityUnit === 'tb'
+                      ? 'pci_instance_creation_table_header_storage_unit_tb'
+                      : 'pci_instance_creation_table_header_storage_unit',
+                  )}${disk.interface ? ` ${disk.interface}` : ''}`}
             </Text>
           ))}
         </div>
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.bandwidthPrivate}{' '}
+          {formatBandwidth(
+            flavor.bandwidthPrivate,
+            flavor.bandwidthPrivateUnit,
+          )}{' '}
           {t('pci_instance_creation_cart_flavor_bandwidthPrivate')}
         </Text>
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.bandwidthPublic}{' '}
+          {formatBandwidth(flavor.bandwidthPublic, flavor.bandwidthPublicUnit)}{' '}
           {t('pci_instance_creation_cart_flavor_bandwidthPublic')}
         </Text>
       </div>
