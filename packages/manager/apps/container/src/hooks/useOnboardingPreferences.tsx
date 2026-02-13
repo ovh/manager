@@ -19,6 +19,7 @@ const fetchOnboardingPreferences = () =>
     )
     .then((response) => {
       const { data } = response;
+      /* eslint-disable @typescript-eslint/ban-ts-comment */
       // @ts-ignore
       return JSON.parse(data.value) as OnboardingPreferences;
     })
