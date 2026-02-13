@@ -64,7 +64,7 @@ export const useCreateShareForm = () => {
         microRegion: defaultMicroRegion,
         specName: defaultShareName,
         size: defaultSize,
-        privateNetworkId: undefined,
+        privateNetworkId: '',
       },
       deploymentModes: defaultDeploymentModes ?? [],
       continent: 'all',

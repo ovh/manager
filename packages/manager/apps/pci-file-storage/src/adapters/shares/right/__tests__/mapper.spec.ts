@@ -76,6 +76,7 @@ describe('mapShareDtoToShare', () => {
         description: 'Description',
         isPublic: false,
         capabilities: [],
+        networkId: 'network-1',
       },
     },
     {
@@ -92,6 +93,7 @@ describe('mapShareDtoToShare', () => {
         description: '',
         isPublic: true,
         capabilities: [],
+        networkId: 'network-1',
       },
     },
   ])('$description', ({ dto }) => {
@@ -110,6 +112,7 @@ describe('mapShareDtoToShare', () => {
       isPublic: dto.isPublic,
       enabledActions: [],
       mountPaths: [],
+      network: { id: dto.networkId },
     });
   });
 
@@ -125,6 +128,7 @@ describe('mapShareDtoToShare', () => {
       createdAt: '2026-01-30T09:00:00.000Z',
       description: '',
       isPublic: false,
+      networkId: 'network-1',
       capabilities: [
         { name: 'share_update_size', enabled: true },
         { name: 'share_delete', enabled: true },
@@ -151,6 +155,7 @@ describe('mapShareDtoToShare', () => {
       description: '',
       isPublic: false,
       capabilities: [],
+      networkId: 'network-1',
       exportLocations: [
         { id: 'loc-1', path: '/path/to/mount' },
         { id: 'loc-2', path: '/other/path' },
@@ -176,6 +181,7 @@ describe('mapShareDtoToShare', () => {
       isPublic: false,
       capabilities: [],
       exportLocations: [],
+      networkId: 'network-1',
     };
 
     const result = mapShareDtoToShare(dto);
@@ -196,6 +202,7 @@ describe('mapShareDtoToShare', () => {
       description: '',
       isPublic: false,
       capabilities: [],
+      networkId: 'network-1',
     };
 
     const result = mapShareDtoToShare(dto);
