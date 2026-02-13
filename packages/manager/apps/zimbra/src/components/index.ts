@@ -12,3 +12,4 @@ export * from './loading/Loading.component';
 export * from './tabsPanel/TabsPanel.component';
 export * from './priceCard/PriceCard.component';
 export * from './totalPriceCard/TotalPriceCard.component';
+export * from './exportCsv/ExportCsv.component';

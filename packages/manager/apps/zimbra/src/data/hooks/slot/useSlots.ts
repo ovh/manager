@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import {
   UseInfiniteQueryOptions,
@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query';
 
 import {
+  ResourceStatus,
   SlotBillingStatus,
   SlotService,
   SlotType,
@@ -16,7 +17,7 @@ import {
   getZimbraPlatformSlots,
   getZimbraPlatformSlotsQueryKey,
 } from '@/data/api';
-import { useSlotServices } from '@/data/hooks';
+import { useAccounts, useSlotServices } from '@/data/hooks';
 import { APIV2_MAX_PAGESIZE, buildURLSearchParams } from '@/utils';
 
 export type SlotWithService = {
@@ -24,6 +25,10 @@ export type SlotWithService = {
   email?: string;
   offer: keyof typeof ZimbraOffer;
   service?: SlotService;
+  organizationLabel?: string;
+  accountId?: string;
+  organizationId?: string;
+  status?: keyof typeof ResourceStatus;
 };
 
 type UseSlotsParams = Omit<
@@ -35,6 +40,7 @@ type UseSlotsParams = Omit<
   offer?: keyof typeof ZimbraOffer;
   used?: 'true' | 'false';
   shouldFetchAll?: boolean;
+  email?: string;
 };
 
 export const useSlots = (props: UseSlotsParams = {}) => {
@@ -91,26 +97,64 @@ export const useSlots = (props: UseSlotsParams = {}) => {
   });
 };
 
+// eslint-disable-next-line max-lines-per-function
 export const useSlotsWithService = (options: UseSlotsParams = {}) => {
-  const query = useSlots(options);
+  const { email, ...slotOptions } = options;
+
+  const [searchParams] = useSearchParams();
+  const organizationId = searchParams.get('organizationId');
+  const query = useSlots({
+    ...slotOptions,
+    shouldFetchAll: !!email || !!organizationId || slotOptions.shouldFetchAll,
+  });
+
+  const { data: accounts } = useAccounts({
+    email,
+    organizationId: organizationId ?? undefined,
+    enabled: !!email || !!organizationId,
+  });
+
   const { data: services, isLoading: isLoadingServices } = useSlotServices({
     gcTime: 0,
-    ...(options.enabled ? { enabled: options.enabled } : {}),
   });
 
   const [slots, setSlots] = useState<SlotWithService[]>([]);
 
   useEffect(() => {
-    setSlots(
-      query.data?.map((item) => ({
-        id: item.id,
-        offer: item.currentState.offer,
-        service: services?.[item.id],
-      })) ?? [],
-    );
-  }, [query.data, services]);
+    if (!query.data) {
+      setSlots([]);
+      return;
+    }
 
-  // use assign and make new properties to avoid rerenders
+    const accountsById = new Map((accounts ?? []).map((acc) => [acc.id, acc]));
+
+    const mappedSlots: SlotWithService[] = query.data
+      .filter((slot) => {
+        const account = accountsById.get(slot.currentState.accountId);
+        if (
+          (organizationId && account?.currentState.organizationId !== organizationId) ||
+          (email && !account)
+        )
+          return false;
+        return true;
+      })
+      .map((slot) => {
+        const account = accountsById.get(slot.currentState.accountId);
+        return {
+          id: slot.id,
+          offer: slot.currentState.offer,
+          service: services?.[slot.id],
+          accountId: slot.currentState.accountId,
+          email: slot.currentState.email,
+          organizationLabel: account?.currentState.organizationLabel,
+          organizationId: account?.currentState.organizationId,
+          status: account?.resourceStatus,
+        };
+      });
+
+    setSlots(mappedSlots);
+  }, [query.data, accounts, services, organizationId, email]);
+
   return Object.assign(query, {
     slots,
     isLoadingSlots: query.isLoading || isLoadingServices,
