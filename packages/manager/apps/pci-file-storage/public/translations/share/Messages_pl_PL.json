@@ -15,7 +15,6 @@
   "actions": {
     "column": "Operacje",
     "manage": "Administracja",
-    "delete": "Usuń",
-    "upgrade_share": "Zaktualizuj udostępnienie"
+    "delete": "Usuń"
   }
 }

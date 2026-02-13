@@ -15,7 +15,6 @@
   "actions": {
     "column": "Aktionen",
     "manage": "Verwaltung der ",
-    "delete": "Löschen",
-    "upgrade_share": "Share aktualisieren"
+    "delete": "Löschen"
   }
 }

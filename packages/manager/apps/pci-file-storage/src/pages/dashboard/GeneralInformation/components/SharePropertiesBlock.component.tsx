@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Clipboard, ClipboardControl, ClipboardTrigger, Text } from '@ovhcloud/ods-react';
 
-import { ActionLink } from '@/components/action-link/ActionLink.component';
 import { DashboardCardLayout } from '@/components/dashboard/DashboardCardLayout.component';
 import { DashboardTileBlock } from '@/components/dashboard/DashboardTileBlock.component';
 import { useShare } from '@/data/hooks/shares/useShare';
@@ -24,16 +23,7 @@ export const SharePropertiesBlock: React.FC = () => {
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.allocated_capacity')} isLoading={isLoading}>
-        <div className="flex flex-col gap-1">
-          <Text preset="paragraph">{shareDetails != null ? `${shareDetails.size} GB` : null}</Text>
-          {shareDetails?.enabledActions.includes('update_size') && (
-            <ActionLink
-              path="#"
-              className="w-fit text-[--ods-color-primary-600]"
-              label={t('share:actions.upgrade_share')}
-            />
-          )}
-        </div>
+        <Text preset="paragraph">{shareDetails != null ? `${shareDetails.size} GB` : null}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.mount_path')} isLoading={isLoading}>
         <div className="flex flex-col gap-3">

@@ -15,7 +15,6 @@
   "actions": {
     "column": "Acciones",
     "manage": "Gestionar",
-    "delete": "Eliminar",
-    "upgrade_share": "Actualizar el recurso compartido"
+    "delete": "Eliminar"
   }
 }

@@ -15,7 +15,6 @@
   "actions": {
     "column": "Actions",
     "manage": "Manage",
-    "delete": "Delete",
-    "upgrade_share": "Upgrade the share"
+    "delete": "Delete"
   }
 }

@@ -81,9 +81,7 @@ describe('ShareGeneralInfoBlock', () => {
     );
 
     if (enabledActions.includes('delete')) {
-      expect(
-        screen.getByRole('link', { name: 'share:actions.delete' }),
-      ).toBeVisible();
+      expect(screen.getByRole('link', { name: 'share:actions.delete' })).toBeVisible();
     } else {
       expect(
         screen.queryByRole('link', {

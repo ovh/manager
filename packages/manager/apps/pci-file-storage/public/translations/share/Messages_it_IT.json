@@ -15,7 +15,6 @@
   "actions": {
     "column": "Azioni",
     "manage": "Amministrare",
-    "delete": "Eliminare",
-    "upgrade_share": "Aggiorna la condivisione"
+    "delete": "Eliminare"
   }
 }
