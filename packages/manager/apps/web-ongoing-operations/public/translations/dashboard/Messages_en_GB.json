@@ -177,5 +177,5 @@
   "domain_operations_update_spareEmail": "Backup email address",
   "domain_operations_update_vat": "Intra-Community VAT number",
   "domain_operations_update_firstName": "First name",
-  "domain_operations_upload_file_template": "Only files that follow this document template will be accepted. <Link>this document template</Link> will be accepted."
+  "domain_operations_upload_file_template": "Only files that follow this <Link>document template</Link> will be accepted."
 }

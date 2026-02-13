@@ -177,5 +177,5 @@
   "domain_operations_update_spareEmail": "Email di recupero",
   "domain_operations_update_vat": "Partita IVA comunitaria",
   "domain_operations_update_firstName": "Nome",
-  "domain_operations_upload_file_template": "Saranno accettati solo i file che seguono questo modello di documento. <Link>modello di documento</Link> saranno accettati."
+  "domain_operations_upload_file_template": "Solo i file che seguono questo <Link>modello di documento</Link> saranno accettati."
 }
