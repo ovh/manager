@@ -34,7 +34,7 @@ async function ensureManagerTestsSetupDevDep(appPath) {
     const pkg = JSON.parse(raw);
     if (!pkg.devDependencies) pkg.devDependencies = {};
     if (!pkg.devDependencies['@ovh-ux/manager-tests-setup']) {
-      pkg.devDependencies['@ovh-ux/manager-tests-setup'] = 'latest';
+      pkg.devDependencies['@ovh-ux/manager-tests-setup'] = '^0.4.7';
       await writeJson(pkgPath, pkg);
       logger.success(`➕ Added @ovh-ux/manager-tests-setup to devDependencies in ${pkgPath}`);
       logger.debug(`SECURITY: app was missing shared test setup, auto-pinned to latest.`);

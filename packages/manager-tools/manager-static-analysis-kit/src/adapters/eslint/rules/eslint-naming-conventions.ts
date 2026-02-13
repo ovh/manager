@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 import checkFile from 'eslint-plugin-check-file';
 
 import {
@@ -11,7 +11,7 @@ import {
 export const checkFileEslintConfig: Linter.FlatConfig[] = [
   {
     plugins: {
-      'check-file': checkFile,
+      'check-file': checkFile as unknown as ESLint.Plugin,
     },
     rules: {
       'check-file/no-index': 'error',

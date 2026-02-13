@@ -4,11 +4,16 @@ on:
     branches:
     - develop
     - "release/*"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
