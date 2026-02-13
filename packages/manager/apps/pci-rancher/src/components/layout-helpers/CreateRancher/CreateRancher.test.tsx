@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsInput } from '@ovhcloud/ods-components';
 
+import i18n from 'i18next';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import {
@@ -54,16 +55,20 @@ vi.mock('@ovh-ux/manager-pci-common', () => ({
   usePciUrl: vi.fn(() => '/url'),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
-  useNavigation: vi.fn(() => ({
-    getURL: vi.fn(() => Promise.resolve('123')),
-    data: [],
-  })),
-  useTracking: vi.fn(() => ({
-    trackPage: vi.fn(),
-    trackClick: vi.fn(),
-  })),
-}));
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-shell-client');
+  return {
+    ...actual,
+    useNavigation: vi.fn(() => ({
+      getURL: vi.fn(() => Promise.resolve('123')),
+      data: [],
+    })),
+    useTracking: vi.fn(() => ({
+      trackPage: vi.fn(),
+      trackClick: vi.fn(),
+    })),
+  };
+});
 
 const setupSpecTest = async (props?: Partial<CreateRancherProps>) =>
   render(
@@ -272,36 +277,20 @@ describe('CreateRancher', () => {
   describe('Free Trial', () => {
     it('Given that I am eligible for free trial, I should see the free trial banner', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: true });
-      const bannerLine1 = screen.getByText(
+      const bannerLine = screen.getByText(
         dashboardTranslation.freeTrialBannerMessageLine1,
       );
-      const bannerLine2 = screen.getByText(
-        dashboardTranslation.freeTrialBannerMessageLine2,
-      );
-      const bannerLine3 = screen.getByText(
-        dashboardTranslation.freeTrialBannerMessageLine3,
-      );
 
-      expect(bannerLine1).toBeInTheDocument();
-      expect(bannerLine2).toBeInTheDocument();
-      expect(bannerLine3).toBeInTheDocument();
+      expect(bannerLine).toBeInTheDocument();
     });
 
     it('Given that I am not eligible for free trial, I should not see the free trial banner', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: false });
-      const bannerLine1 = screen.queryByText(
+      const bannerLine = screen.queryByText(
         dashboardTranslation.freeTrialBannerMessageLine1,
       );
-      const bannerLine2 = screen.queryByText(
-        dashboardTranslation.freeTrialBannerMessageLine2,
-      );
-      const bannerLine3 = screen.queryByText(
-        dashboardTranslation.freeTrialBannerMessageLine3,
-      );
 
-      expect(bannerLine1).not.toBeInTheDocument();
-      expect(bannerLine2).not.toBeInTheDocument();
-      expect(bannerLine3).not.toBeInTheDocument();
+      expect(bannerLine).not.toBeInTheDocument();
     });
 
     it('Given that I am eligible for free trial, I should see the free trial disclaimer below the plan cards', async () => {

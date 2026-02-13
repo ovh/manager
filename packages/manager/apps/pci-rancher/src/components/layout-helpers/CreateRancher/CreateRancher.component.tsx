@@ -55,6 +55,7 @@ import {
   TRancherPricing,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
+import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
 
 const TileSection: React.FC<{
   name: string;
@@ -136,6 +137,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState<RancherVersion | null>(
     null,
   );
+  const freeTrialCreditText = useRancherFreeTrial();
   const [isFreeTrialBannerVisible, setIsFreeTrialBannerVisible] = useState(
     true,
   );
@@ -198,7 +200,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.info}
           type={ODS_MESSAGE_TYPE.info}
-          className="my-6"
+          className="my-6 max-w-5xl"
           removable
           onOdsRemoveClick={() => setIsFreeTrialBannerVisible(false)}
         >
@@ -209,12 +211,18 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
             <ul className="list-disc list-inside my-0 -ml-9">
               <li>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {t('freeTrialBannerMessageLine2', { ns: 'dashboard' })}
+                  {t('freeTrialBannerMessageLine2', {
+                    ns: 'dashboard',
+                    amount: freeTrialCreditText.ovhEdition,
+                  })}
                 </OsdsText>
               </li>
               <li>
                 <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {t('freeTrialBannerMessageLine3', { ns: 'dashboard' })}
+                  {t('freeTrialBannerMessageLine3', {
+                    ns: 'dashboard',
+                    amount: freeTrialCreditText.standard,
+                  })}
                 </OsdsText>
               </li>
             </ul>
