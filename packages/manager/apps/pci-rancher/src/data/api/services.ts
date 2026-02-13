@@ -1,4 +1,8 @@
-import { apiClient, fetchIcebergV2 } from '@ovh-ux/manager-core-api';
+import {
+  apiClient,
+  fetchIcebergV2,
+  fetchIcebergV6,
+} from '@ovh-ux/manager-core-api';
 import { getCatalog } from '@ovh-ux/manager-pci-common';
 import {
   CreateRancherPayload,
@@ -7,6 +11,7 @@ import {
   RancherService,
   RancherVersion,
   TRancherEligibility,
+  TVoucher,
 } from '@/types/api.type';
 
 type RancherInfo = 'plan' | 'version';
@@ -46,6 +51,30 @@ export const getByRancherIdProjectId = async (
 export const getProject = async (projectId: string): Promise<PciProject> => {
   const response = await apiClient.v6.get(`/cloud/project/${projectId}`);
   return response.data;
+};
+
+type TVoucherDTO = TVoucher & {
+  validity: {
+    from: string | null;
+    to: string | null;
+  };
+};
+export const getProjectCredit = async (
+  projectId: string,
+): Promise<Array<TVoucher>> => {
+  const data = await fetchIcebergV6<Array<TVoucherDTO>>({
+    route: `/cloud/project/${projectId}/credit`,
+    disableCache: true,
+  }).then((response) =>
+    response.data.flat().map((voucher) => ({
+      ...voucher,
+      validity: {
+        from: voucher.validity.from ? new Date(voucher.validity.from) : null,
+        to: voucher.validity.to ? new Date(voucher.validity.to) : null,
+      },
+    })),
+  );
+  return data;
 };
 
 export const deleteRancherServiceQueryKey = (rancherId: string) => [
