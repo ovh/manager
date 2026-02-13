@@ -17,4 +17,8 @@ packages/manager/core/generator
 packages/components/ovh-at-internet/src/ovh-at-internet.ts
 packages/manager/apps/container
 packages/manager/apps/pci-databases-analytics/src/components/ui
-packages/manager-tools
+packages/manager-tools/manager-migration-cli
+packages/manager-tools/manager-pm
+packages/manager-tools/manager-tailwind-config
+packages/manager-tools/manager-tests-setup
+packages/manager-tools/manager-vite-config

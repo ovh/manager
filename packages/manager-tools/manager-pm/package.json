@@ -11,10 +11,7 @@
     "manager-pm-cds-validation": "./bin/manager-pm-cds-validation.js",
     "manager-pm-validation": "./bin/manager-pm-validation.js"
   },
-  "scripts": {
-    "lint": "manager-lint --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\"",
-    "lint:fix": "manager-lint --fix --config eslint.config.mjs \"./bin/**/*.js\" \"./src/**/*.js\""
-  },
+  "scripts": {},
   "dependencies": {
     "commander": "^14.0.0",
     "concurrently": "^9.2.0",

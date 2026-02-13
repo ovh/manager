@@ -1,17 +1,8 @@
-import {
-  kycIndiaModalLocalStorageKey,
-  kycIndiaFeature,
-  requiredStatusKey,
-  trackingContext,
-  trackingPrefix,
-} from './constants';
-import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { FunctionComponent, useEffect, useRef, useState } from 'react';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useTranslation, Trans } from 'react-i18next';
 import { useLocalStorage } from 'react-use';
-import { useShell } from '@/context';
 import {
   OsdsButton,
   OsdsCollapsible,
@@ -24,6 +15,15 @@ import {
   ODS_THEME_TYPOGRAPHY_LEVEL,
   ODS_THEME_TYPOGRAPHY_SIZE,
 } from '@ovhcloud/ods-common-theming';
+import { useShell } from '@/context';
+import { useIdentityDocumentsStatus } from '@/hooks/useIdentityDocumentsStatus';
+import {
+  kycIndiaModalLocalStorageKey,
+  kycIndiaFeature,
+  requiredStatusKey,
+  trackingContext,
+  trackingPrefix,
+} from './constants';
 
 export const IdentityDocumentsModal: FunctionComponent = () => {
   const shell = useShell();

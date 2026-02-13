@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/hosted-private-cloud.png';
 import { Node, NodeTag } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const hostedPrivateCloudUniverse: Node = {
   id: 'hosted-private-cloud',

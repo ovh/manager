@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { OsdsSpinner } from '@ovhcloud/ods-components/react';
+import { ODS_SPINNER_MODE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 import ServerSidebarVirtual from './SidebarVirtual';
 import style from './index.module.scss';
@@ -10,10 +13,6 @@ import {
   updateSearchFields,
   updateSidebarItemLabel,
 } from './sidebarMenu';
-import { useLocation } from 'react-router-dom';
-import { OsdsSpinner } from '@ovhcloud/ods-components/react';
-
-import { ODS_SPINNER_MODE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 
 export default function ServerSidebar({ menu }: { menu: SidebarMenuItem }) {
   const [items, setItems] = useState<SidebarMenuItem[]>([]);

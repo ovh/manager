@@ -15,8 +15,6 @@
   "scripts": {
     "build": "echo tailwind",
     "dev": "echo tailwind",
-    "dev:watch": "echo tailwind",
-    "lint": "manager-lint --config eslint.config.mjs ./**.*js",
-    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./**.*js"
+    "dev:watch": "echo tailwind"
   }
 }

@@ -1,17 +1,17 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
+import { OsdsChip } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { useReket } from '@ovh-ux/ovh-reket';
 import UserDefaultPaymentMethod from './DefaultPaymentMethod';
 import style from './style.module.scss';
 import { links, tracking } from './constants';
 
 import { useShell } from '@/context';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { OsdsChip } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
 
-import { useReket } from '@ovh-ux/ovh-reket';
 import { UserLink } from './UserLink';
 
 type Props = {
@@ -50,10 +50,10 @@ const UserAccountMenu = ({
 
   const onTrackNavigation = (name: string) => {
     trackingPlugin.trackClick({
-      name: name,
+      name,
       type: 'navigation',
     });
-  }
+  };
 
   const onLogoutBtnClick = () => {
     onTrackNavigation(tracking.logout);
@@ -63,7 +63,7 @@ const UserAccountMenu = ({
   const onLinkClick = (link: UserLink) => {
     closeAccountSidebar();
     if (link.trackingHit) {
-      onTrackNavigation(link.trackingHit)
+      onTrackNavigation(link.trackingHit);
     }
   };
 
@@ -75,7 +75,10 @@ const UserAccountMenu = ({
   const getAllLinks = useMemo(
     () => async () => {
       let isIdentityDocumentsAvailable = false;
-      const featureAvailability = await fetchFeatureAvailabilityData(['identity-documents', 'procedures:fraud']);
+      const featureAvailability = await fetchFeatureAvailabilityData([
+        'identity-documents',
+        'procedures:fraud',
+      ]);
       if (featureAvailability['identity-documents']) {
         const { status } = await reketInstance.get(`/me/procedure/identity`);
         isIdentityDocumentsAvailable = ['required', 'open'].includes(status);
@@ -89,21 +92,21 @@ const UserAccountMenu = ({
         ...links,
         ...(isIdentityDocumentsAvailable
           ? [
-            {
-              key: 'myIdentityDocuments',
-              hash: '#/identity-documents',
-              i18nKey: 'user_account_menu_my_identity_documents',
-            },
-          ]
+              {
+                key: 'myIdentityDocuments',
+                hash: '#/identity-documents',
+                i18nKey: 'user_account_menu_my_identity_documents',
+              },
+            ]
           : []),
         ...(region === 'US'
           ? [
-            {
-              key: 'myAssistanceTickets',
-              hash: '#/ticket',
-              i18nKey: 'user_account_menu_my_assistance_tickets',
-            },
-          ]
+              {
+                key: 'myAssistanceTickets',
+                hash: '#/ticket',
+                i18nKey: 'user_account_menu_my_assistance_tickets',
+              },
+            ]
           : []),
       ]);
     },
@@ -147,7 +150,10 @@ const UserAccountMenu = ({
             className={`d-flex justify-content-between ${style.menuContentRow}`}
           >
             <span>{t('user_account_menu_role_connexion')}</span>
-            <a href={ssoLink} onClick={() => onTrackNavigation(tracking.connexionMethode)}>
+            <a
+              href={ssoLink}
+              onClick={() => onTrackNavigation(tracking.connexionMethode)}
+            >
               <OsdsChip
                 color={ODS_THEME_COLOR_INTENT.success}
                 className={style.menuContentRowChip}
@@ -159,7 +165,9 @@ const UserAccountMenu = ({
           </div>
           {!user.enterprise && (
             <UserDefaultPaymentMethod
-              onPaymentMethodLinkClick={() => onTrackNavigation(tracking.paymentMethod)}
+              onPaymentMethodLinkClick={() =>
+                onTrackNavigation(tracking.paymentMethod)
+              }
               defaultPaymentMethod={defaultPaymentMethod}
               isLoading={isLoading}
             />
@@ -169,14 +177,18 @@ const UserAccountMenu = ({
               className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}
             >
               <span>{t('user_account_menu_support')}</span>
-              <a href={supportLink} onClick={() => onTrackNavigation(tracking.supportLevel)}>
+              <a
+                href={supportLink}
+                onClick={() => onTrackNavigation(tracking.supportLevel)}
+              >
                 <OsdsChip
                   color={ODS_THEME_COLOR_INTENT.info}
                   className={style.menuContentRowChip}
                   selectable={true}
                 >
                   {t(
-                    `user_account_menu_support_level_${user.supportLevel.level
+                    `user_account_menu_support_level_${
+                      user.supportLevel.level
                     }${user.isTrusted ? '_trusted' : ''}`,
                   )}
                 </OsdsChip>
@@ -206,13 +218,13 @@ const UserAccountMenu = ({
             <a
               key={'account_kyc_documents'}
               id={'account_kyc_documents'}
-              onClick={() => onLinkClick(
-                {
+              onClick={() =>
+                onLinkClick({
                   key: 'account_kyc_documents',
                   hash: '#/documents',
-                  i18nKey: 'sidebar_account_kyc_documents'
-                }
-              )}
+                  i18nKey: 'sidebar_account_kyc_documents',
+                })
+              }
               className="d-block"
               aria-label={sidebarTranslation.t('sidebar_account_kyc_documents')}
               title={sidebarTranslation.t('sidebar_account_kyc_documents')}

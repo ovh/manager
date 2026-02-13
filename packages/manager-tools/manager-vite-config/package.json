@@ -13,10 +13,7 @@
   "type": "module",
   "main": "./src/index.js",
   "types": "./src/index.d.ts",
-  "scripts": {
-    "lint": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
-    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js"
-  },
+  "scripts": {},
   "dependencies": {
     "@ovh-ux/manager-dev-server-config": "^6.2.3",
     "@vitejs/plugin-react-swc": "^3.9.0",

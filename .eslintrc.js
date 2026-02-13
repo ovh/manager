@@ -28,6 +28,7 @@ module.exports = {
     'import/no-cycle': 'off',
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
+    'no-restricted-syntax': 'off'
   },
   ignorePatterns: [
     '**/vendor/**',

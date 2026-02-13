@@ -20,7 +20,7 @@ export type Node = {
   translation?: string;
   shortTranslation?: string;
   illustration?: string;
-  svgIcon?:  string;
+  svgIcon?: string;
   features?: string[];
   separator?: boolean;
   idAttr?: string;

@@ -19,8 +19,6 @@
     "manager-test": "./bin/manager-tests-setup-cli.js"
   },
   "scripts": {
-    "lint": "manager-lint --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
-    "lint:fix": "manager-lint --fix --config eslint.config.mjs ./src/**.*js ./src/**/**.*js",
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {

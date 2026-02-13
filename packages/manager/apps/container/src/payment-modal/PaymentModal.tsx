@@ -34,8 +34,11 @@ interface IPaymentMethod {
 }
 
 const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
-  const currentCreditCard: IPaymentMethod = paymentMethods?.find(currentPaymentMethod => currentPaymentMethod.paymentType === 'CREDIT_CARD' 
-  && currentPaymentMethod.default);
+  const currentCreditCard: IPaymentMethod = paymentMethods?.find(
+    (currentPaymentMethod) =>
+      currentPaymentMethod.paymentType === 'CREDIT_CARD' &&
+      currentPaymentMethod.default,
+  );
 
   if (currentCreditCard) {
     const creditCardExpirationDate = new Date(currentCreditCard.expirationDate);
@@ -44,7 +47,8 @@ const computeAlert = (paymentMethods: IPaymentMethod[]): string => {
     }
     const expirationDateMinus30Days = new Date(creditCardExpirationDate);
     expirationDateMinus30Days.setDate(creditCardExpirationDate.getDate() - 30);
-    const isSoonToBeExpireCreditCard = expirationDateMinus30Days.getTime() < Date.now();
+    const isSoonToBeExpireCreditCard =
+      expirationDateMinus30Days.getTime() < Date.now();
     if (isSoonToBeExpireCreditCard) {
       return PAYMENT_ALERTS.SOON_EXPIRED_CARD;
     }
@@ -63,14 +67,15 @@ const PaymentModal = (): JSX.Element => {
     .getURL('dedicated', '#/billing/payment/method');
 
   const closeHandler = () => setShowPaymentModal(false);
-  const validateHandler = () =>  {
+  const validateHandler = () => {
     setShowPaymentModal(false);
     window.location.href = paymentMethodURL;
-  }
+  };
 
   const { data: paymentResponse } = useQuery({
     queryKey: ['me-payment-method'],
-    queryFn: () => fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' })
+    queryFn: () =>
+      fetchIcebergV6<IPaymentMethod>({ route: '/me/payment/method' }),
   });
 
   useEffect(() => {

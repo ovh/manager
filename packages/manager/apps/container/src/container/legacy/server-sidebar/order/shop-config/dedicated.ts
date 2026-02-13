@@ -1,5 +1,3 @@
-import { getOrderURL, ORDER_URLS } from './order.constants';
-
 import {
   OdsIconWrapper,
   PROJECTCLOUD_SVG,
@@ -14,6 +12,7 @@ import {
   SERVER_SVG,
 } from '@ovh-ux/ovh-product-icons/index';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { getOrderURL, ORDER_URLS } from './order.constants';
 
 const dedicatedShopConfig = (
   navigation: any,

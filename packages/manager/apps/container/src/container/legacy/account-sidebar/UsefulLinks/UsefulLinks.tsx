@@ -2,14 +2,13 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { OsdsDivider } from '@ovhcloud/ods-components/react';
+import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TRANSLATE_NAMESPACE } from '../constants';
 
 import Link from './Link/Link';
 import useUsefulLinks from './useUsefulLinks';
-
-import { OsdsDivider } from '@ovhcloud/ods-components/react';
-import { ODS_DIVIDER_SIZE } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 const UsefulLinks = (): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);

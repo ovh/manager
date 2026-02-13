@@ -1,15 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import style from './style.module.scss';
 import SidebarLinkTag from './SidebarLinkTag';
 import { Node } from './navigation-tree/node';
 import StaticLink from '@/container/nav-reshuffle/sidebar/StaticLink';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import {
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 
 export type SidebarLinkProps = {
   count?: number | boolean;
@@ -25,8 +22,8 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
   count = 0,
   node = {},
   linkParams = {},
-  handleOnClick = () => { },
-  handleOnEnter = () => { },
+  handleOnClick = () => {},
+  handleOnEnter = () => {},
   id = '',
   isShortText = false,
 }: SidebarLinkProps): JSX.Element => {
@@ -56,8 +53,13 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
       data-testid={id}
       role="button"
     >
-      <span className='flex gap-2 align-items-center'>
-        <SvgIconWrapper name={node.svgIcon} height={32} width={32} className='p-1 fill-white block' />
+      <span className="flex gap-2 align-items-center">
+        <SvgIconWrapper
+          name={node.svgIcon}
+          height={32}
+          width={32}
+          className="p-1 fill-white block"
+        />
         {!isShortText && <span>{t(node.translation)}</span>}
       </span>
       <span className="flex justify-end align-items-center">
@@ -76,7 +78,7 @@ const SidebarLink: React.FC<ComponentProps<SidebarLinkProps>> = ({
         ) : null}
         {!isShortText && <SidebarLinkTag node={node} />}
       </span>
-    </button >
+    </button>
   );
 };
 

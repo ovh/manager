@@ -44,9 +44,7 @@ function makeDefaultRoute({
   configuration: [string, Application][];
 }) {
   const [, defaultApp] =
-    configuration.find(
-      ([, appConfig]) => appConfig.container.isDefault,
-    ) || [];
+    configuration.find(([, appConfig]) => appConfig.container.isDefault) || [];
   if (!defaultApp) {
     return undefined;
   }
@@ -70,12 +68,19 @@ export function IFrameAppRouter({
   // We order applications configurations by hash size, as a configuration with a hash means we want a route to be
   // redirected to this application. As a result we need to have them first, so they take priority over routes from
   // which we want to be redirected
-  const sortedConfiguration = useMemo(() => Object.entries(configuration).sort(([, appAConfig], [, appBConfig]) =>
-    (appBConfig.container.hash || "").length - (appAConfig.container.hash || "").length
-  ), [configuration])
-  const defaultRoute = useMemo(() => makeDefaultRoute({ configuration: sortedConfiguration }), [
-    sortedConfiguration,
-  ]);
+  const sortedConfiguration = useMemo(
+    () =>
+      Object.entries(configuration).sort(
+        ([, appAConfig], [, appBConfig]) =>
+          (appBConfig.container.hash || '').length -
+          (appAConfig.container.hash || '').length,
+      ),
+    [configuration],
+  );
+  const defaultRoute = useMemo(
+    () => makeDefaultRoute({ configuration: sortedConfiguration }),
+    [sortedConfiguration],
+  );
   const routes = useMemo(
     () =>
       sortedConfiguration.map(([id, appConfig]) =>

@@ -117,7 +117,7 @@ const ProjectSelector: React.FC<ComponentProps<Props>> = ({
             id: projectId,
             label: description || projectId,
           }))
-        : [])
+        : []),
     ]);
   }, [projects, createProjectOption]);
 
