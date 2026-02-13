@@ -224,7 +224,7 @@ export async function testCI(options = [], runner = DEFAULT_RUNNER) {
  * await lintCI(['--filter=tag:unit'], 'nx');
  */
 export async function lintCI(options = [], runner = DEFAULT_RUNNER) {
-  await runCITask('lint', options, runner);
+  await runCITask('lint:modern', options, runner);
 }
 
 /**
@@ -263,7 +263,7 @@ export async function testModule(moduleRef, runner = DEFAULT_RUNNER) {
  * await lintModule('packages/manager/core/api');
  */
 export async function lintModule(moduleRef, runner = DEFAULT_RUNNER) {
-  return runModuleTask('lint', moduleRef, 1, runner);
+  return runModuleTask('lint:modern', moduleRef, 1, runner);
 }
 
 /**
@@ -302,7 +302,7 @@ export async function testApplication(appRef, runner = DEFAULT_RUNNER) {
  * await lintApplication('@ovh-ux/manager-web');
  */
 export async function lintApplication(appRef, runner = DEFAULT_RUNNER) {
-  return runApplicationTask('lint', appRef, 1, runner);
+  return runApplicationTask('lint:modern', appRef, 1, runner);
 }
 
 /**
@@ -338,7 +338,7 @@ export async function testAll(runner = DEFAULT_RUNNER) {
  * await lintAll();
  */
 export async function lintAll(runner = DEFAULT_RUNNER) {
-  return runAllTask('lint', 1, runner);
+  return runAllTask('lint:modern', 1, runner);
 }
 
 /**
