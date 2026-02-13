@@ -1,5 +1,5 @@
-import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { ServiceKeyAction } from '@key-management-service/hooks/service-key/service-key.type';
+import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
