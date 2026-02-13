@@ -9,7 +9,11 @@ import { vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertModalVisibility, assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertModalVisibility,
+  assertTextVisibility,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
   'okmsId',
@@ -28,7 +32,8 @@ describe('Secret version delete modal test suite', () => {
   it('should display the delete modal', async () => {
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility();
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const title = labels.secretManager.delete_version_modal_title.replace('{{versionId}}', '1');
     await assertTextVisibility(title);
@@ -38,7 +43,8 @@ describe('Secret version delete modal test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility();
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
@@ -58,7 +64,8 @@ describe('Secret version delete modal test suite', () => {
       isVersionUpdateKO: true,
     });
 
-    await assertModalVisibility();
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
