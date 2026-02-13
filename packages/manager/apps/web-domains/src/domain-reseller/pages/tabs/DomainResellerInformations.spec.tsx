@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import DomainResellerInformations from './DomainResellerInformations';
 import * as utils from '@/common/utils/utils';
 import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
-import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
+import { useGetDomainsListByNicBilling } from '@/domain-reseller/hooks/data/query';
 
 const mockServiceInfo = {
   customer: {
@@ -43,9 +43,17 @@ vi.mock('@/common/hooks/data/query', () => ({
 }));
 
 vi.mock('@/domain-reseller/hooks/data/query', () => ({
-  useGetDomainsList: vi.fn(() => ({
+  useGetDomainsListByNicBilling: vi.fn(() => ({
     data: mockDomainsList,
     isLoading: false,
+  })),
+  useGetDomainsListByExcludedNicBilling: vi.fn(() => ({
+    data: [],
+    isLoading: false,
+  })),
+  useUpdateDomainNicbilling: vi.fn(() => ({
+    mutate: vi.fn(),
+    isPending: false,
   })),
 }));
 
@@ -78,10 +86,10 @@ describe('DomainResellerInformations', () => {
       serviceInfo: mockServiceInfo,
       isServiceInfoLoading: false,
     } as ReturnType<typeof useGetServiceInformationByRoutes>);
-    vi.mocked(useGetDomainsList).mockReturnValue({
+    vi.mocked(useGetDomainsListByNicBilling).mockReturnValue({
       data: mockDomainsList,
       isLoading: false,
-    } as ReturnType<typeof useGetDomainsList>);
+    } as ReturnType<typeof useGetDomainsListByNicBilling>);
   });
 
   it('should render without crashing', () => {
@@ -100,10 +108,10 @@ describe('DomainResellerInformations', () => {
   });
 
   it('should display loading state when domains list is loading', () => {
-    vi.mocked(useGetDomainsList).mockReturnValue({
+    vi.mocked(useGetDomainsListByNicBilling).mockReturnValue({
       data: [],
       isLoading: true,
-    } as ReturnType<typeof useGetDomainsList>);
+    } as ReturnType<typeof useGetDomainsListByNicBilling>);
 
     render(<DomainResellerInformations />);
     expect(screen.getByTestId('loading')).toBeInTheDocument();
@@ -147,15 +155,6 @@ describe('DomainResellerInformations', () => {
     );
   });
 
-  it('should display download catalog button', () => {
-    render(<DomainResellerInformations />);
-    const downloadButton = screen.getByTestId('download-catalog-button');
-    expect(downloadButton).toBeInTheDocument();
-    expect(
-      screen.getByText('domain_reseller_button_download_catalog'),
-    ).toBeInTheDocument();
-  });
-
   it('should display dashboard grid with two columns', () => {
     render(<DomainResellerInformations />);
     expect(screen.getByTestId('dashboard-grid')).toBeInTheDocument();
@@ -182,10 +181,10 @@ describe('DomainResellerInformations', () => {
   });
 
   it('should handle empty domains list', () => {
-    vi.mocked(useGetDomainsList).mockReturnValue({
+    vi.mocked(useGetDomainsListByNicBilling).mockReturnValue({
       data: [],
       isLoading: false,
-    } as ReturnType<typeof useGetDomainsList>);
+    } as ReturnType<typeof useGetDomainsListByNicBilling>);
 
     render(<DomainResellerInformations />);
     expect(screen.getByText('Domains: 0')).toBeInTheDocument();
