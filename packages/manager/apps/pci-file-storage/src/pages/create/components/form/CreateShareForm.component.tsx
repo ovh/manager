@@ -8,8 +8,6 @@ import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
-import { useCreateShare } from '@/data/hooks/shares/useCreateShare';
-import { isApiErrorResponse } from '@/data/utils';
 import { useProjectId } from '@/hooks/useProjectId';
 import { AvailabilityZoneSelection } from '@/pages/create/components/localisation/availabilityZone/AvailabilityZoneSelection.component';
 import { DeploymentModeSection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSection.component';
@@ -20,6 +18,7 @@ import { PrivateNetworkSelection } from '@/pages/create/components/network/Priva
 import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
 import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
+import { useShareCreation } from '@/pages/create/hooks/useShareCreation';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import {
   selectAvailabilityZones,
@@ -49,9 +48,7 @@ export const CreateShareForm = () => {
     onSuccess: () => {
       navigate('..');
     },
-    onError: (error: Error) => {
-      const errorMessage = isApiErrorResponse(error) ? error.response?.data.message : error.message;
-
+    onError: (errorMessage: string) => {
       toast(t('create:submit.error', { error: errorMessage }), {
         color: 'warning',
         duration: Infinity,
@@ -59,10 +56,7 @@ export const CreateShareForm = () => {
     },
   };
 
-  const { createShare, isPending } = useCreateShare({
-    projectId,
-    ...handleCreateShare,
-  });
+  const { createShare, isPending } = useShareCreation(projectId, handleCreateShare);
 
   const shouldShowMicroRegionSelection = microRegionOptions && microRegionOptions.length > 1;
   const shouldShowAvailabilityZoneSelection = availabilityZones && availabilityZones.length > 0;

@@ -6,9 +6,9 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
-import { useCreateShare } from '@/data/hooks/shares/useCreateShare';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
+import { useShareCreation } from '@/pages/create/hooks/useShareCreation';
 import {
   TAvailabilityZoneData,
   TMicroRegionData,
@@ -17,7 +17,7 @@ import {
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
-vi.mock('@/data/hooks/shares/useCreateShare');
+vi.mock('@/pages/create/hooks/useShareCreation');
 
 vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
@@ -154,7 +154,7 @@ vi.mock('@ovhcloud/ods-react', () => ({
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
-const mockUseCreateShare = vi.mocked(useCreateShare);
+const mockUseShareCreation = vi.mocked(useShareCreation);
 
 describe('CreateShareForm', () => {
   beforeEach(() => {
@@ -162,10 +162,10 @@ describe('CreateShareForm', () => {
     mockNavigate.mockClear();
     mockToast.mockClear();
     mockUseCreateShareForm({ isValid: true });
-    mockUseCreateShare.mockReturnValue({
+    mockUseShareCreation.mockReturnValue({
       createShare: vi.fn(),
       isPending: false,
-    } as unknown as ReturnType<typeof useCreateShare>);
+    } as unknown as ReturnType<typeof useShareCreation>);
   });
 
   it('should render all form sections', () => {
@@ -317,15 +317,15 @@ describe('CreateShareForm', () => {
 
   it('should display error toast when create share fails', async () => {
     const mockCreateShare = vi.fn();
-    let onErrorCallback: ((error: Error) => void) | undefined;
+    let onErrorCallback: ((errorMessage: string) => void) | undefined;
 
-    mockUseCreateShare.mockImplementation(({ onError }) => {
+    mockUseShareCreation.mockImplementation((_, { onError }) => {
       onErrorCallback = onError;
 
       return {
         createShare: mockCreateShare,
         isPending: false,
-      } as unknown as ReturnType<typeof useCreateShare>;
+      } as unknown as ReturnType<typeof useShareCreation>;
     });
 
     renderWithMockedForm(<CreateShareForm />, {
@@ -343,8 +343,7 @@ describe('CreateShareForm', () => {
     const submitButton = screen.getByText(/actions:validate$/);
     await userEvent.click(submitButton);
 
-    const error = new Error('Create share failed');
-    if (onErrorCallback) onErrorCallback(error);
+    if (onErrorCallback) onErrorCallback('Create share failed');
 
     expect(mockCreateShare).toHaveBeenCalled();
 
@@ -367,12 +366,12 @@ describe('CreateShareForm', () => {
     const mockCreateShare = vi.fn();
     let onSuccessCallback: (() => void) | undefined;
 
-    mockUseCreateShare.mockImplementation(({ onSuccess }) => {
+    mockUseShareCreation.mockImplementation((_, { onSuccess }) => {
       onSuccessCallback = onSuccess;
       return {
         createShare: mockCreateShare,
         isPending: false,
-      } as unknown as ReturnType<typeof useCreateShare>;
+      } as unknown as ReturnType<typeof useShareCreation>;
     });
 
     renderWithMockedForm(<CreateShareForm />, {

@@ -57,6 +57,6 @@ export type TShare = {
   network: (Partial<TNetwork> & Pick<TNetwork, 'id'>) | TNetwork;
 };
 
-export type CreateShare = Pick<TShare, 'name' | 'type' | 'size' | 'region'> & {
+export type TShareToCreate = Pick<TShare, 'name' | 'type' | 'size' | 'region'> & {
   network: Pick<TShare['network'], 'id'>;
 };
