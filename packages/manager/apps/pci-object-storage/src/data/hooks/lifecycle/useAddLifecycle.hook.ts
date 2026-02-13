@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateLifecycle } from '@/data/api/lifecycle/lifecycle.api';
-import { getS3Lifecycle } from '@/data/api/storage/s3Storage.api';
 import { ObjStoError } from '@/data/api';
 import storages from '@/types/Storages';
 import { getLifecycleQueryKey } from './lifecycleQueryKey';
+import { useFetchLifecycleRules } from './useFetchLifecycleRules.hook';
 
 type UseAddLifecycleParams = {
   onSuccess?: () => void;
@@ -19,20 +19,11 @@ export interface AddLifecycleParams {
 
 export function useAddLifecycle({ onSuccess, onError }: UseAddLifecycleParams) {
   const queryClient = useQueryClient();
+  const { fetchLifecycleRules } = useFetchLifecycleRules();
+
   const { mutate: addLifecycleMutation, isPending } = useMutation({
     mutationFn: async (data: AddLifecycleParams) => {
-      const queryKey = getLifecycleQueryKey(data);
-      const existing = await queryClient.fetchQuery({
-        queryKey,
-        queryFn: () =>
-          getS3Lifecycle({
-            projectId: data.projectId,
-            region: data.region,
-            name: data.name,
-          }),
-      });
-
-      const existingRules = existing?.rules || [];
+      const existingRules = await fetchLifecycleRules(data);
       const updatedRules = [...existingRules, data.lifecycleRule];
 
       return updateLifecycle({

@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import storages from '@/types/Storages';
+import { STORAGE_CLASS_TIER } from '@/hooks/useAvailableStorageClasses.hook';
 import {
-  STORAGE_CLASS_TIER,
   MIN_TRANSITION_GAP_DAYS,
   getMaxTransitionDays,
 } from './lifecycleTransition.utils';
@@ -17,14 +18,15 @@ const validateTransitionGaps = (
   if (transitions.length <= 1) return;
 
   const indexed = transitions.map((tr, originalIndex) => ({
-    storageClass: String(tr.storageClass ?? ''),
+    storageClass: String(tr.storageClass),
     days: Number(tr[daysKey]) || 0,
     originalIndex,
   }));
 
   const sorted = indexed.sort(
     (a, b) =>
-      STORAGE_CLASS_TIER[a.storageClass] - STORAGE_CLASS_TIER[b.storageClass],
+      STORAGE_CLASS_TIER[a.storageClass as storages.StorageClassEnum] -
+      STORAGE_CLASS_TIER[b.storageClass as storages.StorageClassEnum],
   );
 
   for (let i = 1; i < sorted.length; i += 1) {
@@ -91,7 +93,7 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum),
           }),
         )
         .default([]),
@@ -112,7 +114,7 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum),
           }),
         )
         .default([]),

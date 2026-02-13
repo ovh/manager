@@ -7,7 +7,7 @@ import { OBJECTS_PAGE } from '@/pages/object-storage/storage/s3Id/objects/object
 type StorageObject = cloud.StorageObject & { isCommonPrefix: boolean };
 
 export type S3BrowserItem =
-  { type: 'parent' }
+  | { type: 'parent' }
   | {
       type: 'folder';
       key: string; // ex: "new_object/"

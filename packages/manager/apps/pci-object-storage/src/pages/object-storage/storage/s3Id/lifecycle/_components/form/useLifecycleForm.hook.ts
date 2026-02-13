@@ -24,14 +24,17 @@ interface UseLifecycleFormParams {
       prefix?: string;
       tags?: Record<string, string>;
     };
-    transitions?: Array<{ days?: number; storageClass: string }>;
+    transitions?: Array<{
+      days?: number;
+      storageClass: storages.StorageClassEnum;
+    }>;
     expiration?: {
       days?: number;
       expiredObjectDeleteMarker?: boolean;
     };
     noncurrentVersionTransitions?: Array<{
       noncurrentDays?: number;
-      storageClass?: string;
+      storageClass?: storages.StorageClassEnum;
     }>;
     noncurrentVersionExpiration?: {
       noncurrentDays?: number;
@@ -57,14 +60,17 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       prefix: '',
       tags: emptyTags,
       hasCurrentVersionTransitions: false,
-      transitions: [] as Array<{ days: number; storageClass: string }>,
+      transitions: [] as Array<{
+        days: number;
+        storageClass: storages.StorageClassEnum;
+      }>,
       hasCurrentVersionExpiration: false,
       expirationDays: 0,
       expiredObjectDeleteMarker: false,
       hasNoncurrentVersionTransitions: false,
       noncurrentVersionTransitions: [] as Array<{
         noncurrentDays: number;
-        storageClass: string;
+        storageClass: storages.StorageClassEnum;
       }>,
       hasNoncurrentVersionExpiration: false,
       noncurrentVersionExpirationDays: 0,

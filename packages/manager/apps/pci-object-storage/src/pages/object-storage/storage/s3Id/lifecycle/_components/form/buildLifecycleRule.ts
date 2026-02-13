@@ -51,7 +51,7 @@ export const buildLifecycleRule = (
           .filter((t) => t.days > 0)
           .map((t) => ({
             days: t.days,
-            storageClass: t.storageClass as storages.LifecycleRuleTransitionStorageClassEnum,
+            storageClass: (t.storageClass as unknown) as storages.LifecycleRuleTransitionStorageClassEnum,
           })),
       }),
     ...((hasCurrentVersionExpiration && expirationDays > 0) ||
@@ -72,7 +72,7 @@ export const buildLifecycleRule = (
           .filter((t) => t.noncurrentDays > 0)
           .map((t) => ({
             noncurrentDays: t.noncurrentDays,
-            storageClass: t.storageClass as storages.StorageClassEnum,
+            storageClass: t.storageClass,
           })),
       }),
     ...(hasNoncurrentVersionExpiration &&

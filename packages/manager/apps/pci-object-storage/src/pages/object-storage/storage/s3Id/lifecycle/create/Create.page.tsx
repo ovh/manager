@@ -11,6 +11,7 @@ import { useLifecycleForm } from '../_components/form/useLifecycleForm.hook';
 import { PayloadPreview } from '../_components/form/PayloadPreview.component';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import LinkComponent from '@/components/links/Link.component';
+import { useAvailableStorageClasses } from '@/hooks/useAvailableStorageClasses.hook';
 
 export function breadcrumb() {
   return (
@@ -28,6 +29,9 @@ const CreateLifecycle = () => {
   const navigate = useNavigate();
   const { form } = useLifecycleForm({});
   const { projectId } = useParams();
+  const { availableStorageClasses } = useAvailableStorageClasses(
+    s3?.region ?? '',
+  );
 
   const { addLifecycle, isPending } = useAddLifecycle({
     onError: (err) => {
@@ -68,6 +72,7 @@ const CreateLifecycle = () => {
         lifecycleTitle={t('formAddTitle')}
         form={form}
         isPending={isPending}
+        availableStorageClasses={availableStorageClasses}
         onSubmit={onSubmit}
       />
       <div className="flex gap-2 mt-4">

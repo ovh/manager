@@ -12,9 +12,9 @@ import {
   Button,
 } from '@datatr-ux/uxlib';
 import { Plus, X } from 'lucide-react';
+import storages from '@/types/Storages';
 import { useLifecycleFormContext } from './LifecycleForm.context';
 import {
-  TRANSITION_STORAGE_CLASSES,
   MIN_TRANSITION_GAP_DAYS,
   getDisabledStorageClasses,
   canAddTransition,
@@ -38,11 +38,15 @@ export type TransitionListFieldConfig = {
 type TransitionItem = {
   days?: number;
   noncurrentDays?: number;
-  storageClass?: string;
+  storageClass?: storages.StorageClassEnum;
 };
 
 export function TransitionListField(config: TransitionListFieldConfig) {
-  const { form, isPending } = useLifecycleFormContext();
+  const {
+    form,
+    isPending,
+    availableStorageClasses,
+  } = useLifecycleFormContext();
   const { t } = useTranslation('pci-object-storage/storages/s3/lifecycle');
   const { t: tObj } = useTranslation(
     'pci-object-storage/storages/s3/object-class',
@@ -66,22 +70,19 @@ export function TransitionListField(config: TransitionListFieldConfig) {
 
   const addTransition = () => {
     const nextDays = getNextTransitionDays(daysList);
-    const newItem =
+    const storageClass = undefined as storages.StorageClassEnum | undefined;
+    const newItem: TransitionItem =
       config.daysKey === 'days'
-        ? ({ days: nextDays, storageClass: '' } as PathValue<
-            LifecycleFormValues,
-            'transitions'
-          >[number])
-        : ({
-            noncurrentDays: nextDays,
-            storageClass: '',
-          } as PathValue<
-            LifecycleFormValues,
-            'noncurrentVersionTransitions'
-          >[number]);
-    form.setValue(config.transitionsFieldName, [...transitionsList, newItem], {
-      shouldValidate: true,
-    });
+        ? { days: nextDays, storageClass }
+        : { noncurrentDays: nextDays, storageClass };
+    form.setValue(
+      config.transitionsFieldName,
+      [...transitionsList, newItem] as PathValue<
+        LifecycleFormValues,
+        typeof config.transitionsFieldName
+      >,
+      { shouldValidate: true },
+    );
   };
 
   const removeTransition = (index: number) => {
@@ -98,22 +99,19 @@ export function TransitionListField(config: TransitionListFieldConfig) {
   const handleToggle = (checked: boolean) => {
     form.setValue(config.hasFieldName, checked);
     if (checked && transitionsList.length === 0) {
-      const initialItem =
+      const storageClass = undefined as storages.StorageClassEnum | undefined;
+      const initialItem: TransitionItem =
         config.daysKey === 'days'
-          ? ({ days: MIN_TRANSITION_GAP_DAYS, storageClass: '' } as PathValue<
-              LifecycleFormValues,
-              'transitions'
-            >[number])
-          : ({
-              noncurrentDays: MIN_TRANSITION_GAP_DAYS,
-              storageClass: '',
-            } as PathValue<
-              LifecycleFormValues,
-              'noncurrentVersionTransitions'
-            >[number]);
-      form.setValue(config.transitionsFieldName, [initialItem], {
-        shouldValidate: true,
-      });
+          ? { days: MIN_TRANSITION_GAP_DAYS, storageClass }
+          : { noncurrentDays: MIN_TRANSITION_GAP_DAYS, storageClass };
+      form.setValue(
+        config.transitionsFieldName,
+        [initialItem] as PathValue<
+          LifecycleFormValues,
+          typeof config.transitionsFieldName
+        >,
+        { shouldValidate: true },
+      );
     }
   };
 
@@ -192,8 +190,9 @@ export function TransitionListField(config: TransitionListFieldConfig) {
                       />
                     </SelectTrigger>
                     <SelectContent>
-                      {TRANSITION_STORAGE_CLASSES.map((sc) => {
+                      {availableStorageClasses.map((sc) => {
                         const disabled = getDisabledStorageClasses(
+                          availableStorageClasses,
                           transitionLike,
                           index,
                         ).has(sc);
@@ -219,7 +218,7 @@ export function TransitionListField(config: TransitionListFieldConfig) {
               </div>
             );
           })}
-          {canAddTransition(transitionLike) && (
+          {canAddTransition(availableStorageClasses, transitionLike) && (
             <Button
               type="button"
               size="md"

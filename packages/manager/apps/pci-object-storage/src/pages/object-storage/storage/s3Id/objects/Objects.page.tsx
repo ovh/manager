@@ -44,7 +44,11 @@ function SelectAllCheckbox({ items }: SelectAllCheckboxProps) {
   } = useObjectSelection();
 
   const files = useMemo(
-    () => items.filter((item): item is S3BrowserItem & { type: 'file' } => item.type === 'file'),
+    () =>
+      items.filter(
+        (item): item is S3BrowserItem & { type: 'file' } =>
+          item.type === 'file',
+      ),
     [items],
   );
 
