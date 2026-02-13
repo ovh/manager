@@ -24,7 +24,6 @@
     "test": "vitest run --config src/__tests__/vite.config.mjs"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@vitejs/plugin-react-swc": "3.10.2",

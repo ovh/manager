@@ -18,8 +18,5 @@
     "dev:watch": "echo tailwind",
     "lint": "manager-lint --config eslint.config.mjs ./**.*js",
     "lint:fix": "manager-lint --fix --config eslint.config.mjs ./**.*js"
-  },
-  "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.15.0"
   }
 }

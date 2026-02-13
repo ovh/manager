@@ -38,7 +38,6 @@
     "fast-glob": "^3.3.3"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "strip-json-comments": "^5.0.2"
   }
 }
