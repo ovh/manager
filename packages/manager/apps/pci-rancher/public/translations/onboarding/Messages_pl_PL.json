@@ -20,5 +20,12 @@
   "managedRancherServiceGettingStartedTitle2": "Tworzenie, aktualizowanie i uzyskiwanie dostępu do Managed Rancher Service",
   "managedRancherServiceGettingStartedTitleDescription2": "Dowiedz się, jak tworzyć, aktualizować i uzyskiwać dostęp do Managed Rancher Service",
   "managedRancherServiceGettingStartedTitle3": "Cykl życia usługi Managed Rancher Service",
-  "managedRancherServiceGettingStartedTitleDescription3": "Poznaj cykl życia wersji Ranchera w usłudze Managed Rancher Service"
+  "managedRancherServiceGettingStartedTitleDescription3": "Poznaj cykl życia wersji Ranchera w usłudze Managed Rancher Service",
+  "freeTrialEligibilityTitle": "🎉 Jesteś uprawniony do bezpłatnego okresu próbnego",
+  "freeTrialCreditStandard": "{{amount}} kredytu dla Planu Standardowego (~1 miesiąc)",
+  "freeTrialCreditOvhEdition": "{{amount}} kredytu dla Planu OVHcloud Edition (~1 miesiąc)",
+  "freeTrialCreditApplied": "Kredyt zostanie automatycznie zastosowany do Twojej pierwszej usługi.",
+  "orderButtonLabelFreeTrial": "Rozpocznij mój bezpłatny okres próbny",
+  "rancherGuidesLink": "Dostęp do przewodników Rancher",
+  "videoTitle": "Film prezentacyjny Rancher"
 }

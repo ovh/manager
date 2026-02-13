@@ -6,6 +6,7 @@ import {
   RancherPlan,
   RancherService,
   RancherVersion,
+  TRancherEligibility,
 } from '@/types/api.type';
 
 type RancherInfo = 'plan' | 'version';
@@ -72,6 +73,14 @@ export const getRancherVersion = async (projectId: string) => {
     getReferenceRancherInfo(projectId, 'version'),
   );
   return response.data;
+};
+
+export const getRancherEligibility = async (
+  projectId: string,
+): Promise<{ data: TRancherEligibility }> => {
+  return apiClient.v2.get<TRancherEligibility>(
+    `publicCloud/project/${projectId}/reference/rancher/eligibility`,
+  );
 };
 
 export const createRancherService = async ({

@@ -55,6 +55,7 @@ import {
   TRancherPricing,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
+import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
 
 const TileSection: React.FC<{
   name: string;
@@ -114,6 +115,7 @@ export interface CreateRancherProps {
   isProjectDiscoveryMode?: boolean;
   isCreateRancherLoading: boolean;
   pricing?: TRancherPricing[];
+  isFreeTrialEligible?: boolean;
 }
 
 const CreateRancher: React.FC<CreateRancherProps> = ({
@@ -126,6 +128,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   isProjectDiscoveryMode,
   isCreateRancherLoading,
   pricing,
+  isFreeTrialEligible = false,
 }) => {
   const [rancherName, setRancherName] = useState<string | null>(null);
   const [isNameTouched, setIsNameTouched] = useState(false);
@@ -133,6 +136,10 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedPlan, setSelectedPlan] = useState<RancherPlan | null>(null);
   const [selectedVersion, setSelectedVersion] = useState<RancherVersion | null>(
     null,
+  );
+  const freeTrialCreditText = useRancherFreeTrial();
+  const [isFreeTrialBannerVisible, setIsFreeTrialBannerVisible] = useState(
+    true,
   );
 
   const url = usePciUrl();
@@ -189,6 +196,39 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
     <div>
       <Title>{t('createRancherTitle')}</Title>
       <PciDiscoveryBanner project={project} />
+      {isFreeTrialEligible && isFreeTrialBannerVisible && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.info}
+          type={ODS_MESSAGE_TYPE.info}
+          className="my-6 max-w-5xl"
+          removable
+          onOdsRemoveClick={() => setIsFreeTrialBannerVisible(false)}
+        >
+          <div className="flex flex-col">
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t('freeTrialBannerMessageLine1', { ns: 'dashboard' })}
+            </OsdsText>
+            <ul className="list-disc list-inside my-0 -ml-9">
+              <li>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {t('freeTrialBannerMessageLine2', {
+                    ns: 'dashboard',
+                    amount: freeTrialCreditText.ovhEdition,
+                  })}
+                </OsdsText>
+              </li>
+              <li>
+                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+                  {t('freeTrialBannerMessageLine3', {
+                    ns: 'dashboard',
+                    amount: freeTrialCreditText.standard,
+                  })}
+                </OsdsText>
+              </li>
+            </ul>
+          </div>
+        </OsdsMessage>
+      )}
       {hasRancherCreationError && (
         <OsdsMessage
           color={ODS_THEME_COLOR_INTENT.error}
@@ -307,10 +347,21 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
                 isPricing={
                   !!pricing?.some((p) => p.hourlyPrice || p.monthlyPrice)
                 }
+                showFreeTrialBadge={isFreeTrialEligible}
               />
             ))}
           </ul>
         </div>
+        {isFreeTrialEligible && (
+          <div className="mt-4">
+            <OsdsText
+              color={ODS_THEME_COLOR_INTENT.text}
+              className="text-[#4d5592] font-sans text-xs"
+            >
+              {t('freeTrialDisclaimer', { ns: 'dashboard' })}
+            </OsdsText>
+          </div>
+        )}
         <Block>
           <Subtitle>{t('createRancherVersion')}</Subtitle>
         </Block>
