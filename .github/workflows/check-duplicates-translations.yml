@@ -1,0 +1,184 @@
+name: Duplicate translation
+
+on:
+  push:
+    branches-ignore: [master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  duplicate-translation:
+    runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
+    steps:
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # ------------------------------------------
+      # Git / PR gate
+      # ------------------------------------------
+      - name: GetGitVars
+        id: gate
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          CURRENT_BRANCH=$(git branch --show-current)
+          echo "My branch is $CURRENT_BRANCH"
+
+          if [[ "$CURRENT_BRANCH" == "master" ]]; then
+            echo "should_continue=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
+          echo "Base Branch is $BASE_BRANCH"
+
+          PR_JSON=$(gh pr list --repo ovh/manager --head $CURRENT_BRANCH --base $BASE_BRANCH --json number)
+          NUMBER_PULL=$(echo "$PR_JSON" | jq -r '.[0].number')
+          labels=$(gh pr view $NUMBER_PULL --repo ovh/manager --json labels --jq '.labels[].name')
+
+          if echo "$labels" | grep -wq "translation required"; then
+            echo "✅ Translation required: Check the duplicate translation pls!..."
+            SHOULD_CONTINUE=true
+          else
+            echo "❌ Translation label does not exist, exit..."
+            SHOULD_CONTINUE=false
+          fi
+
+          echo "should_continue=$SHOULD_CONTINUE" >> $GITHUB_OUTPUT
+
+          echo "current_branch<<EOF" >> $GITHUB_OUTPUT
+          echo "$CURRENT_BRANCH" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          echo "base_branch<<EOF" >> $GITHUB_OUTPUT
+          echo "$BASE_BRANCH" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
+        with:
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
+
+      # ------------------------------------------
+      # Yarn cache (tarballs only)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        if: steps.gate.outputs.should_continue == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        if: steps.gate.outputs.should_continue == 'true'
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
+      # Install deps (deterministic)
+      # ------------------------------------------
+      - name: Install dependencies
+        if: steps.gate.outputs.should_continue == 'true'
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
+
+      # ------------------------------------------
+      # Detect changed packages
+      # ------------------------------------------
+      - name: GetChangedPackages
+        if: steps.gate.outputs.should_continue == 'true'
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          BASE_BRANCH=${{ steps.gate.outputs.base_branch }}
+          CURRENT_BRANCH=${{ steps.gate.outputs.current_branch }}
+
+          echo "[INFO] Computing changed packages with Nx…"
+
+          CHANGED_PACKAGES=$(yarn nx show projects \
+            --affected \
+            --base=origin/${BASE_BRANCH} \
+            --head=origin/${CURRENT_BRANCH} \
+            --with-target=build)
+
+          echo "$CHANGED_PACKAGES"
+
+          echo "changed_packages<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_PACKAGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # ------------------------------------------
+      # Duplicate translations check
+      # ------------------------------------------
+      - name: Show duplicate translations
+        if: steps.gate.outputs.should_continue == 'true'
+        run: |
+          available_apps=$(yarn manager-cli --list | grep -E '^\s+- ' | sed -E 's/^\s+- //')
+          readarray -t apps_array <<< "$available_apps"
+
+          while IFS= read -r line; do
+            [[ -z "$line" || "$line" == "//" ]] && continue
+
+            cleaned_package="${line#@ovh-ux/manager-}"
+            cleaned_package="${cleaned_package%-app}"
+
+            if printf "%s\n" "${apps_array[@]}" | grep -qx "$cleaned_package"; then
+              echo "🔍 Checking $cleaned_package"
+              yarn manager-cli duplicated-translations --app "$cleaned_package"
+            fi
+          done <<< "${{ steps.changed.outputs.changed_packages }}"

@@ -10,7 +10,6 @@
  */
 import process from 'node:process';
 
-import { buildCI } from './kernel/helpers/tasks-helper.js';
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
 import { logger } from './kernel/utils/log-manager.js';
 import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';

@@ -1,0 +1,72 @@
+name: PR Inspector
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pr-inspector:
+    runs-on: ubuntu-latest
+    steps:
+      # -------------------------
+      # Checkout
+      # -------------------------
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # -------------------------
+      # labeler
+      # -------------------------
+      - name: PR Labeler (actions/labeler)
+        uses: actions/labeler@v4
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Branch name labeler
+        uses: TimonVS/pr-labeler-action@v4
+        with:
+          configuration-path: .github/branch-name-labeler.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # -------------------------
+      # check-metadata
+      # -------------------------
+      - name: Check regions metadata
+        run: ./scripts/regions/check-regions.sh
+        shell: bash
+
+      # -------------------------
+      # merge_conflict_finder
+      # -------------------------
+      - name: Merge Conflict finder
+        uses: olivernybroe/action-conflict-finder@v4.0
+        with:
+          exclude_dir: "node_modules/**"
+
+      # -------------------------
+      # auto-label-merge-conflicts
+      # -------------------------
+      - name: Auto-label merge conflicts
+        uses: mschilde/auto-label-merge-conflicts@master
+        with:
+          CONFLICT_LABEL_NAME: "has conflicts"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAX_RETRIES: 5
+          WAIT_MS: 5000
+
+      # -------------------------
+      # yarn-explain
+      # -------------------------
+      - name: Yarn Lock Changes
+        uses: Simek/yarn-lock-changes@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          collapsibleThreshold: 10
+          failOnDowngrade: false
+          path: yarn.lock
+          updateComment: true
