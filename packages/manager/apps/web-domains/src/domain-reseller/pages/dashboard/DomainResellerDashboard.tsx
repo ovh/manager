@@ -1,5 +1,13 @@
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
-import { handleOrderClick } from '@/common/utils/utils';
+import {
+  ServiceInfoContactEnum,
+  ServiceRoutes,
+} from '@/common/enum/common.enum';
+import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
+import { findContact, handleOrderClick } from '@/common/utils/utils';
+import GeneralInformations from '@/domain-reseller/components/Dashboard/GeneralInformations';
+import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
+import Loading from '@/domain/components/Loading/Loading';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { BaseLayout } from '@ovh-ux/muk';
 import {
@@ -12,6 +20,7 @@ import {
   MessageBody,
   MessageIcon,
 } from '@ovhcloud/ods-react';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export default function DomainResellerDashboard() {
@@ -21,6 +30,27 @@ export default function DomainResellerDashboard() {
   const header = {
     title: t('domain_reseller_title'),
   };
+  const {
+    serviceInfo,
+    isServiceInfoLoading,
+  } = useGetServiceInformationByRoutes(ServiceRoutes.DomainReseller);
+
+  const nicAdmin = useMemo(() => {
+    if (!serviceInfo?.customer?.contacts) return undefined;
+    return findContact(
+      serviceInfo.customer.contacts,
+      ServiceInfoContactEnum.Administrator,
+    );
+  }, [serviceInfo]);
+
+  const { data: domainslist = [], isLoading, isFetching } = useGetDomainsList(
+    nicAdmin,
+  );
+
+  if (isServiceInfoLoading || isLoading || isFetching) {
+    return <Loading />;
+  }
+
   return (
     <BaseLayout header={header}>
       <Message
@@ -37,7 +67,7 @@ export default function DomainResellerDashboard() {
         </MessageBody>
       </Message>
       <section>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 mb-6">
           <Button onClick={() => handleOrderClick(orderUrl)}>
             {t('domain_reseller_button_add_domain')}
           </Button>
@@ -46,6 +76,9 @@ export default function DomainResellerDashboard() {
             {t('domain_reseller_button_download_catalog')}
             <Icon name={ICON_NAME.download} />
           </Button>
+        </div>
+        <div className="grid grid-cols-1 md:!grid-cols-2">
+          <GeneralInformations domainsLength={domainslist?.length} />
         </div>
       </section>
     </BaseLayout>
