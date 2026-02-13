@@ -40,6 +40,12 @@ export const yarnAppsPlaybookPath = path.join(
   'src/playbook/catalog/yarn-catalog.json',
 );
 
+/** Workspace tools catalog. */
+export const toolsPlaybookPath = path.join(
+  managerPMPath,
+  'src/playbook/catalog/tools-catalog.json',
+);
+
 /** Path to pnpm normalized versions path. */
 export const normalizedVersionsPath = path.join(
   managerPMPath,
@@ -47,7 +53,7 @@ export const normalizedVersionsPath = path.join(
 );
 
 /**
- * Absolute path to the JSON catalog of critical React-related dependencies.
+ * Absolute path to the JSON catalog of Critical Dependencies.
  *
  * - This file (`pnpm-critical-deps.json`) lists packages that must be pinned
  *   to the exact versions installed by Yarn before migrating an app to PNPM.
@@ -71,9 +77,9 @@ export const normalizedVersionsPath = path.join(
  * @constant
  * @type {string}
  */
-export const reactCriticalDependenciesPath = path.join(
+export const criticalDependenciesPath = path.join(
   managerPMPath,
-  'src/playbook/catalog/pnpm-react-critical-deps.json',
+  'src/playbook/catalog/pnpm-critical-deps.json',
 );
 
 /**
@@ -120,3 +126,12 @@ export const cleanupDirectories = ['node_modules', 'dist', '.turbo'];
  * Container application package name.
  */
 export const containerPackageName = '@ovh-ux/manager-container-app';
+
+/** Candidate module base directories (in lookup order). */
+export const modulesBasePaths = [
+  'packages/manager-tools',
+  'packages/manager/modules',
+  'packages/manager/core',
+  'packages/manager-ui-kit',
+  'packages/manager-wiki',
+];
