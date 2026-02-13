@@ -133,12 +133,12 @@ angular.module('App').controller(
                   },
                   errorMsg: {
                     message: this.$translate.instant(
-                      'hosting_tab_STATISTICS_none',
+                      'hosting_tab_STATISTICS_databases_none',
                     ),
                   },
                   noDataMsg: {
                     message: this.$translate.instant(
-                      'hosting_tab_STATISTICS_none',
+                      'hosting_tab_STATISTICS_databases_none',
                     ),
                   },
                   fill: true,
