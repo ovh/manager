@@ -10,7 +10,7 @@ import { DatagridColumn } from '@ovh-ux/muk';
 import { VisibilityState } from '@tanstack/react-table';
 import { useColumns } from '../dataGridColumns';
 import { DedicatedServer } from '@/data/types/server.type';
-import { ViewType } from './types';
+import { Categories, ViewType } from './types';
 import { useGetViewsPreferences } from '@/hooks/manage-views/useGetViewPreferences';
 import {
   DEFAULT_COLUMN_VISIBILITY,
@@ -35,6 +35,8 @@ export type ViewContextType<T> = {
   >;
   setColumnsOrder: (order?: string[]) => void;
   setViews: React.Dispatch<React.SetStateAction<ViewType[]>>;
+  groupBy: Categories;
+  setGroupBy: (category: Categories) => void;
 };
 
 export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
@@ -47,12 +49,15 @@ export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
   setOrderedColumns: () => {},
   setColumnsOrder: () => {},
   setColumnVisibility: () => {},
+  groupBy: undefined,
+  setGroupBy: () => {},
 });
 
 export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   const { t } = useTranslation('manage-view');
   const [views, setViews] = useState<ViewType[]>([]);
   const [currentView, setCurrentView] = useState<ViewType>(null);
+  const [groupBy, setGroupBy] = useState<Categories>(null);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
     DEFAULT_COLUMN_VISIBILITY,
   );
@@ -112,6 +117,9 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     if (foundDefaultView?.columnVisibility) {
       setColumnVisibility(foundDefaultView.columnVisibility);
     }
+    if (foundDefaultView?.groupBy) {
+      setGroupBy(foundDefaultView?.groupBy);
+    }
   }, [preferences, isLoading, error]);
 
   // When current view changes, update column visibility and order state
@@ -141,8 +149,10 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
       setOrderedColumns,
       setColumnsOrder,
       setViews,
+      groupBy,
+      setGroupBy,
     };
-  }, [views, currentView, columnVisibility, orderedColumns]);
+  }, [views, currentView, columnVisibility, orderedColumns, groupBy]);
 
   return (
     <ViewContext.Provider value={viewContext}>{children}</ViewContext.Provider>
