@@ -9,6 +9,7 @@
   "netapp_replications_efs_link_volume": "Volume : {{ shareid }}",
   "netapp_replications_status": "Réplication status",
   "netapp_replications_status_pending": "En attente d'approbation",
+  "netapp_replications_status_cuttingover": "En cours de promotion",
   "netapp_replications_status_cutover": "En cours de promotion",
   "netapp_replications_status_completed": "Migré",
   "netapp_replications_status_error": "Erreur",
