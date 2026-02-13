@@ -1,7 +1,7 @@
 import { useLocale } from '@/hooks/useLocale';
 import { bytesConverter, octetConverter } from '@/lib/bytesHelper';
 
-export function useLocaleBytesConverter() {
+const useLocaleBytesConverter = () => {
   const locale = useLocale();
 
   const converter = (value: number, si = false, dp = 1) => {
@@ -12,4 +12,6 @@ export function useLocaleBytesConverter() {
   };
 
   return converter;
-}
+};
+
+export { useLocaleBytesConverter };

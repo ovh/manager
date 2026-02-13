@@ -2,14 +2,14 @@ import { NavLink as RouterNavLink, NavLinkProps } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 
-function NavLink({
+const NavLink = ({
   className,
   disabled,
   children,
   to,
   end,
   ...props
-}: NavLinkProps & { disabled?: boolean }) {
+}: NavLinkProps & { disabled?: boolean }) => {
   const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
     'whitespace-nowrap w-fit text-primary-500 text-base font-semibold m-0 py-2 hover:text-primary-700 cursor-pointer no-underline';
@@ -40,6 +40,6 @@ function NavLink({
       {children}
     </RouterNavLink>
   );
-}
+};
 
 export default NavLink;

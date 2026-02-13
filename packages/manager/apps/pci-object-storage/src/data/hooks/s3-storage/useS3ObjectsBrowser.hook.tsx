@@ -2,12 +2,12 @@ import { useMemo } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { cloud } from '@datatr-ux/ovhcloud-types';
 import { apiClient } from '@/data/api/api.client';
-import { OBJECTS_PAGE } from '@/pages/object-storage/storage/s3Id/objects/objects.constants';
+import { OBJECTS_PAGE } from '@/pages/object-storage/s3/[region]/[s3Name]/objects/objects.constants';
 
 type StorageObject = cloud.StorageObject & { isCommonPrefix: boolean };
 
 export type S3BrowserItem =
-  { type: 'parent' }
+  | { type: 'parent' }
   | {
       type: 'folder';
       key: string; // ex: "new_object/"

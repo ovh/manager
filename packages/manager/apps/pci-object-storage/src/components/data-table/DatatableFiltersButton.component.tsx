@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { useDataTableContext } from './DataTable.context';
 import DataTableDefaultFilterButton from './DatatableDefaultFilterButton.component';
 
-export function DatatableFiltersButton({ children }: { children?: ReactNode }) {
+const DatatableFiltersButton = ({ children }: { children?: ReactNode }) => {
   const { filtersDefinition, columnFilters } = useDataTableContext();
   if (!filtersDefinition?.length) return <></>;
   return (
@@ -20,4 +20,6 @@ export function DatatableFiltersButton({ children }: { children?: ReactNode }) {
       )}
     </>
   );
-}
+};
+
+export { DatatableFiltersButton };

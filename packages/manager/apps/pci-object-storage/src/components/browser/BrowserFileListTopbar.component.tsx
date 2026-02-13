@@ -1,6 +1,6 @@
 import { useBrowser } from './BrowserRoot.component';
 
-export function BrowserFileListTopbar<T extends { name: string }>() {
+const BrowserFileListTopbar = <T extends { name: string }>() => {
   const { prefix } = useBrowser<T>();
   return (
     <div className="py-2 px-3 border-b bg-muted/50 text-sm shrink-0">
@@ -8,4 +8,6 @@ export function BrowserFileListTopbar<T extends { name: string }>() {
       <code className="font-mono">{prefix || '(root)'}</code>
     </div>
   );
-}
+};
+
+export { BrowserFileListTopbar };

@@ -5,7 +5,7 @@ import { FilterWithLabel } from './DatatableFiltersList.component';
 const filterEquals = (a: Filter, b: Filter) =>
   a.key === b.key && a.value === b.value && a.comparator === b.comparator;
 
-export function useColumnFilters() {
+const useColumnFilters = () => {
   const [filters, setFilters] = useState<FilterWithLabel[]>([]);
 
   return {
@@ -29,4 +29,6 @@ export function useColumnFilters() {
       );
     },
   };
-}
+};
+
+export { useColumnFilters };

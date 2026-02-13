@@ -23,7 +23,7 @@ type BreadcrumbHandle = {
   }) => React.ReactElement | null;
 };
 
-function Breadcrumb(): JSX.Element {
+const Breadcrumb = (): JSX.Element => {
   const { projectId } = useParams();
   const { data: project } = usePciProject();
 
@@ -79,6 +79,6 @@ function Breadcrumb(): JSX.Element {
       ))}
     </>
   );
-}
+};
 
 export default Breadcrumb;

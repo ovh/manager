@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
 
-function A({
+const A = ({
   className,
   children,
   disabled,
   ...props
-}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { disabled?: boolean }) {
+}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { disabled?: boolean }) => {
   const baseClassName =
     'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
   const disabledClass = 'opacity-50 cursor-not-allowed hover:text-primary-500';
@@ -34,5 +34,5 @@ function A({
       {children}
     </a>
   );
-}
+};
 export default A;

@@ -32,7 +32,7 @@ export type FilterListProps = {
   onRemoveFilter: (filter: FilterWithLabel) => void;
 };
 
-export function DatatableFiltersList() {
+const DatatableFiltersList = () => {
   const { t } = useTranslation('filters');
   const { columnFilters } = useDataTableContext();
   const locale = useLocale();
@@ -87,4 +87,6 @@ export function DatatableFiltersList() {
       ))}
     </div>
   );
-}
+};
+
+export { DatatableFiltersList };

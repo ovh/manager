@@ -2,13 +2,13 @@ import { LinkProps, Link as RouterLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
 
-function Link({
+const Link = ({
   className,
   disabled,
   children,
   to,
   ...props
-}: LinkProps & { disabled?: boolean }) {
+}: LinkProps & { disabled?: boolean }) => {
   const { setLoading } = useLoadingIndicatorContext();
   const baseClassName =
     'text-primary-500 font-semibold outiline-none cursor-pointer no-underline hover:text-primary-700 hover:underline';
@@ -34,6 +34,6 @@ function Link({
       {children}
     </RouterLink>
   );
-}
+};
 
 export default Link;

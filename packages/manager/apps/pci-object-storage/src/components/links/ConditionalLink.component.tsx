@@ -7,13 +7,13 @@ interface ConditionalLinkProps extends LinkProps {
   disabled?: boolean;
 }
 
-function ConditionalLink({
+const ConditionalLink = ({
   condition,
   className,
   children,
   to,
   ...props
-}: ConditionalLinkProps) {
+}: ConditionalLinkProps) => {
   if (condition) {
     return (
       <Link to={to} className={className} {...props}>
@@ -23,6 +23,6 @@ function ConditionalLink({
   }
 
   return <div className={className}>{children}</div>;
-}
+};
 
 export default ConditionalLink;
