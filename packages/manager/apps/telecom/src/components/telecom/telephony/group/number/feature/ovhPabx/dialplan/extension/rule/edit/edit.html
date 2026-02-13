@@ -188,16 +188,13 @@
                                 data-translate="{{ 'telephony_number_feature_ovh_pabx_step_rule_bridge_to_number' }}"
                             >
                             </label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="setBridgeActionParam"
+                            <phonenumber
                                 id="setBridgeActionParam"
-                                data-ng-model="$ctrl.rule.actionParam"
-                                data-translate-attr="{ placeholder: 'telephony_number_feature_ovh_pabx_step_rule_bridge_to_number' }"
-                                data-required
-                                data-ng-pattern="/^(00|\+)([0-9]{2}\d+)$/"
-                            />
+                                name="setBridgeActionParam"
+                                data-model="$ctrl.rule.actionParam"
+                                data-without-label="true"
+                                required="true"
+                            ></phonenumber>
                             <span
                                 class="help-block"
                                 role="alert"
