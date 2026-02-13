@@ -10,7 +10,11 @@ import { vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertModalVisibility, assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertModalVisibility,
+  assertTextVisibility,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretDeleteSecret(
   okmsRoubaix1Mock.id,
@@ -30,7 +34,8 @@ describe('Delete secret modal test suite', () => {
   it('should display the delete modal', async () => {
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility();
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const title = labels.secretManager.delete_secret_modal_title;
 

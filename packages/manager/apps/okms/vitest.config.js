@@ -32,7 +32,7 @@ export default mergeConfig(
       },
     },
     resolve: {
-      dedupe: [...defaultDedupedDependencies],
+      dedupe: ['zustand', '@ovh-ux/muk', ...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@secret-manager': path.resolve(__dirname, 'src/modules/secret-manager'),
