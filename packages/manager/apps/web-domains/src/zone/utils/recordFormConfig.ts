@@ -97,7 +97,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv4', required: true, tooltipKey: 'zone_page_tooltip_ipv4' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv4', required: true, tooltipKey: 'zone_page_tooltip_ip' },
           'ttl',
         ],
       },
@@ -118,7 +118,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv6', required: true, tooltipKey: 'zone_page_tooltip_ipv6' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv6', required: true, tooltipKey: 'zone_page_tooltip_ip' },
           'ttl',
         ],
       },

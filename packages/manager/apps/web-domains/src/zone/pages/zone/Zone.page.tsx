@@ -2,7 +2,7 @@ import BannerStatus from "@/domain/components/BannerStatus/BannerStatus";
 import { useLinks } from "@/domain/constants/guideLinks";
 import { urls as domainUrls } from "@/domain/routes/routes.constant";
 import { useGetDomainZoneRecords } from "@/zone/hooks/useGetDomainZoneRecords/useGetDomainZoneRecords";
-import { ZoneRecord, ZoneRecordFieldType } from "@/zone/types/zoneRecords.types";
+import { ZoneRecord } from "@/zone/types/zoneRecords.types";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { ShellContext } from "@ovh-ux/manager-react-shell-client";
 import { ActionMenu, Datagrid, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
@@ -25,7 +25,7 @@ export default function ZonePage() {
   const buildUrl = (baseUrl: string) => {
     return baseUrl.replace(':serviceName', serviceName || '');
   };
-  const { data, hasNextPage, fetchNextPage, fetchAllPages } = useGetDomainZoneRecords(serviceName);
+  const { data, hasNextPage, fetchNextPage, fetchAllPages } = useGetDomainZoneRecords(serviceName || '');
   const tabsZone = domainUrls.domainTabZone;
   const [searchInput, setSearchInput] = useState('');
   const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
@@ -54,7 +54,7 @@ export default function ZonePage() {
     removeFilter(filter);
   }, [removeFilter]);
 
-  const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName, true);
+  const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName ?? '', true);
 
   const { addWarning, addInfo, clearNotifications } = useNotifications();
 
@@ -75,6 +75,7 @@ export default function ZonePage() {
     }
   }, [filters, searchInput, hasNextPage, fetchAllPages]);
 
+  // Display the form between the topbar and the datagrid when the "Add Entry" button is clicked
   useEffect(() => {
     const topbarContainer = document.querySelector('[data-testid="topbar-container"]');
     const quickAddDiv = quickAddRef.current;
@@ -194,7 +195,7 @@ export default function ZonePage() {
         isFilterable: true,
         comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
         filterOptions: availableFieldTypes
-          .map((fieldType: ZoneRecordFieldType) => ({
+          .map((fieldType) => ({
             label: fieldType,
             value: fieldType,
           }))
@@ -274,6 +275,7 @@ export default function ZonePage() {
           >
             <QuickAddEntry
               serviceName={serviceName ?? ''}
+              visible={showAddEntryDiv}
               onSuccess={handleQuickAddSuccess}
               onCancel={handleQuickAddCancel}
             />
