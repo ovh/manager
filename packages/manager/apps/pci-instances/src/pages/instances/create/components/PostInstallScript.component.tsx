@@ -1,11 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Divider,
-  Text,
-  Textarea,
-  ToggleCheckedChangeDetail,
-} from '@ovhcloud/ods-react';
+import { Text, Textarea, ToggleCheckedChangeDetail } from '@ovhcloud/ods-react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { ToggleField } from '@/components/form';
 import { TInstanceCreationForm } from '../CreateInstance.schema';
@@ -28,8 +23,7 @@ const PostInstallScript: FC = () => {
   };
 
   return (
-    <div className="mt-4 flex flex-col">
-      <Divider spacing="16" />
+    <div className="mt-4">
       <div className="flex items-center space-x-4">
         <Text preset="heading-4">
           {t('pci_instance_creation_post_install_script_title')}

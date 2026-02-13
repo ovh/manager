@@ -33,9 +33,9 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
 }) => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [subnetId, microRegion, assignNewGateway] = useWatch({
+  const [subnetId, microRegion, willGatewayBeAttached] = useWatch({
     control,
-    name: ['subnetId', 'microRegion', 'assignNewGateway'],
+    name: ['subnetId', 'microRegion', 'willGatewayBeAttached'],
   });
 
   const { data: configurations, isPending } = useNetworkCatalog({
@@ -67,7 +67,10 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
   };
 
   const handleAssignNewGateway = (
-    field: ControllerRenderProps<TInstanceCreationForm, 'assignNewGateway'>,
+    field: ControllerRenderProps<
+      TInstanceCreationForm,
+      'willGatewayBeAttached'
+    >,
   ) => ({ checked }: ToggleCheckedChangeDetail) => {
     field.onChange(checked);
 
@@ -76,59 +79,62 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
   };
 
   useEffect(() => {
-    if (gatewayAvailability?.isDisabled) setValue('assignNewGateway', false);
-  }, [gatewayAvailability, setValue]);
+    const selectedPrivateNetwork = privateNetworks.find(
+      (network) => network.value === subnetId,
+    );
+    if (selectedPrivateNetwork?.customRendererData?.hasGateway)
+      setValue('willGatewayBeAttached', true);
+  }, [privateNetworks, setValue, subnetId]);
 
   if (isPending || !gatewayAvailability || !configurations) return null;
 
   return (
-    <div className="mt-4">
-      <Text preset="heading-4">
-        {t('creation:pci_instance_creation_network_gateway_title')}
-      </Text>
+    <div>
       <Controller
-        name="assignNewGateway"
+        name="willGatewayBeAttached"
         control={control}
         render={({ field }) => (
           <Toggle
             disabled={gatewayAvailability.isDisabled}
             withLabels
             className="mt-6"
-            checked={assignNewGateway}
+            checked={willGatewayBeAttached}
             onCheckedChange={handleAssignNewGateway(field)}
           >
+            <ToggleControl />
             <TooltipWrapper
               {...(gatewayAvailability.unavailableReason && {
                 content: t(gatewayAvailability.unavailableReason),
               })}
             >
-              <ToggleControl />
+              <ToggleLabel className="flex items-center">
+                <Text
+                  className={clsx({
+                    [disabledClassname]: gatewayAvailability.isDisabled,
+                  })}
+                >
+                  {t(
+                    'creation:pci_instance_creation_network_gateway_toggle_label',
+                  )}
+                </Text>
+                <span className="mx-2">-</span>
+                <Text
+                  className={clsx('font-semibold', {
+                    [disabledClassname]: gatewayAvailability.isDisabled,
+                  })}
+                >
+                  {t(
+                    'creation:pci_instance_creation_network_gateway_price_label',
+                    {
+                      size: configurations.size,
+                      price: getFormattedHourlyCatalogPrice(
+                        configurations.price,
+                      ),
+                    },
+                  )}
+                </Text>
+              </ToggleLabel>
             </TooltipWrapper>
-            <ToggleLabel className="flex items-center">
-              <Text
-                className={clsx({
-                  [disabledClassname]: gatewayAvailability.isDisabled,
-                })}
-              >
-                {t(
-                  'creation:pci_instance_creation_network_gateway_toggle_label',
-                )}
-              </Text>
-              <span className="mx-2">-</span>
-              <Text
-                className={clsx('font-semibold', {
-                  [disabledClassname]: gatewayAvailability.isDisabled,
-                })}
-              >
-                {t(
-                  'creation:pci_instance_creation_network_gateway_price_label',
-                  {
-                    size: configurations.size,
-                    price: getFormattedHourlyCatalogPrice(configurations.price),
-                  },
-                )}
-              </Text>
-            </ToggleLabel>
           </Toggle>
         )}
       />

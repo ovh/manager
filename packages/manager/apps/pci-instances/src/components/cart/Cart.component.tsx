@@ -98,8 +98,9 @@ export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {
   );
 
   return (
-    <BaseCart className="sticky right-0 top-8 bg-white">
-      <CartContent
+    <BaseCart className="sticky right-0 top-8 flex max-h-[calc(100vh-5rem)] flex-col overflow-hidden bg-white">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <CartContent
         items={items}
         renderCartItem={({ item, isExpanded }) => (
           <CartItem key={item.title} value={item.id}>
@@ -120,12 +121,15 @@ export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {
           </CartItem>
         )}
       />
-      <CartTotalPrice
-        hourlyTotal={hourlyTotal}
-        monthlyTotal={monthlyTotal}
-        billingType={billingType}
-      />
-      <CartActions className="flex-col gap-6">{actionsButtons}</CartActions>
+      </div>
+      <div className="shrink-0">
+        <CartTotalPrice
+          hourlyTotal={hourlyTotal}
+          monthlyTotal={monthlyTotal}
+          billingType={billingType}
+        />
+        <CartActions className="flex-col gap-6">{actionsButtons}</CartActions>
+      </div>
     </BaseCart>
   );
 };

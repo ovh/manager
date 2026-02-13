@@ -103,7 +103,7 @@ const SshKey = () => {
 
   return (
     <section>
-      <Divider spacing="64" />
+      <Divider spacing="48" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
           {t('creation:pci_instance_creation_select_sshKey_title')}
@@ -144,7 +144,11 @@ const SshKey = () => {
             value={selectedSshKeyId ? [selectedSshKeyId] : []}
             onValueChange={handleSelectSshKey}
           />
-          <Button variant="ghost" onClick={handleOpenSshKeyForm}>
+          <Button
+            variant="outline"
+            className="mt-4"
+            onClick={handleOpenSshKeyForm}
+          >
             <Icon name="plus" />
             {t('creation:pci_instance_creation_select_sshKey_add_new')}
           </Button>

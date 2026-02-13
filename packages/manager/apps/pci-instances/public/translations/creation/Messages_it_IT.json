@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Deve contenere solo numeri, lettere, underscore, trattini o punti.",
   "pci_instances_creation_advanced_parameters": "Impostazioni avanzate",
+  "pci_instance_creation_instance_flex_title": "Istanza flessibile",
+  "pci_instance_creation_instance_flex_description": "L'opzione Flex forza uno storage di 50 GB, offrendo snapshot più rapidi e la possibilità di effettuare un downgrade successivamente.",
   "pci_instances_creation_quantity_title": "Scegli una quantità",
   "pci_instances_creation_quantity_label": "Numero di istanze da creare",
   "pci_instance_creation_quantity_rule": "Il tuo attuale quota ti consente di creare simultaneamente fino a {{ quota }} istanza(e) di tipo {{ type }} per la regione di {{ region }}. <Link>Controlla la tua quota.</Link>",
@@ -28,7 +30,7 @@
   "pci_instance_creation_table_header_price_monthly_unit": "+IVA/mese",
   "pci_instance_creation_flavor_unavailable": "Non disponibile",
   "pci_instance_creation_flavor_unavailable_quota": "Quota non disponibile",
-  "pci_instance_creation_flavor_unavailable_help": "Questo modello non è disponibile nella tua regione selezionata. Puoi comunque selezionarlo, ma dovrai scegliere un'altra regione per questo modello.",
+  "pci_instance_creation_flavor_unavailable_help": "Questo modello non è disponibile nella tua regione selezionata. <sb>Tuttavia, puoi selezionarlo, ma dovrai scegliere un'altra regione per questo modello.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "La tua quota non ti consente di scegliere questo modello di istanza. Si prega di aumentare la propria quota.",
   "pci_instance_creation_select_new_region_title": "Scegli una nuova regione",
   "pci_instance_creation_select_new_region_label": "Seleziona una regione",
@@ -56,6 +58,7 @@
   "pci_instance_creation_choose_datacenter_label": "Scegli un datacenter",
   "pci_instance_creation_show_all_localizations": "Visualizza tutte le localizzazioni",
   "pci_instance_creation_select_flavor_title": "Seleziona un modello",
+  "pci_instance_creation_flavor_no_results": "Nessun risultato",
   "pci_instance_creation_select_flavor_help_title": "Modelli",
   "pci_instance_creation_select_flavor_help_description": "OVHcloud propone una varietà di istanze in grado di rispondere alle diverse esigenze in materia di calcolo, memoria, storage e performance.",
   "pci_instance_creation_select_flavor_help_general_purpose": "<strong>Istanze a uso generale (General Purpose):</strong> queste istanze offrono un equilibrio tra potenza di calcolo, memoria e storage. e sono adatte a diversi tipi di applicazioni e carichi di lavoro.",
@@ -136,7 +139,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Un backup viene eseguito ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "al mese/GB",
@@ -151,16 +154,16 @@
   "pci_instance_creation_network_gateway_price_label": "Dimensione {{ size }} - {{ price }}",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assegna una connettività pubblica",
-    "description": "<p>L'assegnazione di un indirizzo IP pubblico consente l'accesso alla tua istanza dall'esterno della rete OVHcloud. <span>La creazione dell'IP flottante avverrà al termine della configurazione.</span></p>",
+    "description": "<p>L'assegnazione di un indirizzo IP pubblico consente l'accesso alla tua istanza dall'esterno della rete OVHcloud.<br/><span>La creazione dell'IP flottante avverrà al termine della configurazione.</span></p>",
     "toggle_label": "Assegna un'IP pubblica",
-    "basic_ip_label": "IP Pubblica di Base (Collegata all'istanza) - {{ price }}",
+    "basic_ip_label": "IP Pubblica di Base (Collegata all'istanza) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Un'IP pubblica di base è un indirizzo IP che non persiste oltre la durata della risorsa. ",
     "basic_ip_warning": "L'attivazione dell'IP pubblico di base non è compatibile con una gateway.",
-    "floating_ip_label": "Crea un'IP Flottante (Riutilizzabile) - {{ price }}",
-    "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo rilasci esplicitamente. ",
+    "floating_ip_label": "Crea un'IP Flottante (Riutilizzabile) - <sb>{{ price }}</sb>",
+    "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo liberi esplicitamente. ",
     "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
-    "floating_ip_create_new_label": "Creare un nuovo - {{ price }}",
-    "floating_ip_reuse_existing_label": "Riutilizzare un'IP flottante esistente",
+    "floating_ip_create_new_label": "Crea un nuovo - <sb>{{ price }}</sb>",
+    "floating_ip_reuse_existing_label": "Riutilizza un'IP flottante esistente",
     "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway non è disponibile nelle localZone.",
@@ -175,5 +178,15 @@
   "pci_instance_creation_cart_public_network_title": "Rete pubblica",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "IP Pubblica",
-  "pci_instance_creation_network_full_private_warning": "<p>Questa istanza non avrà accesso pubblico a Internet. Non potrai connetterti né raggiungere servizi esterni, a meno che non utilizzi un bastione o aggiunga una gateway.</p><p>Questo migliora la sicurezza ma limita la connettività. Su istanze Windows, <semibold>devi attivare manualmente la licenza per avere accesso a tutti i servizi</semibold>.</p><Link>Consulta la guida</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>Questa istanza non avrà accesso pubblico a Internet. Non potrai connetterti né raggiungere servizi esterni, a meno che non utilizzi un bastione o aggiunga una gateway.</p><p>Questo migliora la sicurezza ma limita la connettività. Su istanze Windows, <semibold>devi attivare manualmente la licenza per avere accesso a tutti i servizi</semibold>.</p><Link>Consulta la guida</Link>",
+  "pci_instance_creation_in_progress": "La creazione dell'istanza è in corso, il tuo servizio sarà disponibile tra pochi istanti",
+  "pci_instances_creations_in_progress": "Le creazioni delle istanze sono in corso, i tuoi servizi saranno disponibili tra pochi istanti",
+  "pci_instance_creation_error": "Si è verificato un errore durante la creazione della tua istanza…",
+  "pci_instance_onboarding_page_creation_pending": "La tua istanza è in fase di creazione, ti preghiamo di attendere qualche istante...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Istanze Flex",
+    "disk_capacity": "<span>Un'istanza flex è un'istanza a disco singolo (50 Go)</span> che offre un processo più veloce per gli snapshot.",
+    "resizing_explanation": "Consente un ridimensionamento verso modelli superiori o inferiori con uno spazio di archiviazione fisso, mentre i modelli classici possono essere ridimensionati solo verso modelli superiori."
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway allegata"
 }

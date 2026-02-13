@@ -1,7 +1,8 @@
 import { instanceCreationMutationKey } from '@/adapters/tanstack/instances/mutationKeys';
 import { TCreateInstanceDTO } from '@/adapters/tanstack/instances/right/dto.type';
 import { instanceAdapter } from '@/adapters/tanstack/instances/right/instanceAdapter';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { operationsQueryKey } from '@/adapters/tanstack/operations/queryKeys';
 
 type TUseCreateInstanceCallbacks = {
   onSuccess?: () => void;
@@ -23,12 +24,18 @@ export const useCreateInstance = ({
   callbacks = {},
 }: TUseCreateInstanceParams) => {
   const { onSuccess, onError } = callbacks;
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: instanceCreationMutationKey(projectId),
     mutationFn: ({ regionName, instance }: TUseCreateInstanceMutationFnArgs) =>
       instanceAdapter.createInstance({ projectId, regionName, instance }),
-    onSuccess,
+    onSuccess: () => {
+      void queryClient.resetQueries({
+        queryKey: operationsQueryKey(projectId),
+      });
+      onSuccess?.();
+    },
     onError,
   });
 };

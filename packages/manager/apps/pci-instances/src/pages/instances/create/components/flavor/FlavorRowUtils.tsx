@@ -11,7 +11,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { ReactNode } from 'react';
 import { useCatalogPrice } from '@ovh-ux/muk';
 
@@ -55,9 +55,15 @@ export function useFlavorCommon() {
         </TooltipTrigger>
         <TooltipContent withArrow className="max-w-[250px] px-6">
           <Text preset={TEXT_PRESET.caption}>
-            {flavor.unavailable
-              ? t('pci_instance_creation_flavor_unavailable_help')
-              : t('pci_instance_creation_flavor_unavailable_quota_help')}
+            {flavor.unavailable ? (
+              <Trans
+                t={t}
+                i18nKey="pci_instance_creation_flavor_unavailable_help"
+                components={{ sb: <span className="font-semibold" /> }}
+              />
+            ) : (
+              t('pci_instance_creation_flavor_unavailable_quota_help')
+            )}
           </Text>
         </TooltipContent>
       </Tooltip>

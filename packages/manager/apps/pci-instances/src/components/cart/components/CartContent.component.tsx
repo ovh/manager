@@ -25,6 +25,7 @@ export const CartContent = ({ items, renderCartItem }: TCartContentProps) => {
 
   return (
     <Accordion
+      className="flex min-h-0 flex-1 flex-col"
       value={expandedAccordions}
       onChange={handleAccordionChange}
       data-testid="cart-content"

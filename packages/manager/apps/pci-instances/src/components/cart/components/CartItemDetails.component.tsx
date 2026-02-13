@@ -27,7 +27,7 @@ export const CartItemDetails = ({
   const { getTextPrice } = useCatalogPrice(4);
 
   return (
-    <AccordionContent className="bg-[--ods-color-neutral-050] px-8 py-5">
+    <AccordionContent className="min-h-0 flex-1 overflow-y-auto bg-[--ods-color-neutral-050] px-8 py-5">
       <QuantitySelector quota={quota} type={type} region={translatedRegion} />
       <Divider spacing="16" />
       {details.map(
@@ -41,12 +41,14 @@ export const CartItemDetails = ({
               {description}
               {price != null && (
                 <Text
-                  preset="heading-6"
                   className="text-right"
                   data-testid="cart-item-details-price"
                 >
-                  {isApproximate && '~'}
-                  {getTextPrice(price)} {priceUnit}
+                  <Text preset="heading-6">
+                    {isApproximate && '~'}
+                    {getTextPrice(price)}
+                  </Text>{' '}
+                  {priceUnit}
                 </Text>
               )}
             </div>

@@ -53,9 +53,7 @@ type TWindowsPriceProps = {
 const Distributionvariants = ({ variants }: TDistributionvariants) => {
   const { t } = useTranslation('creation');
   const { getTextPrice } = useCatalogPrice(4);
-  const { control, setValue, resetField } = useFormContext<
-    TInstanceCreationForm
-  >();
+  const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const [selectedImageVariantId, distributionImageType] = useWatch({
     control,
     name: ['distributionImageVariantId', 'distributionImageType'],
@@ -81,12 +79,15 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
 
         if (backupOsType === 'windows') setValue('sshKeyId', null);
 
-        resetField('distributionImageVersion');
+        setValue('distributionImageVersion', {
+          distributionImageVersionId: null,
+          distributionImageVersionName: null,
+        });
       } else {
         setValue('backup', null);
       }
     },
-    [setValue, resetField],
+    [setValue],
   );
 
   // eslint-disable-next-line react/no-multi-comp

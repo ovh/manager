@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import { Text } from '@ovhcloud/ods-react';
 import { FlavorsTableTr } from '@/components/flavorsTable/FlavorsTableTr.component';
@@ -23,6 +24,25 @@ export const FlavorsTableBody = memo(
     onClick,
     selectedRowId,
   }: FlavorsTableBodyProps) => {
+    const { t } = useTranslation();
+
+    if (rows.length === 0) {
+      return (
+        <tbody>
+          <tr>
+            <td
+              colSpan={columns.length}
+              className="p-4 text-center text-[--ods-color-text-500]"
+            >
+              <Text>
+                {t('creation:pci_instance_creation_flavor_no_results')}
+              </Text>
+            </td>
+          </tr>
+        </tbody>
+      );
+    }
+
     return (
       <tbody>
         {rows.map((row) => {

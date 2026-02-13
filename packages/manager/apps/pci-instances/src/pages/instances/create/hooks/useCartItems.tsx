@@ -49,7 +49,12 @@ export const useCartItems = (): TCartItems => {
 
   const [flavorId, macroRegion, microRegion, availabilityZone] = useWatch({
     control,
-    name: ['flavorId', 'macroRegion', 'microRegion', 'availabilityZone'],
+    name: [
+      'flavorId',
+      'macroRegion',
+      'microRegion',
+      'availabilityZone',
+    ],
   });
 
   const quantityHintParamsSelect = useMemo(
@@ -108,9 +113,12 @@ export const useCartItems = (): TCartItems => {
           id: 'flavor',
           name: t('creation:pci_instance_creation_select_flavor_cart_section'),
           description: (
-            <FlavorDetails quantity={quantity} flavor={flavorDetails} />
+            <FlavorDetails
+              quantity={quantity}
+              flavor={flavorDetails}
+            />
           ),
-          price: flavorDetails.price,
+          price: flavorDetails.price * quantity,
           priceUnit,
         },
       ]
@@ -127,7 +135,9 @@ export const useCartItems = (): TCartItems => {
             description: (
               <CartOptionDetailItem label={distributionImageVersionName} />
             ),
-            price: windowsImageLicensePrice,
+            price: windowsImageLicensePrice
+              ? windowsImageLicensePrice * quantity
+              : null,
             priceUnit: windowsImageLicensePrice ? priceUnit : undefined,
           },
         ]
@@ -194,9 +204,8 @@ export const useCartItems = (): TCartItems => {
                     'creation:pci_instance_creation_network_gateway_title',
                   )}
                   {...(privateNetwork.gatewayPrice && {
-                    price: `${getTextPrice(
-                      privateNetwork.gatewayPrice,
-                    )} ${priceUnit}`,
+                    price: `${getTextPrice(privateNetwork.gatewayPrice)}`,
+                    unit: priceUnit,
                   })}
                 />
               )}
@@ -213,7 +222,7 @@ export const useCartItems = (): TCartItems => {
           id: 'publicNetwork',
           name: t('creation:pci_instance_creation_cart_public_network_title'),
           description: (
-            <div className="w-full">
+            <div>
               <CartOptionDetailItem
                 label={
                   quantity > 1

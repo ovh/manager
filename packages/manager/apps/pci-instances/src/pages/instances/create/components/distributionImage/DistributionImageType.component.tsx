@@ -86,9 +86,12 @@ const DistributionImageType = ({
     field.onChange(imageType);
 
     if (imageType === 'backups') {
-      resetField('distributionImageVariantId');
-      resetField('distributionImageVersion');
-      resetField('distributionImageOsType');
+      setValue('distributionImageVariantId', null);
+      setValue('distributionImageVersion', {
+        distributionImageVersionId: null,
+        distributionImageVersionName: null,
+      });
+      setValue('distributionImageOsType', null);
     } else {
       setValue('backup', null);
     }

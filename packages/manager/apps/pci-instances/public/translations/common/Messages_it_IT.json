@@ -11,7 +11,7 @@
   "pci_instances_common_search": "Cercare",
   "pci_instances_common_instance_title": "Istanza",
   "pci_instances_common_instance_name": "Nome dell'istanza",
-  "pci_instances_common_help": "Aiuti",
+  "pci_instances_common_help": "Aiuto",
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
   "pci_instances_common_instance_region_deployment_mode": "Region 1-AZ",
   "pci_instances_common_instance_region-3-az_deployment_mode": "Region 3-AZ",
@@ -35,5 +35,6 @@
   "pci_instances_common_windows_image_type": "Distribuzioni Windows",
   "pci_instances_common_recommanded": "Consigliato",
   "pci_instances_common_backup": "Backup",
-  "pci_instances_common_unavailable": "Non disponibile"
+  "pci_instances_common_unavailable": "Non disponibile",
+  "pci_instances_common_coming_soon": "In arrivo"
 }

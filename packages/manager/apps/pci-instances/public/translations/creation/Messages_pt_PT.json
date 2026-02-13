@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Deve conter apenas números, letras, sublinhados, hífens ou pontos.",
   "pci_instances_creation_advanced_parameters": "Parâmetros avançados",
+  "pci_instance_creation_instance_flex_title": "Instância flexível",
+  "pci_instance_creation_instance_flex_description": "A opção Flex força um armazenamento de 50 GB, oferecendo snapshots mais rápidas e a possibilidade de efetuar um downgrade posteriormente.",
   "pci_instances_creation_quantity_title": "Escolher uma quantidade",
   "pci_instances_creation_quantity_label": "Número de instâncias a criar",
   "pci_instance_creation_quantity_rule": "O seu quota atual permite criar simultaneamente até {{ quota }} instância(s) do tipo {{ type }} para a região de {{ region }}. <Link>Consulte o seu quota.</Link>",
@@ -28,7 +30,7 @@
   "pci_instance_creation_table_header_price_monthly_unit": "s/IVA/mês",
   "pci_instance_creation_flavor_unavailable": "Indisponível",
   "pci_instance_creation_flavor_unavailable_quota": "Quota indisponível",
-  "pci_instance_creation_flavor_unavailable_help": "Este modelo não está disponível na sua região selecionada. No entanto, você pode selecioná-lo, mas terá que escolher outra região para este modelo.",
+  "pci_instance_creation_flavor_unavailable_help": "Este modelo não está disponível na sua região selecionada. <sb>Você pode, no entanto, selecioná-lo, mas terá que escolher outra região para este modelo.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "A sua quota não permite escolher este modelo de instância. Por favor, aumente a sua quota.",
   "pci_instance_creation_select_new_region_title": "Escolher uma nova região",
   "pci_instance_creation_select_new_region_label": "Selecionar uma região",
@@ -56,6 +58,7 @@
   "pci_instance_creation_choose_datacenter_label": "Escolha um datacenter",
   "pci_instance_creation_show_all_localizations": "Ver todas as localizações",
   "pci_instance_creation_select_flavor_title": "Selecione um modelo",
+  "pci_instance_creation_flavor_no_results": "Nenhum resultado",
   "pci_instance_creation_select_flavor_help_title": "Modelos",
   "pci_instance_creation_select_flavor_help_description": "A OVHcloud oferece uma variedade de instâncias para responder às suas necessidades em matéria de cálculo, de memória, de armazenamento e de desempenho.",
   "pci_instance_creation_select_flavor_help_general_purpose": "<strong>Instâncias de uso geral (General Purpose):</strong> estas instâncias oferecem um equilíbrio entre a potência de cálculo, a memória e o armazenamento. Adequam-se uma vasta gama de aplicações e de cargas de trabalho.",
@@ -151,15 +154,15 @@
   "pci_instance_creation_network_gateway_price_label": "Tamanho {{ size }} - {{ price }}",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Atribuir conectividade pública",
-    "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud. <span>A criação do IP flutuante será feita no final da configuração.</span></p>",
+    "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud.<br/><span>A criação do IP flutuante será feita no final da configuração.</span></p>",
     "toggle_label": "Atribuir um IP público",
-    "basic_ip_label": "IP Público Básico (Vinculado à instância) - {{ price }}",
+    "basic_ip_label": "IP Público Básico (Vinculado à instância) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da duração da vida do recurso. ",
     "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
-    "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - {{ price }}",
+    "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - <sb>{{ price }}</sb>",
     "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
     "floating_ip_warning": "Ao selecionar esta opção, vamos atribuir-lhe um gateway de tamanho {{ size }}.",
-    "floating_ip_create_new_label": "Criar um novo - {{ price }}",
+    "floating_ip_create_new_label": "Criar um novo - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reutilizar um IP flutuante existente",
     "floating_ip_unavailable_LZ_tooltip": "Os IPs flutuantes não estão disponíveis nas localZones."
   },
@@ -175,5 +178,15 @@
   "pci_instance_creation_cart_public_network_title": "Rede pública",
   "pci_instance_creation_cart_public_ip_floating": "Floating IP",
   "pci_instance_creation_cart_public_ip_basic": "IP Público",
-  "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>"
+  "pci_instance_creation_network_full_private_warning": "<p>Esta instância não terá acesso público à Internet. Você não poderá se conectar a ela nem acessar serviços externos, a menos que use um bastião ou adicione um gateway.</p><p>Isso melhora a segurança, mas limita a conectividade. Em suas instâncias do Windows, <semibold>você deve ativar a licença manualmente para ter acesso a todos os serviços</semibold>.</p><Link>Consultar o guia</Link>",
+  "pci_instance_creation_in_progress": "A criação da instância está em andamento, seu serviço estará disponível em alguns instantes",
+  "pci_instances_creations_in_progress": "As criações de instâncias estão em andamento, seus serviços estarão disponíveis em alguns instantes",
+  "pci_instance_creation_error": "Encontramos um erro ao criar sua instância…",
+  "pci_instance_onboarding_page_creation_pending": "A sua instância está a ser criada, por favor aguarde alguns instantes...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Instâncias Flex",
+    "disk_capacity": "<span>Uma instância flex é uma instância de disco único (50 Go)</span> que oferece um processo mais rápido para os snapshots.",
+    "resizing_explanation": "Permite um redimensionamento para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
+  },
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado"
 }

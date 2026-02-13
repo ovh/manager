@@ -44,7 +44,7 @@
   "pci_instances_actions_backup_instance_success_message": "Le backup {{ name }} est en cours de création.",
   "pci_instances_actions_backup_instance_with_distant_success_message": "Le backup {{ name }} est en cours de création. Une fois ce backup local créé, nous procéderons à la création du backup distant nommé {{ distantName }}. Pour visualiser le statut et les détails de l'opération, veuillez vous rendre sur la page <InstanceBackupLink>Instance Backup</InstanceBackupLink>. Si le backup ne s'affiche pas immédiatement, n'hésitez pas à rafraîchir votre page pour mettre à jour la liste.",
   "pci_instances_actions_billing_monthly_activate_instance_title": "Passer au forfait mensuel",
-  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "<0>Réduisez le montant de votre facture en passant votre instance au forfait mensuel.</0> <1>Voir les prix</1>",
+  "pci_instances_actions_billing_monthly_activate_instance_confirmation_message": "<text>Réduisez le montant de votre facture en passant votre instance au forfait mensuel.</text> <sb>Voir les prix</sb>",
   "pci_instances_actions_billing_monthly_activate_instance_warning_message": "Votre instance sera suspendue pendant quelques secondes, puis les performances en lecture/écriture du disque pourront être affectées jusqu'à la finalisation du backup",
   "pci_instances_actions_billing_monthly_activate_instance_error_message": "Une erreur est survenue lors du passage au forfait mensuel de l'instance {{ name }} : {{ error }}",
   "pci_instances_actions_billing_monthly_activate_instance_success_message": "L'instance {{ name }} a été passée au forfait mensuel.",

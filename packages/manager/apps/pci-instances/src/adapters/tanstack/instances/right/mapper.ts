@@ -28,6 +28,8 @@ type TCreateInstanceEntity = {
   existingSshKeyId: string | null;
   newSshPublicKey: string | null;
   localBackupRotation: string | null;
+  billingPeriod: 'hourly' | 'monthly';
+  postInstallScript: string | null;
 } & TInstancePrivateNetworkData;
 
 export const mapPrivateNetworkToDTO = ({
@@ -106,13 +108,14 @@ export const mapFlavorToDTO = (
           publicKey: entity.newSshPublicKey,
         }
       : null,
-  billingPeriod: 'hourly',
+  billingPeriod: entity.billingPeriod,
   autobackup: entity.localBackupRotation
     ? {
         cron: `0 0 */${entity.localBackupRotation} * *`,
         rotation: Number(entity.localBackupRotation),
       }
     : null,
+  userData: entity.postInstallScript ?? null,
 });
 
 export const mapDtoToInstanceCreationData = (

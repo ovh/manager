@@ -22,7 +22,6 @@ import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
 import Backup from '../Backup.component';
-import PostInstallScript from '../PostInstallScript.component';
 
 export const CreateInstanceForm = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -62,7 +61,7 @@ export const CreateInstanceForm = () => {
             </Text>
           </article>
           <Name />
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <Localization />
           <DeploymentModeSection />
           <LocalizationSelection />
@@ -72,18 +71,17 @@ export const CreateInstanceForm = () => {
           {!!availabilityZones.length && (
             <AvailabilityZoneSelection availabilityZones={availabilityZones} />
           )}
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <FlavorBlock />
           {microRegion && <DistributionImage microRegion={microRegion} />}
           {!isWindowsSelected && <SshKey />}
           {microRegion && <Backup microRegion={microRegion} />}
-          <Divider spacing="64" />
+          <Divider spacing="48" />
           <Network />
           {billingTypes.length > 1 && (
             <BillingChoice billingTypes={billingTypes} />
           )}
           <AdvancedParameters />
-          <PostInstallScript />
         </section>
         <aside className="w-1/3 min-w-[280px] max-w-[640px]">
           <CreationCart />

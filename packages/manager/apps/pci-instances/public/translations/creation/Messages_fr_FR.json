@@ -1,6 +1,8 @@
 {
   "pci_instance_creation_name_rule": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points.",
   "pci_instances_creation_advanced_parameters": "Paramètres avancés",
+  "pci_instance_creation_instance_flex_title": "Instance flexible",
+  "pci_instance_creation_instance_flex_description": "Cette option Flex force un stockage de 50 Go, offrant des snapshots plus rapides et la possibilité de downgrader ultérieurement.",
   "pci_instances_creation_quantity_title": "Choisir une quantité",
   "pci_instances_creation_quantity_label": "Nombre d'instances à créer",
   "pci_instance_creation_quantity_rule": "Votre quota actuel vous permet de créer simultanément jusqu'à {{ quota }} instance(s) de type {{ type }} pour la région de {{ region }}. <Link>Consultez votre quota.</Link>",
@@ -23,6 +25,7 @@
   "pci_instance_creation_error_title": "Une erreur est survenue",
   "pci_instance_creation_configuration_code": "Code de ma configuration",
   "pci_instance_creation_select_flavor_title": "Sélectionnez un modèle",
+  "pci_instance_creation_flavor_no_results": "Aucun résultat",
   "pci_instance_creation_select_flavor_cart_section": "Modèle",
   "pci_instance_creation_select_flavor_help_title": "Modèles",
   "pci_instance_creation_select_flavor_help_description": "OVHcloud propose une variété d’instances pour répondre à vos besoins en matière de calcul, de mémoire, de stockage et de performance.",
@@ -53,7 +56,7 @@
   "pci_instance_creation_table_header_price_monthly_unit": "HT/mois",
   "pci_instance_creation_table_header_price_ht_by_month": "Prix HT/mois",
   "pci_instance_creation_flavor_unavailable": "Indisponible",
-  "pci_instance_creation_flavor_unavailable_help": "Ce modèle n'est pas disponible dans votre région sélectionnée. Vous pouvez toutefois le sélectionner, mais vous devrez choisir une autre région pour ce modèle.",
+  "pci_instance_creation_flavor_unavailable_help": "Ce modèle n'est pas disponible dans votre région sélectionnée. <sb>Vous pouvez toutefois le sélectionner, mais vous devrez choisir une autre région pour ce modèle.</sb>",
   "pci_instance_creation_flavor_unavailable_quota": "Quota indisponible",
   "pci_instance_creation_flavor_unavailable_quota_help": "Votre quota ne vous permet pas de choisir ce modèle d'instance. Veuillez augmenter votre quota.",
   "pci_instance_creation_choose_availabilityZone_title": "Choisissez votre zone de disponibilité",
@@ -115,6 +118,7 @@
   "pci_instance_creation_network_gateway_price_label": "Taille {{ size }} - {{ price }}",
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway n'est pas disponible dans les localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway est déjà attribuée au réseau privé sélectionné.",
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway attachée",
   "pci_instance_creation_select_network_dropdown_label": "Sélectionnez un réseau privé existant",
   "pci_instance_creation_network_add_new": "Créer un réseau privé",
   "pci_instance_creation_network_add_new_warning": "La création de votre réseau privé se fera à la fin du processus de configuration. Vous pouvez l’éditer.",
@@ -155,15 +159,15 @@
   },
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Attribuer une connectivité publique",
-    "description": "<p>L'attribution d'une adresse IP publique permet l'accès à votre instance depuis l'extérieur du réseau OVHcloud. <span>La création de la floating IP se fera à la fin de la configuration.</span></p>",
+    "description": "<p>L'attribution d'une adresse IP publique permet l'accès à votre instance depuis l'extérieur du réseau OVHcloud.<br/><span>La création de la floating IP se fera à la fin de la configuration.</span></p>",
     "toggle_label": "Attribuer une ip publique",
-    "basic_ip_label": "Basic Public IP (Lié à l'instance) - {{ price }}",
+    "basic_ip_label": "Basic Public IP (Lié à l'instance) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Une IP publique de base est une adresse IP qui ne persiste pas au-delà de la durée de vie de la ressource. ",
     "basic_ip_warning": "L'activation de la basic public Ip n'est pas compatible avec une gateway.",
-    "floating_ip_label": "Créer une Floating IP (Réutilisable) - {{ price }}",
+    "floating_ip_label": "Créer une Floating IP (Réutilisable) - <sb>{{ price }}</sb>",
     "floating_ip_description": "La réservation d'une adresse IP flottante attribue l'adresse à votre projet jusqu'à ce que vous la libériez explicitement. ",
     "floating_ip_warning": "En sélectionnant cette option nous allons vous attribuer une gateway taille {{ size }}.",
-    "floating_ip_create_new_label": "Créer une nouvelle - {{ price }}",
+    "floating_ip_create_new_label": "Créer une nouvelle - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reutiliser une floating IP existante",
     "floating_ip_unavailable_LZ_tooltip": "Les Floating IP ne sont pas disponibles dans les localZones."
   },
@@ -176,5 +180,14 @@
   "pci_instance_creation_cart_monthly_price_disclaimer": "Hors Savings plan",
   "pci_instance_creation_post_install_script_title": "Script de post-installation",
   "pci_instance_creation_post_install_script_description": "Saisissez votre script post-installation.",
-  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation"
+  "pci_instance_creation_post_install_script_toggle_label": "Ajouter un script post installation",
+  "pci_instance_creation_in_progress": "La création d'instance est en cours, votre service sera disponible dans quelques instants",
+  "pci_instances_creations_in_progress": "Les créations d'instances sont en cours, vos services seront disponibles dans quelques instants",
+  "pci_instance_creation_error": "Nous avons rencontré une erreur lors de la création de votre instance…",
+  "pci_instance_onboarding_page_creation_pending": "Votre instance est en cours de création, merci de patienter quelques instants...",
+  "pci_instance_creation_flex_flavor": {
+    "title": "Instances Flex",
+    "disk_capacity": "<span>Une instance flex est une instance à disque unique (50 Go)</span> offrant un processus plus rapide pour les snapshots.",
+    "resizing_explanation": "Elle permet un redimensionnement vers les modèles supérieurs ou inférieurs avec un espace de stockage fixe, tandis que les modèles classiques ne peuvent être redimensionnés que vers les modèles supérieurs."
+  }
 }

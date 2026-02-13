@@ -23,13 +23,13 @@ export const selectContinent: Reader<Deps, TSelectContinentData> = (
   const continentsIds = !deploymentModes.length
     ? ['all', ...data.entities.continents.allIds]
     : [
+        'all',
         ...new Set(
           deploymentModes.flatMap(
             (mode) =>
               data.relations.continentIdsByDeploymentModeId.get(mode) ?? [],
           ),
         ),
-        'all',
       ];
 
   return continentsIds.map((continent) => ({

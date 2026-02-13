@@ -53,13 +53,26 @@ const AddNetworkForm: FC = () => {
       setValue('newPrivateNetwork', networks.ovhPrivateNetwork, {
         shouldValidate: true,
       });
+    setValue('willGatewayBeAttached', false);
   }, [networks, setValue]);
 
   return (
     <form
-      className="mt-6"
+      className="mt-6 "
       aria-label={t('creation:pci_instance_creation_network_add_new')}
     >
+      {networks?.allocatedVlanIds.includes(vlanId) && (
+        <Banner color="warning" className="mb-6">
+          {t(
+            'creation:pci_instance_creation_network_add_new_used_vlanID_warning',
+          )}
+        </Banner>
+      )}
+      {vlanId === 0 && (
+        <Banner color="warning" className="mb-6">
+          {t('creation:pci_instance_creation_network_add_new_vlanID_warning')}
+        </Banner>
+      )}
       <div className="grid grid-cols-2 gap-x-4 gap-y-6">
         <InputField
           label={t(
@@ -107,18 +120,6 @@ const AddNetworkForm: FC = () => {
           </Checkbox>
         )}
       />
-      {networks?.allocatedVlanIds.includes(vlanId) && (
-        <Banner color="warning" className="mt-6">
-          {t(
-            'creation:pci_instance_creation_network_add_new_used_vlanID_warning',
-          )}
-        </Banner>
-      )}
-      {vlanId === 0 && (
-        <Banner color="warning" className="mt-6">
-          {t('creation:pci_instance_creation_network_add_new_vlanID_warning')}
-        </Banner>
-      )}
     </form>
   );
 };
