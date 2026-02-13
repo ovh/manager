@@ -48,6 +48,7 @@ export default function Overview() {
         loadBalancerProvisioningStatus={loadBalancer?.provisioningStatus}
         loadBalancerOperatingStatus={loadBalancer?.operatingStatus}
         flavorName={loadBalancerFlavor?.name}
+        flavorId={loadBalancer?.flavorId}
         networkName={network?.name}
         subnetCidr={subnet?.cidr}
         loadBalancerVipAddress={loadBalancer?.vipAddress}
