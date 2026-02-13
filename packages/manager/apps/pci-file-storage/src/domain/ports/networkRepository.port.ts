@@ -1,6 +1,6 @@
 import { TSubnet } from '@/domain/entities/network.entity';
 
-export type GetSubnetsPort = {
+export type NetworkRepository = {
   getSubnets: (query: {
     projectId: string;
     region: string;

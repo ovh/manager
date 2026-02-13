@@ -35,5 +35,6 @@ export const createShare: ShareRepository['createShare'] = async ({ projectId, s
     type: shareToCreate.type,
     networkId: shareToCreate.network.id,
     size: shareToCreate.size,
+    subnetId: shareToCreate.network.subnetId,
   });
 };
