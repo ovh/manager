@@ -2,6 +2,7 @@
   "gdpr_erasure_title": "Supprimer mon compte OVHcloud",
   "gdpr_erasure_description_emphasis": "Si vous choisissez de supprimer votre compte, vous ne pourrez plus le réactiver. Nous procéderons à la suppression de votre compte après la confirmation.",
   "gdpr_erasure_description": "Conformément à notre politique d’utilisation des données, certaines des données (notamment logs de connexion, données comptables et financières, etc.) resterons dans nos bases de données afin de nous conformer à nos obligations légales et faire valoir nos droits, et ce, conformément à la réglementation en vigueur.",
+  "gdpr_erasure_not_possible_description": "Nous avons détecté des services actifs liés à votre compte. Veuillez vous assurer d’avoir supprimé tous vos services en suivant les étapes décrites dans notre guide (<a href=\"{{url}}\" target=\"_blank\">lien</a>) avant de faire votre demande de suppression.",
   "gdpr_erasure_cta": "Supprimer mon compte",
   "gdpr_erasure_confirmation_modal": "Confirmer que vous souhaitez demander la suppression du compte <span>{{nic}}</span>",
   "gdpr_erasure_confirmation_modal_confirm": "Confirmer la demande",

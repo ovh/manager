@@ -110,6 +110,13 @@ export const TRACKING_LEVEL2 = 88;
 export const TRACKING_PAGE = `${TRACKING_PREFIX}::${TRACKING_PAGE_SUFFIX}`;
 export const TRACKING_CONFIRM_PAGE = `${TRACKING_PREFIX}::${TRACKING_CONFIRM_PAGE_SUFFIX}`;
 
+export const GDPR_SUPPORT_URL = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-gb-account-services-deletion?id=kb_article_view&sysparm_article=KB0074137',
+  FR:
+    'https://help.ovhcloud.com/csm/fr-account-services-deletion?id=kb_article_view&sysparm_article=KB0074138',
+};
+
 export default {
   GDPR_REQUEST_MANAGEMENT_ACTIONS,
   CREATE_ERASURE_REQUEST_ACTION,
@@ -124,4 +131,5 @@ export default {
   TRACKING_CONFIRM_PAGE,
   TRACKING_CONFIRM_PAGE_CATEGORY,
   TRACKING_PREFIX,
+  GDPR_SUPPORT_URL,
 };

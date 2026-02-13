@@ -46,5 +46,6 @@
   "gdpr_erasure_confirmation_email_error_invalid_status": "El estado de su solicitud no permite enviar una confirmación.",
   "gdpr_erasure_confirmation_email_error_max_attempts": "Ha recibido el número máximo de nuevos mensajes de confirmación. Puede confirmar su solicitud con el email de confirmación ya recibido. En caso contrario, le invitamos a cancelar la solicitud actual o a ponerse en contacto con el equipo de Soporte.",
   "gdpr_erasure_confirm_error_invalid_code": "El código de confirmación es incorrecto.",
-  "gdpr_erasure_confirm_error_exhausted_attempts": "Su solicitud se ha cancelado debido a varios registros incorrectos del código de confirmación."
+  "gdpr_erasure_confirm_error_exhausted_attempts": "Su solicitud se ha cancelado debido a varios registros incorrectos del código de confirmación.",
+  "gdpr_erasure_not_possible_description": "Hemos detectado servicios activos relacionados con su cuenta. Por favor, asegúrese de haber eliminado todos sus servicios siguiendo los pasos descritos en nuestra guía (<a href=\"{{url}}\" target=\"_blank\">enlace</a>) antes de hacer su solicitud de eliminación."
 }

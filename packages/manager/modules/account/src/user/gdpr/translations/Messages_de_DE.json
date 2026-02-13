@@ -46,5 +46,6 @@
   "gdpr_erasure_confirmation_email_error_invalid_status": "Aufgrund des Status Ihrer Anfrage kann keine Bestätigung gesendet werden.",
   "gdpr_erasure_confirmation_email_error_max_attempts": "Sie haben die maximale Anzahl neuer Bestätigungs-E-Mails erhalten. Sie können Ihre Anfrage mit der bereits erhaltenen Bestätigungs-E-Mail bestätigen. Falls nicht, stornieren Sie die aktuelle Anfrage oder kontaktieren Sie das Support-Team.",
   "gdpr_erasure_confirm_error_invalid_code": "Der Bestätigungscode ist falsch.",
-  "gdpr_erasure_confirm_error_exhausted_attempts": "Ihre Anfrage wurde aufgrund mehrerer fehlerhafter Eingaben des Bestätigungscodes storniert."
+  "gdpr_erasure_confirm_error_exhausted_attempts": "Ihre Anfrage wurde aufgrund mehrerer fehlerhafter Eingaben des Bestätigungscodes storniert.",
+  "gdpr_erasure_not_possible_description": "Wir haben aktive Dienste gefunden, die mit Ihrem Konto verbunden sind. Bitte stellen Sie sicher, dass Sie alle Ihre Dienste gemäß den in unserem Leitfaden (<a href=\"{{url}}\" target=\"_blank\">Link</a>) beschriebenen Schritten gelöscht haben, bevor Sie Ihre Löschanfrage stellen."
 }

@@ -46,5 +46,6 @@
   "gdpr_erasure_confirmation_email_error_invalid_status": "Status Twojego zlecenia nie pozwala na wysłanie potwierdzenia.",
   "gdpr_erasure_confirmation_email_error_max_attempts": "Otrzymałaś/-eś maksymalną liczbę nowych wiadomości e-mail z potwierdzeniem. Możesz potwierdzić zlecenie za pomocą jednego z już otrzymanych e-maili. W przeciwnym razie anuluj aktualny wniosek lub skontaktuj się z zespołem Wsparcia.",
   "gdpr_erasure_confirm_error_invalid_code": "Kod potwierdzający jest nieprawidłowy.",
-  "gdpr_erasure_confirm_error_exhausted_attempts": "Twoje zlecenie zostało anulowane z powodu wielokrotnego wpisania błędnego kodu potwierdzającego."
+  "gdpr_erasure_confirm_error_exhausted_attempts": "Twoje zlecenie zostało anulowane z powodu wielokrotnego wpisania błędnego kodu potwierdzającego.",
+  "gdpr_erasure_not_possible_description": "Wykryliśmy aktywne usługi powiązane z Twoim kontem. Proszę upewnić się, że usunąłeś wszystkie swoje usługi, postępując zgodnie z krokami opisanymi w naszym przewodniku (<a href=\"{{url}}\" target=\"_blank\">link</a>) przed złożeniem wniosku o usunięcie."
 }
