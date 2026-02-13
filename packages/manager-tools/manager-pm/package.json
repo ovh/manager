@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@inquirer/type": "^3.0.8",
-    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
+    "@ovh-ux/manager-static-analysis-kit": "0.11.1",
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
   }
