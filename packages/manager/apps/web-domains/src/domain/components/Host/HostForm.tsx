@@ -29,6 +29,7 @@ interface HostFormProps {
   readonly ipsSupported: IpsSupportedEnum;
   readonly serviceName: string;
   readonly hostsTargetSpec: THost[];
+  readonly currentHost?: string;
 }
 
 export default function HostForm({
@@ -36,6 +37,7 @@ export default function HostForm({
   ipsSupported,
   serviceName,
   hostsTargetSpec,
+  currentHost,
 }: HostFormProps) {
   const { t } = useTranslation('domain');
   const {
@@ -65,7 +67,7 @@ export default function HostForm({
             className="relative w-full"
             readOnly={drawerAction === DrawerActionEnum.Modify}
             {...register('host', {
-              validate: makeHostValidators(hostsTargetSpec, serviceName, t),
+              validate: makeHostValidators(hostsTargetSpec, serviceName, t, currentHost),
             })}
           />
 
