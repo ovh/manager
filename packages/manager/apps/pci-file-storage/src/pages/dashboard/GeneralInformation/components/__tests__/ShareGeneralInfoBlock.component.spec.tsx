@@ -82,12 +82,12 @@ describe('ShareGeneralInfoBlock', () => {
 
     if (enabledActions.includes('delete')) {
       expect(
-        screen.getByRole('link', { name: 'general_information:actions.delete' }),
+        screen.getByRole('link', { name: 'share:actions.delete' }),
       ).toBeVisible();
     } else {
       expect(
         screen.queryByRole('link', {
-          name: 'general_information:actions.delete',
+          name: 'share:actions.delete',
         }),
       ).not.toBeInTheDocument();
     }

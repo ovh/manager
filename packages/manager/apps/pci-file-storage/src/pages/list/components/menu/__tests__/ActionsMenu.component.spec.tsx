@@ -12,7 +12,7 @@ import type { TShareAction } from '../action.type';
 describe('ActionsMenu', () => {
   it('should render menu button enabled when items have actions', () => {
     const items = new Map<string, TShareAction[]>([
-      ['actions', [{ labelTranslationKey: 'list:actions.manage', link: { path: './share-1' } }]],
+      ['actions', [{ labelTranslationKey: 'share:actions.manage', link: { path: './share-1' } }]],
     ]);
 
     render(
@@ -45,8 +45,8 @@ describe('ActionsMenu', () => {
       [
         'actions',
         [
-          { labelTranslationKey: 'list:actions.manage', link: { path: './share-1' } },
-          { labelTranslationKey: 'list:actions.delete', link: { path: './share-1/delete' } },
+          { labelTranslationKey: 'share:actions.manage', link: { path: './share-1' } },
+          { labelTranslationKey: 'share:actions.delete', link: { path: './share-1/delete' } },
         ],
       ],
     ]);
@@ -62,7 +62,7 @@ describe('ActionsMenu', () => {
       await user.click(trigger);
     });
 
-    expect(screen.getByRole('link', { name: 'list:actions.manage' })).toBeVisible();
-    expect(screen.getByRole('link', { name: 'list:actions.delete' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.manage' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.delete' })).toBeVisible();
   });
 });

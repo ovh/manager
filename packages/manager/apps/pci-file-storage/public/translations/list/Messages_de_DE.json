@@ -1,17 +1,4 @@
 {
   "title": "Dateispeicher",
-  "columns": {
-    "name_id": "Name / ID",
-    "region": "Standort",
-    "protocol": "Protokoll",
-    "allocated_capacity": "Zugewiesene Kapazität",
-    "allocated_capacity_value": "{{capacity}} Gio",
-    "status": "Status",
-    "actions": "Aktionen"
-  },
-  "actionButton": "Ein Share erstellen",
-  "actions": {
-    "manage": "Verwaltung der ",
-    "delete": "Löschen"
-  }
+  "actionButton": "Ein Share erstellen"
 }

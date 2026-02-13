@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "name_id": "Nombre / ID",
+    "region": "Localización",
+    "protocol": "Protocolo",
+    "allocated_capacity": "Capacidad asignada",
+    "allocated_capacity_value": "{{capacity}} Gio",
+    "status": "Estado",
+    "id": "ID",
+    "share_name": "Nombre del recurso compartido",
+    "location": "Localización",
+    "creation_date": "Fecha de creación",
+    "mount_path": "Ruta de montaje"
+  },
+  "actions": {
+    "column": "Acciones",
+    "manage": "Gestionar",
+    "delete": "Eliminar",
+    "upgrade_share": "Actualizar el recurso compartido"
+  }
+}

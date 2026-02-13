@@ -3,20 +3,6 @@
     "informations": "Informazioni",
     "properties": "Proprietà"
   },
-  "fields": {
-    "id": "ID",
-    "share_name": "Nome della condivisione",
-    "status": "Status",
-    "location": "Localizzazione",
-    "creation_date": "Data di creazione",
-    "protocol": "Protocollo",
-    "allocated_size": "Dimensione allocata della condivisione",
-    "mount_path": "Percorso di montaggio"
-  },
-  "actions": {
-    "upgrade_share": "Aggiorna la condivisione",
-    "delete": "Eliminare"
-  },
   "clipboard": {
     "copy": "Copia negli appunti",
     "copy_success": "Copiato!"

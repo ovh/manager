@@ -83,9 +83,9 @@ describe('SharePropertiesBlock', () => {
     );
 
     if (enabledActions.includes('update_size')) {
-      expect(screen.getByRole('link', { name: 'actions.upgrade_share' })).toBeVisible();
+      expect(screen.getByRole('link', { name: 'share:actions.upgrade_share' })).toBeVisible();
     } else {
-      expect(screen.queryByRole('link', { name: 'actions.upgrade_share' })).not.toBeInTheDocument();
+      expect(screen.queryByRole('link', { name: 'share:actions.upgrade_share' })).not.toBeInTheDocument();
     }
   });
 

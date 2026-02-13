@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "name_id": "Nome / ID",
+    "region": "Localização",
+    "protocol": "Protocolo",
+    "allocated_capacity": "Capacidade alocada",
+    "allocated_capacity_value": "{{capacity}} Gio",
+    "status": "Estado",
+    "id": "ID",
+    "share_name": "Nome do share",
+    "location": "Localização",
+    "creation_date": "Data de criação",
+    "mount_path": "Caminho de montagem"
+  },
+  "actions": {
+    "column": "Ações",
+    "manage": "Gerir",
+    "delete": "Suprimir",
+    "upgrade_share": "Atualizar o share"
+  }
+}

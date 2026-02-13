@@ -11,7 +11,7 @@ import type { TShareAction } from '../action.type';
 describe('ActionMenuItem', () => {
   it('should render translated label and internal link', () => {
     const action: TShareAction = {
-      labelTranslationKey: 'list:actions.manage',
+      labelTranslationKey: 'share:actions.manage',
       link: { path: './share-1' },
     };
 
@@ -21,15 +21,15 @@ describe('ActionMenuItem', () => {
       </MemoryRouter>,
     );
 
-    const item = screen.getByRole('link', { name: 'list:actions.manage' });
+    const item = screen.getByRole('link', { name: 'share:actions.manage' });
     expect(item).toBeVisible();
-    expect(item).toHaveTextContent('list:actions.manage');
+    expect(item).toHaveTextContent('share:actions.manage');
     expect(item).toHaveAttribute('href', expect.stringContaining('share-1'));
   });
 
   it('should use external path when link is external', () => {
     const action: TShareAction = {
-      labelTranslationKey: 'list:actions.delete',
+      labelTranslationKey: 'share:actions.delete',
       link: { path: 'https://example.com/delete', isExternal: true },
     };
 
@@ -39,13 +39,13 @@ describe('ActionMenuItem', () => {
       </MemoryRouter>,
     );
 
-    const item = screen.getByRole('link', { name: 'list:actions.delete' });
+    const item = screen.getByRole('link', { name: 'share:actions.delete' });
     expect(item).toHaveAttribute('href', 'https://example.com/delete');
   });
 
   it('should set target _blank when isTargetBlank is true', () => {
     const action: TShareAction = {
-      labelTranslationKey: 'list:actions.manage',
+      labelTranslationKey: 'share:actions.manage',
       link: { path: './share-1', isTargetBlank: true },
     };
 
@@ -55,7 +55,7 @@ describe('ActionMenuItem', () => {
       </MemoryRouter>,
     );
 
-    const item = screen.getByRole('link', { name: 'list:actions.manage' });
+    const item = screen.getByRole('link', { name: 'share:actions.manage' });
     expect(item).toHaveAttribute('target', '_blank');
   });
 });
