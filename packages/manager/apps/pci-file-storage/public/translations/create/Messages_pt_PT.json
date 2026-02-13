@@ -74,5 +74,8 @@
     "description": "Selecione a rede privada à qual deseja que suas instâncias se conectem ao seu arquivo de compartilhamento",
     "label": "Selecionar uma rede privada existente",
     "empty": "Desculpe, mas você não tem uma rede privada para esta região"
+  },
+  "submit": {
+    "error": "Ocorreu um erro ao adicionar o share: {{error}}"
   }
 }

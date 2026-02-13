@@ -8,6 +8,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
+import { useShareCreation } from '@/pages/create/hooks/useShareCreation';
 import {
   TAvailabilityZoneData,
   TMicroRegionData,
@@ -16,6 +17,7 @@ import {
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
+vi.mock('@/pages/create/hooks/useShareCreation');
 
 vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
@@ -29,7 +31,24 @@ const mockUseCreateShareForm = ({ isValid }: { isValid: boolean }) =>
   vi.mocked(useCreateShareForm).mockReturnValue({
     control: {},
     formState: { isValid },
-    handleSubmit: vi.fn((fn) => fn),
+    handleSubmit: vi.fn((onValid) => (e?: React.BaseSyntheticEvent) => {
+      e?.preventDefault?.();
+      if (isValid) {
+        onValid({
+          macroRegion: 'GRA',
+          shareData: {
+            name: 'test-share',
+            microRegion: 'GRA1',
+            specName: 'nfs',
+            size: 150,
+            privateNetworkId: undefined,
+          },
+          deploymentModes: [],
+          continent: 'all',
+          availabilityZone: null,
+        });
+      }
+    }),
   } as unknown as ReturnType<
     typeof import('@/pages/create/hooks/useCreateShareForm').useCreateShareForm
   >);
@@ -99,6 +118,10 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
   ),
 }));
 
+const { mockToast } = vi.hoisted(() => ({
+  mockToast: vi.fn(),
+}));
+
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
     <div data-testid="divider" className={className} />
@@ -127,15 +150,22 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
+  toast: mockToast,
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
+const mockUseShareCreation = vi.mocked(useShareCreation);
 
 describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockNavigate.mockClear();
+    mockToast.mockClear();
     mockUseCreateShareForm({ isValid: true });
+    mockUseShareCreation.mockReturnValue({
+      createShare: vi.fn(),
+      isPending: false,
+    } as unknown as ReturnType<typeof useShareCreation>);
   });
 
   it('should render all form sections', () => {
@@ -282,6 +312,86 @@ describe('CreateShareForm', () => {
     const cancelButton = screen.getByTestId('button-ghost');
     await userEvent.click(cancelButton);
 
-    expect(mockNavigate).toHaveBeenCalledWith('../onboarding');
+    expect(mockNavigate).toHaveBeenCalledWith('..');
+  });
+
+  it('should display error toast when create share fails', async () => {
+    const mockCreateShare = vi.fn();
+    let onErrorCallback: ((errorMessage: string) => void) | undefined;
+
+    mockUseShareCreation.mockImplementation((_, { onError }) => {
+      onErrorCallback = onError;
+
+      return {
+        createShare: mockCreateShare,
+        isPending: false,
+      } as unknown as ReturnType<typeof useShareCreation>;
+    });
+
+    renderWithMockedForm(<CreateShareForm />, {
+      defaultValues: {
+        macroRegion: 'GRA',
+        shareData: {
+          name: 'test-share',
+          microRegion: 'GRA1',
+          specName: 'nfs',
+          size: 150,
+        },
+      },
+    });
+
+    const submitButton = screen.getByText(/actions:validate$/);
+    await userEvent.click(submitButton);
+
+    if (onErrorCallback) onErrorCallback('Create share failed');
+
+    expect(mockCreateShare).toHaveBeenCalled();
+
+    expect(mockToast).toHaveBeenCalledWith(
+      expect.stringContaining('create:submit.error'),
+      expect.objectContaining({
+        color: 'warning',
+        duration: Infinity,
+      }),
+    );
+  });
+
+  it('should navigate back when create share succeeds', async () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    const mockCreateShare = vi.fn();
+    let onSuccessCallback: (() => void) | undefined;
+
+    mockUseShareCreation.mockImplementation((_, { onSuccess }) => {
+      onSuccessCallback = onSuccess;
+      return {
+        createShare: mockCreateShare,
+        isPending: false,
+      } as unknown as ReturnType<typeof useShareCreation>;
+    });
+
+    renderWithMockedForm(<CreateShareForm />, {
+      defaultValues: {
+        macroRegion: 'GRA',
+        shareData: {
+          name: 'test-share',
+          microRegion: 'GRA1',
+          specName: 'nfs',
+          size: 150,
+        },
+      },
+    });
+
+    const submitButton = screen.getByText(/actions:validate$/);
+    await userEvent.click(submitButton);
+
+    if (onSuccessCallback) onSuccessCallback();
+    expect(mockCreateShare).toHaveBeenCalled();
+    expect(mockNavigate).toHaveBeenCalledWith('..');
+    expect(mockToast).not.toHaveBeenCalled();
   });
 });

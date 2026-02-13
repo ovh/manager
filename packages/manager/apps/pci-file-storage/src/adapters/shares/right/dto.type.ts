@@ -21,4 +21,5 @@ export type TShareDto = {
   type: string;
   capabilities: TShareCapabilityDto[];
   exportLocations?: TShareExportLocationDto[];
+  networkId: string;
 };

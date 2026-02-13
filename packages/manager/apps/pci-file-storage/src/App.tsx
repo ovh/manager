@@ -5,6 +5,8 @@ import { RouterProvider, createHashRouter, createRoutesFromElements } from 'reac
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
+import { Toaster } from '@ovhcloud/ods-react';
+
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import Routes from '@/routes/Routes';
@@ -30,6 +32,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster />
       <Suspense fallback={<span>Loading routes ...</span>}>
         <RouterProvider router={router} />
       </Suspense>

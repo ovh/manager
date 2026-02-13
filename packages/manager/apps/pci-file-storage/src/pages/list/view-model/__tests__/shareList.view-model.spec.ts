@@ -40,6 +40,7 @@ describe('shareList view model', () => {
         isPublic: false,
         enabledActions: [] as const,
         mountPaths: [],
+        network: { id: 'network-1' },
       } as TShare;
 
       const result = shareListViewModel.selectSharesForList([share]);

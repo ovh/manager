@@ -32,4 +32,5 @@ export const mapShareDtoToShare = (dto: TShareDto): TShare => ({
   isPublic: dto.isPublic,
   enabledActions: capabilitiesToEnabledActions(dto.capabilities),
   mountPaths: (dto.exportLocations ?? []).map((loc) => loc.path),
+  network: { id: dto.networkId },
 });
