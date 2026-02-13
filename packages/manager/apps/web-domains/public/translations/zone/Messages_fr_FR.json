@@ -151,5 +151,8 @@
   "zone_page_add_entry_modal_step_2_label_loc_vp": "Précision verticale",
   "zone_page_add_entry_modal_step_2_label_loc_size_hp_vp": "Taille, précision horizontale et verticale",
   "zone_page_add_entry_success": "L'entrée a été ajoutée à la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
-  "zone_page_add_entry_fail": "Une erreur est survenue lors de l'ajout de l'entrée à la zone DNS."
+  "zone_page_delete_entry_modal_success": "L'entrée a été supprimée à la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
+  "zone_page_delete_entry_modal_error": "Une erreur est survenue lors de la suppression de l'entrée {{domain}} de la zone DNS.",
+  "zone_page_delete_entry_modal_heading": "Supprimer l'entrée de la zone DNS",
+  "zone_page_delete_entry_modal_warning": "La suppression sera immédiate dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h)."
 }

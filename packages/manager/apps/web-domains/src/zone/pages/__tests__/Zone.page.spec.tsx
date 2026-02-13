@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach, Mock } from 'vitest';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render} from '@testing-library/react';
 import '@/common/setupTests';
 import ZonePage from "../zone/Zone.page";
 import { wrapper } from '@/common/utils/test.provider';

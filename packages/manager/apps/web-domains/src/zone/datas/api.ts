@@ -167,3 +167,10 @@ export const deleteDomainZoneRecords = async (
   );
   return data;
 };
+
+export const deleteDomainZoneRecord = async (
+  serviceName: string,
+  recordId: string,
+): Promise<void> => {
+  await v6.delete(`/domain/zone/${serviceName}/record/${recordId}`);
+};

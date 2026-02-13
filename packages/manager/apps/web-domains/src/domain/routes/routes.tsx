@@ -63,9 +63,7 @@ const AddEntryPage = React.lazy(() =>
 const ModifyEntryModal = React.lazy(() =>
   import('@/zone/pages/zone/modify/ModifyEntry.modal'),
 );
-const DeleteEntryModal = React.lazy(() =>
-  import('@/zone/pages/zone/delete/DeleteEntry.modal'),
-);
+
 const ActivateZonePage = React.lazy(() =>
   import('@/zone/pages/zone/activate/ActivateZone.page'),
 );
@@ -129,7 +127,6 @@ export default (
           <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage}/>
           <Route path={zoneUrls.zoneHistory} Component={HistoryPage}/>
           <Route path={zoneUrls.zoneDelete} Component={DeleteModal} />
-          <Route path={zoneUrls.zoneDeleteEntry} Component={DeleteEntryModal} />
           <Route path={zoneUrls.zoneModifyEntry} Component={ModifyEntryModal} />
         </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
