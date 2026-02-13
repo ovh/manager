@@ -9,6 +9,7 @@ import sshKeySelector from './ssh-key-selector';
 import iamProtectedData from './iam-protected-data';
 import changelogButton from './changelog-button';
 import deleteModal from './delete-modal';
+import feedbackButton from './feedback-button';
 
 export {
   inlinePropertyEditor,
@@ -21,6 +22,7 @@ export {
   iamProtectedData,
   changelogButton,
   deleteModal,
+  feedbackButton,
 };
 
 export default { resourceSelector };
