@@ -5,26 +5,31 @@ import storages from '@/types/Storages';
 import { getLifecycleQueryKey } from './lifecycleQueryKey';
 import { useFetchLifecycleRules } from './useFetchLifecycleRules.hook';
 
-type UseAddLifecycleParams = {
+type UseUpdateLifecycleParams = {
   onSuccess?: () => void;
   onError?: (error: ObjStoError) => void;
 };
 
-export interface AddLifecycleParams {
+export interface UpdateLifecycleParams {
   projectId: string;
   region: string;
   name: string;
   lifecycleRule: storages.LifecycleRule;
 }
 
-export function useAddLifecycle({ onSuccess, onError }: UseAddLifecycleParams) {
+export function useUpdateLifecycle({
+  onSuccess,
+  onError,
+}: UseUpdateLifecycleParams) {
   const queryClient = useQueryClient();
   const { fetchLifecycleRules } = useFetchLifecycleRules();
 
-  const { mutate: addLifecycleMutation, isPending } = useMutation({
-    mutationFn: async (data: AddLifecycleParams) => {
+  const { mutate: updateLifecycleMutation, isPending } = useMutation({
+    mutationFn: async (data: UpdateLifecycleParams) => {
       const existingRules = await fetchLifecycleRules(data);
-      const updatedRules = [...existingRules, data.lifecycleRule];
+      const updatedRules = existingRules.map((rule) =>
+        rule.id === data.lifecycleRule.id ? data.lifecycleRule : rule,
+      );
 
       return updateLifecycle({
         projectId: data.projectId,
@@ -42,5 +47,5 @@ export function useAddLifecycle({ onSuccess, onError }: UseAddLifecycleParams) {
     onError,
   });
 
-  return { addLifecycle: addLifecycleMutation, isPending };
+  return { updateLifecycle: updateLifecycleMutation, isPending };
 }

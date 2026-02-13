@@ -1,0 +1,10 @@
+{
+  "deleteLifecycleTitle": "Supprimer une règle de cycle de vie",
+  "deleteLifecycleDescription": "Voulez-vous vraiment supprimer la règle de cycle de vie <strong>{{decodedRuleId}}</strong> ?",
+  "deleteLifecycleButtonConfirm": "Supprimer",
+  "deleteLifecycleButtonCancel": "Annuler",
+  "deleteLifecycleToastSuccessTitle": "Règle supprimée",
+  "deleteLifecycleToastSuccessMessage": "La suppression de votre règle de cycle de vie a été effectuée avec succès.",
+  "deleteLifecycleToastErrorTitle": "Erreur de suppression",
+  "deleteLifecycleToastErrorMessage": "Une erreur est survenue lors de la suppression de votre règle de cycle de vie : {{message}}."
+}

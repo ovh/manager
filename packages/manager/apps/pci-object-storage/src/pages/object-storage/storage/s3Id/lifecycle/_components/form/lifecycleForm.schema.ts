@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import storages from '@/types/Storages';
+import { STORAGE_CLASS_TIER } from '@/hooks/useAvailableStorageClasses.hook';
 import {
-  STORAGE_CLASS_TIER,
   MIN_TRANSITION_GAP_DAYS,
   getMaxTransitionDays,
 } from './lifecycleTransition.utils';
@@ -8,23 +9,24 @@ import {
 type TFunction = (key: string) => string;
 
 const validateTransitionGaps = (
-  transitions: Array<Record<string, unknown>>,
-  daysKey: string,
+  transitions: Array<{ storageClass?: storages.StorageClassEnum; days?: number }>,
   pathPrefix: string,
+  daysKey: string,
   t: TFunction,
   ctx: z.RefinementCtx,
 ) => {
   if (transitions.length <= 1) return;
 
   const indexed = transitions.map((tr, originalIndex) => ({
-    storageClass: String(tr.storageClass ?? ''),
-    days: Number(tr[daysKey]) || 0,
+    storageClass: tr.storageClass ?? storages.StorageClassEnum.STANDARD,
+    days: tr.days ?? 0,
     originalIndex,
   }));
 
   const sorted = indexed.sort(
     (a, b) =>
-      STORAGE_CLASS_TIER[a.storageClass] - STORAGE_CLASS_TIER[b.storageClass],
+      STORAGE_CLASS_TIER[a.storageClass] -
+      STORAGE_CLASS_TIER[b.storageClass],
   );
 
   for (let i = 1; i < sorted.length; i += 1) {
@@ -42,8 +44,7 @@ const validateExpirationAfterTransitions = (
   hasCurrentVersionTransitions: boolean,
   hasCurrentVersionExpiration: boolean,
   expirationDays: number,
-  transitions: Array<Record<string, unknown>>,
-  daysKey: string,
+  transitions: Array<{ days?: number }>,
   expirationPath: string,
   t: TFunction,
   ctx: z.RefinementCtx,
@@ -57,7 +58,7 @@ const validateExpirationAfterTransitions = (
     return;
 
   const maxDays = getMaxTransitionDays(
-    transitions.map((tr) => ({ days: Number(tr[daysKey]) || 0 })),
+    transitions.map((tr) => ({ days: tr.days ?? 0 })),
   );
   if (expirationDays <= maxDays) {
     ctx.addIssue({
@@ -75,12 +76,17 @@ export const createLifecycleSchema = (t: TFunction) =>
         .string()
         .min(1, t('formRuleIdRequired'))
         .max(255, t('formRuleIdMaxLength')),
-      status: z.enum(['enabled', 'disabled']).default('enabled'),
+      status: z.nativeEnum(storages.LifecycleRuleStatusEnum).default(storages.LifecycleRuleStatusEnum.enabled),
 
       hasFilter: z.boolean().default(false),
       prefix: z.string().default(''),
       tags: z
-        .array(z.object({ key: z.string(), value: z.string() }))
+        .array(
+          z.object({
+            key: z.string(),
+            value: z.string(),
+          }),
+        )
         .default([]),
 
       hasCurrentVersionTransitions: z.boolean().default(false),
@@ -91,7 +97,7 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum, { message: t('formStorageClassRequiredError') }),
           }),
         )
         .default([]),
@@ -112,13 +118,36 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum, { message: t('formStorageClassRequiredError') }),
+            newerNoncurrentVersions: z.coerce
+              .number()
+              .int()
+              .min(0)
+              .default(0),
           }),
         )
         .default([]),
 
       hasNoncurrentVersionExpiration: z.boolean().default(false),
       noncurrentVersionExpirationDays: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+      noncurrentVersionExpirationNewerVersions: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+
+      hasObjectSizeGreaterThan: z.boolean().default(false),
+      objectSizeGreaterThan: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+      hasObjectSizeLessThan: z.boolean().default(false),
+      objectSizeLessThan: z.coerce
         .number()
         .int()
         .min(0)
@@ -132,15 +161,61 @@ export const createLifecycleSchema = (t: TFunction) =>
         .default(0),
     })
     .superRefine((data, ctx) => {
+      const hasAtLeastOneOperation =
+        data.hasCurrentVersionTransitions ||
+        data.hasCurrentVersionExpiration ||
+        data.expiredObjectDeleteMarker ||
+        data.hasNoncurrentVersionTransitions ||
+        data.hasNoncurrentVersionExpiration ||
+        data.hasAbortIncompleteMultipartUpload;
+
+      if (!hasAtLeastOneOperation) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('formAtLeastOneOperationError'),
+          path: [],
+        });
+      }
+
+      if (
+        data.hasFilter &&
+        data.hasObjectSizeGreaterThan &&
+        data.hasObjectSizeLessThan &&
+        data.objectSizeGreaterThan > 0 &&
+        data.objectSizeLessThan > 0 &&
+        data.objectSizeGreaterThan >= data.objectSizeLessThan
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('formObjectSizeRangeError'),
+          path: ['objectSizeGreaterThan'],
+        });
+      }
+
+      if (data.hasFilter && data.tags) {
+        data.tags.forEach((tag, index) => {
+          if (tag.key.trim() === '' && tag.value.trim() !== '') {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: t('formTagKeyRequired'),
+              path: ['tags', index, 'key'],
+            });
+          }
+        });
+      }
+
       if (data.hasCurrentVersionTransitions) {
-        validateTransitionGaps(data.transitions, 'days', 'transitions', t, ctx);
+        validateTransitionGaps(data.transitions, 'transitions', 'days', t, ctx);
       }
 
       if (data.hasNoncurrentVersionTransitions) {
         validateTransitionGaps(
-          data.noncurrentVersionTransitions,
-          'noncurrentDays',
+          data.noncurrentVersionTransitions.map((tr) => ({
+            storageClass: tr.storageClass,
+            days: tr.noncurrentDays,
+          })),
           'noncurrentVersionTransitions',
+          'noncurrentDays',
           t,
           ctx,
         );
@@ -151,7 +226,6 @@ export const createLifecycleSchema = (t: TFunction) =>
         data.hasCurrentVersionExpiration,
         data.expirationDays,
         data.transitions,
-        'days',
         'expirationDays',
         t,
         ctx,
@@ -161,8 +235,7 @@ export const createLifecycleSchema = (t: TFunction) =>
         data.hasNoncurrentVersionTransitions,
         data.hasNoncurrentVersionExpiration,
         data.noncurrentVersionExpirationDays,
-        data.noncurrentVersionTransitions,
-        'noncurrentDays',
+        data.noncurrentVersionTransitions.map((tr) => ({ days: tr.noncurrentDays })),
         'noncurrentVersionExpirationDays',
         t,
         ctx,

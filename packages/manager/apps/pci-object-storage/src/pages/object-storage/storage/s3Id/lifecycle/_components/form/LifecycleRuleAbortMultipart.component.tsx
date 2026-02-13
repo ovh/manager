@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Checkbox, FieldLabel, Input, Label } from '@datatr-ux/uxlib';
+import { FieldLabel, Input } from '@datatr-ux/uxlib';
 import { FormField } from '@/components/form-field/FormField.component';
 import { useLifecycleFormContext } from './LifecycleForm.context';
+import { CheckboxField } from './CheckboxField.component';
 
 export const LifecycleRuleAbortMultipart = () => {
   const { form, isPending } = useLifecycleFormContext();
@@ -11,25 +12,19 @@ export const LifecycleRuleAbortMultipart = () => {
 
   return (
     <>
-      <div className="flex items-center gap-2">
-        <Checkbox
-          id="has-abort-multipart"
-          checked={hasAbort}
-          onCheckedChange={(checked) =>
-            form.setValue('hasAbortIncompleteMultipartUpload', checked === true)
-          }
-          disabled={isPending}
-        />
-        <Label
-          htmlFor="has-abort-multipart"
-          className="text-sm font-normal cursor-pointer"
-        >
-          {t('formAbortMultipartLabel')}
-        </Label>
-      </div>
+      <CheckboxField
+        id="has-abort-multipart"
+        label={t('formAbortMultipartLabel')}
+        description={t('formAbortMultipartDescription')}
+        checked={hasAbort}
+        onCheckedChange={(checked) =>
+          form.setValue('hasAbortIncompleteMultipartUpload', checked)
+        }
+        disabled={isPending}
+      />
 
       {hasAbort && (
-        <div className="flex flex-col gap-2 pl-6">
+        <div className="flex flex-col gap-2">
           <FormField name="abortDaysAfterInitiation" form={form}>
             {(field) => (
               <>

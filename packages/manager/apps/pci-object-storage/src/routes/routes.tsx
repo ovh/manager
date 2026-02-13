@@ -488,6 +488,15 @@ export default [
                   {
                     index: true,
                   },
+                  {
+                    path: 'delete/:ruleId',
+                    id: 'lifecycle.delete',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/lifecycle/delete/Delete.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {
@@ -496,6 +505,15 @@ export default [
                 ...lazyLoadRoute(() =>
                   import(
                     '@/pages/object-storage/storage/s3Id/lifecycle/create/Create.page'
+                  ),
+                ),
+              },
+              {
+                path: 'edit/:ruleId',
+                id: 'lifecycle.edit',
+                ...lazyLoadRoute(() =>
+                  import(
+                    '@/pages/object-storage/storage/s3Id/lifecycle/edit/Edit.page'
                   ),
                 ),
               },

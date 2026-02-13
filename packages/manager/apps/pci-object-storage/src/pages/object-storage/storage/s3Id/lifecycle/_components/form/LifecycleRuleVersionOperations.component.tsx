@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Checkbox, FieldLabel, Input, Label } from '@datatr-ux/uxlib';
+import { FieldLabel, Input } from '@datatr-ux/uxlib';
 import { LifecycleRuleContainer } from './LifecycleRuleContainer';
 import { FormField } from '@/components/form-field/FormField.component';
 import { useLifecycleFormContext } from './LifecycleForm.context';
+import { CheckboxField } from './CheckboxField.component';
 import {
   TransitionListField,
   TransitionListFieldConfig,
@@ -25,13 +26,16 @@ type NumberFieldName = {
 interface ExpirationConfig {
   hasFieldName: BooleanFieldName;
   daysFieldName: NumberFieldName;
+  newerVersionsFieldName?: NumberFieldName;
   checkboxId: string;
   checkboxLabelKey: string;
   daysLabelKey: string;
+  newerVersionsLabelKey?: string;
 }
 
 interface LifecycleRuleVersionOperationsProps {
   titleKey?: string;
+  descriptionKey?: string;
   transition: TransitionListFieldConfig;
   expiration: ExpirationConfig;
   children?: React.ReactNode;
@@ -39,6 +43,7 @@ interface LifecycleRuleVersionOperationsProps {
 
 export const LifecycleRuleVersionOperations = ({
   titleKey,
+  descriptionKey,
   transition,
   expiration,
   children,
@@ -52,25 +57,19 @@ export const LifecycleRuleVersionOperations = ({
     <>
       <TransitionListField {...transition} />
 
-      <div className="flex items-center gap-2 mt-4">
-        <Checkbox
-          id={expiration.checkboxId}
-          checked={hasExpiration}
-          onCheckedChange={(checked) =>
-            form.setValue(expiration.hasFieldName, checked === true)
-          }
-          disabled={isPending}
-        />
-        <Label
-          htmlFor={expiration.checkboxId}
-          className="text-sm font-normal cursor-pointer"
-        >
-          {t(expiration.checkboxLabelKey)}
-        </Label>
-      </div>
+      <CheckboxField
+        id={expiration.checkboxId}
+        label={t(expiration.checkboxLabelKey)}
+        checked={hasExpiration}
+        onCheckedChange={(checked) =>
+          form.setValue(expiration.hasFieldName, checked)
+        }
+        disabled={isPending}
+        className="mt-2"
+      />
 
       {hasExpiration && (
-        <div className="flex flex-col gap-2 pl-6">
+        <div className="flex flex-col gap-2">
           <FormField name={expiration.daysFieldName} form={form}>
             {(field) => (
               <>
@@ -79,6 +78,24 @@ export const LifecycleRuleVersionOperations = ({
               </>
             )}
           </FormField>
+          {expiration.newerVersionsFieldName &&
+            expiration.newerVersionsLabelKey && (
+              <FormField name={expiration.newerVersionsFieldName} form={form}>
+                {(field) => (
+                  <>
+                    <FieldLabel>
+                      {t(expiration.newerVersionsLabelKey)}
+                    </FieldLabel>
+                    <Input
+                      type="number"
+                      min={0}
+                      {...field}
+                      disabled={isPending}
+                    />
+                  </>
+                )}
+              </FormField>
+            )}
         </div>
       )}
 
@@ -88,7 +105,10 @@ export const LifecycleRuleVersionOperations = ({
 
   if (titleKey) {
     return (
-      <LifecycleRuleContainer title={t(titleKey)}>
+      <LifecycleRuleContainer
+        title={t(titleKey)}
+        description={descriptionKey ? t(descriptionKey) : undefined}
+      >
         {content}
       </LifecycleRuleContainer>
     );

@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { UseFormReturn, FormProvider } from 'react-hook-form';
+import storages from '@/types/Storages';
 import { LifecycleFormValues } from './useLifecycleForm.hook';
 
 interface LifecycleFormContextProps {
@@ -7,6 +8,7 @@ interface LifecycleFormContextProps {
   isPending: boolean;
   isEditMode: boolean;
   lifecycleTitle: string;
+  availableStorageClasses: storages.StorageClassEnum[];
 }
 
 const LifecycleFormContext = createContext<LifecycleFormContextProps | null>(
@@ -28,6 +30,7 @@ interface LifecycleFormProviderProps {
   isPending: boolean;
   isEditMode?: boolean;
   lifecycleTitle: string;
+  availableStorageClasses: storages.StorageClassEnum[];
   children: React.ReactNode;
 }
 
@@ -36,6 +39,7 @@ export const LifecycleFormProvider = ({
   isPending,
   isEditMode = false,
   lifecycleTitle,
+  availableStorageClasses,
   children,
 }: LifecycleFormProviderProps) => {
   const contextValue: LifecycleFormContextProps = {
@@ -43,6 +47,7 @@ export const LifecycleFormProvider = ({
     isPending,
     isEditMode,
     lifecycleTitle,
+    availableStorageClasses,
   };
 
   return (

@@ -16,30 +16,10 @@ type BuildLifecycleFormValues<T extends z.ZodTypeAny> = Omit<
   tags: Tag[];
 };
 
+type LifecycleSchemaValues = z.infer<ReturnType<typeof createLifecycleSchema>>;
+
 interface UseLifecycleFormParams {
-  existingRule?: {
-    id: string;
-    status: storages.LifecycleRuleStatusEnum;
-    filter?: {
-      prefix?: string;
-      tags?: Record<string, string>;
-    };
-    transitions?: Array<{ days?: number; storageClass: string }>;
-    expiration?: {
-      days?: number;
-      expiredObjectDeleteMarker?: boolean;
-    };
-    noncurrentVersionTransitions?: Array<{
-      noncurrentDays?: number;
-      storageClass?: string;
-    }>;
-    noncurrentVersionExpiration?: {
-      noncurrentDays?: number;
-    };
-    abortIncompleteMultipartUpload?: {
-      daysAfterInitiation?: number;
-    };
-  };
+  existingRule?: storages.LifecycleRule;
 }
 
 export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
@@ -48,26 +28,30 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
   const schema = createLifecycleSchema(t);
 
   const emptyTags: Tag[] = [];
+  const emptyTransitions: LifecycleSchemaValues['transitions'] = [];
+  const emptyNoncurrentTransitions: LifecycleSchemaValues['noncurrentVersionTransitions'] = [];
 
   const defaultValues = useMemo(() => {
     const base = {
       ruleId: '',
-      status: 'enabled' as const,
+      status: storages.LifecycleRuleStatusEnum.enabled,
       hasFilter: false,
       prefix: '',
       tags: emptyTags,
       hasCurrentVersionTransitions: false,
-      transitions: [] as Array<{ days: number; storageClass: string }>,
+      transitions: emptyTransitions,
       hasCurrentVersionExpiration: false,
       expirationDays: 0,
       expiredObjectDeleteMarker: false,
       hasNoncurrentVersionTransitions: false,
-      noncurrentVersionTransitions: [] as Array<{
-        noncurrentDays: number;
-        storageClass: string;
-      }>,
+      noncurrentVersionTransitions: emptyNoncurrentTransitions,
       hasNoncurrentVersionExpiration: false,
       noncurrentVersionExpirationDays: 0,
+      noncurrentVersionExpirationNewerVersions: 0,
+      hasObjectSizeGreaterThan: false,
+      objectSizeGreaterThan: 0,
+      hasObjectSizeLessThan: false,
+      objectSizeLessThan: 0,
       hasAbortIncompleteMultipartUpload: false,
       abortDaysAfterInitiation: 0,
     };
@@ -80,8 +64,7 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       existingRule.transitions?.length,
     );
     const hasCurrentVersionExpiration = Boolean(
-      existingRule.expiration?.days ||
-        existingRule.expiration?.expiredObjectDeleteMarker,
+      existingRule.expiration?.days,
     );
     const hasNoncurrentVersionTransitions = Boolean(
       existingRule.noncurrentVersionTransitions?.length,
@@ -95,7 +78,9 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
     const hasFilter = Boolean(
       existingRule.filter?.prefix ||
         (existingRule.filter?.tags &&
-          Object.keys(existingRule.filter.tags).length > 0),
+          Object.keys(existingRule.filter.tags).length > 0) ||
+        existingRule.filter?.objectSizeGreaterThan ||
+        existingRule.filter?.objectSizeLessThan,
     );
 
     return {
@@ -107,10 +92,22 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       tags: Object.entries(
         existingRule.filter?.tags ?? {},
       ).map(([key, value]) => ({ key, value })),
+      hasObjectSizeGreaterThan: Boolean(
+        existingRule.filter?.objectSizeGreaterThan,
+      ),
+      objectSizeGreaterThan:
+        existingRule.filter?.objectSizeGreaterThan ?? 0,
+      hasObjectSizeLessThan: Boolean(
+        existingRule.filter?.objectSizeLessThan,
+      ),
+      objectSizeLessThan: existingRule.filter?.objectSizeLessThan ?? 0,
       hasCurrentVersionTransitions,
       transitions: (existingRule.transitions ?? []).map((tr) => ({
         days: tr.days ?? 0,
-        storageClass: tr.storageClass,
+        storageClass:
+          storages.StorageClassEnum[
+            tr.storageClass as keyof typeof storages.StorageClassEnum
+          ],
       })),
       hasCurrentVersionExpiration,
       expirationDays: existingRule.expiration?.days ?? 0,
@@ -122,10 +119,13 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       ).map((tr) => ({
         noncurrentDays: tr.noncurrentDays ?? 0,
         storageClass: tr.storageClass,
+        newerNoncurrentVersions: tr.newerNoncurrentVersions ?? 0,
       })),
       hasNoncurrentVersionExpiration,
       noncurrentVersionExpirationDays:
         existingRule.noncurrentVersionExpiration?.noncurrentDays ?? 0,
+      noncurrentVersionExpirationNewerVersions:
+        existingRule.noncurrentVersionExpiration?.newerNoncurrentVersions ?? 0,
       hasAbortIncompleteMultipartUpload: hasAbort,
       abortDaysAfterInitiation:
         existingRule.abortIncompleteMultipartUpload?.daysAfterInitiation ?? 0,

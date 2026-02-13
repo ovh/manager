@@ -6,7 +6,7 @@ const schema = createLifecycleSchema(mockT);
 
 const baseData = {
   ruleId: 'test-rule',
-  status: 'enabled' as const,
+  status: 'enabled',
   hasFilter: false,
   prefix: '',
   tags: [] as { key: string; value: string }[],
@@ -16,14 +16,15 @@ const baseData = {
   expirationDays: 0,
   expiredObjectDeleteMarker: false,
   hasNoncurrentVersionTransitions: false,
-  noncurrentVersionTransitions: [] as {
-    noncurrentDays: number;
-    storageClass: string;
-  }[],
+  noncurrentVersionTransitions: [] as { noncurrentDays: number; storageClass: string }[],
   hasNoncurrentVersionExpiration: false,
   noncurrentVersionExpirationDays: 0,
-  hasAbortIncompleteMultipartUpload: false,
-  abortDaysAfterInitiation: 0,
+  hasObjectSizeGreaterThan: false,
+  objectSizeGreaterThan: 0,
+  hasObjectSizeLessThan: false,
+  objectSizeLessThan: 0,
+  hasAbortIncompleteMultipartUpload: true,
+  abortDaysAfterInitiation: 1,
 };
 
 describe('createLifecycleSchema', () => {
@@ -293,5 +294,129 @@ describe('createLifecycleSchema', () => {
       ],
     });
     expect(result.success).toBe(true);
+  });
+
+  describe('tag key validation', () => {
+    it('should reject a tag with empty key but non-empty value', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        tags: [{ key: '', value: 'some-value' }],
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const error = result.error.issues.find(
+          (i) => i.path.includes('tags') && i.path.includes('key'),
+        );
+        expect(error?.message).toBe('formTagKeyRequired');
+      }
+    });
+
+    it('should accept a tag with both key and value', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        tags: [{ key: 'env', value: 'prod' }],
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should accept a tag with key only (empty value)', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        tags: [{ key: 'env', value: '' }],
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should not validate tags when hasFilter is false', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: false,
+        tags: [{ key: '', value: 'some-value' }],
+      });
+      expect(result.success).toBe(true);
+    });
+  });
+
+  describe('object size filter validation', () => {
+    it('should accept objectSizeGreaterThan alone > 0', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: true,
+        objectSizeGreaterThan: 1024,
+        hasObjectSizeLessThan: false,
+        objectSizeLessThan: 0,
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should accept objectSizeLessThan alone > 0', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: false,
+        objectSizeGreaterThan: 0,
+        hasObjectSizeLessThan: true,
+        objectSizeLessThan: 1048576,
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should reject when objectSizeGreaterThan >= objectSizeLessThan (both checked and > 0)', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: true,
+        objectSizeGreaterThan: 2048,
+        hasObjectSizeLessThan: true,
+        objectSizeLessThan: 1024,
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        const error = result.error.issues.find((i) =>
+          i.path.includes('objectSizeGreaterThan'),
+        );
+        expect(error?.message).toBe('formObjectSizeRangeError');
+      }
+    });
+
+    it('should reject when objectSizeGreaterThan equals objectSizeLessThan (both checked and > 0)', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: true,
+        objectSizeGreaterThan: 1024,
+        hasObjectSizeLessThan: true,
+        objectSizeLessThan: 1024,
+      });
+      expect(result.success).toBe(false);
+    });
+
+    it('should accept when objectSizeGreaterThan < objectSizeLessThan', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: true,
+        objectSizeGreaterThan: 1024,
+        hasObjectSizeLessThan: true,
+        objectSizeLessThan: 1048576,
+      });
+      expect(result.success).toBe(true);
+    });
+
+    it('should not validate size range when checkboxes are unchecked', () => {
+      const result = schema.safeParse({
+        ...baseData,
+        hasFilter: true,
+        hasObjectSizeGreaterThan: false,
+        objectSizeGreaterThan: 2048,
+        hasObjectSizeLessThan: false,
+        objectSizeLessThan: 1024,
+      });
+      expect(result.success).toBe(true);
+    });
   });
 });
