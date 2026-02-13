@@ -81,6 +81,11 @@ export const useGetDomainZoneRecords = (serviceName: string) => {
     }
   }, [allPages]);
 
+  const refetch = useCallback(() => {
+    setAllPages(false);
+    return query.refetch();
+  }, [query.refetch]);
+
   useEffect(() => {
     if (allPages && query.hasNextPage && !query.isFetchingNextPage) {
       query.fetchNextPage();
@@ -91,5 +96,6 @@ export const useGetDomainZoneRecords = (serviceName: string) => {
     ...query,
     data: query.data,
     fetchAllPages,
+    refetch,
   };
 };

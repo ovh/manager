@@ -11,11 +11,12 @@ import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TE
 import { useContext, useMemo, useCallback, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
-import ModifyTtlModal from "./modify/ModifyTtl.modal";
-import ResetModal from "./reset/Reset.modal";
+import ModifyTextualRecordModal from "@/zone/pages/zone/modify/ModifyTextualRecord.modal";
+import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
+import ResetModal from "@/zone/pages/zone/reset/Reset.modal";
 import { RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
+import { DeleteEntryModal } from '@/zone/pages/zone/delete/DeleteEntry.modal';
 
 export default function ZonePage() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
@@ -24,10 +25,11 @@ export default function ZonePage() {
   const buildUrl = (baseUrl: string) => {
     return baseUrl.replace(':serviceName', serviceName || '');
   };
-  const { data, hasNextPage, fetchNextPage, fetchAllPages } = useGetDomainZoneRecords(serviceName);
+  const { data, hasNextPage, fetchNextPage, fetchAllPages, refetch } = useGetDomainZoneRecords(serviceName);
   const tabsZone = domainUrls.domainTabZone;
   const [searchInput, setSearchInput] = useState('');
-  const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
+  const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | 'delete-zone' | 'delete-entry' | null>(null);
+  const [selectedRecord, setSelectedRecord] = useState<ZoneRecord | null>(null);
   const { filters, addFilter, removeFilter } = useColumnFilters();
 
   const handleAddFilter = useCallback((filterProps: Parameters<typeof addFilter>[0]) => {
@@ -127,6 +129,7 @@ export default function ZonePage() {
 
   const closeModal = useCallback(() => {
     setOpenModal(null);
+    setSelectedRecord(null);
   }, []);
 
   const zoneModals = (
@@ -146,6 +149,13 @@ export default function ZonePage() {
           onCloseCallback={closeModal}
         />
       )}
+      {openModal === 'delete-entry' && (
+        <DeleteEntryModal
+          record={selectedRecord}
+          onCloseCallback={closeModal}
+          onRefetch={refetch}
+        />
+      )}
     </>
   );
 
@@ -158,7 +168,10 @@ export default function ZonePage() {
     {
       id: 2,
       label: t('zone_page_delete_entry'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/delete-entry`), { state: { record } }),
+      onClick: () => {
+        setSelectedRecord(record);
+        setOpenModal('delete-entry');
+      },
     },
   ];
   const columns: DatagridColumn<ZoneRecord>[] = useMemo(
@@ -196,12 +209,19 @@ export default function ZonePage() {
       },
       {
         id: 'actions',
-        cell: ({ row }) => <ActionMenu items={actionItemsDatagrid(row.original)} id={row.original.id} isCompact />,
+        cell: ({ row }) => (
+          <ActionMenu
+            key={`${row.original.id}-${openModal}`}
+            items={actionItemsDatagrid(row.original)}
+            id={row.original.id}
+            isCompact
+          />
+        ),
         size: 48,
         header: '',
         label: '',
       },
-    ], [t, availableFieldTypes]);
+    ], [t, availableFieldTypes, openModal]);
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const selectedRecordIds = useMemo(() => {
