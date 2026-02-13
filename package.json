@@ -10,6 +10,7 @@
   "scripts": {
     "build": "yarn pm:build:ci",
     "build:turbo": "yarn pm:build:ci",
+    "ci:install": "yarn install --non-interactive --prefer-offline",
     "clean": "yarn run clean:dist && rimraf node_modules",
     "clean:dist": "rimraf \"packages/**/dist\"",
     "commit": "node scripts/commit.js",
