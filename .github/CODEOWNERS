@@ -1,24 +1,157 @@
 # Default owners
-* @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
+* @ovh/dev-manager-core
 
 # Components
-/packages/components/ @ovh/team-manager-dev-angularjs
+/packages/components/ @ovh/dev-manager-core
 
-# Packages
-/packages/manager/apps/ @ovh/team-manager-dev-angularjs
-packages/manager/core/ @ovh/team-manager-dev-reactjs
-packages/manager/modules/ @ovh/team-manager-dev-angularjs
+# Apps
+/packages/manager/apps/account @ovh/dev-manager-gcj-all
+/packages/manager/apps/account-creation @ovh/dev-manager-gcj-all
+/packages/manager/apps/billing @ovh/dev-manager-gcj-all
+/packages/manager/apps/bmc-backup-agent-baremetal @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/carbon-calculator @ovh/dev-manager-gcj-all
+/packages/manager/apps/carrier-sip @ovh/dev-manager-web-collaboration
+/packages/manager/apps/catalog @ovh/dev-manager-gcj-all
+/packages/manager/apps/cda @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/cloud-connect @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/communication @ovh/dev-manager-gcj-all
+/packages/manager/apps/container @ovh/dev-manager-gcj-all
+/packages/manager/apps/dbaas-logs @ovh/dev-manager-enablers-all
+/packages/manager/apps/dedicated @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/dedicated/client/*.js* @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/managedBaremetal @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/dedicatedCloud @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/app/components/dedicated-cloud @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/__mocks__ @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated/client/__tests__ @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/dedicated-server @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/hpc-vmware-public-vcf-aas @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/hpc-vmware-vsphere @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/email-domain @ovh/dev-manager-web-collaboration
+/packages/manager/apps/email-pro @ovh/dev-manager-web-collaboration
+/packages/manager/apps/exchange @ovh/dev-manager-web-collaboration
+/packages/manager/apps/freefax @ovh/dev-manager-web-collaboration
+/packages/manager/apps/hub @ovh/dev-manager-gcj-all
+/packages/manager/apps/hycu @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/hpc-backup-agent-iaas @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/iam @ovh/dev-manager-enablers-all
+/packages/manager/apps/identity-access-management @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network @ovh/dev-manager-enablers-all
+/packages/manager/apps/iplb @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/ips @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/dedicated-servers @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/metrics @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/nasha @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/netapp @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/nutanix @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/okms @ovh/dev-manager-enterprise-kms
+/packages/manager/apps/overthebox @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/pci @ovh/dev-manager-pci-all
+/packages/manager/apps/pci-* @ovh/dev-manager-pci-all
+/packages/manager/apps/pci-ai-endpoints @ovh/dev-manager-pci-ai
+/packages/manager/apps/pci-ai-tools @ovh/dev-manager-pci-ai
+/packages/manager/apps/pci-databases-analytics @ovh/dev-manager-pci-database
+/packages/manager/apps/pci-dataplatform @ovh/dev-manager-pci-database
+/packages/manager/apps/pci-object-storage @ovh/dev-manager-pci-database
+/packages/manager/apps/procedures @ovh/dev-manager-gcj-all
+/packages/manager/apps/public-cloud @ovh/dev-manager-pci-all
+/packages/manager/apps/restricted @ovh/dev-manager-enablers-all
+/packages/manager/apps/sap-features-hub @ovh/dev-manager-enterprise-vmware
+/packages/manager/apps/sharepoint @ovh/dev-manager-web-collaboration
+/packages/manager/apps/sign-up @ovh/dev-manager-gcj-all
+/packages/manager/apps/sms @ovh/dev-manager-web-collaboration
+/packages/manager/apps/support @ovh/dev-manager-gcj-all
+/packages/manager/apps/veeam-backup @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/telecom @ovh/dev-manager-web-collaboration
+/packages/manager/apps/telecom-dashboard @ovh/dev-manager-web-collaboration
+/packages/manager/apps/telecom-task @ovh/dev-manager-web-collaboration
+/packages/manager/apps/veeam-cloud-connect @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/veeam-enterprise @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/apps/vps @ovh/dev-manager-web-collaboration
+/packages/manager/apps/vrack @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/vrack-services @ovh/dev-manager-infrastructure-network
+/packages/manager/apps/web @ovh/dev-manager-web-hosting
+/packages/manager/apps/web/client/app/domains @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain/redirection @ovh/dev-manager-web-hosting @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain/dynhost @ovh/dev-manager-web-hosting @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain/zone @ovh/dev-manager-web-hosting @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/domain-operation @ovh/dev-manager-web-domain
+/packages/manager/apps/web/client/app/dns-zone @ovh/dev-manager-web-hosting @ovh/dev-manager-web-domain
+/packages/manager/apps/web-domains @ovh/dev-manager-web-domain
+/packages/manager/apps/web-hosting @ovh/dev-manager-web-hosting
+/packages/manager/apps/web-office @ovh/dev-manager-web-collaboration
+/packages/manager/apps/web-ongoing-operations @ovh/dev-manager-web-domain
+/packages/manager/apps/zimbra @ovh/dev-manager-web-collaboration
 
-# React Stack
-*.jsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
-*.tsx @ovh/team-manager-dev-reactjs @ovh/su-digital-tools-core-stack
-/playwright-helpers/ @ovh/team-manager-dev-reactjs
+# Core
+/packages/manager/core @ovh/dev-manager-core
+
+# Modules
+/packages/manager/modules @ovh/dev-manager-core
+/packages/manager/modules/account @ovh/dev-manager-gcj-all
+/packages/manager/modules/backup-agent @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/modules/billing @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
+/packages/manager/modules/billing-informations @ovh/dev-manager-enablers-all
+/packages/manager/modules/bm-server-components @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/modules/carbon-calculator @ovh/dev-manager-gcj-all
+/packages/manager/modules/carrier-sip @ovh/dev-manager-web-collaboration
+/packages/manager/modules/cda @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/cloud-connect @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/dbaas-logs @ovh/dev-manager-enablers-all
+/packages/manager/modules/email-domain @ovh/dev-manager-web-collaboration
+/packages/manager/modules/emailpro @ovh/dev-manager-web-collaboration
+/packages/manager/modules/exchange @ovh/dev-manager-web-collaboration
+/packages/manager/modules/freefax @ovh/dev-manager-web-collaboration
+/packages/manager/modules/gcj @ovh/dev-manager-gcj-all
+/packages/manager/modules/iam @ovh/dev-manager-enablers-all
+/packages/manager/modules/iplb @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/log-to-customer @ovh/dev-manager-enablers-all
+/packages/manager/modules/logs-to-customer @ovh/dev-manager-enablers-all
+/packages/manager/modules/manager-pci-common @ovh/dev-manager-pci-common-maintenance
+/packages/manager/modules/metrics @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/nasha @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/netapp @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/network-common @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/new-billing @ovh/dev-manager-gcj-all
+/packages/manager/modules/nutanix @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/modules/overthebox @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/pci @ovh/dev-manager-pci-all
+/packages/manager/modules/pci-universe-components @ovh/dev-manager-pci-all
+/packages/manager/modules/phone-prefix @ovh/dev-manager-web-collaboration
+/packages/manager/modules/product-offers @ovh/dev-manager-web-collaboration @ovh/dev-manager-web-domain @ovh/dev-manager-web-hosting
+/packages/manager/modules/resource-tagging @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/sharepoint @ovh/dev-manager-web-collaboration
+/packages/manager/modules/sign-up @ovh/dev-manager-gcj-all
+/packages/manager/modules/sms @ovh/dev-manager-web-collaboration
+/packages/manager/modules/support @ovh/dev-manager-gcj-all
+/packages/manager/modules/telecom-dashboard @ovh/dev-manager-web-collaboration
+/packages/manager/modules/telecom-styles @ovh/dev-manager-web-collaboration
+/packages/manager/modules/telecom-task @ovh/dev-manager-web-collaboration
+/packages/manager/modules/telecom-universe-components @ovh/dev-manager-web-collaboration
+/packages/manager/modules/trusted-nic @ovh/dev-manager-gcj-all
+/packages/manager/modules/vcd-api @ovh/dev-manager-enterprise-vmware
+/packages/manager/modules/veeam-cloud-connect @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/veeam-enterprise @ovh/dev-manager-infrastructure-baremetalstorage
+/packages/manager/modules/vps @ovh/dev-manager-web-collaboration
+/packages/manager/modules/vrack @ovh/dev-manager-infrastructure-network
+/packages/manager/modules/web-universe-components @ovh/dev-manager-web-collaboration @ovh/dev-manager-web-domain @ovh/dev-manager-web-hosting
+
+# Tools
+/packages/manager-tools @ovh/dev-manager-core
 
 # Manager-components
-/packages/manager-components @ovh/team-manager-control-tower
+/packages/manager-components @ovh/dev-manager-core
 
-# Continuous Integration and scripts
-/scripts/start-application.js @ovh/team-manager-dev-angularjs @ovh/team-manager-dev-reactjs
-/scripts/run-playwright.js @ovh/team-manager-dev-reactjs
-/scripts/run-playwright-bdd.js @ovh/team-manager-dev-reactjs
-/scripts/.env.development @ovh/team-manager-dev-reactjs
+# Manager-Wiki
+/packages/manager-wiki/stories/features/pci-common @ovh/dev-manager-pci-all
+/packages/manager-wiki/stories/features/vcd-api @ovh/dev-manager-enterprise-vmware
+/packages/manager-wiki @ovh/dev-manager-core
+
+# Scripts
+/scripts @ovh/devops-manager
+
+# Github and husky folder
+/.github @ovh/devops-manager
+/.github/CODEOWNERS @ovh/dev-manager-core
+/.husky @ovh/devops-manager
