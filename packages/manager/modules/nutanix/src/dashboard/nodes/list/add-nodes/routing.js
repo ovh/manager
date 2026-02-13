@@ -7,11 +7,10 @@ export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('nutanix.dashboard.nodes.all.add-nodes', {
     url: '/add-nodes',
     views: {
-      modal: {
-        component: 'addNutanixNodesModal',
+      'nodeView@nutanix.dashboard': {
+        component: 'addNutanixNodes',
       },
     },
-    layout: 'modal',
     resolve: {
       goBack: /* @ngInject */ ($state) => () =>
         $state.go('nutanix.dashboard.nodes.all'),
@@ -46,6 +45,10 @@ export default /* @ngInject */ ($stateProvider) => {
               NUTANIX_MULTIPLE_NODES_ORDER_FEATURE,
             ),
           ),
+      publicNutanixCatalogsData: /* @ngInject */ (NutanixNode, coreConfig) => {
+        const { ovhSubsidiary } = coreConfig.getUser();
+        return NutanixNode.getPublicNutanixCatalogs(ovhSubsidiary);
+      },
       trackClick: /* @ngInject */ (atInternet) => (options) => {
         atInternet.trackClick({
           page: {
@@ -56,6 +59,8 @@ export default /* @ngInject */ ($stateProvider) => {
           ...options,
         });
       },
+      breadcrumb: /* @ngInject */ ($translate) =>
+        $translate.instant('nutanix_dashboard_add_nodes_title_main'),
     },
     atInternet: {
       rename: TRACKING.LISTING_ADD_NODE,
