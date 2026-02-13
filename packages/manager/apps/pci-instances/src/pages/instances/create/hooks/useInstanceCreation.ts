@@ -144,6 +144,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     existingFloatingIpId,
     flavorCategory,
     distributionImageType,
+    postInstallScript,
   ] = useWatch({
     control,
     name: [
@@ -170,6 +171,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'existingFloatingIpId',
       'flavorCategory',
       'distributionImageType',
+      'postInstallScript',
     ],
   });
   const { data: project } = useProject();
@@ -376,6 +378,8 @@ export const useInstanceCreation = (): TInstanceCreation => {
       imageId:
         backup?.id ?? distributionImageVersion.distributionImageVersionId,
       localBackupRotation,
+      billingPeriod: billingType,
+      postInstallScript,
       existingFloatingIpId,
       floatingIpAssignment,
       assignNewGateway:

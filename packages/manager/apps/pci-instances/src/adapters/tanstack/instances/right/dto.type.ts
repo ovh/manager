@@ -77,6 +77,7 @@ export type TCreateInstanceDTO = {
   sshKey: TExistingSshKeyDTO | null;
   sshKeyCreate: TNewSshKeyDTO | null;
   autobackup: TAutoBackupDTO | null;
+  userData: string | null;
 };
 
 export type TCreateInstanceResponseDTO = TOperationDTO & {
