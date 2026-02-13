@@ -15,13 +15,11 @@ import { useDataTableContext } from './DataTable.context';
 
 export const MENU_COLUMN_ID = 'actions_menu_column';
 
-interface DatatableProps<TData> {
+export interface DatatableProps<TData> {
   renderRowExpansion?: (row: TData) => ReactElement | null;
 }
 
-export function DataTable<TData>({
-  renderRowExpansion,
-}: DatatableProps<TData>) {
+const DataTable = <TData,>({ renderRowExpansion }: DatatableProps<TData>) => {
   const { table, rows } = useDataTableContext<TData>();
   const { t } = useTranslation('components/data-table');
   const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
@@ -115,4 +113,6 @@ export function DataTable<TData>({
       </TableBody>
     </Table>
   );
-}
+};
+
+export { DataTable };

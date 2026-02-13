@@ -16,7 +16,7 @@ import { ColumnFilter } from './DatatableDefaultFilterButton.component';
 import { DataTable } from './DataTable.component';
 import { DataTablePagination } from './DatatablePagination.component';
 
-interface DataTableProviderProps<TData, TValue> {
+export interface DataTableProviderProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageSize?: number;
@@ -39,13 +39,13 @@ interface DataTableContextValue<TData> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DataTableContext = createContext<DataTableContextValue<any> | null>(null);
 
-export function DataTableProvider<TData, TValue>({
+const DataTableProvider = <TData, TValue>({
   columns,
   data,
   pageSize,
   filtersDefinition,
   children,
-}: DataTableProviderProps<TData, TValue>) {
+}: DataTableProviderProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([
     {
       id: columns[0]?.id || '',
@@ -110,9 +110,9 @@ export function DataTableProvider<TData, TValue>({
       )}
     </DataTableContext.Provider>
   );
-}
+};
 
-export function useDataTableContext<TData>() {
+const useDataTableContext = <TData,>() => {
   const context = useContext<DataTableContextValue<TData>>(DataTableContext);
   if (!context) {
     throw new Error(
@@ -120,4 +120,6 @@ export function useDataTableContext<TData>() {
     );
   }
   return context;
-}
+};
+
+export { DataTableProvider, useDataTableContext };

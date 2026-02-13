@@ -16,7 +16,7 @@ export enum Locale {
  * Fetches and keep synced the current locale
  * @returns The current locale string
  */
-export function useLocale() {
+const useLocale = () => {
   const shellCtx = useShell();
   const [locale, setLocale] = useState<Locale>(Locale.fr_FR);
   // fetch initial locale
@@ -32,4 +32,6 @@ export function useLocale() {
     setLocale(newLocale as Locale);
   });
   return locale;
-}
+};
+
+export { useLocale };

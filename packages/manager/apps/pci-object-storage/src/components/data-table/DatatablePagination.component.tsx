@@ -15,7 +15,7 @@ import {
 } from '@datatr-ux/uxlib';
 import { useDataTableContext } from './DataTable.context';
 
-export function DataTablePagination() {
+const DataTablePagination = () => {
   const { t } = useTranslation('components/data-table');
   const { table } = useDataTableContext();
   const itemCount = table.getRowCount();
@@ -96,4 +96,6 @@ export function DataTablePagination() {
       </div>
     </div>
   );
-}
+};
+
+export { DataTablePagination };

@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Skeleton, Button, useToast } from '@datatr-ux/uxlib';
-import { useGetColumns } from './UsertListColumns.component';
+import { useGetColumns } from './UserListColumns.component';
 import DataTable from '@/components/data-table';
 import { useGetFilters } from './UserListFilters.component';
 import user from '@/types/User';
@@ -15,7 +15,7 @@ interface UsersListProps {
   users: user.User[];
 }
 
-export default function UsersList({ users }: UsersListProps) {
+const UsersList = ({ users }: UsersListProps) => {
   const { t } = useTranslation('pci-object-storage/users');
   const { projectId } = useObjectStorageData();
   const navigate = useNavigate();
@@ -83,22 +83,22 @@ export default function UsersList({ users }: UsersListProps) {
       <DataTable.Pagination />
     </DataTable.Provider>
   );
-}
-
-UsersList.Skeleton = function UsersListSkeleton() {
-  return (
-    <>
-      <div
-        data-testid="users-list-table-skeleton"
-        className="flex justify-between w-100 mb-2 items-end"
-      >
-        <Skeleton className="h-10 w-48" />
-        <div className="flex">
-          <Skeleton className="h-10 w-48" />
-          <Skeleton className="h-10 w-12 ml-2" />
-        </div>
-      </div>
-      <DataTable.Skeleton columns={5} rows={10} width={100} height={16} />
-    </>
-  );
 };
+
+UsersList.Skeleton = () => (
+  <>
+    <div
+      data-testid="users-list-table-skeleton"
+      className="flex justify-between w-100 mb-2 items-end"
+    >
+      <Skeleton className="h-10 w-48" />
+      <div className="flex">
+        <Skeleton className="h-10 w-48" />
+        <Skeleton className="h-10 w-12 ml-2" />
+      </div>
+    </div>
+    <DataTable.Skeleton columns={5} rows={10} width={100} height={16} />
+  </>
+);
+
+export default UsersList;

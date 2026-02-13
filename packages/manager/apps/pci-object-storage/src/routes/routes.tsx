@@ -24,7 +24,7 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/storages/objects',
-    ...lazyLoadRoute(() => import('@/pages/Root.layout')),
+    ...lazyLoadRoute(() => import('@/pages/object-storage/Root.layout')),
     children: [
       {
         path: '',
@@ -37,7 +37,7 @@ export default [
             path: '',
             id: 'storages',
             ...lazyLoadRoute(() =>
-              import('@/pages/object-storage/storage/Storages.page'),
+              import('@/pages/object-storage/ListObjectStorages.page'),
             ),
             children: [
               {
@@ -45,7 +45,7 @@ export default [
                 id: 'storages.switch-type',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/switch-type/SwitchType.modal'
+                    '@/pages/object-storage/switch-type/[containerId]/SwitchType.modal'
                   ),
                 ),
               },
@@ -54,7 +54,7 @@ export default [
                 id: 'storages.add-s3-user',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/add-user-s3/AddUserS3.modal'
+                    '@/pages/object-storage/add-s3-user/[storageType]/[storageId]/[region]/AddUserS3.modal'
                   ),
                 ),
               },
@@ -63,7 +63,7 @@ export default [
                 id: 's3.delete',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/deleteS3/DeleteS3.modal'
+                    '@/pages/object-storage/delete/[storageId]/[region]/DeleteS3.modal'
                   ),
                 ),
               },
@@ -72,7 +72,7 @@ export default [
                 id: 'swift.delete',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/deleteSwift/DeleteSwift.modal'
+                    '@/pages/object-storage/delete/[swiftId]/DeleteSwift.modal'
                   ),
                 ),
               },
@@ -82,14 +82,16 @@ export default [
             path: 'users',
             id: 'users',
             ...lazyLoadRoute(() =>
-              import('@/pages/object-storage/users/Users.page'),
+              import('@/pages/object-storage/users/ListUsers.page'),
             ),
             children: [
               {
                 path: 'create',
                 id: 'users.create',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/object-storage/users/create/Create.modal'),
+                  import(
+                    '@/pages/object-storage/users/create/CreateUser.modal'
+                  ),
                 ),
               },
               {
@@ -97,7 +99,7 @@ export default [
                 id: 'users.secret',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/users/show-secret/ShowSecretKey.modal'
+                    '@/pages/object-storage/users/user-secret/[userId]/ShowSecretKey.modal'
                   ),
                 ),
               },
@@ -105,7 +107,9 @@ export default [
                 path: 'rclone/:userId',
                 id: 'users.rclone',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/object-storage/users/rclone/Rclone.modal'),
+                  import(
+                    '@/pages/object-storage/users/rclone/[userId]/Rclone.modal'
+                  ),
                 ),
               },
               {
@@ -113,7 +117,7 @@ export default [
                 id: 'users.import-policy',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/users/import-policy/ImportPolicy.modal'
+                    '@/pages/object-storage/users/import-policy/[userId]/ImportPolicy.modal'
                   ),
                 ),
               },
@@ -122,7 +126,7 @@ export default [
                 id: 'users.enable',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/users/enableS3/EnableS3.modal'
+                    '@/pages/object-storage/users/enable/EnableUserS3.modal'
                   ),
                 ),
               },
@@ -130,7 +134,9 @@ export default [
                 path: 'disable/:userId',
                 id: 'users.disable',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/object-storage/users/delete/Delete.modal'),
+                  import(
+                    '@/pages/object-storage/users/disable/DisableUser.modal'
+                  ),
                 ),
               },
             ],
@@ -148,13 +154,13 @@ export default [
         path: 'new',
         id: 'create',
         ...lazyLoadRoute(() =>
-          import('@/pages/object-storage/create/Create.page'),
+          import('@/pages/object-storage/new/CreateObjectStorage.page'),
         ),
       },
       {
         path: 'swift/:swiftId',
         ...lazyLoadRoute(() =>
-          import('@/pages/object-storage/storage/swiftId/Swift.layout'),
+          import('@/pages/object-storage/swift/[swiftId]/Swift.layout'),
         ),
         children: [
           {
@@ -162,7 +168,7 @@ export default [
             id: 'swift.dashboard',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/swiftId/dashboard/Dashboard.page'
+                '@/pages/object-storage/swift/[swiftId]/dashboard/SwiftDashboard.page'
               ),
             ),
             children: [
@@ -171,7 +177,7 @@ export default [
                 id: 'swift.dashboard.delete',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/swiftId/dashboard/delete/Delete.modal'
+                    '@/pages/object-storage/swift/[swiftId]/dashboard/delete/DeleteSwiftStorage.modal'
                   ),
                 ),
               },
@@ -182,7 +188,7 @@ export default [
             id: 'swift.dashboard.objects',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/swiftId/objects/Objects.page'
+                '@/pages/object-storage/swift/[swiftId]/objects/ListSwiftObjects.page'
               ),
             ),
             children: [
@@ -191,7 +197,7 @@ export default [
                 id: 'swift.dashboard.objects.delete',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/swiftId/objects/delete/DeleteObject.modal'
+                    '@/pages/object-storage/swift/[swiftId]/objects/delete/DeleteSwiftObject.modal'
                   ),
                 ),
               },
@@ -200,7 +206,7 @@ export default [
                 id: 'swift.dashboard.objects.add',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/swiftId/objects/add/Add.modal'
+                    '@/pages/object-storage/swift/[swiftId]/objects/add/AddSwiftObject.modal'
                   ),
                 ),
               },
@@ -211,7 +217,7 @@ export default [
       {
         path: 's3/:region/:s3Name',
         ...lazyLoadRoute(() =>
-          import('@/pages/object-storage/storage/s3Id/S3.layout'),
+          import('@/pages/object-storage/s3/[region]/[s3Name]/S3.layout'),
         ),
         children: [
           {
@@ -222,7 +228,7 @@ export default [
             path: 'objects',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/s3Id/objects/Objects.layout'
+                '@/pages/object-storage/s3/[region]/[s3Name]/objects/S3Objects.layout'
               ),
             ),
             children: [
@@ -231,7 +237,7 @@ export default [
                 id: 's3.objects.list',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/objects/Objects.page'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/objects/ListS3Objects.page'
                   ),
                 ),
                 children: [
@@ -240,7 +246,7 @@ export default [
                     id: 's3.objects.add',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/add/Add.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/add/AddS3Object.modal'
                       ),
                     ),
                   },
@@ -249,7 +255,7 @@ export default [
                     id: 's3.objects.restore',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/restore/Restore.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/restore/RestoreS3ObjectFromList.modal'
                       ),
                     ),
                   },
@@ -258,7 +264,7 @@ export default [
                     id: 's3.objects.delete',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/delete/DeleteS3Object.modal'
                       ),
                     ),
                   },
@@ -267,7 +273,7 @@ export default [
                     id: 's3.object.version.delete',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/versions/delete/DeleteS3ObjectVersion.modal'
                       ),
                     ),
                   },
@@ -276,7 +282,7 @@ export default [
                     id: 's3.objects.bulk-delete',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/bulk-delete/BulkDeleteS3Objects.modal'
                       ),
                     ),
                   },
@@ -286,7 +292,7 @@ export default [
                 path: 'object',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/objects/object/Object.layout'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/S3Object.layout'
                   ),
                 ),
                 children: [
@@ -295,7 +301,7 @@ export default [
                     id: 's3.object.dashboard',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/Object.page'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/S3Object.page'
                       ),
                     ),
                     children: [
@@ -304,7 +310,7 @@ export default [
                         id: 's3.object.change-storage-class',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/object/change-storage-class/ChangeStorageClass.modal'
+                            '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/change-storage-class/ChangeS3ObjectStorageClass.modal'
                           ),
                         ),
                       },
@@ -313,7 +319,7 @@ export default [
                         id: 's3.object.delete',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/delete/DeleteObject.modal'
+                            '@/pages/object-storage/s3/[region]/[s3Name]/objects/delete/DeleteS3Object.modal'
                           ),
                         ),
                       },
@@ -322,7 +328,7 @@ export default [
                         id: 's3.object.restore',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/object/restore/Restore.modal'
+                            '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/restore/RestoreS3Object.modal'
                           ),
                         ),
                       },
@@ -333,7 +339,7 @@ export default [
                     id: 's3.object.versions',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/objects/object/versions/Versions.page'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/versions/S3ObjectVersions.page'
                       ),
                     ),
                     children: [
@@ -342,7 +348,7 @@ export default [
                         id: 'versions.delete',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/object/versions/delete/DeleteObjectVersion.modal'
+                            '@/pages/object-storage/s3/[region]/[s3Name]/objects/object/versions/delete/DeleteS3ObjectVersion.modal'
                           ),
                         ),
                       },
@@ -351,7 +357,7 @@ export default [
                         id: 'versions.bulk-delete',
                         ...lazyLoadRoute(() =>
                           import(
-                            '@/pages/object-storage/storage/s3Id/objects/bulk-delete/BulkDeleteObjects.modal'
+                            '@/pages/object-storage/s3/[region]/[s3Name]/objects/bulk-delete/BulkDeleteS3Objects.modal'
                           ),
                         ),
                       },
@@ -366,7 +372,7 @@ export default [
             id: 's3.dashboard.properties',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/s3Id/dashboard/Dashboard.page'
+                '@/pages/object-storage/s3/[region]/[s3Name]/dashboard/S3Dashboard.page'
               ),
             ),
             children: [
@@ -375,7 +381,7 @@ export default [
                 id: 's3.dashboard.delete',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/dashboard/delete/Delete.modal'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/dashboard/delete/DeleteS3Storage.modal'
                   ),
                 ),
               },
@@ -384,7 +390,7 @@ export default [
                 id: 'settings.encryption',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/dashboard/_components/activate-encryption/ActivateEncryption.modal'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/dashboard/_components/activate-encryption/ActivateEncryption.modal'
                   ),
                 ),
               },
@@ -393,7 +399,7 @@ export default [
                 id: 'settings.versionning',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/dashboard/_components/activate-versionning/ActivateVersionning.modal'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/dashboard/_components/activate-versionning/ActivateVersionning.modal'
                   ),
                 ),
               },
@@ -402,7 +408,7 @@ export default [
                 id: 'settings.object-lock',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/dashboard/_components/object-lock-options/ObjectLockOptions.sheet'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/dashboard/_components/object-lock-options/ObjectLockOptions.modal'
                   ),
                 ),
               },
@@ -413,7 +419,7 @@ export default [
             id: 's3.dashboard.replication',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/object-storage/storage/s3Id/replication/Replication.page'
+                '@/pages/object-storage/s3/[region]/[s3Name]/replication/Replication.page'
               ),
             ),
             children: [
@@ -421,7 +427,7 @@ export default [
                 id: 'replication.list',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/list/List.page'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/replication/ListReplicationRules.page'
                   ),
                 ),
                 children: [
@@ -433,7 +439,7 @@ export default [
                     id: 'replication.delete',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/object-storage/storage/s3Id/replication/delete/Delete.modal'
+                        '@/pages/object-storage/s3/[region]/[s3Name]/replication/delete/[ruleId]/DeleteReplicationRule.modal'
                       ),
                     ),
                   },
@@ -444,7 +450,7 @@ export default [
                 id: 'replication.new',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/new/New.page'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/replication/new/CreateReplicationRule.page'
                   ),
                 ),
               },
@@ -453,7 +459,7 @@ export default [
                 id: 'replication.edit',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/edit/Edit.page'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/replication/edit/[ruleId]/UpdateReplicationRule.page'
                   ),
                 ),
               },
@@ -462,7 +468,7 @@ export default [
                 id: 'replication.storage-job',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/object-storage/storage/s3Id/replication/storage-job/StorageJob.modal'
+                    '@/pages/object-storage/s3/[region]/[s3Name]/replication/storage-job/StorageJob.modal'
                   ),
                 ),
               },

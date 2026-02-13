@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
  * Fetches the current user
  * @returns The current user
  */
-export function useUser() {
+const useUser = () => {
   const shellCtx = useShell();
   const [user, setUser] = useState<User>();
   // fetch initial user
@@ -18,4 +18,6 @@ export function useUser() {
     fetchUser();
   }, [shellCtx.environment]);
   return user;
-}
+};
+
+export { useUser };

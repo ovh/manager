@@ -19,10 +19,10 @@ type Row<T> =
   | { type: RowType.folder; prefix: string }
   | { type: RowType.file; file: T };
 
-export function BrowserFileList<T extends { name: string }>({
+const BrowserFileList = <T extends { name: string }>({
   className,
   renderFileRow,
-}: BrowserFileListProps<T>) {
+}: BrowserFileListProps<T>) => {
   const {
     prefix,
     setPrefix,
@@ -137,4 +137,6 @@ export function BrowserFileList<T extends { name: string }>({
       )}
     </div>
   );
-}
+};
+
+export { BrowserFileList };

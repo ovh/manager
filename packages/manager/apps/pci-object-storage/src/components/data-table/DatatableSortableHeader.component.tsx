@@ -3,14 +3,14 @@ import { SortingColumn } from '@tanstack/react-table';
 import { Button } from '@datatr-ux/uxlib';
 import { cn } from '@/lib/utils';
 
-interface SortableHeaderProps<TData> {
+export interface SortableHeaderProps<TData> {
   column: SortingColumn<TData>;
   children: React.ReactNode;
 }
-export function DatatableSortableHeader<TData>({
+const DatatableSortableHeader = <TData,>({
   column,
   children,
-}: SortableHeaderProps<TData>) {
+}: SortableHeaderProps<TData>) => {
   const sort = column.getIsSorted();
   let icon = <ChevronsUpDown className="ml-2 h-4 w-4" />;
   if (sort === 'asc') {
@@ -34,4 +34,6 @@ export function DatatableSortableHeader<TData>({
       {icon}
     </Button>
   );
-}
+};
+
+export { DatatableSortableHeader };

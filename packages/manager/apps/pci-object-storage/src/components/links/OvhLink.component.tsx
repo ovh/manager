@@ -7,14 +7,14 @@ interface OvhLinkProps {
   path: string;
   params?: Record<string, string | number | boolean>;
 }
-function OvhLink({
+const OvhLink = ({
   application,
   path,
   params = {},
   children,
   ...props
 }: React.AnchorHTMLAttributes<HTMLAnchorElement> &
-  OvhLinkProps & { disabled?: boolean }) {
+  OvhLinkProps & { disabled?: boolean }) => {
   const navigation = useNavigation();
   const [url, setUrl] = React.useState('');
   React.useEffect(() => {
@@ -33,6 +33,6 @@ function OvhLink({
       {children}
     </A>
   );
-}
+};
 
 export default OvhLink;

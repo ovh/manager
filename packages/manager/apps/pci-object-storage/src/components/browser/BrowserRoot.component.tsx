@@ -31,20 +31,20 @@ const BrowserContext = createContext<BrowserContextValue<{
   name: string;
 }> | null>(null);
 
-export function useBrowser<T extends { name: string }>() {
+const useBrowser = <T extends { name: string }>() => {
   const ctx = useContext(BrowserContext);
   if (!ctx) throw new Error('useBrowser must be used within <BrowserRoot>');
   return ctx as BrowserContextValue<T>;
-}
+};
 
-export function BrowserRoot<T extends NonNullable<unknown>>({
+const BrowserRoot = <T extends NonNullable<unknown>>({
   objects,
   keyField,
   getObjectKey,
   onDropFiles,
   onObjectClick,
   children,
-}: BrowserRootProps<T>) {
+}: BrowserRootProps<T>) => {
   const [prefix, setPrefix] = useState('');
   const contentScrollRef = useRef<HTMLDivElement>(null);
 
@@ -76,4 +76,6 @@ export function BrowserRoot<T extends NonNullable<unknown>>({
   return (
     <BrowserContext.Provider value={value}>{children}</BrowserContext.Provider>
   );
-}
+};
+
+export { BrowserRoot, useBrowser };

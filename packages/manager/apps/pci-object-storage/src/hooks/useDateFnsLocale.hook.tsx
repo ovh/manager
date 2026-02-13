@@ -1,7 +1,7 @@
 import { fr, de, enGB, es, frCA, it, pl, pt } from 'date-fns/locale';
 import { Locale, useLocale } from '@/hooks/useLocale';
 
-export function useDateFnsLocale() {
+const useDateFnsLocale = () => {
   const locale = useLocale();
   switch (locale) {
     case Locale.fr_FR:
@@ -23,4 +23,6 @@ export function useDateFnsLocale() {
     default:
       return enGB;
   }
-}
+};
+
+export { useDateFnsLocale };

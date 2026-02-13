@@ -1,7 +1,7 @@
 import { Children, ReactElement, ReactNode } from 'react';
 import DataTable from './index';
 
-export function DatatableHeader({ children }: { children: ReactNode }) {
+const DatatableHeader = ({ children }: { children: ReactNode }) => {
   // Helper function to check if a child is a ReactElement
   const isReactElement = (child: ReactNode): child is ReactElement =>
     !!child && typeof child === 'object' && 'type' in child;
@@ -29,4 +29,6 @@ export function DatatableHeader({ children }: { children: ReactNode }) {
       </div>
     </div>
   );
-}
+};
+
+export { DatatableHeader };

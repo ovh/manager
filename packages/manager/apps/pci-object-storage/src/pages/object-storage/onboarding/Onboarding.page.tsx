@@ -1,7 +1,7 @@
 import { Button } from '@datatr-ux/uxlib';
 import { useTranslation } from 'react-i18next';
 import onboardingImgSrc from '@/../public/assets/ObjectSto.png';
-import OnboardingTile from '../../../components/onboarding-tile/OnboardingTile.component';
+import OnboardingTile from '@/components/onboarding-tile/OnboardingTile.component';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';

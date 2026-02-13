@@ -9,7 +9,7 @@ import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/configuration/project';
 
 // Set the project mode, needed to track discovery actions
-function useProjectModeTracking() {
+const useProjectModeTracking = () => {
   const { shell } = useContext(ShellContext);
   const { setPciProjectMode } = shell.tracking;
   const { data: project } = usePciProject();
@@ -21,11 +21,11 @@ function useProjectModeTracking() {
       });
     }
   }, [project]);
-}
+};
 
 // Provide a function to track actions with the correct
 // type and level
-export function useTrackAction() {
+const useTrackAction = () => {
   useProjectModeTracking();
   const { shell } = useContext(ShellContext);
   const { trackClick } = shell.tracking;
@@ -37,10 +37,10 @@ export function useTrackAction() {
       level2: PCI_LEVEL2,
     });
   };
-}
+};
 
 // Fire a page tracking event when landing on the page
-export function useTrackPage(pageTracking: string) {
+const useTrackPage = (pageTracking: string) => {
   useProjectModeTracking();
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
@@ -50,9 +50,9 @@ export function useTrackPage(pageTracking: string) {
       level2: PCI_LEVEL2,
     });
   }, []);
-}
+};
 
-export function useTrackPageAuto() {
+const useTrackPageAuto = () => {
   useProjectModeTracking();
   const { shell } = useContext(ShellContext);
   const { trackPage } = shell.tracking;
@@ -85,4 +85,6 @@ export function useTrackPageAuto() {
   useEffect(() => {
     hasTrackedRef.current = false;
   }, [location.pathname]);
-}
+};
+
+export { useTrackAction, useTrackPage, useTrackPageAuto };

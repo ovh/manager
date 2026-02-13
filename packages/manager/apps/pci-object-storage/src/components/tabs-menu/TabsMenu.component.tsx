@@ -57,7 +57,7 @@ const TabsMenu = ({ tabs }: TabsMenuProps) => {
   );
 };
 
-TabsMenu.Skeleton = function TabsMenuSkeleton() {
+TabsMenu.Skeleton = () => {
   return (
     <div
       className="relative flex overflow-x-auto mb-4 w-full border-b border-gray-100"

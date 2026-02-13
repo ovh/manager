@@ -6,7 +6,7 @@ import { useUserActivityContext } from '@/contexts/UserActivityContext';
 import { useGetStorages } from '@/data/hooks/storage/useGetStorages.hook';
 import { useGetUsers } from '@/data/hooks/user/useGetUsers.hook';
 import { POLLING } from '@/configuration/polling.constants';
-import StoragesList from './storage/_components/StorageListTable.component';
+import StoragesList from './_components/storages/StorageListTable.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { useGetRegions } from '@/data/hooks/region/useGetRegions.hook';
 import queryClient from '@/query.client';
@@ -37,7 +37,7 @@ export const Loader = ({ params }: ObjectStorageProps) => {
     });
 };
 
-export default function DashboardLayout() {
+const ObjectStorage = () => {
   const { t } = useTranslation('pci-object-storage');
   const { isUserActive } = useUserActivityContext();
   const { projectId } = useParams();
@@ -85,4 +85,6 @@ export default function DashboardLayout() {
       </div>
     </>
   );
-}
+};
+
+export default ObjectStorage;

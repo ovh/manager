@@ -20,7 +20,7 @@ interface VirtualizedBrowserProps<T> {
   isFetching?: boolean; // Whether the query is currently fetching (for initial loads/searches)
 }
 
-export function VirtualizedBrowser<T>({
+const VirtualizedBrowser = <T,>({
   items,
   hasNextPage,
   isFetchingNextPage,
@@ -34,7 +34,7 @@ export function VirtualizedBrowser<T>({
   preloadThreshold = VIRTUALIZED_BROWSER.DEFAULT_PRELOAD_THRESHOLD,
   onDropFiles,
   isFetching = false,
-}: VirtualizedBrowserProps<T>) {
+}: VirtualizedBrowserProps<T>) => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const parentRef = useRef<HTMLDivElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);
@@ -171,4 +171,6 @@ export function VirtualizedBrowser<T>({
       </div>
     </div>
   );
-}
+};
+
+export { VirtualizedBrowser };
