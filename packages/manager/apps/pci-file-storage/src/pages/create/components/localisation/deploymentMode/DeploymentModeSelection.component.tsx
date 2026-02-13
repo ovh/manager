@@ -68,12 +68,12 @@ export const DeploymentModeSelection = () => {
         name="deploymentModes"
         control={control}
         render={({ field }) => (
-          <CheckboxGroup name="deploymentModes" className="flex flex-row flex-wrap gap-4">
+          <CheckboxGroup name="deploymentModes" className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+
             {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => (
               <PciCard
                 selectable
                 selected={field.value.includes(mode)}
-                className="h-44 w-56"
                 compact
                 key={mode}
                 onClick={handleSelect(field, mode)}
@@ -89,12 +89,13 @@ export const DeploymentModeSelection = () => {
                   </Checkbox>
                 </PciCard.Header>
 
-                <PciCard.Content className="justify-between">
+                <PciCard.Content className="h-16">
                   <Text preset={TEXT_PRESET.small}>{t(`create:${descriptionKey}`)}</Text>
-                  <div className="mt-4 flex justify-center">
-                    <Image className="h-20" />
-                  </div>
                 </PciCard.Content>
+
+                <PciCard.Footer className="flex justify-center w-full">
+                  <Image className="h-20" />
+                </PciCard.Footer>
               </PciCard>
             ))}
           </CheckboxGroup>
