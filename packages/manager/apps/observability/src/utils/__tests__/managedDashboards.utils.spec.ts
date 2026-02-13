@@ -1,12 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
 import { DatasourceConfiguration } from '@/types/DatasourceConfiguration';
-import { Grafana, GrafanaListing } from '@/types/managedDashboards.type';
+import { Grafana, GrafanaListing, GrafanaState } from '@/types/managedDashboards.type';
 import { mapGrafanaToListing } from '@/utils/managedDashboards.utils';
+
+type GrafanaOverrides = Omit<Partial<Grafana>, 'currentState'> & {
+  currentState?: Partial<GrafanaState>;
+};
 
 describe('managedDashboards.utils', () => {
   describe('mapGrafanaToListing', () => {
-    const createGrafana = (overrides: Partial<Grafana>): Grafana => {
+    const createGrafana = (overrides: GrafanaOverrides): Grafana => {
       const baseGrafana: Grafana = {
         id: 'grafana-default',
         createdAt: '2025-11-21T14:26:14.041Z',
@@ -22,6 +26,7 @@ describe('managedDashboards.utils', () => {
             value: '10.0.0',
             deprecated: false,
           },
+          release: { id: 'release-default' },
         },
       };
 
@@ -39,6 +44,7 @@ describe('managedDashboards.utils', () => {
             ...baseGrafana.currentState.version,
             ...overrides.currentState?.version,
           },
+          release: overrides.currentState?.release ?? baseGrafana.currentState.release,
         },
       };
     };

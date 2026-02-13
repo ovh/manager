@@ -5,7 +5,7 @@ import {
   POLLING_STATUSES,
   getPollingInterval,
   isPollingStatus,
-} from '@/data/hooks/tenants/useTenants.polling';
+} from '@/data/hooks/polling';
 import { ResourceStatus } from '@/types/resource.type';
 
 describe('useTenants.polling', () => {

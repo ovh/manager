@@ -226,6 +226,7 @@ const mockGrafanas: Grafana[] = [
         value: '1.3.45',
         deprecated: false,
       },
+      release: { id: 'release-1' },
     },
     iam: {
       id: '4691a219-7eea-4385-b64b-80f7220cf19c',
@@ -260,6 +261,7 @@ const mockGrafanas: Grafana[] = [
         value: '1.0.1',
         deprecated: true,
       },
+      release: { id: 'release-2' },
     },
     iam: {
       id: '155c54c1-7efd-49e3-9358-b1a2860a56cc',
@@ -288,6 +290,7 @@ const mockGrafanas: Grafana[] = [
         value: '2.0.0',
         deprecated: false,
       },
+      release: { id: 'release-3' },
     },
     iam: {
       id: 'grafana-3',
@@ -583,6 +586,7 @@ describe('ManagedDashboardsListDatagrid', () => {
               value: '1.0.0',
               deprecated: false,
             },
+            release: { id: 'release-incomplete' },
           },
           iam: undefined,
         },
@@ -620,6 +624,7 @@ describe('ManagedDashboardsListDatagrid', () => {
               value: '1.0.0',
               deprecated: false,
             },
+            release: { id: 'release-no-infra' },
           },
           iam: {
             id: 'grafana-no-infra',
