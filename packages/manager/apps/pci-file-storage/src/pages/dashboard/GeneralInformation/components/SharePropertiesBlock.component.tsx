@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Clipboard, ClipboardControl, ClipboardTrigger, Text } from '@ovhcloud/ods-react';
 
-import { ActionLink } from '@/components/action-link/ActionLink.component';
 import { DashboardCardLayout } from '@/components/dashboard/DashboardCardLayout.component';
 import { DashboardTileBlock } from '@/components/dashboard/DashboardTileBlock.component';
 import { useShare } from '@/data/hooks/shares/useShare';
@@ -12,7 +11,7 @@ import { useShareParams } from '@/hooks/useShareParams';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 
 export const SharePropertiesBlock: React.FC = () => {
-  const { t } = useTranslation('general_information');
+  const { t } = useTranslation(['general_information', 'share']);
   const { region, shareId } = useShareParams();
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,
@@ -20,22 +19,13 @@ export const SharePropertiesBlock: React.FC = () => {
 
   return (
     <DashboardCardLayout title={t('cards.properties')}>
-      <DashboardTileBlock label={t('fields.protocol')} isLoading={isLoading} withoutDivider>
+      <DashboardTileBlock label={t('share:fields.protocol')} isLoading={isLoading} withoutDivider>
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
-      <DashboardTileBlock label={t('fields.allocated_size')} isLoading={isLoading}>
-        <div className="flex flex-col gap-1">
-          <Text preset="paragraph">{shareDetails != null ? `${shareDetails.size} GB` : null}</Text>
-          {shareDetails?.enabledActions.includes('update_size') && (
-            <ActionLink
-              path="#"
-              className="w-fit text-[--ods-color-primary-600]"
-              label={t('actions.upgrade_share')}
-            />
-          )}
-        </div>
+      <DashboardTileBlock label={t('share:fields.allocated_capacity')} isLoading={isLoading}>
+        <Text preset="paragraph">{shareDetails != null ? `${shareDetails.size} GB` : null}</Text>
       </DashboardTileBlock>
-      <DashboardTileBlock label={t('fields.mount_path')} isLoading={isLoading}>
+      <DashboardTileBlock label={t('share:fields.mount_path')} isLoading={isLoading}>
         <div className="flex flex-col gap-3">
           {shareDetails?.mountPaths?.map((path) => (
             <Clipboard key={path} value={path}>

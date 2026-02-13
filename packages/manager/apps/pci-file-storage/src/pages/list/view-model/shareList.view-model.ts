@@ -41,13 +41,13 @@ export const shareEnabledActionsToMenuActions = (
 ): Map<string, TShareListRowAction[]> => {
   const items: TShareListRowAction[] = [
     {
-      labelTranslationKey: 'list:actions.manage',
+      labelTranslationKey: 'share:actions.manage',
       link: { path: `./${region}/${id}`, state: { region } },
     },
   ];
   if (enabledActions.includes('delete')) {
     items.push({
-      labelTranslationKey: 'list:actions.delete',
+      labelTranslationKey: 'share:actions.delete',
       link: { path: `./${subRoutes.shareDelete}?region=${region}&shareId=${id}` },
       isCritical: true,
     });

@@ -13,14 +13,14 @@ import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component'
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
-  const { t } = useTranslation(['list', 'regions']);
+  const { t } = useTranslation(['share', 'list', 'regions']);
 
   return useMemo(
     () => [
       {
         id: 'name_id',
         accessorKey: 'name',
-        header: t('list:columns.name_id'),
+        header: t('share:fields.name_id'),
         cell: ({ row }) => (
           <div className="max-w-[300px]">
             <Link as={RouterLink} to={`./${row.original.region}/${row.original.id}`}>
@@ -35,7 +35,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       {
         id: 'region',
         accessorKey: 'region',
-        header: t('list:columns.region'),
+        header: t('share:fields.region'),
         cell: ({ row }): string => t(row.original.regionDisplayKey, { micro: row.original.region }),
         minSize: 250,
         maxSize: 250,
@@ -43,17 +43,17 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       {
         id: 'protocol',
         accessorKey: 'protocol',
-        header: t('list:columns.protocol'),
+        header: t('share:fields.protocol'),
         minSize: 97,
         size: 97,
       },
       {
         id: 'allocated_capacity',
         accessorKey: 'size',
-        header: t('list:columns.allocated_capacity'),
+        header: t('share:fields.allocated_capacity'),
         cell: ({ getValue }): string => {
           const capacity = getValue<number>() ?? 0;
-          return t('list:columns.allocated_capacity_value', { capacity });
+          return t('share:fields.allocated_capacity_value', { capacity });
         },
         minSize: 140,
         maxSize: 140,
@@ -61,7 +61,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       {
         id: 'status',
         accessorKey: 'status',
-        header: t('list:columns.status'),
+        header: t('share:fields.status'),
         cell: ({ row }) => {
           const { labelKey, badgeColor } = row.original.statusDisplay;
           return <ShareStatusBadge labelKey={labelKey} badgeColor={badgeColor} />;
@@ -69,7 +69,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
       },
       {
         id: 'actions',
-        header: () => <div className="flex justify-center">{t('list:columns.actions')}</div>,
+        header: () => <div className="flex justify-center">{t('share:actions.column')}</div>,
         cell: ({ row }) => (
           <div className="flex justify-center">
             <ActionsMenu items={row.original.actions} />

@@ -1,9 +1,9 @@
 {
   "title": "Créer un share",
-  "description": "Créez un partage de fichiers disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
+  "description": "Créez un share disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
   "name": {
     "title": "Nom du share",
-    "label": "Choisissez un nom pour votre fichier de partage",
+    "label": "Choisissez un nom pour votre share",
     "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et ne pas dépasser 255 caractères.",
     "error": {
       "too_small": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
@@ -73,7 +73,7 @@
   },
   "network": {
     "title": "Réseau privé",
-    "description": "Sélectionnez le réseau privé auquel vous souhaitez que vos instances se connectent à votre fichier de partage",
+    "description": "Sélectionnez le réseau privé auquel vous souhaitez lier votre share",
     "label": "Sélectionner un réseau privé existant",
     "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région",
     "subnet": {

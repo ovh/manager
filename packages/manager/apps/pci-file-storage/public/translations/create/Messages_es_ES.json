@@ -1,10 +1,10 @@
 {
   "name": {
-    "title": "Nombre del recurso compartido",
-    "label": "Elija un nombre para su archivo compartido",
+    "title": "Nombre del share",
+    "label": "Elija un nombre para su share",
     "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos y no debe exceder 255 caracteres.",
     "error": {
-      "too_small": "El nombre del recurso compartido no puede estar vacío. Por favor, introduzca un nombre.",
+      "too_small": "El nombre del share no puede estar vacío. Por favor, introduzca un nombre.",
       "too_big": "Formato de nombre no válido",
       "invalid_format": "Formato de nombre no válido"
     }
@@ -71,7 +71,7 @@
   },
   "network": {
     "title": "Red privada",
-    "description": "Seleccione la red privada a la que desea que sus instancias se conecten a su archivo de compartir",
+    "description": "Seleccione la red privada a la que desea vincular su share",
     "label": "Seleccionar una red privada existente",
     "empty": "Lo siento, pero no tiene una red privada para esta región",
     "subnet": {

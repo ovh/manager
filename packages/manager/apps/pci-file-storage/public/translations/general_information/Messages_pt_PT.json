@@ -3,20 +3,6 @@
     "informations": "Informações",
     "properties": "Propriedades"
   },
-  "fields": {
-    "id": "ID",
-    "share_name": "Nome do share",
-    "status": "Estado",
-    "location": "Localização",
-    "creation_date": "Data de criação",
-    "protocol": "Protocolo",
-    "allocated_size": "Tamanho alocado do share",
-    "mount_path": "Caminho de montagem"
-  },
-  "actions": {
-    "upgrade_share": "Atualizar o share",
-    "delete": "Suprimir"
-  },
   "clipboard": {
     "copy": "Copiar para a área de transferência",
     "copy_success": "Copiado!"

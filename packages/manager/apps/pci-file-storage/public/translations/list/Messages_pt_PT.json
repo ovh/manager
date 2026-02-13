@@ -1,17 +1,4 @@
 {
   "title": "File Storage",
-  "columns": {
-    "name_id": "Nome / ID",
-    "region": "Localização",
-    "protocol": "Protocolo",
-    "allocated_capacity": "Capacidade alocada",
-    "allocated_capacity_value": "{{capacity}} Gio",
-    "status": "Estado",
-    "actions": "Ações"
-  },
-  "actionButton": "Criar um share",
-  "actions": {
-    "manage": "Gerir",
-    "delete": "Suprimir"
-  }
+  "actionButton": "Criar um share"
 }

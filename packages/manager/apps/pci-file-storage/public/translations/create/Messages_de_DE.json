@@ -1,7 +1,7 @@
 {
   "name": {
     "title": "Name des Shares",
-    "label": "Wählen Sie einen Namen für Ihre Freigabedatei",
+    "label": "Wählen Sie einen Namen für Ihren Share",
     "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten und darf 255 Zeichen nicht überschreiten.",
     "error": {
       "too_small": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
@@ -71,7 +71,7 @@
   },
   "network": {
     "title": "Privates Netzwerk",
-    "description": "Wählen Sie das private Netzwerk aus, mit dem Ihre Instanzen eine Verbindung zu Ihrer Freigabedatei herstellen sollen",
+    "description": "Wählen Sie das private Netzwerk aus, an das Sie Ihren share verknüpfen möchten",
     "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
     "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region",
     "subnet": {

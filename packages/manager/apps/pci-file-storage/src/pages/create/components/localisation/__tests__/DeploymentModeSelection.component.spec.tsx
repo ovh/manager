@@ -52,13 +52,17 @@ vi.mock('@/components/new-lib/pciCard/PciCard.component', () => {
     PciCardContent: ({ children }: PropsWithChildren) => (
       <div data-testid="pci-card-content">{children}</div>
     ),
+    PciCardFooter: ({ children }: PropsWithChildren) => (
+      <div data-testid="pci-card-footer">{children}</div>
+    ),
   };
 
   // @ts-ignore
   mock.PciCard.Header = mock.PciCardHeader;
   // @ts-ignore
   mock.PciCard.Content = mock.PciCardContent;
-
+  // @ts-ignore
+  mock.PciCard.Footer = mock.PciCardFooter;
   return mock;
 });
 

@@ -1,7 +1,7 @@
 {
   "name": {
     "title": "Nome do share",
-    "label": "Escolha um nome para o seu arquivo de partilha",
+    "label": "Escolha um nome para o seu share",
     "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não deve exceder 255 caracteres.",
     "error": {
       "too_small": "O nome do share não pode estar vazio. Por favor, insira um nome.",
@@ -71,7 +71,7 @@
   },
   "network": {
     "title": "Rede Privada",
-    "description": "Selecione a rede privada à qual deseja que suas instâncias se conectem ao seu arquivo de compartilhamento",
+    "description": "Selecione a rede privada à qual deseja vincular o seu share",
     "label": "Selecionar uma rede privada existente",
     "empty": "Desculpe, mas você não tem uma rede privada para esta região",
     "subnet": {

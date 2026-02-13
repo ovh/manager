@@ -39,7 +39,7 @@ describe('useShareColumn', () => {
     const cell = capacityColumn.cell?.({
       getValue: () => sizeBytes,
     } as never);
-    expect(cell).toBe('list:columns.allocated_capacity_value{"capacity":150}');
+    expect(cell).toBe('share:fields.allocated_capacity_value{"capacity":150}');
   });
 
   it('should use region column with cell that translates regionDisplayKey', () => {
@@ -90,7 +90,7 @@ describe('useShareColumn', () => {
         actions: new Map([
           [
             'actions',
-            [{ labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } }],
+            [{ labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } }],
           ],
         ]),
       },
@@ -133,9 +133,9 @@ describe('useShareColumn', () => {
           [
             'actions',
             [
-              { labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } },
+              { labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } },
               {
-                labelTranslationKey: 'list:actions.delete',
+                labelTranslationKey: 'share:actions.delete',
                 link: { path: './GRA9/share-1/delete' },
               },
             ],
@@ -156,7 +156,7 @@ describe('useShareColumn', () => {
     await act(async () => {
       await user.click(trigger);
     });
-    expect(screen.getByRole('link', { name: 'list:actions.manage' })).toBeVisible();
-    expect(screen.getByRole('link', { name: 'list:actions.delete' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.manage' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'share:actions.delete' })).toBeVisible();
   });
 });
