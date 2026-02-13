@@ -22,7 +22,10 @@
   "managedRancherServiceGettingStartedTitle3": "Comprendere il ciclo di vita di Managed Rancher Service",
   "managedRancherServiceGettingStartedTitleDescription3": "Scopri il ciclo di vita delle versioni di Rancher su Managed Rancher Service",
   "freeTrialEligibilityTitle": "🎉 Sei idoneo per una prova gratuita",
-  "freeTrialCreditStandard": "250€ di credito per il Piano Standard (~1 mese)",
-  "freeTrialCreditOvhEdition": "100€ di credito per il Piano OVHcloud Edition (~1 mese)",
-  "freeTrialCreditApplied": "Il credito verrà applicato automaticamente al tuo primo servizio."
+  "freeTrialCreditStandard": "{{amount}} di credito per il Piano Standard (~1 mese)",
+  "freeTrialCreditOvhEdition": "{{amount}} di credito per il Piano OVHcloud Edition (~1 mese)",
+  "freeTrialCreditApplied": "Il credito verrà applicato automaticamente al tuo primo servizio.",
+  "orderButtonLabelFreeTrial": "Avvia la mia prova gratuita",
+  "rancherGuidesLink": "Accedi alle guide Rancher",
+  "videoTitle": "Video di presentazione di Rancher"
 }
