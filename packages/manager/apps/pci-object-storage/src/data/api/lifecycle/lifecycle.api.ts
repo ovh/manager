@@ -8,6 +8,22 @@ export interface UpdateLifecycleParams {
   lifecycleRules: storages.LifecycleRule[];
 }
 
+export interface DeleteLifecycleParams {
+  projectId: string;
+  region: string;
+  name: string;
+}
+
+export const deleteLifecycle = async ({
+  projectId,
+  region,
+  name,
+}: DeleteLifecycleParams) => {
+  return apiClient.v6.delete(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/lifecycle`,
+  );
+};
+
 export const updateLifecycle = async ({
   projectId,
   region,

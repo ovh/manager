@@ -1,6 +1,7 @@
 import { z } from 'zod';
+import storages from '@/types/Storages';
+import { STORAGE_CLASS_TIER } from '@/hooks/useAvailableStorageClasses.hook';
 import {
-  STORAGE_CLASS_TIER,
   MIN_TRANSITION_GAP_DAYS,
   getMaxTransitionDays,
 } from './lifecycleTransition.utils';
@@ -17,14 +18,15 @@ const validateTransitionGaps = (
   if (transitions.length <= 1) return;
 
   const indexed = transitions.map((tr, originalIndex) => ({
-    storageClass: String(tr.storageClass ?? ''),
+    storageClass: String(tr.storageClass),
     days: Number(tr[daysKey]) || 0,
     originalIndex,
   }));
 
   const sorted = indexed.sort(
     (a, b) =>
-      STORAGE_CLASS_TIER[a.storageClass] - STORAGE_CLASS_TIER[b.storageClass],
+      STORAGE_CLASS_TIER[a.storageClass as storages.StorageClassEnum] -
+      STORAGE_CLASS_TIER[b.storageClass as storages.StorageClassEnum],
   );
 
   for (let i = 1; i < sorted.length; i += 1) {
@@ -80,7 +82,12 @@ export const createLifecycleSchema = (t: TFunction) =>
       hasFilter: z.boolean().default(false),
       prefix: z.string().default(''),
       tags: z
-        .array(z.object({ key: z.string(), value: z.string() }))
+        .array(
+          z.object({
+            key: z.string(),
+            value: z.string(),
+          }),
+        )
         .default([]),
 
       hasCurrentVersionTransitions: z.boolean().default(false),
@@ -91,7 +98,7 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum),
           }),
         )
         .default([]),
@@ -112,13 +119,36 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.string(),
+            storageClass: z.nativeEnum(storages.StorageClassEnum),
+            newerNoncurrentVersions: z.coerce
+              .number()
+              .int()
+              .min(0)
+              .default(0),
           }),
         )
         .default([]),
 
       hasNoncurrentVersionExpiration: z.boolean().default(false),
       noncurrentVersionExpirationDays: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+      noncurrentVersionExpirationNewerVersions: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+
+      hasObjectSizeGreaterThan: z.boolean().default(false),
+      objectSizeGreaterThan: z.coerce
+        .number()
+        .int()
+        .min(0)
+        .default(0),
+      hasObjectSizeLessThan: z.boolean().default(false),
+      objectSizeLessThan: z.coerce
         .number()
         .int()
         .min(0)
@@ -132,6 +162,33 @@ export const createLifecycleSchema = (t: TFunction) =>
         .default(0),
     })
     .superRefine((data, ctx) => {
+      if (
+        data.hasFilter &&
+        data.hasObjectSizeGreaterThan &&
+        data.hasObjectSizeLessThan &&
+        data.objectSizeGreaterThan > 0 &&
+        data.objectSizeLessThan > 0 &&
+        data.objectSizeGreaterThan >= data.objectSizeLessThan
+      ) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: t('formObjectSizeRangeError'),
+          path: ['objectSizeGreaterThan'],
+        });
+      }
+
+      if (data.hasFilter && data.tags) {
+        data.tags.forEach((tag, index) => {
+          if (tag.key.trim() === '' && tag.value.trim() !== '') {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: t('formTagKeyRequired'),
+              path: ['tags', index, 'key'],
+            });
+          }
+        });
+      }
+
       if (data.hasCurrentVersionTransitions) {
         validateTransitionGaps(data.transitions, 'days', 'transitions', t, ctx);
       }

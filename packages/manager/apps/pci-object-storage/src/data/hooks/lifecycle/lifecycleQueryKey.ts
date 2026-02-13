@@ -1,9 +1,18 @@
+export type LifecycleStorageParams = {
+  projectId: string;
+  region: string;
+  name: string;
+};
+
 export const getLifecycleQueryKey = ({
   projectId,
   region,
   name,
-}: {
-  projectId: string;
-  region: string;
-  name: string;
-}) => [projectId, 'region', region, 'storage', name, 'lifecycle'];
+}: LifecycleStorageParams) => [
+  projectId,
+  'region',
+  region,
+  'storage',
+  name,
+  'lifecycle',
+];

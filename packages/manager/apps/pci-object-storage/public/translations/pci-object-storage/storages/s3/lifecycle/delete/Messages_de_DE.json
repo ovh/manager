@@ -1,0 +1,10 @@
+{
+  "deleteLifecycleTitle": "Delete a lifecycle rule",
+  "deleteLifecycleDescription": "Are you sure you want to delete the lifecycle rule <strong>{{decodedRuleId}}</strong>?",
+  "deleteLifecycleButtonConfirm": "Delete",
+  "deleteLifecycleButtonCancel": "Cancel",
+  "deleteLifecycleToastSuccessTitle": "Rule deleted",
+  "deleteLifecycleToastSuccessMessage": "Your lifecycle rule has been deleted.",
+  "deleteLifecycleToastErrorTitle": "Deletion error",
+  "deleteLifecycleToastErrorMessage": "An error occurred while deleting your lifecycle rule: {{ message }}."
+}

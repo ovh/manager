@@ -10,6 +10,10 @@ export const buildLifecycleRule = (
     hasFilter,
     prefix,
     tags,
+    hasObjectSizeGreaterThan,
+    objectSizeGreaterThan,
+    hasObjectSizeLessThan,
+    objectSizeLessThan,
     hasCurrentVersionTransitions,
     transitions,
     hasCurrentVersionExpiration,
@@ -34,7 +38,12 @@ export const buildLifecycleRule = (
 
   const hasPrefix = hasFilter && prefix;
   const hasTags = hasFilter && Object.keys(filteredTags).length > 0;
-  const hasFilterData = hasPrefix || hasTags;
+  const hasSizeGreaterThan =
+    hasFilter && hasObjectSizeGreaterThan && objectSizeGreaterThan > 0;
+  const hasSizeLessThan =
+    hasFilter && hasObjectSizeLessThan && objectSizeLessThan > 0;
+  const hasFilterData =
+    hasPrefix || hasTags || hasSizeGreaterThan || hasSizeLessThan;
 
   const rule: storages.LifecycleRule = {
     id: ruleId,
@@ -43,6 +52,8 @@ export const buildLifecycleRule = (
       filter: {
         ...(hasPrefix && { prefix }),
         ...(hasTags && { tags: filteredTags }),
+        ...(hasSizeGreaterThan && { objectSizeGreaterThan }),
+        ...(hasSizeLessThan && { objectSizeLessThan }),
       },
     }),
     ...(hasCurrentVersionTransitions &&
@@ -51,7 +62,7 @@ export const buildLifecycleRule = (
           .filter((t) => t.days > 0)
           .map((t) => ({
             days: t.days,
-            storageClass: t.storageClass as storages.LifecycleRuleTransitionStorageClassEnum,
+            storageClass: (t.storageClass as unknown) as storages.LifecycleRuleTransitionStorageClassEnum,
           })),
       }),
     ...((hasCurrentVersionExpiration && expirationDays > 0) ||
@@ -72,13 +83,20 @@ export const buildLifecycleRule = (
           .filter((t) => t.noncurrentDays > 0)
           .map((t) => ({
             noncurrentDays: t.noncurrentDays,
-            storageClass: t.storageClass as storages.StorageClassEnum,
+            storageClass: t.storageClass,
+            ...(t.newerNoncurrentVersions > 0 && {
+              newerNoncurrentVersions: t.newerNoncurrentVersions,
+            }),
           })),
       }),
     ...(hasNoncurrentVersionExpiration &&
       noncurrentVersionExpirationDays > 0 && {
         noncurrentVersionExpiration: {
           noncurrentDays: noncurrentVersionExpirationDays,
+          ...(formValues.noncurrentVersionExpirationNewerVersions > 0 && {
+            newerNoncurrentVersions:
+              formValues.noncurrentVersionExpirationNewerVersions,
+          }),
         },
       }),
     ...(hasAbortIncompleteMultipartUpload &&

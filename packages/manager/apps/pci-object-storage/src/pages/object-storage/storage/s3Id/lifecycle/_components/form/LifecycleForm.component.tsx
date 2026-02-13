@@ -1,4 +1,5 @@
 import { UseFormReturn } from 'react-hook-form';
+import storages from '@/types/Storages';
 import { LifecycleFormValues } from './useLifecycleForm.hook';
 import { LifecycleFormProvider } from './LifecycleForm.context';
 import { LifecycleRuleIdentification } from './LifecycleRuleIdentification.component';
@@ -13,6 +14,7 @@ interface LifecycleFormProps {
   lifecycleTitle: string;
   form: UseFormReturn<LifecycleFormValues>;
   isPending: boolean;
+  availableStorageClasses: storages.StorageClassEnum[];
   onSubmit: () => void;
 }
 
@@ -21,6 +23,7 @@ export const LifecycleForm = ({
   lifecycleTitle,
   form,
   isPending,
+  availableStorageClasses,
   onSubmit,
 }: LifecycleFormProps) => (
   <LifecycleFormProvider
@@ -28,6 +31,7 @@ export const LifecycleForm = ({
     isPending={isPending}
     isEditMode={isEditMode}
     lifecycleTitle={lifecycleTitle}
+    availableStorageClasses={availableStorageClasses}
   >
     <form onSubmit={onSubmit} className="space-y-4" id="lifecycle-form">
       <LifecycleRuleIdentification />
