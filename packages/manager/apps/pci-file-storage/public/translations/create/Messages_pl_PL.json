@@ -1,0 +1,85 @@
+{
+  "name": {
+    "title": "Nazwa udostępnienia",
+    "label": "Wybierz nazwę dla swojego pliku udostępnienia",
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie może przekraczać 255 znaków.",
+    "error": {
+      "too_small": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
+      "too_big": "Nieprawidłowy format nazwy",
+      "invalid_format": "Nieprawidłowy format nazwy"
+    }
+  },
+  "localisation": {
+    "title": "Wybierz lokalizację",
+    "deploymentMode": {
+      "title": "Filtruj tryb wdrożenia",
+      "modes": {
+        "region": {
+          "label": "Region 1-AZ",
+          "description": "Wdrożenie odporne i ekonomiczne w 1 strefie."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Wdrożenie jak najbliżej dla niskiej latencji."
+        },
+        "region-3-az": {
+          "label": "Region 3-AZ",
+          "description": "Wdrożenie o wysokiej odporności i wysokiej dostępności w 3 strefach."
+        }
+      }
+    },
+    "macroRegion": {
+      "title": "Wybierz lokalizację"
+    },
+    "continents": {
+      "label": "Wybierz strefę geograficzną",
+      "options": {
+        "all": "Wszystkie",
+        "asia_oceania": "Azja-Pacyfik",
+        "europe": "Europa",
+        "north_africa": "Afryka Północna",
+        "north_america": "Ameryka Północna"
+      }
+    },
+    "microRegion": {
+      "title": "Wybierz centrum danych",
+      "label": "Wybierz centrum danych"
+    },
+    "availabilityZone": {
+      "title": "Wybierz swoją strefę dostępności",
+      "informations": "Wybrano domyślną strefę dostępności. Masz możliwość dostosowania tego wyboru.",
+      "choice": {
+        "company": "Wybierz za mnie",
+        "user": "Wybieram swoją strefę dostępności"
+      }
+    }
+  },
+  "share": {
+    "title": "Tryb wydajności udziału",
+    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS i {{bandwidthLevel}} {{bandwidthUnit}}"
+  },
+  "shareSize": {
+    "title": "Rozmiar udziału",
+    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
+    "label": "Przydział wydajności liniowej (Gio)",
+    "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} MiB/s",
+    "error": {
+      "min_value": "Rozmiar udziału jest mniejszy niż minimalny dozwolony dla tej oferty.",
+      "max_value": "Rozmiar udziału przekracza maksymalny dozwolony dla tej oferty.",
+      "invalid_type": "To pole musi być wypełnione"
+    }
+  },
+  "network": {
+    "title": "Sieć prywatna",
+    "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem",
+    "label": "Wybierz istniejącą prywatną sieć",
+    "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
+    "subnet": {
+      "label": "Wybierz istniejący prywatny podsieć",
+      "empty": "Nie masz prywatnej podsieci dla tej sieci"
+    }
+  },
+  "submit": {
+    "error": "Wystąpił błąd podczas dodawania udostępnienia: {{error}}"
+  }
+}

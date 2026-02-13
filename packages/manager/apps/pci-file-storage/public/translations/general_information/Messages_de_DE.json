@@ -1,0 +1,24 @@
+{
+  "cards": {
+    "informations": "Informationen",
+    "properties": "Eigenschaften"
+  },
+  "fields": {
+    "id": "ID",
+    "share_name": "Name des Shares",
+    "status": "Status",
+    "location": "Standort",
+    "creation_date": "Erstellungsdatum",
+    "protocol": "Protokoll",
+    "allocated_size": "Zugewiesene Größe des Shares",
+    "mount_path": "Einhängepfad"
+  },
+  "actions": {
+    "upgrade_share": "Share aktualisieren",
+    "delete": "Löschen"
+  },
+  "clipboard": {
+    "copy": "In die Zwischenablage kopieren",
+    "copy_success": "Kopiert!"
+  }
+}

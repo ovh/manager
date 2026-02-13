@@ -1,0 +1,24 @@
+{
+  "cards": {
+    "informations": "Information",
+    "properties": "Properties"
+  },
+  "fields": {
+    "id": "ID",
+    "share_name": "Share name",
+    "status": "Status",
+    "location": "Location",
+    "creation_date": "Creation date",
+    "protocol": "Protocol",
+    "allocated_size": "Allocated share size",
+    "mount_path": "Mount path"
+  },
+  "actions": {
+    "upgrade_share": "Upgrade the share",
+    "delete": "Delete"
+  },
+  "clipboard": {
+    "copy": "Copy to clipboard",
+    "copy_success": "Copied!"
+  }
+}

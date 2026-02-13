@@ -1,21 +1,30 @@
 import React from 'react';
 
+import { Navigate, useNavigate } from 'react-router-dom';
+
 import { Trans, useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { GUIDES, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
+import { GUIDES, getOnboardingLinkFor } from '@/constants/Guides.constants';
+import { useShares } from '@/data/hooks/shares/useShares';
+import { useGetUser } from '@/hooks/useGetUser';
+import { selectHasShares } from '@/pages/list/view-model/shareList.view-model';
+import { subRoutes } from '@/routes/Routes.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const environment = useEnvironment();
+  const { ovhSubsidiary } = useGetUser();
+  const navigate = useNavigate();
+  const { data: hasShares, isLoading } = useShares({ select: selectHasShares });
 
-  const { ovhSubsidiary } = environment.getUser();
+  if (!isLoading && hasShares) {
+    return <Navigate to={`../${subRoutes.list}`} replace />;
+  }
 
   return (
     <BaseLayout>
@@ -33,8 +42,7 @@ export default function OnboardingPage() {
           </Text>
         }
         orderButtonLabel={t('onboarding:action-button')}
-        onOrderButtonClick={() => {}}
-        orderHref="https://labs.ovhcloud.com/en/file-storage"
+        onOrderButtonClick={() => navigate(`../${subRoutes.create}`)}
       >
         {GUIDES.map(({ key, links }) => {
           return (

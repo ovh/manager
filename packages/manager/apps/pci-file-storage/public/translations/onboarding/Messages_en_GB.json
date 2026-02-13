@@ -1,7 +1,7 @@
 {
   "title": "Try File Storage for free!",
   "description": "Need shared storage for your clusters or instances? Our fully managed File Storage for Public Cloud solution offers NFS volumes ranging from <strong>150 GiB to 10 GiB</strong>, up to <strong>16,000 IOPS</strong> and <strong>128 MB/s</strong>. It works with <strong>Managed Kubernetes</strong> (PVCs RWX) and <strong>Public Cloud instances</strong> (NFS mounts), allowing transparent file sharing across nodes, zones, and applications – all with clear pricing.",
-  "action-button": "Discover the beta",
+  "action-button": "Create a share",
   "guides": {
     "learn-more": {
       "category": "Service plan",
