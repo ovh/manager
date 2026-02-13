@@ -94,9 +94,12 @@ export const isDuplicateHost = (
   value: string,
   hostsTargetSpec: THost[],
   serviceName: string,
+  currentHost?: string,
 ) => {
   const candidate = `${value}.${serviceName}`.toLowerCase();
-  return hostsTargetSpec.some((h) => h.host.toLowerCase() === candidate);
+  return hostsTargetSpec
+    .filter((h) => !currentHost || h.host.toLowerCase() !== currentHost?.toLowerCase())
+    .some((h) => h.host.toLowerCase() === candidate);
 };
 
 export const isValidHostSyntax = (value: string, serviceName: string) => {
@@ -108,10 +111,11 @@ export const makeHostValidators = (
   hostsTargetSpec: THost[],
   serviceName: string,
   t: TFunction,
+  currentHost?: string,
 ) => {
   return {
     noDuplicate: (value: string) =>
-      !isDuplicateHost(value, hostsTargetSpec, serviceName) ||
+      !isDuplicateHost(value, hostsTargetSpec, serviceName, currentHost) ||
       t('domain_tab_hosts_drawer_add_invalid_host_same'),
     validSyntax: (value: string) =>
       isValidHostSyntax(value, serviceName) ||
