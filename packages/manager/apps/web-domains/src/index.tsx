@@ -6,7 +6,6 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { initModuleFederation } from '@/domain/utils/module-federation-runtime';
 
 import App from './App';
@@ -32,7 +31,7 @@ const init = async (appName: string) => {
     context,
     reloadOnLocaleChange: true,
     defaultNS: appName,
-    ns: ['allDom', NAMESPACES.ACTIONS],
+    ns: ['allDom'],
   });
 
   const region = context.environment.getRegion();

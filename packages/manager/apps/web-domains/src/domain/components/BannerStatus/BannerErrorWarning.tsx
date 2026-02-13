@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import {
   Icon,
   ICON_NAME,
@@ -12,7 +12,6 @@ import {
   ShellContext,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { bannerTypeFromFlags } from '@/domain/utils/bannerStatus';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { RENEW_URL } from '@/common/constants';
@@ -24,7 +23,7 @@ interface BannerErrorWarningProps {
 export default function BannerErrorWarning({
   serviceName,
 }: BannerErrorWarningProps) {
-  const { t } = useTranslation(['domain', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['domain']);
   const { domainResource } = useGetDomainResource(serviceName);
   const {
     environment: { user },

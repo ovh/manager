@@ -117,7 +117,7 @@ export default function ServiceList() {
     defaultSorting: [{ id: 'id', desc: false }],
     disableCache: true,
     iceberg: false,
-    pageSize: 10,
+    pageSize: 50,
     enabled: true,
     columns: domainColumns,
   });
