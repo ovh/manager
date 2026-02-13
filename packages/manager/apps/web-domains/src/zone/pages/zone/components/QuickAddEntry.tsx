@@ -1,8 +1,8 @@
-import { useMemo, useCallback, useState } from "react";
+import { useEffect, useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { useMutation } from "@tanstack/react-query";
-import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Text, TEXT_PRESET } from "@ovhcloud/ods-react";
+import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Textarea } from "@ovhcloud/ods-react";
 import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
@@ -37,11 +37,12 @@ function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => 
 
 interface QuickAddEntryProps {
   readonly serviceName: string;
+  readonly visible?: boolean;
   readonly onSuccess?: () => void;
   readonly onCancel?: () => void;
 }
 
-export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: QuickAddEntryProps) {
+export default function QuickAddEntry({ serviceName, visible, onSuccess, onCancel }: QuickAddEntryProps) {
   const { t } = useTranslation(["zone", "form", NAMESPACES.ACTIONS]);
 
   const resolver = useMemo(() => addEntryResolver(t), [t]);
@@ -60,6 +61,20 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
   const [bindInput, setBindInput] = useState('');
   const [bindError, setBindError] = useState<string | null>(null);
   const [bindSuccess, setBindSuccess] = useState(false);
+
+  const resetBindState = useCallback(() => {
+    setShowBindInput(false);
+    setBindInput('');
+    setBindError(null);
+    setBindSuccess(false);
+  }, []);
+
+  useEffect(() => {
+    if (!visible) {
+      reset();
+      resetBindState();
+    }
+  }, [visible, reset, resetBindState]);
 
   const handleBindPaste = useCallback(() => {
     setBindError(null);
@@ -123,8 +138,9 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
 
   const handleCancel = useCallback(() => {
     reset();
+    resetBindState();
     onCancel?.();
-  }, [reset, onCancel]);
+  }, [reset, resetBindState, onCancel]);
 
   const selectItems = [
     {
@@ -160,99 +176,100 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4">
-          {/* BIND paste section */}
-          <div className="flex flex-col gap-2">
+          <div className="flex items-end justify-between gap-4">
+            <FormField className="w-1/2">
+              <FormFieldLabel>
+                {t('zone_page_type')}
+              </FormFieldLabel>
+              <Controller
+                name="recordType"
+                control={control}
+                render={({ field, fieldState: { error } }) => (
+                  <div className="flex w-full flex-wrap items-center gap-2">
+                    <Select
+                      name="recordType"
+                      id="recordType"
+                      className="min-w-[14rem] w-full max-w-sm"
+                      value={typeof field.value === 'string' && field.value ? [field.value] : []}
+                      items={selectItems}
+                      invalid={!!error}
+                      disabled={showBindInput}
+                      onValueChange={(detail: { value?: string[] }) => {
+                        const selectedValue = Array.isArray(detail.value) ? (detail.value[0] ?? '') : '';
+                        if (selectedValue) {
+                          field.onChange(selectedValue);
+                          handleSelectRecordType(selectedValue);
+                        }
+                      }}
+                      onBlur={field.onBlur}
+                    >
+                      <SelectControl placeholder={t('zone_page_form_select_title')} />
+                      <SelectContent customOptionRenderer={renderOption} />
+                    </Select>
+                    {error?.message && <FormFieldError>{error.message}</FormFieldError>}
+                  </div>
+                )}
+              />
+            </FormField>
+
             <Button
               type="button"
               variant={BUTTON_VARIANT.outline}
               size={BUTTON_SIZE.sm}
               onClick={() => {
-                setShowBindInput(!showBindInput);
+                const opening = !showBindInput;
+                setShowBindInput(opening);
                 setBindError(null);
                 setBindSuccess(false);
+                if (opening) {
+                  reset();
+                  setBindInput('');
+                }
               }}
             >
-              {t('zone_page_form_bind_paste_button')}
+              {showBindInput ? t('zone_page_form_bind_back_to_form') : t('zone_page_form_bind_paste_button')}
             </Button>
+          </div>
 
-            {showBindInput && (
-              <div className="flex flex-col gap-2 p-4 border rounded-md bg-[--ods-color-surface-lighter]">
-                <Text preset={TEXT_PRESET.paragraph}>
-                  {t('zone_page_form_bind_paste_description')}
-                </Text>
-                <textarea
-                  className="w-full font-mono p-2 border rounded-md min-h-[60px] resize-y"
+          {showBindInput && (
+            <div className="flex flex-col gap-2 p-4 border rounded-md bg-[--ods-color-surface-lighter]">
+              <FormField invalid={!!bindError}>
+                <FormFieldLabel>{t('zone_page_form_bind_paste_description')}</FormFieldLabel>
+                <Textarea
+                  className="min-h-[60px] w-full font-mono"
                   placeholder={t('zone_page_form_bind_paste_placeholder')}
                   value={bindInput}
+                  invalid={!!bindError}
                   onChange={(e) => {
-                    setBindInput(e.target.value);
+                    setBindInput(e.target?.value ?? '');
                     setBindError(null);
                     setBindSuccess(false);
                   }}
                 />
-                {bindError && (
-                  <Message color={MESSAGE_COLOR.critical} variant={MESSAGE_VARIANT.light} dismissible={false}>
-                    <MessageIcon name={ICON_NAME.circleXmark} />
-                    <MessageBody>
-                      {t(`zone_page_form_bind_error_${bindError}`)}
-                    </MessageBody>
-                  </Message>
-                )}
-                {bindSuccess && (
-                  <Message color={MESSAGE_COLOR.success} variant={MESSAGE_VARIANT.light} dismissible={false}>
-                    <MessageIcon name={ICON_NAME.circleCheck} />
-                    <MessageBody>
-                      {t('zone_page_form_bind_success')}
-                    </MessageBody>
-                  </Message>
-                )}
-                <div className="flex justify-end">
-                  <Button
-                    type="button"
-                    size={BUTTON_SIZE.sm}
-                    onClick={handleBindPaste}
-                    disabled={!bindInput.trim()}
-                  >
-                    {t('zone_page_form_bind_apply')}
-                  </Button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <FormField className="w-1/2">
-            <FormFieldLabel>
-              {t('zone_page_type')}
-            </FormFieldLabel>
-            <Controller
-              name="recordType"
-              control={control}
-              render={({ field, fieldState: { error } }) => (
-                <div className="flex w-full flex-wrap items-center gap-2">
-                  <Select
-                    name="recordType"
-                    id="recordType"
-                    className="min-w-[14rem] w-full max-w-sm"
-                    value={typeof field.value === 'string' && field.value ? [field.value] : []}
-                    items={selectItems}
-                    invalid={!!error}
-                    onValueChange={(detail: { value?: string[] }) => {
-                      const selectedValue = Array.isArray(detail.value) ? (detail.value[0] ?? '') : '';
-                      if (selectedValue) {
-                        field.onChange(selectedValue);
-                        handleSelectRecordType(selectedValue);
-                      }
-                    }}
-                    onBlur={field.onBlur}
-                  >
-                    <SelectControl placeholder={t('zone_page_form_select_title')} />
-                    <SelectContent customOptionRenderer={renderOption} />
-                  </Select>
-                  {error?.message && <FormFieldError>{error.message}</FormFieldError>}
-                </div>
+                <FormFieldError>
+                  {bindError ? t(`zone_page_form_bind_error_${bindError}`) : ''}
+                </FormFieldError>
+              </FormField>
+              {bindSuccess && (
+                <Message color={MESSAGE_COLOR.success} variant={MESSAGE_VARIANT.light} dismissible={false}>
+                  <MessageIcon name={ICON_NAME.circleCheck} />
+                  <MessageBody>
+                    {t('zone_page_form_bind_success')}
+                  </MessageBody>
+                </Message>
               )}
-            />
-          </FormField>
+              <div className="flex justify-end">
+                <Button
+                  type="button"
+                  size={BUTTON_SIZE.sm}
+                  onClick={handleBindPaste}
+                  disabled={!bindInput.trim()}
+                >
+                  {t('zone_page_form_bind_apply')}
+                </Button>
+              </div>
+            </div>
+          )}
 
           {recordTypeStr === FieldTypeMailRecordsEnum.SPF && (
             <>
@@ -309,14 +326,14 @@ export default function QuickAddEntry({ serviceName, onSuccess, onCancel }: Quic
                   {t("zone_page_form_spf_button_use_spf_ovh")}
                 </Button>
               ) : (
-                  <Button
-                    type="submit"
-                    size={BUTTON_SIZE.sm}
-                    disabled={!isValid || isPending}
-                    loading={isPending}
-                  >
-                    {t(`${NAMESPACES.ACTIONS}:add`)}
-                  </Button>
+                <Button
+                  type="submit"
+                  size={BUTTON_SIZE.sm}
+                  disabled={!isValid || isPending}
+                  loading={isPending}
+                >
+                  {t(`${NAMESPACES.ACTIONS}:add`)}
+                </Button>
               )}
             </div>
           )}
