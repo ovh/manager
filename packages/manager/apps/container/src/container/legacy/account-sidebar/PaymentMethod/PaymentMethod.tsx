@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { Environment } from '@ovh-ux/manager-config';
+import { OsdsSkeleton, OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import Details from './Details';
 import Icon from './Icon';
 import usePaymentMethod, { PaymentMethodType } from './usePaymentMethod';
 
 import { useShell } from '@/context';
-import { OsdsSkeleton, OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import './index.scss';
 
@@ -63,7 +63,7 @@ const PaymentMethod = (): JSX.Element => {
         >
           <Icon defaultPaymentMethod={defaultPaymentMethod} />
           {isLoading ? (
-            <OsdsSkeleton/>
+            <OsdsSkeleton />
           ) : (
             <Details
               defaultPaymentMethod={defaultPaymentMethod}

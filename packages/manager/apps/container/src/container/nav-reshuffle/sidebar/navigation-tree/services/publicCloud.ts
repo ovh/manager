@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import { Node, NodeTag } from '../node';
 import illustration from '@/assets/images/sidebar/public-cloud.png';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 export const PUBLICCLOUD_UNIVERSE_ID = 'pci';
 
@@ -365,7 +365,7 @@ pciNode.children = [
     ],
     forceVisibility: true,
     children: [
-      //Entry menu for PCI Databases for Angular
+      // Entry menu for PCI Databases for Angular
       {
         id: 'pci-databases-operational',
         idAttr: 'pci-databases-operational',
@@ -380,7 +380,7 @@ pciNode.children = [
         features: ['databases-operational'],
         forceVisibility: true,
       },
-      //Entry menu for PCI Databases for React
+      // Entry menu for PCI Databases for React
       {
         id: 'pci-databases-analytics-operational',
         idAttr: 'pci-databases-analytics-operational',
@@ -395,7 +395,7 @@ pciNode.children = [
         features: ['pci-databases-analytics-operational'],
         forceVisibility: true,
       },
-      //Entry menu for PCI Data Streaming for Angular
+      // Entry menu for PCI Data Streaming for Angular
       {
         id: 'pci-databases-streaming',
         idAttr: 'pci-databases-streaming',
@@ -410,7 +410,7 @@ pciNode.children = [
         features: ['databases-streaming'],
         forceVisibility: true,
       },
-      //Entry menu for PCI Data Streaming for React
+      // Entry menu for PCI Data Streaming for React
       {
         id: 'pci-databases-analytics-streaming',
         translation: 'sidebar_pci_analytics_data_streaming',
@@ -436,7 +436,7 @@ pciNode.children = [
         features: ['data-processing'],
         forceVisibility: true,
       },
-      //Entry menu for PCI Data Analysis for Angular
+      // Entry menu for PCI Data Analysis for Angular
       {
         id: 'pci-databases-analysis',
         idAttr: 'pci-databases-analysis-link',
@@ -451,7 +451,7 @@ pciNode.children = [
         features: ['databases-analysis'],
         forceVisibility: true,
       },
-      //Entry menu for PCI Data Analysis for React
+      // Entry menu for PCI Data Analysis for React
       {
         id: 'pci-databases-analytics-analysis',
         idAttr: 'pci-databases-analytics-analysis-link',
@@ -605,7 +605,7 @@ pciNode.children = [
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
-      'pci-savings-plan'
+      'pci-savings-plan',
     ],
     children: [
       {

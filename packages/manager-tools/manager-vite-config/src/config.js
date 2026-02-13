@@ -1,0 +1,113 @@
+import react from '@vitejs/plugin-react-swc';
+import { dirname, join, resolve } from 'path';
+import { fileURLToPath } from 'url';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+import svgr from 'vite-plugin-svgr';
+import yn from 'yn';
+
+import { getCommonTranslations } from './commonTranslations.js';
+import viteOvhDevServerPlugin from './plugin/dev-server.js';
+import IframeHmrPlugin from './plugin/iframe-hmr.js';
+
+const isContainerApp = process.cwd().endsWith('container');
+const runInContainer = process.env.CONTAINER;
+
+const getBaseConfig = (config) => {
+  const envConfig = config || {};
+  const staticCopyTargets = envConfig.staticCopyTargets || [];
+  const additionalDedupe = envConfig.dedupe || [];
+
+  if (envConfig.isLABEU || process.env.LABEU) {
+    const labeuHost = process.env.LABEU_HOST;
+    if (!labeuHost) {
+      throw new Error(
+        `'Please define the environment variable "LABEU_HOST=host" to use LABEU env'`,
+      );
+    }
+    envConfig.host = labeuHost;
+  }
+
+  const baseDedupe = [
+    '@ovh-ux/manager-core-api',
+    '@ovh-ux/manager-react-shell-client',
+    '@tanstack/react-query',
+    'i18next',
+    'react',
+    'react-dom',
+    'react-i18next',
+    'react-router-dom',
+    'zustand',
+    '@ovhcloud/ods-common-core',
+    '@ovhcloud/ods-common-testing',
+    '@ovhcloud/ods-common-theming',
+    '@ovhcloud/ods-components',
+    '@ovhcloud/ods-theme-blue-jeans',
+    'vite',
+    'vitest',
+    '@vitest',
+    'typescript',
+    'date-fns',
+    '@ovh-ux/muk',
+  ];
+
+  return {
+    base: isContainerApp || !runInContainer ? './' : '/app/',
+    root: resolve(process.cwd(), 'src'),
+    clearScreen: false,
+    publicDir: 'public',
+    resolve: {
+      alias: {
+        '@': resolve(join(process.cwd(), 'src')),
+      },
+      dedupe: [...baseDedupe, ...additionalDedupe],
+    },
+    define: {
+      __VERSION__: process.env.VERSION ? `'${process.env.VERSION}'` : 'null',
+    },
+    plugins: [
+      react(),
+      viteOvhDevServerPlugin({ isContainerApp, envConfig }),
+      IframeHmrPlugin(),
+      svgr({
+        include: '**/*.svg',
+      }),
+      viteStaticCopy({
+        targets: [...getCommonTranslations(), ...staticCopyTargets],
+      }),
+    ],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          silenceDeprecations: [
+            'import',
+            'global-builtin',
+            'color-functions',
+            'legacy-js-api',
+            'abs-percent',
+            'slash-div',
+            'function-units',
+          ],
+          includePaths: [
+            resolve(`${dirname(fileURLToPath(import.meta.url))}`, '../../../../../node_modules'),
+          ],
+        },
+      },
+    },
+    build: {
+      outDir: resolve(process.cwd(), 'dist'),
+      emptyOutDir: true,
+      minify: true,
+      sourcemap: yn(process.env.OVH_VITE_CONFIG_SOURCEMAPS, { default: false }),
+    },
+    server: {
+      port: runInContainer ? 9001 : 9000,
+      strictPort: true,
+      hmr: {
+        host: 'localhost',
+        port: runInContainer ? 9001 : 9000,
+      },
+    },
+  };
+};
+
+export default getBaseConfig;

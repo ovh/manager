@@ -5,22 +5,114 @@ on:
     types:
       - created
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   publish:
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0"
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install
+
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
+        with:
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
+
+      # ------------------------------------------
+      # Yarn cache (tarballs only)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
+      # Install deps (deterministic)
+      # ------------------------------------------
+      - name: Install dependencies
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
         run: |
           yarn --version
-          yarn install
-          yarn exec turbo -- run build --filter="./packages/manager/core/api"
-          yarn workspace @ovh-ux/manager-documentation run docs:build
+          yarn ci:install
+
+      # ------------------------------------------
+      # Build documentation targets (single DAG)
+      # ------------------------------------------
+      - name: Build documentation packages
+        run: |
+          CORES=$(nproc --ignore=1 || nproc)
+          FILTERS="@ovh-ux/manager-core-api,@ovh-ux/url-builder,@ovh-ux/shell,@ovh-ux/ovh-reket,@ovh-ux/ovh-at-internet,@ovh-ux/manager-config,@ovh-ux/manager-common-translations,@ovh-ux/muk"
+          yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
+
+      # ------------------------------------------
+      # Generate docs (pnpm-based)
+      # ------------------------------------------
+      - name: Generate documentation
+        run: yarn manager-pm --type pnpm --action docs
+
+      # ------------------------------------------
+      # Deploy to GitHub Pages
+      # ------------------------------------------
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/.vitepress/dist

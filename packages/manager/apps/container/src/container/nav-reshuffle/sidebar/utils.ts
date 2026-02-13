@@ -191,7 +191,7 @@ export const shouldHideElement = (node: Node, count: number | boolean) => {
 export const debounce = (
   func: Function,
   [timer, setTimer]: [ReturnType<typeof setTimeout>, Function],
-  timeout: number = 300,
+  timeout = 300,
 ) => {
   return (...args: any[]) => {
     if (timer) {
@@ -224,7 +224,7 @@ export const splitPathIntoSegmentsWithoutRouteParams = (
 ): string[] => {
   const regex = /\/(?!{)[^\/]+(\/(?!{)[^\/]+)?/g;
   const matches = path.match(regex);
-  return matches ? matches : [path];
+  return matches || [path];
 };
 
 export const findNodeByRouting = (root: Node, locationPath: string) => {
@@ -232,17 +232,14 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
     if (!node.routing) return null;
     const nodePath = node.routing.hash
       ? node.routing.hash.replace('#', node.routing.application)
-      : '/' + node.routing.application;
+      : `/${node.routing.application}`;
     const parsedPath = splitPathIntoSegmentsWithoutRouteParams(nodePath);
     return {
-      value: parsedPath.reduce(
-        (acc: boolean, segment: string) => {
-          const match = pathSegment.includes(segment);
-          pathSegment = pathSegment.replace(segment, '');
-          return match && acc
-        },
-        true,
-      )
+      value: parsedPath.reduce((acc: boolean, segment: string) => {
+        const match = pathSegment.includes(segment);
+        pathSegment = pathSegment.replace(segment, '');
+        return match && acc;
+      }, true)
         ? node
         : null,
       segments: parsedPath.length,
@@ -253,11 +250,11 @@ export const findNodeByRouting = (root: Node, locationPath: string) => {
     node: Node,
     pathSegment: string,
   ): { value: Node | null; segments: number } => {
-    let results = [];
+    const results = [];
     if (node.children) {
-      for (let child of node.children) {
+      for (const child of node.children) {
         const result = exploreTree(child, pathSegment);
-        if (result?.value) results.push(result)
+        if (result?.value) results.push(result);
       }
       return results.length > 0
         ? results.reduce(

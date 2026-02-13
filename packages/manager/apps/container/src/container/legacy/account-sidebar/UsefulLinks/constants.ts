@@ -36,9 +36,11 @@ const consts: UsefulLinkConstants = {
       SN: `${helpRoot}/fr-sn${homeIndex}`,
       TN: `${helpRoot}/fr-tn${homeIndex}`,
     },
-    support: { 
-      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
-      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
+    support: {
+      createTicket: (sub: string) =>
+        `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`,
+      tickets: (sub: string) =>
+        `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
   },
@@ -52,9 +54,11 @@ const consts: UsefulLinkConstants = {
       WE: `${helpRoot}/en${homeIndex}`,
       WS: `${helpRoot}/es${homeIndex}`,
     },
-    support: { 
-      createTicket: (sub: string) => `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`, 
-      tickets: (sub: string) => `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}` 
+    support: {
+      createTicket: (sub: string) =>
+        `${helpRoot}${createTicketSupportIndex}&${supportSubsidiary}${sub}`,
+      tickets: (sub: string) =>
+        `${helpRoot}${ticketsSupportIndex}&${supportSubsidiary}${sub}`,
     },
     tasks: 'https://www.status-ovhcloud.com/',
   },

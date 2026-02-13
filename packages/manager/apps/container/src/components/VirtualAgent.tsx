@@ -1,9 +1,4 @@
-import React, {
-  CSSProperties,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
 import { useLocalStorage } from 'react-use';
 import dialogPolyfill from 'dialog-polyfill';
 import { useMediaQuery } from 'react-responsive';

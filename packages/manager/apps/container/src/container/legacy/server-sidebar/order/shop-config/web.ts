@@ -1,5 +1,3 @@
-import { ShopItem } from '../OrderPopupContent';
-import { getOrderURL, ORDER_URLS } from './order.constants';
 import { OdsIconWrapper } from '@ovh-ux/ovh-product-icons/index';
 import {
   HOSTING_SVG,
@@ -7,6 +5,8 @@ import {
   OFFICE365_SVG,
 } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { getOrderURL, ORDER_URLS } from './order.constants';
+import { ShopItem } from '../OrderPopupContent';
 
 const webShopConfig = (
   navigation: any,

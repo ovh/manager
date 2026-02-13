@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+/**
+ * CLI tool to add an app to the PNPM catalog safely.
+ *
+ * Handles graceful shutdown (SIGINT, SIGTERM, unhandled errors)
+ * and ensures root workspaces are restored if the process is interrupted.
+ */
+import process from 'node:process';
+
+import { addApplicationToPnpm } from './kernel/pnpm/pnpm-apps-manager.js';
+import { runApplicationCli } from './kernel/utils/cli-utils.js';
+import { logger } from './kernel/utils/log-manager.js';
+import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+
+attachCleanupSignals(handleProcessAbortSignals);
+
+async function main() {
+  logger.info('🚀 manager-pm add-app CLI started...');
+  const start = Date.now();
+
+  try {
+    await runApplicationCli({
+      actionLabel: 'add-app',
+      handler: addApplicationToPnpm,
+      usage: [
+        'Usage: yarn pm:add:app --app <name|package|path>',
+        'Examples:',
+        '  yarn pm:add:app --app web',
+        '  yarn pm:add:app --app packages/manager/apps/web',
+        '  yarn pm:add:app --app @ovh-ux/manager-web',
+      ],
+    });
+
+    const elapsed = ((Date.now() - start) / 1000).toFixed(2);
+    logger.success(`✅ manager-pm add-app completed in ${elapsed}s`);
+  } catch (err) {
+    logger.error('❌ manager-pm add-app failed:');
+    logger.error(err.stack || err.message || err);
+    await handleProcessAbortSignals('add-app-error', err);
+    process.exit(1);
+  }
+}
+
+await main();

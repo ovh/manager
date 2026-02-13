@@ -64,8 +64,6 @@ const useUserInfos = (user: User): UseUserInfos => {
     return user.isTrusted;
   };
 
-
-
   return {
     getUser,
     getUserNameInitials,

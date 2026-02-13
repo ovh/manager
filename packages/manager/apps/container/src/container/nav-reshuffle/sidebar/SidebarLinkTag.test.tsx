@@ -48,5 +48,5 @@ describe('SidebarLinkTag.component', () => {
     renderSidebarLinkTagComponent(nodeWithoutTag);
 
     expect(screen.queryByTestId(`static-link-tag-${node.id}`)).toBeNull();
-  })
+  });
 });

@@ -3,18 +3,16 @@ import { useQuery } from '@tanstack/react-query';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { capitalize } from 'lodash-es';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
 import style from '../index.module.scss';
-import useServiceLoader from "./useServiceLoader";
+import useServiceLoader from './useServiceLoader';
 import telecomShopConfig from '../order/shop-config/telecom';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
-import  getIcon  from './GetIcon';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
-
-
+import getIcon from './GetIcon';
 
 const features = [
   'sms',
@@ -173,7 +171,9 @@ export default function TelecomSidebar() {
                         })
                         .map((service) => ({
                           ...service,
-                          keywords: service.extraParams?.type + service.searchParams?.toString(),
+                          keywords:
+                            service.extraParams?.type +
+                            service.searchParams?.toString(),
                           icon: service.extraParams?.type && (
                             <span className={style.telecomLabel}>
                               {t([
@@ -261,7 +261,7 @@ export default function TelecomSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features);
+  const { data: availability } = useFeatureAvailability(features);
 
   useEffect(() => {
     if (availability && !betaPreferenceLoading) {

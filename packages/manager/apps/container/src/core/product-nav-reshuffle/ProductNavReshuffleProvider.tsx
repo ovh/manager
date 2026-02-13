@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import useContainer from '@/core/container/useContainer';
 import { useShell } from '@/context/useApplicationContext';
 import ProductNavReshuffleContext from './context';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import { MOBILE_WIDTH_RESOLUTION } from '@/container/common/constants';
-import { useMediaQuery } from 'react-responsive';
 import useOnboarding, { ONBOARDING_OPENED_STATE_ENUM } from '../onboarding';
 
 type Props = {
@@ -16,13 +16,17 @@ export const ProductNavReshuffleProvider = ({
 }: Props): JSX.Element => {
   let pnrContext = useContext(ProductNavReshuffleContext);
 
-  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(null);
+  const [currentNavigationNode, setCurrentNavigationNode] = useState<Node>(
+    null,
+  );
   const [navigationTree, setNavigationTree] = useState({});
   const { betaVersion } = useContainer();
   const shell = useShell();
-  const [isMobile, setIsMobile] = useState(useMediaQuery({
-    query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
-  }));
+  const [isMobile, setIsMobile] = useState(
+    useMediaQuery({
+      query: `(max-width: ${MOBILE_WIDTH_RESOLUTION}px)`,
+    }),
+  );
 
   const onboarding = useOnboarding();
 
@@ -78,15 +82,16 @@ export const ProductNavReshuffleProvider = ({
 
   useEffect(() => {
     const handleResize = () => {
-      window.innerWidth <= MOBILE_WIDTH_RESOLUTION ?
-        setIsMobile(true) : setIsMobile(false);
-    }
+      window.innerWidth <= MOBILE_WIDTH_RESOLUTION
+        ? setIsMobile(true)
+        : setIsMobile(false);
+    };
 
     window.addEventListener('resize', handleResize);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-    }
+    };
   }, []);
 
   pnrContext = {

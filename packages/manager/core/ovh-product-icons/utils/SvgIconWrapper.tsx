@@ -1,10 +1,12 @@
 import React, { FunctionComponent } from 'react';
+
 import {
-  dedicatedIcons,
-  webIcons,
-  telecomIcons,
   containerIcons,
+  dedicatedIcons,
+  telecomIcons,
+  webIcons,
 } from '@ovh-ux/ovh-product-icons/index';
+
 import OvhProductName from './OvhProductNameEnum';
 
 interface SvgIconProps {
@@ -15,17 +17,25 @@ interface SvgIconProps {
 }
 
 interface IconComponents {
-  [key: string]: FunctionComponent<
-    React.SVGProps<SVGSVGElement> & { title?: string }
-  >;
+  [key: string]: FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }>;
 }
 
-const iconComponents: IconComponents = {
+const isValidIconComponent = (
+  icon: unknown,
+): icon is FunctionComponent<React.SVGProps<SVGSVGElement> & { title?: string }> =>
+  typeof icon === 'function';
+
+const iconComponents: IconComponents = Object.entries({
   ...dedicatedIcons,
   ...webIcons,
   ...telecomIcons,
   ...containerIcons,
-};
+}).reduce((acc, [key, component]) => {
+  if (isValidIconComponent(component)) {
+    acc[key] = component;
+  }
+  return acc;
+}, {} as IconComponents);
 
 const DEFAULT_SIZE = 32;
 
@@ -46,8 +56,14 @@ const SvgIconWrapper: React.FC<SvgIconProps> = ({
 
 const HOSTING_SVG = SvgIconWrapper({ name: OvhProductName.HOSTING });
 const OFFICE365_SVG = SvgIconWrapper({ name: OvhProductName.OFFICE365 });
+const WORDPRESS_SVG = SvgIconWrapper({ name: OvhProductName.WORDPRESS });
 const PROJECTCLOUD_SVG = SvgIconWrapper({ name: OvhProductName.PROJECTCLOUD });
 const EXCHANGE_SVG = SvgIconWrapper({ name: OvhProductName.EXCHANGE });
+const ZIMBRA_SVG = SvgIconWrapper({
+  name: OvhProductName.ZIMBRA,
+  width: 40,
+  height: 40,
+});
 const TELECOMETHERNET_SVG = SvgIconWrapper({
   name: OvhProductName.TELECOMETHERNET,
 });
@@ -72,11 +88,13 @@ const LINECOMMUNICATING_SVG = SvgIconWrapper({
 export {
   HOSTING_SVG,
   OFFICE365_SVG,
+  WORDPRESS_SVG,
   PROJECTCLOUD_SVG,
   TELECOMETHERNET_SVG,
   HEADSET_SVG,
   TELEPHONY_SVG,
   EXCHANGE_SVG,
+  ZIMBRA_SVG,
   IP_SVG,
   VPS_SVG,
   NUTANIX_SVG,
