@@ -136,12 +136,12 @@ const umd = (opts, pluginsOpts) =>
   generateConfig(
     mergeConfig(
       {
-        inlineDynamicImports: true,
         output: {
           name: defaultName,
           file: `./dist/umd/${defaultName}.js`,
           format: 'umd',
           sourcemap: true,
+          inlineDynamicImports: true,
         },
       },
       opts,
@@ -168,12 +168,12 @@ const iife = (opts, pluginsOpts) =>
   generateConfig(
     mergeConfig(
       {
-        inlineDynamicImports: true,
         output: {
           name: camelcase(defaultName),
           file: `./dist/iife/${defaultName}.js`,
           format: 'iife',
           sourcemap: true,
+          inlineDynamicImports: true,
         },
       },
       opts,

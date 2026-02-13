@@ -2,6 +2,7 @@ enum OvhProductName {
   HOSTING = 'Hosting',
   OFFICE365 = 'Office365',
   EXCHANGE = 'Exchange',
+  WORDPRESS = 'Wordpress',
   TELECOMETHERNET = 'TelecomEthernet',
   HEADSET = 'Headset',
   TELEPHONY = 'Telephony',
@@ -38,7 +39,14 @@ enum OvhProductName {
   SERVERV2 = 'ServerV2',
   SHIELDCHECK = 'ShieldCheck',
   SHOPPINGCARTPLUS = 'ShoppingCartPlus',
+  SPARKLE = 'Sparkle',
   STAR = 'Star',
+  CLOUD_CHANGELOG = 'CloudChangelog',
+  HOSTING_CHANGELOG = 'HostingChangelog',
+  ZIMBRA = 'Zimbra',
+  OBSERVABILITY = 'Observability',
+  OVH_LOGO = 'OVHLogo',
+  OVH_SHORT_LOGO = 'OVHShortLogo',
 }
 
 export default OvhProductName;

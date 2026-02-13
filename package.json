@@ -51,6 +51,7 @@
     "test:scripts": "make test"
   },
   "resolutions": {
+    "@hookform/resolvers": "3.3.4",
     "@babel/runtime": "^7.22.15",
     "@module-federation/runtime": "0.8.12",
     "@rollup/plugin-commonjs": "^11.0.2",
@@ -61,7 +62,8 @@
     "lodash": "4.17.21",
     "lodash-es": "4.17.21",
     "rollup-plugin-sass": "1.12.16",
-    "sass": "1.93.0"
+    "sass": "1.93.0",
+    "zod": "3.22.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
