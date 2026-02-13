@@ -16,6 +16,7 @@ export const shareDataSchema = z.object({
   specName: stringSchema,
   size: z.number(),
   privateNetworkId: z.string().min(1),
+  subnetId: z.string().min(1),
 });
 
 const deploymentModesShema = z.array(z.enum(DEPLOYMENT_MODES));

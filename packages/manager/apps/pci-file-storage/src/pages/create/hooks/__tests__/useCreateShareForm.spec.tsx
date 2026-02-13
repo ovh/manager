@@ -33,7 +33,7 @@ describe('useCreateShareForm', () => {
 
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 1024,
         iopsLevel: 30,
@@ -63,12 +63,12 @@ describe('useCreateShareForm', () => {
     const formValues = result.current.getValues();
     expect(formValues.shareData.microRegion).toBe('GRA1');
     expect(formValues.macroRegion).toBe('GRA');
-    expect(formValues.shareData.specName).toBe('publiccloud-share-standard1');
+    expect(formValues.shareData.specName).toBe('standard-1az');
     expect(formValues.shareData.size).toBe(150);
     expect(formValues.deploymentModes).toEqual(['region', 'region-3-az']);
     expect(formValues.continent).toBe('all');
     expect(formValues.availabilityZone).toBe(null);
-    expect(formValues.shareData.name).toMatch(/^publiccloud-share-standard1_\d{2}_\d{2}_\d{4}$/);
+    expect(formValues.shareData.name).toMatch(/^standard-1az_\d{2}_\d{2}_\d{4}$/);
   });
 
   it('should handle empty localizations array', async () => {
@@ -189,7 +189,7 @@ describe('useCreateShareForm', () => {
 
     const shareOptions: TShareSpecData[] = [
       {
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 200,
         capacityMax: 1024,
         iopsLevel: 30,

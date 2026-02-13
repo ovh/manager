@@ -49,7 +49,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -66,7 +66,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 0,
         },
       },
@@ -80,7 +80,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -99,7 +99,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 0,
         },
       },
@@ -123,7 +123,7 @@ describe('ShareSizeSelection', () => {
     const shareOptions: TShareSpecData[] = [
       {
         ...generalShareSpec,
-        name: 'publiccloud-share-standard1',
+        name: 'standard-1az',
         capacityMin: 150,
         capacityMax: 10240,
         iopsLevel: 30,
@@ -152,7 +152,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 150,
         },
       },
@@ -187,7 +187,7 @@ describe('ShareSizeSelection', () => {
   const shareOptions: TShareSpecData[] = [
     {
       ...generalShareSpec,
-      name: 'publiccloud-share-standard1',
+      name: 'standard-1az',
       capacityMin: 150,
       capacityMax: 2048,
       iopsLevel: 30,
@@ -213,7 +213,7 @@ describe('ShareSizeSelection', () => {
       defaultValues: {
         shareData: {
           microRegion: 'GRA1',
-          specName: 'publiccloud-share-standard1',
+          specName: 'standard-1az',
           size: 500,
         },
       },

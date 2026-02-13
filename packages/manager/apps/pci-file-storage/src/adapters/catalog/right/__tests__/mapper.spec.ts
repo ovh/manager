@@ -192,15 +192,15 @@ describe('mapCatalogDTOToCatalog', () => {
       filters: {
         deployment: ['region', 'region-3-az', 'localzone'],
       },
-      specsIds: ['publiccloud-share-standard1', 'publiccloud-share-standard2'],
+      specsIds: ['standard-1az', 'publiccloud-share-standard2'],
     });
 
     expect(result.entities.shareSpecs.allIds).toEqual([
-      'publiccloud-share-standard1',
+      'standard-1az',
       'publiccloud-share-standard2',
     ]);
-    expect(result.entities.shareSpecs.byId.get('publiccloud-share-standard1')).toEqual({
-      name: 'publiccloud-share-standard1',
+    expect(result.entities.shareSpecs.byId.get('standard-1az')).toEqual({
+      name: 'standard-1az',
       capacity: {
         min: 150,
         max: 10240,

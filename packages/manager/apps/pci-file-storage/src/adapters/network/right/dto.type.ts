@@ -6,3 +6,8 @@ export type TNetworkDto = {
   region: string;
   visibility: TNetworkVisibilityDto;
 };
+
+export type TSubnetDto = {
+  id: string;
+  name: string;
+};
