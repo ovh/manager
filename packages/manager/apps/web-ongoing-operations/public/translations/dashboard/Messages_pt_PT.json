@@ -177,5 +177,5 @@
   "domain_operations_update_spareEmail": "E-mail de segurança",
   "domain_operations_update_vat": "NIF intracomunitário",
   "domain_operations_update_firstName": "Nome",
-  "domain_operations_upload_file_template": "Apenas serão aceites ficheiros que sigam <Link>este modelo de</Link> de documento."
+  "domain_operations_upload_file_template": "Apenas serão aceites ficheiros que sigam <Link>este modelo</Link> de documento."
 }
