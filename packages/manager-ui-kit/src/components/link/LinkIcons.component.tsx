@@ -11,7 +11,7 @@ export function LinkIcons({ type, children }: LinkIconsProps) {
     case LinkType.back:
       return (
         <>
-          <Icon name="arrow-left" />
+          <Icon name="arrow-left" aria-hidden="true" />
           {children}
         </>
       );
@@ -19,14 +19,21 @@ export function LinkIcons({ type, children }: LinkIconsProps) {
       return (
         <>
           {children}
-          <Icon name="external-link" />
+          <Icon name="external-link" aria-hidden="true" />
         </>
       );
     case LinkType.next:
       return (
         <>
           {children}
-          <Icon name="arrow-right" />
+          <Icon name="arrow-right" aria-hidden="true" />
+        </>
+      );
+    case LinkType.survey:
+      return (
+        <>
+          {children}
+          <Icon name="emoticon-smile" aria-hidden="true" />
         </>
       );
     default:

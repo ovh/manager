@@ -54,6 +54,21 @@ describe('Link component', () => {
     expect(linkElement).toHaveAttribute('href', 'https://www.example.com');
   });
 
+  it('renders a survey link correctly', () => {
+    const props = {
+      type: LinkType.survey,
+      surveyLink: { applicationKey: 'COM', email: 'test@example.com' },
+    };
+    render(<Link {...props} />);
+    const linkElement = screen.getByText('Donnez-nous votre avis !');
+    expect(linkElement).toBeInTheDocument();
+
+    expect(linkElement).toHaveAttribute(
+      'href',
+      'https://s.elq.fr/ovhsat/COM_evaluation_survey?email=test%40example.com',
+    );
+  });
+
   it('renders a external link correctly with label as prop', () => {
     const props = {
       href: 'https://www.ovhcloud.com/',
