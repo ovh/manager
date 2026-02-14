@@ -1,0 +1,11 @@
+{
+  "activation_code_page_title": "Título: Confirme su dirección de correo electrónico",
+  "activation_code_page_text": "Texto: a continuación Hemos enviado un código a su dirección de correo electrónico. Modifique su dirección de correo electrónico.",
+  "activation_code_page_enter_code": "Introduzca el código",
+  "activation_code_page_question": "¿No ha recibido el código?",
+  "activation_code_page_help_info": "Verifique su carpeta de spam o haga clic aquí para recibir el código de activación. ",
+  "forgot_password_page_title": "Título: He olvidado la contraseña ",
+  "forgot_password_page_text": "Texto: Introduzca la dirección de correo electrónico o el identificador asociado a su cuenta y le enviaremos un enlace para restablecer su contraseña. ",
+  "password_reset_page_title": "Título: Restablecimiento de la contraseña",
+  "password_reset_page_text": "Texto a continuación: contraseña modificada con éxito"
+}
