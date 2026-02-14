@@ -6,13 +6,13 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
-import { render, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen, RenderResult } from '@testing-library/react';
 import {
   toMswHandlers,
   initTestI18n,
   getAuthenticationMocks,
 } from '@ovh-ux/manager-core-test-utils';
-import { SetupServer } from 'msw/lib/node';
+import { SetupServer } from 'msw/node';
 import { TestApp } from './TestApp';
 import { labels, translations } from './labels';
 import {
@@ -28,7 +28,7 @@ let i18nValue: i18n;
 export const renderTestApp = async (
   initialRoute = '/',
   mockParams: GetIamTagsMockParams = {},
-) => {
+): Promise<RenderResult> => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),

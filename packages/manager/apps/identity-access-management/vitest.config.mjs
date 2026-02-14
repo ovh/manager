@@ -3,6 +3,7 @@ import {
   sharedConfig,
   mergeConfig,
   createConfig,
+  defaultDedupedDependencies,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
@@ -11,7 +12,7 @@ export default mergeConfig(
     test: {
       setupFiles: './src/setupTests.tsx',
     },
-    resolve: {
+    resolve: { dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
