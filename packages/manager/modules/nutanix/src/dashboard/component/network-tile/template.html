@@ -73,6 +73,20 @@
         </oui-tile-description>
     </oui-tile-definition>
 
+    <!-- Dataservice Ip -->
+    <oui-tile-definition
+        data-ng-if="$ctrl.cluster.canModifyDataServiceIp()"
+        term="{{:: 'nutanix_cluster_dataservice_ip' | translate}}"
+    >
+        <oui-tile-description>
+            <oui-clipboard
+                class="ip-clipboard"
+                data-model="$ctrl.cluster.targetSpec.dataserviceIp"
+            >
+            </oui-clipboard>
+        </oui-tile-description>
+    </oui-tile-definition>
+
     <!-- vRack -->
     <oui-tile-definition data-term="{{:: 'nutanix_cluster_vrack' | translate}}">
         <oui-tile-description>
