@@ -7,7 +7,7 @@
   "key_management_service_listing_region_cell": "Region",
   "key_management_service_listing_clipboard_success_label": "Copiato",
   "key_management_service_listing_clipboard_error_label": "Errore",
-  "key_management_service_listing_add_kms_button": "Ordina un dominio OKMS",
+  "key_management_service_listing_add_kms_button": "Ordinare un dominio OKMS",
   "key_management_service_listing_title": "Key Management Service",
   "key_management_service_listing_terminate": "Disattivare",
   "key_management_service_listing_region_eu_west_par": "Europa (Francia - Parigi)",
