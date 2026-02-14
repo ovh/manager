@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@ovh-ux/manager-carrier-sip": "^2.3.1",
-    "@ovh-ux/manager-config": "^8.6.6",
+    "@ovh-ux/manager-config": "8.6.6",
     "@ovh-ux/manager-core": "^13.2.13",
     "@ovh-ux/manager-telecom-styles": "^4.8.6",
     "@ovh-ux/ng-ovh-api-wrappers": "^5.1.0",
@@ -29,7 +29,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-ovh-telecom-universe-components": "^7.29.1",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/request-tagger": "0.5.5",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.8",

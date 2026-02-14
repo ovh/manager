@@ -1,12 +1,6 @@
 module.exports = {
   root: true,
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    requireConfigFile: false,
-    babelOptions: {
-      presets: ['@babel/preset-env'],
-    },
-  },
+  parser: 'babel-eslint',
   plugins: ['angular', 'markdown', 'prettier'],
   extends: ['airbnb-base', 'prettier'],
   env: {
@@ -21,18 +15,21 @@ module.exports = {
   },
   rules: {
     'no-bitwise': ['error', { allow: ['~'] }],
-    'import/no-extraneous-dependencies': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: true, peerDependencies: true },
+    ],
     'import/no-unresolved': 0,
     'prettier/prettier': 'warn',
     'import/extensions': 'off',
     'import/no-cycle': 'off',
     'import/prefer-default-export': 'off',
-    'class-methods-use-this': 'off',
   },
   ignorePatterns: [
     '**/vendor/**',
     '**/node_modules/**',
     '**/dist/**',
+    '**/coverage/**',
     '**/www/**',
     '**/custom-elements/**',
     '**/custom-elements-bundle/**',
@@ -40,6 +37,8 @@ module.exports = {
     '**/vue/src/**',
     '**/loader/**',
     '**/templates/**',
+    '**/*.config.ts',
+    'vite-env.d.ts',
   ],
   overrides: [
     {

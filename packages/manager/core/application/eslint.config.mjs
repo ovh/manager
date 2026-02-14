@@ -31,12 +31,11 @@ export default [
         tsconfigRootDir: import.meta.dirname,
       },
     },
-  },
-  {
     rules: {
       'react-hooks/exhaustive-deps': 'off',
       'react/no-children-prop': 'off',
-      'react/prop-types': 'off'
+      'react/prop-types': 'off',
+      '@typescript-eslint/no-unsafe-member-acces': 'off'
     },
   },
 ];

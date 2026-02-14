@@ -1,8 +1,9 @@
 import { Linter } from 'eslint';
 import prettier from 'eslint-plugin-prettier';
 
-import { prettierConfig, prettierIgnorePatterns } from '../../../configs/code-formatter-config';
+import { prettierConfig } from '../../../configs/code-formatter-config';
 import { commonTextFiles } from '../../../configs/file-globs-config';
+import { sharedCodeFormatterIgnorePatterns } from '../../../configs/shared-exclusion-patterns';
 
 /**
  * ESLint Flat Config for Prettier integration.
@@ -18,7 +19,7 @@ import { commonTextFiles } from '../../../configs/file-globs-config';
  */
 export const prettierEslintConfig: Linter.FlatConfig = {
   files: [commonTextFiles],
-  ignores: prettierIgnorePatterns,
+  ignores: sharedCodeFormatterIgnorePatterns,
   plugins: {
     prettier,
   },

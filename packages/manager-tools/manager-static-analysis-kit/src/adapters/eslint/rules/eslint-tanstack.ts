@@ -1,5 +1,5 @@
 import pluginQuery from '@tanstack/eslint-plugin-query';
-import {ESLint, Linter } from 'eslint';
+import { Linter } from 'eslint';
 
 import { jsTsFiles } from '../../../configs/file-globs-config';
 
@@ -14,7 +14,7 @@ import { jsTsFiles } from '../../../configs/file-globs-config';
 export const tanStackQueryEslintConfig: Linter.FlatConfig = {
   files: [jsTsFiles],
   plugins: {
-    '@tanstack/query': pluginQuery as unknown as ESLint.Plugin,
+    '@tanstack/query': pluginQuery,
   },
   rules: {
     ...pluginQuery.configs.recommended.rules,

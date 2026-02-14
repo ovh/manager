@@ -13,7 +13,7 @@ export const useMe = () => {
   const [me, setMe] = useState<IMe>(null);
 
   useEffect(() => {
-    setMe(context?.environment?.getUser());
+    setMe(context?.environment?.getUser?.());
   }, [context?.environment]);
 
   return { me };

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
 import process, { cwd, execPath } from 'node:process';
 import { fileURLToPath } from 'node:url';
-import { createRequire } from 'node:module';
 
 import { logError, logInfo } from './utils/log-utils.js';
 
@@ -44,16 +44,25 @@ const firstNonFlag = () => args.find((a) => !a.startsWith('--'));
 
 const hasExplicitConfig = hasFlag('--config');
 const localConfigCandidates = [
-  'eslint.config.ts', 'eslint.config.mts', 'eslint.config.cts',
-  'eslint.config.mjs', 'eslint.config.cjs', 'eslint.config.js',
+  'eslint.config.ts',
+  'eslint.config.mts',
+  'eslint.config.cts',
+  'eslint.config.mjs',
+  'eslint.config.cjs',
+  'eslint.config.js',
 ];
 const localConfigPath = localConfigCandidates
   .map((f) => join(userCwd, f))
   .find((p) => existsSync(p));
 
-const sharedDefaultPath = resolve(__dirname, '../dist/adapters/eslint/config/eslint-shared-config.js');
+const sharedDefaultPath = resolve(
+  __dirname,
+  '../dist/adapters/eslint/config/eslint-shared-config.js',
+);
 
-const configPath = hasExplicitConfig ? getFlagValue('--config') : (localConfigPath ?? sharedDefaultPath);
+const configPath = hasExplicitConfig
+  ? getFlagValue('--config')
+  : (localConfigPath ?? sharedDefaultPath);
 
 // ---------------------------------------------------------------------------
 // Node preload for TS configs
@@ -67,14 +76,14 @@ if (needsTsx) {
     require.resolve('tsx');
   } catch {
     logError('[manager-lint] A TypeScript eslint config was detected, but "tsx" is not installed.');
-    logError('Install it in @ovh-ux/manager-static-analysis-kit (or the invoking package) and retry.');
+    logError(
+      'Install it in @ovh-ux/manager-static-analysis-kit (or the invoking package) and retry.',
+    );
     process.exit(1);
   }
 }
 
-const nodePreload = needsTsx
-  ? (nodeMajor >= 20 ? ['--import', 'tsx'] : ['--loader', 'tsx'])
-  : [];
+const nodePreload = needsTsx ? (nodeMajor >= 20 ? ['--import', 'tsx'] : ['--loader', 'tsx']) : [];
 
 // ---------------------------------------------------------------------------
 // Build final ESLint argv
@@ -109,7 +118,14 @@ function run(procArgs) {
 if (hasFlag('--print-config')) {
   const target = firstNonFlag() ?? '.';
   logInfo('[manager-lint] Using config:', configPath);
-  const code = await run([...nodePreload, eslintCli, '--config', configPath, '--print-config', target]);
+  const code = await run([
+    ...nodePreload,
+    eslintCli,
+    '--config',
+    configPath,
+    '--print-config',
+    target,
+  ]);
   process.exit(code);
 }
 

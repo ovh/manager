@@ -1,11 +1,39 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/node-strict",
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": true,
+    "composite": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "NodeNext",
     "rootDir": "src",
     "noEmit": false,
     "outDir": "dist",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "declarationDir": "./dist/types"
+    "declarationDir": "./dist/types",
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
   },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

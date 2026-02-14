@@ -41,26 +41,6 @@ const sortImportsPluginPath = require.resolve('@trivago/prettier-plugin-sort-imp
 const tailwindConfigPath = resolve(cwd(), 'tailwind.config.js');
 
 /**
- * Glob patterns that define which files or folders should be excluded
- * from Prettier formatting.
- *
- * These paths are respected in CLI usage and in `eslint-plugin-prettier`
- * where applicable.
- *
- * @type {string[]}
- */
-export const prettierIgnorePatterns = [
-  '**/dist/**',
-  '**/custom-elements*/**',
-  '**/loader/**',
-  '**/react/**',
-  '**/vue/**',
-  '**/apps/container/**',
-  '**/apps/pci-databases-analytics/src/components/ui/**',
-  '**/apps/pci-databases-analytics/src/lib/utils.ts',
-];
-
-/**
  * Shared Prettier configuration for formatting source code across
  * multiple projects and editors.
  *
