@@ -1,4 +1,5 @@
 {
   "cdn_tabs_logs_list_no_logs": "In attesa dei log",
-  "cdn_tabs_logs": "Log"
+  "cdn_tabs_logs": "Log",
+  "cdn_logs_description": "Qui sotto troverai i log in tempo reale generati dal tuo servizio CDN."
 }
