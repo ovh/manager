@@ -61,6 +61,7 @@ export const features = [
   'observability:metrics:tenants',
   'observability:settings',
   'observability:settings:services',
+  'observability:settings:managed-dashboards',
 ];
 
 export default function DedicatedSidebar() {
@@ -379,7 +380,7 @@ export default function DedicatedSidebar() {
             id: 'bmc-backup-agent-baremetal',
             label: t('sidebar_backup_agent_baremetal'),
             icon: (
-              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
+              <img alt="" src={backupAgentLogo} className="mb-1 aspect-square w-6" />
             ),
             href: navigation.getURL('bmc-backup-agent-baremetal', '#'),
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
@@ -519,6 +520,20 @@ export default function DedicatedSidebar() {
             icon: (
               <OsdsIcon
                 name={ODS_ICON_NAME.KEY_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
+              />
+            ),
+          },
+          feature['observability:settings:managed-dashboards'] && {
+            id: 'managed-dashboards',
+            href: navigation.getURL('observability', '#/settings/managed-dashboards'),
+            label: t('sidebar_observability_settings_managed_dashboards'),
+            pathMatcher: new RegExp('^/observability/settings/managed-dashboards'),
+            ignoreSearch: true,
+            icon: (
+              <OsdsIcon
+                name={ODS_ICON_NAME.GRAPH_CONCEPT}
                 size={ODS_ICON_SIZE.xxs}
                 color={ODS_THEME_COLOR_INTENT.text}
               />
