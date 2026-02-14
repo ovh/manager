@@ -43,7 +43,7 @@ describe('ActionMenu Snapshot Tests', () => {
 
   describe('Button variants', () => {
     it.each([
-      ['outline', BUTTON_VARIANT.outline],
+      ['outline-solid', BUTTON_VARIANT.outline],
       ['ghost', BUTTON_VARIANT.ghost],
       ['default', BUTTON_VARIANT.default],
     ])('matches snapshot with %s variant', (_, variant) => {

@@ -36,7 +36,7 @@ export function TilesInputGroupTabs<Item>({
           })}
         </TabList>
       </Tabs>
-      <div className="bg-[--ods-color-primary-050] border border-solid border-[--ods-color-primary-100] border-t-0">
+      <div className="bg-(--ods-color-primary-050) border border-solid border-(--ods-color-primary-100) border-t-0">
         <ContentComponent item={selectedTabItem as Item} />
       </div>
     </div>

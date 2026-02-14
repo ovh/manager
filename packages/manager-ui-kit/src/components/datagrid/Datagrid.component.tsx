@@ -95,6 +95,7 @@ export const Datagrid = <T extends Record<string, unknown>>({
           setColumnVisibility={columnVisibility?.setColumnVisibility}
         />
       )}
+      <div className="bg-blue-500 text-red-500">Test datagrid with tailwind 4</div>
       <div
         className="overflow-auto relative w-full"
         ref={setTableContainerRef}

@@ -101,7 +101,7 @@ describe('StepHeader Component', () => {
       open: true,
     });
     const titleElement = screen.getByText('Test Title').parentElement;
-    expect(titleElement).toHaveClass('text-[--ods-color-text]');
+    expect(titleElement).toHaveClass('text-(--ods-color-text)');
   });
 
   it('applies correct styles when step is closed', () => {
@@ -109,6 +109,6 @@ describe('StepHeader Component', () => {
       ...defaultContext,
     });
     const titleElement = screen.getByText('Test Title').parentElement;
-    expect(titleElement).toHaveClass('text-[--ods-color-neutral-500]');
+    expect(titleElement).toHaveClass('text-(--ods-color-neutral-500)');
   });
 });

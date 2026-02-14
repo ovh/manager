@@ -1,7 +1,7 @@
 // @ts-ignore
 import path from 'path';
 // @ts-ignore
-import tailwindcss from 'tailwindcss';
+import tailwindcss from '@tailwindcss/postcss';
 import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { defineConfig } from 'vitest/config';
@@ -40,7 +40,7 @@ export default defineConfig({
   ],
   css: {
     postcss: {
-      plugins: [tailwindcss],
+      plugins: [tailwindcss()],
     },
     preprocessorOptions: {
       scss: {

@@ -1,1 +1,22 @@
-@tailwind utilities;
+@import 'tailwindcss/utilities' layer(utilities);
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 36em;
+  --breakpoint-md: 48em;
+  --breakpoint-lg: 62em;
+  --breakpoint-xl: 75em;
+  --breakpoint-xxl: 87.5em;
+
+  --radius-ods-border-radius-xs: var(--ods-border-radius-xs);
+  --radius-ods-border-radius-sm: var(--ods-border-radius-sm);
+  --radius-ods-border-radius-md: var(--ods-border-radius-md);
+  --radius-ods-border-radius-lg: var(--ods-border-radius-lg);
+
+  --color-ods-color-primary-500: var(--ods-color-primary-500);
+  --color-ods-color-success-500: var(--ods-color-success-500);
+  --color-ods-color-warning-700: var(--ods-color-warning-700);
+
+  --font-ods-font-family-default: var(--ods-font-family-default);
+}

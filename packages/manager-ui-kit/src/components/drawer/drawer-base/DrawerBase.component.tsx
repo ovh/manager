@@ -38,7 +38,7 @@ export const DrawerBase = ({
         createPortal={createPortal}
         position={DRAWER_POSITION.right}
         className={clsx(
-          'w-full sm:w-[var(--mrc-drawer-width)] max-w-full p-0 overflow-hidden',
+          'w-full sm:w-(--mrc-drawer-width) max-w-full p-0 overflow-hidden',
           className,
         )}
       >

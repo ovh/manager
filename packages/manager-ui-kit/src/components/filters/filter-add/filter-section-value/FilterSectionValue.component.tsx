@@ -24,7 +24,7 @@ export const FilterSectionValue = ({
 }: FilterSectionValueProps) => {
   if (selectedColumn?.type === FilterTypeCategories.Date) {
     return (
-      <div data-testid="filter-add_value-date" className="z-[2]">
+      <div data-testid="filter-add_value-date" className="z-2">
         <Datepicker
           className="border"
           name="filter-add_value-date"

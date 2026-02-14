@@ -11,7 +11,7 @@ const DrawerBackdrop = ({ onClick }: DrawerBackdropProps) => {
       type="button"
       aria-label={t('close')}
       tabIndex={0}
-      className="fixed inset-0 bg-[var(--ods-color-information-500)] z-40 mrc-drawer-backdrop-fade-in"
+      className="fixed inset-0 bg-(--ods-color-information-500) z-40 mrc-drawer-backdrop-fade-in"
       onClick={onClick}
     />
   );
