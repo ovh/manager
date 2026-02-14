@@ -1,3 +1,4 @@
+export * from './base-resource.type';
 export * from './veeam-backup.type';
 export * from './veeam-backup-catalog.type';
 export * from './vcd-catalog.type';
