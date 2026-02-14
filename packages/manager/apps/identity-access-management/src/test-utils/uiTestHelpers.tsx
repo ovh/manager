@@ -1,5 +1,6 @@
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import '@testing-library/jest-dom';
+import { waitFor } from '@testing-library/react';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
 export const WAIT_FOR_DEFAULT_OPTIONS = {
@@ -61,16 +62,32 @@ export const getOdsCheckbox = async ({
   disabled?: boolean;
   nth?: number;
 }) => {
-  const checkbox: HTMLOdsCheckboxElement = Array.from(
-    container.querySelectorAll('ods-checkbox'),
-  )?.[nth] as HTMLOdsCheckboxElement;
+  const findCheckbox = () => {
+    const candidates = [
+      ...Array.from(container.querySelectorAll('ods-checkbox')),
+      ...Array.from(container.querySelectorAll('osds-checkbox')),
+      ...Array.from(container.querySelectorAll('input[type="checkbox"]')),
+    ] as HTMLElement[];
 
-  expect(checkbox).toBeDefined();
+    return candidates[nth];
+  };
 
-  const disabledAttribute = checkbox.getAttribute('is-disabled') === 'true';
+  await waitFor(() => {
+    expect(findCheckbox()).toBeDefined();
+  }, WAIT_FOR_DEFAULT_OPTIONS);
 
-  if (disabled) expect(disabledAttribute).toBeTruthy();
-  else expect(disabledAttribute).toBeFalsy();
+  const checkbox = findCheckbox();
+
+  // Disabled detection across variants
+  const isNativeInput = checkbox.tagName.toLowerCase() === 'input';
+  const isDisabled = isNativeInput
+    ? (checkbox as HTMLInputElement).disabled
+    : checkbox.getAttribute('is-disabled') === 'true' ||
+      checkbox.getAttribute('disabled') === 'true' ||
+      checkbox.hasAttribute('disabled');
+
+  if (disabled) expect(isDisabled).toBeTruthy();
+  else expect(isDisabled).toBeFalsy();
 
   return checkbox;
 };

@@ -28,7 +28,7 @@ export const useIamUserTokenList = ({
   userId: string;
   columns: DatagridColumn<IamUserToken>[];
   pageSize: number;
-}) => {
+}): ReturnType<typeof useResourcesIcebergV6<IamUserToken>> => {
   const route = `/me/identity/user/${userId}/token`;
   return useResourcesIcebergV6<IamUserToken>({
     route,
