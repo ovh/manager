@@ -7551,7 +7551,16 @@
     "@ovh-ux/request-tagger" "^0.5.4"
     axios "^1.1.2"
 
-"@ovh-ux/manager-core-sso@^0.3.1", "@ovh-ux/manager-core-sso@^0.3.2":
+"@ovh-ux/manager-core-api@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-api/-/manager-core-api-0.17.1.tgz#290e2998b68d60a03f3c1a3ad7d8a27d636e88ac"
+  integrity sha512-yFlxKQOzz45D8XKjpyoNK5V0O/efgb2jrea7UNh+XbMv8cdAbpl0hK1d29hnHXdnnSNUXZZe+eNZtL/KvKgIFQ==
+  dependencies:
+    "@ovh-ux/manager-core-sso" "^0.3.3"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    axios "^1.1.2"
+
+"@ovh-ux/manager-core-sso@^0.3.1", "@ovh-ux/manager-core-sso@^0.3.2", "@ovh-ux/manager-core-sso@^0.3.3":
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/@ovh-ux/manager-core-sso/-/manager-core-sso-0.3.3.tgz#138b5c1592c437c689ec4c523ddf0cc7aa26812e"
   integrity sha512-22M6BY5AkjzOFMATSg+EpoFXkxYKVbqI2hev7eD2EsfNRCnBINjXMWy9FDD0cXMuwkP7RwxbLuf8dAC4x+JZtA==
@@ -7671,6 +7680,11 @@
   dependencies:
     lodash "^4.17.15"
 
+"@ovh-ux/ovh-at-internet@0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.24.1.tgz#1483449467549868a3868ace878f4523243bab08"
+  integrity sha512-L/C9Qwp1i1ggDHvjUB3bCz3yatCQCBZG2cx9ek0yUKo1++rUNiGX+fmntmfxFRsIlPaSLYz2Hcvrvb1tXhFdQA==
+
 "@ovh-ux/ovh-at-internet@^0.21.6":
   version "0.21.8"
   resolved "https://registry.yarnpkg.com/@ovh-ux/ovh-at-internet/-/ovh-at-internet-0.21.8.tgz#91f6b35e77eb60839a715d787e6ab9a22e7ec183"
@@ -7690,6 +7704,21 @@
     less "^3.9.0"
     lodash "^4.17.20"
     rollup-pluginutils "^2.8.2"
+
+"@ovh-ux/shell@4.7.1":
+  version "4.7.1"
+  resolved "https://registry.yarnpkg.com/@ovh-ux/shell/-/shell-4.7.1.tgz#fddd5f83fa6dc9fc2484257c036585c6ec8aaa8a"
+  integrity sha512-XEQEf1JhPPpU6R2VI2YEZpIv7MgwLtQLKl5paFnQ8hqpNgxekZSi4IGN3u5GmqSMM5DpOFxU0+5e3KL/iYny7A==
+  dependencies:
+    "@ovh-ux/manager-config" "^8.5.1"
+    "@ovh-ux/manager-core-api" "^0.17.1"
+    "@ovh-ux/manager-core-sso" "^0.3.3"
+    "@ovh-ux/ovh-at-internet" "^0.24.1"
+    "@ovh-ux/ovh-reket" "^2.1.11"
+    "@ovh-ux/request-tagger" "^0.4.1"
+    "@ovh-ux/url-builder" "^2.0.4"
+    dompurify "^3.2.4"
+    nanoid "^3.1.25"
 
 "@ovh-ux/translate-async-loader@^1.0.8":
   version "1.0.8"
