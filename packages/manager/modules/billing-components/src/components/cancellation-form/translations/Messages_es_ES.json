@@ -18,5 +18,6 @@
   "billing_confirm_termination_future_use_OTHER": "Otros. Por favor, especifique:",
   "billing_confirm_termination_terminate": "Aceptar",
   "billing_confirm_termination_success": "El servicio se ha dado de baja. Recibirá un email de confirmación en los próximos minutos. Agradeciéndole la confianza depositada en OVHcloud, quedamos a su entera disposición.",
-  "billing_confirm_termination_error": "Se ha producido un error durante la baja del servicio: {{ message }}."
+  "billing_confirm_termination_error": "Se ha producido un error durante la baja del servicio: {{ message }}.",
+  "billing_confirm_termination_unnecessary": "Este servicio ya está configurado para la renovación manual. No es necesario solicitar una «baja en la fecha de expiración»: este servicio se cancelará automáticamente en la fecha de expiración si no lo renueva manualmente."
 }

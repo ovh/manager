@@ -18,5 +18,6 @@
   "billing_confirm_termination_future_use_OTHER": "Altro (specificare)",
   "billing_confirm_termination_terminate": "Conferma",
   "billing_confirm_termination_success": "Il servizio è stato disattivato correttamente. Riceverai un’email di conferma entro pochi minuti. Il team di supporto è a disposizione per rispondere alle tue domande.",
-  "billing_confirm_termination_error": "Si è verificato un errore durante la disattivazione del servizio. {{ message }}"
+  "billing_confirm_termination_error": "Si è verificato un errore durante la disattivazione del servizio. {{ message }}",
+  "billing_confirm_termination_unnecessary": "Questo servizio è già configurato per il rinnovo manuale. Non è necessario richiedere una \"disattivazione alla scadenza\": questo servizio terminerà automaticamente alla data di scadenza se non viene rinnovato manualmente."
 }
