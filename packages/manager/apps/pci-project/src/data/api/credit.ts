@@ -37,3 +37,12 @@ export const getStartupProgram = async (): Promise<TStartupProgram> => {
   const { data } = await v6.get<TStartupProgram>('/me/credit/balance/STARTUP_PROGRAM');
   return data;
 };
+
+export const isVoucherUsed = async (projectId: string, voucher: string): Promise<boolean> => {
+  const response = await getCreditDetails(projectId);
+  return (
+    (response.data || []).filter((creditDetail: CreditDetailsResponse) => {
+      return creditDetail.voucher === voucher;
+    }).length === 0
+  );
+};

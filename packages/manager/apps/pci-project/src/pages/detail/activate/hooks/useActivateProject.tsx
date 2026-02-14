@@ -9,6 +9,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNotifications } from '@ovh-ux/manager-react-components';
 
 import { DISCOVERY_PROMOTION_VOUCHER } from '@/constants';
+import { isVoucherUsed } from '@/data/api/credit';
 import { useClaimVoucher } from '@/data/hooks/useProjects';
 import { useActivateProject, useSimulateProjectActivation } from '@/data/hooks/useServices';
 import { TEligibilityVoucher } from '@/data/models/Eligibility.type';
@@ -68,10 +69,13 @@ export const useProjectActivation = ({
       try {
         // Step 1: Claim voucher if we have a promotion amount
         if (promotionVoucher && claimVoucher) {
-          await claimDiscoveryVoucher({
-            projectId,
-            voucherCode: DISCOVERY_PROMOTION_VOUCHER,
-          });
+          const isUsed = await isVoucherUsed(projectId, DISCOVERY_PROMOTION_VOUCHER);
+          if (!isUsed) {
+            await claimDiscoveryVoucher({
+              projectId,
+              voucherCode: DISCOVERY_PROMOTION_VOUCHER,
+            });
+          }
         }
 
         // Step 2: Simulate activation to check if payment is required
