@@ -1,4 +1,4 @@
-import { IamObject } from '@ovh-ux/muk';
+import { IamObject } from '@ovh-ux/manager-react-components';
 
 export type OkmsServiceKeyOptions = {
   okmsId: string;
@@ -12,7 +12,6 @@ export type OkmsServiceKey = {
   name?: string;
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
-  keys?: OkmsServiceKeyObject;
   iam: IamObject;
   createdAt: string;
   size?: OkmsServiceKeySize;
@@ -20,12 +19,27 @@ export type OkmsServiceKey = {
   operations: OkmsServiceKeyOperations[];
 };
 
-export type OkmsServiceKeyWithData = OkmsServiceKey & {
-  keys: OkmsServiceKeyObject;
+export type OkmsServiceKeyWithJwkData = OkmsServiceKey & {
+  keys: OkmsServiceKeyJwkObject;
+  keysPEM?: never;
 };
 
-// A JSON Web Key (JWK) object
-type OkmsServiceKeyObject = unknown[];
+export type OkmsServiceKeyWithPemData = OkmsServiceKey & {
+  keys?: never;
+  keysPEM: OkmsServiceKeyPemObject[];
+};
+
+export type OkmsServiceKeyWithData =
+  | OkmsServiceKey
+  | OkmsServiceKeyWithJwkData
+  | OkmsServiceKeyWithPemData;
+
+// JWK service key content
+type OkmsServiceKeyJwkObject = unknown[];
+// PEM service key content
+type OkmsServiceKeyPemObject = {
+  pem: string;
+};
 
 /*
 KEY STATE

@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { LinkProps } from '@ovh-ux/muk';
 
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { initiateTextFileDownload } from '@/common/utils/files/download';
 
 import { CertificateType, DownloadOkmsPublicCaLink } from './DownloadOkmsPublicCaLink';
 
@@ -34,7 +34,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/common/utils/dom/download', () => ({
+vi.mock('@/common/utils/files/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 
