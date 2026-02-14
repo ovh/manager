@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
+import { useGetTopics } from '@/data/hooks/database/topic/useGetTopics.hook';
 import AddEditTopic from '../_components/AddEditTopic.component';
 
-const EditTopiclModal = () => {
+const EditTopic = () => {
   const { topicId } = useParams();
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
@@ -26,4 +26,4 @@ const EditTopiclModal = () => {
   );
 };
 
-export default EditTopiclModal;
+export default EditTopic;

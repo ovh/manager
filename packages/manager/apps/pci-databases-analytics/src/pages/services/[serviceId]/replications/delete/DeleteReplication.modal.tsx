@@ -13,11 +13,11 @@ import {
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
-import { useGetReplications } from '@/hooks/api/database/replication/useGetReplications.hook';
-import { useDeleteReplication } from '@/hooks/api/database/replication/useDeleteReplication.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
+import { useGetReplications } from '@/data/hooks/database/replication/useGetReplications.hook';
+import { useDeleteReplication } from '@/data/hooks/database/replication/useDeleteReplication.hook';
 
-const DeleteReplicationModal = () => {
+const DeleteReplication = () => {
   const { projectId, replicationId } = useParams();
   const navigate = useNavigate();
   const { service } = useServiceData();
@@ -103,4 +103,4 @@ const DeleteReplicationModal = () => {
   );
 };
 
-export default DeleteReplicationModal;
+export default DeleteReplication;

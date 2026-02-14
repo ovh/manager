@@ -3,7 +3,7 @@ import { order } from '@/types/catalog';
 import * as database from '@/types/cloud/project/database';
 import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { compareStorage } from './bytesHelper';
-import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { FullCapabilities } from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
 import { PRICING_PREFIX } from '@/configuration/pricing.constants';
 import { Pricing } from './pricingHelper';
 

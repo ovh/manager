@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 import { useServiceData } from '../../Service.context';
-import { useGetConnector } from '@/hooks/api/database/connector/useGetConnector.hook';
+import { useGetConnector } from '@/data/hooks/database/connector/useGetConnector.hook';
 import AddEditConnector from '../_components/AddEditConnector.component';
 
 export function breadcrumb() {

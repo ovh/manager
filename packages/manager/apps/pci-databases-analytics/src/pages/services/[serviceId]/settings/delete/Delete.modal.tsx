@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
+import { useGetService } from '@/data/hooks/database/service/useGetService.hook';
 import DeleteService from '../../_components/DeleteService.component';
 
-const DeleteServiceModal = () => {
+const Delete = () => {
   const { projectId, serviceId } = useParams();
   const navigate = useNavigate();
   const serviceQuery = useGetService(projectId, serviceId);
@@ -14,4 +14,4 @@ const DeleteServiceModal = () => {
   );
 };
 
-export default DeleteServiceModal;
+export default Delete;

@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { Locale } from '@/hooks/useLocale';
+import { Locale } from '@/hooks/useLocale.hook';
 import { mockedUser } from './mocks/user';
 
 export const mockManagerReactShellClient = () => {

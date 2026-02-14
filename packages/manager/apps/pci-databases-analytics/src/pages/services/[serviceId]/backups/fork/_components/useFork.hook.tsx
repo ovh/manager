@@ -15,11 +15,11 @@ import {
 import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
-import { useVrack } from '@/hooks/useVrack';
+import { useVrack } from '@/hooks/useVrack.hook';
 import { useServiceData } from '../../../Service.context';
-import { ForkInitialValue } from '../Fork.page';
+import { ForkInitialValue } from '../ForkBackup.page';
 import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
-import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { FullCapabilities } from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
 
 const getSuggestedItemOrDefault = (
   suggestion: database.availability.Suggestion,

@@ -21,10 +21,10 @@ import {
   useToast,
   DialogBody,
 } from '@datatr-ux/uxlib';
-import { useAddDatabase } from '@/hooks/api/database/database/useAddDatabase.hook';
+import { useAddDatabase } from '@/data/hooks/database/database/useAddDatabase.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 const AddDatabase = () => {
   // import translations

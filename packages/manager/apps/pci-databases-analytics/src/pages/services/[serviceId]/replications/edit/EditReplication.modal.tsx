@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useGetReplications } from '@/hooks/api/database/replication/useGetReplications.hook';
+import { useGetReplications } from '@/data/hooks/database/replication/useGetReplications.hook';
 import AddEditReplication from '../_components/AddEditReplication.component';
 
-const EditReplicationModal = () => {
+const EditReplication = () => {
   const { replicationId } = useParams();
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
@@ -34,4 +34,4 @@ const EditReplicationModal = () => {
   );
 };
 
-export default EditReplicationModal;
+export default EditReplication;

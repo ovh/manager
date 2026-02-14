@@ -1,9 +1,9 @@
 import { Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useGetReplications } from '@/hooks/api/database/replication/useGetReplications.hook';
+import { useGetReplications } from '@/data/hooks/database/replication/useGetReplications.hook';
 import AddEditReplication from '../_components/AddEditReplication.component';
 
-const AddReplicationModal = () => {
+const AddReplication = () => {
   const { projectId, service } = useServiceData();
   const replicationsQuery = useGetReplications(
     projectId,
@@ -19,4 +19,4 @@ const AddReplicationModal = () => {
   return <AddEditReplication replications={replications} service={service} />;
 };
 
-export default AddReplicationModal;
+export default AddReplication;

@@ -23,16 +23,16 @@ import {
 } from '@datatr-ux/uxlib';
 import { useRolesSelectForm } from './useRolesSelectForm.hook';
 import { USER_CONFIG } from './user.constants';
-import { useGetRoles } from '@/hooks/api/database/user/useGetRoles.hook';
+import { useGetRoles } from '@/data/hooks/database/user/useGetRoles.hook';
 import { useServiceData } from '../../../Service.context';
 import * as database from '@/types/cloud/project/database';
 
-interface RoleSelectProps {
+interface RolesSelectProps {
   value: string[] | undefined;
   onChange: (newRoles: string[] | undefined) => void;
 }
 
-const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
+const RolesSelect = React.forwardRef<HTMLInputElement, RolesSelectProps>(
   ({ value, onChange }, ref) => {
     const { t } = useTranslation(
       'pci-databases-analytics/services/service/users',
@@ -279,6 +279,6 @@ const RoleSelect = React.forwardRef<HTMLInputElement, RoleSelectProps>(
   },
 );
 
-RoleSelect.displayName = 'RoleSelect';
+RolesSelect.displayName = 'RolesSelect';
 
-export default RoleSelect;
+export default RolesSelect;

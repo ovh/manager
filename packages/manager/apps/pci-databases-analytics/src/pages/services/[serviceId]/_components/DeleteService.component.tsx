@@ -17,14 +17,14 @@ import {
   DialogBody,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { useDeleteService } from '@/hooks/api/database/service/useDeleteService.hook';
-import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useDeleteService } from '@/data/hooks/database/service/useDeleteService.hook';
+import { useGetServices } from '@/data/hooks/database/service/useGetServices.hook';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
-import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
+import { useGetIntegrations } from '@/data/hooks/database/integration/useGetIntegrations.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { TERMINATE_CONFIRMATION } from '@/configuration/polling.constants';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 interface DeleteServiceModalProps {
   service: database.Service;

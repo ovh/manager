@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Badge, Button, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import TimeUpdate from './serviceConfiguration/TimeUpdate.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import NavLink from '@/components/links/NavLink.component';

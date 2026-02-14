@@ -11,7 +11,7 @@ import {
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import UserStatusBadge from '../../users/_components/UserStatusBadge.component';
-import { IntegrationWithServices } from '../Integrations.page';
+import { IntegrationWithServices } from '../ListIntegrations.page';
 import IntegrationServiceLink from './IntegrationServiceLink.component';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';

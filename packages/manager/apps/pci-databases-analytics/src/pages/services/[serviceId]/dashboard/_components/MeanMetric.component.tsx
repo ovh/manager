@@ -1,5 +1,5 @@
 import { Skeleton } from '@datatr-ux/uxlib';
-import { useMeanMetric } from '@/hooks/useMeanMetric';
+import { useMeanMetric } from '@/hooks/useMeanMetric.hook';
 import { cn } from '@/lib/utils';
 import { useServiceData } from '../../Service.context';
 
