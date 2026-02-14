@@ -75,7 +75,7 @@
   "telephony_alias_portability_order_url": "Buono d'ordine",
   "telephony_alias_portability_order_step": "Étape {{ current }}/{{ total }}",
   "telephony_alias_portability_order_step_1": "1 - Informazioni sul numero",
-  "telephony_alias_portability_order_step_2": "2 - Informazioni sul contatto",
+  "telephony_alias_portability_order_step_2": "2 - Informazioni di contatto",
   "telephony_alias_portability_order_step_3": "3 - Indirizzo di installazione",
   "telephony_alias_portability_order_step_4": "4 - Fatturazione",
   "telephony_alias_portability_order_number_category": "Catégorie du numéro spécial",
@@ -95,11 +95,11 @@
   "telephony_order_specific_typology_relaxing_label": "Servizi ricreativi",
   "telephony_alias_portability_order_sda_sva_warning": "Per la portabilità di un numero speciale, è necessario compilare il modulo di convalida dell'identità.",
   "telephony_alias_portability_order_sda_sva_go_to_kyc": "Verifica l'identità",
-  "telephony_alias_portability_order_validate": "Conferma",
-  "telephony_alias_portability_order_step_1_subtitle": "Inizia indicando le informazioni del numero che desideri trasferire.",
-  "telephony_alias_portability_order_step_2_subtitle": "Indica le informazioni della persona da contattare.",
-  "telephony_alias_portability_order_step_3_subtitle": "Indica l'indirizzo dove la linea sarà installata.",
-  "telephony_alias_portability_order_step_4_subtitle": "Seleziona un gruppo di fatturazione esistente per associare la linea trasferita.",
-  "telephony_alias_portability_order_step_5": "5 - Finalizzazione",
-  "telephony_alias_portability_order_sda_numbers_required": "Si prega di aggiungere almeno un numero"
+  "telephony_alias_portability_order_validate": "Confermare",
+  "telephony_alias_portability_order_step_1_subtitle": "Per prima cosa, inserisci le informazioni relative al numero che vuoi trasferire.",
+  "telephony_alias_portability_order_step_2_subtitle": "Inserire le informazioni relative alla persona da contattare.",
+  "telephony_alias_portability_order_step_3_subtitle": "Indica l'indirizzo dove verrà installata la linea.",
+  "telephony_alias_portability_order_step_4_subtitle": "Selezionare un gruppo di fatturazione esistente da associare alla linea dell'ambito.",
+  "telephony_alias_portability_order_step_5": "5 - Completamento",
+  "telephony_alias_portability_order_sda_numbers_required": "Aggiungere almeno un numero"
 }

@@ -1,17 +1,28 @@
-export const isLabeuEnvironment = (hostname = window.location.hostname) =>
+/* global globalThis */
+
+const isLabeuEnvironment = (hostname = window.location.hostname) =>
   /\.labeu\./.test(hostname);
 
-export const isProdEnvironment = (hostname = window.location.hostname) =>
+const isProdEnvironment = (hostname = window.location.hostname) =>
   /(?:ca|us|eu)\.ovhcloud\.com/.test(hostname);
 
-export const getWillPaymentUrl = () => {
+const getLabeuEntryPoint = () => {
+  const v = globalThis?.__WP_LABEU_ENTRY_POINT__;
+  return typeof v === 'string' ? v : '';
+};
+
+const getWillPaymentUrl = () => {
   if (isProdEnvironment()) {
     return '/order/payment/assets/remoteEntry.js';
   }
 
-  return (
-  (isLabeuEnvironment() &&
-    (typeof __WP_LABEU_ENTRY_POINT__ === 'string' ? __WP_LABEU_ENTRY_POINT__ : '')) ||
-  'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js'
-  );
+  if (isLabeuEnvironment()) {
+    return getLabeuEntryPoint() || '/order/payment/assets/remoteEntry.js';
+  }
+
+  return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
 };
+
+exports.isLabeuEnvironment = isLabeuEnvironment;
+exports.isProdEnvironment = isProdEnvironment;
+exports.getWillPaymentUrl = getWillPaymentUrl;

@@ -28,7 +28,7 @@
   "sms_order_account_channel_transactional_footer": "Está sujeito a uma regulamentação menos restritiva do que o canal de marketing (e.g. envio a qualquer hora do dia possível)",
   "sms_order_header_guide": "Manuais",
   "sms_order_header_guide_start_with_sms": "Dar os primeiros passos com as SMS OVHcloud",
-  "sms_order_info_message": "Atenção: é necessária uma conta para o Time2Chat. Se não tiver uma, ative a oferta de boas-vindas de 20 SMS gratuitos para criar a sua conta e, em seguida, subscreva o Time2Chat.",
-  "sms_order_info_welcome_link": "Receba agora os seus 20 SMS gratuitos",
-  "sms_order_info_guide_link": "Necessita de ajuda? Consulte o manual"
+  "sms_order_info_message": "Atenção: é necessária uma conta para o Time2Chat. Se não tiver, ative a oferta de boas-vindas 20 SMS grátis para criar a sua conta e subscreva ao Time2Chat.",
+  "sms_order_info_welcome_link": "Receba já os seus 20 SMS gratuitos",
+  "sms_order_info_guide_link": "Precisa de ajuda? Consulte o manual"
 }
