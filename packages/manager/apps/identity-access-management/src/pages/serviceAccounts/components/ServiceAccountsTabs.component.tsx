@@ -12,22 +12,22 @@ export function ServiceAccountsTabs() {
 
   return (
     <OdsTabs className="mb-4">
-      <OdsTab>
+      <OdsTab className="py-4">
         <NavLink className="no-underline" to={usersHref}>
           {t('iam_identities_users')}
         </NavLink>
       </OdsTab>
-      <OdsTab>
+      <OdsTab className="py-4">
         <NavLink className="no-underline" to={groupsHref}>
           {t('iam_identities_user_groups')}
         </NavLink>
       </OdsTab>
-      <OdsTab isSelected={true}>
+      <OdsTab className="py-4" isSelected={true}>
         <NavLink className="no-underline" to="">
           {t('iam_identities_service_accounts')}
         </NavLink>
       </OdsTab>
-      <OdsTab>
+      <OdsTab className="py-4">
         <NavLink className="no-underline" to={ssoHref}>
           {t('iam_identities_sso')}
         </NavLink>
