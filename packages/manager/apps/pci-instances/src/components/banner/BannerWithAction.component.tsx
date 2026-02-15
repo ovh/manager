@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { Button } from '@ovhcloud/ods-react';
-import { MessageProps } from '@ovh-ux/muk';
+import { Button, MessageColor } from '@ovhcloud/ods-react';
 import Banner from './Banner.component';
 
 type TBannerWithActionProps = {
-  color: MessageProps['color'];
+  color: MessageColor;
   titleKey: string;
   message: string;
   buttonLabel?: string;
