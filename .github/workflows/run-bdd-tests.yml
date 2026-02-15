@@ -114,15 +114,6 @@ jobs:
         run: yarn ci:install
 
       # ------------------------------------------
-      # BUILD TARGETED PACKAGES
-      # ------------------------------------------
-      - name: Build covered packages and dependencies
-        run: |
-          CORES=$(nproc --ignore=1 || nproc)
-          FILTERS="@ovh-ux/shell,@ovh-ux/manager-config,@ovh-ux/ovh-at-internet,@ovh-ux/manager-core-api,@ovh-ux/manager-react-core-application,@ovh-ux/ovh-product-icons,@ovh-ux/request-tagger,@ovh-ux/manager-react-shell-client,@ovh-ux/manager-core-sso,@ovh-ux/url-builder,@ovh-ux/manager-core-utils,@ovh-ux/manager-react-components,@ovh-ux/manager-module-order,@ovh-ux/manager-module-common-api,@ovh-ux/manager-common-translations,@ovh-ux/logs-to-customer,@ovh-ux/manager-module-vcd-api,@ovh-ux/manager-pci-common,@ovh-ux/manager-network-common,@ovh-ux/ovh-payment-method"
-          yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
-
-      # ------------------------------------------
       # RUN TESTS (light/heavy)
       # ------------------------------------------
       - name: Run tests (light/heavy)

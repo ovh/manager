@@ -27,9 +27,9 @@
   "dependencies": {
     "@ovh-ux/manager-config": "8.6.6",
     "@ovh-ux/manager-core-api": "0.18.7",
-    "@ovh-ux/manager-core-sso": "^0.4.5",
-    "@ovh-ux/ovh-at-internet": "^0.24.8",
-    "@ovh-ux/ovh-reket": "^2.1.17",
+    "@ovh-ux/manager-core-sso": "0.4.5",
+    "@ovh-ux/ovh-at-internet": "0.24.8",
+    "@ovh-ux/ovh-reket": "2.1.17",
     "@ovh-ux/request-tagger": "0.5.5",
     "@ovh-ux/url-builder": "2.1.5",
     "dompurify": "^3.2.4",
