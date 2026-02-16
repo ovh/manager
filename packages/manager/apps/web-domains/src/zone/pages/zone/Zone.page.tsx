@@ -233,8 +233,6 @@ export default function ZonePage() {
   }, [rowSelection]);
   const hasSelectedRows = selectedRecordIds.length > 0;
 
-
-
   const handleDeleteClick = useCallback(() => {
     navigate(buildUrl(`${domainUrls.domainTabZone}/delete`), {
       state: { recordIds: selectedRecordIds },

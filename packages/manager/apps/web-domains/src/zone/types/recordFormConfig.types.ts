@@ -9,6 +9,8 @@ type BaseFieldConfig = {
   readonly labelKey: string;
   readonly required?: boolean;
   readonly tooltipKey?: string;
+  /** Hardcoded placeholder text for the input. */
+  readonly placeholder?: string;
   /** Disable this field when the given sibling field is non-empty. */
   readonly disabledWhenFilled?: string;
 };

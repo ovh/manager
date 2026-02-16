@@ -30,6 +30,7 @@ export interface NumberFieldProps {
   tooltip?: string;
   /** Unité affichée à droite de l'input (ex : "m", "s") */
   suffix?: string;
+  placeholder?: string;
 }
 
 export function NumberField({
@@ -44,6 +45,7 @@ export function NumberField({
   disabled = false,
   tooltip,
   suffix,
+  placeholder,
 }: Readonly<NumberFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
 
@@ -86,6 +88,7 @@ export function NumberField({
               step={step}
               invalid={!!error}
               disabled={disabled}
+              placeholder={placeholder}
             />
             {suffix && (
               <Text preset={TEXT_PRESET.span} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none">{suffix}</Text>

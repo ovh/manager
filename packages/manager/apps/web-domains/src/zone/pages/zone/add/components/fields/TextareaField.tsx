@@ -23,6 +23,7 @@ export interface TextareaFieldProps {
   readonly required?: boolean;
   readonly className?: string;
   readonly tooltip?: string;
+  readonly placeholder?: string;
 }
 
 export function TextareaField({
@@ -32,6 +33,7 @@ export function TextareaField({
   required = false,
   className = "w-1/2",
   tooltip,
+  placeholder,
 }: Readonly<TextareaFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
 
@@ -69,6 +71,7 @@ export function TextareaField({
             onBlur={field.onBlur}
             ref={field.ref}
             invalid={!!error}
+            placeholder={placeholder}
           />
           <FormFieldError>
             {typeof error?.message === "string" ? error.message : ""}

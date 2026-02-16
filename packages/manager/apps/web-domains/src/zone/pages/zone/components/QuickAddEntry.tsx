@@ -125,7 +125,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   }, [setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
-    const recordType = typeof data.recordType === 'string' ? data.recordType : '';
+    const recordType = data.recordType as string;
 
     // Compose the target value from all form fields
     const target = getTargetDisplayValue(recordType, data);
@@ -141,7 +141,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     addRecord(
       {
         fieldType,
-        subDomain: typeof data.subDomain === 'string' ? data.subDomain : '',
+        subDomain: (data.subDomain as string) ?? '',
         target,
         ttl,
       },
@@ -164,19 +164,19 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   const selectItems = [
     {
       label: t('zone_page_record_pointing'),
-      options: FIELD_TYPES_POINTING_RECORDS.map((type) => ({ value: type, label: type })),
+      options: FIELD_TYPES_POINTING_RECORDS.map((type) => ({ value: type, label: type, customRendererData: { description: t(`zone_page_record_short_${type}`) } })),
     },
     {
       label: t('zone_page_record_mail'),
-      options: ([...FIELD_TYPES_MAIL_RECORDS] as string[]).map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: type === FieldTypeMailRecordsEnum.SPF || type == FieldTypeMailRecordsEnum.DKIM ? true : false } })),
+      options: ([...FIELD_TYPES_MAIL_RECORDS] as string[]).map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: type === FieldTypeMailRecordsEnum.SPF || type === FieldTypeMailRecordsEnum.DKIM, description: t(`zone_page_record_short_${type}`) } })),
     },
     {
       label: t('zone_page_record_extended'),
-      options: FIELD_TYPES_EXTENDED_RECORDS.map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: true } })),
+      options: FIELD_TYPES_EXTENDED_RECORDS.map((type) => ({ value: type, label: type, customRendererData: { isAdvanced: true, description: t(`zone_page_record_short_${type}`) } })),
     },
   ];
 
-  function renderOption({ customData, label }: SelectCustomOptionRendererArg<{ isAdvanced?: boolean }>) {
+  function renderOption({ customData, label }: SelectCustomOptionRendererArg<{ isAdvanced?: boolean; description?: string }>) {
     return (
       <div className="flex items-center gap-2">
         {customData?.isAdvanced && (
@@ -184,12 +184,15 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
             {t('zone_page_record_badge_advanced')}
           </Badge>
         )}
-        <span className="flex-1">{label}</span>
+        <span className="font-medium">{label}</span>
+        {customData?.description && (
+          <span className="text-xs text-[--ods-color-text-muted]">— {customData.description}</span>
+        )}
       </div>
     );
   }
 
-  const recordTypeStr = typeof recordType === 'string' ? recordType : '';
+  const recordTypeStr = recordType as string ?? '';
 
   return (
     <FormProvider {...methods}>
@@ -209,12 +212,12 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                       name="recordType"
                       id="recordType"
                       className="min-w-[14rem] w-full max-w-sm"
-                      value={typeof field.value === 'string' && field.value ? [field.value] : []}
+                      value={field.value ? [field.value as string] : []}
                       items={selectItems}
                       invalid={!!error}
                       disabled={showBindInput}
                       onValueChange={(detail: { value?: string[] }) => {
-                        const selectedValue = Array.isArray(detail.value) ? (detail.value[0] ?? '') : '';
+                        const selectedValue = detail.value?.[0] ?? '';
                         if (selectedValue) {
                           field.onChange(selectedValue);
                           handleSelectRecordType(selectedValue);
