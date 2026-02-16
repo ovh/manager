@@ -1,6 +1,7 @@
 export enum ServiceRoutes {
   Domain = '/domain',
   AllDom = '/allDom',
+  DomainReseller = '/domain/reseller',
 }
 
 export enum ServiceInfoContactEnum {
