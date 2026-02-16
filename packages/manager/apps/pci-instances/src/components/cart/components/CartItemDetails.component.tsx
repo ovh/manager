@@ -44,7 +44,7 @@ export const CartItemDetails = ({
                   className="text-right"
                   data-testid="cart-item-details-price"
                 >
-                  <Text preset="heading-6">
+                  <Text preset="heading-6" as="span">
                     {isApproximate && '~'}
                     {getTextPrice(price)}
                   </Text>{' '}
