@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.14...@ovh-ux/manager-web-domains-app@1.11.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4664] ([68472f5](https://github.com/ovh/manager/commit/68472f5d678e0dd27460da9af6045fead9c70edb))
+
+
+### Features
+
+* **web-domains:** cleanup unused translation namespaces and increase listing page size ([9da1ee1](https://github.com/ovh/manager/commit/9da1ee1da9ebc96d170c2d181ae12cc14569ab4a)), closes [#DCE-20](https://github.com/ovh/manager/issues/DCE-20)
+* **web-domains:** host modification connot be validated ([70ca40f](https://github.com/ovh/manager/commit/70ca40f5cae315cc9eaa2b30b36fd6d51a063ced)), closes [#DCE-169](https://github.com/ovh/manager/issues/DCE-169)
+* **web-domains:** implement Holder edition ([8691934](https://github.com/ovh/manager/commit/8691934627aba49fe409735d1f844ebd8705902e)), closes [#DCE-20](https://github.com/ovh/manager/issues/DCE-20)
+
+
+
+
+
 ## [1.10.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.13...@ovh-ux/manager-web-domains-app@1.10.14) (2026-02-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-domains-app

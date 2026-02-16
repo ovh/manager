@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.29.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.29.6...@ovh-ux/manager-hub-app@0.29.7) (2026-02-16)
+
+
+### Bug Fixes
+
+* **hub:** add missing translation ([a185c33](https://github.com/ovh/manager/commit/a185c33637626bb20d1cccf4fb7f1d9807416be0)), closes [#DCE-158](https://github.com/ovh/manager/issues/DCE-158)
+* **i18n:** add missing translations [CDS 4664] ([68472f5](https://github.com/ovh/manager/commit/68472f5d678e0dd27460da9af6045fead9c70edb))
+
+
+
+
+
 ## [0.29.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.29.5...@ovh-ux/manager-hub-app@0.29.6) (2026-02-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
