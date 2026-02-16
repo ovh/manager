@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.2...@ovh-ux/manager-zimbra-app@0.43.3) (2026-02-16)
+
+
+### Bug Fixes
+
+* **zimbra:** change 3 select field by combobox ([8bc7ca4](https://github.com/ovh/manager/commit/8bc7ca4351ceeea6be67d3d2fde4def5ee61ebb1)), closes [#PRDCOL-140](https://github.com/ovh/manager/issues/PRDCOL-140)
+* **zimbra:** fix edit domain modal ([1a34b20](https://github.com/ovh/manager/commit/1a34b2004e12c29f5473486e6a8c698dbe8616c5)), closes [#PRDCOL-406](https://github.com/ovh/manager/issues/PRDCOL-406)
+
+
+
+
+
 ## [0.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.1...@ovh-ux/manager-zimbra-app@0.43.2) (2026-02-06)
 
 
