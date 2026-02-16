@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 
 import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { act, screen, waitFor } from '@testing-library/react';
@@ -28,39 +28,6 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
 }));
-
-vi.mock('@/components/new-lib/pciCard/PciCard.component', () => {
-  const mock = {
-    PciCard: ({
-      children,
-      onClick,
-      selected,
-      selectable,
-    }: PropsWithChildren<{ onClick: () => void; selected: boolean; selectable: boolean }>) => (
-      <div
-        data-testid="pci-card"
-        data-selected={selected}
-        data-selectable={selectable}
-        onClick={onClick}
-      >
-        {children}
-      </div>
-    ),
-    PciCardHeader: ({ children }: PropsWithChildren) => (
-      <div data-testid="pci-card-header">{children}</div>
-    ),
-    PciCardContent: ({ children }: PropsWithChildren) => (
-      <div data-testid="pci-card-content">{children}</div>
-    ),
-  };
-
-  // @ts-ignore
-  mock.PciCard.Header = mock.PciCardHeader;
-  // @ts-ignore
-  mock.PciCard.Content = mock.PciCardContent;
-
-  return mock;
-});
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
@@ -144,7 +111,9 @@ describe('DeploymentModeSelection', () => {
     });
 
     await act(async () => {
-      await userEvent.click(screen.getAllByTestId('pci-card')[1]!);
+      await userEvent.click(
+        screen.getByText('create:localisation.deploymentMode.modes.region.description'),
+      );
     });
 
     await waitFor(() => {
@@ -152,7 +121,9 @@ describe('DeploymentModeSelection', () => {
     });
 
     await act(async () => {
-      await userEvent.click(screen.getAllByTestId('pci-card')[0]!);
+      await userEvent.click(
+        screen.getByText('create:localisation.deploymentMode.modes.region-3-az.description'),
+      );
     });
 
     await waitFor(() => {

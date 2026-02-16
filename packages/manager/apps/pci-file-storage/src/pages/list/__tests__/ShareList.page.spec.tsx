@@ -29,7 +29,7 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
         actions: new Map([
           [
             'actions',
-            [{ labelTranslationKey: 'list:actions.manage', link: { path: './GRA9/share-1' } }],
+            [{ labelTranslationKey: 'share:actions.manage', link: { path: './GRA9/share-1' } }],
           ],
         ]),
       },

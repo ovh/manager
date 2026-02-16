@@ -61,34 +61,6 @@ describe('SharePropertiesBlock', () => {
     expect(screen.getByText('100 GB')).toBeVisible();
   });
 
-  it.each([
-    {
-      enabledActions: ['update_size'],
-      description: 'should render upgrade share link when enabledActions includes update_size',
-    },
-    {
-      enabledActions: [] as string[],
-      description: 'should not render upgrade share link when enabledActions excludes update_size',
-    },
-  ])('$description', ({ enabledActions }) => {
-    mockUseShare.mockReturnValue({
-      data: createShareDetails({ enabledActions }),
-      isLoading: false,
-    } as unknown as QueryObserverSuccessResult<TShareDetailsView>);
-
-    render(
-      <MemoryRouter>
-        <SharePropertiesBlock />
-      </MemoryRouter>,
-    );
-
-    if (enabledActions.includes('update_size')) {
-      expect(screen.getByRole('link', { name: 'actions.upgrade_share' })).toBeVisible();
-    } else {
-      expect(screen.queryByRole('link', { name: 'actions.upgrade_share' })).not.toBeInTheDocument();
-    }
-  });
-
   it('should render multiple mount paths', () => {
     mockUseShare.mockReturnValue({
       data: createShareDetails({

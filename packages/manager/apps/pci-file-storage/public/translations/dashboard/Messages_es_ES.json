@@ -6,7 +6,7 @@
   },
   "actions": {
     "back": "Página anterior",
-    "edit_name": "Modificar el nombre del recurso compartido"
+    "edit_name": "Modificar el nombre del share"
   },
   "common": {
     "coming_soon": "Próximamente"
