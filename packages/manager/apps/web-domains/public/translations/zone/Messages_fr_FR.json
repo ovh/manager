@@ -232,5 +232,7 @@
   "zone_page_form_bind_error_empty_input": "Veuillez saisir un enregistrement DNS.",
   "zone_page_form_bind_error_invalid_format": "Le format de l'enregistrement est invalide. Vérifiez la syntaxe BIND.",
   "zone_page_form_bind_error_unsupported_type": "Ce type d'enregistrement n'est pas supporté.",
-  "zone_page_form_bind_error_invalid_rdata": "Les données de l'enregistrement (RDATA) sont incomplètes ou invalides."
+  "zone_page_form_bind_error_invalid_rdata": "Les données de l'enregistrement (RDATA) sont incomplètes ou invalides.",
+  "zone_page_form_add_record_success": "Votre enregistrement a bien été ajouté.",
+  "zone_page_form_add_record_error": "Une erreur est survenue lors de l'ajout de l'enregistrement : {{error}}"
 }

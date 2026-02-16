@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal, ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
 import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
@@ -57,9 +57,6 @@ const ZonePage = React.lazy(() =>
 const HistoryPage = React.lazy(() =>
   import('@/zone/pages/zone/history/History.page'),
 );
-const AddEntryPage = React.lazy(() =>
-  import('@/zone/pages/zone/add/AddEntry.page'),
-);
 const ModifyEntryModal = React.lazy(() =>
   import('@/zone/pages/zone/modify/ModifyEntry.modal'),
 );
@@ -73,7 +70,7 @@ function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
     <Navigate
-      to={urls.domainTabInformation.replace(':serviceName', serviceName)}
+      to={urls.domainTabInformation.replace(':serviceName', serviceName ?? '')}
       replace
     />
   );
@@ -123,12 +120,10 @@ export default (
           Component={GeneralInformationsPage}
         />
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
-          <Route path={zoneUrls.zoneRoot} Component={ZonePage}/>
-          <Route path={zoneUrls.zoneAddEntry} Component={AddEntryPage}/>
-
-          <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage}/>
-          <Route path={zoneUrls.zoneHistory} Component={HistoryPage}/>
-          <Route path={zoneUrls.zoneDelete} Component={DeleteModal} />
+          <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
+          <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage} />
+          <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
+          {/* <Route path={zoneUrls.zoneDelete} Component={DeleteModal} /> */}
           <Route path={zoneUrls.zoneDeleteEntry} Component={DeleteEntryModal} />
           <Route path={zoneUrls.zoneModifyEntry} Component={ModifyEntryModal} />
         </Route>

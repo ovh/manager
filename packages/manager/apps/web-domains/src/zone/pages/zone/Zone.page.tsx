@@ -35,7 +35,6 @@ export default function ZonePage() {
 
   const handleQuickAddSuccess = useCallback(() => {
     setShowAddEntryDiv(false);
-    // TODO: Refresh records
   }, []);
 
   const handleQuickAddCancel = useCallback(() => {
@@ -280,7 +279,7 @@ export default function ZonePage() {
               onCancel={handleQuickAddCancel}
             />
           </div>
-          <Datagrid containerHeight={500}
+          <Datagrid
             columns={columns}
             topbar={
               <div className="flex gap-2">
