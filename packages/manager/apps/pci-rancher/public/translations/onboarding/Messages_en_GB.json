@@ -25,7 +25,7 @@
   "freeTrialCreditStandard": "{{amount}} credit for the Standard Plan (~1 month)",
   "freeTrialCreditOvhEdition": "{{amount}} credit for the OVHcloud Edition Plan (~1 month)",
   "freeTrialCreditApplied": "The credit will be automatically applied to your first service.",
-  "orderButtonLabelFreeTrial": "Start my Free Trial",
+  "orderButtonLabelFreeTrial": "Start my free trial",
   "rancherGuidesLink": "Access Rancher guides",
   "videoTitle": "Rancher presentation video"
 }

@@ -25,7 +25,7 @@
   "freeTrialCreditStandard": "{{amount}} Guthaben für den Standard-Plan (~1 Monat)",
   "freeTrialCreditOvhEdition": "{{amount}} Guthaben für den OVHcloud Edition Plan (~1 Monat)",
   "freeTrialCreditApplied": "Das Guthaben wird automatisch auf Ihren ersten Service angewendet.",
-  "orderButtonLabelFreeTrial": "Kostenlose Testversion starten",
+  "orderButtonLabelFreeTrial": "Kostenlose testversion starten",
   "rancherGuidesLink": "Rancher-Anleitungen aufrufen",
   "videoTitle": "Rancher-Präsentationsvideo"
 }
