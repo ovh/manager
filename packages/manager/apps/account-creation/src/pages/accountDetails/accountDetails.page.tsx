@@ -70,7 +70,10 @@ import {
   useTrackError,
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
-import { TRACKING_GOAL_TYPE } from './accountDetails.constants';
+import {
+  COUNTRIES_VAT_LABEL,
+  TRACKING_GOAL_TYPE,
+} from './accountDetails.constants';
 import {
   FormGroupSkeleton,
   AddressFormGroupSkeleton,
@@ -167,6 +170,10 @@ function AccountDetailsForm({
   });
 
   const [phoneNumberLocale] = i18n.language.split('_');
+  const vatLabel = useMemo(
+    () => (ovhSubsidiary && COUNTRIES_VAT_LABEL[ovhSubsidiary]) || 'VAT',
+    [ovhSubsidiary],
+  );
   const shouldDisplaySIREN = useMemo(
     () => shouldEnableSIRENDisplay(currentUser.country, legalForm),
     [currentUser.country, legalForm],
@@ -491,6 +498,44 @@ function AccountDetailsForm({
                 )}
               />
             )}
+            {rules?.italianSDI && (
+              <Controller
+                control={control}
+                name="italianSDI"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField>
+                    <label
+                      htmlFor={name}
+                      slot="label"
+                      aria-label={t('account_details_field_italian_sdi')}
+                    >
+                      <OdsText preset="caption">
+                        {t('account_details_field_italian_sdi')}
+                        {rules?.italianSDI?.mandatory && ' *'}
+                      </OdsText>
+                    </label>
+                    <OdsInput
+                      name="italianSDI"
+                      value={value}
+                      hasError={!!errors[name]}
+                      onOdsChange={onChange}
+                      onOdsBlur={onBlur}
+                    />
+                    {errors.italianSDI && rules?.italianSDI && (
+                      <OdsText
+                        className="text-critical leading-[0.8]"
+                        preset="caption"
+                      >
+                        {renderTranslatedZodError(
+                          errors.italianSDI.message,
+                          rules?.italianSDI,
+                        )}
+                      </OdsText>
+                    )}
+                  </OdsFormField>
+                )}
+              />
+            )}
             <Controller
               control={control}
               name="vat"
@@ -499,10 +544,16 @@ function AccountDetailsForm({
                   <label
                     htmlFor={name}
                     slot="label"
-                    aria-label={t('account_details_field_vat')}
+                    aria-label={t('account_details_field_vat', {
+                      vatLabel,
+                    })}
                   >
                     <OdsText preset="caption">
-                      {t('account_details_field_vat')}
+                      <Trans
+                        t={t}
+                        i18nKey="account_details_field_vat"
+                        values={{ vatLabel }}
+                      />
                       {rules?.vat?.mandatory && ' *'}
                     </OdsText>
                   </label>
@@ -1064,7 +1115,13 @@ export default function AccountDetailsPage() {
     phoneCountry: country,
   });
 
-  const { data: rules, refetch: refetchRules, isLoading: isRulesLoading, error, isEnabled: isRulesEnabled } = useRules(
+  const {
+    data: rules,
+    refetch: refetchRules,
+    isLoading: isRulesLoading,
+    error,
+    isEnabled: isRulesEnabled,
+  } = useRules(
     rulesParams,
     undefined,
     Boolean(currentUser) && Boolean(country) && Boolean(legalForm),
@@ -1122,7 +1179,7 @@ export default function AccountDetailsPage() {
         <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
           {t('account_details_info_message')}
         </OdsText>
-        {(!rules || isRulesLoading || isCurrentUserLoading) ? (
+        {!rules || isRulesLoading || isCurrentUserLoading ? (
           <div className="flex flex-col gap-8">
             <FormGroupSkeleton />
             <FormGroupSkeleton />
@@ -1137,7 +1194,8 @@ export default function AccountDetailsPage() {
             isLoading={isRulesLoading || isCurrentUserLoading}
             currentUser={{
               ...(currentUser || {}),
-              country: country ?? currentUser?.country }}
+              country: country ?? currentUser?.country,
+            }}
             updateRulesParams={updateRulesParams}
           />
         )}
