@@ -12,4 +12,5 @@ export const mapNetworkDtoToNetwork = (dto: TNetworkDto): TNetwork => ({
 export const mapSubnetDtoToSubnet = (dto: TSubnetDto): TSubnet => ({
   id: dto.id,
   name: dto.name,
+  cidr: dto.cidr,
 });

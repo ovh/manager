@@ -11,4 +11,5 @@ export type TNetworkDto = {
 export type TSubnetDto = {
   id: string;
   name: string;
+  cidr: string;
 };

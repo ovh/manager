@@ -19,7 +19,7 @@ const mapNetworkToPrivateNetworkData = (network: TNetwork): TPrivateNetworkData 
 });
 
 const mapSubnetToSubnetData = (subnet: TSubnet): TSubnetData => ({
-  label: subnet.name,
+  label: `${subnet.name} ${subnet.cidr}`.trim(),
   value: subnet.id,
 });
 
