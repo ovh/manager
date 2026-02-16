@@ -17,15 +17,16 @@ export const SharePropertiesBlock: React.FC = () => {
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,
   });
-  const formatSize = useFormatGiBSize(shareDetails?.size ?? 0);
+
+  const formattedSize = useFormatGiBSize(shareDetails?.size ?? 0);
 
   return (
     <DashboardCardLayout title={t('cards.properties')}>
-      <DashboardTileBlock label={t('share:fields.protocol')} isLoading={isLoading} withoutDivider>
+      <DashboardTileBlock label={t('share:fields.protocol')} isLoading={isLoading}>
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.allocated_capacity')} isLoading={isLoading}>
-        <Text preset="paragraph">{shareDetails != null ? formatSize : null}</Text>
+        <Text preset="paragraph">{formattedSize}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.mount_path')} isLoading={isLoading}>
         <div className="flex flex-col gap-3">
