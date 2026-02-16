@@ -22,10 +22,10 @@
   "managedRancherServiceGettingStartedTitle3": "Understanding the lifecycle of Managed Rancher Service.",
   "managedRancherServiceGettingStartedTitleDescription3": "Explore the lifecycle of Rancher on Managed Rancher Service",
   "freeTrialEligibilityTitle": "🎉 You are eligible for a free trial",
-  "freeTrialCreditStandard": "{{amount}} credit for the Standard Plan (~1 month)",
-  "freeTrialCreditOvhEdition": "{{amount}} credit for the OVHcloud Edition Plan (~1 month)",
+  "freeTrialCreditStandard": "{{amount}} of credit for the Standard Plan (~1 month)",
+  "freeTrialCreditOvhEdition": "{{amount}} of credit for the OVHcloud Edition Plan (~1 month)",
   "freeTrialCreditApplied": "The credit will be automatically applied to your first service.",
   "orderButtonLabelFreeTrial": "Start my free trial",
-  "rancherGuidesLink": "Access Rancher guides",
+  "rancherGuidesLink": "Access the Rancher guides",
   "videoTitle": "Rancher presentation video"
 }
