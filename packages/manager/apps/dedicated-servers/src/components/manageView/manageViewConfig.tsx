@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Accordion,
@@ -17,14 +17,30 @@ import {
 } from '@dnd-kit/sortable';
 import { ViewContext } from './viewContext';
 import { SortableColumnCard } from './manageViewCard';
+import { ACCORDION_VALUES } from './manageView.constants';
 
-export const ManageViewConfig = () => {
+export type ManageViewConfigProps = {
+  drawerVisibility: boolean;
+};
+
+export const ManageViewConfig = ({
+  drawerVisibility,
+}: ManageViewConfigProps) => {
+  const [accordionValue, setAccordionValue] = useState<string[]>([]);
   const { columnsConfig, setOrderedColumns } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
 
+  if (!drawerVisibility && !!accordionValue.length) {
+    setAccordionValue([]);
+  }
+
   return (
-    <Accordion multiple={false}>
-      <AccordionItem value="0">
+    <Accordion
+      multiple={false}
+      onChange={({ value }) => setAccordionValue(value)}
+      value={accordionValue}
+    >
+      <AccordionItem value={ACCORDION_VALUES.order}>
         <AccordionTrigger>
           <Text preset={TEXT_PRESET.heading6}>
             {t('select_columns_visibility')}
