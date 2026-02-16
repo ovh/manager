@@ -138,7 +138,7 @@
   "pci_instance_creation_backup_setting_title": "Paramètres de sauvegarde",
   "pci_instance_creation_backup_setting_description": "Cette fonctionnalité vous permet de sauvegarder votre instance de manière automatisée selon l’ordonnancement de votre choix.",
   "pci_instance_creation_backup_setting_help_title": "Mettre en place la sauvegarde de votre instance",
-  "pci_instance_creation_backup_setting_help_description": "Protégez vos données et assurez la continuité de votre infrastructure grâce aux mécanismes de sauvegarde automatisée.",
+  "pci_instance_creation_backup_setting_help_description": "Protégez vos données et assurez la continuité de votre infrastructure grâce aux mécanismes de sauvegarde automatisée. <semibold>Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.</semibold>",
   "pci_instance_creation_backup_setting_help_auto_backup_description": "<h6>Sauvegarde automatisée par défaut</h6><p>Chaque instance dispose d'une sauvegarde locale automatisée, avec deux options possibles : Rotation sur 7 jours ou Rotation sur 14 jours. Ces sauvegardes vous permettent de restaurer rapidement votre environnement en cas d'incident.</p>",
   "pci_instance_creation_backup_setting_help_custom_backup_description": "<h6>Sauvegarde personnalisée et gestion avancée</h6><p>Si vous souhaitez définir une rotation personnalisée ou planifier vos sauvegardes selon vos besoins, utilisez la section Workflow Management.</p> <CreateBackupAction>Créer une sauvegarde automatisée d'une instance</CreateBackupAction>",
   "pci_instance_creation_backup_setting_help_replication_description": "<h6>Réplication sur un autre datacenter</h6><p>Pour renforcer la résilience de vos données, vous pouvez activer une réplication de vos sauvegardes vers un datacenter distant. Cela offre une sécurité supplémentaire et la possibilité de restaurer votre instance dans une autre région.",
@@ -154,7 +154,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personnalisé",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 (UTC) et la rotation maintient un historique des {{ numEntries }} dernières entrées. Lorsque la nouvelle sauvegarde est terminée, la plus ancienne est supprimée.",
+    "predefined": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 (UTC) et la rotation maintient un historique des {{ numEntries }} dernières entrées.",
     "custom": "Choisissez vous-même l'ordonnancement (format UNIX Cron), le nombre de rotations et les exécutions maximales que vous souhaitez."
   },
   "pci_instance_creation_network_add_public_connectivity": {

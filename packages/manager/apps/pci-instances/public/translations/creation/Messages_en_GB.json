@@ -122,7 +122,7 @@
   "pci_instance_creation_backup_setting_title": "Backup settings",
   "pci_instance_creation_backup_setting_description": "This feature allows you to automatically back up your instance according to the schedule of your choice.",
   "pci_instance_creation_backup_setting_help_title": "Set up the backup of your instance",
-  "pci_instance_creation_backup_setting_help_description": "Protect your data and ensure the continuity of your infrastructure with automated backup mechanisms.",
+  "pci_instance_creation_backup_setting_help_description": "Protect your data and ensure the continuity of your infrastructure with automated backup mechanisms. <semibold>When the new backup is complete, the oldest one is deleted.</semibold>",
   "pci_instance_creation_backup_setting_help_auto_backup_description": "<h6>Default automated backup</h6><p>Each instance has a local automated backup, with two possible options: 7-day rotation or 14-day rotation. These backups allow you to quickly restore your environment in case of an incident.</p>",
   "pci_instance_creation_backup_setting_help_custom_backup_description": "<h6>Custom backup and advanced management</h6><p>If you wish to set a custom rotation or schedule your backups according to your needs, use the Workflow Management section.</p> <CreateBackupAction>Create an automated backup of an instance</CreateBackupAction>",
   "pci_instance_creation_backup_setting_help_replication_description": "<h6>Replication to another data centre</h6><p>To enhance the resilience of your data, you can enable replication of your backups to a remote data centre. This provides additional security and the ability to restore your instance in another region.",

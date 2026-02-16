@@ -124,19 +124,21 @@ const Backup: FC<TBackupProps> = ({ microRegion }) => {
                   disabled={!isEnabled}
                 >
                   <PciCard.Header>
-                    <Radio disabled={!isEnabled} value={rotation}>
-                      <RadioControl />
-                      <RadioLabel className={radioLabelClassname}>
-                        {t(
-                          `creation:pci_instance_creation_backup_setting_rotation_${rotation}_label`,
-                        )}
-                      </RadioLabel>
-                    </Radio>
-                    {badge && (
-                      <Badge className={badgeClassname} color="neutral">
-                        {badge}
-                      </Badge>
-                    )}
+                    <div className="flex flex-wrap items-center gap-5">
+                      <Radio disabled={!isEnabled} value={rotation}>
+                        <RadioControl />
+                        <RadioLabel className={radioLabelClassname}>
+                          {t(
+                            `creation:pci_instance_creation_backup_setting_rotation_${rotation}_label`,
+                          )}
+                        </RadioLabel>
+                      </Radio>
+                      {badge && (
+                        <Badge className={badgeClassname} color="neutral">
+                          {badge}
+                        </Badge>
+                      )}
+                    </div>
                   </PciCard.Header>
                   <PciCard.Content>
                     <Text>

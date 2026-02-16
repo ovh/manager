@@ -81,7 +81,7 @@ export const DeploymentModeSelection = () => {
                     key={mode}
                     selected={isSelected}
                     className={clsx(
-                      'flex h-full flex-col p-4 !shadow-none',
+                      'flex h-full flex-col p-6 !shadow-none',
                       isSelected && '!border !border-[--ods-color-primary-600]',
                     )}
                     onClick={handleSelect(field, mode)}
