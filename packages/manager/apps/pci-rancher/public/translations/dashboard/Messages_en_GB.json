@@ -93,5 +93,6 @@
   "freeTrialBadge": "Free Trial",
   "freeTrialPriceLabel": "Free*",
   "freeTrialThenLabel": "Then",
-  "freeTrialDisclaimer": "*Credit valid for ~1 month depending on your usage. Once the credit is exhausted, billing automatically resumes according to your consumption."
+  "freeTrialDisclaimer": "*Credit valid for ~1 month depending on your usage. Once the credit is exhausted, billing automatically resumes according to your consumption.",
+  "freeTrialVoucherBanner": "You are currently benefiting from the free trial offer on this service. Find details of your available credit in your <1>Voucher</1> interface."
 }
