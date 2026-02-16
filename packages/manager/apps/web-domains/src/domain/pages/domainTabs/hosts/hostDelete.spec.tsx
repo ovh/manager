@@ -2,53 +2,13 @@ import '@/common/setupTests';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { useParams, useNavigate } from 'react-router-dom';
+import { mockAddSuccess, mockAddError } from '@/common/setupTests';
 import HostDelete from '@/domain/pages/domainTabs/hosts/hostDelete';
 import { wrapper } from '@/common/utils/test.provider';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
 
 const updateDomain = vi.fn();
 const navigate = vi.fn();
-const addSuccess = vi.fn();
-const addError = vi.fn();
-
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-
-  type ModalProps = {
-    isOpen: boolean;
-    heading: string;
-    primaryLabel: string;
-    secondaryLabel: string;
-    onPrimaryButtonClick: () => void;
-    onSecondaryButtonClick: () => void;
-    children?: React.ReactNode;
-  };
-
-  return {
-    ...actual,
-    Modal: ({
-      isOpen,
-      heading,
-      primaryLabel,
-      secondaryLabel,
-      onPrimaryButtonClick,
-      onSecondaryButtonClick,
-      children,
-    }: ModalProps) =>
-      isOpen ? (
-        <div data-testid="modal">
-          <h1>{heading}</h1>
-          <button onClick={onSecondaryButtonClick}>{secondaryLabel}</button>
-          <button onClick={onPrimaryButtonClick}>{primaryLabel}</button>
-          {children}
-        </div>
-      ) : null,
-    useNotifications: () => ({
-      addSuccess,
-      addError,
-    }),
-  };
-});
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainResource: vi.fn(() => ({
@@ -127,7 +87,7 @@ describe('HostDelete', () => {
     onSuccess();
     onSettled();
 
-    expect(addSuccess).toHaveBeenCalledTimes(1);
+    expect(mockAddSuccess).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
   });
 
@@ -139,7 +99,7 @@ describe('HostDelete', () => {
     onError();
     onSettled();
 
-    expect(addError).toHaveBeenCalledTimes(1);
+    expect(mockAddError).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
   });
 

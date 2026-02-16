@@ -137,9 +137,7 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
-    );
+    const button = screen.getByText(/domain_dns_tab_button_cancel_terminate_anycast/i);
     expect(button).toBeInTheDocument();
   });
 
@@ -166,9 +164,7 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
-    );
+    const button = screen.getByText(/domain_dns_tab_button_cancel_terminate_anycast/i);
     expect(button).toBeInTheDocument();
   });
 
@@ -187,9 +183,7 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label="domain_tab_DNS_anycast_order"]',
-    );
+    const button = screen.getByText(/domain_tab_DNS_anycast_order/i);
     expect(button).toBeInTheDocument();
   });
 });

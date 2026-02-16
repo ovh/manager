@@ -25,6 +25,14 @@ vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
   useGetIAMResource: vi.fn(),
 }));
 
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    useAuthorizationIam: vi.fn(),
+  };
+});
+
 describe('TransferToggleStatus component', () => {
   const mockDomainResource: TDomainResource = {
     checksum: 'checksum-value',
