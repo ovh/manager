@@ -1,10 +1,9 @@
-.roadmap-changelog-datagrid {
-  td {
-    vertical-align: top !important;
-  }
+.roadmap-changelog-datagrid td {
+  /* eslint-disable-next-line css/no-important */
+  vertical-align: top !important;
+}
 
-  &-cell {
-    max-width: 24rem;
-    word-wrap: break-word;
-  }
+.roadmap-changelog-datagrid-cell {
+  max-width: 24rem;
+  word-wrap: break-word;
 }
