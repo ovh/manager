@@ -47,7 +47,6 @@ export default mergeConfig(
           'src/pages/onboarding/Onboarding.page.tsx',
           'src/pages/layout.tsx',
           'src/pages/dashboard/multisite/domain/ModifyDomainsSteps/types.ts',
-          'src/pages/managedWordpress/ManagedWordpressResource/import/importForm/ImportFormSteps/types.ts',
           'src/queryClient.ts',
           'src/utils/*.ts',
           'src/utils/*.tsx',

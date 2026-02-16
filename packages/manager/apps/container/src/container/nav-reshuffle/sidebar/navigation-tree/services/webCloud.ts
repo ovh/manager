@@ -143,7 +143,7 @@ webCloudUniverse.children = [
         translation: 'sidebar_web_hosting_managed_wordpress',
         serviceType: 'WEB_HOSTING',
         routing: {
-          application: 'web-hosting',
+          application: 'managed-hosting',
           hash: '#/managed-hosting-for-wordpress',
         },
         features: ['web-hosting:managed-wordpress'],

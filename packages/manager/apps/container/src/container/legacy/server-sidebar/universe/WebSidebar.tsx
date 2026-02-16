@@ -222,7 +222,7 @@ export default function WebSidebar() {
         badge: 'alpha',
         routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
         href: navigation.getURL(
-          'web-hosting',
+          'managed-hosting',
           '#/managed-hosting-for-wordpress',
         ),
       });

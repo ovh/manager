@@ -32,18 +32,6 @@ import {
   websitesMocks,
 } from '@/data/__mocks__';
 import { cdnOptionMock, cdnPropertiesMock, serviceNameCdnMock } from '@/data/__mocks__/cdn';
-import { managedWordpressRerefenceAvailableLanguageMock } from '@/data/__mocks__/managedWordpress/language';
-import {
-  managedWordpressResourceDetailsMock,
-  managedWordpressResourceMock,
-} from '@/data/__mocks__/managedWordpress/ressource';
-import { managedWordpressRerefenceSupportedVersionMock } from '@/data/__mocks__/managedWordpress/supportedPhpVersion';
-import { managedWordpressWebsitesTaskMock } from '@/data/__mocks__/managedWordpress/tasks';
-import {
-  managedWordpressWebsitesDeleteMock,
-  managedWordpressWebsitesDetailsMock,
-  managedWordpressWebsitesMock,
-} from '@/data/__mocks__/managedWordpress/website';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import multisiteTranslation from '@/public/translations/multisite/Messages_fr_FR.json';
@@ -564,34 +552,6 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (import
   };
 });
 
-vi.mock('@/data/api/managedWordpress', () => ({
-  getManagedCmsResource: vi.fn(() => Promise.resolve(managedWordpressResourceMock)),
-  getManagedCmsResourceDetails: vi.fn(() => Promise.resolve(managedWordpressResourceDetailsMock)),
-  getManagedCmsResourceWebsites: vi.fn(() =>
-    Promise.resolve({
-      data: managedWordpressWebsitesMock,
-      cursorNext: null,
-      status: 200,
-    }),
-  ),
-  getAllManagedCmsResourceWebsites: vi.fn(() => Promise.resolve(managedWordpressWebsitesMock)),
-  getManagedCmsResourceWebsiteDetails: vi.fn(() =>
-    Promise.resolve(managedWordpressWebsitesDetailsMock),
-  ),
-  deleteManagedCmsResourceWebsite: vi.fn(() => Promise.resolve(managedWordpressWebsitesDeleteMock)),
-  getManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve(managedWordpressWebsitesTaskMock)),
-  getManagedCmsReferenceAvailableLanguages: vi.fn(() =>
-    Promise.resolve(managedWordpressRerefenceAvailableLanguageMock),
-  ),
-  getManagedCmsSupportedPHPVersions: vi.fn(() =>
-    Promise.resolve(managedWordpressRerefenceSupportedVersionMock),
-  ),
-  getManagedCmsResourceWebsiteDetailsQueryKey: vi.fn(),
-  getManagedCmsResourceWebsitesQueryKey: vi.fn(),
-  postManagedCmsResourceWebsite: vi.fn(() => Promise.resolve({ id: 'mock-website-id' })),
-  putManagedCmsResourceWebsiteTasks: vi.fn(() => Promise.resolve({ id: 'mock-task-id' })),
-}));
-
 const mockUseInfiniteQuery = vi.fn();
 
 vi.mock('@tanstack/react-query', async (importActual) => {
@@ -603,7 +563,7 @@ vi.mock('@tanstack/react-query', async (importActual) => {
 });
 
 export const mockInfiniteQueryResult = {
-  data: managedWordpressWebsitesMock,
+  data: websitesMocks,
   status: 'success' as const,
   isSuccess: true,
   isError: false,
@@ -624,7 +584,7 @@ export const mockInfiniteQueryResult = {
   remove: vi.fn(),
   pages: [
     {
-      data: managedWordpressWebsitesMock,
+      data: websitesMocks,
       cursorNext: null,
       status: 200,
     },

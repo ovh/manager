@@ -98,7 +98,4 @@ export const REMOVE_SEO_SUBSCIPTION = 'remove-seo-subscription';
 
 // managed wordpress
 
-export const WORDPRESS_MANAGED = 'managed-wordpress';
-export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
-
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;
