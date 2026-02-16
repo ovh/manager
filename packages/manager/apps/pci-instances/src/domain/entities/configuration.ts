@@ -27,7 +27,7 @@ export type TNetwork = {
   id: TNetworkID;
   name: string;
   region: TMicroRegionID;
-  vlanId: number;
+  vlanId: number | null;
   subnets: TSubnetID[];
 };
 
