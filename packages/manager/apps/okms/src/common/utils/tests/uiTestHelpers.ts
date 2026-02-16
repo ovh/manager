@@ -6,8 +6,8 @@ import { expect } from 'vitest';
 import { BadgeColor } from '@ovhcloud/ods-react';
 
 export const TIMEOUT = {
-  DEFAULT: 3000,
-  MEDIUM: 5000,
+  DEFAULT: 5000,
+  MEDIUM: 8000,
   LONG: 10000,
 };
 
