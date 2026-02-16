@@ -11,9 +11,10 @@ import { useShare } from '@/data/hooks/shares/useShare';
 import { useShareParams } from '@/hooks/useShareParams';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
+import { DeploymentModeBadge } from '@/components/new-lib/deploymentModeBadge/DeploymentModeBadge.component';
 
 export const ShareGeneralInfoBlock: React.FC = () => {
-  const { t } = useTranslation(['general_information', 'share']);
+  const { t } = useTranslation(['general_information', 'share', 'regions']);
   const { region, shareId } = useShareParams();
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,
@@ -40,13 +41,11 @@ export const ShareGeneralInfoBlock: React.FC = () => {
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.location')} isLoading={isLoading}>
         {shareDetails != null && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <Text preset="paragraph">
               {t(shareDetails.regionDisplayKey, { micro: shareDetails.region })}
             </Text>
-            <Badge size={BADGE_SIZE.sm} color="primary" className="w-fit">
-              1-AZ
-            </Badge>
+            <DeploymentModeBadge mode="region" />
           </div>
         )}
       </DashboardTileBlock>
