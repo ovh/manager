@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React from 'react';
 import { Mock, vi } from 'vitest';
 import { render } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
