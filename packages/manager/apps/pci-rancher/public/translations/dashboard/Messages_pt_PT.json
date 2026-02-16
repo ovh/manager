@@ -93,5 +93,6 @@
   "freeTrialBadge": "Teste gratuito",
   "freeTrialPriceLabel": "Grátis*",
   "freeTrialThenLabel": "Depois",
-  "freeTrialDisclaimer": "*Crédito válido durante ~1 mês consoante a sua utilização. Após o esgotamento do crédito, a faturação retoma automaticamente de acordo com o consumo."
+  "freeTrialDisclaimer": "*Crédito válido durante ~1 mês consoante a sua utilização. Após o esgotamento do crédito, a faturação retoma automaticamente de acordo com o consumo.",
+  "freeTrialVoucherBanner": "Está atualmente a beneficiar da oferta de teste gratuito neste serviço. Encontre o detalhe do seu crédito disponível na sua interface <1>Voucher</1>."
 }

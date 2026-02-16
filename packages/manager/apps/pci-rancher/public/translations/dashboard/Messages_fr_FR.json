@@ -93,5 +93,6 @@
   "freeTrialBadge": "Free Trial",
   "freeTrialPriceLabel": "Gratuit*",
   "freeTrialThenLabel": "Puis",
-  "freeTrialDisclaimer": "*Crédit valable ~1 mois selon votre usage. Une fois le crédit épuisé, la facturation reprend automatiquement selon votre consommation."
+  "freeTrialDisclaimer": "*Crédit valable ~1 mois selon votre usage. Une fois le crédit épuisé, la facturation reprend automatiquement selon votre consommation.",
+  "freeTrialVoucherBanner": "Vous bénéficiez actuellement de l'offre d'essai sur ce service. Retrouvez le détail de votre crédit disponible dans votre interface <l>Voucher</l>."
 }

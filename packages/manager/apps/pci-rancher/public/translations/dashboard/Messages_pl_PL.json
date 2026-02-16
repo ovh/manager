@@ -93,5 +93,6 @@
   "freeTrialBadge": "Bezpłatna wersja próbna",
   "freeTrialPriceLabel": "Bezpłatnie*",
   "freeTrialThenLabel": "Następnie",
-  "freeTrialDisclaimer": "*Kredyt ważny przez ~1 miesiąc w zależności od użycia. Po wyczerpaniu kredytu rozliczanie automatycznie wznawia się zgodnie z konsumpcją."
+  "freeTrialDisclaimer": "*Kredyt ważny przez ~1 miesiąc w zależności od użycia. Po wyczerpaniu kredytu rozliczanie automatycznie wznawia się zgodnie z konsumpcją.",
+  "freeTrialVoucherBanner": "Obecnie korzystasz z oferty bezpłatnego okresu próbnego dla tej usługi. Szczegóły dostępnego kredytu znajdziesz w interfejsie <1>Voucher</1>."
 }

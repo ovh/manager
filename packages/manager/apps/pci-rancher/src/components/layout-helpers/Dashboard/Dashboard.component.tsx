@@ -1,9 +1,16 @@
 import { ODS_MESSAGE_TYPE, ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import React from 'react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import React, { useMemo } from 'react';
 import { Outlet, useHref, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import {
+  OsdsMessage,
+  OsdsLink,
+  OsdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { ChangelogButton, Title } from '@ovh-ux/manager-react-components';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { MutationStatus, useMutationState } from '@tanstack/react-query';
 import {
   patchRancherServiceQueryKey,
@@ -26,6 +33,7 @@ import {
   CHANGELOG_CHAPTERS,
 } from '@/utils/changelog.constants';
 import { PciGuidesHeader } from '@/components/guides-header';
+import { useRancherFreeTrialVoucher } from '@/hooks/useRancherFreeTrial';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -52,12 +60,19 @@ const getResponseStatusByEditAction = (
   mutationState.length && mutationState[0].variables.editAction === editAction
     ? mutationState[0].status
     : null;
+
 const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
   const { projectId, rancherId } = useParams();
   const { data: versions } = useVersions();
+  const freeTrialVoucher = useRancherFreeTrialVoucher();
   const { t } = useTranslation('dashboard');
   useTrackingPage(TrackingPageView.DetailRancher);
   const hrefPrevious = useHref(`../${COMMON_PATH}/${projectId}/rancher`);
+  const { data: voucherUrl } = useNavigationGetUrl([
+    'public-cloud',
+    `#/pci/projects/${projectId}/vouchers`,
+    {},
+  ]);
 
   const mutationEditRancherState = useMutationState<{
     variables: {
@@ -114,6 +129,19 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
     editNameBannerType = ODS_MESSAGE_TYPE.success;
   }
 
+  const displayFreeTrialBanner = useMemo(() => {
+    if (!freeTrialVoucher) return false;
+
+    const {
+      validity: { from, to },
+    } = freeTrialVoucher;
+    const currentTime = new Date();
+
+    return (
+      (from == null || from < currentTime) && (to == null || to > currentTime)
+    );
+  }, [freeTrialVoucher]);
+
   return (
     <>
       <div className="py-4 text-ellipsis">
@@ -136,6 +164,28 @@ const Dashboard: React.FC<DashboardLayoutProps> = ({ tabs, rancher }) => {
         className="my-4"
       />
       <TabBar tabs={tabs} />
+      {displayFreeTrialBanner && (
+        <OsdsMessage
+          color={ODS_THEME_COLOR_INTENT.info}
+          type={ODS_MESSAGE_TYPE.info}
+          className="mt-6 max-w-5xl"
+        >
+          <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="text-base">
+            <Trans
+              i18nKey="freeTrialVoucherBanner"
+              ns="dashboard"
+              components={{
+                l: (
+                  <OsdsLink
+                    href={(voucherUrl as string) ?? '#'}
+                    color={ODS_THEME_COLOR_INTENT.text}
+                  />
+                ),
+              }}
+            />
+          </OsdsText>
+        </OsdsMessage>
+      )}
       <RancherDetail
         rancher={rancher}
         versions={versions}
