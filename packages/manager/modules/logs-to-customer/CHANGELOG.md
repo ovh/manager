@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@2.0.0-beta.0...@ovh-ux/logs-to-customer@2.0.0) (2026-02-16)
+
+
+* feat(observability.logs)!: bump ODS 19 ([2505c00](https://github.com/ovh/manager/commit/2505c00081126e06fa6e19f52c46e33f57a5c33b)), closes [#MAOBS-136](https://github.com/ovh/manager/issues/MAOBS-136) [#MAOBS-240](https://github.com/ovh/manager/issues/MAOBS-240)
+
+
+### BREAKING CHANGES
+
+* no more compatibilty with ODS 18 version, only ODS 19
+
+Signed-off-by: David Arsène <david.arsene.ext@ovhcloud.com>
+
+
+
+
+
 # [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/logs-to-customer@1.12.0-beta.0...@ovh-ux/logs-to-customer@1.12.0) (2026-02-11)
 
 
