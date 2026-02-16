@@ -1,10 +1,10 @@
 {
   "name": {
-    "title": "Nazwa udostępnienia",
-    "label": "Wybierz nazwę dla swojego pliku udostępnienia",
+    "title": "Nazwa share",
+    "label": "Wybierz nazwę dla swojego share",
     "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie może przekraczać 255 znaków.",
     "error": {
-      "too_small": "Nazwa udostępnienia nie może być pusta. Proszę wpisać nazwę.",
+      "too_small": "Nazwa share nie może być pusta. Proszę wpisać nazwę.",
       "too_big": "Nieprawidłowy format nazwy",
       "invalid_format": "Nieprawidłowy format nazwy"
     }
@@ -55,23 +55,23 @@
     }
   },
   "share": {
-    "title": "Tryb wydajności udziału",
+    "title": "Tryb wydajności share",
     "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS i {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Rozmiar udziału",
+    "title": "Rozmiar share",
     "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
     "label": "Przydział wydajności liniowej (Gio)",
     "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "Rozmiar udziału jest mniejszy niż minimalny dozwolony dla tej oferty.",
-      "max_value": "Rozmiar udziału przekracza maksymalny dozwolony dla tej oferty.",
+      "min_value": "Rozmiar share jest mniejszy niż minimalny dozwolony dla tej oferty.",
+      "max_value": "Rozmiar share przekracza maksymalny dozwolony dla tej oferty.",
       "invalid_type": "To pole musi być wypełnione"
     }
   },
   "network": {
     "title": "Sieć prywatna",
-    "description": "Wybierz prywatną sieć, z którą chcesz, aby twoje instancje połączyły się z twoim udziałem",
+    "description": "Wybierz sieć prywatną, do której chcesz podłączyć swój share",
     "label": "Wybierz istniejącą prywatną sieć",
     "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
     "subnet": {
@@ -80,6 +80,6 @@
     }
   },
   "submit": {
-    "error": "Wystąpił błąd podczas dodawania udostępnienia: {{error}}"
+    "error": "Wystąpił błąd podczas dodawania share: {{error}}"
   }
 }

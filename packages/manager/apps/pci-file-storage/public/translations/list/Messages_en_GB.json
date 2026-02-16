@@ -1,17 +1,4 @@
 {
   "title": "File Storage",
-  "columns": {
-    "name_id": "Name / ID",
-    "region": "Location",
-    "protocol": "Protocol",
-    "allocated_capacity": "Allocated capacity",
-    "allocated_capacity_value": "{{capacity}} GiB",
-    "status": "Status",
-    "actions": "Actions"
-  },
-  "actions": {
-    "manage": "Manage",
-    "delete": "Delete"
-  },
   "actionButton": "Create a share"
 }

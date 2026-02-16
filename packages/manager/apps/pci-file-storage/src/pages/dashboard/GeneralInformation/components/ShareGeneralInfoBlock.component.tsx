@@ -13,7 +13,7 @@ import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.vi
 import { subRoutes } from '@/routes/Routes.constants';
 
 export const ShareGeneralInfoBlock: React.FC = () => {
-  const { t } = useTranslation(['general_information']);
+  const { t } = useTranslation(['general_information', 'share']);
   const { region, shareId } = useShareParams();
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,
@@ -21,17 +21,13 @@ export const ShareGeneralInfoBlock: React.FC = () => {
 
   return (
     <DashboardCardLayout title={t('general_information:cards.informations')}>
-      <DashboardTileBlock
-        label={t('general_information:fields.id')}
-        isLoading={isLoading}
-        withoutDivider
-      >
+      <DashboardTileBlock label={t('share:fields.id')} isLoading={isLoading} withoutDivider>
         <Text preset="paragraph">{shareDetails?.id}</Text>
       </DashboardTileBlock>
-      <DashboardTileBlock label={t('general_information:fields.share_name')} isLoading={isLoading}>
+      <DashboardTileBlock label={t('share:fields.share_name')} isLoading={isLoading}>
         <Text preset="paragraph">{shareDetails?.name}</Text>
       </DashboardTileBlock>
-      <DashboardTileBlock label={t('general_information:fields.status')} isLoading={isLoading}>
+      <DashboardTileBlock label={t('share:fields.status')} isLoading={isLoading}>
         {shareDetails != null && (
           <Badge
             size={BADGE_SIZE.sm}
@@ -42,7 +38,7 @@ export const ShareGeneralInfoBlock: React.FC = () => {
           </Badge>
         )}
       </DashboardTileBlock>
-      <DashboardTileBlock label={t('general_information:fields.location')} isLoading={isLoading}>
+      <DashboardTileBlock label={t('share:fields.location')} isLoading={isLoading}>
         {shareDetails != null && (
           <div className="flex items-center gap-2">
             <Text preset="paragraph">
@@ -54,10 +50,7 @@ export const ShareGeneralInfoBlock: React.FC = () => {
           </div>
         )}
       </DashboardTileBlock>
-      <DashboardTileBlock
-        label={t('general_information:fields.creation_date')}
-        isLoading={isLoading}
-      >
+      <DashboardTileBlock label={t('share:fields.creation_date')} isLoading={isLoading}>
         <Text preset="paragraph">{shareDetails?.createdAt}</Text>
       </DashboardTileBlock>
       {shareDetails?.enabledActions.includes('delete') && (
@@ -65,7 +58,7 @@ export const ShareGeneralInfoBlock: React.FC = () => {
           <ActionLink
             path={`./${subRoutes.shareDelete}`}
             className="w-fit text-[--ods-color-critical-600]"
-            label={t('general_information:actions.delete')}
+            label={t('share:actions.delete')}
           />
         </DashboardTileBlock>
       )}

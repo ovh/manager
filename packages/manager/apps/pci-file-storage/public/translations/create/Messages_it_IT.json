@@ -1,10 +1,10 @@
 {
   "name": {
-    "title": "Nome della condivisione",
-    "label": "Scegli un nome per il tuo file di condivisione",
+    "title": "Nome dello share",
+    "label": "Scegli un nome per il tuo share",
     "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti e non superare i 255 caratteri.",
     "error": {
-      "too_small": "Il nome della condivisione non può essere vuoto. Si prega di inserire un nome.",
+      "too_small": "Il nome dello share non può essere vuoto. Si prega di inserire un nome.",
       "too_big": "Formato del nome non valido",
       "invalid_format": "Formato del nome non valido"
     }
@@ -55,23 +55,23 @@
     }
   },
   "share": {
-    "title": "Modalità di prestazione della condivisione",
+    "title": "Modalità di prestazione dello share",
     "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
   },
   "shareSize": {
-    "title": "Dimensione della condivisione",
+    "title": "Dimensione dello share",
     "description": "Il 5 % della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
     "label": "Allocazione delle prestazioni lineari (Gio)",
     "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} MiB/s",
     "error": {
-      "min_value": "La dimensione della condivisione è inferiore al minimo consentito per questa offerta.",
-      "max_value": "La dimensione della condivisione supera il massimo consentito per questa offerta.",
+      "min_value": "La dimensione dello share è inferiore al minimo consentito per questa offerta.",
+      "max_value": "La dimensione dello share supera il massimo consentito per questa offerta.",
       "invalid_type": "Questo campo deve essere compilato"
     }
   },
   "network": {
     "title": "Rete privata",
-    "description": "Seleziona la rete privata a cui desideri che le tue istanze si connettano al tuo file di condivisione",
+    "description": "Seleziona la rete privata a cui desideri collegare il tuo share",
     "label": "Seleziona una rete privata esistente",
     "empty": "Spiacente, ma non hai una rete privata per questa regione",
     "subnet": {
@@ -80,6 +80,6 @@
     }
   },
   "submit": {
-    "error": "Si è verificato un errore durante l'aggiunta della condivisione: {{error}}"
+    "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}"
   }
 }
