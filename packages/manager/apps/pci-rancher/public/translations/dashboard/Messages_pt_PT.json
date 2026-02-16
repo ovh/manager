@@ -39,10 +39,11 @@
   "createRancherError": "Ocorreu um erro aquando da criação do seu Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Versão recomendada",
   "createRancherOVHCloudPlanDescription_1": "<b>SLA de 99,9 %</b>",
-  "createRancherStandardPlanDescription_1": "<b>Todas as funcionalidades</b> do plano OVHcloud Edition incluídas.",
-  "createRancherStandardPlanDescription_2": "<b>Gestão multi-nuvem e híbrida</b> : Capacidade de implantar e gerir clusters Kubernetes onde quer que estejam (qualquer fornecedor de Nuvem Pública, local, edge, etc.).",
+  "createRancherOVHCloudPlanDescription_2": "<b>Versão atualizada do Rancher</b> com suporte de 12 meses.",
   "createRancherOVHCloudPlanDescription_3": "<b>Modelos de faturação flexíveis</b> : Pague conforme o uso ou Instâncias reservadas (cobrado por vCPU gerido).",
   "createRancherOVHCloudPlanDescription_4": "<b>Implantação e gestão simplificadas</b> na infraestrutura OVHcloud (Nuvem Pública, MKS, Bare Metal, etc.).",
+  "createRancherStandardPlanDescription_1": "<b>Todas as funcionalidades</b> do plano OVHcloud Edition incluídas.",
+  "createRancherStandardPlanDescription_2": "<b>Gestão multi-nuvem e híbrida</b> : Capacidade de implantar e gerir clusters Kubernetes onde quer que estejam (qualquer fornecedor de Nuvem Pública, local, edge, etc.).",
   "createRancherStandardPlanDescription": "Crie ou registe «downstream clusters» com qualquer Public Cloud suportado pelo Rancher, ou num Private Cloud automatizável (por exemplo, VMware vSphere), incluindo cenários suportados pela oferta OVHcloud Edition.",
   "createNameModaleHelperInput": "O nome do serviço deve ter entre 3 e 63 caracteres, deve começar e terminar por caracteres alfanuméricos minúsculos (de “a” a “z” e de “0” a “9”), e pode incluir os seguintes sinais de pontuação: “_”, “.” e “-”.",
   "generateAccessModalPasswordDescription": "Copie esta palavra-passe temporária para aceder ao seu Rancher. Após iniciar sessão, ser-lhe-á solicitada a criação de uma nova palavra-passe por motivos de segurança.",
@@ -98,6 +99,5 @@
   "freeTrialPriceLabel": "Grátis*",
   "freeTrialThenLabel": "A partir daí",
   "freeTrialDisclaimer": "*Crédito válido ~1 mês conforme o seu uso. Uma vez que o crédito se esgote, a faturação retoma automaticamente conforme o seu consumo.",
-  "freeTrialVoucherBanner": "Atualmente você beneficia da oferta de teste neste serviço. Encontre os detalhes do seu crédito disponível na sua interface <l>Voucher</l>.",
-  "createRancherOVHCloudPlanDescription_2": "<b>Versão atualizada do Rancher</b> com suporte de 12 meses."
+  "freeTrialVoucherBanner": "Atualmente você beneficia da oferta de teste neste serviço. Encontre os detalhes do seu crédito disponível na sua interface <l>Voucher</l>."
 }

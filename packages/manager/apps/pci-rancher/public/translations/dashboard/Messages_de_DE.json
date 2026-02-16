@@ -39,10 +39,11 @@
   "createRancherError": "Bei der Erstellung Ihres Managed Rancher Service ist ein Fehler aufgetreten. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Empfohlene Version",
   "createRancherOVHCloudPlanDescription_1": "<b>SLA von 99,9 %</b>",
-  "createRancherStandardPlanDescription_1": "<b>Alle Funktionen</b> des OVHcloud Edition Plans sind enthalten.",
-  "createRancherStandardPlanDescription_2": "<b>Multi-Cloud- und hybride Verwaltung</b> : Fähigkeit, Kubernetes-Cluster überall zu bereitstellen und zu verwalten (jeder Public Cloud-Anbieter, vor Ort, Edge usw.).",
+  "createRancherOVHCloudPlanDescription_2": "<b>Aktuelle Rancher-Version</b> mit 12 Monaten Support.",
   "createRancherOVHCloudPlanDescription_3": "<b>Flexible Abrechnungsmodelle</b> : Pay-as-you-go oder reservierte Instanzen (abgerechnet nach verwaltetem vCPU).",
   "createRancherOVHCloudPlanDescription_4": "<b>Vereinfachte Bereitstellung und Verwaltung</b> auf der OVHcloud-Infrastruktur (Public Cloud, MKS, Bare Metal usw.).",
+  "createRancherStandardPlanDescription_1": "<b>Alle Funktionen</b> des OVHcloud Edition Plans sind enthalten.",
+  "createRancherStandardPlanDescription_2": "<b>Multi-Cloud- und hybride Verwaltung</b> : Fähigkeit, Kubernetes-Cluster überall zu bereitstellen und zu verwalten (jeder Public Cloud-Anbieter, vor Ort, Edge usw.).",
   "createRancherStandardPlanDescription": "Erstellen oder registrieren Sie „Downstream-Cluster“ mit jeder von Rancher unterstützten Public Cloud oder einer automatisierbaren Private Cloud (z. B. VMware vSphere), einschließlich der vom OVHcloud Edition Angebot unterstützten Szenarien.",
   "createNameModaleHelperInput": "Der Name des Dienstes muss zwischen 3 und 63 Zeichen lang sein. Er muss mit alphanumerischen Kleinbuchstaben beginnen und enden (von a bis z und von 0 bis 9) und kann die Satzzeichen „_“, „.“ und „-“ enthalten.",
   "generateAccessModalPasswordDescription": "Kopieren Sie dieses temporäre Passwort, um sich mit Ihrem Rancher zu verbinden. Nach der Anmeldung werden Sie aus Sicherheitsgründen aufgefordert, ein neues Passwort zu erstellen.",
@@ -98,6 +99,5 @@
   "freeTrialPriceLabel": "Kostenlos*",
   "freeTrialThenLabel": "danach",
   "freeTrialDisclaimer": "*Guthaben gültig ~1 Monat je nach Nutzung. Sobald das Guthaben aufgebraucht ist, erfolgt die Abrechnung automatisch gemäß Ihrem Verbrauch.",
-  "freeTrialVoucherBanner": "Sie profitieren derzeit von der Testversion dieses Dienstes. Details zu Ihrem verfügbaren Guthaben finden Sie in Ihrer <l>Gutschein</l> Schnittstelle.",
-  "createRancherOVHCloudPlanDescription_2": "<b>Aktuelle Rancher-Version</b> mit 12 Monaten Support."
+  "freeTrialVoucherBanner": "Sie profitieren derzeit von der Testversion dieses Dienstes. Details zu Ihrem verfügbaren Guthaben finden Sie in Ihrer <l>Gutschein</l> Schnittstelle."
 }

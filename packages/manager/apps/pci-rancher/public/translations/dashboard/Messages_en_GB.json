@@ -38,7 +38,10 @@
   "createRancherCTA": "Create a Managed Rancher Service",
   "createRancherError": "An error has occurred creating your Managed Rancher Service.{{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Recommended version",
-  "createRancherOVHCloudPlanDescription": "Create or manage Managed Kubernetes Service or ‘self-managed’ ‘downstream clusters’ on OVHcloud Public Cloud, or via your own machines. You can also register external clusters (without cloud management)",
+  "createRancherOVHCloudPlanDescription_1": "<b>99.9% SLA</b>",
+  "createRancherOVHCloudPlanDescription_2": "<b>Up-to-date Rancher version</b> with 12 months support.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Flexible billing models</b> : Pay-as-you-go or Reserved Instances (charged per managed vCPU).",
+  "createRancherOVHCloudPlanDescription_4": "<b>Simplified deployment and management</b> on OVHcloud infrastructure (Public Cloud, MKS, Bare Metal, etc.).",
   "createRancherStandardPlanDescription_1": "<b>All features</b> of the OVHcloud Edition plan included.",
   "createRancherStandardPlanDescription_2": "<b>Multi-cloud and hybrid management</b> : Ability to deploy and manage Kubernetes clusters wherever they are (any Public Cloud provider, on-premise, edge, etc.).",
   "createNameModaleHelperInput": "The service name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘_’ ‘.’ and ‘-’.",
@@ -95,9 +98,5 @@
   "freeTrialPriceLabel": "Free*",
   "freeTrialThenLabel": "Then",
   "freeTrialDisclaimer": "*Credit valid for ~1 month depending on your usage. Once the credit is exhausted, billing will automatically resume based on your consumption.",
-  "freeTrialVoucherBanner": "You are currently benefiting from the trial offer on this service. Find the details of your available credit in your <l>Voucher</l> interface.",
-  "createRancherOVHCloudPlanDescription_1": "<b>99.9% SLA</b>",
-  "createRancherOVHCloudPlanDescription_2": "<b>Up-to-date Rancher version</b> with 12 months support.",
-  "createRancherOVHCloudPlanDescription_3": "<b>Flexible billing models</b> : Pay-as-you-go or Reserved Instances (charged per managed vCPU).",
-  "createRancherOVHCloudPlanDescription_4": "<b>Simplified deployment and management</b> on OVHcloud infrastructure (Public Cloud, MKS, Bare Metal, etc.)."
+  "freeTrialVoucherBanner": "You are currently benefiting from the trial offer on this service. Find the details of your available credit in your <l>Voucher</l> interface."
 }
