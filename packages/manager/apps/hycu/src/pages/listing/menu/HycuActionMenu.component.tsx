@@ -3,9 +3,9 @@ import {
   ActionMenuItem,
   useServiceDetails,
 } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import React from 'react';
 import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useTranslation } from 'react-i18next';
@@ -19,9 +19,9 @@ const HycuActionMenu = ({ serviceName }: Pick<IHycuDetails, 'serviceName'>) => {
   const { t } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const openTerminateModal = () =>
-    navigate(
-      urls.listing_terminate.replace(subRoutes.serviceName, serviceName),
-    );
+    navigate({
+      to: urls.listing_terminate.replace(subRoutes.serviceName, serviceName),
+    });
   const { data: serviceDetails } = useServiceDetails({
     resourceName: serviceName,
   });

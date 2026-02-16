@@ -1,22 +1,30 @@
 import React, { useEffect, useContext } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Outlet, useLocation, useMatches } from 'react-router-dom';
+import { Outlet, useLocation, useMatches } from '@tanstack/react-router';
 import {
-  useOvhTracking,
-  useRouteSynchro,
   ShellContext,
 } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 
 export default function Layout() {
   const location = useLocation();
   const { shell } = useContext(ShellContext);
   const matches = useMatches();
   const { trackCurrentPage } = useOvhTracking();
-  useRouteSynchro();
+
+  // TanStack Router replacement for manager-react-shell-client's `useRouteSynchro`
+  // (which is hard-wired to react-router-dom hooks).
+  useEffect(() => {
+    shell?.routing?.stopListenForHashChange();
+  }, []);
 
   useEffect(() => {
-    const match = matches.slice(-1);
-    defineCurrentPage(`app.hycu-${match[0]?.id}`);
+    shell?.routing?.onHashChange();
+  }, [location]);
+
+  useEffect(() => {
+    const lastMatch = matches[matches.length - 1];
+    defineCurrentPage(`app.hycu-${lastMatch?.routeId}`);
   }, [location]);
 
   useEffect(() => {

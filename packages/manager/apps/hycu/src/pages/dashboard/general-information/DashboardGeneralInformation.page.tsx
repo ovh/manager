@@ -1,11 +1,11 @@
 import React from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import { Outlet, useParams } from '@tanstack/react-router';
 import BillingInformationsTile from './BillingInformations/BillingInformationsTile';
 import GeneralInformationsTile from './GeneralInformationsTiles/GeneralInformationsTile';
 import ShortcutsTile from './ShortcutsTile/ShortcutsTile';
 
 function GeneralInfos() {
-  const { serviceName } = useParams();
+  const { serviceName } = useParams({ strict: false });
 
   return (
     <>

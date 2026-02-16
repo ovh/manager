@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-import { useNavigate } from 'react-router-dom';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
+import { useNavigate } from '@tanstack/react-router';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import useGuideUtils from '@/hooks/guide/useGuideUtils';
 import onboardingImgSrc from './hycu-x-ovhcloud.svg?url';
@@ -69,7 +69,7 @@ export default function Onboarding() {
       orderButtonLabel={t(`${NAMESPACES.ACTIONS}:start`)}
       onOrderButtonClick={() => {
         trackClick(TRACKING.onboarding.beginClick);
-        navigate(urls.order);
+        navigate({ to: urls.order });
       }}
       moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
       moreInfoHref={link?.main}

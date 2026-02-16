@@ -1,6 +1,6 @@
 import React, { Suspense, useContext, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 
 import {
   BaseLayout,
@@ -10,8 +10,8 @@ import {
 } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
-  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 import {
   ODS_THEME_COLOR_INTENT,
   ODS_THEME_TYPOGRAPHY_LEVEL,
@@ -148,7 +148,7 @@ export default function Order() {
                 color={ODS_THEME_COLOR_INTENT.primary}
                 onClick={() => {
                   trackClick(TRACKING.order.cancelClick(selectedPack));
-                  navigate(urls.listing);
+                  navigate({ to: urls.listing });
                 }}
                 slot="actions"
                 variant={ODS_BUTTON_VARIANT.ghost}
@@ -222,7 +222,7 @@ export default function Order() {
               variant={ODS_BUTTON_VARIANT.flat}
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
-                navigate(urls.listing);
+                navigate({ to: urls.listing });
               }}
             >
               {t(`${NAMESPACES.ACTIONS}:end`)}

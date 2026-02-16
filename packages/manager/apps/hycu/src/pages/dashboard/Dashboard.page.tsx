@@ -2,11 +2,10 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   useNavigate,
-  useResolvedPath,
   useParams,
-  NavLink,
+  Link,
   Outlet,
-} from 'react-router-dom';
+} from '@tanstack/react-router';
 import { ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
 import {
   ODS_MESSAGE_TYPE,
@@ -23,16 +22,16 @@ import {
 import {
   BaseLayout,
   useServiceDetails,
-  Notifications,
   ChangelogButton,
 } from '@ovh-ux/manager-react-components';
+import Notifications from '@/components/Notifications/Notifications';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { CHANGELOG_LINKS } from '@/constants';
 
 import Breadcrumb from '@/components/Breadcrumb/Breadcrumb.component';
 import Errors from '@/components/Error/Error';
-import { urls } from '@/routes/routes.constant';
+import { subRoutes, urls } from '@/routes/routes.constant';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { IHycuDetails, LicenseStatus } from '@/types/hycu.details.interface';
 
@@ -83,7 +82,7 @@ const LicenseErrorActivationBanner = ({
 };
 
 export default function DashboardPage() {
-  const { serviceName } = useParams();
+  const { serviceName } = useParams({ strict: false });
   const navigate = useNavigate();
   const { t } = useTranslation([NAMESPACES.DASHBOARD, NAMESPACES.ACTIONS]);
 
@@ -107,7 +106,7 @@ export default function DashboardPage() {
     {
       name: 'general_informations',
       title: t(`${NAMESPACES.DASHBOARD}:general_information`),
-      to: useResolvedPath('').pathname,
+      to: urls.dashboard.replace(subRoutes.serviceName, serviceName),
     },
   ] as const;
 
@@ -133,7 +132,7 @@ export default function DashboardPage() {
       header={header}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back_to_list`)}
       onClickReturn={() => {
-        navigate(urls.listing);
+        navigate({ to: urls.listing });
       }}
       message={
         <>
@@ -145,14 +144,14 @@ export default function DashboardPage() {
         <OsdsTabs panel={panel}>
           <OsdsTabBar slot="top">
             {tabsList.map((tab: DashboardTabItemProps) => (
-              <NavLink key={tab.name} to={tab.to} className="no-underline">
+              <Link key={tab.name} to={tab.to} className="no-underline">
                 <OsdsTabBarItem
                   key={`osds-tab-bar-item-${tab.name}`}
                   panel={tab.name}
                 >
                   {tab.title}
                 </OsdsTabBarItem>
-              </NavLink>
+              </Link>
             ))}
           </OsdsTabBar>
         </OsdsTabs>

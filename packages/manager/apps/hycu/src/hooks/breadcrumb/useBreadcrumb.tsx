@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 import { urls } from '@/routes/routes.constant';
 import { TRACKING } from '@/tracking.constant';
 
@@ -31,7 +31,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
     label: rootLabel,
     onClick: () => {
       trackClick(TRACKING.breadcrumb.hycuClick);
-      navigate(urls.root);
+      navigate({ to: urls.root });
     },
   };
 
@@ -45,7 +45,7 @@ export const useBreadcrumb = ({ rootLabel, items }: BreadcrumbProps) => {
         onClick: (event: BreadcrumbEvent) => {
           const { isCollapsed, isLast } = event.target;
           if (!isCollapsed && !isLast) {
-            navigate(`/${pathnames.slice(0, index + 1).join('/')}`);
+            navigate({ to: `/${pathnames.slice(0, index + 1).join('/')}` });
           }
         },
       };

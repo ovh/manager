@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useRouter } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
 import {
   UpdateIamNameModal,
@@ -11,7 +11,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useInvalidateCacheForALicenseHycu } from '@/hooks/api/license';
 
 export default function EditHycuDisplayNameModal() {
-  const { serviceName } = useParams();
+  const { serviceName } = useParams({ strict: false });
   const { addSuccess, addError } = useNotifications();
   const { t } = useTranslation([
     'hycu/dashboard',
@@ -19,7 +19,7 @@ export default function EditHycuDisplayNameModal() {
     NAMESPACES.DASHBOARD,
     NAMESPACES.ERROR,
   ]);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { data: serviceDetails, isLoading } = useServiceDetails({
     resourceName: serviceName,
   });
@@ -27,7 +27,7 @@ export default function EditHycuDisplayNameModal() {
   const invalidateCacheForLicense = useInvalidateCacheForALicenseHycu();
 
   const closeModal = () => {
-    navigate('..');
+    router.history.back();
   };
 
   return (

@@ -12,13 +12,13 @@ import {
   OsdsText,
 } from '@ovhcloud/ods-components/react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useRouter } from '@tanstack/react-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  Notifications,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
+import Notifications from '@/components/Notifications/Notifications';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { FileInputField } from '@/components/FileUpload/FileUpload.component';
 import { useRegenerateLicenseHYCUMutation } from '@/hooks/api/license';
@@ -34,10 +34,10 @@ interface FormValues {
 }
 
 export const RegenerateHycuLicenseModal: React.FC<RegenerateHycuLicenseModalProps> = () => {
-  const { serviceName } = useParams();
+  const { serviceName } = useParams({ strict: false });
   const { t } = useTranslation(['hycu/dashboard', NAMESPACES.ACTIONS]);
-  const navigate = useNavigate();
-  const closeModal = () => navigate('..');
+  const router = useRouter();
+  const closeModal = () => router.history.back();
   const { addInfo, addError } = useNotifications();
   const {
     control,

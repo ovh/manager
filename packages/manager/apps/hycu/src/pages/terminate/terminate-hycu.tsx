@@ -7,7 +7,7 @@ import {
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams, useRouter } from '@tanstack/react-router';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { US_SUBSIDIARY } from '@/constants';
 
@@ -17,13 +17,13 @@ export const TerminateLicensePage = () => {
     NAMESPACES.ACTIONS,
     NAMESPACES.ERROR,
   ]);
-  const { serviceName } = useParams();
-  const navigate = useNavigate();
+  const { serviceName } = useParams({ strict: false });
+  const router = useRouter();
   const { addSuccess, addError } = useNotifications();
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
   const closeModal = () => {
-    navigate('..');
+    router.history.back();
   };
 
   const { terminateService, isPending, error, isError } = useDeleteService({
@@ -50,7 +50,7 @@ export const TerminateLicensePage = () => {
   });
 
   const onConfirmDelete = () => {
-    terminateService({ resourceName: serviceName });
+    terminateService({ resourceName: serviceName as string });
   };
 
   return (

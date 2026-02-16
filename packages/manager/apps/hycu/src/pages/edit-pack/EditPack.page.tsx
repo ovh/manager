@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from '@tanstack/react-router';
 
 import {
   BaseLayout,
@@ -49,7 +49,7 @@ import { sortPacksByPrice } from '@/utils/sortPacks';
 import { getRenewPrice } from '@/utils/getRenewPrice';
 
 export default function EditPack() {
-  const { serviceName } = useParams();
+  const { serviceName } = useParams({ strict: false });
   const { t } = useTranslation([
     'hycu/edit-pack',
     NAMESPACES.ERROR,
@@ -155,9 +155,9 @@ export default function EditPack() {
               className="mr-4"
               color={ODS_THEME_COLOR_INTENT.primary}
               onClick={() => {
-                navigate(
-                  urls.dashboard.replace(subRoutes.serviceName, serviceName),
-                );
+                navigate({
+                  to: urls.dashboard.replace(subRoutes.serviceName, serviceName),
+                });
               }}
               slot="actions"
               variant={ODS_BUTTON_VARIANT.ghost}
@@ -230,9 +230,9 @@ export default function EditPack() {
             variant={ODS_BUTTON_VARIANT.flat}
             color={ODS_THEME_COLOR_INTENT.primary}
             onClick={() => {
-              navigate(
-                urls.dashboard.replace(subRoutes.serviceName, serviceName),
-              );
+              navigate({
+                to: urls.dashboard.replace(subRoutes.serviceName, serviceName),
+              });
             }}
           >
             {t(`${NAMESPACES.ACTIONS}:end`)}

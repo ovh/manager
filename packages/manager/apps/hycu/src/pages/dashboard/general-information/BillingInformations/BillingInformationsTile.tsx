@@ -12,10 +12,10 @@ import {
   OsdsLink,
   OsdsSkeleton,
 } from '@ovhcloud/ods-components/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigationGetUrl } from '@/hooks/shell/useNavigationGetUrl';
 import { subRoutes, urls } from '@/routes/routes.constant';
@@ -53,9 +53,9 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
   ]);
 
   const openTerminateModal = () =>
-    navigate(
-      urls.dashboard_terminate.replace(subRoutes.serviceName, serviceName),
-    );
+    navigate({
+      to: urls.dashboard_terminate.replace(subRoutes.serviceName, serviceName),
+    });
 
   return (
     <DashboardTile

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   ErrorMessage,
@@ -43,8 +43,8 @@ const Errors: React.FC<ErrorObject> = ({ error }) => {
   return (
     <ErrorBanner
       error={error}
-      onReloadPage={() => navigate(location.pathname, { replace: true })}
-      onRedirectHome={() => navigate('/', { replace: true })}
+      onReloadPage={() => navigate({ to: location.pathname, replace: true })}
+      onRedirectHome={() => navigate({ to: '/', replace: true })}
     />
   );
 };

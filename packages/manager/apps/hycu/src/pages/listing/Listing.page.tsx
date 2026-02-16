@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from '@tanstack/react-router';
 
 import {
   OsdsButton,
@@ -13,15 +13,15 @@ import {
   Datagrid,
   DataGridTextCell,
   useResourcesIcebergV6,
-  RedirectionGuard,
   BaseLayout,
   Links,
   useServiceDetails,
   DateFormat,
   useFormattedDate,
-  Notifications,
 } from '@ovh-ux/manager-react-components';
-import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+import Notifications from '@/components/Notifications/Notifications';
+import RedirectionGuard from '@/components/RedirectionGuard/RedirectionGuard';
+import { useOvhTracking } from '@/hooks/tracking/useOvhTracking';
 
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
@@ -57,12 +57,12 @@ const DatagridIdCell = (hycuDetail: IHycuDetails) => {
     <DataGridTextCell>
       <Links
         onClickReturn={() =>
-          navigate(
-            urls.dashboard.replace(
+          navigate({
+            to: urls.dashboard.replace(
               subRoutes.serviceName,
               hycuDetail.serviceName,
             ),
-          )
+          })
         }
         label={hycuDetail?.iam.displayName ?? hycuDetail.serviceName}
       ></Links>
@@ -237,7 +237,7 @@ export default function Listing() {
                   size={ODS_BUTTON_SIZE.sm}
                   onClick={() => {
                     trackClick(TRACKING.listing.orderClick);
-                    navigate(urls.order);
+                    navigate({ to: urls.order });
                   }}
                   inline
                 >

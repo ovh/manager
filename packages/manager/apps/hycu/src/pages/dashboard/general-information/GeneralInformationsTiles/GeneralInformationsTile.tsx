@@ -23,7 +23,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import { getStatusColor } from '@/utils/statusColor';
 import {
   useDetailsLicenseHYCU,
@@ -89,7 +89,9 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
     resourceName: serviceName,
   });
   const openEditNameModal = () =>
-    navigate(urls.editName.replace(subRoutes.serviceName, serviceName));
+    navigate({
+      to: urls.editName.replace(subRoutes.serviceName, serviceName),
+    });
 
   return (
     <DashboardTile

@@ -9,7 +9,7 @@ import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@tanstack/react-router';
 import { useDetailsLicenseHYCU } from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
 import { subRoutes, urls } from '@/routes/routes.constant';
@@ -64,12 +64,12 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
             urn={hycuDetail?.data?.iam?.urn}
             data-testid="hycu_link_activated_test_id"
             onClick={() => {
-              navigate(
-                urls.activateLicense.replace(
+              navigate({
+                to: urls.activateLicense.replace(
                   subRoutes.serviceName,
                   serviceName,
                 ),
-              );
+              });
             }}
           >
             {t('hycu_dashboard_link_activate')}
@@ -85,12 +85,12 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
             urn={hycuDetail?.data?.iam?.urn}
             data-testid="hycu_link_regenerate_test_id"
             onClick={() => {
-              navigate(
-                urls.regenerateLicense.replace(
+              navigate({
+                to: urls.regenerateLicense.replace(
                   subRoutes.serviceName,
                   serviceName,
                 ),
-              );
+              });
             }}
           >
             {t('hycu_dashboard_link_regenerate')}
@@ -106,9 +106,9 @@ const ShortcutsTile = ({ serviceName }: { serviceName: string }) => {
             urn={hycuDetail?.data?.iam?.urn}
             data-testid="hycu_link_edit_test_id"
             onClick={() => {
-              navigate(
-                urls.editPack.replace(subRoutes.serviceName, serviceName),
-              );
+              navigate({
+                to: urls.editPack.replace(subRoutes.serviceName, serviceName),
+              });
             }}
           >
             {t('hycu_dashboard_link_change_pack_type')}
