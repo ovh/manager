@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
+
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+
+import { Spinner, Text } from '@ovhcloud/ods-react';
+
 import { LogsContext } from '@/LogsToCustomer.context';
-import {
-  getLogSubscriptionsQueryKey,
-  useLogSubscriptions,
-} from '@/data/hooks/useLogSubscriptions';
-import SubscriptionTile from '@/components/subscriptions/SubscriptionTile.component';
-import SubscriptionEmpty from '@/components/subscriptions/SubscriptionEmpty.component';
-import ApiError from '@/components/apiError/ApiError.component';
-import { useZoomedInOut } from '@/hooks/useZoomedInOut';
 import { NAMESPACES } from '@/LogsToCustomer.translations';
+import ApiError from '@/components/api-error/ApiError.component';
+import SubscriptionEmpty from '@/components/subscriptions/SubscriptionEmpty.component';
+import SubscriptionTile from '@/components/subscriptions/SubscriptionTile.component';
+import { getLogSubscriptionsQueryKey, useLogSubscriptions } from '@/data/hooks/useLogSubscriptions';
+import { useZoomedInOut } from '@/hooks/useZoomedInOut';
 
 export default function LogsSubscriptions() {
   const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
@@ -27,7 +27,7 @@ export default function LogsSubscriptions() {
   if (!currentLogKind) {
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logCurrentLogKind-spinner" />
+        <Spinner size="md" data-testid="logCurrentLogKind-spinner" />
       </div>
     );
   }
@@ -35,7 +35,7 @@ export default function LogsSubscriptions() {
   if (isLoading || isPending)
     return (
       <div className="flex py-8">
-        <OdsSpinner size="md" data-testid="logSubscriptions-spinner" />
+        <Spinner size="md" data-testid="logSubscriptions-spinner" />
       </div>
     );
 
@@ -44,20 +44,17 @@ export default function LogsSubscriptions() {
       <ApiError
         testId="logSubscriptions-error"
         error={error}
-        onRetry={() =>
-          queryClient.refetchQueries({
-            queryKey: getLogSubscriptionsQueryKey(
-              logApiUrls.logSubscription,
-              currentLogKind,
-            ),
-          })
-        }
+        onRetry={() => {
+          void queryClient.refetchQueries({
+            queryKey: getLogSubscriptionsQueryKey(logApiUrls.logSubscription, currentLogKind),
+          });
+        }}
       />
     );
 
   return (
     <div className="flex flex-col gap-4">
-      <OdsText preset="heading-3">{t('log_subscription_list_title')}</OdsText>
+      <Text preset="heading-3">{t('log_subscription_list_title')}</Text>
       <div
         className={
           isZoomedIn
@@ -67,10 +64,7 @@ export default function LogsSubscriptions() {
       >
         <SubscriptionEmpty />
         {data.map((subscription) => (
-          <SubscriptionTile
-            key={subscription.subscriptionId}
-            subscription={subscription}
-          />
+          <SubscriptionTile key={subscription.subscriptionId} subscription={subscription} />
         ))}
       </div>
     </div>

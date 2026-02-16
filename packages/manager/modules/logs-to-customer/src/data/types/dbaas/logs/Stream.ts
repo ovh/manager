@@ -3,7 +3,7 @@ import { StreamColdStorageContentEnum } from '@/data/types/dbaas/logs/StreamCold
 import { StreamColdStorageTargetEnum } from '@/data/types/dbaas/logs/StreamColdStorageTargetEnum';
 
 /** Graylog stream */
-export interface Stream {
+export interface Stream extends Record<string, unknown> {
   /** Indicates if the current user can create alert on the stream */
   canAlert: boolean;
   /** Cluster ID */

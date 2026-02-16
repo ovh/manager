@@ -1,7 +1,10 @@
-import { NAMESPACES } from '@/LogsToCustomer.translations';
-import { OdsButton, OdsMessage } from '@ovhcloud/ods-components/react';
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
+
+import { Button, MESSAGE_COLOR, Message, MessageBody } from '@ovhcloud/ods-react';
+
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 
 export interface IError {
   testId: string;
@@ -14,13 +17,15 @@ export default function ApiError({ error, onRetry, testId }: Readonly<IError>) {
 
   return (
     <div className="flex flex-col gap-2" data-testid={testId}>
-      <OdsMessage color="danger" isDismissible={false}>
-        <span>
+      <Message color={MESSAGE_COLOR.critical} dismissible={false}>
+        <MessageBody>
           {`${t('error_title')}: `}
           <strong>{error.message}</strong>
-        </span>
-      </OdsMessage>
-      <OdsButton size="sm" onClick={onRetry} label={t('error_retry_button')} />
+        </MessageBody>
+      </Message>
+      <Button size="sm" onClick={onRetry}>
+        {t('error_retry_button')}
+      </Button>
     </div>
   );
 }

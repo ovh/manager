@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { ClusterRetention, Service, Stream } from '@/data/types/dbaas/logs';
+
+import { ClusterRetention, Service, Stream } from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * GET cluster retention

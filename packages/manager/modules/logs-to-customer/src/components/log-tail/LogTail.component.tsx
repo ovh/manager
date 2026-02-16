@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 
 import { useQueryClient } from '@tanstack/react-query';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import { LogsContext } from '@/LogsToCustomer.context';
+import ApiError from '@/components/api-error/ApiError.component';
+import { LogMessages } from '@/components/log-tail/log-messages/LogMessages.component';
 import { getLogTailUrlQueryKey, useLogTailUrl } from '@/data/hooks/useLogTailUrl';
-import ApiError from '@/components/apiError/ApiError.component';
-import { LogMessages } from '@/components/logTail/logMessages/LogMessages.component';
 
 export default function LogTail() {
   const { currentLogKind, logApiUrls, logApiVersion } = useContext(LogsContext);
@@ -21,23 +21,21 @@ export default function LogTail() {
   if (isPending || error) {
     return (
       <div
-        className={`h-[--tail-height] bg-slate-800 text-gray-200 flex items-center justify-center`}
+        className={`h-[var(--tail-height)] bg-slate-800 text-gray-200 flex items-center justify-center`}
       >
-        {isPending && (
-          <OdsSpinner data-testid="logTail-spinner" className=" [&::part(spinner)]:fill-white" />
-        )}
+        {isPending && <Spinner data-testid="logTail-spinner" className="fill-white" />}
         {error && (
           <ApiError
             testId="logTail-error"
             error={error}
-            onRetry={() =>
-              queryClient.refetchQueries({
+            onRetry={() => {
+              void queryClient.refetchQueries({
                 queryKey: getLogTailUrlQueryKey({
                   logKind: currentLogKind?.name,
                   logTailUrl: logApiUrls.logUrl,
                 }),
-              })
-            }
+              });
+            }}
           />
         )}
       </div>
@@ -45,7 +43,7 @@ export default function LogTail() {
   }
 
   return (
-    <div className={`h-[--tail-height] bg-slate-800 text-slate-300`}>
+    <div className={`h-[var(--tail-height)] bg-slate-800 text-slate-300`}>
       {<LogMessages logTailMessageUrl={data.url} />}
     </div>
   );

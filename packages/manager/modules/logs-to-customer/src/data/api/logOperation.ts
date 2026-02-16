@@ -1,5 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
-import { Operation, Service } from '@/data/types/dbaas/logs';
+
+import { Operation, Service } from '@/data/types/dbaas/logs/Logs.type';
 
 /**
  * GET Log operation

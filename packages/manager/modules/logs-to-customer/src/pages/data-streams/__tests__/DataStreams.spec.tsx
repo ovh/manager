@@ -1,9 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { getOdsButtonByLabel } from '@ovh-ux/manager-core-test-utils';
-
-import { logStreamsMock } from '@/__mocks__/logStream.mock';
 import { renderTest } from '@/test-utils/render-test';
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
@@ -26,7 +23,7 @@ describe('dataStreams page test suite', () => {
   });
 
   it('should display specific elements if there is no services', async () => {
-    const { container } = await renderTest({
+    await renderTest({
       initialRoute: '/streams',
       nbLogServices: 0,
     });
@@ -37,10 +34,7 @@ describe('dataStreams page test suite', () => {
         timeout: 10_000,
       },
     );
-    await getOdsButtonByLabel({
-      container,
-      label: 'log_service_create',
-    });
+    expect(screen.getByRole('button', { name: 'log_service_create' })).toBeInTheDocument();
   });
 
   it('should render a loading state when the api request is pending', async () => {
@@ -59,7 +53,7 @@ describe('dataStreams page test suite', () => {
     });
 
     await waitFor(
-      () => expect(screen.queryByText(logStreamsMock?.[0]?.title ?? '')).toBeInTheDocument(),
+      () => expect(screen.queryByText('log_streams_select_account')).toBeInTheDocument(),
       {
         timeout: 10_000,
       },

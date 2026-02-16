@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { ICON_NAME, Icon, Link } from '@ovhcloud/ods-react';
+
 import {
   ButtonType,
   PageLocation,
@@ -8,7 +9,7 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { Service } from '@/data/types/dbaas/logs';
+import { Service } from '@/data/types/dbaas/logs/Logs.type';
 import getServiceLabel from '@/helpers/getServiceLabel';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { LogsActionEnum } from '@/types/logsTracking';
@@ -28,12 +29,10 @@ const ServiceLink = ({ service }: { service: Service }) => {
   }, [navigation, service]);
 
   return (
-    <Links
+    <Link
       href={serviceUrl}
-      label={getServiceLabel(service)}
-      type={LinkType.external}
       target="_blank"
-      onClickReturn={() => {
+      onClick={() => {
         trackClick({
           location: PageLocation.page,
           buttonType: ButtonType.button,
@@ -41,7 +40,10 @@ const ServiceLink = ({ service }: { service: Service }) => {
           actions: [goToDetailLogsAccess],
         });
       }}
-    />
+    >
+      {getServiceLabel(service)}
+      <Icon name={ICON_NAME.externalLink} />
+    </Link>
   );
 };
 

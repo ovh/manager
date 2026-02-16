@@ -1,43 +1,24 @@
-import React, {
-  createContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton, OdsInput } from '@ovhcloud/ods-components/react';
+import { BUTTON_VARIANT, Button, INPUT_TYPE, Icon, Input } from '@ovhcloud/ods-react';
 
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { NAMESPACES } from '@/LogsToCustomer.translations';
+import { BlinkingCursor } from '@/components/log-tail/log-messages/BlinkingCursor.component';
 import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-
+  type ISearchContext,
+  searchContext,
+} from '@/components/log-tail/log-messages/SearchContext';
+import { Log } from '@/components/log-tail/log-messages/log/Log.component';
 import { useLogTailMessages } from '@/data/hooks/useLogTailMessages';
-import { TemporaryLogsLink } from '@/data/types/dbaas/logs';
+import { TemporaryLogsLink } from '@/data/types/dbaas/logs/Logs.type';
 import useLogTrackingActions from '@/hooks/useLogTrackingActions';
 import { useZoomedInOut } from '@/hooks/useZoomedInOut';
 import { LogsActionEnum } from '@/types/logsTracking';
-import { Log } from '@/components/logTail/logMessages/log/Log.component';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
-
-interface ISearchContext {
-  query?: string;
-}
-
-export const searchContext = createContext<ISearchContext>({
-  query: undefined,
-});
-
-const BlinkingCursor = () => {
-  return (
-    <div className="w-2 h-4 bg-white animate-[cursor-blink_1s_step-end_infinite]" />
-  );
-};
 
 interface ILogTailMessageUrl {
   logTailMessageUrl: TemporaryLogsLink['url'];
@@ -50,9 +31,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [autoScroll, setAutoScroll] = useState(true);
   const { isZoomedIn, toggleZoom } = useZoomedInOut();
-  const clearSessionLogsAccess = useLogTrackingActions(
-    LogsActionEnum.clear_session_logs_access,
-  );
+  const clearSessionLogsAccess = useLogTrackingActions(LogsActionEnum.clear_session_logs_access);
   const { trackClick } = useOvhTracking();
   const {
     messages = [],
@@ -70,9 +49,9 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
     paddingEnd: 80,
   });
 
-  const scrollToBottom = () => {
+  const scrollToBottom = useCallback(() => {
     virtualizer.scrollToIndex(messages.length - 1, { align: 'center' });
-  };
+  }, [virtualizer, messages.length]);
 
   const resetSession = () => {
     setAutoScroll(true);
@@ -89,22 +68,32 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
     if (autoScroll && !isPending && messages.length > 0) {
       scrollToBottom();
     }
-  }, [isPending, messages.length, autoScroll]);
+  }, [isPending, messages.length, autoScroll, scrollToBottom]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !isPending) {
-          setAutoScroll(true);
-        } else if (!isPending) {
-          setAutoScroll(false);
-        }
-      });
-    });
+    const scrollContainer = parentRef.current;
+    const bottomElement = bottomRef.current;
 
-    if (bottomRef.current) {
-      observer.observe(bottomRef.current);
+    if (!scrollContainer || !bottomElement) {
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isPending) {
+            setAutoScroll(true);
+          } else if (!isPending) {
+            setAutoScroll(false);
+          }
+        });
+      },
+      {
+        root: scrollContainer,
+      },
+    );
+
+    observer.observe(bottomElement);
 
     return () => {
       observer.disconnect();
@@ -122,47 +111,48 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
 
   return (
     <>
-      <div className="h-[--toolbox-height] flex items-center justify-between px-4 box-border border-solid border-0 border-b border-slate-600">
-        <div className="flex gap-2 items-center w-full">
-          <OdsInput
+      <div className="h-[var(--toolbox-height)] flex items-center justify-between px-4 box-border border-solid border-0 border-b border-slate-600">
+        <div className="flex gap-4 items-center w-full">
+          <Input
             name="log-tail-search"
-            type="search"
+            type={INPUT_TYPE.search}
             placeholder={t('log_tail_search_placeholder')}
-            className="flex-grow max-w-80"
-            onOdsChange={(e) => setSearchQuery(e.detail.value as string)}
+            className="flex-grow max-w-80 bg-white"
+            onChange={(e) => setSearchQuery(e.target.value)}
             data-testid="logTail-searchInput"
           />
-          <OdsButton
-            className="bg-white [&::part(button)]:h-8 "
-            variant="ghost"
+          <Button
+            className="bg-white h-8"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={togglePolling}
             data-testid="logTail-togglePolling"
-            label={isPolling ? '⏸︎' : '▶'}
-          />
-          <OdsButton
+          >
+            {isPolling ? '⏸︎' : '▶'}
+          </Button>
+          <Button
             className="bg-white"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={resetSession}
-            icon="refresh"
             data-testid="logTail-clearSession"
-            label=""
-          />
-          <OdsButton
+          >
+            <Icon name="refresh" />
+          </Button>
+          <Button
             className="bg-white h-auto ml-auto"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={() => toggleZoom()}
             data-testid="logTail-zoom"
-            icon={isZoomedIn ? 'shrink' : 'resize'}
-            label=""
-          />
+          >
+            <Icon name={isZoomedIn ? 'shrink' : 'resize'} />
+          </Button>
         </div>
       </div>
       <div className="relative font-mono text-xs ">
         <div
-          className="px-4 overflow-y-auto contain-strict h-[--messages-height]"
+          className="px-4 overflow-y-auto contain-strict h-[var(--messages-height)]"
           ref={parentRef}
           data-testid="logTail-listContainer"
         >
@@ -191,10 +181,7 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
                 ))}
               </searchContext.Provider>
               {error && (
-                <div
-                  className="text-red-400"
-                  data-testid="logTail-message-error"
-                >
+                <div className="text-red-400" data-testid="logTail-message-error">
                   {t('log_tail_error_get_logs')}
                 </div>
               )}
@@ -209,14 +196,14 @@ export const LogMessages = ({ logTailMessageUrl }: ILogTailMessageUrl) => {
           </div>
         </div>
         {!autoScroll && (
-          <OdsButton
+          <Button
             className="absolute right-10 bottom-8 bg-white"
-            variant="ghost"
+            variant={BUTTON_VARIANT.ghost}
             size="sm"
             onClick={scrollToBottom}
-            icon="arrow-down"
-            label=""
-          />
+          >
+            <Icon name="arrow-down" />
+          </Button>
         )}
       </div>
     </>

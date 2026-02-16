@@ -1,27 +1,28 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { ApiUrls } from '@/LogsToCustomer.props';
-import { pollLogOperation } from '@/helpers/pollLogOperation';
+import { NAMESPACES } from '@/LogsToCustomer.translations';
 import {
+  deleteLogSubscription,
   getLogSubscriptions,
   postLogSubscription,
-  deleteLogSubscription,
 } from '@/data/api/logSubscriptions.adapter';
-import { LogApiVersion } from '@/data/types/apiVersion';
-import { LogKind, LogSubscription } from '@/data/types/dbaas/logs';
 import { getLogStreamsQueryKey } from '@/data/hooks/useLogStream';
-import { NAMESPACES } from '@/LogsToCustomer.translations';
+import { LogApiVersion } from '@/data/types/apiVersion';
+import { LogKind, LogSubscription } from '@/data/types/dbaas/logs/Logs.type';
+import { pollLogOperation } from '@/helpers/pollLogOperation';
 
 /**
  * LIST log subscriptions
  */
-export const getLogSubscriptionsQueryKey = (
-  logSubscriptionUrl: string,
-  logKind?: LogKind,
-) => ['getLogSubscriptions', logSubscriptionUrl, logKind?.name];
+export const getLogSubscriptionsQueryKey = (logSubscriptionUrl: string, logKind?: LogKind) => [
+  'getLogSubscriptions',
+  logSubscriptionUrl,
+  logKind?.name,
+];
 
 export const useLogSubscriptions = (
   logSubscriptionUrl: ApiUrls['logSubscription'],
@@ -30,8 +31,7 @@ export const useLogSubscriptions = (
 ) => {
   return useQuery({
     queryKey: getLogSubscriptionsQueryKey(logSubscriptionUrl, logKind),
-    queryFn: () =>
-      getLogSubscriptions({ apiVersion, logSubscriptionUrl, logKind }),
+    queryFn: () => getLogSubscriptions({ apiVersion, logSubscriptionUrl, logKind }),
     enabled: !!logKind,
   });
 };
@@ -56,11 +56,7 @@ export const usePostLogSubscription = (
   const { addError, addSuccess } = useNotifications();
 
   return useMutation({
-    mutationKey: getPostLogSubscriptionMutationKey(
-      logSubscriptionUrl,
-      logKind,
-      streamId,
-    ),
+    mutationKey: getPostLogSubscriptionMutationKey(logSubscriptionUrl, logKind, streamId),
     mutationFn: async () => {
       const { serviceName, operationId } = await postLogSubscription({
         apiVersion,
@@ -80,10 +76,7 @@ export const usePostLogSubscription = (
       addSuccess(t('log_subscription_subscribe_success'), true);
     },
     onError: (e) => {
-      addError(
-        t('log_subscription_subscribe_error', { error: e.message }),
-        true,
-      );
+      addError(t('log_subscription_subscribe_error', { error: e.message }), true);
     },
   });
 };
@@ -96,22 +89,27 @@ export const getDeleteLogSubscriptionMutationKey = (
   subscriptionId: LogSubscription['subscriptionId'],
 ) => [`deleteLogSubscription`, logSubscriptionUrl, subscriptionId];
 
-export const useDeleteLogSubscription = (
-  logSubscriptionUrl: ApiUrls['logSubscription'],
-  apiVersion: LogApiVersion,
-  subscriptionId: LogSubscription['subscriptionId'],
-  logKind?: LogKind,
-  onSettled?: () => void,
-) => {
+interface UseDeleteLogSubscriptionOptions {
+  logSubscriptionUrl: ApiUrls['logSubscription'];
+  apiVersion: LogApiVersion;
+  subscriptionId: LogSubscription['subscriptionId'];
+  logKind?: LogKind;
+  onSettled?: () => void;
+}
+
+export const useDeleteLogSubscription = ({
+  logSubscriptionUrl,
+  apiVersion,
+  subscriptionId,
+  logKind,
+  onSettled,
+}: UseDeleteLogSubscriptionOptions) => {
   const { t } = useTranslation(NAMESPACES.LOG_SUBSCRIPTION);
   const queryClient = useQueryClient();
   const { addError, addSuccess } = useNotifications();
 
   return useMutation({
-    mutationKey: getDeleteLogSubscriptionMutationKey(
-      logSubscriptionUrl,
-      subscriptionId,
-    ),
+    mutationKey: getDeleteLogSubscriptionMutationKey(logSubscriptionUrl, subscriptionId),
     mutationFn: async () => {
       const { serviceName, operationId } = await deleteLogSubscription({
         apiVersion,
@@ -130,10 +128,7 @@ export const useDeleteLogSubscription = (
       addSuccess(t('log_subscription_unsubscribe_success'), true);
     },
     onError: (e) => {
-      addError(
-        t('log_subscription_unsubscribe_error', { error: e.message }),
-        true,
-      );
+      addError(t('log_subscription_unsubscribe_error', { error: e.message }), true);
     },
     onSettled: () => {
       onSettled?.();
