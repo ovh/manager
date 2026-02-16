@@ -6,7 +6,6 @@ import {
   initI18n,
 } from '@ovh-ux/manager-react-shell-client';
 import '@ovh-ux/manager-react-components/dist/style.css';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { initModuleFederation } from '@/domain/utils/module-federation-runtime';
 
 import App from './App';
@@ -15,6 +14,7 @@ import './index.scss';
 import '@ovh-ux/muk/dist/style.css';
 
 import { UNIVERSE, SUB_UNIVERSE, APP_NAME, LEVEL2 } from './tracking.constants';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 const trackingContext = {
   chapter1: UNIVERSE,

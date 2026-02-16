@@ -177,5 +177,5 @@
   "domain_operations_update_spareEmail": "Correo electrónico secundario",
   "domain_operations_update_vat": "N.º de IVA intracomunitario",
   "domain_operations_update_firstName": "Nombre",
-  "domain_operations_upload_file_template": "Solo se aceptarán los archivos que sigan este modelo de documento. <Link>modelo de documento</Link> serán aceptados."
+  "domain_operations_upload_file_template": "Solo los archivos con este <Link>modelo de documento</Link> serán aceptados."
 }

@@ -89,22 +89,26 @@ export default function HostDrawer({
       isOpen={drawer.isOpen}
       primaryButtonLabel={t(`${NAMESPACES.ACTIONS}:validate`)}
       isPrimaryButtonLoading={isUpdateDomainPending}
-      isPrimaryButtonDisabled={!formState.isValid}
+      isPrimaryButtonDisabled={!formState.isValid || !formState.isDirty}
       secondaryButtonLabel={t(`${NAMESPACES.ACTIONS}:cancel`)}
       onSecondaryButtonClick={() => onDismiss()}
       onPrimaryButtonClick={handleSubmit((values) => {
+        const newHost = {
+          host: `${values.host}.${serviceName}`,
+          ips: transformIpsStringToArray(values.ips),
+        };
+        const updatedHosts = isAddAction
+          ? [...hostsConfiguration.hosts, newHost]
+          : hostsConfiguration.hosts.map((h) =>
+              h.host === hostData.host ? newHost : h,
+            );
+
         updateDomain(
           {
             currentTargetSpec: targetSpec,
             updatedSpec: {
               hostsConfiguration: {
-                hosts: [
-                  ...hostsConfiguration.hosts,
-                  {
-                    host: `${values.host}.${serviceName}`,
-                    ips: transformIpsStringToArray(values.ips),
-                  },
-                ],
+                hosts: updatedHosts,
               },
             },
           },
@@ -149,6 +153,7 @@ export default function HostDrawer({
           ipsSupported={ipsSupported}
           serviceName={serviceName}
           hostsTargetSpec={targetSpec.hostsConfiguration.hosts}
+          currentHost={isAddAction ? undefined : hostData.host}
         />
       </FormProvider>
     </Drawer>
