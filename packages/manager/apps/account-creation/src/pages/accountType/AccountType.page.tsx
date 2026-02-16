@@ -12,7 +12,11 @@ import {
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LegalForm } from '@ovh-ux/manager-config';
-import { ButtonType, PageLocation, usePageTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useUserContext } from '@/context/user/useUser';
 import { useLegalFormRules } from '@/data/hooks/useRules';
@@ -21,17 +25,24 @@ import { AVERAGE_NUMBER_OF_LEGAL_FORMS } from './accountType.constants';
 import AccountTypeTooltipContent from './tooltip-content/TooltipContent.component';
 import { urls } from '@/routes/routes.constant';
 import { shouldAccessOrganizationSearch } from '@/helpers/flowHelper';
+import { putMe } from '@/data/api/me';
 
 export default function AccountType() {
   const { t } = useTranslation('account-type');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const navigate = useNavigate();
-  const [ searchParams ] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { trackClick } = useTrackingContext();
   const { trackError } = useTrackError('select-account-type');
   const pageTracking = usePageTracking();
-  const { ovhSubsidiary, country, legalForm, setLegalForm, language } = useUserContext();
+  const {
+    ovhSubsidiary,
+    country,
+    legalForm,
+    setLegalForm,
+    language,
+  } = useUserContext();
   const { data: rule, isLoading, error } = useLegalFormRules({
     ovhSubsidiary,
     country,
@@ -53,15 +64,23 @@ export default function AccountType() {
       trackClick(pageTracking, {
         location: PageLocation.page,
         buttonType: ButtonType.button,
-        actions: ['account-create-select-account-type', 'next', `${ovhSubsidiary}_${language}_${legalForm}`],
+        actions: [
+          'account-create-select-account-type',
+          'next',
+          `${ovhSubsidiary}_${language}_${legalForm}`,
+        ],
       });
     }
-    if (shouldAccessOrganizationSearch(country, legalForm)) {
-      navigate(`${urls.company}?${searchParams.toString()}`);
-    } else {
-      navigate(`${urls.accountDetails}?${searchParams.toString()}`);
-    }
-  }, [legalForm, country]);
+
+    // Update the legal form in the user data, then redirect
+    putMe({ legalform: legalForm }).then(() => {
+      if (shouldAccessOrganizationSearch(country, legalForm)) {
+        navigate(`${urls.company}?${searchParams.toString()}`);
+      } else {
+        navigate(`${urls.accountDetails}?${searchParams.toString()}`);
+      }
+    });
+  }, [legalForm, country, invalidLegalForm, language, navigate, pageTracking, searchParams, trackClick, trackError]);
 
   useEffect(() => {
     if (error) {
@@ -139,6 +158,7 @@ export default function AccountType() {
                       setLegalForm(value as LegalForm);
                       setLegalFormError(false);
                     }}
+                    isChecked={legalForm === value}
                     hasError={legalFormError}
                     className="contents sm:inline-flex"
                   ></OdsRadio>

@@ -1,10 +1,13 @@
 import { describe, expect, it, vi } from 'vitest';
 import { act, render, screen, waitFor } from '@testing-library/react';
-import * as ReactRouterDom from 'react-router-dom';
 import { UseQueryResult } from '@tanstack/react-query';
 import * as RulesHooks from '@/data/hooks/useRules';
 import AccountTypePage from './AccountType.page';
 import { Rule } from '@/types/rule';
+
+vi.mock('@/data/api/me', () => ({
+  putMe: vi.fn(() => Promise.resolve()),
+}));
 
 let legalForm: string | undefined;
 const setLegalForm = vi.fn((form: string) => {
@@ -139,7 +142,11 @@ describe('AccountTypePage', () => {
         ],
       },
     );
-    expect(navigate).toHaveBeenCalledWith('/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
+    await waitFor(() =>
+      expect(navigate).toHaveBeenCalledWith(
+        '/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+      ),
+    );
   });
 
   it('should navigate to info page for FR non corporation', async () => {
@@ -160,6 +167,10 @@ describe('AccountTypePage', () => {
         ],
       },
     );
-    expect(navigate).toHaveBeenCalledWith('/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
+    await waitFor(() =>
+      expect(navigate).toHaveBeenCalledWith(
+        '/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+      ),
+    );
   });
 });
