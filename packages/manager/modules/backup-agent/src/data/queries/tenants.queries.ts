@@ -18,7 +18,7 @@ import { servicesQueries } from './services.queries';
 
 const details = (queryClient: QueryClient) => () =>
   queryOptions({
-    queryKey: queryKeys.tenants.details(),
+    queryKey: queryKeys.tenants.detail(),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       return getTenantDetails(backupServicesId!);

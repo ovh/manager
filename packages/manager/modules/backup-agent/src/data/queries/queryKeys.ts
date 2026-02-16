@@ -4,16 +4,16 @@ export const queryKeys = {
   },
   tenants: {
     all: ['backup', 'tenants'],
-    details: () => [...queryKeys.tenants.all, 'details'],
+    detail: () => [...queryKeys.tenants.all, 'detail'],
     vspc: {
       all: () => [...queryKeys.tenants.all, 'vspc'],
-      detail: (vspcTenantId?: string) => [...queryKeys.tenants.vspc.all(), vspcTenantId],
+      detail: () => [...queryKeys.tenants.vspc.all(), 'detail'],
       policies: () => [...queryKeys.tenants.vspc.detail(), 'policies'],
     },
   },
   vaults: {
     all: ['backup', 'vaults'],
-    detail: (vaultId?: string) => [...queryKeys.vaults.all, 'details', vaultId],
+    detail: (vaultId?: string) => [...queryKeys.vaults.all, 'detail', vaultId],
   },
   agents: {
     all: () => [...queryKeys.tenants.vspc.detail(), 'agents'],
