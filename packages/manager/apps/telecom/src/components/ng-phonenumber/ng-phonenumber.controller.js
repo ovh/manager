@@ -1,4 +1,3 @@
-import { PHONE_PREFIX } from './ng-phonenumber.constant';
 import examples from 'libphonenumber-js/mobile/examples';
 import {
   AsYouType,
@@ -6,11 +5,13 @@ import {
   getCountries,
   isValidPhoneNumber,
   getExampleNumber,
+  getCountryCallingCode,
 } from 'libphonenumber-js';
 
 export default class NgPhonenumberController {
   /* @ngInject */
-  constructor($translate, coreConfig) {
+  constructor($scope, $translate, coreConfig) {
+    this.$scope = $scope;
     this.$translate = $translate;
     this.coreConfig = coreConfig;
 
@@ -23,11 +24,11 @@ export default class NgPhonenumberController {
     // Generate the list of countries with their labels and prefixes
     this.countryList = (this.countries || getCountries())
       .map((country) => ({
-        label: `${this.$translate.instant(`country_${country}`)} (+${
-          PHONE_PREFIX[country]
-        })`,
+        label: `${this.$translate.instant(
+          `country_${country}`,
+        )} (+${getCountryCallingCode(country)})`,
         value: country,
-        phoneCode: `+${PHONE_PREFIX[country]}`,
+        phoneCode: `+${getCountryCallingCode(country)}`,
       }))
       .sort((a, b) => a.label.localeCompare(b.label));
 
@@ -37,21 +38,32 @@ export default class NgPhonenumberController {
       this.countryList.find(
         (country) => country.value === defaultCountryCode,
       ) || null;
+    this.phonePlaceholder = getExampleNumber(
+      defaultCountryCode,
+      examples,
+    )?.formatNational();
 
     // Handle the initial phone number if provided
     if (this.model) {
       this.initializePhoneNumber(this.model);
     }
-  }
 
-  $doCheck() {
-    if (this.model !== this.previousModel) {
-      this.previousModel = this.model;
+    // Watch for model changes
+    this.$scope.$watch(
+      () => this.model,
+      (newValue, oldValue) => {
+        if (newValue === oldValue || (!newValue && this.phonenumber)) return;
 
-      if (this.countryList) {
-        this.initializePhoneNumber(this.model);
-      }
-    }
+        const wasReset = oldValue && !newValue;
+
+        if (newValue) {
+          this.initializePhoneNumber(newValue);
+        } else if (wasReset) {
+          this.phonenumber = '';
+          this.phonePlaceholder = '';
+        }
+      },
+    );
   }
 
   initializePhoneNumber(phoneNumber) {
@@ -66,10 +78,6 @@ export default class NgPhonenumberController {
           (country) => country.value === parsedNumber.country,
         );
         this.phonenumber = parsedNumber.formatNational();
-        this.phonePlaceholder = getExampleNumber(
-          parsedNumber.country,
-          examples,
-        )?.formatNational();
         this.model = parsedNumber.format('E.164');
       } else {
         this.resetPhoneNumber();
@@ -105,7 +113,6 @@ export default class NgPhonenumberController {
       } else {
         this.model = '';
       }
-
       if (this.onNumberChange) {
         this.onNumberChange({ phoneNumber: this.phonenumber });
       }
@@ -140,6 +147,7 @@ export default class NgPhonenumberController {
         this.onValidityChange({ isValid });
       }
 
+      this.phoneValid = isValid;
       return isValid;
     }
 
