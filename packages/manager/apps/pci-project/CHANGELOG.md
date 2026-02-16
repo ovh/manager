@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.2...@ovh-ux/manager-pci-project-app@0.2.3) (2026-02-16)
+
+
+### Bug Fixes
+
+* **pci-project:** already used voucher on activation ([09f7f63](https://github.com/ovh/manager/commit/09f7f63c85b04dcc1ef74da269d20c40e4e45931)), closes [#MANAGER-20907](https://github.com/ovh/manager/issues/MANAGER-20907)
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.1...@ovh-ux/manager-pci-project-app@0.2.2) (2026-02-11)
 
 
