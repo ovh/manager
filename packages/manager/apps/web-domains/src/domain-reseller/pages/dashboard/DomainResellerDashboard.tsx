@@ -22,6 +22,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import Subscription from '@/domain-reseller/components/Dashboard/Subscription';
 
 export default function DomainResellerDashboard() {
   const { t } = useTranslation('domain-reseller');
@@ -43,9 +44,7 @@ export default function DomainResellerDashboard() {
     );
   }, [serviceInfo]);
 
-  const { data: domainslist = [], isLoading } = useGetDomainsList(
-    nicAdmin,
-  );
+  const { data: domainslist = [], isLoading } = useGetDomainsList(nicAdmin);
 
   if (isServiceInfoLoading || isLoading) {
     return <Loading />;
@@ -77,8 +76,14 @@ export default function DomainResellerDashboard() {
             <Icon name={ICON_NAME.download} />
           </Button>
         </div>
-        <div className="grid grid-cols-1 md:!grid-cols-2">
-          <GeneralInformation domainsLength={domainslist?.length} />
+        <div className="grid grid-cols-1 gap-x-6 md:!grid-cols-2">
+          <GeneralInformation domainsLength={domainslist.length} />
+          <Subscription
+            creationDate={serviceInfo.billing.lifecycle.current.creationDate}
+            expirationDate={serviceInfo.billing.expirationDate}
+            contacts={serviceInfo.customer.contacts}
+            serviceName={serviceInfo.resource.name}
+          />
         </div>
       </section>
     </BaseLayout>
