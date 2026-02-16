@@ -21,6 +21,17 @@ export const getServiceInformation = async (
   return data;
 };
 
+export const getServiceInformationOnlyByRoutes = async (
+  serviceRoutes: string,
+): Promise<TServiceInfo> => {
+  const { data: serviceId } = await v6.get('/services', {
+    params: { routes: serviceRoutes },
+  });
+  // Customer can have only one /domain/reseller service
+  const { data } = await v6.get(`/services/${serviceId}`);
+  return data;
+};
+
 /**
  *  : Update the service (terminate or cancel the terminate)
  */
