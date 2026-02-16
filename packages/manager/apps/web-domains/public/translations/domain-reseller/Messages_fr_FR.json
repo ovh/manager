@@ -6,5 +6,7 @@
   "domain_reseller_button_download_catalog": "Télécharger le catalogue",
   "domain_reseller_general_informations_label": "Noms de domaine enregistrés à tarif préférentiel",
   "domain_reseller_general_informations_domains_length": "{{ length }} domaine(s) actif(s)",
-  "domain_reseller_general_informations_no_domains": "Aucun nom de domaine rattaché au programme"
+  "domain_reseller_general_informations_no_domains": "Aucun nom de domaine rattaché au programme",
+  "domain_reseller_renew_mode_label": "Mode de renouvellement",
+  "domain_reseller_renew_mode_automatic": "Automatique"
 }

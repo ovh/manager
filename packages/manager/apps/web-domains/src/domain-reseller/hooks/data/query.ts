@@ -1,10 +1,10 @@
 import { getDomainsListByNicBilling } from '@/domain-reseller/data/api/domains';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetDomainsList = (nicBilling: string) => {
+export const useGetDomainsList = (resellerNicAdmin: string) => {
   return useQuery({
-    queryKey: ['domains', nicBilling],
-    queryFn: () => getDomainsListByNicBilling(nicBilling),
-    enabled: !!nicBilling,
+    queryKey: ['domains', resellerNicAdmin],
+    queryFn: () => getDomainsListByNicBilling(resellerNicAdmin),
+    enabled: !!resellerNicAdmin,
   });
 };
