@@ -22,3 +22,8 @@ export const DEFAULT_COLUMN_VISIBILITY: Record<string, boolean> = {
   tags: true,
   actions: true,
 };
+
+export const ACCORDION_VALUES = {
+  order: 'order',
+  groupBy: 'groupby',
+};
