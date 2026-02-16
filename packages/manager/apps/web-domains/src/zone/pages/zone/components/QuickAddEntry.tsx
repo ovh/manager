@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
-import { useMutation } from "@tanstack/react-query";
 import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Textarea } from "@ovhcloud/ods-react";
-import { zForm, AddEntrySchemaType, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS } from "@/zone/utils/formSchema.utils";
+import { zForm, AddEntrySchemaType, getTargetDisplayValue, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_AS_TXT, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
   FieldTypeExtendedRecordsEnum,
@@ -13,10 +12,11 @@ import { RECORD_FORM_CONFIGS } from "@/zone/utils/recordFormConfig";
 import { DynamicRecordForm } from "./DynamicRecordForm";
 import { SPFRecordForm } from "@/zone/pages/zone/add/components/forms/SPFRecordForm";
 import { parseBindRecord } from "@/zone/utils/parseBindRecord";
+import { useAddZoneRecord } from "@/zone/hooks/useAddZoneRecord/useAddZoneRecord";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
-    const recordType = String(values?.recordType ?? "");
+    const recordType = values?.recordType as string ?? "";
     const schema = zForm((key: string, params?: Record<string, unknown>) => t(key, params), recordType).ADD_ENTRY_FORM_SCHEMA;
     const payload = {
       ...values,
@@ -24,11 +24,11 @@ function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => 
     };
     const result = schema.safeParse(payload);
     if (result.success) {
-      return Promise.resolve({ values: result.data as AddEntrySchemaType, errors: {} });
+      return Promise.resolve({ values: result.data, errors: {} });
     }
     const errors: FieldErrors<AddEntrySchemaType> = {};
     for (const issue of result.error.issues) {
-      const name = (issue.path[0] != null ? String(issue.path[0]) : "root") as keyof AddEntrySchemaType & string;
+      const name = (issue.path[0] ?? "root") as keyof AddEntrySchemaType & string;
       errors[name] = { type: issue.code ?? "custom", message: String(issue.message) };
     }
     return Promise.resolve({ values: {} as AddEntrySchemaType, errors });
@@ -101,7 +101,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     // Set all parsed values
     for (const [key, value] of Object.entries(parsedValues)) {
       if (key !== 'recordType' && key !== 'ttlSelect' && key !== 'ttl' && value !== undefined) {
-        setValue(key as keyof AddEntrySchemaType, value as never, { shouldValidate: true });
+        setValue(key, value as never, { shouldValidate: true });
       }
     }
     setBindSuccess(true);
@@ -113,15 +113,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     }, 1500);
   }, [bindInput, reset, setValue]);
 
-  const { mutate: addEntry, isPending } = useMutation({
-    mutationFn: async (_data: AddEntrySchemaType) => {
-      // TODO: Replace with actual API call
-      return Promise.resolve();
-    },
-    onSuccess: () => {
-      onSuccess?.();
-    },
-  });
+  const { addRecord, isAddingRecord } = useAddZoneRecord(serviceName);
 
   const handleSelectRecordType = useCallback((fieldType: string) => {
     setValue('recordType', fieldType);
@@ -133,8 +125,35 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   }, [setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
-    addEntry(data);
-  }, [addEntry]);
+    const recordType = typeof data.recordType === 'string' ? data.recordType : '';
+
+    // Compose the target value from all form fields
+    const target = getTargetDisplayValue(recordType, data);
+
+    // SPF/DKIM/DMARC are sent as TXT to the API
+    const fieldType = RECORD_TYPES_AS_TXT.includes(recordType) ? 'TXT' : recordType;
+
+    // Some record types don't support custom TTL
+    const ttl = RECORD_TYPES_WITHOUT_TTL.includes(recordType) || data.ttlSelect === 'global'
+      ? undefined
+      : Number(data.ttl);
+
+    addRecord(
+      {
+        fieldType,
+        subDomain: typeof data.subDomain === 'string' ? data.subDomain : '',
+        target,
+        ttl,
+      },
+      {
+        onSuccess: () => {
+          reset();
+          resetBindState();
+          onSuccess?.();
+        },
+      },
+    );
+  }, [addRecord, reset, resetBindState, onSuccess]);
 
   const handleCancel = useCallback(() => {
     reset();
@@ -306,7 +325,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 variant={BUTTON_VARIANT.outline}
                 size={BUTTON_SIZE.sm}
                 onClick={handleCancel}
-                disabled={isPending}
+                disabled={isAddingRecord}
               >
                 {t(`${NAMESPACES.ACTIONS}:cancel`)}
               </Button>
@@ -314,8 +333,8 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 <Button
                   type="button"
                   size={BUTTON_SIZE.sm}
-                  disabled={isPending}
-                  loading={isPending}
+                  disabled={isAddingRecord}
+                  loading={isAddingRecord}
                   onClick={() => {
                     const spfValue = "v=spf1 include:mx.ovh.com ~all";
                     setValue("target", spfValue);
@@ -329,8 +348,8 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 <Button
                   type="submit"
                   size={BUTTON_SIZE.sm}
-                  disabled={!isValid || isPending}
-                  loading={isPending}
+                  disabled={!isValid || isAddingRecord}
+                  loading={isAddingRecord}
                 >
                   {t(`${NAMESPACES.ACTIONS}:add`)}
                 </Button>
