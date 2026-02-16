@@ -13,7 +13,7 @@ import {
   VCDDatacentre,
   VCDOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
-import { OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import { OdsText } from '@ovhcloud/ods-components/react';
 import {
   useOvhTracking,
   useNavigationGetUrl,
@@ -50,12 +50,8 @@ export default function DatacentreGenerationInformationTile({
   const { trackClick } = useOvhTracking();
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
-    FEATURE_FLAGS.VRACK_ASSOCIATION,
   ]);
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
-  const isVrackAssociationFeatureAvailable =
-    featuresAvailable?.[FEATURE_FLAGS.VRACK_ASSOCIATION];
-  const canBeAssociatedWithVrack = !vcdDatacentre?.currentState?.vrack;
 
   const { data: urlVrack } = useNavigationGetUrl([
     DEDICATED_PATH,
@@ -144,36 +140,16 @@ export default function DatacentreGenerationInformationTile({
           id: 'vRack',
           label: VRACK_LABEL,
           value: (
-            <>
-              <Links
-                id={`vrack-${vcdDatacentre.id}`}
-                aria-labelledby={
-                  !isVrackAssociationFeatureAvailable &&
-                  canBeAssociatedWithVrack
-                    ? `vrack-${vcdDatacentre.id}-tooltip`
-                    : undefined
-                }
-                href={urlVrack as string}
-                type={LinkType.next}
-                isDisabled={
-                  !isVrackAssociationFeatureAvailable &&
-                  canBeAssociatedWithVrack
-                }
-                label={
-                  vcdDatacentre.currentState?.vrack ||
-                  tVdc('managed_vcd_vdc_associate_vrack')
-                }
-              />
-              {!isVrackAssociationFeatureAvailable && canBeAssociatedWithVrack && (
-                <OdsTooltip
-                  id={`vrack-${vcdDatacentre.id}-tooltip`}
-                  triggerId={`vrack-${vcdDatacentre.id}`}
-                  with-arrow
-                >
-                  {tVdc('managed_vcd_vdc_associate_vrack_disabled')}
-                </OdsTooltip>
-              )}
-            </>
+            <Links
+              id={`vrack-${vcdDatacentre.id}`}
+              aria-labelledby={`vrack-${vcdDatacentre.id}-tooltip`}
+              href={urlVrack as string}
+              type={LinkType.next}
+              label={
+                vcdDatacentre.currentState?.vrack ||
+                tVdc('managed_vcd_vdc_associate_vrack')
+              }
+            />
           ),
         },
         {
