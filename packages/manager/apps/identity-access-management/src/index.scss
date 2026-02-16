@@ -5,3 +5,19 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+.policy-tile {
+  width: 20em;
+  border: 1px solid var(--ods-color-form-element-border-default);
+  border-radius: var(--ods-border-radius-md);
+}
+.policy-tile.selected {
+  background: var(--ods-color-primary-050);
+  border: 1px solid var(--ods-color-primary-500);
+}
+
+.policy-tile .policy-name {
+  white-space: nowrap;
+  max-width: 17em;
+  color: var(--ods-color-form-element-text-placeholder-default);
+}

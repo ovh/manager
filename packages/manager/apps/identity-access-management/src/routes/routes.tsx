@@ -32,6 +32,9 @@ const PermanentTokensViewer = lazy(() =>
 const ServiceAccountsListing = lazy(() =>
   import('@/pages/serviceAccounts/listing/ServiceAccountsListing.page'),
 );
+const ServiceAccountsEdit = lazy(() =>
+  import('@/pages/serviceAccounts/edit/ServiceAccountsEdit.page'),
+);
 
 export default (
   <Route
@@ -158,6 +161,26 @@ export default (
         tracking: {
           pageName: SERVICE_ACCOUNTS_TRACKING.LISTING.PAGE_NAME,
           pageType: PageType.listing,
+        },
+      }}
+    ></Route>
+    <Route
+      path={urls.serviceAccountsAdd}
+      Component={ServiceAccountsEdit}
+      handle={{
+        tracking: {
+          pageName: SERVICE_ACCOUNTS_TRACKING.ADD.PAGE_NAME,
+          pageType: PageType.funnel,
+        },
+      }}
+    ></Route>
+    <Route
+      path={urls.serviceAccountsEdit}
+      Component={ServiceAccountsEdit}
+      handle={{
+        tracking: {
+          pageName: SERVICE_ACCOUNTS_TRACKING.EDIT.PAGE_NAME,
+          pageType: PageType.funnel,
         },
       }}
     ></Route>

@@ -13,10 +13,10 @@ export function Actions({ account }: { account: IamServiceAccount }) {
   const { trackClick } = useOvhTracking();
 
   const editHref = useHref(
-    subRoutes.permanentTokensEdit.replace(':clientId', account.clientId),
+    subRoutes.serviceAccountsEdit.replace(':clientId', account.clientId),
   );
   const deleteHref = useHref(
-    subRoutes.permanentTokensDelete.replace(':clientId', account.clientId),
+    subRoutes.serviceAccountsDelete.replace(':clientId', account.clientId),
   );
   const items: ActionMenuItem[] = [
     {
