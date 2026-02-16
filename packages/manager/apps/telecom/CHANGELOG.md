@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.25.4...@ovh-ux/manager-telecom@16.26.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1102] ([d0d6613](https://github.com/ovh/manager/commit/d0d66131cfe2bbccb13a1742d77977b95f200583))
+* **telecom.telephony:** move button on ccs configuration page ([62dea0e](https://github.com/ovh/manager/commit/62dea0e332ea274856f906c20158f294bd45cd98)), closes [#PRDCOL-377](https://github.com/ovh/manager/issues/PRDCOL-377)
+
+
+### Features
+
+* **telecom:** split consultation tab into dashbord and recordings tabs ([6ca2bd9](https://github.com/ovh/manager/commit/6ca2bd99b80b2063785e0959312ad851fda9ab54)), closes [#PRDCOL-378](https://github.com/ovh/manager/issues/PRDCOL-378)
+
+
+
+
+
 ## [16.25.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.25.3...@ovh-ux/manager-telecom@16.25.4) (2026-02-12)
 
 

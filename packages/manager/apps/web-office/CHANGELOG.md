@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.11...@ovh-ux/manager-web-office-app@0.7.12) (2026-02-16)
+
+
+### Bug Fixes
+
+* **web-office:** fix issue modal and select with ods 19.5 ([2e322b1](https://github.com/ovh/manager/commit/2e322b103d210266f034883b9fa5dce06adf18a9)), closes [#PRDCOL-407](https://github.com/ovh/manager/issues/PRDCOL-407)
+
+
+
+
+
 ## [0.7.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-office-app@0.7.10...@ovh-ux/manager-web-office-app@0.7.11) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-office-app

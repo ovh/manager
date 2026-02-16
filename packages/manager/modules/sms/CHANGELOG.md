@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [8.20.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.20.6...@ovh-ux/manager-sms@8.20.7) (2026-02-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1101] ([2caef43](https://github.com/ovh/manager/commit/2caef43251ef0e096a91f73b8b8f101485cff169))
+* **telecom.sms:** add statistic tab ([13fec90](https://github.com/ovh/manager/commit/13fec90d50b53f91a3a9d5edca331df367201bd5)), closes [#PRDCOL-388](https://github.com/ovh/manager/issues/PRDCOL-388)
+
+
+
+
+
 ## [8.20.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms@8.20.5...@ovh-ux/manager-sms@8.20.6) (2026-02-12)
 
 
