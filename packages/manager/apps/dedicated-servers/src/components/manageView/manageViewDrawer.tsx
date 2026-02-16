@@ -126,7 +126,7 @@ export const ManageViewDrawer = ({
         </section>
         {/* Drawer Content */}
         <div className="p-4 overflow-auto">
-          <ManageViewConfig />
+          <ManageViewConfig drawerVisibility={isOpen} />
         </div>
         {/* Drawer footer */}
         <div className="p-4 border-t flex justify-start gap-2">
