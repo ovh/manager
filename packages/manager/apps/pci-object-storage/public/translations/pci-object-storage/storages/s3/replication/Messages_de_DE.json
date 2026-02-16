@@ -79,5 +79,7 @@
   "warning3AZTo1AZ": "Die Speicherklasse Cold Archive ist nur im 3-AZ-Deployment-Modus und in der Region Paris verfügbar. Ihre in Cold Archive gespeicherten Quellobjekte werden standardmäßig in Infrequent Access repliziert – die Speicherklasse, die hinsichtlich ihrer Nutzung die ähnlichste Speicherklasse darstellt.",
   "inconsistentReplicationRulesAlert": "Einige Replikationsregeln haben ein Ziel, das gelöscht wurde. Löschen Sie diese Regeln, bevor Sie neue Replikationen erstellen.",
   "deletedDestinationTooltip": "Der Zielcontainer wurde gelöscht.",
-  "createSyncRule": "Eine Synchronisierungsregel erstellen"
+  "createSyncRule": "Synchronisierungsregel erstellen",
+  "addReplicationBreadcrumb": "Hinzufügen",
+  "editReplicationBreadcrumb": "Ändern"
 }

@@ -803,5 +803,5 @@
   "streams_subscriptions_resource_products_account-audit": "Audit Logs OVHcloud",
   "streams_subscriptions_resource_products_cloud-project-kube": "Managed Kubernetes",
   "logs_roles_enable_iam": "Activar IAM OVHcloud",
-  "logs_iam_policies_get_error": "Se ha producido un error al cargar las políticas de IAM."
+  "logs_iam_policies_get_error": "Se ha producido un error al cargar las directivas IAM."
 }
