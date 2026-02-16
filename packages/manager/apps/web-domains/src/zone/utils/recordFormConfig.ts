@@ -97,7 +97,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv4', required: true, tooltipKey: 'zone_page_tooltip_ip' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv4', required: true, tooltipKey: 'zone_page_tooltip_ip', placeholder: '203.0.113.1' },
           'ttl',
         ],
       },
@@ -118,7 +118,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv6', required: true, tooltipKey: 'zone_page_tooltip_ip' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv6', required: true, tooltipKey: 'zone_page_tooltip_ip', placeholder: '2001:db8::1' },
           'ttl',
         ],
       },
@@ -140,7 +140,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ns_target', required: true, tooltipKey: 'zone_page_tooltip_ns_target' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ns_target', required: true, tooltipKey: 'zone_page_tooltip_ns_target', placeholder: 'ns1.example.com.' },
           'ttl',
         ],
       },
@@ -161,7 +161,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_cname_target', required: true, tooltipKey: 'zone_page_tooltip_cname_target' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_cname_target', required: true, tooltipKey: 'zone_page_tooltip_cname_target', placeholder: 'alias.example.com.' },
           'ttl',
         ],
       },
@@ -182,7 +182,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         gridClassName: GRID_INLINE,
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_dname_target', required: true, tooltipKey: 'zone_page_tooltip_dname_target' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_dname_target', required: true, tooltipKey: 'zone_page_tooltip_dname_target', placeholder: 'other-domain.com.' },
           'ttl',
         ],
       },
@@ -205,9 +205,9 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_minmax(300px,1fr)_minmax(200px,1fr)] items-start gap-4',
         fields: [
-          { type: 'number', name: 'flags', labelKey: 'zone_page_form_label_caa_flags', required: true, min: 0, max: 255, tooltipKey: 'zone_page_tooltip_caa_flags' },
+          { type: 'number', name: 'flags', labelKey: 'zone_page_form_label_caa_flags', required: true, min: 0, max: 255, tooltipKey: 'zone_page_tooltip_caa_flags', placeholder: '0' },
           { type: 'select', name: 'tag', labelKey: 'zone_page_form_label_caa_tag', required: true, items: CAA_TAG_ITEMS, tooltipKey: 'zone_page_tooltip_caa_tag' },
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_caa_target', required: true, tooltipKey: 'zone_page_tooltip_caa_target' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_caa_target', required: true, tooltipKey: 'zone_page_tooltip_caa_target', placeholder: 'letsencrypt.org' },
         ],
       },
     ],
@@ -226,7 +226,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'w-full',
         fields: [
-          { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_txt_value' },
+          { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_txt_value', placeholder: 'v=spf1 include:mx.ovh.com ~all' },
         ],
       },
     ],
@@ -246,10 +246,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_priority' },
-          { type: 'number', name: 'weight', labelKey: 'zone_page_form_label_weight', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_weight' },
-          { type: 'number', name: 'port', labelKey: 'zone_page_form_label_port', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_port' },
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_srv_target', required: true, tooltipKey: 'zone_page_tooltip_srv_target' },
+          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_priority', placeholder: '10' },
+          { type: 'number', name: 'weight', labelKey: 'zone_page_form_label_weight', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_weight', placeholder: '100' },
+          { type: 'number', name: 'port', labelKey: 'zone_page_form_label_port', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_port', placeholder: '443' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_srv_target', required: true, tooltipKey: 'zone_page_tooltip_srv_target', placeholder: 'server.example.com.' },
         ],
       },
     ],
@@ -268,17 +268,17 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'order', labelKey: 'zone_page_form_label_naptr_order', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_order' },
-          { type: 'number', name: 'pref', labelKey: 'zone_page_form_label_naptr_pref', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_pref' },
-          { type: 'text', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', maxLength: 1, tooltipKey: 'zone_page_form_naptr_flag_help' },
-          { type: 'text', name: 'service', labelKey: 'zone_page_form_label_naptr_service', required: true, tooltipKey: 'zone_page_form_naptr_service_help' },
+          { type: 'number', name: 'order', labelKey: 'zone_page_form_label_naptr_order', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_order', placeholder: '100' },
+          { type: 'number', name: 'pref', labelKey: 'zone_page_form_label_naptr_pref', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_pref', placeholder: '10' },
+          { type: 'text', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', maxLength: 1, tooltipKey: 'zone_page_form_naptr_flag_help', placeholder: 's' },
+          { type: 'text', name: 'service', labelKey: 'zone_page_form_label_naptr_service', required: true, tooltipKey: 'zone_page_form_naptr_service_help', placeholder: 'SIP+D2U' },
         ],
       },
       {
         gridClassName: 'grid grid-cols-2 items-start gap-4',
         fields: [
-          { type: 'text', name: 'regex', labelKey: 'zone_page_form_label_naptr_regex', tooltipKey: 'zone_page_form_naptr_regex_help', disabledWhenFilled: 'replace' },
-          { type: 'text', name: 'replace', labelKey: 'zone_page_form_label_naptr_replace', tooltipKey: 'zone_page_form_naptr_replace_help', disabledWhenFilled: 'regex' },
+          { type: 'text', name: 'regex', labelKey: 'zone_page_form_label_naptr_regex', tooltipKey: 'zone_page_form_naptr_regex_help', disabledWhenFilled: 'replace', placeholder: '!^.*$!sip:info@example.com!' },
+          { type: 'text', name: 'replace', labelKey: 'zone_page_form_label_naptr_replace', tooltipKey: 'zone_page_form_naptr_replace_help', disabledWhenFilled: 'regex', placeholder: '_sip._udp.example.com.' },
         ],
       },
     ],
@@ -298,9 +298,9 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         headingKey: 'zone_page_form_label_loc_lat',
         gridClassName: 'grid grid-cols-4 gap-4',
         fields: [
-          { type: 'number', name: 'lat_deg', labelKey: 'zone_page_form_label_loc_lat_deg', required: true, min: 0, max: 90, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_deg' },
-          { type: 'number', name: 'lat_min', labelKey: 'zone_page_form_label_loc_lat_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_min' },
-          { type: 'number', name: 'lat_sec', labelKey: 'zone_page_form_label_loc_lat_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_lat_sec' },
+          { type: 'number', name: 'lat_deg', labelKey: 'zone_page_form_label_loc_lat_deg', required: true, min: 0, max: 90, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_deg', placeholder: '48' },
+          { type: 'number', name: 'lat_min', labelKey: 'zone_page_form_label_loc_lat_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_min', placeholder: '51' },
+          { type: 'number', name: 'lat_sec', labelKey: 'zone_page_form_label_loc_lat_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_lat_sec', placeholder: '24.000' },
           { type: 'select', name: 'latitude', labelKey: 'zone_page_form_label_loc_lat_direction', required: true, items: LOC_LATITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_lat_direction' },
         ],
       },
@@ -310,9 +310,9 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         headingKey: 'zone_page_form_label_loc_long',
         gridClassName: 'grid grid-cols-4 gap-4',
         fields: [
-          { type: 'number', name: 'long_deg', labelKey: 'zone_page_form_label_loc_long_deg', required: true, min: 0, max: 180, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_deg' },
-          { type: 'number', name: 'long_min', labelKey: 'zone_page_form_label_loc_long_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_min' },
-          { type: 'number', name: 'long_sec', labelKey: 'zone_page_form_label_loc_long_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_long_sec' },
+          { type: 'number', name: 'long_deg', labelKey: 'zone_page_form_label_loc_long_deg', required: true, min: 0, max: 180, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_deg', placeholder: '48' },
+          { type: 'number', name: 'long_min', labelKey: 'zone_page_form_label_loc_long_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_min', placeholder: '51' },
+          { type: 'number', name: 'long_sec', labelKey: 'zone_page_form_label_loc_long_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_long_sec', placeholder: '24.000' },
           { type: 'select', name: 'longitude', labelKey: 'zone_page_form_label_loc_long_direction', required: true, items: LOC_LONGITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_long_direction' },
         ],
       },
@@ -322,10 +322,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         headingKey: 'zone_page_form_label_loc_size_hp_vp',
         gridClassName: 'grid w-full grid-cols-4 gap-4',
         fields: [
-          { type: 'number', name: 'altitude', labelKey: 'zone_page_form_label_loc_altitude', required: true, min: -100000, max: 42849672.95, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_altitude', suffixKey: 'zone_page_form_label_loc_meters' },
-          { type: 'number', name: 'size', labelKey: 'zone_page_form_label_loc_size', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_size', suffixKey: 'zone_page_form_label_loc_meters' },
-          { type: 'number', name: 'hp', labelKey: 'zone_page_form_label_loc_hp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_hp', suffixKey: 'zone_page_form_label_loc_meters' },
-          { type: 'number', name: 'vp', labelKey: 'zone_page_form_label_loc_vp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_vp', suffixKey: 'zone_page_form_label_loc_meters' },
+          { type: 'number', name: 'altitude', labelKey: 'zone_page_form_label_loc_altitude', required: true, min: -100000, max: 42849672.95, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_altitude', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '42.00' },
+          { type: 'number', name: 'size', labelKey: 'zone_page_form_label_loc_size', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_size', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '1.00' },
+          { type: 'number', name: 'hp', labelKey: 'zone_page_form_label_loc_hp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_hp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10000.00' },
+          { type: 'number', name: 'vp', labelKey: 'zone_page_form_label_loc_vp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_vp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10.00' },
         ],
       },
     ],
@@ -344,7 +344,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         fields: [
           { type: 'select', name: 'algorithm', labelKey: 'zone_page_form_label_algorithm', required: true, items: SSHFP_ALGORITHM_ITEMS, tooltipKey: 'zone_page_tooltip_sshfp_algorithm' },
           { type: 'select', name: 'fptype', labelKey: 'zone_page_form_label_fptype', required: true, items: SSHFP_FPTYPE_ITEMS, tooltipKey: 'zone_page_tooltip_sshfp_fptype' },
-          { type: 'text', name: 'fp', labelKey: 'zone_page_form_label_fp', required: true, tooltipKey: 'zone_page_tooltip_sshfp_fp' },
+          { type: 'text', name: 'fp', labelKey: 'zone_page_form_label_fp', required: true, tooltipKey: 'zone_page_tooltip_sshfp_fp', placeholder: '123456789abcdef...' },
         ],
       },
     ],
@@ -361,10 +361,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'usage', labelKey: 'zone_page_form_label_tlsa_usage', required: true, min: 0, max: 3, tooltipKey: 'zone_page_tooltip_tlsa_usage' },
-          { type: 'number', name: 'selector', labelKey: 'zone_page_form_label_tlsa_selector', required: true, min: 0, max: 1, tooltipKey: 'zone_page_tooltip_tlsa_selector' },
-          { type: 'number', name: 'matchingType', labelKey: 'zone_page_form_label_tlsa_matching', required: true, min: 1, max: 2, tooltipKey: 'zone_page_tooltip_tlsa_matching' },
-          { type: 'text', name: 'certificateData', labelKey: 'zone_page_form_label_tlsa_cert', required: true, tooltipKey: 'zone_page_tooltip_tlsa_cert' },
+          { type: 'number', name: 'usage', labelKey: 'zone_page_form_label_tlsa_usage', required: true, min: 0, max: 3, tooltipKey: 'zone_page_tooltip_tlsa_usage', placeholder: '3' },
+          { type: 'number', name: 'selector', labelKey: 'zone_page_form_label_tlsa_selector', required: true, min: 0, max: 1, tooltipKey: 'zone_page_tooltip_tlsa_selector', placeholder: '1' },
+          { type: 'number', name: 'matchingType', labelKey: 'zone_page_form_label_tlsa_matching', required: true, min: 1, max: 2, tooltipKey: 'zone_page_tooltip_tlsa_matching', placeholder: '1' },
+          { type: 'text', name: 'certificateData', labelKey: 'zone_page_form_label_tlsa_cert', required: true, tooltipKey: 'zone_page_tooltip_tlsa_cert', placeholder: 'abc123def456...' },
         ],
       },
     ],
@@ -382,8 +382,8 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-2 items-start gap-4',
         fields: [
-          { type: 'text', name: 'mbox', labelKey: 'zone_page_form_label_rp_mbox', required: true, tooltipKey: 'zone_page_tooltip_rp_mbox' },
-          { type: 'text', name: 'txt', labelKey: 'zone_page_form_label_rp_txt', required: true, tooltipKey: 'zone_page_tooltip_rp_txt' },
+          { type: 'text', name: 'mbox', labelKey: 'zone_page_form_label_rp_mbox', required: true, tooltipKey: 'zone_page_tooltip_rp_mbox', placeholder: 'admin.example.com.' },
+          { type: 'text', name: 'txt', labelKey: 'zone_page_form_label_rp_txt', required: true, tooltipKey: 'zone_page_tooltip_rp_txt', placeholder: 'info.example.com.' },
         ],
       },
     ],
@@ -401,9 +401,9 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_1fr_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority' },
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target' },
-          { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params' },
+          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target', placeholder: 'svc.example.com.' },
+          { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params', placeholder: 'alpn=h2,h3 port=443' },
         ],
       },
     ],
@@ -423,9 +423,9 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_1fr_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority' },
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target' },
-          { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params' },
+          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target', placeholder: 'svc.example.com.' },
+          { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params', placeholder: 'alpn=h2,h3 port=443' },
         ],
       },
     ],
@@ -447,8 +447,8 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'grid grid-cols-[auto_1fr] items-start gap-4',
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority' },
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_mx_target', required: true, tooltipKey: 'zone_page_tooltip_mx_target' },
+          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority', placeholder: '10' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_mx_target', required: true, tooltipKey: 'zone_page_tooltip_mx_target', placeholder: 'mail.example.com.' },
         ],
       },
     ],
@@ -467,7 +467,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         gridClassName: 'w-full',
         fields: [
-          { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_dkim_value' },
+          { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_dkim_value', placeholder: 'v=DKIM1; k=rsa; p=MIG...' },
         ],
       },
     ],
@@ -486,7 +486,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         fields: [
           { type: 'select', name: 'p', labelKey: 'zone_page_form_label_dmarc_p', required: true, items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_p' },
           { type: 'number', name: 'pct', labelKey: 'zone_page_form_label_dmarc_pct', min: 0, max: 100, tooltipKey: 'zone_page_tooltip_dmarc_pct' },
-          { type: 'text', name: 'rua', labelKey: 'zone_page_form_label_dmarc_rua', tooltipKey: 'zone_page_tooltip_dmarc_rua' },
+          { type: 'text', name: 'rua', labelKey: 'zone_page_form_label_dmarc_rua', tooltipKey: 'zone_page_tooltip_dmarc_rua', placeholder: 'mailto:dmarc@example.com' },
         ],
       },
       {

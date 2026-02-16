@@ -28,6 +28,7 @@ export interface TextFieldProps {
   className?: string;
   inputClassName?: string;
   disabled?: boolean;
+  placeholder?: string;
 }
 
 export function TextField({
@@ -41,6 +42,7 @@ export function TextField({
   className,
   inputClassName = "flex-1",
   disabled = false,
+  placeholder,
 }: Readonly<TextFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
   const tooltip = tooltipKey ?? tooltipText;
@@ -76,6 +78,7 @@ export function TextField({
             maxLength={maxLength}
             invalid={!!error}
             disabled={disabled}
+            placeholder={placeholder}
           />
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>

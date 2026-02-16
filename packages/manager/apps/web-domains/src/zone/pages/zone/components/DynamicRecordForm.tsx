@@ -62,6 +62,7 @@ function RenderField({
         className="w-full"
         required={config.subDomainRequired}
         tooltip={t(config.subDomainTooltipKey)}
+        placeholder="www, mail, blog…"
       />
     );
   }
@@ -79,9 +80,9 @@ function RenderField({
   // Compute disabled state for conditional fields (e.g. NAPTR regex/replace)
   const isDisabled = field.disabledWhenFilled
     ? (() => {
-        const siblingValue = watch(field.disabledWhenFilled as keyof AddEntrySchemaType);
-        return typeof siblingValue === 'string' && siblingValue.trim() !== '';
-      })()
+      const siblingValue = watch(field.disabledWhenFilled as keyof AddEntrySchemaType);
+      return typeof siblingValue === 'string' && siblingValue.trim() !== '';
+    })()
     : false;
 
   const name = field.name as keyof AddEntrySchemaType;
@@ -98,6 +99,7 @@ function RenderField({
           maxLength={field.maxLength}
           disabled={isDisabled}
           className="w-full"
+          placeholder={field.placeholder}
         />
       );
 
@@ -115,6 +117,7 @@ function RenderField({
           suffix={field.suffixKey ? t(field.suffixKey) : undefined}
           disabled={isDisabled}
           className="w-full"
+          placeholder={field.placeholder}
         />
       );
 
@@ -142,6 +145,7 @@ function RenderField({
           required={field.required}
           className="w-full"
           tooltip={field.tooltipKey ? t(field.tooltipKey) : undefined}
+          placeholder={field.placeholder}
         />
       );
 
@@ -255,7 +259,9 @@ export function DynamicRecordForm({
   const subDomain = watch('subDomain');
   const target = watch('target');
   const fullDomain = subDomain
-    ? `${subDomain}.${domainSuffix}`
+    ? subDomain === '@'
+      ? domainSuffix
+      : `${subDomain}.${domainSuffix}`
     : `[sous-domaine].${domainSuffix}`;
   const targetStr = typeof target === 'string' ? target : '';
 

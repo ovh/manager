@@ -23,6 +23,7 @@ export interface SubDomainFieldProps {
   className?: string;
   required?: boolean;
   tooltip?: string;
+  placeholder?: string;
 }
 
 export function SubDomainField({
@@ -31,6 +32,7 @@ export function SubDomainField({
   className,
   required = true,
   tooltip,
+  placeholder,
 }: SubDomainFieldProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
   return (
@@ -62,6 +64,7 @@ export function SubDomainField({
               onBlur={field.onBlur}
               onChange={(e) => field.onChange(e.target?.value)}
               invalid={!!error}
+              placeholder={placeholder}
             />
             <Input type={INPUT_TYPE.text} value={domainSuffix} readOnly disabled className="flex-1 min-w-0" />
           </div>
