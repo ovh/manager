@@ -44,7 +44,7 @@ export const FEATURE_AVAILABILITY = {
   QUOTA: 'public-cloud:quota',
   REGION: 'public-cloud:region',
   SSH_KEYS: 'public-cloud:ssh-keys',
-  BILLING: 'public-cloud:billing',
+  BILLING: 'pci-billing',
   VOUCHERS: 'public-cloud:vouchers',
   CONTACTS: 'public-cloud:contacts',
   PROJECT: 'public-cloud:project',
