@@ -5,6 +5,22 @@
         <span data-translate="database_tabs_dumps_change"></span>
         <strong data-ng-bind="bdd.name"></strong>
     </div>
+    <oui-message type="info">
+        <span class="d-block" data-translate="database_tabs_dumps_guide_message_part1"></span>
+        <span class="d-block" data-translate="database_tabs_dumps_guide_message_part2"></span>
+        <ul>
+            <li data-ng-if="guideDatabaseSave">
+                <a class="oui-link d-block" data-ng-href="{{ guideDatabaseSave }}" target="_blank" rel="noopener">
+                    <span data-translate="database_tabs_dumps_guide_save"></span>
+                </a>
+            </li>
+            <li data-ng-if="guideDatabaseRestore">
+                <a class="oui-link d-block" data-ng-href="{{ guideDatabaseRestore }}" target="_blank" rel="noopener">
+                    <span data-translate="database_tabs_dumps_guide_restore"></span>
+                </a>
+            </li>
+        </ul>
+    </oui-message>
     <oui-datagrid data-rows="ctrlDumps.databaseDumps">
         <oui-datagrid-column
             data-title="'database_tabs_dumps_creation_date' | translate"

@@ -191,6 +191,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/de/hosting/konfigurieren-ihres-datenbank-servers/#mysql-und-mariadb-instanzen',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/de-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0039401',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/de-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0039396',
           wordpress:
             'https://codex.wordpress.org/de:Erste_Schritte_mit_WordPress',
           prestashop:
@@ -237,6 +241,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/es/hosting/configurar-optimizar-su-servidor-de-base-de-datos/#instancia-mysql-y-mariadb',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/es-es-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051487',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/es-es-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051490',
           wordpress:
             'https://codex.wordpress.org/es:Getting_Started_with_WordPress',
           prestashop:
@@ -342,6 +350,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/fr/hosting/configurer-optimiser-son-serveur-de-base-de-donnees/#instance-mysql-et-mariadb',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/fr-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051506',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/fr-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051486',
           emailsConfiguration: 'https://docs.ovh.com/fr/fr/web/emails/',
           emailsConfigurationAuto: 'https://mail.ovh.net/auto/',
           emailsConfigurationMacMountainLion:
@@ -449,6 +461,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/gb/en/hosting/configure-optimise-database-server/#mysql-and-mariadb-instances',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-gb-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051484',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-gb-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051488',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -476,6 +492,10 @@ module.exports = {
         bulkChangeOwner:
           'https://www.ovh.ie/order/domain/#/legacy/domain/trade/list',
         guides: {
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-ie-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051501',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-ie-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051489',
           hostingModule:
             'https://help.ovhcloud.com/csm/en-ie-web-hosting-1-click-module-setting-up?id=kb_article_view&sysparm_article=KB0052397',
           hostingPhpConfiguration:
@@ -535,6 +555,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/it/hosting/configurare-ottimizzare-il-tuo-database-server/#istanza-mysql-e-mariadb',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/it-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051495',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/it-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051483',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -618,6 +642,10 @@ module.exports = {
           emailsCreation: 'https://www.ovh.nl/g1343.qssq',
           hostingModule:
             'https://help.ovhcloud.com/csm/en-nl-documentation-web-cloud?id=kb_browse_cat&kb_id=e17b4f25551974502d4c6e78b7421955',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-ie-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051501',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-ie-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051489',
           hostingPrivateDatabaseDBaaS: {
             beginner:
               'https://docs.ovh.com/nl/clouddb/aan-de-slag-met-clouddb/',
@@ -695,6 +723,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/pl/hosting/konfiguracja-optymalizacja-serwera-bazy-danych/#instancja-mysql-i-mariadb',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/pl-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051505',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/pl-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051485',
           phpAppendices: 'http://php.net/manual/en/appendices.php',
           prestashop:
             'http://doc.prestashop.com/display/PS16/Polska+dokumentacja',
@@ -750,6 +782,10 @@ module.exports = {
           },
           hostingPrivateDatabaseConfiguration:
             'https://docs.ovh.com/pt/hosting/configurar-otimizar-servidor-de-bases-de-dados/#instancia-mysql-e-mariadb',
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/pt-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0051492',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/pt-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0051481',
           phpAppendices: 'http://php.net/manual/en/appendices.php',
           prestashop:
             'http://doc.prestashop.com/display/PS16/English+documentation',
@@ -948,6 +984,10 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
           },
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/asia-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0056703',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/asia-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0056697',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -985,6 +1025,10 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
           },
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-in-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0070304',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-in-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0070306',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -1060,6 +1104,10 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/ca/en/clouddb/getting-started-with-postgresql/',
           },
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-ca-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0056705',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-ca-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0056701',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
@@ -1098,6 +1146,10 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/ca/fr/cloud/clouddb/demarrez-avec-postgresql/',
           },
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/fr-ca-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0056709',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/fr-ca-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0056704',
           wordpress:
             'https://codex.wordpress.org/fr:Premiers_pas_avec_WordPress',
           prestashop:
@@ -1135,6 +1187,10 @@ module.exports = {
             beginPostgre:
               'https://docs.ovh.com/asia/en/clouddb/getting-started-with-postgresql/',
           },
+          hostingDatabaseSave:
+            'https://help.ovhcloud.com/csm/en-sg-web-cloud-db-backup-export-database-server?id=kb_article_view&sysparm_article=KB0056711',
+          hostingDatabaseRestore:
+            'https://help.ovhcloud.com/csm/en-sg-web-cloud-db-restore-import-database?id=kb_article_view&sysparm_article=KB0056700',
           wordpress:
             'https://codex.wordpress.org/Getting_Started_with_WordPress',
           prestashop:
