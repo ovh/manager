@@ -93,5 +93,6 @@
   "freeTrialBadge": "Kostenlose Testversion",
   "freeTrialPriceLabel": "Kostenlos*",
   "freeTrialThenLabel": "Dann",
-  "freeTrialDisclaimer": "*Guthaben gültig für ~1 Monat je nach Nutzung. Sobald das Guthaben aufgebraucht ist, wird die Abrechnung automatisch entsprechend Ihrem Verbrauch fortgesetzt."
+  "freeTrialDisclaimer": "*Guthaben gültig für ~1 Monat je nach Nutzung. Sobald das Guthaben aufgebraucht ist, wird die Abrechnung automatisch entsprechend Ihrem Verbrauch fortgesetzt.",
+  "freeTrialVoucherBanner": "Sie profitieren derzeit von der kostenlosen Testversion für diesen Service. Details zu Ihrem verfügbaren Guthaben finden Sie in Ihrer <1>Voucher</1>-Oberfläche."
 }
