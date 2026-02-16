@@ -203,7 +203,7 @@ export const EditDomainModal = () => {
                 data-testid="select-organization"
               >
                 <SelectControl />
-                <SelectContent />
+                <SelectContent createPortal={false} />
               </Select>
               {(isDirty || isTouched) && errors?.[name]?.message && (
                 <FormFieldError>{errors[name].message}</FormFieldError>

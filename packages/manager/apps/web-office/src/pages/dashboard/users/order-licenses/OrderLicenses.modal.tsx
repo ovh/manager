@@ -134,7 +134,7 @@ export default function ModalOrderLicenses() {
                   items={productOptions}
                 >
                   <SelectControl placeholder={t(`${NAMESPACES.ACTIONS}:select`)} />
-                  <SelectContent />
+                  <SelectContent createPortal={false} />
                 </Select>
               )}
             />
