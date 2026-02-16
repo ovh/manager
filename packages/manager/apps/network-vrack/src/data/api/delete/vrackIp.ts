@@ -5,3 +5,10 @@ export const deleteVrackIpv4 = async (serviceName: string, ip: string): Promise<
   const { data } = await v6.delete<VrackTask>(`/vrack/${serviceName}/ip/${encodeURIComponent(ip)}`);
   return data;
 };
+
+export const deleteVrackIpv6 = async (serviceName: string, ip: string): Promise<VrackTask> => {
+  const { data } = await v6.delete<VrackTask>(
+    `/vrack/${serviceName}/ipv6/${encodeURIComponent(ip)}`,
+  );
+  return data;
+};

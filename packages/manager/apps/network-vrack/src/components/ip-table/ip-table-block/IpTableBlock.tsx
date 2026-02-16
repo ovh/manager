@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
+  BUTTON_VARIANT,
   Icon,
   Skeleton,
   TEXT_PRESET,
@@ -11,6 +12,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
+
+import { ActionMenu } from '@ovh-ux/muk';
 
 import { SlaacToggler } from '@/components/slaac-toggler/SlaacToggler';
 import { useVrackTasksContext } from '@/contexts/vrack-tasks/useVrackTasks';
@@ -62,9 +65,14 @@ export const IpTableBlock = ({
     return `with-line ${isFirstSubRange ? 'line-begin' : ''} ${isLastSubRange ? 'line-end' : ''}`;
   };
 
-  const navigateToDetachModal = () =>
+  const navigateToDetachIPv4Modal = () =>
     navigate(
       urls.detachIpv4.replace(':serviceName', serviceName).replace(':ip', fromIpToId(ip) ?? ''),
+    );
+
+  const navigateToDetachIPv6Modal = () =>
+    navigate(
+      urls.detachIpv6.replace(':serviceName', serviceName).replace(':ip', fromIpToId(ip) ?? ''),
     );
 
   const navigateToDetachSubrangeModal = (subrange: string) =>
@@ -82,7 +90,7 @@ export const IpTableBlock = ({
     <>
       <tr className={computedBlockRowClassName}>
         <td className={`text-center`}>
-          {bridgedSubranges?.length || routedSubranges?.length ? (
+          {!hasIPTask && (bridgedSubranges?.length || routedSubranges?.length) ? (
             <Icon
               data-testid={`unfold-ip-${ip}`}
               className="cursor-pointer"
@@ -103,15 +111,30 @@ export const IpTableBlock = ({
                   data-testid={`trash-ip-${ip}`}
                   className="cursor-pointer"
                   name="trash"
-                  onClick={navigateToDetachModal}
+                  onClick={navigateToDetachIPv4Modal}
                 />
               </TooltipTrigger>
               <TooltipContent>{t('publicIpRouting_region_detach_ip_tooltip')}</TooltipContent>
             </Tooltip>
+          ) : ipType === 'ipV6' && !hasIPTask ? (
+            <span data-testid={`action-menu-${ip}`}>
+              <ActionMenu
+                id={`action-menu-${ip}`}
+                isCompact
+                variant={BUTTON_VARIANT.ghost}
+                items={[
+                  {
+                    id: 1,
+                    onClick: navigateToDetachIPv6Modal,
+                    label: t('publicIpRouting_region_actionMenu_detach_ip'),
+                  },
+                ]}
+              />
+            </span>
           ) : undefined}
         </td>
       </tr>
-      {opened
+      {opened && !hasIPTask
         ? bridgedSubranges?.map((subRange, subRangeIdx) => (
             <tr key={subRange.bridgedSubrange} className={computedSubRangeRowClassName}>
               <td className={computeUnfoldLineClassName(subRangeIdx)}></td>
@@ -130,7 +153,7 @@ export const IpTableBlock = ({
             </tr>
           ))
         : undefined}
-      {opened
+      {opened && !hasIPTask
         ? routedSubranges?.map((subRange, subRangeIdx) => (
             <tr key={subRange.routedSubrange} className={computedSubRangeRowClassName}>
               <td
