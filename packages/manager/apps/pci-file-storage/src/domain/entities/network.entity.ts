@@ -13,5 +13,6 @@ export type TNetwork = {
   name: string;
   region: string;
   visibility: TNetworkVisibility;
+  vlanId: number | null;
   subnets?: TSubnet[];
 };

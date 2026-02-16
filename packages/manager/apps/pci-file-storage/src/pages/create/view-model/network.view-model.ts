@@ -14,7 +14,7 @@ export type TSubnetData = {
 };
 
 const mapNetworkToPrivateNetworkData = (network: TNetwork): TPrivateNetworkData => ({
-  label: network.name,
+  label: network.name || (network.vlanId?.toString() ?? network.id.slice(0, 13)),
   value: network.id,
 });
 

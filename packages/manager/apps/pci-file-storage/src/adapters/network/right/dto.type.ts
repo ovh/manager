@@ -5,6 +5,7 @@ export type TNetworkDto = {
   name: string;
   region: string;
   visibility: TNetworkVisibilityDto;
+  vlanId: number | null;
 };
 
 export type TSubnetDto = {
