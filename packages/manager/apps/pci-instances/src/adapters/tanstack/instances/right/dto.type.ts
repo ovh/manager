@@ -18,7 +18,7 @@ type TSubnetCreateDTO = {
 type TNetworkCreateDTO = {
   name: string;
   subnet: TSubnetCreateDTO;
-  vlanId: number;
+  vlanId: number | null;
 };
 
 type TExistingNetworkDTO = {

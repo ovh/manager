@@ -4,7 +4,7 @@ import { mapDtoStatusToStatus } from '../../operations/right/mapper';
 
 type TNewPrivateNetwork = {
   name: string;
-  vlanId: number;
+  vlanId: number | null;
   cidr: string;
   enableDhcp: boolean;
 };

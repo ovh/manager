@@ -17,6 +17,8 @@ import { InputField } from '@/components/form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { selectOvhPrivateNetwork } from '../../view-models/networksViewModel';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
 
 const AddNetworkForm: FC = () => {
   const { t } = useTranslation('creation');
@@ -39,6 +41,12 @@ const AddNetworkForm: FC = () => {
     select: selectOvhPrivateNetwork(microRegion),
   });
 
+  const { data: deploymentMode } = useInstancesCatalogWithSelect({
+    select: selectMicroRegionDeploymentMode(microRegion),
+  });
+
+  const isLocalZone = deploymentMode === 'localzone';
+
   const handleEnableDhcp = (
     field: ControllerRenderProps<
       TInstanceCreationForm,
@@ -56,12 +64,16 @@ const AddNetworkForm: FC = () => {
     setValue('willGatewayBeAttached', false);
   }, [networks, setValue]);
 
+  useEffect(() => {
+    if (isLocalZone) setValue('newPrivateNetwork.vlanId', null);
+  }, [isLocalZone, setValue]);
+
   return (
     <form
       className="mt-6 "
       aria-label={t('creation:pci_instance_creation_network_add_new')}
     >
-      {networks?.allocatedVlanIds.includes(vlanId) && (
+      {vlanId && networks?.allocatedVlanIds.includes(vlanId) && (
         <Banner color="warning" className="mb-6">
           {t(
             'creation:pci_instance_creation_network_add_new_used_vlanID_warning',
@@ -82,15 +94,17 @@ const AddNetworkForm: FC = () => {
           errorMessage={t(errors.newPrivateNetwork?.name?.message ?? '')}
           {...register('newPrivateNetwork.name')}
         />
-        <InputField
-          label={t(
-            'creation:pci_instance_creation_network_add_new_vlanID_label_form',
-          )}
-          invalid={!!errors.newPrivateNetwork?.vlanId}
-          errorMessage={t(errors.newPrivateNetwork?.vlanId?.message ?? '')}
-          type="number"
-          {...register('newPrivateNetwork.vlanId', { valueAsNumber: true })}
-        />
+        {!isLocalZone && (
+          <InputField
+            label={t(
+              'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+            )}
+            invalid={!!errors.newPrivateNetwork?.vlanId}
+            errorMessage={t(errors.newPrivateNetwork?.vlanId?.message ?? '')}
+            type="number"
+            {...register('newPrivateNetwork.vlanId', { valueAsNumber: true })}
+          />
+        )}
         <InputField
           label={t(
             'creation:pci_instance_creation_network_add_new_cidr_label_form',
