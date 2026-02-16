@@ -35,7 +35,7 @@ export const VrackId: React.FC<VrackIdProps> = ({ isListing, ...vs }) => {
   ) : (
     <div className="flex items-center">
       <div className="grow">
-        {vrackId ? <Link href={vrackUrl}>{vrackId}</Link> : <Text>{vrackId}</Text>}
+        {vrackId ? <Link href={vrackUrl}>{vrackId}</Link> : <Text>{t('none')}</Text>}
       </div>
       <div className="flex-none">
         <ActionMenu

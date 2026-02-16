@@ -184,7 +184,9 @@ exports[`OverviewTab > should display the general informations of the vs 1`] = `
                     <p
                       class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
                       data-ods="text"
-                    />
+                    >
+                      none
+                    </p>
                   </div>
                   <div
                     class="flex-none"

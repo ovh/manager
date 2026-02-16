@@ -84,7 +84,9 @@ export const SubnetDatagrid: React.FC = () => {
       accessorKey: 'vlan',
       isSortable: true,
       maxSize: 50,
-      cell: (cellContext) => <Text>{cellContext.row.original.vlan}</Text>,
+      cell: (cellContext) => (
+        <Text>{cellContext.row.original.vlan ?? t('none', { ns: NAMESPACES.DASHBOARD })}</Text>
+      ),
     },
     {
       id: 'actions',
