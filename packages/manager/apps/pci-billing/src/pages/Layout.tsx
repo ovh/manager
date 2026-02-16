@@ -14,6 +14,7 @@ export default function Layout() {
   const { projectId } = useParam('projectId');
   const { isSuccess } = useProject(projectId || '', { retry: false });
   usePageTracking();
+
   return (
     <div className="application">
       <Suspense>
