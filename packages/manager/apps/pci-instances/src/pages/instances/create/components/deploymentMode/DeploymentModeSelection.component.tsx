@@ -68,7 +68,7 @@ export const DeploymentModeSelection = () => {
           <CheckboxGroup
             name="deploymentModes"
             className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
-            defaultValue={field.value}
+            value={field.value}
             onValueChange={(value) => {
               field.onChange(value);
             }}
