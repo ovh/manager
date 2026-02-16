@@ -4,7 +4,6 @@
     "region": "Localização",
     "protocol": "Protocolo",
     "allocated_capacity": "Capacidade alocada",
-    "allocated_capacity_value": "{{capacity}} Gio",
     "status": "Estado",
     "id": "ID",
     "share_name": "Nome do share",

@@ -7,6 +7,7 @@ import { Clipboard, ClipboardControl, ClipboardTrigger, Text } from '@ovhcloud/o
 import { DashboardCardLayout } from '@/components/dashboard/DashboardCardLayout.component';
 import { DashboardTileBlock } from '@/components/dashboard/DashboardTileBlock.component';
 import { useShare } from '@/data/hooks/shares/useShare';
+import { useFormatGiBSize } from '@/hooks/useFormatShareSize';
 import { useShareParams } from '@/hooks/useShareParams';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 
@@ -16,6 +17,7 @@ export const SharePropertiesBlock: React.FC = () => {
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,
   });
+  const formatSize = useFormatGiBSize(shareDetails?.size ?? 0);
 
   return (
     <DashboardCardLayout title={t('cards.properties')}>
@@ -23,7 +25,7 @@ export const SharePropertiesBlock: React.FC = () => {
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.allocated_capacity')} isLoading={isLoading}>
-        <Text preset="paragraph">{shareDetails != null ? `${shareDetails.size} GB` : null}</Text>
+        <Text preset="paragraph">{shareDetails != null ? formatSize : null}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.mount_path')} isLoading={isLoading}>
         <div className="flex flex-col gap-3">

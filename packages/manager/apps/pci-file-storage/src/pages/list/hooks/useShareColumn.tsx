@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -9,8 +9,14 @@ import { Link, Text } from '@ovhcloud/ods-react';
 import { DatagridColumn } from '@ovh-ux/muk';
 
 import { ShareStatusBadge } from '@/components/status-badge/ShareStatusBadge.component';
+import { useFormatGiBSize } from '@/hooks/useFormatShareSize';
 import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component';
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
+
+const ShareSizeCell: React.FC<{ sizeInGiB: number }> = ({ sizeInGiB }) => {
+  const formatted = useFormatGiBSize(sizeInGiB);
+  return <>{formatted}</>;
+};
 
 export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
   const { t } = useTranslation(['share', 'list', 'regions']);
@@ -51,10 +57,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         id: 'allocated_capacity',
         accessorKey: 'size',
         header: t('share:fields.allocated_capacity'),
-        cell: ({ getValue }): string => {
-          const capacity = getValue<number>() ?? 0;
-          return t('share:fields.allocated_capacity_value', { capacity });
-        },
+        cell: ({ getValue }) => <ShareSizeCell sizeInGiB={getValue<number>() ?? 0} />,
         minSize: 140,
         maxSize: 140,
       },
