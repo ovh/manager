@@ -20,7 +20,7 @@
     "test:coverage": "manager-test --config vitest.config.mjs run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/logs-to-customer": "1.12.0",
+    "@ovh-ux/logs-to-customer": "2.0.0",
     "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
