@@ -585,7 +585,7 @@ pciNode.children = [
       'public-cloud:users',
       'public-cloud:quota',
       'public-cloud:ssh-keys',
-      'public-cloud:billing',
+      'pci-billing',
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
@@ -638,7 +638,7 @@ pciNode.children = [
           hash: '#/pci/projects/{projectId}/billing',
         },
         hasService: false,
-        features: ['public-cloud:billing'],
+        features: ['pci-billing'],
       },
       {
         id: 'pci-credits-vouchers',
