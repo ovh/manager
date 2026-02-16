@@ -76,6 +76,7 @@ export const KeyValuesEditor = <T extends FieldValues>({
 
   const handleItemBlur = () => {
     updateFormState(keyValuePairs);
+    field.onBlur();
   };
 
   if (!isKeyValueObjectString(field.value)) {

@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form.constants';
+import { KEY_VALUES_EDITOR_TEST_IDS } from '@secret-manager/components/form/key-values-editor/keyValuesEditor.constants';
 import { mockSecretConfigOkms } from '@secret-manager/mocks/secret-config-okms/secretConfigOkms.mock';
 import { mockSecretConfigReference } from '@secret-manager/mocks/secret-reference/secretReference.mock';
 import { SECRET_FORM_TEST_IDS } from '@secret-manager/pages/create-secret/SecretForm.constants';
@@ -9,7 +10,7 @@ import {
   MOCK_DATA_VALID_JSON,
   MOCK_PATH_VALID,
 } from '@secret-manager/utils/tests/secret.constants';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
@@ -209,6 +210,85 @@ describe('Secrets creation form test suite', () => {
       expect(
         screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE),
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('custom metadata section', () => {
+    it('should render the custom metadata section with toggle', async () => {
+      await renderSecretForm(MOCK_OKMS_ID);
+      await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+
+      expect(screen.getByTestId(SECRET_FORM_TEST_IDS.CUSTOM_METADATA_SECTION)).toBeInTheDocument();
+      expect(
+        screen.getByRole('checkbox', {
+          name: labels.secretManager.custom_metadata_title,
+        }),
+      ).toBeInTheDocument();
+    });
+
+    it('should show KeyValuesEditor with one row and Add row button when toggle is enabled', async () => {
+      const user = userEvent.setup();
+      await renderSecretForm(MOCK_OKMS_ID);
+      await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+
+      await act(() =>
+        user.click(
+          screen.getByRole('checkbox', {
+            name: labels.secretManager.custom_metadata_title,
+          }),
+        ),
+      );
+
+      const customMetadataSection = screen.getByTestId(
+        SECRET_FORM_TEST_IDS.CUSTOM_METADATA_SECTION,
+      );
+      await waitFor(() => {
+        expect(
+          within(customMetadataSection).getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
+        ).toBeInTheDocument();
+      });
+      expect(
+        within(customMetadataSection).getByRole('button', {
+          name: labels.secretManager.add_row,
+        }),
+      ).toBeInTheDocument();
+    });
+
+    it('should add a second key-value row when clicking Add row', async () => {
+      const user = userEvent.setup();
+      await renderSecretForm(MOCK_OKMS_ID);
+      await assertTextVisibility(labels.secretManager.create_secret_form_secret_section_title);
+
+      await act(() =>
+        user.click(
+          screen.getByRole('checkbox', {
+            name: labels.secretManager.custom_metadata_title,
+          }),
+        ),
+      );
+
+      const customMetadataSection = screen.getByTestId(
+        SECRET_FORM_TEST_IDS.CUSTOM_METADATA_SECTION,
+      );
+      await waitFor(() => {
+        expect(
+          within(customMetadataSection).getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0)),
+        ).toBeInTheDocument();
+      });
+
+      await act(() =>
+        user.click(
+          within(customMetadataSection).getByRole('button', {
+            name: labels.secretManager.add_row,
+          }),
+        ),
+      );
+
+      await waitFor(() => {
+        expect(
+          within(customMetadataSection).getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1)),
+        ).toBeInTheDocument();
+      });
     });
   });
 });

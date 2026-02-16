@@ -8,6 +8,7 @@ import {
 import { SecretDeactivateVersionAfterFormField } from '@secret-manager/components/form/SecretDeactivateVersionAfterFormField.component';
 import { SecretMaxVersionsFormField } from '@secret-manager/components/form/SecretMaxVersionsFormField.component';
 import { SecretPathFormField } from '@secret-manager/components/form/SecretPathFormField.component';
+import { KeyValuesEditor } from '@secret-manager/components/form/key-values-editor/KeyValuesEditor';
 import { SecretDataFormField } from '@secret-manager/components/form/secret-data-form-field/SecretDataFormField.component';
 import { secretQueryKeys } from '@secret-manager/data/api/secrets';
 import { useCreateSecret } from '@secret-manager/data/hooks/useCreateSecret';
@@ -16,6 +17,7 @@ import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.consta
 import { SecretVersionDataField } from '@secret-manager/types/secret.type';
 import { safeJsonParse } from '@secret-manager/utils/json';
 import { useSecretDataSchema, useSecretPathSchema } from '@secret-manager/validation';
+import { useCustomMetadataSchema } from '@secret-manager/validation/custom-metadata/customMetadataSchema';
 import { useSecretConfigSchema } from '@secret-manager/validation/secret-config/secretConfigSchema';
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, FormProvider, SubmitHandler, useForm, useWatch } from 'react-hook-form';
@@ -54,15 +56,18 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const pathSchema = useSecretPathSchema();
   const dataSchema = useSecretDataSchema();
   const metadataSchema = useSecretConfigSchema();
+  const customMetadataSchema = useCustomMetadataSchema();
 
   const secretSchema = z.object({
     path: pathSchema,
     data: dataSchema,
     // Toggle flags
+    enableCustomMetadata: z.boolean().default(false),
     enableDeactivateVersionAfter: z.boolean().default(false),
     enableMaxVersions: z.boolean().default(false),
     enableCasRequired: z.boolean().default(false),
     // Optional fields (no defaults - start empty when enabled)
+    customMetadata: customMetadataSchema.optional(),
     deactivateVersionAfter: metadataSchema.shape.deactivateVersionAfter.optional(),
     maxVersions: metadataSchema.shape.maxVersions.optional(),
     casRequired: metadataSchema.shape.casRequired.optional(),
@@ -76,6 +81,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     defaultValues: {
       path: '',
       data: '',
+      enableCustomMetadata: false,
       enableDeactivateVersionAfter: false,
       enableMaxVersions: false,
       enableCasRequired: false,
@@ -102,6 +108,11 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
   const enableCasRequired = useWatch({
     control,
     name: 'enableCasRequired',
+    defaultValue: false,
+  });
+  const enableCustomMetadata = useWatch({
+    control,
+    name: 'enableCustomMetadata',
     defaultValue: false,
   });
 
@@ -139,6 +150,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
     // Build metadata object only with enabled fields
     const metadata: {
       casRequired?: boolean;
+      customMetadata?: Record<string, string>;
       deactivateVersionAfter?: string;
       maxVersions?: number;
     } = {};
@@ -153,6 +165,13 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
 
     if (formData.enableMaxVersions && formData.maxVersions !== undefined) {
       metadata.maxVersions = formData.maxVersions;
+    }
+
+    if (formData.enableCustomMetadata && formData.customMetadata !== undefined) {
+      const customMetadata = safeJsonParse<Record<string, string>>(formData.customMetadata);
+      if (Object.keys(customMetadata).length > 0) {
+        metadata.customMetadata = customMetadata;
+      }
     }
 
     // Transform the flat form data into the nested structure expected by the API
@@ -184,10 +203,6 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
             <Text preset="heading-4">{t('values')}</Text>
             <SecretDataFormField name={'data'} control={control} />
           </div>
-          {/* TEMP: waiting for custom metadata */}
-          {/* <div className="flex flex-col gap-3">
-            <Text preset="heading-4">{t('custom_metadata_title')}</Text>
-          </div> */}
           <div className="flex flex-col gap-3">
             <Text preset="heading-4">{t('secret_settings')}</Text>
 
@@ -307,6 +322,48 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
                     control={control}
                     okmsId={okmsId}
                   />
+                </div>
+              )}
+            </Card>
+          </div>
+          <div
+            className="flex flex-col gap-3"
+            data-testid={SECRET_FORM_TEST_IDS.CUSTOM_METADATA_SECTION}
+          >
+            <Text preset="heading-4">{t('custom_metadata_title')}</Text>
+            <Card color="neutral">
+              <div className="flex items-center p-4">
+                <Controller
+                  name="enableCustomMetadata"
+                  control={control}
+                  render={({ field }) => (
+                    <Toggle
+                      name={field.name}
+                      id="enable-custom-metadata"
+                      checked={!!field.value}
+                      onCheckedChange={(detail) => {
+                        const checked = detail.checked;
+                        field.onChange(checked);
+                        if (checked) {
+                          // One empty row when opening the section ('' => stringToKeyValuePairs gives one row)
+                          setValue('customMetadata', '', { shouldValidate: true });
+                        } else {
+                          setValue('customMetadata', undefined, { shouldValidate: true });
+                        }
+                      }}
+                      data-testid={SECRET_FORM_TEST_IDS.TOGGLE_CUSTOM_METADATA}
+                    >
+                      <ToggleControl />
+                      <ToggleLabel>
+                        <Text preset="span">{t('custom_metadata_title')}</Text>
+                      </ToggleLabel>
+                    </Toggle>
+                  )}
+                />
+              </div>
+              {enableCustomMetadata && (
+                <div className="rounded-b-[--ods-card-border-radius] border-0 border-t border-solid border-[--ods-color-neutral-200] bg-gray-100 p-4">
+                  <KeyValuesEditor name="customMetadata" control={control} allowDeleteLastItem />
                 </div>
               )}
             </Card>

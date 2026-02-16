@@ -56,6 +56,7 @@ export const KeyValuesEditorItem = ({
           value={item.key}
           onChange={handleKeyChange}
           onBlur={onBlur}
+          className="bg-white"
         />
       </FormField>
       <FormField className="w-full">
@@ -66,6 +67,7 @@ export const KeyValuesEditorItem = ({
           value={item.value}
           onChange={handleValueChange}
           onBlur={onBlur}
+          className="bg-white"
         />
       </FormField>
 
