@@ -54,6 +54,7 @@ vi.mock('@ovh-ux/muk', () => ({
     </div>
   ),
   Notifications: () => <div>Notifications</div>,
+  useNotifications: () => ({ clearNotifications: () => {} }),
 }));
 
 describe('ShareList page', () => {
