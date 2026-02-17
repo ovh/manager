@@ -5,6 +5,7 @@ import { OsdsText } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { TRANSLATE_NAMESPACE } from '../constants';
+import { useMemo } from 'react';
 
 type Props = {
   user?: User;
@@ -12,7 +13,15 @@ type Props = {
 
 const UserDetails = ({ user = {} as User }: Props): JSX.Element => {
   const { t } = useTranslation(TRANSLATE_NAMESPACE);
-  const { organisation, email, nichandle } = user;
+  const { organisation, email } = user;
+
+  const nichandle = useMemo<string | undefined>(() => {
+    if (user.email !== user.nichandle) {
+      return user.nichandle;
+    }
+    if (user.auth?.account) return user.auth.account;
+    return undefined;
+  }, [user.auth?.account, user.email, user.nichandle]);
 
   return (
     <>
@@ -26,7 +35,7 @@ const UserDetails = ({ user = {} as User }: Props): JSX.Element => {
         {email}
       </OsdsText>
 
-      {email !== nichandle && (
+      {nichandle && (
         <OsdsText
           color={ODS_THEME_COLOR_INTENT.text}
           level={ODS_TEXT_LEVEL.body}
