@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.11.3...@ovh-ux/manager-account-creation-app@0.12.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* **account-creation:** add subsidiary info to language selection ([b56630c](https://github.com/ovh/manager/commit/b56630c2f8119ab86a4174359a145f76654d1851)), closes [#MANAGER-20902](https://github.com/ovh/manager/issues/MANAGER-20902)
+* **account-creation:** display reassurance wording depending on legalform ([183060f](https://github.com/ovh/manager/commit/183060f28afc5d97797264f330c03fcef8dbba40)), closes [#MANAGER-20721](https://github.com/ovh/manager/issues/MANAGER-20721)
+* **account-creation:** reset country on language change ([6c5ce57](https://github.com/ovh/manager/commit/6c5ce57c8bdfd22f2d705aaa558d64f4e5600651)), closes [#MANAGER-20710](https://github.com/ovh/manager/issues/MANAGER-20710)
+* **account-creation:** save country to local storage during signup ([5b7c279](https://github.com/ovh/manager/commit/5b7c279a1969626ba7239bc65254a53fbe0e785c)), closes [#MANAGER-20231](https://github.com/ovh/manager/issues/MANAGER-20231)
+* **i18n:** add missing translations [CDS 4651] ([fe627da](https://github.com/ovh/manager/commit/fe627da8ee129d435a068c2f9a46bb96392a6f80))
+
+
+### Features
+
+* **account-creation:** add purspose of purchase field on details page ([2b28463](https://github.com/ovh/manager/commit/2b2846325ddfb3c889f1090fd18ea18f679b445a)), closes [#MANAGER-20843](https://github.com/ovh/manager/issues/MANAGER-20843)
+* **account-creation:** add sdi it field and vat dynamic label ([318a13b](https://github.com/ovh/manager/commit/318a13b6c812d8a496b780caa97b6ed1e320c941)), closes [#MANAGER-20912](https://github.com/ovh/manager/issues/MANAGER-20912)
+* **account-creation:** update account type descriptions ([6c8f715](https://github.com/ovh/manager/commit/6c8f7150beb08794fd27481c657e8a6bd5748fb5)), closes [#MANAGER-20650](https://github.com/ovh/manager/issues/MANAGER-20650)
+
+
+
+
+
 ## [0.11.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.11.2...@ovh-ux/manager-account-creation-app@0.11.3) (2026-02-06)
 
 
