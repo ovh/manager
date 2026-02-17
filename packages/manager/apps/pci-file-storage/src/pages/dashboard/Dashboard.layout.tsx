@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { Notifications } from '@ovh-ux/muk';
+import { Notifications, useNotifications } from '@ovh-ux/muk';
 
 import { ActionLink } from '@/components/action-link/ActionLink.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
@@ -45,6 +45,11 @@ const DashboardLayout: React.FC = () => {
   const { region, shareId } = useShareParams();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    clearNotifications();
+  }, [clearNotifications]);
 
   const { data: shareDetails } = useShare(region, shareId, {
     select: selectShareDetails,

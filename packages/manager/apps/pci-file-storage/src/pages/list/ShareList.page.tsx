@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 
 import { Navigate, Outlet } from 'react-router-dom';
 
@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
-import { Notifications } from '@ovh-ux/muk';
+import { Notifications, useNotifications } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { useShares } from '@/data/hooks/shares/useShares';
@@ -19,6 +19,11 @@ const ShareListPage: React.FC = () => {
   const { data: shares = [], isLoading } = useShares({
     select: selectSharesForList,
   });
+
+  const { clearNotifications } = useNotifications();
+  useEffect(() => {
+    clearNotifications();
+  }, [clearNotifications]);
 
   if (!isLoading && (shares?.length ?? 0) === 0) {
     return <Navigate to={`${subRoutes.onboarding}`} replace />;
