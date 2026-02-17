@@ -8,5 +8,6 @@
   "domain_reseller_general_informations_domains_length": "{{ length }} domaine(s) actif(s)",
   "domain_reseller_general_informations_no_domains": "Aucun nom de domaine rattaché au programme",
   "domain_reseller_renew_mode_label": "Mode de renouvellement",
-  "domain_reseller_renew_mode_automatic": "Automatique"
+  "domain_reseller_renew_mode_automatic": "Automatique",
+  "domain_reseller_tab_my_domains": "Mes noms de domaine"
 }
