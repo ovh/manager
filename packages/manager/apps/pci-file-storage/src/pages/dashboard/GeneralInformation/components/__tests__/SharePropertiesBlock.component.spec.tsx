@@ -16,6 +16,10 @@ vi.mock('@/data/hooks/shares/useShare', () => ({
   useShare: vi.fn(),
 }));
 
+vi.mock('@/hooks/useFormatShareSize', () => ({
+  useFormatGiBSize: (sizeInGiB: number) => `${sizeInGiB} GiB`,
+}));
+
 vi.mock('@/hooks/useShareParams', () => ({
   useShareParams: vi.fn(),
 }));
@@ -58,7 +62,7 @@ describe('SharePropertiesBlock', () => {
 
     expect(screen.getByText('cards.properties')).toBeVisible();
     expect(screen.getByText('NFS')).toBeVisible();
-    expect(screen.getByText('100 GB')).toBeVisible();
+    expect(screen.getByText('100 GiB')).toBeVisible();
   });
 
   it('should render multiple mount paths', () => {

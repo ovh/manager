@@ -5,7 +5,7 @@
     "acl": "Lista de control de acceso (ACL)"
   },
   "actions": {
-    "back": "Página anterior",
+    "back": "Volver a la página anterior",
     "edit_name": "Modificar el nombre del share"
   },
   "common": {

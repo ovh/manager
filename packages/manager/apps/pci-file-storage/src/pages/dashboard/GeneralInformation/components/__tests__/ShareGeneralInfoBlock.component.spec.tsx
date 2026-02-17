@@ -12,6 +12,12 @@ import type { TShareDetailsView } from '@/pages/dashboard/view-model/shareDetail
 
 import { ShareGeneralInfoBlock } from '../ShareGeneralInfoBlock.component';
 
+vi.mock('@ovh-ux/muk', () => ({
+  useFormatDate: vi.fn(
+    () => (params: { date?: string | null; format: string }) => params?.date ?? '',
+  ),
+}));
+
 vi.mock('@/data/hooks/shares/useShare', () => ({
   useShare: vi.fn(),
 }));
@@ -56,7 +62,7 @@ describe('ShareGeneralInfoBlock', () => {
     expect(screen.getByText('share-1')).toBeVisible();
     expect(screen.getByText('My Share')).toBeVisible();
     expect(screen.getByText('status:active')).toBeVisible();
-    expect(screen.getByText('2025-01-01')).toBeVisible();
+    expect(screen.getByText(/2025-01-01/)).toBeVisible();
   });
 
   it.each([

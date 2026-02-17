@@ -4,7 +4,6 @@
     "region": "Location",
     "protocol": "Protocol",
     "allocated_capacity": "Allocated capacity",
-    "allocated_capacity_value": "{{capacity}} GiB",
     "status": "Status",
     "id": "ID",
     "share_name": "Share name",
