@@ -45,7 +45,7 @@ import { discoverModules, getModule } from './module-utils.js';
  * parseArgs();
  * // → [
  * //   { fullPath: "/.../packages/manager/core/core-shell", shortPath: "core-shell", packageName: "@ovh-ux/manager-core-shell" },
- * //   { fullPath: "/.../packages/components/react-components", shortPath: "react-components", packageName: "@ovh-ux/muk" }
+ * //   { fullPath: "/.../packages/components/react-components", shortPath: "react-components", packageName: "@ovh-ux/manager-react-components" }
  * // ]
  */
 export function parseArgs() {

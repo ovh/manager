@@ -28,7 +28,7 @@ const cases = [
   },
   {
     name: 'Single library static path by package name (manager-react-components)',
-    cmd: 'yarn manager-tests-coverage --library @ovh-ux/muk',
+    cmd: 'yarn manager-tests-coverage --library @ovh-ux/manager-react-components',
     expect: 0,
   },
   {
@@ -48,7 +48,7 @@ const cases = [
   },
   {
     name: 'Multiple libraries by package names (manager-wiki,manager-react-components,shell-client,logs-to-customer)',
-    cmd: 'yarn manager-tests-coverage --libraries @ovh-ux/manager-wiki,@ovh-ux/muk,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
+    cmd: 'yarn manager-tests-coverage --libraries @ovh-ux/manager-wiki,@ovh-ux/manager-react-components,@ovh-ux/manager-react-shell-client,@ovh-ux/logs-to-customer',
     expect: 0,
   },
   {

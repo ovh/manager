@@ -60,7 +60,7 @@ export const staticDiscoveredLibraries = [
   {
     fullPath: 'packages/manager-react-components',
     shortPath: 'manager-react-components',
-    packageName: '@ovh-ux/muk',
+    packageName: '@ovh-ux/manager-react-components',
   },
 ];
 

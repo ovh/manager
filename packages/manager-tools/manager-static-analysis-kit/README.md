@@ -101,13 +101,13 @@ yarn manager-types-coverage --package @ovh-ux/manager-container-app
 ### Analyze specific libraries (by `package.json` name)
 
 ```bash
-yarn manager-types-coverage --libraries @ovh-ux/manager-wiki,@ovh-ux/muk
+yarn manager-types-coverage --libraries @ovh-ux/manager-wiki,@ovh-ux/manager-react-components
 ```
 
 or single library:
 
 ```bash
-yarn manager-types-coverage --library @ovh-ux/muk
+yarn manager-types-coverage --library @ovh-ux/manager-react-components
 ```
 
 > In this mode:

@@ -41,7 +41,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* **muk:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
+* **manager-react-components:** static quality improvement ([2ca8694](https://github.com/ovh/manager/commit/2ca8694747cce2ea2901b6d04286ac07a65be03d))
 
 
 
