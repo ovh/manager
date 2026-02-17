@@ -44,14 +44,14 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
           </Tooltip>
         )}
       </FormFieldLabel>
-      <div className="flex w-full flex-wrap items-center gap-2">
+      <div className="grid w-full grid-cols-2 items-start gap-2">
         <Controller
           name="ttlSelect"
           control={control}
           render={({ field: ttlSelectField }) => (
             <Select
               name={ttlSelectField.name}
-              className="w-[200px]"
+              className="w-full"
               value={ttlSelectField.value == null ? ["global"] : [ttlSelectField.value as string]}
               onValueChange={({ value }) => ttlSelectField.onChange(value[0] ?? "global")}
               onBlur={() => ttlSelectField.onBlur?.()}
@@ -72,11 +72,11 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
             const ttlSelectValue = watch("ttlSelect");
             if (ttlSelectValue !== "custom") return null;
             return (
-              <div className="flex flex-col gap-1 min-w-[6rem]">
+              <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
                   <Input
                     type={INPUT_TYPE.number}
-                    className="w-24"
+                    className="w-full"
                     name={ttlField.name}
                     value={
                       ttlField.value !== undefined && ttlField.value !== ""

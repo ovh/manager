@@ -14,6 +14,7 @@ import type { AddEntrySchemaType } from '@/zone/utils/formSchema.utils';
 import type {
   FieldConfig,
   FormRowConfig,
+  GroupFieldConfig,
   RecordFormConfig,
 } from '@/zone/types/recordFormConfig.types';
 import { RECORD_FORM_CONFIGS } from '@/zone/utils/recordFormConfig';
@@ -47,7 +48,7 @@ function RenderField({
   config,
   t,
 }: {
-  field: FieldConfig | 'subdomain' | 'ttl';
+  field: FieldConfig | GroupFieldConfig | 'subdomain' | 'ttl';
   control: Control<AddEntrySchemaType>;
   watch: UseFormWatch<AddEntrySchemaType>;
   domainSuffix: string;
@@ -77,6 +78,25 @@ function RenderField({
     );
   }
 
+  // Render a group of fields in a sub-grid
+  if (field.type === 'group') {
+    return (
+      <div className={field.gridClassName}>
+        {field.children.map((child) => (
+          <RenderField
+            key={child.name}
+            field={child}
+            control={control}
+            watch={watch}
+            domainSuffix={domainSuffix}
+            config={config}
+            t={t}
+          />
+        ))}
+      </div>
+    );
+  }
+
   // Compute disabled state for conditional fields (e.g. NAPTR regex/replace)
   const isDisabled = field.disabledWhenFilled
     ? (() => {
@@ -98,6 +118,7 @@ function RenderField({
           tooltipText={field.tooltipKey ? t(field.tooltipKey) : undefined}
           maxLength={field.maxLength}
           disabled={isDisabled}
+          readOnly={field.readOnly}
           className="w-full"
           placeholder={field.placeholder}
         />
@@ -128,9 +149,11 @@ function RenderField({
           control={control}
           label={t(field.labelKey)}
           required={field.required}
+          disabled={field.readOnly || isDisabled}
           items={field.items.map((item) => ({
             label: t(item.labelKey),
             value: item.value,
+            ...(item.descriptionKey ? { description: t(item.descriptionKey) } : {}),
           }))}
           tooltip={field.tooltipKey ? t(field.tooltipKey) : undefined}
         />
@@ -186,7 +209,7 @@ function RenderRow({
       <div className={row.gridClassName}>
         {row.fields.map((field, fieldIndex) => (
           <RenderField
-            key={typeof field === 'string' ? field : field.name}
+            key={typeof field === 'string' ? field : 'name' in field ? field.name : `group-${fieldIndex}`}
             field={field}
             control={control}
             watch={watch}

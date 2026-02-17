@@ -34,10 +34,12 @@ export type {
 // Shared grid class constants
 // ---------------------------------------------------------------------------
 
-/** SubDomain + 1 field + TTL on a single row */
-const GRID_INLINE = 'grid grid-cols-[2fr_minmax(200px,1fr)_200px] items-start gap-4';
-/** SubDomain + TTL row (used as first row in multi-row layouts) */
-const GRID_SUB_TTL = 'grid grid-cols-[2fr_200px] items-start gap-4';
+/** Two fields side by side (equal width) */
+const GRID_2COL = 'grid grid-cols-2 items-start gap-4';
+/** Wide field + narrow field (e.g. SubDomain + small input, or SubDomain + TTL) */
+const GRID_WIDE_NARROW = 'grid grid-cols-[2fr_200px] items-start gap-4';
+/** Target/value field + TTL side by side (equal halves) */
+const GRID_TARGET_TTL = 'grid grid-cols-2 items-start gap-4';
 
 // ---------------------------------------------------------------------------
 // Reusable select item lists
@@ -62,9 +64,9 @@ const SSHFP_FPTYPE_ITEMS: readonly SelectItemConfig[] = [
 ];
 
 const DMARC_POLICY_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'none', labelKey: 'zone_page_form_label_dmarc_policy_none' },
-  { value: 'quarantine', labelKey: 'zone_page_form_label_dmarc_policy_quarantine' },
-  { value: 'reject', labelKey: 'zone_page_form_label_dmarc_policy_reject' },
+  { value: 'none', labelKey: 'zone_page_form_label_dmarc_policy_none', descriptionKey: 'zone_page_form_label_dmarc_policy_none_desc' },
+  { value: 'quarantine', labelKey: 'zone_page_form_label_dmarc_policy_quarantine', descriptionKey: 'zone_page_form_label_dmarc_policy_quarantine_desc' },
+  { value: 'reject', labelKey: 'zone_page_form_label_dmarc_policy_reject', descriptionKey: 'zone_page_form_label_dmarc_policy_reject_desc' },
 ];
 
 const DMARC_ASPF_ITEMS: readonly SelectItemConfig[] = [
@@ -93,10 +95,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'ipv4' },
     rows: [
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: GRID_INLINE,
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          'subdomain',
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv4', required: true, tooltipKey: 'zone_page_tooltip_ip', placeholder: '203.0.113.1' },
           'ttl',
         ],
@@ -114,10 +116,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'ipv6' },
     rows: [
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: GRID_INLINE,
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          'subdomain',
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ipv6', required: true, tooltipKey: 'zone_page_tooltip_ip', placeholder: '2001:db8::1' },
           'ttl',
         ],
@@ -136,10 +138,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainRequired: true,
     validation: { target: 'host' },
     rows: [
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: GRID_INLINE,
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          'subdomain',
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_ns_target', required: true, tooltipKey: 'zone_page_tooltip_ns_target', placeholder: 'ns1.example.com.' },
           'ttl',
         ],
@@ -157,10 +159,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain_cname',
     validation: { target: 'host' },
     rows: [
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: GRID_INLINE,
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          'subdomain',
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_cname_target', required: true, tooltipKey: 'zone_page_tooltip_cname_target', placeholder: 'alias.example.com.' },
           'ttl',
         ],
@@ -178,10 +180,10 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain_dname',
     validation: { target: 'host' },
     rows: [
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: GRID_INLINE,
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          'subdomain',
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_dname_target', required: true, tooltipKey: 'zone_page_tooltip_dname_target', placeholder: 'other-domain.com.' },
           'ttl',
         ],
@@ -201,13 +203,19 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: 'grid grid-cols-[auto_minmax(300px,1fr)_minmax(200px,1fr)] items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'number', name: 'flags', labelKey: 'zone_page_form_label_caa_flags', required: true, min: 0, max: 255, tooltipKey: 'zone_page_tooltip_caa_flags', placeholder: '0' },
           { type: 'select', name: 'tag', labelKey: 'zone_page_form_label_caa_tag', required: true, items: CAA_TAG_ITEMS, tooltipKey: 'zone_page_tooltip_caa_tag' },
+        ],
+      },
+      {
+        gridClassName: GRID_TARGET_TTL,
+        fields: [
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_caa_target', required: true, tooltipKey: 'zone_page_tooltip_caa_target', placeholder: 'letsencrypt.org' },
+          'ttl',
         ],
       },
     ],
@@ -222,11 +230,12 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   TXT: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: 'w-full',
+        gridClassName: GRID_TARGET_TTL,
         fields: [
           { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_txt_value', placeholder: 'v=spf1 include:mx.ovh.com ~all' },
+          'ttl',
         ],
       },
     ],
@@ -242,14 +251,19 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_priority', placeholder: '10' }] },
       {
-        gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_priority', placeholder: '10' },
           { type: 'number', name: 'weight', labelKey: 'zone_page_form_label_weight', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_weight', placeholder: '100' },
           { type: 'number', name: 'port', labelKey: 'zone_page_form_label_port', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_srv_port', placeholder: '443' },
+        ],
+      },
+      {
+        gridClassName: GRID_TARGET_TTL,
+        fields: [
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_srv_target', required: true, tooltipKey: 'zone_page_tooltip_srv_target', placeholder: 'server.example.com.' },
+          'ttl',
         ],
       },
     ],
@@ -264,12 +278,17 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   NAPTR: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', 'ttl'] },
       {
-        gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'number', name: 'order', labelKey: 'zone_page_form_label_naptr_order', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_order', placeholder: '100' },
           { type: 'number', name: 'pref', labelKey: 'zone_page_form_label_naptr_pref', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_naptr_pref', placeholder: '10' },
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
+        fields: [
           { type: 'text', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', maxLength: 1, tooltipKey: 'zone_page_form_naptr_flag_help', placeholder: 's' },
           { type: 'text', name: 'service', labelKey: 'zone_page_form_label_naptr_service', required: true, tooltipKey: 'zone_page_form_naptr_service_help', placeholder: 'SIP+D2U' },
         ],
@@ -291,15 +310,20 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   LOC: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', 'ttl'] },
       // Latitude
       {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_lat',
-        gridClassName: 'grid grid-cols-4 gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'number', name: 'lat_deg', labelKey: 'zone_page_form_label_loc_lat_deg', required: true, min: 0, max: 90, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_deg', placeholder: '48' },
           { type: 'number', name: 'lat_min', labelKey: 'zone_page_form_label_loc_lat_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_min', placeholder: '51' },
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
+        fields: [
           { type: 'number', name: 'lat_sec', labelKey: 'zone_page_form_label_loc_lat_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_lat_sec', placeholder: '24.000' },
           { type: 'select', name: 'latitude', labelKey: 'zone_page_form_label_loc_lat_direction', required: true, items: LOC_LATITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_lat_direction' },
         ],
@@ -308,10 +332,15 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_long',
-        gridClassName: 'grid grid-cols-4 gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'number', name: 'long_deg', labelKey: 'zone_page_form_label_loc_long_deg', required: true, min: 0, max: 180, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_deg', placeholder: '48' },
           { type: 'number', name: 'long_min', labelKey: 'zone_page_form_label_loc_long_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_min', placeholder: '51' },
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
+        fields: [
           { type: 'number', name: 'long_sec', labelKey: 'zone_page_form_label_loc_long_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_long_sec', placeholder: '24.000' },
           { type: 'select', name: 'longitude', labelKey: 'zone_page_form_label_loc_long_direction', required: true, items: LOC_LONGITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_long_direction' },
         ],
@@ -320,10 +349,15 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_size_hp_vp',
-        gridClassName: 'grid w-full grid-cols-4 gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'number', name: 'altitude', labelKey: 'zone_page_form_label_loc_altitude', required: true, min: -100000, max: 42849672.95, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_altitude', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '42.00' },
           { type: 'number', name: 'size', labelKey: 'zone_page_form_label_loc_size', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_size', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '1.00' },
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
+        fields: [
           { type: 'number', name: 'hp', labelKey: 'zone_page_form_label_loc_hp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_hp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10000.00' },
           { type: 'number', name: 'vp', labelKey: 'zone_page_form_label_loc_vp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_vp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10.00' },
         ],
@@ -338,12 +372,17 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   SSHFP: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', 'ttl'] },
       {
-        gridClassName: 'grid grid-cols-[auto_auto_1fr] items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'select', name: 'algorithm', labelKey: 'zone_page_form_label_algorithm', required: true, items: SSHFP_ALGORITHM_ITEMS, tooltipKey: 'zone_page_tooltip_sshfp_algorithm' },
           { type: 'select', name: 'fptype', labelKey: 'zone_page_form_label_fptype', required: true, items: SSHFP_FPTYPE_ITEMS, tooltipKey: 'zone_page_tooltip_sshfp_fptype' },
+        ],
+      },
+      {
+        gridClassName: 'w-full',
+        fields: [
           { type: 'text', name: 'fp', labelKey: 'zone_page_form_label_fp', required: true, tooltipKey: 'zone_page_tooltip_sshfp_fp', placeholder: '123456789abcdef...' },
         ],
       },
@@ -357,13 +396,35 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   TLSA: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', 'ttl'] },
       {
-        gridClassName: 'grid grid-cols-[auto_auto_auto_1fr] items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
-          { type: 'number', name: 'usage', labelKey: 'zone_page_form_label_tlsa_usage', required: true, min: 0, max: 3, tooltipKey: 'zone_page_tooltip_tlsa_usage', placeholder: '3' },
-          { type: 'number', name: 'selector', labelKey: 'zone_page_form_label_tlsa_selector', required: true, min: 0, max: 1, tooltipKey: 'zone_page_tooltip_tlsa_selector', placeholder: '1' },
-          { type: 'number', name: 'matchingType', labelKey: 'zone_page_form_label_tlsa_matching', required: true, min: 1, max: 2, tooltipKey: 'zone_page_tooltip_tlsa_matching', placeholder: '1' },
+          {
+            type: 'select', name: 'usage', labelKey: 'zone_page_form_label_tlsa_usage', required: true, tooltipKey: 'zone_page_tooltip_tlsa_usage', items: [
+              { value: '0', labelKey: 'zone_page_form_label_tlsa_usage_0', descriptionKey: 'zone_page_form_label_tlsa_usage_0_desc' },
+              { value: '1', labelKey: 'zone_page_form_label_tlsa_usage_1', descriptionKey: 'zone_page_form_label_tlsa_usage_1_desc' },
+              { value: '2', labelKey: 'zone_page_form_label_tlsa_usage_2', descriptionKey: 'zone_page_form_label_tlsa_usage_2_desc' },
+              { value: '3', labelKey: 'zone_page_form_label_tlsa_usage_3', descriptionKey: 'zone_page_form_label_tlsa_usage_3_desc' },
+            ]
+          },
+          {
+            type: 'select', name: 'selector', labelKey: 'zone_page_form_label_tlsa_selector', required: true, tooltipKey: 'zone_page_tooltip_tlsa_selector', items: [
+              { value: '0', labelKey: 'zone_page_form_label_tlsa_selector_0', descriptionKey: 'zone_page_form_label_tlsa_selector_0_desc' },
+              { value: '1', labelKey: 'zone_page_form_label_tlsa_selector_1', descriptionKey: 'zone_page_form_label_tlsa_selector_1_desc' },
+            ]
+          },
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
+        fields: [
+          {
+            type: 'select', name: 'matchingType', labelKey: 'zone_page_form_label_tlsa_matching', required: true, tooltipKey: 'zone_page_tooltip_tlsa_matching', items: [
+              { value: '1', labelKey: 'zone_page_form_label_tlsa_matching_1' },
+              { value: '2', labelKey: 'zone_page_form_label_tlsa_matching_2' },
+            ]
+          },
           { type: 'text', name: 'certificateData', labelKey: 'zone_page_form_label_tlsa_cert', required: true, tooltipKey: 'zone_page_tooltip_tlsa_cert', placeholder: 'abc123def456...' },
         ],
       },
@@ -378,7 +439,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { mbox: 'host', txt: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', 'ttl'] },
       {
         gridClassName: 'grid grid-cols-2 items-start gap-4',
         fields: [
@@ -397,12 +458,17 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' }] },
       {
-        gridClassName: 'grid grid-cols-[auto_1fr_1fr] items-start gap-4',
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' },
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target', placeholder: 'svc.example.com.' },
+          'ttl',
+        ],
+      },
+      {
+        gridClassName: 'w-full',
+        fields: [
           { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params', placeholder: 'alpn=h2,h3 port=443' },
         ],
       },
@@ -419,12 +485,17 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' }] },
       {
-        gridClassName: 'grid grid-cols-[auto_1fr_1fr] items-start gap-4',
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_svcb_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_svcb_priority', placeholder: '10' },
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_svcb_target', required: true, tooltipKey: 'zone_page_tooltip_svcb_target', placeholder: 'svc.example.com.' },
+          'ttl',
+        ],
+      },
+      {
+        gridClassName: 'w-full',
+        fields: [
           { type: 'text', name: 'params', labelKey: 'zone_page_form_label_svcb_params', tooltipKey: 'zone_page_tooltip_svcb_params', placeholder: 'alpn=h2,h3 port=443' },
         ],
       },
@@ -443,12 +514,12 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     validation: { target: 'host' },
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: GRID_WIDE_NARROW, fields: ['subdomain', { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority', placeholder: '10' }] },
       {
-        gridClassName: 'grid grid-cols-[auto_1fr] items-start gap-4',
+        gridClassName: GRID_TARGET_TTL,
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority', placeholder: '10' },
           { type: 'text', name: 'target', labelKey: 'zone_page_form_label_mx_target', required: true, tooltipKey: 'zone_page_tooltip_mx_target', placeholder: 'mail.example.com.' },
+          'ttl',
         ],
       },
     ],
@@ -463,11 +534,12 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   DKIM: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: 'w-full',
+        gridClassName: GRID_TARGET_TTL,
         fields: [
           { type: 'textarea', name: 'target', labelKey: 'zone_page_form_label_value', required: true, tooltipKey: 'zone_page_tooltip_dkim_value', placeholder: 'v=DKIM1; k=rsa; p=MIG...' },
+          'ttl',
         ],
       },
     ],
@@ -480,17 +552,29 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   DMARC: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
     rows: [
-      { gridClassName: GRID_SUB_TTL, fields: ['subdomain', 'ttl'] },
+      { gridClassName: 'w-full', fields: ['subdomain'] },
       {
-        gridClassName: 'grid grid-cols-3 items-start gap-4',
+        gridClassName: GRID_2COL,
+        fields: [
+          { type: 'text', name: 'v', labelKey: 'zone_page_form_label_dmarc_v', required: true, readOnly: true, tooltipKey: 'zone_page_tooltip_dmarc_v' },
+          'ttl',
+        ],
+      },
+      {
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'select', name: 'p', labelKey: 'zone_page_form_label_dmarc_p', required: true, items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_p' },
           { type: 'number', name: 'pct', labelKey: 'zone_page_form_label_dmarc_pct', min: 0, max: 100, tooltipKey: 'zone_page_tooltip_dmarc_pct' },
+        ],
+      },
+      {
+        gridClassName: 'w-full',
+        fields: [
           { type: 'text', name: 'rua', labelKey: 'zone_page_form_label_dmarc_rua', tooltipKey: 'zone_page_tooltip_dmarc_rua', placeholder: 'mailto:dmarc@example.com' },
         ],
       },
       {
-        gridClassName: 'grid grid-cols-2 items-start gap-4',
+        gridClassName: GRID_2COL,
         fields: [
           { type: 'select', name: 'sp', labelKey: 'zone_page_form_label_dmarc_sp', items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_sp' },
           { type: 'select', name: 'aspf', labelKey: 'zone_page_form_label_dmarc_aspf', items: DMARC_ASPF_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_aspf' },

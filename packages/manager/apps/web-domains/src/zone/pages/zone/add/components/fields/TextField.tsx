@@ -28,6 +28,7 @@ export interface TextFieldProps {
   className?: string;
   inputClassName?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   placeholder?: string;
 }
 
@@ -42,6 +43,7 @@ export function TextField({
   className,
   inputClassName = "flex-1",
   disabled = false,
+  readOnly = false,
   placeholder,
 }: Readonly<TextFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
@@ -78,6 +80,7 @@ export function TextField({
             maxLength={maxLength}
             invalid={!!error}
             disabled={disabled}
+            readOnly={readOnly}
             placeholder={placeholder}
           />
           <FormFieldError>{error?.message}</FormFieldError>

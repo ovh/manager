@@ -56,7 +56,7 @@ const NAPTR_REPLACE_REGEX = /^((?:[^.\s](?:\.(?!$))?)+)\.?$/;
 const ALL_KEYS = [
   'recordType', 'subDomain', 'ttlSelect', 'ttl', 'target', 'priority', 'weight', 'port', 'flags', 'tag',
   'mbox', 'txt', 'algorithm', 'fptype', 'fp', 'usage', 'selector', 'matchingType', 'certificateData',
-  'params', 'p', 'pct', 'rua', 'sp', 'aspf',
+  'params', 'v', 'p', 'pct', 'rua', 'sp', 'aspf',
   'order', 'pref', 'flag', 'service', 'regex', 'replace',
   'lat_deg', 'lat_min', 'lat_sec', 'latitude', 'long_deg', 'long_min', 'long_sec', 'longitude',
   'altitude', 'size', 'hp', 'vp',
@@ -315,6 +315,18 @@ function formatNaptrTarget(formValues: Partial<AddEntrySchemaType>): string {
     .trim();
 }
 
+function formatDmarcTarget(formValues: Partial<AddEntrySchemaType>): string {
+  const parts: string[] = [];
+  const v = formValues?.v ? String(formValues.v) : 'DMARC1';
+  parts.push(`v=${v}`);
+  if (formValues?.p) parts.push(`p=${formValues.p}`);
+  if (formValues?.pct !== undefined && formValues.pct !== '' && formValues.pct != null) parts.push(`pct=${formValues.pct}`);
+  if (formValues?.rua) parts.push(`rua=${formValues.rua}`);
+  if (formValues?.sp) parts.push(`sp=${formValues.sp}`);
+  if (formValues?.aspf) parts.push(`aspf=${formValues.aspf}`);
+  return `"${parts.join('; ')}"`;
+}
+
 export function getTargetDisplayValue(
   recordType: string,
   formValues: Partial<AddEntrySchemaType>,
@@ -330,6 +342,10 @@ export function getTargetDisplayValue(
 
   if (recordType === FieldTypeExtendedRecordsEnum.LOC) {
     return formatLocTarget(formValues);
+  }
+
+  if (recordType === FieldTypeMailRecordsEnum.DMARC) {
+    return formatDmarcTarget(formValues);
   }
 
   const fieldMap = getFieldMap(recordType);

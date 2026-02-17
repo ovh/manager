@@ -1,6 +1,8 @@
 export type SelectItemConfig = {
   readonly value: string;
   readonly labelKey: string;
+  /** Optional i18n key for a short description shown in smaller text. */
+  readonly descriptionKey?: string;
 };
 
 /** Properties shared by all field types. */
@@ -13,6 +15,8 @@ type BaseFieldConfig = {
   readonly placeholder?: string;
   /** Disable this field when the given sibling field is non-empty. */
   readonly disabledWhenFilled?: string;
+  /** When true, the field is displayed but not editable. */
+  readonly readOnly?: boolean;
 };
 
 export type TextFieldConfig = BaseFieldConfig & {
@@ -37,15 +41,23 @@ export type TextareaFieldConfig = BaseFieldConfig & {
   readonly type: 'textarea';
 };
 
+export type GroupFieldConfig = {
+  readonly type: 'group';
+  readonly gridClassName: string;
+  readonly children: readonly FieldConfig[];
+};
+
 export type FieldConfig =
   | TextFieldConfig
   | NumberFieldConfig
   | SelectFieldConfig
   | TextareaFieldConfig;
 
+export type FieldOrGroup = FieldConfig | GroupFieldConfig;
+
 export type FormRowConfig = {
   readonly gridClassName: string;
-  readonly fields: readonly (FieldConfig | 'subdomain' | 'ttl')[];
+  readonly fields: readonly (FieldConfig | GroupFieldConfig | 'subdomain' | 'ttl')[];
   /** Optional i18n key for a section heading rendered before this row. */
   readonly headingKey?: string;
   /** When true, a <Divider> is rendered before the optional heading / row. */
