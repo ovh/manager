@@ -19,6 +19,7 @@ import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useShareParams } from '@/hooks/useShareParams';
+import { ShareEditableName } from '@/pages/dashboard/ShareEditableName/ShareEditableName.component';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
@@ -59,11 +60,16 @@ const DashboardLayout: React.FC = () => {
     navigate(value === TAB_GENERAL ? '.' : value);
   };
 
+  const handleRenameSubmit = (name: string) => {
+    // TODO: Implement API call to rename share
+    console.log('Rename share to:', name);
+  };
+
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb items={[{ label: shareDetails?.name ?? '' }]} />}
       header={{
-        title: shareDetails?.name ?? '',
+        title: <ShareEditableName name={shareDetails?.name ?? null} onSubmit={handleRenameSubmit} />,
         guideMenu: <GuideMenu items={guideItems} />,
         changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
