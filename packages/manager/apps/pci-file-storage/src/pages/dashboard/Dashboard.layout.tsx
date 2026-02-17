@@ -98,7 +98,9 @@ const DashboardLayout: React.FC = () => {
             </Tab>
             <Tab value={TAB_SNAPSHOTS} id="tab-snapshots" disabled className="flex gap-4">
               {t('dashboard:tabs.snapshots')}
-              <Badge size={BADGE_SIZE.sm}>Comming soon</Badge>
+              <Badge size={BADGE_SIZE.sm} className="font-normal">
+                {t('common.coming_soon')}
+              </Badge>
             </Tab>
             <Tab value={TAB_ACL} id="tab-acl" disabled>
               {t('dashboard:tabs.acl')}
