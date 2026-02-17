@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { networkDetailsQueryKey } from '@/adapters/network/queryKeys';
+import { networkQueryKey } from '@/adapters/network/queryKeys';
 import { getNetwork } from '@/data/api/network.api';
 import { TNetwork } from '@/domain/entities/network.entity';
 import { useProjectId } from '@/hooks/useProjectId';
@@ -14,7 +14,7 @@ export const useNetwork = <TData>(
   const projectId = useProjectId();
 
   return useQuery<TNetwork, Error, TData>({
-    queryKey: networkDetailsQueryKey(projectId, region ?? '', networkId ?? ''),
+    queryKey: networkQueryKey(projectId, region ?? '', networkId ?? ''),
     queryFn: () => getNetwork({ projectId, region: region!, networkId: networkId! }),
     enabled: !!region && !!networkId,
     select: options?.select,

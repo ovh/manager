@@ -4,14 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Clipboard, ClipboardControl, ClipboardTrigger, Link, Text } from '@ovhcloud/ods-react';
 
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
-
 import { DashboardCardLayout } from '@/components/dashboard/DashboardCardLayout.component';
 import { DashboardTileBlock } from '@/components/dashboard/DashboardTileBlock.component';
 import { useNetwork } from '@/data/hooks/network/useNetwork';
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useFormatGiBSize } from '@/hooks/useFormatShareSize';
-import { useProjectId } from '@/hooks/useProjectId';
+import { PciAppUrlSuffix, usePciAppUrl } from '@/hooks/usePciAppUrl';
 import { useShareParams } from '@/hooks/useShareParams';
 import {
   selectNetworkDetails,
@@ -33,12 +31,7 @@ export const SharePropertiesBlock: React.FC = () => {
     },
   );
 
-  const projectId = useProjectId();
-  const { data: networkUrl } = useNavigationGetUrl([
-    'public-cloud',
-    `#/pci/projects/${projectId}/private-networks`,
-    {},
-  ]);
+  const networkUrl = usePciAppUrl(PciAppUrlSuffix.PrivateNetworks);
 
   const formattedSize = useFormatGiBSize(shareDetails?.size ?? 0);
 
