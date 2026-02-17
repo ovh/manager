@@ -6,9 +6,11 @@ export const mapNetworkDtoToNetwork = (dto: TNetworkDto): TNetwork => ({
   name: dto.name,
   region: dto.region,
   visibility: dto.visibility,
+  vlanId: dto.vlanId,
 });
 
 export const mapSubnetDtoToSubnet = (dto: TSubnetDto): TSubnet => ({
   id: dto.id,
   name: dto.name,
+  cidr: dto.cidr,
 });
