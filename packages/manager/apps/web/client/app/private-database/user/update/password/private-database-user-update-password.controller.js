@@ -28,7 +28,7 @@ angular.module('App').controller(
           value: '',
           confirmation: '',
           condition: {
-            pattern: /^(?=[a-z0-9A-Z]*[A-Z])(?=[a-z0-9A-Z]*[a-z])(?=[a-z0-9A-Z]*[0-9])[a-z0-9A-Z]*$/,
+            pattern: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).+$/,
             length: {
               min: 8,
               max: 31,
