@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.181.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.9...@ovh-ux/manager-container-app@0.181.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1112] ([30c5023](https://github.com/ovh/manager/commit/30c50236af6302a919774558cb8ad2658e49da80))
+* **i18n:** add missing translations [CDS 1119] ([db054d5](https://github.com/ovh/manager/commit/db054d577e6fcc34d73e9b9cd565c9b33a2288a8))
+
+
+### Features
+
+* **container:** add communication announcement modal ([9f4ad59](https://github.com/ovh/manager/commit/9f4ad59b2387acb082e907ef6b5e9e3b18099eb0)), closes [#MANAGER-20268](https://github.com/ovh/manager/issues/MANAGER-20268)
+* **container:** rename pnr switch-back labels ([ff2f26e](https://github.com/ovh/manager/commit/ff2f26e6330f32a2491eab54f9613d764b2cd138)), closes [#MANAGER-20890](https://github.com/ovh/manager/issues/MANAGER-20890)
+
+
+
+
+
 ## [0.180.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.8...@ovh-ux/manager-container-app@0.180.9) (2026-02-11)
 
 

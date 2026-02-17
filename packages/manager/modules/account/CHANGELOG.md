@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.20.5...@ovh-ux/manager-account@0.21.0) (2026-02-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1094] ([f4a0c97](https://github.com/ovh/manager/commit/f4a0c970a7613c2ddba65335aa4f6a73b4b00639))
+
+
+### Features
+
+* **account:** disable gdpr delete cta if services exist ([165f2ab](https://github.com/ovh/manager/commit/165f2abb591ec4cb5b27561ac42263a499b69345)), closes [#MANAGER-20730](https://github.com/ovh/manager/issues/MANAGER-20730)
+
+
+
+
+
 ## [0.20.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.20.4...@ovh-ux/manager-account@0.20.5) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-account

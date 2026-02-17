@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.2...@ovh-ux/manager-billing@0.65.3) (2026-02-17)
+
+
+### Bug Fixes
+
+* **billing:** redirect from corrective invoices to refund for non pl ([a7af8cf](https://github.com/ovh/manager/commit/a7af8cfc5fd6b93e9c906bd6d0f217613817b999)), closes [#MANAGER-20842](https://github.com/ovh/manager/issues/MANAGER-20842)
+* **billing:** replace resiliation form by banner for manual services ([39958fa](https://github.com/ovh/manager/commit/39958fa777480a2c6a7a2afc4677af7b9c0e0402)), closes [#MANAGER-20101](https://github.com/ovh/manager/issues/MANAGER-20101) [#PRB0041661](https://github.com/ovh/manager/issues/PRB0041661)
+
+
+
+
+
 ## [0.65.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.1...@ovh-ux/manager-billing@0.65.2) (2026-02-12)
 
 
