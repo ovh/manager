@@ -60,7 +60,7 @@ export type TShareShareDTO = {
 
 export type TShareSpecsDTO = {
   name: string;
-  share: TShareShareDTO;
+  volume: TShareShareDTO;
   bandwidth: TShareBandwidthDTO;
 };
 
@@ -68,9 +68,6 @@ export type TSharePricingDTO = {
   regions: string[];
   price: number;
   interval: string;
-  showAvailabilityZones: boolean;
-  areIOPSDynamic: boolean;
-  isBandwidthDynamic: boolean;
   specs: TShareSpecsDTO;
 };
 
@@ -86,5 +83,5 @@ export type TShareDTO = {
 export type TShareCatalogDTO = {
   filters: TFiltersDTO;
   regions: TRegionDTO[];
-  shares: TShareDTO[];
+  models: TShareDTO[];
 };

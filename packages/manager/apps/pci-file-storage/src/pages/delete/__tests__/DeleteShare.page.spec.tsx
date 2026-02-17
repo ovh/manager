@@ -78,8 +78,16 @@ describe('DeleteSharePage', () => {
     expect(screen.getByText('delete:input.label')).toBeVisible();
   });
 
-  it('should display error and keep submit button disabled when input is empty', () => {
+  it('should display error and keep submit button disabled when input is empty and touched', async () => {
+    const user = userEvent.setup();
     render(<DeleteSharePage />);
+
+    expect(screen.queryByText('delete:input.error')).toBeNull();
+    expect(screen.getByRole('button', { name: 'delete:submitButton' })).toBeDisabled();
+
+    const input = screen.getByRole('textbox');
+    await user.type(input, 'truc');
+    await user.clear(input);
 
     expect(screen.getByText('delete:input.error')).toBeVisible();
     expect(screen.getByRole('button', { name: 'delete:submitButton' })).toBeDisabled();

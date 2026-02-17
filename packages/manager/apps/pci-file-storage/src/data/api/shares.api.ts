@@ -1,13 +1,13 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TShareDto } from '@/adapters/shares/right/dto.type';
+import { TAggregatedSharesDto, TShareDto } from '@/adapters/shares/right/dto.type';
 import { mapShareDtoToShare } from '@/adapters/shares/right/mapper';
 import { TShare, TShareToCreate } from '@/domain/entities/share.entity';
 
 export const getShares = async (projectId: string): Promise<TShare[]> => {
   return v6
-    .get<TShareDto[]>(`/cloud/project/${projectId}/region/GRA9/share`)
-    .then((response) => response.data.map(mapShareDtoToShare));
+    .get<TAggregatedSharesDto>(`/cloud/project/${projectId}/aggregated/share`)
+    .then((response) => response.data.resources.map(mapShareDtoToShare));
 };
 
 export const getShare = async (

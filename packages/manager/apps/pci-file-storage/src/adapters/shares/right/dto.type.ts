@@ -23,3 +23,7 @@ export type TShareDto = {
   exportLocations?: TShareExportLocationDto[];
   networkId: string;
 };
+
+export type TAggregatedSharesDto = {
+  resources: TShareDto[];
+};
