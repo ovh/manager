@@ -102,15 +102,17 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     });
 
     setViews(viewList);
-    setCurrentView(foundDefaultView || viewList[0]);
+    if (!isLoading && !currentView) {
+      setCurrentView(foundDefaultView || viewList[0]);
 
-    if (foundDefaultView?.columnOrder) {
-      setColumnsOrder(foundDefaultView?.columnOrder);
-    }
+      if (foundDefaultView?.columnOrder) {
+        setColumnsOrder(foundDefaultView?.columnOrder);
+      }
 
-    // Make datagrid reflect current view column visibility
-    if (foundDefaultView?.columnVisibility) {
-      setColumnVisibility(foundDefaultView.columnVisibility);
+      // Make datagrid reflect current view column visibility
+      if (foundDefaultView?.columnVisibility) {
+        setColumnVisibility(foundDefaultView.columnVisibility);
+      }
     }
   }, [preferences, isLoading, error]);
 
