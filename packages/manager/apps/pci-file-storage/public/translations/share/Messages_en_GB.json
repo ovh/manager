@@ -9,7 +9,9 @@
     "share_name": "Share name",
     "location": "Location",
     "creation_date": "Creation date",
-    "mount_path": "Mount path"
+    "mount_path": "Mount path",
+    "private_network": "Private network",
+    "network_name": "Network name"
   },
   "actions": {
     "column": "Actions",
