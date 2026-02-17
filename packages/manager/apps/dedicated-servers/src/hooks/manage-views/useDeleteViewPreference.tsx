@@ -29,7 +29,7 @@ export const useDeleteViewPreference = ({
   onSettled,
 }: UseDeleteViewPreferenceParams) => {
   const queryClient = useQueryClient();
-  const { views } = useContext(ViewContext);
+  const { views, setCurrentView } = useContext(ViewContext);
   const { clearNotifications } = useNotifications();
 
   return useMutation({
@@ -47,6 +47,7 @@ export const useDeleteViewPreference = ({
     },
     onSuccess: async (_, variables) => {
       clearNotifications();
+      setCurrentView(null);
       await queryClient.invalidateQueries({
         queryKey: getManagerPreferencesQueryKey(),
       });
