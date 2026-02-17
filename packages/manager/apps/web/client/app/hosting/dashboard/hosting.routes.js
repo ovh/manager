@@ -102,6 +102,8 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('app.hosting.dashboard.boost', $transition$.params()),
       indyLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('app.hosting.dashboard.indy', $transition$.params()),
+      cdnLogsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.hosting.dashboard.cdn.logs', $transition$.params()),
       goToEmails: /* @ngInject */ ($state) => (email) => {
         return $state.go('app.email.domain.mailing-list', {
           productId: email.domain,
