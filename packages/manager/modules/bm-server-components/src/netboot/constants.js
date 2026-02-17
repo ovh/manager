@@ -31,6 +31,7 @@ export const NETBOOT_GUIDES = {
 export const UNSUPPORTED_SSH_KEY_RESCUES = [
   'WinRescue',
   'rescue-customer-windows',
+  'rescue12-customer-windows',
 ];
 
 export const getNetbootGuideUrl = (subsidiary) => {
