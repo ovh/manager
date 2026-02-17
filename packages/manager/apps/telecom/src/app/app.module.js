@@ -53,6 +53,7 @@ import 'script-loader!leaflet/dist/leaflet-src.js';
 import 'angular-leaflet-directive';
 import 'ng-slide-down';
 import 'script-loader!angularjs-scroll-glue/src/scrollglue.js';
+import 'script-loader!lodash/lodash.min.js';
 import 'ovh-ng-input-password';
 import '@ovh-ux/ui-kit';
 import 'angular-translate-loader-pluggable';
