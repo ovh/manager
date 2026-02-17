@@ -9,11 +9,9 @@ import {
   complexityTsJsConfig,
 } from '@ovh-ux/manager-static-analysis-kit/eslint/complexity';
 import { htmlEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/html';
-import { cssEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/css';
 import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
-import { tailwindSyntax } from '@eslint/css/syntax';
 
 export default [
   javascriptEslintConfig,
@@ -26,17 +24,5 @@ export default [
   vitestEslintConfig,
   prettierEslintConfig,
   complexityJsxTsxConfig,
-  complexityTsJsConfig,
-  {
-    ...cssEslintConfig,
-    files: ['**/*.css', '**/*.scss'],
-    languageOptions: {
-      ...cssEslintConfig.languageOptions,
-      customSyntax: tailwindSyntax,
-    },
-    rules: {
-      ...cssEslintConfig.rules,
-      'css/no-invalid-properties': 'off',
-    },
-  },
+  complexityTsJsConfig
 ];

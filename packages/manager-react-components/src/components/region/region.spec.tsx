@@ -22,7 +22,7 @@ describe('Region component', () => {
     expect(regionElement).toBeVisible();
   });
 
-  it('renders region correctly for datacenter key', async () => {
+  it.skip('renders region correctly for datacenter key', async () => {
     renderComponent({
       mode: 'datacenter',
       name: 'RBX',

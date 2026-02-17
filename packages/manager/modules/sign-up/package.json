@@ -19,7 +19,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.6",
+    "@ovh-ux/manager-config": "8.6.6",
     "flag-icon-css": "^3.4.2",
     "lodash": "^4.17.15"
   },

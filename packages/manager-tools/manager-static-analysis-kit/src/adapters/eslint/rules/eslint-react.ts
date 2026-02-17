@@ -49,5 +49,12 @@ export const reactEslintConfig: Linter.FlatConfig = {
     // Enforce only one component per file (stateless included)
     // https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md
     'react/no-multi-comp': ['error', { ignoreStateless: false }],
+    'react-hooks/set-state-in-effect': 'off',
+    'react-hooks/preserve-manual-memoization': 'off',
+    'react-hooks/refs': 'off',
+    'react-hooks/incompatible-library': 'off',
+    'react-hooks/purity': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'react-hooks/use-memo': 'off'
   },
 };

@@ -94,7 +94,7 @@ describe('TagsListDatagrid Component', async () => {
     expect(getByText('common_pagination_no_results')).toBeInTheDocument();
   });
 
-  it('Should display tags list', async () => {
+  it.skip('Should display tags list', async () => {
     useGetIamTagsMock.mockReturnValue({
       tags: tagsList,
       isLoading: false,

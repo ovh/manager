@@ -31,7 +31,7 @@
     "prepare": "rollup -c --environment BUILD:production"
   },
   "dependencies": {
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/request-tagger": "0.5.5",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

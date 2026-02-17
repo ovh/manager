@@ -12,6 +12,9 @@ import process from 'node:process';
 
 import { yarnPostInstall } from './kernel/pnpm/pnpm-deps-manager.js';
 import { logger } from './kernel/utils/log-manager.js';
+import { attachCleanupSignals, handleProcessAbortSignals } from './kernel/utils/process-utils.js';
+
+attachCleanupSignals(handleProcessAbortSignals);
 
 /**
  * Main entrypoint for the post-installation routine.
@@ -36,6 +39,7 @@ async function main() {
   } catch (err) {
     logger.error('❌ manager-pm postinstall failed:');
     logger.error(err.stack || err.message || err);
+    await handleProcessAbortSignals('postinstall-error', err);
     process.exit(1);
   }
 }

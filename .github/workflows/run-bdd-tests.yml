@@ -1,59 +1,150 @@
 name: Run tests
-on: [push]
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Test mode"
+        required: true
+        default: heavy
+        type: choice
+        options:
+          - light
+          - heavy
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: false
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: true
+
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Restore/create node_modules cache
-        uses: actions/cache@v3
+
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
+
+      # ------------------------------------------
+      # Yarn cache (tarballs only, standard path)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
       - name: Install repository
-        run: yarn install --frozen-lockfile
-      - name: Build covered packages and dependencies
-        run: |
-          yarn build --filter="./packages/manager/core/*" --concurrency=5
-          yarn build --filter="./packages/manager-react-components"
-          yarn build --filter="./packages/manager/modules/order"
-          yarn build --filter="./packages/manager/modules/common-api"
-          yarn build --filter="./packages/manager/modules/common-translations"
-          yarn build --filter="./packages/manager/modules/vcd-api"
-          yarn build --filter="./packages/manager/modules/manager-pci-common"
-          yarn build --filter="./packages/manager/modules/network-common"
-          yarn build --filter="./packages/components/ovh-payment-method"
-      - name: Run tests on changed packages
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
+
+      # ------------------------------------------
+      # RUN TESTS (light/heavy)
+      # ------------------------------------------
+      - name: Run tests (light/heavy)
+        env:
+          MODE: ${{ github.event.inputs.mode || 'heavy' }}
         run: |
+          set -euo pipefail
+
           BRANCH=$(git branch --show-current)
-          echo "My branch is $BRANCH"
+          echo "Current branch is $BRANCH"
+          echo "Selected MODE=$MODE"
+
           if [[ "$BRANCH" == "master" ]]; then
-            echo "My branch is master and no unit test to run, exit..."
+            echo "Current branch is master -> skipping"
             exit 0
           fi
-          BASE_BRANCH=$(gh pr view --json baseRefName -q ".baseRefName")
 
-          if [[ -z "$BASE_BRANCH" ]]; then
-            export BASE_BRANCH="master"
-            export CURRENT_BRANCH=${BRANCH}
-            echo "NO PR FOUND for branch $BRANCH from ${BASE_BRANCH}"
+          if [[ "$MODE" == "light" ]]; then
+            echo "LIGHT mode: test last commit only (HEAD~1..HEAD)"
+
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="HEAD~1" \
+              --head="HEAD"
           else
-            echo "Base Branch is $BASE_BRANCH"
-            echo "current Branch is ${BRANCH}"
-            export BASE_BRANCH="${BASE_BRANCH//\"/}"
-            export CURRENT_BRANCH="${BRANCH//\"/}"
-            echo "BASE_BRANCH=$BASE_BRANCH" >> $GITHUB_ENV
-            echo "CURRENT_BRANCH=$CURRENT_BRANCH" >> $GITHUB_ENV
+            echo "HEAVY mode: test full diff (NX_BASE..NX_HEAD)"
+            echo "NX_BASE=$NX_BASE"
+            echo "NX_HEAD=$NX_HEAD"
+
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="$NX_BASE" \
+              --head="$NX_HEAD"
           fi
-          yarn test --concurrency=1 --filter=...[origin/${BASE_BRANCH}...origin/${BRANCH}]

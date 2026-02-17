@@ -9,37 +9,38 @@ import {
   privateModulesPath,
   rootPackageJsonPath,
 } from '../../playbook/playbook-config.js';
-import {
-  clearRootWorkspaces,
-  getCatalogPaths,
-  readCatalog,
-  updateRootWorkspacesToYarnOnly,
-} from '../utils/catalog-utils.js';
+import { getCatalogsPaths, readCatalog } from '../utils/catalog-utils.js';
 import { getPnpmPrivateModules, getTurboPrivateFilters } from '../utils/dependencies-utils.js';
 import { loadJson } from '../utils/json-utils.js';
 import { logger } from '../utils/log-manager.js';
 import { removePackageManager, restorePackageManager } from '../utils/package-manager-utils.js';
+import { injectTools } from '../utils/tools-utils.js';
+import {
+  clearRootWorkspaces,
+  updateRootWorkspacesFromCatalogs,
+  updateRootWorkspacesToYarnOnly,
+} from '../utils/workspace-utils.js';
 import { bootstrapPnpm, getPnpmPlatformExecutablePath } from './pnpm-bootstrap.js';
 
 /**
- * Create a temporary `pnpm-workspace.yaml` inside the app folder.
+ * Create a temporary `pnpm-workspace.yaml` inside the target folder.
  * This file overrides dependencies so PNPM can resolve:
  * - Private packages (linked locally with `link:`),
  * - Normalized versions (forced versions for consistency).
  *
- * @param {string} appPath - Absolute path to the app being installed.
- * @param {object} appPkg - Parsed package.json of the app.
+ * @param {string} targetPath - Absolute path to the target being installed.
+ * @param {object} targetPackage - Parsed package.json of the target.
  * @param {Map<string,string>} privateDeps - Map of private package names → absolute paths.
  * @param {Record<string,string>} normalizedVersions - Map of normalized dependency versions.
  * @returns {Promise<string>} Absolute path to the temporary workspace file created.
  */
-async function createPnpmWorkspaceFile(appPath, appPkg, privateDeps, normalizedVersions) {
+async function createPnpmWorkspaceFile(targetPath, targetPackage, privateDeps, normalizedVersions) {
   logger.info(`📝 [workspace] Collecting dependencies from package.json...`);
 
   const deps = {
-    ...(appPkg.dependencies ?? {}),
-    ...(appPkg.devDependencies ?? {}),
-    ...(appPkg.peerDependencies ?? {}),
+    ...(targetPackage.dependencies ?? {}),
+    ...(targetPackage.devDependencies ?? {}),
+    ...(targetPackage.peerDependencies ?? {}),
   };
   logger.info(`📦 [workspace] Found ${Object.keys(deps).length} deps in package.json`);
 
@@ -48,7 +49,7 @@ async function createPnpmWorkspaceFile(appPath, appPkg, privateDeps, normalizedV
   // Always link ALL private packages
   logger.info(`🔎 [workspace] Linking all private packages...`);
   for (const [depName, depPath] of privateDeps.entries()) {
-    const relativePath = path.relative(appPath, depPath);
+    const relativePath = path.relative(targetPath, depPath);
     overrideEntries[depName] = `link:${relativePath}`;
     logger.info(`   ↳ linked private: ${depName} → ${relativePath}`);
   }
@@ -72,22 +73,22 @@ async function createPnpmWorkspaceFile(appPath, appPkg, privateDeps, normalizedV
     ``,
   ].join('\n');
 
-  const workspacePath = path.join(appPath, 'pnpm-workspace.yaml');
+  const workspacePath = path.join(targetPath, 'pnpm-workspace.yaml');
   await fs.writeFile(workspacePath, yaml, 'utf-8');
   logger.success(`📝 [workspace] Created temporary ${workspacePath}`);
   return workspacePath;
 }
 
 /**
- * Prepare app context for PNPM install (package.json, normalized versions, private deps, filters).
+ * Prepare target context for PNPM install (package.json, normalized versions, private deps, filters).
  *
- * @param {string} appPath
+ * @param {string} targetPath
  * @returns {Promise<{pkg: object, normalizedVersions: Record<string,string>, privateDeps: Map<string,string>}
  */
-async function prepareAppContext(appPath) {
-  logger.info(`📖 Reading ${appPath}/package.json...`);
-  const pkg = await loadJson(path.join(appPath, 'package.json'));
-  logger.success(`✔ Loaded package.json for app: ${pkg.name ?? '(unknown)'}`);
+async function prepareTargetContext(targetPath) {
+  logger.info(`📖 Reading ${targetPath}/package.json...`);
+  const pkg = await loadJson(path.join(targetPath, 'package.json'));
+  logger.success(`✔ Loaded package.json for target: ${pkg.name ?? '(unknown)'}`);
 
   logger.info(`📖 Loading normalized versions from: ${normalizedVersionsPath}`);
   const normalizedVersions = await loadJson(normalizedVersionsPath);
@@ -103,39 +104,43 @@ async function prepareAppContext(appPath) {
 /**
  * Run PNPM install with provided filters.
  *
- * @param {string} appPath
+ * @param {string} targetPath
  * @param {string} pnpmBin
  */
-function runPnpmInstall(appPath, pnpmBin) {
+function runPnpmInstall(targetPath, pnpmBin) {
   const args = [
     'install',
     '--ignore-scripts',
     '--no-lockfile',
+    '--prefer-offline',
     `--store-dir=${path.join(managerRootPath, 'target/.pnpm-store')}`,
   ];
 
   logger.info(`▶ Running pnpm ${args.join(' ')}`);
-  execSync(`${pnpmBin} ${args.join(' ')}`, { cwd: appPath, stdio: 'inherit' });
+  execSync(`${pnpmBin} ${args.join(' ')}`, {
+    cwd: targetPath,
+    stdio: 'inherit',
+  });
 }
 
 /**
- * Install dependencies for a single app using PNPM.
+ * Install dependencies for a single target using PNPM.
  *
  * Steps:
  *  1. Remove `packageManager` field from root package.json
- *  2. Load app context (package.json, normalized versions, private deps, filters)
+ *  2. Load target context (package.json, normalized versions, private deps, filters)
  *  3. Generate a temporary pnpm-workspace.yaml
  *  4. Run PNPM install with filters
  *  5. Clean up temporary files
  *  6. Restore `packageManager` field in root package.json
  *
  * @async
- * @function installAppDeps
- * @param {string} appPath - Absolute path to the app folder.
+ * @function installTargetDeps
+ * @param {string} targetPath - Absolute path to the target folder.
  * @throws {Error} If PNPM install fails.
  */
-export async function installAppDeps(appPath) {
-  logger.info(`🚀 Starting PNPM install for app at: ${appPath}`);
+export async function installTargetDeps(targetPath) {
+  logger.info(`🚀 Starting PNPM install for target at: ${targetPath}`);
   const pnpmBin = getPnpmPlatformExecutablePath(os.platform());
 
   // Step 1: Remove packageManager from root
@@ -144,17 +149,17 @@ export async function installAppDeps(appPath) {
   let workspaceFile = null;
   try {
     // Step 2: Load context
-    const { pkg, normalizedVersions, privateDeps } = await prepareAppContext(appPath);
+    const { pkg, normalizedVersions, privateDeps } = await prepareTargetContext(targetPath);
 
     // Step 3: Create temporary workspace
-    workspaceFile = await createPnpmWorkspaceFile(appPath, pkg, privateDeps, normalizedVersions);
+    workspaceFile = await createPnpmWorkspaceFile(targetPath, pkg, privateDeps, normalizedVersions);
 
     // Step 4: Run PNPM install
-    runPnpmInstall(appPath, pnpmBin);
+    runPnpmInstall(targetPath, pnpmBin);
 
     logger.success(`✅ PNPM install completed for ${pkg.name}`);
   } catch (err) {
-    logger.error(`❌ PNPM install failed for app at ${appPath}: ${err.message}`);
+    logger.error(`❌ PNPM install failed for target at ${targetPath}: ${err.message}`);
     throw err;
   } finally {
     // Step 5: Cleanup
@@ -221,11 +226,12 @@ export async function buildPrivatePackages() {
 /**
  * Yarn pre-install hook:
  * - Inject Yarn catalog only into root package.json workspaces.
- *   This ensures "yarn install" only touches Yarn-managed apps.
+ *   This ensures "yarn install" only touches Yarn-managed targets.
  */
 export async function yarnPreInstall() {
   logger.info('🧩 Yarn preinstall: limit workspaces to Yarn catalog');
   await updateRootWorkspacesToYarnOnly();
+  await injectTools();
   logger.info('✅ Root workspaces set to Yarn-only for installation.');
 }
 
@@ -233,32 +239,33 @@ export async function yarnPreInstall() {
  * Yarn post-install hook:
  *  - Ensure PNPM is bootstrapped locally.
  *  - Build and link private packages into PNPM store.
- *  - Install dependencies for each PNPM-catalog app via PNPM.
+ *  - Install dependencies for each PNPM-catalog target via PNPM.
  *  - Restore root workspaces to the merged (Yarn ∪ PNPM) view.
  */
 export async function yarnPostInstall() {
-  logger.info('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM apps');
+  logger.info('🧩 Yarn postinstall: bootstrap PNPM, link privates, install PNPM targets');
 
   try {
-    const { pnpmCatalogPath } = getCatalogPaths();
-    const pnpmApps = await readCatalog(pnpmCatalogPath);
+    const { pnpmCatalogPath } = getCatalogsPaths();
+    const pnpmTargets = await readCatalog(pnpmCatalogPath);
 
-    if (pnpmApps?.length > 0) {
+    if (pnpmTargets?.length > 0) {
       await bootstrapPnpm();
+      await updateRootWorkspacesFromCatalogs();
       await buildPrivatePackages();
 
-      for (const relAppPath of pnpmApps) {
-        const abs = path.isAbsolute(relAppPath)
-          ? relAppPath
-          : path.join(managerRootPath, relAppPath);
-        await installAppDeps(abs);
+      for (const relTargetPath of pnpmTargets) {
+        const targetAbsolutePath = path.isAbsolute(relTargetPath)
+          ? relTargetPath
+          : path.join(managerRootPath, relTargetPath);
+        await installTargetDeps(targetAbsolutePath);
       }
 
       logger.info(
-        '🎉 Yarn postinstall complete: PNPM store ready; PNPM apps installed; workspaces restored.',
+        '🎉 Yarn postinstall complete: PNPM store ready; PNPM targets installed; workspaces restored.',
       );
     } else {
-      logger.info('😴 No applications marked for PNPM installation found in workspace — skipping.');
+      logger.info('😴 No targets marked for PNPM installation found in workspace — skipping.');
     }
   } catch (error) {
     logger.error('❌ Yarn postinstall failed:');
