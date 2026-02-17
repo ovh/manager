@@ -57,16 +57,16 @@ const AddNetworkForm: FC = () => {
   };
 
   useEffect(() => {
-    if (networks)
-      setValue('newPrivateNetwork', networks.ovhPrivateNetwork, {
+    if (networks) {
+      const network = isLocalZone
+        ? { ...networks.ovhPrivateNetwork, vlanId: null }
+        : networks.ovhPrivateNetwork;
+      setValue('newPrivateNetwork', network, {
         shouldValidate: true,
       });
+    }
     setValue('willGatewayBeAttached', false);
-  }, [networks, setValue]);
-
-  useEffect(() => {
-    if (isLocalZone) setValue('newPrivateNetwork.vlanId', null);
-  }, [isLocalZone, setValue]);
+  }, [networks, isLocalZone, setValue]);
 
   return (
     <form
