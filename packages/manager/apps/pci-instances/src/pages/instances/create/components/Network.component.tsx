@@ -133,7 +133,7 @@ const Network: FC = () => {
         </>
       ) : (
         <>
-          <FormField className="my-4 max-w-[32%]">
+          <FormField className="my-4 max-w-[45%]">
             <FormFieldLabel>
               {t(
                 'creation:pci_instance_creation_select_network_dropdown_label',
@@ -145,7 +145,6 @@ const Network: FC = () => {
               onValueChange={handleSelectNetwork}
             >
               <SelectControl
-                className="h-[2.8em]"
                 customItemRenderer={({ selectedItems }) => (
                   <>
                     {selectedItems[0] && (

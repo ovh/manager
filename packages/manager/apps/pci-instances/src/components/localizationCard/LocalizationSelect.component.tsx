@@ -26,6 +26,7 @@ type TLocalizationSelectProps<TCustomData extends TCustomRegionItemData> = Omit<
 > & {
   regions: SelectGroupItem<TCustomData>[];
   className?: string;
+  createPortal: boolean;
 };
 
 const continentDividerClassname =
@@ -34,6 +35,7 @@ const continentDividerClassname =
 const LocalizationSelect = <TCustomData extends TCustomRegionItemData>({
   regions,
   className,
+  createPortal = true,
   ...props
 }: TLocalizationSelectProps<TCustomData>) => {
   const { t } = useTranslation(['regions', 'common']);
@@ -74,6 +76,7 @@ const LocalizationSelect = <TCustomData extends TCustomRegionItemData>({
         />
         <SelectContent
           className={continentDividerClassname}
+          createPortal={createPortal}
           customGroupRenderer={({ label }) => (
             <span>
               {t(`common:pci_instances_common_instance_continent_${label}`)}
