@@ -26,12 +26,14 @@ export type ManageViewConfigProps = {
 export const ManageViewConfig = ({
   drawerVisibility,
 }: ManageViewConfigProps) => {
-  const [accordionValue, setAccordionValue] = useState<string[]>([]);
+  const [accordionValue, setAccordionValue] = useState<string[]>([
+    ACCORDION_VALUES.order,
+  ]);
   const { columnsConfig, setOrderedColumns } = useContext(ViewContext);
   const { t } = useTranslation('manage-view');
 
-  if (!drawerVisibility && !!accordionValue.length) {
-    setAccordionValue([]);
+  if (!drawerVisibility && accordionValue.includes(ACCORDION_VALUES.groupBy)) {
+    setAccordionValue([ACCORDION_VALUES.order]);
   }
 
   return (
