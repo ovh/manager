@@ -182,8 +182,8 @@ const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBand
 
 const mapShareSpecsDTOToEntity = (pricing: TSharePricingDTO): TShareSpecs => ({
   name: pricing.specs.name,
-  capacity: mapShareCapacityDTOToEntity(pricing.specs.share.capacity),
-  iops: mapShareIOPSDTOToEntity(pricing.specs.share.iops),
+  capacity: mapShareCapacityDTOToEntity(pricing.specs.volume.capacity),
+  iops: mapShareIOPSDTOToEntity(pricing.specs.volume.iops),
   bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
   microRegionIds: pricing.regions,
   pricing: {
@@ -221,20 +221,18 @@ const mapShareDTOToEntity = (share: TShareDTO): TShare => ({
   specsIds: share.pricings.map((pricing) => pricing.specs.name),
 });
 
-export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => {
-  return {
-    entities: {
-      ...normalizeRegions({
-        macroMapper: mapRegionDTOtoRegionEntity,
-        microMapper: mapRegionDTOtoMicroRegionEntity,
-      })(catalogDto.regions),
-      deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
-      continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
-      shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.shares, mapShareDTOToEntity),
-      shareSpecs: normalizeShareSpecs(catalogDto.shares),
-    },
-    relations: {
-      continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),
-    },
-  };
-};
+export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => ({
+  entities: {
+    ...normalizeRegions({
+      macroMapper: mapRegionDTOtoRegionEntity,
+      microMapper: mapRegionDTOtoMicroRegionEntity,
+    })(catalogDto.regions),
+    deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
+    continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
+    shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.models, mapShareDTOToEntity),
+    shareSpecs: normalizeShareSpecs(catalogDto.models),
+  },
+  relations: {
+    continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),
+  },
+});
