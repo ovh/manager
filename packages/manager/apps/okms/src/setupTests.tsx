@@ -67,6 +67,46 @@ vi.mock('@/common/hooks/useOkmsTracking', () => ({
   useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
 }));
 
+// Mock Monaco Editor as a textarea for tests (Monaco uses contenteditable, not compatible with userEvent)
+vi.mock('@monaco-editor/react', () => {
+  const MonacoMock = ({
+    value = '',
+    onChange,
+    onMount,
+    wrapperProps = {},
+  }: {
+    value?: string;
+    onChange?: (value: string) => void;
+    onMount?: (editor: { onDidBlurEditorWidget: (fn: () => void) => void }) => void;
+    wrapperProps?: Record<string, unknown>;
+  }) => {
+    const blurCallbackRef = React.useRef<(() => void) | null>(null);
+    React.useEffect(() => {
+      onMount?.({
+        onDidBlurEditorWidget: (fn: () => void) => {
+          blurCallbackRef.current = fn;
+          return {
+            dispose: () => {
+              blurCallbackRef.current = null;
+            },
+          };
+        },
+      });
+    }, [onMount]);
+    return (
+      <textarea
+        {...wrapperProps}
+        data-testid={wrapperProps?.['data-testid']}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
+        onBlur={() => blurCallbackRef.current?.()}
+        rows={12}
+      />
+    );
+  };
+  return { default: MonacoMock, Editor: MonacoMock };
+});
+
 // Mocking ODS components
 vi.mock('@ovh-ux/muk', async () => {
   const original = await vi.importActual('@ovh-ux/muk');

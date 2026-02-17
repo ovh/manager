@@ -43,7 +43,7 @@
   "error_empty_keys": "Vous ne pouvez pas avoir de clé vide.",
   "error_invalid_duration": "La durée d'expiration doit être une durée (ex: 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "JSON non valide",
-  "error_key_value_conversion": "La valeur du secret ne peut pas être convertie en paires clé-valeur.",
+  "error_key_value_conversion": "La valeur du secret ne peut pas être convertie en paires clé-valeur. Utilisez l'éditeur JSON.",
   "error_path_allowed_characters": "Le path ne peut contenir que les caractères suivants: A-Z a-z 0-9 . _ : / = @ et -",
   "error_path_structure": "Le path ne peut commencer ou finir par '/', ni contenir deux '/' à la suite.",
   "error_update_settings": "Une erreur est survenue lors de la mise à jour des paramètres",
