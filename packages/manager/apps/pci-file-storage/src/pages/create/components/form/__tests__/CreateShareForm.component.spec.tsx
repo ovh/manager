@@ -19,6 +19,14 @@ import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 vi.mock('@/data/hooks/catalog/useShareCatalog');
 vi.mock('@/pages/create/hooks/useShareCreation');
 
+const mockAddSuccess = vi.fn();
+
+vi.mock('@ovh-ux/muk', () => ({
+  useNotifications: () => ({
+    addSuccess: mockAddSuccess,
+  }),
+}));
+
 vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
   return {
@@ -393,5 +401,34 @@ describe('CreateShareForm', () => {
     expect(mockCreateShare).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('..');
     expect(mockToast).not.toHaveBeenCalled();
+  });
+
+  it('should add success notification when create share succeeds', async () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    mockUseShareCreation.mockImplementation((_, { onSuccess }) => ({
+      createShare: onSuccess,
+      isPending: false,
+    }));
+
+    renderWithMockedForm(<CreateShareForm />, {
+      defaultValues: {
+        macroRegion: 'GRA',
+        shareData: {
+          name: 'test-share',
+          microRegion: 'GRA1',
+          specName: 'nfs',
+          size: 150,
+        },
+      },
+    });
+
+    const submitButton = screen.getByText(/actions:validate$/);
+    await userEvent.click(submitButton);
+    expect(mockAddSuccess).toHaveBeenCalled();
   });
 });

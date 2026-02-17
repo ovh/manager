@@ -80,6 +80,7 @@
     }
   },
   "submit": {
-    "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}"
+    "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}",
+    "success": "Lo share {{name}} è in fase di creazione"
   }
 }

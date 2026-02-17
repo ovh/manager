@@ -80,6 +80,7 @@
     }
   },
   "submit": {
-    "error": "Wystąpił błąd podczas dodawania share: {{error}}"
+    "error": "Wystąpił błąd podczas dodawania share: {{error}}",
+    "success": "Udział {{name}} jest w trakcie tworzenia"
   }
 }
