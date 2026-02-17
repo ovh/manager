@@ -4,6 +4,6 @@
   "key_management_service_terminate_error": "Ocorreu um erro. {{error}}",
   "key_management_service_terminate_heading": "Rescindir o meu KMS",
   "key_management_service_terminate_description": "Introduza a palavra “{{terminateKeyword}}” para confirmar a rescisão do seu KMS",
-  "key_management_service_terminate_success_banner": "O seu pedido de rescisão do seu domínio OKMS {{ServiceName}} foi processado. Um e-mail contendo o procedimento foi enviado para si.",
-  "key_management_service_terminate_success_banner_us": "O seu pedido de rescisão do seu domínio OKMS {{ServiceName}} foi processado. Um e-mail de confirmação foi enviado para si."
+  "key_management_service_terminate_success_banner": "O pedido de rescisão do seu domínio OKMS {{ServiceName}} foi devidamente registado. Um e-mail com o procedimento foi-lhe enviado.",
+  "key_management_service_terminate_success_banner_us": "O pedido de rescisão do seu domínio OKMS {{ServiceName}} foi devidamente registado. Foi-lhe enviado um e-mail de confirmação."
 }

@@ -5,9 +5,9 @@
   "billing_corrective_invoices_table_original_invoice": "Factura original",
   "billing_corrective_invoices_table_date": "Fecha de emisión",
   "billing_corrective_invoices_table_total": "Importe sin IVA",
-  "billing_corrective_invoices_table_total_with_vat": "Importe con IVA",
+  "billing_corrective_invoices_table_total_with_vat": "Importe IVA incl.",
   "billing_corrective_invoices_table_download_html": "Ver la versión HTML",
   "billing_corrective_invoices_table_download_pdf": "Ver la versión PDF",
   "billing_corrective_invoices_load_error": "Se ha producido un error al cargar las facturas correctivas.",
-  "billing_corrective_invoices_empty": "Le informamos que no se han emitido facturas correctivas para los períodos correspondientes."
+  "billing_corrective_invoices_empty": "Le informamos de que no se han emitido facturas correctivas para los períodos correspondientes."
 }

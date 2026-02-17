@@ -85,11 +85,11 @@
   "no_version": "Brak wersji",
   "no_version_message": "Ta poufna dana nie ma wersji.",
   "create_okms_domain": "Utwórz domenę OKMS",
-  "create_secret_form_okms_not_selected": "Brak dostępnych domen OKMS w tym regionie. Proszę utworzyć domenę OKMS przed utworzeniem sekretu.",
+  "create_secret_form_okms_not_selected": "Brak dostępnych domen OKMS w tym regionie. Utwórz domenę OKMS, zanim dodasz poufne dane.",
   "enable_deactivate_version_after": "Ustaw czas wygaśnięcia",
   "enable_max_versions": "Ustaw maksymalną liczbę wersji",
   "enable_cas_required": "Skonfiguruj CAS",
-  "form_helper_max_versions_default": "Podaj \"0\", aby użyć wartości domyślnej ({{value}}).",
-  "form_helper_max_versions_domain": "Podaj \"0\", aby użyć wartości domeny OKMS ({{value}}).",
-  "secret_settings": "Ustawienia sekretu"
+  "form_helper_max_versions_default": "Wpisz \"0\", aby użyć wartości domyślnej ({{value}}).",
+  "form_helper_max_versions_domain": "Wpisz \"0\", aby użyć wartości domeny OKMS ({{value}}).",
+  "secret_settings": "Ustawienia danych poufnych"
 }

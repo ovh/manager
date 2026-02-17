@@ -80,8 +80,8 @@
   "bulkDeleteVersionsDescription_one": "Czy chcesz trwale usunąć {{count}} wersję? Ta akcja nie może być anulowana.",
   "bulkDeleteVersionsDescription_other": "Czy chcesz trwale usunąć {{count}} wersje? Ta akcja nie może być anulowana.",
   "bulkDeleteVersionsConfirmation": "Wpisz {{confirmation}}, aby potwierdzić",
-  "downloadErrorDescription": "Błąd podczas przesyłania pliku",
-  "downloadErrorStatus": "Błąd podczas przesyłania: {{status}}",
-  "downloadErrorUnknownType": "Nieznany typ przesyłania",
+  "downloadErrorDescription": "Wystąpił błąd podczas pobierania pliku",
+  "downloadErrorStatus": "Błąd podczas pobierania: {{status}}",
+  "downloadErrorUnknownType": "Nieznany typ pobierania",
   "openFolder": "Otwórz folder {{name}}"
 }

@@ -1,11 +1,11 @@
 {
-  "voip_consumption_page_title": "Acompanhamento de consumo de telefonia",
+  "voip_consumption_page_title": "Seguimento dos consumos telefonia",
   "voip_consumption_header_billing_account": "Grupo de faturação",
   "voip_consumption_header_description": "Descrição",
-  "voip_consumption_header_total_amount": "Montante total (sem IVA)",
-  "voip_consumption_header_total_outplan": "Montante fora de pacote (sem IVA)",
+  "voip_consumption_header_total_amount": "Montante total (s/IVA)",
+  "voip_consumption_header_total_outplan": "Montante sem pagamento fixo (s/IVA)",
   "voip_consumption_action_download_csv": "Transferir o ficheiro CSV",
-  "voip_consumption_action_download_received_csv": "Transferir o ficheiro CSV das chamadas recebidas",
-  "voip_consumption_action_download_pdf": "Transferir o ficheiro PDF",
-  "voip_consumption_no_data_available": "Não disponível"
+  "voip_consumption_action_download_received_csv": "Descarregar o ficheiro CSV das chamadas recebidas",
+  "voip_consumption_action_download_pdf": "Fazer download do ficheiro PDF",
+  "voip_consumption_no_data_available": "Indisponível"
 }

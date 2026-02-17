@@ -3,7 +3,7 @@
   "voip_consumption_header_billing_account": "Grupo de facturación",
   "voip_consumption_header_description": "Descripción",
   "voip_consumption_header_total_amount": "Importe total (sin IVA)",
-  "voip_consumption_header_total_outplan": "Importe fuera de paquete (sin IVA)",
+  "voip_consumption_header_total_outplan": "Importe no incluido (IVA no incl.)",
   "voip_consumption_action_download_csv": "Descargar el archivo CSV",
   "voip_consumption_action_download_received_csv": "Descargar el archivo CSV de las llamadas recibidas",
   "voip_consumption_action_download_pdf": "Descargar el archivo PDF",

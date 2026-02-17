@@ -1,13 +1,13 @@
 {
   "billing_payment_corrective_invoices": "Korrekturrechnungen",
   "billing_corrective_invoices_table_id": "Referenz",
-  "billing_corrective_invoices_table_order_id": "Bestellscheinnummer",
+  "billing_corrective_invoices_table_order_id": "Bestellnummer",
   "billing_corrective_invoices_table_original_invoice": "Originalrechnung",
-  "billing_corrective_invoices_table_date": "Ausgabedatum",
-  "billing_corrective_invoices_table_total": "Betrag ohne Steuern",
-  "billing_corrective_invoices_table_total_with_vat": "Betrag inklusive Steuern",
+  "billing_corrective_invoices_table_date": "Ausstellungsdatum",
+  "billing_corrective_invoices_table_total": "Betrag ohne MwSt.",
+  "billing_corrective_invoices_table_total_with_vat": "Betrag inkl. MwSt.",
   "billing_corrective_invoices_table_download_html": "HTML-Version anzeigen",
   "billing_corrective_invoices_table_download_pdf": "PDF-Version anzeigen",
   "billing_corrective_invoices_load_error": "Beim Laden der Korrekturrechnungen ist ein Fehler aufgetreten.",
-  "billing_corrective_invoices_empty": "Wir möchten Sie darüber informieren, dass keine Korrekturrechnungen für die betreffenden Zeiträume ausgestellt wurden."
+  "billing_corrective_invoices_empty": "Wir möchten Sie hiermit darüber informieren, dass für die betreffenden Zeiträume keine Korrekturrechnungen erstellt wurden."
 }

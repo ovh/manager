@@ -1,11 +1,11 @@
 {
-  "voip_consumption_page_title": "Telephony consumption tracking",
+  "voip_consumption_page_title": "Telephony usage monitoring",
   "voip_consumption_header_billing_account": "Billing group",
   "voip_consumption_header_description": "Description",
-  "voip_consumption_header_total_amount": "Total amount (excl. VAT)",
-  "voip_consumption_header_total_outplan": "Amount outside package (excl. VAT)",
-  "voip_consumption_action_download_csv": "Download CSV file",
-  "voip_consumption_action_download_received_csv": "Download CSV file of received calls",
-  "voip_consumption_action_download_pdf": "Download PDF file",
-  "voip_consumption_no_data_available": "Not available "
+  "voip_consumption_header_total_amount": "Total amount (ex. VAT)",
+  "voip_consumption_header_total_outplan": "Amount outside of the plan (ex. VAT)",
+  "voip_consumption_action_download_csv": "Download the CSV file",
+  "voip_consumption_action_download_received_csv": "Download the CSV file of received calls",
+  "voip_consumption_action_download_pdf": "Download PDF",
+  "voip_consumption_no_data_available": "Not available"
 }

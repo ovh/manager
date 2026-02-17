@@ -80,8 +80,8 @@
   "bulkDeleteVersionsDescription_one": "Vuoi eliminare definitivamente {{count}} versione? Questa azione non può essere annullata.",
   "bulkDeleteVersionsDescription_other": "Vuoi eliminare definitivamente {{count}} versioni? Questa azione non può essere annullata.",
   "bulkDeleteVersionsConfirmation": "Digita {{confirmation}} per confermare",
-  "downloadErrorDescription": "Errore durante il caricamento del file",
-  "downloadErrorStatus": "Errore durante il caricamento: {{status}}",
-  "downloadErrorUnknownType": "Tipo di caricamento sconosciuto",
+  "downloadErrorDescription": "Errore durante il download del file",
+  "downloadErrorStatus": "Errore durante il download: {{status}}",
+  "downloadErrorUnknownType": "Tipo di download sconosciuto",
   "openFolder": "Apri la cartella {{name}}"
 }
