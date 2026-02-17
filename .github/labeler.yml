@@ -63,8 +63,8 @@ sign-up:
 enabler:
   - packages/manager/apps/carbon-calculator/**
   - packages/manager/apps/iam/**
-muk:
-  - packages/manager-ui-kit/**
+manager-components:
+  - packages/manager-components/src/**
 common:
   - packages/components/**
   - packages/manager/core/**

@@ -58,8 +58,8 @@ export const combinedReportOutputRootDir = path.resolve(
 
 export const staticDiscoveredLibraries = [
   {
-    fullPath: 'packages/manager-ui-kit',
-    shortPath: 'manager-ui-kit',
+    fullPath: 'packages/manager-react-components',
+    shortPath: 'manager-react-components',
     packageName: '@ovh-ux/muk',
   },
 ];
