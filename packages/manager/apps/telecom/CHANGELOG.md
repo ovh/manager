@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.0...@ovh-ux/manager-telecom@16.26.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** fix blank page on svi vxml feature ([0a3b71c](https://github.com/ovh/manager/commit/0a3b71c13321ecb904b726bb7a8d22c2317be87c)), closes [#INC0190707](https://github.com/ovh/manager/issues/INC0190707)
+
+
+
+
+
 # [16.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.25.4...@ovh-ux/manager-telecom@16.26.0) (2026-02-16)
 
 
