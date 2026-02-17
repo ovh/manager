@@ -10,7 +10,11 @@ import { vi } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertDrawerVisibility, clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertDrawerVisibility,
+  clickJsonEditorToggle,
+} from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -28,8 +32,8 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   const user = userEvent.setup();
   await renderTestApp(url);
 
-  // Check if the drawer is open
-  const drawer = await assertDrawerVisibility({ state: 'visible' });
+  // Check if the drawer is open (use MEDIUM timeout for lazy-loaded route)
+  const drawer = await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
   // Wait for the title to appear (drawer content to load)
   await waitFor(() => {
@@ -62,12 +66,11 @@ describe('Secret create version drawer page test suite', () => {
     // Click on the JSON toggle to switch to the JSON editor
     await clickJsonEditorToggle(user);
 
-    // Check if the data input contains the secret value
+    // Check if the data input contains the secret value (Monaco editor formats JSON with 2 spaces)
     const dataInput = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.INPUT_DATA);
     expect(dataInput).toBeInTheDocument();
-    expect(dataInput).toHaveValue(
-      JSON.stringify(getSecretMockWithData(mockedSecret).version?.data),
-    );
+    const expectedData = getSecretMockWithData(mockedSecret).version?.data;
+    expect(JSON.parse((dataInput as HTMLTextAreaElement).value || '{}')).toEqual(expectedData);
   });
 
   it('should display no value if the url does not specify a default version id', async () => {
@@ -131,6 +134,6 @@ describe('Secret create version drawer page test suite', () => {
     });
 
     // Wait for the drawer to close
-    await assertDrawerVisibility({ state: 'hidden' });
+    await assertDrawerVisibility({ state: 'hidden', timeout: TIMEOUT.MEDIUM });
   });
 });
