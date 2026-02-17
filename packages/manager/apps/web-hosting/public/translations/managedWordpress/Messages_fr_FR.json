@@ -28,5 +28,8 @@
   "web_hosting_managed_wordpress_import_success_message_part_1": "C'est parti",
   "web_hosting_managed_wordpress_import_success_message_part_2": "L’import de votre site a commencé. Vous pouvez suivre sa progression depuis l'onglet Tâches.",
   "web_hosting_managed_wordpress_quota_used": "{{used}} / {{total}} sites",
-  "web_hosting_managed_wordpress_import_last_php_version": "Votre site sera installé sur un environnement utilisant PHP {{ version }} et WordPress dans sa dernière version."
+  "web_hosting_managed_wordpress_import_last_php_version": "Votre site sera installé sur un environnement utilisant PHP {{ version }} et WordPress dans sa dernière version.",
+  "web_hosting_managed_wordpress_title": "Managed Hosting for WordPress",
+  "web_hosting_managed_wordpress_description": "Vous recherchez une solution puissante et entièrement gérée pour héberger l'ensemble de vos sites WordPress sans perdre de temps avec la maintenance technique ? Managed Hosting for WordPress inclut des mises à jour automatiques intelligentes, une sécurité intégrée de bout en bout et une gestion simplifiée. Vous réduisez ainsi le temps consacré à la maintenance quotidienne pour vous concentrer pleinement sur la croissance de votre activité.",
+  "web_hosting_managed_wordpress_discover": "Découvrir la solution"
 }

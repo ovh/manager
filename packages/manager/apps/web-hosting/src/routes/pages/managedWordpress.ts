@@ -21,3 +21,7 @@ export const ManagedWordpressServiceCreatePage = React.lazy(
 export const ManagedWordpressServiceImportPage = React.lazy(
   () => import('@/pages/managedWordpress/ManagedWordpressResource/import/Import.page'),
 );
+
+export const ManagedWordpressOnboardingPage = React.lazy(
+  () => import('@/pages/managedWordpress/onboarding/Onboarding.page'),
+);

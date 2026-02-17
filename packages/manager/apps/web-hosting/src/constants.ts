@@ -59,6 +59,8 @@ export enum ACTIONS {
   ATTACH = 'ATTACH',
 }
 
+export const MANAGED_WORDPRESS_URL = 'https://www.ovhcloud.com/fr/managed-hosting-wordpress/';
+
 export const LOCAL_SEO_VISIBILITY_CHECKER =
   'https://www.ovh.com/fr/hebergement-web/referencement-local.xml';
 
