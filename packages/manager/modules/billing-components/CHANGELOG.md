@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.35.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.3...@ovh-ux/manager-billing-components@4.35.4) (2026-02-17)
+
+
+### Bug Fixes
+
+* **billing:** replace resiliation form by banner for manual services ([39958fa](https://github.com/ovh/manager/commit/39958fa777480a2c6a7a2afc4677af7b9c0e0402)), closes [#MANAGER-20101](https://github.com/ovh/manager/issues/MANAGER-20101) [#PRB0041661](https://github.com/ovh/manager/issues/PRB0041661)
+* **i18n:** add missing translations [CDS 4660] ([056d893](https://github.com/ovh/manager/commit/056d89385ad615111ab7d74e7ad441cca4d3fc63))
+
+
+
+
+
 ## [4.35.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.2...@ovh-ux/manager-billing-components@4.35.3) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-components
