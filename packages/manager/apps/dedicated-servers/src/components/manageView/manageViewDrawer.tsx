@@ -49,8 +49,28 @@ export const ManageViewDrawer = ({
   });
 
   useEffect(() => {
+    let name = view?.name;
+    // Increments New view number
+    if (!name) {
+      const newViewNumber = views.reduce((number, v) => {
+        const regex = new RegExp(
+          `${t('new_view')}\\s?(?:\\((?<number>\\d)\\))?`,
+        );
+        const match = v.name.match(regex);
+        if (!match) return -1;
+        if (!Number(match?.groups?.number)) return 0;
+
+        const viewNumber = Number(match.groups.number);
+        return viewNumber > number ? viewNumber : number;
+      }, 0);
+      name =
+        newViewNumber === -1
+          ? t('new_view')
+          : `${t('new_view')} (${newViewNumber + 1})`;
+    }
+
     setEditingView({
-      name: view?.name || t('new_view'),
+      name,
       id: view?.id || `view-${views.length}`,
       default: view?.default,
     });
