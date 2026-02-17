@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.21.0...@ovh-ux/manager-bm-server-components@2.21.1) (2026-02-17)
+
+
+### Bug Fixes
+
+* **dedicated:** do not prompt for ssh key for windows rescues ([d012fa6](https://github.com/ovh/manager/commit/d012fa695c0ab44ea4492107f7afc8d08887db3a)), closes [#MANAGER-20901](https://github.com/ovh/manager/issues/MANAGER-20901)
+
+
+
+
+
 # [2.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.20.3...@ovh-ux/manager-bm-server-components@2.21.0) (2026-02-12)
 
 
