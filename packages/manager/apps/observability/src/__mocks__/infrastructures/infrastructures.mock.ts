@@ -1,3 +1,4 @@
+import mockLogger from '@/__mocks__/mock.logger';
 import { InfrastructuresParams, RetentionParams } from '@/data/api/infrastructures.props';
 import { Infrastructure, Retention } from '@/types/infrastructures.type';
 
@@ -78,7 +79,7 @@ export const getInfrastructures = async ({
   usages,
   types,
 }: InfrastructuresParams): Promise<Infrastructure[]> => {
-  console.info(`[MOCK-ADAPTER][getInfrastructures] infrastructures mock for ${resourceName}`, {
+  mockLogger.info(`[getInfrastructures] infrastructures mock for ${resourceName}`, {
     usages,
     types,
     infrastructures,
@@ -117,7 +118,7 @@ export const getRetentions = async ({
   resourceName,
   infrastructureId,
 }: RetentionParams): Promise<Retention[]> => {
-  console.info(`[MOCK-ADAPTER][getRetentions] retentions mock for ${resourceName}`, {
+  mockLogger.info(`[getRetentions] retentions mock for ${resourceName}`, {
     infrastructureId,
     retentions,
   });
