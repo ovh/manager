@@ -38,6 +38,7 @@ export const urls = {
 
   // MANAGED CMS
   managedWordpressResource: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
+  managedWordpressResourceOnboarding: `/managed-hosting-for-wordpress/onboarding`,
   managedWordpressResourceGeneralInformation: `/managed-hosting-for-wordpress/${subRoutes.serviceName}`,
   managedWordpressResourceCreate: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/create`,
   managedWordpressResourceImport: `/managed-hosting-for-wordpress/${subRoutes.serviceName}/import`,

@@ -23,11 +23,13 @@ export default function ManagedWordpressPage() {
     'path',
   );
 
-  const shouldRedirect = !isLoading && data?.length === 1;
+  const onBoardingUrl = useGenerateUrl(`/managed-hosting-for-wordpress/onboarding`, 'path');
+
+  const shouldRedirect = !isLoading && data?.length <= 1;
 
   useEffect(() => {
     if (shouldRedirect) {
-      navigate(firstItemUrl);
+      navigate(data?.length ? firstItemUrl : onBoardingUrl);
     }
   }, [shouldRedirect, navigate, firstItemUrl]);
 
@@ -104,7 +106,12 @@ export default function ManagedWordpressPage() {
           title: t('common:managed_wordpress'),
         }}
       >
-        <Datagrid isLoading={isLoading} columns={data ? columns : []} data={data ?? []} />
+        <Datagrid
+          containerHeight={500}
+          isLoading={isLoading}
+          columns={data ? columns : []}
+          data={data ?? []}
+        />
       </BaseLayout>
       <Outlet />
     </>
