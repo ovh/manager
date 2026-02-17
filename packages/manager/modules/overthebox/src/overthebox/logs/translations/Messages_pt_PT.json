@@ -1,5 +1,6 @@
 {
   "overTheBox_logs_title": "Logs de mon OverTheBox",
   "overTheBox_logs_no_logs": "Nenhuma mensagem",
-  "overTheBox_logs_breadcrumb": "Logs"
+  "overTheBox_logs_breadcrumb": "Logs",
+  "overTheBox_logs_description": "Você encontrará abaixo os logs em tempo real gerados pelo seu serviço."
 }
