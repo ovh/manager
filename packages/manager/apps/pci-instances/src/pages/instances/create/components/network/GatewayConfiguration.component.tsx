@@ -82,8 +82,11 @@ const GatewayConfiguration: FC<{ privateNetworks: TPrivateNetworkData[] }> = ({
     const selectedPrivateNetwork = privateNetworks.find(
       (network) => network.value === subnetId,
     );
-    if (selectedPrivateNetwork?.customRendererData?.hasGateway)
-      setValue('willGatewayBeAttached', true);
+
+    setValue(
+      'willGatewayBeAttached',
+      !!selectedPrivateNetwork?.customRendererData?.hasGateway,
+    );
   }, [privateNetworks, setValue, subnetId]);
 
   if (isPending || !gatewayAvailability || !configurations) return null;
