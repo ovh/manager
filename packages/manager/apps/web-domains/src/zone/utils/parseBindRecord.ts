@@ -263,6 +263,7 @@ function parseDMARC(tokens: string[], start: number): Partial<AddEntrySchemaType
     const [key, ...rest] = pair.split('=');
     const value = rest.join('=').trim();
     const k = key?.trim().toLowerCase();
+    if (k === 'v') result.v = value;
     if (k === 'p') result.p = value;
     if (k === 'pct') result.pct = parseInt(value, 10);
     if (k === 'rua') result.rua = value;

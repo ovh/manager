@@ -7,6 +7,7 @@ import {
   Select,
   SelectContent,
   SelectControl,
+  type SelectCustomOptionRendererArg,
   Text,
   TEXT_PRESET,
   Tooltip,
@@ -23,10 +24,11 @@ export interface SelectFieldProps {
   readonly control: Control<AddEntrySchemaType>;
   readonly label: string;
   readonly required?: boolean;
-  readonly items: { label: string; value: string }[];
+  readonly items: { label: string; value: string; description?: string }[];
   readonly placeholder?: string;
   readonly className?: string;
   readonly tooltip?: string;
+  readonly disabled?: boolean;
 }
 
 export function SelectField({
@@ -38,8 +40,25 @@ export function SelectField({
   placeholder,
   className,
   tooltip,
+  disabled,
 }: SelectFieldProps) {
   const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.FORM]);
+
+  const hasDescriptions = items.some((item) => item.description);
+
+  function renderOptionWithDescription({
+    customData,
+    label: optionLabel,
+  }: SelectCustomOptionRendererArg<{ description?: string }>) {
+    return (
+      <div className="flex items-center gap-1">
+        <span className="font-medium">{optionLabel}</span>
+        {customData?.description && (
+          <span className="text-xs text-[--ods-color-text-muted]">— {customData.description}</span>
+        )}
+      </div>
+    );
+  }
 
   return (
     <Controller
@@ -67,12 +86,19 @@ export function SelectField({
             value={field.value == null ? [] : [field.value as string]}
             onValueChange={({ value }) => field.onChange(value[0] ?? "")}
             onBlur={() => field.onBlur?.()}
-            items={items}
+            disabled={disabled}
+            items={items.map(({ label: l, value: v, description }) => ({
+              label: l,
+              value: v,
+              ...(description ? { customRendererData: { description } } : {}),
+            }))}
           >
             <SelectControl
               placeholder={placeholder ?? t(`${NAMESPACES.ACTIONS}:select_imperative`)}
             />
-            <SelectContent />
+            <SelectContent
+              customOptionRenderer={hasDescriptions ? renderOptionWithDescription : undefined}
+            />
           </Select>
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>

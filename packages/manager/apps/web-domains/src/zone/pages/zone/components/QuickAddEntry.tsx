@@ -122,6 +122,10 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     if (fieldType === FieldTypeExtendedRecordsEnum.CAA) {
       setValue('flags', 0);
     }
+    if (fieldType === FieldTypeMailRecordsEnum.DMARC) {
+      setValue('v', 'DMARC1');
+      setValue('aspf', 'r');
+    }
   }, [setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
