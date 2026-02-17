@@ -28,7 +28,9 @@ export const useSaveViewsPreference = ({
   onSettled,
 }: UseSaveViewsPreferenceParams) => {
   const queryClient = useQueryClient();
-  const { views, columnVisibility, columnsConfig } = useContext(ViewContext);
+  const { views, columnVisibility, columnsConfig, setCurrentView } = useContext(
+    ViewContext,
+  );
   const { clearNotifications } = useNotifications();
 
   return useMutation({
@@ -54,6 +56,8 @@ export const useSaveViewsPreference = ({
           : []),
         updatedView,
       ];
+
+      setCurrentView(updatedView);
 
       return postManagerPreferences({
         key,
