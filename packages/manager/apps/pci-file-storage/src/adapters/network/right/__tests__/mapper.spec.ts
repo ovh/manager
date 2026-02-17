@@ -11,6 +11,7 @@ describe('mapNetworkDtoToNetwork', () => {
         name: 'My Public Network',
         region: 'BHS5',
         visibility: 'public' as const,
+        vlanId: null,
       },
     },
     {
@@ -20,6 +21,7 @@ describe('mapNetworkDtoToNetwork', () => {
         name: 'My Private Network',
         region: 'SBG5',
         visibility: 'private' as const,
+        vlanId: 123,
       },
     },
   ])('$description', ({ dto }) => {
@@ -30,6 +32,7 @@ describe('mapNetworkDtoToNetwork', () => {
       name: dto.name,
       region: dto.region,
       visibility: dto.visibility,
+      vlanId: dto.vlanId,
     });
   });
 });

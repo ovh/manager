@@ -6,6 +6,7 @@ export type TSubnetId = string;
 export type TSubnet = {
   id: TSubnetId;
   name: string;
+  cidr: string;
 };
 
 export type TNetwork = {
@@ -13,5 +14,6 @@ export type TNetwork = {
   name: string;
   region: string;
   visibility: TNetworkVisibility;
+  vlanId: number | null;
   subnets?: TSubnet[];
 };
