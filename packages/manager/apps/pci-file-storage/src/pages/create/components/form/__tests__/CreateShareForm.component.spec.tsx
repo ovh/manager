@@ -19,14 +19,6 @@ import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 vi.mock('@/data/hooks/catalog/useShareCatalog');
 vi.mock('@/pages/create/hooks/useShareCreation');
 
-const mockAddSuccess = vi.fn();
-
-vi.mock('@ovh-ux/muk', () => ({
-  useNotifications: () => ({
-    addSuccess: mockAddSuccess,
-  }),
-}));
-
 vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
   return {
@@ -400,10 +392,16 @@ describe('CreateShareForm', () => {
     if (onSuccessCallback) onSuccessCallback();
     expect(mockCreateShare).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('..');
-    expect(mockToast).not.toHaveBeenCalled();
+    expect(mockToast).toHaveBeenCalledWith(
+      expect.stringContaining('create:submit.success'),
+      expect.objectContaining({
+        color: 'success',
+        duration: 5000,
+      }),
+    );
   });
 
-  it('should add success notification when create share succeeds', async () => {
+  it('should show success toast when create share succeeds', async () => {
     mockUseShareCatalog.mockReturnValue({
       data: [],
     } as unknown as QueryObserverSuccessResult<
@@ -429,6 +427,12 @@ describe('CreateShareForm', () => {
 
     const submitButton = screen.getByText(/actions:validate$/);
     await userEvent.click(submitButton);
-    expect(mockAddSuccess).toHaveBeenCalled();
+    expect(mockToast).toHaveBeenCalledWith(
+      expect.stringContaining('create:submit.success'),
+      expect.objectContaining({
+        color: 'success',
+        duration: 5000,
+      }),
+    );
   });
 });
