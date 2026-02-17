@@ -1,10 +1,7 @@
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TableRow } from '@/components/flavorsTable/FlavorsTable.component';
+import { DiskDisplayCell } from '@/pages/instances/create/components/cart/DiskDisplayCell.component';
 import { TGpuFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
-import {
-  formatDiskDisplay,
-  TFormatBytes,
-} from '@/pages/instances/create/view-models/mappers/diskMapper';
 import { ReactNode } from 'react';
 
 type FlavorRenderers = {
@@ -15,7 +12,6 @@ type FlavorRenderers = {
     realMinimumMonthlyPrice: number | null,
     estimatedMinimumMonthlyPrice: number | null,
   ) => ReactNode;
-  formatBytes: TFormatBytes;
 };
 
 export function GpuFlavorRowsBuilder(
@@ -25,7 +21,6 @@ export function GpuFlavorRowsBuilder(
     renderRadio,
     renderMonthlyPrice,
     renderHourlyPrice,
-    formatBytes,
   }: FlavorRenderers,
   withUnavailable: boolean,
 ): TableRow[] {
@@ -51,7 +46,7 @@ export function GpuFlavorRowsBuilder(
           <div className="flex flex-col">
             {flavor.disks.map((disk) => (
               <Text key={disk.id} preset={TEXT_PRESET.span}>
-                {formatDiskDisplay(disk, formatBytes)}
+                <DiskDisplayCell disk={disk} />
               </Text>
             ))}
           </div>
