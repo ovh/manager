@@ -27,24 +27,6 @@ export const diskCapacityToBytes = (
 ): number =>
   capacityUnit === 'tb' ? capacityValue * 1e12 : capacityValue * 1e9;
 
-export type TFormatBytes = (
-  bytes: number,
-  decimals?: number,
-  format?: 1000 | 1024,
-) => string | number;
-
-export const formatDiskDisplay = (
-  disk: TDiskViewModel,
-  formatBytes: TFormatBytes,
-): string =>
-  disk.id === 'no-disk'
-    ? disk.display ?? '-'
-    : `${disk.number}x ${formatBytes(
-        diskCapacityToBytes(disk.capacityValue, disk.capacityUnit),
-        0,
-        1000,
-      )}${disk.interface ? ` ${disk.interface}` : ''}`;
-
 export const mapDisksToViewModel = (
   disks: TDisk[] | TInstanceDisk[],
 ): TDiskViewModel[] => {

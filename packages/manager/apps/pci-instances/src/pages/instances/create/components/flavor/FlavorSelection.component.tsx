@@ -27,7 +27,6 @@ import RegionSelectionModal, {
   TCustomRegionSelected,
 } from '../RegionSelectionModal.component';
 import { deps } from '@/deps/deps';
-import { useBytes } from '@ovh-ux/manager-pci-common';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useEffect } from 'react';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
@@ -72,7 +71,6 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     renderHourlyPrice,
     renderMonthlyPrice,
   } = useFlavorCommon();
-  const { formatBytes } = useBytes();
   const [unavailableFlavor, setUnavailableFlavor] = useState<string | null>(
     null,
   );
@@ -108,7 +106,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
         columns: GpuFlavorColumnsBuilder(t),
         rows: GpuFlavorRowsBuilder(
           flavors,
-          { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice, formatBytes },
+          { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
           withUnavailable,
         ),
       };
@@ -118,7 +116,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       columns: FlavorColumnsBuilder(t),
       rows: FlavorRowsBuilder(
         flavors,
-        { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice, formatBytes },
+        { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
         withUnavailable,
       ),
     };
@@ -129,7 +127,6 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     renderRadio,
     renderHourlyPrice,
     renderMonthlyPrice,
-    formatBytes,
     t,
     withUnavailable,
   ]);

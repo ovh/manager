@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import { useBytes } from '@ovh-ux/manager-pci-common';
 import { formatBandwidthDisplay } from '@/utils';
-import { formatDiskDisplay } from '../../view-models/mappers/diskMapper';
+import { DiskDisplayCell } from './DiskDisplayCell.component';
 import { TSelectFlavorDetails } from '../../view-models/cartViewModel';
 
 type TFlavorDetails = {
@@ -13,7 +12,6 @@ type TFlavorDetails = {
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
   const { t } = useTranslation('creation');
-  const { formatBytes } = useBytes();
 
   const formatBandwidth = (value: number, unit: string) => {
     const {
@@ -60,7 +58,7 @@ export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
               key={disk.id}
               className="font-semibold text-[--ods-color-heading]"
             >
-              {formatDiskDisplay(disk, formatBytes)}
+              <DiskDisplayCell disk={disk} />
             </Text>
           ))}
         </div>
