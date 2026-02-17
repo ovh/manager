@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { useProjectId } from '@/hooks/useProjectId';
@@ -31,9 +32,10 @@ export const CreateShareForm = () => {
   const projectId = useProjectId();
 
   const formMethods = useCreateShareForm();
-  const [selectedMacroRegion, selectedMicroRegion] = useWatch({
+  const { addSuccess } = useNotifications();
+  const [selectedMacroRegion, selectedMicroRegion, shareName] = useWatch({
     control: formMethods.control,
-    name: ['macroRegion', 'shareData.microRegion'],
+    name: ['macroRegion', 'shareData.microRegion', 'shareData.name'],
   });
 
   const { data: microRegionOptions } = useShareCatalog({
@@ -46,6 +48,7 @@ export const CreateShareForm = () => {
 
   const handleCreateShare = {
     onSuccess: () => {
+      addSuccess(t('create:submit.success', { name: shareName }));
       navigate('..');
     },
     onError: (errorMessage: string) => {
