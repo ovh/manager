@@ -25,7 +25,7 @@
         class="telephony-number"
         name="telephonyNumber"
         data-ng-submit="$ctrl.saveNumber()"
-        data-ng-if="$ctrl.isDialplanTabSelected()"
+        data-ng-if="$ctrl.isDialplanTabSelected() || !$ctrl.isComplexFeature()"
         novalidate
     >
         <div
@@ -97,7 +97,7 @@
                 <div
                     class="number-header"
                     data-ng-class="{
-                        'mt-5': $ctrl.number.getFeatureFamily() === 'svi',
+                        'mt-5': $ctrl.number.getFeatureFamily() === 'svi' && !$ctrl.verticalLayout,
                     }">
                     <!-- INCOMING CALL -->
                     <div class="group-number__step group-number__step--point">
