@@ -159,7 +159,7 @@ const getContinentIdsByDeploymentModeId = (regions: TRegionDTO[]) =>
   }, new Map<TDeploymentModeId, TContinentId[]>());
 
 const mapShareCapacityDTOToEntity = (capacity: TShareCapacityDTO): TShareCapacity => ({
-  min: capacity.min,
+  min: capacity.min ?? 150,
   max: capacity.max,
 });
 
@@ -174,7 +174,7 @@ const mapShareIOPSDTOToEntity = (iops: TShareIOPSDTO): TShareIOPS => ({
 const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBandwidth => ({
   guaranteed: bandwidth.guaranteed,
   level: bandwidth.level,
-  min: bandwidth.min,
+  min: bandwidth.min ?? 10,
   max: bandwidth.max,
   maxUnit: bandwidth.maxUnit,
   unit: bandwidth.unit,
@@ -182,8 +182,8 @@ const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBand
 
 const mapShareSpecsDTOToEntity = (pricing: TSharePricingDTO): TShareSpecs => ({
   name: pricing.specs.name,
-  capacity: mapShareCapacityDTOToEntity(pricing.specs.share.capacity),
-  iops: mapShareIOPSDTOToEntity(pricing.specs.share.iops),
+  capacity: mapShareCapacityDTOToEntity(pricing.specs.volume.capacity),
+  iops: mapShareIOPSDTOToEntity(pricing.specs.volume.iops),
   bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
   microRegionIds: pricing.regions,
   pricing: {
@@ -222,6 +222,7 @@ const mapShareDTOToEntity = (share: TShareDTO): TShare => ({
 });
 
 export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => {
+  console.log(catalogDto);
   return {
     entities: {
       ...normalizeRegions({
@@ -230,8 +231,8 @@ export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCata
       })(catalogDto.regions),
       deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
       continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
-      shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.shares, mapShareDTOToEntity),
-      shareSpecs: normalizeShareSpecs(catalogDto.shares),
+      shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.models, mapShareDTOToEntity),
+      shareSpecs: normalizeShareSpecs(catalogDto.models),
     },
     relations: {
       continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),
