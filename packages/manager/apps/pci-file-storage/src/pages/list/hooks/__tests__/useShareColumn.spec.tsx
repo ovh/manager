@@ -12,6 +12,10 @@ vi.mock('@ovh-ux/muk', () => ({
   DatagridColumn: () => null,
 }));
 
+vi.mock('@/hooks/useFormatShareSize', () => ({
+  useFormatGiBSize: (sizeInGiB: number) => `${sizeInGiB} GiB`,
+}));
+
 describe('useShareColumn', () => {
   it('should return an array of column definitions', () => {
     const { result } = renderHook(() => useShareColumn());
@@ -26,20 +30,21 @@ describe('useShareColumn', () => {
     expect(columns[5]!.id).toBe('actions');
   });
 
-  it('should use allocated_capacity column with cell that translates capacity in GiB', () => {
+  it('should use allocated_capacity column with cell that formats size via useFormatGiBSize', () => {
     const { result } = renderHook(() => useShareColumn());
     const columns = result.current ?? [];
     const capacityColumn = columns[3]! as {
       id: string;
-      cell?: (ctx: { getValue: () => number }) => string;
+      cell?: (ctx: { getValue: () => number }) => React.ReactNode;
     };
     expect(capacityColumn.id).toBe('allocated_capacity');
     expect(capacityColumn.cell).toBeDefined();
-    const sizeBytes = 150;
+    const sizeInGiB = 150;
     const cell = capacityColumn.cell?.({
-      getValue: () => sizeBytes,
+      getValue: () => sizeInGiB,
     } as never);
-    expect(cell).toBe('share:fields.allocated_capacity_value{"capacity":150}');
+    render(cell as React.ReactElement);
+    expect(screen.getByText('150 GiB')).toBeInTheDocument();
   });
 
   it('should use region column with cell that translates regionDisplayKey', () => {

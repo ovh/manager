@@ -5,8 +5,8 @@
     "acl": "Access Control List (ACL)"
   },
   "actions": {
-    "back": "Previous page",
-    "edit_name": "Edit share name"
+    "back": "Return to the previous page",
+    "edit_name": "Edit the share name"
   },
   "common": {
     "coming_soon": "Coming soon"
