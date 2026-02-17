@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/logs-to-customer",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "OVHcloud - observability - logs to customer module",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
