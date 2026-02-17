@@ -73,7 +73,7 @@ const AddNetworkForm: FC = () => {
       className="mt-6 "
       aria-label={t('creation:pci_instance_creation_network_add_new')}
     >
-      {vlanId && networks?.allocatedVlanIds.includes(vlanId) && (
+      {!!vlanId && networks?.allocatedVlanIds.includes(vlanId) && (
         <Banner color="warning" className="mb-6">
           {t(
             'creation:pci_instance_creation_network_add_new_used_vlanID_warning',
