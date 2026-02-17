@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -16,10 +16,10 @@ import {
   ModalHeader,
   Skeleton,
   Text,
+  toast,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/muk';
 
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useProjectId } from '@/hooks/useProjectId';
@@ -38,21 +38,26 @@ const DeleteSharePage: React.FC = () => {
     select: selectShareDeletionView,
   });
 
-  const { addSuccess, addError } = useNotifications();
   const shareName = shareDeletionView?.shareName ?? shareId;
 
   const onError = useCallback(
     (errorMessage: string) => {
-      addError(t('delete:message.error', { errorMessage }));
+      toast(t('delete:message.error', { errorMessage }), {
+        color: 'warning',
+        duration: Infinity,
+      });
       navigate('..');
     },
-    [navigate, addError, t],
+    [navigate, t],
   );
 
   const onSuccess = useCallback(() => {
-    addSuccess(t('delete:message.success', { shareName }));
+    toast(t('delete:message.success', { shareName }), {
+      color: 'success',
+      duration: 5000,
+    });
     navigate('..');
-  }, [navigate, addSuccess, t, shareName]);
+  }, [navigate, t, shareName]);
 
   const { deleteShare, isPending: isDeletionPending } = useShareDeletion(
     projectId,
@@ -65,6 +70,7 @@ const DeleteSharePage: React.FC = () => {
   );
 
   const [confirmInput, setConfirmInput] = useState('');
+  const [hasBeenTouched, setHasBeenTouched] = useState(false);
 
   const handleClose = useCallback(() => {
     navigate('..');
@@ -74,15 +80,20 @@ const DeleteSharePage: React.FC = () => {
     deleteShare();
   }, [deleteShare]);
 
-  const isEmpty = confirmInput.trim() === '';
+  const isErrorDisplayed = hasBeenTouched && confirmInput.trim() === '';
   const canBeDeleted = shareDeletionView?.canBeDeleted ?? false;
   const isConfirmEnabled =
     confirmInput === CONFIRM_VALUE && canBeDeleted && !isDeletionPending && !isShareLoading;
 
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setConfirmInput(e.currentTarget.value);
+    setHasBeenTouched(true);
+  };
+
   return (
     <Modal open={true} onOpenChange={handleClose}>
       <ModalContent dismissible={false} aria-labelledby="delete-share-title">
-        <ModalHeader className="bg-[--ods-color-warning-075] pb-5">
+        <ModalHeader>
           <Text id="delete-share-title" preset="heading-4">
             {t('delete:title')}
           </Text>
@@ -105,12 +116,12 @@ const DeleteSharePage: React.FC = () => {
               {isShareLoading ? (
                 <Skeleton className="py-8" />
               ) : (
-                <FormField invalid={isEmpty}>
+                <FormField invalid={isErrorDisplayed}>
                   <FormFieldLabel>{t('delete:input.label')}</FormFieldLabel>
                   <Input
                     value={confirmInput}
-                    onChange={(e) => setConfirmInput(e.target.value)}
-                    aria-invalid={isEmpty}
+                    onChange={handleOnChange}
+                    aria-invalid={isErrorDisplayed}
                     className="w-full"
                   />
                   <FormFieldError>{t('delete:input.error')}</FormFieldError>

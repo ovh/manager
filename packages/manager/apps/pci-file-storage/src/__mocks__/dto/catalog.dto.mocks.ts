@@ -112,12 +112,9 @@ export const CATALOG_SHARE = {
       ],
       price: 11900,
       interval: 'hour',
-      showAvailabilityZones: false,
-      areIOPSDynamic: true,
-      isBandwidthDynamic: true,
       specs: {
         name: 'standard-1az',
-        share: {
+        volume: {
           capacity: {
             min: 150,
             max: 10240,
@@ -153,12 +150,9 @@ export const CATALOG_SHARE = {
       ],
       price: 22900,
       interval: 'hour',
-      showAvailabilityZones: false,
-      areIOPSDynamic: true,
-      isBandwidthDynamic: true,
       specs: {
         name: 'publiccloud-share-standard2',
-        share: {
+        volume: {
           capacity: {
             min: 150,
             max: 10240,
