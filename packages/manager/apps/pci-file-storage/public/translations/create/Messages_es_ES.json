@@ -80,6 +80,7 @@
     }
   },
   "submit": {
-    "error": "Se ha producido un error al añadir el share: {{error}}"
+    "error": "Se ha producido un error al añadir el share: {{error}}",
+    "success": "El share {{name}} se está creando"
   }
 }

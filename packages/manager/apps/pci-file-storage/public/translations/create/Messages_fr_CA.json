@@ -82,6 +82,7 @@
     }
   },
   "submit": {
-    "error": "Une erreur est survenue lors de l'ajout du share : {{error}}"
+    "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",
+    "success": "Le share {{name}} est en cours de création"
   }
 }
