@@ -79,5 +79,7 @@
   "warning3AZTo1AZ": "Klasa storage Cold Archive jest dostępna wyłącznie w trybie wdrażania 3-AZ i w regionie Paryża. Twoje obiekty źródłowe przechowywane w Cold Archive będą domyślnie replikowane do Infrequent Access, czyli klasy najbliższej pod względem użytkowania.",
   "inconsistentReplicationRulesAlert": "Niektóre reguły replikacji wskazują miejsce docelowe, które zostało usunięte. Usuń te reguły przed utworzeniem nowych replikacji.",
   "deletedDestinationTooltip": "Kontener docelowy został usunięty",
-  "createSyncRule": "Utwórz regułę synchronizacji"
+  "createSyncRule": "Utwórz regułę synchronizacji",
+  "addReplicationBreadcrumb": "Dodaj",
+  "editReplicationBreadcrumb": "Zmodyfikuj"
 }

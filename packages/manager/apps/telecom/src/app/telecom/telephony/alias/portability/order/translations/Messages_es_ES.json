@@ -9,7 +9,7 @@
   "telephony_alias_portability_order_warning_1": "Para protegerse contra toda interrupción del servicio de su número portado, solicite la baja de su línea telefónica a su actual proveedor únicamente <strong>cuando la portabilidad haya finalizado</strong>.",
   "telephony_alias_portability_order_warning_2": "No obstante, si baja su línea con su actual operador, dispone de 40 días para solicitar la portabilidad. Después de ese tiempo, perderá su número.",
   "telephony_alias_portability_order_warning_3": "Si lleva el número al que se conecta su conexión a Internet, se cortará el acceso a Internet.",
-  "telephony_alias_portability_order_type": "Tipo del número a portar",
+  "telephony_alias_portability_order_type": "Tipo de número para portar",
   "telephony_alias_portability_order_landline": "Número individual",
   "telephony_alias_portability_order_sda": "Rango de números (SDA)",
   "telephony_alias_portability_order_callNumber": "Número a portar (formato internacional)",
@@ -99,7 +99,7 @@
   "telephony_alias_portability_order_step_1_subtitle": "En primer lugar, indique la información del número que quiera portar.",
   "telephony_alias_portability_order_step_2_subtitle": "Introduzca la información de la persona de contacto.",
   "telephony_alias_portability_order_step_3_subtitle": "Introduzca la dirección en la que se instalará la línea.",
-  "telephony_alias_portability_order_step_4_subtitle": "Seleccione un grupo de facturación existente para asociarle la línea derivada.",
+  "telephony_alias_portability_order_step_4_subtitle": "Seleccione un grupo de facturación existente para asociar la línea derivada.",
   "telephony_alias_portability_order_step_5": "5. Finalización",
   "telephony_alias_portability_order_sda_numbers_required": "Añada al menos un número"
 }

@@ -1,11 +1,11 @@
 {
-  "key_management_service_create_title": "Domain OKMS bestellen",
-  "key_management_service_create_subtitle": "Bitte geben Sie die Region an, in der es bereitgestellt wird. Sie können dann Ihre eigenen Service Keys und Zugangs-Zertifikate in diesem OKMS-Domain erstellen und verwalten.",
+  "key_management_service_create_title": "OKMS-Domain bestellen",
+  "key_management_service_create_subtitle": "Bitte geben Sie die Region an, in der sie bereitgestellt wird. Anschließend können Sie in dieser OKMS-Domain Ihre eigenen Service Keys und Zugangszertifikate erstellen und verwalten.",
   "key_management_service_create_region_title": "Region",
-  "key_management_service_create_region_description": "Die kryptografischen Objekte dieser OKMS-Domain werden in der angegebenen Region gespeichert. Sie können in allen OVHcloud-Produkten ohne Unterscheidung der Region verwendet werden.",
+  "key_management_service_create_region_description": "Die kryptografischen Objekte dieser OKMS-Domain werden in der angegebenen Region gespeichert. Sie können in allen Produkten von OVHcloud verwendet werden, ohne Unterscheidung nach Region.",
   "key_management_service_create_cta_cancel": "Abbrechen",
   "key_management_service_create_cta_order": "Bestellen",
-  "key_management_service_create_order_initiated_title": "Bestellung Ihrer OKMS-Domain eingeleitet",
+  "key_management_service_create_order_initiated_title": "Bestellung Ihrer OKMS-Domain initiiert",
   "key_management_service_create_order_initiated_subtitle": "Wenn Sie Ihre Bestellung nicht abschließen konnten, vervollständigen Sie diese bitte, indem Sie auf folgenden Link klicken:",
   "key_management_service_create_order_initiated_info": "Wir werden Sie per E-Mail über die Verfügbarkeit Ihrer OKMS-Domain informieren.",
   "key_management_service_create_order_initiated_cta_done": "Beenden",
@@ -30,5 +30,5 @@
   "key_management_service_create_region_labeu_west_1_dev_1": "LABEU (Frankreich – Croix) (DEV-1)",
   "key_management_service_create_region_labeu_west_1_dev_2": "LABEU (Frankreich – Croix) (DEV-2)",
   "region_selection": "Auswahl der Region",
-  "region_selection_description": "Bitte geben Sie die Region an, in der es bereitgestellt wird. Sie können dann Ihre eigenen Service Keys und Zugangs-Zertifikate in diesem OKMS-Domain erstellen und verwalten. Die kryptografischen Objekte dieser OKMS-Domain werden in der angegebenen Region gespeichert. Sie können in allen OVHcloud-Produkten ohne Unterscheidung der Region verwendet werden."
+  "region_selection_description": "Bitte geben Sie die Region an, in der sie bereitgestellt wird. Anschließend können Sie in dieser OKMS-Domain Ihre eigenen Service Keys und Zugangszertifikate erstellen und verwalten. Die kryptografischen Objekte dieser OKMS-Domain werden in der angegebenen Region gespeichert. Sie können in allen Produkten von OVHcloud verwendet werden, ohne Unterscheidung nach Region."
 }

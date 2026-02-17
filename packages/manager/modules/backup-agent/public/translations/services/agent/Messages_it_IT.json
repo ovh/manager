@@ -22,7 +22,7 @@
   "update_agent_banner_success": "La modifica della policy è in corso, si prega di attendere qualche secondo.",
   "unable_edit_agent_not_enabled": "La configurazione sarà disponibile una volta attivato l'Agent.",
   "agents_tab_description": "Qui sono disponibili tutti i tuoi Agent protetti. Per il backup del server è importante completare la tua configurazione. Per maggiori informazioni, consulta la <Link>documentazione OVHcloud Backup Agent</Link>",
-  "delete_agent_modal_content_main": "Se hai utilizzato il tuo agente per salvare dei dati, la nostra politica è di bloccare il tuo agente in stato disabilitato per 14 giorni, il tempo necessario affinché il periodo di immutabilità sia terminato. Potrai aggiungerlo di nuovo alla fine dei 14 giorni.",
-  "delete_agent_modal_content_confirm": "Vuoi davvero eliminare il tuo agente <span>{{agentName}}</span>?",
+  "delete_agent_modal_content_main": "Se hai utilizzato il tuo Agent per salvare dati, la nostra politica è di bloccare l’Agent in stato disattivato per 14 giorni, fino al termine del periodo di immutabilità. Potrai aggiungerlo nuovamente alla fine dei 14 giorni.",
+  "delete_agent_modal_content_confirm": "Vuoi davvero eliminare l'Agent <span>{{agentName}}</span>?",
   "details_of_status": "Dettagli degli stati"
 }

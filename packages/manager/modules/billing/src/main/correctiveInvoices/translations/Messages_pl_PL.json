@@ -1,13 +1,13 @@
 {
   "billing_payment_corrective_invoices": "Faktury korygujące",
-  "billing_corrective_invoices_table_id": "Nr referencyjny",
+  "billing_corrective_invoices_table_id": "Opis",
   "billing_corrective_invoices_table_order_id": "Nr zamówienia",
   "billing_corrective_invoices_table_original_invoice": "Faktura pierwotna",
   "billing_corrective_invoices_table_date": "Data wystawienia",
-  "billing_corrective_invoices_table_total": "Kwota netto",
+  "billing_corrective_invoices_table_total": "Kwota netto ",
   "billing_corrective_invoices_table_total_with_vat": "Kwota brutto",
   "billing_corrective_invoices_table_download_html": "Wyświetl wersję HTML",
   "billing_corrective_invoices_table_download_pdf": "Wyświetl wersję PDF",
-  "billing_corrective_invoices_load_error": "Wystąpił błąd podczas ładowania faktur korygujących.",
-  "billing_corrective_invoices_empty": "Informujemy, że nie ma wystawionych faktur korygujących za dotyczy okresy."
+  "billing_corrective_invoices_load_error": "Wystąpił błąd podczas pobierania faktur korygujących.",
+  "billing_corrective_invoices_empty": "Informujemy, że dla wskazanych okresów nie zostały wystawione faktury korygujące."
 }
