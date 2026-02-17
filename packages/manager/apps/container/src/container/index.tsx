@@ -14,12 +14,12 @@ import AIChatbot from '@/components/ai-chatbot/AIChatbot/AIChatbot.component';
 export default function Container(): JSX.Element {
   const { isLoading, betaVersion, useBeta } = useContainer();
   const shell = useShell();
-  const [isCookiePolicyApplied, setIsCookiePolicyApplied] = useState(false);
+  const [isCookiePolicyModalClosed, setIsCookiePolicyModalClosed] = useState<boolean>(false);
 
   const isNavReshuffle = betaVersion && useBeta;
 
-  const cookiePolicyHandler = (isApplied: boolean): void =>
-    setIsCookiePolicyApplied(isApplied);
+  const cookiePolicyHandler = (_?: boolean): void =>
+    setIsCookiePolicyModalClosed(true);
 
   useEffect(() => {
     if (!isLoading) {
@@ -46,11 +46,11 @@ export default function Container(): JSX.Element {
       <ProgressProvider>
         {isNavReshuffle ? (
           <ProductNavReshuffleProvider>
-            <NavReshuffleContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
+            <NavReshuffleContainer isCookiePolicyModalClosed={isCookiePolicyModalClosed}/>
           </ProductNavReshuffleProvider>
         ) : (
           <>
-            <LegacyContainer isCookiePolicyModalClosed={isCookiePolicyApplied}/>
+            <LegacyContainer isCookiePolicyModalClosed={isCookiePolicyModalClosed}/>
           </>
         )}
         <Suspense fallback="">
