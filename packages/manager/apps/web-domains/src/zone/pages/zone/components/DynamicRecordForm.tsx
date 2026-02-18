@@ -1,11 +1,16 @@
 import { type Control, type UseFormWatch } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
   Divider,
   DIVIDER_SPACING,
   ICON_NAME,
   Message,
   MESSAGE_COLOR,
+  MESSAGE_VARIANT,
   MessageIcon,
   Text,
   TEXT_PRESET,
@@ -24,6 +29,27 @@ import { TextField } from '../add/components/fields/TextField';
 import { NumberField } from '../add/components/fields/NumberField';
 import { SelectField } from '../add/components/fields/SelectField';
 import { TextareaField } from '../add/components/fields/TextareaField';
+
+// ---------------------------------------------------------------------------
+// Grid helpers
+// ---------------------------------------------------------------------------
+
+const GRID_4COL = 'grid grid-cols-4 items-start gap-4';
+
+const COL_SPAN_CLASS: Record<number, string> = {
+  1: 'col-span-1',
+  2: 'col-span-2',
+  3: 'col-span-3',
+  4: 'col-span-4',
+};
+
+function getColSpan(
+  field: Parameters<typeof RenderField>[0]['field'],
+): number {
+  if (field === 'subdomain' || field === 'ttl') return 2;
+  if ('colSpan' in field && field.colSpan) return field.colSpan;
+  return 2;
+}
 
 // ---------------------------------------------------------------------------
 // Props
@@ -64,6 +90,7 @@ function RenderField({
         required={config.subDomainRequired}
         tooltip={t(config.subDomainTooltipKey)}
         placeholder="www, mail, blog…"
+        labelKey={config.subDomainLabelKey}
       />
     );
   }
@@ -104,6 +131,14 @@ function RenderField({
       return typeof siblingValue === 'string' && siblingValue.trim() !== '';
     })()
     : false;
+
+  // Handle visibleWhen: hide this field when the condition is not met
+  if (field.visibleWhen) {
+    const watchedValue = watch(field.visibleWhen.field as keyof AddEntrySchemaType);
+    if (String(watchedValue ?? '') !== field.visibleWhen.value) {
+      return null;
+    }
+  }
 
   const name = field.name as keyof AddEntrySchemaType;
 
@@ -198,6 +233,15 @@ function RenderRow({
   config: RecordFormConfig;
   t: (key: string) => string;
 }) {
+  // Handle row-level visibleWhen
+  if (row.visibleWhen) {
+    const watchedValue = String(watch(row.visibleWhen.field as keyof AddEntrySchemaType) ?? '');
+    const allowed = Array.isArray(row.visibleWhen.value)
+      ? (row.visibleWhen.value as readonly string[]).includes(watchedValue)
+      : watchedValue === row.visibleWhen.value;
+    if (!allowed) return null;
+  }
+
   return (
     <>
       {row.dividerBefore && <Divider spacing={DIVIDER_SPACING._12} />}
@@ -206,17 +250,21 @@ function RenderRow({
           {t(row.headingKey)}
         </Text>
       )}
-      <div className={row.gridClassName}>
+      <div className={GRID_4COL}>
         {row.fields.map((field, fieldIndex) => (
-          <RenderField
+          <div
             key={typeof field === 'string' ? field : 'name' in field ? field.name : `group-${fieldIndex}`}
-            field={field}
-            control={control}
-            watch={watch}
-            domainSuffix={domainSuffix}
-            config={config}
-            t={t}
-          />
+            className={COL_SPAN_CLASS[getColSpan(field)]}
+          >
+            <RenderField
+              field={field}
+              control={control}
+              watch={watch}
+              domainSuffix={domainSuffix}
+              config={config}
+              t={t}
+            />
+          </div>
         ))}
       </div>
     </>
@@ -275,7 +323,6 @@ export function DynamicRecordForm({
   domainSuffix,
 }: DynamicRecordFormProps) {
   const { t } = useTranslation('zone');
-
   const config = RECORD_FORM_CONFIGS[recordType];
   if (!config) return null;
 
@@ -296,6 +343,12 @@ export function DynamicRecordForm({
         fullDomain={fullDomain}
         target={targetStr}
       />
+      {config.warningKey && (
+        <Message color={MESSAGE_COLOR.warning} dismissible={false}>
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          {t(config.warningKey)}
+        </Message>
+      )}
       <div className="space-y-4">
         {config.rows.map((row, index) => (
           <RenderRow
@@ -310,6 +363,40 @@ export function DynamicRecordForm({
           />
         ))}
       </div>
+      {config.advancedRows && config.advancedRows.length > 0 && (
+        <>
+          <Divider spacing={DIVIDER_SPACING._12} />
+          <Accordion>
+            <AccordionItem value="advanced">
+              <AccordionTrigger>
+                {t(config.advancedLabelKey ?? 'zone_page_form_advanced_settings')}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-4">
+                  {config.advancedRows.map((row, index) => (
+                    <RenderRow
+                      key={`adv-${index}`}
+                      row={row}
+                      rowIndex={index}
+                      control={control}
+                      watch={watch}
+                      domainSuffix={domainSuffix}
+                      config={config}
+                      t={t}
+                    />
+                  ))}
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </>
+      )}
+      {config.infoKey && (
+        <Message color={MESSAGE_COLOR.information} variant={MESSAGE_VARIANT.light} dismissible={false}>
+          <MessageIcon name={ICON_NAME.circleInfo} />
+          {t(config.infoKey)}
+        </Message>
+      )}
     </>
   );
 }

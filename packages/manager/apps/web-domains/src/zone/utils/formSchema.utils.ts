@@ -57,6 +57,7 @@ const ALL_KEYS = [
   'recordType', 'subDomain', 'ttlSelect', 'ttl', 'target', 'priority', 'weight', 'port', 'flags', 'tag',
   'mbox', 'txt', 'algorithm', 'fptype', 'fp', 'usage', 'selector', 'matchingType', 'certificateData',
   'params', 'v', 'p', 'pct', 'rua', 'sp', 'aspf',
+  'k', 'h', 'g', 'n', 's', 't_y', 't_s', 'dkim_status',
   'order', 'pref', 'flag', 'service', 'regex', 'replace',
   'lat_deg', 'lat_min', 'lat_sec', 'latitude', 'long_deg', 'long_min', 'long_sec', 'longitude',
   'altitude', 'size', 'hp', 'vp',
@@ -131,12 +132,7 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
 
     if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) {
       if (key === 'flag') {
-        return z
-          .string()
-          .max(1, s.zone('zone_page_form_naptr_flag_valid'))
-          .regex(NAPTR_FLAG_REGEX, s.zone('zone_page_form_naptr_flag_valid'))
-          .optional()
-          .or(z.literal(''));
+        return z.string().optional().or(z.literal(''));
       }
       if (key === 'service') {
         return z
@@ -232,6 +228,30 @@ function buildAddEntrySchema(recordType: string, t: (key: string, params?: Recor
         message: s.zone('zone_page_form_naptr_replace_valid'),
         path: ['replace'],
       },
+    )
+    // Flag U: regex is required
+    .refine(
+      (data) => {
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
+        if (String(data.flag ?? '') !== 'U') return true;
+        return typeof data.regex === 'string' && data.regex.trim() !== '';
+      },
+      {
+        message: s.requiredMsg,
+        path: ['regex'],
+      },
+    )
+    // Flag S: replace is required
+    .refine(
+      (data) => {
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
+        if (String(data.flag ?? '') !== 'S') return true;
+        return typeof data.replace === 'string' && data.replace.trim() !== '';
+      },
+      {
+        message: s.requiredMsg,
+        path: ['replace'],
+      },
     );
 }
 
@@ -291,21 +311,38 @@ function formatLocTarget(formValues: Partial<AddEntrySchemaType>): string {
 }
 
 function formatNaptrTarget(formValues: Partial<AddEntrySchemaType>): string {
-  let lastItem = '.';
-  const replace = formValues?.replace;
-  if (replace != null && String(replace).trim() !== '') {
-    const val = String(replace).trim();
-    lastItem = /\.$/.test(val) ? toASCII(val) : `${toASCII(val)}.`;
-  }
+  const flag = String(formValues?.flag ?? '').toUpperCase();
   const order = formValues?.order;
   const pref = formValues?.pref;
-  const flag = formValues?.flag;
   const service = formValues?.service ?? '';
-  const regex = formValues?.regex ?? '';
+
+  // Determine regex and replacement based on flag
+  let regex = '';
+  let lastItem = '.';
+  if (flag === 'U') {
+    regex = formValues?.regex ?? '';
+    // replacement is always "."
+  } else if (flag === 'S' || flag === 'A') {
+    // regex must be empty
+    const replace = formValues?.replace;
+    if (replace != null && String(replace).trim() !== '') {
+      const val = String(replace).trim();
+      lastItem = val.endsWith('.') ? toASCII(val) : `${toASCII(val)}.`;
+    }
+  } else {
+    // P or unknown: use whichever is filled
+    regex = formValues?.regex ?? '';
+    const replace = formValues?.replace;
+    if (replace != null && String(replace).trim() !== '') {
+      const val = String(replace).trim();
+      lastItem = val.endsWith('.') ? toASCII(val) : `${toASCII(val)}.`;
+    }
+  }
+
   return [
     order != null && order !== '' ? String(order) : '',
     pref != null && pref !== '' ? String(pref) : '',
-    `"${flag != null && flag !== '' ? String(flag).toUpperCase() : ''}"`,
+    `"${flag}"`,
     `"${service}"`,
     `"${regex}"`,
     lastItem,
@@ -327,6 +364,47 @@ function formatDmarcTarget(formValues: Partial<AddEntrySchemaType>): string {
   return `"${parts.join('; ')}"`;
 }
 
+function formatDkimTarget(formValues: Partial<AddEntrySchemaType>): string {
+  const isRevoked = formValues?.dkim_status === 'revoked';
+  let value = 'v=DKIM1;';
+
+  // Granularity
+  const g = formValues?.g ? String(formValues.g) : '';
+  if (g) value += ` g=${g};`;
+
+  // Hash algorithm
+  const h = formValues?.h ? String(formValues.h) : '';
+  if (h) value += ` h=${h};`;
+
+  // Key type
+  const k = formValues?.k ? String(formValues.k) : '';
+  if (k) value += ` k=${k};`;
+
+  // Notes
+  const n = formValues?.n ? String(formValues.n) : '';
+  if (n) value += ` n=${n};`;
+
+  // Public key
+  if (isRevoked) {
+    value += ' p=;';
+  } else {
+    const p = formValues?.p ? String(formValues.p).replace(/\s+/g, '') : '';
+    if (p) value += ` p=${p};`;
+  }
+
+  // Service type
+  const s = formValues?.s ? String(formValues.s) : '';
+  if (s) value += ` s=${s};`;
+
+  // Flags (combine t_y and t_s)
+  const flags: string[] = [];
+  if (formValues?.t_y === 'yes') flags.push('y');
+  if (formValues?.t_s === 'yes') flags.push('s');
+  if (flags.length) value += ` t=${flags.join(':')};`;
+
+  return `"${value.trim()}"`;
+}
+
 export function getTargetDisplayValue(
   recordType: string,
   formValues: Partial<AddEntrySchemaType>,
@@ -346,6 +424,10 @@ export function getTargetDisplayValue(
 
   if (recordType === FieldTypeMailRecordsEnum.DMARC) {
     return formatDmarcTarget(formValues);
+  }
+
+  if (recordType === FieldTypeMailRecordsEnum.DKIM) {
+    return formatDkimTarget(formValues);
   }
 
   const fieldMap = getFieldMap(recordType);

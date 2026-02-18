@@ -28,8 +28,6 @@ export enum FieldTypeMailRecordsEnum {
 
 export enum RecordTypesWithoutTTLEnum {
   SPF = 'SPF',
-  DKIM = 'DKIM',
-  DMARC = 'DMARC',
 }
 
 export enum RecordTypesAsTxtEnum {

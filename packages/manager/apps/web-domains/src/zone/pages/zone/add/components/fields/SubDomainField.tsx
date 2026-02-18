@@ -24,6 +24,7 @@ export interface SubDomainFieldProps {
   required?: boolean;
   tooltip?: string;
   placeholder?: string;
+  labelKey?: string;
 }
 
 export function SubDomainField({
@@ -33,6 +34,7 @@ export function SubDomainField({
   required = true,
   tooltip,
   placeholder,
+  labelKey,
 }: SubDomainFieldProps) {
   const { t } = useTranslation(["zone", NAMESPACES.FORM]);
   return (
@@ -42,7 +44,7 @@ export function SubDomainField({
       render={({ field, fieldState: { error, invalid } }) => (
         <FormField className={className ?? "w-full"} invalid={!!error && invalid}>
           <FormFieldLabel>
-            {t("zone_page_form_subdomain")}
+            {t(labelKey ?? "zone_page_form_subdomain")}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
             {tooltip && (
               <Tooltip>
@@ -56,17 +58,24 @@ export function SubDomainField({
             )}
           </FormFieldLabel>
           <div className="flex w-full gap-2">
-            <Input
-              type={INPUT_TYPE.text}
-              className="flex-1 min-w-0"
-              name={field.name}
-              value={String(field.value ?? "")}
-              onBlur={field.onBlur}
-              onChange={(e) => field.onChange(e.target?.value)}
-              invalid={!!error}
-              placeholder={placeholder}
-            />
-            <Input type={INPUT_TYPE.text} value={domainSuffix} readOnly disabled className="flex-1 min-w-0" />
+            <div className="relative w-full">
+              <Input
+                type={INPUT_TYPE.text}
+                className="w-full"
+                style={domainSuffix ? { paddingRight: `${domainSuffix.length + 4}ch` } : undefined}
+                name={field.name}
+                value={String(field.value ?? "")}
+                onBlur={field.onBlur}
+                onChange={(e) => field.onChange(e.target?.value)}
+                invalid={!!error}
+                placeholder={placeholder}
+              />
+              {domainSuffix && (
+                <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">
+                  .{domainSuffix}.
+                </span>
+              )}
+            </div>
           </div>
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>

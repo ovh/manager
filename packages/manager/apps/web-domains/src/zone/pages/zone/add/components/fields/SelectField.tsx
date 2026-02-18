@@ -94,6 +94,7 @@ export function SelectField({
             }))}
           >
             <SelectControl
+              className="truncate [&_*]:truncate"
               placeholder={placeholder ?? t(`${NAMESPACES.ACTIONS}:select_imperative`)}
             />
             <SelectContent

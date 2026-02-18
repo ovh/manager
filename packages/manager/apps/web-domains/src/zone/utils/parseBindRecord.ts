@@ -275,6 +275,41 @@ function parseDMARC(tokens: string[], start: number): Partial<AddEntrySchemaType
   return result;
 }
 
+function parseDKIM(tokens: string[], start: number): Partial<AddEntrySchemaType> | null {
+  // DKIM rdata is a TXT record with structured content: "v=DKIM1; k=rsa; p=MIG..."
+  if (start >= tokens.length) return null;
+  const raw = tokens.slice(start).join(' ').replace(/^"|"$/g, '').replace(/"\s*"/g, '');
+  const result: Partial<AddEntrySchemaType> = {};
+
+  const pairs = raw.split(/;\s*/);
+  for (const pair of pairs) {
+    const [key, ...rest] = pair.split('=');
+    const value = rest.join('=').trim();
+    const k = key?.trim().toLowerCase();
+    if (k === 'k') result.k = value;
+    if (k === 'h') result.h = value;
+    if (k === 'g') result.g = value;
+    if (k === 'n') result.n = value;
+    if (k === 's') result.s = value;
+    if (k === 'p') {
+      if (value === '' || !value) {
+        result.dkim_status = 'revoked';
+      } else {
+        result.p = value;
+        result.dkim_status = 'active';
+      }
+    }
+    if (k === 't') {
+      const flags = value.split(':').map((f: string) => f.trim());
+      result.t_y = flags.includes('y') ? 'yes' : 'no';
+      result.t_s = flags.includes('s') ? 'yes' : 'no';
+    }
+  }
+
+  // p is always present in a valid DKIM record (even if empty for revoked keys)
+  return result;
+}
+
 // ---------------------------------------------------------------------------
 // Main parse function
 // ---------------------------------------------------------------------------
@@ -319,7 +354,7 @@ export function parseBindRecord(input: string): ParseBindResult {
       rdata = parseTXT(tokens, rdataStart);
       break;
     case 'DKIM':
-      rdata = parseTXT(tokens, rdataStart);
+      rdata = parseDKIM(tokens, rdataStart);
       break;
     case 'SSHFP':
       rdata = parseSSHFP(tokens, rdataStart);

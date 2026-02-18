@@ -44,7 +44,7 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
           </Tooltip>
         )}
       </FormFieldLabel>
-      <div className="grid w-full grid-cols-2 items-start gap-2">
+      <div className="grid w-full grid-cols-2 items-start gap-4">
         <Controller
           name="ttlSelect"
           control={control}
@@ -73,10 +73,11 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
             if (ttlSelectValue !== "custom") return null;
             return (
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
+                <div className="relative">
                   <Input
                     type={INPUT_TYPE.number}
                     className="w-full"
+                    style={{ paddingRight: '6rem' }}
                     name={ttlField.name}
                     value={
                       ttlField.value !== undefined && ttlField.value !== ""
@@ -93,7 +94,9 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
                     step={1}
                     invalid={!!ttlError}
                   />
-                  <Text preset={TEXT_PRESET.span}>s.</Text>
+                  <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">
+                    {t('zone_page_form_label_seconds')}
+                  </span>
                 </div>
                 {ttlError?.message && <FormFieldError>{ttlError.message}</FormFieldError>}
               </div>

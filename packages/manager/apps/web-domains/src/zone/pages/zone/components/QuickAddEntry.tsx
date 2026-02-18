@@ -126,6 +126,14 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       setValue('v', 'DMARC1');
       setValue('aspf', 'r');
     }
+    if (fieldType === FieldTypeMailRecordsEnum.DKIM) {
+      setValue('k', 'rsa');
+      setValue('h', 'sha256');
+      setValue('s', 'email');
+      setValue('dkim_status', 'active');
+      setValue('t_y', 'no');
+      setValue('t_s', 'no');
+    }
   }, [setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
