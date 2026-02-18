@@ -16,10 +16,10 @@ import {
   ModalHeader,
   Skeleton,
   Text,
+  toast,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useNotifications } from '@ovh-ux/muk';
 
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useProjectId } from '@/hooks/useProjectId';
@@ -38,21 +38,26 @@ const DeleteSharePage: React.FC = () => {
     select: selectShareDeletionView,
   });
 
-  const { addSuccess, addError } = useNotifications();
   const shareName = shareDeletionView?.shareName ?? shareId;
 
   const onError = useCallback(
     (errorMessage: string) => {
-      addError(t('delete:message.error', { errorMessage }));
+      toast(t('delete:message.error', { errorMessage }), {
+        color: 'warning',
+        duration: Infinity,
+      });
       navigate('..');
     },
-    [navigate, addError, t],
+    [navigate, t],
   );
 
   const onSuccess = useCallback(() => {
-    addSuccess(t('delete:message.success', { shareName }));
+    toast(t('delete:message.success', { shareName }), {
+      color: 'success',
+      duration: 5000,
+    });
     navigate('..');
-  }, [navigate, addSuccess, t, shareName]);
+  }, [navigate, t, shareName]);
 
   const { deleteShare, isPending: isDeletionPending } = useShareDeletion(
     projectId,

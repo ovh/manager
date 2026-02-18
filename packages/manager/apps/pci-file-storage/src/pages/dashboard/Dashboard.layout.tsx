@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -16,8 +16,6 @@ import {
   type TabsValueChangeEvent,
   Text,
 } from '@ovhcloud/ods-react';
-
-import { Notifications, useNotifications } from '@ovh-ux/muk';
 
 import { ActionLink } from '@/components/action-link/ActionLink.component';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
@@ -45,11 +43,6 @@ const DashboardLayout: React.FC = () => {
   const { region, shareId } = useShareParams();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const { clearNotifications } = useNotifications();
-  useEffect(() => {
-    clearNotifications();
-  }, [clearNotifications]);
 
   const { data: shareDetails } = useShare(region, shareId, {
     select: selectShareDetails,
@@ -90,10 +83,6 @@ const DashboardLayout: React.FC = () => {
           withBackArrow
         />
       </header>
-
-      <div>
-        <Notifications />
-      </div>
 
       <nav aria-label={t('dashboard:tabs.general')}>
         <Tabs value={currentTab} onValueChange={handleTabChange}>
