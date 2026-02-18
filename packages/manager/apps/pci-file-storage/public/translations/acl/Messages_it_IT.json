@@ -1,0 +1,17 @@
+{
+  "description": "Aggiungi indirizzi o intervalli di IP autorizzati ad accedere a questa condivisione. Per impostazione predefinita, nessun indirizzo o intervallo IP è autorizzato. File Storage può essere utilizzato solo con indirizzi IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
+  "add": {
+    "label": "Aggiungi un nuovo accesso"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Accesso a"
+    },
+    "accessPermission": {
+      "header": "Diritti di accesso"
+    },
+    "actions": {
+      "header": "Azioni"
+    }
+  }
+}
