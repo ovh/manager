@@ -1,0 +1,33 @@
+{
+  "tenants_drawer": {
+    "title": "Lista de inquilinos",
+    "disclaimer": "Solo se pueden seleccionar los inquilinos situados en la misma región \"{{region}}\" que su recurso",
+    "no_results_found": "No se encontró ningún inquilino para la búsqueda \"{{searchQuery}}\"",
+    "region": "región"
+  },
+  "tenants_regions": {
+    "region_one": "Zona",
+    "region_other": "Regiones"
+  },
+  "no_tenants_message": {
+    "title": "Recopile métricas en su primer inquilino en esta región",
+    "description": "Para ayudarle a comenzar rápidamente, crearemos automáticamente su primer inquilino con los siguientes parámetros:",
+    "retention": "Retención: {{retention}}",
+    "create-and-subscribe-tenant": "Crear y suscribirse a su inquilino"
+  },
+  "search": {
+    "placeholder": "búsqueda"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "Suscribirme"
+    },
+    "unsubscribe": {
+      "cta": "Darse de baja"
+    }
+  },
+  "listing": {
+    "service": "Servicio de Observabilidad",
+    "select_observability_service": "Seleccione un servicio"
+  }
+}

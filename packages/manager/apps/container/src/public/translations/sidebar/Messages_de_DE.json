@@ -234,6 +234,13 @@
   "sidebar_backup_services": "Dienste",
   "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
   "sidebar_backup_agent_baremetal": "Backup Agent",
-  "sidebar_assistance_ai_chatbot": "AI-Assistent",
-  "sidebar_domain_reseller": "Händlerprogramm"
+  "sidebar_assistance_ai_chatbot": "KI-Assistent",
+  "sidebar_domain_reseller": "Händlerprogramm",
+  "sidebar_observability_settings": "Einstellungen",
+  "sidebar_observability_settings_service_management": "Dienstverwaltung",
+  "sidebar_observability": "Observability",
+  "sidebar_observability_dashboards": "Dashboards",
+  "sidebar_observability_metrics": "Metriken",
+  "sidebar_observability_metrics_tenants": "Tenants",
+  "sidebar_observability_short": "Observability"
 }
