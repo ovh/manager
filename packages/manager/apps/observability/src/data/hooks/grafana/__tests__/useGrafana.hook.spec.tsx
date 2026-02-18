@@ -53,10 +53,6 @@ describe('useGrafanas', () => {
           datasource: {
             fullySynced: false,
           },
-          version: {
-            value: '1.3.45',
-            deprecated: false,
-          },
           infrastructure: {
             certificationLevel: 'STANDARD',
             entryPoint: 'gra1.metrics.ovh.com',
@@ -64,7 +60,11 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
-          release: { id: 'release-1' },
+          release: {
+            id: 'release-1',
+            status: 'SUPPORTED',
+            version: '1.0.0',
+          },
         },
         resourceStatus: 'READY',
         iam: {
@@ -84,10 +84,6 @@ describe('useGrafanas', () => {
           datasource: {
             fullySynced: true,
           },
-          version: {
-            value: '1.0.1',
-            deprecated: true,
-          },
           infrastructure: {
             certificationLevel: 'STANDARD',
             entryPoint: 'gra1.metrics.ovh.com',
@@ -95,7 +91,11 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
-          release: { id: 'release-2' },
+          release: {
+            id: 'release-2',
+            status: 'DEPRECATED',
+            version: '1.0.1',
+          },
         },
         resourceStatus: 'READY',
         iam: {
@@ -157,10 +157,6 @@ describe('useGrafanas', () => {
           datasource: {
             fullySynced: false,
           },
-          version: {
-            value: '1.3.45',
-            deprecated: false,
-          },
           infrastructure: {
             certificationLevel: 'STANDARD',
             entryPoint: 'gra1.metrics.ovh.com',
@@ -168,7 +164,11 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
-          release: { id: 'release-1' },
+          release: {
+            id: 'release-1',
+            status: 'SUPPORTED',
+            version: '1.0.0',
+          },
         },
         resourceStatus: 'READY',
         iam: {
@@ -188,10 +188,6 @@ describe('useGrafanas', () => {
           datasource: {
             fullySynced: true,
           },
-          version: {
-            value: '1.0.1',
-            deprecated: true,
-          },
           infrastructure: {
             certificationLevel: 'STANDARD',
             entryPoint: 'gra1.metrics.ovh.com',
@@ -199,7 +195,11 @@ describe('useGrafanas', () => {
             location: 'eu-west-gra',
             type: 'SHARED',
           },
-          release: { id: 'release-2' },
+          release: {
+            id: 'release-2',
+            status: 'DEPRECATED',
+            version: '1.0.1',
+          },
         },
         resourceStatus: 'READY',
         iam: {

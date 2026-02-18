@@ -222,11 +222,23 @@ const mockGrafanas: Grafana[] = [
       datasource: {
         fullySynced: false,
       },
-      version: {
-        value: '1.3.45',
-        deprecated: false,
+      release: {
+        id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
+        status: 'DEPRECATED',
+        version: '11.1.0rc1',
+        upgradableTo: [
+          {
+            id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+            status: 'SUPPORTED',
+            version: '12.2.1',
+          },
+          {
+            id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+            status: 'SUPPORTED',
+            version: '12.2.1rc1',
+          },
+        ],
       },
-      release: { id: 'release-1' },
     },
     iam: {
       id: '4691a219-7eea-4385-b64b-80f7220cf19c',
@@ -257,11 +269,23 @@ const mockGrafanas: Grafana[] = [
       datasource: {
         fullySynced: true,
       },
-      version: {
-        value: '1.0.1',
-        deprecated: true,
+      release: {
+        id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+        status: 'SUPPORTED',
+        version: '11.1.0',
+        upgradableTo: [
+          {
+            id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+            status: 'SUPPORTED',
+            version: '12.2.1',
+          },
+          {
+            id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
+            status: 'SUPPORTED',
+            version: '12.2.1rc1',
+          },
+        ],
       },
-      release: { id: 'release-2' },
     },
     iam: {
       id: '155c54c1-7efd-49e3-9358-b1a2860a56cc',
@@ -286,11 +310,18 @@ const mockGrafanas: Grafana[] = [
       datasource: {
         fullySynced: false,
       },
-      version: {
-        value: '2.0.0',
-        deprecated: false,
+      release: {
+        id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+        status: 'SUPPORTED',
+        version: '12.2.1',
+        downgradableTo: [
+          {
+            id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+            status: 'SUPPORTED',
+            version: '11.1.0',
+          },
+        ],
       },
-      release: { id: 'release-3' },
     },
     iam: {
       id: 'grafana-3',
@@ -441,9 +472,9 @@ describe('ManagedDashboardsListDatagrid', () => {
 
       const versionColumns = container.querySelectorAll('[data-testid="column-version"]');
       expect(versionColumns.length).toBe(3);
-      expect(versionColumns[0]).toHaveTextContent('1.3.45');
-      expect(versionColumns[1]).toHaveTextContent('1.0.1');
-      expect(versionColumns[2]).toHaveTextContent('2.0.0');
+      expect(versionColumns[0]).toHaveTextContent('11.1.0rc1');
+      expect(versionColumns[1]).toHaveTextContent('11.1.0');
+      expect(versionColumns[2]).toHaveTextContent('12.2.1');
     });
 
     it('should render deprecated badge for deprecated versions', () => {
@@ -466,9 +497,12 @@ describe('ManagedDashboardsListDatagrid', () => {
       );
       expect(isAccessLimitedColumns.length).toBe(3);
       expect(isAccessLimitedColumns[0]).toHaveTextContent(
-        '@ovh-ux/manager-common-translations/form:yes',
+        '@ovh-ux/manager-common-translations/form:no',
       );
       expect(isAccessLimitedColumns[1]).toHaveTextContent(
+        '@ovh-ux/manager-common-translations/form:no',
+      );
+      expect(isAccessLimitedColumns[2]).toHaveTextContent(
         '@ovh-ux/manager-common-translations/form:no',
       );
     });
@@ -582,11 +616,11 @@ describe('ManagedDashboardsListDatagrid', () => {
             datasource: {
               fullySynced: false,
             },
-            version: {
-              value: '1.0.0',
-              deprecated: false,
+            release: {
+              id: 'release-incomplete',
+              status: 'SUPPORTED',
+              version: '1.0.0',
             },
-            release: { id: 'release-incomplete' },
           },
           iam: undefined,
         },
@@ -620,11 +654,11 @@ describe('ManagedDashboardsListDatagrid', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '1.0.0',
-              deprecated: false,
+            release: {
+              id: 'release-no-infra',
+              status: 'SUPPORTED',
+              version: '1.0.0',
             },
-            release: { id: 'release-no-infra' },
           },
           iam: {
             id: 'grafana-no-infra',
@@ -692,7 +726,7 @@ describe('ManagedDashboardsListDatagrid', () => {
       );
     });
 
-    it('should handle isAccessLimited based on publicIpAddress', () => {
+    it('should handle isAccessLimited based on allowedNetworks', () => {
       const { container } = render(<ManagedDashboardsListDatagrid {...defaultProps} />, {
         wrapper: createWrapper(),
       });
@@ -700,8 +734,9 @@ describe('ManagedDashboardsListDatagrid', () => {
       const isAccessLimitedColumns = container.querySelectorAll(
         '[data-testid="column-isAccessLimited"]',
       );
+      // All should be false since mock data has no allowedNetworks
       expect(isAccessLimitedColumns[0]).toHaveTextContent(
-        '@ovh-ux/manager-common-translations/form:yes',
+        '@ovh-ux/manager-common-translations/form:no',
       );
       expect(isAccessLimitedColumns[1]).toHaveTextContent(
         '@ovh-ux/manager-common-translations/form:no',

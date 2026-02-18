@@ -22,11 +22,11 @@ describe('managedDashboards.utils', () => {
           datasource: {
             fullySynced: true,
           },
-          version: {
-            value: '10.0.0',
-            deprecated: false,
+          release: {
+            id: 'release-default',
+            version: '10.0.0',
+            status: 'SUPPORTED',
           },
-          release: { id: 'release-default' },
         },
       };
 
@@ -39,10 +39,6 @@ describe('managedDashboards.utils', () => {
           datasource: {
             ...baseGrafana.currentState.datasource,
             ...overrides.currentState?.datasource,
-          },
-          version: {
-            ...baseGrafana.currentState.version,
-            ...overrides.currentState?.version,
           },
           release: overrides.currentState?.release ?? baseGrafana.currentState.release,
         },
@@ -60,10 +56,7 @@ describe('managedDashboards.utils', () => {
           datasource: {
             fullySynced: true,
           },
-          version: {
-            value: '10.2.3',
-            deprecated: false,
-          },
+          allowedNetworks: ['192.168.1.0/24'],
           infrastructure: {
             id: 'infra-1',
             entryPoint: 'grafana1.metrics.ovh.com',
@@ -90,14 +83,14 @@ describe('managedDashboards.utils', () => {
           entryPoint: 'grafana1.metrics.ovh.com',
           endpoint: 'https://grafana.example.com',
           configuration: DatasourceConfiguration.AUTOMATIC,
-          version: '10.2.3',
+          version: '10.0.0',
           deprecated: false,
           isAccessLimited: true,
           resourceStatus: 'READY',
           updatedAt: '2025-12-01T10:30:00.000Z',
           urn: 'urn:v1:eu:resource:grafana:grafana-1',
           search:
-            'Grafana Dashboard 1 Main monitoring dashboard grafana1.metrics.ovh.comautomatic 10.2.3',
+            'Grafana Dashboard 1 Main monitoring dashboard grafana1.metrics.ovh.comautomatic 10.0.0',
         },
       ]);
     });
@@ -122,10 +115,6 @@ describe('managedDashboards.utils', () => {
           datasource: {
             fullySynced,
           },
-          version: {
-            value: '10.0.0',
-            deprecated: false,
-          },
         },
       });
 
@@ -146,10 +135,6 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: false,
             },
-            version: {
-              value: '9.5.0',
-              deprecated: false,
-            },
           },
         }),
         expectations: (result: GrafanaListing) => {
@@ -168,10 +153,6 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.1.0',
-              deprecated: false,
-            },
           },
         }),
         expectations: (result: GrafanaListing) => {
@@ -188,10 +169,6 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.0.0',
-              deprecated: false,
-            },
             infrastructure: {
               id: 'infra-public',
               entryPoint: 'public.grafana.com',
@@ -206,7 +183,7 @@ describe('managedDashboards.utils', () => {
         },
       },
       {
-        description: 'grafana with publicIpAddress (access limited)',
+        description: 'grafana with allowedNetworks (access limited)',
         grafana: createGrafana({
           id: 'grafana-limited',
           currentState: {
@@ -215,10 +192,7 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.0.0',
-              deprecated: false,
-            },
+            allowedNetworks: ['10.0.0.0/24'],
             infrastructure: {
               id: 'infra-limited',
               entryPoint: 'limited.grafana.com',
@@ -243,10 +217,6 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.0.0',
-              deprecated: false,
-            },
           },
         }),
         expectations: (result: GrafanaListing) => {
@@ -263,9 +233,10 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '8.0.0',
-              deprecated: true,
+            release: {
+              id: 'release-deprecated',
+              version: '8.0.0',
+              status: 'DEPRECATED',
             },
           },
         }),
@@ -298,10 +269,6 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.0.0',
-              deprecated: false,
-            },
             infrastructure: {
               id: 'infra-1',
               entryPoint: 'first.metrics.ovh.com',
@@ -324,9 +291,10 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: false,
             },
-            version: {
-              value: '9.5.0',
-              deprecated: true,
+            release: {
+              id: 'release-2',
+              version: '9.5.0',
+              status: 'DEPRECATED',
             },
           },
           iam: {
@@ -399,10 +367,6 @@ describe('managedDashboards.utils', () => {
               datasource: {
                 fullySynced: true,
               },
-              version: {
-                value: '10.0.0',
-                deprecated: false,
-              },
             },
           }),
         ],
@@ -429,7 +393,6 @@ describe('managedDashboards.utils', () => {
               title: 'Grafana 1',
               description: 'Description 1',
               datasource: { fullySynced: true },
-              version: { value: '10.0.0', deprecated: false },
             },
           }),
           createGrafana({
@@ -438,7 +401,6 @@ describe('managedDashboards.utils', () => {
               title: 'Grafana 2',
               description: 'Description 2',
               datasource: { fullySynced: false },
-              version: { value: '9.0.0', deprecated: false },
             },
           }),
         ],
@@ -456,7 +418,6 @@ describe('managedDashboards.utils', () => {
               title: 'Grafana With Infrastructure',
               description: 'Has infrastructure',
               datasource: { fullySynced: true },
-              version: { value: '10.0.0', deprecated: false },
               infrastructure: {
                 id: 'infra-id',
                 entryPoint: 'grafana.metrics.ovh.net',
@@ -488,16 +449,17 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: true,
             },
-            version: {
-              value: '10.5.0',
-              deprecated: false,
-            },
             infrastructure: {
               id: 'infra-search',
               entryPoint: 'search.grafana.com',
               location: 'GRA11',
               type: 'SHARED',
               certificationLevel: 'STANDARD',
+            },
+            release: {
+              id: 'release-search',
+              version: '10.5.0',
+              status: 'SUPPORTED',
             },
           },
         }),
@@ -520,9 +482,10 @@ describe('managedDashboards.utils', () => {
             datasource: {
               fullySynced: false,
             },
-            version: {
-              value: '9.0.0',
-              deprecated: false,
+            release: {
+              id: 'release-no-entry',
+              version: '9.0.0',
+              status: 'SUPPORTED',
             },
           },
         }),
@@ -575,25 +538,25 @@ describe('managedDashboards.utils', () => {
     it.each([
       {
         description: 'version values',
-        versions: [
-          { value: '10.0.0', deprecated: false },
-          { value: '9.5.3', deprecated: false },
-          { value: '8.0.0', deprecated: true },
+        releases: [
+          { id: 'release-1', version: '10.0.0', status: 'SUPPORTED' as const },
+          { id: 'release-2', version: '9.5.3', status: 'SUPPORTED' as const },
+          { id: 'release-3', version: '8.0.0', status: 'DEPRECATED' as const },
         ],
         expectations: (result: GrafanaListing[]) => {
           expect(result.map((g) => g.version)).toEqual(['10.0.0', '9.5.3', '8.0.0']);
           expect(result.map((g) => g.deprecated)).toEqual([false, false, true]);
         },
       },
-    ])('should preserve $description correctly', ({ versions, expectations }) => {
-      const grafanas = versions.map((version, idx) =>
+    ])('should preserve $description correctly', ({ releases, expectations }) => {
+      const grafanas = releases.map((release, idx) =>
         createGrafana({
           id: `grafana-version-${idx}`,
           currentState: {
             title: `Grafana ${idx}`,
             description: `Description ${idx}`,
             datasource: { fullySynced: true },
-            version,
+            release,
           },
         }),
       );
@@ -611,7 +574,6 @@ describe('managedDashboards.utils', () => {
             title: 'Auto Config',
             description: 'Auto description',
             datasource: { fullySynced: true },
-            version: { value: '10.0.0', deprecated: false },
           },
         }),
         createGrafana({
@@ -620,7 +582,6 @@ describe('managedDashboards.utils', () => {
             title: 'Manual Config',
             description: 'Manual description',
             datasource: { fullySynced: false },
-            version: { value: '9.0.0', deprecated: false },
           },
         }),
       ];

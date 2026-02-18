@@ -23,20 +23,14 @@ export type ManagedDashboardDataSource = {
   };
 };
 
-export type ManagedDashboardVersion = {
-  value: string;
-  deprecated: boolean;
-};
-
 export type GrafanaState = {
   title: string;
   description: string;
   endpoint?: string;
   infrastructure?: ManagedDashboardInfrastructure;
   datasource: ManagedDashboardDataSource;
-  version: ManagedDashboardVersion;
   allowedNetworks?: string[];
-  release: TIdentifier;
+  release: TIdentifier | GrafanaRelease;
 };
 
 export type Grafana = {
