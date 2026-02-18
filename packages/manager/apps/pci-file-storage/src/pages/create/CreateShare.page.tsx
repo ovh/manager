@@ -28,7 +28,7 @@ const CreateSharePage: FC = () => {
             <Trans
               i18nKey="description"
               ns="create"
-              components={[<LinkWithArrow key="0" href={getStartedLink} />]}
+              components={[<LinkWithArrow key="0" href={getStartedLink} target="_blank" />]}
             />
           </Text>
         </article>

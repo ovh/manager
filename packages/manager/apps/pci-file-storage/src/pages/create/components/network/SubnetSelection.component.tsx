@@ -32,7 +32,6 @@ export const SubnetSelection = () => {
     region: selectedMicroRegion,
     networkId: selectedNetworkId,
     options: { select: selectSubnetsForNetwork(selectedNetworkId) },
-    enabled: !!selectedMicroRegion && !!selectedNetworkId,
   });
 
   const firstSubnetId = useMemo(() => subnetOptions[0]?.value, [subnetOptions]);

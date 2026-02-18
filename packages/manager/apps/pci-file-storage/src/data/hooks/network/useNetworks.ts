@@ -17,5 +17,6 @@ export const useNetworks = <TData>(
     queryFn: () => getNetworks({ projectId, region: region! }),
     enabled: !!region,
     select: options?.select,
+    retry: 1,
   });
 };
