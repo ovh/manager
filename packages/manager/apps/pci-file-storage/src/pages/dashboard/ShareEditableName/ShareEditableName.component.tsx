@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQueryClient } from '@tanstack/react-query';
 import { FormProvider, useForm, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -18,9 +20,15 @@ import {
   Input,
   Skeleton,
   Text,
+  toast,
 } from '@ovhcloud/ods-react';
 
+import { shareDetailsQueryKey } from '@/adapters/shares/queryKeys';
+import { useUpdateShare } from '@/data/hooks/shares/useUpdateShare';
 import { nameSchema } from '@/pages/create/schema/CreateShare.schema';
+
+const SUCCESS_TOASTER_DURATION = 5000;
+const SUCCESS_REFETCH_DELAY = 5000;
 
 const renameShareSchema = z.object({
   name: nameSchema.nullable(),
@@ -30,13 +38,48 @@ type TRenameShareFormValues = z.infer<typeof renameShareSchema>;
 
 type TShareEditableNameProps = {
   name: string | null;
-  onSubmit: (name: string) => void;
+  projectId: string;
+  shareId: string;
+  region: string;
 };
 
-// Todo in this pr : add tests
+// Todo in this pr : add  tests
 
-export const ShareEditableName: React.FC<TShareEditableNameProps> = ({ name, onSubmit }) => {
-  const { t } = useTranslation(['create']);
+export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
+  name,
+  projectId,
+  shareId,
+  region,
+}) => {
+  const [editing, setEditing] = useState<boolean>(false);
+  const { t } = useTranslation(['create', 'dashboard']);
+  const queryClient = useQueryClient();
+
+  const onUpdateSuccess = useCallback(() => {
+    toast(t('dashboard:rename.success'), {
+      color: 'success',
+      duration: SUCCESS_TOASTER_DURATION,
+    });
+
+    setTimeout(() => {
+      void queryClient.invalidateQueries({
+        queryKey: shareDetailsQueryKey(projectId, region, shareId),
+      });
+    }, SUCCESS_REFETCH_DELAY);
+  }, [projectId, queryClient, region, shareId, t]);
+
+  const onUpdateError = useCallback(() => {
+    toast(t('dashboard:rename.error'), {
+      color: 'warning',
+      duration: Infinity,
+    });
+  }, [t]);
+
+  const { mutate: updateShare } = useUpdateShare({
+    projectId,
+    shareId,
+    region,
+  });
 
   const form = useForm<TRenameShareFormValues>({
     resolver: zodResolver(renameShareSchema),
@@ -68,8 +111,8 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({ name, onS
 
   const handleFormSubmit = (data: TRenameShareFormValues) => {
     if (!data.name) return;
-
-    onSubmit(data.name);
+    setEditing(false);
+    updateShare({ name: data.name }, { onSuccess: onUpdateSuccess, onError: onUpdateError });
   };
 
   if (!name) {
@@ -78,17 +121,15 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({ name, onS
 
   return (
     <FormProvider {...form}>
-      {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         <FormField invalid={!!errors.name}>
           <Editable
             className="items-center"
             onCancel={handleCancel}
-            /* eslint-disable-next-line @typescript-eslint/no-misused-promises */
             onSubmit={handleSubmit(handleFormSubmit)}
-            defaultEditing={false}
+            editing={editing}
           >
-            <EditableDisplay>
+            <EditableDisplay onDoubleClick={() => setEditing(true)}>
               <Text preset="heading-2">{name}</Text>
             </EditableDisplay>
             <EditableInput>
@@ -100,10 +141,10 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({ name, onS
                 editing ? (
                   <>
                     <EditableSubmitTrigger disabled={!!errors.name} />
-                    <EditableCancelTrigger />
+                    <EditableCancelTrigger onClick={() => setEditing(false)} />
                   </>
                 ) : (
-                  <EditableEditTrigger />
+                  <EditableEditTrigger onClick={() => setEditing(true)} />
                 )
               }
             </EditableActions>

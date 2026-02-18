@@ -10,5 +10,9 @@
   },
   "common": {
     "coming_soon": "Bientôt disponible"
+  },
+  "rename": {
+    "success": "La mise à jour du share est en cours, cela peut prendre quelques secondes",
+    "error": "Une erreur s'est produite lors de la mise à jour du share"
   }
 }
