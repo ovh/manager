@@ -75,10 +75,6 @@ describe('useCreateGrafana', () => {
       datasource: {
         fullySynced: true,
       },
-      version: {
-        value: '10.0.0',
-        deprecated: false,
-      },
       release: { id: 'release-1' },
     },
   };
