@@ -1,6 +1,6 @@
 import NotFound from '../pages/404.page';
 
-const lazyRouteConfig = (importFn: CallableFunction) => {
+const lazyLoadRoute = (importFn: CallableFunction) => {
   return {
     lazy: async () => {
       const { default: moduleDefault, ...moduleExports } = await importFn();
@@ -18,15 +18,16 @@ const lazyRouteConfig = (importFn: CallableFunction) => {
 
 export const COMMON_PATH = '/pci/projects';
 
+// Move to <Route /> config once the breadcrumb is supported there
 export default [
   {
     path: '/pci/projects/:projectId/dataplatform',
-    ...lazyRouteConfig(() => import('@/pages/Root.layout')),
+    ...lazyLoadRoute(() => import('@/pages/Root.layout')),
     children: [
       {
         path: '',
         id: 'onboarding',
-        ...lazyRouteConfig(() =>
+        ...lazyLoadRoute(() =>
           import('@/pages/services/onboarding/Onboarding.page'),
         ),
       },
