@@ -102,6 +102,10 @@
   "pci_instance_creation_network_private_network_setting_title": "Private Network",
   "pci_instance_creation_network_private_network_setting_description": "The authorities are part of a private network. Internet or SSH access requires a Floating IP, a Gateway or an SSH Proxy.",
   "pci_instance_creation_network_setting_help_title": "Understanding network settings",
+  "pci_instance_creation_network_private_help_title": "Understanding private network (vRack)",
+  "pci_instance_creation_network_private_help_description": "A Private Network is an isolated and secure network that allows you to connect your instances to each other privately, without going through the Internet. This is useful to improve the security and performance of communications between your instances.",
+  "pci_instance_creation_network_private_help_configuration": "You can configure the port used for inter-network communication via the vLAN ID. You can also define the IP ranges concerned by this communication. This flexibility allows you to adapt the network configuration to your specific needs, ensuring optimal resource management and enhanced security.",
+  "pci_instance_creation_network_private_help_gateway": "<h6>Gateway</h6><p>A Gateway allows you to provide outbound internet access to your instances from the selected private network. This can be useful for tasks such as security updates. The Gateway is incompatible with \"Basic IP\" public IPs.</p>",
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} ex VAT/hour",
   "pci_instance_creation_image_available_on_other_models": "This image is available on other models.",
   "pci_instance_creation_select_network_dropdown_label": "Select an existing private network",
@@ -142,7 +146,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Customized",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the {{ numEntries }} most recent entries. When the new backup is complete, the oldest one is deleted.",
+    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the {{ numEntries }} most recent entries.",
     "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you want."
   },
   "pci_instance_creation_backup_setting_price_unit": "excluding VAT/month/GB",
@@ -155,6 +159,10 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Assign a gateway",
   "pci_instance_creation_network_gateway_price_label": "Size {{ size }} - {{ price }}",
+  "pci_instance_creation_network_public_connectivity_help_title": "Understanding public connectivity",
+  "pci_instance_creation_network_public_connectivity_help_description": "Public connectivity provides 2 levels of service:",
+  "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Adding a Floating IP to the Gateway capabilities allows the instance to be accessible from outside. The Floating IP is persistent and can be kept as long as needed and re-allocated to another instance.</p>",
+  "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>A Basic IP allows inbound and outbound connectivity with no usage restrictions. This IP is not persistent and is reallocated after the associated instance is deleted. It cannot be allocated to another instance.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assign public connectivity",
     "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.<br/><span>The creation of the floating IP will take place at the end of the configuration.</span></p>",

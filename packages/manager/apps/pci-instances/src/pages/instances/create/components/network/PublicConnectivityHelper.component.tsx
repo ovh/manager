@@ -10,10 +10,10 @@ import {
 import { DrawerOpenChangeDetail, Link, Text } from '@ovhcloud/ods-react';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 
-const NetworkHelper: FC = () => {
+const PublicConnectivityHelper: FC = () => {
   const { t } = useTranslation(['creation', 'common']);
   const { trackClick } = useOvhTracking();
-  const guide = useGuideLink('NETWORK');
+  const guide = useGuideLink('NETWORK_PUBLIC_CONNECTIVITY');
 
   const handleOpenGuideLink = () =>
     trackClick({
@@ -28,38 +28,42 @@ const NetworkHelper: FC = () => {
       trackClick({
         location: PageLocation.popup,
         actionType: 'action',
-        actions: ['add_instance', 'see-helper_network'],
+        actions: ['add_instance', 'see-helper_public_connectivity'],
       });
     }
+  };
+
+  const sectionComponents = {
+    h6: (
+      <Text
+        preset="heading-6"
+        className="mb-3 block font-semibold"
+      />
+    ),
+    p: <Text preset="paragraph" className="mb-4 block" />,
   };
 
   return (
     <HelpDrawer onOpenChange={handleOpenHelper}>
       <div className="flex flex-col pb-20 pt-8">
         <Text preset="heading-2" className="mb-4">
-          {t('creation:pci_instance_creation_network_private_help_title')}
-        </Text>
-        <Text preset="paragraph" className="mb-4">
-          {t('creation:pci_instance_creation_network_private_help_description')}
+          {t('creation:pci_instance_creation_network_public_connectivity_help_title')}
         </Text>
         <Text preset="paragraph" className="mb-8">
-          <Trans
-            t={t}
-            i18nKey="creation:pci_instance_creation_network_private_help_configuration"
-            components={{ br: <br /> }}
-          />
+          {t('creation:pci_instance_creation_network_public_connectivity_help_description')}
         </Text>
         <article className="mt-0">
           <Trans
             t={t}
-            i18nKey="creation:pci_instance_creation_network_private_help_gateway"
-            components={{
-              h6: (
-                <Text preset="heading-6" className="mb-3 block font-semibold" />
-              ),
-              p: <Text preset="paragraph" className="mb-4 block" />,
-              br: <br />,
-            }}
+            i18nKey="creation:pci_instance_creation_network_public_connectivity_help_floating_ip"
+            components={sectionComponents}
+          />
+        </article>
+        <article className="mt-8">
+          <Trans
+            t={t}
+            i18nKey="creation:pci_instance_creation_network_public_connectivity_help_basic_ip"
+            components={sectionComponents}
           />
         </article>
         <Link
@@ -75,4 +79,4 @@ const NetworkHelper: FC = () => {
   );
 };
 
-export default NetworkHelper;
+export default PublicConnectivityHelper;

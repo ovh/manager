@@ -98,17 +98,17 @@ const Network: FC = () => {
 
   return (
     <section>
-      <div className="flex items-center space-x-4">
-        <Text preset="heading-3">
-          {t('creation:pci_instance_creation_network_setting_title')}
+      <Text preset="heading-3">
+        {t('creation:pci_instance_creation_network_setting_title')}
+      </Text>
+      <div className="mt-4 flex items-center space-x-4">
+        <Text preset="heading-4">
+          {t(
+            'creation:pci_instance_creation_network_private_network_setting_title',
+          )}
         </Text>
         <NetworkHelper />
       </div>
-      <Text preset="heading-4" className="mt-4">
-        {t(
-          'creation:pci_instance_creation_network_private_network_setting_title',
-        )}
-      </Text>
       <Text className="mt-4" preset="paragraph">
         {t(
           'creation:pci_instance_creation_network_private_network_setting_description',

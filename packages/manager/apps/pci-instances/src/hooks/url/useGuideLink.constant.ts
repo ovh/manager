@@ -22,6 +22,7 @@ export type TGuideKey =
   | 'DISTRIBUTION_IMAGE_LIFE_CYCLE'
   | 'SSH_KEY'
   | 'NETWORK'
+  | 'NETWORK_PUBLIC_CONNECTIVITY'
   | 'BACKUP'
   | 'NETWORK_PRIVATE_MODE';
 
@@ -113,6 +114,20 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   NETWORK: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
     FR: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
+  },
+  NETWORK_PUBLIC_CONNECTIVITY: {
+    DEFAULT: `${HELP_URL}/en-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0069581`,
+    DE: `${HELP_URL}/de-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0037783`,
+    ES: `${HELP_URL}/es-es-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050148`,
+    FR: `${HELP_URL}/fr-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050149`,
+    IT: `${HELP_URL}/it-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050142`,
+    MA: `${HELP_URL}/fr-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050149`,
+    PL: `${HELP_URL}/pl-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050153`,
+    PT: `${HELP_URL}/pt-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050154`,
+    SN: `${HELP_URL}/fr-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050149`,
+    TN: `${HELP_URL}/fr-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050149`,
+    WE: `${HELP_URL}/en-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0069581`,
+    WS: `${HELP_URL}/es-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050141`,
   },
   BACKUP: {
     DEFAULT: `${HELP_URL}/en-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0069268`,

@@ -13,6 +13,7 @@ import {
 } from '../../view-models/networksViewModel';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import PublicConnectivityHelper from './PublicConnectivityHelper.component';
 import PublicIpConfiguration from './PublicIpConfiguration.component';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
@@ -73,11 +74,14 @@ const AddPublicNetworkConfiguration: FC<{
 
   return (
     <div className="mt-4">
-      <Text preset="heading-4">
-        {t(
-          'creation:pci_instance_creation_network_add_public_connectivity.title',
-        )}
-      </Text>
+      <div className="flex items-center space-x-4">
+        <Text preset="heading-4">
+          {t(
+            'creation:pci_instance_creation_network_add_public_connectivity.title',
+          )}
+        </Text>
+        <PublicConnectivityHelper />
+      </div>
       <Trans
         t={t}
         i18nKey="creation:pci_instance_creation_network_add_public_connectivity.description"

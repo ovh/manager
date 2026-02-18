@@ -102,6 +102,10 @@
   "pci_instance_creation_network_private_network_setting_title": "Rete privata",
   "pci_instance_creation_network_private_network_setting_description": "Le istanze sono collegate in rete privata. Per l'accesso a Internet o SSH è necessario un Floating IP, un Gateway o un SSH-Proxy.",
   "pci_instance_creation_network_setting_help_title": "Comprendere i parametri di rete",
+  "pci_instance_creation_network_private_help_title": "Comprendere la rete privata (vRack)",
+  "pci_instance_creation_network_private_help_description": "Una rete privata è una rete isolata e sicura che consente di collegare le istanze tra loro in modo privato, senza passare da Internet. È utile per migliorare la sicurezza e le prestazioni delle comunicazioni tra le istanze.",
+  "pci_instance_creation_network_private_help_configuration": "È possibile configurare la porta utilizzata per la comunicazione tra le reti tramite il vLAN ID. È inoltre possibile definire gli intervalli di IP interessati da questa comunicazione. Questa flessibilità consente di adattare la configurazione di rete alle esigenze specifiche, garantendo una gestione ottimale delle risorse e una sicurezza rafforzata.",
+  "pci_instance_creation_network_private_help_gateway": "<h6>Gateway</h6><p>Una Gateway consente di fornire accesso Internet in uscita alle istanze dalla rete privata selezionata. Può essere utile per attività come gli aggiornamenti di sicurezza. La Gateway non è compatibile con le IP pubbliche \"Basic IP\".</p>",
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} +IVA/ora",
   "pci_instance_creation_image_available_on_other_models": "Questa immagine è disponibile su altri modelli.",
   "pci_instance_creation_select_network_dropdown_label": "Seleziona una rete privata esistente",
@@ -142,7 +146,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci. Quando il nuovo backup è completato, il più vecchio viene eliminato.",
+    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci.",
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "al mese/GB",
@@ -155,6 +159,10 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Assegna un gateway",
   "pci_instance_creation_network_gateway_price_label": "Dimensione {{ size }} - {{ price }}",
+  "pci_instance_creation_network_public_connectivity_help_title": "Comprendere la connettività pubblica",
+  "pci_instance_creation_network_public_connectivity_help_description": "La connettività pubblica offre 2 livelli di servizio:",
+  "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Aggiungere una Floating IP alle capacità della Gateway consente all'istanza di essere accessibile dall'esterno. La Floating IP è persistente e può essere conservata quanto necessario e riassegnata a un'altra istanza.</p>",
+  "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Una Basic IP consente la connettività in entrata e in uscita senza restrizioni d'uso. Questa IP non è persistente e viene riassegnata dopo l'eliminazione dell'istanza associata. Non è possibile assegnarla a un'altra istanza.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assegna una connettività pubblica",
     "description": "<p>L'assegnazione di un indirizzo IP pubblico consente l'accesso alla tua istanza dall'esterno della rete OVHcloud.<br/><span>La creazione dell'IP flottante avverrà al termine della configurazione.</span></p>",

@@ -23,7 +23,7 @@ const PostInstallScript: FC = () => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 flex max-w-[45%] flex-col">
       <div className="flex items-center space-x-4">
         <Text preset="heading-4">
           {t('pci_instance_creation_post_install_script_title')}
@@ -32,16 +32,17 @@ const PostInstallScript: FC = () => {
       <Text className="mt-4" preset="paragraph">
         {t('pci_instance_creation_post_install_script_description')}
       </Text>
-      <ToggleField
-        className="mt-6"
-        withLabels
-        label={t('pci_instance_creation_post_install_script_toggle_label')}
-        checked={isEnabled}
-        onCheckedChange={handleToggle}
-      />
+      <div className="mt-6 block w-full">
+        <ToggleField
+          withLabels
+          label={t('pci_instance_creation_post_install_script_toggle_label')}
+          checked={isEnabled}
+          onCheckedChange={handleToggle}
+        />
+      </div>
       {isEnabled && (
         <Textarea
-          className="mt-4 w-1/2 font-mono"
+          className="mt-4 w-full font-mono"
           rows={4}
           value={postInstallScript}
           onChange={handleScriptChange}

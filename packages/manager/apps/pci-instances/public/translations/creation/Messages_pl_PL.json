@@ -102,6 +102,10 @@
   "pci_instance_creation_network_private_network_setting_title": "Sieć prywatna",
   "pci_instance_creation_network_private_network_setting_description": "Instancje są połączone w sieć prywatną. Dostęp do Internetu lub SSH wymaga adresu Floating IP, bramy lub serwera proxy SSH.",
   "pci_instance_creation_network_setting_help_title": "Zrozumienie parametrów sieciowych",
+  "pci_instance_creation_network_private_help_title": "Zrozumienie sieci prywatnej (vRack)",
+  "pci_instance_creation_network_private_help_description": "Sieć prywatna to izolowana i bezpieczna sieć umożliwiająca łączenie instancji między sobą w sposób prywatny, bez korzystania z Internetu. Jest to przydatne do poprawy bezpieczeństwa i wydajności komunikacji między instancjami.",
+  "pci_instance_creation_network_private_help_configuration": "Można skonfigurować port używany do komunikacji między sieciami za pomocą vLAN ID. Można również zdefiniować zakresy adresów IP objęte tą komunikacją. Ta elastyczność pozwala dostosować konfigurację sieci do konkretnych potrzeb, zapewniając optymalne zarządzanie zasobami i zwiększone bezpieczeństwo.",
+  "pci_instance_creation_network_private_help_gateway": "<h6>Brama</h6><p>Brama umożliwia zapewnienie wychodzącego dostępu do Internetu dla instancji z wybranej sieci prywatnej. Może to być przydatne w przypadku zadań takich jak aktualizacje zabezpieczeń. Brama jest niekompatybilna z publicznymi adresami IP \"Basic IP\".</p>",
   "pci_instance_creation_windows_image_hourly_license_price": "+ {{ price }} netto/godz.",
   "pci_instance_creation_image_available_on_other_models": "Ten obraz jest dostępny w innych modelach.",
   "pci_instance_creation_select_network_dropdown_label": "Wybierz istniejącą sieć prywatną",
@@ -142,7 +146,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotacja 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Spersonalizowana",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Kopia zapasowa jest wykonywana codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów. Gdy nowa kopia zapasowa jest zakończona, najstarsza jest usuwana.",
+    "predefined": "Kopia zapasowa jest wykonywana codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów.",
     "custom": "Wybierz samodzielnie harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
   },
   "pci_instance_creation_backup_setting_price_unit": "netto/miesiąc/GB",
@@ -155,6 +159,10 @@
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Przypisz bramkę",
   "pci_instance_creation_network_gateway_price_label": "Rozmiar {{ size }} - {{ price }}",
+  "pci_instance_creation_network_public_connectivity_help_title": "Zrozumienie łączności publicznej",
+  "pci_instance_creation_network_public_connectivity_help_description": "Łączność publiczna oferuje 2 poziomy usług:",
+  "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Dodanie Floating IP do możliwości bramy umożliwia dostęp do instancji z zewnątrz. Floating IP jest trwała i może być zachowana tak długo, jak to konieczne, oraz ponownie przypisana do innej instancji.</p>",
+  "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Basic IP umożliwia łączność przychodzącą i wychodzącą bez ograniczeń użytkowania. Ten adres IP nie jest trwały i jest ponownie przydzielany po usunięciu powiązanej instancji. Nie można go przypisać do innej instancji.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Przydziel publiczną łączność",
     "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud.<br/><span>Utworzenie floating IP nastąpi na końcu konfiguracji.</span></p>",
