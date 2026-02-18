@@ -9,4 +9,5 @@ export const GUIDES_KV2: GuideLinks = {
   IT: 'https://help.ovhcloud.com/csm/it-secret-manager-kv2-api?id=kb_article_view&sysparm_article=KB0072836',
   PL: 'https://help.ovhcloud.com/csm/pl-secret-manager-kv2-api?id=kb_article_view&sysparm_article=KB0072831',
   PT: 'https://help.ovhcloud.com/csm/pt-secret-manager-kv2-api?id=kb_article_view&sysparm_article=KB0072857',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/47763578901011-Using-the-Secret-Manager-with-the-HashiCorp-Vault-KV2-compliant-API',
 };
