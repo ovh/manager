@@ -17,6 +17,7 @@ export const useSecretVersionList = ({
 }: UseSecretVersionListParams) => {
   return useDataApi<SecretVersion>({
     iceberg: true,
+    disableCache: true,
     enabled: true,
     version: 'v2',
     route: `okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version`,
