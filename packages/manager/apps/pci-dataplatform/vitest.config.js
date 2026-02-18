@@ -1,44 +1,31 @@
 import path from 'path';
-
 import {
-  createConfig,
-  mergeConfig,
   sharedConfig,
+  mergeConfig,
+  createConfig,
   defaultDedupedDependencies,
+  defaultExcludedFiles,
 } from '@ovh-ux/manager-tests-setup';
 
 export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
-      globals: true,
-      environment: 'jsdom',
       setupFiles: ['./src/__tests__/setupTest.ts'],
       coverage: {
-        include: ['src'],
         exclude: [
-          'src/__tests__',
-          'src/vite-*.ts',
-          'src/vite-*.ts',
-          'src/App.tsx',
-          'src/i18n.ts',
-          'src/index.tsx',
-          'src/routes/routes.tsx',
-          'src/routes/Router.tsx',
+          ...defaultExcludedFiles,
+          // App-specific exclusions (not in shared config):
           'src/query.client.ts',
           'src/configuration',
-          'src/**/*constants.ts',
-          'src/main.tsx',
-          'src/types',
+          'src/routes',
         ],
       },
     },
-    resolve: {
-      dedupe: [...defaultDedupedDependencies],
+    resolve: { dedupe: [...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
       },
-      mainFields: ['module'],
     },
   }),
 );
