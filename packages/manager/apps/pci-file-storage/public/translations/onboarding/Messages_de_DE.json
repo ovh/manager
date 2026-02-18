@@ -1,25 +1,5 @@
 {
-  "guides": {
-    "learn-more": {
-      "category": "Angebot",
-      "title": "Mehr erfahren",
-      "description": "Labs-Seite, auf der die Funktionen und die Preise von File Storage erläutert werden.",
-      "link-text": "Mehr erfahren"
-    },
-    "get-started": {
-      "category": "Anleitung",
-      "title": "Erste Schritte",
-      "description": "Schritt-für-Schritt-Dokumentation, um Ihnen bei der Erstellung Ihres ersten Share zu helfen.",
-      "link-text": "Mehr erfahren"
-    },
-    "discord": {
-      "category": "Discord",
-      "title": "Über Neuigkeiten auf dem Laufenden bleiben",
-      "description": "Kontaktieren Sie uns direkt auf #beta-file-storage: Stellen Sie Ihre Fragen und teilen Sie Ihr Feedback mit uns.",
-      "link-text": "Mehr erfahren"
-    }
-  },
   "title": "Testen Sie File Storage kostenlos!",
-  "description": "Sie benötigen einen gemeinsam genutzten Speicher für Ihre Cluster oder Instanzen? Unsere vollständig gemanagte File Storage Lösung für Public Cloud bietet NFS-Volumes von <strong>150 GiB bis 10 TiB</strong>, bis zu <strong>16.000 IOPS</strong> und <strong>128 MB/s</strong>. Sie ist mit <strong>Managed Kubernetes</strong> (PVCs RWX) und <strong>Public-Cloud-Instanzen</strong> (NFS-Mounts) kompatibel und ermöglicht das transparente Teilen von Dateien zwischen Nodes, Zonen und Anwendungen – alles mit einer transparenten Preisgestaltung.",
+  "description": "Sie benötigen einen gemeinsam genutzten Speicher für Ihre Cluster oder Instanzen? Unsere vollständig gemanagte File Storage Lösung für Public Cloud bietet NFS-Volumes von <strong>150 GiB bis 10 TiB</strong>, bis zu <strong>16.000 IOPS</strong> und <strong>128 MB/s</strong>. Sie ist mit <strong>Managed Kubernetes</strong> (PVCs RWX) und <strong>Public-Cloud-Instanzen</strong> (NFS-Mounts) kompatibel und ermöglicht das transparente Teilen von Dateien zwischen Nodes, Zonen und Anwendungen – alles mit einer transparenten Preisgestaltung.",
   "action-button": "Ein Share erstellen"
 }

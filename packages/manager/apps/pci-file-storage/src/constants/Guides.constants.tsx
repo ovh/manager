@@ -1,4 +1,5 @@
-import { Subsidiary } from '@ovh-ux/manager-config';
+import type { Subsidiary } from '@ovh-ux/manager-config';
+import type { GuideMenuItem } from '@ovh-ux/muk';
 
 export type GuideLinks = Record<'DEFAULT', string> & Partial<Record<Subsidiary, string>>;
 type OnboardingGuide = {
@@ -51,4 +52,18 @@ export function getOnboardingLinkFor(
     return guide.links[subsidiary] ?? guide.links.DEFAULT;
   }
   return linksOrKey[subsidiary] ?? linksOrKey.DEFAULT;
+}
+
+export function getFileStorageGuideItems(
+  subsidiary: Subsidiary,
+  gettingStartedLabel: string,
+): GuideMenuItem[] {
+  return [
+    {
+      id: 0,
+      href: getOnboardingLinkFor('get-started', subsidiary),
+      target: '_blank',
+      children: gettingStartedLabel,
+    },
+  ];
 }
