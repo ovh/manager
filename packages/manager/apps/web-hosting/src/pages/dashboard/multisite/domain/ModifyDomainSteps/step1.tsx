@@ -121,7 +121,7 @@ export default function Step1({
                       className="color-disabled ml-4 cursor-pointer"
                     />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent createPortal={false}>
                     {t('multisite:multisite_modal_domain_configuration_cdn_help')}
                   </TooltipContent>
                 </Tooltip>
@@ -157,7 +157,7 @@ export default function Step1({
                       className="color-disabled ml-4 cursor-pointer"
                     />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent createPortal={false}>
                     {t('multisite:multisite_modal_domain_configuration_modify_firewall_help')}
                   </TooltipContent>
                 </Tooltip>
