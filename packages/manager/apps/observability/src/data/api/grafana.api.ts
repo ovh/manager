@@ -1,6 +1,10 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
 
-import { CreateGrafanaPayload, GetGrafanaReleasesParams } from '@/data/api/grafana.props';
+import {
+  CreateGrafanaPayload,
+  GetGrafanaPayload,
+  GetGrafanaReleasesParams,
+} from '@/data/api/grafana.props';
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import { Grafana, GrafanaReleasesResponse } from '@/types/managedDashboards.type';
 
@@ -10,6 +14,20 @@ export const getGrafanas = async ({
 }: ObservabilityServiceParams): Promise<Grafana[]> => {
   const { data } = await apiClient.v2.get<Grafana[]>(
     `/observability/resource/${resourceName}/setting/grafana`,
+    {
+      signal,
+    },
+  );
+  return data;
+};
+
+export const getGrafana = async ({
+  resourceName,
+  grafanaId,
+  signal,
+}: GetGrafanaPayload): Promise<Grafana> => {
+  const { data } = await apiClient.v2.get<Grafana>(
+    `/observability/resource/${resourceName}/setting/grafana/${grafanaId}`,
     {
       signal,
     },
@@ -43,4 +61,14 @@ export const createGrafana = async ({
     { signal },
   );
   return data;
+};
+
+export const deleteGrafana = async (params: GetGrafanaPayload): Promise<Grafana> => {
+  const { grafanaId, resourceName, signal } = params;
+  const { data: grafana } = await apiClient.v2.delete<Grafana>(
+    `/observability/resource/${resourceName}/setting/grafana/${grafanaId}`,
+    { signal },
+  );
+
+  return grafana;
 };
