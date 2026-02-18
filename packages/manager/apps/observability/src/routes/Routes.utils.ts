@@ -33,9 +33,14 @@ export function getManagedDashboardCreationUrl(params: LocationPathParams) {
   return getURL(urls.managedDashboardCreation, params);
 }
 
+export function getDeleteManagedDashboardUrl(params: LocationPathParams) {
+  return getURL(urls.deleteManagedDashboard, params);
+}
+
 function getURL(url: UrlValue, params: LocationPathParams) {
   return url
     .replace(URL_PARAMS.resourceName, params.resourceName ?? '')
     .replace(URL_PARAMS.tenantId, params.tenantId ?? '')
-    .replace(URL_PARAMS.subscriptionId, params.subscriptionId ?? '');
+    .replace(URL_PARAMS.subscriptionId, params.subscriptionId ?? '')
+    .replace(URL_PARAMS.managedDashboardId, params.managedDashboardId ?? '');
 }

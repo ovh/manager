@@ -1,5 +1,9 @@
 import mockLogger from '@/__mocks__/mock.logger';
-import { CreateGrafanaPayload, GetGrafanaReleasesParams } from '@/data/api/grafana.props';
+import {
+  CreateGrafanaPayload,
+  GetGrafanaPayload,
+  GetGrafanaReleasesParams,
+} from '@/data/api/grafana.props';
 import { ObservabilityServiceParams } from '@/data/api/observability.props';
 import { Grafana, GrafanaReleasesResponse } from '@/types/managedDashboards.type';
 
@@ -166,6 +170,22 @@ export const getGrafanas = async ({
   return Promise.resolve(grafanasDataset);
 };
 
+export const getGrafana = async ({
+  resourceName,
+  grafanaId,
+}: GetGrafanaPayload): Promise<Grafana> => {
+  mockLogger.info(`[getGrafana] mock getting a Grafana instance for ${resourceName}`);
+  mockLogger.info(`[getGrafana] grafanaId ->`, grafanaId);
+
+  let grafana = grafanasDataset.find(({ id }: Grafana) => id === grafanaId);
+
+  if (!grafana) {
+    throw new Error(`[MOCK-ADAPTER][getGrafana] Grafana instance with id "${grafanaId}" not found`);
+  }
+
+  return Promise.resolve(grafana);
+};
+
 export const createGrafana = async (payload: CreateGrafanaPayload): Promise<Grafana> => {
   mockLogger.info(`[createGrafana] for ${payload.resourceName}`, { payload });
   return Promise.resolve(grafanasDataset[0]!);
@@ -177,4 +197,22 @@ export const getGrafanaReleases = async ({
 }: GetGrafanaReleasesParams): Promise<GrafanaReleasesResponse> => {
   mockLogger.info(`[getGrafanaReleases] for ${resourceName}, infrastructure ${infrastructureId}`);
   return Promise.resolve(grafanaReleasesDataset);
+};
+
+export const deleteGrafana = async ({
+  resourceName,
+  grafanaId,
+}: GetGrafanaPayload): Promise<Grafana> => {
+  mockLogger.info(`[deleteGrafana] mock deletion of a Grafana instance for ${resourceName}`);
+  mockLogger.info(`[deleteGrafana] grafanaId ->`, grafanaId);
+
+  let grafana = grafanasDataset.find(({ id }: Grafana) => id === grafanaId);
+
+  if (!grafana) {
+    throw new Error(
+      `[MOCK-ADAPTER][deleteGrafana] Grafana instance with id "${grafanaId}" not found`,
+    );
+  }
+
+  return Promise.resolve(grafana);
 };
