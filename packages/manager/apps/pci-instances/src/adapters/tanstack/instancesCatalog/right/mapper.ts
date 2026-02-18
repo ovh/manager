@@ -67,6 +67,7 @@ const mapRegionDTOtoMicroRegionEntity = (
   name: regionDto.name,
   availabilityZones: regionDto.availabilityZones,
   isActivable: regionDto.isActivable,
+  isActivated: regionDto.isActivated,
   isInMaintenance: regionDto.isInMaintenance,
   macroRegionId: regionDto.datacenter,
 });

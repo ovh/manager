@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState, useCallback } from 'react';
 import { Button, Divider, Icon, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
-import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
-import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
 import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
 import {
@@ -14,6 +12,7 @@ import Banner from '@/components/banner/Banner.component';
 import SshKeySelector, {
   TCustomSelectSshKeyData,
 } from './sshKey/SshKeySelector.component';
+import { useRegionalisedSshKeys } from '../hooks/useRegionalisedSshKeys';
 
 const SshKey = () => {
   const { t } = useTranslation('creation');
@@ -24,9 +23,7 @@ const SshKey = () => {
     false,
   );
 
-  const { isLoading, data: sshKeys = [] } = useSshKeys({
-    select: selectSshKeys,
-  });
+  const { isLoading, data: sshKeys = [] } = useRegionalisedSshKeys();
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedSshKeyId = useWatch({
