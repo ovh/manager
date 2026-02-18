@@ -14,6 +14,7 @@ import { ManagedDashboardsListDatagridProps } from '@/components/listing/managed
 import ManagedDashboardsActions from '@/components/listing/managedDashboards/actions/ManagedDashboardsActions.component';
 import ManagedDashboardsListTopbar from '@/components/listing/managedDashboards/top-bar/ManagedDashboardsListTopbar.component';
 import ResourceBadgeStatus from '@/components/services/status/ResourceBadgeStatus.component';
+import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { DatasourceConfiguration } from '@/types/DatasourceConfiguration';
 import { GrafanaListing } from '@/types/managedDashboards.type';
 import { RESOURCE_TYPES } from '@/utils/iam.constants';
@@ -35,6 +36,8 @@ export default function ManagedDashboardsListDatagrid({
   ]);
   const { addError } = useNotifications();
   const formatDate = useFormatDate();
+  const { selectedService } = useObservabilityServiceContext();
+  const resourceName = selectedService?.id ?? '';
   const columns: DatagridColumn<GrafanaListing>[] = useMemo(
     () => [
       {
@@ -163,14 +166,17 @@ export default function ManagedDashboardsListDatagrid({
         header: '',
         accessorFn: (row: GrafanaListing) => row,
         cell: ({ getValue }) => (
-          <ManagedDashboardsActions managedDashboard={getValue<GrafanaListing>()} />
+          <ManagedDashboardsActions
+            managedDashboard={getValue<GrafanaListing>()}
+            resourceName={resourceName}
+          />
         ),
         isSearchable: false,
         isFilterable: false,
         size: 40,
       },
     ],
-    [t, formatDate],
+    [t, formatDate, resourceName],
   );
 
   useEffect(() => {
