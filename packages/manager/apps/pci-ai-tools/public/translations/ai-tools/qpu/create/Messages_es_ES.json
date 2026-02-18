@@ -59,5 +59,5 @@
   "defaultAutoRestartInfo": "Los notebooks QPU no se pueden apagar sin reinicio automático. Esta función está habilitada por defecto para asegurar la continuidad de sus cálculos QPU.",
   "fieldTimeOutLabel": "Expiración",
   "fieldAutoRestartLabel": "Reinicio automático",
-  "fieldAutoRestartDescription": "Si está activado, el notebook se reiniciará automáticamente cada 7 días. Si se desactiva, el notebook se detendrá automáticamente al cabo de 7 días. En los dos casos, se guardarán la configuración y los datos."
+  "fieldAutoRestartDescription": "Si se activa, el portátil se reiniciará automáticamente cada 7 días de funcionamiento consecutivos. Si se desactiva, el portátil se apagará automáticamente después de 7 días de funcionamiento consecutivos. En ambos casos, su configuración y sus datos se guardarán."
 }

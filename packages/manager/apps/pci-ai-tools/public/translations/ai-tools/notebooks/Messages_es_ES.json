@@ -21,5 +21,7 @@
   "tableActionRestart": "Reiniciar",
   "shutdownLabel": "Detención el {{timeout}}",
   "restartLabel": "Reinicio el {{timeout}}",
-  "timeOutLabel": "Expiración"
+  "timeOutLabel": "Expiración",
+  "waitingResourceLabel": "Esperando un recurso disponible",
+  "pendingTimeoutHint": "La fecha de caducidad se establecerá cuando el cuaderno esté en ejecución."
 }

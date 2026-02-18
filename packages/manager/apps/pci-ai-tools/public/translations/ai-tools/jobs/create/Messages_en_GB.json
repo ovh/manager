@@ -47,10 +47,10 @@
   "fieldDockerCommandLabel": "Docker commands:",
   "summaryFieldVolumesLabel": "Volumes",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
-  "defaultAutoRestartInfo": "The job will automatically stop after 7 days. Your configuration and data will be saved. ",
+  "defaultAutoRestartInfo": "The job will be automatically stopped after 7 consecutive days of operation. Your configuration and data will be saved. ",
   "fieldTimeOutLabel": "Expiry",
   "fieldAutoRestartLabel": "Automatic restart",
-  "fieldAutoRestartDescription": "If enabled, the job will automatically restart every 7 days. If disabled, the job will automatically stop after 7 days. In both cases, your configuration and data will be saved.",
+  "fieldAutoRestartDescription": "If enabled, the job will be automatically restarted every 7 consecutive days of operation. If disabled, the job will be automatically stopped after 7 consecutive days of operation. In both cases, your configuration and data will be saved.",
   "filedEnable": "Enabled",
   "filedDisable": "Disabled"
 }

@@ -24,5 +24,7 @@
   "shutdownLabel": "Arrêt le ",
   "restartLabel": "Redémarrage le ",
   "restartJobButtonConfirm": "Relancer",
-  "restartJobToastSuccessDescription": "Le job {{name}} a été démarré"
+  "restartJobToastSuccessDescription": "Le job {{name}} a été démarré",
+  "waitingResourceLabel": "En attente d'une ressource disponible",
+  "pendingTimeoutHint": "La date d'expiration sera définie lorsque le job sera en cours d'exécution."
 }

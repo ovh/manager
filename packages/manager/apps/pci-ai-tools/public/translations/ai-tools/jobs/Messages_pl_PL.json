@@ -15,5 +15,7 @@
   "shutdownLabel": "Zatrzymanie {{timeout}}",
   "restartLabel": "Restart {{timeout}}",
   "timeOutLabel": "Wygaśnięcie",
-  "tableActionClone": "Sklonuj zadanie"
+  "tableActionClone": "Sklonuj zadanie",
+  "waitingResourceLabel": "Oczekiwanie na dostępny zasób",
+  "pendingTimeoutHint": "Data wygaśnięcia zostanie ustalona, gdy zadanie będzie w toku."
 }

@@ -21,5 +21,7 @@
   "restartLabel": "Redémarrage le {{timeout}}",
   "timeOutLabel": "Expiration",
   "tableActionDelete": "Supprimer",
-  "deleteTableTooltip": "Le notebook doit être en statut arrêté"
+  "deleteTableTooltip": "Le notebook doit être en statut arrêté",
+  "waitingResourceLabel": "En attente d'une ressource disponible",
+  "pendingTimeoutHint": "La date d'expiration sera définie lorsque le notebook sera en cours d'exécution."
 }

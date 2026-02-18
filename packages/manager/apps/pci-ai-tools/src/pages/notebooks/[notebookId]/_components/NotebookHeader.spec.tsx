@@ -8,6 +8,9 @@ import {
   mockedNotebookStatus,
 } from '@/__tests__/helpers/mocks/notebook/notebook';
 
+const hiddenNotebookApiMessage =
+  "Pulling notebook's data";
+
 const runningNotebook: ai.notebook.Notebook = {
   ...mockedNotebook,
   status: {
@@ -21,6 +24,24 @@ const stroppedNotebook: ai.notebook.Notebook = {
   status: {
     ...mockedNotebookStatus,
     state: ai.notebook.NotebookStateEnum.STOPPED,
+  },
+};
+
+const pendingNotebook: ai.notebook.Notebook = {
+  ...mockedNotebook,
+  status: {
+    ...mockedNotebookStatus,
+    info: undefined,
+    state: ai.notebook.NotebookStateEnum.STARTING,
+    lastJobStatus: {
+      ...mockedNotebookStatus.lastJobStatus,
+      timeoutAt: '2026-01-28T13:55:10Z',
+      info: {
+        ...mockedNotebookStatus.lastJobStatus.info,
+        code: 'JOB_PENDING' as ai.InfoCodeEnum,
+        message: hiddenNotebookApiMessage,
+      },
+    },
   },
 };
 describe('Notebook Header component', () => {
@@ -73,5 +94,27 @@ describe('Notebook Header component', () => {
     await waitFor(() => {
       expect(screen.queryByTestId('start-notebook-modal')).toBeNull();
     });
+  });
+
+  it('renders pending expiry information when notebook is waiting for resources', async () => {
+    render(<NotebookHeader notebook={pendingNotebook} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+
+    expect(screen.getByText('waitingResourceLabel')).toBeTruthy();
+
+    fireEvent.click(screen.getByTestId('notebook-pending-timeout-info-trigger'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'pendingTimeoutHint',
+        ),
+      ).toBeTruthy();
+    });
+
+    expect(
+      screen.queryByText(hiddenNotebookApiMessage),
+    ).toBeNull();
   });
 });

@@ -24,5 +24,7 @@
   "restartJobToastSuccessDescription": "O job {{name}} foi iniciado",
   "cloneJobTitle": "Clonar um novo job",
   "shutdownLabel": "Interrupção a ",
-  "restartLabel": "Reinicialização a "
+  "restartLabel": "Reinicialização a ",
+  "waitingResourceLabel": "Aguardando um recurso disponível",
+  "pendingTimeoutHint": "A data de expiração será definida quando o trabalho estiver em execução."
 }

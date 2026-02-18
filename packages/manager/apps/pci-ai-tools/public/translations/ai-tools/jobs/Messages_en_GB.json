@@ -15,5 +15,7 @@
   "shutdownLabel": "Stops on {{timeout}}",
   "restartLabel": "Restarts on {{timeout}}",
   "timeOutLabel": "Expiry",
-  "tableActionClone": "Clone Job"
+  "tableActionClone": "Clone Job",
+  "waitingResourceLabel": "Waiting for an available resource",
+  "pendingTimeoutHint": "The expiration date will be set when the job is running."
 }
