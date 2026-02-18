@@ -22,5 +22,6 @@
   "server_category_rack": "Baie",
   "server_category_region": "Région",
   "server_category_datacenter": "Datacentre",
-  "server_category_other": "Autre"
+  "server_category_other": "Autre",
+  "server_count_items": "Items"
 }

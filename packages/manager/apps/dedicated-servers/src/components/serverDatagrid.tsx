@@ -176,10 +176,15 @@ export default function ServerDatagrid() {
       return columnsConfig;
     }
 
+    const visibleColumns = columnsConfig.filter((config) => config.visible);
+    const firstVisibleColumnId = visibleColumns[0]?.id;
+    const penultimateVisibleColumnId =
+      visibleColumns[visibleColumns.length - 2]?.id;
+
     return columnsConfig.map((config) => {
-      // Case A: The Main Column (Server Name)
+      // Case A: The First Visible Column
       // We hijack this column to display the Group Title when looking at a header row
-      if (config.id === 'iam.displayName') {
+      if (config.id === firstVisibleColumnId) {
         return {
           ...config,
           isSearchable: false, // Disable search on group headers
@@ -188,16 +193,18 @@ export default function ServerDatagrid() {
 
             if (props.row.depth === 0) {
               return (
-                <span className="font-bold text-body">
-                  {rowOriginal.displayName}
-                </span>
+                <div className="datagrid-group-header h-full w-full flex items-center">
+                  <span className="font-bold text-[16px] text-[#00185E]">
+                    {rowOriginal.displayName}
+                  </span>
+                </div>
               );
             }
 
             if (config.cell && typeof config.cell === 'function') {
               return config.cell(props);
             }
-            return rowOriginal.displayName;
+            return null;
           },
         };
       }
@@ -210,7 +217,22 @@ export default function ServerDatagrid() {
         cell: (props: any) => {
           // If it is a group header, render nothing in this column
           if (props.row.depth === 0) {
-            return null;
+            if (config.id === penultimateVisibleColumnId) {
+              const rowOriginal = props.row.original;
+              const count = rowOriginal.subRows.length;
+
+              return (
+                <div className="datagrid-group-header h-full w-full flex items-center">
+                  <span className="text-body">
+                    {t('server_count_items')}{' '}
+                    <span className="font-bold">{count}</span>
+                  </span>
+                </div>
+              );
+            }
+            return (
+              <div className="datagrid-group-header h-full w-full flex items-center" />
+            );
           }
 
           // Otherwise, render the standard cell content
@@ -221,7 +243,7 @@ export default function ServerDatagrid() {
         },
       };
     });
-  }, [columnsConfig, isGroupingActive]);
+  }, [columnsConfig, isGroupingActive, t]);
 
   const fnFilter = { ...filters };
   fnFilter.add = (value) => {
@@ -250,6 +272,14 @@ export default function ServerDatagrid() {
 
   return (
     <>
+      <style>
+        {`
+          .dedicated-server-datagrid tr:has(.datagrid-group-header) td {
+            background-color: #e6e6e6 !important;
+            border-color: #e6e6e6 !important;
+          }
+        `}
+      </style>
       {(isError || errorListing) && (
         <ErrorComponent error={isError ? (error as ApiError) : errorListing} />
       )}
@@ -260,7 +290,7 @@ export default function ServerDatagrid() {
           route={urls.onboarding}
         >
           {flattenData && (
-            <div>
+            <div className="dedicated-server-datagrid">
               <Datagrid
                 columns={
                   effectiveColumns as ColumnsConfig<
