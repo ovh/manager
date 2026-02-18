@@ -3,7 +3,6 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';
 
-import NavReshuffleBetaAccessModal from '@/container/common/pnr-beta-modal';
 import { useApplication } from '@/context';
 import { useProgress } from '@/context/progress';
 import { LegacyContainerProvider } from './legacy.context';
@@ -65,9 +64,6 @@ function LegacyContainer({ isCookiePolicyModalClosed }: ContainerProps): JSX.Ele
         {isCookiePolicyModalClosed && <ModalContainer isPreloaderVisible={preloaderVisible} />}
 
         <div className={style.managerShell}>
-          <Suspense fallback="">
-            <NavReshuffleBetaAccessModal />
-          </Suspense>
           <div>
             <LegacyHeader />
           </div>
