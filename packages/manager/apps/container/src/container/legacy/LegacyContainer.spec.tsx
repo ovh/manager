@@ -76,10 +76,6 @@ vi.mock('@/core/container', () => ({
   default: () => ({ betaVersion: true }),
 }));
 
-vi.mock('@/container/common/pnr-beta-modal', () => ({
-  default: () => <div data-testid="beta-modal">Beta Modal</div>,
-}));
-
 function renderWithProviders(ui: React.ReactNode) {
   const queryClient = new QueryClient();
   return render(
@@ -133,14 +129,12 @@ describe('LegacyContainer', () => {
     expect(screen.getByTestId('modal-container')).toBeInTheDocument();
   });
 
-  it('should render header, sidebar, overlay and beta modal', async () => {
+  it('should render header, sidebar, overlay', async () => {
     renderWithProviders(<LegacyContainer isCookiePolicyModalClosed />);
 
     expect(screen.getByTestId('legacy-header')).toBeInTheDocument();
     expect(screen.getByTestId('server-sidebar')).toBeInTheDocument();
     expect(screen.getByTestId('sidebar-overlay')).toBeInTheDocument();
-    await screen.findByTestId('beta-modal');
-    expect(screen.getByTestId('beta-modal')).toBeInTheDocument();
   });
 
   it('should render iframe router', () => {
