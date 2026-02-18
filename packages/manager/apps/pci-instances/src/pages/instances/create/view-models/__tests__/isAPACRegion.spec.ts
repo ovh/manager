@@ -18,6 +18,7 @@ const createMinimalCatalog = (
       name: id,
       availabilityZones: [],
       isActivable: true,
+      isActivated: true,
       isInMaintenance: false,
       macroRegionId,
     } as TMicroRegion);

@@ -55,7 +55,7 @@
   "pci_instance_creation_cart_flavor_bandwidthPrivate": "(Private)",
   "pci_instance_creation_cart_flavor_bandwidthPublic": "(Public)",
   "pci_instance_creation_bandwidth_mbit_s": "Mbps",
-  "pci_instance_creation_bandwidth_gbit_s": "Gbps redundant",
+  "pci_instance_creation_bandwidth_gbit_s": "Gbps",
   "pci_instance_creation_select_continent_label": "Select a geographical area",
   "pci_instance_creation_select_datacenter_label": "Select a data centre",
   "pci_instance_creation_choose_datacenter_label": "Choose a data centre",
