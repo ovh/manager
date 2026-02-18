@@ -81,7 +81,7 @@ const SearchBar = ({
         className="focus-visible:bg-primary-300 text-primary-100 mr-4 min-h-[40px]  max-w-full pr-8 focus:bg-[#bef1ff] focus-visible:ring-transparent sm:max-w-72"
         clearable
       />
-      <Button disabled={isDisabled}>
+      <Button type="submit" disabled={isDisabled}>
         <Search />
       </Button>
     </form>
