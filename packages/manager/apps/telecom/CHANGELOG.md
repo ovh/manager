@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.26.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.2...@ovh-ux/manager-telecom@16.26.3) (2026-02-18)
+
+
+### Bug Fixes
+
+* **telecom.telephony:** issue with import ovh-ng-input-password ([f290144](https://github.com/ovh/manager/commit/f29014461bd6abf1c5bd9efa52fab81d079c03c2)), closes [#INC0190746](https://github.com/ovh/manager/issues/INC0190746)
+
+
+
+
+
 ## [16.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.1...@ovh-ux/manager-telecom@16.26.2) (2026-02-17)
 
 
