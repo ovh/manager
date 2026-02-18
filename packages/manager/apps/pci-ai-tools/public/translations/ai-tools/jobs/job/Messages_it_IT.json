@@ -24,5 +24,7 @@
   "restartJobToastSuccessDescription": "Il job {{name}} è stato avviato",
   "cloneJobTitle": "Clonare un nuovo job",
   "shutdownLabel": "Arresto il ",
-  "restartLabel": "Riavvio il "
+  "restartLabel": "Riavvio il ",
+  "waitingResourceLabel": "In attesa di una risorsa disponibile",
+  "pendingTimeoutHint": "La data di scadenza sarà impostata quando il lavoro sarà in esecuzione."
 }

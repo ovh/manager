@@ -30,7 +30,7 @@
   "defaultAutoRestartInfo": "Les notebooks QPU ne peuvent pas être arrêtés sans redémarrage automatique. Cette fonctionnalité est activée par défaut pour assurer la continuité de vos calculs QPU.",
   "fieldTimeOutLabel": "Expiration",
   "fieldAutoRestartLabel": "Redémarrage automatique",
-  "fieldAutoRestartDescription": "Si activé, le notebook sera automatiquement redémarré tous les 7 jours. Si désactivé, le notebook sera automatiquement arrêté après 7 jours. Dans les 2 cas, votre configuration et vos données seront enregistrées.",
+  "fieldAutoRestartDescription": "Si activé, le notebook sera automatiquement redémarré tous les 7 jours de fonctionnement consécutifs. Si désactivé, le notebook sera automatiquement arrêté après 7 jours de fonctionnement consécutifs. Dans les 2 cas, votre configuration et vos données seront enregistrées.",
   "formButtonAdvancedConfiguration": "Configuration avancée",
   "summaryFieldVolumesLabel": "Volume:",
   "summaryFieldVolumes_one": "{{count}} volume configuré",

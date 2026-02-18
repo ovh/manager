@@ -267,6 +267,13 @@ export const getColumns = ({
         <AutoRestartColumn
           timeoutAutoRestart={row.original.spec.timeoutAutoRestart}
           timeoutAt={row.original.status.lastJobStatus.timeoutAt}
+          statusCode={
+            row.original.status.info?.code ??
+            row.original.status.lastJobStatus.info?.code
+          }
+          statusState={
+            row.original.status.state ?? row.original.status.lastJobStatus.state
+          }
           translationNamespace="ai-tools/notebooks"
         />
       ),

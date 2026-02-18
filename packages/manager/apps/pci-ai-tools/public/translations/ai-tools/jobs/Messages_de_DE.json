@@ -15,5 +15,7 @@
   "shutdownLabel": "Beenden am {{timeout}}",
   "restartLabel": "Neustart am {{timeout}}",
   "timeOutLabel": "Ablaufdatum",
-  "tableActionClone": "Job klonen"
+  "tableActionClone": "Job klonen",
+  "waitingResourceLabel": "Warten auf eine verfügbare Ressource",
+  "pendingTimeoutHint": "Das Ablaufdatum wird festgelegt, wenn der Job ausgeführt wird."
 }

@@ -21,5 +21,7 @@
   "tableActionRestart": "Restart",
   "shutdownLabel": "Zatrzymanie {{timeout}}",
   "restartLabel": "Restart {{timeout}}",
-  "timeOutLabel": "Data ważności"
+  "timeOutLabel": "Data ważności",
+  "waitingResourceLabel": "Oczekiwanie na dostępny zasób",
+  "pendingTimeoutHint": "Data wygaśnięcia zostanie ustalona, gdy notebook będzie w trakcie działania."
 }
