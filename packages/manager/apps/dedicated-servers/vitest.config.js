@@ -15,6 +15,10 @@ export default mergeConfig(
       coverage: {
         exclude: [...defaultExcludedFiles],
       },
+      css: false,
+      deps: {
+        inline: ['@ovhcloud/ods-react'],
+      },
     },
     resolve: {
       dedupe: [...defaultDedupedDependencies],
