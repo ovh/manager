@@ -41,6 +41,9 @@ const ManagedDashboardLayoutPage = React.lazy(
 const ManagedDashboardCreationPage = React.lazy(
   () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboardCreation.page'),
 );
+const ManagedDashboardDeletePage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/delete/ManagedDashboardDelete.page'),
+);
 
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
@@ -145,14 +148,25 @@ export default (
           </Route>
           {/* ManagedDashboard routes with ManagedDashboard layout*/}
           <Route path={subroutes.managedDashboards} Component={ManagedDashboardsLayout}>
-            <Route path="" Component={ManagedDashboardsListingPage}></Route>
+            <Route path="" Component={ManagedDashboardsListingPage}>
+              <Route
+                path={subroutes.deleteManagedDashboard}
+                Component={ManagedDashboardDeletePage}
+                handle={{
+                  tracking: {
+                    pageName: 'managed-dashboard-delete',
+                    pageType: PageType.popup,
+                  },
+                }}
+              />
+            </Route>
           </Route>
           {/* ManagedDashboard routes with ManagedDashboard layout*/}
           <Route path={subroutes.managedDashboards} Component={ManagedDashboardLayoutPage}>
             <Route path={subroutes.resource}>
               {/* no dedicated page (only a dropdown) → redirect to managed dashboards */}
               <Route index element={<Navigate to={urls.managedDashboards} replace />} />
-              <Route path="creation" Component={ManagedDashboardCreationPage}></Route>
+              <Route path={subroutes.creation} Component={ManagedDashboardCreationPage}></Route>
             </Route>
           </Route>
         </Route>

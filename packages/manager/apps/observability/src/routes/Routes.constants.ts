@@ -5,6 +5,7 @@ export const URL_PARAMS = {
   tenantId: ':tenantId',
   resourceName: ':resourceName',
   subscriptionId: ':subscriptionId',
+  managedDashboardId: ':managedDashboardId',
 };
 
 export const subroutes = {
@@ -18,6 +19,7 @@ export const subroutes = {
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
   deleteTenantSubscription: `delete/${URL_PARAMS.subscriptionId}`,
+  deleteManagedDashboard: `delete/${URL_PARAMS.managedDashboardId}`,
   edit: 'edit',
   creation: 'creation',
   delete: 'delete',
@@ -50,6 +52,7 @@ export const urls = {
     subroutes.onboarding
   }`,
   managedDashboardCreation: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.creation}`,
+  deleteManagedDashboard: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.deleteManagedDashboard}`,
 } as const;
 
 export type LocationPathParams = {

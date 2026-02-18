@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { BUTTON_COLOR, BUTTON_VARIANT, ICON_NAME, POPOVER_POSITION } from '@ovhcloud/ods-react';
@@ -8,12 +10,15 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItemProps, LinkType } from '@ovh-ux/muk';
 
 import { ManagedDashboardsActionsProps } from '@/components/listing/managedDashboards/actions/ManagedDashboardsActions.props';
+import { getDeleteManagedDashboardUrl } from '@/routes/Routes.utils';
 import { GrafanaListing } from '@/types/managedDashboards.type';
 
 export default function ManagedDashboardsActions({
+  resourceName,
   managedDashboard,
 }: ManagedDashboardsActionsProps<GrafanaListing>) {
   const { t } = useTranslation(['managed-dashboards', NAMESPACES.ACTIONS]);
+  const navigate = useNavigate();
 
   const onCopyUrn = useCallback(() => {
     if (managedDashboard.urn) {
@@ -50,7 +55,12 @@ export default function ManagedDashboardsActions({
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: BUTTON_COLOR.critical,
       onClick: () => {
-        alert('TODO: delete grafana');
+        navigate(
+          getDeleteManagedDashboardUrl({
+            resourceName,
+            managedDashboardId: managedDashboard.id,
+          }),
+        );
       },
     },
   ];
