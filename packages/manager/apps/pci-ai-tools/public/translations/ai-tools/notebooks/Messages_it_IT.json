@@ -21,5 +21,7 @@
   "tableActionRestart": "Riavvia",
   "shutdownLabel": "Arresto il {{timeout}}",
   "restartLabel": "Riavvio il {{timeout}}",
-  "timeOutLabel": "Scadenza"
+  "timeOutLabel": "Scadenza",
+  "waitingResourceLabel": "In attesa di una risorsa disponibile",
+  "pendingTimeoutHint": "La data di scadenza sarà impostata quando il notebook sarà in esecuzione."
 }
