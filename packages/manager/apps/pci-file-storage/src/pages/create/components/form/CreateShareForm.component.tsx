@@ -48,7 +48,7 @@ export const CreateShareForm = () => {
     onSuccess: () => {
       toast(t('create:submit.success', { name: shareName }), {
         color: 'success',
-        duration: 5000,
+        duration: Infinity,
       });
       navigate('..');
     },

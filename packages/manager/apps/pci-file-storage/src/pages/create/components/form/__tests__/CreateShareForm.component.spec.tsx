@@ -396,42 +396,7 @@ describe('CreateShareForm', () => {
       expect.stringContaining('create:submit.success'),
       expect.objectContaining({
         color: 'success',
-        duration: 5000,
-      }),
-    );
-  });
-
-  it('should show success toast when create share succeeds', async () => {
-    mockUseShareCatalog.mockReturnValue({
-      data: [],
-    } as unknown as QueryObserverSuccessResult<
-      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
-    >);
-
-    mockUseShareCreation.mockImplementation((_, { onSuccess }) => ({
-      createShare: onSuccess,
-      isPending: false,
-    }));
-
-    renderWithMockedForm(<CreateShareForm />, {
-      defaultValues: {
-        macroRegion: 'GRA',
-        shareData: {
-          name: 'test-share',
-          microRegion: 'GRA1',
-          specName: 'nfs',
-          size: 150,
-        },
-      },
-    });
-
-    const submitButton = screen.getByText(/actions:validate$/);
-    await userEvent.click(submitButton);
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.stringContaining('create:submit.success'),
-      expect.objectContaining({
-        color: 'success',
-        duration: 5000,
+        duration: Infinity,
       }),
     );
   });

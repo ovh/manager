@@ -53,8 +53,6 @@ vi.mock('@ovh-ux/muk', () => ({
       <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
     </div>
   ),
-  Notifications: () => <div>Notifications</div>,
-  useNotifications: () => ({ clearNotifications: () => {} }),
 }));
 
 describe('ShareList page', () => {
@@ -72,7 +70,6 @@ describe('ShareList page', () => {
     expect(datagrid).toBeVisible();
     expect(datagrid).toHaveTextContent('Rows: 1');
     expect(screen.getByRole('button', { name: 'list:actionButton' })).toBeVisible();
-    expect(screen.getByText('Notifications')).toBeVisible();
   });
 
   it('should redirect to onboarding when there are no shares', () => {
