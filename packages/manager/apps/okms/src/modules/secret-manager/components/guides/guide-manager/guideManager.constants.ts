@@ -9,4 +9,5 @@ export const GUIDES_MANAGER: GuideLinks = {
   IT: 'https://help.ovhcloud.com/csm/it-secret-manager-ui?id=kb_article_view&sysparm_article=KB0072824',
   PL: 'https://help.ovhcloud.com/csm/pl-secret-manager-ui?id=kb_article_view&sysparm_article=KB0072818',
   PT: 'https://help.ovhcloud.com/csm/pt-secret-manager-ui?id=kb_article_view&sysparm_article=KB0072825',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/47763517672851-Using-the-Secret-Manager-in-the-OVHcloud-Control-Panel',
 };
