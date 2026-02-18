@@ -40,16 +40,18 @@ export const CartItemDetails = ({
             <div className="flex justify-between">
               {description}
               {price != null && (
-                <Text
-                  className="text-right"
+                <div
+                  className="flex flex-col items-end gap-1"
                   data-testid="cart-item-details-price"
                 >
-                  <Text preset="heading-6" as="span">
+                  <Text preset="heading-6" className="block">
                     {isApproximate && '~'}
                     {getTextPrice(price)}
-                  </Text>{' '}
-                  {priceUnit}
-                </Text>
+                  </Text>
+                  <Text className="block text-[--ods-color-neutral-600]">
+                    {priceUnit}
+                  </Text>
+                </div>
               )}
             </div>
             {index !== details.length - 1 && (

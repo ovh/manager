@@ -116,6 +116,10 @@
   "pci_instance_creation_cart_public_ip_basic": "Public IP",
   "pci_instance_creation_network_private_network_setting_description": "Les instances sont en réseau privé. Un accès Internet ou SSH nécessite une Floating IP, une Gateway ou un SSH-Proxy.",
   "pci_instance_creation_network_setting_help_title": "Comprendre les paramètres réseaux",
+  "pci_instance_creation_network_private_help_title": "Comprendre le réseau privé (vRack)",
+  "pci_instance_creation_network_private_help_description": "Un Private Network est un réseau isolé et sécurisé qui permet de connecter vos instances entre elles de manière privée, sans passer par Internet. Cela est utile pour améliorer la sécurité et les performances des communications entre vos instances.",
+  "pci_instance_creation_network_private_help_configuration": "Il est possible de configurer le port utilisé pour faire communiquer les réseaux entre eux via le vLAN ID. Vous pouvez également définir les plages d'IP concernées par cette communication.<br/><br/>Cette flexibilité permet d'adapter la configuration réseau à vos besoins spécifiques, en assurant une gestion optimale des ressources et une sécurité renforcée.",
+  "pci_instance_creation_network_private_help_gateway": "<h6>Gateway</h6><p>Une Gateway vous permet de donner un accès internet sortant à vos instances à partir du réseau privé sélectionné. Cela peut être utile notamment pour des tâches telles que les mises à jour de sécurité.<br/>La Gateway est incompatible avec les IP publiques \"Basic IP\".</p>",
   "pci_instance_creation_network_gateway_title": "Gateway",
   "pci_instance_creation_network_gateway_toggle_label": "Attribuer une gateway",
   "pci_instance_creation_network_gateway_price_label": "Taille {{ size }} - {{ price }}",
@@ -160,6 +164,10 @@
     "predefined": "Une sauvegarde est effectuée tous les jours entre 22h00 et 6h00 (UTC) et la rotation maintient un historique des {{ numEntries }} dernières entrées.",
     "custom": "Choisissez vous-même l'ordonnancement (format UNIX Cron), le nombre de rotations et les exécutions maximales que vous souhaitez."
   },
+  "pci_instance_creation_network_public_connectivity_help_title": "Comprendre la connectivité publique",
+  "pci_instance_creation_network_public_connectivity_help_description": "La connectivité publique fournit 2 niveaux de service :",
+  "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>L'ajout d'une Floating IP aux capacités de la Gateway permet à l'instance d'être accessible depuis l'extérieur. La Floating IP est persistante et peut être conservée autant que nécessaire et ré-allouée à une autre instance.</p>",
+  "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Une Basic IP permet la connectivité entrante et sortante sans restriction d'usage. Cette IP n'est pas persistante et est réallouée après la suppression de l'instance associée. Il n'est pas possible de l'allouer à une autre instance.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Attribuer une connectivité publique",
     "description": "<p>L'attribution d'une adresse IP publique permet l'accès à votre instance depuis l'extérieur du réseau OVHcloud.<br/><span>La création de la floating IP se fera à la fin de la configuration.</span></p>",
