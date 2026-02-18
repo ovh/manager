@@ -57,28 +57,58 @@ export const ManageViewDrawer = ({
 
   useEffect(() => {
     let name = view?.name;
-    // Increments New view number
-    if (!name) {
-      const newViewNumber = views.reduce((number, v) => {
-        const regex = new RegExp(
-          `${t('new_view')}\\s?(?:\\((?<number>\\d)\\))?`,
-        );
-        const match = v.name.match(regex);
-        if (!match) return -1;
-        if (!Number(match?.groups?.number)) return 0;
+    let id = view?.id;
 
-        const viewNumber = Number(match.groups.number);
-        return viewNumber > number ? viewNumber : number;
-      }, 0);
-      name =
-        newViewNumber === -1
-          ? t('new_view')
-          : `${t('new_view')} (${newViewNumber + 1})`;
+    // increment both name and id numbers for new views to avoid duplicates, based on existing views
+    if (!name || !id) {
+      const { maxViewNumber, maxIdNumber } = views.reduce(
+        (acc, v) => {
+          // Check new view name pattern
+          if (!name) {
+            const nameRegex = new RegExp(
+              `${t('new_view')}\\s?(?:\\((?<number>\\d)\\))?`,
+            );
+            const nameMatch = v.name.match(nameRegex);
+            if (nameMatch && Number(nameMatch?.groups?.number)) {
+              const viewNumber = Number(nameMatch.groups.number);
+              acc.maxViewNumber = Math.max(acc.maxViewNumber, viewNumber);
+            } else if (nameMatch) {
+              acc.maxViewNumber = Math.max(acc.maxViewNumber, 0);
+            }
+          }
+
+          // Check view id pattern
+          if (!id) {
+            const idMatch = v.id.match(/^view-(\d+)$/);
+            if (idMatch) {
+              const idNumber = Number(idMatch[1]);
+              acc.maxIdNumber = Math.max(acc.maxIdNumber, idNumber);
+            }
+          }
+
+          return acc;
+        },
+        { maxViewNumber: -1, maxIdNumber: -1 },
+      );
+
+      if (!name) {
+        name =
+          maxViewNumber === -1
+            ? t('new_view')
+            : `${t('new_view')} (${maxViewNumber + 1})`;
+      }
+
+      if (!id) {
+        id =
+          maxIdNumber === -1
+            ? `view-${views.length}`
+            : `view-${maxIdNumber + 1}`;
+      }
     }
 
     setEditingView({
       name,
-      id: view?.id || `view-${views.length}`,
+      id,
       default: view?.default,
     });
 
