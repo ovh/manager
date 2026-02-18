@@ -24,20 +24,75 @@
             data-type="warning"
             data-ng-if="!$ctrl.loading.availableOffers
                       && !$ctrl.loading.validation
-                      && $ctrl.availableOffers.length === 0"
+                      && $ctrl.filteredAvailableOffers.length === 0"
         >
             <span data-translate="hosting_order_upgrade_no_offer"></span>
+        </oui-message>
+
+        <oui-message
+            data-type="info"
+            data-ng-if="!$ctrl.loading.availableOffers
+                      && !$ctrl.loading.validation
+                      && $ctrl.filteredAvailableOffers.length > 0
+                      && $ctrl.performanceInfo
+                      && ($ctrl.performanceInfo.type === 'down_only'
+                          || ($ctrl.performanceInfo.type === 'both'
+                              && $ctrl.performanceInfo.currentLevel === 3))"
+        >
+            <span data-ng-if="$ctrl.performanceInfo.type === 'down_only'"
+                  data-translate="hosting_order_upgrade_blocking_performance_downgrade_too_low"
+                  data-translate-values="{ lowerLevel: $ctrl.performanceInfo.lowerLevel }"></span>
+            <span data-ng-if="$ctrl.performanceInfo.type === 'both'
+                          && $ctrl.performanceInfo.currentLevel === 3"
+                  data-translate="hosting_order_upgrade_blocking_performance_downgrade_too_low"
+                  data-translate-values="{ lowerLevel: $ctrl.performanceInfo.lowerLevel }"></span>
+        </oui-message>
+
+        <oui-message
+            data-type="warning"
+            data-ng-if="!$ctrl.loading.availableOffers
+                      && !$ctrl.loading.validation
+                      && $ctrl.filteredAvailableOffers.length > 0
+                      && $ctrl.model.offer
+                      && $ctrl.loadingBlockingCheck
+                      && $ctrl.isPotentiallyBlockingTransition()"
+        >
+            <oui-spinner data-size="s"></oui-spinner>
+        </oui-message>
+
+        <oui-message
+            data-type="warning"
+            data-ng-if="!$ctrl.loading.availableOffers
+                      && !$ctrl.loading.validation
+                      && $ctrl.filteredAvailableOffers.length > 0
+                      && $ctrl.model.offer
+                      && !$ctrl.loadingBlockingCheck
+                      && $ctrl.blockingConditions.length > 0"
+        >
+            <strong data-translate="hosting_order_upgrade_blocking_action_required" class="d-block"></strong>
+            <span data-ng-if="$ctrl.hasBlockingCondition('clouddb_performance_to_pro')"
+                  data-translate="hosting_order_upgrade_blocking_clouddb_performance_to_pro" class="d-block"></span>
+            <span data-ng-if="$ctrl.hasBlockingCondition('databases_pro_to_perso')"
+                  data-translate="hosting_order_upgrade_blocking_databases_pro_to_perso"
+                  data-translate-values="{ count: $ctrl.getBlockingParam('databases_pro_to_perso', 'count') }" class="d-block"></span>
+            <span data-ng-if="$ctrl.hasBlockingCondition('ftp_users_pro_to_perso')"
+                  data-translate="hosting_order_upgrade_blocking_ftp_users_pro_to_perso" class="d-block"></span>
+            <span data-ng-if="$ctrl.hasBlockingCondition('performance_downgrade_too_low')"
+                  data-translate="hosting_order_upgrade_blocking_performance_downgrade_too_low"
+                  data-translate-values="{ lowerLevel: $ctrl.getBlockingParam('performance_downgrade_too_low', 'lowerLevel') }" class="d-block"></span>
+            <span data-ng-if="$ctrl.hasBlockingCondition('mailing_lists_to_perso')"
+                  data-translate="hosting_order_upgrade_blocking_mailing_lists_to_perso" class="d-block"></span>
         </oui-message>
 
         <oui-stepper
             data-ng-if="!$ctrl.loading.availableOffers
                                  && !$ctrl.loading.validation
-                                 && $ctrl.availableOffers.length > 0"
+                                 && $ctrl.filteredAvailableOffers.length > 0"
             data-on-finish="$ctrl.orderUpgrade()"
         >
             <oui-step-form
                 data-header="{{:: 'hosting_order_upgrade_step_header_offer' | translate }}"
-                data-valid="$ctrl.model.offer"
+                data-valid="$ctrl.model.offer && !$ctrl.blockingConditions.length && !($ctrl.loadingBlockingCheck && $ctrl.isPotentiallyBlockingTransition())"
                 data-prevent-next="true"
                 data-on-submit="$ctrl.onOfferNextStepClick()"
             >
@@ -45,7 +100,7 @@
                     data-ng-if="$ctrl.catalog"
                     data-user="$ctrl.user"
                     data-catalog="$ctrl.catalog"
-                    data-offers="$ctrl.availableOffers"
+                    data-offers="$ctrl.filteredAvailableOffers"
                     data-current-offer="$ctrl.hosting.offer"
                     data-customer-region="$ctrl.coreConfig.getRegion()"
                     data-show-details="true"
