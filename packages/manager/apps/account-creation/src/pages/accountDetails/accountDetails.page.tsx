@@ -38,7 +38,7 @@ import {
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { User } from '@ovh-ux/manager-config';
+import { Country, User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
@@ -53,6 +53,8 @@ import { useMe } from '@/data/hooks/useMe';
 import { Rule, RuleField } from '@/types/rule';
 import {
   getZodSchemaFromRule,
+  RuleZodSchema,
+  toZodField,
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
@@ -84,6 +86,7 @@ import {
 } from '@/components/formSkeleton';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
+import { isCNINMandatory } from '@/helpers/xander/xanderHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -114,6 +117,9 @@ function AccountDetailsForm({
   const pageTracking = usePageTracking();
   const { trackClick, trackPage } = useTrackingContext();
   const { trackError } = useTrackError('final-step');
+  const [cninSchemaOverride, setCninSchemaOverride] = useState<
+    RuleZodSchema | undefined
+  >(undefined);
 
   const {
     legalForm,
@@ -132,14 +138,19 @@ function AccountDetailsForm({
     smsConsent?: boolean;
   };
 
-  const zodSchema = useMemo(
-    () =>
-      getZodSchemaFromRule(rules).extend({
-        confirmSend: z.literal(true),
-        smsConsent: z.boolean().optional(),
-      }),
-    [rules],
-  );
+  const zodSchema = useMemo(() => {
+    const baseSchema = getZodSchemaFromRule(rules);
+    // TODO: Remove after mandatory check is implemented in Xander for FR
+    const cninSchema =
+      cninSchemaOverride ??
+      baseSchema.shape.companyNationalIdentificationNumber ??
+      z.string().optional();
+    return baseSchema.extend({
+      confirmSend: z.literal(true),
+      smsConsent: z.boolean().optional(),
+      companyNationalIdentificationNumber: cninSchema,
+    });
+  }, [rules, cninSchemaOverride]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -235,6 +246,25 @@ function AccountDetailsForm({
       if (!phone && country !== phoneCountry) {
         setValue('phoneCountry', country);
       }
+
+      // TODO: Remove after mandatory check is implemented in Xander for FR
+      if (
+        isCNINMandatory({
+          ovhSubsidiary,
+          country: (country as Country) || undefined,
+          defaultMandatory:
+            rules?.companyNationalIdentificationNumber?.mandatory,
+        })
+      ) {
+        setCninSchemaOverride(
+          toZodField({
+            ...rules?.companyNationalIdentificationNumber,
+            mandatory: true,
+          }),
+        );
+      } else {
+        setCninSchemaOverride(undefined);
+      }
     }
   }, [country]);
 
@@ -328,6 +358,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={!rules}
                     name={name}
+                    id={name}
                     value={value}
                     maxlength={rules?.firstname.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -367,6 +398,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={!rules}
                     name={name}
+                    id={name}
                     value={value}
                     maxlength={rules?.name.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -415,6 +447,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={Boolean(organisation)}
                     name="organisation"
+                    id={name}
                     value={value}
                     maxlength={rules?.organisation.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -450,7 +483,8 @@ function AccountDetailsForm({
                         <OdsText preset="caption">
                           {t('account_details_field_siret')}
                           {rules?.companyNationalIdentificationNumber
-                            ?.mandatory && ' *'}
+                            ?.mandatory ||
+                            (cninSchemaOverride && ' *')}
                         </OdsText>
                       </label>
                       <OdsInput
@@ -458,6 +492,7 @@ function AccountDetailsForm({
                           companyNationalIdentificationNumber,
                         )}
                         name="companyNationalIdentificationNumber"
+                        id={name}
                         value={value}
                         maxlength={
                           rules?.companyNationalIdentificationNumber
@@ -484,7 +519,7 @@ function AccountDetailsForm({
                     {shouldDisplaySIREN && (
                       <OdsFormField>
                         <label
-                          htmlFor="companyNationalRegistrationNumber"
+                          htmlFor="nationalIdentificationNumber"
                           slot="label"
                           aria-label={t('account_details_field_siren')}
                         >
@@ -494,7 +529,8 @@ function AccountDetailsForm({
                         </label>
                         <OdsInput
                           isReadonly
-                          name="companyNationalRegistrationNumber"
+                          name="nationalIdentificationNumber"
+                          id="nationalIdentificationNumber"
                           value={sirenValue}
                         />
                       </OdsFormField>
@@ -521,6 +557,7 @@ function AccountDetailsForm({
                     </label>
                     <OdsInput
                       name="italianSDI"
+                      id={name}
                       value={value}
                       hasError={!!errors[name]}
                       onOdsChange={onChange}
@@ -564,6 +601,7 @@ function AccountDetailsForm({
                   </label>
                   <OdsInput
                     name="vat"
+                    id={name}
                     value={value}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
@@ -599,6 +637,7 @@ function AccountDetailsForm({
                       <>
                         <OdsSelect
                           name={name}
+                          id={name}
                           value={value}
                           onOdsChange={onChange}
                           onOdsBlur={onBlur}
@@ -650,7 +689,7 @@ function AccountDetailsForm({
             render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField className="w-full">
                 <OdsText preset="caption">
-                  <label>
+                  <label htmlFor={name}>
                     {t('account_details_field_country')}
                     {rules?.country?.mandatory && ' *'}
                   </label>
@@ -659,6 +698,7 @@ function AccountDetailsForm({
                   <OdsSelect
                     isDisabled={currentUser.country !== 'UNKNOWN'}
                     name={name}
+                    id={name}
                     value={value}
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
@@ -696,6 +736,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={Boolean(address)}
                   name="address"
+                  id={name}
                   value={value}
                   maxlength={rules?.address.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -734,6 +775,7 @@ function AccountDetailsForm({
                   {!isLoading && (
                     <OdsSelect
                       name={name}
+                      id={name}
                       value={value}
                       onOdsChange={onChange}
                       onOdsBlur={onBlur}
@@ -785,6 +827,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={!rules}
                   name="zip"
+                  id={name}
                   value={value}
                   maxlength={rules?.zip.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -820,6 +863,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={Boolean(city)}
                   name="address"
+                  id={name}
                   value={value}
                   maxlength={rules?.city.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -853,6 +897,7 @@ function AccountDetailsForm({
                     <div key={type} className="flex leading-none gap-4">
                       <OdsRadio
                         name={field.name}
+                        id={field.name}
                         value={type}
                         isChecked={field.value === type}
                         onOdsChange={field.onChange}
@@ -888,6 +933,7 @@ function AccountDetailsForm({
                 </OdsText>
                 <PhoneNumber
                   name={name}
+                  id={name}
                   key={phoneType}
                   countries={
                     rules?.phoneCountry && rules?.phoneCountry.in
@@ -963,6 +1009,7 @@ function AccountDetailsForm({
                   <>
                     <OdsSelect
                       name={name}
+                      id={name}
                       value={value}
                       onOdsChange={onChange}
                       onOdsBlur={onBlur}
