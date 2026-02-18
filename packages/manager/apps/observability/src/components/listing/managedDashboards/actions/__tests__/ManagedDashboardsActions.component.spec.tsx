@@ -19,6 +19,23 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+// Mock react-router-dom
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', () => ({
+  useNavigate: () => mockNavigate,
+}));
+
+// Mock Routes.utils
+vi.mock('@/routes/Routes.utils', () => ({
+  getDeleteManagedDashboardUrl: ({
+    resourceName,
+    managedDashboardId,
+  }: {
+    resourceName: string;
+    managedDashboardId: string;
+  }) => `/observability/${resourceName}/managed-dashboards/${managedDashboardId}/delete`,
+}));
+
 // Mock clipboard
 const mockWriteText = vi.fn();
 Object.assign(navigator, {
@@ -94,6 +111,7 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 describe('ManagedDashboardsActions', () => {
+  const mockResourceName = 'test-resource-name';
   const mockManagedDashboard: GrafanaListing = {
     id: 'test-grafana-123',
     name: 'Test Grafana',
@@ -117,7 +135,12 @@ describe('ManagedDashboardsActions', () => {
 
   describe('Rendering', () => {
     it('should render action menu with correct props', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toBeInTheDocument();
@@ -129,7 +152,12 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should render all action items', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       expect(screen.getByTestId('action-item-1')).toBeInTheDocument();
       expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
@@ -138,7 +166,12 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should render action labels correctly', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       expect(
         screen.getByText('managed-dashboards:listing.open_instance_action'),
@@ -154,7 +187,10 @@ describe('ManagedDashboardsActions', () => {
 
     it('should have correct container styling', () => {
       const { container } = render(
-        <ManagedDashboardsActions managedDashboard={mockManagedDashboard} />,
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
       );
 
       const containerDiv = container.querySelector('.flex.justify-end');
@@ -164,7 +200,12 @@ describe('ManagedDashboardsActions', () => {
 
   describe('Copy URN Action', () => {
     it('should copy URN to clipboard when copy action is clicked', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const copyButton = screen.getByTestId('action-item-3');
       fireEvent.click(copyButton);
@@ -174,12 +215,17 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should handle copy URN with different URNs', () => {
-      const differentDashboard = {
+      const differentDashboard: GrafanaListing = {
         ...mockManagedDashboard,
         id: 'different-grafana-456',
         urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078/tenant/different-grafana-456',
       };
-      render(<ManagedDashboardsActions managedDashboard={differentDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={differentDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const copyButton = screen.getByTestId('action-item-3');
       fireEvent.click(copyButton);
@@ -188,11 +234,16 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should handle copy URN with undefined URN', () => {
-      const dashboardWithoutUrn = {
+      const dashboardWithoutUrn: GrafanaListing = {
         ...mockManagedDashboard,
         urn: undefined,
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithoutUrn} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithoutUrn}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const copyButton = screen.getByTestId('action-item-3');
       fireEvent.click(copyButton);
@@ -203,7 +254,12 @@ describe('ManagedDashboardsActions', () => {
 
   describe('Action Items Configuration', () => {
     it('should have correct action item IDs', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       expect(screen.getByTestId('action-item-1')).toBeInTheDocument();
       expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
@@ -212,14 +268,24 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should have delete action with critical color', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const deleteButton = screen.getByTestId('action-item-4');
       expect(deleteButton).toHaveAttribute('data-color', 'critical');
     });
 
     it('should not have color attribute for non-critical actions', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const openButton = screen.getByTestId('action-item-1');
       const editButton = screen.getByTestId('action-item-2');
@@ -231,7 +297,12 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should have external link href for open instance action', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const openButton = screen.getByTestId('action-item-1');
       expect(openButton).toHaveAttribute('data-href', mockManagedDashboard.endpoint);
@@ -240,7 +311,12 @@ describe('ManagedDashboardsActions', () => {
 
   describe('Edit and Delete Actions', () => {
     it('should trigger alert when edit action is clicked', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const editButton = screen.getByTestId('action-item-2');
       fireEvent.click(editButton);
@@ -248,23 +324,57 @@ describe('ManagedDashboardsActions', () => {
       expect(global.alert).toHaveBeenCalledWith('TODO: edit grafana');
     });
 
-    it('should trigger alert when delete action is clicked', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+    it('should navigate to delete page when delete action is clicked', () => {
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const deleteButton = screen.getByTestId('action-item-4');
       fireEvent.click(deleteButton);
 
-      expect(global.alert).toHaveBeenCalledWith('TODO: delete grafana');
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/observability/${mockResourceName}/managed-dashboards/${mockManagedDashboard.id}/delete`,
+      );
+    });
+
+    it('should navigate with correct parameters for different dashboard', () => {
+      const differentDashboard: GrafanaListing = {
+        ...mockManagedDashboard,
+        id: 'different-dashboard-id',
+      };
+      const differentResourceName = 'different-resource';
+
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={differentDashboard}
+          resourceName={differentResourceName}
+        />,
+      );
+
+      const deleteButton = screen.getByTestId('action-item-4');
+      fireEvent.click(deleteButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/observability/${differentResourceName}/managed-dashboards/${differentDashboard.id}/delete`,
+      );
     });
   });
 
   describe('Edge Cases', () => {
     it('should handle empty managed dashboard ID', () => {
-      const dashboardWithEmptyId = {
+      const dashboardWithEmptyId: GrafanaListing = {
         ...mockManagedDashboard,
         id: '',
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithEmptyId} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithEmptyId}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', 'actions-');
@@ -272,11 +382,16 @@ describe('ManagedDashboardsActions', () => {
 
     it('should handle special characters in managed dashboard ID', () => {
       const specialId = 'grafana-with-special-chars-123!@#';
-      const dashboardWithSpecialId = {
+      const dashboardWithSpecialId: GrafanaListing = {
         ...mockManagedDashboard,
         id: specialId,
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithSpecialId} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithSpecialId}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', `actions-${specialId}`);
@@ -284,44 +399,72 @@ describe('ManagedDashboardsActions', () => {
 
     it('should handle very long managed dashboard ID', () => {
       const longId = 'a'.repeat(100);
-      const dashboardWithLongId = {
+      const dashboardWithLongId: GrafanaListing = {
         ...mockManagedDashboard,
         id: longId,
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithLongId} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithLongId}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionMenu = screen.getByTestId('action-menu');
       expect(actionMenu).toHaveAttribute('data-id', `actions-${longId}`);
     });
 
     it('should handle empty endpoint', () => {
-      const dashboardWithEmptyEndpoint = {
+      const dashboardWithEmptyEndpoint: GrafanaListing = {
         ...mockManagedDashboard,
         endpoint: '',
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithEmptyEndpoint} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithEmptyEndpoint}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const openButton = screen.getByTestId('action-item-1');
       expect(openButton).toHaveAttribute('data-href', '');
     });
 
     it('should handle undefined endpoint', () => {
-      const dashboardWithUndefinedEndpoint = {
+      const dashboardWithUndefinedEndpoint: GrafanaListing = {
         ...mockManagedDashboard,
         endpoint: undefined,
       };
-      render(<ManagedDashboardsActions managedDashboard={dashboardWithUndefinedEndpoint} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={dashboardWithUndefinedEndpoint}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const openButton = screen.getByTestId('action-item-1');
       expect(openButton).toBeInTheDocument();
-      // When endpoint is undefined, the data-href attribute may be null
+    });
+
+    it('should handle empty resource name', () => {
+      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} resourceName="" />);
+
+      const deleteButton = screen.getByTestId('action-item-4');
+      fireEvent.click(deleteButton);
+
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/observability//managed-dashboards/${mockManagedDashboard.id}/delete`,
+      );
     });
   });
 
   describe('Component Structure', () => {
     it('should have correct DOM structure', () => {
       const { container } = render(
-        <ManagedDashboardsActions managedDashboard={mockManagedDashboard} />,
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
       );
 
       const flexContainer = container.querySelector('.flex.justify-end');
@@ -332,7 +475,12 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should render all action items in correct order', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       expect(actionItems).toHaveLength(4);
@@ -350,7 +498,12 @@ describe('ManagedDashboardsActions', () => {
 
   describe('Accessibility', () => {
     it('should render action items as buttons', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       actionItems.forEach((item) => {
@@ -359,7 +512,12 @@ describe('ManagedDashboardsActions', () => {
     });
 
     it('should have proper button semantics', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const actionItems = screen.getAllByTestId(/action-item-/);
       actionItems.forEach((item) => {
@@ -371,19 +529,32 @@ describe('ManagedDashboardsActions', () => {
   describe('Performance', () => {
     it('should not re-render unnecessarily with same dashboard', () => {
       const { rerender } = render(
-        <ManagedDashboardsActions managedDashboard={mockManagedDashboard} />,
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
       );
 
       const initialActionMenu = screen.getByTestId('action-menu');
 
-      rerender(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      rerender(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const rerenderedActionMenu = screen.getByTestId('action-menu');
       expect(rerenderedActionMenu).toBe(initialActionMenu);
     });
 
     it('should handle multiple clicks on copy URN action', () => {
-      render(<ManagedDashboardsActions managedDashboard={mockManagedDashboard} />);
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
 
       const copyButton = screen.getByTestId('action-item-3');
 
@@ -393,6 +564,25 @@ describe('ManagedDashboardsActions', () => {
 
       expect(mockWriteText).toHaveBeenCalledTimes(3);
       expect(mockWriteText).toHaveBeenCalledWith(mockManagedDashboard.urn);
+    });
+
+    it('should handle multiple clicks on delete action', () => {
+      render(
+        <ManagedDashboardsActions
+          managedDashboard={mockManagedDashboard}
+          resourceName={mockResourceName}
+        />,
+      );
+
+      const deleteButton = screen.getByTestId('action-item-4');
+
+      fireEvent.click(deleteButton);
+      fireEvent.click(deleteButton);
+
+      expect(mockNavigate).toHaveBeenCalledTimes(2);
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/observability/${mockResourceName}/managed-dashboards/${mockManagedDashboard.id}/delete`,
+      );
     });
   });
 });

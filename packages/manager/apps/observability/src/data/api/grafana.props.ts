@@ -13,6 +13,10 @@ export type CreateGrafanaPayload = {
   targetSpec: TGrafanaTargetSpecPayload;
 } & ObservabilityServiceParams;
 
+export type GetGrafanaPayload = {
+  grafanaId: string;
+} & ObservabilityServiceParams;
+
 export type GetGrafanaReleasesParams = {
   infrastructureId: string;
 } & ObservabilityServiceParams;
