@@ -13,5 +13,6 @@ export const useShareCatalog = <TData>(options?: SelectOption<TShareCatalog, TDa
     queryKey: shareCatalogQueryKey(projectId),
     queryFn: () => getShareCatalog(projectId),
     select: options?.select,
+    retry: 1,
   });
 };

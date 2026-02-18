@@ -26,7 +26,7 @@ describe('mapCatalogDTOToCatalog', () => {
         CATALOG_REGIONS.BHS5,
         CATALOG_REGIONS['EU-SOUTH-LZ-LIS-A'],
       ],
-      shares: [],
+      models: [],
     };
 
     const result = mapCatalogDTOToCatalog(catalogDto);
@@ -181,7 +181,7 @@ describe('mapCatalogDTOToCatalog', () => {
     const catalogDto: TShareCatalogDTO = {
       filters: CATALOG_FILTERS,
       regions: [],
-      shares: [CATALOG_SHARE],
+      models: [CATALOG_SHARE],
     };
 
     const result = mapCatalogDTOToCatalog(catalogDto);
