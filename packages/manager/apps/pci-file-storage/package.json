@@ -35,6 +35,7 @@
     "@tanstack/react-query": "5.51.21",
     "axios": "^1.13.2",
     "date-fns": "^3.6.0",
+    "ip-address": "^5.9.2",
     "i18next": "23.8.2",
     "i18next-http-backend": "2.4.3",
     "react": "18.2.0",
