@@ -26,8 +26,11 @@ import { useProjectId } from '@/hooks/useProjectId';
 import { useShareParams } from '@/hooks/useShareParams';
 import { useShareDeletion } from '@/pages/delete/hooks/useShareDeletion';
 import { selectShareDeletionView } from '@/pages/delete/view-model/deleteShare.view-model';
+import { urls } from '@/routes/Routes.constants';
 
 const CONFIRM_VALUE = 'DELETE';
+
+const getListUrl = (projectId: string) => urls.list.replace(':projectId', projectId);
 
 const DeleteSharePage: React.FC = () => {
   const { t } = useTranslation(['delete', NAMESPACES.ACTIONS]);
@@ -56,8 +59,8 @@ const DeleteSharePage: React.FC = () => {
       color: 'success',
       duration: 5000,
     });
-    navigate('..');
-  }, [navigate, t, shareName]);
+    navigate(getListUrl(projectId));
+  }, [navigate, projectId, t, shareName]);
 
   const { deleteShare, isPending: isDeletionPending } = useShareDeletion(
     projectId,
