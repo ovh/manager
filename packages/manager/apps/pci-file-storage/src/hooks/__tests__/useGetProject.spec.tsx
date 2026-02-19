@@ -5,6 +5,7 @@ import { useGetProject } from '@/hooks/useGetProject';
 
 vi.mock('@ovh-ux/manager-pci-common', () => ({
   useProject: () => ({ data: { project_id: '1a2b3c', description: 'projectName' } }),
+  isDiscoveryProject: () => true,
 }));
 
 vi.mock('@/hooks/useNavigation', () => ({
@@ -18,11 +19,14 @@ describe('useGetProject', () => {
     const { result } = renderHook(() => useGetProject());
 
     await waitFor(() => {
-      expect(result.current).toEqual({
-        id: '1a2b3c',
-        name: 'projectName',
-        url: 'http://public-cloud/#/pci/projects/',
-      });
+      expect(result.current).toEqual(
+        expect.objectContaining({
+          id: '1a2b3c',
+          name: 'projectName',
+          url: 'http://public-cloud/#/pci/projects/',
+          isDiscovery: true,
+        }),
+      );
     });
   });
 });

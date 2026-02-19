@@ -81,6 +81,8 @@
   },
   "submit": {
     "error": "Wystąpił błąd podczas dodawania share: {{error}}",
-    "success": "Udział {{name}} jest w trakcie tworzenia"
-  }
+    "success": "Share {{name}} jest w trakcie tworzenia"
+  },
+  "title": "Utwórz share",
+  "description": "Utwórz share dostępne w Twoim projekcie Public Cloud. Potrzebujesz więcej informacji na temat Public Cloud File Storage? <0>Sprawdź naszą dokumentację</0>"
 }
