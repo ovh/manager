@@ -1,8 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { TNetwork } from '@/domain/entities/network.entity';
 import { TShare } from '@/domain/entities/share.entity';
 
-import { selectShareDetails } from '../shareDetails.view-model';
+import { selectNetworkDetails, selectShareDetails } from '../shareDetails.view-model';
 
 vi.mock('@ovh-ux/muk', () => ({
   getMacroRegion: () => 'GRA',
@@ -48,6 +49,60 @@ describe('shareDetails view model', () => {
         badgeColor: 'success',
       });
       expect(result?.enabledActions).toEqual([]);
+    });
+  });
+
+  describe('selectNetworkDetails', () => {
+    it('should return undefined when network is undefined', () => {
+      expect(selectNetworkDetails(undefined)).toBeUndefined();
+    });
+
+    it('should return mapped view with name when network has name', () => {
+      const network = {
+        id: 'network-1',
+        name: 'My Network',
+        vlanId: 123,
+        region: 'GRA9',
+      } as TNetwork;
+
+      const result = selectNetworkDetails(network);
+
+      expect(result).toBeDefined();
+      expect(result).toEqual({
+        id: 'network-1',
+        displayName: 'My Network',
+      });
+    });
+
+    it('should return mapped view with vlanId when network has no name', () => {
+      const network = {
+        id: 'network-2',
+        vlanId: 456,
+        region: 'GRA9',
+      } as TNetwork;
+
+      const result = selectNetworkDetails(network);
+
+      expect(result).toBeDefined();
+      expect(result).toEqual({
+        id: 'network-2',
+        displayName: 456,
+      });
+    });
+
+    it('should return mapped view with id when network has neither name nor vlanId', () => {
+      const network = {
+        id: 'network-3',
+        region: 'GRA9',
+      } as TNetwork;
+
+      const result = selectNetworkDetails(network);
+
+      expect(result).toBeDefined();
+      expect(result).toEqual({
+        id: 'network-3',
+        displayName: 'network-3',
+      });
     });
   });
 });

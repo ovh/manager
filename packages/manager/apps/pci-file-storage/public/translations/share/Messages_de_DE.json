@@ -9,7 +9,9 @@
     "share_name": "Name des Shares",
     "location": "Standort",
     "creation_date": "Erstellungsdatum",
-    "mount_path": "Einhängepfad"
+    "mount_path": "Einhängepfad",
+    "private_network": "Privates Netzwerk",
+    "network_name": "Name des Netzwerks"
   },
   "actions": {
     "column": "Aktionen",
