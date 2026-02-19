@@ -1,0 +1,23 @@
+{
+  "domain_reseller_title": "Domain Name Reseller Program",
+  "domain_reseller_message_title": "Your program is active",
+  "domain_reseller_message_text": "As a member of the domain name reseller program, you currently benefit from preferential rates on your domain names.",
+  "domain_reseller_button_add_domain": "Add a domain name",
+  "domain_reseller_button_download_catalog": "Download the catalog",
+  "domain_reseller_general_informations_label": "Domain names registered at preferential rates",
+  "domain_reseller_general_informations_domains_length": "{{ length }} active domain name(s)",
+  "domain_reseller_general_informations_no_domains": "No domain name linked to the program",
+  "domain_reseller_renew_mode_label": "Renewal method",
+  "domain_reseller_renew_mode_automatic": "Automatic",
+  "domain_reseller_tab_my_domains": "My domain names",
+  "domain_reseller_associate": "Associate",
+  "domain_reseller_order_domain": "Order a domain name",
+  "domain_reseller_associate_modal_title": "Choose the domain names to associate",
+  "domain_reseller_associate_modal_placeholder": "Select the domain names",
+  "domain_reseller_associate_modal_description": "Are you sure you want to associate these domain names with the billing NIC of this account?",
+  "domain_reseller_associate_modal_associate_error": "An error occurred while requesting the contact change: {{error}}.",
+  "domain_reseller_associate_modal_associate_success": "The contact change request has been successfully submitted. The contacts involved in the request will receive an email containing the validation procedure.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_one": "You have already requested the association of {{domain}} with your domain name reseller pack on a previous date. A validation email was sent on this occasion to the billing contact currently associated with the service. We invite you to check their inbox to finalize the confirmation of the change.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_other": "You have requested the attachment of {{count}} services to your domain name reseller pack. We invite you to check the email inbox of the billing contact currently associated with each of these services to validate the change. As some requests were made on earlier dates, the corresponding validation emails were sent on those same dates.",
+  "domain_reseller_associate_modal_loading": "Loading your domain names may take up to a few minutes depending on the size of your portfolio."
+}
