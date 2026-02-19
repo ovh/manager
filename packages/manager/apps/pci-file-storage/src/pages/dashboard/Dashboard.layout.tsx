@@ -52,7 +52,7 @@ const DashboardLayout: React.FC = () => {
 
   const handleTabChange = (event: TabsValueChangeEvent) => {
     const value = event.value;
-    if (value === TAB_SNAPSHOTS || value === TAB_ACL) {
+    if (value === TAB_SNAPSHOTS) {
       return;
     }
     navigate(value === TAB_GENERAL ? '.' : value);
@@ -96,7 +96,7 @@ const DashboardLayout: React.FC = () => {
                 {t('common.coming_soon')}
               </Badge>
             </Tab>
-            <Tab value={TAB_ACL} id="tab-acl" disabled>
+            <Tab value={TAB_ACL} id="tab-acl">
               {t('dashboard:tabs.acl')}
             </Tab>
           </TabList>

@@ -1,0 +1,17 @@
+{
+  "description": "Adicione endereços ou intervalos de IP autorizados a acessar este compartilhamento. Por padrão, nenhum endereço ou intervalo de IP é autorizado. O Armazenamento de Arquivos só pode ser usado com endereços IP da OVHcloud (Nuvem Pública, Serviço Kubernetes Gerenciado).",
+  "add": {
+    "label": "Adicionar um novo acesso"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Acesso a"
+    },
+    "accessPermission": {
+      "header": "Direitos de acesso"
+    },
+    "actions": {
+      "header": "Ações"
+    }
+  }
+}
