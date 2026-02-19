@@ -6,7 +6,14 @@ import { TABLE_SIZE } from '@ovhcloud/ods-react';
 
 import { Datagrid } from '@ovh-ux/muk';
 
-import { TAclDraftData, createAclDraft } from '@/pages/dashboard/Acl/acl.view-model';
+import { useAcls } from '@/data/hooks/acl/useAcls';
+import { useShareParams } from '@/hooks/useShareParams';
+import {
+  TAclData,
+  TAclDraftData,
+  createAclDraft,
+  selectAcls,
+} from '@/pages/dashboard/Acl/acl.view-model';
 import { AclDatagridTopbar } from '@/pages/dashboard/Acl/components/AclDatagridTopbar.component';
 import { useAclActions } from '@/pages/dashboard/Acl/hooks/useAclActions';
 import { useAclColumn } from '@/pages/dashboard/Acl/hooks/useAclColumn';
@@ -16,8 +23,13 @@ import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schem
 const getContainerHeight = (dataSize: number) => (dataSize + 1) * 50 + 10;
 
 export const AclDatagrid: FC = () => {
+  const { region, shareId } = useShareParams();
   const [hasDraft, setHasDraft] = useState(false);
   const formMethods = useCreateAclForm();
+
+  const { data: acls = [], isLoading: isLoadingAcls } = useAcls<TAclData[]>(region, shareId, {
+    select: selectAcls,
+  });
 
   const { createAcl, isCreatePending } = useAclActions({
     onCreateSuccess: () => {
@@ -26,9 +38,9 @@ export const AclDatagrid: FC = () => {
     },
   });
 
-  const data: Array<TAclDraftData> = useMemo(
-    () => [...(hasDraft ? [createAclDraft()] : [])],
-    [hasDraft],
+  const data: Array<TAclData | TAclDraftData> = useMemo(
+    () => [...(hasDraft ? [createAclDraft()] : []), ...acls],
+    [acls, hasDraft],
   );
 
   const handleAddClick = useCallback(() => {
@@ -60,6 +72,7 @@ export const AclDatagrid: FC = () => {
           columns={columns}
           data={data}
           totalCount={data.length}
+          isLoading={isLoadingAcls}
           containerHeight={getContainerHeight(data.length)}
           maxRowHeight={50}
           size={TABLE_SIZE.sm}
