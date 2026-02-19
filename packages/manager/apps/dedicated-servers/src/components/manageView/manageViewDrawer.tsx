@@ -50,8 +50,8 @@ export const ManageViewDrawer = ({
   const { mutate: saveViews } = useSaveViewsPreference({
     key: PREFERENCES_KEY,
   });
-  // Initialize the draft state for the grouping logic
-  const [draftGroupBy, setDraftGroupBy] = useState<Categories | undefined>(
+
+  const [initialGroupBy, setInitialGroupBy] = useState<Categories>(
     contextGroupBy,
   );
 
@@ -112,9 +112,9 @@ export const ManageViewDrawer = ({
       default: view?.default,
     });
 
-    // Synchronize the draft with the global context when the drawer opens
-    // or when the underlying view changes.
-    setDraftGroupBy(contextGroupBy);
+    if (isOpen) {
+      setInitialGroupBy(contextGroupBy);
+    }
   }, [isOpen, view, views]);
 
   const handleNameChange = (value: string) => {
@@ -132,13 +132,10 @@ export const ManageViewDrawer = ({
   };
 
   const saveViewChanges = () => {
-    if (draftGroupBy !== undefined) {
-      setContextGroupBy(draftGroupBy);
-    }
     saveViews({
       view: {
         ...editingView,
-        groupBy: draftGroupBy,
+        groupBy: contextGroupBy,
       },
     });
     handleConfirm();
@@ -149,7 +146,7 @@ export const ManageViewDrawer = ({
       currentView?.columnVisibility || DEFAULT_COLUMN_VISIBILITY,
     );
     setColumnsOrder(currentView.columnOrder);
-    setDraftGroupBy(contextGroupBy);
+    setContextGroupBy(initialGroupBy);
     handleCancel();
   };
 
@@ -195,11 +192,7 @@ export const ManageViewDrawer = ({
         {/* Drawer Content */}
 
         <div className="flex flex-col gap-4 p-4 overflow-auto">
-          <ManageViewConfig
-            drawerVisibility={isOpen}
-            draftGroupBy={draftGroupBy}
-            setDraftGroupBy={setDraftGroupBy}
-          />
+          <ManageViewConfig drawerVisibility={isOpen} />
         </div>
         {/* Drawer footer */}
         <div className="p-4 border-t flex justify-start gap-2">

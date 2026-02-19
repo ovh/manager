@@ -19,28 +19,29 @@ import { ViewContext } from './viewContext';
 import { SortableColumnCard } from './manageViewCard';
 import { ACCORDION_VALUES } from './manageView.constants';
 import ManageViewGroupBy from './manageViewGroupBy';
-import { Categories } from './types';
 
 export type ManageViewConfigProps = {
   drawerVisibility: boolean;
-  draftGroupBy?: Categories;
-  setDraftGroupBy: (groupBy: Categories) => void;
 };
 
 export const ManageViewConfig = ({
   drawerVisibility,
-  setDraftGroupBy,
-  draftGroupBy,
 }: ManageViewConfigProps) => {
   const [accordionValue, setAccordionValue] = useState<string[]>([
     ACCORDION_VALUES.order,
   ]);
-  const { columnsConfig, setOrderedColumns } = useContext(ViewContext);
+  const { columnsConfig, setOrderedColumns, groupBy, setGroupBy } = useContext(
+    ViewContext,
+  );
   const { t } = useTranslation('manage-view');
 
   if (!drawerVisibility && accordionValue.includes(ACCORDION_VALUES.groupBy)) {
     setAccordionValue([ACCORDION_VALUES.order]);
   }
+
+  const columnsToDisplay = columnsConfig.filter(
+    (column) => column.id !== 'actions',
+  );
 
   return (
     <Accordion
@@ -57,7 +58,8 @@ export const ManageViewConfig = ({
         <AccordionContent className="overflow-auto">
           <DndContext
             onDragEnd={({ active, over }) => {
-              if (!over || active.id === over.id) return;
+              if (!over || active.id === over.id || active.id === groupBy)
+                return;
               setOrderedColumns((prev) => {
                 const oldIndex = prev.findIndex((c) => c.id === active.id);
                 const newIndex = prev.findIndex((c) => c.id === over.id);
@@ -66,22 +68,17 @@ export const ManageViewConfig = ({
             }}
           >
             <SortableContext
-              items={columnsConfig.map((c) => c.id)}
+              items={columnsToDisplay.map((c) => c.id)}
               strategy={verticalListSortingStrategy}
             >
-              {columnsConfig
-                .filter((column) => column.id !== 'actions')
-                .map((column) => (
-                  <SortableColumnCard key={column.id} column={column} />
-                ))}
+              {columnsToDisplay.map((column) => (
+                <SortableColumnCard key={column.id} column={column} />
+              ))}
             </SortableContext>
           </DndContext>
         </AccordionContent>
       </AccordionItem>
-      <ManageViewGroupBy
-        draftGroupBy={draftGroupBy}
-        setDraftGroupBy={setDraftGroupBy}
-      />
+      <ManageViewGroupBy groupBy={groupBy} setGroupBy={setGroupBy} />
     </Accordion>
   );
 };
