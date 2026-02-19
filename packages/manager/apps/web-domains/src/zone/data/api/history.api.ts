@@ -75,3 +75,51 @@ export const updateZoneSoa = async (
 ): Promise<void> => {
   await v6.put(`/domain/zone/${zoneName}/soa`, soa);
 };
+
+export type DnsRecord = {
+  fieldType: string;
+  target: string;
+  subDomain?: string;
+};
+
+/**
+ * Reset DNS zone
+ */
+export const resetZone = async (
+  zoneName: string,
+  minimized: boolean,
+  dnsRecords: DnsRecord[] | null,
+): Promise<void> => {
+  await v6.post(`/domain/zone/${zoneName}/reset`, {
+    minimized,
+    ...(dnsRecords?.length ? { DnsRecords: dnsRecords } : {}),
+  });
+};
+
+export type THostingDetails = {
+  hostingIp: string;
+};
+
+export const getHostings = async (): Promise<string[]> => {
+  const { data } = await v6.get('/hosting/web');
+  return data;
+};
+
+export const getHostingDetails = async (hosting: string): Promise<THostingDetails> => {
+  const { data } = await v6.get<THostingDetails>(`/hosting/web/${hosting}`);
+  return data;
+};
+
+export type TEmailDomain = {
+  offer: string;
+};
+
+export const getEmailDomain = async (domain: string): Promise<TEmailDomain> => {
+  const { data } = await v6.get<TEmailDomain>(`/email/domain/${domain}`);
+  return data;
+};
+
+export const getEmailRecommendedDNSRecords = async (domain: string): Promise<DnsRecord[]> => {
+  const { data } = await v6.get<DnsRecord[]>(`/email/domain/${domain}/recommendedDNSRecords`);
+  return data;
+};

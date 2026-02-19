@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button,
@@ -10,8 +10,8 @@ import {
   SPINNER_SIZE,
   Spinner,
 } from '@ovhcloud/ods-react';
-import { downloadZoneFile } from '@/zone/data/api/history.api';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
+import { useCompareZoneFiles } from '@/zone/hooks/data/history.hooks';
 
 interface CharDiff {
   readonly isChanged: boolean;
@@ -168,15 +168,20 @@ export default function CompareZonesViewer({
   modifiedItem,
 }: CompareZonesViewerProps) {
   const { t } = useTranslation('zone');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [diff, setDiff] = useState<SplitDiff | null>(null);
+  const { mutate: compareZones, data: compareData, isPending: isLoading, error: compareError } = useCompareZoneFiles();
   const [copiedBase, setCopiedBase] = useState(false);
   const [copiedModified, setCopiedModified] = useState(false);
 
   const baseScrollRef = useRef<HTMLPreElement>(null);
   const modifiedScrollRef = useRef<HTMLPreElement>(null);
   const isSyncingRef = useRef(false);
+
+  const error = compareError?.message ?? null;
+
+  const diff = useMemo<SplitDiff | null>(() => {
+    if (!compareData) return null;
+    return buildSplitDiff(compareData.baseContent, compareData.modifiedContent);
+  }, [compareData]);
 
   const handleCopy = (lines: DiffLine[], setCopied: (v: boolean) => void) => {
     const text = lines.map((line) => line.content).join('\n');
@@ -218,27 +223,12 @@ export default function CompareZonesViewer({
 
   useEffect(() => {
     if (!baseItem || !modifiedItem || baseItem.id === modifiedItem.id) {
-      setDiff(null);
       return;
     }
-
-    setIsLoading(true);
-    setError(null);
-    setDiff(null);
-
-    Promise.all([
-      downloadZoneFile(baseItem.zoneFileUrl),
-      downloadZoneFile(modifiedItem.zoneFileUrl),
-    ])
-      .then(([baseContent, modifiedContent]) => {
-        setDiff(buildSplitDiff(baseContent, modifiedContent));
-      })
-      .catch((err) => {
-        setError(err?.message ?? String(err));
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    compareZones({
+      baseUrl: baseItem.zoneFileUrl,
+      modifiedUrl: modifiedItem.zoneFileUrl,
+    });
   }, [baseItem, modifiedItem]);
 
   if (isLoading) {

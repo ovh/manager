@@ -1,12 +1,18 @@
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import {
   downloadZoneFile,
+  getEmailDomain,
+  getEmailRecommendedDNSRecords,
+  getHostingDetails,
+  getHostings,
   getZoneHistory,
   getZoneHistoryByDate,
   getZoneSoa,
+  resetZone,
   restoreZone,
   TZoneSoa,
   updateZoneSoa,
+  DnsRecord,
 } from '@/zone/data/api/history.api';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
 
@@ -105,6 +111,15 @@ export const useDownloadZoneFile = () => {
 };
 
 /**
+ * Hook to fetch zone file content for viewing
+ */
+export const useViewZoneFile = () => {
+  return useMutation({
+    mutationFn: (url: string) => downloadZoneFile(url),
+  });
+};
+
+/**
  * Hook to restore zone from history
  */
 export const useRestoreZone = () => {
@@ -149,5 +164,92 @@ export const useUpdateZoneSoa = () => {
       zoneName: string;
       soa: TZoneSoa;
     }) => updateZoneSoa(zoneName, soa),
+  });
+};
+
+/**
+ * Hook to reset a DNS zone
+ */
+export const useResetZone = () => {
+  return useMutation({
+    mutationFn: ({
+      zoneName,
+      minimized,
+      dnsRecords,
+    }: {
+      zoneName: string;
+      minimized: boolean;
+      dnsRecords: DnsRecord[] | null;
+    }) => resetZone(zoneName, minimized, dnsRecords),
+  });
+};
+
+/**
+ * Hook to get the list of web hostings
+ */
+export const useGetHostings = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['hosting', 'web'],
+    queryFn: getHostings,
+  });
+  return { hostings: data ?? [], isLoadingHostings: isLoading };
+};
+
+/**
+ * Hook to get details of a specific web hosting (to retrieve hostingIp)
+ */
+export const useGetHostingDetails = (hosting: string) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['hosting', 'web', hosting],
+    queryFn: () => getHostingDetails(hosting),
+    enabled: !!hosting,
+  });
+  return { hostingDetails: data, isLoadingHostingDetails: isLoading };
+};
+
+/**
+ * Hook to check if an email domain exists and its offer type
+ */
+export const useGetEmailDomain = (domain: string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['email', 'domain', domain],
+    queryFn: () => getEmailDomain(domain),
+    enabled: !!domain,
+    retry: false,
+  });
+  return { emailDomain: data, isLoadingEmailDomain: isLoading, emailDomainError: error };
+};
+
+/**
+ * Hook to get recommended DNS records for an email domain
+ */
+export const useGetEmailRecommendedDNS = (domain: string, enabled: boolean) => {
+  const { data, isLoading } = useQuery({
+    queryKey: ['email', 'domain', domain, 'recommendedDNS'],
+    queryFn: () => getEmailRecommendedDNSRecords(domain),
+    enabled: !!domain && enabled,
+    retry: false,
+  });
+  return { emailRecommendedDNS: data ?? [], isLoadingEmailDNS: isLoading };
+};
+
+/**
+ * Hook to compare two zone files by downloading them in parallel
+ */
+export const useCompareZoneFiles = () => {
+  return useMutation({
+    mutationFn: async ({
+      baseUrl,
+      modifiedUrl,
+    }: {
+      baseUrl: string;
+      modifiedUrl: string;
+    }) => {
+      const [baseContent, modifiedContent] = await Promise.all([
+        downloadZoneFile(baseUrl),
+        downloadZoneFile(modifiedUrl),
+      ]);
+      return { baseContent, modifiedContent };
+    },
   });
 };

@@ -13,12 +13,12 @@ import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TE
 import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
-import ModifyTtlModal from "./modify/ModifyTtl.modal";
-import ResetModal from "./reset/Reset.modal";
+import ModifyTextualRecordModal from "@/zone/pages/zone/modify/ModifyTextualRecord.modal";
+import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
+import ResetDrawer from "@/zone/pages/zone/reset/ResetDrawer";
 import { RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
-import QuickAddEntry from "./components/QuickAddEntry";
+import QuickAddEntry from "@/zone/pages/zone/components/QuickAddEntry";
 
 export default function ZonePage() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
@@ -64,6 +64,12 @@ export default function ZonePage() {
     soaUrn,
   );
   const canModifyTtl = !isIamSoaPending && canEditSoa;
+
+  const { isPending: isIamResetPending, isAuthorized: canDoReset } = useAuthorizationIam(
+    ['dnsZone:apiovh:reset'],
+    soaUrn,
+  );
+  const canReset = !isIamResetPending && canDoReset;
 
   const { addWarning, addInfo } = useNotifications();
 
@@ -153,6 +159,7 @@ export default function ZonePage() {
       id: 4,
       label: t('zone_page_reset'),
       onClick: () => setOpenModal('reset'),
+      isDisabled: !canReset,
     },
   ];
 
@@ -175,7 +182,7 @@ export default function ZonePage() {
         />
       )}
       {openModal === 'reset' && (
-        <ResetModal
+        <ResetDrawer
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
         />

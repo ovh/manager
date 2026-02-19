@@ -16,7 +16,7 @@ import {
   Text,
   ModalHeader,
 } from '@ovhcloud/ods-react';
-import { downloadZoneFile } from '@/zone/data/api/history.api';
+import { useViewZoneFile } from '@/zone/hooks/data/history.hooks';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
 
 interface ViewZoneModalProps {
@@ -31,34 +31,22 @@ export default function ViewZoneModal({
   item,
 }: ViewZoneModalProps) {
   const { t } = useTranslation('zone');
-  const [content, setContent] = useState<string>('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const { mutate: viewZone, data: content, isPending: isLoading, error } = useViewZoneFile();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(content).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+    if (content) {
+      navigator.clipboard.writeText(content).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    }
   };
 
   useEffect(() => {
-    if (!item || !isOpen) return;
-
-    setIsLoading(true);
-    setError(null);
-
-    downloadZoneFile(item.zoneFileUrl)
-      .then((data) => {
-        setContent(data);
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    if (item && isOpen) {
+      viewZone(item.zoneFileUrl);
+    }
   }, [item, isOpen]);
 
   if (!item || !isOpen) return null;
@@ -81,7 +69,7 @@ export default function ViewZoneModal({
 
             {error && (
               <Message color={MESSAGE_COLOR.critical}>
-                {t('zone_history_error', { message: error })}
+                {t('zone_history_error', { message: error.message })}
               </Message>
             )}
 
