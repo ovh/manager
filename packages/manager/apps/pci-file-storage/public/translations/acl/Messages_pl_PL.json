@@ -1,0 +1,17 @@
+{
+  "description": "Dodaj adresy lub zakresy IP, które mają dostęp do tego udostępnienia. Domyślnie żadna adres lub zakres IP nie jest dozwolony. Przechowywanie plików może być używane tylko z adresami IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
+  "add": {
+    "label": "Dodaj nowe uprawnienie dostępu"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Dostęp do"
+    },
+    "accessPermission": {
+      "header": "Uprawnienia dostępu"
+    },
+    "actions": {
+      "header": "Operacje"
+    }
+  }
+}
