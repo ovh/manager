@@ -1,11 +1,9 @@
 import { getMacroRegion } from '@ovh-ux/muk';
 
+import { TStatusBadgeProps } from '@/components/status-badge/StatusBadge.component';
 import { TNetwork } from '@/domain/entities/network.entity';
 import type { TShare } from '@/domain/entities/share.entity';
-import {
-  type TShareStatusDisplay,
-  getShareStatusDisplay,
-} from '@/pages/view-model/shareStatus.view-model';
+import { getShareStatusDisplay } from '@/pages/view-model/shareStatus.view-model';
 
 export type TShareDetailsView = {
   id: string;
@@ -15,7 +13,7 @@ export type TShareDetailsView = {
   protocol: string;
   size: number;
   status: string;
-  statusDisplay: TShareStatusDisplay;
+  statusDisplay: TStatusBadgeProps;
   createdAt: string;
   mountPaths: string[];
   enabledActions: readonly string[];

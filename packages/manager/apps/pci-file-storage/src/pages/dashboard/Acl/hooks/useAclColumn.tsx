@@ -22,19 +22,26 @@ import {
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DatagridColumn } from '@ovh-ux/muk';
 
+import { StatusBadge } from '@/components/status-badge/StatusBadge.component';
 import { TAclData, TAclDraftData, isAclDraftData } from '@/pages/dashboard/Acl/acl.view-model';
 import { useAclPermissions } from '@/pages/dashboard/Acl/hooks/useAclPermissions';
 import type { CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
 
 type TUseAclColumnProps = {
   formMethods: UseFormReturn<CreateAclFormValues>;
+  hasDraft: boolean;
   onCancelDraft: () => void;
+  onDelete: (aclId: string) => void;
+  deletingAclId?: string;
   isCreatePending: boolean;
 };
 
 export const useAclColumn = ({
   formMethods,
+  hasDraft,
   onCancelDraft,
+  onDelete,
+  deletingAclId,
   isCreatePending,
 }: TUseAclColumnProps): DatagridColumn<TAclData | TAclDraftData>[] => {
   const { t } = useTranslation(['acl', NAMESPACES.ACTIONS]);
@@ -112,39 +119,84 @@ export const useAclColumn = ({
           ),
       },
       {
+        id: 'status',
+        accessorKey: 'status',
+        header: t('acl:columns.status.header'),
+        cell: ({
+          row: {
+            original: { statusDisplay },
+          },
+        }) => <StatusBadge {...statusDisplay} />,
+      },
+      {
         id: 'action',
         header: t('acl:columns.actions.header'),
-        cell: ({ row }) =>
-          isAclDraftData(row.original) ? (
-            <div className="flex items-center justify-end gap-2 px-2">
-              {isCreatePending ? (
+        cell: ({ row }) => {
+          if (isAclDraftData(row.original)) {
+            return (
+              <div className="flex items-center justify-end gap-2 px-2">
+                {isCreatePending ? (
+                  <Spinner size={SPINNER_SIZE.sm} />
+                ) : (
+                  <>
+                    <Button
+                      type="submit"
+                      variant="ghost"
+                      color="primary"
+                      size="sm"
+                      aria-label={t(`${NAMESPACES.ACTIONS}:validate`)}
+                    >
+                      <Icon name={ICON_NAME.check} />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      color="primary"
+                      size="sm"
+                      onClick={onCancelDraft}
+                      aria-label={t(`${NAMESPACES.ACTIONS}:cancel`)}
+                    >
+                      <Icon name={ICON_NAME.xmark} />
+                    </Button>
+                  </>
+                )}
+              </div>
+            );
+          }
+
+          const aclId = row.original.id;
+
+          return (
+            <div className="flex justify-end px-2">
+              {deletingAclId === aclId || row.original.status === 'deleting' ? (
                 <Spinner size={SPINNER_SIZE.sm} />
               ) : (
-                <>
-                  <Button
-                    type="submit"
-                    variant="ghost"
-                    color="primary"
-                    size="sm"
-                    aria-label={t(`${NAMESPACES.ACTIONS}:validate`)}
-                  >
-                    <Icon name={ICON_NAME.check} />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    color="primary"
-                    size="sm"
-                    onClick={onCancelDraft}
-                    aria-label={t(`${NAMESPACES.ACTIONS}:cancel`)}
-                  >
-                    <Icon name={ICON_NAME.xmark} />
-                  </Button>
-                </>
+                <Button
+                  variant="ghost"
+                  color="primary"
+                  size="sm"
+                  aria-label={t(`${NAMESPACES.ACTIONS}:delete`)}
+                  disabled={isCreatePending || hasDraft}
+                  onClick={() => onDelete(aclId)}
+                >
+                  <Icon name={ICON_NAME.trash} />
+                </Button>
               )}
             </div>
-          ) : null,
-        maxSize: 50,
+          );
+        },
+        maxSize: 90,
+        minSize: 50,
       },
     ];
-  }, [formMethods, isCreatePending, onCancelDraft, permissions, permissionsMap, t]);
+  }, [
+    deletingAclId,
+    formMethods,
+    hasDraft,
+    isCreatePending,
+    onCancelDraft,
+    onDelete,
+    permissions,
+    permissionsMap,
+    t,
+  ]);
 };

@@ -58,29 +58,108 @@ describe('acl mapper', () => {
   describe('mapAclDtoToAcl', () => {
     it.each([
       {
-        description: 'should map DTO with ro accessLevel',
+        description: 'should map DTO with ro accessLevel and active status',
         dto: {
           id: 'acl-1',
           accessTo: '10.0.0.0',
           accessLevel: 'ro' as TAclAccessLevelDto,
+          status: 'active',
         } as TAclDto,
         expected: {
           id: 'acl-1',
           source: { id: '10.0.0.0' },
           permissions: ['read'],
+          status: 'active',
         },
       },
       {
-        description: 'should map DTO with rw accessLevel',
+        description: 'should map DTO with rw accessLevel and active status',
         dto: {
           id: 'acl-2',
           accessTo: '192.168.1.0/24',
           accessLevel: 'rw' as TAclAccessLevelDto,
+          status: 'active',
         } as TAclDto,
         expected: {
           id: 'acl-2',
           source: { id: '192.168.1.0/24' },
           permissions: ['write'],
+          status: 'active',
+        },
+      },
+      {
+        description: 'should map DTO with denying status to deleting',
+        dto: {
+          id: 'acl-3',
+          accessTo: '10.0.0.1',
+          accessLevel: 'ro' as TAclAccessLevelDto,
+          status: 'denying',
+        } as TAclDto,
+        expected: {
+          id: 'acl-3',
+          source: { id: '10.0.0.1' },
+          permissions: ['read'],
+          status: 'deleting',
+        },
+      },
+      {
+        description: 'should map DTO with queued_to_deny status to deleting',
+        dto: {
+          id: 'acl-4',
+          accessTo: '10.0.0.2',
+          accessLevel: 'rw' as TAclAccessLevelDto,
+          status: 'queued_to_deny',
+        } as TAclDto,
+        expected: {
+          id: 'acl-4',
+          source: { id: '10.0.0.2' },
+          permissions: ['write'],
+          status: 'deleting',
+        },
+      },
+      {
+        description: 'should map DTO with applying status to activating',
+        dto: {
+          id: 'acl-5',
+          accessTo: '10.0.0.3',
+          accessLevel: 'ro' as TAclAccessLevelDto,
+          status: 'applying',
+        } as TAclDto,
+        expected: {
+          id: 'acl-5',
+          source: { id: '10.0.0.3' },
+          permissions: ['read'],
+          status: 'activating',
+        },
+      },
+      {
+        description: 'should map DTO with queued_to_apply status to activating',
+        dto: {
+          id: 'acl-6',
+          accessTo: '10.0.0.4',
+          accessLevel: 'rw' as TAclAccessLevelDto,
+          status: 'queued_to_apply',
+        } as TAclDto,
+        expected: {
+          id: 'acl-6',
+          source: { id: '10.0.0.4' },
+          permissions: ['write'],
+          status: 'activating',
+        },
+      },
+      {
+        description: 'should map DTO with error status',
+        dto: {
+          id: 'acl-7',
+          accessTo: '10.0.0.5',
+          accessLevel: 'ro' as TAclAccessLevelDto,
+          status: 'error',
+        } as TAclDto,
+        expected: {
+          id: 'acl-7',
+          source: { id: '10.0.0.5' },
+          permissions: ['read'],
+          status: 'error',
         },
       },
     ])('$description', ({ dto, expected }) => {
