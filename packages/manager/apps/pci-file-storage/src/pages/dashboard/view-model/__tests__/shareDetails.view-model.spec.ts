@@ -86,7 +86,7 @@ describe('shareDetails view model', () => {
       expect(result).toBeDefined();
       expect(result).toEqual({
         id: 'network-2',
-        displayName: 456,
+        displayName: '456',
       });
     });
 
