@@ -1410,5 +1410,9 @@
   "hosting_tab_DATABASES_configuration__available_slot": "Database available",
   "hosting_tab_WEBSITE": "My sites",
   "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain",
-  "hosting_tab_USER_LOGS": "Logs."
+  "hosting_tab_USER_LOGS": "Logs.",
+  "database_tabs_dumps_guide_message_part1": "Do you want to back up or restore a database?",
+  "database_tabs_dumps_guide_message_part2": "Find our detailed guides to perform these actions directly from your client area:",
+  "database_tabs_dumps_guide_save": "Back up and export a database",
+  "database_tabs_dumps_guide_restore": "Restore and import a database"
 }
