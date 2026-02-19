@@ -1,7 +1,6 @@
 import {
   Button,
-  BUTTON_VARIANT,
-  Icon,
+  BUTTON_SIZE,
   ICON_NAME,
   Message,
   MESSAGE_COLOR,
@@ -18,10 +17,10 @@ import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact, handleOrderClick } from '@/common/utils/utils';
 import GeneralInformation from '@/domain-reseller/components/Dashboard/GeneralInformation';
 import Subscription from '@/domain-reseller/components/Dashboard/Subscription';
-import { useGetDomainsList } from '@/domain-reseller/hooks/data/query';
 import Loading from '@/domain/components/Loading/Loading';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
+import { useGetDomainsListByResellerNicAdmin } from '@/domain-reseller/hooks/data/query';
 
 export default function DomainResellerInformation() {
   const { t } = useTranslation('domain-reseller');
@@ -32,7 +31,7 @@ export default function DomainResellerInformation() {
     isServiceInfoLoading,
   } = useGetServiceInformationByRoutes(ServiceRoutes.DomainReseller);
 
-  const nicAdmin = useMemo(() => {
+  const resellerNicAdmin = useMemo(() => {
     if (!serviceInfo?.customer?.contacts) return undefined;
     return findContact(
       serviceInfo.customer.contacts,
@@ -40,7 +39,10 @@ export default function DomainResellerInformation() {
     );
   }, [serviceInfo]);
 
-  const { data: domainslist = [], isLoading } = useGetDomainsList(nicAdmin);
+  const {
+    data: domainslist = [],
+    isLoading,
+  } = useGetDomainsListByResellerNicAdmin(resellerNicAdmin);
 
   if (isServiceInfoLoading || isLoading) {
     return <Loading />;
@@ -66,16 +68,9 @@ export default function DomainResellerInformation() {
           <Button
             onClick={() => handleOrderClick(orderUrl)}
             data-testid="add-domain-button"
+            size={BUTTON_SIZE.sm}
           >
-            {t('domain_reseller_button_add_domain')}
-          </Button>
-          {/* The button is not usable for the moment, waiting for order API */}
-          <Button
-            variant={BUTTON_VARIANT.outline}
-            data-testid="download-catalog-button"
-          >
-            {t('domain_reseller_button_download_catalog')}
-            <Icon name={ICON_NAME.download} />
+            {t('domain_reseller_order_domain')}
           </Button>
         </div>
         <div

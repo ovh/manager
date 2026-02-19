@@ -9,6 +9,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalHeader,
   ModalOpenChangeDetail,
   Text,
   TEXT_PRESET,
@@ -39,6 +40,13 @@ export default function RenewRestoreModal({
   return (
     <Modal open={isModalOpenned} onOpenChange={onOpenChange}>
       <ModalContent>
+        <ModalHeader>
+          <Text preset={TEXT_PRESET.heading4}>
+            {t('domain_table_modal_renew_restore_title', {
+              count: serviceNames?.length,
+            })}
+          </Text>
+        </ModalHeader>
         <ModalBody
           style={{
             display: 'flex',
@@ -46,11 +54,6 @@ export default function RenewRestoreModal({
             rowGap: '16px',
           }}
         >
-          <Text preset={TEXT_PRESET.heading4}>
-            {t('domain_table_modal_renew_restore_title', {
-              count: serviceNames?.length,
-            })}
-          </Text>
           <Text>{t('domain_table_modal_renew_restore_description')}</Text>
           <Text>
             <Trans

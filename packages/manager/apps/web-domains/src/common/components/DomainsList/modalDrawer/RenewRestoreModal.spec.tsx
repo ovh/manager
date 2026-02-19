@@ -12,96 +12,96 @@ Object.defineProperty(window, 'open', {
   value: mockWindowOpen,
 });
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Modal: ({
-    children,
-    open,
-    onOpenChange,
-  }: {
-    children: React.ReactNode;
-    open: boolean;
-    onOpenChange?: (detail: { open: boolean }) => void;
-  }) => (
-    <div
-      data-testid="modal"
-      data-open={open}
-      onClick={() => onOpenChange?.({ open: false })}
-    >
-      {children}
-    </div>
-  ),
-  ModalContent: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="modal-content">{children}</div>
-  ),
-  ModalBody: ({
-    children,
-    style,
-  }: {
-    children: React.ReactNode;
-    style: React.CSSProperties;
-  }) => (
-    <div data-testid="modal-body" style={style}>
-      {children}
-    </div>
-  ),
-  Text: ({
-    children,
-    preset,
-  }: {
-    children: React.ReactNode;
-    preset?: string;
-  }) => (
-    <div data-testid="text" data-preset={preset}>
-      {children}
-    </div>
-  ),
-  Button: ({
-    children,
-    variant,
-    onClick,
-  }: {
-    children: React.ReactNode;
-    variant?: string;
-    onClick?: () => void;
-  }) => (
-    <button data-testid="button" data-variant={variant} onClick={onClick}>
-      {children}
-    </button>
-  ),
-  Message: ({
-    children,
-    color,
-    className,
-    dismissible,
-  }: {
-    children: React.ReactNode;
-    color?: string;
-    className?: string;
-    dismissible?: boolean;
-  }) => (
-    <div
-      data-testid="message"
-      data-color={color}
-      className={className}
-      data-dismissible={dismissible}
-    >
-      {children}
-    </div>
-  ),
-  MessageIcon: ({ name }: { name: string }) => (
-    <span data-testid={`message-icon-${name}`}>{name}</span>
-  ),
-  MessageBody: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="message-body">{children}</div>
-  ),
-  TEXT_PRESET: {
-    heading4: 'heading4',
-  },
-  MESSAGE_COLOR: {
-    information: 'information',
-    warning: 'warning',
-  },
-}));
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    Modal: ({
+      children,
+      open,
+      onOpenChange,
+    }: {
+      children: React.ReactNode;
+      open: boolean;
+      onOpenChange?: (detail: { open: boolean }) => void;
+    }) => (
+      <div
+        data-testid="modal"
+        data-open={open}
+        onClick={() => onOpenChange?.({ open: false })}
+      >
+        {children}
+      </div>
+    ),
+    ModalContent: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="modal-content">{children}</div>
+    ),
+    ModalHeader: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="modal-header">{children}</div>
+    ),
+    ModalBody: ({
+      children,
+      style,
+    }: {
+      children: React.ReactNode;
+      style: React.CSSProperties;
+    }) => (
+      <div data-testid="modal-body" style={style}>
+        {children}
+      </div>
+    ),
+    Text: ({
+      children,
+      preset,
+    }: {
+      children: React.ReactNode;
+      preset?: string;
+    }) => (
+      <div data-testid="text" data-preset={preset}>
+        {children}
+      </div>
+    ),
+    Button: ({
+      children,
+      variant,
+      onClick,
+    }: {
+      children: React.ReactNode;
+      variant?: string;
+      onClick?: () => void;
+    }) => (
+      <button data-testid="button" data-variant={variant} onClick={onClick}>
+        {children}
+      </button>
+    ),
+    Message: ({
+      children,
+      color,
+      className,
+      dismissible,
+    }: {
+      children: React.ReactNode;
+      color?: string;
+      className?: string;
+      dismissible?: boolean;
+    }) => (
+      <div
+        data-testid="message"
+        data-color={color}
+        className={className}
+        data-dismissible={dismissible}
+      >
+        {children}
+      </div>
+    ),
+    MessageIcon: ({ name }: { name: string }) => (
+      <span data-testid={`message-icon-${name}`}>{name}</span>
+    ),
+    MessageBody: ({ children }: { children: React.ReactNode }) => (
+      <div data-testid="message-body">{children}</div>
+    ),
+  };
+});
 
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
@@ -175,11 +175,8 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const titles = screen.getAllByTestId('text');
-    const mainTitle = titles.find(
-      (t) => t.getAttribute('data-preset') === 'heading4',
-    );
-    expect(mainTitle).toHaveTextContent(
+    const header = screen.getByTestId('modal-header');
+    expect(header).toHaveTextContent(
       'domain_table_modal_renew_restore_title_count_2',
     );
   });
@@ -354,13 +351,13 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const titles = screen.getAllByTestId('text');
-    expect(titles[0]).toHaveTextContent(
+    const header = screen.getByTestId('modal-header');
+    expect(header).toHaveTextContent(
       'domain_table_modal_renew_restore_title_count_1',
     );
-    expect(titles[1]).toHaveTextContent(
-      'domain_table_modal_renew_restore_description',
-    );
+    expect(
+      screen.getByText('domain_table_modal_renew_restore_description'),
+    ).toBeInTheDocument();
 
     const buttons = screen.getAllByTestId('button');
     const renewButton = buttons.find(
