@@ -1,18 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { useProject } from '@ovh-ux/manager-pci-common';
+import { TProject, isDiscoveryProject, useProject } from '@ovh-ux/manager-pci-common';
 
 import { useNavigation } from '@/hooks/useNavigation';
 
-export type TProject = {
+export type TPciProject = TProject & {
   id: string;
   name: string;
   url: string;
+  isDiscovery: boolean;
 };
 
-export const useGetProject = () => {
+export const useGetProject = (): TPciProject | undefined => {
   const navigation = useNavigation();
   const { data: project } = useProject();
+
+  const isDiscovery = useMemo(() => isDiscoveryProject(project), [project]);
 
   const [projectUrl, setProjectUrl] = useState('');
 
@@ -24,9 +27,15 @@ export const useGetProject = () => {
       });
   }, [project, navigation]);
 
-  return {
-    id: project?.project_id,
-    name: project?.description,
-    url: projectUrl,
-  } as TProject;
+  return useMemo(
+    () =>
+      project && {
+        ...project,
+        id: project.project_id,
+        name: project.description ?? '',
+        url: projectUrl,
+        isDiscovery,
+      },
+    [project, projectUrl, isDiscovery],
+  );
 };

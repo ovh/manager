@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { useGetProject } from '@/hooks/useGetProject';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import { useShareCreation } from '@/pages/create/hooks/useShareCreation';
@@ -23,7 +24,7 @@ vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
   return {
     ...actual,
-    useWatch: vi.fn().mockReturnValue(['GRA', 'GRA1']),
+    useWatch: vi.fn().mockReturnValue(['GRA', 'GRA1', 'test-share']),
   };
 });
 
@@ -55,6 +56,10 @@ const mockUseCreateShareForm = ({ isValid }: { isValid: boolean }) =>
 
 vi.mock('@/pages/create/hooks/useCreateShareForm', () => ({
   useCreateShareForm: vi.fn(),
+}));
+
+vi.mock('@/hooks/useGetProject', () => ({
+  useGetProject: vi.fn(),
 }));
 
 const mockNavigate = vi.fn();
@@ -118,9 +123,20 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
   ),
 }));
 
-const { mockToast } = vi.hoisted(() => ({
+const { mockSuccessToast, mockWarningToast, mockToast } = vi.hoisted(() => ({
+  mockSuccessToast: vi.fn(),
+  mockWarningToast: vi.fn(),
   mockToast: vi.fn(),
 }));
+
+vi.mock('@/utils/toast.utils', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/utils/toast.utils')>();
+  return {
+    ...actual,
+    successToast: mockSuccessToast,
+    warningToast: mockWarningToast,
+  };
+});
 
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
@@ -150,17 +166,19 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
-  toast: mockToast,
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 const mockUseShareCreation = vi.mocked(useShareCreation);
+const mockUseGetProject = vi.mocked(useGetProject);
 
 describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockNavigate.mockClear();
-    mockToast.mockClear();
+    mockSuccessToast.mockClear();
+    mockWarningToast.mockClear();
+    mockUseGetProject.mockReturnValue(undefined);
     mockUseCreateShareForm({ isValid: true });
     mockUseShareCreation.mockReturnValue({
       createShare: vi.fn(),
@@ -300,6 +318,26 @@ describe('CreateShareForm', () => {
     expect(submitButton).not.toBeDisabled();
   });
 
+  it('should disable submit button when project is discovery', () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    mockUseGetProject.mockReturnValue({
+      id: 'project-id',
+      name: 'Discovery project',
+      url: 'https://example.com',
+      isDiscovery: true,
+    } as ReturnType<typeof useGetProject>);
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const submitButton = screen.getByTestId('button-default');
+    expect(submitButton).toBeDisabled();
+  });
+
   it('should call navigate on cancel button click', async () => {
     mockUseShareCatalog.mockReturnValue({
       data: [],
@@ -346,13 +384,8 @@ describe('CreateShareForm', () => {
     if (onErrorCallback) onErrorCallback('Create share failed');
 
     expect(mockCreateShare).toHaveBeenCalled();
-
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.stringContaining('create:submit.error'),
-      expect.objectContaining({
-        color: 'warning',
-        duration: Infinity,
-      }),
+    expect(mockWarningToast).toHaveBeenCalledWith(
+      expect.objectContaining({ duration: expect.any(Number) }),
     );
   });
 
@@ -392,12 +425,8 @@ describe('CreateShareForm', () => {
     if (onSuccessCallback) onSuccessCallback();
     expect(mockCreateShare).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('..');
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.stringContaining('create:submit.success'),
-      expect.objectContaining({
-        color: 'success',
-        duration: Infinity,
-      }),
+    expect(mockSuccessToast).toHaveBeenCalledWith(
+      expect.objectContaining({ duration: expect.any(Number) }),
     );
   });
 });

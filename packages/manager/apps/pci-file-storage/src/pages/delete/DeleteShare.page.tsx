@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useState } from 'react';
+import React, { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,6 @@ import {
   ModalHeader,
   Skeleton,
   Text,
-  toast,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -26,8 +25,12 @@ import { useProjectId } from '@/hooks/useProjectId';
 import { useShareParams } from '@/hooks/useShareParams';
 import { useShareDeletion } from '@/pages/delete/hooks/useShareDeletion';
 import { selectShareDeletionView } from '@/pages/delete/view-model/deleteShare.view-model';
+import { urls } from '@/routes/Routes.constants';
+import { ToastDuration, successToast, warningToast } from '@/utils/toast.utils';
 
 const CONFIRM_VALUE = 'DELETE';
+
+const getListUrl = (projectId: string) => urls.list.replace(':projectId', projectId);
 
 const DeleteSharePage: React.FC = () => {
   const { t } = useTranslation(['delete', NAMESPACES.ACTIONS]);
@@ -40,33 +43,35 @@ const DeleteSharePage: React.FC = () => {
 
   const shareName = shareDeletionView?.shareName ?? shareId;
 
-  const onError = useCallback(
-    (errorMessage: string) => {
-      toast(t('delete:message.error', { errorMessage }), {
-        color: 'warning',
-        duration: Infinity,
-      });
-      navigate('..');
-    },
-    [navigate, t],
+  const handleDeleteShare = useMemo(
+    () => ({
+      onSuccess: () => {
+        successToast({
+          ns: 'delete',
+          i18nKey: 'delete:message.success',
+          values: { shareName },
+          duration: ToastDuration.Short,
+        });
+        navigate(getListUrl(projectId));
+      },
+      onError: (errorMessage: string) => {
+        warningToast({
+          ns: 'delete',
+          i18nKey: 'delete:message.error',
+          values: { errorMessage },
+          duration: ToastDuration.Infinite,
+        });
+        navigate('..');
+      },
+    }),
+    [navigate, projectId, shareName],
   );
-
-  const onSuccess = useCallback(() => {
-    toast(t('delete:message.success', { shareName }), {
-      color: 'success',
-      duration: 5000,
-    });
-    navigate('..');
-  }, [navigate, t, shareName]);
 
   const { deleteShare, isPending: isDeletionPending } = useShareDeletion(
     projectId,
     region,
     shareId,
-    {
-      onSuccess,
-      onError,
-    },
+    handleDeleteShare,
   );
 
   const [confirmInput, setConfirmInput] = useState('');
