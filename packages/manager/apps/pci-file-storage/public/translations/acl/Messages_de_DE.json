@@ -1,14 +1,20 @@
 {
   "description": "Fügen Sie erlaubte Adressen oder IP-Bereiche hinzu, die auf diesen Share zugreifen dürfen. Standardmäßig ist keine Adresse oder IP-Bereich erlaubt. File Storage kann nur mit OVHcloud-IP-Adressen (Public Cloud, Managed Kubernetes Service) verwendet werden.",
   "add": {
-    "label": "Neuen Zugang hinzufügen"
+    "label": "Neuen Zugang hinzufügen",
+    "success": "Ihre ACL (Zugriffskontrollliste) wurde erfolgreich hinzugefügt",
+    "error": "Beim Hinzufügen der ACL ist ein Fehler aufgetreten: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
-      "header": "Zugang zu"
+      "header": "Zugang zu",
+      "placeholder": "10.0.0.0",
+      "invalidFormat": "Ungültiges Format: Bitte geben Sie eine gültige IP-Adresse oder einen gültigen IP-Bereich ein (z. B.: 10.0.0.0/24)"
     },
     "accessPermission": {
-      "header": "Zugriffsrechte"
+      "header": "Zugriffsrechte",
+      "readOnly": "Schreibgeschützt",
+      "readAndWrite": "Lesen und Schreiben"
     },
     "actions": {
       "header": "Aktionen"

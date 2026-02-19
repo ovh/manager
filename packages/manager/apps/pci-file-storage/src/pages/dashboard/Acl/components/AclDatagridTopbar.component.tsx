@@ -1,18 +1,23 @@
-import React from 'react';
 import { type FC } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+type TAclDatagridTopbarProps = {
+  onAddClick: () => void;
+  isButtonDisabled: boolean;
+};
 
-export const AclDatagridTopbar: FC = () => {
-  const { t } = useTranslation(['acl', NAMESPACES.ACTIONS]);
+export const AclDatagridTopbar: FC<TAclDatagridTopbarProps> = ({
+  onAddClick,
+  isButtonDisabled,
+}) => {
+  const { t } = useTranslation('acl');
 
   return (
     <div className="flex items-center justify-between gap-4">
-      <Button variant="default" color="primary">
+      <Button variant="default" color="primary" onClick={onAddClick} disabled={isButtonDisabled}>
         <Icon name={ICON_NAME.plus} />
         {t('acl:add.label')}
       </Button>
