@@ -5,7 +5,10 @@ import { describe, it, vi } from 'vitest';
 
 import { ServiceAccountsPolicyCount } from './ServiceAccountsPolicyCount.component';
 import { useGetIamPoliciesForIdentity } from '@/data/hooks/useGetIamPolicies';
-import { IamServiceAccount } from '@/data/api/iam-service-accounts';
+import {
+  IamServiceAccount,
+  IamServiceAccountFlow,
+} from '@/data/api/iam-service-accounts';
 import { IamPolicy } from '@/data/api/iam-policies';
 
 vi.mock('@/data/hooks/useGetIamPolicies', () => ({
@@ -13,9 +16,11 @@ vi.mock('@/data/hooks/useGetIamPolicies', () => ({
 }));
 
 const MOCK_ACCOUNT: IamServiceAccount = {
+  clientId: 'fake-account-1',
   name: 'fake-account-1',
   description: 'Fake Account 1',
-  clientId: 'fake-account-1',
+  callbackUrls: [],
+  flow: IamServiceAccountFlow.CLIENT_CREDENTIALS,
   identity: 'fake-identity',
   createdAt: '2025-05-11T00:00:00+02:00',
 }

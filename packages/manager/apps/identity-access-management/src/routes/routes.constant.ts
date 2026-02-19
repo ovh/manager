@@ -8,10 +8,11 @@ export const subRoutes = {
   permanentTokensEdit: 'edit/:tokenId',
   permanentTokensDelete: 'delete/:tokenId',
   permanentTokensView: 'view',
-  serviceAccounts: '/service-accounts',
+  serviceAccounts: 'service-accounts',
   serviceAccountsAdd: 'add',
   serviceAccountsEdit: 'edit/:clientId',
   serviceAccountsDelete: 'delete/:clientId',
+  serviceAccountsView: 'view',
 };
 
 export const urls = {
@@ -30,4 +31,5 @@ export const urls = {
   serviceAccountsAdd: `/${subRoutes.serviceAccounts}/${subRoutes.serviceAccountsAdd}`,
   serviceAccountsEdit: `/${subRoutes.serviceAccounts}/${subRoutes.serviceAccountsEdit}`,
   serviceAccountsDelete: `/${subRoutes.serviceAccounts}/${subRoutes.serviceAccountsDelete}`,
+  serviceAccountsView: `/${subRoutes.serviceAccounts}/${subRoutes.serviceAccountsView}`,
 };

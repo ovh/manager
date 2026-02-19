@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   BaseLayout,
@@ -7,15 +7,18 @@ import {
   ManagerButton,
   HeadersProps,
 } from '@ovh-ux/manager-react-components';
+import { subRoutes } from '@/routes/routes.constant';
 
 import { useDatagridColumn } from '@/pages/serviceAccounts/listing/useDatagridColumn';
 import { useIamServiceAccountList } from '@/data/hooks/useGetIamServiceAccounts';
+import { ServiceAccountSecretProvider } from '@/contexts/service-account-secret.context';
 
 import { ServiceAccountsBreadcrumb } from '@/pages/serviceAccounts/components/ServiceAccountsBreadcrumb.component';
 import { ServiceAccountsTabs } from '@/pages/serviceAccounts/components/ServiceAccountsTabs.component';
 
 export default function ServiceAccountsListing() {
   const { t } = useTranslation('service-accounts');
+  const navigate = useNavigate();
 
   const header: HeadersProps = {
     title: t('iam_identities'),
@@ -34,7 +37,8 @@ export default function ServiceAccountsListing() {
   } = useIamServiceAccountList({ columns, pageSize: 10 });
 
   const handleCreateAccount = () => {
-    // TODO
+    // TODO: tracking
+    navigate(subRoutes.serviceAccountsAdd);
   };
 
   return (
@@ -65,9 +69,11 @@ export default function ServiceAccountsListing() {
         contentAlignLeft
         getRowId={({ clientId }) => clientId}
       />
-      <Suspense>
-        <Outlet />
-      </Suspense>
+      <ServiceAccountSecretProvider>
+        <Suspense>
+          <Outlet />
+        </Suspense>
+      </ServiceAccountSecretProvider>
     </BaseLayout>
   );
 }
