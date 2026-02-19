@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useProject } from '@ovh-ux/manager-pci-common';
 import { isDiscoveryProject } from '@/data/utils/project.utils';
 import { BannerWithAction } from '@/components/banner/BannerWithAction.component';
+import { ComingSoonBadge } from '@/components/comingSoonBadge/ComingSoonBadge.component';
 import { useInstanceCreation } from './useInstanceCreation';
 import { useProjectActivation } from './useProjectActivation';
 
@@ -50,8 +51,9 @@ export const useCartActions = (): TCartActions => {
       >
         {t('creation:pci_instance_creation_create_my_instance')}
       </Button>
-      <Button variant="outline">
+      <Button variant="outline" disabled className="flex items-center gap-4">
         {t('creation:pci_instance_creation_configuration_code')}
+        <ComingSoonBadge />
       </Button>
     </>
   );

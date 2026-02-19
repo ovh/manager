@@ -258,7 +258,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const privateNetwork = useMemo(() => {
     const network = privateNetworks?.find(({ value }) => subnetId === value);
-    const willGatewayBeAttached = assignNewGateway || !!network?.hasGatewayIp;
+    const willGatewayBeAttached = assignNewGateway || !!network?.hasGateway;
 
     const gatewayPrice =
       !gatewayAvailability?.isDisabled &&

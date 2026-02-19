@@ -110,7 +110,7 @@ export const useCartItems = (): TCartItems => {
           description: (
             <FlavorDetails quantity={quantity} flavor={flavorDetails} />
           ),
-          price: flavorDetails.price,
+          price: flavorDetails.price * quantity,
           priceUnit,
         },
       ]
@@ -127,7 +127,9 @@ export const useCartItems = (): TCartItems => {
             description: (
               <CartOptionDetailItem label={distributionImageVersionName} />
             ),
-            price: windowsImageLicensePrice,
+            price: windowsImageLicensePrice
+              ? windowsImageLicensePrice * quantity
+              : null,
             priceUnit: windowsImageLicensePrice ? priceUnit : undefined,
           },
         ]

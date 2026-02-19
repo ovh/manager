@@ -34,8 +34,8 @@ export type TNetwork = {
 export type TSubnet = {
   id: TSubnetID;
   cidr: string;
-  gatewayIp: string | null;
   capabilities: TCapability[];
+  hasGateway: boolean;
 };
 
 export type TPrivateNetwork = {
