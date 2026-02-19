@@ -129,6 +129,14 @@ export default /* @ngInject */ ($stateProvider) => {
               'web-hosting:multisite-react',
             );
           }),
+      isOslToLdpFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:osl-to-ldp')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-hosting:osl-to-ldp',
+            );
+          }),
 
       availableOptions: /* @ngInject */ (WucOrderCartService, serviceName) =>
         WucOrderCartService.getProductServiceOptions(
