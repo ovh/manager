@@ -61,13 +61,13 @@ export const ManageViewDrawer = ({
 
     // increment both name and id numbers for new views to avoid duplicates, based on existing views
     if (!name || !id) {
+      const nameRegex = new RegExp(
+        `${t('new_view')}\\s?(?:\\((?<number>\\d)+\\))?`,
+      );
       const { maxViewNumber, maxIdNumber } = views.reduce(
         (acc, v) => {
           // Check new view name pattern
           if (!name) {
-            const nameRegex = new RegExp(
-              `${t('new_view')}\\s?(?:\\((?<number>\\d)\\))?`,
-            );
             const nameMatch = v.name.match(nameRegex);
             if (nameMatch && Number(nameMatch?.groups?.number)) {
               const viewNumber = Number(nameMatch.groups.number);
