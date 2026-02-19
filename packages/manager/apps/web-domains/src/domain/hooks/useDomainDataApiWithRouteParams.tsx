@@ -17,7 +17,8 @@ function buildRouteWithParams(
   baseRoute: string,
   searchParams: URLSearchParams,
 ): string {
-  const params = new URLSearchParams();
+  const [basePath, existingQuery] = baseRoute.split('?');
+  const params = new URLSearchParams(existingQuery || '');
 
   const searchValue = searchParams.get('search');
   if (searchValue) {
@@ -52,7 +53,7 @@ function buildRouteWithParams(
   });
 
   const queryString = params.toString();
-  return queryString ? `${baseRoute}?${queryString}` : baseRoute;
+  return queryString ? `${basePath}?${queryString}` : basePath;
 }
 
 export function useDomainDataApiWithRouteParams<

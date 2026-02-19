@@ -2,21 +2,28 @@ import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import DomainResellerDashboard from './DomainResellerDashboard';
+import { urls } from '@/domain-reseller/routes/routes.constants';
 
-vi.mock('@ovh-ux/muk', async () => {
-  const actual = await vi.importActual('@ovh-ux/muk');
-  return {
-    ...actual,
-  };
-});
+vi.mock('@/domain-reseller/components/Tabs/DomainResellerTabs', () => ({
+  default: () => (
+    <div>
+      <div data-testid="serviceDetail">serviceDetail</div>
+      <div data-testid="domainsList">domainsList</div>
+    </div>
+  ),
+}));
 
 describe('DomainResellerDashboard', () => {
   const renderWithRouter = () => {
     return render(
-      <MemoryRouter initialEntries={['/domain-reseller/information']}>
+      <MemoryRouter
+        initialEntries={[
+          `${urls.domainResellerRoot}/${urls.domainResellerInformation}`,
+        ]}
+      >
         <Routes>
           <Route
-            path="/domain-reseller/:serviceName/*"
+            path={`${urls.domainResellerRoot}/*`}
             element={<DomainResellerDashboard />}
           />
         </Routes>
