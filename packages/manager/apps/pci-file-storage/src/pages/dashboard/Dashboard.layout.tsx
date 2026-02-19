@@ -18,9 +18,9 @@ import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
 import { useShare } from '@/data/hooks/shares/useShare';
-import { useFileStorageGuideItems } from '@/hooks/useFileStorageGuideItems';
 import { useShareParams } from '@/hooks/useShareParams';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
+import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 const TAB_GENERAL = '';

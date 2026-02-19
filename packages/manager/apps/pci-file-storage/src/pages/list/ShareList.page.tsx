@@ -4,14 +4,14 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { BaseLayout, ChangelogMenu, GuideMenu, Notifications } from '@ovh-ux/muk';
+import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
 import { useShares } from '@/data/hooks/shares/useShares';
-import { useFileStorageGuideItems } from '@/hooks/useFileStorageGuideItems';
 import { ShareDatagrid } from '@/pages/list/components/ShareDatagrid.component';
 import { selectSharesForList } from '@/pages/list/view-model/shareList.view-model';
+import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 const ShareListPage: React.FC = () => {
