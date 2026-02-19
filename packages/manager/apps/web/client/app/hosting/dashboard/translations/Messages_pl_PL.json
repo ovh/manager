@@ -1410,5 +1410,9 @@
   "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych",
   "hosting_tab_WEBSITE": "Moje strony",
   "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Wybierz domenę",
-  "hosting_tab_USER_LOGS": "logi"
+  "hosting_tab_USER_LOGS": "logi",
+  "database_tabs_dumps_guide_message_part1": "Czy chcesz zapisać lub przywrócić bazę danych?",
+  "database_tabs_dumps_guide_message_part2": "Znajdź nasze szczegółowe przewodniki, aby wykonać te czynności bezpośrednio z Twojego konta klienta:",
+  "database_tabs_dumps_guide_save": "Zapisz i eksportuj bazę danych",
+  "database_tabs_dumps_guide_restore": "Przywróć i importuj bazę danych"
 }
