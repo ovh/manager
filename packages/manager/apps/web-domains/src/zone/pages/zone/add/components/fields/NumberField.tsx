@@ -24,7 +24,6 @@ export interface NumberFieldProps {
   required?: boolean;
   min?: number;
   max?: number;
-  step?: number | string;
   className?: string;
   disabled?: boolean;
   tooltip?: string;
@@ -40,7 +39,6 @@ export function NumberField({
   required = false,
   min,
   max,
-  step,
   className,
   disabled = false,
   tooltip,
@@ -72,8 +70,7 @@ export function NumberField({
           <div className={suffix ? "relative" : undefined}>
             <Input
               type={INPUT_TYPE.number}
-              className="w-full"
-              style={suffix ? { paddingRight: "3.5rem" } : undefined}
+              className={suffix ? "w-full pr-[3.5rem]" : "w-full"}
               name={field.name}
               value={typeof field.value === "number" || typeof field.value === "string" ? String(field.value) : ""}
               onChange={(e) =>
@@ -85,7 +82,6 @@ export function NumberField({
               ref={field.ref}
               min={min}
               max={max}
-              step={step}
               invalid={!!error}
               disabled={disabled}
               placeholder={placeholder}

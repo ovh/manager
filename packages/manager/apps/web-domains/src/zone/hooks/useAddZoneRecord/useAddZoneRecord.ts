@@ -11,7 +11,7 @@ import {
 export const useAddZoneRecord = (serviceName: string) => {
   const queryClient = useQueryClient();
   const { t } = useTranslation(['zone']);
-  const { addSuccess, addError } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (payload: CreateZoneRecordPayload) => {
@@ -28,11 +28,13 @@ export const useAddZoneRecord = (serviceName: string) => {
       queryClient.invalidateQueries({
         queryKey: ['get', 'domain', 'zone', 'records', serviceName],
       });
+      clearNotifications();
       addSuccess(t('zone_page_form_add_record_success'), true);
     },
     onError: (error: ApiError) => {
       const apiMessage =
         error?.response?.data?.message ?? error?.message ?? '';
+      clearNotifications();
       addError(
         t('zone_page_form_add_record_error', { error: apiMessage }),
         true,

@@ -364,13 +364,13 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_lat',
         fields: [
-          { type: 'number', name: 'lat_deg', labelKey: 'zone_page_form_label_loc_lat_deg', required: true, min: 0, max: 90, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_deg', placeholder: '48' },
-          { type: 'number', name: 'lat_min', labelKey: 'zone_page_form_label_loc_lat_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_lat_min', placeholder: '51' },
+          { type: 'number', name: 'lat_deg', labelKey: 'zone_page_form_label_loc_lat_deg', required: true, min: 0, max: 90, tooltipKey: 'zone_page_tooltip_loc_lat_deg', placeholder: '48' },
+          { type: 'number', name: 'lat_min', labelKey: 'zone_page_form_label_loc_lat_min', required: true, min: 0, max: 59, tooltipKey: 'zone_page_tooltip_loc_lat_min', placeholder: '51' },
         ],
       },
       {
         fields: [
-          { type: 'number', name: 'lat_sec', labelKey: 'zone_page_form_label_loc_lat_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_lat_sec', placeholder: '24.000' },
+          { type: 'number', name: 'lat_sec', labelKey: 'zone_page_form_label_loc_lat_sec', required: true, min: 0, max: 59.999, tooltipKey: 'zone_page_tooltip_loc_lat_sec', placeholder: '24.000' },
           { type: 'select', name: 'latitude', labelKey: 'zone_page_form_label_loc_lat_direction', required: true, items: LOC_LATITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_lat_direction' },
         ],
       },
@@ -379,13 +379,13 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_long',
         fields: [
-          { type: 'number', name: 'long_deg', labelKey: 'zone_page_form_label_loc_long_deg', required: true, min: 0, max: 180, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_deg', placeholder: '48' },
-          { type: 'number', name: 'long_min', labelKey: 'zone_page_form_label_loc_long_min', required: true, min: 0, max: 59, step: 1, tooltipKey: 'zone_page_tooltip_loc_long_min', placeholder: '51' },
+          { type: 'number', name: 'long_deg', labelKey: 'zone_page_form_label_loc_long_deg', required: true, min: 0, max: 180, tooltipKey: 'zone_page_tooltip_loc_long_deg', placeholder: '48' },
+          { type: 'number', name: 'long_min', labelKey: 'zone_page_form_label_loc_long_min', required: true, min: 0, max: 59, tooltipKey: 'zone_page_tooltip_loc_long_min', placeholder: '51' },
         ],
       },
       {
         fields: [
-          { type: 'number', name: 'long_sec', labelKey: 'zone_page_form_label_loc_long_sec', required: true, min: 0, max: 59.999, step: 0.001, tooltipKey: 'zone_page_tooltip_loc_long_sec', placeholder: '24.000' },
+          { type: 'number', name: 'long_sec', labelKey: 'zone_page_form_label_loc_long_sec', required: true, min: 0, max: 59.999, tooltipKey: 'zone_page_tooltip_loc_long_sec', placeholder: '24.000' },
           { type: 'select', name: 'longitude', labelKey: 'zone_page_form_label_loc_long_direction', required: true, items: LOC_LONGITUDE_ITEMS, tooltipKey: 'zone_page_tooltip_loc_long_direction' },
         ],
       },
@@ -394,14 +394,14 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         dividerBefore: true,
         headingKey: 'zone_page_form_label_loc_size_hp_vp',
         fields: [
-          { type: 'number', name: 'altitude', labelKey: 'zone_page_form_label_loc_altitude', required: true, min: -100000, max: 42849672.95, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_altitude', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '42.00' },
-          { type: 'number', name: 'size', labelKey: 'zone_page_form_label_loc_size', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_size', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '1.00' },
+          { type: 'number', name: 'altitude', labelKey: 'zone_page_form_label_loc_altitude', required: true, min: -100000, max: 42849672.95, tooltipKey: 'zone_page_tooltip_loc_altitude', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '42.00' },
+          { type: 'number', name: 'size', labelKey: 'zone_page_form_label_loc_size', min: 0, max: 90000000, tooltipKey: 'zone_page_tooltip_loc_size', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '1.00' },
         ],
       },
       {
         fields: [
-          { type: 'number', name: 'hp', labelKey: 'zone_page_form_label_loc_hp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_hp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10000.00' },
-          { type: 'number', name: 'vp', labelKey: 'zone_page_form_label_loc_vp', min: 0, max: 90000000, step: 0.01, tooltipKey: 'zone_page_tooltip_loc_vp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10.00' },
+          { type: 'number', name: 'hp', labelKey: 'zone_page_form_label_loc_hp', min: 0, max: 90000000, tooltipKey: 'zone_page_tooltip_loc_hp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10000.00' },
+          { type: 'number', name: 'vp', labelKey: 'zone_page_form_label_loc_vp', min: 0, max: 90000000, tooltipKey: 'zone_page_tooltip_loc_vp', suffixKey: 'zone_page_form_label_loc_meters', placeholder: '10.00' },
         ],
       },
     ],

@@ -73,28 +73,17 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
             control={control}
             render={({ field: ttlField, fieldState: { error: ttlError } }) => {
               const ttlSelectValue = watch("ttlSelect");
-              if (ttlSelectValue !== "custom") return null;
+              if (ttlSelectValue !== "custom") return <></>;
               return (
                 <div className="flex flex-col gap-1">
                   <div className="relative">
                     <Input
                       type={INPUT_TYPE.number}
-                      className="w-full"
-                      style={{ paddingRight: '6rem' }}
+                      className="w-full pr-[6rem]"
                       name={ttlField.name}
-                      value={
-                        ttlField.value !== undefined && ttlField.value !== ""
-                          ? ttlField.value as string
-                          : ""
-                      }
-                      onChange={(e) =>
-                        ttlField.onChange(
-                          e.target?.value === "" ? undefined : Number(e.target?.value),
-                        )
-                      }
+                      value={typeof ttlField.value === "number" || typeof ttlField.value === "string" ? String(ttlField.value) : ""}
+                      onChange={(e) => ttlField.onChange(e.target?.value ?? "")}
                       onBlur={ttlField.onBlur}
-                      min='60'
-                      step={1}
                       invalid={!!ttlError}
                     />
                     <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">

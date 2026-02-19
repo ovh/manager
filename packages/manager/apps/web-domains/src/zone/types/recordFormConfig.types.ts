@@ -32,7 +32,6 @@ export type NumberFieldConfig = BaseFieldConfig & {
   readonly type: 'number';
   readonly min?: number;
   readonly max?: number;
-  readonly step?: number;
   readonly suffixKey?: string;
 };
 

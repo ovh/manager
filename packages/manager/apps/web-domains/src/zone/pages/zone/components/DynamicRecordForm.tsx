@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react';
 import { type Control, type UseFormWatch } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -35,10 +34,7 @@ import { TextareaField } from '../add/components/fields/TextareaField';
 // Grid helpers
 // ---------------------------------------------------------------------------
 
-const GRID_AUTO = 'grid items-start gap-4';
-const GRID_AUTO_STYLE: CSSProperties = {
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
-};
+const GRID_AUTO = 'grid items-start gap-4 grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))]';
 
 function isFullWidth(
   field: Parameters<typeof RenderField>[0]['field'],
@@ -165,7 +161,6 @@ function RenderField({
           required={field.required}
           min={field.min}
           max={field.max}
-          step={field.step}
           tooltip={field.tooltipKey ? t(field.tooltipKey) : undefined}
           suffix={field.suffixKey ? t(field.suffixKey) : undefined}
           disabled={isDisabled}
@@ -247,11 +242,11 @@ function RenderRow({
           {t(row.headingKey)}
         </Text>
       )}
-      <div className={GRID_AUTO} style={GRID_AUTO_STYLE}>
+      <div className={GRID_AUTO}>
         {row.fields.map((field, fieldIndex) => (
           <div
             key={typeof field === 'string' ? field : 'name' in field ? field.name : `group-${fieldIndex}`}
-            style={isFullWidth(field) ? { gridColumn: '1 / -1' } : undefined}
+            className={isFullWidth(field) ? 'col-[1/-1]' : undefined}
           >
             <RenderField
               field={field}
