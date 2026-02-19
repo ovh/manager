@@ -1,0 +1,36 @@
+{
+  "description": "Ajoutez des adresses ou plages d’IP autorisées à accéder à ce share. Par défaut, aucune adresse ou plage IP n’est autorisée. File Storage ne peut être utilisé qu'avec des adresses IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
+  "add": {
+    "label": "Ajouter un nouvel accès",
+    "success": "Votre ACL (Liste de contrôle d'accès) a bien été ajoutée",
+    "error": "Une erreur est survenue lors de l'ajout de l'ACL : {{errorMessage}}"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Accès à",
+        "placeholder": "10.0.0.0",
+        "invalidFormat": "Format invalide : veuillez saisir une adresse IP ou une plage d'IP valide (par exemple : 10.0.0.0/24)"
+    },
+    "accessPermission": {
+      "header": "Droits d'accès",
+      "readOnly": "Lecture seule",
+      "readAndWrite": "Lecture et écriture"
+    },
+    "status": {
+      "header": "Statut"
+    },
+    "actions": {
+      "header": "Actions",
+      "delete": {
+        "success": "Votre ACL (Liste de contrôle d'accès) a bien été supprimée",
+        "error": "Une erreur est survenue lors de la suppression de l'ACL : {{errorMessage}}"
+      }
+    }
+  },
+  "deleteModal": {
+    "title": "Supprimer ACL",
+    "description": "Supprimer cette ACL impliquera la perte d'accès de {{accessTo}} à ce share. Confirmez-vous la suppression ?",
+    "confirmButton": "Supprimer",
+    "close": "Fermer"
+  }
+}

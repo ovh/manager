@@ -1,0 +1,36 @@
+{
+  "description": "Dodaj adresy lub zakresy IP, które mają dostęp do tego udostępnienia. Domyślnie żadna adres lub zakres IP nie jest dozwolony. Przechowywanie plików może być używane tylko z adresami IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
+  "add": {
+    "label": "Dodaj nowe uprawnienie",
+    "success": "Twoja ACL (Lista kontroli dostępu) została pomyślnie dodana",
+    "error": "Wystąpił błąd podczas dodawania ACL: {{errorMessage}}"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Dostęp do",
+      "placeholder": "10.0.0.0",
+      "invalidFormat": "Nieprawidłowy format: wprowadź prawidłowy adres IP lub zakres IP (na przykład: 10.0.0.0/24)"
+    },
+    "accessPermission": {
+      "header": "Uprawnienia dostępu",
+      "readOnly": "Tylko do odczytu",
+      "readAndWrite": "Odczyt i zapis"
+    },
+    "status": {
+      "header": "Status"
+    },
+    "actions": {
+      "header": "Operacje",
+      "delete": {
+        "success": "Twoja ACL (Lista kontroli dostępu) została pomyślnie usunięta",
+        "error": "Wystąpił błąd podczas usuwania ACL: {{errorMessage}}"
+      }
+    }
+  },
+  "deleteModal": {
+    "title": "Usuń ACL",
+    "description": "Usunięcie tej ACL spowoduje utratę dostępu dla {{accessTo}} do tego udostępnienia. Czy potwierdzasz usunięcie?",
+    "confirmButton": "Usuń",
+    "close": "Zamknij"
+  }
+}

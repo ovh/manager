@@ -21,5 +21,6 @@ export const useShare = <TData>(
     select: options?.select,
     ...getForceReloadUseQueryOptions(),
     retry: 1,
+    throwOnError: true,
   });
 };

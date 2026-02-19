@@ -1,13 +1,7 @@
+import { TStatusBadgeProps } from '@/components/status-badge/StatusBadge.component';
 import { TShareStatus } from '@/domain/entities/share.entity';
 
-export type TShareStatusBadgeColor = 'success' | 'warning' | 'critical' | 'neutral';
-
-export type TShareStatusDisplay = {
-  labelKey: string;
-  badgeColor: TShareStatusBadgeColor;
-};
-
-const STATUS_TO_DISPLAY = new Map<TShareStatus, TShareStatusDisplay>([
+const STATUS_TO_DISPLAY = new Map<TShareStatus, TStatusBadgeProps>([
   // with own translation
   ['available', { labelKey: 'status:active', badgeColor: 'success' }],
   ['backup_creating', { labelKey: 'status:backup_creating', badgeColor: 'warning' }],
@@ -25,7 +19,7 @@ const STATUS_TO_DISPLAY = new Map<TShareStatus, TShareStatusDisplay>([
   ['backup_restoring', { labelKey: 'backup_restoring', badgeColor: 'warning' }],
 ]);
 
-export const getShareStatusDisplay = (status: string): TShareStatusDisplay =>
+export const getShareStatusDisplay = (status: string): TStatusBadgeProps =>
   STATUS_TO_DISPLAY.get(status) ?? {
     labelKey: status,
     badgeColor: 'neutral',

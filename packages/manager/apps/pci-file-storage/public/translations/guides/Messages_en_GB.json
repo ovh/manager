@@ -1,0 +1,21 @@
+{
+  "learn-more": {
+    "category": "Service plan",
+    "title": "Find out more",
+    "description": "For more details on File Storage features and pricing, visit the Labs page.",
+    "link-text": "Find out more"
+  },
+  "get-started": {
+    "category": "Guide",
+    "title": "Getting started",
+    "description": "A step-by-step guide for creating your first share.",
+    "link-text": "Find out more",
+    "alternate-title": "Getting started with shares"
+  },
+  "discord": {
+    "category": "Discord",
+    "title": "Don't miss out on the latest news.",
+    "description": "Join us directly on #beta-file-storage to ask your questions and share your feedback.",
+    "link-text": "Find out more"
+  }
+}

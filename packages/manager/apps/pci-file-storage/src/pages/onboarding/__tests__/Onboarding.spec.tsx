@@ -111,17 +111,17 @@ describe('OnboardingPage', () => {
     it('renders link cards with correct translations', () => {
       render(<OnboardingPage />);
 
-      expect(screen.getByText('onboarding:guides.learn-more.title')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.learn-more.description')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.learn-more.category')).toBeVisible();
+      expect(screen.getByText('guides:learn-more.title')).toBeVisible();
+      expect(screen.getByText('guides:learn-more.description')).toBeVisible();
+      expect(screen.getByText('guides:learn-more.category')).toBeVisible();
 
-      expect(screen.getByText('onboarding:guides.get-started.title')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.get-started.description')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.get-started.category')).toBeVisible();
+      expect(screen.getByText('guides:get-started.title')).toBeVisible();
+      expect(screen.getByText('guides:get-started.description')).toBeVisible();
+      expect(screen.getByText('guides:get-started.category')).toBeVisible();
 
-      expect(screen.getByText('onboarding:guides.discord.title')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.discord.description')).toBeVisible();
-      expect(screen.getByText('onboarding:guides.discord.category')).toBeVisible();
+      expect(screen.getByText('guides:discord.title')).toBeVisible();
+      expect(screen.getByText('guides:discord.description')).toBeVisible();
+      expect(screen.getByText('guides:discord.category')).toBeVisible();
     });
   });
 

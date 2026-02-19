@@ -17,7 +17,7 @@ import { selectHasShares } from '@/pages/list/view-model/shareList.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 export default function OnboardingPage() {
-  const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
+  const { t } = useTranslation(['onboarding', 'guides', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
   const { ovhSubsidiary } = useGetUser();
   const navigate = useNavigate();
   const { data: hasShares, isLoading } = useShares({ select: selectHasShares });
@@ -50,11 +50,11 @@ export default function OnboardingPage() {
               key={key}
               href={getOnboardingLinkFor(links, ovhSubsidiary)}
               texts={{
-                title: t(`onboarding:guides.${key}.title`),
-                description: t(`onboarding:guides.${key}.description`),
-                category: t(`onboarding:guides.${key}.category`),
+                title: t(`guides:${key}.title`),
+                description: t(`guides:${key}.description`),
+                category: t(`guides:${key}.category`),
               }}
-              hrefLabel={t(`onboarding:guides.${key}.link-text`)}
+              hrefLabel={t(`guides:${key}.link-text`)}
               target="_blank"
             />
           );
