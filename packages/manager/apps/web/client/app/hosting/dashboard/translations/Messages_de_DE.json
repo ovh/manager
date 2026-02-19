@@ -1414,5 +1414,6 @@
   "database_tabs_dumps_guide_message_part1": "Möchten Sie eine Datenbank sichern oder wiederherstellen?",
   "database_tabs_dumps_guide_message_part2": "Finden Sie unsere detaillierten Anleitungen, um diese Aktionen direkt von Ihrem Kundenbereich aus durchzuführen:",
   "database_tabs_dumps_guide_save": "Datenbank sichern und exportieren",
-  "database_tabs_dumps_guide_restore": "Datenbank wiederherstellen und importieren"
+  "database_tabs_dumps_guide_restore": "Datenbank wiederherstellen und importieren",
+  "hosting_tab_STATISTICS_databases_none": "Keine Fehler in Ihren Datenbanken gefunden. Alles funktioniert normal."
 }
