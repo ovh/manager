@@ -97,7 +97,7 @@
         <!-- subscription if don't have technicalDetails -->
         <div
             class="col-md-4 mb-3"
-            data-ng-if="!$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node'"
+            data-ng-if="!$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node' && $ctrl.server.commercialRange !== 'housing'"
         >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"
@@ -161,7 +161,7 @@
         <!-- subscription if have technicalDetails -->
         <div
             class="col-md-4 mb-3"
-            data-ng-if="$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node'"
+            data-ng-if="$ctrl.technicalDetails && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node' && $ctrl.server.commercialRange !== 'housing'"
         >
             <billing-subscription-tile
                 on-error="$ctrl.onBillingInformationError(error)"

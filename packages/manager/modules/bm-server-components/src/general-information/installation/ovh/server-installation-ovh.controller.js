@@ -649,7 +649,10 @@ export default class ServerInstallationOvhCtrl {
               (remainingSize / this.$scope.installation.nbDiskUse) * 3;
             break;
           case this.$scope.constants.warningRaid10:
-            realRemainingSize = remainingSize / ( this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ));
+            realRemainingSize =
+              remainingSize /
+              (this.$scope.installation.nbDiskUse /
+                (this.$scope.installation.nbDiskUse / 2));
             break;
           default:
             break;
@@ -908,7 +911,8 @@ export default class ServerInstallationOvhCtrl {
       this.$scope.installation.partitionSchemeModels[
         indexVarPartition
       ].size = this.getRealRemainingSize(
-        this.$scope.installation.partitionSchemeModels[indexVarPartition].raidLevel,
+        this.$scope.installation.partitionSchemeModels[indexVarPartition]
+          .raidLevel,
       );
     }
 
@@ -1609,7 +1613,9 @@ export default class ServerInstallationOvhCtrl {
         this.$scope.informations.raidController
       ) {
         set(option, 'partition.realSize', option.partition.size);
-      } else if (option.partition.raidLevel === this.$scope.constants.warningRaid7) {
+      } else if (
+        option.partition.raidLevel === this.$scope.constants.warningRaid7
+      ) {
         const { nbDiskUse: nbDisks } = this.$scope.installation;
         const nbParityDisks = 3;
         const nbDataDisks = nbDisks - nbParityDisks;
@@ -1653,7 +1659,9 @@ export default class ServerInstallationOvhCtrl {
             set(
               option,
               'partition.realSize',
-              option.partition.size * (this.$scope.installation.nbDiskUse / ( this.$scope.installation.nbDiskUse / 2 ) ),
+              option.partition.size *
+                (this.$scope.installation.nbDiskUse /
+                  (this.$scope.installation.nbDiskUse / 2)),
             );
             break;
           default:
