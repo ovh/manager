@@ -82,5 +82,7 @@
   "submit": {
     "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}",
     "success": "Lo share {{name}} è in fase di creazione"
-  }
+  },
+  "title": "Crea un share",
+  "description": "Crea un share disponibile nel tuo progetto Public Cloud. Hai bisogno di ulteriori informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>"
 }

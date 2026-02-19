@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { useGetProject } from '@/hooks/useGetProject';
 import { CreateShareForm } from '@/pages/create/components/form/CreateShareForm.component';
 import { useCreateShareForm } from '@/pages/create/hooks/useCreateShareForm';
 import { useShareCreation } from '@/pages/create/hooks/useShareCreation';
@@ -55,6 +56,10 @@ const mockUseCreateShareForm = ({ isValid }: { isValid: boolean }) =>
 
 vi.mock('@/pages/create/hooks/useCreateShareForm', () => ({
   useCreateShareForm: vi.fn(),
+}));
+
+vi.mock('@/hooks/useGetProject', () => ({
+  useGetProject: vi.fn(),
 }));
 
 const mockNavigate = vi.fn();
@@ -155,12 +160,14 @@ vi.mock('@ovhcloud/ods-react', () => ({
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 const mockUseShareCreation = vi.mocked(useShareCreation);
+const mockUseGetProject = vi.mocked(useGetProject);
 
 describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockNavigate.mockClear();
     mockToast.mockClear();
+    mockUseGetProject.mockReturnValue(undefined);
     mockUseCreateShareForm({ isValid: true });
     mockUseShareCreation.mockReturnValue({
       createShare: vi.fn(),
@@ -298,6 +305,26 @@ describe('CreateShareForm', () => {
 
     const submitButton = screen.getByTestId('button-default');
     expect(submitButton).not.toBeDisabled();
+  });
+
+  it('should disable submit button when project is discovery', () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    mockUseGetProject.mockReturnValue({
+      id: 'project-id',
+      name: 'Discovery project',
+      url: 'https://example.com',
+      isDiscovery: true,
+    } as ReturnType<typeof useGetProject>);
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const submitButton = screen.getByTestId('button-default');
+    expect(submitButton).toBeDisabled();
   });
 
   it('should call navigate on cancel button click', async () => {

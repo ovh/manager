@@ -1,6 +1,6 @@
 {
   "title": "Créer un share",
-  "description": "Créez un share disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
+  "description": "Créez un share disponible dans votre projet Public Cloud. Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
   "name": {
     "title": "Nom du share",
     "label": "Choisissez un nom pour votre share",
