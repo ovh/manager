@@ -14,6 +14,10 @@ vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   Breadcrumb: () => <div>Breadcrumb</div>,
 }));
 
+vi.mock('@/hooks/useGetUser', () => ({
+  useGetUser: () => ({ ovhSubsidiary: 'FR' }),
+}));
+
 vi.mock('@/data/hooks/shares/useShares', () => ({
   useShares: vi.fn().mockReturnValue({
     data: [
@@ -39,6 +43,23 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
+  BaseLayout: ({
+    children,
+    breadcrumb,
+    header,
+  }: {
+    children: React.ReactNode;
+    breadcrumb: React.ReactNode;
+    header?: { title?: React.ReactNode };
+  }) => (
+    <div>
+      {breadcrumb}
+      {header?.title != null && <h1>{header.title}</h1>}
+      {children}
+    </div>
+  ),
+  ChangelogMenu: () => <div>ChangelogMenu</div>,
+  GuideMenu: () => <div>GuideMenu</div>,
   Datagrid: ({
     data,
     isLoading,
@@ -64,8 +85,8 @@ describe('ShareList page', () => {
     );
 
     expect(screen.getByText('Breadcrumb')).toBeVisible();
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('list:title');
-    expect(screen.getByRole('heading', { level: 2 })).toBeVisible();
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('list:title');
+    expect(screen.getByRole('heading', { level: 1 })).toBeVisible();
     const datagrid = screen.getByTestId('datagrid');
     expect(datagrid).toBeVisible();
     expect(datagrid).toHaveTextContent('Rows: 1');
@@ -83,6 +104,6 @@ describe('ShareList page', () => {
       </MemoryRouter>,
     );
 
-    expect(screen.queryByRole('heading', { level: 2 })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
   });
 });
