@@ -160,17 +160,15 @@ describe('DeleteSharePage', () => {
 
   it('should navigate to share list when delete mutation succeeds', async () => {
     let capturedOnSuccess: (() => void) | undefined;
-    mockUseShareDeletion.mockImplementation(
-      (_projectId, _region, _shareId, { onSuccess }) => {
-        capturedOnSuccess = onSuccess;
-        return {
-          deleteShare: () => {
-            capturedOnSuccess?.();
-          },
-          isPending: false,
-        };
-      },
-    );
+    mockUseShareDeletion.mockImplementation((_projectId, _region, _shareId, { onSuccess }) => {
+      capturedOnSuccess = onSuccess;
+      return {
+        deleteShare: () => {
+          capturedOnSuccess?.();
+        },
+        isPending: false,
+      };
+    });
     const user = userEvent.setup();
     render(<DeleteSharePage />);
 
