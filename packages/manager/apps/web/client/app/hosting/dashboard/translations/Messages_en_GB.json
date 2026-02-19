@@ -1410,5 +1410,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Cancel my database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database available",
   "hosting_tab_WEBSITE": "My sites",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain",
+  "hosting_order_upgrade_blocking_action_required": "Action required before changing the plan",
+  "hosting_order_upgrade_blocking_clouddb_performance_to_pro": "Your hosting uses a Cloud Databases web database, which is not included in the Pro plan.<br> First, delete or migrate this database to one included with your hosting, then restart the plan change.",
+  "hosting_order_upgrade_blocking_databases_pro_to_perso": "You are currently using {{count}} databases included with your Pro hosting, while the Personal plan only allows one.<br> First, delete or consolidate your databases to keep only one.",
+  "hosting_order_upgrade_blocking_ftp_users_pro_to_perso": "Your Pro hosting is currently using multiple FTP users, while the Personal plan only allows one.<br> First, delete the additional FTP users before restarting the plan change.",
+  "hosting_order_upgrade_blocking_performance_downgrade_too_low": "The Performance plan change is done in stages: you can only move to the immediately lower plan.<br> To continue, please first switch to the Performance {{lowerLevel}} plan.",
+  "hosting_order_upgrade_blocking_mailing_lists_to_perso": "You are currently using multiple mailing lists with your Email plan. These are not available with the Personal plan.<br> First, delete the active mailing lists, then restart the plan change."
 }

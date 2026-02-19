@@ -1410,5 +1410,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Disattivare il mio database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database disponibile",
   "hosting_tab_WEBSITE": "I miei siti",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio",
+  "hosting_order_upgrade_blocking_action_required": "Azione richiesta prima di cambiare offerta",
+  "hosting_order_upgrade_blocking_clouddb_performance_to_pro": "Il tuo hosting utilizza un database Web Cloud Databases, che non è incluso nell'offerta Pro.<br> Elimina o migra prima questo database verso uno incluso con il tuo hosting, poi ripeti il cambio di offerta.",
+  "hosting_order_upgrade_blocking_databases_pro_to_perso": "Attualmente stai utilizzando {{count}} database inclusi con il tuo hosting Pro, mentre l'offerta Perso ne consente solo uno.<br> Elimina o raggruppa prima i tuoi database in modo da conservarne solo uno.",
+  "hosting_order_upgrade_blocking_ftp_users_pro_to_perso": "Il tuo hosting Pro utilizza attualmente più utenti FTP, mentre l'offerta Perso ne consente solo uno.<br> Elimina prima gli utenti FTP aggiuntivi prima di ripetere il cambio di offerta.",
+  "hosting_order_upgrade_blocking_performance_downgrade_too_low": "Il cambio di offerta Performance avviene per scaglioni: è possibile passare solo all'offerta immediatamente inferiore.<br> Per continuare, passa prima all'offerta Performance {{lowerLevel}}.",
+  "hosting_order_upgrade_blocking_mailing_lists_to_perso": "Attualmente stai utilizzando più mailing list con la tua offerta Email. Queste non sono disponibili con l'offerta Perso.<br> Elimina prima le mailing list attive, poi ripeti il cambio di offerta."
 }
