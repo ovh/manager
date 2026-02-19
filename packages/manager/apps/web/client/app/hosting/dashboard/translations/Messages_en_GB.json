@@ -1414,5 +1414,6 @@
   "database_tabs_dumps_guide_message_part1": "Do you want to back up or restore a database?",
   "database_tabs_dumps_guide_message_part2": "Find our detailed guides to perform these actions directly from your client area:",
   "database_tabs_dumps_guide_save": "Back up and export a database",
-  "database_tabs_dumps_guide_restore": "Restore and import a database"
+  "database_tabs_dumps_guide_restore": "Restore and import a database",
+  "hosting_tab_STATISTICS_databases_none": "No errors detected in your databases. Everything is functioning normally."
 }
