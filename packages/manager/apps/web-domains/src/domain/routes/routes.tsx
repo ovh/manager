@@ -57,6 +57,9 @@ const ZonePage = React.lazy(() =>
 const HistoryPage = React.lazy(() =>
   import('@/zone/pages/zone/history/History.page'),
 );
+const CompareZonesPage = React.lazy(() =>
+  import('@/zone/pages/zone/compare/CompareZones.page'),
+);
 const ModifyEntryModal = React.lazy(() =>
   import('@/zone/pages/zone/modify/ModifyEntry.modal'),
 );
@@ -122,7 +125,6 @@ export default (
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
           <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
           <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage} />
-          <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
           {/* <Route path={zoneUrls.zoneDelete} Component={DeleteModal} /> */}
           <Route path={zoneUrls.zoneDeleteEntry} Component={DeleteEntryModal} />
           <Route path={zoneUrls.zoneModifyEntry} Component={ModifyEntryModal} />
@@ -149,6 +151,8 @@ export default (
         Component={WebHostingOrderPage}
       />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
+      <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
+      <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}

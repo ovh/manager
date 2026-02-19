@@ -6,6 +6,8 @@ import { ZoneRecord } from "@/zone/types/zoneRecords.types";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { ShellContext } from "@ovh-ux/manager-react-shell-client";
 import { ActionMenu, Datagrid, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import { FilterComparator, applyFilters } from "@ovh-ux/manager-core-api";
 import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text } from "@ovhcloud/ods-react";
 import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
@@ -55,7 +57,15 @@ export default function ZonePage() {
 
   const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName ?? '', true);
 
-  const { addWarning, addInfo, clearNotifications } = useNotifications();
+  const { data: dnsZoneIAMResources } = useGetIAMResource(serviceName ?? '', 'dnsZone');
+  const soaUrn = dnsZoneIAMResources?.[0]?.urn;
+  const { isPending: isIamSoaPending, isAuthorized: canEditSoa } = useAuthorizationIam(
+    ['dnsZone:apiovh:soa/edit'],
+    soaUrn,
+  );
+  const canModifyTtl = !isIamSoaPending && canEditSoa;
+
+  const { addWarning, addInfo } = useNotifications();
 
 
   useEffect(() => {
@@ -132,6 +142,7 @@ export default function ZonePage() {
       id: 2,
       label: t('zone_page_modify_default_ttl'),
       onClick: () => setOpenModal('modify-ttl'),
+      isDisabled: !canModifyTtl,
     },
     {
       id: 3,
