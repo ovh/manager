@@ -280,7 +280,7 @@ export default function ZonePage() {
           </div>
           <div
             ref={quickAddRef}
-            className={`mb-4 p-4 border rounded bg-gray-50 ${showAddEntryDiv ? '' : 'hidden'}`}
+            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${showAddEntryDiv ? '' : 'hidden'}`}
           >
             <QuickAddEntry
               serviceName={serviceName ?? ''}

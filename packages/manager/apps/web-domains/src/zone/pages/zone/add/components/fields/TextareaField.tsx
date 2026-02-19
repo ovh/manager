@@ -58,7 +58,7 @@ export function TextareaField({
             )}
           </FormFieldLabel>
           <Textarea
-            className="min-h-24 w-full"
+            className="min-h-24 w-full bg-white"
             name={field.name}
             value={
               typeof field.value === "string" ||

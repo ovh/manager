@@ -82,7 +82,7 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
                 <div className="relative">
                   <Input
                     type={INPUT_TYPE.number}
-                    className="w-full pr-[6rem]"
+                    className="w-full pr-[6rem] bg-white"
                     name={ttlField.name}
                     value={typeof ttlField.value === "number" || typeof ttlField.value === "string" ? String(ttlField.value) : ""}
                     onChange={(e) => ttlField.onChange(e.target?.value ?? "")}

@@ -70,7 +70,7 @@ export function NumberField({
           <div className={suffix ? "relative" : undefined}>
             <Input
               type={INPUT_TYPE.number}
-              className={suffix ? "w-full pr-[3.5rem]" : "w-full"}
+              className={suffix ? "w-full pr-[3.5rem] bg-white" : "w-full bg-white"}
               name={field.name}
               value={typeof field.value === "number" || typeof field.value === "string" ? String(field.value) : ""}
               onChange={(e) =>

@@ -59,7 +59,7 @@ export function SubDomainField({
           </FormFieldLabel>
           <Input
             type={INPUT_TYPE.text}
-            className="w-full"
+            className="w-full bg-white"
             name={field.name}
             value={String(field.value ?? "")}
             onBlur={field.onBlur}

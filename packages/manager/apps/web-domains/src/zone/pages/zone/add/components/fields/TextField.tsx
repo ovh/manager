@@ -48,6 +48,7 @@ export function TextField({
 }: Readonly<TextFieldProps>) {
   const { t } = useTranslation([NAMESPACES.FORM]);
   const tooltip = tooltipKey ?? tooltipText;
+  const resolvedInputClassName = readOnly ? `${inputClassName} border-[--ods-color-neutral-200]` : `${inputClassName} bg-white`;
 
   return (
     <Controller
@@ -71,7 +72,7 @@ export function TextField({
           </FormFieldLabel>
           <Input
             type={INPUT_TYPE.text}
-            className={inputClassName}
+            className={resolvedInputClassName}
             name={field.name}
             value={typeof field.value === "string" || typeof field.value === "number" ? String(field.value) : ""}
             onChange={(e) => field.onChange(e.target?.value)}

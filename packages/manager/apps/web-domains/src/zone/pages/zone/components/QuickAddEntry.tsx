@@ -288,7 +288,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               <FormField invalid={!!bindError}>
                 <FormFieldLabel>{t('zone_page_form_bind_paste_description')}</FormFieldLabel>
                 <Textarea
-                  className="min-h-[60px] w-full font-mono"
+                  className="min-h-[60px] w-full font-mono bg-white"
                   placeholder={t('zone_page_form_bind_paste_placeholder')}
                   value={bindInput}
                   invalid={!!bindError}
