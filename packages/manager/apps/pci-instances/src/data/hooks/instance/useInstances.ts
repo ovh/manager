@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import {
   InfiniteData,
   keepPreviousData,
@@ -104,8 +105,8 @@ export const useInstances = ({
     const initialQueryKey = instancesQueryKey(projectId, [
       'list',
       'sort',
-      'name',
-      'asc',
+      'creationDate',
+      'desc',
     ]);
 
     const queryKeyEqualsInitialQueryKey = (

@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
+import { formatBandwidthDisplay } from '@/utils';
+import { DiskDisplayCell } from './DiskDisplayCell.component';
 import { TSelectFlavorDetails } from '../../view-models/cartViewModel';
 
 type TFlavorDetails = {
@@ -10,6 +12,16 @@ type TFlavorDetails = {
 
 export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
   const { t } = useTranslation('creation');
+
+  const formatBandwidth = (value: number, unit: string) => {
+    const {
+      value: valueFormatted,
+      unit: unitFormatted,
+    } = formatBandwidthDisplay(value, unit);
+    return `${valueFormatted} ${t(
+      `pci_instance_creation_bandwidth_${unitFormatted}`,
+    )}`;
+  };
 
   return (
     <div className="flex flex-row gap-2">
@@ -46,16 +58,19 @@ export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
               key={disk.id}
               className="font-semibold text-[--ods-color-heading]"
             >
-              {disk.display}
+              <DiskDisplayCell disk={disk} />
             </Text>
           ))}
         </div>
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.bandwidthPrivate}{' '}
+          {formatBandwidth(
+            flavor.bandwidthPrivate,
+            flavor.bandwidthPrivateUnit,
+          )}{' '}
           {t('pci_instance_creation_cart_flavor_bandwidthPrivate')}
         </Text>
         <Text className="font-semibold text-[--ods-color-heading]">
-          {flavor.bandwidthPublic}{' '}
+          {formatBandwidth(flavor.bandwidthPublic, flavor.bandwidthPublicUnit)}{' '}
           {t('pci_instance_creation_cart_flavor_bandwidthPublic')}
         </Text>
       </div>

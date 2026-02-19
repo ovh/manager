@@ -9,18 +9,36 @@ import { getPrivateNetworks } from '@/data/api/privateNetworks';
 import { mockedPrivateNetworkEntity } from '@/__mocks__/instance/constants';
 import { TPrivateNetwork } from '@/domain/entities/configuration';
 import { format } from 'date-fns';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
+import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
+import { networkSchema } from '../../CreateInstance.schema';
 
 const getPrivateNetworksMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
 
 vi.mock('@/data/api/privateNetworks');
 vi.mocked(getPrivateNetworks).mockImplementation(getPrivateNetworksMock);
 
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
+
 const setupTest = (
-  { networks }: { networks: TPrivateNetwork | null } = {
+  {
+    networks,
+    deploymentMode,
+  }: {
+    networks: TPrivateNetwork | null;
+    deploymentMode?: TDeploymentModeID;
+  } = {
     networks: mockedPrivateNetworkEntity,
   },
 ) => {
   getPrivateNetworksMock.mockReturnValue(networks);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: deploymentMode ?? 'region',
+  });
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
@@ -194,5 +212,121 @@ describe('Considering AddNetwork component', () => {
         ),
       ).toBeChecked();
     });
+  });
+
+  it('should not display vlanId field when deployment mode is localzone', async () => {
+    setupTest({
+      networks: mockedPrivateNetworkEntity,
+      deploymentMode: 'localzone',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_name_label_form',
+        ),
+      ).toBeInTheDocument();
+    });
+
+    expect(
+      screen.queryByLabelText(
+        'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+      ),
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.getByLabelText(
+        'creation:pci_instance_creation_network_add_new_cidr_label_form',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('should display vlanId field when deployment mode is region', async () => {
+    setupTest({
+      networks: mockedPrivateNetworkEntity,
+      deploymentMode: 'region',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('should display vlanId field when deployment mode is region-3-az', async () => {
+    setupTest({
+      networks: mockedPrivateNetworkEntity,
+      deploymentMode: 'region-3-az',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+        ),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('should not display vlanId warnings when deployment mode is localzone', async () => {
+    setupTest({
+      networks: mockedPrivateNetworkEntity,
+      deploymentMode: 'localzone',
+    });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_name_label_form',
+        ),
+      ).toBeInTheDocument();
+    });
+
+    expect(
+      screen.queryByText(
+        'creation:pci_instance_creation_network_add_new_used_vlanID_warning',
+      ),
+    ).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByText(
+        'creation:pci_instance_creation_network_add_new_vlanID_warning',
+      ),
+    ).not.toBeInTheDocument();
+  });
+});
+
+describe('networkSchema vlanId validation', () => {
+  const validNetwork = {
+    name: 'test-network',
+    cidr: '10.1.0.0/16',
+    enableDhcp: true,
+  };
+
+  it('should accept null vlanId', () => {
+    const result = networkSchema.safeParse({
+      ...validNetwork,
+      vlanId: null,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('should accept valid numeric vlanId', () => {
+    const result = networkSchema.safeParse({
+      ...validNetwork,
+      vlanId: 100,
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it('should reject vlanId greater than 4000', () => {
+    const result = networkSchema.safeParse({
+      ...validNetwork,
+      vlanId: 5000,
+    });
+    expect(result.success).toBe(false);
   });
 });

@@ -45,26 +45,45 @@ const BackupHelper: FC = () => {
 
   return (
     <HelpDrawer onOpenChange={handleOpenHelper}>
-      <Text preset="heading-2">
-        {t('creation:pci_instance_creation_backup_setting_help_title')}
-      </Text>
-      <Text preset="paragraph" className="py-6">
-        {t('creation:pci_instance_creation_backup_setting_help_description')}
-      </Text>
-      {HELPER_TRANSLATION_KEYS.map((key) => (
-        <article key={key}>
+      <div className="flex flex-col pb-20 pt-8">
+        <Text preset="heading-2" className="mb-4">
+          {t('creation:pci_instance_creation_backup_setting_help_title')}
+        </Text>
+        <Text preset="paragraph" className="mb-8">
           <Trans
             t={t}
-            i18nKey={`creation:pci_instance_creation_backup_setting_help_${key}`}
-            components={{
-              h6: <Text preset="heading-6" />,
-              p: <Text preset="paragraph" className="py-6" />,
-              CreateBackupAction: <GuideLink href={`${projectUrl}/workflow`} />,
-              Link: <GuideLink href={guide} onClick={handleOpenGuideLink} />,
-            }}
+            i18nKey="creation:pci_instance_creation_backup_setting_help_description"
+            components={{ semibold: <span className="font-semibold" /> }}
           />
-        </article>
-      ))}
+        </Text>
+        {HELPER_TRANSLATION_KEYS.map((key, index) => (
+          <article key={key} className={index === 0 ? 'mt-0' : 'mt-8'}>
+            <Trans
+              t={t}
+              i18nKey={`creation:pci_instance_creation_backup_setting_help_${key}`}
+              components={{
+                h6: (
+                  <Text preset="heading-6" className="mb-3 block font-bold" />
+                ),
+                p: <Text preset="paragraph" className="mb-4 block" />,
+                CreateBackupAction: (
+                  <GuideLink
+                    href={`${projectUrl}/workflow`}
+                    className="my-4 block"
+                  />
+                ),
+                Link: (
+                  <GuideLink
+                    href={guide}
+                    onClick={handleOpenGuideLink}
+                    className="my-4 block"
+                  />
+                ),
+              }}
+            />
+          </article>
+        ))}
+      </div>
     </HelpDrawer>
   );
 };

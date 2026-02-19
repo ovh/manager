@@ -32,9 +32,11 @@ export const CartTotalPrice = ({
                 {t('creation:pci_instance_creation_cart_hourly_price_label')}
               </Text>
             </div>
-            <div className="flex flex-col items-end">
-              <Text preset="heading-3">{getTextPrice(hourlyTotal)}</Text>
-              <Text className="text-[--ods-color-neutral-600]">
+            <div className="flex flex-col items-end gap-1">
+              <Text preset="heading-3" className="block">
+                {getTextPrice(hourlyTotal)}
+              </Text>
+              <Text className="block text-[--ods-color-neutral-600]">
                 {t(
                   'creation:pci_instance_creation_table_header_price_hourly_unit',
                 )}
@@ -59,14 +61,14 @@ export const CartTotalPrice = ({
                   )}
                 </Text>
               </div>
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-end gap-1">
                 <Text
                   preset="heading-5"
-                  className="text-[--ods-color-neutral-600]"
+                  className="block text-[--ods-color-neutral-600]"
                 >
                   {getTextPrice(monthlyTotal)}
                 </Text>
-                <Text className="text-[--ods-color-neutral-600]">
+                <Text className="block text-[--ods-color-neutral-600]">
                   {t(
                     'creation:pci_instance_creation_table_header_price_monthly_unit',
                   )}
@@ -95,9 +97,11 @@ export const CartTotalPrice = ({
               )}
             </Text>
           </div>
-          <div className="flex flex-col items-end">
-            <Text preset="heading-3">{getTextPrice(monthlyTotal)}</Text>
-            <Text className="text-[--ods-color-neutral-600]">
+          <div className="flex flex-col items-end gap-1">
+            <Text preset="heading-3" className="block">
+              {getTextPrice(monthlyTotal)}
+            </Text>
+            <Text className="block text-[--ods-color-neutral-600]">
               {t(
                 'creation:pci_instance_creation_table_header_price_monthly_unit',
               )}

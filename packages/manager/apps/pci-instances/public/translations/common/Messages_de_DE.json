@@ -11,7 +11,7 @@
   "pci_instances_common_search": "Suchen",
   "pci_instances_common_instance_title": "Instanz",
   "pci_instances_common_instance_name": "Instanzname",
-  "pci_instances_common_help": "Hilfen",
+  "pci_instances_common_help": "Hilfe",
   "pci_instances_common_instance_localzone_deployment_mode": "Local Zone",
   "pci_instances_common_instance_region_deployment_mode": "1-AZ Region",
   "pci_instances_common_instance_region-3-az_deployment_mode": "3-AZ Region",
@@ -35,5 +35,6 @@
   "pci_instances_common_windows_image_type": "Windows Distributionen",
   "pci_instances_common_recommanded": "Empfohlen",
   "pci_instances_common_backup": "Backup",
-  "pci_instances_common_unavailable": "Nicht verfügbar"
+  "pci_instances_common_unavailable": "Nicht verfügbar",
+  "pci_instances_common_coming_soon": "Demnächst verfügbar"
 }

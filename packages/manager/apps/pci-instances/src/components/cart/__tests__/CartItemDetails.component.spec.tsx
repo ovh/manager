@@ -71,7 +71,7 @@ describe('Considering CartItemDetails component', () => {
     expect(imageDetails).toHaveTextContent(imageName);
     expect(imageDetails).toHaveTextContent(imageDescriptionName);
     expect(imageDetails).toHaveTextContent(
-      `${getTextPriceMock(imagePrice)} HT/heure`,
+      `${getTextPriceMock(imagePrice)}HT/heure`,
     );
 
     const networkDetails = screen.getByTestId(
@@ -127,7 +127,7 @@ describe('Considering CartItemDetails component', () => {
 
     const priceElement = screen.getByTestId('cart-item-details-price');
     expect(priceElement).toHaveTextContent(
-      `~${getTextPriceMock(1000)} HT/heure`,
+      `~${getTextPriceMock(1000)}HT/heure`,
     );
   });
 });
