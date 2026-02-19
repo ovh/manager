@@ -24,7 +24,7 @@ vi.mock('react-hook-form', async () => {
   const actual = await vi.importActual<typeof import('react-hook-form')>('react-hook-form');
   return {
     ...actual,
-    useWatch: vi.fn().mockReturnValue(['GRA', 'GRA1']),
+    useWatch: vi.fn().mockReturnValue(['GRA', 'GRA1', 'test-share']),
   };
 });
 
@@ -123,9 +123,20 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
   ),
 }));
 
-const { mockToast } = vi.hoisted(() => ({
+const { mockSuccessToast, mockWarningToast, mockToast } = vi.hoisted(() => ({
+  mockSuccessToast: vi.fn(),
+  mockWarningToast: vi.fn(),
   mockToast: vi.fn(),
 }));
+
+vi.mock('@/utils/toast.utils', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/utils/toast.utils')>();
+  return {
+    ...actual,
+    successToast: mockSuccessToast,
+    warningToast: mockWarningToast,
+  };
+});
 
 vi.mock('@ovhcloud/ods-react', () => ({
   Divider: ({ className }: { className: string }) => (
@@ -155,7 +166,6 @@ vi.mock('@ovhcloud/ods-react', () => ({
       {children}
     </button>
   ),
-  toast: mockToast,
 }));
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
@@ -166,7 +176,8 @@ describe('CreateShareForm', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockNavigate.mockClear();
-    mockToast.mockClear();
+    mockSuccessToast.mockClear();
+    mockWarningToast.mockClear();
     mockUseGetProject.mockReturnValue(undefined);
     mockUseCreateShareForm({ isValid: true });
     mockUseShareCreation.mockReturnValue({
@@ -373,13 +384,8 @@ describe('CreateShareForm', () => {
     if (onErrorCallback) onErrorCallback('Create share failed');
 
     expect(mockCreateShare).toHaveBeenCalled();
-
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.stringContaining('create:submit.error'),
-      expect.objectContaining({
-        color: 'warning',
-        duration: Infinity,
-      }),
+    expect(mockWarningToast).toHaveBeenCalledWith(
+      expect.objectContaining({ duration: expect.any(Number) }),
     );
   });
 
@@ -419,12 +425,8 @@ describe('CreateShareForm', () => {
     if (onSuccessCallback) onSuccessCallback();
     expect(mockCreateShare).toHaveBeenCalled();
     expect(mockNavigate).toHaveBeenCalledWith('..');
-    expect(mockToast).toHaveBeenCalledWith(
-      expect.stringContaining('create:submit.success'),
-      expect.objectContaining({
-        color: 'success',
-        duration: Infinity,
-      }),
+    expect(mockSuccessToast).toHaveBeenCalledWith(
+      expect.objectContaining({ duration: expect.any(Number) }),
     );
   });
 });

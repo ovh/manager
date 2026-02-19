@@ -1,9 +1,11 @@
+import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { FormProvider, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
+import { Button, Divider, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -25,6 +27,7 @@ import {
   selectAvailabilityZones,
   selectMicroRegions,
 } from '@/pages/create/view-model/shareCatalog.view-model';
+import { ToastDuration, successToast, warningToast } from '@/utils/toast.utils';
 
 export const CreateShareForm = () => {
   const { t } = useTranslation(['create', NAMESPACES.ACTIONS]);
@@ -48,17 +51,22 @@ export const CreateShareForm = () => {
 
   const handleCreateShare = {
     onSuccess: () => {
-      toast(t('create:submit.success', { name: shareName }), {
-        color: 'success',
-        duration: Infinity,
+      successToast({
+        ns: 'create',
+        i18nKey: 'create:submit.success',
+        values: { name: shareName },
+        duration: ToastDuration.Infinite,
       });
       navigate('..');
     },
     onError: (errorMessage: string) => {
-      toast(t('create:submit.error', { error: errorMessage }), {
-        color: 'warning',
-        duration: Infinity,
+      warningToast({
+        ns: 'create',
+        i18nKey: 'create:submit.error',
+        values: { error: errorMessage },
+        duration: ToastDuration.Infinite,
       });
+      navigate('..');
     },
   };
 
