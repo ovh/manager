@@ -11,8 +11,11 @@ import { useProjectId } from '@/hooks/useProjectId';
 import { useShareParams } from '@/hooks/useShareParams';
 import { useShareDeletion } from '@/pages/delete/hooks/useShareDeletion';
 import type { TShareDeletionView } from '@/pages/delete/view-model/deleteShare.view-model';
+import { urls } from '@/routes/Routes.constants';
 
 import DeleteSharePage from '../DeleteShare.page';
+
+const LIST_URL = urls.list.replace(':projectId', 'project-1');
 
 const mockNavigate = vi.fn();
 const mockMutate = vi.fn();
@@ -155,17 +158,26 @@ describe('DeleteSharePage', () => {
     expect(mockMutate).toHaveBeenCalled();
   });
 
-  it('should navigate back when delete mutation succeeds', async () => {
-    mockMutate.mockImplementation(() => {
-      mockNavigate('..');
-    });
+  it('should navigate to share list when delete mutation succeeds', async () => {
+    let capturedOnSuccess: (() => void) | undefined;
+    mockUseShareDeletion.mockImplementation(
+      (_projectId, _region, _shareId, { onSuccess }) => {
+        capturedOnSuccess = onSuccess;
+        return {
+          deleteShare: () => {
+            capturedOnSuccess?.();
+          },
+          isPending: false,
+        };
+      },
+    );
     const user = userEvent.setup();
     render(<DeleteSharePage />);
 
     await user.type(screen.getByRole('textbox'), 'DELETE');
     await user.click(screen.getByRole('button', { name: 'delete:submitButton' }));
 
-    expect(mockNavigate).toHaveBeenCalledWith('..');
+    expect(mockNavigate).toHaveBeenCalledWith(LIST_URL);
   });
 
   it('should disable cancel and submit buttons when delete is pending', () => {
