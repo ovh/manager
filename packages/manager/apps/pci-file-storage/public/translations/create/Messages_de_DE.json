@@ -79,6 +79,10 @@
       "empty": "Sie haben kein privates Subnetz für dieses Netzwerk"
     }
   },
+  "estimation": {
+    "title": "Schätzung",
+    "amount": "Geschätzter Betrag: <b>{{amount}}</b>"
+  },
   "submit": {
     "error": "Beim Hinzufügen des Shares ist ein Fehler aufgetreten: {{error}}",
     "success": "Das Share {{name}} wird erstellt"

@@ -79,6 +79,10 @@
       "empty": "No tiene una subred privada para esta red"
     }
   },
+  "estimation": {
+    "title": "Estimación",
+    "amount": "Importe estimado: <b>{{amount}}</b>"
+  },
   "submit": {
     "error": "Se ha producido un error al añadir el share: {{error}}",
     "success": "El share {{name}} se está creando"
