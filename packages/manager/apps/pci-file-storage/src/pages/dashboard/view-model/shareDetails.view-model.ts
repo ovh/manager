@@ -47,7 +47,7 @@ export type TNetworkDetailsView = {
 
 export const mapNetworkToNetworkDetailsView = (network: TNetwork): TNetworkDetailsView => ({
   id: network.id,
-  displayName: network.name ?? network.vlanId ?? network.id,
+  displayName: network.name || network.vlanId?.toString() || network.id.substring(0, 13),
 });
 
 export const selectNetworkDetails = (network: TNetwork | undefined) =>
