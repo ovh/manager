@@ -7,6 +7,11 @@ import { OdsButton, OdsCheckbox, OdsMessage, OdsText } from '@ovhcloud/ods-compo
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { CreateCartResult } from '@ovh-ux/manager-module-order';
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { useCheckoutBackupAgentCart } from '@/hooks/useCheckoutBackupAgentCart';
 
@@ -28,6 +33,7 @@ export const FirstOrderModalTermsAndConditions = ({
   onCancel,
 }: FirstOrderModalTermsAndConditionsProps) => {
   const { t } = useTranslation(['onboarding', NAMESPACES.ERROR, NAMESPACES.ACTIONS]);
+  const { trackClick } = useOvhTracking();
 
   const [isContractAccepted, setIsContractAccepted] = useState(false);
 
@@ -76,7 +82,15 @@ export const FirstOrderModalTermsAndConditions = ({
         slot="actions"
         label={t('confirm', { ns: NAMESPACES.ACTIONS })}
         isDisabled={!isContractAccepted}
-        onClick={() => requestOrder({ cartId: cart.cartId })}
+        onClick={() => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['confirm-first-order'],
+          });
+          requestOrder({ cartId: cart.cartId });
+        }}
         isLoading={isPending}
       />
     </>

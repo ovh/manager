@@ -12,6 +12,11 @@ import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Drawer } from '@ovh-ux/manager-react-components';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/BaremetalOption.component';
@@ -40,6 +45,7 @@ const AddConfigurationPage = () => {
   ]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { trackClick } = useOvhTracking();
   const goBack = () => navigate('..');
   const [formSubmitError, setFormSubmitError] = useState<string>();
   const {
@@ -177,6 +183,14 @@ const AddConfigurationPage = () => {
           label={t(`${NAMESPACES.ACTIONS}:add`)}
           isDisabled={isSubmitDisabled}
           isLoading={isAddConfigurationPending}
+          onClick={() =>
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.button,
+              actionType: 'action',
+              actions: ['submit-add-agent-configuration'],
+            })
+          }
         />
 
         <section className={`mt-8 ${isSubmitSuccessful ? 'visible' : 'invisible'}`}>
@@ -197,7 +211,18 @@ const AddConfigurationPage = () => {
         <OdsText id={FORM_ID} preset="heading-3">
           {t('download_agent')}
         </OdsText>
-        <a href={downloadLink} download>
+        <a
+          href={downloadLink}
+          download
+          onClick={() =>
+            trackClick({
+              location: PageLocation.funnel,
+              buttonType: ButtonType.link,
+              actionType: 'action',
+              actions: ['download-agent-executable'],
+            })
+          }
+        >
           <OdsButton
             type="button"
             label={t(`${NAMESPACES.ACTIONS}:download`)}

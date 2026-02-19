@@ -54,22 +54,82 @@ const BillingListingPage = React.lazy(() => import('../pages/billing/listing/Lis
 export default (
   <>
     <Route path="" Component={MainLayout}>
-      <Route path={subRoutes.service} Component={TenantGeneralInformationPage}>
-        <Route path={subRoutes.resetPassword} Component={TenantResetPasswordPage} />
-        <Route path={subRoutes.delete} Component={DeleteTenantPage} />
+      <Route
+        path={subRoutes.service}
+        Component={TenantGeneralInformationPage}
+        handle={{
+          tracking: {
+            pageName: 'general-information',
+            pageType: PageType.dashboard,
+          },
+        }}
+      >
+        <Route
+          path={subRoutes.resetPassword}
+          Component={TenantResetPasswordPage}
+          handle={{
+            tracking: {
+              pageName: 'reset-password',
+              pageType: PageType.popup,
+            },
+          }}
+        />
+        <Route
+          path={subRoutes.delete}
+          Component={DeleteTenantPage}
+          handle={{
+            tracking: {
+              pageName: 'delete-tenant',
+              pageType: PageType.popup,
+            },
+          }}
+        />
       </Route>
-      <Route path={subRoutes.agents} Component={AgentListingPage}>
-        <Route path={subRoutes.add} Component={AgentAddConfigurationPage} />
+      <Route
+        path={subRoutes.agents}
+        Component={AgentListingPage}
+        handle={{
+          tracking: {
+            pageName: 'agents',
+            pageType: PageType.listing,
+          },
+        }}
+      >
+        <Route
+          path={subRoutes.add}
+          Component={AgentAddConfigurationPage}
+          handle={{
+            tracking: {
+              pageName: 'add-agent-configuration',
+              pageType: PageType.funnel,
+            },
+          }}
+        />
         <Route
           path={`${subRoutes.configure}/${urlParams.agentId}`}
           Component={AgentEditConfigurationPage}
+          handle={{
+            tracking: {
+              pageName: 'edit-agent-configuration',
+              pageType: PageType.popup,
+            },
+          }}
         />
         <Route
           path={`${subRoutes.delete}/${urlParams.agentId}`}
           Component={AgentDeletePage}
           handle={{ tracking: { pageName: 'delete-agent', pageType: PageType.popup } }}
         />
-        <Route path={subRoutes.download} Component={AgentDownloadLinkPage} />
+        <Route
+          path={subRoutes.download}
+          Component={AgentDownloadLinkPage}
+          handle={{
+            tracking: {
+              pageName: 'download-agent',
+              pageType: PageType.popup,
+            },
+          }}
+        />
       </Route>
       <Route path={subRoutes.vaults}>
         <Route
@@ -103,10 +163,32 @@ export default (
 
     <Route path={subRoutes.vaults}>
       <Route path={urlParams.vaultId} Component={VaultDashboardPage}>
-        <Route path="" Component={VaultGeneralInformationPage}>
-          <Route path={subRoutes.delete} Component={VaultDeletePage} />
+        <Route
+          path=""
+          Component={VaultGeneralInformationPage}
+          handle={{
+            tracking: {
+              pageName: 'vault-general-information',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            path={subRoutes.delete}
+            Component={VaultDeletePage}
+            handle={{ tracking: { pageName: 'delete-vault', pageType: PageType.popup } }}
+          />
         </Route>
-        <Route path={subRoutes.buckets} Component={VaultBucketsPage} />
+        <Route
+          path={subRoutes.buckets}
+          Component={VaultBucketsPage}
+          handle={{
+            tracking: {
+              pageName: 'vault-buckets',
+              pageType: PageType.listing,
+            },
+          }}
+        />
       </Route>
     </Route>
   </>
