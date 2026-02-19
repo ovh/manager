@@ -41,3 +41,41 @@ export enum RecordTypesTargetWithTrailingDotEnum {
   CNAME = 'CNAME',
   DNAME = 'DNAME',
 }
+
+export enum NaptrFlagEnum {
+  S = 'S',
+  A = 'A',
+  U = 'U',
+  P = 'P',
+}
+
+export enum CaaTagEnum {
+  ISSUE = 'issue',
+  ISSUEWILD = 'issuewild',
+  IODEF = 'iodef',
+}
+
+export enum TtlSelectEnum {
+  GLOBAL = 'global',
+  CUSTOM = 'custom',
+}
+
+export enum DkimStatusEnum {
+  ACTIVE = 'active',
+  REVOKED = 'revoked',
+}
+
+export enum LocLatitudeEnum {
+  N = 'N',
+  S = 'S',
+}
+
+export enum LocLongitudeEnum {
+  E = 'E',
+  W = 'W',
+}
+
+export enum BoolSelectEnum {
+  YES = 'yes',
+  NO = 'no',
+}

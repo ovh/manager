@@ -19,6 +19,13 @@
  */
 
 import type { AddEntrySchemaType } from './formSchema.utils';
+import {
+  TtlSelectEnum,
+  DkimStatusEnum,
+  LocLatitudeEnum,
+  LocLongitudeEnum,
+  BoolSelectEnum,
+} from '@/common/enum/zone.enum';
 
 const RECORD_TYPES = new Set([
   'A', 'AAAA', 'NS', 'CNAME', 'DNAME',
@@ -88,7 +95,7 @@ function stripTrailingDot(value: string): string {
 function parseHeader(tokens: string[]): {
   subDomain: string;
   ttl: number | undefined;
-  ttlSelect: 'global' | 'custom';
+  ttlSelect: TtlSelectEnum.GLOBAL | TtlSelectEnum.CUSTOM;
   recordType: string;
   rdataStart: number;
 } | null {
@@ -101,11 +108,11 @@ function parseHeader(tokens: string[]): {
 
   // 2. Optional TTL (a number)
   let ttl: number | undefined;
-  let ttlSelect: 'global' | 'custom' = 'global';
+  let ttlSelect: TtlSelectEnum.GLOBAL | TtlSelectEnum.CUSTOM = TtlSelectEnum.GLOBAL;
 
   if (idx < tokens.length && /^\d+$/.test(tokens[idx])) {
     ttl = parseInt(tokens[idx], 10);
-    ttlSelect = 'custom';
+    ttlSelect = TtlSelectEnum.CUSTOM;
     idx++;
   }
 
@@ -231,11 +238,11 @@ function parseLOC(tokens: string[], start: number): Partial<AddEntrySchemaType> 
   const lat_deg = parseFloat(remaining[idx++]);
   const lat_min = parseFloat(remaining[idx++]);
   const lat_sec = parseFloat(remaining[idx++]);
-  const latitude = remaining[idx++].toUpperCase() as 'N' | 'S';
+  const latitude = remaining[idx++].toUpperCase() as LocLatitudeEnum.N | LocLatitudeEnum.S;
   const long_deg = parseFloat(remaining[idx++]);
   const long_min = parseFloat(remaining[idx++]);
   const long_sec = parseFloat(remaining[idx++]);
-  const longitude = remaining[idx++].toUpperCase() as 'E' | 'W';
+  const longitude = remaining[idx++].toUpperCase() as LocLongitudeEnum.E | LocLongitudeEnum.W;
 
   const result: Partial<AddEntrySchemaType> = {
     lat_deg, lat_min, lat_sec, latitude,
@@ -293,7 +300,7 @@ function parseDKIM(tokens: string[], start: number): Partial<AddEntrySchemaType>
     if (k === 's') result.s = value;
     if (k === 'p') {
       if (value === '' || !value) {
-        result.dkim_status = 'revoked';
+        result.dkim_status = DkimStatusEnum.REVOKED;
       } else {
         result.p = value;
         result.dkim_status = 'active';
@@ -301,8 +308,8 @@ function parseDKIM(tokens: string[], start: number): Partial<AddEntrySchemaType>
     }
     if (k === 't') {
       const flags = value.split(':').map((f: string) => f.trim());
-      result.t_y = flags.includes('y') ? 'yes' : 'no';
-      result.t_s = flags.includes('s') ? 'yes' : 'no';
+      result.t_y = flags.includes('y') ? BoolSelectEnum.YES : BoolSelectEnum.NO;
+      result.t_s = flags.includes('s') ? BoolSelectEnum.YES : BoolSelectEnum.NO;
     }
   }
 

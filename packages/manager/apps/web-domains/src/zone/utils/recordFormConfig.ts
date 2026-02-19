@@ -16,6 +16,14 @@ import type {
   RecordFormConfig,
   SelectItemConfig,
 } from '@/zone/types/recordFormConfig.types';
+import {
+  NaptrFlagEnum,
+  CaaTagEnum,
+  DkimStatusEnum,
+  LocLatitudeEnum,
+  LocLongitudeEnum,
+  BoolSelectEnum,
+} from '@/common/enum/zone.enum';
 
 export type {
   FieldConfig,
@@ -41,9 +49,9 @@ export type {
 // ---------------------------------------------------------------------------
 
 const CAA_TAG_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'issue', labelKey: 'zone_page_caa_tag_option_issue', descriptionKey: 'zone_page_caa_tag_option_issue_desc' },
-  { value: 'issuewild', labelKey: 'zone_page_caa_tag_option_issuewild', descriptionKey: 'zone_page_caa_tag_option_issuewild_desc' },
-  { value: 'iodef', labelKey: 'zone_page_caa_tag_option_iodef', descriptionKey: 'zone_page_caa_tag_option_iodef_desc' },
+  { value: CaaTagEnum.ISSUE, labelKey: 'zone_page_caa_tag_option_issue', descriptionKey: 'zone_page_caa_tag_option_issue_desc' },
+  { value: CaaTagEnum.ISSUEWILD, labelKey: 'zone_page_caa_tag_option_issuewild', descriptionKey: 'zone_page_caa_tag_option_issuewild_desc' },
+  { value: CaaTagEnum.IODEF, labelKey: 'zone_page_caa_tag_option_iodef', descriptionKey: 'zone_page_caa_tag_option_iodef_desc' },
 ];
 
 const SSHFP_ALGORITHM_ITEMS: readonly SelectItemConfig[] = [
@@ -86,35 +94,35 @@ const DKIM_SERVICE_ITEMS: readonly SelectItemConfig[] = [
 ];
 
 const DKIM_STATUS_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'active', labelKey: 'zone_page_form_label_dkim_status_active' },
-  { value: 'revoked', labelKey: 'zone_page_form_label_dkim_status_revoked' },
+  { value: DkimStatusEnum.ACTIVE, labelKey: 'zone_page_form_label_dkim_status_active' },
+  { value: DkimStatusEnum.REVOKED, labelKey: 'zone_page_form_label_dkim_status_revoked' },
 ];
 
 const DKIM_TEST_MODE_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'no', labelKey: 'zone_page_form_label_dkim_t_y_no' },
-  { value: 'yes', labelKey: 'zone_page_form_label_dkim_t_y_yes' },
+  { value: BoolSelectEnum.NO, labelKey: 'zone_page_form_label_dkim_t_y_no' },
+  { value: BoolSelectEnum.YES, labelKey: 'zone_page_form_label_dkim_t_y_yes' },
 ];
 
 const DKIM_SUBDOMAIN_RESTRICTION_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'no', labelKey: 'zone_page_form_label_dkim_t_s_no' },
-  { value: 'yes', labelKey: 'zone_page_form_label_dkim_t_s_yes' },
+  { value: BoolSelectEnum.NO, labelKey: 'zone_page_form_label_dkim_t_s_no' },
+  { value: BoolSelectEnum.YES, labelKey: 'zone_page_form_label_dkim_t_s_yes' },
 ];
 
 const NAPTR_FLAG_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'S', labelKey: 'zone_page_form_label_naptr_flag_S', descriptionKey: 'zone_page_form_label_naptr_flag_S_desc' },
-  { value: 'A', labelKey: 'zone_page_form_label_naptr_flag_A', descriptionKey: 'zone_page_form_label_naptr_flag_A_desc' },
-  { value: 'U', labelKey: 'zone_page_form_label_naptr_flag_U', descriptionKey: 'zone_page_form_label_naptr_flag_U_desc' },
-  { value: 'P', labelKey: 'zone_page_form_label_naptr_flag_P', descriptionKey: 'zone_page_form_label_naptr_flag_P_desc' },
+  { value: NaptrFlagEnum.S, labelKey: 'zone_page_form_label_naptr_flag_S', descriptionKey: 'zone_page_form_label_naptr_flag_S_desc' },
+  { value: NaptrFlagEnum.A, labelKey: 'zone_page_form_label_naptr_flag_A', descriptionKey: 'zone_page_form_label_naptr_flag_A_desc' },
+  { value: NaptrFlagEnum.U, labelKey: 'zone_page_form_label_naptr_flag_U', descriptionKey: 'zone_page_form_label_naptr_flag_U_desc' },
+  { value: NaptrFlagEnum.P, labelKey: 'zone_page_form_label_naptr_flag_P', descriptionKey: 'zone_page_form_label_naptr_flag_P_desc' },
 ];
 
 const LOC_LATITUDE_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'N', labelKey: 'zone_page_form_label_loc_lat_N' },
-  { value: 'S', labelKey: 'zone_page_form_label_loc_lat_S' },
+  { value: LocLatitudeEnum.N, labelKey: 'zone_page_form_label_loc_lat_N' },
+  { value: LocLatitudeEnum.S, labelKey: 'zone_page_form_label_loc_lat_S' },
 ];
 
 const LOC_LONGITUDE_ITEMS: readonly SelectItemConfig[] = [
-  { value: 'E', labelKey: 'zone_page_form_label_loc_long_E' },
-  { value: 'W', labelKey: 'zone_page_form_label_loc_long_W' },
+  { value: LocLongitudeEnum.E, labelKey: 'zone_page_form_label_loc_long_E' },
+  { value: LocLongitudeEnum.W, labelKey: 'zone_page_form_label_loc_long_W' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -229,7 +237,6 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
 
   CAA: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain',
-    validation: { target: 'host' },
     rows: [
       { fields: ['subdomain', 'ttl'] },
       {
@@ -316,7 +323,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       },
       // Flag U: flag (1) + regex (2) + replace (1)
       {
-        visibleWhen: { field: 'flag', value: 'U' },
+        visibleWhen: { field: 'flag', value: NaptrFlagEnum.U },
         fields: [
           { type: 'select', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', tooltipKey: 'zone_page_form_naptr_flag_help', items: NAPTR_FLAG_ITEMS, colSpan: 1 },
           { type: 'text', name: 'regex', labelKey: 'zone_page_form_label_naptr_regex', required: true, tooltipKey: 'zone_page_form_naptr_regex_help', placeholder: '!^.*$!sip:info@example.com!' },
@@ -325,7 +332,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       },
       // Flag S: flag (1) + replace (3)
       {
-        visibleWhen: { field: 'flag', value: 'S' },
+        visibleWhen: { field: 'flag', value: NaptrFlagEnum.S },
         fields: [
           { type: 'select', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', tooltipKey: 'zone_page_form_naptr_flag_help', items: NAPTR_FLAG_ITEMS, colSpan: 1 },
           { type: 'text', name: 'replace', labelKey: 'zone_page_form_label_naptr_replace', required: true, tooltipKey: 'zone_page_form_naptr_replace_help', placeholder: '_sip._udp.example.com.', colSpan: 3 },
@@ -333,7 +340,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       },
       // Flag A: flag (1) + replace (3)
       {
-        visibleWhen: { field: 'flag', value: 'A' },
+        visibleWhen: { field: 'flag', value: NaptrFlagEnum.A },
         fields: [
           { type: 'select', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', tooltipKey: 'zone_page_form_naptr_flag_help', items: NAPTR_FLAG_ITEMS, colSpan: 1 },
           { type: 'text', name: 'replace', labelKey: 'zone_page_form_label_naptr_replace', tooltipKey: 'zone_page_form_naptr_replace_help', placeholder: '_sip._udp.example.com.', colSpan: 3 },
@@ -341,7 +348,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       },
       // Flag P: flag (1) + regex (1) + replace (2)
       {
-        visibleWhen: { field: 'flag', value: 'P' },
+        visibleWhen: { field: 'flag', value: NaptrFlagEnum.P },
         fields: [
           { type: 'select', name: 'flag', labelKey: 'zone_page_form_label_naptr_flag', tooltipKey: 'zone_page_form_naptr_flag_help', items: NAPTR_FLAG_ITEMS, colSpan: 1 },
           { type: 'text', name: 'regex', labelKey: 'zone_page_form_label_naptr_regex', tooltipKey: 'zone_page_form_naptr_regex_help', disabledWhenFilled: 'replace', placeholder: '!^.*$!sip:info@example.com!', colSpan: 1 },
@@ -455,6 +462,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
         fields: [
           {
             type: 'select', name: 'matchingType', labelKey: 'zone_page_form_label_tlsa_matching', required: true, tooltipKey: 'zone_page_tooltip_tlsa_matching', items: [
+              { value: '0', labelKey: 'zone_page_form_label_tlsa_matching_0' },
               { value: '1', labelKey: 'zone_page_form_label_tlsa_matching_1' },
               { value: '2', labelKey: 'zone_page_form_label_tlsa_matching_2' },
             ]
@@ -547,12 +555,12 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         fields: [
           'subdomain',
-          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_mx_target', required: true, tooltipKey: 'zone_page_tooltip_mx_target', placeholder: 'mail.example.com.' },
+          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority', placeholder: '10' },
         ],
       },
       {
         fields: [
-          { type: 'number', name: 'priority', labelKey: 'zone_page_form_label_priority', required: true, min: 0, max: 65535, tooltipKey: 'zone_page_tooltip_mx_priority', placeholder: '10' },
+          { type: 'text', name: 'target', labelKey: 'zone_page_form_label_mx_target', required: true, tooltipKey: 'zone_page_tooltip_mx_target', placeholder: 'mail.example.com.' },
           'ttl',
         ],
       },
@@ -595,25 +603,25 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
       {
         fields: [
           'subdomain',
-          { type: 'text', name: 'v', labelKey: 'zone_page_form_label_dmarc_v', required: true, readOnly: true, tooltipKey: 'zone_page_tooltip_dmarc_v' },
-        ],
-      },
-      {
-        fields: [
-          { type: 'select', name: 'p', labelKey: 'zone_page_form_label_dmarc_p', required: true, items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_p' },
-          { type: 'select', name: 'sp', labelKey: 'zone_page_form_label_dmarc_sp', items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_sp' },
-        ],
-      },
-      {
-        fields: [
-          { type: 'select', name: 'aspf', labelKey: 'zone_page_form_label_dmarc_aspf', items: DMARC_ASPF_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_aspf' },
-          { type: 'number', name: 'pct', labelKey: 'zone_page_form_label_dmarc_pct', min: 0, max: 100, tooltipKey: 'zone_page_tooltip_dmarc_pct' },
-        ],
-      },
-      {
-        fields: [
-          { type: 'text', name: 'rua', labelKey: 'zone_page_form_label_dmarc_rua', tooltipKey: 'zone_page_tooltip_dmarc_rua', placeholder: 'mailto:dmarc@example.com' },
           'ttl',
+        ],
+      },
+      {
+        fields: [
+          { type: 'text', name: 'v', labelKey: 'zone_page_form_label_dmarc_v', required: true, readOnly: true, tooltipKey: 'zone_page_tooltip_dmarc_v' },
+          { type: 'select', name: 'p', labelKey: 'zone_page_form_label_dmarc_p', required: true, items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_p' },
+        ],
+      },
+      {
+        fields: [
+          { type: 'number', name: 'pct', labelKey: 'zone_page_form_label_dmarc_pct', min: 0, max: 100, tooltipKey: 'zone_page_tooltip_dmarc_pct' },
+          { type: 'text', name: 'rua', labelKey: 'zone_page_form_label_dmarc_rua', tooltipKey: 'zone_page_tooltip_dmarc_rua', placeholder: 'mailto:dmarc@example.com' },
+        ],
+      },
+      {
+        fields: [
+          { type: 'select', name: 'sp', labelKey: 'zone_page_form_label_dmarc_sp', items: DMARC_POLICY_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_sp' },
+          { type: 'select', name: 'aspf', labelKey: 'zone_page_form_label_dmarc_aspf', items: DMARC_ASPF_ITEMS, tooltipKey: 'zone_page_tooltip_dmarc_aspf' },
         ],
       },
     ],
