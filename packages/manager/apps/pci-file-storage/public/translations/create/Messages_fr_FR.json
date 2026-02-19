@@ -1,6 +1,6 @@
 {
   "title": "Créer un share",
-  "description": "Créez un share disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
+  "description": "Créez un share disponible dans votre projet Public Cloud. Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
   "name": {
     "title": "Nom du share",
     "label": "Choisissez un nom pour votre share",
@@ -80,6 +80,10 @@
       "label": "Sélectionner un sous-réseau privé existant",
       "empty": "Vous n'avez pas de sous-réseau privé pour ce réseau"
     }
+  },
+  "estimation": {
+    "title": "Estimation",
+    "amount": "Montant estimé : <b>{{amount}}</b>"
   },
   "submit": {
     "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",

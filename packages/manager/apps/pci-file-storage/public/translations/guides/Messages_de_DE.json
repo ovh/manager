@@ -1,0 +1,21 @@
+{
+  "learn-more": {
+    "category": "Angebot",
+    "title": "Mehr erfahren",
+    "description": "Labs-Seite, auf der die Funktionen und die Preise von File Storage erläutert werden.",
+    "link-text": "Mehr erfahren"
+  },
+  "get-started": {
+    "category": "Anleitung",
+    "title": "Erste Schritte",
+    "description": "Schritt-für-Schritt-Dokumentation, um Ihnen bei der Erstellung Ihres ersten Share zu helfen.",
+    "link-text": "Mehr erfahren",
+    "alternate-title": "Erste Schritte mit den Shares"
+  },
+  "discord": {
+    "category": "Discord",
+    "title": "Über Neuigkeiten auf dem Laufenden bleiben",
+    "description": "Kontaktieren Sie uns direkt auf #beta-file-storage: Stellen Sie Ihre Fragen und teilen Sie Ihr Feedback mit uns.",
+    "link-text": "Mehr erfahren"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "learn-more": {
+    "category": "Offre",
+    "title": "En savoir plus",
+    "description": "Page Labs expliquant la fonctionnalité et la tarification de File Storage.",
+    "link-text": "En savoir plus"
+  },
+  "get-started": {
+    "category": "Guide",
+    "title": "Premiers pas",
+    "description": "Une documentation étape par étape pour vous aider à créer votre premier share.",
+    "link-text": "En savoir plus",
+    "alternate-title": "Premiers pas avec les shares"
+  },
+  "discord": {
+    "category": "Discord",
+    "title": "Restez informé(e) des dernières actualités",
+    "description": "Rejoignez-nous directement sur #beta-file-storage : posez vos questions et partagez vos retours.",
+    "link-text": "En savoir plus"
+  }
+}

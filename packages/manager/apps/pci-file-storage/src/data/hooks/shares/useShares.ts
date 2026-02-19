@@ -17,5 +17,6 @@ export const useShares = <TData>(options?: SelectOption<TShare[], TData>) => {
     enabled: !!projectId,
     select: options?.select,
     ...getForceReloadUseQueryOptions(),
+    throwOnError: true,
   });
 };

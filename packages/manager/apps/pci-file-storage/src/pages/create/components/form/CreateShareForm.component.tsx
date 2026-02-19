@@ -1,19 +1,23 @@
+import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 
 import { FormProvider, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
+import { Button, Divider, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { useGetProject } from '@/hooks/useGetProject';
 import { useProjectId } from '@/hooks/useProjectId';
 import { AvailabilityZoneSelection } from '@/pages/create/components/localisation/availabilityZone/AvailabilityZoneSelection.component';
 import { DeploymentModeSection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSection.component';
 import { MacroRegionSelection } from '@/pages/create/components/localisation/macroRegion/MacroRegionSelection.component';
 import { MicroRegionSelection } from '@/pages/create/components/localisation/microRegion/MicroRegionSelection.component';
 import { NameInput } from '@/pages/create/components/name/NameInput.component';
+import { EstimationBlock } from '@/pages/create/components/estimation/EstimationBlock.component';
 import { PrivateNetworkSelection } from '@/pages/create/components/network/PrivateNetworkSelection.component';
 import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
 import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
@@ -24,11 +28,13 @@ import {
   selectAvailabilityZones,
   selectMicroRegions,
 } from '@/pages/create/view-model/shareCatalog.view-model';
+import { ToastDuration, successToast, warningToast } from '@/utils/toast.utils';
 
 export const CreateShareForm = () => {
   const { t } = useTranslation(['create', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const projectId = useProjectId();
+  const project = useGetProject();
 
   const formMethods = useCreateShareForm();
   const [selectedMacroRegion, selectedMicroRegion, shareName] = useWatch({
@@ -46,17 +52,22 @@ export const CreateShareForm = () => {
 
   const handleCreateShare = {
     onSuccess: () => {
-      toast(t('create:submit.success', { name: shareName }), {
-        color: 'success',
-        duration: Infinity,
+      successToast({
+        ns: 'create',
+        i18nKey: 'create:submit.success',
+        values: { name: shareName },
+        duration: ToastDuration.Infinite,
       });
       navigate('..');
     },
     onError: (errorMessage: string) => {
-      toast(t('create:submit.error', { error: errorMessage }), {
-        color: 'warning',
-        duration: Infinity,
+      warningToast({
+        ns: 'create',
+        i18nKey: 'create:submit.error',
+        values: { error: errorMessage },
+        duration: ToastDuration.Infinite,
       });
+      navigate('..');
     },
   };
 
@@ -81,6 +92,7 @@ export const CreateShareForm = () => {
   };
 
   const isFormValid = formMethods.formState.isValid;
+  const isValidationDisabled = !isFormValid || project?.isDiscovery;
 
   return (
     <FormProvider {...formMethods}>
@@ -111,11 +123,17 @@ export const CreateShareForm = () => {
           <PrivateNetworkSelection />
         </section>
         <Divider className="w-full" />
+        <EstimationBlock />
         <section className="mt-8 flex gap-4">
           <Button type="button" variant="ghost" onClick={handleCancel}>
             {t(`${NAMESPACES.ACTIONS}:cancel`)}
           </Button>
-          <Button type="submit" variant="default" disabled={!isFormValid} loading={isPending}>
+          <Button
+            type="submit"
+            variant="default"
+            disabled={isValidationDisabled}
+            loading={isPending}
+          >
             {t(`${NAMESPACES.ACTIONS}:validate`)}
           </Button>
         </section>
