@@ -1,6 +1,18 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TAclToCreateDto } from '@/adapters/acl/right/dto.type';
+import { TAclDto, TAclToCreateDto } from '@/adapters/acl/right/dto.type';
+import { mapAclDtoToAcl } from '@/adapters/acl/right/mapper';
+import { TAcl } from '@/domain/entities/acl.entity';
+
+export const getAcls = async (
+  projectId: string,
+  region: string,
+  shareId: string,
+): Promise<TAcl[]> => {
+  return v6
+    .get<TAclDto[]>(`/cloud/project/${projectId}/region/${region}/share/${shareId}/acl`)
+    .then((response) => response.data.map(mapAclDtoToAcl));
+};
 
 export const createAcl = async ({
   projectId,

@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { TAclAccessLevelDto } from '@/adapters/acl/right/dto.type';
+import { TAclAccessLevelDto, TAclDto } from '@/adapters/acl/right/dto.type';
 import type { TAclPermission, TAclToCreate } from '@/domain/entities/acl.entity';
 
 import {
   mapAccessLevelToPermissions,
+  mapAclDtoToAcl,
   mapAclToCreateToDto,
   mapPermissionsToAccessLevel,
 } from '../mapper';
@@ -51,6 +52,39 @@ describe('acl mapper', () => {
       },
     ])('$description', ({ accessLevel, expected }) => {
       expect(mapAccessLevelToPermissions(accessLevel)).toEqual(expected);
+    });
+  });
+
+  describe('mapAclDtoToAcl', () => {
+    it.each([
+      {
+        description: 'should map DTO with ro accessLevel',
+        dto: {
+          id: 'acl-1',
+          accessTo: '10.0.0.0',
+          accessLevel: 'ro' as TAclAccessLevelDto,
+        } as TAclDto,
+        expected: {
+          id: 'acl-1',
+          source: { id: '10.0.0.0' },
+          permissions: ['read'],
+        },
+      },
+      {
+        description: 'should map DTO with rw accessLevel',
+        dto: {
+          id: 'acl-2',
+          accessTo: '192.168.1.0/24',
+          accessLevel: 'rw' as TAclAccessLevelDto,
+        } as TAclDto,
+        expected: {
+          id: 'acl-2',
+          source: { id: '192.168.1.0/24' },
+          permissions: ['write'],
+        },
+      },
+    ])('$description', ({ dto, expected }) => {
+      expect(mapAclDtoToAcl(dto)).toEqual(expected);
     });
   });
 
