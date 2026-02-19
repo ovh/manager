@@ -32,8 +32,8 @@ const renderPage = async ({ url = mockPageUrl }: { url?: string } = {}) => {
   const user = userEvent.setup();
   await renderTestApp(url);
 
-  // Check if the drawer is open (use MEDIUM timeout for lazy-loaded route)
-  const drawer = await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
+  // Use LONG timeout: drawer is 3 levels deep in lazy-loaded routes (Secret > VersionList > Drawer)
+  const drawer = await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.LONG });
 
   // Wait for the title to appear (drawer content to load)
   await waitFor(() => {
