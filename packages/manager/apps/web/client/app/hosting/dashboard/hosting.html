@@ -206,10 +206,11 @@
             <span data-translate="hosting_tab_MODULE"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            data-ng-if="$ctrl.isOslToLdpFeatureAvailable"
             href="{{ $ctrl.userLogsLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.userLogsLink"
         >
-            <span>Logs</span>
+            <span data-translate="hosting_tab_USER_LOGS"></span>
             <span class="oui-badge oui-badge_s oui-badge_success ml-2">Beta</span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
