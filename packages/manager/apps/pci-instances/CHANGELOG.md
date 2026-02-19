@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.12.0...@ovh-ux/manager-pci-instances-app@0.13.0) (2026-02-19)
+
+
+### Features
+
+* **pci-instances:** add instance creation flow ([bb0e7d6](https://github.com/ovh/manager/commit/bb0e7d6be846f6e2fd77113310970bfec985e215))
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.11.1...@ovh-ux/manager-pci-instances-app@0.12.0) (2026-02-17)
 
 
