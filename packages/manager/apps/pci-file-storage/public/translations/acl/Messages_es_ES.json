@@ -1,14 +1,20 @@
 {
   "description": "Agregue direcciones o rangos de IP autorizados para acceder a este recurso compartido. Por defecto, ninguna dirección o rango de IP está autorizado. El almacenamiento de archivos solo se puede utilizar con direcciones IP de OVHcloud (Nube Pública, Servicio de Kubernetes Gestionado).",
   "add": {
-    "label": "Agregar un nuevo acceso"
+    "label": "Agregar un nuevo acceso",
+    "success": "Su ACL (Lista de control de acceso) se ha añadido correctamente",
+    "error": "Se ha producido un error al añadir la ACL: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
-      "header": "Acceso a"
+      "header": "Acceso a",
+      "placeholder": "10.0.0.0",
+      "invalidFormat": "Formato inválido: por favor, introduzca una dirección IP o un rango de IP válido (por ejemplo: 10.0.0.0/24)"
     },
     "accessPermission": {
-      "header": "Derechos de acceso"
+      "header": "Derechos de acceso",
+      "readOnly": "Solo lectura",
+      "readAndWrite": "Lectura y escritura"
     },
     "actions": {
       "header": "Acciones"

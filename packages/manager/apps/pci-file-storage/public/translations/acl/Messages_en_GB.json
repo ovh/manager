@@ -1,14 +1,20 @@
 {
   "description": "Add allowed IP addresses or ranges to access this share. By default, no IP address or range is allowed. File Storage can only be used with OVHcloud IP addresses (Public Cloud, Managed Kubernetes Service).",
   "add": {
-    "label": "Add new access"
+    "label": "Add a new access",
+    "success": "Your ACL (Access Control List) has been successfully added",
+    "error": "An error has occurred adding the ACL: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
-      "header": "Access to"
+      "header": "Access to",
+      "placeholder": "10.0.0.0",
+      "invalidFormat": "Invalid format: please enter a valid IP address or IP range (for example: 10.0.0.0/24)"
     },
     "accessPermission": {
-      "header": "Access rights"
+      "header": "Access rights",
+      "readOnly": "Read-only",
+      "readAndWrite": "Read and write"
     },
     "actions": {
       "header": "Actions"
