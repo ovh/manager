@@ -80,7 +80,10 @@ import {
   ContactFormGroupSkeleton,
   ButtonSkeleton,
   CheckboxSkeleton,
+  HeaderSkeleton,
 } from '@/components/formSkeleton';
+import ExitGuard from '@/components/exitGuard/ExitGuard.component';
+import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -103,7 +106,7 @@ function AccountDetailsForm({
     NAMESPACES.COUNTRY,
   ]);
   const { addError, addSuccess } = useNotifications();
-
+  const [readyToRedirect, setReadyToRedirect] = useState(false);
   const {
     url: redirectionUrl,
     isLoading: isRedirectionUrlLoading,
@@ -244,6 +247,7 @@ function AccountDetailsForm({
       if (isSMSConsentAvailable && payload.phoneType === 'mobile') {
         await putSmsConsent(smsConsent);
       }
+      void setReadyToRedirect(true);
     },
     onSuccess: () => {
       trackPage({
@@ -292,6 +296,7 @@ function AccountDetailsForm({
    */
   return (
     <>
+      <ExitGuard active={!readyToRedirect} />
       <Notifications />
       <form
         onSubmit={handleSubmit(handleValidateClick)}
@@ -1159,6 +1164,17 @@ export default function AccountDetailsPage() {
     }
   }, [error]);
 
+  const formSkeleton = (
+    <div className="flex flex-col gap-8">
+      <FormGroupSkeleton />
+      <FormGroupSkeleton />
+      <AddressFormGroupSkeleton />
+      <ContactFormGroupSkeleton />
+      <CheckboxSkeleton />
+      <ButtonSkeleton />
+    </div>
+  );
+
   return (
     <>
       <Links
@@ -1176,29 +1192,31 @@ export default function AccountDetailsPage() {
         </OdsText>
       )}
       <BaseLayout header={header}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
-          {t('account_details_info_message')}
-        </OdsText>
-        {!rules || isRulesLoading || isCurrentUserLoading ? (
-          <div className="flex flex-col gap-8">
-            <FormGroupSkeleton />
-            <FormGroupSkeleton />
-            <AddressFormGroupSkeleton />
-            <ContactFormGroupSkeleton />
-            <CheckboxSkeleton />
-            <ButtonSkeleton />
-          </div>
-        ) : (
-          <AccountDetailsForm
-            rules={rules}
-            isLoading={isRulesLoading || isCurrentUserLoading}
-            currentUser={{
-              ...(currentUser || {}),
-              country: country ?? currentUser?.country,
-            }}
-            updateRulesParams={updateRulesParams}
-          />
-        )}
+        <InvalidationRedirectGuard
+          fallback={
+            <>
+              <HeaderSkeleton />
+              {formSkeleton}
+            </>
+          }
+        >
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
+            {t('account_details_info_message')}
+          </OdsText>
+          {!rules || isRulesLoading || isCurrentUserLoading ? (
+            formSkeleton
+          ) : (
+            <AccountDetailsForm
+              rules={rules}
+              isLoading={isRulesLoading || isCurrentUserLoading}
+              currentUser={{
+                ...(currentUser || {}),
+                country: country ?? currentUser?.country,
+              }}
+              updateRulesParams={updateRulesParams}
+            />
+          )}
+        </InvalidationRedirectGuard>
       </BaseLayout>
     </>
   );
