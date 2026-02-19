@@ -1,0 +1,23 @@
+{
+  "domain_reseller_title": "Programm für Domain-Reseller",
+  "domain_reseller_message_title": "Ihr Programm ist aktiv",
+  "domain_reseller_message_text": "Als Mitglied des Domain-Reseller-Programms profitieren Sie derzeit von Vorzugspreisen für Ihre Domainnamen.",
+  "domain_reseller_button_add_domain": "Eine Domain hinzufügen",
+  "domain_reseller_button_download_catalog": "Katalog herunterladen",
+  "domain_reseller_general_informations_label": "Domainnamen zu Vorzugspreisen registriert",
+  "domain_reseller_general_informations_domains_length": "{{ length }} aktive(r) Domain(s)",
+  "domain_reseller_general_informations_no_domains": "Keine Domain mit dem Programm verbunden",
+  "domain_reseller_renew_mode_label": "Verlängerungsmodus",
+  "domain_reseller_renew_mode_automatic": "Automatisch",
+  "domain_reseller_tab_my_domains": "Meine Domainnamen",
+  "domain_reseller_associate": "Zuordnen",
+  "domain_reseller_order_domain": "Eine Domain bestellen",
+  "domain_reseller_associate_modal_title": "Wählen Sie die Domainnamen aus, die zugeordnet werden sollen",
+  "domain_reseller_associate_modal_placeholder": "Domainnamen auswählen",
+  "domain_reseller_associate_modal_description": "Sind Sie sicher, dass Sie diese Domainnamen mit dem Abrechnungs-NIC dieses Kontos verknüpfen möchten?",
+  "domain_reseller_associate_modal_associate_error": "Ein Fehler ist bei der Anfrage zur Änderung des Kontakts aufgetreten: {{error}}.",
+  "domain_reseller_associate_modal_associate_success": "Die Anfrage zur Änderung des Kontakts wurde erfolgreich durchgeführt. Die betroffenen Kontakte erhalten eine E-Mail mit dem Validierungsverfahren.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_one": "Sie haben bereits zuvor die Verknüpfung von {{domain}} mit Ihrem Domain-Reseller-Paket beantragt. Eine Validierungs-E-Mail wurde zu diesem Anlass an den derzeit mit dem Dienst verbundenen Abrechnungskontakt gesendet. Wir laden Sie ein, Ihr Postfach zu überprüfen, um die Bestätigung der Änderung abzuschließen.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_other": "Sie haben die Zuordnung von {{count}} Diensten zu Ihrem Reseller-Paket für Domainnamen angefordert. Wir laden Sie ein, das Postfach des derzeit mit jedem dieser Dienste verbundenen Rechnungsansprechpartners zu überprüfen, um die Änderung zu validieren. Einige Anfragen wurden zu früheren Daten gestellt, die entsprechenden Bestätigungs-E-Mails wurden an diesen Daten gesendet.",
+  "domain_reseller_associate_modal_loading": "Das Laden Ihrer Domainnamen kann je nach Größe Ihres Portfolios einige Minuten in Anspruch nehmen."
+}
