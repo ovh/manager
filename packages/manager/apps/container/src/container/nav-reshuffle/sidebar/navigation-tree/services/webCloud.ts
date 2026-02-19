@@ -1,6 +1,6 @@
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/web-cloud.png';
-import { Node } from '../node';
+import { Node, NodeTag } from '../node';
 
 const webCloudUniverse: Node = {
   id: 'web-cloud',
@@ -142,6 +142,7 @@ webCloudUniverse.children = [
         universe: webCloudUniverse.id,
         translation: 'sidebar_web_hosting_managed_wordpress',
         serviceType: 'WEB_HOSTING',
+        tag: NodeTag.BETA,
         routing: {
           application: 'web-hosting',
           hash: '#/managed-hosting-for-wordpress',
