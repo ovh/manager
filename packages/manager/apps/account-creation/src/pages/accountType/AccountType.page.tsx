@@ -12,7 +12,11 @@ import {
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { LegalForm } from '@ovh-ux/manager-config';
-import { ButtonType, PageLocation, usePageTracking } from '@ovh-ux/manager-react-shell-client';
+import {
+  ButtonType,
+  PageLocation,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import { useUserContext } from '@/context/user/useUser';
 import { useLegalFormRules } from '@/data/hooks/useRules';
@@ -27,11 +31,17 @@ export default function AccountType() {
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const navigate = useNavigate();
-  const [ searchParams ] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const { trackClick } = useTrackingContext();
   const { trackError } = useTrackError('select-account-type');
   const pageTracking = usePageTracking();
-  const { ovhSubsidiary, country, legalForm, setLegalForm, language } = useUserContext();
+  const {
+    ovhSubsidiary,
+    country,
+    legalForm,
+    setLegalForm,
+    language,
+  } = useUserContext();
   const { data: rule, isLoading, error } = useLegalFormRules({
     ovhSubsidiary,
     country,
@@ -53,7 +63,11 @@ export default function AccountType() {
       trackClick(pageTracking, {
         location: PageLocation.page,
         buttonType: ButtonType.button,
-        actions: ['account-create-select-account-type', 'next', `${ovhSubsidiary}_${language}_${legalForm}`],
+        actions: [
+          'account-create-select-account-type',
+          'next',
+          `${ovhSubsidiary}_${language}_${legalForm}`,
+        ],
       });
     }
     if (shouldAccessOrganizationSearch(country, legalForm)) {
@@ -135,6 +149,7 @@ export default function AccountType() {
                     inputId={`legal_form_${value}`}
                     name={`legal_form`}
                     value={value}
+                    isChecked={legalForm === value}
                     onOdsChange={() => {
                       setLegalForm(value as LegalForm);
                       setLegalFormError(false);
