@@ -9,3 +9,9 @@
   display: flex;
   justify-content: center;
 }
+
+#container > #right-side {
+  button:has([class*='icon--columns']) {
+    display: none;
+  }
+}
