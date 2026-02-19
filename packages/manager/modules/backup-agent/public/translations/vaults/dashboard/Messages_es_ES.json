@@ -9,8 +9,8 @@
   "submitButton": "Enviar",
   "successMessage": "Su solicitud se ha enviado correctamente.",
   "errors": {
-    "emailRequired": "El correo electrónico es obligatorio.",
-    "emailInvalid": "Por favor, introduzca una dirección de correo electrónico válida.",
+    "emailRequired": "La dirección de correo es obligatoria.",
+    "emailInvalid": "Introduzca una dirección de correo electrónico válida.",
     "subjectRequired": "El asunto es obligatorio.",
     "messageRequired": "El mensaje es obligatorio."
   },
@@ -21,6 +21,6 @@
   "vault_price": "Es decir, {{vaultPrice}}/mes + IVA",
   "immutability": "Datos inalterables",
   "immutability_duration_enabled": "{{duration}} días activados",
-  "encryption": "Cifrado del Vault",
+  "encryption": "Cifrado del vault",
   "encryption_enabled": "{{encryption}} activado"
 }
