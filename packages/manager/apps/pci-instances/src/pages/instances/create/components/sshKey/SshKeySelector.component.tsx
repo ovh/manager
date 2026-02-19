@@ -33,7 +33,7 @@ const SshKeySelector: FC<TSshKeySelectorProps> = ({
   };
 
   return (
-    <FormField className="max-w-[32%] my-4">
+    <FormField className="my-4 max-w-[32%]">
       <FormFieldLabel>
         {t('creation:pci_instance_creation_select_sshKey_dropdown_label')}
       </FormFieldLabel>

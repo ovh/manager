@@ -1,3 +1,4 @@
+import { SelectOptionItem } from '@ovhcloud/ods-react';
 import { TPrivateNetwork } from '@/domain/entities/configuration';
 import { getOvhPrivateNetwork } from '@/domain/services/network.service';
 import { TNetworkCatalog } from '@/domain/entities/networkCatalog';
@@ -7,13 +8,14 @@ import { TDeploymentModeID } from '@/domain/entities/instancesCatalog';
 
 type TCapability = 'PublicIP' | 'FloatingIP';
 
-export type TPrivateNetworkData = {
-  label: string;
-  value: string;
-  networkId: string;
-  hasGatewayIp: boolean;
+export type TPrivateNetworkCustomData = {
+  hasGateway: boolean;
   capabilities: TCapability[];
+  networkId: string;
 };
+
+export type TPrivateNetworkData =
+  SelectOptionItem<TPrivateNetworkCustomData>;
 
 export const selectPrivateNetworks = (region: string | null) => (
   privateNetworks?: TPrivateNetwork,
@@ -33,9 +35,11 @@ export const selectPrivateNetworks = (region: string | null) => (
       return {
         label: network.name,
         value: subnetId,
-        networkId,
-        hasGatewayIp: !!subnet?.gatewayIp,
-        capabilities: subnet?.capabilities ?? [],
+        customRendererData: {
+          networkId,
+          hasGateway: !!subnet?.hasGateway,
+          capabilities: subnet?.capabilities ?? [],
+        },
       };
     });
   });
@@ -72,7 +76,7 @@ const hasPublicNetworkCapability = (
 ) =>
   !!privateNetworks
     .find((subnet) => subnet.value === subnetId)
-    ?.capabilities.includes(capability);
+    ?.customRendererData?.capabilities.includes(capability);
 
 const getPublicIpPrice = (
   networkCatalog: TNetworkCatalog,
@@ -115,10 +119,11 @@ export const getGatewayAvailability = ({
 }: TNetworkAvailabilityArgs) => {
   if (!deploymentMode) return null;
 
-  if (
-    privateNetworks.find((privateNetwork) => privateNetwork.value === subnetId)
-      ?.hasGatewayIp
-  )
+  const selectedNetwork = privateNetworks.find(
+    (privateNetwork) => privateNetwork.value === subnetId,
+  );
+
+  if (selectedNetwork?.customRendererData?.hasGateway)
     return {
       isDisabled: true,
       unavailableReason:

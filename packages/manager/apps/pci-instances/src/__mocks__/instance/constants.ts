@@ -404,6 +404,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: false,
             isActivable: true,
+            isActivated: true,
             macroRegionId: 'GRA',
           },
         ],
@@ -414,6 +415,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: false,
             isActivable: true,
+            isActivated: true,
             macroRegionId: 'GRA',
           },
         ],
@@ -424,6 +426,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             availabilityZones: [],
             isInMaintenance: true,
             isActivable: true,
+            isActivated: true,
             macroRegionId: 'BHS',
           },
         ],
@@ -438,6 +441,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             ],
             isInMaintenance: false,
             isActivable: false,
+            isActivated: false,
             macroRegionId: 'EU-SOUTH-LZ-MIL',
           },
         ],
@@ -452,6 +456,7 @@ export const mockedInstancesCatalogEntity: TInstancesCatalog = {
             ],
             isInMaintenance: false,
             isActivable: true,
+            isActivated: true,
             macroRegionId: 'PAR',
           },
         ],
@@ -1015,16 +1020,16 @@ export const mockedLocalizationsDataForNoneDeploymentZoneAndAllContinents: TRegi
 
 export const mockedContinentsSelectorData: TContinentData[] = [
   {
+    labelKey: 'pci_instances_common_instance_continent_all',
+    value: 'all',
+  },
+  {
     labelKey: 'pci_instances_common_instance_continent_western_europe',
     value: 'western_europe',
   },
   {
     labelKey: 'pci_instances_common_instance_continent_north_america',
     value: 'north_america',
-  },
-  {
-    labelKey: 'pci_instances_common_instance_continent_all',
-    value: 'all',
   },
 ];
 
@@ -1091,32 +1096,44 @@ export const mockedFlavorTypesSelectorData: TOptionsData[] = [
   },
 ];
 
-export const mockedPrivateNetworks = [
+export const mockedPrivateNetworks: TPrivateNetworkData[] = [
   {
     label: 'Priv_roubaix_ovh',
     value: 'networkId-1',
-    hasGatewayIp: false,
-    capabilities: ['PublicIP', 'FloatingIP'],
+    customRendererData: {
+      networkId: 'networkId-1',
+      hasGateway: false,
+      capabilities: ['PublicIP', 'FloatingIP'],
+    },
   },
   {
     label: 'test-waw1_2',
     value: 'networkId-2',
-    hasGatewayIp: true,
-    capabilities: ['FloatingIP'],
+    customRendererData: {
+      networkId: 'networkId-2',
+      hasGateway: true,
+      capabilities: ['FloatingIP'],
+    },
   },
   {
     label: 'SGB1NET',
     value: 'networkId-3',
-    hasGatewayIp: false,
-    capabilities: ['PublicIP'],
+    customRendererData: {
+      networkId: 'networkId-3',
+      hasGateway: false,
+      capabilities: ['PublicIP'],
+    },
   },
   {
     label: 'test-sbg7-gateway',
     value: 'networkId-4',
-    hasGatewayIp: false,
-    capabilities: [],
+    customRendererData: {
+      networkId: 'networkId-4',
+      hasGateway: false,
+      capabilities: [],
+    },
   },
-] as TPrivateNetworkData[];
+];
 
 export const mockedDistantBackupLocalizations = [
   {
@@ -1375,7 +1392,6 @@ export const mockedPrivateNetworkDTO: TNetworkDTO = {
         {
           id: '22defd89-ab74-4353-8676-6a0ad7a239d3',
           cidr: '10.1.0.0/16',
-          gatewayIp: '10.1.0.1',
           capabilities: [
             {
               type: 'PublicIP',
@@ -1386,6 +1402,11 @@ export const mockedPrivateNetworkDTO: TNetworkDTO = {
               enabled: true,
             },
           ],
+          gateway: {
+            externalGateway: false,
+            id: 'fake-gateway-id',
+            name: 'test-gateway',
+          },
         },
       ],
     },
@@ -1399,7 +1420,6 @@ export const mockedPrivateNetworkDTO: TNetworkDTO = {
         {
           id: 'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
           cidr: '10.2.0.0/16',
-          gatewayIp: '10.2.0.1',
           capabilities: [
             {
               type: 'PublicIP',
@@ -1410,6 +1430,11 @@ export const mockedPrivateNetworkDTO: TNetworkDTO = {
               enabled: false,
             },
           ],
+          gateway: {
+            externalGateway: false,
+            id: 'fake-gateway-id',
+            name: 'test-gateway',
+          },
         },
       ],
     },
@@ -1460,8 +1485,8 @@ export const mockedPrivateNetworkEntity: TPrivateNetwork = {
         {
           id: '22defd89-ab74-4353-8676-6a0ad7a239d3',
           cidr: '10.1.0.0/16',
-          gatewayIp: '10.1.0.1',
           capabilities: ['FloatingIP'],
+          hasGateway: true,
         },
       ],
       [
@@ -1469,8 +1494,8 @@ export const mockedPrivateNetworkEntity: TPrivateNetwork = {
         {
           id: 'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
           cidr: '10.2.0.0/16',
-          gatewayIp: '10.2.0.1',
           capabilities: ['PublicIP'],
+          hasGateway: true,
         },
       ],
     ]),

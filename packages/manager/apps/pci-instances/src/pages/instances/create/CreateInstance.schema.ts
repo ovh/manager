@@ -116,15 +116,16 @@ export const networkSchema = z
       .string()
       .max(NETWORK_NAME_LENGTH)
       .nonempty(`${NAMESPACES.FORM}:error_required_field`),
-    vlanId: z.custom<number>(
+    vlanId: z.custom<number | null>(
       (id) =>
-        id !== ''
+        id === null ||
+        (id !== ''
           ? z.coerce
               .number()
               .min(VLAN_ID_MIN)
               .max(VLAN_ID_MAX)
               .safeParse(id).success
-          : false,
+          : false),
       'creation:pci_instance_creation_network_add_new_vlanId_error',
     ),
     cidr: z.string().refine((value) => {
@@ -142,7 +143,7 @@ export const localBackupRotationSchema = z.string().nullable();
 
 export const distantBackupLocalizationSchema = z.string().nullable();
 
-export const assignNewGatewaySchema = z.boolean();
+export const willGatewayBeAttachedSchema = z.boolean();
 
 export const ipPublicTypeSchema = z.enum(['basicIp', 'floatingIp']).nullable();
 
@@ -176,7 +177,7 @@ export const instanceCreationSchema = z.object({
   newSshPublicKey: sshPublicKeySchema.nullable(),
   subnetId: subnetIdSchema,
   newPrivateNetwork: networkSchema,
-  assignNewGateway: assignNewGatewaySchema,
+  willGatewayBeAttached: willGatewayBeAttachedSchema,
   ipPublicType: ipPublicTypeSchema,
   floatingIpAssignment: floatingIpAssignmentSchema,
   existingFloatingIpId: existingFloatingIpIdSchema,

@@ -8,6 +8,7 @@ import { useDashboard } from '../hooks/useDashboard';
 import { DashboardTileBlock } from './tile/DashboardTile.component';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { Clipboard } from '@/components/clipboard/Clipboard.component';
+import { DiskDisplayCell } from '@/pages/instances/create/components/cart/DiskDisplayCell.component';
 
 const InstancePropertyBlock: FC = () => {
   const { t } = useTranslation(['dashboard', 'list']);
@@ -27,7 +28,9 @@ const InstancePropertyBlock: FC = () => {
       >
         <div className="flex flex-col">
           {instance?.flavor?.disks.map((disk) => (
-            <Text key={disk.id}>{disk.display}</Text>
+            <Text key={disk.id}>
+              <DiskDisplayCell disk={disk} />
+            </Text>
           ))}
         </div>
       </DashboardTileBlock>

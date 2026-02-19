@@ -1,5 +1,6 @@
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TableRow } from '@/components/flavorsTable/FlavorsTable.component';
+import { DiskDisplayCell } from '@/pages/instances/create/components/cart/DiskDisplayCell.component';
 import { TGpuFlavorDataForTable } from '@/pages/instances/create/view-models/flavorsViewModel';
 import { ReactNode } from 'react';
 
@@ -45,7 +46,7 @@ export function GpuFlavorRowsBuilder(
           <div className="flex flex-col">
             {flavor.disks.map((disk) => (
               <Text key={disk.id} preset={TEXT_PRESET.span}>
-                {disk.display}
+                <DiskDisplayCell disk={disk} />
               </Text>
             ))}
           </div>

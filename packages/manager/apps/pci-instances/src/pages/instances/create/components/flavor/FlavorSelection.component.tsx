@@ -29,7 +29,9 @@ import RegionSelectionModal, {
 import { deps } from '@/deps/deps';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useEffect } from 'react';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
+import { selectIsBaseFlavorInAvailableListForCreation } from '../../view-models/cartViewModel';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 
 export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
@@ -85,6 +87,18 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       }),
     [flavorCategory, flavorType, microRegion, projectId, withUnavailable],
   );
+
+  const availableFlavorIds = useMemo(
+    () => flavors.map((flavor) => flavor.id),
+    [flavors],
+  );
+  const { data: isBaseFlavorInAvailableList = false } =
+    useInstancesCatalogWithSelect({
+      select: selectIsBaseFlavorInAvailableListForCreation(
+        flavorId,
+        availableFlavorIds,
+      ),
+    });
 
   const { columns, rows } = useMemo(() => {
     if (isGpu) {
@@ -176,10 +190,20 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       (flavor) => flavor.id === flavorId,
     );
 
-    if (!availablePreviousSelectedFlavor) {
+    if (availablePreviousSelectedFlavor) {
+      return;
+    }
+
+    if (!isBaseFlavorInAvailableList) {
       setValue('flavorId', preselectedFlavordId);
     }
-  }, [flavorId, flavors, preselectedFlavordId, setValue]);
+  }, [
+    flavorId,
+    flavors,
+    preselectedFlavordId,
+    setValue,
+    isBaseFlavorInAvailableList,
+  ]);
 
   useEffect(() => {
     const hasPreviousSelectedBilling = flavorAvailableBillingTypes.some(

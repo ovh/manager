@@ -27,7 +27,7 @@ export const CartItemDetails = ({
   const { getTextPrice } = useCatalogPrice(4);
 
   return (
-    <AccordionContent className="bg-[--ods-color-neutral-050] px-8 py-5">
+    <AccordionContent className="min-h-0 flex-1 overflow-y-auto bg-[--ods-color-neutral-050] px-8 py-5">
       <QuantitySelector quota={quota} type={type} region={translatedRegion} />
       <Divider spacing="16" />
       {details.map(
@@ -40,14 +40,18 @@ export const CartItemDetails = ({
             <div className="flex justify-between">
               {description}
               {price != null && (
-                <Text
-                  preset="heading-6"
-                  className="text-right"
+                <div
+                  className="flex flex-col items-end gap-1"
                   data-testid="cart-item-details-price"
                 >
-                  {isApproximate && '~'}
-                  {getTextPrice(price)} {priceUnit}
-                </Text>
+                  <Text preset="heading-6" className="block">
+                    {isApproximate && '~'}
+                    {getTextPrice(price)}
+                  </Text>
+                  <Text className="block text-[--ods-color-neutral-600]">
+                    {priceUnit}
+                  </Text>
+                </div>
               )}
             </div>
             {index !== details.length - 1 && (
