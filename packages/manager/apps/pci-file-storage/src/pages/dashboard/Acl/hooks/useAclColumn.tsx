@@ -16,6 +16,7 @@ import {
   SelectControl,
   SelectValueChangeDetail,
   Spinner,
+  Text,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -37,7 +38,7 @@ export const useAclColumn = ({
   isCreatePending,
 }: TUseAclColumnProps): DatagridColumn<TAclData | TAclDraftData>[] => {
   const { t } = useTranslation(['acl', NAMESPACES.ACTIONS]);
-  const { permissions } = useAclPermissions();
+  const { permissions, permissionsMap } = useAclPermissions();
 
   return useMemo(() => {
     return [
@@ -72,7 +73,9 @@ export const useAclColumn = ({
                 }}
               />
             </div>
-          ) : null,
+          ) : (
+            <Text preset="paragraph">{row.original.accessTo}</Text>
+          ),
       },
       {
         id: 'accessPermission',
@@ -104,7 +107,9 @@ export const useAclColumn = ({
                 />
               }
             </div>
-          ) : null,
+          ) : (
+            <Text preset="paragraph">{permissionsMap[row.original.permission]}</Text>
+          ),
       },
       {
         id: 'action',
@@ -141,5 +146,5 @@ export const useAclColumn = ({
         maxSize: 50,
       },
     ];
-  }, [formMethods, isCreatePending, onCancelDraft, permissions, t]);
+  }, [formMethods, isCreatePending, onCancelDraft, permissions, permissionsMap, t]);
 };
