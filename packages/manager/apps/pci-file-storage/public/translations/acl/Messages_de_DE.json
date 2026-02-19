@@ -1,0 +1,17 @@
+{
+  "description": "Fügen Sie erlaubte Adressen oder IP-Bereiche hinzu, die auf diesen Share zugreifen dürfen. Standardmäßig ist keine Adresse oder IP-Bereich erlaubt. File Storage kann nur mit OVHcloud-IP-Adressen (Public Cloud, Managed Kubernetes Service) verwendet werden.",
+  "add": {
+    "label": "Neuen Zugang hinzufügen"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Zugang zu"
+    },
+    "accessPermission": {
+      "header": "Zugriffsrechte"
+    },
+    "actions": {
+      "header": "Aktionen"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Agregue direcciones o rangos de IP autorizados para acceder a este recurso compartido. Por defecto, ninguna dirección o rango de IP está autorizado. El almacenamiento de archivos solo se puede utilizar con direcciones IP de OVHcloud (Nube Pública, Servicio de Kubernetes Gestionado).",
+  "add": {
+    "label": "Agregar un nuevo acceso"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Acceso a"
+    },
+    "accessPermission": {
+      "header": "Derechos de acceso"
+    },
+    "actions": {
+      "header": "Acciones"
+    }
+  }
+}
