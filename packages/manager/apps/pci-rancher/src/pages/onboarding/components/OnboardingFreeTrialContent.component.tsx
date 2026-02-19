@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { OnboardingLayout } from '@ovh-ux/manager-react-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { OsdsText } from '@ovhcloud/ods-components/react';
@@ -37,14 +37,18 @@ export const OnboardingFreeTrialContent = () => {
         {t('freeTrialEligibilityTitle')}
       </OsdsText>
       <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-        {t('freeTrialCreditStandard', {
-          amount: freeTrialCreditText.standard,
-        })}
+        <Trans
+          i18nKey="freeTrialCreditStandard"
+          values={{ amount: freeTrialCreditText.standard }}
+          components={{ b: <b /> }}
+        />
       </OsdsText>
       <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-        {t('freeTrialCreditOvhEdition', {
-          amount: freeTrialCreditText.ovhEdition,
-        })}
+        <Trans
+          i18nKey="freeTrialCreditOvhEdition"
+          values={{ amount: freeTrialCreditText.ovhEdition }}
+          components={{ b: <b /> }}
+        />
       </OsdsText>
       <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-4">
         {t('freeTrialCreditApplied')}
