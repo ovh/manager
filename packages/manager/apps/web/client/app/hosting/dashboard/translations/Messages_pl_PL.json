@@ -1414,5 +1414,6 @@
   "database_tabs_dumps_guide_message_part1": "Czy chcesz zapisać lub przywrócić bazę danych?",
   "database_tabs_dumps_guide_message_part2": "Znajdź nasze szczegółowe przewodniki, aby wykonać te czynności bezpośrednio z Twojego konta klienta:",
   "database_tabs_dumps_guide_save": "Zapisz i eksportuj bazę danych",
-  "database_tabs_dumps_guide_restore": "Przywróć i importuj bazę danych"
+  "database_tabs_dumps_guide_restore": "Przywróć i importuj bazę danych",
+  "hosting_tab_STATISTICS_databases_none": "Nie wykryto żadnych błędów w twoich bazach danych. Wszystko działa normalnie."
 }

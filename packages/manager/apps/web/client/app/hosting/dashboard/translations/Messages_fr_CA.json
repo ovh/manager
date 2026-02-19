@@ -1079,6 +1079,7 @@
   "hosting_tab_STATISTICS_type": "Type",
   "hosting_tab_STATISTICS_loading": "Chargement des données ...",
   "hosting_tab_STATISTICS_none": "Il n'y a aucune statistique à afficher.",
+  "hosting_tab_STATISTICS_databases_none": "Aucune erreur détectée sur vos bases de données. Tout fonctionne normalement.",
   "hosting_tab_STATISTICS_type_IN_HTTP_HITS": "Requêtes HTTP",
   "hosting_tab_STATISTICS_type_IN_HTTP_MEAN_RESPONSE_TIME": "Temps moyen de réponse",
   "hosting_tab_STATISTICS_type_MAILS_OUT_SEND_COUNT": "E-mails envoyés",
