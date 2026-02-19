@@ -22,8 +22,8 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({ items = [] }) => {
 
   const breadcrumbItems: TBreadcrumbItem[] = [
     {
-      href: project.url,
-      label: project.name,
+      href: project?.url,
+      label: project?.name ?? '',
     },
     {
       href: backHref,

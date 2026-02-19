@@ -8,6 +8,7 @@ import { Button, Divider, Text, toast } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
+import { useGetProject } from '@/hooks/useGetProject';
 import { useProjectId } from '@/hooks/useProjectId';
 import { AvailabilityZoneSelection } from '@/pages/create/components/localisation/availabilityZone/AvailabilityZoneSelection.component';
 import { DeploymentModeSection } from '@/pages/create/components/localisation/deploymentMode/DeploymentModeSection.component';
@@ -29,6 +30,7 @@ export const CreateShareForm = () => {
   const { t } = useTranslation(['create', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const projectId = useProjectId();
+  const project = useGetProject();
 
   const formMethods = useCreateShareForm();
   const [selectedMacroRegion, selectedMicroRegion, shareName] = useWatch({
@@ -81,6 +83,7 @@ export const CreateShareForm = () => {
   };
 
   const isFormValid = formMethods.formState.isValid;
+  const isValidationDisabled = !isFormValid || project?.isDiscovery;
 
   return (
     <FormProvider {...formMethods}>
@@ -115,7 +118,12 @@ export const CreateShareForm = () => {
           <Button type="button" variant="ghost" onClick={handleCancel}>
             {t(`${NAMESPACES.ACTIONS}:cancel`)}
           </Button>
-          <Button type="submit" variant="default" disabled={!isFormValid} loading={isPending}>
+          <Button
+            type="submit"
+            variant="default"
+            disabled={isValidationDisabled}
+            loading={isPending}
+          >
             {t(`${NAMESPACES.ACTIONS}:validate`)}
           </Button>
         </section>

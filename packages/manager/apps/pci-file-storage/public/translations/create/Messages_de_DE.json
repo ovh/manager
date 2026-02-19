@@ -82,5 +82,7 @@
   "submit": {
     "error": "Beim Hinzufügen des Shares ist ein Fehler aufgetreten: {{error}}",
     "success": "Das Share {{name}} wird erstellt"
-  }
+  },
+  "title": "Erstellen Sie einen Share",
+  "description": "Erstellen Sie einen Share, der in Ihrem Public Cloud-Projekt verfügbar ist. Benötigen Sie weitere Informationen zu Public Cloud File Storage? <0>Sehen Sie sich unsere Dokumentation an</0>"
 }

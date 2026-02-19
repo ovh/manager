@@ -82,5 +82,7 @@
   "submit": {
     "error": "Ocorreu um erro ao adicionar o share: {{error}}",
     "success": "O share {{name}} está a ser criado"
-  }
+  },
+  "title": "Criar um share",
+  "description": "Crie um share disponível no seu projeto de Nuvem Pública. Precisa de mais informações sobre o Armazenamento de Arquivos na Nuvem Pública? <0>Consulte a nossa documentação</0>"
 }
