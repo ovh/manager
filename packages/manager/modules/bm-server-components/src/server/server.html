@@ -108,6 +108,13 @@
             data-disabled="server.isExpired"
             ><span data-ng-bind="$ctrl.TAG_TAB_LABEL"></span>
         </oui-header-tabs-item>
+        <oui-header-tabs-item
+            data-ng-if="$ctrl.features.isFeatureAvailable('billing:commitment') && !$ctrl.nutanixCluster && $ctrl.serverType !== 'node' && $ctrl.server.commercialRange !== 'housing'"
+            data-href="{{:: $ctrl.getTabItemUrl('dashboard.commitment') }}"
+            active="$ctrl.getTabItemUrl('dashboard.commitment') === $ctrl.currentActiveLink()"
+            data-disabled="server.isExpired"
+            ><span data-translate="server_tab_commitment"></span
+        ></oui-header-tabs-item>
     </oui-header-tabs>
 </header>
 

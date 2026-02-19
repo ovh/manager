@@ -14,6 +14,7 @@ export default {
     worldPart: '<',
     nutanixCluster: '<',
     backupStorageAvailable: '<',
+    serverType: '<',
   },
   controller,
   template,
