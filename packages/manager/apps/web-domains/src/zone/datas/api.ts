@@ -26,21 +26,16 @@ export type CreateZoneRecordPayload = {
 };
 
 /**
- * Validate a zone record before creating it.
- * POST /domain/zone/{serviceName}/record?fieldType={fieldType}&subDomain={subDomain}
+ * Validate a zone record syntax before creating it.
+ * GET /domain/zone/{serviceName}/record?fieldType={fieldType}&subDomain={subDomain}
+ * If the syntax is invalid, the API will return an error.
  */
 export const validateZoneRecord = async (
   serviceName: string,
-  payload: CreateZoneRecordPayload,
-): Promise<ZoneRecord> => {
-  const { data } = await v6.post<ZoneRecord>(
+  payload: Pick<CreateZoneRecordPayload, 'fieldType' | 'subDomain'>,
+): Promise<number[]> => {
+  const { data } = await v6.get<number[]>(
     `/domain/zone/${serviceName}/record`,
-    {
-      fieldType: payload.fieldType,
-      subDomain: payload.subDomain ?? '',
-      target: payload.target,
-      ttl: payload.ttl,
-    },
     {
       params: {
         fieldType: payload.fieldType,

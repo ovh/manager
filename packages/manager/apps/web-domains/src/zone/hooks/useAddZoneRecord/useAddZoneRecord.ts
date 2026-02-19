@@ -5,6 +5,7 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   createZoneRecord,
   refreshZone,
+  validateZoneRecord,
   type CreateZoneRecordPayload,
 } from '@/zone/datas/api';
 
@@ -15,10 +16,16 @@ export const useAddZoneRecord = (serviceName: string) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: async (payload: CreateZoneRecordPayload) => {
-      // Step 1: Create the record (the API validates on creation)
+      // Step 1: Validate syntax via GET before creating
+      await validateZoneRecord(serviceName, {
+        fieldType: payload.fieldType,
+        subDomain: payload.subDomain,
+      });
+
+      // Step 2: Create the record
       const record = await createZoneRecord(serviceName, payload);
 
-      // Step 2: Refresh the zone to apply changes
+      // Step 3: Refresh the zone to apply changes
       await refreshZone(serviceName);
 
       return record;

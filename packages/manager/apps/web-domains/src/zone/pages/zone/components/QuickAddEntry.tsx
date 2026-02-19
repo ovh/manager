@@ -2,11 +2,14 @@ import { useEffect, useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Textarea } from "@ovhcloud/ods-react";
-import { zForm, AddEntrySchemaType, getTargetDisplayValue, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_AS_TXT, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
+import { zForm, AddEntrySchemaType, getTargetDisplayValue, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
   FieldTypeExtendedRecordsEnum,
   FieldTypeMailRecordsEnum,
+  TtlSelectEnum,
+  DkimStatusEnum,
+  BoolSelectEnum,
 } from "@/common/enum/zone.enum";
 import { RECORD_FORM_CONFIGS } from "@/zone/utils/recordFormConfig";
 import { DynamicRecordForm } from "./DynamicRecordForm";
@@ -21,7 +24,7 @@ function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => 
     const schema = zForm((key: string, params?: Record<string, unknown>) => t(key, params), recordType).ADD_ENTRY_FORM_SCHEMA;
     const payload = {
       ...values,
-      ttl: values?.ttlSelect === "global" ? undefined : (values?.ttl ?? 60),
+      ttl: values?.ttlSelect === TtlSelectEnum.GLOBAL ? undefined : (values?.ttl ?? 60),
     };
     const result = schema.safeParse(payload);
     if (result.success) {
@@ -50,12 +53,12 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   const resolver = useMemo(() => addEntryResolver(t), [t]);
 
   const methods = useForm<AddEntrySchemaType>({
-    defaultValues: { recordType: "", subDomain: "", ttlSelect: "global", ttl: 60 },
+    defaultValues: { recordType: "", subDomain: "", ttlSelect: TtlSelectEnum.GLOBAL, ttl: 60 },
     mode: "onTouched",
     resolver,
   });
 
-  const { watch, formState: { isValid }, handleSubmit, setValue, control, reset } = methods;
+  const { watch, formState: { isValid }, handleSubmit, setValue, control, reset, clearErrors } = methods;
   const recordType = watch("recordType");
 
   // BIND paste feature
@@ -101,7 +104,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     // Set record type and trigger the select handler
     if (parsedValues.recordType) {
       setValue('recordType', parsedValues.recordType);
-      setValue('ttlSelect', parsedValues.ttlSelect ?? 'global');
+      setValue('ttlSelect', parsedValues.ttlSelect ?? TtlSelectEnum.GLOBAL);
       if (parsedValues.ttl !== undefined) {
         setValue('ttl', parsedValues.ttl);
       }
@@ -127,9 +130,10 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   const { addRecord, isAddingRecord } = useAddZoneRecord(serviceName);
 
   const handleSelectRecordType = useCallback((fieldType: string) => {
-    setValue('recordType', fieldType);
-    setValue('ttlSelect', 'global');
-    setValue('ttl', undefined);
+    // Reset the entire form + clear all validation errors from the previous record type
+    reset({ recordType: fieldType, subDomain: '', ttlSelect: TtlSelectEnum.GLOBAL, ttl: 60 });
+    clearErrors();
+
     if (fieldType === FieldTypeExtendedRecordsEnum.CAA) {
       setValue('flags', 0);
     }
@@ -141,11 +145,11 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       setValue('k', 'rsa');
       setValue('h', 'sha256');
       setValue('s', 'email');
-      setValue('dkim_status', 'active');
-      setValue('t_y', 'no');
-      setValue('t_s', 'no');
+      setValue('dkim_status', DkimStatusEnum.ACTIVE);
+      setValue('t_y', BoolSelectEnum.NO);
+      setValue('t_s', BoolSelectEnum.NO);
     }
-  }, [setValue]);
+  }, [reset, clearErrors, setValue]);
 
   const onSubmit = useCallback((data: AddEntrySchemaType) => {
     const recordType = data.recordType as string;
@@ -153,11 +157,11 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     // Compose the target value from all form fields
     const target = getTargetDisplayValue(recordType, data);
 
-    // SPF/DKIM/DMARC are sent as TXT to the API
-    const fieldType = RECORD_TYPES_AS_TXT.includes(recordType) ? 'TXT' : recordType;
+    // Use the original record type as fieldType (DKIM, DMARC, SPF are NOT converted to TXT)
+    const fieldType = recordType;
 
     // Some record types don't support custom TTL
-    const ttl = RECORD_TYPES_WITHOUT_TTL.includes(recordType) || data.ttlSelect === 'global'
+    const ttl = RECORD_TYPES_WITHOUT_TTL.includes(recordType) || data.ttlSelect === TtlSelectEnum.GLOBAL
       ? undefined
       : Number(data.ttl);
 
