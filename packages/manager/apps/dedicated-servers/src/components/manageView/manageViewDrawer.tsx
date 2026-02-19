@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -18,7 +18,7 @@ import {
 } from './manageView.constants';
 import { Categories, ViewType } from './types';
 import { useSaveViewsPreference } from '@/hooks/manage-views/useSaveViewPreference';
-import ManageViewDrawerTitle from './manageViewDrawerTitle';
+import ManageViewDrawerTitle, { TitleEditorRef } from './manageViewDrawerTitle';
 import ManageViewConfig from './manageViewConfig';
 import { ViewContext } from './viewContext';
 
@@ -54,6 +54,7 @@ export const ManageViewDrawer = ({
   const [draftGroupBy, setDraftGroupBy] = useState<Categories | undefined>(
     contextGroupBy,
   );
+  const titleRef = useRef<TitleEditorRef>(null);
 
   useEffect(() => {
     let name = view?.name;
@@ -131,15 +132,21 @@ export const ManageViewDrawer = ({
     });
   };
 
-  const saveViewChanges = () => {
+  const saveViewChanges = async () => {
+    const newView = { ...editingView };
     if (draftGroupBy !== undefined) {
       setContextGroupBy(draftGroupBy);
+      newView.groupBy = draftGroupBy;
     }
+
+    if (titleRef.current?.isEditMode) {
+      const newTitle = titleRef.current?.save();
+      handleNameChange(newTitle);
+      newView.name = newTitle;
+    }
+
     saveViews({
-      view: {
-        ...editingView,
-        groupBy: draftGroupBy,
-      },
+      view: newView,
     });
     handleConfirm();
   };
@@ -178,6 +185,7 @@ export const ManageViewDrawer = ({
         <section className="p-4">
           <div className="flex items-center gap-4">
             <ManageViewDrawerTitle
+              ref={titleRef}
               value={editingView?.name}
               onChange={handleNameChange}
             />
