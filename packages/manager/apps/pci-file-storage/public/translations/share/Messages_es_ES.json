@@ -9,7 +9,9 @@
     "share_name": "Nombre del share",
     "location": "Localización",
     "creation_date": "Fecha de creación",
-    "mount_path": "Ruta de montaje"
+    "mount_path": "Ruta de montaje",
+    "private_network": "Red privada",
+    "network_name": "Nombre de la red"
   },
   "actions": {
     "column": "Acciones",
