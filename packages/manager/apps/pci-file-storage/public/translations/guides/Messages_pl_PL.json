@@ -1,0 +1,21 @@
+{
+  "learn-more": {
+    "category": "Pakiet",
+    "title": "Dowiedz się więcej",
+    "description": "Na stronie Labs znajdziesz informacje o funkcjach i cenach File Storage.",
+    "link-text": "Dowiedz się więcej"
+  },
+  "get-started": {
+    "category": "Przewodnik",
+    "title": "Pierwsze kroki",
+    "description": "Przewodnik, z którego dowiesz się, jak utworzyć pierwszy „share”.",
+    "link-text": "Dowiedz się więcej",
+    "alternate-title": "Pierwsze kroki z udostępnianiem"
+  },
+  "discord": {
+    "category": "Discord",
+    "title": "Bądź na bieżąco z aktualnościami",
+    "description": "Dołącz do nas na #beta-file-storage: zadawaj pytania i dziel się opiniami.",
+    "link-text": "Dowiedz się więcej"
+  }
+}

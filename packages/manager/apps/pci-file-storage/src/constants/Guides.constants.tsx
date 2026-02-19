@@ -1,4 +1,4 @@
-import { Subsidiary } from '@ovh-ux/manager-config';
+import type { Subsidiary } from '@ovh-ux/manager-config';
 
 export type GuideLinks = Record<'DEFAULT', string> & Partial<Record<Subsidiary, string>>;
 type OnboardingGuide = {

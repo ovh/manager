@@ -7,21 +7,20 @@ import { useTranslation } from 'react-i18next';
 import {
   BADGE_SIZE,
   Badge,
-  Button,
-  ICON_NAME,
-  Icon,
   Tab,
   TabList,
   Tabs,
   type TabsValueChangeEvent,
-  Text,
 } from '@ovhcloud/ods-react';
 
-import { ActionLink } from '@/components/action-link/ActionLink.component';
+import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
+
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
+import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
 import { useShare } from '@/data/hooks/shares/useShare';
 import { useShareParams } from '@/hooks/useShareParams';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
+import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 const TAB_GENERAL = '';
@@ -39,7 +38,7 @@ const getTabValueFromPathname = (pathname: string): string => {
 };
 
 const DashboardLayout: React.FC = () => {
-  const { t } = useTranslation(['dashboard']);
+  const { t } = useTranslation(['dashboard', 'guides']);
   const { region, shareId } = useShareParams();
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,6 +46,8 @@ const DashboardLayout: React.FC = () => {
   const { data: shareDetails } = useShare(region, shareId, {
     select: selectShareDetails,
   });
+
+  const guideItems = useFileStorageGuideItems();
 
   const currentTab = getTabValueFromPathname(location.pathname);
 
@@ -59,52 +60,40 @@ const DashboardLayout: React.FC = () => {
   };
 
   return (
-    <main className="flex flex-col gap-6 px-4 py-8 md:px-10 md:py-9">
-      <Breadcrumb items={[{ label: shareDetails?.name ?? '' }]} />
-
-      <header className="flex flex-col gap-8">
-        <div className="flex items-center gap-2">
-          <Text preset="heading-2">{shareDetails?.name ?? ''}</Text>
-          <Button
-            type="button"
-            variant="ghost"
-            color="primary"
-            size="sm"
-            aria-label={t('dashboard:actions.edit_name')}
-            className="flex items-center"
-          >
-            <Icon name={ICON_NAME.pen} />
-          </Button>
-        </div>
-        <ActionLink
-          path=".."
-          className="flex w-fit items-center gap-2"
-          label={t('dashboard:actions.back')}
-          withBackArrow
-        />
-      </header>
-
-      <nav aria-label={t('dashboard:tabs.general')}>
-        <Tabs value={currentTab} onValueChange={handleTabChange}>
-          <TabList className="w-fit">
-            <Tab value={TAB_GENERAL} id="tab-general">
-              {t('dashboard:tabs.general')}
-            </Tab>
-            <Tab value={TAB_SNAPSHOTS} id="tab-snapshots" disabled className="flex gap-4">
-              {t('dashboard:tabs.snapshots')}
-              <Badge size={BADGE_SIZE.sm} className="font-normal">
-                {t('common.coming_soon')}
-              </Badge>
-            </Tab>
-            <Tab value={TAB_ACL} id="tab-acl">
-              {t('dashboard:tabs.acl')}
-            </Tab>
-          </TabList>
-        </Tabs>
-      </nav>
-
+    <BaseLayout
+      breadcrumb={<Breadcrumb items={[{ label: shareDetails?.name ?? '' }]} />}
+      header={{
+        title: shareDetails?.name ?? '',
+        guideMenu: <GuideMenu items={guideItems} />,
+        changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
+      }}
+      backLink={{
+        label: t('dashboard:actions.back'),
+        onClick: () => navigate('..'),
+      }}
+      tabs={
+        <nav aria-label={t('dashboard:tabs.general')}>
+          <Tabs value={currentTab} onValueChange={handleTabChange}>
+            <TabList className="w-fit">
+              <Tab value={TAB_GENERAL} id="tab-general">
+                {t('dashboard:tabs.general')}
+              </Tab>
+              <Tab value={TAB_SNAPSHOTS} id="tab-snapshots" disabled className="flex gap-4">
+                {t('dashboard:tabs.snapshots')}
+                <Badge size={BADGE_SIZE.sm} className="font-normal">
+                  {t('common.coming_soon')}
+                </Badge>
+              </Tab>
+              <Tab value={TAB_ACL} id="tab-acl">
+                {t('dashboard:tabs.acl')}
+              </Tab>
+            </TabList>
+          </Tabs>
+        </nav>
+      }
+    >
       <Outlet />
-    </main>
+    </BaseLayout>
   );
 };
 
