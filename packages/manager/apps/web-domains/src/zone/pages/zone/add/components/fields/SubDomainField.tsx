@@ -57,26 +57,16 @@ export function SubDomainField({
               </Tooltip>
             )}
           </FormFieldLabel>
-          <div className="flex w-full gap-2">
-            <div className="relative w-full">
-              <Input
-                type={INPUT_TYPE.text}
-                className="w-full"
-                style={domainSuffix ? { paddingRight: `${domainSuffix.length + 4}ch` } : undefined}
-                name={field.name}
-                value={String(field.value ?? "")}
-                onBlur={field.onBlur}
-                onChange={(e) => field.onChange(e.target?.value)}
-                invalid={!!error}
-                placeholder={placeholder}
-              />
-              {domainSuffix && (
-                <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">
-                  .{domainSuffix}.
-                </span>
-              )}
-            </div>
-          </div>
+          <Input
+            type={INPUT_TYPE.text}
+            className="w-full"
+            name={field.name}
+            value={String(field.value ?? "")}
+            onBlur={field.onBlur}
+            onChange={(e) => field.onChange(e.target?.value)}
+            invalid={!!error}
+            placeholder={placeholder}
+          />
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>
       )}

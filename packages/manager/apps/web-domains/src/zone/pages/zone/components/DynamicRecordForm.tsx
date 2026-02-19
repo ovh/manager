@@ -37,9 +37,9 @@ import { TextareaField } from '../add/components/fields/TextareaField';
 const GRID_4COL = 'grid grid-cols-4 items-start gap-4';
 
 const COL_SPAN_CLASS: Record<number, string> = {
-  1: 'col-span-1',
-  2: 'col-span-2',
-  3: 'col-span-3',
+  1: 'col-span-4 md:col-span-1',
+  2: 'col-span-4 md:col-span-2',
+  3: 'col-span-4 md:col-span-3',
   4: 'col-span-4',
 };
 

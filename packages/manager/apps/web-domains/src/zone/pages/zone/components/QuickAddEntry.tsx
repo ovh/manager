@@ -211,7 +211,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4">
           <div className="flex items-end justify-between gap-4">
-            <FormField className="w-1/2">
+            <FormField className="w-full md:w-1/2">
               <FormFieldLabel>
                 {t('zone_page_type')}
               </FormFieldLabel>
@@ -250,6 +250,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               type="button"
               variant={BUTTON_VARIANT.outline}
               size={BUTTON_SIZE.sm}
+              className="min-w-fit"
               onClick={() => {
                 const opening = !showBindInput;
                 setShowBindInput(opening);

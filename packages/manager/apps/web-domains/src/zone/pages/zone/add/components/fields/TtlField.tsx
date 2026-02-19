@@ -44,65 +44,69 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
           </Tooltip>
         )}
       </FormFieldLabel>
-      <div className="grid w-full grid-cols-2 items-start gap-4">
-        <Controller
-          name="ttlSelect"
-          control={control}
-          render={({ field: ttlSelectField }) => (
-            <Select
-              name={ttlSelectField.name}
-              className="w-full"
-              value={ttlSelectField.value == null ? ["global"] : [ttlSelectField.value as string]}
-              onValueChange={({ value }) => ttlSelectField.onChange(value[0] ?? "global")}
-              onBlur={() => ttlSelectField.onBlur?.()}
-              items={[
-                { label: t("zone_page_form_ttl_global"), value: "global" },
-                { label: t("zone_page_form_ttl_custom"), value: "custom" },
-              ]}
-            >
-              <SelectControl placeholder={t(`${NAMESPACES.FORM}:select_placeholder`)} />
-              <SelectContent />
-            </Select>
-          )}
-        />
-        <Controller
-          name="ttl"
-          control={control}
-          render={({ field: ttlField, fieldState: { error: ttlError } }) => {
-            const ttlSelectValue = watch("ttlSelect");
-            if (ttlSelectValue !== "custom") return null;
-            return (
-              <div className="flex flex-col gap-1">
-                <div className="relative">
-                  <Input
-                    type={INPUT_TYPE.number}
-                    className="w-full"
-                    style={{ paddingRight: '6rem' }}
-                    name={ttlField.name}
-                    value={
-                      ttlField.value !== undefined && ttlField.value !== ""
-                        ? ttlField.value as string
-                        : ""
-                    }
-                    onChange={(e) =>
-                      ttlField.onChange(
-                        e.target?.value === "" ? undefined : Number(e.target?.value),
-                      )
-                    }
-                    onBlur={ttlField.onBlur}
-                    min='60'
-                    step={1}
-                    invalid={!!ttlError}
-                  />
-                  <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">
-                    {t('zone_page_form_label_seconds')}
-                  </span>
+      <div className="flex w-full flex-col gap-4 md:flex-row">
+        <div className="w-full md:flex-1">
+          <Controller
+            name="ttlSelect"
+            control={control}
+            render={({ field: ttlSelectField }) => (
+              <Select
+                name={ttlSelectField.name}
+                className="w-full"
+                value={ttlSelectField.value == null ? ["global"] : [ttlSelectField.value as string]}
+                onValueChange={({ value }) => ttlSelectField.onChange(value[0] ?? "global")}
+                onBlur={() => ttlSelectField.onBlur?.()}
+                items={[
+                  { label: t("zone_page_form_ttl_global"), value: "global" },
+                  { label: t("zone_page_form_ttl_custom"), value: "custom" },
+                ]}
+              >
+                <SelectControl placeholder={t(`${NAMESPACES.FORM}:select_placeholder`)} />
+                <SelectContent />
+              </Select>
+            )}
+          />
+        </div>
+        <div className="w-full md:flex-1">
+          <Controller
+            name="ttl"
+            control={control}
+            render={({ field: ttlField, fieldState: { error: ttlError } }) => {
+              const ttlSelectValue = watch("ttlSelect");
+              if (ttlSelectValue !== "custom") return null;
+              return (
+                <div className="flex flex-col gap-1">
+                  <div className="relative">
+                    <Input
+                      type={INPUT_TYPE.number}
+                      className="w-full"
+                      style={{ paddingRight: '6rem' }}
+                      name={ttlField.name}
+                      value={
+                        ttlField.value !== undefined && ttlField.value !== ""
+                          ? ttlField.value as string
+                          : ""
+                      }
+                      onChange={(e) =>
+                        ttlField.onChange(
+                          e.target?.value === "" ? undefined : Number(e.target?.value),
+                        )
+                      }
+                      onBlur={ttlField.onBlur}
+                      min='60'
+                      step={1}
+                      invalid={!!ttlError}
+                    />
+                    <span className="absolute right-0 top-0 h-full flex items-center px-3 text-[--ods-color-neutral-600] text-sm pointer-events-none">
+                      {t('zone_page_form_label_seconds')}
+                    </span>
+                  </div>
+                  {ttlError?.message && <FormFieldError>{ttlError.message}</FormFieldError>}
                 </div>
-                {ttlError?.message && <FormFieldError>{ttlError.message}</FormFieldError>}
-              </div>
-            );
-          }}
-        />
+              );
+            }}
+          />
+        </div>
       </div>
     </FormField>
   );

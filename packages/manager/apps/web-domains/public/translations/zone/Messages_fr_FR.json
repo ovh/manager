@@ -263,7 +263,7 @@
   "zone_page_resume_table_type": "Type",
   "zone_page_resume_table_target": "Cible",
   "zone_page_form_spf_button_use_spf_ovh": "Utiliser le SPF pour mutualisé OVH",
-  "zone_page_form_spf_custom_warning": "Si vous souhaitez personnaliser votre entrée SPF, veuillez utiliser le mode d'édition textuel de la zone DNS.",
+  "zone_page_form_spf_custom_warning": "Si vous souhaitez personnaliser votre entrée SPF, veuillez utiliser le <link>mode d'édition textuel</link> de la zone DNS.",
   "zone_page_form_label_naptr_order": "Ordre",
   "zone_page_form_label_naptr_pref": "Préférence",
   "zone_page_form_label_naptr_flag": "Drapeau",

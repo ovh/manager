@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { ICON_NAME, Message, MESSAGE_COLOR, MESSAGE_VARIANT, MessageBody, MessageIcon, Text, TEXT_PRESET, Textarea } from "@ovhcloud/ods-react";
 
 export interface SPFRecordFormProps { readonly serviceName: string; }
@@ -19,7 +19,11 @@ export function SPFRecordForm({
       <Message color={MESSAGE_COLOR.information} variant={MESSAGE_VARIANT.light} className="mt-4 w-1/2" dismissible={false}>
         <MessageIcon name={ICON_NAME.circleInfo} />
         <MessageBody>
-          {t("zone_page_form_spf_custom_warning")}
+          <Trans
+            t={t}
+            i18nKey="zone_page_form_spf_custom_warning"
+            components={{ link: <a href="#" className="text-[--ods-color-primary-500] underline cursor-pointer" /> }}
+          />
         </MessageBody>
       </Message>
     </div>
