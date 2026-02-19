@@ -43,8 +43,6 @@ type TShareEditableNameProps = {
   region: string;
 };
 
-// Todo in this pr : add  tests
-
 export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
   name,
   projectId,
@@ -107,6 +105,7 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
 
   const handleCancel = () => {
     reset({ name });
+    setEditing(false);
   };
 
   const handleFormSubmit = (data: TRenameShareFormValues) => {
@@ -141,7 +140,7 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
                 editing ? (
                   <>
                     <EditableSubmitTrigger disabled={!!errors.name} />
-                    <EditableCancelTrigger onClick={() => setEditing(false)} />
+                    <EditableCancelTrigger onClick={handleCancel} />
                   </>
                 ) : (
                   <EditableEditTrigger onClick={() => setEditing(true)} />
