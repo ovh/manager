@@ -58,7 +58,7 @@ describe('Subscription', () => {
   it('should render Contacts component', () => {
     render(<Subscription {...defaultProps} />);
     expect(
-      screen.getByText('@ovh-ux/manager-common-translations/contact:contact'),
+      screen.getByText('@ovh-ux/manager-common-translations/contact:contacts'),
     ).toBeInTheDocument();
     expect(screen.getByText(/admin-001/)).toBeInTheDocument();
   });

@@ -13,3 +13,6 @@ export const DomainResellerTabsProps: DashboardTabItemProps[] = [
     value: 'my-domains',
   },
 ];
+
+export const updateNicBillingAlreadyRunningMessage =
+  'A contact change task is already running on this service';
