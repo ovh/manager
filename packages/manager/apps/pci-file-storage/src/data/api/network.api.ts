@@ -16,6 +16,20 @@ export const getNetworks = async ({
     .then((response) => response.data.map(mapNetworkDtoToNetwork));
 };
 
+export const getNetwork = async ({
+  projectId,
+  region,
+  networkId,
+}: {
+  projectId: string;
+  region: string;
+  networkId: string;
+}): Promise<TNetwork> => {
+  return v6
+    .get<TNetworkDto>(`/cloud/project/${projectId}/region/${region}/network/${networkId}`)
+    .then((response) => mapNetworkDtoToNetwork(response.data));
+};
+
 export const getSubnets = async ({
   projectId,
   region,
