@@ -52,15 +52,15 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
       return updateOkmsName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: (_, { displayName }) => {
-      const previousData = queryClient.getQueryData<{ data: OKMS }>(okmsQueryKeys.detail(okms.id));
+      const previousData = queryClient.getQueryData<OKMS>(okmsQueryKeys.detail(okms.id));
 
       // To handle the delay in which the new name is propagated to the OKMS databases, we need to:
       // 1. Optimistically update the OKMS domain cache so that the user sees the new name on the OKMS dashboard immediately.
-      if (previousData?.data) {
+      if (previousData) {
         queryClient.setQueryData<OKMS>(okmsQueryKeys.detail(okms.id), {
-          ...previousData.data,
+          ...previousData,
           iam: {
-            ...previousData.data.iam,
+            ...previousData.iam,
             displayName,
           },
         });
