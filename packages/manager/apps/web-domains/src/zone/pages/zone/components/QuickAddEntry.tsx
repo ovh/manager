@@ -13,6 +13,7 @@ import { DynamicRecordForm } from "./DynamicRecordForm";
 import { SPFRecordForm } from "@/zone/pages/zone/add/components/forms/SPFRecordForm";
 import { parseBindRecord } from "@/zone/utils/parseBindRecord";
 import { useAddZoneRecord } from "@/zone/hooks/useAddZoneRecord/useAddZoneRecord";
+import { useIsDesktop } from "@/zone/hooks/useIsDesktop";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -44,6 +45,7 @@ interface QuickAddEntryProps {
 
 export default function QuickAddEntry({ serviceName, visible, onSuccess, onCancel }: QuickAddEntryProps) {
   const { t } = useTranslation(["zone", "form", NAMESPACES.ACTIONS]);
+  const isDesktop = useIsDesktop();
 
   const resolver = useMemo(() => addEntryResolver(t), [t]);
 
@@ -75,6 +77,15 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       resetBindState();
     }
   }, [visible, reset, resetBindState]);
+
+  // Clear regex/replace when NAPTR flag changes
+  const flagValue = watch('flag');
+  useEffect(() => {
+    if (recordType === 'NAPTR') {
+      setValue('regex', '');
+      setValue('replace', '');
+    }
+  }, [flagValue, recordType, setValue]);
 
   const handleBindPaste = useCallback(() => {
     setBindError(null);
@@ -246,24 +257,26 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               />
             </FormField>
 
-            <Button
-              type="button"
-              variant={BUTTON_VARIANT.outline}
-              size={BUTTON_SIZE.sm}
-              className="min-w-fit"
-              onClick={() => {
-                const opening = !showBindInput;
-                setShowBindInput(opening);
-                setBindError(null);
-                setBindSuccess(false);
-                if (opening) {
-                  reset();
-                  setBindInput('');
-                }
-              }}
-            >
-              {showBindInput ? t('zone_page_form_bind_back_to_form') : t('zone_page_form_bind_paste_button')}
-            </Button>
+            {isDesktop && (
+              <Button
+                type="button"
+                variant={BUTTON_VARIANT.outline}
+                size={BUTTON_SIZE.sm}
+                className="min-w-fit"
+                onClick={() => {
+                  const opening = !showBindInput;
+                  setShowBindInput(opening);
+                  setBindError(null);
+                  setBindSuccess(false);
+                  if (opening) {
+                    reset();
+                    setBindInput('');
+                  }
+                }}
+              >
+                {showBindInput ? t('zone_page_form_bind_back_to_form') : t('zone_page_form_bind_paste_button')}
+              </Button>
+            )}
           </div>
 
           {showBindInput && (
@@ -335,7 +348,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
           )}
 
           {recordTypeStr && (
-            <div className="flex gap-2 justify-end pt-4 border-t">
+            <div className="flex flex-col-reverse gap-2 pt-4 border-t md:flex-row md:justify-end">
               <Button
                 type="button"
                 variant={BUTTON_VARIANT.outline}

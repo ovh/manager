@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { type Control, type UseFormWatch } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 import {
@@ -34,21 +35,17 @@ import { TextareaField } from '../add/components/fields/TextareaField';
 // Grid helpers
 // ---------------------------------------------------------------------------
 
-const GRID_4COL = 'grid grid-cols-4 items-start gap-4';
-
-const COL_SPAN_CLASS: Record<number, string> = {
-  1: 'col-span-4 md:col-span-1',
-  2: 'col-span-4 md:col-span-2',
-  3: 'col-span-4 md:col-span-3',
-  4: 'col-span-4',
+const GRID_AUTO = 'grid items-start gap-4';
+const GRID_AUTO_STYLE: CSSProperties = {
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(200px, 100%), 1fr))',
 };
 
-function getColSpan(
+function isFullWidth(
   field: Parameters<typeof RenderField>[0]['field'],
-): number {
-  if (field === 'subdomain' || field === 'ttl') return 2;
-  if ('colSpan' in field && field.colSpan) return field.colSpan;
-  return 2;
+): boolean {
+  if (field === 'subdomain' || field === 'ttl') return false;
+  if ('colSpan' in field && field.colSpan === 4) return true;
+  return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -250,11 +247,11 @@ function RenderRow({
           {t(row.headingKey)}
         </Text>
       )}
-      <div className={GRID_4COL}>
+      <div className={GRID_AUTO} style={GRID_AUTO_STYLE}>
         {row.fields.map((field, fieldIndex) => (
           <div
             key={typeof field === 'string' ? field : 'name' in field ? field.name : `group-${fieldIndex}`}
-            className={COL_SPAN_CLASS[getColSpan(field)]}
+            style={isFullWidth(field) ? { gridColumn: '1 / -1' } : undefined}
           >
             <RenderField
               field={field}
