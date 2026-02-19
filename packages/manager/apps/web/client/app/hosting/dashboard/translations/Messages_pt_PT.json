@@ -1410,5 +1410,9 @@
   "hosting_tab_DATABASES_configuration__available_slot": "Base de dados disponível",
   "hosting_tab_WEBSITE": "Meus sites",
   "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Selecionar um domínio",
-  "hosting_tab_USER_LOGS": "Logs"
+  "hosting_tab_USER_LOGS": "Logs",
+  "database_tabs_dumps_guide_message_part1": "Você deseja salvar ou restaurar um banco de dados?",
+  "database_tabs_dumps_guide_message_part2": "Encontre nossos guias detalhados para realizar essas ações diretamente do seu espaço de cliente:",
+  "database_tabs_dumps_guide_save": "Salvar e exportar um banco de dados",
+  "database_tabs_dumps_guide_restore": "Restaurar e importar um banco de dados"
 }
