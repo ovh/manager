@@ -2,8 +2,6 @@ import { useEffect, useMemo, useState, useCallback } from 'react';
 import { Button, Divider, Icon, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { SshKeyHelper } from './sshKey/SshKeyHelper.component';
-import { useSshKeys } from '@/data/hooks/ssh/useSshKeys';
-import { selectSshKeys } from '../view-models/sshKeysViewModel';
 import AddSshKey from './sshKey/AddSshKey.component';
 import { SubmitHandler, useFormContext, useWatch } from 'react-hook-form';
 import {
@@ -14,6 +12,7 @@ import Banner from '@/components/banner/Banner.component';
 import SshKeySelector, {
   TCustomSelectSshKeyData,
 } from './sshKey/SshKeySelector.component';
+import { useRegionalisedSshKeys } from '../hooks/useRegionalisedSshKeys';
 
 const SshKey = () => {
   const { t } = useTranslation('creation');
@@ -24,9 +23,7 @@ const SshKey = () => {
     false,
   );
 
-  const { isLoading, data: sshKeys = [] } = useSshKeys({
-    select: selectSshKeys,
-  });
+  const { isLoading, data: sshKeys = [] } = useRegionalisedSshKeys();
 
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
   const selectedSshKeyId = useWatch({
@@ -103,7 +100,7 @@ const SshKey = () => {
 
   return (
     <section>
-      <Divider spacing="64" />
+      <Divider spacing="48" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
           {t('creation:pci_instance_creation_select_sshKey_title')}
@@ -144,7 +141,7 @@ const SshKey = () => {
             value={selectedSshKeyId ? [selectedSshKeyId] : []}
             onValueChange={handleSelectSshKey}
           />
-          <Button variant="ghost" onClick={handleOpenSshKeyForm}>
+          <Button variant="outline" onClick={handleOpenSshKeyForm}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_select_sshKey_add_new')}
           </Button>

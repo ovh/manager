@@ -6,7 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { CdnFormValues, CdnOption, CdnOptionType } from '@/data/types/product/cdn';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import { OptionSecurity } from '../OptionSecurity';
 
@@ -68,9 +68,12 @@ const securityOptionsData: CdnOption[] = [
 
 describe('OptionSecurity', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(
       <TestWrapper>

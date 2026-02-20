@@ -27,15 +27,15 @@ export type TNetwork = {
   id: TNetworkID;
   name: string;
   region: TMicroRegionID;
-  vlanId: number;
+  vlanId: number | null;
   subnets: TSubnetID[];
 };
 
 export type TSubnet = {
   id: TSubnetID;
   cidr: string;
-  gatewayIp: string | null;
   capabilities: TCapability[];
+  hasGateway: boolean;
 };
 
 export type TPrivateNetwork = {

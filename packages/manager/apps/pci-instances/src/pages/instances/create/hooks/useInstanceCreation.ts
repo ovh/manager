@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import {
   selectFlavorDetailsForCreation,
   selectLocalisationDetailsForCreation,
@@ -32,6 +33,11 @@ import {
 } from '../view-models/networksViewModel';
 import { useNetworkCatalog } from '@/data/hooks/catalog/useNetworkCatalog';
 import { selectMicroRegionDeploymentMode } from '../view-models/microRegionsViewModel';
+import {
+  ButtonType,
+  PageLocation,
+  useOvhTracking,
+} from '@ovh-ux/manager-react-shell-client';
 
 type TBackupConfigurationPrices = {
   localBackupPrice: number;
@@ -108,6 +114,7 @@ export const getPublicNetworkCartItem = ({
 // eslint-disable-next-line max-lines-per-function
 export const useInstanceCreation = (): TInstanceCreation => {
   const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
   const projectId = useProjectId();
   const {
     control,
@@ -131,10 +138,13 @@ export const useInstanceCreation = (): TInstanceCreation => {
     billingType,
     localBackupRotation,
     distantBackupLocalization,
-    assignNewGateway,
+    willGatewayBeAttached,
     ipPublicType,
     floatingIpAssignment,
     existingFloatingIpId,
+    flavorCategory,
+    distributionImageType,
+    postInstallScript,
   ] = useWatch({
     control,
     name: [
@@ -155,10 +165,13 @@ export const useInstanceCreation = (): TInstanceCreation => {
       'billingType',
       'localBackupRotation',
       'distantBackupLocalization',
-      'assignNewGateway',
+      'willGatewayBeAttached',
       'ipPublicType',
       'floatingIpAssignment',
       'existingFloatingIpId',
+      'flavorCategory',
+      'distributionImageType',
+      'postInstallScript',
     ],
   });
   const { data: project } = useProject();
@@ -258,12 +271,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const privateNetwork = useMemo(() => {
     const network = privateNetworks?.find(({ value }) => subnetId === value);
-    const willGatewayBeAttached = assignNewGateway || !!network?.hasGatewayIp;
 
     const gatewayPrice =
-      !gatewayAvailability?.isDisabled &&
-      gatewayConfigurations &&
-      willGatewayBeAttached
+      !gatewayAvailability?.isDisabled && gatewayConfigurations
         ? gatewayConfigurations.price
         : null;
 
@@ -273,7 +283,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
     return { name, willGatewayBeAttached, gatewayPrice };
   }, [
-    assignNewGateway,
+    willGatewayBeAttached,
     gatewayAvailability?.isDisabled,
     gatewayConfigurations,
     newPrivateNetwork?.name,
@@ -293,7 +303,6 @@ export const useInstanceCreation = (): TInstanceCreation => {
   );
 
   const handleSuccess = () => {
-    // TODO: update with new success specs to come
     navigate(instancesListUrl);
   };
 
@@ -308,6 +317,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const needsSshKey = distributionImageOsType !== 'windows';
 
+  const hasImageRequirements =
+    !!backup?.id ||
+    (!!distributionImageVersion.distributionImageVersionId &&
+      !!distributionImageVersion.distributionImageVersionName);
+
   const hasBaseRequirements =
     !!name &&
     !!quantity &&
@@ -315,7 +329,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
     quantity <= quota &&
     !!microRegion &&
     !!flavorDetails?.id &&
-    !!distributionImageVersion.distributionImageVersionId;
+    hasImageRequirements;
 
   const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
 
@@ -326,10 +340,32 @@ export const useInstanceCreation = (): TInstanceCreation => {
     isCreationFormValid;
 
   const networkId =
-    privateNetworks?.find(({ value }) => subnetId === value)?.networkId ?? null;
+    privateNetworks?.find(({ value }) => subnetId === value)?.customRendererData
+      ?.networkId ?? null;
 
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
+
+    trackClick({
+      location: PageLocation.funnel,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: [
+        'add_instance',
+        'instances_created',
+        billingType,
+        microRegion,
+        ...(deploymentMode === 'region-3-az'
+          ? [availabilityZone ? 'manually' : 'automated']
+          : []),
+        flavorDetails.name,
+        ...(flavorCategory ? [flavorCategory] : []),
+        distributionImageType,
+        backup
+          ? 'backup'
+          : distributionImageVersion.distributionImageVersionName!,
+      ],
+    });
 
     const instance = mapFlavorToDTO({
       name,
@@ -342,9 +378,12 @@ export const useInstanceCreation = (): TInstanceCreation => {
       imageId:
         backup?.id ?? distributionImageVersion.distributionImageVersionId,
       localBackupRotation,
+      billingPeriod: billingType,
+      postInstallScript,
       existingFloatingIpId,
       floatingIpAssignment,
-      assignNewGateway,
+      assignNewGateway:
+        willGatewayBeAttached && !gatewayAvailability?.isDisabled,
       networkId,
       subnetId,
       newPrivateNetwork,

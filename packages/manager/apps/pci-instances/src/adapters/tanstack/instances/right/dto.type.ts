@@ -18,7 +18,7 @@ type TSubnetCreateDTO = {
 type TNetworkCreateDTO = {
   name: string;
   subnet: TSubnetCreateDTO;
-  vlanId: number;
+  vlanId: number | null;
 };
 
 type TExistingNetworkDTO = {
@@ -77,6 +77,7 @@ export type TCreateInstanceDTO = {
   sshKey: TExistingSshKeyDTO | null;
   sshKeyCreate: TNewSshKeyDTO | null;
   autobackup: TAutoBackupDTO | null;
+  userData: string | null;
 };
 
 export type TCreateInstanceResponseDTO = TOperationDTO & {

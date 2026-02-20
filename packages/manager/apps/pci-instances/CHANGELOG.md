@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.12.0...@ovh-ux/manager-pci-instances-app@0.13.0) (2026-02-19)
+
+
+### Features
+
+* **pci-instances:** add instance creation flow ([bb0e7d6](https://github.com/ovh/manager/commit/bb0e7d6be846f6e2fd77113310970bfec985e215))
+
+
+
+
+
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.11.1...@ovh-ux/manager-pci-instances-app@0.12.0) (2026-02-17)
+
+
+### Features
+
+* **pci-billing:** build billing and svp ([bd788e5](https://github.com/ovh/manager/commit/bd788e57b76d1faa54d2fb400931b0ddf17a9de9)), closes [#TAPC-5753](https://github.com/ovh/manager/issues/TAPC-5753)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.11.0...@ovh-ux/manager-pci-instances-app@0.11.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-instances-app

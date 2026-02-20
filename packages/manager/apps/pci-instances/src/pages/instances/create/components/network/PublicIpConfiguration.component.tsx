@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import {
   Radio,
   RadioControl,
@@ -36,7 +36,7 @@ type TPublicIpTypeConfig = Record<
   {
     floatingIpAssignment: 'createNew' | 'reuseExisting' | null;
     existingFloatingIpId: null;
-    assignNewGateway: boolean;
+    willGatewayBeAttached: boolean;
   }
 >;
 
@@ -119,12 +119,12 @@ const PublicIpConfiguration: FC<{
       basicIp: {
         floatingIpAssignment: null,
         existingFloatingIpId: null,
-        assignNewGateway: false,
+        willGatewayBeAttached: false,
       },
       floatingIp: {
         floatingIpAssignment: 'createNew',
         existingFloatingIpId: null,
-        assignNewGateway: !gatewayAvailability?.isDisabled,
+        willGatewayBeAttached: !gatewayAvailability?.isDisabled,
       },
     };
 
@@ -172,12 +172,14 @@ const PublicIpConfiguration: FC<{
                 publicIpAvailability.basicPublicIp.isDisabled,
               )}
             >
-              {t(
-                'creation:pci_instance_creation_network_add_public_connectivity.basic_ip_label',
-                {
+              <Trans
+                t={t}
+                i18nKey="creation:pci_instance_creation_network_add_public_connectivity.basic_ip_label"
+                values={{
                   price: getFormattedHourlyCatalogPrice(prices.basicPublicIp),
-                },
-              )}
+                }}
+                components={{ sb: <span className="font-semibold" /> }}
+              />
             </Text>
             <Text
               className={getDisabledTextClassName(
@@ -218,12 +220,14 @@ const PublicIpConfiguration: FC<{
                   publicIpAvailability.floatingIp.isDisabled,
                 )}
               >
-                {t(
-                  'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label',
-                  {
+                <Trans
+                  t={t}
+                  i18nKey="creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label"
+                  values={{
                     price: getFormattedHourlyCatalogPrice(prices.floatingIp),
-                  },
-                )}
+                  }}
+                  components={{ sb: <span className="font-semibold" /> }}
+                />
               </Text>
               <Text
                 className={getDisabledTextClassName(
@@ -259,12 +263,14 @@ const PublicIpConfiguration: FC<{
               <RadioControl />
               <RadioLabel>
                 <Text>
-                  {t(
-                    'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_create_new_label',
-                    {
+                  <Trans
+                    t={t}
+                    i18nKey="creation:pci_instance_creation_network_add_public_connectivity.floating_ip_create_new_label"
+                    values={{
                       price: getFormattedHourlyCatalogPrice(prices.floatingIp),
-                    },
-                  )}
+                    }}
+                    components={{ sb: <span className="font-semibold" /> }}
+                  />
                 </Text>
               </RadioLabel>
             </Radio>

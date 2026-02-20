@@ -81,7 +81,7 @@ export default function CdnCorsResourceSharingModal() {
           }))}
           onValueChange={(detail) => setSelectedDomain(detail.value[0])}
         >
-          <SelectControl />
+          <SelectControl aria-label={t('cdn_shared_cors_domain_list')} />
           <SelectContent />
         </Select>
         <Button

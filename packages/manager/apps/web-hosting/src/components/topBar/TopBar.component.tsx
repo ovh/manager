@@ -105,7 +105,10 @@ export default function Topbar() {
             }}
             items={selectItems}
           >
-            <SelectControl placeholder={t('hosting_dashboard_ssl_selected_item')} />
+            <SelectControl
+              aria-label={t('hosting_dashboard_ssl_selected_item')}
+              placeholder={t('hosting_dashboard_ssl_selected_item')}
+            />
             <SelectContent />
           </Select>
           <Button

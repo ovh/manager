@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
-import { wrapper } from '@/utils/test.provider';
+import { renderWithRouter, wrapper } from '@/utils/test.provider';
 
 import TabsPanel, { activatedTabs, useComputePathMatchers } from '../TabsPanel.component';
 
@@ -290,5 +290,11 @@ describe('useComputePathMatchers hook', () => {
     expect(result.current).toHaveLength(2);
     expect(result.current[0].test('/hosting/test-service/test')).toBe(true);
     expect(result.current[1].test('/hosting/test-service/other')).toBe(true);
+  });
+  it('should have a valid html with a11y and w3c', async () => {
+    const { container } = renderWithRouter(<TabsPanel tabs={tabs} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
   });
 });

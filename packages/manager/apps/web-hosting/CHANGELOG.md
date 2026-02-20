@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.8...@ovh-ux/manager-web-hosting-app@0.17.0) (2026-02-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4644] ([e25259c](https://github.com/ovh/manager/commit/e25259cab088e6dfd728a5c1a6606e9e9d521290))
+* **web-hosting:** add createportal on tooltip ([dde953e](https://github.com/ovh/manager/commit/dde953e04fd304197c37b7e17ccbc713fbf98d4a))
+* **web-hosting:** remove duplicated tooltip icon on multisite ([3f262ce](https://github.com/ovh/manager/commit/3f262ce8d4823f7849ffddeddaf839e8db1b445a)), closes [#PUWEBPT-209](https://github.com/ovh/manager/issues/PUWEBPT-209)
+
+
+### Features
+
+* **web-hosting:** add onboarding page for wordpress ([fae999d](https://github.com/ovh/manager/commit/fae999d1a7df56020e15ac120d7f3ba86fa6a9d6)), closes [#PUWEBPT-243](https://github.com/ovh/manager/issues/PUWEBPT-243)
+* **web-hosting:** add w3c and a11y and fix tests for mocks muk ([8c70695](https://github.com/ovh/manager/commit/8c706951ffce9595414cea9a5660fcd540b42881)), closes [#PUWEBPT-54](https://github.com/ovh/manager/issues/PUWEBPT-54)
+* **web-hosting:** block git on multisite for free 100m and start 10m ([4178cbe](https://github.com/ovh/manager/commit/4178cbe140f03a49244e54785c7676bf447bf1b2)), closes [#PUWEBPT-207](https://github.com/ovh/manager/issues/PUWEBPT-207)
+* **web-hosting:** update multisite tooltip for diagnostic badges ([32c28fd](https://github.com/ovh/manager/commit/32c28fdba77e1921fb0ffb1d79ea6eb93f97f20b)), closes [#PUWEBPT-96](https://github.com/ovh/manager/issues/PUWEBPT-96)
+* **wordpress-managed:** update website total quota on datagrid ([daa7b86](https://github.com/ovh/manager/commit/daa7b86c9489c1d74857cbc2152a7af3566a08fd)), closes [#PUWEBPT-218](https://github.com/ovh/manager/issues/PUWEBPT-218)
+
+
+
+
+
 ## [0.16.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.7...@ovh-ux/manager-web-hosting-app@0.16.8) (2026-02-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-hosting-app

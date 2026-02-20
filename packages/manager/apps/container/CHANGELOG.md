@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.183.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.182.0...@ovh-ux/manager-container-app@0.183.0) (2026-02-19)
+
+
+### Features
+
+* **web-hosting:** add onboarding page for wordpress ([fae999d](https://github.com/ovh/manager/commit/fae999d1a7df56020e15ac120d7f3ba86fa6a9d6)), closes [#PUWEBPT-243](https://github.com/ovh/manager/issues/PUWEBPT-243)
+
+
+
+
+
+# [0.182.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.181.0...@ovh-ux/manager-container-app@0.182.0) (2026-02-17)
+
+
+### Features
+
+* **pci-billing:** build billing and svp ([bd788e5](https://github.com/ovh/manager/commit/bd788e57b76d1faa54d2fb400931b0ddf17a9de9)), closes [#TAPC-5753](https://github.com/ovh/manager/issues/TAPC-5753)
+
+
+
+
+
 # [0.181.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.180.9...@ovh-ux/manager-container-app@0.181.0) (2026-02-17)
 
 

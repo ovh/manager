@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { CdnFormValues } from '@/data/types/product/cdn';
 import dashboardTranslation from '@/public/translations/dashboard/Messages_fr_FR.json';
 import { wrapper } from '@/utils/test.provider';
+import { getDomRect } from '@/utils/test.setup';
 
 import { OptionPerformance } from '../OptionPerformance';
 
@@ -25,9 +26,12 @@ const TestWrapper = ({
 
 describe('OptionPerformance', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(
       <TestWrapper>
