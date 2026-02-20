@@ -79,6 +79,10 @@
       "empty": "You do not have a private subnet for this network"
     }
   },
+  "estimation": {
+    "title": "Estimation",
+    "amount": "Estimated amount: <b>{{amount}}</b>"
+  },
   "submit": {
     "error": "An error has occurred adding the share: {{error}}",
     "success": "The share {{name}} is being created"
