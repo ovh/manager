@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.11.0...@ovh-ux/manager-web-domains-app@1.12.0) (2026-02-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1155] ([373040c](https://github.com/ovh/manager/commit/373040c360a4c18753d20de7d81d252bb7a1f022))
+
+
+### Features
+
+* **web-domain-reseller:** add entry menu for domain reseller ([#22000](https://github.com/ovh/manager/issues/22000)) ([78e0dff](https://github.com/ovh/manager/commit/78e0dffb12eae9fba973bea67aef63047ab080d3)), closes [#DCE-150](https://github.com/ovh/manager/issues/DCE-150)
+* **web-domain-reseller:** associate button ([#22279](https://github.com/ovh/manager/issues/22279)) ([1ac0dba](https://github.com/ovh/manager/commit/1ac0dbaeedb93cb3cf2628fc592fbddf63f91539)), closes [#DCE-164](https://github.com/ovh/manager/issues/DCE-164)
+* **web-domain-reseller:** dashboard ([5b447a3](https://github.com/ovh/manager/commit/5b447a3cd0c167b9e92877112d80d2757ec9484b)), closes [#DCE-145](https://github.com/ovh/manager/issues/DCE-145)
+* **web-domain-reseller:** datagrid ([#22076](https://github.com/ovh/manager/issues/22076)) ([4591c5d](https://github.com/ovh/manager/commit/4591c5dd47a52f5c34bd2485aa11a7397bc142ac)), closes [#DCE-163](https://github.com/ovh/manager/issues/DCE-163)
+* **web-domain-reseller:** general informations ([#22041](https://github.com/ovh/manager/issues/22041)) ([273d766](https://github.com/ovh/manager/commit/273d766af7d1b0e6b2882f9b61cf7ff67e2f658e)), closes [#DCE-151](https://github.com/ovh/manager/issues/DCE-151)
+* **web-domain-reseller:** subscription card ([#22123](https://github.com/ovh/manager/issues/22123)) ([336e23a](https://github.com/ovh/manager/commit/336e23af0c70fe2cea017d490f1dd9f2ee8f353d)), closes [#DCE-148](https://github.com/ovh/manager/issues/DCE-148)
+* **web-domain-reseller:** tabs ([#22129](https://github.com/ovh/manager/issues/22129)) ([de590c8](https://github.com/ovh/manager/commit/de590c8dd3e5b4eb94118f5ddc65c0b458998c17)), closes [#DCE-167](https://github.com/ovh/manager/issues/DCE-167)
+* **web-domains:** dashboard header ([#22038](https://github.com/ovh/manager/issues/22038)) ([2cd503b](https://github.com/ovh/manager/commit/2cd503bb644c3d6ff05325f9098c0300eba7d0a8)), closes [#DCE-149](https://github.com/ovh/manager/issues/DCE-149)
+* **web-domains:** fix plan urls ([cfb5349](https://github.com/ovh/manager/commit/cfb5349a9e74f9421393dbfd69b3eb638fc28fc6)), closes [#DCE-164](https://github.com/ovh/manager/issues/DCE-164)
+* **web-domains:** fix plan urls ([fe141bb](https://github.com/ovh/manager/commit/fe141bba916d442b5d171981d5fda6277734b1dc)), closes [#DCE-164](https://github.com/ovh/manager/issues/DCE-164)
+
+
+
+
+
 # [1.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.10.14...@ovh-ux/manager-web-domains-app@1.11.0) (2026-02-16)
 
 
