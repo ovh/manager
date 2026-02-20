@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Prices",
   "pci_instance_creation_table_header_price_hourly_unit": "ex. VAT/hour",
   "pci_instance_creation_table_header_price_monthly_unit": "ex. VAT/month",
-  "pci_instance_creation_flavor_unavailable": "Unavailable ",
+  "pci_instance_creation_flavor_unavailable": "Unavailable in this region",
   "pci_instance_creation_flavor_unavailable_quota": "Unavailable quota",
   "pci_instance_creation_flavor_unavailable_help": "This model is not available in your selected region. <sb>However, you can select it, but you will need to choose another region for this model.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "Your quota does not allow you to choose this instance model. Please increase your quota.",
@@ -172,10 +172,10 @@
     "basic_ip_warning": "We have detected a gateway on your private network, so this option is not available. Please choose or create a private network without a gateway.",
     "floating_ip_label": "Assign a Floating IP (Reusable)",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
-    "floating_ip_warning": "By selecting this option, we will assign you a gateway of size {{ size }}.",
-    "floating_ip_create_new_label": "Create a new one - <sb>{{ price }}</sb>",
+    "floating_ip_warning": "By selecting this option, we will assign you a gateway size {{ size }}.",
+    "floating_ip_create_new_label": "Create a new - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local Zones."
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "The Gateway is not available in localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "A Gateway is already assigned to the selected private network.",
@@ -206,5 +206,6 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Manually select an AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This allows you to distribute your instances across multiple AZs and thus implement your own redundancy mechanisms.",
   "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "A Basic Public IP has been detected on your Private Network, please create or select another Private Network to create a gateway."
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "A Basic Public IP has been detected on your Private Network, please create or select another Private Network to create a gateway.",
+  "pci_instance_creation_region_unavailable": "Region unavailable"
 }
