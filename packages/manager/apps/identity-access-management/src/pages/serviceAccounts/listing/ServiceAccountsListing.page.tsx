@@ -6,6 +6,7 @@ import {
   Datagrid,
   ManagerButton,
   HeadersProps,
+  Notifications,
 } from '@ovh-ux/manager-react-components';
 import { subRoutes } from '@/routes/routes.constant';
 
@@ -46,6 +47,7 @@ export default function ServiceAccountsListing() {
       header={header}
       breadcrumb={<ServiceAccountsBreadcrumb />}
       tabs={<ServiceAccountsTabs />}
+      message={<Notifications />}
     >
       <Datagrid
         topbar={
