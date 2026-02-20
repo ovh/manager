@@ -73,6 +73,7 @@
     "title": "Private network",
     "description": "Select the private network you want to link your share to",
     "label": "Select an existing private network",
+    "reloadNetworks": "Reload private networks",
     "empty": "Sorry, but you do not have a private network for this region",
     "createPrivateNetwork": "Create a private network",
     "subnet": {

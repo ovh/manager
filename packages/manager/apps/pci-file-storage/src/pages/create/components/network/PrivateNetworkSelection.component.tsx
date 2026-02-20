@@ -7,6 +7,8 @@ import {
   Button,
   FormField,
   FormFieldLabel,
+  ICON_NAME,
+  Icon,
   SPINNER_SIZE,
   Select,
   SelectContent,
@@ -31,7 +33,12 @@ const PrivateNetworkSelection = () => {
     name: 'shareData.microRegion',
   });
 
-  const { data: privateNetworkOptions = [], isLoading } = useNetworks(selectedMicroRegion, {
+  const {
+    data: privateNetworkOptions = [],
+    isLoading,
+    refetch,
+    isFetching,
+  } = useNetworks(selectedMicroRegion, {
     select: selectPrivateNetworksForRegion(selectedMicroRegion),
   });
 
@@ -64,7 +71,24 @@ const PrivateNetworkSelection = () => {
 
             return (
               <FormField>
-                <FormFieldLabel>{t('create:network.label')}</FormFieldLabel>
+                  <FormFieldLabel className="flex items-center gap-4 h-8">
+                    {t('create:network.label')}
+                    <Button
+                      color="primary"
+                      variant="outline"
+                      type="button"
+                      onClick={() => void refetch()}
+                      disabled={isFetching}
+                      aria-label={t('create:network.reloadNetworks')}
+                      className="min-w-8 w-8 min-h-8 h-8 p-0"
+                    >
+                      {isFetching ? (
+                        <Spinner size={SPINNER_SIZE.xs} />
+                      ) : (
+                        <Icon name={ICON_NAME.refresh} className="text-[16px]" />
+                      )}
+                    </Button>
+                  </FormFieldLabel>
                 <Select
                   items={privateNetworkOptions}
                   value={field.value ? [field.value] : []}
@@ -92,16 +116,11 @@ const PrivateNetworkSelection = () => {
         {renderContent()}
         <SubnetSelection />
       </div>
-      <a href={`${privateNetworksUrl}/new`} target="_blank">
-        <Button
-          type="button"
-          variant="outline"
-          color="primary"
-        >
+      <a href={`${privateNetworksUrl}/new`} target="_blank" rel="noreferrer">
+        <Button type="button" variant="outline" color="primary">
           {t('create:network.createPrivateNetwork')}
         </Button>
       </a>
-
     </section>
   );
 };

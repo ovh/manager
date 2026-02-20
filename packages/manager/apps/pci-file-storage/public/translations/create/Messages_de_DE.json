@@ -73,6 +73,7 @@
     "title": "Privates Netzwerk",
     "description": "Wählen Sie das private Netzwerk aus, an das Sie Ihren share verknüpfen möchten",
     "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
+    "reloadNetworks": "Private Netzwerke neu laden",
     "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region",
     "createPrivateNetwork": "Privates Netzwerk erstellen",
     "subnet": {

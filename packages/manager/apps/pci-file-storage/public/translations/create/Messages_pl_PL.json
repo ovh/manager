@@ -73,6 +73,7 @@
     "title": "Sieć prywatna",
     "description": "Wybierz sieć prywatną, do której chcesz podłączyć swój share",
     "label": "Wybierz istniejącą prywatną sieć",
+    "reloadNetworks": "Odśwież sieci prywatne",
     "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
     "createPrivateNetwork": "Utwórz sieć prywatną",
     "subnet": {

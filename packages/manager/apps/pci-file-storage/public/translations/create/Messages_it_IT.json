@@ -73,6 +73,7 @@
     "title": "Rete privata",
     "description": "Seleziona la rete privata a cui desideri collegare il tuo share",
     "label": "Seleziona una rete privata esistente",
+    "reloadNetworks": "Ricarica reti private",
     "empty": "Spiacente, ma non hai una rete privata per questa regione",
     "createPrivateNetwork": "Crea una rete privata",
     "subnet": {
