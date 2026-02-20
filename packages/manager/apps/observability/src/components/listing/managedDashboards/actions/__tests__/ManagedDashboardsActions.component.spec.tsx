@@ -34,6 +34,13 @@ vi.mock('@/routes/Routes.utils', () => ({
     resourceName: string;
     managedDashboardId: string;
   }) => `/observability/${resourceName}/managed-dashboards/${managedDashboardId}/delete`,
+  getEditManagedDashboardUrl: ({
+    resourceName,
+    managedDashboardId,
+  }: {
+    resourceName: string;
+    managedDashboardId: string;
+  }) => `/observability/${resourceName}/managed-dashboards/${managedDashboardId}/edit`,
 }));
 
 // Mock clipboard
@@ -310,7 +317,7 @@ describe('ManagedDashboardsActions', () => {
   });
 
   describe('Edit and Delete Actions', () => {
-    it('should trigger alert when edit action is clicked', () => {
+    it('should navigate to edit page when edit action is clicked', () => {
       render(
         <ManagedDashboardsActions
           managedDashboard={mockManagedDashboard}
@@ -321,7 +328,9 @@ describe('ManagedDashboardsActions', () => {
       const editButton = screen.getByTestId('action-item-2');
       fireEvent.click(editButton);
 
-      expect(global.alert).toHaveBeenCalledWith('TODO: edit grafana');
+      expect(mockNavigate).toHaveBeenCalledWith(
+        `/observability/${mockResourceName}/managed-dashboards/${mockManagedDashboard.id}/edit`,
+      );
     });
 
     it('should navigate to delete page when delete action is clicked', () => {

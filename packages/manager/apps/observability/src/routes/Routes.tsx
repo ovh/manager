@@ -41,6 +41,9 @@ const ManagedDashboardLayoutPage = React.lazy(
 const ManagedDashboardCreationPage = React.lazy(
   () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboardCreation.page'),
 );
+const EditManagedDashboardPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/edit/ManagedDashboardEdit.page'),
+);
 const ManagedDashboardDeletePage = React.lazy(
   () => import('@/pages/settings/managed-dashboards/[resource]/delete/ManagedDashboardDelete.page'),
 );
@@ -166,7 +169,26 @@ export default (
             <Route path={subroutes.resource}>
               {/* no dedicated page (only a dropdown) → redirect to managed dashboards */}
               <Route index element={<Navigate to={urls.managedDashboards} replace />} />
-              <Route path={subroutes.creation} Component={ManagedDashboardCreationPage}></Route>
+              <Route
+                path={subroutes.creation}
+                Component={ManagedDashboardCreationPage}
+                handle={{
+                  titleKey: 'creation.title',
+                  tracking: {
+                    pageName: 'managed-dashboard-create',
+                  },
+                }}
+              />
+              <Route
+                path={`${subroutes.managedDashboard}/${subroutes.edit}`}
+                Component={EditManagedDashboardPage}
+                handle={{
+                  titleKey: 'edition.title',
+                  tracking: {
+                    pageName: 'managed-dashboard-edit',
+                  },
+                }}
+              />
             </Route>
           </Route>
         </Route>
