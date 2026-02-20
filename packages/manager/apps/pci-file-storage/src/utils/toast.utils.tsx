@@ -31,3 +31,9 @@ export const warningToast = ({ duration, ...rest }: ShowToastOptions): void => {
     duration,
   });
 };
+
+export const errorToast = ({ duration, ...rest }: ShowToastOptions): void => {
+  toast.critical(<TranslatedToast {...rest} />, {
+    duration,
+  });
+};

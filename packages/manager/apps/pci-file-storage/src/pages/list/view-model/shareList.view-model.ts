@@ -1,10 +1,8 @@
 import { getMacroRegion } from '@ovh-ux/muk';
 
+import { TStatusBadgeProps } from '@/components/status-badge/StatusBadge.component';
 import { TShare, TShareEnabledAction } from '@/domain/entities/share.entity';
-import {
-  type TShareStatusDisplay,
-  getShareStatusDisplay,
-} from '@/pages/view-model/shareStatus.view-model';
+import { getShareStatusDisplay } from '@/pages/view-model/shareStatus.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 export type TShareListRowActionLink = {
@@ -28,7 +26,7 @@ export type TShareListRow = {
   protocol: string;
   size: number;
   status: string;
-  statusDisplay: TShareStatusDisplay;
+  statusDisplay: TStatusBadgeProps;
   actions: Map<string, TShareListRowAction[]>;
 };
 

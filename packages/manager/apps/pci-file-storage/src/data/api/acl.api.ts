@@ -30,3 +30,11 @@ export const createAcl = async ({
     aclToCreateDto,
   );
 };
+
+export const deleteAcl = async (
+  projectId: string,
+  region: string,
+  shareId: string,
+  aclId: string,
+): Promise<void> =>
+  v6.delete(`/cloud/project/${projectId}/region/${region}/share/${shareId}/acl/${aclId}`);

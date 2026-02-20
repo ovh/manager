@@ -16,8 +16,21 @@
       "readOnly": "Lecture seule",
       "readAndWrite": "Lecture et écriture"
     },
+    "status": {
+      "header": "Statut"
+    },
     "actions": {
-      "header": "Actions"
+      "header": "Actions",
+      "delete": {
+        "success": "Votre ACL (Liste de contrôle d'accès) a bien été supprimée",
+        "error": "Une erreur est survenue lors de la suppression de l'ACL : {{errorMessage}}"
+      }
     }
+  },
+  "deleteModal": {
+    "title": "Supprimer ACL",
+    "description": "Supprimer cette ACL impliquera la perte d'accès de {{accessTo}} à ce share. Confirmez-vous la suppression ?",
+    "confirmButton": "Supprimer",
+    "close": "Fermer"
   }
 }

@@ -16,8 +16,21 @@
       "readOnly": "Read-only",
       "readAndWrite": "Read and write"
     },
+    "status": {
+      "header": "Status"
+    },
     "actions": {
-      "header": "Actions"
+      "header": "Actions",
+      "delete": {
+        "success": "Your ACL (Access Control List) has been deleted successfully",
+        "error": "An error occurred while deleting the ACL: {{errorMessage}}"
+      }
     }
+  },
+  "deleteModal": {
+    "title": "Delete ACL",
+    "description": "Deleting this ACL will result in loss of access for {{accessTo}} to this share. Do you confirm the deletion?",
+    "confirmButton": "Delete",
+    "close": "Close"
   }
 }

@@ -5,5 +5,6 @@
   "deleting": "Suppression en cours",
   "error": "Erreur",
   "extending": "Extension en cours",
-  "inactive": "Inactif"
+  "inactive": "Inactif",
+  "draft": "Brouillon"
 }
