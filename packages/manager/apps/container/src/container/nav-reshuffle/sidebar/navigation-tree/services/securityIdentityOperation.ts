@@ -40,7 +40,7 @@ sioUniverse.children = [
         routing: {
           application: 'iam',
           hash: '#/identities',
-          pathMatcher: new RegExp('^(iam/identities|identity-access-management/manage-tokens)'),
+          pathMatcher: new RegExp('^(iam/identities|identity-access-management/manage-tokens|identity-access-management/service-accounts)'),
         },
       },
       {
