@@ -49,6 +49,7 @@ type TNetworkPrivateDTO = {
 
 type TNetworkDTO = {
   private: TNetworkPrivateDTO;
+  public: boolean;
 };
 
 type TFlavorDTO = {

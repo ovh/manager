@@ -387,6 +387,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
       networkId,
       subnetId,
       newPrivateNetwork,
+      publicNetwork: ipPublicType,
     });
     createInstance({ regionName: microRegion, instance });
   };

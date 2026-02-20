@@ -76,8 +76,8 @@
   "pci_instance_creation_choose_availabilityZone_informations": "Uma zona de disponibilidade padrão foi selecionada. Você tem a possibilidade de personalizar essa escolha.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Escolher por mim",
   "pci_instance_creation_availabilityZone_user_choice": "Eu escolho a minha zona de disponibilidade",
-  "pci_instance_creation_availabilityZone_help_description_p1": "Num ambiente de nuvem, a disponibilidade e a resiliência dos serviços são essenciais para garantir a continuidade das operações, mesmo em caso de falha de uma zona de disponibilidade (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Como as instâncias são serviços zonais, elas são implantadas apenas em uma única zona de disponibilidade. Para garantir a resiliência, cabe ao cliente distribuir manualmente suas instâncias em várias zonas.",
+  "pci_instance_creation_availabilityZone_help_description_p1": "Uma região 3-AZ é composta por três zonas de disponibilidade fisicamente distintas, mas interconectadas entre si.",
+  "pci_instance_creation_availabilityZone_help_description_p2": "Cada AZ corresponde a um datacenter independente, permitindo reforçar a resiliência e a alta disponibilidade das suas implementações.",
   "pci_instance_creation_cart_distribution_image_title": "Imagem",
   "pci_instance_creation_select_sshKey_title": "Selecione uma chave SSH",
   "pci_instance_creation_select_sshKey_description": " Uma chave SSH é obrigatória para se conectar ao seu serviço.",
@@ -199,5 +199,11 @@
     "disk_capacity": "<span>Uma instância flex é uma instância de disco único (50 Go)</span> que oferece um processo mais rápido para os snapshots.",
     "resizing_explanation": "Permite redimensionar para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
   },
-  "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado"
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado",
+  "pci_instance_creation_availabilityZone_help_title": "Compreender as zonas de disponibilidade",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Escolher o seu modo de implementação",
+  "pci_instance_creation_availabilityZone_help_automatic": "Deixar a OVHcloud escolher a AZ automaticamente: Esta opção simplifica a implementação. A AZ é atribuída automaticamente e você encontrará a informação da AZ no final da implementação da sua instância. → Ideal para uma primeira implementação ou para um uso não redundante.",
+  "pci_instance_creation_availabilityZone_help_manual_title": "Selecionar manualmente uma AZ:",
+  "pci_instance_creation_availabilityZone_help_manual": "Você pode escolher entre as três AZ disponíveis na região. Isso permite que você distribua suas instâncias em várias AZ e assim implemente seus próprios mecanismos de redundância.",
+  "pci_instance_creation_availabilityZone_help_link": "Saiba mais sobre multi-AZ e boas práticas →"
 }

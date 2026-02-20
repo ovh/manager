@@ -75,9 +75,9 @@
   "pci_instance_creation_choose_availabilityZone_title": "Elija su zona de disponibilidad",
   "pci_instance_creation_choose_availabilityZone_informations": "Se ha seleccionado una zona de disponibilidad por defecto. Puede personalizar esta opción.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Elegir por mí",
-  "pci_instance_creation_availabilityZone_user_choice": "Elegir yo mismo mi zona de disponibilidad",
-  "pci_instance_creation_availabilityZone_help_description_p1": "En un entorno cloud, la disponibilidad y la resiliencia de los servicios son esenciales para garantizar la continuidad de las operaciones, incluso en caso de avería de una zona de disponibilidad (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Como las instancias son servicios de zona, sólo se despliegan en una zona de disponibilidad. Para garantizar la resiliencia, es responsabilidad del cliente repartir manualmente sus instancias en varias zonas.",
+  "pci_instance_creation_availabilityZone_user_choice": "Elijo mi zona de disponibilidad",
+  "pci_instance_creation_availabilityZone_help_description_p1": "Una región 3-AZ está compuesta por tres zonas de disponibilidad físicamente distintas pero interconectadas entre sí.",
+  "pci_instance_creation_availabilityZone_help_description_p2": "Cada AZ corresponde a un centro de datos independiente, lo que permite mejorar la resiliencia y la alta disponibilidad de sus despliegues.",
   "pci_instance_creation_cart_distribution_image_title": "Imagen",
   "pci_instance_creation_select_sshKey_title": "Seleccione una llave SSH",
   "pci_instance_creation_select_sshKey_description": " Es necesario disponer de una llave SSH para conectarse al servicio.",
@@ -197,8 +197,13 @@
   "pci_instance_creation_flex_flavor": {
     "title": "Instancias Flex",
     "disk_capacity": "<span>Una instancia flex es una instancia de disco único (50 Go)</span> que ofrece un proceso más rápido para las instantáneas.",
-    "resizing_explanation": "Permite un redimensionamiento hacia modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que los modelos clásicos solo pueden redimensionarse hacia modelos superiores."
+    "resizing_explanation": "Permite un redimensionamiento hacia modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que modelos clásicos solo pueden redimensionarse hacia los modelos superiores."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Puerta de enlace adjunta",
-  "pci_instance_creation_table_header_vram_unit": "(GB)"
+  "pci_instance_creation_availabilityZone_help_title": "Comprender las zonas de disponibilidad",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Elegir su modo de despliegue",
+  "pci_instance_creation_availabilityZone_help_automatic": "Dejar que OVHcloud elija la AZ automáticamente: Esta opción simplifica el despliegue. La AZ se asigna automáticamente y encontrará la información de la AZ al final del despliegue de su instancia. → Ideal para un primer despliegue o para un uso no redundante.",
+  "pci_instance_creation_availabilityZone_help_manual_title": "Seleccionar manualmente una AZ:",
+  "pci_instance_creation_availabilityZone_help_manual": "Puede elegir entre las tres AZ disponibles en la región. Esto le permite distribuir sus instancias en varias AZ y así implementar sus propios mecanismos de redundancia.",
+  "pci_instance_creation_availabilityZone_help_link": "Saber más sobre los multi-AZ y las buenas prácticas →"
 }
