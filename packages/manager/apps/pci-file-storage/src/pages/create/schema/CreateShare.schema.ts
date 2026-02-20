@@ -12,7 +12,7 @@ export const nameSchema = z
 
 export const shareDataSchema = z.object({
   name: nameSchema,
-  microRegion: stringSchema,
+  microRegion: stringSchema.min(1),
   specName: stringSchema,
   size: z.number(),
   privateNetworkId: z.string().min(1),
@@ -26,7 +26,7 @@ export const createShareSchema = z.object({
   shareData: shareDataSchema,
   deploymentModes: deploymentModesShema,
   continent: continentShema,
-  macroRegion: stringSchema,
+  macroRegion: stringSchema.optional(),
   availabilityZone: z.string().nullable(),
 });
 

@@ -55,6 +55,9 @@ export const MacroRegionSelection = () => {
         firstAvailableLocation.macroRegion,
         firstAvailableLocation.firstAvailableMicroRegion,
       );
+    } else if (!firstAvailableLocation) {
+      setValue('macroRegion', undefined);
+      setValue('shareData.microRegion', '');
     }
   }, [localizations, selectedMacroRegion, updateSelection]);
 
@@ -64,49 +67,47 @@ export const MacroRegionSelection = () => {
         <Text preset="heading-4">{t('create:localisation.macroRegion.title')}</Text>
         <ContinentSelection />
       </div>
-      {selectedMacroRegion && (
-        <Controller
-          name="macroRegion"
-          control={control}
-          render={() => (
-            <div className="flex flex-col">
-              <div className={clsx('max-h-[450px] overflow-auto')}>
-                <RadioGroup value={selectedMacroRegion}>
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {translatedLocalizations.map(
-                      ({
-                        city,
-                        datacenterDetails,
-                        macroRegion,
-                        countryCode,
-                        deploymentMode,
-                        available,
-                        firstAvailableMicroRegion,
-                      }) => {
-                        const displayCard = macroRegion && datacenterDetails;
+      <Controller
+        name="macroRegion"
+        control={control}
+        render={() => (
+          <div className="flex flex-col">
+            <div className={clsx('max-h-[450px] overflow-auto')}>
+              <RadioGroup value={selectedMacroRegion}>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                  {translatedLocalizations.map(
+                    ({
+                      city,
+                      datacenterDetails,
+                      macroRegion,
+                      countryCode,
+                      deploymentMode,
+                      available,
+                      firstAvailableMicroRegion,
+                    }) => {
+                      const displayCard = macroRegion && datacenterDetails;
 
-                        return displayCard ? (
-                          <LocalizationCard
-                            key={`${city}_${macroRegion}`}
-                            city={city}
-                            datacenterDetails={datacenterDetails}
-                            macroRegion={macroRegion}
-                            countryCode={countryCode}
-                            deploymentMode={deploymentMode}
-                            onSelect={() => updateSelection(macroRegion, firstAvailableMicroRegion)}
-                            disabled={!available}
-                            selected={macroRegion === selectedMacroRegion}
-                          />
-                        ) : null;
-                      },
-                    )}
-                  </div>
-                </RadioGroup>
-              </div>
+                      return displayCard ? (
+                        <LocalizationCard
+                          key={`${city}_${macroRegion}`}
+                          city={city}
+                          datacenterDetails={datacenterDetails}
+                          macroRegion={macroRegion}
+                          countryCode={countryCode}
+                          deploymentMode={deploymentMode}
+                          onSelect={() => updateSelection(macroRegion, firstAvailableMicroRegion)}
+                          disabled={!available}
+                          selected={macroRegion === selectedMacroRegion}
+                        />
+                      ) : null;
+                    },
+                  )}
+                </div>
+              </RadioGroup>
             </div>
-          )}
-        />
-      )}
+          </div>
+        )}
+      />
     </section>
   );
 };
