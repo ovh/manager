@@ -1,0 +1,23 @@
+{
+  "domain_reseller_title": "Program dla resellerów domen",
+  "domain_reseller_message_title": "Twój program jest aktywny",
+  "domain_reseller_message_text": "Jako członek programu sprzedawcy nazw domen, obecnie korzystasz z preferencyjnych stawek na swoje nazwy domen.",
+  "domain_reseller_button_add_domain": "Dodaj nazwę domeny",
+  "domain_reseller_button_download_catalog": "Pobierz katalog",
+  "domain_reseller_general_informations_label": "Nazwy domen zarejestrowane po preferencyjnej cenie",
+  "domain_reseller_general_informations_domains_length": "{{ length }} aktywna(a) nazwa(y) domeny",
+  "domain_reseller_general_informations_no_domains": "Brak nazw domen przypisanych do programu",
+  "domain_reseller_renew_mode_label": "Tryb odnawiania",
+  "domain_reseller_renew_mode_automatic": "Automatyczne",
+  "domain_reseller_tab_my_domains": "Moje nazwy domen",
+  "domain_reseller_associate": "Powiąż",
+  "domain_reseller_order_domain": "Zamów nazwę domeny",
+  "domain_reseller_associate_modal_title": "Wybierz nazwy domen do powiązania",
+  "domain_reseller_associate_modal_placeholder": "Wybierz nazwy domen",
+  "domain_reseller_associate_modal_description": "Czy na pewno chcesz powiązać te nazwy domen z kontem rozliczeniowym tego konta?",
+  "domain_reseller_associate_modal_associate_error": "Wystąpił błąd podczas żądania zmiany kontaktu: {{error}}.",
+  "domain_reseller_associate_modal_associate_success": "Żądanie zmiany kontaktu zostało pomyślnie złożone. Osoby kontaktowe związane z żądaniem otrzymają e-mail z procedurą weryfikacji.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_one": "Już wcześniej złożyłeś wniosek o przypisanie {{domain}} do swojego pakietu sprzedawcy nazw domen. E-mail weryfikacyjny został wysłany w tej sprawie do kontaktu rozliczeniowego aktualnie przypisanego do usługi. Zachęcamy do sprawdzenia swojej skrzynki pocztowej, aby sfinalizować potwierdzenie zmiany.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_other": "Poprosiłeś o przypisanie {{count}} usług do swojego pakietu sprzedawcy nazw domen. Zachęcamy do sprawdzenia skrzynki e-mailowej kontaktu do fakturowania aktualnie przypisanego do każdej z tych usług w celu zatwierdzenia zmiany. Niektóre wnioski zostały złożone w wcześniejszych terminach, a odpowiadające im e-maile potwierdzające zostały wysłane w tych samych terminach.",
+  "domain_reseller_associate_modal_loading": "Ładowanie Twoich nazw domen może zająć do kilku minut w zależności od wielkości Twojego portfela."
+}

@@ -1,0 +1,23 @@
+{
+  "domain_reseller_title": "Programa de Revendedores de Dominios",
+  "domain_reseller_message_title": "Su programa está activo",
+  "domain_reseller_message_text": "Como miembro del programa de revendedores de nombres de dominio, actualmente se beneficia de tarifas preferenciales en sus nombres de dominio.",
+  "domain_reseller_button_add_domain": "Agregar un nombre de dominio",
+  "domain_reseller_button_download_catalog": "Descargar el catálogo",
+  "domain_reseller_general_informations_label": "Nombres de dominio registrados a tarifa preferencial",
+  "domain_reseller_general_informations_domains_length": "{{ length }} nombre(s) de dominio activo(s)",
+  "domain_reseller_general_informations_no_domains": "Ningún nombre de dominio asociado al programa",
+  "domain_reseller_renew_mode_label": "Modo de renovación",
+  "domain_reseller_renew_mode_automatic": "Automático",
+  "domain_reseller_tab_my_domains": "Mis nombres de dominio",
+  "domain_reseller_associate": "Asociar",
+  "domain_reseller_order_domain": "Registrar un nombre de dominio",
+  "domain_reseller_associate_modal_title": "Elija los nombres de dominio a asociar",
+  "domain_reseller_associate_modal_placeholder": "Seleccionar los nombres de dominio",
+  "domain_reseller_associate_modal_description": "¿Está seguro(a) de querer asociar estos nombres de dominio al nic de facturación de esta cuenta?",
+  "domain_reseller_associate_modal_associate_error": "Se produjo un error al solicitar el cambio de contacto: {{error}}.",
+  "domain_reseller_associate_modal_associate_success": "La solicitud de cambio de contacto se ha realizado con éxito. Los contactos afectados por la solicitud recibirán un correo electrónico con el procedimiento de validación.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_one": "Ya ha solicitado la asociación de {{domain}} a su paquete de revendedor de nombres de dominio en una fecha anterior. Se ha enviado un correo electrónico de validación en esta ocasión al contacto de facturación actualmente asociado al servicio. Le invitamos a consultar su bandeja de entrada para finalizar la confirmación del cambio.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_other": "Ha solicitado la vinculación de {{count}} servicios a su paquete de revendedor de nombres de dominio. Le invitamos a verificar la bandeja de entrada del contacto de facturación actualmente asociado a cada uno de estos servicios para validar el cambio. Dado que algunas solicitudes se realizaron en fechas anteriores, los correos electrónicos de validación correspondientes se enviaron en esas mismas fechas.",
+  "domain_reseller_associate_modal_loading": "La carga de sus nombres de dominio puede tardar hasta unos minutos, dependiendo del tamaño de su cartera."
+}

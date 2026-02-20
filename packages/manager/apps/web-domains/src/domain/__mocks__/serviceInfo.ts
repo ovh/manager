@@ -147,3 +147,24 @@ export const serviceInfoPremium: TServiceInfo = {
     name: 'example.com',
   },
 };
+
+export const mockServiceInfoReseller = {
+  customer: {
+    contacts: [
+      { type: 'administrator', customerCode: 'admin-001' },
+      { type: 'technical', customerCode: 'tech-001' },
+      { type: 'billing', customerCode: 'billing-001' },
+    ],
+  },
+  billing: {
+    lifecycle: {
+      current: {
+        creationDate: '2023-01-15T10:00:00Z',
+      },
+    },
+    expirationDate: '2024-01-15T10:00:00Z',
+  },
+  resource: {
+    name: 'domain-reseller-service-001',
+  },
+};

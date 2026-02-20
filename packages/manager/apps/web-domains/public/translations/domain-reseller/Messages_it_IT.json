@@ -1,0 +1,23 @@
+{
+  "domain_reseller_title": "Programma Rivenditori di domini",
+  "domain_reseller_message_title": "Il tuo programma è attivo",
+  "domain_reseller_message_text": "In quanto membro del programma rivenditore di nomi di dominio, attualmente benefici di tariffe preferenziali sui tuoi nomi di dominio.",
+  "domain_reseller_button_add_domain": "Aggiungi un nome di dominio",
+  "domain_reseller_button_download_catalog": "Scarica il catalogo",
+  "domain_reseller_general_informations_label": "Nomi di dominio registrati a tariffa preferenziale",
+  "domain_reseller_general_informations_domains_length": "{{ length }} nome(i) di dominio attivo(i)",
+  "domain_reseller_general_informations_no_domains": "Nessun nome di dominio associato al programma",
+  "domain_reseller_renew_mode_label": "Modalità di rinnovo",
+  "domain_reseller_renew_mode_automatic": "Automatico",
+  "domain_reseller_tab_my_domains": "I miei nomi di dominio",
+  "domain_reseller_associate": "Associa",
+  "domain_reseller_order_domain": "Ordina un nome di dominio",
+  "domain_reseller_associate_modal_title": "Scegli i nomi di dominio da associare",
+  "domain_reseller_associate_modal_placeholder": "Seleziona i nomi di dominio",
+  "domain_reseller_associate_modal_description": "Sei sicuro(a) di voler associare questi nomi di dominio al nic di fatturazione di questo account?",
+  "domain_reseller_associate_modal_associate_error": "Si è verificato un errore durante la richiesta di cambio contatto: {{error}}.",
+  "domain_reseller_associate_modal_associate_success": "La richiesta di cambio contatto è stata effettuata con successo. I contatti interessati dalla richiesta riceveranno un'email contenente la procedura di convalida.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_one": "Hai già richiesto l'associazione di {{domain}} al tuo pacchetto rivenditore di nomi di dominio in una data precedente. Un'email di convalida è stata inviata in questa occasione al contatto di fatturazione attualmente associato al servizio. Ti invitiamo a controllare la sua casella di posta per finalizzare la conferma del cambiamento.",
+  "domain_reseller_associate_modal_associate_not_mail_validated_other": "Hai richiesto l'associazione di {{count}} servizi al tuo pacchetto rivenditore di nomi di dominio. Ti invitiamo a controllare la casella di posta del contatto di fatturazione attualmente associato a ciascuno di questi servizi per convalidare la modifica. Alcune richieste sono state effettuate in date precedenti, le e-mail di convalida corrispondenti sono state inviate in queste stesse date.",
+  "domain_reseller_associate_modal_loading": "Il caricamento dei tuoi nomi di dominio può richiedere fino a qualche minuto a seconda delle dimensioni del tuo portafoglio."
+}
