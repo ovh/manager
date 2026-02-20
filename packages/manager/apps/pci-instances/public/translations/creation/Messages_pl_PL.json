@@ -199,5 +199,11 @@
     "disk_capacity": "<span>Instancja flex to instancja z pojedynczym dyskiem (50 GB)</span>, oferująca szybszy proces dla zrzutów.",
     "resizing_explanation": "Umożliwia skalowanie w górę lub w dół do modeli z ustaloną przestrzenią dyskową, podczas gdy modele klasyczne mogą być skalowane tylko w górę."
   },
-  "pci_instance_creation_network_gateway_attached_badge": "Przyłączona brama"
+  "pci_instance_creation_network_gateway_attached_badge": "Przyłączona brama",
+  "pci_instance_creation_availabilityZone_help_title": "Zrozumieć strefy dostępności",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Wybierz tryb wdrożenia",
+  "pci_instance_creation_availabilityZone_help_automatic": "Pozwól OVHcloud automatycznie wybrać AZ: Ta opcja upraszcza wdrożenie. AZ jest przypisywana automatycznie, a informacje o AZ znajdziesz na końcu wdrożenia swojej instancji. → Idealne na pierwsze wdrożenie lub do użytku nie redundantnego.",
+  "pci_instance_creation_availabilityZone_help_manual_title": "Ręcznie wybierz AZ:",
+  "pci_instance_creation_availabilityZone_help_manual": "Możesz wybierać spośród trzech dostępnych AZ w regionie. Pozwala to na rozłożenie instancji na kilka AZ i wprowadzenie własnych mechanizmów redundancji.",
+  "pci_instance_creation_availabilityZone_help_link": "Dowiedz się więcej o multi-AZ i dobrych praktykach →"
 }
