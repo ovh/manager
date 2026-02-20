@@ -91,13 +91,8 @@
   "iam_authentication_warning": "Limitação conhecida",
   "generateAccessModalIamWarning2": "Para corrigir este problema, terá de iniciar sessão uma primeira vez com o utilizador local <strong>«admin»</strong>, de modo a restabelecer o acesso com o utilizador root IAM.",
   "iam_modal_deactivation_warning_continue": "Deseja continuar?",
-  "freeTrialBannerMessage": "Você beneficia de um crédito gratuito : • {{amountOvhEdition}} para OVHcloud Edition (equivalente a 20 vCPU durante 1 mês) • {{amountStandard}} para Standard (equivalente a 20 vCPU durante 1 mês)",
-  "freeTrialBannerMessageLine1": "Você beneficia de um crédito gratuito :",
-  "freeTrialBannerMessageLine2": "{{amount}} para OVHcloud Edition (equivalente a 20 vCPU durante 1 mês)",
-  "freeTrialBannerMessageLine3": "{{amount}} para Standard (equivalente a 20 vCPU durante 1 mês)",
   "freeTrialBadge": "Teste Gratuito",
   "freeTrialPriceLabel": "Grátis*",
   "freeTrialThenLabel": "A partir daí",
-  "freeTrialDisclaimer": "*Crédito válido ~1 mês conforme o seu uso. Uma vez que o crédito se esgote, a faturação retoma automaticamente conforme o seu consumo.",
   "freeTrialVoucherBanner": "Atualmente, você está aproveitando a oferta de teste deste serviço. Encontre os detalhes do seu crédito disponível na sua interface <l>Voucher</l>."
 }

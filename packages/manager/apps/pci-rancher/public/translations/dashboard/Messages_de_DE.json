@@ -91,13 +91,8 @@
   "iam_authentication_warning": "Bekannte Einschränkung",
   "generateAccessModalIamWarning2": "Um dieses Problem zu beheben, müssen Sie sich zuerst mit dem lokalen <strong>„admin“</strong>-User anmelden, um den Zugriff mit dem IAM-Root-User wiederherzustellen.",
   "iam_modal_deactivation_warning_continue": "Möchten Sie fortfahren?",
-  "freeTrialBannerMessage": "Sie erhalten ein kostenloses Guthaben: • {{amountOvhEdition}} für OVHcloud Edition (entspricht 20 vCPU für 1 Monat) • {{amountStandard}} für Standard (entspricht 20 vCPU für 1 Monat)",
-  "freeTrialBannerMessageLine1": "Sie erhalten ein kostenloses Guthaben:",
-  "freeTrialBannerMessageLine2": "{{amount}} für OVHcloud Edition (entspricht 20 vCPU für 1 Monat)",
-  "freeTrialBannerMessageLine3": "{{amount}} für Standard (entspricht 20 vCPU für 1 Monat)",
   "freeTrialBadge": "Kostenlose Testversion",
   "freeTrialPriceLabel": "Kostenlos*",
   "freeTrialThenLabel": "danach",
-  "freeTrialDisclaimer": "*Guthaben gültig ~1 Monat je nach Nutzung. Sobald das Guthaben aufgebraucht ist, erfolgt die Abrechnung automatisch gemäß Ihrem Verbrauch.",
   "freeTrialVoucherBanner": "Sie profitieren derzeit von dem Testangebot für diesen Dienst. Details zu Ihrem verfügbaren Guthaben finden Sie in Ihrer <l>Gutschein</l>-Schnittstelle."
 }

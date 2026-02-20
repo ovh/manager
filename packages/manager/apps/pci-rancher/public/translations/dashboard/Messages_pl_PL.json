@@ -91,13 +91,8 @@
   "iam_authentication_warning": "Ograniczenie",
   "generateAccessModalIamWarning2": "Aby przywrócić dostęp za pomocą użytkownika root IAM, należy zalogować się po raz pierwszy przy użyciu lokalnego konta <strong>„admin”</strong>.",
   "iam_modal_deactivation_warning_continue": "Czy chcesz kontynuować?",
-  "freeTrialBannerMessage": "Otrzymujesz kredyt za darmo: • {{amountOvhEdition}} na OVHcloud Edition (równowartość 20 vCPU na 1 miesiąc) • {{amountStandard}} na Standard (równowartość 20 vCPU na 1 miesiąc)",
-  "freeTrialBannerMessageLine1": "Otrzymujesz kredyt za darmo:",
-  "freeTrialBannerMessageLine2": "{{amount}} na OVHcloud Edition (równowartość 20 vCPU na 1 miesiąc)",
-  "freeTrialBannerMessageLine3": "{{amount}} na Standard (równowartość 20 vCPU na 1 miesiąc)",
   "freeTrialBadge": "Darmowy okres próbny",
   "freeTrialPriceLabel": "Gratis*",
   "freeTrialThenLabel": "Następnie",
-  "freeTrialDisclaimer": "*Kredyt ważny ~1 miesiąc w zależności od twojego użycia. Po wyczerpaniu kredytu, rozliczenia będą automatycznie kontynuowane zgodnie z twoim zużyciem.",
   "freeTrialVoucherBanner": "Obecnie korzystasz z oferty próbnej na tę usługę. Szczegóły dostępnego kredytu znajdziesz w swoim interfejsie <l>Voucher</l>."
 }
