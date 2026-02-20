@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.13.0...@ovh-ux/manager-pci-instances-app@0.13.1) (2026-02-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4671] ([7bcdc85](https://github.com/ovh/manager/commit/7bcdc854e60e0dcfd1b83c1f8699b1b10f00bb38))
+* **i18n:** add missing translations [CDS 4674] ([99fbd98](https://github.com/ovh/manager/commit/99fbd98b1125909dc22cdfbdbdab7045f7984926))
+
+
+
+
+
 # [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.12.0...@ovh-ux/manager-pci-instances-app@0.13.0) (2026-02-19)
 
 
