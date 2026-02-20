@@ -42,13 +42,13 @@
   "account_details_field_state": "Estado",
   "account_details_field_purchase_purpose": "Razão da compra",
   "account_details_field_purchase_purpose_reason_for_commercial": "Utilização no âmbito de uma atividade comercial",
-  "account_details_field_purchase_purpose_reason_for_non-commercial": "Utilização no âmbito de uma atividade não lucrativa, religiosa ou política",
-  "account_details_field_purchase_purpose_reason_for_personal": "Utilização a título pessoal",
+  "account_details_field_purchase_purpose_reason_for_non-commercial": "Utilização sem fins lucrativos, religiosa ou política",
+  "account_details_field_purchase_purpose_reason_for_personal": "Utilização pessoal",
   "account_details_field_purchase_purpose_reason_for_public-service": "Utilização para fins de serviço público",
   "account_details_field_purchase_purpose_reason_for_study": "Utilização para fins de estudo ou de investigação universitária",
   "account_details_field_province": "Província",
   "account_details_field_corporation_firstname": "Nome próprio do representante legal",
   "account_details_field_corporation_lastname": "Nome do representante legal",
   "account_details_section_address_kyc_info": "<strong>Não se esqueça de introduzir todas as informações e certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais, para que possa efetuar uma encomenda.</strong> <ul><li>Introduza a <strong>sua morada completa</strong> </li><li>A morada deve <strong>corresponder ao que figura no comprovativo</strong> de morada que lhe será pedido para verificar a sua identidade.</li></ul>",
-  "account_details_field_italian_sdi": "Código do destinatário para faturação eletrónica (SDI)"
+  "account_details_field_italian_sdi": "Código do destinatário para a faturação eletrónica (SDI)"
 }

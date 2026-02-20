@@ -14,10 +14,10 @@
   "server": "Servidor",
   "billings_tab_description": "Aqui, poderá consultar a faturação atualizada do seu Tenant. Este será faturado no início do próximo mês. Para saber mais, consulte a <Link>documentação OVHcloud Backup Agent</Link>",
   "go_to_general_informations": "Ir para as informações gerais",
-  "agent_status_disabled_legend": "O seu Agente foi desativado e será removido em breve.",
-  "agent_status_not_installed_legend": "O seu Agente ainda não está instalado no seu servidor, você deve baixá-lo e instalá-lo.",
-  "agent_status_not_configured_legend": "O seu Agente é detectado como instalado, mas ainda não tem a sua política aplicada, estamos a tratar disso o mais rapidamente possível.",
-  "agent_status_creating_legend": "O seu Agente está a ser criado.",
-  "agent_status_updating_legend": "O seu Agente está a ser modificado.",
-  "agent_status_enabled_legend": "O seu Agente está ativo, cópias de segurança serão feitas a partir do seu servidor."
+  "agent_status_disabled_legend": "O seu Agent foi desativado e será eliminado em breve.",
+  "agent_status_not_installed_legend": "O seu Agent ainda não está instalado no seu servidor. Deve transferi-lo e instalá-lo no mesmo.",
+  "agent_status_not_configured_legend": "O seu Agent foi detetado como instalado mas ainda não tem a sua política aplicada. Iremos tratar disso o mais rápido possível.",
+  "agent_status_creating_legend": "O seu Agent está a ser criado.",
+  "agent_status_updating_legend": "O seu Agent está a ser modificado.",
+  "agent_status_enabled_legend": "O seu Agent está ativo, serão efetuados backups a partir do seu servidor."
 }

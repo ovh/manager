@@ -63,9 +63,9 @@
   "searchLabel": "Búsqueda:",
   "prefixLabel": "Prefijo:",
   "rootPrefix": "(raíz)",
-  "loading": "Cargando…",
-  "dropFilesToUpload": "Suelte los archivos aquí para subirlos",
-  "noSearchResults": "No se encontraron resultados para \"{{query}}\"",
+  "loading": "Cargando...",
+  "dropFilesToUpload": "Suba los archivos aquí para cargarlos",
+  "noSearchResults": "No se han encontrado resultados para \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Atención: Las clases Infrequent Access y Cold Archive imponen una duración mínima de conservación. <0>Más información</0>",
   "selectObject": "Seleccionar el objeto {{name}}",
   "selectAll": "Seleccionar todo",
@@ -83,5 +83,5 @@
   "downloadErrorDescription": "No se pudo descargar el archivo",
   "downloadErrorStatus": "No se pudo descargar: {{status}}",
   "downloadErrorUnknownType": "Tipo de descarga desconocido",
-  "openFolder": "Abrir carpeta {{name}}"
+  "openFolder": "Abrir la carpeta {{name}}"
 }
