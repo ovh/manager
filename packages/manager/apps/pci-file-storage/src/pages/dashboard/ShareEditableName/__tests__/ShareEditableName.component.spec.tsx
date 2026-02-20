@@ -9,11 +9,12 @@ import { UpdateShareCommand, useUpdateShare } from '@/data/hooks/shares/useUpdat
 
 import { ShareEditableName } from '../ShareEditableName.component';
 
-const { mockToast, mockMutate, TestEditingContext } = vi.hoisted(() => {
+const { mockSuccessToast, mockWarningToast, mockMutate, TestEditingContext } = vi.hoisted(() => {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { createContext } = require('react') as typeof import('react');
   return {
-    mockToast: vi.fn(),
+    mockSuccessToast: vi.fn(),
+    mockWarningToast: vi.fn(),
     mockMutate: vi.fn(),
     TestEditingContext: createContext(false),
   };
@@ -21,6 +22,12 @@ const { mockToast, mockMutate, TestEditingContext } = vi.hoisted(() => {
 
 vi.mock('@/data/hooks/shares/useUpdateShare', () => ({
   useUpdateShare: vi.fn(),
+}));
+
+vi.mock('@/utils/toast.utils', () => ({
+  ToastDuration: { Short: 5000, Infinite: Infinity },
+  successToast: mockSuccessToast,
+  warningToast: mockWarningToast,
 }));
 
 vi.mock('@ovhcloud/ods-react', async () => {
@@ -45,7 +52,6 @@ vi.mock('@ovhcloud/ods-react', async () => {
         </RealEditable>
       );
     },
-    toast: mockToast,
   };
 });
 
@@ -212,8 +218,9 @@ describe('ShareEditableName', () => {
 
     onSuccessCallback!();
 
-    expect(mockToast).toHaveBeenCalledWith('dashboard:rename.success', {
-      color: 'success',
+    expect(mockSuccessToast).toHaveBeenCalledWith({
+      ns: 'dashboard',
+      i18nKey: 'rename.success',
       duration: 5000,
     });
   });
@@ -249,8 +256,9 @@ describe('ShareEditableName', () => {
 
     onErrorCallback!();
 
-    expect(mockToast).toHaveBeenCalledWith('dashboard:rename.error', {
-      color: 'warning',
+    expect(mockWarningToast).toHaveBeenCalledWith({
+      ns: 'dashboard',
+      i18nKey: 'rename.error',
       duration: Infinity,
     });
   });

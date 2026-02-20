@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { KeyboardEvent, useEffect, useRef } from 'react';
 
 import { Input, Range, RangeValueChangeDetail } from '@ovhcloud/ods-react';
 
@@ -61,6 +61,12 @@ export const SliderInput = ({
     }
   }, [value]);
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.code === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className="flex w-full items-baseline gap-7">
       <Range
@@ -82,6 +88,7 @@ export const SliderInput = ({
         name={inputName}
         min={0}
         max={max}
+        onKeyDown={handleKeyDown}
       />
     </div>
   );

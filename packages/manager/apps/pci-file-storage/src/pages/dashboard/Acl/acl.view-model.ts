@@ -1,6 +1,10 @@
 import { TStatusBadgeProps } from '@/components/status-badge/StatusBadge.component';
 import { TAcl, TAclPermission } from '@/domain/entities/acl.entity';
+import type { TShare } from '@/domain/entities/share.entity';
 import { getAclStatusDisplay } from '@/pages/view-model/aclStatus.view-model';
+
+export const selectCanManageAcl = (share: TShare | undefined): boolean =>
+  share?.enabledActions?.includes('acl_management') ?? false;
 
 export const permissionOptions = ['readOnly', 'readAndWrite'] as const;
 export type TPermissionOption = (typeof permissionOptions)[number];
