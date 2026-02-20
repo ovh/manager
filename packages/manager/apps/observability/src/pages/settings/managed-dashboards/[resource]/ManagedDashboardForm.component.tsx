@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -15,20 +15,23 @@ import { InformationForm } from '@/components/form/information-form/InformationF
 import RegionSelector from '@/components/infrastructures/region-selector/RegionSelector.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useCreateGrafana } from '@/data/hooks/grafana/useCreateGrafana.hook';
+import { useEditGrafana } from '@/data/hooks/grafana/useEditGrafana.hook';
 import { useManagedDashboardFormSchema } from '@/hooks/form/useManagedDashboardFormSchema.hook';
 import { MetricsFormLayout } from '@/pages/metrics/MetricsForm.layout';
+import { ManagedDashboardFormProps } from '@/pages/settings/managed-dashboards/[resource]/ManagedDashboardForm.props';
 import { GrafanaForm } from '@/pages/settings/managed-dashboards/[resource]/grafana/GrafanaForm.component';
 import { urls } from '@/routes/Routes.constants';
 import type { ManagedDashboardFormData } from '@/types/managedDashboards.type';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
-export default function ManagedDashboardForm() {
+export default function ManagedDashboardForm({ managedDashboard }: ManagedDashboardFormProps) {
   const { t } = useTranslation(['managed-dashboards', NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
   const { selectedService } = useObservabilityServiceContext();
   const navigate = useNavigate();
   const { addError, addSuccess } = useNotifications();
 
   const { form } = useManagedDashboardFormSchema();
+  const isEditionMode = managedDashboard !== undefined;
 
   // Subscribe to form state changes
   const { isValid } = useFormState({ control: form.control });
@@ -37,38 +40,81 @@ export default function ManagedDashboardForm() {
 
   const onError = (error: Error) => addError(<ErrorMessage error={error} />);
 
-  const { mutate: createGrafana, isPending } = useCreateGrafana({
+  const createMutation = useCreateGrafana({
     onSuccess: () => {
       addSuccess(t('managed-dashboards:creation.success'));
       goBack();
     },
-    onError,
+    onError: (error) => onError(error),
   });
+
+  const editMutation = useEditGrafana({
+    onSuccess: () => {
+      addSuccess(t('managed-dashboards:edition.success'));
+      goBack();
+    },
+    onError: (error) => onError(error),
+  });
+
+  const { isPending } = isEditionMode ? editMutation : createMutation;
 
   const handleSubmit = useCallback(
     (data: ManagedDashboardFormData) => {
       if (!selectedService) return;
 
-      createGrafana({
-        resourceName: selectedService.id,
-        targetSpec: {
-          title: data.title,
-          description: data.description,
-          infrastructure: {
-            id: data.infrastructureId,
-          },
-          datasource: {
-            fullySynced: true,
-          },
-          release: {
-            id: data.releaseId,
-          },
-          allowedNetworks: data.allowedNetworks,
+      const targetSpec = {
+        title: data.title,
+        description: data.description,
+        infrastructure: {
+          id: data.infrastructureId,
         },
-      });
+        datasource: {
+          fullySynced: true,
+        },
+        release: {
+          id: data.releaseId,
+        },
+        allowedNetworks: data.allowedNetworks,
+      };
+
+      if (isEditionMode && managedDashboard?.id) {
+        editMutation.mutate({
+          resourceName: selectedService.id,
+          grafanaId: managedDashboard.id,
+          targetSpec,
+        });
+      } else {
+        createMutation.mutate({
+          resourceName: selectedService.id,
+          targetSpec,
+        });
+      }
     },
-    [selectedService, createGrafana],
+    [selectedService, isEditionMode, managedDashboard, editMutation, createMutation],
   );
+
+  const initialValues = useMemo<Partial<ManagedDashboardFormData>>(() => {
+    const state = managedDashboard?.currentState;
+    if (!isEditionMode || !state) return {};
+    return {
+      title: state.title ?? '',
+      description: state.description ?? '',
+      infrastructureId: state.infrastructure?.id ?? '',
+      allowedNetworks: state.allowedNetworks ?? [],
+      releaseId: state.release?.id ?? '',
+    };
+  }, [isEditionMode, managedDashboard]);
+
+  useEffect(() => {
+    if (
+      isEditionMode &&
+      managedDashboard &&
+      initialValues &&
+      Object.keys(initialValues).length > 0
+    ) {
+      form.reset(initialValues);
+    }
+  }, [isEditionMode, managedDashboard, initialValues, form]);
 
   return (
     <MetricsFormLayout>
@@ -79,10 +125,15 @@ export default function ManagedDashboardForm() {
             void form.handleSubmit(handleSubmit)(e);
           }}
         >
-          <section className="mt-6">
-            <RegionSelector />
-          </section>
-          <Divider className="mb-12 mt-[30px]" />
+          {!isEditionMode && (
+            <>
+              <section className="mt-6">
+                <RegionSelector />
+              </section>
+
+              <Divider className="mb-12 mt-[30px]" />
+            </>
+          )}
           <section className="mt-6">
             <InformationForm
               title={t('managed-dashboards:creation.information')}
@@ -92,7 +143,7 @@ export default function ManagedDashboardForm() {
           </section>
           <Divider className="mb-12 mt-[30px]" />
           <section className="mt-6">
-            <GrafanaForm />
+            <GrafanaForm isCreation={!isEditionMode} />
           </section>
           <section className="mx-auto mt-10 flex flex-row justify-between gap-6">
             <Button
@@ -106,16 +157,16 @@ export default function ManagedDashboardForm() {
               {t(`${NAMESPACES.ACTIONS}:cancel`)}
             </Button>
             <Button
-              id="create-managed-dashboard"
+              id={`${isEditionMode ? 'edit' : 'create'}-managed-dashboard`}
               type="submit"
               size={BUTTON_SIZE.sm}
               color={BUTTON_COLOR.primary}
               disabled={!selectedService || isPending || !isValid}
               loading={isPending}
-              iamActions={IAM_ACTIONS.CREATE_GRAFANA}
-              urn={selectedService?.iam?.urn}
+              iamActions={isEditionMode ? IAM_ACTIONS.EDIT_GRAFANA : IAM_ACTIONS.CREATE_GRAFANA}
+              urn={isEditionMode ? managedDashboard.iam?.urn : selectedService?.iam?.urn}
             >
-              {t(`${NAMESPACES.ACTIONS}:create`)}
+              {t(`${NAMESPACES.ACTIONS}:${isEditionMode ? 'save' : 'create'}`)}
             </Button>
           </section>
         </form>

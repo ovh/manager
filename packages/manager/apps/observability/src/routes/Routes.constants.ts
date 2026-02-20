@@ -15,6 +15,7 @@ export const subroutes = {
   settings: 'settings',
   services: 'services',
   managedDashboards: 'managed-dashboards',
+  managedDashboard: URL_PARAMS.managedDashboardId,
   onboarding: 'onboarding',
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
@@ -52,6 +53,7 @@ export const urls = {
     subroutes.onboarding
   }`,
   managedDashboardCreation: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.creation}`,
+  editManagedDashboard: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.managedDashboard}/${subroutes.edit}`,
   deleteManagedDashboard: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.deleteManagedDashboard}`,
 } as const;
 

@@ -11,10 +11,11 @@ import { SelectField } from '@/components/form/select-field/SelectField.componen
 import { TextField } from '@/components/form/text-field/TextField.component';
 import { useObservabilityServiceContext } from '@/contexts/ObservabilityService.context';
 import { useGrafanaReleases } from '@/data/hooks/grafana/useGrafanaReleases.hook';
+import { GrafanaFormProps } from '@/pages/settings/managed-dashboards/[resource]/grafana/GrafanaForm.props';
 import type { ManagedDashboardFormData } from '@/types/managedDashboards.type';
 import { parseNetworks, toRequiredLabel } from '@/utils/form.utils';
 
-export const GrafanaForm = () => {
+export const GrafanaForm = ({ isCreation = true }: GrafanaFormProps) => {
   const { t } = useTranslation(['managed-dashboards', NAMESPACES.FORM]);
   const { selectedService } = useObservabilityServiceContext();
   const {
@@ -27,8 +28,18 @@ export const GrafanaForm = () => {
     name: 'infrastructureId',
   });
 
+  const allowedNetworks = useWatch({
+    control,
+    name: 'allowedNetworks',
+  });
+
   // Local state for raw text input
   const [networksText, setNetworksText] = useState('');
+  const allowedNetworksDisplay = useMemo(
+    () =>
+      !isCreation && Array.isArray(allowedNetworks) ? allowedNetworks.join(',') : networksText,
+    [isCreation, allowedNetworks, networksText],
+  );
 
   // Fetch Grafana releases based on selected infrastructure
   const { data: releasesData, isLoading } = useGrafanaReleases(
@@ -82,7 +93,7 @@ export const GrafanaForm = () => {
               placeholder={t('managed-dashboards:grafana.allowedNetworks.placeholder')}
               type="textarea"
               rows={4}
-              value={networksText}
+              value={allowedNetworksDisplay}
               onChange={(value) => {
                 setNetworksText(value);
                 field.onChange(parseNetworks(value));
