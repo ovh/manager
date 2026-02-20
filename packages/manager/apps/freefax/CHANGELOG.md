@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.77](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@9.0.76...@ovh-ux/manager-freefax-app@9.0.77) (2026-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** fix issue with ip-address validator ([b8b7cbe](https://github.com/ovh/manager/commit/b8b7cbe5685c2578f30d33d1be810d5d2ce6598a)), closes [#INC0190759](https://github.com/ovh/manager/issues/INC0190759)
+
+
+
+
+
 ## [9.0.76](https://github.com/ovh/manager/compare/@ovh-ux/manager-freefax-app@9.0.75...@ovh-ux/manager-freefax-app@9.0.76) (2026-02-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-freefax-app
