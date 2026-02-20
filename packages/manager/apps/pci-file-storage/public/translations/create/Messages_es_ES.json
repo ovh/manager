@@ -73,7 +73,9 @@
     "title": "Red privada",
     "description": "Seleccione la red privada a la que desea vincular su share",
     "label": "Seleccionar una red privada existente",
+    "reloadNetworks": "Recargar redes privadas",
     "empty": "Lo siento, pero no tiene una red privada para esta región",
+    "createPrivateNetwork": "Crear una red privada",
     "subnet": {
       "label": "Seleccionar una subred privada existente",
       "empty": "No tiene una subred privada para esta red"

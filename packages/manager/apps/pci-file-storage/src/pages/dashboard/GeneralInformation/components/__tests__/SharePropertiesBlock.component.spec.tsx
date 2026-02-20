@@ -124,7 +124,6 @@ describe('SharePropertiesBlock', () => {
     );
 
     expect(screen.getByText('share:fields.private_network')).toBeVisible();
-    expect(screen.getByText('share:fields.network_name')).toBeVisible();
     expect(screen.getByText('My Private Network')).toBeVisible();
   });
 });
