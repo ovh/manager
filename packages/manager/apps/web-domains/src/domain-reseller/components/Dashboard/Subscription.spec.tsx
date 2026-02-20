@@ -15,6 +15,7 @@ describe('Subscription', () => {
     expirationDate: '2024-01-15T10:00:00Z',
     contacts: mockContacts,
     serviceName: 'service-test-001',
+    serviceId: 123456,
   };
 
   it('should render without crashing', () => {

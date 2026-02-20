@@ -6,6 +6,7 @@ describe('CreationDate', () => {
   const defaultProps = {
     creationDate: '2023-01-15T10:00:00Z',
     serviceName: 'service-test-001',
+    serviceId: 123456,
   };
 
   it('should render without crashing', () => {
