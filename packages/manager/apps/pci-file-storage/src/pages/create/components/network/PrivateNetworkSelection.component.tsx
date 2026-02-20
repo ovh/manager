@@ -4,6 +4,7 @@ import { Controller, useFormContext, useWatch } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
+  Button,
   FormField,
   FormFieldLabel,
   SPINNER_SIZE,
@@ -16,13 +17,15 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { useNetworks } from '@/data/hooks/network/useNetworks';
+import { PciAppUrlSuffix, usePciAppUrl } from '@/hooks/usePciAppUrl';
 import { SubnetSelection } from '@/pages/create/components/network/SubnetSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { selectPrivateNetworksForRegion } from '@/pages/create/view-model/network.view-model';
 
-export const PrivateNetworkSelection = () => {
+const PrivateNetworkSelection = () => {
   const { t } = useTranslation(['create']);
   const { control, setValue } = useFormContext<CreateShareFormValues>();
+  const privateNetworksUrl = usePciAppUrl(PciAppUrlSuffix.PrivateNetworks);
   const selectedMicroRegion = useWatch({
     control,
     name: 'shareData.microRegion',
@@ -89,6 +92,17 @@ export const PrivateNetworkSelection = () => {
         {renderContent()}
         <SubnetSelection />
       </div>
+      <a href={`${privateNetworksUrl}/new`} target="_blank">
+        <Button
+          type="button"
+          variant="outline"
+          color="primary"
+        >
+          {t('create:network.createPrivateNetwork')}
+        </Button>
+      </a>
+
     </section>
   );
 };
+export default PrivateNetworkSelection;

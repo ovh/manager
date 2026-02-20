@@ -74,6 +74,7 @@
     "description": "Wybierz sieć prywatną, do której chcesz podłączyć swój share",
     "label": "Wybierz istniejącą prywatną sieć",
     "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
+    "createPrivateNetwork": "Utwórz sieć prywatną",
     "subnet": {
       "label": "Wybierz istniejący prywatny podsieć",
       "empty": "Nie masz prywatnej podsieci dla tej sieci"

@@ -7,12 +7,16 @@ import { DeepPartial, FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useNetworks } from '@/data/hooks/network/useNetworks';
-import { PrivateNetworkSelection } from '@/pages/create/components/network/PrivateNetworkSelection.component';
+import PrivateNetworkSelection from '@/pages/create/components/network/PrivateNetworkSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { TPrivateNetworkData } from '@/pages/create/view-model/network.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/network/useNetworks');
+vi.mock('@/hooks/usePciAppUrl', () => ({
+  PciAppUrlSuffix: { PrivateNetworks: 'private-networks' },
+  usePciAppUrl: () => '/pci/projects/test-project-id/private-networks',
+}));
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
@@ -55,6 +59,14 @@ vi.mock('@ovhcloud/ods-react', () => ({
     };
     return render({ field });
   },
+  Button: ({
+    children,
+    onClick,
+  }: PropsWithChildren<{ onClick?: () => void }>) => (
+    <button type="button" onClick={onClick}>
+      {children}
+    </button>
+  ),
 }));
 
 const mockUseNetworks = vi.mocked(useNetworks);
@@ -94,6 +106,42 @@ describe('PrivateNetworkSelection', () => {
     });
 
     expect(screen.getByText('create:network.empty')).toBeVisible();
+  });
+
+  it('should display create private network button when user has no networks', () => {
+    mockUseNetworks.mockReturnValue({
+      data: [],
+      isLoading: false,
+    } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
+
+    renderWithMockedForm(<PrivateNetworkSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA7' } },
+    });
+
+    const button = screen.getByRole('button', {
+      name: 'create:network.createPrivateNetwork',
+    });
+    expect(button).toBeVisible();
+  });
+
+  it('should display create private network button when user has networks', () => {
+    const networkOptions: TPrivateNetworkData[] = [
+      { label: 'Network 1', value: 'net1' },
+      { label: 'Network 2', value: 'net2' },
+    ];
+
+    mockUseNetworks.mockReturnValue({
+      data: networkOptions,
+      isLoading: false,
+    } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
+
+    renderWithMockedForm(<PrivateNetworkSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA7' } },
+    });
+
+    expect(
+      screen.getByRole('button', { name: 'create:network.createPrivateNetwork' }),
+    ).toBeVisible();
   });
 
   it('should handle network selection', async () => {

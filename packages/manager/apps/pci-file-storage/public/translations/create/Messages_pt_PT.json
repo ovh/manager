@@ -74,6 +74,7 @@
     "description": "Selecione a rede privada à qual deseja vincular o seu share",
     "label": "Selecionar uma rede privada existente",
     "empty": "Desculpe, mas você não tem uma rede privada para esta região",
+    "createPrivateNetwork": "Criar uma rede privada",
     "subnet": {
       "label": "Selecionar uma sub-rede privada existente",
       "empty": "Você não tem uma sub-rede privada para esta rede"
