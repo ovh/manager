@@ -36,7 +36,7 @@
   "error_empty_keys": "You cannot have an empty key.",
   "error_invalid_duration": "The expiry duration must be a duration (e.g: 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "Invalid JSON",
-  "error_key_value_conversion": "The secret value cannot be converted to key-value pairs.",
+  "error_key_value_conversion": "The value of the secret cannot be converted into key-value pairs. Use the JSON editor.",
   "error_path_allowed_characters": "The path can only contain the following characters: A-Z a-z 0-9 . _ : / = @ and -",
   "error_path_structure": "The path cannot start or end with '/', nor can it contain two '/' in a row.",
   "error_update_settings": "An error has occurred updating the settings",
@@ -91,5 +91,9 @@
   "enable_cas_required": "Configure CAS",
   "form_helper_max_versions_default": "Enter “0” to use the default value ({{value}}).",
   "form_helper_max_versions_domain": "Enter “0” to use the OKMS domain value ({{value}}).",
-  "secret_settings": "Secret Settings"
+  "secret_settings": "Secret Settings",
+  "add_custom_metadata": "Add metadata",
+  "edit_custom_metadata": "Edit metadata",
+  "error_empty_key_or_value": "The key or value must not be empty.",
+  "metadata": "Metadata"
 }

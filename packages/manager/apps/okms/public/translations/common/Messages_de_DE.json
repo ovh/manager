@@ -11,5 +11,6 @@
   "region_continent_EUROPE": "Europa",
   "region_continent_NORTH_AMERICA": "Nordamerika",
   "region_continent_OTHERS": "Andere Regionen",
-  "region_local_zone_description": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz."
+  "region_local_zone_description": "Bereitstellung Ihrer Anwendungen möglichst nahe an Ihren Usern für niedrige Latenz und die Datenresidenz.",
+  "error_updating_data": "Ein Fehler ist bei der Aktualisierung der Daten aufgetreten."
 }
