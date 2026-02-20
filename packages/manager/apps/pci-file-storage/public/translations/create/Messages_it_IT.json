@@ -79,6 +79,10 @@
       "empty": "Non hai una sottorete privata per questa rete"
     }
   },
+  "estimation": {
+    "title": "Stima",
+    "amount": "Importo stimato: <b>{{amount}}</b>"
+  },
   "submit": {
     "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}",
     "success": "Lo share {{name}} è in fase di creazione"

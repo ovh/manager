@@ -79,6 +79,10 @@
       "empty": "Você não tem uma sub-rede privada para esta rede"
     }
   },
+  "estimation": {
+    "title": "Estimativa",
+    "amount": "Valor estimado: <b>{{amount}}</b>"
+  },
   "submit": {
     "error": "Ocorreu um erro ao adicionar o share: {{error}}",
     "success": "O share {{name}} está a ser criado"

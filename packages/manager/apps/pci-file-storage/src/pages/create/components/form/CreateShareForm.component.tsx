@@ -15,6 +15,7 @@ import { DeploymentModeSection } from '@/pages/create/components/localisation/de
 import { MacroRegionSelection } from '@/pages/create/components/localisation/macroRegion/MacroRegionSelection.component';
 import { MicroRegionSelection } from '@/pages/create/components/localisation/microRegion/MicroRegionSelection.component';
 import { NameInput } from '@/pages/create/components/name/NameInput.component';
+import { EstimationBlock } from '@/pages/create/components/estimation/EstimationBlock.component';
 import { PrivateNetworkSelection } from '@/pages/create/components/network/PrivateNetworkSelection.component';
 import { ShareSelection } from '@/pages/create/components/share/ShareSelection.component';
 import { ShareSizeSelection } from '@/pages/create/components/share/ShareSizeSelection.component';
@@ -114,6 +115,7 @@ export const CreateShareForm = () => {
           <PrivateNetworkSelection />
         </section>
         <Divider className="w-full" />
+        <EstimationBlock />
         <section className="mt-8 flex gap-4">
           <Button type="button" variant="ghost" onClick={handleCancel}>
             {t(`${NAMESPACES.ACTIONS}:cancel`)}
