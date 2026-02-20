@@ -43,3 +43,19 @@ export const createShare = async ({
     subnetId: shareToCreate.network.subnetId,
   });
 };
+
+export const updateShare = async ({
+  projectId,
+  shareId,
+  region,
+  name,
+}: {
+  projectId: string;
+  shareId: string;
+  region: string;
+  name: string;
+}): Promise<void> => {
+  await v6.put(`/cloud/project/${projectId}/region/${region}/share/${shareId}`, {
+    name,
+  });
+};

@@ -10,5 +10,9 @@
   },
   "common": {
     "coming_soon": "Dostępne wkrótce"
+  },
+  "rename": {
+    "success": "Aktualizacja share jest w toku, może to potrwać kilka sekund",
+    "error": "Wystąpił błąd podczas aktualizacji share"
   }
 }

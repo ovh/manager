@@ -4,7 +4,7 @@ import { DEPLOYMENT_MODES } from '@/domain/entities/catalog.entity';
 
 const stringSchema = z.string();
 
-const nameSchema = z
+export const nameSchema = z
   .string()
   .min(1, { message: 'name_required' })
   .max(255, { message: 'name_max_length' })
