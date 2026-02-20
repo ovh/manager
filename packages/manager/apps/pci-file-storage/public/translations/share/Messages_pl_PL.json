@@ -10,8 +10,7 @@
     "location": "Lokalizacja",
     "creation_date": "Data utworzenia",
     "mount_path": "Ścieżka montowania",
-    "private_network": "Sieć prywatna",
-    "network_name": "Nazwa sieci"
+    "private_network": "Sieć prywatna"
   },
   "actions": {
     "column": "Operacje",

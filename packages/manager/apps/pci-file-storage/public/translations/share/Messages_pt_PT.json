@@ -10,8 +10,7 @@
     "location": "Localização",
     "creation_date": "Data de criação",
     "mount_path": "Caminho de montagem",
-    "private_network": "Rede Privada",
-    "network_name": "Nome da rede"
+    "private_network": "Rede Privada"
   },
   "actions": {
     "column": "Ações",
