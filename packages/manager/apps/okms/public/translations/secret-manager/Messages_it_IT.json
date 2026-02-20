@@ -95,5 +95,6 @@
   "add_custom_metadata": "Aggiungi metadati",
   "edit_custom_metadata": "Modifica metadati",
   "error_empty_key_or_value": "La chiave o il valore non devono essere vuoti.",
-  "metadata": "Metadati"
+  "metadata": "Metadati",
+  "secret_settings_explanation": "La configurazione dei parametri a livello di segreto avrà la priorità sulla configurazione a livello di dominio OKMS"
 }

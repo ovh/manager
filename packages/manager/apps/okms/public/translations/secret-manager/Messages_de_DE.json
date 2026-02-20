@@ -95,5 +95,6 @@
   "add_custom_metadata": "Metadaten hinzufügen",
   "edit_custom_metadata": "Metadaten bearbeiten",
   "error_empty_key_or_value": "Der Schlüssel oder der Wert dürfen nicht leer sein.",
-  "metadata": "Metadaten"
+  "metadata": "Metadaten",
+  "secret_settings_explanation": "Die Konfiguration der Parameter auf der Ebene des Geheimnisses hat Vorrang vor der Konfiguration auf der Ebene der OKMS-Domain."
 }
