@@ -107,14 +107,13 @@ describe('MacroRegionSelection', () => {
       expectedMacroRegion: 'GRA',
     },
     {
-      description:
-        'should not reset when selected macro is not in localizations but no location is available',
+      description: 'should clear macro region when no location is available',
       defaultMacroRegion: 'OTHER',
       localizations: [
         createLocalization({ macroRegion: 'GRA', available: false }),
         createLocalization({ macroRegion: 'SBG', available: false }),
       ],
-      expectedMacroRegion: 'OTHER',
+      expectedMacroRegion: undefined as string | undefined,
     },
   ])('$description', async ({ defaultMacroRegion, localizations, expectedMacroRegion }) => {
     mockUseShareCatalog.mockReturnValue({
@@ -131,7 +130,11 @@ describe('MacroRegionSelection', () => {
 
     await waitFor(() => {
       const radiogroup = screen.getByRole('radiogroup');
-      expect(radiogroup).toHaveAttribute('data-value', expectedMacroRegion);
+      if (expectedMacroRegion !== undefined) {
+        expect(radiogroup).toHaveAttribute('data-value', expectedMacroRegion);
+      } else {
+        expect(radiogroup.getAttribute('data-value')).toBeNull();
+      }
     });
   });
 

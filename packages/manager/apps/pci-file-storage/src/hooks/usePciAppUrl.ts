@@ -14,5 +14,5 @@ export const usePciAppUrl = (suffix: PciAppUrlSuffix) => {
     {},
   ]);
 
-  return url;
+  return url as string;
 };

@@ -1,4 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { networksQueryKey } from '@/adapters/network/queryKeys';
 import { getNetworks } from '@/data/api/network.api';
@@ -11,12 +13,43 @@ export const useNetworks = <TData>(
   options?: SelectOption<TNetwork[], TData>,
 ) => {
   const projectId = useProjectId();
+  const queryClient = useQueryClient();
 
-  return useQuery<TNetwork[], Error, TData>({
+  const {
+    data,
+    error,
+    isPending,
+    isError,
+    isSuccess,
+    isFetching,
+    isLoading,
+    refetch: queryRefetch,
+  } = useQuery<TNetwork[], Error, TData>({
     queryKey: networksQueryKey(projectId, region ?? ''),
     queryFn: () => getNetworks({ projectId, region: region! }),
     enabled: !!region,
     select: options?.select,
     retry: 1,
   });
+
+  const refetch = useMemo(
+    () => () => {
+      void queryRefetch();
+      void queryClient.invalidateQueries({
+        predicate: (q) => q.queryKey.includes(region) && q.queryKey.includes('subnet'),
+      });
+    },
+    [queryClient, queryRefetch, region],
+  );
+
+  return {
+    data,
+    error,
+    isPending,
+    isError,
+    isSuccess,
+    isFetching,
+    isLoading,
+    refetch,
+  };
 };

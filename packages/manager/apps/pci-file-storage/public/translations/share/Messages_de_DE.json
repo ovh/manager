@@ -10,8 +10,7 @@
     "location": "Standort",
     "creation_date": "Erstellungsdatum",
     "mount_path": "Einhängepfad",
-    "private_network": "Privates Netzwerk",
-    "network_name": "Name des Netzwerks"
+    "private_network": "Privates Netzwerk"
   },
   "actions": {
     "column": "Aktionen",
