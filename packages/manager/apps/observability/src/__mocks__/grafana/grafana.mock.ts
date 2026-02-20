@@ -1,6 +1,7 @@
 import mockLogger from '@/__mocks__/mock.logger';
 import {
   CreateGrafanaPayload,
+  EditGrafanaPayload,
   GetGrafanaPayload,
   GetGrafanaReleasesParams,
 } from '@/data/api/grafana.props';
@@ -72,6 +73,7 @@ const grafanasDataset: Grafana[] = [
       datasource: {
         fullySynced: false,
       },
+      allowedNetworks: ['192.168.1.1'],
       description: 'My grafana test',
       endpoint: 'https://grafana-qwlwe6-gra1.metrics.ovh.com',
       infrastructure: {
@@ -84,17 +86,17 @@ const grafanasDataset: Grafana[] = [
       },
       title: 'My grafana',
       release: {
-        id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
-        status: 'DEPRECATED',
-        version: '11.1.0rc1',
+        id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+        status: 'SUPPORTED',
+        version: '11.1.0',
         upgradableTo: [
           {
-            id: 'a2ab9e69-b39c-4a34-af34-49fa45933065',
+            id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
             status: 'SUPPORTED',
             version: '12.2.1',
           },
           {
-            id: '52799d18-0071-4fd9-85dc-673ad5e520a6',
+            id: '3ab58ad6-729c-430a-a1e1-a1cb71823115',
             status: 'SUPPORTED',
             version: '12.2.1rc1',
           },
@@ -110,7 +112,7 @@ const grafanasDataset: Grafana[] = [
         'ovh:ldp:service:id': '31ed12da-d06b-4ca2-a737-9f8a8411a907',
         'ovh:region': 'eu-west-gra',
       },
-      urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078/tenant/019b0cfb-5990-7a17-8d58-18936bfd1ddc',
+      urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078/grafana/3fa85f64-5717-4562-b3fc-2c963f66afa6',
     },
     updatedAt: '2025-07-22T09:58:20.619Z',
   },
@@ -157,7 +159,7 @@ const grafanasDataset: Grafana[] = [
         'ovh:ldp:service:id': '31ed12da-d06b-4ca2-a737-9f8a8411a907',
         'ovh:region': 'eu-west-gra',
       },
-      urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078/tenant/019ad9a2-7438-735e-bb05-e397e1d9be7e',
+      urn: 'urn:v1:eu:resource:ldp:ldp-gr-55078/grafana/155c54c1-7efd-49e3-9358-b1a2860a56cc',
     },
     updatedAt: '2025-07-25T09:58:20.619Z',
   },
@@ -188,6 +190,11 @@ export const getGrafana = async ({
 
 export const createGrafana = async (payload: CreateGrafanaPayload): Promise<Grafana> => {
   mockLogger.info(`[createGrafana] for ${payload.resourceName}`, { payload });
+  return Promise.resolve(grafanasDataset[0]!);
+};
+
+export const editGrafana = async (payload: EditGrafanaPayload): Promise<Grafana> => {
+  mockLogger.info(`[editGrafana] for ${payload.resourceName}`, { payload });
   return Promise.resolve(grafanasDataset[0]!);
 };
 

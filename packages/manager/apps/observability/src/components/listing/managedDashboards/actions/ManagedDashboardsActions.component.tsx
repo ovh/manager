@@ -10,7 +10,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItemProps, LinkType } from '@ovh-ux/muk';
 
 import { ManagedDashboardsActionsProps } from '@/components/listing/managedDashboards/actions/ManagedDashboardsActions.props';
-import { getDeleteManagedDashboardUrl } from '@/routes/Routes.utils';
+import { LocationPathParams } from '@/routes/Routes.constants';
+import { getDeleteManagedDashboardUrl, getEditManagedDashboardUrl } from '@/routes/Routes.utils';
 import { GrafanaListing } from '@/types/managedDashboards.type';
 
 export default function ManagedDashboardsActions({
@@ -19,6 +20,11 @@ export default function ManagedDashboardsActions({
 }: ManagedDashboardsActionsProps<GrafanaListing>) {
   const { t } = useTranslation(['managed-dashboards', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+
+  const params: LocationPathParams = {
+    resourceName,
+    managedDashboardId: managedDashboard.id,
+  };
 
   const onCopyUrn = useCallback(() => {
     if (managedDashboard.urn) {
@@ -42,7 +48,7 @@ export default function ManagedDashboardsActions({
       id: 2,
       label: t(`${NAMESPACES.ACTIONS}:modify`),
       onClick: () => {
-        alert('TODO: edit grafana');
+        navigate(getEditManagedDashboardUrl(params));
       },
     },
     {
@@ -55,12 +61,7 @@ export default function ManagedDashboardsActions({
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       color: BUTTON_COLOR.critical,
       onClick: () => {
-        navigate(
-          getDeleteManagedDashboardUrl({
-            resourceName,
-            managedDashboardId: managedDashboard.id,
-          }),
-        );
+        navigate(getDeleteManagedDashboardUrl(params));
       },
     },
   ];

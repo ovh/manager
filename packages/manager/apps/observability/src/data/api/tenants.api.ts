@@ -76,10 +76,12 @@ export const editTenant = async ({
   tenantId,
   resourceName,
   targetSpec,
+  signal,
 }: EditTenantPayload): Promise<Tenant> => {
   const { data } = await apiClient.v2.put<Tenant>(
     `/observability/resource/${resourceName}/metric/tenant/${tenantId}`,
     { targetSpec },
+    { signal },
   );
 
   return data;

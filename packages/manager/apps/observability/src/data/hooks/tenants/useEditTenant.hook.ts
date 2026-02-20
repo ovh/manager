@@ -2,9 +2,8 @@ import { UseMutationOptions, useMutation, useQueryClient } from '@tanstack/react
 
 import { editTenant } from '@/__mocks__/tenants/tenant.adapter';
 import type { EditTenantPayload } from '@/data/api/tenants.props';
+import { getTenantQueryKey, getTenantsQueryKey } from '@/data/hooks/tenants/useTenants.hook';
 import { Tenant } from '@/types/tenants.type';
-
-import { getTenantQueryKey, getTenantsQueryKey } from './useTenants.hook';
 
 export const useEditTenant = (
   mutationOptions?: Omit<UseMutationOptions<Tenant, Error, EditTenantPayload>, 'mutationFn'>,
