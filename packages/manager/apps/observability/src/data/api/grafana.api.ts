@@ -2,6 +2,7 @@ import { apiClient } from '@ovh-ux/manager-core-api';
 
 import {
   CreateGrafanaPayload,
+  EditGrafanaPayload,
   GetGrafanaPayload,
   GetGrafanaReleasesParams,
 } from '@/data/api/grafana.props';
@@ -60,6 +61,21 @@ export const createGrafana = async ({
     { targetSpec },
     { signal },
   );
+  return data;
+};
+
+export const editGrafana = async ({
+  grafanaId,
+  resourceName,
+  targetSpec,
+  signal,
+}: EditGrafanaPayload): Promise<Grafana> => {
+  const { data } = await apiClient.v2.put<Grafana>(
+    `/observability/resource/${resourceName}/setting/grafana/${grafanaId}`,
+    { targetSpec },
+    { signal },
+  );
+
   return data;
 };
 
