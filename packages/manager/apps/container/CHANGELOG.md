@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.184.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.183.0...@ovh-ux/manager-container-app@0.184.0) (2026-02-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1155] ([373040c](https://github.com/ovh/manager/commit/373040c360a4c18753d20de7d81d252bb7a1f022))
+
+
+### Features
+
+* **web-domain-reseller:** add entry menu for domain reseller ([#22000](https://github.com/ovh/manager/issues/22000)) ([78e0dff](https://github.com/ovh/manager/commit/78e0dffb12eae9fba973bea67aef63047ab080d3)), closes [#DCE-150](https://github.com/ovh/manager/issues/DCE-150)
+
+
+
+
+
 # [0.183.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.182.0...@ovh-ux/manager-container-app@0.183.0) (2026-02-19)
 
 
