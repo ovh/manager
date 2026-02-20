@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsButton } from '@ovhcloud/ods-components/react';
-import { BUTTON_SIZE, BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
+import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
 
 import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -35,17 +34,18 @@ export default function LogsPage() {
   return (
     <div className="flex flex-col gap-4">
       {generalUrl && (
-        <OdsButton
-          icon={ICON_NAME.arrowLeft}
-          iconAlignment="left"
-          size={BUTTON_SIZE.sm}
-          variant={BUTTON_VARIANT.outline}
-          label={t('hosting_logs_back_to_general')}
-          className="[&::part(button)]:border-none"
-          onClick={() => {
-            window.location.href = generalUrl;
-          }}
-        />
+        <div className="flex justify-start">
+          <Button
+            size={BUTTON_SIZE.sm}
+            variant={BUTTON_VARIANT.ghost}
+            onClick={() => {
+              window.location.href = generalUrl;
+            }}
+          >
+            <Icon name={ICON_NAME.arrowLeft} className="mr-2" />
+            {t('hosting_logs_back_to_general')}
+          </Button>
+        </div>
       )}
       <LogsToCustomerModule
         logApiVersion="v6"
