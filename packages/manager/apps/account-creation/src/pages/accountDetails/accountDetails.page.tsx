@@ -546,14 +546,14 @@ function AccountDetailsForm({
                     slot="label"
                     aria-label={t('account_details_field_vat', {
                       vatLabel,
+                      interpolation: { escapeValue: false },
                     })}
                   >
                     <OdsText preset="caption">
-                      <Trans
-                        t={t}
-                        i18nKey="account_details_field_vat"
-                        values={{ vatLabel }}
-                      />
+                      {t('account_details_field_vat', {
+                        vatLabel,
+                        interpolation: { escapeValue: false },
+                      })}
                       {rules?.vat?.mandatory && ' *'}
                     </OdsText>
                   </label>
