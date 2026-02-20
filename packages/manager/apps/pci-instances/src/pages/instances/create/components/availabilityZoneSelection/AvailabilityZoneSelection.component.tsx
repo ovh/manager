@@ -107,23 +107,54 @@ export const AvailabilityZoneSelection = ({
             {t('creation:pci_instance_creation_choose_availabilityZone_title')}
           </Text>
           <HelpDrawer>
-            <Text className="mb-4">
-              {t(
-                'creation:pci_instance_creation_availabilityZone_help_description_p1',
-              )}
-            </Text>
-            <Text className="mb-4">
-              {t(
-                'creation:pci_instance_creation_availabilityZone_help_description_p2',
-              )}
-            </Text>
-            <Link
-              className="visited:text-[var(--ods-color-primary-500)]"
-              href={guide}
-              target="_blank"
-            >
-              {t('find_out_more')}
-            </Link>
+            <div className="flex flex-col pb-20 pt-8">
+              <Text preset="heading-2" className="mb-4">
+                {t('creation:pci_instance_creation_availabilityZone_help_title')}
+              </Text>
+              <Text preset="paragraph" className="mb-4">
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_description_p1',
+                )}
+              </Text>
+              <Text preset="paragraph" className="mb-4">
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_description_p2',
+                )}
+              </Text>
+              <Text
+                preset="heading-6"
+                className="mb-3 block font-semibold"
+              >
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_deployment_mode_title',
+                )}
+              </Text>
+              <Text preset="paragraph" className="mb-4">
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_automatic',
+                )}
+              </Text>
+              <Text
+                preset="heading-6"
+                className="mb-3 block font-semibold"
+              >
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_manual_title',
+                )}
+              </Text>
+              <Text preset="paragraph" className="mb-4">
+                {t(
+                  'creation:pci_instance_creation_availabilityZone_help_manual',
+                )}
+              </Text>
+              <Link
+                className="mt-8 inline-block visited:text-[var(--ods-color-primary-500)]"
+                href={guide}
+                target="_blank"
+              >
+                {t('creation:pci_instance_creation_availabilityZone_help_link')}
+              </Link>
+            </div>
           </HelpDrawer>
         </div>
 
