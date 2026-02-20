@@ -16,8 +16,21 @@
       "readOnly": "Tylko do odczytu",
       "readAndWrite": "Odczyt i zapis"
     },
+    "status": {
+      "header": "Status"
+    },
     "actions": {
-      "header": "Operacje"
+      "header": "Operacje",
+      "delete": {
+        "success": "Twoja ACL (Lista kontroli dostępu) została pomyślnie usunięta",
+        "error": "Wystąpił błąd podczas usuwania ACL: {{errorMessage}}"
+      }
     }
+  },
+  "deleteModal": {
+    "title": "Usuń ACL",
+    "description": "Usunięcie tej ACL spowoduje utratę dostępu dla {{accessTo}} do tego udostępnienia. Czy potwierdzasz usunięcie?",
+    "confirmButton": "Usuń",
+    "close": "Zamknij"
   }
 }

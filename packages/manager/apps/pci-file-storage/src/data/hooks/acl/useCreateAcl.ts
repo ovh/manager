@@ -8,6 +8,7 @@ import { TAclToCreate } from '@/domain/entities/acl.entity';
 import { isAclToCreateValid } from '@/domain/services/acl.service';
 import {
   TPermissionOption,
+  TStatusOption,
   mapPermissionOptionToPermissions,
 } from '@/pages/dashboard/Acl/acl.view-model';
 
@@ -19,11 +20,13 @@ export type TUseAddAclOptions = {
 export type CreateAclCommand = {
   sourceIpOrCidr: string;
   accessPermission: TPermissionOption;
+  status: TStatusOption;
 };
 
 const mapCommandToEntity = (command: CreateAclCommand): TAclToCreate => ({
   source: { id: command.sourceIpOrCidr },
   permissions: mapPermissionOptionToPermissions(command.accessPermission),
+  status: command.status,
 });
 
 export const useCreateAcl = (

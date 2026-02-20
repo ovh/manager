@@ -8,7 +8,7 @@ import { Link, Text } from '@ovhcloud/ods-react';
 
 import { DatagridColumn } from '@ovh-ux/muk';
 
-import { ShareStatusBadge } from '@/components/status-badge/ShareStatusBadge.component';
+import { StatusBadge } from '@/components/status-badge/StatusBadge.component';
 import { useFormatGiBSize } from '@/hooks/useFormatShareSize';
 import { ActionsMenu } from '@/pages/list/components/menu/ActionsMenu.component';
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
@@ -67,7 +67,7 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         header: t('share:fields.status'),
         cell: ({ row }) => {
           const { labelKey, badgeColor } = row.original.statusDisplay;
-          return <ShareStatusBadge labelKey={labelKey} badgeColor={badgeColor} />;
+          return <StatusBadge labelKey={labelKey} badgeColor={badgeColor} />;
         },
       },
       {

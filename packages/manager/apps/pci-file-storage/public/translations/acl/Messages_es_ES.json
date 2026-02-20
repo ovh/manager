@@ -16,8 +16,21 @@
       "readOnly": "Solo lectura",
       "readAndWrite": "Lectura y escritura"
     },
+    "status": {
+      "header": "Estado"
+    },
     "actions": {
-      "header": "Acciones"
+      "header": "Acciones",
+      "delete": {
+        "success": "Su ACL (Lista de control de acceso) se ha eliminado correctamente",
+        "error": "Se ha producido un error al eliminar la ACL: {{errorMessage}}"
+      }
     }
+  },
+  "deleteModal": {
+    "title": "Eliminar ACL",
+    "description": "Eliminar esta ACL implicará la pérdida de acceso de {{accessTo}} a este recurso compartido. ¿Confirma la eliminación?",
+    "confirmButton": "Eliminar",
+    "close": "Cerrar"
   }
 }

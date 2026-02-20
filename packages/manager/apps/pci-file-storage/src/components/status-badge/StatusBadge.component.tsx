@@ -2,21 +2,21 @@ import { useTranslation } from 'react-i18next';
 
 import { BADGE_COLOR, Badge, type BadgeColor } from '@ovhcloud/ods-react';
 
-import { type TShareStatusBadgeColor } from '@/pages/view-model/shareStatus.view-model';
+type TStatusBadgeColor = 'success' | 'warning' | 'critical' | 'neutral';
 
-const BADGE_COLOR_BY_STATUS: Record<TShareStatusBadgeColor, BadgeColor> = {
+const BADGE_COLOR_BY_STATUS: Record<TStatusBadgeColor, BadgeColor> = {
   success: BADGE_COLOR.success,
   warning: BADGE_COLOR.warning,
   critical: BADGE_COLOR.critical,
   neutral: BADGE_COLOR.neutral,
 };
 
-type TShareStatusBadgeProps = {
+export type TStatusBadgeProps = {
   labelKey: string;
-  badgeColor: TShareStatusBadgeColor;
+  badgeColor: TStatusBadgeColor;
 };
 
-export const ShareStatusBadge = ({ labelKey, badgeColor }: TShareStatusBadgeProps) => {
+export const StatusBadge = ({ labelKey, badgeColor }: TStatusBadgeProps) => {
   const { t } = useTranslation(['status']);
 
   return (
