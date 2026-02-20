@@ -27,5 +27,8 @@
   "freeTrialCreditApplied": "Il credito sarà applicato automaticamente al tuo primo servizio.",
   "orderButtonLabelFreeTrial": "Inizia la mia prova gratuita",
   "rancherGuidesLink": "Accedi alle guide Rancher",
-  "videoTitle": "Video di presentazione di Rancher"
+  "videoTitle": "Video di presentazione di Rancher",
+  "freeTrialBannerMessageLine1": "Sei idoneo per una prova gratuita.",
+  "freeTrialBannerMessageLine2": "Approfitta di un credito* valido per un mese equivalente al prezzo mensile di 20 vCPU per testare i nostri piani Rancher Standard e OVHcloud Edition.",
+  "freeTrialDisclaimer": "*Il credito si applica automaticamente al tuo consumo orario. Una volta esaurito questo credito o terminato il mese di prova, la fatturazione dei tuoi servizi prenderà il sopravvento."
 }
