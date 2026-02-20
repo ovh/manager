@@ -95,5 +95,6 @@
   "add_custom_metadata": "Add metadata",
   "edit_custom_metadata": "Edit metadata",
   "error_empty_key_or_value": "The key or value must not be empty.",
-  "metadata": "Metadata"
+  "metadata": "Metadata",
+  "secret_settings_explanation": "The configuration of parameters at the secret level will take precedence over the configuration at the OKMS domain level."
 }
