@@ -20,14 +20,13 @@ import {
   Input,
   Skeleton,
   Text,
-  toast,
 } from '@ovhcloud/ods-react';
 
 import { shareDetailsQueryKey } from '@/adapters/shares/queryKeys';
 import { useUpdateShare } from '@/data/hooks/shares/useUpdateShare';
 import { nameSchema } from '@/pages/create/schema/CreateShare.schema';
+import { ToastDuration, successToast, warningToast } from '@/utils/toast.utils';
 
-const SUCCESS_TOASTER_DURATION = 5000;
 const SUCCESS_REFETCH_DELAY = 5000;
 
 const renameShareSchema = z.object({
@@ -54,9 +53,10 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
   const queryClient = useQueryClient();
 
   const onUpdateSuccess = useCallback(() => {
-    toast(t('dashboard:rename.success'), {
-      color: 'success',
-      duration: SUCCESS_TOASTER_DURATION,
+    successToast({
+      ns: 'dashboard',
+      i18nKey: 'rename.success',
+      duration: ToastDuration.Short,
     });
 
     setTimeout(() => {
@@ -64,14 +64,15 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
         queryKey: shareDetailsQueryKey(projectId, region, shareId),
       });
     }, SUCCESS_REFETCH_DELAY);
-  }, [projectId, queryClient, region, shareId, t]);
+  }, [projectId, queryClient, region, shareId]);
 
   const onUpdateError = useCallback(() => {
-    toast(t('dashboard:rename.error'), {
-      color: 'warning',
-      duration: Infinity,
+    warningToast({
+      ns: 'dashboard',
+      i18nKey: 'rename.error',
+      duration: ToastDuration.Infinite,
     });
-  }, [t]);
+  }, []);
 
   const { mutate: updateShare } = useUpdateShare({
     projectId,
@@ -115,7 +116,7 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
   };
 
   if (!name) {
-    return <Skeleton className="h-10 w-full max-w-80" />;
+    return <Skeleton className="h-10 w-80" />;
   }
 
   return (
