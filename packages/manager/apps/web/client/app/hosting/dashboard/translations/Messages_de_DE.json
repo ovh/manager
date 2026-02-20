@@ -1409,5 +1409,6 @@
   "hosting_tab_DATABASES_configuration__action_button": "Meine Datenbank kündigen",
   "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar",
   "hosting_tab_WEBSITE": "Meine Seiten",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Eine Domain auswählen"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Eine Domain auswählen",
+  "hosting_tab_USER_LOGS": "Logs"
 }
