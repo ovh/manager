@@ -1,6 +1,7 @@
 import { useMutation, useQueries, useQuery } from '@tanstack/react-query';
 import {
   downloadZoneFile,
+  exportDnsZoneText,
   getEmailDomain,
   getEmailRecommendedDNSRecords,
   getHostingDetails,
@@ -8,6 +9,7 @@ import {
   getZoneHistory,
   getZoneHistoryByDate,
   getZoneSoa,
+  importDnsZoneText,
   resetZone,
   restoreZone,
   TZoneSoa,
@@ -251,5 +253,38 @@ export const useCompareZoneFiles = () => {
       ]);
       return { baseContent, modifiedContent };
     },
+  });
+};
+
+/**
+ * Hook to export DNS zone as text
+ */
+export const useExportDnsZoneText = (zoneName: string) => {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['zone', 'export', zoneName],
+    queryFn: () => exportDnsZoneText(zoneName),
+    enabled: !!zoneName,
+    retry: false,
+  });
+
+  return {
+    zoneText: data,
+    isLoadingZoneText: isLoading,
+    zoneTextError: error,
+  };
+};
+
+/**
+ * Hook to import DNS zone from text
+ */
+export const useImportDnsZoneText = () => {
+  return useMutation({
+    mutationFn: ({
+      zoneName,
+      zoneFile,
+    }: {
+      zoneName: string;
+      zoneFile: string;
+    }) => importDnsZoneText(zoneName, zoneFile),
   });
 };

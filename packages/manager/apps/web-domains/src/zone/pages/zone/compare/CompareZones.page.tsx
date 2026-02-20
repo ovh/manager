@@ -43,7 +43,11 @@ export default function CompareZonesPage() {
   }, [history]);
 
   // Extract state from location if coming from history page with selected items
+  // Only initialize once when data becomes available, not on every re-render
   useEffect(() => {
+    // Skip if already initialized
+    if (baseId && modifiedId) return;
+
     const state = location.state as CompareZonesState | undefined;
     if (state?.baseId && state?.modifiedId) {
       setBaseId(state.baseId);
@@ -52,7 +56,7 @@ export default function CompareZonesPage() {
       setBaseId(itemsByDateDesc[0].id);
       setModifiedId(itemsByDateDesc[1].id);
     }
-  }, [itemsByDateDesc, location.state]);
+  }, [itemsByDateDesc, location.state, baseId, modifiedId]);
 
   const selectedBase = useMemo(() => {
     return history?.find((item) => item.id === baseId);

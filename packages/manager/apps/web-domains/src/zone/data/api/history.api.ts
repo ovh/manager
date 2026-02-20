@@ -123,3 +123,25 @@ export const getEmailRecommendedDNSRecords = async (domain: string): Promise<Dns
   const { data } = await v6.get<DnsRecord[]>(`/email/domain/${domain}/recommendedDNSRecords`);
   return data;
 };
+
+/**
+ * Export DNS zone as text
+ */
+export const exportDnsZoneText = async (
+  zoneName: string,
+): Promise<string> => {
+  const { data } = await v6.get<string>(`/domain/zone/${zoneName}/export`);
+  return data;
+};
+
+/**
+ * Import DNS zone from text
+ */
+export const importDnsZoneText = async (
+  zoneName: string,
+  zoneFile: string,
+): Promise<void> => {
+  await v6.post(`/domain/zone/${zoneName}/import`, {
+    zoneFile,
+  });
+};

@@ -58,19 +58,24 @@ export default function ZonePage() {
   const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName ?? '', true);
 
   const { data: dnsZoneIAMResources } = useGetIAMResource(serviceName ?? '', 'dnsZone');
-  const soaUrn = dnsZoneIAMResources?.[0]?.urn;
+  const urn = dnsZoneIAMResources?.[0]?.urn;
   const { isPending: isIamSoaPending, isAuthorized: canEditSoa } = useAuthorizationIam(
     ['dnsZone:apiovh:soa/edit'],
-    soaUrn,
+    urn,
   );
   const canModifyTtl = !isIamSoaPending && canEditSoa;
 
   const { isPending: isIamResetPending, isAuthorized: canDoReset } = useAuthorizationIam(
     ['dnsZone:apiovh:reset'],
-    soaUrn,
+    urn,
   );
   const canReset = !isIamResetPending && canDoReset;
 
+  const { isPending: isIamImportZonePending, isAuthorized: canDoImportZone } = useAuthorizationIam(
+    ['dnsZone:apiovh:import'],
+    urn,
+  );
+  const canImportZone = !isIamImportZonePending && canDoImportZone;
   const { addWarning, addInfo } = useNotifications();
 
 
@@ -143,6 +148,7 @@ export default function ZonePage() {
       id: 1,
       label: t('zone_page_modify_textual'),
       onClick: () => setOpenModal('modify-textual-record'),
+      isDisabled: !canImportZone,
     },
     {
       id: 2,
