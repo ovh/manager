@@ -71,24 +71,24 @@ const PrivateNetworkSelection = () => {
 
             return (
               <FormField>
-                  <FormFieldLabel className="flex items-center gap-4 h-8">
-                    {t('create:network.label')}
-                    <Button
-                      color="primary"
-                      variant="outline"
-                      type="button"
-                      onClick={() => void refetch()}
-                      disabled={isFetching}
-                      aria-label={t('create:network.reloadNetworks')}
-                      className="min-w-8 w-8 min-h-8 h-8 p-0"
-                    >
-                      {isFetching ? (
-                        <Spinner size={SPINNER_SIZE.xs} />
-                      ) : (
-                        <Icon name={ICON_NAME.refresh} className="text-[16px]" />
-                      )}
-                    </Button>
-                  </FormFieldLabel>
+                <FormFieldLabel className="flex h-8 items-center gap-4">
+                  {t('create:network.label')}
+                  <Button
+                    color="primary"
+                    variant="outline"
+                    type="button"
+                    onClick={() => void refetch()}
+                    disabled={isFetching}
+                    aria-label={t('create:network.reloadNetworks')}
+                    className="size-8 min-h-8 min-w-8 p-0"
+                  >
+                    {isFetching ? (
+                      <Spinner size={SPINNER_SIZE.xs} />
+                    ) : (
+                      <Icon name={ICON_NAME.refresh} className="text-[16px]" />
+                    )}
+                  </Button>
+                </FormFieldLabel>
                 <Select
                   items={privateNetworkOptions}
                   value={field.value ? [field.value] : []}

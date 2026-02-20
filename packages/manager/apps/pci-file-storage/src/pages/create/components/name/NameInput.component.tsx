@@ -1,3 +1,5 @@
+import { KeyboardEvent } from 'react';
+
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -22,11 +24,17 @@ export const NameInput = () => {
     },
   } = useFormContext<CreateShareFormValues>();
 
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.code === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <article className="flex w-full flex-col">
       <FormField invalid={!!nameError}>
         <FormFieldLabel>{t('create:name.label')}</FormFieldLabel>
-        <Input {...register('shareData.name')} className="max-w-[50%]" />
+        <Input {...register('shareData.name')} className="max-w-[50%]" onKeyDown={handleKeyDown} />
         <FormFieldError>{t(`create:name.error.${nameError?.type}`)}</FormFieldError>
         <FormFieldHelper>
           <Text>{t('create:name.info')}</Text>
