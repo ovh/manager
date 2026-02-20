@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 interface CreationDateProps {
   creationDate: string;
   serviceName: string;
-  serviceId: string;
+  serviceId: number;
 }
 
 export default function CreationDate({
