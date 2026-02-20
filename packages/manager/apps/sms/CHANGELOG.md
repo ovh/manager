@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.0.92](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@9.0.91...@ovh-ux/manager-sms-app@9.0.92) (2026-02-20)
+
+
+### Bug Fixes
+
+* **telecom:** fix issue with ip-address validator ([b8b7cbe](https://github.com/ovh/manager/commit/b8b7cbe5685c2578f30d33d1be810d5d2ce6598a)), closes [#INC0190759](https://github.com/ovh/manager/issues/INC0190759)
+
+
+
+
+
 ## [9.0.91](https://github.com/ovh/manager/compare/@ovh-ux/manager-sms-app@9.0.90...@ovh-ux/manager-sms-app@9.0.91) (2026-02-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-sms-app
