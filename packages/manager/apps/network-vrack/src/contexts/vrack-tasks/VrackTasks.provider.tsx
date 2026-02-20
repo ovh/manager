@@ -14,9 +14,10 @@ type Props = {
 export const VrackTasksProvider = ({ serviceName, children }: Props): JSX.Element => {
   const { vrackTasks } = useGetVrackTasks({ serviceName });
   const [trackedTasks, setTrackedTasks] = useState<TrackedTask[]>([]);
-  const [toBeTrackedTask, setToBeTrackedTask] = useState<TrackedTask | undefined>(undefined);
+  const [toBeTrackedTask, setToBeTrackedTask] = useState<TrackedTask[]>([]);
 
-  const trackTask = (newTrackedTask: TrackedTask) => setToBeTrackedTask(newTrackedTask);
+  const trackTask = (newTrackedTask: TrackedTask) =>
+    setToBeTrackedTask((prev) => [...prev, newTrackedTask]);
 
   const untrackTask = useCallback(
     (trackedTaskToBeRemoved: TrackedTask) => {
@@ -34,15 +35,20 @@ export const VrackTasksProvider = ({ serviceName, children }: Props): JSX.Elemen
   };
 
   useEffect(() => {
-    if (
-      toBeTrackedTask !== undefined &&
-      vrackTasks.some(({ id }) => id === toBeTrackedTask?.taskId)
-    ) {
-      const updatedTrackedTasks = [...trackedTasks, toBeTrackedTask];
-      setTrackedTasks(updatedTrackedTasks);
-      setToBeTrackedTask(undefined);
+    if (toBeTrackedTask.length === 0) return;
+
+    const ready = toBeTrackedTask.filter(({ taskId }) =>
+      vrackTasks.some(({ id }) => id === taskId),
+    );
+    const stillPending = toBeTrackedTask.filter(
+      ({ taskId }) => !vrackTasks.some(({ id }) => id === taskId),
+    );
+
+    if (ready.length > 0) {
+      setTrackedTasks((prev) => [...prev, ...ready]);
+      setToBeTrackedTask(stillPending);
     }
-  }, [toBeTrackedTask, vrackTasks, trackedTasks]);
+  }, [toBeTrackedTask, vrackTasks]);
 
   useEffect(() => {
     const finishedTask = trackedTasks.find(

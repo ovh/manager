@@ -9,6 +9,7 @@ import { Ipv6Detail } from '@/data/api/get/vrackIp';
 import { useBandwidthFormatConverter } from '@/hooks/useBandwidthFormatConverter';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
+import { AttachIpBlockDrawer } from '../attach-ip-block-drawer/AttachIpBlockDrawer';
 import { BandwidthOrderDrawer } from '../bandwidth-order-drawer/BandwidthOrderDrawer';
 import { Flag } from '../flag/Flag';
 import { IpTable } from '../ip-table/IpTable';
@@ -58,6 +59,14 @@ export const RegionTile = ({
         <div>
           <IpTable serviceName={serviceName} ipv4List={ipv4List} ipv6List={ipv6List} />
         </div>
+        <Divider className="w-full" spacing={DIVIDER_SPACING._24} />
+        <dl className="m-0 flex flex-col">
+          <Tile.Item.Root>
+            <Tile.Item.Description>
+              <AttachIpBlockDrawer region={region} serviceName={serviceName} />
+            </Tile.Item.Description>
+          </Tile.Item.Root>
+        </dl>
       </section>
     </Card>
   );
