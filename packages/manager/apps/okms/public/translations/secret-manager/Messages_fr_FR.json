@@ -79,6 +79,7 @@
   "reveal_secret": "Afficher la valeur",
   "secret_manager": "Secret Manager",
   "secret_settings": "Paramètres du secret",
+  "secret_settings_explanation": "La configuration des paramètres au niveau du secret sera prioritaire sur la configuration au niveau du domaine OKMS",
   "secrets_pricing_subtitle": "La facturation s'applique à chaque version du secret.",
   "secrets_pricing_title": "Tarification Secret Manager",
   "setting_default": "paramètre par défaut",
