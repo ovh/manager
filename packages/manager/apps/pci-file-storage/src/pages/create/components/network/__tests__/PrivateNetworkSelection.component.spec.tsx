@@ -13,6 +13,10 @@ import { TPrivateNetworkData } from '@/pages/create/view-model/network.view-mode
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/network/useNetworks');
+vi.mock('@/hooks/usePciAppUrl', () => ({
+  PciAppUrlSuffix: { PrivateNetworks: 'private-networks' },
+  usePciAppUrl: () => '/pci/projects/test-project-id/private-networks',
+}));
 
 vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
@@ -55,6 +59,17 @@ vi.mock('@ovhcloud/ods-react', () => ({
     };
     return render({ field });
   },
+  Button: ({
+    children,
+    onClick,
+    'aria-label': ariaLabel,
+  }: PropsWithChildren<{ onClick?: () => void; 'aria-label'?: string }>) => (
+    <button type="button" onClick={onClick} aria-label={ariaLabel}>
+      {children}
+    </button>
+  ),
+  Icon: ({ name }: { name: string }) => <span aria-hidden>{name}</span>,
+  ICON_NAME: { refresh: 'refresh' },
 }));
 
 const mockUseNetworks = vi.mocked(useNetworks);
@@ -73,6 +88,8 @@ describe('PrivateNetworkSelection', () => {
     mockUseNetworks.mockReturnValue({
       data: networkOptions,
       isLoading: false,
+      refetch: vi.fn(),
+      isFetching: false,
     } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
 
     renderWithMockedForm(<PrivateNetworkSelection />, {
@@ -87,6 +104,8 @@ describe('PrivateNetworkSelection', () => {
     mockUseNetworks.mockReturnValue({
       data: [],
       isLoading: false,
+      refetch: vi.fn(),
+      isFetching: false,
     } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
 
     renderWithMockedForm(<PrivateNetworkSelection />, {
@@ -94,6 +113,46 @@ describe('PrivateNetworkSelection', () => {
     });
 
     expect(screen.getByText('create:network.empty')).toBeVisible();
+  });
+
+  it('should display create private network button when user has no networks', () => {
+    mockUseNetworks.mockReturnValue({
+      data: [],
+      isLoading: false,
+      refetch: vi.fn(),
+      isFetching: false,
+    } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
+
+    renderWithMockedForm(<PrivateNetworkSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA7' } },
+    });
+
+    const button = screen.getByRole('button', {
+      name: 'create:network.createPrivateNetwork',
+    });
+    expect(button).toBeVisible();
+  });
+
+  it('should display create private network button when user has networks', () => {
+    const networkOptions: TPrivateNetworkData[] = [
+      { label: 'Network 1', value: 'net1' },
+      { label: 'Network 2', value: 'net2' },
+    ];
+
+    mockUseNetworks.mockReturnValue({
+      data: networkOptions,
+      isLoading: false,
+      refetch: vi.fn(),
+      isFetching: false,
+    } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
+
+    renderWithMockedForm(<PrivateNetworkSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA7' } },
+    });
+
+    expect(
+      screen.getByRole('button', { name: 'create:network.createPrivateNetwork' }),
+    ).toBeVisible();
   });
 
   it('should handle network selection', async () => {
@@ -105,6 +164,8 @@ describe('PrivateNetworkSelection', () => {
     mockUseNetworks.mockReturnValue({
       data: networkOptions,
       isLoading: false,
+      refetch: vi.fn(),
+      isFetching: false,
     } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
 
     let formValues: DeepPartial<CreateShareFormValues>;
@@ -128,6 +189,32 @@ describe('PrivateNetworkSelection', () => {
     });
   });
 
+  it('should call refetch when reload button is clicked', async () => {
+    const networkOptions: TPrivateNetworkData[] = [
+      { label: 'Network 1', value: 'net1' },
+      { label: 'Network 2', value: 'net2' },
+    ];
+    const refetch = vi.fn();
+
+    mockUseNetworks.mockReturnValue({
+      data: networkOptions,
+      isLoading: false,
+      refetch,
+      isFetching: false,
+    } as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>);
+
+    renderWithMockedForm(<PrivateNetworkSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA7', privateNetworkId: 'net1' } },
+    });
+
+    const reloadButton = screen.getByRole('button', {
+      name: 'create:network.reloadNetworks',
+    });
+    await userEvent.click(reloadButton);
+
+    expect(refetch).toHaveBeenCalledTimes(1);
+  });
+
   it('should display spionner and auto-select first network when networks become available', async () => {
     const networkOptions: TPrivateNetworkData[] = [
       { label: 'Network 1', value: 'net1' },
@@ -142,6 +229,8 @@ describe('PrivateNetworkSelection', () => {
         ({
           data,
           isLoading,
+          refetch: vi.fn(),
+          isFetching: isLoading,
         }) as unknown as QueryObserverSuccessResult<TPrivateNetworkData[], Error>,
     );
 

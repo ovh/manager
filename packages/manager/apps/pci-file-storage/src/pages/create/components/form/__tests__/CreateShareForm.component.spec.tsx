@@ -126,7 +126,6 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
 const { mockSuccessToast, mockWarningToast } = vi.hoisted(() => ({
   mockSuccessToast: vi.fn(),
   mockWarningToast: vi.fn(),
-  mockToast: vi.fn(),
 }));
 
 vi.mock('@/utils/toast.utils', async (importOriginal) => {

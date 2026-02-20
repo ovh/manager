@@ -75,7 +75,9 @@
     "title": "Réseau privé",
     "description": "Sélectionnez le réseau privé auquel vous souhaitez lier votre share",
     "label": "Sélectionner un réseau privé existant",
+    "reloadNetworks": "Recharger les réseaux privés",
     "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région",
+    "createPrivateNetwork": "Créer un réseau privé",
     "subnet": {
       "label": "Sélectionner un sous-réseau privé existant",
       "empty": "Vous n'avez pas de sous-réseau privé pour ce réseau"

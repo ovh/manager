@@ -65,7 +65,6 @@ export const SharePropertiesBlock: React.FC = () => {
         isLoading={isShareLoading || isNetworkLoading}
       >
         <div className="flex flex-col gap-1">
-          <Text preset="paragraph">{t('share:fields.network_name')}</Text>
           <Link href={networkUrl ?? ''} target="_self">
             {networkDetails?.displayName}
           </Link>
