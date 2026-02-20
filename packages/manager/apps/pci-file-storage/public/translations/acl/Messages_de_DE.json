@@ -16,8 +16,21 @@
       "readOnly": "Schreibgeschützt",
       "readAndWrite": "Lesen und Schreiben"
     },
+    "status": {
+      "header": "Status"
+    },
     "actions": {
-      "header": "Aktionen"
+      "header": "Aktionen",
+      "delete": {
+        "success": "Ihre ACL (Zugriffskontrollliste) wurde erfolgreich gelöscht",
+        "error": "Beim Löschen der ACL ist ein Fehler aufgetreten: {{errorMessage}}"
+      }
     }
+  },
+  "deleteModal": {
+    "title": "ACL löschen",
+    "description": "Das Löschen dieser ACL führt zum Verlust des Zugriffs von {{accessTo}} auf diesen Share. Bestätigen Sie die Löschung?",
+    "confirmButton": "Löschen",
+    "close": "Schliessen"
   }
 }
