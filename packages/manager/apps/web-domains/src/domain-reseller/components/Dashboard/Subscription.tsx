@@ -11,6 +11,7 @@ interface SubscriptionProps {
   expirationDate: string;
   contacts: TServiceInfo['customer']['contacts'];
   serviceName: string;
+  serviceId: string;
 }
 
 export default function Subscription({
@@ -18,7 +19,8 @@ export default function Subscription({
   expirationDate,
   contacts,
   serviceName,
-}: SubscriptionProps) {
+  serviceId
+}: Readonly<SubscriptionProps>) {
   const { t } = useTranslation([
     NAMESPACES.BILLING,
     NAMESPACES.DASHBOARD,
@@ -31,7 +33,7 @@ export default function Subscription({
     <ManagerTile>
       <ManagerTile.Title>{t('subscription')}</ManagerTile.Title>
       <ManagerTile.Divider />
-      <CreationDate creationDate={creationDate} serviceName={serviceName} />
+      <CreationDate creationDate={creationDate} serviceName={serviceName} serviceId={serviceId} />
       <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>
@@ -51,7 +53,7 @@ export default function Subscription({
         </Badge>
       </ManagerTile.Item>
       <ManagerTile.Divider />
-      <Contacts contacts={contacts} serviceName={serviceName} />
+      <Contacts contacts={contacts} />
     </ManagerTile>
   );
 }
