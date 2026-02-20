@@ -7,7 +7,7 @@ import { DeepPartial, FieldValues, useFormContext } from 'react-hook-form';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useNetworks } from '@/data/hooks/network/useNetworks';
-import PrivateNetworkSelection from '@/pages/create/components/network/PrivateNetworkSelection.component';
+import { PrivateNetworkSelection } from '@/pages/create/components/network/PrivateNetworkSelection.component';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
 import { TPrivateNetworkData } from '@/pages/create/view-model/network.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';

@@ -124,4 +124,4 @@ const PrivateNetworkSelection = () => {
     </section>
   );
 };
-export default PrivateNetworkSelection;
+export { PrivateNetworkSelection };
