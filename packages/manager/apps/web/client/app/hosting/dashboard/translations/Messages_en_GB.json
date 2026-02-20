@@ -1409,5 +1409,6 @@
   "hosting_tab_DATABASES_configuration__action_button": "Cancel my database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database available",
   "hosting_tab_WEBSITE": "My sites",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain",
+  "hosting_tab_USER_LOGS": "Logs."
 }
