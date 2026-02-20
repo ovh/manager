@@ -18,7 +18,9 @@ import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
 import { useShare } from '@/data/hooks/shares/useShare';
+import { useProjectId } from '@/hooks/useProjectId';
 import { useShareParams } from '@/hooks/useShareParams';
+import { ShareEditableName } from '@/pages/dashboard/ShareEditableName/ShareEditableName.component';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
@@ -40,6 +42,7 @@ const getTabValueFromPathname = (pathname: string): string => {
 const DashboardLayout: React.FC = () => {
   const { t } = useTranslation(['dashboard', 'guides']);
   const { region, shareId } = useShareParams();
+  const projectId = useProjectId();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -63,7 +66,14 @@ const DashboardLayout: React.FC = () => {
     <BaseLayout
       breadcrumb={<Breadcrumb items={[{ label: shareDetails?.name ?? '' }]} />}
       header={{
-        title: shareDetails?.name ?? '',
+        title: (
+          <ShareEditableName
+            name={shareDetails?.name ?? null}
+            projectId={projectId}
+            shareId={shareId}
+            region={region}
+          />
+        ),
         guideMenu: <GuideMenu items={guideItems} />,
         changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
