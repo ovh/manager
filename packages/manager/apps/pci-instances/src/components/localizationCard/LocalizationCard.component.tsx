@@ -1,9 +1,11 @@
-import { Radio, RadioControl, RadioLabel } from '@ovhcloud/ods-react';
+import { Badge, Radio, RadioControl, RadioLabel } from '@ovhcloud/ods-react';
+import { useTranslation } from 'react-i18next';
 import { Flag } from '../flag/Flag';
 import { TCountryIsoCode } from '../flag/country-iso-code';
 import { TDeploymentMode } from '@/types/instance/common.type';
 import { PciCard } from '@/components/pciCard/PciCard.component';
 import Localization from './Localization.component';
+import { DeploymentModeBadge } from '../deploymentModeBadge/DeploymentModeBadge.component';
 
 type TLocalizationCardProps = {
   city: string;
@@ -16,6 +18,9 @@ type TLocalizationCardProps = {
   onSelect: () => void;
 };
 
+const disabledClassname =
+  'bg-[--ods-color-neutral-500] !text-[--ods-color-element-text-selected]';
+
 export const LocalizationCard = ({
   city,
   datacenterDetails,
@@ -25,7 +30,9 @@ export const LocalizationCard = ({
   disabled,
   selected,
   onSelect,
-}: TLocalizationCardProps) => (
+}: TLocalizationCardProps) => {
+  const { t } = useTranslation('creation');
+  return (
   <PciCard
     selectable
     selected={selected}
@@ -41,7 +48,23 @@ export const LocalizationCard = ({
           {city}
         </RadioLabel>
       </Radio>
-      <Localization name={datacenterDetails} deploymentMode={deploymentMode} />
+      {disabled ? (
+        <div className="flex w-full items-center justify-between">
+          <Badge className={disabledClassname} size="sm">
+            {t('pci_instance_creation_region_unavailable')}
+          </Badge>
+          <DeploymentModeBadge
+            className={disabledClassname}
+            mode={deploymentMode}
+          />
+        </div>
+      ) : (
+        <Localization
+          name={datacenterDetails}
+          deploymentMode={deploymentMode}
+        />
+      )}
     </PciCard.Header>
   </PciCard>
-);
+  );
+};
