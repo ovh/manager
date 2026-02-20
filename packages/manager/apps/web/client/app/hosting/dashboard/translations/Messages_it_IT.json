@@ -1409,5 +1409,6 @@
   "hosting_tab_DATABASES_configuration__action_button": "Disattivare il mio database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database disponibile",
   "hosting_tab_WEBSITE": "I miei siti",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio",
+  "hosting_tab_USER_LOGS": "Log"
 }
