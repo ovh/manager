@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Preis",
   "pci_instance_creation_table_header_price_hourly_unit": "zzgl. MwSt./Stunde",
   "pci_instance_creation_table_header_price_monthly_unit": "/ Monat (zzgl. MwSt.)",
-  "pci_instance_creation_flavor_unavailable": "Nicht verfügbar",
+  "pci_instance_creation_flavor_unavailable": "In dieser Region nicht verfügbar",
   "pci_instance_creation_flavor_unavailable_help": "Dieses Modell ist in der von Ihnen gewählten Region nicht verfügbar. Sie können dieses Modell dennoch auswählen, müssen hierzu aber eine andere Region wählen.",
   "pci_instance_creation_flavor_unavailable_quota": "Quota nicht verfügbar",
   "pci_instance_creation_flavor_unavailable_quota_help": "Sie haben kein Quota, um dieses Instanz-Modell auszuwählen. Bitte erhöhen Sie Ihr Quota.",
@@ -168,11 +168,11 @@
     "description": "<p>Die Zuweisung einer öffentlichen IP-Adresse ermöglicht den Zugriff auf Ihre Instanz von außerhalb des OVHcloud-Netzwerks.</p>",
     "toggle_label": "Eine öffentliche IP zuweisen",
     "basic_ip_label": "Basis-Öffentliche IP (An die Instanz gebunden) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "Eine Basis-Öffentliche IP ist eine IP-Adresse, die nicht über die Lebensdauer der Ressource hinaus bestehen bleibt. ",
-    "basic_ip_warning": "Wir haben ein Gateway in Ihrem privaten Netzwerk erkannt, daher ist diese Option nicht verfügbar. Bitte wählen oder erstellen Sie ein privates Netzwerk ohne Gateway.",
+    "basic_ip_description": "Eine Basis-Öffentliche IP ist eine IP-Adresse, die nicht über die Lebensdauer der Ressource hinaus besteht. ",
+    "basic_ip_warning": "Wir haben ein Gateway in Ihrem privaten Netzwerk erkannt, daher ist diese Option nicht verfügbar. Bitte wählen Sie ein privates Netzwerk ohne Gateway oder erstellen Sie eines.",
     "floating_ip_label": "Eine Floating IP zuweisen (Wiederverwendbar)",
     "floating_ip_description": "Die Reservierung einer Floating IP-Adresse weist die Adresse Ihrem Projekt zu, bis Sie sie ausdrücklich freigeben. ",
-    "floating_ip_warning": "Wenn Sie diese Option auswählen, werden wir Ihnen ein Gateway der Größe {{ size }} zuweisen.",
+    "floating_ip_warning": "Wenn Sie diese Option auswählen, weisen wir Ihnen ein Gateway der Größe {{ size }} zu.",
     "floating_ip_create_new_label": "Eine neue erstellen - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Eine vorhandene Floating IP wiederverwenden",
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den Local Zones nicht verfügbar."
@@ -196,7 +196,7 @@
   "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment...",
   "pci_instance_creation_flex_flavor": {
     "title": "Flex-Instanzen",
-    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzelplatteninstanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
+    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzel-Disk-Instanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
     "resizing_explanation": "Sie ermöglicht eine Skalierung auf höhere oder niedrigere Modelle mit einem festen Speicherplatz, während klassische Modelle nur auf höhere Modelle skaliert werden können."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Angehängtes Gateway",
@@ -206,5 +206,6 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Wählen Sie manuell eine AZ aus:",
   "pci_instance_creation_availabilityZone_help_manual": "Sie können aus den drei in der Region verfügbaren AZs wählen. Dies ermöglicht es Ihnen, Ihre Instanzen auf mehrere AZs zu verteilen und somit Ihre eigenen Redundanzmechanismen einzurichten.",
   "pci_instance_creation_availabilityZone_help_link": "Erfahren Sie mehr über Multi-AZ und bewährte Praktiken →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Eine Basis-Öffentliche IP wurde in Ihrem privaten Netzwerk erkannt, bitte erstellen oder wählen Sie ein anderes privates Netzwerk, um ein Gateway zu erstellen."
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Eine Basis-Öffentliche IP wurde in Ihrem privaten Netzwerk erkannt, bitte erstellen oder wählen Sie ein anderes privates Netzwerk, um ein Gateway zu erstellen.",
+  "pci_instance_creation_region_unavailable": "Region nicht verfügbar"
 }

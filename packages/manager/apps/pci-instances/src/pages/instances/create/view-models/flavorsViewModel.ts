@@ -131,7 +131,7 @@ const processRegionalizedFlavors = <T extends TBaseFlavorDataForTable>(
     }
 
     if (shouldAddUnavailableMicroRegionFlavor) {
-      addUnavailableFlavor(acc, flavor, enrichFlavor);
+      addUnavailableFlavor(acc, flavor, enrichFlavor, entities);
     }
   });
 };
@@ -341,6 +341,7 @@ export type TBaseFlavorDataForTable = {
   id: string;
   unavailable: boolean;
   unavailableQuota: boolean;
+  hasNoAvailableRegions: boolean;
   name: string;
   memory: number;
   vCore: number;
@@ -377,6 +378,7 @@ const buildBaseFlavorForTable = (
     id: regionalizedFlavor.id,
     unavailable: !regionalizedFlavor.hasStock,
     unavailableQuota: !regionalizedFlavor.quota,
+    hasNoAvailableRegions: false,
     name: flavor.name,
     memory: flavor.specifications.ram.value,
     vCore: flavor.specifications.cpu.value,
@@ -433,29 +435,43 @@ const addFlavor = <T extends TBaseFlavorDataForTable>(
 
 const buildUnavailableBaseFlavorForTable = (
   flavor: TFlavor,
-): TBaseFlavorDataForTable => ({
-  id: flavor.name,
-  unavailable: true,
-  unavailableQuota: false,
-  name: flavor.name,
-  memory: flavor.specifications.ram.value,
-  vCore: flavor.specifications.cpu.value,
-  disks: mapDisksToViewModel(flavor.specifications.disks),
-  mode: null,
-  realMinimumHourlyPrice: null,
-  realMinimumMonthlyPrice: null,
-  estimatedMinimumMonthlyPrice: null,
-});
+  entities: TInstancesCatalog['entities'],
+): TBaseFlavorDataForTable => {
+  const hasNoAvailableRegions = !flavor.regionalizedFlavorIds.some(
+    (regionalizedFlavorId) => {
+      const regionalizedFlavor = entities.regionalizedFlavors.byId.get(
+        regionalizedFlavorId,
+      );
+      return regionalizedFlavor?.hasStock && regionalizedFlavor.quota;
+    },
+  );
+
+  return {
+    id: flavor.name,
+    unavailable: true,
+    unavailableQuota: false,
+    hasNoAvailableRegions,
+    name: flavor.name,
+    memory: flavor.specifications.ram.value,
+    vCore: flavor.specifications.cpu.value,
+    disks: mapDisksToViewModel(flavor.specifications.disks),
+    mode: null,
+    realMinimumHourlyPrice: null,
+    realMinimumMonthlyPrice: null,
+    estimatedMinimumMonthlyPrice: null,
+  };
+};
 
 const addUnavailableFlavor = <T extends TBaseFlavorDataForTable>(
   acc: T[],
   flavor: TFlavor,
   enrichFlavor: TFlavorEnricher<T>,
+  entities: TInstancesCatalog['entities'],
 ) => {
   const alreadyExists = acc.some((f) => f.name === flavor.name);
   if (alreadyExists) return acc;
 
-  const base = buildUnavailableBaseFlavorForTable(flavor);
+  const base = buildUnavailableBaseFlavorForTable(flavor, entities);
   acc.push(enrichFlavor(base, flavor));
 
   return acc;

@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Prezzo",
   "pci_instance_creation_table_header_price_hourly_unit": "+IVA/ora",
   "pci_instance_creation_table_header_price_monthly_unit": "+IVA/mese",
-  "pci_instance_creation_flavor_unavailable": "Non disponibile",
+  "pci_instance_creation_flavor_unavailable": "Non disponibile in questa regione",
   "pci_instance_creation_flavor_unavailable_quota": "Quota non disponibile",
   "pci_instance_creation_flavor_unavailable_help": "Questo modello non è disponibile nella tua regione selezionata. <sb>Tuttavia, puoi selezionarlo, ma dovrai scegliere un'altra regione per questo modello.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "La tua quota non ti consente di scegliere questo modello di istanza. Si prega di aumentare la propria quota.",
@@ -146,7 +146,7 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotazione 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizzato",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Un backup viene effettuato ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci.",
+    "predefined": "Un backup viene eseguito ogni giorno tra le 22:00 e le 6:00 (UTC) e la rotazione mantiene una cronologia delle {{ numEntries }} ultime voci.",
     "custom": "Scegli tu stesso la pianificazione (formato UNIX Cron), il numero di rotazioni e le esecuzioni massime che desideri."
   },
   "pci_instance_creation_backup_setting_price_unit": "+ IVA/mese/GB",
@@ -164,17 +164,17 @@
   "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Aggiungere una Floating IP alle capacità della Gateway consente all'istanza di essere accessibile dall'esterno. La Floating IP è persistente e può essere conservata quanto necessario e riassegnata a un'altra istanza.</p>",
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Una Basic IP consente la connettività in entrata e in uscita senza restrizioni d'uso. Questa IP non è persistente e viene riassegnata dopo l'eliminazione dell'istanza associata. Non è possibile assegnarla a un'altra istanza.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
-    "title": "Assegnare una connettività pubblica",
+    "title": "Assegna una connettività pubblica",
     "description": "<p>L'assegnazione di un indirizzo IP pubblico consente l'accesso alla tua istanza dall'esterno della rete OVHcloud.</p>",
-    "toggle_label": "Assegnare un'IP pubblica",
+    "toggle_label": "Assegna un'IP pubblica",
     "basic_ip_label": "IP Pubblica di Base (Collegata all'istanza) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Un'IP pubblica di base è un indirizzo IP che non persiste oltre la durata della risorsa. ",
     "basic_ip_warning": "Abbiamo rilevato una gateway sulla tua rete privata, quindi questa opzione non è disponibile. Si prega di scegliere o creare una rete privata senza gateway.",
-    "floating_ip_label": "Assegnare un'IP Flottante (Riutilizzabile)",
-    "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo rilasci esplicitamente. ",
-    "floating_ip_warning": "Selezionando questa opzione ti assegneremo una gateway di dimensione {{ size }}.",
-    "floating_ip_create_new_label": "Creare un nuovo - <sb>{{ price }}</sb>",
-    "floating_ip_reuse_existing_label": "Riutilizzare un'IP flottante esistente",
+    "floating_ip_label": "Assegna un'IP Flottante (Riutilizzabile)",
+    "floating_ip_description": "La prenotazione di un indirizzo IP flottante assegna l'indirizzo al tuo progetto fino a quando non lo liberi esplicitamente. ",
+    "floating_ip_warning": "Se selezioni questa opzione, ti assegneremo una gateway di dimensioni {{ size }}.",
+    "floating_ip_create_new_label": "Crea un nuovo - <sb>{{ price }}</sb>",
+    "floating_ip_reuse_existing_label": "Riutilizza un'IP flottante esistente",
     "floating_ip_unavailable_LZ_tooltip": "Le IP Flottanti non sono disponibili nelle localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Il Gateway non è disponibile nelle Local Zone.",
@@ -206,5 +206,6 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Seleziona manualmente un'AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Puoi scegliere tra le tre AZ disponibili nella regione. Questo ti consente di distribuire le tue istanze su più AZ e quindi implementare i tuoi meccanismi di ridondanza.",
   "pci_instance_creation_availabilityZone_help_link": "Scopri di più sui multi-AZ e sulle buone pratiche →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Un'IP Pubblica di Base è stata rilevata sulla tua Rete Privata, si prega di creare o selezionare un'altra Rete Privata per creare una gateway."
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Un'IP Pubblica di Base è stata rilevata sulla tua Rete Privata, si prega di creare o selezionare un'altra Rete Privata per creare una gateway.",
+  "pci_instance_creation_region_unavailable": "Regione non disponibile"
 }
