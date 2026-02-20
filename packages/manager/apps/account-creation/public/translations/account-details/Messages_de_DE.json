@@ -13,7 +13,7 @@
   "account_details_field_corporation_name": "Firmenbezeichnung",
   "account_details_field_siret": "SIRET",
   "account_details_field_siren": "SIREN",
-  "account_details_field_vat": "Nummer der {{vatLabel}}",
+  "account_details_field_vat": "{{vatLabel}} Nummer",
   "account_details_field_country": "Wohnsitzland",
   "account_details_field_address": "Adresse",
   "account_details_field_zip": "Postleitzahl",
