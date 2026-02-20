@@ -55,7 +55,6 @@ import {
   TRancherPricing,
 } from '@/types/api.type';
 import { useFormattedRancherPrices } from '@/data/hooks/useFormattedPrices/useFormattedPrices';
-import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
 
 const TileSection: React.FC<{
   name: string;
@@ -137,7 +136,6 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
   const [selectedVersion, setSelectedVersion] = useState<RancherVersion | null>(
     null,
   );
-  const freeTrialCreditText = useRancherFreeTrial();
   const [isFreeTrialBannerVisible, setIsFreeTrialBannerVisible] = useState(
     true,
   );
@@ -206,26 +204,11 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
         >
           <div className="flex flex-col">
             <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-              {t('freeTrialBannerMessageLine1', { ns: 'dashboard' })}
+              <b>{t('freeTrialBannerMessageLine1', { ns: 'onboarding' })}</b>
             </OsdsText>
-            <ul className="list-disc list-inside my-0 -ml-9">
-              <li>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {t('freeTrialBannerMessageLine2', {
-                    ns: 'dashboard',
-                    amount: freeTrialCreditText.ovhEdition,
-                  })}
-                </OsdsText>
-              </li>
-              <li>
-                <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
-                  {t('freeTrialBannerMessageLine3', {
-                    ns: 'dashboard',
-                    amount: freeTrialCreditText.standard,
-                  })}
-                </OsdsText>
-              </li>
-            </ul>
+            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+              {t('freeTrialBannerMessageLine2', { ns: 'onboarding' })}
+            </OsdsText>
           </div>
         </OsdsMessage>
       )}
@@ -358,7 +341,7 @@ const CreateRancher: React.FC<CreateRancherProps> = ({
               color={ODS_THEME_COLOR_INTENT.text}
               className="text-[#4d5592] font-sans text-xs"
             >
-              {t('freeTrialDisclaimer', { ns: 'dashboard' })}
+              {t('freeTrialDisclaimer', { ns: 'onboarding' })}
             </OsdsText>
           </div>
         )}
