@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dbaas-logs-app",
-  "version": "3.0.146",
+  "version": "3.0.147",
   "private": true,
   "description": "Logs Data Platform standalone application.",
   "repository": {
@@ -21,7 +21,7 @@
     "@ovh-ux/manager-billing-components": "^4.35.4",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core": "^13.4.4",
-    "@ovh-ux/manager-dbaas-logs": "^1.37.3",
+    "@ovh-ux/manager-dbaas-logs": "^1.37.4",
     "@ovh-ux/manager-filters": "^1.2.2",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.2.2",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.1",

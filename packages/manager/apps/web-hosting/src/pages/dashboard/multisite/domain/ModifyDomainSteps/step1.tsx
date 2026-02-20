@@ -114,10 +114,6 @@ export default function Step1({
                 {t('multisite:multisite_modal_domain_configuration_modify_step1_cdn')}
               </Text>
               <Text id="cdn-tooltip">
-                <Icon
-                  name={ICON_NAME.circleQuestion}
-                  className="color-disabled ml-4 cursor-pointer"
-                />
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Icon
@@ -125,7 +121,7 @@ export default function Step1({
                       className="color-disabled ml-4 cursor-pointer"
                     />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent createPortal={false}>
                     {t('multisite:multisite_modal_domain_configuration_cdn_help')}
                   </TooltipContent>
                 </Tooltip>
@@ -161,7 +157,7 @@ export default function Step1({
                       className="color-disabled ml-4 cursor-pointer"
                     />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent createPortal={false}>
                     {t('multisite:multisite_modal_domain_configuration_modify_firewall_help')}
                   </TooltipContent>
                 </Tooltip>
@@ -226,7 +222,11 @@ export default function Step1({
                           ],
                         }))}
                       >
-                        <SelectControl />
+                        <SelectControl
+                          aria-label={t(
+                            'multisite:multisite_modal_domain_configuration_modify_countriesIp',
+                          )}
+                        />
                         <SelectContent createPortal={false} />
                       </Select>
                     );
@@ -278,7 +278,11 @@ export default function Step1({
                       disabled={!isGitDisabled}
                       className="mt-2"
                     >
-                      <SelectControl />
+                      <SelectControl
+                        aria-label={t(
+                          'multisite:multisite_modal_domain_configuration_modify_ownlog',
+                        )}
+                      />
                       <SelectContent createPortal={false} />
                     </Select>
                   )}

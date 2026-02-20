@@ -39,7 +39,7 @@ export const features = [
   'public-cloud:users',
   'public-cloud:quota',
   'public-cloud:ssh-keys',
-  'public-cloud:billing',
+  'pci-billing',
   'public-cloud:vouchers',
   'public-cloud:contacts',
   'public-cloud:project-settings',
@@ -455,7 +455,7 @@ export function getPciProjectMenu(
       'public-cloud:users',
       'public-cloud:quota',
       'public-cloud:ssh-keys',
-      'public-cloud:billing',
+      'pci-billing',
       'public-cloud:vouchers',
       'public-cloud:contacts',
       'public-cloud:project-settings',
@@ -481,7 +481,7 @@ export function getPciProjectMenu(
           title: 'SSH Keys',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/ssh`),
         },
-        isFeaturesAvailable('public-cloud:billing') && {
+        isFeaturesAvailable('pci-billing') && {
           id: 'billing',
           title: 'Billing Control',
           href: getURL('public-cloud', `#/pci/projects/${projectId}/billing`),

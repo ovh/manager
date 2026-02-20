@@ -33,7 +33,8 @@
   "pci_instances_common_linux_image_type": "Dystrybucje Unix",
   "pci_instances_common_apps_image_type": "Dystrybucje + Aplikacje",
   "pci_instances_common_windows_image_type": "Dystrybucje Windows",
-  "pci_instances_common_recommanded": "Zalecane",
-  "pci_instances_common_backup": "Kopie zapasowe",
-  "pci_instances_common_unavailable": "Niedostępny"
+  "pci_instances_common_recommanded": "Rekomendujemy",
+  "pci_instances_common_backup": "Kopia zapasowa",
+  "pci_instances_common_unavailable": "Niedostępny",
+  "pci_instances_common_coming_soon": "Dostępne wkrótce"
 }

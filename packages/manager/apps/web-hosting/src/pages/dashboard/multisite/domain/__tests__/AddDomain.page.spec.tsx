@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import commonTranslation from '@/public/translations/common/Messages_fr_FR.json';
 import multisiteTranslation from '@/public/translations/multisite/Messages_fr_FR.json';
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import AddWDomainPage from '../AddDomain.page';
 
@@ -17,9 +17,12 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
 
 describe('AddWDomainPage', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
   });
-
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
   it('should render correctly', () => {
     const { container } = render(<AddWDomainPage />, { wrapper });
     expect(container).toBeInTheDocument();

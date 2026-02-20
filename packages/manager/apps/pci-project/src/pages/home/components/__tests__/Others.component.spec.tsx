@@ -26,7 +26,7 @@ describe('Others', () => {
       data: {
         'pci-ai-notebooks': true,
         'load-balancer': true,
-        'public-cloud:billing': true,
+        'pci-billing': true,
         'public-cloud:quota': true,
       },
     } as unknown as ReturnType<typeof useFeatureAvailability>);
@@ -51,7 +51,7 @@ describe('Others', () => {
       data: {
         'pci-ai-notebooks': true,
         'load-balancer': false, // Disabled
-        'public-cloud:billing': true,
+        'pci-billing': true,
         'public-cloud:quota': false, // Disabled
       },
     } as unknown as ReturnType<typeof useFeatureAvailability>);
@@ -78,7 +78,7 @@ describe('Others', () => {
       data: {
         'pci-ai-notebooks': false,
         'load-balancer': false,
-        'public-cloud:billing': false,
+        'pci-billing': false,
         'public-cloud:quota': false,
       },
     } as unknown as ReturnType<typeof useFeatureAvailability>);
@@ -126,7 +126,7 @@ describe('Others', () => {
     render(<Others />, { wrapper: createWrapper() });
 
     expect(mockUseFeatureAvailability).toHaveBeenCalledWith(
-      ['pci-ai-notebooks', 'load-balancer', 'public-cloud:billing', 'public-cloud:quota'],
+      ['pci-ai-notebooks', 'load-balancer', 'pci-billing', 'public-cloud:quota'],
       { enabled: true },
     );
   });
@@ -136,7 +136,7 @@ describe('Others', () => {
       data: {
         'pci-ai-notebooks': true,
         'load-balancer': false,
-        'public-cloud:billing': false,
+        'pci-billing': false,
         'public-cloud:quota': false,
       },
     } as unknown as ReturnType<typeof useFeatureAvailability>);
@@ -163,7 +163,7 @@ describe('Others', () => {
       data: {
         'pci-ai-notebooks': false,
         'load-balancer': false,
-        'public-cloud:billing': true,
+        'pci-billing': true,
         'public-cloud:quota': true,
       },
     } as unknown as ReturnType<typeof useFeatureAvailability>);

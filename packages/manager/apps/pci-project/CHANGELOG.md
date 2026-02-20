@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.3...@ovh-ux/manager-pci-project-app@0.3.0) (2026-02-17)
+
+
+### Features
+
+* **pci-billing:** build billing and svp ([bd788e5](https://github.com/ovh/manager/commit/bd788e57b76d1faa54d2fb400931b0ddf17a9de9)), closes [#TAPC-5753](https://github.com/ovh/manager/issues/TAPC-5753)
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.2.2...@ovh-ux/manager-pci-project-app@0.2.3) (2026-02-16)
 
 

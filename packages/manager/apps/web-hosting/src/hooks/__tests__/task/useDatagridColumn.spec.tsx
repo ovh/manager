@@ -244,4 +244,22 @@ describe('useDatagridColumn', () => {
 
     expect(container.textContent).toBe('');
   });
+
+  it('should have a valid html', async () => {
+    const { result } = renderHook(() => useDatagridColumn(), { wrapper });
+    const mockRow = {
+      original: {
+        function: 'web/database/create',
+        status: 'done',
+        startDate: '2025-01-01T12:00:00Z',
+        doneDate: '2025-01-01T13:00:00Z',
+      } as TaskDetailsType,
+    };
+    const FinishDateCell = result.current[3].cell;
+    const mockContext = createMockCellContext(mockRow.original);
+    const { container } = render(<FinishDateCell {...mockContext} />);
+    const html = container.innerHTML;
+    await expect(html).toBeValidHtml();
+    await expect(container).toBeAccessible();
+  });
 });

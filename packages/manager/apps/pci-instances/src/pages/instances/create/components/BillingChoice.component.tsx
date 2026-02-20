@@ -59,7 +59,7 @@ const BillingChoice = ({ billingTypes }: TBillingChoiceProps) => {
 
   return (
     <section>
-      <Divider spacing="64" />
+      <Divider spacing="48" />
       <div>
         <Text preset="heading-3" className="mb-4">
           {t('creation:pci_instance_creation_select_billing_choice_title')}

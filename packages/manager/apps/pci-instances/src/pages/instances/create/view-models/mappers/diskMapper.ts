@@ -12,31 +12,53 @@ type TDiskLike = {
 
 export type TDiskViewModel = {
   id: string;
-  display: string;
+  display?: string;
+  number: number;
+  capacityValue: number;
+  capacityUnit: 'gb' | 'tb';
+  interface: string | null;
 };
 
-const formatCapacity = (value: number, unit: string): string => {
-  if (unit === 'GB' && value >= 1000) {
-    const tbValue = (value / 1000).toFixed(2);
-    return `${parseFloat(tbValue)} TB`;
-  }
-  return `${value}`;
-};
+const GB_TO_TB_THRESHOLD = 1000;
+
+export const diskCapacityToBytes = (
+  capacityValue: number,
+  capacityUnit: TDiskViewModel['capacityUnit'],
+): number =>
+  capacityUnit === 'tb' ? capacityValue * 1e12 : capacityValue * 1e9;
 
 export const mapDisksToViewModel = (
   disks: TDisk[] | TInstanceDisk[],
 ): TDiskViewModel[] => {
   if (disks.length === 0) {
-    return [{ id: 'no-disk', display: '-' }];
+    return [
+      {
+        id: 'no-disk',
+        display: '-',
+        number: 0,
+        capacityValue: 0,
+        capacityUnit: 'gb',
+        interface: null,
+      },
+    ];
   }
 
   return (disks as TDiskLike[]).map((disk, index) => {
-    const capacityStr = formatCapacity(disk.capacity.value, disk.capacity.unit);
-    const interfaceStr = disk.interface ? ` ${disk.interface}` : '';
-    const display = `${disk.number}x ${capacityStr}${interfaceStr}`;
-    const id = `${disk.number}_${disk.capacity.value}_${
-      disk.capacity.unit
-    }_${disk.interface || 'no-interface'}_${index}`;
-    return { id, display };
+    const { value, unit } = disk.capacity;
+    const isTb = unit.toUpperCase() === 'GB' && value >= GB_TO_TB_THRESHOLD;
+    const capacityValue = isTb
+      ? Number((value / GB_TO_TB_THRESHOLD).toFixed(2))
+      : value;
+    const capacityUnit = isTb ? 'tb' : 'gb';
+    const interfaceStr = disk.interface ?? null;
+    const id = `${disk.number}_${value}_${unit}_${disk.interface ??
+      'no-interface'}_${index}`;
+    return {
+      id,
+      number: disk.number,
+      capacityValue,
+      capacityUnit,
+      interface: interfaceStr,
+    };
   });
 };

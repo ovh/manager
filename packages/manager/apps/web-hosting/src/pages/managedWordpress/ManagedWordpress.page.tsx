@@ -23,11 +23,13 @@ export default function ManagedWordpressPage() {
     'path',
   );
 
-  const shouldRedirect = !isLoading && data?.length === 1;
+  const onBoardingUrl = useGenerateUrl(`/managed-hosting-for-wordpress/onboarding`, 'path');
+
+  const shouldRedirect = !isLoading && data?.length <= 1;
 
   useEffect(() => {
     if (shouldRedirect) {
-      navigate(firstItemUrl);
+      navigate(data?.length ? firstItemUrl : onBoardingUrl);
     }
   }, [shouldRedirect, navigate, firstItemUrl]);
 
@@ -50,11 +52,9 @@ export default function ManagedWordpressPage() {
       },
       {
         id: 'plan',
-        accessorKey: 'currentState.plan',
+        accessorKey: 'currentState.quotas.websites.totalQuota',
         cell: ({ getValue }) => {
-          const plan = getValue<string>() || '';
-          const match = plan.match(/managed-cms-alpha-(\d+)/);
-          const numberOfSites = match ? match[1] : '?';
+          const numberOfSites = getValue<string>() || '';
           return <span>{`${numberOfSites} ${t('common:web_hosting_sites')}`}</span>;
         },
         header: t('common:web_hosting_status_header_offer'),
@@ -104,7 +104,12 @@ export default function ManagedWordpressPage() {
           title: t('common:managed_wordpress'),
         }}
       >
-        <Datagrid isLoading={isLoading} columns={data ? columns : []} data={data ?? []} />
+        <Datagrid
+          containerHeight={700}
+          isLoading={isLoading}
+          columns={data ? columns : []}
+          data={data ?? []}
+        />
       </BaseLayout>
       <Outlet />
     </>

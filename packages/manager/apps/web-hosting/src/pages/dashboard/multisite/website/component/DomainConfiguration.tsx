@@ -101,7 +101,7 @@ export const DomainConfiguration: React.FC<DomainConfigurationProps> = ({
                     field.onChange(Array.isArray(detail.value) ? (detail.value[0] ?? '') : '')
                   }
                 >
-                  <SelectControl />
+                  <SelectControl aria-label={t('multisite_add_website_configure_domain_fqdn')} />
                   <SelectContent />
                 </Select>
               </div>

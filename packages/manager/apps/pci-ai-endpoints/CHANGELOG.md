@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.12.1...@ovh-ux/manager-pci-ai-endpoints-app@0.13.0) (2026-02-18)
+
+
+### Features
+
+* **pci-ai-endpoints:** pci AI Endpoints ODS 19 migration ([8ecc318](https://github.com/ovh/manager/commit/8ecc3187c9edaa5bb9592041b4dd71cf308ec201)), closes [#AIS-1852](https://github.com/ovh/manager/issues/AIS-1852)
+
+
+
+
+
 ## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.12.0...@ovh-ux/manager-pci-ai-endpoints-app@0.12.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app

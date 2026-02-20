@@ -64,6 +64,11 @@ export enum PhpVersionsSupport {
   SUPPORTED = 'SUPPORTED',
 }
 
+export enum HostingOfferType {
+  START10M_ADDON_V1 = 'start10m-addon-v1',
+  HOSTING_FREE_100M = 'hosting-free-100m',
+}
+
 export type WebHostingType = {
   availableBoostOffer: {
     offer: HostingdOffer;

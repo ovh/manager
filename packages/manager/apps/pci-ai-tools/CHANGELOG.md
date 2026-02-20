@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.20.1...@ovh-ux/manager-pci-ai-tools-app@1.21.0) (2026-02-18)
+
+
+### Features
+
+* **pci-ai-tools:** force auto restart for qpus ([a2a3d26](https://github.com/ovh/manager/commit/a2a3d265731f4da94d3b5c24d8f022206f5f3218)), closes [#AIS-1927](https://github.com/ovh/manager/issues/AIS-1927)
+
+
+
+
+
 ## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.20.0...@ovh-ux/manager-pci-ai-tools-app@1.20.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app

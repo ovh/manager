@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -35,17 +35,42 @@ const NetworkHelper: FC = () => {
 
   return (
     <HelpDrawer onOpenChange={handleOpenHelper}>
-      <Text preset="heading-2">
-        {t('creation:pci_instance_creation_network_setting_help_title')}
-      </Text>
-      <Link
-        className="visited:text-[var(--ods-color-primary-500)]"
-        href={guide}
-        onClick={handleOpenGuideLink}
-        target="_blank"
-      >
-        {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
-      </Link>
+      <div className="flex flex-col pb-20 pt-8">
+        <Text preset="heading-2" className="mb-4">
+          {t('creation:pci_instance_creation_network_private_help_title')}
+        </Text>
+        <Text preset="paragraph" className="mb-4">
+          {t('creation:pci_instance_creation_network_private_help_description')}
+        </Text>
+        <Text preset="paragraph" className="mb-8">
+          <Trans
+            t={t}
+            i18nKey="creation:pci_instance_creation_network_private_help_configuration"
+            components={{ br: <br /> }}
+          />
+        </Text>
+        <article className="mt-0">
+          <Trans
+            t={t}
+            i18nKey="creation:pci_instance_creation_network_private_help_gateway"
+            components={{
+              h6: (
+                <Text preset="heading-6" className="mb-3 block font-semibold" />
+              ),
+              p: <Text preset="paragraph" className="mb-4 block" />,
+              br: <br />,
+            }}
+          />
+        </article>
+        <Link
+          className="mt-8 inline-block visited:text-[var(--ods-color-primary-500)]"
+          href={guide}
+          onClick={handleOpenGuideLink}
+          target="_blank"
+        >
+          {t(`${NAMESPACES.ONBOARDING}:find_out_more`)}
+        </Link>
+      </div>
     </HelpDrawer>
   );
 };

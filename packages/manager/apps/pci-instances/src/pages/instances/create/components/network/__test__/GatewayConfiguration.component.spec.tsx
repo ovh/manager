@@ -26,7 +26,7 @@ vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
 type TSetupTestProps = {
   subnetId?: string | null;
   microRegion?: string | null;
-  assignNewGateway?: boolean;
+  willGatewayBeAttached?: boolean;
   privateNetworks?: TPrivateNetworkData[];
   deploymentMode?: TDeploymentModeID;
 };
@@ -34,7 +34,7 @@ type TSetupTestProps = {
 const setupTest = ({
   subnetId = null,
   microRegion = 'fake-region',
-  assignNewGateway = false,
+  willGatewayBeAttached = false,
   privateNetworks = [],
   deploymentMode = 'region',
 }: TSetupTestProps = {}) => {
@@ -48,7 +48,7 @@ const setupTest = ({
       defaultValues={{
         subnetId,
         microRegion,
-        assignNewGateway,
+        willGatewayBeAttached,
         ipPublicType: null,
         floatingIpAssignment: null,
         existingFloatingIpId: null,
@@ -69,12 +69,6 @@ describe('Considering GatewayConfiguration component', () => {
     setupTest();
 
     await waitFor(() => {
-      expect(
-        screen.getByText(
-          'creation:pci_instance_creation_network_gateway_title',
-        ),
-      ).toBeVisible();
-
       expect(
         screen.getByLabelText(
           /creation:pci_instance_creation_network_gateway_toggle_label/i,
@@ -98,7 +92,7 @@ describe('Considering GatewayConfiguration component', () => {
     });
   });
 
-  it('should be disabled when selected network has gateway', async () => {
+  it('should be disabled and checked when selected network has gateway', async () => {
     setupTest({
       subnetId: mockedPrivateNetworks[1]?.value,
       privateNetworks: mockedPrivateNetworks,
@@ -110,13 +104,13 @@ describe('Considering GatewayConfiguration component', () => {
       );
 
       expect(toggle).toBeDisabled();
-      expect(toggle).not.toBeChecked();
+      expect(toggle).toBeChecked();
     });
   });
 
   it('should be enabled when assign new gateway is checked', async () => {
     setupTest({
-      assignNewGateway: true,
+      willGatewayBeAttached: true,
     });
 
     await waitFor(() => {

@@ -2,13 +2,17 @@ import { fireEvent, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { wrapper } from '@/utils/test.provider';
-import { navigate } from '@/utils/test.setup';
+import { getDomRect, navigate } from '@/utils/test.setup';
 
 import CdnEditUrlsModal from '../CdnEditUrls.modal';
 
 describe('CdnEditUrlsModal', () => {
   beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
     vi.clearAllMocks();
+  });
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
   });
 
   it('should close modal on cancel', () => {

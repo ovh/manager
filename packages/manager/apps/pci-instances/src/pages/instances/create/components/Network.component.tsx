@@ -8,6 +8,7 @@ import {
   Select,
   SelectContent,
   SelectControl,
+  SelectCustomOptionRendererArg,
   SelectValueChangeDetail,
   Text,
 } from '@ovhcloud/ods-react';
@@ -18,7 +19,10 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 import { useFormContext, useWatch } from 'react-hook-form';
-import { selectPrivateNetworks } from '../view-models/networksViewModel';
+import {
+  selectPrivateNetworks,
+  TPrivateNetworkCustomData,
+} from '../view-models/networksViewModel';
 import AddNetworkForm from './network/AddNetworkForm.component';
 import GatewayConfiguration from './network/GatewayConfiguration.component';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -28,14 +32,22 @@ import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetwork
 import Banner from '@/components/banner/Banner.component';
 import GuideLink from '@/components/guideLink/GuideLink.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
+import SelectOptionRow from '@/components/selectOptionRow/SelectOptionRow.component';
 
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [subnetId, microRegion, ipPublicType, assignNewGateway] = useWatch({
-    control,
-    name: ['subnetId', 'microRegion', 'ipPublicType', 'assignNewGateway'],
-  });
+  const [subnetId, microRegion, ipPublicType, willGatewayBeAttached] = useWatch(
+    {
+      control,
+      name: [
+        'subnetId',
+        'microRegion',
+        'ipPublicType',
+        'willGatewayBeAttached',
+      ],
+    },
+  );
 
   const guide = useGuideLink('NETWORK_PRIVATE_MODE');
 
@@ -86,17 +98,17 @@ const Network: FC = () => {
 
   return (
     <section>
-      <div className="flex items-center space-x-4">
-        <Text preset="heading-3">
-          {t('creation:pci_instance_creation_network_setting_title')}
+      <Text preset="heading-3">
+        {t('creation:pci_instance_creation_network_setting_title')}
+      </Text>
+      <div className="mt-4 flex items-center space-x-4">
+        <Text preset="heading-4">
+          {t(
+            'creation:pci_instance_creation_network_private_network_setting_title',
+          )}
         </Text>
         <NetworkHelper />
       </div>
-      <Text preset="heading-4" className="mt-4">
-        {t(
-          'creation:pci_instance_creation_network_private_network_setting_title',
-        )}
-      </Text>
       <Text className="mt-4" preset="paragraph">
         {t(
           'creation:pci_instance_creation_network_private_network_setting_description',
@@ -121,7 +133,7 @@ const Network: FC = () => {
         </>
       ) : (
         <>
-          <FormField className="my-4 max-w-[32%]">
+          <FormField className="my-4 max-w-[45%]">
             <FormFieldLabel>
               {t(
                 'creation:pci_instance_creation_select_network_dropdown_label',
@@ -132,11 +144,50 @@ const Network: FC = () => {
               value={[subnetId]}
               onValueChange={handleSelectNetwork}
             >
-              <SelectControl />
-              <SelectContent />
+              <SelectControl
+                customItemRenderer={({ selectedItems }) => (
+                  <>
+                    {selectedItems[0] && (
+                      <SelectOptionRow
+                        label={selectedItems[0].label}
+                        {...((selectedItems[0]
+                          .customRendererData as TPrivateNetworkCustomData)
+                          .hasGateway && {
+                          badge: t(
+                            'creation:pci_instance_creation_network_gateway_attached_badge',
+                          ),
+                          badgeProps: {
+                            color: 'information',
+                          },
+                        })}
+                      />
+                    )}
+                  </>
+                )}
+              />
+              <SelectContent
+                className="[&>div>span:first-child]:w-full"
+                customOptionRenderer={({
+                  label,
+                  customData,
+                }: SelectCustomOptionRendererArg) => (
+                  <SelectOptionRow
+                    label={label}
+                    {...((customData as TPrivateNetworkCustomData)
+                      .hasGateway && {
+                      badge: t(
+                        'creation:pci_instance_creation_network_gateway_attached_badge',
+                      ),
+                      badgeProps: {
+                        color: 'information',
+                      },
+                    })}
+                  />
+                )}
+              />
             </Select>
           </FormField>
-          <Button variant="ghost" onClick={handleOpenCreateNetwork}>
+          <Button variant="outline" onClick={handleOpenCreateNetwork}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_network_add_new')}
           </Button>
@@ -144,7 +195,7 @@ const Network: FC = () => {
       )}
       <GatewayConfiguration privateNetworks={networks} />
       <AddPublicNetworkConfiguration privateNetworks={networks} />
-      {ipPublicType === null && !assignNewGateway && (
+      {ipPublicType === null && !willGatewayBeAttached && (
         <Banner className="mt-6">
           <Trans
             i18nKey="creation:pci_instance_creation_network_full_private_warning"

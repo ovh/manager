@@ -48,6 +48,7 @@ import {
   TASKS,
   WEBSITE,
   WORDPRESS_MANAGED,
+  WORDPRESS_MANAGED_ONBOARDING,
   WORDPRESS_MANAGED_SERVICE,
 } from '../utils/tracking.constants';
 import {
@@ -76,6 +77,7 @@ import {
 } from './pages/git';
 import { LocalSeoPage, RemoveSeoSubscriptionPage } from './pages/localSeo';
 import {
+  ManagedWordpressOnboardingPage,
   ManagedWordpressPage,
   ManagedWordpressResourcePage,
   ManagedWordpressServiceCreatePage,
@@ -126,6 +128,17 @@ export default (
         },
         breadcrumb: {
           label: 'managed_wordpress',
+        },
+      }}
+    />
+
+    <Route
+      id={WORDPRESS_MANAGED_ONBOARDING}
+      path={urls.managedWordpressResourceOnboarding}
+      Component={ManagedWordpressOnboardingPage}
+      handle={{
+        tracking: {
+          pageType: PageType.onboarding,
         },
       }}
     />

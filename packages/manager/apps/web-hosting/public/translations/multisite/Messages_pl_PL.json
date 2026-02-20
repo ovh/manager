@@ -1,9 +1,9 @@
 {
   "multisite_git_state_tooltip_lastdeploy": "Sprawdź informacje o ostatnim wdrożeniu",
   "multisite_git_state_tooltip_disabled": "Kliknij przycisk akcji, aby powiązać Git",
-  "multisite_tooltip_diagnostic_good_configuration": "Twoja domena {{ domainName }} jest skonfigurowana na adres IP {{ ip }} twojego hostingu",
-  "multisite_tooltip_diagnostic_not_good_configuration": "Twoja domena {{ domainName }} jest skonfigurowana na adres IP {{ ip }} innej usługi",
-  "multisite_tooltip_diagnostic_unconfigured": "Ten wpis w twojej strefie DNS nie działa. Nie znaleziono żadnej konfiguracji w twojej strefie DNS",
+  "multisite_tooltip_diagnostic_good_configuration": "Domena {{domainName}} jest poprawnie skonfigurowana i wskazuje na adres IP {{ip}} Twojego hostingu.",
+  "multisite_tooltip_diagnostic_not_good_configuration": "Domena {{domainName}} wskazuje aktualnie na adres IP {{externalIp}} innego hostingu. Aby to skorygować, zaktualizuj pole {{type}} w strefie DNS domeny i ustaw adres IP {{ip}}.",
+  "multisite_tooltip_diagnostic_unconfigured": "W strefie DNS nie znaleziono prawidłowej konfiguracji. Aby rozwiązać ten problem, dodaj pole {{type}} z adresem IP {{ip}} w strefie DNS domeny {{domainName}}.",
   "multisite_git_modal_delete_association_title": "Usuń powiązanie z Gitem",
   "multisite_git_modal_delete_association_description1": "Zaraz usuniesz powiązanie z Gitem.",
   "multisite_git_modal_delete_association_description2": "<strong>Usunięcie dotyczy wszystkich domen wskazujących na twój katalog.</strong>",
