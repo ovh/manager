@@ -9,10 +9,10 @@
   "submitButton": "Send",
   "successMessage": "Your request has been sent.",
   "errors": {
-    "emailRequired": "The email is mandatory.",
+    "emailRequired": "You need to enter an email address",
     "emailInvalid": "Please enter a valid email address.",
-    "subjectRequired": "The subject is mandatory.",
-    "messageRequired": "The message is mandatory."
+    "subjectRequired": "You need to enter a subject.",
+    "messageRequired": "You need to write a message."
   },
   "general-information": "General information",
   "help": "Help",
@@ -22,5 +22,5 @@
   "immutability": "Immutability",
   "immutability_duration_enabled": "{{duration}} days activated",
   "encryption": "Vault encryption",
-  "encryption_enabled": "{{encryption}} activated"
+  "encryption_enabled": "{{encryption}} enabled"
 }
