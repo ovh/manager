@@ -1,6 +1,7 @@
 import {
   createGrafana as createGrafanaFromMock,
   deleteGrafana as deleteGrafanaFromMock,
+  editGrafana as editGrafanaFromMock,
   getGrafana as getGrafanaFromMock,
   getGrafanaReleases as getGrafanaReleasesFromMock,
   getGrafanas as getGrafanasFromMock,
@@ -10,12 +11,14 @@ import mockLogger from '@/__mocks__/mock.logger';
 import {
   createGrafana as createGrafanaFromApi,
   deleteGrafana as deleteGrafanaFromApi,
+  editGrafana as editGrafanaFromApi,
   getGrafana as getGrafanaFromApi,
   getGrafanaReleases as getGrafanaReleasesFromApi,
   getGrafanas as getGrafanasFromApi,
 } from '@/data/api/grafana.api';
 import {
   CreateGrafanaPayload,
+  EditGrafanaPayload,
   GetGrafanaPayload,
   GetGrafanaReleasesParams,
 } from '@/data/api/grafana.props';
@@ -46,6 +49,12 @@ export const createGrafana = async (payload: CreateGrafanaPayload): Promise<Graf
   const isMockEnabled = apiConfig.grafana === 'mock';
   mockLogger.info('[createGrafana] Mock enabled -> ', isMockEnabled);
   return isMockEnabled ? createGrafanaFromMock(payload) : createGrafanaFromApi(payload);
+};
+
+export const editGrafana = async (payload: EditGrafanaPayload): Promise<Grafana> => {
+  const isMockEnabled = apiConfig.grafana === 'mock';
+  mockLogger.info('[editGrafana] Mock enabled ->', isMockEnabled);
+  return isMockEnabled ? editGrafanaFromMock(payload) : editGrafanaFromApi(payload);
 };
 
 export const deleteGrafana = async (params: GetGrafanaPayload): Promise<Grafana> => {
