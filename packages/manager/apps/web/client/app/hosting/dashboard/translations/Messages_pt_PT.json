@@ -1252,7 +1252,6 @@
   "hosting_action_edit_choose_update": "Modificar a configuração atual",
   "hosting_action_edit_choose_rollback": "Voltar a uma configuração anterior",
   "hosting_action_config_edit_no_choice": "Uma única configuração disponível no histórico. A escolha está desativada; clique em «validar» para aplicar os valores apresentados abaixo.",
-  "hosting_tab_USER_LOGS": "Estatísticas e logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Criar um novo utilizador",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Este novo utilizador terá acesso às suas estatísticas e aos logs dos seus websites, além dos contactos normais do alojamento (administrativo, técnico e de faturação). Pode adicionar, modificar ou eliminar livremente estes utilizadores adicionais.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Utilizador",
@@ -1410,5 +1409,6 @@
   "hosting_tab_DATABASES_configuration__action_button": "Rescindir a minha base de dados",
   "hosting_tab_DATABASES_configuration__available_slot": "Base de dados disponível",
   "hosting_tab_WEBSITE": "Meus sites",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Selecionar um domínio"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Selecionar um domínio",
+  "hosting_tab_USER_LOGS": "Logs"
 }

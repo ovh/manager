@@ -1262,7 +1262,6 @@
   "hosting_action_edit_choose_update": "Modify the current configuration",
   "hosting_action_edit_choose_rollback": "Return to a previous configuration",
   "hosting_action_config_edit_no_choice": "Only one configuration is available in the log. The choice is disabled, click ‘Confirm’ to apply the values presented below.",
-  "hosting_tab_USER_LOGS": "Statistics and logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Create a new user",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "This new user will have access to your website statistics and logs, as well as the normal hosting contacts (administrative, technical and billing). You can freely add, edit or delete these additional users.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "User",
@@ -1410,5 +1409,6 @@
   "hosting_tab_DATABASES_configuration__action_button": "Cancel my database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database available",
   "hosting_tab_WEBSITE": "My sites",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Select a domain",
+  "hosting_tab_USER_LOGS": "Logs."
 }

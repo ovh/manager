@@ -13,6 +13,10 @@ const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
   './src/**/*.{js,jsx,ts,tsx}',
   toGlob(reactComponentsDir),
+  path.join(
+    path.dirname(require.resolve('@ovh-ux/logs-to-customer')),
+    '**/*.{js,jsx,ts,tsx}',
+  ),
 ];
 
 export const pciTailwindConfig = [...baseTailwindConfig];
