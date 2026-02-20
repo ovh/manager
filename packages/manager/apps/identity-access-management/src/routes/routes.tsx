@@ -35,6 +35,9 @@ const ServiceAccountsListing = lazy(() =>
 const ServiceAccountsEdit = lazy(() =>
   import('@/pages/serviceAccounts/edit/ServiceAccountsEdit.page'),
 );
+const ServiceAccountsDelete = lazy(() =>
+  import('@/pages/serviceAccounts/delete/ServiceAccountsDelete.page'),
+);
 const ServiceAccountsViewer = lazy(() =>
   import('@/pages/serviceAccounts/viewer/ServiceAccountsViewer.page'),
 );
@@ -183,6 +186,16 @@ export default (
         handle={{
           tracking: {
             pageName: SERVICE_ACCOUNTS_TRACKING.EDIT.PAGE_NAME,
+            pageType: PageType.funnel,
+          },
+        }}
+      />
+      <Route
+        path={urls.serviceAccountsDelete}
+        Component={ServiceAccountsDelete}
+        handle={{
+          tracking: {
+            pageName: SERVICE_ACCOUNTS_TRACKING.DELETE.PAGE_NAME,
             pageType: PageType.funnel,
           },
         }}

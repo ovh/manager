@@ -62,3 +62,10 @@ export const updateIamServiceAccount = async (
   );
   return data;
 };
+
+export const deleteIamServiceAccount = async (clientId: string) => {
+  const { data } = await apiClient.v6.delete<void>(
+    `${oauthClientsRoute}/${clientId}`,
+  );
+  return data;
+};

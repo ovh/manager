@@ -13,6 +13,7 @@ import {
   getIamServiceAccount,
   createIamServiceAccount,
   updateIamServiceAccount,
+  deleteIamServiceAccount,
 } from '@/data/api/iam-service-accounts';
 import queryClient from '@/queryClient';
 
@@ -100,6 +101,34 @@ export const useUpdateIamServiceAccount = ({
   return {
     updateServiceAccount: (payload: IamServiceAccountUpdatePayload) =>
       mutation.mutate(payload),
+    ...mutation,
+  };
+};
+
+export const useDeleteIamServiceAccount = ({
+  clientId,
+  onSuccess,
+  onError,
+}: {
+  clientId: string;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
+}) => {
+  const mutation = useMutation({
+    mutationFn: () => deleteIamServiceAccount(clientId),
+    onError,
+    onSuccess: () => {
+      void queryClient.invalidateQueries({
+        queryKey: getIamServiceAccountQueryKey(clientId),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: getIamServiceAccountListQueryKey(),
+      });
+      onSuccess();
+    },
+  });
+  return {
+    deleteServiceAccount: () => mutation.mutate(),
     ...mutation,
   };
 };
