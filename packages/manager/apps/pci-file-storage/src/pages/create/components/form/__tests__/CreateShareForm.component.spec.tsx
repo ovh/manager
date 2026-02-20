@@ -123,7 +123,7 @@ vi.mock('@/pages/create/components/network/PrivateNetworkSelection.component', (
   ),
 }));
 
-const { mockSuccessToast, mockWarningToast, mockToast } = vi.hoisted(() => ({
+const { mockSuccessToast, mockWarningToast } = vi.hoisted(() => ({
   mockSuccessToast: vi.fn(),
   mockWarningToast: vi.fn(),
   mockToast: vi.fn(),
@@ -138,7 +138,8 @@ vi.mock('@/utils/toast.utils', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovhcloud/ods-react', () => ({
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@ovhcloud/ods-react')>()),
   Divider: ({ className }: { className: string }) => (
     <div data-testid="divider" className={className} />
   ),
