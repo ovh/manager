@@ -11,7 +11,7 @@ interface SubscriptionProps {
   expirationDate: string;
   contacts: TServiceInfo['customer']['contacts'];
   serviceName: string;
-  serviceId: string;
+  serviceId: number;
 }
 
 export default function Subscription({
