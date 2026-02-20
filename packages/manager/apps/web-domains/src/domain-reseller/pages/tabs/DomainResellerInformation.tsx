@@ -85,6 +85,7 @@ export default function DomainResellerInformation() {
             expirationDate={serviceInfo?.billing?.expirationDate}
             contacts={serviceInfo?.customer?.contacts}
             serviceName={serviceInfo?.resource?.name}
+            serviceId={serviceInfo?.serviceId}
           />
         </div>
       </section>

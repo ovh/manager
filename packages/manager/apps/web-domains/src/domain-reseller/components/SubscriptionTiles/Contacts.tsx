@@ -7,19 +7,15 @@ import { useTranslation } from 'react-i18next';
 
 interface ContactsProps {
   contacts: TServiceInfo['customer']['contacts'];
-  serviceName: string;
 }
 
-export default function Contacts({ contacts, serviceName }: ContactsProps) {
+export default function Contacts({ contacts }: ContactsProps) {
   const { t } = useTranslation([NAMESPACES.CONTACT, 'domain']);
   const { data: reassignContactUrl } = useNavigationGetUrl([
     'account',
     '/contacts/services',
     {
-      serviceName,
-      category: 'DOMAIN_RESELLER',
-      service: serviceName,
-      categoryType: 'DOMAIN_RESELLER',
+      category: 'RESELLER',
     },
   ]);
   return (
