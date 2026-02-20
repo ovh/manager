@@ -94,5 +94,7 @@
   "key_management_service_service-keys_create_protection_level_title": "Poziom ochrony",
   "key_management_service_service-keys_create_protection_level_subtitle": "Określ poziom ochrony używany dla Service Key.",
   "key_management_service_service-keys_create_software_protection_title": "Ochrona oprogramowania",
-  "key_management_service_service-keys_create_software_protection_subtitle": "Operacje kryptograficzne są wykonywane na oprogramowaniu."
+  "key_management_service_service-keys_create_software_protection_subtitle": "Operacje kryptograficzne są wykonywane na oprogramowaniu.",
+  "key_management_service_service-keys_link_download_key_pem": "Pobierz klucz publiczny PEM",
+  "key_management_service_service-keys_link_download_key_jwk": "Pobierz klucz publiczny JWK"
 }
