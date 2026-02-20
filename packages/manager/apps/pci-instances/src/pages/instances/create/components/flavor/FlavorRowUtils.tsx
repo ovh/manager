@@ -16,15 +16,25 @@ import { ReactNode } from 'react';
 import { useCatalogPrice } from '@ovh-ux/muk';
 
 export function useFlavorCommon() {
-  const { t } = useTranslation('creation');
+  const { t } = useTranslation(['creation', 'common']);
   const { getTextPrice } = useCatalogPrice(4);
 
   const renderName = (flavor: {
     name: string;
     unavailable?: boolean;
     unavailableQuota?: boolean;
+    hasNoAvailableRegions?: boolean;
   }) => {
     const isUnavailable = flavor.unavailable || flavor.unavailableQuota;
+    const isComingSoon = flavor.unavailable && flavor.hasNoAvailableRegions;
+
+    const getBadgeLabel = () => {
+      if (flavor.unavailableQuota)
+        return t('pci_instance_creation_flavor_unavailable_quota');
+      if (isComingSoon)
+        return t('common:pci_instances_common_coming_soon');
+      return t('pci_instance_creation_flavor_unavailable');
+    };
 
     const nameContent = (
       <div className="flex size-full flex-row flex-wrap content-start items-center gap-4">
@@ -37,16 +47,14 @@ export function useFlavorCommon() {
             color={BADGE_COLOR.warning}
             className="h-fit text-wrap font-normal"
           >
-            {flavor.unavailable
-              ? t('pci_instance_creation_flavor_unavailable')
-              : t('pci_instance_creation_flavor_unavailable_quota')}
+            {getBadgeLabel()}
             <Icon aria-label="Info" name="circle-info" role="img" />
           </Badge>
         )}
       </div>
     );
 
-    if (!isUnavailable) return nameContent;
+    if (!isUnavailable || isComingSoon) return nameContent;
 
     return (
       <Tooltip>

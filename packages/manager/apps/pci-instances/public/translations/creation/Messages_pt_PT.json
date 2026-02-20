@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Preço",
   "pci_instance_creation_table_header_price_hourly_unit": "s/IVA/h",
   "pci_instance_creation_table_header_price_monthly_unit": "s/IVA/mês",
-  "pci_instance_creation_flavor_unavailable": "Indisponível",
+  "pci_instance_creation_flavor_unavailable": "Indisponível nesta região",
   "pci_instance_creation_flavor_unavailable_quota": "Quota indisponível",
   "pci_instance_creation_flavor_unavailable_help": "Este modelo não está disponível na sua região selecionada. <sb>Você pode, no entanto, selecioná-lo, mas terá que escolher outra região para este modelo.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "A sua quota não permite escolher este modelo de instância. Por favor, aumente a sua quota.",
@@ -206,5 +206,6 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Selecionar manualmente uma AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Você pode escolher entre as três AZ disponíveis na região. Isso permite que você distribua suas instâncias em várias AZ e assim implemente seus próprios mecanismos de redundância.",
   "pci_instance_creation_availabilityZone_help_link": "Saiba mais sobre multi-AZ e boas práticas →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Um IP Público Básico foi detetado na sua Rede Privada, por favor crie ou selecione outra Rede Privada para criar um gateway."
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Um IP Público Básico foi detetado na sua Rede Privada, por favor crie ou selecione outra Rede Privada para criar um gateway.",
+  "pci_instance_creation_region_unavailable": "Região indisponível"
 }
