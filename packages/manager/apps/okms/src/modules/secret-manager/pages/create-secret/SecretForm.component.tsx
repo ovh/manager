@@ -24,7 +24,7 @@ import { Controller, FormProvider, SubmitHandler, useForm, useWatch } from 'reac
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
 
-import { Card, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
+import { Card, Message, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation, PageType } from '@ovh-ux/manager-react-shell-client';
@@ -205,6 +205,7 @@ export const SecretForm = ({ okmsId }: SecretFormProps) => {
           </div>
           <div className="flex flex-col gap-3">
             <Text preset="heading-4">{t('secret_settings')}</Text>
+            <Message dismissible={false}>{t('secret_settings_explanation')}</Message>
 
             {/* Deactivate Version After with Toggle */}
             <Card color="neutral">
