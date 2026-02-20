@@ -12,12 +12,14 @@ import { useTranslation } from 'react-i18next';
 interface CreationDateProps {
   creationDate: string;
   serviceName: string;
+  serviceId: string;
 }
 
 export default function CreationDate({
   creationDate,
   serviceName,
-}: CreationDateProps) {
+  serviceId
+}: Readonly<CreationDateProps>) {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, 'domain']);
   const formatDate = useFormatDate();
   const { data: managedServices } = useNavigationGetUrl([
@@ -26,6 +28,14 @@ export default function CreationDate({
     {
       selectedType: 'DOMAIN_RESELLER',
       searchText: serviceName,
+    },
+  ]);
+
+  const { data: resiliateServices } = useNavigationGetUrl([
+    'billing',
+    '/autorenew/services/resiliate',
+    {
+      serviceId: serviceId,
     },
   ]);
 
@@ -51,7 +61,7 @@ export default function CreationDate({
               id: 2,
               label: t(`${NAMESPACES.BILLING}:cancel_service`),
               color: ODS_BUTTON_COLOR.critical,
-              href: managedServices as string,
+              href: resiliateServices as string,
             },
           ]}
         />
