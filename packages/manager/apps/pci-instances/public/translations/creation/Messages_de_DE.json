@@ -76,8 +76,8 @@
   "pci_instance_creation_choose_availabilityZone_informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Wählen Sie für mich",
   "pci_instance_creation_availabilityZone_user_choice": "Ich wähle meine Verfügbarkeitszone",
-  "pci_instance_creation_availabilityZone_help_description_p1": "In einer Cloud-Umgebung sind Verfügbarkeit und Resilienz der Dienste entscheidend, um die Kontinuität der Abläufe auch im Falle eines Ausfalls einer Verfügbarkeitszone (AZ) zu gewährleisten.",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Da Instanzen zonale Dienste sind, werden sie nur in einer einzigen Verfügbarkeitszone bereitgestellt. Um die Resilienz zu gewährleisten, liegt es daher am Kunden, seine Instanzen manuell auf mehrere Zonen zu verteilen.",
+  "pci_instance_creation_availabilityZone_help_description_p1": "Eine 3-AZ-Region besteht aus drei physisch voneinander getrennten, aber miteinander verbundenen Verfügbarkeitszonen.",
+  "pci_instance_creation_availabilityZone_help_description_p2": "Jede AZ entspricht einem unabhängigen Rechenzentrum, das die Resilienz und Hochverfügbarkeit Ihrer Bereitstellungen stärkt.",
   "pci_instance_creation_cart_distribution_image_title": "Image",
   "pci_instance_creation_select_sshKey_title": "Wählen Sie einen SSH-Schlüssel aus",
   "pci_instance_creation_select_sshKey_description": " Ein SSH-Schlüssel ist erforderlich, um sich mit Ihrem Dienst zu verbinden.",
@@ -196,8 +196,14 @@
   "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment...",
   "pci_instance_creation_flex_flavor": {
     "title": "Flex-Instanzen",
-    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzelplatteninstanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
+    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzelplatteninstanz(50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
     "resizing_explanation": "Sie ermöglicht eine Skalierung auf höhere oder niedrigere Modelle mit einem festen Speicherplatz, während klassische Modelle nur auf höhere Modelle skaliert werden können."
   },
-  "pci_instance_creation_network_gateway_attached_badge": "Angehängtes Gateway"
+  "pci_instance_creation_network_gateway_attached_badge": "Angehängtes Gateway",
+  "pci_instance_creation_availabilityZone_help_title": "Verstehen Sie die Verfügbarkeitszonen",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Wählen Sie Ihren Bereitstellungsmodus",
+  "pci_instance_creation_availabilityZone_help_automatic": "Lassen Sie OVHcloud die AZ automatisch auswählen: Diese Option vereinfacht die Bereitstellung. Die AZ wird automatisch zugewiesen und Sie finden die Informationen zur AZ am Ende der Bereitstellung Ihrer Instanz. → Ideal für eine erste Bereitstellung oder für eine nicht redundante Nutzung.",
+  "pci_instance_creation_availabilityZone_help_manual_title": "Wählen Sie manuell eine AZ aus:",
+  "pci_instance_creation_availabilityZone_help_manual": "Sie können aus den drei in der Region verfügbaren AZs wählen. Dies ermöglicht es Ihnen, Ihre Instanzen auf mehrere AZs zu verteilen und somit Ihre eigenen Redundanzmechanismen einzurichten.",
+  "pci_instance_creation_availabilityZone_help_link": "Erfahren Sie mehr über Multi-AZ und bewährte Praktiken →"
 }
