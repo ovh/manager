@@ -24,6 +24,10 @@
     "descriptionPlaceholder": "Description du tableau de bord",
     "success": "Le tableau de bord managé est en cours de création"
   },
+  "edition": {
+    "title": "Modifier un tableau de bord managé avec la plateforme Grafana®",    
+    "success": "L'instance a été modifiée avec succès"
+  },
   "delete": {
     "delete_managed_dashboard_title": "Supprimer l'instance \"{{managedDashboard}}\"",
     "delete_managed_dashboard_description": "Êtes-vous sûr de vouloir supprimer l'instance \"{{managedDashboard}}\" ?",
