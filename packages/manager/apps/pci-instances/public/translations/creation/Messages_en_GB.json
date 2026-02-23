@@ -147,7 +147,7 @@
   "pci_instance_creation_backup_setting_rotation_custom_label": "Customized",
   "pci_instance_creation_backup_setting_rotation_description": {
     "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the {{ numEntries }} most recent entries.",
-    "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you want."
+    "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you wish."
   },
   "pci_instance_creation_backup_setting_price_unit": "excluding VAT/month/GB",
   "pci_instance_creation_cart_total_label": "Total",
@@ -165,17 +165,17 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>A Basic IP allows inbound and outbound connectivity with no usage restrictions. This IP is not persistent and is reallocated after the associated instance is deleted. It cannot be allocated to another instance.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assign public connectivity",
-    "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.<br/><span>The creation of the floating IP will take place at the end of the configuration.</span></p>",
+    "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.</p>",
     "toggle_label": "Assign a public IP",
     "basic_ip_label": "Basic Public IP (Linked to the instance) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifespan of the resource. ",
-    "basic_ip_warning": "Activating the basic public IP is not compatible with a gateway.",
-    "floating_ip_label": "Create a Floating IP (Reusable) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifetime of the resource. ",
+    "basic_ip_warning": "We have detected a gateway on your private network, so this option is not available. Please choose or create a private network without a gateway.",
+    "floating_ip_label": "Assign a Floating IP (Reusable)",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
     "floating_ip_warning": "By selecting this option, we will assign you a gateway of size {{ size }}.",
     "floating_ip_create_new_label": "Create a new one - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local Zones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "The Gateway is not available in localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "A Gateway is already assigned to the selected private network.",

@@ -190,7 +190,7 @@ const Network: FC = () => {
               />
             </Select>
           </FormField>
-          <Button variant="outline" onClick={handleOpenCreateNetwork}>
+          <Button variant="outline" size="sm" onClick={handleOpenCreateNetwork}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_network_add_new')}
           </Button>

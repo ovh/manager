@@ -87,8 +87,6 @@ const AddPublicNetworkConfiguration: FC<{
         i18nKey="creation:pci_instance_creation_network_add_public_connectivity.description"
         components={{
           p: <Text className="mt-4" preset="paragraph" />,
-          br: <br />,
-          span: <span className="font-semibold" />,
         }}
       />
       <Toggle
