@@ -146,8 +146,8 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Zweiwöchentliche Rotation",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalisiert",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Es wird täglich zwischen 22:00 Uhr und 06:00 Uhr (UTC) ein Backup durchgeführt und die Rotation verwaltet eine History der {{ numEntries }} letzten Einträge. Wenn das neue Backup abgeschlossen ist, wird das älteste Backup gelöscht.",
-    "custom": "Wählen Sie selbst das gewünschte Scheduling (UNIX-Cron-Format), die Anzahl der Rotationen und die maximale Ausführungsanzahl aus."
+    "predefined": "Ein Backup wird täglich zwischen 22:00 und 6:00 Uhr (UTC) durchgeführt, und die Rotation hält einen Verlauf der {{ numEntries }} letzten Einträge.",
+    "custom": "Wählen Sie selbst die Planung (UNIX Cron-Format), die Anzahl der Rotationen und die maximalen Ausführungen, die Sie wünschen."
   },
   "pci_instance_creation_backup_setting_price_unit": "zzgl. MwSt./Monat/GB",
   "pci_instance_creation_cart_total_label": "Gesamt",
@@ -165,17 +165,17 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Eine Basic IP ermöglicht eingehende und ausgehende Konnektivität ohne Nutzungseinschränkungen. Diese IP ist nicht persistent und wird nach der Löschung der zugehörigen Instanz neu zugewiesen. Sie kann keiner anderen Instanz zugewiesen werden.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Öffentliche Konnektivität zuweisen",
-    "description": "<p>Die Zuweisung einer öffentlichen IP-Adresse ermöglicht den Zugriff auf Ihre Instanz von außerhalb des OVHcloud Netzwerks. <span>Die Floating IP wird am Ende der Konfiguration erstellt.</span></p>",
-    "toggle_label": "Öffentliche IP-Adresse zuweisen",
-    "basic_ip_label": "Basic Public IP (an Instanz gebunden) - {{ price }}",
-    "basic_ip_description": "Eine Basic Public IP ist eine IP-Adresse, die nur für die Lebensdauer der Ressource bestehen bleibt. ",
-    "basic_ip_warning": "Die Aktivierung der Basic Public IP ist mit einem Gateway nicht kompatibel.",
-    "floating_ip_label": "Floating IP erstellen (wiederverwendbar) - {{ price }}",
-    "floating_ip_description": "Durch das Reservieren einer Floating IP wird die Adresse Ihrem Projekt zugewiesen, bis Sie sie explizit freigeben. ",
-    "floating_ip_warning": "Wenn Sie diese Option auswählen, werden wir Ihnen ein Gateway der Größe {{ size }} zuweisen.",
-    "floating_ip_create_new_label": "Eine neue IP erstellen - {{ price }}",
-    "floating_ip_reuse_existing_label": "Eine vorhandene Floating IP wiederverwenden",
-    "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in Local Zones nicht verfügbar."
+    "description": "<p>Die Zuweisung einer öffentlichen IP-Adresse ermöglicht den Zugriff auf Ihre Instanz von außerhalb des OVHcloud-Netzwerks.<br/><span>Die Erstellung der Floating IP erfolgt am Ende der Konfiguration.</span></p>",
+    "toggle_label": "Eine öffentliche IP zuweisen",
+    "basic_ip_label": "Basis-Öffentliche IP (An die Instanz gebunden) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "Eine Basis-Öffentliche IP ist eine IP-Adresse, die nicht über die Lebensdauer der Ressource hinaus besteht. ",
+    "basic_ip_warning": "Die Aktivierung der Basis-Öffentlichen IP ist nicht mit einem Gateway kompatibel.",
+    "floating_ip_label": "Eine Floating IP erstellen (Wiederverwendbar) - <sb>{{ price }}</sb>",
+    "floating_ip_description": "Die Reservierung einer Floating IP weist die Adresse Ihrem Projekt zu, bis Sie sie ausdrücklich freigeben. ",
+    "floating_ip_warning": "Durch die Auswahl dieser Option weisen wir Ihnen ein Gateway der Größe {{ size }} zu.",
+    "floating_ip_create_new_label": "Eine neue erstellen - <sb>{{ price }}</sb>",
+    "floating_ip_reuse_existing_label": "Eine vorhandene Floating IP wiederverwenden",
+    "floating_ip_unavailable_LZ_tooltip": "Floating IPs sind in den Local Zones nicht verfügbar."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Das Gateway ist in Local Zones nicht verfügbar.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Dem ausgewählten privaten Netzwerk ist bereits ein Gateway zugewiesen.",
@@ -196,7 +196,7 @@
   "pci_instance_onboarding_page_creation_pending": "Ihre Instanz wird erstellt, bitte warten Sie einen Moment...",
   "pci_instance_creation_flex_flavor": {
     "title": "Flex-Instanzen",
-    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzelplatteninstanz(50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
+    "disk_capacity": "<span>Eine Flex-Instanz ist eine Einzelplatteninstanz (50 GB)</span>, die einen schnelleren Prozess für Snapshots bietet.",
     "resizing_explanation": "Sie ermöglicht eine Skalierung auf höhere oder niedrigere Modelle mit einem festen Speicherplatz, während klassische Modelle nur auf höhere Modelle skaliert werden können."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Angehängtes Gateway",
@@ -205,5 +205,6 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Lassen Sie OVHcloud die AZ automatisch auswählen: Diese Option vereinfacht die Bereitstellung. Die AZ wird automatisch zugewiesen und Sie finden die Informationen zur AZ am Ende der Bereitstellung Ihrer Instanz. → Ideal für eine erste Bereitstellung oder für eine nicht redundante Nutzung.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Wählen Sie manuell eine AZ aus:",
   "pci_instance_creation_availabilityZone_help_manual": "Sie können aus den drei in der Region verfügbaren AZs wählen. Dies ermöglicht es Ihnen, Ihre Instanzen auf mehrere AZs zu verteilen und somit Ihre eigenen Redundanzmechanismen einzurichten.",
-  "pci_instance_creation_availabilityZone_help_link": "Erfahren Sie mehr über Multi-AZ und bewährte Praktiken →"
+  "pci_instance_creation_availabilityZone_help_link": "Erfahren Sie mehr über Multi-AZ und bewährte Praktiken →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Eine Basis-Öffentliche IP wurde in Ihrem privaten Netzwerk erkannt, bitte erstellen oder wählen Sie ein anderes privates Netzwerk, um ein Gateway zu erstellen."
 }

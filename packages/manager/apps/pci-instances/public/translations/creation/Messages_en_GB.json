@@ -168,12 +168,12 @@
     "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.<br/><span>The creation of the floating IP will take place at the end of the configuration.</span></p>",
     "toggle_label": "Assign a public IP",
     "basic_ip_label": "Basic Public IP (Linked to the instance) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifetime of the resource. ",
+    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifespan of the resource. ",
     "basic_ip_warning": "Activating the basic public IP is not compatible with a gateway.",
     "floating_ip_label": "Create a Floating IP (Reusable) - <sb>{{ price }}</sb>",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
-    "floating_ip_warning": "By selecting this option, we will assign you a gateway size {{ size }}.",
-    "floating_ip_create_new_label": "Create a new - <sb>{{ price }}</sb>",
+    "floating_ip_warning": "By selecting this option, we will assign you a gateway of size {{ size }}.",
+    "floating_ip_create_new_label": "Create a new one - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in local zones."
   },
@@ -205,5 +205,6 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Let OVHcloud automatically choose the AZ: This option simplifies deployment. The AZ is assigned automatically and you will find the AZ information at the end of your instance deployment. → Ideal for a first deployment or for non-redundant use.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Manually select an AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This allows you to distribute your instances across multiple AZs and thus implement your own redundancy mechanisms.",
-  "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →"
+  "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "A Basic Public IP has been detected on your Private Network, please create or select another Private Network to create a gateway."
 }
