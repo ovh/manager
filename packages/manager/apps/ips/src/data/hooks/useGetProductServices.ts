@@ -53,22 +53,27 @@ export const useGetProductServices = (
           data: result?.data?.data || [],
           category: productPathsAndCategories[index]?.category,
         }))
-        .reduce((acc, { category, data: serviceData }) => {
-          acc[category] = serviceData.map((service) => {
-            const iam = service.iam as { id: string; urn: string } | undefined;
-            const id = iam?.id ?? undefined;
-            const extractedServiceName = iam?.urn.split(':').pop() || '';
+        .reduce(
+          (acc, { category, data: serviceData }) => {
+            acc[category] = serviceData.map((service) => {
+              const iam = service.iam as
+                | { id: string; urn: string }
+                | undefined;
+              const id = iam?.id ?? undefined;
+              const extractedServiceName = iam?.urn.split(':').pop() || '';
 
-            return {
-              category,
-              id,
-              serviceName: extractedServiceName,
-              displayName:
-                getDisplayName(category, service) || extractedServiceName,
-            };
-          });
-          return acc;
-        }, {} as Record<string, ServiceInfoWithId[]>);
+              return {
+                category,
+                id,
+                serviceName: extractedServiceName,
+                displayName:
+                  getDisplayName(category, service) || extractedServiceName,
+              };
+            });
+            return acc;
+          },
+          {} as Record<string, ServiceInfoWithId[]>,
+        );
       return {
         data,
         isLoading: results.some((result) => result.isLoading),

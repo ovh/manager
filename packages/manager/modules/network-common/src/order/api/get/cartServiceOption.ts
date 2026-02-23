@@ -1,6 +1,6 @@
 import { ApiResponse, v6 } from '@ovh-ux/manager-core-api';
-import { PricingType } from '@ovh-ux/manager-module-common-api';
-import { Price } from '@ovh-ux/manager-module-order';
+
+import { Price, PricingType } from '../../../types';
 
 export type CartServiceOptionPrice = {
   capacities: ('installation' | 'upgrade' | 'renew')[];

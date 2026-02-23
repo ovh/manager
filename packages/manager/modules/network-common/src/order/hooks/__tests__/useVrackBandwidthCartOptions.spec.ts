@@ -62,11 +62,19 @@ describe('useVrackBandwidthCartOptions', () => {
       useVrackBandwidthCartOptions({ serviceName, regions: ['eu', 'ap'] }),
     );
 
-    // useQuery should have been called with enabled = true
+    // useQuery should have been called with enabled = true for our vrack cart queryKey
     expect(vi.mocked(useQuery)).toHaveBeenCalled();
-    const firstCallArg = (vi.mocked(useQuery).mock
-      .calls[0][0] as unknown) as Record<string, unknown>;
-    expect(firstCallArg.enabled).toBe(true);
+    const calls = (vi.mocked(useQuery).mock.calls as unknown) as Array<
+      [unknown]
+    >;
+    const vrackCall = calls.find((c) => {
+      const arg = c[0] as Record<string, unknown>;
+      const qk = arg.queryKey;
+      return Array.isArray(qk) && qk[0] === 'cartOptions' && qk[1] === 'vrack';
+    });
+    expect(vrackCall).toBeDefined();
+    const vrackCallArg = vrackCall![0] as Record<string, unknown>;
+    expect(vrackCallArg.enabled).toBe(true);
 
     // For 'eu' region we expect one option (10g => 10000) and default appended
     const euList = result.current.vrackCartBandwidthOptionListByRegion['eu'];
@@ -105,11 +113,19 @@ describe('useVrackBandwidthCartOptions', () => {
       useVrackBandwidthCartOptions({ serviceName, regions: [] }),
     );
 
-    // useQuery should have been called with enabled = false when no regions
+    // useQuery should have been called with enabled = false for our vrack cart queryKey when no regions
     expect(vi.mocked(useQuery)).toHaveBeenCalled();
-    const firstCallArg2 = (vi.mocked(useQuery).mock
-      .calls[0][0] as unknown) as Record<string, unknown>;
-    expect(firstCallArg2.enabled).toBe(false);
+    const calls2 = (vi.mocked(useQuery).mock.calls as unknown) as Array<
+      [unknown]
+    >;
+    const vrackCall2 = calls2.find((c) => {
+      const arg = c[0] as Record<string, unknown>;
+      const qk = arg.queryKey;
+      return Array.isArray(qk) && qk[0] === 'cartOptions' && qk[1] === 'vrack';
+    });
+    expect(vrackCall2).toBeDefined();
+    const vrackCallArg2 = vrackCall2![0] as Record<string, unknown>;
+    expect(vrackCallArg2.enabled).toBe(false);
 
     expect(result.current.vrackCartBandwidthOptionListByRegion).toEqual({});
   });

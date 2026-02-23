@@ -41,12 +41,10 @@ export const useIpGroupDatagridColumns = ({
 }) => {
   const { t } = useTranslation('listing');
 
-  const {
-    ipMitigation,
-    isLoading: isMitigationLoading,
-  } = useGetIpMitigationWithoutIceberg({
-    ip: parentIp,
-  });
+  const { ipMitigation, isLoading: isMitigationLoading } =
+    useGetIpMitigationWithoutIceberg({
+      ip: parentIp,
+    });
 
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
     serviceName,

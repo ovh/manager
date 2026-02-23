@@ -44,21 +44,17 @@ export const IpGroupDatagrid: React.FC<IpGroupDatagridProps> = ({
     isByoipSlice: isIpDetailsLoading || !!ipDetails?.bringYourOwnIp,
   });
 
-  const {
-    ipsReverse: ipReverseList,
-    isLoading: isIpReverseLoading,
-  } = useGetIcebergIpReverse({
-    ip: row.original.ip,
-    enabled: isValidIpv6Block(row.original.ip),
-  });
+  const { ipsReverse: ipReverseList, isLoading: isIpReverseLoading } =
+    useGetIcebergIpReverse({
+      ip: row.original.ip,
+      enabled: isValidIpv6Block(row.original.ip),
+    });
 
   const ipList = React.useMemo(() => {
     if (ipDetails?.bringYourOwnIp) {
       return (
-        slice
-          ?.find(({ slicingSize }) => slicingSize === 32)
-          ?.childrenIps || []).map((ip) => ip.replace('/32', '')
-      );
+        slice?.find(({ slicingSize }) => slicingSize === 32)?.childrenIps || []
+      ).map((ip) => ip.replace('/32', ''));
     }
 
     return isValidIpv6Block(row.original.ip)

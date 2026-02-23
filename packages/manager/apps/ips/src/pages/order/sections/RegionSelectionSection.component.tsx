@@ -17,6 +17,8 @@ import { useAdditionalIpsRegions } from '@/data/hooks/catalog';
 import { useIpv6Availability } from '@/data/hooks/useIpv6Availability';
 
 import { OrderContext } from '../order.context';
+import { ServiceType } from '@/types';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const RegionSelectionSection: React.FC = () => {
   const {
@@ -28,7 +30,7 @@ export const RegionSelectionSection: React.FC = () => {
     setSelectedOrganisation,
   } = React.useContext(OrderContext);
   const { trackClick } = useOvhTracking();
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { regionList, isLoading, isError, error } = useAdditionalIpsRegions({
     ipVersion,
     serviceType: selectedServiceType,
@@ -81,6 +83,14 @@ export const RegionSelectionSection: React.FC = () => {
             regionList={regionList}
             selectedRegion={selectedRegion}
             setSelectedRegion={handleSelectRegion}
+            tooltipList={[
+              {
+                isTooltipDisplayed: (region) =>
+                  region.includes('ap-') &&
+                  selectedServiceType === ServiceType.vrack,
+                message: t('ap_bandwidth_limit_tooltip_info'),
+              },
+            ]}
             disabledRegions={disabledRegionList?.map(
               ({ region, has3blocks }) => ({
                 region,

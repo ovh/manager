@@ -16,15 +16,13 @@ import { IpVersion } from '@/types';
 
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { OrderContext } from '../order.context';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const IpVersionSection: React.FC = () => {
   const { ipVersion, setIpVersion } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
-  const {
-    ipv4LowestPrice,
-    ipv6LowestPrice,
-    isLoading,
-  } = useCatalogLowestPrice();
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
+  const { ipv4LowestPrice, ipv6LowestPrice, isLoading } =
+    useCatalogLowestPrice();
   const { trackClick } = useOvhTracking();
 
   return (
@@ -33,7 +31,7 @@ export const IpVersionSection: React.FC = () => {
         title={t('ip_version_title')}
         description={t('ip_version_description')}
       >
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex gap-6">
           <IpVersionOptionCard
             title={t('ipv4_card_title')}
             description={t('ipv4_card_description')}

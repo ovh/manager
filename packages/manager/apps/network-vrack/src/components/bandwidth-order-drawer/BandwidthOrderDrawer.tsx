@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   BUTTON_VARIANT,
@@ -25,16 +25,22 @@ import {
   RadioLabel,
   TEXT_PRESET,
   Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { CurrencyCode } from '@ovh-ux/manager-module-common-api';
-import { BandwidthOption, DEFAULT_BANDWIDTH_PLAN_CODE } from '@ovh-ux/manager-network-common';
+import {
+  BandwidthOption,
+  CurrencyCode,
+  DEFAULT_BANDWIDTH_PLAN_CODE,
+  useBandwidthFormatConverter,
+  useUpgradeDowngradeBandwidth,
+} from '@ovh-ux/manager-network-common';
+import { useNotifications } from '@ovh-ux/muk';
 
 import { ApiErrorMessage } from '@/components/api-error-message/ApiErrorMessage';
-import { useDowngradeBandwidth } from '@/hooks/order/useDowngradeBandwidth';
-import { useUpgradeBandwidth } from '@/hooks/order/useUpgradeBandwidth';
-import { useBandwidthFormatConverter } from '@/hooks/useBandwidthFormatConverter';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 import { handleEnterAndEscapeKeyDown } from '@/utils/handleEnterAndEscapeKeyDown';
 
@@ -58,33 +64,50 @@ export const BandwidthOrderDrawer = ({
   bandwidthOptionList?: BandwidthOption[];
 }) => {
   const { t } = useTranslation([TRANSLATION_NAMESPACES.publicIpRouting, NAMESPACES.ACTIONS]);
+  const { addSuccess } = useNotifications();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPlanCode, setSelectedPlanCode] = useState('');
-  const [isUpgrade, setIsUpgrade] = useState(false);
   const bandwidthConverter = useBandwidthFormatConverter();
 
   const {
-    mutate: upgradeBandwidth,
-    isPending: isUpgradePending,
-    error: upgradeError,
-  } = useUpgradeBandwidth({
+    mutate: upgradeOrDowngradeBandwidth,
+    isPending,
+    error,
+  } = useUpgradeDowngradeBandwidth({
     serviceName,
     currentBandwidthLimit: bandwidthLimit,
     region,
-    onSuccess: () => {
+    onSuccess: (response) => {
       setIsOpen(false);
-    },
-  });
 
-  const {
-    mutate: downgradeBandwidth,
-    isPending: isDowngradePending,
-    error: downgradeError,
-  } = useDowngradeBandwidth({
-    serviceName,
-    region,
-    onSuccess: () => {
-      setIsOpen(false);
+      if (response?.order?.url) {
+        window.open(response.order.url, '_blank', 'noopener,noreferrer');
+      }
+
+      addSuccess(
+        <Message className="my-3" color={MESSAGE_COLOR.success} dismissible={false}>
+          <MessageBody className="block">
+            {response?.order?.url ? (
+              <Trans
+                t={t}
+                i18nKey="publicIpRouting_success_order_message"
+                components={{
+                  Link: (
+                    <Link
+                      onClick={() => {
+                        window.open(response.order.url, '_blank', 'noopener,noreferrer');
+                      }}
+                    />
+                  ),
+                }}
+              />
+            ) : (
+              t('publicIpRouting_success_downgrade_to_default_bandwidth_message')
+            )}
+          </MessageBody>
+        </Message>,
+        true,
+      );
     },
   });
 
@@ -126,7 +149,6 @@ export const BandwidthOrderDrawer = ({
       onOpenChange={(e) => {
         setIsOpen(e.open);
         setSelectedPlanCode('');
-        setIsUpgrade(false);
       }}
     >
       <DrawerTrigger asChild>
@@ -136,7 +158,7 @@ export const BandwidthOrderDrawer = ({
         </Link>
       </DrawerTrigger>
       <DrawerContent position={DRAWER_POSITION.right}>
-        <DrawerBody className="flex h-[96%] flex-col">
+        <DrawerBody className="flex flex-col" style={{ height: '96%' }}>
           <div>
             <Text preset={TEXT_PRESET.heading4} className="mb-10">
               {t('publicIpRouting_modify_bandwidth_header1', { region })}
@@ -161,16 +183,16 @@ export const BandwidthOrderDrawer = ({
                     option.state !== BandwidthOptionState.CURRENT
                       ? 'cursor-pointer'
                       : 'cursor-not-allowed'
-                  } ${selectedPlanCode === option.planCode ? 'border-2' : 'border-1'} ${
+                  } ${selectedPlanCode === option.planCode ? 'border-2' : 'border'}`}
+                  style={
                     option.state === BandwidthOptionState.CURRENT
-                      ? 'bg-[var(--ods-theme-background-color-disabled)]'
-                      : ''
-                  }`}
+                      ? { backgroundColor: 'var(--ods-theme-background-color-disabled)' }
+                      : undefined
+                  }
                   onKeyDown={handleEnterAndEscapeKeyDown({
                     onEnter: () => {
                       if (option.state !== BandwidthOptionState.CURRENT) {
                         setSelectedPlanCode(option.planCode);
-                        setIsUpgrade(option.state === BandwidthOptionState.UPGRADE);
                       }
                     },
                   })}
@@ -180,7 +202,6 @@ export const BandwidthOrderDrawer = ({
                   onClick={() => {
                     if (option.state !== BandwidthOptionState.CURRENT) {
                       setSelectedPlanCode(option.planCode);
-                      setIsUpgrade(option.state === BandwidthOptionState.UPGRADE);
                     }
                   }}
                 >
@@ -195,53 +216,53 @@ export const BandwidthOrderDrawer = ({
                       <RadioLabel>
                         <Text preset={TEXT_PRESET.heading6}>
                           {bandwidthConverter(option.bandwidthLimit).perSecondFormat}
+                          {option.state === BandwidthOptionState.UPGRADE && (
+                            <Tooltip positionerStyle={{ zIndex: 9999 }}>
+                              <TooltipTrigger asChild>
+                                <Icon className="ml-3" name={ICON_NAME.circleInfo} />
+                              </TooltipTrigger>
+                              <TooltipContent className="max-w-64" withArrow>
+                                {t('upgrade_bandwidth_info_tooltip')}
+                              </TooltipContent>
+                            </Tooltip>
+                          )}
                         </Text>
                       </RadioLabel>
                     </Radio>
                     {option.state !== BandwidthOptionState.CURRENT && (
                       <Message
-                        className="mt-3 border-none p-0 text-sm"
+                        className="mt-4 border-none p-0 text-sm"
                         dismissible={false}
                         variant={MESSAGE_VARIANT.light}
-                        color={
-                          option.state === BandwidthOptionState.DOWNGRADE
-                            ? MESSAGE_COLOR.warning
-                            : MESSAGE_COLOR.success
-                        }
+                        color={MESSAGE_COLOR.success}
                       >
-                        <Icon
-                          name={
-                            option.state === BandwidthOptionState.DOWNGRADE
-                              ? ICON_NAME.timer
-                              : ICON_NAME.circleCheck
-                          }
-                        />
-                        <MessageBody>
-                          {option.state === BandwidthOptionState.DOWNGRADE
-                            ? t('publicIpRouting_effective_next_cycle_message')
-                            : t('publicIpRouting_effective_directly_message')}
-                        </MessageBody>
+                        <Icon name={ICON_NAME.circleCheck} />
+                        <MessageBody>{t('publicIpRouting_effective_directly_message')}</MessageBody>
                       </Message>
                     )}
                   </div>
-                  <div className="ml-auto flex min-w-[80px] flex-col items-end justify-center">
+                  <div className="ml-auto flex flex-col items-end" style={{ minWidth: '80px' }}>
                     <Text
                       preset={TEXT_PRESET.heading6}
-                      className="mt-4 text-[var(--ods-theme-information-color)]"
+                      className="mt-4"
+                      style={{ color: 'var(--ods-theme-information-color)' }}
                     >
                       {option.price.value === 0
                         ? t('free_public_ip_routing_bandwidth_option_price')
                         : option.price.text}
                     </Text>
+                    {option.price.value > 0 && (
+                      <Text preset={TEXT_PRESET.small}>{t('tax_excluded_notice_label')}</Text>
+                    )}
                   </div>
                 </Card>
               ))}
             </RadioGroup>
             <Message className="mt-8" dismissible={false} color={MESSAGE_COLOR.information}>
               <Icon name={ICON_NAME.circleInfo} />
-              {t('publicIpRouting_modify_bandwidth_bottom_info')}
+              <MessageBody>{t('publicIpRouting_modify_bandwidth_bottom_info')}</MessageBody>
             </Message>
-            <ApiErrorMessage className="mt-4" error={downgradeError || upgradeError} />
+            <ApiErrorMessage className="mt-4" error={error} />
           </div>
           <div className="mt-auto flex gap-4">
             <Button variant={BUTTON_VARIANT.ghost} onClick={() => setIsOpen(false)}>
@@ -249,12 +270,8 @@ export const BandwidthOrderDrawer = ({
             </Button>
             <Button
               disabled={!selectedPlanCode}
-              loading={isUpgradePending || isDowngradePending}
-              onClick={() =>
-                isUpgrade
-                  ? upgradeBandwidth({ planCode: selectedPlanCode })
-                  : downgradeBandwidth({ planCode: selectedPlanCode })
-              }
+              loading={isPending}
+              onClick={() => upgradeOrDowngradeBandwidth({ planCode: selectedPlanCode })}
             >
               {t('order', { ns: NAMESPACES.ACTIONS })}
             </Button>

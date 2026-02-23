@@ -133,7 +133,7 @@ export const useGetCatalog = () => {
         }
       }
 
-      return (plan as unknown) as Plan;
+      return plan as unknown as Plan;
     },
   });
 };

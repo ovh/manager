@@ -35,9 +35,8 @@ import {
 
 export default function AggregateModal() {
   const queryClient = useQueryClient();
-  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } = useContext(
-    ListingContext,
-  );
+  const { setOnGoingCreatedIps, setOnGoingAggregatedIps } =
+    useContext(ListingContext);
   const { parentId } = useParams();
   const { ipGroup } = ipFormatter(fromIdToIp(parentId));
   const { t } = useTranslation([

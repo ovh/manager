@@ -1,9 +1,10 @@
+import { useGetPublicRoutingBandwidthLimits } from '@ovh-ux/manager-network-common';
+
 import { Ipv6Detail } from '@/data/api/get/vrackIp';
 
 import { useGetVrackDetails } from '../vrack/useGetVrackDetails';
 import { useGetVrackIpv4ListDetails } from './ipv4/useGetVrackIpv4ListDetails';
 import { useGetVrackIpv6ListDetails } from './ipv6/useGetVrackIpv6ListDetails';
-import { useGetPublicRoutingBandwidthLimits } from './useGetPublicRoutingBandwidthLimits';
 
 type RegionWithBandwidth = {
   region: string;
@@ -17,7 +18,7 @@ export const useGetBandwidthByRegions = (
   serviceName: string = '',
 ): { regionsWithBandwidth: RegionWithBandwidth[]; isLoading: boolean } => {
   const { bandwidthLimits = [], isLoading: isLoadingBandwidthLimits } =
-    useGetPublicRoutingBandwidthLimits(serviceName);
+    useGetPublicRoutingBandwidthLimits({ serviceName });
   const { data: vrack, isLoading: isLoadingVrack } = useGetVrackDetails(serviceName);
   const { ipsWithDetail: ipv4List, isLoading: isLoadingIpv4 } = useGetVrackIpv4ListDetails(
     vrack?.serviceName,

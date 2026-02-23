@@ -3,6 +3,7 @@
   "order": "Commander une IP",
   "byoip": "BYOIP",
   "free_price": "Gratuit",
+  "current_bandwidth": "Bande passante actuelle",
   "task_error_message": "Statut de la tâche: {{status}}. Commentaire: {{comment}}",
   "ip_task_status_cancelled": "annulée",
   "ip_task_status_customerError": "erreur",

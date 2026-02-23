@@ -17,6 +17,10 @@ export type OrderContextType = {
   setSelectedOptions: React.Dispatch<React.SetStateAction<Ipv6Options[]>>;
   selectedRegion?: string;
   setSelectedRegion: (region?: string) => void;
+  selectedVrackBandwidthPlanCode?: string;
+  setSelectedVrackBandwidthPlanCode: React.Dispatch<
+    React.SetStateAction<string>
+  >;
   selectedOffer?: IpOffer;
   setSelectedOffer: (offer?: IpOffer) => void;
   selectedPlanCode?: string;
@@ -43,6 +47,7 @@ export const OrderContext = React.createContext<OrderContextType>({
   selectedOptions: [],
   setSelectedOptions: () => {},
   setSelectedRegion: () => {},
+  setSelectedVrackBandwidthPlanCode: () => {},
   setSelectedOffer: () => {},
   setSelectedPlanCode: () => {},
   setPricingMode: () => {},
@@ -62,16 +67,24 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   const [ipVersion, setIpVersion] = React.useState<IpVersion>();
   const [selectedService, setSelectedService] = React.useState<string>();
-  const [selectedServiceType, setSelectedServiceType] = React.useState<ServiceType>();
+  const [selectedServiceType, setSelectedServiceType] =
+    React.useState<ServiceType>();
   const [selectedRegion, setSelectedRegion] = React.useState<string>();
+  const [selectedVrackBandwidthPlanCode, setSelectedVrackBandwidthPlanCode] =
+    React.useState<string>();
   const [selectedOffer, setSelectedOffer] = React.useState<IpOffer>();
   const [selectedPlanCode, setSelectedPlanCode] = React.useState<string>();
-  const [pricingMode, setPricingMode] = React.useState<string>(DEFAULT_PRICING_MODE);
+  const [pricingMode, setPricingMode] =
+    React.useState<string>(DEFAULT_PRICING_MODE);
   const [ipQuantity, setIpQuantity] = React.useState(1);
-  const [selectedGeolocation, setSelectedGeolocation] = React.useState<string>();
-  const [selectedOrganisation, setSelectedOrganisation] = React.useState<string>();
+  const [selectedGeolocation, setSelectedGeolocation] =
+    React.useState<string>();
+  const [selectedOrganisation, setSelectedOrganisation] =
+    React.useState<string>();
   const [disabledServices, setDisabledServices] = React.useState<string[]>([]);
-  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>([]);
+  const [selectedOptions, setSelectedOptions] = React.useState<Ipv6Options[]>(
+    [],
+  );
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -107,7 +120,10 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
         setSelectedRegion(newRegion);
         setSelectedOffer(undefined);
         setSelectedPlanCode(undefined);
+        setSelectedVrackBandwidthPlanCode(undefined);
       },
+      selectedVrackBandwidthPlanCode,
+      setSelectedVrackBandwidthPlanCode,
       selectedOffer,
       setSelectedOffer: (newOffer?: IpOffer) => {
         const code = getCountryCode(region || selectedRegion);
@@ -146,6 +162,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       selectedServiceType,
       selectedOptions,
       selectedRegion,
+      selectedVrackBandwidthPlanCode,
       selectedOffer,
       selectedPlanCode,
       pricingMode,
