@@ -73,6 +73,7 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
+  CNIN_RULE,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
 } from './accountDetails.constants';
@@ -141,14 +142,16 @@ function AccountDetailsForm({
   const zodSchema = useMemo(() => {
     const baseSchema = getZodSchemaFromRule(rules);
     // TODO: Remove after mandatory check is implemented in Xander for FR
-    const cninSchema =
-      cninSchemaOverride ??
-      baseSchema.shape.companyNationalIdentificationNumber ??
-      z.string().optional();
+    if (cninSchemaOverride) {
+      return baseSchema.extend({
+        confirmSend: z.literal(true),
+        smsConsent: z.boolean().optional(),
+        companyNationalIdentificationNumber: cninSchemaOverride,
+      });
+    }
     return baseSchema.extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
-      companyNationalIdentificationNumber: cninSchema,
     });
   }, [rules, cninSchemaOverride]);
 
@@ -256,12 +259,7 @@ function AccountDetailsForm({
             rules?.companyNationalIdentificationNumber?.mandatory,
         })
       ) {
-        setCninSchemaOverride(
-          toZodField({
-            ...rules?.companyNationalIdentificationNumber,
-            mandatory: true,
-          }),
-        );
+        setCninSchemaOverride(toZodField(CNIN_RULE));
       } else {
         setCninSchemaOverride(undefined);
       }
@@ -468,7 +466,8 @@ function AccountDetailsForm({
                 </OdsFormField>
               )}
             />
-            {rules?.companyNationalIdentificationNumber && (
+            {(rules?.companyNationalIdentificationNumber ||
+              !!cninSchemaOverride) && (
               <Controller
                 control={control}
                 name="companyNationalIdentificationNumber"
@@ -484,7 +483,7 @@ function AccountDetailsForm({
                           {t('account_details_field_siret')}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory ||
-                            (cninSchemaOverride && ' *')}
+                            (!!cninSchemaOverride && ' *')}
                         </OdsText>
                       </label>
                       <OdsInput
@@ -496,14 +495,17 @@ function AccountDetailsForm({
                         value={value}
                         maxlength={
                           rules?.companyNationalIdentificationNumber
-                            .maxLength || undefined
+                            ?.maxLength || !!cninSchemaOverride
+                            ? CNIN_RULE.maxLength || undefined
+                            : undefined
                         }
                         hasError={!!errors[name]}
                         onOdsChange={onChange}
                         onOdsBlur={onBlur}
                       />
                       {errors.companyNationalIdentificationNumber &&
-                        rules?.companyNationalIdentificationNumber && (
+                        (rules?.companyNationalIdentificationNumber ||
+                          !!cninSchemaOverride) && (
                           <OdsText
                             className="text-critical leading-[0.8]"
                             preset="caption"
@@ -511,7 +513,8 @@ function AccountDetailsForm({
                             {renderTranslatedZodError(
                               errors.companyNationalIdentificationNumber
                                 .message,
-                              rules?.companyNationalIdentificationNumber,
+                              rules?.companyNationalIdentificationNumber ||
+                                CNIN_RULE,
                             )}
                           </OdsText>
                         )}
