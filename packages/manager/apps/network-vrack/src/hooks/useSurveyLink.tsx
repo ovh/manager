@@ -25,7 +25,6 @@ export const useSurveyLink = (): string | null => {
           return;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
         if (region === Region.US) {
           setSurveyUrl(US_SURVEY_LINK);
           return;

@@ -46,46 +46,39 @@ export default function SliceModal() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const [slicingSize, setSlizingSize] = React.useState<number | undefined>();
-  const { setOnGoingCreatedIps, setOnGoingSlicedIps } = useContext(
-    ListingContext,
-  );
+  const { setOnGoingCreatedIps, setOnGoingSlicedIps } =
+    useContext(ListingContext);
   const { trackClick, trackPage } = useOvhTracking();
 
   const closeModal = React.useCallback(() => {
     navigate(`..?${search.toString()}`);
   }, [navigate, search]);
 
-  const {
-    slice,
-    isLoading,
-    error,
-    isSlicePending,
-    slicingError,
-    postSlice,
-  } = useByoipSlice({
-    ip: ipGroup,
-    onSuccess: () => {
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'edge_firewall_add_rule_error',
-      });
-      addSuccess(t('sliceSuccessMessage'));
-      closeModal();
-      const childrenIps =
-        slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
+  const { slice, isLoading, error, isSlicePending, slicingError, postSlice } =
+    useByoipSlice({
+      ip: ipGroup,
+      onSuccess: () => {
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'edge_firewall_add_rule_error',
+        });
+        addSuccess(t('sliceSuccessMessage'));
+        closeModal();
+        const childrenIps =
+          slice.find((a) => a.slicingSize === slicingSize)?.childrenIps || [];
 
-      Promise.all(
-        childrenIps?.map((ip) =>
-          queryClient.invalidateQueries({
-            queryKey: getIpDetailsQueryKey({ ip }),
-          }),
-        ),
-      );
+        Promise.all(
+          childrenIps?.map((ip) =>
+            queryClient.invalidateQueries({
+              queryKey: getIpDetailsQueryKey({ ip }),
+            }),
+          ),
+        );
 
-      setOnGoingCreatedIps((prev) => [...prev, ...childrenIps]);
-      setOnGoingSlicedIps((prev) => [...prev, ipGroup]);
-    },
-  });
+        setOnGoingCreatedIps((prev) => [...prev, ...childrenIps]);
+        setOnGoingSlicedIps((prev) => [...prev, ipGroup]);
+      },
+    });
 
   useGetIpdetails({
     ip: ipGroup,

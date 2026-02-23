@@ -1,23 +1,4 @@
-export const ASIA_PACIFIC_DEFAULT_BANDWIDTH_LIMIT = 100;
 export const DEFAULT_BANDWIDTH_LIMIT = 5000;
-
-export function isDefaultBandwidthOption({
-  bandwidthLimit,
-  region,
-}: {
-  bandwidthLimit: number;
-  region: string;
-}) {
-  if (bandwidthLimit === DEFAULT_BANDWIDTH_LIMIT) {
-    return ['eu-', 'ca-', 'us-'].some((part) => region.toLowerCase().includes(part));
-  }
-
-  if (bandwidthLimit === ASIA_PACIFIC_DEFAULT_BANDWIDTH_LIMIT) {
-    return region.toLowerCase().includes('ap-');
-  }
-
-  return false;
-}
 
 const bandwidthMultiplierMap: Record<string, number> = {
   m: 1,

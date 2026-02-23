@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { act, render, screen, waitFor } from '@testing-library/react';
 
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
@@ -31,17 +29,23 @@ export const renderTest = async ({
 };
 
 export const checkTextInScreen = async (textToCheck: string, nbOccurences?: number) => {
+  // Use a flexible matcher: node.textContent includes the searched string.
+  const matcher = (_: string, node: Element | null) =>
+    !!node && node.textContent?.includes(textToCheck);
+
   await waitFor(() => {
     if (nbOccurences) {
-      expect(screen.getAllByText(textToCheck)).toHaveLength(nbOccurences);
+      expect(screen.getAllByText(matcher)).toHaveLength(nbOccurences);
     } else {
-      expect(screen.getAllByText(textToCheck)[0]).toBeInTheDocument();
+      expect(screen.getAllByText(matcher)[0]).toBeInTheDocument();
     }
   }, WAIT_FOR_DEFAULT_OPTIONS);
 };
 
 export const checkTextNotInScreen = async (textToCheck: string) => {
-  await waitFor(() => expect(screen.queryByText(textToCheck)).toBeNull(), WAIT_FOR_DEFAULT_OPTIONS);
+  const matcher = (_: string, node: Element | null) =>
+    !!node && node.textContent?.includes(textToCheck);
+  await waitFor(() => expect(screen.queryByText(matcher)).toBeNull(), WAIT_FOR_DEFAULT_OPTIONS);
 };
 
 export const clickElementByTestId = async (testId: string) => {

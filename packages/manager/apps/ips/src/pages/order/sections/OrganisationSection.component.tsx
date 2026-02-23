@@ -31,6 +31,7 @@ import { urls } from '@/routes/routes.constant';
 
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 const NO_ORGANISATION = 'no_organisation';
 
@@ -45,7 +46,7 @@ export const OrganisationSection: React.FC = () => {
     addDisabledService,
   } = React.useContext(OrderContext);
   const navigate = useNavigate();
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
   const { organisations, isLoading } = useGetOrganisationsList();
   const { serviceStatus } = useCheckServiceAvailability({

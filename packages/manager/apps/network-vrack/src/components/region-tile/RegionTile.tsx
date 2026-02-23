@@ -2,11 +2,10 @@ import { useTranslation } from 'react-i18next';
 
 import { CARD_COLOR, Card, DIVIDER_SPACING, Divider, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
-import { BandwidthOption } from '@ovh-ux/manager-network-common';
+import { BandwidthOption, useBandwidthFormatConverter } from '@ovh-ux/manager-network-common';
 import { Tile } from '@ovh-ux/muk';
 
 import { Ipv6Detail } from '@/data/api/get/vrackIp';
-import { useBandwidthFormatConverter } from '@/hooks/useBandwidthFormatConverter';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 import { AttachIpBlockDrawer } from '../attach-ip-block-drawer/AttachIpBlockDrawer';

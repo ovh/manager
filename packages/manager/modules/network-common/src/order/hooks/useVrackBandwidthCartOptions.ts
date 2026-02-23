@@ -3,18 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import { Price } from '@ovh-ux/manager-module-order';
 
 import { getCartServiceOption } from '../api/get/cartServiceOption';
-import {
-  ASIA_PACIFIC_DEFAULT_BANDWIDTH_LIMIT,
-  DEFAULT_BANDWIDTH_LIMIT,
-  extractBandwidthLimitFromPlanCode,
-} from '../utils/bandwidth';
+import { DEFAULT_BANDWIDTH_LIMIT, extractBandwidthLimitFromPlanCode } from '../utils/bandwidth';
+import { useVrackDefaultBandwidthCartOptions } from './useDefaultBandwidthOptions';
 
 export type { CartServiceOption, CartServiceOptionPrice } from '../api/get/cartServiceOption';
 
 export type BandwidthOption = {
   bandwidthLimit: number;
   planCode: string;
-  price: Price;
+  price: Omit<Price, 'priceInUcents'>;
   priceInUcents: number;
 };
 
@@ -33,6 +30,13 @@ export function useVrackBandwidthCartOptions({
   serviceName: string;
   regions?: string[];
 }) {
+  const {
+    isLoading: isDefaultBandwidthLoading,
+    isError: isDefaultBandwidthError,
+    error: defaultBandwidthError,
+    data: defaultBandwidthData,
+  } = useVrackDefaultBandwidthCartOptions();
+
   const { isLoading, isError, error, data } = useQuery({
     queryKey: vrackCartOptionsQueryKey(serviceName),
     queryFn: () => getCartServiceOption({ serviceName, resourceType: 'vrack' }),
@@ -42,9 +46,9 @@ export function useVrackBandwidthCartOptions({
   });
 
   return {
-    isLoading,
-    isError,
-    error,
+    isLoading: isLoading || isDefaultBandwidthLoading,
+    isError: isError || isDefaultBandwidthError,
+    error: error || defaultBandwidthError,
     vrackCartBandwidthOptionListByRegion: regions.reduce(
       (acc, region) => {
         acc[region] = (
@@ -69,9 +73,9 @@ export function useVrackBandwidthCartOptions({
             };
           })
           .concat({
-            bandwidthLimit: region.toLowerCase().includes('ap-')
-              ? ASIA_PACIFIC_DEFAULT_BANDWIDTH_LIMIT
-              : DEFAULT_BANDWIDTH_LIMIT,
+            bandwidthLimit:
+              defaultBandwidthData?.routingByRegion?.[region]?.bandwidthLimit ||
+              DEFAULT_BANDWIDTH_LIMIT,
             planCode: DEFAULT_BANDWIDTH_PLAN_CODE,
             price: { currencyCode: 'EUR', value: 0, text: '0 €' },
             priceInUcents: 0,

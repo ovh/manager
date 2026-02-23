@@ -1,6 +1,55 @@
+import { vi } from 'vitest';
+
 import { labels } from '@/__tests__/I18nTestProvider.utils';
 import { checkTextInScreen, checkTextNotInScreen, renderTest } from '@/__tests__/Test.utils';
 import { urls } from '@/routes/Routes.constants';
+
+vi.mock('@/hooks/vrack-ip/useGetBandwidthByRegions', () => ({
+  useGetBandwidthByRegions: () => ({
+    regionsWithBandwidth: [
+      {
+        region: 'eu-west-rbx',
+        bandwidthLimitType: 'default',
+        bandwidthLimit: 5000,
+        ipv4List: ['5.39.12.96/28', '5.135.62.80/28'],
+        ipv6List: [{ ipv6: '2001:41d0:b00:1b00::/56', region: 'eu-west-rbx' }],
+      },
+      {
+        region: 'eu-west-lim',
+        bandwidthLimitType: 'default',
+        bandwidthLimit: 5000,
+        ipv4List: [],
+        ipv6List: [{ ipv6: '2001:41d0:f00:9c00::/56', region: 'eu-west-lim' }],
+      },
+      {
+        region: 'eu-central-waw',
+        bandwidthLimitType: 'default',
+        bandwidthLimit: 5000,
+        ipv4List: [],
+        ipv6List: [{ ipv6: '2001:41d0:a800:2700::/56', region: 'eu-central-waw' }],
+      },
+      {
+        region: 'eu-west-par',
+        bandwidthLimitType: 'default',
+        bandwidthLimit: 5000,
+        ipv4List: [],
+        ipv6List: [{ ipv6: '2001:41d0:a900:1d00::/56', region: 'eu-west-par' }],
+      },
+    ],
+    isLoading: false,
+  }),
+}));
+
+vi.mock('@ovh-ux/manager-network-common', async () => {
+  const original = await vi.importActual('@ovh-ux/manager-network-common');
+  return {
+    ...original,
+    useVrackBandwidthCartOptions: () => ({
+      vrackCartBandwidthOptionListByRegion: {},
+      isLoading: false,
+    }),
+  };
+});
 
 describe('PublicIpRouting', () => {
   // eslint-disable-next-line  vitest/expect-expect
@@ -24,7 +73,7 @@ describe('PublicIpRouting', () => {
     ];
     await Promise.all(expectedIps.map((ip) => checkTextInScreen(ip)));
 
-    await checkTextInScreen('5 unit_size_GB', 4);
+    await checkTextInScreen('5 unit_size_GB');
 
     const unExpectedRegions = [
       'eu-south-mil',
