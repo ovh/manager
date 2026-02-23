@@ -217,5 +217,6 @@
   "deploy_git_overwrite_local_changes": "In caso di conflitto di modifica, forzare le modifiche remote sul tuo repository locale.",
   "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Crea un sottodominio",
   "hosting_tab_WEBSITE": "I miei siti",
-  "hosting_logs_back_to_general": "Ritorna alle informazioni generali"
+  "hosting_logs_back_to_general": "Ritorna alle informazioni generali",
+  "hosting_logs_back_to_previous_page": "Ritorna alla pagina precedente"
 }
