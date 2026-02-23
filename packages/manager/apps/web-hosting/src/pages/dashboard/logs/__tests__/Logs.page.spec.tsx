@@ -18,6 +18,12 @@ const mockLogsToCustomerModule = vi.fn((_props: unknown) => (
   <div data-testid="logs-to-customer-module">LogsToCustomerModule</div>
 ));
 const mockUseParams = vi.fn();
+const mockNavigate = vi.fn();
+const mockQueryClient = {
+  getMutationCache: vi.fn(() => ({
+    subscribe: vi.fn(() => vi.fn()),
+  })),
+};
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useGetHostingService: (serviceName: string) =>
@@ -37,6 +43,16 @@ vi.mock('react-router-dom', async () => {
   return {
     ...actual,
     useParams: () => mockUseParams() as { serviceName?: string },
+    useNavigate: () => mockNavigate,
+  };
+});
+
+vi.mock('@tanstack/react-query', async () => {
+  const actual =
+    await vi.importActual<typeof import('@tanstack/react-query')>('@tanstack/react-query');
+  return {
+    ...actual,
+    useQueryClient: () => mockQueryClient,
   };
 });
 
@@ -44,6 +60,10 @@ describe('LogsPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockUseParams.mockReturnValue({ serviceName: 'test-service' });
+    mockNavigate.mockClear();
+    mockQueryClient.getMutationCache.mockReturnValue({
+      subscribe: vi.fn(() => vi.fn()),
+    });
   });
 
   it('should render loading state when data is pending', () => {
@@ -111,8 +131,11 @@ describe('LogsPage', () => {
         logUrl: '/hosting/web/test-service/log/url',
       },
       logIamActions: {
-        postSubscription: ['hosting:apiovh:log/subscription/create'],
-        deleteSubscription: ['hosting:apiovh:log/subscription/delete'],
+        postSubscription: [
+          'webHosting:apiovh:log/subscription/create',
+          'ldp:apiovh:output/graylog/stream/forwardTo',
+        ],
+        deleteSubscription: ['webHosting:apiovh:log/subscription/delete'],
       },
       resourceURN: 'string', // From webHostingMock.iam.urn
       trackingOptions: {
@@ -121,7 +144,7 @@ describe('LogsPage', () => {
     });
   });
 
-  it('should use fallback resourceURN when IAM URN is not available', async () => {
+  it('should use undefined resourceURN when IAM URN is not available', async () => {
     const hostingWithoutIam = {
       ...webHostingMock,
       iam: undefined,
@@ -144,7 +167,7 @@ describe('LogsPage', () => {
       resourceURN?: string;
     };
     expect(callArgs).toBeDefined();
-    expect(callArgs?.resourceURN).toBe('urn:v1:eu:resource:webHosting:test-service');
+    expect(callArgs?.resourceURN).toBeUndefined();
   });
 
   it('should use IAM URN when available', async () => {

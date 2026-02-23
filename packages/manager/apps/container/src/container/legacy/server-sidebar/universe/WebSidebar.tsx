@@ -234,7 +234,7 @@ export default function WebSidebar() {
         name: OvhProductName.WORDPRESS, width: 16,
         height: 16,
       }),
-      badge: 'alpha',
+      badge: t('sidebar_tag_beta'),
       routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
       href: navigation.getURL(
         'web-hosting',
