@@ -37,7 +37,7 @@
   "account_details_section_address_corporation": "Company contact details",
   "account_details_section_address_association": "Nonprofit contact details",
   "account_details_section_address_administration": "Public authority contact details",
-  "account_details_field_sms_consent": "I agree to receive updates and promotional marketing information about OVHcloud services",
+  "account_details_field_sms_consent": "I agree to receive SMS text messages regarding news and promotional marketing information about OVHcloud services.",
   "account_details_field_area": "Region",
   "account_details_field_state": "State",
   "account_details_field_purchase_purpose": "Reason for purchase",
