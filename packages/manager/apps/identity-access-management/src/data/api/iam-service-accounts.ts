@@ -56,11 +56,10 @@ export const updateIamServiceAccount = async (
   clientId: string,
   payload: IamServiceAccountUpdatePayload,
 ) => {
-  const { data } = await apiClient.v6.put<IamServiceAccount>(
+  await apiClient.v6.put<IamServiceAccount>(
     `${oauthClientsRoute}/${clientId}`,
     payload,
   );
-  return data;
 };
 
 export const deleteIamServiceAccount = async (clientId: string) => {

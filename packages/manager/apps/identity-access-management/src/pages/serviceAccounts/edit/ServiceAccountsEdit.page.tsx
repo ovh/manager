@@ -103,8 +103,8 @@ export default function ServiceAccountsEdit() {
     clientId: clientId || '',
     onSuccess: () => {
       trackPage({
-        pageType: PageType.bannerError,
-        pageName: SERVICE_ACCOUNTS_TRACKING.EDIT.REQUEST_FAIL,
+        pageType: PageType.bannerSuccess,
+        pageName: SERVICE_ACCOUNTS_TRACKING.EDIT.REQUEST_SUCCESS,
       });
       addSuccess(t('iam_service_accounts_edit_success'));
       goBack();

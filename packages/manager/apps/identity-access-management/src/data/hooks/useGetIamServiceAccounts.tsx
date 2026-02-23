@@ -81,21 +81,21 @@ export const useUpdateIamServiceAccount = ({
   onError,
 }: {
   clientId: string;
-  onSuccess: (account: IamServiceAccount) => void;
-  onError: (error: ApiError, payload: IamServiceAccountUpdatePayload) => void;
+  onSuccess: () => void;
+  onError: (error: ApiError) => void;
 }) => {
   const mutation = useMutation({
     mutationFn: (payload: IamServiceAccountUpdatePayload) =>
       updateIamServiceAccount(clientId, payload),
     onError,
-    onSuccess: (account: IamServiceAccount) => {
+    onSuccess: () => {
       void queryClient.invalidateQueries({
-        queryKey: getIamServiceAccountQueryKey(account.clientId),
+        queryKey: getIamServiceAccountQueryKey(clientId),
       });
       void queryClient.invalidateQueries({
         queryKey: getIamServiceAccountListQueryKey(),
       });
-      onSuccess(account);
+      onSuccess();
     },
   });
   return {
