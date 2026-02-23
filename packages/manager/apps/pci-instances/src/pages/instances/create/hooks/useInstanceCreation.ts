@@ -119,6 +119,7 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const {
     control,
     formState: { isValid: isCreationFormValid },
+    setError,
   } = useFormContext<TInstanceCreationForm>();
   const [
     name,
@@ -334,17 +335,26 @@ export const useInstanceCreation = (): TInstanceCreation => {
   const hasSshRequirements = !needsSshKey || !!sshKeyId || !!newSshPublicKey;
 
   const isCreationEnabled =
-    hasBaseRequirements &&
-    hasSshRequirements &&
-    !isDiscoveryProject(project) &&
-    isCreationFormValid;
+    hasBaseRequirements && !isDiscoveryProject(project) && isCreationFormValid;
 
   const networkId =
     privateNetworks?.find(({ value }) => subnetId === value)?.customRendererData
       ?.networkId ?? null;
 
+  const handleMissingSshKey = () => {
+    setError('sshKeyId', { type: 'manual' });
+    document
+      .getElementById('ssh-key-section')
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   const handleCreateInstance = () => {
     if (!isCreationEnabled || isCreatingInstance) return;
+
+    if (needsSshKey && !hasSshRequirements) {
+      handleMissingSshKey();
+      return;
+    }
 
     trackClick({
       location: PageLocation.funnel,
