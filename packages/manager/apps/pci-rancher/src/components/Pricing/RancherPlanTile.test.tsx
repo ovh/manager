@@ -37,7 +37,7 @@ const setupSpecTest = async (props?: Partial<RancherPlanTileProps>) =>
         name="Test Plan"
         selectedPlan={standardPlan}
         setSelectedPlan={mockSetSelectedPlan}
-        planDescription={['createRancherStandardPlanDescription_1']}
+        planDescription={['createRancherOVHCloudPlanDescription_1']}
         formattedHourlyPrice="0,00685 € HT / heure"
         formattedMonthlyPrice="4,93 € HT / mois"
         isPricing={true}
@@ -53,12 +53,12 @@ describe('RancherPlanTile', () => {
     // Text is fragmented by <b> tags, we compare textContent and ensure
     // children don't have the same text to target the most specific element
     expect(
-      screen.getByText((_, element) => {
-        const expectedText = dashboardTranslation.createRancherStandardPlanDescription_1
-          .replace(/<[^>]*>/g, '')
-          .trim();
-        return element?.textContent?.trim() === expectedText;
-      }),
+      screen.getByText(
+        dashboardTranslation.createRancherOVHCloudPlanDescription_1.replace(
+          /<[^>]*>/g,
+          '',
+        ),
+      ),
     ).toBeInTheDocument();
     expect(screen.getByText('0,00685 € HT / heure')).toBeInTheDocument();
     expect(screen.getByText('~ 4,93 € HT / mois')).toBeInTheDocument();

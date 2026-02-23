@@ -27,5 +27,8 @@
   "freeTrialCreditApplied": "The credit will be automatically applied to your first service.",
   "orderButtonLabelFreeTrial": "Start my free trial",
   "rancherGuidesLink": "Access the Rancher guides",
-  "videoTitle": "Rancher presentation video"
+  "videoTitle": "Rancher presentation video",
+  "freeTrialBannerMessageLine1": "You are eligible for a free trial.",
+  "freeTrialBannerMessageLine2": "Enjoy a credit* valid for one month equivalent to the monthly price of 20 vCPUs to test our Rancher Standard and OVHcloud Edition plans.",
+  "freeTrialDisclaimer": "*The credit automatically applies to your hourly usage. Once this credit is exhausted or the trial month is over, billing for your services will take over."
 }
