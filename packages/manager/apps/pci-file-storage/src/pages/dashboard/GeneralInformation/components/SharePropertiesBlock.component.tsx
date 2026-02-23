@@ -40,7 +40,6 @@ export const SharePropertiesBlock: React.FC = () => {
       <DashboardTileBlock
         label={t('share:fields.protocol')}
         isLoading={isShareLoading}
-        withoutDivider
       >
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
