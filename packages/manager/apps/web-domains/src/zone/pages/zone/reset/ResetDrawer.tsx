@@ -18,6 +18,8 @@ import {
   Spinner,
   TEXT_PRESET,
   Text,
+  ICON_NAME,
+  MessageIcon,
 } from '@ovhcloud/ods-react';
 import {
   useGetEmailDomain,
@@ -173,6 +175,7 @@ export default function ResetDrawer({
             <Text preset={TEXT_PRESET.heading2}>{t('zone_page_reset_title')}</Text>
 
             <Message color={MESSAGE_COLOR.warning} dismissible={false}>
+              <MessageIcon name={ICON_NAME.triangleExclamation} />
               <MessageBody>{t('zone_page_reset_warning')}</MessageBody>
             </Message>
 
@@ -204,6 +207,7 @@ export default function ResetDrawer({
             />
 
             <Message color={MESSAGE_COLOR.information} dismissible={false}>
+              <MessageIcon name={ICON_NAME.circleInfo} />
               <MessageBody>{t('zone_page_reset_propagation_info')}</MessageBody>
             </Message>
           </div>

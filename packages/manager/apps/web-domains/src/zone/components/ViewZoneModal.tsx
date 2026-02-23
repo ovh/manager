@@ -16,6 +16,8 @@ import {
   TEXT_PRESET,
   Text,
   ModalHeader,
+  MessageBody,
+  MessageIcon,
 } from '@ovhcloud/ods-react';
 import { useViewZoneFile } from '@/zone/hooks/data/history.hooks';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
@@ -71,7 +73,10 @@ export default function ViewZoneModal({
 
             {error && (
               <Message color={MESSAGE_COLOR.critical}>
-                {t('zone_history_error', { message: error.message })}
+                <MessageIcon name={ICON_NAME.hexagonExclamation} />
+                <MessageBody>
+                  {t('zone_history_error', { message: error.message })}
+                </MessageBody>
               </Message>
             )}
 

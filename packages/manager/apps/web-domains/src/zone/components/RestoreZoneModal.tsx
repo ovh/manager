@@ -16,6 +16,8 @@ import {
   Text,
   ModalHeader,
   MESSAGE_COLOR,
+  ICON_NAME,
+  MessageIcon,
 } from '@ovhcloud/ods-react';
 import { useRestoreZone } from '@/zone/hooks/data/history.hooks';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
@@ -77,6 +79,7 @@ export default function RestoreZoneModal({
         </ModalHeader>
         <ModalBody>
           <Message color={MESSAGE_COLOR.warning} className="mb-4" dismissible={false}>
+            <MessageIcon name={ICON_NAME.triangleExclamation} />
             <MessageBody>
               {t('zone_history_restore_modal_description', {
                 date: formatDate({ date: item.creationDate }),
@@ -84,6 +87,7 @@ export default function RestoreZoneModal({
             </MessageBody>
           </Message>
           <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
+            <MessageIcon name={ICON_NAME.circleInfo} />
             <MessageBody>
               {t('zone_history_restore_modal_propagation_info')}
             </MessageBody>

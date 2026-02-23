@@ -26,6 +26,8 @@ import {
   FileUploadItem,
   FILE_UPLOAD_VARIANT,
   Link,
+  MessageIcon,
+  ICON_NAME,
 } from '@ovhcloud/ods-react';
 import {
   useExportDnsZoneText,
@@ -171,6 +173,7 @@ export default function ModifyTextualRecordPage() {
 
         {!isLoadingZoneText && zoneTextError && (
           <Message color={MESSAGE_COLOR.critical} className="mb-4">
+            <MessageIcon name={ICON_NAME.hexagonExclamation} />
             <MessageBody>
               {t('zone_page_modify_textual_error', {
                 message: zoneTextError.message,
@@ -186,6 +189,7 @@ export default function ModifyTextualRecordPage() {
             </Text>
 
             <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
+              <MessageIcon name={ICON_NAME.circleInfo} />
               <MessageBody>
                 {t('zone_page_modify_textual_propagation_info')}
               </MessageBody>

@@ -9,6 +9,8 @@ import {
   Message,
   SPINNER_SIZE,
   Spinner,
+  MessageIcon,
+  MessageBody,
 } from '@ovhcloud/ods-react';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
 import { useCompareZoneFiles } from '@/zone/hooks/data/history.hooks';
@@ -242,7 +244,8 @@ export default function CompareZonesViewer({
   if (error) {
     return (
       <Message color={MESSAGE_COLOR.critical}>
-        {t('zone_history_error', { message: error })}
+        <MessageIcon name={ICON_NAME.hexagonExclamation} />
+        <MessageBody>{t('zone_history_error', { message: error })}</MessageBody>
       </Message>
     );
   }

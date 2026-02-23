@@ -20,6 +20,9 @@ import {
   TEXT_PRESET,
   Text,
   ModalHeader,
+  MessageIcon,
+  ICON_NAME,
+  MessageBody,
 } from '@ovhcloud/ods-react';
 import {
   useGetZoneSoa,
@@ -129,9 +132,12 @@ export default function ModifyTtlModal({
 
           {!isLoadingZoneSoa && zoneSoaError && (
             <Message color={MESSAGE_COLOR.critical} className="mb-4">
-              {t('zone_page_modify_ttl_error', {
-                message: zoneSoaError.message,
-              })}
+              <MessageIcon name={ICON_NAME.hexagonExclamation} />
+              <MessageBody>
+                {t('zone_page_modify_ttl_error', {
+                  message: zoneSoaError.message,
+                })}
+              </MessageBody>
             </Message>
           )}
 
@@ -174,7 +180,10 @@ export default function ModifyTtlModal({
               </FormField>
 
               <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
-                {t('zone_page_modify_ttl_propagation_info')}
+                <MessageIcon name={ICON_NAME.circleInfo} />
+                <MessageBody>
+                  {t('zone_page_modify_ttl_propagation_info')}
+                </MessageBody>
               </Message>
             </>
           )}
