@@ -1,9 +1,10 @@
 export type TAclId = string;
 export const ACL_PERMISSIONS = ['read', 'write'] as const;
+export const ACL_STATUSES = ['draft', 'activating', 'active', 'deleting', 'error'] as const;
 export type TAclPermission = (typeof ACL_PERMISSIONS)[number];
 
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
-export type TAclStatus = 'draft' | 'activating' | 'active' | 'deleting' | 'error' | string;
+export type TAclStatus = (typeof ACL_STATUSES)[number] | string;
 
 export type TAcl = {
   id: TAclId;

@@ -20,6 +20,7 @@ import { AclDatagridTopbar } from '@/pages/dashboard/Acl/components/AclDatagridT
 import { AclDeleteModal } from '@/pages/dashboard/Acl/components/AclDeleteModal.component';
 import { useAclActions } from '@/pages/dashboard/Acl/hooks/useAclActions';
 import { useAclColumn } from '@/pages/dashboard/Acl/hooks/useAclColumn';
+import { useAclDatagridFiltering } from '@/pages/dashboard/Acl/hooks/useAclDatagridFiltering';
 import { useCreateAclForm } from '@/pages/dashboard/Acl/hooks/useCreateAclForm';
 import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
 
@@ -43,6 +44,8 @@ export const AclDatagrid: FC = () => {
     select: selectAcls,
   });
 
+  const { filteredAcls, filterProps, searchProps } = useAclDatagridFiltering(acls);
+
   const { createAcl, deleteAcl, isDeletePending, isCreatePending } = useAclActions({
     onCreateSuccess: () => {
       setHasDraft(false);
@@ -57,8 +60,8 @@ export const AclDatagrid: FC = () => {
   });
 
   const data: Array<TAclData | TAclDraftData> = useMemo(
-    () => [...(hasDraft ? [createAclDraft()] : []), ...acls],
-    [acls, hasDraft],
+    () => [...(hasDraft ? [createAclDraft()] : []), ...filteredAcls],
+    [filteredAcls, hasDraft],
   );
 
   const aclToDeleteData = useMemo(() => {
@@ -109,7 +112,7 @@ export const AclDatagrid: FC = () => {
       <FormProvider {...formMethods}>
         <form
           onSubmit={formMethods.handleSubmit(handleCreate.onConfirm)}
-          className="[&_th]:!break-normal"
+          className="[&_#left-side]:!w-auto [&_#left-side]:!flex-[unset] [&_#right-side]:w-auto [&_th]:!break-normal"
         >
           <Datagrid
             columns={columns}
@@ -119,6 +122,8 @@ export const AclDatagrid: FC = () => {
             containerHeight={getContainerHeight(data.length)}
             maxRowHeight={50}
             size={TABLE_SIZE.sm}
+            filters={filterProps}
+            search={searchProps}
             topbar={
               <AclDatagridTopbar
                 onAddClick={handleCreate.onNew}
