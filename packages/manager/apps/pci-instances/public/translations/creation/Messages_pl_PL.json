@@ -165,13 +165,13 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Basic IP umożliwia łączność przychodzącą i wychodzącą bez ograniczeń użytkowania. Ten adres IP nie jest trwały i jest ponownie przydzielany po usunięciu powiązanej instancji. Nie można go przypisać do innej instancji.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Przydziel publiczną łączność",
-    "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud.<br/><span>Utworzenie floating IP nastąpi na końcu konfiguracji.</span></p>",
+    "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud.<br/><span>Tworzenie floating IP odbędzie się na końcu konfiguracji.</span></p>",
     "toggle_label": "Przydziel publiczny adres IP",
     "basic_ip_label": "Podstawowy publiczny adres IP (powiązany z instancją) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Podstawowy publiczny adres IP to adres IP, który nie utrzymuje się poza czasem życia zasobu. ",
-    "basic_ip_warning": "Aktywacja podstawowego publicznego adresu IP nie jest zgodna z bramą.",
+    "basic_ip_warning": "Aktywacja podstawowego publicznego adresu IP nie jest kompatybilna z bramą.",
     "floating_ip_label": "Utwórz Floating IP (do ponownego użycia) - <sb>{{ price }}</sb>",
-    "floating_ip_description": "Rezerwacja adresu IP floating przydziela adres do twojego projektu, aż go jawnie zwolnisz. ",
+    "floating_ip_description": "Rezerwacja adresu IP floating przypisuje adres do twojego projektu, aż go wyraźnie zwolnisz. ",
     "floating_ip_warning": "Wybierając tę opcję, przydzielimy ci bramę o rozmiarze {{ size }}.",
     "floating_ip_create_new_label": "Utwórz nową - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Ponownie użyj istniejącego floating IP",
@@ -205,5 +205,6 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Pozwól OVHcloud automatycznie wybrać AZ: Ta opcja upraszcza wdrożenie. AZ jest przypisywana automatycznie, a informacje o AZ znajdziesz na końcu wdrożenia swojej instancji. → Idealne na pierwsze wdrożenie lub do użytku nie redundantnego.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Ręcznie wybierz AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Możesz wybierać spośród trzech dostępnych AZ w regionie. Pozwala to na rozłożenie instancji na kilka AZ i wprowadzenie własnych mechanizmów redundancji.",
-  "pci_instance_creation_availabilityZone_help_link": "Dowiedz się więcej o multi-AZ i dobrych praktykach →"
+  "pci_instance_creation_availabilityZone_help_link": "Dowiedz się więcej o multi-AZ i dobrych praktykach →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Wykryto podstawowy publiczny adres IP w twojej sieci prywatnej, proszę utworzyć lub wybrać inną sieć prywatną, aby utworzyć bramę."
 }

@@ -131,6 +131,7 @@
   "pci_instance_creation_network_gateway_price_label": "Taille {{ size }} - {{ price }}",
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "La Gateway n'est pas disponible dans les localZones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Un Gateway est déjà attribuée au réseau privé sélectionné.",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Une Basic Public IP a été détectée sur votre Private Network, veuillez créer ou sélectionner un autre Private Network pour créer une gateway",
   "pci_instance_creation_network_gateway_attached_badge": "Gateway attachée",
   "pci_instance_creation_select_network_dropdown_label": "Sélectionnez un réseau privé existant",
   "pci_instance_creation_network_add_new": "Créer un réseau privé",

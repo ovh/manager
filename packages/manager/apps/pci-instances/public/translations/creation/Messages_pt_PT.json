@@ -168,7 +168,7 @@
     "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud.<br/><span>A criação do IP flutuante será feita no final da configuração.</span></p>",
     "toggle_label": "Atribuir um IP público",
     "basic_ip_label": "IP Público Básico (Vinculado à instância) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da duração da vida do recurso. ",
+    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da vida útil do recurso. ",
     "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
     "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - <sb>{{ price }}</sb>",
     "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
@@ -197,7 +197,7 @@
   "pci_instance_creation_flex_flavor": {
     "title": "Instâncias Flex",
     "disk_capacity": "<span>Uma instância flex é uma instância de disco único (50 Go)</span> que oferece um processo mais rápido para os snapshots.",
-    "resizing_explanation": "Permite redimensionar para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
+    "resizing_explanation": "Permite um redimensionamento para modelos superiores ou inferiores com um espaço de armazenamento fixo, enquanto os modelos clássicos só podem ser redimensionados para modelos superiores."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Gateway anexado",
   "pci_instance_creation_availabilityZone_help_title": "Compreender as zonas de disponibilidade",
@@ -205,5 +205,6 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Deixar a OVHcloud escolher a AZ automaticamente: Esta opção simplifica a implementação. A AZ é atribuída automaticamente e você encontrará a informação da AZ no final da implementação da sua instância. → Ideal para uma primeira implementação ou para um uso não redundante.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Selecionar manualmente uma AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Você pode escolher entre as três AZ disponíveis na região. Isso permite que você distribua suas instâncias em várias AZ e assim implemente seus próprios mecanismos de redundância.",
-  "pci_instance_creation_availabilityZone_help_link": "Saiba mais sobre multi-AZ e boas práticas →"
+  "pci_instance_creation_availabilityZone_help_link": "Saiba mais sobre multi-AZ e boas práticas →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Um IP Público Básico foi detectado na sua Rede Privada, por favor crie ou selecione outra Rede Privada para criar um gateway."
 }
