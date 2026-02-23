@@ -75,7 +75,9 @@ export const TcpOptionColumn = (
               className="ml-2 cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="fragments-tooltip" withArrow>
-              <OdsText className="p-2">{t('fragments_tooltip')}</OdsText>
+              <OdsText className="max-w-[200px] p-2">
+                {t('fragments_tooltip')}
+              </OdsText>
             </OdsTooltip>
           </div>
         </>

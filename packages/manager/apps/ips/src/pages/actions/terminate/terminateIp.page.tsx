@@ -4,7 +4,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { useDeleteService } from '@ovh-ux/manager-module-common-api';
+import { useDeleteService } from '@ovh-ux/manager-network-common';
 import {
   DeleteModal,
   useNotifications,

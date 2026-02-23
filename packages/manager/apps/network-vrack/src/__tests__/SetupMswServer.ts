@@ -1,12 +1,13 @@
 import { SetupServer } from 'msw/node';
 
 import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
-import { getServicesMocks } from '@ovh-ux/manager-module-common-api';
-import type { GetServicesMocksParams } from '@ovh-ux/manager-module-common-api';
-import type { NetworkConfigParams } from '@ovh-ux/manager-network-common';
+import {
+  getBandwidthLimitMocks,
+  getOrderCartServiceOptionMocks,
+  getServicesMocks,
+} from '@ovh-ux/manager-network-common';
+import type { GetServicesMocksParams, NetworkConfigParams } from '@ovh-ux/manager-network-common';
 
-import { getOrderCartServiceOptionMocks } from '@/__mocks__/order/cartServiceOption';
-import { getBandwidthLimitMocks } from '@/__mocks__/vrack/bandwidthLimit';
 import { GetVrackTaskMocksParam, getVrackTaskMocks } from '@/__mocks__/vrack/tasks';
 import { getVrackMocks } from '@/__mocks__/vrack/vrack';
 import { getVrackIpMocks } from '@/__mocks__/vrack/vrackIp';

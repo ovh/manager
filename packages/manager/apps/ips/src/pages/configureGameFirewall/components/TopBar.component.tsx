@@ -75,7 +75,7 @@ export const TopBar: React.FC = () => {
               className="cursor-pointer text-[var(--ods-color-text)]"
             />
             <OdsTooltip triggerId="tooltip-add-rule" withArrow>
-              <OdsText className="p-2">
+              <OdsText className="max-w-[200px] p-2">
                 {t('max_rules_reached_tooltip')}
               </OdsText>
             </OdsTooltip>
@@ -91,7 +91,9 @@ export const TopBar: React.FC = () => {
           className="cursor-pointer text-[var(--ods-color-text)]"
         />
         <OdsTooltip triggerId="tooltip" withArrow>
-          <OdsText className="p-2">{t('deny_strategy_tooltip')}</OdsText>
+          <OdsText className="max-w-[200px] p-2">
+            {t('deny_strategy_tooltip')}
+          </OdsText>
         </OdsTooltip>
         <OdsToggle
           name="strategy-default-deny"

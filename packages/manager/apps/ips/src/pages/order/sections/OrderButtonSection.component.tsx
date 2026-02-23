@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   ODS_BUTTON_COLOR,
@@ -25,7 +25,18 @@ import { IpVersion, ServiceType } from '@/types';
 
 import { MAX_IP_QUANTITY, MIN_IP_QUANTITY } from '../order.constant';
 import { OrderContext } from '../order.context';
-import { getAdditionalIpsProductSettings } from '../order.utils';
+import {
+  getAdditionalIpsProductSettings,
+  getVrackBandwidthUpgradeProductSettings,
+} from '../order.utils';
+import { TRANSLATION_NAMESPACES } from '@/utils';
+import { Links, useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  DEFAULT_BANDWIDTH_PLAN_CODE,
+  getUpgradedBandwidth,
+  postUpgradeBandwidth,
+  useDeleteService,
+} from '@ovh-ux/manager-network-common';
 
 export const OrderButtonSection: React.FC = () => {
   const {
@@ -34,14 +45,17 @@ export const OrderButtonSection: React.FC = () => {
     selectedServiceType,
     selectedOffer,
     selectedRegion,
+    selectedVrackBandwidthPlanCode,
     selectedPlanCode,
     selectedGeolocation,
     selectedOrganisation,
     ipQuantity,
     pricingMode,
   } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
+  const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
+  const { terminateService } = useDeleteService({ force: true });
   const { region } = useServiceRegion({
     serviceName: selectedService,
     serviceType: selectedServiceType,
@@ -64,7 +78,8 @@ export const OrderButtonSection: React.FC = () => {
         color={ODS_BUTTON_COLOR.primary}
         size={ODS_BUTTON_SIZE.md}
         label={t('order_button_label')}
-        onClick={() => {
+        // eslint-disable-next-line @typescript-eslint/no-misused-promises
+        onClick={async () => {
           const settings = getAdditionalIpsProductSettings({
             ipVersion: ipVersion,
             geolocation: selectedGeolocation,
@@ -82,11 +97,90 @@ export const OrderButtonSection: React.FC = () => {
             quantity: ipQuantity,
             pricingMode,
           });
-          window.open(
-            `${orderBaseUrl}?products=~(${settings})`,
-            '_blank',
-            'noopener,noreferrer',
-          );
+
+          let url = `${orderBaseUrl}?products=~(${settings})`;
+
+          // Add bandwidth to order if it's an upgrade or downgrade to non-default bandwidth
+          if (selectedServiceType === ServiceType.vrack) {
+            try {
+              const upgradedBandwidth = await getUpgradedBandwidth();
+
+              const selectedVrackBandwidthServiceName = upgradedBandwidth.data.find(
+                (service) =>
+                  service.includes(selectedService || '') &&
+                  service.includes(selectedRegion || ''),
+              );
+
+              // Delete bandwidth service if it's a downgrade to default bandwidth
+              if (
+                selectedVrackBandwidthPlanCode ===
+                  DEFAULT_BANDWIDTH_PLAN_CODE &&
+                !!selectedVrackBandwidthServiceName
+              ) {
+                terminateService({
+                  resourceName: selectedVrackBandwidthServiceName,
+                });
+              }
+
+              // Upgrade or downgrade bandwidth to non-default option
+              if (
+                selectedVrackBandwidthPlanCode &&
+                selectedVrackBandwidthPlanCode !== DEFAULT_BANDWIDTH_PLAN_CODE
+              ) {
+                if (!!selectedVrackBandwidthServiceName) {
+                  // from non-default bandwidth
+                  const upgradeBandwidthRequest = await postUpgradeBandwidth({
+                    serviceName: selectedVrackBandwidthServiceName,
+                    planCode: selectedVrackBandwidthPlanCode,
+                  });
+
+                  const secondaryOrderUrl =
+                    upgradeBandwidthRequest.data.order.url;
+                  window.open(
+                    secondaryOrderUrl,
+                    '_blank',
+                    'noopener,noreferrer',
+                  );
+
+                  addSuccess(
+                    <Trans
+                      t={t}
+                      i18nKey="upgrade_bandwidth_order_success_message"
+                      components={{
+                        Link: (
+                          <Links
+                            onClickReturn={() => {
+                              window.open(
+                                secondaryOrderUrl,
+                                '_blank',
+                                'noopener,noreferrer',
+                              );
+                            }}
+                          />
+                        ),
+                      }}
+                    />,
+                    true,
+                  );
+                } else {
+                  // from default bandwidth
+                  const vrackBandwidthSettings = getVrackBandwidthUpgradeProductSettings(
+                    {
+                      planCode: selectedVrackBandwidthPlanCode,
+                      serviceName: selectedService,
+                    },
+                  );
+
+                  url = `${orderBaseUrl}?products=~(${settings}${vrackBandwidthSettings})`;
+                }
+              }
+            } catch {
+              addError(t('upgrade_bandwidth_order_error_message'), true);
+            }
+          }
+
+          window.open(url, '_blank', 'noopener,noreferrer');
+
           trackClick({
             actionType: 'action',
             buttonType: ButtonType.button,
@@ -98,7 +192,25 @@ export const OrderButtonSection: React.FC = () => {
               selectedGeolocation ? `Ip-location_${selectedGeolocation}` : '',
             ].filter(Boolean),
           });
+
           navigate(urls.listing);
+
+          addSuccess(
+            <Trans
+              t={t}
+              i18nKey="ip_order_success_message"
+              components={{
+                Link: (
+                  <Links
+                    onClickReturn={() => {
+                      window.open(url, '_blank', 'noopener,noreferrer');
+                    }}
+                  />
+                ),
+              }}
+            />,
+            true,
+          );
         }}
       />
       <OdsButton

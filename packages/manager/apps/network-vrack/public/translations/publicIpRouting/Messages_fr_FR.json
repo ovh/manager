@@ -44,6 +44,8 @@
   "publicIpRouting_modify_bandwidth_bottom_info": "Lorsque vous passez commande, un nouvel onglet s'ouvre et vous êtes automatiquement redirigé vers l'interface de paiement pour terminer le processus.",
   "publicIpRouting_success_order_message": "Votre commande a commencé dans un nouvel onglet. Veuillez la terminer pour finaliser votre achat. Si le nouvel onglet ne s'ouvre pas, <Link>cliquez ici.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Gratuit",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Votre bande passante sera ramenée à l’option par défaut au prochain cycle de facturation. Aucune commande n’est nécessaire."
+  "tax_excluded_notice_label": "HT / mois",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Votre bande passante sera ramenée à l’option par défaut au prochain cycle de facturation. Aucune commande n’est nécessaire.",
+  "upgrade_bandwidth_info_tooltip": "Une facturation au prorata s'applique pour les jours restants de votre cycle de facturation actuel et la tarification complète commence au prochain cycle de facturation."
 }
 

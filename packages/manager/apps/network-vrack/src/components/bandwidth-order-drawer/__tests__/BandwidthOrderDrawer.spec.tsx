@@ -4,27 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { CurrencyCode } from '@ovh-ux/manager-module-common-api';
-import { BandwidthOption } from '@ovh-ux/manager-network-common';
+import { BandwidthOption, CurrencyCode } from '@ovh-ux/manager-network-common';
 
 import { BandwidthOrderDrawer } from '../BandwidthOrderDrawer';
-
-// Mock upgrade/downgrade hooks used inside the component so mutations trigger the provided onSuccess
-vi.mock('@/hooks/order/useUpgradeBandwidth', () => ({
-  useUpgradeBandwidth: (args: { onSuccess: ({ order }: { order: { url: string } }) => void }) => ({
-    mutate: () => args.onSuccess?.({ order: { url: 'https://order.example' } }),
-    isPending: false,
-  }),
-}));
-
-vi.mock('@/hooks/order/useDowngradeBandwidth', () => ({
-  useDowngradeBandwidth: (args: {
-    onSuccess: ({ data }: { data: { order: { url: string } } }) => void;
-  }) => ({
-    mutate: () => args.onSuccess?.({ data: { order: { url: 'https://order.example' } } }),
-    isPending: false,
-  }),
-}));
 
 // Mock i18n
 vi.mock('react-i18next', () => ({
@@ -40,7 +22,31 @@ vi.mock('@ovh-ux/muk', () => ({
 }));
 
 // Mock bandwidth converter hook
-vi.mock('@/hooks/useBandwidthFormatConverter', () => ({
+vi.mock('@ovh-ux/manager-network-common', () => ({
+  CurrencyCode: {
+    AUD: 'AUD',
+    CAD: 'CAD',
+    CZK: 'CZK',
+    EUR: 'EUR',
+    GBP: 'GBP',
+    INR: 'INR',
+    MAD: 'MAD',
+    PLN: 'PLN',
+    SGD: 'SGD',
+    USD: 'USD',
+    TND: 'TND',
+    XOF: 'XOF',
+    LTL: 'LTL',
+    NA: 'N/A',
+    points: 'points',
+  },
+  DEFAULT_BANDWIDTH_PLAN_CODE: 'planDefault',
+  useUpgradeDowngradeBandwidth: (args: {
+    onSuccess: ({ order }: { order: { url: string } }) => void;
+  }) => ({
+    mutate: () => args.onSuccess?.({ order: { url: 'https://order.example' } }),
+    isPending: false,
+  }),
   useBandwidthFormatConverter: () => (mbps: number) => ({
     value: `${mbps}`,
     unit: 'MB',
@@ -51,9 +57,12 @@ vi.mock('@/hooks/useBandwidthFormatConverter', () => ({
 
 // Mock ODS components used by the drawer
 vi.mock('@ovhcloud/ods-react', () => {
-  const DrawerContext = React.createContext({
+  const DrawerContext = React.createContext<{
+    open: boolean;
+    onOpenChange: (state: { open: boolean }) => void;
+  }>({
     open: false,
-    onOpenChange: ({ open }: { open: boolean }) => console.log(open),
+    onOpenChange: () => {},
   });
 
   function Drawer(props: {
@@ -76,6 +85,10 @@ vi.mock('@ovhcloud/ods-react', () => {
       </button>
     );
   }
+
+  const Tooltip = (p: { children: React.ReactNode }) => <div>{p.children}</div>;
+  const TooltipContent = (p: { children: React.ReactNode }) => <div>{p.children}</div>;
+  const TooltipTrigger = (p: { children: React.ReactNode }) => <div>{p.children}</div>;
 
   function DrawerContent({ children }: { children: React.ReactNode }) {
     const ctx = React.useContext(DrawerContext);
@@ -136,6 +149,9 @@ vi.mock('@ovhcloud/ods-react', () => {
   const Text = ({ children }: { children?: React.ReactNode }) => <div>{children}</div>;
 
   return {
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
     Drawer,
     DrawerTrigger: DrawerTriggerExport,
     DrawerContent,

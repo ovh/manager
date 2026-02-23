@@ -29,6 +29,7 @@ import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 import { IpVersion, ServiceType, ipParkingOptionValue } from '@/types';
 
 import { OrderContext } from '../order.context';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 const getServiceType = (
   serviceId: string,
@@ -75,7 +76,7 @@ export const ServiceSelectionSection: React.FC = () => {
     disabledServices,
     addDisabledService,
   } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
 
   const { serviceByCategory, isLoading, isError, error } =
@@ -221,7 +222,9 @@ export const ServiceSelectionSection: React.FC = () => {
                     isDismissible={false}
                   >
                     {t(
-                      `service_selection_${serviceStatus || 'expired'}_error_message`,
+                      `service_selection_${
+                        serviceStatus || 'expired'
+                      }_error_message`,
                     )}
                   </OdsMessage>
                 )}
