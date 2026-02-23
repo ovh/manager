@@ -5,7 +5,7 @@ import { useGetDomainZoneRecords } from "@/zone/hooks/useGetDomainZoneRecords/us
 import { ZoneRecord } from "@/zone/types/zoneRecords.types";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { ShellContext } from "@ovh-ux/manager-react-shell-client";
-import { ActionMenu, Datagrid, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
+import { ActionMenu, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
 import { FilterComparator, applyFilters } from "@ovh-ux/manager-core-api";
 import { useAuthorizationIam } from "@ovh-ux/manager-react-components";
 import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text } from "@ovhcloud/ods-react";
@@ -15,9 +15,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
 import ModifyTtlModal from "./modify/ModifyTtl.modal";
 import ResetModal from "./reset/Reset.modal";
-import { RowSelectionState } from '@tanstack/react-table';
+import { ExpandedState, RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
 import QuickAddEntry from "./components/QuickAddEntry";
+import ZoneDnsDatagrid from "./components/ZoneDnsDatagrid";
 import UnauthorizedBanner from "@/domain/components/UnauthorizedBanner/UnauthorizedBanner";
 import { useGetIAMResource } from "@/common/hooks/iam/useGetIAMResource";
 
@@ -33,22 +34,29 @@ export default function ZonePage() {
   const [searchInput, setSearchInput] = useState('');
   const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
   const [showAddEntryDiv, setShowAddEntryDiv] = useState(false);
-  const [editingRecord, setEditingRecord] = useState<ZoneRecord | null>(null);
+  const [expandedState, setExpandedState] = useState<ExpandedState>({});
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const quickAddRef = useRef<HTMLDivElement>(null);
 
+  const collapseRow = useCallback((rowId: string) => {
+    setExpandedState((prev) => {
+      if (typeof prev === 'boolean') return {};
+      const next = { ...prev };
+      delete next[rowId];
+      return next;
+    });
+  }, []);
+
   const handleQuickAddSuccess = useCallback(() => {
     setShowAddEntryDiv(false);
-    setEditingRecord(null);
   }, []);
 
   const handleQuickAddCancel = useCallback(() => {
     setShowAddEntryDiv(false);
-    setEditingRecord(null);
   }, []);
 
   const handleToggleAddEntry = useCallback(() => {
-    setEditingRecord(null);
+    setExpandedState({});
     setShowAddEntryDiv(prev => !prev);
   }, []);
 
@@ -192,8 +200,12 @@ export default function ZonePage() {
       id: 1,
       label: t('zone_page_modify_entry'),
       onClick: () => {
-        setEditingRecord(record);
-        setShowAddEntryDiv(true);
+        setShowAddEntryDiv(false);
+        setExpandedState((prev) => {
+          const prevRecord = prev as Record<string, boolean>;
+          const wasExpanded = !!prevRecord[record.id];
+          return wasExpanded ? {} : { [record.id]: true };
+        });
       },
     },
     {
@@ -294,10 +306,9 @@ export default function ZonePage() {
               visible={showAddEntryDiv}
               onSuccess={handleQuickAddSuccess}
               onCancel={handleQuickAddCancel}
-              editingRecord={editingRecord}
             />
           </div>
-          <Datagrid
+          <ZoneDnsDatagrid
             columns={columns}
             topbar={
               <div className="flex gap-2">
@@ -322,19 +333,30 @@ export default function ZonePage() {
             onFetchAllPages={fetchAllPages}
             totalCount={data?.paginatedZone?.count ?? 0}
             search={{
-              onSearch: (searchInput) => setSearchInput(searchInput),
+              onSearch: setSearchInput,
               searchInput,
-              setSearchInput
+              setSearchInput,
             }}
             filters={{
               add: handleAddFilter,
               filters,
-              remove: handleRemoveFilter
+              remove: handleRemoveFilter,
             }}
             rowSelection={{
               rowSelection,
               setRowSelection,
             }}
+            expandable={{ expanded: expandedState, setExpanded: setExpandedState }}
+            renderSubComponent={(row) => (
+              <QuickAddEntry
+                serviceName={serviceName ?? ''}
+                visible={true}
+                editingRecord={row.original}
+                onSuccess={() => collapseRow(row.id)}
+                onCancel={() => collapseRow(row.id)}
+              />
+            )}
+            subComponentHeight={600}
           />
         </>
       )}

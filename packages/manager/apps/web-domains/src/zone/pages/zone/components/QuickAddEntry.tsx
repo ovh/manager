@@ -271,63 +271,63 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4">
           {!isEditMode && (
-          <div className="flex items-end justify-between gap-4">
-            <FormField className="w-full md:w-1/2">
-              <FormFieldLabel>
-                {t('zone_page_type')}
-              </FormFieldLabel>
-              <Controller
-                name="recordType"
-                control={control}
-                render={({ field, fieldState: { error } }) => (
-                  <div className="flex w-full flex-wrap items-center gap-2">
-                    <Select
-                      name="recordType"
-                      id="recordType"
-                      className="min-w-[14rem] w-full max-w-sm"
-                      value={field.value ? [field.value as string] : []}
-                      items={selectItems}
-                      invalid={!!error}
-                      disabled={showBindInput}
-                      onValueChange={(detail: { value?: string[] }) => {
-                        const selectedValue = detail.value?.[0] ?? '';
-                        if (selectedValue) {
-                          field.onChange(selectedValue);
-                          handleSelectRecordType(selectedValue);
-                        }
-                      }}
-                      onBlur={field.onBlur}
-                    >
-                      <SelectControl placeholder={t('zone_page_form_select_title')} />
-                      <SelectContent customOptionRenderer={renderOption} />
-                    </Select>
-                    {error?.message && <FormFieldError>{error.message}</FormFieldError>}
-                  </div>
-                )}
-              />
-            </FormField>
+            <div className="flex items-end justify-between gap-4">
+              <FormField className="w-full md:w-1/2">
+                <FormFieldLabel>
+                  {t('zone_page_type')}
+                </FormFieldLabel>
+                <Controller
+                  name="recordType"
+                  control={control}
+                  render={({ field, fieldState: { error } }) => (
+                    <div className="flex w-full flex-wrap items-center gap-2">
+                      <Select
+                        name="recordType"
+                        id="recordType"
+                        className="min-w-[14rem] w-full max-w-sm"
+                        value={field.value ? [field.value as string] : []}
+                        items={selectItems}
+                        invalid={!!error}
+                        disabled={showBindInput}
+                        onValueChange={(detail: { value?: string[] }) => {
+                          const selectedValue = detail.value?.[0] ?? '';
+                          if (selectedValue) {
+                            field.onChange(selectedValue);
+                            handleSelectRecordType(selectedValue);
+                          }
+                        }}
+                        onBlur={field.onBlur}
+                      >
+                        <SelectControl placeholder={t('zone_page_form_select_title')} />
+                        <SelectContent customOptionRenderer={renderOption} />
+                      </Select>
+                      {error?.message && <FormFieldError>{error.message}</FormFieldError>}
+                    </div>
+                  )}
+                />
+              </FormField>
 
-            {isDesktop && (
-              <Button
-                type="button"
-                variant={BUTTON_VARIANT.outline}
-                size={BUTTON_SIZE.sm}
-                className="min-w-fit"
-                onClick={() => {
-                  const opening = !showBindInput;
-                  setShowBindInput(opening);
-                  setBindError(null);
-                  setBindSuccess(false);
-                  if (opening) {
-                    reset();
-                    setBindInput('');
-                  }
-                }}
-              >
-                {showBindInput ? t('zone_page_form_bind_back_to_form') : t('zone_page_form_bind_paste_button')}
-              </Button>
-            )}
-          </div>
+              {isDesktop && (
+                <Button
+                  type="button"
+                  variant={BUTTON_VARIANT.outline}
+                  size={BUTTON_SIZE.sm}
+                  className="min-w-fit"
+                  onClick={() => {
+                    const opening = !showBindInput;
+                    setShowBindInput(opening);
+                    setBindError(null);
+                    setBindSuccess(false);
+                    if (opening) {
+                      reset();
+                      setBindInput('');
+                    }
+                  }}
+                >
+                  {showBindInput ? t('zone_page_form_bind_back_to_form') : t('zone_page_form_bind_paste_button')}
+                </Button>
+              )}
+            </div>
           )}
 
           {showBindInput && (
