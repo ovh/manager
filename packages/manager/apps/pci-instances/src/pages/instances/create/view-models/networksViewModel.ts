@@ -14,8 +14,7 @@ export type TPrivateNetworkCustomData = {
   networkId: string;
 };
 
-export type TPrivateNetworkData =
-  SelectOptionItem<TPrivateNetworkCustomData>;
+export type TPrivateNetworkData = SelectOptionItem<TPrivateNetworkCustomData>;
 
 export const selectPrivateNetworks = (region: string | null) => (
   privateNetworks?: TPrivateNetwork,
@@ -123,6 +122,19 @@ export const getGatewayAvailability = ({
     (privateNetwork) => privateNetwork.value === subnetId,
   );
 
+  const isLocalZoneRegion = isLocalZone(deploymentMode);
+
+  const floatingIpIsDisabled = subnetId
+    ? !hasPublicNetworkCapability(subnetId, privateNetworks, 'FloatingIP')
+    : isLocalZoneRegion;
+
+  if (floatingIpIsDisabled)
+    return {
+      isDisabled: true,
+      unavailableReason:
+        'creation:pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip',
+    };
+
   if (selectedNetwork?.customRendererData?.hasGateway)
     return {
       isDisabled: true,
@@ -130,7 +142,7 @@ export const getGatewayAvailability = ({
         'creation:pci_instance_creation_network_gateway_already_assigned_tooltip',
     };
 
-  if (isLocalZone(deploymentMode))
+  if (isLocalZoneRegion)
     return {
       isDisabled: true,
       unavailableReason:
