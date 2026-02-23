@@ -1,3 +1,4 @@
+import { Toaster } from '@datatr-ux/uxlib';
 import {
   Outlet,
   redirect,
@@ -8,7 +9,6 @@ import {
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { useEffect } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Toaster } from '@datatr-ux/uxlib';
 import queryClient from '@/query.client';
 import { useTrackPageAuto } from '@/hooks/useTracking';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
@@ -78,7 +78,9 @@ export default function Layout() {
       <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
         <RoutingSynchronisation />
         <Outlet />
-        <Toaster />
+        <div className="pointer-events-none">
+          <Toaster />
+        </div>
       </UserActivityProvider>
     </PageLayout>
   );
