@@ -76,8 +76,8 @@
   "pci_instance_creation_choose_availabilityZone_informations": "È stata selezionata una zona di disponibilità predefinita. Puoi personalizzare questa scelta.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Scegli per me",
   "pci_instance_creation_availabilityZone_user_choice": "Scelgo la mia zona di disponibilità",
-  "pci_instance_creation_availabilityZone_help_description_p1": "In un ambiente Cloud, la disponibilità e la resilienza dei servizi sono fondamentali per garantire la continuità operativa, anche in caso di guasto di una Availability Zone (AZ).",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Le istanze sono infatti servizi di zona e vengono implementate in un’unica Availability Zone. Per garantire la resilienza, spetta quindi al cliente suddividere manualmente le proprie istanze su più zone.",
+  "pci_instance_creation_availabilityZone_help_description_p1": "Una regione 3-AZ è composta da tre zone di disponibilità fisicamente distinte ma interconnesse tra loro.",
+  "pci_instance_creation_availabilityZone_help_description_p2": "Ogni AZ corrisponde a un datacenter indipendente, che consente di aumentare la resilienza e l'alta disponibilità dei tuoi deployment.",
   "pci_instance_creation_cart_distribution_image_title": "Immagine",
   "pci_instance_creation_select_sshKey_title": "Seleziona una chiave SSH",
   "pci_instance_creation_select_sshKey_description": " Le chiavi SSH sono necessarie per accedere al servizio.",
@@ -197,7 +197,13 @@
   "pci_instance_creation_flex_flavor": {
     "title": "Istanze Flex",
     "disk_capacity": "<span>Un'istanza flex è un'istanza a disco singolo (50 Go)</span> che offre un processo più veloce per gli snapshot.",
-    "resizing_explanation": "Consente un ridimensionamento verso modelli superiori o inferiori con uno spazio di archiviazione fisso, mentre i modelli classici possono essere ridimensionati solo verso modelli superiori."
+    "resizing_explanation": "Consente un ridimensionamento verso modelli superiori o inferiori con uno spazio di archiviazione fisso, mentre modelli classici possono essere ridimensionati solo verso i modelli superiori."
   },
-  "pci_instance_creation_network_gateway_attached_badge": "Gateway allegata"
+  "pci_instance_creation_network_gateway_attached_badge": "Gateway allegata",
+  "pci_instance_creation_availabilityZone_help_title": "Comprendere le zone di disponibilità",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Scegli il tuo metodo di distribuzione",
+  "pci_instance_creation_availabilityZone_help_automatic": "Lascia che OVHcloud scelga automaticamente l'AZ: Questa opzione semplifica la distribuzione. L'AZ viene assegnata automaticamente e troverai l'informazione dell'AZ alla fine della distribuzione della tua istanza. → Ideale per una prima distribuzione o per un uso non ridondante.",
+  "pci_instance_creation_availabilityZone_help_manual_title": "Seleziona manualmente un'AZ:",
+  "pci_instance_creation_availabilityZone_help_manual": "Puoi scegliere tra le tre AZ disponibili nella regione. Questo ti consente di distribuire le tue istanze su più AZ e quindi implementare i tuoi meccanismi di ridondanza.",
+  "pci_instance_creation_availabilityZone_help_link": "Scopri di più sui multi-AZ e sulle buone pratiche →"
 }

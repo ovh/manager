@@ -84,10 +84,13 @@ const Network: FC = () => {
   };
 
   const initializePrivateNetworkFields = useCallback(() => {
-    setValue('subnetId', networks?.[0]?.value ?? null);
-    setValue('newPrivateNetwork', null, {
-      shouldValidate: true,
-    });
+    const selectedSubnetId = networks?.[0]?.value ?? null;
+    setValue('subnetId', selectedSubnetId);
+    if (selectedSubnetId) {
+      setValue('newPrivateNetwork', null, {
+        shouldValidate: true,
+      });
+    }
   }, [networks, setValue]);
 
   useEffect(() => {
