@@ -1,4 +1,13 @@
 import {
+  Toast,
+  ToastClose,
+  ToastDescription,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+  useToast,
+} from '@datatr-ux/uxlib';
+import {
   Outlet,
   redirect,
   useLocation,
@@ -8,7 +17,6 @@ import {
 import { useRouting, useShell } from '@ovh-ux/manager-react-shell-client';
 import { useEffect } from 'react';
 import { defineCurrentPage } from '@ovh-ux/request-tagger';
-import { Toaster } from '@datatr-ux/uxlib';
 import queryClient from '@/query.client';
 import { useTrackPageAuto } from '@/hooks/useTracking';
 import { useLoadingIndicatorContext } from '@/contexts/LoadingIndicator.context';
@@ -38,6 +46,32 @@ export const Loader = async ({ params }: AILayoutProps) => {
   }
   return null;
 };
+
+const TOAST_VIEWPORT_CLASSNAME =
+  'pointer-events-none fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]';
+
+const TOAST_CLOSE_CLASSNAME =
+  'bg-background/90 opacity-100 text-foreground/70 hover:text-foreground focus:opacity-100';
+
+function InlineToaster() {
+  const { toasts } = useToast();
+
+  return (
+    <ToastProvider>
+      {toasts.map(({ id, title, description, action, ...props }) => (
+        <Toast key={id} {...props}>
+          <div className="grid gap-1">
+            {title && <ToastTitle>{title}</ToastTitle>}
+            {description && <ToastDescription>{description}</ToastDescription>}
+          </div>
+          {action}
+          <ToastClose className={TOAST_CLOSE_CLASSNAME} />
+        </Toast>
+      ))}
+      <ToastViewport className={TOAST_VIEWPORT_CLASSNAME} />
+    </ToastProvider>
+  );
+}
 
 function RoutingSynchronisation() {
   const { setLoading } = useLoadingIndicatorContext();
@@ -78,7 +112,7 @@ export default function Layout() {
       <UserActivityProvider timeout={USER_INACTIVITY_TIMEOUT}>
         <RoutingSynchronisation />
         <Outlet />
-        <Toaster />
+        <InlineToaster />
       </UserActivityProvider>
     </PageLayout>
   );
