@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.24.8...@ovh-ux/manager-overthebox@6.25.0) (2026-02-23)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1132] ([3b12a18](https://github.com/ovh/manager/commit/3b12a18df936edf8de6647000148bb50656e192b))
+
+
+### Features
+
+* **overthebox.logs:** use log-to-customer component into logs ([bf7aead](https://github.com/ovh/manager/commit/bf7aeadb4257593fa316d35ba16a100a95ab5746)), closes [#MANAGER-20587](https://github.com/ovh/manager/issues/MANAGER-20587)
+
+
+
+
+
 ## [6.24.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox@6.24.7...@ovh-ux/manager-overthebox@6.24.8) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox

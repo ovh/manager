@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@7.0.86...@ovh-ux/manager-overthebox-app@7.1.0) (2026-02-23)
+
+
+### Features
+
+* **overthebox.logs:** use log-to-customer component into logs ([bf7aead](https://github.com/ovh/manager/commit/bf7aeadb4257593fa316d35ba16a100a95ab5746)), closes [#MANAGER-20587](https://github.com/ovh/manager/issues/MANAGER-20587)
+
+
+
+
+
 ## [7.0.86](https://github.com/ovh/manager/compare/@ovh-ux/manager-overthebox-app@7.0.85...@ovh-ux/manager-overthebox-app@7.0.86) (2026-02-20)
 
 **Note:** Version bump only for package @ovh-ux/manager-overthebox-app
