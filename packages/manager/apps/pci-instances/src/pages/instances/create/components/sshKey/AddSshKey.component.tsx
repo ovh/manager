@@ -1,4 +1,4 @@
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   FormField,
@@ -21,12 +21,14 @@ type TAddSshKeyProps = {
   unavailableSshKeyIds: string[];
   onSubmit: SubmitHandler<TAddSshKeyForm>;
   onCancel: () => void;
+  shouldValidate?: boolean;
 };
 
 const AddSshKey: FC<TAddSshKeyProps> = ({
   onSubmit,
   onCancel,
   unavailableSshKeyIds,
+  shouldValidate,
 }) => {
   const { t } = useTranslation([
     'creation',
@@ -38,6 +40,7 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
     formState: { isValid },
     handleSubmit,
     reset,
+    trigger,
   } = useForm({
     resolver: zodResolver(
       buildAddSshKeyFormSchema({
@@ -55,6 +58,10 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
     mode: 'onChange',
   });
 
+  useEffect(() => {
+    if (shouldValidate) void trigger();
+  }, [shouldValidate, trigger]);
+
   const handleResetAddSshKeyForm = () => reset();
 
   const handleCancelAddSshKey = () => {
@@ -69,7 +76,7 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
 
   return (
     <form
-      className="mt-4 max-w-[55%] flex flex-col gap-y-5"
+      className="mt-4 flex max-w-[55%] flex-col gap-y-5"
       onSubmit={handleAddSshKey}
     >
       <Controller
@@ -109,7 +116,7 @@ const AddSshKey: FC<TAddSshKeyProps> = ({
               invalid={fieldState.invalid}
               {...field}
             />
-            <FormFieldHelper className="text-[--ods-color-text] text-xs mt-4">
+            <FormFieldHelper className="mt-4 text-xs text-[--ods-color-text]">
               {t(
                 'creation:pci_instance_creation_select_sshKey_add_key_description',
               )}
