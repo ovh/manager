@@ -29,7 +29,10 @@
         <oui-header-tabs-item data-state="overTheBoxes.overTheBox.actions">
             <span data-translate="overTheBox_tabs_actions"></span>
         </oui-header-tabs-item>
-        <oui-header-tabs-item data-state="overTheBoxes.overTheBox.logs">
+        <oui-header-tabs-item
+            data-state="overTheBoxes.overTheBox.logs"
+            data-ng-if=":: $ctrl.isLogsAvailable"
+        >
             <span data-translate="overTheBox_tabs_logs"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
