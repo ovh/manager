@@ -141,7 +141,7 @@ const SshKey = () => {
             value={selectedSshKeyId ? [selectedSshKeyId] : []}
             onValueChange={handleSelectSshKey}
           />
-          <Button variant="outline" onClick={handleOpenSshKeyForm}>
+          <Button variant="outline" size="sm" onClick={handleOpenSshKeyForm}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_select_sshKey_add_new')}
           </Button>
