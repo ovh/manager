@@ -165,13 +165,13 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Uma Basic IP permite conectividade de entrada e saída sem restrições de utilização. Esta IP não é persistente e é realocada após a eliminação da instância associada. Não é possível alocá-la a outra instância.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Atribuir conectividade pública",
-    "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud.<br/><span>A criação do IP flutuante será feita no final da configuração.</span></p>",
+    "description": "<p>A atribuição de um endereço IP público permite o acesso à sua instância a partir de fora da rede OVHcloud.</p>",
     "toggle_label": "Atribuir um IP público",
-    "basic_ip_label": "IP Público Básico (Vinculado à instância) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da vida útil do recurso. ",
-    "basic_ip_warning": "A ativação do IP público básico não é compatível com um gateway.",
-    "floating_ip_label": "Criar um IP Flutuante (Reutilizável) - <sb>{{ price }}</sb>",
-    "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que você o libere explicitamente. ",
+    "basic_ip_label": "IP Público Básico (Ligado à instância) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "Um IP público básico é um endereço IP que não persiste além da duração da vida do recurso. ",
+    "basic_ip_warning": "Detectámos um gateway na sua rede privada, portanto esta opção não está disponível. Por favor, escolha ou crie uma rede privada sem gateway.",
+    "floating_ip_label": "Atribuir um IP Flutuante (Reutilizável)",
+    "floating_ip_description": "A reserva de um endereço IP flutuante atribui o endereço ao seu projeto até que o liberte explicitamente. ",
     "floating_ip_warning": "Ao selecionar esta opção, vamos atribuir-lhe um gateway de tamanho {{ size }}.",
     "floating_ip_create_new_label": "Criar um novo - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reutilizar um IP flutuante existente",
@@ -206,5 +206,5 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Selecionar manualmente uma AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Você pode escolher entre as três AZ disponíveis na região. Isso permite que você distribua suas instâncias em várias AZ e assim implemente seus próprios mecanismos de redundância.",
   "pci_instance_creation_availabilityZone_help_link": "Saiba mais sobre multi-AZ e boas práticas →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Um IP Público Básico foi detectado na sua Rede Privada, por favor crie ou selecione outra Rede Privada para criar um gateway."
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Um IP Público Básico foi detetado na sua Rede Privada, por favor crie ou selecione outra Rede Privada para criar um gateway."
 }

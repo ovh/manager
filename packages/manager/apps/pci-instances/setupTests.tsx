@@ -20,13 +20,14 @@ vi.mock('react-i18next', async (importOriginal) => {
       components,
     }: {
       i18nKey: string;
-      components: Record<string, ReactNode>;
+      components?: Record<string, ReactNode> | null;
     }) => (
       <>
         <span>{i18nKey}</span>
-        {Object.entries(components).map(([key, node]) => (
-          <div key={key}>{node}</div>
-        ))}
+        {components != null &&
+          Object.entries(components).map(([key, node]) => (
+            <div key={key}>{node}</div>
+          ))}
       </>
     ),
   };
