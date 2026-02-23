@@ -20,12 +20,14 @@ import {
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { FilterComparator, FilterTypeCategories } from '@ovh-ux/manager-core-api';
 import { DatagridColumn } from '@ovh-ux/muk';
 
 import { StatusBadge } from '@/components/status-badge/StatusBadge.component';
 import { TAclData, TAclDraftData, isAclDraftData } from '@/pages/dashboard/Acl/acl.view-model';
 import { useAclPermissions } from '@/pages/dashboard/Acl/hooks/useAclPermissions';
 import type { CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
+import { ACL_STATUSES, getAclStatusDisplay } from '@/pages/view-model/aclStatus.view-model';
 
 type TUseAclColumnProps = {
   formMethods: UseFormReturn<CreateAclFormValues>;
@@ -46,7 +48,7 @@ export const useAclColumn = ({
   isCreatePending,
   canManageAcl,
 }: TUseAclColumnProps): DatagridColumn<TAclData | TAclDraftData>[] => {
-  const { t } = useTranslation(['acl', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['acl', NAMESPACES.ACTIONS, 'status']);
   const { permissions, permissionsMap } = useAclPermissions();
 
   return useMemo(() => {
@@ -55,6 +57,11 @@ export const useAclColumn = ({
         id: 'accessTo',
         accessorKey: 'accessTo',
         header: t('acl:columns.accessTo.header'),
+        label: t('acl:columns.accessTo.header'),
+        isFilterable: true,
+        isSearchable: true,
+        type: FilterTypeCategories.String,
+        comparator: [FilterComparator.Includes, FilterComparator.IsEqual],
         cell: ({ row }) =>
           isAclDraftData(row.original) ? (
             <div className="p-4">
@@ -87,9 +94,17 @@ export const useAclColumn = ({
           ),
       },
       {
-        id: 'accessPermission',
+        id: 'permission',
         accessorKey: 'permission',
         header: t('acl:columns.accessPermission.header'),
+        label: t('acl:columns.accessPermission.header'),
+        isFilterable: true,
+        type: FilterTypeCategories.Options,
+        comparator: [FilterComparator.IsEqual],
+        filterOptions: permissions.map(({ label, value }) => ({
+          label,
+          value,
+        })),
         cell: ({ row }) =>
           isAclDraftData(row.original) ? (
             <div className="w-full max-w-[250px] p-4">
@@ -124,6 +139,18 @@ export const useAclColumn = ({
         id: 'status',
         accessorKey: 'status',
         header: t('acl:columns.status.header'),
+        label: t('acl:columns.status.header'),
+        isFilterable: true,
+        type: FilterTypeCategories.Options,
+        comparator: [
+          FilterComparator.IsEqual,
+          FilterComparator.IsDifferent,
+          FilterComparator.Includes,
+        ],
+        filterOptions: ACL_STATUSES.map((status) => ({
+          label: t(getAclStatusDisplay(status).labelKey),
+          value: status,
+        })),
         cell: ({
           row: {
             original: { statusDisplay },
