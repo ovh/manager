@@ -9,7 +9,6 @@ import { VideoEmbed } from '@/components/VideoEmbed/VideoEmbed.component';
 import { getCreateRancherUrl } from '@/utils/route';
 import { useTrackingAction } from '@/hooks/useTrackingPage/useTrackingPage';
 import { TrackingEvent, TrackingPageView } from '@/utils/tracking';
-import { useRancherFreeTrial } from '@/hooks/useRancherFreeTrial';
 import { RANCHER_GUIDES_URL, ONBOARDING_VIDEO_URL } from '@/utils/guides';
 import { OvhSubsidiary } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
@@ -18,7 +17,6 @@ export const OnboardingFreeTrialContent = () => {
   const { t } = useTranslation('onboarding');
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const freeTrialCreditText = useRancherFreeTrial();
   const title: string = t('title');
   const trackAction = useTrackingAction();
   const onOrderButtonClick = () => {
@@ -33,21 +31,14 @@ export const OnboardingFreeTrialContent = () => {
 
   const description = (
     <div className="mt-4 flex flex-col">
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-        {t('freeTrialEligibilityTitle')}
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+        <b>{t('freeTrialBannerMessageLine1', { ns: 'dashboard' })}</b>
       </OsdsText>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-        {t('freeTrialCreditStandard', {
-          amount: freeTrialCreditText.standard,
-        })}
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-4">
+        {t('freeTrialBannerMessageLine2', { ns: 'dashboard' })}
       </OsdsText>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mb-2">
-        {t('freeTrialCreditOvhEdition', {
-          amount: freeTrialCreditText.ovhEdition,
-        })}
-      </OsdsText>
-      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="mt-4">
-        {t('freeTrialCreditApplied')}
+      <OsdsText color={ODS_THEME_COLOR_INTENT.text} className="text-xs">
+        {t('freeTrialDisclaimer', { ns: 'dashboard' })}
       </OsdsText>
     </div>
   );
