@@ -42,7 +42,7 @@ export const RegionSelectionSection: React.FC = () => {
       isLoading={isLoading}
     >
       <React.Suspense fallback={<OdsSpinner />}>
-        <div className="flex flex-wrap items-stretch gap-4">
+        <div className="flex flex-wrap items-stretch gap-7">
           {campusValues.map((value) => {
             const region = DATACENTER_TO_REGION[value.name];
             return (

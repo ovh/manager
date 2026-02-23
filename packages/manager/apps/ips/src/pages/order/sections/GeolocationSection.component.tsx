@@ -17,6 +17,7 @@ import { ServiceType } from '@/types';
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { IpOffer } from '../order.constant';
 import { OrderContext } from '../order.context';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const GeolocationSection: React.FC = () => {
   const {
@@ -27,7 +28,7 @@ export const GeolocationSection: React.FC = () => {
     setSelectedGeolocation,
     selectedOffer,
   } = React.useContext(OrderContext);
-  const { t } = useTranslation('order');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
   const { geolocations } = useAvailableGeolocationFromPlanCode({
     serviceName: selectedService,

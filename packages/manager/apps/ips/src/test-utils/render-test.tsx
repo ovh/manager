@@ -13,7 +13,7 @@ import {
 import {
   GetServicesMocksParams,
   getServicesMocks,
-} from '@ovh-ux/manager-module-common-api';
+} from '@ovh-ux/manager-network-common';
 import {
   ShellContext,
   ShellContextType,

@@ -8,26 +8,20 @@ import { checkTextInScreen } from '@/__tests__/Test.utils';
 
 import { RegionTile } from '../RegionTile';
 
-// Mock upgrade/downgrade hooks used inside BandwidthOrderDrawer (child component)
-vi.mock('@/hooks/order/useUpgradeBandwidth', () => ({
-  useUpgradeBandwidth: (args: { onSuccess: ({ order }: { order: { url: string } }) => void }) => ({
-    mutate: () => args.onSuccess?.({ order: { url: 'https://order.example' } }),
-    isPending: false,
-  }),
-}));
-
-vi.mock('@/hooks/order/useDowngradeBandwidth', () => ({
-  useDowngradeBandwidth: (args: {
-    onSuccess: ({ data }: { data: { order: { url: string } } }) => void;
-  }) => ({
-    mutate: () => args.onSuccess?.({ data: { order: { url: 'https://order.example' } } }),
-    isPending: false,
-  }),
-}));
-
 // Mock vrack tasks context used by IpTableBlock (child of RegionTile)
 vi.mock('@/contexts/vrack-tasks/useVrackTasks', () => ({
   useVrackTasksContext: () => ({ trackedTasks: [], trackTask: vi.fn() }),
+}));
+
+// Mock the BandwidthOrderDrawer to keep the RegionTile test isolated
+vi.mock('../../bandwidth-order-drawer/BandwidthOrderDrawer', () => ({
+  BandwidthOrderDrawer: () => <div data-testid="mock-bandwidth-drawer">drawer</div>,
+}));
+
+// Mock react-i18next to avoid async init in tests
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (k: string) => k }),
+  Trans: (props: { i18nKey: string }) => props.i18nKey,
 }));
 
 describe('RegionTile', () => {

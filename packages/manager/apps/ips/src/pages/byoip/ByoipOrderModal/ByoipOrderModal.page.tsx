@@ -45,13 +45,8 @@ export const ByoipOrderModal: React.FC = () => {
   const { t } = useTranslation(['byoip', NAMESPACES?.ACTIONS]);
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
-  const {
-    ipRir,
-    selectedRegion,
-    ipRange,
-    asOwnRirType,
-    asOwnNumberType,
-  } = React.useContext(ByoipContext);
+  const { ipRir, selectedRegion, ipRange, asOwnRirType, asOwnNumberType } =
+    React.useContext(ByoipContext);
 
   const orderBaseUrl = useOrderURL('express_review_base');
 
@@ -79,14 +74,13 @@ export const ByoipOrderModal: React.FC = () => {
 
   const declaratiosChecked = Object.values(checkedItems).every(Boolean);
 
-  const handleCheckboxChange = (id: string) => (
-    e: CustomEvent<OdsCheckboxChangeEventDetail>,
-  ) => {
-    setCheckedItems((prev) => ({
-      ...prev,
-      [id]: e.detail.checked,
-    }));
-  };
+  const handleCheckboxChange =
+    (id: string) => (e: CustomEvent<OdsCheckboxChangeEventDetail>) => {
+      setCheckedItems((prev) => ({
+        ...prev,
+        [id]: e.detail.checked,
+      }));
+    };
 
   const handleClose = () => {
     trackClick({

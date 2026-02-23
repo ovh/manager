@@ -14,9 +14,8 @@ import { GameFirewallContext } from '../gamefirewall.context';
 export const ActionColumn = (
   rule: IpGameFirewallRule & { isNew?: boolean },
 ) => {
-  const { hideNewRuleRow, showConfirmDeleteModal, addRule } = React.useContext(
-    GameFirewallContext,
-  );
+  const { hideNewRuleRow, showConfirmDeleteModal, addRule } =
+    React.useContext(GameFirewallContext);
 
   return rule?.isNew ? (
     <div className="flex gap-4">

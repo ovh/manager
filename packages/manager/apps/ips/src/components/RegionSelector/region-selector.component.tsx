@@ -17,16 +17,23 @@ export type DisabledRegion = {
   message: string;
 };
 
+export type TooltipConfig = {
+  isTooltipDisplayed: (region: string) => boolean;
+  message: string;
+};
+
 export type RegionSelectorProps = {
   regionList: string[];
   disabledRegions?: DisabledRegion[];
   selectedRegion?: string;
   setSelectedRegion: (region?: string) => void;
+  tooltipList?: TooltipConfig[];
 };
 
 export const RegionSelector: React.FC<RegionSelectorProps> = ({
   regionList,
   disabledRegions = [],
+  tooltipList = [],
   selectedRegion,
   setSelectedRegion,
 }) => {
@@ -44,7 +51,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
           setApFilter={() => setCurrentFilter(RegionFilter.ap)}
         />
       )}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-7">
         {regionList
           .filter((region) => {
             switch (currentFilter) {
@@ -65,6 +72,9 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
             const disabledMessage = disabledRegions.find(
               (item) => item.region === region,
             )?.message;
+            const tooltipInfo = tooltipList.find(({ isTooltipDisplayed }) =>
+              isTooltipDisplayed(region),
+            )?.message;
             const isSelected = selectedRegion === region && !disabledMessage;
 
             return (
@@ -74,6 +84,7 @@ export const RegionSelector: React.FC<RegionSelectorProps> = ({
                 disabledMessage={disabledMessage}
                 isSelected={isSelected}
                 onClick={() => !disabledMessage && setSelectedRegion(region)}
+                tooltipInfo={tooltipInfo}
               />
             );
           })}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
@@ -12,22 +12,33 @@ export const OrderSection: React.FC<
     title: string;
     description?: string;
     isLoading?: boolean;
+    className?: string;
+    isError?: boolean;
+    errorComponent?: ReactNode;
   }>
-> = ({ title, description, isLoading, children }) => (
-  <section className="mb-8 max-w-[1368px]">
+> = ({
+  title,
+  description,
+  isLoading,
+  className,
+  isError,
+  errorComponent,
+  children,
+}) => (
+  <section className=" mb-8 flex max-w-[1368px] flex-col">
     <OdsText className="mb-3 block" preset={ODS_TEXT_PRESET.heading2}>
       {title}
     </OdsText>
-    <OdsText className="mb-3 block" preset={ODS_TEXT_PRESET.paragraph}>
+    <OdsText className="mb-7 block" preset={ODS_TEXT_PRESET.paragraph}>
       {description}
     </OdsText>
-    {isLoading ? (
+    {isLoading && (
       <div className="text-center">
         <OdsSpinner size={ODS_SPINNER_SIZE.md} />
       </div>
-    ) : (
-      children
     )}
+    {!isLoading && !isError && <div className={className}>{children}</div>}
+    {!isLoading && isError && errorComponent}
     <OdsDivider className="mt-8 block" />
   </section>
 );

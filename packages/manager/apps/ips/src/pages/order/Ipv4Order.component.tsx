@@ -16,6 +16,7 @@ import { OrderButtonSection } from './sections/OrderButtonSection.component';
 import { OrganisationSection } from './sections/OrganisationSection.component';
 import { RegionSelectionSection } from './sections/RegionSelectionSection.component';
 import { ServiceSelectionSection } from './sections/ServiceSelectionSection.component';
+import { VrackBandwidthSection } from './sections/VrackBandwidthSection.component';
 
 export const Ipv4Order: React.FC = () => {
   const {
@@ -66,6 +67,11 @@ export const Ipv4Order: React.FC = () => {
       !!selectedService &&
       serviceStatus === 'ok' &&
       [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType),
+    bandwidth:
+      !!selectedService &&
+      serviceStatus === 'ok' &&
+      selectedServiceType === ServiceType.vrack &&
+      !!selectedRegion,
     offer:
       !!selectedService &&
       !!(selectedRegion || region) &&
@@ -95,6 +101,7 @@ export const Ipv4Order: React.FC = () => {
     <>
       {visibleSections.service && <ServiceSelectionSection />}
       {visibleSections.region && <RegionSelectionSection />}
+      {visibleSections.bandwidth && <VrackBandwidthSection />}
       {visibleSections.offer && <OfferSelectionSection />}
       {visibleSections.geolocation && <GeolocationSection />}
       {visibleSections.organisation && <OrganisationSection />}

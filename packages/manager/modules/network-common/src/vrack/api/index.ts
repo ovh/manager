@@ -3,3 +3,5 @@ export * from './get/vrackList';
 export * from './get/vrackIpList';
 export * from './post/associateVrackServices';
 export * from './delete/dissociateVrackServicesFromVrack';
+export * from './get/publicRoutingBandwidthLimit';
+export * from './get/publicRoutingRegion';

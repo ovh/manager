@@ -278,16 +278,13 @@ export function useMoveIpService({
   onMoveIpSuccess?: () => void;
 }) {
   const queryClient = useQueryClient();
-  const {
-    hasOnGoingVrackMoveTasks,
-    isVrackTasksLoading,
-    vrackTasksError,
-  } = useVrackMoveTasks({
-    ip,
-    serviceName,
-    enabled:
-      !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK,
-  });
+  const { hasOnGoingVrackMoveTasks, isVrackTasksLoading, vrackTasksError } =
+    useVrackMoveTasks({
+      ip,
+      serviceName,
+      enabled:
+        !!serviceName && getTypeByServiceName(serviceName) === IpTypeEnum.VRACK,
+    });
   const { hasOnGoingMoveIpTask, isTasksLoading, taskError } = useMoveIpTasks({
     ip,
   });
