@@ -59,7 +59,7 @@ export const MacroRegionSelection = () => {
       setValue('macroRegion', undefined);
       setValue('shareData.microRegion', '');
     }
-  }, [localizations, selectedMacroRegion, updateSelection]);
+  }, [localizations, selectedMacroRegion, updateSelection, setValue]);
 
   return (
     <section>

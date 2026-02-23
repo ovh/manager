@@ -1,4 +1,4 @@
-import { type FC, useCallback, useMemo, useState } from 'react';
+import { type FC, useMemo, useState } from 'react';
 
 import { FormProvider } from 'react-hook-form';
 
@@ -7,12 +7,14 @@ import { TABLE_SIZE } from '@ovhcloud/ods-react';
 import { Datagrid } from '@ovh-ux/muk';
 
 import { useAcls } from '@/data/hooks/acl/useAcls';
+import { useShare } from '@/data/hooks/shares/useShare';
 import { useShareParams } from '@/hooks/useShareParams';
 import {
   TAclData,
   TAclDraftData,
   createAclDraft,
   selectAcls,
+  selectCanManageAcl,
 } from '@/pages/dashboard/Acl/acl.view-model';
 import { AclDatagridTopbar } from '@/pages/dashboard/Acl/components/AclDatagridTopbar.component';
 import { AclDeleteModal } from '@/pages/dashboard/Acl/components/AclDeleteModal.component';
@@ -21,6 +23,10 @@ import { useAclColumn } from '@/pages/dashboard/Acl/hooks/useAclColumn';
 import { useCreateAclForm } from '@/pages/dashboard/Acl/hooks/useCreateAclForm';
 import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
 
+{
+  /* eslint-disable @typescript-eslint/no-misused-promises */
+}
+
 const getContainerHeight = (dataSize: number) => (dataSize + 1) * 50 + 10;
 
 export const AclDatagrid: FC = () => {
@@ -28,6 +34,10 @@ export const AclDatagrid: FC = () => {
   const [aclToDelete, setAclToDelete] = useState<string>();
   const [hasDraft, setHasDraft] = useState(false);
   const formMethods = useCreateAclForm();
+
+  const { data: canManageAcl = false } = useShare(region, shareId, {
+    select: selectCanManageAcl,
+  });
 
   const { data: acls = [], isLoading: isLoadingAcls } = useAcls<TAclData[]>(region, shareId, {
     select: selectAcls,
@@ -51,50 +61,53 @@ export const AclDatagrid: FC = () => {
   const aclToDeleteData = useMemo(() => {
     return aclToDelete ? (acls.find((acl) => acl.id === aclToDelete) ?? null) : null;
   }, [aclToDelete, acls]);
-  const handleDelete = useMemo(() => {
-    return {
+
+  const handleDelete = useMemo(
+    () => ({
       openModal: (aclId: string) => setAclToDelete(aclId),
       cancel: () => setAclToDelete(undefined),
       confirm: () => {
         if (aclToDelete) deleteAcl(aclToDelete);
       },
-    };
-  }, [aclToDelete, deleteAcl]);
+    }),
+    [aclToDelete, deleteAcl],
+  );
 
-  const handleAddClick = useCallback(() => {
-    setHasDraft(true);
-  }, []);
-
-  const handleCancelDraft = useCallback(() => {
-    setHasDraft(false);
-    formMethods.reset();
-  }, [formMethods]);
-
-  const handleCreate = useCallback(
-    (values: CreateAclFormValues) => {
-      createAcl({
-        sourceIpOrCidr: values.accessTo,
-        accessPermission: values.permission,
-        status: 'draft',
-      });
-    },
-    [createAcl],
+  const handleCreate = useMemo(
+    () => ({
+      onNew: () => setHasDraft(true),
+      onCancel: () => {
+        setHasDraft(false);
+        formMethods.reset();
+      },
+      onConfirm: (values: CreateAclFormValues) => {
+        createAcl({
+          sourceIpOrCidr: values.accessTo,
+          accessPermission: values.permission,
+          status: 'draft',
+        });
+      },
+    }),
+    [formMethods, createAcl],
   );
 
   const columns = useAclColumn({
     formMethods,
     hasDraft,
-    onCancelDraft: handleCancelDraft,
+    onCancelDraft: handleCreate.onCancel,
     onDelete: handleDelete.openModal,
     deletingAclId: aclToDelete,
     isCreatePending,
+    canManageAcl,
   });
 
   return (
     <>
       <FormProvider {...formMethods}>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
-        <form onSubmit={formMethods.handleSubmit(handleCreate)} className="[&_th]:!break-normal">
+        <form
+          onSubmit={formMethods.handleSubmit(handleCreate.onConfirm)}
+          className="[&_th]:!break-normal"
+        >
           <Datagrid
             columns={columns}
             data={data}
@@ -103,7 +116,12 @@ export const AclDatagrid: FC = () => {
             containerHeight={getContainerHeight(data.length)}
             maxRowHeight={50}
             size={TABLE_SIZE.sm}
-            topbar={<AclDatagridTopbar onAddClick={handleAddClick} isButtonDisabled={hasDraft} />}
+            topbar={
+              <AclDatagridTopbar
+                onAddClick={handleCreate.onNew}
+                isButtonDisabled={hasDraft || !canManageAcl}
+              />
+            }
           />
         </form>
       </FormProvider>
