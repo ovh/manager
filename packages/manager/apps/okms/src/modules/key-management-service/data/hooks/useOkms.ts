@@ -40,6 +40,7 @@ export const useOkmsDatagridList = (params: UseOkmsDatagridListParams = {}) => {
 
   return useDataApi<OKMS>({
     iceberg: true,
+    disableCache: true,
     enabled: true,
     version: 'v2',
     route: '/okms/resource',
