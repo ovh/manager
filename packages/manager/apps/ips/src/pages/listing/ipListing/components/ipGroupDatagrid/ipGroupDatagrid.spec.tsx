@@ -111,56 +111,89 @@ vi.mock('../DatagridCells', () => ({
 }));
 
 /** RENDER */
-const renderComponent = () => {
-  const row = { original: { ip: '123.123.123.160/30' } } as Row<{ ip: string }>;
-  const parentHeaders: MutableRefObject<Record<string, HTMLTableCellElement>> =
-    {
-      current: {
-        ip: {
-          clientWidth: 101,
-        } as HTMLTableCellElement,
-        'ip-type': {
-          clientWidth: 102,
-        } as HTMLTableCellElement,
-        'ip-alerts': {
-          clientWidth: 103,
-        } as HTMLTableCellElement,
-        'ip-region': {
-          clientWidth: 104,
-        } as HTMLTableCellElement,
-        'ip-country': {
-          clientWidth: 105,
-        } as HTMLTableCellElement,
-        'ip-attached-service': {
-          clientWidth: 106,
-        } as HTMLTableCellElement,
-        'ip-reverse': {
-          clientWidth: 107,
-        } as HTMLTableCellElement,
-        'ip-vmac': {
-          clientWidth: 108,
-        } as HTMLTableCellElement,
-        'ip-ddos': {
-          clientWidth: 109,
-        } as HTMLTableCellElement,
-        'ip-edge-firewall': {
-          clientWidth: 110,
-        } as HTMLTableCellElement,
-        'ip-game-firewall': {
-          clientWidth: 111,
-        } as HTMLTableCellElement,
-        action: {
-          clientWidth: 112,
-        } as HTMLTableCellElement,
-      },
-    } as MutableRefObject<Record<string, HTMLTableCellElement>>;
-
+const renderComponent = (ip = '123.123.123.160/30') => {
+  const row = { original: { ip } } as Row<{ ip: string }>;
   return render(
     <QueryClientProvider client={queryClient}>
       <IpGroupDatagrid row={row} parentHeaders={parentHeaders} />
     </QueryClientProvider>,
   );
 };
+
+const parentHeaders: MutableRefObject<Record<string, HTMLTableCellElement>> = {
+  current: {
+    ip: { clientWidth: 101 } as HTMLTableCellElement,
+    'ip-type': { clientWidth: 102 } as HTMLTableCellElement,
+    'ip-alerts': { clientWidth: 103 } as HTMLTableCellElement,
+    'ip-region': { clientWidth: 104 } as HTMLTableCellElement,
+    'ip-country': { clientWidth: 105 } as HTMLTableCellElement,
+    'ip-attached-service': { clientWidth: 106 } as HTMLTableCellElement,
+    'ip-reverse': { clientWidth: 107 } as HTMLTableCellElement,
+    'ip-vmac': { clientWidth: 108 } as HTMLTableCellElement,
+    'ip-ddos': { clientWidth: 109 } as HTMLTableCellElement,
+    'ip-edge-firewall': { clientWidth: 110 } as HTMLTableCellElement,
+    'ip-game-firewall': { clientWidth: 111 } as HTMLTableCellElement,
+    action: { clientWidth: 112 } as HTMLTableCellElement,
+  },
+} as MutableRefObject<Record<string, HTMLTableCellElement>>;
+
+const IPV6_BLOCK = '2001:41d0::/32';
+
+describe('IpDatagrid Component - IPv6 block use case', () => {
+  beforeEach(() => {
+    useGetIpDetailsMock.mockReturnValue({
+      ipDetails: ipDetailsList[3] as IpDetails,
+      isLoading: false,
+    });
+    useGetIpMitigationWithoutIcebergMock.mockReturnValue({
+      ipMitigation: {},
+      error: undefined,
+      isLoading: false,
+    });
+    useGetIpGameFirewallMock.mockReturnValue({
+      ipGameFirewall: undefined,
+      error: undefined,
+      isLoading: false,
+    });
+    useGetIpVmacWithIpMock.mockReturnValue({
+      vmacsWithIp: [],
+      isLoading: false,
+      error: undefined,
+    });
+  });
+
+  it('should display child IPs built from the IPv6 reverse records', async () => {
+    useGetIcebergIpReverseMock.mockReturnValue({
+      ipsReverse: [
+        { ipReverse: '2001:41d0::1' },
+        { ipReverse: '2001:41d0::2' },
+      ],
+      isLoading: false,
+      error: undefined,
+    });
+
+    const { getAllByText } = renderComponent(IPV6_BLOCK);
+
+    await waitFor(() => {
+      expect(getAllByText('2001:41d0::1').length).toBeGreaterThan(0);
+      expect(getAllByText('2001:41d0::2').length).toBeGreaterThan(0);
+    });
+  });
+
+  it('should show the no-result message when there are no IPv6 reverse records', async () => {
+    useGetIcebergIpReverseMock.mockReturnValue({
+      ipsReverse: [],
+      isLoading: false,
+      error: undefined,
+    });
+
+    const { getByText } = renderComponent(IPV6_BLOCK);
+
+    await waitFor(() => {
+      expect(getByText('listingNoResultFoundIpv6')).toBeInTheDocument();
+    });
+  });
+});
 
 describe('IpDatagrid Component', () => {
   beforeAll(() => {
