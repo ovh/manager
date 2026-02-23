@@ -34,6 +34,7 @@ type TUseAclColumnProps = {
   onDelete: (aclId: string) => void;
   deletingAclId?: string;
   isCreatePending: boolean;
+  canManageAcl: boolean;
 };
 
 export const useAclColumn = ({
@@ -43,6 +44,7 @@ export const useAclColumn = ({
   onDelete,
   deletingAclId,
   isCreatePending,
+  canManageAcl,
 }: TUseAclColumnProps): DatagridColumn<TAclData | TAclDraftData>[] => {
   const { t } = useTranslation(['acl', NAMESPACES.ACTIONS]);
   const { permissions, permissionsMap } = useAclPermissions();
@@ -175,7 +177,7 @@ export const useAclColumn = ({
                   color="primary"
                   size="sm"
                   aria-label={t(`${NAMESPACES.ACTIONS}:delete`)}
-                  disabled={isCreatePending || hasDraft}
+                  disabled={isCreatePending || hasDraft || !canManageAcl}
                   onClick={() => onDelete(aclId)}
                 >
                   <Icon name={ICON_NAME.trash} />
@@ -197,6 +199,7 @@ export const useAclColumn = ({
     onDelete,
     permissions,
     permissionsMap,
+    canManageAcl,
     t,
   ]);
 };
