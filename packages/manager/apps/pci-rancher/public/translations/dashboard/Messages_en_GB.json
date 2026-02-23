@@ -90,13 +90,8 @@
   "iam_authentication_warning": "Known limitation",
   "generateAccessModalIamWarning2": "To fix this problem, you need to first log in as the local <strong>“admin”</strong> user, in order to regain access using the IAM root user.",
   "iam_modal_deactivation_warning_continue": "Do you wish to continue?",
-  "freeTrialBannerMessage": "You benefit from a free credit: • {{amountOvhEdition}} for OVHcloud Edition (equivalent to 20 vCPUs for 1 month) • {{amountStandard}} for Standard (equivalent to 20 vCPUs for 1 month)",
-  "freeTrialBannerMessageLine1": "You benefit from a free credit:",
-  "freeTrialBannerMessageLine2": "{{amount}} for OVHcloud Edition (equivalent to 20 vCPUs for 1 month)",
-  "freeTrialBannerMessageLine3": "{{amount}} for Standard (equivalent to 20 vCPUs for 1 month)",
   "freeTrialBadge": "Free Trial",
   "freeTrialPriceLabel": "Free*",
   "freeTrialThenLabel": "Then",
-  "freeTrialDisclaimer": "*Credit valid for ~1 month depending on your usage. Once the credit is exhausted, billing will automatically resume based on your consumption.",
   "freeTrialVoucherBanner": "You are currently benefiting from the trial offer on this service. Find the details of your available credit in your <l>Voucher</l> interface."
 }
