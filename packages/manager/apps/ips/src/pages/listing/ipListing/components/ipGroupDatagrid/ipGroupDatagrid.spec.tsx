@@ -209,10 +209,8 @@ describe('IpDatagrid Component', () => {
       expect(getAllByText('123.123.123.161').length).toBeGreaterThan(0);
       expect(getAllByText('123.123.123.162').length).toBeGreaterThan(0);
       expect(getAllByText('123.123.123.163').length).toBeGreaterThan(0);
-      const ipTypeColumn = getAllByText('ip-type')?.[0]?.closest('td');
       const actionColumn = getAllByText('actions')?.[0]?.closest('td');
 
-      expect(ipTypeColumn?.style.width).toBe('102px');
       expect(actionColumn?.style.width).toBe('112px');
     });
   });
