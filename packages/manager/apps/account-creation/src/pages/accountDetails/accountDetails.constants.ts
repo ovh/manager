@@ -1,3 +1,5 @@
+import { Rule } from '@/types/rule';
+
 export const TRACKING_GOAL_TYPE = 'account-creation-finalstep';
 
 export const COUNTRIES_VAT_LABEL: Record<string, string> = {
@@ -66,4 +68,16 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   UY: 'RUT',
   VE: 'RIF',
   MA: 'ICE',
+};
+
+export const CNIN_RULE: Rule = {
+  minLength: null,
+  fieldName: 'companyNationalIdentificationNumber',
+  in: null,
+  mandatory: true,
+  maxLength: null,
+  regularExpression: '^\\d{9}(?:\\d{5})?$',
+  examples: null,
+  defaultValue: null,
+  prefix: null,
 };
