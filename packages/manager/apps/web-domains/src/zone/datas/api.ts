@@ -66,6 +66,31 @@ export const createZoneRecord = async (
   return data;
 };
 
+export type UpdateZoneRecordPayload = {
+  subDomain?: string;
+  target: string;
+  ttl?: number;
+};
+
+/**
+ * Update a zone record.
+ * PUT /domain/zone/{serviceName}/record/{recordId}
+ */
+export const updateZoneRecord = async (
+  serviceName: string,
+  recordId: string,
+  payload: UpdateZoneRecordPayload,
+): Promise<void> => {
+  await v6.put(
+    `/domain/zone/${serviceName}/record/${recordId}`,
+    {
+      subDomain: payload.subDomain ?? '',
+      target: payload.target,
+      ttl: payload.ttl,
+    },
+  );
+};
+
 /**
  * Refresh the zone (apply pending changes).
  * POST /domain/zone/{serviceName}/refresh

@@ -33,18 +33,22 @@ export default function ZonePage() {
   const [searchInput, setSearchInput] = useState('');
   const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | null>(null);
   const [showAddEntryDiv, setShowAddEntryDiv] = useState(false);
+  const [editingRecord, setEditingRecord] = useState<ZoneRecord | null>(null);
   const { filters, addFilter, removeFilter } = useColumnFilters();
   const quickAddRef = useRef<HTMLDivElement>(null);
 
   const handleQuickAddSuccess = useCallback(() => {
     setShowAddEntryDiv(false);
+    setEditingRecord(null);
   }, []);
 
   const handleQuickAddCancel = useCallback(() => {
     setShowAddEntryDiv(false);
+    setEditingRecord(null);
   }, []);
 
   const handleToggleAddEntry = useCallback(() => {
+    setEditingRecord(null);
     setShowAddEntryDiv(prev => !prev);
   }, []);
 
@@ -187,7 +191,10 @@ export default function ZonePage() {
     {
       id: 1,
       label: t('zone_page_modify_entry'),
-      onClick: () => navigate(buildUrl(`${tabsZone}/modify-entry`), { state: { record } }),
+      onClick: () => {
+        setEditingRecord(record);
+        setShowAddEntryDiv(true);
+      },
     },
     {
       id: 2,
@@ -287,6 +294,7 @@ export default function ZonePage() {
               visible={showAddEntryDiv}
               onSuccess={handleQuickAddSuccess}
               onCancel={handleQuickAddCancel}
+              editingRecord={editingRecord}
             />
           </div>
           <Datagrid

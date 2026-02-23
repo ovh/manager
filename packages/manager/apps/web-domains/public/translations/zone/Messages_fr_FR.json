@@ -260,7 +260,7 @@
   "zone_page_form_label_dmarc_rua": "URI de création de rapports globaux",
   "zone_page_form_label_dmarc_sp": "Règle pour les sous-domaines",
   "zone_page_form_label_dmarc_aspf": "Mode d'alignement pour SPF",
-  "zone_page_form_spf_help": "Si votre nom de domaine domaine {{domain}} est configuré sur un serveur mutualisé OVH, le champ SPF de base à utiliser est simplement :",
+  "zone_page_form_spf_help": "Si votre domaine {{domain}} est configuré sur un serveur mutualisé OVH, le champ SPF de base à utiliser est simplement :",
   "zone_page_form_svcb_params_priority_zero": "Si la priorité est 0, le champ paramètres doit rester vide.",
   "zone_page_resume_info": "Vous allez ajouter l'entrée suivante dans votre zone DNS :",
   "zone_page_resume_alert": "L'ajout sera immédiat dans la zone DNS, mais veuillez prendre en compte le temps de propagation (maximum 24h).",
@@ -326,5 +326,7 @@
   "zone_page_form_bind_error_unsupported_type": "Ce type d'enregistrement n'est pas supporté.",
   "zone_page_form_bind_error_invalid_rdata": "Les données de l'enregistrement (RDATA) sont incomplètes ou invalides.",
   "zone_page_form_add_record_success": "Votre enregistrement a bien été ajouté.",
-  "zone_page_form_add_record_error": "Une erreur est survenue lors de l'ajout de l'enregistrement : {{error}}"
+  "zone_page_form_add_record_error": "Une erreur est survenue lors de l'ajout de l'enregistrement : {{error}}",
+  "zone_page_form_modify_record_success": "Votre enregistrement a bien été modifié.",
+  "zone_page_form_modify_record_error": "Une erreur est survenue lors de la modification de l'enregistrement : {{error}}"
 }

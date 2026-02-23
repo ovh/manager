@@ -53,6 +53,7 @@ export interface DynamicRecordFormProps {
   readonly control: Control<AddEntrySchemaType>;
   readonly watch: UseFormWatch<AddEntrySchemaType>;
   readonly domainSuffix: string;
+  readonly hideMessage?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -313,6 +314,7 @@ export function DynamicRecordForm({
   control,
   watch,
   domainSuffix,
+  hideMessage,
 }: DynamicRecordFormProps) {
   const { t } = useTranslation('zone');
   const config = RECORD_FORM_CONFIGS[recordType];
@@ -329,13 +331,15 @@ export function DynamicRecordForm({
 
   return (
     <>
-      <RenderMessage
-        config={config}
-        serviceName={domainSuffix}
-        fullDomain={fullDomain}
-        target={targetStr}
-      />
-      {config.warningKey && (
+      {!hideMessage && (
+        <RenderMessage
+          config={config}
+          serviceName={domainSuffix}
+          fullDomain={fullDomain}
+          target={targetStr}
+        />
+      )}
+      {!hideMessage && config.warningKey && (
         <Message color={MESSAGE_COLOR.warning} dismissible={false}>
           <MessageIcon name={ICON_NAME.triangleExclamation} />
           {t(config.warningKey)}

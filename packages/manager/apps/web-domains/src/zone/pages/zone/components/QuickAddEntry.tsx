@@ -16,7 +16,9 @@ import { DynamicRecordForm } from "./DynamicRecordForm";
 import { SPFRecordForm } from "@/zone/pages/zone/add/components/forms/SPFRecordForm";
 import { parseBindRecord } from "@/zone/utils/parseBindRecord";
 import { useAddZoneRecord } from "@/zone/hooks/useAddZoneRecord/useAddZoneRecord";
+import { useUpdateZoneRecord } from "@/zone/hooks/useUpdateZoneRecord/useUpdateZoneRecord";
 import { useIsDesktop } from "@/zone/hooks/useIsDesktop";
+import type { ZoneRecord } from "@/zone/types/zoneRecords.types";
 
 function addEntryResolver(t: (key: string, params?: Record<string, unknown>) => string): Resolver<AddEntrySchemaType> {
   return (values) => {
@@ -44,9 +46,10 @@ interface QuickAddEntryProps {
   readonly visible?: boolean;
   readonly onSuccess?: () => void;
   readonly onCancel?: () => void;
+  readonly editingRecord?: ZoneRecord | null;
 }
 
-export default function QuickAddEntry({ serviceName, visible, onSuccess, onCancel }: QuickAddEntryProps) {
+export default function QuickAddEntry({ serviceName, visible, onSuccess, onCancel, editingRecord }: QuickAddEntryProps) {
   const { t } = useTranslation(["zone", "form", NAMESPACES.ACTIONS]);
   const isDesktop = useIsDesktop();
 
@@ -80,6 +83,26 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       resetBindState();
     }
   }, [visible, reset, resetBindState]);
+
+  // Pre-fill form when editing a record
+  useEffect(() => {
+    if (!editingRecord) return;
+    const bindLine = `${editingRecord.subDomain || '@'} ${editingRecord.ttl} IN ${editingRecord.fieldType} ${editingRecord.target}`;
+    const result = parseBindRecord(bindLine);
+    if (result.success) {
+      const { recordType: parsedType, ...parsedFields } = result.values;
+      reset({ recordType: editingRecord.fieldType, ...parsedFields });
+    } else {
+      // Fallback: set minimal fields
+      reset({
+        recordType: editingRecord.fieldType,
+        subDomain: editingRecord.subDomain ?? '',
+        target: editingRecord.target ?? '',
+        ttl: editingRecord.ttl,
+        ttlSelect: editingRecord.ttl ? TtlSelectEnum.CUSTOM : TtlSelectEnum.GLOBAL,
+      });
+    }
+  }, [editingRecord, reset]);
 
   // Clear regex/replace when NAPTR flag changes
   const flagValue = watch('flag');
@@ -127,7 +150,10 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     }, 1500);
   }, [bindInput, reset, setValue]);
 
+  const isEditMode = !!editingRecord;
   const { addRecord, isAddingRecord } = useAddZoneRecord(serviceName);
+  const { updateRecord, isUpdatingRecord } = useUpdateZoneRecord(serviceName);
+  const isMutating = isAddingRecord || isUpdatingRecord;
 
   const handleSelectRecordType = useCallback((fieldType: string) => {
     // Reset the entire form + clear all validation errors from the previous record type
@@ -165,21 +191,40 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       ? undefined
       : Number(data.ttl);
 
-    addRecord(
-      {
-        fieldType,
-        subDomain: (data.subDomain as string) ?? '',
-        target,
-        ttl,
-      },
-      {
-        onSuccess: () => {
-          reset();
-          resetBindState();
-          onSuccess?.();
+    if (isEditMode && editingRecord) {
+      updateRecord(
+        {
+          recordId: editingRecord.id,
+          fieldType,
+          subDomain: (data.subDomain as string) ?? '',
+          target,
+          ttl,
         },
-      },
-    );
+        {
+          onSuccess: () => {
+            reset();
+            resetBindState();
+            onSuccess?.();
+          },
+        },
+      );
+    } else {
+      addRecord(
+        {
+          fieldType,
+          subDomain: (data.subDomain as string) ?? '',
+          target,
+          ttl,
+        },
+        {
+          onSuccess: () => {
+            reset();
+            resetBindState();
+            onSuccess?.();
+          },
+        },
+      );
+    }
   }, [addRecord, reset, resetBindState, onSuccess]);
 
   const handleCancel = useCallback(() => {
@@ -225,6 +270,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4">
+          {!isEditMode && (
           <div className="flex items-end justify-between gap-4">
             <FormField className="w-full md:w-1/2">
               <FormFieldLabel>
@@ -282,6 +328,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               </Button>
             )}
           </div>
+          )}
 
           {showBindInput && (
             <div className="flex flex-col gap-2 p-4 border rounded-md bg-[--ods-color-surface-lighter]">
@@ -348,6 +395,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               control={control}
               watch={watch}
               domainSuffix={serviceName}
+              hideMessage={isEditMode}
             />
           )}
 
@@ -358,16 +406,16 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 variant={BUTTON_VARIANT.outline}
                 size={BUTTON_SIZE.sm}
                 onClick={handleCancel}
-                disabled={isAddingRecord}
+                disabled={isMutating}
               >
                 {t(`${NAMESPACES.ACTIONS}:cancel`)}
               </Button>
-              {recordTypeStr === FieldTypeMailRecordsEnum.SPF ? (
+              {recordTypeStr === FieldTypeMailRecordsEnum.SPF && !isEditMode ? (
                 <Button
                   type="button"
                   size={BUTTON_SIZE.sm}
-                  disabled={isAddingRecord}
-                  loading={isAddingRecord}
+                  disabled={isMutating}
+                  loading={isMutating}
                   onClick={() => {
                     onSubmit({
                       recordType: FieldTypeMailRecordsEnum.SPF,
@@ -383,10 +431,10 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 <Button
                   type="submit"
                   size={BUTTON_SIZE.sm}
-                  disabled={!isValid || isAddingRecord}
-                  loading={isAddingRecord}
+                  disabled={!isValid || isMutating}
+                  loading={isMutating}
                 >
-                  {t(`${NAMESPACES.ACTIONS}:add`)}
+                  {isEditMode ? t(`${NAMESPACES.ACTIONS}:modify`) : t(`${NAMESPACES.ACTIONS}:add`)}
                 </Button>
               )}
             </div>
