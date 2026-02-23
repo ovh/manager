@@ -136,7 +136,7 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
               {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
               <Input autoFocus {...register('name')} className="w-96 max-w-full" />
             </EditableInput>
-            <EditableActions>
+            <EditableActions className="flex">
               {({ editing }) =>
                 editing ? (
                   <>
