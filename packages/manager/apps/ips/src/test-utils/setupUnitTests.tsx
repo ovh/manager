@@ -3,12 +3,17 @@ import { NavLinkProps } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
-vi.mock('react-i18next', () => ({
-  useTranslation: () => ({
-    t: (translationKey: string) => translationKey,
-    i18n: { language: 'fr_FR' },
-  }),
-}));
+vi.mock('react-i18next', async (importOriginal) => {
+  const original: typeof import('react-i18next') = await importOriginal();
+  return {
+    ...original,
+    Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
+    useTranslation: () => ({
+      t: (translationKey: string) => translationKey,
+      i18n: { language: 'fr_FR' },
+    }),
+  };
+});
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   const original: typeof import('@ovh-ux/manager-react-shell-client') =

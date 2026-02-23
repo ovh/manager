@@ -114,5 +114,6 @@
   "aggregate_in_progress": "Agrégation en cours",
   "creation_in_progress": "Création en cours",
   "survey_link": "Vous aimez?",
-  "survey_link_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !"
+  "survey_link_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
+  "listingNoResultFoundIpv6": "Aucun résultat (Cliquer <Link>ici</Link> pour configurer un reverse DNS pour que votre IP soit listée)"
 }
