@@ -5,7 +5,7 @@
   "legal_form_administration": "Administration publique",
   "legal_form_corporation": "Entreprise",
   "legal_form_individual": "Particulier",
-  "legal_form_personalcorporation": "Ditta individuale",
+  "legal_form_personalcorporation": "Entreprise individuelle",
   "legal_form_tooltip_corporation_description": "Le compte « Entreprise » doit être crée par toutes les <strong>personnes morales</strong> (hors administrations publiques et associations) et toutes les <strong>personnes physiques (entrepreneurs individuels)</strong> achetant des produits OVHcloud dans le cadre de leur <strong>activité professionnelle</strong>.",
   "legal_form_tooltip_individual_description": "Le compte « Particulier » doit être crée uniquement par les <strong>personnes physiques</strong> achetant des produits OVHcloud pour leurs <strong>besoins privés, hors cadre d’une activité professionnelle</strong>.",
   "legal_form_tooltip_administration_description": "Le compte « Administration publique » doit être crée uniquement par les <strong>administrations d'État, les administrations territoriales ou les établissements publics</strong>.",
