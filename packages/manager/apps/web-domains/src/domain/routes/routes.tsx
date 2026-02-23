@@ -60,6 +60,9 @@ const HistoryPage = React.lazy(() =>
 const CompareZonesPage = React.lazy(() =>
   import('@/zone/pages/zone/compare/CompareZones.page'),
 );
+const ModifyTextualRecordPage = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyTextualRecord.page'),
+);
 const ModifyEntryModal = React.lazy(() =>
   import('@/zone/pages/zone/modify/ModifyEntry.modal'),
 );
@@ -153,6 +156,7 @@ export default (
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
+      <Route path={zoneUrls.zoneModifyTextualRecord} Component={ModifyTextualRecordPage} />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}

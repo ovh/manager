@@ -10,6 +10,9 @@ import {
 import {
   TEXT_PRESET,
   Text,
+  Select,
+  SelectContent,
+  SelectControl,
 } from '@ovhcloud/ods-react';
 import { useGetZoneHistoryWithDetails } from '@/zone/hooks/data/history.hooks';
 import CompareZonesViewer from '@/zone/components/CompareZonesViewer';
@@ -84,44 +87,42 @@ export default function CompareZonesPage() {
             <Text preset={TEXT_PRESET.caption} className="mb-2 block font-semibold">
               {t('zone_history_compare_base_label')}
             </Text>
-            <select
-              className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm"
-              value={baseId}
-              onChange={(event) => setBaseId(event.target.value)}
+            <Select
+              value={baseId ? [baseId] : []}
+              items={itemsByDateDesc.map((item) => ({
+                label: formatDate({ date: item.creationDate, format: 'PPpp' }),
+                value: item.id,
+                disabled: item.id === modifiedId,
+              }))}
+              onValueChange={(detail: { value?: string[] }) =>
+                setBaseId(detail.value?.[0] ?? '')
+              }
               disabled={itemsByDateDesc.length === 0}
             >
-              {itemsByDateDesc.map((item) => (
-                <option
-                  key={`base-${item.id}`}
-                  value={item.id}
-                  disabled={item.id === modifiedId}
-                >
-                  {formatDate({ date: item.creationDate, format: 'PPpp' })}
-                </option>
-              ))}
-            </select>
+              <SelectControl placeholder={t('zone_history_compare_base_label')} />
+              <SelectContent createPortal={false} />
+            </Select>
           </div>
 
           <div className="flex-1">
             <Text preset={TEXT_PRESET.caption} className="mb-2 block font-semibold">
               {t('zone_history_compare_modified_label')}
             </Text>
-            <select
-              className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm"
-              value={modifiedId}
-              onChange={(event) => setModifiedId(event.target.value)}
+            <Select
+              value={modifiedId ? [modifiedId] : []}
+              items={itemsByDateDesc.map((item) => ({
+                label: formatDate({ date: item.creationDate, format: 'PPpp' }),
+                value: item.id,
+                disabled: item.id === baseId,
+              }))}
+              onValueChange={(detail: { value?: string[] }) =>
+                setModifiedId(detail.value?.[0] ?? '')
+              }
               disabled={itemsByDateDesc.length === 0}
             >
-              {itemsByDateDesc.map((item) => (
-                <option
-                  key={`modified-${item.id}`}
-                  value={item.id}
-                  disabled={item.id === baseId}
-                >
-                  {formatDate({ date: item.creationDate, format: 'PPpp' })}
-                </option>
-              ))}
-            </select>
+              <SelectControl placeholder={t('zone_history_compare_modified_label')} />
+              <SelectContent createPortal={false} />
+            </Select>
           </div>
         </div>
       </div>

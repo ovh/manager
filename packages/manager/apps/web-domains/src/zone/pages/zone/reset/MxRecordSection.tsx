@@ -45,10 +45,6 @@ export default function MxRecordSection({
 
   return (
     <div>
-      <Text preset={TEXT_PRESET.heading3} className="mb-3 block">
-        {t('zone_page_reset_mx_record_title')}
-      </Text>
-
       <FormField>
         <FormFieldLabel>{t('zone_page_reset_type_mx_label')}</FormFieldLabel>
         <Select

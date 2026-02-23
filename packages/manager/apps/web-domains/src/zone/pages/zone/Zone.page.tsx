@@ -13,7 +13,6 @@ import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TE
 import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import ModifyTextualRecordModal from "@/zone/pages/zone/modify/ModifyTextualRecord.modal";
 import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
 import ResetDrawer from "@/zone/pages/zone/reset/ResetDrawer";
 import { RowSelectionState } from '@tanstack/react-table';
@@ -147,7 +146,7 @@ export default function ZonePage() {
     {
       id: 1,
       label: t('zone_page_modify_textual'),
-      onClick: () => setOpenModal('modify-textual-record'),
+      onClick: () => navigate(buildUrl(`${tabsZone}/modify-textual-record`)),
       isDisabled: !canImportZone,
     },
     {
@@ -175,24 +174,24 @@ export default function ZonePage() {
 
   const zoneModals = (
     <>
-      {openModal === 'modify-textual-record' && (
-        <ModifyTextualRecordModal
-          onCloseCallback={closeModal}
-          onSuccessCallback={closeModal}
-        />
-      )}
       {openModal === 'modify-ttl' && (
         <ModifyTtlModal
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
         />
       )}
-      {openModal === 'reset' && (
+      {openModal === 'reset' && [
+        <div
+          key={'background'}
+          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
+          onClick={() => closeModal()}
+        />,
         <ResetDrawer
+          key={"resetDrawer"}
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
         />
-      )}
+      ]}
     </>
   );
 

@@ -8,9 +8,7 @@ import {
   Select,
   SelectContent,
   SelectControl,
-  Spinner,
-  TEXT_PRESET,
-  Text,
+  Spinner
 } from '@ovhcloud/ods-react';
 import { A_TYPES, type AType } from '@/zone/pages/zone/reset/reset.types';
 
@@ -46,10 +44,6 @@ export default function ARecordSection({
 
   return (
     <div>
-      <Text preset={TEXT_PRESET.heading3} className="mb-3 block">
-        {t('zone_page_reset_a_record_title')}
-      </Text>
-
       <FormField>
         <FormFieldLabel>{t('zone_page_reset_type_a_label')}</FormFieldLabel>
         <Select

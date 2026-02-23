@@ -71,7 +71,7 @@ export default function RestoreZoneModal({
     <Modal open={isOpen} onOpenChange={(detail) => !detail.open && onClose()}>
       <ModalContent dismissible>
         <ModalHeader>
-          <Text preset={TEXT_PRESET.heading3} className="mb-4">
+          <Text preset={TEXT_PRESET.heading3}>
             {t('zone_history_restore_modal_title')}
           </Text>
         </ModalHeader>

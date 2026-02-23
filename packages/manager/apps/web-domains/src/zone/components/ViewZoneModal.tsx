@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useFormatDate } from '@ovh-ux/manager-react-components';
 import {
   Button,
   BUTTON_VARIANT,
@@ -31,6 +32,7 @@ export default function ViewZoneModal({
   item,
 }: ViewZoneModalProps) {
   const { t } = useTranslation('zone');
+  const formatDate = useFormatDate();
   const { mutate: viewZone, data: content, isPending: isLoading, error } = useViewZoneFile();
   const [copied, setCopied] = useState(false);
 
@@ -55,8 +57,8 @@ export default function ViewZoneModal({
     <Modal open={isOpen} onOpenChange={(detail) => !detail.open && onClose()}>
       <ModalContent dismissible className="max-w-4xl">
         <ModalHeader>
-          <Text preset={TEXT_PRESET.heading3} className="mb-4">
-            {t('zone_history_view')}
+          <Text preset={TEXT_PRESET.heading3}>
+            {t('zone_history_view_title', { date: formatDate({ date: item.creationDate, format: 'PPpp' }) })}
           </Text>
         </ModalHeader>
         <ModalBody>
