@@ -150,7 +150,9 @@ export const ShareEditableName: React.FC<TShareEditableNameProps> = ({
             </EditableActions>
           </Editable>
           {errors.name && (
-            <FormFieldError>{t(`create:name.error.${errors.name.type}`)}</FormFieldError>
+            <Text preset="span">
+              <FormFieldError>{t(`create:name.error.${errors.name.type}`)}</FormFieldError>
+            </Text>
           )}
         </FormField>
       </form>
