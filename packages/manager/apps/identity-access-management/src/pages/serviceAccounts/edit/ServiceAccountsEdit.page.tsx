@@ -18,8 +18,8 @@ import {
 } from '@ovhcloud/ods-components';
 
 import {
-  SERVICE_ACCOUNTS_INPUT_MAX_LENGTH,
-  SERVICE_ACCOUNTS_INPUT_PATTERN,
+  PERMANENT_TOKENS_INPUT_MAX_LENGTH,
+  PERMANENT_TOKENS_INPUT_PATTERN,
 } from '@/constants';
 import { subRoutes } from '@/routes/routes.constant';
 import {
@@ -169,13 +169,13 @@ export default function ServiceAccountsEdit() {
         ? t('required_field', { ns: NAMESPACES.FORM })
         : undefined;
     }
-    if (value.length > SERVICE_ACCOUNTS_INPUT_MAX_LENGTH) {
+    if (value.length > PERMANENT_TOKENS_INPUT_MAX_LENGTH) {
       return t('max_chars', {
         ns: NAMESPACES.FORM,
-        value: { value: SERVICE_ACCOUNTS_INPUT_MAX_LENGTH },
+        value: { value: PERMANENT_TOKENS_INPUT_MAX_LENGTH },
       });
     }
-    if (!SERVICE_ACCOUNTS_INPUT_PATTERN.test(value)) {
+    if (!PERMANENT_TOKENS_INPUT_PATTERN.test(value)) {
       return t('error_pattern', { ns: NAMESPACES.FORM });
     }
 
@@ -220,7 +220,7 @@ export default function ServiceAccountsEdit() {
               type={ODS_INPUT_TYPE.text}
               name="accountName"
               value={name}
-              maxlength={SERVICE_ACCOUNTS_INPUT_MAX_LENGTH}
+              maxlength={PERMANENT_TOKENS_INPUT_MAX_LENGTH}
               onOdsChange={(e) => setName(e.detail.value as string)}
               hasError={!!nameError}
               data-testid="accountName"
@@ -236,7 +236,7 @@ export default function ServiceAccountsEdit() {
               name="accountDescription"
               value={description}
               onOdsChange={(e) => setDescription(e.detail.value as string)}
-              maxlength={SERVICE_ACCOUNTS_INPUT_MAX_LENGTH}
+              maxlength={PERMANENT_TOKENS_INPUT_MAX_LENGTH}
               hasError={!!descriptionError}
               rows={3}
               data-testid="accountDescription"
