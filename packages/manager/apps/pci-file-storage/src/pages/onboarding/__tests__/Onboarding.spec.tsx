@@ -6,7 +6,9 @@ import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
+import { useGetUser } from '@/hooks/useGetUser';
 import { useShares } from '@/data/hooks/shares/useShares';
 
 import OnboardingPage from '../Onboarding.page';
@@ -55,10 +57,12 @@ vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   Breadcrumb: () => <nav aria-label="Breadcrumb">Breadcrumb</nav>,
 }));
 
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useEnvironment: vi.fn().mockReturnValue({ region: 'EU' }),
+}));
+
 vi.mock('@/hooks/useGetUser', () => ({
-  useGetUser: () => ({
-    ovhSubsidiary: 'FR',
-  }),
+  useGetUser: vi.fn().mockReturnValue({ ovhSubsidiary: 'FR' }),
 }));
 
 vi.mock('@/data/hooks/shares/useShares', () => ({
@@ -139,13 +143,45 @@ describe('OnboardingPage', () => {
 
   describe('redirect when shares exist', () => {
     it('redirects to list page when user has shares', () => {
-      vi.mocked(useShares).mockReturnValue({
+      vi.mocked(useShares).mockReturnValueOnce({
         data: true,
         isLoading: false,
       } as unknown as QueryObserverSuccessResult<boolean>);
       render(<OnboardingPage />);
 
       expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+    });
+  });
+
+  describe('US region', () => {
+    beforeEach(() => {
+      vi.mocked(useEnvironment).mockReturnValue({ region: 'US' } as ReturnType<
+        typeof useEnvironment
+      >);
+      vi.mocked(useGetUser).mockReturnValue({ ovhSubsidiary: 'US' });
+    });
+
+    it('renders only the get-started link card', () => {
+      render(<OnboardingPage />);
+
+      const links = screen.getAllByRole('link');
+      expect(links).toHaveLength(1);
+    });
+
+    it('renders get-started link card with correct US href', () => {
+      render(<OnboardingPage />);
+
+      expect(screen.getByRole('link')).toHaveAttribute(
+        'href',
+        expect.stringContaining('https://support.us.ovhcloud.com/hc/en-us/articles/'),
+      );
+    });
+
+    it('renders get-started guide translations', () => {
+      render(<OnboardingPage />);
+
+      expect(screen.getByText('guides:get-started.title')).toBeVisible();
+      expect(screen.getByText('guides:get-started.description')).toBeVisible();
     });
   });
 });
