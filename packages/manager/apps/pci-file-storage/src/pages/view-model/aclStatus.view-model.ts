@@ -1,6 +1,8 @@
 import { TStatusBadgeProps } from '@/components/status-badge/StatusBadge.component';
 import { TAclStatus } from '@/domain/entities/acl.entity';
 
+export { ACL_STATUSES } from '@/domain/entities/acl.entity';
+
 const STATUS_TO_DISPLAY: Record<TAclStatus, TStatusBadgeProps> = {
   draft: { labelKey: 'status:draft', badgeColor: 'neutral' },
   activating: { labelKey: 'status:creating', badgeColor: 'warning' },

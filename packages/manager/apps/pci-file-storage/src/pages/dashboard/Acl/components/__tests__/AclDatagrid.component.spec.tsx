@@ -31,6 +31,19 @@ vi.mock('@/pages/dashboard/Acl/hooks/useAclActions', () => ({
   }),
 }));
 
+vi.mock('@/pages/dashboard/Acl/hooks/useAclDatagridFiltering', () => ({
+  useAclDatagridFiltering: vi.fn((acls: unknown[]) => ({
+    filteredAcls: acls,
+    filterProps: { add: vi.fn(), filters: [], remove: vi.fn() },
+    searchProps: {
+      onSearch: vi.fn(),
+      placeholder: '',
+      searchInput: '',
+      setSearchInput: vi.fn(),
+    },
+  })),
+}));
+
 vi.mock('@/pages/dashboard/Acl/components/AclDatagridTopbar.component', () => ({
   AclDatagridTopbar: () => <div data-testid="acl-datagrid-topbar" />,
 }));
