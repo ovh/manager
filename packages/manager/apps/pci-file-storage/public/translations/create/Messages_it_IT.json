@@ -56,13 +56,13 @@
   },
   "share": {
     "title": "Modalità di prestazione dello share",
-    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS e {{bandwidthLevel}} {{bandwidthUnit}}"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
   },
   "shareSize": {
     "title": "Dimensione dello share",
     "description": "Il 5 % della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
-    "label": "Allocazione delle prestazioni lineari (Gio)",
-    "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} MiB/s",
+    "label": "Allocazione delle prestazioni lineari ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "La dimensione dello share è inferiore al minimo consentito per questa offerta.",
       "max_value": "La dimensione dello share supera il massimo consentito per questa offerta.",
@@ -90,5 +90,9 @@
     "success": "Lo share {{name}} è in fase di creazione"
   },
   "title": "Crea un share",
-  "description": "Crea un share disponibile nel tuo progetto Public Cloud. Hai bisogno di ulteriori informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>"
+  "description": "Crea un share disponibile nel tuo progetto Public Cloud. Hai bisogno di ulteriori informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
 }

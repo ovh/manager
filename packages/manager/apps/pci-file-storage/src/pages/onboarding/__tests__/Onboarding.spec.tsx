@@ -5,11 +5,11 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
+import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
 
-import { useGetUser } from '@/hooks/useGetUser';
 import { useShares } from '@/data/hooks/shares/useShares';
+import { useGetUser } from '@/hooks/useGetUser';
 
 import OnboardingPage from '../Onboarding.page';
 

@@ -58,13 +58,13 @@
   },
   "share": {
     "title": "Mode de performance du share",
-    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS et {{bandwidthLevel}} {{bandwidthUnit}}"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS et {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
   },
   "shareSize": {
     "title": "Taille du share",
     "description": "5 % de la capacité de stockage est dédiée au stockage des snapshots",
-    "label": "Allocation de performance linéaire (Gio)",
-    "provisionedPerformance": "<strong>Performance provisionnée :</strong> Jusqu'à {{iops}} IOPS - {{throughput}} MiB/s",
+    "label": "Allocation de performance linéaire ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Performance provisionnée :</strong> Jusqu'à {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "La taille du share est inférieure au minimum autorisé pour cette offre.",
       "max_value": "La taille du share dépasse le maximum autorisé pour cette offre.",
@@ -90,5 +90,9 @@
   "submit": {
     "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",
     "success": "Le share {{name}} est en cours de création"
+  },
+  "units": {
+    "giga_octet": "Gio",
+    "mega_octet": "Mio"
   }
 }

@@ -1,5 +1,6 @@
-import { Region } from '@ovh-ux/manager-config';
 import { describe, expect, it } from 'vitest';
+
+import { Region } from '@ovh-ux/manager-config';
 
 import { GUIDES } from '@/constants/Guides.constants';
 
