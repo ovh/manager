@@ -6,21 +6,20 @@ import { ZoneRecord } from "@/zone/types/zoneRecords.types";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import { ShellContext } from "@ovh-ux/manager-react-shell-client";
 import { ActionMenu, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
+import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
+import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 import { FilterComparator, applyFilters } from "@ovh-ux/manager-core-api";
-import { useAuthorizationIam } from "@ovh-ux/manager-react-components";
 import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text } from "@ovhcloud/ods-react";
 import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
-import ModifyTextualRecordModal from "./modify/ModifyTextualRecord.modal";
-import ModifyTtlModal from "./modify/ModifyTtl.modal";
-import ResetModal from "./reset/Reset.modal";
 import { ExpandedState, RowSelectionState } from '@tanstack/react-table';
 import { useGetDomainZone } from "@/domain/hooks/data/query";
-import QuickAddEntry from "./components/QuickAddEntry";
 import ZoneDnsDatagrid from "./components/ZoneDnsDatagrid";
 import UnauthorizedBanner from "@/domain/components/UnauthorizedBanner/UnauthorizedBanner";
-import { useGetIAMResource } from "@/common/hooks/iam/useGetIAMResource";
+import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
+import ResetDrawer from "@/zone/pages/zone/reset/ResetDrawer";
+import QuickAddEntry from "@/zone/pages/zone/components/QuickAddEntry";
 
 export default function ZonePage() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
@@ -77,8 +76,25 @@ export default function ZonePage() {
     urn ?? '',
   );
 
-  const { addWarning, addInfo, clearNotifications } = useNotifications();
+  const { isPending: isIamSoaPending, isAuthorized: canEditSoa } = useAuthorizationIam(
+    ['dnsZone:apiovh:soa/edit'],
+    urn,
+  );
+  const canModifyTtl = !isIamSoaPending && canEditSoa;
 
+  const { isPending: isIamResetPending, isAuthorized: canDoReset } = useAuthorizationIam(
+    ['dnsZone:apiovh:reset'],
+    urn,
+  );
+  const canReset = !isIamResetPending && canDoReset;
+
+  const { isPending: isIamImportZonePending, isAuthorized: canDoImportZone } = useAuthorizationIam(
+    ['dnsZone:apiovh:import'],
+    urn,
+  );
+  const canImportZone = !isIamImportZonePending && canDoImportZone;
+
+  const { addWarning, addInfo, clearNotifications } = useNotifications();
 
   useEffect(() => {
     if (!isFetchingDomainZone && domainZoneError) {
@@ -149,12 +165,14 @@ export default function ZonePage() {
     {
       id: 1,
       label: t('zone_page_modify_textual'),
-      onClick: () => setOpenModal('modify-textual-record'),
+      onClick: () => navigate(buildUrl(`${tabsZone}/modify-textual-record`)),
+      isDisabled: !canImportZone,
     },
     {
       id: 2,
       label: t('zone_page_modify_default_ttl'),
       onClick: () => setOpenModal('modify-ttl'),
+      isDisabled: !canModifyTtl,
     },
     {
       id: 3,
@@ -165,6 +183,7 @@ export default function ZonePage() {
       id: 4,
       label: t('zone_page_reset'),
       onClick: () => setOpenModal('reset'),
+      isDisabled: !canReset,
     },
   ];
 
@@ -174,24 +193,24 @@ export default function ZonePage() {
 
   const zoneModals = (
     <>
-      {openModal === 'modify-textual-record' && (
-        <ModifyTextualRecordModal
-          onCloseCallback={closeModal}
-          onSuccessCallback={closeModal}
-        />
-      )}
       {openModal === 'modify-ttl' && (
         <ModifyTtlModal
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
         />
       )}
-      {openModal === 'reset' && (
-        <ResetModal
+      {openModal === 'reset' && [
+        <div
+          key={'background'}
+          className="fixed inset-0 bg-[--ods-color-primary-500] opacity-75 z-40"
+          onClick={() => closeModal()}
+        />,
+        <ResetDrawer
+          key={"resetDrawer"}
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
         />
-      )}
+      ]}
     </>
   );
 

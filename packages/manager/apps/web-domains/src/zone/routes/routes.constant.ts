@@ -6,14 +6,11 @@ export const urls = {
   //entry
   zoneModifyEntry: "/domain/:serviceName/zone/modify-entry",
   zoneDeleteEntry: "/domain/:serviceName/zone/delete-entry",
-  // modify 
+  // modify
   zoneModifyTextualRecord: "/domain/:serviceName/zone/modify-textual-record",
   zoneModifyTtlRecord: "/domain/:serviceName/zone/modify-ttl",
-  // history 
+  // history
   zoneHistory: "/domain/:serviceName/zone/history",
-  // reset 
-  zoneReset: "/domain/:serviceName/zone/reset",
-  // delete 
-  zoneDelete: "/domain/:serviceName/zone/delete",
-
-};
+  // compare
+  zoneCompare: "/domain/:serviceName/zone/compare",
+}
