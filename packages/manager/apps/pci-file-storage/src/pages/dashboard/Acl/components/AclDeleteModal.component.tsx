@@ -28,11 +28,12 @@ export const AclDeleteModal: React.FC<TAclDeleteModalProps> = ({
   return (
     <Modal open={open} onOpenChange={onCancel}>
       <ModalContent dismissible={false} aria-labelledby="delete-acl-title">
-        <ModalHeader className="bg-[--ods-color-primary-100] pb-5" />
-        <ModalBody className="flex flex-col gap-6">
-          <Text id="delete-acl-title" preset="heading-4">
+        <ModalHeader>
+          <Text id="delete-share-title" preset="heading-4">
             {t('acl:deleteModal.title')}
           </Text>
+        </ModalHeader>
+        <ModalBody className="flex flex-col gap-6">
           <Text preset="paragraph">
             {t('acl:deleteModal.description', {
               accessTo: aclData?.accessTo ?? '',
