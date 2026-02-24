@@ -56,13 +56,13 @@
   },
   "share": {
     "title": "Tryb wydajności share",
-    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS i {{bandwidthLevel}} {{bandwidthUnit}}"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS i {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
   },
   "shareSize": {
     "title": "Rozmiar share",
     "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
-    "label": "Przydział wydajności liniowej (Gio)",
-    "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} MiB/s",
+    "label": "Przydział wydajności liniowej ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "Rozmiar share jest mniejszy niż minimalny dozwolony dla tej oferty.",
       "max_value": "Rozmiar share przekracza maksymalny dozwolony dla tej oferty.",
@@ -90,5 +90,9 @@
     "success": "Share {{name}} jest w trakcie tworzenia"
   },
   "title": "Utwórz share",
-  "description": "Utwórz share dostępne w Twoim projekcie Public Cloud. Potrzebujesz więcej informacji na temat Public Cloud File Storage? <0>Sprawdź naszą dokumentację</0>"
+  "description": "Utwórz share dostępne w Twoim projekcie Public Cloud. Potrzebujesz więcej informacji na temat Public Cloud File Storage? <0>Sprawdź naszą dokumentację</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
 }

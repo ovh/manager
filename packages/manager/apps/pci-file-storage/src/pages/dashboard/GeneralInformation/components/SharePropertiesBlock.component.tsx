@@ -37,10 +37,7 @@ export const SharePropertiesBlock: React.FC = () => {
 
   return (
     <DashboardCardLayout title={t('cards.properties')}>
-      <DashboardTileBlock
-        label={t('share:fields.protocol')}
-        isLoading={isShareLoading}
-      >
+      <DashboardTileBlock label={t('share:fields.protocol')} isLoading={isShareLoading}>
         <Text preset="paragraph">{shareDetails?.protocol}</Text>
       </DashboardTileBlock>
       <DashboardTileBlock label={t('share:fields.allocated_capacity')} isLoading={isShareLoading}>
