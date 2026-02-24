@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
+import { z, ZodOptional } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BaseLayout,
@@ -486,9 +486,10 @@ function AccountDetailsForm({
                       >
                         <OdsText preset="caption">
                           {t('account_details_field_siret')}
-                          {rules?.companyNationalIdentificationNumber
+                          {(rules?.companyNationalIdentificationNumber
                             ?.mandatory ||
-                            (!!cninSchemaOverride && ' *')}
+                            !(cninSchemaOverride instanceof ZodOptional)) && // TODO: Remove next line after mandatory check is implemented in Xander for FR
+                            ' *'}
                         </OdsText>
                       </label>
                       <OdsInput
