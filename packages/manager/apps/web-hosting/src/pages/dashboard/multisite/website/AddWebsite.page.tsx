@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Button,
@@ -23,9 +22,10 @@ import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 
 import { usePostWebHostingWebsites } from '@/data/hooks/webHosting/webHostingWebsiteDomain/webHostingWebsiteDomain';
 import { CmsType } from '@/data/types/product/managedWordpress/cms';
+import { PostWebHostingWebsitePayload } from '@/data/types/product/webHosting';
 import { AssociationType } from '@/data/types/product/website';
 import { ServiceStatus } from '@/data/types/status';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData, zForm } from '@/utils/formSchemas.utils';
 
 import { DomainAssociation } from './component/DomainAssociation';
 import { DomainCmsModule } from './component/DomainCmsModule';
@@ -39,14 +39,15 @@ export default function AddWebsitePage() {
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
-  type FormData = z.infer<typeof websiteFormSchema>;
-
-  const { control, handleSubmit, watch, reset } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset, setValue, formState } = useForm<WebsiteFormData>({
     defaultValues: {
       path: 'public_html',
       autoConfigureDns: true,
+      module: CmsType.NONE,
+      advancedInstallation: false,
     },
-    resolver: zodResolver(websiteFormSchema),
+    resolver: zodResolver(zForm(t).WEBSITE_FORM_SCHEMA),
+    mode: 'onTouched',
   });
 
   const controlValues = watch();
@@ -74,10 +75,20 @@ export default function AddWebsitePage() {
     },
   );
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: WebsiteFormData) => {
     clearNotifications();
+
+    const isAdvancedInstallation =
+      data.advancedInstallation &&
+      'module' in data &&
+      data.module !== undefined &&
+      (data.module === CmsType.WORDPRESS ||
+        data.module === CmsType.JOOMLA ||
+        data.module === CmsType.PRESTASHOP ||
+        data.module === CmsType.DRUPAL);
+
     if (data.associationType === AssociationType.EXISTING) {
-      const payload = {
+      const payload: PostWebHostingWebsitePayload = {
         targetSpec: {
           name: data.name,
           fqdn: data.hasSubdomain ? `${data.subdomain}.${data.fqdn}` : data.fqdn,
@@ -97,11 +108,53 @@ export default function AddWebsitePage() {
                 path: data.path,
               }
             : {}),
+          ...(isAdvancedInstallation &&
+          data.adminName?.trim() &&
+          data.adminPassword?.trim() &&
+          data.moduleDomain?.trim() &&
+          data.moduleLanguage?.trim() &&
+          data.databaseName?.trim() &&
+          data.databasePassword?.trim() &&
+          data.databasePort?.trim() &&
+          data.databaseServer?.trim() &&
+          data.databaseUser?.trim()
+            ? (() => {
+                const trimmedDatabaseName = data.databaseName.trim();
+                const trimmedPassword = data.databasePassword.trim();
+                const trimmedPort = data.databasePort.trim();
+                const trimmedServer = data.databaseServer.trim();
+                const trimmedUser = data.databaseUser.trim();
+                const port = Number.parseInt(trimmedPort || '3306', 10);
+                const validPort = Number.isNaN(port) || port <= 0 || port > 65535 ? 3306 : port;
+
+                return {
+                  adminConfiguration: {
+                    adminLogin: data.adminName.trim(),
+                    adminPassword: data.adminPassword.trim(),
+                    domain: data.moduleDomain.trim(),
+                    installPath: data.moduleInstallPath?.trim()
+                      ? data.moduleInstallPath.trim().startsWith('./www/')
+                        ? data.moduleInstallPath.trim()
+                        : `./www/${data.moduleInstallPath.trim()}`
+                      : null,
+                    language: data.moduleLanguage.trim(),
+                  },
+                  databaseConfiguration: {
+                    databaseName: trimmedDatabaseName,
+                    password: trimmedPassword,
+                    port: validPort,
+                    server: trimmedServer,
+                    user: trimmedUser,
+                  },
+                };
+              })()
+            : {}),
         },
       };
+
       postWebHostingWebsites([payload, false]);
-    } else {
-      const payload = {
+    } else if (data.associationType === AssociationType.EXTERNAL) {
+      const payload: PostWebHostingWebsitePayload = {
         targetSpec: {
           name: data.name,
           fqdn: data.fqdn,
@@ -109,8 +162,50 @@ export default function AddWebsitePage() {
           ...(data.module && data.module !== CmsType.NONE
             ? { module: { name: data.module as CmsType } }
             : {}),
+          ...(isAdvancedInstallation &&
+          data.adminName?.trim() &&
+          data.adminPassword?.trim() &&
+          data.moduleDomain?.trim() &&
+          data.moduleLanguage?.trim() &&
+          data.databaseName?.trim() &&
+          data.databasePassword?.trim() &&
+          data.databasePort?.trim() &&
+          data.databaseServer?.trim() &&
+          data.databaseUser?.trim()
+            ? (() => {
+                const trimmedDatabaseName = data.databaseName.trim();
+                const trimmedPassword = data.databasePassword.trim();
+                const trimmedPort = data.databasePort.trim();
+                const trimmedServer = data.databaseServer.trim();
+                const trimmedUser = data.databaseUser.trim();
+                const port = Number.parseInt(trimmedPort || '3306', 10);
+                const validPort = Number.isNaN(port) || port <= 0 || port > 65535 ? 3306 : port;
+
+                return {
+                  adminConfiguration: {
+                    adminLogin: data.adminName.trim(),
+                    adminPassword: data.adminPassword.trim(),
+                    domain: data.moduleDomain.trim(),
+                    installPath: data.moduleInstallPath?.trim()
+                      ? data.moduleInstallPath.trim().startsWith('./www/')
+                        ? data.moduleInstallPath.trim()
+                        : `./www/${data.moduleInstallPath.trim()}`
+                      : null,
+                    language: data.moduleLanguage.trim(),
+                  },
+                  databaseConfiguration: {
+                    databaseName: trimmedDatabaseName,
+                    password: trimmedPassword,
+                    port: validPort,
+                    server: trimmedServer,
+                    user: trimmedUser,
+                  },
+                };
+              })()
+            : {}),
         },
       };
+
       postWebHostingWebsites([payload, data.wwwNeeded ?? false]);
     }
     navigate(-1);
@@ -159,10 +254,15 @@ export default function AddWebsitePage() {
       {step === 4 && (
         <div>
           <Divider />
-          <DomainCmsModule control={control} controlValues={controlValues} />
+          <DomainCmsModule
+            control={control}
+            controlValues={controlValues}
+            setValue={setValue}
+            errors={formState.errors}
+          />
           <Button
             onClick={() => void handleSubmit(onSubmit)()}
-            disabled={!controlValues.fqdn}
+            disabled={!formState.isValid}
             className="mt-4"
           >
             {t('common:web_hosting_common_action_continue')}

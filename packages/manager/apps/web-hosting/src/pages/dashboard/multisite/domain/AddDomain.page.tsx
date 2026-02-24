@@ -5,7 +5,6 @@ import { Location, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Button,
@@ -24,7 +23,7 @@ import { Link, LinkType, useNotifications } from '@ovh-ux/muk';
 import { useCreateAttachedDomainService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { HostingCountries, HostingDomainStatus } from '@/data/types/product/webHosting';
 import { AssociationType } from '@/data/types/product/website';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
+import { WebsiteFormData, zForm } from '@/utils/formSchemas.utils';
 
 import { DomainAssociation } from '../website/component/DomainAssociation';
 import { DomainConfiguration } from '../website/component/DomainConfiguration';
@@ -34,7 +33,6 @@ interface AddDomainPageState {
   site: string;
   path?: string;
 }
-
 export default function AddWDomainPage() {
   const { serviceName } = useParams();
   const navigate = useNavigate();
@@ -42,16 +40,16 @@ export default function AddWDomainPage() {
   const { t } = useTranslation(['common', 'multisite']);
   const [step, setStep] = useState<number>(1);
 
-  type FormData = z.infer<typeof websiteFormSchema>;
   const { state } = useLocation() as Location<AddDomainPageState>;
 
-  const { control, handleSubmit, watch, reset } = useForm<FormData>({
+  const { control, handleSubmit, watch, reset } = useForm({
     defaultValues: {
       name: state?.site ?? '',
       path: state?.path ?? 'public_html',
       autoConfigureDns: true,
+      advancedInstallation: false,
     },
-    resolver: zodResolver(websiteFormSchema),
+    resolver: zodResolver(zForm(t).WEBSITE_FORM_SCHEMA),
   });
 
   const controlValues = watch();
@@ -79,7 +77,7 @@ export default function AddWDomainPage() {
     },
   );
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: WebsiteFormData) => {
     clearNotifications();
     if (data.associationType === AssociationType.EXISTING) {
       const payload = {
