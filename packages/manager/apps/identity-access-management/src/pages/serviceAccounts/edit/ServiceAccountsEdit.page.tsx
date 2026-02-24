@@ -31,10 +31,7 @@ import {
   useCreateIamServiceAccount,
   useUpdateIamServiceAccount,
 } from '@/data/hooks/useGetIamServiceAccounts';
-import {
-  PERMANENT_TOKENS_TRACKING,
-  SERVICE_ACCOUNTS_TRACKING,
-} from '@/tracking.constant';
+import { SERVICE_ACCOUNTS_TRACKING, } from '@/tracking.constant';
 import ServiceAccountSecretContext from '@/contexts/service-account-secret.context';
 
 export default function ServiceAccountsEdit() {
