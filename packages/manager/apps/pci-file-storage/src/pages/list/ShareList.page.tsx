@@ -8,21 +8,24 @@ import { BaseLayout, ChangelogMenu, GuideMenu } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
 import { CHANGELOG_LINKS } from '@/constants/Changelog.constants';
+import { useShareCreationPolling } from '@/data/hooks/operation/useShareCreationPolling';
 import { useShares } from '@/data/hooks/shares/useShares';
+import { ShareCreationBanner } from '@/pages/list/components/ShareCreationBanner.component';
 import { ShareDatagrid } from '@/pages/list/components/ShareDatagrid.component';
-import { selectSharesForList } from '@/pages/list/view-model/shareList.view-model';
+import { selectHasShares } from '@/pages/list/view-model/shareList.view-model';
 import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
 
 const ShareListPage: React.FC = () => {
   const { t } = useTranslation(['list', 'guides']);
-  const { data: shares = [], isLoading } = useShares({
-    select: selectSharesForList,
+  const { shareCreationsCount, hasError } = useShareCreationPolling();
+  const { data: hasShare = false, isLoading } = useShares({
+    select: selectHasShares,
   });
 
   const guideItems = useFileStorageGuideItems();
 
-  if (!isLoading && (shares?.length ?? 0) === 0) {
+  if (!isLoading && !hasShare) {
     return <Navigate to={`${subRoutes.onboarding}`} replace />;
   }
 
@@ -35,6 +38,7 @@ const ShareListPage: React.FC = () => {
         changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
     >
+      <ShareCreationBanner shareCreationsCount={shareCreationsCount} hasError={hasError} />
       <ShareDatagrid />
       <Suspense>
         <Outlet />

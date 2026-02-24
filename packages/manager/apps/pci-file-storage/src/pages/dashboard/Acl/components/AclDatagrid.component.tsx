@@ -1,4 +1,4 @@
-import { type FC, useMemo, useState } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 
 import { FormProvider } from 'react-hook-form';
 
@@ -25,8 +25,22 @@ import { useCreateAclForm } from '@/pages/dashboard/Acl/hooks/useCreateAclForm';
 import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
 
 {
-  /* eslint-disable @typescript-eslint/no-misused-promises */
+  /* eslint-disable @typescript-eslint/no-unused-expressions */
 }
+
+/*
+ This INCREDIBLE method is used to make the reload button be next to the search field.
+ */
+const moveReloadButton = () => {
+  const right = document.querySelector('#right-side');
+  const reloadButton = document.querySelector('#reload-button');
+
+  reloadButton?.classList?.add('mr-6');
+  reloadButton && right?.firstElementChild?.prepend(reloadButton);
+
+  const topContainer = document.querySelector('#container');
+  topContainer?.classList?.add('gap-4');
+};
 
 const getContainerHeight = (dataSize: number) => (dataSize + 1) * 50 + 10;
 
@@ -105,15 +119,17 @@ export const AclDatagrid: FC = () => {
     deletingAclId: aclToDelete,
     isCreatePending,
     canManageAcl,
+    onConfirmCreate: handleCreate.onConfirm,
   });
+
+  useEffect(() => {
+    moveReloadButton();
+  }, []);
 
   return (
     <>
       <FormProvider {...formMethods}>
-        <form
-          onSubmit={formMethods.handleSubmit(handleCreate.onConfirm)}
-          className="[&_#left-side]:!w-auto [&_#left-side]:!flex-[unset] [&_#right-side]:w-auto [&_th]:!break-normal"
-        >
+        <div className="[&_#left-side]:!w-auto [&_#left-side]:!flex-[unset] [&_#right-side]:w-auto [&_th]:!break-normal">
           <Datagrid
             columns={columns}
             data={data}
@@ -131,7 +147,7 @@ export const AclDatagrid: FC = () => {
               />
             }
           />
-        </form>
+        </div>
       </FormProvider>
       <AclDeleteModal
         open={!!aclToDelete}

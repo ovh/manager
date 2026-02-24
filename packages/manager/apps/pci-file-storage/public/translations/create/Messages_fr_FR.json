@@ -89,7 +89,7 @@
   },
   "submit": {
     "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",
-    "success": "Le share {{name}} est en cours de création"
+    "success": "Le share {{name}} est en cours de création. Cela peut prendre quelques minutes."
   },
   "units": {
     "giga_octet": "Gio",

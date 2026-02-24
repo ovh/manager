@@ -87,7 +87,7 @@
   },
   "submit": {
     "error": "An error has occurred adding the share: {{error}}",
-    "success": "The share {{name}} is being created"
+    "success": "The share {{name}} is being created. This may take a few minutes."
   },
   "title": "Create a share",
   "description": "Create a share available in your Public Cloud project. Need more information about Public Cloud File Storage? <0>Check our documentation</0>",

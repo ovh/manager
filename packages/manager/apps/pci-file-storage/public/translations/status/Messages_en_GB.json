@@ -3,6 +3,7 @@
   "backup_creating": "Backup creation in progress",
   "creating": "Creation in progress",
   "deleting": "Deleting",
+  "draft": "Draft",
   "error": "Error",
   "extending": "Extension in progress",
   "inactive": "Inactive"

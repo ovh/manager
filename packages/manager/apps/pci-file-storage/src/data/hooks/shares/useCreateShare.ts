@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { operationsQueryKey } from '@/adapters/operations/queryKeys';
 import { sharesQueryKey } from '@/adapters/shares/queryKeys';
 import { createShare } from '@/data/api/shares.api';
 import { TShareToCreate } from '@/domain/entities/share.entity';
@@ -46,6 +47,9 @@ export const useCreateShare = ({
     onSuccess: () => {
       void queryClient.invalidateQueries({
         queryKey: sharesQueryKey(projectId),
+      });
+      void queryClient.invalidateQueries({
+        queryKey: operationsQueryKey(projectId),
       });
 
       onSuccess();
