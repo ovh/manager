@@ -252,6 +252,7 @@ function AccountDetailsForm({
 
       // TODO: Remove after mandatory check is implemented in Xander for FR
       if (
+        legalForm === 'corporation' && // Add only for corporation legal form
         isCNINMandatory({
           ovhSubsidiary,
           country: (country as Country) || undefined,
