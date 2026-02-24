@@ -1,4 +1,4 @@
-import { type FC, useMemo, useState } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 
 import { FormProvider } from 'react-hook-form';
 
@@ -26,7 +26,22 @@ import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schem
 
 {
   /* eslint-disable @typescript-eslint/no-misused-promises */
+  /* eslint-disable @typescript-eslint/no-unused-expressions */
 }
+
+/*
+ This INCREDIBLE method is used to make the reload button be next to the search field.
+ */
+const moveReloadButton = () => {
+  const right = document.querySelector('#right-side');
+  const reloadButton = document.querySelector('#reload-button');
+
+  reloadButton?.classList?.add('mr-6');
+  reloadButton && right?.firstElementChild?.prepend(reloadButton);
+
+  const topContainer = document.querySelector('#container');
+  topContainer?.classList?.add('gap-4');
+};
 
 const getContainerHeight = (dataSize: number) => (dataSize + 1) * 50 + 10;
 
@@ -106,6 +121,10 @@ export const AclDatagrid: FC = () => {
     isCreatePending,
     canManageAcl,
   });
+
+  useEffect(() => {
+    moveReloadButton();
+  }, []);
 
   return (
     <>

@@ -4,9 +4,37 @@ import { TShareDto } from '@/adapters/shares/right/dto.type';
 import { mapShareDtoToShare } from '@/adapters/shares/right/mapper';
 import { TShare, TShareToCreate } from '@/domain/entities/share.entity';
 
-export const getShares = async (projectId: string): Promise<TShare[]> => {
+export type TGetSharesQueryParams = Readonly<{
+  limit: number;
+  sort: 'creationDate' | 'name' | 'region' | 'size';
+  sortOrder: 'asc' | 'desc';
+  offset?: number;
+  searchField?: 'name' | 'region' | 'shareID';
+  searchValue?: string;
+}>;
+
+const defaultGetSharesQueryParams: TGetSharesQueryParams = {
+  limit: 10,
+  sort: 'name',
+  sortOrder: 'asc',
+};
+
+export const getShares = async (
+  projectId: string,
+  params: TGetSharesQueryParams = defaultGetSharesQueryParams,
+): Promise<TShare[]> => {
+  const { limit, sort, sortOrder, offset, searchField, searchValue } = params;
   return v6
-    .get<TShareDto[]>(`/cloud/project/${projectId}/aggregated/share?limit=50`)
+    .get<TShareDto[]>(`/cloud/project/${projectId}/aggregated/share`, {
+      params: {
+        limit,
+        sort,
+        sortOrder,
+        offset,
+        searchField,
+        searchValue,
+      },
+    })
     .then((response) => response.data.map(mapShareDtoToShare));
 };
 
