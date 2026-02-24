@@ -73,6 +73,7 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
+  CNIN_NON_MANDATORY_RULE,
   CNIN_RULE,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
@@ -87,7 +88,7 @@ import {
 } from '@/components/formSkeleton';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
-import { isCNINMandatory } from '@/helpers/xander/xanderHelper';
+import { isCNINMandatory, isCNINVisible } from '@/helpers/xander/xanderHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -110,7 +111,6 @@ function AccountDetailsForm({
     NAMESPACES.COUNTRY,
   ]);
   const { addError, addSuccess } = useNotifications();
-  const [readyToRedirect, setReadyToRedirect] = useState(false);
   const {
     url: redirectionUrl,
     isLoading: isRedirectionUrlLoading,
@@ -261,6 +261,14 @@ function AccountDetailsForm({
         })
       ) {
         setCninSchemaOverride(toZodField(CNIN_RULE));
+      } else if (
+        (legalForm === 'association' || legalForm === 'administration') &&
+        isCNINVisible({
+          ovhSubsidiary,
+          country: (country as Country) || undefined,
+        })
+      ) {
+        setCninSchemaOverride(toZodField(CNIN_NON_MANDATORY_RULE));
       } else {
         setCninSchemaOverride(undefined);
       }
@@ -276,7 +284,6 @@ function AccountDetailsForm({
       if (isSMSConsentAvailable && payload.phoneType === 'mobile') {
         await putSmsConsent(smsConsent);
       }
-      void setReadyToRedirect(true);
     },
     onSuccess: () => {
       trackPage({
@@ -320,12 +327,9 @@ function AccountDetailsForm({
     addAccountDetails((formData as unknown) as FormData);
   };
 
-  /**
-   * TODO: For FR, check / add from context if user has found company. If so, make company info readonly
-   */
   return (
     <>
-      <ExitGuard active={!readyToRedirect} />
+      {!isValid && <ExitGuard />}
       <Notifications />
       <form
         onSubmit={handleSubmit(handleValidateClick)}
