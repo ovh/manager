@@ -1,13 +1,7 @@
 import { useEffect } from 'react';
 
-type ExitGuardProps = {
-  active?: boolean;
-};
-
-export default function ExitGuard({ active = true }: ExitGuardProps): null {
+export default function ExitGuard(): null {
   useEffect(() => {
-    if (!active) return () => {};
-
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
       event.returnValue = ' ';
@@ -32,7 +26,7 @@ export default function ExitGuard({ active = true }: ExitGuardProps): null {
       detach();
       window.removeEventListener('pageshow', handlePageShow);
     };
-  }, [active]);
+  }, []);
 
   return null;
 }

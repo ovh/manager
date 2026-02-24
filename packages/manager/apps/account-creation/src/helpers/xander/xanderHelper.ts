@@ -19,3 +19,16 @@ export const isCNINMandatory = ({
   }
   return XANDER_CNIN_MANDATORY_COUNTRIES[ovhSubsidiary]?.[country] ?? false;
 };
+
+/**
+ * TODO: Remove after CNIN is visible in Xander for FR + FR territories
+ */
+export const isCNINVisible = ({
+  ovhSubsidiary,
+  country,
+}: CNINMandatoryProps) => {
+  if (!ovhSubsidiary || !country) {
+    return false;
+  }
+  return XANDER_CNIN_MANDATORY_COUNTRIES[ovhSubsidiary]?.[country] ?? false;
+};
