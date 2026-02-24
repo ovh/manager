@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { BUTTON_SIZE, BUTTON_VARIANT, Button, ICON_NAME, Icon } from '@ovhcloud/ods-react';
@@ -10,12 +11,23 @@ import { LogsToCustomerModule } from '@ovh-ux/logs-to-customer';
 
 import Loading from '@/components/loading/Loading.component';
 import { useGetHostingService } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
+import { setupLogsOperationInterceptor } from '@/utils/logsOperationInterceptor';
 
 export default function LogsPage() {
   const { serviceName } = useParams<{ serviceName: string }>();
   const { data: hosting, isPending } = useGetHostingService(serviceName || '');
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { t } = useTranslation('dashboard');
+
+  useEffect(() => {
+    if (!serviceName) {
+      return;
+    }
+
+    const cleanup = setupLogsOperationInterceptor(queryClient, serviceName);
+    return cleanup;
+  }, [queryClient, serviceName]);
 
   if (isPending) {
     return <Loading />;
