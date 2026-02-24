@@ -81,3 +81,8 @@ export const CNIN_RULE: Rule = {
   defaultValue: null,
   prefix: null,
 };
+
+export const CNIN_NON_MANDATORY_RULE: Rule = {
+  ...CNIN_RULE,
+  mandatory: false,
+};
