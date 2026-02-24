@@ -6,17 +6,22 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, ICON_NAME, Icon, Spinner } from '@ovhcloud/ods-react';
 
-import { useShares } from '@/data/hooks/shares/useShares';
 import { subRoutes } from '@/routes/Routes.constants';
 
-export const ShareDatagridTopbar: React.FC = () => {
+export type ShareDatagridTopbarProps = {
+  refetch: () => void;
+  isFetching: boolean;
+};
+
+export const ShareDatagridTopbar: React.FC<ShareDatagridTopbarProps> = ({
+  refetch,
+  isFetching,
+}) => {
   const { t } = useTranslation(['list']);
   const navigate = useNavigate();
 
-  const { refetch, isFetching } = useShares();
-
   return (
-    <div className="-mr-6 flex justify-between">
+    <div className="align-items-center flex justify-between">
       <Button color="primary" type="button" onClick={() => navigate(`./${subRoutes.create}`)}>
         <Icon name={ICON_NAME.plus} />
         {t('list:actionButton')}
@@ -27,6 +32,7 @@ export const ShareDatagridTopbar: React.FC = () => {
         type="button"
         onClick={() => void refetch()}
         disabled={isFetching}
+        id="reload-button"
       >
         {isFetching ? (
           <Spinner size="sm" />

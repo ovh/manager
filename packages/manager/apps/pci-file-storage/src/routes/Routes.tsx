@@ -23,7 +23,7 @@ const DeleteSharePage = React.lazy(() => import('@/pages/delete/DeleteShare.page
 
 const getDeleteSubroute = () => (
   <>
-    <Route index></Route>
+    <Route index Component={() => <span />} />
     <Route
       path={subRoutes.shareDelete}
       Component={DeleteSharePage}

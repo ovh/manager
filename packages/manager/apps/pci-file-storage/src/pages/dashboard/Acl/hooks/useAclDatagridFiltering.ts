@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { useCallback, useMemo, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
@@ -8,6 +9,7 @@ import { useColumnFilters } from '@ovh-ux/muk';
 import type { FilterProps, SearchProps } from '@ovh-ux/muk';
 
 import { TAclData } from '@/pages/dashboard/Acl/acl.view-model';
+import { getAclStatusDisplay } from '@/pages/view-model/aclStatus.view-model';
 
 type UseAclDatagridFilteringReturn = {
   filteredAcls: TAclData[];
@@ -41,16 +43,28 @@ export const useAclDatagridFiltering = (acls: TAclData[]): UseAclDatagridFilteri
 
   const handleAddFilter = useCallback(
     (filter: ColumnFilterProps) => {
+      if (!filter.value || typeof filter.value !== 'string') return undefined;
+      const displayValue = (() => {
+        switch (filter.key) {
+          case 'permission':
+            return t(`acl:columns.accessPermission.${filter.value}`);
+          case 'status':
+            return t(getAclStatusDisplay(filter.value).labelKey);
+          default:
+            return undefined;
+        }
+      })();
+
       const filterWithLabel = {
         ...filter,
         value: filter.value,
         label: filter.label,
-        displayValue: undefined,
+        displayValue: displayValue,
       };
 
       addFilter(filterWithLabel);
     },
-    [addFilter],
+    [addFilter, t],
   );
 
   const filterProps: FilterProps = useMemo(
