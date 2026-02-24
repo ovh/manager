@@ -51,6 +51,9 @@ export const AclDatagrid: FC = () => {
     onDeleteSuccess: () => {
       setAclToDelete(undefined);
     },
+    onDeleteError: () => {
+      setAclToDelete(undefined);
+    },
   });
 
   const data: Array<TAclData | TAclDraftData> = useMemo(
