@@ -88,6 +88,9 @@ const mocks = vi.hoisted(() => ({
   },
 }));
 const trackClickMock = vi.fn();
+export const mockAddError = vi.fn();
+export const mockAddSuccess = vi.fn();
+export const mockClearNotifications = vi.fn();
 
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useContext: vi.fn(),
