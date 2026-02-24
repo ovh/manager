@@ -10,7 +10,11 @@ export const HelpIconWithTooltip = ({
   iconColorClass = 'text-[--ods-color-form-element-text-default]',
 }: HelpIconWithTooltipProps) => {
   return (
-    <Tooltip>
+    <Tooltip
+      positionerStyle={{
+        zIndex: 'calc(var(--ods-theme-overlay-z-index) + 100',
+      }}
+    >
       <TooltipTrigger asChild>
         <Icon aria-labelledby={label} className={iconColorClass} name="circle-question" />
       </TooltipTrigger>
