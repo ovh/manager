@@ -6,8 +6,8 @@ import { TShare, TShareToCreate } from '@/domain/entities/share.entity';
 
 export const getShares = async (projectId: string): Promise<TShare[]> => {
   return v6
-    .get<TAggregatedSharesDto>(`/cloud/project/${projectId}/aggregated/share`)
-    .then((response) => response.data.resources.map(mapShareDtoToShare));
+    .get<TShareDto[]>(`/cloud/project/${projectId}/aggregated/share?limit=50`)
+    .then((response) => response.data.map(mapShareDtoToShare));
 };
 
 export const getShare = async (
