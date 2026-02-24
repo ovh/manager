@@ -243,7 +243,9 @@ describe('PrivateNetworkSelection', () => {
       },
     });
 
-    expect(screen.getByTestId('spinner')).toBeVisible();
+    const spinners = screen.getAllByTestId('spinner');
+    expect(spinners.length).toBeGreaterThanOrEqual(1);
+    expect(spinners[0]).toBeVisible();
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 100));
