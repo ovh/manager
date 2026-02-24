@@ -2,13 +2,33 @@ import React from 'react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { useShares } from '@/data/hooks/shares/useShares';
 import ShareListPage from '@/pages/list/ShareList.page';
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
+
+const { mockNavigate } = vi.hoisted(() => ({ mockNavigate: vi.fn() }));
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    Navigate: ({ to, replace }: { to: string; replace?: boolean }) => {
+      mockNavigate(to, { replace: replace ?? false });
+      return null;
+    },
+  };
+});
+
+vi.mock('@/data/hooks/operation/useShareCreationPolling', () => ({
+  useShareCreationPolling: vi.fn().mockReturnValue({
+    shareCreationsCount: 0,
+    hasError: false,
+    isPending: false,
+  }),
+}));
 
 vi.mock('@/components/breadcrumb/Breadcrumb.component', () => ({
   Breadcrumb: () => <div>Breadcrumb</div>,
@@ -37,9 +57,24 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
           ],
         ]),
       },
-    ],
+    ] as TShareListRow[],
     isLoading: false,
-  } as unknown as QueryObserverSuccessResult<TShareListRow[]>),
+    fetchNextPage: vi.fn(),
+    fetchPreviousPage: vi.fn(),
+    hasNextPage: false,
+    hasPreviousPage: false,
+    isFetchingNextPage: false,
+    isFetchingPreviousPage: false,
+  }),
+}));
+
+vi.mock('@/pages/list/components/ShareDatagrid.component', () => ({
+  ShareDatagrid: () => (
+    <div data-testid="datagrid">
+      <span>Rows: 1</span>
+      <button type="button">list:actionButton</button>
+    </div>
+  ),
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
@@ -60,23 +95,13 @@ vi.mock('@ovh-ux/muk', () => ({
   ),
   ChangelogMenu: () => <div>ChangelogMenu</div>,
   GuideMenu: () => <div>GuideMenu</div>,
-  Datagrid: ({
-    data,
-    isLoading,
-    topbar,
-  }: {
-    data: unknown[];
-    isLoading: boolean;
-    topbar?: React.ReactNode;
-  }) => (
-    <div data-testid="datagrid">
-      {topbar}
-      <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
-    </div>
-  ),
 }));
 
 describe('ShareList page', () => {
+  beforeEach(() => {
+    mockNavigate.mockClear();
+  });
+
   it('should render breadCrumb, page heading and datagrid', () => {
     render(
       <MemoryRouter>
@@ -95,15 +120,21 @@ describe('ShareList page', () => {
 
   it('should redirect to onboarding when there are no shares', () => {
     vi.mocked(useShares).mockReturnValueOnce({
-      data: [],
+      data: false,
       isLoading: false,
-    } as unknown as QueryObserverSuccessResult<TShareListRow[]>);
+      fetchNextPage: vi.fn(),
+      fetchPreviousPage: vi.fn(),
+      hasNextPage: false,
+      hasPreviousPage: false,
+      isFetchingNextPage: false,
+      isFetchingPreviousPage: false,
+    } as unknown as ReturnType<typeof useShares>);
     render(
       <MemoryRouter>
         <ShareListPage />
       </MemoryRouter>,
     );
 
-    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+    expect(mockNavigate).toHaveBeenCalledWith('onboarding', { replace: true });
   });
 });

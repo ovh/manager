@@ -16,7 +16,7 @@ import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.vi
 import { subRoutes } from '@/routes/Routes.constants';
 
 export const ShareGeneralInfoBlock: React.FC = () => {
-  const { t } = useTranslation(['general_information', 'share', 'regions']);
+  const { t } = useTranslation(['general_information', 'share', 'regions', 'status']);
   const { region, shareId } = useShareParams();
   const { data: shareDetails, isLoading } = useShare(region, shareId, {
     select: selectShareDetails,

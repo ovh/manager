@@ -1,4 +1,7 @@
 {
   "title": "File Storage",
-  "actionButton": "Ein Share erstellen"
+  "actionButton": "Ein Share erstellen",
+  "creationInProgress": "Die Erstellung Ihres Shares ist im Gange, er wird in Kürze verfügbar sein",
+  "creationCreationsInProgress": "Die Erstellungen Ihrer Shares sind im Gange, sie werden in Kürze verfügbar sein",
+  "creationError": "Bei der Erstellung Ihres Shares ist ein Fehler aufgetreten"
 }

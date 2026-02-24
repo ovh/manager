@@ -77,27 +77,27 @@ describe('network.view-model', () => {
       {
         description: 'should generate name with default specName',
         specName: undefined,
-        expectedPattern: /^share_2024_01_15$/,
+        expectedPattern: /^share_2024_01_15_\d\d_30_00$/,
       },
       {
         description: 'should generate name with provided specName',
         specName: 'standard-1az',
-        expectedPattern: /^standard-1az_2024_01_15$/,
+        expectedPattern: /^standard-1az_2024_01_15_\d\d_30_00$/,
       },
       {
         description: 'should sanitize special characters in specName',
         specName: 'share@#$% ^&*()name',
-        expectedPattern: /^share_+name_2024_01_15$/,
+        expectedPattern: /^share_+name_2024_01_15_\d\d_30_00$/,
       },
       {
         description: 'should truncate long specName to 200 characters',
         specName: 'a'.repeat(250),
-        expectedPattern: /^a{200}_2024_01_15$/,
+        expectedPattern: /^a{200}_2024_01_15_\d\d_30_00$/,
       },
       {
         description: 'should handle empty string specName',
         specName: '',
-        expectedPattern: /^_2024_01_15$/,
+        expectedPattern: /^_2024_01_15_\d\d_30_00$/,
       },
     ])('$description', ({ specName, expectedPattern }) => {
       const fixedDate = new Date('2024-01-15T10:30:00Z');
@@ -106,7 +106,6 @@ describe('network.view-model', () => {
       const result = generateAutoName(specName);
 
       expect(result).toMatch(expectedPattern);
-      expect(result).toContain('2024_01_15');
     });
   });
 });

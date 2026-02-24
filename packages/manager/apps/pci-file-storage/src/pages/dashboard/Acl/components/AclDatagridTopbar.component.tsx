@@ -34,6 +34,7 @@ export const AclDatagridTopbar: FC<TAclDatagridTopbarProps> = ({
         type="button"
         onClick={() => void refetch()}
         disabled={isFetching}
+        id="reload-button"
       >
         {isFetching ? (
           <Spinner size="sm" />

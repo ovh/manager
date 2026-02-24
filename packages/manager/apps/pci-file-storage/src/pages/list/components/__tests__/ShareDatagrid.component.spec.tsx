@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -8,6 +7,10 @@ import { useShares } from '@/data/hooks/shares/useShares';
 import { TShareListRow } from '@/pages/list/view-model/shareList.view-model';
 
 import { ShareDatagrid } from '../ShareDatagrid.component';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}));
 
 vi.mock('@/hooks/useProjectId', () => ({
   useProjectId: () => 'test-project',
@@ -47,6 +50,19 @@ vi.mock('@/pages/list/hooks/useShareColumn', () => ({
   ],
 }));
 
+vi.mock('@/pages/list/hooks/useShareDatagridFiltering', () => ({
+  useShareDatagridFiltering: () => ({
+    filterProps: { add: vi.fn(), filters: [], remove: vi.fn() },
+    queryFilters: [],
+    searchProps: {
+      onSearch: vi.fn(),
+      placeholder: 'Search',
+      searchInput: '',
+      setSearchInput: vi.fn(),
+    },
+  }),
+}));
+
 describe('ShareDatagrid', () => {
   it('should render datagrid with topbar and data', () => {
     const data: TShareListRow[] = [
@@ -71,7 +87,13 @@ describe('ShareDatagrid', () => {
     vi.mocked(useShares).mockReturnValue({
       data,
       isLoading: false,
-    } as unknown as QueryObserverSuccessResult<TShareListRow[]>);
+      fetchNextPage: vi.fn(),
+      fetchPreviousPage: vi.fn(),
+      hasNextPage: false,
+      hasPreviousPage: false,
+      isFetchingNextPage: false,
+      isFetchingPreviousPage: false,
+    } as unknown as ReturnType<typeof useShares>);
 
     render(<ShareDatagrid />);
 
@@ -85,7 +107,13 @@ describe('ShareDatagrid', () => {
     vi.mocked(useShares).mockReturnValue({
       data: [],
       isLoading: true,
-    } as unknown as QueryObserverSuccessResult<TShareListRow[]>);
+      fetchNextPage: vi.fn(),
+      fetchPreviousPage: vi.fn(),
+      hasNextPage: false,
+      hasPreviousPage: false,
+      isFetchingNextPage: false,
+      isFetchingPreviousPage: false,
+    } as unknown as ReturnType<typeof useShares>);
 
     render(<ShareDatagrid />);
 
