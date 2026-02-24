@@ -82,7 +82,6 @@ export const ShareSelection = () => {
                         capacityMin: spec.capacityMin,
                         iopsLevel: spec.iopsLevel,
                         bandwidthLevel: spec.bandwidthLevel,
-                        bandwidthUnit: spec.bandwidthUnit,
                       })}
                     </Text>
                   </PciCard.Content>

@@ -56,13 +56,13 @@
   },
   "share": {
     "title": "Share performance mode",
-    "description": "Min. {{capacityMin}}GB, {{iopsLevel}} IOPS and {{bandwidthLevel}} {{bandwidthUnit}}"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS and {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
   },
   "shareSize": {
     "title": "Share size",
     "description": "5% of the storage capacity is dedicated to snapshot storage",
-    "label": "Linear performance allocation (Gio)",
-    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} MiB/s",
+    "label": "Linear performance allocation ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "The share size is below the minimum allowed for this offer.",
       "max_value": "The share size exceeds the maximum allowed for this offer.",
@@ -90,5 +90,9 @@
     "success": "The share {{name}} is being created"
   },
   "title": "Create a share",
-  "description": "Create a share available in your Public Cloud project. Need more information about Public Cloud File Storage? <0>Check our documentation</0>"
+  "description": "Create a share available in your Public Cloud project. Need more information about Public Cloud File Storage? <0>Check our documentation</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
 }

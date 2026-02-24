@@ -78,6 +78,7 @@ export const ShareSizeSelection = () => {
             <Trans
               i18nKey="create:shareSize.provisionedPerformance"
               values={formattedPerformance}
+              t={t}
             />
           </Text>
         )}
