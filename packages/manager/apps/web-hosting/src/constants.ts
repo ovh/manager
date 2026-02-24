@@ -173,4 +173,4 @@ export const CHANGE_OWNER_LINK = {
   DEFAULT: `https://www.ovh.com/cgi-bin/fr${SUFFIX_CHANGE_OWNER}`,
 };
 export const VIDEO_MANAGER_LABS_URL = 'https://labs.ovhcloud.com/en/video-webhosting';
-export const VIDEO_MANAGER_URL = 'https://manager.eu.videocenter.ovh.net';
+export const VIDEO_MANAGER_URL = 'https://manager.staging-eu.videocenter.ovh.net';
