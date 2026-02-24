@@ -71,24 +71,7 @@ const PrivateNetworkSelection = () => {
 
             return (
               <FormField>
-                <FormFieldLabel className="flex h-8 items-center gap-4">
-                  {t('create:network.label')}
-                  <Button
-                    color="primary"
-                    variant="outline"
-                    type="button"
-                    onClick={() => void refetch()}
-                    disabled={isFetching}
-                    aria-label={t('create:network.reloadNetworks')}
-                    className="size-8 min-h-8 min-w-8 p-0"
-                  >
-                    {isFetching ? (
-                      <Spinner size={SPINNER_SIZE.xs} />
-                    ) : (
-                      <Icon name={ICON_NAME.refresh} className="text-[16px]" />
-                    )}
-                  </Button>
-                </FormFieldLabel>
+                <FormFieldLabel>{t('create:network.label')}</FormFieldLabel>
                 <Select
                   items={privateNetworkOptions}
                   value={field.value ? [field.value] : []}
@@ -116,11 +99,27 @@ const PrivateNetworkSelection = () => {
         {renderContent()}
         <SubnetSelection />
       </div>
-      <a href={`${privateNetworksUrl}/new`} target="_blank" rel="noreferrer">
-        <Button type="button" variant="outline" color="primary">
-          {t('create:network.createPrivateNetwork')}
+      <div className="flex flex-row flex-wrap items-center gap-4">
+        <a href={`${privateNetworksUrl}/new`} target="_blank" rel="noreferrer">
+          <Button type="button" variant="outline" color="primary">
+            {t('create:network.createPrivateNetwork')}
+          </Button>
+        </a>
+        <Button
+          color="primary"
+          variant="outline"
+          type="button"
+          onClick={() => void refetch()}
+          disabled={isFetching}
+          aria-label={t('create:network.reloadNetworks')}
+        >
+          {isFetching ? (
+            <Spinner size={SPINNER_SIZE.sm} className="h-[22px]" />
+          ) : (
+            <Icon name={ICON_NAME.refresh} className="text-[22px]" />
+          )}
         </Button>
-      </a>
+      </div>
     </section>
   );
 };
