@@ -19,19 +19,19 @@ const CATEGORY_OPTIONS: { value: Categories; labelKey: string }[] = [
 ];
 
 interface ManageViewGroupByProps {
-  draftGroupBy?: Categories;
-  setDraftGroupBy: (groupBy?: Categories) => void;
+  groupBy?: Categories;
+  setGroupBy: (groupBy?: Categories) => void;
 }
 
 export const ManageViewGroupBy = ({
-  draftGroupBy,
-  setDraftGroupBy,
+  groupBy,
+  setGroupBy,
 }: ManageViewGroupByProps) => {
   const { t } = useTranslation('manage-view');
 
   const handleToggle = (value: Categories) => {
-    const newValue = draftGroupBy === value ? undefined : value;
-    setDraftGroupBy(newValue);
+    const newValue = groupBy === value ? undefined : value;
+    setGroupBy(newValue);
   };
 
   return (
@@ -51,7 +51,7 @@ export const ManageViewGroupBy = ({
                 name="server-category-group"
                 value={option.value}
                 inputId={`radio-${option.value}`}
-                isChecked={draftGroupBy === option.value}
+                isChecked={groupBy === option.value}
                 className="pointer-events-none"
               />
 

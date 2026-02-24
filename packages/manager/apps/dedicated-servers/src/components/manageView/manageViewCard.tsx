@@ -22,6 +22,9 @@ export function SortableColumnCard({
 }: {
   column: ColumnsConfig<DedicatedServer>;
 }) {
+  const { groupBy, setColumnVisibility } = useContext(ViewContext);
+  const isGrouped = column.id === groupBy;
+
   const {
     setNodeRef,
     attributes,
@@ -29,8 +32,7 @@ export function SortableColumnCard({
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: column.id });
-  const { setColumnVisibility } = useContext(ViewContext);
+  } = useSortable({ id: column.id, disabled: isGrouped });
 
   return (
     <div
@@ -69,14 +71,16 @@ export function SortableColumnCard({
             <Text preset={TEXT_PRESET.heading5}>{column.label}</Text>
           </CheckboxLabel>
         </Checkbox>
-        <span
-          {...attributes}
-          {...listeners}
-          onClick={(e) => e.stopPropagation()}
-          className={styleModule.dragHandle}
-        >
-          <Icon name={ICON_NAME.dragDrop} />
-        </span>
+        {!isGrouped && (
+          <span
+            {...attributes}
+            {...listeners}
+            onClick={(e) => e.stopPropagation()}
+            className={styleModule.dragHandle}
+          >
+            <Icon name={ICON_NAME.dragDrop} />
+          </span>
+        )}
       </Card>
     </div>
   );
