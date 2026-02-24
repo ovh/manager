@@ -98,3 +98,10 @@ export const updateZoneRecord = async (
 export const refreshZone = async (serviceName: string): Promise<void> => {
   await v6.post(`/domain/zone/${serviceName}/refresh`);
 };
+
+export const deleteDomainZoneRecord = async (
+  serviceName: string,
+  recordId: string,
+): Promise<void> => {
+  await v6.delete(`/domain/zone/${serviceName}/record/${recordId}`);
+};
