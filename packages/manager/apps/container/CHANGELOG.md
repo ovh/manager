@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.185.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.184.0...@ovh-ux/manager-container-app@0.185.0) (2026-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4636] ([8a59aed](https://github.com/ovh/manager/commit/8a59aedd70749eb7baa1d25aaa270a7d0c4f2516)), closes [#MAOBS-29](https://github.com/ovh/manager/issues/MAOBS-29)
+* **observability:** fix wrong header layout ui ([aa58b6e](https://github.com/ovh/manager/commit/aa58b6e9f77fd64264b614f8a6d27a9193152512)), closes [#MAOBS-141](https://github.com/ovh/manager/issues/MAOBS-141)
+
+
+### Features
+
+* **container:** add entry menu observability settings ([9b99506](https://github.com/ovh/manager/commit/9b99506a904a83032fd871481d9e2f2b7427eeaf)), closes [#MAOBS-192](https://github.com/ovh/manager/issues/MAOBS-192)
+* **container:** add observability entry menu ([b3941ae](https://github.com/ovh/manager/commit/b3941aec6cacd2c29b6a9f9c45e036d165f1d1c7)), closes [#MAOBS-47](https://github.com/ovh/manager/issues/MAOBS-47)
+* **observability:** add onboarding pages for tenants and services ([fc16b2c](https://github.com/ovh/manager/commit/fc16b2cdd528c459642f82562b0b79d67ff618b6)), closes [#MAOBS-110](https://github.com/ovh/manager/issues/MAOBS-110)
+* **observability:** init observability µapp ([18deeaa](https://github.com/ovh/manager/commit/18deeaa9f2d1748ae62c28a4ac88e62743a1472a)), closes [#MAOBS-1](https://github.com/ovh/manager/issues/MAOBS-1)
+
+
+
+
+
 # [0.184.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.183.0...@ovh-ux/manager-container-app@0.184.0) (2026-02-20)
 
 
