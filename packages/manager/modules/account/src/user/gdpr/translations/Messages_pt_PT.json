@@ -47,5 +47,5 @@
   "gdpr_erasure_confirmation_email_error_max_attempts": "Recebeu o número máximo de novos emails de confirmação. Pode confirmar o pedido com o email de confirmação já recebido. Em alternativa, anule o pedido atual ou contacte a equipa de Apoio ao Cliente.",
   "gdpr_erasure_confirm_error_invalid_code": "O código de confirmação está errado.",
   "gdpr_erasure_confirm_error_exhausted_attempts": "O seu pedido foi anulado depois de ter introduzido várias vezes o código de confirmação de forma incorreta.",
-  "gdpr_erasure_not_possible_description": "Detetámos serviços ativos relacionados com a sua conta. Por favor, assegure-se de que removeu todos os seus serviços seguindo os passos descritos no nosso guia (<a href=\"{{url}}\" target=\"_blank\">link</a>) antes de fazer o seu pedido de eliminação."
+  "gdpr_erasure_not_possible_description": "Detetámos serviços ativos associados à sua conta. Certifique-se de que eliminou todos os seus serviços seguindo os passos descritos no nosso guia (<a href=\"{{url}}\" target=\"_blank\">ligação</a>) antes de efetuar o pedido de eliminação."
 }
