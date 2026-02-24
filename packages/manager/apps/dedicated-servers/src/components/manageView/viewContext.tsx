@@ -6,11 +6,12 @@ import React, {
   useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { DatagridColumn, useGetResourceTags } from '@ovh-ux/muk';
-import { VisibilityState } from '@tanstack/react-table';
+import { TFunction } from 'i18next';
+import { DatagridColumn, useDataApi, UseDataApiResult } from '@ovh-ux/muk';
+import { VisibilityState, SortingState } from '@tanstack/react-table';
 import { useColumns } from '../dataGridColumns';
 import { DedicatedServer } from '@/data/types/server.type';
-import { Categories, ViewType } from './types';
+import { Categories, GroupRow, ViewType } from './types';
 import { useGetViewsPreferences } from '@/hooks/manage-views/useGetViewPreferences';
 import {
   DEFAULT_COLUMN_VISIBILITY,
@@ -37,6 +38,9 @@ export type ViewContextType<T> = {
   setViews: React.Dispatch<React.SetStateAction<ViewType[]>>;
   groupBy: Categories;
   setGroupBy: (category: Categories) => void;
+  gridData: (DedicatedServer | GroupRow)[];
+  isGroupingActive: boolean;
+  dataApi: UseDataApiResult<T>;
 };
 
 export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
@@ -51,7 +55,32 @@ export const ViewContext = createContext<ViewContextType<DedicatedServer>>({
   setColumnVisibility: () => {},
   groupBy: undefined,
   setGroupBy: () => {},
+  gridData: [],
+  isGroupingActive: false,
+  dataApi: {} as UseDataApiResult<DedicatedServer>,
 });
+
+/**
+ * Utility to extract a group key based on a category property.
+ */
+const getCategoryGroupKey = (
+  server: DedicatedServer,
+  category: keyof DedicatedServer,
+  t: TFunction<'manage-view', undefined>,
+): string => {
+  return String(server[category] ?? t('server_category_other'));
+};
+
+/**
+ * Utility to extract the sorting state based on the current grouping strategy.
+ */
+const getGroupingSorting = (groupBy: Categories): SortingState => {
+  if (groupBy) {
+    return [{ id: groupBy, desc: false }];
+  }
+
+  return [];
+};
 
 export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   const { t } = useTranslation('manage-view');
@@ -59,11 +88,12 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
   const [currentView, setCurrentView] = useState<ViewType>(null);
   const [groupBy, setGroupBy] = useState<Categories>(undefined);
 
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-    DEFAULT_COLUMN_VISIBILITY,
-  );
+  const [userColumnVisibility, setUserColumnVisibility] = useState<
+    VisibilityState
+  >(DEFAULT_COLUMN_VISIBILITY);
   const initialColumns = useColumns();
-  const [orderedColumns, setOrderedColumns] = useState(initialColumns);
+  const memoizedInitialColumns = useMemo(() => initialColumns, []);
+  const [orderedColumns, setOrderedColumns] = useState(memoizedInitialColumns);
 
   // Fetch saved views preferences
   const { preferences, error, isLoading } = useGetViewsPreferences({
@@ -71,13 +101,71 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
     enabled: true,
   });
 
+  const dataApi = useDataApi<DedicatedServer>({
+    version: 'v6',
+    iceberg: true,
+    enabled: true,
+    route: `/dedicated/server`,
+    cacheKey: ['dedicated-servers', `/dedicated/server`],
+  });
+
+  const { flattenData, sorting } = dataApi;
+
+  // 1. Trigger API Call on GroupBy Change
+  useEffect(() => {
+    sorting?.setSorting?.(getGroupingSorting(groupBy));
+  }, [groupBy, sorting?.setSorting]);
+
+  // 2. Data Grouping Logic
+  const gridDataInfo = useMemo(() => {
+    if (!flattenData || groupBy === undefined) {
+      return {
+        isGroupingActive: false,
+        gridData: flattenData || [],
+      };
+    }
+
+    const groupsMap = new Map<string, DedicatedServer[]>();
+
+    flattenData.forEach((server) => {
+      let groupKey: string;
+
+      if (groupBy) {
+        groupKey = getCategoryGroupKey(server, groupBy, t);
+      } else {
+        return;
+      }
+
+      if (!groupsMap.has(groupKey)) {
+        groupsMap.set(groupKey, []);
+      }
+
+      groupsMap.get(groupKey)!.push(server);
+    });
+
+    const groupRows: GroupRow[] = Array.from(groupsMap.entries()).map(
+      ([key, child]) => ({
+        id: `group-${key}`,
+        displayName: key,
+        subRows: child,
+      }),
+    );
+
+    return {
+      isGroupingActive: true,
+      gridData: groupRows,
+    };
+  }, [groupBy, flattenData, t]);
+
+  const { isGroupingActive, gridData } = gridDataInfo;
+
   const setColumnsOrder = (order?: string[]) => {
     if (order) {
-      const currentOrderedColumns = initialColumns
+      const currentOrderedColumns = memoizedInitialColumns
         .map((column) => {
           let columnOrderIndex = order.findIndex((id) => id === column.id);
           if (columnOrderIndex === -1) {
-            columnOrderIndex = initialColumns.findIndex(
+            columnOrderIndex = memoizedInitialColumns.findIndex(
               (c) => c.id === column.id,
             );
           }
@@ -90,7 +178,7 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
       setOrderedColumns(currentOrderedColumns);
     } else {
-      setOrderedColumns(initialColumns);
+      setOrderedColumns(memoizedInitialColumns);
     }
   };
 
@@ -115,9 +203,8 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
         setColumnsOrder(foundDefaultView?.columnOrder);
       }
 
-      // Make datagrid reflect current view column visibility
       if (foundDefaultView?.columnVisibility) {
-        setColumnVisibility(foundDefaultView.columnVisibility);
+        setUserColumnVisibility(foundDefaultView.columnVisibility);
       }
 
       setGroupBy(foundDefaultView?.groupBy);
@@ -126,7 +213,7 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
   // When current view changes, update column visibility, order state and group by state
   useEffect(() => {
-    setColumnVisibility({
+    setUserColumnVisibility({
       ...DEFAULT_COLUMN_VISIBILITY,
       ...currentView?.columnVisibility,
     });
@@ -134,28 +221,59 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
     setGroupBy(currentView?.groupBy);
   }, [currentView]);
+
+  const columnVisibility = useMemo(() => {
+    if (!groupBy) return userColumnVisibility;
+    return {
+      ...userColumnVisibility,
+      [groupBy]: true,
+    };
+  }, [userColumnVisibility, groupBy]);
+
   const viewContext = useMemo(() => {
-    const columnsConfig = orderedColumns.map((column) => {
+    let columns = orderedColumns.map((column) => {
+      const isGrouped = column.id === groupBy;
       return {
         ...column,
         visible: !!columnVisibility[column.id],
+        enableHiding: isGrouped ? false : column.enableHiding,
       };
     });
+
+    if (groupBy) {
+      columns = [...columns].sort((a, b) => {
+        if (a.id === groupBy) return -1;
+        if (b.id === groupBy) return 1;
+        return 0;
+      });
+    }
 
     return {
       views,
       currentView,
       setCurrentView,
-      columnsConfig,
+      columnsConfig: columns,
       columnVisibility,
-      setColumnVisibility,
+      setColumnVisibility: setUserColumnVisibility,
       setOrderedColumns,
       setColumnsOrder,
       setViews,
       groupBy,
       setGroupBy,
+      gridData,
+      isGroupingActive,
+      dataApi,
     };
-  }, [views, currentView, columnVisibility, orderedColumns, groupBy]);
+  }, [
+    views,
+    currentView,
+    columnVisibility,
+    orderedColumns,
+    groupBy,
+    gridData,
+    isGroupingActive,
+    dataApi,
+  ]);
 
   return (
     <ViewContext.Provider value={viewContext}>{children}</ViewContext.Provider>

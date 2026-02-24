@@ -34,8 +34,8 @@ export const OrderMenu: React.FC<{ exportCsvData: ExportCsvDataType }> = ({
   };
 
   return (
-    <div>
-      <div className="flex">
+    <div className="w-full">
+      <div className="flex items-center w-full">
         <OdsButton
           icon={ODS_ICON_NAME.plus}
           size={ODS_BUTTON_SIZE.sm}

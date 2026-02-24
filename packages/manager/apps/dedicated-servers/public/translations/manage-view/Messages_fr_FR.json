@@ -19,8 +19,9 @@
   "group_rows_category": "Grouper lignes par catégorie",
   "common_select": "Select",
   "server_category_model": "Modèle",
-  "server_category_rack": "Baie",
+  "server_category_rack": "Rack",
   "server_category_region": "Région",
   "server_category_datacenter": "Datacentre",
-  "server_category_other": "Autre"
+  "server_category_other": "Autre",
+  "server_count_items": "Items"
 }
