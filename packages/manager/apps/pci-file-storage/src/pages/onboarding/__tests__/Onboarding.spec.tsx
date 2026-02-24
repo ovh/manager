@@ -1,6 +1,5 @@
 import React, { PropsWithChildren } from 'react';
 
-import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -69,7 +68,13 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
   useShares: vi.fn().mockReturnValue({
     data: false,
     isLoading: false,
-  } as unknown as QueryObserverSuccessResult<boolean>),
+    fetchNextPage: vi.fn(),
+    fetchPreviousPage: vi.fn(),
+    hasNextPage: false,
+    hasPreviousPage: false,
+    isFetchingNextPage: false,
+    isFetchingPreviousPage: false,
+  }),
 }));
 
 describe('OnboardingPage', () => {
@@ -146,7 +151,13 @@ describe('OnboardingPage', () => {
       vi.mocked(useShares).mockReturnValueOnce({
         data: true,
         isLoading: false,
-      } as unknown as QueryObserverSuccessResult<boolean>);
+        fetchNextPage: vi.fn(),
+        fetchPreviousPage: vi.fn(),
+        hasNextPage: false,
+        hasPreviousPage: false,
+        isFetchingNextPage: false,
+        isFetchingPreviousPage: false,
+      } as unknown as ReturnType<typeof useShares>);
       render(<OnboardingPage />);
 
       expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();

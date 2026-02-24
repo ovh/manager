@@ -39,7 +39,7 @@ export const selectSubnetsForNetwork =
 
 export const generateAutoName = (specName: string = 'share'): string => {
   const now = new Date();
-  const datePart = format(now, 'yyyy_MM_dd');
+  const datePart = format(now, 'yyyy_MM_dd_HH_mm_ss');
   const sanitizedSpecName = specName.replace(/[^a-zA-Z0-9_.-]/g, '_').substring(0, 200);
   return `${sanitizedSpecName}_${datePart}`;
 };

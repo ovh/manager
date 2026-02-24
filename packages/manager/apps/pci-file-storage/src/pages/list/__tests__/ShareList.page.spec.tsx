@@ -2,7 +2,6 @@ import React from 'react';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import { QueryObserverSuccessResult } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -37,9 +36,24 @@ vi.mock('@/data/hooks/shares/useShares', () => ({
           ],
         ]),
       },
-    ],
+    ] as TShareListRow[],
     isLoading: false,
-  } as unknown as QueryObserverSuccessResult<TShareListRow[]>),
+    fetchNextPage: vi.fn(),
+    fetchPreviousPage: vi.fn(),
+    hasNextPage: false,
+    hasPreviousPage: false,
+    isFetchingNextPage: false,
+    isFetchingPreviousPage: false,
+  }),
+}));
+
+vi.mock('@/pages/list/components/ShareDatagrid.component', () => ({
+  ShareDatagrid: () => (
+    <div data-testid="datagrid">
+      <span>Rows: 1</span>
+      <button type="button">list:actionButton</button>
+    </div>
+  ),
 }));
 
 vi.mock('@ovh-ux/muk', () => ({
@@ -60,20 +74,6 @@ vi.mock('@ovh-ux/muk', () => ({
   ),
   ChangelogMenu: () => <div>ChangelogMenu</div>,
   GuideMenu: () => <div>GuideMenu</div>,
-  Datagrid: ({
-    data,
-    isLoading,
-    topbar,
-  }: {
-    data: unknown[];
-    isLoading: boolean;
-    topbar?: React.ReactNode;
-  }) => (
-    <div data-testid="datagrid">
-      {topbar}
-      <span>{isLoading ? 'Loading' : `Rows: ${data.length}`}</span>
-    </div>
-  ),
 }));
 
 describe('ShareList page', () => {
@@ -97,7 +97,13 @@ describe('ShareList page', () => {
     vi.mocked(useShares).mockReturnValueOnce({
       data: [],
       isLoading: false,
-    } as unknown as QueryObserverSuccessResult<TShareListRow[]>);
+      fetchNextPage: vi.fn(),
+      fetchPreviousPage: vi.fn(),
+      hasNextPage: false,
+      hasPreviousPage: false,
+      isFetchingNextPage: false,
+      isFetchingPreviousPage: false,
+    } as unknown as ReturnType<typeof useShares>);
     render(
       <MemoryRouter>
         <ShareListPage />
