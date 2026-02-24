@@ -4,6 +4,8 @@ import React, {
   PropsWithChildren,
   createContext,
   useEffect,
+  useCallback,
+  useRef,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TFunction } from 'i18next';
@@ -111,10 +113,17 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
   const { flattenData, sorting } = dataApi;
 
+  const groupingSorting = useMemo(() => getGroupingSorting(groupBy), [groupBy]);
+
+  const setSortingRef = useRef(sorting?.setSorting);
+  useEffect(() => {
+    setSortingRef.current = sorting?.setSorting;
+  }, [sorting?.setSorting]);
+
   // 1. Trigger API Call on GroupBy Change
   useEffect(() => {
-    sorting?.setSorting?.(getGroupingSorting(groupBy));
-  }, [groupBy, sorting?.setSorting]);
+    setSortingRef.current?.(groupingSorting);
+  }, [groupingSorting]);
 
   // 2. Data Grouping Logic
   const gridDataInfo = useMemo(() => {
@@ -159,33 +168,36 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
 
   const { isGroupingActive, gridData } = gridDataInfo;
 
-  const setColumnsOrder = (order?: string[]) => {
-    if (order) {
-      const currentOrderedColumns = memoizedInitialColumns
-        .map((column) => {
-          let columnOrderIndex = order.findIndex((id) => id === column.id);
-          if (columnOrderIndex === -1) {
-            columnOrderIndex = memoizedInitialColumns.findIndex(
-              (c) => c.id === column.id,
-            );
-          }
-          return {
-            ...column,
-            order: columnOrderIndex,
-          };
-        })
-        .sort((a, b) => a.order - b.order);
+  const setColumnsOrder = useCallback(
+    (order?: string[]) => {
+      if (order) {
+        const currentOrderedColumns = memoizedInitialColumns
+          .map((column) => {
+            let columnOrderIndex = order.findIndex((id) => id === column.id);
+            if (columnOrderIndex === -1) {
+              columnOrderIndex = memoizedInitialColumns.findIndex(
+                (c) => c.id === column.id,
+              );
+            }
+            return {
+              ...column,
+              order: columnOrderIndex,
+            };
+          })
+          .sort((a, b) => a.order - b.order);
 
-      setOrderedColumns(currentOrderedColumns);
-    } else {
-      setOrderedColumns(memoizedInitialColumns);
-    }
-  };
+        setOrderedColumns(currentOrderedColumns);
+      } else {
+        setOrderedColumns(memoizedInitialColumns);
+      }
+    },
+    [memoizedInitialColumns],
+  );
 
   // When preferences are loaded, set views and current view
   useEffect(() => {
     const viewList: ViewType[] =
-      preferences && !error && !isLoading ? preferences : [];
+      preferences && !error && !isLoading ? [...preferences] : [];
 
     const foundDefaultView = viewList.find((view) => view.default);
 
