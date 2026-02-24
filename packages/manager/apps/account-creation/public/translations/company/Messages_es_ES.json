@@ -3,7 +3,7 @@
   "description": "Con el número SIREN/SIRET de su empresa, recuperamos automáticamente la información necesaria para crear la cuenta.",
   "fallback": "¿No tiene un SIREN/SIRET aún? Cree una cuenta Particular que podrá convertir más tarde en cuenta Empresa.",
   "fallback_link": "Crear una cuenta particular",
-  "search_suggestion": "La búsqueda contiene muchos resultados, por favor, refina la búsqueda",
+  "search_suggestion": "La búsqueda contiene muchos resultados, por favor, refina la búsqueda.",
   "search_not_satisfactory": "¿No encuentra su empresa? Añádala manualmente",
   "no_result": "No hay resultados",
   "title_corporation": "Añada su empresa",
