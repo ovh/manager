@@ -18,7 +18,6 @@ const mockLogsToCustomerModule = vi.fn((_props: unknown) => (
   <div data-testid="logs-to-customer-module">LogsToCustomerModule</div>
 ));
 const mockUseParams = vi.fn();
-const mockNavigate = vi.fn();
 const mockQueryClient = {
   getMutationCache: vi.fn(() => ({
     subscribe: vi.fn(() => vi.fn()),
@@ -38,12 +37,15 @@ vi.mock('@ovh-ux/logs-to-customer', () => ({
   LogsToCustomerModule: (props: unknown) => mockLogsToCustomerModule(props),
 }));
 
+vi.mock('@/utils/logsOperationInterceptor', () => ({
+  setupLogsOperationInterceptor: vi.fn(() => vi.fn()),
+}));
+
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual<typeof reactRouterDom>('react-router-dom');
   return {
     ...actual,
     useParams: () => mockUseParams() as { serviceName?: string },
-    useNavigate: () => mockNavigate,
   };
 });
 
@@ -60,7 +62,6 @@ describe('LogsPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockUseParams.mockReturnValue({ serviceName: 'test-service' });
-    mockNavigate.mockClear();
     mockQueryClient.getMutationCache.mockReturnValue({
       subscribe: vi.fn(() => vi.fn()),
     });
