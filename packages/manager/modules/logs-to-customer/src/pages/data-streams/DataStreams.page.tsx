@@ -74,6 +74,9 @@ export default function DataStreams() {
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex justify-start">
+        <BackButton />
+      </div>
       <Text preset="heading-3">{t('log_streams_title')}</Text>
       <div className="flex flex-col gap-2">
         <Text preset="paragraph">{t('log_streams_select_account')}</Text>
@@ -93,7 +96,6 @@ export default function DataStreams() {
             <SelectControl />
             <SelectContent />
           </Select>
-          <BackButton />
         </div>
       </div>
       <div className="flex gap-3">

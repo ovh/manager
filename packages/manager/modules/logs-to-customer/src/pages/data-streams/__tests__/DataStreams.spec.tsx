@@ -35,6 +35,7 @@ describe('dataStreams page test suite', () => {
       },
     );
     expect(screen.getByRole('button', { name: 'log_service_create' })).toBeInTheDocument();
+    expect(screen.getByText('log_streams_back_button')).toBeInTheDocument();
   });
 
   it('should render a loading state when the api request is pending', async () => {
@@ -54,6 +55,17 @@ describe('dataStreams page test suite', () => {
 
     await waitFor(
       () => expect(screen.queryByText('log_streams_select_account')).toBeInTheDocument(),
+      {
+        timeout: 10_000,
+      },
+    );
+  });
+
+  it('should render back button on dataStreams page', async () => {
+    await renderTest({ initialRoute: '/streams' });
+
+    await waitFor(
+      () => expect(screen.queryByText('log_streams_back_button')).toBeInTheDocument(),
       {
         timeout: 10_000,
       },

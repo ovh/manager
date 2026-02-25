@@ -21,7 +21,7 @@ export default function BackButton() {
   return (
     <Button
       size="sm"
-      variant={BUTTON_VARIANT.outline}
+      variant={BUTTON_VARIANT.ghost}
       onClick={() => {
         trackClick({
           location: PageLocation.page,
@@ -32,7 +32,7 @@ export default function BackButton() {
         navigate('..');
       }}
     >
-      <Icon name="arrow-left" />
+      <Icon name="arrow-left" className="mr-2" />
       {t('log_streams_back_button')}
     </Button>
   );
