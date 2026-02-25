@@ -28,7 +28,12 @@ type TCartTotals = {
   monthlyTotal: number | null;
 };
 
-export const STRICTLY_HOURLY_ITEMS = ['volume', 'gateway', 'network'];
+export const STRICTLY_HOURLY_ITEMS = [
+  'volume',
+  'gateway',
+  'network',
+  'publicNetwork',
+];
 
 export const getItemDetailsTotalPrice = (
   detailsWithoutBackups: TCartItemDetail[],
@@ -71,7 +76,7 @@ const calculateTotals = (
     }
 
     case BILLING_TYPE.Monthly: {
-      const hourlyItemsTotal = getItemDetailsTotalPrice(
+      const strictlyHourlyItemsTotal = getItemDetailsTotalPrice(
         detailsWithoutBackups,
         BILLING_TYPE.Hourly,
       );
@@ -81,7 +86,8 @@ const calculateTotals = (
       );
 
       const monthlyTotal =
-        monthlyItemsTotal + convertHourlyPriceToMonthly(hourlyItemsTotal);
+        monthlyItemsTotal +
+        convertHourlyPriceToMonthly(strictlyHourlyItemsTotal);
 
       return { hourlyTotal: null, monthlyTotal };
     }
@@ -101,26 +107,26 @@ export const Cart = ({ items, actionsButtons, billingType }: TCartProps) => {
     <BaseCart className="sticky right-0 top-8 flex max-h-[calc(100vh-5rem)] flex-col overflow-hidden bg-white">
       <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         <CartContent
-        items={items}
-        renderCartItem={({ item, isExpanded }) => (
-          <CartItem key={item.title} value={item.id}>
-            <CartItemHeader isExpanded={isExpanded(item.id)}>
-              <Text preset="heading-6" className="text-[--ods-color-heading]">
-                {item.title.toUpperCase()}
-              </Text>
-              {item.name && (
-                <Text preset="label" className="text-[--ods-color-heading]">
-                  {item.name}
+          items={items}
+          renderCartItem={({ item, isExpanded }) => (
+            <CartItem key={item.title} value={item.id}>
+              <CartItemHeader isExpanded={isExpanded(item.id)}>
+                <Text preset="heading-6" className="text-[--ods-color-heading]">
+                  {item.title.toUpperCase()}
                 </Text>
-              )}
-            </CartItemHeader>
-            <CartItemDetails
-              details={item.details}
-              quantityHintParams={item.quantityHintParams}
-            />
-          </CartItem>
-        )}
-      />
+                {item.name && (
+                  <Text preset="label" className="text-[--ods-color-heading]">
+                    {item.name}
+                  </Text>
+                )}
+              </CartItemHeader>
+              <CartItemDetails
+                details={item.details}
+                quantityHintParams={item.quantityHintParams}
+              />
+            </CartItem>
+          )}
+        />
       </div>
       <div className="shrink-0">
         <CartTotalPrice
