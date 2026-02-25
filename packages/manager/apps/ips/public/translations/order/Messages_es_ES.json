@@ -47,5 +47,13 @@
   "new_prefix_ipv6_card_description": "Obtenga su nuevo prefijo IPv6 para utilizarlo en los servicios vRack.",
   "ipv6_limit_reached_error": "Ya ha alcanzado el número máximo de bloques de IPv6 adicionales.",
   "ipv6_region_3_blocks_limit_reached_error": "Ya ha alcanzado el número máximo de 3 bloques de IPv6 adicionales en la región seleccionada. Por favor, seleccione otra región.",
-  "ipv6_region_already_used_error": "Ya tiene un bloque de la región seleccionada en el vRack. Por favor, seleccione otra región."
+  "ipv6_region_already_used_error": "Ya tiene un bloque de la región seleccionada en el vRack. Por favor, seleccione otra región.",
+  "vrack_bandwidth_section_title": "Seleccionar un ancho de banda público",
+  "vrack_bandwidth_section_description": "Al asignar una IP adicional a una red privada vRack, el ancho de banda público debe estar activado.",
+  "ap_bandwidth_limit_tooltip_info": "La disponibilidad del ancho de banda puede estar limitada en las regiones de Asia-Pacífico.",
+  "ip_order_success_message": "Tu pedido de IP adicional ha comenzado en una nueva pestaña. Por favor, termínalo para finalizar tu compra. Si la nueva pestaña no se abre, <Link>Haga clic aquí.</Link>",
+  "upgrade_bandwidth_order_success_message": "Tu pedido de ancho de banda ha comenzado en una nueva pestaña. Por favor, termínalo para finalizar tu compra. Si la nueva pestaña no se abre, <Link>Haga clic aquí.</Link>",
+  "bandwidth_option_card_tooltip": "Se aplica un coste prorrateado por los días restantes de tu ciclo de facturación actual y la tarificación completa comienza en el siguiente ciclo de facturación.",
+  "vrack_bandwidth_double_order_info_message": "Se necesita un pedido para el ancho de banda público y un pedido para la IP adicional, si ya tienes un ancho de banda público activado en tu vRack. Si aún no tienes un ancho de banda público activado, solo se necesita un pedido.",
+  "upgrade_bandwidth_order_error_message": "Se ha producido un error al realizar el pedido del ancho de banda público. Por favor, vuelva a intentarlo más adelante."
 }

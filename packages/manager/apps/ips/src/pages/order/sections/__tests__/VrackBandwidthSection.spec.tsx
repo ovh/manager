@@ -6,8 +6,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import '@/test-utils/setupUnitTests';
 
-import { OrderContext, OrderContextType } from '../order.context';
-import { VrackBandwidthSection } from './VrackBandwidthSection.component';
+import { OrderContext, OrderContextType } from '../../order.context';
+import { VrackBandwidthSection } from '../VrackBandwidthSection.component';
 
 vi.mock('@ovh-ux/manager-network-common', () => ({
   DEFAULT_BANDWIDTH_PLAN_CODE: 'vrack-bandwidth-default',
@@ -30,7 +30,11 @@ const DEFAULT_REGION = 'eu-west-par';
 const DEFAULT_SERVICE = 'pn-0000001';
 
 const mockBandwidthLimits = [
-  { region: DEFAULT_REGION, bandwidthLimit: 5000, bandwidthLimitType: 'default' },
+  {
+    region: DEFAULT_REGION,
+    bandwidthLimit: 5000,
+    bandwidthLimitType: 'default',
+  },
 ];
 
 // Use priceInUcents: 0 to avoid rendering PriceDescription (which requires ShellContext)
@@ -51,7 +55,9 @@ const defaultContextValue: Partial<OrderContextType> = {
 const renderComponent = (contextOverrides?: Partial<OrderContextType>) =>
   render(
     <OrderContext.Provider
-      value={{ ...defaultContextValue, ...contextOverrides } as OrderContextType}
+      value={
+        { ...defaultContextValue, ...contextOverrides } as OrderContextType
+      }
     >
       <VrackBandwidthSection />
     </OrderContext.Provider>,
@@ -114,12 +120,16 @@ describe('VrackBandwidthSection', () => {
   it('should display a tooltip on cards with bandwidth greater than the current limit', () => {
     renderComponent();
 
-    expect(screen.getByText('bandwidth_option_card_tooltip')).toBeInTheDocument();
+    expect(
+      screen.getByText('bandwidth_option_card_tooltip'),
+    ).toBeInTheDocument();
   });
 
   it('should call setSelectedVrackBandwidthPlanCode with the plan code when selecting an upgrade option', async () => {
     const setSelectedVrackBandwidthPlanCode = vi.fn();
-    const { container } = renderComponent({ setSelectedVrackBandwidthPlanCode });
+    const { container } = renderComponent({
+      setSelectedVrackBandwidthPlanCode,
+    });
 
     const cards = container.querySelectorAll('ods-card');
     await userEvent.click(cards[1]); // upgrade card (10000 Mbps)
@@ -131,7 +141,9 @@ describe('VrackBandwidthSection', () => {
 
   it('should call setSelectedVrackBandwidthPlanCode with undefined when selecting the current bandwidth', async () => {
     const setSelectedVrackBandwidthPlanCode = vi.fn();
-    const { container } = renderComponent({ setSelectedVrackBandwidthPlanCode });
+    const { container } = renderComponent({
+      setSelectedVrackBandwidthPlanCode,
+    });
 
     const cards = container.querySelectorAll('ods-card');
     await userEvent.click(cards[0]); // current bandwidth card (5000 Mbps)
@@ -151,7 +163,11 @@ describe('VrackBandwidthSection', () => {
     // Condition 1: bandwidthLimitType !== 'default'
     vi.mocked(useGetPublicRoutingBandwidthLimits).mockReturnValue({
       bandwidthLimits: [
-        { region: DEFAULT_REGION, bandwidthLimit: 5000, bandwidthLimitType: 'custom' },
+        {
+          region: DEFAULT_REGION,
+          bandwidthLimit: 5000,
+          bandwidthLimitType: 'custom',
+        },
       ],
       isError: false,
       isLoading: false,

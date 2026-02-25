@@ -1,0 +1,5 @@
+{
+  "manager_error_page_default": "Si è verificato un errore durante il caricamento della pagina.",
+  "managerApiError": "Si è verificato un errore <br> {{errore}} <br> request_id: {{ovhQueryId}}",
+  "managerApiErrorWithoutRequestId": "Si è verificato un errore <br> {{errore}}"
+}

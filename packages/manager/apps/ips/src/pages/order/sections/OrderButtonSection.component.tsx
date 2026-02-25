@@ -105,11 +105,12 @@ export const OrderButtonSection: React.FC = () => {
             try {
               const upgradedBandwidth = await getUpgradedBandwidth();
 
-              const selectedVrackBandwidthServiceName = upgradedBandwidth.data.find(
-                (service) =>
-                  service.includes(selectedService || '') &&
-                  service.includes(selectedRegion || ''),
-              );
+              const selectedVrackBandwidthServiceName =
+                upgradedBandwidth.data.find(
+                  (service) =>
+                    service.includes(selectedService || '') &&
+                    service.includes(selectedRegion || ''),
+                );
 
               // Delete bandwidth service if it's a downgrade to default bandwidth
               if (
@@ -143,33 +144,34 @@ export const OrderButtonSection: React.FC = () => {
                   );
 
                   addSuccess(
-                    <Trans
-                      t={t}
-                      i18nKey="upgrade_bandwidth_order_success_message"
-                      components={{
-                        Link: (
-                          <Links
-                            onClickReturn={() => {
-                              window.open(
-                                secondaryOrderUrl,
-                                '_blank',
-                                'noopener,noreferrer',
-                              );
-                            }}
-                          />
-                        ),
-                      }}
-                    />,
+                    <div className="inline-block">
+                      <Trans
+                        t={t}
+                        i18nKey="upgrade_bandwidth_order_success_message"
+                        components={{
+                          Link: (
+                            <Links
+                              onClickReturn={() => {
+                                window.open(
+                                  secondaryOrderUrl,
+                                  '_blank',
+                                  'noopener,noreferrer',
+                                );
+                              }}
+                            />
+                          ),
+                        }}
+                      />
+                    </div>,
                     true,
                   );
                 } else {
                   // from default bandwidth
-                  const vrackBandwidthSettings = getVrackBandwidthUpgradeProductSettings(
-                    {
+                  const vrackBandwidthSettings =
+                    getVrackBandwidthUpgradeProductSettings({
                       planCode: selectedVrackBandwidthPlanCode,
                       serviceName: selectedService,
-                    },
-                  );
+                    });
 
                   url = `${orderBaseUrl}?products=~(${settings}${vrackBandwidthSettings})`;
                 }
@@ -196,19 +198,21 @@ export const OrderButtonSection: React.FC = () => {
           navigate(urls.listing);
 
           addSuccess(
-            <Trans
-              t={t}
-              i18nKey="ip_order_success_message"
-              components={{
-                Link: (
-                  <Links
-                    onClickReturn={() => {
-                      window.open(url, '_blank', 'noopener,noreferrer');
-                    }}
-                  />
-                ),
-              }}
-            />,
+            <div className="inline-block">
+              <Trans
+                t={t}
+                i18nKey="ip_order_success_message"
+                components={{
+                  Link: (
+                    <Links
+                      onClickReturn={() => {
+                        window.open(url, '_blank', 'noopener,noreferrer');
+                      }}
+                    />
+                  ),
+                }}
+              />
+            </div>,
             true,
           );
         }}

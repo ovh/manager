@@ -1,6 +1,4 @@
-import React, { useMemo } from 'react';
-
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useMemo } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -19,6 +17,7 @@ import { Links } from '@ovh-ux/manager-react-components';
 import {
   ButtonType,
   PageLocation,
+  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
@@ -32,6 +31,7 @@ import { urls } from '@/routes/routes.constant';
 import { OrderContext } from '../order.context';
 import { isAvailableOrganisation } from '../order.utils';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+import { APP_NAME } from '@/tracking.constant';
 
 const NO_ORGANISATION = 'no_organisation';
 
@@ -45,7 +45,7 @@ export const OrganisationSection: React.FC = () => {
     selectedServiceType,
     addDisabledService,
   } = React.useContext(OrderContext);
-  const navigate = useNavigate();
+  const { shell } = useContext(ShellContext);
   const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
   const { organisations, isLoading } = useGetOrganisationsList();
@@ -126,7 +126,11 @@ export const OrganisationSection: React.FC = () => {
       <Links
         label={t('go_to_organisation_list_link_label')}
         onClickReturn={() => {
-          navigate(urls.manageOrganisations);
+          shell.navigation
+            .getURL(APP_NAME, urls.manageOrganisations, {})
+            .then((url: string) => {
+              window.open(url, '_blank');
+            });
         }}
       />
     </OrderSection>

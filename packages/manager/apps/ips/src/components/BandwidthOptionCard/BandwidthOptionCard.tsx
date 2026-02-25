@@ -62,7 +62,7 @@ export const BandwidthOptionCard: React.FC<BandwidthOptionCardProps> = ({
     >
       <div className="flex justify-between">
         <OdsText
-          className="mx-5 my-7 flex items-center"
+          className="mx-5 my-7 flex items-center whitespace-nowrap"
           preset={ODS_TEXT_PRESET.heading4}
         >
           <OdsRadio
@@ -83,7 +83,9 @@ export const BandwidthOptionCard: React.FC<BandwidthOptionCardProps> = ({
                 triggerId={`tooltip-bandwidth-option-${bandwidthLimit}-${price}`}
                 withArrow
               >
-                <OdsText className="max-w-[200px] p-2">{tooltip}</OdsText>
+                <OdsText className="max-w-[200px] whitespace-normal p-2">
+                  {tooltip}
+                </OdsText>
               </OdsTooltip>
             </>
           )}
