@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
-export function DatatableAction({ children }: { children: ReactNode }) {
-  return <>{children || <></>}</>;
-}
+const DatatableAction = ({ children }: { children: ReactNode }) => (
+  <>{children || <></>}</>
+);
+
+export { DatatableAction };

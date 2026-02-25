@@ -14,21 +14,21 @@ interface FormFieldProps<T extends FieldValues, K extends Path<T>> {
   children: (field: ControllerRenderProps<T, K>) => ReactNode;
 }
 
-export function FormField<T extends FieldValues, K extends Path<T>>({
+const FormField = <T extends FieldValues, K extends Path<T>>({
   form,
   name,
   children,
-}: FormFieldProps<T, K>) {
-  return (
-    <Controller
-      control={form.control}
-      name={name}
-      render={({ field, fieldState }) => (
-        <Field data-invalid={fieldState.invalid}>
-          <FieldContent>{children(field)}</FieldContent>
-          {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-        </Field>
-      )}
-    />
-  );
-}
+}: FormFieldProps<T, K>) => (
+  <Controller
+    control={form.control}
+    name={name}
+    render={({ field, fieldState }) => (
+      <Field data-invalid={fieldState.invalid}>
+        <FieldContent>{children(field)}</FieldContent>
+        {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+      </Field>
+    )}
+  />
+);
+
+export { FormField };

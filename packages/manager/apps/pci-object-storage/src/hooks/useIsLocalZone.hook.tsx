@@ -4,10 +4,12 @@ import {
   StorageContainer,
 } from '@datatr-ux/ovhcloud-types/cloud';
 
-export function useIsLocaleZone(s3: StorageContainer, regions: Region[]) {
+const useIsLocaleZone = (s3: StorageContainer, regions: Region[]) => {
   if (!regions) return true;
   return (
     regions.find((reg) => reg.name === s3.region).type ===
     RegionTypeEnum.localzone
   );
-}
+};
+
+export { useIsLocaleZone };
