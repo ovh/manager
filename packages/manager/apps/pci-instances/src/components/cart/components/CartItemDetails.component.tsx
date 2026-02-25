@@ -31,7 +31,17 @@ export const CartItemDetails = ({
       <QuantitySelector quota={quota} type={type} region={translatedRegion} />
       <Divider spacing="16" />
       {details.map(
-        ({ name, description, price, priceUnit, isApproximate }, index) => (
+        (
+          {
+            name,
+            description,
+            price,
+            priceUnit,
+            isApproximate,
+            displayPrice = true,
+          },
+          index,
+        ) => (
           <div
             key={`${name}-${index}`}
             data-testid={`cart-item-details-${name}`}
@@ -39,7 +49,7 @@ export const CartItemDetails = ({
             <Text className="text-sm text-[--ods-color-heading]">{name}</Text>
             <div className="flex justify-between">
               {description}
-              {price != null && (
+              {price != null && displayPrice && (
                 <div
                   className="flex flex-col items-end gap-1"
                   data-testid="cart-item-details-price"
