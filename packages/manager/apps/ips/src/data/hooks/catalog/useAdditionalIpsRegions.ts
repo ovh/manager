@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';

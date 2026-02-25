@@ -1,6 +1,6 @@
 {
   "title": "Order Additional IP addresses",
-  "per_ip": "IP",
+  "per_ip": "/IP",
   "per_ip_full": "per IP",
   "ip_version_title": "Select the IP address version",
   "ip_version_description": "In many cases, you may need either a standard IPv4 or the latest IPv6 protocol. Please note that the list of compatible products may vary.",
