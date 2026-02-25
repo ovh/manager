@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.186.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.185.0...@ovh-ux/manager-container-app@0.186.0) (2026-02-25)
+
+
+### Features
+
+* **container:** add nichandle information from user auth ([4e2d9ae](https://github.com/ovh/manager/commit/4e2d9ae3e2152ce32620af7bf46f96f9b9322bba)), closes [#MANAGER-20762](https://github.com/ovh/manager/issues/MANAGER-20762)
+* **container:** remove PNRv2 modal ([795efc4](https://github.com/ovh/manager/commit/795efc445d649438e828b7c7d95acf69239322d2)), closes [#MANAGER-20931](https://github.com/ovh/manager/issues/MANAGER-20931)
+
+
+
+
+
 # [0.185.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.184.0...@ovh-ux/manager-container-app@0.185.0) (2026-02-24)
 
 
