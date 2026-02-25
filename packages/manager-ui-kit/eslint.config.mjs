@@ -9,7 +9,7 @@ import { importEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/i
 import { javascriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/javascript';
 import { prettierEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/prettier';
 import { reactEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/react';
-import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
+// import { tailwindJsxConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tailwind-jsx';
 import { tanStackQueryEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tanstack';
 import { vitestEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/tests';
 import { typescriptEslintConfig } from '@ovh-ux/manager-static-analysis-kit/eslint/typescript';
@@ -122,22 +122,22 @@ export default [
   /* ------------------------------------------------------------------------ */
   /* TailwindCSS Rules                                                     */
   /* ------------------------------------------------------------------------ */
-  tailwindJsxConfig,
-  {
-    ...tailwindJsxConfig,
-    rules: {
-      ...(tailwindJsxConfig.rules ?? {}),
-      // Disable certain Tailwind validations for consistency with ODS themes
-      'tailwindcss/classnames-order': 'off',
-      'tailwindcss/enforces-negative-arbitrary-values': 'off',
-      'tailwindcss/enforces-shorthand': 'off',
-      'tailwindcss/migration-from-tailwind-2': 'off',
-      'tailwindcss/no-arbitrary-value': 'off',
-      'tailwindcss/no-custom-classname': 'off',
-      'tailwindcss/no-contradicting-classname': 'off',
-      'tailwindcss/no-unnecessary-arbitrary-value': 'off',
-    },
-  },
+  // tailwindJsxConfig,
+  // {
+  //   ...tailwindJsxConfig,
+  //   rules: {
+  //     ...(tailwindJsxConfig.rules ?? {}),
+  //     // Disable certain Tailwind validations for consistency with ODS themes
+  //     'tailwindcss/classnames-order': 'off',
+  //     'tailwindcss/enforces-negative-arbitrary-values': 'off',
+  //     'tailwindcss/enforces-shorthand': 'off',
+  //     'tailwindcss/migration-from-tailwind-2': 'off',
+  //     'tailwindcss/no-arbitrary-value': 'off',
+  //     'tailwindcss/no-custom-classname': 'off',
+  //     'tailwindcss/no-contradicting-classname': 'off',
+  //     'tailwindcss/no-unnecessary-arbitrary-value': 'off',
+  //   },
+  // },
 
   /* ------------------------------------------------------------------------ */
   /* Test & Mock Exceptions                                                */

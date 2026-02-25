@@ -14,7 +14,7 @@ export const StepIndicator = () => {
       {checked ? (
         <Icon
           name={ICON_NAME.check}
-          className="block p-[12px] text-[20px] text-[--ods-color-primary-500]"
+          className="block p-[12px] text-[20px] text-(--ods-color-primary-500)"
         />
       ) : (
         <span
@@ -24,8 +24,8 @@ export const StepIndicator = () => {
             'h-10 w-10',
             'font-semibold text-[16px] leading-[20px]',
             open
-              ? 'border-[--ods-color-primary-500] text-[--ods-color-text]'
-              : 'border-[--ods-color-neutral-500] text-[--ods-color-neutral-500]',
+              ? 'border-(--ods-color-primary-500) text-(--ods-color-text)'
+              : 'border-(--ods-color-neutral-500) text-(--ods-color-neutral-500)',
           )}
         >
           {order}

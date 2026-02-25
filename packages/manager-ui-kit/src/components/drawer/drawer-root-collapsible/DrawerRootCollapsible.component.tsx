@@ -21,9 +21,9 @@ export const DrawerRootCollapsible = ({ isOpen = true, ...props }: DrawerRootCol
         createPortal={false}
         {...props}
         className={clsx(
-          'transition-all duration-[var(--mrc-drawer-collapse-duration)] ease-in-out',
+          'transition-all duration-(--mrc-drawer-collapse-duration) ease-in-out',
           'mrc-drawer-handle-fade-in',
-          collapseState === 'collapsed' && 'translate-x-[var(--mrc-drawer-width)]',
+          collapseState === 'collapsed' && 'translate-x-(--mrc-drawer-width)',
         )}
       />
 

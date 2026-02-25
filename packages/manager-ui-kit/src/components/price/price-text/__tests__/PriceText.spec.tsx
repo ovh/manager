@@ -15,7 +15,7 @@ describe('PriceText Component', () => {
 
     expect(span).toBeInTheDocument();
     expect(span).toHaveClass('font-semibold');
-    expect(span).toHaveClass('text-[--ods-color-text]');
+    expect(span).toHaveClass('text-(--ods-color-text)');
     expect(span).toHaveClass('text-[16px]');
     expect(span).toHaveClass('leading-[20px]');
   });
@@ -28,7 +28,7 @@ describe('PriceText Component', () => {
     expect(screen.getByText(')', { exact: false })).toBeInTheDocument();
 
     expect(span).toBeInTheDocument();
-    expect(span).toHaveClass('text-[--ods-color-neutral-500]');
+    expect(span).toHaveClass('text-(--ods-color-neutral-500)');
     expect(span).toHaveClass('text-[14px]');
     expect(span).toHaveClass('leading-[18px]');
   });
