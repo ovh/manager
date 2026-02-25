@@ -37,7 +37,7 @@ export default function TrackingCard({ tracking }: TrackingCardProps) {
           {[TrackingEnum.Initialisation, TrackingEnum.AskForAuthInfo].includes(
             tracking.currentStep.step,
           ) && (
-            <Spinner data-testid="init-spinner" className="flex" size="xs" />
+            <Spinner data-testid="init-spinner" className="flex" size="xs" aria-label='spinner' />
           )}
           {tracking.progress > 0 && (
             <Icon
@@ -91,7 +91,7 @@ export default function TrackingCard({ tracking }: TrackingCardProps) {
       <div className="px-3 py-3">
         <div className="pl-4 flex items-center gap-x-2">
           {tracking.currentStep.step === TrackingEnum.ContactConfirmation && (
-            <Spinner data-testid="contact-spinner" className="flex" size="xs" />
+            <Spinner data-testid="contact-spinner" className="flex" size="xs"  aria-label='contact-spinner' />
           )}
           {tracking.progress > 25 && (
             <Icon
@@ -145,6 +145,7 @@ export default function TrackingCard({ tracking }: TrackingCardProps) {
           {tracking.currentStep.step ===
             TrackingEnum.CurrentRegistrarConfirmation && (
             <Spinner
+              aria-label='confirmation-spinner' 
               data-testid="confirmation-spinner"
               className="flex"
               size="xs"
@@ -191,6 +192,7 @@ export default function TrackingCard({ tracking }: TrackingCardProps) {
         <div className="pl-4 flex items-center gap-x-2">
           {tracking.currentStep.step === TrackingEnum.Finalization && (
             <Spinner
+              aria-label='finalization-spinner' 
               data-testid="finalization-spinner"
               className="flex"
               size="xs"

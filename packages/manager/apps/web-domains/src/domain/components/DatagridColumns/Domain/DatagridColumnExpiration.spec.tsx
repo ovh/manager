@@ -1,9 +1,9 @@
+import '@/common/setupTests';
 import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnExpiration from './DatagridColumnExpiration';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
-import { wrapper } from '@/common/utils/test.provider';
 
 vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
@@ -35,20 +35,22 @@ describe('DatagridColumnExpiration', () => {
     vi.clearAllMocks();
   });
 
-  it('should render skeleton when loading', () => {
+  it('should render skeleton when loading', async () => {
     (useGetServiceInformation as ReturnType<typeof vi.fn>).mockReturnValue({
       serviceInfo: null,
       isServiceInfoLoading: true,
     });
 
-    render(<DatagridColumnExpiration serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    const { container } = render(
+      <DatagridColumnExpiration serviceName={mockServiceName} />,
+      { wrapper },
+    );
 
     expect(screen.getByTestId('skeleton')).toBeInTheDocument();
+    await expect(container).toBeAccessible();
   });
 
-  it('should render expiration date when data is loaded', () => {
+  it('should render expiration date when data is loaded', async () => {
     const mockServiceInfo = {
       billing: {
         expirationDate: mockExpirationDate,
@@ -60,13 +62,15 @@ describe('DatagridColumnExpiration', () => {
       isServiceInfoLoading: false,
     });
 
-    render(<DatagridColumnExpiration serviceName={mockServiceName} />, {
-      wrapper,
-    });
+    const { container } = render(
+      <DatagridColumnExpiration serviceName={mockServiceName} />,
+      { wrapper },
+    );
 
     const textCell = screen.getByTestId('datagrid-text-cell');
     expect(textCell).toBeInTheDocument();
     expect(textCell).toHaveTextContent('12/31/2024');
+    await expect(container).toBeAccessible();
   });
 
   it('should render empty when no service info', () => {

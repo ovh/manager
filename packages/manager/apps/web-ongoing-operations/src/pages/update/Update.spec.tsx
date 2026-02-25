@@ -1,5 +1,5 @@
 import '@/setupTests';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { OdsFileUpload } from '@ovhcloud/ods-components/react';
 import {
@@ -19,6 +19,11 @@ import { useGetDomainInformation } from '@/hooks/data/query';
 import { serviceInfo } from '@/__mocks__/serviceInfo';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { domainFeatureAvailibility } from '@/constants';
+
+const uploadA11yRules = {
+  'aria-allowed-attr': { enabled: false },
+  'label': { enabled: false },
+};
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
@@ -53,7 +58,7 @@ describe('Update page', () => {
       isLoading: false,
     });
 
-    render(<Update />, { wrapper });
+    const { container } = render(<Update />, { wrapper });
 
     await waitFor(() => {
       expect(
@@ -61,6 +66,12 @@ describe('Update page', () => {
       ).toBeInTheDocument();
 
       expect(screen.getByText('domain_operation_comment'));
+    });
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+      },
     });
   });
 
@@ -77,10 +88,16 @@ describe('Update page', () => {
       isLoading: false,
     });
 
-    render(<Update />, { wrapper });
+    const { container } = render(<Update />, { wrapper });
 
     await waitFor(() => {
       expect(screen.getByTestId('contactupdate')).toBeInTheDocument();
+    });
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'heading-order': { enabled: false },
+      },
     });
   });
 
@@ -92,10 +109,18 @@ describe('Update page', () => {
       },
     });
 
-    render(<Update />, { wrapper });
+    const { container } = render(<Update />, { wrapper });
 
     await waitFor(() => {
       expect(screen.getByTestId('upload')).toBeInTheDocument();
+    });
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'aria-allowed-attr': { enabled: false },
+        'heading-order': { enabled: false },
+        'label': { enabled: false },
+      },
     });
   });
 
@@ -107,10 +132,16 @@ describe('Update page', () => {
       },
     });
 
-    render(<Update />, { wrapper });
+    const { container } = render(<Update />, { wrapper });
 
     await waitFor(() => {
       expect(screen.getByTestId('input-name')).toBeInTheDocument();
+    });
+
+    await expect(container).toBeAccessible({
+      rules: {
+        'label': { enabled: false },
+      },
     });
   });
 });
@@ -138,13 +169,14 @@ describe('OdsFileUpload Component', () => {
     );
   };
 
-  it('renders the file upload component with default props', () => {
-    renderComponent();
+  it('renders the file upload component with default props', async () => {
+    const { container } = renderComponent();
     expect(screen.getByTestId('upload')).toBeInTheDocument();
+    await expect(container).toBeAccessible({ rules: uploadA11yRules });
   });
 
-  it('triggers onOdsChange when files are selected', () => {
-    renderComponent();
+  it('triggers onOdsChange when files are selected', async () => {
+    const { container } = renderComponent();
 
     const files = [
       new File(['image'], 'example.jpg', { type: 'application/pdf' }),
@@ -183,5 +215,7 @@ describe('OdsFileUpload Component', () => {
     }
 
     expect(uploadedFiles[0].name).toBe('example.jpg');
+
+    await expect(container).toBeAccessible({ rules: uploadA11yRules });
   });
 });
