@@ -3,6 +3,7 @@ export type OrderProduct = {
   zoneName: string;
   dnssec?: boolean;
   activateZone?: boolean;
+  anycast?: boolean;
 };
 
 export type OrderProductBody = {

@@ -20,8 +20,8 @@ const OnboardingPage = React.lazy(() =>
   import('@/domain/pages/onboarding/onboarding'),
 );
 
-const AnycastOrderPage = React.lazy(() =>
-  import('@/domain/pages/domainTabs/dns/anycastOrder'),
+const DnsOrderPage = React.lazy(() =>
+  import('@/common/pages/DnsOrder/DnsOrder.page'),
 );
 
 const DnsModifyPage = React.lazy(() =>
@@ -64,9 +64,6 @@ const ModifyTextualRecordPage = React.lazy(() =>
   import('@/zone/pages/zone/modify/ModifyTextualRecord.page'),
 );
 
-const ActivateZonePage = React.lazy(() =>
-  import('@/zone/pages/zone/activate/ActivateZone.page'),
-);
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
@@ -122,7 +119,6 @@ export default (
         />
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
           <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
-          <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage} />
         </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
@@ -140,11 +136,12 @@ export default (
           Component={ContactManagementPage}
         />
       </Route>
-      <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
+      <Route path={urls.domainTabOrderAnycast} Component={DnsOrderPage} />
       <Route
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
+      <Route path={zoneUrls.zoneActivate} Component={DnsOrderPage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />

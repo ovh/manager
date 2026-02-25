@@ -3,7 +3,7 @@ import {
   IntervalUnitType,
   OvhSubsidiary,
 } from '@ovh-ux/manager-react-components';
-import { order } from '@/domain/types/orderCatalog';
+import { order } from '@/common/types/orderCatalog';
 
 export const DnsCatalogOrderMock: order.publicOrder.Catalog = {
   catalogId: 1234,

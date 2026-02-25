@@ -4,7 +4,7 @@ import {
   useGetDomainResource,
   useGetDomainZone,
 } from '@/domain/hooks/data/query';
-import AnycastOrder from '@/common/pages/DnsOrder/DnsOrder.page';
+import DnsOrderPage from './DnsOrder.page';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
 
 vi.mock('@/domain/hooks/data/query', () => ({
@@ -13,11 +13,11 @@ vi.mock('@/domain/hooks/data/query', () => ({
 }));
 
 vi.mock('@/common/components/DnsOrderCard/DnsOrderCard', () => ({
-  default: () => <div>Anycast Order Component</div>,
+  default: () => <div>Dns Order Card Component</div>,
 }));
 
-describe('Anycast Order Page', () => {
-  it('Render Anycast order page loading', () => {
+describe('DnsOrderPage', () => {
+  it('Render DnsOrderPage loading', () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: true,
@@ -26,13 +26,13 @@ describe('Anycast Order Page', () => {
       domainResource: {},
       isFetchingDomainZone: true,
     });
-    const { getByTestId } = render(<AnycastOrder />, {
+    const { getByTestId } = render(<DnsOrderPage />, {
       wrapper,
     });
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
-  it('Render Anycast order page', () => {
+  it('Render DnsOrderPage', () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
       isFetchingDomainZone: false,
@@ -41,7 +41,7 @@ describe('Anycast Order Page', () => {
       domainResource: serviceInfoDetail,
       isFetchingDomainZone: false,
     });
-    const { getByTestId } = render(<AnycastOrder />, {
+    const { getByTestId } = render(<DnsOrderPage />, {
       wrapper,
     });
     expect(getByTestId('order-component')).toBeInTheDocument();

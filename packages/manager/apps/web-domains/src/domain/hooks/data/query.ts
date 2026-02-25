@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import {
-  OvhSubsidiary,
   useNotifications,
 } from '@ovh-ux/manager-react-components';
 import { Subsidiary } from '@ovh-ux/manager-config';
@@ -33,8 +32,6 @@ import {
   getServiceDnssec,
 } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
-import { order } from '@/domain/types/orderCatalog';
-import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
@@ -57,6 +54,7 @@ import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { ApiError } from '@ovh-ux/manager-core-api';
+export { useGetOrderCatalogDns } from '@/common/hooks/data/query';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -87,18 +85,7 @@ export const useGetDomainZone = (
   };
 };
 
-export const useGetOrderCatalogDns = (subsidiary: OvhSubsidiary) => {
-  const { data, isLoading, error } = useQuery<order.publicOrder.Catalog>({
-    queryKey: ['order', 'catalog', 'dns', subsidiary],
-    queryFn: () =>
-      getOrderCatalog({ ovhSubsidiary: subsidiary, productName: 'dns' }),
-  });
-  return {
-    dnsCatalog: data,
-    isFetchingDnsCatalog: isLoading,
-    dnsCatalogError: error,
-  };
-};
+
 
 export const useGetDnsOption = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainOption>({

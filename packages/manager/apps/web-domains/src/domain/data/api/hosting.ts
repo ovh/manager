@@ -4,7 +4,7 @@ import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/
 import { formatConfigurationValue } from '@/domain/utils/utils';
 import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
 import { TServiceInfo } from '@/common/types/common.types';
-import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
+import { FREE_HOSTING_PLAN_CODE } from '@/common/constants/order';
 
 export const getAssociatedHosting = async (
   serviceName: string,

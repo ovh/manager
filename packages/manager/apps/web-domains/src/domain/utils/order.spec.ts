@@ -8,7 +8,7 @@ vi.mock('jsurl', () => ({
   },
 }));
 
-vi.mock('@/domain/constants/order', () => ({
+vi.mock('@/common/constants/order', () => ({
   ANYCAST_ORDER_CONSTANT: {
     DURATION: 'P1Y',
     PRODUCT_ID: 'anycast',

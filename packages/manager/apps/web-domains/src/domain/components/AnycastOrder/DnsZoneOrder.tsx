@@ -2,23 +2,26 @@ import {
   Divider,
   DIVIDER_COLOR,
   DIVIDER_SPACING,
+  ICON_NAME,
   Message,
+  MESSAGE_COLOR,
   MessageBody,
   MessageIcon,
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
-import PriceCard from '@/domain/components/Card/PriceCard';
+import PriceCard from '@/common/components/Card/PriceCard';
 
 interface DnsZoneOrderProps {
+  readonly isZoneActivation: boolean;
   readonly dnssecSelected: boolean;
   readonly dnssecSupported: boolean;
   readonly onDnssecSelectedChange: () => void;
 }
 
 export default function DnsZoneOrder({
+  isZoneActivation,
   dnssecSelected,
   dnssecSupported,
   onDnssecSelectedChange,
@@ -28,20 +31,35 @@ export default function DnsZoneOrder({
   return (
     <div className="min-w-[65rem] w-fit" data-testid="dnsZone-order">
       <div className="pb-5">
-        <Text preset={TEXT_PRESET.heading4}>
-          {t('domain_tab_DNS_anycast_order_activate_zone')}
-        </Text>
-        <Message
-          className="w-full mt-4"
-          color="warning"
-          dismissible={false}
-          data-testid="dns-warning-message"
-        >
-          <MessageIcon name="triangle-exclamation" />
-          <MessageBody>
-            {t('domain_tab_DNS_anycast_order_activate_zone_message')}
-          </MessageBody>
-        </Message>
+        {!isZoneActivation && [
+          <Text key={"heading"} preset={TEXT_PRESET.heading4}>
+            {t('domain_tab_DNS_anycast_order_activate_zone')}
+          </Text>,
+          <Message
+            key={"message"}
+            className="w-full mt-4"
+            color={MESSAGE_COLOR.warning}
+            dismissible={false}
+            data-testid="dns-warning-message"
+          >
+            <MessageIcon name={ICON_NAME.triangleExclamation} />
+            <MessageBody>
+              {t('domain_tab_DNS_anycast_order_activate_zone_message')}
+            </MessageBody>
+          </Message>
+        ]}
+        {isZoneActivation && (
+          <Message
+            className="w-full mt-4"
+            color={MESSAGE_COLOR.information}
+            dismissible={false}
+            data-testid="dns-warning-information"
+          >
+            <MessageIcon name={ICON_NAME.circleInfo} />
+            <MessageBody>
+              {t('domain_order_activate_zone_message')}
+            </MessageBody>
+          </Message>)}
       </div>
       <div className="flex gap-5 pb-8">
         <PriceCard

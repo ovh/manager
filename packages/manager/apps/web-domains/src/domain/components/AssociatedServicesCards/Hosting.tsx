@@ -16,7 +16,7 @@ import {
 } from '@/domain/hooks/data/query';
 
 import FreeHostingDrawer from './FreeHostingDrawer';
-import { FREE_HOSTING_PLAN_CODE } from '@/domain/constants/order';
+import { FREE_HOSTING_PLAN_CODE } from '@/common/constants/order';
 import { useNavigate } from 'react-router-dom';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
@@ -105,14 +105,14 @@ export default function Hosting({ serviceName }: HostingProps) {
   const actionMenuItems = [
     ...(region === Region.EU && !hasFreeHosting
       ? [
-          {
-            id: 1,
-            label: t(
-              'domain_tab_general_information_associated_services_hosting_action_activate',
-            ),
-            onClick: () => setIsFreeHostingOpen(true),
-          },
-        ]
+        {
+          id: 1,
+          label: t(
+            'domain_tab_general_information_associated_services_hosting_action_activate',
+          ),
+          onClick: () => setIsFreeHostingOpen(true),
+        },
+      ]
       : []),
     {
       id: 2,

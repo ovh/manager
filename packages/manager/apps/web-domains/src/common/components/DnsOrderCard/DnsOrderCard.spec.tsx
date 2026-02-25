@@ -1,9 +1,8 @@
 import '@/common/setupTests';
-import { render, screen } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { Mock, vi } from 'vitest';
 import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { wrapper } from '@/common/utils/test.provider';
-import AnycastOrderComponent from './AnycastOrder';
+import DnsOrderCard from './DnsOrderCard';
 import { useGetOrderCatalogDns } from '@/domain/hooks/data/query';
 import { DnsCatalogOrderMock } from '@/domain/__mocks__/dnsOrderCatalog';
 
@@ -11,33 +10,39 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetOrderCatalogDns: vi.fn(),
 }));
 
-describe('Anycast Order component', () => {
-  it('Render Anycast order component loading', () => {
+describe('DnsOrderCard component', () => {
+  it('Render DnsOrderCard loading', () => {
     (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: {},
       isFetchingDnsCatalog: true,
     });
     const { getByTestId } = render(
-      <AnycastOrderComponent
+      <DnsOrderCard
         displayTitle={false}
         subsidiary={OvhSubsidiary.FR}
         userLocal={'fr_FR'}
+        isZoneActivation={false}
+        anycastSelected={false}
+        onAnycastCheckBoxChange={vi.fn()}
       />,
       { wrapper },
     );
     expect(getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
-  it('Render Anycast order component without title', () => {
+  it('Render DnsOrderCard without title', () => {
     (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: DnsCatalogOrderMock,
       isFetchingDnsCatalog: false,
     });
     const { getByTestId } = render(
-      <AnycastOrderComponent
+      <DnsOrderCard
         displayTitle={false}
         subsidiary={OvhSubsidiary.FR}
         userLocal={'fr_FR'}
+        isZoneActivation={false}
+        anycastSelected={false}
+        onAnycastCheckBoxChange={vi.fn()}
       />,
       { wrapper },
     );
@@ -55,16 +60,19 @@ describe('Anycast Order component', () => {
     expect(title).not.toBeInTheDocument();
   });
 
-  it('Render Anycast order component with title', () => {
+  it('Render DnsOrderCard with title', () => {
     (useGetOrderCatalogDns as Mock).mockReturnValue({
       dnsCatalog: DnsCatalogOrderMock,
       isFetchingDnsCatalog: false,
     });
     const { getByTestId } = render(
-      <AnycastOrderComponent
+      <DnsOrderCard
         displayTitle={true}
         subsidiary={OvhSubsidiary.FR}
         userLocal={'fr_FR'}
+        isZoneActivation={false}
+        anycastSelected={false}
+        onAnycastCheckBoxChange={vi.fn()}
       />,
       { wrapper },
     );

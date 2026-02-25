@@ -1,9 +1,8 @@
 import '@/common/setupTests';
-import { render } from '@/common/utils/test.provider';
+import { render, wrapper } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import { wrapper } from '@/common/utils/test.provider';
-import PriceCard from '@/domain/components/Card/PriceCard';
+import PriceCard from '@/common/components/Card/PriceCard';
 
 describe('Price card component', () => {
   it('Render Card with title DNSSEC checked and Test in footer', () => {

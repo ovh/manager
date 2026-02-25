@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -14,7 +14,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import appConfig from '@/web-domains.config';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import ServiceDetailsTabs from '@/domain/components/ServiceDetail/ServiceDetailTabs';
 import { urls } from '@/domain/routes/routes.constant';
 import { changelogLinks } from '@/domain/constants/serviceDetail';

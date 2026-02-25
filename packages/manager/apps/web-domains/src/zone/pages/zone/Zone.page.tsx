@@ -96,15 +96,14 @@ export default function ZonePage() {
   );
   const canImportZone = !isIamImportZonePending && canDoImportZone;
 
-  const { addWarning, addInfo, clearNotifications } = useNotifications();
+  const { addInfo, clearNotifications } = useNotifications();
 
   useEffect(() => {
     if (!isFetchingDomainZone && domainZoneError) {
       clearNotifications();
-      addWarning(t('zone_page_error_message', { message: `(${domainZoneError.response?.data?.message})` }));
       addInfo(t('zone_page_message_no_zone'), false);
     }
-  }, [isFetchingDomainZone, domainZoneError, addWarning, addInfo, t]);
+  }, [isFetchingDomainZone, domainZoneError, addInfo]);
 
   useEffect(() => {
     const hasFilters = filters.length > 0;
@@ -326,6 +325,7 @@ export default function ZonePage() {
     <>
       {zoneModals}
       <BannerStatus serviceName={serviceName ?? ''} />
+      <Notifications />
       {!isIamPending && !isAuthorized && <UnauthorizedBanner />}
       {!isFetchingDomainZone && domainZone && isAuthorized && (
         <>
@@ -403,19 +403,7 @@ export default function ZonePage() {
       {!isFetchingDomainZone && !domainZone && (
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-row items-start gap-4">
-            <div className="w-full">
-              <Notifications />
-            </div>
-            <div className="w-2/3 flex justify-end">
-              <Button
-                variant={BUTTON_VARIANT.outline}
-                color={BUTTON_COLOR.primary}
-                onClick={() => navigate(buildUrl(`${domainUrls.zoneActivate}`))}
-                className="w-full"
-              >
-                {t('zone_page_activate_zone')}
-              </Button>
-            </div>
+            <Button size={BUTTON_SIZE.sm} onClick={() => navigate(buildUrl(`${domainUrls.zoneActivate}`))}>{t('zone_page_activate_zone')}</Button>
           </div>
         </div>
       )}
