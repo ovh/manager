@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import {
   useFormatDate,
   useNotifications,
@@ -18,9 +18,11 @@ import {
   MESSAGE_COLOR,
   ICON_NAME,
   MessageIcon,
+  Link,
 } from '@ovhcloud/ods-react';
 import { useRestoreZone } from '@/zone/hooks/data/history.hooks';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 interface RestoreZoneModalProps {
   readonly isOpen: boolean;
@@ -39,6 +41,8 @@ export default function RestoreZoneModal({
   const formatDate = useFormatDate();
   const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
+  const { data: ongoingOperationsLink } = useNavigationGetUrl(['web-ongoing-operations', '/dns', { search: zoneName }]);
+  const ongoingOperationsHref = ongoingOperationsLink as string;
 
   const { mutate: restore, isPending } = useRestoreZone();
 
@@ -49,7 +53,13 @@ export default function RestoreZoneModal({
       { zoneName, creationDate: item.creationDate },
       {
         onSuccess: () => {
-          addSuccess(t('zone_history_restore_success'), true);
+          addSuccess(<span style={{ display: 'inline' }}><Trans
+            t={t}
+            i18nKey="zone_history_restore_success"
+            components={{
+              Link: <Link href={ongoingOperationsHref} />,
+            }}
+          /></span>, true);
           queryClient.invalidateQueries({
             queryKey: ['zone', 'history', zoneName],
           });

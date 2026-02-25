@@ -64,7 +64,7 @@ export default function MxRecordSection({
             {t('zone_page_reset_type_custom_mx_label')}
           </Text>
           {mxEntries.map((entry, index) => (
-            <div key={`mx-${entry.target}-${entry.priority}`} className="flex gap-2 mb-2 items-start">
+            <div key={entry.id} className="flex gap-2 mb-2 items-start">
               <FormField className="flex-1">
                 {index === 0 && (
                   <FormFieldLabel className="text-xs">

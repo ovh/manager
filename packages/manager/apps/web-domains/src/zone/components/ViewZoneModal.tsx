@@ -64,7 +64,7 @@ export default function ViewZoneModal({
           </Text>
         </ModalHeader>
         <ModalBody>
-          <div className="flex-1 overflow-auto mb-4">
+          <div className="flex-1 overflow-auto mb-4 max-h-[45vh]">
             {isLoading && (
               <div className="flex justify-center p-8">
                 <Spinner size={SPINNER_SIZE.lg} />
@@ -85,17 +85,19 @@ export default function ViewZoneModal({
                 <Button
                   variant={BUTTON_VARIANT.ghost}
                   onClick={handleCopy}
-                  className="absolute top-2 right-2 z-10"
+                  className="absolute top-2 right-2"
                 >
-                  <Icon name={copied ? ICON_NAME.check : ICON_NAME.fileCopy} />
+                  <Icon
+                    name={copied ? ICON_NAME.check : ICON_NAME.fileCopy}
+                    style={{ fontSize: '24px' }}
+                  />
                 </Button>
-                <pre className="font-mono text-sm text-gray-700 rounded border border-gray-200 bg-gray-50 p-4 pt-10 max-h-[50vh] overflow-auto whitespace-pre">
+                <pre className="font-mono text-sm text-gray-700 rounded border border-gray-200 bg-gray-50 p-4 pt-10 overflow-auto whitespace-pre">
                   {content}
                 </pre>
               </div>
             )}
           </div>
-
           <div className="flex gap-4 justify-end mt-4">
             <Button variant={BUTTON_VARIANT.ghost} onClick={onClose}>
               {t('zone_history_view_close')}

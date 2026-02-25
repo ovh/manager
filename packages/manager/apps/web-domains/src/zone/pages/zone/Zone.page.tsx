@@ -99,11 +99,12 @@ export default function ZonePage() {
   const { addInfo, clearNotifications } = useNotifications();
 
   useEffect(() => {
-    if (!isFetchingDomainZone && domainZoneError) {
-      clearNotifications();
+    if (isFetchingDomainZone) return;
+    clearNotifications();
+    if (domainZoneError) {
       addInfo(t('zone_page_message_no_zone'), false);
     }
-  }, [isFetchingDomainZone, domainZoneError, addInfo]);
+  }, [isFetchingDomainZone, domainZoneError]);
 
   useEffect(() => {
     const hasFilters = filters.length > 0;

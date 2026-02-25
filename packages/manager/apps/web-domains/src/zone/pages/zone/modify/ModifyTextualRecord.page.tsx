@@ -232,7 +232,7 @@ export default function ModifyTextualRecordPage() {
           </>
         )}
 
-        <div className="flex gap-4 justify-end mt-6">
+        <div className="flex gap-4 justify-start mt-6">
           <Button
             variant={BUTTON_VARIANT.ghost}
             onClick={handleCancel}

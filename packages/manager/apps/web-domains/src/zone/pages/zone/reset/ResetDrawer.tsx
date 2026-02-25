@@ -111,7 +111,7 @@ export default function ResetDrawer({
     );
   };
 
-  const addMxEntry = () => setMxEntries((prev) => [...prev, DEFAULT_MX_ENTRY]);
+  const addMxEntry = () => setMxEntries((prev) => [...prev, { id: crypto.randomUUID(), target: '', priority: 0 }]);
 
   const removeMxEntry = (index: number) =>
     setMxEntries((prev) => prev.filter((_, i) => i !== index));

@@ -341,7 +341,7 @@
   "zone_history_restore": "Restaurer",
   "zone_history_restore_label": "Restaurer",
   "zone_history_error": "Une erreur est survenue lors de la récupération de l'historique : {{message}}",
-  "zone_history_restore_success": "La restauration de votre zone DNS est en cours. Vous pourrez suivre sa progression dans l'onglet \"Tâches récentes\". La propagation sera effective selon la durée du TTL (maximum 24h).",
+  "zone_history_restore_success": "La restauration de votre zone DNS est en cours. Vous pourrez suivre sa progression dans l'onglet <Link>Opérations en cours</Link>. La propagation sera effective selon la durée du TTL (maximum 24h).",
   "zone_history_restore_error": "Une erreur est survenue lors de la restauration : {{message}}",
   "zone_history_restore_modal_title": "Restaurer la zone DNS",
   "zone_history_restore_modal_description": "Êtes-vous sûr de vouloir restaurer cette version de la zone DNS du {{date}} ? Cette action remplacera la configuration actuelle.",

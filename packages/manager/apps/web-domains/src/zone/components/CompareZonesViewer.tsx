@@ -267,7 +267,7 @@ export default function CompareZonesViewer({
               variant={BUTTON_VARIANT.ghost}
               onClick={() => handleCopy(diff.baseLines, setCopiedBase)}
             >
-              <Icon name={copiedBase ? ICON_NAME.check : ICON_NAME.fileCopy} />
+              <Icon name={copiedBase ? ICON_NAME.check : ICON_NAME.fileCopy} style={{ fontSize: '24px' }} />
             </Button>
           </div>
           <pre
@@ -286,7 +286,7 @@ export default function CompareZonesViewer({
               variant={BUTTON_VARIANT.ghost}
               onClick={() => handleCopy(diff.modifiedLines, setCopiedModified)}
             >
-              <Icon name={copiedModified ? ICON_NAME.check : ICON_NAME.fileCopy} />
+              <Icon name={copiedModified ? ICON_NAME.check : ICON_NAME.fileCopy} style={{ fontSize: '24px' }} />
             </Button>
           </div>
           <pre

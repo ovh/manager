@@ -15,7 +15,7 @@ import { useHistoryColumns } from '@/zone/hooks/useHistoryColumns';
 import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import RestoreZoneModal from '@/zone/components/RestoreZoneModal';
 import ViewZoneModal from '@/zone/components/ViewZoneModal';
-import { Button, BUTTON_SIZE, BUTTON_VARIANT } from '@ovhcloud/ods-react';
+import { Button, BUTTON_SIZE } from '@ovhcloud/ods-react';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
 
 export default function HistoryPage() {
@@ -91,7 +91,6 @@ export default function HistoryPage() {
       <div className="mb-4">
         <p className="text-gray-600 mb-4">{t('zone_history_description')}</p>
         <Button
-          variant={BUTTON_VARIANT.outline}
           onClick={handleCompareVersions}
           disabled={!history || history.length < 2}
           size={BUTTON_SIZE.sm}
