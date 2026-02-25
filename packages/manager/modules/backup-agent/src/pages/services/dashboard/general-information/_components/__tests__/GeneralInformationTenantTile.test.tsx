@@ -1,21 +1,17 @@
+import { QueryClient } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { GeneralInformationTileProps } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
+import { queryKeys } from '@/data/queries/queryKeys';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 import { GeneralInformationTenantTile } from '../general-information-tenant-tile/GeneralInformationTenantTile.component';
 
 vi.mock('react-router-dom', () => ({
   useHref: vi.fn().mockImplementation((url: string) => url),
-}));
-
-const { useBackupVSPCTenantDetailsMock } = vi.hoisted(() => ({
-  useBackupVSPCTenantDetailsMock: vi.fn(),
-}));
-
-vi.mock('@/data/hooks/tenants/useVspcTenantDetails', () => ({
-  useBackupVSPCTenantDetails: useBackupVSPCTenantDetailsMock,
 }));
 
 vi.mock(
@@ -30,18 +26,32 @@ vi.mock(
 );
 
 describe('GeneralInformationTenantTile', () => {
+  let queryClient: QueryClient;
+
+  const buildWrapper = () => testWrapperBuilder().withQueryClient(queryClient).build();
+
+  beforeEach(() => {
+    queryClient = createQueryClientTest();
+  });
+
   it('Should render GeneralInformationTenantTile component', async () => {
-    useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isPending: false });
-    const { container } = render(<GeneralInformationTenantTile />);
+    queryClient.setQueryData(queryKeys.tenants.vspc.detail(), TENANTS_MOCKS[0]!);
+
+    const wrapper = await buildWrapper();
+
+    const { container } = render(<GeneralInformationTenantTile />, { wrapper });
 
     await expect(container).toBeAccessible();
 
     expect(screen.getByText(TENANTS_MOCKS[0]!.currentState.name)).toBeVisible();
   });
 
-  it('Should render GeneralInformationTenantTile component', async () => {
-    useBackupVSPCTenantDetailsMock.mockReturnValue({ data: TENANTS_MOCKS[0]!, isPending: true });
-    const { container } = render(<GeneralInformationTenantTile />);
+  it('Should render GeneralInformationTenantTile component loading', async () => {
+    // Don't seed data — query stays in pending state
+
+    const wrapper = await buildWrapper();
+
+    const { container } = render(<GeneralInformationTenantTile />, { wrapper });
 
     await expect(container).toBeAccessible();
 

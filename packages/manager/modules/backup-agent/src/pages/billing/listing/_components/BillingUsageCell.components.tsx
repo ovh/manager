@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsSkeleton } from '@ovhcloud/ods-components/react';
@@ -8,15 +8,16 @@ import { OdsSkeleton } from '@ovhcloud/ods-components/react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
-import { useGetServiceConsumptionOptions } from '@/data/hooks/consumption/useServiceConsumption';
+import { consumptionQueries } from '@/data/queries/consumption.queries';
 import { VAULT_PLAN_CODE } from '@/module.constants';
 
 export type BillingUsageCellProps = { vaultId: string };
 
 export const BillingUsageCell = ({ vaultId }: BillingUsageCellProps) => {
   const { t } = useTranslation([NAMESPACES.BYTES]);
+  const queryClient = useQueryClient();
   const { data: consumptionQuantity, isPending } = useQuery({
-    ...useGetServiceConsumptionOptions()(vaultId),
+    ...consumptionQueries.withClient(queryClient).byResource(vaultId),
     select: (consumptions) =>
       consumptions.find((consumption) => consumption.planCode === VAULT_PLAN_CODE)?.quantity,
   });

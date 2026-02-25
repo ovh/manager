@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/backup-agent",
-  "version": "1.14.4",
+  "version": "1.15.0",
   "private": true,
   "description": "",
   "license": "BSD-3-Clause",
@@ -21,20 +21,20 @@
       "import": "./dist/src/routes/routes.constants",
       "require": "./dist/src/routes/routes.constants.js"
     },
-    "./data/hooks/baremetal/useBaremetalsList": {
-      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalsList.d.ts",
-      "import": "./dist/src/data/hooks/baremetal/useBaremetalsList",
-      "require": "./dist/src/data/hooks/baremetal/useBaremetalsList.js"
+    "./data/queries/baremetals.queries": {
+      "types": "./dist/types/src/data/queries/baremetals.queries.d.ts",
+      "import": "./dist/src/data/queries/baremetals.queries",
+      "require": "./dist/src/data/queries/baremetals.queries.js"
     },
-    "./data/hooks/baremetal/useBaremetalDetails": {
-      "types": "./dist/types/src/data/hooks/baremetal/useBaremetalDetails.d.ts",
-      "import": "./dist/src/data/hooks/baremetal/useBaremetalDetails",
-      "require": "./dist/src/data/hooks/baremetal/useBaremetalDetails.js"
+    "./data/queries/vaults.queries": {
+      "types": "./dist/types/src/data/queries/vaults.queries.d.ts",
+      "import": "./dist/src/data/queries/vaults.queries",
+      "require": "./dist/src/data/queries/vaults.queries.js"
     },
-    "./data/hooks/vaults/getVault": {
-      "types": "./dist/types/src/data/hooks/vaults/getVault.d.ts",
-      "import": "./dist/src/data/hooks/vaults/getVault",
-      "require": "./dist/src/data/hooks/vaults/getVault.js"
+    "./data/queries/queryKeys": {
+      "types": "./dist/types/src/data/queries/queryKeys.d.ts",
+      "import": "./dist/src/data/queries/queryKeys",
+      "require": "./dist/src/data/queries/queryKeys.js"
     },
     "./mocks/baremetals/baremetals.mocks": {
       "types": "./dist/types/src/mocks/baremetals/baremetals.mocks.d.ts",
@@ -147,6 +147,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "7.66.1",
     "react-i18next": "^14.0.5",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "zustand": "^5.0.11"
   }
 }

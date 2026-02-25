@@ -30,6 +30,8 @@ type TCreateInstanceEntity = {
   localBackupRotation: string | null;
   billingPeriod: 'hourly' | 'monthly';
   postInstallScript: string | null;
+} & {
+  publicNetwork: 'basicIp' | 'floatingIp' | null;
 } & TInstancePrivateNetworkData;
 
 export const mapPrivateNetworkToDTO = ({
@@ -96,6 +98,7 @@ export const mapFlavorToDTO = (
       subnetId: entity.subnetId,
       newPrivateNetwork: entity.newPrivateNetwork,
     }),
+    public: entity.publicNetwork === 'basicIp',
   },
   sshKey:
     entity.existingSshKeyId && !entity.newSshPublicKey

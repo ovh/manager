@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
@@ -11,8 +11,8 @@ import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useDeleteVSPCTenant } from '@/data/hooks/tenants/useDeleteTenant';
-import { useVSPCTenantsOptions } from '@/data/hooks/tenants/useVspcTenants';
+import { useDeleteVSPCTenant } from '@/data/hooks/useDeleteVSPCTenant';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { useGetFeaturesAvailabilityNames } from '@/hooks/useGetFeatureAvailability';
 
 export default function DeleteTenantPage() {
@@ -20,6 +20,7 @@ export default function DeleteTenantPage() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
+  const queryClient = useQueryClient();
   const { DELETE_TENANT: deleteAgentFeatureName } = useGetFeaturesAvailabilityNames([
     'DELETE_TENANT',
   ]);
@@ -27,7 +28,7 @@ export default function DeleteTenantPage() {
   const isDeleteTenantFeatureAvailable = featureAvailabilities?.[deleteAgentFeatureName] ?? false;
 
   const { data: vspcName } = useQuery({
-    ...useVSPCTenantsOptions(),
+    ...tenantsQueries.withClient(queryClient).vspcAll(),
     select: ([vspcTenant]) => vspcTenant?.currentState.name,
   });
 

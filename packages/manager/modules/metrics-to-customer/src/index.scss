@@ -1,0 +1,17 @@
+@tailwind components;
+@tailwind utilities;
+
+@import '@ovh-ux/muk/dist/style.css';
+@import '@ovhcloud/ods-themes/default';
+
+[data-scope="popover"][data-part="positioner"]:has([data-ods="combobox-content"]) {
+  z-index: 101 !important;
+  pointer-events: none;
+  position: fixed !important;
+}
+
+[data-scope="popover"][data-part="content"][data-ods="combobox-content"] {
+  pointer-events: auto;
+  z-index: 101 !important;
+  position: relative;
+}

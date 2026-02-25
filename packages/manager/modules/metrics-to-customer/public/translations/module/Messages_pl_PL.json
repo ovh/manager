@@ -1,0 +1,5 @@
+{
+  "loading_metrics_module": "Ładowanie modułu metryk...",
+  "manage_configuration_button": "Zarządzaj konfiguracją",
+  "metrics_region_not_available": "Metryki nie są jeszcze dostępne dla regionu {{region}} twojej instancji."
+}

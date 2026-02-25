@@ -103,7 +103,7 @@ export const DeploymentModeSelection = () => {
                       {t(`common:${descriptionKey}`)}
                     </Text>
                     <div className="mt-auto flex w-full justify-center">
-                      <Image className="h-28" />
+                      <Image className="h-20" />
                     </div>
                   </Tile>
                 );
