@@ -1,0 +1,17 @@
+{
+  "dashboard_allAttachedServicesTab": "Alle angehängten Dienste",
+  "dashboard_publicIpConnectivityTab": "Öffentliche IP-Konnektivität",
+  "dashboard_vrackBreadcrumbLabel": "Das private Netzwerk vRack",
+  "dashboard_guidesTitle": "Guides",
+  "dashboard_guideLink1": "Den vRack auf Ihren dedizierten Servern konfigurieren",
+  "dashboard_guideLink2": "Konfiguration des vRack Public Cloud",
+  "dashboard_guideLink3": "Einen IP-Block im vRack konfigurieren",
+  "dashboard_guideLink4": "Den vRack zwischen Public Cloud und einem dedizierten Server konfigurieren",
+  "dashboard_surveyLink": "Gefällt Ihnen das?",
+  "dashboard_serviceId": "Dienst-ID",
+  "dashboard_vrackDescription": "Beschreibung",
+  "dashboard_subtitle1": "Verwalten Sie Ihr privates vRack-Netzwerk, konfigurieren Sie die Einstellungen Ihres vRack und binden Sie Ihre Dienste überall auf der Welt ein.",
+  "dashboard_subtitle2": "Die vRack-Technologie ermöglicht die sichere Interkonnektivität Ihrer OVHcloud-Dienste und die Isolation Ihrer Arbeitslasten innerhalb eines oder mehrerer privater Netzwerke.",
+  "dashboard_subtitle_hints": "Für weitere Informationen und Anwendungsbeispiele besuchen Sie ",
+  "dashboard_subtitleLink": " die vRack-Webseite"
+}

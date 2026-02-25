@@ -1,6 +1,6 @@
 {
   "title": "Order Additional IP addresses",
-  "per_ip": "IP",
+  "per_ip": "/IP",
   "per_ip_full": "per IP",
   "ip_version_title": "Select the IP address version",
   "ip_version_description": "In many cases, you may need either a standard IPv4 or the latest IPv6 protocol. Please note that the list of compatible products may vary.",
@@ -47,5 +47,13 @@
   "new_prefix_ipv6_card_description": "Get your new IPv6 prefix to use in vRack services.",
   "ipv6_limit_reached_error": "You have reached the maximum limit of additional IPv6 blocks",
   "ipv6_region_3_blocks_limit_reached_error": "You have reached the maximum limit of 3 additional IPv6 blocks in the selected region. Please select another region",
-  "ipv6_region_already_used_error": "You already have a block from the region selected in your vRack. Please select another region"
+  "ipv6_region_already_used_error": "You already have a block from the region selected in your vRack. Please select another region",
+  "vrack_bandwidth_section_title": "Select a public bandwidth",
+  "vrack_bandwidth_section_description": "When assigning an additional IP to a private vRack network, public bandwidth must be enabled.",
+  "ap_bandwidth_limit_tooltip_info": "Bandwidth availability may be limited in the Asia-Pacific regions.",
+  "ip_order_success_message": "Your additional IP order has started in a new tab. Please complete it to finalise your purchase. If the new tab does not open, <Link>click here.</Link>",
+  "upgrade_bandwidth_order_success_message": "Your bandwidth order has started in a new tab. Please complete it to finalise your purchase. If the new tab does not open, <Link>click here.</Link>",
+  "bandwidth_option_card_tooltip": "A pro-rata charge applies for the remaining days of your current billing cycle, and full pricing begins in the next billing cycle.",
+  "vrack_bandwidth_double_order_info_message": "An order for public bandwidth and an order for the additional IP are required if you already have public bandwidth enabled on your vRack. If you do not yet have public bandwidth enabled, only one order is necessary.",
+  "upgrade_bandwidth_order_error_message": "An error occurred while ordering the public bandwidth. Please try again later."
 }

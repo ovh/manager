@@ -1,0 +1,5 @@
+{
+  "manager_error_page_default": "An error occurred while loading the page.",
+  "managerApiError": "An error occurred <br> {{error}} <br> request_id: {{ovhQueryId}}",
+  "managerApiErrorWithoutRequestId": "An error occurred <br> {{error}}"
+}

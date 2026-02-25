@@ -47,5 +47,13 @@
   "new_prefix_ipv6_card_description": "Rufen Sie Ihr neues IPv6-Präfix zur Verwendung mit den vRack-Diensten ab.",
   "ipv6_limit_reached_error": "Die maximale Anzahl an zusätzlichen IPv6-Blöcken wurde bereits erreicht.",
   "ipv6_region_3_blocks_limit_reached_error": "Die maximale Anzahl von 3 zusätzlichen IPv6-Blöcken wurde in der ausgewählten Region bereits erreicht. Bitte wählen Sie eine andere Region.",
-  "ipv6_region_already_used_error": "Sie verfügen bereits über einen Block aus der ausgewählten Region in Ihrem vRack. Bitte wählen Sie eine andere Region."
+  "ipv6_region_already_used_error": "Sie verfügen bereits über einen Block aus der ausgewählten Region in Ihrem vRack. Bitte wählen Sie eine andere Region.",
+  "vrack_bandwidth_section_title": "Wählen Sie eine öffentliche Bandbreite aus",
+  "vrack_bandwidth_section_description": "Bei der Zuweisung einer zusätzlichen IP zu einem privaten vRack-Netzwerk muss die öffentliche Bandbreite aktiviert werden.",
+  "ap_bandwidth_limit_tooltip_info": "Die Verfügbarkeit der Bandbreite kann in der Region Asien-Pazifik eingeschränkt sein.",
+  "ip_order_success_message": "Ihre Bestellung für die zusätzliche IP hat in einem neuen Tab begonnen. Bitte schließen Sie diese ab, um Ihren Kauf abzuschließen. Wenn sich der neue Tab nicht öffnet, <Link>hier klicken.</Link>",
+  "upgrade_bandwidth_order_success_message": "Ihre Bestellung für die Bandbreite hat in einem neuen Tab begonnen. Bitte schließen Sie diese ab, um Ihren Kauf abzuschließen. Wenn sich der neue Tab nicht öffnet, <Link>hier klicken.</Link>",
+  "bandwidth_option_card_tooltip": "Ein anteiliger Kostenbetrag gilt für die verbleibenden Tage Ihres aktuellen Abrechnungszyklus, und die volle Preisgestaltung beginnt im nächsten Abrechnungszyklus.",
+  "vrack_bandwidth_double_order_info_message": "Eine Bestellung für die öffentliche Bandbreite und eine Bestellung für die zusätzliche IP sind erforderlich, wenn Sie bereits eine aktivierte öffentliche Bandbreite auf Ihrem vRack haben. Wenn Sie noch keine aktivierte öffentliche Bandbreite haben, ist nur eine Bestellung erforderlich.",
+  "upgrade_bandwidth_order_error_message": "Ein Fehler ist bei der Bestellung der öffentlichen Bandbreite aufgetreten. Bitte versuchen Sie es später noch einmal."
 }

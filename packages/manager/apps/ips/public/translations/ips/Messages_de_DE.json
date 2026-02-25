@@ -6,5 +6,6 @@
   "task_error_message": "Task-Status: {{status}}. Kommentar: {{comment}}",
   "ip_task_status_cancelled": "abgebrochen",
   "ip_task_status_customerError": "Fehler",
-  "ip_task_status_ovhError": "Fehler"
+  "ip_task_status_ovhError": "Fehler",
+  "current_bandwidth": "Aktuelle Bandbreite"
 }

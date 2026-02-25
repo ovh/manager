@@ -1,0 +1,4 @@
+{
+  "common_error": "Ocorreu um erro: {{error}}",
+  "common_error_notfound": "Recurso não encontrado"
+}
