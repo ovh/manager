@@ -2,7 +2,8 @@ import '@/common/setupTests';
 import { vi, describe, it, beforeEach, expect, Mock } from 'vitest';
 import {
   render,
-  screen
+  screen,
+  fireEvent,
 } from '@/common/utils/test.provider';
 import { useParams } from 'react-router-dom';
 import ContactEdit from './contactEdit';
@@ -23,9 +24,21 @@ vi.mock('@/domain/hooks/domainTabs/useContactEdit', () => ({
 }));
 
 vi.mock('@/domain/components/ContactEdit/EditHolderFormField', () => ({
-  default: ({ rule }: { rule: TConfigurationRuleField }) => (
+  default: ({
+    rule,
+    onFieldChange,
+  }: {
+    rule: TConfigurationRuleField;
+    onFieldChange: (label: string, value: unknown) => void;
+  }) => (
     <div data-testid={`form-field-${rule.label}`}>
-      Form field: {rule.label}
+      <button
+        type="button"
+        data-testid={`change-${rule.label}`}
+        onClick={() => onFieldChange(rule.label, 'test-value')}
+      >
+        Form field: {rule.label}
+      </button>
     </div>
   ),
 }));
@@ -236,6 +249,70 @@ describe('ContactEdit Page', () => {
         'contact-123',
         'example.com',
       );
+    });
+  });
+
+  describe('form validation (invalidFields)', () => {
+    const getSubmitButton = () =>
+      screen
+        .getByText('domain_tab_CONTACT_edit_form_submit_btn')
+        .closest('button');
+
+    it('should enable submit when all required non-readonly fields have values', () => {
+      // mockDomainContact provides values for all required fields in mockRules.
+      // Clicking a field change button sets isDirty = true.
+      render(<ContactEdit />);
+
+      fireEvent.click(screen.getByTestId('change-firstName'));
+
+      expect(getSubmitButton()).not.toBeDisabled();
+    });
+
+    it('should disable submit when a required non-readonly field is empty', () => {
+      // lastName is in FORCED_FIELDS (always required). Override it to be empty.
+      (useGetDomainContact as Mock).mockReturnValue({
+        domainContact: { ...mockDomainContact, lastName: '' },
+        isFetchingDomainContact: false,
+      });
+
+      render(<ContactEdit />);
+
+      fireEvent.click(screen.getByTestId('change-firstName'));
+
+      expect(getSubmitButton()).toBeDisabled();
+    });
+
+    it('should not count a readonly field as invalid even when its value is empty', () => {
+      // organisationName is required + readonly, but not present in the contact.
+      // The READONLY fix must exclude it from invalidFields so the form stays valid.
+      const rulesWithReadonlyRequired = {
+        ...mockRules,
+        fields: {
+          and: [
+            ...mockRules.fields.and,
+            {
+              label: 'organisationName',
+              constraints: [
+                { operator: 'required' },
+                { operator: 'readonly' },
+              ],
+            } as TConfigurationRuleField,
+          ],
+        },
+      };
+
+      (useGetConfigurationRule as Mock).mockReturnValue({
+        rules: rulesWithReadonlyRequired,
+        isRulesLoading: false,
+      });
+
+      render(<ContactEdit />);
+
+      // organisationName is not in mockDomainContact → formValues.organisationName is empty.
+      // Despite being required, it is readonly → must NOT appear in invalidFields.
+      fireEvent.click(screen.getByTestId('change-firstName'));
+
+      expect(getSubmitButton()).not.toBeDisabled();
     });
   });
 });
