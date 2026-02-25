@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.34.3...@ovh-ux/manager-pci-object-storage-app@0.35.0) (2026-02-25)
+
+
+### Features
+
+* **pci-object-storage:** add S3 lifecycle management feature ([d4afb32](https://github.com/ovh/manager/commit/d4afb3201cc6eca763238dd8e41571cb11bf6eae)), closes [#DATATR-2752](https://github.com/ovh/manager/issues/DATATR-2752)
+* **pci.os:** add unit tests in objects pages ([980836f](https://github.com/ovh/manager/commit/980836f20ff21a75592e9bb439ad85797cb91cf8)), closes [#DATATR-2866](https://github.com/ovh/manager/issues/DATATR-2866)
+* **pci.os:** tests and swc migration ([bf47250](https://github.com/ovh/manager/commit/bf472508f5abda850d7f816dc338c4366caaf080))
+
+
+
+
+
 ## [0.34.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.34.2...@ovh-ux/manager-pci-object-storage-app@0.34.3) (2026-02-20)
 
 
