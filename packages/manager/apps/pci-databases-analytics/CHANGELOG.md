@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.41.0...@ovh-ux/manager-pci-databases-analytics-app@1.41.1) (2026-02-25)
+
+
+### Bug Fixes
+
+* **database:** fix traling spaces in translations ([f2c2d2e](https://github.com/ovh/manager/commit/f2c2d2e690743c1c24aa38a7a3b5e383dd5d4261)), closes [#DATATR-2939](https://github.com/ovh/manager/issues/DATATR-2939)
+
+
+
+
+
 # [1.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.40.10...@ovh-ux/manager-pci-databases-analytics-app@1.41.0) (2026-02-09)
 
 

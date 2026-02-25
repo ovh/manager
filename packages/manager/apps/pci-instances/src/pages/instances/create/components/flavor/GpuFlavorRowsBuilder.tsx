@@ -32,8 +32,8 @@ export function GpuFlavorRowsBuilder(
     .map((flavor) => {
       return {
         id: flavor.id,
-        disabled: flavor.unavailableQuota,
-        action: renderRadio(flavor.id, flavor.unavailableQuota),
+        disabled: flavor.unavailableQuota || flavor.hasNoAvailableRegions,
+        action: renderRadio(flavor.id, flavor.unavailableQuota || flavor.hasNoAvailableRegions),
         name: renderName(flavor),
         gpu: <Text preset={TEXT_PRESET.span}>{flavor.gpu}</Text>,
         numberOfGpu: (

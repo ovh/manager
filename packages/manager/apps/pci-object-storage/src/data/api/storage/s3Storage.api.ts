@@ -310,3 +310,8 @@ export const createStorageJob = async ({
     `/cloud/project/${projectId}/region/${region}/storage/${name}/job/replication`,
   );
 };
+
+export const getS3Lifecycle = async ({ projectId, region, name }: S3Data) =>
+  apiClient.v6.get<cloud.StorageLifecycleConfiguration>(
+    `/cloud/project/${projectId}/region/${region}/storage/${name}/lifecycle`,
+  );

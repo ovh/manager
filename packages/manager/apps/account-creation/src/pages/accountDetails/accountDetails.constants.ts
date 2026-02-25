@@ -1,3 +1,5 @@
+import { Rule } from '@/types/rule';
+
 export const TRACKING_GOAL_TYPE = 'account-creation-finalstep';
 
 export const COUNTRIES_VAT_LABEL: Record<string, string> = {
@@ -19,7 +21,7 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   LT: 'PVM kodas',
   LU: 'TVA',
   LV: 'PVN',
-  MT: 'Vat No.',
+  MT: 'Vat',
   NL: 'Btw-nr.',
   PL: 'NIP',
   PT: 'NIF',
@@ -46,7 +48,7 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   CH: 'MWST / TVA / IVA',
   TR: 'KDV',
   UA: 'ІНПП',
-  GB: 'VAT Reg No',
+  GB: 'VAT Reg',
   UZ: 'СТИР',
   AR: 'CUIT',
   BO: 'NIT',
@@ -66,4 +68,21 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   UY: 'RUT',
   VE: 'RIF',
   MA: 'ICE',
+};
+
+export const CNIN_RULE: Rule = {
+  minLength: null,
+  fieldName: 'companyNationalIdentificationNumber',
+  in: null,
+  mandatory: true,
+  maxLength: null,
+  regularExpression: '^\\d{9}(?:\\d{5})?$',
+  examples: null,
+  defaultValue: null,
+  prefix: null,
+};
+
+export const CNIN_NON_MANDATORY_RULE: Rule = {
+  ...CNIN_RULE,
+  mandatory: false,
 };

@@ -1,6 +1,5 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import {
   Button,
   useToast,
@@ -25,7 +24,7 @@ const DeleteSwiftObject = () => {
   const { t } = useTranslation('pci-object-storage/storages/s3/objects');
   const toast = useToast();
 
-  if (!objectKey) return navigate('../');
+  if (!objectKey) navigate('../');
 
   const { deleteS3Object, isPending: deletePending } = useDeleteS3Object({
     onError: (err) => {
@@ -57,7 +56,7 @@ const DeleteSwiftObject = () => {
 
   return (
     <RouteModal isLoading={!projectId && !objectKey}>
-      <DialogContent variant="warning">
+      <DialogContent variant="warning" data-testid="delete-object-modal">
         <DialogHeader>
           <DialogTitle>{t('deleteObjectTitle')}</DialogTitle>
         </DialogHeader>
@@ -74,7 +73,12 @@ const DeleteSwiftObject = () => {
               {t('deleteObjectButtonCancel')}
             </Button>
           </DialogClose>
-          <Button type="button" disabled={deletePending} onClick={handleDelete}>
+          <Button
+            type="button"
+            disabled={deletePending}
+            onClick={handleDelete}
+            data-testid="delete-object-submit-button"
+          >
             {t('deleteObjectButtonConfirm')}
           </Button>
         </DialogFooter>

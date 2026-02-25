@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.8.1...@ovh-ux/manager-pci-dataplatform-app@1.9.0) (2026-02-25)
+
+
+### Features
+
+* **pci.dataplatform:** test, swc and route migration ([4e959f6](https://github.com/ovh/manager/commit/4e959f6018e7e5dbc51d555c57929a7aab6923d6)), closes [#DATATR-2366](https://github.com/ovh/manager/issues/DATATR-2366) [#DATATR-2367](https://github.com/ovh/manager/issues/DATATR-2367) [#DATATR-2368](https://github.com/ovh/manager/issues/DATATR-2368)
+
+
+
+
+
 ## [1.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-dataplatform-app@1.8.0...@ovh-ux/manager-pci-dataplatform-app@1.8.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-dataplatform-app

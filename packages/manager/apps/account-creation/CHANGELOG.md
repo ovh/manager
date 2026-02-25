@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.12.1...@ovh-ux/manager-account-creation-app@0.12.2) (2026-02-25)
+
+
+### Bug Fixes
+
+* **account-creation:** add exit guard and redirection for incomplete accounts ([ac72e40](https://github.com/ovh/manager/commit/ac72e406de89adda6da6d234683ad4d9adfd1f7a)), closes [#MANAGER-20936](https://github.com/ovh/manager/issues/MANAGER-20936)
+* **account-creation:** display siret as mandatory for certain countries ([8c4f818](https://github.com/ovh/manager/commit/8c4f81865e4f1ac4cecd75d64db9db32ddc24603)), closes [#MANAGER-20933](https://github.com/ovh/manager/issues/MANAGER-20933)
+* **account-creation:** enforce SIRET only for corportation ([c4bc4b9](https://github.com/ovh/manager/commit/c4bc4b901ef26873baf35ce7886a9bf0e4f5047d)), closes [#MANAGER-20997](https://github.com/ovh/manager/issues/MANAGER-20997)
+* **account-creation:** export rule from /rules api ([841a58e](https://github.com/ovh/manager/commit/841a58e3bd3a6b52fa5216973486eb32accfb0c8)), closes [#MANAGER-20933](https://github.com/ovh/manager/issues/MANAGER-20933)
+* **account-creation:** fix interpolation issue on vat label ([a4a76b2](https://github.com/ovh/manager/commit/a4a76b29d2810df971bd84f1605e122e4deb06c3)), closes [#MANAGER-20912](https://github.com/ovh/manager/issues/MANAGER-20912)
+* **account-creation:** fix punctoation in french ([8d5072a](https://github.com/ovh/manager/commit/8d5072aca75d112e4a0c02e9f002c16c28148dcf)), closes [#MANAGER-20999](https://github.com/ovh/manager/issues/MANAGER-20999)
+* **account-creation:** fix translations for sms consent and solo trader ([6b07b2c](https://github.com/ovh/manager/commit/6b07b2cc44024639af465acc6722727565dd2548)), closes [#MANAGER-20917](https://github.com/ovh/manager/issues/MANAGER-20917)
+* **account-creation:** force-disable ExitGuard on valid form ([898caf3](https://github.com/ovh/manager/commit/898caf38acfbed73a92180e61723e19db2018965)), closes [#MANAGER-20996](https://github.com/ovh/manager/issues/MANAGER-20996)
+* **account-creation:** manage CNIN mandatory label ([2f8da35](https://github.com/ovh/manager/commit/2f8da358b646c794d191745f55b367356a0d843a)), closes [#MANAGER-20998](https://github.com/ovh/manager/issues/MANAGER-20998)
+
+
+
+
+
 ## [0.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.12.0...@ovh-ux/manager-account-creation-app@0.12.1) (2026-02-20)
 
 

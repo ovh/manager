@@ -3,6 +3,7 @@ import { Skeleton } from '@ovhcloud/ods-react';
 export { default as FormGroupSkeleton } from './FormGroupSkeleton.component';
 export { default as AddressFormGroupSkeleton } from './AddressFormGroupSkeleton.component';
 export { default as ContactFormGroupSkeleton } from './ContactFormGroupSkeleton.component';
+export { default as HeaderSkeleton } from './HeaderSkeleton.component';
 
 export function CheckboxSkeleton() {
   return (

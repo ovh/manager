@@ -54,9 +54,9 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
   const { t } = useTranslation('creation');
   const { getTextPrice } = useCatalogPrice(4);
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [selectedImageVariantId, distributionImageType] = useWatch({
+  const [selectedImageVariantId, distributionImageType, sshKeyId] = useWatch({
     control,
-    name: ['distributionImageVariantId', 'distributionImageType'],
+    name: ['distributionImageVariantId', 'distributionImageType', 'sshKeyId'],
   });
 
   const { trackClick } = useOvhTracking();
@@ -138,9 +138,9 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
         distributionImageVersionId: firstAvailableVariant?.windowsId ?? null,
         distributionImageVersionName: firstAvailableVariant?.label ?? null,
       });
-      setValue('sshKeyId', null);
+      if (sshKeyId) setValue('sshKeyId', null);
     },
-    [setValue],
+    [setValue, sshKeyId],
   );
 
   const selectFirstAvailableVariant = useCallback(
@@ -174,11 +174,10 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
     if (!previousSelectedVariantAvailable)
       selectFirstAvailableVariant(firstAvailableVariant);
 
-    if (
-      !previousSelectedVariantAvailable &&
-      distributionImageType === 'windows'
-    )
-      updateVersionAndSshKey(firstAvailableVariant);
+    if (distributionImageType === 'windows')
+      updateVersionAndSshKey(
+        previousSelectedVariantAvailable ?? firstAvailableVariant,
+      );
 
     if (isBackups && firstAvailableVariant?.osType === 'windows')
       setValue('sshKeyId', null);
