@@ -19,5 +19,6 @@
   "agent_status_not_configured_legend": "Ihr Agent wird als installiert identifiziert, seine Richtlinien werden aber noch nicht angewendet. Wir kümmern uns schnellstmöglich darum.",
   "agent_status_creating_legend": "Ihr Agent wird gerade erstellt.",
   "agent_status_updating_legend": "Ihr Agent wird gerade geändert.",
-  "agent_status_enabled_legend": "Ihr Agent ist aktiv, es werden Backups von Ihrem Server aus erstellt."
+  "agent_status_enabled_legend": "Ihr Agent ist aktiv, es werden Backups von Ihrem Server aus erstellt.",
+  "no_agent_enabled_banner": "Brauchen Sie Hilfe bei der Installation Ihres Agents? Sie können folgen <Link>folgende Hilfe nutzen</Link>"
 }

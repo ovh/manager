@@ -1,0 +1,40 @@
+{
+    "id": "11111111-1111-1111-1111-111111111105",
+    "currentState": {
+        "chart": {
+            "id": "libvirtd_domain_cpu_time",
+            "title": "cpu_utilization_title",
+            "unit": "percent",
+            "colspan": 2,
+            "tooltip": {                
+                "title": "cpu_utilization_description_header"
+            },
+            "query": "rate(ovhcloud_libvirtd_domain_cpu_time_ns{resource_urn=<resource_urn>}[5m]) / 1e9",
+            "chart": {
+                "type": "TimeSeries",
+                "curveType": "linear",
+                "XAxis": {
+                    "dataKey": "timestamp",
+                    "formatter": "formatTimestamp",
+                    "interval": 10
+                },
+                "YAxis": {
+                    "dataKeys": [
+                        "value"
+                    ],
+                    "formatter": "formatLargeNumber"
+                },
+                "tooltip": {
+                    "value": {
+                        "formatter": {
+                            "type": "formatNumber",
+                            "precision": 2
+                        }
+                    }
+                }
+            }
+        },
+        "displayName": "My kind 5",
+        "name": "mykind5"
+    }
+}

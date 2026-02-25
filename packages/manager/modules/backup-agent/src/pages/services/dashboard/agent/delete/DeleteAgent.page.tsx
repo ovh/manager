@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
@@ -9,17 +10,18 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
-import { useBackupVSPCTenantAgentDetails } from '@/data/hooks/agents/getAgentDetails';
-import { useDeleteTenantAgent } from '@/data/hooks/agents/useDeleteAgent';
+import { useDeleteTenantAgent } from '@/data/hooks/useDeleteTenantAgent';
+import { agentsQueries } from '@/data/queries/agents.queries';
 
 export default function DeleteAgentPage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.AGENT, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
 
   const { agentId } = useParams<{ agentId: string }>();
-  const { data } = useBackupVSPCTenantAgentDetails({ agentId: agentId! });
+  const { data } = useQuery(agentsQueries.withClient(queryClient).detail(agentId!));
 
   const { mutate: deleteAgent, isPending } = useDeleteTenantAgent({
     onSuccess: () =>

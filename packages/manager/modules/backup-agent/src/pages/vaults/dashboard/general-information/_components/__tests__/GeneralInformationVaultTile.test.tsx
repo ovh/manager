@@ -1,50 +1,53 @@
+import { QueryClient } from '@tanstack/react-query';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import { GeneralInformationTileProps } from '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component';
+import { queryKeys } from '@/data/queries/queryKeys';
 import { mockLocations } from '@/mocks/location/locations';
 import { mockVaults } from '@/mocks/vaults/vaults.mock';
+import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
+import { createQueryClientTest } from '@/test-utils/testWrapperProviders';
 
 import { GeneralInformationVaultTile } from '../general-information-vault-tile/GeneralInformationVaultTile.component';
 
-const { useBackupVaultDetailsMock, useLocationDetailsMock } = vi.hoisted(() => ({
-  useBackupVaultDetailsMock: vi.fn(),
-  useLocationDetailsMock: vi.fn(),
-}));
-
-vi.mock('@/data/hooks/location/getLocationDetails', () => ({
-  useLocationDetails: useLocationDetailsMock,
-}));
-vi.mock('@/data/hooks/vaults/getVaultDetails', () => ({
-  useBackupVaultDetails: useBackupVaultDetailsMock,
-}));
-
-vi.mock(
-  '@/components/CommonTiles/GeneralInformationsTile/GeneralInformationTile.component',
-  () => ({
-    GeneralInformationTile: <T extends { name: string }>({
-      resourceDetails,
-      isLoading,
-    }: GeneralInformationTileProps<T>) =>
-      isLoading ? <>is loading</> : <>{resourceDetails?.currentState.name}</>,
+vi.mock('react-i18next', () => ({
+  useTranslation: vi.fn().mockReturnValue({
+    t: vi.fn().mockImplementation((key: string) => key),
   }),
-);
+}));
 
 describe('GeneralInformationVaultTile', () => {
-  it('Should render GeneralInformationVaultTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: false });
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: false });
-    const { container } = render(<GeneralInformationVaultTile vaultId={mockVaults[0]!.id} />);
+  let queryClient: QueryClient;
+  const vault = mockVaults[0]!;
 
-    await expect(container).toBeAccessible();
+  const buildWrapper = () => testWrapperBuilder().withQueryClient(queryClient).build();
 
-    expect(screen.getByText(mockVaults[0]!.currentState.name)).toBeVisible();
+  beforeEach(() => {
+    queryClient = createQueryClientTest();
   });
 
   it('Should render GeneralInformationVaultTile component', async () => {
-    useBackupVaultDetailsMock.mockReturnValue({ data: mockVaults[0]!, isLoading: true });
-    useLocationDetailsMock.mockReturnValue({ data: mockLocations[0]!, isLoading: true });
-    const { container } = render(<GeneralInformationVaultTile vaultId={mockVaults[0]!.id} />);
+    queryClient.setQueryData(queryKeys.vaults.detail(vault.id), vault);
+    queryClient.setQueryData(
+      queryKeys.locations.detail(vault.currentState.region),
+      mockLocations[0]!,
+    );
+
+    const wrapper = await buildWrapper();
+
+    const { container } = render(<GeneralInformationVaultTile vaultId={vault.id} />, { wrapper });
+
+    await expect(container).toBeAccessible();
+
+    expect(screen.getByText(vault.currentState.name)).toBeVisible();
+  });
+
+  it('Should render GeneralInformationVaultTile component with skeletons when loading', async () => {
+    // Don't seed the cache so queries stay in loading state
+
+    const wrapper = await buildWrapper();
+
+    const { container } = render(<GeneralInformationVaultTile vaultId={vault.id} />, { wrapper });
 
     await expect(container).toBeAccessible();
 

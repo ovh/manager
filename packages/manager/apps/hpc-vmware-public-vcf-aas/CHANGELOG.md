@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.30.3...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.31.0) (2026-02-24)
+
+
+### Bug Fixes
+
+* **vcfaas:** default vrack segment should not ne deleted ([4404ca8](https://github.com/ovh/manager/commit/4404ca8bfa5487887b4564832d2b89ad887e05e4)), closes [#MANAGER-20873](https://github.com/ovh/manager/issues/MANAGER-20873)
+
+
+### Features
+
+* **vcfaas:** allow associate vrack to vdc ([a2ef28a](https://github.com/ovh/manager/commit/a2ef28a52fab83aa17e1f5aff9124ee53ac05fd7)), closes [#MANAGER-20872](https://github.com/ovh/manager/issues/MANAGER-20872)
+
+
+
+
+
 ## [0.30.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.30.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.30.3) (2026-02-05)
 
 

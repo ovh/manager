@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.13.1...@ovh-ux/manager-pci-instances-app@0.13.2) (2026-02-23)
+
+
+### Bug Fixes
+
+* **pci-instances:** fix dhcp checkbox, text helper, post public network ([5e61b3c](https://github.com/ovh/manager/commit/5e61b3c41498a8a77f2114e33033f234aa39f642))
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.13.0...@ovh-ux/manager-pci-instances-app@0.13.1) (2026-02-20)
 
 

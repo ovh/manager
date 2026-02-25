@@ -1,0 +1,17 @@
+{
+  "infrastructure": {
+    "region": {
+      "all": "Toutes les régions",
+      "eu": "Europe",
+      "us": "États-Unis",
+      "ap": "Asie Pacifique",
+      "ca": "Amérique du Nord",
+      "title": "Sélectionner la région",
+      "zone": {
+        "local": "Déploiement de vos applications au plus près de vos utilisatrices et utilisateurs pour une faible latence et la résidence des données.",
+        "1_az": "Déploiement résilient et économique sur 1 zone de disponibilité.",
+        "3_az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité"
+      }
+    }
+  }
+}

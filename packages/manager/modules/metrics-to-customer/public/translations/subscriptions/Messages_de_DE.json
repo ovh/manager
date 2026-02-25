@@ -1,0 +1,33 @@
+{
+  "tenants_drawer": {
+    "title": "Liste der Mieter",
+    "disclaimer": "Nur die Mieter, die sich in der gleichen Region \"{{region}}\" wie Ihre Ressource befinden, können ausgewählt werden",
+    "no_results_found": "Kein Mieter für die Suche \"{{searchQuery}}\" gefunden",
+    "region": "Region"
+  },
+  "tenants_regions": {
+    "region_one": "Region",
+    "region_other": "Regionen"
+  },
+  "no_tenants_message": {
+    "title": "Sammeln Sie Metriken in Ihrem ersten Mieter in dieser Region",
+    "description": "Um Ihnen den schnellen Einstieg zu erleichtern, erstellen wir automatisch Ihren ersten Mieter mit den folgenden Einstellungen:",
+    "retention": "Aufbewahrung: {{retention}}",
+    "create-and-subscribe-tenant": "Erstellen und abonnieren Sie Ihren Mieter"
+  },
+  "search": {
+    "placeholder": "Suche"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "Abonnieren"
+    },
+    "unsubscribe": {
+      "cta": "Abbestellen"
+    }
+  },
+  "listing": {
+    "service": "Observabilitätsdienst",
+    "select_observability_service": "Wählen Sie einen Dienst"
+  }
+}

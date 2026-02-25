@@ -1,0 +1,29 @@
+import '@testing-library/jest-dom';
+import { fetch } from 'cross-fetch';
+import 'element-internals-polyfill';
+import { vi } from 'vitest';
+
+global.fetch = fetch;
+
+// TODO remove during unmocking phase
+vi.mock('@/__mocks__/mock.config', () => ({
+  apiConfig: {
+    mode: 'api',
+  },
+}));
+
+const trackClickMock = vi.fn();
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
+  const original: typeof import('@ovh-ux/manager-react-shell-client') = await importOriginal();
+  return {
+    ...original,
+    useOvhTracking: () => ({ trackClick: trackClickMock }),
+  };
+});
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual: Record<string, unknown> = await importOriginal();
+  return {
+    ...actual,
+  };
+});

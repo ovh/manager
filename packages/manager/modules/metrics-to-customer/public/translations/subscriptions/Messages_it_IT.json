@@ -1,0 +1,33 @@
+{
+  "tenants_drawer": {
+    "title": "Elenco dei tenant",
+    "disclaimer": "Solo i tenant situati nella stessa regione \"{{region}}\" della tua risorsa possono essere selezionati",
+    "no_results_found": "Nessun tenant trovato per la ricerca \"{{searchQuery}}\"",
+    "region": "regione"
+  },
+  "tenants_regions": {
+    "region_one": "Regione",
+    "region_other": "Region"
+  },
+  "no_tenants_message": {
+    "title": "Raccogli metriche nel tuo primo tenant in questa regione",
+    "description": "Per aiutarti a iniziare rapidamente, creeremo automaticamente il tuo primo tenant con le seguenti impostazioni:",
+    "retention": "Ritenzione: {{retention}}",
+    "create-and-subscribe-tenant": "Crea e abbonati al tuo tenant"
+  },
+  "search": {
+    "placeholder": "ricerca"
+  },
+  "subscription": {
+    "subscribe": {
+      "cta": "Iscriviti"
+    },
+    "unsubscribe": {
+      "cta": "Disiscriversi"
+    }
+  },
+  "listing": {
+    "service": "Servizio di Osservabilità",
+    "select_observability_service": "Seleziona un servizio"
+  }
+}

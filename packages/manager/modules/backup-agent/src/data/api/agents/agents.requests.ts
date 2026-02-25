@@ -23,6 +23,13 @@ export type EditBackupAgentConfigParams = GetBackupAgentParams & {
   policy: string;
 };
 
+export const getBackupAgents = async (backupServicesId: string, vspcTenantId: string) => {
+  const { data } = await v2.get<AgentResource<Agent>[]>(
+    getBackupAgentsRoute(backupServicesId, vspcTenantId),
+  );
+  return data;
+};
+
 export const getBackupAgentsDetails = async ({
   backupServicesId,
   vspcTenantId,

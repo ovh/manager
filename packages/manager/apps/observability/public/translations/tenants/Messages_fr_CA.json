@@ -1,0 +1,89 @@
+{
+  "listing": {
+    "title": "Liste des tenants",
+    "description": "Les tenants vous permettent d'organiser vos métriques dès leur arrivée sur le service d'observabilité.",
+    "description_bis": "Avec plusieurs tenants, vous pouvez structurer vos données selon vos besoins, niveaux de confidentialité, politiques d’accès, stratégies de rétention et de localisation adaptée.",
+    "endpoint_cell": "URL du serveur Prometheus",
+    "retention_cell": "Rétention",
+    "active_metrics_cell": "Métriques actifs",
+    "tags_cell": "Tags",
+    "clipboard_error_label": "Erreur",
+    "create_tenant_button": "Ajouter un nouveau tenant",
+    "details_action": "Détails",
+    "access_grafana_action": "Accéder à Grafana",
+    "copy_uid_action": "Copier l'UID du tenant",
+    "generate_access_token_action": "Générer un jeton d'accès",
+    "filter_search_key": "recherche"
+  },
+  "delete": {
+    "delete_tenant_title": "Supprimer le Tenant",
+    "delete_tenant_description": "Êtes-vous sûr de vouloir supprimer le tenant \"{{tenantName}}\" ?",
+    "success": "Le tenant est en cours de suppression"
+  },
+  "onboarding": {
+    "description": "Créez votre nouveau tenant pour continuer à explorer tout le potentiel des métriques d'observabilité. Vous pourrez envoyer des données, créer des tableaux de bord et configurer des alertes adaptées à vos besoins spécifiques.",
+    "orderButtonLabel": "Créez votre tenant"
+  },
+  "creation": {
+    "title": "Créer un tenant",
+    "success": "Le tenant est en cours de création",
+    "tenantInformation": "Saisir les informations du tenant",
+    "namePlaceholder": "Nom du tenant",
+    "description": "Description (optionnelle)",
+    "descriptionPlaceholder": "Ajoutez une description des metrics que vous allez écrire dans ce tenant"
+  },
+  "edition": {
+    "title": "Modifier le tenant",
+    "subtitle": "Vous créez un tenant dans votre service d'observabilité \"{{tenantName}}\"",
+    "success": "Le tenant a été modifié avec succès"
+  },
+  "configuration": {
+    "title": "Configurez votre tenant",
+    "retention": {
+      "title": "Rétention"
+    },
+    "limit": {
+      "title": "Limite d'ingestion (métriques actives)",
+      "description": "Définissez la limite maximale du nombre de métriques actives pour ce tenant."
+    }
+  },
+  "dashboard": {
+    "subscription_tab": "Souscription",
+    "tags_tab": "Tags",
+    "explore_in_grafana_button": "Explorer dans Grafana®",
+    "general_information_tile": {
+      "name": "Nom du tenant",
+      "endpoint": "Endpoint",
+      "updated_at": "Date de la dernière modification",
+      "edit_information": "Modifier les informations"
+    },
+    "configuration_tile": {
+      "title": "Configuration",
+      "retention": "Rétention",
+      "active_metrics": "Métriques actifs",
+      "ingestion_limit": "Limite d'ingestion"
+    },
+    "tags_tile": {
+      "title": "Tags",
+      "manage_tags": "Gérer les tags"
+    },
+    "subscription_tile": {
+      "title": "Objet lié",
+      "subscriptions": "Souscriptions",
+      "access_subscription_page": "Accéder à la page de Souscription"
+    },
+    "subscription_listing": {
+      "create_subscription": "Configurer la souscription",
+      "kind_cell": "Type de produit",
+      "resource_cell": "Ressource",
+      "unsubscribe": {
+        "cta": "Se désabonner",
+        "title": "Se désabonner ?",
+        "confirm": "Oui, se désabonner",
+        "cancel": "Non, annuler",
+        "warning":"Se désabonner au tenant de métriques pour cette ressource entraînera l'arrêt définitif de la collecte et la suppression des données associées.",
+        "success": "La souscription est en cours de suppression"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "listing": {
+    "service": "Servizio",
+    "select_observability_service": "Seleziona un servizio"
+  },
+  "onboarding": {
+    "description": "Crea il tuo servizio per scoprire come le metriche di osservabilità ti offrono una visione più precisa e granulare delle prestazioni della tua infrastruttura e delle tue applicazioni.",
+    "orderButtonLabel": "Attiva il servizio"
+  },
+  "guide": {
+    "getting_started": "Per iniziare",
+    "documentation": "Documentazione"
+  }
+}
