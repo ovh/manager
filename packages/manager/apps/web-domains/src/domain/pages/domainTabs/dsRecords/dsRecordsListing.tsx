@@ -50,7 +50,7 @@ export default function DsRecordsListing() {
     serviceName,
   );
   const { data: dnsZoneIAMRessources } = useGetIAMResource(
-    domainResource.id,
+    domainResource?.id,
     'dnsZone',
   );
   const urn = dnsZoneIAMRessources?.[0]?.urn;
@@ -93,18 +93,26 @@ export default function DsRecordsListing() {
       serviceName,
     },
   );
-  if (!domainResource.currentState.dnssecConfiguration.dnssecSupported) {
-    navigate(generalInformationUrl, { replace: true });
-  }
 
   useEffect(() => {
+    if (
+      domainResource &&
+      !domainResource.currentState.dnssecConfiguration.dnssecSupported
+    ) {
+      navigate(generalInformationUrl, { replace: true });
+    }
+  }, [domainResource, generalInformationUrl, navigate]);
+
+  useEffect(() => {
+    if (!domainResource) return;
+
     const {
       dsData: dsRecordCurrentState,
       supportedAlgorithms,
-    } = domainResource?.currentState.dnssecConfiguration;
+    } = domainResource.currentState.dnssecConfiguration;
     const {
       dsData: dsRecordTargetSpec,
-    } = domainResource?.targetSpec?.dnssecConfiguration;
+    } = domainResource.targetSpec?.dnssecConfiguration ?? { dsData: [] };
 
     if (!dsRecordCurrentState.length && !dsRecordTargetSpec.length) {
       setItems([]);
@@ -176,8 +184,8 @@ export default function DsRecordsListing() {
   });
 
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
-    domainResource.currentState,
-    domainResource.targetSpec,
+    domainResource?.currentState,
+    domainResource?.targetSpec,
   );
 
   let message: JSX.Element = <></>;

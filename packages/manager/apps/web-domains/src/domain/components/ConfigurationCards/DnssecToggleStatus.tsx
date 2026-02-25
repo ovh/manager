@@ -40,7 +40,7 @@ export default function DnssecToggleStatus({
 }: DnssecToggleStatusProps) {
   const { t } = useTranslation(['domain', NAMESPACES.IAM, NAMESPACES.STATUS]);
   const { data: dnsZoneIAMRessources } = useGetIAMResource(
-    domainResource.id,
+    domainResource?.id,
     'dnsZone',
   );
   const urn = dnsZoneIAMRessources?.[0]?.urn;

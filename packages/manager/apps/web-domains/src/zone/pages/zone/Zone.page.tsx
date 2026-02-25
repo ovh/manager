@@ -22,7 +22,7 @@ import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
 import { useGetDomainZone } from "@/domain/hooks/data/query";
 import { DeleteEntryModal } from '@/zone/pages/zone/delete/DeleteEntry.modal';
 
-export default function ZonePage() {
+function ZonePageInner() {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { serviceName } = useParams<{ serviceName: string }>();
@@ -410,4 +410,9 @@ export default function ZonePage() {
       )}
     </>
   );
+}
+
+export default function ZonePage() {
+  const { serviceName } = useParams<{ serviceName: string }>();
+  return <ZonePageInner key={serviceName} />;
 }
