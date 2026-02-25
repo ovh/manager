@@ -1,4 +1,4 @@
-import { Fragment, JSX, ReactNode, RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, JSX, ReactNode, useMemo } from 'react';
 import {
   getCoreRowModel,
   getExpandedRowModel,
@@ -40,43 +40,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import type { ZoneRecord } from '@/zone/types/zoneRecords.types';
 
-const ROW_HEIGHT = 49; // RowHeight.md from MUK
-const SCROLL_VIEWPORT_HEIGHT = 550; // matches containerSize for data.length >= 10
 const LOADING_ROW_KEYS = Array.from({ length: 10 }, (_, i) => `loading-skeleton-${i}`);
-
-/** Minimal fixed-size virtualizer — avoids the @tanstack/react-virtual dependency. */
-function useFixedSizeVirtualizer(
-  count: number,
-  rowHeight: number,
-  scrollRef: RefObject<HTMLDivElement | null>,
-  overscan: number,
-) {
-  const [scrollTop, setScrollTop] = useState(0);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return undefined;
-    const onScroll = () => setScrollTop(el.scrollTop);
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, []); // mount-only; ref object is stable
-
-  const startIndex = Math.max(0, Math.floor(scrollTop / rowHeight) - overscan);
-  const endIndex = Math.min(count - 1, Math.ceil((scrollTop + SCROLL_VIEWPORT_HEIGHT) / rowHeight) + overscan);
-
-  const virtualItems = useMemo(() => {
-    const items: Array<{ index: number; start: number }> = [];
-    for (let i = startIndex; i <= endIndex; i++) {
-      items.push({ index: i, start: i * rowHeight });
-    }
-    return items;
-  }, [startIndex, endIndex, rowHeight]);
-
-  return {
-    getVirtualItems: () => virtualItems,
-    measureElement: (_el: Element | null) => {},
-  };
-}
 
 interface ZoneDnsDatagridProps {
   readonly columns: DatagridColumn<ZoneRecord>[];
@@ -92,7 +56,6 @@ interface ZoneDnsDatagridProps {
   readonly isLoading?: boolean;
   readonly expandable?: ExpandedProps<ZoneRecord>;
   readonly renderSubComponent?: (row: Row<ZoneRecord>) => JSX.Element;
-  readonly subComponentHeight?: number;
 }
 
 export default function ZoneDnsDatagrid({
@@ -109,11 +72,9 @@ export default function ZoneDnsDatagrid({
   isLoading,
   expandable,
   renderSubComponent,
-  subComponentHeight = 600,
 }: ZoneDnsDatagridProps) {
   const { t } = useTranslation('datagrid');
   const { t: tFilters } = useTranslation('filters');
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const selectionColumn = useMemo(
     () => ({
@@ -196,34 +157,6 @@ export default function ZoneDnsDatagrid({
     [columns],
   );
   const hasFilterFeature = filterableColumns.length > 0;
-
-  const getOffset = useCallback(
-    (index: number) => {
-      let count = 0;
-      for (let i = 0; i < index; i++) {
-        if (rows[i]?.getIsExpanded()) count++;
-      }
-      return count * subComponentHeight;
-    },
-    [rows, subComponentHeight],
-  );
-
-  const totalHeight = useMemo(() => {
-    const total = rows.reduce(
-      (acc, row) => acc + ROW_HEIGHT + (row.getIsExpanded() ? subComponentHeight : 0),
-      0,
-    );
-    return isLoading ? total + 9 * ROW_HEIGHT : total;
-  }, [rows, subComponentHeight, isLoading, expandable?.expanded]);
-
-  const rowVirtualizer = useFixedSizeVirtualizer(rows.length, ROW_HEIGHT, containerRef, 15);
-
-  const containerSize = data?.length < 10 ? '100%' : '550px';
-  const containerStyle = {
-    minHeight: '150px',
-    maxHeight: containerSize,
-    height: containerSize,
-  };
 
   const shouldRenderTopbar = topbar || hasSearchFeature || hasFilterFeature;
 
@@ -308,11 +241,7 @@ export default function ZoneDnsDatagrid({
         </>
       )}
 
-      <div
-        ref={containerRef}
-        className="overflow-auto relative w-full"
-        style={containerStyle}
-      >
+      <div className="overflow-auto relative w-full">
         <Table className="table table-fixed w-full" size={TABLE_SIZE.md}>
           <thead className="sticky top-[-1px] z-10 bg-white overflow-hidden">
             {headerGroups.map((headerGroup) => (
@@ -352,66 +281,41 @@ export default function ZoneDnsDatagrid({
               </tr>
             </tbody>
           ) : (
-            <tbody
-              className="relative p-0 overflow-hidden"
-              style={{ height: totalHeight }}
-            >
-              {rowVirtualizer.getVirtualItems().map((virtualRow, index) => {
-                const row = rows[virtualRow.index];
-                if (!row) return null;
-                const offset = renderSubComponent ? getOffset(virtualRow.index) : 0;
-                const translateY = virtualRow.start + offset - index - 1;
-                return (
-                  <Fragment key={`table-body-tr-${row.id}`}>
-                    <tr
-                      data-index={virtualRow.index}
-                      ref={rowVirtualizer.measureElement}
-                      className="table overflow-hidden absolute top-0 table-fixed"
-                      style={{
-                        left: -1,
-                        height: `${ROW_HEIGHT}px`,
-                        transform: `translateY(${translateY}px)`,
-                        width: '100%',
-                      }}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <td
-                          key={cell.id}
-                          className="pl-4"
-                          style={{
-                            width: cell.column.getSize(),
-                            minWidth: cell.column.columnDef.minSize ?? 0,
-                            maxWidth: cell.column.columnDef.maxSize ?? 'auto',
-                          }}
-                        >
-                          <div
-                            className="overflow-hidden text-ellipsis flex items-center w-full"
-                            style={{ lineHeight: 1 }}
-                          >
-                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                          </div>
-                        </td>
-                      ))}
-                    </tr>
-                    {row.getIsExpanded() && renderSubComponent && (
-                      <tr
-                        data-index={`${virtualRow.index}-expanded-tr`}
-                        className="overflow-hidden absolute top-0"
+            <tbody>
+              {rows.map((row) => (
+                <Fragment key={`table-body-tr-${row.id}`}>
+                  <tr>
+                    {row.getVisibleCells().map((cell) => (
+                      <td
+                        key={cell.id}
+                        className="pl-4 align-middle"
                         style={{
-                          left: -1,
-                          height: `${subComponentHeight}px`,
-                          width: '-webkit-fill-available',
-                          transform: `translateY(${virtualRow.start + offset + ROW_HEIGHT}px)`,
+                          width: cell.column.getSize(),
+                          minWidth: cell.column.columnDef.minSize ?? 0,
+                          maxWidth: cell.column.columnDef.maxSize ?? 'auto',
                         }}
                       >
-                        <td className="overflow-hidden p-[8px] block w-full h-full">
-                          {renderSubComponent(row)}
-                        </td>
-                      </tr>
-                    )}
-                  </Fragment>
-                );
-              })}
+                        <div
+                          className="overflow-hidden text-ellipsis flex items-center w-full"
+                          style={{ lineHeight: 1 }}
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                  {row.getIsExpanded() && renderSubComponent && (
+                    <tr>
+                      <td
+                        colSpan={row.getVisibleCells().length}
+                        className="overflow-hidden p-4"
+                      >
+                        {renderSubComponent(row)}
+                      </td>
+                    </tr>
+                  )}
+                </Fragment>
+              ))}
               {isLoading && (
                 <>
                   {LOADING_ROW_KEYS.map((key) => (

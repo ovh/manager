@@ -20,9 +20,9 @@ import {
   MessageIcon,
   Link,
 } from '@ovhcloud/ods-react';
+import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import { useRestoreZone } from '@/zone/hooks/data/history.hooks';
 import { TZoneHistoryWithDate } from '@/zone/types/history.types';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 interface RestoreZoneModalProps {
   readonly isOpen: boolean;
@@ -41,7 +41,11 @@ export default function RestoreZoneModal({
   const formatDate = useFormatDate();
   const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
-  const { data: ongoingOperationsLink } = useNavigationGetUrl(['web-ongoing-operations', '/dns', { search: zoneName }]);
+  const { data: ongoingOperationsLink } = useNavigationGetUrl([
+    'web-ongoing-operations',
+    '/dns',
+    { search: zoneName },
+  ]);
   const ongoingOperationsHref = ongoingOperationsLink as string;
 
   const { mutate: restore, isPending } = useRestoreZone();
@@ -53,16 +57,17 @@ export default function RestoreZoneModal({
       { zoneName, creationDate: item.creationDate },
       {
         onSuccess: () => {
-          addSuccess(<span style={{ display: 'inline' }}><Trans
-            t={t}
-            i18nKey="zone_history_restore_success"
-            components={{
-              Link: <Link href={ongoingOperationsHref} />,
-            }}
-          /></span>, true);
-          queryClient.invalidateQueries({
-            queryKey: ['zone', 'history', zoneName],
-          });
+          addSuccess(
+            <span style={{ display: 'inline' }}>
+              <Trans
+                t={t}
+                components={{
+                  Link: <Link href={ongoingOperationsHref} />,
+                }}
+              />
+            </span>,
+            true,
+          );
           onClose();
         },
         onError: (error) => {
@@ -88,7 +93,11 @@ export default function RestoreZoneModal({
           </Text>
         </ModalHeader>
         <ModalBody>
-          <Message color={MESSAGE_COLOR.warning} className="mb-4" dismissible={false}>
+          <Message
+            color={MESSAGE_COLOR.warning}
+            className="mb-4"
+            dismissible={false}
+          >
             <MessageIcon name={ICON_NAME.triangleExclamation} />
             <MessageBody>
               {t('zone_history_restore_modal_description', {
@@ -96,7 +105,11 @@ export default function RestoreZoneModal({
               })}
             </MessageBody>
           </Message>
-          <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
+          <Message
+            color={MESSAGE_COLOR.information}
+            className="mb-4"
+            dismissible={false}
+          >
             <MessageIcon name={ICON_NAME.circleInfo} />
             <MessageBody>
               {t('zone_history_restore_modal_propagation_info')}

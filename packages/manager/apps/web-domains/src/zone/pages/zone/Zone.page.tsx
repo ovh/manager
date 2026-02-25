@@ -1,25 +1,47 @@
-import BannerStatus from "@/domain/components/BannerStatus/BannerStatus";
-import { useLinks } from "@/domain/constants/guideLinks";
-import { urls as domainUrls } from "@/domain/routes/routes.constant";
-import { useGetDomainZoneRecords } from "@/zone/hooks/useGetDomainZoneRecords/useGetDomainZoneRecords";
-import { ZoneRecord } from "@/zone/types/zoneRecords.types";
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
-import { ShellContext } from "@ovh-ux/manager-react-shell-client";
-import { ActionMenu, DatagridColumn, GuideMenu, Notifications, useColumnFilters, useNotifications } from "@ovh-ux/muk";
+import BannerStatus from '@/domain/components/BannerStatus/BannerStatus';
+import { useLinks } from '@/domain/constants/guideLinks';
+import { urls as domainUrls } from '@/domain/routes/routes.constant';
+import { useGetDomainZoneRecords } from '@/zone/hooks/useGetDomainZoneRecords/useGetDomainZoneRecords';
+import { ZoneRecord } from '@/zone/types/zoneRecords.types';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  ActionMenu,
+  DatagridColumn,
+  GuideMenu,
+  Notifications,
+  useColumnFilters,
+  useNotifications,
+} from '@ovh-ux/muk';
 import { useAuthorizationIam } from '@ovh-ux/manager-react-components';
 import { useGetIAMResource } from '@/common/hooks/iam/useGetIAMResource';
-import { FilterComparator, applyFilters } from "@ovh-ux/manager-core-api";
-import { Button, BUTTON_COLOR, BUTTON_SIZE, BUTTON_VARIANT, POPOVER_POSITION, TEXT_PRESET, Text } from "@ovhcloud/ods-react";
-import { useContext, useMemo, useCallback, useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import { FilterComparator, applyFilters } from '@ovh-ux/manager-core-api';
+import {
+  Button,
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  POPOVER_POSITION,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
+import {
+  useContext,
+  useMemo,
+  useCallback,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
+import { useTranslation } from 'react-i18next';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ExpandedState, RowSelectionState } from '@tanstack/react-table';
-import ZoneDnsDatagrid from "./components/ZoneDnsDatagrid";
-import UnauthorizedBanner from "@/domain/components/UnauthorizedBanner/UnauthorizedBanner";
-import ResetDrawer from "@/zone/pages/zone/reset/ResetDrawer";
-import QuickAddEntry from "@/zone/pages/zone/components/QuickAddEntry";
-import ModifyTtlModal from "@/zone/pages/zone/modify/ModifyTtl.modal";
-import { useGetDomainZone } from "@/domain/hooks/data/query";
+import ZoneDnsDatagrid from './components/ZoneDnsDatagrid';
+import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
+import ResetDrawer from '@/zone/pages/zone/reset/ResetDrawer';
+import QuickAddEntry from '@/zone/pages/zone/components/QuickAddEntry';
+import ModifyTtlModal from '@/zone/pages/zone/modify/ModifyTtl.modal';
+import { useGetDomainZone } from '@/domain/hooks/data/query';
 import { DeleteEntryModal } from '@/zone/pages/zone/delete/DeleteEntry.modal';
 
 function ZonePageInner() {
@@ -29,8 +51,22 @@ function ZonePageInner() {
   const buildUrl = (baseUrl: string) => {
     return baseUrl.replace(':serviceName', serviceName || '');
   };
-  const { data, hasNextPage, fetchNextPage, fetchAllPages, refetch } = useGetDomainZoneRecords(serviceName);
-  const [openModal, setOpenModal] = useState<'add-entry' | 'modify-textual-record' | 'modify-ttl' | 'reset' | 'delete-zone' | 'delete-entry' | null>(null);
+  const {
+    data,
+    hasNextPage,
+    fetchNextPage,
+    fetchAllPages,
+    refetch,
+  } = useGetDomainZoneRecords(serviceName ?? '');
+  const [openModal, setOpenModal] = useState<
+    | 'add-entry'
+    | 'modify-textual-record'
+    | 'modify-ttl'
+    | 'reset'
+    | 'delete-zone'
+    | 'delete-entry'
+    | null
+  >(null);
   const tabsZone = domainUrls.domainTabZone;
   const [searchInput, setSearchInput] = useState('');
   const [showAddEntryDiv, setShowAddEntryDiv] = useState(false);
@@ -58,42 +94,55 @@ function ZonePageInner() {
 
   const handleToggleAddEntry = useCallback(() => {
     setExpandedState({});
-    setShowAddEntryDiv(prev => !prev);
+    setShowAddEntryDiv((prev) => !prev);
   }, []);
 
-  const handleAddFilter = useCallback((filterProps: Parameters<typeof addFilter>[0]) => {
-    addFilter(filterProps);
-  }, [addFilter]);
+  const handleAddFilter = useCallback(
+    (filterProps: Parameters<typeof addFilter>[0]) => {
+      addFilter(filterProps);
+    },
+    [addFilter],
+  );
 
-  const handleRemoveFilter = useCallback((filter: Parameters<typeof removeFilter>[0]) => {
-    removeFilter(filter);
-  }, [removeFilter]);
+  const handleRemoveFilter = useCallback(
+    (filter: Parameters<typeof removeFilter>[0]) => {
+      removeFilter(filter);
+    },
+    [removeFilter],
+  );
 
-  const { domainZone, isFetchingDomainZone, domainZoneError } = useGetDomainZone(serviceName ?? '', true);
+  const {
+    domainZone,
+    isFetchingDomainZone,
+    domainZoneError,
+  } = useGetDomainZone(serviceName ?? '', true);
 
-  const { data: dnsZoneIAMResources } = useGetIAMResource(serviceName ?? '', 'dnsZone');
+  const { data: dnsZoneIAMResources } = useGetIAMResource(
+    serviceName ?? '',
+    'dnsZone',
+  );
   const urn = dnsZoneIAMResources?.[0]?.urn;
   const { isPending: isIamPending, isAuthorized } = useAuthorizationIam(
     ['dnsZone:apiovh:record/create', 'dnsZone:apiovh:record/delete'],
     urn ?? '',
   );
 
-  const { isPending: isIamSoaPending, isAuthorized: canEditSoa } = useAuthorizationIam(
-    ['dnsZone:apiovh:soa/edit'],
-    urn,
-  );
+  const {
+    isPending: isIamSoaPending,
+    isAuthorized: canEditSoa,
+  } = useAuthorizationIam(['dnsZone:apiovh:soa/edit'], urn ?? '');
   const canModifyTtl = !isIamSoaPending && canEditSoa;
 
-  const { isPending: isIamResetPending, isAuthorized: canDoReset } = useAuthorizationIam(
-    ['dnsZone:apiovh:reset'],
-    urn,
-  );
+  const {
+    isPending: isIamResetPending,
+    isAuthorized: canDoReset,
+  } = useAuthorizationIam(['dnsZone:apiovh:reset'], urn ?? '');
   const canReset = !isIamResetPending && canDoReset;
 
-  const { isPending: isIamImportZonePending, isAuthorized: canDoImportZone } = useAuthorizationIam(
-    ['dnsZone:apiovh:import'],
-    urn,
-  );
+  const {
+    isPending: isIamImportZonePending,
+    isAuthorized: canDoImportZone,
+  } = useAuthorizationIam(['dnsZone:apiovh:import'], urn ?? '');
   const canImportZone = !isIamImportZonePending && canDoImportZone;
 
   const { addInfo, clearNotifications } = useNotifications();
@@ -117,7 +166,9 @@ function ZonePageInner() {
 
   // Display the form between the topbar and the datagrid when the "Add Entry" button is clicked
   useEffect(() => {
-    const topbarContainer = document.querySelector('[data-testid="topbar-container"]');
+    const topbarContainer = document.querySelector(
+      '[data-testid="topbar-container"]',
+    );
     const quickAddDiv = quickAddRef.current;
 
     if (topbarContainer && quickAddDiv && topbarContainer.parentNode) {
@@ -209,10 +260,10 @@ function ZonePageInner() {
           onClick={() => closeModal()}
         />,
         <ResetDrawer
-          key={"resetDrawer"}
+          key={'resetDrawer'}
           onCloseCallback={closeModal}
           onSuccessCallback={closeModal}
-        />
+        />,
       ]}
       {openModal === 'delete-entry' && (
         <DeleteEntryModal
@@ -266,7 +317,13 @@ function ZonePageInner() {
         id: 'subDomain',
         header: t('zone_page_subdomain'),
         isSearchable: true,
-        cell: ({ row }) => <div>{row.original.subDomain ? `${row.original.subDomain}.${row.original.zoneToDisplay}` : row.original.zoneToDisplay}</div>,
+        cell: ({ row }) => (
+          <div>
+            {row.original.subDomain
+              ? `${row.original.subDomain}.${row.original.zoneToDisplay}`
+              : row.original.zoneToDisplay}
+          </div>
+        ),
       },
       {
         id: 'targetToDisplay',
@@ -292,13 +349,13 @@ function ZonePageInner() {
         header: '',
         label: '',
       },
-    ], [t, availableFieldTypes, openModal]);
+    ],
+    [t, availableFieldTypes, openModal],
+  );
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const selectedRecordIds = useMemo(() => {
-    return Object.keys(rowSelection).filter(
-      (index) => rowSelection[index]
-    );
+    return Object.keys(rowSelection).filter((index) => rowSelection[index]);
   }, [rowSelection]);
   const hasSelectedRows = selectedRecordIds.length > 0;
 
@@ -311,17 +368,20 @@ function ZonePageInner() {
   const context = useContext(ShellContext);
   const { ovhSubsidiary } = context.environment.getUser();
   const guideUrls = useLinks(ovhSubsidiary);
-  const guideItems = [{
-    id: 1,
-    href: guideUrls.DNS_ZONE,
-    target: '_blank',
-    children: t('zone_page_guide_button_edit_label'),
-  }, {
-    id: 2,
-    href: guideUrls.DNS_ZONE,
-    target: '_blank',
-    children: t('zone_page_guide_button_history_label'),
-  }];
+  const guideItems = [
+    {
+      id: 1,
+      href: guideUrls.DNS_ZONE,
+      target: '_blank',
+      children: t('zone_page_guide_button_edit_label'),
+    },
+    {
+      id: 2,
+      href: guideUrls.DNS_ZONE,
+      target: '_blank',
+      children: t('zone_page_guide_button_history_label'),
+    },
+  ];
   return (
     <>
       {zoneModals}
@@ -332,14 +392,26 @@ function ZonePageInner() {
         <>
           <div className="mb-4">
             <div className="flex items-center justify-between mb-4">
-              <Text preset={TEXT_PRESET.label} data-testid="zone-page-description-1">{t('zone_page_description')}</Text>
+              <Text
+                preset={TEXT_PRESET.label}
+                data-testid="zone-page-description-1"
+              >
+                {t('zone_page_description')}
+              </Text>
               <GuideMenu items={guideItems} />
             </div>
-            <Text preset={TEXT_PRESET.paragraph} data-testid="zone-page-description-2">{t('zone_page_description_2')}</Text>
+            <Text
+              preset={TEXT_PRESET.paragraph}
+              data-testid="zone-page-description-2"
+            >
+              {t('zone_page_description_2')}
+            </Text>
           </div>
           <div
             ref={quickAddRef}
-            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${showAddEntryDiv ? '' : 'hidden'}`}
+            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${
+              showAddEntryDiv ? '' : 'hidden'
+            }`}
           >
             <QuickAddEntry
               serviceName={serviceName ?? ''}
@@ -352,7 +424,13 @@ function ZonePageInner() {
             columns={columns}
             topbar={
               <div className="flex gap-2">
-                <ActionMenu key={openModal} label={t('zone_page_actions')} items={actionItems} id="zone-action-menu" popoverPosition={POPOVER_POSITION.bottomEnd} />
+                <ActionMenu
+                  key={openModal}
+                  label={t('zone_page_actions')}
+                  items={actionItems}
+                  id="zone-action-menu"
+                  popoverPosition={POPOVER_POSITION.bottomEnd}
+                />
                 {hasSelectedRows && (
                   <Button
                     variant={BUTTON_VARIANT.outline}
@@ -364,7 +442,9 @@ function ZonePageInner() {
                     {t(`${NAMESPACES.ACTIONS}:delete`)}
                   </Button>
                 )}
-                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>{t('zone_page_add_entry')}</Button>
+                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>
+                  {t('zone_page_add_entry')}
+                </Button>
               </div>
             }
             data={filteredRecords}
@@ -386,7 +466,10 @@ function ZonePageInner() {
               rowSelection,
               setRowSelection,
             }}
-            expandable={{ expanded: expandedState, setExpanded: setExpandedState }}
+            expandable={{
+              expanded: expandedState,
+              setExpanded: setExpandedState,
+            }}
             renderSubComponent={(row) => (
               <QuickAddEntry
                 serviceName={serviceName ?? ''}
@@ -396,7 +479,6 @@ function ZonePageInner() {
                 onCancel={() => collapseRow(row.id)}
               />
             )}
-            subComponentHeight={600}
           />
         </>
       )}
@@ -404,7 +486,12 @@ function ZonePageInner() {
       {!isFetchingDomainZone && !domainZone && (
         <div className="flex flex-col gap-4 w-full">
           <div className="flex flex-row items-start gap-4">
-            <Button size={BUTTON_SIZE.sm} onClick={() => navigate(buildUrl(`${domainUrls.zoneActivate}`))}>{t('zone_page_activate_zone')}</Button>
+            <Button
+              size={BUTTON_SIZE.sm}
+              onClick={() => navigate(buildUrl(`${domainUrls.zoneActivate}`))}
+            >
+              {t('zone_page_activate_zone')}
+            </Button>
           </div>
         </div>
       )}

@@ -78,11 +78,16 @@ export default function HistoryPage() {
     canRestore,
   });
 
-  const backUrl = zoneUrls.zoneRoot.replace(':serviceName', resolvedServiceName);
+  const backUrl = zoneUrls.zoneRoot.replace(
+    ':serviceName',
+    resolvedServiceName,
+  );
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb rootLabel={serviceName} appName="domain" hideRootLabel />}
+      breadcrumb={
+        <Breadcrumb rootLabel={serviceName} appName="domain" hideRootLabel />
+      }
       header={{ title: serviceName }}
       backLinkLabel={t('zone_history_back_to_zone')}
       onClickReturn={() => navigate(backUrl, { replace: true })}

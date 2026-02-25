@@ -45,14 +45,16 @@ export default function ModifyTextualRecordPage() {
   const resolvedServiceName = serviceName ?? '';
   const queryClient = useQueryClient();
   const { addSuccess, addError, notifications } = useNotifications();
-  const { data: ongoingOperationsLink } = useNavigationGetUrl(['web-ongoing-operations', '/dns', { search: resolvedServiceName }]);
+  const { data: ongoingOperationsLink } = useNavigationGetUrl([
+    'web-ongoing-operations',
+    '/dns',
+    { search: resolvedServiceName },
+  ]);
   const ongoingOperationsHref = ongoingOperationsLink as string;
 
-  const {
-    zoneText,
-    isLoadingZoneText,
-    zoneTextError,
-  } = useExportDnsZoneText(resolvedServiceName);
+  const { zoneText, isLoadingZoneText, zoneTextError } = useExportDnsZoneText(
+    resolvedServiceName,
+  );
 
   const { mutate: importZone, isPending } = useImportDnsZoneText();
 
@@ -150,11 +152,20 @@ export default function ModifyTextualRecordPage() {
     !zoneDnsText ||
     !!validationError;
 
-  const backUrl = zoneUrls.zoneRoot.replace(':serviceName', resolvedServiceName);
+  const backUrl = zoneUrls.zoneRoot.replace(
+    ':serviceName',
+    resolvedServiceName,
+  );
 
   return (
     <BaseLayout
-      breadcrumb={<Breadcrumb rootLabel={serviceName} appName="domain" hideRootLabel />}
+      breadcrumb={
+        <Breadcrumb
+          rootLabel={serviceName ?? ''}
+          appName="domain"
+          hideRootLabel
+        />
+      }
       header={{ title: serviceName }}
       backLinkLabel={t('zone_page_modify_textual_back')}
       onClickReturn={handleCancel}
@@ -188,7 +199,11 @@ export default function ModifyTextualRecordPage() {
               {t('zone_page_modify_textual_description')}
             </Text>
 
-            <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
+            <Message
+              color={MESSAGE_COLOR.information}
+              className="mb-4"
+              dismissible={false}
+            >
               <MessageIcon name={ICON_NAME.circleInfo} />
               <MessageBody>
                 {t('zone_page_modify_textual_propagation_info')}
@@ -207,9 +222,7 @@ export default function ModifyTextualRecordPage() {
               >
                 {uploadedFile && (
                   <FileUploadList>
-                    <FileUploadItem
-                      file={uploadedFile}
-                    />
+                    <FileUploadItem file={uploadedFile} />
                   </FileUploadList>
                 )}
               </FileUpload>

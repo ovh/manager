@@ -55,7 +55,10 @@ const getCharDiffs = (str1: string, str2: string): [CharDiff[], CharDiff[]] => {
   return [diffs1, diffs2];
 };
 
-const buildSplitDiff = (baseContent: string, modifiedContent: string): SplitDiff => {
+const buildSplitDiff = (
+  baseContent: string,
+  modifiedContent: string,
+): SplitDiff => {
   const baseLines = baseContent.split('\n');
   const modifiedLines = modifiedContent.split('\n');
   const maxLength = Math.max(baseLines.length, modifiedLines.length);
@@ -104,7 +107,11 @@ const buildSplitDiff = (baseContent: string, modifiedContent: string): SplitDiff
       modifiedDiff.push({ type: 'unchanged', content: '', id: modifiedLineId });
     } else if (baseIsUndefined && !modifiedIsUndefined) {
       baseDiff.push({ type: 'unchanged', content: '', id: baseLineId });
-      modifiedDiff.push({ type: 'added', content: modifiedLine, id: modifiedLineId });
+      modifiedDiff.push({
+        type: 'added',
+        content: modifiedLine,
+        id: modifiedLineId,
+      });
     }
   }
 
@@ -118,10 +125,15 @@ interface DiffLineRendererProps {
 const DiffLineRenderer = ({ line }: DiffLineRendererProps) => {
   if (line.charDiffs && (line.type === 'added' || line.type === 'removed')) {
     return (
-      <div className={`font-mono text-sm ${line.type === 'added' ? 'bg-green-50' : 'bg-red-50'}`}>
+      <div
+        className={`font-mono text-sm ${
+          line.type === 'added' ? 'bg-green-50' : 'bg-red-50'
+        }`}
+      >
         <div
-          className={`min-h-5 break-words px-4 ${line.type === 'added' ? 'text-green-800' : 'text-red-800'
-            }`}
+          className={`min-h-5 break-words px-4 ${
+            line.type === 'added' ? 'text-green-800' : 'text-red-800'
+          }`}
         >
           {line.charDiffs.map((charDiff) =>
             charDiff.isChanged ? (
@@ -136,7 +148,9 @@ const DiffLineRenderer = ({ line }: DiffLineRendererProps) => {
                 {charDiff.char || '\u00A0'}
               </span>
             ) : (
-              <span key={`${line.id}-${charDiff.position}`}>{charDiff.char}</span>
+              <span key={`${line.id}-${charDiff.position}`}>
+                {charDiff.char}
+              </span>
             ),
           )}
         </div>
@@ -158,7 +172,9 @@ const DiffLineRenderer = ({ line }: DiffLineRendererProps) => {
 
   return (
     <div className={`font-mono text-sm ${getLineColor(line.type)}`}>
-      <div className={`min-h-7 break-words px-4 ${getLineTextColor(line.type)}`}>
+      <div
+        className={`min-h-7 break-words px-4 ${getLineTextColor(line.type)}`}
+      >
         {line.content || '\u00A0'}
       </div>
     </div>
@@ -170,7 +186,12 @@ export default function CompareZonesViewer({
   modifiedItem,
 }: CompareZonesViewerProps) {
   const { t } = useTranslation('zone');
-  const { mutate: compareZones, data: compareData, isPending: isLoading, error: compareError } = useCompareZoneFiles();
+  const {
+    mutate: compareZones,
+    data: compareData,
+    isPending: isLoading,
+    error: compareError,
+  } = useCompareZoneFiles();
   const [copiedBase, setCopiedBase] = useState(false);
   const [copiedModified, setCopiedModified] = useState(false);
 
@@ -250,12 +271,11 @@ export default function CompareZonesViewer({
     );
   }
 
-  if (!diff || (diff.baseLines.length === 0 && diff.modifiedLines.length === 0)) {
-    return (
-      <Message>
-        {t('zone_history_compare_empty')}
-      </Message>
-    );
+  if (
+    !diff ||
+    (diff.baseLines.length === 0 && diff.modifiedLines.length === 0)
+  ) {
+    return <Message>{t('zone_history_compare_empty')}</Message>;
   }
 
   return (
@@ -267,7 +287,10 @@ export default function CompareZonesViewer({
               variant={BUTTON_VARIANT.ghost}
               onClick={() => handleCopy(diff.baseLines, setCopiedBase)}
             >
-              <Icon name={copiedBase ? ICON_NAME.check : ICON_NAME.fileCopy} style={{ fontSize: '24px' }} />
+              <Icon
+                name={copiedBase ? ICON_NAME.check : ICON_NAME.fileCopy}
+                style={{ fontSize: '24px' }}
+              />
             </Button>
           </div>
           <pre
@@ -286,7 +309,10 @@ export default function CompareZonesViewer({
               variant={BUTTON_VARIANT.ghost}
               onClick={() => handleCopy(diff.modifiedLines, setCopiedModified)}
             >
-              <Icon name={copiedModified ? ICON_NAME.check : ICON_NAME.fileCopy} style={{ fontSize: '24px' }} />
+              <Icon
+                name={copiedModified ? ICON_NAME.check : ICON_NAME.fileCopy}
+                style={{ fontSize: '24px' }}
+              />
             </Button>
           </div>
           <pre

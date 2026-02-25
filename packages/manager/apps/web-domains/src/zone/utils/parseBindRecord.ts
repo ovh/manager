@@ -111,8 +111,11 @@ function parseHeader(tokens: string[]): {
   let ttlSelect: TtlSelectEnum.GLOBAL | TtlSelectEnum.CUSTOM = TtlSelectEnum.GLOBAL;
 
   if (idx < tokens.length && /^\d+$/.test(tokens[idx])) {
-    ttl = parseInt(tokens[idx], 10);
-    ttlSelect = TtlSelectEnum.CUSTOM;
+    const parsed = parseInt(tokens[idx], 10);
+    if (parsed > 0) {
+      ttl = parsed;
+      ttlSelect = TtlSelectEnum.CUSTOM;
+    }
     idx++;
   }
 

@@ -36,7 +36,7 @@ export function TtlField({ control, watch, className, tooltip }: TtlFieldProps) 
 
   return (
     <FormField className={`${(className ?? "").trim()} w-full`} invalid={!!ttlError && ttlSelectValue === TtlSelectEnum.CUSTOM}>
-      <FormFieldLabel>
+      <FormFieldLabel className="items-baseline">
         {t("zone_page_form_ttl")}
         {tooltip && (
           <Tooltip>

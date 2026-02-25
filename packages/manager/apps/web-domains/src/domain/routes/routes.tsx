@@ -6,7 +6,6 @@ import { urls } from '@/domain/routes/routes.constant';
 import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
 
-
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
   import('@/domain/pages/service/serviceList/serviceList'),
@@ -48,12 +47,8 @@ const DsRecordListingPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
 );
 // zone routes and pages
-const ZoneLayout = React.lazy(() =>
-  import('@/zone/pages/Layout'),
-);
-const ZonePage = React.lazy(() =>
-  import('@/zone/pages/zone/Zone.page'),
-);
+const ZoneLayout = React.lazy(() => import('@/zone/pages/Layout'));
+const ZonePage = React.lazy(() => import('@/zone/pages/zone/Zone.page'));
 const HistoryPage = React.lazy(() =>
   import('@/zone/pages/zone/history/History.page'),
 );
@@ -145,7 +140,10 @@ export default (
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
-      <Route path={zoneUrls.zoneModifyTextualRecord} Component={ModifyTextualRecordPage} />
+      <Route
+        path={zoneUrls.zoneModifyTextualRecord}
+        Component={ModifyTextualRecordPage}
+      />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}

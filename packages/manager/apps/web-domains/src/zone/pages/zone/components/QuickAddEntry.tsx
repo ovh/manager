@@ -63,6 +63,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
 
   const { watch, formState: { isValid }, handleSubmit, setValue, control, reset, clearErrors } = methods;
   const recordType = watch("recordType");
+  const allValues = watch();
 
   // BIND paste feature
   const [showBindInput, setShowBindInput] = useState(false);
@@ -91,12 +92,12 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     const result = parseBindRecord(bindLine);
     if (result.success) {
       const { recordType: parsedType, ...parsedFields } = result.values;
-      reset({ recordType: editingRecord.fieldType, ...parsedFields });
+      reset({ recordType: editingRecord.fieldType, ...parsedFields, subDomain: parsedFields.subDomain || '@' });
     } else {
       // Fallback: set minimal fields
       reset({
         recordType: editingRecord.fieldType,
-        subDomain: editingRecord.subDomain ?? '',
+        subDomain: editingRecord.subDomain || '@',
         target: editingRecord.target ?? '',
         ttl: editingRecord.ttl,
         ttlSelect: editingRecord.ttl ? TtlSelectEnum.CUSTOM : TtlSelectEnum.GLOBAL,
@@ -151,6 +152,18 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
   }, [bindInput, reset, setValue]);
 
   const isEditMode = !!editingRecord;
+
+  const hasChanges = (() => {
+    if (!editingRecord) return true;
+    const currentSubDomain = (allValues.subDomain as string) === '@' ? '' : (allValues.subDomain as string ?? '');
+    if (currentSubDomain !== (editingRecord.subDomain ?? '')) return true;
+    const currentTarget = getTargetDisplayValue(allValues.recordType as string, allValues);
+    if (currentTarget !== editingRecord.target) return true;
+    const currentTtl = allValues.ttlSelect === TtlSelectEnum.GLOBAL ? 0 : Number(allValues.ttl ?? 0);
+    if (currentTtl !== (editingRecord.ttl ?? 0)) return true;
+    return false;
+  })();
+
   const { addRecord, isAddingRecord } = useAddZoneRecord(serviceName);
   const { updateRecord, isUpdatingRecord } = useUpdateZoneRecord(serviceName);
   const isMutating = isAddingRecord || isUpdatingRecord;
@@ -268,7 +281,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className={`space-y-4 ${isEditMode ? 'p-4 rounded bg-[--ods-color-neutral-050]' : ''}`}>
         <div className="flex flex-col gap-4">
           {!isEditMode && (
             <div className="flex items-end justify-between gap-4">
@@ -395,7 +408,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               control={control}
               watch={watch}
               domainSuffix={serviceName}
-              hideMessage={isEditMode}
+              hideMessage={false}
             />
           )}
 
@@ -431,7 +444,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
                 <Button
                   type="submit"
                   size={BUTTON_SIZE.sm}
-                  disabled={!isValid || isMutating}
+                  disabled={!isValid || isMutating || (isEditMode && !hasChanges)}
                   loading={isMutating}
                 >
                   {isEditMode ? t(`${NAMESPACES.ACTIONS}:modify`) : t(`${NAMESPACES.ACTIONS}:add`)}

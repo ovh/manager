@@ -9,7 +9,11 @@ export interface MxEntry {
   priority: number;
 }
 
-export const DEFAULT_MX_ENTRY: MxEntry = { id: crypto.randomUUID(), target: '', priority: 0 };
+export const DEFAULT_MX_ENTRY: MxEntry = {
+  id: crypto.randomUUID(),
+  target: '',
+  priority: 0,
+};
 
 export const IPV4_REGEX = /^(\d{1,3}\.){3}\d{1,3}$/;
 

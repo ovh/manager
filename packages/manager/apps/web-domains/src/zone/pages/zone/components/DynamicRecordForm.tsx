@@ -274,10 +274,10 @@ function RenderMessage({
   fullDomain,
   target,
 }: {
-  config: RecordFormConfig;
-  serviceName: string;
-  fullDomain: string;
-  target: string;
+  readonly config: RecordFormConfig;
+  readonly serviceName: string;
+  readonly fullDomain: string;
+  readonly target: string;
 }) {
   const { t } = useTranslation('zone');
   const { message } = config;
@@ -289,17 +289,20 @@ function RenderMessage({
   }
 
   return (
-    <Message color={MESSAGE_COLOR.information} dismissible={false}>
+    <Message color={MESSAGE_COLOR.information} dismissible={false} className='leading-[1.3]'>
       <MessageIcon name={ICON_NAME.circleInfo} />
       <div>
+        <div>
         {t(message.explanationKey)}
-        <br />
+        </div>
+        <div>
         <Trans
           i18nKey={message.descriptionKey}
           ns="zone"
           values={values}
           components={{ bold: <span className="font-bold" /> }}
         />
+        </div>
       </div>
     </Message>
   );
@@ -326,7 +329,7 @@ export function DynamicRecordForm({
     ? subDomain === '@'
       ? domainSuffix
       : `${subDomain}.${domainSuffix}`
-    : `[sous-domaine].${domainSuffix}`;
+    : `[${t('zone_page_form_subdomain').toLowerCase()}].${domainSuffix}`;
   const targetStr = typeof target === 'string' ? target : '';
 
   return (

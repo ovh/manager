@@ -35,7 +35,12 @@ export default function ViewZoneModal({
 }: ViewZoneModalProps) {
   const { t } = useTranslation('zone');
   const formatDate = useFormatDate();
-  const { mutate: viewZone, data: content, isPending: isLoading, error } = useViewZoneFile();
+  const {
+    mutate: viewZone,
+    data: content,
+    isPending: isLoading,
+    error,
+  } = useViewZoneFile();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -60,7 +65,9 @@ export default function ViewZoneModal({
       <ModalContent dismissible className="max-w-4xl">
         <ModalHeader>
           <Text preset={TEXT_PRESET.heading3}>
-            {t('zone_history_view_title', { date: formatDate({ date: item.creationDate, format: 'PPpp' }) })}
+            {t('zone_history_view_title', {
+              date: formatDate({ date: item.creationDate, format: 'PPpp' }),
+            })}
           </Text>
         </ModalHeader>
         <ModalBody>

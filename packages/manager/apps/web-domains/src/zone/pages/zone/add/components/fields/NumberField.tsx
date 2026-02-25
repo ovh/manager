@@ -53,7 +53,7 @@ export function NumberField({
       control={control}
       render={({ field, fieldState: { error, invalid } }) => (
         <FormField className={className} invalid={!!error && invalid}>
-          <FormFieldLabel>
+          <FormFieldLabel className="items-baseline">
             {label}
             {required && <span className="text-xs"> - {t(NAMESPACES.FORM + ":required_field")}</span>}
             {tooltip != null && (
