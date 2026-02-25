@@ -103,6 +103,7 @@ const App = () => {
       const shellObj = initShell(data || responseError.environment);
       const environmentObj = shellObj.getPlugin('environment').getEnvironment();
       setupI18n(environmentObj.getUserLocale());
+      // load the config for the region
       const config = () => import(`./config-${environmentObj.getRegion()}.js`);
       setupDevApplication(shellObj);
       config()
@@ -154,7 +155,7 @@ const App = () => {
           <ErrorBanner error={error} onReloadPage={reloadPage} />
           {// classes to match MRC component's class
           statusPageURL && (
-            <div className="max-w-[600px] mx-auto px-5 flex items-center gap-4">
+            <div className="mx-auto flex max-w-[600px] items-center gap-4 px-5">
               <OsdsIcon name={ODS_ICON_NAME.INFO_CIRCLE}></OsdsIcon>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
