@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.13.2...@ovh-ux/manager-pci-instances-app@0.14.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* **pci-instances:** disabled assign gateway when pn has already exnet ([79f3a3f](https://github.com/ovh/manager/commit/79f3a3ff1f9bf0c324e70201de9165b06a70c1a2))
+* **pci-instances:** replace basic ip label text ([80ce528](https://github.com/ovh/manager/commit/80ce528a1cd4bad4de8e30dfd1e620bcb47cdc8a)), closes [#TAPC-5872](https://github.com/ovh/manager/issues/TAPC-5872)
+* **pci-instances:** scroll to ssh key section when its not filled ([bb2b990](https://github.com/ovh/manager/commit/bb2b990a6e08999e19e9313e50a015379a15b2f7)), closes [#TAPC-5458](https://github.com/ovh/manager/issues/TAPC-5458)
+* **pci-instances:** update windows image version when selected ([4c107d4](https://github.com/ovh/manager/commit/4c107d441f0eaa4225162bf601d599865ea08866))
+
+
+### Features
+
+* **pci-instances:** add tag on not activated localization card ([3f76dfd](https://github.com/ovh/manager/commit/3f76dfdc83f618a766b1d975564e4f3961505e70)), closes [#TAPC-5353](https://github.com/ovh/manager/issues/TAPC-5353)
+
+
+
+
+
 ## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.13.1...@ovh-ux/manager-pci-instances-app@0.13.2) (2026-02-23)
 
 
