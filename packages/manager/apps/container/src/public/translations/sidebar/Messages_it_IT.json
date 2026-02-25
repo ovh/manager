@@ -242,5 +242,6 @@
   "sidebar_observability_dashboards": "Dashboard",
   "sidebar_observability_metrics": "Metriche",
   "sidebar_observability_metrics_tenants": "Tenant",
-  "sidebar_observability_short": "Osservabilità"
+  "sidebar_observability_short": "Osservabilità",
+  "sidebar_web_hosting_video_center": "Centro Video"
 }
