@@ -235,5 +235,6 @@
   "sidebar_backup_agent_iaas": "Backup Agent for IaaS",
   "sidebar_backup_agent_baremetal": "Backup Agent",
   "sidebar_assistance_ai_chatbot": "AI Assistant",
-  "sidebar_domain_reseller": "Reseller Program"
+  "sidebar_domain_reseller": "Reseller Program",
+  "sidebar_web_hosting_video_center": "Video Centre"
 }
