@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.14.4...@ovh-ux/backup-agent@1.15.0) (2026-02-25)
+
+
+### Bug Fixes
+
+* **backup-agent:** fix agent listing refresh not working ([87e907d](https://github.com/ovh/manager/commit/87e907d5cb0a3dea4c2ec1c171864229d0301721)), closes [#BKP-863](https://github.com/ovh/manager/issues/BKP-863)
+
+
+### Features
+
+* **backup-agent:** add helper banner when no agent installed ([872e5d7](https://github.com/ovh/manager/commit/872e5d71697cdbac6559b07daafe09be108f047b)), closes [#BKP-753](https://github.com/ovh/manager/issues/BKP-753)
+
+
+
+
+
 ## [1.14.4](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.14.3...@ovh-ux/backup-agent@1.14.4) (2026-02-20)
 
 
