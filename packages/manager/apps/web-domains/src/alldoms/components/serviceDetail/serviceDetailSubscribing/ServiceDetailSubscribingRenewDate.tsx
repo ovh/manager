@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFormatDate } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';

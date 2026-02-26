@@ -39,4 +39,5 @@ export const alldomService: AlldomService = {
   expirationDate: '',
   renewalDate: '',
   serviceId: 1,
+  period: '',
 };

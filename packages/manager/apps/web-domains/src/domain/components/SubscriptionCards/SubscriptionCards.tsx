@@ -1,4 +1,4 @@
-import { ManagerTile, useFormatDate } from '@ovh-ux/manager-react-components';
+import { ManagerTile } from '@ovh-ux/manager-react-components';
 import { Skeleton, Text } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
@@ -7,12 +7,14 @@ import {
   useGetDomainResource,
 } from '@/domain/hooks/data/query';
 import Contacts from './Contacts';
-import { ServiceRoutes } from '@/common/enum/common.enum';
+import { ServiceRoutes, Universe } from '@/common/enum/common.enum';
 import { domainIsPremium } from '@/domain/constants/susbcriptions';
 import CreationDate from './CreationDate';
-import RenewFrequency from './RenewFrequency';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
 import CircleQuestionTooltip from '@/domain/components/CircleQuestionTooltip/CircleQuestionTooltip';
+import RenewModeItemTile from '@/common/components/SubscriptionCard/RenewModeTileItem';
+import RenewFrequencyTileItem from '@/common/components/SubscriptionCard/RenewFrequencyTileItem';
+import ExpirationDate from './ExpirationDate';
 
 interface SubscriptionCardsProps {
   readonly serviceName: string;
@@ -37,8 +39,6 @@ export default function SubscriptionCards({
     domainResource?.currentState?.contactsConfiguration.contactOwner.id,
     { enabled: true },
   );
-
-  const formatDate = useFormatDate();
 
   const { t } = useTranslation([
     'domain',
@@ -96,20 +96,29 @@ export default function SubscriptionCards({
         {t(`${NAMESPACES.BILLING}:subscription`)}
       </ManagerTile.Title>
       <ManagerTile.Divider />
-      <CreationDate
-        domainResources={domainResource}
-        isFetchingDomainResources={isFetchingDomainResource}
+      <CreationDate domainResources={domainResource} />
+      <ManagerTile.Divider />
+      <ExpirationDate
+        date={serviceInfo.billing?.expirationDate}
         serviceName={serviceName}
+        isFetchingDomainResources={isFetchingDomainResource}
       />
       <ManagerTile.Divider />
-      <ManagerTile.Item>
-        <ManagerTile.Item.Label>
-          {t('domain_tab_general_information_subscription_expiration_date')}
-        </ManagerTile.Item.Label>
-        <Text>{formatDate({ date: serviceInfo?.billing?.expirationDate })}</Text>
-      </ManagerTile.Item>
+      <RenewModeItemTile
+        renewMode={serviceInfo.billing.renew.current.mode}
+        pendingActions={serviceInfo.billing.lifecycle.current.pendingActions}
+        serviceName={serviceName}
+        isDomainPage={true}
+        universe={Universe.DOMAIN}
+      />
       <ManagerTile.Divider />
-      <RenewFrequency serviceInfo={serviceInfo} serviceName={serviceName} />
+      <RenewFrequencyTileItem
+        mode={serviceInfo.billing.renew.current.mode}
+        period={serviceInfo.billing.renew.current.period}
+        serviceName={serviceName}
+        isDomainPage={true}
+        universe={Universe.DOMAIN}
+      />
       <ManagerTile.Divider />
       <Contacts
         domainResource={domainResource}

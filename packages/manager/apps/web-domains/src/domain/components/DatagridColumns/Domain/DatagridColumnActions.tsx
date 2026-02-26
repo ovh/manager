@@ -8,8 +8,8 @@ import {
   LifecycleCapacitiesEnum,
   ServiceInfoRenewModeEnum,
   ServiceRoutes,
+  Universe,
 } from '@/common/enum/common.enum';
-import { DOMAIN } from '@/common/constants';
 import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { useNavigate } from 'react-router-dom';
@@ -40,7 +40,10 @@ export default function DatagridColumnActions({
   const navigate = useNavigate();
   const { navigateTo } = useNavigation();
 
-  const billingUrl = goToUpdateRenewFrequencyParams(serviceName);
+  const billingUrl = goToUpdateRenewFrequencyParams(
+    serviceName,
+    Universe.DOMAIN,
+  );
 
   const { serviceInfo, isServiceInfoLoading } = useGetServiceInformation(
     'domain',
@@ -65,9 +68,9 @@ export default function DatagridColumnActions({
       onClick: () =>
         navigateTo('account', '/contacts/services/edit', {
           serviceName,
-          category: DOMAIN,
+          category: Universe.DOMAIN,
           service: serviceName,
-          categoryType: DOMAIN,
+          categoryType: Universe.DOMAIN,
         }),
     });
 
@@ -128,7 +131,7 @@ export default function DatagridColumnActions({
         color: BUTTON_COLOR.critical,
         onClick: () =>
           navigateTo('billing', '/autorenew/services/resiliate', {
-            selectedType: 'DOMAIN',
+            selectedType: Universe.DOMAIN,
             searchText: serviceName,
             serviceId: serviceInfo?.serviceId,
           }),
@@ -151,7 +154,7 @@ export default function DatagridColumnActions({
         label: t('domain_action_cancel_terminate'),
         onClick: () =>
           navigateTo('billing', '/autorenew/services/cancel-resiliation', {
-            selectedType: DOMAIN,
+            selectedType: Universe.DOMAIN,
             searchText: serviceName,
             serviceId: serviceInfo?.serviceId,
           }),

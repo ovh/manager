@@ -32,6 +32,7 @@ export interface AlldomService {
   creationDate: string;
   renewalDate: string;
   serviceId: number;
+  period: string;
 }
 
 export interface TDomainsInfo {

@@ -101,7 +101,7 @@
   "domain_tab_general_information_subscription_contact_technical": "Técnico",
   "domain_tab_general_information_subscription_contact_billing": "Facturación",
   "domain_tab_general_information_subscription_contact_administrator": "Administrador",
-  "domain_tab_general_information_subscription_manual_renew_tooltip": "Fije una frecuencia de renovación y no se preocupe: su dominio se renovará automáticamente, sin riesgo de interrupción.",
+  "domain_tab_general_information_subscription_manual_renew_tooltip": "Fije una frecuencia de renovación y mantenga la tranquilidad.",
   "domain_tab_general_information_subscription_premium_tooltip": "Este dominio es considerado premium por el registro debido a su valor en el mercado, su rareza o su popularidad. Los precios que se le aplican pueden diferir de los precios de catálogo que se muestran en nuestro sitio web.",
   "domain_tab_general_information_subscription_premium_value": "Este dominio es premium.",
   "domain_tab_general_information_subscription_creation_date_bouton": "Administrar mis servicios",
@@ -341,6 +341,9 @@
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC está en curso {{action}}: puede seguir el progreso de su solicitud desde la página de operaciones en curso. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "de activación",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de desactivación",
-  "domain_tab_general_information_subscription_edit_owner": "Modificar los datos del contacto titular",
-  "domain_tab_general_information_data_protection_disabled": "El registro encargado de este nombre de dominio no permite la gestión personalizada de la visualización de los datos"
+  "domain_tab_general_information_subscription_edit_owner": "Modificar la información del contacto titular",
+  "domain_tab_general_information_data_protection_disabled": "El registro a cargo de este nombre de dominio no permite la gestión personalizada de la visualización de los datos.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip": "Opte por la renovación automática y mantenga la tranquilidad.",
+  "domain_tab_general_information_subscription_manual_renew_mode_tooltip_domain": "Su nombre de dominio se renueva automáticamente, sin riesgo de interrupción.",
+  "domain_tab_general_information_subscription_handle_renew_modify": "Modificar el modo de renovación"
 }

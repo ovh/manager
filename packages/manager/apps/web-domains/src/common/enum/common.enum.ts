@@ -69,3 +69,8 @@ export enum DrawerActionEnum {
   Add = 'add',
   Modify = 'modify',
 }
+
+export enum Universe {
+  DOMAIN = 'DOMAIN',
+  ALL_DOM = 'ALL_DOM',
+}
