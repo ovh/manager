@@ -147,13 +147,17 @@ export const AvailabilityZoneSelection = ({
                   'creation:pci_instance_creation_availabilityZone_help_manual',
                 )}
               </Text>
-              <Link
-                className="mt-8 inline-block visited:text-[var(--ods-color-primary-500)]"
-                href={guide}
-                target="_blank"
-              >
-                {t('creation:pci_instance_creation_availabilityZone_help_link')}
-              </Link>
+              {guide && (
+                <Link
+                  className="mt-8 inline-block visited:text-[var(--ods-color-primary-500)]"
+                  href={guide}
+                  target="_blank"
+                >
+                  {t(
+                    'creation:pci_instance_creation_availabilityZone_help_link',
+                  )}
+                </Link>
+              )}
             </div>
           </HelpDrawer>
         </div>
