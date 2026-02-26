@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { TAggregatedSharesDto, TShareDto } from '@/adapters/shares/right/dto.type';
+import { TShareDto } from '@/adapters/shares/right/dto.type';
 import { mapShareDtoToShare } from '@/adapters/shares/right/mapper';
 import { TShare, TShareToCreate } from '@/domain/entities/share.entity';
 
