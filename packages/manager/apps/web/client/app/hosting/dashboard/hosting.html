@@ -274,6 +274,10 @@
             >
                 <span data-translate="hosting_tab_INDY"></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item data-ng-if="$ctrl.$scope.cdnProperties" href="{{ $ctrl.cdnLogsLink }}"
+                active="$ctrl.currentActiveLink() === $ctrl.cdnLogsLink">
+                <span data-translate="hosting_tab_CDN_LOGS"></span>
+            </oui-header-tabs-item>
             <oui-header-tabs-divider
                 data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
             ></oui-header-tabs-divider>

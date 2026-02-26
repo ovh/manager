@@ -34,6 +34,7 @@ export default class {
     cdnProperties,
     cdnServiceInfo,
     cdnRange,
+    cdnLogsLink,
     coreURLBuilder,
     cronLink,
     currentActiveLink,
@@ -105,6 +106,7 @@ export default class {
     this.boostLink = boostLink;
     this.constants = constants;
     this.availableOptions = availableOptions;
+    this.cdnLogsLink = cdnLogsLink;
     this.coreURLBuilder = coreURLBuilder;
     this.cronLink = cronLink;
     this.currentActiveLink = currentActiveLink;
