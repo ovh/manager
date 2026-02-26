@@ -208,5 +208,8 @@
     "title": "Instances Flex",
     "disk_capacity": "<span>Une instance flex est une instance à disque unique (50 Go)</span> offrant un processus plus rapide pour les snapshots.",
     "resizing_explanation": "Elle permet un redimensionnement vers les modèles supérieurs ou inférieurs avec un espace de stockage fixe, tandis que les modèles classiques ne peuvent être redimensionnés que vers les modèles supérieurs."
-  }
+  },
+  "pci_instance_creation_pricing_banner_title": "Tarif Public Cloud",
+  "pci_instance_creation_pricing_banner_body": "Les tarifs de certains services public cloud sont susceptibles d'évoluer au 1er avril 2026. Pour plus de détails, nous vous invitons à visiter notre page tarifaire.",
+  "pci_instance_creation_pricing_banner_link": "Voir les tarifs"
 }

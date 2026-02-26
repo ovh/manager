@@ -9,5 +9,9 @@
   "cpbc_hourly_header_description": "Zasoby na żądanie w bieżącym miesiącu",
   "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
   "cpbc_monthly_header_post_paid": "Faktury miesięczne",
-  "cpbc_hourly_header_post_paid": "Faktury za godzinę"
+  "cpbc_hourly_header_post_paid": "Faktury za godzinę",
+  "cpbc_pricing_banner_title": "Cennik Public Cloud",
+  "cpbc_pricing_banner_body": "Ceny niektórych usług public cloud mogą ulec zmianie 1 kwietnia 2026 r. Więcej informacji znajdziesz na naszej stronie z cennikiem.",
+  "cpbc_pricing_banner_link": "Zobacz ceny",
+  "cpbc_pricing_banner_close": "Zamknij"
 }

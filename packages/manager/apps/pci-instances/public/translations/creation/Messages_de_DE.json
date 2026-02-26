@@ -207,5 +207,8 @@
   "pci_instance_creation_availabilityZone_help_manual": "Sie können aus den drei in der Region verfügbaren AZs wählen. Dies ermöglicht es Ihnen, Ihre Instanzen auf mehrere AZs zu verteilen und somit Ihre eigenen Redundanzmechanismen einzurichten.",
   "pci_instance_creation_availabilityZone_help_link": "Erfahren Sie mehr über Multi-AZ und bewährte Praktiken →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Eine Basis-Öffentliche IP wurde in Ihrem privaten Netzwerk erkannt, bitte erstellen oder wählen Sie ein anderes privates Netzwerk, um ein Gateway zu erstellen.",
-  "pci_instance_creation_region_unavailable": "Region nicht verfügbar"
+  "pci_instance_creation_region_unavailable": "Region nicht verfügbar",
+  "pci_instance_creation_pricing_banner_title": "Public Cloud Preise",
+  "pci_instance_creation_pricing_banner_body": "Die Preise einiger Public-Cloud-Dienste können sich am 1. April 2026 ändern. Weitere Informationen finden Sie auf unserer Preisseite.",
+  "pci_instance_creation_pricing_banner_link": "Preise anzeigen"
 }
