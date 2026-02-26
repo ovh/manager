@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.187.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.186.1...@ovh-ux/manager-container-app@0.187.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1184] ([7043d0f](https://github.com/ovh/manager/commit/7043d0f2a21fa67f9d8c2f3fb871dfcb78be50e4))
+
+
+### Features
+
+* **container:** add beta tag on wordpress ([555fa17](https://github.com/ovh/manager/commit/555fa17ae192c2e7f6074218e8d0438662e6b9f6)), closes [#PUWEBPT-243](https://github.com/ovh/manager/issues/PUWEBPT-243)
+* **video-center:** add video center url redirection on dashboard ([d63eb6a](https://github.com/ovh/manager/commit/d63eb6a29456ce6ed4ce043714e3fac42454f4b4)), closes [#PUWEBPT-199](https://github.com/ovh/manager/issues/PUWEBPT-199)
+* **web-hosting:** create pu video structure and template ([0f71656](https://github.com/ovh/manager/commit/0f7165660e6871fabdcb70a9c5628925fdc6c711)), closes [#PUWEBPT-175](https://github.com/ovh/manager/issues/PUWEBPT-175)
+* **web-hsoting:** correct back to previous button and subscription process ([26176f9](https://github.com/ovh/manager/commit/26176f9f1ed772d8fa57860f97c68622a5fc3967)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+
+
+
+
+
 ## [0.186.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.186.0...@ovh-ux/manager-container-app@0.186.1) (2026-02-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

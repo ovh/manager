@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.11...@ovh-ux/manager-web@19.37.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1148] ([42b06a1](https://github.com/ovh/manager/commit/42b06a1eb25847e6216c32a53f20816d824cbff4))
+* **i18n:** add missing translations [CDS 1150] ([a76b100](https://github.com/ovh/manager/commit/a76b1003a7f919ece33d85be8c0d6252ba4fa84f))
+* **i18n:** add missing translations [CDS 1151] ([21f0f75](https://github.com/ovh/manager/commit/21f0f75a190860bdf6be2fe0810d1da2e9350b02))
+* **i18n:** add missing translations [CDS 1163] ([5e24e0a](https://github.com/ovh/manager/commit/5e24e0adce70897b5bcb652750a3e10ff123b1f1))
+
+
+### Features
+
+* **web-hosting:** create logs dashboard ([6648313](https://github.com/ovh/manager/commit/66483133df993f4c0743b9fdd882fbef1ee8addf)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hosting:** rebase ([ef9a5b9](https://github.com/ovh/manager/commit/ef9a5b956433c1956a3014b97071b000b33ab314)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hsoting:** correct back to previous button and subscription process ([26176f9](https://github.com/ovh/manager/commit/26176f9f1ed772d8fa57860f97c68622a5fc3967)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web:** add guides for dump databases ([8e4e548](https://github.com/ovh/manager/commit/8e4e54854dfe657ef244cacb80ccc97c3e0e181f)), closes [#PUWEBPT-203](https://github.com/ovh/manager/issues/PUWEBPT-203)
+* **web:** change no data for hosting databases statistics ([21abecb](https://github.com/ovh/manager/commit/21abecb5d6d98b156c4bcf5d79c341dbf41dd466)), closes [#PUWEBPT-193](https://github.com/ovh/manager/issues/PUWEBPT-193)
+* **web:** delete condition for password update ([56b5b6f](https://github.com/ovh/manager/commit/56b5b6f3b1e523e3fd31fecff18a1d9a9d4e44b3)), closes [#PUWEBPT-219](https://github.com/ovh/manager/issues/PUWEBPT-219)
+
+
+
+
+
 ## [19.36.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.36.10...@ovh-ux/manager-web@19.36.11) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-web
