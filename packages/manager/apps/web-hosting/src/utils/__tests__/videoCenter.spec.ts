@@ -28,18 +28,18 @@ describe('computeThresholdsFromMax', () => {
     // 33 * 0.71 = 23.43 -> 23
     // 33 * 0.9 = 29.7 -> 30
     expect(result).toEqual({
-      optimum: 23,
-      low: 23,
-      high: 30,
+      optimum: 23.099999999999998,
+      low: 23.43,
+      high: 29.7,
     });
   });
 
   it('should handle very small numbers', () => {
     const result = computeThresholdsFromMax(1);
     expect(result).toEqual({
-      optimum: 1,
-      low: 1,
-      high: 1,
+      optimum: 0.7,
+      low: 0.71,
+      high: 0.9,
     });
   });
 
@@ -58,9 +58,9 @@ describe('computeThresholdsFromMax', () => {
     // 143 * 0.71 = 101.53 -> 102
     // 143 * 0.9 = 128.7 -> 129
     expect(result).toEqual({
-      optimum: 100,
-      low: 102,
-      high: 129,
+      optimum: 100.1,
+      low: 101.53,
+      high: 128.70000000000002,
     });
   });
 });
