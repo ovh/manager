@@ -426,6 +426,9 @@ function ZonePageInner() {
             columns={columns}
             topbar={
               <div className="flex gap-2">
+                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>
+                  {t('zone_page_add_entry')}
+                </Button>
                 <ActionMenu
                   key={openModal}
                   label={t('zone_page_actions')}
@@ -444,9 +447,6 @@ function ZonePageInner() {
                     {t(`${NAMESPACES.ACTIONS}:delete`)}
                   </Button>
                 )}
-                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>
-                  {t('zone_page_add_entry')}
-                </Button>
               </div>
             }
             data={filteredRecords}

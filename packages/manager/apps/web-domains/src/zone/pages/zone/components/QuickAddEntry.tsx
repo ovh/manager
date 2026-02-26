@@ -412,10 +412,10 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
           )}
 
           {recordTypeStr && (
-            <div className="flex flex-col-reverse gap-2 pt-4 border-t md:flex-row md:justify-end">
+            <div className="flex flex-col-reverse gap-2 pt-4 border-t md:flex-row md:justify-start">
               <Button
                 type="button"
-                variant={BUTTON_VARIANT.outline}
+                variant={BUTTON_VARIANT.ghost}
                 size={BUTTON_SIZE.sm}
                 onClick={handleCancel}
                 disabled={isMutating}
