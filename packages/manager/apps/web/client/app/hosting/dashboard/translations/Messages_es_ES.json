@@ -1410,5 +1410,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Desactivar mi base de datos",
   "hosting_tab_DATABASES_configuration__available_slot": "Base de datos disponible",
   "hosting_tab_WEBSITE": "Mis sitios",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleccionar un dominio"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleccionar un dominio",
+  "hosting_order_upgrade_blocking_action_required": "Acción requerida antes de cambiar de oferta",
+  "hosting_order_upgrade_blocking_clouddb_performance_to_pro": "Su alojamiento utiliza una base de datos Web Cloud Databases, que no está incluida en la oferta Pro.<br> Elimine o migre primero esta base a una que esté incluida con su alojamiento, luego reinicie el cambio de oferta.",
+  "hosting_order_upgrade_blocking_databases_pro_to_perso": "Actualmente está utilizando {{count}} bases de datos incluidas con su alojamiento Pro, mientras que la oferta Perso solo permite una.<br> Elimine o agrupe primero sus bases para conservar solo una.",
+  "hosting_order_upgrade_blocking_ftp_users_pro_to_perso": "Su alojamiento Pro está utilizando actualmente varios usuarios FTP, mientras que la oferta Perso solo permite uno.<br> Elimine primero los usuarios FTP adicionales antes de reiniciar el cambio de oferta.",
+  "hosting_order_upgrade_blocking_performance_downgrade_too_low": "El cambio de oferta Performance se realiza por niveles: solo es posible pasar a la oferta inmediatamente inferior.<br> Para continuar, primero debe pasar a la oferta Performance {{lowerLevel}}.",
+  "hosting_order_upgrade_blocking_mailing_lists_to_perso": "Actualmente está utilizando varias listas de correo con su oferta de Email. Estas no están disponibles con la oferta Perso.<br> Elimine primero las listas de correo activas, luego reinicie el cambio de oferta."
 }

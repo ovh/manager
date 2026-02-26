@@ -1410,5 +1410,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Meine Datenbank kündigen",
   "hosting_tab_DATABASES_configuration__available_slot": "Datenbank verfügbar",
   "hosting_tab_WEBSITE": "Meine Seiten",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Eine Domain auswählen"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Eine Domain auswählen",
+  "hosting_order_upgrade_blocking_action_required": "Aktion erforderlich, bevor das Angebot gewechselt werden kann",
+  "hosting_order_upgrade_blocking_clouddb_performance_to_pro": "Ihr Hosting verwendet eine Cloud-Datenbank, die nicht im Pro-Angebot enthalten ist.<br> Bitte löschen oder migrieren Sie zuerst diese Datenbank zu einer, die in Ihrem Hosting enthalten ist, und starten Sie dann den Angebotswechsel erneut.",
+  "hosting_order_upgrade_blocking_databases_pro_to_perso": "Derzeit verwenden Sie {{count}} Datenbanken, die in Ihrem Pro-Hosting enthalten sind, während das Personalangebot nur eine erlaubt.<br> Bitte löschen oder fassen Sie Ihre Datenbanken zusammen, um nur eine zu behalten.",
+  "hosting_order_upgrade_blocking_ftp_users_pro_to_perso": "Ihr Pro-Hosting verwendet derzeit mehrere FTP-Benutzer, während das Personalangebot nur einen erlaubt.<br> Bitte löschen Sie zuerst die zusätzlichen FTP-Benutzer, bevor Sie den Angebotswechsel erneut starten.",
+  "hosting_order_upgrade_blocking_performance_downgrade_too_low": "Der Wechsel zum Performance-Angebot erfolgt stufenweise: Es ist nur möglich, auf das unmittelbar niedrigere Angebot zu wechseln.<br> Um fortzufahren, wechseln Sie bitte zuerst zum Performance-Angebot {{lowerLevel}}.",
+  "hosting_order_upgrade_blocking_mailing_lists_to_perso": "Derzeit verwenden Sie mehrere Mailinglisten mit Ihrem E-Mail-Angebot. Diese sind im Personalangebot nicht verfügbar.<br> Bitte löschen Sie zuerst die aktiven Mailinglisten und starten Sie dann den Angebotswechsel erneut."
 }
