@@ -204,6 +204,7 @@ export default function ServerDatagrid() {
               columns={
                 effectiveColumns as ColumnsConfig<DedicatedServer | GroupRow>[]
               }
+              autoScroll={false}
               data={gridData}
               totalCount={totalCount || 0}
               hasNextPage={hasNextPage && !isLoading}
