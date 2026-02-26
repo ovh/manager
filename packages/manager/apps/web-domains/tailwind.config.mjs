@@ -4,7 +4,8 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
-const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx,cjs,mjs}`;
+const toGlob = (dir) =>
+  `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx,cjs,mjs}`;
 
 const mukDir = pkgDir('@ovh-ux/muk');
 const managerReactComponentsDir = pkgDir('@ovh-ux/manager-react-components');
@@ -18,6 +19,7 @@ export default {
     toGlob(mukDir),
     toGlob(managerReactComponentsDir),
   ],
+  safelist: ['grid-cols-1', 'grid-cols-2'],
   corePlugins: {
     preflight: false,
   },

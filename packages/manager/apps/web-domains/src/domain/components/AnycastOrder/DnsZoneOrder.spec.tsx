@@ -1,7 +1,6 @@
 import '@/common/setupTests';
-import { render } from '@/common/utils/test.provider';
+import { render, wrapper } from '@/common/utils/test.provider';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import DnsZoneOrder from './DnsZoneOrder';
 
 describe('DnsZone Order component', () => {
@@ -11,6 +10,7 @@ describe('DnsZone Order component', () => {
         dnssecSelected={true}
         onDnssecSelectedChange={vi.fn()}
         dnssecSupported={true}
+        isZoneActivation={false}
       />,
       { wrapper },
     );
@@ -30,6 +30,7 @@ describe('DnsZone Order component', () => {
         dnssecSelected={false}
         onDnssecSelectedChange={vi.fn()}
         dnssecSupported={false}
+        isZoneActivation={false}
       />,
       { wrapper },
     );

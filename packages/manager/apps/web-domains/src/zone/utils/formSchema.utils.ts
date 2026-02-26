@@ -1,327 +1,208 @@
+/**
+ * DNS Zone Record Form — Zod Schema & Validation
+ * ================================================
+ *
+ * Builds Zod schemas for every DNS record type supported by the zone entry
+ * form.  Validation rules are derived from the declarative form configs
+ * (RECORD_FORM_CONFIGS) and enriched with DNS-specific checks.
+ *
+ * ┌──────────────────────────────────────────────────────────────────────────┐
+ * │  VALIDATION CHECKS SUMMARY                                              │
+ * ├──────────────────────────────────────────────────────────────────────────┤
+ * │  COMMON                                                                  │
+ * │  • subDomain : max 250 chars ; required for NS                          │
+ * │  • ttl       : 60 – 86 400 s (custom mode only)                         │
+ * │                                                                          │
+ * │  POINTING RECORDS                                                        │
+ * │  • A / AAAA  : target = valid IPv4 / IPv6                               │
+ * │  • NS        : target = hostname (RFC 1035)                             │
+ * │  • CNAME     : target = hostname                                        │
+ * │  • DNAME     : target = hostname                                        │
+ * │                                                                          │
+ * │  MAIL RECORDS                                                            │
+ * │  • MX        : target = hostname ; priority 0 – 65 535                  │
+ * │  • SPF       : target = free text                                       │
+ * │  • DKIM      : p (public key) must be base64                            │
+ * │  • DMARC     : rua = mailto: URI ; p required ; pct 0 – 100            │
+ * │                                                                          │
+ * │  EXTENDED RECORDS                                                        │
+ * │  • SRV       : priority / weight / port 0 – 65 535 ; target = hostname  │
+ * │  • TXT       : target = optional free text                              │
+ * │  • CAA       : flags 0 – 255 ; tag = select ;                           │
+ * │                issue / issuewild → target = hostname                     │
+ * │                iodef             → target = URL (mailto: / https://)     │
+ * │  • SSHFP     : fp = hexadecimal                                         │
+ * │  • TLSA      : certificateData = hexadecimal                            │
+ * │  • NAPTR     : service = protocol(+rs) format                           │
+ * │                regex = no quotes / spaces                                │
+ * │                replace = hostname or "."                                 │
+ * │                flag U → regex required  ;  flag S → replace required     │
+ * │  • LOC       : lat/long degrees + hemisphere enum ; alt/size/hp/vp      │
+ * │  • SVCB/HTTPS: priority 0 – 65 535 ; params empty when priority = 0    │
+ * └──────────────────────────────────────────────────────────────────────────┘
+ */
+
 import { toASCII } from 'punycode';
 import { z } from 'zod';
-
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import {
+  FieldTypeExtendedRecordsEnum,
+  FieldTypePointingRecordsEnum,
+  FieldTypeMailRecordsEnum,
+  RecordTypesWithoutTTLEnum,
+  RecordTypesAsTxtEnum,
+  RecordTypesTargetWithTrailingDotEnum,
+  NaptrFlagEnum,
+  CaaTagEnum,
+  TtlSelectEnum,
+  DkimStatusEnum,
+  LocLatitudeEnum,
+  LocLongitudeEnum,
+  BoolSelectEnum,
+} from '@/common/enum/zone.enum';
+import type { FieldConfig } from '@/zone/types/recordFormConfig.types';
+import { RECORD_FORM_CONFIGS } from '@/zone/utils/recordFormConfig';
 
-export type FieldInputType = 'text' | 'number' | 'select' | 'textarea' | 'radio';
-export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host';
+// ---------------------------------------------------------------------------
+// Utility — safe stringification of Zod-inferred values
+// ---------------------------------------------------------------------------
 
-export interface RecordFieldDef {
-  name: string;
-  labelKey: string;
-  inputType: FieldInputType;
-  options?: { value: string; labelKey?: string }[];
-  min?: number;
-  max?: number;
-  step?: number | string;
-  required?: boolean;
-  tooltipKey?: string;
-}
-
-export interface RecordTypeConfig {
-  fields: RecordFieldDef[];
-  validation?: Partial<Record<string, FieldValidationKind>>;
-}
-
-const LABEL_KEYS = {
-  TARGET: 'zone_page_add_entry_modal_step_2_label_target',
-  VALUE: 'zone_page_add_entry_modal_step_2_label_value',
-  PRIORITY: 'zone_page_add_entry_modal_step_2_label_priority',
-  WEIGHT: 'zone_page_add_entry_modal_step_2_label_weight',
-  PORT: 'zone_page_add_entry_modal_step_2_label_port',
-  CAA_FLAGS: 'zone_page_add_entry_modal_step_2_label_caa_flags',
-  CAA_TAG: 'zone_page_add_entry_modal_step_2_label_caa_tag',
-  RP_MBOX: 'zone_page_add_entry_modal_step_2_label_rp_mbox',
-  RP_TXT: 'zone_page_add_entry_modal_step_2_label_rp_txt',
-  ALGORITHM: 'zone_page_add_entry_modal_step_2_label_algorithm',
-  FPTYPE: 'zone_page_add_entry_modal_step_2_label_fptype',
-  FP: 'zone_page_add_entry_modal_step_2_label_fp',
-  TLSA_USAGE: 'zone_page_add_entry_modal_step_2_label_tlsa_usage',
-  TLSA_SELECTOR: 'zone_page_add_entry_modal_step_2_label_tlsa_selector',
-  TLSA_MATCHING: 'zone_page_add_entry_modal_step_2_label_tlsa_matching',
-  TLSA_CERT: 'zone_page_add_entry_modal_step_2_label_tlsa_cert',
-  SVCB_PRIORITY: 'zone_page_add_entry_modal_step_2_label_svcb_priority',
-  SVCB_TARGET: 'zone_page_add_entry_modal_step_2_label_svcb_target',
-  SVCB_PARAMS: 'zone_page_add_entry_modal_step_2_label_svcb_params',
-  DMARC_P: 'zone_page_add_entry_modal_step_2_label_dmarc_p',
-  DMARC_PCT: 'zone_page_add_entry_modal_step_2_label_dmarc_pct',
-  DMARC_RUA: 'zone_page_add_entry_modal_step_2_label_dmarc_rua',
-  DMARC_SP: 'zone_page_add_entry_modal_step_2_label_dmarc_sp',
-  DMARC_ASPF: 'zone_page_add_entry_modal_step_2_label_dmarc_aspf',
-  NAPTR_ORDER: 'zone_page_add_entry_modal_step_2_label_naptr_order',
-  NAPTR_PREF: 'zone_page_add_entry_modal_step_2_label_naptr_pref',
-  NAPTR_FLAG: 'zone_page_add_entry_modal_step_2_label_naptr_flag',
-  NAPTR_SERVICE: 'zone_page_add_entry_modal_step_2_label_naptr_service',
-  NAPTR_REGEX: 'zone_page_add_entry_modal_step_2_label_naptr_regex',
-  NAPTR_REPLACE: 'zone_page_add_entry_modal_step_2_label_naptr_replace',
-  LOC_LAT_DEG: 'zone_page_add_entry_modal_step_2_label_loc_lat_deg',
-  LOC_LAT_MIN: 'zone_page_add_entry_modal_step_2_label_loc_lat_min',
-  LOC_LAT_SEC: 'zone_page_add_entry_modal_step_2_label_loc_lat_sec',
-  LOC_LAT: 'zone_page_add_entry_modal_step_2_label_loc_lat',
-  LOC_LONG_DEG: 'zone_page_add_entry_modal_step_2_label_loc_long_deg',
-  LOC_LONG_MIN: 'zone_page_add_entry_modal_step_2_label_loc_long_min',
-  LOC_LONG_SEC: 'zone_page_add_entry_modal_step_2_label_loc_long_sec',
-  LOC_LONG: 'zone_page_add_entry_modal_step_2_label_loc_long',
-  LOC_ALTITUDE: 'zone_page_add_entry_modal_step_2_label_loc_altitude',
-  LOC_SIZE: 'zone_page_add_entry_modal_step_2_label_loc_size',
-  LOC_HP: 'zone_page_add_entry_modal_step_2_label_loc_hp',
-  LOC_VP: 'zone_page_add_entry_modal_step_2_label_loc_vp',
+/**
+ * Converts a Zod-inferred value to `string` without risking `[object Object]`.
+ * Handles `string`, `number`, and falls back to `''` for `undefined` / `{}`.
+ */
+const str = (v: unknown): string => {
+  if (typeof v === 'string') return v;
+  if (typeof v === 'number') return String(v);
+  return '';
 };
 
-type RecordFieldOverrides = Partial<Omit<RecordFieldDef, 'name' | 'labelKey' | 'inputType'>>;
+// ---------------------------------------------------------------------------
+// Helpers — extract field info from declarative form configs
+// ---------------------------------------------------------------------------
 
-function createTextField(name: string, labelKey: string, overrides: RecordFieldOverrides = {}): RecordFieldDef {
-  return { name, labelKey, inputType: 'text', ...overrides };
+/**
+ * Builds a lookup map  field name → FieldConfig  for a given record type,
+ * skipping the layout-only 'subdomain' / 'ttl' tokens and recursing into
+ * GroupFieldConfig children.
+ */
+function getFieldMap(recordType: string): Map<string, FieldConfig> {
+  const config = RECORD_FORM_CONFIGS[recordType];
+  const map = new Map<string, FieldConfig>();
+  if (!config) return map;
+  for (const row of config.rows) {
+    for (const field of row.fields) {
+      if (field === 'subdomain' || field === 'ttl') continue;
+      if ('name' in field) {
+        map.set(field.name, field);
+      } else if (field.type === 'group') {
+        for (const child of field.children) {
+          map.set(child.name, child);
+        }
+      }
+    }
+  }
+  return map;
 }
 
-function createNumberField(name: string, labelKey: string, overrides: RecordFieldOverrides = {}): RecordFieldDef {
-  return { name, labelKey, inputType: 'number', ...overrides };
+export const FIELD_TYPES_POINTING_RECORDS: string[] = Object.values(FieldTypePointingRecordsEnum);
+
+export const FIELD_TYPES_EXTENDED_RECORDS: string[] = Object.values(FieldTypeExtendedRecordsEnum);
+
+export const FIELD_TYPES_MAIL_RECORDS: string[] = Object.values(FieldTypeMailRecordsEnum);
+
+export const RECORD_TYPES_WITHOUT_TTL: string[] = Object.values(RecordTypesWithoutTTLEnum);
+
+export const RECORD_TYPES_AS_TXT: string[] = Object.values(RecordTypesAsTxtEnum);
+
+export const RECORD_TYPES_TARGET_WITH_TRAILING_DOT: string[] = Object.values(RecordTypesTargetWithTrailingDotEnum);
+
+// ---------------------------------------------------------------------------
+// Regex patterns for field validation
+// ---------------------------------------------------------------------------
+
+/** RFC 1035 / RFC 1123 hostname: alphanumeric labels separated by dots,
+ *  no leading/trailing hyphens, no underscores, at least one letter required
+ *  (prevents pure-numeric values like "1" or "123.456"). Optional trailing dot. */
+const HOSTNAME_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*\.?$/;
+
+/** Hexadecimal string (SSHFP fingerprint, TLSA certificate data). */
+const HEX_REGEX = /^[0-9a-fA-F]+$/;
+
+/** Base64 encoding (DKIM public key p= tag).
+ *  Validates structure: groups of 4 base64 chars, optional padding with = or ==,
+ *  whitespace allowed (stripped before check). */
+const BASE64_REGEX = /^[A-Za-z0-9+/\s]+={0,2}$/;
+
+/** Checks that a string is valid base64 by verifying length is a multiple of 4 (after stripping whitespace). */
+function isValidBase64(value: string): boolean {
+  const stripped = value.replaceAll(/\s+/g, '');
+  if (stripped.length === 0) return false;
+  if (stripped.length % 4 !== 0) return false;
+  return BASE64_REGEX.test(value);
 }
 
-function createTextareaField(name: string, labelKey: string, overrides: RecordFieldOverrides = {}): RecordFieldDef {
-  return { name, labelKey, inputType: 'textarea', ...overrides };
-}
+/** DMARC rua tag — must start with mailto: followed by an e-mail address. */
+const DMARC_RUA_REGEX = /^mailto:.+@.+/;
 
-function createSelectField(
-  name: string,
-  labelKey: string,
-  options: { value: string; labelKey?: string }[],
-  overrides: RecordFieldOverrides = {},
-): RecordFieldDef {
-  return { name, labelKey, inputType: 'select', options, ...overrides };
-}
+/** NAPTR service field — one or more `token(+token)?` segments joined by `:`. */
+const NAPTR_SERVICE_REGEX = /^\w+(?:\+\w+)?(?::\w+(?:\+\w+)?)*$/;
 
-function createRadioField(
-  name: string,
-  labelKey: string,
-  options: { value: string; labelKey?: string }[],
-  overrides: RecordFieldOverrides = {},
-): RecordFieldDef {
-  return { name, labelKey, inputType: 'radio', options, ...overrides };
-}
-
-const CAA_TAG_OPTIONS = [{ value: 'issue' }, { value: 'issuewild' }, { value: 'iodef' }];
-const SSHFP_ALGORITHM_OPTIONS = [
-  { value: '1', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_algorithm_1' },
-  { value: '2', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_algorithm_2' },
-  { value: '3', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_algorithm_3' },
-  { value: '4', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_algorithm_4' },
-];
-const SSHFP_FPTYPE_OPTIONS = [
-  { value: '1', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_fptype_1' },
-  { value: '2', labelKey: 'zone_page_add_entry_modal_step_2_label_sshfp_fptype_2' },
-];
-const DMARC_POLICY_OPTIONS = [{ value: 'none' }, { value: 'quarantine' }, { value: 'reject' }];
-const DMARC_ASPF_OPTIONS = [
-  { value: 'r', labelKey: 'zone_page_add_entry_modal_step_2_label_dmarc_aspf_relaxed' },
-  { value: 's', labelKey: 'zone_page_add_entry_modal_step_2_label_dmarc_aspf_strict' },
-];
-const LOC_LATITUDE_OPTIONS = [{ value: 'N', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_lat_N' }, { value: 'S', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_lat_S' }];
-const LOC_LONGITUDE_OPTIONS = [{ value: 'E', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_long_E' }, { value: 'W', labelKey: 'zone_page_add_entry_modal_step_2_label_loc_long_W' }];
-
-const TOOLTIP_KEYS = {
-  targetHostValid: 'zone_page_add_entry_modal_step_2_target_host_valid',
-  svcbPriorityHelp: 'zone_page_add_entry_modal_step_2_svcb_priority_help',
-  svcbParamsHelp: 'zone_page_add_entry_modal_step_2_svcb_params_help',
-  naptrFlagHelp: 'zone_page_add_entry_modal_step_2_naptr_flag_help',
-  naptrServiceHelp: 'zone_page_add_entry_modal_step_2_naptr_service_help',
-  naptrRegexHelp: 'zone_page_add_entry_modal_step_2_naptr_regex_help',
-  naptrReplaceHelp: 'zone_page_add_entry_modal_step_2_naptr_replace_help',
-} as const;
-
-const FIELD = {
-  target: createTextField('target', LABEL_KEYS.TARGET, { required: true }),
-  targetHost: createTextField('target', LABEL_KEYS.TARGET, {
-    required: true,
-    tooltipKey: TOOLTIP_KEYS.targetHostValid,
-  }),
-  /** Target for CAA: host validation, no tooltip */
-  targetHostCaa: createTextField('target', LABEL_KEYS.TARGET, { required: true }),
-  targetValue: createTextField('target', LABEL_KEYS.VALUE, { required: true }),
-  targetValueTextarea: createTextareaField('target', LABEL_KEYS.VALUE, { required: true }),
-  targetSvcb: createTextField('target', LABEL_KEYS.SVCB_TARGET, {
-    required: true,
-    tooltipKey: TOOLTIP_KEYS.targetHostValid,
-  }),
-  priority: createNumberField('priority', LABEL_KEYS.PRIORITY, { required: true, min: 0, max: 65535 }),
-  prioritySvcb: createNumberField('priority', LABEL_KEYS.SVCB_PRIORITY, {
-    required: true,
-    min: 0,
-    max: 65535,
-    tooltipKey: TOOLTIP_KEYS.svcbPriorityHelp,
-  }),
-  weight: createNumberField('weight', LABEL_KEYS.WEIGHT, { required: true, min: 0, max: 65535 }),
-  port: createNumberField('port', LABEL_KEYS.PORT, { required: true, min: 0, max: 65535 }),
-  params: createTextField('params', LABEL_KEYS.SVCB_PARAMS, { tooltipKey: TOOLTIP_KEYS.svcbParamsHelp }),
-  naptrOrder: createNumberField('order', LABEL_KEYS.NAPTR_ORDER, { required: true, min: 0, max: 65535 }),
-  naptrPref: createNumberField('pref', LABEL_KEYS.NAPTR_PREF, { required: true, min: 0, max: 65535 }),
-  naptrFlag: createTextField('flag', LABEL_KEYS.NAPTR_FLAG, { required: false, tooltipKey: TOOLTIP_KEYS.naptrFlagHelp }),
-  naptrService: createTextField('service', LABEL_KEYS.NAPTR_SERVICE, {
-    required: true,
-    tooltipKey: TOOLTIP_KEYS.naptrServiceHelp,
-  }),
-  naptrRegex: createTextField('regex', LABEL_KEYS.NAPTR_REGEX, { required: false, tooltipKey: TOOLTIP_KEYS.naptrRegexHelp }),
-  naptrReplace: createTextField('replace', LABEL_KEYS.NAPTR_REPLACE, {
-    required: false,
-    tooltipKey: TOOLTIP_KEYS.naptrReplaceHelp,
-  }),
-  locLatDeg: createNumberField('lat_deg', LABEL_KEYS.LOC_LAT_DEG, { required: true, min: 0, max: 90 }),
-  locLatMin: createNumberField('lat_min', LABEL_KEYS.LOC_LAT_MIN, { required: true, min: 0, max: 59 }),
-  locLatSec: createNumberField('lat_sec', LABEL_KEYS.LOC_LAT_SEC, { required: true, min: 0, max: 59.999, step: 0.001 }),
-  locLatitude: createSelectField('latitude', LABEL_KEYS.LOC_LAT, LOC_LATITUDE_OPTIONS, { required: true }),
-  locLongDeg: createNumberField('long_deg', LABEL_KEYS.LOC_LONG_DEG, { required: true, min: 0, max: 180 }),
-  locLongMin: createNumberField('long_min', LABEL_KEYS.LOC_LONG_MIN, { required: true, min: 0, max: 59 }),
-  locLongSec: createNumberField('long_sec', LABEL_KEYS.LOC_LONG_SEC, { required: true, min: 0, max: 59.999, step: 0.001 }),
-  locLongitude: createSelectField('longitude', LABEL_KEYS.LOC_LONG, LOC_LONGITUDE_OPTIONS, { required: true }),
-  locAltitude: createNumberField('altitude', LABEL_KEYS.LOC_ALTITUDE, { required: true, min: -100000, max: 42849672.95, step: 0.01 }),
-  locSize: createNumberField('size', LABEL_KEYS.LOC_SIZE, { required: false, min: 0, max: 90000000, step: 0.01 }),
-  locHp: createNumberField('hp', LABEL_KEYS.LOC_HP, { required: false, min: 0, max: 90000000, step: 0.01 }),
-  locVp: createNumberField('vp', LABEL_KEYS.LOC_VP, { required: false, min: 0, max: 90000000, step: 0.01 }),
-} as const;
-
-const RECORD_TYPE_CONFIG: Partial<Record<string, RecordTypeConfig>> = {
-  A: { fields: [FIELD.target], validation: { target: 'ipv4' } },
-  AAAA: { fields: [FIELD.target], validation: { target: 'ipv6' } },
-  NS: { fields: [FIELD.targetHost], validation: { target: 'host' } },
-  CNAME: { fields: [FIELD.targetHost], validation: { target: 'host' } },
-  DNAME: { fields: [FIELD.targetHost], validation: { target: 'host' } },
-  DYNHOST: { fields: [FIELD.target], validation: { target: 'ipv4' } },
-  MX: {
-    fields: [FIELD.priority, FIELD.targetHost],
-    validation: { target: 'host' },
-  },
-  TXT: { fields: [FIELD.targetValue] },
-  DKIM: { fields: [] },
-  CAA: {
-    fields: [
-      createNumberField('flags', LABEL_KEYS.CAA_FLAGS, { required: true, min: 0, max: 255 }),
-      createSelectField('tag', LABEL_KEYS.CAA_TAG, CAA_TAG_OPTIONS, { required: true }),
-      FIELD.targetHostCaa,
-    ],
-    validation: { target: 'host' },
-  },
-  SRV: {
-    fields: [FIELD.priority, FIELD.weight, FIELD.port, FIELD.targetHost],
-    validation: { target: 'host' },
-  },
-  RP: {
-    fields: [
-      createTextField('mbox', LABEL_KEYS.RP_MBOX, {
-        required: true,
-        tooltipKey: TOOLTIP_KEYS.targetHostValid,
-      }),
-      createTextField('txt', LABEL_KEYS.RP_TXT, {
-        required: true,
-        tooltipKey: TOOLTIP_KEYS.targetHostValid,
-      }),
-    ],
-    validation: { mbox: 'host', txt: 'host' },
-  },
-  SSHFP: {
-    fields: [
-      createSelectField('algorithm', LABEL_KEYS.ALGORITHM, SSHFP_ALGORITHM_OPTIONS, { required: true }),
-      createSelectField('fptype', LABEL_KEYS.FPTYPE, SSHFP_FPTYPE_OPTIONS, { required: true }),
-      createTextField('fp', LABEL_KEYS.FP, { required: true }),
-    ],
-  },
-  TLSA: {
-    fields: [
-      createNumberField('usage', LABEL_KEYS.TLSA_USAGE, { required: true, min: 0, max: 3 }),
-      createNumberField('selector', LABEL_KEYS.TLSA_SELECTOR, { required: true, min: 0, max: 1 }),
-      createNumberField('matchingType', LABEL_KEYS.TLSA_MATCHING, { required: true, min: 1, max: 2 }),
-      createTextField('certificateData', LABEL_KEYS.TLSA_CERT, { required: true }),
-    ],
-  },
-  SVCB: {
-    fields: [FIELD.prioritySvcb, FIELD.targetSvcb, FIELD.params],
-    validation: { target: 'host' },
-  },
-  HTTPS: {
-    fields: [FIELD.prioritySvcb, FIELD.targetSvcb, FIELD.params],
-    validation: { target: 'host' },
-  },
-  DMARC: {
-    fields: [
-      createSelectField('p', LABEL_KEYS.DMARC_P, DMARC_POLICY_OPTIONS, { required: true }),
-      createNumberField('pct', LABEL_KEYS.DMARC_PCT, { min: 0, max: 100 }),
-      createTextField('rua', LABEL_KEYS.DMARC_RUA),
-      createSelectField('sp', LABEL_KEYS.DMARC_SP, DMARC_POLICY_OPTIONS),
-      createRadioField('aspf', LABEL_KEYS.DMARC_ASPF, DMARC_ASPF_OPTIONS),
-    ],
-  },
-  NAPTR: {
-    fields: [
-      FIELD.naptrOrder,
-      FIELD.naptrPref,
-      FIELD.naptrFlag,
-      FIELD.naptrService,
-      FIELD.naptrRegex,
-      FIELD.naptrReplace,
-    ],
-  },
-  LOC: {
-    fields: [
-      FIELD.locLatDeg,
-      FIELD.locLatMin,
-      FIELD.locLatSec,
-      FIELD.locLatitude,
-      FIELD.locLongDeg,
-      FIELD.locLongMin,
-      FIELD.locLongSec,
-      FIELD.locLongitude,
-      FIELD.locAltitude,
-      FIELD.locSize,
-      FIELD.locHp,
-      FIELD.locVp,
-    ],
-  },
-};
-
-export const FIELD_TYPES_MAIL_RECORDS = ['MX', 'SPF', 'DKIM', 'DMARC'] as const;
-
-export const RECORD_TYPES_WITHOUT_TTL: string[] = ['SPF', 'DKIM', 'DMARC'];
-
-export const RECORD_TYPES_AS_TXT = ['SPF', 'DKIM', 'DMARC'] as const;
-
-export const RECORD_TYPES_TARGET_WITH_TRAILING_DOT = ['NS', 'CNAME', 'DNAME'] as const;
-
-export function getRecordFields(recordType: string): RecordFieldDef[] {
-  return RECORD_TYPE_CONFIG[recordType]?.fields ?? [];
-}
-
-export function getRecordValidation(recordType: string): Record<string, FieldValidationKind> | undefined {
-  return RECORD_TYPE_CONFIG[recordType]?.validation;
-}
-
-const HOST_REGEX = /^[a-zA-Z0-9.-]+$/;
-const NAPTR_FLAG_REGEX = /^[a-zA-Z0-9]?$/;
-const NAPTR_SERVICE_REGEX = /^(?:(?:[a-zA-Z0-9]+|[a-zA-Z0-9]+\+[a-zA-Z0-9]+(?!\+))(?::(?!$)|(?=$)))+$/;
+/** NAPTR regex field — no double-quotes or whitespace allowed. */
 const NAPTR_REGEX_REGEX = /^[^"\s]*$/;
+
+/** NAPTR replacement field — a dot-separated label or bare dot. */
 const NAPTR_REPLACE_REGEX = /^((?:[^.\s](?:\.(?!$))?)+)\.?$/;
 
+// ---------------------------------------------------------------------------
+// Schema field keys — exhaustive list of every possible form field
+// ---------------------------------------------------------------------------
+
+/** Every form field key that may appear across all record types. */
 const ALL_KEYS = [
   'recordType', 'subDomain', 'ttlSelect', 'ttl', 'target', 'priority', 'weight', 'port', 'flags', 'tag',
   'mbox', 'txt', 'algorithm', 'fptype', 'fp', 'usage', 'selector', 'matchingType', 'certificateData',
-  'params', 'p', 'pct', 'rua', 'sp', 'aspf',
+  'params', 'v', 'p', 'pct', 'rua', 'sp', 'aspf',
+  'k', 'h', 'g', 'n', 's', 't_y', 't_s', 'dkim_status',
   'order', 'pref', 'flag', 'service', 'regex', 'replace',
   'lat_deg', 'lat_min', 'lat_sec', 'latitude', 'long_deg', 'long_min', 'long_sec', 'longitude',
   'altitude', 'size', 'hp', 'vp',
-  'dkimV', 'dkimG', 'dkimHsha1', 'dkimHsha256', 'dkimKrsa', 'dkimN', 'dkimPublicKey', 'dkimPRevoke',
-  'dkimS', 'dkimTY', 'dkimTS',
 ] as const;
 
+/** Keys whose default (fallback) schema is a coerced optional number. */
 const NUM_KEYS = new Set([
   'target', 'priority', 'weight', 'port', 'flags', 'usage', 'selector', 'matchingType', 'pct',
   'order', 'pref',
   'lat_deg', 'lat_min', 'lat_sec', 'long_deg', 'long_min', 'long_sec', 'altitude', 'size', 'hp', 'vp',
 ]);
 
+// ---------------------------------------------------------------------------
+// Base Zod schemas — reusable building blocks
+// ---------------------------------------------------------------------------
+
+/**
+ * Creates all the reusable Zod schema helpers used throughout the form.
+ *
+ * Schemas produced:
+ * - `subDomainRequired / subDomainOptional` : string, max 250 chars
+ * - `ttlSelect`   : enum 'global' | 'custom'
+ * - `ttl`         : numCoerce → 60–86 400 (optional)
+ * - `ipv4 / ipv6` : Zod ipv4 / ipv6 validators
+ * - `host`        : HOSTNAME_REGEX, max 253 chars (RFC 1035 FQDN limit)
+ * - `numReq`      : required number within [min, max] (string → number coercion)
+ * - `numOpt`      : optional number (string → number coercion)
+ * - `stringRequired / stringOptional` : basic presence checks
+ */
 function createFormSchemas(t: (key: string, params?: Record<string, unknown>) => string) {
-  const zone = (key: string) => t(key.startsWith('zone:') ? key : `zone:${key}`);
+  // -- Translated error message factories --
+  const zone = (key: string, params?: Record<string, unknown>) => t(key.startsWith('zone:') ? key : `zone:${key}`, params);
   const requiredMsg = t(`${NAMESPACES.FORM}:required_field`);
   const minMsg = (v: number) => t(`${NAMESPACES.FORM}:min_chars`, { value: v });
   const maxMsg = (v: number) => t(`${NAMESPACES.FORM}:max_chars`, { value: v });
+  const numMinMsg = (v: number) => zone('zone_page_form_number_min', { value: v });
+  const numMaxMsg = (v: number) => zone('zone_page_form_number_max', { value: v });
 
+  // -- Number coercion: ODS inputs emit strings, Zod expects numbers --
   const numCoerce = z
     .union([z.string(), z.number()])
     .optional()
@@ -330,427 +211,510 @@ function createFormSchemas(t: (key: string, params?: Record<string, unknown>) =>
   const numOpt = () => numCoerce.pipe(z.number().optional());
   const numReq = (min: number, max: number) =>
     numCoerce.pipe(
-      z.number({ message: requiredMsg }).min(min, minMsg(min)).max(max, maxMsg(max)),
+      z.number({ message: requiredMsg }).min(min, numMinMsg(min)).max(max, numMaxMsg(max)),
     );
 
   return {
     requiredMsg,
     zone,
-    /** Required for NS (Angular: required when fieldType === 'NS'). Optional otherwise. */
-    subDomainRequired: z.string().min(1, minMsg(1)).max(250, maxMsg(250)),
-    subDomainOptional: z.string().max(250, maxMsg(250)),
-    ttlSelect: z.enum(['global', 'custom']),
-    ttl: numCoerce.pipe(z.number().min(60).max(86400).optional()),
-    ttlMinMsg: zone('zone_page_add_entry_modal_step_2_ttl_min_value'),
+    /** subDomain — required for NS, optional for all other record types. */
+    subDomainRequired: z.string({ message: requiredMsg }).min(1, minMsg(1)).max(250, maxMsg(250)),
+    subDomainOptional: z.string({ message: requiredMsg }).max(250, maxMsg(250)),
+    /** TTL mode selector — 'global' uses the zone default, 'custom' unlocks the TTL field. */
+    ttlSelect: z.enum([TtlSelectEnum.GLOBAL, TtlSelectEnum.CUSTOM]),
+    /** TTL value — 60…86 400 s, coerced from string.  Only validated in 'custom' mode. */
+    ttl: numCoerce.pipe(z.number()
+      .min(60, zone('zone_page_form_ttl_min_value'))
+      .max(86400, zone('zone_page_form_ttl_max_value'))
+      .optional()),
+    ttlMinMsg: zone('zone_page_form_ttl_min_value'),
+    /** IPv4 target — Zod z.ipv4() built-in format check. */
     ipv4: (required: boolean) => {
-      const s = z.ipv4({ message: zone('zone_page_add_entry_modal_step_2_target_ipv4_valid') });
-      return required ? s : s.optional();
+      const s = z.ipv4({ message: zone('zone_page_form_target_ipv4_valid') });
+      return required ? z.string({ message: requiredMsg }).pipe(s) : s.optional();
     },
+    /** IPv6 target — Zod z.ipv6() built-in format check. */
     ipv6: (required: boolean) => {
-      const s = z.ipv6({ message: zone('zone_page_add_entry_modal_step_2_target_ipv6_valid') });
-      return required ? s : s.optional();
+      const s = z.ipv6({ message: zone('zone_page_form_target_ipv6_valid') });
+      return required ? z.string({ message: requiredMsg }).pipe(s) : s.optional();
     },
+    /** Hostname target — max 253 (RFC 1035 FQDN), validated via HOSTNAME_REGEX. */
     host: (required: boolean) => {
       const s = z
-        .string()
+        .string({ message: requiredMsg })
         .min(1, minMsg(1))
-        .max(250, maxMsg(250))
-        .regex(HOST_REGEX, zone('zone_page_add_entry_modal_step_2_target_host_valid'));
+        .max(253, maxMsg(253))
+        .regex(HOSTNAME_REGEX, zone('zone_page_form_target_host_valid'));
       return required ? s : s.optional();
     },
-    stringRequired: z.string().min(1, requiredMsg),
-    stringOptional: z.string().optional(),
+    stringRequired: z.string({ message: requiredMsg }).min(1, requiredMsg),
+    stringOptional: z.string({ message: requiredMsg }).optional(),
     numOpt,
     numReq,
+    numMinMsg,
+    numMaxMsg,
   };
 }
 
+/** Convenience alias for the return type of createFormSchemas. */
+type FormSchemas = ReturnType<typeof createFormSchemas>;
+
+// ---------------------------------------------------------------------------
+// Record-specific field schema helpers (extracted to reduce complexity)
+// ---------------------------------------------------------------------------
+
+/**
+ * NAPTR-specific schemas.
+ * - flag   : optional string (U, S, A, P or empty)
+ * - service: required, must match protocol(+rs) format  (e.g. "E2U+sip")
+ * - regex  : optional, no double-quotes or whitespace
+ * - replace: optional string (validated cross-field in refines)
+ */
+function naptrFieldSchema(key: string, s: FormSchemas): z.ZodTypeAny | null {
+  if (key === 'flag') return z.string().optional().or(z.literal(''));
+  if (key === 'service') {
+    return z.string().min(1, s.requiredMsg).regex(NAPTR_SERVICE_REGEX, s.zone('zone_page_form_naptr_service_valid'));
+  }
+  if (key === 'regex') {
+    return z.string().regex(NAPTR_REGEX_REGEX, s.zone('zone_page_form_naptr_regex_valid')).optional().or(z.literal(''));
+  }
+  if (key === 'replace') return z.string().optional().or(z.literal(''));
+  return null;
+}
+
+/**
+ * LOC-specific schemas.
+ * - latitude  : hemisphere enum N | S
+ * - longitude : hemisphere enum E | W
+ */
+function locFieldSchema(key: string, s: FormSchemas): z.ZodTypeAny | null {
+  if (key === 'latitude') return z.enum([LocLatitudeEnum.N, LocLatitudeEnum.S], { message: s.requiredMsg });
+  if (key === 'longitude') return z.enum([LocLongitudeEnum.E, LocLongitudeEnum.W], { message: s.requiredMsg });
+  return null;
+}
+
+/**
+ * Per-record-type field overrides that don't fit the generic type-based
+ * dispatch (SSHFP, TLSA, DKIM, DMARC).
+ */
+function recordSpecificFieldSchema(
+  recordType: string,
+  key: string,
+  s: FormSchemas,
+): z.ZodTypeAny | null {
+  // SSHFP: fingerprint (fp) must be hexadecimal
+  if (recordType === FieldTypeExtendedRecordsEnum.SSHFP && key === 'fp') {
+    return z.string({ message: s.requiredMsg }).min(1, s.requiredMsg).regex(HEX_REGEX, s.zone('zone_page_form_hex_valid'));
+  }
+  // TLSA: certificate association data must be hexadecimal
+  if (recordType === FieldTypeExtendedRecordsEnum.TLSA && key === 'certificateData') {
+    return z.string({ message: s.requiredMsg }).min(1, s.requiredMsg).regex(HEX_REGEX, s.zone('zone_page_form_hex_valid'));
+  }
+  // DKIM: public key (p) must be valid base64
+  if (recordType === FieldTypeMailRecordsEnum.DKIM && key === 'p') {
+    return z.string({ message: s.requiredMsg }).min(1, s.requiredMsg).refine(
+      (v) => isValidBase64(v),
+      { message: s.zone('zone_page_form_base64_valid') },
+    );
+  }
+  // DMARC: rua (aggregate report URI) must be a mailto: address when provided
+  if (recordType === FieldTypeMailRecordsEnum.DMARC && key === 'rua') {
+    return z
+      .string()
+      .refine((v) => !v || DMARC_RUA_REGEX.test(v), {
+        message: s.zone('zone_page_form_dmarc_rua_valid'),
+      })
+      .optional();
+  }
+  return null;
+}
+
+/**
+ * Generic field schema based on the field's declared type / validation kind.
+ * Handles: ipv4, ipv6, host, number, select, and plain string.
+ */
+function genericFieldSchema(
+  kind: string | undefined,
+  required: boolean,
+  f: FieldConfig | undefined,
+  s: FormSchemas,
+  isTargetOptionalForTxt: boolean,
+): z.ZodTypeAny {
+  // -- Target type checks (from recordFormConfig `validation` map) --
+  if (kind === 'ipv4') return s.ipv4(required);
+  if (kind === 'ipv6') return s.ipv6(required);
+  if (kind === 'host') return s.host(required);
+
+  // -- Typed fields --
+  if (f?.type === 'number') {
+    const min = f.min ?? 0;
+    const max = f.max ?? 65535;
+    return required
+      ? s.numReq(min, max)
+      : s.numOpt().pipe(z.number().min(min, s.numMinMsg(min)).max(max, s.numMaxMsg(max)).optional());
+  }
+  if (f?.type === 'select') {
+    return required
+      ? z.string({ message: s.requiredMsg }).min(1, s.requiredMsg)
+      : z.string({ message: s.requiredMsg }).optional();
+  }
+
+  // -- Default: required or optional string --
+  if (required && f && !isTargetOptionalForTxt) return s.stringRequired;
+  return s.stringOptional;
+}
+
+// ---------------------------------------------------------------------------
+// Main schema builder
+// ---------------------------------------------------------------------------
+
 function buildAddEntrySchema(recordType: string, t: (key: string, params?: Record<string, unknown>) => string) {
   const s = createFormSchemas(t);
-  const fields = getRecordFields(recordType);
-  const validation = getRecordValidation(recordType);
-  const fieldSet = new Set(fields.map((f) => f.name));
-  const fieldByKey = Object.fromEntries(fields.map((f) => [f.name, f]));
+  const config = RECORD_FORM_CONFIGS[recordType];
+  const fieldMap = getFieldMap(recordType);
+  const validation = config?.validation;
 
+  /**
+   * Determines the Zod schema for a single form field.
+   * Priority: record-specific override → generic type-based dispatch.
+   */
   const fieldSchema = (key: string): z.ZodTypeAny => {
-    const f = fieldByKey[key];
+    const f = fieldMap.get(key);
     const kind = validation?.[key];
     const required = f?.required ?? false;
-    const targetOptionalForTxt = recordType === 'TXT' && key === 'target';
+    const isTargetOptionalForTxt = recordType === FieldTypeExtendedRecordsEnum.TXT && key === 'target';
 
-    if (recordType === 'NAPTR') {
-      if (key === 'flag') {
-        return z
-          .string()
-          .max(1, s.zone('zone_page_add_entry_modal_step_2_naptr_flag_valid'))
-          .regex(NAPTR_FLAG_REGEX, s.zone('zone_page_add_entry_modal_step_2_naptr_flag_valid'))
-          .optional()
-          .or(z.literal(''));
-      }
-      if (key === 'service') {
-        return z
-          .string()
-          .min(1, s.requiredMsg)
-          .regex(NAPTR_SERVICE_REGEX, s.zone('zone_page_add_entry_modal_step_2_naptr_service_valid'));
-      }
-      if (key === 'regex') {
-        return z
-          .string()
-          .regex(NAPTR_REGEX_REGEX, s.zone('zone_page_add_entry_modal_step_2_naptr_regex_valid'))
-          .optional()
-          .or(z.literal(''));
-      }
-      if (key === 'replace') {
-        return z.string().optional().or(z.literal(''));
-      }
+    // 1. Record-specific overrides
+    if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) {
+      const schema = naptrFieldSchema(key, s);
+      if (schema) return schema;
     }
+    if (recordType === FieldTypeExtendedRecordsEnum.LOC) {
+      const schema = locFieldSchema(key, s);
+      if (schema) return schema;
+    }
+    const specific = recordSpecificFieldSchema(recordType, key, s);
+    if (specific) return specific;
 
-    if (recordType === 'LOC') {
-      if (key === 'latitude') {
-        return z.enum(['N', 'S'], { 
-          message: s.requiredMsg 
-        });
-      }
-      if (key === 'longitude') {
-        return z.enum(['E', 'W'], { 
-          message: s.requiredMsg 
-        });
-      }
-    }
-    if (kind === 'ipv4') return s.ipv4(required);
-    if (kind === 'ipv6') return s.ipv6(required);
-    if (kind === 'host') return s.host(required);
-    if (f?.inputType === 'number') {
-      const min = f.min ?? 0;
-      const max = f.max ?? 65535;
-      return required ? s.numReq(min, max) : s.numOpt().pipe(z.number().min(min).max(max).optional());
-    }
-    if (required && f && !targetOptionalForTxt) return s.stringRequired;
-    return s.stringOptional;
+    // 2. Generic type-based dispatch
+    return genericFieldSchema(kind, required, f, s, isTargetOptionalForTxt);
   };
 
+  // -- Build the object shape: one key per possible form field --
   const shape: Record<string, z.ZodTypeAny> = {
     recordType: z.string(),
-    subDomain: recordType === 'NS' ? s.subDomainRequired : s.subDomainOptional,
+    /** subDomain is required only for NS records. */
+    subDomain: recordType === FieldTypePointingRecordsEnum.NS ? s.subDomainRequired : s.subDomainOptional,
     ttlSelect: s.ttlSelect,
     ttl: s.ttl,
   };
 
-  const DKIM_BOOL_KEYS = new Set(['dkimV', 'dkimHsha1', 'dkimHsha256', 'dkimKrsa', 'dkimPRevoke', 'dkimTY', 'dkimTS']);
-  const DKIM_STRING_KEYS = new Set(['dkimG', 'dkimN', 'dkimPublicKey', 'dkimS']);
-
   for (const key of ALL_KEYS) {
     if (key === 'recordType' || key === 'subDomain' || key === 'ttlSelect' || key === 'ttl') continue;
-    if (recordType === 'DKIM' && DKIM_BOOL_KEYS.has(key)) {
-      shape[key] = z.union([z.boolean(), z.string()]).optional();
-    } else if (recordType === 'DKIM' && DKIM_STRING_KEYS.has(key)) {
-      shape[key] = s.stringOptional;
+
+    if (fieldMap.has(key)) {
+      shape[key] = fieldSchema(key);
+    } else if (NUM_KEYS.has(key)) {
+      shape[key] = s.numOpt();
     } else {
-      shape[key] = fieldSet.has(key)
-        ? fieldSchema(key)
-        : NUM_KEYS.has(key)
-          ? s.numOpt()
-          : s.stringOptional;
+      shape[key] = s.stringOptional;
     }
   }
 
-  const DKIM_G_REGEX = /^[\w!#$%&"*+/=?^`{|}~.-]*$/;
-  const DKIM_N_REGEX = /^[^=;"]*$/;
-  const DKIM_P_REGEX = /^(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$/;
+  // -----------------------------------------------------------------------
+  // Cross-field refines (validated after the whole object is parsed)
+  // -----------------------------------------------------------------------
 
   return z
     .object(shape)
+    // -- TTL: if mode is 'custom', the TTL value must be ≥ 60 s --
     .refine(
-      (data) => data.ttlSelect !== 'custom' || (typeof data.ttl === 'number' && data.ttl >= 60),
+      (data) => data.ttlSelect !== TtlSelectEnum.CUSTOM || (typeof data.ttl === 'number' && data.ttl >= 60),
       { message: s.ttlMinMsg, path: ['ttl'] },
     )
+    // -- SVCB / HTTPS: params must be empty when priority = 0 (alias mode, RFC 9460) --
     .refine(
       (data) => {
-        if (recordType !== 'SVCB' && recordType !== 'HTTPS') return true;
+        if (recordType !== FieldTypeExtendedRecordsEnum.SVCB && recordType !== FieldTypeExtendedRecordsEnum.HTTPS) return true;
         const priority = data.priority;
-        const params = data.params;
+        const params = str(data.params);
         const priorityZero = priority === 0 || priority === '0' || Number(priority) === 0;
-        return !priorityZero || !params || String(params ?? '').trim() === '';
+        return !priorityZero || params.trim() === '';
       },
       {
-        message: s.zone('zone_page_add_entry_modal_step_2_svcb_params_priority_zero'),
+        message: s.zone('zone_page_form_svcb_params_priority_zero'),
         path: ['params'],
       },
     )
+    // -- NAPTR: replace must be a valid hostname or "." --
     .refine(
       (data) => {
-        if (recordType !== 'NAPTR') return true;
-        const replace = data.replace;
-        if (replace == null || String(replace).trim() === '') return true;
-        const val = String(replace).trim();
-        return val === '.' || NAPTR_REPLACE_REGEX.test(val) || HOST_REGEX.test(val);
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
+        const replace = str(data.replace).trim();
+        if (!replace) return true;
+        return replace === '.' || NAPTR_REPLACE_REGEX.test(replace) || HOSTNAME_REGEX.test(replace);
       },
       {
-        message: s.zone('zone_page_add_entry_modal_step_2_naptr_replace_valid'),
+        message: s.zone('zone_page_form_naptr_replace_valid'),
         path: ['replace'],
-     },
+      },
     )
+    // -- NAPTR flag U: regex field is required --
     .refine(
       (data) => {
-        if (recordType !== 'DKIM') return true;
-        const pRevoke = data.dkimPRevoke === true || data.dkimPRevoke === 'true';
-        if (pRevoke) return true;
-        const pk = String(data.dkimPublicKey ?? '').replace(/\n/g, '');
-        if (!pk || pk.length < 32) return false;
-        return DKIM_P_REGEX.test(pk);
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
+        if (str(data.flag) !== NaptrFlagEnum.U) return true;
+        return typeof data.regex === 'string' && data.regex.trim() !== '';
       },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_publickey_valid'), path: ['dkimPublicKey'] },
+      {
+        message: s.requiredMsg,
+        path: ['regex'],
+      },
     )
+    // -- NAPTR flag S: replace field is required --
     .refine(
       (data) => {
-        if (recordType !== 'DKIM') return true;
-        const g = String(data.dkimG ?? '').trim();
-        return !g || DKIM_G_REGEX.test(g);
+        if (recordType !== FieldTypeExtendedRecordsEnum.NAPTR) return true;
+        if (str(data.flag) !== NaptrFlagEnum.S) return true;
+        return typeof data.replace === 'string' && data.replace.trim() !== '';
       },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_granularity_valid'), path: ['dkimG'] },
+      {
+        message: s.requiredMsg,
+        path: ['replace'],
+      },
     )
+    // -- CAA issue / issuewild: target must be a valid hostname --
     .refine(
       (data) => {
-        if (recordType !== 'DKIM') return true;
-        const n = String(data.dkimN ?? '').trim();
-        return !n || DKIM_N_REGEX.test(n);
+        if (recordType !== FieldTypeExtendedRecordsEnum.CAA) return true;
+        const tag = str(data.tag);
+        if (tag === CaaTagEnum.IODEF) return true;
+        const target = str(data.target).trim();
+        return !target || HOSTNAME_REGEX.test(target);
       },
-      { message: s.zone('zone_page_add_entry_modal_step_2_dkim_notes_valid'), path: ['dkimN'] },
+      {
+        message: s.zone('zone_page_form_target_host_valid'),
+        path: ['target'],
+      },
+    )
+    // -- CAA iodef: target must be a URL (mailto: or https://) --
+    .refine(
+      (data) => {
+        if (recordType !== FieldTypeExtendedRecordsEnum.CAA) return true;
+        if (str(data.tag) !== CaaTagEnum.IODEF) return true;
+        const target = str(data.target).trim();
+        return !target || /^(mailto:|https?:\/\/)/.test(target);
+      },
+      {
+        message: s.zone('zone_page_form_caa_iodef_valid'),
+        path: ['target'],
+      },
     );
 }
 
+// ---------------------------------------------------------------------------
+// Public API — schema factory & type
+// ---------------------------------------------------------------------------
+
+/** Creates a Zod schema for the record-type-specific add-entry form. */
 export const zForm = (t: (key: string, params?: Record<string, unknown>) => string, recordType?: string) => {
   const ADD_ENTRY_FORM_SCHEMA = buildAddEntrySchema(recordType ?? '', t);
   return { ADD_ENTRY_FORM_SCHEMA };
 };
 
+/** Inferred TypeScript type from the Zod schema (used for react-hook-form). */
 export type AddEntrySchemaType = z.infer<ReturnType<typeof buildAddEntrySchema>>;
 
+// ---------------------------------------------------------------------------
+// Error mapping & domain formatting helpers
+// ---------------------------------------------------------------------------
+
+/** Maps Zod validation issues to react-hook-form `setError` calls. */
 export function applyZodErrorsToForm<T extends Record<string, unknown>>(
   error: z.ZodError,
   setError: (name: keyof T & string, payload: { type: string; message: string }) => void,
 ) {
   for (const issue of error.issues) {
-    const name = (issue.path[0] != null ? String(issue.path[0]) : 'root') as keyof T & string;
+    const name = (issue.path[0] == null ? 'root' : String(issue.path[0])) as keyof T & string;
     setError(name, { type: issue.code ?? 'custom', message: String(issue.message) });
   }
 }
 
+/** Builds the full FQDN from subDomain + domainName (IDN-safe via punycode). */
 export function getResumeDomain(subDomain: string | undefined, domainName: string): string {
   const sub = String(subDomain ?? '').trim();
   const subPart = sub ? (() => { try { return toASCII(sub); } catch { return sub; } })() : '';
   return subPart ? `${subPart}.${domainName}.` : `${domainName}.`;
 }
 
+// ---------------------------------------------------------------------------
+// Target display-value formatters (preview the DNS record value)
+// ---------------------------------------------------------------------------
+
+/** Converts a NAPTR replacement value to wire-format (punycode + trailing dot). */
+function toNaptrReplacement(replace: unknown): string {
+  const val = str(replace).trim();
+  if (!val) return '.';
+  return val.endsWith('.') ? toASCII(val) : `${toASCII(val)}.`;
+}
+
+/**
+ * Formats the RDATA for a LOC record.
+ * Components: lat_deg lat_min lat_sec N/S long_deg long_min long_sec E/W alt size hp vp
+ */
 function formatLocTarget(formValues: Partial<AddEntrySchemaType>): string {
-  const latDeg = formValues?.lat_deg;
-  const latMin = formValues?.lat_min;
-  const latSec = formValues?.lat_sec;
-  const latitude = formValues?.latitude ?? '';
-  const longDeg = formValues?.long_deg;
-  const longMin = formValues?.long_min;
-  const longSec = formValues?.long_sec;
-  const longitude = formValues?.longitude ?? '';
-  const altitude = formValues?.altitude;
-  const size = formValues?.size;
-  const hp = formValues?.hp;
-  const vp = formValues?.vp;
+  /** Extracts a field value as string. */
+  const v = (k: keyof AddEntrySchemaType) => str(formValues?.[k]);
+  /** Extracts a field value with a unit suffix (e.g. "100m"). */
+  const withUnit = (k: keyof AddEntrySchemaType, unit: string) => {
+    const s = v(k);
+    return s ? `${s}${unit}` : '';
+  };
+
   return [
-    latDeg != null && latDeg !== '' ? String(latDeg) : '',
-    latMin != null && latMin !== '' ? String(latMin) : '',
-    latSec != null && latSec !== '' ? String(latSec) : '',
-    latitude,
-    longDeg != null && longDeg !== '' ? String(longDeg) : '',
-    longMin != null && longMin !== '' ? String(longMin) : '',
-    longSec != null && longSec !== '' ? String(longSec) : '',
-    longitude,
-    altitude != null && altitude !== '' ? `${String(altitude)}m` : '',
-    size != null && size !== '' ? `${String(size)}m` : '',
-    hp != null && hp !== '' ? `${String(hp)}m` : '',
-    vp != null && vp !== '' ? `${String(vp)}m` : '',
+    v('lat_deg'), v('lat_min'), v('lat_sec'), v('latitude'),
+    v('long_deg'), v('long_min'), v('long_sec'), v('longitude'),
+    withUnit('altitude', 'm'), withUnit('size', 'm'), withUnit('hp', 'm'), withUnit('vp', 'm'),
   ]
     .join(' ')
-    .replace(/\s{2,}/g, ' ')
+    .replaceAll(/\s{2,}/g, ' ')
     .trim();
 }
 
+/**
+ * Formats the RDATA for a NAPTR record.
+ * Wire format: order pref "flag" "service" "regex" replacement
+ *
+ * Flag determines which fields are used:
+ * - U : URI resolution — regex is filled, replacement is always "."
+ * - S : SRV lookup    — replacement is filled (hostname)
+ * - A : A/AAAA lookup — replacement is filled
+ * - P : protocol-specific — both regex and replacement can be set
+ */
 function formatNaptrTarget(formValues: Partial<AddEntrySchemaType>): string {
+  const flag = str(formValues?.flag).toUpperCase();
+  const service = str(formValues?.service);
+
+  let regex = '';
   let lastItem = '.';
-  const replace = formValues?.replace;
-  if (replace != null && String(replace).trim() !== '') {
-    const val = String(replace).trim();
-    lastItem = /\.$/.test(val) ? toASCII(val) : `${toASCII(val)}.`;
+  if (flag === NaptrFlagEnum.U) {
+    regex = str(formValues?.regex);
+  } else if (flag === NaptrFlagEnum.S || flag === NaptrFlagEnum.A) {
+    lastItem = toNaptrReplacement(formValues?.replace);
+  } else {
+    regex = str(formValues?.regex);
+    lastItem = toNaptrReplacement(formValues?.replace);
   }
-  const order = formValues?.order;
-  const pref = formValues?.pref;
-  const flag = formValues?.flag;
-  const service = formValues?.service ?? '';
-  const regex = formValues?.regex ?? '';
+
   return [
-    order != null && order !== '' ? String(order) : '',
-    pref != null && pref !== '' ? String(pref) : '',
-    `"${flag != null && flag !== '' ? String(flag).toUpperCase() : ''}"`,
-    `"${service}"`,
-    `"${regex}"`,
-    lastItem,
+    str(formValues?.order), str(formValues?.pref),
+    `"${flag}"`, `"${service}"`, `"${regex}"`, lastItem,
   ]
     .join(' ')
-    .replace(/\s{2,}/g, ' ')
+    .replaceAll(/\s{2,}/g, ' ')
     .trim();
 }
 
-function transformDKIMTarget(formValues: Partial<AddEntrySchemaType>): string {
-  const toBool = (v: unknown) => v === true || v === 'true';
-  const hash: string[] = [];
-  if (toBool(formValues.dkimHsha1)) hash.push('sha1');
-  if (toBool(formValues.dkimHsha256)) hash.push('sha256');
-  const flags: string[] = [];
-  if (toBool(formValues.dkimTY)) flags.push('y');
-  if (toBool(formValues.dkimTS)) flags.push('s');
-  const pRevoke = toBool(formValues.dkimPRevoke);
-  let value = '';
-  value += toBool(formValues.dkimV) ? 'v=DKIM1;' : '';
-  value += formValues.dkimG ? `g=${formValues.dkimG};` : '';
-  value += hash.length > 0 ? `h=${hash.join(':')};` : '';
-  value += toBool(formValues.dkimKrsa) ? 'k=rsa;' : '';
-  value += formValues.dkimN ? `n=${formValues.dkimN};` : '';
-  value += formValues.dkimS ? `s=${formValues.dkimS};` : '';
-  const pk = String(formValues.dkimPublicKey ?? '').replace(/\n/g, '');
-  value += pk && !pRevoke ? `p=${pk};` : '';
-  value += pRevoke ? 'p=;' : '';
-  value += flags.length > 0 ? `t=${flags.join(':')};` : '';
-  return value;
+/**
+ * Formats the RDATA for a DMARC record (as a TXT value).
+ * Parts: v=DMARC1; p=policy; pct=N; rua=mailto:…; sp=policy; aspf=mode
+ */
+function formatDmarcTarget(formValues: Partial<AddEntrySchemaType>): string {
+  const parts: string[] = [];
+  parts.push(`v=${str(formValues?.v) || 'DMARC1'}`);
+  const p = str(formValues?.p);
+  if (p) parts.push(`p=${p}`);
+  const pct = str(formValues?.pct);
+  if (pct) parts.push(`pct=${pct}`);
+  const rua = str(formValues?.rua);
+  if (rua) parts.push(`rua=${rua}`);
+  const sp = str(formValues?.sp);
+  if (sp) parts.push(`sp=${sp}`);
+  const aspf = str(formValues?.aspf);
+  if (aspf) parts.push(`aspf=${aspf}`);
+  return `"${parts.join('; ')}"`;
 }
 
+/**
+ * Formats the RDATA for a DKIM record (as a TXT value).
+ * Parts: v=DKIM1; g=…; h=…; k=…; n=…; p=publicKey; s=…; t=flags
+ */
+function formatDkimTarget(formValues: Partial<AddEntrySchemaType>): string {
+  const isRevoked = formValues?.dkim_status === DkimStatusEnum.REVOKED;
+  /** Shortcut to read a field as string. */
+  const tag = (k: keyof AddEntrySchemaType) => str(formValues?.[k]);
+
+  const parts = ['v=DKIM1'];
+
+  // Optional tags: granularity, hash algorithm, key type, notes
+  const g = tag('g');
+  if (g) parts.push(`g=${g}`);
+  const h = tag('h');
+  if (h) parts.push(`h=${h}`);
+  const k = tag('k');
+  if (k) parts.push(`k=${k}`);
+  const n = tag('n');
+  if (n) parts.push(`n=${n}`);
+
+  // Public key — empty when revoked
+  if (isRevoked) {
+    parts.push('p=');
+  } else {
+    const p = tag('p').replaceAll(/\s+/g, '');
+    if (p) parts.push(`p=${p}`);
+  }
+
+  // Service type
+  const svc = tag('s');
+  if (svc) parts.push(`s=${svc}`);
+
+  // Flags (combine t_y and t_s)
+  const flags: string[] = [];
+  if (str(formValues?.t_y) === BoolSelectEnum.YES) flags.push('y');
+  if (str(formValues?.t_s) === BoolSelectEnum.YES) flags.push('s');
+  if (flags.length) parts.push(`t=${flags.join(':')}`);
+
+  const joined = parts.map((p) => `${p};`).join(' ').trim();
+  return `"${joined}"`;
+}
+
+// ---------------------------------------------------------------------------
+// Target display value — delegates to the appropriate per-record formatter
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the display-ready target value for the record confirmation panel.
+ * Handles special formatting for NAPTR, LOC, DMARC = DKIM records, wraps
+ * TXT-like records in quotes, and appends trailing dots where required.
+ */
 export function getTargetDisplayValue(
   recordType: string,
   formValues: Partial<AddEntrySchemaType>,
 ): string {
-  if (recordType === 'SPF' && formValues?.target) {
-    const targetValue = String(formValues.target);
-    return targetValue || '';
+  // SPF: target is a raw text value
+  if (recordType === FieldTypeMailRecordsEnum.SPF && formValues?.target) {
+    return str(formValues.target);
   }
 
-  if (recordType === 'DKIM') {
-    return transformDKIMTarget(formValues);
-  }
+  // Records with custom formatters
+  if (recordType === FieldTypeExtendedRecordsEnum.NAPTR) return formatNaptrTarget(formValues);
+  if (recordType === FieldTypeExtendedRecordsEnum.LOC) return formatLocTarget(formValues);
+  if (recordType === FieldTypeMailRecordsEnum.DMARC) return formatDmarcTarget(formValues);
+  if (recordType === FieldTypeMailRecordsEnum.DKIM) return formatDkimTarget(formValues);
 
-  if (recordType === 'NAPTR') {
-    return formatNaptrTarget(formValues);
-  }
-
-  if (recordType === 'LOC') {
-    return formatLocTarget(formValues);
-  }
-
-  const fields = getRecordFields(recordType);
+  // Generic: concatenate all field values in declaration order
+  const fieldMap = getFieldMap(recordType);
+  const fieldNames = Array.from(fieldMap.keys());
   const isTxtRecordType = (RECORD_TYPES_AS_TXT as readonly string[]).includes(recordType);
   const rdataNeedsTrailingDot = (RECORD_TYPES_TARGET_WITH_TRAILING_DOT as readonly string[]).includes(
     recordType,
   );
-  const fieldValues = fields
-    .map((f) => formValues?.[f.name as keyof AddEntrySchemaType])
+  const fieldValues = fieldNames
+    .map((name) => formValues?.[name])
     .filter((v) => v !== undefined && v !== '' && v != null)
     .map(String);
   const valuePart = fieldValues.join(' ');
   if (isTxtRecordType) return valuePart ? `"${valuePart}"` : '';
   if (rdataNeedsTrailingDot && valuePart) return `${valuePart}.`;
   return valuePart;
-}
-
-/**
- * Build payload for addDnsEntry/editDnsEntry API (alignée sur domain-zone-record.controller.js).
- * - setTtlConfiguration: global => ttl=0, sinon ttl ?? 60
- * - setTargetValue: target via getTargetDisplayValue pour tous les types
- * - subDomainToDisplay: valeur du formulaire (API utilise subDomain)
- */
-export interface AddEntryApiPayload {
-  fieldType: string;
-  subDomainToDisplay: string | undefined;
-  ttl: number;
-  target: string;
-}
-
-export function buildAddEntryPayload(data: AddEntrySchemaType): AddEntryApiPayload {
-  const recordType = String(data.recordType ?? '');
-  const ttlSelect = data.ttlSelect ?? 'global';
-  const ttl =
-    ttlSelect === 'global' ? 0 : (data.ttl != null && data.ttl !== '' ? Number(data.ttl) : 60);
-  const subDomainToDisplay = String(data.subDomain ?? '').trim() || undefined;
-  const target = getTargetDisplayValue(recordType, data);
-  return {
-    fieldType: recordType,
-    subDomainToDisplay,
-    ttl,
-    target,
-  };
-}
-
-/**
- * Valeurs par défaut à appliquer lors du changement de type d'enregistrement
- * (aligné sur initializeTarget et selectFieldType du controller Angular).
- */
-export function getRecordTypeDefaultValues(
-  recordType: string,
-): Partial<Record<string, string | number | boolean | undefined>> {
-  const common: Partial<Record<string, string | number | boolean | undefined>> = {
-    ttlSelect: 'global',
-    ttl: undefined,
-  };
-  const rt = recordType?.toUpperCase() ?? '';
-
-  if (rt === 'SSHFP') {
-    return { ...common, algorithm: '1', fptype: '1' };
-  }
-
-  if (rt === 'DKIM') {
-    return {
-      ...common,
-      dkimV: false,
-      dkimG: '',
-      dkimHsha1: false,
-      dkimHsha256: false,
-      dkimKrsa: false,
-      dkimN: '',
-      dkimPublicKey: '',
-      dkimPRevoke: false,
-      dkimS: '',
-      dkimTY: false,
-      dkimTS: true,
-    };
-  }
-
-  return common;
-}
-
-export function generateRecordPreview(
-  recordType: string,
-  formValues: Partial<AddEntrySchemaType>,
-): string {
-  const subDomain = formValues?.subDomain;
-  const subPart =
-    subDomain != null && String(subDomain).trim() !== ''
-      ? (() => {
-          try {
-            return toASCII(String(subDomain).trim());
-          } catch {
-            return String(subDomain).trim();
-          }
-        })()
-      : '';
-  const ttlSelect = formValues?.ttlSelect;
-  const ttl = formValues?.ttl;
-  const showTtl = ttlSelect === 'custom' && ttl != null && ttl !== '';
-  const type =
-    (RECORD_TYPES_AS_TXT as readonly string[]).indexOf(recordType) !== -1 ? 'TXT' : recordType;
-  const targetValue = getTargetDisplayValue(recordType, formValues ?? {});
-  const displayTarget =
-    (RECORD_TYPES_AS_TXT as readonly string[]).indexOf(recordType) !== -1
-      ? (targetValue ? `"${targetValue}"` : '')
-      : targetValue;
-
-  return [subPart, showTtl ? String(ttl) : '', 'IN', type, displayTarget]
-    .join(' ')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
 }

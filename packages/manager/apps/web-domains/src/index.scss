@@ -42,3 +42,13 @@ html {
     }
   }
 }
+
+// Hide the empty expander column auto-added by the Datagrid when using renderSubComponent.
+// The expander column is always prepended as the first column (before row-selection).
+// Expanded sub-component rows have data-index ending with "-expanded-tr" and must stay visible.
+.zone-datagrid-no-expander {
+  thead th:first-child,
+  tbody tr:not([data-index$='-expanded-tr']) > td:first-child {
+    display: none !important;
+  }
+}

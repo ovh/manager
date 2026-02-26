@@ -1,11 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
-import { DeleteModal, ErrorBoundary } from '@ovh-ux/manager-react-components';
+import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
 import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
-
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
 const DomainListingPage = React.lazy(() =>
@@ -20,8 +19,8 @@ const OnboardingPage = React.lazy(() =>
   import('@/domain/pages/onboarding/onboarding'),
 );
 
-const AnycastOrderPage = React.lazy(() =>
-  import('@/domain/pages/domainTabs/dns/anycastOrder'),
+const DnsOrderPage = React.lazy(() =>
+  import('@/common/pages/DnsOrder/DnsOrder.page'),
 );
 
 const DnsModifyPage = React.lazy(() =>
@@ -48,32 +47,23 @@ const DsRecordListingPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
 );
 // zone routes and pages
-const ZoneLayout = React.lazy(() =>
-  import('@/zone/pages/Layout'),
-);
-const ZonePage = React.lazy(() =>
-  import('@/zone/pages/zone/Zone.page'),
-);
+const ZoneLayout = React.lazy(() => import('@/zone/pages/Layout'));
+const ZonePage = React.lazy(() => import('@/zone/pages/zone/Zone.page'));
 const HistoryPage = React.lazy(() =>
   import('@/zone/pages/zone/history/History.page'),
 );
-const AddEntryPage = React.lazy(() =>
-  import('@/zone/pages/zone/add/AddEntry.page'),
+const CompareZonesPage = React.lazy(() =>
+  import('@/zone/pages/zone/compare/CompareZones.page'),
 );
-const ModifyEntryModal = React.lazy(() =>
-  import('@/zone/pages/zone/modify/ModifyEntry.modal'),
+const ModifyTextualRecordPage = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyTextualRecord.page'),
 );
-const DeleteEntryModal = React.lazy(() =>
-  import('@/zone/pages/zone/delete/DeleteEntry.modal'),
-);
-const ActivateZonePage = React.lazy(() =>
-  import('@/zone/pages/zone/activate/ActivateZone.page'),
-);
+
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
     <Navigate
-      to={urls.domainTabInformation.replace(':serviceName', serviceName)}
+      to={urls.domainTabInformation.replace(':serviceName', serviceName ?? '')}
       replace
     />
   );
@@ -123,14 +113,7 @@ export default (
           Component={GeneralInformationsPage}
         />
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
-          <Route path={zoneUrls.zoneRoot} Component={ZonePage}/>
-          <Route path={zoneUrls.zoneAddEntry} Component={AddEntryPage}/>
-
-          <Route path={zoneUrls.zoneActivate} Component={ActivateZonePage}/>
-          <Route path={zoneUrls.zoneHistory} Component={HistoryPage}/>
-          <Route path={zoneUrls.zoneDelete} Component={DeleteModal} />
-          <Route path={zoneUrls.zoneDeleteEntry} Component={DeleteEntryModal} />
-          <Route path={zoneUrls.zoneModifyEntry} Component={ModifyEntryModal} />
+          <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
         </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
@@ -148,12 +131,19 @@ export default (
           Component={ContactManagementPage}
         />
       </Route>
-      <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
+      <Route path={urls.domainTabOrderAnycast} Component={DnsOrderPage} />
       <Route
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
+      <Route path={zoneUrls.zoneActivate} Component={DnsOrderPage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
+      <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
+      <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
+      <Route
+        path={zoneUrls.zoneModifyTextualRecord}
+        Component={ModifyTextualRecordPage}
+      />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}

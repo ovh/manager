@@ -23,7 +23,7 @@ import {
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import {
   useGetDomainResource,
   useGetDomainZone,
@@ -44,7 +44,6 @@ export default function DnsModifyPage() {
   );
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     true,
   );
   const context = useContext(ShellContext);
