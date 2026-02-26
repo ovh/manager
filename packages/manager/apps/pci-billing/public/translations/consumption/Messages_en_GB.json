@@ -9,5 +9,9 @@
   "cpbc_hourly_header_description": "On-demand usage for this month",
   "cpb_error_message": "Oops, we can not retrieve all the information.",
   "cpbc_monthly_header_post_paid": "Monthly bills",
-  "cpbc_hourly_header_post_paid": "Hourly bills"
+  "cpbc_hourly_header_post_paid": "Hourly bills",
+  "cpbc_pricing_banner_title": "Public Cloud pricing",
+  "cpbc_pricing_banner_body": "The prices of certain public cloud services are likely to change on April 1, 2026. For more details, please visit our pricing page.",
+  "cpbc_pricing_banner_link": "View prices",
+  "cpbc_pricing_banner_close": "Close"
 }

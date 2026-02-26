@@ -92,5 +92,8 @@
   "pci_projects_home_banner_discovery_title_no_promotion": "Comience a desplegar sus recursos Cloud.",
   "pci_projects_home_banner_discovery_description": "Actualmente está en modo descubrimiento. Al activar su proyecto, podrá iniciar sus recursos cloud en pocos minutos.",
   "pci_projects_beta_public_cloud_banner_info": "Programa beta para Public Cloud: Pruebe nuestras soluciones basadas en OpenStack (Load Balancer, instancia de enrutamiento, Floating IP y Bare Metal as a Service).",
-  "pci_projects_beta_public_cloud_banner_info_link": "Comience a probar activando la región GRA9."
+  "pci_projects_beta_public_cloud_banner_info_link": "Comience a probar activando la región GRA9.",
+  "pci_projects_home_pricing_banner_title": "Tarifas Public Cloud",
+  "pci_projects_home_pricing_banner_body": "Los precios de algunos servicios de public cloud pueden cambiar el 1 de abril de 2026. Para más información, visite nuestra página de precios.",
+  "pci_projects_home_pricing_banner_link": "Ver precios"
 }
