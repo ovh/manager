@@ -139,6 +139,10 @@ export default function ContactEdit() {
     const contactInfo = domainContact as unknown as Record<string, unknown>;
     return rules.fields.and
       .filter((rule) => {
+        const isReadOnly = rule.constraints.some(
+          (c) => c.operator === OPERATORS.READONLY,
+        );
+        if (isReadOnly) return false;
         const isRequired =
           Object.values(FORCED_FIELDS).includes(rule.label) ||
           !!findMatchingConstraint(
