@@ -197,7 +197,7 @@ export const useAclColumn = ({
           return (
             <div className="flex justify-end px-2">
               {deletingAclId === aclId || row.original.status === 'deleting' ? (
-                <Spinner size={SPINNER_SIZE.sm} />
+                <span />
               ) : (
                 <Button
                   variant="ghost"

@@ -48,24 +48,19 @@ export default function OnboardingPage() {
         orderButtonLabel={t('onboarding:action-button')}
         onOrderButtonClick={() => navigate(`../${subRoutes.create}`)}
       >
-        {filteredGuides.map((guide) => {
-          return guide ? (
-            <LinkCard
-              key={guide.key}
-              href={getOnboardingLinkFor(guide.links, ovhSubsidiary)}
-              texts={{
-                title: t(`guides:${guide.key}.title`),
-                description: t(`guides:${guide.key}.description`),
-                category: t(`guides:${guide.key}.category`),
-              }}
-              hrefLabel={t(`guides:${guide.key}.link-text`)}
-              target="_blank"
-            />
-          ) : (
-            /* Empty div are used to have the one-card layout centered (US case) */
-            <div />
-          );
-        })}
+        {filteredGuides.map((guide) => (
+          <LinkCard
+            key={guide.key}
+            href={getOnboardingLinkFor(guide.links, ovhSubsidiary)}
+            texts={{
+              title: t(`guides:${guide.key}.title`),
+              description: t(`guides:${guide.key}.description`),
+              category: t(`guides:${guide.key}.category`),
+            }}
+            hrefLabel={t(`guides:${guide.key}.link-text`)}
+            target="_blank"
+          />
+        ))}
       </OnboardingLayout>
     </BaseLayout>
   );
