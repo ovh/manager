@@ -9,5 +9,9 @@
   "cpbc_hourly_header_description": "Consumo a pedido do mês decorrente",
   "cpb_error_message": "Lamentamos, mas não foi possível recuperar todas as informações.",
   "cpbc_monthly_header_post_paid": "Faturas mensais",
-  "cpbc_hourly_header_post_paid": "Faturas por horas"
+  "cpbc_hourly_header_post_paid": "Faturas por horas",
+  "cpbc_pricing_banner_title": "Preços Public Cloud",
+  "cpbc_pricing_banner_body": "Os preços de alguns serviços public cloud podem alterar-se a 1 de abril de 2026. Para mais detalhes, visite a nossa página de preços.",
+  "cpbc_pricing_banner_link": "Ver preços",
+  "cpbc_pricing_banner_close": "Fechar"
 }

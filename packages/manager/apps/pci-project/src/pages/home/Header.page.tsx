@@ -22,6 +22,7 @@ import { CHANGELOG_LINKS } from '@/constants';
 import { useProjectTabs } from '@/hooks/useProjectTabs';
 import { TProject } from '@/types/pci-common.types';
 
+import PublicCloudPricingBanner from './components/PublicCloudPricingBanner.component';
 import QuotaAlert from './components/QuotaAlert.component';
 
 export default function ProjectHeader() {
@@ -75,6 +76,7 @@ export default function ProjectHeader() {
         }
       >
         <QuotaAlert />
+        <PublicCloudPricingBanner />
         <PciAnnouncementBanner projectId={project?.project_id} />
 
         <Suspense>
