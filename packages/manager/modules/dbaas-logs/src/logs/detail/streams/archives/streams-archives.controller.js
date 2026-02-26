@@ -248,10 +248,21 @@ export default class LogsStreamsArchivesCtrl {
         ),
     });
 
-    this.archiveDownload.load().then((urlInfo) => {
-      this.removeNotification(archive);
-      this.CucControllerHelper.constructor.downloadUrl(urlInfo.url);
-    });
+    this.archiveDownload
+      .load()
+      .then((urlInfo) => {
+        this.removeNotification(archive);
+        this.CucControllerHelper.constructor.downloadUrl(urlInfo.url);
+      })
+      .catch((err) => {
+        this.updateNotification({
+          text: this.$translate.instant('streams_archives_download_error', {
+            message: err?.data?.message,
+          }),
+          type: 'error',
+          archive,
+        });
+      });
   }
 
   /**
