@@ -223,20 +223,7 @@ const PublicIpConfiguration: FC<{
                 <Trans
                   t={t}
                   i18nKey="creation:pci_instance_creation_network_add_public_connectivity.floating_ip_label"
-                  values={{
-                    price: getFormattedHourlyCatalogPrice(prices.floatingIp),
-                  }}
-                  components={{ sb: <span className="font-semibold" /> }}
                 />
-              </Text>
-              <Text
-                className={getDisabledTextClassName(
-                  publicIpAvailability.floatingIp.isDisabled,
-                )}
-              >
-                {t(
-                  'creation:pci_instance_creation_network_add_public_connectivity.floating_ip_description',
-                )}
               </Text>
               {gatewayAvailability && !gatewayAvailability.isDisabled && (
                 <Text className="font-semibold">

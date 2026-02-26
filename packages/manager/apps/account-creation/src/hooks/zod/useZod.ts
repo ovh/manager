@@ -6,7 +6,7 @@ export type RuleZodSchema =
   | z.ZodEffects<z.ZodString, string, string>
   | z.ZodOptional<z.ZodString | z.ZodEffects<z.ZodString, string, string>>;
 
-const toZodField = (field: Rule): RuleZodSchema => {
+export const toZodField = (field: Rule): RuleZodSchema => {
   let zodSchema: RuleZodSchema = z
     .string({
       required_error: 'required_field',

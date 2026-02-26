@@ -36,6 +36,7 @@
   "region_SGP_micro": "Singapour ({{ micro }})",
   "region_MUM": "Mumbai",
   "region_MUM_micro": "Mumbai ({{ micro }})",
+  "region_AP-SOUTH-MUM": "Mumbai",
   "region_AP-SOUTH-MUM_micro": "Mumbai ({{ micro }})",
   "region_SYD": "Sydney",
   "region_SYD_micro": "Sydney ({{ micro }})",

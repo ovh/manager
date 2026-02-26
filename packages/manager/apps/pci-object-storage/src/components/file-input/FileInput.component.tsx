@@ -72,6 +72,7 @@ export const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
             className="hidden"
             multiple={multiple}
             onChange={handleInputChange}
+            data-testid="file-input"
             {...props}
           />
           <Upload className="w-10 h-10 text-gray-500 mb-2" />

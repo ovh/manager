@@ -29,10 +29,10 @@
   "pci_instance_creation_table_header_price": "Price",
   "pci_instance_creation_table_header_price_hourly_unit": "ex. VAT/hour",
   "pci_instance_creation_table_header_price_monthly_unit": "ex. VAT/month",
-  "pci_instance_creation_flavor_unavailable": "Unavailable",
-  "pci_instance_creation_flavor_unavailable_quota": "Quota unavailable",
-  "pci_instance_creation_flavor_unavailable_help": "This model is not available in your selected region. You can still select it, but you will need to choose another region for this model.",
-  "pci_instance_creation_flavor_unavailable_quota_help": "You do not have enough quota to choose this instance model. Please increase your quota.",
+  "pci_instance_creation_flavor_unavailable": "Unavailable in this region",
+  "pci_instance_creation_flavor_unavailable_quota": "Unavailable quota",
+  "pci_instance_creation_flavor_unavailable_help": "This model is not available in your selected region. <sb>However, you can select it, but you will need to choose another region for this model.</sb>",
+  "pci_instance_creation_flavor_unavailable_quota_help": "Your quota does not allow you to choose this instance model. Please increase your quota.",
   "pci_instance_creation_select_new_region_title": "Choose a new region",
   "pci_instance_creation_select_new_region_label": "Select a region",
   "pci_instance_creation_select_new_region_for_flavor": "This model <strong>({{ flavor }})</strong> is not available in your <strong>selected region</strong>. You can still select it, but you will need to choose another available region for this model.",
@@ -146,8 +146,8 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Custom",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "A backup is taken every day between 22:00 and 06:00 (UTC), and the rotation maintains a log of the {{ numEntries }} latest entries. When the new backup is taken, the previous one is deleted.",
-    "custom": "Choose the scheduling yourself (in UNIX Cron format), the number of rotations, and the maximum executions you want."
+    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the {{ numEntries }} most recent entries.",
+    "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you wish."
   },
   "pci_instance_creation_backup_setting_price_unit": "ex. VAT/month/GB",
   "pci_instance_creation_cart_total_label": "Total",
@@ -165,12 +165,12 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>A Basic IP allows inbound and outbound connectivity with no usage restrictions. This IP is not persistent and is reallocated after the associated instance is deleted. It cannot be allocated to another instance.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assign public connectivity",
-    "description": "<p>By assigning a public IP address, you can access your instance from outside the OVHcloud network. <span>The Floating IP will be created at the end of the configuration.</span></p>",
+    "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.</p>",
     "toggle_label": "Assign a public IP",
-    "basic_ip_label": "Basic Public IP (linked to the instance) - {{ price }}",
-    "basic_ip_description": "A basic public IP is an IP address that only lasts as long as the lifetime of the resource. ",
-    "basic_ip_warning": "Enabling a basic public IP is not compatible with a gateway.",
-    "floating_ip_label": "Create a Floating IP (Reusable) - {{ price }}",
+    "basic_ip_label": "Basic Public IP (Linked to the instance) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifetime of the resource. ",
+    "basic_ip_warning": "We have detected a gateway on your private network, so this option is not available. Please choose or create a private network without a gateway.",
+    "floating_ip_label": "Assign a Floating IP (Reusable)",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
     "floating_ip_warning": "By selecting this option, we will assign you a {{ size }} sized gateway.",
     "floating_ip_create_new_label": "Create new - {{ price }}",
@@ -206,5 +206,7 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Let OVHcloud automatically choose the AZ: This option simplifies deployment. The AZ is assigned automatically and you will find the AZ information at the end of your instance deployment. → Ideal for a first deployment or for non-redundant use.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Manually select an AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This allows you to distribute your instances across multiple AZs and thus implement your own redundancy mechanisms.",
-  "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →"
+  "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "A Basic Public IP has been detected on your Private Network, please create or select another Private Network to create a gateway.",
+  "pci_instance_creation_region_unavailable": "Region unavailable"
 }

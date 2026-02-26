@@ -20,16 +20,6 @@ import cloud from '@/types/Cloud';
 import * as s3Api from '@/data/api/storage/s3Storage.api';
 import { mockedObjStoError } from '@/__tests__/helpers/apiError';
 
-vi.mock('react-i18next', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('react-i18next')>();
-  return {
-    ...mod,
-    useTranslation: () => ({
-      t: (key: string) => key,
-    }),
-  };
-});
-
 const mockedStorageContainerBis: cloud.StorageContainer = {
   ...mockedStorageContainer,
   objectLock: {

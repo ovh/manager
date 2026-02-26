@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { OsdsChip } from '@ovhcloud/ods-components/react';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -135,6 +135,14 @@ const UserAccountMenu = ({
     fetchData();
   }, []);
 
+  const nichandle = useMemo<string | undefined>(() => {
+    if (user.email !== user.nichandle) {
+      return user.nichandle;
+    }
+    if (user.auth?.account) return user.auth.account;
+    return undefined;
+  }, [user.auth?.account, user.email, user.nichandle]);
+
   return (
     <div className={`${style.menuContent} oui-navbar-menu__wrapper`}>
       <div
@@ -142,7 +150,7 @@ const UserAccountMenu = ({
         id="user-account-menu-profile"
         data-navi-id="account-sidebar-block"
       >
-        <div className="border-bottom pb-2 pt-2">
+        <div className="border-bottom py-2">
           <h1 className={displayUserName.className}>
             {displayUserName.userName}
           </h1>
@@ -153,17 +161,17 @@ const UserAccountMenu = ({
           >
             {user.email}
           </p>
-          {user.email !== user.nichandle && (
+          {nichandle && (
             <p className="mb-0">
               <Trans
                 t={t}
                 i18nKey="user_account_menu_user_id"
-                values={{ nichandle: user.nichandle }}
+                values={{ nichandle }}
               ></Trans>
             </p>
           )}
         </div>
-        <div className="border-bottom pb-2 pt-2">
+        <div className="border-bottom py-2">
           <div
             className={`d-flex justify-content-between ${style.menuContentRow}`}
           >
@@ -192,7 +200,7 @@ const UserAccountMenu = ({
           )}
           {['EU', 'CA'].includes(region) && (
             <div
-              className={`d-flex mt-1 justify-content-between ${style.menuContentRow}`}
+              className={`d-flex justify-content-between mt-1 ${style.menuContentRow}`}
             >
               <span>{t('user_account_menu_support')}</span>
               <a
@@ -214,7 +222,7 @@ const UserAccountMenu = ({
             </div>
           )}
         </div>
-        <div className="border-bottom pb-2 pt-2">
+        <div className="border-bottom py-2">
           {allLinks.map((link: UserLink) => {
             const { app, key, hash, i18nKey } = link;
             return (
@@ -258,7 +266,7 @@ const UserAccountMenu = ({
           <button
             type="button"
             role="button"
-            className="w-100 oui-button oui-button_link mt-3 center"
+            className="w-100 oui-button oui-button_link center mt-3"
             onClick={onLogoutBtnClick}
             aria-label={t('user_account_menu_logout')}
             title={t('user_account_menu_logout')}

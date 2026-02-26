@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-object-storage-app",
-  "version": "0.34.3",
+  "version": "0.35.0",
   "private": true,
   "description": "pci-object-storage",
   "repository": {
@@ -13,15 +13,15 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.build.json && vite build",
-    "coverage": "vitest run --coverage",
+    "coverage": "manager-test run --coverage",
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
     "start": "tsc && vite",
-    "test": "vitest run --pool=threads",
-    "test-ui": "vitest --ui --coverage.enabled=true"
+    "test": "manager-test run --pool=threads",
+    "test-ui": "manager-test --ui --coverage.enabled=true"
   },
   "dependencies": {
-    "@datatr-ux/ovhcloud-types": "2.0.51",
+    "@datatr-ux/ovhcloud-types": "2.0.69",
     "@datatr-ux/uxlib": "1.0.0-alpha-36",
     "@hookform/resolvers": "3.10.0",
     "@ovh-ux/manager-common-translations": "^0.9.1",
@@ -63,23 +63,15 @@
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "5.91.1",
-    "@testing-library/dom": "^10.1.0",
-    "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^16.0.0",
-    "@testing-library/user-event": "^14.5.2",
     "@types/jest": "29.5.14",
     "@types/node": "^20.10.6",
     "@types/react": "18.2.79",
     "@types/react-dom": "18.3.0",
-    "@vitejs/plugin-react": "^4.3.0",
-    "@vitest/coverage-v8": "^2.1.9",
-    "@vitest/ui": "^2.1.9",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "rollup": "^4.18.0",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5",
-    "vitest": "^2.1.9"
+    "typescript": "^5.4.5"
   },
   "regions": [
     "CA",

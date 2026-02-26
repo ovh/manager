@@ -1,0 +1,23 @@
+{
+  "title": "Regras do ciclo de vida",
+  "createLifecycle": "Criar uma regra",
+  "columnName": "Nome da regra",
+  "columnStatus": "Estado",
+  "columnScope": "Âmbito",
+  "columnCurrentVersionOperations": "Operações sobre as versões atuais",
+  "columnNoncurrentVersionOperations": "Operações sobre as versões não atuais",
+  "columnDeleteMarker": "Remoção automática de marcadores de exclusão expirados",
+  "columnAbortMultipart": "Remoção automática de MPU não concluídos",
+  "columnActions": "Ações",
+  "statusEnabled": "Ativado",
+  "statusDisabled": "Desativado",
+  "scopeAllObjects": "Todos os objetos",
+  "scopeFiltered": "Filtrado",
+  "operationsCount": "{{count}} operação(ões)",
+  "noOperations": "Nenhuma",
+  "openMenu": "Abrir menu",
+  "actionEdit": "Modificar",
+  "actionEnable": "Ativar",
+  "actionDisable": "Desativar",
+  "actionDelete": "Suprimir"
+}

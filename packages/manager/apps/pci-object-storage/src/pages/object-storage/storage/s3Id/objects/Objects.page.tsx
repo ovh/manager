@@ -44,7 +44,11 @@ function SelectAllCheckbox({ items }: SelectAllCheckboxProps) {
   } = useObjectSelection();
 
   const files = useMemo(
-    () => items.filter((item): item is S3BrowserItem & { type: 'file' } => item.type === 'file'),
+    () =>
+      items.filter(
+        (item): item is S3BrowserItem & { type: 'file' } =>
+          item.type === 'file',
+      ),
     [items],
   );
 
@@ -91,6 +95,7 @@ function SelectAllCheckbox({ items }: SelectAllCheckboxProps) {
 
   return (
     <Checkbox
+      data-testid="select-all-checkbox"
       checked={getCheckedState()}
       onCheckedChange={handleSelectAll}
       aria-label={t('selectAll')}
@@ -166,8 +171,9 @@ const Objects = () => {
       </div>
 
       <div className="flex justify-between w-full">
-        <div className="flex gap-2">
+        <div className="flex gap-2" data-testid="object-button-container">
           <Button
+            data-testid="add-object-button"
             onClick={() => navigate(buildAddObjectUrl(effectivePrefix))}
             disabled={isDataLoading}
           >
@@ -212,7 +218,10 @@ const Objects = () => {
         </div>
       </div>
 
-      <div className="border rounded-b-md border-t-0 overflow-hidden -mt-px">
+      <div
+        className="border rounded-b-md border-t-0 overflow-hidden -mt-px"
+        data-testid="objects-table-container"
+      >
         {debouncedSearchQuery && items.length === 0 && !isFetching ? (
           <div className="flex items-center justify-center py-12 text-sm text-muted-foreground">
             {t('noSearchResults', { query: debouncedSearchQuery })}

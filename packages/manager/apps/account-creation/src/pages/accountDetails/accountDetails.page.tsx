@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { z } from 'zod';
+import { z, ZodOptional } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BaseLayout,
@@ -38,7 +38,7 @@ import {
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { User } from '@ovh-ux/manager-config';
+import { Country, User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
@@ -53,6 +53,8 @@ import { useMe } from '@/data/hooks/useMe';
 import { Rule, RuleField } from '@/types/rule';
 import {
   getZodSchemaFromRule,
+  RuleZodSchema,
+  toZodField,
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
@@ -71,6 +73,8 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
+  CNIN_NON_MANDATORY_RULE,
+  CNIN_RULE,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
 } from './accountDetails.constants';
@@ -80,7 +84,11 @@ import {
   ContactFormGroupSkeleton,
   ButtonSkeleton,
   CheckboxSkeleton,
+  HeaderSkeleton,
 } from '@/components/formSkeleton';
+import ExitGuard from '@/components/exitGuard/ExitGuard.component';
+import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
+import { isCNINMandatory, isCNINVisible } from '@/helpers/xander/xanderHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -103,7 +111,6 @@ function AccountDetailsForm({
     NAMESPACES.COUNTRY,
   ]);
   const { addError, addSuccess } = useNotifications();
-
   const {
     url: redirectionUrl,
     isLoading: isRedirectionUrlLoading,
@@ -111,6 +118,9 @@ function AccountDetailsForm({
   const pageTracking = usePageTracking();
   const { trackClick, trackPage } = useTrackingContext();
   const { trackError } = useTrackError('final-step');
+  const [cninSchemaOverride, setCninSchemaOverride] = useState<
+    RuleZodSchema | undefined
+  >(undefined);
 
   const {
     legalForm,
@@ -129,14 +139,21 @@ function AccountDetailsForm({
     smsConsent?: boolean;
   };
 
-  const zodSchema = useMemo(
-    () =>
-      getZodSchemaFromRule(rules).extend({
+  const zodSchema = useMemo(() => {
+    const baseSchema = getZodSchemaFromRule(rules);
+    // TODO: Remove after mandatory check is implemented in Xander for FR
+    if (cninSchemaOverride) {
+      return baseSchema.extend({
         confirmSend: z.literal(true),
         smsConsent: z.boolean().optional(),
-      }),
-    [rules],
-  );
+        companyNationalIdentificationNumber: cninSchemaOverride,
+      });
+    }
+    return baseSchema.extend({
+      confirmSend: z.literal(true),
+      smsConsent: z.boolean().optional(),
+    });
+  }, [rules, cninSchemaOverride]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -232,6 +249,29 @@ function AccountDetailsForm({
       if (!phone && country !== phoneCountry) {
         setValue('phoneCountry', country);
       }
+
+      // TODO: Remove after mandatory check is implemented in Xander for FR
+      if (
+        legalForm === 'corporation' && // Add only for corporation legal form
+        isCNINMandatory({
+          ovhSubsidiary,
+          country: (country as Country) || undefined,
+          defaultMandatory:
+            rules?.companyNationalIdentificationNumber?.mandatory,
+        })
+      ) {
+        setCninSchemaOverride(toZodField(CNIN_RULE));
+      } else if (
+        (legalForm === 'association' || legalForm === 'administration') &&
+        isCNINVisible({
+          ovhSubsidiary,
+          country: (country as Country) || undefined,
+        })
+      ) {
+        setCninSchemaOverride(toZodField(CNIN_NON_MANDATORY_RULE));
+      } else {
+        setCninSchemaOverride(undefined);
+      }
     }
   }, [country]);
 
@@ -287,11 +327,9 @@ function AccountDetailsForm({
     addAccountDetails((formData as unknown) as FormData);
   };
 
-  /**
-   * TODO: For FR, check / add from context if user has found company. If so, make company info readonly
-   */
   return (
     <>
+      {!isValid && <ExitGuard />}
       <Notifications />
       <form
         onSubmit={handleSubmit(handleValidateClick)}
@@ -323,6 +361,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={!rules}
                     name={name}
+                    id={name}
                     value={value}
                     maxlength={rules?.firstname.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -362,6 +401,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={!rules}
                     name={name}
+                    id={name}
                     value={value}
                     maxlength={rules?.name.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -410,6 +450,7 @@ function AccountDetailsForm({
                   <OdsInput
                     isReadonly={Boolean(organisation)}
                     name="organisation"
+                    id={name}
                     value={value}
                     maxlength={rules?.organisation.maxLength || undefined}
                     hasError={!!errors[name]}
@@ -430,7 +471,8 @@ function AccountDetailsForm({
                 </OdsFormField>
               )}
             />
-            {rules?.companyNationalIdentificationNumber && (
+            {(rules?.companyNationalIdentificationNumber ||
+              !!cninSchemaOverride) && (
               <Controller
                 control={control}
                 name="companyNationalIdentificationNumber"
@@ -444,8 +486,10 @@ function AccountDetailsForm({
                       >
                         <OdsText preset="caption">
                           {t('account_details_field_siret')}
-                          {rules?.companyNationalIdentificationNumber
-                            ?.mandatory && ' *'}
+                          {(rules?.companyNationalIdentificationNumber
+                            ?.mandatory ||
+                            !(cninSchemaOverride instanceof ZodOptional)) && // TODO: Remove next line after mandatory check is implemented in Xander for FR
+                            ' *'}
                         </OdsText>
                       </label>
                       <OdsInput
@@ -453,17 +497,21 @@ function AccountDetailsForm({
                           companyNationalIdentificationNumber,
                         )}
                         name="companyNationalIdentificationNumber"
+                        id={name}
                         value={value}
                         maxlength={
                           rules?.companyNationalIdentificationNumber
-                            .maxLength || undefined
+                            ?.maxLength || !!cninSchemaOverride
+                            ? CNIN_RULE.maxLength || undefined
+                            : undefined
                         }
                         hasError={!!errors[name]}
                         onOdsChange={onChange}
                         onOdsBlur={onBlur}
                       />
                       {errors.companyNationalIdentificationNumber &&
-                        rules?.companyNationalIdentificationNumber && (
+                        (rules?.companyNationalIdentificationNumber ||
+                          !!cninSchemaOverride) && (
                           <OdsText
                             className="text-critical leading-[0.8]"
                             preset="caption"
@@ -471,7 +519,8 @@ function AccountDetailsForm({
                             {renderTranslatedZodError(
                               errors.companyNationalIdentificationNumber
                                 .message,
-                              rules?.companyNationalIdentificationNumber,
+                              rules?.companyNationalIdentificationNumber ||
+                                CNIN_RULE,
                             )}
                           </OdsText>
                         )}
@@ -479,7 +528,7 @@ function AccountDetailsForm({
                     {shouldDisplaySIREN && (
                       <OdsFormField>
                         <label
-                          htmlFor="companyNationalRegistrationNumber"
+                          htmlFor="nationalIdentificationNumber"
                           slot="label"
                           aria-label={t('account_details_field_siren')}
                         >
@@ -489,7 +538,8 @@ function AccountDetailsForm({
                         </label>
                         <OdsInput
                           isReadonly
-                          name="companyNationalRegistrationNumber"
+                          name="nationalIdentificationNumber"
+                          id="nationalIdentificationNumber"
                           value={sirenValue}
                         />
                       </OdsFormField>
@@ -516,6 +566,7 @@ function AccountDetailsForm({
                     </label>
                     <OdsInput
                       name="italianSDI"
+                      id={name}
                       value={value}
                       hasError={!!errors[name]}
                       onOdsChange={onChange}
@@ -546,19 +597,20 @@ function AccountDetailsForm({
                     slot="label"
                     aria-label={t('account_details_field_vat', {
                       vatLabel,
+                      interpolation: { escapeValue: false },
                     })}
                   >
                     <OdsText preset="caption">
-                      <Trans
-                        t={t}
-                        i18nKey="account_details_field_vat"
-                        values={{ vatLabel }}
-                      />
+                      {t('account_details_field_vat', {
+                        vatLabel,
+                        interpolation: { escapeValue: false },
+                      })}
                       {rules?.vat?.mandatory && ' *'}
                     </OdsText>
                   </label>
                   <OdsInput
                     name="vat"
+                    id={name}
                     value={value}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
@@ -594,6 +646,7 @@ function AccountDetailsForm({
                       <>
                         <OdsSelect
                           name={name}
+                          id={name}
                           value={value}
                           onOdsChange={onChange}
                           onOdsBlur={onBlur}
@@ -645,7 +698,7 @@ function AccountDetailsForm({
             render={({ field: { name, value, onChange, onBlur } }) => (
               <OdsFormField className="w-full">
                 <OdsText preset="caption">
-                  <label>
+                  <label htmlFor={name}>
                     {t('account_details_field_country')}
                     {rules?.country?.mandatory && ' *'}
                   </label>
@@ -654,6 +707,7 @@ function AccountDetailsForm({
                   <OdsSelect
                     isDisabled={currentUser.country !== 'UNKNOWN'}
                     name={name}
+                    id={name}
                     value={value}
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
@@ -691,6 +745,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={Boolean(address)}
                   name="address"
+                  id={name}
                   value={value}
                   maxlength={rules?.address.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -729,6 +784,7 @@ function AccountDetailsForm({
                   {!isLoading && (
                     <OdsSelect
                       name={name}
+                      id={name}
                       value={value}
                       onOdsChange={onChange}
                       onOdsBlur={onBlur}
@@ -780,6 +836,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={!rules}
                   name="zip"
+                  id={name}
                   value={value}
                   maxlength={rules?.zip.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -815,6 +872,7 @@ function AccountDetailsForm({
                 <OdsInput
                   isReadonly={Boolean(city)}
                   name="address"
+                  id={name}
                   value={value}
                   maxlength={rules?.city.maxLength || undefined}
                   hasError={!!errors[name]}
@@ -848,6 +906,7 @@ function AccountDetailsForm({
                     <div key={type} className="flex leading-none gap-4">
                       <OdsRadio
                         name={field.name}
+                        id={field.name}
                         value={type}
                         isChecked={field.value === type}
                         onOdsChange={field.onChange}
@@ -883,6 +942,7 @@ function AccountDetailsForm({
                 </OdsText>
                 <PhoneNumber
                   name={name}
+                  id={name}
                   key={phoneType}
                   countries={
                     rules?.phoneCountry && rules?.phoneCountry.in
@@ -958,6 +1018,7 @@ function AccountDetailsForm({
                   <>
                     <OdsSelect
                       name={name}
+                      id={name}
                       value={value}
                       onOdsChange={onChange}
                       onOdsBlur={onBlur}
@@ -1159,6 +1220,17 @@ export default function AccountDetailsPage() {
     }
   }, [error]);
 
+  const formSkeleton = (
+    <div className="flex flex-col gap-8">
+      <FormGroupSkeleton />
+      <FormGroupSkeleton />
+      <AddressFormGroupSkeleton />
+      <ContactFormGroupSkeleton />
+      <CheckboxSkeleton />
+      <ButtonSkeleton />
+    </div>
+  );
+
   return (
     <>
       <Links
@@ -1176,29 +1248,31 @@ export default function AccountDetailsPage() {
         </OdsText>
       )}
       <BaseLayout header={header}>
-        <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
-          {t('account_details_info_message')}
-        </OdsText>
-        {!rules || isRulesLoading || isCurrentUserLoading ? (
-          <div className="flex flex-col gap-8">
-            <FormGroupSkeleton />
-            <FormGroupSkeleton />
-            <AddressFormGroupSkeleton />
-            <ContactFormGroupSkeleton />
-            <CheckboxSkeleton />
-            <ButtonSkeleton />
-          </div>
-        ) : (
-          <AccountDetailsForm
-            rules={rules}
-            isLoading={isRulesLoading || isCurrentUserLoading}
-            currentUser={{
-              ...(currentUser || {}),
-              country: country ?? currentUser?.country,
-            }}
-            updateRulesParams={updateRulesParams}
-          />
-        )}
+        <InvalidationRedirectGuard
+          fallback={
+            <>
+              <HeaderSkeleton />
+              {formSkeleton}
+            </>
+          }
+        >
+          <OdsText preset={ODS_TEXT_PRESET.paragraph} className="mb-6">
+            {t('account_details_info_message')}
+          </OdsText>
+          {!rules || isRulesLoading || isCurrentUserLoading ? (
+            formSkeleton
+          ) : (
+            <AccountDetailsForm
+              rules={rules}
+              isLoading={isRulesLoading || isCurrentUserLoading}
+              currentUser={{
+                ...(currentUser || {}),
+                country: country ?? currentUser?.country,
+              }}
+              updateRulesParams={updateRulesParams}
+            />
+          )}
+        </InvalidationRedirectGuard>
       </BaseLayout>
     </>
   );

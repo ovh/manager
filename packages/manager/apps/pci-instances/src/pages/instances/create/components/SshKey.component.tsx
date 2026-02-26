@@ -25,7 +25,12 @@ const SshKey = () => {
 
   const { isLoading, data: sshKeys = [] } = useRegionalisedSshKeys();
 
-  const { control, setValue } = useFormContext<TInstanceCreationForm>();
+  const {
+    control,
+    setValue,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<TInstanceCreationForm>();
   const selectedSshKeyId = useWatch({
     control,
     name: 'sshKeyId',
@@ -77,8 +82,9 @@ const SshKey = () => {
     (sshKey: TCustomSelectSshKeyData) => {
       setValue('sshKeyId', sshKey.value);
       setValue('newSshPublicKey', sshKey.newSshPublicKey);
+      clearErrors('sshKeyId');
     },
-    [setValue],
+    [setValue, clearErrors],
   );
 
   const handleSelectSshKey = (sshKey: TCustomSelectSshKeyData) => {
@@ -99,7 +105,7 @@ const SshKey = () => {
   if (isLoading) return null;
 
   return (
-    <section>
+    <section id="ssh-key-section">
       <Divider spacing="48" />
       <div className="flex items-center space-x-4">
         <Text preset="heading-3">
@@ -133,6 +139,7 @@ const SshKey = () => {
           unavailableSshKeyIds={unavailableSshKeyIds}
           onSubmit={handleAddSshKey}
           onCancel={handleCancelAddSshKey}
+          shouldValidate={!!errors.sshKeyId}
         />
       ) : (
         <>
@@ -141,7 +148,7 @@ const SshKey = () => {
             value={selectedSshKeyId ? [selectedSshKeyId] : []}
             onValueChange={handleSelectSshKey}
           />
-          <Button variant="outline" onClick={handleOpenSshKeyForm}>
+          <Button variant="outline" size="sm" onClick={handleOpenSshKeyForm}>
             <Icon name="plus" />
             {t('creation:pci_instance_creation_select_sshKey_add_new')}
           </Button>

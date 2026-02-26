@@ -13,7 +13,7 @@
   "fallback_administration": "Votre administration n’a pas de SIREN/SIRET ?",
   "fallback_link": "Créer un compte Particulier",
   "fallback_button": "Passer cette étape",
-  "search_suggestion": "La recherche contient beaucoup de résultats veuillez l'affiner s'il vous plait",
+  "search_suggestion": "La recherche contient beaucoup de résultats, veuillez l'affiner s'il vous plait.",
   "search_not_satisfactory_corporation": "Vous ne trouvez pas votre entreprise ? Ajoutez-la manuellement",
   "search_not_satisfactory_association": "Vous ne trouvez pas votre association ? Ajoutez-la manuellement",
   "search_not_satisfactory_administration": "Vous ne trouvez pas votre administration ? Ajoutez-la manuellement",

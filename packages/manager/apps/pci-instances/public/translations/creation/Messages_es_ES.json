@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Precio",
   "pci_instance_creation_table_header_price_hourly_unit": "/hora + IVA",
   "pci_instance_creation_table_header_price_monthly_unit": "/mes + IVA",
-  "pci_instance_creation_flavor_unavailable": "No disponible",
+  "pci_instance_creation_flavor_unavailable": "No disponible en esta región",
   "pci_instance_creation_flavor_unavailable_quota": "Cuota no disponible",
   "pci_instance_creation_flavor_unavailable_help": "Este modelo no está disponible en la región seleccionada. Para poder seleccionarlo, deberá elegir otra región para este modelo.",
   "pci_instance_creation_flavor_unavailable_quota_help": "Su cuota no le permite elegir este modelo de instancia. Por favor, aumente su límite.",
@@ -146,8 +146,8 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotación 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Personalizado",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Todos los días se realiza una copia de seguridad entre las 22:00 y las 6:00 (UTC) y la rotación garantiza un registro de las {{ numEntries }} últimas entradas. Cuando finaliza el nuevo backup, se elimina el más antiguo.",
-    "custom": "Configure usted mismo la planificación (en formato cron de UNIX), el número de rotaciones y las ejecuciones máximas que desee."
+    "predefined": "Se realiza una copia de seguridad todos los días entre las 22:00 y las 6:00 (UTC) y la rotación mantiene un historial de las {{ numEntries }} últimas entradas.",
+    "custom": "Elige tú mismo la programación (formato UNIX Cron), el número de rotaciones y las ejecuciones máximas que desees."
   },
   "pci_instance_creation_backup_setting_price_unit": "/mes por GB + IVA",
   "pci_instance_creation_cart_total_label": "Total",
@@ -165,17 +165,17 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Una Basic IP permite la conectividad entrante y saliente sin restricciones de uso. Esta IP no es persistente y se reasigna tras la eliminación de la instancia asociada. No es posible asignarla a otra instancia.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Asignar conectividad pública",
-    "description": "<p>La asignación de una dirección IP pública permite el acceso a su instancia desde fuera de la red de OVHcloud. <span>La Floating IP se creará una vez completado el proceso de configuración.</span></p>",
+    "description": "<p>La asignación de una dirección IP pública permite el acceso a tu instancia desde fuera de la red de OVHcloud.</p>",
     "toggle_label": "Asignar una IP pública",
-    "basic_ip_label": "Basic Public IP (Asociada a la instancia) - {{ price }}",
-    "basic_ip_description": "Una IP pública básica es una dirección IP que no persiste más allá de la duración del recurso. ",
-    "basic_ip_warning": "La activación de la Basic Public IP no es compatible con un servicio Gateway.",
-    "floating_ip_label": "Crear una Floating IP (Reutilizable) - {{ price }}",
-    "floating_ip_description": "La reserva de una dirección IP flotante asigna la dirección a su proyecto hasta que la libere explícitamente. ",
-    "floating_ip_warning": "Si selecciona esta opción, le asignaremos un servicio Gateway de tamaño {{ size }}.",
-    "floating_ip_create_new_label": "Crear una nueva - {{ price }}",
-    "floating_ip_reuse_existing_label": "Reutilizar una Floating IP existente",
-    "floating_ip_unavailable_LZ_tooltip": "Las Floating IP no están disponibles en las Local Zones."
+    "basic_ip_label": "IP Pública Básica (Vinculada a la instancia) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "Una IP pública básica es una dirección IP que no persiste más allá de la vida útil del recurso. ",
+    "basic_ip_warning": "Hemos detectado una puerta de enlace en tu red privada, por lo que esta opción no está disponible. Por favor, elige o crea una red privada sin puerta de enlace.",
+    "floating_ip_label": "Asignar una IP Flotante (Reutilizable)",
+    "floating_ip_description": "La reserva de una dirección IP flotante asigna la dirección a tu proyecto hasta que la liberes explícitamente. ",
+    "floating_ip_warning": "Al seleccionar esta opción, te asignaremos una puerta de enlace de tamaño {{ size }}.",
+    "floating_ip_create_new_label": "Crear una nueva - <sb>{{ price }}</sb>",
+    "floating_ip_reuse_existing_label": "Reutilizar una IP flotante existente",
+    "floating_ip_unavailable_LZ_tooltip": "Las IP flotantes no están disponibles en las localZones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "El servicio Gateway no está disponible en las Local Zones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Ya hay un servicio Gateway asignado a la red privada seleccionada.",
@@ -197,7 +197,7 @@
   "pci_instance_creation_flex_flavor": {
     "title": "Instancias Flex",
     "disk_capacity": "<span>Una instancia flex es una instancia de disco único (50 Go)</span> que ofrece un proceso más rápido para las instantáneas.",
-    "resizing_explanation": "Permite un redimensionamiento hacia modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que modelos clásicos solo pueden redimensionarse hacia los modelos superiores."
+    "resizing_explanation": "Permite un redimensionamiento hacia los modelos superiores o inferiores con un espacio de almacenamiento fijo, mientras que los modelos clásicos solo pueden redimensionarse hacia los modelos superiores."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Puerta de enlace adjunta",
   "pci_instance_creation_availabilityZone_help_title": "Comprender las zonas de disponibilidad",
@@ -205,5 +205,7 @@
   "pci_instance_creation_availabilityZone_help_automatic": "Dejar que OVHcloud elija la AZ automáticamente: Esta opción simplifica el despliegue. La AZ se asigna automáticamente y encontrará la información de la AZ al final del despliegue de su instancia. → Ideal para un primer despliegue o para un uso no redundante.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Seleccionar manualmente una AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Puede elegir entre las tres AZ disponibles en la región. Esto le permite distribuir sus instancias en varias AZ y así implementar sus propios mecanismos de redundancia.",
-  "pci_instance_creation_availabilityZone_help_link": "Saber más sobre los multi-AZ y las buenas prácticas →"
+  "pci_instance_creation_availabilityZone_help_link": "Saber más sobre los multi-AZ y las buenas prácticas →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Se ha detectado una IP Pública Básica en tu Red Privada, por favor crea o selecciona otra Red Privada para crear una puerta de enlace.",
+  "pci_instance_creation_region_unavailable": "Región no disponible"
 }

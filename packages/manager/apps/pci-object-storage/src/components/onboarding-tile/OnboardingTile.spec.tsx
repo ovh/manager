@@ -4,31 +4,33 @@ import React from 'react';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import OnboardingTile from './OnboardingTile.component';
 
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: {
+      changeLanguage: () => new Promise(() => {}),
+    },
+  }),
+  Trans: ({ i18nKey, components }: any) => {
+    if (components?.br) {
+      return (
+        <>
+          {i18nKey.split('<br />').map((part: string, i: number) => (
+            <React.Fragment key={i}>
+              {part}
+              {i < i18nKey.split('<br />').length - 1 && components.br}
+            </React.Fragment>
+          ))}
+        </>
+      );
+    }
+    return <>{i18nKey}</>;
+  },
+}));
+
 describe('Onboarding component', () => {
   beforeEach(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => ({
-        t: (key: string) => key,
-        i18n: {
-          changeLanguage: () => new Promise(() => {}),
-        },
-      }),
-      Trans: ({ i18nKey, components }: any) => {
-        if (components?.br) {
-          return (
-            <>
-              {i18nKey.split('<br />').map((part: string, i: number) => (
-                <React.Fragment key={i}>
-                  {part}
-                  {i < i18nKey.split('<br />').length - 1 && components.br}
-                </React.Fragment>
-              ))}
-            </>
-          );
-        }
-        return <>{i18nKey}</>;
-      },
-    }));
+    vi.restoreAllMocks();
   });
 
   it('renders Onboarding tile', async () => {

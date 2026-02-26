@@ -25,9 +25,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
   const [application, setApplication] = useState<Application>(undefined);
   const [universe, setUniverse] = useState<string>();
 
-  // true if we should we ask the user if he want to test beta version
-  const [askBeta, setAskBeta] = useState(false);
-
   // 1 for beta, otherwise null if not a beta tester
   const [betaVersion, setBetaVersion] = useState<BetaVersion | string>(null);
 
@@ -60,7 +57,7 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       }))
       .catch(() => ({
         version: '',
-        livechat: undefined,
+        livechat: false,
         aiChatbot: false,
       }));
   };
@@ -79,7 +76,11 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
       })
       .catch((error) => {
         if (error?.response?.status === 404) {
-          setAskBeta(true);
+          v6.post(`/me/preferences/manager`, {
+            key: preferenceKey,
+            value: 'false',
+          }).catch(() => {});
+          setUseBeta(false);
         } else {
           throw error;
         }
@@ -169,7 +170,6 @@ export const ContainerProvider = ({ children }: { children: JSX.Element }) => {
 
   const containerContext = {
     createBetaChoice,
-    askBeta,
     betaVersion,
     useBeta,
     isLivechatEnabled,
