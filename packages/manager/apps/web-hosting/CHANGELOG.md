@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.17.0...@ovh-ux/manager-web-hosting-app@0.18.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1163] ([5e24e0a](https://github.com/ovh/manager/commit/5e24e0adce70897b5bcb652750a3e10ff123b1f1))
+* **i18n:** add missing translations [CDS 1184] ([7043d0f](https://github.com/ovh/manager/commit/7043d0f2a21fa67f9d8c2f3fb871dfcb78be50e4))
+* **web-hosting:** skip temporarly some unit tests ([31d4b0f](https://github.com/ovh/manager/commit/31d4b0f38b3595af88e777a8877c31fbb13ef3af))
+
+
+### Features
+
+* **video-center:** add video center url redirection on dashboard ([d63eb6a](https://github.com/ovh/manager/commit/d63eb6a29456ce6ed4ce043714e3fac42454f4b4)), closes [#PUWEBPT-199](https://github.com/ovh/manager/issues/PUWEBPT-199)
+* **web-hosting:** create logs dashboard ([6648313](https://github.com/ovh/manager/commit/66483133df993f4c0743b9fdd882fbef1ee8addf)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hosting:** create pu video structure and template ([0f71656](https://github.com/ovh/manager/commit/0f7165660e6871fabdcb70a9c5628925fdc6c711)), closes [#PUWEBPT-175](https://github.com/ovh/manager/issues/PUWEBPT-175)
+* **web-hosting:** create video center dashboard ([8cfbd48](https://github.com/ovh/manager/commit/8cfbd48d006078e77733487888a25a4b48ab42c2)), closes [#PUWEBPT-176](https://github.com/ovh/manager/issues/PUWEBPT-176)
+* **web-hosting:** delete navigate button ([e09cd01](https://github.com/ovh/manager/commit/e09cd0169baa77a1098ae12aee794eb70f4d1236)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hosting:** fix ([5f89ef2](https://github.com/ovh/manager/commit/5f89ef22782a9c59554198465028e37f5f664175)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hosting:** use button ([de1315a](https://github.com/ovh/manager/commit/de1315a66844f97cef09d76b4f932a813bbf60f4)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+* **web-hsoting:** correct back to previous button and subscription process ([26176f9](https://github.com/ovh/manager/commit/26176f9f1ed772d8fa57860f97c68622a5fc3967)), closes [#PUWEBPT-144](https://github.com/ovh/manager/issues/PUWEBPT-144)
+
+
+
+
+
 # [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.16.8...@ovh-ux/manager-web-hosting-app@0.17.0) (2026-02-19)
 
 
