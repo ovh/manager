@@ -50,18 +50,18 @@ describe('Terminate service', () => {
     await expect(container).toBeAccessible();
   });
 
-  (useGetAllDomResource as Mock).mockReturnValue({
-    data: alldomService,
-    isLoading: false,
-  });
-
-  (useGetServices as Mock).mockReturnValue({
-    data: allDomTerminate,
-    isLoading: false,
-  });
-
   allDomTerminate.forEach((domain) => {
     it(`should render ${domain.resource.name} checkbox`, async () => {
+      (useGetAllDomResource as Mock).mockReturnValue({
+        data: alldomService,
+        isLoading: false,
+      });
+
+      (useGetServices as Mock).mockReturnValue({
+        data: allDomTerminate,
+        isLoading: false,
+      });
+
       const { container } = render(<ServiceTerminate />, { wrapper });
       await waitFor(async () => {
         const checkbox = await screen.findByTestId(

@@ -25,7 +25,7 @@ describe('DnsModifyPage', () => {
   it('Render loading component when data is still fetching', async () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
-      isFetchingdomainZone: true,
+      isFetchingDomainZone: true,
     });
     (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
@@ -43,7 +43,7 @@ describe('DnsModifyPage', () => {
   it('Render DnsModify page', async () => {
     (useGetDomainZone as Mock).mockReturnValue({
       domainZone: {},
-      isFetchingdomainZone: false,
+      isFetchingDomainZone: false,
     });
     (useGetDomainResource as Mock).mockReturnValue({
       domainResource: {},
@@ -56,5 +56,37 @@ describe('DnsModifyPage', () => {
       expect(getByTestId('modify-component')).toBeInTheDocument();
     });
     await expect(container).toBeAccessible();
+  });
+});
+
+describe('DnsModifyPage W3C Validation', () => {
+  it('should have valid html when loading', async () => {
+    (useGetDomainZone as Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingDomainZone: true,
+    });
+    (useGetDomainResource as Mock).mockReturnValue({
+      domainResource: {},
+      isFetchingDomainResource: true,
+    });
+    const { container } = render(<DnsModifyPage />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+
+  it('should have valid html when loaded', async () => {
+    (useGetDomainZone as Mock).mockReturnValue({
+      domainZone: {},
+      isFetchingDomainZone: false,
+    });
+    (useGetDomainResource as Mock).mockReturnValue({
+      domainResource: {},
+      isFetchingDomainResource: false,
+    });
+    const { container } = render(<DnsModifyPage />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

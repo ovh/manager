@@ -1,4 +1,5 @@
 import '@/common/setupTests';
+import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -152,5 +153,23 @@ describe('HostDelete', () => {
     render(<HostDelete />, { wrapper });
     fireEvent.click(screen.getByRole('button', { name: /actions:cancel/i }));
     expect(navigate).toHaveBeenCalledWith('/domain/foobar/hosts');
+  });
+});
+
+describe('HostDelete W3C Validation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (useParams as any).mockReturnValue({
+      serviceName: 'foobar',
+      hostname: 'ns1.foobar',
+    });
+    (useNavigate as any).mockReturnValue(navigate);
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(<HostDelete />, { wrapper });
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

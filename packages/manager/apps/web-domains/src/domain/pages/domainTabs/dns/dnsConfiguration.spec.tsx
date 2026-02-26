@@ -1,4 +1,5 @@
 import '@/common/setupTests';
+import React from 'react';
 import { render, renderHook } from '@/common/utils/test.provider';
 import { Mock, vi, expect } from 'vitest';
 import {
@@ -26,17 +27,21 @@ describe('DomainTabDnsWithError', () => {
     vi.clearAllMocks();
     (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMockError);
   });
-  const { result } = renderHook(() => useDomainDnsDatagridColumns());
-  const columns = result.current as Array<{
-    id: string;
-    label: string;
-    [key: string]: any;
-  }>;
+
   it('should return the correct number of column', () => {
+    const { result } = renderHook(() => useDomainDnsDatagridColumns());
+    const columns = result.current;
     expect(columns).toHaveLength(4);
   });
 
   it('should return the good labels', () => {
+    const { result } = renderHook(() => useDomainDnsDatagridColumns());
+    const columns = result.current as Array<{
+      id: string;
+      label: string;
+      [key: string]: any;
+    }>;
+
     const tests: Record<string, string> = {
       nameServer: 'domain_dns_table_header_serviceName',
       ip: 'domain_dns_table_header_ip',
@@ -133,5 +138,39 @@ describe('DomainTabDns', () => {
     const actualOrder = nameCells.map((cell) => cell.textContent);
     expect(actualOrder).toEqual(expectedOrder);
     await expect(container).toBeAccessible({ rules: dnsA11yRules });
+  });
+});
+
+describe('DomainTabDnsWithError W3C Validation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMockError);
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
+      { wrapper },
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
+  });
+});
+
+describe('DomainTabDns W3C Validation', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    (computeDnsDetails as Mock).mockReturnValue(dnsDatagridMock);
+  });
+
+  it('should have valid html', async () => {
+    const { container } = render(
+      <DnsConfigurationTab domainResource={serviceInfoDetail} />,
+      { wrapper },
+    );
+    const html = container.innerHTML;
+
+    await expect(html).toBeValidHtml();
   });
 });

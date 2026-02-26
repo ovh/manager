@@ -37,7 +37,7 @@ describe('Dns datagrid', () => {
   it('fetch in a good way using useResourcesIcebergV6',  async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
@@ -68,7 +68,7 @@ describe('Dns datagrid', () => {
   it('Display the datagrid element', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
@@ -99,7 +99,7 @@ describe('Dns datagrid', () => {
   it('Display the datagrid element but serviceInfo is undefined', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,

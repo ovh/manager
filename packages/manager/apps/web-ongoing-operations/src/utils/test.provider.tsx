@@ -5,7 +5,17 @@ import {
   ShellContextType,
 } from '@ovh-ux/manager-react-shell-client';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      gcTime: 0,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
 
 export const mockShellContext = ({
   environment: {

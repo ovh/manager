@@ -8,13 +8,10 @@ import {
 } from '@/common/enum/common.enum';
 
 interface DomainDatagridColumnRenewModeProps {
-  readonly alldomTerminated: boolean;
-
   readonly serviceName: string;
 }
 
 export default function DomainDatagridColumnRenewMode({
-  alldomTerminated,
   serviceName,
 }: DomainDatagridColumnRenewModeProps) {
   const { t } = useTranslation('allDom');
