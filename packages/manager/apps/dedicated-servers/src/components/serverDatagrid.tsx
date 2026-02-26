@@ -47,6 +47,40 @@ export default function ServerDatagrid() {
 
   const { error: errorListing, data: dedicatedServers } = useDedicatedServer();
 
+  const [prevGroupBy, setPrevGroupBy] = useState(groupBy);
+  if (groupBy !== prevGroupBy) {
+    setPrevGroupBy(groupBy);
+    setExpanded({});
+  }
+
+  const effectiveExpanded: ExpandedState = isGroupingActive
+    ? Object.fromEntries(
+        gridData
+          .filter((r) => 'subRows' in r)
+          .map((r) => [
+            r.id,
+            typeof expanded === 'object'
+              ? expanded[r.id as string] ?? true
+              : true,
+          ]),
+      )
+    : expanded;
+
+  const handleSetExpanded: typeof setExpanded = (updater) => {
+    const newValue =
+      typeof updater === 'function' ? updater(effectiveExpanded) : updater;
+    // react-table removes keys to collapse rows. We need to explicitly set
+    // them to false so that ?? true doesn't re-open them on next render.
+    if (typeof newValue === 'object' && typeof effectiveExpanded === 'object') {
+      Object.keys(effectiveExpanded).forEach((key) => {
+        if (!(key in newValue)) {
+          (newValue as Record<string, boolean>)[key] = false;
+        }
+      });
+    }
+    setExpanded(newValue);
+  };
+
   // Column Configuration Logic
   // Adjust column rendering based on whether we are looking at a Group Header or a Data Row
   const effectiveColumns = useMemo(() => {
@@ -186,6 +220,15 @@ export default function ServerDatagrid() {
             background-color: #e6e6e6 !important;
             border-color: #e6e6e6 !important;
           }
+          .dedicated-server-datagrid tr:has(.datagrid-group-header) td:first-child > div {
+            overflow: visible !important;
+          }
+          .dedicated-server-datagrid [class*="chevron-right"] {
+            transform: rotate(90deg);
+          }
+          .dedicated-server-datagrid [class*="chevron-down"] {
+            transform: rotate(180deg);
+          }
         `}
       </style>
       <div className="dedicated-server-datagrid">
@@ -206,10 +249,19 @@ export default function ServerDatagrid() {
               }
               autoScroll={false}
               data={gridData}
-              totalCount={totalCount || 0}
+              totalCount={isGroupingActive ? undefined : totalCount || 0}
               hasNextPage={hasNextPage && !isLoading}
               onFetchNextPage={fetchNextPage}
-              sorting={sorting}
+              sorting={
+                !isGroupingActive
+                  ? sorting
+                  : {
+                      ...sorting,
+                      manualSorting: false,
+                      sorting: [],
+                      setSorting: undefined,
+                    }
+              }
               isLoading={isLoading}
               filters={fnFilter}
               columnVisibility={{
@@ -221,8 +273,8 @@ export default function ServerDatagrid() {
               resourceType="dedicatedServer"
               // Expansion configuration for Grouping
               expandable={{
-                expanded,
-                setExpanded,
+                expanded: effectiveExpanded,
+                setExpanded: handleSetExpanded,
                 // Only allow expansion if grouping is active and it's a top-level row (depth 0)
                 getRowCanExpand: (row) => isGroupingActive && row.depth === 0,
               }}
