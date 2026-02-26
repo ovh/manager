@@ -80,8 +80,10 @@ const SshKey = () => {
 
   const updateSshKeyFields = useCallback(
     (sshKey: TCustomSelectSshKeyData) => {
-      setValue('sshKeyId', sshKey.value);
-      setValue('newSshPublicKey', sshKey.newSshPublicKey);
+      setValue('sshKeyId', sshKey.value, { shouldValidate: true });
+      setValue('newSshPublicKey', sshKey.newSshPublicKey, {
+        shouldValidate: true,
+      });
       clearErrors('sshKeyId');
     },
     [setValue, clearErrors],
