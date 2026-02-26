@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.27.3...@ovh-ux/manager-components@1.28.0) (2026-02-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1173] ([fcfc439](https://github.com/ovh/manager/commit/fcfc4396539c11a3c3eb1ecfca98d84f580089f2))
+
+
+### Features
+
+* add angular survey component ([c178786](https://github.com/ovh/manager/commit/c178786cae1052913263427faa7d3191ed2ecd70)), closes [#MANAGER-20596](https://github.com/ovh/manager/issues/MANAGER-20596) [#MAANGER-20881](https://github.com/ovh/manager/issues/MAANGER-20881)
+
+
+
+
+
 ## [1.27.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-components@1.27.2...@ovh-ux/manager-components@1.27.3) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-components

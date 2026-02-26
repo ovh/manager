@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-vps-app",
-  "version": "3.1.118",
+  "version": "3.1.119",
   "private": true,
   "description": "VPS standalone application.",
   "repository": {
@@ -19,7 +19,7 @@
   "dependencies": {
     "@ovh-ux/manager-advices": "^1.8.7",
     "@ovh-ux/manager-catalog-price": "^1.8.1",
-    "@ovh-ux/manager-components": "^1.27.3",
+    "@ovh-ux/manager-components": "^1.28.0",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-filters": "^1.2.2",
