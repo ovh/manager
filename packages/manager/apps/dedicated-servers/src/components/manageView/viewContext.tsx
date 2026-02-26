@@ -156,7 +156,7 @@ export const ViewContextProvider = ({ children }: PropsWithChildren) => {
       ([key, child]) => ({
         id: `group-${key}`,
         displayName: key,
-        subRows: child,
+        subRows: child.map((server) => ({ ...server, id: server.name })),
       }),
     );
 
