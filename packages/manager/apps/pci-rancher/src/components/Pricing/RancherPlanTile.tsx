@@ -37,15 +37,15 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
         aria-label={`tile-${name}`}
         onClick={() => setSelectedPlan(plan)}
         className={clsx(
-          'cursor-pointer border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-075] hover:border-[--ods-color-blue-600]',
+          'cursor-pointer h-full border-[--ods-color-blue-100] hover:bg-[--ods-color-blue-075] hover:border-[--ods-color-blue-600]',
           plan.name === selectedPlan?.name &&
             'bg-[--ods-color-blue-075] border-[--ods-color-blue-600]',
         )}
       >
-        <div>
+        <div className="flex flex-col">
           <div
             className={clsx(
-              'border-0 border-b border-b-[#bef1ff] w-full mx-3 pb-2 text-[#4d5592] text-sm',
+              'border-0 border-b border-b-[#bef1ff] w-full flex-1 mx-3 pb-2 text-[#4d5592] text-sm',
               isPricing && 'border-solid',
             )}
           >
