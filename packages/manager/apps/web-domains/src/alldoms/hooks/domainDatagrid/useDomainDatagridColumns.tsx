@@ -39,10 +39,7 @@ export const useDomainDatagridColumns = ({
       cell: (props: TDomainsInfo) => {
         return props.registrationStatus ===
           DomainRegistrationStateEnum.Registered ? (
-          <DomainDatagridColumnRenewMode
-            alldomTerminated={alldomTerminated}
-            serviceName={props.name}
-          />
+          <DomainDatagridColumnRenewMode serviceName={props.name} />
         ) : (
           <p>-</p>
         );
