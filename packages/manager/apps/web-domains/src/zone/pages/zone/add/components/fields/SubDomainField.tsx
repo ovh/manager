@@ -1,6 +1,7 @@
 import {
   FormField,
   FormFieldError,
+  FormFieldHelper,
   FormFieldLabel,
   Icon,
   ICON_NAME,
@@ -67,6 +68,7 @@ export function SubDomainField({
             invalid={!!error}
             placeholder={placeholder}
           />
+          <FormFieldHelper><Text preset={TEXT_PRESET.caption}>{t("zone_page_form_subdomain_helper")}</Text></FormFieldHelper>
           <FormFieldError>{error?.message}</FormFieldError>
         </FormField>
       )}

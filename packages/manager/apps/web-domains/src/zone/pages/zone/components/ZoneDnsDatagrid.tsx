@@ -242,7 +242,7 @@ export default function ZoneDnsDatagrid({
       )}
 
       <div className="overflow-auto relative w-full">
-        <Table className="table table-fixed w-full" size={TABLE_SIZE.md}>
+        <Table className="table table-fixed w-full" size={TABLE_SIZE.sm}>
           <thead className="sticky top-[-1px] z-10 bg-white overflow-hidden">
             {headerGroups.map((headerGroup) => (
               <tr key={headerGroup.id}>

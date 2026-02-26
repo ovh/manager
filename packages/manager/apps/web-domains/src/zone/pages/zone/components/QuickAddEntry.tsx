@@ -208,7 +208,6 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
       updateRecord(
         {
           recordId: editingRecord.id,
-          fieldType,
           subDomain: (data.subDomain as string) ?? '',
           target,
           ttl,
@@ -423,33 +422,14 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
               >
                 {t(`${NAMESPACES.ACTIONS}:cancel`)}
               </Button>
-              {recordTypeStr === FieldTypeMailRecordsEnum.SPF && !isEditMode ? (
-                <Button
-                  type="button"
-                  size={BUTTON_SIZE.sm}
-                  disabled={isMutating}
-                  loading={isMutating}
-                  onClick={() => {
-                    onSubmit({
-                      recordType: FieldTypeMailRecordsEnum.SPF,
-                      subDomain: '',
-                      ttlSelect: TtlSelectEnum.GLOBAL,
-                      target: 'v=spf1 include:mx.ovh.com ~all',
-                    } as AddEntrySchemaType);
-                  }}
-                >
-                  {t("zone_page_form_spf_button_use_spf_ovh")}
-                </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  size={BUTTON_SIZE.sm}
-                  disabled={!isValid || isMutating || (isEditMode && !hasChanges)}
-                  loading={isMutating}
-                >
-                  {isEditMode ? t(`${NAMESPACES.ACTIONS}:modify`) : t(`${NAMESPACES.ACTIONS}:add`)}
-                </Button>
-              )}
+              <Button
+                type="submit"
+                size={BUTTON_SIZE.sm}
+                disabled={!isValid || isMutating || (isEditMode && !hasChanges)}
+                loading={isMutating}
+              >
+                {isEditMode ? t(`${NAMESPACES.ACTIONS}:modify`) : t(`${NAMESPACES.ACTIONS}:add`)}
+              </Button>
             </div>
           )}
         </div>

@@ -17,10 +17,7 @@ export const useAddZoneRecord = (serviceName: string) => {
   const { mutate, isPending } = useMutation({
     mutationFn: async (payload: CreateZoneRecordPayload) => {
       // Step 1: Validate syntax via GET before creating
-      await validateZoneRecord(serviceName, {
-        fieldType: payload.fieldType,
-        subDomain: payload.subDomain,
-      });
+      await validateZoneRecord(serviceName, payload.subDomain ?? '');
 
       // Step 2: Create the record
       const record = await createZoneRecord(serviceName, payload);
@@ -38,14 +35,18 @@ export const useAddZoneRecord = (serviceName: string) => {
       clearNotifications();
       addSuccess(t('zone_page_form_add_record_success'), true);
     },
-    onError: (error: ApiError) => {
-      const apiMessage =
-        error?.response?.data?.message ?? error?.message ?? '';
+    onError: (error: ApiError | Error) => {
       clearNotifications();
-      addError(
-        t('zone_page_form_add_record_error', { error: apiMessage }),
-        true,
-      );
+      if (error.message === 'CNAME_ALREADY_EXISTS') {
+        addError(t('zone_page_form_cname_already_exists'), true);
+      } else {
+        const apiMessage =
+          (error as ApiError)?.response?.data?.message ?? error?.message ?? '';
+        addError(
+          t('zone_page_form_add_record_error', { error: apiMessage }),
+          true,
+        );
+      }
     },
   });
 

@@ -26,24 +26,26 @@ export type CreateZoneRecordPayload = {
 };
 
 /**
- * Validate a zone record syntax before creating it.
- * GET /domain/zone/{serviceName}/record?fieldType={fieldType}&subDomain={subDomain}
- * If the syntax is invalid, the API will return an error.
+ * Check that no CNAME record already exists for the given subdomain.
+ * GET /domain/zone/{serviceName}/record?fieldType=CNAME&subDomain={subDomain}
+ * If records are returned, a CNAME conflict exists and an error is thrown.
  */
 export const validateZoneRecord = async (
   serviceName: string,
-  payload: Pick<CreateZoneRecordPayload, 'fieldType' | 'subDomain'>,
-): Promise<number[]> => {
+  subDomain: string,
+): Promise<void> => {
   const { data } = await v6.get<number[]>(
     `/domain/zone/${serviceName}/record`,
     {
       params: {
-        fieldType: payload.fieldType,
-        subDomain: payload.subDomain ?? '',
+        fieldType: 'CNAME',
+        subDomain: subDomain === '@' ? '' : (subDomain ?? ''),
       },
     },
   );
-  return data;
+  if (data.length > 0) {
+    throw new Error('CNAME_ALREADY_EXISTS');
+  }
 };
 
 /**

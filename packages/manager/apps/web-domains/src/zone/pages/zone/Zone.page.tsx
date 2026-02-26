@@ -212,7 +212,15 @@ function ZonePageInner() {
       });
     }
 
-    return result;
+    return [...result].sort((a, b) => {
+      const domainA = a.subDomain
+        ? `${a.subDomain}.${a.zoneToDisplay}`
+        : a.zoneToDisplay ?? '';
+      const domainB = b.subDomain
+        ? `${b.subDomain}.${b.zoneToDisplay}`
+        : b.zoneToDisplay ?? '';
+      return domainA.localeCompare(domainB);
+    });
   }, [records, filters, searchInput]);
   const actionItems = [
     {
@@ -300,6 +308,12 @@ function ZonePageInner() {
   const columns: DatagridColumn<ZoneRecord>[] = useMemo(
     () => [
       {
+        id: 'subDomain',
+        header: t('zone_page_subdomain'),
+        isSearchable: true,
+        cell: ({ row }) => <div>{row.original.subDomain || '@'}</div>,
+      },
+      {
         id: 'fieldType',
         accessorKey: 'fieldType',
         header: t('zone_page_type'),
@@ -312,18 +326,6 @@ function ZonePageInner() {
             value: fieldType,
           }))
           .sort((a, b) => a.label.localeCompare(b.label)),
-      },
-      {
-        id: 'subDomain',
-        header: t('zone_page_subdomain'),
-        isSearchable: true,
-        cell: ({ row }) => (
-          <div>
-            {row.original.subDomain
-              ? `${row.original.subDomain}.${row.original.zoneToDisplay}`
-              : row.original.zoneToDisplay}
-          </div>
-        ),
       },
       {
         id: 'targetToDisplay',

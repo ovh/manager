@@ -18,16 +18,12 @@ export const useUpdateZoneRecord = (serviceName: string) => {
     mutationFn: async (
       params: UpdateZoneRecordPayload & {
         recordId: string;
-        fieldType: string;
       },
     ) => {
-      const { recordId, fieldType, ...payload } = params;
+      const { recordId, ...payload } = params;
 
       // Step 1: Validate syntax via GET before updating
-      await validateZoneRecord(serviceName, {
-        fieldType,
-        subDomain: payload.subDomain,
-      });
+      await validateZoneRecord(serviceName, payload.subDomain ?? '');
 
       // Step 2: Update the record
       await updateZoneRecord(serviceName, recordId, payload);
@@ -42,14 +38,18 @@ export const useUpdateZoneRecord = (serviceName: string) => {
       clearNotifications();
       addSuccess(t('zone_page_form_modify_record_success'), true);
     },
-    onError: (error: ApiError) => {
-      const apiMessage =
-        error?.response?.data?.message ?? error?.message ?? '';
+    onError: (error: ApiError | Error) => {
       clearNotifications();
-      addError(
-        t('zone_page_form_modify_record_error', { error: apiMessage }),
-        true,
-      );
+      if (error.message === 'CNAME_ALREADY_EXISTS') {
+        addError(t('zone_page_form_cname_already_exists'), true);
+      } else {
+        const apiMessage =
+          (error as ApiError)?.response?.data?.message ?? error?.message ?? '';
+        addError(
+          t('zone_page_form_modify_record_error', { error: apiMessage }),
+          true,
+        );
+      }
     },
   });
 
