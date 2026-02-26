@@ -42,7 +42,7 @@ export default function ActionMeContactComponent({
 
   let url = '';
   if (availability?.['web-domains:domains']) {
-    url = `${webDomainsUrl}/domain/${domainName}/contact-management/edit-contact/${value}/`;
+    url = `${webDomainsUrl}/domain/${domainName}/contact-management/${value}/edit`;
   }
 
   if (
