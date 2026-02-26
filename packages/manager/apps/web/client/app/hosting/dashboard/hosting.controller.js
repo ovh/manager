@@ -71,6 +71,7 @@ export default class {
     user,
     userLogsLink,
     isWebsiteFeatureAvailable,
+    isOslToLdpFeatureAvailable,
     HOSTING_STATUS,
     DOMAIN_ORDER_URL,
     HOSTING_ORDER_URL,
@@ -137,6 +138,7 @@ export default class {
     this.runtimesLink = runtimesLink;
     this.user = user;
     this.userLogsLink = userLogsLink;
+    this.isOslToLdpFeatureAvailable = isOslToLdpFeatureAvailable;
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
     this.HOSTING_ORDER_URL = HOSTING_ORDER_URL;
     this.serviceName = serviceName;

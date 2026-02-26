@@ -92,6 +92,9 @@ export const WEBSITE = 'website';
 // task
 export const TASK = 'task';
 
+// logs
+export const LOGS = 'logs';
+
 // local seo
 export const LOCAL_SEO = 'local-seo';
 export const REMOVE_SEO_SUBSCIPTION = 'remove-seo-subscription';
@@ -101,5 +104,13 @@ export const REMOVE_SEO_SUBSCIPTION = 'remove-seo-subscription';
 export const WORDPRESS_MANAGED = 'managed-wordpress';
 export const WORDPRESS_MANAGED_SERVICE = 'managed-wordpress_service';
 export const WORDPRESS_MANAGED_ONBOARDING = 'managed-wordpress_onboarding';
+
+// video center
+export const VIDEO_CENTER = 'video-center';
+export const VIDEO_CENTER_DASHBOARD = 'video-center-dashboard';
+export const VIDEO_CENTER_FREEMIUM_DASHBOARD = 'video-center-freemium-dashboard';
+export const VIDEO_CENTER_ONBOARDING = 'video-center-onboarding';
+export const VIDEO_CENTER_ORDER = 'video-center-order';
+export const VIDEO_CENTER_ACTIVATE = 'video-center-activate';
 
 export const GO_TO = (link: string) => `go-to-${link}_${WEBSITE}`;

@@ -15,6 +15,7 @@ export default class DatabaseDumpsCtrl {
     $stateParams,
     $translate,
     $window,
+    WucUser,
   ) {
     this.alerter = Alerter;
     this.coreConfig = coreConfig;
@@ -25,9 +26,17 @@ export default class DatabaseDumpsCtrl {
     this.$stateParams = $stateParams;
     this.$translate = $translate;
     this.$window = $window;
+    this.WucUser = WucUser;
   }
 
   $onInit() {
+    this.WucUser.getUrlOf('guides').then((guides) => {
+      if (guides) {
+        this.$scope.guideDatabaseSave = guides.hostingDatabaseSave;
+        this.$scope.guideDatabaseRestore = guides.hostingDatabaseRestore;
+      }
+    });
+
     this.statusToWatch = ['start', 'doing', 'done', 'error'];
 
     forEach(this.statusToWatch, (state) => {

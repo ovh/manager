@@ -1,7 +1,7 @@
 import { aapi, v6 } from '@ovh-ux/manager-core-api';
 
 import { TAttachedDomain, TCreateAttachedDomain, TExistingDomain } from '../types/product/domain';
-import { DomainServiceType, ServiceInfosType } from '../types/product/service';
+import { DomainServiceType, ServiceDetailsType, ServiceInfosType } from '../types/product/service';
 import { SshKey, VcsWebhookUrls, WebHostingType } from '../types/product/webHosting';
 
 export const getHostingService = async (serviceName: string): Promise<WebHostingType> => {
@@ -21,6 +21,16 @@ export const getServiceInfos = async (serviceName: string): Promise<ServiceInfos
 
 export const getDomainService = async (serviceName: string): Promise<DomainServiceType> => {
   const { data } = await v6.get<DomainServiceType>(`/domain/${serviceName}`);
+  return data;
+};
+
+export const getServicesId = async (serviceId: string): Promise<number[]> => {
+  const { data } = await v6.get<number[]>(`/services?resourceName=${serviceId}`);
+  return data;
+};
+
+export const getServiceDetails = async (serviceId: number): Promise<ServiceDetailsType> => {
+  const { data } = await v6.get<ServiceDetailsType>(`/services/${serviceId}`);
   return data;
 };
 

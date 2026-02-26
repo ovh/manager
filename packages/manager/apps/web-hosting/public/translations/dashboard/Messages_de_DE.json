@@ -3,7 +3,7 @@
   "hosting_tab_MULTISITE": "Multisite",
   "hosting_tab_SSL": "SSL-Zertifikate",
   "hosting_tab_MODULE": "1-Klick-Module",
-  "hosting_tab_USER_LOGS": "Statistiken und Logs",
+  "hosting_tab_USER_LOGS": "Protokolle",
   "hosting_tab_FTP": "FTP - SSH",
   "hosting_tab_DATABASE": "Datenbanken",
   "hosting_tab_TASK": "Aktuelle Tasks",
@@ -216,5 +216,7 @@
   "deploy_git_description": "Sie sind dabei, den Inhalt Ihres Remote-Repositorys manuell auf Ihrem Hosting bereitzustellen oder zu aktualisieren.",
   "deploy_git_overwrite_local_changes": "Im Falle eines Änderungs-Konflikts die Remote-Änderungen in Ihr lokales Repository erzwingen.",
   "hosting_add_step2_mode_OVH_domain_name_subdomain_question": "Subdomain erstellen",
-  "hosting_tab_WEBSITE": "Meine Websites"
+  "hosting_tab_WEBSITE": "Meine Websites",
+  "hosting_logs_back_to_general": "Zurück zu den allgemeinen Informationen",
+  "hosting_logs_back_to_previous_page": "Zur vorherigen Seite"
 }

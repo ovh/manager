@@ -1262,7 +1262,6 @@
   "hosting_action_edit_choose_update": "Modifica la configurazione attuale",
   "hosting_action_edit_choose_rollback": "Ritorna a una configurazione precedente",
   "hosting_action_config_edit_no_choice": "Nello storico è disponibile solo una configurazione. La selezione è disattivata, clicca su \"Conferma\" per applicare i valori seguenti.",
-  "hosting_tab_USER_LOGS": "Statistiche e log",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Crea un nuovo utente",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Questo nuovo utente avrà accesso alle statistiche e ai log dei tuoi siti oltre ai normali contatti dell'hosting (amministrativo, tecnico e di fatturazione). È possibile aggiungere, modificare o eliminare liberamente questi utenti supplementari.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Utente",
@@ -1410,5 +1409,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Disattivare il mio database",
   "hosting_tab_DATABASES_configuration__available_slot": "Database disponibile",
   "hosting_tab_WEBSITE": "I miei siti",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Seleziona un dominio",
+  "hosting_tab_USER_LOGS": "Log",
+  "database_tabs_dumps_guide_message_part1": "Vuoi salvare o ripristinare un database?",
+  "database_tabs_dumps_guide_message_part2": "Trova le nostre guide dettagliate per eseguire queste azioni direttamente dal tuo spazio cliente:",
+  "database_tabs_dumps_guide_save": "Salvare ed esportare un database",
+  "database_tabs_dumps_guide_restore": "Ripristinare e importare un database",
+  "hosting_tab_STATISTICS_databases_none": "Nessun errore rilevato nei tuoi database. Tutto funziona normalmente."
 }

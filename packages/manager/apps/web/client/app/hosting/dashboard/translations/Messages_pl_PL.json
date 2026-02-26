@@ -1262,7 +1262,6 @@
   "hosting_action_edit_choose_update": "Zmień bieżącą konfigurację",
   "hosting_action_edit_choose_rollback": "Przywróć poprzednią konfigurację",
   "hosting_action_config_edit_no_choice": "W historii dostępna tylko jedna konfiguracja. Wybór jest więc wyłączony. Kliknij na „Zatwierdź”, aby wprowadzić wartości podane poniżej.",
-  "hosting_tab_USER_LOGS": "Statystyki i logi",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Utwórz nowego użytkownika",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Nowy użytkownik, oprócz danych osób kontaktowych (kontakt administracyjny, techniczny i księgowy), będzie miał dostęp do statystyk i logów stron WWW. Możesz dowolnie dodawać, modyfikować lub usuwać użytkowników.",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_user": "Użytkownik",
@@ -1410,5 +1409,11 @@
   "hosting_tab_DATABASES_configuration__action_button": "Usuń bazę danych",
   "hosting_tab_DATABASES_configuration__available_slot": "Dostępna baza danych",
   "hosting_tab_WEBSITE": "Moje strony",
-  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Wybierz domenę"
+  "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Wybierz domenę",
+  "hosting_tab_USER_LOGS": "logi",
+  "database_tabs_dumps_guide_message_part1": "Czy chcesz zapisać lub przywrócić bazę danych?",
+  "database_tabs_dumps_guide_message_part2": "Znajdź nasze szczegółowe przewodniki, aby wykonać te czynności bezpośrednio z Twojego konta klienta:",
+  "database_tabs_dumps_guide_save": "Zapisz i eksportuj bazę danych",
+  "database_tabs_dumps_guide_restore": "Przywróć i importuj bazę danych",
+  "hosting_tab_STATISTICS_databases_none": "Nie wykryto żadnych błędów w twoich bazach danych. Wszystko działa normalnie."
 }

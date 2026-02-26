@@ -156,3 +156,21 @@ export const GIT_WEBHOOK_GUIDE_LINK = {
   WS: `${PREFIX_GITHUB_DOCS_URL}es${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
   DEFAULT: `${PREFIX_GITHUB_DOCS_URL}en${SUFFIX_GITHUB_WEBHOOK_DOCS_URL}`,
 };
+
+const SUFFIX_CHANGE_OWNER = '/procedure/procedureChangeOwner.cgi';
+export const CHANGE_OWNER_LINK = {
+  CZ: `https://www.ovh.cz/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  DE: `https://www.ovh.de/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  ES: `https://www.ovh.es/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  FI: `https://www.ovh.com/cgi-bin/fi${SUFFIX_CHANGE_OWNER}`,
+  FR: `https://www.ovh.com/cgi-bin/fr${SUFFIX_CHANGE_OWNER}`,
+  GB: `https://www.ovh.co.uk/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  IT: `https://www.ovh.it/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  LT: `https://www.ovh.com/cgi-bin/lt${SUFFIX_CHANGE_OWNER}`,
+  NL: `https://www.ovh.nl/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  PL: `https://www.ovh.pl/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  PT: `https://www.ovh.pt/cgi-bin${SUFFIX_CHANGE_OWNER}`,
+  DEFAULT: `https://www.ovh.com/cgi-bin/fr${SUFFIX_CHANGE_OWNER}`,
+};
+export const VIDEO_MANAGER_LABS_URL = 'https://labs.ovhcloud.com/en/video-webhosting';
+export const VIDEO_MANAGER_URL = 'https://manager.eu.videocenter.ovh.net';

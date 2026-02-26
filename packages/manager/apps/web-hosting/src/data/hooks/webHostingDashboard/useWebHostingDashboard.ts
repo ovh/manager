@@ -9,7 +9,9 @@ import {
   getDomainService,
   getDomainZone,
   getHostingService,
+  getServiceDetails,
   getServiceInfos,
+  getServicesId,
   getSshKey,
   getVcsWebhookUrls,
   postWebsiteV6,
@@ -119,6 +121,20 @@ export const useGetDomainService = (serviceName: string) =>
     queryKey: ['domain', serviceName],
     queryFn: () => getDomainService(serviceName),
     enabled: Boolean(serviceName),
+  });
+
+export const useGetServicesId = (serviceId: string) =>
+  useQuery({
+    queryKey: ['services', serviceId],
+    queryFn: () => getServicesId(serviceId),
+    enabled: Boolean(serviceId),
+  });
+
+export const useGetServiceDetails = (serviceId: number) =>
+  useQuery({
+    queryKey: ['services', serviceId],
+    queryFn: () => getServiceDetails(serviceId),
+    enabled: Boolean(serviceId),
   });
 
 export const useGetAddDomainExisting = (

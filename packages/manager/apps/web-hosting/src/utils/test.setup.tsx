@@ -25,6 +25,8 @@ import {
   attachedDomainDigStatusMock,
   domainInformationMock,
   domainZoneMock,
+  publicServiceMock,
+  serviceDetailsMock,
   serviceInfosMock,
   sshKeyMock,
   vcsWebhookUrlsMock,
@@ -241,6 +243,7 @@ vi.mock('@/data/api/dashboard', async (importActual) => {
     getDomainService: vi.fn(() => Promise.resolve(domainInformationMock)),
     getSshKey: vi.fn(() => Promise.resolve(sshKeyMock)),
     getVcsWebhookUrls: vi.fn(() => Promise.resolve(vcsWebhookUrlsMock)),
+    getServiceDetails: vi.fn(() => Promise.resolve(serviceDetailsMock)),
   };
 });
 vi.mock('@/data/api/git', () => ({
@@ -257,6 +260,10 @@ vi.mock('@/data/api/cdn', () => ({
   updateCdnOptions: vi.fn().mockResolvedValue(undefined),
   deleteCdnOption: vi.fn().mockResolvedValue(undefined),
   getCDNProperties: vi.fn(() => Promise.resolve(cdnPropertiesMock)),
+}));
+
+vi.mock('@/data/api/videoCenter', () => ({
+  getServiceVideoCenter: vi.fn(() => Promise.resolve(publicServiceMock)),
 }));
 
 vi.mock('@/data/hooks/cdn', () => ({
@@ -288,6 +295,7 @@ vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', () => ({
   useGetHostingServiceWebsite: vi.fn(),
   useGetSshKey: vi.fn(),
   useGetVcsWebhookUrls: vi.fn(),
+  useGetServiceDetails: vi.fn(),
 }));
 
 vi.mock('@/data/hooks/webHostingDashboard/useWebHostingDashboard', async (importActual) => {
@@ -449,5 +457,19 @@ vi.mock('@ovhcloud/ods-react', async (importActual) => {
     Select: MockSelect,
     SelectControl: MockSelectControl,
     SelectContent: MockSelectContent,
+  };
+});
+
+vi.mock('@/data/hooks/videoCenter/useVideoCenter', async (importActual) => {
+  const actual = await importActual<typeof import('@/data/hooks/videoCenter/useVideoCenter')>();
+  return {
+    ...actual,
+    useVideoCenter: vi.fn(() => ({
+      data: publicServiceMock,
+      isSuccess: true,
+      isLoading: false,
+      isError: false,
+      status: 'success',
+    })),
   };
 });
