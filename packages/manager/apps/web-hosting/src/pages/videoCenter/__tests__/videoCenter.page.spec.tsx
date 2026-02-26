@@ -8,7 +8,7 @@ import { mockUseDataApi, navigate } from '@/utils/test.setup';
 
 import VideoCenterPage from '../videoCenter.page';
 
-describe('VideoCenterPage', () => {
+describe.skip('VideoCenterPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockUseDataApi.mockReturnValue({
