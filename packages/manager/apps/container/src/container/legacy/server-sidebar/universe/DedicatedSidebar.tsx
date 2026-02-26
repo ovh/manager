@@ -379,7 +379,7 @@ export default function DedicatedSidebar() {
             id: 'bmc-backup-agent-baremetal',
             label: t('sidebar_backup_agent_baremetal'),
             icon: (
-              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
+              <img alt="" src={backupAgentLogo} className="mb-1 aspect-square w-6" />
             ),
             href: navigation.getURL('bmc-backup-agent-baremetal', '#'),
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),

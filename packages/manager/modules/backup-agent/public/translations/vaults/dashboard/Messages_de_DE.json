@@ -9,10 +9,10 @@
   "submitButton": "Absenden",
   "successMessage": "Ihre Anfrage wurde erfolgreich gesendet.",
   "errors": {
-    "emailRequired": "Die E-Mail ist erforderlich.",
-    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
-    "subjectRequired": "Der Betreff ist erforderlich.",
-    "messageRequired": "Die Nachricht ist erforderlich."
+    "emailRequired": "Die E-Mail-Adresse muss angegeben werden.",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "subjectRequired": "Der Betreff muss angegeben werden.",
+    "messageRequired": "Es muss eine Nachricht angegeben werden."
   },
   "general-information": "Allgemeine Informationen",
   "help": "Hilfe",
@@ -21,6 +21,6 @@
   "vault_price": "Das entspricht {{vaultPrice}} zzgl. MwSt./Monat",
   "immutability": "Unveränderlichkeit",
   "immutability_duration_enabled": "{{duration}} Tage aktiviert",
-  "encryption": "Verschlüsselung des Tresors",
+  "encryption": "Vault-Verschlüsselung",
   "encryption_enabled": "{{encryption}} aktiviert"
 }

@@ -62,9 +62,9 @@
   "searchPlaceholder": "Ricerca...",
   "searchLabel": "Ricerca:",
   "prefixLabel": "Prefisso:",
-  "rootPrefix": "(radice)",
-  "loading": "Caricamento…",
-  "dropFilesToUpload": "Trascina i file qui per caricarli",
+  "rootPrefix": "(root)",
+  "loading": "Caricamento in corso...",
+  "dropFilesToUpload": "Rilascia i file qui per caricarli",
   "noSearchResults": "Nessun risultato trovato per \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Attenzione: Le classi Infrequent Access e Cold Archive richiedono una durata minima di conservazione. <0>Più informazioni</0>",
   "selectObject": "Selezionare l'oggetto {{name}}",
@@ -83,5 +83,5 @@
   "downloadErrorDescription": "Errore durante il download del file",
   "downloadErrorStatus": "Errore durante il download: {{status}}",
   "downloadErrorUnknownType": "Tipo di download sconosciuto",
-  "openFolder": "Apri la cartella {{name}}"
+  "openFolder": "Aprire la cartella {{name}}"
 }

@@ -64,7 +64,7 @@
   "prefixLabel": "Prefix:",
   "rootPrefix": "(root)",
   "loading": "Loading...",
-  "dropFilesToUpload": "Drop files to upload here",
+  "dropFilesToUpload": "Drop files here to upload",
   "noSearchResults": "No results found for \"{{query}}\"",
   "changeStorageClassWarningInfrequentAccess": "Important: The Infrequent Access and Cold Archive classes impose a minimum retention period. <0>Learn more</0>",
   "selectObject": "Select {{name}} object",
@@ -83,5 +83,5 @@
   "downloadErrorDescription": "An error occurred while downloading the file",
   "downloadErrorStatus": "Unable to download: {{status}}",
   "downloadErrorUnknownType": "Unknown download type",
-  "openFolder": "Open {{name}} folder"
+  "openFolder": "Open the {{name}} folder"
 }
