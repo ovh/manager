@@ -53,10 +53,6 @@ const getPageToRedirectTo = (
 }
 
 export default function DnsOrderPage() {
-  //TODO
-  // Vérifier que la checbox Ancast est bien fonctionnelle
-  // Breadcrumb à fixer
-
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { serviceName } = useParams<{ serviceName: string }>();
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(

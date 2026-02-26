@@ -182,7 +182,7 @@ export default function ModifyTtlModal({
               <Message color={MESSAGE_COLOR.information} className="mb-4" dismissible={false}>
                 <MessageIcon name={ICON_NAME.circleInfo} />
                 <MessageBody>
-                  {t('zone_page_modify_ttl_propagation_info')}
+                  {t('zone_page_modify_ttl_propagation_info', { timeInHour: (zoneSoa?.ttl ?? 86400) / 3600 })}
                 </MessageBody>
               </Message>
             </>
