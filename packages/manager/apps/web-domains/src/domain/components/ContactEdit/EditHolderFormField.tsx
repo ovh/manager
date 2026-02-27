@@ -164,31 +164,21 @@ export default function EditHolderFormField({
     const translated = enumList.map((value) => {
       const translationKey = getEnumTranslationKey(rule.label, value);
       const translatedValue = t(translationKey);
-      // If the translation key was not found (i18next returns the key itself),
-      // use the raw value as the display label (it's already a readable name).
-      const label =
-        translatedValue === translationKey ? value : translatedValue;
-      return { key: value, translated: label };
+      const hasTranslation = translatedValue !== translationKey;
+      return {
+        key: value,
+        translated: hasTranslation ? translatedValue : value,
+        hasTranslation,
+      };
     });
 
-    // Deduplicate: when both a code (e.g. "CW" → "Carlow") and a full name
-    // (e.g. "Carlow") resolve to the same display label, keep only the code.
+    // For area fields, only keep values that have a real translation in the
+    // translation file. This filters out full-name duplicates (e.g. "Carlow")
+    // sent by the backend alongside their code counterpart (e.g. "CW").
     if (AREA_LABELS.has(rule.label)) {
-      const translatedByLabel = new Map<string, TTranslatedEnum>();
-      for (const item of translated) {
-        const existing = translatedByLabel.get(item.translated);
-        if (!existing) {
-          translatedByLabel.set(item.translated, item);
-        } else {
-          // Prefer the shorter key (code) over the full name
-          if (item.key.length < existing.key.length) {
-            translatedByLabel.set(item.translated, item);
-          }
-        }
-      }
-      return Array.from(translatedByLabel.values()).sort((a, b) =>
-        a.translated.localeCompare(b.translated),
-      );
+      return translated
+        .filter((item) => item.hasTranslation)
+        .sort((a, b) => a.translated.localeCompare(b.translated));
     }
 
     return translated.sort((a, b) => a.translated.localeCompare(b.translated));
