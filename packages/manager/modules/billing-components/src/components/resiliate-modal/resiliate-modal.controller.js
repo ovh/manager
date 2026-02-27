@@ -20,14 +20,42 @@ export default class ResiliateModalController {
   }
 
   $onInit() {
+    const hasEngagementDate = (this.capabilities || []).includes(
+      'terminateAtEngagementDate',
+    );
+
     this.resiliateOptions = (this.capabilities || [])
       .filter((option) => this.RESILIATION_CAPACITIES.includes(option))
-      .map((value) => ({
-        value,
-        label: this.$translate.instant(
-          `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
-        ),
-      }));
+      .filter(
+        (option) =>
+          !(hasEngagementDate && option === 'terminateAtExpirationDate'),
+      )
+      .flatMap((value) => {
+        if (value === 'terminateAtEngagementDate' && this.isUSRegion) {
+          return [
+            {
+              value: 'terminateAtEngagementDate',
+              label: this.$translate.instant(
+                'billing_resiliate_terminateAtEngagementDate_us',
+              ),
+            },
+            {
+              value: 'terminateAtEngagementDate_monthly',
+              label: this.$translate.instant(
+                'billing_resiliate_terminateAtEngagementDate_monthly_us',
+              ),
+            },
+          ];
+        }
+        return [
+          {
+            value,
+            label: this.$translate.instant(
+              `billing_resiliate_${value}${this.isUSRegion ? '_us' : ''}`,
+            ),
+          },
+        ];
+      });
 
     this.resiliateOption =
       this.resiliateOptions.length === 1
