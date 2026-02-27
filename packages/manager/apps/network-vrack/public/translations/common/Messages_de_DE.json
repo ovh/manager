@@ -1,0 +1,4 @@
+{
+  "common_error": "Ein Fehler ist aufgetreten: {{error}}",
+  "common_error_notfound": "Ressource nicht gefunden"
+}
