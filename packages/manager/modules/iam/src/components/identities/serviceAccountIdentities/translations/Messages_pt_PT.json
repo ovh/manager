@@ -4,5 +4,9 @@
   "iam_identities_service_accounts_name": "Nome",
   "iam_identities_service_accounts_id": "ID de utilizador",
   "iam_identities_service_accounts_flow": "Flow",
-  "iam_identities_service_accounts_description": "Descrição"
+  "iam_identities_service_accounts_description": "Descrição",
+  "iam_identities_service_accounts_add": "Adicionar contas de serviço",
+  "iam_identities_service_accounts_modal_title": "Adicionar contas de serviço",
+  "iam_identities_service_accounts_modal_empty_state": "Nenhuma conta de serviço a adicionar",
+  "iam_identities_service_accounts_load_error": "Ocorreu um erro ao recuperar as suas contas de serviço: {{ message }}"
 }

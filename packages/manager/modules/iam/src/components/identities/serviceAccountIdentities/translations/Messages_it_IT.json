@@ -4,5 +4,9 @@
   "iam_identities_service_accounts_name": "Nome",
   "iam_identities_service_accounts_id": "Identificativo",
   "iam_identities_service_accounts_flow": "Flow",
-  "iam_identities_service_accounts_description": "Descrizione"
+  "iam_identities_service_accounts_description": "Descrizione",
+  "iam_identities_service_accounts_add": "Aggiungi account di servizio",
+  "iam_identities_service_accounts_modal_title": "Aggiungi account di servizio",
+  "iam_identities_service_accounts_modal_empty_state": "Nessun account di servizio da aggiungere",
+  "iam_identities_service_accounts_load_error": "Si è verificato un errore durante il recupero dei tuoi account di servizio: {{ message }}"
 }

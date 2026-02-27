@@ -4,5 +4,9 @@
   "iam_identities_service_accounts_name": "Name",
   "iam_identities_service_accounts_id": "Login",
   "iam_identities_service_accounts_flow": "Flow",
-  "iam_identities_service_accounts_description": "Description"
+  "iam_identities_service_accounts_description": "Description",
+  "iam_identities_service_accounts_add": "Add service accounts",
+  "iam_identities_service_accounts_modal_title": "Add service accounts",
+  "iam_identities_service_accounts_modal_empty_state": "No service accounts to add",
+  "iam_identities_service_accounts_load_error": "An error occurred while retrieving your service accounts: {{ message }}"
 }

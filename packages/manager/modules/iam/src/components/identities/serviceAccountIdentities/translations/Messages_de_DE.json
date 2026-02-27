@@ -4,5 +4,9 @@
   "iam_identities_service_accounts_name": "Name",
   "iam_identities_service_accounts_id": "Kennung",
   "iam_identities_service_accounts_flow": "Flow",
-  "iam_identities_service_accounts_description": "Beschreibung"
+  "iam_identities_service_accounts_description": "Beschreibung",
+  "iam_identities_service_accounts_add": "Dienste hinzufügen",
+  "iam_identities_service_accounts_modal_title": "Dienste hinzufügen",
+  "iam_identities_service_accounts_modal_empty_state": "Kein Dienstkonto zum Hinzufügen",
+  "iam_identities_service_accounts_load_error": "Ein Fehler ist aufgetreten beim Abrufen Ihrer Dienstkonten: {{ message }}"
 }
