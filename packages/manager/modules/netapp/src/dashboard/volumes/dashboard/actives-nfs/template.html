@@ -1,5 +1,15 @@
 <div>
-    <h2 data-translate="netapp_volumes_dashboard_actives_nfs_title"></h2>
+    <div class="d-flex align-items-baseline">
+        <h2
+            class="mr-2"
+            data-translate="netapp_volumes_dashboard_actives_nfs_title"
+        ></h2>
+        <p
+            class="h4"
+            data-translate="{{ $ctrl.activesNFS.length ? 'netapp_volumes_dashboard_actives_nfs_connection_subtitle' : 'netapp_volumes_dashboard_actives_nfs_no_connection_subtitle'}}"
+            data-translate-value-total-actives-nfs="{{$ctrl.activesNFS.length || 0}}"
+        ></p>
+    </div>
     <table
         data-ng-if="$ctrl.activesNFS.length"
         class="oui-table"
