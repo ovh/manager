@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { permissionOptions } from '@/pages/dashboard/Acl/acl.view-model';
 
 export const createAclSchema = z.object({
-  accessTo: z.string().refine(
+  accessTo: z.string('acl:columns.accessTo.invalidFormat').refine(
     (value) => {
       const address = new Address4(value);
       return address.isCorrect();
