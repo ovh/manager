@@ -7,6 +7,7 @@ export const NASHA_SNAPSHOT_ENUM = 'dedicated.storage.SnapshotEnum';
 export const NASHA_SYNC_ENUM = 'dedicated.storage.SyncEnum';
 export const NASHA_TITLE = 'NAS-HA';
 export const NASHA_USE_SIZE_NAME = 'size';
+export const NASHA_USE_USED_BY_SNAPSHOTS_NAME = 'usedbysnapshots';
 
 export const NASHA_DEFAULT_ZFS_OPTIONS = {
   atime: 'off',

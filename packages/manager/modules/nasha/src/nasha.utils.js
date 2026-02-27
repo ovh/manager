@@ -6,6 +6,7 @@ import {
   NASHA_SNAPSHOT_ENUM,
   NASHA_SYNC_ENUM,
   NASHA_USE_SIZE_NAME,
+  NASHA_USE_USED_BY_SNAPSHOTS_NAME,
 } from './nasha.constants';
 
 /*
@@ -35,11 +36,32 @@ const prepareUse = (use, $translate) =>
     {},
   );
 
-export const prepareNasha = ({ use, ...nasha }, $translate) => {
+export const prepareNasha = (
+  { totalUsedBySnapshots, use, ...nasha },
+  $translate,
+) => {
   const useSize = use[NASHA_USE_SIZE_NAME];
+
+  /* The back-end returns a wrong value: 0. So we have to cumulate the partitions' usedbysnapshots &
+    to cumulate usedbysnapshots + used.value
+  */
+  const currUse = use?.[NASHA_USE_USED_BY_SNAPSHOTS_NAME]?.value
+    ? use
+    : {
+        ...use,
+        [NASHA_USE_USED_BY_SNAPSHOTS_NAME]: {
+          ...use[[NASHA_USE_USED_BY_SNAPSHOTS_NAME]],
+          value: totalUsedBySnapshots,
+        },
+        used: {
+          ...use.used,
+          value: (use.used.value - totalUsedBySnapshots).toFixed(2),
+        },
+      };
+
   return {
     ...nasha,
-    use: prepareUse(use, $translate),
+    use: prepareUse(currUse, $translate),
     localeDatacenter: $translate.instant(
       `nasha_datacenter_${nasha.datacenter.toLowerCase()}`,
     ),

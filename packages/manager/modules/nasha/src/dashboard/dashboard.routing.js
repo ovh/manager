@@ -52,24 +52,40 @@ export default /* @ngInject */ ($stateProvider) => {
         OvhApiDedicatedNasha,
         serviceName,
         prepareNasha,
+        partitions,
       ) => {
+        /* The back-end returns a wrong value: 0. So we have to cumulate the partitions' usedbysnapshots &
+          to cumulate usedbysnapshots + used.value
+        */
+        const totalUsedBySnapshots = partitions.error
+          ? 0
+          : partitions.reduce(
+              (
+                sum,
+                {
+                  use: {
+                    usedbysnapshots: { value },
+                  },
+                },
+              ) => sum + value,
+              0,
+            );
+
         const aapi = OvhApiDedicatedNasha.Aapi();
         aapi.resetCache();
-        return aapi.get({ serviceName }).$promise.then(prepareNasha);
+        return aapi.get({ serviceName }).$promise.then((resp) =>
+          prepareNasha({
+            ...resp,
+            totalUsedBySnapshots: Number(totalUsedBySnapshots.toFixed(2)),
+          }),
+        );
       },
       nashaApiUrl: /* @ngInject */ (baseApiUrl, serviceName) =>
         `${baseApiUrl}/${serviceName}`,
-      partitionAllocatedSize: /* @ngInject */ (iceberg, nashaApiUrl) =>
-        iceberg(`${nashaApiUrl}/partition`)
-          .query()
-          .expand('CachedObjectList-Pages')
-          .execute()
-          .$promise.then(({ data }) =>
-            data.reduce(
-              (totalSize, partition) => totalSize + partition.size,
-              0,
-            ),
-          ),
+      partitionAllocatedSize: /* @ngInject */ (partitions) =>
+        partitions?.error
+          ? 0
+          : partitions.reduce((totalSize, { size }) => totalSize + size, 0),
       canCreatePartitions: /* @ngInject */ (partitionAllocatedSize, nasha) =>
         partitionAllocatedSize <= nasha.zpoolSize - SIZE_MIN,
       reload: /* @ngInject */ ($state, goBack) => ({ success, error } = {}) =>
@@ -104,6 +120,18 @@ export default /* @ngInject */ ($stateProvider) => {
         isNashaLegacyService,
       ) => {
         return isNashaLegacyServicesPeriod && isNashaLegacyService;
+      },
+      partitions: /* @ngInject */ (
+        serviceName,
+        preparePartition,
+        OvhApiDedicatedNashaAapi,
+      ) => {
+        OvhApiDedicatedNashaAapi.resetCache();
+        return OvhApiDedicatedNashaAapi.partitions({
+          serviceName,
+        })
+          .$promise.then((partitions) => partitions.map(preparePartition))
+          .catch((error) => ({ error: { ...error, partitions: [] } }));
       },
     },
     atInternet: {

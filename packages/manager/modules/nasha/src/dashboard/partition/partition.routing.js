@@ -62,16 +62,6 @@ export default /* @ngInject */ ($stateProvider) => {
 
         return partition;
       },
-      partitions: /* @ngInject */ (
-        serviceName,
-        preparePartition,
-        OvhApiDedicatedNashaAapi,
-      ) => {
-        OvhApiDedicatedNashaAapi.resetCache();
-        return OvhApiDedicatedNashaAapi.partitions({
-          serviceName,
-        }).$promise.then((partitions) => partitions.map(preparePartition));
-      },
       partitionApiUrl: /* @ngInject */ (nashaApiUrl, partitionName) =>
         `${nashaApiUrl}/partition/${partitionName}`,
       partitionName: /* @ngInject */ ($transition$) =>
