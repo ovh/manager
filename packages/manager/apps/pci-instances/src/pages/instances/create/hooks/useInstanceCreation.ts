@@ -274,7 +274,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
     const network = privateNetworks?.find(({ value }) => subnetId === value);
 
     const gatewayPrice =
-      !gatewayAvailability?.isDisabled && gatewayConfigurations
+      !gatewayAvailability?.isDisabled &&
+      gatewayConfigurations &&
+      willGatewayBeAttached
         ? gatewayConfigurations.price
         : null;
 
