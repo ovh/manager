@@ -1,0 +1,14 @@
+<oui-modal
+    data-loading="$ctrl.onLoad"
+    data-on-dismiss="$ctrl.goToReplications()"
+    data-heading="{{:: 'netapp_replications_modal_title_approuve' | translate }}"
+    data-primary-label="{{'netapp_replications_modal_primary_label_approuve' | translate}}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="$ctrl.isPrimaryDisabled"
+    data-secondary-label="{{'netapp_replications_modal_secondary_label' | translate}}"
+    data-secondary-action="$ctrl.goToReplications()"
+>
+    <p
+        data-translate="{{ $ctrl.isPrimaryDisabled ? 'netapp_replications_modal_description_no_replication_selected' : 'netapp_replications_modal_description_approuve' }}"
+    ></p>
+</oui-modal>

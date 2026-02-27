@@ -39,8 +39,9 @@ export default /* @ngInject */ ($stateProvider) => {
       goToVolumes: /* @ngInject */ ($state, Alerter, storage) => (
         message = false,
         type = 'success',
+        forceReload = false,
       ) => {
-        const reload = message && type === 'success';
+        const reload = forceReload || (message && type === 'success');
         const promise = $state.go(
           'netapp.dashboard.volumes',
           {
@@ -169,6 +170,17 @@ export default /* @ngInject */ ($stateProvider) => {
         $translate.instant('netapp_volumes_breadcrumb'),
       totalVolumesStorage: /* @ngInject */ (volumes) =>
         volumes.reduce((sum, { size }) => sum + size, 0),
+      goToCreateReplications: /* @ngInject */ ($state) => () =>
+        $state.go('netapp.dashboard.volumes.create-replications'),
+      replicationsAvaibleServices: /* @ngInject */ ($http, serviceName) =>
+        $http
+          .get(
+            `/storage/netapp/${serviceName}/shareReplicationServicesCompatibility?compatibleOnly=true`,
+          )
+          .then(({ data = [] }) => data)
+          .catch(() => []),
+      hasAvailableReplicationsServices: /* @ngInject */ (replicationsAvaibleServices) =>
+        !!replicationsAvaibleServices.length
     },
     atInternet: {
       ignore: true,

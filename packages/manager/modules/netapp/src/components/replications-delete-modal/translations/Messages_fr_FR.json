@@ -1,0 +1,15 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Aucune réplication sélectionnée. Merci d'en sélectionner une.",
+  "netapp_replications_modal_delete_title_delete": "Supprimer la réplication",
+  "netapp_replications_modal_delete_title_cancel": "Annuler la réplication",
+  "netapp_replications_modal_delete_description_pending": "Vous allez annuler cette demande de réplication sans l'accepter. Êtes-vous sûr de vouloir continuer ?",
+  "netapp_replications_modal_delete_description_completed": "Cette action supprimera la ligne du tableau et gardera les volumes créés pendant le processus de réplication (source et destination). Êtes-vous sûr de vouloir continuer ?",
+  "netapp_replications_modal_delete_description_accepted": "Attention : en annulant cette réplication, vous allez stopper la synchronisation et supprimer le volume de destination. Êtes-vous sûr de vouloir continuer ?",
+  "netapp_replications_modal_delete_description_delete": "Êtes-vous sûr de vouloir supprimer cette réplication ?",
+  "netapp_replications_modal_delete_primary_label_confirm": "Confirmer",
+  "netapp_replications_modal_delete_secondary_label": "Fermer",
+  "netapp_replications_delete_success": "La réplication du volume {{ sourceShareID }} a été supprimée avec succès.",
+  "netapp_replications_cancel_success": "La réplication du volume {{ sourceShareID }} a été annulée avec succès.",
+  "netapp_replications_delete_error": "La suppression de la réplication du volume {{ sourceShareID }} a échoué.",
+  "netapp_replications_cancel_error": "L'annulation' de la réplication du volume {{ sourceShareID }} a échoué."
+}

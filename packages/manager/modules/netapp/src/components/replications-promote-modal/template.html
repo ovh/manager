@@ -1,0 +1,22 @@
+<oui-modal
+    data-loading="$ctrl.onLoad"
+    data-type="warning"
+    data-on-dismiss="$ctrl.goToReplications()"
+    data-heading="{{:: 'netapp_replications_modal_title_promote' | translate }}"
+    data-primary-label="{{'netapp_replications_modal_primary_label_promote' | translate}}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="$ctrl.isPrimaryDisabled"
+    data-secondary-label="{{'netapp_replications_modal_secondary_label' | translate}}"
+    data-secondary-action="$ctrl.goToReplications()"
+>
+    <p
+        data-ng-if="$ctrl.isPrimaryDisabled"
+        data-translate="netapp_replications_modal_description_no_replication_selected"
+    ></p>
+    <div data-ng-if="!$ctrl.isPrimaryDisabled">
+        <p data-translate="netapp_replications_modal_description_promote"></p>
+        <oui-message data-type="warning">
+            <p data-translate="netapp_replications_modal_warning_promote"></p>
+        </oui-message>
+    </div>
+</oui-modal>
