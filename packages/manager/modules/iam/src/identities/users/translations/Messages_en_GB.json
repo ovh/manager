@@ -58,5 +58,10 @@
   "pagination_display": "Show",
   "user_modal_confirm": "Confirm",
   "user_modal_cancel": "Cancel",
-  "user_users_manage_tokens": "Manage tokens"
+  "user_users_manage_tokens": "Manage tokens",
+  "user_users_main_group": "Main group",
+  "user_users_other_groups": "Additional groups",
+  "user_main_group_helper_text": "Group used for display in the user list",
+  "user_group_add_error_message": "An error occurred while adding the user <strong>{{login}}</strong> to the group <strong>{{group}}</strong> :",
+  "user_group_remove_error_message": "An error occurred while removing the user <strong>{{login}}</strong> from the group <strong>{{group}}</strong> :"
 }

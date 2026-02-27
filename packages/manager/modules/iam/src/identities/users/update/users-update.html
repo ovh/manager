@@ -79,7 +79,7 @@
                 <label
                     class="control-label"
                     for="group"
-                    data-translate="user_users_group"
+                    data-translate="user_users_main_group"
                 >
                 </label>
                 <select
@@ -89,6 +89,24 @@
                     required
                     data-ng-options="group as group for group in $ctrl.groups"
                     data-ng-model="$ctrl.user.group"
+                >
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label
+                    class="control-label"
+                    for="group"
+                    data-translate="user_users_other_groups"
+                >
+                </label>
+                <select
+                    class="form-control"
+                    id="otherGroups"
+                    name="otherGroups"
+                    multiple
+                    data-ng-options="group as group for group in $ctrl.groups"
+                    data-ng-model="$ctrl.userGroups"
                 >
                 </select>
             </div>

@@ -58,5 +58,10 @@
   "pagination_display": "Anzeigen",
   "user_modal_confirm": "Bestätigen",
   "user_modal_cancel": "Abbrechen",
-  "user_users_manage_tokens": "Token verwalten"
+  "user_users_manage_tokens": "Token verwalten",
+  "user_users_main_group": "Hauptgruppe",
+  "user_users_other_groups": "Zusätzliche Gruppen",
+  "user_main_group_helper_text": "Gruppe, die zur Anzeige in der Benutzliste verwendet wird",
+  "user_group_add_error_message": "Ein Fehler ist aufgetreten beim Hinzufügen des Benutzers <strong>{{login}}</strong> zur Gruppe <strong>{{group}}</strong> :",
+  "user_group_remove_error_message": "Ein Fehler ist aufgetreten beim Löschen des Benutzers <strong>{{login}}</strong> aus der Gruppe <strong>{{group}}</strong> :"
 }
