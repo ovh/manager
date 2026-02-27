@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Control, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { z } from 'zod';
 
 import {
   Button,
@@ -22,16 +21,14 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { DOMAIN_ORDER_URL, REGION } from '@/constants';
 import { AssociationType } from '@/data/types/product/website';
-import { websiteFormSchema } from '@/utils/formSchemas.utils';
-
-type FormData = z.infer<typeof websiteFormSchema>;
+import { WebsiteFormData } from '@/utils/formSchemas.utils';
 
 interface DomainAssociationProps {
-  control: Control<FormData, unknown, FormData>;
-  controlValues: FormData;
+  control: Control<WebsiteFormData, unknown, WebsiteFormData>;
+  controlValues: WebsiteFormData;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   isNextButtonVisible: boolean;
-  reset?: (values?: Partial<FormData>) => void;
+  reset?: (values?: Partial<WebsiteFormData>) => void;
   isAddingDomain?: boolean;
 }
 

@@ -7,6 +7,7 @@ import { render } from '@testing-library/react';
 import type { RenderResult } from '@testing-library/react';
 import i18n from 'i18next';
 import { I18nextProvider } from 'react-i18next';
+import { vi } from 'vitest';
 
 import { ShellContext, type ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
@@ -64,3 +65,5 @@ export const wrapper = ({ children }: { children: React.ReactNode }) => {
     </QueryClientProvider>
   );
 };
+
+export const wrapperWithI18n = wrapper;

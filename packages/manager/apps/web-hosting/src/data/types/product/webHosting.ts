@@ -221,6 +221,21 @@ export type PostWebHostingWebsitePayload = {
     ipLocation?: string;
     name?: string;
     path?: string;
+    // Advanced installation mode fields
+    adminConfiguration?: {
+      adminLogin?: string;
+      adminPassword?: string;
+      domain?: string;
+      installPath?: string | null;
+      language?: string;
+    } | null;
+    databaseConfiguration?: {
+      databaseName?: string;
+      password?: string;
+      port?: number;
+      server?: string;
+      user?: string;
+    } | null;
   };
 };
 
