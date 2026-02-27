@@ -206,6 +206,12 @@
             <span data-translate="hosting_tab_MODULE"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
+            href="{{ $ctrl.userStatisticsLink }}"
+            active="$ctrl.currentActiveLink() === $ctrl.userStatisticsLink"
+        >
+            <span data-translate="hosting_tab_USER_STATISTICS"></span>
+        </oui-header-tabs-item>
+        <oui-header-tabs-item
             data-ng-if="$ctrl.isOslToLdpFeatureAvailable"
             href="{{ $ctrl.userLogsLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.userLogsLink"
