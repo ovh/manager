@@ -432,6 +432,49 @@ function AccountDetailsForm({
                 </OdsFormField>
               )}
             />
+            {rules?.corporationType && (
+              <Controller
+                control={control}
+                name="corporationType"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField className="w-full">
+                    <OdsText
+                      preset="caption"
+                      aria-label={t('account_details_field_corporationType')}
+                    >
+                      <label htmlFor={name}>
+                        {t('account_details_field_corporationType')}
+                        {rules?.corporationType?.mandatory && ' *'}
+                      </label>
+                    </OdsText>
+                    {!isLoading && (
+                      <>
+                        <OdsSelect
+                          name={name}
+                          id={name}
+                          value={value}
+                          onOdsChange={onChange}
+                          onOdsBlur={onBlur}
+                          isDisabled={!rules}
+                          className="flex-1"
+                          key={`corporation_type_${rules?.corporationType.in?.join(
+                            '_',
+                          ) || 'empty'}`}
+                        >
+                          {rules?.corporationType.in?.map((type) => (
+                            <option key={type} value={type}>
+                              {t(
+                                `account_details_field_corporationType_${type}`,
+                              )}
+                            </option>
+                          ))}
+                        </OdsSelect>
+                      </>
+                    )}
+                  </OdsFormField>
+                )}
+              />
+            )}
             {rules?.companyNationalIdentificationNumber && (
               <Controller
                 control={control}
