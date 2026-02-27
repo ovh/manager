@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { useTranslation } from 'react-i18next';
-import { OdsSpinner, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+
+import { SPINNER_SIZE, Spinner, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+
 import { useVrackServicesRegion } from '@ovh-ux/manager-network-common';
-import { RegionSelector } from '@/components/RegionSelector/region-selector.component';
+
+import { RegionSelector } from '@/components/region-selector/RegionSelector.component';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
 
 export type RegionFormFieldProps = {
@@ -20,18 +23,18 @@ export const RegionFormField: React.FC<RegionFormFieldProps> = ({
 
   return (
     <>
-      <OdsText className="block mt-8 mb-4" preset={ODS_TEXT_PRESET.heading4}>
+      <Text className="mb-4 mt-8 block" preset={TEXT_PRESET.heading4}>
         {t('regionLabel')}
-      </OdsText>
-      <OdsText className="block mb-6" preset={ODS_TEXT_PRESET.paragraph}>
+      </Text>
+      <Text className="mb-6 block" preset={TEXT_PRESET.paragraph}>
         {t('regionDescription')}
-      </OdsText>
+      </Text>
       <div className="mb-5">
         {isRegionLoading ? (
-          <OdsSpinner size={ODS_SPINNER_SIZE.lg} />
+          <Spinner size={SPINNER_SIZE.lg} />
         ) : (
           <RegionSelector
-            regionList={data?.data?.map(({ name }) => name)}
+            regionList={data?.data?.map(({ name }) => name) || []}
             setSelectedRegion={setSelectedRegion}
             selectedRegion={selectedRegion}
           />

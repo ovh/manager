@@ -1,14 +1,18 @@
 import React from 'react';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useTranslation } from 'react-i18next';
+
 import { Navigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import { useVrackService } from '@ovh-ux/manager-network-common';
-import { OnboardingLayout, PageLayout } from '@ovh-ux/manager-react-components';
+import { BaseLayout, OnboardingLayout } from '@ovh-ux/muk';
+
 import onboardingImgSrc from '@/assets/onboarding-img.png';
-import { useNavigateToCreateSubnetPage } from '../subnets.hook';
-import { urls } from '@/routes/routes.constants';
-import { hasSubnet, isEditable } from '@/utils/vrack-services';
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { hasSubnet, isEditable } from '@/utils/vrack-services';
+
+import { useNavigateToCreateSubnetPage } from '../subnets.hook';
 
 export default function SubnetsOnboarding() {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.subnets);
@@ -17,20 +21,19 @@ export default function SubnetsOnboarding() {
   const navigateToCreateSubnetPage = useNavigateToCreateSubnetPage();
 
   if (hasSubnet(vs)) {
-    return <Navigate to={urls.subnetsListing.replace(':id', id)} />;
+    return <Navigate to={urls.subnetsListing.replace(':id', id || '')} />;
   }
 
   return (
-    <PageLayout>
+    <BaseLayout>
       <OnboardingLayout
-        moreInfoButtonLabel={t('createSubnetButtonLabel')}
-        onMoreInfoButtonClick={navigateToCreateSubnetPage}
-        moreInfoButtonIcon={ODS_ICON_NAME.plus}
-        isMoreInfoButtonDisabled={!isEditable(vs)}
+        orderButtonLabel={t('createSubnetButtonLabel')}
+        onOrderButtonClick={navigateToCreateSubnetPage}
+        isActionDisabled={!isEditable(vs)}
         title={t('subnetsOnboardingTitle')}
         description={t('subnetsOnboardingDescription')}
         img={{ src: onboardingImgSrc }}
       />
-    </PageLayout>
+    </BaseLayout>
   );
 }

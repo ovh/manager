@@ -1,5 +1,7 @@
 import { apiClient } from '@ovh-ux/manager-core-api';
-import { IAMResource } from '@/data/types';
+import type { ApiResponse } from '@ovh-ux/manager-core-api';
+
+import { IAMResource } from '@/data/types/IAMResource.type';
 
 export const getIamResourceQueryKey = (resourceURNList: string[]) => [
   `get/iam/resource/${resourceURNList.join(',')}`,
@@ -8,7 +10,9 @@ export const getIamResourceQueryKey = (resourceURNList: string[]) => [
 /**
  * Get the vRack Services
  */
-export const getIamResource = async (resourceURNList: string[]) => {
+export const getIamResource = async (
+  resourceURNList: string[],
+): Promise<ApiResponse<IAMResource[]>> => {
   const params = new URLSearchParams();
   resourceURNList.forEach((urn) => params.append('resourceURN', urn));
 

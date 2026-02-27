@@ -1,25 +1,39 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { useTranslation } from 'react-i18next';
+
 import {
-  useOvhTracking,
+  BUTTON_VARIANT,
+  Button,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Modal,
+  ModalBody,
+  ModalContent,
+  SPINNER_SIZE,
+  Spinner,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
+
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useUpdateVrackServices, useVrackService } from '@ovh-ux/manager-network-common';
+import {
   ButtonType,
   PageLocation,
   PageType,
-  TrackingClickParams,
+  useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
-import { Modal } from '@ovh-ux/manager-react-components';
-import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
-import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  useVrackService,
-  useUpdateVrackServices,
-} from '@ovh-ux/manager-network-common';
-import { ODS_MESSAGE_COLOR } from '@ovhcloud/ods-components';
-import { PageName } from '@/utils/tracking';
+import type { TrackingClickParams } from '@ovh-ux/manager-react-shell-client';
+
 import { MessagesContext } from '@/components/feedback-messages/Messages.context';
-import { getDisplayName } from '@/utils/vrack-services';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { PageName } from '@/utils/tracking';
+import { getDisplayName } from '@/utils/vrack-services';
 
 const sharedTrackingParams: TrackingClickParams = {
   location: PageLocation.popup,
@@ -33,28 +47,14 @@ export default function SubnetDeleteModal() {
     TRANSLATION_NAMESPACES.common,
   ]);
   const { id, cidr } = useParams();
-  const cidrToDelete = cidr.replace('_', '/');
+  const cidrToDelete = cidr?.replace('_', '/') || '';
   const { addSuccessMessage } = React.useContext(MessagesContext);
   const { trackPage, trackClick } = useOvhTracking();
   const navigate = useNavigate();
 
-  const onClose = () => {
-    trackClick({
-      ...sharedTrackingParams,
-      actionType: 'exit',
-      actions: ['delete_subnets', 'cancel'],
-    });
-    navigate('..');
-  };
-
   const { data: vs, isLoading } = useVrackService();
-  const {
-    deleteSubnet,
-    isPending,
-    updateError,
-    isError,
-  } = useUpdateVrackServices({
-    id,
+  const { deleteSubnet, isPending, updateError, isError } = useUpdateVrackServices({
+    id: id || '',
     onSuccess: () => {
       trackPage({
         pageType: PageType.bannerSuccess,
@@ -63,10 +63,10 @@ export default function SubnetDeleteModal() {
       navigate('..');
       addSuccessMessage(
         t('subnetDeleteSuccess', {
-          id: getDisplayName(vs),
+          id: getDisplayName(vs) || '',
           cidr: cidrToDelete,
         }),
-        { vrackServicesId: id },
+        { vrackServicesId: id || '' },
       );
     },
     onError: () => {
@@ -77,38 +77,90 @@ export default function SubnetDeleteModal() {
     },
   });
 
+  const onClose = () => {
+    trackClick({
+      ...sharedTrackingParams,
+      actionType: 'exit',
+      actions: ['delete_subnets', 'cancel'],
+    });
+    if (!isPending) {
+      navigate('..');
+    }
+  };
+
   return (
     <Modal
-      isOpen
-      heading={t('modalDeleteSubnetHeadline')}
-      onDismiss={onClose}
-      onSecondaryButtonClick={onClose}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          ...sharedTrackingParams,
-          actionType: 'action',
-          actions: ['delete_subnets', 'confirm'],
-        });
-        deleteSubnet({ vs, cidrToDelete });
-      }}
-      isPrimaryButtonLoading={isPending}
-      isLoading={isLoading}
+      open
+      closeOnEscape={!isPending}
+      closeOnInteractOutside={!isPending}
+      onOpenChange={onClose}
     >
-      <OdsText>{t('modalDeleteSubnetDescription')}</OdsText>
-      {isError && (
-        <OdsMessage
-          isDismissible={false}
-          className="block mb-8"
-          color={ODS_MESSAGE_COLOR.critical}
-        >
-          {t('modalError', {
-            error: updateError?.response?.data?.message,
-            ns: TRANSLATION_NAMESPACES.common,
-          })}
-        </OdsMessage>
-      )}
+      <ModalContent>
+        <ModalBody>
+          <div className="mb-4 flex items-center">
+            <Text className="mr-3 block flex-1" preset={TEXT_PRESET.heading4}>
+              {t('modalDeleteSubnetHeadline')}
+            </Text>
+          </div>
+          {isLoading && (
+            <div data-testid="spinner" className="my-5 flex justify-center">
+              <Spinner size={SPINNER_SIZE.md} inline-block></Spinner>
+            </div>
+          )}
+          {!isLoading && (
+            <>
+              <Text>{t('modalDeleteSubnetDescription')}</Text>
+              {isError && (
+                <Message dismissible={false} className="mb-8" color={MESSAGE_COLOR.critical}>
+                  <MessageIcon name="hexagon-exclamation" />
+                  <MessageBody>
+                    {t('modalError', {
+                      error: updateError?.response?.data?.message,
+                      ns: TRANSLATION_NAMESPACES.common,
+                    })}
+                  </MessageBody>
+                </Message>
+              )}
+            </>
+          )}
+          <div className="flex flex-wrap justify-end gap-4">
+            <Button
+              data-testid={'secondary-button'}
+              variant={BUTTON_VARIANT.ghost}
+              onClick={() => {
+                if (!isPending) {
+                  onClose();
+                }
+              }}
+              disabled={isPending}
+              className="mt-4"
+            >
+              {t('cancel', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+            <Button
+              data-testid={'primary-button'}
+              onClick={() => {
+                if (!isPending) {
+                  trackClick({
+                    ...sharedTrackingParams,
+                    actionType: 'action',
+                    actions: ['delete_subnets', 'confirm'],
+                  });
+                  if (vs) {
+                    deleteSubnet({ vs, cidrToDelete });
+                  }
+                }
+              }}
+              disabled={isPending}
+              loading={isPending}
+              variant={BUTTON_VARIANT.default}
+              className="mt-4"
+            >
+              {t('delete', { ns: NAMESPACES.ACTIONS })}
+            </Button>
+          </div>
+        </ModalBody>
+      </ModalContent>
     </Modal>
   );
 }
