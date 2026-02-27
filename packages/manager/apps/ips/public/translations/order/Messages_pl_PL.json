@@ -47,5 +47,16 @@
   "new_prefix_ipv6_card_description": "Uzyskaj nowy prefiks IPv6, którego będziesz używał w usługach vRack.",
   "ipv6_limit_reached_error": "Maksymalna liczba dodatkowych bloków IPv6 została już osiągnięta",
   "ipv6_region_3_blocks_limit_reached_error": "W wybranym regionie została już osiągnięta maksymalna liczba 3 dodatkowych bloków IPv6. Wybierz inny region.",
-  "ipv6_region_already_used_error": "Dysponujesz już blokiem wybranego regionu w ramach usługi vRack. Wybierz inny region."
+  "ipv6_region_already_used_error": "Dysponujesz już blokiem wybranego regionu w ramach usługi vRack. Wybierz inny region.",
+  "vrack_bandwidth_section_title": "Wybierz publiczną przepustowość",
+  "vrack_bandwidth_section_description": "Podczas przypisywania dodatkowego adresu IP do prywatnej sieci vRack, publiczna przepustowość musi być aktywna.",
+  "ap_bandwidth_limit_tooltip_info": "Dostępność przepustowości może być ograniczona w regionach Azji i Pacyfiku.",
+  "ip_order_success_message": "Twoje zamówienie na dodatkowy adres IP rozpoczęło się w nowej karcie. Proszę je dokończyć, aby sfinalizować zakupu. Jeśli nowa karta się nie otworzy, <Link>kliknij tutaj.</Link>",
+  "upgrade_bandwidth_order_success_message": "Twoje zamówienie na przepustowość rozpoczęło się w nowej karcie. Proszę je dokończyć, aby sfinalizować zakupu. Jeśli nowa karta się nie otworzy, <Link>kliknij tutaj.</Link>",
+  "bandwidth_option_card_tooltip": "Koszt proporcjonalny dotyczy pozostałych dni bieżącego cyklu rozliczeniowego, a pełna cena zaczyna się w następnym cyklu rozliczeniowym.",
+  "vrack_bandwidth_double_order_info_message": "Zamówienie na publiczną przepustowość oraz zamówienie na dodatkowy adres IP są wymagane, jeśli masz już aktywną publiczną przepustowość na swoim vRack. Jeśli nie masz jeszcze aktywnej publicznej przepustowości, potrzebne jest tylko jedno zamówienie.",
+  "upgrade_bandwidth_order_error_message": "Wystąpił błąd podczas zamawiania publicznej przepustowości. Spróbuj ponownie później.",
+  "vrack_bandwidth_section_description_1": "Podczas przydzielania dodatkowego adresu IP do sieci vRack, pasmo publiczne dotyczy ruchu między OVHcloud a Internetem.",
+  "vrack_bandwidth_section_description_2": "Wybrane pasmo publiczne dotyczy sieci vRack w danym regionie i jest dzielone między wszystkie dodatkowe adresy IP w tej lokalizacji, które są routowane do tej sieci.",
+  "vrack_bandwidth_section_description_3": "Proszę wybrać odpowiedni plan do swoich potrzeb (może być później zaktualizowany)."
 }

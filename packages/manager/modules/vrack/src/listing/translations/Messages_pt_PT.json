@@ -3,5 +3,7 @@
   "vrack_listing_columns_header_serviceName": "Serviço",
   "vrack_listing_columns_header_description": "Descrição",
   "vrack_listing_columns_header_name": "Nome",
-  "vrack_listing_columns_header_state": "Estado"
+  "vrack_listing_columns_header_state": "Estado",
+  "vrack_listing_columns_header_publicIpBandwidth": "Endereço IP público e largura de banda",
+  "vrack_listing_manage": "Gerir"
 }

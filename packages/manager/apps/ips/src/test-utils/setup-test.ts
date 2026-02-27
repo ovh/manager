@@ -1,6 +1,9 @@
 import { SetupServer, setupServer } from 'msw/node';
 import { vi } from 'vitest';
-import { toMswHandlers, getAuthenticationMocks } from '@ovh-ux/manager-core-test-utils';
+import {
+  toMswHandlers,
+  getAuthenticationMocks,
+} from '@ovh-ux/manager-core-test-utils';
 import '@testing-library/jest-dom';
 import 'element-internals-polyfill';
 
@@ -13,9 +16,8 @@ window.ResizeObserver =
   }));
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
   var server: SetupServer;
-  // eslint-disable-next-line vars-on-top, no-var, @typescript-eslint/naming-convention
+
   var __VERSION__: string;
 }
 

@@ -20,6 +20,7 @@ export default {
     customizeColumnsMap: '<?',
     isDeleteOptionsAvailable: '<',
     guideLinks: '<',
+    isNetworkVrackAvailable: '<',
   },
   template,
   controller,

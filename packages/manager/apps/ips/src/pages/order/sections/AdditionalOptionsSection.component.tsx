@@ -17,12 +17,12 @@ import { PriceDescription } from '@/components/PriceDescription/PriceDescription
 import { OrderSection } from '../../../components/OrderSection/OrderSection.component';
 import { Ipv6Options } from '../order.constant';
 import { OrderContext } from '../order.context';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const AdditionalOptionsSection: React.FC = () => {
-  const { t } = useTranslation('order');
-  const { selectedOptions, setSelectedOptions } = React.useContext(
-    OrderContext,
-  );
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
+  const { selectedOptions, setSelectedOptions } =
+    React.useContext(OrderContext);
   const { trackClick } = useOvhTracking();
 
   return (

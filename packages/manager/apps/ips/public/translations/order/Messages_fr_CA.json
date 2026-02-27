@@ -47,5 +47,15 @@
   "new_prefix_ipv6_card_description": "Obtenez votre nouveau préfixe IPv6 à utiliser dans les services vRack.",
   "ipv6_limit_reached_error": "Le nombre maximum de blocs IPv6 supplémentaires a déjà été atteint",
   "ipv6_region_3_blocks_limit_reached_error": "Le nombre maximum de 3 blocs IPv6 supplémentaires a déjà été atteint dans la région sélectionnée. Veuillez choisir une autre région.",
-  "ipv6_region_already_used_error": "Vous disposez déjà d'un bloc de la région sélectionnée dans votre vRack. Veuillez choisir une autre région."
+  "ipv6_region_already_used_error": "Vous disposez déjà d'un bloc de la région sélectionnée dans votre vRack. Veuillez choisir une autre région.",
+  "vrack_bandwidth_section_title": "Sélectionner une bande passante publique",
+  "vrack_bandwidth_section_description_1": "Lors de l’attribution d’une adresse IP supplémentaire à un réseau vRack, la bande passante publique s’applique au trafic entre OVHcloud et Internet.",
+  "vrack_bandwidth_section_description_2": "La bande passante publique sélectionnée s’applique à un réseau vRack dans la région donnée et est partagée entre toutes les adresses IP supplémentaires de cet emplacement routées vers ce réseau.",
+  "vrack_bandwidth_section_description_3": "Veuillez sélectionner le forfait applicable à vos besoins (il peut être mis à niveau ultérieurement).",
+  "ap_bandwidth_limit_tooltip_info": "La disponibilité de la bande passante peut être limitée dans les régions Asie-Pacifique.",
+  "ip_order_success_message": "Votre commande d'IP additionnelle a commencé dans un nouvel onglet. Veuillez la terminer pour finaliser votre achat. Si le nouvel onglet ne s'ouvre pas, <Link>cliquez ici.</Link>",
+  "upgrade_bandwidth_order_success_message": "Votre commande de bande passante a commencé dans un nouvel onglet. Veuillez la terminer pour finaliser votre achat. Si le nouvel onglet ne s'ouvre pas, <Link>cliquez ici.</Link>",
+  "bandwidth_option_card_tooltip": "Un coût au prorata s'applique pour les jours restants de votre cycle de facturation actuel et la tarification complète commence le cycle de facturation suivant.",
+  "vrack_bandwidth_double_order_info_message": "Une commande pour la bande passante publique et une commande pour l'IP additionnelle, sont nécessaires si vous avez déjà une bande passante publique activée sur votre vRack. Si vous n'avez pas encore de bande passante publique activée, une seule commande est nécessaire.",
+  "upgrade_bandwidth_order_error_message": "Une erreur est survenue lors de la commande de la bande passante publique. Veuillez réessayer ultérieurement."
 }
