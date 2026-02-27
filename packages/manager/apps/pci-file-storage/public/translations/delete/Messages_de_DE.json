@@ -1,0 +1,14 @@
+{
+  "title": "Ihren Share löschen",
+  "description": "Sie werden den Share <strong>{{name}}</strong> dauerhaft löschen. Alle Daten zum Share gehen verloren.",
+  "input": {
+    "label": "Geben Sie \"DELETE\" in das untenstehende Feld ein, um zu bestätigen",
+    "error": "Bitte füllen Sie dieses Feld aus."
+  },
+  "submitButton": "Den Share löschen",
+  "message": {
+    "success": "Der Share {{shareName}} wird gelöscht",
+    "error": "Beim Löschen des Shares ist ein Fehler aufgetreten: {{errorMessage}}"
+  },
+  "cannotDelete": "Dieser Share kann nicht gelöscht werden."
+}

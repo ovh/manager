@@ -1,0 +1,98 @@
+{
+  "name": {
+    "title": "Share name",
+    "label": "Choose a name for your share file",
+    "info": "Must only contain numbers, letters, underscores, dashes or dots and must not exceed 255 characters.",
+    "error": {
+      "too_small": "The share name cannot be empty. Please enter a name.",
+      "too_big": "Invalid name format",
+      "invalid_format": "Invalid name format"
+    }
+  },
+  "localisation": {
+    "title": "Select a location",
+    "deploymentMode": {
+      "title": "Filter a deployment mode",
+      "modes": {
+        "region": {
+          "label": "1-AZ Region",
+          "description": "Resilient and cost-effective deployment in 1 zone."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Deployment as close as possible for low latency."
+        },
+        "region-3-az": {
+          "label": "3-AZ Region",
+          "description": "High resilience and high availability deployment across 3 zones."
+        }
+      }
+    },
+    "macroRegion": {
+      "title": "Choose a location"
+    },
+    "continents": {
+      "label": "Select a geographical area",
+      "options": {
+        "all": "All",
+        "asia_oceania": "Asia-Pacific",
+        "europe": "Europe",
+        "north_africa": "North Africa",
+        "north_america": "North America"
+      }
+    },
+    "microRegion": {
+      "title": "Select a datacentre",
+      "label": "Choose a datacentre"
+    },
+    "availabilityZone": {
+      "title": "Choose your availability zone",
+      "informations": "A default availability zone has been selected. You have the option to customize this choice.",
+      "choice": {
+        "company": "Choose for me",
+        "user": "I choose my availability zone"
+      }
+    }
+  },
+  "share": {
+    "title": "Share performance mode",
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS and {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+  },
+  "shareSize": {
+    "title": "Share size",
+    "description": "5% of the storage capacity is dedicated to snapshot storage",
+    "label": "Linear performance allocation ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "error": {
+      "min_value": "The share size is below the minimum allowed for this offer.",
+      "max_value": "The share size exceeds the maximum allowed for this offer.",
+      "invalid_type": "This field must be filled in"
+    }
+  },
+  "network": {
+    "title": "Private network",
+    "description": "Select the private network you want to link your share to",
+    "label": "Select an existing private network",
+    "reloadNetworks": "Reload private networks",
+    "empty": "Sorry, but you do not have a private network for this region",
+    "createPrivateNetwork": "Create a private network",
+    "subnet": {
+      "label": "Select an existing private subnet",
+      "empty": "You do not have a private subnet for this network"
+    }
+  },
+  "estimation": {
+    "title": "Estimation",
+    "amount": "Estimated amount: <b>{{amount}}</b>"
+  },
+  "submit": {
+    "error": "An error has occurred adding the share: {{error}}",
+    "success": "The share {{name}} is being created"
+  },
+  "title": "Create a share",
+  "description": "Create a share available in your Public Cloud project. Need more information about Public Cloud File Storage? <0>Check our documentation</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
+}

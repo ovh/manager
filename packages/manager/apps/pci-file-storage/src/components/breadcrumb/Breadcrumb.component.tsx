@@ -20,17 +20,21 @@ export const Breadcrumb: FC<TBreadcrumbProps> = ({ items = [] }) => {
 
   const project = useGetProject();
 
+  const projectPart = project
+    ? {
+        href: project?.url,
+        label: project?.name ?? '',
+      }
+    : null;
+
   const breadcrumbItems: TBreadcrumbItem[] = [
-    {
-      href: project.url,
-      label: project.name,
-    },
+    projectPart,
     {
       href: backHref,
       label: 'File Storage',
     },
     ...items,
-  ];
+  ].filter((part) => !!part);
 
   return (
     <OdsBreadcrumb>

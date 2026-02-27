@@ -1,0 +1,98 @@
+{
+  "title": "Créer un share",
+  "description": "Créez un share disponible dans votre projet Public Cloud.  Besoin de plus d’informations au sujet de Public Cloud File Storage ? <0>Consultez notre documentation</0>",
+  "name": {
+    "title": "Nom du share",
+    "label": "Choisissez un nom pour votre share",
+    "info": "Doit uniquement contenir des nombres, lettres, underscores, tirets ou points et ne pas dépasser 255 caractères.",
+    "error": {
+      "too_small": "Le nom du share ne peut pas être vide. Veuillez entrer un nom.",
+      "too_big": "Format de nom invalide",
+      "invalid_format": "Format de nom invalide"
+    }
+  },
+  "localisation": {
+    "title": "Sélectionnez une localisation",
+    "deploymentMode": {
+      "title": "Filtrez un mode de déploiement",
+      "modes": {
+        "region": {
+          "label": "Région 1-AZ",
+          "description": "Déploiement résilient et économique sur 1 zone."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Déploiement au plus près pour une faible latence."
+        },
+        "region-3-az": {
+          "label": "Région 3-AZ",
+          "description": "Déploiement haute résilience et haute disponibilité sur 3 zones."
+        }
+      }
+    },
+    "macroRegion": {
+      "title": "Choisissez une localisation"
+    },
+    "continents": {
+      "label": "Sélectionner une zone géographique",
+      "options": {
+        "all": "Tous",
+        "asia_oceania": "Asie-Pacifique",
+        "europe": "Europe",
+        "north_africa": "Afrique du Nord",
+        "north_america": "Amérique du Nord"
+      }
+    },
+    "microRegion": {
+      "title": "Sélectionnez un datacentre",
+      "label": "Choisissez un datacentre"
+    },
+    "availabilityZone": {
+      "title": "Choisissez votre zone de disponibilité",
+      "informations": "Une zone de disponibilité par défaut a été sélectionnée. Vous avez la possibilité de personnaliser ce choix.",
+      "choice": {
+        "company": "Choisir pour moi",
+        "user": "Je choisis ma zone de disponibilité"
+      }
+    }
+  },
+  "share": {
+    "title": "Mode de performance du share",
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS et {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+  },
+  "shareSize": {
+    "title": "Taille du share",
+    "description": "5 % de la capacité de stockage est dédiée au stockage des snapshots",
+    "label": "Allocation de performance linéaire ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Performance provisionnée :</strong> Jusqu'à {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "error": {
+      "min_value": "La taille du share est inférieure au minimum autorisé pour cette offre.",
+      "max_value": "La taille du share dépasse le maximum autorisé pour cette offre.",
+      "invalid_type": "Ce champ doit être rempli"
+    }
+  },
+  "network": {
+    "title": "Réseau privé",
+    "description": "Sélectionnez le réseau privé auquel vous souhaitez lier votre share",
+    "label": "Sélectionner un réseau privé existant",
+    "reloadNetworks": "Recharger les réseaux privés",
+    "empty": "Désolé mais vous n'avez pas de réseau privé pour cette région",
+    "createPrivateNetwork": "Créer un réseau privé",
+    "subnet": {
+      "label": "Sélectionner un sous-réseau privé existant",
+      "empty": "Vous n'avez pas de sous-réseau privé pour ce réseau"
+    }
+  },
+  "estimation": {
+    "title": "Estimation",
+    "amount": "Montant estimé : <b>{{amount}}</b>"
+  },
+  "submit": {
+    "error": "Une erreur est survenue lors de l'ajout du share : {{error}}",
+    "success": "Le share {{name}} est en cours de création"
+  },
+  "units": {
+    "giga_octet": "Gio",
+    "mega_octet": "Mio"
+  }
+}

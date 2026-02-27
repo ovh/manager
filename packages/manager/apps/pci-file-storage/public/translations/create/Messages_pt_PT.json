@@ -1,0 +1,98 @@
+{
+  "name": {
+    "title": "Nome do share",
+    "label": "Escolha um nome para o seu share",
+    "info": "Deve conter apenas números, letras, underscores, hífens ou pontos e não deve exceder 255 caracteres.",
+    "error": {
+      "too_small": "O nome do share não pode estar vazio. Por favor, insira um nome.",
+      "too_big": "Formato de nome inválido",
+      "invalid_format": "Formato de nome inválido"
+    }
+  },
+  "localisation": {
+    "title": "Selecione uma localização",
+    "deploymentMode": {
+      "title": "Filtre um modo de implantação",
+      "modes": {
+        "region": {
+          "label": "Região 1-AZ",
+          "description": "Implantação resiliente e económica em 1 zona."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Implantação o mais próxima possível para uma baixa latência."
+        },
+        "region-3-az": {
+          "label": "Região 3-AZ",
+          "description": "Implantação de alta resiliência e alta disponibilidade em 3 zonas."
+        }
+      }
+    },
+    "macroRegion": {
+      "title": "Escolha uma localização"
+    },
+    "continents": {
+      "label": "Selecionar uma zona geográfica",
+      "options": {
+        "all": "Todos",
+        "asia_oceania": "Ásia-Pacífico",
+        "europe": "Europe",
+        "north_africa": "África do Norte",
+        "north_america": "América do Norte"
+      }
+    },
+    "microRegion": {
+      "title": "Selecione um datacenter",
+      "label": "Escolha um datacenter"
+    },
+    "availabilityZone": {
+      "title": "Escolha a sua zona de disponibilidade",
+      "informations": "Uma zona de disponibilidade por defeito foi selecionada. Você tem a possibilidade de personalizar esta escolha.",
+      "choice": {
+        "company": "Escolher por mim",
+        "user": "Eu escolho a minha zona de disponibilidade"
+      }
+    }
+  },
+  "share": {
+    "title": "Modo de desempenho do share",
+    "description": "Mín. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+  },
+  "shareSize": {
+    "title": "Tamanho do share",
+    "description": "5 % da capacidade de armazenamento é dedicada ao armazenamento de snapshots",
+    "label": "Alocação de desempenho linear ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Desempenho provisionado :</strong> Até {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "error": {
+      "min_value": "O tamanho do share é inferior ao mínimo permitido para esta oferta.",
+      "max_value": "O tamanho do share excede o máximo permitido para esta oferta.",
+      "invalid_type": "Este campo deve ser preenchido"
+    }
+  },
+  "network": {
+    "title": "Rede Privada",
+    "description": "Selecione a rede privada à qual deseja vincular o seu share",
+    "label": "Selecionar uma rede privada existente",
+    "reloadNetworks": "Recarregar redes privadas",
+    "empty": "Desculpe, mas você não tem uma rede privada para esta região",
+    "createPrivateNetwork": "Criar uma rede privada",
+    "subnet": {
+      "label": "Selecionar uma sub-rede privada existente",
+      "empty": "Você não tem uma sub-rede privada para esta rede"
+    }
+  },
+  "estimation": {
+    "title": "Estimativa",
+    "amount": "Valor estimado: <b>{{amount}}</b>"
+  },
+  "submit": {
+    "error": "Ocorreu um erro ao adicionar o share: {{error}}",
+    "success": "O share {{name}} está a ser criado"
+  },
+  "title": "Criar um share",
+  "description": "Crie um share disponível no seu projeto de Nuvem Pública. Precisa de mais informações sobre o Armazenamento de Arquivos na Nuvem Pública? <0>Consulte a nossa documentação</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "name": {
+    "title": "Nazwa share",
+    "label": "Wybierz nazwę dla swojego share",
+    "info": "Musi zawierać tylko cyfry, litery, podkreślenia, myślniki lub kropki i nie może przekraczać 255 znaków.",
+    "error": {
+      "too_small": "Nazwa share nie może być pusta. Proszę wpisać nazwę.",
+      "too_big": "Nieprawidłowy format nazwy",
+      "invalid_format": "Nieprawidłowy format nazwy"
+    }
+  },
+  "localisation": {
+    "title": "Wybierz lokalizację",
+    "deploymentMode": {
+      "title": "Filtruj tryb wdrożenia",
+      "modes": {
+        "region": {
+          "label": "Region 1-AZ",
+          "description": "Wdrożenie odporne i ekonomiczne w 1 strefie."
+        },
+        "localzone": {
+          "label": "Local Zone",
+          "description": "Wdrożenie jak najbliżej dla niskiej latencji."
+        },
+        "region-3-az": {
+          "label": "Region 3-AZ",
+          "description": "Wdrożenie o wysokiej odporności i wysokiej dostępności w 3 strefach."
+        }
+      }
+    },
+    "macroRegion": {
+      "title": "Wybierz lokalizację"
+    },
+    "continents": {
+      "label": "Wybierz strefę geograficzną",
+      "options": {
+        "all": "Wszystkie",
+        "asia_oceania": "Azja-Pacyfik",
+        "europe": "Europa",
+        "north_africa": "Afryka Północna",
+        "north_america": "Ameryka Północna"
+      }
+    },
+    "microRegion": {
+      "title": "Wybierz centrum danych",
+      "label": "Wybierz centrum danych"
+    },
+    "availabilityZone": {
+      "title": "Wybierz swoją strefę dostępności",
+      "informations": "Wybrano domyślną strefę dostępności. Masz możliwość dostosowania tego wyboru.",
+      "choice": {
+        "company": "Wybierz za mnie",
+        "user": "Wybieram swoją strefę dostępności"
+      }
+    }
+  },
+  "share": {
+    "title": "Tryb wydajności share",
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS i {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+  },
+  "shareSize": {
+    "title": "Rozmiar share",
+    "description": "5 % pojemności pamięci masowej jest przeznaczone na przechowywanie migawkek",
+    "label": "Przydział wydajności liniowej ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Przydzielona wydajność :</strong> Do {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "error": {
+      "min_value": "Rozmiar share jest mniejszy niż minimalny dozwolony dla tej oferty.",
+      "max_value": "Rozmiar share przekracza maksymalny dozwolony dla tej oferty.",
+      "invalid_type": "To pole musi być wypełnione"
+    }
+  },
+  "network": {
+    "title": "Sieć prywatna",
+    "description": "Wybierz sieć prywatną, do której chcesz podłączyć swój share",
+    "label": "Wybierz istniejącą prywatną sieć",
+    "reloadNetworks": "Odśwież sieci prywatne",
+    "empty": "Przykro mi, ale nie masz prywatnej sieci w tym regionie",
+    "createPrivateNetwork": "Utwórz sieć prywatną",
+    "subnet": {
+      "label": "Wybierz istniejący prywatny podsieć",
+      "empty": "Nie masz prywatnej podsieci dla tej sieci"
+    }
+  },
+  "estimation": {
+    "title": "Szacunek",
+    "amount": "Szacunkowa kwota: <b>{{amount}}</b>"
+  },
+  "submit": {
+    "error": "Wystąpił błąd podczas dodawania share: {{error}}",
+    "success": "Share {{name}} jest w trakcie tworzenia"
+  },
+  "title": "Utwórz share",
+  "description": "Utwórz share dostępne w Twoim projekcie Public Cloud. Potrzebujesz więcej informacji na temat Public Cloud File Storage? <0>Sprawdź naszą dokumentację</0>",
+  "units": {
+    "giga_octet": "GiB",
+    "mega_octet": "MiB"
+  }
+}

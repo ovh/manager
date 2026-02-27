@@ -1,0 +1,9 @@
+{
+  "active": "Available",
+  "backup_creating": "Backup creation in progress",
+  "creating": "Creation in progress",
+  "deleting": "Deleting",
+  "error": "Error",
+  "extending": "Extension in progress",
+  "inactive": "Inactive"
+}

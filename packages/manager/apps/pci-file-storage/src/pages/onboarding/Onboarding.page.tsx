@@ -1,4 +1,4 @@
-import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -9,13 +9,26 @@ import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { BaseLayout, LinkCard, OnboardingLayout } from '@ovh-ux/muk';
 
 import { Breadcrumb } from '@/components/breadcrumb/Breadcrumb.component';
-import { GUIDES, getOnboardingLinkFor } from '@/pages/onboarding/Onboarding.guides.constants';
+import { getOnboardingLinkFor } from '@/constants/Guides.constants';
+import { useShares } from '@/data/hooks/shares/useShares';
+import { useGetUser } from '@/hooks/useGetUser';
+import { selectHasShares } from '@/pages/list/view-model/shareList.view-model';
+import { subRoutes } from '@/routes/Routes.constants';
+
+import { getRegionGuides } from './viewmodel/onboarding.view-model';
 
 export default function OnboardingPage() {
-  const { t } = useTranslation(['onboarding', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
-  const environment = useEnvironment();
+  const { t } = useTranslation(['onboarding', 'guides', NAMESPACES.ACTIONS, NAMESPACES.ONBOARDING]);
+  const { ovhSubsidiary } = useGetUser();
+  const { region } = useEnvironment();
+  const navigate = useNavigate();
+  const { data: hasShares, isLoading } = useShares({ select: selectHasShares });
 
-  const { ovhSubsidiary } = environment.getUser();
+  if (!isLoading && hasShares) {
+    return <Navigate to={`../${subRoutes.list}`} replace />;
+  }
+
+  const filteredGuides = getRegionGuides(region);
 
   return (
     <BaseLayout>
@@ -33,24 +46,21 @@ export default function OnboardingPage() {
           </Text>
         }
         orderButtonLabel={t('onboarding:action-button')}
-        onOrderButtonClick={() => {}}
-        orderHref="https://labs.ovhcloud.com/en/file-storage"
+        onOrderButtonClick={() => navigate(`../${subRoutes.create}`)}
       >
-        {GUIDES.map(({ key, links }) => {
-          return (
-            <LinkCard
-              key={key}
-              href={getOnboardingLinkFor(links, ovhSubsidiary)}
-              texts={{
-                title: t(`onboarding:guides.${key}.title`),
-                description: t(`onboarding:guides.${key}.description`),
-                category: t(`onboarding:guides.${key}.category`),
-              }}
-              hrefLabel={t(`onboarding:guides.${key}.link-text`)}
-              target="_blank"
-            />
-          );
-        })}
+        {filteredGuides.map((guide) => (
+          <LinkCard
+            key={guide.key}
+            href={getOnboardingLinkFor(guide.links, ovhSubsidiary)}
+            texts={{
+              title: t(`guides:${guide.key}.title`),
+              description: t(`guides:${guide.key}.description`),
+              category: t(`guides:${guide.key}.category`),
+            }}
+            hrefLabel={t(`guides:${guide.key}.link-text`)}
+            target="_blank"
+          />
+        ))}
       </OnboardingLayout>
     </BaseLayout>
   );
