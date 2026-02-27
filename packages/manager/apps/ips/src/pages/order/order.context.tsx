@@ -19,7 +19,7 @@ export type OrderContextType = {
   setSelectedRegion: (region?: string) => void;
   selectedVrackBandwidthPlanCode?: string;
   setSelectedVrackBandwidthPlanCode: React.Dispatch<
-    React.SetStateAction<string>
+    React.SetStateAction<string | undefined>
   >;
   selectedOffer?: IpOffer;
   setSelectedOffer: (offer?: IpOffer) => void;
@@ -71,7 +71,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
     React.useState<ServiceType>();
   const [selectedRegion, setSelectedRegion] = React.useState<string>();
   const [selectedVrackBandwidthPlanCode, setSelectedVrackBandwidthPlanCode] =
-    React.useState<string>();
+    React.useState<string | undefined>();
   const [selectedOffer, setSelectedOffer] = React.useState<IpOffer>();
   const [selectedPlanCode, setSelectedPlanCode] = React.useState<string>();
   const [pricingMode, setPricingMode] =
