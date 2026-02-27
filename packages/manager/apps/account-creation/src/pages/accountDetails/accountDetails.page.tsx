@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Controller, SubmitHandler, useForm, useWatch } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { z, ZodOptional } from 'zod';
+import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   BaseLayout,
@@ -38,7 +38,7 @@ import {
   ODS_PHONE_NUMBER_COUNTRY_ISO_CODE,
   ODS_TEXT_PRESET,
 } from '@ovhcloud/ods-components';
-import { Country, User } from '@ovh-ux/manager-config';
+import { User } from '@ovh-ux/manager-config';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ButtonType,
@@ -53,8 +53,6 @@ import { useMe } from '@/data/hooks/useMe';
 import { Rule, RuleField } from '@/types/rule';
 import {
   getZodSchemaFromRule,
-  RuleZodSchema,
-  toZodField,
   useZodTranslatedError,
 } from '@/hooks/zod/useZod';
 import { putMe } from '@/data/api/me';
@@ -73,8 +71,6 @@ import {
   useTrackBackButtonClick,
 } from '@/hooks/tracking/useTracking';
 import {
-  CNIN_NON_MANDATORY_RULE,
-  CNIN_RULE,
   COUNTRIES_VAT_LABEL,
   TRACKING_GOAL_TYPE,
 } from './accountDetails.constants';
@@ -88,7 +84,6 @@ import {
 } from '@/components/formSkeleton';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
-import { isCNINMandatory, isCNINVisible } from '@/helpers/xander/xanderHelper';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -118,9 +113,6 @@ function AccountDetailsForm({
   const pageTracking = usePageTracking();
   const { trackClick, trackPage } = useTrackingContext();
   const { trackError } = useTrackError('final-step');
-  const [cninSchemaOverride, setCninSchemaOverride] = useState<
-    RuleZodSchema | undefined
-  >(undefined);
 
   const {
     legalForm,
@@ -141,19 +133,11 @@ function AccountDetailsForm({
 
   const zodSchema = useMemo(() => {
     const baseSchema = getZodSchemaFromRule(rules);
-    // TODO: Remove after mandatory check is implemented in Xander for FR
-    if (cninSchemaOverride) {
-      return baseSchema.extend({
-        confirmSend: z.literal(true),
-        smsConsent: z.boolean().optional(),
-        companyNationalIdentificationNumber: cninSchemaOverride,
-      });
-    }
     return baseSchema.extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
     });
-  }, [rules, cninSchemaOverride]);
+  }, [rules]);
 
   function renderTranslatedZodError(message: string | undefined, rule: Rule) {
     if (!message) return undefined;
@@ -248,29 +232,6 @@ function AccountDetailsForm({
       }
       if (!phone && country !== phoneCountry) {
         setValue('phoneCountry', country);
-      }
-
-      // TODO: Remove after mandatory check is implemented in Xander for FR
-      if (
-        legalForm === 'corporation' && // Add only for corporation legal form
-        isCNINMandatory({
-          ovhSubsidiary,
-          country: (country as Country) || undefined,
-          defaultMandatory:
-            rules?.companyNationalIdentificationNumber?.mandatory,
-        })
-      ) {
-        setCninSchemaOverride(toZodField(CNIN_RULE));
-      } else if (
-        (legalForm === 'association' || legalForm === 'administration') &&
-        isCNINVisible({
-          ovhSubsidiary,
-          country: (country as Country) || undefined,
-        })
-      ) {
-        setCninSchemaOverride(toZodField(CNIN_NON_MANDATORY_RULE));
-      } else {
-        setCninSchemaOverride(undefined);
       }
     }
   }, [country]);
@@ -471,8 +432,7 @@ function AccountDetailsForm({
                 </OdsFormField>
               )}
             />
-            {(rules?.companyNationalIdentificationNumber ||
-              !!cninSchemaOverride) && (
+            {rules?.companyNationalIdentificationNumber && (
               <Controller
                 control={control}
                 name="companyNationalIdentificationNumber"
@@ -486,10 +446,8 @@ function AccountDetailsForm({
                       >
                         <OdsText preset="caption">
                           {t('account_details_field_siret')}
-                          {(rules?.companyNationalIdentificationNumber
-                            ?.mandatory ||
-                            !(cninSchemaOverride instanceof ZodOptional)) && // TODO: Remove next line after mandatory check is implemented in Xander for FR
-                            ' *'}
+                          {rules?.companyNationalIdentificationNumber
+                            ?.mandatory && ' *'}
                         </OdsText>
                       </label>
                       <OdsInput
@@ -501,17 +459,14 @@ function AccountDetailsForm({
                         value={value}
                         maxlength={
                           rules?.companyNationalIdentificationNumber
-                            ?.maxLength || !!cninSchemaOverride
-                            ? CNIN_RULE.maxLength || undefined
-                            : undefined
+                            ?.maxLength || undefined
                         }
                         hasError={!!errors[name]}
                         onOdsChange={onChange}
                         onOdsBlur={onBlur}
                       />
                       {errors.companyNationalIdentificationNumber &&
-                        (rules?.companyNationalIdentificationNumber ||
-                          !!cninSchemaOverride) && (
+                        rules?.companyNationalIdentificationNumber && (
                           <OdsText
                             className="text-critical leading-[0.8]"
                             preset="caption"
@@ -519,8 +474,7 @@ function AccountDetailsForm({
                             {renderTranslatedZodError(
                               errors.companyNationalIdentificationNumber
                                 .message,
-                              rules?.companyNationalIdentificationNumber ||
-                                CNIN_RULE,
+                              rules?.companyNationalIdentificationNumber,
                             )}
                           </OdsText>
                         )}
