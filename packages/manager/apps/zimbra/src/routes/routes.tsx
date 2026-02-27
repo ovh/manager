@@ -57,6 +57,7 @@ import {
   ORDER_ZIMBRA_EMAIL_ACCOUNT,
   ORGANIZATION,
   REDIRECTION,
+  SERVICES,
   UNDO_CANCEL_SLOT,
   UPDATE_OFFER_SLOT,
   VERIFY_DOMAIN,
@@ -163,6 +164,7 @@ const OnboardingDomainPage = React.lazy(
 const OnboardingEmailAccountsPage = React.lazy(
   () => import('@/pages/onboarding/configure/emailAccounts/EmailAccounts.page'),
 );
+const ServicePage = React.lazy(() => import('@/pages/dashboard/services/Services.page'));
 
 export default (
   <Route
@@ -715,6 +717,47 @@ export default (
             },
             breadcrumb: {
               label: 'common:add_mailing_list',
+            },
+          }}
+        />
+      </Route>
+      <Route
+        path={'services'}
+        Component={ServicePage}
+        handle={{
+          tracking: {
+            pageName: SERVICES,
+            pageType: PageType.listing,
+          },
+          breadcrumb: {
+            label: 'common:service',
+          },
+        }}
+      >
+        <Route
+          path={'delete_all'}
+          Component={DeleteAllEmailAccountPage}
+          handle={{
+            tracking: {
+              pageName: DELETE_EMAIL_ACCOUNT,
+              pageType: PageType.popup,
+            },
+            breadcrumb: {
+              label: 'common:delete_email_account',
+            },
+          }}
+        />
+        <Route
+          path={'settings'}
+          Component={EmailAccountSettingsPage}
+          handle={{
+            isOverridePage: true,
+            tracking: {
+              pageName: EDIT_EMAIL_ACCOUNT,
+              pageType: PageType.funnel,
+            },
+            breadcrumb: {
+              label: 'common:email_account_settings',
             },
           }}
         />

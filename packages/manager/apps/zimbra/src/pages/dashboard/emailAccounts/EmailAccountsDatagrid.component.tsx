@@ -122,7 +122,9 @@ export const EmailAccountsDatagrid = () => {
       {
         id: 'organization',
         accessorKey: 'organizationLabel',
-        cell: ({ getValue }) => <LabelChip id={getValue<string>()}>{getValue<string>()}</LabelChip>,
+        cell: ({ row }) => (
+          <LabelChip id={row.original.organizationId}>{row.original.organizationLabel}</LabelChip>
+        ),
         label: 'common:organization',
       },
       {
