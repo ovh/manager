@@ -37,7 +37,7 @@
     "@ovhcloud/ods-theme-blue-jeans": "17.2.2",
     "@tanstack/react-query": "5.51.21",
     "@tanstack/react-table": "8.20.1",
-    "axios": "1.12.0",
+    "axios": "1.13.5",
     "clsx": "^1.2.1",
     "date-fns": "^3.6.0",
     "i18next": "23.8.2",
