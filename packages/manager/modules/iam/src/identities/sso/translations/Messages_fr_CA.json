@@ -2,6 +2,7 @@
   "sso_title": "SSO",
   "sso_add": "Connexion SSO",
   "sso_modal_group_local_users_to_enable": "Conserver les utilisateurs OVHcloud actifs",
+  "sso_modal_activate_request_signature": "Activer la signature des requêtes SAMLv2",
   "sso_add_modal_title": "Se connecter en SSO",
   "sso_add_modal_info": "Afin d'autoriser vos utilisateurs à utiliser votre propre identity provider, nous avons besoin de ses informations afin de configurer votre compte.",
   "sso_add_modal_warning": "Attention : un identity provider externe désactivera les utilisateurs actuels.",

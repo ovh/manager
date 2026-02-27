@@ -38,5 +38,6 @@
   "sso_detail_idp_signing_certificates": "Certificados de assinatura",
   "sso_detail_idp_signing_certificates_subject": "Assunto",
   "sso_detail_idp_signing_certificates_expiration": "Expiração",
-  "sso_table_description": "Serviço SSO"
+  "sso_table_description": "Serviço SSO",
+  "sso_modal_activate_request_signature": "Ativar a assinatura dos pedidos SAMLv2"
 }
