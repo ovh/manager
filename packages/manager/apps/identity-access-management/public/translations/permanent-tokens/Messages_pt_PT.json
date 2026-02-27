@@ -36,5 +36,7 @@
   "iam_user_token_modal_field_expiry_date_type_timestamp": "Data",
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minutos",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Horas",
-  "iam_user_token_modal_field_expiry_date_unit_days": "Dias"
+  "iam_user_token_modal_field_expiry_date_unit_days": "Dias",
+  "iam_user_token_modal_view_token_secret_title": "O seu token foi criado com sucesso.",
+  "iam_user_token_modal_view_token_secret_warning": "Já não terá acesso ao conteúdo do token. Certifique-se de que o regista de forma segura."
 }

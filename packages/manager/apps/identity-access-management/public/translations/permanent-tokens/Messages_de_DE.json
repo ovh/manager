@@ -36,5 +36,7 @@
   "iam_user_token_modal_field_expiry_date_type_timestamp": "Datum",
   "iam_user_token_modal_field_expiry_date_unit_minutes": "Minuten",
   "iam_user_token_modal_field_expiry_date_unit_hours": "Stunden",
-  "iam_user_token_modal_field_expiry_date_unit_days": "Tage"
+  "iam_user_token_modal_field_expiry_date_unit_days": "Tage",
+  "iam_user_token_modal_view_token_secret_title": "Ihr Token wurde erfolgreich erstellt.",
+  "iam_user_token_modal_view_token_secret_warning": "Sie haben keinen Zugriff mehr auf den Inhalt des Tokens. Achten Sie darauf, diesen sicher zu speichern."
 }
