@@ -1,3 +1,4 @@
 {
-  "overTheBox_logs_description": "A continuación, encontrará los registros en tiempo real generados por su servicio."
+  "overTheBox_logs_description": "A continuación se indican los logs en tiempo real generados por el servicio.",
+  "overTheBox_logs": "Logs"
 }
