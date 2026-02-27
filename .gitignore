@@ -28,9 +28,7 @@ tests-coverage-reports/**
 static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json
 target
-CLAUDE.md
 .mcp.json
-.claude
 .cursor
 
 
