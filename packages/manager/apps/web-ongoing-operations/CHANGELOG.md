@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.22.0...@ovh-ux/manager-web-ongoing-operations-app@1.23.0) (2026-02-27)
+
+
+### Bug Fixes
+
+* **web-ongoing-operations:** fix contact link ([#22482](https://github.com/ovh/manager/issues/22482)) ([e75cbe1](https://github.com/ovh/manager/commit/e75cbe1d2ec528f4eed4048c0a7c98dc11edc73b)), closes [#DCE-173](https://github.com/ovh/manager/issues/DCE-173)
+
+
+### Features
+
+* **web-domains:** add  a11y ([#21368](https://github.com/ovh/manager/issues/21368)) ([56d1f2a](https://github.com/ovh/manager/commit/56d1f2a27bb08c940823fb37eeb57443d85f14ab)), closes [#DCE-17](https://github.com/ovh/manager/issues/DCE-17)
+* **web-domains:** add W3C compliance ([#21373](https://github.com/ovh/manager/issues/21373)) ([f91f279](https://github.com/ovh/manager/commit/f91f279b0b8b3924cb6c2ad3ac43accf567fd497)), closes [#DCE-50](https://github.com/ovh/manager/issues/DCE-50)
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.21.4...@ovh-ux/manager-web-ongoing-operations-app@1.22.0) (2026-02-16)
 
 

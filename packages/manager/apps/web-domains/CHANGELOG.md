@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.12.1...@ovh-ux/manager-web-domains-app@1.13.0) (2026-02-27)
+
+
+### Bug Fixes
+
+* **web-domains:** fix issue when read only fields block update of non read only fields ([#22498](https://github.com/ovh/manager/issues/22498)) ([76df105](https://github.com/ovh/manager/commit/76df105f19c6c8073e0f3f1765b36059be493fe1)), closes [#DCE-174](https://github.com/ovh/manager/issues/DCE-174)
+
+
+### Features
+
+* **web-domains:** add  a11y ([#21368](https://github.com/ovh/manager/issues/21368)) ([56d1f2a](https://github.com/ovh/manager/commit/56d1f2a27bb08c940823fb37eeb57443d85f14ab)), closes [#DCE-17](https://github.com/ovh/manager/issues/DCE-17)
+* **web-domains:** add W3C compliance ([#21373](https://github.com/ovh/manager/issues/21373)) ([f91f279](https://github.com/ovh/manager/commit/f91f279b0b8b3924cb6c2ad3ac43accf567fd497)), closes [#DCE-50](https://github.com/ovh/manager/issues/DCE-50)
+
+
+
+
+
 ## [1.12.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.12.0...@ovh-ux/manager-web-domains-app@1.12.1) (2026-02-26)
 
 
