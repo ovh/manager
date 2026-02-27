@@ -1415,5 +1415,6 @@
   "database_tabs_dumps_guide_message_part2": "Finden Sie unsere detaillierten Anleitungen, um diese Aktionen direkt von Ihrem Kundenbereich aus durchzuführen:",
   "database_tabs_dumps_guide_save": "Datenbank sichern und exportieren",
   "database_tabs_dumps_guide_restore": "Datenbank wiederherstellen und importieren",
-  "hosting_tab_STATISTICS_databases_none": "Keine Fehler in Ihren Datenbanken gefunden. Alles funktioniert normal."
+  "hosting_tab_STATISTICS_databases_none": "Keine Fehler in Ihren Datenbanken gefunden. Alles funktioniert normal.",
+  "hosting_tab_USER_STATISTICS": "Statistiken und Logs"
 }

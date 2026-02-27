@@ -1415,5 +1415,6 @@
   "database_tabs_dumps_guide_message_part2": "Encuentre nuestras guías detalladas para realizar estas acciones directamente desde su área de cliente:",
   "database_tabs_dumps_guide_save": "Guardar y exportar una base de datos",
   "database_tabs_dumps_guide_restore": "Restaurar e importar una base de datos",
-  "hosting_tab_STATISTICS_databases_none": "No se detectó ningún error en sus bases de datos. Todo funciona con normalidad."
+  "hosting_tab_STATISTICS_databases_none": "No se detectó ningún error en sus bases de datos. Todo funciona con normalidad.",
+  "hosting_tab_USER_STATISTICS": "Estadísticas y logs"
 }
