@@ -4,16 +4,18 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import { AxiosError } from 'axios';
+import { ApiError } from '@ovh-ux/manager-core-api';
 import {
   IamResource,
   getIamResourceType,
   getIamResourcetypeQueryKey,
   putIamResource,
 } from '../api/iam-resources';
-import { NotificationList } from '@/components/notificationList/NotificationList.component';
 import { ResourcesDatagridFilter } from '@/components/resourcesDatagridTopbar/ResourcesDatagridTopbar.component';
 import { formatFiltersForApi } from '@/utils/formatFiltersForApi';
 import { getAllIamTagsQueryKey } from '../api/get-iam-tags';
+import { ResourcesBulkResult } from '@/components/resourcesBulkResult/ResourcesBulkResult.component';
 
 export type GetIamResourceListQueryKeyParams = {
   filters?: ResourcesDatagridFilter[];
@@ -67,7 +69,7 @@ export type UseUpdateIamResourceResponse = {
   }>;
   error: Array<{
     resource: IamResource;
-    error: string;
+    error: ApiError;
   }>;
 };
 
@@ -116,10 +118,10 @@ export const useUpdateIamResources = ({
 
       return results.reduce<UseUpdateIamResourceResponse>(
         (formatted, result, currentIndex) => {
-          if (result instanceof Error) {
+          if (result instanceof AxiosError) {
             formatted.error.push({
               resource: resources[currentIndex],
-              error: result.message,
+              error: result,
             });
           } else {
             formatted.success.push({
@@ -144,16 +146,18 @@ export const useUpdateIamResources = ({
 
       if (success.length > 0 && error.length > 0) {
         addWarning(
-          <NotificationList
-            items={error.map(({ resource }) => ({
-              label: resource.displayName,
-              id: resource.id,
-            }))}
+          <ResourcesBulkResult
+            result={{ success, error }}
             error={t('resourcesTaggedSomeError')}
           />,
         );
       } else if (error.length > 0) {
-        addError(t('resourcesTaggedError'));
+        addError(
+          <ResourcesBulkResult
+            result={{ success, error }}
+            error={t('resourcesTaggedError')}
+          />,
+        );
       } else {
         addSuccess(t('resourcesTaggedSuccess'));
       }
