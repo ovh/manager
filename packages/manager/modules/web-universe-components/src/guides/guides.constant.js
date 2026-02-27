@@ -60,6 +60,26 @@ export const ASIA = {
             'https://docs.ovh.com/asia/en/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/asia-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067686',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/asia-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067699',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071062',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/asia-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051688',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -177,6 +197,26 @@ export const AU = {
           url:
             'https://docs.ovh.com/au/en/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067700',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071061',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051697',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -300,6 +340,26 @@ export const CA = {
             'https://help.ovhcloud.com/csm/en-ca-dns-zone-history?id=kb_article_view&sysparm_article=KB0061050',
           title: 'guide_domain_history_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067692',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067701',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071065',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051696',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -397,6 +457,26 @@ export const CZ = {
           url: 'https://www.ovh.cz/g1604.hosting_how_to_edit_my_dns_zone',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067700',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071061',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051697',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -460,6 +540,26 @@ export const DE = {
           url:
             'https://help.ovhcloud.com/csm/de-dns-zone-history?id=kb_article_view&sysparm_article=KB0061048',
           title: 'guide_domain_history_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067688',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067704',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071052',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/de-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0039624',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -637,6 +737,26 @@ export const ES = {
           url:
             'https://help.ovhcloud.com/csm/es-es-dns-zone-history?id=kb_article_view&sysparm_article=KB0061051',
           title: 'guide_domain_history_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067680',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067705',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071056',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051698',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -827,6 +947,26 @@ export const FI = {
           url: 'https://www.ovh-hosting.fi/g1604.miten_dns-aluetta_muokataan',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067700',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071061',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051697',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -1015,6 +1155,26 @@ export const FR = {
           url:
             'https://help.ovhcloud.com/csm/fr-dns-zone-history?id=kb_article_view&sysparm_article=KB0061056',
           title: 'guide_domain_history_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067694',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067712',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071062',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051707',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -1297,6 +1457,26 @@ export const GB = {
             'https://help.ovhcloud.com/csm/en-gb-dns-zone-history?id=kb_article_view&sysparm_article=KB0061045',
           title: 'guide_domain_history_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067700',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071061',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051697',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -1423,6 +1603,26 @@ export const IT = {
           url:
             'https://help.ovhcloud.com/csm/it-dns-zone-history?id=kb_article_view&sysparm_article=KB0061049',
           title: 'guide_domain_history_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067695',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067710',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071054',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/it-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051708',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -1637,6 +1837,26 @@ export const LT = {
           url:
             'https://www.ovh.lt/g1604.svetainiu_talpinimas_kaip_redaguoti_dns_zona',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067683',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067700',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071061',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-gb-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051697',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -1862,6 +2082,26 @@ export const NL = {
           url: 'https://www.ovh.nl/g1604.hosting_hoe_wijzig_ik_mijn_dns_zone',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067684',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067711',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071058',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ie-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051691',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -2004,6 +2244,26 @@ export const PL = {
           url:
             'https://help.ovhcloud.com/csm/pl-dns-zone-history?id=kb_article_view&sysparm_article=KB0061052',
           title: 'guide_domain_history_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067697',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067713',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071057',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pl-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051700',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -2244,6 +2504,26 @@ export const PT = {
             'https://help.ovhcloud.com/csm/pt-dns-zone-history?id=kb_article_view&sysparm_article=KB0061047',
           title: 'guide_domain_history_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067693',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067707',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071055',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/pt-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051702',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -2446,6 +2726,26 @@ export const QC = {
         {
           url: 'https://docs.ovh.com/ca/fr/domains/editer-ma-zone-dns/',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-ca-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067692',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-ca-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067706',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-ca-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071050',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/fr-ca-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051706',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
@@ -2713,6 +3013,26 @@ export const SG = {
             'https://docs.ovh.com/sg/en/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-sg-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067681',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-sg-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067708',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-sg-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071063',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-sg-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051693',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -2830,6 +3150,26 @@ export const WE = {
             'https://docs.ovh.com/ca/en/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
         },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067692',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067701',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071065',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/en-ca-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051696',
+          title: 'guide_domain_new_mx_record',
+        },
       ],
     },
   ],
@@ -2946,6 +3286,26 @@ export const WS = {
           url:
             'https://docs.ovh.com/us/es/domains/web_hosting_how_to_edit_my_dns_zone/',
           title: 'guide_domain_edit_zone',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-a-record?id=kb_article_view&sysparm_article=KB0067680',
+          title: 'guide_domain_new_a_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-aaaa-record?id=kb_article_view&sysparm_article=KB0067705',
+          title: 'guide_domain_new_aaaa_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-create-txt-record?id=kb_article_view&sysparm_article=KB0071056',
+          title: 'guide_domain_new_txt_record',
+        },
+        {
+          url:
+            'https://help.ovhcloud.com/csm/es-es-dns-configure-mx-dns-zone?id=kb_article_view&sysparm_article=KB0051698',
+          title: 'guide_domain_new_mx_record',
         },
       ],
     },
