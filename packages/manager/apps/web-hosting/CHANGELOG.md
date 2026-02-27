@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.0...@ovh-ux/manager-web-hosting-app@0.18.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1188] ([1c09ce4](https://github.com/ovh/manager/commit/1c09ce45f19f9eec0922ef89c32ddc355673a863))
+* **web-hosting:** fix statistics tabs ([3cd8ea3](https://github.com/ovh/manager/commit/3cd8ea3e37b8fb562e0a0b8a7fe31f47c92f90cd)), closes [#PUWEBPT-247](https://github.com/ovh/manager/issues/PUWEBPT-247)
+
+
+
+
+
 # [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.17.0...@ovh-ux/manager-web-hosting-app@0.18.0) (2026-02-26)
 
 
