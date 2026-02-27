@@ -15,7 +15,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import {
@@ -35,7 +35,7 @@ import {
 } from './gamefirewall.utils';
 
 export type GameFirewallContextType = {
-  isLoading?: boolean;
+  loading?: boolean;
   isRulesLoading?: boolean;
   rules: IpGameFirewallRule[];
   ip: string;
@@ -120,7 +120,12 @@ export const GameFirewallContextProvider: FC<{
     confirmDeleteModalOpen,
     setConfirmDeleteModalOpen,
   ] = useState<IpGameFirewallRule | null>(null);
-  const { isLoading, ipGameFirewall, isError, error } = useGetIpGameFirewall({
+  const {
+    isLoading: loading,
+    ipGameFirewall,
+    isError,
+    error,
+  } = useGetIpGameFirewall({
     ip,
     ipOnGame,
   });
@@ -133,7 +138,7 @@ export const GameFirewallContextProvider: FC<{
   }, []);
 
   const {
-    isLoading: isRulesLoading,
+    loading: isRulesLoading,
     data: rules,
     isError: isRulesError,
     error: rulesError,
@@ -256,7 +261,7 @@ export const GameFirewallContextProvider: FC<{
 
   const value = useMemo(
     () => ({
-      isLoading,
+      loading,
       isRulesLoading,
       rules: rules || [],
       ip,
@@ -292,7 +297,7 @@ export const GameFirewallContextProvider: FC<{
       addRule,
     }),
     [
-      isLoading,
+      loading,
       isRulesLoading,
       rules,
       ip,

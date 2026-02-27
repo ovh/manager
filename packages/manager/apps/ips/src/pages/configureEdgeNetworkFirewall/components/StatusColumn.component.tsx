@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, BADGE_SIZE, Badge } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
@@ -33,22 +32,21 @@ export const StatusColumn = (
 
   const color =
     rule?.state === IpEdgeFirewallRuleState.OK
-      ? ODS_BADGE_COLOR.success
-      : ODS_BADGE_COLOR.information;
+      ? BADGE_COLOR.success
+      : BADGE_COLOR.information;
 
   return (
-    <OdsBadge
-      size={ODS_BADGE_SIZE.lg}
+    <Badge
+      size={BADGE_SIZE.lg}
       color={
         !firewallModeEnabled && rule?.state === IpEdgeFirewallRuleState.OK
-          ? ODS_BADGE_COLOR.neutral
+          ? BADGE_COLOR.neutral
           : color
       }
-      label={
-        rule?.state === IpEdgeFirewallRuleState.OK && !firewallModeEnabled
-          ? t('disabled_status')
-          : t(translationKeyByStatus[rule?.state], { ns: NAMESPACES.STATUS })
-      }
-    />
+    >
+      {rule?.state === IpEdgeFirewallRuleState.OK && !firewallModeEnabled
+        ? t('disabled_status')
+        : t(translationKeyByStatus[rule?.state], { ns: NAMESPACES.STATUS })}
+    </Badge>
   );
 };

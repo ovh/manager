@@ -3,17 +3,18 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-} from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsIcon,
-  OdsText,
-  OdsToggle,
-  OdsTooltip,
-} from '@ovhcloud/ods-components/react';
+  Button,
+  Icon,
+  Text,
+  Toggle,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  ICON_NAME,
+  ToggleControl,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -49,7 +50,7 @@ export const TopBar: React.FC = () => {
     ipOnFirewall,
     showEnableFirewallModal,
     showNewRuleRow,
-    isLoading,
+    loading,
     isRulesLoading,
     hasNoFirewall,
     firewallState,
@@ -65,21 +66,18 @@ export const TopBar: React.FC = () => {
     TRANSLATION_NAMESPACES.listing,
     TRANSLATION_NAMESPACES.error,
   ]);
-  const { ipMitigation, isLoading: isIpMitigationLoading } = useGetIpMitigation(
-    {
-      ip: ipOnFirewall,
-      enabled: !!ipOnFirewall,
-    },
-  );
+  const { ipMitigation, loading: isIpMitigationLoading } = useGetIpMitigation({
+    ip: ipOnFirewall,
+    enabled: !!ipOnFirewall,
+  });
   const { trackClick } = useOvhTracking();
 
   return (
     <div className="my-5 flex w-full flex-col justify-between gap-4 sm:flex-row">
       <div className="flex items-center gap-4">
-        <OdsButton
-          variant={ODS_BUTTON_VARIANT.outline}
-          label={`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
-          isDisabled={isLoading || isRulesLoading || maxRulesReached}
+        <Button
+          variant={BUTTON_VARIANT.outline}
+          disabled={loading || isRulesLoading || maxRulesReached}
           onClick={() => {
             trackClick({
               location: PageLocation.page,
@@ -89,27 +87,27 @@ export const TopBar: React.FC = () => {
             });
             showNewRuleRow();
           }}
-          icon={ODS_ICON_NAME.plus}
-          size={ODS_BUTTON_SIZE.sm}
-        />
+          size={BUTTON_SIZE.sm}
+        >
+          <Icon name={ICON_NAME.plus} className="mr-2" />
+          {`${t('add', { ns: NAMESPACES.ACTIONS })} ${t('oneRule')}`}
+        </Button>
         {maxRulesReached && (
-          <>
-            <OdsIcon
-              id="tooltip-add-rule"
-              name={ODS_ICON_NAME.circleQuestion}
-              tabIndex={0}
-              className="cursor-pointer text-[var(--ods-color-text)]"
-            />
-            <OdsTooltip triggerId="tooltip-add-rule" withArrow>
-              <OdsText className="p-2">
-                {t('max_rules_reached_tooltip')}
-              </OdsText>
-            </OdsTooltip>
-          </>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Icon
+                name={ICON_NAME.circleQuestion}
+                className="cursor-pointer text-[var(--ods-color-text)]"
+              />
+            </TooltipTrigger>
+            <TooltipContent withArrow>
+              {t('max_rules_reached_tooltip')}
+            </TooltipContent>
+          </Tooltip>
         )}
       </div>
       <div className="flex items-center gap-4">
-        <OdsText>
+        <Text>
           {t(
             getToggleLabelFromFirewallState({
               enabled: firewallModeEnabled,
@@ -119,15 +117,16 @@ export const TopBar: React.FC = () => {
               ns: NAMESPACES.STATUS,
             },
           )}
-        </OdsText>
-        <OdsIcon
-          id="tooltip"
-          name={ODS_ICON_NAME.circleQuestion}
-          tabIndex={0}
-          className="cursor-pointer text-[var(--ods-color-text)]"
-        />
-        <OdsTooltip triggerId="tooltip" withArrow>
-          <OdsText className="p-2">
+        </Text>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Icon
+              name={ICON_NAME.circleQuestion}
+              tabIndex={0}
+              className="cursor-pointer text-[var(--ods-color-text)]"
+            />
+          </TooltipTrigger>
+          <TooltipContent withArrow>
             {hasNoFirewall
               ? t('firewall_not_created_tooltip')
               : t(
@@ -135,22 +134,22 @@ export const TopBar: React.FC = () => {
                     ? 'mitigation_mode_active_warning_tooltip'
                     : 'enable_firewall_tooltip',
                 )}
-          </OdsText>
-        </OdsTooltip>
-        <OdsToggle
+          </TooltipContent>
+        </Tooltip>
+        <Toggle
           name="enable-edge-firewall"
-          value={tmpToggleState ?? firewallModeEnabled}
-          isDisabled={
-            isLoading ||
+          checked={tmpToggleState ?? firewallModeEnabled}
+          disabled={
+            loading ||
             isRulesLoading ||
             firewallState !== IpEdgeFirewallStateEnum.OK ||
             hasNoFirewall ||
             isIpMitigationLoading ||
             ipMitigation?.length > 0
           }
-          onClick={(event) => {
-            event.preventDefault();
-            setTmpToggleState(!event?.currentTarget?.value);
+          onCheckedChange={(event) => {
+            console.log('Toggle changed:', event);
+            setTmpToggleState(event?.checked);
             showEnableFirewallModal();
             trackClick({
               location: PageLocation.page,
@@ -159,7 +158,9 @@ export const TopBar: React.FC = () => {
               actions: ['apply_default-refusal-strategy'],
             });
           }}
-        />
+        >
+          <ToggleControl />
+        </Toggle>
       </div>
     </div>
   );

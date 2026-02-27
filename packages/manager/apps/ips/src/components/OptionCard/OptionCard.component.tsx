@@ -1,22 +1,24 @@
 import React from 'react';
 
-import { ODS_SPINNER_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsCard,
-  OdsRadio,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
-
-import { handleClick } from '@ovh-ux/manager-react-components';
+  RadioControl,
+  RadioGroup,
+  SPINNER_SIZE,
+  TEXT_PRESET,
+  Card,
+  Radio,
+  Spinner,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import './option-card.scss';
+import { handleEnterAndEscapeKeyDown } from '@/utils';
 
 export type OptionCardProps = React.PropsWithChildren<{
   className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
-  isLoading?: boolean;
+  loading?: boolean;
   hasRadioButton?: boolean;
   onClick?: () => void;
   title: React.ReactNode;
@@ -28,7 +30,7 @@ export const OptionCard: React.FC<OptionCardProps> = ({
   className = '',
   isDisabled,
   isSelected,
-  isLoading,
+  loading,
   hasRadioButton,
   onClick,
   title,
@@ -44,55 +46,59 @@ export const OptionCard: React.FC<OptionCardProps> = ({
     : 'option_card m-[1px]';
   const justifyStyle = hasRadioButton ? 'justify-start' : 'justify-center';
   return (
-    <OdsCard
+    <Card
       tabIndex={0}
       className={`flex flex-col justify-between transition-shadow ${stateStyle} ${borderStyle} ${className}`}
-      {...handleClick(() => !isDisabled && onClick?.())}
+      onClick={() => !isDisabled && onClick?.()}
+      {...handleEnterAndEscapeKeyDown({
+        onEnter: () => !isDisabled && onClick?.(),
+      })}
       color="neutral"
     >
       {hasRadioButton ? (
-        <OdsText
-          className="m-4 flex justify-start"
-          preset={ODS_TEXT_PRESET.heading4}
-        >
+        <Text className="m-4 flex justify-start" preset={TEXT_PRESET.heading4}>
           <span className="mr-3 h-full align-middle">
-            <OdsRadio name="" isChecked={isSelected} />
+            <RadioGroup
+              value={isSelected ? 'selected' : 'notSelected'}
+              disabled={isDisabled}
+            >
+              <Radio value="selected">
+                <RadioControl />
+              </Radio>
+            </RadioGroup>
           </span>
           <span>{title}</span>
-        </OdsText>
+        </Text>
       ) : (
-        <OdsText
-          className="m-4 flex justify-center"
-          preset={ODS_TEXT_PRESET.heading4}
-        >
+        <Text className="m-4 flex justify-center" preset={TEXT_PRESET.heading4}>
           {title}
-        </OdsText>
+        </Text>
       )}
       {subtitle && (
-        <OdsText
-          preset={ODS_TEXT_PRESET.paragraph}
+        <Text
+          preset={TEXT_PRESET.paragraph}
           className={`flex ${justifyStyle} m-4`}
         >
           {subtitle}
-        </OdsText>
+        </Text>
       )}
       {description && (
-        <OdsText
+        <Text
           className={`flex ${justifyStyle} m-4 text-center`}
-          preset={ODS_TEXT_PRESET.paragraph}
+          preset={TEXT_PRESET.paragraph}
         >
           {description}
-        </OdsText>
+        </Text>
       )}
-      {isLoading ? (
+      {loading ? (
         <div className="text-center">
-          <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+          <Spinner size={SPINNER_SIZE.xs} />
         </div>
       ) : (
         children && (
           <span className="card-children rounded-b-md p-4">{children}</span>
         )
       )}
-    </OdsCard>
+    </Card>
   );
 };

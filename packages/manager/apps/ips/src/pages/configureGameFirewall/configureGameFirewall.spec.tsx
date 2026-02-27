@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe } from 'vitest';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import {
   WAIT_FOR_DEFAULT_OPTIONS,
@@ -41,7 +41,7 @@ describe('Configure game firewall page', () => {
 
     const menuButton = await getButtonByIcon({
       container: row,
-      iconName: ODS_ICON_NAME.ellipsisVertical,
+      iconName: ICON_NAME.ellipsisVertical,
     });
 
     await waitFor(() => fireEvent.click(menuButton));

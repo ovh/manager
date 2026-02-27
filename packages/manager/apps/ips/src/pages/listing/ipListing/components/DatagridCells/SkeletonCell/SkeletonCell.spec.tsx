@@ -29,13 +29,13 @@ const renderComponent = (params: SkeletonCellParams, child?: ReactNode) => {
 
 describe('SkeletonCell Component', () => {
   it('Should display skeleton if loading is true', () => {
-    const { container } = renderComponent({ isLoading: true });
+    const { container } = renderComponent({ loading: true });
     expect(container.querySelectorAll('ods-skeleton')).toBeDefined();
   });
 
   it('Should put ip in expiredIp list of listing context', () => {
     renderComponent({
-      isLoading: false,
+      loading: false,
       ip: 'test',
       error: { response: { status: 460 } } as ApiError,
     });
@@ -44,7 +44,7 @@ describe('SkeletonCell Component', () => {
 
   it('Should display child component if loading done and is enabled', async () => {
     const { getByText } = renderComponent(
-      { isLoading: false, ip: 'test' },
+      { loading: false, ip: 'test' },
       'test',
     );
     await waitFor(() => {

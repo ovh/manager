@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CountryCode } from '@ovh-ux/manager-config';
-import { CardProps, ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ChangelogMenuLinks } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 export type GuideLinks = { [key in CountryCode | 'DEFAULT']: string };
@@ -440,7 +440,7 @@ const URL_LIST: {
   },
 };
 
-export const CHANGELOG_LINKS: ChangelogLinks = {
+export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=IP',
   roadmap:
@@ -470,7 +470,15 @@ function getUrlListLink({ subsidiary }: GetGuideLinkProps) {
 }
 
 export function useGuideUtils(): {
-  guides: CardProps[];
+  guides: {
+    href: string;
+    trackingLabel: string;
+    texts: {
+      title: string;
+      description: string;
+      category: string;
+    };
+  }[];
   links: { [linkName: string]: { link: string; trackingLabel: string } };
 } {
   const { environment } = useContext(ShellContext);

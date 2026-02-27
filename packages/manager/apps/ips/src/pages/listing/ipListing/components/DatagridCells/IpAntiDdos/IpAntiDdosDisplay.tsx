@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import { IpMitigationStateEnum, IpMitigationType } from '@/data/api';
 
 import { BadgeCell } from '../BadgeCell/BadgeCell';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export type IpAntiDdosDisplayProps = {
   ipMitigation: IpMitigationType;
   enabled: boolean;
-  ip: string;
 };
 
 /**
@@ -19,7 +19,6 @@ export type IpAntiDdosDisplayProps = {
  * If ip mitigation is Auto, we display In Action
  * If ip mitigation has no mitigation, we display automatic
  * If mitigation state is not "ok", we display pending
- * @param ip the original ip used for ipMitigation request
  * @param ipMitigation the mitigation object for given ip (can be null)
  * @param enabled boolean used to display datas or not
  * @returns React component
@@ -27,19 +26,16 @@ export type IpAntiDdosDisplayProps = {
 export const IpAntiDdosDisplay = ({
   ipMitigation,
   enabled,
-  ip,
 }: IpAntiDdosDisplayProps) => {
-  const id = `antiddos-${ip.replace(/\/|\./g, '-')}`;
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
 
   return (
     <>
       {enabled && Object.keys(ipMitigation).length === 0 && (
         <BadgeCell
-          badgeColor={ODS_BADGE_COLOR.neutral}
+          badgeColor={BADGE_COLOR.neutral}
           text={t('listingColumnsIpAntiDDosAutomatic')}
           tooltip={t('listingColumnsIpAntiDDosAutomaticTooltip')}
-          trigger={id}
         />
       )}
       {enabled && Object.keys(ipMitigation).length > 0 && (
@@ -47,28 +43,25 @@ export const IpAntiDdosDisplay = ({
           {ipMitigation.state === IpMitigationStateEnum.OK &&
             ipMitigation.permanent && (
               <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.warning}
+                badgeColor={BADGE_COLOR.warning}
                 text={t('listingColumnsIpAntiDDosPermanent')}
                 tooltip={t('listingColumnsIpAntiDDosPermanentTooltip')}
-                trigger={id}
               />
             )}
           {ipMitigation.state === IpMitigationStateEnum.OK &&
             ipMitigation.auto && (
               <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.success}
+                badgeColor={BADGE_COLOR.success}
                 text={t('listingColumnsIpAntiDDosInAction')}
                 tooltip={t('listingColumnsIpAntiDDosInActionTooltip')}
-                trigger={id}
               />
             )}
           {Object.keys(ipMitigation).length > 0 &&
             ipMitigation.state !== IpMitigationStateEnum.OK && (
               <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.warning}
+                badgeColor={BADGE_COLOR.warning}
                 text={t('listingColumnsIpAntiDDosPending')}
                 tooltip={t('listingColumnsIpAntiDDosPendingTooltip')}
-                trigger={id}
               />
             )}
         </div>

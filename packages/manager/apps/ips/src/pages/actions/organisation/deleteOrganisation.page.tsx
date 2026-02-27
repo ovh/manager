@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -25,7 +25,7 @@ export default function DeleteOrganisation() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const params = useParams<{ organisationId: string }>();
-  const organisationId = params.organisationId;
+  const { organisationId } = params;
   const { t } = useTranslation(['manage-organisations', NAMESPACES.ACTIONS]);
   const { clearNotifications, addSuccess, addError } = useNotifications();
   const { trackClick, trackPage } = useOvhTracking();
@@ -87,23 +87,26 @@ export default function DeleteOrganisation() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeHandler}
+      onOpenChange={closeHandler}
       heading={t('manageOrganisationsDelete_confirm_headline')}
-      primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['delete_organization', 'confirm'],
-        });
-        deleteManagerOrganisation();
+      primaryButton={{
+        label: t('delete', { ns: NAMESPACES.ACTIONS }),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['delete_organization', 'confirm'],
+          });
+          deleteManagerOrganisation();
+        },
+        loading: isPending,
       }}
-      isPrimaryButtonLoading={isPending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      isSecondaryButtonDisabled={isPending}
-      onSecondaryButtonClick={closeHandler}
-    ></Modal>
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        disabled: isPending,
+        onClick: closeHandler,
+      }}
+    />
   );
 }

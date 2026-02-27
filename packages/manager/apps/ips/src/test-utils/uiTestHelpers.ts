@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
 import { fireEvent, waitFor, within } from '@testing-library/react';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
 
 export const DEFAULT_LISTING_ERROR = 'An error occured while fetching data';
 
-export const getOdsBadgeByLabel = async ({
+export const getBadgeByLabel = async ({
   container,
   label,
   nth = 0,
@@ -27,7 +27,7 @@ export const getOdsBadgeByLabel = async ({
       ? expect(badge).not.toBeDefined()
       : expect(badge).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return badge as unknown as HTMLOdsBadgeElement;
+  return (badge as unknown) as HTMLOdsBadgeElement;
 };
 
 export const getLinkByHref = async ({
@@ -55,7 +55,7 @@ export const getLinkByHref = async ({
       ? expect(link).toBeDisabled()
       : expect(link).not.toBeDisabled();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return link as unknown as HTMLOdsLinkElement;
+  return (link as unknown) as HTMLLinkElement;
 };
 
 export const getButtonByIcon = async ({
@@ -65,7 +65,7 @@ export const getButtonByIcon = async ({
   nth = 0,
 }: {
   container: HTMLElement;
-  iconName: ODS_ICON_NAME;
+  iconName: ICON_NAME;
   disabled?: boolean;
   nth?: number;
 }) => {
@@ -79,24 +79,7 @@ export const getButtonByIcon = async ({
       ? expect(button).toHaveAttribute('disabled')
       : expect(button).not.toHaveAttribute('disabled');
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return button as unknown as HTMLOdsButtonElement;
-};
-
-export const getTooltipByText = async ({
-  container,
-  text,
-  nth = 0,
-}: {
-  container: HTMLElement;
-  text: string;
-  nth?: number;
-}) => {
-  let tooltip: HTMLOdsTooltipElement = null;
-  await waitFor(() => {
-    tooltip = container.querySelectorAll(`ods-tooltip`)?.[nth];
-    expect(tooltip).toHaveTextContent(text);
-  }, WAIT_FOR_DEFAULT_OPTIONS);
-  return tooltip;
+  return (button as unknown) as HTMLButtonElement;
 };
 
 export const getSelectByName = async ({
@@ -106,7 +89,7 @@ export const getSelectByName = async ({
   container: HTMLElement;
   name: string;
 }) => {
-  let select: HTMLOdsSelectElement = null;
+  let select: HTMLSelectElement = null;
   await waitFor(() => {
     select = container.querySelector(`ods-select[name="${name}"]`);
     expect(select).toBeInTheDocument();
@@ -125,11 +108,11 @@ export const getButtonByLabel = async ({
   disabled?: boolean;
   nth?: number;
 }) => {
-  let button: HTMLOdsButtonElement = null;
+  let button: HTMLButtonElement = null;
   await waitFor(() => {
     button = Array.from(
       container.querySelectorAll(`ods-button[label="${label}"]`),
-    )?.[nth] as HTMLOdsButtonElement;
+    )?.[nth] as HTMLButtonElement;
     expect(button).toBeDefined();
     return disabled
       ? expect(button).toHaveAttribute('disabled')
@@ -138,7 +121,7 @@ export const getButtonByLabel = async ({
   return button;
 };
 
-export const getOdsCardByContentText = async ({
+export const getCardByContentText = async ({
   container,
   text,
   nth = 0,
@@ -206,7 +189,7 @@ export const getTableCellByContentText = async ({
     )?.[nth];
     expect(cell).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return cell as unknown as HTMLTableCellElement;
+  return (cell as unknown) as HTMLTableCellElement;
 };
 
 export const getToggleByName = async ({
@@ -225,7 +208,7 @@ export const getToggleByName = async ({
     )?.[nth];
     expect(toggle).toBeDefined();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return toggle as unknown as HTMLOdsToggleElement;
+  return toggle as HTMLOdsToggleElement;
 };
 
 export const getModal = async (container: HTMLElement) => {
@@ -234,5 +217,5 @@ export const getModal = async (container: HTMLElement) => {
     modal = container.querySelector('ods-modal');
     expect(modal).toBeInTheDocument();
   }, WAIT_FOR_DEFAULT_OPTIONS);
-  return modal as unknown as HTMLOdsModalElement;
+  return modal as HTMLOdsModalElement;
 };

@@ -5,18 +5,22 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsInput,
-  OdsLink,
-  OdsMessage,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  FormFieldError,
+  FormFieldLabel,
+  MESSAGE_COLOR,
+  MessageBody,
+  TEXT_PRESET,
+  FormField,
+  Input,
+  Link,
+  Message,
+  Spinner,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -148,30 +152,31 @@ export default function ConfigureReverseDns() {
 
   return (
     <Modal
-      isOpen
       heading={t('reverseDnsModalTitle')}
-      onDismiss={cancel}
-      onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={confirm}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      primaryButtonTestId="confirm-button"
-      isPrimaryButtonLoading={updateIpReversePending || deleteIpReversePending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      secondaryButtonTestId="cancel-button"
-      isPrimaryButtonDisabled={
-        (!currentIp && isGroup) ||
-        ipReverseLoading ||
-        !!ipReverseError ||
-        reverseDns === data?.data?.reverse
-      }
+      onOpenChange={cancel}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: cancel,
+        testId: 'cancel-button',
+      }}
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        onClick: confirm,
+        testId: 'confirm-button',
+        loading: updateIpReversePending || deleteIpReversePending,
+        disabled:
+          (!currentIp && isGroup) ||
+          ipReverseLoading ||
+          !!ipReverseError ||
+          reverseDns === data?.data?.reverse,
+      }}
     >
-      <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+      <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
         {t('reverseDnsModalDescription')}
-        <OdsLink
+        <Link
           className="inline"
           href={links.configureReverseDnsGuide?.link}
           target="_blank"
-          label="guide"
           onClick={() => {
             trackClick({
               location: PageLocation.popup,
@@ -182,34 +187,33 @@ export default function ConfigureReverseDns() {
               ],
             });
           }}
-        />
-      </OdsText>
+        >
+          guide
+        </Link>
+      </Text>
       {!id && (
-        <OdsFormField className="mb-4 block">
-          <label slot="label">{t('reverseDnsParentIpBlockFieldLabel')}</label>
-          <OdsInput
-            className="block"
-            name="parent-ip"
-            isReadonly
-            value={ipGroup}
-          />
-        </OdsFormField>
+        <FormField className="mb-4 block">
+          <FormFieldLabel>
+            {t('reverseDnsParentIpBlockFieldLabel')}
+          </FormFieldLabel>
+          <Input className="block" name="parent-ip" readOnly value={ipGroup} />
+        </FormField>
       )}
-      <OdsFormField className="mb-4 block" error={currentIpError}>
-        <label slot="label">{t('reverseDnsIpFieldLabel')}</label>
-        <OdsInput
-          className="block"
+      <FormField className="mb-4 block" invalid={!!currentIpError}>
+        <FormFieldLabel>{t('reverseDnsIpFieldLabel')}</FormFieldLabel>
+        <Input
+          className="w-full"
           name="current-ip"
-          isReadonly={
+          readOnly={
             !isGroup || !!id || updateIpReversePending || deleteIpReversePending
           }
           value={isGroup ? currentIp : ip}
-          hasError={!!currentIpError}
-          onOdsChange={(event) => {
+          invalid={!!currentIpError}
+          onChange={(event) => {
             if (!isGroup) {
               return;
             }
-            const newIp = event.detail.value as string;
+            const newIp = event.target.value;
             if (!ipaddr.isValid(newIp)) {
               setCurrentIpError(t('reverseDnsIpError'));
             } else if (!isIpInsideBlock(ipGroup, newIp)) {
@@ -220,17 +224,18 @@ export default function ConfigureReverseDns() {
             setCurrentIp(newIp);
           }}
         />
-      </OdsFormField>
-      <OdsFormField className="mb-4 block" error={reverseDnsError}>
-        <label slot="label">{t('reverseDnsDnsFieldLabel')}</label>
-        <OdsInput
-          className="block"
+        <FormFieldError>{currentIpError}</FormFieldError>
+      </FormField>
+      <FormField className="mb-4 block" invalid={!!reverseDnsError}>
+        <FormFieldLabel>{t('reverseDnsDnsFieldLabel')}</FormFieldLabel>
+        <Input
+          className="w-full"
           name="reverse-dns"
           value={reverseDns}
-          isClearable
-          isReadonly={updateIpReversePending || deleteIpReversePending}
-          onOdsChange={(event) => {
-            const newDomain = event.detail.value as string;
+          clearable
+          readOnly={updateIpReversePending || deleteIpReversePending}
+          onChange={(event) => {
+            const newDomain = event.target.value;
             setReverseDnsError(
               !newDomain || isValidReverseDomain(newDomain)
                 ? ''
@@ -239,17 +244,20 @@ export default function ConfigureReverseDns() {
             setReverseDns(newDomain);
           }}
         />
-      </OdsFormField>
+        <FormFieldError>{reverseDnsError}</FormFieldError>
+      </FormField>
       {apiError && (
-        <OdsMessage
-          isDismissible={false}
+        <Message
+          dismissible={false}
           className="mb-4 block"
-          color={ODS_MESSAGE_COLOR.critical}
+          color={MESSAGE_COLOR.critical}
         >
-          <React.Suspense fallback={<OdsSpinner />}>
-            <IpReverseError apiError={apiError} />
-          </React.Suspense>
-        </OdsMessage>
+          <MessageBody>
+            <React.Suspense fallback={<Spinner />}>
+              <IpReverseError apiError={apiError} />
+            </React.Suspense>
+          </MessageBody>
+        </Message>
       )}
     </Modal>
   );

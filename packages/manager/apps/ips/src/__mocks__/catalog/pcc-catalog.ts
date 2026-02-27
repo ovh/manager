@@ -1,4 +1,4 @@
-import { CurrencyCode } from '@ovh-ux/manager-react-components';
+import { CurrencyCode } from '@ovh-ux/muk';
 
 import { PccCatalogResponse } from '@/data/api';
 

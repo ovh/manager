@@ -11,13 +11,14 @@ export const useIpHasForcedMitigation = ({
   ip,
   enabled = true,
 }: UseIpHasForcedMitigationsParams) => {
-  const { ipMitigation, isLoading: isIpMitigationLoading } = useGetIpMitigation(
-    { ip, enabled },
-  );
+  const { ipMitigation, loading: isIpMitigationLoading } = useGetIpMitigation({
+    ip,
+    enabled,
+  });
 
   // if mitigationState is 'ok' and mitigation is auto then its "FORCED" mitigation
   return {
-    isLoading: isIpMitigationLoading,
+    loading: isIpMitigationLoading,
     hasForcedMitigation: ipMitigation?.some(
       (mitigation) =>
         mitigation.state === IpMitigationStateEnum.OK && mitigation.auto,

@@ -15,14 +15,14 @@ import { IpReverseType } from '@/data/api';
 import { ListingContext } from '@/pages/listing/listingContext';
 import { listingContextDefaultParams } from '@/test-utils/setupUnitTests';
 
-import { IpReverse, IpReverseProps } from './IpReverse';
+import { IpReverse } from './IpReverse';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIcebergIpReverseMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipsReverse: undefined as IpReverseType[] | undefined,
-    isLoading: true,
+    loading: true,
     error: undefined,
   })),
 );
@@ -41,7 +41,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
   SkeletonCell: ({ children }: PropsWithChildren) => <div>{children}</div>,
 }));
 
-const renderComponent = async (params: IpReverseProps) => {
+const renderComponent = async (params) => {
   const context = (await initShellContext('ips')) as ShellContextType;
   return render(
     <ShellContext.Provider value={context}>
@@ -60,7 +60,7 @@ describe('IpReverse Component', () => {
       ipsReverse: [
         { ipReverse: '10.0.0.1', reverse: 'reverse-10.0.0.1' },
       ] as IpReverseType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = await renderComponent({ ip: '10.0.0.1' });
@@ -71,7 +71,7 @@ describe('IpReverse Component', () => {
   it('Should display "-" if no reverse exist', async () => {
     useGetIcebergIpReverseMock.mockReturnValue({
       ipsReverse: [] as IpReverseType[],
-      isLoading: false,
+      loading: false,
       error: undefined,
     });
     const { getByText } = await renderComponent({

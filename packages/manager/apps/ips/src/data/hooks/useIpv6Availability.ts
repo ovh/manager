@@ -76,7 +76,7 @@ export const useIpv6Availability = ({
     hasReachedIpv6Limit:
       data?.data && data?.data?.length >= regionList?.length * 3,
     disabledRegionList: getUnavailableRegionList(data?.data, serviceName),
-    isLoading: isLoading || isRegionListLoading,
+    loading: isLoading || isRegionListLoading,
     isError: isError || isRegionListError,
     error: error || regionListError,
   };

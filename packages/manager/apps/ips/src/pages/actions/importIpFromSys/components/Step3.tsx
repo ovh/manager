@@ -2,20 +2,20 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsMessage,
-  OdsRadio,
-  OdsSpinner,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  MessageBody,
+  RadioControl,
+  RadioGroup,
+  RadioLabel,
+  SPINNER_SIZE,
+  Message,
+  Radio,
+  Spinner,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  IntervalUnitType,
-  OvhSubsidiary,
-  useFormatDate,
-} from '@ovh-ux/manager-react-components';
+import { IntervalUnit, OvhSubsidiary, useFormatDate } from '@ovh-ux/muk';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
@@ -65,7 +65,11 @@ export default function Step3({
     serviceName: destinationServer,
   });
 
-  const { data, isLoading, error } = useDedicatedServerIpMigrationDetails({
+  const {
+    data,
+    isLoading: loading,
+    error,
+  } = useDedicatedServerIpMigrationDetails({
     ip,
     token,
     serviceName: destinationServer,
@@ -81,34 +85,35 @@ export default function Step3({
   return (
     <>
       <div className="flex flex-col">
-        <OdsMessage
+        <Message
           className="mb-4 block"
-          color={ODS_MESSAGE_COLOR.information}
-          isDismissible={false}
+          color={MESSAGE_COLOR.information}
+          dismissible={false}
         >
-          {t('step3Description')}
-        </OdsMessage>
-        <OdsFormField className="mb-3 block">
+          <MessageBody>{t('step3Description')}</MessageBody>
+        </Message>
+        <RadioGroup
+          value={selectedDuration}
+          name="duration"
+          className="mb-3 block"
+          onValueChange={(e) => setSelectedDuration(e.value)}
+        >
           {availableDurations?.map((durationString) => (
-            <div className="flex items-center" key={durationString}>
-              <OdsRadio
-                className="mr-3"
-                inputId={durationString}
-                name="duration"
-                value={durationString}
-                isDisabled={availableDurations?.length === 1}
-                isChecked={selectedDuration === durationString}
-                onOdsChange={(e) => setSelectedDuration(e.target.value)}
-              />
-              <label htmlFor={durationString} slot="label">
+            <Radio
+              key={durationString}
+              value={durationString}
+              disabled={availableDurations?.length === 1}
+            >
+              <RadioControl />
+              <RadioLabel>
                 {`${t(`duration-${durationString.split('-')[0]}`)} ${format({
                   date: durationString
                     .split('-')
                     .slice(1)
                     .join('-'),
                 })} : `}
-                {isLoading ? (
-                  <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+                {loading ? (
+                  <Spinner size={SPINNER_SIZE.xs} />
                 ) : (
                   <Price
                     value={
@@ -119,13 +124,13 @@ export default function Step3({
                       environment.user.ovhSubsidiary as OvhSubsidiary
                     }
                     locale={i18n.language}
-                    intervalUnit={IntervalUnitType.none}
+                    intervalUnit={IntervalUnit.none}
                   />
                 )}
-              </label>
-            </div>
+              </RadioLabel>
+            </Radio>
           ))}
-        </OdsFormField>
+        </RadioGroup>
       </div>
       <ApiErrorMessage error={error} />
       <ModalButtonGroup

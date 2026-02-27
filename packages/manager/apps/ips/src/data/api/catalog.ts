@@ -1,5 +1,5 @@
 import { ApiResponse, apiClient } from '@ovh-ux/manager-core-api';
-import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/muk';
 
 export type Capacity =
   | 'installation'

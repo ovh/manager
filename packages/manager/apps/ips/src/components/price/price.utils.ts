@@ -1,8 +1,8 @@
 import {
-  IntervalUnitType,
+  IntervalUnit,
   OVH_CURRENCY_BY_SUBSIDIARY,
   OvhSubsidiary,
-} from '@ovh-ux/manager-react-components';
+} from '@ovh-ux/muk';
 
 export interface PriceProps {
   /** The price value to display */
@@ -10,7 +10,7 @@ export interface PriceProps {
   /** The tax value to display */
   tax?: number;
   /** The interval unit for the price (day, month, year) */
-  intervalUnit?: IntervalUnitType;
+  intervalUnit?: IntervalUnit;
   /** The OVH subsidiary to determine price format */
   ovhSubsidiary: OvhSubsidiary;
   /** Whether to convert the price based on interval unit */
@@ -29,13 +29,13 @@ export const getPrice = (value: number, tax?: number): number => {
 
 export const convertIntervalPrice = (
   price: number,
-  intervalUnit: IntervalUnitType,
+  intervalUnit: IntervalUnit,
 ): number => {
   const conversionRates = {
-    [IntervalUnitType.day]: price / 365,
-    [IntervalUnitType.month]: price / 12,
-    [IntervalUnitType.year]: price,
-    [IntervalUnitType.none]: price,
+    [IntervalUnit.day]: price / 365,
+    [IntervalUnit.month]: price / 12,
+    [IntervalUnit.year]: price,
+    [IntervalUnit.none]: price,
   };
 
   return conversionRates[intervalUnit] || price;

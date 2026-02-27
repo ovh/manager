@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, waitFor } from '@testing-library/react';
@@ -8,14 +8,14 @@ import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpDetails } from '@/data/api';
 import '@/test-utils/setupUnitTests';
 
-import { IpCountry, IpCountryProps } from './IpCountry';
+import { IpCountry } from './IpCountry';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -28,7 +28,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpCountryProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <IpCountry {...params} />
@@ -40,7 +40,7 @@ describe('IpCountry Component', () => {
   it('Should display translated country', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({
       ip: ipDetailsList[3]?.ip,

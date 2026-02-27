@@ -47,7 +47,7 @@ export const useGetIpOrganisation = ({
 
   const {
     data: ipDetailsResponse,
-    isLoading,
+    isLoading: loading,
     isError,
     error,
   } = useQuery<ApiResponse<IpDetails>, ApiError>({
@@ -63,7 +63,7 @@ export const useGetIpOrganisation = ({
     organisationId: ipDetailsResponse?.data.organisationId,
     rirForOrganisation: ipDetailsResponse?.data.rir,
     hasOnGoingChangeRipeOrgTask,
-    isLoading: isLoading || isTasksLoading,
+    loading: loading || isTasksLoading,
     isError: isError || !!taskError,
     error: error ?? taskError,
   };

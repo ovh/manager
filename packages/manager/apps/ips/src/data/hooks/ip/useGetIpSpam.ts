@@ -10,12 +10,10 @@ export type UseGetIpSpamParams = {
 };
 
 export const useGetIpSpam = ({ ip, enabled = true }: UseGetIpSpamParams) => {
-  const {
-    data: ipSpamResponse,
-    isLoading,
-    isError,
-    error,
-  } = useQuery<IcebergFetchResultV6<IpSpamType>, ApiError>({
+  const { data: ipSpamResponse, isLoading: loading, isError, error } = useQuery<
+    IcebergFetchResultV6<IpSpamType>,
+    ApiError
+  >({
     queryKey: getIpSpamQueryKey({ ip }),
     queryFn: () => getIpSpam({ ip }),
     enabled,
@@ -23,5 +21,5 @@ export const useGetIpSpam = ({ ip, enabled = true }: UseGetIpSpamParams) => {
     retry: false,
   });
 
-  return { ipSpam: ipSpamResponse?.data, isLoading, isError, error };
+  return { ipSpam: ipSpamResponse?.data, loading, isError, error };
 };

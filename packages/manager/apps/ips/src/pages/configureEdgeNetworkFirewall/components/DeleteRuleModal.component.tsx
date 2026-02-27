@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -87,23 +87,27 @@ export const DeleteRuleModal: React.FC = () => {
 
   return (
     <Modal
-      isOpen={isConfirmDeleteModalOpen}
-      onDismiss={hideConfirmDeleteModal}
+      open={isConfirmDeleteModalOpen}
+      onOpenChange={hideConfirmDeleteModal}
       heading={t('confirmDeleteRuleHeading')}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      isSecondaryButtonDisabled={isPending}
-      isPrimaryButtonLoading={isPending}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['configure_edge-firewall', 'delete_rule', 'confirm'],
-        });
-        deleteRule();
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        loading: isPending,
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['configure_edge-firewall', 'delete_rule', 'confirm'],
+          });
+          deleteRule();
+        },
       }}
-      onSecondaryButtonClick={hideConfirmDeleteModal}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        onClick: hideConfirmDeleteModal,
+        disabled: isPending,
+      }}
     >
       {t('confirmDeleteRuleDescription', {
         sequence: ruleToDelete?.sequence,

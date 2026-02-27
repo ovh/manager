@@ -8,14 +8,14 @@ import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import { IpDetails } from '@/data/api';
 import '@/test-utils/setupUnitTests';
 
-import { IpCell, IpCellProps } from './IpCell';
+import { IpCell } from './IpCell';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -24,7 +24,7 @@ vi.mock('@/data/hooks/ip', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpCellProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <IpCell {...params} />
@@ -36,7 +36,7 @@ describe('IpCell Component', () => {
   it('Should display ip without mask if it is /32', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { queryByText, getByText } = renderComponent({ ip: '10.0.0.0/32' });
     await waitFor(() => {
@@ -48,7 +48,7 @@ describe('IpCell Component', () => {
   it('Should display ip with mask if it is not /32', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({ ip: '10.0.0.0/28' });
     await waitFor(() => {
@@ -59,7 +59,7 @@ describe('IpCell Component', () => {
   it('Should display loader while fetching ip description', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: true,
+      loading: true,
     });
     const { container } = renderComponent({
       ip: ipDetailsList[0]?.ip,
@@ -72,7 +72,7 @@ describe('IpCell Component', () => {
   it('Should display ip description if exist', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[0] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({
       ip: ipDetailsList[0]?.ip,

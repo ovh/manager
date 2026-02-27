@@ -31,7 +31,7 @@ import { fromIdToIp, ipFormatter } from '@/utils';
 export const MAX_RULES_NUMBER = 20;
 
 export type EdgeNetworkFirewallContextType = {
-  isLoading?: boolean;
+  loading?: boolean;
   isRulesLoading?: boolean;
   rules: IpEdgeFirewallRule[];
   ruleSequenceList: number[];
@@ -172,7 +172,7 @@ export const EdgeFirewallContextProvider: FC<{
 
   const ip = data?.data?.[0] || ipGroup;
 
-  const { isLoading, ipEdgeFirewall, isError, error } = useGetIpEdgeFirewall({
+  const { loading, ipEdgeFirewall, isError, error } = useGetIpEdgeFirewall({
     ip,
     ipOnFirewall,
     enabled: !!ipOnFirewall && !isParentIpLoading,
@@ -215,7 +215,7 @@ export const EdgeFirewallContextProvider: FC<{
   });
 
   const {
-    isLoading: isRulesLoading,
+    loading: isRulesLoading,
     data: rules,
     isError: isRulesError,
     error: rulesError,
@@ -225,7 +225,7 @@ export const EdgeFirewallContextProvider: FC<{
   });
 
   const value = {
-    isLoading,
+    loading,
     isRulesLoading,
     hasNoFirewall,
     rules: rules || [],

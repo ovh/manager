@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsLink } from '@ovhcloud/ods-components/react';
+import { Icon, ICON_NAME, Link } from '@ovhcloud/ods-react';
 
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -11,7 +10,7 @@ type LinkToOtherAppProps = {
   appName: string;
   path: string;
   params?: Record<string, string>;
-  icon?: ODS_ICON_NAME;
+  icon?: ICON_NAME;
   forcedHref?: string;
 };
 
@@ -34,13 +33,14 @@ export const LinkToOtherApp: React.FC<LinkToOtherAppProps> = ({
   }, []);
 
   return (
-    <OdsLink
+    <Link
       className={className}
       href={forcedHref ?? href}
-      referrerpolicy="strict-origin-when-cross-origin"
+      referrer-policy="strict-origin-when-cross-origin"
       target="_blank"
-      icon={icon}
-      label={children}
-    />
+    >
+      <Icon name={icon} />
+      {children}
+    </Link>
   );
 };
