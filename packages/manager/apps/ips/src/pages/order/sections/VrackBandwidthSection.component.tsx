@@ -63,7 +63,9 @@ export const VrackBandwidthSection: React.FC = () => {
   return (
     <OrderSection
       title={t('vrack_bandwidth_section_title')}
-      description={t('vrack_bandwidth_section_description')}
+      description={t('vrack_bandwidth_section_description_1')}
+      description2={t('vrack_bandwidth_section_description_2')}
+      description3={t('vrack_bandwidth_section_description_3')}
       className="flex flex-col"
       isLoading={isBandwidthLimitLoading || isBandwidthCartOptionsLoading}
       isError={isBandwidthLimitError || isBandwidthCartOptionsError}

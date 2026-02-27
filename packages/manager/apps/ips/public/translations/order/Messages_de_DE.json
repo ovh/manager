@@ -55,5 +55,8 @@
   "upgrade_bandwidth_order_success_message": "Ihre Bestellung für die Bandbreite hat in einem neuen Tab begonnen. Bitte schließen Sie diese ab, um Ihren Kauf abzuschließen. Wenn sich der neue Tab nicht öffnet, <Link>hier klicken.</Link>",
   "bandwidth_option_card_tooltip": "Ein anteiliger Kostenbetrag gilt für die verbleibenden Tage Ihres aktuellen Abrechnungszyklus, und die volle Preisgestaltung beginnt im nächsten Abrechnungszyklus.",
   "vrack_bandwidth_double_order_info_message": "Eine Bestellung für die öffentliche Bandbreite und eine Bestellung für die zusätzliche IP sind erforderlich, wenn Sie bereits eine aktivierte öffentliche Bandbreite auf Ihrem vRack haben. Wenn Sie noch keine aktivierte öffentliche Bandbreite haben, ist nur eine Bestellung erforderlich.",
-  "upgrade_bandwidth_order_error_message": "Ein Fehler ist bei der Bestellung der öffentlichen Bandbreite aufgetreten. Bitte versuchen Sie es später noch einmal."
+  "upgrade_bandwidth_order_error_message": "Ein Fehler ist bei der Bestellung der öffentlichen Bandbreite aufgetreten. Bitte versuchen Sie es später noch einmal.",
+  "vrack_bandwidth_section_description_1": "Bei der Zuweisung einer zusätzlichen IP-Adresse zu einem vRack-Netzwerk gilt die öffentliche Bandbreite für den Datenverkehr zwischen OVHcloud und dem Internet.",
+  "vrack_bandwidth_section_description_2": "Die ausgewählte öffentliche Bandbreite gilt für ein vRack-Netzwerk in der angegebenen Region und wird zwischen allen zusätzlichen IP-Adressen an diesem Standort, die an dieses Netzwerk geroutet sind, geteilt.",
+  "vrack_bandwidth_section_description_3": "Bitte wählen Sie das für Ihre Bedürfnisse geeignete Paket aus (es kann später aufgerüstet werden)."
 }

@@ -101,7 +101,7 @@ describe('VrackBandwidthSection', () => {
       screen.getByText('vrack_bandwidth_section_title'),
     ).toBeInTheDocument();
     expect(
-      screen.getByText('vrack_bandwidth_section_description'),
+      screen.getByText('vrack_bandwidth_section_description_1'),
     ).toBeInTheDocument();
   });
 
