@@ -82,6 +82,20 @@
                 >
                 </textarea>
             </div>
+
+            <div class="form-group">
+                <input
+                    type="checkbox"
+                    id="signRequests"
+                    name="signRequests"
+                    data-ng-model="$ctrl.identityProvider.signRequests"
+                />
+                <label for="signRequests" style="display: inline-block">
+                    <span
+                        data-translate="sso_modal_activate_request_signature"
+                    ></span>
+                </label>
+            </div>
         </form>
     </oui-modal>
 </div>
