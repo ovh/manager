@@ -77,6 +77,7 @@ export default function Layout() {
     ? `#/${serviceName}/multisite`
     : multisiteHostingUrl;
   const sslPathname = `#/${serviceName}/ssl`;
+  const statiticsUrl = useHostingUrl(serviceName, 'user-logs');
   const logsUrl = `#/${serviceName}/user-logs`;
   const ftpUrl = useHostingUrl(serviceName, 'ftp');
   const databaseUrl = useHostingUrl(serviceName, 'database');
@@ -115,6 +116,11 @@ export default function Layout() {
         name: 'module',
         title: t('hosting_tab_MODULE'),
         to: moduleUrl,
+      },
+      {
+        name: 'logs',
+        title: t('hosting_tab_USER_STATISTICS'),
+        to: statiticsUrl,
       },
       ...(availability?.['web-hosting:osl-to-ldp']
         ? [
