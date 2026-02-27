@@ -1,8 +1,10 @@
+import { useMemo } from 'react';
 import { z } from 'zod/v3';
 import {
   VCDVrackSegment,
   useUpdateVcdVrackSegment,
   useVcdVrackSegmentOptions,
+  useVcdVrackSegmentsList,
 } from '@ovh-ux/manager-module-vcd-api';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,21 +20,19 @@ import { RhfField } from '@/components/Fields';
 import { subRoutes } from '@/routes/routes.constant';
 import { useMessageContext } from '@/context/Message.context';
 import { TRACKING } from '@/tracking.constants';
-
-const VLAN_MIN = 1;
-const VLAN_MAX = 4094;
-
-const VLAN_ID_FORM_SCHEMA = z.object({
-  vlanId: z
-    .number()
-    .min(VLAN_MIN)
-    .max(VLAN_MAX),
-});
+import {
+  VLAN_ID_FORM_SCHEMA,
+  VLAN_MIN,
+  VLAN_MAX,
+  ZOD_ERROR_VLAN_ID_ALREADY_IN_USE,
+  zodErrorParamMapper,
+} from '@/schemas/form.schema';
 
 export default function EditVrackSegmentId() {
   const { id, vdcId, vrackSegmentId } = useParams();
   const { trackPage, trackClick } = useOvhTracking();
   const { t } = useTranslation('datacentres/vrack-segment');
+  const { t: tZodError } = useTranslation('zodError');
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
@@ -58,6 +58,25 @@ export default function EditVrackSegmentId() {
   };
 
   const { data: vrackSegment, isLoading, isError } = useQuery(options);
+
+  const { data: vrackSegmentsList } = useVcdVrackSegmentsList(id, vdcId);
+
+  const usedIds =
+    vrackSegmentsList?.data
+      ?.map((el) => Number(el.currentState?.vlanId))
+      .filter(Number.isFinite) ?? [];
+
+  const currentVlan = vrackSegment?.vlanId;
+
+  const schema = useMemo(() => {
+    return VLAN_ID_FORM_SCHEMA.refine(
+      (data) => data.vlanId === currentVlan || !usedIds.includes(data?.vlanId),
+      {
+        message: ZOD_ERROR_VLAN_ID_ALREADY_IN_USE,
+        path: ['vlanId'],
+      },
+    );
+  }, [usedIds, currentVlan]);
 
   const {
     mutate: updateVrackSegment,
@@ -92,11 +111,11 @@ export default function EditVrackSegmentId() {
     },
   });
 
-  const { control, register, handleSubmit, watch, formState } = useForm<
+  const { register, handleSubmit, watch, formState, control } = useForm<
     z.infer<typeof VLAN_ID_FORM_SCHEMA>
   >({
     mode: 'onChange',
-    resolver: zodResolver(VLAN_ID_FORM_SCHEMA),
+    resolver: zodResolver(schema),
     values: {
       vlanId: vrackSegment?.vlanId,
     },
@@ -154,11 +173,15 @@ export default function EditVrackSegmentId() {
           {watch('vlanId') !== undefined && (
             <RhfField
               control={control}
-              controllerParams={register('vlanId')}
-              helperMessage={t('managed_vcd_dashboard_vrack_vlan_id_helper', {
-                minId: VLAN_MIN,
-                maxId: VLAN_MAX,
-              })}
+              controllerParams={register('vlanId', { valueAsNumber: true })}
+              helperMessage={
+                formState.errors?.vlanId?.message
+                  ? tZodError(
+                      formState.errors.vlanId.message,
+                      zodErrorParamMapper(formState.errors.vlanId.message),
+                    )
+                  : undefined
+              }
             >
               <RhfField.Label>
                 {t('managed_vcd_dashboard_vrack_vlan_id')}

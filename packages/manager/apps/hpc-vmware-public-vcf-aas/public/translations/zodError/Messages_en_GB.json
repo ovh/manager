@@ -1,4 +1,6 @@
 {
   "ZOD_ERROR_IPV4_OR_IPV4CIDR_INVALID": "Must be a valid IPv4 address or an IPv4 CIDR. (e.g. 192.168.0.1 or 192.168.0.0/24)",
-  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Overlap detected with another network range, please choose another value"
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Overlap detected with another network range, please choose another value",
+  "ZOD_ERROR_VLAN_ID_HELPER": "The VLAN ID must be between {{minId}} and {{maxId}}",
+  "ZOD_ERROR_VLAN_ID_ALREADY_IN_USE": "The VLAN ID is already in use"
 }
