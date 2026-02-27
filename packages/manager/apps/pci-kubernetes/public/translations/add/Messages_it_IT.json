@@ -88,5 +88,15 @@
   "kube_add_plan_content_standard_1AZ_control_plane": "Control plane gestito, altamente disponibile (1-AZ) e dedicato, con risorse garantite",
   "kube_add_plan_content_not_available": "non disponibile nella Region",
   "kubernetes_add_region_plan_select": "Filtrare per piani",
-  "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA"
+  "kube_add_plan_content_standard_1AZ_SLA": "99,9% SLA",
+  "kubernetes_add_create_cluster": "Crea il mio cluster",
+  "kubernetes_add_cluster_name_input_helper": {
+    "introduction": "Deve:",
+    "char_number": "contenere tra 2 e 64 caratteri",
+    "char_whitelist": "contenere solo lettere, numeri, trattini o underscore",
+    "first_char": "iniziare con una lettera",
+    "last_char": "terminare con un carattere alfanumerico (a-z, A-Z, 0-9)"
+  },
+  "kubernetes_add_cluster_name_input_error": "Il nome del cluster non è valido",
+  "kubernetes_add_cluster_name_input_error_empty": "Il nome del cluster è obbligatorio"
 }

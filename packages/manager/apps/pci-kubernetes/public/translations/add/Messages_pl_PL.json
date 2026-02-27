@@ -88,5 +88,15 @@
   "kube_add_plan_content_standard_1AZ_control_plane": "Dedykowany, zarządzany control plane o wysokiej dostępności (1-AZ), z gwarantowanymi zasobami",
   "kube_add_plan_content_not_available": "niedostępny w regionie",
   "kubernetes_add_region_plan_select": "Filtruj według ofert",
-  "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%"
+  "kube_add_plan_content_standard_1AZ_SLA": "SLA 99,9%",
+  "kubernetes_add_create_cluster": "Utwórz mój klaster",
+  "kubernetes_add_cluster_name_input_helper": {
+    "introduction": "Musi:",
+    "char_number": "zawierać od 2 do 64 znaków",
+    "char_whitelist": "zawierać tylko litery, cyfry, myślniki lub podkreślenia",
+    "first_char": "zaczynać się od litery",
+    "last_char": "kończyć się znakiem alfanumerycznym (a-z, A-Z, 0-9)"
+  },
+  "kubernetes_add_cluster_name_input_error": "Nazwa klastra jest nieprawidłowa",
+  "kubernetes_add_cluster_name_input_error_empty": "Nazwa klastra jest wymagana"
 }

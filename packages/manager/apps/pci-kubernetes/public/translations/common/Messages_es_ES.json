@@ -88,5 +88,6 @@
   "common_dual_list_target_move": "Eliminar",
   "common_dual_list_target_move_all": "Eliminar todo",
   "common_dual_list_target_search": "Buscar en el contenido de destino",
-  "common_save_button_label": "Guardar"
+  "common_save_button_label": "Guardar",
+  "common_breadcrumb": "Migas de pan"
 }

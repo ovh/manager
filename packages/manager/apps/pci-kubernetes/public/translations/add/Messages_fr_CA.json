@@ -31,6 +31,15 @@
   "kubernetes_add_region_description_region": "Déploiement résilient et économique sur 1 zone de disponibilité.",
   "kubernetes_add_region_description_region-3-az": "Déploiement haute résilience/haute disponibilité pour vos applications critiques sur 3 zones de disponibilité.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "Le nom du cluster doit contenir entre 2 et 64 caractères, commencer par une lettre, se terminer par un caractère alphanumérique et ne contenir que des lettres, chiffres, tirets ou underscores.",
+  "kubernetes_add_cluster_name_input_helper": {
+    "introduction": "Doit :",
+    "char_number": "contenir entre 2 et 64 caractères",
+    "char_whitelist": "contenir uniquement des lettres, chiffres, tirets ou underscores",
+    "first_char": "commencer par une lettre",
+    "last_char": "se terminer par un caractère alphanumérique (a-z, A-Z, 0-9)"
+  },
+  "kubernetes_add_cluster_name_input_error": "Le nom du cluster est invalide",
+  "kubernetes_add_cluster_name_input_error_empty": "Le nom du cluster est requis",
   "kubernetes_add_billing_type_description": "Tous les nœuds futurs de ce pool de nœuds seront soumis à ce mode de facturation.",
   "kubernetes_add_billing_type_description_monthly": "Vous pourrez ultérieurement passer chacun de vos nœuds individuellement de la facturation horaire à la facturation mensuelle.",
   "kubernetes_add_billing_auto_scaling_monthly_warning": "Attention : Vous activez simultanément l'autoscaling et le forfait mensuel pour ce nodepool. Chaque création de nœud par l'autoscaling va entrainer la facturation immédiate d'un nœud au prorata du temps restant sur le mois en cours. Nous vous conseillons d'éviter cette combinaison si vous anticipez que la taille de votre nodepool sera fréquemment réduite.",
@@ -38,6 +47,7 @@
   "kubernetes_add_billing_anti_affinity_title": "Facturation et anti-affinité",
   "kubernetes_add_billing_savings_plan_banner": "Bénéficiez de tarifs mensuels avantageux grâce aux Savings Plans, tout en gardant la flexibilité des instances à l'heure.",
   "kubernetes_add_billing_savings_plan_cta": "Configurez vos Savings Plans",
+  "kubernetes_add_create_cluster": "Créer mon cluster",
   "kube_add_node_pool_config_title": "Configuration générale",
   "kube_add_node_pool_name_label": "Nom du pool de nœuds",
   "kube_add_node_pool_name_title": "Nommez votre pool de nœuds",
