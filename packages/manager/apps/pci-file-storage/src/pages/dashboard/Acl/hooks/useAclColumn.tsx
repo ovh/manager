@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useMemo } from 'react';
 
 import { Controller, UseFormReturn } from 'react-hook-form';
@@ -37,6 +38,7 @@ type TUseAclColumnProps = {
   deletingAclId?: string;
   isCreatePending: boolean;
   canManageAcl: boolean;
+  onConfirmCreate: (values: CreateAclFormValues) => void;
 };
 
 export const useAclColumn = ({
@@ -47,6 +49,7 @@ export const useAclColumn = ({
   deletingAclId,
   isCreatePending,
   canManageAcl,
+  onConfirmCreate,
 }: TUseAclColumnProps): DatagridColumn<TAclData | TAclDraftData>[] => {
   const { t } = useTranslation(['acl', NAMESPACES.ACTIONS, 'status']);
   const { permissions, permissionsMap } = useAclPermissions();
@@ -64,7 +67,7 @@ export const useAclColumn = ({
         comparator: [FilterComparator.Includes, FilterComparator.IsEqual],
         cell: ({ row }) =>
           isAclDraftData(row.original) ? (
-            <div className="p-4">
+            <form className="p-4">
               <Controller
                 control={formMethods.control}
                 name="accessTo"
@@ -88,7 +91,7 @@ export const useAclColumn = ({
                   );
                 }}
               />
-            </div>
+            </form>
           ) : (
             <Text preset="paragraph">{row.original.accessTo}</Text>
           ),
@@ -107,7 +110,7 @@ export const useAclColumn = ({
         })),
         cell: ({ row }) =>
           isAclDraftData(row.original) ? (
-            <div className="w-full max-w-[250px] p-4">
+            <form className="w-full max-w-[250px] p-4">
               {
                 <Controller
                   control={formMethods.control}
@@ -130,7 +133,7 @@ export const useAclColumn = ({
                   )}
                 />
               }
-            </div>
+            </form>
           ) : (
             <Text preset="paragraph">{permissionsMap[row.original.permission]}</Text>
           ),
@@ -169,11 +172,12 @@ export const useAclColumn = ({
                 ) : (
                   <>
                     <Button
-                      type="submit"
+                      type="button"
                       variant="ghost"
                       color="primary"
                       size="sm"
                       aria-label={t(`${NAMESPACES.ACTIONS}:validate`)}
+                      onClick={formMethods.handleSubmit(onConfirmCreate)}
                     >
                       <Icon name={ICON_NAME.check} />
                     </Button>
@@ -227,6 +231,7 @@ export const useAclColumn = ({
     permissions,
     permissionsMap,
     canManageAcl,
+    onConfirmCreate,
     t,
   ]);
 };
