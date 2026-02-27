@@ -54,10 +54,10 @@
   "sshKeyConfigurationHelperBis": "Utilice la siguiente lista desplegable para asociar llaves SSH a su notebook",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "qpuQubits": "Cúbits",
-  "defaultAutoRestartInfo": "El notebook se detendrá automáticamente al cabo de 7 días. Se guardarán la configuración y los datos.",
+  "defaultAutoRestartInfo": "El portátil se apagará automáticamente después de 7 días de funcionamiento continuo. Su configuración y sus datos serán guardados.",
   "fieldTimeOutLabel": "Expiración",
   "fieldAutoRestartLabel": "Reinicio automático",
-  "fieldAutoRestartDescription": "Si está activado, el notebook se reiniciará automáticamente cada 7 días. Si se desactiva, el notebook se detendrá automáticamente al cabo de 7 días. En los dos casos, se guardarán la configuración y los datos.",
+  "fieldAutoRestartDescription": "Si está activado, el portátil se reiniciará automáticamente cada 7 días de funcionamiento continuo. Si está desactivado, el portátil se apagará automáticamente después de 7 días de funcionamiento continuo. En ambos casos, su configuración y sus datos serán guardados.",
   "filedEnable": "Activado",
   "filedDisable": "Desactivado"
 }

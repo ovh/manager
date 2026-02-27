@@ -15,5 +15,7 @@
   "tableActionRestart": "Redémarrer",
   "tableActionClone": "Cloner le Job",
   "tableActionStop": "Arrêter",
-  "tableActionDelete": "Supprimer"
+  "tableActionDelete": "Supprimer",
+  "waitingResourceLabel": "En attente d'une ressource disponible",
+  "pendingTimeoutHint": "La date d'expiration sera définie lorsque le job sera en cours d'exécution."
 }

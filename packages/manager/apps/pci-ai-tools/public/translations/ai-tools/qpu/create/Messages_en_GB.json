@@ -59,5 +59,5 @@
   "defaultAutoRestartInfo": "QPU notebooks cannot be stopped without automatic restart. This feature is enabled by default to ensure the continuity of your QPU calculations.",
   "fieldTimeOutLabel": "Expiry",
   "fieldAutoRestartLabel": "Automatic restart",
-  "fieldAutoRestartDescription": "If enabled, the notebook will automatically restart every 7 days. If disabled, the notebook will automatically stop after 7 days. In both cases, your configuration and data will be saved."
+  "fieldAutoRestartDescription": "If enabled, the notebook will automatically restart every 7 consecutive days of operation. If disabled, the notebook will automatically shut down after 7 consecutive days of operation. In both cases, your configuration and data will be saved."
 }
