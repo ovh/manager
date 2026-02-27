@@ -1,4 +1,6 @@
 import '@testing-library/jest-dom';
+import '@ovh-ux/manager-static-analysis-kit/tests/html-a11y-tests-setup';
+import '@ovh-ux/manager-static-analysis-kit/tests/html-w3c-tests-setup';
 import { vi } from 'vitest';
 import React from 'react';
 import { UseQueryResult } from '@tanstack/react-query';

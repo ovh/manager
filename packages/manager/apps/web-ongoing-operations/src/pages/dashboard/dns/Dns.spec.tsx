@@ -1,6 +1,6 @@
 import '@/setupTests';
 import '@testing-library/jest-dom';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { useFeatureAvailability, useResourcesIcebergV6 } from '@ovh-ux/manager-react-components';
 import { dns } from '@/__mocks__/dns';
@@ -9,6 +9,15 @@ import { allDomFeatureAvailibility, domainFeatureAvailibility, taskMeDns } from 
 import { serviceInfo } from '@/__mocks__/serviceInfo';
 import { useGetDomainInformation } from '@/hooks/data/query';
 import { wrapper } from '@/utils/test.provider';
+
+const dnsA11yRules = {
+  'select-name': { enabled: false },
+  'aria-prohibited-attr': { enabled: false },
+  'empty-table-header': { enabled: false },
+  'button-name': { enabled: false },
+  'label': { enabled: false },
+  'aria-command-name': { enabled: false },
+};
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => vi.fn(() => null),
@@ -25,10 +34,10 @@ vi.mock('@/hooks/data/query', () => ({
 }));
 
 describe('Dns datagrid', () => {
-  it('fetch in a good way using useResourcesIcebergV6', () => {
+  it('fetch in a good way using useResourcesIcebergV6',  async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
@@ -43,7 +52,7 @@ describe('Dns datagrid', () => {
       data: serviceInfo,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
 
     expect(useResourcesIcebergV6).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -53,12 +62,13 @@ describe('Dns datagrid', () => {
         queryKey: taskMeDns,
       }),
     );
+    await expect(container).toBeAccessible({ rules: dnsA11yRules });
   });
 
   it('Display the datagrid element', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
@@ -73,7 +83,7 @@ describe('Dns datagrid', () => {
       data: serviceInfo,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
     await waitFor(() => {
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = screen.getByTestId('testpuwebdomain.us');
@@ -83,12 +93,13 @@ describe('Dns datagrid', () => {
         'https://ovh.test/#/web/domain/testpuwebdomain.us/information',
       );
     });
+    await expect(container).toBeAccessible({ rules: dnsA11yRules });
   });
 
   it('Display the datagrid element but serviceInfo is undefined', async () => {
     (useFeatureAvailability as Mock).mockReturnValue({
           data: {[allDomFeatureAvailibility] : true, [domainFeatureAvailibility] : true}
-        }),
+        });
     (useResourcesIcebergV6 as Mock).mockReturnValue({
       flattenData: dns,
       isLoading: false,
@@ -103,7 +114,7 @@ describe('Dns datagrid', () => {
       data: undefined,
     });
 
-    render(<Dns />, { wrapper });
+    const { container } = render(<Dns />, { wrapper });
     await waitFor(() => {
       expect(screen.getByTestId('datagrid')).toBeInTheDocument();
       const dnsName = screen.getByTestId('testpuwebdomain.us');
@@ -113,5 +124,6 @@ describe('Dns datagrid', () => {
         'https://ovh.test/#/web/zone/testpuwebdomain.us',
       );
     });
+    await expect(container).toBeAccessible({ rules: dnsA11yRules });
   });
 });

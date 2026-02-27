@@ -1,6 +1,5 @@
 import '@/common/setupTests';
-import React from 'react';
-import { Mock, vi } from 'vitest';
+import { Mock, vi, expect } from 'vitest';
 import { fireEvent, waitFor, act } from '@/common/utils/test.provider';
 import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
 import ServiceList from './serviceList';
@@ -8,6 +7,15 @@ import { wrapper, render, screen } from '@/common/utils/test.provider';
 import { useGetServices } from '@/alldoms/hooks/data/useGetServices';
 import { serviceInfo } from '@/alldoms/__mocks__/serviceInfo';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';
+
+const serviceListA11yRules = {
+  'select-name': { enabled: false },
+  'aria-prohibited-attr': { enabled: false },
+  'empty-table-header': { enabled: false },
+  'button-name': { enabled: false },
+  label: { enabled: false },
+  'aria-command-name': { enabled: false },
+};
 
 vi.mock('@/alldoms/hooks/data/useGetServices', () => ({
   useGetServices: vi.fn(),
@@ -29,7 +37,7 @@ describe('AllDom datagrid', () => {
       data: [serviceInfo],
       listLoading: false,
     });
-    const { getByTestId } = render(<ServiceList />, { wrapper });
+    const { getByTestId, container } = render(<ServiceList />, { wrapper });
     await waitFor(() => {
       expect(getByTestId('datagrid')).toBeInTheDocument();
 
@@ -63,5 +71,7 @@ describe('AllDom datagrid', () => {
         'https://ovh.test/#/account/contacts/services/edit',
       );
     });
+
+    await expect(container).toBeAccessible({ rules: serviceListA11yRules });
   });
 });
