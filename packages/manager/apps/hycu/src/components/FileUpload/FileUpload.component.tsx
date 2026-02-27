@@ -1,15 +1,12 @@
+import { Icon, ICON_NAME } from '@ovhcloud/ods-react';
 import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_TYPE,
-  ODS_BUTTON_VARIANT,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
-import {
-  ODS_THEME_COLOR_INTENT,
-  ODS_THEME_TYPOGRAPHY_SIZE,
-} from '@ovhcloud/ods-common-theming';
-import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
+  Button,
+  Text,
+  TEXT_PRESET,
+  BUTTON_VARIANT,
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+} from '@ovh-ux/muk';
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { Controller, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -110,54 +107,34 @@ export const FileInputField = ({
             onDragOver={(e) => handleDragOver(e)}
             onDrop={(e) => handleDrop(e, onChange)}
           >
-            <OsdsIcon
-              name={ODS_ICON_NAME.FILE}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_ICON_SIZE.lg}
-            ></OsdsIcon>
-            <OsdsText
-              size={ODS_THEME_TYPOGRAPHY_SIZE._400}
-              color={ODS_THEME_COLOR_INTENT.text}
-            >
+            <Icon name={ICON_NAME.file}></Icon>
+            <Text preset={TEXT_PRESET.span}>
               {t('hycu_dashboard_drag_and_drop_attachment')}
-            </OsdsText>
-            <OsdsText color={ODS_THEME_COLOR_INTENT.text}>
+            </Text>
+            <Text preset={TEXT_PRESET.span}>
               {t('hycu_dashboard_accepted_formats', {
                 extension: LICENSE_FILE_EXT,
               })}
-            </OsdsText>
-            <OsdsButton
-              type={ODS_BUTTON_TYPE.button}
-              variant={ODS_BUTTON_VARIANT.ghost}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_BUTTON_SIZE.sm}
+            </Text>
+            <Button
+              variant={BUTTON_VARIANT.ghost}
+              color={BUTTON_COLOR.primary}
+              size={BUTTON_SIZE.sm}
               onClick={() => fileInputRef.current.click()}
-              inline
             >
-              <span slot="start">
-                <OsdsIcon
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  name={ODS_ICON_NAME.UPLOAD_CONCEPT}
-                ></OsdsIcon>
-              </span>
-              {t('hycu_dashboard_browse')}
-            </OsdsButton>
-            <OsdsText color={ODS_THEME_COLOR_INTENT.error}>
+              <>
+                <Icon name={ICON_NAME.upload}></Icon>
+                {t('hycu_dashboard_browse')}
+              </>
+            </Button>
+            <Text className="color-[--ods-theme-critical-color]">
               {error?.message}
-            </OsdsText>
+            </Text>
             {fileName && (
-              <OsdsText
-                className="flex gap-2 justify-center"
-                color={ODS_THEME_COLOR_INTENT.success}
-              >
-                <OsdsIcon
-                  size={ODS_ICON_SIZE.xxs}
-                  color={ODS_THEME_COLOR_INTENT.success}
-                  name={ODS_ICON_NAME.SUCCESS_CIRCLE}
-                ></OsdsIcon>
+              <Text className="flex gap-2 items-center">
+                <Icon name={ICON_NAME.circleCheck}></Icon>
                 {fileName}
-              </OsdsText>
+              </Text>
             )}
           </div>
         </>

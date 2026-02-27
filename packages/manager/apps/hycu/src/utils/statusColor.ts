@@ -1,19 +1,17 @@
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 import { LicenseStatus } from '@/types/hycu.details.interface';
 
 /* v8 ignore start */
-export const getStatusColor = (
-  licenseStatus: LicenseStatus,
-): ODS_THEME_COLOR_INTENT => {
+export const getStatusColor = (licenseStatus: LicenseStatus): BADGE_COLOR => {
   switch (licenseStatus) {
     case LicenseStatus.ACTIVATED:
-      return ODS_THEME_COLOR_INTENT.success;
+      return BADGE_COLOR.success;
     case LicenseStatus.TO_ACTIVATE:
-      return ODS_THEME_COLOR_INTENT.warning;
+      return BADGE_COLOR.warning;
     case LicenseStatus.PENDING:
-      return ODS_THEME_COLOR_INTENT.primary;
+      return BADGE_COLOR.primary;
     case LicenseStatus.ERROR:
     default:
-      return ODS_THEME_COLOR_INTENT.error;
+      return BADGE_COLOR.critical;
   }
 };

@@ -1,35 +1,34 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-
 import {
-  OsdsButton,
-  OsdsChip,
-  OsdsMessage,
-  OsdsSkeleton,
-  OsdsText,
-} from '@ovhcloud/ods-components/react';
+  Badge,
+  BADGE_SIZE,
+  Link,
+  Message,
+  MESSAGE_COLOR,
+  MessageBody,
+  MessageIcon,
+  Skeleton,
+  ICON_NAME,
+} from '@ovhcloud/ods-react';
 import {
-  Datagrid,
-  DataGridTextCell,
-  useResourcesIcebergV6,
-  RedirectionGuard,
   BaseLayout,
-  Links,
-  useServiceDetails,
-  DateFormat,
-  useFormattedDate,
+  Button,
+  Datagrid,
   Notifications,
-} from '@ovh-ux/manager-react-components';
+  RedirectionGuard,
+  Text,
+  useDataApi,
+  useFormatDate,
+  DatagridColumn,
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  TEXT_PRESET,
+} from '@ovh-ux/muk';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import {
-  ODS_BUTTON_VARIANT,
-  ODS_CHIP_SIZE,
-  ODS_MESSAGE_TYPE,
-  ODS_BUTTON_SIZE,
-} from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import HYCU_CONFIG from '@/hycu.config';
 import { IHycuDetails } from '@/types/hycu.details.interface';
@@ -44,102 +43,117 @@ const DatagridErrorCell = () => {
   const { t } = useTranslation('hycu/listing');
 
   return (
-    <DataGridTextCell>
-      <OsdsText>{t('hycu_listing_error_loading_data')}</OsdsText>
-    </DataGridTextCell>
+    <Text preset={TEXT_PRESET.span}>
+      <Text preset={TEXT_PRESET.paragraph}>
+        {t('hycu_listing_error_loading_data')}
+      </Text>
+    </Text>
   );
 };
 
-const DatagridIdCell = (hycuDetail: IHycuDetails) => {
+const DatagridIdCell = ({ hycuDetails }: { hycuDetails: IHycuDetails }) => {
   const navigate = useNavigate();
 
   return (
-    <DataGridTextCell>
-      <Links
-        onClickReturn={() =>
+    <Text preset={TEXT_PRESET.span}>
+      <Link
+        onClick={() =>
           navigate(
             urls.dashboard.replace(
               subRoutes.serviceName,
-              hycuDetail.serviceName,
+              hycuDetails.serviceName,
             ),
           )
         }
-        label={hycuDetail?.iam.displayName ?? hycuDetail.serviceName}
-      ></Links>
-    </DataGridTextCell>
+      >
+        {hycuDetails?.iam.displayName ?? hycuDetails.serviceName}
+      </Link>
+    </Text>
   );
 };
 
-const DatagridControllerIdCell = (hycuDetail: IHycuDetails) => {
+const DatagridControllerIdCell = ({
+  hycuDetails,
+}: {
+  hycuDetails: IHycuDetails;
+}) => {
   return (
-    <DataGridTextCell
-      className={hycuDetail.controllerId ? '' : 'block w-full text-center'}
+    <Text
+      preset={TEXT_PRESET.span}
+      className={hycuDetails.controllerId ? '' : 'block w-full text-center'}
     >
-      {hycuDetail.controllerId || '-'}
-    </DataGridTextCell>
+      {hycuDetails.controllerId || '-'}
+    </Text>
   );
 };
 
-const DatagridStatusCell = (hycuDetail: IHycuDetails) => {
+const DatagridStatusCell = ({ hycuDetails }: { hycuDetails: IHycuDetails }) => {
   const { t } = useTranslation('hycu');
 
   return (
-    <DataGridTextCell>
-      <OsdsChip
+    <Text preset={TEXT_PRESET.span}>
+      <Badge
         className="whitespace-nowrap"
-        color={getStatusColor(hycuDetail.licenseStatus)}
-        size={ODS_CHIP_SIZE.sm}
-        inline
+        color={getStatusColor(hycuDetails.licenseStatus)}
+        size={BADGE_SIZE.sm}
       >
-        {t([`hycu_status_${hycuDetail.licenseStatus}`, 'hycu_status_error'])}
-      </OsdsChip>
-    </DataGridTextCell>
+        {t([`hycu_status_${hycuDetails.licenseStatus}`, 'hycu_status_error'])}
+      </Badge>
+    </Text>
   );
 };
 
-const DatagridCommercialNameCell = (hycuDetail: IHycuDetails) => {
+const DatagridCommercialNameCell = ({
+  hycuDetails,
+}: {
+  hycuDetails: IHycuDetails;
+}) => {
   const { data: serviceDetails, isLoading, isError } = useServiceDetails({
-    resourceName: hycuDetail.serviceName,
+    resourceName: hycuDetails.serviceName,
   });
 
   if (isError) return <DatagridErrorCell />;
 
   return (
-    <DataGridTextCell>
+    <Text preset={TEXT_PRESET.span}>
       {isLoading ? (
-        <OsdsSkeleton />
+        <Skeleton />
       ) : (
         serviceDetails?.data.resource.product.description
       )}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
-const DatagridCreatedDateCell = (hycuDetail: IHycuDetails) => {
+const DatagridCreatedDateCell = ({
+  hycuDetails,
+}: {
+  hycuDetails: IHycuDetails;
+}) => {
   const { data: serviceDetails, isLoading, isError } = useServiceDetails({
-    resourceName: hycuDetail.serviceName,
+    resourceName: hycuDetails.serviceName,
   });
   const creationDate =
     serviceDetails?.data.billing.lifecycle.current.creationDate;
-  const formattedDate = useFormattedDate({
-    dateString: creationDate as string,
-    format: DateFormat.compact,
+  const formattedDate = useFormatDate()({
+    date: creationDate,
+    format: 'dd/MMM/yyyy',
   });
 
   if (isError) return <DatagridErrorCell />;
 
   return (
-    <DataGridTextCell>
-      {isLoading ? <OsdsSkeleton></OsdsSkeleton> : formattedDate}
-    </DataGridTextCell>
+    <Text preset={TEXT_PRESET.span}>
+      {isLoading ? <Skeleton /> : formattedDate}
+    </Text>
   );
 };
 
-const DatagridActionCell = (hycuDetail: IHycuDetails) => {
+const DatagridActionCell = ({ hycuDetails }: { hycuDetails: IHycuDetails }) => {
   return (
-    <DataGridTextCell>
-      <HycuActionMenu serviceName={hycuDetail.serviceName} />
-    </DataGridTextCell>
+    <Text preset={TEXT_PRESET.span}>
+      <HycuActionMenu serviceName={hycuDetails.serviceName} />
+    </Text>
   );
 };
 
@@ -163,54 +177,92 @@ export default function Listing() {
     isLoading,
     status,
     sorting,
-    setSorting,
-  } = useResourcesIcebergV6({
+  } = useDataApi({
+    version: 'v6',
+    iceberg: true,
     route: '/license/hycu',
-    queryKey: ['/license/hycu', 'list'],
+    cacheKey: ['/license/hycu', 'list'],
+    enabled: true,
   });
 
-  const columns = useMemo(() => {
+  const columns = useMemo<DatagridColumn<Record<string, unknown>>[]>(() => {
     return [
       {
-        id: 'name',
+        id: 'id',
+        header: t(`${NAMESPACES.DASHBOARD}:name`),
         label: t(`${NAMESPACES.DASHBOARD}:name`),
         isSortable: false,
-        cell: DatagridIdCell,
+        accessorKey: 'serviceName',
+        cell: ({ row }) => (
+          <DatagridIdCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
       },
       {
         id: 'controllerId',
+        header: t('hycu_controller_id'),
         label: t('hycu_controller_id'),
-        cell: DatagridControllerIdCell,
+        accessorKey: 'controllerId',
+        cell: ({ row }) => (
+          <DatagridControllerIdCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
       },
       {
-        id: 'licenseStatus',
+        id: 'status',
+        header: t(`${NAMESPACES.STATUS}:status`),
         label: t(`${NAMESPACES.STATUS}:status`),
-        cell: DatagridStatusCell,
+        accessorKey: 'licenseStatus',
+        cell: ({ row }) => (
+          <DatagridStatusCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
       },
       {
-        id: 'commercial_name',
+        id: 'commercialName',
+        header: t('hycu_commercial_name'),
         label: t('hycu_commercial_name'),
+        accessorKey: 'serviceName',
         isSortable: false,
-        cell: DatagridCommercialNameCell,
+        cell: ({ row }) => (
+          <DatagridCommercialNameCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
       },
       {
-        id: 'subscribed_date',
+        id: 'subscribedDate',
+        header: t('hycu_subscribed_date'),
         label: t('hycu_subscribed_date'),
+        accessorKey: 'serviceName',
         isSortable: false,
-        cell: DatagridCreatedDateCell,
+        cell: ({ row }) => (
+          <DatagridCreatedDateCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
       },
       {
-        id: 'action',
+        id: 'actions',
+        header: '',
         label: '',
         isSortable: false,
-        cell: DatagridActionCell,
+        cell: ({ row }) => (
+          <DatagridActionCell
+            hycuDetails={(row?.original as unknown) as IHycuDetails}
+          />
+        ),
+        accessorKey: 'serviceName',
+        size: 48,
       },
     ];
   }, []);
 
   const header = {
     title: HYCU_CONFIG.rootLabel,
-    description: t('hycu:hycu_description'),
   };
 
   return (
@@ -221,38 +273,39 @@ export default function Listing() {
         route={urls.onboarding}
         isError={isError}
         errorComponent={
-          <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.error}>
-            {t(`${NAMESPACES.ERROR}:error_loading_page`)}
-          </OsdsMessage>
+          <Message className="mt-4" color={MESSAGE_COLOR.critical}>
+            <MessageIcon name={ICON_NAME.hexagonExclamation}></MessageIcon>
+            <MessageBody>
+              {t(`${NAMESPACES.ERROR}:error_loading_page`)}
+            </MessageBody>
+          </Message>
         }
       >
         <Notifications />
-        <BaseLayout header={header}>
+        <BaseLayout header={header} description={t('hycu:hycu_description')}>
           <React.Suspense>
             <div className="flex flex-col gap-4">
               <div>
-                <OsdsButton
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                  variant={ODS_BUTTON_VARIANT.stroked}
-                  size={ODS_BUTTON_SIZE.sm}
+                <Button
+                  color={BUTTON_COLOR.primary}
+                  size={BUTTON_SIZE.md}
+                  variant={BUTTON_VARIANT.outline}
                   onClick={() => {
                     trackClick(TRACKING.listing.orderClick);
                     navigate(urls.order);
                   }}
-                  inline
                 >
                   {t(`${NAMESPACES.ACTIONS}:order`)}
-                </OsdsButton>
+                </Button>
               </div>
               {columns && flattenData && (
                 <Datagrid
                   columns={columns}
-                  items={flattenData}
-                  totalItems={totalCount || 0}
+                  data={flattenData}
+                  totalCount={totalCount || 0}
                   hasNextPage={hasNextPage && !isLoading}
                   onFetchNextPage={fetchNextPage}
                   sorting={sorting}
-                  onSortChange={setSorting}
                 />
               )}
             </div>

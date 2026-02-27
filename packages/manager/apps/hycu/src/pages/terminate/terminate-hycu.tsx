@@ -1,9 +1,6 @@
 import React, { useContext } from 'react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  useNotifications,
-  DeleteModal,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications, DeleteModal } from '@ovh-ux/muk';
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
 
 import { useTranslation } from 'react-i18next';
@@ -55,7 +52,8 @@ export const TerminateLicensePage = () => {
 
   return (
     <DeleteModal
-      closeModal={closeModal}
+      onOpenChange={closeModal}
+      onClose={closeModal}
       error={isError ? error?.message : null}
       onConfirmDelete={onConfirmDelete}
       isLoading={isPending}

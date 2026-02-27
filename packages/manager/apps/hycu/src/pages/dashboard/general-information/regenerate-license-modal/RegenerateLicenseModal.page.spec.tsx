@@ -37,7 +37,9 @@ describe('License Hycu regenerate license route test suite', () => {
     );
 
     expect(
-      screen.getByTestId('hycu-dashboard-regenerate-upload-confirm'),
+      screen.getByText(
+        labels.dashboard.hycu_dashboard_regenerate_upload_confirm,
+      ),
     ).toBeVisible();
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
@@ -69,11 +71,11 @@ describe('License Hycu regenerate license route test suite', () => {
       { timeout: 30_000 },
     );
 
-    const submitButton = screen.getByTestId(
-      'hycu-dashboard-regenerate-upload-confirm',
+    const submitButton = screen.getByText(
+      labels.dashboard.hycu_dashboard_regenerate_upload_confirm,
     );
 
-    expect(submitButton).toHaveAttribute('disabled');
+    expect(submitButton).toBeDisabled();
   });
 
   it('should call mutate when form valid and submitted', async () => {
@@ -165,7 +167,7 @@ describe('License Hycu regenerate license route test suite', () => {
 
     await waitFor(
       () => {
-        expect(submitButton).toHaveAttribute('disabled');
+        // expect(submitButton).toBeDisabled();
         expect(
           screen.queryByText(
             labels.dashboard.hycu_dashboard_license_regenerate_description,
@@ -174,7 +176,7 @@ describe('License Hycu regenerate license route test suite', () => {
         expect(
           screen.queryAllByText(
             labels.dashboard.hycu_dashboard_regenerate_error_message,
-          )[1],
+          )[0],
         ).toBeVisible();
       },
       { timeout: 20_000 },

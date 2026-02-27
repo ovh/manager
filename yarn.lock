@@ -6797,7 +6797,7 @@
     tslib "2.6.3"
     vanillajs-datepicker "1.3.4"
 
-"@ovhcloud/ods-react@19.5.0":
+"@ovhcloud/ods-react@19.5.0", "@ovhcloud/ods-react@^19.3.0":
   version "19.5.0"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-react/-/ods-react-19.5.0.tgz#746a3065ba83a899051be0be2571171b4d50de20"
   integrity sha512-XePJjJd+nfw9lENsbLcOWetNfMKxXCkpltsvooBYulex1UoV+pBjSO1e69apYJUrwk94ub0/PV4zN01G6EFCMQ==
@@ -6826,6 +6826,11 @@
   version "18.6.4"
   resolved "https://registry.yarnpkg.com/@ovhcloud/ods-themes/-/ods-themes-18.6.4.tgz#9d281a688d5ce488011d5119f956c46603ed19eb"
   integrity sha512-2RxKwXpnkkO8Ee3+pivI8KlTrOsucQhgMcaLBnff3Kys4NKZ4dJW1oRfAs2sDLr5KS2jaQ2Pz1C3pL2U1m+Qxg==
+
+"@ovhcloud/ods-themes@19.3.0":
+  version "19.3.0"
+  resolved "https://registry.npmjs.org/@ovhcloud/ods-themes/-/ods-themes-19.3.0.tgz#75b3f7d7d609d8ac68d9be12795431fcc2eae552"
+  integrity sha512-wb+Nhu2+hX5KurouXBE2gDJTD9c/CCBgfZQyCVJffND1z1bavPYqlx8kG4We2wN24K15rwFVsvt9L3VRNr6E2Q==
 
 "@ovhcloud/ods-themes@19.5.0":
   version "19.5.0"
@@ -29562,14 +29567,14 @@ undici@5.29.0:
     "@fastify/busboy" "^2.0.0"
 
 undici@^6.20.1:
-  version "6.21.3"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-6.21.3.tgz#185752ad92c3d0efe7a7d1f6854a50f83b552d7a"
-  integrity sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==
+  version "6.23.0"
+  resolved "https://registry.npmjs.org/undici/-/undici-6.23.0.tgz#7953087744d9095a96f115de3140ca3828aff3a4"
+  integrity sha512-VfQPToRA5FZs/qJxLIinmU59u0r7LXqoJkCzinq3ckNJp3vKEh7jTWN589YQ5+aoAC/TGRLyJLCPKcLQbM8r9g==
 
 undici@^7.10.0:
-  version "7.11.0"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-7.11.0.tgz#8e13a54f62afa756666c0590c38b3866e286d0b3"
-  integrity sha512-heTSIac3iLhsmZhUCjyS3JQEkZELateufzZuBaVM5RHXdSBMb1LPMQf5x+FH7qjsZYDP0ttAc3nnVpUB+wYbOg==
+  version "7.21.0"
+  resolved "https://registry.npmjs.org/undici/-/undici-7.21.0.tgz#b399c763368240d478f83740356836e945a258e0"
+  integrity sha512-Hn2tCQpoDt1wv23a68Ctc8Cr/BHpUSfaPYrkajTXOS9IKpxVRx/X5m1K2YkbK2ipgZgxXSgsUinl3x+2YdSSfg==
 
 unherit@^1.0.4:
   version "1.1.3"

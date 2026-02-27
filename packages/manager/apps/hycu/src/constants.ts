@@ -1,4 +1,4 @@
-import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+import { ChangelogMenuLinks } from '@ovh-ux/muk';
 
 export const US_SUBSIDIARY = 'US';
 export const packTypeLabel = {
@@ -14,7 +14,7 @@ export const LICENSE_FILE_EXT = '.req';
 export const LICENSE_FILE_NAME_TEMPLATE = `license-hycu-{serviceName}.dat`;
 export const HYCU_CHANGE_PACK_FEATURE = 'hycu:change-pack';
 
-export const CHANGELOG_LINKS: ChangelogLinks = {
+export const CHANGELOG_LINKS: ChangelogMenuLinks = {
   changelog:
     'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
   roadmap:

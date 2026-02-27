@@ -1,25 +1,23 @@
 import {
-  DashboardTile,
-  Description,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
+  Badge,
+  BADGE_SIZE,
+  Icon,
+  ICON_NAME,
+  Skeleton,
+} from '@ovhcloud/ods-react';
 import {
-  OsdsChip,
-  OsdsIcon,
-  OsdsButton,
-  OsdsSkeleton,
-} from '@ovhcloud/ods-components/react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_CHIP_SIZE,
-  ODS_ICON_NAME,
-  ODS_ICON_SIZE,
-} from '@ovhcloud/ods-components';
+  Tile,
+  Text,
+  Button,
+  Link,
+  TEXT_PRESET,
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+} from '@ovh-ux/muk';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -31,7 +29,6 @@ import {
 } from '@/hooks/api/license';
 import { LicenseStatus } from '@/types/hycu.details.interface';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
 const ActivateHycuLicense = ({ serviceName }: { serviceName: string }) => {
@@ -39,27 +36,27 @@ const ActivateHycuLicense = ({ serviceName }: { serviceName: string }) => {
   const { data: hycuDetail, isLoading } = useDetailsLicenseHYCU(serviceName);
   const { mutate } = useDownloadLicenseHYCUMutation();
 
-  if (isLoading) return <OsdsSkeleton />;
+  if (isLoading) return <Skeleton />;
   if (LicenseStatus.ACTIVATED !== hycuDetail?.data.licenseStatus)
-    return <>{t('hycu_dashboard_wait_for_activation')}</>;
+    return <Text disabled>{t('hycu_dashboard_wait_for_activation')}</Text>;
   return (
-    <ManagerLink
+    <Link
       data-testid="dashboard-license-download-link"
       urn={hycuDetail.data.iam.urn}
       iamActions={[IAM_ACTIONS.licenseHycuApiOvhGet]}
-      color={ODS_THEME_COLOR_INTENT.primary}
-      onClick={() => mutate({ serviceName })}
+      onClick={() => {
+        mutate({ serviceName });
+      }}
     >
-      {t('hycu_dashboard_download_license_file')}
-      <span slot="end">
-        <OsdsIcon
+      <>
+        {t('hycu_dashboard_download_license_file')}
+        <Icon
           className="ml-3"
-          name={ODS_ICON_NAME.DOWNLOAD}
-          size={ODS_ICON_SIZE.xs}
-          color={ODS_THEME_COLOR_INTENT.primary}
-        ></OsdsIcon>
-      </span>
-    </ManagerLink>
+          name={ICON_NAME.download}
+          aria-hidden="true"
+        ></Icon>
+      </>
+    </Link>
   );
 };
 
@@ -67,10 +64,14 @@ const ControllerIdHycuLicense = ({ serviceName }: { serviceName: string }) => {
   const { t } = useTranslation('hycu/dashboard');
   const { data: hycuDetail, isLoading } = useDetailsLicenseHYCU(serviceName);
 
-  if (isLoading) return <OsdsSkeleton />;
+  if (isLoading) return <Skeleton />;
   if (!hycuDetail?.data.controllerId)
-    return <>{t('hycu_dashboard_wait_for_activation')}</>;
-  return <Description>{hycuDetail?.data.controllerId}</Description>;
+    return <Text disabled>{t('hycu_dashboard_wait_for_activation')}</Text>;
+  return (
+    <Text className="block" preset={TEXT_PRESET.span}>
+      {hycuDetail?.data.controllerId}
+    </Text>
+  );
 };
 
 const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
@@ -92,90 +93,99 @@ const GeneralInformationsTile = ({ serviceName }: { serviceName: string }) => {
     navigate(urls.editName.replace(subRoutes.serviceName, serviceName));
 
   return (
-    <DashboardTile
-      title={t(`${NAMESPACES.DASHBOARD}:general_information`)}
-      items={[
-        {
-          id: 'name',
-          label: t(`${NAMESPACES.DASHBOARD}:name`),
-          value: isLoading ? (
-            <OsdsSkeleton />
+    <Tile.Root title={t(`${NAMESPACES.DASHBOARD}:general_information`)}>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t(`${NAMESPACES.DASHBOARD}:name`)}
+        ></Tile.Item.Term>
+        <Tile.Item.Description>
+          {isLoading ? (
+            <Skeleton />
           ) : (
             <div className="flex items-center space-between gap-x-2">
-              <Description className="grow">
+              <Text className="block grow" preset={TEXT_PRESET.span}>
                 {serviceDetails?.data.resource.displayName}
-              </Description>
+              </Text>
 
-              <OsdsButton
+              <Button
                 disabled={
                   serviceDetails?.data.resource.state === 'suspended' ||
                   undefined
                 }
                 data-testid="edit-hycu-displayname-action"
                 className="min-w-10"
-                circle
-                variant={ODS_BUTTON_VARIANT.ghost}
-                color={ODS_THEME_COLOR_INTENT.primary}
-                size={ODS_BUTTON_SIZE.sm}
+                variant={BUTTON_VARIANT.ghost}
+                color={BUTTON_COLOR.primary}
+                size={BUTTON_SIZE.sm}
                 onClick={openEditNameModal}
               >
-                <OsdsIcon
+                <Icon
                   aria-label="edit"
-                  name={ODS_ICON_NAME.PEN}
-                  size={ODS_ICON_SIZE.xs}
-                  color={ODS_THEME_COLOR_INTENT.primary}
+                  name={ICON_NAME.pen}
+                  aria-hidden="true"
                 />
-              </OsdsButton>
+              </Button>
             </div>
-          ),
-        },
-        {
-          id: 'status',
-          label: t(`${NAMESPACES.STATUS}:status`),
-          value: isLoadingLicence ? (
-            <OsdsSkeleton />
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t(`${NAMESPACES.STATUS}:status`)}
+        ></Tile.Item.Term>
+        <Tile.Item.Description>
+          {isLoadingLicence ? (
+            <Skeleton />
           ) : (
-            <OsdsChip
+            <Badge
               color={getStatusColor(hycuDetail?.data.licenseStatus)}
-              size={ODS_CHIP_SIZE.sm}
-              inline
+              size={BADGE_SIZE.sm}
             >
               {t([
                 `hycu:hycu_status_${hycuDetail?.data.licenseStatus}`,
                 'hycu:hycu_status_error',
               ])}
-            </OsdsChip>
-          ),
-        },
-        {
-          id: 'pack_type',
-          label: t('hycu/dashboard:hycu_dashboard_label_pack_type'),
-          value: isLoading ? (
-            <OsdsSkeleton />
+            </Badge>
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('hycu/dashboard:hycu_dashboard_label_pack_type')}
+        ></Tile.Item.Term>
+        <Tile.Item.Description>
+          {isLoading ? (
+            <Skeleton />
           ) : (
-            <Description>
+            <Text className="block" preset={TEXT_PRESET.span}>
               {serviceDetails?.data.resource.product.description}
-            </Description>
-          ),
-        },
-        {
-          id: 'controller_id',
-          label: t('hycu/dashboard:hycu_dashboard_label_controller_id'),
-          value: ControllerIdHycuLicense({ serviceName }),
-        },
-        {
-          id: 'license_key',
-          label: t('hycu/dashboard:hycu_dashboard_label_license_key'),
-          value: isLoading ? (
-            <OsdsSkeleton />
+            </Text>
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('hycu/dashboard:hycu_dashboard_label_controller_id')}
+        ></Tile.Item.Term>
+        <Tile.Item.Description>
+          {ControllerIdHycuLicense({ serviceName })}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term
+          label={t('hycu/dashboard:hycu_dashboard_label_license_key')}
+        ></Tile.Item.Term>
+        <Tile.Item.Description divider={false}>
+          {isLoading ? (
+            <Skeleton />
           ) : (
             <ActivateHycuLicense
               serviceName={serviceName}
             ></ActivateHycuLicense>
-          ),
-        },
-      ]}
-    ></DashboardTile>
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };
 

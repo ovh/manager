@@ -2,7 +2,7 @@ import {
   useOrderURL,
   getHYCUProductSettings,
 } from '@ovh-ux/manager-module-order';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import { useMemo } from 'react';
 
 interface HYCUOrder {

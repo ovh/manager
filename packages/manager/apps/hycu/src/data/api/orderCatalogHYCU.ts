@@ -1,5 +1,5 @@
 import apiClient from '@ovh-ux/manager-core-api';
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import { HYCUCatalog } from '@/types/orderCatalogHYCU.type';
 
 /**

@@ -1,4 +1,4 @@
-import { IamCheckResponse } from '@ovh-ux/manager-react-components';
+import { IamCheckResponse } from '@ovh-ux/muk';
 import { licensesHycu } from '../licenseHycu/licenseHycu.data';
 import { IAM_ACTIONS } from '@/utils/iam.constants';
 
