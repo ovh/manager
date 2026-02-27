@@ -96,7 +96,7 @@ const DeleteSharePage: React.FC = () => {
   };
 
   return (
-    <Modal open={true} onOpenChange={handleClose}>
+    <Modal defaultOpen={true} onOpenChange={handleClose}>
       <ModalContent dismissible={false} aria-labelledby="delete-share-title">
         <ModalHeader>
           <Text id="delete-share-title" preset="heading-4">

@@ -25,7 +25,6 @@ import { useCreateAclForm } from '@/pages/dashboard/Acl/hooks/useCreateAclForm';
 import { type CreateAclFormValues } from '@/pages/dashboard/Acl/schema/Acl.schema';
 
 {
-  /* eslint-disable @typescript-eslint/no-misused-promises */
   /* eslint-disable @typescript-eslint/no-unused-expressions */
 }
 
@@ -120,6 +119,7 @@ export const AclDatagrid: FC = () => {
     deletingAclId: aclToDelete,
     isCreatePending,
     canManageAcl,
+    onConfirmCreate: handleCreate.onConfirm,
   });
 
   useEffect(() => {
@@ -129,10 +129,7 @@ export const AclDatagrid: FC = () => {
   return (
     <>
       <FormProvider {...formMethods}>
-        <form
-          onSubmit={formMethods.handleSubmit(handleCreate.onConfirm)}
-          className="[&_#left-side]:!w-auto [&_#left-side]:!flex-[unset] [&_#right-side]:w-auto [&_th]:!break-normal"
-        >
+        <div className="[&_#left-side]:!w-auto [&_#left-side]:!flex-[unset] [&_#right-side]:w-auto [&_th]:!break-normal">
           <Datagrid
             columns={columns}
             data={data}
@@ -150,7 +147,7 @@ export const AclDatagrid: FC = () => {
               />
             }
           />
-        </form>
+        </div>
       </FormProvider>
       <AclDeleteModal
         open={!!aclToDelete}
