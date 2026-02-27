@@ -18,6 +18,7 @@ export default class IamUsersAddCtrl {
     this.$translate = $translate;
     this.me = coreConfig.getUser();
     this.user = {};
+    this.otherGroups = [];
     this.groups = [];
     this.loader = true;
     this.PASSWORD_MIN_LENGTH = 8;
@@ -36,7 +37,7 @@ export default class IamUsersAddCtrl {
       .catch((err) => {
         this.alerter.error(
           `${this.$translate.instant('user_users_add_error_message_groups')} ${
-            err.data.message
+            err.data?.message
           }`,
           'iam-users-alert',
         );
@@ -61,6 +62,10 @@ export default class IamUsersAddCtrl {
           }),
           'iam-users-alert',
         );
+
+        this.otherGroups
+          .filter((group) => group !== this.user.group)
+          .forEach((group) => this.addUserToGroup(this.user, group));
       })
       .catch((err) => {
         this.$scope.trackPage(USERS_TRACKING_HITS.ADD_USER_ERROR);
@@ -76,7 +81,7 @@ export default class IamUsersAddCtrl {
         }
         return this.alerter.error(
           `${this.$translate.instant('user_users_add_error_message')} ${
-            err.data.message
+            err.data?.message
           }`,
           'iam-users-alert',
         );
@@ -85,6 +90,30 @@ export default class IamUsersAddCtrl {
         this.loader = false;
         this.$scope.resetAction();
       });
+  }
+
+  addUserToGroup(user, group) {
+    this.usersService.addUserToGroup(user, group).catch((err) => {
+      const errorMessage = this.$translate.instant(
+        'user_group_add_error_message',
+        {
+          login: user.login,
+          group: group,
+        },
+      );
+      let errorContent = '';
+      if (err?.status === 403) {
+        errorContent = `${this.$translate.instant(
+          'user_need_rights_message',
+        )} ${err?.data?.details?.unauthorizedActionsByIAM}`;
+      } else {
+        errorContent = `${err?.data?.message}`;
+      }
+      return this.alerter.warning(
+        `${errorMessage} ${errorContent}`,
+        'iam-users-alert',
+      );
+    });
   }
 
   getUserLogin() {

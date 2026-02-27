@@ -1,7 +1,8 @@
 export default class IamUsersService {
   /* @ngInject */
-  constructor($http, $rootScope) {
+  constructor($http, $q, $rootScope) {
     this.$http = $http;
+    this.$q = $q;
     this.$rootScope = $rootScope;
   }
 
@@ -21,6 +22,16 @@ export default class IamUsersService {
     return this.$http
       .post('/me/identity/user', data)
       .then(() => this.broadcast('iam.security.users.refresh', {}));
+  }
+
+  addUserToGroup(user, group) {
+    return this.$http.post(`/me/identity/group/${group}/user`, {
+      user: user.login,
+    });
+  }
+
+  removeUserFromGroup(user, group) {
+    return this.$http.delete(`/me/identity/group/${group}/user/${user.login}`);
   }
 
   updateUser({ login, email, description, group }) {
