@@ -117,6 +117,24 @@ export default class BillingService {
         return this.shouldSkipConfirmation(service)
           ? this.$http.delete(`/services/${service.id}`)
           : this.$http.post(`/services/${service.id}/terminate`);
+      case 'terminateAtEngagementDate':
+        return this.$http.put(
+          `/services/${service.id}/billing/engagement/endRule`,
+          {
+            strategy: 'CANCEL_SERVICE',
+          },
+        );
+      case 'terminateAtEngagementDate_monthly':
+        return this.$http.put(
+          `/services/${service.id}/billing/engagement/endRule`,
+          {
+            strategy: 'STOP_ENGAGEMENT_FALLBACK_DEFAULT_PRICE',
+          },
+        );
+      case 'autorenewInProgress':
+        return this.$http.delete(
+          `/services/${service.id}/billing/engagement/request`,
+        );
       default:
         return this.$q.reject('Unsupported resiliation mode');
     }
