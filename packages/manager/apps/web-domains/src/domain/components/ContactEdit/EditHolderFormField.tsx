@@ -47,13 +47,20 @@ const COUNTRY_LABELS = new Set([
   FIELD_NAME_LIST.nationality,
 ]);
 
+const AREA_LABELS = new Set([FIELD_NAME_LIST.area].filter(Boolean));
+
 export default function EditHolderFormField({
   rule,
   contactInformations,
   formValues,
   onFieldChange,
 }: EditHolderFormFieldProps) {
-  const { t } = useTranslation(['domain', NAMESPACES.COUNTRIES, NAMESPACES.LANGUAGE]);
+  const { t } = useTranslation([
+    'domain',
+    NAMESPACES.COUNTRIES,
+    NAMESPACES.LANGUAGE,
+    ...Object.values(NAMESPACES.AREA),
+  ]);
   const [touched, setTouched] = useState(false);
 
   const isRequired = useMemo((): boolean => {
@@ -107,19 +114,26 @@ export default function EditHolderFormField({
     return 'text';
   }, [rule, enumList]);
 
-  const fieldSubType = useMemo(
-    (): 'text' | 'email' | 'number' | 'search' | 'time' | 'password' | 'url' => {
-      if ([FIELD_NAME_LIST.email].includes(rule.label)) {
-        return 'email';
-      }
-      return 'text';
-    },
-    [rule],
-  );
+  const fieldSubType = useMemo(():
+    | 'text'
+    | 'email'
+    | 'number'
+    | 'search'
+    | 'time'
+    | 'password'
+    | 'url' => {
+    if ([FIELD_NAME_LIST.email].includes(rule.label)) {
+      return 'email';
+    }
+    return 'text';
+  }, [rule]);
 
   const getEnumTranslationKey = (label: string, value: string): string => {
     if (SPECIAL_LABELS.has(label)) {
-      return `domain_tab_CONTACT_edit_form_enum_${label}_${value}`.replaceAll('.', '_');
+      return `domain_tab_CONTACT_edit_form_enum_${label}_${value}`.replaceAll(
+        '.',
+        '_',
+      );
     }
 
     if (label === FIELD_NAME_LIST.language) {
@@ -132,26 +146,59 @@ export default function EditHolderFormField({
         .replace(/address_country|nationality/, 'country');
     }
 
+    if (AREA_LABELS.has(label)) {
+      const country = resolveFormValue(
+        formValues[FIELD_NAME_LIST.addressCountry],
+      );
+      const areaNamespace =
+        country && NAMESPACES.AREA[country as keyof typeof NAMESPACES.AREA];
+      if (areaNamespace) {
+        return `${areaNamespace}:${value}`;
+      }
+    }
+
     return `${label}_${value}`;
   };
 
   const translatedEnums: TTranslatedEnum[] = useMemo(() => {
-    return enumList
-      .map((value) => ({
-        key: value,
-        translated: t(getEnumTranslationKey(rule.label, value)),
-      }))
-      .sort((a, b) => a.translated.localeCompare(b.translated));
+    const translated = enumList.map((value) => {
+      const translationKey = getEnumTranslationKey(rule.label, value);
+      const translatedValue = t(translationKey);
+      // If the translation key was not found (i18next returns the key itself),
+      // use the raw value as the display label (it's already a readable name).
+      const label =
+        translatedValue === translationKey ? value : translatedValue;
+      return { key: value, translated: label };
+    });
+
+    // Deduplicate: when both a code (e.g. "CW" → "Carlow") and a full name
+    // (e.g. "Carlow") resolve to the same display label, keep only the code.
+    if (AREA_LABELS.has(rule.label)) {
+      const translatedByLabel = new Map<string, TTranslatedEnum>();
+      for (const item of translated) {
+        const existing = translatedByLabel.get(item.translated);
+        if (!existing) {
+          translatedByLabel.set(item.translated, item);
+        } else {
+          // Prefer the shorter key (code) over the full name
+          if (item.key.length < existing.key.length) {
+            translatedByLabel.set(item.translated, item);
+          }
+        }
+      }
+      return Array.from(translatedByLabel.values()).sort((a, b) =>
+        a.translated.localeCompare(b.translated),
+      );
+    }
+
+    return translated.sort((a, b) => a.translated.localeCompare(b.translated));
   }, [enumList, rule.label]);
 
   const labelTranslation = useMemo(() => {
     const readOnly = isReadOnly && isRequired;
-    const translatedLabel = t(
-      getFieldLabelKey(rule.label),
-    );
+    const translatedLabel = t(getFieldLabelKey(rule.label));
     return [translatedLabel, ...(readOnly ? ['*'] : [])].join(' ');
   }, [rule.label, isReadOnly, isRequired]);
-
 
   // Get current value from formValues
   const currentValue = formValues[rule.label];
@@ -239,11 +286,7 @@ export default function EditHolderFormField({
         />
       )}
 
-      {validationError && (
-        <FormFieldError>
-          {validationError}
-        </FormFieldError>
-      )}
+      {validationError && <FormFieldError>{validationError}</FormFieldError>}
     </FormField>
   );
 }
