@@ -46,5 +46,15 @@
   "account_details_field_sms_consent": "J'accepte librement de recevoir des SMS relatifs aux nouveautés et offres commerciales d'OVHcloud",
   "account_details_button_validate": "Valider",
   "account_details_error_message": "Veuillez vérifier les champs marqués en rouge.",
-  "account_details_success_message": "Vos informations ont été enregistrées avec succès."
+  "account_details_success_message": "Vos informations ont été enregistrées avec succès.",
+  "account_details_field_corporationType": "Type d'entreprise",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Personnelle"
 }
