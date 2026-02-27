@@ -38,7 +38,12 @@
   "createRancherCTA": "Criar um Managed Rancher Service",
   "createRancherError": "Ocorreu um erro aquando da criação do seu Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Versão recomendada",
-  "createRancherOVHCloudPlanDescription": "Crie ou administre “downstream clusters” Managed Kubernetes Service, ou “self-managed” no Public Cloud da OVHcloud ou nas suas próprias máquinas. Pode também registar clusters externos (sem gestão cloud)",
+  "createRancherOVHCloudPlanDescription_1": "<b>SLA de 99,9 %</b>",
+  "createRancherOVHCloudPlanDescription_2": "<b>Versão do Rancher atualizada</b> com suporte de 12 meses.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Modelos de faturação flexíveis</b> : Pague conforme o uso ou Instâncias reservadas (cobrado por vCPU gerido).",
+  "createRancherOVHCloudPlanDescription_4": "<b>Implantação e gestão simplificadas</b> na infraestrutura OVHcloud (Nuvem Pública, MKS, Bare Metal, etc.).",
+  "createRancherStandardPlanDescription_1": "<b>Todas as funcionalidades</b> do plano OVHcloud Edition incluídas.",
+  "createRancherStandardPlanDescription_2": "<b>Gestão multi-nuvem e híbrida</b> : Capacidade de implantar e gerir clusters Kubernetes onde quer que estejam (qualquer fornecedor de Nuvem Pública, local, edge, etc.).",
   "createRancherStandardPlanDescription": "Crie ou registe «downstream clusters» com qualquer Public Cloud suportado pelo Rancher, ou num Private Cloud automatizável (por exemplo, VMware vSphere), incluindo cenários suportados pela oferta OVHcloud Edition.",
   "createNameModaleHelperInput": "O nome do serviço deve ter entre 3 e 63 caracteres, deve começar e terminar por caracteres alfanuméricos minúsculos (de “a” a “z” e de “0” a “9”), e pode incluir os seguintes sinais de pontuação: “_”, “.” e “-”.",
   "generateAccessModalPasswordDescription": "Copie esta palavra-passe temporária para aceder ao seu Rancher. Após iniciar sessão, ser-lhe-á solicitada a criação de uma nova palavra-passe por motivos de segurança.",
@@ -85,5 +90,9 @@
   "generateAccessModalIamWarning": "Em caso de <strong>regeneração da palavra-passe «admin»</strong> enquanto a autenticação IAM estiver ativada, o efeito será a <strong>desativação temporária da possibilidade de ligação com o utilizador root IAM</strong>.",
   "iam_authentication_warning": "Limitação conhecida",
   "generateAccessModalIamWarning2": "Para corrigir este problema, terá de iniciar sessão uma primeira vez com o utilizador local <strong>«admin»</strong>, de modo a restabelecer o acesso com o utilizador root IAM.",
-  "iam_modal_deactivation_warning_continue": "Deseja continuar?"
+  "iam_modal_deactivation_warning_continue": "Deseja continuar?",
+  "freeTrialBadge": "Teste Gratuito",
+  "freeTrialPriceLabel": "Grátis*",
+  "freeTrialThenLabel": "A partir daí",
+  "freeTrialVoucherBanner": "Atualmente, você está aproveitando a oferta de teste deste serviço. Encontre os detalhes do seu crédito disponível na sua interface <l>Voucher</l>."
 }
