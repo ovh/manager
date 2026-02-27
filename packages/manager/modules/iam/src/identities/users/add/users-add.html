@@ -62,7 +62,8 @@
                     data-ng-model="$ctrl.user.password"
                 />
             </oui-field>
-            <oui-field data-label="{{:: 'user_users_group' | translate }}">
+            <oui-field data-label="{{:: 'user_users_main_group' | translate }}">
+                <small data-translate="user_main_group_helper_text"></small>
                 <select
                     class="form-control"
                     id="group"
@@ -70,6 +71,19 @@
                     required
                     data-ng-options="group for group in $ctrl.groups"
                     data-ng-model="$ctrl.user.group"
+                >
+                </select>
+            </oui-field>
+            <oui-field
+                data-label="{{:: 'user_users_other_groups' | translate }}"
+            >
+                <select
+                    class="form-control"
+                    id="otherGroups"
+                    name="otherGroups"
+                    multiple
+                    data-ng-options="group for group in $ctrl.groups"
+                    data-ng-model="$ctrl.otherGroups"
                 >
                 </select>
             </oui-field>
