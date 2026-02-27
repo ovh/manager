@@ -6,7 +6,7 @@
     <div ovh-alert="bandwithError" data-ng-if="bandwithError"></div>
 
     <!-- IPv4 -->
-    <oui-tile-definition term="{{ :: 'server_network_ipv4' | translate }}">
+    <oui-tile-definition data-term="{{ :: 'server_network_ipv4' | translate }}">
         <oui-tile-description>
             <oui-clipboard data-model="$ctrl.server.ip"> </oui-clipboard>
         </oui-tile-description>
@@ -28,7 +28,7 @@
     <!-- Gateway IPv4-->
     <oui-tile-definition
         data-ng-if="$ctrl.specifications.routing.ipv4.gateway"
-        term="{{:: 'server_network_gateway_ipv4' | translate }}"
+        data-term="{{:: 'server_network_gateway_ipv4' | translate }}"
     >
         <oui-tile-description>
             <oui-clipboard
@@ -40,7 +40,7 @@
     </oui-tile-definition>
 
     <!-- IPv6 -->
-    <oui-tile-definition term="{{:: 'server_network_ipv6' | translate }}">
+    <oui-tile-definition data-term="{{:: 'server_network_ipv6' | translate }}">
         <oui-tile-description>
             <oui-clipboard class="ip-clipboard" data-model="$ctrl.server.ipv6">
             </oui-clipboard>
@@ -49,7 +49,7 @@
     <!-- Gateway IPv6-->
     <oui-tile-definition
         data-ng-if="$ctrl.specifications.routing.ipv6.gateway"
-        term="{{:: 'server_network_gateway_ipv6' | translate }}"
+        data-term="{{:: 'server_network_gateway_ipv6' | translate }}"
     >
         <oui-tile-description>
             <oui-clipboard
@@ -63,7 +63,7 @@
     <div data-ng-if="$ctrl.bandwidthInformations.bandwidth">
         <!-- Reverse -->
         <oui-tile-definition
-            term="{{:: 'server_network_reverse' | translate }}"
+            data-term="{{:: 'server_network_reverse' | translate }}"
         >
             <oui-tile-description>
                 <oui-clipboard
@@ -247,4 +247,44 @@
             </oui-tile-description>
         </oui-tile-definition>
     </div>
+
+    <!-- GAME SERVER DDoS -->
+    <oui-tile-definition
+        class="d-webkit-box"
+        data-ng-if="$ctrl.isGameServer"
+        data-term="{{:: 'server_network_game_ddos' | translate }}"
+    >
+        <oui-tile-description>
+            <p
+                data-ng-if="!!$ctrl.totalAssocietedIps"
+                data-translate="{{:: $ctrl.totalAssocietedIps ? 'server_network_game_ddos_numbers' : 'server_network_game_ddos_no_ip'}}"
+                data-translate-value-total="{{ $ctrl.totalAssocietedIps }}"
+            ></p>
+            <p
+                class="oui-badge ng-scope text-wrap"
+                data-ng-class="$ctrl.gameDDoSStatus.class"
+                data-translate="server_network_game_ddos_{{ $ctrl.gameDDoSStatus.value }}"
+            ></p>
+        </oui-tile-description>
+        <oui-action-menu
+            aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_game_protection' | translate) } }}"
+            data-compact
+            data-placement="end"
+        >
+            <oui-action-menu-item
+                data-href="{{:: $ctrl.getIpUrl()}}"
+                data-on-click="$ctrl.trackClick('bm_server_network_manage_ips_clicked')"
+            >
+                <span
+                    data-translate="server_network_game_ddos_button_configure"
+                ></span>
+            </oui-action-menu-item>
+            <oui-guide-menu-item
+                data-ng-href="{{:: $ctrl.gameDDosGuide.href }}"
+                data-external="true"
+            >
+                <span>{{ $ctrl.gameDDosGuide.label }}</span>
+            </oui-guide-menu-item>
+        </oui-action-menu>
+    </oui-tile-definition>
 </oui-tile>

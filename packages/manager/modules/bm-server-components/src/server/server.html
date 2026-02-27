@@ -17,10 +17,23 @@
                 ></span>
             </button>
         </div>
-        <changelog-button
-            links="$ctrl.constants.CHANGELOG.dedicated_server.links"
-            chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
-        ></changelog-button>
+        <div class="d-flex">
+            <changelog-button
+                data-links="$ctrl.constants.CHANGELOG.dedicated_server.links"
+                data-chapters="$ctrl.constants.CHANGELOG.dedicated_server.chapters"
+            ></changelog-button>
+            <oui-guide-menu
+                data-ng-if="$ctrl.isGameServer"
+                data-text="{{:: 'server_guides' | translate }}"
+            >
+                <oui-guide-menu-item
+                    data-ng-href="{{:: $ctrl.gameDDosGuide.href }}"
+                    data-external="true"
+                >
+                    <span>{{ $ctrl.gameDDosGuide.label }}</span>
+                </oui-guide-menu-item>
+            </oui-guide-menu>
+        </div>
     </div>
     <h2
         class="oui-header__description"
@@ -214,4 +227,44 @@
         ></div>
         <div id="modal-help" class="help4wizards"></div>
     </div>
+</div>
+
+<div
+    id="game-ddos-modal-disclamer"
+    class="modal fade"
+    role="dialog"
+    data-backdrop="static"
+>
+    <oui-modal
+        class="modal-dialog"
+        data-heading="{{:: 'ovh_server_game_ddos_information_modal_title' | translate }}"
+        data-primary-action="$ctrl.gameDDoSPrimaryAction()"
+        data-primary-label="{{:: 'ovh_server_game_ddos_information_modal_button_primary' | translate }}"
+        data-secondary-action="$ctrl.closeGameDDoSModal()"
+        data-secondary-label="{{:: 'ovh_server_game_ddos_information_modal_button_secondary' | translate }}"
+        data-on-dismiss="$ctrl.closeGameDDoSModal()"
+    >
+        <p
+            data-translate="ovh_server_game_ddos_information_modal_content_1"
+        ></p>
+        <p
+            class="h3"
+            data-translate="ovh_server_game_ddos_information_modal_content_subtitle"
+        ></p>
+        <p
+            data-translate="ovh_server_game_ddos_information_modal_content_2"
+        ></p>
+        <a
+            data-ng-href="{{ $ctrl.gameDDosGuide.href }}"
+            title="{{$ctrl.gameDDosGuide.label}}"
+            rel="noopener"
+            target="_blank"
+            >{{$ctrl.gameDDosGuide.label}}</a
+        >
+        <oui-checkbox data-model="$ctrl.noShowModalAgain">
+            <span
+                data-translate="ovh_server_game_ddos_information_modal_checkbox_label"
+            ></span>
+        </oui-checkbox>
+    </oui-modal>
 </div>

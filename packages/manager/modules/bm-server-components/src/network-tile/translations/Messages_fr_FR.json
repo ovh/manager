@@ -28,5 +28,12 @@
   "server_network_ola_reset": "Déconfigurer l'agrégation privée",
   "server_network_ola_terminate": "Résilier OLA",
   "server_network_ola_mode_vrack_aggregation": "Agrégation privée",
-  "server_network_ola_mode_default": "Défaut"
+  "server_network_ola_mode_default": "Défaut",
+  "server_network_game_ddos": "Game DDoS Protection",
+  "server_network_game_ddos_no_ip": "Pas d'ip associée",
+  "server_network_game_ddos_numbers": "{{ total }} addresse(s) IPv4 associée(s) à ce serveur",
+  "server_network_game_ddos_button_configure": "Configurer Game Protection",
+  "server_network_game_ddos_no_ip_configured": "Addresses IPv4 non protégées",
+  "server_network_game_ddos_some_ips_configured": "Quelques addresses IPv4 sont protégées",
+  "server_network_game_ddos_all_ips_configured": "Toutes les addresses IPv4 sont protégées"
 }
