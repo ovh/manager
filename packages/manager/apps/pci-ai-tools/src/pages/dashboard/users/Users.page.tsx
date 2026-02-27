@@ -1,7 +1,7 @@
 import { Plus } from 'lucide-react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
+import * as role from '@datatr-ux/ovhcloud-types/cloud/role';
 import { Button } from '@datatr-ux/uxlib';
 import user from '@/types/User';
 import ai from '@/types/AI';

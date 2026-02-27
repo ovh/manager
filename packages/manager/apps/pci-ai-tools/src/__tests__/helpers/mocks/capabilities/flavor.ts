@@ -9,6 +9,7 @@ export const mockedCapabilitiesFlavorCPU: ai.capabilities.Flavor = {
   max: 4,
   resourcesPerUnit: {
     cpu: 1,
+    gpu: 0,
     ephemeralStorage: 15,
     memory: 5,
     privateNetwork: 5,
@@ -29,6 +30,7 @@ export const mockedCapabilitiesFlavorGPU: ai.capabilities.Flavor = {
   max: 2,
   resourcesPerUnit: {
     cpu: 11,
+    gpu: 1,
     ephemeralStorage: 15,
     memory: 5,
     privateNetwork: 5,

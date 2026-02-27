@@ -30,7 +30,7 @@ import {
   Separator,
   useToast,
 } from '@datatr-ux/uxlib';
-import * as sshKey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import * as sshKey from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';

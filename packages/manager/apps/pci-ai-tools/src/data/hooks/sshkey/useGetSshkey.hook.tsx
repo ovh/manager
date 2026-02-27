@@ -1,5 +1,5 @@
 import { QueryObserverOptions, UseQueryResult } from '@tanstack/react-query';
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 
 import { getSshkey } from '@/data/api/sshkey/sshkey.api';
 import { useQueryImmediateRefetch } from '@/hooks/useImmediateRefetch';

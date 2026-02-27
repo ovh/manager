@@ -17,7 +17,7 @@ export function CpuRamFields() {
   const averageUsageTarget = useWatch({ control, name: 'averageUsageTarget' });
 
   return (
-    <div className="xl:col-start-2 xl:row-start-2 w-full">
+    <div className="w-full">
       <FormField
         control={control}
         name="averageUsageTarget"

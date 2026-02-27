@@ -17,7 +17,11 @@ import DataTable from '@/components/data-table';
 
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import AppStatusBadge from './AppStatusBadge.component';
-import { isDeletingApp, isRunningApp, isStoppedApp } from '@/lib/statusHelper';
+import {
+  isDeletingApp,
+  isDeletableApp,
+  isRunningOrStandbyApp,
+} from '@/lib/statusHelper';
 import { TRACKING } from '@/configuration/tracking.constants';
 import { useTrackAction } from '@/hooks/useTracking';
 
@@ -232,7 +236,7 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="app-action-start-button"
                 disabled={
-                  isRunningApp(app.status.state) ||
+                  isRunningOrStandbyApp(app.status.state) ||
                   isDeletingApp(app.status.state)
                 }
                 variant="primary"
@@ -249,7 +253,7 @@ export const getColumns = ({
               <DropdownMenuItem
                 data-testid="app-action-stop-button"
                 disabled={
-                  !isRunningApp(app.status.state) ||
+                  !isRunningOrStandbyApp(app.status.state) ||
                   isDeletingApp(app.status.state)
                 }
                 variant="primary"
@@ -268,7 +272,7 @@ export const getColumns = ({
                 data-testid="app-action-delete-button"
                 variant="destructive"
                 disabled={
-                  !isStoppedApp(app.status.state) ||
+                  !isDeletableApp(app.status.state) ||
                   isDeletingApp(app.status.state)
                 }
                 onClick={() => {

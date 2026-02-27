@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { SshKey } from '@datatr-ux/ovhcloud-types/cloud/sshkey/index';
+import { SshKey } from '@datatr-ux/ovhcloud-types/cloud/sshkey';
 import {
   AlertCircle,
   Check,

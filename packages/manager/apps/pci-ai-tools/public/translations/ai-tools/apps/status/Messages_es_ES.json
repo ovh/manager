@@ -8,5 +8,6 @@
   "status-FAILED": "Fallido",
   "status-ERROR": "Error",
   "status-STOPPED": "Detenida",
-  "status-RUNNING": "En ejecución"
+  "status-RUNNING": "En ejecución",
+  "status-STANDBY": "En espera"
 }

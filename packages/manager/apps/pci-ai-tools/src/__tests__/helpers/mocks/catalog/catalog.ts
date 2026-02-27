@@ -1,5 +1,5 @@
-import * as order from '@datatr-ux/ovhcloud-types/order/index';
-import * as nichandle from '@datatr-ux/ovhcloud-types/nichandle/index';
+import * as order from '@datatr-ux/ovhcloud-types/order';
+import * as nichandle from '@datatr-ux/ovhcloud-types/nichandle';
 import catalog from '@/types/Catalog';
 
 export const mockedPricing: catalog.Pricing = {

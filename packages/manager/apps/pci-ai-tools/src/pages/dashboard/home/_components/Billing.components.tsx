@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import * as billingView from '@datatr-ux/ovhcloud-types/cloud/billingView/index';
+import * as billingView from '@datatr-ux/ovhcloud-types/cloud/billingView';
 import OvhLink from '@/components/links/OvhLink.component';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import { useGetCurrentUsage } from '@/data/hooks/usage/useGetUsage.hook';

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import * as role from '@datatr-ux/ovhcloud-types/cloud/role/index';
+import * as role from '@datatr-ux/ovhcloud-types/cloud/role';
 import ai from '@/types/AI';
 import user from '@/types/User';
 import { useGetTokens } from '@/data/hooks/ai/token/useGetTokens.hook';

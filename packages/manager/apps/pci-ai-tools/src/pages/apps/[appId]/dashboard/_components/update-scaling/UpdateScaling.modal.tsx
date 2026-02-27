@@ -30,6 +30,18 @@ import {
   ResourceType,
 } from '@/components/order/app-scaling/scalingHelper';
 
+type AutomaticScaling = ai.app.ScalingStrategy['automatic'] & {
+  cooldownPeriodSeconds?: number;
+  scaleUpStabilizationWindowSeconds?: number;
+  scaleDownStabilizationWindowSeconds?: number;
+};
+
+type AutomaticScalingInput = ai.app.ScalingStrategyInput['automatic'] & {
+  cooldownPeriodSeconds?: number;
+  scaleUpStabilizationWindowSeconds?: number;
+  scaleDownStabilizationWindowSeconds?: number;
+};
+
 const UpdateScaling = () => {
   const { app, projectId } = useAppData();
   const catalogQuery = useGetCatalog({ refetchOnWindowFocus: false });
@@ -48,7 +60,8 @@ const UpdateScaling = () => {
   }, [app, catalogQuery.isSuccess]);
 
   const currentScaling: Scaling = useMemo(() => {
-    const automatic = app.spec.scalingStrategy?.automatic;
+    const automatic: AutomaticScaling | undefined =
+      app.spec.scalingStrategy?.automatic;
     const fixed = app.spec.scalingStrategy?.fixed;
 
     return {
@@ -56,6 +69,11 @@ const UpdateScaling = () => {
       replicas: fixed?.replicas || automatic?.replicasMin || 1,
       replicasMin: automatic?.replicasMin,
       replicasMax: automatic?.replicasMax,
+      cooldownPeriodSeconds: automatic?.cooldownPeriodSeconds,
+      scaleUpStabilizationWindowSeconds:
+        automatic?.scaleUpStabilizationWindowSeconds,
+      scaleDownStabilizationWindowSeconds:
+        automatic?.scaleDownStabilizationWindowSeconds,
       resourceType: automatic?.customMetrics
         ? ResourceType.CUSTOM
         : automatic?.resourceType,
@@ -96,28 +114,41 @@ const UpdateScaling = () => {
   const onSubmit = form.handleSubmit((formValues) => {
     const isCustom = formValues.resourceType === ResourceType.CUSTOM;
 
-    const scalingInfo: ai.app.ScalingStrategyInput = formValues.autoScaling
-      ? {
-          automatic: {
-            replicasMin: formValues.replicasMin,
-            replicasMax: formValues.replicasMax,
-            ...((!isCustom && {
-              averageUsageTarget: formValues.averageUsageTarget,
-              resourceType: formValues.resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
-            }) ||
-              {}),
-            ...(isCustom && {
-              customMetrics: {
-                apiUrl: formValues.metricUrl || '',
-                format: formValues.dataFormat as ai.app.CustomMetricsFormatEnum,
-                targetValue: formValues.targetMetricValue || 0,
-                valueLocation: formValues.dataLocation || '',
-                aggregationType: formValues.aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
-              },
-            }),
+    let scalingInfo: ai.app.ScalingStrategyInput;
+
+    if (formValues.autoScaling) {
+      const automaticScaling: AutomaticScalingInput = {
+        replicasMin: formValues.replicasMin,
+        replicasMax: formValues.replicasMax,
+        scaleUpStabilizationWindowSeconds:
+          formValues.scaleUpStabilizationWindowSeconds,
+        scaleDownStabilizationWindowSeconds:
+          formValues.scaleDownStabilizationWindowSeconds,
+        ...(formValues.replicasMin === 0 && {
+          cooldownPeriodSeconds: formValues.cooldownPeriodSeconds,
+        }),
+        ...((!isCustom && {
+          averageUsageTarget: formValues.averageUsageTarget,
+          resourceType:
+            formValues.resourceType as ai.app.ScalingAutomaticStrategyResourceTypeEnum,
+        }) ||
+          {}),
+        ...(isCustom && {
+          customMetrics: {
+            apiUrl: formValues.metricUrl || '',
+            format: formValues.dataFormat as ai.app.CustomMetricsFormatEnum,
+            targetValue: formValues.targetMetricValue || 0,
+            valueLocation: formValues.dataLocation || '',
+            aggregationType:
+              formValues.aggregationType as ai.app.CustomMetricsAggregationTypeEnum,
           },
-        }
-      : { fixed: { replicas: formValues.replicas } };
+        }),
+      };
+
+      scalingInfo = { automatic: automaticScaling };
+    } else {
+      scalingInfo = { fixed: { replicas: formValues.replicas } };
+    }
 
     scalingStrategy({ projectId, appId: app.id, scalingStrat: scalingInfo });
   });
