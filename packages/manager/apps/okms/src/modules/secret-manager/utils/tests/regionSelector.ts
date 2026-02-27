@@ -1,10 +1,13 @@
 import { screen, waitFor } from '@testing-library/react';
 
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
+import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 
 export const assertRegionSelectorIsVisible = async () => {
-  await waitFor(() => {
-    const regionSelector = screen.getByRole('button', { name: 'Europe (France - Roubaix)' });
-    expect(regionSelector).not.toHaveAttribute('loading');
-  }, WAIT_FOR_DEFAULT_OPTIONS);
+  await waitFor(
+    () => {
+      const regionSelector = screen.getByRole('button', { name: /Europe/ });
+      expect(regionSelector).not.toHaveAttribute('loading');
+    },
+    { timeout: TIMEOUT.MEDIUM },
+  );
 };

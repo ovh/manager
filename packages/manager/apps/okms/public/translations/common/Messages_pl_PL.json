@@ -11,5 +11,6 @@
   "region_continent_EUROPE": "Europa",
   "region_continent_NORTH_AMERICA": "Ameryka Północna",
   "region_continent_OTHERS": "Inne regiony",
-  "region_local_zone_description": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium."
+  "region_local_zone_description": "Wdrażanie aplikacji jak najbliżej użytkowników w celu minimalizacji opóźnień i zapewnienia lokalizacji danych spełniającej wymogi regulacyjne obowiązujące na określonym terytorium.",
+  "error_updating_data": "Wystąpił błąd podczas aktualizacji danych"
 }

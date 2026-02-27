@@ -1,27 +1,29 @@
-import { useNavigate } from 'react-router-dom';
-
 import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
+import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { ActionMenu, BUTTON_VARIANT } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
+import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 
 import { ServiceKeyStatus } from '../service-key/service-key-status-badge/ServiceKeyStatusBadge.component';
+import { SERVICE_KEY_LIST_CELL_TEST_IDS } from './ListingCells.constants';
 
 export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
-  const navigate = useNavigate();
+  const { okmsId } = useRequiredParams('okmsId');
   const { trackClick } = useOkmsTracking();
 
   return (
-    <MukLink
+    <InternalLink
       onClick={() => {
         trackClick({
           location: PageLocation.datagrid,
@@ -29,22 +31,32 @@ export const DatagridServiceKeyCellName = (props: OkmsServiceKey) => {
           actionType: 'navigation',
           actions: ['service-key'],
         });
-        navigate(`${props?.id}`);
       }}
-      data-testid={`service-key-link-${props.id}`}
+      to={KMS_ROUTES_URLS.serviceKeyDashboard(okmsId, props.id)}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.name(props.id)}
     >
       {props?.name}
-    </MukLink>
+    </InternalLink>
   );
 };
 
 export const DatagridServiceKeyCellId = (props: OkmsServiceKey) => {
-  return <Clipboard className="w-full" value={props.id} />;
+  return (
+    <Clipboard
+      className="w-full"
+      value={props.id}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.keyId(props.id)}
+    />
+  );
 };
 
 export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
-  return <DataGridTextCell>{translatedValue}</DataGridTextCell>;
+  return (
+    <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.type(props.id)}>
+      {translatedValue}
+    </Text>
+  );
 };
 
 export const DatagridCreationDate = (props: OkmsServiceKey) => {
@@ -63,11 +75,20 @@ export const DatagridCreationDate = (props: OkmsServiceKey) => {
     },
   });
 
-  return <DataGridTextCell>{formattedDate}</DataGridTextCell>;
+  return (
+    <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.creationDate(props.id)}>
+      {formattedDate}
+    </Text>
+  );
 };
 
 export const DatagridStatus = (props: OkmsServiceKey) => {
-  return <ServiceKeyStatus state={props.state} />;
+  return (
+    <ServiceKeyStatus
+      state={props.state}
+      data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.status(props.id)}
+    />
+  );
 };
 
 export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: OKMS) => {
@@ -78,15 +99,17 @@ export const DatagridServiceKeyActionMenu = (serviceKey: OkmsServiceKey, okms: O
     ...action,
     id: index,
     icon: undefined,
+    'data-testid': action.buttonId,
   }));
 
   return (
-    <ActionMenu
-      id={`service-key-actions-${serviceKey.id}`}
-      isCompact
-      variant={BUTTON_VARIANT.ghost}
-      icon={ICON_NAME.ellipsisVertical}
-      items={actionsWithId}
-    />
+    <div data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.actions(serviceKey.id)}>
+      <ActionMenu
+        id={`service-key-actions-${serviceKey.id}`}
+        isCompact
+        variant={BUTTON_VARIANT.ghost}
+        items={actionsWithId}
+      />
+    </div>
   );
 };

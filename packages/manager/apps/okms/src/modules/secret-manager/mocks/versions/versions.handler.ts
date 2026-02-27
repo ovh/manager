@@ -9,6 +9,8 @@ import { findVersionMockById } from './versionsMock.utils';
 export type GetVersionsMockParams = {
   isVersionsKO?: boolean;
   nbVersions?: number;
+  /** Delay in ms before resolving (useful for testing loading states) */
+  delay?: number;
 };
 
 export const getVersionsErrorMessage = 'get-versions-error-message';
@@ -16,6 +18,7 @@ export const getVersionsErrorMessage = 'get-versions-error-message';
 export const getVersionsMock = ({
   isVersionsKO,
   nbVersions = versionListMock.length,
+  delay: versionsDelay,
 }: GetVersionsMockParams): Handler[] => [
   {
     url: '/okms/resource/:okmsId/secret/:secretPath/version',
@@ -26,6 +29,7 @@ export const getVersionsMock = ({
     }),
     status: isVersionsKO ? 500 : 200,
     api: 'v2',
+    ...(versionsDelay !== undefined && { delay: versionsDelay }),
   },
 ];
 

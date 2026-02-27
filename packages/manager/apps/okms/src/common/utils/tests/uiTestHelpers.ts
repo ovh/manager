@@ -1,39 +1,20 @@
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from '@secret-manager/components/secret-value/secretValueToggle.constants';
-import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { UserEvent } from '@testing-library/user-event';
+import { Matcher, act, screen, waitFor } from '@testing-library/react';
+import userEvent, { UserEvent } from '@testing-library/user-event';
 import { expect } from 'vitest';
 
 import { BadgeColor } from '@ovhcloud/ods-react';
 
 export const TIMEOUT = {
-  DEFAULT: 3000,
-  MEDIUM: 5000,
+  DEFAULT: 5000,
+  MEDIUM: 8000,
   LONG: 10000,
 };
 
-/* GET BY TEST ID */
+/* ASSERT VISIBILITY */
 
-export const changeOdsInputValueByTestId = async (inputTestId: string, value: string) => {
-  // First try to get the input directly
-  let input = screen.queryByTestId(inputTestId);
-
-  // If the input is not found, try to find it with a findByTestId
-  // This can look silly, but the ODS input renders in a mysterious way
-  // and if you use a findByTestId when you need a getByTestId (and reverse), it won't work
-  if (!input) {
-    input = await screen.findByTestId(inputTestId);
-  }
-
-  act(() => {
-    fireEvent.change(input, {
-      target: { value },
-    });
-  });
-
-  // Wait for the data input to be updated
-  await waitFor(() => {
-    expect(input).toHaveValue(value);
-  });
+export const assertTextVisibility = async (text: Matcher, timeout = TIMEOUT.DEFAULT) => {
+  await waitFor(() => expect(screen.getByText(text)).toBeVisible(), { timeout });
 };
 
 export const assertClipboardVisibility = async (value: string, timeout?: number) => {
@@ -43,21 +24,17 @@ export const assertClipboardVisibility = async (value: string, timeout?: number)
   return clipboardInput;
 };
 
-type AssertModalVisibilityProps = {
-  role: 'alertdialog' | 'dialog';
+type AssertModalVisibilityParams = {
   state?: 'visible' | 'hidden';
   timeout?: number;
 };
 
-export const assertModalVisibility = async ({
-  role,
-  state = 'visible',
-  timeout = TIMEOUT.DEFAULT,
-}: AssertModalVisibilityProps) => {
+export const assertModalVisibility = async (params?: AssertModalVisibilityParams) => {
+  const { state = 'visible', timeout = TIMEOUT.DEFAULT } = params ?? {};
   let modal: HTMLElement | null = null;
   await waitFor(
     () => {
-      modal = screen.queryByRole(role);
+      modal = screen.queryByRole('dialog');
       if (state === 'visible') {
         expect(modal).toBeInTheDocument();
       } else {
@@ -69,10 +46,8 @@ export const assertModalVisibility = async ({
   return modal as unknown as HTMLElement;
 };
 
-export const assertDrawerVisibility = async ({
-  state = 'visible',
-  timeout = TIMEOUT.DEFAULT,
-}: Omit<AssertModalVisibilityProps, 'role'>) => {
+export const assertDrawerVisibility = async (params?: AssertModalVisibilityParams) => {
+  const { state = 'visible', timeout = TIMEOUT.DEFAULT } = params ?? {};
   let drawer: HTMLElement | null = null;
   await waitFor(
     () => {
@@ -105,12 +80,15 @@ export const assertTitleVisibility = async ({
   );
 };
 
-/**
- * Clicks on the JSON toggle
- */
-export const clickJsonEditorToggle = async (user: UserEvent) => {
-  const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
-  await act(() => user.click(jsonToggle));
+export const assertMessageVisibility = async (message: string, timeout = TIMEOUT.DEFAULT) => {
+  await waitFor(
+    () => {
+      const messages = screen.getAllByText(message);
+      const messageElement = messages.find((msg) => msg.getAttribute('data-ods') === 'message');
+      expect(messageElement).toBeVisible();
+    },
+    { timeout },
+  );
 };
 
 /**
@@ -123,4 +101,27 @@ export const assertBadgeColor = (badge: HTMLElement, color: BadgeColor) => {
   const className = badge.className || '';
 
   expect(className).toContain(colorClassFragment);
+};
+
+/**
+ * Clicks on the JSON toggle
+ */
+export const clickJsonEditorToggle = async (user: UserEvent) => {
+  const jsonToggle = screen.getByTestId(SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle);
+  await act(() => user.click(jsonToggle));
+};
+
+/**
+ * Changes the value of an input by test id
+ */
+export const changeInputValueByTestId = async (inputTestId: string, value: string) => {
+  const user = userEvent.setup();
+  const input = await screen.findByTestId(inputTestId);
+
+  await act(async () => {
+    await user.clear(input);
+    await user.type(input, value);
+  });
+
+  await waitFor(() => expect(input).toHaveValue(value));
 };

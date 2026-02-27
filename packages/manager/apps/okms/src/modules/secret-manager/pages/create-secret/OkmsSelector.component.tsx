@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { Message, Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
-import { TagsList } from '@ovh-ux/manager-react-components';
+import { TagsList } from '@ovh-ux/muk';
 
 import { OkmsServiceState } from '@/common/components/okms-service-state-badge/OkmsServiceStateBadge.component';
 import { RadioCard } from '@/common/components/radio-card/RadioCard.component';

@@ -3,14 +3,12 @@ import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { assertBreadcrumbItems } from '@secret-manager/utils/tests/breadcrumb';
 import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/versionList';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertClipboardVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { PATH_LABEL, URN_LABEL } from '@/constants';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -25,7 +23,7 @@ describe('Secret page test suite', () => {
     await renderTestApp(mockPageUrl, { isSecretKO: true });
 
     // THEN
-    expect(await screen.findByAltText('OOPS', {}, WAIT_FOR_DEFAULT_OPTIONS)).toBeInTheDocument();
+    expect(await screen.findByAltText('OOPS', {}, { timeout: TIMEOUT.MEDIUM })).toBeInTheDocument();
   });
 
   it('should display the secret page', async () => {
@@ -40,7 +38,7 @@ describe('Secret page test suite', () => {
       'SecretBreadcrumbItem',
     ]);
 
-    const labelOnce = [
+    const labelOnce: string[] = [
       // tabs
       labels.secretManager.versions,
       // general information tile
@@ -53,32 +51,26 @@ describe('Secret page test suite', () => {
       labels.secretManager.cas_with_description,
       // settings tile values
       mockSecret.metadata.deactivateVersionAfter,
-      mockSecret.metadata.maxVersions,
+      mockSecret.metadata.maxVersions.toString(),
       labels.secretManager.activated,
       // actions tile
       labels.secretManager.actions,
+      // custom metadata tile
+      labels.secretManager.metadata,
     ];
 
     // Check labels appearing once
     await Promise.all(
-      labelOnce.map(async (text) => {
-        await assertTextVisibility(text.toString());
+      labelOnce.map(async (label) => {
+        await waitFor(() => expect(screen.getByText(label)).toBeVisible());
       }),
     );
 
     // Check labels appearing twice
-    expect(
-      await screen.findAllByText(
-        labels.common.dashboard.general_information,
-        {},
-        WAIT_FOR_DEFAULT_OPTIONS,
-      ),
-    ).toHaveLength(2);
+    expect(await screen.findAllByText(labels.common.dashboard.general_information)).toHaveLength(2);
 
     // Check labels appearing three times
-    expect(await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS)).toHaveLength(
-      3,
-    );
+    expect(await screen.findAllByText(mockSecret.path)).toHaveLength(3);
 
     // Check clipboard component
     await assertClipboardVisibility(mockSecret.iam.urn);
@@ -104,9 +96,7 @@ describe('Secret page test suite', () => {
       const user = userEvent.setup();
       await renderTestApp(mockPageUrl);
 
-      expect(
-        await screen.findAllByText(mockSecret.path, {}, WAIT_FOR_DEFAULT_OPTIONS),
-      ).toHaveLength(3);
+      expect(await screen.findAllByText(mockSecret.path)).toHaveLength(3);
 
       // WHEN
 

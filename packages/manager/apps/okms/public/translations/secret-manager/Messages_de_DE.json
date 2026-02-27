@@ -36,7 +36,7 @@
   "error_empty_keys": "Leere Schlüssel sind nicht zulässig.",
   "error_invalid_duration": "Die Ablaufdauer muss eine Dauer sein (z. B. 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "Ungültiges JSON",
-  "error_key_value_conversion": "Der Wert des Secrets kann nicht in Schlüssel-Wert-Paare konvertiert werden.",
+  "error_key_value_conversion": "Der Wert des Geheimnisses kann nicht in Schlüssel-Wert-Paare umgewandelt werden. Verwenden Sie den JSON-Editor.",
   "error_path_allowed_characters": "Der Pfad darf nur die folgenden Zeichen enthalten: A-Z a-z 0-9 . _ : / = @ und -",
   "error_path_structure": "Der Pfad darf nicht mit '/' beginnen oder darauf enden und darf nicht zwei '/' hintereinander enthalten.",
   "error_update_settings": "Bei der Aktualisierung der Parameter ist ein Fehler aufgetreten.",
@@ -91,5 +91,10 @@
   "enable_cas_required": "CAS konfigurieren",
   "form_helper_max_versions_default": "Geben Sie „0“ an, um den Standardwert ({{value}}) zu verwenden.",
   "form_helper_max_versions_domain": "Geben Sie „0“ an, um den Wert der OKMS-Domain ({{value}}) zu verwenden.",
-  "secret_settings": "Einstellungen für das Secret"
+  "secret_settings": "Einstellungen für das Secret",
+  "add_custom_metadata": "Metadaten hinzufügen",
+  "edit_custom_metadata": "Metadaten bearbeiten",
+  "error_empty_key_or_value": "Der Schlüssel oder der Wert dürfen nicht leer sein.",
+  "metadata": "Metadaten",
+  "secret_settings_explanation": "Die Konfiguration der Parameter auf der Ebene des Geheimnisses hat Vorrang vor der Konfiguration auf der Ebene der OKMS-Domain."
 }

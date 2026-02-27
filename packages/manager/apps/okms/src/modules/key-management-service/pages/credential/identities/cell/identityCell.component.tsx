@@ -1,15 +1,15 @@
 import { IdentityObject } from '@key-management-service/types/identity.type';
 
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
 
 export const IdentityIdCell = (identity: IdentityObject) => {
-  return <DataGridTextCell>{identity.id}</DataGridTextCell>;
+  return <Text preset="span">{identity.id}</Text>;
 };
 
 export const IdentityUrnCell = (identity: IdentityObject) => {
-  return <DataGridTextCell>{identity.urn}</DataGridTextCell>;
+  return <Text preset="span">{identity.urn}</Text>;
 };
 
 export const IdentityAccountCell = (identity: IdentityObject) => {
-  return <DataGridTextCell>{identity.account}</DataGridTextCell>;
+  return <Text preset="span">{identity.account}</Text>;
 };

@@ -36,7 +36,7 @@
   "error_empty_keys": "Klucz nie może być pusty.",
   "error_invalid_duration": "Czas wygaśnięcia musi być wyrażony jako jednostka czasu (np: 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "JSON jest nieprawidłowy",
-  "error_key_value_conversion": "Wartość danej poufnej nie może zostać przekształcona w pary klucz-wartość.",
+  "error_key_value_conversion": "Wartość sekretu nie może być konwertowana na pary klucz-wartość. Użyj edytora JSON.",
   "error_path_allowed_characters": "Ścieżka może zawierać tylko następujące znaki: A-Z a-z 0-9 . _ : / = @ et -",
   "error_path_structure": "Ścieżka nie może zaczynać się ani kończyć na '/', ani zawierać dwóch '/' z rzędu.",
   "error_update_settings": "Wystąpił błąd podczas aktualizacji ustawień",
@@ -91,5 +91,10 @@
   "enable_cas_required": "Skonfiguruj CAS",
   "form_helper_max_versions_default": "Wpisz \"0\", aby użyć wartości domyślnej ({{value}}).",
   "form_helper_max_versions_domain": "Wpisz \"0\", aby użyć wartości domeny OKMS ({{value}}).",
-  "secret_settings": "Ustawienia danych poufnych"
+  "secret_settings": "Ustawienia danych poufnych",
+  "add_custom_metadata": "Dodaj metadane",
+  "edit_custom_metadata": "Edytuj metadane",
+  "error_empty_key_or_value": "Klucz lub wartość nie mogą być puste.",
+  "metadata": "Metadane",
+  "secret_settings_explanation": "Konfiguracja parametrów na poziomie sekretu będzie miała pierwszeństwo przed konfiguracją na poziomie domeny OKMS."
 }

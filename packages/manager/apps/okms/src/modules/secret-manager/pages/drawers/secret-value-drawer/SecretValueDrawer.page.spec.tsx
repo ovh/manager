@@ -9,17 +9,15 @@ import {
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { SecretVersion } from '@secret-manager/types/secret.type';
 import { VERSION_BADGE_TEST_ID } from '@secret-manager/utils/tests/version.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
-import { valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { RenderTestMockParams, renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
+  TIMEOUT,
   assertDrawerVisibility,
-  changeOdsInputValueByTestId,
+  assertMessageVisibility,
 } from '@/common/utils/tests/uiTestHelpers';
 
 import {
@@ -38,31 +36,46 @@ const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(mockOkmsI
 const renderPage = async ({
   url = mockPageUrl,
   mockParams,
+  waitForContent = true,
 }: {
   url?: string;
   mockParams?: RenderTestMockParams;
+  waitForContent?: boolean;
 } = {}) => {
   const user = userEvent.setup();
   const { container } = await renderTestApp(url, mockParams);
 
-  // Check if the drawer is open
-  await assertDrawerVisibility({ state: 'visible' });
+  // Check if the drawer is open (use MEDIUM timeout for lazy-loaded route)
+  await assertDrawerVisibility({ state: 'visible', timeout: TIMEOUT.MEDIUM });
 
-  // wait for the content to be displayed
-  await assertTextVisibility(labels.secretManager.values);
+  if (waitForContent) {
+    // wait for the content to be displayed
+    await screen.findByText(labels.secretManager.values);
+  }
 
   return { user, container };
 };
 
 describe('ValueDrawer test suite', () => {
   it('should display skeletons while loading secret versions', async () => {
-    // GIVEN
+    // GIVEN versions API delayed so loading state is visible
     // WHEN
-    await renderPage();
+    await renderPage({
+      waitForContent: false,
+      mockParams: { delay: 500 },
+    });
 
-    // THEN
-    const selectSkeleton = screen.getByTestId(VERSION_SELECTOR_SELECT_SKELETON_TEST_ID);
-    const statusSkeleton = screen.getByTestId(VERSION_SELECTOR_STATUS_SKELETON_TEST_ID);
+    // THEN skeletons are shown while versions are loading
+    const selectSkeleton = await screen.findByTestId(
+      VERSION_SELECTOR_SELECT_SKELETON_TEST_ID,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
+    const statusSkeleton = await screen.findByTestId(
+      VERSION_SELECTOR_STATUS_SKELETON_TEST_ID,
+      {},
+      { timeout: TIMEOUT.MEDIUM },
+    );
     expect(selectSkeleton).toBeVisible();
     expect(statusSkeleton).toBeVisible();
   });
@@ -73,10 +86,13 @@ describe('ValueDrawer test suite', () => {
     await renderPage({ mockParams: { isVersionsKO: true } });
 
     // THEN
-    await waitFor(() => {
-      const versionsError = screen.getByTestId(VERSION_SELECTOR_ERROR_TEST_ID);
-      expect(versionsError).toBeVisible();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await waitFor(
+      () => {
+        const versionsError = screen.getByTestId(VERSION_SELECTOR_ERROR_TEST_ID);
+        expect(versionsError).toBeVisible();
+      },
+      { timeout: TIMEOUT.MEDIUM },
+    );
   });
 
   describe('on versions successfully loaded', () => {
@@ -85,16 +101,23 @@ describe('ValueDrawer test suite', () => {
       // WHEN
       await renderPage();
 
+      const selectedVersionId = versionListMock[0]?.id;
+      if (!selectedVersionId) {
+        throw new Error('No version id found');
+      }
+
       // THEN
-      await waitFor(() => {
-        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
-        expect(versionSelect).toBeVisible();
-        expect(versionSelect).toHaveAttribute(
-          'default-value',
-          valueToOdsSelectValue(versionListMock[0]?.id ?? 0),
-        );
-        expect(versionSelect).toBeEnabled();
-      }, WAIT_FOR_DEFAULT_OPTIONS);
+      await waitFor(
+        () => {
+          const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+          expect(versionSelect).toBeVisible();
+          // For ODS19 Select, find the combobox within the Select component
+          const combobox = within(versionSelect).getByRole('combobox');
+          expect(combobox).toHaveTextContent(selectedVersionId.toString());
+          expect(combobox).toBeEnabled();
+        },
+        { timeout: TIMEOUT.MEDIUM },
+      );
     });
 
     it('should display the version selector with the url version pre-selected', async () => {
@@ -110,16 +133,23 @@ describe('ValueDrawer test suite', () => {
         ),
       });
 
+      const selectedVersionId = versionListMock[lastVersionId - 1]?.id;
+      if (!selectedVersionId) {
+        throw new Error('No version id found');
+      }
+
       // THEN
-      await waitFor(() => {
-        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
-        expect(versionSelect).toBeVisible();
-        expect(versionSelect).toHaveAttribute(
-          'default-value',
-          valueToOdsSelectValue(versionListMock[lastVersionId - 1]?.id ?? 0),
-        );
-        expect(versionSelect).toBeEnabled();
-      }, WAIT_FOR_DEFAULT_OPTIONS);
+      await waitFor(
+        () => {
+          const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+          expect(versionSelect).toBeVisible();
+          // Find the combobox within the Select component
+          const combobox = within(versionSelect).getByRole('combobox');
+          expect(combobox).toHaveTextContent(selectedVersionId.toString());
+          expect(combobox).toBeEnabled();
+        },
+        { timeout: TIMEOUT.MEDIUM },
+      );
     });
 
     it('should disabled the version selector when there is only one version', async () => {
@@ -130,11 +160,17 @@ describe('ValueDrawer test suite', () => {
       await renderPage({ mockParams: { nbVersions } });
 
       // THEN
-      await waitFor(() => {
-        const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
-        expect(versionSelect).toBeVisible();
-        expect(versionSelect).toBeDisabled();
-      }, WAIT_FOR_DEFAULT_OPTIONS);
+      await waitFor(
+        () => {
+          const versionSelect = screen.getByTestId(VERSION_SELECTOR_TEST_ID);
+          expect(versionSelect).toBeVisible();
+          // Find the combobox within the Select component
+          const combobox = within(versionSelect).getByRole('combobox');
+          expect(combobox).toBeVisible();
+          expect(combobox).toBeDisabled();
+        },
+        { timeout: TIMEOUT.MEDIUM },
+      );
     });
 
     it('should display a message when the selected version is the current version', async () => {
@@ -151,7 +187,7 @@ describe('ValueDrawer test suite', () => {
       });
 
       // THEN
-      await assertTextVisibility(labels.secretManager.current_version);
+      await assertMessageVisibility(labels.secretManager.current_version);
     });
   });
 
@@ -178,17 +214,37 @@ describe('ValueDrawer test suite', () => {
     it.each(testCases)(
       'should display the correct version informations for $version',
       async ({ version, haveValue }) => {
+        const user = userEvent.setup();
+
         // GIVEN version, haveValue
         await renderPage();
 
-        // Change the data input value
-        await changeOdsInputValueByTestId(
-          VERSION_SELECTOR_TEST_ID,
-          valueToOdsSelectValue(version.id),
+        // Wait for the version select to be ready
+        const versionSelect = await screen.findByTestId(VERSION_SELECTOR_TEST_ID);
+
+        // For ODS19 Select, find the combobox within the Select component
+        const combobox = within(versionSelect).getByRole('combobox');
+        await act(async () => user.click(combobox));
+
+        // Wait for the select to be expanded and options to appear
+        await waitFor(
+          () => {
+            expect(combobox).toHaveAttribute('aria-expanded', 'true');
+          },
+          { timeout: TIMEOUT.MEDIUM },
         );
 
-        // THEN
-        await assertTextVisibility(labels.common.status.status);
+        // Wait for the option to appear and click it
+        const option = await screen.findByRole('option', { name: version.id.toString() });
+        await act(async () => user.click(option));
+
+        // THEN - Wait for state updates to complete after selection
+        await waitFor(
+          () => {
+            expect(screen.getByText(labels.common.status.status)).toBeVisible();
+          },
+          { timeout: TIMEOUT.MEDIUM },
+        );
         await waitFor(() => {
           const versionStatusBadge = screen.getByTestId(VERSION_BADGE_TEST_ID);
           expect(versionStatusBadge).toBeVisible();
@@ -196,10 +252,13 @@ describe('ValueDrawer test suite', () => {
 
         if (!haveValue) return;
 
-        await waitFor(() => {
-          const keyValuesContainer = screen.getByTestId(KEY_VALUES_TEST_IDS.container);
-          expect(keyValuesContainer).toBeVisible();
-        }, WAIT_FOR_DEFAULT_OPTIONS);
+        await waitFor(
+          () => {
+            const keyValuesContainer = screen.getByTestId(KEY_VALUES_TEST_IDS.container);
+            expect(keyValuesContainer).toBeVisible();
+          },
+          { timeout: TIMEOUT.MEDIUM },
+        );
       },
     );
   });

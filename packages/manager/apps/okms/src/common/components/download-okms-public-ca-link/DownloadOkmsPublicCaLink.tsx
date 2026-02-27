@@ -9,9 +9,9 @@ import { Icon, Spinner } from '@ovhcloud/ods-react';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { initiateTextFileDownload } from '@/common/utils/files/download';
 import { TrackingTags } from '@/tracking.constant';
 
 import { PUBLIC_CA_FILENAME, PUBLIC_RSA_CA_FILENAME } from './downloadOkmsPublicCaLink.constants';
@@ -84,8 +84,8 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
 
   return (
     <div className="flex items-center gap-2">
-      <MukLink
-        href="#"
+      <InternalLink
+        to="#"
         onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
           void handleDownloadCa(event)
         }
@@ -95,7 +95,7 @@ export const DownloadOkmsPublicCaLink = ({ okms, type }: DownloadOkmsPublicCaLin
           {resources[type].label}
           <Icon name="download" />
         </>
-      </MukLink>
+      </InternalLink>
       {loading && <Spinner size="xs" />}
     </div>
   );

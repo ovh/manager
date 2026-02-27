@@ -4,24 +4,28 @@ import {
   MAX_VERSIONS_MAX_VALUE,
   MAX_VERSIONS_MIN_VALUE,
 } from '@secret-manager/validation/secret-config/secretConfigSchema';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsQuantity } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  Quantity,
+  QuantityControl,
+  QuantityInput,
+} from '@ovhcloud/ods-react';
 import { Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
-type FormFieldInput = {
-  maxVersions?: number;
-};
-
-type SecretMaxVersionsFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
+type SecretMaxVersionsFormFieldProps<T extends FieldValues> = UseControllerProps<T> & {
   secret?: Secret;
   okmsId?: string;
 };
 
-export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
+export const SecretMaxVersionsFormField = <T extends FieldValues>({
   name,
   control,
   secret,
@@ -31,23 +35,28 @@ export const SecretMaxVersionsFormField = <T extends FormFieldInput>({
   const { field, fieldState } = useController({ name, control });
 
   return (
-    <OdsFormField error={fieldState.error?.message}>
-      <label htmlFor={field.name} slot="label" className="mb-1">
+    <FormField>
+      <FormFieldLabel className="flex items-center gap-2">
         {t('maximum_number_of_versions')}
-      </label>
-      <OdsQuantity
+      </FormFieldLabel>
+      <Quantity
         id={field.name}
         name={field.name}
-        value={Number(field.value ?? 0)}
-        onOdsBlur={field.onBlur}
-        onOdsChange={field.onChange}
+        value={String(field.value ?? 0)}
+        onBlur={field.onBlur}
+        onValueChange={({ valueAsNumber }) => field.onChange(valueAsNumber)}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS}
         min={MAX_VERSIONS_MIN_VALUE}
         max={MAX_VERSIONS_MAX_VALUE}
         className="justify-start"
-      />
+      >
+        <QuantityControl>
+          <QuantityInput />
+        </QuantityControl>
+      </Quantity>
       {okmsId ? <FormHelper secret={secret} okmsId={okmsId} /> : null}
-    </OdsFormField>
+      {fieldState.error?.message && <FormFieldError>{fieldState.error?.message}</FormFieldError>}
+    </FormField>
   );
 };
 
@@ -62,11 +71,13 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   if (secretConfig.maxVersions) {
     return (
-      <Text slot="helper" preset="caption">
-        {secretConfig.maxVersions.origin === 'DEFAULT'
-          ? t('form_helper_max_versions_default', { value: secretConfig.maxVersions.value })
-          : t('form_helper_max_versions_domain', { value: secretConfig.maxVersions.value })}
-      </Text>
+      <FormFieldHelper>
+        <Text preset="caption">
+          {secretConfig.maxVersions.origin === 'DEFAULT'
+            ? t('form_helper_max_versions_default', { value: secretConfig.maxVersions.value })
+            : t('form_helper_max_versions_domain', { value: secretConfig.maxVersions.value })}
+        </Text>
+      </FormFieldHelper>
     );
   }
 

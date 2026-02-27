@@ -1,9 +1,10 @@
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { Secret } from '@secret-manager/types/secret.type';
 
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { Text } from '@ovhcloud/ods-react';
+
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
-import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT, ICON_NAME } from '@ovh-ux/muk';
+import { ActionMenu, ActionMenuItemProps, BUTTON_VARIANT } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
 import { useFormatDate } from '@/common/hooks/useFormatDate';
@@ -30,7 +31,7 @@ export const DatagridCellPath = (secret: Secret) => {
           location: PageLocation.datagrid,
           buttonType: ButtonType.link,
           actionType: 'navigation',
-          actions: ['secret'],
+          actions: ['secret', 'dashboard'],
         });
       }}
     >
@@ -41,18 +42,18 @@ export const DatagridCellPath = (secret: Secret) => {
 
 export const DatagridCellVersion = (secret: Secret) => {
   return (
-    <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}>
+    <Text preset="span" data-testid={SECRET_LIST_CELL_TEST_IDS.version(secret.path)}>
       {secret.version?.id ?? '-'}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
 export const DatagridCreationDate = (secret: Secret) => {
   const { formatDate } = useFormatDate();
   return (
-    <DataGridTextCell data-testid={SECRET_LIST_CELL_TEST_IDS.createdAt(secret.path)}>
+    <Text preset="span" data-testid={SECRET_LIST_CELL_TEST_IDS.createdAt(secret.path)}>
       {formatDate(secret.metadata.createdAt)}
-    </DataGridTextCell>
+    </Text>
   );
 };
 
@@ -76,7 +77,6 @@ export const DatagridAction = (secret: Secret) => {
       id={`SecretActionMenu-${secret.path}`}
       items={items}
       isCompact
-      icon={ICON_NAME.ellipsisVertical}
       variant={BUTTON_VARIANT.ghost}
     />
   );

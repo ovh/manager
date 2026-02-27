@@ -1,35 +1,42 @@
-import { OkmsServiceKeyOperations } from '@key-management-service/types/okmsServiceKey.type';
+import {
+  OkmsServiceKeyOperationUsage,
+  OkmsServiceKeyOperations,
+} from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
 
-export const useServiceKeyOperationsTranslations = (
-  operations: OkmsServiceKeyOperations[] | string[],
-) => {
+export const useServiceKeyOperationsTranslations = () => {
   const { t } = useTranslation('key-management-service/serviceKeys');
 
-  const translatedOperations = operations.map((operation) => {
-    switch (operation) {
-      case 'encrypt':
-        return t('key_management_service_service-keys_dashboard_field_operations_encrypt');
+  const operationNamesMap: Record<OkmsServiceKeyOperations, string> = {
+    encrypt: t('key_management_service_service-keys_dashboard_field_operations_encrypt'),
+    decrypt: t('key_management_service_service-keys_dashboard_field_operations_decrypt'),
+    sign: t('key_management_service_service-keys_dashboard_field_operations_sign'),
+    verify: t('key_management_service_service-keys_dashboard_field_operations_verify'),
+    wrapKey: t('key_management_service_service-keys_dashboard_field_operations_wrapKey'),
+    unwrapKey: t('key_management_service_service-keys_dashboard_field_operations_unwrapKey'),
+  };
 
-      case 'decrypt':
-        return t('key_management_service_service-keys_dashboard_field_operations_decrypt');
+  const usageNamesMap: Record<OkmsServiceKeyOperationUsage, string> = {
+    encrypt_decrypt: `${t('key_management_service_service-keys_dashboard_field_operations_encrypt')} / ${t('key_management_service_service-keys_dashboard_field_operations_decrypt')}`,
+    sign_verify: `${t('key_management_service_service-keys_dashboard_field_operations_sign')} / ${t('key_management_service_service-keys_dashboard_field_operations_verify')}`,
+    wrapKey_unwrapKey: `${t('key_management_service_service-keys_dashboard_field_operations_wrapKey')} / ${t('key_management_service_service-keys_dashboard_field_operations_unwrapKey')}`,
+  };
 
-      case 'sign':
-        return t('key_management_service_service-keys_dashboard_field_operations_sign');
+  const usageDescriptionsMap: Record<OkmsServiceKeyOperationUsage, string> = {
+    encrypt_decrypt: t(
+      'key_management_service_service-keys_create_crypto_field_usage_description_encrypt_decrypt',
+    ),
+    sign_verify: t(
+      'key_management_service_service-keys_create_crypto_field_usage_description_sign_verify',
+    ),
+    wrapKey_unwrapKey: t(
+      'key_management_service_service-keys_create_crypto_field_usage_description_wrapKey_unwrapKey',
+    ),
+  };
 
-      case 'verify':
-        return t('key_management_service_service-keys_dashboard_field_operations_verify');
-
-      case 'wrapKey':
-        return t('key_management_service_service-keys_dashboard_field_operations_wrapKey');
-
-      case 'unwrapKey':
-        return t('key_management_service_service-keys_dashboard_field_operations_unwrapKey');
-
-      default:
-        return operation;
-    }
-  });
-
-  return translatedOperations;
+  return {
+    operationNamesMap,
+    usageNamesMap,
+    usageDescriptionsMap,
+  };
 };

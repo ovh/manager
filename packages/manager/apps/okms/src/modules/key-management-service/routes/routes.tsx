@@ -98,20 +98,16 @@ const CredentialsCreate = React.lazy(
 );
 const CredentialsCreateUserListModal = React.lazy(
   () =>
-    import(
-      '@key-management-service/pages/credential/create/add-users/CreateCredentialIdentityUserList.page'
-    ),
+    import('@key-management-service/pages/credential/create/add-users-modal/AddUsersModal.page'),
 );
 const CredentialsCreateGroupListModal = React.lazy(
   () =>
-    import(
-      '@key-management-service/pages/credential/create/add-groups/CreateCredentialIdentityGroupList.page'
-    ),
+    import('@key-management-service/pages/credential/create/add-groups-modal/AddGroupsModal.page'),
 );
 const CredentialsCreateServiceAccountListModal = React.lazy(
   () =>
     import(
-      '@key-management-service/pages/credential/create/add-service-account/CreateCredentialIdentityServiceAccountList.page'
+      '@key-management-service/pages/credential/create/add-service-account-modal/AddServiceAccountsModal.page'
     ),
 );
 
@@ -123,7 +119,11 @@ export default (
       Component={KmsCreate}
       handle={getRouteTracking(['create', 'okms'], PageType.funnel)}
     >
-      <Route path={KMS_URL_PARAMS.region} Component={KmsCreateOrderOkmsModal} />
+      <Route
+        path={KMS_URL_PARAMS.region}
+        Component={KmsCreateOrderOkmsModal}
+        handle={getRouteTracking(['enable', 'region'], PageType.popup)}
+      />
     </Route>
     <Route
       path={KMS_ROUTES_URIS.kmsOnboarding}
@@ -155,7 +155,7 @@ export default (
         <Route
           path={`${KMS_ROUTES_URIS.serviceKeyDeactivate}/${KMS_URL_PARAMS.keyId}`}
           Component={ServiceKeyDeactivateModal}
-          handle={getRouteTracking(['deactivate', 'service-key'], PageType.listing)}
+          handle={getRouteTracking(['deactivate', 'service-key'], PageType.popup)}
         />
       </Route>
       <Route

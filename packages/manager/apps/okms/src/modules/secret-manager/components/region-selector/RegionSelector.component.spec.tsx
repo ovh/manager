@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -36,7 +36,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link: string) => link),
   };
 });
 
@@ -182,25 +181,22 @@ describe('RegionSelector Component', () => {
       await openPopover();
 
       // Then
-      expect(screen.getByText(mockGeographyNames.EU)).toBeInTheDocument();
-      expect(screen.getByText(mockGeographyNames.CA)).toBeInTheDocument();
+      const popover = await screen.findByTestId('region-selector-popover');
+      expect(within(popover).getByText(mockGeographyNames.EU)).toBeInTheDocument();
+      expect(within(popover).getByText(mockGeographyNames.CA)).toBeInTheDocument();
 
-      // Check region links
-      const graLink = await screen.findByRole('link', { name: mockRegionLabels.GRA });
-      expect(graLink).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name),
-      );
-      const deLink = screen.getByRole('link', { name: mockRegionLabels.DE });
-      expect(deLink).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name),
-      );
-      const bhsLink = screen.getByRole('link', { name: mockRegionLabels.BHS });
-      expect(bhsLink).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name),
-      );
+      // Check region links by to/href (Muk Link renders "to" in test env)
+      const graHref = SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_GRA.name);
+      const deHref = SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_EU_WEST_LIM.name);
+      const bhsHref = SECRET_MANAGER_ROUTES_URLS.okmsList(LOCATION_CA_EAST_BHS.name);
+      const assertLinkTarget = (el: HTMLElement | null, expected: string) => {
+        expect(el).toBeTruthy();
+        const href = el?.getAttribute('to');
+        expect(href).toBe(expected);
+      };
+      assertLinkTarget(within(popover).getByText(mockRegionLabels.GRA).closest('a'), graHref);
+      assertLinkTarget(within(popover).getByText(mockRegionLabels.DE).closest('a'), deHref);
+      assertLinkTarget(within(popover).getByText(mockRegionLabels.BHS).closest('a'), bhsHref);
     });
 
     it('should highlight the link for the current region', async () => {
@@ -209,11 +205,12 @@ describe('RegionSelector Component', () => {
       await openPopover();
 
       // Then
-      const current = await screen.findByRole('link', { name: mockRegionLabels.GRA });
-      expect(current).toHaveClass('text-[var(--ods-color-heading)]');
+      const popover = await screen.findByTestId('region-selector-popover');
+      const currentLink = within(popover).getByText(mockRegionLabels.GRA).closest('a');
+      expect(currentLink).toHaveClass('text-[var(--ods-color-heading)]');
 
-      const notCurrent = screen.getByRole('link', { name: mockRegionLabels.DE });
-      expect(notCurrent).toHaveClass('text-[var(--ods-color-primary-500)]');
+      const notCurrentLink = within(popover).getByText(mockRegionLabels.DE).closest('a');
+      expect(notCurrentLink).toHaveClass('text-[var(--ods-color-primary-500)]');
     });
 
     it('should display dividers between geography groups', async () => {

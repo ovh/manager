@@ -1,9 +1,9 @@
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { useGuideLink } from '@/common/utils/guides/useGuideLink';
 import { labels } from '@/common/utils/tests/init.i18n';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
 
 import { GuideManagerCard } from './GuideManagerCard.component';
 import { GUIDES_MANAGER } from './guideManager.constants';
@@ -18,7 +18,8 @@ describe('GuideManagerCard test suite', () => {
   it('should return a card with the correct link and text', async () => {
     // GIVEN
     // WHEN
-    await renderWithI18n(<GuideManagerCard />);
+    const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
+    render(<GuideManagerCard />, { wrapper });
 
     // THEN
     expect(useGuideLink).toHaveBeenCalledWith(GUIDES_MANAGER);

@@ -31,6 +31,10 @@ global.ResizeObserver = class ResizeObserver {
   }
 } as typeof ResizeObserver;
 
+// For ODS Select - Mock scrollTo and scrollIntoView for HTMLElement
+HTMLElement.prototype.scrollTo = vi.fn();
+HTMLElement.prototype.scrollIntoView = vi.fn();
+
 const server = setupServer(
   ...toMswHandlers([...getAuthenticationMocks({ isAuthMocked: true, region: 'EU' })]),
 );
@@ -63,6 +67,46 @@ vi.mock('@/common/hooks/useOkmsTracking', () => ({
   useOkmsTracking: () => ({ trackClick: vi.fn(), trackPage: vi.fn() }),
 }));
 
+// Mock Monaco Editor as a textarea for tests (Monaco uses contenteditable, not compatible with userEvent)
+vi.mock('@monaco-editor/react', () => {
+  const MonacoMock = ({
+    value = '',
+    onChange,
+    onMount,
+    wrapperProps = {},
+  }: {
+    value?: string;
+    onChange?: (value: string) => void;
+    onMount?: (editor: { onDidBlurEditorWidget: (fn: () => void) => void }) => void;
+    wrapperProps?: Record<string, unknown>;
+  }) => {
+    const blurCallbackRef = React.useRef<(() => void) | null>(null);
+    React.useEffect(() => {
+      onMount?.({
+        onDidBlurEditorWidget: (fn: () => void) => {
+          blurCallbackRef.current = fn;
+          return {
+            dispose: () => {
+              blurCallbackRef.current = null;
+            },
+          };
+        },
+      });
+    }, [onMount]);
+    return (
+      <textarea
+        {...wrapperProps}
+        data-testid={wrapperProps?.['data-testid']}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
+        onBlur={() => blurCallbackRef.current?.()}
+        rows={12}
+      />
+    );
+  };
+  return { default: MonacoMock, Editor: MonacoMock };
+});
+
 // Mocking ODS components
 vi.mock('@ovh-ux/muk', async () => {
   const original = await vi.importActual('@ovh-ux/muk');
@@ -70,8 +114,7 @@ vi.mock('@ovh-ux/muk', async () => {
     ...original,
     Button: vi.fn((props: ButtonProps & { 'data-testid'?: string }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { iamActions, isIamTrigger, displayTooltip, tooltipPosition, loading, ...htmlProps } =
-        props;
+      const { iamActions, displayTooltip, tooltipPosition, loading, ...htmlProps } = props;
       return (
         <OdsButton data-testid={props['data-testid']} data-loading={loading} {...htmlProps}>
           {props.children}
@@ -80,7 +123,7 @@ vi.mock('@ovh-ux/muk', async () => {
     }),
     Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { iamActions, isIamTrigger, displayTooltip, ...htmlProps } = props;
+      const { iamActions, displayTooltip, ...htmlProps } = props;
       return (
         <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
           {props.children}

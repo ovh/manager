@@ -12,11 +12,10 @@ import { act, fireEvent, screen } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { describe, expect } from 'vitest';
 
-import { WAIT_FOR_DEFAULT_OPTIONS, assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { catalogMock } from '@/common/mocks/catalog/catalog.mock';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT, assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { clickJsonEditorToggle } from '@/common/utils/tests/uiTestHelpers';
 
 /* TEST UTILS */
@@ -96,7 +95,7 @@ describe('Create secret page test suite', () => {
       await screen.findAllByText(
         labels.common.dashboard.general_information,
         {},
-        WAIT_FOR_DEFAULT_OPTIONS,
+        { timeout: TIMEOUT.MEDIUM },
       ),
     ).toHaveLength(2);
   });

@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { LinkProps } from '@ovh-ux/muk';
 
-import { initiateTextFileDownload } from '@/common/utils/dom/download';
+import { initiateTextFileDownload } from '@/common/utils/files/download';
 
 import { CertificateType, DownloadOkmsPublicCaLink } from './DownloadOkmsPublicCaLink';
 
@@ -18,7 +18,7 @@ vi.mock('@ovh-ux/muk', async () => {
     useNotifications: () => ({ addError: mockAddError }),
     Link: vi.fn((props: LinkProps & { 'data-testid'?: string }) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { iamActions, isIamTrigger, displayTooltip, ...htmlProps } = props;
+      const { iamActions, displayTooltip, ...htmlProps } = props;
       return (
         <a data-testid={props['data-testid']} href={htmlProps.href} {...htmlProps}>
           {props.children}
@@ -34,7 +34,7 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
-vi.mock('@/common/utils/dom/download', () => ({
+vi.mock('@/common/utils/files/download', () => ({
   initiateTextFileDownload: vi.fn(),
 }));
 

@@ -36,7 +36,7 @@
   "error_empty_keys": "No puede tener una clave vacía.",
   "error_invalid_duration": "La duración de expiración debe ser una duración determinada (p. ej.: 30s, 5m, 2h, 7d, 7d1h30m10s)",
   "error_invalid_json": "JSON no válido",
-  "error_key_value_conversion": "El valor de secreto no se puede convertir en pares clave-valor.",
+  "error_key_value_conversion": "El valor del secreto no se puede convertir en pares clave-valor. Utiliza el editor JSON.",
   "error_path_allowed_characters": "La ruta solo puede contener los siguientes caracteres: A-Z a-z 0-9 . _ : / = @ y -",
   "error_path_structure": "La ruta no puede comenzar ni terminar con '/', ni contener dos '/' consecutivos.",
   "error_update_settings": "Se ha producido un error al actualizar los parámetros",
@@ -91,5 +91,10 @@
   "enable_cas_required": "Configurar el CAS",
   "form_helper_max_versions_default": "Introduzca «0» para usar el valor predeterminado ({{value}}).",
   "form_helper_max_versions_domain": "Introduzca «0» para utilizar el valor del dominio OKMS ({{value}}).",
-  "secret_settings": "Configuración del secreto"
+  "secret_settings": "Configuración del secreto",
+  "add_custom_metadata": "Agregar metadatos",
+  "edit_custom_metadata": "Modificar metadatos",
+  "error_empty_key_or_value": "La clave o el valor no deben estar vacíos.",
+  "metadata": "Metadatos",
+  "secret_settings_explanation": "La configuración de los parámetros a nivel del secreto tendrá prioridad sobre la configuración a nivel del dominio OKMS."
 }

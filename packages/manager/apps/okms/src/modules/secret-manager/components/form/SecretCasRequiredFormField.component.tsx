@@ -1,10 +1,13 @@
 import { useSecretSmartConfig } from '@secret-manager/hooks/useSecretSmartConfig';
 import { Secret } from '@secret-manager/types/secret.type';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField } from '@ovhcloud/ods-components/react';
 import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
   Radio,
   RadioControl,
   RadioGroup,
@@ -22,16 +25,13 @@ import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
 type CasRequiredFormValue = 'active' | 'inactive';
 
-type FormFieldInput = {
-  casRequired?: CasRequiredFormValue;
-};
-
-type SecretCasRequiredFormFieldProps<T extends FormFieldInput> = UseControllerProps<T> & {
-  secret?: Secret;
+type SecretCasRequiredFormFieldProps<T extends FieldValues> = UseControllerProps<T> & {
+  isCasRequiredSetOnOkms?: boolean;
   okmsId?: string;
+  secret?: Secret;
 };
 
-export const SecretCasRequiredFormField = <T extends FormFieldInput>({
+export const SecretCasRequiredFormField = <T extends FieldValues>({
   name,
   control,
   secret,
@@ -41,11 +41,11 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
   const { field, fieldState } = useController({ name, control });
 
   return (
-    <OdsFormField error={fieldState.error?.message}>
-      <label slot="label" className="relative mb-1 flex items-center gap-2">
-        <span>{t('cas_with_description')}</span>
+    <FormField invalid={!!fieldState.error}>
+      <FormFieldLabel className="flex items-center gap-2">
+        {t('cas_with_description')}
         <HelpIconWithTooltip label={t('cas_with_description_tooltip')} />
-      </label>
+      </FormFieldLabel>
       <RadioGroup
         value={field.value}
         onValueChange={(detail: RadioValueChangeDetail) => field.onChange(detail.value)}
@@ -64,8 +64,9 @@ export const SecretCasRequiredFormField = <T extends FormFieldInput>({
           </RadioLabel>
         </Radio>
       </RadioGroup>
+      {fieldState.error?.message && <FormFieldError>{fieldState.error?.message}</FormFieldError>}
       {okmsId ? <FormHelper secret={secret} okmsId={okmsId} /> : null}
-    </OdsFormField>
+    </FormField>
   );
 };
 
@@ -88,11 +89,9 @@ const FormHelper = ({ secret, okmsId }: { secret?: Secret; okmsId: string }) => 
 
   if (secretConfig.isCasRequiredSetOnOkms) {
     return (
-      <Text slot="helper" preset="caption">
-        {t('form_helper_cas_required_okms')}
-      </Text>
+      <FormFieldHelper>
+        <Text preset="caption">{t('form_helper_cas_required_okms')}</Text>
+      </FormFieldHelper>
     );
   }
-
-  return null;
 };
