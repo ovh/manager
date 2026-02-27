@@ -92,5 +92,8 @@
   "pci_projects_home_banner_discovery_title_no_promotion": "Rozpocznij wdrażanie zasobów cloud.",
   "pci_projects_home_banner_discovery_description": "Aktualnie jesteś w trybie Discovery. Po włączeniu projektu uruchomisz zasoby cloud w ciągu kilku minut.",
   "pci_projects_beta_public_cloud_banner_info": "Program beta dla Public Cloud: przetestuj nasze rozwiązania oparte na OpenStack (Load Balancer, instancja routingu, Floating IP i Bare Metal as a Service).",
-  "pci_projects_beta_public_cloud_banner_info_link": "Rozpocznij testy, aktywując region GRA9."
+  "pci_projects_beta_public_cloud_banner_info_link": "Rozpocznij testy, aktywując region GRA9.",
+  "pci_projects_home_pricing_banner_title": "Cennik Public Cloud",
+  "pci_projects_home_pricing_banner_body": "Ceny niektórych usług public cloud mogą ulec zmianie 1 kwietnia 2026 r. Więcej informacji znajdziesz na naszej stronie z cennikiem.",
+  "pci_projects_home_pricing_banner_link": "Zobacz ceny"
 }
