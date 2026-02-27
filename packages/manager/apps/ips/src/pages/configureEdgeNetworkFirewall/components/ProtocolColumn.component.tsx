@@ -21,7 +21,7 @@ export const ProtocolColumn = (
     React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
-    <OdsFormField className="w-full" error={protocolError}>
+    <OdsFormField className="flex w-full" error={protocolError}>
       <OdsSelect
         className="block"
         name="protocol-select"
