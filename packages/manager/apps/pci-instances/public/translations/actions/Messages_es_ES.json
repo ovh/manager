@@ -79,5 +79,6 @@
   "pci_instances_actions_instance_volume_attach_select": "Seleccionar un volumen existente",
   "pci_instances_actions_instance_volume_attach_information": "Puede asociar un volumen existente o crear un nuevo volumen para asociarlo a su instancia. ",
   "pci_instances_actions_instance_volume_attach_create_link": "Crear un volumen",
-  "pci_instances_actions_instance_volume_attach_success_message": "Se ha asociado el volumen {{ volume }} a la instancia {{ instance }}."
+  "pci_instances_actions_instance_volume_attach_success_message": "Se ha asociado el volumen {{ volume }} a la instancia {{ instance }}.",
+  "pci_instances_actions_instance_volume_attach_detach_warning_message": "Este volumen ya está adjunto a una o varias instancias. Se desasociará de la instancia a la que está actualmente adjunto."
 }

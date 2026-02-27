@@ -1,9 +1,8 @@
 import { TNetwork } from '@/types/network/entity.type';
-import {
-  TInstanceAddress,
-  TInstanceVolume,
-} from '@/types/instance/entity.type';
-import { TVolume } from '@/types/volume/common.type';
+import { TInstanceAddress } from '@/types/instance/entity.type';
+import { TVolume } from '@/types/volume/entity.type';
+import { VOLUME_MULTI_ATTACH_MAX } from './selectUnattachedResource.constant';
+import { TInstanceDashboardViewModel } from './selectInstanceDashboard';
 
 export type TUnattachedResource = {
   label: string;
@@ -22,20 +21,30 @@ export const selectUnattachedPrivateNetworks = (
     )
     .map((network) => ({ label: network.name, value: network.id }));
 
+export type TUnattachedVolume = TUnattachedResource & {
+  canBeDetached: boolean;
+};
+
 export const selectUnattachedVolumes = (
   volumes: TVolume[],
-  instanceVolumes: TInstanceVolume[],
-  instanceAvailabilityZone: string | null,
-): TUnattachedResource[] =>
+  instance: NonNullable<TInstanceDashboardViewModel>,
+): TUnattachedVolume[] =>
   volumes
     .filter(
-      ({ id, availabilityZone }) =>
-        !instanceVolumes.some((instanceVolume) => id === instanceVolume.id) &&
+      ({ availabilityZone, attachedInstances }) =>
+        !attachedInstances.includes(instance.id) &&
         (availabilityZone === 'any' ||
-          availabilityZone === null ||
-          availabilityZone === instanceAvailabilityZone),
+          availabilityZone === instance.region.availabilityZone ||
+          availabilityZone === null),
     )
-    .map(({ id, name }) => ({
-      label: name,
-      value: id,
-    }));
+    .map(({ id, name, attachedInstances, status }) => {
+      const isMultiAttach =
+        instance.region.type === 'region-3-az' &&
+        attachedInstances.length < VOLUME_MULTI_ATTACH_MAX;
+
+      return {
+        label: name,
+        value: id,
+        canBeDetached: !isMultiAttach && status === 'in-use',
+      };
+    });
