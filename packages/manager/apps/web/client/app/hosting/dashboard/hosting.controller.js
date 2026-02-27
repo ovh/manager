@@ -69,6 +69,7 @@ export default class {
     serviceName,
     runtimesLink,
     user,
+    userStatisticsLink,
     userLogsLink,
     isWebsiteFeatureAvailable,
     isOslToLdpFeatureAvailable,
@@ -137,6 +138,7 @@ export default class {
     this.privateDatabasesIds = privateDatabasesIds;
     this.runtimesLink = runtimesLink;
     this.user = user;
+    this.userStatisticsLink = userStatisticsLink;
     this.userLogsLink = userLogsLink;
     this.isOslToLdpFeatureAvailable = isOslToLdpFeatureAvailable;
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;

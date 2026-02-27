@@ -1281,6 +1281,7 @@
   "hosting_action_edit_choose_update": "Modifier la configuration courante",
   "hosting_action_edit_choose_rollback": "Revenir à une configuration précédente",
   "hosting_action_config_edit_no_choice": "Une seule configuration disponible dans l’historique. Le choix est donc désactivé, cliquez sur \"valider\" pour appliquer les valeurs présentées ci-dessous.",
+  "hosting_tab_USER_STATISTICS": "Statistiques et logs",
   "hosting_tab_USER_LOGS": "Logs",
   "hosting_tab_USER_LOGS_configuration_user_create_title": "Créer un nouvel utilisateur",
   "hosting_tab_USER_LOGS_configuration_user_create_step1_question": "Ce nouvel utilisateur aura accès à vos statistiques et aux logs de vos sites en plus des contacts normaux de l'hébergement (administratif, technique et facturation). Vous pouvez librement ajouter, modifier ou supprimer ces utilisateurs supplémentaires.",
