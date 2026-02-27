@@ -63,7 +63,7 @@ const StorageJobModal = () => {
 
   return (
     <RouteModal isLoading={s3Query.isLoading}>
-      <DialogContent>
+      <DialogContent variant="information">
         <DialogHeader>
           <DialogTitle data-testid="storage-job-modal">
             {t('storageJobTitle')}
