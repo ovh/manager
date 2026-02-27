@@ -11,6 +11,8 @@ export const OrderSection: React.FC<
   React.PropsWithChildren<{
     title: string;
     description?: string;
+    description2?: string;
+    description3?: string;
     isLoading?: boolean;
     className?: string;
     isError?: boolean;
@@ -19,6 +21,8 @@ export const OrderSection: React.FC<
 > = ({
   title,
   description,
+  description2,
+  description3,
   isLoading,
   className,
   isError,
@@ -29,9 +33,25 @@ export const OrderSection: React.FC<
     <OdsText className="mb-3 block" preset={ODS_TEXT_PRESET.heading2}>
       {title}
     </OdsText>
-    <OdsText className="mb-7 block" preset={ODS_TEXT_PRESET.paragraph}>
-      {description}
-    </OdsText>
+    {(description || description2 || description3) && (
+      <div className="mb-7 flex flex-col gap-[1em]">
+        {description && (
+          <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+            {description}
+          </OdsText>
+        )}
+        {description2 && (
+          <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+            {description2}
+          </OdsText>
+        )}
+        {description3 && (
+          <OdsText className="block" preset={ODS_TEXT_PRESET.paragraph}>
+            {description3}
+          </OdsText>
+        )}
+      </div>
+    )}
     {isLoading && (
       <div className="text-center">
         <OdsSpinner size={ODS_SPINNER_SIZE.md} />
