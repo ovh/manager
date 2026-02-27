@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-web-domains-app",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "private": true,
   "description": "Domains, Alldom and Domain reseller program management",
   "repository": {
