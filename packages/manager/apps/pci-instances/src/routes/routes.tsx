@@ -208,6 +208,14 @@ export const getRoutes = (shell: ShellContextType): RouteObject[] => [
             ),
             children: instanceActionsRoutes,
           },
+          {
+            path: 'observability/*',
+            ...lazyRouteConfig(() =>
+              import(
+                '@/pages/instances/instance/observability/Observability.page'
+              ),
+            ),
+          },
         ],
       },
       {
