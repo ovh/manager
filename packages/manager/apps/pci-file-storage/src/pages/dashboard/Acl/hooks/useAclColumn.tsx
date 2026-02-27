@@ -145,11 +145,7 @@ export const useAclColumn = ({
         label: t('acl:columns.status.header'),
         isFilterable: true,
         type: FilterTypeCategories.Options,
-        comparator: [
-          FilterComparator.IsEqual,
-          FilterComparator.IsDifferent,
-          FilterComparator.Includes,
-        ],
+        comparator: [FilterComparator.IsEqual, FilterComparator.IsDifferent],
         filterOptions: ACL_STATUSES.map((status) => ({
           label: t(getAclStatusDisplay(status).labelKey),
           value: status,

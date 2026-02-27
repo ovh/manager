@@ -316,49 +316,41 @@ describe('useAclDatagridFiltering', () => {
       expect(result.current.filterProps.filters).toEqual([activeFilter]);
     });
 
-    it('should set displayValue to undefined when no map entry exists for the column', () => {
-      const { result } = renderHook(() => useAclDatagridFiltering(ACL_FIXTURES));
-
-      const filterToAdd: ColumnFilterProps = {
-        key: 'accessTo',
-        value: '10.0.0.1',
-        comparator: FilterComparator.IsEqual,
-        label: 'Access to',
-      };
-
-      act(() => {
-        result.current.filterProps.add(filterToAdd);
-      });
-
-      expect(mockAddFilter).toHaveBeenCalledWith(
-        expect.objectContaining({
-          key: 'accessTo',
-          value: '10.0.0.1',
-          displayValue: undefined,
-        }),
-      );
-    });
-
-    it('should set displayValue to undefined when no map is provided at all', () => {
-      const { result } = renderHook(() => useAclDatagridFiltering(ACL_FIXTURES));
-
-      const filterToAdd: ColumnFilterProps = {
+    it.each([
+      { key: 'accessTo', value: '10.0.0.1', label: 'Access to', displayValue: undefined },
+      {
         key: 'permission',
-        value: 'readOnly',
-        comparator: FilterComparator.IsEqual,
-        label: 'Access rights',
-      };
+        value: 'read',
+        label: 'Access to',
+        displayValue: 'acl:columns.accessPermission.read',
+      },
+      { key: 'status', value: 'active', label: 'Access to', displayValue: 'status:active' },
+      { key: 'other', value: 'any', label: 'Unknown column', displayValue: undefined },
+    ])(
+      'should set set value, label and displayValue for (key: $key)',
+      ({ key, value, label, displayValue }) => {
+        const { result } = renderHook(() => useAclDatagridFiltering(ACL_FIXTURES));
 
-      act(() => {
-        result.current.filterProps.add(filterToAdd);
-      });
+        const filterToAdd: ColumnFilterProps = {
+          key,
+          value,
+          comparator: FilterComparator.IsEqual,
+          label,
+        };
 
-      expect(mockAddFilter).toHaveBeenCalledWith(
-        expect.objectContaining({
-          displayValue: undefined,
-        }),
-      );
-    });
+        act(() => {
+          result.current.filterProps.add(filterToAdd);
+        });
+
+        expect(mockAddFilter).toHaveBeenCalledWith(
+          expect.objectContaining({
+            key,
+            value,
+            displayValue,
+          }),
+        );
+      },
+    );
   });
 
   describe('searchProps', () => {
