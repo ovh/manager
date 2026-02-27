@@ -96,6 +96,8 @@ export default /* @ngInject */ ($stateProvider) => {
         ),
       cronLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('app.hosting.dashboard.cron', $transition$.params()),
+      userStatisticsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('app.hosting.dashboard.user-logs', $transition$.params()),
       userLogsLink: /* @ngInject */ (coreURLBuilder, serviceName) =>
         coreURLBuilder.buildURL('web-hosting', '#/:serviceName/user-logs', {
           serviceName,
