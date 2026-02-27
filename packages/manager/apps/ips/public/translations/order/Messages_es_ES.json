@@ -55,5 +55,8 @@
   "upgrade_bandwidth_order_success_message": "Tu pedido de ancho de banda ha comenzado en una nueva pestaña. Por favor, termínalo para finalizar tu compra. Si la nueva pestaña no se abre, <Link>Haga clic aquí.</Link>",
   "bandwidth_option_card_tooltip": "Se aplica un coste prorrateado por los días restantes de tu ciclo de facturación actual y la tarificación completa comienza en el siguiente ciclo de facturación.",
   "vrack_bandwidth_double_order_info_message": "Se necesita un pedido para el ancho de banda público y un pedido para la IP adicional, si ya tienes un ancho de banda público activado en tu vRack. Si aún no tienes un ancho de banda público activado, solo se necesita un pedido.",
-  "upgrade_bandwidth_order_error_message": "Se ha producido un error al realizar el pedido del ancho de banda público. Por favor, vuelva a intentarlo más adelante."
+  "upgrade_bandwidth_order_error_message": "Se ha producido un error al realizar el pedido del ancho de banda público. Por favor, vuelva a intentarlo más adelante.",
+  "vrack_bandwidth_section_description_1": "Al asignar una dirección IP adicional a una red vRack, el ancho de banda público se aplica al tráfico entre OVHcloud e Internet.",
+  "vrack_bandwidth_section_description_2": "El ancho de banda público seleccionado se aplica a una red vRack en la región dada y se comparte entre todas las direcciones IP adicionales de esa ubicación que están enrutadas a esta red.",
+  "vrack_bandwidth_section_description_3": "Por favor, selecciona el paquete aplicable a tus necesidades (se puede actualizar más adelante)."
 }

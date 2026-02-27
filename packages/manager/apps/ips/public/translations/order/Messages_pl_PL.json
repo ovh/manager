@@ -55,5 +55,8 @@
   "upgrade_bandwidth_order_success_message": "Twoje zamówienie na przepustowość rozpoczęło się w nowej karcie. Proszę je dokończyć, aby sfinalizować zakupu. Jeśli nowa karta się nie otworzy, <Link>kliknij tutaj.</Link>",
   "bandwidth_option_card_tooltip": "Koszt proporcjonalny dotyczy pozostałych dni bieżącego cyklu rozliczeniowego, a pełna cena zaczyna się w następnym cyklu rozliczeniowym.",
   "vrack_bandwidth_double_order_info_message": "Zamówienie na publiczną przepustowość oraz zamówienie na dodatkowy adres IP są wymagane, jeśli masz już aktywną publiczną przepustowość na swoim vRack. Jeśli nie masz jeszcze aktywnej publicznej przepustowości, potrzebne jest tylko jedno zamówienie.",
-  "upgrade_bandwidth_order_error_message": "Wystąpił błąd podczas zamawiania publicznej przepustowości. Spróbuj ponownie później."
+  "upgrade_bandwidth_order_error_message": "Wystąpił błąd podczas zamawiania publicznej przepustowości. Spróbuj ponownie później.",
+  "vrack_bandwidth_section_description_1": "Podczas przydzielania dodatkowego adresu IP do sieci vRack, pasmo publiczne dotyczy ruchu między OVHcloud a Internetem.",
+  "vrack_bandwidth_section_description_2": "Wybrane pasmo publiczne dotyczy sieci vRack w danym regionie i jest dzielone między wszystkie dodatkowe adresy IP w tej lokalizacji, które są routowane do tej sieci.",
+  "vrack_bandwidth_section_description_3": "Proszę wybrać odpowiedni plan do swoich potrzeb (może być później zaktualizowany)."
 }

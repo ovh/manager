@@ -55,5 +55,8 @@
   "upgrade_bandwidth_order_success_message": "Il tuo ordine di larghezza di banda è iniziato in una nuova scheda. Si prega di completarlo per finalizzare l'acquisto. Se la nuova scheda non si apre, <Link>clicca qui.</Link>",
   "bandwidth_option_card_tooltip": "Si applica un costo proporzionale per i giorni rimanenti del tuo ciclo di fatturazione attuale e la tariffazione completa inizia nel ciclo di fatturazione successivo.",
   "vrack_bandwidth_double_order_info_message": "È necessario un ordine per la larghezza di banda pubblica e un ordine per l'IP aggiuntiva, se hai già una larghezza di banda pubblica attivata sul tuo vRack. Se non hai ancora una larghezza di banda pubblica attivata, è necessario un solo ordine.",
-  "upgrade_bandwidth_order_error_message": "Si è verificato un errore durante l'ordine della larghezza di banda pubblica. Riprova più tardi."
+  "upgrade_bandwidth_order_error_message": "Si è verificato un errore durante l'ordine della larghezza di banda pubblica. Riprova più tardi.",
+  "vrack_bandwidth_section_description_1": "Quando si assegna un indirizzo IP aggiuntivo a una rete vRack, la larghezza di banda pubblica si applica al traffico tra OVHcloud e Internet.",
+  "vrack_bandwidth_section_description_2": "La larghezza di banda pubblica selezionata si applica a una rete vRack nella regione specificata ed è condivisa tra tutti gli indirizzi IP aggiuntivi di quella posizione instradati verso questa rete.",
+  "vrack_bandwidth_section_description_3": "Si prega di selezionare il piano applicabile alle proprie esigenze (può essere aggiornato in seguito)."
 }

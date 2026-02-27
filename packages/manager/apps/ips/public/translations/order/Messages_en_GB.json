@@ -55,5 +55,8 @@
   "upgrade_bandwidth_order_success_message": "Your bandwidth order has started in a new tab. Please complete it to finalise your purchase. If the new tab does not open, <Link>click here.</Link>",
   "bandwidth_option_card_tooltip": "A pro-rata charge applies for the remaining days of your current billing cycle, and full pricing begins in the next billing cycle.",
   "vrack_bandwidth_double_order_info_message": "An order for public bandwidth and an order for the additional IP are required if you already have public bandwidth enabled on your vRack. If you do not yet have public bandwidth enabled, only one order is necessary.",
-  "upgrade_bandwidth_order_error_message": "An error occurred while ordering the public bandwidth. Please try again later."
+  "upgrade_bandwidth_order_error_message": "An error occurred while ordering the public bandwidth. Please try again later.",
+  "vrack_bandwidth_section_description_1": "When assigning an additional IP address to a vRack network, the public bandwidth applies to the traffic between OVHcloud and the Internet.",
+  "vrack_bandwidth_section_description_2": "The selected public bandwidth applies to a vRack network in the given region and is shared among all additional IP addresses at that location routed to this network.",
+  "vrack_bandwidth_section_description_3": "Please select the plan applicable to your needs (it can be upgraded later)."
 }
