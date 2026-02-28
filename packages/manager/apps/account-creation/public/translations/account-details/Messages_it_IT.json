@@ -50,5 +50,5 @@
   "account_details_field_corporation_firstname": "Nome del rappresentante legale",
   "account_details_field_corporation_lastname": "Cognome del rappresentante legale",
   "account_details_section_address_kyc_info": "<strong>Per effettuare un ordine, ricordati di inserire tutte le informazioni richieste e assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.</strong> <ul><li>Inserisci <strong>il tuo indirizzo completo</strong> </li><li>L'indirizzo deve <strong>coincidere con quello presente nel giustificativo</strong> richiesto per verificare la tua identità</li></ul>",
-  "account_details_field_italian_sdi": "Codice del destinatario per la fatturazione elettronica (SDI)"
+  "account_details_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)"
 }

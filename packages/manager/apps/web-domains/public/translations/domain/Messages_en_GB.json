@@ -294,7 +294,7 @@
   "domain_tab_hosts_drawer_modify_title": "Edit host",
   "domain_tab_hosts_drawer_add_form_information": "Please fill in the following fields:",
   "domain_tab_hosts_drawer_add_form_hostName_label": "Host name - <Required />",
-  "domain_tab_hosts_drawer_add_form_ip_label": "Destination IP(s) - <Required />",
+  "domain_tab_hosts_drawer_add_form_ip_label": "Target IP(s) - <Required />",
   "domain_tab_hosts_drawer_add_form_warning_message": "Warning: After validation, in order for your glue record to work properly, you'll need to edit your DNS zone by adding:",
   "domain_tab_hosts_drawer_add_form_warning_list_ipv4": "an A record for an IPv4 address",
   "domain_tab_hosts_drawer_add_form_warning_list_ipv6": "an AAAA record for an IPv6 address",
