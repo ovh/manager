@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 import checkFile from 'eslint-plugin-check-file';
 
 import {

@@ -1,5 +1,5 @@
 import js from '@eslint/js';
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { jsFilesLoose } from '../../../configs/file-globs-config';
 

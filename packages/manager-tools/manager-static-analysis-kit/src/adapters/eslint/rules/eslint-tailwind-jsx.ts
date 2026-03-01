@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 import tailwindcss from 'eslint-plugin-tailwindcss';
 
 import { jsxTsxFiles } from '../../../configs/file-globs-config';

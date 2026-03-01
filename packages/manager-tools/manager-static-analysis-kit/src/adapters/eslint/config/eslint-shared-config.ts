@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { a11yEslintConfig } from '../rules/eslint-a11y';
 import { complexityJsxTsxConfig, complexityTsJsConfig } from '../rules/eslint-complexity';
