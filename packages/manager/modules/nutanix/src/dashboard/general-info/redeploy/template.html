@@ -302,6 +302,18 @@
                         ></oui-select>
                     </oui-field>
                     <oui-field
+                        data-label="{{:: 'nutanix_redeploy_prism_central_size' | translate}}"
+                    >
+                        <oui-select
+                            class="w-50 mt-1"
+                            data-name="prismCentralSize"
+                            data-title="{{:: 'nutanix_redeploy_prism_central_size' | translate}}"
+                            data-model="$ctrl.config.prismCentral.size"
+                            items="$ctrl.prismCentralSizes"
+                        >
+                        </oui-select>
+                    </oui-field>
+                    <oui-field
                         data-label="{{:: 'nutanix_redeploy_prism_central_vip' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
                         data-error-messages="{
