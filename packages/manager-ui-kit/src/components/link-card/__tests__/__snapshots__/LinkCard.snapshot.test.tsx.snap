@@ -66,6 +66,7 @@ exports[`LinkCard Component Snapshot Tests > renders the complete component 1`] 
           >
             En savoir plus
             <span
+              aria-hidden=true
               class=_icon _icon--arrow-right
               data-ods=icon
               role=presentation
@@ -139,6 +140,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with badges 1
           >
             En savoir plus
             <span
+              aria-hidden=true
               class=_icon _icon--arrow-right
               data-ods=icon
               role=presentation
@@ -201,6 +203,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with image 1`
           >
             En savoir plus
             <span
+              aria-hidden=true
               class=_icon _icon--arrow-right
               data-ods=icon
               role=presentation
@@ -258,6 +261,7 @@ exports[`LinkCard Component Snapshot Tests > renders the component with texts 1`
           >
             En savoir plus
             <span
+              aria-hidden=true
               class=_icon _icon--arrow-right
               data-ods=icon
               role=presentation

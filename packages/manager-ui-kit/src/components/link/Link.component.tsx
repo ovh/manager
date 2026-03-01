@@ -12,10 +12,13 @@ import {
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
+import { extractLanguageCode } from '@/commons/utils/TranslationHelper';
+import { LinkProps, LinkType } from '@/components/link/Link.props';
 import { useAuthorizationIam } from '@/hooks/iam/useOvhIam';
 
-import { LinkProps } from './Link.props';
+import { generateSurveyLink } from './Link.util';
 import { LinkIcons } from './LinkIcons.component';
+import './translations';
 
 export const Link = <T extends ElementType = 'a'>({
   children,
@@ -24,10 +27,29 @@ export const Link = <T extends ElementType = 'a'>({
   urn,
   disableIamCheck = false,
   displayTooltip = true,
+  surveyLink,
   ...odsLinkProps
 }: LinkProps<T>) => {
-  const { t } = useTranslation(NAMESPACES.IAM);
+  const { t, i18n } = useTranslation([NAMESPACES.IAM, 'link']);
   const { isAuthorized } = useAuthorizationIam(iamActions || [], urn || '', !disableIamCheck);
+
+  if (type === LinkType.survey && surveyLink) {
+    const { applicationKey, ...queryParams } = surveyLink;
+    return (
+      <OdsLink
+        {...odsLinkProps}
+        href={generateSurveyLink({
+          applicationKey,
+          languageCode: extractLanguageCode(i18n.language),
+          queryParams,
+        })}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <LinkIcons type={type}>{t('link_survey_preset_label', { ns: 'link' })}</LinkIcons>
+      </OdsLink>
+    );
+  }
 
   if (isAuthorized || iamActions === undefined) {
     return (

@@ -113,6 +113,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with many t
             >
               Manager les tags
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -194,6 +195,7 @@ exports[`TagsTile Snapshot Tests > Complex Scenarios > should render with single
             >
               Manager les tags
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -267,6 +269,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render empty tags tile 1
             >
               Ajouter un tag
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -340,6 +343,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render with empty tags 1
             >
               Ajouter un tag
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -413,6 +417,7 @@ exports[`TagsTile Snapshot Tests > Empty State > should render without onEditTag
             >
               Ajouter un tag
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -508,6 +513,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render tags tile with tags
             >
               Manager les tags
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -603,6 +609,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with custom lineNum
             >
               Manager les tags
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
@@ -698,6 +705,7 @@ exports[`TagsTile Snapshot Tests > With Tags > should render with displayInterna
             >
               Manager les tags
               <span
+                aria-hidden=true
                 class=_icon _icon--external-link
                 data-ods=icon
                 role=presentation
