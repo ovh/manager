@@ -103,6 +103,7 @@
             data-is-old-cluster="$ctrl.isOldCluster"
             data-specifications="$ctrl.specifications"
             data-service-id="$ctrl.serviceInfos.serviceId"
+            data-nb-nics="::$ctrl.ola.nbNICs()"
         >
         </server-bandwidth-dashboard>
 
@@ -160,38 +161,30 @@
 
         <!-- OLA -->
         <oui-tile-definition
-            data-ng-if="$ctrl.ola.isAvailable()"
+            data-ng-if="$ctrl.ola"
             data-term="{{:: 'server_network_ola' | translate}}"
         >
             <oui-tile-description>
-                <div data-ng-if="$ctrl.ola.isActivated()">
-                    <span
-                        data-ng-if="$ctrl.ola.isConfigured()"
-                        data-translate="server_network_ola_mode_{{ $ctrl.ola.getCurrentMode() }}"
-                    >
-                    </span>
-                    <span
-                        data-ng-if="!$ctrl.ola.isConfigured()"
-                        data-translate="server_network_ola_active"
-                    >
-                    </span>
-                </div>
                 <span
-                    data-ng-if="!$ctrl.ola.isActivated()"
-                    data-translate="server_network_ola_inactive"
+                    class="oui-badge"
+                    data-ng-class="{
+                        'oui-badge_info': $ctrl.olaMode === $ctrl.ola.constants.OLA_MODES.AVAILABLE,
+                        'oui-badge_success': [
+                            $ctrl.ola.constants.OLA_MODES.FULL_LAG,
+                            $ctrl.ola.constants.OLA_MODES.DOUBLE_LAG
+                        ].includes($ctrl.olaMode) ,
+                        'oui-badge_sold-out': $ctrl.olaMode === $ctrl.ola.constants.OLA_MODES.UNAVAILABLE
+                    }"
+                    data-translate="server_network_ola_mode_{{:: $ctrl.olaMode }}"
+                    data-oui-tooltip="{{:: 'server_network_ola_mode_' + $ctrl.olaMode + '_description' | translate}}"
                 ></span>
             </oui-tile-description>
             <oui-action-menu
+                data-ng-if="$ctrl.ola.isAvailable()"
                 aria-label="{{:: 'menu_action_label' | translate:{ t0: ('server_network_ola' | translate) } }}"
                 data-compact
                 data-placement="end"
             >
-                <oui-action-menu-item
-                    data-ng-if="!$ctrl.ola.isActivated()"
-                    data-ui-sref="{{ $ctrl.statePrefix }}.interfaces"
-                >
-                    <span data-translate="server_network_ola_activate"></span>
-                </oui-action-menu-item>
                 <oui-action-menu-item
                     data-ng-if="$ctrl.ola.isConfigured()"
                     data-ui-sref="{{ $ctrl.statePrefix }}.interfaces.ola-reset"

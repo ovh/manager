@@ -4,18 +4,17 @@
   "dedicated_server_interface_ola_new_tab": "(S'ouvre dans un nouvel onglet)",
 
   "dedicated_server_interfaces_ola_alert_configuration_reset": "Les interfaces seront dé-configurées. La connectivité à votre serveur sera perdue le temps de la configuration",
-  "dedicated_server_interfaces_ola_alert_not_allowed": "Les interfaces suivantes ne sont pas sélectionnables pour votre configuration. Pour pouvoir les configurer, retirez d'abord les vRacks et les IPFOs de celles-ci.",
   "dedicated_server_interfaces_ola_alert_obsolete_option": "Dans le cadre d'une configuration Agrégation privée, votre option de bande passante sortante publique ne sera pas utilisée.",
 
   "dedicated_server_interfaces_ola_column_mode": "Mode",
-  "dedicated_server_interfaces_ola_column_name": "Interface",
+  "dedicated_server_interfaces_ola_column_mac_address": "Adresse MAC",
   "dedicated_server_interfaces_ola_column_current_type": "Type",
   "dedicated_server_interfaces_ola_column_network_offer": "Offre réseau",
   "dedicated_server_interfaces_ola_column_bandwidth_outgoing": "Bande passante sortante",
   "dedicated_server_interfaces_ola_column_bandwidth_incoming": "Bande passante entrante",
 
   "dedicated_server_interfaces_ola_network_interfaces": "Votre interface réseau actuelle",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "Votre interface réseau après activation",
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Simulation d'interface réseau après l'activation de l'aggregation des liens",
 
   "dedicated_server_interfaces_ola_field_mode_label": "Choisissez un mode",
   "dedicated_server_interfaces_ola_field_mode_description": "OLA est capable de proposer differents types de configuration des interfaces",
@@ -25,6 +24,7 @@
   "dedicated_server_interfaces_ola_field_mode_choice_vrack_aggregation_description": "Les 2 interfaces réseau du serveur sont utilisées pour le réseau privé (vRack). Chaque lien dispose alors de la bande passante de base ou prise en option. A savoir : le serveur n'est dès lors plus accessible par son IP publique.",
   "dedicated_server_interfaces_ola_field_name_label": "Nommez l'interface",
   "dedicated_server_interfaces_ola_field_name_placeholder": "Nom de l'interface",
+  "dedicated_server_interfaces_ola_activate": "Activer l'aggregation",
 
   "dedicated_server_interfaces_ola_step1_title": "Configurez votre OLA",
   "dedicated_server_interfaces_ola_step2_title": "Sélectionnez vos interfaces",
