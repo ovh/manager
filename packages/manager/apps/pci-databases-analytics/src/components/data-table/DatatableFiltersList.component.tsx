@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
 import './translations';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocale } from '@/hooks/useLocale.hook';
 import { useDataTableContext } from './DataTable.context';
 
 export declare enum FilterComparator {

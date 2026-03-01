@@ -10,7 +10,7 @@ import '@datatr-ux/uxlib/style.css';
 import '@ovhcloud/ods-themes/default';
 
 import initI18n from './i18n';
-import App from './App';
+import AppShell from './App';
 
 import '@/vite-hmr';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
@@ -47,7 +47,7 @@ const init = async (
     <React.StrictMode>
       <ShellProvider client={context}>
         <LoadingIndicatorProvider>
-          <App />
+          <AppShell />
         </LoadingIndicatorProvider>
       </ShellProvider>
     </React.StrictMode>,

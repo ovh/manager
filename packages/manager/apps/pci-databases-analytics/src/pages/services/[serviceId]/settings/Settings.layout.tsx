@@ -2,16 +2,16 @@ import { Outlet } from 'react-router-dom';
 import { useServiceData } from '../Service.context';
 import BreadcrumbItem from '@/components/breadcrumb/BreadcrumbItem.component';
 
-export function breadcrumb() {
-  return (
-    <BreadcrumbItem
-      translationKey="breadcrumb"
-      namespace="pci-databases-analytics/services/service/settings"
-    />
-  );
-}
+export const breadcrumb = () => (
+  <BreadcrumbItem
+    translationKey="breadcrumb"
+    namespace="pci-databases-analytics/services/service/settings"
+  />
+);
 
-export default function BackupLayout() {
+const Settings = () => {
   const parentOutletData = useServiceData();
   return <Outlet context={parentOutletData} />;
-}
+};
+
+export default Settings;

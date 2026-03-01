@@ -14,8 +14,8 @@ import {
   useToast,
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
-import { useRenameServiceForm } from './useRenameServiceForm';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useRenameServiceForm } from './useRenameServiceForm.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 
 const ServiceNameWithUpdate = ({ service }: { service: database.Service }) => {

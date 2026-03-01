@@ -2,7 +2,7 @@ import { Switch, useToast } from '@datatr-ux/uxlib';
 import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useServiceData } from '../../Service.context';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import * as database from '@/types/cloud/project/database';
 import A from '@/components/links/A.component';
 

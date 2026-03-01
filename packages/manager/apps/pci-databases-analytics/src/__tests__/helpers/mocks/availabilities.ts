@@ -1,4 +1,4 @@
-import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { FullCapabilities } from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
 import * as database from '@/types/cloud/project/database';
 
 export const mockedAvailabilities: database.Availability = {

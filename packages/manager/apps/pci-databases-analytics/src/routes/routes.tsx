@@ -1,4 +1,4 @@
-import NotFound from '../pages/404.page';
+import NotFound from '../pages/NotFound.page';
 import ErrorBoundary from '../components/error-boundary/ErrorBoundary.component';
 
 const lazyLoadRoute = (importFn: CallableFunction) => {
@@ -24,25 +24,25 @@ export const COMMON_PATH = '/pci/projects';
 export default [
   {
     path: '/pci/projects/:projectId/databases-analytics/:category/services',
-    ...lazyLoadRoute(() => import('@/pages/Root.layout')),
+    ...lazyLoadRoute(() => import('@/pages/services/Services.layout')),
     children: [
       {
         path: '',
         id: 'services',
-        ...lazyLoadRoute(() => import('@/pages/Root.page')),
+        ...lazyLoadRoute(() => import('@/pages/services/ListServices.page')),
         children: [
           {
             path: 'delete/:serviceId',
             id: 'services.delete.{service.engine}',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/delete/Delete.modal'),
+              import('@/pages/services/delete/DeleteService.modal'),
             ),
           },
           {
             path: 'rename/:serviceId',
             id: 'services.rename.{service.engine}',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/rename/Rename.modal'),
+              import('@/pages/services/rename/RenameService.modal'),
             ),
           },
         ],
@@ -57,7 +57,7 @@ export default [
       {
         path: 'new',
         id: 'create',
-        ...lazyLoadRoute(() => import('@/pages/services/create/Create.page')),
+        ...lazyLoadRoute(() => import('@/pages/services/create/CreateService.page')),
       },
       {
         path: ':serviceId',
@@ -76,7 +76,7 @@ export default [
             path: 'users',
             id: 'service.{service.engine}.users',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/users/Users.page'),
+              import('@/pages/services/[serviceId]/users/ListUsers.page'),
             ),
             children: [
               {
@@ -111,7 +111,7 @@ export default [
                 path: 'reset-password/:userId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/users/resetPassword/ResetPassword.modal'
+                    '@/pages/services/[serviceId]/users/reset-password/ResetUserPassword.modal'
                   ),
                 ),
               },
@@ -120,7 +120,7 @@ export default [
                 path: 'view-certificates/:userId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/users/viewCertificates/ViewCertificates.modal'
+                    '@/pages/services/[serviceId]/users/view-certificates/ViewUserCertificates.modal'
                   ),
                 ),
               },
@@ -129,7 +129,7 @@ export default [
                 path: 'show-access-key/:userId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/users/showAccessKey/ShowAccessKey.modal'
+                    '@/pages/services/[serviceId]/users/show-access-key/ShowUserAccessKey.modal'
                   ),
                 ),
               },
@@ -145,7 +145,7 @@ export default [
                 path: '',
                 id: 'service.{service.engine}.backups',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/services/[serviceId]/backups/Backups.page'),
+                  import('@/pages/services/[serviceId]/backups/ListBackups.page'),
                 ),
                 children: [
                   {
@@ -153,7 +153,7 @@ export default [
                     id: 'service.{service.engine}.backups.restore',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/backups/restore/Restore.modal'
+                        '@/pages/services/[serviceId]/backups/restore/RestoreBackup.modal'
                       ),
                     ),
                   },
@@ -163,7 +163,7 @@ export default [
                 path: 'fork',
                 id: 'service.{service.engine}.fork',
                 ...lazyLoadRoute(() =>
-                  import('@/pages/services/[serviceId]/backups/fork/Fork.page'),
+                  import('@/pages/services/[serviceId]/backups/fork/ForkBackup.page'),
                 ),
               },
             ],
@@ -172,7 +172,7 @@ export default [
             path: 'databases',
             id: 'service.{service.engine}.databases',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/databases/Database.page'),
+              import('@/pages/services/[serviceId]/databases/ListDatabases.page'),
             ),
             children: [
               {
@@ -199,7 +199,7 @@ export default [
             path: 'pools',
             id: 'service.{service.engine}.pools',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/pools/Pools.page'),
+              import('@/pages/services/[serviceId]/pools/ListPools.page'),
             ),
             children: [
               {
@@ -234,7 +234,7 @@ export default [
                 path: 'informations/:poolId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/pools/informations/InfoConnectionPool.modal'
+                    '@/pages/services/[serviceId]/pools/informations/ViewPoolConnectionInfo.modal'
                   ),
                 ),
               },
@@ -244,7 +244,7 @@ export default [
             path: 'queries',
             id: 'service.{service.engine}.queries',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/queries/Queries.page'),
+              import('@/pages/services/[serviceId]/queries/ListQueries.page'),
             ),
           },
           {
@@ -252,7 +252,7 @@ export default [
             id: 'service.{service.engine}.indexPatterns',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/services/[serviceId]/indexPatterns/IndexPatterns.page'
+                '@/pages/services/[serviceId]/indexPatterns/ListIndexPatterns.page'
               ),
             ),
             children: [
@@ -261,7 +261,7 @@ export default [
                 path: 'add-pattern',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/indexPatterns/addPattern/AddPattern.modal'
+                    '@/pages/services/[serviceId]/indexPatterns/add-pattern/AddIndexPattern.modal'
                   ),
                 ),
               },
@@ -270,7 +270,7 @@ export default [
                 path: 'delete-pattern/:patternId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/indexPatterns/deletePattern/DeletePattern.modal'
+                    '@/pages/services/[serviceId]/indexPatterns/delete-pattern/DeleteIndexPattern.modal'
                   ),
                 ),
               },
@@ -279,7 +279,7 @@ export default [
                 path: 'delete-index/:indexId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/indexPatterns/deleteIndex/DeleteIndex.modal'
+                    '@/pages/services/[serviceId]/indexPatterns/delete-index/DeleteIndex.modal'
                   ),
                 ),
               },
@@ -298,7 +298,7 @@ export default [
                 path: '',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/connectors/Connectors.page'
+                    '@/pages/services/[serviceId]/connectors/ListConnectors.page'
                   ),
                 ),
                 children: [
@@ -318,7 +318,7 @@ export default [
                 path: 'tasks/:connectorId',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/connectors/tasks/Tasks.page'
+                    '@/pages/services/[serviceId]/connectors/tasks/ConnectorTasks.page'
                   ),
                 ),
               },
@@ -346,7 +346,7 @@ export default [
             path: 'topics',
             id: 'service.{service.engine}.topics',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/topics/Topics.page'),
+              import('@/pages/services/[serviceId]/topics/ListTopics.page'),
             ),
             children: [
               {
@@ -382,7 +382,7 @@ export default [
             path: 'topicAcls',
             id: 'service.{service.engine}.topicAcls',
             ...lazyLoadRoute(() =>
-              import('@/pages/services/[serviceId]/topicAcls/TopicAcls.page'),
+              import('@/pages/services/[serviceId]/topicAcls/ListTopicAcls.page'),
             ),
             children: [
               {
@@ -410,7 +410,7 @@ export default [
             id: 'service.{service.engine}.integrations',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/services/[serviceId]/integrations/Integrations.page'
+                '@/pages/services/[serviceId]/integrations/ListIntegrations.page'
               ),
             ),
             children: [
@@ -439,7 +439,7 @@ export default [
             id: 'service.{service.engine}.replications',
             ...lazyLoadRoute(() =>
               import(
-                '@/pages/services/[serviceId]/replications/Replications.page'
+                '@/pages/services/[serviceId]/replications/ListReplications.page'
               ),
             ),
             children: [
@@ -485,7 +485,7 @@ export default [
                 path: 'reset-prometheus-password',
                 ...lazyLoadRoute(() =>
                   import(
-                    '@/pages/services/[serviceId]/metrics/resetPrometheusPassword/ResetPrometheusPassword.modal'
+                    '@/pages/services/[serviceId]/metrics/reset-prometheus-password/ResetPrometheusPassword.modal'
                   ),
                 ),
               },
@@ -549,7 +549,7 @@ export default [
                     id: 'service.{service.engine}.settings.deletion-protection',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/_components/deletionProtection/DeletionProtection.modal'
+                        '@/pages/services/[serviceId]/settings/deletion-protection/UpdateDeletionProtection.modal'
                       ),
                     ),
                   },
@@ -558,7 +558,7 @@ export default [
                     id: 'service.{service.engine}.settings.update-version',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/update/updateVersion/UpdateVersion.modal'
+                        '@/pages/services/[serviceId]/settings/update/update-version/UpdateVersion.modal'
                       ),
                     ),
                   },
@@ -567,7 +567,7 @@ export default [
                     id: 'service.{service.engine}.settings.update-plan',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/update/updatePlan/UpdatePlan.modal'
+                        '@/pages/services/[serviceId]/settings/update/update-plan/UpdatePlan.modal'
                       ),
                     ),
                   },
@@ -576,7 +576,7 @@ export default [
                     id: 'service.{service.engine}.settings.update-flavor',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/update/updateFlavor/UpdateFlavor.modal'
+                        '@/pages/services/[serviceId]/settings/update/update-flavor/UpdateFlavor.modal'
                       ),
                     ),
                   },
@@ -585,7 +585,7 @@ export default [
                     id: 'service.{service.engine}.settings.add-node',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/update/addNode/AddNode.modal'
+                        '@/pages/services/[serviceId]/settings/update/add-node/AddNode.modal'
                       ),
                     ),
                   },
@@ -594,7 +594,7 @@ export default [
                     id: 'service.{service.engine}.settings.delete-node',
                     ...lazyLoadRoute(() =>
                       import(
-                        '@/pages/services/[serviceId]/settings/update/deleteNode/DeleteNode.modal'
+                        '@/pages/services/[serviceId]/settings/update/delete-node/DeleteNode.modal'
                       ),
                     ),
                   },

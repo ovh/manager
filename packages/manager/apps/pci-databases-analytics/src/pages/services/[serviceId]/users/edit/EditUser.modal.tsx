@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useServiceData } from '../../Service.context';
-import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
+import { useGetUsers } from '@/data/hooks/database/user/useGetUsers.hook';
 import AddEditUserModal from '../_components/AddEditUser.component';
 
-const AddUserModal = () => {
+const EditUser = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const { projectId, service } = useServiceData();
@@ -27,4 +27,4 @@ const AddUserModal = () => {
   );
 };
 
-export default AddUserModal;
+export default EditUser;

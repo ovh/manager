@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import { useNavigation } from '@ovh-ux/manager-react-shell-client';
 import { Skeleton } from '@datatr-ux/uxlib';
-import usePciProject from '@/hooks/api/project/usePciProject.hook';
+import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import Link from '@/components/links/Link.component';
 import A from '@/components/links/A.component';
 

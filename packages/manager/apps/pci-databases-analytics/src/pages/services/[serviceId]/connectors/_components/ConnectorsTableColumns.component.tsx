@@ -17,7 +17,7 @@ import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import DataTable from '@/components/data-table';
-import { ConnectorWithCapability } from '../Connectors.page';
+import { ConnectorWithCapability } from '../ListConnectors.page';
 import A from '@/components/links/A.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 

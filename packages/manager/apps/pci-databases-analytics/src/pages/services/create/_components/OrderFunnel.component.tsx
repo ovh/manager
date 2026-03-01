@@ -25,22 +25,22 @@ import NodesConfig from '@/components/order/cluster-configuration/NodesConfig.co
 import {
   ServiceCreationWithEngine,
   useAddService,
-} from '@/hooks/api/database/service/useAddService.hook';
+} from '@/data/hooks/database/service/useAddService.hook';
 import EnginesSelect from '@/components/order/engine/EngineSelect.component';
 import PlansSelect from '@/components/order/plan/PlanSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
-import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.components';
+import NetworkOptions from '@/components/order/cluster-options/NetworkOptions.component';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import OrderPrice from '@/components/order/price/OrderPrice.component';
 import OrderSummary from './OrderSummary.component';
 import ErrorList from '@/components/order/error-list/ErrorList.component';
-import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
-import usePciProject from '@/hooks/api/project/usePciProject.hook';
+import { FullCapabilities } from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
+import usePciProject from '@/data/hooks/project/usePciProject.hook';
 import { PlanCode } from '@/types/cloud/Project';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import ApiTerraformDialog from './ApiTerraformDialog.component';
-import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner';
+import DiscoveryBanner from '@/components/discovery-banner/DiscoveryBanner.component';
 import OrderSection from '@/components/order/Section.component';
 import VersionSelect from '@/components/order/version/VersionSelect.component';
 import NameInput from '@/components/order/name/NameInput.component';

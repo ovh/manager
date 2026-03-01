@@ -1,7 +1,7 @@
 import { UseQueryResult } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import * as database from '@/types/cloud/project/database';
-import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
+import { useGetService } from '@/data/hooks/database/service/useGetService.hook';
 
 // Share data with the child routes
 export type ServiceLayoutContext<

@@ -13,9 +13,9 @@ import {
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
-import { useGetConnectors } from '@/hooks/api/database/connector/useGetConnectors.hook';
-import { useDeleteConnector } from '@/hooks/api/database/connector/useDeleteConnector.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
+import { useGetConnectors } from '@/data/hooks/database/connector/useGetConnectors.hook';
+import { useDeleteConnector } from '@/data/hooks/database/connector/useDeleteConnector.hook';
 
 const DeleteConnector = () => {
   const { projectId, connectorId } = useParams();

@@ -28,8 +28,8 @@ import {
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
-import { useAddTopicAcl } from '@/hooks/api/database/topicAcl/useAddTopicAcl.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
+import { useAddTopicAcl } from '@/data/hooks/database/topicAcl/useAddTopicAcl.hook';
 
 const PERMISSIONS = ['admin', 'read', 'write', 'readwrite'] as const;
 

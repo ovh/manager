@@ -17,7 +17,7 @@ import {
 import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
-import { ReplicationWithServiceData } from '../Replications.page';
+import { ReplicationWithServiceData } from '../ListReplications.page';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
 interface ReplicationsTableColumnsProps {

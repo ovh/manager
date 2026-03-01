@@ -12,18 +12,18 @@ import {
   useToast,
 } from '@datatr-ux/uxlib';
 import IpsRestrictionsForm from '@/components/order/cluster-options/IpsRestrictionsForm.component';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
-interface IpsRestrictionsUpdateProps {
+interface IpRestrictionsUpdateProps {
   initialValue: database.service.IpRestriction[];
 }
-const IpsRestrictionsUpdate = ({
+const IpRestrictionsUpdate = ({
   initialValue,
-}: IpsRestrictionsUpdateProps) => {
+}: IpRestrictionsUpdateProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings',
   );
@@ -124,4 +124,4 @@ const IpsRestrictionsUpdate = ({
   );
 };
 
-export default IpsRestrictionsUpdate;
+export default IpRestrictionsUpdate;

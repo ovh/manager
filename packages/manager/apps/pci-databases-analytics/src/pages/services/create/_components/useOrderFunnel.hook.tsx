@@ -9,8 +9,8 @@ import { Engine, Flavor, Plan, Region, Version } from '@/types/orderFunnel';
 import { order } from '@/types/catalog';
 import { createTree } from '@/lib/availabilitiesHelper';
 import { generateName } from '@/lib/nameGenerator';
-import { useVrack } from '@/hooks/useVrack';
-import { FullCapabilities } from '@/hooks/api/database/capabilities/useGetFullCapabilities.hook';
+import { useVrack } from '@/hooks/useVrack.hook';
+import { FullCapabilities } from '@/data/hooks/database/capabilities/useGetFullCapabilities.hook';
 import { ServicePricing, computeServicePrice } from '@/lib/pricingHelper';
 
 const getSuggestedItemOrDefault = (

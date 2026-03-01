@@ -12,7 +12,7 @@ import { GenericUser } from '@/data/api/database/user.api';
 import { useServiceData } from '../../Service.context';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
-interface UserActionsProps {
+interface UsersTableActionsProps {
   user: GenericUser;
   onDeleteClicked: (user: GenericUser) => void;
   onResetPasswordClicked: (user: GenericUser) => void;
@@ -21,14 +21,14 @@ interface UserActionsProps {
   onShowAccessTokenClicked: (user: GenericUser) => void;
 }
 
-const UserActions = ({
+const UsersTableActions = ({
   user,
   onDeleteClicked,
   onResetPasswordClicked,
   onEditClicked,
   onShowAccessTokenClicked,
   onViewCertificatesClicked,
-}: UserActionsProps) => {
+}: UsersTableActionsProps) => {
   const { service } = useServiceData();
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
@@ -105,4 +105,4 @@ const UserActions = ({
   );
 };
 
-export default UserActions;
+export default UsersTableActions;

@@ -35,17 +35,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
 import { HelpCircle } from 'lucide-react';
 import * as database from '@/types/cloud/project/database';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 import TagsInput from '@/components/tags-input/TagsInput.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import {
   useAddReplication,
   UseAddReplication,
-} from '@/hooks/api/database/replication/useAddReplication.hook';
+} from '@/data/hooks/database/replication/useAddReplication.hook';
 import { TOAST } from '@/configuration/toast.constants';
-import { useEditReplication } from '@/hooks/api/database/replication/useEditReplication.hook';
-import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
-import { useGetServices } from '@/hooks/api/database/service/useGetServices.hook';
+import { useEditReplication } from '@/data/hooks/database/replication/useEditReplication.hook';
+import { useGetIntegrations } from '@/data/hooks/database/integration/useGetIntegrations.hook';
+import { useGetServices } from '@/data/hooks/database/service/useGetServices.hook';
 
 interface AddEditReplicationModalProps {
   editedReplication?: database.service.Replication;
