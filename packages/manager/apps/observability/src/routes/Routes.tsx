@@ -23,6 +23,31 @@ const ServicesBaseLayout = React.lazy(
 const OnboardingServiceLayout = React.lazy(
   () => import('@/pages/settings/services/onboarding/OnboardingService.layout'),
 );
+const ManagedDashboardsLayout = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/ManagedDashboards.layout'),
+);
+const OnboardingManagedDashboardsLayout = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/onboarding/OnboardingManagedDashboards.layout'),
+);
+const OnboardingManagedDashboardsPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/onboarding/OnboardingManagedDashboards.page'),
+);
+const ManagedDashboardsListingPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/listing/ManagedDashboardsListing.page'),
+);
+const ManagedDashboardLayoutPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboard.layout'),
+);
+const ManagedDashboardCreationPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/ManagedDashboardCreation.page'),
+);
+const EditManagedDashboardPage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/edit/ManagedDashboardEdit.page'),
+);
+const ManagedDashboardDeletePage = React.lazy(
+  () => import('@/pages/settings/managed-dashboards/[resource]/delete/ManagedDashboardDelete.page'),
+);
+
 const OnboardingTenantPage = React.lazy(() => import('@/pages/tenants/TenantsOnboarding.page'));
 const TenantsCreationPage = React.lazy(() => import('@/pages/tenants/TenantCreation.page'));
 const EditTenantPage = React.lazy(() => import('@/pages/tenants/edit/EditTenant.page'));
@@ -107,6 +132,60 @@ export default (
                   tracking: {
                     pageName: 'service-edit',
                     pageType: PageType.popup,
+                  },
+                }}
+              />
+            </Route>
+          </Route>
+          {/* ManagedDashboard routes with default layout*/}
+          <Route path={subroutes.managedDashboards} Component={OnboardingManagedDashboardsLayout}>
+            <Route
+              path={subroutes.onboarding}
+              Component={OnboardingManagedDashboardsPage}
+              handle={{
+                tracking: {
+                  pageName: 'managed-dashboards-onboarding',
+                },
+              }}
+            />
+          </Route>
+          {/* ManagedDashboard routes with ManagedDashboard layout*/}
+          <Route path={subroutes.managedDashboards} Component={ManagedDashboardsLayout}>
+            <Route path="" Component={ManagedDashboardsListingPage}>
+              <Route
+                path={subroutes.deleteManagedDashboard}
+                Component={ManagedDashboardDeletePage}
+                handle={{
+                  tracking: {
+                    pageName: 'managed-dashboard-delete',
+                    pageType: PageType.popup,
+                  },
+                }}
+              />
+            </Route>
+          </Route>
+          {/* ManagedDashboard routes with ManagedDashboard layout*/}
+          <Route path={subroutes.managedDashboards} Component={ManagedDashboardLayoutPage}>
+            <Route path={subroutes.resource}>
+              {/* no dedicated page (only a dropdown) → redirect to managed dashboards */}
+              <Route index element={<Navigate to={urls.managedDashboards} replace />} />
+              <Route
+                path={subroutes.creation}
+                Component={ManagedDashboardCreationPage}
+                handle={{
+                  titleKey: 'creation.title',
+                  tracking: {
+                    pageName: 'managed-dashboard-create',
+                  },
+                }}
+              />
+              <Route
+                path={`${subroutes.managedDashboard}/${subroutes.edit}`}
+                Component={EditManagedDashboardPage}
+                handle={{
+                  titleKey: 'edition.title',
+                  tracking: {
+                    pageName: 'managed-dashboard-edit',
                   },
                 }}
               />
