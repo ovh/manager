@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/blocks';
+import { StorybookHeading } from '../../../../components/';
+
+<Meta title="Manager UI Kit/Hooks/useEventSource" />
+<StorybookHeading label="Overview" level={2} />
+
+`useEventSource` helps you subscribe to backend server-sent events and returns the created subscription id, activation status, and the `EventSource` instance.
+
+<StorybookHeading label="Usage" level={2} />
+
+```tsx
+import { useEffect } from 'react';
+import { useEventSource } from '@ovh-ux/manager-ui-kit';
+
+export function EventsPanel() {
+  const { subscriptionId, suscribeStatus, eventSource } = useEventSource({
+    api: 'v6',
+    endpoint: '/support',
+  });
+
+  useEffect(() => {
+    if (!eventSource) return;
+
+    const handleMessage = (event: MessageEvent) => {
+      console.log('event payload:', event.data);
+    };
+
+    eventSource.addEventListener('message', handleMessage);
+
+    return () => {
+      eventSource.removeEventListener('message', handleMessage);
+      eventSource.close();
+    };
+  }, [eventSource]);
+
+  return (
+    <div>
+      <div>Subscription: {subscriptionId ?? 'pending'}</div>
+      <div>Status: {suscribeStatus ?? 'pending'}</div>
+    </div>
+  );
+}
+```
+
+## API
+
+<StorybookHeading label="Parameters" level={2} />
+
+`useEventSource({ api, endpoint })`
+
+- `api` (optional): API client namespace used to activate the subscription. Allowed values: `v6`, `v2`, `aapi`, `ws`. Default is `v6`.
+- `endpoint` (required): Endpoint used to activate the subscription. The hook will POST `{ subscriptionId }` to this endpoint.
+
+<StorybookHeading label="Returns" level={2} />
+
+- `subscriptionId`: Subscription id created by the events service.
+- `suscribeStatus`: HTTP status of the activation request (200 when active).
+- `eventSource`: `EventSource` instance connected to `/engine/events/subscription/{subscriptionId}` once active.
+
+<StorybookHeading label="Notes" level={2} />
+
+- The hook automatically opens a subscription, activates it, then starts listening to events.
+- In `import.meta.env.DEV`, activation is mocked with a `200` status.
