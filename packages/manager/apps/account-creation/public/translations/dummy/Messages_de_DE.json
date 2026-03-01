@@ -1,0 +1,11 @@
+{
+  "activation_code_page_title": "Titel: Bestätigen Sie Ihre E-Mail-Adresse",
+  "activation_code_page_text": "Text: Unten haben wir einen Code an Ihre E-Mail-Adresse gesendet. Ändern Sie Ihre E-Mail-Adresse.",
+  "activation_code_page_enter_code": "Geben Sie den Code ein",
+  "activation_code_page_question": "Haben Sie den Code nicht erhalten?",
+  "activation_code_page_help_info": "Überprüfen Sie Ihren Spam-Ordner oder klicken Sie hier, um den Aktivierungscode zu erhalten. ",
+  "forgot_password_page_title": "Titel: Passwort vergessen ",
+  "forgot_password_page_text": "Text: Geben Sie die E-Mail-Adresse oder die ID ein, die mit Ihrem Konto verknüpft ist, und wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts. ",
+  "password_reset_page_title": "Titel: Zurücksetzen des Passworts",
+  "password_reset_page_text": "Text unten: Passwort erfolgreich geändert"
+}
