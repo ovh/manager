@@ -196,6 +196,40 @@
                     </oui-field>
                 </div>
                 <div class="mb-3">
+                    <div class="d-flex align-items-center">
+                        <h5
+                            data-translate="nutanix_redeploy_dataservice_ip"
+                        ></h5>
+                        <span
+                            class="oui-icon oui-icon-info ml-1 mb-3"
+                            data-ng-if="!$ctrl.cluster.canModifyDataServiceIp()"
+                            data-oui-popover="{{:: ('nutanix_redeploy_version_to_old' | translate) + ' ' + $ctrl.MIN_VERSION_DATASERVICEIP.join(', ') }}"
+                            data-oui-popover-placement="right"
+                        ></span>
+                    </div>
+                    <oui-field
+                        data-label-popover="{{:: 'nutanix_redeploy_prism_central_virtual_ip_description' | translate}}"
+                        data-error-messages="{
+                            ipSubnetValidator: ('nutanix_redeploy_custom_config_ip_not_in_cidr_subnet_error' | translate),
+                            uniqueIpValidator: ('nutanix_redeploy_custom_config_ip_unique_error' | translate),
+                            ipValidator: ('nutanix_redeploy_custom_config_ip_format_error' | translate)
+                        }"
+                    >
+                        <input
+                            data-ng-disabled="!$ctrl.cluster.canModifyDataServiceIp()"
+                            type="text"
+                            class="oui-input w-50"
+                            name="dataserviceIp"
+                            data-ng-model="$ctrl.config.dataserviceIp"
+                            data-ng-model-options="{ debounce: 500 }"
+                            data-ng-pattern="$ctrl.IPV4_REGEX"
+                            data-nutanix-ip-validator
+                            data-nutanix-unique-ip-validator="$ctrl.getIpsList()"
+                            data-nutanix-ip-subnet-validator="$ctrl.config.gatewayCidr"
+                        />
+                    </oui-field>
+                </div>
+                <div class="mb-3">
                     <h5
                         data-translate="nutanix_redeploy_custom_configuration_nodes"
                     ></h5>
@@ -413,7 +447,7 @@
                             type="number"
                             data-ng-model="$ctrl.config.infraVlanNumber"
                             data-ng-model-options="{ debounce: 500 }"
-                            data-ng-min="1"
+                            data-ng-min="0"
                             data-ng-max="4000"
                         />
                         <p
