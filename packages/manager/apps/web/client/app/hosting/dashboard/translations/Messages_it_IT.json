@@ -1416,5 +1416,5 @@
   "database_tabs_dumps_guide_save": "Salvare ed esportare un database",
   "database_tabs_dumps_guide_restore": "Ripristinare e importare un database",
   "hosting_tab_STATISTICS_databases_none": "Nessun errore rilevato nei tuoi database. Tutto funziona normalmente.",
-  "hosting_tab_USER_STATISTICS": "statistiche e log"
+  "hosting_tab_USER_STATISTICS": "Statistiche e log"
 }

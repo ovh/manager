@@ -293,7 +293,7 @@
   "domain_tab_hosts_drawer_add_title": "Adição de um novo host",
   "domain_tab_hosts_drawer_modify_title": "Alterar o host",
   "domain_tab_hosts_drawer_add_form_information": "Preencha os seguintes campos:",
-  "domain_tab_hosts_drawer_add_form_hostName_label": "Nome do anfitrião - <Required />",
+  "domain_tab_hosts_drawer_add_form_hostName_label": "Nome do host - <Required />",
   "domain_tab_hosts_drawer_add_form_ip_label": "IP(s) de destino - <Required />",
   "domain_tab_hosts_drawer_add_form_warning_message": "Atenção, após validação e para que o seu registo GLUE funcione, deverá modificar a sua zona DNS adicionando:",
   "domain_tab_hosts_drawer_add_form_warning_list_ipv4": "um campo de tipo A para um endereço IPv4;",

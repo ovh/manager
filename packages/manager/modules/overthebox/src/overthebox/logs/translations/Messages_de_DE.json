@@ -1,3 +1,4 @@
 {
-  "overTheBox_logs_description": "Unten finden Sie die Echtzeitprotokolle, die von Ihrem Dienst generiert wurden."
+  "overTheBox_logs_description": "Im Folgenden finden Sie die von Ihrem Dienst generierten Echtzeit-Logs.",
+  "overTheBox_logs": "Logs"
 }
