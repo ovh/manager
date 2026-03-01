@@ -17,6 +17,7 @@ export const useDataApi = <TData = Record<string, unknown>>({
   columns = [],
   disableCache,
   enabled,
+  urlParams,
 }: UseDataApiOptions<TData>): UseDataApiResult<TData> => {
   const isIceberg = !!iceberg;
   const isV2 = !isIceberg && version === 'v2';
@@ -40,6 +41,8 @@ export const useDataApi = <TData = Record<string, unknown>>({
     enabled: Boolean(enabled && isV2),
     cacheKey,
     fetchAll,
+    urlParams,
+    columns,
   });
 
   const v6Result = useV6<TData>({
