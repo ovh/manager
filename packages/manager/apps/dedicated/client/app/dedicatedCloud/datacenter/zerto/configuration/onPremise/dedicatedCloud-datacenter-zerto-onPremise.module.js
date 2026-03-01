@@ -1,14 +1,10 @@
 import angular from 'angular';
 
-import DatacenterZertoOnPremiseComponent from '../../../../../components/dedicated-cloud/datacenter/zerto/configuration/onPremise';
-import onPremisePcc from './onPremisePcc';
-import ovhPcc from './ovhPcc';
 import routing from './dedicatedCloud-datacenter-zerto-onPremise.routing';
+import DatacenterZertoMainPccComponent from '../../../../../components/dedicated-cloud/datacenter/zerto/configuration/common/mainPcc';
 
 const moduleName = 'dedicatedCloudDatacenterZertoOnPremiseModule';
 
-angular
-  .module(moduleName, [DatacenterZertoOnPremiseComponent, onPremisePcc, ovhPcc])
-  .config(routing);
+angular.module(moduleName, [DatacenterZertoMainPccComponent]).config(routing);
 
 export default moduleName;
