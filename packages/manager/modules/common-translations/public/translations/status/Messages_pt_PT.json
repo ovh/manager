@@ -23,5 +23,8 @@
   "unPaid": "Fatura por pagar",
   "error": "Erro",
   "ready": "Ativo",
-  "awaiting_signature": "A aguardar assinatura"
+  "awaiting_signature": "Aguardando assinatura",
+  "not_installed": "Não instalado",
+  "not_configured": "Não configurado",
+  "enabled": "Ativado"
 }

@@ -23,5 +23,8 @@
   "unPaid": "Unbezahlte Rechnung",
   "error": "Fehler",
   "ready": "Aktiv",
-  "awaiting_signature": "Warten auf Unterzeichnung"
+  "awaiting_signature": "Warten auf Unterschrift",
+  "not_installed": "Nicht installiert",
+  "not_configured": "Nicht konfiguriert",
+  "enabled": "Aktiviert"
 }
