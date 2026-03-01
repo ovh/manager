@@ -20,9 +20,9 @@ export const useInstallationCreation = ({
     mutationFn: (form: StructuredInstallationForm) =>
       createInstallation({ serviceName, form }),
     ...options,
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables, onMutateResult, context) => {
       invalidateInstallationHistory();
-      options.onSuccess?.(data, variables, context);
+      options.onSuccess?.(data, variables, onMutateResult, context);
     },
   });
 };
