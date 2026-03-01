@@ -15,6 +15,8 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useListUpdatedOperationsStatus } from '@/hooks/updatedOperationStatus/useUpdatedOperationStatus';
+import { useListUpdatedOperationBanner } from '@/hooks/updatedOperationBanner/useListUpdatedOperationBanner';
 import {
   isStatusTerminated,
   useVcdOrganization,
@@ -95,6 +97,52 @@ export const VrackSegmentDatagrid = ({
 
   const hasExtraSegments =
     (vrackSegments?.length ?? 0) > VRACK_SEGMENTS_MIN_LENGTH;
+
+  const {
+    updatingResources,
+    completedResources,
+    erroredResources,
+  } = useListUpdatedOperationsStatus(vrackSegments, {
+    ignoreFields: ['type'],
+  });
+
+  useListUpdatedOperationBanner({
+    updatingResources,
+    completedResources,
+    erroredResources,
+    getUpdatingMessage: (updating) => {
+      const vrackSegment = vrackSegments?.find(
+        (item) => item.id === updating.id,
+      );
+      if (!vrackSegment) return null;
+      return t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_status_operation_in_progress',
+        {
+          vlanId: vrackSegment.targetSpec.vlanId,
+        },
+      );
+    },
+    getCompletedMessage: (completed) => {
+      const segment = vrackSegments?.find((s) => s.id === completed.id);
+      if (!segment) return null;
+      return t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_status_operation_completed',
+        {
+          vlanId: segment.targetSpec.vlanId,
+        },
+      );
+    },
+    getErroredMessage: (errored) => {
+      const segment = vrackSegments?.find((s) => s.id === errored.id);
+      if (!segment) return null;
+      return t(
+        'datacentres/vrack-segment:managed_vcd_dashboard_vrack_status_operation_error',
+        {
+          vlanId: segment.targetSpec.vlanId,
+        },
+      );
+    },
+  });
 
   const columns = [
     {
