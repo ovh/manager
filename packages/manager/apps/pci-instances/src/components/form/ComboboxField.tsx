@@ -13,6 +13,7 @@ type ComboboxFieldProps = {
   errorMessage?: string;
   invalid: boolean;
   clearable?: boolean;
+  createPortal?: boolean;
 } & ComboboxProp;
 
 export const ComboboxField = ({
@@ -20,13 +21,17 @@ export const ComboboxField = ({
   errorMessage,
   invalid,
   clearable = false,
+  createPortal = false,
   ...comboboxProps
 }: ComboboxFieldProps) => (
   <FormField invalid={invalid}>
     <FormFieldLabel>{label}</FormFieldLabel>
     <Combobox {...comboboxProps}>
       <ComboboxControl clearable={clearable} />
-      <ComboboxContent className="max-h-52 overflow-y-scroll" />
+      <ComboboxContent
+        className="max-h-52 overflow-y-scroll"
+        createPortal={createPortal}
+      />
     </Combobox>
     {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
   </FormField>
