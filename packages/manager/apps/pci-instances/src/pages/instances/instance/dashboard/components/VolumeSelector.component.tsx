@@ -19,11 +19,13 @@ import { TUnattachedResource } from '../view-models/selectUnattachedResource';
 type TVolumeSelectorProps = {
   volumes: TUnattachedResource[];
   onValueChange: (id: string) => void;
+  createPortal?: boolean;
 };
 
 const VolumeSelector: FC<TVolumeSelectorProps> = ({
   volumes,
   onValueChange,
+  createPortal = false,
 }) => {
   const { t } = useTranslation('actions');
   const projectUrl = useProjectUrl('public-cloud');
@@ -46,7 +48,7 @@ const VolumeSelector: FC<TVolumeSelectorProps> = ({
                   'pci_instances_actions_instance_volume_attach_select',
                 )}
               />
-              <SelectContent />
+              <SelectContent createPortal={createPortal} />
             </Select>
           </FormField>
           <Text className="mt-4">

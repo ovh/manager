@@ -35,7 +35,7 @@ const continentDividerClassname =
 const LocalizationSelect = <TCustomData extends TCustomRegionItemData>({
   regions,
   className,
-  createPortal = true,
+  createPortal = false,
   ...props
 }: TLocalizationSelectProps<TCustomData>) => {
   const { t } = useTranslation(['regions', 'common']);
