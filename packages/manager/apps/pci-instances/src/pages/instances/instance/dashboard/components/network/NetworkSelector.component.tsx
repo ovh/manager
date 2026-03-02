@@ -16,11 +16,13 @@ import { TUnattachedResource } from '../../view-models/selectUnattachedResource'
 type TNetworkSelectorProps = {
   networks: TUnattachedResource[];
   onValueChange: (id: string) => void;
+  createPortal?: boolean;
 };
 
 const NetworkSelector: FC<TNetworkSelectorProps> = ({
   networks,
   onValueChange,
+  createPortal = false,
 }) => {
   const { t } = useTranslation([NAMESPACES.ACTIONS, 'actions']);
 
@@ -32,7 +34,7 @@ const NetworkSelector: FC<TNetworkSelectorProps> = ({
           onValueChange={({ value }) => onValueChange(value[0] ?? '')}
         >
           <SelectControl placeholder={t('search')} />
-          <SelectContent />
+          <SelectContent createPortal={createPortal} />
         </Select>
       ) : (
         <Message

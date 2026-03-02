@@ -13,6 +13,7 @@ type TImageSelectorProps = {
   setImageId: (imageId: string) => void;
   isImageLoading: boolean;
   imageOptions: { label: string; value: string }[];
+  createPortal?: boolean;
 };
 
 const ImageSelector = ({
@@ -20,6 +21,7 @@ const ImageSelector = ({
   setImageId,
   isImageLoading,
   imageOptions,
+  createPortal = false,
 }: TImageSelectorProps) => {
   const { t } = useTranslation('actions');
 
@@ -45,7 +47,7 @@ const ImageSelector = ({
         </Text>
       </div>
       <SelectControl />
-      <SelectContent />
+      <SelectContent createPortal={createPortal} />
     </Select>
   );
 };
