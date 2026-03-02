@@ -29,6 +29,7 @@ export type TCartItemDetail = {
   price: number | null;
   priceUnit?: string;
   isApproximate?: boolean;
+  displayPrice?: boolean;
 };
 
 type TCartItems = {
@@ -49,12 +50,7 @@ export const useCartItems = (): TCartItems => {
 
   const [flavorId, macroRegion, microRegion, availabilityZone] = useWatch({
     control,
-    name: [
-      'flavorId',
-      'macroRegion',
-      'microRegion',
-      'availabilityZone',
-    ],
+    name: ['flavorId', 'macroRegion', 'microRegion', 'availabilityZone'],
   });
 
   const quantityHintParamsSelect = useMemo(
@@ -113,10 +109,7 @@ export const useCartItems = (): TCartItems => {
           id: 'flavor',
           name: t('creation:pci_instance_creation_select_flavor_cart_section'),
           description: (
-            <FlavorDetails
-              quantity={quantity}
-              flavor={flavorDetails}
-            />
+            <FlavorDetails quantity={quantity} flavor={flavorDetails} />
           ),
           price: flavorDetails.price * quantity,
           priceUnit,
@@ -205,13 +198,19 @@ export const useCartItems = (): TCartItems => {
                   )}
                   {...(privateNetwork.gatewayPrice && {
                     price: `${getTextPrice(privateNetwork.gatewayPrice)}`,
-                    unit: priceUnit,
+                    unit: t(
+                      'creation:pci_instance_creation_table_header_price_hourly_unit',
+                    ),
                   })}
                 />
               )}
             </div>
           ),
-          price: null,
+          price: privateNetwork.gatewayPrice ?? null,
+          priceUnit: t(
+            'creation:pci_instance_creation_table_header_price_hourly_unit',
+          ),
+          displayPrice: false,
         },
       ]
     : [];
@@ -233,7 +232,9 @@ export const useCartItems = (): TCartItems => {
             </div>
           ),
           price: publicNetwork.price ? publicNetwork.price * quantity : null,
-          priceUnit,
+          priceUnit: t(
+            'creation:pci_instance_creation_table_header_price_hourly_unit',
+          ),
         },
       ]
     : [];

@@ -17,6 +17,7 @@ import { Outlet, useHref, useResolvedPath } from 'react-router-dom';
 import { sub } from 'date-fns';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
+import PublicCloudPricingBanner from '@/components/PublicCloudPricingBanner.component';
 import TabsPanel from '@/components/TabsPanel.component';
 import { PCI_FEATURES_FREE_LOCAL_ZONES_BANNER } from '@/constants';
 
@@ -79,6 +80,8 @@ export default function BillingPage() {
           headerButton={<PciGuidesHeader category="instances" />}
         />
       </div>
+
+      <PublicCloudPricingBanner />
 
       {availability && availability[PCI_FEATURES_FREE_LOCAL_ZONES_BANNER] && (
         <PciFreeLocalZonesBanner ovhSubsidiary={ovhSubsidiary} showConfirm />

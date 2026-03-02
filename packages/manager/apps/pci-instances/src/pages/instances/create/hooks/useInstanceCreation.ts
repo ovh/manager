@@ -274,7 +274,9 @@ export const useInstanceCreation = (): TInstanceCreation => {
     const network = privateNetworks?.find(({ value }) => subnetId === value);
 
     const gatewayPrice =
-      !gatewayAvailability?.isDisabled && gatewayConfigurations
+      !gatewayAvailability?.isDisabled &&
+      gatewayConfigurations &&
+      willGatewayBeAttached
         ? gatewayConfigurations.price
         : null;
 
@@ -343,9 +345,11 @@ export const useInstanceCreation = (): TInstanceCreation => {
 
   const handleMissingSshKey = () => {
     setError('sshKeyId', { type: 'manual' });
-    document
-      .getElementById('ssh-key-section')
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => {
+      document
+        .getElementById('ssh-key-section')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   };
 
   const handleCreateInstance = () => {

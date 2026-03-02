@@ -9,5 +9,9 @@
   "cpbc_hourly_header_description": "Consumi on demand del mese corrente",
   "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni.",
   "cpbc_monthly_header_post_paid": "Fatture mensili",
-  "cpbc_hourly_header_post_paid": "Fatture orarie"
+  "cpbc_hourly_header_post_paid": "Fatture orarie",
+  "cpbc_pricing_banner_title": "Prezzi Public Cloud",
+  "cpbc_pricing_banner_body": "I prezzi di alcuni servizi Public Cloud potrebbero cambiare il 1° aprile 2026. Per maggiori dettagli, visitare la nostra pagina dei prezzi.",
+  "cpbc_pricing_banner_link": "Visualizza i prezzi",
+  "cpbc_pricing_banner_close": "Chiudi"
 }

@@ -34,6 +34,7 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   AVAILABILITY_ZONES: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031`,
     FR: `${HELP_URL}/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031`,
+    US: '',
   },
   FLAVOR: {
     DEFAULT: `${HELP_ROOT}/en/public-cloud/virtual-instances`,
@@ -110,10 +111,12 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   SSH_KEY: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
     FR: `${HELP_URL}/fr-public-cloud-compute-creating-ssh-keys?id=kb_article_view&sysparm_article=KB0064541`,
+    US: `${US_HELP_URL}/33773177952659-How-to-create-and-use-authentication-keys-for-SSH-connections-to-Public-Cloud-instances`,
   },
   NETWORK: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
     FR: `${HELP_URL}/fr-public-cloud-network-vrack?id=kb_article_view&sysparm_article=KB0050279`,
+    US: `${US_HELP_URL}/360002093130-Configuring-vRack-for-Public-Cloud`,
   },
   NETWORK_PUBLIC_CONNECTIVITY: {
     DEFAULT: `${HELP_URL}/en-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0069581`,
@@ -128,6 +131,7 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
     TN: `${HELP_URL}/fr-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050149`,
     WE: `${HELP_URL}/en-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0069581`,
     WS: `${HELP_URL}/es-public-cloud-network-concepts?id=kb_article_view&sysparm_article=KB0050141`,
+    US: `${US_HELP_URL}/19580166719763-Concepts-Public-Cloud-Networking`,
   },
   BACKUP: {
     DEFAULT: `${HELP_URL}/en-public-cloud-compute-back-up-instance?id=kb_article_view&sysparm_article=KB0069268`,
