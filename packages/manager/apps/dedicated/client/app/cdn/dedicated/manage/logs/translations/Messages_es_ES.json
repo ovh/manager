@@ -1,4 +1,5 @@
 {
   "cdn_tabs_logs_list_no_logs": "Ningún log",
-  "cdn_tabs_logs": "Logs"
+  "cdn_tabs_logs": "Logs",
+  "cdn_logs_description": "A continuación se indican los logs en tiempo real generados por el servicio CDN."
 }
