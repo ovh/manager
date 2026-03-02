@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.15.0...@ovh-ux/manager-pci-instances-app@0.15.1) (2026-03-02)
+
+
+### Bug Fixes
+
+* **pci-instances:** update modal dropdowns with createPortal prop ([9fcb68e](https://github.com/ovh/manager/commit/9fcb68ec78877c29267f67e656a6fccf74a3a84a)), closes [#TAPC-6003](https://github.com/ovh/manager/issues/TAPC-6003)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.14.1...@ovh-ux/manager-pci-instances-app@0.15.0) (2026-03-02)
 
 
