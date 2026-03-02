@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.14.1...@ovh-ux/manager-pci-instances-app@0.15.0) (2026-03-02)
+
+
+### Bug Fixes
+
+* **pci-instances:** add condition for gateway price ([ac13cde](https://github.com/ovh/manager/commit/ac13cde1663c8a0e26b93b575109d98ce0938afb))
+* **pci-instances:** revalidate form when ssh key is added ([29ff046](https://github.com/ovh/manager/commit/29ff0463ab20d4ef989b2cb41db90659de3f01a6))
+* **pci-instances:** take into account in the monthly total network options ([b333ea8](https://github.com/ovh/manager/commit/b333ea8d0e8dd412d80adf8f8fa1cb73ffe82b30)), closes [#TAPC-5942](https://github.com/ovh/manager/issues/TAPC-5942)
+
+
+### Features
+
+* **pci-instances, pci-billing, pci-project:** add pricing banner on main pages ([d7f5a4f](https://github.com/ovh/manager/commit/d7f5a4fffb8b258077ea2049e582049dd437e5da)), closes [#TAPC-5929](https://github.com/ovh/manager/issues/TAPC-5929)
+* **pci-instances:** add guide links for US ([60ed8f6](https://github.com/ovh/manager/commit/60ed8f6eaae556493ac95dcd7bf5bee5328e5e34)), closes [#TAPC-5852](https://github.com/ovh/manager/issues/TAPC-5852)
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.14.0...@ovh-ux/manager-pci-instances-app@0.14.1) (2026-02-26)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.14.0...@ovh-ux/manager-pci-billing-app@0.15.0) (2026-03-02)
+
+
+### Features
+
+* **pci-instances, pci-billing, pci-project:** add pricing banner on main pages ([d7f5a4f](https://github.com/ovh/manager/commit/d7f5a4fffb8b258077ea2049e582049dd437e5da)), closes [#TAPC-5929](https://github.com/ovh/manager/issues/TAPC-5929)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.13.1...@ovh-ux/manager-pci-billing-app@0.14.0) (2026-02-17)
 
 
