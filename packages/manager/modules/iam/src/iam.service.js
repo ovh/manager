@@ -149,6 +149,18 @@ export default class IAMService {
   // Service Accounts
 
   /**
+   * Get user group list
+   * @returns {Promise<object[]>}
+   */
+  getServiceAccountList() {
+    return this.$http
+      .get(URL.SERVICE_ACCOUNT)
+      .then(({ data }) =>
+        this.$q.all(data.map((id) => this.getServiceAccount(id))),
+      );
+  }
+
+  /**
    * Get one Service Account
    * @returns {Promise<Object>}
    */
