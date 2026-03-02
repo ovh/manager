@@ -56,5 +56,6 @@
   "account_details_field_corporationType_spa": "SPA",
   "account_details_field_corporationType_srl": "SRL",
   "account_details_field_corporationType_ss": "SS",
-  "account_details_field_corporationType_personnelle": "Personnelle"
+  "account_details_field_corporationType_personnelle": "Personnelle",
+  "account_details_field_nationalIdentificationNumber": "Numéro d'identification national"
 }
