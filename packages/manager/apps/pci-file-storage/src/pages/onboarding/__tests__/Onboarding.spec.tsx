@@ -7,12 +7,21 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 import { LinkCardProps, OnboardingLayoutProps } from '@ovh-ux/muk';
 
+import { useShareCreationPolling } from '@/data/hooks/operation/useShareCreationPolling';
 import { useShares } from '@/data/hooks/shares/useShares';
 import { useGetUser } from '@/hooks/useGetUser';
 
 import OnboardingPage from '../Onboarding.page';
 
 const mockNavigate = vi.fn();
+
+vi.mock('@/data/hooks/operation/useShareCreationPolling', () => ({
+  useShareCreationPolling: vi.fn().mockReturnValue({
+    shareCreationsCount: 0,
+    hasError: false,
+    isPending: false,
+  }),
+}));
 
 vi.mock('react-router-dom', () => ({
   useNavigate: () => mockNavigate,
@@ -147,7 +156,7 @@ describe('OnboardingPage', () => {
   });
 
   describe('redirect when shares exist', () => {
-    it('redirects to list page when user has shares', () => {
+    it('redirects to list page when user has shares and no pending creations', () => {
       vi.mocked(useShares).mockReturnValueOnce({
         data: true,
         isLoading: false,
@@ -158,9 +167,30 @@ describe('OnboardingPage', () => {
         isFetchingNextPage: false,
         isFetchingPreviousPage: false,
       } as unknown as ReturnType<typeof useShares>);
+      vi.mocked(useShareCreationPolling).mockReturnValueOnce({
+        shareCreationsCount: 0,
+        hasError: false,
+        isPending: false,
+      });
       render(<OnboardingPage />);
 
-      expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+      expect(mockNavigate).toHaveBeenCalledWith('../', { replace: true });
+    });
+  });
+
+  describe('creation in progress', () => {
+    it('shows creation pending message and hides order button when share creation is in progress', () => {
+      vi.mocked(useShareCreationPolling).mockReturnValueOnce({
+        shareCreationsCount: 1,
+        hasError: false,
+        isPending: true,
+      });
+      render(<OnboardingPage />);
+
+      expect(screen.getByText('onboarding:creationPending')).toBeVisible();
+      expect(
+        screen.queryByRole('button', { name: 'onboarding:action-button' }),
+      ).not.toBeInTheDocument();
     });
   });
 

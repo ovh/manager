@@ -3,6 +3,7 @@
   "backup_creating": "Tworzenie kopii zapasowej w toku",
   "creating": "Tworzenie w toku",
   "deleting": "Trwa usuwanie",
+  "draft": "Wersja robocza",
   "error": "Błąd",
   "extending": "Rozszerzenie w toku",
   "inactive": "Nieaktywny"

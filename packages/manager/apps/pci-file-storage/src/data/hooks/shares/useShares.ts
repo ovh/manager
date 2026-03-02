@@ -27,7 +27,7 @@ export type TUseSharesQueryParams = Readonly<{
 }>;
 
 const defaultQueryParams: TUseSharesQueryParams = {
-  limit: 10,
+  limit: 20,
   sort: 'name',
   sortOrder: 'asc',
   filters: [],
