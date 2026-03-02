@@ -1,10 +1,24 @@
 import { z } from 'zod';
 import { Rule } from '@/types/rule';
 
+type OptionalRuleZodSchema = z.ZodOptional<
+  z.ZodString | z.ZodEffects<z.ZodString, string, string>
+>;
+
+type OptionalUnionWithEmpty = z.ZodUnion<
+  [OptionalRuleZodSchema, z.ZodLiteral<''>]
+>;
+
 export type RuleZodSchema =
   | z.ZodString
   | z.ZodEffects<z.ZodString, string, string>
-  | z.ZodOptional<z.ZodString | z.ZodEffects<z.ZodString, string, string>>;
+  | OptionalRuleZodSchema
+  | OptionalUnionWithEmpty
+  | z.ZodEffects<
+      OptionalUnionWithEmpty,
+      string | undefined,
+      string | undefined
+    >;
 
 export const toZodField = (field: Rule): RuleZodSchema => {
   let zodSchema: RuleZodSchema = z
@@ -35,7 +49,9 @@ export const toZodField = (field: Rule): RuleZodSchema => {
   }
 
   if (!field.mandatory) {
-    return zodSchema.optional();
+    return z
+      .union([zodSchema.optional(), z.literal('')])
+      .transform((val) => (val === '' ? undefined : val));
   }
 
   return zodSchema;
