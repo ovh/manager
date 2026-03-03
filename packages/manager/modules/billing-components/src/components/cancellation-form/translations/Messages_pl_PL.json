@@ -19,5 +19,5 @@
   "billing_confirm_termination_terminate": "Zatwierdź",
   "billing_confirm_termination_success": "Twoja usługa została wyłączona. W ciągu kilku minut otrzymasz wiadomość e-mail z potwierdzeniem.  W przypadku pytań skontaktuj się z Obsługą Klienta OVHcloud.",
   "billing_confirm_termination_error": "Wystąpił błąd podczas rezygnacji z usługi {{message}}.",
-  "billing_confirm_termination_unnecessary": "Ta usługa jest już skonfigurowana do odnawiania ręcznego. Nie musisz składać dyspozycji „rezygnacji po wygaśnięciu” - jeśli nie odnowisz usługi samodzielnie, zostanie ona automatycznie zakończona w dniu wygaśnięcia."
+  "billing_confirm_termination_unnecessary": "Ta usługa ma już ustawione ręczne odnawianie. Nie musisz składać dyspozycji „rezygnacji po wygaśnięciu”. Jeśli nie odnowisz usługi ręcznie, zakończy się ona automatycznie w dniu wygaśnięcia."
 }
