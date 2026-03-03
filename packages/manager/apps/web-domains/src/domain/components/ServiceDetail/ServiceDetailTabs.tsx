@@ -19,7 +19,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ServiceDetailTabsProps,
   legacyTabs,
@@ -42,8 +42,14 @@ export default function ServiceDetailsTabs({
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+  const { data: availability } = useFeatureAvailability([
+    'web-domains:zone',
+  ]);
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
+    if (!availability?.['web-domains:zone']) {
+      legacyTabs.push('zone');
+    }
     if (legacyTabs.includes(event.value)) {
       const fetchedUrl = (await shell.navigation?.getURL(
         'web',
