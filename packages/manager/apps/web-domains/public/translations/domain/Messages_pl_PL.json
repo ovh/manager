@@ -342,5 +342,7 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktywacja",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "dezaktywacja",
   "domain_tab_general_information_subscription_edit_owner": "Zmień dane kontaktowe abonenta",
-  "domain_tab_general_information_data_protection_disabled": "Rejestr obsługujący tę domenę nie pozwala na spersonalizowane zarządzanie wyświetlaniem Twoich danych osobowych."
+  "domain_tab_general_information_data_protection_disabled": "Rejestr obsługujący tę domenę nie pozwala na spersonalizowane zarządzanie wyświetlaniem Twoich danych osobowych.",
+  "domain_back_to_zone": "Powrót do strefy DNS",
+  "domain_order_activate_zone_message": "Aby odpowiadać na zapytania DNS, Twoja nazwa domeny musi być powiązana ze strefą DNS. Będziesz mógł skonfigurować, na jaki adres IP będzie przekierowywana Twoja nazwa domeny i jej subdomeny. Strefa DNS Twojej nazwy domeny jest wyłączona. Aby ją aktywować, potwierdź następujące kroki."
 }

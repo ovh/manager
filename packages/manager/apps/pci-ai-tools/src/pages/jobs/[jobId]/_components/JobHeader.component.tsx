@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import {
   BrainCircuitIcon,
+  CircleAlert,
   Globe,
   LockKeyhole,
   OctagonX,
@@ -11,7 +12,14 @@ import {
   Square,
 } from 'lucide-react';
 import { useState } from 'react';
-import { Badge, Button, Skeleton } from '@datatr-ux/uxlib';
+import {
+  Badge,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import { useDateFnsLocale } from '@/hooks/useDateFnsLocale.hook';
 import ai from '@/types/AI';
 import JobStatusBadge from '../../_components/JobStatusBadge.component';
@@ -28,6 +36,61 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
   const [isStopOpen, setIsStopOpen] = useState(false);
   const dateLocale = useDateFnsLocale();
   const isAutoRestart = job.spec.timeoutAutoRestart;
+  const pendingCode =
+    (job.status as unknown as { code?: string }).code ?? job.status.info?.code;
+  const isPendingState = ['PENDING', 'QUEUED'].includes(job.status.state ?? '');
+  const isJobPending =
+    ['JOB_PENDING', 'NOTEBOOK_PENDING'].includes(pendingCode ?? '') ||
+    isPendingState;
+  const timeoutAt = job.status.timeoutAt;
+  const timeoutAtDate = timeoutAt ? new Date(timeoutAt) : null;
+  const hasValidTimeoutAt =
+    !!timeoutAtDate && !Number.isNaN(timeoutAtDate.getTime());
+  const formattedTimeoutAt =
+    hasValidTimeoutAt && timeoutAtDate
+      ? format(timeoutAtDate, 'PPpp', {
+          locale: dateLocale,
+        })
+      : null;
+  let timeoutBadgeContent = null;
+  if (isJobPending) {
+    timeoutBadgeContent = (
+      <>
+        <Popover>
+          <PopoverTrigger>
+            <CircleAlert
+              className="size-3 shrink-0 cursor-pointer"
+              data-testid="job-pending-timeout-info-trigger"
+            />
+          </PopoverTrigger>
+          <PopoverContent className="text-sm max-w-xs">
+            <p>{t('pendingTimeoutHint')}</p>
+          </PopoverContent>
+        </Popover>
+        <span>{t('waitingResourceLabel')}</span>
+      </>
+    );
+  } else if (isAutoRestart && formattedTimeoutAt) {
+    timeoutBadgeContent = (
+      <>
+        <RefreshCcw className="size-3" />
+        <span>
+          {t('restartLabel')}
+          {formattedTimeoutAt}
+        </span>
+      </>
+    );
+  } else if (formattedTimeoutAt) {
+    timeoutBadgeContent = (
+      <>
+        <OctagonX className="size-3" />
+        <span>
+          {t('shutdownLabel')}
+          {formattedTimeoutAt}
+        </span>
+      </>
+    );
+  }
   return (
     <>
       <div
@@ -68,30 +131,10 @@ export const JobHeader = ({ job }: { job: ai.job.Job }) => {
           <div className="flex gap-2 flex-wrap">
             <JobStatusBadge status={job.status.state} />
             <Badge variant="outline">{job.spec.image}</Badge>
-            {job.status.timeoutAt && (
+            {(isJobPending || hasValidTimeoutAt) && (
               <Badge variant="outline">
                 <div className=" bottom-0 right-0 flex items-center gap-2 ">
-                  {isAutoRestart ? (
-                    <>
-                      <RefreshCcw className="size-3" />
-                      <span>
-                        {t('restartLabel')}
-                        {format(job.status.timeoutAt, 'PPpp', {
-                          locale: dateLocale,
-                        })}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <OctagonX className="size-3" />
-                      <span>
-                        {t('shutdownLabel')}
-                        {format(job.status.timeoutAt, 'PPpp', {
-                          locale: dateLocale,
-                        })}
-                      </span>
-                    </>
-                  )}
+                  {timeoutBadgeContent}
                 </div>
               </Badge>
             )}

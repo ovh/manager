@@ -8,7 +8,7 @@ vi.mock('jsurl', () => ({
   },
 }));
 
-vi.mock('@/domain/constants/order', () => ({
+vi.mock('@/common/constants/order', () => ({
   ANYCAST_ORDER_CONSTANT: {
     DURATION: 'P1Y',
     PRODUCT_ID: 'anycast',
@@ -49,14 +49,7 @@ describe('formatOrderProduct', () => {
     expect(result).toMatchObject({
       planCode: base.planCode,
       configuration: [{ label: 'zone', value: base.zoneName }],
-      option: [
-        {
-          duration: 'P1Y',
-          planCode: 'anycast',
-          quantity: 1,
-          pricingMode: 'default',
-        },
-      ],
+      option: [],
     });
     expect(result).not.toHaveProperty('serviceName');
   });
@@ -81,14 +74,7 @@ describe('formatOrderProduct', () => {
         { label: 'zone', value: base.zoneName },
         { label: 'dnssec', value: true },
       ],
-      option: [
-        {
-          duration: 'P1Y',
-          planCode: 'anycast',
-          quantity: 1,
-          pricingMode: 'default',
-        },
-      ],
+      option: [],
     });
     expect(result).not.toHaveProperty('serviceName');
   });

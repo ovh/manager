@@ -17,6 +17,14 @@ vi.mock('@/domain/utils/dnsUtils', () => ({
   computeActiveConfiguration: vi.fn(),
 }));
 
+vi.mock('@/common/components/Loading/Loading', () => ({
+  default: () => (
+    <div data-testid="listing-page-spinner" role="status" aria-label="Loading">
+      Loading...
+    </div>
+  ),
+}));
+
 vi.mock('@/domain/components/ModifyNameServer/DnsConfigurationRadio', () => ({
   default: () => <div>Dns Configuration Radio Component</div>,
 }));

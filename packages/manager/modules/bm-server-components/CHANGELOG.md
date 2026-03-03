@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.21.1...@ovh-ux/manager-bm-server-components@2.22.0) (2026-03-05)
+
+
+### Bug Fixes
+
+* **dedicated:** remove warning banner for the OLA association ([aecccf3](https://github.com/ovh/manager/commit/aecccf329fef4e2cfc24e1235e7cb3eb0d104c4e)), closes [#MANAGER-20717](https://github.com/ovh/manager/issues/MANAGER-20717)
+* **i18n:** add missing translations [CDS 4695] ([f74c807](https://github.com/ovh/manager/commit/f74c807a96178ed91785966a53311a988ded9f1e))
+* **ola-nics:** fixing the display of the list of nics ([9597b89](https://github.com/ovh/manager/commit/9597b89d9182603b836f68af20a785b77bcd1bc8)), closes [#MANAGER-17094](https://github.com/ovh/manager/issues/MANAGER-17094)
+* **ola-nics:** fixing the display of unavailable OLA in the network panel ([72f07fb](https://github.com/ovh/manager/commit/72f07fb9fced075617fea70a0cb334f5163ed57c)), closes [#MANAGER-17110](https://github.com/ovh/manager/issues/MANAGER-17110)
+
+
+### Features
+
+* **dedicated.ola:** fix fr text ([6bc53ca](https://github.com/ovh/manager/commit/6bc53ca209eee372fe1db180862d99a302cc143b)), closes [#MANAGER-17106](https://github.com/ovh/manager/issues/MANAGER-17106)
+* **dedicated.ola:** ola revamp on server dashboard ([26bedcf](https://github.com/ovh/manager/commit/26bedcf38f5f1f764e0e2af372b225dc13b97a90)), closes [#MANAGER-17110](https://github.com/ovh/manager/issues/MANAGER-17110)
+* **dedicated:** show interface bandwidth by nic ([31fb4b8](https://github.com/ovh/manager/commit/31fb4b852775dfbf78738ea3133e018e0b3b5380)), closes [#MANAGER-20611](https://github.com/ovh/manager/issues/MANAGER-20611)
+* **network-interfaces:** reworking the display of aggregated network interfaces ([c451aa6](https://github.com/ovh/manager/commit/c451aa66cca353fda4887a066245bd5f45a613c6)), closes [#MANAGER-17094](https://github.com/ovh/manager/issues/MANAGER-17094)
+* **ola-nics:** adding aggregation/desaggregation buttons to nics lists ([c9b13a2](https://github.com/ovh/manager/commit/c9b13a2c3d987477c34af214f68bcf0249efc850)), closes [#MANAGER-17106](https://github.com/ovh/manager/issues/MANAGER-17106)
+* **ola-nics:** include the OLA information into the bandwidth display ([5c68904](https://github.com/ovh/manager/commit/5c689043c2722c9bba794bb28c833654a69533d1)), closes [#MANAGER-17071](https://github.com/ovh/manager/issues/MANAGER-17071)
+* **ola-nics:** reworking the ola configuration component ([65979f9](https://github.com/ovh/manager/commit/65979f97e5ddae831d630b4b15582e22dbc3d353)), closes [#MANAGER-17069](https://github.com/ovh/manager/issues/MANAGER-17069)
+* **ola:** rename full lag to full private ([475a48d](https://github.com/ovh/manager/commit/475a48d648754cc46a1097442537b99d7133ffbb)), closes [#MANAGER-17071](https://github.com/ovh/manager/issues/MANAGER-17071)
+
+
+
+
+
 ## [2.21.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.21.0...@ovh-ux/manager-bm-server-components@2.21.1) (2026-02-17)
 
 

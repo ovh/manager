@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_reset_title": "Desconfigurar la agregación privada",
-  "dedicated_server_interfaces_ola_reset_text": "¿Seguro que quiere desconfigurar la agregación privada en este servidor?",
-  "dedicated_server_interfaces_ola_reset_error": "Se ha producido un error al desconfigurar la agregación privada."
+  "dedicated_server_interfaces_ola_reset_title": "Desvincular la red agregada",
+  "dedicated_server_interfaces_ola_reset_text": "¿Seguro/a que quiere desvincular esta red agregada? Las interfaces de red funcionarán de forma independiente después de esta acción.",
+  "dedicated_server_interfaces_ola_reset_error": "Se ha producido un error al desvincular la red agregada."
 }

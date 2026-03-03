@@ -12,7 +12,7 @@ import { Actions } from './Actions.component';
 import { ServiceAccountsPolicyCount } from '@/pages/serviceAccounts/components/ServiceAccountsPolicyCount.component';
 
 export function useDatagridColumn(): DatagridColumn<IamServiceAccount>[] {
-  const { t } = useTranslation('permanent-tokens');
+  const { t } = useTranslation(['permanent-tokens', 'service-accounts']);
   const formatDate = useFormatDate();
 
   return [
@@ -40,7 +40,7 @@ export function useDatagridColumn(): DatagridColumn<IamServiceAccount>[] {
     },
     {
       id: 'policy-count',
-      label: 'Politiques associées',
+      label: t('iam_service_accounts_datagrid_column_associated_policies', { ns: 'service-accounts' }),
       cell: (account: IamServiceAccount) => (
         <ServiceAccountsPolicyCount account={account} />
       ),

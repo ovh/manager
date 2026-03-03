@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.29...@ovh-ux/manager-nutanix@2.12.0) (2026-03-05)
+
+
+### Features
+
+* **dedicated:** show interface bandwidth by nic ([31fb4b8](https://github.com/ovh/manager/commit/31fb4b852775dfbf78738ea3133e018e0b3b5380)), closes [#MANAGER-20611](https://github.com/ovh/manager/issues/MANAGER-20611)
+
+
+
+
+
 ## [2.11.29](https://github.com/ovh/manager/compare/@ovh-ux/manager-nutanix@2.11.28...@ovh-ux/manager-nutanix@2.11.29) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-nutanix

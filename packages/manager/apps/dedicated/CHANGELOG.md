@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.15...@ovh-ux/manager-dedicated@20.75.0) (2026-03-05)
+
+
+### Features
+
+* **network-interfaces:** reworking the display of aggregated network interfaces ([c451aa6](https://github.com/ovh/manager/commit/c451aa66cca353fda4887a066245bd5f45a613c6)), closes [#MANAGER-17094](https://github.com/ovh/manager/issues/MANAGER-17094)
+* **ola-nics:** adding aggregation/desaggregation buttons to nics lists ([c9b13a2](https://github.com/ovh/manager/commit/c9b13a2c3d987477c34af214f68bcf0249efc850)), closes [#MANAGER-17106](https://github.com/ovh/manager/issues/MANAGER-17106)
+* **ola-nics:** include the OLA information into the bandwidth display ([5c68904](https://github.com/ovh/manager/commit/5c689043c2722c9bba794bb28c833654a69533d1)), closes [#MANAGER-17071](https://github.com/ovh/manager/issues/MANAGER-17071)
+
+
+
+
+
+## [20.74.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.14...@ovh-ux/manager-dedicated@20.74.15) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.74.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.13...@ovh-ux/manager-dedicated@20.74.14) (2026-03-03)
 
 

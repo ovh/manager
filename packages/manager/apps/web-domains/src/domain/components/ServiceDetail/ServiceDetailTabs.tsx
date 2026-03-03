@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { matchPath, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  matchPath,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Icon,
@@ -14,7 +19,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@ovhcloud/ods-react';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useFeatureAvailability, useNotifications } from '@ovh-ux/manager-react-components';
 import {
   ServiceDetailTabsProps,
   legacyTabs,
@@ -22,6 +27,7 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
+import { useGetEnvironmentData } from '@/common/hooks/environment/data';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -37,8 +43,20 @@ export default function ServiceDetailsTabs({
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+  const { data: availability } = useFeatureAvailability([
+    'web-domains:zone',
+  ]);
+
+  const { region } = useGetEnvironmentData();
+
+  const visibleTabs = ServiceDetailTabsProps.filter(
+    (tab) => tab.id !== 'dynhost' || region === 'EU',
+  );
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
+    if (!availability?.['web-domains:zone']) {
+      legacyTabs.push('zone');
+    }
     if (legacyTabs.includes(event.value)) {
       const fetchedUrl = (await shell.navigation?.getURL(
         'web',
@@ -54,11 +72,8 @@ export default function ServiceDetailsTabs({
 
   useEffect(() => {
     const tab =
-      ServiceDetailTabsProps.find((tabName) =>
-        matchPath(
-          `/domain/:serviceName/${tabName.value}/*`,
-          location.pathname,
-        ),
+      visibleTabs.find((tabName) =>
+        matchPath(`/domain/:serviceName/${tabName.value}/*`, location.pathname),
       )?.value || DEFAULT_TAB;
     if (location.pathname) {
       setValue(tab);
@@ -71,7 +86,7 @@ export default function ServiceDetailsTabs({
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
-        {ServiceDetailTabsProps.map((tab) => {
+        {visibleTabs.map((tab) => {
           const disabled = tab.rule ? tab.rule(domainResource) : false;
           return (
             <Tab

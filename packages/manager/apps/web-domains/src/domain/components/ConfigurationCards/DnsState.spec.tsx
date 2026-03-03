@@ -120,7 +120,7 @@ describe('DnsState component', () => {
   });
 
   it('renders tooltip with anycast label when anycast is subscribed', () => {
-    const { container } = render(
+    render(
       <DnsState
         domainResource={mockDomainResource}
         serviceName="example-service"
@@ -137,8 +137,8 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
+    const button = document.querySelector(
+      'ods-button.menu-item-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
     );
     expect(button).toBeInTheDocument();
   });
@@ -149,7 +149,7 @@ describe('DnsState component', () => {
       state: OptionStateEnum.RELEASED,
     };
 
-    const { container } = render(
+    render(
       <DnsState
         serviceName="example-service"
         domainResource={mockDomainResource}
@@ -166,14 +166,14 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
+    const button = document.querySelector(
+      'ods-button.menu-item-button[label*="domain_dns_tab_button_cancel_terminate_anycast"]',
     );
     expect(button).toBeInTheDocument();
   });
 
   it('renders tooltip with anycast label when anycast is not set', () => {
-    const { container } = render(
+    render(
       <DnsState
         domainResource={mockDomainResource}
         serviceName="example-service"
@@ -187,8 +187,8 @@ describe('DnsState component', () => {
       { wrapper },
     );
 
-    const button = container.querySelector(
-      'ods-button[label="domain_tab_DNS_anycast_order"]',
+    const button = document.querySelector(
+      'ods-button.menu-item-button[label="domain_tab_DNS_anycast_order"]',
     );
     expect(button).toBeInTheDocument();
   });

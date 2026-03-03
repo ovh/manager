@@ -50,5 +50,20 @@
   "account_details_field_corporation_firstname": "Last name (legal representative):",
   "account_details_field_corporation_lastname": "First name (legal representative):",
   "account_details_section_address_kyc_info": "<strong>Please remember to fill in every field and confirm that your personal details match the name and address in your official documents before placing your order.</strong> <ul><li>Enter <strong>your full address</strong> </li><li>The address must <strong>match the one on the proof of address</strong> for identity verification.</li></ul>",
-  "account_details_field_italian_sdi": "Recipient code for electronic invoicing (SDI)"
+  "account_details_field_italian_sdi": "Recipient code for electronic invoicing (SDI)",
+  "account_details_field_corporationType": "Type of company",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Personal",
+  "account_details_field_nationalIdentificationNumber": "National identification number",
+  "account_details_field_sex": "Sex",
+  "account_details_field_birthDay": "Date of birth",
+  "account_details_sex_option_female": "Female",
+  "account_details_sex_option_male": "Male"
 }

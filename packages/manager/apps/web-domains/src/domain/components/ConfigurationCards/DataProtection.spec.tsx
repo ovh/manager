@@ -1,8 +1,7 @@
 import '@/common/setupTests';
-import { render, screen } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import DataProtection from './DataProtection';
 import {
   TDomainResource,
@@ -14,27 +13,6 @@ import { ProtectionStateEnum } from '@/domain/enum/protectionState.enum';
 import { SuspensionStateEnum } from '@/domain/enum/suspensionState.enum';
 import { ResourceStatusEnum } from '@/domain/enum/resourceStatus.enum';
 import { supportedAlgorithms } from '@/domain/constants/dsRecords';
-
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual('@ovh-ux/manager-react-components');
-  return {
-    ...actual,
-    ActionMenu: ({ items }: any) => (
-      <div>
-        {items.map((item: any) => (
-          <button
-            key={item.id}
-            onClick={item.onClick}
-            disabled={item.isDisabled}
-            data-testid="action-menu-button"
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-    ),
-  };
-});
 
 const createMockDomainResource = (
   contactsConfig: TDomainResource['currentState']['contactsConfiguration'],
@@ -164,8 +142,15 @@ describe('DataProtection component', () => {
         },
       );
 
-      const manageButton = screen.getByTestId('action-menu-button');
-      expect(manageButton).not.toBeDisabled();
+      const actionTrigger = screen.getByTestId('navigation-action-trigger-action');
+      expect(actionTrigger).toBeInTheDocument();
+
+      await user.click(actionTrigger);
+
+      const manageButton = document.querySelector(
+        'ods-button.menu-item-button[label="domain_tab_general_information_data_protection_manage_button"]',
+      );
+      expect(manageButton).toBeInTheDocument();
 
       await user.click(manageButton);
 

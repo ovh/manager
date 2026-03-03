@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.10.2...@ovh-ux/manager-dedicated-servers-app@0.11.0) (2026-03-05)
+
+
+### Bug Fixes
+
+* **dedicated-server:** fix tests ([7f315ba](https://github.com/ovh/manager/commit/7f315ba7e5201c620bbf206cb570af066336da49)), closes [#MANAGER-20908](https://github.com/ovh/manager/issues/MANAGER-20908)
+* **i18n:** add missing translations [CDS 1199] ([8ef1f3f](https://github.com/ovh/manager/commit/8ef1f3f9fcda56e809d9cd353f6f2032a2829f9a))
+
+
+### Features
+
+* **dedicated-server:** delete view ([2c168ee](https://github.com/ovh/manager/commit/2c168eec665682abdc0d726e5c8ad82e6a5d5427)), closes [#MANAGER-20562](https://github.com/ovh/manager/issues/MANAGER-20562)
+* **dedicated-server:** edit view ([7d00a0d](https://github.com/ovh/manager/commit/7d00a0dd14066d0d7916a8ad96bff677e9aef531)), closes [#MANAGER-20561](https://github.com/ovh/manager/issues/MANAGER-20561)
+* **dedicated-servers:** add drag and drop to sort columns ([dc84bb9](https://github.com/ovh/manager/commit/dc84bb9586453c6d9f803924c84e300e50c8b4b8)), closes [#MANAGER-20553](https://github.com/ovh/manager/issues/MANAGER-20553)
+* **dedicated-servers:** add manage view button popover and drawer ([0365f2d](https://github.com/ovh/manager/commit/0365f2df244e9441abc6a3e2b952d902d0c644f7)), closes [#MANAGER-20555](https://github.com/ovh/manager/issues/MANAGER-20555)
+* **dedicated-servers:** cancel changes if view not saved ([b9609ed](https://github.com/ovh/manager/commit/b9609edbf096683c90c531d5f46154675dcf280d)), closes [#MANAGER-20621](https://github.com/ovh/manager/issues/MANAGER-20621)
+* **dedicated-servers:** close accordion when view drawer close ([1f5cc79](https://github.com/ovh/manager/commit/1f5cc791638584c14a1f130f75a9f37d50226c8e)), closes [#MANAGER-20621](https://github.com/ovh/manager/issues/MANAGER-20621)
+* **dedicated-servers:** column visibility in views and switch views ([88b04b8](https://github.com/ovh/manager/commit/88b04b85e15963d661e26e190e16dcff5dabb846)), closes [#MANAGER-20621](https://github.com/ovh/manager/issues/MANAGER-20621)
+* **dedicated-servers:** fix current view update delete ([4246591](https://github.com/ovh/manager/commit/4246591dd6c820fd8cae587180085f5b5e2cf9c6)), closes [#MANAGER-20552](https://github.com/ovh/manager/issues/MANAGER-20552)
+* **dedicated-servers:** fix rerender bug ([e72f743](https://github.com/ovh/manager/commit/e72f74355afc66afe6c188c515bb52d9edf3fc95)), closes [#MANAGER-20552](https://github.com/ovh/manager/issues/MANAGER-20552)
+* **dedicated-servers:** improve drawer visibility ([8c7ac81](https://github.com/ovh/manager/commit/8c7ac81cf483952d157d1c7f50b2a89929f0d60f)), closes [#MANAGER-20621](https://github.com/ovh/manager/issues/MANAGER-20621)
+* **dedicated-servers:** increments view ids ([0595217](https://github.com/ovh/manager/commit/05952171206bc3b6b0abf31d6672ff68d70f0f7f)), closes [#MANAGER-20552](https://github.com/ovh/manager/issues/MANAGER-20552)
+* **dedicated-servers:** react route migration ([7737034](https://github.com/ovh/manager/commit/773703489c7e9aa888664bc061e694c06c17856d)), closes [#MANAGER-20882](https://github.com/ovh/manager/issues/MANAGER-20882)
+* **dedicated-servers:** remove legacy columns button ([b9b8526](https://github.com/ovh/manager/commit/b9b8526e6d70701e402562bc20fbeb7a6e4b7a54)), closes [#MANAGER-20552](https://github.com/ovh/manager/issues/MANAGER-20552)
+* **dedicated-servers:** some drawer style fix ([e0e87ad](https://github.com/ovh/manager/commit/e0e87ad84d598d91ced1e9bad88421c08a7d7b63)), closes [#MANAGER-20555](https://github.com/ovh/manager/issues/MANAGER-20555)
+* **dedicated:** add availabilityZone column in datagrid ([1cc7653](https://github.com/ovh/manager/commit/1cc7653e84517f3f2b460767cbe679eb97c47c9a)), closes [#MANAGER-20724](https://github.com/ovh/manager/issues/MANAGER-20724)
+* **dedicated:** autoscrol datagrid to false ([e38549e](https://github.com/ovh/manager/commit/e38549e0deba99a9b0778351f4cb3a2d0519f4aa)), closes [#MANAGER-20566](https://github.com/ovh/manager/issues/MANAGER-20566)
+* **dedicated:** fix ui ([1fe2dea](https://github.com/ovh/manager/commit/1fe2dea3ba41888435905cc829b22cde7d14b273)), closes [#MANAGER-20566](https://github.com/ovh/manager/issues/MANAGER-20566)
+* **dedicated:** groupBy servers selection ([99aa2da](https://github.com/ovh/manager/commit/99aa2daeb86d81037502a35dc412670ec0f268a4)), closes [#MANAGER-20566](https://github.com/ovh/manager/issues/MANAGER-20566)
+* **dedicated:** groupby UI fix  ([23b18ea](https://github.com/ovh/manager/commit/23b18ea4100adc1d979b03695c6eb0133cc13a49)), closes [#MANAGER-20552](https://github.com/ovh/manager/issues/MANAGER-20552)
+
+
+
+
+
+## [0.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.10.1...@ovh-ux/manager-dedicated-servers-app@0.10.2) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app
+
+
+
+
+
 ## [0.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.10.0...@ovh-ux/manager-dedicated-servers-app@0.10.1) (2026-02-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated-servers-app

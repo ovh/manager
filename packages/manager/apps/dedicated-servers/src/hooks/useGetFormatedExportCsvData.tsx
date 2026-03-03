@@ -44,6 +44,7 @@ const csvRowsMapper: {
   region: ({ region }) => region,
   rack: ({ rack }) => rack,
   datacenter: ({ datacenter }) => datacenter,
+  availabilityZone: ({ availabilityZone }) => availabilityZone,
   state: ({ state }) => textByProductStatus[state],
   monitoring: ({ monitoring, noIntervention }) =>
     monitoringStatusWording(monitoring, noIntervention),
@@ -82,8 +83,8 @@ export default ({ totalCount, columns }: ExportCsvDataType) => {
       columns
         .filter(({ id }) => !USELESS_COLUMNS.includes(id))
         .reduce(
-          ([prevHeadings, prevIds], { label, id }) => [
-            [...prevHeadings, label],
+          ([prevHeadings, prevIds], { label, header, id }) => [
+            [...prevHeadings, label || header],
             [...prevIds, id],
           ],
           [[], []],

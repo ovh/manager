@@ -21,5 +21,7 @@
   "tableActionRestart": "Restart",
   "shutdownLabel": "Stops on {{timeout}}",
   "restartLabel": "Restarts on {{timeout}}",
-  "timeOutLabel": "Expiry"
+  "timeOutLabel": "Expiry",
+  "waitingResourceLabel": "Waiting for an available resource",
+  "pendingTimeoutHint": "The expiration date will be set when the notebook is running."
 }

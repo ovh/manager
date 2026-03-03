@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.15.2...@ovh-ux/manager-pci-instances-app@0.16.0) (2026-03-09)
+
+
+### Features
+
+* **pci-instance:** integrate observability metrics dashboard ([0e1b41b](https://github.com/ovh/manager/commit/0e1b41bdbd20a1aa63188a6fd4d947cf70daf285)), closes [#MAOBS-211](https://github.com/ovh/manager/issues/MAOBS-211)
+
+
+
+
+
+## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.15.1...@ovh-ux/manager-pci-instances-app@0.15.2) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-pci-instances-app
+
+
+
+
+
 ## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.15.0...@ovh-ux/manager-pci-instances-app@0.15.1) (2026-03-02)
 
 

@@ -47,10 +47,10 @@
   "fieldDockerCommandLabel": "Polecenia Docker:",
   "summaryFieldVolumesLabel": "Wolumeny:",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
-  "defaultAutoRestartInfo": "Zadanie zostanie automatycznie zatrzymane po 7 dniach. Konfiguracja i dane zostaną zapisane. ",
+  "defaultAutoRestartInfo": "Zadanie zostanie automatycznie zatrzymane po 7 dniach ciągłej pracy. Twoja konfiguracja i dane zostaną zapisane. ",
   "fieldTimeOutLabel": "Wygaśnięcie",
   "fieldAutoRestartLabel": "Automatyczny restart",
-  "fieldAutoRestartDescription": "Jeśli opcja jest włączona, zadanie będzie automatycznie restartowane co 7 dni. Jeśli opcja jest wyłączona, zadanie zostanie automatycznie zatrzymane po 7 dniach. W obu przypadkach konfiguracja i dane zostaną zapisane.",
+  "fieldAutoRestartDescription": "Jeśli włączone, zadanie zostanie automatycznie uruchomione ponownie co 7 dni ciągłej pracy. Jeśli wyłączone, zadanie zostanie automatycznie zatrzymane po 7 dniach ciągłej pracy. W obu przypadkach twoja konfiguracja i dane zostaną zapisane.",
   "filedEnable": "Włączona",
   "filedDisable": "Wyłączona"
 }

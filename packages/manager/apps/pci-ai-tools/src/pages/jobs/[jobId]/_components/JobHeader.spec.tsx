@@ -21,6 +21,21 @@ const stroppedJob: ai.job.Job = {
     state: ai.job.JobStateEnum.DONE,
   },
 };
+
+const pendingJob: ai.job.Job = {
+  ...mockedJob,
+  status: {
+    ...mockedJobStatus,
+    state: ai.job.JobStateEnum.PENDING,
+    timeoutAt: '2026-01-28T13:55:10Z',
+    info: {
+      ...mockedJobStatus.info,
+      code: 'JOB_PENDING' as ai.InfoCodeEnum,
+      message:
+        'Warning: job is still looking for an available host (ranked 2 over 2 in the waiting queue for given flavor and count)',
+    },
+  },
+};
 describe('AppHeader component', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
@@ -70,5 +85,29 @@ describe('AppHeader component', () => {
     await waitFor(() => {
       expect(screen.queryByTestId('restart-job-modal')).toBeNull();
     });
+  });
+
+  it('renders pending expiry information when job is waiting for resources', async () => {
+    render(<JobHeader job={pendingJob} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+
+    expect(screen.getByText('waitingResourceLabel')).toBeTruthy();
+
+    fireEvent.click(screen.getByTestId('job-pending-timeout-info-trigger'));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'pendingTimeoutHint',
+        ),
+      ).toBeTruthy();
+    });
+
+    expect(
+      screen.queryByText(
+        'Warning: job is still looking for an available host (ranked 2 over 2 in the waiting queue for given flavor and count)',
+      ),
+    ).toBeNull();
   });
 });

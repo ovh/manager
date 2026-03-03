@@ -129,7 +129,7 @@ interface TBilling {
     code: string;
     invoiceName: string;
   };
-  princing: TPricing;
+  pricing: TPricing;
   renew: {
     capacities: {
       mode: ModeEnum[];
@@ -151,7 +151,7 @@ interface TEngagement {
 }
 
 interface TEngagementRequest {
-  princingMode: string;
+  pricingMode: string;
   requestDate: string;
 }
 
