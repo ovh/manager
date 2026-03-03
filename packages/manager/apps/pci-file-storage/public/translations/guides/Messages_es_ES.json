@@ -1,0 +1,21 @@
+{
+  "learn-more": {
+    "category": "Plan",
+    "title": "Más información",
+    "description": "Página Labs que explica la funcionalidad y la tarificación de File Storage.",
+    "link-text": "Más información"
+  },
+  "get-started": {
+    "category": "Guía",
+    "title": "Primeros pasos",
+    "description": "Documentación paso a paso para ayudarle a crear su primer «share».",
+    "link-text": "Más información",
+    "alternate-title": "Primeros pasos con las shares"
+  },
+  "discord": {
+    "category": "Discord",
+    "title": "Manténgase informado de las últimas novedades",
+    "description": "Únase a nosotros directamente en #beta-file-storage: haga preguntas y comparta sus comentarios.",
+    "link-text": "Más información"
+  }
+}

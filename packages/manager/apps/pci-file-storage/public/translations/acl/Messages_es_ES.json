@@ -1,0 +1,36 @@
+{
+  "description": "Agregue direcciones o rangos de IP autorizados para acceder a este recurso compartido. Por defecto, ninguna dirección o rango de IP está autorizado. El almacenamiento de archivos solo se puede utilizar con direcciones IP de OVHcloud (Nube Pública, Servicio de Kubernetes Gestionado).",
+  "add": {
+    "label": "Agregar un nuevo acceso",
+    "success": "Su ACL (Lista de control de acceso) se ha añadido correctamente",
+    "error": "Se ha producido un error al añadir la ACL: {{errorMessage}}"
+  },
+  "columns": {
+    "accessTo": {
+      "header": "Acceso a",
+      "placeholder": "10.0.0.0",
+      "invalidFormat": "Formato inválido: por favor, introduzca una dirección IP o un rango de IP válido (por ejemplo: 10.0.0.0/24)"
+    },
+    "accessPermission": {
+      "header": "Derechos de acceso",
+      "readOnly": "Solo lectura",
+      "readAndWrite": "Lectura y escritura"
+    },
+    "status": {
+      "header": "Estado"
+    },
+    "actions": {
+      "header": "Acciones",
+      "delete": {
+        "success": "Su ACL (Lista de control de acceso) se ha eliminado correctamente",
+        "error": "Se ha producido un error al eliminar la ACL: {{errorMessage}}"
+      }
+    }
+  },
+  "deleteModal": {
+    "title": "Eliminar ACL",
+    "description": "Eliminar esta ACL implicará la pérdida de acceso de {{accessTo}} a este recurso compartido. ¿Confirma la eliminación?",
+    "confirmButton": "Eliminar",
+    "close": "Cerrar"
+  }
+}

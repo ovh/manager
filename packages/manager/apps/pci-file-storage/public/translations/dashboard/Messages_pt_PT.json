@@ -1,0 +1,18 @@
+{
+  "tabs": {
+    "general": "Informações gerais",
+    "snapshots": "Snapshots",
+    "acl": "Lista de controle de acesso (ACL)"
+  },
+  "actions": {
+    "back": "Voltar à página anterior",
+    "edit_name": "Alterar o nome do share"
+  },
+  "common": {
+    "coming_soon": "Disponível em breve"
+  },
+  "rename": {
+    "success": "A atualização do share está em andamento, isso pode levar alguns segundos",
+    "error": "Ocorreu um erro ao atualizar o share"
+  }
+}

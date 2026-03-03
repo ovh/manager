@@ -1,0 +1,20 @@
+{
+  "fields": {
+    "name_id": "Name / ID",
+    "region": "Location",
+    "protocol": "Protocol",
+    "allocated_capacity": "Allocated capacity",
+    "status": "Status",
+    "id": "ID",
+    "share_name": "Share name",
+    "location": "Location",
+    "creation_date": "Creation date",
+    "mount_path": "Mount path",
+    "private_network": "Private network"
+  },
+  "actions": {
+    "column": "Actions",
+    "manage": "Manage",
+    "delete": "Delete"
+  }
+}

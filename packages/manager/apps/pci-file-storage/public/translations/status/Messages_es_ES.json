@@ -1,0 +1,10 @@
+{
+  "active": "Disponible",
+  "backup_creating": "Creando copia de seguridad en curso",
+  "creating": "Creación en curso",
+  "deleting": "Eliminando...",
+  "draft": "Borrador",
+  "error": "Error",
+  "extending": "Extensión en curso",
+  "inactive": "Inactivo"
+}
