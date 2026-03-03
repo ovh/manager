@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.187.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.187.1...@ovh-ux/manager-container-app@0.187.2) (2026-03-03)
+
+
+### Bug Fixes
+
+* **iam:** highlight 'identities' in menu for ServiceAccounts ([bc148af](https://github.com/ovh/manager/commit/bc148aff89eed5324cc1f4d6687ecf0887ff1ab7)), closes [#MAIAM-89](https://github.com/ovh/manager/issues/MAIAM-89)
+
+
+
+
+
 ## [0.187.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.187.0...@ovh-ux/manager-container-app@0.187.1) (2026-02-26)
 
 

@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.26.1...@ovh-ux/manager-iam@1.27.0) (2026-03-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1187] ([75189c5](https://github.com/ovh/manager/commit/75189c562bf89e6a0d5a2f0990ad3d59e4d094f7))
+* **i18n:** add missing translations [CDS 4683] ([bf594f7](https://github.com/ovh/manager/commit/bf594f7a8be4a39fe38b6b5cc25287a4db8125af))
+
+
+### Features
+
+* **iam:** add 'service-accounts' pages ([265ea95](https://github.com/ovh/manager/commit/265ea95bdcfe43307242c4b55c49e556041d48e3)), closes [#MAIAM-81](https://github.com/ovh/manager/issues/MAIAM-81)
+* **iam:** add multiple group selection in user create/edit forms ([09e9651](https://github.com/ovh/manager/commit/09e96510393e291943716ab8cf8b3462ff581f17)), closes [#MAIAM-88](https://github.com/ovh/manager/issues/MAIAM-88)
+* **iam:** allow service-accounts edit in policy page ([828929d](https://github.com/ovh/manager/commit/828929d0ff28677e543ee575c5b7ae38b6ef4571)), closes [#MAIAM-81](https://github.com/ovh/manager/issues/MAIAM-81)
+* **iam:** enable request signing option for SSO ([ad35bd2](https://github.com/ovh/manager/commit/ad35bd23b56fdd68feb1abc9158bf0f122275e6e)), closes [#MAIAM-77](https://github.com/ovh/manager/issues/MAIAM-77)
+
+
+
+
+
 ## [1.26.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.26.0...@ovh-ux/manager-iam@1.26.1) (2026-02-06)
 
 

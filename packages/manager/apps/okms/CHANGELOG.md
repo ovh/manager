@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.44.7...@ovh-ux/manager-okms-app@0.45.0) (2026-03-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1169] ([b6ffd79](https://github.com/ovh/manager/commit/b6ffd79fdbab1ae165a3c5cf53b830ecd3622203))
+* **i18n:** add missing translations [CDS 1172] ([4b1d524](https://github.com/ovh/manager/commit/4b1d524f07a24d6414b6d573b1b252b3cec5ed90))
+* **okms:** 404 on deleted secret after deletion ([087ab1b](https://github.com/ovh/manager/commit/087ab1be7b92d32139a3f75c113bb91d3a45c2d5)), closes [#EK-2649](https://github.com/ovh/manager/issues/EK-2649)
+* **okms:** add missing message on edit secret config ([91ce121](https://github.com/ovh/manager/commit/91ce1218ecf2bcbdde6b3caeb7ebaead67560c99)), closes [#EK-2726](https://github.com/ovh/manager/issues/EK-2726)
+* **okms:** can not delete last character in key-value editor ([cf1f356](https://github.com/ovh/manager/commit/cf1f3567951f68279215c463e1c5baf30fe5e5a0)), closes [#EK-2542](https://github.com/ovh/manager/issues/EK-2542)
+* **okms:** disable cache on secret version list ([27e6fad](https://github.com/ovh/manager/commit/27e6fade23ca9fed08b3cd2e7a34c227fa8ef977)), closes [#EK-2598](https://github.com/ovh/manager/issues/EK-2598)
+* **okms:** disabled cache on iceberg request ([5c8a8cb](https://github.com/ovh/manager/commit/5c8a8cb64c805930987d06b4c3a7c99b698e5718)), closes [#EK-2726](https://github.com/ovh/manager/issues/EK-2726)
+* **okms:** fix secret tooltips in drawer ([5fbf4b5](https://github.com/ovh/manager/commit/5fbf4b5cb3528cb6b8e703ba015dac95ee9e1064)), closes [#EK-2539](https://github.com/ovh/manager/issues/EK-2539)
+* **okms:** minor changes ([b94aa47](https://github.com/ovh/manager/commit/b94aa4796a2e4403615b12019dca52fa9c0bb8f7)), closes [#EK-2542](https://github.com/ovh/manager/issues/EK-2542)
+* **okms:** modal headers ([6a8da23](https://github.com/ovh/manager/commit/6a8da23f0550733ebdc48642359731f5179f3cfa)), closes [#EK-2649](https://github.com/ovh/manager/issues/EK-2649)
+* **okms:** okms cache update not working on rename ([5dbcf83](https://github.com/ovh/manager/commit/5dbcf836891aa3d40752b8bafc07f355b50e3b82)), closes [#EK-2598](https://github.com/ovh/manager/issues/EK-2598)
+* **okms:** service keys actions ([b3886b8](https://github.com/ovh/manager/commit/b3886b87885dc3ecbb908d4f89aad2c2b5f3ef1a)), closes [#EK-2649](https://github.com/ovh/manager/issues/EK-2649)
+* **okms:** update tracking ([06bb4b4](https://github.com/ovh/manager/commit/06bb4b48b29f767f3d87cac00f3e21d317ac19b0)), closes [#EK-2580](https://github.com/ovh/manager/issues/EK-2580)
+* **okms:** warnings during tests ([87c2012](https://github.com/ovh/manager/commit/87c2012f9e580220e84c753b90cd26c496d549ee)), closes [#EK-2649](https://github.com/ovh/manager/issues/EK-2649)
+
+
+### Features
+
+* **okms:** add a json editor on secret data ([1528165](https://github.com/ovh/manager/commit/152816581ed9d62fe5e163bc668b2335218eb1ce)), closes [#EK-2598](https://github.com/ovh/manager/issues/EK-2598)
+* **okms:** add custom metadata to the secret form ([93b68d5](https://github.com/ovh/manager/commit/93b68d5b1ff297f0c33796acc0793d10fbb56f4e)), closes [#EK-2539](https://github.com/ovh/manager/issues/EK-2539)
+* **okms:** add secret config message on secret form ([570c4a8](https://github.com/ovh/manager/commit/570c4a87c5f735a772d50698ef78dc57517dc61a)), closes [#EK-2726](https://github.com/ovh/manager/issues/EK-2726)
+* **okms:** add secret manager US guide links ([af7d8ad](https://github.com/ovh/manager/commit/af7d8addcdc77f6029393a36f677a19bece71da6)), closes [#MANAGER-20827](https://github.com/ovh/manager/issues/MANAGER-20827)
+* **okms:** add service key pem file format ([624caf4](https://github.com/ovh/manager/commit/624caf4e48d1b7abc4a5c4834b74136811777d8a)), closes [#EK-2559](https://github.com/ovh/manager/issues/EK-2559)
+* **okms:** secrets custom metadata ([3ccca35](https://github.com/ovh/manager/commit/3ccca354ede3c84f3ffa68be314967f1c920ce5d)), closes [#EK-2542](https://github.com/ovh/manager/issues/EK-2542)
+
+
+
+
+
 ## [0.44.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.44.6...@ovh-ux/manager-okms-app@0.44.7) (2026-02-17)
 
 

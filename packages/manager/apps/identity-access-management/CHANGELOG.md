@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.7.4...@ovh-ux/manager-identity-access-management-app@0.8.0) (2026-03-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4683] ([bf594f7](https://github.com/ovh/manager/commit/bf594f7a8be4a39fe38b6b5cc25287a4db8125af))
+* **iam:** update 'permanent-tokens' translations ([a17ea0b](https://github.com/ovh/manager/commit/a17ea0b5e62d13789276e5afd03e0d2d9a1c62bc)), closes [#MAIAM-93](https://github.com/ovh/manager/issues/MAIAM-93)
+
+
+### Features
+
+* **iam:** add 'service-accounts' pages ([265ea95](https://github.com/ovh/manager/commit/265ea95bdcfe43307242c4b55c49e556041d48e3)), closes [#MAIAM-81](https://github.com/ovh/manager/issues/MAIAM-81)
+
+
+
+
+
 ## [0.7.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.7.3...@ovh-ux/manager-identity-access-management-app@0.7.4) (2026-02-06)
 
 

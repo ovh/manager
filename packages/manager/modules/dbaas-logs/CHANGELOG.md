@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.37.4...@ovh-ux/manager-dbaas-logs@1.37.5) (2026-03-03)
+
+
+### Bug Fixes
+
+* **dedicated.dbaas:** fix undisplayed error for archive download ([391cbef](https://github.com/ovh/manager/commit/391cbefe33e7d43111dc2ec3331165b18dbfe6dc)), closes [#MAOBS-248](https://github.com/ovh/manager/issues/MAOBS-248)
+
+
+
+
+
 ## [1.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dbaas-logs@1.37.3...@ovh-ux/manager-dbaas-logs@1.37.4) (2026-02-17)
 
 

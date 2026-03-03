@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.74.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.13...@ovh-ux/manager-dedicated@20.74.14) (2026-03-03)
+
+
+### Bug Fixes
+
+* **dedicated.netapp:** fix css name collision with l2c ([5e435dd](https://github.com/ovh/manager/commit/5e435ddbb9195afbc30af6a9f112e8cc307f27fa)), closes [#MAOBS-259](https://github.com/ovh/manager/issues/MAOBS-259)
+
+
+
+
+
 ## [20.74.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.12...@ovh-ux/manager-dedicated@20.74.13) (2026-02-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
