@@ -20,7 +20,11 @@ const getWillPaymentUrl = () => {
     return getLabeuEntryPoint() || '/order/payment/assets/remoteEntry.js';
   }
 
-  return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
+  // WillPayment Preprod environment
+  const preprodEnvironment =
+    'aHR0cHM6Ly9vdmhjbG91ZGNvbWRldi5zdGF0aWMub3ZoLm5ldC9vcmRlci9wYXltZW50L2Fzc2V0cy9yZW1vdGVFbnRyeS5qcw==';
+  return atob(preprodEnvironment);
+  // return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
 };
 
 exports.isLabeuEnvironment = isLabeuEnvironment;
