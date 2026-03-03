@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.12.2...@ovh-ux/manager-account-creation-app@0.13.0) (2026-03-03)
+
+
+### Bug Fixes
+
+* **account-creation:** add conditional NIN ([6e97d0a](https://github.com/ovh/manager/commit/6e97d0a257d60a9502abd5c149ec01a0d7e0dc70)), closes [#MANAGER-21054](https://github.com/ovh/manager/issues/MANAGER-21054)
+* **account-creation:** remove siret mandatory hotfix ([d144407](https://github.com/ovh/manager/commit/d144407a6c786fa2d958c88676541797a0e2da5a)), closes [#MANAGER-20933](https://github.com/ovh/manager/issues/MANAGER-20933)
+* **i18n:** add missing translations [CDS 1193] ([7af273e](https://github.com/ovh/manager/commit/7af273ebb84029ffcd5c4dafc8cca92fe72cf412))
+
+
+### Features
+
+* **account-creation:** add corporation type ([30d9741](https://github.com/ovh/manager/commit/30d97412caaf2545aacc7e0b7f473f39ecdeaf23)), closes [#MANAGER-20913](https://github.com/ovh/manager/issues/MANAGER-20913)
+
+
+
+
+
 ## [0.12.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.12.1...@ovh-ux/manager-account-creation-app@0.12.2) (2026-02-25)
 
 
