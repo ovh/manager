@@ -1,9 +1,20 @@
+export interface TConfigurationRuleConditionAndItem {
+  label?: string;
+  type?: string;
+  fields: TConfigurationRuleConstraint | {
+    label?: string;
+    type?: string;
+    constraints: TConfigurationRuleConstraint[];
+  };
+  constraints?: TConfigurationRuleConstraint[];
+}
+
 export interface TConfigurationRuleConstraint {
   operator: string;
   value?: string;
   values?: string[];
   conditions?: {
-    and?: { fields: TConfigurationRuleConstraint }[];
+    and?: TConfigurationRuleConditionAndItem[];
     fields: {
       label?: string;
       and?: { label: string; type?: string; constraints: TConfigurationRuleConstraint[] }[];
