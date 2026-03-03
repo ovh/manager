@@ -28,5 +28,13 @@
   "server_network_ola_reset": "Wyłącz agregację prywatną",
   "server_network_ola_terminate": "Rezygnuj z OLA",
   "server_network_ola_mode_vrack_aggregation": "Agregacja prywatna",
-  "server_network_ola_mode_default": "Domyślnie"
+  "server_network_ola_mode_default": "Domyślnie",
+  "server_network_ola_mode_full_lag": "Aktywny - Full private",
+  "server_network_ola_mode_double_lag": "Aktywny - Double LAG",
+  "server_network_ola_mode_available": "Dostępny",
+  "server_network_ola_mode_unavailable": "Niedostępny",
+  "server_network_ola_mode_full_lag_description": "Interfejsy sieciowe są w pełni zagregowane i działają w sieci prywatnej.",
+  "server_network_ola_mode_double_lag_description": "Dwie pary interfejsów sieciowych są agregowane oddzielnie, co umożliwia ruch prywatny i publiczny.",
+  "server_network_ola_mode_available_description": "Agregację interfejsów sieciowych włączysz w panelu konfiguracji",
+  "server_network_ola_mode_unavailable_description": "Twój serwer nie pozwala na agregację interfejsów sieciowych"
 }

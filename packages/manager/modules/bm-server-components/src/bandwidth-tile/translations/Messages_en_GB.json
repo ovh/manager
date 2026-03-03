@@ -1,4 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Bandwidth",
-  "dedicated_server_interfaces_bandwidth_description": "Inbound public throughput (to and from the internet) is unlimited. You can increase your public and private bandwidth by signing up to the following options:"
+  "dedicated_server_interfaces_bandwidth_description": "Inbound public throughput (to and from the internet) is unlimited. You can increase your public and private bandwidth by signing up to the following options:",
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Available",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Active - Double LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "The two pairs of network interfaces are aggregated separately, enabling private and public traffic.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Active - Fully private",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "Both network interfaces are fully aggregated and private.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "All four network interfaces are fully aggregated and private.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "Unavailable"
 }

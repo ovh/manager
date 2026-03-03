@@ -28,5 +28,13 @@
   "server_network_ola_reset": "Rimuovi la configurazione dell’aggregazione privata",
   "server_network_ola_terminate": "Disattiva OLA",
   "server_network_ola_mode_vrack_aggregation": "Aggregazione privata",
-  "server_network_ola_mode_default": "Predefinito"
+  "server_network_ola_mode_default": "Predefinito",
+  "server_network_ola_mode_full_lag": "Attivo - Full private",
+  "server_network_ola_mode_double_lag": "Attivo - Double LAG",
+  "server_network_ola_mode_available": "Disponibile",
+  "server_network_ola_mode_unavailable": "Non disponibile",
+  "server_network_ola_mode_full_lag_description": "Le interfacce di rete sono interamente aggregate e private",
+  "server_network_ola_mode_double_lag_description": "Le due coppie di interfacce di rete sono aggregate separatamente, permettendo un traffico privato e pubblico.",
+  "server_network_ola_mode_available_description": "Le interfacce di rete possono essere aggregate tramite l’interfaccia di configurazione",
+  "server_network_ola_mode_unavailable_description": "Il tuo server non permette l'aggregazione delle interfacce di rete"
 }
