@@ -11,7 +11,7 @@
   "dedicated_server_interfaces_ola_alert_configuration_needed": "Per il corretto funzionamento della rete è necessario seguire via KVM IPMI  la procedura descritta nella guida. (questa operazione è necessaria per completare la configurazione).",
   "dedicated_server_interfaces_rename_title": "Rinominare l’interfaccia",
   "dedicated_server_interfaces_vrack_operation_attach": "In corso di associazione",
-  "dedicated_server_interfaces": "Interfacce di rete",
+  "dedicated_server_interfaces": "Controller delle interfacce di rete (NIC)",
   "dedicated_server_interfaces_vrack_information": "Ti ricordiamo che, di default, sulla rete privata (vRack) non sono presenti IP. Per configurarne uno è infatti necessario creare una rete privata e aggiungervi un server.",
   "dedicated_server_interfaces_vrack_information_link_label": "Scopri di più sulla vRack",
   "dedicated_server_interfaces_step_checker_title": "OVHcloud Link Aggregation (OLA)",
@@ -69,5 +69,9 @@
   "dedicated_server_interfaces_task_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}",
   "dedicated_server_interfaces_vrack_operation_detach": "In corso di scollegamento",
   "server_vrack_attach_in_progress": "Associazione della vRack {{vRackname}} in corso...",
-  "server_vrack_detach_in_progress": "Scollegamento della vRack {{vRackname}} in corso..."
+  "server_vrack_detach_in_progress": "Scollegamento della vRack {{vRackname}} in corso...",
+  "dedicated_server_interfaces_aggregate_button": "Aggregazione delle reti",
+  "dedicated_server_interfaces_disaggregate_button": "Disaggregare le reti",
+  "dedicated_server_interfaces_breadcrumb": "Interfacce di rete",
+  "dedicated_server_interfaces_type_badge_aggregated": "Aggregato"
 }
