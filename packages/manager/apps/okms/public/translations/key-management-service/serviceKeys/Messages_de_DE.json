@@ -94,5 +94,7 @@
   "key_management_service_service-keys_create_protection_level_title": "Schutzniveau",
   "key_management_service_service-keys_create_protection_level_subtitle": "Geben Sie das für den Service Key verwendete Schutzlevel an.",
   "key_management_service_service-keys_create_software_protection_title": "Softwareschutz",
-  "key_management_service_service-keys_create_software_protection_subtitle": "Kryptografische Operationen werden mit Software ausgeführt."
+  "key_management_service_service-keys_create_software_protection_subtitle": "Kryptografische Operationen werden mit Software ausgeführt.",
+  "key_management_service_service-keys_link_download_key_pem": "Laden Sie den PEM-öffentlichen Schlüssel herunter",
+  "key_management_service_service-keys_link_download_key_jwk": "Laden Sie den JWK-öffentlichen Schlüssel herunter"
 }

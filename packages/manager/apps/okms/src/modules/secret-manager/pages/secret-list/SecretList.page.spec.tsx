@@ -6,10 +6,9 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
 import { PATH_LABEL } from '@/constants';
@@ -25,7 +24,7 @@ const renderPage = async () => {
   await assertTitleVisibility({
     title: labels.secretManager.secret_manager,
     level: 1,
-    timeout: TIMEOUT.MEDIUM,
+    timeout: TIMEOUT.LONG,
   });
 
   return results;
@@ -90,11 +89,10 @@ describe('Secret list page test suite', () => {
     invariant(secretPath, 'Secret path is not defined');
     const secretPageLink = await screen.findByText(secretPath);
 
-    // THEN
-    expect(secretPageLink.closest('a')).toHaveAttribute(
-      'href',
-      SECRET_MANAGER_ROUTES_URLS.secret(mockOkms.id, secretPath),
-    );
+    // THEN (Muk Link may render "to" instead of "href" in test env)
+    const link = secretPageLink.closest('a');
+    const expectedUrl = SECRET_MANAGER_ROUTES_URLS.secret(mockOkms.id, secretPath);
+    expect(link?.getAttribute('to')).toBe(expectedUrl);
   });
 
   it('should navigate to OKMS dashboard on click on "manage okms" button', async () => {

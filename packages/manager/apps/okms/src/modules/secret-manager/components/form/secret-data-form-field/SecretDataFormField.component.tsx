@@ -6,15 +6,11 @@ import {
   SecretValueToggleState,
 } from '@secret-manager/components/secret-value/SecretValueToggle.component';
 import { isKeyValueObjectString } from '@secret-manager/utils/key-value/keyValue';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 
 import { SecretDataJsonFormField } from './SecretDataJsonFormField.component';
 
-type FormFieldInput = {
-  data: string;
-};
-
-export const SecretDataFormField = <T extends FormFieldInput>({
+export const SecretDataFormField = <T extends FieldValues>({
   name,
   control,
 }: UseControllerProps<T>) => {

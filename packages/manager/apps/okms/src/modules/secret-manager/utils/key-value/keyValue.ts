@@ -1,3 +1,5 @@
+import { safeJsonStringify } from '../json';
+
 /**
  * Type representing a simple key-value object with primitive values
  */
@@ -119,5 +121,5 @@ export function keyValuePairsToString(pairs: KeyValuePair[]): string {
   if (pairs.length === 0) {
     return '';
   }
-  return JSON.stringify(Object.fromEntries(pairs.map(({ key, value }) => [key, value])));
+  return safeJsonStringify(Object.fromEntries(pairs.map(({ key, value }) => [key, value])));
 }

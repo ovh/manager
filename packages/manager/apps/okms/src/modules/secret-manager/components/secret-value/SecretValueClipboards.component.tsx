@@ -3,7 +3,7 @@ import { SecretData } from '@secret-manager/types/secret.type';
 import { isKeyValueObject, objectToKeyValuePairs } from '@secret-manager/utils/key-value/keyValue';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField } from '@ovhcloud/ods-components/react';
+import { FormField, FormFieldLabel } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Clipboard } from '@ovh-ux/muk';
@@ -31,24 +31,20 @@ export const SecretValueClipboards = ({ data }: SecretValueClipboardsProps) => {
           className="flex items-center gap-2"
           data-testid={KEY_VALUES_TEST_IDS.pairItem(index)}
         >
-          <OdsFormField
+          <FormField
             className="flex w-full flex-col space-y-1"
             data-testid={KEY_VALUES_TEST_IDS.pairItemKey(index)}
           >
-            <label htmlFor={item.key} slot="label">
-              {t('key')}
-            </label>
+            <FormFieldLabel>{t('key')}</FormFieldLabel>
             <Clipboard value={item.key} />
-          </OdsFormField>
-          <OdsFormField
+          </FormField>
+          <FormField
             className="flex w-full flex-col space-y-1"
             data-testid={KEY_VALUES_TEST_IDS.pairItemValue(index)}
           >
-            <label htmlFor={item.value} slot="label">
-              {t('value')}
-            </label>
+            <FormFieldLabel>{t('value')}</FormFieldLabel>
             <Clipboard value={item.value} />
-          </OdsFormField>
+          </FormField>
         </div>
       ))}
     </div>

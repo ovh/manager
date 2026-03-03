@@ -25,7 +25,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   const module: typeof import('react-router-dom') = await importOriginal();
   return {
     ...module,
-    useHref: vi.fn((link: string) => link),
     useParams: () => ({ okmsId: OKMS_OK_MOCK.id }),
   };
 });
@@ -80,10 +79,11 @@ describe('ShowValueLink test suite', () => {
         expect(link).not.toHaveAttribute('is-disabled');
       });
       expect(link).toHaveTextContent(labels.secretManager.reveal_secret);
-      expect(link).toHaveAttribute(
-        'href',
-        SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(OKMS_OK_MOCK.id, SECRET_MOCK.path),
+      const expectedHref = SECRET_MANAGER_ROUTES_URLS.secretSecretValueDrawer(
+        OKMS_OK_MOCK.id,
+        SECRET_MOCK.path,
       );
+      expect(link.getAttribute('to')).toBe(expectedHref);
     });
   });
 });

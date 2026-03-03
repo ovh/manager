@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -52,4 +54,9 @@ export const addShellContextProvider = async (providers: TestProvider[]) => {
   providers.push(({ children }) => (
     <ShellContext.Provider value={context}>{children}</ShellContext.Provider>
   ));
+};
+
+// Required for Link components to work
+export const addRouterProvider = (providers: TestProvider[]) => {
+  providers.push(({ children }) => <MemoryRouter>{children}</MemoryRouter>);
 };

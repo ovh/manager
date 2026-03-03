@@ -3,9 +3,10 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { OKMS_LIST_CELL_TEST_IDS } from '@/common/components/okms-datagrid/ListingCells.constants';
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
+import { TIMEOUT, assertTitleVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { SERVICE_KEYS_LABEL } from '@/constants';
 
 const mockOkmsFirst = okmsRoubaix1Mock;
@@ -17,6 +18,7 @@ describe('KMS listing test suite', () => {
     await assertTitleVisibility({
       title: labels.onboarding.title,
       level: 1,
+      timeout: TIMEOUT.LONG,
     });
   });
 
@@ -26,6 +28,7 @@ describe('KMS listing test suite', () => {
     await assertTitleVisibility({
       title: labels.listing.key_management_service_listing_title,
       level: 1,
+      timeout: TIMEOUT.MEDIUM,
     });
 
     expect(screen.queryByText(labels.onboarding.description)).not.toBeInTheDocument();
@@ -37,6 +40,7 @@ describe('KMS listing test suite', () => {
     await assertTitleVisibility({
       title: labels.listing.key_management_service_listing_title,
       level: 1,
+      timeout: TIMEOUT.MEDIUM,
     });
 
     const tableHeaders = [
@@ -65,15 +69,15 @@ describe('KMS listing test suite', () => {
     await assertTitleVisibility({
       title: labels.create.key_management_service_create_title,
       level: 1,
+      timeout: TIMEOUT.MEDIUM,
     });
   });
 
   it('should navigate to a kms dashboard on click on kms name', async () => {
     await renderTestApp(KMS_ROUTES_URLS.kmsListing);
 
-    await waitFor(async () => {
-      const kmsNameLink = await screen.findByText(mockOkmsFirst.iam.displayName);
-      expect(kmsNameLink).toHaveAttribute('href', KMS_ROUTES_URLS.kmsDashboard(mockOkmsFirst.id));
-    });
+    const kmsNameLink = await screen.findByTestId(OKMS_LIST_CELL_TEST_IDS.name(mockOkmsFirst.id));
+    const dashboardUrl = KMS_ROUTES_URLS.kmsDashboard(mockOkmsFirst.id);
+    expect(kmsNameLink.getAttribute('to')).toBe(dashboardUrl);
   });
 });

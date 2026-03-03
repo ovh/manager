@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Badge, BadgeColor, BadgeProp } from '@ovhcloud/ods-react';
 
-import { ResourceStatus } from '@ovh-ux/manager-react-components';
+import { ResourceStatus } from '@ovh-ux/muk';
 
 const colors: Record<ResourceStatus, BadgeColor> = {
   active: 'success',

@@ -1,7 +1,6 @@
 import {
   OkmsKeyTypes,
   OkmsServiceKey,
-  OkmsServiceKeyOperations,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
 
@@ -9,7 +8,7 @@ export const serviceKeyMock1: OkmsServiceKey = {
   name: 'ServiceKeyTest',
   createdAt: '2024-10-23T15:24:23Z',
   id: '8f8a75b0-3bde-4b8d-a8c0-928ba2ceb8ed',
-  operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify],
+  operations: ['sign', 'verify'],
   state: OkmsServiceKeyState.active,
   type: OkmsKeyTypes.EC,
   curve: 'P-256',
@@ -26,7 +25,7 @@ export const createdKeyMock: OkmsServiceKey = {
   name: 'New Key',
   createdAt: '2024-10-23T15:24:23Z',
   id: '4575b0-3bde-4b8d-a8c0-928ba2ceb8ed',
-  operations: [OkmsServiceKeyOperations.sign, OkmsServiceKeyOperations.verify],
+  operations: ['sign', 'verify'],
   state: OkmsServiceKeyState.active,
   type: OkmsKeyTypes.EC,
   curve: 'P-256',

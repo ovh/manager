@@ -7,9 +7,11 @@ import { useTranslation } from 'react-i18next';
 import { Divider, Icon, Popover, PopoverContent, PopoverTrigger, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
 import { InternalLink } from '@/common/components/link/Link.component';
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRegionSelector } from '@/modules/secret-manager/hooks/useRegionSelector';
 
 import { REGION_SELECTOR_TEST_IDS } from './regionSelector.constants';
@@ -19,6 +21,7 @@ export const RegionSelector = () => {
   const { t } = useTranslation(NAMESPACES.REGION);
   const { translateRegionName, translateGeographyName } = useRegionName();
   const [isOpen, setIsOpen] = useState(false);
+  const { trackClick } = useOkmsTracking();
 
   // Render nothing if there is an error
   // useRegionSelector will send an error notification
@@ -48,10 +51,7 @@ export const RegionSelector = () => {
             {geographyGroups.map((geographyGroup, index) => (
               <Fragment key={geographyGroup.continentCode}>
                 <div className="flex flex-col gap-4">
-                  <Text
-                    preset="caption"
-                    className="[&::part(text)]:text-[var(--ods-color-heading)]"
-                  >
+                  <Text preset="caption" className="text-[var(--ods-color-heading)]">
                     {translateGeographyName(geographyGroup.continentCode)}
                   </Text>
                   {geographyGroup.regions.map((link) => (
@@ -64,7 +64,15 @@ export const RegionSelector = () => {
                       )}
                       key={link.region}
                       to={link.href}
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => {
+                        trackClick({
+                          location: PageLocation.page,
+                          buttonType: ButtonType.link,
+                          actionType: 'action',
+                          actions: ['select', 'region'],
+                        });
+                        setIsOpen(false);
+                      }}
                     >
                       {translateRegionName(link.region)}
                     </InternalLink>

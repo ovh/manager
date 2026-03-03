@@ -1,8 +1,7 @@
+import { ServiceKeyAction } from '@key-management-service/hooks/service-key/service-key.type';
 import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
-
-import { Icon } from '@ovhcloud/ods-react';
 
 import { Button } from '@ovh-ux/muk';
 
@@ -11,28 +10,40 @@ type ServiceKeyStateActionsProps = {
   okmsKey: OkmsServiceKey;
 };
 
+const STATE_ACTION_BUTTON_IDS: ServiceKeyAction['buttonId'][] = [
+  'service-key-deactivate_encryption_key',
+  'service-key-reactivate_encryption_key',
+  'service-key-delete_encryption_key',
+];
+
 const ServiceKeyStateActions = ({ okms, okmsKey }: ServiceKeyStateActionsProps) => {
   const actionList = useServiceKeyActionsList(okms, okmsKey, 'detail');
+  const stateActions = actionList.filter((action) =>
+    STATE_ACTION_BUTTON_IDS.includes(action.buttonId),
+  );
+
+  if (stateActions.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="mt-2 flex max-w-fit flex-col justify-start gap-3">
-      {actionList.map((action) => (
+    <div className="mt-3 space-y-3">
+      {stateActions.map((action) => (
         <Button
-          key={`action-list-${action.name}`}
-          id={`action-list-${action.name}`}
+          className="block"
+          key={action.buttonId}
+          id={action.buttonId}
+          data-testid={action.buttonId}
           color={action.color}
           variant="ghost"
           size="sm"
-          disabled={action.disabled}
-          loading={action.loading}
+          disabled={action.isDisabled}
+          loading={action.isLoading}
           iamActions={action.iamActions}
           urn={action.urn}
           onClick={action.onClick}
         >
-          <>
-            {action.label}
-            <Icon name={action.icon} />
-          </>
+          {action.label}
         </Button>
       ))}
     </div>

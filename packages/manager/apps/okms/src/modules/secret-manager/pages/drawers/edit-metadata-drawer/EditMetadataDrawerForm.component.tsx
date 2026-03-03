@@ -108,6 +108,7 @@ export const EditMetadataDrawerForm = ({
               {updateError?.response?.data?.message || t('error_update_settings')}
             </Message>
           )}
+          <Message dismissible={false}>{t('secret_settings_explanation')}</Message>
           <SecretDeactivateVersionAfterFormField name="deactivateVersionAfter" control={control} />
           <SecretMaxVersionsFormField name="maxVersions" control={control} okmsId={okmsId} />
           <SecretCasRequiredFormField name="casRequired" control={control} okmsId={okmsId} />

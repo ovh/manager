@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsSwitch, OdsSwitchItem } from '@ovhcloud/ods-components/react';
+import { ButtonGroup, ButtonGroupItem, ButtonGroupValueChangeDetail } from '@ovhcloud/ods-react';
 
 import { SECRET_VALUE_TOGGLE_TEST_IDS } from './secretValueToggle.constants';
 
@@ -16,24 +16,27 @@ type SecretValueToggleProps = {
 export const SecretValueToggle = ({ state, onChange }: SecretValueToggleProps) => {
   const { t } = useTranslation(['secret-manager']);
 
+  const handleValueChange = (e: ButtonGroupValueChangeDetail) => {
+    onChange(e.value[0] as SecretValueToggleState);
+  };
+
   return (
     <div>
-      <OdsSwitch data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle} name="secretValueType">
-        <OdsSwitchItem
+      <ButtonGroup
+        data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.toggle}
+        value={[state]}
+        onValueChange={handleValueChange}
+      >
+        <ButtonGroupItem
           data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.keyValueToggle}
-          isChecked={state === 'key-value'}
-          onClick={() => onChange('key-value')}
+          value={'key-value'}
         >
           {t('key_value')}
-        </OdsSwitchItem>
-        <OdsSwitchItem
-          data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle}
-          isChecked={state === 'json'}
-          onClick={() => onChange('json')}
-        >
+        </ButtonGroupItem>
+        <ButtonGroupItem data-testid={SECRET_VALUE_TOGGLE_TEST_IDS.jsonToggle} value={'json'}>
           {JSON_LABEL}
-        </OdsSwitchItem>
-      </OdsSwitch>
+        </ButtonGroupItem>
+      </ButtonGroup>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Message, Skeleton } from '@ovhcloud/ods-react';
 
-import { OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary, Price } from '@ovh-ux/muk';
 
 import { useOkmsPricing } from '@/common/components/price-tile/useOkmsPricing';
 import { useShellContext } from '@/common/hooks/useShellContext';

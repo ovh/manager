@@ -1,4 +1,4 @@
-import { useHref, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   SECRET_MANAGER_ROUTES_URLS,
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
 
-import { MukLink, MukLinkType } from '@/common/components/link/Link.component';
+import { InternalLink, LinkType } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 export const SecretFormBackLink = () => {
@@ -23,12 +23,10 @@ export const SecretFormBackLink = () => {
     ? SECRET_MANAGER_ROUTES_URLS.secretList(backOkmsId)
     : SECRET_MANAGER_ROUTES_URLS.root;
 
-  const backLink = useHref(url);
-
   return (
-    <MukLink
-      type={MukLinkType.back}
-      href={backLink}
+    <InternalLink
+      type={LinkType.back}
+      to={url}
       onClick={() => {
         trackClick({
           location: PageLocation.funnel,
@@ -39,6 +37,6 @@ export const SecretFormBackLink = () => {
       }}
     >
       {t('back', { ns: NAMESPACES.ACTIONS })}
-    </MukLink>
+    </InternalLink>
   );
 };

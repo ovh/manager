@@ -11,7 +11,7 @@ import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
   TIMEOUT,
   assertDrawerVisibility,
-  changeOdsInputValueByTestId,
+  changeInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = okmsRoubaix1Mock.id;
@@ -83,7 +83,7 @@ describe('Edit Metadata Drawer page test suite', () => {
     const { user } = await renderPage();
 
     // Change the data input value
-    await changeOdsInputValueByTestId(
+    await changeInputValueByTestId(
       SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
       '99d99h99m99s',
     );

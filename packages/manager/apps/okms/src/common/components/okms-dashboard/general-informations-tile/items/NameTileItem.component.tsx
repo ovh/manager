@@ -12,6 +12,8 @@ import { Button, Tile } from '@ovh-ux/muk';
 
 import { ProductType, useProductType } from '@/common/hooks/useProductType';
 
+import { GENERAL_INFORMATIONS_TILE_TEST_IDS } from '../GeneralInformationsTile.constants';
+
 const useRenameLink = (okms: OKMS) => {
   const productType = useProductType();
 
@@ -38,7 +40,11 @@ export const NameTileItem = ({ okms }: NameTileItemProps) => {
       <Tile.Item.Term label={t('display_name')} />
       <Tile.Item.Description>
         <div className="flex items-center justify-between gap-2">
-          <Text preset="span" className="break-all">
+          <Text
+            preset="span"
+            className="break-all"
+            data-testid={GENERAL_INFORMATIONS_TILE_TEST_IDS.name}
+          >
             {okms.iam.displayName}
           </Text>
           <div className="min-w-fit">

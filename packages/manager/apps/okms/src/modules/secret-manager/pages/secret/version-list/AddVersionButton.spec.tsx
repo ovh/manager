@@ -32,7 +32,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => mockNavigate,
-    useHref: vi.fn((link: string) => link),
   };
 });
 

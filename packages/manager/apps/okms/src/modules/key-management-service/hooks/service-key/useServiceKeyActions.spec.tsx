@@ -4,20 +4,32 @@ import {
   OkmsServiceKey,
   OkmsServiceKeyState,
 } from '@key-management-service/types/okmsServiceKey.type';
-import { describe, expect, it, vi } from 'vitest';
+import { renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { renderHookWithClient } from '@/common/utils/tests/testUtils';
+import { BUTTON_COLOR } from '@ovhcloud/ods-react';
 
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+
+import { ServiceKeyAction } from './service-key.type';
 import { useServiceKeyActionsList } from './useServiceKeyActionsList';
+import { useServiceKeyDownloadActions } from './useServiceKeyDownloadActions';
 
 const okmsItemMock = okmsRoubaix1Mock;
+const mockedDownloadAction: ServiceKeyAction = {
+  buttonId: 'service-key-download_encryption_key_pem',
+  label: 'mocked-download-action-label',
+  color: BUTTON_COLOR.primary,
+  isDisabled: false,
+  onClick: vi.fn(),
+};
 
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn(() => ({ t: vi.fn((key: string) => key) })),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const mod = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('@ovh-ux/muk')>();
 
   return {
     ...mod,
@@ -28,10 +40,6 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     }),
   };
 });
-
-vi.mock('react-router-dom', () => ({
-  useNavigate: vi.fn(() => vi.fn()),
-}));
 
 vi.mock('@key-management-service/data/hooks/useDeleteOkmsServiceKey', () => ({
   useDeleteOkmsServiceKey: vi.fn(() => ({
@@ -47,30 +55,14 @@ vi.mock('@key-management-service/data/hooks/useUpdateOkmsServiceKey', () => ({
   })),
 }));
 
-vi.mock('./useServiceKeyDownload', () => ({
-  useServiceKeyDownload: vi.fn(({ keyType, keyState }) => {
-    // Oct keys are not downloadable
-    if (keyType === OkmsKeyTypes.oct) {
-      return undefined;
-    }
-    return {
-      name: 'download_encryption_key',
-      label:
-        'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-      loading: false,
-      disabled: keyState !== OkmsServiceKeyState.active,
-      icon: 'download',
-      color: 'primary',
-      onClick: vi.fn(),
-    };
-  }),
+vi.mock('./useServiceKeyDownloadActions', () => ({
+  useServiceKeyDownloadActions: vi.fn(),
 }));
 
 describe('useServiceKeyActionsList', () => {
   const commonKeyProps: Omit<OkmsServiceKey, 'type' | 'state'> = {
     id: 'testKeyId',
     name: 'testKeyName',
-    keys: [],
     createdAt: '2023-01-01T00:00:00Z',
     operations: [],
     iam: {
@@ -79,6 +71,11 @@ describe('useServiceKeyActionsList', () => {
       displayName: 'ServiceKeyTest',
     },
   };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(useServiceKeyDownloadActions).mockReturnValue([mockedDownloadAction]);
+  });
 
   const useCases = [
     {
@@ -89,27 +86,19 @@ describe('useServiceKeyActionsList', () => {
         state: OkmsServiceKeyState.active,
       },
       expectedActions: [
+        // Shows deactivate action.
         {
-          name: 'download_encryption_key',
-          label:
-            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
-          disabled: false,
-          icon: 'download',
-        },
-        {
-          name: 'deactivate_encryption_key',
+          buttonId: 'service-key-deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: 'primary',
-          icon: 'lock-close',
-        },
+          color: BUTTON_COLOR.primary,
+        } satisfies Partial<ServiceKeyAction>,
+        // Delete stays disabled.
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
-          disabled: true,
-          icon: 'trash',
-        },
+          color: BUTTON_COLOR.primary,
+          isDisabled: true,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -120,27 +109,19 @@ describe('useServiceKeyActionsList', () => {
         state: OkmsServiceKeyState.deactivated,
       },
       expectedActions: [
+        // Shows reactivate action.
         {
-          name: 'download_encryption_key',
-          label:
-            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
-          disabled: true,
-          icon: 'download',
-        },
-        {
-          name: 'reactivate_encryption_key',
+          buttonId: 'service-key-reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: 'primary',
-          icon: 'refresh',
-        },
+          color: BUTTON_COLOR.primary,
+        } satisfies Partial<ServiceKeyAction>,
+        // Delete is enabled.
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
-          disabled: false,
-          icon: 'trash',
-        },
+          color: BUTTON_COLOR.primary,
+          isDisabled: false,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -151,27 +132,19 @@ describe('useServiceKeyActionsList', () => {
         state: OkmsServiceKeyState.compromised,
       },
       expectedActions: [
+        // Shows reactivate action.
         {
-          name: 'download_encryption_key',
-          label:
-            'key-management-service/serviceKeys:key_management_service_service-keys_link_download_key',
-          color: 'primary',
-          disabled: true,
-          icon: 'download',
-        },
-        {
-          name: 'reactivate_encryption_key',
+          buttonId: 'service-key-reactivate_encryption_key',
           label: 'key_management_service_service-keys_link_reactivate_key',
-          color: 'primary',
-          icon: 'refresh',
-        },
+          color: BUTTON_COLOR.primary,
+        } satisfies Partial<ServiceKeyAction>,
+        // Delete is enabled.
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
-          disabled: false,
-          icon: 'trash',
-        },
+          color: BUTTON_COLOR.primary,
+          isDisabled: false,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
     {
@@ -191,31 +164,43 @@ describe('useServiceKeyActionsList', () => {
         state: OkmsServiceKeyState.active,
       },
       expectedActions: [
+        // Shows deactivate action.
         {
-          name: 'deactivate_encryption_key',
+          buttonId: 'service-key-deactivate_encryption_key',
           label: 'key_management_service_service-keys_link_deactivate_key',
-          color: 'primary',
-          icon: 'lock-close',
-        },
+          color: BUTTON_COLOR.primary,
+        } satisfies Partial<ServiceKeyAction>,
+        // Delete stays disabled.
         {
-          name: 'delete_encryption_key',
+          buttonId: 'service-key-delete_encryption_key',
           label: 'key_management_service_service-keys_link_delete_key',
-          color: 'primary',
-          disabled: true,
-          icon: 'trash',
-        },
+          color: BUTTON_COLOR.primary,
+          isDisabled: true,
+        } satisfies Partial<ServiceKeyAction>,
       ],
     },
   ];
 
   useCases.forEach(({ description, okmsKey, expectedActions }) => {
-    it(description, () => {
-      const { result } = renderHookWithClient(() =>
-        useServiceKeyActionsList(okmsItemMock, okmsKey, 'list'),
-      );
+    it(description, async () => {
+      const wrapper = await testWrapperBuilder().withRouterContext().build();
+      const { result } = renderHook(() => useServiceKeyActionsList(okmsItemMock, okmsKey, 'list'), {
+        wrapper,
+      });
+
+      expect(useServiceKeyDownloadActions).toHaveBeenCalledWith({
+        okmsId: okmsItemMock.id,
+        keyId: okmsKey.id,
+        keyType: okmsKey.type,
+        keyState: okmsKey.state,
+        page: 'list',
+      });
+
       expect(result.current).toEqual(
         expect.arrayContaining(
-          expectedActions.map((action) => expect.objectContaining(action) as unknown),
+          [mockedDownloadAction, ...expectedActions].map(
+            (action) => expect.objectContaining(action) as unknown,
+          ),
         ),
       );
     });

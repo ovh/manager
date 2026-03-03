@@ -1,6 +1,6 @@
 import { SecretVersion } from '@secret-manager/types/secret.type';
 
-import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { useDataApi } from '@ovh-ux/muk';
 
 import { secretVersionsQueryKeys } from '../api/secretVersions';
 
@@ -8,19 +8,20 @@ type UseSecretVersionListParams = {
   okmsId: string;
   path: string;
   pageSize?: number;
-  enabled?: boolean;
 };
 
 export const useSecretVersionList = ({
   okmsId,
   path,
   pageSize = 25,
-  enabled = true,
 }: UseSecretVersionListParams) => {
-  return useResourcesIcebergV2<SecretVersion>({
+  return useDataApi<SecretVersion>({
+    iceberg: true,
+    disableCache: true,
+    enabled: true,
+    version: 'v2',
     route: `okms/resource/${okmsId}/secret/${encodeURIComponent(path)}/version`,
-    queryKey: secretVersionsQueryKeys.list(okmsId, path),
+    cacheKey: secretVersionsQueryKeys.list(okmsId, path),
     pageSize,
-    enabled,
   });
 };

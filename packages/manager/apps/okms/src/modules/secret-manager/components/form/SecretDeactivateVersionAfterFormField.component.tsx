@@ -1,18 +1,20 @@
-import { UseControllerProps, useController } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField, OdsInput } from '@ovhcloud/ods-components/react';
+import {
+  FormField,
+  FormFieldError,
+  FormFieldHelper,
+  FormFieldLabel,
+  Input,
+} from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
 import { HelpIconWithTooltip } from '@/common/components/help-icon-with-tooltip/HelpIconWithTooltip.component';
 
 import { SECRET_FORM_FIELD_TEST_IDS } from './form.constants';
 
-type FormFieldInput = {
-  deactivateVersionAfter?: string;
-};
-
-export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>({
+export const SecretDeactivateVersionAfterFormField = <T extends FieldValues>({
   name,
   control,
 }: UseControllerProps<T>) => {
@@ -20,22 +22,24 @@ export const SecretDeactivateVersionAfterFormField = <T extends FormFieldInput>(
   const { field, fieldState } = useController({ name, control });
 
   return (
-    <OdsFormField error={fieldState.error?.message}>
-      <label slot="label" className="relative mb-1 flex items-center gap-2">
+    <FormField invalid={!!fieldState.error}>
+      <FormFieldLabel className="flex items-center gap-2">
         {t('deactivate_version_after')}
         <HelpIconWithTooltip label={t('form_tooltip_deactivate_version_after')} />
-      </label>
-      <OdsInput
+      </FormFieldLabel>
+      <Input
         id={field.name}
         name={field.name}
-        value={field.value?.toString()}
-        onOdsBlur={field.onBlur}
-        onOdsChange={field.onChange}
+        value={field.value}
+        onBlur={field.onBlur}
+        onChange={field.onChange}
         data-testid={SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER}
+        className="bg-white"
       />
-      <Text slot="helper" preset="caption">
-        {t('form_helper_deactivate_version_after')}
-      </Text>
-    </OdsFormField>
+      <FormFieldHelper>
+        <Text preset="caption">{t('form_helper_deactivate_version_after')}</Text>
+      </FormFieldHelper>
+      {fieldState.error?.message && <FormFieldError>{fieldState.error?.message}</FormFieldError>}
+    </FormField>
   );
 };

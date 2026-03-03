@@ -4,19 +4,21 @@ import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { kmsServicesMock } from '@key-management-service/mocks/services/services.mock';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
 import { OKMS } from '@key-management-service/types/okms.type';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
 import {
+  TIMEOUT,
   assertModalVisibility,
   assertTitleVisibility,
-  changeOdsInputValueByTestId,
+  changeInputValueByTestId,
 } from '@/common/utils/tests/uiTestHelpers';
 
-const WAIT_TIMEOUT = { timeout: 5000 };
+const WAIT_TIMEOUT = { timeout: TIMEOUT.MEDIUM };
+
 const mockOkmsItem: OKMS = {
   ...okmsRoubaix1Mock,
   iam: {
@@ -35,35 +37,46 @@ const renderPage = async (options: { fromCSR: boolean }) => {
     fromCSR: options.fromCSR,
   });
 
-  // Check title
+  // Check title (long timeout: lazy-loaded page + useOkmsById must complete)
   await assertTitleVisibility({
     title: labels.credentials.key_management_service_credential_create_title,
     level: 1,
+    timeout: TIMEOUT.LONG,
   });
 
   return { container };
 };
 
-const testStep1Content = () => {
+const testStep1Content = async () => {
   const inputName = screen.getByTestId('input-name');
   const inputDescription = screen.getByTestId('input-description');
   const inputValidity = screen.getByTestId('input-validity-period');
-  const inputMethodKey = screen.getByTestId('radio-method-key');
-  const inputMethodNoKey = screen.getByTestId('radio-method-no-key');
-  const inputCertificateTypeEC = screen.getByTestId('radio-certificate-type-ec');
-  const inputCertificateTypeRSA = screen.getByTestId('radio-certificate-type-rsa');
+  const radioMethodKeyWrapper = screen.getByTestId('radio-method-key');
+  const radioMethodNoKeyWrapper = screen.getByTestId('radio-method-no-key');
+  const radioCertificateTypeECWrapper = screen.getByTestId('radio-certificate-type-ec');
+  const radioCertificateTypeRSAWrapper = screen.getByTestId('radio-certificate-type-rsa');
 
   expect(inputName).toBeInTheDocument();
   expect(inputDescription).toBeInTheDocument();
   expect(inputValidity).toBeInTheDocument();
-  expect(inputMethodKey).toBeInTheDocument();
-  expect(inputMethodKey).toHaveAttribute('is-checked', 'false');
-  expect(inputMethodNoKey).toBeInTheDocument();
-  expect(inputMethodNoKey).toHaveAttribute('is-checked', 'true');
-  expect(inputCertificateTypeEC).toBeInTheDocument();
-  expect(inputCertificateTypeEC).toHaveAttribute('is-checked', 'true');
-  expect(inputCertificateTypeRSA).toBeInTheDocument();
-  expect(inputCertificateTypeRSA).toHaveAttribute('is-checked', 'false');
+  expect(radioMethodKeyWrapper).toBeInTheDocument();
+  expect(radioMethodNoKeyWrapper).toBeInTheDocument();
+  expect(radioCertificateTypeECWrapper).toBeInTheDocument();
+  expect(radioCertificateTypeRSAWrapper).toBeInTheDocument();
+
+  // Get the radio input elements within the Radio components
+  const inputMethodKey = within(radioMethodKeyWrapper).getByRole('radio');
+  const inputMethodNoKey = within(radioMethodNoKeyWrapper).getByRole('radio');
+  const inputCertificateTypeEC = within(radioCertificateTypeECWrapper).getByRole('radio');
+  const inputCertificateTypeRSA = within(radioCertificateTypeRSAWrapper).getByRole('radio');
+
+  // Check checked state (wait for useEffect to set default certificateType to ECDSA)
+  expect(inputMethodKey).not.toBeChecked();
+  expect(inputMethodNoKey).toBeChecked();
+  await waitFor(() => {
+    expect(inputCertificateTypeEC).toBeChecked();
+    expect(inputCertificateTypeRSA).not.toBeChecked();
+  }, WAIT_TIMEOUT);
 
   const buttonNextStep = screen.getByRole('button', {
     name: labels.credentials.key_management_service_credential_create_cta_add_identities,
@@ -109,12 +122,12 @@ const testStep2Content = async () => {
 
 const testStep2ContentAddUsersModal = async (container: HTMLElement) => {
   // Wait for modal to open
-  await assertModalVisibility({ role: 'dialog' });
+  await assertModalVisibility();
 
   // Check modal title
   await assertTitleVisibility({
     title: labels.credentials.key_management_service_credentials_identity_modal_user_list_headline,
-    level: 3,
+    level: 4,
   });
 
   // Wait for spinner to disappear
@@ -180,10 +193,10 @@ const assertCredentialListPageVisibility = async () => {
 
 const testStep1 = async (user: UserEvent) => {
   // Check and get content of step 1
-  const { buttonNextStep } = testStep1Content();
+  const { buttonNextStep } = await testStep1Content();
 
   // Fill the name
-  await changeOdsInputValueByTestId('input-name', 'test-value-input');
+  await changeInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -199,10 +212,10 @@ const testStep1 = async (user: UserEvent) => {
 const testStep1CustomCsr = async (user: UserEvent) => {
   // Check and get content of step 1
   const { buttonNextStep, inputMethodKey, inputCertificateTypeEC, inputCertificateTypeRSA } =
-    testStep1Content();
+    await testStep1Content();
 
   // Fill the name
-  await changeOdsInputValueByTestId('input-name', 'test-value-input');
+  await changeInputValueByTestId('input-name', 'test-value-input');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -224,7 +237,7 @@ const testStep1CustomCsr = async (user: UserEvent) => {
   });
 
   // Fill the csr
-  await changeOdsInputValueByTestId('textarea-csr', 'custom-csr-value');
+  await changeInputValueByTestId('textarea-csr', 'custom-csr-value');
 
   // Check submit button is enabled
   await waitFor(() => {
@@ -260,7 +273,7 @@ const testStep2 = async (container: HTMLElement, user: UserEvent) => {
   });
 
   // Wait for modal to close
-  await assertModalVisibility({ role: 'dialog', state: 'hidden' });
+  await assertModalVisibility({ state: 'hidden' });
 
   // Check user1 is added to the list
   expect(await screen.findByText(mockIdentityUser.login, {}, WAIT_TIMEOUT)).toBeInTheDocument();
@@ -302,7 +315,7 @@ const testStep3 = async (user: UserEvent) => {
 describe('Create Credentials Page test suite', () => {
   it('should display the page correctly', async () => {
     await renderPage({ fromCSR: false });
-    const { buttonNextStep } = testStep1Content();
+    const { buttonNextStep } = await testStep1Content();
     expect(buttonNextStep).toBeDisabled();
   });
 

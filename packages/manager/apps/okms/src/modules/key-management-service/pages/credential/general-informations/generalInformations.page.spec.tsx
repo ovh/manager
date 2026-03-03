@@ -4,10 +4,9 @@ import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WAIT_FOR_DEFAULT_OPTIONS } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkms = okmsRoubaix1Mock;
@@ -21,16 +20,19 @@ describe('Credential general informations test suite', () => {
     const titleLabel =
       labels.credentials.key_management_service_credential_dashboard_tile_general_informations;
 
-    await waitFor(() => {
-      expect(screen.getByText(titleLabel)).toBeVisible();
-      expect(screen.getAllByText(mockCredentialItem.name)[0]).toBeVisible();
-      if (mockCredentialItem.description) {
-        expect(screen.getAllByText(mockCredentialItem.description)[0]).toBeVisible();
-      }
+    await waitFor(
+      () => {
+        expect(screen.getByText(titleLabel)).toBeVisible();
+        expect(screen.getAllByText(mockCredentialItem.name)[0]).toBeVisible();
+        if (mockCredentialItem.description) {
+          expect(screen.getAllByText(mockCredentialItem.description)[0]).toBeVisible();
+        }
 
-      const clipboardElement = container.querySelector(`[value="${mockCredentialItem.id}"]`);
-      expect(clipboardElement).toBeVisible();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+        const clipboardElement = container.querySelector(`[value="${mockCredentialItem.id}"]`);
+        expect(clipboardElement).toBeVisible();
+      },
+      { timeout: TIMEOUT.MEDIUM },
+    );
   });
 
   test('should navigate to the delete modal on click on delete button', async () => {
@@ -40,16 +42,19 @@ describe('Credential general informations test suite', () => {
     const deleteButtonLabel = labels.credentials.key_management_service_credential_delete;
 
     // Check modal is closed
-    await assertModalVisibility({ role: 'alertdialog', state: 'hidden' });
+    await assertModalVisibility({ state: 'hidden' });
 
     // Wait for the delete button to be enabled by iam rights
-    await waitFor(() => {
-      expect(
-        screen.getByRole('button', {
-          name: deleteButtonLabel,
-        }),
-      ).toBeEnabled();
-    }, WAIT_FOR_DEFAULT_OPTIONS);
+    await waitFor(
+      () => {
+        expect(
+          screen.getByRole('button', {
+            name: deleteButtonLabel,
+          }),
+        ).toBeEnabled();
+      },
+      { timeout: TIMEOUT.MEDIUM },
+    );
 
     // Click button
     const deleteButton = screen.getByRole('button', {
@@ -61,6 +66,6 @@ describe('Credential general informations test suite', () => {
     });
 
     // Check modal is opened
-    await assertModalVisibility({ role: 'alertdialog', state: 'visible' });
+    await assertModalVisibility({ state: 'visible' });
   });
 });

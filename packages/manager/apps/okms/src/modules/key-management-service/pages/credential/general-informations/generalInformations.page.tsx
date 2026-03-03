@@ -16,11 +16,12 @@ import { Tile } from '@ovh-ux/muk';
 import { Button, GridLayout } from '@ovh-ux/muk';
 import { Clipboard } from '@ovh-ux/muk';
 
-import { MukLink } from '@/common/components/link/Link.component';
+import { InternalLink } from '@/common/components/link/Link.component';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { useOutletCredential } from '../Credential.page';
+import { CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS } from './generalInformations.constants';
 
 const dateFormat: Intl.DateTimeFormatOptions = {
   hour12: false,
@@ -50,6 +51,7 @@ const CredentialGeneralInformations = () => {
               preset="span"
               // Temporary fix: wrap text without whitespace
               style={{ overflowWrap: 'anywhere' }}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.displayName}
             >
               {credential.name || credential.id}
             </Text>
@@ -58,7 +60,11 @@ const CredentialGeneralInformations = () => {
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_id')} />
           <Tile.Item.Description>
-            <Clipboard className="w-full" value={credential.id} />
+            <Clipboard
+              className="w-full"
+              value={credential.id}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.id}
+            />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
@@ -68,6 +74,7 @@ const CredentialGeneralInformations = () => {
               preset="span"
               // Temporary fix: wrap text without whitespace
               style={{ overflowWrap: 'anywhere' }}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.description}
             >
               {credential.description || ''}
             </Text>
@@ -76,31 +83,47 @@ const CredentialGeneralInformations = () => {
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_status')} />
           <Tile.Item.Description>
-            <CredentialStatus state={credential.status} />
+            <CredentialStatus
+              state={credential.status}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.status}
+            />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_type')} />
           <Tile.Item.Description>
-            <Text preset="span">{credential.certificateType}</Text>
+            <Text preset="span" data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.type}>
+              {credential.certificateType}
+            </Text>
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_origin')} />
           <Tile.Item.Description>
-            <CredentialCreationMethod fromCSR={credential.fromCSR} />
+            <CredentialCreationMethod
+              fromCSR={credential.fromCSR}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.origin}
+            />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_creation')} />
           <Tile.Item.Description>
-            <TileValueDate value={credential.createdAt} options={dateFormat} />
+            <TileValueDate
+              value={credential.createdAt}
+              options={dateFormat}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.creationDate}
+            />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_credential_dashboard_expiration')} />
           <Tile.Item.Description>
-            <TileValueDate value={credential.expiredAt} options={dateFormat} />
+            <TileValueDate
+              value={credential.expiredAt}
+              options={dateFormat}
+              data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.expirationDate}
+            />
           </Tile.Item.Description>
         </Tile.Item.Root>
         <Tile.Item.Root>
@@ -108,8 +131,8 @@ const CredentialGeneralInformations = () => {
           <Tile.Item.Description divider={false}>
             <div className="flex items-center gap-4">
               {downloadHref && (
-                <MukLink
-                  href={downloadHref}
+                <InternalLink
+                  to={downloadHref}
                   download={filename}
                   disabled={isDisabled}
                   onClick={() =>
@@ -120,13 +143,13 @@ const CredentialGeneralInformations = () => {
                       actions: ['download', 'credential'],
                     })
                   }
-                  label={t('key_management_service_credential_download')}
+                  data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.downloadButton}
                 >
                   <>
                     {t('key_management_service_credential_download')}
                     <Icon name="download" />
                   </>
-                </MukLink>
+                </InternalLink>
               )}
               <Button
                 id="deleteAccessCertificate"
@@ -144,6 +167,7 @@ const CredentialGeneralInformations = () => {
                   navigate(KMS_ROUTES_URIS.credentialDelete);
                 }}
                 urn={okms.iam.urn}
+                data-testid={CREDENTIAL_GENERAL_INFORMATIONS_TEST_IDS.deleteButton}
               >
                 {t('key_management_service_credential_delete')}
               </Button>

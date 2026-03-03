@@ -1,14 +1,14 @@
 import { SECRET_ACTIVATE_OKMS_TEST_IDS } from '@secret-manager/pages/create-secret/ActivateRegion.constants';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
 import { act, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { REGION_EU_WEST_RBX } from '@/common/mocks/catalog/catalog.mock';
 import { registerPendingOrder } from '@/common/store/pendingOkmsOrder';
-import { renderWithClient } from '@/common/utils/tests/testUtils';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 
 import { ActivateRegion, ActivateRegionParams } from './ActivateRegion.component';
 
@@ -22,8 +22,9 @@ vi.mock('react-router-dom', async (importOriginal) => {
   };
 });
 
-const renderActivateRegion = ({ selectedRegion }: ActivateRegionParams) => {
-  return renderWithClient(<ActivateRegion selectedRegion={selectedRegion} />);
+const renderActivateRegion = async ({ selectedRegion }: ActivateRegionParams) => {
+  const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
+  return render(<ActivateRegion selectedRegion={selectedRegion} />, { wrapper });
 };
 
 describe('ActivateRegion test suite', () => {
@@ -38,7 +39,7 @@ describe('ActivateRegion test suite', () => {
       const selectedRegionMock = REGION_EU_WEST_RBX;
 
       // WHEN
-      renderActivateRegion({
+      await renderActivateRegion({
         selectedRegion: selectedRegionMock,
       });
 
@@ -66,7 +67,7 @@ describe('ActivateRegion test suite', () => {
       registerPendingOrder(selectedRegionMock);
 
       // WHEN
-      renderActivateRegion({
+      await renderActivateRegion({
         selectedRegion: selectedRegionMock,
       });
 
@@ -74,7 +75,7 @@ describe('ActivateRegion test suite', () => {
       const Spinner = screen.queryByTestId(SECRET_ACTIVATE_OKMS_TEST_IDS.SPINNER);
       expect(Spinner).toBeVisible();
 
-      await assertTextVisibility('okms_activation_in_progress');
+      await assertTextVisibility(/Veuillez patienter pendant l'activation du domaine OKMS/i);
     });
   });
 });

@@ -63,9 +63,11 @@ export const createSecret = async ({ okmsId, data: postData }: CreateSecretParam
 
 // PUT Secret
 export type UpdateSecretBody = {
-  metadata?: Pick<
-    SecretMetadata,
-    'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
+  metadata?: Partial<
+    Pick<
+      SecretMetadata,
+      'casRequired' | 'customMetadata' | 'deactivateVersionAfter' | 'maxVersions'
+    >
   >;
   version?: SecretVersionDataField;
 };

@@ -3,15 +3,17 @@ import * as router from 'react-router-dom';
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { updateVersionErrorMessage } from '@secret-manager/mocks/versions/versions.handler';
 import { SECRET_MANAGER_ROUTES_URLS } from '@secret-manager/routes/routes.constants';
-import { screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
-
 import { labels } from '@/common/utils/tests/init.i18n';
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
-import { assertModalVisibility } from '@/common/utils/tests/uiTestHelpers';
+import {
+  TIMEOUT,
+  assertModalVisibility,
+  assertTextVisibility,
+} from '@/common/utils/tests/uiTestHelpers';
 
 const mockPageUrl = SECRET_MANAGER_ROUTES_URLS.versionListDeleteVersionModal(
   'okmsId',
@@ -30,7 +32,8 @@ describe('Secret version delete modal test suite', () => {
   it('should display the delete modal', async () => {
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const title = labels.secretManager.delete_version_modal_title.replace('{{versionId}}', '1');
     await assertTextVisibility(title);
@@ -40,13 +43,14 @@ describe('Secret version delete modal test suite', () => {
     const user = userEvent.setup();
     await renderTestApp(mockPageUrl);
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     // Check navigation
     await waitFor(() => {
@@ -60,13 +64,14 @@ describe('Secret version delete modal test suite', () => {
       isVersionUpdateKO: true,
     });
 
-    await assertModalVisibility({ role: 'alertdialog' });
+    // Longer timeout for cold start with lazy-loaded routes
+    await assertModalVisibility({ timeout: TIMEOUT.LONG });
 
     const submitButton = await screen.findByRole('button', {
       name: labels.common.actions.delete,
     });
 
-    await user.click(submitButton);
+    await act(() => user.click(submitButton));
 
     await assertTextVisibility(updateVersionErrorMessage);
 

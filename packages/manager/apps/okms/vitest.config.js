@@ -14,9 +14,10 @@ export default mergeConfig(
   sharedConfig,
   createConfig({
     test: {
+      retry: 0, // We don't want to retry tests in local development
       setupFiles: './src/setupTests.tsx',
       deps: {
-        inline: ['@ovh-ux/logs-to-customer', '@ovhcloud/ods-components', ...INLINE_DEPS],
+        inline: ['@ovh-ux/logs-to-customer', ...INLINE_DEPS],
       },
       coverage: {
         exclude: [
@@ -31,7 +32,7 @@ export default mergeConfig(
       },
     },
     resolve: {
-      dedupe: [...defaultDedupedDependencies],
+      dedupe: ['zustand', '@ovh-ux/muk', ...defaultDedupedDependencies],
       alias: {
         '@': path.resolve(__dirname, 'src'),
         '@secret-manager': path.resolve(__dirname, 'src/modules/secret-manager'),

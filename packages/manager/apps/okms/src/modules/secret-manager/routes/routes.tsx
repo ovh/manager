@@ -60,6 +60,12 @@ const CreateVersionDrawer = React.lazy(
 const EditMetadataDrawer = React.lazy(
   () => import('@secret-manager/pages/drawers/edit-metadata-drawer/EditMetadataDrawer.page'),
 );
+const EditCustomMetadataDrawer = React.lazy(
+  () =>
+    import(
+      '@secret-manager/pages/drawers/edit-custom-metadata-drawer/EditCustomMetadataDrawer.page'
+    ),
+);
 const DeleteVersionModal = React.lazy(
   () => import('@secret-manager/pages/secret/version-list/delete/DeleteSecretVersionModal.page'),
 );
@@ -86,7 +92,7 @@ export default (
       <Route
         path={`${SECRET_MANAGER_ROUTES_URIS.order}/${SECRET_MANAGER_URL_PARAMS.region}`}
         Component={OrderOkmsModal}
-        handle={getRouteTracking(['order', 'okms'], PageType.popup)}
+        handle={getRouteTracking(['enable', 'region'], PageType.popup)}
       />
     </Route>
     <Route
@@ -164,6 +170,11 @@ export default (
             path={SECRET_MANAGER_ROUTES_URIS.editMetadata}
             Component={EditMetadataDrawer}
             handle={getRouteTracking(['edit', 'secret', 'metadata'], PageType.popup)}
+          />
+          <Route
+            path={SECRET_MANAGER_ROUTES_URIS.editCustomMetadata}
+            Component={EditCustomMetadataDrawer}
+            handle={getRouteTracking(['edit', 'secret', 'custom', 'metadata'], PageType.popup)}
           />
           <Route
             path={SECRET_MANAGER_ROUTES_URIS.delete}

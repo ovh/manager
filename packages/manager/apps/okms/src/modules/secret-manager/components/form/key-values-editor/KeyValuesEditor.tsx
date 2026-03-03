@@ -7,25 +7,25 @@ import {
   keyValuePairsToString,
   stringToKeyValuePairs,
 } from '@secret-manager/utils/key-value/keyValue';
-import { UseControllerProps, useController, useFormContext } from 'react-hook-form';
+import { FieldValues, UseControllerProps, useController, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { OdsFormField } from '@ovhcloud/ods-components/react';
-import { Icon } from '@ovhcloud/ods-react';
+import { Icon, Text } from '@ovhcloud/ods-react';
 
 import { Button } from '@ovh-ux/muk';
 
 import { KeyValuesEditorItem } from './KeyValuesEditorItem';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
-export type FormFieldInput = {
-  data: string;
+type KeyValuesEditorProps<T extends FieldValues> = UseControllerProps<T> & {
+  allowDeleteLastItem?: boolean;
 };
 
-export const KeyValuesEditor = <T extends FormFieldInput>({
+export const KeyValuesEditor = <T extends FieldValues>({
   name,
   control,
-}: UseControllerProps<T>) => {
+  allowDeleteLastItem = false,
+}: KeyValuesEditorProps<T>) => {
   const { t } = useTranslation(['secret-manager']);
   const { field, fieldState } = useController({ name, control });
   const { setError, clearErrors } = useFormContext(); // Requires a form provider to be present
@@ -76,6 +76,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
 
   const handleItemBlur = () => {
     updateFormState(keyValuePairs);
+    field.onBlur();
   };
 
   if (!isKeyValueObjectString(field.value)) {
@@ -84,7 +85,7 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
 
   return (
     <div className="space-y-5">
-      <OdsFormField className="block w-full space-y-1" error={fieldState.error?.message}>
+      <div className="block w-full space-y-1">
         {keyValuePairs.map(({ key, value }, index) => (
           <KeyValuesEditorItem
             key={KEY_VALUES_EDITOR_TEST_IDS.pairItem(index)}
@@ -93,10 +94,13 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
             onChange={(item) => handleItemChange(index, item)}
             onDelete={() => handleDeleteItem(index)}
             onBlur={handleItemBlur}
-            isDeletable={keyValuePairs.length > 1}
+            isDeletable={allowDeleteLastItem ? true : keyValuePairs.length > 1}
           />
         ))}
-      </OdsFormField>
+        {fieldState.error?.message && (
+          <CustomFieldError>{fieldState.error?.message}</CustomFieldError>
+        )}
+      </div>
       <Button size="sm" variant="outline" onClick={handleAddItem}>
         <>
           <Icon name="plus" />
@@ -104,5 +108,19 @@ export const KeyValuesEditor = <T extends FormFieldInput>({
         </>
       </Button>
     </div>
+  );
+};
+
+// KeyValuesEditor is an assembly of input components.
+// Instead of targeting each inner input, CustomFieldError is used as a general error
+// and displayed at the bottom of the component.
+const CustomFieldError = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Text
+      aria-live="polite"
+      className="font-semibold text-[var(--ods-theme-input-text-color-invalid)]"
+    >
+      {children}
+    </Text>
   );
 };

@@ -3,7 +3,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import {
   getOkmsServiceKeyResourceListQueryKey,
@@ -27,7 +30,7 @@ export const useUpdateOkmsServiceKey = ({
 }: UpdateOkmsServiceKeyParams) => {
   const queryClient = useQueryClient();
   const { addError, clearNotifications } = useNotifications();
-
+  const { trackPage } = useOkmsTracking();
   const { t } = useTranslation('key-management-service/serviceKeys');
 
   const { mutate: updateKmsServiceKey, isPending } = useMutation({
@@ -42,9 +45,17 @@ export const useUpdateOkmsServiceKey = ({
       await queryClient.invalidateQueries({
         queryKey: getOkmsServiceKeyResourceQueryKey({ okmsId, keyId }),
       });
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageTags: ['edit', 'service-key'],
+      });
       onSuccess();
     },
     onError: (result: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageTags: ['edit', 'service-key'],
+      });
       clearNotifications();
       addError(
         t('key_management_service_service-keys_update_error', {

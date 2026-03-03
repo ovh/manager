@@ -24,7 +24,6 @@ import { I18nextProvider } from 'react-i18next';
 import { vi } from 'vitest';
 
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { assertTextVisibility } from '@ovh-ux/manager-core-test-utils';
 import { ServiceDetails, useServiceDetails } from '@ovh-ux/manager-module-common-api';
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
@@ -43,6 +42,7 @@ import { referenceRegionsMock } from '@/common/mocks/reference-regions/reference
 import { ErrorResponse } from '@/common/types/api.type';
 import { initTestI18n, labels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
+import { assertTextVisibility } from '@/common/utils/tests/uiTestHelpers';
 import { invariant } from '@/common/utils/tools/invariant';
 
 import { OkmsManagement } from './OkmsManagement.component';
@@ -65,7 +65,6 @@ vi.mock('react-router-dom', async (importOriginal) => {
   return {
     ...module,
     useNavigate: () => vi.fn(),
-    useHref: vi.fn((link: string) => link),
     useSearchParams: vi.fn(),
   };
 });

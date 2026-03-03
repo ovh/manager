@@ -6,7 +6,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { createOkmsCredential } from '../api/okmsCredential';
 import { getOkmsCredentialsQueryKey } from './useOkmsCredential';
@@ -23,6 +26,7 @@ export const useCreateOkmsCredential = ({
   onError,
 }: CreateOkmsCredentialParams) => {
   const queryClient = useQueryClient();
+  const { trackPage } = useOkmsTracking();
   const { addError, addSuccess, clearNotifications } = useNotifications();
 
   const { t } = useTranslation('key-management-service/credential');
@@ -41,6 +45,10 @@ export const useCreateOkmsCredential = ({
       onSuccess?.(credential);
     },
     onError: (result: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageTags: ['create', 'credential'],
+      });
       clearNotifications();
       addError(
         t('key_management_service_credential_create_error', {

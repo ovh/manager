@@ -3,5 +3,6 @@
   "iam_identities_header_guide_text": "Guide",
   "iam_identities_users": "Utenti locali",
   "iam_identities_user_groups": "Gruppi di utenti",
-  "iam_identities_sso": "SSO"
+  "iam_identities_sso": "SSO",
+  "iam_identities_service_accounts": "Account di servizio"
 }

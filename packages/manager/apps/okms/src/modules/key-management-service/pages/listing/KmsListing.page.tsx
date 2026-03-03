@@ -28,10 +28,9 @@ export default function Listing() {
   const { hasPendingOrder } = usePendingOkmsOrder();
   const hasNotifications = notifications.length > 0 || hasPendingOrder;
 
-  const { data, isError, isPending, fetchNextPage, hasNextPage } = useOkmsDatagridList({
+  const { flattenData, isError, isLoading, fetchNextPage, hasNextPage } = useOkmsDatagridList({
     pageSize: 10,
   });
-  const flattenData = data?.pages.flatMap((page) => page.data);
   const okmsList = flattenData || [];
 
   const headerProps: HeaderProps = {
@@ -42,7 +41,7 @@ export default function Listing() {
 
   return (
     <RedirectionGuard
-      isLoading={isPending}
+      isLoading={isLoading}
       // Do not redirect if there is a pending order
       condition={!hasPendingOrder && okmsList.length === 0}
       route={KMS_ROUTES_URLS.kmsOnboarding}
@@ -90,7 +89,7 @@ export default function Listing() {
           <OkmsDatagrid
             type="kms"
             okmsList={okmsList}
-            isLoading={isPending}
+            isLoading={isLoading}
             hasNextPage={hasNextPage}
             onFetchNextPage={() => fetchNextPage()}
           />

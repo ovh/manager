@@ -4,7 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { useNotifications } from '@ovh-ux/muk';
+
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 
 import { okmsQueryKeys } from '../api/okms';
 import {
@@ -31,7 +34,7 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
   const queryClient = useQueryClient();
   const { t } = useTranslation([NAMESPACES.ACTIONS, NAMESPACES.ERROR]);
   const { addSuccess, clearNotifications } = useNotifications();
-
+  const { trackPage } = useOkmsTracking();
   const {
     mutate,
     isPending,
@@ -49,15 +52,15 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
       return updateOkmsName({ serviceId: servicesId[0], displayName });
     },
     onSuccess: (_, { displayName }) => {
-      const previousData = queryClient.getQueryData<{ data: OKMS }>(okmsQueryKeys.detail(okms.id));
+      const previousData = queryClient.getQueryData<OKMS>(okmsQueryKeys.detail(okms.id));
 
       // To handle the delay in which the new name is propagated to the OKMS databases, we need to:
       // 1. Optimistically update the OKMS domain cache so that the user sees the new name on the OKMS dashboard immediately.
-      if (previousData?.data) {
+      if (previousData) {
         queryClient.setQueryData<OKMS>(okmsQueryKeys.detail(okms.id), {
-          ...previousData.data,
+          ...previousData,
           iam: {
-            ...previousData.data.iam,
+            ...previousData.iam,
             displayName,
           },
         });
@@ -88,9 +91,17 @@ export const useUpdateOkmsName = ({ okms, onSuccess, onError }: UpdateOkmsParams
 
       clearNotifications();
       addSuccess(t('modify_name_success', { ns: NAMESPACES.ACTIONS }), true);
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageTags: ['edit', 'okms'],
+      });
       onSuccess?.();
     },
     onError: (result: ApiError) => {
+      trackPage({
+        pageType: PageType.bannerError,
+        pageTags: ['edit', 'okms'],
+      });
       onError?.(result);
     },
   });

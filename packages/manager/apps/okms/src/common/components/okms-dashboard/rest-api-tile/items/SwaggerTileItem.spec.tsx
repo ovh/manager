@@ -1,7 +1,8 @@
 import { okmsRoubaix1Mock } from '@key-management-service/mocks/kms/okms.mock';
 import { screen } from '@testing-library/react';
 
-import { MukLinkType } from '@/common/components/link/Link.component';
+import { LinkType } from '@ovh-ux/muk';
+
 import { renderWithI18n } from '@/common/utils/tests/testUtils';
 import { SWAGGER_UI_LABEL } from '@/constants';
 
@@ -24,6 +25,6 @@ describe('OKMS Swagger Tile Item test suite', () => {
     expect(swaggerLink).toBeVisible();
     expect(swaggerLink).toHaveAttribute('href', okmsMocked.swaggerEndpoint);
     expect(swaggerLink).toHaveAttribute('target', '_blank');
-    expect(swaggerLink).toHaveAttribute('type', MukLinkType.external);
+    expect(swaggerLink).toHaveAttribute('type', LinkType.external);
   });
 });

@@ -1,13 +1,13 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FormProvider, useForm } from 'react-hook-form';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
-import { renderWithI18n } from '@/common/utils/tests/testUtils';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
+import { changeInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
-import { FormFieldInput, KeyValuesEditor } from './KeyValuesEditor';
+import { KeyValuesEditor } from './KeyValuesEditor';
 import { KEY_VALUES_EDITOR_TEST_IDS } from './keyValuesEditor.constants';
 
 const labels = allLabels.secretManager;
@@ -24,37 +24,44 @@ const mockDefaultValues = {
   },
 };
 
-// Mocking ODS Input component
-vi.mock('@ovhcloud/ods-components/react', async () => {
-  const { odsInputMock } = await import('@/common/utils/tests/odsMocks');
-  const original = await vi.importActual('@ovhcloud/ods-components/react');
-  return {
-    ...original,
-    OdsInput: vi.fn(odsInputMock),
-  };
-});
+type TestWrapperDefaultValues = {
+  data: string;
+};
 
 // Test wrapper component that provides form context
 type TestWrapperProps = {
-  defaultValues: FormFieldInput;
+  defaultValues: TestWrapperDefaultValues;
+  allowDeleteLastItem?: boolean;
   onSubmit?: () => void;
 };
 
-const TestWrapper = ({ defaultValues }: TestWrapperProps) => {
-  const methods = useForm<FormFieldInput>({ defaultValues });
+const FormTestWrapper = ({ defaultValues, allowDeleteLastItem = false }: TestWrapperProps) => {
+  const methods = useForm<TestWrapperDefaultValues>({ defaultValues });
   // eslint-disable-next-line react-hooks/incompatible-library
   const value = methods.watch('data');
 
   return (
     <FormProvider {...methods}>
-      <KeyValuesEditor name="data" control={methods.control} />
+      <KeyValuesEditor
+        name="data"
+        control={methods.control}
+        allowDeleteLastItem={allowDeleteLastItem}
+      />
       <p data-testid="value">{value}</p>
     </FormProvider>
   );
 };
 
-const renderTest = async (defaultValues: FormFieldInput) => {
-  return renderWithI18n(<TestWrapper defaultValues={defaultValues} />);
+const renderComponent = async (
+  defaultValues: TestWrapperDefaultValues,
+  allowDeleteLastItem?: boolean,
+) => {
+  const wrapper = await testWrapperBuilder().withI18next().build();
+
+  return render(
+    <FormTestWrapper defaultValues={defaultValues} allowDeleteLastItem={allowDeleteLastItem} />,
+    { wrapper },
+  );
 };
 
 describe('KeyValuesEditor', () => {
@@ -67,7 +74,7 @@ describe('KeyValuesEditor', () => {
       // Given
 
       // When
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // Then
       expect(
@@ -87,7 +94,7 @@ describe('KeyValuesEditor', () => {
       // Given
 
       // When
-      await renderTest(mockDefaultValues.invalid);
+      await renderComponent(mockDefaultValues.invalid);
 
       // Then
       await waitFor(() => {
@@ -97,7 +104,7 @@ describe('KeyValuesEditor', () => {
 
     test('should render an empty row when no data provided', async () => {
       // Given
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Then
       expect(
@@ -113,7 +120,7 @@ describe('KeyValuesEditor', () => {
     test('should add new key-value pair when add button is clicked', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
       const addButton = screen.getByRole('button', {
@@ -132,14 +139,11 @@ describe('KeyValuesEditor', () => {
   describe('Editing items', () => {
     test('should form data when input is changed', async () => {
       // Given
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
-      await changeOdsInputValueByTestId(
-        KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0),
-        'updatedKey',
-      );
-      await changeOdsInputValueByTestId(
+      await changeInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(0), 'updatedKey');
+      await changeInputValueByTestId(
         KEY_VALUES_EDITOR_TEST_IDS.pairItemValueInput(0),
         'updatedValue',
       );
@@ -155,7 +159,7 @@ describe('KeyValuesEditor', () => {
     test('should remove key-value pair when delete button is clicked', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       expect(
         screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1)),
@@ -178,33 +182,40 @@ describe('KeyValuesEditor', () => {
   describe('Duplicate key validation', () => {
     test('should show error when duplicate keys are detected', async () => {
       // Given
-      const { container } = await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When
-      await changeOdsInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
+      await changeInputValueByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemKeyInput(1), 'key1');
 
       // Then
       await waitFor(() => {
-        expect(
-          container.querySelector(`ods-form-field[error="${labels.error_duplicate_keys}"]`),
-        ).toBeInTheDocument();
+        expect(screen.getByText(labels.error_duplicate_keys)).toBeInTheDocument();
       });
     });
   });
 
   describe('isDeletable state', () => {
-    test('should disable delete button when only one item exists', async () => {
+    test('should disable delete button when only one item exists and allowDeleteLastItem is false', async () => {
       // Given
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Then
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
       expect(deleteButton).toBeDisabled();
     });
 
+    test('should enable delete button when only one item exists and allowDeleteLastItem is true', async () => {
+      // Given
+      await renderComponent(mockDefaultValues.empty, true);
+
+      // Then
+      const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
+      expect(deleteButton).toBeEnabled();
+    });
+
     test('should enable delete buttons when multiple items exist', async () => {
       // Given
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // Then
       const deleteButton0 = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -216,7 +227,7 @@ describe('KeyValuesEditor', () => {
     test('should disable delete button after deleting down to one item', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.valid);
+      await renderComponent(mockDefaultValues.valid);
 
       // When - delete one item to leave only one remaining
       const deleteButton = screen.getByTestId(KEY_VALUES_EDITOR_TEST_IDS.pairItemDeleteButton(0));
@@ -234,7 +245,7 @@ describe('KeyValuesEditor', () => {
     test('should enable delete button after adding a second item', async () => {
       // Given
       const user = userEvent.setup();
-      await renderTest(mockDefaultValues.empty);
+      await renderComponent(mockDefaultValues.empty);
 
       // Initial state - delete button should be disabled
       const initialDeleteButton = screen.getByTestId(

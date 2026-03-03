@@ -24,8 +24,8 @@ const bgColors: Record<LocationType, string> = {
 
 const textColors: Record<LocationType, BadgeColor> = {
   'LOCAL-ZONE': 'information',
-  'REGION-1-AZ': 'promotion',
-  'REGION-3-AZ': 'promotion',
+  'REGION-1-AZ': 'primary',
+  'REGION-3-AZ': 'primary',
 };
 
 const badgeLabels: Record<LocationType, string> = {

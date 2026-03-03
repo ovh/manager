@@ -12,7 +12,6 @@ export type OkmsServiceKey = {
   name?: string;
   state: OkmsServiceKeyState;
   type: OkmsKeyTypes;
-  keys?: OkmsServiceKeyObject;
   iam: IamObject;
   createdAt: string;
   size?: OkmsServiceKeySize;
@@ -20,12 +19,27 @@ export type OkmsServiceKey = {
   operations: OkmsServiceKeyOperations[];
 };
 
-export type OkmsServiceKeyWithData = OkmsServiceKey & {
-  keys: OkmsServiceKeyObject;
+export type OkmsServiceKeyWithJwkData = OkmsServiceKey & {
+  keys: OkmsServiceKeyJwkObject;
+  keysPEM?: never;
 };
 
-// A JSON Web Key (JWK) object
-type OkmsServiceKeyObject = unknown[];
+export type OkmsServiceKeyWithPemData = OkmsServiceKey & {
+  keys?: never;
+  keysPEM: OkmsServiceKeyPemObject[];
+};
+
+export type OkmsServiceKeyWithData =
+  | OkmsServiceKey
+  | OkmsServiceKeyWithJwkData
+  | OkmsServiceKeyWithPemData;
+
+// JWK service key content
+type OkmsServiceKeyJwkObject = unknown[];
+// PEM service key content
+type OkmsServiceKeyPemObject = {
+  pem: string;
+};
 
 /*
 KEY STATE
@@ -42,14 +56,20 @@ export enum OkmsServiceKeyState {
 /*
 KEY OPERATIONS
 */
-export enum OkmsServiceKeyOperations {
-  encrypt = 'encrypt',
-  decrypt = 'decrypt',
-  sign = 'sign',
-  verify = 'verify',
-  wrapKey = 'wrapKey',
-  unwrapKey = 'unwrapKey',
-}
+export type OkmsServiceKeyOperations =
+  | 'encrypt'
+  | 'decrypt'
+  | 'sign'
+  | 'verify'
+  | 'wrapKey'
+  | 'unwrapKey';
+
+// Usage comes by pairs of operations
+// Example: 'encrypt_decrypt', 'sign_verify'
+export type OkmsServiceKeyOperationUsage =
+  | `${Extract<OkmsServiceKeyOperations, 'encrypt'>}_${Extract<OkmsServiceKeyOperations, 'decrypt'>}`
+  | `${Extract<OkmsServiceKeyOperations, 'sign'>}_${Extract<OkmsServiceKeyOperations, 'verify'>}`
+  | `${Extract<OkmsServiceKeyOperations, 'wrapKey'>}_${Extract<OkmsServiceKeyOperations, 'unwrapKey'>}`;
 
 /*
 KEY TYPES

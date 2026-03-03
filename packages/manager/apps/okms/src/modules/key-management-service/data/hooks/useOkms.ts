@@ -2,7 +2,7 @@ import { getOkms, getOkmsList, okmsQueryKeys } from '@key-management-service/dat
 import { OKMS } from '@key-management-service/types/okms.type';
 import { UseQueryOptions, useQuery } from '@tanstack/react-query';
 
-import { useResourcesIcebergV2 } from '@ovh-ux/manager-react-components';
+import { useDataApi } from '@ovh-ux/muk';
 
 import { ErrorResponse } from '@/common/types/api.type';
 
@@ -38,9 +38,13 @@ type UseOkmsDatagridListParams = {
 export const useOkmsDatagridList = (params: UseOkmsDatagridListParams = {}) => {
   const { pageSize = 10 } = params;
 
-  return useResourcesIcebergV2<OKMS>({
+  return useDataApi<OKMS>({
+    iceberg: true,
+    disableCache: true,
+    enabled: true,
+    version: 'v2',
     route: '/okms/resource',
-    queryKey: okmsQueryKeys.listDatagrid,
+    cacheKey: okmsQueryKeys.listDatagrid,
     pageSize,
   });
 };

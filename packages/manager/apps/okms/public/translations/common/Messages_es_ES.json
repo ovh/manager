@@ -11,5 +11,6 @@
   "region_continent_EUROPE": "Europa",
   "region_continent_NORTH_AMERICA": "Norteamérica",
   "region_continent_OTHERS": "Otras regiones",
-  "region_local_zone_description": "Despliegue sus aplicaciones más cerca de sus usuarios para disfrutar de una menor latencia y de residencia de datos."
+  "region_local_zone_description": "Despliegue sus aplicaciones más cerca de sus usuarios para disfrutar de una menor latencia y de residencia de datos.",
+  "error_updating_data": "Se produjo un error al actualizar los datos"
 }

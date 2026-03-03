@@ -11,5 +11,6 @@
   "region_continent_EUROPE": "Europa",
   "region_continent_NORTH_AMERICA": "Nord America ",
   "region_continent_OTHERS": "Altre Region",
-  "region_local_zone_description": "Esecuzione delle applicazioni il più vicino possibile ai tuoi utenti per una latenza ridotta e la localizzazione dei dati."
+  "region_local_zone_description": "Esecuzione delle applicazioni il più vicino possibile ai tuoi utenti per una latenza ridotta e la localizzazione dei dati.",
+  "error_updating_data": "Si è verificato un errore durante l'aggiornamento dei dati"
 }

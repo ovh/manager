@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { VersionState } from '@secret-manager/components/version-state-badge/VersionStateBadge.component';
 import { useSecretVersionList } from '@secret-manager/data/hooks/useSecretVersionList';
@@ -6,14 +6,11 @@ import { SecretVersion } from '@secret-manager/types/secret.type';
 import { decodeSecretPath } from '@secret-manager/utils/secretPath';
 import { useTranslation } from 'react-i18next';
 
-import { OdsSelectChangeEventDetail, OdsSelectCustomEvent } from '@ovhcloud/ods-components';
-import { OdsSelect } from '@ovhcloud/ods-components/react';
-import { Message, Skeleton, Text } from '@ovhcloud/ods-react';
+import { Message, Select, SelectContent, SelectControl, Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { isErrorResponse } from '@/common/utils/api/api';
-import { odsSelectValueToValue, valueToOdsSelectValue } from '@/common/utils/ods/odsSelect';
 
 import {
   VERSION_SELECTOR_ERROR_TEST_ID,
@@ -41,7 +38,11 @@ export const VersionSelector = ({
 
   const { t } = useTranslation(['secret-manager', NAMESPACES.STATUS, NAMESPACES.ERROR]);
 
-  const { data, isPending, isFetching, error } = useSecretVersionList({
+  const {
+    flattenData: versions,
+    isLoading,
+    error,
+  } = useSecretVersionList({
     okmsId,
     path: secretPathDecoded,
     pageSize: 100,
@@ -66,15 +67,14 @@ export const VersionSelector = ({
         <Text preset="span" className="w-1/3">
           {t('version')}
         </Text>
-        {/*   isFetching forces to display the spinner when the version has changed
-        otherwise when the ods-select component is refreshed, react breaks */}
-        {isPending || isFetching ? (
+        {isLoading ? (
           <Skeleton className="grow" data-testid={VERSION_SELECTOR_SELECT_SKELETON_TEST_ID} />
         ) : (
           <VersionSelectorSelect
             defaultVersionId={defaultVersionId}
+            selectedVersion={selectedVersion}
             setSelectedVersion={setSelectedVersion}
-            versions={data?.pages.flatMap((page) => page.data)}
+            versions={versions}
           />
         )}
       </div>
@@ -82,7 +82,7 @@ export const VersionSelector = ({
         <Text preset="span" className="w-1/3">
           {t('status', { ns: NAMESPACES.STATUS })}
         </Text>
-        {isPending ? (
+        {isLoading ? (
           <Skeleton className="grow" data-testid={VERSION_SELECTOR_STATUS_SKELETON_TEST_ID} />
         ) : (
           selectedVersion && <VersionState state={selectedVersion.state} />
@@ -94,43 +94,50 @@ export const VersionSelector = ({
 
 type VersionSelectorSelectProps = Pick<
   VersionSelectorParams,
-  'defaultVersionId' | 'setSelectedVersion'
+  'defaultVersionId' | 'selectedVersion' | 'setSelectedVersion'
 > & {
   versions: SecretVersion[];
 };
 
 const VersionSelectorSelect = ({
   defaultVersionId,
+  selectedVersion,
   setSelectedVersion,
   versions,
 }: VersionSelectorSelectProps) => {
-  // Default to the first version if no default version is provided
-  let defaultVersion: SecretVersion | undefined = versions[0];
+  const items = versions.map((version) => ({
+    value: version.id.toString(),
+    label: version.id.toString(),
+  }));
 
-  // If a default version is provided, use it
-  if (defaultVersionId) {
-    defaultVersion = versions.find((version) => version.id.toString() === defaultVersionId);
-  }
+  // Initialize the selected version if a default version is provided, otherwise use the first version
+  useEffect(() => {
+    if (defaultVersionId) {
+      const version = versions.find((version) => version.id.toString() === defaultVersionId);
+      setSelectedVersion(version);
+    } else {
+      setSelectedVersion(versions[0]);
+    }
+  }, [defaultVersionId, versions, setSelectedVersion]);
 
-  const handleOnSelect = (value: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => {
-    const version = versions.find((v) => v.id === odsSelectValueToValue(value.detail.value ?? ''));
+  const handleOnValueChange = (detail: { value: string[] }) => {
+    const selectedValue = detail.value[0];
+    const version = versions.find((v) => v.id.toString() === selectedValue);
     setSelectedVersion(version);
   };
 
   return (
-    <OdsSelect
+    <Select
       data-testid={VERSION_SELECTOR_TEST_ID}
       className="grow"
       name="version-selector"
-      onOdsChange={handleOnSelect}
-      defaultValue={defaultVersion ? valueToOdsSelectValue(defaultVersion.id) : undefined}
-      isDisabled={versions.length === 1}
+      onValueChange={handleOnValueChange}
+      value={selectedVersion ? [selectedVersion.id.toString()] : undefined}
+      disabled={versions.length === 1}
+      items={items}
     >
-      {versions.map((version) => (
-        <option value={valueToOdsSelectValue(version.id)} key={version.id}>
-          {version.id}
-        </option>
-      ))}
-    </OdsSelect>
+      <SelectControl />
+      <SelectContent createPortal={false} />
+    </Select>
   );
 };

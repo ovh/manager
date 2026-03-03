@@ -103,18 +103,21 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
 
   const { trackClick } = useOkmsTracking();
 
-  const { data, error, hasNextPage, fetchNextPage, isPending, refetch } = useSecretList({ okmsId });
+  const {
+    flattenData: secrets,
+    error,
+    hasNextPage,
+    fetchNextPage,
+    isLoading,
+  } = useSecretList({ okmsId });
 
   if (error)
     return (
       <Error
         error={isErrorResponse(error) ? error.response : {}}
         onRedirectHome={() => navigate(SECRET_MANAGER_ROUTES_URLS.onboarding)}
-        onReloadPage={refetch}
       />
     );
-
-  const secrets = data?.pages.flatMap((page) => page.data);
 
   const columns: DatagridColumn<Secret>[] = [
     {
@@ -143,7 +146,7 @@ const SecretDatagrid = ({ okmsId }: { okmsId: string }) => {
       columns={columns}
       items={secrets || []}
       totalItems={secrets?.length ?? 0}
-      isLoading={isPending}
+      isLoading={isLoading}
       hasNextPage={hasNextPage}
       onFetchNextPage={fetchNextPage}
       contentAlignLeft

@@ -3,10 +3,10 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { useFormatDate } from './useFormatDate';
 
-// Mock the manager-react-components hook
-const mockFormatDateMrc = vi.fn(({ date }: { date: string }) => date);
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  useFormatDate: () => mockFormatDateMrc,
+// Mock the muk hook
+const mockFormatDate = vi.fn(({ date }: { date: string }) => date);
+vi.mock('@ovh-ux/muk', () => ({
+  useFormatDate: () => mockFormatDate,
 }));
 
 describe('useFormatDate', () => {
@@ -40,7 +40,7 @@ describe('useFormatDate', () => {
       const { result } = renderHook(() => useFormatDate());
       const formattedDate = result.current.formatDate(input, format);
 
-      expect(mockFormatDateMrc).toHaveBeenCalledWith({
+      expect(mockFormatDate).toHaveBeenCalledWith({
         date: input,
         format: expectedFormatCall,
       });

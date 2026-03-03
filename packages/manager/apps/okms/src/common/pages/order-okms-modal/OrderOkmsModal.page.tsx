@@ -11,13 +11,17 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalHeader,
   ModalOpenChangeDetail,
   Spinner,
+  Text,
 } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { Button } from '@ovh-ux/muk';
 
+import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useProductType } from '@/common/hooks/useProductType';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
 import { useShellContext } from '@/common/hooks/useShellContext';
@@ -37,10 +41,17 @@ const OrderOkmsModal = () => {
   const productType = useProductType();
   const { ovhSubsidiary } = environment.getUser();
   const navigate = useNavigate();
+  const { trackPage } = useOkmsTracking();
 
   const onSuccess = () => {
     // Register the pending order
     registerPendingOrder(region);
+
+    // Track success banner
+    trackPage({
+      pageType: PageType.bannerSuccess,
+      pageTags: ['order', 'okms'],
+    });
 
     // Redirect to the appropriate page
     if (productType === 'key-management-service') {
@@ -68,6 +79,9 @@ const OrderOkmsModal = () => {
   return (
     <Modal onOpenChange={handleClose} open>
       <ModalContent dismissible>
+        <ModalHeader>
+          <Text preset="heading-4">{t('create_okms_terms_and_conditions_title')}</Text>
+        </ModalHeader>
         <ModalBody className="space-y-4">
           {isPending && (
             <div className="flex items-center justify-center py-3">

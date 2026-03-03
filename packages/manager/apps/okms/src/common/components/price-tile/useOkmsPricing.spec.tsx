@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 import {
   SECRET_PRICE,
@@ -193,7 +193,7 @@ describe('useOkmsPricing', () => {
         pricingData: {
           price: SERVICE_KEY_PRICE,
           tax: SERVICE_KEY_TAX,
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
         },
       });
     });
@@ -207,7 +207,7 @@ describe('useOkmsPricing', () => {
         pricingData: {
           price: SECRET_PRICE,
           tax: SECRET_TAX,
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
         },
       });
     });

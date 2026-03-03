@@ -58,5 +58,10 @@
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Validar",
   "user_modal_cancel": "Anular",
-  "user_users_manage_tokens": "Gerir os tokens"
+  "user_users_manage_tokens": "Gerir os tokens",
+  "user_users_main_group": "Grupo principal",
+  "user_users_other_groups": "Grupos adicionais",
+  "user_main_group_helper_text": "Grupo utilizado para exibição na lista de utilizadores",
+  "user_group_add_error_message": "Ocorreu um erro ao adicionar o utilizador <strong>{{login}}</strong> ao grupo <strong>{{group}}</strong> :",
+  "user_group_remove_error_message": "Ocorreu um erro ao remover o utilizador <strong>{{login}}</strong> do grupo <strong>{{group}}</strong> :"
 }

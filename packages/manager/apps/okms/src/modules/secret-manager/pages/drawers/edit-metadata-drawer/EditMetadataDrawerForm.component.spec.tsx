@@ -2,14 +2,14 @@ import { SECRET_FORM_FIELD_TEST_IDS } from '@secret-manager/components/form/form
 import { mockSecret1 } from '@secret-manager/mocks/secrets/secrets.mock';
 import { Secret } from '@secret-manager/types/secret.type';
 import { SecretSmartConfig } from '@secret-manager/utils/secretSmartConfig';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen, waitFor, within } from '@testing-library/react';
 import userEvent, { UserEvent } from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { labels as allLabels } from '@/common/utils/tests/init.i18n';
 import { createErrorResponseMock } from '@/common/utils/tests/testUtils';
 import { testWrapperBuilder } from '@/common/utils/tests/testWrapperBuilder';
-import { changeOdsInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
+import { changeInputValueByTestId } from '@/common/utils/tests/uiTestHelpers';
 
 import { EditMetadataDrawerForm } from './EditMetadataDrawerForm.component';
 
@@ -68,7 +68,14 @@ const renderComponent = async () => {
 
   const wrapper = await testWrapperBuilder().withI18next().withQueryClient().build();
 
-  return render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
+  const rendered = render(<EditMetadataDrawerForm {...defaultProps} />, { wrapper });
+
+  // Wait the radio group to be rendered to avoid warnings
+  await waitFor(() => {
+    expect(screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.CAS_REQUIRED_ACTIVE)).toBeInTheDocument();
+  });
+
+  return rendered;
 };
 
 const submitForm = async (user: UserEvent) => {
@@ -103,21 +110,23 @@ describe('EditMetadataDrawerForm component test suite', () => {
       expect(input1).toBeInTheDocument();
       expect(input1).toHaveValue(mockSecretConfig.deactivateVersionAfter.value);
 
-      const input2 = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS);
-      expect(input2).toBeInTheDocument();
-      expect(input2).toHaveValue(mockSecretConfig.maxVersions.value);
+      // For ODS19 Quantity component, the test ID is on the wrapper, but the value is on the inner input
+      const quantityWrapper = screen.getByTestId(SECRET_FORM_FIELD_TEST_IDS.MAX_VERSIONS);
+      expect(quantityWrapper).toBeInTheDocument();
+      // Find the actual input element inside the Quantity component
+      const input2 = within(quantityWrapper).getByRole('spinbutton');
+      // HTML input values are strings, so convert the number to string for comparison
+      expect(input2).toHaveValue(String(mockSecretConfig.maxVersions.value));
 
       const input3 = screen.getByRole('radio', {
         name: allLabels.secretManager.activated,
       });
-      screen.debug(input3);
       expect(input3).toBeInTheDocument();
       expect(input3).toBeChecked();
 
       const input4 = screen.getByRole('radio', {
         name: allLabels.common.status.disabled,
       });
-      screen.debug(input4);
       expect(input4).toBeInTheDocument();
       expect(input4).not.toBeChecked();
     });
@@ -135,9 +144,7 @@ describe('EditMetadataDrawerForm component test suite', () => {
       const submitButton = screen.getByRole('button', {
         name: commonLabels.actions.validate,
       });
-      await act(async () => {
-        await user.click(submitButton);
-      });
+      await act(() => user.click(submitButton));
 
       // THEN
       await waitFor(() => {
@@ -231,25 +238,21 @@ describe('EditMetadataDrawerForm component test suite', () => {
     });
   });
 
-  // TODO: [ODS19] Fix this test when ODS19 is migrated
-  // Test is flaky, and there is a lot of chance that is is somehow related to ODS19
-  describe.skip('form validation', () => {
+  describe('form validation', () => {
     it('should display form errors', async () => {
       const user = userEvent.setup();
-      const { container } = await renderComponent();
+      await renderComponent();
 
-      await changeOdsInputValueByTestId(
+      await changeInputValueByTestId(
         SECRET_FORM_FIELD_TEST_IDS.DEACTIVATE_VERSION_AFTER,
         'invalid-duration',
       );
 
       await submitForm(user);
 
-      // Check if the error is displayed
+      // Check if the validation error message is displayed (ODS form-field-error span)
       await waitFor(() => {
-        expect(
-          container.querySelector(`ods-form-field[error="${labels.error_invalid_duration}"]`),
-        ).toBeInTheDocument();
+        expect(screen.getByText(labels.error_invalid_duration)).toBeInTheDocument();
       });
     });
   });

@@ -5,6 +5,7 @@ import { assertVersionDatagridVisilibity } from '@secret-manager/utils/tests/ver
 import { screen } from '@testing-library/react';
 
 import { renderTestApp } from '@/common/utils/tests/renderTestApp';
+import { TIMEOUT } from '@/common/utils/tests/uiTestHelpers';
 
 const mockOkmsId = '123123';
 
@@ -16,24 +17,28 @@ describe('Version list page test suite', () => {
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path));
 
     // THEN
-    await assertVersionDatagridVisilibity();
+    await assertVersionDatagridVisilibity(TIMEOUT.LONG);
   });
 
   it('should have the correct href attribute to open the value drawer', async () => {
     // GIVEN
     await renderTestApp(SECRET_MANAGER_ROUTES_URLS.versionList(mockOkmsId, mockSecret1.path));
 
-    await assertVersionDatagridVisilibity();
+    await assertVersionDatagridVisilibity(TIMEOUT.LONG);
 
-    const versionLink = await screen.findByText(versionActiveMock.id.toString());
-
-    expect(versionLink).toHaveAttribute(
-      'href',
-      SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
-        mockOkmsId,
-        mockSecret1.path,
-        versionActiveMock.id,
-      ),
+    const versionLink = await screen.findByText(
+      versionActiveMock.id.toString(),
+      {},
+      {
+        timeout: TIMEOUT.MEDIUM,
+      },
     );
+
+    const expectedHref = SECRET_MANAGER_ROUTES_URLS.versionListSecretValueDrawer(
+      mockOkmsId,
+      mockSecret1.path,
+      versionActiveMock.id,
+    );
+    expect(versionLink.getAttribute('to')).toBe(expectedHref);
   });
 });

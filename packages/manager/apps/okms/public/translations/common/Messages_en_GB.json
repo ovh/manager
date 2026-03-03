@@ -11,5 +11,6 @@
   "region_continent_EUROPE": "Europe",
   "region_continent_NORTH_AMERICA": "North America",
   "region_continent_OTHERS": "Other regions",
-  "region_local_zone_description": "Deploy your applications as geographically close to your users as possible, for low latency and compliant data residency."
+  "region_local_zone_description": "Deploy your applications as geographically close to your users as possible, for low latency and compliant data residency.",
+  "error_updating_data": "An error occurred while updating the data"
 }

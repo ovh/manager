@@ -58,5 +58,10 @@
   "pagination_display": "Mostrar",
   "user_modal_confirm": "Confirmar",
   "user_modal_cancel": "Cancelar",
-  "user_users_manage_tokens": "Gestionar los tokens"
+  "user_users_manage_tokens": "Gestionar los tokens",
+  "user_users_main_group": "Grupo principal",
+  "user_users_other_groups": "Grupos adicionales",
+  "user_main_group_helper_text": "Grupo utilizado para la visualización en la lista de usuarios",
+  "user_group_add_error_message": "Se ha producido un error al añadir al usuario <strong>{{login}}</strong> al grupo <strong>{{group}}</strong> :",
+  "user_group_remove_error_message": "Se ha producido un error al eliminar al usuario <strong>{{login}}</strong> del grupo <strong>{{group}}</strong> :"
 }
