@@ -34,5 +34,5 @@ export const addVrackBandwidthToCart = ({
 
 export const checkoutCart = (cartId: string): Promise<ApiResponse<Order>> =>
   v6.post(`/order/cart/${cartId}/checkout`, {
-    autoPayWithPreferredPaymentMethod: true,
+    autoPayWithPreferredPaymentMethod: false,
   });
