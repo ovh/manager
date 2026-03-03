@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.17.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.9...@ovh-ux/manager-netapp@2.17.10) (2026-03-03)
+
+
+### Bug Fixes
+
+* **dedicated.netapp:** fix css name collision with l2c ([5e435dd](https://github.com/ovh/manager/commit/5e435ddbb9195afbc30af6a9f112e8cc307f27fa)), closes [#MAOBS-259](https://github.com/ovh/manager/issues/MAOBS-259)
+
+
+
+
+
 ## [2.17.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.8...@ovh-ux/manager-netapp@2.17.9) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-netapp
