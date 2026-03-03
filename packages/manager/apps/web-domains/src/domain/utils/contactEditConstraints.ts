@@ -62,6 +62,70 @@ function checkArrayValue(
   return haveToInclude ? check : !check;
 }
 
+interface ConstraintLookup {
+  equalRule?: TConfigurationRuleConstraint;
+  noEqualRule?: TConfigurationRuleConstraint;
+  containsRule?: TConfigurationRuleConstraint;
+  notContainsRule?: TConfigurationRuleConstraint;
+  emptyRule?: TConfigurationRuleConstraint;
+  notEmptyRule?: TConfigurationRuleConstraint;
+  requiredRule?: TConfigurationRuleConstraint;
+}
+
+function findConstraintsByOperator(
+  constraints: TConfigurationRuleConstraint[],
+): ConstraintLookup {
+  return {
+    equalRule: constraints.find((c) => c.operator === OPERATORS.EQ),
+    noEqualRule: constraints.find((c) => c.operator === OPERATORS.NE),
+    containsRule: constraints.find((c) => c.operator === OPERATORS.CONTAINS),
+    notContainsRule: constraints.find((c) => c.operator === OPERATORS.NOTCONTAINS),
+    emptyRule: constraints.find((c) => c.operator === OPERATORS.EMPTY),
+    notEmptyRule: constraints.find((c) => c.operator === OPERATORS.NOTEMPTY),
+    requiredRule: constraints.find((c) => c.operator === OPERATORS.REQUIRED),
+  };
+}
+
+function evaluateConstraintLookup(
+  lookup: ConstraintLookup,
+  currentValue: string,
+  isConditionContext: boolean,
+): boolean | undefined {
+  const { equalRule, noEqualRule, containsRule, notContainsRule, emptyRule, notEmptyRule, requiredRule } = lookup;
+
+  if (equalRule) {
+    return equalRule.values
+      ? checkArrayValue(currentValue, equalRule.values, true)
+      : checkStringValue(currentValue, equalRule.value || '', true, true);
+  }
+
+  if (noEqualRule) {
+    return noEqualRule.values
+      ? checkArrayValue(currentValue, noEqualRule.values, false)
+      : checkStringValue(currentValue, noEqualRule.value || '', false, true);
+  }
+
+  if (containsRule) {
+    return containsRule.values
+      ? checkArrayValue(currentValue, containsRule.values, true)
+      : checkStringValue(currentValue, containsRule.value || '', true, false);
+  }
+
+  if (notContainsRule) {
+    return notContainsRule.values
+      ? checkArrayValue(currentValue, notContainsRule.values, false)
+      : checkStringValue(currentValue, notContainsRule.value || '', false, false);
+  }
+
+  if (emptyRule) return currentValue === '';
+
+  // NOTEMPTY and REQUIRED (in condition context) both check for non-empty value
+  const checkNonEmpty = notEmptyRule || (isConditionContext && requiredRule);
+  if (checkNonEmpty) return currentValue !== '';
+
+  return undefined;
+}
+
 export function checkConstraint(
   rules: TConfigurationRuleConstraint,
   formValues: ContactEditFormValues,
@@ -90,22 +154,12 @@ export function checkConstraint(
     });
   }
 
+  const isConditionContext = !!rules.conditions?.fields;
   const constraints =
     rules.conditions?.fields?.constraints || [rules];
   const fieldLabel = rules.conditions?.fields?.label || ruleLabel;
 
-  const equalRule = constraints.find((c) => c.operator === OPERATORS.EQ);
-  const noEqualRule = constraints.find((c) => c.operator === OPERATORS.NE);
-  const containsRule = constraints.find(
-    (c) => c.operator === OPERATORS.CONTAINS,
-  );
-  const notContainsRule = constraints.find(
-    (c) => c.operator === OPERATORS.NOTCONTAINS,
-  );
-  const emptyRule = constraints.find((c) => c.operator === OPERATORS.EMPTY);
-  const notEmptyRule = constraints.find(
-    (c) => c.operator === OPERATORS.NOTEMPTY,
-  );
+  const lookup = findConstraintsByOperator(constraints);
 
   const currentValue = fieldCurrentValue(
     fieldLabel,
@@ -114,44 +168,7 @@ export function checkConstraint(
     fieldLabel,
   );
 
-  if (equalRule) {
-    return equalRule.values
-      ? checkArrayValue(currentValue, equalRule.values, true)
-      : checkStringValue(currentValue, equalRule.value || '', true, true);
-  }
-
-  if (noEqualRule) {
-    return noEqualRule.values
-      ? checkArrayValue(currentValue, noEqualRule.values, false)
-      : checkStringValue(currentValue, noEqualRule.value || '', false, true);
-  }
-
-  if (containsRule) {
-    return containsRule.values
-      ? checkArrayValue(currentValue, containsRule.values, true)
-      : checkStringValue(currentValue, containsRule.value || '', true, false);
-  }
-
-  if (notContainsRule) {
-    return notContainsRule.values
-      ? checkArrayValue(currentValue, notContainsRule.values, false)
-      : checkStringValue(
-        currentValue,
-        notContainsRule.value || '',
-        false,
-        false,
-      );
-  }
-
-  if (emptyRule) {
-    return currentValue === '';
-  }
-
-  if (notEmptyRule) {
-    return currentValue !== '';
-  }
-
-  return true;
+  return evaluateConstraintLookup(lookup, currentValue, isConditionContext) ?? true;
 }
 
 export function isConstraintSatisfied(
@@ -162,9 +179,33 @@ export function isConstraintSatisfied(
 ): boolean {
   if (constraint.conditions) {
     if (constraint.conditions.and) {
-      return constraint.conditions.and.every((r) =>
-        checkConstraint(r.fields, formValues, contactInformations, ruleLabel),
-      );
+      return constraint.conditions.and.every((r) => {
+        const fields = r.fields as { label?: string; constraints?: TConfigurationRuleConstraint[] };
+        if (fields.label && fields.constraints) {
+          const fieldLabel = fields.label || ruleLabel;
+          const pseudoConstraint: TConfigurationRuleConstraint = {
+            operator: constraint.operator,
+            conditions: {
+              fields: {
+                label: fieldLabel,
+                constraints: fields.constraints,
+              },
+            },
+          };
+          return checkConstraint(
+            pseudoConstraint,
+            formValues,
+            contactInformations,
+            fieldLabel,
+          );
+        }
+        return checkConstraint(
+          r.fields as TConfigurationRuleConstraint,
+          formValues,
+          contactInformations,
+          ruleLabel,
+        );
+      });
     }
     return checkConstraint(
       constraint,
@@ -190,7 +231,7 @@ export function findMatchingConstraint(
   ruleLabel: string,
 ): TConfigurationRuleConstraint | undefined {
   return constraints
-    .filter((c) => c.operator === operator || (!c.operator && operator === OPERATORS.READONLY && c.conditions))
+    .filter((c) => c.operator === operator)
     .find((constraint) =>
       isConstraintSatisfied(constraint, formValues, contactInformations, ruleLabel),
     );

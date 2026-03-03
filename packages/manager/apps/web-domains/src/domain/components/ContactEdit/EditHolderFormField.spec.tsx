@@ -469,6 +469,341 @@ describe('EditHolderFormField', () => {
     });
   });
 
+  describe('editable behavior', () => {
+    it('should render firstName as editable when no READONLY constraint', () => {
+      const rule = createMockRule({
+        label: 'firstName',
+        constraints: [],
+      });
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={defaultContactInformations}
+          formValues={defaultFormValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+
+    it('should render lastName as editable when no READONLY constraint', () => {
+      const rule = createMockRule({
+        label: 'lastName',
+        constraints: [],
+      });
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={defaultContactInformations}
+          formValues={defaultFormValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByRole('textbox');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+
+    it('should render email as editable when only REQUIRED constraint', () => {
+      const rule = createMockRule({
+        label: 'email',
+        constraints: [{ operator: OPERATORS.REQUIRED }],
+      });
+
+      const formValues: ContactEditFormValues = {
+        ...defaultFormValues,
+        email: 'john@example.com',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={defaultContactInformations}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('john@example.com');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+  });
+
+  describe('.be domain — editable fields for corporation contact', () => {
+    const beFirstNameConstraints = [
+      { operator: OPERATORS.REQUIRED },
+      {
+        operator: OPERATORS.READONLY,
+        conditions: {
+          and: [
+            {
+              label: 'OWNER_CONTACT',
+              type: 'contact',
+              fields: {
+                label: 'legalForm',
+                constraints: [
+                  { operator: OPERATORS.EQ, value: 'individual' },
+                  { operator: OPERATORS.REQUIRED },
+                ],
+              },
+              constraints: [{ operator: OPERATORS.REQUIRED }],
+            },
+            {
+              label: 'OWNER_CONTACT',
+              type: 'contact',
+              fields: {
+                label: 'firstName',
+                constraints: [{ operator: OPERATORS.REQUIRED }],
+              },
+              constraints: [{ operator: OPERATORS.REQUIRED }],
+            },
+          ],
+          fields: {
+            label: 'legalForm',
+            constraints: [{ operator: OPERATORS.EQ, value: 'individual' }],
+          },
+        },
+      },
+      { operator: OPERATORS.MAXLENGTH, value: '255' },
+    ];
+
+    const beLastNameConstraints = [
+      { operator: OPERATORS.REQUIRED },
+      {
+        operator: OPERATORS.READONLY,
+        conditions: {
+          and: [
+            {
+              label: 'OWNER_CONTACT',
+              type: 'contact',
+              fields: {
+                label: 'legalForm',
+                constraints: [
+                  { operator: OPERATORS.EQ, value: 'individual' },
+                  { operator: OPERATORS.REQUIRED },
+                ],
+              },
+              constraints: [{ operator: OPERATORS.REQUIRED }],
+            },
+            {
+              label: 'OWNER_CONTACT',
+              type: 'contact',
+              fields: {
+                label: 'lastName',
+                constraints: [{ operator: OPERATORS.REQUIRED }],
+              },
+              constraints: [{ operator: OPERATORS.REQUIRED }],
+            },
+          ],
+          fields: {
+            label: 'legalForm',
+            constraints: [{ operator: OPERATORS.EQ, value: 'individual' }],
+          },
+        },
+      },
+      { operator: OPERATORS.MAXLENGTH, value: '255' },
+    ];
+
+    const beEmailConstraints = [
+      { operator: OPERATORS.REQUIRED },
+      {
+        operator: OPERATORS.REQUIRED,
+        conditions: {
+          fields: {
+            label: 'email',
+            constraints: [{ operator: OPERATORS.REQUIRED }],
+          },
+        },
+      },
+      { operator: OPERATORS.MAXLENGTH, value: '255' },
+    ];
+
+    const corporationContactInfo: Record<string, unknown> = {
+      firstName: 'Jean',
+      lastName: 'Dupont',
+      legalForm: 'corporation',
+      email: 'jean@corp.be',
+      address: { country: 'BE', city: 'Brussels' },
+    };
+
+    it('should render firstName as editable for .be corporation contact', () => {
+      const rule = createMockRule({
+        label: 'firstName',
+        constraints: beFirstNameConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        firstName: 'Jean',
+        lastName: 'Dupont',
+        legalForm: 'corporation',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={corporationContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('Jean');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+
+    it('should render lastName as editable for .be corporation contact', () => {
+      const rule = createMockRule({
+        label: 'lastName',
+        constraints: beLastNameConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        firstName: 'Jean',
+        lastName: 'Dupont',
+        legalForm: 'corporation',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={corporationContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('Dupont');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+
+    it('should render email as editable for .be domain (no READONLY constraint)', () => {
+      const rule = createMockRule({
+        label: 'email',
+        constraints: beEmailConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        ...defaultFormValues,
+        email: 'jean@corp.be',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={corporationContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('jean@corp.be');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+
+    it('should render firstName as readonly for .be individual contact with existing value', () => {
+      const individualContactInfo: Record<string, unknown> = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        legalForm: 'individual',
+        email: 'marie@example.be',
+        address: { country: 'BE', city: 'Liège' },
+      };
+
+      const rule = createMockRule({
+        label: 'firstName',
+        constraints: beFirstNameConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        legalForm: 'individual',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={individualContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('Marie');
+      expect(input).toHaveAttribute('readonly');
+    });
+
+    it('should render lastName as readonly for .be individual contact with existing value', () => {
+      const individualContactInfo: Record<string, unknown> = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        legalForm: 'individual',
+        email: 'marie@example.be',
+        address: { country: 'BE', city: 'Liège' },
+      };
+
+      const rule = createMockRule({
+        label: 'lastName',
+        constraints: beLastNameConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        legalForm: 'individual',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={individualContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('Martin');
+      expect(input).toHaveAttribute('readonly');
+    });
+
+    it('should render email as editable for .be individual contact (no READONLY constraint on email)', () => {
+      const individualContactInfo: Record<string, unknown> = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        legalForm: 'individual',
+        email: 'marie@example.be',
+        address: { country: 'BE', city: 'Liège' },
+      };
+
+      const rule = createMockRule({
+        label: 'email',
+        constraints: beEmailConstraints,
+      });
+
+      const formValues: ContactEditFormValues = {
+        firstName: 'Marie',
+        lastName: 'Martin',
+        email: 'marie@example.be',
+      };
+
+      render(
+        <EditHolderFormField
+          rule={rule}
+          contactInformations={individualContactInfo}
+          formValues={formValues}
+          onFieldChange={mockOnFieldChange}
+        />,
+      );
+
+      const input = screen.getByDisplayValue('marie@example.be');
+      expect(input).not.toHaveAttribute('readonly');
+    });
+  });
+
   describe('value display', () => {
     it('should display the current form value', () => {
       const rule = createMockRule({
