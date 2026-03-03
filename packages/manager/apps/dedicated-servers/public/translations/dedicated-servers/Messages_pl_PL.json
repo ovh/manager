@@ -45,5 +45,6 @@
   "server_export_csv_consent_disclaimer": "Eksportuj pełną listę serwerów i ich metadane w formacie CSV.",
   "server_export_csv_export_completed_title": "Pobieranie ukończone",
   "server_export_csv_export_completed_content": "Przechowuj plik w bezpiecznym miejscu. Zawiera on informacje techniczne o Twoich serwerach.",
-  "server_display_actions": "Operacje"
+  "server_display_actions": "Operacje",
+  "server_display_availability_zone": "Strefa dostępności"
 }
