@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_reset_title": "Rimuovi la configurazione dell’aggregazione privata",
-  "dedicated_server_interfaces_ola_reset_text": "Vuoi davvero rimuovere la configurazione dell'aggregazione privata su questo server?",
-  "dedicated_server_interfaces_ola_reset_error": "Si è verificato un errore durante la rimozione della configurazione dell'aggregazione privata."
+  "dedicated_server_interfaces_ola_reset_title": "Scollegare la rete aggregata",
+  "dedicated_server_interfaces_ola_reset_text": "Vuoi davvero scollegare questa rete aggregata? Le interfacce di rete funzioneranno in modo indipendente dopo questa azione.",
+  "dedicated_server_interfaces_ola_reset_error": "Si è verificato un errore durante lo scollegamento della rete aggregata."
 }

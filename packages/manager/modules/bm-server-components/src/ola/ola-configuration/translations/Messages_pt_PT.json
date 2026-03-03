@@ -27,5 +27,7 @@
   "dedicated_server_interfaces_ola_error": "Ocorreu um erro durante a configuração: {{ errorMessage }}.",
   "dedicated_server_interface_ola_new_tab": "Abre-se numa nova janela",
   "dedicated_server_interfaces_ola_network_interfaces": "A sua interface de rede atual",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "A sua interface de rede após ativação"
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Simulação de interface de rede após ativação da agregação dos links",
+  "dedicated_server_interfaces_ola_column_mac_address": "Endereço MAC",
+  "dedicated_server_interfaces_ola_activate": "Ativar a agregação"
 }
