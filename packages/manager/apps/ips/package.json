@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-ips-app",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "description": "Ips manager app",
   "repository": {
@@ -27,7 +27,7 @@
     "@ovh-ux/manager-module-common-api": "^0.6.7",
     "@ovh-ux/manager-module-order": "^0.14.1",
     "@ovh-ux/manager-react-components": "^2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.15.4",
+    "@ovh-ux/manager-react-core-application": "^0.15.5",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/muk": "^0.10.1",
     "@ovh-ux/request-tagger": "^0.4.1",
