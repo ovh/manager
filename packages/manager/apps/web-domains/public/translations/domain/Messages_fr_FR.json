@@ -77,7 +77,7 @@
   "domain_tab_DNS_information_message": "Pour vous assurer du bon fonctionnement de votre configuration, vous pouvez utiliser <Link>cet outil de vérification DNS.<Icon /></Link>",
   "domain_tab_DNS_anycast_order_activate_zone": "Activer votre zone DNS",
   "domain_tab_DNS_anycast_order_activate_zone_message": "Vous devez activer votre zone DNS pour pouvoir utiliser un DNS Anycast",
-  "domain_order_activate_zone_message": "Pour répondre aux requêtes DNS, votre nom de domaine doit être relié à une zone DNS. Vous pourrez y configurer vers quelle adresse IP sera redirigé votre domaine et ses sous domaines. La zone DNS de votre domaine est désactivé. Si vous souhaitez l'activer, validez les étapes suivantes.",
+  "domain_order_activate_zone_message": "Pour répondre aux requêtes DNS, votre nom de domaine doit être relié à une zone DNS. Vous pourrez y configurer vers quelle adresse IP sera redirigé votre nom de domaine et ses sous domaines. La zone DNS de votre nom dedomaine est désactivée. Pour l'activer, validez les étapes suivantes.",
   "domain_tab_DNS_anycast_order_include": "Inclus",
   "domain_tab_DNS_anycast_order": "Commander un DNS Anycast",
   "domain_tab_DNS_anycast_order_description": "Commander un DNS Anycast permet de sécuriser et d'accélérer la résolution des noms de domaine en utilisant un réseau mondial de serveurs DNS.",
