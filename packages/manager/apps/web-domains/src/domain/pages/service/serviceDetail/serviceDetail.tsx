@@ -61,7 +61,7 @@ export default function ServiceDetail() {
     domainResourceError,
     isFetchingDomainResource,
     domainResource,
-  } = useGetDomainResource(serviceName);
+  } = useGetDomainResource(serviceName!);
 
   if (isFetchingDomainResource) {
     return <Loading />;
@@ -88,12 +88,12 @@ export default function ServiceDetail() {
         />
       }
       header={header}
-      tabs={<ServiceDetailsTabs domainResource={domainResource} />}
+      tabs={<ServiceDetailsTabs domainResource={domainResource!} />}
       backLinkLabel={t('domain_back_to_service_list')}
       onClickReturn={() => {
         navigate(urls.domainRoot, { replace: true });
       }}
-      message={notifications.length > 0 ? <Notifications /> : null}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <Outlet />
     </BaseLayout>

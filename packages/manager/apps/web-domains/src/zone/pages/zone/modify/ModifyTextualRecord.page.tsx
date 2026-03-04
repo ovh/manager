@@ -185,7 +185,7 @@ export default function ModifyTextualRecordPage() {
       header={{ title: serviceName }}
       backLinkLabel={t('zone_page_modify_textual_back')}
       onClickReturn={handleCancel}
-      message={notifications.length > 0 ? <Notifications /> : null}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <div className="mb-4">
         <Text preset={TEXT_PRESET.heading3} className="mb-4">
@@ -231,9 +231,7 @@ export default function ModifyTextualRecordPage() {
                 accept=".txt,.zone"
                 maxFile={1}
                 dropzoneLabel={t('zone_page_modify_textual_dropzone_label')}
-                acceptedFileLabel={t(
-                  'zone_page_modify_textual_accepted_files',
-                )}
+                acceptedFileLabel={t('zone_page_modify_textual_accepted_files')}
                 onFileAccept={handleFileAccept}
                 disabled={isPending}
                 variant={FILE_UPLOAD_VARIANT.compact}
@@ -321,7 +319,6 @@ export default function ModifyTextualRecordPage() {
           </Button>
         </div>
       </div>
-
     </BaseLayout>
   );
 }
