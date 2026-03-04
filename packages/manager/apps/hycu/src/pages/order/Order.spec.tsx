@@ -10,11 +10,14 @@ describe('License Hycu order test suite', () => {
   it('should display the hycu order page', async () => {
     await renderTestApp('/order');
 
-    await waitFor(() => screen.getByText(labels.order.hycu_order_title), {
-      timeout: 10_000,
-    });
+    await waitFor(
+      () => screen.getAllByText(labels.order.hycu_order_title).length > 0,
+      {
+        timeout: 10_000,
+      },
+    );
 
-    expect(screen.getByText(labels.order.hycu_order_title)).toBeVisible();
+    expect(screen.getAllByText(labels.order.hycu_order_title).length).toBe(2);
     expect(screen.getByText(labels.order.hycu_order_description)).toBeVisible();
     expect(screen.getByText(labels.order.hycu_order_subtitle)).toBeVisible();
 

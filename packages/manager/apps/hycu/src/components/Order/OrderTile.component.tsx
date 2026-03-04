@@ -1,39 +1,39 @@
 import React, { ReactNode } from 'react';
-import { Price, OvhSubsidiary } from '@ovh-ux/manager-react-components';
-import { OsdsText, OsdsTile } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import clsx from 'clsx';
+import { Card, CARD_COLOR } from '@ovhcloud/ods-react';
+import { Text, TEXT_PRESET, Price, OvhSubsidiary } from '@ovh-ux/muk';
 
 import { HYCUCatalogPlanPricing } from '@/types/orderCatalogHYCU.type';
 
-export type OrderTileProps = React.ComponentProps<typeof OsdsTile> & {
+export type OrderTileProps = {
   label: string;
   pricing: HYCUCatalogPlanPricing;
   subsidiary: OvhSubsidiary;
+  checked?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
 };
 
 export const OrderTile = ({
   label,
   pricing,
   subsidiary,
-  ...otherProps
+  checked = false,
+  disabled = false,
+  onClick,
 }: OrderTileProps) => {
   return (
-    <OsdsTile
-      className="flex flex-col w-full h-fit text-center"
-      color={ODS_THEME_COLOR_INTENT.primary}
-      hoverable
-      rounded
-      {...otherProps}
+    <Card
+      className={clsx('flex border-2 flex-col w-full h-fit text-center p-4', {
+        'border-[--ods-theme-input-border-color-checked]': checked,
+        'opacity-50 cursor-not-allowed': disabled,
+        'cursor-pointer hover:bg-[--ods-theme-input-option-background-color-hover]': !disabled,
+      })}
+      color={checked ? CARD_COLOR.primary : CARD_COLOR.information}
+      onClick={() => onClick?.()}
     >
       <div className="flex flex-col gap-6 pb-4">
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          level={ODS_TEXT_LEVEL.heading}
-          size={ODS_TEXT_SIZE._400}
-        >
-          {label}
-        </OsdsText>
+        <Text preset={TEXT_PRESET.heading4}>{label}</Text>
         <Price
           locale={subsidiary}
           ovhSubsidiary={subsidiary}
@@ -42,7 +42,7 @@ export const OrderTile = ({
           value={pricing.price}
         ></Price>
       </div>
-    </OsdsTile>
+    </Card>
   );
 };
 

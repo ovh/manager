@@ -1,17 +1,6 @@
-import {
-  DashboardTile,
-  DateFormat,
-  Description,
-  useFormattedDate,
-  useServiceDetails,
-} from '@ovh-ux/manager-react-components';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import {
-  OsdsIcon,
-  OsdsLink,
-  OsdsSkeleton,
-} from '@ovhcloud/ods-components/react';
+import { useServiceDetails } from '@ovh-ux/manager-module-common-api';
+import { Icon, Link, Skeleton, ICON_NAME } from '@ovhcloud/ods-react';
+import { Tile, useFormatDate, Text, TEXT_PRESET } from '@ovh-ux/muk';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +8,6 @@ import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useNavigationGetUrl } from '@/hooks/shell/useNavigationGetUrl';
 import { subRoutes, urls } from '@/routes/routes.constant';
-import { ManagerLink } from '@/components/ManagerLink/ManagerLink.component';
 import { TRACKING } from '@/tracking.constant';
 
 const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
@@ -35,16 +23,7 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
   const { data: serviceDetails, isLoading } = useServiceDetails({
     resourceName: serviceName,
   });
-
-  const renewDate = useFormattedDate({
-    dateString: serviceDetails?.data.billing.nextBillingDate,
-    format: DateFormat.display,
-  });
-
-  const creationDate = useFormattedDate({
-    dateString: serviceDetails?.data.billing.lifecycle.current.creationDate,
-    format: DateFormat.display,
-  });
+  const formatDate = useFormatDate();
 
   const { data: renewUrl, isLoading: isRenewUrlLoading } = useNavigationGetUrl([
     'dedicated',
@@ -58,19 +37,16 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
     );
 
   return (
-    <DashboardTile
-      title={t(`${NAMESPACES.BILLING}:subscription`)}
-      items={[
-        {
-          id: 'renew',
-          label: t(`${NAMESPACES.BILLING}:automatic_renew`),
-          value: isLoading ? (
-            <OsdsSkeleton />
+    <Tile.Root title={t(`${NAMESPACES.BILLING}:subscription`)}>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t(`${NAMESPACES.BILLING}:automatic_renew`)} />
+        <Tile.Item.Description>
+          {isLoading ? (
+            <Skeleton />
           ) : (
-            <OsdsLink
+            <Link
               href={(renewUrl as string) ?? '#'}
               className={isRenewUrlLoading ? 'cursor-wait' : ''}
-              color={ODS_THEME_COLOR_INTENT.info}
               onClick={() => {
                 trackClick(
                   TRACKING.dashboard.autorenewClick(
@@ -79,67 +55,73 @@ const BillingInformationsTile = ({ serviceName }: { serviceName: string }) => {
                 );
               }}
             >
-              {renewDate}
-            </OsdsLink>
-          ),
-        },
-        {
-          id: 'date_creation',
-          label: t(`${NAMESPACES.DASHBOARD}:creation_date`),
-          value: isLoading ? (
-            <OsdsSkeleton />
+              {formatDate({
+                date: serviceDetails?.data.billing.nextBillingDate,
+                format: 'dd MMM yyyy',
+              })}
+            </Link>
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t(`${NAMESPACES.DASHBOARD}:creation_date`)} />
+        <Tile.Item.Description>
+          {isLoading ? (
+            <Skeleton />
           ) : (
-            <Description>{creationDate}</Description>
-          ),
-        },
-        {
-          id: 'link_terminated',
-          value: (
-            <ManagerLink
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() => {
-                trackClick(
-                  TRACKING.dashboard.resiliateClick(
-                    serviceDetails?.data.billing.plan.code,
-                  ),
-                );
-                openTerminateModal();
-              }}
-              disabled={serviceDetails?.data.resource.state === 'suspended'}
-            >
-              <div className="flex items-center">
-                <div>{t('hycu_dashboard_link_terminate')}</div>
-                <OsdsIcon
-                  name={ODS_ICON_NAME.CHEVRON_RIGHT}
-                  color={ODS_THEME_COLOR_INTENT.primary}
-                ></OsdsIcon>
-              </div>
-            </ManagerLink>
-          ),
-        },
-        {
-          id: 'contact',
-          label: t(`${NAMESPACES.CONTACT}:contacts`),
-          value: (
-            <div className="flex flex-col gap-4">
-              <div>
-                {isLoading
-                  ? Array.from({ length: 3 }).map((_, index) => (
-                      <OsdsSkeleton key={index} />
-                    ))
-                  : serviceDetails?.data.customer.contacts.map((contact) => (
-                      <Description key={contact.type}>{`${
-                        contact.customerCode
-                      } ${t(
-                        `${NAMESPACES.CONTACT}:${contact.type}`,
-                      )}`}</Description>
-                    ))}
-              </div>
+            <Text preset={TEXT_PRESET.paragraph} className="block">
+              {formatDate({
+                date:
+                  serviceDetails?.data.billing.lifecycle.current.creationDate,
+                format: 'dd MMM yyyy',
+              })}
+            </Text>
+          )}
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Description>
+          <Link
+            onClick={() => {
+              trackClick(
+                TRACKING.dashboard.resiliateClick(
+                  serviceDetails?.data.billing.plan.code,
+                ),
+              );
+              openTerminateModal();
+            }}
+            disabled={serviceDetails?.data.resource.state === 'suspended'}
+          >
+            <div className="flex items-center">
+              <div>{t('hycu_dashboard_link_terminate')}</div>
+              <Icon name={ICON_NAME.chevronRight} aria-hidden="true"></Icon>
             </div>
-          ),
-        },
-      ]}
-    ></DashboardTile>
+          </Link>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+      <Tile.Item.Root>
+        <Tile.Item.Term label={t(`${NAMESPACES.CONTACT}:contacts`)} />
+        <Tile.Item.Description divider={false}>
+          <div className="flex flex-col gap-4">
+            <div>
+              {isLoading
+                ? Array.from({ length: 3 }).map((_, index) => (
+                    <Skeleton key={index} />
+                  ))
+                : serviceDetails?.data.customer.contacts.map((contact) => (
+                    <Text
+                      preset={TEXT_PRESET.span}
+                      className="block"
+                      key={contact.type}
+                    >{`${contact.customerCode} ${t(
+                      `${NAMESPACES.CONTACT}:${contact.type}`,
+                    )}`}</Text>
+                  ))}
+            </div>
+          </div>
+        </Tile.Item.Description>
+      </Tile.Item.Root>
+    </Tile.Root>
   );
 };
 

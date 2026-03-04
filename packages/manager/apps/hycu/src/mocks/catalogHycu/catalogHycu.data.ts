@@ -1,4 +1,4 @@
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 import { HYCUCatalog } from '@/types/orderCatalogHYCU.type';
 
 export const catalog: HYCUCatalog = {
@@ -17,14 +17,14 @@ export const catalog: HYCUCatalog = {
       pricings: [
         {
           capacities: ['installation'],
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
           price: 0,
           tax: 0,
         },
         {
           capacities: ['upgrade'],
 
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
 
           price: 0,
           tax: 0,
@@ -32,7 +32,7 @@ export const catalog: HYCUCatalog = {
         {
           capacities: ['renew'],
 
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
 
           price: 63000000000,
           tax: 12600000000,
@@ -46,7 +46,7 @@ export const catalog: HYCUCatalog = {
         {
           capacities: ['installation'],
 
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
 
           price: 0,
           tax: 0,
@@ -54,7 +54,7 @@ export const catalog: HYCUCatalog = {
         {
           capacities: ['upgrade'],
 
-          intervalUnit: IntervalUnitType.none,
+          intervalUnit: IntervalUnit.none,
 
           price: 0,
           tax: 0,
@@ -62,7 +62,7 @@ export const catalog: HYCUCatalog = {
         {
           capacities: ['renew'],
 
-          intervalUnit: IntervalUnitType.month,
+          intervalUnit: IntervalUnit.month,
 
           price: 94500000000,
           tax: 18900000000,

@@ -1,5 +1,9 @@
 import React from 'react';
-import { OsdsBreadcrumb } from '@ovhcloud/ods-components/react';
+import {
+  Breadcrumb as OdsBreadcrumb,
+  BreadcrumbItem as OdsBreadcrumbItem,
+  BreadcrumbLink,
+} from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import {
   useBreadcrumb,
@@ -19,7 +23,21 @@ function Breadcrumb({ items }: BreadcrumbProps): JSX.Element {
     rootLabel: t('hycu_crumb'),
     items,
   });
-  return <OsdsBreadcrumb items={breadcrumbItems} />;
+
+  return (
+    <OdsBreadcrumb>
+      {breadcrumbItems.map((breadcrumbItem) => (
+        <OdsBreadcrumbItem key={breadcrumbItem.id}>
+          <BreadcrumbLink
+            aria-label={breadcrumbItem.label}
+            onClick={() => breadcrumbItem.onClick?.()}
+          >
+            {breadcrumbItem.label}
+          </BreadcrumbLink>
+        </OdsBreadcrumbItem>
+      ))}
+    </OdsBreadcrumb>
+  );
 }
 
 export default Breadcrumb;

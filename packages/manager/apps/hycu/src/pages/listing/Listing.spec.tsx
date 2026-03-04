@@ -1,3 +1,4 @@
+import { vi } from 'vitest';
 import { act, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
@@ -6,7 +7,27 @@ import { labels } from '@/utils/tests/init.i18n';
 import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
 import HYCU_CONFIG from '@/hycu.config';
 
+const getDomRect = (width: number, height: number): DOMRect => ({
+  width,
+  height,
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  x: 0,
+  y: 0,
+  toJSON: vi.fn(),
+});
+
 describe('License Hycu listing test suite', () => {
+  beforeEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(120, 120));
+  });
+
+  afterEach(() => {
+    Element.prototype.getBoundingClientRect = vi.fn(() => getDomRect(0, 0));
+  });
+
   it('should redirect to the onboarding page when the license hycu list is empty', async () => {
     await renderTestApp('/', { nbLicenseHycu: 0 });
 

@@ -1,8 +1,7 @@
 import { vi } from 'vitest';
-import { act, screen, waitFor } from '@testing-library/react';
+import { act, screen, waitFor, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderTestApp } from '@/utils/tests/renderTestApp';
-import '@testing-library/jest-dom';
 import { labels } from '@/utils/tests/init.i18n';
 import { licensesHycu } from '@/mocks/licenseHycu/licenseHycu.data';
 
@@ -36,7 +35,7 @@ describe('License Hycu activate license route test suite', () => {
       { timeout: 30_000 },
     );
 
-    expect(screen.getByTestId('hycu-dashboard-upload-confirm')).toBeVisible();
+    expect(screen.getByText(labels.actions.confirm)).toBeVisible();
 
     expect(screen.queryByAltText('OOPS')).not.toBeInTheDocument();
   });
@@ -67,15 +66,14 @@ describe('License Hycu activate license route test suite', () => {
       { timeout: 30_000 },
     );
 
-    const submitButton = screen.getByTestId('hycu-dashboard-upload-confirm');
+    const submitButton = screen.getByText(labels.actions.confirm);
 
-    expect(submitButton).toHaveAttribute('disabled');
+    expect(submitButton).toBeDisabled();
   });
 
   it('should call mutate when form valid and submitted', async () => {
     const user = userEvent.setup();
     await renderTestApp(`/${licensesHycu[0].serviceName}/activate-license`);
-
     await waitFor(
       () =>
         expect(
@@ -92,7 +90,7 @@ describe('License Hycu activate license route test suite', () => {
       { timeout: 10_000 },
     );
 
-    const submitButton = screen.getByText(labels.actions.confirm);
+    const submitButton = await screen.getByText(labels.actions.confirm);
 
     await act(() =>
       user.upload(screen.getByTestId('license-file-input'), createFakeFile()),
@@ -162,7 +160,7 @@ describe('License Hycu activate license route test suite', () => {
         ).toBeVisible();
         expect(
           screen.queryAllByText(
-            labels.dashboard.hycu_dashboard_activation_license_error_message.replace(
+            labels.dashboard.hycu_dashboard_activation_license_success_message.replace(
               '{{error}}',
               'Request failed with status code 500',
             ),

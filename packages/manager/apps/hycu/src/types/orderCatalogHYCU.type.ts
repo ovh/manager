@@ -1,4 +1,4 @@
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 type HYCUCatalogPlanConfiguration = {
   isCustom: boolean;
@@ -10,7 +10,7 @@ type HYCUCatalogPlanConfiguration = {
 export type HYCUCatalogPlanPricing = {
   capacities: ['installation' | 'upgrade' | 'renew'];
   price: number;
-  intervalUnit: IntervalUnitType;
+  intervalUnit: IntervalUnit;
   tax: number;
 };
 

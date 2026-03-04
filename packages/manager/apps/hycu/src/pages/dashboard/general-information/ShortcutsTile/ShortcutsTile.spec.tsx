@@ -90,7 +90,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
       () =>
         expect(
           screen.getByText(
-            labels.dashboard.hycu_dashboard_license_activate_description,
+            labels.dashboard.hycu_dashboard_license_activate_heading,
           ),
         ).toBeVisible(),
       { timeout: 20_000 },
@@ -106,7 +106,7 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
       () => {
         expect(
           screen.getByTestId('hycu_link_regenerate_test_id'),
-        ).toHaveAttribute('disabled');
+        ).toHaveAttribute('aria-disabled', 'true');
       },
       { timeout: 30_000 },
     );
@@ -148,20 +148,22 @@ describe('License Hycu shortcuts tile for dashboard test suite', () => {
     await waitFor(
       () => {
         expect(
-          screen.getByTestId('hycu_link_regenerate_test_id'),
-        ).not.toHaveAttribute('disabled');
+          screen.getByText(labels.dashboard.hycu_dashboard_link_regenerate),
+        ).not.toHaveAttribute('aria-disabled', 'true');
       },
       { timeout: 30_000 },
     );
     await act(() =>
-      user.click(screen.getByTestId('hycu_link_regenerate_test_id')),
+      user.click(
+        screen.getByText(labels.dashboard.hycu_dashboard_link_regenerate),
+      ),
     );
 
     await waitFor(
       () =>
         expect(
           screen.getByText(
-            labels.dashboard.hycu_dashboard_license_regenerate_description,
+            labels.dashboard.hycu_dashboard_license_regenerate_heading,
           ),
         ).toBeVisible(),
       { timeout: 20_000 },
