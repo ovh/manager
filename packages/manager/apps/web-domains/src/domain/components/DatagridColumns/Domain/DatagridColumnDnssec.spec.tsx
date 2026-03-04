@@ -1,7 +1,6 @@
-import { render, screen } from '@/common/utils/test.provider';
-import { describe, expect, it, vi } from 'vitest';
 import '@/common/setupTests';
-import { beforeEach } from 'vitest';
+import { render, screen } from '@/common/utils/test.provider';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { wrapper, renderHook } from '@/common/utils/test.provider';
 import DatagridColumnDnssec from './DatagridColumnDnssec';
 import { useGetDnssecStatus } from '@/domain/hooks/data/query';
@@ -10,25 +9,6 @@ import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { TCurrentState, TTargetSpec } from '@/domain/types/domainResource';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Badge: ({ children, color, 'data-testid': dataTestId }: any) => (
-    <div data-testid={dataTestId} data-color={color}>
-      {children}
-    </div>
-  ),
-  Icon: ({ name }: { name: string }) => <span data-testid={`icon-${name}`} />,
-  Skeleton: () => <div data-testid="skeleton" />,
-  BADGE_COLOR: {
-    success: 'success',
-    critical: 'critical',
-    warning: 'warning',
-    information: 'information',
-    neutral: 'neutral',
-  },
-  ICON_NAME: {
-    arrowRight: 'arrow-right',
-  },
-}));
 
 vi.mock('@/domain/constants/serviceDetail', async (importOriginal) => {
   const actual = await importOriginal<any>();

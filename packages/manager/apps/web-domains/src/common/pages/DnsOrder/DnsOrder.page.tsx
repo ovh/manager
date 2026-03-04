@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import {
   BaseLayout,
+  Breadcrumb,
   ChangelogButton,
   GuideButton,
   GuideItem,
@@ -22,22 +23,36 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { UserLocales } from '@ovh-ux/manager-config';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
 import DnsZoneOrder from '@/domain/components/AnycastOrder/DnsZoneOrder';
-import AnycastOrderComponent from '@/domain/components/AnycastOrder/AnycastOrder';
+import DnsOrderCard from '@/common/components/DnsOrderCard/DnsOrderCard';
 import {
   useGetDomainResource,
   useGetDomainZone,
 } from '@/domain/hooks/data/query';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import { generateOrderUrl } from '@/domain/utils/order';
 import { OrderProduct } from '@/domain/types/order';
 import { urls } from '@/domain/routes/routes.constant';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import config from '@/web-domains.config';
-import { BreadcrumbAnyCast } from './breadcrumb';
+import { BreadcrumbAnyCast } from '@/domain/pages/domainTabs/dns/breadcrumb';
 import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 import { useLinks } from '@/domain/constants/guideLinks';
 
-export default function AnycastOrder() {
+const getPageToRedirectTo = (
+  from: AnycastPreviousPages | undefined,
+  isZoneActivation: boolean,
+) => {
+  const { t } = useTranslation(['domain', 'web-domains/error']);
+  if (isZoneActivation) {
+    return { url: urls.domainTabZone, title: t('domain_back_to_zone') };
+  }
+
+  return from === AnycastPreviousPages.DNS_SERVERS
+    ? { url: urls.domainTabDns, title: t('domain_back_to_dns_servers') }
+    : { url: urls.domainTabInformation, title: t('domain_back_to_service_details') }
+}
+
+export default function DnsOrderPage() {
   const { t } = useTranslation(['domain', 'web-domains/error']);
   const { serviceName } = useParams<{ serviceName: string }>();
   const { domainResource, isFetchingDomainResource } = useGetDomainResource(
@@ -45,10 +60,12 @@ export default function AnycastOrder() {
   );
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     true,
   );
   const [dnssecSelected, setDnssecSelected] = useState<boolean>(false);
+  const location = useLocation();
+  const isZoneActivation = location.pathname.endsWith('/zone/activate');
+  const [anycastSelected, setAnycastSelected] = useState<boolean>(!isZoneActivation);
   const [orderURL, setOrderURL] = useState<string>('');
 
   const navigate = useNavigate();
@@ -56,14 +73,12 @@ export default function AnycastOrder() {
   const { ovhSubsidiary } = context.environment.getUser();
   const userLocal = context.environment.getUserLocale() as UserLocales;
   const backUrl = useGenerateUrl(urls.domainTabDns, 'path', { serviceName });
-  const location = useLocation();
   const from = location.state?.from;
-  const pageToRedirectTo =
-    from === AnycastPreviousPages.DNS_SERVERS
-      ? urls.domainTabDns
-      : urls.domainTabInformation;
+  const pageToRedirectTo = getPageToRedirectTo(from, isZoneActivation);
+
+
   const hrefPrevious = useHref(
-    `/${config.rootLabel}${pageToRedirectTo.replace(
+    `/${config.rootLabel}${pageToRedirectTo.url.replace(
       ':serviceName',
       serviceName,
     )}`,
@@ -75,6 +90,9 @@ export default function AnycastOrder() {
   const orderBaseUrl = getExpressOrderURL(region, ovhSubsidiary);
   const onCheckBoxChange = () => {
     setDnssecSelected(!dnssecSelected);
+  };
+  const onAnycastCheckBoxChange = () => {
+    setAnycastSelected(!anycastSelected);
   };
   const guideItems: GuideItem[] = [
     {
@@ -101,6 +119,7 @@ export default function AnycastOrder() {
         dnssec: dnssecSelected,
         zoneName: serviceName,
         activateZone: !domainZone,
+        anycast: anycastSelected,
       },
     ];
     const expressOrderURL = generateOrderUrl({
@@ -113,14 +132,10 @@ export default function AnycastOrder() {
 
   return (
     <BaseLayout
-      breadcrumb={<BreadcrumbAnyCast serviceName={serviceName} />}
+      breadcrumb={isZoneActivation ? <Breadcrumb rootLabel={serviceName} appName="domain" hideRootLabel /> : <BreadcrumbAnyCast serviceName={serviceName} />}
       header={header}
       hrefPrevious={`/${hrefPrevious}`}
-      backLinkLabel={
-        from === AnycastPreviousPages.DNS_SERVERS
-          ? t('domain_back_to_dns_servers')
-          : t('domain_back_to_service_details')
-      }
+      backLinkLabel={pageToRedirectTo.title}
     >
       <section data-testid="order-component">
         <Order>
@@ -129,11 +144,13 @@ export default function AnycastOrder() {
             onConfirm={handleClickOrder}
             onCancel={() => navigate(backUrl, { replace: true })}
           >
+
             <Text preset={TEXT_PRESET.heading3} className="pb-8">
-              {t('domain_tab_DNS_anycast_order')}
+              {isZoneActivation ? t('domain_tab_DNS_anycast_order_activate_zone') : t('domain_tab_DNS_anycast_order')}
             </Text>
             {!domainZone && (
               <DnsZoneOrder
+                isZoneActivation={isZoneActivation}
                 dnssecSelected={dnssecSelected}
                 onDnssecSelectedChange={onCheckBoxChange}
                 dnssecSupported={
@@ -142,10 +159,13 @@ export default function AnycastOrder() {
                 }
               />
             )}
-            <AnycastOrderComponent
+            <DnsOrderCard
+              isZoneActivation={isZoneActivation}
               displayTitle={!domainZone}
               subsidiary={ovhSubsidiary as OvhSubsidiary}
               userLocal={userLocal}
+              anycastSelected={anycastSelected}
+              onAnycastCheckBoxChange={onAnycastCheckBoxChange}
             />
           </Order.Configuration>
           <Order.Summary
@@ -156,6 +176,6 @@ export default function AnycastOrder() {
         </Order>
       </section>
       <Outlet />
-    </BaseLayout>
+    </BaseLayout >
   );
 }

@@ -96,34 +96,36 @@ describe('Host Datagrid', () => {
 });
 
 describe('Host Datagrid W3C Validation', () => {
-  // Skipped: ODS input components generate empty aria-describedby attributes,
-  // causing W3C validation failures. Re-enable once ODS fixes this upstream.
-  // See: https://github.com/ovh/design-system/issues/XXXX
+  // ODS input components render empty aria-describedby="" attributes,
+  // which is invalid per W3C spec. We strip them before validation
+  // since this is an upstream ODS issue, not our code.
+  const stripEmptyAriaDescribedby = (html: string) =>
+    html.replaceAll(/\s*aria-describedby=""/g, '');
 
-  it.skip('should have valid html', async () => {
+  it('should have valid html', async () => {
     nichandle.auth.account = 'admin-id';
     const { container } = render(<HostsListing />, { wrapper });
-    const html = container.innerHTML;
+    const html = stripEmptyAriaDescribedby(container.innerHTML);
 
     await expect(html).toBeValidHtml();
   });
 
-  it.skip('should have valid html with drawer open', async () => {
+  it('should have valid html with drawer open', async () => {
     nichandle.auth.account = 'admin-id';
     const { getByTestId, container } = render(<HostsListing />, { wrapper });
 
     const addButton = getByTestId('addButton');
     fireEvent.click(addButton);
 
-    const html = container.innerHTML;
+    const html = stripEmptyAriaDescribedby(container.innerHTML);
 
     await expect(html).toBeValidHtml();
   });
 
-  it.skip('should have valid html with warning message', async () => {
+  it('should have valid html with warning message', async () => {
     nichandle.auth.account = 'adminxxx';
     const { container } = render(<HostsListing />, { wrapper });
-    const html = container.innerHTML;
+    const html = stripEmptyAriaDescribedby(container.innerHTML);
 
     await expect(html).toBeValidHtml();
   });

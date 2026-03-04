@@ -1,6 +1,6 @@
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
-import PriceCard from '../../Card/PriceCard';
+import PriceCard from '@/common/components/Card/PriceCard';
 import Section from './Section';
 
 export default function OfferSection() {

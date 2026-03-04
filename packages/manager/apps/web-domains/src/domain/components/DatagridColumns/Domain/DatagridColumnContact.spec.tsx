@@ -1,42 +1,13 @@
-import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
+import '@/common/setupTests';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 import DatagridColumnContact from './DatagridColumnContact';
 import { useGetDomainContact } from '@/domain/hooks/data/query';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
-import { wrapper } from '@/common/utils/test.provider';
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetDomainContact: vi.fn(),
-}));
-
-vi.mock('@/common/hooks/nichandle/useNichandleInformation', () => ({
-  useNichandleInformation: vi.fn(() => ({ nichandleInformation: null })),
-}));
-
-vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
-  return {
-    ...actual,
-    useNavigationGetUrl: vi.fn(),
-  };
-});
-
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ children, href }: { children: React.ReactNode; href: string }) => (
-    <a href={href} role="link">
-      {children}
-    </a>
-  ),
-}));
-
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  DataGridTextCell: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="datagrid-text-cell">{children}</div>
-  ),
 }));
 
 describe('DatagridColumnContact', () => {
@@ -67,8 +38,7 @@ describe('DatagridColumnContact', () => {
         { wrapper },
       );
 
-      const textCell = screen.getByTestId('datagrid-text-cell');
-      expect(textCell).toHaveTextContent('Test Company');
+      expect(screen.getByText('Test Company')).toBeInTheDocument();
     });
 
     it('should render first and last name when no organisation', () => {
@@ -87,8 +57,7 @@ describe('DatagridColumnContact', () => {
         { wrapper },
       );
 
-      const textCell = screen.getByTestId('datagrid-text-cell');
-      expect(textCell).toHaveTextContent('John Doe');
+      expect(screen.getByText('John Doe')).toBeInTheDocument();
     });
 
     it('should render contact ID when no domain contact data', () => {
@@ -101,8 +70,7 @@ describe('DatagridColumnContact', () => {
         { wrapper },
       );
 
-      const textCell = screen.getByTestId('datagrid-text-cell');
-      expect(textCell).toHaveTextContent(mockContactId);
+      expect(screen.getByText(mockContactId)).toBeInTheDocument();
     });
   });
 
@@ -175,8 +143,7 @@ describe('DatagridColumnContact', () => {
         { wrapper },
       );
 
-      const textCell = screen.getByTestId('datagrid-text-cell');
-      expect(textCell).toHaveTextContent(mockContactId);
+      expect(screen.getByText(mockContactId)).toBeInTheDocument();
     });
 
     it('should render contact ID when no nichandle information', () => {
@@ -189,8 +156,7 @@ describe('DatagridColumnContact', () => {
         { wrapper },
       );
 
-      const textCell = screen.getByTestId('datagrid-text-cell');
-      expect(textCell).toHaveTextContent(mockContactId);
+      expect(screen.getByText(mockContactId)).toBeInTheDocument();
     });
   });
 });

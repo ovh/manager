@@ -73,7 +73,7 @@ describe('DomainResellerDomainsList', () => {
     } as ReturnType<typeof useGetServiceInformationByRoutes>);
 
     render(<DomainResellerDomainsList />);
-    expect(screen.getByTestId('loading')).toBeInTheDocument();
+    expect(screen.getByTestId('listing-page-spinner')).toBeInTheDocument();
   });
 
   it('should render the main container', () => {

@@ -18,7 +18,7 @@ import { useHostsDatagridColumns } from '@/domain/hooks/domainTabs/useHostsDatag
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import HostDrawer from '@/domain/components/Host/HostDrawer';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import { useNichandleInformation } from '@/common/hooks/nichandle/useNichandleInformation';
 import { THost } from '@/domain/types/host';
 import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';

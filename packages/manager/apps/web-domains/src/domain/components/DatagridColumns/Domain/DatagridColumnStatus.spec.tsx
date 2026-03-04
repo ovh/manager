@@ -1,11 +1,10 @@
 import React from 'react';
 import '@/common/setupTests';
-import { render, screen } from '@/common/utils/test.provider';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { useTranslation } from 'react-i18next';
 import DatagridColumnStatus from './DatagridColumnStatus';
 import { DOMAIN_STATE } from '@/domain/constants/serviceDetail';
-import { wrapper } from '@/common/utils/test.provider';
 import { DomainStateEnum } from '@/domain/enum/domainState.enum';
 
 vi.mock('react-i18next', async (importOriginal) => {
@@ -16,24 +15,13 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovh-ux/muk', () => ({
-  CellRow: ({
-    children,
-    'data-testid': testId,
-  }: {
-    children: React.ReactNode;
-    'data-testid'?: string;
-  }) => <div data-testid={testId}>{children}</div>,
-}));
-
-vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+vi.mock('@ovh-ux/muk', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/muk')>();
   return {
     ...actual,
-    Badge: ({ children }: { children: React.ReactNode }) => (
-      <span data-testid="badge">{children}</span>
+    CellRow: ({ children, badgeColor, type, ...props }: { children?: React.ReactNode; badgeColor?: string; type?: string;[key: string]: unknown }) => (
+      <div {...props}>{children}</div>
     ),
-    Icon: ({ name }: { name: string }) => <span data-testid={`icon-${name}`} />,
   };
 });
 
