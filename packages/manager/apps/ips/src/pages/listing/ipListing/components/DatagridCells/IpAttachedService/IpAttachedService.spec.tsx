@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
@@ -14,14 +14,14 @@ import { IpDetails } from '@/data/api';
 import { getLinkByHref } from '@/test-utils';
 import '@/test-utils/setupUnitTests';
 
-import { IpAttachedService, IpAttachedServiceProps } from './IpAttachedService';
+import { IpAttachedService } from './IpAttachedService';
 
 const queryClient = new QueryClient();
 /** MOCKS */
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -63,11 +63,11 @@ const shellContext = {
 };
 
 /** RENDER */
-const renderComponent = (params: IpAttachedServiceProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <ShellContext.Provider
-        value={shellContext as unknown as ShellContextType}
+        value={(shellContext as unknown) as ShellContextType}
       >
         <IpAttachedService {...params} />
       </ShellContext.Provider>
@@ -79,7 +79,7 @@ describe('IpAttachedService Component', () => {
   it('Should display routed service with link to service', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { container } = renderComponent({
       ip: ipDetailsList[3]?.ip,

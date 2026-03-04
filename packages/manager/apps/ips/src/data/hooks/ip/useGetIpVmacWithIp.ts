@@ -27,7 +27,7 @@ export const useGetIpVmacWithIp = ({
   serviceName,
   enabled = true,
 }: UseGetIpVmacWithIpParams) => {
-  const { vmacs, isLoading, isError } = useGetIpVmac({ serviceName, enabled });
+  const { vmacs, loading, isError } = useGetIpVmac({ serviceName, enabled });
 
   const results = useQueries({
     queries: (vmacs || []).map(
@@ -56,10 +56,8 @@ export const useGetIpVmacWithIp = ({
   });
 
   return {
-    isLoading:
-      isLoading ||
-      !!results.find((result) => !!result.isLoading) ||
-      hasVmacTasks,
+    loading:
+      loading || !!results.find((result) => !!result.isLoading) || hasVmacTasks,
     isError: isError || !!results.find((result) => !!result.isError),
     vmacsWithIp:
       results?.map(
@@ -67,7 +65,7 @@ export const useGetIpVmacWithIp = ({
           ({
             ...vmacs?.[index],
             ip: data?.data,
-          }) as VmacWithIpType,
+          } as VmacWithIpType),
       ) || [],
   };
 };

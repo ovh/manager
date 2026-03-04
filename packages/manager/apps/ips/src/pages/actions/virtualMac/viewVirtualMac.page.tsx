@@ -4,11 +4,10 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal } from '@ovh-ux/manager-react-components';
+import { Modal } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -26,7 +25,7 @@ export default function ViewVirtualMacModal() {
   const { ip } = ipFormatter(fromIdToIp(id));
   const { trackClick } = useOvhTracking();
 
-  const { ipvmac, isLoading: isVmacLoading } = useIpHasVmac({
+  const { ipvmac, loading: isVmacLoading } = useIpHasVmac({
     ip,
     serviceName,
     enabled: Boolean(serviceName),
@@ -34,7 +33,7 @@ export default function ViewVirtualMacModal() {
 
   const {
     dedicatedServerVmacWithIpResponse,
-    isLoading: isVmacWithIpLoading,
+    loading: isVmacWithIpLoading,
   } = useGetIpVmacDetails({
     ip,
     serviceName,
@@ -75,26 +74,27 @@ export default function ViewVirtualMacModal() {
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeModal}
+      onOpenChange={closeModal}
       heading={t('viewVirtualMacTitle')}
-      secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={closeModal}
-      isLoading={isVmacLoading || isVmacWithIpLoading}
+      secondaryButton={{
+        label: t('close', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeModal,
+      }}
+      loading={isVmacLoading || isVmacWithIpLoading}
     >
       <div>
-        <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+        <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
           {t('viewVirtualMacQuestion')}
-        </OdsText>
+        </Text>
         {fields.map(({ label, value, key }) => (
           <div key={key} className="mb-2 block">
-            <OdsText
+            <Text
               className="min-w-[200px] text-right font-semibold"
-              preset={ODS_TEXT_PRESET.heading6}
+              preset={TEXT_PRESET.heading6}
             >
               {label}
-            </OdsText>
-            <OdsText className="ml-2">{value}</OdsText>
+            </Text>
+            <Text className="ml-2">{value}</Text>
           </div>
         ))}
       </div>

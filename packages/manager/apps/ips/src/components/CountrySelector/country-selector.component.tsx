@@ -3,69 +3,76 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_SPINNER_SIZE,
-  OdsSelectChangeEventDetail,
-  OdsSelectCustomEvent,
-  OdsSelectCustomRendererData,
-} from '@ovhcloud/ods-components';
-import { OdsSelect, OdsSpinner } from '@ovhcloud/ods-components/react';
+  Select,
+  Spinner,
+  SPINNER_SIZE,
+  SelectContent,
+  SelectControl,
+  SelectValueChangeDetail,
+} from '@ovhcloud/ods-react';
+import { CountryOption } from './CountryOption';
 
 export type CountrySelectorProps = {
   name: string;
   countryCodeList: string[];
-  onChange?: (event: OdsSelectCustomEvent<OdsSelectChangeEventDetail>) => void;
+  onValueChange?: (event: SelectValueChangeDetail) => void;
   value?: string;
-  isDisabled?: boolean;
-  isLoading?: boolean;
-  isReadyOnly?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  readOnly?: boolean;
   onBlur?: () => void;
   className?: string;
 };
 
 export const CountrySelector: React.FC<CountrySelectorProps> = ({
   countryCodeList = [],
-  onChange,
+  onValueChange,
   className,
-  isLoading,
-  isReadyOnly,
-  onBlur,
+  loading,
+  value,
   ...props
 }) => {
   const { t } = useTranslation('region-selector');
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div>
-        <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+        <Spinner size={SPINNER_SIZE.sm} />
       </div>
     );
   }
 
-  const optionRenderingFunction = (data: OdsSelectCustomRendererData) => `
-  <div style="display:flex; gap: 8px; align-items: center;">
-    <span style="width: 22px; height: 16px; background-size: cover; background-image: url('flags/${data.value.toLowerCase()}.svg')"></span>
-    <span>${t(`region-selector-country-name_${data.value.toUpperCase()}`)}</span>
-  </div>
-  `;
-
   return (
-    <OdsSelect
+    <Select
       key={countryCodeList.join('-')}
-      className={`block w-full ${className}`}
-      onOdsChange={onChange}
-      onOdsBlur={onBlur}
-      isReadonly={isReadyOnly}
-      customRenderer={{
-        item: optionRenderingFunction,
-        option: optionRenderingFunction,
-      }}
       {...props}
+      className={`block w-full ${className}`}
+      onValueChange={onValueChange}
+      value={[value]}
+      items={countryCodeList.map((country) => ({
+        label: t(`region-selector-country-name_${country.toUpperCase()}`),
+        value: country,
+        customRendererData: {
+          country,
+        },
+      }))}
     >
-      {countryCodeList.map((country) => (
-        <option key={country} value={country}>
-          {t(`region-selector-country-name_${country.toUpperCase()}`)}
-        </option>
-      ))}
-    </OdsSelect>
+      <SelectContent
+        customOptionRenderer={(arg) => (
+          <CountryOption
+            countryName={arg.label}
+            countryCode={arg.customData?.country || ''}
+          />
+        )}
+      />
+      <SelectControl
+        customItemRenderer={(arg) => (
+          <CountryOption
+            countryName={arg.text}
+            countryCode={arg.values?.[0]?.toLowerCase() || ''}
+          />
+        )}
+      />
+    </Select>
   );
 };

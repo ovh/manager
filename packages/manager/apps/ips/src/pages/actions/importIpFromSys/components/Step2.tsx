@@ -2,14 +2,19 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import {
-  OdsFormField,
-  OdsMessage,
-  OdsSelect,
-  OdsSpinner,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  SelectControl,
+  FormField,
+  Message,
+  Select,
+  Spinner,
+  Text,
+  MESSAGE_COLOR,
+  SelectContent,
+  SPINNER_SIZE,
+  MessageBody,
+  FormFieldLabel,
+} from '@ovhcloud/ods-react';
 
 import { ApiErrorMessage } from '@/components/ApiError/ApiErrorMessage';
 import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
@@ -20,6 +25,7 @@ import {
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
 import ModalButtonGroup from './ModalButtonGroup.component';
+import {} from '@ovh-ux/muk';
 
 export type Step2Props = {
   onCancel: () => void;
@@ -51,7 +57,7 @@ export default function Step2({
 
   const {
     isIpMigrationAvailable,
-    isLoading,
+    loading,
     error,
   } = useDedicatedServerIpMigrationAvailableDurations({
     ip,
@@ -62,58 +68,59 @@ export default function Step2({
   return (
     <>
       <div className="flex flex-col">
-        <OdsMessage
+        <Message
           className="mb-4 block"
-          color={ODS_MESSAGE_COLOR.information}
-          isDismissible={false}
+          color={MESSAGE_COLOR.information}
+          dismissible={false}
         >
-          {t('step2Description')}
-        </OdsMessage>
-        <OdsFormField className="mb-12 block">
-          <label htmlFor="destination-server" slot="label">
-            {t('step2ServerLabel')}
-          </label>
-          {isServerListLoading && <OdsSpinner />}
+          <MessageBody>{t('step2Description')}</MessageBody>
+        </Message>
+        <FormField className="mb-12 block">
+          <FormFieldLabel>{t('step2ServerLabel')}</FormFieldLabel>
+          {isServerListLoading && <Spinner />}
           {serverList?.length && (
-            <OdsSelect
+            <Select
               className="z-[3] mt-1 min-w-[300px] md:min-w-[400px]"
               name="destination-server"
               id="destination-server"
-              value={destinationServer}
-              onOdsChange={(e) => setDestinationServer(e.detail.value)}
-              placeholder={t('step2ServerPlaceholder')}
-              strategy="fixed"
+              value={[destinationServer]}
+              onValueChange={(e) => setDestinationServer(e.value?.[0])}
+              items={serverList?.map((server) => ({
+                label: server.displayName || server.serviceName,
+                value: server.serviceName,
+              }))}
             >
-              {serverList?.map((server) => (
-                <option key={server.serviceName} value={server.serviceName}>
-                  {server.displayName || server.serviceName}
-                </option>
-              ))}
-            </OdsSelect>
+              <SelectControl placeholder={t('step2ServerPlaceholder')} />
+              <SelectContent />
+            </Select>
           )}
-        </OdsFormField>
-        {isLoading && (
+        </FormField>
+        {loading && (
           <div className="flex">
-            <OdsText className="mr-2">{t('step2LoadingServerCheck')}</OdsText>
-            <OdsSpinner size={ODS_SPINNER_SIZE.sm} />
+            <Text className="mr-2">{t('step2LoadingServerCheck')}</Text>
+            <Spinner size={SPINNER_SIZE.sm} />
           </div>
         )}
         <ApiErrorMessage error={serverListError || error} />
         {isIpMigrationAvailable && (
-          <OdsMessage color={ODS_MESSAGE_COLOR.success}>
-            {t('step2CompatibilitySuccessMessage', {
-              serverName: destinationServer,
-              ip,
-            })}
-          </OdsMessage>
+          <Message color={MESSAGE_COLOR.success}>
+            <MessageBody>
+              {t('step2CompatibilitySuccessMessage', {
+                serverName: destinationServer,
+                ip,
+              })}
+            </MessageBody>
+          </Message>
         )}
-        {!isIpMigrationAvailable && !isLoading && !error && destinationServer && (
-          <OdsMessage color={ODS_MESSAGE_COLOR.warning}>
-            {t('step2UnavailableMigrationMessage', {
-              serverName: destinationServer,
-              ip,
-            })}
-          </OdsMessage>
+        {!isIpMigrationAvailable && !loading && !error && destinationServer && (
+          <Message color={MESSAGE_COLOR.warning}>
+            <MessageBody>
+              {t('step2UnavailableMigrationMessage', {
+                serverName: destinationServer,
+                ip,
+              })}
+            </MessageBody>
+          </Message>
         )}
       </div>
       <ModalButtonGroup
@@ -122,7 +129,7 @@ export default function Step2({
         onPrevious={onPrevious}
         onNext={onNext}
         isNextButtonDisabled={
-          !isIpMigrationAvailable || isLoading || !destinationServer
+          !isIpMigrationAvailable || loading || !destinationServer
         }
       />
     </>

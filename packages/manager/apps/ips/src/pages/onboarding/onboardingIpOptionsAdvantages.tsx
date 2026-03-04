@@ -1,11 +1,6 @@
-import React from 'react';
-
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
-
-import { Links } from '@ovh-ux/manager-react-components';
+import { Link, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 
 import { useGuideUtils } from '@/utils';
 
@@ -40,28 +35,25 @@ export function OnboardingIpOptionsAdvantages() {
 
   return (
     <>
-      <OdsText preset={ODS_TEXT_PRESET.heading3} className="mb-4">
+      <Text preset={TEXT_PRESET.heading3} className="mb-4">
         {t('advantagesTitle')}
-      </OdsText>
+      </Text>
       <div className="mb-8 text-left">
         <ul className="list-disc space-y-4 pl-6">
           {ADVANTAGES.map((advantage) => (
             <li key={advantage.title}>
-              <OdsText preset={ODS_TEXT_PRESET.heading5}>
-                {advantage.title}:
-              </OdsText>
-              <OdsText>
+              <Text preset={TEXT_PRESET.heading5}>{advantage.title}:</Text>
+              <Text>
                 {advantage.description}
                 {advantage.href && advantage.linkLabel && (
                   <>
                     {' '}
-                    <Links
-                      href={advantage.href.link}
-                      label={advantage.linkLabel}
-                    />
+                    <Link href={advantage.href.link}>
+                      {advantage.linkLabel}
+                    </Link>
                   </>
                 )}
-              </OdsText>
+              </Text>
             </li>
           ))}
         </ul>

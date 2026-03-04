@@ -5,10 +5,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { useDeleteService } from '@ovh-ux/manager-module-common-api';
-import {
-  DeleteModal,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { DeleteModal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -80,8 +77,8 @@ export default function TerminateIp() {
 
   return (
     <DeleteModal
-      isOpen
-      closeModal={closeHandler}
+      open
+      onClose={closeHandler}
       isLoading={isPending}
       error={isError ? error?.message : undefined}
       onConfirmDelete={confirmHandler}

@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { ColumnDef } from '@tanstack/react-table';
 
 import {
   useGetIpMitigationWithoutIceberg,
@@ -8,12 +9,8 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import { ipFormatter } from '@/utils/ipFormatter';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-import { isAntiDdosAvailable } from '../enableCellsUtils';
+import { IpRowData, isAntiDdosAvailable } from '../enableCellsUtils';
 import { IpAntiDdosDisplay } from './IpAntiDdosDisplay';
-
-export type IpAntiDdosProps = {
-  ip: string;
-};
 
 /**
  * Component to display the cell content for Anti DDOS.
@@ -27,15 +24,18 @@ export type IpAntiDdosProps = {
  * @param ip the ip with mask
  * @returns React component
  */
-export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
+export const IpAntiDdos: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
+  const ipToFetch = parentIpGroup || ip;
+
   const { expiredIps } = useContext(ListingContext);
 
   // Check if ip is not a group
-  const { isGroup } = ipFormatter(ip);
+  const { isGroup } = ipFormatter(ipToFetch);
 
   // Get ip details
-  const { ipDetails, isLoading: isDetailsLoading } = useGetIpdetails({
-    ip,
+  const { ipDetails, loading: isDetailsLoading } = useGetIpdetails({
+    ip: ipToFetch,
     enabled: !isGroup,
   });
 
@@ -45,23 +45,19 @@ export const IpAntiDdos = ({ ip }: IpAntiDdosProps) => {
     !isDetailsLoading &&
     isAntiDdosAvailable(ipDetails);
 
-  const { ipMitigation, isLoading, error } = useGetIpMitigationWithoutIceberg({
-    ip,
+  const { ipMitigation, loading, error } = useGetIpMitigationWithoutIceberg({
+    ip: ipToFetch,
     enabled,
   });
 
   return (
     <SkeletonCell
-      isLoading={isLoading || isDetailsLoading}
+      loading={loading || isDetailsLoading}
       enabled={!isGroup}
       error={error}
       ip={ip}
     >
-      <IpAntiDdosDisplay
-        ipMitigation={ipMitigation}
-        enabled={enabled}
-        ip={ip}
-      />
+      <IpAntiDdosDisplay ipMitigation={ipMitigation} enabled={enabled} />
     </SkeletonCell>
   );
 };

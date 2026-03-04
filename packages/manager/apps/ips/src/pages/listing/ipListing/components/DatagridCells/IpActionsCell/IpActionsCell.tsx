@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { ColumnDef } from '@tanstack/react-table';
 
 import ipaddr from 'ipaddr.js';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { BUTTON_VARIANT, ICON_NAME } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { ActionMenu, ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenu, ActionMenuItemProps } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -33,13 +34,8 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import { urlDynamicParts, urls } from '@/routes/routes.constant';
 import { fromIpToId, ipFormatter, TRANSLATION_NAMESPACES } from '@/utils';
 
-import { isGameFirewallAvailable } from '../enableCellsUtils';
+import { IpRowData, isGameFirewallAvailable } from '../enableCellsUtils';
 
-export type IpActionsCellParams = {
-  ip: string;
-  parentIpGroup?: string;
-  isByoipSlice?: boolean;
-};
 /*
   list of category and path map in order to check if the ip is attached to that category
   categoryAndPathMapping = [
@@ -89,12 +85,8 @@ export type IpActionsCellParams = {
   block IPv6 <=> parentIpGroup = undefined, ip = ipv4/range, isGroup = true, ipGroup = ip/range
     display => nothing + parent IP
  */
-
-export const IpActionsCell = ({
-  parentIpGroup,
-  ip,
-  isByoipSlice = false,
-}: IpActionsCellParams) => {
+export const IpActionsCell: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup, isByoipSlice } = row.original;
   const {
     expiredIps,
     onGoingCreatedIps,
@@ -106,7 +98,7 @@ export const IpActionsCell = ({
   const { ipAddress, ipGroup, isGroup } = ipFormatter(ip);
   const parentId = fromIpToId(parentIpGroup || ipGroup);
   const id = fromIpToId(ipAddress);
-  const { ipDetails, isLoading } = useGetIpdetails({
+  const { ipDetails, loading } = useGetIpdetails({
     ip: parentIpGroup || ip,
   });
   const navigate = useNavigate();
@@ -128,7 +120,7 @@ export const IpActionsCell = ({
     serviceName,
   });
 
-  const { isVmacAlreadyExist, isLoading: isVmacLoading } = useIpHasVmac({
+  const { isVmacAlreadyExist, loading: isVmacLoading } = useIpHasVmac({
     serviceName,
     ip,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
@@ -154,7 +146,7 @@ export const IpActionsCell = ({
 
   // not expired and additionnal / dedicated Ip linked to a dedicated server
   const availableGetGameFirewall =
-    !isIpExpired && !isLoading && isGameFirewallAvailable(ipDetails);
+    !isIpExpired && !loading && isGameFirewallAvailable(ipDetails);
 
   // Get game firewall info
   const { ipGameFirewall } = useGetIpGameFirewall({
@@ -387,7 +379,7 @@ export const IpActionsCell = ({
           ns: NAMESPACES.ACTIONS,
         })} Additional IP`,
         trackingLabel: 'terminate_additional-ip',
-        isLoading,
+        loading,
         onClick: () =>
           navigate(
             `${urls.listingIpTerminate.replace(
@@ -404,7 +396,7 @@ export const IpActionsCell = ({
       id: 14,
       label: t('listingActionByoipTerminate'),
       trackingLabel: 'terminate_bring-your-own-ip',
-      isLoading,
+      loading,
       onClick: () =>
         navigate(
           `${urls.listingByoipTerminate.replace(
@@ -436,30 +428,29 @@ export const IpActionsCell = ({
       },
   ]
     .filter(Boolean)
-    .map((item) => ({
+    .map(({ trackingLabel, loading: isLoading, onClick, ...item }) => ({
       ...item,
+      isLoading,
       onClick: () => {
         trackClick({
           location: PageLocation.datagrid,
           buttonType: ButtonType.button,
           actionType: 'action',
-          actions: [
-            (item as { trackingLabel: string }).trackingLabel ||
-              (item as ActionMenuItem)?.label,
-          ],
+          actions: [trackingLabel || (item as ActionMenuItemProps)?.label],
         });
-        (item as ActionMenuItem).onClick?.();
+        onClick?.();
       },
-    })) as ActionMenuItem[];
+    })) as ActionMenuItemProps[];
 
   return (
     <ActionMenu
       items={items}
       isCompact
-      variant={ODS_BUTTON_VARIANT.ghost}
-      icon={ODS_ICON_NAME.ellipsisVertical}
+      variant={BUTTON_VARIANT.ghost}
+      icon={ICON_NAME.ellipsisVertical}
       id={`actions-${parentId}-${isGroup ? 'block' : id}`}
       isDisabled={
+        !ip ||
         isIpExpired ||
         onGoingCreatedIps?.includes(ip) ||
         onGoingAggregatedIps?.includes(ip) ||

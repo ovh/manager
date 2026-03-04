@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_INPUT_TYPE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsInput, OdsText } from '@ovhcloud/ods-components/react';
+import { Input, Text, INPUT_TYPE, TEXT_PRESET } from '@ovhcloud/ods-react';
 
 import { OrderSection } from '@/components/OrderSection/OrderSection.component';
 
@@ -20,18 +19,18 @@ export const IpRangeSelectionSection: React.FC = () => {
       description={t('ip_range_selection_description')}
     >
       <div className="flex flex-col">
-        <OdsText preset={ODS_TEXT_PRESET.caption}>
+        <Text preset={TEXT_PRESET.caption}>
           {t('ip_range_selection_input_label')}
-        </OdsText>
-        <OdsInput
+        </Text>
+        <Input
           className="mt-1 w-7/12"
           name="ipRange"
-          type={ODS_INPUT_TYPE.text}
-          isRequired
+          type={INPUT_TYPE.text}
+          required
           value={ipRange}
           placeholder={ipRangePlaceholder}
-          onOdsChange={(event) => setIpRange(event.detail.value as string)}
-          hasError={!isValidIpRange(ipRange)}
+          onChange={(event) => setIpRange(event.target.value)}
+          invalid={!isValidIpRange(ipRange)}
         />
       </div>
     </OrderSection>

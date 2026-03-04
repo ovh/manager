@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
+import { ColumnDef } from '@tanstack/react-table';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsSkeleton } from '@ovhcloud/ods-components/react';
+import {
+  BADGE_COLOR,
+  Badge,
+  Skeleton,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { useGetIpdetails } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
-import { TRANSLATION_NAMESPACES } from '@/utils';
+import { isValidIpv6Block, TRANSLATION_NAMESPACES } from '@/utils';
 import { ipFormatter } from '@/utils/ipFormatter';
-
-export type IpCellProps = {
-  ip: string;
-  parentIpGroup?: string;
-};
+import { IpRowData } from '../enableCellsUtils';
+import { IpAlerts } from '../IpAlerts/IpAlerts';
 
 /**
  * Component to display the cell content for IP Address
@@ -23,43 +26,54 @@ export type IpCellProps = {
  * @param ip the ip with mask
  * @returns React Component
  */
-export const IpCell = ({ ip, parentIpGroup }: IpCellProps) => {
+export const IpCell: ColumnDef<IpRowData>['cell'] = (props) => {
+  const { ip, parentIpGroup } = props.row.original;
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
-  const { onGoingAggregatedIps, onGoingSlicedIps, onGoingCreatedIps } =
-    useContext(ListingContext);
-  const { ipDetails, isLoading } = useGetIpdetails({ ip: parentIpGroup || ip });
+  const {
+    onGoingAggregatedIps,
+    onGoingSlicedIps,
+    onGoingCreatedIps,
+  } = useContext(ListingContext);
+  const { ipDetails, loading } = useGetIpdetails({ ip: parentIpGroup || ip });
+
+  if (isValidIpv6Block(parentIpGroup) && !ip) {
+    return <div>Aucune ip</div>;
+  }
 
   return (
-    <>
-      <div>{ipFormatter(ip).ip}</div>
-      {isLoading && (
+    <div className={parentIpGroup ? 'pl-5' : ''}>
+      <Text
+        className="block"
+        preset={parentIpGroup ? TEXT_PRESET.small : TEXT_PRESET.paragraph}
+      >
+        {ipFormatter(ip).ip}
+      </Text>
+      {loading && (
         <div className="mt-2">
-          <OdsSkeleton />
+          <Skeleton />
         </div>
       )}
-      {!isLoading && !!ipDetails?.description && (
+      {!loading && !parentIpGroup && !!ipDetails?.description && (
         <small className="mt-2 inline-block">{ipDetails?.description}</small>
       )}
       <div className="mt-2">
         {onGoingAggregatedIps.includes(ip) && (
-          <OdsBadge
-            label={t('aggregate_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('aggregate_in_progress')}
+          </Badge>
         )}
         {onGoingSlicedIps.includes(ip) && (
-          <OdsBadge
-            label={t('slice_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('slice_in_progress')}
+          </Badge>
         )}
         {onGoingCreatedIps.includes(ip) && (
-          <OdsBadge
-            label={t('creation_in_progress')}
-            color={ODS_BADGE_COLOR.information}
-          />
+          <Badge color={BADGE_COLOR.information}>
+            {t('creation_in_progress')}
+          </Badge>
         )}
       </div>
-    </>
+      <IpAlerts {...props} />
+    </div>
   );
 };

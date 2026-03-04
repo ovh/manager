@@ -7,7 +7,7 @@ import { describe, expect, it, vi } from 'vitest';
 import ipDetailsList from '@/__mocks__/ip/get-ip-details.json';
 import '@/test-utils/setupUnitTests';
 
-import { IpRegion, IpRegionProps } from './IpRegion';
+import { IpRegion } from './IpRegion';
 import { IpDetails } from '@/data/api';
 
 const queryClient = new QueryClient();
@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 const useGetIpDetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
@@ -28,7 +28,7 @@ vi.mock('../SkeletonCell/SkeletonCell', () => ({
 }));
 
 /** RENDER */
-const renderComponent = (params: IpRegionProps) => {
+const renderComponent = (params) => {
   return render(
     <QueryClientProvider client={queryClient}>
       <IpRegion {...params} />
@@ -40,7 +40,7 @@ describe('IpRegion Component', () => {
   it('Should display all ip regions', async () => {
     useGetIpDetailsMock.mockReturnValue({
       ipDetails: ipDetailsList[3] as IpDetails,
-      isLoading: false,
+      loading: false,
     });
     const { getByText } = renderComponent({
       ip: ipDetailsList?.[3]?.ip,

@@ -1,6 +1,6 @@
 import { describe, it } from 'vitest';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { ICON_NAME } from '@ovhcloud/ods-react';
 
 import { urls } from '@/routes/routes.constant';
 import { getButtonByIcon, renderTest } from '@/test-utils';
@@ -13,7 +13,7 @@ describe('IP Listing Page', () => {
     });
     await getButtonByIcon({
       container,
-      iconName: ODS_ICON_NAME.ellipsisVertical,
+      iconName: ICON_NAME.ellipsisVertical,
       nth: 1,
     });
   });

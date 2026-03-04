@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -28,7 +28,7 @@ export const IpVersionSection: React.FC = () => {
   const { trackClick } = useOvhTracking();
 
   return (
-    <React.Suspense fallback={<OdsSpinner />}>
+    <React.Suspense fallback={<Spinner />}>
       <OrderSection
         title={t('ip_version_title')}
         description={t('ip_version_description')}
@@ -47,7 +47,7 @@ export const IpVersionSection: React.FC = () => {
               });
               setIpVersion(IpVersion.ipv4);
             }}
-            isLoading={isLoading}
+            loading={isLoading}
             isStartingPrice
             price={ipv4LowestPrice}
             priceSuffix={t('per_ip')}
@@ -65,7 +65,7 @@ export const IpVersionSection: React.FC = () => {
               });
               setIpVersion(IpVersion.ipv6);
             }}
-            isLoading={isLoading}
+            loading={isLoading}
             price={ipv6LowestPrice}
           />
         </div>

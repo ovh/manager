@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import { ColumnDef } from '@tanstack/react-table';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { Spinner } from '@ovhcloud/ods-react';
 
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/muk';
 import { PageType, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { EditInline } from '@/components/EditInline/edit-inline.component';
@@ -15,11 +16,7 @@ import { ListingContext } from '@/pages/listing/listingContext';
 import { ipFormatter } from '@/utils/ipFormatter';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-
-export type IpReverseProps = {
-  ip: string;
-  parentIpGroup?: string;
-};
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for IP Reverse
@@ -30,7 +27,8 @@ export type IpReverseProps = {
  * @param parentIpGroup the parent ip group with mask for ip group child reverse
  * @returns React Component
  */
-export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
+export const IpReverse: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup } = row.original;
   const { expiredIps } = useContext(ListingContext);
   const { addError } = useNotifications();
   const { trackPage } = useOvhTracking();
@@ -49,7 +47,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // Add error notification
   const onError = (apiError: ApiError) => {
     addError(
-      <React.Suspense fallback={<OdsSpinner />}>
+      <React.Suspense fallback={<Spinner />}>
         <IpReverseError apiError={apiError} />
       </React.Suspense>,
       true,
@@ -63,22 +61,26 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
   // Prepare delete mutation with
   // ip: single Ip with mask (ipFormatter remove mask if /32)
   // ipGroup: the parent group for Ip (if /32 ipGroup is same as Ip but with the mask)
-  const { mutate: deleteIpReverse, isPending: pendingDelete } =
-    useDeleteIpReverse({
-      ip: ipGroup,
-      ipReverse: formattedIp,
-      onError,
-    });
+  const {
+    mutate: deleteIpReverse,
+    isPending: pendingDelete,
+  } = useDeleteIpReverse({
+    ip: ipGroup,
+    ipReverse: formattedIp,
+    onError,
+  });
 
   // Prepare update mutation with
   // ip: single Ip with mask (ipFormatter remove mask if /32)
   // ipGroup: the parent group for Ip (if /32 ipGroup is same as Ip but with the mask)
-  const { mutate: updateIpReverse, isPending: pendingUpdate } =
-    useUpdateIpReverse({
-      ip: ipGroup,
-      ipReverse: formattedIp,
-      onError,
-    });
+  const {
+    mutate: updateIpReverse,
+    isPending: pendingUpdate,
+  } = useUpdateIpReverse({
+    ip: ipGroup,
+    ipReverse: formattedIp,
+    onError,
+  });
 
   // Find reverse for ip in list of reverse.
   // Especialy usefull for ipBlock as getIpReverse get all reverse for the block.
@@ -88,7 +90,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
 
   return (
     <SkeletonCell
-      isLoading={isLoading || pendingDelete || pendingUpdate}
+      loading={isLoading || pendingDelete || pendingUpdate}
       enabled={!isGroup}
       error={error}
       ip={ip}
@@ -103,6 +105,7 @@ export const IpReverse = ({ ip, parentIpGroup }: IpReverseProps) => {
           }
         }}
         defaultValue={ipReverse}
+        maxWidth={100}
       >
         {ipReverse || <>-</>}
       </EditInline>

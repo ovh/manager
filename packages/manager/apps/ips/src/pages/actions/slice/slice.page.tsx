@@ -5,16 +5,20 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsLink,
-  OdsMessage,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  MESSAGE_COLOR,
+  MessageBody,
+  TEXT_PRESET,
+  Link,
+  Message,
+  Select,
+  Text,
+  SelectContent,
+  SelectControl,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Modal, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -57,7 +61,7 @@ export default function SliceModal() {
 
   const {
     slice,
-    isLoading,
+    loading,
     error,
     isSlicePending,
     slicingError,
@@ -114,78 +118,87 @@ export default function SliceModal() {
 
   return (
     <Modal
-      isOpen
       heading={t('sliceModalTitle', { ip: ipGroup })}
-      isLoading={isLoading}
-      onDismiss={cancel}
-      onSecondaryButtonClick={cancel}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['slice', 'confirm'],
-        });
-        postSlice({ slicingSize });
+      loading={loading}
+      onOpenChange={cancel}
+      primaryButton={{
+        label: t('confirm', { ns: NAMESPACES.ACTIONS }),
+        testId: 'confirm-button',
+        loading: isSlicePending,
+        disabled: !slicingSize,
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['slice', 'confirm'],
+          });
+          postSlice({ slicingSize });
+        },
       }}
-      primaryLabel={t('confirm', { ns: NAMESPACES.ACTIONS })}
-      primaryButtonTestId="confirm-button"
-      isPrimaryButtonLoading={isSlicePending}
-      secondaryLabel={t('cancel', { ns: NAMESPACES.ACTIONS })}
-      secondaryButtonTestId="cancel-button"
-      isPrimaryButtonDisabled={!slicingSize}
+      secondaryButton={{
+        label: t('cancel', { ns: NAMESPACES.ACTIONS }),
+        testId: 'cancel-button',
+        onClick: cancel,
+      }}
     >
-      {!isLoading && slice.length === 0 && !apiError && (
-        <OdsMessage className="mb-4" color={ODS_MESSAGE_COLOR.warning}>
-          <div className="inline">
-            {t('noAggregateSliceAvailable')}
-            <OdsLink
-              href={links.aggreateSliceLink?.link}
-              target="_blank"
-              rel="noopener"
-              label={t('noAggregateLinkLabel')}
-              onClick={() => {
-                trackClick({
-                  location: PageLocation.popup,
-                  buttonType: ButtonType.link,
-                  actionType: 'action',
-                  actions: [`go-to_${links.aggreateSliceLink?.trackingLabel}`],
-                });
-              }}
-            />
-          </div>
-        </OdsMessage>
+      {!loading && slice.length === 0 && !apiError && (
+        <Message className="mb-4" color={MESSAGE_COLOR.warning}>
+          <MessageBody>
+            <div className="inline">
+              {t('noAggregateSliceAvailable')}
+              <Link
+                href={links.aggreateSliceLink?.link}
+                target="_blank"
+                rel="noopener"
+                onClick={() => {
+                  trackClick({
+                    location: PageLocation.popup,
+                    buttonType: ButtonType.link,
+                    actionType: 'action',
+                    actions: [
+                      `go-to_${links.aggreateSliceLink?.trackingLabel}`,
+                    ],
+                  });
+                }}
+              >
+                {t('noAggregateLinkLabel')}
+              </Link>
+            </div>
+          </MessageBody>
+        </Message>
       )}
       {slice.length > 0 && (
         <>
-          <OdsText className="mb-4 block" preset={ODS_TEXT_PRESET.paragraph}>
+          <Text className="mb-4 block" preset={TEXT_PRESET.paragraph}>
             {t('sliceModalDescription')}
-          </OdsText>
-          <OdsSelect
+          </Text>
+          <Select
             className="block"
             name="slicing-size"
-            value={slicingSize?.toString()}
-            onOdsChange={(e) => {
-              const newValue = parseInt(e.detail.value, 10);
+            value={[slicingSize?.toString()]}
+            onValueChange={(e) => {
+              const newValue = parseInt(e.value?.[0], 10);
               if (newValue) {
                 setSlizingSize(newValue);
               }
             }}
+            items={slice.map((a) => ({
+              label: `/${a.slicingSize}`,
+              value: a.slicingSize.toString(),
+            }))}
           >
-            {slice.map((a) => (
-              <option key={a.slicingSize} value={a.slicingSize}>
-                /{a.slicingSize}
-              </option>
-            ))}
-          </OdsSelect>
+            <SelectContent />
+            <SelectControl />
+          </Select>
           <section className="mb-4 bg-neutral-100 p-4">
-            <OdsText>{t('sliceModalChildrenIpsDescription')}</OdsText>
+            <Text>{t('sliceModalChildrenIpsDescription')}</Text>
             <ul>
               {slice
                 .find((a) => a.slicingSize === slicingSize)
                 ?.childrenIps?.map((ip) => (
                   <li key={ip}>
-                    <OdsText>{ip}</OdsText>
+                    <Text>{ip}</Text>
                   </li>
                 ))}
             </ul>

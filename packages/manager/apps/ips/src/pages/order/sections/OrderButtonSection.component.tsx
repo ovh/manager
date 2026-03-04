@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ODS_BUTTON_COLOR,
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-} from '@ovhcloud/ods-components';
-import { OdsButton } from '@ovhcloud/ods-components/react';
+  BUTTON_COLOR,
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+} from '@ovhcloud/ods-react';
 
 import { useOrderURL } from '@ovh-ux/manager-module-order';
 import {
@@ -48,25 +48,24 @@ export const OrderButtonSection: React.FC = () => {
   });
   const ipv6PlanCode = useIpv6PlanCode({
     region: selectedRegion,
-    ipVersion: ipVersion,
+    ipVersion,
   });
   const orderBaseUrl = useOrderURL('express_review_base');
   const { trackClick } = useOvhTracking();
 
   return (
     <div className="flex gap-4">
-      <OdsButton
-        isDisabled={
+      <Button
+        disabled={
           !ipQuantity ||
           ipQuantity > MAX_IP_QUANTITY ||
           ipQuantity < MIN_IP_QUANTITY
         }
-        color={ODS_BUTTON_COLOR.primary}
-        size={ODS_BUTTON_SIZE.md}
-        label={t('order_button_label')}
+        color={BUTTON_COLOR.primary}
+        size={BUTTON_SIZE.md}
         onClick={() => {
           const settings = getAdditionalIpsProductSettings({
-            ipVersion: ipVersion,
+            ipVersion,
             geolocation: selectedGeolocation,
             offer: selectedOffer,
             organisation: selectedOrganisation,
@@ -100,12 +99,13 @@ export const OrderButtonSection: React.FC = () => {
           });
           navigate(urls.listing);
         }}
-      />
-      <OdsButton
-        color={ODS_BUTTON_COLOR.primary}
-        size={ODS_BUTTON_SIZE.md}
-        variant={ODS_BUTTON_VARIANT.ghost}
-        label={t('cancel_button_label')}
+      >
+        {t('order_button_label')}
+      </Button>
+      <Button
+        color={BUTTON_COLOR.primary}
+        size={BUTTON_SIZE.md}
+        variant={BUTTON_VARIANT.ghost}
         onClick={() => {
           trackClick({
             actionType: 'action',
@@ -120,7 +120,9 @@ export const OrderButtonSection: React.FC = () => {
           });
           navigate(urls.listing);
         }}
-      />
+      >
+        {t('cancel_button_label')}
+      </Button>
     </div>
   );
 };

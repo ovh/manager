@@ -6,17 +6,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addSeconds, isBefore } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TABLE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { TABLE_SIZE, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import {
-  Datagrid,
-  Modal,
-  useFormatDate,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { Datagrid, Modal, useFormatDate, useNotifications } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -25,7 +19,6 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 
 import {
-  IpSpamStatType,
   IpSpamStateEnum,
   getIpSpamQueryKey,
   unblockAntiSpamIp,
@@ -51,7 +44,7 @@ export default function AntiSpamModal() {
   const { trackClick, trackPage } = useOvhTracking();
   const format = useFormatDate();
 
-  const { ipSpam, isLoading: isIpSpamLoading } = useGetIpSpam({ ip: parentIp });
+  const { ipSpam, loading: isIpSpamLoading } = useGetIpSpam({ ip: parentIp });
   const toBeUnblocked = useMemo(
     () =>
       ipSpam?.find(
@@ -68,7 +61,7 @@ export default function AntiSpamModal() {
     [toBeUnblocked],
   );
 
-  const { ipSpamStats, isLoading: isIpSpamStatsLoading } = useGetIpSpamStats({
+  const { ipSpamStats, loading: isIpSpamStatsLoading } = useGetIpSpamStats({
     ip: parentIp,
     ipSpamming: toBeUnblocked?.ipSpamming,
     enabled: !!toBeUnblocked?.ipSpamming,
@@ -162,11 +155,13 @@ export default function AntiSpamModal() {
   const ipSpamStatsColumnDefinitions = [
     {
       id: 'timestamp',
+      accessorKey: 'timestamp',
       label: t('anti_spam_stat_date'),
       size: 1000,
-      cell: (item: IpSpamStatType) => {
+      cell: ({ getValue }) => {
+        const timestamp = getValue() as number;
         const formattedDate = format({
-          date: new Date(item.timestamp * 1000),
+          date: new Date(timestamp * 1000),
           format: 'PPp',
         });
         return <>{formattedDate}</>;
@@ -174,66 +169,69 @@ export default function AntiSpamModal() {
     },
     {
       id: 'averageSpamscore',
+      accessorKey: 'averageSpamscore',
       label: t('anti_spam_stat_score'),
-      cell: (item: IpSpamStatType) => <>{item.averageSpamscore}</>,
+      cell: ({ getValue }) => <>{getValue()}</>,
     },
     {
       id: 'total',
+      accessorKey: 'total',
       label: t('anti_spam_stat_total'),
-      cell: (item: IpSpamStatType) => <>{item.total}</>,
+      cell: ({ getValue }) => <>{getValue()}</>,
     },
     {
       id: 'numberOfSpams',
+      accessorKey: 'numberOfSpams',
       label: t('anti_spam_stat_nb_emails'),
-      cell: (item: IpSpamStatType) => <>{item.numberOfSpams}</>,
+      cell: ({ getValue }) => <>{getValue()}</>,
     },
   ];
 
   return (
     <Modal
-      isOpen
-      onDismiss={closeHandler}
+      onOpenChange={closeHandler}
       heading={t('unblock_anti_spam_title', {
         ipBlocked: toBeUnblocked?.ipSpamming,
       })}
-      primaryLabel={t('unblock_anti_spam_ip_action')}
-      onPrimaryButtonClick={() => {
-        trackClick({
-          location: PageLocation.popup,
-          buttonType: ButtonType.button,
-          actionType: 'action',
-          actions: ['configure_anti-spam-unblock', 'confirm'],
-        });
-        unblockAntiSpamHandler();
+      primaryButton={{
+        label: t('unblock_anti_spam_ip_action'),
+        onClick: () => {
+          trackClick({
+            location: PageLocation.popup,
+            buttonType: ButtonType.button,
+            actionType: 'action',
+            actions: ['configure_anti-spam-unblock', 'confirm'],
+          });
+          unblockAntiSpamHandler();
+        },
+        loading: isPending,
+        disabled: !unblockingDate || isBefore(Date.now(), unblockingDate),
       }}
-      isPrimaryButtonLoading={isPending}
-      isPrimaryButtonDisabled={
-        unblockingDate ? isBefore(Date.now(), unblockingDate) : true
-      }
-      secondaryLabel={t('close', { ns: NAMESPACES.ACTIONS })}
-      onSecondaryButtonClick={closeHandler}
-      isLoading={isIpSpamLoading}
+      secondaryButton={{
+        label: t('close', { ns: NAMESPACES.ACTIONS }),
+        onClick: closeHandler,
+      }}
+      loading={isIpSpamLoading}
     >
       <div className="flex w-full flex-col">
         {fields.map(({ label, value, key }) => (
           <div className="mb-2 flex gap-x-4" key={key}>
-            <OdsText
+            <Text
               className="w-1/2 text-right font-semibold"
-              preset={ODS_TEXT_PRESET.heading6}
+              preset={TEXT_PRESET.heading6}
             >
               {label}
-            </OdsText>
-            <OdsText className="w-1/2">{value}</OdsText>
+            </Text>
+            <Text className="w-1/2">{value}</Text>
           </div>
         ))}
         <div className="mb-2 flex max-h-56 overflow-y-auto">
           <Datagrid
-            size={ODS_TABLE_SIZE.sm}
+            size={TABLE_SIZE.sm}
             columns={ipSpamStatsColumnDefinitions}
-            items={ipSpamStats}
-            totalItems={ipSpamStats?.length}
+            data={ipSpamStats}
+            totalCount={ipSpamStats?.length}
             hasNextPage={false}
-            onFetchNextPage={false}
             isLoading={isIpSpamStatsLoading}
           />
         </div>

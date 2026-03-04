@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { OdsText } from '@ovhcloud/ods-components/react';
+import { Text } from '@ovhcloud/ods-react';
 
-import { IntervalUnitType } from '@ovh-ux/manager-react-components';
+import { IntervalUnit } from '@ovh-ux/muk';
 
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
@@ -64,7 +64,7 @@ export function Price({
     getPrice(convertedValue, convertedTax),
   );
   const intervalUnitText =
-    intervalUnit && intervalUnit !== IntervalUnitType.none
+    intervalUnit && intervalUnit !== IntervalUnit.none
       ? t(`price_per_${intervalUnit}`)
       : '';
   const components = [
@@ -216,10 +216,10 @@ export function Price({
   }
 
   return (
-    <OdsText>
+    <Text>
       {isStartingPrice && value > 0 ? t('price_from_label') : ''}
       {matchingComponent.component}
-    </OdsText>
+    </Text>
   );
 }
 

@@ -2,14 +2,16 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import {
-  OdsQuantity,
-  OdsSelect,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+  SelectContent,
+  Quantity,
+  Select,
+  Text,
+  SelectControl,
+  TEXT_PRESET,
+} from '@ovhcloud/ods-react';
 
-import { OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { OvhSubsidiary } from '@ovh-ux/muk';
 import {
   ButtonType,
   PageLocation,
@@ -106,14 +108,16 @@ export const OfferSelectionSection: React.FC = () => {
             }}
           >
             <div className="flex min-h-14 flex-col justify-center">
-              <OdsQuantity
+              <Quantity
                 name="additional_ip_quantity"
                 min={MIN_IP_QUANTITY}
                 max={MAX_IP_QUANTITY}
-                onOdsChange={(event) => setIpQuantity(event.target.value)}
-                value={ipQuantity}
+                onValueChange={(event) =>
+                  setIpQuantity(parseInt(event.value, 10) || MIN_IP_QUANTITY)
+                }
+                value={ipQuantity?.toString() || MIN_IP_QUANTITY.toString()}
               />
-              <OdsText preset={ODS_TEXT_PRESET.heading4}>
+              <Text preset={TEXT_PRESET.heading4}>
                 <PriceDescription
                   price={
                     ipv4LowestPrice && ipQuantity
@@ -121,7 +125,7 @@ export const OfferSelectionSection: React.FC = () => {
                       : 0
                   }
                 />
-              </OdsText>
+              </Text>
             </div>
           </OptionCard>
         )}
@@ -157,38 +161,39 @@ export const OfferSelectionSection: React.FC = () => {
                 actions: ['select_block-additional-ip'],
               });
             }}
-            isLoading={isLoading}
+            loading={isLoading}
           >
             <div className="flex min-h-14 flex-col justify-center">
-              <OdsSelect
+              <Select
                 key={ipBlockPricingList.reduce(
                   (result, { value }) => result + value,
                   '',
                 )}
                 name="ip_block_plancode_select"
-                value={selectedPlanCode}
-                onOdsChange={(event) => {
+                value={[selectedPlanCode]}
+                onValueChange={(event) => {
+                  const newValue = event.value?.[0];
                   if (
                     ipBlockPricingList.some(
-                      (pricing) => pricing.value === event.target.value,
+                      (pricing) => pricing.value === newValue,
                     )
                   ) {
                     setSelectedOffer(IpOffer.blockAdditionalIp);
-                    setSelectedPlanCode(event.target.value as string);
+                    setSelectedPlanCode(newValue);
                     setPricingMode(
-                      ipBlockPricingList.find(
-                        (p) => p.value === event.target.value,
-                      )?.pricingMode || DEFAULT_PRICING_MODE,
+                      ipBlockPricingList.find((p) => p.value === newValue)
+                        ?.pricingMode || DEFAULT_PRICING_MODE,
                     );
                   }
                 }}
+                items={ipBlockPricingList.map(({ label, value }) => ({
+                  label,
+                  value,
+                }))}
               >
-                {ipBlockPricingList.map(({ label, value }) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </OdsSelect>
+                <SelectContent />
+                <SelectControl />
+              </Select>
             </div>
           </OptionCard>
         )}

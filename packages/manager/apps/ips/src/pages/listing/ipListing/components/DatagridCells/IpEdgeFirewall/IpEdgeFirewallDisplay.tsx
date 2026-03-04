@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
+import { BADGE_COLOR } from '@ovhcloud/ods-react';
 
 import {
   ButtonType,
@@ -39,7 +39,6 @@ export const IpEdgeFirewallDisplay = ({
   ip,
   ipEdgeFirewall,
 }: IpEdgeFirewallDetailsProps) => {
-  const id = `edgefirewall-${ip.replace(/\/|\./g, '-')}`;
   const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
   const navigate = useNavigate();
   const [search] = useSearchParams();
@@ -72,10 +71,9 @@ export const IpEdgeFirewallDisplay = ({
     >
       {!ipEdgeFirewall && (
         <BadgeCell
-          badgeColor={ODS_BADGE_COLOR.neutral}
+          badgeColor={BADGE_COLOR.neutral}
           text={t('listingColumnsIpEdgeFirewallDisabled')}
           tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
-          trigger={id}
         />
       )}
       {!!ipEdgeFirewall && (
@@ -83,27 +81,24 @@ export const IpEdgeFirewallDisplay = ({
           {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
             ipEdgeFirewall.enabled && (
               <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.information}
+                badgeColor={BADGE_COLOR.information}
                 text={t('listingColumnsIpEdgeFirewallEnabled')}
                 tooltip={t('listingColumnsIpEdgeFirewallEnabledTooltip')}
-                trigger={id}
               />
             )}
           {ipEdgeFirewall.state === IpEdgeFirewallStateEnum.OK &&
             !ipEdgeFirewall.enabled && (
               <BadgeCell
-                badgeColor={ODS_BADGE_COLOR.neutral}
+                badgeColor={BADGE_COLOR.neutral}
                 text={t('listingColumnsIpEdgeFirewallDisabled')}
                 tooltip={t('listingColumnsIpEdgeFirewallDisabledTooltip')}
-                trigger={id}
               />
             )}
           {ipEdgeFirewall.state !== IpEdgeFirewallStateEnum.OK && (
             <BadgeCell
-              badgeColor={ODS_BADGE_COLOR.warning}
+              badgeColor={BADGE_COLOR.warning}
               text={t('listingColumnsIpEdgeFirewallPending')}
               tooltip={t('listingColumnsIpEdgeFirewallPendingTooltip')}
-              trigger={id}
             />
           )}
         </div>

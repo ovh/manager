@@ -1,31 +1,32 @@
-import React from 'react';
-
-import { ODS_BADGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsBadge, OdsText, OdsTooltip } from '@ovhcloud/ods-components/react';
+import {
+  BADGE_COLOR,
+  Badge,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@ovhcloud/ods-react';
 
 export type BadgeCellParams = {
-  badgeColor: ODS_BADGE_COLOR;
+  badgeColor: BADGE_COLOR;
   text: string;
   tooltip?: string;
-  trigger?: string;
 };
 
-export const BadgeCell = ({
-  badgeColor,
-  text,
-  tooltip,
-  trigger,
-}: BadgeCellParams) => (
-  <>
-    <div id={trigger} className="flex items-center">
-      <OdsBadge color={badgeColor} label={text} className="mr-2" />
-    </div>
-    {!!tooltip && !!trigger && (
-      <OdsTooltip role="tooltip" triggerId={trigger} className="max-w-48">
-        <OdsText className="p-2" preset={ODS_TEXT_PRESET.paragraph}>
-          {tooltip}
-        </OdsText>
-      </OdsTooltip>
+export const BadgeCell = ({ badgeColor, text, tooltip }: BadgeCellParams) => (
+  <div className="flex items-center">
+    {tooltip ? (
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Badge color={badgeColor} className="mr-2">
+            {text}
+          </Badge>
+        </TooltipTrigger>
+        <TooltipContent withArrow>{tooltip}</TooltipContent>
+      </Tooltip>
+    ) : (
+      <Badge color={badgeColor} className="mr-2">
+        {text}
+      </Badge>
     )}
-  </>
+  </div>
 );

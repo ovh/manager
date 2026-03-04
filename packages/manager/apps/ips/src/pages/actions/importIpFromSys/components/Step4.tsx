@@ -2,12 +2,14 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
-  OdsCheckbox,
-  OdsFormField,
-  OdsLink,
-} from '@ovhcloud/ods-components/react';
+  CheckboxControl,
+  CheckboxLabel,
+  Icon,
+  ICON_NAME,
+  Checkbox,
+  Link,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -57,30 +59,25 @@ export default function Step4({
     <>
       <div className="mt-4 flex flex-col gap-4">
         {data?.data?.contracts?.map((contract) => (
-          <OdsLink
+          <Link
             key={contract.url}
             className="block"
             target="_blank"
-            icon={ODS_ICON_NAME.file}
-            label={contract.name}
             href={contract.url}
-          />
+          >
+            <Icon name={ICON_NAME.file} />
+            {contract.name}
+          </Link>
         ))}
       </div>
-      <OdsFormField className="mt-7 block">
-        <div className="flex items-center">
-          <OdsCheckbox
-            isChecked={isContractChecked}
-            onOdsChange={(e) => setIsContractChecked(e.detail.checked)}
-            className="mr-3"
-            inputId="terms"
-            name="terms"
-          />
-          <label htmlFor="terms" slot="label">
-            {t('acceptContracts')}
-          </label>
-        </div>
-      </OdsFormField>
+      <Checkbox
+        className="mt-7 block"
+        checked={isContractChecked}
+        onCheckedChange={(e) => setIsContractChecked(e.checked as boolean)}
+      >
+        <CheckboxControl />
+        <CheckboxLabel>{t('acceptContracts')}</CheckboxLabel>
+      </Checkbox>
       <ApiErrorMessage className="my-4" error={error} />
       <ModalButtonGroup
         currentStep={4}

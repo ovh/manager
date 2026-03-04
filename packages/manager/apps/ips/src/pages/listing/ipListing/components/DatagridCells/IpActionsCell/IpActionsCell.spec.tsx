@@ -4,7 +4,7 @@ import { act, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ActionMenuItem } from '@ovh-ux/manager-react-components';
+import { ActionMenuItemProps } from '@ovh-ux/muk';
 import {
   ShellContext,
   ShellContextType,
@@ -25,7 +25,7 @@ import {
 import { IpTypeEnum } from '@/data/constants';
 import { ListingContext } from '@/pages/listing/listingContext';
 
-import { IpActionsCell, IpActionsCellParams } from './IpActionsCell';
+import { IpActionsCell } from './IpActionsCell';
 
 /** TEST CONSTANTS */
 const TEST_IPS = {
@@ -98,19 +98,19 @@ const queryClient = new QueryClient({
 const useGetIpdetailsMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipDetails: undefined as IpDetails | undefined,
-    isLoading: true,
+    loading: true,
   })),
 );
 
 const useGetIpGameFirewallMock = vi.hoisted(() =>
   vi.fn(() => ({
     ipGameFirewall: undefined as IpGameFirewallType | undefined,
-    isLoading: false,
+    loading: false,
   })),
 );
 
 const useIpHasForcedMitigationMock = vi.hoisted(() =>
-  vi.fn(() => ({ hasForcedMitigation: false, isLoading: false })),
+  vi.fn(() => ({ hasForcedMitigation: false, loading: false })),
 );
 
 const useGetAttachedServicesMock = vi.hoisted(() =>
@@ -119,12 +119,12 @@ const useGetAttachedServicesMock = vi.hoisted(() =>
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
     hasVrackAttachedToIp: false,
-    isLoading: false,
+    loading: false,
   })),
 );
 
 const useIpHasVmacMock = vi.hoisted(() =>
-  vi.fn(() => ({ isVmacAlreadyExist: false, isLoading: false })),
+  vi.fn(() => ({ isVmacAlreadyExist: false, loading: false })),
 );
 
 const useIpHasAlertsMock = vi.hoisted(() =>
@@ -136,7 +136,7 @@ const useIpHasAlertsMock = vi.hoisted(() =>
           mitigation?: IpMitigationType[];
         }
       | undefined,
-    isLoading: false,
+    loading: false,
   })),
 );
 
@@ -208,18 +208,18 @@ vi.mock('@/pages/byoip/Byoip.utils', () => ({
   canTerminateByoipIp: canTerminateByoipIpMock,
 }));
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
+vi.mock('@ovh-ux/muk', () => ({
   ActionMenu: ({
     items,
     isDisabled,
     id,
   }: {
-    items: ActionMenuItem[];
+    items: ActionMenuItemProps[];
     isDisabled: boolean;
     id: string;
   }) => (
     <div data-testid={`action-menu-${id}`} data-disabled={isDisabled}>
-      {items?.map((item: ActionMenuItem) => (
+      {items?.map((item: ActionMenuItemProps) => (
         <button
           key={item.id}
           data-testid={`menu-item-${item.id}`}
@@ -239,7 +239,7 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
 let cachedShellContext: ShellContextType | null = null;
 
 const renderWithShellContext = (
-  params: IpActionsCellParams,
+  params,
   listingContext: typeof listingContextDefaultParams = listingContextDefaultParams,
   shellContext: ShellContextType | null = cachedShellContext,
 ) => {
@@ -255,7 +255,7 @@ const renderWithShellContext = (
 };
 
 const renderComponent = (
-  params: IpActionsCellParams,
+  params,
   listingContextOverrides?: Partial<typeof listingContextDefaultParams>,
 ) => {
   const listingContext = {
@@ -277,30 +277,30 @@ const renderComponent = (
 const setupDefaultMocks = () => {
   useGetIpdetailsMock.mockReturnValue({
     ipDetails: ipDetailsList[MOCK_DATA_INDICES.DEFAULT_IPV4] as IpDetails,
-    isLoading: false,
+    loading: false,
   });
   useGetIpGameFirewallMock.mockReturnValue({
     ipGameFirewall: undefined,
-    isLoading: false,
+    loading: false,
   });
   useIpHasForcedMitigationMock.mockReturnValue({
     hasForcedMitigation: false,
-    isLoading: false,
+    loading: false,
   });
   useGetAttachedServicesMock.mockReturnValue({
     hasCloudServiceAttachedToIP: false,
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
     hasVrackAttachedToIp: false,
-    isLoading: false,
+    loading: false,
   });
   useIpHasVmacMock.mockReturnValue({
     isVmacAlreadyExist: false,
-    isLoading: false,
+    loading: false,
   });
   useIpHasAlertsMock.mockReturnValue({
     hasAlerts: undefined,
-    isLoading: false,
+    loading: false,
   });
 };
 
@@ -309,7 +309,7 @@ const setupIpDetailsMock = (overrides?: Partial<typeof ipDetailsList[0]>) => {
     ipDetails: (overrides
       ? { ...ipDetailsList[MOCK_DATA_INDICES.DEFAULT_IPV4], ...overrides }
       : ipDetailsList[MOCK_DATA_INDICES.DEFAULT_IPV4]) as IpDetails,
-    isLoading: false,
+    loading: false,
   });
 };
 
@@ -324,7 +324,7 @@ const setupAttachedServicesMock = (overrides?: {
     hasDedicatedServiceAttachedToIp: false,
     hasHousingServiceAttachedToIp: false,
     hasVrackAttachedToIp: false,
-    isLoading: false,
+    loading: false,
     ...overrides,
   });
 };
@@ -347,7 +347,7 @@ const setupAlertsMock = (overrides?: {
           mitigation?: IpMitigationType[];
         }
       | undefined,
-    isLoading: false,
+    loading: false,
   });
 };
 
@@ -557,7 +557,7 @@ describe('IpActionsCell Component', () => {
           state: IpGameFirewallStateEnum.OK,
           supportedProtocols: [],
         },
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -576,7 +576,7 @@ describe('IpActionsCell Component', () => {
           state: IpGameFirewallStateEnum.OK,
           supportedProtocols: [],
         },
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -600,7 +600,7 @@ describe('IpActionsCell Component', () => {
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
       useIpHasVmacMock.mockReturnValue({
         isVmacAlreadyExist: false,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -615,7 +615,7 @@ describe('IpActionsCell Component', () => {
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: false });
       useIpHasVmacMock.mockReturnValue({
         isVmacAlreadyExist: false,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -633,7 +633,7 @@ describe('IpActionsCell Component', () => {
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
       useIpHasVmacMock.mockReturnValue({
         isVmacAlreadyExist: true,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -649,7 +649,7 @@ describe('IpActionsCell Component', () => {
       setupAttachedServicesMock({ hasDedicatedServiceAttachedToIp: true });
       useIpHasVmacMock.mockReturnValue({
         isVmacAlreadyExist: true,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -661,7 +661,7 @@ describe('IpActionsCell Component', () => {
       setupIpDetailsMock({ type: IpTypeEnum.ADDITIONAL });
       useIpHasVmacMock.mockReturnValue({
         isVmacAlreadyExist: true,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -787,7 +787,7 @@ describe('IpActionsCell Component', () => {
       };
       useGetIpdetailsMock.mockReturnValue({
         ipDetails: ipv6VrackDetails as IpDetails,
-        isLoading: false,
+        loading: false,
       });
       setupAttachedServicesMock({
         hasVrackAttachedToIp: true,
@@ -850,7 +850,7 @@ describe('IpActionsCell Component', () => {
           bringYourOwnIp: false,
           type: IpTypeEnum.ADDITIONAL,
         } as IpDetails,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_ALTERNATIVE });
@@ -881,7 +881,7 @@ describe('IpActionsCell Component', () => {
           bringYourOwnIp: false,
           type: IpTypeEnum.ADDITIONAL,
         } as IpDetails,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_BLOCK });
@@ -969,7 +969,7 @@ describe('IpActionsCell Component', () => {
     it('should handle loading state from hooks', () => {
       useGetIpdetailsMock.mockReturnValue({
         ipDetails: undefined,
-        isLoading: true,
+        loading: true,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -983,7 +983,7 @@ describe('IpActionsCell Component', () => {
     it('should handle undefined ipDetails', () => {
       useGetIpdetailsMock.mockReturnValue({
         ipDetails: undefined,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_SINGLE });
@@ -1000,7 +1000,7 @@ describe('IpActionsCell Component', () => {
           ...ipDetailsList[MOCK_DATA_INDICES.ALTERNATIVE_IPV4],
           routedTo: { serviceName: null },
         } as IpDetails,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({ ip: TEST_IPS.IPV4_ALTERNATIVE });
@@ -1016,7 +1016,7 @@ describe('IpActionsCell Component', () => {
       // When IP is expired, useIpHasAlerts is called with enabled: false, so it should return undefined
       useIpHasAlertsMock.mockReturnValue({
         hasAlerts: undefined,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent(
@@ -1037,7 +1037,7 @@ describe('IpActionsCell Component', () => {
       // When isByoipSlice is true, useIpHasAlerts is called with enabled: false, so it should return undefined
       useIpHasAlertsMock.mockReturnValue({
         hasAlerts: undefined,
-        isLoading: false,
+        loading: false,
       });
 
       const { container } = renderComponent({
@@ -1063,7 +1063,7 @@ describe('IpActionsCell Component', () => {
       };
       useGetIpdetailsMock.mockReturnValue({
         ipDetails: ipv6VrackDetails as IpDetails,
-        isLoading: false,
+        loading: false,
       });
       setupAttachedServicesMock({
         hasVrackAttachedToIp: true,
@@ -1091,7 +1091,7 @@ describe('IpActionsCell Component', () => {
           ...ipDetailsList[MOCK_DATA_INDICES.IPV6_VRACK],
           routedTo: { serviceName: null },
         } as IpDetails,
-        isLoading: false,
+        loading: false,
       });
 
       const getURLMock = setupVrackTest();

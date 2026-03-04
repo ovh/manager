@@ -1,4 +1,4 @@
-import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/manager-react-components';
+import { CurrencyCode, OvhSubsidiary } from '@ovh-ux/muk';
 
 import { CatalogIpsResponse } from '@/data/api';
 

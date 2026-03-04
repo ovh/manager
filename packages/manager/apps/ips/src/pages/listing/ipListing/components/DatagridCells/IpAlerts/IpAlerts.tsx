@@ -1,20 +1,16 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { BADGE_COLOR, Badge } from '@ovhcloud/ods-react';
+import { ColumnDef } from '@tanstack/react-table';
 
 import { useIpHasAlerts } from '@/data/hooks/ip';
 import { ListingContext } from '@/pages/listing/listingContext';
 
 import { SkeletonCell } from '../SkeletonCell/SkeletonCell';
-
-export type IpAlertsProps = {
-  ip: string;
-  subIp?: string;
-  isByoipSlice?: boolean;
-};
+import { TRANSLATION_NAMESPACES } from '@/utils';
+import { IpRowData } from '../enableCellsUtils';
 
 /**
  * Component to display the cell content for alerts.
@@ -23,45 +19,44 @@ export type IpAlertsProps = {
  * @param subIp the sub ip to check
  * @returns React component
  */
-export const IpAlerts = ({ ip, subIp, isByoipSlice }: IpAlertsProps) => {
+export const IpAlerts: ColumnDef<IpRowData>['cell'] = ({ row }) => {
+  const { ip, parentIpGroup, isByoipSlice } = row.original;
   const { expiredIps } = useContext(ListingContext);
-  const { t } = useTranslation('listing');
+  const { t } = useTranslation(TRANSLATION_NAMESPACES.listing);
 
-  const { hasAlerts, isLoading } = useIpHasAlerts({
-    ip,
-    subIp,
-    enabled: expiredIps.indexOf(ip) === -1 && !isByoipSlice,
+  const { hasAlerts, loading } = useIpHasAlerts({
+    ip: parentIpGroup || ip,
+    subIp: ip,
+    enabled: expiredIps.indexOf(parentIpGroup || ip) === -1 && !isByoipSlice,
   });
 
   if (
-    expiredIps.indexOf(ip) !== -1 ||
-    (!isLoading &&
+    expiredIps.indexOf(parentIpGroup || ip) !== -1 ||
+    (!loading &&
       !hasAlerts?.antihack?.length &&
       !hasAlerts?.spam?.length &&
       !hasAlerts?.mitigation?.length)
-  )
+  ) {
     return <></>;
+  }
 
   return (
-    <SkeletonCell isLoading={isLoading}>
-      <div className="flex flex-col gap-2">
+    <SkeletonCell loading={loading}>
+      <div className="flex flex-col justify-items-start gap-2">
         {!!hasAlerts?.antihack?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsAntihack')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsAntihack')}
+          </Badge>
         )}
         {!!hasAlerts?.spam?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsSpam')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsSpam')}
+          </Badge>
         )}
         {!!hasAlerts?.mitigation?.length && (
-          <OdsBadge
-            label={t('listingColumnsIpAlertsMitigation')}
-            color={ODS_BADGE_COLOR.critical}
-          />
+          <Badge color={BADGE_COLOR.critical}>
+            {t('listingColumnsIpAlertsMitigation')}
+          </Badge>
         )}
       </div>
     </SkeletonCell>
