@@ -1,46 +1,21 @@
-import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
+import '@/common/setupTests';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import DatagridColumnPendingActions from './DatagridColumnPendingActions';
 import { useGetServiceInformation } from '@/common/hooks/data/query';
-import { wrapper } from '@/common/utils/test.provider';
 import { LifecycleCapacitiesEnum } from '@/alldoms/enum/service.enum';
 
 vi.mock('@/common/hooks/data/query', () => ({
   useGetServiceInformation: vi.fn(),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Badge: ({
-    children,
-    color,
-    'data-testid': testId,
-  }: {
-    children: React.ReactNode;
-    color: string;
-    'data-testid': string;
-  }) => (
-    <div data-testid={testId} data-color={color}>
-      {children}
-    </div>
-  ),
-  Icon: ({ name }: { name: string }) => (
-    <span data-testid={`icon-${name}`}>{name}</span>
-  ),
-  Skeleton: () => <div data-testid="skeleton" />,
-  BADGE_COLOR: {
-    alpha: 'alpha',
-    beta: 'beta',
-    critical: 'critical',
-    information: 'information',
-    neutral: 'neutral',
-    success: 'success',
-    warning: 'warning',
-  },
-  ICON_NAME: {
-    WARNING_TRIANGLE_FILL: 'warning-triangle-fill',
-  },
-}));
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    Skeleton: () => <div data-testid="skeleton" />,
+  };
+});
 
 describe('DatagridColumnPendingActions', () => {
   const mockServiceName = 'test-domain.com';
@@ -150,7 +125,7 @@ describe('DatagridColumnPendingActions', () => {
 
     const badge = screen.getByTestId(`status-badge-${mockPendingAction}`);
     expect(badge).toBeInTheDocument();
-    expect(badge).toHaveAttribute('data-color', 'critical');
+    expect(badge.className).toContain('critical');
   });
 
   it('should handle multiple pending actions by showing first one', () => {

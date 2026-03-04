@@ -1,6 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { matchPath, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  matchPath,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   Icon,
@@ -55,10 +60,7 @@ export default function ServiceDetailsTabs({
   useEffect(() => {
     const tab =
       ServiceDetailTabsProps.find((tabName) =>
-        matchPath(
-          `/domain/:serviceName/${tabName.value}/*`,
-          location.pathname,
-        ),
+        matchPath(`/domain/:serviceName/${tabName.value}/*`, location.pathname),
       )?.value || DEFAULT_TAB;
     if (location.pathname) {
       setValue(tab);

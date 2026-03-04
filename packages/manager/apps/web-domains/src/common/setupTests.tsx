@@ -7,6 +7,10 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { nichandle } from './__mocks__/nichandle';
 import { Path, To } from 'react-router-dom';
 
+export const mockAddSuccess = vi.fn();
+export const mockAddError = vi.fn();
+export const mockClearNotifications = vi.fn();
+
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
   return {
@@ -25,18 +29,27 @@ vi.mock('react-i18next', async (importOriginal) => {
   };
 });
 
-vi.mock(import('@ovh-ux/manager-react-components'), async (importOriginal) => {
-  const actual = await importOriginal();
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<Record<string, unknown>>();
   return {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
-    useAuthorizationIam: vi.fn(),
+    useAuthorizationIam: vi.fn(() => ({
+      isPending: false,
+      isAuthorized: true,
+    })),
+    useNotifications: vi.fn(() => ({
+      addSuccess: mockAddSuccess,
+      addError: mockAddError,
+      clearNotifications: mockClearNotifications,
+      notifications: [],
+    })),
   };
 });
 
-vi.mock(import('@/domain/utils/dnsUtils'), async (importOriginal) => {
-  const actual = await importOriginal();
+vi.mock('@/domain/utils/dnsUtils', async (importOriginal) => {
+  const actual = await importOriginal<Record<string, unknown>>();
   return {
     ...actual,
     computeDisplayNameServers: vi.fn(),
@@ -121,13 +134,13 @@ vi.mock('@ovh-ux/manager-react-shell-client', () => ({
     tutorial: "tile-tutorial",
     tab: "go-to-tab",
   },
-  useNavigationGetUrl: (
+  useNavigationGetUrl: vi.fn((
     linkParams: [string, string, unknown],
   ): UseQueryResult<unknown, Error> => {
     return {
       data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
     } as UseQueryResult<unknown, Error>;
-  },
+  }),
   useNavigation: () => ({
     navigateTo: vi.fn(),
   }),
@@ -160,7 +173,7 @@ vi.stubGlobal('open', vi.fn());
 
 // Add a fake close() method because jsdom doesn't support HTMLDialogElement.
 // Without this mock, components using <dialog> (like the ODS Drawer) would crash during tests.
-Object.defineProperty(global.HTMLDialogElement.prototype, 'close', {
+Object.defineProperty(globalThis.HTMLDialogElement.prototype, 'close', {
   value: vi.fn(),
 });
 
@@ -171,7 +184,7 @@ const originalConsoleLog = console.log;
 const originalConsoleError = console.error;
 
 console.info = (...args: unknown[]) => {
-  const message = args.join(' ');
+  const message = args.map(String).join(' ');
   // Suppress translation/jsdom loading logs
   if (
     message.includes('Loading fallback language') ||
@@ -184,7 +197,7 @@ console.info = (...args: unknown[]) => {
 };
 
 console.log = (...args: unknown[]) => {
-  const message = args.join(' ');
+  const message = args.map(String).join(' ');
   // Suppress translation change logs
   if (message.includes('Language changed to:')) {
     return;
@@ -193,7 +206,7 @@ console.log = (...args: unknown[]) => {
 };
 
 console.warn = (...args: unknown[]) => {
-  const message = args.join(' ');
+  const message = args.map(String).join(' ');
   // Suppress translation fallback warnings
   if (
     message.includes('Could not load') &&
@@ -205,7 +218,7 @@ console.warn = (...args: unknown[]) => {
 };
 
 console.error = (...args: unknown[]) => {
-  const message = args.join(' ');
+  const message = args.map(String).join(' ');
   // Suppress XMLHttpRequest AggregateError from jsdom
   if (message.includes('AggregateError') || message.includes('xhr-utils')) {
     return;
