@@ -1,27 +1,49 @@
 /**
- * Shared glob/regex patterns used to exclude generated, test, or config files
- * from static analysis (e.g., madge, duplication checks).
+ * Base exclusion patterns shared across all static analysis tools.
+ *
+ * These cover build artifacts, IDE/config directories, and common
+ * development tooling outputs that should not be included in
+ * analysis or coverage reports.
  */
-export const sharedExclusionPatterns = [
+const baseExclusionPatterns = [
+  // build & dependencies
   '**/node_modules/**',
-  '**/target/**',
   '**/dist/**',
-  '**/coverage/**',
+  '**/target/**',
   '**/.next/**',
-  '**/next*/**',
+
+  // IDE, VCS & CI/CD
   '**/.husky/**',
   '**/.vscode/**',
   '**/.idea/**',
   '**/.gitlab/**',
   '**/.github/**',
+
+  // configuration & build tools
   '**/.eslintrc.*',
   '**/eslint*.*',
   '**/jest*.*',
   '**/webpack*.*',
   '**/babel*.*',
   '**/tailwind*.*',
-  '**/tsconfig.json',
   '**/turbo.json',
+  '**/tsconfig.json',
+  'vite-env.d.ts',
+
+  // assets & docs
+  '**/*.svg',
+  '**/**.md',
+  '**/Messages_*_*.json',
+];
+
+/**
+ * Test and mock file exclusion patterns.
+ *
+ * These match any test, spec, or mock-related files or directories,
+ * which are typically excluded from analysis, duplication checks,
+ * or type coverage reports.
+ */
+const testAndMockExclusionPatterns = [
   '**/__tests__/**',
   '**/__test__/**',
   '**/tests/**',
@@ -31,63 +53,89 @@ export const sharedExclusionPatterns = [
   '**/**spec*.*',
   '**/mock*/**',
   '**/mocks/**',
+  '**/__mocks__/**',
   '**/_mock_/**',
   '**/**Mock**/**',
-  '**/*.types.*',
-  '**/*.d.ts.*',
-  '**/*.svg',
-  '**/**hmr**',
-  '**/**config**',
-  '**/**cucumber**',
-  '**/Messages_*_*.json',
-  '**/**.md',
 ];
 
 /**
- * Glob exclusion patterns used for TypeScript coverage analysis.
+ * Type-related file exclusion patterns.
  *
- * These patterns tell `typescript-coverage-report` which files and folders
- * should be ignored when calculating type coverage. They primarily exclude:
+ * These target definition and helper files that are typically not
+ * part of functional or runtime logic.
+ */
+const typeAndMetaExclusionPatterns = ['**/*.types.*', '**/*.d.ts.*'];
+
+/**
+ * Shared exclusion patterns used to exclude generated, test, or config
+ * files from static analysis tools (e.g., madge, duplication checks).
  *
- * - **Build outputs and dependencies**: compiled or generated code (`dist`, `target`, `.next`),
- *   package manager installs (`node_modules`), and temporary work directories.
+ * Combines:
+ * - Common build/config exclusions
+ * - Test/mock exclusions
+ * - Type/meta files
+ */
+export const sharedExclusionPatterns = [
+  ...baseExclusionPatterns,
+  ...testAndMockExclusionPatterns,
+  ...typeAndMetaExclusionPatterns,
+  '**/**hmr**',
+  '**/**config**',
+  '**/**cucumber**',
+];
+
+/**
+ * Shared lint exclusion patterns.
  *
- * - **Tooling and configuration files**: IDE settings (`.vscode`, `.idea`),
- *   CI/CD configs (`.github`, `.gitlab`), build/test configs (`webpack*`, `babel*`, `tailwind*`),
- *   and project metadata (`tsconfig.json`, `turbo.json`).
+ * These extend the base exclusions with test and mock files, ensuring
+ * that linting tools (e.g., ESLint) skip irrelevant or generated files.
+ */
+export const sharedLintExclusionPatterns = [
+  ...baseExclusionPatterns,
+  ...testAndMockExclusionPatterns,
+  ...typeAndMetaExclusionPatterns,
+  '**/**hmr**',
+  '**/**config**',
+  '**/**cucumber**',
+];
+
+/**
+ * Exclusion patterns for TypeScript coverage analysis (`typescript-coverage-report`).
  *
- * - **Tests and mocks**: test sources and fixtures (`__tests__`, `*.spec.ts`,
- *   `mocks/**`, files named `*Test*`, etc.), which typically contain
- *   `any`/`unknown` values or relaxed typings not relevant for production coverage.
+ * Focused on excluding:
+ * - Build outputs and dependencies
+ * - Tooling/config files
+ * - Tests and mocks
+ * - Assets and docs
  *
- * - **Assets and documentation**: non-TypeScript resources such as `.svg` images,
- *   Markdown docs, and JSON translations (`Messages_*_*.json`).
- *
- * The goal is to focus type coverage metrics on **actual application source code**
- * and avoid skewing results with generated, non-critical, or test-only files.
+ * The goal is to measure coverage on actual source code only.
  */
 export const sharedTypesExclusionPatterns = [
-  // build & dependencies
-  '**/node_modules/**',
+  ...baseExclusionPatterns,
+  ...testAndMockExclusionPatterns,
+  '**/**config**',
+  '**/**cucumber**',
+];
+
+/**
+ * Glob patterns that define which files or folders should be excluded
+ * from Prettier formatting.
+ *
+ * These paths are respected in CLI usage and in `eslint-plugin-prettier`
+ * where applicable.
+ *
+ * @type {string[]}
+ */
+export const sharedCodeFormatterIgnorePatterns = [
   '**/dist/**',
-  '**/target/**',
-  '**/.next/**',
-
-  // tools & config
-  '**/.husky/**',
-  '**/.vscode/**',
-  '**/.idea/**',
-  '**/.gitlab/**',
-  '**/.github/**',
-  '**/webpack*.*',
-  '**/babel*.*',
-  '**/tailwind*.*',
-  '**/turbo.json',
-  '**/tsconfig.json',
-  'vite-env.d.ts',
-
-  // assets/docs
-  '**/*.svg',
-  '**/**.md',
-  '**/Messages_*_*.json',
+  '**/custom-elements*/**',
+  '**/loader/**',
+  '**/react/**',
+  '**/vue/**',
+  '**/apps/container/**',
+  '**/apps/pci-databases-analytics/src/components/ui/**',
+  '**/apps/pci-databases-analytics/src/lib/utils.ts',
+  '**/**.json',
+  '**/README.md',
+  'CHANGELOG.md',
 ];

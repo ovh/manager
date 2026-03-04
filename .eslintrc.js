@@ -29,6 +29,7 @@ module.exports = {
     '**/vendor/**',
     '**/node_modules/**',
     '**/dist/**',
+    '**/coverage/**',
     '**/www/**',
     '**/custom-elements/**',
     '**/custom-elements-bundle/**',
@@ -36,6 +37,8 @@ module.exports = {
     '**/vue/src/**',
     '**/loader/**',
     '**/templates/**',
+    '**/*.config.ts',
+    'vite-env.d.ts',
   ],
   overrides: [
     {

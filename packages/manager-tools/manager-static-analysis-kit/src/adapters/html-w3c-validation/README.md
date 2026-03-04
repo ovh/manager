@@ -30,7 +30,7 @@ Under the hood, this matcher spawns `java -jar vnu.jar` safely via `child_proces
 ```jsonc
 {
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*"
   }

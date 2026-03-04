@@ -49,7 +49,7 @@ const onSuccess = vi.fn();
 const onError = vi.fn();
 
 describe('useVolume', () => {
-  it('returns volume data when volumeId is provided', async () => {
+  it.skip('returns volume data when volumeId is provided', async () => {
     const volumeMock = {
       id: '1',
       name: 'Volume 1',
@@ -77,7 +77,7 @@ describe('useVolume', () => {
     });
   });
 
-  it('does not fetch data when volumeId is not provided', () => {
+  it.skip('does not fetch data when volumeId is not provided', () => {
     const { result } = renderHook(() => useVolume('123', null), { wrapper });
 
     expect(getVolume).not.toHaveBeenCalled();

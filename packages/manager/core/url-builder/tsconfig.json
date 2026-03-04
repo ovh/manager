@@ -1,11 +1,44 @@
 {
-  "extends": "@ovh-ux/manager-static-analysis-kit/tsconfig/node-strict",
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
     "rootDir": "src",
-    "noEmit": false,
     "outDir": "dist",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "declarationDir": "./dist/types"
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": true,
+    "composite": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "bundler",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2020"
+    ],
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "noEmit": false,
+    "types": [
+      "vite/client",
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ]
+  },
+   "tsc-alias": {
+    "resolveFullPaths": true,
+    "resolveFullExtension": ".js"
   },
   "exclude": ["node_modules", "dist", "types", "**/__tests__"]
 }

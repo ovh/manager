@@ -1,6 +1,6 @@
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
-import { Linter } from 'eslint';
+import { ESLint, Linter } from 'eslint';
 
 import { tsFiles } from '../../../configs/file-globs-config';
 
@@ -24,10 +24,15 @@ export const typescriptEslintConfig: Linter.FlatConfig = {
     },
   },
   plugins: {
-    '@typescript-eslint': tsPlugin,
+    '@typescript-eslint': tsPlugin as unknown as ESLint.Plugin,
   },
   rules: {
     ...tsPlugin.configs['recommended-type-checked'].rules,
     // Add custom or stricter rules below if needed
+    '@typescript-eslint/no-unsafe-enum-comparison': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-acces': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off'
   },
 };

@@ -1,6 +1,6 @@
-import "vitest";
+import 'vitest';
 
-declare module "vitest" {
+declare module 'vitest' {
   interface Assertion<T = any> {
     /**
      * Assert that a string of HTML is valid according to the W3C Nu Html Checker.

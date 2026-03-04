@@ -31,9 +31,9 @@
     "prepare": "tsc"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "^8.6.6"
+    "@ovh-ux/manager-config": "8.6.6"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-config": "^8.0.1"
+    "@ovh-ux/manager-config": "8.6.6"
   }
 }

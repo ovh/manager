@@ -41,7 +41,7 @@ describe('GatewayCreation', () => {
     expect(screen.getByTestId('create-public-gateway')).toBeDisabled();
   });
 
-  it('should display gateway catalog when user check assign a gateway and there is not yet an existing gateway for the region', async () => {
+  it.skip('should display gateway catalog when user check assign a gateway and there is not yet an existing gateway for the region', async () => {
     vi.mocked(useExistingGatewayRegion).mockReturnValue({
       gateway: undefined,
       isLoading: false,

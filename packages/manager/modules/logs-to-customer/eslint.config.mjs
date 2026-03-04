@@ -43,7 +43,9 @@ export default [
       'import/named': 'off',
       'react-hooks/exhaustive-deps': 'off',
       'react/prop-types': 'off',
-      'react/no-multi-comp': 'off'
+      'react/no-multi-comp': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      'import/no-unresolved': 'off'
     },
   },
 ];

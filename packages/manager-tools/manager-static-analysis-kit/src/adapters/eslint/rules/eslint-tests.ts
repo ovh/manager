@@ -30,6 +30,9 @@ export const vitestEslintConfig: Linter.FlatConfig = {
   },
   rules: {
     ...vitest.configs.recommended.rules,
+    'vitest/no-mocks-import': 'off',
+    'vitest/valid-title': 'off',
+    'vitest/no-conditional-expect': 'off',
     // You can add specific overrides here as needed
   },
 };

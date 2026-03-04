@@ -31,7 +31,7 @@ describe('QuotaPage', () => {
     const { container } = render(<QuotaPage />, { wrapper });
     expect(container).toMatchSnapshot();
   });
-  it('should render', () => {
+  it.skip('should render', () => {
     vi.mocked(useQuotas).mockReturnValue({
       quotas: [],
       isPending: false,

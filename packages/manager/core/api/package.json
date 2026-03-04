@@ -13,22 +13,23 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc",
+    "build": "tsc && tsc-alias",
+    "dev": "tsc && tsc-alias",
     "lint:modern": "manager-lint --config eslint.config.mjs src/**.ts src/**/**.ts",
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts",
-    "prepare": "tsc",
+    "prepare": "tsc && tsc-alias",
     "test": "manager-test run",
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-core-sso": "^0.4.5",
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/request-tagger": "0.5.5",
     "axios": "^1.1.2"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.4"
+    "@ovh-ux/manager-vite-config": "0.13.4",
+    "tsc-alias": "^1.8.16"
   }
 }

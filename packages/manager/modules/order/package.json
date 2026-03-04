@@ -24,12 +24,12 @@
     "lint:modern:fix": "manager-lint --fix --config eslint.config.mjs src/**.ts src/**/**.ts"
   },
   "dependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.7",
-    "@ovh-ux/manager-react-shell-client": "^0.9.3",
+    "@ovh-ux/manager-core-api": "0.18.7",
+    "@ovh-ux/manager-react-shell-client": "0.10.0",
     "jsurl": "^0.1.5"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@types/jsurl": "^0.1.2"
   },
   "peerDependencies": {

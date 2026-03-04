@@ -2,6 +2,7 @@ import process from 'node:process';
 
 import { codeDuplicationConfig } from '../../dist/configs/code-duplication-config.js';
 import { typesCoverageConfig } from '../../dist/configs/types-coverage-config.js';
+import { staticDiscoveredLibraries } from '../cli-path-config.js';
 import { logError, logInfo } from './log-utils.js';
 import { discoverModules, getModule } from './module-utils.js';
 
@@ -54,7 +55,7 @@ export function parseArgs() {
 
   const moduleModeArgs = libsArg || packagesArg || appsArg;
 
-  if (!moduleModeArgs) return discoverModules(false);
+  if (!moduleModeArgs) return [...discoverModules(false), ...staticDiscoveredLibraries];
 
   const index = process.argv.indexOf(moduleModeArgs);
   const rawValue = process.argv[index + 1] || '';

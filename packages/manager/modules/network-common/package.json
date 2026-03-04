@@ -26,21 +26,21 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/manager-react-components": "^2.43.1"
+    "@ovh-ux/manager-react-components": "2.43.1"
   },
   "devDependencies": {
-    "@ovh-ux/manager-core-api": "^0.18.7",
+    "@ovh-ux/manager-core-api": "0.18.7",
     "@ovh-ux/manager-core-test-utils": "^0.8.0",
     "@ovh-ux/manager-module-common-api": "^0.5.8",
-    "@ovh-ux/manager-module-order": "^0.11.7",
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
+    "@ovh-ux/manager-module-order": "0.11.7",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@ovh-ux/manager-tests-setup": "latest",
-    "@ovh-ux/manager-vite-config": "^0.13.4",
+    "@ovh-ux/manager-vite-config": "0.13.4",
     "msw": "2.1.7",
     "react-router-dom": "^6.3.0"
   },
   "peerDependencies": {
-    "@ovh-ux/manager-core-api": "^0.10.1",
+    "@ovh-ux/manager-core-api": "0.10.1",
     "@tanstack/react-query": "5.x",
     "react": "18.x"
   }

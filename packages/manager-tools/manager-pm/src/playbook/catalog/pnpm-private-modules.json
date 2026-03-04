@@ -8,16 +8,16 @@
     "pnpm": "packages/manager/core/ovh-product-icons"
   },
   {
+    "turbo": "--filter @ovh-ux/backup-agent",
+    "pnpm": "packages/manager/modules/backup-agent"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-utils",
     "pnpm": "packages/manager/core/utils"
   },
   {
     "turbo": "--filter @ovh-ux/manager-account",
     "pnpm": "packages/manager/modules/account"
-  },
-  {
-    "turbo": "--filter @ovh-ux/manager-account-migration",
-    "pnpm": "packages/manager/modules/account-migration"
   },
   {
     "turbo": "--filter @ovh-ux/manager-advices",
@@ -44,7 +44,7 @@
     "pnpm": "packages/manager/modules/billing-components"
   },
   {
-    "turbo": "--filter @ovh-ux/billing-informations",
+    "turbo": "--filter @ovh-ux/manager-billing-informations",
     "pnpm": "packages/manager/modules/billing-informations"
   },
   {
@@ -78,6 +78,10 @@
   {
     "turbo": "--filter @ovh-ux/ng-ovh-cloud-universe-components",
     "pnpm": "packages/manager/modules/cloud-universe-components"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-common-translations",
+    "pnpm": "packages/manager/modules/common-translations"
   },
   {
     "turbo": "--filter @ovh-ux/manager-module-common-api",
@@ -130,10 +134,6 @@
   {
     "turbo": "--filter @ovh-ux/manager-iplb",
     "pnpm": "packages/manager/modules/iplb"
-  },
-  {
-    "turbo": "--filter @ovh-ux/logs-to-customer",
-    "pnpm": "packages/manager/modules/logs-to-customer"
   },
   {
     "turbo": "--filter @ovh-ux/manager-components",
@@ -268,12 +268,28 @@
     "pnpm": "packages/manager/modules/web-universe-components"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-cli-core",
+    "pnpm": "packages/manager-tools/manager-cli-core"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-static-analysis-kit",
     "pnpm": "packages/manager-tools/manager-static-analysis-kit"
   },
   {
+    "turbo": "--filter @ovh-ux/manager-tests-setup",
+    "pnpm": "packages/manager-tools/manager-tests-setup"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-forge-cli",
+    "pnpm": "packages/manager-tools/manager-forge-cli"
+  },
+  {
     "turbo": "--filter @ovh-ux/manager-core-test-utils",
     "pnpm": "packages/manager-tools/manager-legacy-tools/test-utils"
+  },
+  {
+    "turbo": "--filter @ovh-ux/manager-static-analysis-legacy-kit",
+    "pnpm": "packages/manager-tools/manager-legacy-tools/static-analysis-legacy-config"
   },
   {
     "turbo": "--filter @ovh-ux/manager-tailwind-config",
@@ -294,5 +310,9 @@
   {
     "turbo": "--filter @ovh-ux/ng-shell-tracking",
     "pnpm": "packages/components/ng-shell-tracking"
+  },
+  {
+    "turbo": "--filter @ovh-ux/shell",
+    "pnpm": "packages/components/ovh-shell"
   }
 ]

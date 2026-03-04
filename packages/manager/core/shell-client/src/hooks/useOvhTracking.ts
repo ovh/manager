@@ -143,7 +143,7 @@ export const usePageTracking = (): TrackingPageParams | undefined => {
 export const useOvhTracking = () => {
   const pageTracking = usePageTracking();
   const { shell, tracking, environment } = React.useContext(ShellContext);
-  const region = environment?.getRegion();
+  const region = environment?.getRegion?.();
   const level2 =
     (region && (tracking?.level2Config as RegionsTrackingConfig)?.[region]?.config?.level2) ||
     tracking?.level2;

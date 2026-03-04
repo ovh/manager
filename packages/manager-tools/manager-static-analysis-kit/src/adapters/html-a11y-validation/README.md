@@ -23,7 +23,7 @@ This matcher is **engine-agnostic**: consumers don’t import any third-party a1
 ```jsonc
 {
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "*",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
     "@ovh-ux/manager-tests-setup": "latest",
     "@ovh-ux/manager-vite-config": "*"
   }

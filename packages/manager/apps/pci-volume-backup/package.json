@@ -18,14 +18,14 @@
     "test": "vitest run --pool=threads"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.6",
-    "@ovh-ux/manager-core-api": "^0.18.7",
-    "@ovh-ux/manager-core-utils": "^0.4.5",
+    "@ovh-ux/manager-config": "8.6.6",
+    "@ovh-ux/manager-core-api": "0.18.7",
+    "@ovh-ux/manager-core-utils": "0.4.5",
     "@ovh-ux/manager-pci-common": "^2.7.19",
-    "@ovh-ux/manager-react-components": "^2.43.1",
-    "@ovh-ux/manager-react-core-application": "^0.12.9",
-    "@ovh-ux/manager-react-shell-client": "^0.9.3",
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/manager-react-components": "2.43.1",
+    "@ovh-ux/manager-react-core-application": "0.12.9",
+    "@ovh-ux/manager-react-shell-client": "0.10.0",
+    "@ovh-ux/request-tagger": "0.5.5",
     "@ovhcloud/ods-components": "^18.6.2",
     "@ovhcloud/ods-themes": "^18.6.2",
     "@tanstack/react-query": "^5.51.21",
@@ -44,7 +44,7 @@
     "tailwindcss": "^3.4.4"
   },
   "devDependencies": {
-    "@ovh-ux/manager-vite-config": "^0.13.4",
+    "@ovh-ux/manager-vite-config": "0.13.4",
     "@tanstack/react-query-devtools": "^5.51.21",
     "@testing-library/dom": "^10.1.0",
     "@testing-library/jest-dom": "^6.4.6",

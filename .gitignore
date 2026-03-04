@@ -28,3 +28,5 @@ tests-coverage-reports/**
 static-dynamic-quality-reports/**/**
 **/.type-coverage/result.json
 target
+.nx/cache
+.nx/workspace-data

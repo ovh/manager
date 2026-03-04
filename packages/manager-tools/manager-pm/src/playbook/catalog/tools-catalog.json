@@ -1,0 +1,7 @@
+{
+  "nx": {
+    "version": "22.3.3",
+    "supportedOs": ["win32", "darwin"],
+    "ciSupportedOs": [ "linux"]
+  }
+}

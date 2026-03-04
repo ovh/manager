@@ -13,7 +13,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.6.6",
+    "@ovh-ux/manager-config": "8.6.6",
     "@ovh-ux/manager-core": "^13.2.13",
     "@ovh-ux/ng-at-internet": "^6.0.29",
     "@ovh-ux/ng-ovh-http": "^5.1.5",
@@ -22,7 +22,7 @@
     "@ovh-ux/ng-ovh-sso-auth": "^4.9.0",
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.5",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/request-tagger": "0.5.5",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.22",
     "angular": "^1.7.5",

@@ -17,7 +17,7 @@
   "dependencies": {
     "@ovh-ux/manager-bm-server-components": "^2.17.3",
     "@ovh-ux/manager-components": "^1.26.1",
-    "@ovh-ux/manager-config": "^8.6.6",
+    "@ovh-ux/manager-config": "8.6.6",
     "@ovh-ux/manager-core": "^13.2.13",
     "@ovh-ux/manager-error-page": "^2.4.5",
     "@ovh-ux/manager-ng-layout-helpers": "^2.12.0",
@@ -35,7 +35,7 @@
     "@ovh-ux/ng-ovh-utils": "^14.5.3",
     "@ovh-ux/ng-translate-async-loader": "^2.2.5",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.1",
-    "@ovh-ux/request-tagger": "^0.5.5",
+    "@ovh-ux/request-tagger": "0.5.5",
     "@ovh-ux/ui-kit": "^6.10.5",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",

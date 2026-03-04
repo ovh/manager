@@ -1,0 +1,102 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "master",
+  "plugins": [],
+  "pluginsConfig": {
+    "@nx/js": {
+      "projectsAffectedByDependencyUpdates": "auto"
+    }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default",
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/**/*.spec.tsx",
+      "!{projectRoot}/**/*.test.ts",
+      "!{projectRoot}/**/*.test.tsx"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/yarn.lock",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ],
+    "buildEnv": [
+      { "env": "VERSION" },
+      { "env": "VITE_WP_LABEU_ENTRY_POINT" }
+    ],
+
+    "lintGlobals": [
+      "{workspaceRoot}/.eslintrc*",
+      "{workspaceRoot}/.eslintignore",
+      "{workspaceRoot}/eslint.config.*",
+
+      "{workspaceRoot}/.stylelintrc*",
+      "{workspaceRoot}/.stylelintignore",
+
+      "{workspaceRoot}/.htmlhintrc*",
+
+      "{workspaceRoot}/.remarkrc*",
+      "{workspaceRoot}/.remarkignore"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["production", "^production", "buildEnv"],
+      "cache": true
+    },
+
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": [],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "dev:watch": {
+      "dependsOn": ["^dev:watch"],
+      "outputs": [
+        "{projectRoot}/dist/**",
+        "{projectRoot}/types/**"
+      ],
+      "inputs": ["default", "^default"],
+      "cache": true
+    },
+
+    "start": {
+      "dependsOn": ["^dev"],
+      "cache": false
+    },
+
+    "lint:modern": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default", "lintGlobals"],
+      "outputs": [],
+      "cache": true
+    },
+    "lint:modern:fix": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^default", "lintGlobals"],
+      "outputs": [],
+      "cache": true
+    }
+  }
+}

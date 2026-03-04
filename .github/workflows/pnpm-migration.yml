@@ -1,0 +1,100 @@
+name: PNPM Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      apps:
+        description: 'JSON array of app paths (e.g. ["packages/manager/apps/pci-billing"])'
+        required: true
+        type: string
+      ticket:
+        description: 'JIRA ticket reference (e.g. MANAGER-20363)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  migrate-app:
+    name: Migrate ${{ matrix.app }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJson(inputs.apps) }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install manager-pm only (isolated)
+        run: yarn pm:isolated:install
+
+      - name: Create migration branch
+        run: |
+          APP="${{ matrix.app }}"
+          SCOPE="$(basename "$APP")"
+          TICKET="${{ inputs.ticket }}"
+          BRANCH="refactor/${SCOPE}-pnpm-migration"
+
+          echo "APP=$APP" >> "$GITHUB_ENV"
+          echo "SCOPE=$SCOPE" >> "$GITHUB_ENV"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+          echo "TICKET=$TICKET" >> "$GITHUB_ENV"
+
+          git checkout -b "$BRANCH"
+
+      - name: Run PNPM migration
+        run: |
+          yarn pm:add:app --app "$APP"
+          yarn install
+
+      - name: Commit migration changes (OVH Manager format)
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          git add -A
+
+          git commit -s \
+            -m "refactor(${SCOPE}): migrate ${SCOPE} to pnpm" \
+            -m "" \
+            -m "ref: $TICKET" \
+            || echo "No changes to commit"
+
+      - name: Push branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push origin "$BRANCH" --force-with-lease
+
+      - name: Create draft PR with reviewer and label
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "refactor(${SCOPE}): migrate ${SCOPE} to pnpm" \
+            --body "Automated PNPM migration for app: \`${APP}\`\n\nref: #${TICKET}" \
+            --base develop \
+            --head "$BRANCH" \
+            --draft || true
+
+          gh pr edit "$BRANCH" --add-label "pnpm-migration" || true
+          gh pr edit "$BRANCH" --add-label "$TICKET" || true
+          gh pr edit "$BRANCH" --add-reviewer helabenkhalfallah || true
+
+      - name: Trigger CI by amending commit
+        run: |
+          git commit --amend --no-edit --allow-empty
+          git push origin "$BRANCH" --force-with-lease

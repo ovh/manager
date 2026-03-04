@@ -24,8 +24,8 @@
     "prepare": "tsc && vite build"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-kit": "^0.11.1",
-    "@ovh-ux/manager-vite-config": "^0.13.4",
+    "@ovh-ux/manager-static-analysis-kit": "0.15.0",
+    "@ovh-ux/manager-vite-config": "0.13.4",
     "vite-plugin-dts": "^4.5.4"
   }
 }

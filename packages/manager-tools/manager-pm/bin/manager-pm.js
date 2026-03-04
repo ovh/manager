@@ -4,20 +4,23 @@
  * @fileoverview manager-pm CLI entrypoint.
  *
  * Provides a simple argument parser and dispatcher for actions like
- * build, test, lint, CI tasks, docs, manager-cli passthrough,
+ * build, test, lint, CI tasks, docs, manager-migration-cli passthrough,
  * workspace management, publishing, release, and lifecycle hooks.
- * Supports forwarding arbitrary Turbo CLI flags.
+ * Supports forwarding arbitrary Task Manager CLI flags.
  */
 import process from 'node:process';
 
 import {
   buildAll,
-  buildApp,
+  buildApplication,
   buildCI,
   buildDocs,
+  buildModule,
   createRelease,
   lintAll,
-  lintApp,
+  lintApplication,
+  lintCI,
+  lintModule,
   publishPackage,
   runLernaTask,
   runLifecycleTask,
@@ -26,74 +29,30 @@ import {
   runStaticDynamicReports,
   runStaticDynamicTests,
   testAll,
-  testApp,
+  testApplication,
   testCI,
-} from '../src/kernel/commons/tasks-manager.js';
+  testModule,
+} from '../src/kernel/helpers/tasks-helper.js';
 import { startApp } from '../src/kernel/pnpm/pnpm-start-app.js';
+import { loadToolsCatalog } from '../src/kernel/utils/catalog-utils.js';
+import { parseCLIArgs } from '../src/kernel/utils/cli-utils.js';
+import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+import { resolveNxBinary } from '../src/kernel/utils/nx-binary-utils.js';
+import { isNxRunner } from '../src/kernel/utils/nx-utils.js';
+import {
+  attachCleanupSignals,
+  handleProcessAbortSignals,
+} from '../src/kernel/utils/process-utils.js';
+import { isVersionSupported, readBinaryVersion } from '../src/kernel/utils/semver-utils.js';
+import { runCiTask } from '../src/kernel/utils/tasks-utils.js';
+import { isToolAllowed } from '../src/kernel/utils/tools-utils.js';
 import {
   clearRootWorkspaces,
   updateRootWorkspacesFromCatalogs,
-} from '../src/kernel/utils/catalog-utils.js';
-import { logger, setLoggerMode } from '../src/kernel/utils/log-manager.js';
+} from '../src/kernel/utils/workspace-utils.js';
 
-const VERSION = '0.2.0';
-
-/**
- * Parse CLI arguments into options, rest args, and passthrough.
- *
- * Supported forms:
- *   --foo bar   → opts.foo = "bar"
- *   --flag      → opts.flag = true
- *   -x y        → opts.x = "y"
- *   -abc        → opts.a = true, opts.b = true, opts.c = true
- * Everything after `--` is passthrough.
- *
- * @param {string[]} argv - Command-line arguments (excluding node + script).
- * @returns {{opts: Record<string, string|boolean>, rest: string[], passthrough: string[]}}
- */
-function parseArgs(argv) {
-  const opts = {};
-  const rest = [];
-  let passthrough = [];
-
-  const dashdash = argv.indexOf('--');
-  if (dashdash !== -1) {
-    passthrough = argv.slice(dashdash + 1);
-    argv = argv.slice(0, dashdash);
-  }
-
-  for (let i = 0; i < argv.length; i++) {
-    const arg = argv[i];
-    if (arg.startsWith('--')) {
-      const key = arg.slice(2);
-      const next = argv[i + 1];
-      if (next && !next.startsWith('-')) {
-        opts[key] = next;
-        i++;
-      } else {
-        opts[key] = true;
-      }
-    } else if (arg.startsWith('-') && arg.length > 1) {
-      const letters = arg.slice(1).split('');
-      if (letters.length > 1) {
-        letters.forEach((l) => (opts[l] = true));
-      } else {
-        const key = letters[0];
-        const next = argv[i + 1];
-        if (next && !next.startsWith('-')) {
-          opts[key] = next;
-          i++;
-        } else {
-          opts[key] = true;
-        }
-      }
-    } else {
-      rest.push(arg);
-    }
-  }
-
-  return { opts, rest, passthrough };
-}
+const VERSION = '1.0.0';
+const DEFAULT_RUNNER = 'turbo';
 
 /**
  * Human-readable CLI help text for manager-pm.
@@ -115,22 +74,27 @@ ACTIONS
   Single-app:
     build   --app <name>                 Build one app
     test    --app <name>                 Test one app
-    lint    --app <name> [--fix ...]     Lint one app (supports --fix and other ESLint flags)
+    lint    --app <name>                 Lint one app
 
-  Turbo passthrough (flags forwarded to Turbo):
-    buildCI [--filter <expr>] [other turbo flags]
-    testCI  [--filter <expr>] [other turbo flags]
+  Module:
+    add:module     --module <package|path> [--private]     Add a module (optionally private) to PNPM
+    remove:module  --module <package|path> [--private]     Remove a module (optionally private) from PNPM
+
+  Task manager passthrough (flags forwarded to Turbo/NX/...):
+    buildCI [--filter <expr>] [other flags]
+    testCI  [--filter <expr>] [other flags]
+    lintCI  [--filter <expr>] [other flags]
 
   Lerna passthrough (flags forwarded to Lerna):
     lerna <subcommand> [options]         Run any Lerna command with workspaces restored/cleaned
 
   Global:
-    full-build                           Build ALL apps
-    full-test                            Test ALL apps
-    full-lint [--fix ...]                Lint ALL apps (supports --fix and other ESLint flags)
+    full-build                           Build ALL
+    full-test                            Test ALL
+    full-lint                            Lint ALL
     start                                Launch interactive app starter
     docs                                 Build documentation workspace
-    cli                                  Run manager-cli (everything after "cli" is forwarded)
+    cli                                  Run manager-migration-cli (everything after "cli" is forwarded)
     workspace --mode <prepare|remove>    Prepare or clear root workspaces
 
   Publishing & Release:
@@ -150,7 +114,9 @@ COMMON OPTIONS
   --type <pnpm>                          Package manager type (default: pnpm)
   --action <name>                        Action to execute
   --app <name>                           App/package name (build/test/lint single-app)
-  --filter <expr>                        Turbo filter for buildCI/testCI
+  --module <name|path>                   Module name or path (add:module/remove:module)
+  --filter <expr>                        Task manager (Turbo/NX/...) filter for buildCI/testCI
+  --runner <turbo|nx|binary>             Task runner binary (default: turbo)
   --container                            Hint that we run inside a container
   --region <code>                        Region flag (printed for logs only)
   --silent                               Suppress ALL logs (stderr + stdout), only raw tool output remains
@@ -170,23 +136,23 @@ RELEASE / PUBLISH FLAGS (forwarded to underlying tools)
   --seed <value>                         Seed used to compute release name
   --conventional-prerelease              Forwarded to lerna (release)
   --preid <id>                           e.g. rc, alpha (with --conventional-prerelease)
-  (Any other unknown flags are forwarded to Turbo / lerna / npm/yarn as appropriate)
+  (Any other unknown flags are forwarded to Turbo / lerna / npm / yarn as appropriate)
 
 EXAMPLES
   # Single app
   manager-pm --type pnpm --action build --app web
   manager-pm --type pnpm --action test  --app web
-  manager-pm --type pnpm --action lint  --app web --fix
-  manager-pm --type pnpm --action lint  --app web --max-warnings 0
+  manager-pm --type pnpm --action lint  --app web
 
-  # Lint all apps
-  manager-pm --type pnpm --action full-lint
-  manager-pm --type pnpm --action full-lint --fix
-  manager-pm --type pnpm --action full-lint --quiet --max-warnings 0
+  # Module management
+  manager-pm --type pnpm --action build --module packages/manager/core/api
+  manager-pm --type pnpm --action test  --module @ovh-ux/manager-core-api
+  manager-pm --type pnpm --action lint  --module packages/manager/core/application
 
-  # Turbo passthrough
+  # Task manager (Turbo/NX/...) passthrough
   manager-pm --type pnpm --action buildCI --filter=@ovh-ux/manager-web
   manager-pm --type pnpm --action testCI  --filter=tag:unit --parallel
+  manager-pm --type pnpm --action lintCI  --filter=tag:unit --parallel
 
   # Lerna passthrough
   manager-pm --action lerna list --all --json --toposort
@@ -197,8 +163,8 @@ EXAMPLES
   manager-pm --action workspace --mode prepare
   manager-pm --action workspace --mode remove
 
-  # manager-cli passthrough
-  manager-pm --type pnpm --action cli -- migrations-status --type all
+  # manager-migration-cli passthrough
+  manager-pm --type pnpm --action cli migrations-status --type all
 
   # Reports
   yarn manager-pm --type pnpm --action staticDynamicReports
@@ -219,10 +185,11 @@ EXAMPLES
 
 NOTES
   • Exit codes: 0 on success, non-zero on failure.
+  • Module actions support both workspace paths and package names.
   • Lint actions support --fix, --quiet, and other ESLint-compatible flags.
   • In dry release mode, the script safeguards your working tree: no tags/commits/push,
     no persistent file changes (package.json/CHANGELOG restored).
-  • For "cli" action, everything after the word "cli" is forwarded to manager-cli verbatim.
+  • For "cli" action, everything after the word "cli" is forwarded to manager-migration-cli verbatim.
   • For "lerna" action, everything after the word "lerna" is forwarded to Lerna verbatim.
 `;
 
@@ -253,7 +220,7 @@ function exitError(msg) {
  * @returns {string[]} Array of CLI flags.
  */
 function collectToolsArgs(opts, includeApp = false) {
-  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container'];
+  const alwaysExcluded = ['action', 'type', 'filter', 'region', 'mode', 'container', 'runner'];
   const excluded = includeApp ? alwaysExcluded : [...alwaysExcluded, 'app', 'packages'];
 
   return Object.entries(opts)
@@ -262,37 +229,219 @@ function collectToolsArgs(opts, includeApp = false) {
 }
 
 /**
- * Map of supported CLI actions to their async handlers.
- * Each handler receives the parsed CLI context.
+ * Wrapper around collectToolsArgs that also optionally strips --silent.
  *
- * @type {Record<string, (ctx: {app?: string, passthrough: string[], filter?: string|null, mode?: string, opts: Record<string, string|boolean>}) => Promise<void>>}
+ * @param {Record<string, string|boolean>} opts
+ * @param {{ includeApp?: boolean, stripSilent?: boolean }} [options]
+ * @returns {string[]}
+ */
+function collectForwardedArgs(opts, { includeApp = false, stripSilent = true } = {}) {
+  const base = collectToolsArgs(opts, includeApp);
+  if (!stripSilent) return base;
+  return base.filter((arg) => arg !== '--silent');
+}
+
+/**
+ * Resolve the runner from CLI options and validate if it's allowed.
+ *
+ * Rules:
+ *  - Empty/undefined -> DEFAULT_RUNNER
+ *  - "turbo" -> DEFAULT_RUNNER
+ *  - "nx" or any nx binary path (e.g. /path/to/nx, C:\nx.cmd):
+ *      - validate against tools catalog minimum version
+ *      - prefer provided binary path if valid
+ *      - else auto-resolve local node_modules/.bin/nx, then global nx
+ *      - fallback to DEFAULT_RUNNER if none valid
+ *  - Any other known runner (present in tools catalog):
+ *      - enforce OS constraints via isToolAllowed()
+ *  - Unknown runner:
+ *      - treated as custom binary and returned as-is
+ *
+ * @param {Record<string, string|boolean>} opts
+ * @returns {Promise<string>} Runner name or absolute path to runner binary.
+ */
+export async function resolveRunnerFromOpts(opts) {
+  const runnerOption = opts.runner;
+
+  // Default: turbo
+  if (typeof runnerOption !== 'string' || !runnerOption.trim()) {
+    return DEFAULT_RUNNER;
+  }
+
+  const requestedRunner = runnerOption.trim();
+
+  if (requestedRunner === DEFAULT_RUNNER) {
+    return DEFAULT_RUNNER;
+  }
+
+  // Load catalog once (used for nx minimumVersion + other runners)
+  const toolsCatalog = await loadToolsCatalog();
+
+  // -----------------------------
+  // Nx special-case (path-aware)
+  // -----------------------------
+  // Accepts:
+  //  - "nx"
+  //  - "/usr/bin/nx"
+  //  - "/repo/node_modules/.bin/nx"
+  //  - "C:\\tools\\nx.cmd"
+  const isNxRequested = requestedRunner === 'nx' || isNxRunner(requestedRunner);
+
+  if (isNxRequested) {
+    const nxSpec = toolsCatalog?.nx;
+    const minimumVersion = nxSpec?.version || '0.0.0';
+
+    // If user provided an explicit binary path, prefer it if valid.
+    if (requestedRunner !== 'nx' && isNxRunner(requestedRunner)) {
+      const providedVersion = readBinaryVersion(requestedRunner);
+
+      if (isVersionSupported(providedVersion, minimumVersion)) {
+        logger.info(
+          `[runner:nx] Using provided Nx binary: ${requestedRunner} (v${providedVersion ?? 'unknown'})`,
+        );
+        return requestedRunner;
+      }
+
+      logger.warn(
+        `[runner:nx] Provided Nx binary unsupported (found=${providedVersion ?? 'unknown'} < ${minimumVersion}) -> trying auto-resolution`,
+      );
+    }
+
+    // Auto-resolve: local node_modules first, then global candidates
+    const nxMetaData = await resolveNxBinary({ minimumVersion });
+
+    if (nxMetaData.binaryPath) {
+      logger.info(
+        `[runner:nx] Using ${nxMetaData.source.toUpperCase()} Nx: ${nxMetaData.binaryPath} (v${nxMetaData.version ?? 'unknown'})`,
+      );
+      return nxMetaData.binaryPath;
+    }
+
+    logger.warn(`[runner:nx] No suitable Nx found (>= ${minimumVersion}) -> fallback to turbo`);
+    return DEFAULT_RUNNER;
+  }
+
+  // ----------------------------------------
+  // Other runners: enforce tools catalog rule
+  // ----------------------------------------
+  const toolSpec = toolsCatalog?.[requestedRunner];
+
+  // Unknown runner: treat as custom binary and allow it
+  if (!toolSpec) {
+    logger.info(`[runner] Using custom runner: "${requestedRunner}" (not found in tools catalog)`);
+    return requestedRunner;
+  }
+
+  // Known runner: enforce OS constraints
+  if (!isToolAllowed(toolSpec)) {
+    logger.warn(
+      `⚠️ [runner] "${requestedRunner}" not supported in this env -> fallback to "${DEFAULT_RUNNER}"`,
+    );
+    return DEFAULT_RUNNER;
+  }
+
+  logger.info(`[runner] Using runner: "${requestedRunner}"`);
+  return requestedRunner;
+}
+
+/**
+ * Resolve base CLI arguments for CI commands.
+ *
+ * Priority:
+ *  1. If `passthrough` is non-empty, use it as-is.
+ *  2. Otherwise, if `filter` is provided, use a Turbo-style filter pair: ['--filter', filter].
+ *  3. Otherwise, return an empty array.
+ *
+ * This lets callers override the default filter behavior by passing explicit passthrough args.
+ *
+ * @param {Object} params
+ * @param {string[]} [params.passthrough=[]] - Raw arguments to forward directly to the runner.
+ * @param {string} [params.filter] - Turbo/Nx-compatible filter expression (e.g. package name, path, or range).
+ * @returns {string[]} Resolved base arguments to prepend before forwarded options.
+ */
+function resolveBaseArgs({ passthrough = [], filter }) {
+  if (passthrough.length > 0) {
+    return passthrough;
+  }
+
+  if (filter) {
+    return ['--filter', filter];
+  }
+
+  return [];
+}
+
+/**
+ * @type {Record<
+ *  string,
+ *  (ctx: {
+ *    app?: string,
+ *    module?: string,
+ *    passthrough: string[],
+ *    filter?: string|null,
+ *    mode?: string,
+ *    runner: string,
+ *    opts: Record<string, string|boolean>
+ *  }) => Promise<void>
+ * >}
  */
 const actions = {
-  async build({ app }) {
-    if (!app) exitError(`Action "build" requires --app`);
-    return buildApp(app);
+  async build({ app, module, runner }) {
+    if (!app && !module) {
+      exitError(`Action "build" requires either --app or --module`);
+    }
+
+    if (app) {
+      logger.info(`🏗️  Building application: ${app} (runner: ${runner})`);
+      return buildApplication(app, runner);
+    }
+    if (module) {
+      logger.info(`📦 Building module: ${module} (runner: ${runner})`);
+      return buildModule(module, runner);
+    }
   },
-  async test({ app }) {
-    if (!app) exitError(`Action "test" requires --app`);
-    return testApp(app);
+  async test({ app, module, runner }) {
+    if (!app && !module) {
+      exitError(`Action "test" requires either --app or --module`);
+    }
+
+    if (app) {
+      logger.info(`🧪 Testing application: ${app} (runner: ${runner})`);
+      return testApplication(app, runner);
+    }
+    if (module) {
+      logger.info(`🧩 Testing module: ${module} (runner: ${runner})`);
+      return testModule(module, runner);
+    }
   },
-  async lint({ app, passthrough, opts }) {
-    if (!app) exitError(`Action "lint" requires --app`);
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return lintApp(app, [...forwarded, ...passthrough]);
+  async lint({ app, module, runner }) {
+    if (!app && !module) {
+      exitError(`Action "lint" requires either --app or --module`);
+    }
+
+    if (app) {
+      logger.info(`🏗️  Linting application: ${app} (runner: ${runner})`);
+      return lintApplication(app, runner);
+    }
+    if (module) {
+      logger.info(`📦 Linting module: ${module} (runner: ${runner})`);
+      return lintModule(module, runner);
+    }
   },
   async start() {
     return startApp();
   },
-  async 'full-build'() {
-    return buildAll();
+  async 'full-build'({ runner }) {
+    logger.info(`🏗️  Building ALL apps + modules (runner: ${runner})`);
+    return buildAll(runner);
   },
-  async 'full-test'() {
-    return testAll();
+  async 'full-test'({ runner }) {
+    logger.info(`🧪 Testing ALL apps + modules (runner: ${runner})`);
+    return testAll(runner);
   },
-  async 'full-lint'({ passthrough, opts }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return lintAll([...forwarded, ...passthrough]);
+  async 'full-lint'({ runner }) {
+    logger.info(`🧹 Linting ALL apps + modules (runner: ${runner})`);
+    return lintAll(runner);
   },
   async docs() {
     return buildDocs();
@@ -323,46 +472,40 @@ const actions = {
   async postinstall() {
     return runLifecycleTask('postinstall');
   },
-  async buildCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return buildCI([...base, ...forwarded]);
+  async buildCI(ctx) {
+    return runCiTask(buildCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
   },
-  async testCI({ passthrough, filter, opts }) {
-    const base = passthrough.length ? passthrough : filter ? ['--filter', filter] : [];
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
-    return testCI([...base, ...forwarded]);
+  async testCI(ctx) {
+    return runCiTask(testCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
+  },
+  async lintCI(ctx) {
+    return runCiTask(lintCI, ctx, { resolveBaseArgs, collectForwardedArgs, isNxRunner });
   },
   async perfBudgets({ passthrough, opts }) {
-    const forwarded = collectToolsArgs(opts, true).filter((arg) => arg !== '--silent');
+    const forwarded = collectForwardedArgs(opts, { includeApp: true });
     return runPerfBudgets([...forwarded, ...passthrough]);
   },
   async publish({ opts }) {
-    const forwarded = collectToolsArgs(opts).filter((arg) => arg !== '--silent');
+    const forwarded = collectForwardedArgs(opts);
     return publishPackage(forwarded);
   },
   async release({ opts }) {
-    // Keep the standard argument collector
-    const forwarded = collectToolsArgs(opts);
-
-    // Normalize special short flags used by the release script
-    // Converts "--d" → "-d" and "--s" → "-s" (only those cases)
-    const normalized = forwarded
-      .filter((arg) => arg !== '--silent')
-      .map((arg) => {
-        if (arg === '--d') return '-d';
-        if (arg === '--s') return '-s';
-        return arg;
-      });
+    // Collect everything except internal flags, then normalize special short flags
+    const forwarded = collectForwardedArgs(opts);
+    const normalized = forwarded.map((arg) => {
+      if (arg === '--d') return '-d';
+      if (arg === '--s') return '-s';
+      return arg;
+    });
 
     return createRelease(normalized);
   },
   async cli() {
-    // Everything after "cli" is forwarded directly to manager-cli
+    // Everything after "cli" is forwarded directly to manager-migration-cli
     const cliIndex = process.argv.indexOf('cli');
     let extraArgs = cliIndex !== -1 ? process.argv.slice(cliIndex + 1) : [];
 
-    // Strip --silent before passing to manager-cli
+    // Strip --silent before passing to manager-migration-cli
     if (extraArgs.includes('--silent')) {
       extraArgs = extraArgs.filter((arg) => arg !== '--silent');
       setLoggerMode('silent');
@@ -385,20 +528,25 @@ const actions = {
 };
 
 /**
- * CLI entrypoint. Parses args, selects action, executes it, and handles errors.
- * @returns {Promise<void>}
+ * Configure logger mode based on CLI flags.
  */
-async function main() {
-  const { opts, passthrough } = parseArgs(process.argv.slice(2));
-
+function configureLoggerMode() {
   if (process.argv.includes('--silent')) {
     setLoggerMode('silent');
   } else {
-    setLoggerMode('stderr'); // safe default for jq pipes
+    setLoggerMode('stderr'); // Safe default for jq pipes
   }
+}
 
-  const { action, type = 'pnpm', app = null, filter = null, region = 'EU', mode = null } = opts;
-  const container = Boolean(opts.container);
+/**
+ * Validate base CLI arguments and handle global flags (help, version).
+ * Exits the process early if needed.
+ *
+ * @param {Record<string, string|boolean>} opts - Parsed options.
+ * @param {string[]} passthrough - Remaining CLI args.
+ */
+async function handleGlobalFlags(opts, passthrough) {
+  const { action } = opts;
 
   if (!action) {
     printHelp();
@@ -414,31 +562,108 @@ async function main() {
     await runManagerCli(['--help']);
     process.exit(0);
   }
+}
 
+/**
+ * Log the current CLI context for debugging and visibility.
+ */
+function logExecutionContext({
+  type,
+  action,
+  appReference,
+  moduleReference,
+  filter,
+  region,
+  container,
+  mode,
+  runner,
+}) {
   logger.info(`manager-pm v${VERSION}
 type: ${type}
 action: ${action}
-app: ${app || '(none)'}
+runner: ${runner}
+app: ${appReference || '(none)'}
+module: ${moduleReference || '(none)'}
 filter: ${filter || '(none)'}
 region: ${region}
 container: ${container}
 mode: ${mode || '(none)'}`);
+}
+
+/**
+ * Execute a CLI action safely, handling errors and exit codes.
+ */
+async function executeAction(actionName, context) {
+  const actionHandler = actions[actionName];
+  if (!actionHandler) {
+    logger.warn(`⚠️  Unknown action: "${actionName}"`);
+    printHelp();
+    process.exit(1);
+  }
 
   try {
-    const handler = actions[action];
-    if (!handler) {
-      logger.warn(`⚠️  Unknown action: "${action}"`);
-      printHelp();
-      process.exit(1);
-    }
-
-    await handler({ app, passthrough, filter, mode, opts });
+    await actionHandler(context);
     process.exit(0);
-  } catch (err) {
-    logger.error(err.stack || err.message || err);
+  } catch (error) {
+    logger.error(error?.stack || error?.message || String(error));
     process.exit(1);
   }
 }
 
+/**
+ * CLI entrypoint.
+ * Parses args, validates options, and dispatches actions.
+ */
+async function main() {
+  const { opts, passthrough } = parseCLIArgs(process.argv.slice(2));
+
+  configureLoggerMode();
+
+  const {
+    action,
+    type = 'pnpm',
+    app: appReference = null,
+    module: moduleReference = null,
+    filter = null,
+    region = 'EU',
+    mode = null,
+  } = opts;
+
+  const container = Boolean(opts.container);
+  const runner = await resolveRunnerFromOpts(opts);
+
+  // Handle help, version, and CLI passthroughs
+  await handleGlobalFlags(opts, passthrough);
+
+  // Log CLI context summary
+  logExecutionContext({
+    type,
+    action,
+    appReference,
+    moduleReference,
+    filter,
+    region,
+    container,
+    mode,
+    runner,
+  });
+
+  // Execute the corresponding action handler
+  await executeAction(action, {
+    app: appReference,
+    module: moduleReference,
+    passthrough,
+    filter,
+    mode,
+    runner,
+    opts,
+  });
+}
+
+// Attach handlers for signals and unhandled errors
+attachCleanupSignals(handleProcessAbortSignals);
+
 // ---- Run CLI ----
-main();
+main().catch(async (err) => {
+  await handleProcessAbortSignals('unhandled rejection', err);
+});

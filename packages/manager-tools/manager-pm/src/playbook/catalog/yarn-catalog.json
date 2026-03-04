@@ -85,6 +85,7 @@
   "packages/manager/core/sso",
   "packages/manager/core/url-builder",
   "packages/manager/core/utils",
+  "packages/manager/core/shell-client",
   "packages/manager/modules/*",
   "packages/manager-tools/*",
   "packages/manager-tools/manager-legacy-tools/*",
