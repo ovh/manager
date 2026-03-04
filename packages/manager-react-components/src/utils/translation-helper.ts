@@ -44,21 +44,40 @@ export const buildTranslationResources =
     // Always load fallbackLang once, before the user language
     if (!i18next.hasResourceBundle(fallbackLang, namespace)) {
       try {
-        console.info(`Loading fallback language: ${fallbackLang} for namespace: ${namespace}`);
+        console.info(
+          `Loading fallback language: ${fallbackLang} for namespace: ${namespace}`,
+        );
         const fallbackModule = await translationLoaders[fallbackLang]();
-        i18next.addResources(fallbackLang, namespace, fallbackModule.default || fallbackModule);
+        i18next.addResources(
+          fallbackLang,
+          namespace,
+          fallbackModule.default || fallbackModule,
+        );
       } catch (error) {
-        console.error(`Failed to load fallback translations (${fallbackLang}):`, error);
+        console.error(
+          `Failed to load fallback translations (${fallbackLang}):`,
+          error,
+        );
       }
     }
 
     // Then load the requested language
-    if (normalizedLang !== fallbackLang && !i18next.hasResourceBundle(normalizedLang, namespace)) {
+    if (
+      normalizedLang !== fallbackLang &&
+      !i18next.hasResourceBundle(normalizedLang, namespace)
+    ) {
       try {
         const module = await translationLoaders[normalizedLang]();
-        i18next.addResources(normalizedLang, namespace, module.default || module);
+        i18next.addResources(
+          normalizedLang,
+          namespace,
+          module.default || module,
+        );
       } catch (error) {
-        console.warn(`Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`, error);
+        console.warn(
+          `Could not load ${normalizedLang}. Will fallback to ${fallbackLang}.`,
+          error,
+        );
       }
     }
 
@@ -94,4 +113,20 @@ export const buildTranslationManager = (translationLoaders, namespace) => {
   }
 
   i18next.on('languageChanged', handleLanguageChange);
+};
+
+/**
+ * Extracts the language code from a locale string.
+ * Converts locale format (e.g., 'fr_FR') to language code (e.g., 'fr').
+ *
+ * @param {string} locale - The locale string in format 'll_RR' or 'll-RR'.
+ * @returns {string} - The language code (e.g., 'fr', 'en', 'de').
+ *
+ * @example
+ * extractLanguageCode('fr_FR') // returns 'fr'
+ * extractLanguageCode('en_GB') // returns 'en'
+ * extractLanguageCode('de-DE') // returns 'de'
+ */
+export const extractLanguageCode = (locale: string): string => {
+  return locale.split(/[-_]/)[0].toLowerCase();
 };

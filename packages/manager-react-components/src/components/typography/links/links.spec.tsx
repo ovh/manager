@@ -50,6 +50,26 @@ describe('Links component', () => {
 
     expect(linkElement).toBeInTheDocument();
   });
+
+  it('renders a survey link correctly', () => {
+    const { container } = render(
+      <Links
+        type={LinkType.survey}
+        surveyLink={{
+          applicationKey: 'COM',
+          email: 'test@example.com',
+        }}
+      />,
+    );
+    const linkElement = container.querySelector('[label="Donnez-nous votre avis !"]');
+    expect(linkElement).toBeInTheDocument();
+    expect(linkElement).toHaveAttribute('icon', 'emoticon-smile');
+    expect(linkElement).toHaveAttribute(
+      'href',
+      'https://s.elq.fr/ovhsat/COM_evaluation_survey?email=test%40example.com',
+    );
+    expect(linkElement).toHaveAttribute('target', '_blank');
+  });
 });
 
 it('renders a link correctly with an id', () => {
