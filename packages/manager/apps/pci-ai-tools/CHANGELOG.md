@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.21.0...@ovh-ux/manager-pci-ai-tools-app@1.22.0) (2026-03-04)
+
+
+### Features
+
+* **pci-ai-tools:** information about the expiry date ([fa76916](https://github.com/ovh/manager/commit/fa76916a60c7ff71888712c3a1c94101938a7a71)), closes [#AIS-2004](https://github.com/ovh/manager/issues/AIS-2004)
+
+
+
+
+
 # [1.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.20.1...@ovh-ux/manager-pci-ai-tools-app@1.21.0) (2026-02-18)
 
 
