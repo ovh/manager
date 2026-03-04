@@ -47,5 +47,5 @@
   "gdpr_erasure_confirmation_email_error_max_attempts": "You have received the maximum number of new confirmation emails. You can confirm your request with the confirmation email you’ve already received. Otherwise, please cancel this request, or contact the Support team.",
   "gdpr_erasure_confirm_error_invalid_code": "The confirmation code is incorrect.",
   "gdpr_erasure_confirm_error_exhausted_attempts": "Your request has been cancelled due to several incorrect confirmation code entries.",
-  "gdpr_erasure_not_possible_description": "We have detected active services linked to your account. Please ensure that you have removed all your services by following the steps outlined in our guide (<a href=\"{{url}}\" target=\"_blank\">link</a>) before making your deletion request."
+  "gdpr_erasure_not_possible_description": "It appears your account has active services linked to it. Before submitting your deletion request, please double-check that you’ve deleted all your services using the steps described in this guide (<a href=\"{{url}}\" target=\"_blank\">link</a>)."
 }
