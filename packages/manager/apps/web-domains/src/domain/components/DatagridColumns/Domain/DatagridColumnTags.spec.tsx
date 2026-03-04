@@ -1,20 +1,23 @@
-import React from 'react';
-import { render, screen } from '@/common/utils/test.provider';
+import '@/common/setupTests';
+import { render, screen, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi } from 'vitest';
 import DatagridColumnTags from './DatagridColumnTags';
-import { wrapper } from '@/common/utils/test.provider';
 
-vi.mock('@ovh-ux/manager-react-components', () => ({
-  TagsList: ({ tags }: { tags: Record<string, string> }) => (
-    <div data-testid="tags-list">
-      {Object.entries(tags).map(([key, value]) => (
-        <span key={key} data-testid={`tag-${key}`}>
-          {key}: {value}
-        </span>
-      ))}
-    </div>
-  ),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  return {
+    ...actual,
+    TagsList: ({ tags }: { tags: Record<string, string> }) => (
+      <div data-testid="tags-list">
+        {Object.entries(tags).map(([key, value]) => (
+          <span key={key} data-testid={`tag-${key}`}>
+            {value ? `${key}: ${value}` : `${key}:`}
+          </span>
+        ))}
+      </div>
+    ),
+  };
+});
 
 describe('DatagridColumnTags', () => {
   it('should render TagsList when tags are provided', () => {

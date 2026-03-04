@@ -47,19 +47,6 @@ vi.mock('@/common/hooks/iam/useGetIAMResource', () => ({
   useGetIAMResource: vi.fn(),
 }));
 
-vi.mock('@ovh-ux/manager-react-components', async () => {
-  const actual = await vi.importActual<
-    typeof import('@ovh-ux/manager-react-components')
-  >('@ovh-ux/manager-react-components');
-
-  return {
-    ...actual,
-    useAuthorizationIam: vi.fn(() => ({
-      isPending: false,
-      isAuthorized: true,
-    })),
-  };
-});
 
 describe('DS Records Columns', () => {
   const setDrawer = vi.fn();

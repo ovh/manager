@@ -1,7 +1,6 @@
 import '@/common/setupTests';
 import { Mock, vi, expect, describe, it } from 'vitest';
-import { render, waitFor } from '@/common/utils/test.provider';
-import { wrapper } from '@/common/utils/test.provider';
+import { render, waitFor, wrapper } from '@/common/utils/test.provider';
 import { useGetAllDom } from '@/alldoms/hooks/data/useGetAllDom';
 import ServiceDetail from '@/alldoms/pages/service/serviceDetail/serviceDetail';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';

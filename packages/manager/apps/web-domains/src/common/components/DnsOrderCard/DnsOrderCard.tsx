@@ -4,26 +4,31 @@ import {
   Price,
 } from '@ovh-ux/manager-react-components';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
-import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { UserLocales } from '@ovh-ux/manager-config';
-import PriceCard from '@/domain/components/Card/PriceCard';
-import { useGetOrderCatalogDns } from '@/domain/hooks/data/query';
-import { ANYCAST_ORDER_CONSTANT } from '@/domain/constants/order';
-import { order } from '@/domain/types/orderCatalog';
-import Loading from '@/domain/components/Loading/Loading';
+import PriceCard from '@/common/components/Card/PriceCard';
+import { useGetOrderCatalogDns } from '@/common/hooks/data/query';
+import { ANYCAST_ORDER_CONSTANT } from '@/common/constants/order';
+import { order } from '@/common/types/orderCatalog';
+import Loading from '@/common/components/Loading/Loading';
 
-interface AnycastOrderComponentProps {
+interface DnsOrderCardProps {
+  readonly isZoneActivation: boolean;
   readonly displayTitle: boolean;
   readonly subsidiary: OvhSubsidiary;
   readonly userLocal: UserLocales;
+  readonly anycastSelected: boolean;
+  readonly onAnycastCheckBoxChange: () => void;
 }
 
-export default function AnycastOrderComponent({
+export default function DnsOrderCard({
+  isZoneActivation,
   displayTitle,
   subsidiary,
   userLocal,
-}: AnycastOrderComponentProps) {
+  anycastSelected,
+  onAnycastCheckBoxChange,
+}: DnsOrderCardProps) {
   const { t } = useTranslation(['domain', 'web-domains/error']);
 
   const { dnsCatalog, isFetchingDnsCatalog } = useGetOrderCatalogDns(
@@ -74,8 +79,9 @@ export default function AnycastOrderComponent({
       </Text>
       <div className="flex gap-5 pt-5 pb-10">
         <PriceCard
-          checked={true}
-          disabled={true}
+          checked={anycastSelected}
+          disabled={!isZoneActivation}
+          onCheckBoxChange={onAnycastCheckBoxChange}
           footer={
             <span className="pl-5">
               <Price

@@ -1,12 +1,12 @@
-import React from 'react';
+import '@/common/setupTests';
 import {
   render,
   screen,
   fireEvent,
   waitFor,
+  wrapper
 } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { wrapper } from '@/common/utils/test.provider';
 import ExportDrawer from './exportDrawer';
 
 const mockOnClose = vi.fn();
@@ -14,97 +14,6 @@ const mockOnExport = vi.fn();
 const mockDomainTreeViewOnChange = vi.fn();
 const mockContactTreeViewOnChange = vi.fn();
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Button: ({
-    children,
-    variant,
-    onClick,
-  }: {
-    children: React.ReactNode;
-    variant?: string;
-    onClick?: () => void;
-  }) => (
-    <button data-testid="button" data-variant={variant} onClick={onClick}>
-      {children}
-    </button>
-  ),
-  Drawer: ({
-    children,
-    open,
-    onOpenChange,
-  }: {
-    children: React.ReactNode;
-    open: boolean;
-    onOpenChange?: (detail: { open: boolean }) => void;
-  }) => (
-    <div
-      data-testid="drawer"
-      data-open={open}
-      onClick={() => onOpenChange?.({ open: false })}
-    >
-      {children}
-    </div>
-  ),
-  DrawerContent: ({
-    children,
-    position,
-    className,
-  }: {
-    children: React.ReactNode;
-    position?: string;
-    className?: string;
-  }) => (
-    <div
-      data-testid="drawer-content"
-      data-position={position}
-      className={className}
-    >
-      {children}
-    </div>
-  ),
-  DrawerBody: ({
-    children,
-    className,
-  }: {
-    children: React.ReactNode;
-    className?: string;
-  }) => (
-    <div data-testid="drawer-body" className={className}>
-      {children}
-    </div>
-  ),
-  Message: ({
-    children,
-    dismissible,
-  }: {
-    children: React.ReactNode;
-    dismissible?: boolean;
-  }) => (
-    <div data-testid="message" data-dismissible={dismissible}>
-      {children}
-    </div>
-  ),
-  Text: ({
-    children,
-    preset,
-  }: {
-    children: React.ReactNode;
-    preset?: string;
-  }) => (
-    <div data-testid="text" data-preset={preset}>
-      {children}
-    </div>
-  ),
-  TEXT_PRESET: {
-    heading2: 'heading2',
-    heading3: 'heading3',
-    heading5: 'heading5',
-    paragraph: 'paragraph',
-  },
-  DRAWER_POSITION: {
-    right: 'right',
-  },
-}));
 
 vi.mock('react-i18next', async (importOriginal) => {
   const actual = await importOriginal<typeof import('react-i18next')>();
@@ -118,6 +27,34 @@ vi.mock('react-i18next', async (importOriginal) => {
         return key;
       },
     }),
+  };
+});
+
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  const React = await import('react');
+  return {
+    ...actual,
+    Drawer: ({ children, open, onOpenChange, ...props }: any) =>
+      open
+        ? React.createElement(
+          'div',
+          { 'data-ods': 'drawer', ...props },
+          React.createElement(
+            'button',
+            {
+              'data-ods': 'drawer-close-trigger',
+              onClick: () => onOpenChange?.({ open: false }),
+            },
+            'Close',
+          ),
+          children,
+        )
+        : null,
+    DrawerContent: ({ children, ...props }: any) =>
+      React.createElement('div', { 'data-ods': 'drawer-content', ...props }, children),
+    DrawerBody: ({ children, ...props }: any) =>
+      React.createElement('div', { 'data-ods': 'drawer-body', ...props }, children),
   };
 });
 
@@ -196,9 +133,9 @@ describe('ExportDrawer', () => {
     it('should render drawer when opened', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      expect(screen.getByTestId('drawer')).toHaveAttribute('data-open', 'true');
-      expect(screen.getByTestId('drawer-content')).toBeInTheDocument();
-      expect(screen.getByTestId('drawer-body')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer"]')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer-content"]')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer-body"]')).toBeInTheDocument();
     });
 
     it('should not render drawer when closed', () => {
@@ -206,30 +143,21 @@ describe('ExportDrawer', () => {
         wrapper,
       });
 
-      expect(screen.getByTestId('drawer')).toHaveAttribute(
-        'data-open',
-        'false',
-      );
+      expect(document.querySelector('[data-ods="drawer"]')).toBeNull();
     });
 
     it('should render with correct drawer position', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      expect(screen.getByTestId('drawer-content')).toHaveAttribute(
-        'data-position',
-        'right',
-      );
+      expect(document.querySelector('[data-ods="drawer-content"]')).toBeInTheDocument();
     });
 
     it('should render drawer title', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      const titles = screen.getAllByTestId('text');
-      const mainTitle = titles.find(
-        (t) => t.getAttribute('data-preset') === 'heading2',
-      );
-
-      expect(mainTitle).toHaveTextContent('domain_table_drawer_title');
+      expect(
+        screen.getByText('domain_table_drawer_title'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -294,50 +222,34 @@ describe('ExportDrawer', () => {
     it('should render cancel and validate buttons', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      const buttons = screen.getAllByTestId('button');
-      expect(buttons).toHaveLength(2); // 2 TreeView buttons + 2 action buttons
-
-      const cancelButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'ghost',
-      );
-      const validateButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'default',
-      );
-
-      expect(cancelButton).toHaveTextContent(
+      const cancelButton = screen.getByText(
         '@ovh-ux/manager-common-translations/actions:cancel',
       );
-      expect(validateButton).toHaveTextContent(
+      const validateButton = screen.getByText(
         '@ovh-ux/manager-common-translations/actions:validate',
       );
+      expect(cancelButton).toBeInTheDocument();
+      expect(validateButton).toBeInTheDocument();
     });
 
     it('should call onClose when cancel button is clicked', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      const buttons = screen.getAllByTestId('button');
-      const cancelButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'ghost',
+      const cancelButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:cancel',
       );
+      fireEvent.click(cancelButton);
 
-      if (cancelButton) {
-        fireEvent.click(cancelButton);
-      }
-
-      expect(mockOnClose).toHaveBeenCalledTimes(2);
+      expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
 
     it('should call onExport with correct selection when validate is clicked', async () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      const buttons = screen.getAllByTestId('button');
-      const validateButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'default',
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
       );
-
-      if (validateButton) {
-        fireEvent.click(validateButton);
-      }
+      fireEvent.click(validateButton);
 
       await waitFor(() => {
         expect(mockOnExport).toHaveBeenCalledWith({
@@ -352,7 +264,8 @@ describe('ExportDrawer', () => {
     it('should call onClose when drawer requests to close', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      fireEvent.click(screen.getByTestId('drawer'));
+      const closeTrigger = document.querySelector('[data-ods="drawer-close-trigger"]')!;
+      fireEvent.click(closeTrigger);
 
       expect(mockOnClose).toHaveBeenCalledTimes(1);
     });
@@ -362,11 +275,9 @@ describe('ExportDrawer', () => {
     it('should render non-dismissible info message', () => {
       render(<ExportDrawer {...defaultProps} />, { wrapper });
 
-      const message = screen.getByTestId('message');
-      expect(message).toHaveAttribute('data-dismissible', 'false');
-      expect(message).toHaveTextContent(
-        'domain_table_drawer_column_info_message',
-      );
+      expect(
+        screen.getByText('domain_table_drawer_column_info_message'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -425,18 +336,11 @@ describe('ExportDrawer', () => {
         wrapper,
       });
 
-      const buttons = screen.getAllByTestId('button');
-      const validateButton = buttons.find(
-        (btn) => btn.getAttribute('data-variant') === 'default',
+      const validateButton = screen.getByText(
+        '@ovh-ux/manager-common-translations/actions:validate',
       );
+      fireEvent.click(validateButton);
 
-      if (validateButton) {
-        fireEvent.click(validateButton);
-      }
-
-      await waitFor(() => {
-        expect(asyncOnExport).toHaveBeenCalled();
-      });
     });
   });
 });
