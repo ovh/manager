@@ -25,7 +25,7 @@ const handleOnSubMenuClick = vi.fn();
 const props: PublicCloudPanelProps = {
   rootNode: pciNode,
   selectedNode: node,
-  handleOnSubMenuClick: handleOnSubMenuClick,
+  handleOnSubMenuClick,
 };
 
 const renderPublicCloudPanelComponent = (props: PublicCloudPanelProps) => {

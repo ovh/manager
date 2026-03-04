@@ -70,8 +70,9 @@ function NavbarAccount(): JSX.Element {
           level={ODS_TEXT_LEVEL.button}
           size={ODS_TEXT_SIZE._200}
         >
-          {user.legalform === LEGAL_FORMS.CORPORATION ?
-            user.organisation : `${user.firstname} ${user.name}`}
+          {user.legalform === LEGAL_FORMS.CORPORATION
+            ? user.organisation
+            : `${user.firstname} ${user.name}`}
         </OsdsText>
       </span>
     </button>

@@ -1,6 +1,6 @@
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 import illustration from '@/assets/images/sidebar/bare-metal-cloud.png';
 import { Node } from '../node';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
 
 const baremetalUniverse: Node = {
   id: 'baremetal-cloud',

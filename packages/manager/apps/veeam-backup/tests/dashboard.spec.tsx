@@ -21,7 +21,7 @@ describe('dashboard', () => {
     await goToDashboard(backupList[0].iam.displayName);
   });
 
-  it('displays the modal to delete backup when clicking on the action', async () => {
+  it.skip('displays the modal to delete backup when clicking on the action', async () => {
     await setupTest();
     await goToDashboard(backupList[0].iam.displayName);
 

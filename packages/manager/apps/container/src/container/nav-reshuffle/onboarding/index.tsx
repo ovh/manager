@@ -22,7 +22,7 @@ export const NavReshuffleOnboardingWidget = () => {
 
   return (
     <>
-      {(!isWalkMeVisible && showOnboarding) && <OnboardingIntroduction />}
+      {!isWalkMeVisible && showOnboarding && <OnboardingIntroduction />}
       {isWalkMeVisible && <OnboardingWalkMe />}
     </>
   );

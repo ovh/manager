@@ -1,13 +1,13 @@
-import ProjectSelector from '../ProjectSelector/ProjectSelector';
-import { PciProject } from '../ProjectSelector/PciProject';
 import { fetchIcebergV6 } from '@ovh-ux/manager-core-api';
 import { useQuery } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
-import { Node } from '../navigation-tree/node';
 import { useTranslation } from 'react-i18next';
+import { Location, useLocation } from 'react-router-dom';
+import ProjectSelector from '../ProjectSelector/ProjectSelector';
+import { PciProject } from '../ProjectSelector/PciProject';
+import { Node } from '../navigation-tree/node';
 import { useShell } from '@/context';
 import { shouldHideElement } from '@/container/nav-reshuffle/sidebar/utils';
-import { Location, useLocation } from 'react-router-dom';
 import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
 import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
@@ -142,7 +142,11 @@ export const PublicCloudPanel: React.FC<ComponentProps<
           selectedProject={selectedPciProject}
           onProjectChange={(option: typeof selectedPciProject) => {
             if (selectedPciProject !== option) {
-              trackingPlugin.trackClick({ name: 'navbar_v3_entry_home::pci::specific_project_from_listing', type: 'navigation' });
+              trackingPlugin.trackClick({
+                name:
+                  'navbar_v3_entry_home::pci::specific_project_from_listing',
+                type: 'navigation',
+              });
               setSelectedPciProject(option);
               navigationPlugin.navigateTo(
                 'public-cloud',
@@ -191,22 +195,24 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         )}
       </li>
       {selectedPciProject !== null &&
-        rootNode.children?.filter((childNode) => !shouldHideElement(childNode, 1)).map((node) => (
-          <li
-            key={node.id}
-            id={node.id}
-            className={style.sidebar_pciEntry}
-            role="menuitem"
-          >
+        rootNode.children
+          ?.filter((childNode) => !shouldHideElement(childNode, 1))
+          .map((node) => (
+            <li
+              key={node.id}
+              id={node.id}
+              className={style.sidebar_pciEntry}
+              role="menuitem"
+            >
               <SubTreeSection
                 node={node}
                 selectedNode={selectedNode}
                 selectedPciProject={selectedPciProject?.project_id}
                 handleOnSubMenuClick={handleOnSubMenuClick}
               />
-            {node.separator && <hr role="separator" />}
-          </li>
-        ))}
+              {node.separator && <hr role="separator" />}
+            </li>
+          ))}
     </>
   );
 };

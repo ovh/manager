@@ -1,10 +1,4 @@
-import {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Suspense, useContext, useEffect, useRef, useState } from 'react';
 
 import { IFrameMessageBus } from '@ovh-ux/shell';
 import { IFrameAppRouter } from '@/core/routing';

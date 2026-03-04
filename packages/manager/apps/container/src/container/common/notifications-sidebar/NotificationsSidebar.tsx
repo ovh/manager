@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { groupBy } from 'lodash-es';
 
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { useApplication } from '@/context';
 import { useHeader } from '@/context/header';
 import useNotifications, {
@@ -10,9 +13,6 @@ import { fromNow } from '@/helpers/dateHelper';
 
 import Notifications from './Notifications/Notifications';
 import style from './notifications-sidebar.module.scss';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 
 interface NotificationGroup {
   date: string;
@@ -22,7 +22,10 @@ interface NotificationGroup {
 type NotificationByDate = Record<string, NotificationType[]>;
 
 const NotificationsSidebar = () => {
-  const { isNotificationsSidebarVisible, setIsNotificationsSidebarVisible } = useHeader();
+  const {
+    isNotificationsSidebarVisible,
+    setIsNotificationsSidebarVisible,
+  } = useHeader();
   const { notifications, isNotificationsLoading } = useNotifications();
   const [groupedNotifications, setGroupedNotifications] = useState<
     NotificationByDate
@@ -67,18 +70,18 @@ const NotificationsSidebar = () => {
 
   const onClick = () => {
     setIsNotificationsSidebarVisible(false);
-  }
+  };
 
   return (
     <div
       className={`${
         style.notificationsSidebar
-        } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
+      } ${isNotificationsSidebarVisible && style.notificationsSidebar_toggle}`}
     >
-      <div className='flex justify-end'>
+      <div className="flex justify-end">
         <OsdsIcon
           onClick={onClick}
-          className='cursor-pointer'
+          className="cursor-pointer"
           name={ODS_ICON_NAME.CLOSE}
           color={ODS_THEME_COLOR_INTENT.primary}
           size={ODS_ICON_SIZE.sm}

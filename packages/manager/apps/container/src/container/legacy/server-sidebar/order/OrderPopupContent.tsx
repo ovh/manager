@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useShell } from '@/context';
 import {
   OsdsButton,
   OsdsIcon,
@@ -17,6 +16,7 @@ import {
 } from '@ovhcloud/ods-components';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { useShell } from '@/context';
 import './OrderPopupContent.scss';
 
 export interface ShopSubItem {
@@ -145,8 +145,8 @@ const OrderPopupContent = ({
                 onClick={() => onItemSelect(item)}
                 target={
                   item.external
-                    ? OdsHTMLAnchorElementTarget['_blank']
-                    : OdsHTMLAnchorElementTarget['_top']
+                    ? OdsHTMLAnchorElementTarget._blank
+                    : OdsHTMLAnchorElementTarget._top
                 }
               >
                 <OsdsLink color={ODS_THEME_COLOR_INTENT.primary}>

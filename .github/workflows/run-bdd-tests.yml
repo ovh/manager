@@ -1,30 +1,159 @@
-name: Run Jest tests
-on: [push]
+name: Run tests
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Test mode"
+        required: true
+        default: heavy
+        type: choice
+        options:
+          - light
+          - heavy
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:
+      PNPM_VERSION: "10.17.0" # must match playbook-config.js
+
     steps:
+      # ------------------------------------------
+      # Free disk space
+      # ------------------------------------------
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: true
+          android: false
+          dotnet: false
+          haskell: false
+          large-packages: false
+          docker-images: false
+          swap-storage: true
+
+      # ------------------------------------------
+      # Checkout
+      # ------------------------------------------
       - name: Checkout latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ------------------------------------------
+      # Derive NX_BASE / NX_HEAD
+      # ------------------------------------------
+      - name: Derive SHAs for Nx affected
+        uses: nrwl/nx-set-shas@v4
+        with:
+          main-branch-name: master
+
+      - name: Debug SHAs
+        run: |
+          echo "NX_BASE=$NX_BASE"
+          echo "NX_HEAD=$NX_HEAD"
+
+      # ------------------------------------------
+      # Node
+      # ------------------------------------------
       - name: Use Node.js 22.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Restore/create node_modules cache
-        uses: actions/cache@v3
+
+      # ------------------------------------------
+      # pnpm binary cache (tool only)
+      # ------------------------------------------
+      - name: Restore pnpm binary
+        uses: actions/cache@v4
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          path: target/pnpm
+          key: ${{ runner.os }}-pnpm-binary-${{ env.PNPM_VERSION }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-binary-
+
+      # ------------------------------------------
+      # Yarn cache (tarballs only, standard path)
+      # ------------------------------------------
+      - name: Restore Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-cache-node22-
+
+      - name: Ensure yarn cache folder exists
+        run: mkdir -p ~/.cache/yarn
+
+      # ------------------------------------------
+      # Nx local cache
+      # ------------------------------------------
+      - name: Restore Nx cache
+        uses: actions/cache@v4
+        with:
+          path: .nx
+          key: ${{ runner.os }}-nx-cache-node22-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-nx-cache-node22-
+            ${{ runner.os }}-nx-cache-
+
+      # ------------------------------------------
+      # Install deps (always deterministic)
+      # ------------------------------------------
       - name: Install repository
-        run: yarn install --frozen-lockfile
-      - name: Build BDD covered packages and dependencies
+        env:
+          YARN_CACHE_FOLDER: ~/.cache/yarn
+        run: yarn ci:install
+
+      # ------------------------------------------
+      # BUILD TARGETED PACKAGES
+      # ------------------------------------------
+      - name: Build covered packages and dependencies
         run: |
-          yarn exec turbo -- run build --filter="./packages/manager/core/*" --concurrency=5
-          yarn exec turbo -- run build --filter="./packages/manager-react-components" --concurrency=5
-          yarn exec turbo -- run build --filter="./packages/manager/modules/order" --concurrency=5
-      # This task is for running the jest tests outside microApps
-      - name: Run tests Jest
-        run: yarn test:jest
-      - name: Run tests Turbo
-        run: yarn test:turbo
+          CORES=$(nproc --ignore=1 || nproc)
+          FILTERS="@ovh-ux/manager-core-api,@ovh-ux/manager-react-core-application,@ovh-ux/ovh-product-icons,@ovh-ux/request-tagger,@ovh-ux/manager-react-shell-client,@ovh-ux/manager-core-sso,@ovh-ux/url-builder,@ovh-ux/manager-core-utils,@ovh-ux/muk,@ovh-ux/manager-module-order,@ovh-ux/manager-module-common-api,@ovh-ux/manager-common-translations,@ovh-ux/logs-to-customer,@ovh-ux/manager-module-vcd-api,@ovh-ux/manager-pci-common,@ovh-ux/manager-network-common,@ovh-ux/ovh-payment-method"
+          yarn build --concurrency=$CORES --filter="$FILTERS" --runner nx
+
+      # ------------------------------------------
+      # RUN TESTS (light/heavy)
+      # ------------------------------------------
+      - name: Run tests (light/heavy)
+        env:
+          MODE: ${{ github.event.inputs.mode || 'heavy' }}
+        run: |
+          set -euo pipefail
+
+          BRANCH=$(git branch --show-current)
+          echo "Current branch is $BRANCH"
+          echo "Selected MODE=$MODE"
+
+          if [[ "$BRANCH" == "master" ]]; then
+            echo "Current branch is master -> skipping"
+            exit 0
+          fi
+
+          if [[ "$MODE" == "light" ]]; then
+            echo "LIGHT mode: test last commit only (HEAD~1..HEAD)"
+
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="HEAD~1" \
+              --head="HEAD"
+          else
+            echo "HEAVY mode: test full diff (NX_BASE..NX_HEAD)"
+            echo "NX_BASE=$NX_BASE"
+            echo "NX_HEAD=$NX_HEAD"
+
+            yarn test --concurrency=1 \
+              --runner nx \
+              --base="$NX_BASE" \
+              --head="$NX_HEAD"
+          fi

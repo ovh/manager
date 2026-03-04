@@ -1,10 +1,10 @@
 import { Environment } from '@ovh-ux/manager-config';
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 
 import { Shortcut } from './Tile/shortcut';
 
 import getOdsIcon from '../getOdsIcon';
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 interface UseShortcuts {
   getShortcuts(): Shortcut[];

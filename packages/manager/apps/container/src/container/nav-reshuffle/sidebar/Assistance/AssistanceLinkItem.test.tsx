@@ -1,7 +1,7 @@
 import { it, vi, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import { AssistanceLinkItem, Props } from './AssistanceLinkItem';
 import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { AssistanceLinkItem, Props } from './AssistanceLinkItem';
 import { Node } from '../navigation-tree/node';
 
 const externalNode: Node = {
@@ -27,11 +27,11 @@ const node: Node = {
 };
 
 const props: Props = {
-  node: node,
+  node,
   isSelected: false,
 };
 
-const id: string = "assistance-link-item";
+const id = 'assistance-link-item';
 
 vi.mock('../style.module.scss', () => ({
   default: new Proxy(new Object(), {
@@ -65,5 +65,5 @@ describe('AssistanceLinkItem.component', () => {
     props.isSelected = true;
     const { queryByTestId } = renderAssistanceLinkItem(props);
     expect(queryByTestId(id)).toHaveClass('sidebar_menu_items_selected');
-  })
+  });
 });

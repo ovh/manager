@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import { Environment } from '@ovh-ux/manager-config';
 
 import { useTranslation } from 'react-i18next';
+import { useMediaQuery } from 'react-responsive';
 import { TRANSLATE_NAMESPACE } from './constants';
 
 import Account from './Account';
@@ -20,7 +21,6 @@ import Notifications from '@/container/common/notifications-sidebar/Notification
 import { useShell } from '@/context';
 import { useHeader } from '@/context/header';
 import { useUniverses } from '@/hooks/useUniverses';
-import { useMediaQuery } from 'react-responsive';
 import { SMALL_DEVICE_MAX_SIZE } from '@/container/common/constants';
 
 type Props = {
@@ -66,8 +66,9 @@ function Navbar({ environment }: Props): JSX.Element {
   return (
     <>
       <div
-        className={`${modalStyle.popoverClickAway} ${isDropdownOpen ? '' : modalStyle.hidden
-          }`}
+        className={`${modalStyle.popoverClickAway} ${
+          isDropdownOpen ? '' : modalStyle.hidden
+        }`}
       ></div>
       <div
         className={`oui-navbar ${style.navbar}`}
@@ -92,11 +93,11 @@ function Navbar({ environment }: Props): JSX.Element {
               <Search targetURL={searchURL} />
             </div>
           )}
-          {!isSmallDevice &&
+          {!isSmallDevice && (
             <div className="oui-navbar-list__item">
               <NavReshuffleSwitchBack />
             </div>
-          }
+          )}
           <div className="oui-navbar-list__item">
             <LanguageMenu
               setUserLocale={setUserLocale}
@@ -113,11 +114,11 @@ function Navbar({ environment }: Props): JSX.Element {
           <Account />
         </div>
       </div>
-      {isSmallDevice &&
+      {isSmallDevice && (
         <div className={style['small-device-pnr-switch']}>
           <NavReshuffleSwitchBack />
         </div>
-      }
+      )}
     </>
   );
 }

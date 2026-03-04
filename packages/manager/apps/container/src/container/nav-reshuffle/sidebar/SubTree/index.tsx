@@ -1,6 +1,8 @@
-import style from './style.module.scss';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { OsdsIcon } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
+import style from './style.module.scss';
 import { Node } from '@/container/nav-reshuffle/sidebar/navigation-tree/node';
 import {
   findNodeById,
@@ -8,8 +10,6 @@ import {
   getLastElement,
 } from '@/container/nav-reshuffle/sidebar/utils';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
-import { OsdsIcon } from '@ovhcloud/ods-components/react';
-import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { PublicCloudPanel } from './PublicCloudPanel';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle/useProductNavReshuffle';
 

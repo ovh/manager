@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
 import { Environment } from '@ovh-ux/manager-config';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
@@ -9,12 +10,11 @@ import dedicatedShopConfig from '../order/shop-config/dedicated';
 import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import { features } from './DedicatedSidebar';
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import constants from '../../account-sidebar/UsefulLinks/constants';
 
 const kycIndiaFeature = 'identity-documents';
 const kycFraudFeature = 'procedures:fraud';
-const kycFeatures = [kycIndiaFeature, kycFraudFeature]
+const kycFeatures = [kycIndiaFeature, kycFraudFeature];
 
 export default function AccountSidebar() {
   const [menu, setMenu] = useState<SidebarMenuItem>(undefined);
@@ -30,7 +30,9 @@ export default function AccountSidebar() {
   const subsidiary = environment.getUser()?.ovhSubsidiary;
   const isEnterprise = environment.getUser()?.enterprise;
 
-  const getAccountSidebar = async (availability: Record<string, boolean> | null) => {
+  const getAccountSidebar = async (
+    availability: Record<string, boolean> | null,
+  ) => {
     const menu: SidebarMenuItem[] = [];
 
     if (!availability) {
@@ -137,7 +139,9 @@ export default function AccountSidebar() {
       id: 'my-support-tickets',
       label: t('sidebar_assistance_tickets'),
       isExternal: isEUOrCA,
-      href: isEUOrCA ? constants[region].support.tickets(subsidiary) : navigation.getURL('dedicated', '/ticket'),
+      href: isEUOrCA
+        ? constants[region].support.tickets(subsidiary)
+        : navigation.getURL('dedicated', '/ticket'),
       routeMatcher: new RegExp('^/(ticket|support)'),
     });
 
@@ -152,7 +156,9 @@ export default function AccountSidebar() {
     return menu;
   };
 
-  const {data: availability} = useFeatureAvailability(features.concat(kycFeatures));
+  const { data: availability } = useFeatureAvailability(
+    features.concat(kycFeatures),
+  );
 
   const buildMenu = async () =>
     Promise.resolve({

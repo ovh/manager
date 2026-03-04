@@ -18,14 +18,14 @@ const node: Node = {
   forceVisibility: true,
 };
 
-const handleOnSubMenuClick = vi.fn()
+const handleOnSubMenuClick = vi.fn();
 
 const props: SubTreeSectionProps = {
-  node: node,
+  node,
   selectedPciProject: '12345',
   selectedNode: node,
-  handleOnSubMenuClick: handleOnSubMenuClick
-}
+  handleOnSubMenuClick,
+};
 
 const renderSubTreeSectionComponent = (props: SubTreeSectionProps) => {
   return render(
@@ -34,9 +34,9 @@ const renderSubTreeSectionComponent = (props: SubTreeSectionProps) => {
       selectedPciProject={props.selectedPciProject}
       selectedNode={props.selectedNode}
       handleOnSubMenuClick={props.handleOnSubMenuClick}
-    />
+    />,
   );
-}
+};
 
 vi.mock('@/context', () => ({
   useShell: () => {
@@ -45,19 +45,23 @@ vi.mock('@/context', () => ({
 }));
 
 vi.mock('@/container/nav-reshuffle/sidebar/SidebarLink', () => ({
-  default: () => (<div data-testid="subtree-section-sidebar-link" />)
+  default: () => <div data-testid="subtree-section-sidebar-link" />,
 }));
 
 describe('SubtreeSection.component', () => {
   it('should render', () => {
     const { queryByTestId } = renderSubTreeSectionComponent(props);
-    expect(queryByTestId(`subtree-section-link-${props.node.id}`)).not.toBeNull();
+    expect(
+      queryByTestId(`subtree-section-link-${props.node.id}`),
+    ).not.toBeNull();
   });
 
   it('should render list', () => {
     props.node.children = [node, node];
-    const { queryByTestId, queryAllByTestId } = renderSubTreeSectionComponent(props);
+    const { queryByTestId, queryAllByTestId } = renderSubTreeSectionComponent(
+      props,
+    );
     expect(queryByTestId(`subtree-section-ul-${props.node.id}`)).not.toBeNull();
     expect(queryAllByTestId('subtree-section-sidebar-link').length).toBe(2);
   });
-})
+});

@@ -130,8 +130,7 @@ export function filterBySearch(
           return;
           // if it's a leaf item, reveal all of his parents in the tree
         }
-          revealParents(item);
-
+        revealParents(item);
       }
     }
     // perform the search on each subItems
@@ -228,8 +227,10 @@ export async function selectActiveItem(
       item.href?.endsWith(route)
     ) {
       if (
-        (item.routeMatcher && !item.routeMatcher.test(route)) &&
-        (item.pathMatcher && !item.pathMatcher.test(path))
+        item.routeMatcher &&
+        !item.routeMatcher.test(route) &&
+        item.pathMatcher &&
+        !item.pathMatcher.test(path)
       ) {
         return null;
       }
@@ -250,8 +251,7 @@ export async function selectActiveItem(
       );
       return matchingSubItem || item;
     }
-      return null;
-
+    return null;
   };
 
   unselectAll(menu);

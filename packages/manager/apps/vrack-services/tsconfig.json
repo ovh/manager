@@ -25,5 +25,5 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "types", "src/__tests__", "*.spec.ts"]
+  "exclude": ["node_modules", "dist", "types", "src/__tests__", "*.spec.ts", "e2e"]
 }

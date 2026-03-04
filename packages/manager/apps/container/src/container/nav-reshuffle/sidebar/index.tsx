@@ -3,6 +3,12 @@ import { useEffect, useState, useMemo, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useReket } from '@ovh-ux/ovh-reket';
 import { useTranslation } from 'react-i18next';
+import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
+import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
+import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
+import { OsdsButton } from '@ovhcloud/ods-components/react';
+import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { useShell } from '@/context';
 import logo from '@/assets/images/OVHcloud_logo.svg';
 import shortLogo from '@/assets/images/icon-logo-ovh.svg';
@@ -24,12 +30,6 @@ import {
 } from './utils';
 import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
-import { fetchFeatureAvailabilityData } from '@ovh-ux/manager-react-components';
-import { SvgIconWrapper } from '@ovh-ux/ovh-product-icons/utils/SvgIconWrapper';
-import OvhProductName from '@ovh-ux/ovh-product-icons/utils/OvhProductNameEnum';
-import { OsdsButton } from '@ovhcloud/ods-components/react';
-import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 
 interface ServicesCountError {
   url: string;
@@ -108,13 +108,13 @@ const Sidebar = (): JSX.Element => {
 
   useEffect(() => {
     if (isMobile) setOpen(true);
-  }, [isMobile])
+  }, [isMobile]);
 
   useEffect(() => {
     if (!currentNavigationNode) return;
 
     // We want to know if we already stored a node in the memory or in the local storage
-    const pathname = location.pathname;
+    const { pathname } = location;
     let savedNode: Node = null;
     if (savedNodeID && !selectedSubMenu) {
       savedNode = findNodeById(currentNavigationNode, savedNodeID);
@@ -128,17 +128,20 @@ const Sidebar = (): JSX.Element => {
     if (currentNode) {
       // We already stored a node, we want to know if it stills in coherence with the current path
       // If not, we reset the node to null to not keep wrong information.
-      const universe = findNodeById(currentNavigationNode, currentNode.universe);
+      const universe = findNodeById(
+        currentNavigationNode,
+        currentNode.universe,
+      );
       // A node need a valid universe, if we can't find it, we reset it.
       if (universe) {
         // We have to parse the path to try to match it with the stored node
         const parsedPath = splitPathIntoSegmentsWithoutRouteParams(
           currentNode.routing.hash
             ? currentNode.routing.hash.replace(
-              '#',
-              currentNode.routing.application,
-            )
-            : '/' + currentNode.routing.application,
+                '#',
+                currentNode.routing.application,
+              )
+            : `/${currentNode.routing.application}`,
         );
 
         // If we match the stored node with the path, it's coherent and we reselect the stored node.
@@ -151,12 +154,11 @@ const Sidebar = (): JSX.Element => {
           )
         ) {
           selectSubMenu(currentNode);
-          selectLvl1Node(universe)
+          selectLvl1Node(universe);
 
           return;
-        } else {
-          selectedNode ? selectLvl1Node(null) : setSavedNode(null);
         }
+        selectedNode ? selectLvl1Node(null) : setSavedNode(null);
       } else {
         selectedNode ? selectLvl1Node(null) : setSavedNode(null);
       }
@@ -167,7 +169,7 @@ const Sidebar = (): JSX.Element => {
     const foundNode = findNodeByRouting(currentNavigationNode, pathname);
     if (foundNode) {
       selectSubMenu(foundNode.node);
-      selectLvl1Node(foundNode.universe)
+      selectLvl1Node(foundNode.universe);
     }
   }, [currentNavigationNode, location]);
 
@@ -211,7 +213,7 @@ const Sidebar = (): JSX.Element => {
   const selectLvl1Node = (node: Node | null) => {
     setSelectedNode(node);
     setShowSubTree(!!node);
-  }
+  };
 
   // Callbacks
 
@@ -242,7 +244,7 @@ const Sidebar = (): JSX.Element => {
 
   const menuClickHandler = (node: Node) => {
     setSelectedSubMenu(null);
-    selectLvl1Node(node)
+    selectLvl1Node(node);
     setIsManuallyClosed(false);
 
     let trackingIdComplement = 'navbar_v3_entry_home::';
@@ -276,112 +278,119 @@ const Sidebar = (): JSX.Element => {
     <div
       className={`${style.sidebar} ${
         selectedNode ? style.sidebar_selected : ''
-        }`}
+      }`}
     >
       <div
         className={`${style.sidebar_wrapper} ${!open && style.sidebar_short}`}
       >
         <div className={style.sidebar_lvl1}>
-        {!isMobile && (
-          <a
-            role="img"
-            className={`block ${style.sidebar_logo}`}
-            aria-label="OVHcloud"
-            target="_top"
-            href={logoLink}
-          >
-            <img
-              className={`${open ? 'mx-4' : 'mx-2'} my-3`}
-              src={open ? logo : shortLogo}
-              alt="OVHcloud"
-              aria-hidden="true"
-            />
-          </a>
-        )}
-
-        <div
-          className={style.sidebar_menu}
-          role="menubar"
-        >
-          <ul id="menu" role="menu">
-
-          <li className="px-3 mb-3 mt-2 h-8">
-              {open && currentNavigationNode && (
-                <h2>{t(currentNavigationNode.translation)}</h2>
-              )}
-          </li>
-
-            {currentNavigationNode?.children
-              ?.filter((node) => !shouldHideElement(node, node.count))
-              .map((node: Node) => (
-                <li
-                  key={node.id}
-                  id={node.id}
-                  className={`py-1 ${style.sidebar_menu_items} ${
-                    node.id === selectedNode?.id
-                    ? style.sidebar_menu_items_selected
-                    : ''
-                    }`}
-                  role="menuitem"
-                >
-                  <SidebarLink
-                    node={node}
-                    count={node.count}
-                    handleOnClick={() => menuClickHandler(node)}
-                    handleOnEnter={(node: Node) => onEnter(node)}
-                    id={node.idAttr}
-                    isShortText={!open}
-                  />
-                  {node.separator && <hr role="separator" />}
-                </li>
-              ))}
-          </ul>
-          <div className={`m-2.5 mt-10`}>
-            <OsdsButton
-              variant={ODS_BUTTON_VARIANT.stroked}
-              size={ODS_BUTTON_SIZE.sm}
-              color={ODS_THEME_COLOR_INTENT.primary}
-              onClick={() =>
-                trackingPlugin.trackClick({
-                  name: 'navbar_v3_entry_home::cta_add_a_service',
-                  type: 'action',
-                })
-              }
-              href={navigationPlugin.getURL('catalog', '/')}
-              role="link"
-              title={t('sidebar_service_add')}
+          {!isMobile && (
+            <a
+              role="img"
+              className={`block ${style.sidebar_logo}`}
+              aria-label="OVHcloud"
+              target="_top"
+              href={logoLink}
             >
-              <div className='flex justify-center align-middle p-0 m-0'>
-                <SvgIconWrapper name={OvhProductName.SHOPPINGCARTPLUS} height={24} width={24} className='fill-[var(--ods-color-primary-500)]' />
-                {open && <span className="ml-3">{t('sidebar_service_add')}</span>}
-              </div>
-            </OsdsButton>
+              <img
+                className={`${open ? 'mx-4' : 'mx-2'} my-3`}
+                src={open ? logo : shortLogo}
+                alt="OVHcloud"
+                aria-hidden="true"
+              />
+            </a>
+          )}
+
+          <div className={style.sidebar_menu} role="menubar">
+            <ul id="menu" role="menu">
+              <li className="px-3 mb-3 mt-2 h-8">
+                {open && currentNavigationNode && (
+                  <h2>{t(currentNavigationNode.translation)}</h2>
+                )}
+              </li>
+
+              {currentNavigationNode?.children
+                ?.filter((node) => !shouldHideElement(node, node.count))
+                .map((node: Node) => (
+                  <li
+                    key={node.id}
+                    id={node.id}
+                    className={`py-1 ${style.sidebar_menu_items} ${
+                      node.id === selectedNode?.id
+                        ? style.sidebar_menu_items_selected
+                        : ''
+                    }`}
+                    role="menuitem"
+                  >
+                    <SidebarLink
+                      node={node}
+                      count={node.count}
+                      handleOnClick={() => menuClickHandler(node)}
+                      handleOnEnter={(node: Node) => onEnter(node)}
+                      id={node.idAttr}
+                      isShortText={!open}
+                    />
+                    {node.separator && <hr role="separator" />}
+                  </li>
+                ))}
+            </ul>
+            <div className={`m-2.5 mt-10`}>
+              <OsdsButton
+                variant={ODS_BUTTON_VARIANT.stroked}
+                size={ODS_BUTTON_SIZE.sm}
+                color={ODS_THEME_COLOR_INTENT.primary}
+                onClick={() =>
+                  trackingPlugin.trackClick({
+                    name: 'navbar_v3_entry_home::cta_add_a_service',
+                    type: 'action',
+                  })
+                }
+                href={navigationPlugin.getURL('catalog', '/')}
+                role="link"
+                title={t('sidebar_service_add')}
+              >
+                <div className="flex justify-center align-middle p-0 m-0">
+                  <SvgIconWrapper
+                    name={OvhProductName.SHOPPINGCARTPLUS}
+                    height={24}
+                    width={24}
+                    className="fill-[var(--ods-color-primary-500)]"
+                  />
+                  {open && (
+                    <span className="ml-3">{t('sidebar_service_add')}</span>
+                  )}
+                </div>
+              </OsdsButton>
+            </div>
           </div>
-        </div>
 
-        {assistanceTree && (
-          <Suspense fallback="">
-            <Assistance nodeTree={assistanceTree} selectedNode={selectedNode} isShort={!open}/>
-          </Suspense>
-        )}
+          {assistanceTree && (
+            <Suspense fallback="">
+              <Assistance
+                nodeTree={assistanceTree}
+                selectedNode={selectedNode}
+                isShort={!open}
+              />
+            </Suspense>
+          )}
 
-        <button
-          className={style.sidebar_toggle_btn}
-          onClick={toggleSidebar}
-          role="button"
-        >
-          {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
-          <span
-            className={`${
-              style.sidebar_toggle_btn_first_icon
+          <button
+            className={style.sidebar_toggle_btn}
+            onClick={toggleSidebar}
+            role="button"
+          >
+            {open && <span className="mr-2">{t('sidebar_reduce')}</span>}
+            <span
+              className={`${
+                style.sidebar_toggle_btn_first_icon
               } oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-            aria-hidden="true"
-          ></span>
-          <span
-            className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
-            aria-hidden="true"
-          ></span>
-        </button>
+              aria-hidden="true"
+            ></span>
+            <span
+              className={`oui-icon oui-icon-chevron-${open ? 'left' : 'right'}`}
+              aria-hidden="true"
+            ></span>
+          </button>
         </div>
       </div>
       {showSubTree && !isManuallyClosed && (

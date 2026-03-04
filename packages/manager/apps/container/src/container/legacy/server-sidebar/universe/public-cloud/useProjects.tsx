@@ -21,7 +21,7 @@ export function useProjects() {
         'X-Pagination-Mode': 'CachedObjectList-Cursor',
         'X-Pagination-Sort': 'description',
         'X-Pagination-Sort-Order': 'ASC',
-        'Pragma': 'no-cache',
+        Pragma: 'no-cache',
       },
     });
 

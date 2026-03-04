@@ -43,14 +43,19 @@ describe('Rendering the menu', () => {
   it('convert the tree structure to a flat list', () => {
     const menu: SidebarMenuItem = {
       id: 'menu',
-      subItems: [{
-        id: 'a',
-        subItems: [{
-          id: 'aa',
-        }],
-      }, {
-        id: 'b',
-      }],
+      subItems: [
+        {
+          id: 'a',
+          subItems: [
+            {
+              id: 'aa',
+            },
+          ],
+        },
+        {
+          id: 'b',
+        },
+      ],
     };
     let asList = flattenMenu(menu);
     expect(asList.length).toBe(2);

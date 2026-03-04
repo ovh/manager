@@ -1,6 +1,6 @@
-import { useShell } from '@/context';
 import { apiClient } from '@ovh-ux/manager-core-api';
 import { AxiosResponse } from 'axios';
+import { useShell } from '@/context';
 import { SidebarMenuItem } from '../sidebarMenu';
 
 type TService = {

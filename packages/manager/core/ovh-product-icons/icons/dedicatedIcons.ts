@@ -1,15 +1,15 @@
 import {
+  IP,
+  LineCommunicating,
+  ManagedBM,
+  NAS,
+  Nutanix,
   ProjectCloud,
   Server,
-  IP,
-  VPS,
-  ManagedBM,
-  VmWare,
-  NAS,
   VEEAM,
+  VPS,
   VRACK,
-  LineCommunicating,
-  Nutanix,
+  VmWare,
 } from '../assets-icon-svg/icons';
 
 const dedicatedIcons = {

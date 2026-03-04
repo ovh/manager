@@ -7,30 +7,18 @@ export const ORDER_URLS: Record<
       FR: 'https://www.ovh.com/manager/dedicated/',
     },
     dedicated_cloud: {
-      DE:
-        'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/prices/',
-      ES:
-        'https://www.ovhcloud.com/es-es/hosted-private-cloud/vmware/prices/',
-      FR:
-        'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/prices/',
-      GB:
-        'https://www.ovhcloud.com/en-gb/hosted-private-cloud/vmware/prices/',
-      IE:
-        'https://www.ovhcloud.com/en-ie/hosted-private-cloud/vmware/prices/',
-      IT:
-        'https://www.ovhcloud.com/it/hosted-private-cloud/vmware/prices/',
-      MA:
-        'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/vmware/prices/',
-      NL:
-        'https://www.ovhcloud.com/nl/hosted-private-cloud/vmware/prices/',
-      PL:
-        'https://www.ovhcloud.com/pl/hosted-private-cloud/vmware/prices/',
-      PT:
-        'https://www.ovhcloud.com/pt/hosted-private-cloud/vmware/prices/',
-      SN:
-        'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
-      TN:
-        'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
+      DE: 'https://www.ovhcloud.com/de/hosted-private-cloud/vmware/prices/',
+      ES: 'https://www.ovhcloud.com/es-es/hosted-private-cloud/vmware/prices/',
+      FR: 'https://www.ovhcloud.com/fr/hosted-private-cloud/vmware/prices/',
+      GB: 'https://www.ovhcloud.com/en-gb/hosted-private-cloud/vmware/prices/',
+      IE: 'https://www.ovhcloud.com/en-ie/hosted-private-cloud/vmware/prices/',
+      IT: 'https://www.ovhcloud.com/it/hosted-private-cloud/vmware/prices/',
+      MA: 'https://www.ovhcloud.com/fr-ma/hosted-private-cloud/vmware/prices/',
+      NL: 'https://www.ovhcloud.com/nl/hosted-private-cloud/vmware/prices/',
+      PL: 'https://www.ovhcloud.com/pl/hosted-private-cloud/vmware/prices/',
+      PT: 'https://www.ovhcloud.com/pt/hosted-private-cloud/vmware/prices/',
+      SN: 'https://www.ovhcloud.com/fr-sn/hosted-private-cloud/vmware/prices/',
+      TN: 'https://www.ovhcloud.com/fr-tn/hosted-private-cloud/vmware/prices/',
     },
     managed_bare_metal: {
       CZ: 'https://www.ovhcloud.com/en-ie/managed-bare-metal/',
@@ -403,21 +391,14 @@ export const ORDER_URLS: Record<
       WS: 'https://www.ovh.com/world/es/hosting/',
     },
     dedicated_cloud: {
-      ASIA:
-        'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
+      ASIA: 'https://www.ovhcloud.com/asia/hosted-private-cloud/vmware/prices/',
       IN: 'https://www.ovhcloud.com/en-in/hosted-private-cloud/vmware/prices/',
-      AU:
-        'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
-      CA:
-        'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
-      QC:
-        'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',
-      SG:
-        'https://www.ovhcloud.com/en-sg/hosted-private-cloud/vmware/prices/',
-      WE:
-        'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
-      WS:
-        'https://www.ovhcloud.com/es/hosted-private-cloud/vmware/prices/',
+      AU: 'https://www.ovhcloud.com/en-au/hosted-private-cloud/vmware/prices/',
+      CA: 'https://www.ovhcloud.com/en-ca/hosted-private-cloud/vmware/prices/',
+      QC: 'https://www.ovhcloud.com/fr-ca/hosted-private-cloud/vmware/prices/',
+      SG: 'https://www.ovhcloud.com/en-sg/hosted-private-cloud/vmware/prices/',
+      WE: 'https://www.ovhcloud.com/en/hosted-private-cloud/vmware/prices/',
+      WS: 'https://www.ovhcloud.com/es/hosted-private-cloud/vmware/prices/',
     },
     managed_bare_metal: {
       ASIA: 'https://www.ovhcloud.com/asia/managed-bare-metal/',
@@ -447,7 +428,7 @@ export const ORDER_URLS: Record<
     veeam_enterprise: {
       CA: 'https://www.ovh.com/ca/en/storage-solutions/veeam-enterprise.xml',
       QC: 'https://www.ovh.com/ca/fr/storage-solutions/veeam-enterprise.xml',
-      IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-enterprise'
+      IN: 'https://www.ovhcloud.com/en-in/storage-solutions/veeam-enterprise',
     },
     vrack: {
       ASIA:

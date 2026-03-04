@@ -53,7 +53,7 @@ const renderAssistanceSidebar = (props: AssistanceProps) => {
   );
 };
 
-const id: string = 'assistance-sidebar';
+const id = 'assistance-sidebar';
 
 describe('AssistanceSidebar.component', () => {
   it('should render', () => {

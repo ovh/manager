@@ -2,8 +2,6 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { useShell } from '@/context';
-import { TRANSLATE_NAMESPACE } from '../../constants';
 import { OsdsTile, OsdsText } from '@ovhcloud/ods-components/react';
 import {
   ODS_TEXT_LEVEL,
@@ -11,6 +9,8 @@ import {
   ODS_TILE_VARIANT,
 } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
+import { TRANSLATE_NAMESPACE } from '../../constants';
+import { useShell } from '@/context';
 
 import { Shortcut } from './shortcut';
 
@@ -48,15 +48,16 @@ const Tile = ({ shortcut = {} as Shortcut }: Props): JSX.Element => {
         >
           {shortcut.icon}
         </OsdsTile>
-        <div className='flex justify-center items-center'>
-        <OsdsText
-          color={ODS_THEME_COLOR_INTENT.text}
-          size={ODS_TEXT_SIZE._200}
-          level={ODS_TEXT_LEVEL.body}
-          className="font-bold text-center"
-        >
-          {t(`${translationBase}_${shortcut.id}`)}
-        </OsdsText></div>
+        <div className="flex justify-center items-center">
+          <OsdsText
+            color={ODS_THEME_COLOR_INTENT.text}
+            size={ODS_TEXT_SIZE._200}
+            level={ODS_TEXT_LEVEL.body}
+            className="font-bold text-center"
+          >
+            {t(`${translationBase}_${shortcut.id}`)}
+          </OsdsText>
+        </div>
       </a>
     </div>
   );
