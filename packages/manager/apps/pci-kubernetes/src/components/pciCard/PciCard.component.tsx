@@ -1,6 +1,6 @@
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { Card, CardProp } from '@ovhcloud/ods-react';
 
@@ -34,9 +34,10 @@ export const PciCard = ({
     {
       'cursor-not-allowed bg-[--ods-color-neutral-100] [&_*]:text-neutral-500 [&_[class^=_badge]]:bg-[--ods-color-neutral-500]':
         disabled,
-      'hover:cursor-pointer border-[--ods-color-primary-600] bg-[--ods-color-information-025] border-2':
+      'hover:cursor-pointer border-[--ods-color-primary-600] bg-[--ods-color-information-025]':
         selected,
-      'hover:cursor-pointer hover:border-[--ods-color-primary-600]': selectable,
+      'hover:cursor-pointer hover:border-[--ods-color-primary-600]': selectable && !disabled,
+      'hover:cursor-not-allowed hover:border-[--ods-color-primary-600]': disabled,
     },
     className,
   );
