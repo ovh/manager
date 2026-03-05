@@ -22,8 +22,7 @@ export default function LifecycleList({ rules }: Readonly<LifecycleListProps>) {
       navigate(`./delete/${lifecycle.id}`);
     },
     onToggleStatusClicked: (lifecycle) => {
-      const action = lifecycle.status === 'enabled' ? 'disable' : 'enable';
-      navigate(`./${action}/${lifecycle.id}`);
+      navigate(`./toggle-status/${lifecycle.id}`);
     },
   });
 
