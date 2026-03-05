@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "Twoje zamówienie rozpoczęło się w nowej karcie. Proszę je zakończyć, aby sfinalizować zakupy. Jeśli nowa karta się nie otworzy, <Link>kliknij tutaj.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Gratis",
   "tax_excluded_notice_label": "netto/m-c",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Twoja przepustowość zostanie przywrócona do opcji domyślnej w następnym cyklu rozliczeniowym. Nie jest wymagane żadne zamówienie.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Twoja przepustowość zostanie natychmiast przywrócona do opcji domyślnej. Nie jest wymagana żadna komenda.",
   "upgrade_bandwidth_info_tooltip": "Obowiązuje rozliczenie proporcjonalne za pozostałe dni bieżącego cyklu rozliczeniowego, a pełna cena zaczyna się w następnym cyklu rozliczeniowym."
 }
