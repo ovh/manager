@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Label, Switch, useToast } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
-import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
+import { useEditService } from '@/data/hooks/database/service/useEditService.hook';
 import * as database from '@/types/cloud/project/database';
 
 const ToggleAcl = () => {

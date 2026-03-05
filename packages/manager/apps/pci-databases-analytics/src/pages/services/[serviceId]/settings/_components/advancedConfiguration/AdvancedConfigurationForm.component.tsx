@@ -37,7 +37,7 @@ import {
   useAdvancedConfigurationForm,
 } from './useAdvancedConfigurationForm.hook';
 import { useServiceData } from '../../../Service.context';
-import { useEditAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
+import { useEditAdvancedConfiguration } from '@/data/hooks/database/advancedConfiguration/useEditAdvancedConfiguration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 

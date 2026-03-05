@@ -31,25 +31,25 @@ import { ConnectionPoolEdition } from '@/data/api/database/connectionPool.api';
 import {
   UseAddConnectionPool,
   useAddConnectionPool,
-} from '@/hooks/api/database/connectionPool/useAddConnectionPool.hook';
-import { useEditConnectionPool } from '@/hooks/api/database/connectionPool/useEditConnectionPool.hook';
+} from '@/data/hooks/database/connectionPool/useAddConnectionPool.hook';
+import { useEditConnectionPool } from '@/data/hooks/database/connectionPool/useEditConnectionPool.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
-interface AddEditConnectionPoolModalProps {
+interface AddEditPoolProps {
   editedConnectionPool?: database.postgresql.ConnectionPool;
   connectionPools: database.postgresql.ConnectionPool[];
   users: GenericUser[];
   databases: database.service.Database[];
   service: database.Service;
 }
-const AddEditConnectionPool = ({
+const AddEditPool = ({
   editedConnectionPool,
   connectionPools,
   users,
   databases,
   service,
-}: AddEditConnectionPoolModalProps) => {
+}: AddEditPoolProps) => {
   const isEdition = !!editedConnectionPool?.id;
   const { projectId } = useParams();
   const navigate = useNavigate();
@@ -321,4 +321,4 @@ const AddEditConnectionPool = ({
   );
 };
 
-export default AddEditConnectionPool;
+export default AddEditPool;

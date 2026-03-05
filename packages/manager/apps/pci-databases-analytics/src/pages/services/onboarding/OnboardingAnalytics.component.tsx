@@ -13,7 +13,7 @@ import onboardingImgSrc from '@/../public/assets/onboarding-analytics.png';
 import OnboardingTile from './OnboardingTile.component';
 import OnboardingLayout from './OnboardingLayout.component';
 import OvhLink from '@/components/links/OvhLink.component';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 
 const OnboardingAnalytics = () => {

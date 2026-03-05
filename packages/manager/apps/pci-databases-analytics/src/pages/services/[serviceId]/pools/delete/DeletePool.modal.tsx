@@ -11,11 +11,11 @@ import {
   DialogTitle,
   useToast,
 } from '@datatr-ux/uxlib';
-import { useDeleteConnectionPool } from '@/hooks/api/database/connectionPool/useDeleteConnectionPool.hook';
+import { useDeleteConnectionPool } from '@/data/hooks/database/connectionPool/useDeleteConnectionPool.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
-import RouteModal from '@/components/route-modal/RouteModal';
+import { useGetConnectionPools } from '@/data/hooks/database/connectionPool/useGetConnectionPools.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 const DeletePool = () => {
   const { projectId, poolId } = useParams();

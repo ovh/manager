@@ -11,11 +11,11 @@ import {
   DialogTitle,
   useToast,
 } from '@datatr-ux/uxlib';
-import { useDeleteIntegration } from '@/hooks/api/database/integration/useDeleteIntegration.hook';
+import { useDeleteIntegration } from '@/data/hooks/database/integration/useDeleteIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
-import RouteModal from '@/components/route-modal/RouteModal';
+import { useGetIntegrations } from '@/data/hooks/database/integration/useGetIntegrations.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 const DeleteIntegration = () => {
   const { projectId, integrationId } = useParams();

@@ -25,9 +25,9 @@ import {
 } from '@datatr-ux/uxlib';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import A from '@/components/links/A.component';
-import { useServiceToTerraform } from '@/hooks/api/database/terraform/useServiceToTerraform';
+import { useServiceToTerraform } from '@/data/hooks/database/terraform/useServiceToTerraform.hook';
 import { useOrderFunnel } from './useOrderFunnel.hook';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocale } from '@/hooks/useLocale.hook';
 import * as TTerraform from '@/types/terraform';
 import * as database from '@/types/cloud/project/database';
 import { Disk } from '@/types/cloud/project/database/service/Disk';

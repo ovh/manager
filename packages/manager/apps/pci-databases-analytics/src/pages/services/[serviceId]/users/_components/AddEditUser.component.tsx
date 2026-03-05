@@ -36,31 +36,31 @@ import TagsInput from '@/components/tags-input/TagsInput.component';
 import {
   UseAddUser,
   useAddUser,
-} from '@/hooks/api/database/user/useAddUser.hook';
-import { useEditUser } from '@/hooks/api/database/user/useEditUser.hook';
+} from '@/data/hooks/database/user/useAddUser.hook';
+import { useEditUser } from '@/data/hooks/database/user/useEditUser.hook';
 import { useUserForm } from './formUser/useUserForm.hook';
 import RolesSelect from './formUser/RolesSelect.component';
 import { useServiceData } from '../../Service.context';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 import AclsSelect from './formUser/AclsSelect.component';
 import { UserAcl } from '@/types/cloud/project/database/opensearch';
 import A from '@/components/links/A.component';
 import { EngineEnum } from '@/types/cloud/project/database/EngineEnum';
 import { LINKS } from '@/configuration/documentation';
 
-interface AddEditUserModalProps {
+interface AddEditUserProps {
   editedUser?: GenericUser;
   existingUsers: GenericUser[];
   service: database.Service;
   onSuccess?: (user?: GenericUser) => void;
   onError?: (error: Error) => void;
 }
-const AddEditUserModal = ({
+const AddEditUser = ({
   editedUser,
   existingUsers,
   service,
-}: AddEditUserModalProps) => {
+}: AddEditUserProps) => {
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState<database.service.UserWithPassword>();
   const [selectedEndpoint, setSelectedEndpoint] = useState<
@@ -461,4 +461,4 @@ const AddEditUserModal = ({
   );
 };
 
-export default AddEditUserModal;
+export default AddEditUser;

@@ -32,12 +32,12 @@ import Link from '@/components/links/Link.component';
 import OvhLink from '@/components/links/OvhLink.component';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
-import { useGetVrack } from '@/hooks/api/network/useGetVrack.hook';
-import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
-import { useGetServiceSubnet } from '@/hooks/api/network/useGetServiceSubnet.hook';
+import { useGetVrack } from '@/data/hooks/network/useGetVrack.hook';
+import { useGetMetrics } from '@/data/hooks/database/metric/useGetMetrics.hook';
+import { useGetServiceSubnet } from '@/data/hooks/network/useGetServiceSubnet.hook';
 import RoadmapChangelog from '@/components/roadmap-changelog/RoadmapChangelog.component';
 import A from '@/components/links/A.component';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 
 interface MetricTile {

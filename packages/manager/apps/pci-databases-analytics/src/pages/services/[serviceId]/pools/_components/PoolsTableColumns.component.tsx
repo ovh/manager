@@ -13,7 +13,7 @@ import {
   Button,
 } from '@datatr-ux/uxlib';
 import DataTable from '@/components/data-table';
-import { ConnectionPoolWithData } from '../Pools.page';
+import { ConnectionPoolWithData } from '../ListPools.page';
 import { useServiceData } from '../../Service.context';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';

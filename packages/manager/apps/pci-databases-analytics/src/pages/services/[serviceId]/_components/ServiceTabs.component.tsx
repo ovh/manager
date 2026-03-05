@@ -1,19 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import * as database from '@/types/cloud/project/database';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 import { POLLING } from '@/configuration/polling.constants';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
-import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
-import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
-import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
-import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
-import { useGetIntegrations } from '@/hooks/api/database/integration/useGetIntegrations.hook';
-import { useGetCurrentQueries } from '@/hooks/api/database/query/useGetCurrentQueries.hook';
-import { useGetPatterns } from '@/hooks/api/database/pattern/useGetPatterns.hook';
-import { useGetConnectors } from '@/hooks/api/database/connector/useGetConnectors.hook';
-import { useGetReplications } from '@/hooks/api/database/replication/useGetReplications.hook';
-import { useGetTopics } from '@/hooks/api/database/topic/useGetTopics.hook';
-import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
+import { useGetUsers } from '@/data/hooks/database/user/useGetUsers.hook';
+import { useGetBackups } from '@/data/hooks/database/backup/useGetBackups.hook';
+import { useGetDatabases } from '@/data/hooks/database/database/useGetDatabases.hook';
+import { useGetConnectionPools } from '@/data/hooks/database/connectionPool/useGetConnectionPools.hook';
+import { useGetIntegrations } from '@/data/hooks/database/integration/useGetIntegrations.hook';
+import { useGetCurrentQueries } from '@/data/hooks/database/query/useGetCurrentQueries.hook';
+import { useGetPatterns } from '@/data/hooks/database/pattern/useGetPatterns.hook';
+import { useGetConnectors } from '@/data/hooks/database/connector/useGetConnectors.hook';
+import { useGetReplications } from '@/data/hooks/database/replication/useGetReplications.hook';
+import { useGetTopics } from '@/data/hooks/database/topic/useGetTopics.hook';
+import { useGetTopicAcls } from '@/data/hooks/database/topicAcl/useGetTopicAcls.hook';
 import { useServiceData } from '../Service.context';
 
 interface ServiceTabsProps {

@@ -10,7 +10,7 @@ import {
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
-import { useGetCertificate } from '@/hooks/api/database/certificate/useGetCertificate.hook';
+import { useGetCertificate } from '@/data/hooks/database/certificate/useGetCertificate.hook';
 
 interface ConnectionDetailsProps {
   endpoints: database.service.Endpoint[];

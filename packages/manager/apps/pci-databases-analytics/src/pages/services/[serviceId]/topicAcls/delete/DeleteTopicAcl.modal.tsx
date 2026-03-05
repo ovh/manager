@@ -13,9 +13,9 @@ import {
 } from '@datatr-ux/uxlib';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
-import { useGetTopicAcls } from '@/hooks/api/database/topicAcl/useGetTopicAcls.hook';
-import { useDeleteTopicAcl } from '@/hooks/api/database/topicAcl/useDeleteTopicAcl.hook';
+import RouteModal from '@/components/route-modal/RouteModal.component';
+import { useGetTopicAcls } from '@/data/hooks/database/topicAcl/useGetTopicAcls.hook';
+import { useDeleteTopicAcl } from '@/data/hooks/database/topicAcl/useDeleteTopicAcl.hook';
 
 const DeleteTopicAcl = () => {
   // import translations
