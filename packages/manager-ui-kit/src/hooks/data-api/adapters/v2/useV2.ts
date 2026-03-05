@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import { fetchV2 } from '@ovh-ux/manager-core-api';
 import type { FetchV2Result } from '@ovh-ux/manager-core-api';
 
+import type { DatagridColumn } from '@/components/datagrid/Datagrid.props';
 import { DEFAULT_DATA_API_RESPONSE } from '@/hooks/data-api/ports/useDataApi.constants';
 import { UseDataApiResult } from '@/hooks/data-api/ports/useDataApi.types';
 
 import { UseInifiniteQueryResult, useInfiniteQuery } from '../../infra/tanstack';
+import { useDataRetrievalOperations } from '../../useDataRetrievalOperations';
 import type { UseV2Data, UseV2Params } from './useV2.types';
+import { useV2UrlParams } from './useV2UrlParams';
 
 export const useV2 = <TData = Record<string, unknown>>({
   route = '',
@@ -15,7 +18,14 @@ export const useV2 = <TData = Record<string, unknown>>({
   fetchAll = false,
   cacheKey,
   enabled,
-}: UseV2Params): UseDataApiResult<TData> => {
+  urlParams,
+  columns = [] as DatagridColumn<TData>[],
+}: UseV2Params<TData>): UseDataApiResult<TData> => {
+  const defaultSorting = undefined;
+  const retrievalOps = useDataRetrievalOperations<TData>({ defaultSorting, columns });
+
+  const { filters, addFilter, removeFilter, setSearchInput, searchInput } = retrievalOps;
+
   const { data, hasNextPage, fetchNextPage, ...rest }: UseInifiniteQueryResult<UseV2Data<TData>> =
     useInfiniteQuery<FetchV2Result<TData>, Error, UseV2Data<TData>, string[], string>({
       initialPageParam: '',
@@ -48,6 +58,16 @@ export const useV2 = <TData = Record<string, unknown>>({
     }
   }, [data, fetchAll, hasNextPage, fetchNextPage, enabled]);
 
+  const { addFilterAndParamsInUrl, removeFilterByCoreFilter, onSearch } = useV2UrlParams<TData>({
+    urlParams,
+    columns,
+    filters,
+    addFilter,
+    removeFilter,
+    setSearchInput,
+    searchInput,
+  });
+
   if (!enabled) {
     return DEFAULT_DATA_API_RESPONSE;
   }
@@ -56,6 +76,17 @@ export const useV2 = <TData = Record<string, unknown>>({
     ...(data && { ...data }),
     hasNextPage,
     fetchNextPage,
+    search: {
+      onSearch: onSearch,
+      searchInput,
+      setSearchInput: setSearchInput,
+      searchParams: urlParams?.searchParams ?? '',
+    },
+    filters: {
+      filters,
+      add: addFilterAndParamsInUrl,
+      remove: removeFilterByCoreFilter,
+    },
     ...rest,
   };
 };

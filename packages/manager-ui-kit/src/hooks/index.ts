@@ -1,5 +1,6 @@
 export { useBytes } from './bytes/useBytes';
 export { useCatalogPrice } from './catalog-price/useCatalogPrice';
+export { useV2UrlParams } from './data-api/adapters/v2/useV2UrlParams';
 export { useDataApi } from './data-api/ports/useDataApi';
 export { useColumnFilters } from './data-api/useColumnFilters';
 export { useDatagridSearchParams } from './data-api/useDatagridSearchParams';
@@ -13,6 +14,7 @@ export { useLocationByName } from './location/useLocationByName/useLocationByNam
 export { useMe } from './me/useMe';
 export { isLocalZone, getMacroRegion } from './region/Regions.utils';
 export { useTranslatedMicroRegions } from './region/useTranslatedMicroRegions';
+export { useUrlParams } from './url-params/useUrlParams';
 export * from './iam/IAM.type';
 export * from './iam/useOvhIam';
 export type { CatalogPriceOptions } from './catalog-price/Catalog.type';

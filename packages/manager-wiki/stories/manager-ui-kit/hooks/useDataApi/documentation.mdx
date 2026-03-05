@@ -163,6 +163,16 @@ function MyComponent() {
 <StorybookHeading label="Using v2 API" level={3} />
 
 ```tsx
+import { Datagrid } from '@ovh-ux/muk';
+
+const columns = [
+  {
+    id: 'name',
+    label: 'name',
+    accessorKey: 'name',
+  },
+];
+
 function MyComponent() {
   const {
     flattenData,
@@ -179,17 +189,80 @@ function MyComponent() {
 
   return (
     <div>
-      <ul>
-        {flattenData.map((item) => (
-          <li key={item.id}>{item.name}</li>
-        ))}
-      </ul>
+      <Datagrid
+        isLoading={isLoading}
+        columns={columns}
+        data={flattenData}
+      />
       {hasNextPage && (
         <button onClick={() => fetchNextPage()}>
           Load More
         </button>
       )}
     </div>
+  );
+}
+```
+
+<StorybookHeading label="Using v2 URL Params" level={3} />
+
+Use the `urlParams` option to sync filters and search with the URL when calling
+the v2 adapter.
+
+```tsx
+import { Datagrid, useUrlParams } from '@ovh-ux/muk';
+
+function MyComponent() {
+  const QUERY_KEYS = ['status', 'searchValue'] as const;
+  const columns = [
+    {
+      id: 'name',
+      label: 'name',
+      accessorKey: 'name',
+    },
+    {
+      id: 'status',
+      label: 'status',
+      header: 'status',
+      accessorKey: 'status',
+      isFilterable: true,
+      cell: ({ getValue }: any) => <div>{getValue()}</div>,
+      comparator: FilterCategories.Options,
+      filterOptions: [
+        { label: 'OK', value: 'OK' },
+        { label: 'RESTORABLE', value: 'RESTORABLE' },
+      ],
+    }
+  ];
+  const { search, params, queryString, setQueryParams, deleteQueryParam } =
+    useUrlParams(QUERY_KEYS);
+  const deleteParams = (key: string) => {
+    deleteQueryParam(key as (typeof QUERY_KEYS)[number]);
+  };
+
+  const { flattenData, isLoading, isError, error } = useDataApi({
+    route: queryString ? `/api/v2/my-resources?${queryString}` : '/api/v2/my-resources',
+    version: 'v2',
+    cacheKey: ['my-resources-v2', queryString ?? ''],
+    urlParams: {
+      params,
+      setParams: setQueryParams,
+      deleteParams,
+      paramsToString: () => queryString,
+      searchParams: 'searchValue',
+    },
+    enabled: true,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error: {error?.message}</div>;
+
+  return (
+    <Datagrid
+      isLoading={isLoading}
+      columns={columns}
+      data={flattenData}
+    />
   );
 }
 ```
@@ -218,53 +291,13 @@ function MyComponent() {
   });
 
   return (
-    <div>
-      {/* Search input */}
-      <input
-        value={search?.searchInput || ''}
-        onChange={(e) => {
-          search?.setSearchInput(e.target.value);
-          search?.onSearch(e.target.value);
-        }}
-        placeholder="Search..."
-      />
-
-      {/* Filters */}
-      <button
-        onClick={() => {
-          filters?.add({
-            key: 'status',
-            value: 'active',
-            comparator: 'equals',
-            label: 'Status: Active',
-          });
-        }}
-      >
-        Filter by Active Status
-      </button>
-
-      {/* Data table */}
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {flattenData.map((item) => (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+    <Datagrid
+      isLoading={isLoading}
+      columns={columns}
+      data={flattenData}
+      filters={filters}
+      search={search}
+    />
   );
 }
 ```
