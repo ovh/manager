@@ -342,5 +342,7 @@
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "aktiviert",
   "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "deaktiviert",
   "domain_tab_general_information_subscription_edit_owner": "Informationen des Inhaberkontakts bearbeiten",
-  "domain_tab_general_information_data_protection_disabled": "Die für diesen Domainnamen zuständige Registry lässt keine benutzerdefinierte Verwaltung der Datenansicht zu."
+  "domain_tab_general_information_data_protection_disabled": "Die für diesen Domainnamen zuständige Registry lässt keine benutzerdefinierte Verwaltung der Datenansicht zu.",
+  "domain_back_to_zone": "Zurück zur DNS-Zone",
+  "domain_order_activate_zone_message": "Um auf DNS-Anfragen zu antworten, muss Ihr Domainname mit einer DNS-Zone verbunden sein. Sie können dort konfigurieren, auf welche IP-Adresse Ihr Domainname und seine Subdomains umgeleitet werden. Die DNS-Zone Ihres Domainnamens ist deaktiviert. Um sie zu aktivieren, bestätigen Sie die folgenden Schritte."
 }
