@@ -29,9 +29,26 @@ export function getTenantTagsUrl(params: LocationPathParams) {
   return getURL(urls.tenantTags, params);
 }
 
+export function getManagedDashboardsUrl(params: LocationPathParams) {
+  return getURL(urls.managedDashboards, params);
+}
+
+export function getManagedDashboardCreationUrl(params: LocationPathParams) {
+  return getURL(urls.managedDashboardCreation, params);
+}
+
+export function getEditManagedDashboardUrl(params: LocationPathParams) {
+  return getURL(urls.editManagedDashboard, params);
+}
+
+export function getDeleteManagedDashboardUrl(params: LocationPathParams) {
+  return getURL(urls.deleteManagedDashboard, params);
+}
+
 function getURL(url: UrlValue, params: LocationPathParams) {
   return url
     .replace(URL_PARAMS.resourceName, params.resourceName ?? '')
     .replace(URL_PARAMS.tenantId, params.tenantId ?? '')
-    .replace(URL_PARAMS.subscriptionId, params.subscriptionId ?? '');
+    .replace(URL_PARAMS.subscriptionId, params.subscriptionId ?? '')
+    .replace(URL_PARAMS.managedDashboardId, params.managedDashboardId ?? '');
 }

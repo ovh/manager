@@ -5,6 +5,7 @@ export const URL_PARAMS = {
   tenantId: ':tenantId',
   resourceName: ':resourceName',
   subscriptionId: ':subscriptionId',
+  managedDashboardId: ':managedDashboardId',
 };
 
 export const subroutes = {
@@ -13,10 +14,13 @@ export const subroutes = {
   metrics: 'metrics',
   settings: 'settings',
   services: 'services',
+  managedDashboards: 'managed-dashboards',
+  managedDashboard: URL_PARAMS.managedDashboardId,
   onboarding: 'onboarding',
   dashboards: 'dashboards',
   deleteTenant: `delete/${URL_PARAMS.tenantId}`,
   deleteTenantSubscription: `delete/${URL_PARAMS.subscriptionId}`,
+  deleteManagedDashboard: `delete/${URL_PARAMS.managedDashboardId}`,
   edit: 'edit',
   creation: 'creation',
   delete: 'delete',
@@ -27,7 +31,6 @@ export const subroutes = {
 
 export const urls = {
   root: getRoot(),
-  dashboards: `${getRoot()}/${subroutes.dashboards}`,
   metrics: `${getRoot()}/${subroutes.metrics}`,
   tenants: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}`,
   tenantsOnboarding: `${getRoot()}/${subroutes.metrics}/${subroutes.tenants}/${
@@ -45,6 +48,13 @@ export const urls = {
   servicesOnboarding: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.onboarding}`,
   deleteService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.delete}`,
   editService: `${getRoot()}/${subroutes.settings}/${subroutes.services}/${subroutes.edit}`,
+  managedDashboards: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}`,
+  managedDashboardsOnboarding: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${
+    subroutes.onboarding
+  }`,
+  managedDashboardCreation: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.creation}`,
+  editManagedDashboard: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.resource}/${subroutes.managedDashboard}/${subroutes.edit}`,
+  deleteManagedDashboard: `${getRoot()}/${subroutes.settings}/${subroutes.managedDashboards}/${subroutes.deleteManagedDashboard}`,
 } as const;
 
 export type LocationPathParams = {
