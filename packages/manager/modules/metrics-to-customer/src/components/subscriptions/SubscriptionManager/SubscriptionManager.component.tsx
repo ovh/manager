@@ -15,8 +15,8 @@ function SubscriptionManager<TData = unknown, TSubscription = unknown>({
   subscriptionUrls,
   onCreateSubscription,
   onDeleteSubscription,
-  isCreatingSubscription,
-  isDeletingSubscription,
+  isMutating,
+  mutatingItemId,
 }: SubscriptionManagerProps<TData, TSubscription>) {
   return (
     <SubscriptionManagerProvider<TData, TSubscription>
@@ -27,8 +27,8 @@ function SubscriptionManager<TData = unknown, TSubscription = unknown>({
       subscriptionUrls={subscriptionUrls}
       onCreateSubscription={onCreateSubscription}
       onDeleteSubscription={onDeleteSubscription}
-      isCreatingSubscription={isCreatingSubscription}
-      isDeletingSubscription={isDeletingSubscription}
+      isMutating={isMutating}
+      mutatingItemId={mutatingItemId}
     >
       <div className="w-full flex flex-col gap-6 mb-6">
         {children}

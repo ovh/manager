@@ -8,5 +8,5 @@ export type SubscriptionCardProps<TSubscription = unknown> = {
     subscriptionUrls: SubscriptionUrls;
     itemId: string;
     subscription?: TSubscription;
-} & Pick<SubscriptionToggleProps<TSubscription>, 'onCreate' | 'onDelete' | 'isCreating' | 'isDeleting'>;
+} & Pick<SubscriptionToggleProps<TSubscription>, 'onCreate' | 'onDelete'>;
 
