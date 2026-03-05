@@ -6,10 +6,15 @@ import {
   getMaxTransitionDays,
 } from './lifecycleTransition.utils';
 
+export const DEFAULT_EXPIRATION_DAYS = 1;
+
 type TFunction = (key: string) => string;
 
 const validateTransitionGaps = (
-  transitions: Array<{ storageClass?: storages.StorageClassEnum; days?: number }>,
+  transitions: Array<{
+    storageClass?: storages.StorageClassEnum;
+    days?: number;
+  }>,
   pathPrefix: string,
   daysKey: string,
   t: TFunction,
@@ -25,8 +30,7 @@ const validateTransitionGaps = (
 
   const sorted = indexed.sort(
     (a, b) =>
-      STORAGE_CLASS_TIER[a.storageClass] -
-      STORAGE_CLASS_TIER[b.storageClass],
+      STORAGE_CLASS_TIER[a.storageClass] - STORAGE_CLASS_TIER[b.storageClass],
   );
 
   for (let i = 1; i < sorted.length; i += 1) {
@@ -76,7 +80,9 @@ export const createLifecycleSchema = (t: TFunction) =>
         .string()
         .min(1, t('formRuleIdRequired'))
         .max(255, t('formRuleIdMaxLength')),
-      status: z.nativeEnum(storages.LifecycleRuleStatusEnum).default(storages.LifecycleRuleStatusEnum.enabled),
+      status: z
+        .nativeEnum(storages.LifecycleRuleStatusEnum)
+        .default(storages.LifecycleRuleStatusEnum.enabled),
 
       hasFilter: z.boolean().default(false),
       prefix: z.string().default(''),
@@ -97,7 +103,9 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.nativeEnum(storages.StorageClassEnum, { message: t('formStorageClassRequiredError') }),
+            storageClass: z.nativeEnum(storages.StorageClassEnum, {
+              message: t('formStorageClassRequiredError'),
+            }),
           }),
         )
         .default([]),
@@ -107,7 +115,7 @@ export const createLifecycleSchema = (t: TFunction) =>
         .number()
         .int()
         .min(0)
-        .default(0),
+        .default(DEFAULT_EXPIRATION_DAYS),
       expiredObjectDeleteMarker: z.boolean().default(false),
 
       hasNoncurrentVersionTransitions: z.boolean().default(false),
@@ -118,7 +126,9 @@ export const createLifecycleSchema = (t: TFunction) =>
               .number()
               .int()
               .min(MIN_TRANSITION_GAP_DAYS, t('formTransitionMinDaysError')),
-            storageClass: z.nativeEnum(storages.StorageClassEnum, { message: t('formStorageClassRequiredError') }),
+            storageClass: z.nativeEnum(storages.StorageClassEnum, {
+              message: t('formStorageClassRequiredError'),
+            }),
             newerNoncurrentVersions: z.coerce
               .number()
               .int()
@@ -235,7 +245,9 @@ export const createLifecycleSchema = (t: TFunction) =>
         data.hasNoncurrentVersionTransitions,
         data.hasNoncurrentVersionExpiration,
         data.noncurrentVersionExpirationDays,
-        data.noncurrentVersionTransitions.map((tr) => ({ days: tr.noncurrentDays })),
+        data.noncurrentVersionTransitions.map((tr) => ({
+          days: tr.noncurrentDays,
+        })),
         'noncurrentVersionExpirationDays',
         t,
         ctx,
