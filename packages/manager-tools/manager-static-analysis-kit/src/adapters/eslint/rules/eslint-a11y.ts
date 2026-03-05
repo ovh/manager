@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 import { allModules } from '../../../configs/file-globs-config';
