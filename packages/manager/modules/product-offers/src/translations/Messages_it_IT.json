@@ -18,5 +18,7 @@
   "ovh_product_offers_duration": "Durata:",
   "ovh_product_offers_detach_termination": "L’opzione {{option}} scade il {{date}}",
   "ovh_product_offers_duration_prorata_up_to": "Prorata fino al:",
-  "ovh_product_offers_order_express_submit": "Continua"
+  "ovh_product_offers_order_express_submit": "Continua",
+  "ovh_product_offers_pricing_year": "{{ number }} anno",
+  "ovh_product_offers_pricing_years": "{{ number }} anni"
 }
