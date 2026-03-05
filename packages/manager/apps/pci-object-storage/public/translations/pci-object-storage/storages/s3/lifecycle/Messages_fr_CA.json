@@ -32,7 +32,7 @@
   "formEditTitle": "Modifier la règle de cycle de vie",
   "formEditButtonConfirm": "Enregistrer les modifications",
   "formEditToastSuccessTitle": "Règle modifiée",
-  "formEditToastSuccessDescription": "La règle de cycle de vie a été modifiée avec succès.",
+  "formEditToastSuccessDescription": "La règle de cycle de vie « {{ruleName}} » a été modifiée avec succès.",
   "formEditToastErrorTitle": "Erreur lors de la modification de la règle",
   "formRuleIdLabel": "Identifiant de la règle",
   "formRuleIdRequired": "L'identifiant est requis",

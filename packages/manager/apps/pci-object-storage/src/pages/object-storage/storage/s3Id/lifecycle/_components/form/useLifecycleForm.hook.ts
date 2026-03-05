@@ -4,7 +4,7 @@ import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Tag } from '@/types/Tag';
-import { createLifecycleSchema } from './lifecycleForm.schema';
+import { createLifecycleSchema, DEFAULT_EXPIRATION_DAYS } from './lifecycleForm.schema';
 import storages from '@/types/Storages';
 
 type InferSchema<T> = T extends z.ZodTypeAny ? z.infer<T> : never;
@@ -41,12 +41,12 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       hasCurrentVersionTransitions: false,
       transitions: emptyTransitions,
       hasCurrentVersionExpiration: false,
-      expirationDays: 0,
+      expirationDays: DEFAULT_EXPIRATION_DAYS,
       expiredObjectDeleteMarker: false,
       hasNoncurrentVersionTransitions: false,
       noncurrentVersionTransitions: emptyNoncurrentTransitions,
       hasNoncurrentVersionExpiration: false,
-      noncurrentVersionExpirationDays: 0,
+      noncurrentVersionExpirationDays: DEFAULT_EXPIRATION_DAYS,
       noncurrentVersionExpirationNewerVersions: 0,
       hasObjectSizeGreaterThan: false,
       objectSizeGreaterThan: 0,
@@ -63,9 +63,7 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
     const hasCurrentVersionTransitions = Boolean(
       existingRule.transitions?.length,
     );
-    const hasCurrentVersionExpiration = Boolean(
-      existingRule.expiration?.days,
-    );
+    const hasCurrentVersionExpiration = Boolean(existingRule.expiration?.days);
     const hasNoncurrentVersionTransitions = Boolean(
       existingRule.noncurrentVersionTransitions?.length,
     );
@@ -77,10 +75,10 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
     );
     const hasFilter = Boolean(
       existingRule.filter?.prefix ||
-        (existingRule.filter?.tags &&
-          Object.keys(existingRule.filter.tags).length > 0) ||
-        existingRule.filter?.objectSizeGreaterThan ||
-        existingRule.filter?.objectSizeLessThan,
+      (existingRule.filter?.tags &&
+        Object.keys(existingRule.filter.tags).length > 0) ||
+      existingRule.filter?.objectSizeGreaterThan ||
+      existingRule.filter?.objectSizeLessThan,
     );
 
     return {
@@ -95,22 +93,19 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       hasObjectSizeGreaterThan: Boolean(
         existingRule.filter?.objectSizeGreaterThan,
       ),
-      objectSizeGreaterThan:
-        existingRule.filter?.objectSizeGreaterThan ?? 0,
-      hasObjectSizeLessThan: Boolean(
-        existingRule.filter?.objectSizeLessThan,
-      ),
+      objectSizeGreaterThan: existingRule.filter?.objectSizeGreaterThan ?? 0,
+      hasObjectSizeLessThan: Boolean(existingRule.filter?.objectSizeLessThan),
       objectSizeLessThan: existingRule.filter?.objectSizeLessThan ?? 0,
       hasCurrentVersionTransitions,
       transitions: (existingRule.transitions ?? []).map((tr) => ({
         days: tr.days ?? 0,
         storageClass:
           storages.StorageClassEnum[
-            tr.storageClass as keyof typeof storages.StorageClassEnum
+          tr.storageClass as keyof typeof storages.StorageClassEnum
           ],
       })),
       hasCurrentVersionExpiration,
-      expirationDays: existingRule.expiration?.days ?? 0,
+      expirationDays: existingRule.expiration?.days ?? DEFAULT_EXPIRATION_DAYS,
       expiredObjectDeleteMarker:
         existingRule.expiration?.expiredObjectDeleteMarker ?? false,
       hasNoncurrentVersionTransitions,
@@ -123,7 +118,7 @@ export const useLifecycleForm = ({ existingRule }: UseLifecycleFormParams) => {
       })),
       hasNoncurrentVersionExpiration,
       noncurrentVersionExpirationDays:
-        existingRule.noncurrentVersionExpiration?.noncurrentDays ?? 0,
+        existingRule.noncurrentVersionExpiration?.noncurrentDays ?? DEFAULT_EXPIRATION_DAYS,
       noncurrentVersionExpirationNewerVersions:
         existingRule.noncurrentVersionExpiration?.newerNoncurrentVersions ?? 0,
       hasAbortIncompleteMultipartUpload: hasAbort,
