@@ -11,7 +11,7 @@
   "dedicated_server_interfaces_ola_alert_configuration_needed": "You need to monitor the procedure via the IPMI KVM, detailed in the guide, in order for your network to start working. Without this step, the configuration will be incomplete.",
   "dedicated_server_interfaces_rename_title": "Rename the interface",
   "dedicated_server_interfaces_vrack_operation_attach": "Attaching...",
-  "dedicated_server_interfaces": "Network interfaces",
+  "dedicated_server_interfaces": "Network Interface Controllers (NICs)",
   "dedicated_server_interfaces_vrack_information": "Please note that by default, no IPs exist for the private network (vRack). You will need to create a private network (vRack) beforehand, add your server to it, then configure your IPs.",
   "dedicated_server_interfaces_vrack_information_link_label": "Find out more about the vRack",
   "dedicated_server_interfaces_step_checker_title": "OVHcloud Link Aggregation (OLA)",
@@ -69,5 +69,9 @@
   "dedicated_server_interfaces_task_error": "An error has occurred during configuration: {{ errorMessage }}",
   "dedicated_server_interfaces_vrack_operation_detach": "Detaching...",
   "server_vrack_attach_in_progress": "The {{vRackname}} vRack is being attached",
-  "server_vrack_detach_in_progress": "The {{vRackname}} vRack is being detached"
+  "server_vrack_detach_in_progress": "The {{vRackname}} vRack is being detached",
+  "dedicated_server_interfaces_aggregate_button": "Network Aggregation",
+  "dedicated_server_interfaces_disaggregate_button": "Disaggregate networks",
+  "dedicated_server_interfaces_breadcrumb": "Network interfaces",
+  "dedicated_server_interfaces_type_badge_aggregated": "Aggregated"
 }

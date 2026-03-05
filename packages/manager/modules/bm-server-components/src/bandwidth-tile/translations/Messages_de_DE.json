@@ -1,5 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Bandbreite",
   "dedicated_server_interfaces_bandwidth_description": "Was die öffentliche Bandbreite (von und zum Internet) betrifft, ist die eingehende Bandbreite unbegrenzt. Sie können die öffentliche und private Bandbreite erhöhen, indem Sie eine Option bestellen",
-  "dedicated_server_interfaces_bandwidth_ola_warning": "Im Rahmen einer kompletten Private-Aggregation-Konfiguration wird Ihre Option für ausgehende öffentliche Bandbreite nicht genutzt, da das Interface für das öffentliche Netzwerk für das private Netzwerk verwendet wird."
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Verfügbar",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Aktiv – Double LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "Die beiden Netzwerkinterface-Paare werden separat aggregiert, was privaten und öffentlichen Traffic ermöglicht.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Aktiv – Full Private",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "Die beiden Netzwerkinterfaces sind vollständig aggregiert und privat.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "Die vier Netzwerkinterfaces sind vollständig aggregiert und privat.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "Nicht verfügbar"
 }

@@ -14,11 +14,12 @@ import TechnicalDetails from './technical-details.class';
 
 export default class NutanixService {
   /* @ngInject */
-  constructor($q, $http, $translate, iceberg) {
+  constructor($q, $http, $translate, iceberg, ServerBandwidthService) {
     this.$q = $q;
     this.$http = $http;
     this.$translate = $translate;
     this.iceberg = iceberg;
+    this.ServerBandwidthService = ServerBandwidthService;
   }
 
   getClusters() {
@@ -282,7 +283,16 @@ export default class NutanixService {
   getBandwidth(productId) {
     return this.$http
       .get(`/dedicated/server/${productId}/specifications/network`)
-      .then(({ data }) => data)
+      .then(({ data }) => {
+        const specifications = data;
+        if (data.vrack.bandwidth) {
+          specifications.vrack.realNicBandwidth = this.ServerBandwidthService.constructor.compareBandwidths(
+            data.vrack.bandwidth,
+            data.connection,
+          );
+        }
+        return specifications;
+      })
       .catch((err) => {
         if (err.status === 404 || err.status === 460) {
           return {};

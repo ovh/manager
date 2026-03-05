@@ -27,5 +27,7 @@
   "dedicated_server_interfaces_ola_error": "Wystąpił problem podczas konfiguracji: {{errorMessage}}.",
   "dedicated_server_interface_ola_new_tab": "Otworzy się w nowej zakładce.",
   "dedicated_server_interfaces_ola_network_interfaces": "Aktualny interfejs sieciowy",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "Interfejs sieciowy po aktywacji"
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Symulacja interfejsu sieciowego po włączeniu agregacji łączy",
+  "dedicated_server_interfaces_ola_column_mac_address": "Adres MAC",
+  "dedicated_server_interfaces_ola_activate": "Włącz agregację"
 }

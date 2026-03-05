@@ -6,6 +6,7 @@ export default {
     server: '<',
     serverName: '<',
     interfaces: '<',
+    ola: '<',
     specifications: '<',
     urls: '<',
     failoverIps: '<',
