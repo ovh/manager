@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "Tu pedido ha comenzado en una nueva pestaña. Por favor, termínalo para finalizar tu compra. Si la nueva pestaña no se abre, <Link>Haga clic aquí.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Gratis",
   "tax_excluded_notice_label": "HT / mes",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Tu ancho de banda se restablecerá a la opción por defecto en el próximo ciclo de facturación. No se requiere pedido.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Tu ancho de banda se reducirá a la opción por defecto inmediatamente. No se necesita ningún pedido.",
   "upgrade_bandwidth_info_tooltip": "Se aplicará una facturación prorrateada por los días restantes de tu ciclo de facturación actual y la tarificación completa comenzará en el próximo ciclo de facturación."
 }

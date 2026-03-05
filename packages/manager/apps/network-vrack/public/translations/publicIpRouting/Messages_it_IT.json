@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "Il tuo ordine è iniziato in una nuova scheda. Ti preghiamo di completarlo per finalizzare il tuo acquisto. Se la nuova scheda non si apre, <Link>clicca qui.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Gratuito",
   "tax_excluded_notice_label": "+IVA/mese",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "La tua larghezza di banda sarà riportata all'opzione predefinita al prossimo ciclo di fatturazione. Nessun ordine è necessario.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "La tua larghezza di banda sarà riportata all'opzione predefinita immediatamente. Nessun ordine è necessario.",
   "upgrade_bandwidth_info_tooltip": "Una fatturazione proporzionale si applica per i giorni rimanenti del tuo ciclo di fatturazione attuale e la tariffazione completa inizia al prossimo ciclo di fatturazione."
 }
