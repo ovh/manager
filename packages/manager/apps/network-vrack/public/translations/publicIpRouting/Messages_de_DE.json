@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "Ihre Bestellung wurde in einem neuen Tab gestartet. Bitte schließen Sie diese ab, um Ihren Kauf abzuschließen. Wenn sich das neue Tab nicht öffnet, <Link>hier klicken.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Kostenlos",
   "tax_excluded_notice_label": "HT / Monat",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Ihre Bandbreite wird im nächsten Abrechnungszyklus auf die Standardoption zurückgesetzt. Keine Bestellung erforderlich.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Ihre Bandbreite wird sofort auf die Standardoption zurückgesetzt. Es ist keine Bestellung erforderlich.",
   "upgrade_bandwidth_info_tooltip": "Eine anteilige Abrechnung gilt für die verbleibenden Tage Ihres aktuellen Abrechnungszyklus, und die volle Preisgestaltung beginnt im nächsten Abrechnungszyklus."
 }

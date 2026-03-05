@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "A sua encomenda começou numa nova aba. Por favor, termine-a para finalizar a sua compra. Se a nova aba não abrir, <Link>clique aqui.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Grátis",
   "tax_excluded_notice_label": "HT / mês",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "A sua largura de banda será reduzida para a opção padrão no próximo ciclo de faturação. Nenhuma encomenda é necessária.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "A sua largura de banda será reduzida para a opção padrão imediatamente. Nenhuma encomenda é necessária.",
   "upgrade_bandwidth_info_tooltip": "Uma faturação proporcional aplica-se aos dias restantes do seu ciclo de faturação atual e a tarifação completa começa no próximo ciclo de faturação."
 }

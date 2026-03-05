@@ -45,6 +45,6 @@
   "publicIpRouting_success_order_message": "Your order has started in a new tab. Please complete it to finalise your purchase. If the new tab does not open, <Link>click here.</Link>",
   "free_public_ip_routing_bandwidth_option_price": "Free",
   "tax_excluded_notice_label": "ex. VAT/month",
-  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Your bandwidth will revert to the default option in the next billing cycle. No order is necessary.",
+  "publicIpRouting_success_downgrade_to_default_bandwidth_message": "Your bandwidth will be reverted to the default option immediately. No order is necessary.",
   "upgrade_bandwidth_info_tooltip": "Pro-rata billing applies for the remaining days of your current billing cycle and full pricing starts in the next billing cycle."
 }
