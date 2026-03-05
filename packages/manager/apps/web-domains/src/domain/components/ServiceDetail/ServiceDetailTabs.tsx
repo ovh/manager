@@ -27,6 +27,7 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
+import { useGetEnvironmentData } from '@/common/hooks/environment/data';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -42,6 +43,12 @@ export default function ServiceDetailsTabs({
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+
+  const { region } = useGetEnvironmentData();
+
+  const visibleTabs = ServiceDetailTabsProps.filter(
+    (tab) => tab.id !== 'dynhost' || region === 'EU',
+  );
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
     if (legacyTabs.includes(event.value)) {
@@ -59,7 +66,7 @@ export default function ServiceDetailsTabs({
 
   useEffect(() => {
     const tab =
-      ServiceDetailTabsProps.find((tabName) =>
+      visibleTabs.find((tabName) =>
         matchPath(`/domain/:serviceName/${tabName.value}/*`, location.pathname),
       )?.value || DEFAULT_TAB;
     if (location.pathname) {
@@ -73,7 +80,7 @@ export default function ServiceDetailsTabs({
   return (
     <Tabs defaultValue={value} onValueChange={handleValueChange} value={value}>
       <TabList>
-        {ServiceDetailTabsProps.map((tab) => {
+        {visibleTabs.map((tab) => {
           const disabled = tab.rule ? tab.rule(domainResource) : false;
           return (
             <Tab
