@@ -26,7 +26,9 @@ export const useCreateSubscription = (
     ...restOptions,
     mutationFn: async (payload: CreateSubscriptionPayload) => {
       const { subscribeUrl, signal } = payload;
-      const { data } = await apiClient.v2.post<TenantSubscription>(subscribeUrl, {}, { signal });
+      const { data } = await apiClient.v6.post<TenantSubscription>(subscribeUrl, {
+        tenantId: payload.tenantId
+      }, { signal });
       return data;
     },
     onSuccess: (data, variables, context) => {
