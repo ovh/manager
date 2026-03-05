@@ -1,23 +1,34 @@
 import { FC, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useEnvironmentRegion } from '@/hooks/region/useEnvironmentRegion';
 import { useProjectId } from '@/hooks/project/useProjectId';
 import { useInstanceParams } from '@/pages/instances/action/hooks/useInstanceActionModal';
 import { MetricsToCustomerModule } from '@ovh-ux/metrics-to-customer';
 
 import '@ovh-ux/metrics-to-customer/dist/index.scss';
-import { ICON_NAME, Message, MESSAGE_COLOR, MessageBody, MessageIcon, Spinner } from '@ovhcloud/ods-react';
-import { useIsObservabilityAvailable } from '@/data/hooks/feature';
+import { ICON_NAME, Message, MESSAGE_COLOR, MessageBody, MessageIcon, Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
+import { useObservabilityAvailability } from '@/data/hooks/feature';
 
 const ObservabilityPage: FC = () => {
 
   const { t } = useTranslation(['observability']);
 
+  const envRegion = useEnvironmentRegion();
+
   const projectId = useProjectId();
 
-  const { instanceId } = useInstanceParams();
+  const { instanceId, region } = useInstanceParams();
 
-  const isObservabilityAvailable = useIsObservabilityAvailable();
+  const {
+    isObservabilityAvailable,
+    isM2CAvailable,
+    isPending: isObservabilityAvailabilityPending,
+  } = useObservabilityAvailability();
+
+  if (isObservabilityAvailabilityPending) {
+    return <Spinner size={SPINNER_SIZE.xs} />
+  }
 
   if (!isObservabilityAvailable) {
     return <Message
@@ -35,7 +46,9 @@ const ObservabilityPage: FC = () => {
   }
 
   const productType = "publicCloudProject/instance";
-  const resourceURN = `urn:v1:eu:resource:publicCloudProject:${projectId}/instance/${instanceId}`;
+  const resourceURN = `urn:v1:${envRegion}:resource:publicCloudProject:${projectId}/instance/${instanceId}`;
+
+  const subscribeUrl = `/cloud/project/${projectId}/region/${region}/instance/${instanceId}/metric/subscription`;
 
   return (
     <Suspense fallback={<Spinner />}>
@@ -43,7 +56,11 @@ const ObservabilityPage: FC = () => {
         resourceName={instanceId}
         productType={productType}
         resourceURN={resourceURN}
-        enableConfigurationManagement={false}
+        enableConfigurationManagement={isM2CAvailable}
+        subscriptionUrls={{
+          subscribeUrl,
+        }}
+        defaultRetention="30d"
       />
     </Suspense>
   );

@@ -19,7 +19,7 @@ import { useDashboard } from './dashboard/hooks/useDashboard';
 import { LoadingCell } from '../datagrid/components/cell/LoadingCell.component';
 import InstanceErrorGuard from './InstanceErrorGuard.page';
 import { SearchNotifications } from '@/components/SearchNotifications/SearchNotifications';
-import { useIsObservabilityAvailable } from '@/data/hooks/feature';
+import { useObservabilityAvailability } from '@/data/hooks/feature';
 
 const Instance: FC = () => {
   const { t } = useTranslation([NAMESPACES.DASHBOARD, 'dashboard']);
@@ -33,7 +33,10 @@ const Instance: FC = () => {
     instanceId,
   });
 
-  const isObservabilityAvailable = useIsObservabilityAvailable();
+  const {
+    isPending: isObservabilityAvailabilityPending,
+    isObservabilityAvailable,
+  } = useObservabilityAvailability();
 
   const tabs = useMemo(() => {
     let instanceTabs = [
@@ -51,7 +54,7 @@ const Instance: FC = () => {
       },
     ];
 
-    if (isObservabilityAvailable) {
+    if (!isObservabilityAvailabilityPending && isObservabilityAvailable) {
       instanceTabs.push({
         label: t('dashboard:pci_instances_dashboard_tab_observability_title'),
         to: `${dashboardPath.pathname}/observability/metrics`,
@@ -59,7 +62,7 @@ const Instance: FC = () => {
     }
 
     return instanceTabs;
-  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isVncEnabled, isObservabilityAvailable],
+  }, [dashboardPath.pathname, vncPath.pathname, t, instance?.isVncEnabled, isObservabilityAvailabilityPending, isObservabilityAvailable],
   );
 
   return (
