@@ -31,5 +31,8 @@
   "iam_user_roles_ADMIN": "Administrator",
   "iam_user_roles_REGULAR": "Eingeschränkter Administrator",
   "iam_user_roles_UNPRIVILEGED": "Nur Lesen",
-  "iam_user_roles_NONE": "Keine"
+  "iam_user_roles_NONE": "Keine",
+  "iam_service_accounts_modal_title_delete": "Das Dienstkonto {{serviceName}} löschen",
+  "iam_service_accounts_modal_message_delete": "Sind Sie sicher, dass Sie das Dienstkonto <strong>{{serviceName}}</strong> löschen möchten?",
+  "iam_service_accounts_datagrid_column_associated_policies": "Verwandte Richtlinien"
 }
