@@ -9,7 +9,7 @@ export type ApiEndpoint =
 
 export const apiConfig: Record<ApiEndpoint, ApiConfigMode> = {
   tenant: 'api',
-  tenantSubscription: 'mock',
+  tenantSubscription: 'api',
   grafana: 'mock',
   dashboards: 'mock',
   metric: 'mock',
