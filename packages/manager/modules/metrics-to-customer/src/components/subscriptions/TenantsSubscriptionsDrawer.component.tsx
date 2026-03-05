@@ -8,7 +8,6 @@ import { Divider, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import { LocationPathParams } from '@/routes/Routes.constants';
-import { getRootUrl, getSubscriptionsConfigUrl } from '@/routes/Routes.utils';
 
 import { useTenantsWithSubscriptions } from '@/data/hooks/tenants/useTenantsWithSubscriptions';
 import { useObservabilityServices } from '@/data/hooks/services/useObservabilityServices.hook';
@@ -32,6 +31,7 @@ const FILTER_KEYS = {
 } as const;
 
 const TenantsSubscriptionsDrawer = ({
+  serviceName,
   regions,
   defaultRetention,
   subscriptionUrls,
@@ -99,10 +99,21 @@ const TenantsSubscriptionsDrawer = ({
     data: tenantsData,
     isLoading: isLoadingTenants,
     isSuccess: isSuccessTenants,
+    refetch: refetchTenantsWithSubscriptions,
   } = useTenantsWithSubscriptions(resourceName, regions);
 
-  const createSubscription = useCreateSubscription();
-  const deleteSubscription = useDeleteSubscription();
+  const [mutatingItemId, setMutatingItemId] = useState<string | null>(null);
+
+  const createSubscription = useCreateSubscription({
+    onSuccess: async () => {
+      await refetchTenantsWithSubscriptions();
+    },
+  });
+  const deleteSubscription = useDeleteSubscription({
+    onSuccess: async () => {
+      await refetchTenantsWithSubscriptions();
+    },
+  });
 
   const isLoadingData = isLoadingServices || isLoadingTenants;
 
@@ -122,24 +133,46 @@ const TenantsSubscriptionsDrawer = ({
     setFilterValues(prev => ({ ...prev, [filterKey]: value }));
   }, [resourceName, navigate]);
 
-  const handleCreateSubscription = useCallback((params: { subscribeUrl: string; itemId: string; resourceName: string }) => {
-    createSubscription.mutate({
-      subscribeUrl: params.subscribeUrl,
-      tenantId: params.itemId,
-      resourceName: params.resourceName,
-    });
-  }, [createSubscription]);
+  const handleCreateSubscription = useCallback(
+    (params: { subscribeUrl: string; itemId: string; resourceName: string }) => {
+      setMutatingItemId(params.itemId);
+      createSubscription.mutate(
+        {
+          subscribeUrl: params.subscribeUrl,
+          tenantId: params.itemId,
+          resourceName: params.resourceName,
+        },
+        {
+          onSettled: () => {
+            setMutatingItemId(null);
+          },
+        },
+      );
+    },
+    [createSubscription],
+  );
 
-  const handleDeleteSubscription = useCallback((params: { subscription: TenantSubscription; itemId: string; resourceName: string }) => {
-    const subscriptionId = params.subscription.id;
-    const tenantId = params.subscription.iam?.id || params.itemId;
+  const handleDeleteSubscription = useCallback(
+    (params: { subscription: TenantSubscription; itemId: string; resourceName: string }) => {
+      const subscriptionId = params.subscription.id;
+      const tenantId = params.subscription.iam?.id || params.itemId;
 
-    deleteSubscription.mutate({
-      resourceName: params.resourceName,
-      tenantId,
-      subscriptionId,
-    });
-  }, [deleteSubscription]);
+      setMutatingItemId(params.itemId);
+      deleteSubscription.mutate(
+        {
+          resourceName: params.resourceName,
+          tenantId,
+          subscriptionId,
+        },
+        {
+          onSettled: () => {
+            setMutatingItemId(null);
+          },
+        },
+      );
+    },
+    [deleteSubscription],
+  );
 
   return (
     <SubscriptionsDrawer
@@ -155,8 +188,8 @@ const TenantsSubscriptionsDrawer = ({
         subscriptionUrls={subscriptionUrls}
         onCreateSubscription={handleCreateSubscription}
         onDeleteSubscription={handleDeleteSubscription}
-        isCreatingSubscription={createSubscription.isPending}
-        isDeletingSubscription={deleteSubscription.isPending}
+        isMutating={createSubscription.isPending || deleteSubscription.isPending}
+        mutatingItemId={mutatingItemId}
       >
         <SubscriptionManager.Filters
           filterValues={filterValues}
@@ -194,11 +227,9 @@ const TenantsSubscriptionsDrawer = ({
           titleFn={t => t.currentState.title}
           subtitleFn={t => t.id}
           idFn={t => t.id}
-          subscriptionFn={(t, resourceName) =>
-            t.subscriptions.find(
-              (s) =>
-                s.currentState.resource.name === resourceName &&
-                s.iam?.id === t.id
+          subscriptionFn={(t) =>
+            t.subscriptions.find((s) =>
+              s.currentState.resource.name === serviceName
             )
           }
           withSearch={true}

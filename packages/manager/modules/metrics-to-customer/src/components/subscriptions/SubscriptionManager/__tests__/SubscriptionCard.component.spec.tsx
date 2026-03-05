@@ -6,6 +6,15 @@ import { vi } from 'vitest';
 import SubscriptionCard from '@/components/subscriptions/SubscriptionManager/SubscriptionCard.component';
 import { SubscriptionCardProps } from '@/components/subscriptions/SubscriptionManager/SubscriptionCard.props';
 
+const mockUseSubscriptionManagerContext = vi.fn().mockReturnValue({
+  isMutating: false,
+  mutatingItemId: null,
+});
+
+vi.mock('@/contexts/SubscriptionManager.context', () => ({
+  useSubscriptionManagerContext: () => mockUseSubscriptionManagerContext(),
+}));
+
 // Mock react-i18next
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -34,23 +43,29 @@ const mockOnCreate = vi.fn();
 const mockOnDelete = vi.fn();
 
 vi.mock('@/components/cta/SubscriptionToggle.component', () => ({
-  default: ({ itemId, subscription, onCreate, onDelete, isCreating, isDeleting }: any) => (
+  default: ({ itemId, subscription, onCreate, onDelete, isLoading }: any) => (
     <div data-testid={`subscription-toggle-${itemId}`}>
       {subscription ? (
         <button
           data-testid={`toggle-delete-${itemId}`}
           onClick={() => onDelete?.({ subscription, itemId, resourceName: 'test-resource' })}
-          disabled={isDeleting}
+          disabled={isLoading}
         >
-          {isDeleting ? 'Deleting...' : 'Unsubscribe'}
+          {isLoading ? 'Loading...' : 'Unsubscribe'}
         </button>
       ) : (
         <button
           data-testid={`toggle-create-${itemId}`}
-          onClick={() => onCreate?.({ subscribeUrl: 'https://api.example.com/subscribe', itemId, resourceName: 'test-resource' })}
-          disabled={isCreating}
+          onClick={() =>
+            onCreate?.({
+              subscribeUrl: 'https://api.example.com/subscribe',
+              itemId,
+              resourceName: 'test-resource',
+            })
+          }
+          disabled={isLoading}
         >
-          {isCreating ? 'Creating...' : 'Subscribe'}
+          {isLoading ? 'Loading...' : 'Subscribe'}
         </button>
       )}
     </div>
@@ -69,8 +84,6 @@ describe('SubscriptionCard', () => {
     itemId: 'test-item-1',
     onCreate: mockOnCreate,
     onDelete: mockOnDelete,
-    isCreating: false,
-    isDeleting: false,
   };
 
   beforeEach(() => {
@@ -173,38 +186,41 @@ describe('SubscriptionCard', () => {
       expect(screen.queryByTestId('toggle-create-test-item-1')).not.toBeInTheDocument();
     });
 
-    it('should pass isCreating prop to SubscriptionToggle', () => {
+    it('should disable create button when global mutation is pending for this item', () => {
       // Arrange
-      const propsWithCreating = {
-        ...defaultProps,
-        isCreating: true,
-      };
+      mockUseSubscriptionManagerContext.mockReturnValueOnce({
+        isMutating: true,
+        mutatingItemId: 'test-item-1',
+      });
 
       // Act
-      render(<SubscriptionCard {...propsWithCreating} />);
+      render(<SubscriptionCard {...defaultProps} />);
 
       // Assert
       const createButton = screen.getByTestId('toggle-create-test-item-1');
       expect(createButton).toBeDisabled();
-      expect(createButton).toHaveTextContent('Creating...');
+      expect(createButton).toHaveTextContent('Loading...');
     });
 
-    it('should pass isDeleting prop to SubscriptionToggle', () => {
+    it('should disable delete button when global mutation is pending for this item', () => {
       // Arrange
       const subscription = { id: 'sub-1' };
-      const propsWithDeleting = {
+      mockUseSubscriptionManagerContext.mockReturnValueOnce({
+        isMutating: true,
+        mutatingItemId: 'test-item-1',
+      });
+      const propsWithSubscription = {
         ...defaultProps,
         subscription,
-        isDeleting: true,
       };
 
       // Act
-      render(<SubscriptionCard {...propsWithDeleting} />);
+      render(<SubscriptionCard {...propsWithSubscription} />);
 
       // Assert
       const deleteButton = screen.getByTestId('toggle-delete-test-item-1');
       expect(deleteButton).toBeDisabled();
-      expect(deleteButton).toHaveTextContent('Deleting...');
+      expect(deleteButton).toHaveTextContent('Loading...');
     });
   });
 
