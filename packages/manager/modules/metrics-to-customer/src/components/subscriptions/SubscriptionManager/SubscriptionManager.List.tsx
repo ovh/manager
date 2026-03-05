@@ -24,8 +24,6 @@ export function SubscriptionManagerList<TData = unknown, TSubscription = unknown
     subscriptionUrls,
     onCreateSubscription,
     onDeleteSubscription,
-    isCreatingSubscription,
-    isDeletingSubscription,
     setTitleSubtitleFns,
     filteredData,
     hasFilteredData,
@@ -63,8 +61,6 @@ export function SubscriptionManagerList<TData = unknown, TSubscription = unknown
             subscriptionUrls={subscriptionUrls}
             onCreate={onCreateSubscription}
             onDelete={onDeleteSubscription}
-            isCreating={isCreatingSubscription}
-            isDeleting={isDeletingSubscription}
           />
         );
       })}

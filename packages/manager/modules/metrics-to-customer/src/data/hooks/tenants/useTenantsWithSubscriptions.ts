@@ -56,20 +56,20 @@ export const useTenantsWithSubscriptions = (
       })) ?? [],
   });
 
-  const data = useMemo<TenantWithSubscriptions[] | undefined>(() => {
-    if (!tenantsQuery.data) {
-      return undefined;
-    }
+  const areSubscriptionsReady =
+    !!tenantsQuery.data &&
+    subscriptionQueries.length === tenantsQuery.data.length &&
+    subscriptionQueries.every((query) => query.status !== 'pending');
 
-    return tenantsQuery.data.map((tenant, index) => ({
-      ...tenant,
-      subscriptions: subscriptionQueries[index]?.data ?? [],
-    }));
-  }, [
-    tenantsQuery.data,
-    subscriptionQueries,
-    regions,
-  ]);
+  const data: TenantWithSubscriptions[] | undefined =
+    tenantsQuery.data && areSubscriptionsReady
+      ? tenantsQuery.data.map((tenant, index) => {          
+          return {
+            ...tenant,
+            subscriptions: subscriptionQueries[index]?.data ?? [],
+          };
+        })
+      : undefined;
 
   const isLoading =
     tenantsQuery.isLoading || subscriptionQueries.some((query) => query.isLoading);

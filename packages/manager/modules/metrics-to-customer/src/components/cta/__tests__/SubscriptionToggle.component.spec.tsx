@@ -42,8 +42,6 @@ describe('SubscriptionToggle', () => {
     },
     onCreate: mockOnCreate,
     onDelete: mockOnDelete,
-    isCreating: false,
-    isDeleting: false,
   };
 
   beforeEach(() => {
@@ -101,15 +99,15 @@ describe('SubscriptionToggle', () => {
   });
 
   describe('Loading States', () => {
-    it('should show loading state when isCreating is true', () => {
+    it('should show loading state when isLoading is true', () => {
       // Arrange
-      const propsWithCreating = {
+      const propsWithLoading = {
         ...defaultProps,
-        isCreating: true,
+        isLoading: true,
       };
 
       // Act
-      render(<SubscriptionToggle {...propsWithCreating} />);
+      render(<SubscriptionToggle {...propsWithLoading} />);
 
       // Assert
       const button = screen.getByTestId('create-subscription-cta');
@@ -117,49 +115,17 @@ describe('SubscriptionToggle', () => {
       expect(button).toHaveTextContent('Loading...');
     });
 
-    it('should show loading state when isDeleting is true', () => {
+    it('should disable button when isLoading is true', () => {
       // Arrange
       const subscription = { id: 'sub-1' };
-      const propsWithDeleting = {
+      const propsWithLoading = {
         ...defaultProps,
         subscription,
-        isDeleting: true,
+        isLoading: true,
       };
 
       // Act
-      render(<SubscriptionToggle {...propsWithDeleting} />);
-
-      // Assert
-      const button = screen.getByTestId('delete-subscription-cta');
-      expect(button).toBeDisabled();
-      expect(button).toHaveTextContent('Loading...');
-    });
-
-    it('should disable button when isCreating is true', () => {
-      // Arrange
-      const propsWithCreating = {
-        ...defaultProps,
-        isCreating: true,
-      };
-
-      // Act
-      render(<SubscriptionToggle {...propsWithCreating} />);
-
-      // Assert
-      expect(screen.getByTestId('create-subscription-cta')).toBeDisabled();
-    });
-
-    it('should disable button when isDeleting is true', () => {
-      // Arrange
-      const subscription = { id: 'sub-1' };
-      const propsWithDeleting = {
-        ...defaultProps,
-        subscription,
-        isDeleting: true,
-      };
-
-      // Act
-      render(<SubscriptionToggle {...propsWithDeleting} />);
+      render(<SubscriptionToggle {...propsWithLoading} />);
 
       // Assert
       expect(screen.getByTestId('delete-subscription-cta')).toBeDisabled();
@@ -208,15 +174,16 @@ describe('SubscriptionToggle', () => {
 
     it('should not call onCreate when button is disabled', () => {
       // Arrange
-      const propsWithCreating = {
+      const propsWithLoading = {
         ...defaultProps,
-        isCreating: true,
+        isLoading: true,
       };
 
       // Act
-      render(<SubscriptionToggle {...propsWithCreating} />);
+      render(<SubscriptionToggle {...propsWithLoading} />);
 
       const button = screen.getByTestId('create-subscription-cta');
+      expect(button).toBeDisabled();
       fireEvent.click(button);
 
       // Assert
@@ -226,16 +193,17 @@ describe('SubscriptionToggle', () => {
     it('should not call onDelete when button is disabled', () => {
       // Arrange
       const subscription = { id: 'sub-1' };
-      const propsWithDeleting = {
+      const propsWithLoading = {
         ...defaultProps,
         subscription,
-        isDeleting: true,
+        isLoading: true,
       };
 
       // Act
-      render(<SubscriptionToggle {...propsWithDeleting} />);
+      render(<SubscriptionToggle {...propsWithLoading} />);
 
       const button = screen.getByTestId('delete-subscription-cta');
+      expect(button).toBeDisabled();
       fireEvent.click(button);
 
       // Assert
@@ -244,7 +212,7 @@ describe('SubscriptionToggle', () => {
   });
 
   describe('Default Values', () => {
-    it('should default isCreating to false when not provided', () => {
+    it('should default isLoading to false when not provided for create', () => {
       // Arrange
       const propsWithoutCreating = {
         itemId: 'test-item-1',
@@ -265,7 +233,7 @@ describe('SubscriptionToggle', () => {
       expect(button).not.toBeDisabled();
     });
 
-    it('should default isDeleting to false when not provided', () => {
+    it('should default isLoading to false when not provided for delete', () => {
       // Arrange
       const subscription = { id: 'sub-1' };
       const propsWithoutDeleting = {
@@ -313,13 +281,13 @@ describe('SubscriptionToggle', () => {
       expect(screen.getByTestId('delete-subscription-cta')).toBeInTheDocument();
     });
 
-    it('should use isDeleting for loading when subscription exists', () => {
+    it('should use isLoading for loading when subscription exists', () => {
       // Arrange
       const subscription = { id: 'sub-1' };
       const propsWithDeleting = {
         ...defaultProps,
         subscription,
-        isDeleting: true,
+        isLoading: true,
       };
 
       // Act
@@ -331,11 +299,11 @@ describe('SubscriptionToggle', () => {
       expect(button).toHaveTextContent('Loading...');
     });
 
-    it('should use isCreating for loading when subscription does not exist', () => {
+    it('should use isLoading for loading when subscription does not exist', () => {
       // Arrange
       const propsWithCreating = {
         ...defaultProps,
-        isCreating: true,
+        isLoading: true,
       };
 
       // Act

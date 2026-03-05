@@ -19,14 +19,12 @@ export interface SubscriptionManagerContextValue<TData = unknown, TSubscription 
     subscribeUrl: string;
     itemId: string;
     resourceName: string;
-  }) => void;
+  }) => Promise<void> | void;
   onDeleteSubscription: (params: {
     subscription: TSubscription;
     itemId: string;
     resourceName: string;
-  }) => void;
-  isCreatingSubscription: boolean;
-  isDeletingSubscription: boolean;
+  }) => Promise<void> | void;
   data: TData[] | undefined;
   isSuccess: boolean;
   filteredData: TData[];
@@ -37,6 +35,8 @@ export interface SubscriptionManagerContextValue<TData = unknown, TSubscription 
   hasFilteredData: boolean;
   shouldShowData: boolean;
   handleFilterChange: (filterKey: string, value: string | null) => void;
+  isMutating?: boolean;
+  mutatingItemId?: string | null;
 }
 
 const SubscriptionManagerContext = createContext<SubscriptionManagerContextValue | null>(null);
@@ -68,9 +68,9 @@ interface SubscriptionManagerProviderProps<TData = unknown, TSubscription = unkn
     subscription: TSubscription;
     itemId: string;
     resourceName: string;
-  }) => void;
-  isCreatingSubscription?: boolean;
-  isDeletingSubscription?: boolean;
+  }) => Promise<void> | void;
+  isMutating?: boolean;
+  mutatingItemId?: string | null;
 }
 
 export function SubscriptionManagerProvider<TData = unknown, TSubscription = unknown>({
@@ -82,8 +82,8 @@ export function SubscriptionManagerProvider<TData = unknown, TSubscription = unk
   subscriptionUrls: subscriptionUrlsProp,
   onCreateSubscription: onCreateSubscriptionProp,
   onDeleteSubscription: onDeleteSubscriptionProp,
-  isCreatingSubscription: isCreatingSubscriptionProp = false,
-  isDeletingSubscription: isDeletingSubscriptionProp = false,
+  isMutating,
+  mutatingItemId,
 }: SubscriptionManagerProviderProps<TData, TSubscription>) {
   const [searchQuery, setSearchQueryState] = useState('');
   const [titleFn, setTitleFn] = useState<((item: TData) => string) | undefined>();
@@ -127,8 +127,6 @@ export function SubscriptionManagerProvider<TData = unknown, TSubscription = unk
     subscriptionUrls: subscriptionUrlsProp ?? ({} as SubscriptionUrls),
     onCreateSubscription: onCreateSubscriptionProp ?? (() => {}),
     onDeleteSubscription: onDeleteSubscriptionProp ?? (() => {}),
-    isCreatingSubscription: isCreatingSubscriptionProp,
-    isDeletingSubscription: isDeletingSubscriptionProp,
     data: dataProp,
     isSuccess: isSuccessProp,
     filteredData,
@@ -139,6 +137,8 @@ export function SubscriptionManagerProvider<TData = unknown, TSubscription = unk
     hasFilteredData,
     shouldShowData,
     handleFilterChange: () => {},
+    isMutating,
+    mutatingItemId,
   };
 
   return (

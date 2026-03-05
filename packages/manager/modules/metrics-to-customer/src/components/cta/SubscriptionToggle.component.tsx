@@ -11,10 +11,9 @@ export function SubscriptionToggle<TSubscription = unknown>({
   resourceName,
   subscriptionUrls,
   subscription,
+  isLoading = false,
   onCreate,
   onDelete,
-  isCreating = false,
-  isDeleting = false,
 }: SubscriptionToggleProps<TSubscription>) {
   const { t } = useTranslation([MODULE_NAMESPACES.SUBSCRIPTIONS, NAMESPACES.ERROR]);
 
@@ -37,8 +36,6 @@ export function SubscriptionToggle<TSubscription = unknown>({
       });
     }
   };
-
-  const isLoading = hasSubscription ? isDeleting : isCreating;
 
   return (
     // TODO: Add IAM actions and trigger
