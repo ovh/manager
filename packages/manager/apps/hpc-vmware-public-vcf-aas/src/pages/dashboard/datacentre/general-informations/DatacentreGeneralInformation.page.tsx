@@ -37,6 +37,10 @@ export default function DatacentresGeneralInformationPage() {
     );
   }
 
+  const currentState = vcdDatacentre?.data?.currentState;
+  const displayPublicIpBlocksTile =
+    !!currentState?.vrack && currentState?.commercialRange === 'STANDARD';
+
   return (
     <React.Suspense fallback={<Loading />}>
       <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-10">
@@ -44,7 +48,7 @@ export default function DatacentresGeneralInformationPage() {
           vcdDatacentre={vcdDatacentre?.data}
           vcdOrganization={vcdOrganization?.data}
         />
-        {!!vcdDatacentre?.data?.currentState?.vrack && (
+        {displayPublicIpBlocksTile && (
           <DatacentrePublicIpBlocksTile id={id} vdcId={vdcId} />
         )}
       </div>
