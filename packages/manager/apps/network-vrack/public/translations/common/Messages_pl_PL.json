@@ -1,0 +1,4 @@
+{
+  "common_error": "Wystąpił błąd: {{error}}",
+  "common_error_notfound": "Zasób nie został znaleziony"
+}

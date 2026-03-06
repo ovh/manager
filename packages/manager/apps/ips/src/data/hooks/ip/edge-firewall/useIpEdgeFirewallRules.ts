@@ -69,9 +69,8 @@ export const useIpEdgeNetworkFirewallRules = ({
                 }),
               );
               queryClient.removeQueries({
-                queryKey: getIpEdgeNetworkFirewallRuleDetailsQueryKey(
-                  ruleParams,
-                ),
+                queryKey:
+                  getIpEdgeNetworkFirewallRuleDetailsQueryKey(ruleParams),
                 exact: true,
               });
               return undefined;

@@ -32,14 +32,12 @@ export default function ViewVirtualMacModal() {
     enabled: Boolean(serviceName),
   });
 
-  const {
-    dedicatedServerVmacWithIpResponse,
-    isLoading: isVmacWithIpLoading,
-  } = useGetIpVmacDetails({
-    ip,
-    serviceName,
-    macAddress: ipvmac?.[0]?.macAddress,
-  });
+  const { dedicatedServerVmacWithIpResponse, isLoading: isVmacWithIpLoading } =
+    useGetIpVmacDetails({
+      ip,
+      serviceName,
+      macAddress: ipvmac?.[0]?.macAddress,
+    });
 
   const closeModal = () => {
     trackClick({

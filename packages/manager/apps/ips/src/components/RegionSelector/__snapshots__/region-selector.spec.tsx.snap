@@ -38,523 +38,565 @@ exports[`RegionSelector component > disables region correctly 1`] = `
       </ods-tab>
     </ods-tabs>
     <div
-      class="flex flex-wrap gap-4"
+      class="flex flex-wrap gap-7"
     >
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-par"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-par
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-par
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-par
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-par
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-gra"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-gra
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-gra
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-gra
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-gra
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-rbx
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-rbx
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-sbg
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-sbg
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lim"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/de.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_DE - region-selector-city-name_eu-west-lim
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/de.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lim
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_DE - region-selector-city-name_eu-west-lim
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lim
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-central-waw"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/pl.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_PL - region-selector-city-name_eu-central-waw
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/pl.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-central-waw
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_PL - region-selector-city-name_eu-central-waw
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-central-waw
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-eri"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/gb.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_GB - region-selector-city-name_eu-west-eri
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/gb.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-eri
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_GB - region-selector-city-name_eu-west-eri
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-eri
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-vin"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-vin
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-vin
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-vin
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-vin
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-hil"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-hil
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-hil
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-hil
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-hil
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ca-east-bhs"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/ca.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/ca.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ca-east-bhs
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ca-east-bhs
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-southeast-sgp"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/sg.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/sg.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-southeast-sgp
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-southeast-sgp
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-southeast-syd"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/au.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/au.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-southeast-syd
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-southeast-syd
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-rbx-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-rbx-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-sbg-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-sbg-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
@@ -572,630 +614,681 @@ exports[`RegionSelector component > disables region correctly 1`] = `
           </ods-text>
         </ods-popover>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] cursor-not-allowed bg-neutral-100 w-full min-w-[300px] sm:w-[311px] opacity-40"
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] cursor-not-allowed bg-neutral-100 size-full min-w-[300px] sm:w-[311px] opacity-40"
           color="neutral"
           id="ca-east-tor"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/ca.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_CA - region-selector-city-name_ca-east-tor
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/ca.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ca-east-tor
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_CA - region-selector-city-name_ca-east-tor
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ca-east-tor
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-south-mum"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/in.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_IN - region-selector-city-name_ap-south-mum
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/in.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-south-mum
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_IN - region-selector-city-name_ap-south-mum
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-south-mum
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-preprod"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-preprod
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-preprod
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-2"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-dev-2
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-dev-2
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-1"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-dev-1
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-dev-1
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-bru"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/be.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/be.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-bru
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-bru
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mad"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/es.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/es.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-mad
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-mad
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-gra-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-gra-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-gra-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-dal"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-dal
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-dal
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-lax"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-lax
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-lax
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-chi"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-chi
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-chi
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-nyc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-nyc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-nyc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-mia"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-mia
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-mia
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-pao"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-pao
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-pao
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-den"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-den
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-den
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-den
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-den
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-atl"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-atl
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-atl
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mrs"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-mrs
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-mrs
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
@@ -1208,7 +1301,7 @@ exports[`RegionSelector component > does not break if there is no region at all 
 <DocumentFragment>
   <div>
     <div
-      class="flex flex-wrap gap-4"
+      class="flex flex-wrap gap-7"
     />
   </div>
 </DocumentFragment>
@@ -1252,1152 +1345,1245 @@ exports[`RegionSelector component > renders correctly 1`] = `
       </ods-tab>
     </ods-tabs>
     <div
-      class="flex flex-wrap gap-4"
+      class="flex flex-wrap gap-7"
     >
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-par"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-par
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-par
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-par
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-par
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card_selected hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card_selected hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-gra"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="true"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-gra
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="true"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-gra
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-gra
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-gra
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-rbx
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-rbx
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-rbx
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-sbg
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-sbg
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-sbg
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lim"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/de.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_DE - region-selector-city-name_eu-west-lim
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/de.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lim
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_DE - region-selector-city-name_eu-west-lim
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lim
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-central-waw"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/pl.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_PL - region-selector-city-name_eu-central-waw
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/pl.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-central-waw
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_PL - region-selector-city-name_eu-central-waw
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-central-waw
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-eri"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/gb.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_GB - region-selector-city-name_eu-west-eri
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/gb.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-eri
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_GB - region-selector-city-name_eu-west-eri
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-eri
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-vin"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-vin
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-vin
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-vin
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-vin
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-hil"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-hil
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-hil
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-hil
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-hil
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ca-east-bhs"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/ca.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/ca.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ca-east-bhs
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_CA - region-selector-city-name_ca-east-bhs
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ca-east-bhs
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-southeast-sgp"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/sg.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/sg.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-southeast-sgp
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_SG - region-selector-city-name_ap-southeast-sgp
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-southeast-sgp
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-southeast-syd"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/au.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/au.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-southeast-syd
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_AU - region-selector-city-name_ap-southeast-syd
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-southeast-syd
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-rbx-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-rbx-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-rbx-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-rbx-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-sbg-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-sbg-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-sbg-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-sbg-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ca-east-tor"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/ca.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_CA - region-selector-city-name_ca-east-tor
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/ca.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ca-east-tor
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_CA - region-selector-city-name_ca-east-tor
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ca-east-tor
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="ap-south-mum"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/in.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_IN - region-selector-city-name_ap-south-mum
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/in.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              ap-south-mum
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_IN - region-selector-city-name_ap-south-mum
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                ap-south-mum
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-preprod"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-preprod
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-preprod
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-preprod
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-2"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-dev-2
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-2
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-dev-2
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="labeu-west-1-dev-1"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              labeu-west-1-dev-1
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_labeu-west-1-dev-1
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                labeu-west-1-dev-1
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-bru"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/be.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/be.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-bru
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_BE - region-selector-city-name_eu-west-lz-bru
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-bru
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mad"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/es.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/es.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-mad
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_ES - region-selector-city-name_eu-west-lz-mad
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-mad
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-gra-snc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-gra-snc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-gra-snc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-gra-snc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-dal"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-dal
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-dal
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-dal
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-lax"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-lax
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-lax
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-lax
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-chi"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-chi
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-chi
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-chi
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-nyc"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-nyc
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-nyc
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-nyc
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-mia"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-mia
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-mia
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-mia
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-pao"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-pao
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-pao
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-pao
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-west-lz-den"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-west-lz-den
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-west-lz-den
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-west-lz-den
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-west-lz-den
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="us-east-lz-atl"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/us.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/us.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              us-east-lz-atl
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_US - region-selector-city-name_us-east-lz-atl
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                us-east-lz-atl
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>
       <div>
         <ods-card
-          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md w-full min-w-[300px] sm:w-[311px] "
+          class="flex cursor-pointer p-3 transition-shadow region_card m-[1px] hover:shadow-md size-full min-w-[300px] sm:w-[311px] "
           color="neutral"
           id="eu-west-lz-mrs"
           tab-index="0"
           tabindex="0"
         >
-          <span
-            class="mr-3 flex h-full"
-          >
-            <ods-radio
-              is-checked="false"
-              name=""
-            />
-          </span>
-          <span
-            class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
-            style="background-image: url(flags/fr.svg);"
-          />
           <div
-            class="flex flex-col"
+            class="flex gap-3 p-4"
           >
-            <ods-text
-              class="block"
-              preset="heading-5"
+            <div
+              class="flex h-full gap-4"
             >
-              region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
-            </ods-text>
-            <ods-text
-              preset="span"
+              <ods-radio
+                is-checked="false"
+                name="mr-4 align-middle"
+              />
+              <span
+                class="h-[17px] w-[24px] shadow-md shadow-[#000E9C33] mr-3 bg-cover"
+                style="background-image: url(flags/fr.svg);"
+              />
+            </div>
+            <div
+              class="flex flex-wrap gap-4"
             >
-              eu-west-lz-mrs
-            </ods-text>
+              <ods-text
+                preset="heading-5"
+              >
+                region-selector-country-name_FR - region-selector-city-name_eu-west-lz-mrs
+              </ods-text>
+              <ods-text
+                preset="span"
+              >
+                eu-west-lz-mrs
+              </ods-text>
+            </div>
           </div>
         </ods-card>
       </div>

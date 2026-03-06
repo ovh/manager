@@ -70,6 +70,22 @@ export const getAdditionalIpsProductSettings = ({
         : null,
   });
 
+export const getVrackBandwidthUpgradeProductSettings = ({
+  planCode,
+  serviceName,
+}: {
+  planCode: string;
+  serviceName: string;
+}) =>
+  JSURL.stringify({
+    productId: 'vrack',
+    planCode,
+    serviceName,
+    duration: 'P1M',
+    pricingMode: 'default',
+    quantity: 1,
+  });
+
 export const offerPossibilitiesByServiceType = {
   [IpOffer.blockAdditionalIp]: [
     ServiceType.dedicatedCloud,

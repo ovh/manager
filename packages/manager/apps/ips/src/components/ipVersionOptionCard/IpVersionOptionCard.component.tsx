@@ -52,22 +52,24 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
   return (
     <OdsCard
       tabIndex={0}
-      className={`flex flex-col justify-between transition-shadow ${stateStyle} ${cardStyle} ${className}`}
+      className={`flex max-w-[320px] flex-col justify-between transition-shadow ${stateStyle} ${cardStyle} ${className}`}
       {...handleClick(() => !isDisabled && onClick?.())}
       color={ODS_CARD_COLOR.neutral}
     >
       <OdsText
-        className="justify-left m-4 flex"
+        className="mx-5 my-7 flex items-center"
         preset={ODS_TEXT_PRESET.heading4}
       >
-        <span className="mr-3 h-full align-middle">
-          <OdsRadio name="" is-checked={isSelected}></OdsRadio>
-        </span>
+        <OdsRadio
+          className="mr-5 align-middle"
+          name=""
+          isChecked={isSelected}
+        />
         <span>{title}</span>
       </OdsText>
       {description && (
         <OdsText
-          className="m-4 mt-0 flex justify-center text-left"
+          className="m-5 mt-0 flex justify-center text-left"
           preset={ODS_TEXT_PRESET.paragraph}
         >
           {description}
@@ -78,7 +80,7 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
           <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
         </div>
       ) : (
-        <span className="card-children rounded-b-md p-4">
+        <span className="card-children rounded-b-md px-5 py-7">
           {!isStartingPrice && price === 0 ? (
             <span className="free-price">{t('free_price')}</span>
           ) : (
@@ -86,7 +88,7 @@ export const IpVersionOptionCard: React.FC<IpVersionOptionCardProps> = ({
               isStartingPrice
               price={price}
               suffix={priceSuffix}
-              shouldOverrideStyle={true}
+              shouldOverrideStyle
             />
           )}
         </span>

@@ -9,7 +9,7 @@ import { Links } from '@ovh-ux/manager-react-components';
 
 import { PriceDescription } from '@/components/PriceDescription/PriceDescription';
 import { useCatalogLowestPrice } from '@/data/hooks/catalog';
-import { useGuideUtils } from '@/utils';
+import { TRANSLATION_NAMESPACES, useGuideUtils } from '@/utils';
 
 interface IpOptionRowProps {
   feature: string;
@@ -29,7 +29,7 @@ const BulletPointList = ({ content, feature }: BulletPointListProps) => {
 
 export function IpOptionTable() {
   const { t } = useTranslation('onboarding');
-  const { t: tOrder } = useTranslation('order');
+  const { t: tOrder } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { ipv4LowestPrice, ipv6LowestPrice } = useCatalogLowestPrice();
   const { links } = useGuideUtils();
   const optionList = [

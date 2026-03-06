@@ -59,21 +59,19 @@ export default function UpsertDescriptionModal() {
     navigate(`..?${search.toString()}`);
   };
 
-  const {
-    mutate: upsertIpDescription,
-    isPending: upsertIpDescriptionPending,
-  } = useUpsertIpDescription({
-    ip: ip ?? ipGroup,
-    description,
-    onSuccess: () => {
-      addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'edit_description_success',
-      });
-      closeModal();
-    },
-  });
+  const { mutate: upsertIpDescription, isPending: upsertIpDescriptionPending } =
+    useUpsertIpDescription({
+      ip: ip ?? ipGroup,
+      description,
+      onSuccess: () => {
+        addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'edit_description_success',
+        });
+        closeModal();
+      },
+    });
 
   useEffect(() => {
     setDescription(ipDetails?.description || '');

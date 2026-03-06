@@ -12,7 +12,7 @@ const isIpv6Plan = (plan: CatalogIpPlan | PccCatalogPlan) =>
 const getLowestPlanPrice = (lowestPrice: number, plan: CatalogIpPlan) => {
   const currentPrice = plan?.details?.pricings?.default[0]?.priceInUcents;
 
-  if (!currentPrice) {
+  if (!currentPrice && currentPrice !== 0) {
     return lowestPrice;
   }
 
