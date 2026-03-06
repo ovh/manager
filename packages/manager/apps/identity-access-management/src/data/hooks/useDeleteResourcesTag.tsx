@@ -2,13 +2,16 @@ import { useNotifications } from '@ovh-ux/manager-react-components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { IamResource, deleteResourceTag } from '../api/iam-resources';
-import { getAllIamResourceQueryKey } from './useIamResources';
+import {
+  getAllIamResourceQueryKey,
+  UseUpdateIamResourceResponse,
+} from './useIamResources';
 import { getAllIamTagsQueryKey } from '../api/get-iam-tags';
-import { NotificationList } from '@/components/notificationList/NotificationList.component';
+import { ResourcesBulkResult } from '@/components/resourcesBulkResult/ResourcesBulkResult.component';
 
 export type UseDeleteResourcesTagParams = {
   onSuccess?: (
-    data: unknown,
+    data: UseUpdateIamResourceResponse,
     variables: {
       resources: IamResource[];
       tagKey: string;
@@ -55,7 +58,7 @@ export const useDeleteResourcesTag = ({
           if (result instanceof Error) {
             formatted.error.push({
               resource: resources[currentIndex],
-              error: result.message,
+              error: result,
             });
           } else {
             formatted.success.push({
@@ -80,16 +83,18 @@ export const useDeleteResourcesTag = ({
 
       if (success.length > 0 && error.length > 0) {
         addWarning(
-          <NotificationList
-            items={error.map(({ resource }: { resource: IamResource }) => ({
-              label: resource.displayName,
-              id: resource.id,
-            }))}
+          <ResourcesBulkResult
+            result={{ success, error }}
             error={t('resourcesUnassignTagSomeError')}
           />,
         );
       } else if (error.length > 0) {
-        addError(t('resourcesUnassignTagError'));
+        addError(
+          <ResourcesBulkResult
+            result={{ success, error }}
+            error={t('resourcesUnassignTagError')}
+          />,
+        );
       } else {
         addSuccess(t('resourcesUnassignTagSuccess'));
       }
