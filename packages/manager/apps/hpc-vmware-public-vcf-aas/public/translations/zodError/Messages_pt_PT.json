@@ -1,4 +1,6 @@
 {
   "ZOD_ERROR_IPV4_OR_IPV4CIDR_INVALID": "Deve ser um endereço IPv4 válido ou um CIDR IPv4 (por exemplo, 192.168.0.1 ou 192.168.0.0/24)",
-  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Foi detetada uma sobreposição com outro intervalo de rede, selecione outro valor"
+  "ZOD_ERROR_IPV4_OR_IPV4CIDR_OVERLAP": "Foi detetada uma sobreposição com outro intervalo de rede, selecione outro valor",
+  "ZOD_ERROR_VLAN_ID_HELPER": "O ID da VLAN deve estar compreendida entre {{minId}} e {{maxId}}",
+  "ZOD_ERROR_VLAN_ID_ALREADY_IN_USE": "O ID da VLAN já está a ser utilizado"
 }
