@@ -473,5 +473,6 @@
   "country_ZA": "Südafrika",
   "country_ZM": "Sambia",
   "country_ZW": "Simbabwe",
-  "common_field_label_required": "Obligatorisch"
+  "common_field_label_required": "Obligatorisch",
+  "country_AC": "Ascensioninsel"
 }

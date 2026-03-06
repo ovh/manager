@@ -43,18 +43,16 @@
                 >
                 </label>
                 <div
-                    class="input-group mt-1"
+                    class="input-group mt-1 w-50"
                     data-ng-repeat="number in AgentsOvhPabxCtrl.addAgentForm.numbers track by $index"
                 >
-                    <input
-                        id="agentNumber"
-                        class="form-control"
-                        type="text"
-                        placeholder="{{:: 'telephony_alias_configuration_agents_number_placeholder' | translate }}"
-                        required
-                        data-ng-pattern="/^.*$/"
-                        data-ng-model="AgentsOvhPabxCtrl.addAgentForm.numbers[$index]"
-                    />
+                    <phonenumber
+                        id="agentNumber-{{ $index }}"
+                        name="agentNumber-{{ $index }}"
+                        data-model="AgentsOvhPabxCtrl.addAgentForm.numbers[$index]"
+                        data-without-label="true"
+                        required="true"
+                    ></phonenumber>
                     <span class="input-group-btn">
                         <button
                             type="button"

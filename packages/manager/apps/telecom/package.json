@@ -155,6 +155,7 @@
     "json3": "3.3.3",
     "jsplumb": "2.12.0",
     "leaflet": "0.7.x",
+    "libphonenumber-js": "1.12.8",
     "lodash": "^4.17.15",
     "matchmedia-ng": "^1.0.8",
     "matchmedia-polyfill": "^0.3.2",
