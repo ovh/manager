@@ -49,6 +49,12 @@
                     data-translate="netapp_dashboard_snapshot_policies"
                 ></span>
             </oui-header-tabs-item>
+            <oui-header-tabs-item
+                href="{{:: $ctrl.replicationsLink }}"
+                data-active="$ctrl.currentActiveLink() === $ctrl.replicationsLink"
+            >
+                <span data-translate="netapp_dashboard_replications"></span>
+            </oui-header-tabs-item>
         </oui-header-tabs>
     </oui-header>
     <div data-ovh-alert></div>
