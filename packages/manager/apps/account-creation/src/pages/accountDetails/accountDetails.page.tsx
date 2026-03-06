@@ -23,6 +23,7 @@ import {
   OdsSkeleton,
   OdsText,
   OdsMessage,
+  OdsDatepicker,
 } from '@ovhcloud/ods-components/react';
 import {
   PHONE_NUMBER_COUNTRY_ISO_CODE,
@@ -437,6 +438,107 @@ function AccountDetailsForm({
                 />
               </>
             )}
+          {rules?.sex?.mandatory && (
+            <Controller
+              control={control}
+              name="sex"
+              render={({ field }) => (
+                <OdsFormField>
+                  <label
+                    htmlFor={field.name}
+                    slot="label"
+                    aria-label={t('account_details_field_sex')}
+                  >
+                    <OdsText preset="caption">
+                      {t('account_details_field_sex')}
+                      {rules?.sex?.mandatory && ' *'}
+                    </OdsText>
+                  </label>
+                  <div className="w-full flex flex-row gap-4 mb-4">
+                    {rules?.sex.in?.map((sex: string) => (
+                      <div key={sex} className="flex leading-none gap-4">
+                        <OdsRadio
+                          name={field.name}
+                          id={field.name}
+                          value={sex}
+                          isChecked={field.value === sex}
+                          onOdsChange={field.onChange}
+                          className="cursor-pointer"
+                        ></OdsRadio>
+                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                          {t(`account_details_sex_option_${sex}`)}
+                        </OdsText>
+                      </div>
+                    ))}
+                  </div>
+                </OdsFormField>
+              )}
+            />
+          )}
+          {rules?.birthDay?.mandatory && (
+            <Controller
+              control={control}
+              name="birthDay"
+              render={({ field }) => {
+                const birthDayRegex = rules?.birthDay?.regularExpression
+                  ? new RegExp(rules.birthDay.regularExpression)
+                  : null;
+                return (
+                  <OdsFormField>
+                    <label
+                      htmlFor={field.name}
+                      slot="label"
+                      aria-label={t('account_details_field_birthDay')}
+                    >
+                      <OdsText preset="caption">
+                        {t('account_details_field_birthDay')}
+                        {rules?.birthDay?.mandatory && ' *'}
+                      </OdsText>
+                    </label>
+                    <OdsDatepicker
+                      name={field.name}
+                      id={field.name}
+                      value={
+                        field.value &&
+                        (!birthDayRegex ||
+                          birthDayRegex.test(String(field.value)))
+                          ? new Date(field.value as string)
+                          : undefined
+                      }
+                      hasError={!!errors.birthDay}
+                      onOdsChange={(e) => {
+                        const date = e.detail?.value as Date | undefined;
+                        if (
+                          date instanceof Date &&
+                          !Number.isNaN(date.getTime())
+                        ) {
+                          const y = date.getFullYear();
+                          const m = String(date.getMonth() + 1).padStart(
+                            2,
+                            '0',
+                          );
+                          const d = String(date.getDate()).padStart(2, '0');
+                          field.onChange(`${y}-${m}-${d}`);
+                        }
+                      }}
+                      onOdsBlur={field.onBlur}
+                    />
+                    {errors.birthDay && rules?.birthDay && (
+                      <OdsText
+                        className="text-critical leading-[0.8]"
+                        preset="caption"
+                      >
+                        {renderTranslatedZodError(
+                          errors.birthDay.message,
+                          rules?.birthDay,
+                        )}
+                      </OdsText>
+                    )}
+                  </OdsFormField>
+                );
+              }}
+            />
+          )}
         </div>
 
         {(rules?.organisation ||
