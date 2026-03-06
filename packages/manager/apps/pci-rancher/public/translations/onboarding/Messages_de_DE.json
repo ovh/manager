@@ -20,5 +20,15 @@
   "managedRancherServiceGettingStartedTitle2": "Managed Rancher Service erstellen, aktualisieren und darauf zugreifen",
   "managedRancherServiceGettingStartedTitleDescription2": "Hier erfahren Sie, wie Sie einen Managed Rancher Service erstellen, aktualisieren und darauf zugreifen.",
   "managedRancherServiceGettingStartedTitle3": "Den Lebenszyklus des Managed Rancher Service verstehen",
-  "managedRancherServiceGettingStartedTitleDescription3": "Erfahren Sie mehr über den Lebenszyklus von Rancher-Versionen bei Managed Rancher Service."
+  "managedRancherServiceGettingStartedTitleDescription3": "Erfahren Sie mehr über den Lebenszyklus von Rancher-Versionen bei Managed Rancher Service.",
+  "freeTrialEligibilityTitle": "🎉 Sie sind für eine kostenlose Testversion berechtigt",
+  "freeTrialCreditStandard": "{{amount}} Guthaben für den Standardplan (~1 Monat)",
+  "freeTrialCreditOvhEdition": "{{amount}} Guthaben für den OVHcloud-Plan (~1 Monat)",
+  "freeTrialCreditApplied": "Das Guthaben wird automatisch auf Ihren ersten Dienst angewendet.",
+  "orderButtonLabelFreeTrial": "Beginnen Sie meine kostenlose Testversion",
+  "rancherGuidesLink": "Zugriff auf Rancher-Leitfäden",
+  "videoTitle": "Rancher-Präsentationsvideo",
+  "freeTrialBannerMessageLine1": "Sie sind für eine kostenlose Testversion berechtigt.",
+  "freeTrialBannerMessageLine2": "Profitieren Sie von einem Kredit*, der einen Monat lang gültig ist und dem monatlichen Preis von 20 vCPU entspricht, um unsere Rancher Standard- und OVHcloud Edition-Pläne zu testen.",
+  "freeTrialDisclaimer": "*Der Kredit wird automatisch auf Ihren stündlichen Verbrauch angewendet. Sobald dieses Guthaben aufgebraucht ist oder der Testmonat beendet ist, übernimmt die Abrechnung Ihrer Dienste."
 }

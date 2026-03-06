@@ -67,12 +67,22 @@ export const isVersionDeprecated = (version: RancherVersion) => {
   return version.status === 'UNAVAILABLE' && version.cause === 'DEPRECATED';
 };
 
-export const getRancherPlanDescription = (rancherPlan: RancherPlan['name']) => {
+export const getRancherPlanDescription = (
+  rancherPlan: RancherPlan['name'],
+): Array<string> | null => {
   switch (rancherPlan) {
     case 'STANDARD':
-      return 'createRancherStandardPlanDescription';
+      return [
+        'createRancherStandardPlanDescription_1',
+        'createRancherStandardPlanDescription_2',
+      ];
     case 'OVHCLOUD_EDITION':
-      return 'createRancherOVHCloudPlanDescription';
+      return [
+        'createRancherOVHCloudPlanDescription_1',
+        'createRancherOVHCloudPlanDescription_2',
+        'createRancherOVHCloudPlanDescription_3',
+        'createRancherOVHCloudPlanDescription_4',
+      ];
     default:
       return null;
   }
