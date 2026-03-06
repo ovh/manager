@@ -61,5 +61,9 @@
   "account_details_field_corporationType_srl": "SRL",
   "account_details_field_corporationType_ss": "SS",
   "account_details_field_corporationType_personnelle": "Pessoal",
-  "account_details_field_nationalIdentificationNumber": "Número de identificação nacional"
+  "account_details_field_nationalIdentificationNumber": "Número de identificação nacional",
+  "account_details_field_sex": "Género",
+  "account_details_field_birthDay": "Data de nascimento",
+  "account_details_sex_option_female": "Feminino",
+  "account_details_sex_option_male": "Masculino"
 }
