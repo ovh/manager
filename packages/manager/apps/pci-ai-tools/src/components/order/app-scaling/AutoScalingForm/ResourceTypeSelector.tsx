@@ -20,7 +20,8 @@ export function ResourceTypeSelector() {
   const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
-    <div className="xl:col-start-2 xl:row-start-1 w-full">
+    <div className="flex flex-col gap-2 w-full">
+      <p className="text-sm font-semibold">{t('triggerSectionTitle')}</p>
       <FormField
         control={control}
         name="resourceType"

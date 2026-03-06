@@ -1,4 +1,6 @@
+import '@testing-library/jest-dom';
 import { vi } from 'vitest';
+import { createElement } from 'react';
 import { PointerEvent } from './helpers/pointerEvent';
 
 // use a custom pointerEvent as jest does not implement it.
@@ -31,9 +33,11 @@ vi.mock('@ovh-ux/manager-core-api', () => {
   };
 });
 
+const translateMock = (key: string) => key;
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => key,
+    t: translateMock,
   }),
 }));
 
@@ -47,6 +51,61 @@ vi.mock('@datatr-ux/uxlib', async (importOriginal) => {
       toast: toastMock,
       dismiss: vi.fn(),
     })),
+  };
+});
+
+type OdsQuantityMockProps = {
+  ariaLabel?: string;
+  value?: number | null;
+  onOdsChange?: (event: { detail: { value?: number } }) => void;
+  onOdsBlur?: () => void;
+  hasError?: boolean;
+  min?: number;
+  max?: number;
+  step?: number;
+} & Record<string, unknown>;
+
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const mod =
+    await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
+
+  return {
+    ...mod,
+    OdsQuantity: ({
+      ariaLabel,
+      value,
+      onOdsChange,
+      onOdsBlur,
+      hasError: _hasError,
+      min,
+      max,
+      step,
+      ...props
+    }: OdsQuantityMockProps) => {
+      const hasDecimalStep =
+        typeof step === 'number' && Number.isFinite(step) && step % 1 !== 0;
+
+      return createElement('input', {
+        ...props,
+        role: 'spinbutton',
+        type: 'number',
+        inputMode: hasDecimalStep ? 'decimal' : 'numeric',
+        'aria-label': ariaLabel,
+        'aria-valuemin': min != null ? String(min) : undefined,
+        'aria-valuemax': max != null ? String(max) : undefined,
+        min,
+        max,
+        step,
+        value: value ?? '',
+        onBlur: onOdsBlur,
+        onChange: (event: { target: { value: string } }) => {
+          const inputValue = event.target.value;
+          onOdsChange?.({
+            detail: { value: inputValue === '' ? undefined : Number(inputValue) },
+          });
+        },
+      });
+    },
   };
 });
 
