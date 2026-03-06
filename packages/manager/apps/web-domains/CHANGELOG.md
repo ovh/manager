@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.14.0...@ovh-ux/manager-web-domains-app@1.15.0) (2026-03-06)
+
+
+### Features
+
+* **web-domains:** fix read only mod ([f217bb4](https://github.com/ovh/manager/commit/f217bb4eeed7f3a99f54701ce8c8edf1868ac828)), closes [#PUWEBPT-128](https://github.com/ovh/manager/issues/PUWEBPT-128)
+
+
+
+
+
 # [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.13.1...@ovh-ux/manager-web-domains-app@1.14.0) (2026-03-05)
 
 
