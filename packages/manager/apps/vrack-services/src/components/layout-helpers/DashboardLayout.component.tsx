@@ -1,18 +1,18 @@
 import React from 'react';
-import {
-  Outlet,
-  NavLink,
-  useLocation,
-  useNavigate,
-  useParams,
-} from 'react-router-dom';
-import { OdsTabs, OdsTab } from '@ovhcloud/ods-components/react';
+
+import { NavLink, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
-import { BaseLayout, ChangelogButton } from '@ovh-ux/manager-react-components';
-import { OperationMessages } from '../feedback-messages/OperationMessages.component';
-import { SuccessMessages } from '../feedback-messages/SuccessMessage.component';
+
+import { Tab, TabList, Tabs } from '@ovhcloud/ods-react';
+
+import { BaseLayout, ChangelogMenu } from '@ovh-ux/muk';
+
 import { CHANGELOG_LINKS, TRANSLATION_NAMESPACES } from '@/utils/constants';
+
 import { Breadcrumb } from '../Breadcrumb.component';
+import { OperationMessages } from '../feedback-messages/OperationMessages.component';
+import { SuccessMessages } from '../feedback-messages/SuccessMessages.component';
 
 export type DashboardTabItemProps = {
   name: string;
@@ -34,29 +34,27 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (location.pathname === '') {
+    if (location.pathname === '' && tabs.length && tabs[0]) {
       setActivePanel(tabs[0].name);
       navigate(tabs[0].to);
     } else {
       const activeTab = tabs.find(
         (tab) =>
           tab.to === location.pathname ||
-          tab.pathMatchers?.some((pathMatcher) =>
-            pathMatcher.test(location.pathname),
-          ),
+          tab.pathMatchers?.some((pathMatcher) => pathMatcher.test(location.pathname)),
       );
       if (activeTab) {
         setActivePanel(activeTab.name);
       }
     }
-  }, [location.pathname]);
+  }, [location.pathname, navigate, tabs]);
 
   return (
     <BaseLayout
       breadcrumb={<Breadcrumb />}
       header={{
         title: t('dashboardPageTitle'),
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+        changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
       description={t('dashboardPageDescription')}
       message={
@@ -66,22 +64,17 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ tabs }) => {
         </>
       }
       tabs={
-        <OdsTabs>
-          {tabs.map((tab: DashboardTabItemProps) => (
-            <OdsTab
-              key={`osds-tab-${tab.name}`}
-              isSelected={activePanel === tab.name}
-            >
-              <NavLink
-                to={tab.to}
-                className="no-underline"
-                onClick={tab.onClick}
-              >
-                {tab.title}
-              </NavLink>
-            </OdsTab>
-          ))}
-        </OdsTabs>
+        <Tabs value={activePanel}>
+          <TabList>
+            {tabs.map((tab: DashboardTabItemProps) => (
+              <Tab value={tab.name} key={`osds-tab-${tab.name}`}>
+                <NavLink to={tab.to} className="no-underline" onClick={tab.onClick}>
+                  {tab.title}
+                </NavLink>
+              </Tab>
+            ))}
+          </TabList>
+        </Tabs>
       }
     >
       <Outlet />

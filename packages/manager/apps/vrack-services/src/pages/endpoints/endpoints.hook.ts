@@ -1,10 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  ButtonType,
-  PageLocation,
-  useOvhTracking,
-} from '@ovh-ux/manager-react-shell-client';
-import { urls } from '@/routes/routes.constants';
+
+import { ButtonType, PageLocation, useOvhTracking } from '@ovh-ux/manager-react-shell-client';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 
 export const useNavigateToCreateEndpointPage = () => {
   const { trackClick } = useOvhTracking();
@@ -17,6 +15,6 @@ export const useNavigateToCreateEndpointPage = () => {
       buttonType: ButtonType.button,
       actions: ['create-endpoint'],
     });
-    navigate(urls.createEndpoint.replace(':id', id));
+    navigate(urls.createEndpoint.replace(':id', id || ''));
   };
 };
