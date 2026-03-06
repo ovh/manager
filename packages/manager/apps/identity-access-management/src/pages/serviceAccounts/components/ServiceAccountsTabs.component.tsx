@@ -13,12 +13,12 @@ export function ServiceAccountsTabs() {
   return (
     <OdsTabs className="mb-4">
       <OdsTab>
-        <NavLink className="no-underline" to={usersHref}>
+        <NavLink className="no-underline" to={usersHref} reloadDocument>
           {t('iam_identities_users')}
         </NavLink>
       </OdsTab>
       <OdsTab>
-        <NavLink className="no-underline" to={groupsHref}>
+        <NavLink className="no-underline" to={groupsHref} reloadDocument>
           {t('iam_identities_user_groups')}
         </NavLink>
       </OdsTab>
@@ -28,7 +28,7 @@ export function ServiceAccountsTabs() {
         </NavLink>
       </OdsTab>
       <OdsTab>
-        <NavLink className="no-underline" to={ssoHref}>
+        <NavLink className="no-underline" to={ssoHref} reloadDocument>
           {t('iam_identities_sso')}
         </NavLink>
       </OdsTab>
