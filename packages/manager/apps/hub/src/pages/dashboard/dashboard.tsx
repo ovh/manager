@@ -88,9 +88,9 @@ export default function Dashboard() {
           <div className="mb-12">
             {/* Skip content target */}
             <div className="skiptarget">
-              <a id="maincontent" data-testid="main_content">
+              <span id="maincontent" tabIndex={-1} data-testid="main_content">
                 -
-              </a>
+              </span>
             </div>
             {/* /Skip content target */}
             <div className="pt-8">

@@ -164,7 +164,7 @@ export default function PaymentStatus() {
                     key={`billing_service_skeleton_${line}`}
                     data-testid="payment_status_skeleton_table_row"
                   >
-                    <td scope="row" className="!p-5">
+                    <td className="!p-5">
                       <OsdsSkeleton
                         className="mb-3 block"
                         data-testid="service_name_skeleton"
@@ -178,7 +178,7 @@ export default function PaymentStatus() {
                         size={ODS_SKELETON_SIZE.xs}
                       />
                     </td>
-                    <td scope="row" className="!p-5">
+                    <td className="!p-5">
                       <div className="mb-1 lg:inline">
                         <OsdsSkeleton
                           className="mb-5 block"
@@ -238,7 +238,7 @@ export default function PaymentStatus() {
                       <tbody>
                         {services.map((service: BillingService) => (
                           <tr key={`billing_service_${service.id}`} data-testid="billing_service">
-                            <td scope="row" className="!p-4">
+                            <td className="!p-4">
                               {service.url ? (
                                 <OsdsLink
                                   className="mb-3 block break-all"
@@ -268,7 +268,7 @@ export default function PaymentStatus() {
                                 {tProducts(`manager_hub_products_${service.serviceType}`)}
                               </OsdsText>
                             </td>
-                            <td scope="row" className="!min-w-min !p-4">
+                            <td className="!min-w-min !p-4">
                               <div className="mb-1 lg:inline">
                                 <Suspense
                                   fallback={
