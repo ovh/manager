@@ -18,6 +18,11 @@
   "billing_resiliate_terminateAtEngagementDate_error_us": "Une erreur est survenue lors de la demande de résiliation à la date de fin d'engagement de ce service :",
   "billing_resiliate_terminateAtExpirationDate_success": "La demande de résiliation de ce service à la date d'expiration a bien été prise en compte.",
   "billing_resiliate_terminateAtExpirationDate_error": "Une erreur est survenue lors de la demande de résiliation à expiration de ce service :",
+  "billing_resiliate_autorenewInProgress": "Content waiting autorenewInProgress",
+  "billing_resiliate_autorenewInProgress_us": "Content waiting autorenewInProgress_us",
+  "billing_resiliate_autorenewInProgress_error_us": "Content waiting autorenewInProgress_error_us",
+  "billing_resiliate_autorenewInProgress_error": "Content waiting autorenewInProgress_error",
+  "billing_resiliate_autorenewInProgress_success": "Content waiting autorenewInProgress_success",
   "billing_resiliate_error": "Une erreur est survenue lors de la demande de résiliation :",
   "billing_resiliate_confirmation_mail_to_be_sent": "Un e-mail vous confirmant la résiliation de votre service vous sera envoyé"
 }
