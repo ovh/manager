@@ -6,6 +6,7 @@ import {
   createAttachedDomainService,
   createAttachedDomainsService,
   getAddDomainExisting,
+  getAttachedDomains,
   getDomainService,
   getDomainZone,
   getHostingService,
@@ -34,6 +35,13 @@ export const useGetHostingService = (serviceName: string) =>
   useQuery({
     queryKey: ['hosting', 'web', serviceName],
     queryFn: () => getHostingService(serviceName),
+    enabled: Boolean(serviceName),
+  });
+
+export const useGetAttachedDomains = (serviceName: string) =>
+  useQuery<string[]>({
+    queryKey: ['hosting', 'web', serviceName, 'attachedDomain'],
+    queryFn: () => getAttachedDomains(serviceName),
     enabled: Boolean(serviceName),
   });
 
