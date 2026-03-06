@@ -114,5 +114,6 @@
   "survey_link": "Gefällt Ihnen das?",
   "survey_link_tooltip": "Gefällt Ihnen diese Seite? Teilen Sie uns Ihre Anmerkungen mit!",
   "listingColumnsIpGameFirewallConfigured": "Konfiguriert",
-  "listingColumnsIpGameFirewallConfiguredTooltip": "Die Game Firewall ist konfiguriert. Klicken Sie hier, um die Konfiguration erneut vorzunehmen."
+  "listingColumnsIpGameFirewallConfiguredTooltip": "Die Game Firewall ist konfiguriert. Klicken Sie hier, um die Konfiguration erneut vorzunehmen.",
+  "listingNoResultFoundIpv6": "Keine Ergebnisse (Klicken <Link>hier.</Link> um einen Reverse-DNS zu konfigurieren, damit Ihre IP gelistet wird)"
 }

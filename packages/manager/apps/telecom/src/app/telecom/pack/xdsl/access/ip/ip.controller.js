@@ -43,15 +43,25 @@ export default /* @ngInject */ function XdslAccessIpCtrl(
    * @returns {Boolean}
    */
   this.checkIp = function checkIp(ip) {
-    const ipv4 = TucIpAddress.address4(ip);
-    if (!ipv4.isValid()) {
+    if (!ip) {
       return false;
     }
-    const range = TucIpAddress.address4(decodeURIComponent($stateParams.block));
-    if (!range.isValid()) {
+
+    try {
+      const ipv4 = TucIpAddress.address4(ip);
+      if (!ipv4.isValid()) {
+        return false;
+      }
+      const range = TucIpAddress.address4(
+        decodeURIComponent($stateParams.block),
+      );
+      if (!range.isValid()) {
+        return false;
+      }
+      return ipv4.isInSubnet(range);
+    } catch (error) {
       return false;
     }
-    return ipv4.isInSubnet(range);
   };
 
   /**
