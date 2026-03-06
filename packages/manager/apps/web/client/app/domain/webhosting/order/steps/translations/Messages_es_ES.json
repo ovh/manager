@@ -80,5 +80,6 @@
   "domain_webhosting_order_payment_checkout_error": "Se ha producido un error al abonar el importe de su cesta: {{ message }}",
   "domain_webhosting_order_payment_checkout_error_unknown": "Se ha producido un error al abonar el importe de su cesta.",
   "domain_webhosting_order_payment_checkout_success": "La contratación de su alojamiento compartido se ha registrado correctamente. Se ha cargado un importe de {{price}} a su cuenta {{accountId}}. El producto se renovará automáticamente el {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver mi factura</a>",
-  "domain_webhosting_order_bill_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. El alojamiento se activará una vez que lo haya validado."
+  "domain_webhosting_order_bill_success": "La <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">orden de pedido</a> se ha generado correctamente. El alojamiento se activará una vez que lo haya validado.",
+  "domain_webhosting_order_duration": "{{ meses }} meses"
 }
