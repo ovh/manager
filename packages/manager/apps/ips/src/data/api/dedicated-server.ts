@@ -78,6 +78,71 @@ export const getDedicatedServerServiceInfos = (
 ): Promise<ApiResponse<DedicatedServerServiceInfos>> =>
   apiClient.v6.get(`/dedicated/server/${serviceName}/serviceInfos`);
 
+export type DedicatedServerNetworkSpecifications = {
+  bandwidth: {
+    OvhToInternet: { unit: 'Mbps'; value: number };
+    InternetToOvh: { value: number; unit: 'Mbps' };
+    OvhToOvh: { value: number; unit: 'Mbps' };
+    type: string;
+  };
+  vmac: {
+    quota: number;
+    supported: boolean;
+  };
+  ola: {
+    availableModes: [
+      {
+        name: string;
+        default: boolean;
+        interfaces: [
+          { aggregation: boolean; type: string; count: number },
+          { aggregation: boolean; count: number; type: string },
+        ];
+      },
+      {
+        interfaces: [{ aggregation: boolean; count: number; type: string }];
+        default: boolean;
+        name: string;
+      },
+    ];
+    supportedModes: string[];
+    available: boolean;
+  };
+  switching: { name: string };
+  traffic: {
+    outputQuotaUsed: number | null;
+    outputQuotaSize: number | null;
+    inputQuotaSize: number | null;
+    resetQuotaDate: string | null;
+    inputQuotaUsed: number | null;
+    isThrottled: boolean;
+  };
+  vrack: { bandwidth: { unit: 'Mbps'; value: number }; type: string };
+  routing: {
+    ipv6: {
+      network: string;
+      ip: string;
+      gateway: string;
+    };
+    ipv4: {
+      ip: string;
+      network: string;
+      gateway: string;
+    };
+  };
+  connection: { unit: 'Mbps'; value: number };
+};
+
+export const getDedicatedServerNetworkSpecifications = (
+  serviceName?: string,
+): Promise<ApiResponse<DedicatedServerNetworkSpecifications>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/specifications/network`);
+
+export const getDedicatedServerVmac = (
+  serviceName?: string,
+): Promise<ApiResponse<string[]>> =>
+  apiClient.v6.get(`/dedicated/server/${serviceName}/virtualMac`);
+
 export type OrderableIp = {
   optionRequired?: 'professionalUse' | null;
   blockSizes: number[];

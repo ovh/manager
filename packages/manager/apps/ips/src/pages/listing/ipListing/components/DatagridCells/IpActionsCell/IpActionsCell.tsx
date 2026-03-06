@@ -23,6 +23,7 @@ import {
   useGetIpdetails,
   useIpHasAlerts,
   useIpHasVmac,
+  useCheckVmacAvailability,
 } from '@/data/hooks';
 import {
   canAggregateByoipIp,
@@ -131,6 +132,11 @@ export const IpActionsCell = ({
   const { isVmacAlreadyExist, isLoading: isVmacLoading } = useIpHasVmac({
     serviceName,
     ip,
+    enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
+  });
+
+  const { data: vmacAvailability } = useCheckVmacAvailability({
+    serviceName,
     enabled: Boolean(ipDetails) && hasDedicatedServiceAttachedToIp,
   });
 
@@ -256,7 +262,9 @@ export const IpActionsCell = ({
         isDisabled:
           !hasDedicatedServiceAttachedToIp ||
           isVmacAlreadyExist ||
-          isVmacLoading,
+          isVmacLoading ||
+          !vmacAvailability?.canAddVmac ||
+          !vmacAvailability?.supported,
       },
     !isGroup &&
       ipaddr.IPv4.isIPv4(ipAddress) &&
