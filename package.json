@@ -113,5 +113,10 @@
   "engines": {
     "node": "^22",
     "yarn": ">=1.21.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "@microsoft/api-extractor": "7.56.3"
+    }
   }
 }
