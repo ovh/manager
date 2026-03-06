@@ -120,28 +120,35 @@ function ZonePageInner() {
     'dnsZone',
   );
   const urn = dnsZoneIAMResources?.[0]?.urn;
-  const { isPending: isIamPending, isAuthorized } = useAuthorizationIam(
-    ['dnsZone:apiovh:record/create', 'dnsZone:apiovh:record/delete'],
+
+  // Single IAM call for all zone actions
+  const { isPending: isIamPending, data: iamResponse } = useAuthorizationIam(
+    [
+      'dnsZone:apiovh:record/get',
+      'dnsZone:apiovh:record/create',
+      'dnsZone:apiovh:record/delete',
+      'dnsZone:apiovh:record/edit',
+      'dnsZone:apiovh:soa/edit',
+      'dnsZone:apiovh:reset',
+      'dnsZone:apiovh:import',
+    ],
     urn ?? '',
   );
 
-  const {
-    isPending: isIamSoaPending,
-    isAuthorized: canEditSoa,
-  } = useAuthorizationIam(['dnsZone:apiovh:soa/edit'], urn ?? '');
-  const canModifyTtl = !isIamSoaPending && canEditSoa;
+  const authorizedActions = iamResponse?.authorizedActions ?? [];
+  const isActionAuthorized = useCallback(
+    (action: string) => !isIamPending && authorizedActions.includes(action),
+    [isIamPending, authorizedActions],
+  );
 
-  const {
-    isPending: isIamResetPending,
-    isAuthorized: canDoReset,
-  } = useAuthorizationIam(['dnsZone:apiovh:reset'], urn ?? '');
-  const canReset = !isIamResetPending && canDoReset;
-
-  const {
-    isPending: isIamImportZonePending,
-    isAuthorized: canDoImportZone,
-  } = useAuthorizationIam(['dnsZone:apiovh:import'], urn ?? '');
-  const canImportZone = !isIamImportZonePending && canDoImportZone;
+  const canReadRecords = isActionAuthorized('dnsZone:apiovh:record/get');
+  const canModifyRecords =
+    isActionAuthorized('dnsZone:apiovh:record/create') &&
+    isActionAuthorized('dnsZone:apiovh:record/delete') &&
+    isActionAuthorized('dnsZone:apiovh:record/edit');
+  const canModifyTtl = isActionAuthorized('dnsZone:apiovh:soa/edit');
+  const canReset = isActionAuthorized('dnsZone:apiovh:reset');
+  const canImportZone = isActionAuthorized('dnsZone:apiovh:import');
 
   const { addInfo, clearNotifications } = useNotifications();
 
@@ -302,6 +309,7 @@ function ZonePageInner() {
     {
       id: 1,
       label: t('zone_page_modify_entry'),
+      isDisabled: !canModifyRecords,
       onClick: () => {
         setShowAddEntryDiv(false);
         setExpandedState((prev) => {
@@ -315,6 +323,7 @@ function ZonePageInner() {
       id: 2,
       label: t('zone_page_delete_entry'),
       color: BUTTON_COLOR.critical,
+      isDisabled: !canModifyRecords,
       onClick: () => {
         setSelectedRecord(record);
         setOpenModal('delete-entry');
@@ -382,8 +391,8 @@ function ZonePageInner() {
       {zoneModals}
       <BannerStatus serviceName={serviceName ?? ''} />
       <Notifications />
-      {!isIamPending && !isAuthorized && <UnauthorizedBanner />}
-      {!isIamPending && isAuthorized && (
+      {!isIamPending && !canReadRecords && <UnauthorizedBanner />}
+      {!isIamPending && canReadRecords && (
         <ZoneBanners
           serviceName={serviceName ?? ''}
           domainZone={domainZone}
@@ -392,7 +401,7 @@ function ZonePageInner() {
           isLoadingRecords={!data}
         />
       )}
-      {!isFetchingDomainZone && domainZone && isAuthorized && (
+      {!isFetchingDomainZone && domainZone && canReadRecords && (
         <>
           <div className="mb-4">
             <div className="mb-4">
@@ -412,9 +421,8 @@ function ZonePageInner() {
           </div>
           <div
             ref={quickAddRef}
-            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${
-              showAddEntryDiv ? '' : 'hidden'
-            }`}
+            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${showAddEntryDiv ? '' : 'hidden'
+              }`}
           >
             <QuickAddEntry
               serviceName={serviceName ?? ''}
@@ -427,9 +435,11 @@ function ZonePageInner() {
             columns={columns}
             topbar={
               <div className="flex gap-2">
-                <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>
-                  {t('zone_page_add_entry')}
-                </Button>
+                {canModifyRecords && (
+                  <Button size={BUTTON_SIZE.sm} onClick={handleToggleAddEntry}>
+                    {t('zone_page_add_entry')}
+                  </Button>
+                )}
                 <ActionMenu
                   key={openModal}
                   label={t('zone_page_actions')}
@@ -437,7 +447,7 @@ function ZonePageInner() {
                   id="zone-action-menu"
                   popoverPosition={POPOVER_POSITION.bottomEnd}
                 />
-                {hasSelectedRows && (
+                {hasSelectedRows && canModifyRecords && (
                   <Button
                     variant={BUTTON_VARIANT.outline}
                     color={BUTTON_COLOR.critical}
