@@ -6,6 +6,7 @@ export default {
     catalog: '<',
     goBackLink: '<',
     goBack: '<',
+    region: '<',
   },
   controller,
   template,
