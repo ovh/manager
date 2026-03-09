@@ -55,7 +55,7 @@
   "exchange_dashboard_diag_ptrv6_tooltip_error": "Bei der Reverse-Auflösung der IPv6-Adresse ist ein Problem aufgetreten. Bitte kontaktieren Sie den Support.",
   "exchange_dashboard_billing": "Abrechnung",
   "exchange_dashboard_expiration": "Verlängerung",
-  "exchange_dashboard_ssl_expiration": "SSL Ablaufdatum",
+  "exchange_dashboard_ssl_expiration": "Läuft ab:",
   "exchange_dashboard_stats": "Statistiken",
   "exchange_dashboard_disk_usage": "Speicherplatz",
   "exchange_action_configuration": "Verwaltung der Sicherheitseinstellungen",
@@ -1737,5 +1737,7 @@
   "exchange_tab_TASKS_SET_SEND_CONNECTOR": "Aktualisierung des Sende-Connectors",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE": "Löschung des Exchange-Dienstes",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE_AUTHORIZED_IP": "Löschung der autorisierten IP",
-  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Löschung der privaten VM"
+  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Löschung der privaten VM",
+  "exchange_dashboard_ssl_certificate": "SSL-Zertifikat",
+  "exchange_dashboard_ssl_certificate_ok": "Aktiv"
 }
