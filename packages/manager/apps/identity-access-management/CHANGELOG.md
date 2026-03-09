@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.8.1...@ovh-ux/manager-identity-access-management-app@0.8.2) (2026-03-09)
+
+
+### Bug Fixes
+
+* **iam:** add translation for ServiceAccount delete modal ([abe1a6b](https://github.com/ovh/manager/commit/abe1a6bd7ff0278b2b6ef115f9e815a7766b7553)), closes [#MAIAM-81](https://github.com/ovh/manager/issues/MAIAM-81)
+* **iam:** fix links for ServiceAccounts tabs ([c9ed269](https://github.com/ovh/manager/commit/c9ed26906004fd9c4b95501345569b5370c91b42)), closes [#MAIAM-81](https://github.com/ovh/manager/issues/MAIAM-81)
+
+
+
+
+
 ## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.8.0...@ovh-ux/manager-identity-access-management-app@0.8.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-identity-access-management-app
