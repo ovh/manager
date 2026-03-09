@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.26.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.9...@ovh-ux/manager-telecom@16.26.10) (2026-03-09)
+
+
+### Bug Fixes
+
+* **access.ip:** check ip is empty before checking the value ([287c358](https://github.com/ovh/manager/commit/287c358b1009ab73224de79c633022afb12a1e69)), closes [#MANAGER-21070](https://github.com/ovh/manager/issues/MANAGER-21070)
+
+
+
+
+
 ## [16.26.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.8...@ovh-ux/manager-telecom@16.26.9) (2026-03-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-telecom

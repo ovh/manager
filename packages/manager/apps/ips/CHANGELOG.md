@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.5.2...@ovh-ux/manager-ips-app@0.6.0) (2026-03-09)
+
+
+### Bug Fixes
+
+* **ips:** removing redundant subnet info from the datagrid ([11bc5af](https://github.com/ovh/manager/commit/11bc5af378b5e1da5ddd0790fce2e6e2cb065982)), closes [#MANAGER-20845](https://github.com/ovh/manager/issues/MANAGER-20845)
+
+
+### Features
+
+* **ips:** add button to add reverse DNS on ipv6 empty result ([73a1b4e](https://github.com/ovh/manager/commit/73a1b4e7e1b892fcc31dfc3198f6a2317b0bdd2a)), closes [#MANAGER-20559](https://github.com/ovh/manager/issues/MANAGER-20559)
+* **ips:** add port range support ([417ce7e](https://github.com/ovh/manager/commit/417ce7e71b154e73903b6e380957004166c79e6c)), closes [#MANAGER-20168](https://github.com/ovh/manager/issues/MANAGER-20168)
+
+
+
+
+
 ## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.5.1...@ovh-ux/manager-ips-app@0.5.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-ips-app

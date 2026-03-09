@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.30.2...@ovh-ux/manager-iplb@1.31.0) (2026-03-09)
+
+
+### Features
+
+* **iplb:** update url to access configo federated modules ([1f48236](https://github.com/ovh/manager/commit/1f48236e2dea7d6d6c9e4270e9bf29f66553716b)), closes [#MANAGER-20884](https://github.com/ovh/manager/issues/MANAGER-20884)
+
+
+
+
+
 ## [1.30.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-iplb@1.30.1...@ovh-ux/manager-iplb@1.30.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-iplb
