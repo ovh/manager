@@ -55,7 +55,7 @@
   "exchange_dashboard_diag_ptrv6_tooltip_error": "Il reverse del tuo indirizzo IPv6 presenta un problema. Contatta il supporto OVH",
   "exchange_dashboard_billing": "Fatturazione",
   "exchange_dashboard_expiration": "Rinnovo",
-  "exchange_dashboard_ssl_expiration": "Scadenza SSL",
+  "exchange_dashboard_ssl_expiration": "Scadenza:",
   "exchange_dashboard_stats": "Statistiche",
   "exchange_dashboard_disk_usage": "Spazio disco",
   "exchange_action_configuration": "Gestisci la politica di sicurezza",
@@ -1737,5 +1737,7 @@
   "exchange_tab_TASKS_SET_SEND_CONNECTOR": "Aggiornamento del connettore di invio",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE": "Eliminazione del servizio Exchange",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE_AUTHORIZED_IP": "Eliminazione dell'IP autorizzato",
-  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Eliminazione della VM privata"
+  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Eliminazione della VM privata",
+  "exchange_dashboard_ssl_certificate": "Certificato SSL",
+  "exchange_dashboard_ssl_certificate_ok": "Attivo"
 }

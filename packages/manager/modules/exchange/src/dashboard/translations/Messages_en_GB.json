@@ -55,7 +55,7 @@
   "exchange_dashboard_diag_ptrv6_tooltip_error": "There is a problem with the reverse IP lookup for your IPv6 address. Please contact support.",
   "exchange_dashboard_billing": "Billing",
   "exchange_dashboard_expiration": "Renewal",
-  "exchange_dashboard_ssl_expiration": "SSL expiry",
+  "exchange_dashboard_ssl_expiration": "Expiry:",
   "exchange_dashboard_stats": "Statistics",
   "exchange_dashboard_disk_usage": "Disk space",
   "exchange_action_configuration": "Manage security policy",
@@ -1737,5 +1737,7 @@
   "exchange_tab_TASKS_SET_SEND_CONNECTOR": "Update Send connector",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE": "Delete Exchange service",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE_AUTHORIZED_IP": "Delete authorised IP",
-  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Delete private VM"
+  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Delete private VM",
+  "exchange_dashboard_ssl_certificate": "SSL Certificate",
+  "exchange_dashboard_ssl_certificate_ok": "Active"
 }
