@@ -94,7 +94,13 @@ export default class OvhManagerNetAppOrderCtrl {
       };
     });
 
-    [this.selectedRegion] = this.catalogByLocation;
+    if (this.region) {
+      this.selectedRegion = this.catalogByLocation.find(
+        (elem) => elem.regionName === this.region,
+      );
+    } else {
+      [this.selectedRegion] = this.catalogByLocation;
+    }
   }
 
   onSizeStepFocus() {
