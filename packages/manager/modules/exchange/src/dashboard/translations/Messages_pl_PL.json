@@ -55,7 +55,7 @@
   "exchange_dashboard_diag_ptrv6_tooltip_error": "Wystąpił problem z rewersem dla adresu IPv6. Skontaktuj się z Działem Wsparcia Klienta.",
   "exchange_dashboard_billing": "Płatności",
   "exchange_dashboard_expiration": "Odnowienie",
-  "exchange_dashboard_ssl_expiration": "Zakończenie usługi SSL",
+  "exchange_dashboard_ssl_expiration": "Wygaśnięcie:",
   "exchange_dashboard_stats": "Statystyki",
   "exchange_dashboard_disk_usage": "Przestrzeń dyskowa",
   "exchange_action_configuration": "Zarządzaj polityką bezpieczeństwa",
@@ -1737,5 +1737,7 @@
   "exchange_tab_TASKS_SET_SEND_CONNECTOR": "Aktualizacja konektora wysyłania",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE": "Usunięcie usługi Exchange",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE_AUTHORIZED_IP": "Usunięcie autoryzowanego adresu IP",
-  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Usunięcie prywatnej wirtualnej maszyny"
+  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Usunięcie prywatnej wirtualnej maszyny",
+  "exchange_dashboard_ssl_certificate": "Certyfikat SSL",
+  "exchange_dashboard_ssl_certificate_ok": "Aktywny"
 }

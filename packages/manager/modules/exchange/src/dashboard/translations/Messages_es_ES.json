@@ -55,7 +55,7 @@
   "exchange_dashboard_diag_ptrv6_tooltip_error": "Existe un problema en la resolución inversa de su dirección IPv6. Por favor, contacte con el soporte.",
   "exchange_dashboard_billing": "Facturación",
   "exchange_dashboard_expiration": "Renovación",
-  "exchange_dashboard_ssl_expiration": "Expiración SSL",
+  "exchange_dashboard_ssl_expiration": "Expiración:",
   "exchange_dashboard_stats": "Estadísticas",
   "exchange_dashboard_disk_usage": "Espacio en disco",
   "exchange_action_configuration": "Editar la política de seguridad",
@@ -1737,5 +1737,7 @@
   "exchange_tab_TASKS_SET_SEND_CONNECTOR": "Actualización del conector de envío",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE": "Eliminación del servicio Exchange",
   "exchange_tab_TASKS_DELETE_EXCHANGE_SERVICE_AUTHORIZED_IP": "Eliminación de la IP autorizada",
-  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Eliminación de la MV privada"
+  "exchange_tab_TASKS_DESTROY_PRIVATE_VM": "Eliminación de la MV privada",
+  "exchange_dashboard_ssl_certificate": "Certificado SSL",
+  "exchange_dashboard_ssl_certificate_ok": "Activo"
 }
