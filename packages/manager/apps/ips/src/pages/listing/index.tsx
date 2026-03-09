@@ -1,20 +1,17 @@
+import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
+import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
+import { Message, MessageBody, MessageIcon } from '@ovhcloud/ods-react';
+import { useTranslation } from 'react-i18next';
 import {
   Outlet,
   useLocation,
   useNavigate,
   useResolvedPath,
 } from 'react-router-dom';
-
-import { useTranslation } from 'react-i18next';
-
-import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
-
-import { BaseLayout, Notifications } from '@ovh-ux/manager-react-components';
-
 import { useHeader } from '@/components/Header/Header';
 import { SurveyLink } from '@/components/SurveyLink/SurveyLink';
 import { subRoutes } from '@/routes/routes.constant';
-
+import { useGuideUtils } from '@/utils/useGuideUtils';
 export type DashboardTabItemProps = {
   title: string;
   to: string;
@@ -22,7 +19,7 @@ export type DashboardTabItemProps = {
 
 export default function Listing() {
   const { t } = useTranslation('listing');
-
+  const { links } = useGuideUtils();
   const location = useLocation();
   const header = useHeader(t('title'));
   const navigate = useNavigate();
@@ -40,6 +37,27 @@ export default function Listing() {
 
   return (
     <BaseLayout
+      message={
+        <>
+          <Message
+            color={'information'}
+            dismissible={false}
+            className="mb-4 w-full p-4"
+          >
+            <MessageIcon name="circle-info" className="pr-4" />
+            <MessageBody>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: t('intervention_banner', {
+                    link: links.virtualMacLink?.link,
+                  }),
+                }}
+              />
+            </MessageBody>
+          </Message>
+          <Notifications />
+        </>
+      }
       header={header}
       tabs={
         <>
@@ -64,7 +82,6 @@ export default function Listing() {
           </OdsTabs>
         </>
       }
-      message={<Notifications />}
     >
       <Outlet />
     </BaseLayout>
