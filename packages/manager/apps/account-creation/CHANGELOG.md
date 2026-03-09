@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.1...@ovh-ux/manager-account-creation-app@0.13.2) (2026-03-09)
+
+
+### Bug Fixes
+
+* **account-creation:** add conditional gender and birthday ([0a7f82a](https://github.com/ovh/manager/commit/0a7f82a0018df029db4b9aeac2bd0c80dffaa3f1)), closes [#MANAGER-20917](https://github.com/ovh/manager/issues/MANAGER-20917)
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.0...@ovh-ux/manager-account-creation-app@0.13.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-account-creation-app
