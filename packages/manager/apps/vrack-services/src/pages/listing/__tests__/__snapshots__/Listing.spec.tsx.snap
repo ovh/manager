@@ -1,0 +1,268 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Vrack Services listing test suite > should display a listing of vrack services 1`] = `
+<div>
+  <div
+    class="py-8 px-4 md:py-9 md:px-10 md:mt-2"
+  >
+    <div />
+    <div
+      class="my-[24px]"
+    >
+      <header
+        class="flex items-start justify-between"
+      >
+        <h1
+          class="_text_b5nz7_6 _text--heading-1_b5nz7_20"
+          data-ods="text"
+        >
+          vRack Services
+        </h1>
+        <div
+          class="flex flex-wrap justify-end items-center"
+        >
+          <button
+            aria-controls=":r1:"
+            aria-expanded="false"
+            aria-haspopup="dialog"
+            class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--ghost_6crpx_327 _popover-trigger_zwyzw_2"
+            data-ods="popover-trigger"
+            data-part="trigger"
+            data-scope="popover"
+            data-state="closed"
+            dir="ltr"
+            id="popover::r0::trigger"
+            role="button"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="_icon_1iyhc_2 _icon--github_1iyhc_319"
+              data-ods="icon"
+              role="presentation"
+            />
+            Roadmap & Changelog
+          </button>
+        </div>
+      </header>
+    </div>
+    <span
+      class="_text_b5nz7_6 _text--span_b5nz7_72 inline-block mb-[16px]"
+      data-ods="text"
+    >
+      Le produit vRack Services vous permet de bénéficier de services réseau sur le vRack. En créant un Service Endpoint, vous pouvez exposer, avec une adresse IP privée, un service managé par OVHcloud sur votre vRack.
+    </span>
+    <div
+      class="mb-5 max-w-[800px]"
+    />
+    <button
+      class="_button_6crpx_2 _button--primary_6crpx_276 _button--sm_6crpx_209 _button--outline_6crpx_435 mb-8 block"
+      data-ods="button"
+      type="button"
+    >
+      <span
+        class="_icon_1iyhc_2 _icon--plus_1iyhc_445"
+        data-ods="icon"
+        role="presentation"
+      />
+      Créer un vRack Services
+    </button>
+    <div
+      class="overflow-auto relative w-full"
+      style="min-height: 150px; max-height: 100%; height: 100%;"
+    >
+      <table
+        class="_table_4upov_2 _table--md_4upov_54 table table-fixed w-full"
+        data-ods="table"
+      >
+        <thead
+          class="sticky top-[-1px] z-10 bg-white overflow-hidden"
+        >
+          <tr>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+            >
+              <div
+                class="cursor-pointer select-none h-[20px]  h-auto"
+                data-testid="header-displayName"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                >
+                  Nom
+                </span>
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-up_1iyhc_37"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+            >
+              <div
+                class="cursor-pointer select-none h-[20px]  h-auto"
+                data-testid="header-productStatus"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                >
+                  Statut
+                </span>
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+            >
+              <div
+                class="cursor-pointer select-none h-[20px]  h-auto"
+                data-testid="header-region"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                >
+                  Région
+                </span>
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+            >
+              <div
+                class="cursor-pointer select-none h-[20px]  h-auto"
+                data-testid="header-vrackId"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                >
+                  vRack
+                </span>
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 150px; min-width: 20px; max-width: 9007199254740991px;"
+            >
+              <div
+                class="cursor-pointer select-none h-[20px]  h-auto"
+                data-testid="header-createdAt"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                >
+                  Date de création
+                </span>
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+            <th
+              class="text-left pl-4 whitespace-normal wrap-break-word"
+              style="word-break: break-word; width: 50px; min-width: 50px; max-width: 50px;"
+            >
+              <div
+                class=" h-[20px]  h-auto"
+                data-testid="header-actions"
+              >
+                <span
+                  class="whitespace-normal wrap-break-word"
+                  style="word-break: break-word;"
+                />
+                <span
+                  class="align-middle inline-block pl-1 -mt-1"
+                >
+                  <span
+                    class="_icon_1iyhc_2 _icon--arrow-down_1iyhc_19 invisible"
+                    data-ods="icon"
+                    role="presentation"
+                  />
+                </span>
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          class="relative p-0 overflow-hidden"
+          style="height: 343px;"
+        />
+      </table>
+    </div>
+    <div
+      class="flex justify-center items-center pt-3"
+    >
+      <div
+        class="flex-1"
+      />
+      <div
+        class="flex-[2] flex justify-center"
+      />
+      <div
+        class="flex-1 flex justify-end"
+      >
+        <div
+          class="text-right h-full flex items-bottom justify-end"
+        >
+          <p
+            class="_text_b5nz7_6 _text--paragraph_b5nz7_61"
+            data-ods="text"
+          >
+            7
+             
+            sur 7
+             
+            résultats
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,21 +1,32 @@
 import React from 'react';
-import {
-  ODS_BUTTON_SIZE,
-  ODS_BUTTON_VARIANT,
-  ODS_MESSAGE_COLOR,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsMessage, OdsButton, OdsText } from '@ovhcloud/ods-components/react';
-import { PageLayout } from '@ovh-ux/manager-react-components';
-import { Outlet, Navigate, useParams } from 'react-router-dom';
+
+import { Navigate, Outlet, useParams } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
+
+import {
+  BUTTON_SIZE,
+  BUTTON_VARIANT,
+  Button,
+  ICON_NAME,
+  Icon,
+  MESSAGE_COLOR,
+  Message,
+  MessageBody,
+  MessageIcon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
+
 import { useVrackService } from '@ovh-ux/manager-network-common';
-import { SubnetDatagrid } from './SubnetDatagrid.component';
-import { useNavigateToCreateSubnetPage } from '../subnets.hook';
-import { urls } from '@/routes/routes.constants';
-import { hasSubnet } from '@/utils/vrack-services';
+import { BaseLayout } from '@ovh-ux/muk';
+
+import { urls } from '@/routes/RoutesAndUrl.constants';
 import { TRANSLATION_NAMESPACES } from '@/utils/constants';
+import { hasSubnet } from '@/utils/vrack-services';
+
+import { useNavigateToCreateSubnetPage } from '../subnets.hook';
+import { SubnetDatagrid } from './SubnetDatagrid.component';
 
 export default function SubnetsListing() {
   const { id } = useParams();
@@ -25,39 +36,41 @@ export default function SubnetsListing() {
   const { data: vs } = useVrackService();
 
   if (!hasSubnet(vs)) {
-    return <Navigate to={urls.subnetsOnboarding.replace(':id', id)} />;
+    return <Navigate to={urls.subnetsOnboarding.replace(':id', id || '')} />;
   }
 
   return (
     <>
-      <PageLayout>
-        <OdsMessage
-          isDismissible={false}
-          className="block mt-4"
-          color={ODS_MESSAGE_COLOR.information}
-        >
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {t('betaSubnetLimitMessage')}
-          </OdsText>
-        </OdsMessage>
-        <OdsButton
+      <BaseLayout>
+        <div className="flex flex-col gap-8">
+          <Message dismissible={false} className="mt-4" color={MESSAGE_COLOR.information}>
+            <MessageIcon name="circle-info" />
+            <MessageBody>
+              <Text preset={TEXT_PRESET.paragraph}>{t('betaSubnetLimitMessage')}</Text>
+            </MessageBody>
+          </Message>
+        </div>
+        <Button
           // Disabled because for the beta user can only have 1 subnet per vRack Services
-          isDisabled={hasSubnet(vs)}
+          disabled={hasSubnet(vs)}
           // TODO: Uncomment after the beta
           // isDisabled={!isEditable(vrackServices)}
           className="my-4"
-          size={ODS_BUTTON_SIZE.sm}
-          variant={ODS_BUTTON_VARIANT.outline}
+          size={BUTTON_SIZE.sm}
+          variant={BUTTON_VARIANT.outline}
           onClick={navigateToCreateSubnetPage}
-          label={t('createSubnetButtonLabel')}
-          icon={ODS_ICON_NAME.plus}
-        />
+        >
+          <Icon name={ICON_NAME.plus} />
+          {t('createSubnetButtonLabel')}
+        </Button>
 
         <section>
           <SubnetDatagrid />
         </section>
-      </PageLayout>
-      <Outlet />
+      </BaseLayout>
+      <React.Suspense>
+        <Outlet />
+      </React.Suspense>
     </>
   );
 }
