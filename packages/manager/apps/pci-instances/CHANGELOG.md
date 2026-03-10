@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.16.0...@ovh-ux/manager-pci-instances-app@0.16.1) (2026-03-10)
+
+
+### Bug Fixes
+
+* **pci-instances:** update instance actions DTO ([78a2470](https://github.com/ovh/manager/commit/78a247092c99984ccbf541ce532f19f1214ed5cc)), closes [#TAPC-6037](https://github.com/ovh/manager/issues/TAPC-6037)
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.15.2...@ovh-ux/manager-pci-instances-app@0.16.0) (2026-03-09)
 
 
