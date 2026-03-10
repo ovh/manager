@@ -5,9 +5,7 @@ import {
   useQueries,
 } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   getDomainAnycastOption,
@@ -85,8 +83,6 @@ export const useGetDomainZone = (
   };
 };
 
-
-
 export const useGetDnsOption = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainOption>({
     queryKey: ['option', 'anycast', serviceName],
@@ -135,8 +131,8 @@ export const useTerminateAnycastMutation = (
       addSuccess(
         t('domain_dns_tab_terminate_anycast_success', {
           action: restore
-            ? t('domain_action_restore')
-            : t('domain_action_terminate'),
+            ? t('domain_action_restored')
+            : t('domain_action_terminated'),
         }),
       );
     },
@@ -380,9 +376,9 @@ export const useGetDnssecStatus = (
 
   if (
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-    DnsConfigurationTypeEnum.EXTERNAL ||
+      DnsConfigurationTypeEnum.EXTERNAL ||
     resourceCurrentState?.dnsConfiguration?.configurationType ===
-    DnsConfigurationTypeEnum.MIXED
+      DnsConfigurationTypeEnum.MIXED
   ) {
     // If the configuration is not hosted by OVH, check the registry declaration to know whether DNSSEC is activated
     let status: DnssecStatusEnum;
