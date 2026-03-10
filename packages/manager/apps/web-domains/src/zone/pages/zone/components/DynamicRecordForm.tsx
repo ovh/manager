@@ -15,7 +15,12 @@ import {
   Text,
   TEXT_PRESET,
 } from '@ovhcloud/ods-react';
-import type { AddEntrySchemaType } from '@/zone/utils/formSchema.utils';
+import {
+  type AddEntrySchemaType,
+  getTargetDisplayValue,
+  RECORD_TYPES_WITHOUT_TTL,
+} from '@/zone/utils/formSchema.utils';
+import { TtlSelectEnum } from '@/common/enum/zone.enum';
 import type {
   FieldConfig,
   FormRowConfig,
@@ -23,6 +28,7 @@ import type {
   RecordFormConfig,
 } from '@/zone/types/recordFormConfig.types';
 import { RECORD_FORM_CONFIGS } from '@/zone/utils/recordFormConfig';
+import { RecordPreviewBox } from './RecordPreviewBox';
 import { SubDomainField } from '../add/components/fields/SubDomainField';
 import { TtlField } from '../add/components/fields/TtlField';
 import { TextField } from '../add/components/fields/TextField';
@@ -315,6 +321,53 @@ function RenderMessage({
 }
 
 // ---------------------------------------------------------------------------
+// Record preview
+// ---------------------------------------------------------------------------
+
+function RecordPreview({
+  recordType,
+  watch,
+  domainSuffix,
+  config,
+}: {
+  readonly recordType: string;
+  readonly watch: UseFormWatch<AddEntrySchemaType>;
+  readonly domainSuffix: string;
+  readonly config: RecordFormConfig;
+}) {
+  const { t } = useTranslation('zone');
+  const allValues = watch();
+
+  const subDomainRaw = typeof allValues.subDomain === 'string' ? allValues.subDomain : '';
+  const subDomain = config.subDomainSuffix
+    ? `${subDomainRaw}${config.subDomainSuffix}`
+    : subDomainRaw;
+
+  const name = !subDomain || subDomain === '@'
+    ? `${domainSuffix}.`
+    : `${subDomain}.${domainSuffix}.`;
+
+  const hasCustomTtl =
+    !RECORD_TYPES_WITHOUT_TTL.includes(recordType) &&
+    allValues.ttlSelect === TtlSelectEnum.CUSTOM &&
+    allValues.ttl;
+  const ttlPart = hasCustomTtl ? String(allValues.ttl) : null;
+
+  const target = getTargetDisplayValue(recordType, allValues);
+  const displayTarget = recordType === 'TXT' && target ? `"${target}"` : (target || '…');
+
+  const parts = [name, ttlPart, 'IN', recordType, displayTarget].filter(Boolean);
+  const record = parts.join('\u2002\u2002');
+
+  return (
+    <RecordPreviewBox
+      label={t('zone_page_form_record_preview_label')}
+      record={record}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main component
 // ---------------------------------------------------------------------------
 
@@ -403,6 +456,12 @@ export function DynamicRecordForm({
           {t(config.infoKey)}
         </Message>
       )}
+      <RecordPreview
+        recordType={recordType}
+        watch={watch}
+        domainSuffix={domainSuffix}
+        config={config}
+      />
     </>
   );
 }
