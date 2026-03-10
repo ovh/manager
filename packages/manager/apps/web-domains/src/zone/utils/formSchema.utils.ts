@@ -126,6 +126,11 @@ export const RECORD_TYPES_TARGET_WITH_TRAILING_DOT: string[] = Object.values(Rec
  *  (prevents pure-numeric values like "1" or "123.456"). Optional trailing dot. */
 const HOSTNAME_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*\.?$/;
 
+/** Same as HOSTNAME_REGEX but allows underscore-prefixed labels (e.g. _domainkey,
+ *  _dmarc). Used for record types where underscore labels are valid per DNS practice
+ *  (NS, CNAME). Mirrors the old canBeginWithUnderscore + canContainsUnderscore flags. */
+const HOSTNAME_UNDERSCORE_REGEX = /^(?=.*[a-zA-Z])[a-zA-Z0-9_](?:[a-zA-Z0-9_-]*[a-zA-Z0-9_])?(?:\.[a-zA-Z0-9_](?:[a-zA-Z0-9_-]*[a-zA-Z0-9_])?)*\.?$/;
+
 /** Hexadecimal string (SSHFP fingerprint, TLSA certificate data). */
 const HEX_REGEX = /^[0-9a-fA-F]+$/;
 
@@ -275,6 +280,17 @@ function createFormSchemas(t: (key: string, params?: Record<string, unknown>) =>
         .regex(HOSTNAME_REGEX, zone('zone_page_form_target_host_valid'));
       return required ? s : s.optional();
     },
+    /** Same as host but allows underscore-prefixed labels (e.g. _domainkey).
+     *  Used for NS and CNAME, matching the old canBeginWithUnderscore behaviour. */
+    hostUnderscore: (required: boolean) => {
+      const s = z
+        .string({ message: requiredMsg })
+        .trim()
+        .min(1, minMsg(1))
+        .max(253, maxMsg(253))
+        .regex(HOSTNAME_UNDERSCORE_REGEX, zone('zone_page_form_target_host_valid'));
+      return required ? s : s.optional();
+    },
     stringRequired: z.string({ message: requiredMsg }).trim().min(1, minMsg(1)),
     stringOptional: z.string({ message: requiredMsg }).optional(),
     numOpt,
@@ -419,6 +435,7 @@ function genericFieldSchema(
   if (kind === 'ipv4') return s.ipv4(required);
   if (kind === 'ipv6') return s.ipv6(required);
   if (kind === 'host') return s.host(required);
+  if (kind === 'host-underscore') return s.hostUnderscore(required);
 
   // -- Typed fields --
   if (f?.type === 'number') {

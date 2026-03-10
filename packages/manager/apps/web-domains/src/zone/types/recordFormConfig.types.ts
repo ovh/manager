@@ -112,4 +112,4 @@ export type RecordFormConfig = {
   readonly infoKey?: string;
 };
 
-export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host';
+export type FieldValidationKind = 'ipv4' | 'ipv6' | 'host' | 'host-underscore';
