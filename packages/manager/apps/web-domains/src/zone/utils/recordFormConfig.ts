@@ -175,7 +175,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   NS: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain_ns',
     subDomainRequired: true,
-    validation: { target: 'host' },
+    validation: { target: 'host-underscore' },
     rows: [
       {
         fields: [
@@ -196,7 +196,7 @@ export const RECORD_FORM_CONFIGS: Readonly<Record<string, RecordFormConfig>> = {
   CNAME: {
     subDomainTooltipKey: 'zone_page_tooltip_subdomain_cname',
     subDomainHelperKey: 'zone_page_form_subdomain_helper_cname',
-    validation: { target: 'host' },
+    validation: { target: 'host-underscore' },
     rows: [
       {
         fields: [
