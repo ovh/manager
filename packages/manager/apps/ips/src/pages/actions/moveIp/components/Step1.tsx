@@ -16,10 +16,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
 import { ComboboxServiceItem } from '@/components/ComboboxServiceItem/ComboboxServiceItem.component';
 import { MoveIpAvailableDestinationsResponse } from '@/data/api';
-import { PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
-import { useGetProductServices } from '@/data/hooks';
 import { ipParkingOptionValue } from '@/types';
 import { TRANSLATION_NAMESPACES } from '@/utils';
+import { useCheckVmacAvailability, useGetProductServices } from '@/data/hooks';
+import { IpTypeEnum, PRODUCT_PATHS_AND_CATEGORIES } from '@/data/constants';
 
 type Step1Props = {
   ip: string;
@@ -29,6 +29,8 @@ type Step1Props = {
   setDestinationService: React.Dispatch<
     React.SetStateAction<string | undefined>
   >;
+  destinationError?: string;
+  setDestinationError: React.Dispatch<React.SetStateAction<string>>;
   nextHopList: string[];
   nextHop?: string;
   setNextHop: React.Dispatch<React.SetStateAction<string | undefined>>;
@@ -40,14 +42,37 @@ export default function Step1({
   availableDestinations,
   destinationService,
   setDestinationService,
+  destinationError,
+  setDestinationError,
   nextHopList,
   nextHop,
   setNextHop,
 }: Step1Props) {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.moveIp);
-  const { serviceList: productList } = useGetProductServices(
+  const { serviceList: productList, serviceByCategory } = useGetProductServices(
     Object.values(PRODUCT_PATHS_AND_CATEGORIES),
   );
+  const isDedicatedServerServiceSelected = React.useMemo(
+    () =>
+      serviceByCategory[IpTypeEnum.DEDICATED].some(
+        (service) => service.serviceName === destinationService,
+      ),
+    [destinationService, serviceByCategory],
+  );
+
+  const { data } = useCheckVmacAvailability({
+    serviceName: destinationService,
+    enabled: isDedicatedServerServiceSelected,
+  });
+
+  React.useEffect(() => {
+    setDestinationError(
+      isDedicatedServerServiceSelected &&
+        (!data?.supported || !data?.canAddVmac)
+        ? t('step1DestinationError')
+        : '',
+    );
+  }, [isDedicatedServerServiceSelected, data?.canAddVmac, data?.supported]);
 
   return (
     <div className="flex flex-col">
@@ -68,7 +93,7 @@ export default function Step1({
         />
       </OdsFormField>
 
-      <OdsFormField className="w-full">
+      <OdsFormField className="w-full" error={destinationError}>
         <label htmlFor="service" slot="label">
           {t('step1DestinationServiceLabel')}
         </label>
@@ -77,7 +102,9 @@ export default function Step1({
           name="service"
           className="w-full"
           onOdsChange={(event) => {
-            setDestinationService(event.detail.value);
+            const value = event.detail.value;
+            setDestinationService(value);
+            setDestinationError('');
             setNextHop(undefined);
           }}
           isClearable
