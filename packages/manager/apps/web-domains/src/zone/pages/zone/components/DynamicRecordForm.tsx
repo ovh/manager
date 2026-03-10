@@ -357,7 +357,7 @@ function RecordPreview({
   const displayTarget = recordType === 'TXT' && target ? `"${target}"` : (target || '…');
 
   const parts = [name, ttlPart, 'IN', recordType, displayTarget].filter(Boolean);
-  const record = parts.join('\u2002\u2002');
+  const record = parts.join(' ');
 
   return (
     <RecordPreviewBox
