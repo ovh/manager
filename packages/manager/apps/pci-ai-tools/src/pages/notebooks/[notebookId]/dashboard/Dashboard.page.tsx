@@ -24,7 +24,6 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-  badgeVariants,
   bash,
   githubDark,
   useToast,
@@ -59,8 +58,8 @@ const Dashboard = () => {
   const { toast } = useToast();
   const [command, setCommand] = useState<ai.Command>();
   const variant: BadgeProps['variant'] = notebook.spec.timeoutAutoRestart
-    ? badgeVariants({ variant: 'success' })
-    : badgeVariants({ variant: 'destructive' });
+    ? 'success'
+    : 'destructive';
 
   const { getCommand } = useGetCommand({
     onError: (err) => {
@@ -139,7 +138,7 @@ const Dashboard = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <h5>{t('autoRestartLabel')}</h5>
-                  <Badge className={variant}>
+                  <Badge variant={variant}>
                     {notebook.spec.timeoutAutoRestart
                       ? t('autoRestartEnabled')
                       : t('autoRestartDisabled')}

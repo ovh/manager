@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Badge, BadgeProps, badgeVariants } from '@datatr-ux/uxlib';
+import { Badge, BadgeProps } from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 
 const NotebookStatusBadge = ({
@@ -14,22 +14,22 @@ const NotebookStatusBadge = ({
     case 'RESTARTING':
     case 'STARTING':
     case 'STOPPING':
-      variant = badgeVariants({ variant: 'warning' });
+      variant = 'warning';
       break;
     case 'FAILED':
     case 'ERROR':
     case 'STOPPED':
     case 'SYNC_FAILED':
-      variant = badgeVariants({ variant: 'destructive' });
+      variant = 'destructive';
       break;
     case 'RUNNING':
-      variant = badgeVariants({ variant: 'success' });
+      variant = 'success';
       break;
     default:
-      variant = badgeVariants({ variant: 'primary' });
+      variant = 'primary';
       break;
   }
-  return <Badge className={variant}>{t(`status-${status}`)}</Badge>;
+  return <Badge variant={variant}>{t(`status-${status}`)}</Badge>;
 };
 
 export default NotebookStatusBadge;
