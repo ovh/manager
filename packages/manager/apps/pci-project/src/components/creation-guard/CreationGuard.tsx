@@ -19,6 +19,7 @@ export default function CreationGuard() {
   //   return <CreationLegacyPage />;
   // }
 
+  console.log('shouldBlockCreation', shouldBlockCreation);
   return (
     <RedirectionGuard condition={shouldBlockCreation} route={redirectRoute} isLoading={isLoading}>
       <CreationPage />
