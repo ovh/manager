@@ -269,7 +269,6 @@
   "zone_page_form_label_dmarc_rua": "URI de création de rapports globaux",
   "zone_page_form_label_dmarc_sp": "Règle pour les sous-domaines",
   "zone_page_form_label_dmarc_aspf": "Mode d'alignement pour SPF",
-
   "zone_page_form_spf_subdomain_tooltip": "Le champ SPF est généralement configuré à la racine du domaine (@). Saisissez @ pour la racine ou un sous-domaine spécifique.",
   "zone_page_form_spf_mechanisms_label": "Mécanismes d'autorisation",
   "zone_page_form_spf_include_ovh": "Inclure les serveurs e-mail OVH (include:mx.ovh.com)",
@@ -585,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "Votre zone a bien été déployée. Cependant, les anomalies suivantes ont été détectées :",
   "zone_page_banner_zone_status_error": "Nos systèmes ont détecté des erreurs lors de la vérification de votre zone. <bold>Vos dernières modifications n'ont pas été prises en compte.</bold> Pour y remédier, veuillez corriger les problèmes suivants :",
   "zone_page_banner_propagation": "Une ou plusieurs actions ont été réalisées récemment dans la zone DNS. Pour tout ajout, modification, suppression ou réinitialisation, veuillez noter que le changement peut nécessiter un temps de propagation de 24 heures maximum.",
-  "zone_page_banner_empty_zone": "Il n'y a aucun enregistrement dans votre zone DNS."
+  "zone_page_banner_empty_zone": "Il n'y a aucun enregistrement dans votre zone DNS.",
+  "zone_page_form_record_preview_label": "Aperçu de l'enregistrement"
 }

@@ -50,7 +50,7 @@ const renderSPF = (
     </FormWrapper>,
   );
 
-const getPreviewCode = () => screen.getByText(/\. IN TXT/).closest('code');
+const getPreview = () => screen.getByDisplayValue(/\. IN TXT/);
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -60,35 +60,35 @@ describe('SPFRecordForm', () => {
   describe('SPF preview composition', () => {
     it('shows the default SPF with include:mx.ovh.com and ~all policy', () => {
       renderSPF('example.com');
-      expect(getPreviewCode()).toHaveTextContent(
+      expect(getPreview()).toHaveDisplayValue(
         'example.com. IN TXT "v=spf1 include:mx.ovh.com ~all"',
       );
     });
 
     it('adapts the preview domain name to the serviceName prop', () => {
       renderSPF('mydomain.net');
-      expect(getPreviewCode()).toHaveTextContent(
+      expect(getPreview()).toHaveDisplayValue(
         'mydomain.net. IN TXT "v=spf1 include:mx.ovh.com ~all"',
       );
     });
 
     it('omits include:mx.ovh.com when spf_includeOvh starts unchecked', () => {
       renderSPF('example.com', { spf_includeOvh: false });
-      expect(getPreviewCode()).toHaveTextContent(
+      expect(getPreview()).toHaveDisplayValue(
         'example.com. IN TXT "v=spf1 ~all"',
       );
     });
 
     it('includes mx when spf_useMx starts checked', () => {
       renderSPF('example.com', { spf_useMx: true });
-      expect(getPreviewCode()).toHaveTextContent(
+      expect(getPreview()).toHaveDisplayValue(
         'example.com. IN TXT "v=spf1 include:mx.ovh.com mx ~all"',
       );
     });
 
     it('includes a when spf_useA starts checked', () => {
       renderSPF('example.com', { spf_useA: true });
-      expect(getPreviewCode()).toHaveTextContent(
+      expect(getPreview()).toHaveDisplayValue(
         'example.com. IN TXT "v=spf1 include:mx.ovh.com a ~all"',
       );
     });
@@ -104,14 +104,14 @@ describe('SPFRecordForm', () => {
         spf_policy: '-all',
       });
 
-      const preview = getPreviewCode();
-      expect(preview).toHaveTextContent('v=spf1');
-      expect(preview).toHaveTextContent('include:mx.ovh.com');
-      expect(preview).toHaveTextContent('include:spf.google.com');
-      expect(preview).toHaveTextContent('ip4:192.168.1.0/24');
-      expect(preview).toHaveTextContent('ip6:2001:db8::/32');
-      expect(preview).toHaveTextContent('mx');
-      expect(preview).toHaveTextContent('-all');
+      const preview = getPreview();
+      expect(preview).toHaveDisplayValue(/v=spf1/);
+      expect(preview).toHaveDisplayValue(/include:mx\.ovh\.com/);
+      expect(preview).toHaveDisplayValue(/include:spf\.google\.com/);
+      expect(preview).toHaveDisplayValue(/ip4:192\.168\.1\.0\/24/);
+      expect(preview).toHaveDisplayValue(/ip6:2001:db8::/);
+      expect(preview).toHaveDisplayValue(/mx/);
+      expect(preview).toHaveDisplayValue(/-all/);
     });
   });
 
@@ -159,7 +159,7 @@ describe('SPFRecordForm', () => {
       await user.type(includesTextarea, 'spf.google.com');
 
       await waitFor(() => {
-        expect(getPreviewCode()).toHaveTextContent('include:spf.google.com');
+        expect(getPreview()).toHaveDisplayValue(/include:spf\.google\.com/);
         expect(getFormValues().target).toContain('include:spf.google.com');
       });
     });
@@ -173,7 +173,7 @@ describe('SPFRecordForm', () => {
       await user.type(ip4Textarea, '192.168.1.0/24');
 
       await waitFor(() => {
-        expect(getPreviewCode()).toHaveTextContent('ip4:192.168.1.0/24');
+        expect(getPreview()).toHaveDisplayValue(/ip4:192\.168\.1\.0\/24/);
         expect(getFormValues().target).toContain('ip4:192.168.1.0/24');
       });
     });
@@ -187,7 +187,7 @@ describe('SPFRecordForm', () => {
       await user.type(ip6Textarea, '2001:db8::/32');
 
       await waitFor(() => {
-        expect(getPreviewCode()).toHaveTextContent('ip6:2001:db8::');
+        expect(getPreview()).toHaveDisplayValue(/ip6:2001:db8::/);
         expect(getFormValues().target).toContain('ip6:2001:db8::');
       });
     });
@@ -196,7 +196,7 @@ describe('SPFRecordForm', () => {
   describe('checkbox interactions', () => {
     it('toggles include:mx.ovh.com via the OVH checkbox', async () => {
       renderSPF('example.com', { spf_includeOvh: false });
-      expect(getPreviewCode()).not.toHaveTextContent('include:mx.ovh.com');
+      expect(getPreview()).not.toHaveDisplayValue(/include:mx\.ovh\.com/);
 
       const ovhCheckbox = screen
         .getByText(/zone_page_form_spf_include_ovh/)
@@ -204,7 +204,7 @@ describe('SPFRecordForm', () => {
       if (ovhCheckbox) fireEvent.click(ovhCheckbox);
 
       await waitFor(() => {
-        expect(getPreviewCode()).toHaveTextContent('include:mx.ovh.com');
+        expect(getPreview()).toHaveDisplayValue(/include:mx\.ovh\.com/);
       });
     });
 

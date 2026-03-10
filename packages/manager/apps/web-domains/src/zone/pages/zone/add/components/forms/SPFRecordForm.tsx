@@ -33,6 +33,7 @@ import type { AddEntrySchemaType } from "@/zone/utils/formSchema.utils";
 import { parseSpfLines } from "@/zone/utils/formSchema.utils";
 import { SubDomainField } from "../fields/SubDomainField";
 import { TtlField } from "../fields/TtlField";
+import { RecordPreviewBox } from "@/zone/pages/zone/components/RecordPreviewBox";
 import { useIsDesktop } from "@/zone/hooks/useIsDesktop";
 
 // ---------------------------------------------------------------------------
@@ -402,17 +403,10 @@ export function SPFRecordForm({ serviceName }: SPFRecordFormProps) {
       </div>
 
       {/* ── Live preview (full width) ────────────────────── */}
-      <div className="p-3 rounded-md bg-[--ods-color-neutral-050] border border-[--ods-color-neutral-200]">
-        <Text
-          preset={TEXT_PRESET.caption}
-          className="font-semibold mb-1 block"
-        >
-          {t("zone_page_form_spf_preview_label")}
-        </Text>
-        <code className="text-sm font-mono break-all">
-          {serviceName}. IN TXT &quot;{spfPreview}&quot;
-        </code>
-      </div>
+      <RecordPreviewBox
+        label={t("zone_page_form_spf_preview_label")}
+        record={`${serviceName}. IN TXT "${spfPreview}"`}
+      />
 
       {/* ── Info message ─────────────────────────────────── */}
       <Message color={MESSAGE_COLOR.information} variant={MESSAGE_VARIANT.light} dismissible={false}>
