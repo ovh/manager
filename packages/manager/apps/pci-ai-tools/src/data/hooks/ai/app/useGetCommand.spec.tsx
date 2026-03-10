@@ -4,7 +4,7 @@ import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrap
 import * as appApi from '@/data/api/ai/app/app.api';
 import { useGetCommand } from './useGetCommand.hook';
 import { mockedCommand } from '@/__tests__/helpers/mocks/shared/command';
-import { mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
+import { mockedAppSpecInput } from '@/__tests__/helpers/mocks/app/app';
 import { AddApp } from '@/data/api/ai/app/app.api';
 
 vi.mock('@/data/api/ai/app/app.api', () => ({
@@ -25,7 +25,7 @@ describe('useGetCommand', () => {
 
     const addAppProps: AddApp = {
       projectId,
-      appInfo: mockedAppSpec,
+      appInfo: mockedAppSpecInput,
     };
     result.current.getCommand(addAppProps);
 

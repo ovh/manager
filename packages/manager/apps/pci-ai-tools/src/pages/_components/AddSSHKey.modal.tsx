@@ -20,7 +20,7 @@ import {
   Input,
   useToast,
 } from '@datatr-ux/uxlib';
-import * as sshkey from '@datatr-ux/ovhcloud-types/cloud/index';
+import * as sshkey from '@datatr-ux/ovhcloud-types/cloud';
 
 import { getAIApiErrorMessage } from '@/lib/apiHelper';
 
