@@ -55,6 +55,7 @@ const mapAddresses = (dto: TInstanceDto) =>
 
 export const mapDtoToInstance = (dto: TInstanceDto): TInstance => ({
   ...dto,
+  actions: dto.actions ?? [],
   region: mapRegion(dto),
   pricings: dto.pricings?.map(mapPricing) ?? null,
   task: mapTask(dto),

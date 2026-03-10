@@ -133,7 +133,7 @@ export type TInstanceDto = {
   login?: string;
   addresses: TInstanceAddressDto[];
   status: TInstanceStatusDto;
-  actions: TInstanceActionDto[];
+  actions?: TInstanceActionDto[];
   volumes?: TInstanceVolumeDto[];
   flavor?: TInstanceFlavorDto;
   pricings?: TInstancePriceDto[];
