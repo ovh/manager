@@ -88,20 +88,20 @@ export default function MoveIpModal() {
     },
   });
 
-  const error = React.useMemo(() => ipDetailsError || moveIpServiceError, [
-    ipDetailsError,
-    moveIpServiceError,
-  ]);
+  const error = React.useMemo(
+    () => ipDetailsError || moveIpServiceError,
+    [ipDetailsError, moveIpServiceError],
+  );
 
   const isLoading = React.useMemo(
     () => isIpDetailLoading || isMoveIpServiceLoading,
     [isIpDetailLoading, isMoveIpServiceLoading],
   );
 
-  const nextHopList = React.useMemo(() => getNextHopList(destinationService), [
-    getNextHopList,
-    destinationService,
-  ]);
+  const nextHopList = React.useMemo(
+    () => getNextHopList(destinationService),
+    [getNextHopList, destinationService],
+  );
 
   const props: ModalProps = {
     isOpen: true,

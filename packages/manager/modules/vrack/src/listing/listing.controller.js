@@ -7,6 +7,7 @@ import {
 export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
   /* @ngInject */
   constructor(
+    $injector,
     $state,
     atInternet,
     $q,
@@ -15,11 +16,13 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
     coreConfig,
   ) {
     super($q, ouiDatagridService);
+    this.$injector = $injector;
     this.$state = $state;
     this.atInternet = atInternet;
     this.constants = constants;
     this.id = 'vrack-listing';
     this.user = coreConfig.getUser();
+    this.publicIpUrls = {}; // Cache for public IP URLs
   }
 
   loadPage() {
@@ -51,5 +54,22 @@ export default class vrackListingCtrl extends ListLayoutHelper.ListLayoutCtrl {
       type: 'action',
     });
     this.$state.go('vrack.index.terminateVrack', { serviceName });
+  }
+
+  getPublicIpUrl(serviceName) {
+    // If already cached, return directly
+    if (this.publicIpUrls[serviceName]) {
+      return this.publicIpUrls[serviceName];
+    }
+
+    // Otherwise, load and cache
+    this.$injector
+      .get('shellClient')
+      .navigation.getURL('network-vrack', `#/vrack/${serviceName}`)
+      .then((url) => {
+        this.publicIpUrls[serviceName] = url;
+      });
+
+    return '#'; // Temporary URL while loading
   }
 }

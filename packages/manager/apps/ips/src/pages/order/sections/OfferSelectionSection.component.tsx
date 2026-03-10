@@ -39,6 +39,7 @@ import {
   hasAdditionalIpBlockOffer,
   hasAdditionalIpOffer,
 } from '../order.utils';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const OfferSelectionSection: React.FC = () => {
   const {
@@ -54,7 +55,7 @@ export const OfferSelectionSection: React.FC = () => {
     setSelectedPlanCode,
     setPricingMode,
   } = React.useContext(OrderContext);
-  const { t, i18n } = useTranslation('order');
+  const { t, i18n } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { ipv4LowestPrice } = useCatalogLowestPrice();
   const { environment } = React.useContext(ShellContext);
   const { trackClick } = useOvhTracking();
@@ -62,16 +63,13 @@ export const OfferSelectionSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-  const {
-    additionalIpPlanCode,
-    ipBlockPricingList,
-    isLoading,
-  } = useAdditionalIpPricings({
-    ipVersion,
-    region: region || selectedRegion,
-    serviceName: selectedService,
-    serviceType: selectedServiceType,
-  });
+  const { additionalIpPlanCode, ipBlockPricingList, isLoading } =
+    useAdditionalIpPricings({
+      ipVersion,
+      region: region || selectedRegion,
+      serviceName: selectedService,
+      serviceType: selectedServiceType,
+    });
 
   return (
     <OrderSection title={t('offer_selection_title')}>

@@ -33,43 +33,41 @@ export const StrategyModal: React.FC = () => {
     TRANSLATION_NAMESPACES.error,
   ]);
 
-  const {
-    isPending: isUpdatePending,
-    mutate: updateGameFirewall,
-  } = useUpdateIpGameFirewall({
-    ip,
-    ipOnGame,
-    onSuccess: (variables) => {
-      addSuccess(
-        variables.firewallModeEnabled
-          ? t('default_deny_strategy_enabled_success_message')
-          : t('default_deny_strategy_disabled_success_message'),
-        true,
-      );
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'apply_default-refusal-strategy_success',
-      });
-      queryClient.invalidateQueries({
-        queryKey: getIpGameFirewallQueryKey({ ip, ipOnGame }),
-      });
-    },
-    onError: (err) => {
-      addError(
-        t('managerApiError', {
-          ns: TRANSLATION_NAMESPACES.error,
-          error: err?.response?.data?.message,
-          ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
-        }),
-        true,
-      );
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: 'apply_default-refusal-strategy_error',
-      });
-    },
-    onSettled: hideStrategyConfirmationModal,
-  });
+  const { isPending: isUpdatePending, mutate: updateGameFirewall } =
+    useUpdateIpGameFirewall({
+      ip,
+      ipOnGame,
+      onSuccess: (variables) => {
+        addSuccess(
+          variables.firewallModeEnabled
+            ? t('default_deny_strategy_enabled_success_message')
+            : t('default_deny_strategy_disabled_success_message'),
+          true,
+        );
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'apply_default-refusal-strategy_success',
+        });
+        queryClient.invalidateQueries({
+          queryKey: getIpGameFirewallQueryKey({ ip, ipOnGame }),
+        });
+      },
+      onError: (err) => {
+        addError(
+          t('managerApiError', {
+            ns: TRANSLATION_NAMESPACES.error,
+            error: err?.response?.data?.message,
+            ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
+          }),
+          true,
+        );
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'apply_default-refusal-strategy_error',
+        });
+      },
+      onSettled: hideStrategyConfirmationModal,
+    });
 
   return (
     <Modal

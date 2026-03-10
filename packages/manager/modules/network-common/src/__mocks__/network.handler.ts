@@ -1,15 +1,16 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
-import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
+import {
+  GetFeatureAvailabilityMocksParams,
+  GetServicesMocksParams,
+  getFeatureAvailabilityMocks,
+  getServicesMocks,
+} from '@ovh-ux/manager-module-common-api';
 import {
   GetCartMocksParams,
   GetOrderDetailsMocksParams,
   getCartMocks,
   getOrderDetailsMocks,
 } from '@ovh-ux/manager-module-order/__mocks__';
-import {
-  GetFeatureAvailabilityMocksParams,
-  getFeatureAvailabilityMocks,
-} from '@ovh-ux/manager-react-components';
 
 import { GetVrackMocksParams, getVrackMocks } from './vrack';
 import {

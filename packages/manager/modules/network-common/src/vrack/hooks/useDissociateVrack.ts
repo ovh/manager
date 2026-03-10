@@ -3,11 +3,14 @@ import React from 'react';
 import { UseMutateFunction, useMutation } from '@tanstack/react-query';
 
 import { ApiError, ApiResponse } from '@ovh-ux/manager-core-api';
-import { useTask } from '@ovh-ux/manager-react-components';
+import { useTask } from '@ovh-ux/manager-module-common-api';
 
 import { VrackTask } from '../../types';
 import { useVrackService } from '../../vrack-services';
-import { dissociateVrackServices, dissociateVrackServicesQueryKey } from '../api';
+import {
+  dissociateVrackServices,
+  dissociateVrackServicesQueryKey,
+} from '../api';
 
 export type UseDissociateVrackParams = {
   vrackServicesId: string;
@@ -16,7 +19,12 @@ export type UseDissociateVrackParams = {
 };
 
 export type UseDissociateVrackReturn = {
-  dissociateVs: UseMutateFunction<ApiResponse<VrackTask>, ApiError, void, unknown>;
+  dissociateVs: UseMutateFunction<
+    ApiResponse<VrackTask>,
+    ApiError,
+    void,
+    unknown
+  >;
   isPending: boolean;
   isError: boolean;
   error: ApiError | null;
@@ -47,12 +55,10 @@ export const useDissociateVrack = ({
     },
   }) as UseDissociateVrackReturn;
 
-  const {
-    mutate: dissociateVs,
-    isPending,
-    isError,
-    error,
-  } = useMutation<ApiResponse<VrackTask>, ApiError>({
+  const { mutate: dissociateVs, isPending, isError, error } = useMutation<
+    ApiResponse<VrackTask>,
+    ApiError
+  >({
     mutationFn: () =>
       dissociateVrackServices({
         vrack: vs?.currentState?.vrackId ?? '',

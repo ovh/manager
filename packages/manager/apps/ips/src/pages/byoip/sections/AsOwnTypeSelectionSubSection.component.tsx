@@ -14,12 +14,8 @@ import { getConfigValues } from '../Byoip.utils';
 
 export const AsOwnTypeSelectionSubSection: React.FC = () => {
   const { t } = useTranslation('byoip');
-  const {
-    asOwnRirType,
-    setAsOwnRirType,
-    asOwnNumberType,
-    setAsOwnNumberType,
-  } = React.useContext(ByoipContext);
+  const { asOwnRirType, setAsOwnRirType, asOwnNumberType, setAsOwnNumberType } =
+    React.useContext(ByoipContext);
   const { data: catalog, isLoading } = useGetCatalog();
   const campusValues = getConfigValues(
     catalog?.details.product.configurations,

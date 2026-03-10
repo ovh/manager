@@ -22,7 +22,10 @@ export const BadgeCell = ({
     </div>
     {!!tooltip && !!trigger && (
       <OdsTooltip role="tooltip" triggerId={trigger} className="max-w-48">
-        <OdsText className="p-2" preset={ODS_TEXT_PRESET.paragraph}>
+        <OdsText
+          className="max-w-[200px] p-2"
+          preset={ODS_TEXT_PRESET.paragraph}
+        >
           {tooltip}
         </OdsText>
       </OdsTooltip>
