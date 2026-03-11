@@ -16,5 +16,6 @@
   "beta_modal_greeting": "Hallo {{user}},",
   "beta_modal_welcome": "Willkommen in Ihrem Kundencenter!",
   "beta_modal_info": "Wir haben das Design überarbeitet und die Funktionen verbessert, um Ihnen ein einfacheres und schnelleres Erlebnis zu bieten.",
-  "beta_modal_explore": "Entdecken Sie jetzt alle neuen Optionen!"
+  "beta_modal_explore": "Entdecken Sie jetzt alle neuen Optionen!",
+  "manager_beta_button": "Entdecken Sie unseren neuen Beta-Manager"
 }
