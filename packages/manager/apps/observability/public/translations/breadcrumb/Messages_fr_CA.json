@@ -1,0 +1,13 @@
+{
+  "root_aria_label": "Accueil",
+  "metrics": "Métriques",
+  "tenants": "Tenants",
+  "dashboards": "Tableaux de bord",
+  "settings": "Paramètres",
+  "services": "Services",
+  "creation": "Création",
+  "edit": "Modification",
+  "delete": "Suppression",
+  "subscription": "Souscription",
+  "tags": "Tags"
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Dashboard administrado",
+  "description": "Los dashboards administrados le permiten visualizar y analizar fácilmente sus datos de observabilidad, así como configurar alertas con la plataforma Grafana®.",
+  "description_bis": "Puede preconfigurar los tenants de su servicio de Observabilidad que desea usar como fuente de datos, y definir los derechos de acceso a la instancia mediante las políticas de acceso del IAM de OVHcloud.",
+  "listing": {
+    "endpoint_cell": "URL del servidor Prometheus",
+    "configuration_cell": "Configuración",
+    "version_cell": "Versión",
+    "isAccessLimited_cell": "Acceso limitado",
+    "lastModified_cell": "Última modificación",
+    "create_grafana_button": "Añadir una instancia",
+    "open_instance_action": "Abrir la instancia Grafana",
+    "copy_urn_action": "Copiar la URN"
+  },
+  "onboarding": {
+    "title": "Dashboard administrado con la plataforma Grafana®",
+    "description": "Los dashboards administrados le permiten visualizar y analizar fácilmente sus datos de observabilidad, así como configurar alertas con la plataforma Grafana®. Puede preconfigurar los tenants de su servicio de Observabilidad que desea usar como fuente de datos y definir los derechos de acceso a la instancia mediante las políticas de acceso del IAM de OVHcloud.",
+    "orderButton": "Añadir una instancia"
+  },
+  "creation": {
+    "title": "Crear un panel de control administrado con la plataforma Grafana®",
+    "information": "Introducir la información del dashboard administrado",
+    "namePlaceholder": "Nombre del dashboard",
+    "descriptionPlaceholder": "Descripción del dashboard",
+    "success": "Se está creando el dashboard administrado"
+  },
+  "edition": {
+    "title": "Editar un panel administrado con la plataforma Grafana®",
+    "success": "La instancia se ha modificado correctamente"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Eliminar la instancia «{{managedDashboard}}»",
+    "delete_managed_dashboard_description": "¿Seguro/a que quiere eliminar la instancia «{{managedDashboard}}»?",
+    "success": "Eliminando la instancia..."
+  },
+  "configuration": {
+    "manual": "Manual",
+    "automatic": "Automática"
+  },
+  "version": {
+    "end_of_support": "Fin del soporte"
+  },
+  "grafana": {
+    "title": "Configure los parámetros",
+    "release": {
+      "label": "Versión de Grafana",
+      "placeholder": "Seleccione una versión"
+    },
+    "allowedNetworks": {
+      "label": "Redes de confianza",
+      "placeholder": "Introduzca sus direcciones IP aquí",
+      "helper": "Lista de direcciones IP clientes que tienen acceso al recopilador (IPv4). Formato: 1.2.3.4, 42.42.42.0/24",
+      "error": "Formato de dirección IP no válido. Utilice el formato IPv4: 1.2.3.4 o 42.42.42.0/24"
+    }
+  }
+}

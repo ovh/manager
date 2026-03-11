@@ -1,0 +1,56 @@
+{
+  "title": "Dashboard gestite",
+  "description": "Le dashboard gestite permettono di visualizzare e analizzare semplicemente i tuoi dati di Osservabilità e configurare alert con la piattaforma Grafana®.",
+  "description_bis": "Puoi preconfigurare i tenant del tuo servizio Osservabilità che vuoi ritrovare come data source e definire i diritti di accesso all'istanza tramite le politiche di accesso dell’IAM di OVHcloud.",
+  "listing": {
+    "endpoint_cell": "URL del server Prometheus",
+    "configuration_cell": "Configurazione",
+    "version_cell": "Versione",
+    "isAccessLimited_cell": "Accesso limitato",
+    "lastModified_cell": "Ultima modifica",
+    "create_grafana_button": "Aggiungere un'istanza",
+    "open_instance_action": "Aprire l’istanza Grafana",
+    "copy_urn_action": "Copiare l'URN"
+  },
+  "onboarding": {
+    "title": "Dashboard gestite con la piattaforma Grafana®",
+    "description": "Le dashboard gestite permettono di visualizzare e analizzare semplicemente i tuoi dati di Osservabilità e configurare alert con la piattaforma Grafana®. Puoi preconfigurare i tenant del servizio Osservabilità che vuoi ritrovare come sorgente di dati e definire i diritti di accesso all’istanza tramite le politiche di accesso dell’IAM di OVHcloud.",
+    "orderButton": "Aggiungere un'istanza"
+  },
+  "creation": {
+    "title": "Creare una dashboard gestita con la piattaforma Grafana®",
+    "information": "Inserire le informazioni della dashboard gestita",
+    "namePlaceholder": "Nome della dashboard",
+    "descriptionPlaceholder": "Descrizione della dashboard",
+    "success": "Creazione della dashboard gestita in corso"
+  },
+  "edition": {
+    "title": "Modificare una dashboard gestita con la piattaforma Grafana®",
+    "success": "L’istanza è stata modificata correttamente"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Eliminare l'istanza \"{{managedDashboard}}\"",
+    "delete_managed_dashboard_description": "Vuoi davvero eliminare l'istanza \"{{managedDashboard}}\"?",
+    "success": "Eliminazione dell'istanza in corso"
+  },
+  "configuration": {
+    "manual": "Manuale",
+    "automatic": "Automatico"
+  },
+  "version": {
+    "end_of_support": "Fine del supporto"
+  },
+  "grafana": {
+    "title": "Configura i parametri",
+    "release": {
+      "label": "Versione di Grafana",
+      "placeholder": "Seleziona una versione"
+    },
+    "allowedNetworks": {
+      "label": "Rete di fiducia",
+      "placeholder": "Inserisci qui i tuoi indirizzi IP",
+      "helper": "La lista degli indirizzi IP cliente che hanno accesso allo strumento di raccolta (IPv4). Formato: 1.2.3.4, 42.42.42.0/24",
+      "error": "Il formato dell'indirizzo IP non è valido. Utilizza il formato IPv4: 1.2.3.4 o 42.42.42.0/24"
+    }
+  }
+}

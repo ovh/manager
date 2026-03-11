@@ -7,7 +7,7 @@
   "disk_write_bytes_title": "Datenträger-Schreibbytes",
   "disk_write_bytes_description_header": "Durchschnittliche Anzahl der in einem bestimmten Zeitraum geschriebenen Byte.",
   "disk_write_iops_title": "IOPS beim Schreiben auf den Datenträger",
-  "disk_write_iops_description_header": "Die durchschnittliche Anzahl an Schreibvorgängen, die in einem bestimmten Zeitraum abgeschlossen wurden.",
+  "disk_write_iops_description_header": "Durchschnittliche Anzahl der in einem bestimmten Zeitraum abgeschlossenen Schreibvorgänge.",
   "cpu_utilization_title": "Prozessor-Nutzung",
   "cpu_utilization_description_header": "Prozentsatz der CPU-Ressourcen, die von der Instanz über einen bestimmten Zeitraum verwendet werden, was die Identifizierung potenzieller Lasttrends und Engpässe ermöglicht.",
   "network_title": "Netzwerk",

@@ -1,0 +1,56 @@
+{
+  "title": "Zarządzane dashboardy",
+  "description": "Zarządzane dashboardy umożliwiają łatwe przeglądanie i analizowanie danych zbieranych przez mechanizmy Observability oraz konfigurowanie alertów na platformie Grafana®.",
+  "description_bis": "Możesz wcześniej skonfigurować tenanty usługi Observability jako źródła danych, a następnie określić prawa dostępu do instancji przy użyciu polityk IAM OVHcloud.",
+  "listing": {
+    "endpoint_cell": "Adres URL serwera Prometheus",
+    "configuration_cell": "Konfiguracja",
+    "version_cell": "Wersja",
+    "isAccessLimited_cell": "Ograniczony dostęp",
+    "lastModified_cell": "Ostatnia modyfikacja",
+    "create_grafana_button": "Dodaj instancję",
+    "open_instance_action": "Otwórz instancję Grafana",
+    "copy_urn_action": "Kopiuj nazwę URN"
+  },
+  "onboarding": {
+    "title": "Zarządzane dashboardy w platformie Grafana®",
+    "description": "Zarządzane dashboardy umożliwiają łatwe przeglądanie i analizowanie danych zbieranych przez mechanizmy Observability oraz konfigurowanie alertów na platformie Grafana®. Możesz wcześniej skonfigurować tenanty usługi Observability jako źródła danych, a następnie określić prawa dostępu do instancji przy użyciu polityk IAM OVHcloud.",
+    "orderButton": "Dodaj instancję"
+  },
+  "creation": {
+    "title": "Utwórz zarządzany dashboard w platformie Grafana®",
+    "information": "Wprowadź informacje dotyczące zarządzanego dashboardu",
+    "namePlaceholder": "Nazwa dashboardu",
+    "descriptionPlaceholder": "Opis dashboardu",
+    "success": "Trwa tworzenie zarządzanego dashboardu"
+  },
+  "edition": {
+    "title": "Edytuj zarządzany dashboard Grafana®",
+    "success": "Instancja została zmodyfikowana"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Usuń instancję \"{{managedDashboard}}\"",
+    "delete_managed_dashboard_description": "Czy na pewno chcesz usunąć instancję \"{{managedDashboard}}\"?",
+    "success": "Trwa usuwanie instancji"
+  },
+  "configuration": {
+    "manual": "Ręcznie",
+    "automatic": "Automatyczne"
+  },
+  "version": {
+    "end_of_support": "Koniec wsparcia"
+  },
+  "grafana": {
+    "title": "Skonfiguruj ustawienia",
+    "release": {
+      "label": "Wersja Grafana",
+      "placeholder": "Wybierz wersję"
+    },
+    "allowedNetworks": {
+      "label": "Zaufane sieci",
+      "placeholder": "Tutaj wpisz adresy IP",
+      "helper": "Lista adresów IP klientów mających dostęp do Load Balancera (IPv4). Format: 1.2.3.4, 42.42.42.0/24",
+      "error": "Format adresu IP jest nieprawidłowy. Użyj formatu IPv4: 1.2.3.4 ou 42.42.42.0/24"
+    }
+  }
+}

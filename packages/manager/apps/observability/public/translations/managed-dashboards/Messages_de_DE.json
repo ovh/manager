@@ -1,0 +1,56 @@
+{
+  "title": "Managed Dashboards",
+  "description": "Mit den Managed Dashboards können Sie Ihre Observability-Daten ganz einfach visualisieren und analysieren und Warnmeldungen mit der Grafana®-Plattform konfigurieren.",
+  "description_bis": "Sie können die Tenants Ihres Observability-Dienstes, die Sie als Data Source sehen möchten, vorkonfigurieren und die Zugriffsrechte für die Instanz über die Zugriffsrichtlinien des IAM von OVHcloud festlegen.",
+  "listing": {
+    "endpoint_cell": "Prometheus-Server-URL",
+    "configuration_cell": "Konfiguration",
+    "version_cell": "Version",
+    "isAccessLimited_cell": "Eingeschränkter Zugang",
+    "lastModified_cell": "Letzte Änderung",
+    "create_grafana_button": "eine Instanz hinzufügen",
+    "open_instance_action": "Grafana-Instanz öffnen",
+    "copy_urn_action": "URN kopieren"
+  },
+  "onboarding": {
+    "title": "Managed Dashboard mit der Grafana®-Plattform",
+    "description": "Mit den Managed Dashboards können Sie Ihre Observability-Daten ganz einfach visualisieren und analysieren und Warnmeldungen mit der Grafana®-Plattform konfigurieren. Sie können die Tenants Ihres Observability-Dienstes, die Sie als Datenquelle sehen möchten, vorkonfigurieren und die Zugriffsrechte für die Instanz über die Zugriffsrichtlinien des IAM von OVHcloud festlegen.",
+    "orderButton": "Eine Instanz hinzufügen"
+  },
+  "creation": {
+    "title": "Ein Managed Dashboard mit der Grafana®-Plattform erstellen",
+    "information": "Informationen zum Managed Dashboard eingeben",
+    "namePlaceholder": "Name des Dashboards",
+    "descriptionPlaceholder": "Beschreibung des Dashboards",
+    "success": "Das Managed Dashboard wird erstellt."
+  },
+  "edition": {
+    "title": "Ein Managed Dashboard mit der Grafana®-Plattform bearbeiten",
+    "success": "Instanz erfolgreich geändert"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Instanz „{{managedDashboard}}“ löschen",
+    "delete_managed_dashboard_description": "Möchten Sie die Instanz „{{managedDashboard}}“ wirklich löschen?",
+    "success": "Instanz wird gelöscht"
+  },
+  "configuration": {
+    "manual": "Manuell",
+    "automatic": "Automatisch"
+  },
+  "version": {
+    "end_of_support": "Ende des Supports"
+  },
+  "grafana": {
+    "title": "Parameter konfigurieren",
+    "release": {
+      "label": "Grafana-Version",
+      "placeholder": "Eine Version auswählen"
+    },
+    "allowedNetworks": {
+      "label": "Vertrauenswürdige Netzwerke",
+      "placeholder": "Geben Sie Ihre IP-Adressen hier ein.",
+      "helper": "Liste der Client-IP-Adressen, die Zugang zum Datensammler (IPv4) haben. Format:  1.2.3.4, 42.42.42.0/24",
+      "error": "Ungültiges IP-Adressformat. Verwenden Sie das IPv4-Format: 1.2.3.4 oder 42.42.42.0/24"
+    }
+  }
+}
