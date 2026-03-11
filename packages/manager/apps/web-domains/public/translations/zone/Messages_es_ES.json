@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "Vuestra zona se ha desplegado correctamente. Sin embargo, se han detectado las siguientes anomalías:",
   "zone_page_banner_zone_status_error": "Nuestros sistemas han detectado errores al verificar vuestra zona. <bold>Vuestras últimas modificaciones no han sido tenidas en cuenta.</bold> Para remediarlo, por favor corregid los siguientes problemas:",
   "zone_page_banner_propagation": "Una o varias acciones se han realizado recientemente en la zona DNS. Para cualquier adición, modificación, eliminación o reinicio, tened en cuenta que el cambio puede requerir un tiempo de propagación de un máximo de 24 horas.",
-  "zone_page_banner_empty_zone": "No hay ningún registro en vuestra zona DNS."
+  "zone_page_banner_empty_zone": "No hay ningún registro en vuestra zona DNS.",
+  "zone_page_form_record_preview_label": "Vista del registro"
 }

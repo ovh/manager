@@ -87,6 +87,8 @@
   "domain_dns_tab_restore_anycast_description": "Vous avez demandé la résiliation de l'option DNS Anycast. Celle-ci sera effective à la date d'expiration du service, le <strong>{{expirationDate}}</strong>. Souhaitez-vous annuler la résiliation ?",
   "domain_action_terminate": "Résilier",
   "domain_action_restore": "Restaurer",
+  "domain_action_terminated": "résilié",
+  "domain_action_restored": "restauré",
   "domain_action_cancel_terminate": "Annuler la résiliation",
   "domain_tab_DNS_anycast_order_description_suite": "DNS Anycast sera automatiquement renouvelé pour ",
   "domain_tab_DNS_modification_title": "Modifier les serveurs DNS",

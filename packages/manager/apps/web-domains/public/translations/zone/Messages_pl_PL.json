@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "Twoja strefa została pomyślnie wdrożona. Jednak wykryto następujące nieprawidłowości:",
   "zone_page_banner_zone_status_error": "Nasze systemy wykryły błędy podczas weryfikacji twojej strefy. <bold>Twoje ostatnie zmiany nie zostały uwzględnione.</bold> Aby to naprawić, proszę poprawić następujące problemy:",
   "zone_page_banner_propagation": "Jedna lub więcej akcji zostało ostatnio wykonanych w strefie DNS. W przypadku jakichkolwiek dodatków, zmian, usunięć lub resetowania, proszę pamiętać, że zmiana może wymagać maksymalnego czasu propagacji wynoszącego 24 godziny.",
-  "zone_page_banner_empty_zone": "Nie ma żadnych rekordów w twojej strefie DNS."
+  "zone_page_banner_empty_zone": "Nie ma żadnych rekordów w twojej strefie DNS.",
+  "zone_page_form_record_preview_label": "Podgląd nagrania"
 }

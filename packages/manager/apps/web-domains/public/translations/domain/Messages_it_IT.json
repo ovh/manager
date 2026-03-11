@@ -344,5 +344,7 @@
   "domain_tab_general_information_subscription_edit_owner": "Modificare le informazioni del contatto titolare",
   "domain_tab_general_information_data_protection_disabled": "Il Registry responsabile di questo dominio non autorizza la gestione personalizzata della visualizzazione dei dati",
   "domain_back_to_zone": "Torna all'area DNS",
-  "domain_order_activate_zone_message": "Per rispondere alle richieste DNS, il tuo nome di dominio deve essere collegato a un'area DNS. Potrai configurare a quale indirizzo IP sarà reindirizzato il tuo nome di dominio e i suoi sottodomini. L'area DNS del tuo nome di dominio è disattivata. Per attivarla, convalida i seguenti passaggi."
+  "domain_order_activate_zone_message": "Per rispondere alle richieste DNS, il tuo nome di dominio deve essere collegato a un'area DNS. Potrai configurare a quale indirizzo IP sarà reindirizzato il tuo nome di dominio e i suoi sottodomini. L'area DNS del tuo nome di dominio è disattivata. Per attivarla, convalida i seguenti passaggi.",
+  "domain_action_terminated": "annullato",
+  "domain_action_restored": "ripristinato"
 }
