@@ -419,5 +419,7 @@
   "domain_tab_CONTACT_edit_form_required_error": "Campo obrigatório",
   "domain_tab_CONTACT_edit_form_change_holder": "Para alterar os campos mencionados com um asterisco *, efetue uma <Link>alteração de titular</Link>.",
   "domain_back_to_zone": "Voltar à zona DNS",
-  "domain_order_activate_zone_message": "Para responder a pedidos DNS, o seu nome de domínio deve estar ligado a uma zona DNS. Poderá configurar para qual endereço IP será redirecionado o seu nome de domínio e os seus subdomínios. A zona DNS do seu nome de domínio está desativada. Para a ativar, valide os seguintes passos."
+  "domain_order_activate_zone_message": "Para responder a pedidos DNS, o seu nome de domínio deve estar ligado a uma zona DNS. Poderá configurar para qual endereço IP será redirecionado o seu nome de domínio e os seus subdomínios. A zona DNS do seu nome de domínio está desativada. Para a ativar, valide os seguintes passos.",
+  "domain_action_terminated": "rescindido",
+  "domain_action_restored": "restaurado"
 }

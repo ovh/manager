@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "Ihre Zone wurde erfolgreich bereitgestellt. Allerdings wurden die folgenden Anomalien festgestellt:",
   "zone_page_banner_zone_status_error": "Unsere Systeme haben bei der Überprüfung Ihrer Zone Fehler festgestellt. <bold>Ihre letzten Änderungen wurden nicht berücksichtigt.</bold> Um dies zu beheben, korrigieren Sie bitte die folgenden Probleme:",
   "zone_page_banner_propagation": "Eine oder mehrere Aktionen wurden kürzlich in der DNS-Zone durchgeführt. Bitte beachten Sie, dass jede Hinzufügung, Änderung, Löschung oder Zurücksetzung möglicherweise eine maximale Propagierungszeit von 24 Stunden erfordert.",
-  "zone_page_banner_empty_zone": "Es gibt keinen Eintrag in Ihrer DNS-Zone."
+  "zone_page_banner_empty_zone": "Es gibt keinen Eintrag in Ihrer DNS-Zone.",
+  "zone_page_form_record_preview_label": "Überblick über die Aufnahme"
 }
