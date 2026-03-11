@@ -118,10 +118,7 @@ function ZonePageInner() {
   const {
     data: dnsZoneIAMResources,
     isPending: isIamResourcePending,
-  } = useGetIAMResource(
-    serviceName ?? '',
-    'dnsZone',
-  );
+  } = useGetIAMResource(serviceName ?? '', 'dnsZone');
   const urn = dnsZoneIAMResources?.[0]?.urn;
 
   // Single IAM call for all zone actions
@@ -157,7 +154,6 @@ function ZonePageInner() {
   const canImportZone = isActionAuthorized('dnsZone:apiovh:import');
 
   const { addInfo, clearNotifications } = useNotifications();
-
   useEffect(() => {
     if (isFetchingDomainZone) return;
     clearNotifications();
@@ -385,7 +381,7 @@ function ZonePageInner() {
         label: '',
       },
     ],
-    [t, availableFieldTypes, openModal],
+    [t, availableFieldTypes, openModal, canModifyRecords],
   );
 
   const handleDeleteClick = useCallback(() => {
@@ -427,8 +423,9 @@ function ZonePageInner() {
           </div>
           <div
             ref={quickAddRef}
-            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${showAddEntryDiv ? '' : 'hidden'
-              }`}
+            className={`mb-4 p-4 border rounded bg-[--ods-color-neutral-050] ${
+              showAddEntryDiv ? '' : 'hidden'
+            }`}
           >
             <QuickAddEntry
               serviceName={serviceName ?? ''}
