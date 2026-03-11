@@ -5,13 +5,23 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
-import { useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { describe, expect, it, vi } from 'vitest';
+import {
+  useForm,
+  FormProvider,
+  Resolver,
+  UseFormReturn,
+} from 'react-hook-form';
 import { mockManagerReactShellClient } from '@/__tests__/helpers/mockShellHelper';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import ScalingStrategy from './ScalingStrategy.component';
-import { mockedAppPricing1 } from '@/__tests__/helpers/mocks/app/appHelper';
 import ai from '@/types/AI';
+import {
+  baseScalingSchema,
+  ScalingStrategySchema,
+  useScalingStrategyForm,
+} from './scalingHelper';
 
 describe('Scaling strategy component', () => {
   beforeEach(() => {
@@ -37,16 +47,26 @@ describe('Scaling strategy component', () => {
   const TestWrapper = ({
     autoScaling = false,
     replicas = 1,
+    onSubmit = vi.fn(),
   }: {
     autoScaling?: boolean;
     replicas?: number;
+    onSubmit?: (data: ScalingStrategySchema) => void;
   }) => {
-    const form = useForm({
+    const tScaling = (key: string) => key;
+    const form = useForm<ScalingStrategySchema>({
+      resolver: zodResolver(
+        baseScalingSchema(tScaling),
+      ) as Resolver<ScalingStrategySchema>,
+      mode: 'onChange',
       defaultValues: {
         autoScaling,
         replicas,
         replicasMin: 1,
         replicasMax: 1,
+        cooldownPeriodSeconds: 300,
+        scaleUpStabilizationWindowSeconds: 0,
+        scaleDownStabilizationWindowSeconds: 300,
         resourceType: ai.app.ScalingAutomaticStrategyResourceTypeEnum.CPU,
         averageUsageTarget: 75,
         metricUrl: '',
@@ -59,8 +79,43 @@ describe('Scaling strategy component', () => {
 
     return (
       <FormProvider {...form}>
-        <ScalingStrategy pricingFlavor={mockedAppPricing1} />
+        <form>
+          <ScalingStrategyHarness form={form} />
+          <button
+            type="button"
+            onClick={() => {
+              void form.handleSubmit(onSubmit)();
+            }}
+          >
+            submit
+          </button>
+        </form>
       </FormProvider>
+    );
+  };
+
+  const ScalingStrategyHarness = ({
+    form,
+  }: {
+    form: UseFormReturn<ScalingStrategySchema>;
+  }) => {
+    const {
+      autoScaling,
+      averageUsageTargetValue,
+      isCustom,
+      syncReplicasMaxFromMin,
+      showScaleToZero,
+    } = useScalingStrategyForm(form);
+
+    return (
+      <ScalingStrategy
+        autoScaling={autoScaling}
+        averageUsageTarget={averageUsageTargetValue}
+        control={form.control}
+        isCustom={isCustom}
+        syncReplicasMaxFromMin={syncReplicasMaxFromMin}
+        showScaleToZero={showScaleToZero}
+      />
     );
   };
 
@@ -98,6 +153,39 @@ describe('Scaling strategy component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('fixed-scaling-container')).toBeTruthy();
       expect(screen.getByTestId('replicas-input')).toBeTruthy();
+    });
+  });
+
+  it('should normalize max replicas when minimum replicas becomes greater', async () => {
+    const onSubmit = vi.fn();
+
+    render(<TestWrapper autoScaling={true} onSubmit={onSubmit} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+
+    const minInput = await screen.findByTestId(
+      'min-rep-input',
+    ) as HTMLInputElement;
+    const maxInput = screen.getByTestId('max-rep-input') as HTMLInputElement;
+
+    act(() => {
+      fireEvent.change(maxInput, { target: { value: '1' } });
+      fireEvent.change(minInput, { target: { value: '2' } });
+    });
+
+    await waitFor(() => {
+      expect(maxInput.value).toBe('2');
+    });
+
+    fireEvent.click(screen.getByRole('button', { name: 'submit' }));
+
+    await waitFor(() => {
+      expect(onSubmit).toHaveBeenCalled();
+    });
+
+    expect(onSubmit.mock.calls[0][0]).toMatchObject({
+      replicasMin: 2,
+      replicasMax: 2,
     });
   });
 });

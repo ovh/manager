@@ -24,6 +24,7 @@ import {
   TableRow,
   useToast,
 } from '@datatr-ux/uxlib';
+import { Control } from 'react-hook-form';
 import ai from '@/types/AI';
 import RegionsSelect from '@/components/order/region/RegionSelect.component';
 import FlavorsSelect from '@/components/order/flavor/FlavorSelect.component';
@@ -67,6 +68,9 @@ const extractScalingFromValidatedData = (
     replicas,
     replicasMin,
     replicasMax,
+    cooldownPeriodSeconds,
+    scaleUpStabilizationWindowSeconds,
+    scaleDownStabilizationWindowSeconds,
     resourceType,
     averageUsageTarget,
     metricUrl,
@@ -81,6 +85,9 @@ const extractScalingFromValidatedData = (
     replicas,
     replicasMin,
     replicasMax,
+    cooldownPeriodSeconds,
+    scaleUpStabilizationWindowSeconds,
+    scaleDownStabilizationWindowSeconds,
     resourceType,
     averageUsageTarget,
     metricUrl,
@@ -483,7 +490,18 @@ const OrderFunnel = ({
               </CardHeader>
               <CardContent>
                 <ScalingStrategy
-                  pricingFlavor={model.result.pricing?.resourcePricing}
+                  autoScaling={model.scalingState.autoScaling}
+                  averageUsageTarget={
+                    model.scalingState.averageUsageTargetValue
+                  }
+                  control={
+                    model.form.control as unknown as Control<ScalingStrategySchema>
+                  }
+                  isCustom={model.scalingState.isCustom}
+                  syncReplicasMaxFromMin={
+                    model.scalingState.syncReplicasMaxFromMin
+                  }
+                  showScaleToZero={model.scalingState.showScaleToZero}
                 />
               </CardContent>
             </Card>

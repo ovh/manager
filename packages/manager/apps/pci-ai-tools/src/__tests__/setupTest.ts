@@ -31,9 +31,13 @@ vi.mock('@ovh-ux/manager-core-api', () => {
   };
 });
 
+const { mockTranslate } = vi.hoisted(() => ({
+  mockTranslate: (key: string) => key,
+}));
+
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
-    t: (key: string) => key,
+    t: mockTranslate,
   }),
 }));
 
