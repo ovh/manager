@@ -115,7 +115,10 @@ function ZonePageInner() {
 
   const { domainResource } = useGetDomainResource(serviceName ?? '');
 
-  const { data: dnsZoneIAMResources } = useGetIAMResource(
+  const {
+    data: dnsZoneIAMResources,
+    isPending: isIamResourcePending,
+  } = useGetIAMResource(
     serviceName ?? '',
     'dnsZone',
   );
@@ -137,8 +140,11 @@ function ZonePageInner() {
 
   const authorizedActions = iamResponse?.authorizedActions ?? [];
   const isActionAuthorized = useCallback(
-    (action: string) => !isIamPending && authorizedActions.includes(action),
-    [isIamPending, authorizedActions],
+    (action: string) =>
+      !isIamResourcePending &&
+      !isIamPending &&
+      authorizedActions.includes(action),
+    [isIamResourcePending, isIamPending, authorizedActions],
   );
 
   const canReadRecords = isActionAuthorized('dnsZone:apiovh:record/get');
