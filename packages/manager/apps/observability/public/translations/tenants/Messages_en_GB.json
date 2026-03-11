@@ -22,7 +22,7 @@
   },
   "onboarding": {
     "description": "Create your new tenant to continue exploring the full potential of observability metrics. You can send data, create dashboards, and configure alerts to suit your specific needs.",
-    "orderButtonLabel": "Create your tenant"
+    "orderButton": "Create your tenant"
   },
   "creation": {
     "title": "Create a tenant",

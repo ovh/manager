@@ -243,5 +243,6 @@
   "sidebar_observability_metrics": "Metrics",
   "sidebar_observability_metrics_tenants": "Tenants",
   "sidebar_observability_short": "Observability",
-  "sidebar_web_hosting_video_center": "Video Centre"
+  "sidebar_web_hosting_video_center": "Video Centre",
+  "sidebar_observability_settings_managed_dashboards": "Managed dashboards"
 }

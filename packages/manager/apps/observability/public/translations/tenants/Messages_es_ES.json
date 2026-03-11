@@ -22,7 +22,7 @@
   },
   "onboarding": {
     "description": "Cree su nuevo tenant para seguir explorando todo el potencial de las métricas de observabilidad. Podrá enviar datos, crear paneles y configurar alertas adaptadas a sus necesidades específicas.",
-    "orderButtonLabel": "Cree su tenant"
+    "orderButton": "Cree su tenant"
   },
   "creation": {
     "title": "Crear un tenant",

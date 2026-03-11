@@ -22,7 +22,7 @@
   },
   "onboarding": {
     "description": "Erstellen Sie Ihren neuen Tenant, um das Potenzial von Observability-Metriken weiter zu erkunden. Sie können Daten senden, Dashboards erstellen und Warnmeldungen konfigurieren, die auf Ihre spezifischen Anforderungen zugeschnitten sind.",
-    "orderButtonLabel": "Erstellen Sie Ihren Tenant"
+    "orderButton": "Erstellen Sie Ihren Tenant"
   },
   "creation": {
     "title": "Einen Tenant erstellen",

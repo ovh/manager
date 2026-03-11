@@ -243,5 +243,6 @@
   "sidebar_observability_metrics": "Métricas",
   "sidebar_observability_metrics_tenants": "Tenants",
   "sidebar_observability_short": "Observabilidade",
-  "sidebar_web_hosting_video_center": "Centro de Vídeo"
+  "sidebar_web_hosting_video_center": "Centro de Vídeo",
+  "sidebar_observability_settings_managed_dashboards": "Painéis de controlo geridos"
 }

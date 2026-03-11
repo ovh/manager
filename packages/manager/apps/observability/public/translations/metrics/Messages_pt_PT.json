@@ -5,7 +5,7 @@
   },
   "onboarding": {
     "description": "Crie o seu serviço para descobrir como as métricas de observabilidade o vão ajudar a aceder a uma visão mais fina e granular dos desempenhos da sua infraestrutura e das suas aplicações.",
-    "orderButtonLabel": "Ative o seu serviço"
+    "orderButton": "Ative o seu serviço"
   },
   "guide": {
     "getting_started": "Introdução",

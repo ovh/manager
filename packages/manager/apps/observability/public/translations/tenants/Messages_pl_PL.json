@@ -21,8 +21,8 @@
     "success": "Trwa usuwanie tenantu"
   },
   "onboarding": {
-    "description": "Utwórz nowy tenant i odkryj pełen potencjał metryk obserwowalności. Pozwoli Ci to przesyłać dane, tworzyć dashboardy i konfigurować alerty zgodnie z potrzebami.",
-    "orderButtonLabel": "Utwórz swój tenant"
+    "description": "Utwórz nowy tenant i korzystaj z pełnego potencjału metryk obserwowalności. Przesyłaj dane, twórz dashboardy i konfiguruj alerty dopasowane do Twoich potrzeb.",
+    "orderButton": "Utwórz tenant"
   },
   "creation": {
     "title": "Utwórz tenant",

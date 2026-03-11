@@ -1,0 +1,56 @@
+{
+  "title": "Managed Dashboard",
+  "description": "Easily view and analyse your Observability data using managed dashboards, and set notifications on the Grafana® platform.",
+  "description_bis": "You can pre-configure the tenants within the Observability service you wish to pull as a data source, and set access permissions for the instance with OVHcloud IAM policies.",
+  "listing": {
+    "endpoint_cell": "Prometheus Server URL",
+    "configuration_cell": "Configuration",
+    "version_cell": "Version",
+    "isAccessLimited_cell": "Limited access",
+    "lastModified_cell": "Last updated",
+    "create_grafana_button": "Add an instance",
+    "open_instance_action": "Open Grafana instance",
+    "copy_urn_action": "Copy URN"
+  },
+  "onboarding": {
+    "title": "Managed dashboards with the Grafana® platform",
+    "description": "Managed dashboards allow you to view and analyse your Observability data with ease, and set notifications using the Grafana® platform. You can pre-configure the tenants within the Observability service you wish to pull as a data source, and set access permissions for the instance with OVHcloud IAM policies.",
+    "orderButton": "Add an instance"
+  },
+  "creation": {
+    "title": "Create a managed dashboard with the Grafana® platform",
+    "information": "Enter managed dashboard details",
+    "namePlaceholder": "Dashboard name",
+    "descriptionPlaceholder": "Dashboard description",
+    "success": "Creating managed dashboard..."
+  },
+  "edition": {
+    "title": "Edit a managed dashboard with the Grafana® platform",
+    "success": "Instance updated"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Delete the \"{{managedDashboard}}\" instance",
+    "delete_managed_dashboard_description": "Are you sure you want to delete the \"{{managedDashboard}}\" instance?",
+    "success": "Deleting instance..."
+  },
+  "configuration": {
+    "manual": "Manual ",
+    "automatic": "Automatic"
+  },
+  "version": {
+    "end_of_support": "End of Support"
+  },
+  "grafana": {
+    "title": "Configure settings",
+    "release": {
+      "label": "Grafana version",
+      "placeholder": "Select a version"
+    },
+    "allowedNetworks": {
+      "label": "Trusted networks",
+      "placeholder": "Enter your IP addresses here",
+      "helper": "List of client IP addresses that have access to the gathering tool (IPv4). Format: 1.2.3.4, 42.42.42.0/24",
+      "error": "Invalid IP address format. Use the IPv4 format: 1.2.3.4 or 42.42.42.0/24"
+    }
+  }
+}

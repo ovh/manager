@@ -5,7 +5,7 @@
   },
   "onboarding": {
     "description": "Create your service to uncover how observability metrics give you a detailed view of your infrastructure and applications’ performance.",
-    "orderButtonLabel": "Enable service"
+    "orderButton": "Enable service"
   },
   "guide": {
     "getting_started": "Getting started",
