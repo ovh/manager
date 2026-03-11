@@ -16,5 +16,6 @@
   "beta_modal_greeting": "Hello {{user}},",
   "beta_modal_welcome": "Welcome to the OVHcloud Control Panel.",
   "beta_modal_info": "We’ve overhauled and improved its features to make your experience faster and simpler.",
-  "beta_modal_explore": "Explore all the new options now!"
+  "beta_modal_explore": "Explore all the new options now!",
+  "manager_beta_button": "Discover our new Beta Manager"
 }
