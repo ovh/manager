@@ -2,7 +2,7 @@ import { useEffect, useMemo, useCallback, useState } from "react";
 import { type FieldErrors, FormProvider, type Resolver, useForm, Controller } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 import { Badge, BADGE_COLOR, BADGE_SIZE, Button, BUTTON_SIZE, BUTTON_VARIANT, FormField, FormFieldError, FormFieldLabel, ICON_NAME, Message, MESSAGE_COLOR, MessageIcon, Select, SelectContent, SelectControl, type SelectCustomOptionRendererArg, Textarea } from "@ovhcloud/ods-react";
-import { zForm, AddEntrySchemaType, getTargetDisplayValue, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
+import { zForm, AddEntrySchemaType, getTargetDisplayValue, parseSpfTarget, FIELD_TYPES_POINTING_RECORDS, FIELD_TYPES_EXTENDED_RECORDS, FIELD_TYPES_MAIL_RECORDS, RECORD_TYPES_WITHOUT_TTL } from "@/zone/utils/formSchema.utils";
 import { NAMESPACES } from "@ovh-ux/manager-common-translations";
 import {
   FieldTypeExtendedRecordsEnum,
@@ -105,10 +105,20 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
         ? sub.slice(0, -editConfig.subDomainSuffix.length)
         : sub;
 
+    const spfFields = editingRecord.fieldType === FieldTypeMailRecordsEnum.SPF
+      ? parseSpfTarget(editingRecord.target ?? '')
+      : {};
+
     if (result.success) {
       const { recordType: parsedType, ...parsedFields } = result.values;
       const sub = stripSuffix(String(parsedFields.subDomain || '@'));
-      reset({ recordType: editingRecord.fieldType, ...parsedFields, subDomain: sub });
+      // For SPF, parseBindRecord/parseTXT mangles the target (joins tokens without spaces).
+      // Override with the original target so composeSPF in SPFRecordForm starts from the
+      // correct value before its useEffect overwrites it.
+      const spfTargetOverride = editingRecord.fieldType === FieldTypeMailRecordsEnum.SPF
+        ? { target: editingRecord.target ?? '' }
+        : {};
+      reset({ recordType: editingRecord.fieldType, ...parsedFields, subDomain: sub, ...spfTargetOverride, ...spfFields });
     } else {
       // Fallback: set minimal fields
       reset({
@@ -117,6 +127,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
         target: editingRecord.target ?? '',
         ttl: editingRecord.ttl,
         ttlSelect: editingRecord.ttl ? TtlSelectEnum.CUSTOM : TtlSelectEnum.GLOBAL,
+        ...spfFields,
       });
     }
   }, [editingRecord, reset]);
@@ -184,7 +195,7 @@ export default function QuickAddEntry({ serviceName, visible, onSuccess, onCance
     // validates in a single pass (no separate setValue race condition).
     const base = { recordType: fieldType, subDomain: '', ttlSelect: TtlSelectEnum.GLOBAL, ttl: 60 };
     const spfDefaults = fieldType === FieldTypeMailRecordsEnum.SPF
-      ? { spf_includeOvh: true, spf_useMx: false, spf_useA: false, spf_includesRaw: '', spf_ip4Raw: '', spf_ip6Raw: '', spf_policy: '~all' }
+      ? { spf_includeOvh: true, spf_useMx: false, spf_useA: false, spf_includesRaw: '', spf_ip4Raw: '', spf_ip6Raw: '', spf_policy: '~all', spf_unknownTokens: '' }
       : {};
     reset({ ...base, ...spfDefaults });
     clearErrors();

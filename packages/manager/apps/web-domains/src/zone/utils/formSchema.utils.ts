@@ -185,6 +185,70 @@ export function parseSpfLines(raw: string): string[] {
 }
 
 // ---------------------------------------------------------------------------
+// SPF target parser — reverse of composeSPF in SPFRecordForm
+// ---------------------------------------------------------------------------
+
+/**
+ * Parses an existing SPF target string back into the structured form fields.
+ * Mirrors the old app's loadSpfModel() logic:
+ * - strips surrounding quotes (API may return `"v=spf1 ..."`)
+ * - normalises whitespace
+ * - detects bare `mx` / `a` as boolean flags (spf_useMx / spf_useA)
+ * - accumulates ip4/ip6/include values (newline-separated)
+ * - captures the `all` policy qualifier
+ */
+export function parseSpfTarget(target: string): {
+  spf_includeOvh: boolean;
+  spf_useMx: boolean;
+  spf_useA: boolean;
+  spf_includesRaw: string;
+  spf_ip4Raw: string;
+  spf_ip6Raw: string;
+  spf_policy: string;
+  spf_unknownTokens: string;
+} {
+  const normalised = target
+    .replace(/^"(.*)"$/, '$1')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  const tokens = normalised.split(/\s+/);
+  let spf_includeOvh = false;
+  let spf_useMx = false;
+  let spf_useA = false;
+  const includes: string[] = [];
+  const ip4s: string[] = [];
+  const ip6s: string[] = [];
+  const unknowns: string[] = [];
+  let spf_policy = '~all';
+
+  for (const token of tokens) {
+    const lower = token.toLowerCase();
+    if (lower === 'v=spf1') continue;
+    if (lower === 'include:mx.ovh.com') { spf_includeOvh = true; continue; }
+    if (lower.startsWith('include:')) { includes.push(token.slice('include:'.length)); continue; }
+    if (lower === 'mx') { spf_useMx = true; continue; }
+    if (lower === 'a') { spf_useA = true; continue; }
+    if (lower.startsWith('ip4:')) { ip4s.push(token.slice('ip4:'.length)); continue; }
+    if (lower.startsWith('ip6:')) { ip6s.push(token.slice('ip6:'.length)); continue; }
+    if (lower === 'all') { spf_policy = '+all'; continue; }
+    if (/^[+?~-]all$/.test(lower)) { spf_policy = lower; continue; }
+    if (lower) unknowns.push(token);
+  }
+
+  return {
+    spf_includeOvh,
+    spf_useMx,
+    spf_useA,
+    spf_includesRaw: includes.join('\n'),
+    spf_ip4Raw: ip4s.join('\n'),
+    spf_ip6Raw: ip6s.join('\n'),
+    spf_policy,
+    spf_unknownTokens: unknowns.join(' '),
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Schema field keys — exhaustive list of every possible form field
 // ---------------------------------------------------------------------------
 
@@ -197,7 +261,7 @@ const ALL_KEYS = [
   'order', 'pref', 'flag', 'service', 'regex', 'replace',
   'lat_deg', 'lat_min', 'lat_sec', 'latitude', 'long_deg', 'long_min', 'long_sec', 'longitude',
   'altitude', 'size', 'hp', 'vp',
-  'spf_includeOvh', 'spf_useMx', 'spf_useA', 'spf_includesRaw', 'spf_ip4Raw', 'spf_ip6Raw', 'spf_policy',
+  'spf_includeOvh', 'spf_useMx', 'spf_useA', 'spf_includesRaw', 'spf_ip4Raw', 'spf_ip6Raw', 'spf_policy', 'spf_unknownTokens',
 ] as const;
 
 /** Keys whose default (fallback) schema is a coerced optional number. */
@@ -416,6 +480,10 @@ function spfFieldSchema(key: string, s: FormSchemas): z.ZodTypeAny {
         (v) => !v || parseSpfLines(v).every((line) => IPV6_CIDR_REGEX.test(line)),
         { message: s.zone('zone_page_form_spf_ip6_invalid') },
       );
+  }
+  // Unsupported directives preserved verbatim for round-trip (e.g. redirect=, exists:, ptr)
+  if (key === 'spf_unknownTokens') {
+    return z.string().default('');
   }
   return z.string().optional();
 }
