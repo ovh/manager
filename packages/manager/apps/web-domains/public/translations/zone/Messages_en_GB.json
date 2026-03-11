@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "Your zone has been successfully deployed. However, the following anomalies have been detected:",
   "zone_page_banner_zone_status_error": "Our systems have detected errors while verifying your zone. <bold>Your latest changes have not been taken into account.</bold> To remedy this, please correct the following issues:",
   "zone_page_banner_propagation": "One or more actions have been recently carried out in the DNS zone. For any addition, modification, deletion, or reset, please note that the change may require a maximum propagation time of 24 hours.",
-  "zone_page_banner_empty_zone": "There are no records in your DNS zone."
+  "zone_page_banner_empty_zone": "There are no records in your DNS zone.",
+  "zone_page_form_record_preview_label": "Overview of the recording"
 }

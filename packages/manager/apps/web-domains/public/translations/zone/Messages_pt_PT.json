@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "A sua zona foi devidamente implementada. No entanto, foram detetadas as seguintes anomalias:",
   "zone_page_banner_zone_status_error": "Os nossos sistemas detetaram erros durante a verificação da sua zona. <bold>As suas últimas modificações não foram tidas em conta.</bold> Para remediar isso, por favor corrija os seguintes problemas:",
   "zone_page_banner_propagation": "Uma ou mais ações foram realizadas recentemente na zona DNS. Para qualquer adição, modificação, eliminação ou reinicialização, por favor note que a alteração pode necessitar de um tempo de propagação de até 24 horas.",
-  "zone_page_banner_empty_zone": "Não há nenhum registo na sua zona DNS."
+  "zone_page_banner_empty_zone": "Não há nenhum registo na sua zona DNS.",
+  "zone_page_form_record_preview_label": "Visão geral do registo"
 }

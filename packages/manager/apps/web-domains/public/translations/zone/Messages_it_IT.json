@@ -584,5 +584,6 @@
   "zone_page_banner_zone_status_warning": "La tua zona è stata distribuita correttamente. Tuttavia, sono state rilevate le seguenti anomalie:",
   "zone_page_banner_zone_status_error": "I nostri sistemi hanno rilevato errori durante la verifica della tua zona. <bold>Le tue ultime modifiche non sono state prese in considerazione.</bold> Per rimediare, ti preghiamo di correggere i seguenti problemi:",
   "zone_page_banner_propagation": "Una o più azioni sono state eseguite di recente nella zona DNS. Per qualsiasi aggiunta, modifica, cancellazione o ripristino, ti preghiamo di notare che la modifica potrebbe richiedere un tempo di propagazione massimo di 24 ore.",
-  "zone_page_banner_empty_zone": "Non ci sono registrazioni nella tua zona DNS."
+  "zone_page_banner_empty_zone": "Non ci sono registrazioni nella tua zona DNS.",
+  "zone_page_form_record_preview_label": "Panoramica della registrazione"
 }
