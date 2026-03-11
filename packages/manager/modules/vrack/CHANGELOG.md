@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.22.0...@ovh-ux/manager-vrack@1.23.0) (2026-03-11)
+
+
+### Bug Fixes
+
+* **ips:** fix order feedbacks ([db45f10](https://github.com/ovh/manager/commit/db45f10db4bd24a64f05bf6729f17408fec8bee7)), closes [#MANAGER-19717](https://github.com/ovh/manager/issues/MANAGER-19717)
+
+
+### Features
+
+* **vrack.listing:** add column element to access to react app ([07128b5](https://github.com/ovh/manager/commit/07128b50770bfa2aca1938cea9cae08c92d2e938)), closes [#MANAGER-20376](https://github.com/ovh/manager/issues/MANAGER-20376)
+
+
+
+
+
 # [1.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-vrack@1.21.3...@ovh-ux/manager-vrack@1.22.0) (2026-02-04)
 
 

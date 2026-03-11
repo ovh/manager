@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-vrack-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "vrack app react revamp",
   "repository": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-config": "*",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
-    "@ovh-ux/manager-network-common": "*",
+    "@ovh-ux/manager-network-common": "^0.10.0",
     "@ovh-ux/manager-react-core-application": "*",
     "@ovh-ux/manager-react-shell-client": "*",
     "@ovh-ux/muk": "^1.2.0",

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.9.0...@ovh-ux/manager-network-common@0.10.0) (2026-03-11)
+
+
+### Bug Fixes
+
+* **network-common:** disable auto pay for bandwidth ([1e06f09](https://github.com/ovh/manager/commit/1e06f09f7686974ba925eb1b94eeff3232be62e6)), closes [#MANAGER-21065](https://github.com/ovh/manager/issues/MANAGER-21065)
+
+
+### Features
+
+* **ips:** add bandwidth order ([fc5cd27](https://github.com/ovh/manager/commit/fc5cd27bcd224ba42f1121a50cb5149b6cbde880)), closes [#MANAGER-19717](https://github.com/ovh/manager/issues/MANAGER-19717)
+* **network-vrack:** modify bandwidth action ([627a8b0](https://github.com/ovh/manager/commit/627a8b08922d2210c4f7aee7481f572570ef92ad)), closes [#MANAGER-19690](https://github.com/ovh/manager/issues/MANAGER-19690)
+
+
+
+
+
 # [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-common@0.8.2...@ovh-ux/manager-network-common@0.9.0) (2026-01-30)
 
 
