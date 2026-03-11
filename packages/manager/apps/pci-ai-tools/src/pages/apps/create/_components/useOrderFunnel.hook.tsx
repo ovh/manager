@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useMemo } from 'react';
-import { useForm } from 'react-hook-form';
+import { Resolver, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,8 @@ import publicCatalog from '@/types/Catalog';
 import {
   baseScalingSchema,
   getInitialValues,
+  useScalingStrategyForm,
+  withScalingResolverSync,
 } from '@/components/order/app-scaling/scalingHelper';
 import { useGetFlavor } from '@/data/hooks/ai/capabilities/useGetFlavor.hook';
 import { useGetDatastores } from '@/data/hooks/ai/data/useGetDatastores.hook';
@@ -109,10 +111,13 @@ export function useOrderFunnel(
         .and(baseScalingSchema(tScaling)),
     [t, tScaling],
   );
+  type OrderFormValues = z.infer<typeof orderSchema>;
 
-  const form = useForm({
-    resolver: zodResolver(orderSchema),
-    mode: 'onSubmit',
+  const form = useForm<OrderFormValues>({
+    resolver: withScalingResolverSync(
+      zodResolver(orderSchema) as Resolver<OrderFormValues>,
+    ),
+    mode: 'onChange',
     defaultValues: {
       region: suggestions.defaultRegion,
       flavorWithQuantity: { flavor: '', quantity: 1 },
@@ -142,19 +147,44 @@ export function useOrderFunnel(
   const volumes = form.watch('volumes');
   const dockerCommand = form.watch('dockerCommand');
   const probe = form.watch('probe');
+  const autoScaling = form.watch('autoScaling');
+  const replicas = form.watch('replicas');
+  const averageUsageTarget = form.watch('averageUsageTarget');
+  const replicasMin = form.watch('replicasMin');
+  const replicasMax = form.watch('replicasMax');
+  const cooldownPeriodSeconds = form.watch('cooldownPeriodSeconds');
+  const scaleUpStabilizationWindowSeconds = form.watch(
+    'scaleUpStabilizationWindowSeconds',
+  );
+  const scaleDownStabilizationWindowSeconds = form.watch(
+    'scaleDownStabilizationWindowSeconds',
+  );
+  const resourceType = form.watch('resourceType');
+  const metricUrl = form.watch('metricUrl');
+  const dataFormat = form.watch('dataFormat');
+  const dataLocation = form.watch('dataLocation');
+  const targetMetricValue = form.watch('targetMetricValue');
+  const aggregationType = form.watch('aggregationType');
+
   const scaling: Scaling = {
-    autoScaling: form.watch('autoScaling'),
-    replicas: form.watch('replicas'),
-    averageUsageTarget: form.watch('averageUsageTarget'),
-    replicasMax: form.watch('replicasMax'),
-    replicasMin: form.watch('replicasMin'),
-    resourceType: form.watch('resourceType'),
-    metricUrl: form.watch('metricUrl') as string | undefined,
-    dataFormat: form.watch('dataFormat'),
-    dataLocation: form.watch('dataLocation'),
-    targetMetricValue: form.watch('targetMetricValue') as number | undefined,
-    aggregationType: form.watch('aggregationType'),
+    autoScaling,
+    replicas,
+    averageUsageTarget,
+    replicasMax: replicasMax as number | undefined,
+    replicasMin: replicasMin as number | undefined,
+    cooldownPeriodSeconds: cooldownPeriodSeconds as number | undefined,
+    scaleUpStabilizationWindowSeconds:
+      scaleUpStabilizationWindowSeconds as number | undefined,
+    scaleDownStabilizationWindowSeconds:
+      scaleDownStabilizationWindowSeconds as number | undefined,
+    resourceType,
+    metricUrl: metricUrl as string | undefined,
+    dataFormat,
+    dataLocation,
+    targetMetricValue: targetMetricValue as number | undefined,
+    aggregationType,
   };
+  const scalingState = useScalingStrategyForm(form);
 
   const flavorQuery = useGetFlavor(projectId, region);
   const datastoreQuery = useGetDatastores(projectId, region);
@@ -274,6 +304,13 @@ export function useOrderFunnel(
       dockerCommand,
       pricing: pricingObject,
       probe,
+    },
+    scalingState: {
+      autoScaling: scaling.autoScaling,
+      averageUsageTargetValue: scalingState.averageUsageTargetValue,
+      isCustom: scalingState.isCustom,
+      syncReplicasMaxFromMin: scalingState.syncReplicasMaxFromMin,
+      showScaleToZero: scalingState.showScaleToZero,
     },
   };
 }
