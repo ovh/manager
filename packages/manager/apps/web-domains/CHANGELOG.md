@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.15.0...@ovh-ux/manager-web-domains-app@1.16.0) (2026-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1213] ([34ff84b](https://github.com/ovh/manager/commit/34ff84b7399ecca9e33becef2f2ebf21380ee81e))
+* **web-domains:** add tooltip on specific case for DNSSEC ([9efdaa5](https://github.com/ovh/manager/commit/9efdaa5dee68af252f9f9f8df16f36223975714c)), closes [#INC0196463](https://github.com/ovh/manager/issues/INC0196463)
+* **web-domains:** allow underscore labels in NS and CNAME target validation ([b9014dc](https://github.com/ovh/manager/commit/b9014dc9813193a325c13119c65be28c70dd8d67))
+* **web-domains:** auto-append trailing dot on MX record target ([de11f81](https://github.com/ovh/manager/commit/de11f81cfc5fc5a7e0bd90e3322f5553e48d25bc))
+* **web-domains:** improve IAM handling ([1f7c4b5](https://github.com/ovh/manager/commit/1f7c4b5c0644e2ed618d0f9be230fed06aa83e31)), closes [#INC0196628](https://github.com/ovh/manager/issues/INC0196628)
+* **web-domains:** improve IAM handling ([e55c459](https://github.com/ovh/manager/commit/e55c459cebe3eac152ee8ad8c9332ac32f580443)), closes [#INC0196628](https://github.com/ovh/manager/issues/INC0196628)
+* **web-domains:** parse SPF field for modification ([6fbd58e](https://github.com/ovh/manager/commit/6fbd58e09515263a89213f2ee759c1adbe23b4e1)), closes [#INC0196663](https://github.com/ovh/manager/issues/INC0196663)
+* **web-domains:** use past tense in anycast terminate/restore success notification ([d0ab074](https://github.com/ovh/manager/commit/d0ab074f0f28764969bf60e3477519f10b9c92b7))
+* **web-domains:** use regular spaces in record preview instead of EN SPACE characters ([4589bea](https://github.com/ovh/manager/commit/4589bead72f8c423685c4a3c1161058950a1fd04))
+
+
+### Features
+
+* **web-domains:** add live record preview at the bottom of zone record forms ([ed43ec0](https://github.com/ovh/manager/commit/ed43ec0a3ef78ead6c62b18b4d06074e00e5150b))
+
+
+
+
+
 # [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.14.0...@ovh-ux/manager-web-domains-app@1.15.0) (2026-03-06)
 
 
