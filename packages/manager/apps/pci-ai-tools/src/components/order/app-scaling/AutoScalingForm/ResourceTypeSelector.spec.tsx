@@ -1,8 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { useForm, FormProvider, Control } from 'react-hook-form';
+import { describe, expect, it } from 'vitest';
+import { FormProvider, useForm } from 'react-hook-form';
 import { ResourceTypeSelector } from './ResourceTypeSelector';
-import { FullScalingFormValues } from '../scalingHelper';
 import ai from '@/types/AI';
 
 const TestWrapper = () => {
@@ -14,7 +13,7 @@ const TestWrapper = () => {
 
   return (
     <FormProvider {...methods}>
-      <ResourceTypeSelector />
+      <ResourceTypeSelector control={methods.control} />
     </FormProvider>
   );
 };

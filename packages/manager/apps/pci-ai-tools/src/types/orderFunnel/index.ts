@@ -182,6 +182,9 @@ export interface Scaling {
   averageUsageTarget?: number;
   replicasMax?: number;
   replicasMin?: number;
+  cooldownPeriodSeconds?: number;
+  scaleUpStabilizationWindowSeconds?: number;
+  scaleDownStabilizationWindowSeconds?: number;
   resourceType?: ResourceType;
   metricUrl?: string;
   dataFormat?: ai.app.CustomMetricsFormatEnum;

@@ -17,12 +17,11 @@ import {
 } from '@/__tests__/helpers/mocks/app/app';
 import ai from '@/types/AI';
 import UpdateScaling from './UpdateScaling.modal';
-import { mockedCatalog } from '@/__tests__/helpers/mocks/catalog/catalog';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/shared/aiError';
 import { useAppData } from '../../../App.context';
 import { AIError } from '@/data/api';
 
-describe('Data Sync Component', () => {
+describe('UpdateScaling', () => {
   beforeEach(() => {
     vi.restoreAllMocks();
     mockManagerReactShellClient();
@@ -38,24 +37,18 @@ describe('Data Sync Component', () => {
     vi.mock('@/data/api/ai/app/scaling-strategy/scaling-strategy.api', () => ({
       scalingStrategy: vi.fn(() => Promise.resolve(mockedAppAutoScalingGPU)),
     }));
-
-    vi.mock('@/data/api/catalog/catalog.api', () => ({
-      catalogApi: {
-        getCatalog: vi.fn(() => mockedCatalog),
-      },
-    }));
   });
 
   afterEach(() => {
     vi.clearAllMocks();
   });
 
-  it('renders skeleton while loading', async () => {
+  it('renders update scaling modal', async () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
-    expect(screen.getByTestId('dialog-container')).toBeTruthy();
+    expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
   });
 
-  it('renders UpdateSclaling modal and trigger onError on API Error', async () => {
+  it('renders the modal and triggers onError on API error', async () => {
     vi.mocked(scalingApi.scalingStrategy).mockImplementation(() => {
       throw apiErrorMock;
     });
@@ -90,7 +83,7 @@ describe('Data Sync Component', () => {
     });
   });
 
-  it('trigger onSuccess on summit click', async () => {
+  it('triggers onSuccess on submit click', async () => {
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
     expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
     expect(screen.getByTestId('replicas-input')).toBeTruthy();
@@ -121,10 +114,24 @@ describe('Data Sync Component', () => {
     });
   });
 
-  it('trigger onSuccess on summit click for automatic scaling', async () => {
+  it('triggers onSuccess on submit click for automatic scaling', async () => {
+    const appAutoScaling = {
+      ...mockedAppAutoScalingGPU,
+      spec: {
+        ...mockedAppAutoScalingGPU.spec,
+        scalingStrategy: {
+          automatic: {
+            ...mockedAppAutoScalingGPU.spec.scalingStrategy?.automatic,
+            replicasMin: 2,
+            replicasMax: 6,
+          },
+        },
+      },
+    };
+
     vi.mocked(useAppData).mockReturnValue({
       projectId: 'projectId',
-      app: mockedAppAutoScalingGPU,
+      app: appAutoScaling,
       appQuery: {} as UseQueryResult<ai.app.App, AIError>,
     });
     render(<UpdateScaling />, { wrapper: RouterWithQueryClientWrapper });
@@ -132,14 +139,6 @@ describe('Data Sync Component', () => {
     await waitFor(() => {
       expect(screen.getByTestId('update-scaling-modal')).toBeTruthy();
       expect(screen.getByTestId('max-rep-input')).toBeTruthy();
-    });
-
-    act(() => {
-      fireEvent.change(screen.getByTestId('max-rep-input'), {
-        target: {
-          value: 6,
-        },
-      });
     });
 
     await waitFor(() => {

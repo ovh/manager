@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
+import { Control, FieldPath, FieldValues } from 'react-hook-form';
 import { HelpCircle } from 'lucide-react';
 import {
   FormField,
@@ -15,15 +15,25 @@ import {
 import ai from '@/types/AI';
 import { ScalingStrategySchema, ResourceType } from '../scalingHelper';
 
-export function ResourceTypeSelector() {
+interface ResourceTypeSelectorProps<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+> {
+  control: Control<TFieldValues>;
+}
+
+export function ResourceTypeSelector<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+>({
+  control,
+}: ResourceTypeSelectorProps<TFieldValues>) {
   const { t } = useTranslation('ai-tools/components/scaling');
-  const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
-    <div className="xl:col-start-2 xl:row-start-1 w-full">
+    <div className="flex flex-col gap-2 w-full">
+      <p className="text-sm font-semibold">{t('triggerSectionTitle')}</p>
       <FormField
         control={control}
-        name="resourceType"
+        name={'resourceType' as FieldPath<TFieldValues>}
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center space-x-2 mb-2">

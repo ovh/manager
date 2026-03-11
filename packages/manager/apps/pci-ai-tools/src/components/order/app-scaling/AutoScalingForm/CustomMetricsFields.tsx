@@ -1,6 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useFormContext } from 'react-hook-form';
+import { Control, FieldPath, FieldValues } from 'react-hook-form';
 import {
   FormControl,
   FormField,
@@ -18,18 +18,28 @@ import {
 } from '@datatr-ux/uxlib';
 
 import ai from '@/types/AI';
-import { ScalingStrategySchema } from '../scalingHelper';
+import {
+  SCALING_CONSTRAINTS,
+  ScalingStrategySchema,
+} from '../scalingHelper';
 
-export function CustomMetricsFields() {
+interface CustomMetricsFieldsProps<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+> {
+  control: Control<TFieldValues>;
+}
+
+export function CustomMetricsFields<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+>({ control }: CustomMetricsFieldsProps<TFieldValues>) {
   const { t } = useTranslation('ai-tools/components/scaling');
-  const { control } = useFormContext<ScalingStrategySchema>();
 
   return (
-    <>
-      <div className="w-full xl:col-start-2 xl:row-start-2">
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6">
+      <div className="w-full">
         <FormField
           control={control}
-          name="metricUrl"
+          name={'metricUrl' as FieldPath<TFieldValues>}
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -58,10 +68,42 @@ export function CustomMetricsFields() {
           )}
         />
       </div>
-      <div className="w-full xl:col-start-2 xl:row-start-3">
+      <div className="w-full">
         <FormField
           control={control}
-          name="dataFormat"
+          name={'dataLocation' as FieldPath<TFieldValues>}
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex items-center space-x-2 mb-2">
+                <p className="text-sm">{t('dataLocationLabel')}</p>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button type="button">
+                      <HelpCircle className="size-4" />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="text-sm">
+                    <p>{t('dataLocationInfo')}</p>
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <FormControl>
+                <Input
+                  data-testid="data-location-input"
+                  {...field}
+                  placeholder={t('dataLocationPlaceholder')}
+                  autoComplete="on"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
+      <div className="w-full">
+        <FormField
+          control={control}
+          name={'dataFormat' as FieldPath<TFieldValues>}
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -104,73 +146,10 @@ export function CustomMetricsFields() {
           )}
         />
       </div>
-      <div className="w-full xl:col-start-1 xl:row-start-3">
+      <div className="w-full">
         <FormField
           control={control}
-          name="dataLocation"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex items-center space-x-2 mb-2">
-                <p className="text-sm">{t('dataLocationLabel')}</p>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <button type="button">
-                      <HelpCircle className="size-4" />
-                    </button>
-                  </PopoverTrigger>
-                  <PopoverContent className="text-sm">
-                    <p>{t('dataLocationInfo')}</p>
-                  </PopoverContent>
-                </Popover>
-              </div>
-              <FormControl>
-                <Input
-                  data-testid="data-location-input"
-                  {...field}
-                  placeholder={t('dataLocationPlaceholder')}
-                  autoComplete="on"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
-      <div className="w-full xl:col-start-2 xl:row-start-4">
-        <FormField
-          control={control}
-          name="targetMetricValue"
-          render={({ field }) => (
-            <FormItem>
-              <div className="flex items-center space-x-2 mb-2">
-                <p className="text-sm">{t('targetMetricValueLabel')}</p>
-                <Popover>
-                  <PopoverTrigger>
-                    <HelpCircle className="size-4" />
-                  </PopoverTrigger>
-                  <PopoverContent className="text-sm">
-                    <p>{t('targetMetricValueInfo')}</p>
-                  </PopoverContent>
-                </Popover>
-              </div>
-              <FormControl>
-                <Input
-                  data-testid="target-metric-value-input"
-                  {...field}
-                  type="number"
-                  min={0}
-                  step="0.5"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-      </div>
-      <div className="w-full xl:col-start-1 xl:row-start-4">
-        <FormField
-          control={control}
-          name="aggregationType"
+          name={'aggregationType' as FieldPath<TFieldValues>}
           render={({ field }) => (
             <FormItem>
               <div className="flex items-center space-x-2 mb-2">
@@ -222,6 +201,37 @@ export function CustomMetricsFields() {
           )}
         />
       </div>
-    </>
+      <div className="w-full">
+        <FormField
+          control={control}
+          name={'targetMetricValue' as FieldPath<TFieldValues>}
+          render={({ field }) => (
+            <FormItem>
+              <div className="flex items-center space-x-2 mb-2">
+                <p className="text-sm">{t('targetMetricValueLabel')}</p>
+                <Popover>
+                  <PopoverTrigger>
+                    <HelpCircle className="size-4" />
+                  </PopoverTrigger>
+                  <PopoverContent className="text-sm">
+                    <p>{t('targetMetricValueInfo')}</p>
+                  </PopoverContent>
+                </Popover>
+              </div>
+              <FormControl>
+                <Input
+                  data-testid="target-metric-value-input"
+                  step={SCALING_CONSTRAINTS.TARGET_METRIC_VALUE.STEP}
+                  type="number"
+                  {...field}
+                  value={field.value ?? ''}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </div>
+    </div>
   );
 }

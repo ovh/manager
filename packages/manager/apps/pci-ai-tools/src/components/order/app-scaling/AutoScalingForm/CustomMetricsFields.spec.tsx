@@ -1,8 +1,7 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { useForm, FormProvider, Control } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { CustomMetricsFields } from './CustomMetricsFields';
-import { FullScalingFormValues } from '../scalingHelper';
 import ai from '@/types/AI';
 
 const TestWrapper = ({
@@ -23,7 +22,7 @@ const TestWrapper = ({
 
   return (
     <FormProvider {...methods}>
-      <CustomMetricsFields />
+      <CustomMetricsFields control={methods.control} />
     </FormProvider>
   );
 };
@@ -38,10 +37,6 @@ describe('CustomMetricsFields', () => {
     expect(screen.getByTestId('target-metric-value-input')).toBeTruthy();
     expect(screen.getByTestId('aggregation-type-select')).toBeTruthy();
   });
-
-  // Note: Error messages are now displayed only on form submission (mode: 'onSubmit')
-  // These tests have been removed as they checked for automatic error display
-  // The validation now happens when the user submits the form
 
   it('should update metricUrl value', () => {
     render(<TestWrapper />);
@@ -82,7 +77,7 @@ describe('CustomMetricsFields', () => {
     ) as HTMLInputElement;
 
     expect(input.type).toBe('number');
-    expect(input.min).toBe('0');
+    expect(input.min).toBe('');
     expect(input.step).toBe('0.5');
   });
 });

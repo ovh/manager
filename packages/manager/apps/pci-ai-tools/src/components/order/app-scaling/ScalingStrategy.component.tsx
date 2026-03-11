@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import {
-  useFormContext,
-  useWatch,
+  Control,
   ControllerRenderProps,
+  FieldPath,
+  FieldValues,
 } from 'react-hook-form';
 import { ExternalLink, HelpCircle } from 'lucide-react';
 import {
@@ -17,32 +18,43 @@ import {
   PopoverTrigger,
   Switch,
 } from '@datatr-ux/uxlib';
-import { AppPricing } from '@/types/orderFunnel';
 import A from '@/components/links/A.component';
 import { GUIDES, getGuideUrl } from '@/configuration/guide';
 import { useLocale } from '@/hooks/useLocale';
 import { AutoScalingForm } from './AutoScalingForm/AutoScalingForm.component';
-import Price from '@/components/price/Price.component';
-import { ScalingStrategySchema, SCALING_DEFAULTS } from './scalingHelper';
+import {
+  SCALING_CONSTRAINTS,
+  ScalingStrategySchema,
+} from './scalingHelper';
 
-interface ScalingStrategyProps {
-  pricingFlavor?: AppPricing;
+interface ScalingStrategyProps<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+> {
+  autoScaling?: boolean;
+  averageUsageTarget: number;
+  control: Control<TFieldValues>;
+  isCustom: boolean;
+  syncReplicasMaxFromMin: (replicasMinValue?: unknown) => void;
+  showScaleToZero: boolean;
 }
 
-export default function ScalingStrategy({
-  pricingFlavor,
-}: ScalingStrategyProps) {
+export default function ScalingStrategy<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+>({
+  autoScaling,
+  averageUsageTarget,
+  control,
+  isCustom,
+  syncReplicasMaxFromMin,
+  showScaleToZero,
+}: ScalingStrategyProps<TFieldValues>) {
   const { t } = useTranslation('ai-tools/components/scaling');
   const locale = useLocale();
-  const { control } = useFormContext<ScalingStrategySchema>();
-
-  const autoScaling = useWatch({ control, name: 'autoScaling' });
-  const replicas = useWatch({ control, name: 'replicas' });
 
   const renderAutoScalingField = ({
     field,
   }: {
-    field: ControllerRenderProps<ScalingStrategySchema, 'autoScaling'>;
+    field: ControllerRenderProps<TFieldValues, FieldPath<TFieldValues>>;
   }) => (
     <FormItem>
       <div className="flex items-center space-x-2">
@@ -67,7 +79,7 @@ export default function ScalingStrategy({
   const renderReplicasField = ({
     field,
   }: {
-    field: ControllerRenderProps<ScalingStrategySchema, 'replicas'>;
+    field: ControllerRenderProps<TFieldValues, FieldPath<TFieldValues>>;
   }) => (
     <FormItem>
       <div
@@ -91,8 +103,8 @@ export default function ScalingStrategy({
           data-testid="replicas-input"
           {...field}
           type="number"
-          max={10}
-          min={1}
+          max={SCALING_CONSTRAINTS.FIXED_REPLICAS.MAX}
+          min={SCALING_CONSTRAINTS.FIXED_REPLICAS.MIN}
         />
       </FormControl>
       <FormMessage />
@@ -119,15 +131,21 @@ export default function ScalingStrategy({
       </div>
       <FormField
         control={control}
-        name="autoScaling"
+        name={'autoScaling' as FieldPath<TFieldValues>}
         render={renderAutoScalingField}
       />
       {autoScaling ? (
-        <AutoScalingForm pricingFlavor={pricingFlavor} />
+        <AutoScalingForm
+          averageUsageTarget={averageUsageTarget}
+          control={control}
+          isCustom={isCustom}
+          syncReplicasMaxFromMin={syncReplicasMaxFromMin}
+          showScaleToZero={showScaleToZero}
+        />
       ) : (
         <FormField
           control={control}
-          name="replicas"
+          name={'replicas' as FieldPath<TFieldValues>}
           render={renderReplicasField}
         />
       )}

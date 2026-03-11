@@ -1,32 +1,51 @@
-import { useFormContext, useWatch } from 'react-hook-form';
+import { Control, FieldValues } from 'react-hook-form';
 
-import Price from '@/components/price/Price.component';
-import { AppPricing } from '@/types/orderFunnel';
-import { ScalingStrategySchema, ResourceType } from '../scalingHelper';
+import { ScalingStrategySchema } from '../scalingHelper';
 import { ReplicaFields } from './ReplicaFields';
 import { ResourceTypeSelector } from './ResourceTypeSelector';
 import { CpuRamFields } from './CpuRamFields';
 import { CustomMetricsFields } from './CustomMetricsFields';
+import { ScalingDelayFields } from './ScalingDelayFields';
 
-interface AutoScalingFormProps {
-  pricingFlavor?: AppPricing;
+interface AutoScalingFormProps<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+> {
+  averageUsageTarget: number;
+  control: Control<TFieldValues>;
+  isCustom: boolean;
+  syncReplicasMaxFromMin?: (replicasMinValue?: unknown) => void;
+  showScaleToZero: boolean;
 }
 
-export function AutoScalingForm({ pricingFlavor }: AutoScalingFormProps) {
-  const { control } = useFormContext<ScalingStrategySchema>();
-  const resType = useWatch({ control, name: 'resourceType' });
-  const minRep = useWatch({ control, name: 'replicasMin' });
-
-  const isCustom = resType === ResourceType.CUSTOM;
-
+export function AutoScalingForm<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+>({
+  averageUsageTarget,
+  control,
+  isCustom,
+  syncReplicasMaxFromMin,
+  showScaleToZero,
+}: AutoScalingFormProps<TFieldValues>) {
   return (
-    <div data-testid="auto-scaling-container">
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-6 gap-y-6 mb-4">
-        <ReplicaFields />
-        <ResourceTypeSelector />
-        {!isCustom && <CpuRamFields />}
-        {isCustom && <CustomMetricsFields />}
+    <div data-testid="auto-scaling-container" className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4">
+        <ReplicaFields
+          control={control}
+          showScaleToZeroWarning={showScaleToZero}
+          syncReplicasMaxFromMin={syncReplicasMaxFromMin}
+        />
       </div>
+      <div className="flex flex-col gap-4">
+        <ResourceTypeSelector control={control} />
+        {!isCustom && (
+          <CpuRamFields control={control} averageUsageTarget={averageUsageTarget} />
+        )}
+        {isCustom && <CustomMetricsFields control={control} />}
+      </div>
+      <ScalingDelayFields
+        control={control}
+        showScaleToZero={showScaleToZero}
+      />
     </div>
   );
 }
