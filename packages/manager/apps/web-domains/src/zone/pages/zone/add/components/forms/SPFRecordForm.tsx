@@ -104,6 +104,7 @@ export function SPFRecordForm({ serviceName }: SPFRecordFormProps) {
   const ip4Raw = (watch('spf_ip4Raw') as string) ?? '';
   const ip6Raw = (watch('spf_ip6Raw') as string) ?? '';
   const spfPolicy = (watch('spf_policy') as string) ?? '~all';
+  const unknownTokens = (watch('spf_unknownTokens') as string) ?? '';
 
   // -- Compose SPF string from structured fields --
   const composeSPF = useCallback((): string => {
@@ -126,9 +127,12 @@ export function SPFRecordForm({ serviceName }: SPFRecordFormProps) {
     if (useMx) parts.push("mx");
     if (useA) parts.push("a");
 
+    // Preserve unsupported directives verbatim (e.g. redirect=, exists:, ptr)
+    if (unknownTokens.trim()) parts.push(unknownTokens.trim());
+
     parts.push(spfPolicy);
     return parts.join(" ");
-  }, [includeOvh, includesRaw, ip4Raw, ip6Raw, useMx, useA, spfPolicy]);
+  }, [includeOvh, includesRaw, ip4Raw, ip6Raw, useMx, useA, spfPolicy, unknownTokens]);
 
   // -- Sync composed value to the shared form target field --
   useEffect(() => {
