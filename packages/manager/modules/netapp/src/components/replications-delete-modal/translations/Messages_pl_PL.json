@@ -1,0 +1,15 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Nie wybrano replikacji. Prosimy o wybranie replikacji.",
+  "netapp_replications_modal_delete_title_delete": "Usuń replikację",
+  "netapp_replications_modal_delete_title_cancel": "Anuluj replikację",
+  "netapp_replications_modal_delete_description_pending": "Chcesz anulować żądanie replikacji bez jego zaakceptowania. Czy na pewno chcesz kontynuować?",
+  "netapp_replications_modal_delete_description_completed": "Ta operacja usunie wiersz z tabeli i pozostawi wolumeny utworzone podczas procesu replikacji (źródłowy i docelowy). Czy na pewno chcesz kontynuować?",
+  "netapp_replications_modal_delete_description_accepted": "Uwaga: anulowanie tej replikacji spowoduje zatrzymanie synchronizacji i usunięcie wolumenu docelowego. Czy na pewno chcesz kontynuować?",
+  "netapp_replications_modal_delete_description_delete": "Czy na pewno chcesz usunąć tę replikację?",
+  "netapp_replications_modal_delete_primary_label_confirm": "Zatwierdź",
+  "netapp_replications_modal_delete_secondary_label": "Zamknij",
+  "netapp_replications_delete_success": "Replikacja wolumenu {{sourceShareID}} została usunięta.",
+  "netapp_replications_cancel_success": "Replikacja wolumenu {{sourceShareID}} została anulowana.",
+  "netapp_replications_delete_error": "Usunięcie replikacji wolumenu {{sourceShareID}} nie powiodło się.",
+  "netapp_replications_cancel_error": "Replikacja wolumenu {{sourceShareID}} nie powiodła się."
+}

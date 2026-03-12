@@ -1,0 +1,15 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Es wurde keine Replikation ausgewählt. Bitte wählen Sie eine aus.",
+  "netapp_replications_modal_delete_title_delete": "Replikation löschen",
+  "netapp_replications_modal_delete_title_cancel": "Replikation abbrechen",
+  "netapp_replications_modal_delete_description_pending": "Sie werden diese Replikationsanforderung abbrechen, ohne sie zu akzeptieren. Möchten Sie wirklich fortfahren?",
+  "netapp_replications_modal_delete_description_completed": "Durch diese Aktion wird die Zeile aus der Tabelle gelöscht und die während des Replikationsprozesses erstellten Volumes (Quelle und Ziel) bleiben erhalten. Möchten Sie wirklich fortfahren?",
+  "netapp_replications_modal_delete_description_accepted": "Achtung: Wenn Sie diese Replikation abbrechen, beenden Sie die Synchronisierung und löschen das Zielvolume. Möchten Sie wirklich fortfahren?",
+  "netapp_replications_modal_delete_description_delete": "Sind Sie sicher, dass Sie diese Replikation löschen möchten?",
+  "netapp_replications_modal_delete_primary_label_confirm": "Bestätigen",
+  "netapp_replications_modal_delete_secondary_label": "Schließen",
+  "netapp_replications_delete_success": "Die Replikation des Volumes {{ sourceShareID }} wurde erfolgreich gelöscht.",
+  "netapp_replications_cancel_success": "Die Replikation des Volumes {{ sourceShareID }} wurde erfolgreich abgebrochen.",
+  "netapp_replications_delete_error": "Beim Löschen der Replikation für Volume {{ sourceShareID }} ist ein Fehler aufgetreten.",
+  "netapp_replications_cancel_error": "Das Abbrechen der Replikation für Volume {{ sourceShareID }} ist fehlgeschlagen."
+}
