@@ -1,0 +1,9 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "No replication selected. Please select one.",
+  "netapp_replications_modal_title_approuve": "Accept replication",
+  "netapp_replications_modal_description_approuve": "Careful! You are about to accept a replication.",
+  "netapp_replications_modal_primary_label_approuve": "Sync",
+  "netapp_replications_modal_secondary_label": "Close",
+  "netapp_replications_approuve_error": "Unable to accept replication for the {{ sourceShareID }} volume.",
+  "netapp_replications_approuve_success": "Replication accepted for the {{ sourceShareID }} volume, and synchronisation is now in progress."
+}

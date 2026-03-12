@@ -1,0 +1,15 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "No se ha seleccionado ninguna replicación. Por favor, seleccione una.",
+  "netapp_replications_modal_delete_title_delete": "Eliminar replicación",
+  "netapp_replications_modal_delete_title_cancel": "Cancelar replicación",
+  "netapp_replications_modal_delete_description_pending": "Va a cancelar esta solicitud de replicación sin aceptarla. ¿Seguro/a que quiere continuar?",
+  "netapp_replications_modal_delete_description_completed": "Esta acción eliminará la fila de la tabla y conservará los volúmenes creados durante el proceso de replicación (origen y destino). ¿Seguro/a que quiere continuar?",
+  "netapp_replications_modal_delete_description_accepted": "Atención: si elimina esta replicación, se detendrá la sincronización y se eliminará el volumen de destino. ¿Seguro/a que quiere continuar?",
+  "netapp_replications_modal_delete_description_delete": "¿Seguro que quiere eliminar esta replicación?",
+  "netapp_replications_modal_delete_primary_label_confirm": "Confirmar",
+  "netapp_replications_modal_delete_secondary_label": "Cerrar",
+  "netapp_replications_delete_success": "La replicación del volumen {{ sourceShareID }} se ha eliminado correctamente.",
+  "netapp_replications_cancel_success": "La replicación del volumen {{ sourceShareID }} se ha cancelado correctamente.",
+  "netapp_replications_delete_error": "No se ha podido eliminar la replicación del volumen {{ sourceShareID }}.",
+  "netapp_replications_cancel_error": "No se pudo cancelar la replicación del volumen {{ sourceShareID }}."
+}

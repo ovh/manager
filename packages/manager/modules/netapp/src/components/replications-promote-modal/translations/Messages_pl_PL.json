@@ -1,0 +1,10 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Nie wybrano żadnej repliki. Wybierz replikę.",
+  "netapp_replications_modal_title_promote": "Ustaw wolumen jako główny",
+  "netapp_replications_modal_description_promote": "Czy na pewno chcesz ustawić ten wolumen jako główny?",
+  "netapp_replications_modal_primary_label_promote": "Zatwierdź",
+  "netapp_replications_modal_secondary_label": "Zamknij",
+  "netapp_replications_modal_warning_promote": "Ustawienie wolumenu repliki jako głównego przerywa replikację między nim a wolumenem źródłowym. Po tej operacji wolumen będzie działał niezależnie. Operacja jest nieodwracalna.",
+  "netapp_replications_promote_success": "Wolumen {{sourceShareID}} został ustawiony jako główny.",
+  "netapp_replications_promote_error": "Nie udało się ustawić wolumenu {{sourceShareID}} jako głównego."
+}

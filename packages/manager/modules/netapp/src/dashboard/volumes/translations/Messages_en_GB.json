@@ -43,5 +43,9 @@
   "netapp_volumes_mount_path_not_configurated": "Not configured",
   "netapp_volumes_edit_volume_size": "Edit size",
   "netapp_volumes_restore_snapshot": "Revert to the last saved snapshot",
-  "netapp_volumes_edit_reserve_space": "Edit snapshot reserve space"
+  "netapp_volumes_edit_reserve_space": "Edit snapshot reserve space",
+  "netapp_volumes_button_replications": "Replicate volume(s)",
+  "netapp_volumes_status_awaiting_replication": "Replicating...",
+  "netapp_volumes_edit_create_single_replication": "Replicate this volume",
+  "netapp_volumes_replications_errors": "The {{sourceShareId}} volume could not be replicated to the {{destinationServiceId}} service."
 }

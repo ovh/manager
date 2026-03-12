@@ -1,0 +1,9 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Es wurde keine Replikation ausgewählt. Bitte wählen Sie eine aus.",
+  "netapp_replications_modal_title_approuve": "Replikation akzeptieren",
+  "netapp_replications_modal_description_approuve": "Achtung! Sie sind im Begriff, eine Replikation zu akzeptieren.",
+  "netapp_replications_modal_primary_label_approuve": "Synchronisieren",
+  "netapp_replications_modal_secondary_label": "Schließen",
+  "netapp_replications_approuve_error": "Das Akzeptieren der Replikation für Volume {{ sourceShareID }} ist fehlgeschlagen.",
+  "netapp_replications_approuve_success": "Die Replikation des Volumes {{ sourceShareID }} wurde erfolgreich akzeptiert und die Synchronisierung wurde gestartet."
+}
