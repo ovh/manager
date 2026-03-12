@@ -43,5 +43,9 @@
   "netapp_volumes_mount_path_not_configurated": "Brak konfiguracji",
   "netapp_volumes_edit_volume_size": "Zmień rozmiar",
   "netapp_volumes_restore_snapshot": "Przywróć ostatni snapshot",
-  "netapp_volumes_edit_reserve_space": "Zmień przestrzeń dyskową przeznaczoną na snapshoty"
+  "netapp_volumes_edit_reserve_space": "Zmień przestrzeń dyskową przeznaczoną na snapshoty",
+  "netapp_volumes_button_replications": "Replikuj wolumen(y)",
+  "netapp_volumes_status_awaiting_replication": "Replikacja w trakcie",
+  "netapp_volumes_edit_create_single_replication": "Replikuj ten wolumen",
+  "netapp_volumes_replications_errors": "Nie udało się wykonać replikacji wolumenu {{sourceShareId}} w usłudze {{destinationServiceId}}."
 }

@@ -1,0 +1,14 @@
+{
+  "netapp_network_volumes_replications_title": "Sync volume(s) on another Enterprise File Storage service",
+  "netapp_network_volumes_replications_button_cancel": "Cancel",
+  "netapp_network_volumes_replications_button_buy": "Order",
+  "netapp_network_volumes_replications_button_sync": "Sync",
+  "netapp_network_volumes_no_selected_volume_replications_subtitle": "No volume selected",
+  "netapp_network_volumes_no_selected_volume_replications_description": "To replicate, please select one or more volumes.",
+  "netapp_network_volumes_replications_selected_volumes": "Selected volume(s):",
+  "netapp_network_volumes_no_replications_subtitle": "No eligible target services found",
+  "netapp_network_volumes_not_replications_description": "To sync volumes, you need to have at least one Enterprise File Storage service with a vRack connection in the same datacentre. Services exposed to the public cannot be used as targets and will soon be retired.",
+  "netapp_network_volumes_replications_description": "Each volume will be replicated individually in the target Enterprise File Storage service. You need to confirm synchronisation on the target services for each volume. The synced volumes will then be read-only. You can then promote to read/write from the list of volumes in the target service.",
+  "netapp_network_volumes_replications_form_label": "Target Enterprise File Storage",
+  "netapp_network_volumes_replications_form_placeholder": "Select EFS"
+}

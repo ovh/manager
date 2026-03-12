@@ -1,0 +1,10 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "No replication selected. Please select one.",
+  "netapp_replications_modal_title_promote": "Promote volume",
+  "netapp_replications_modal_description_promote": "Are you sure you want to promote this volume?",
+  "netapp_replications_modal_primary_label_promote": "Confirm",
+  "netapp_replications_modal_secondary_label": "Close",
+  "netapp_replications_modal_warning_promote": "Promoting a replication volume severs the connection to the source volume. The promoted volume will then stand on its own. This action cannot be undone.",
+  "netapp_replications_promote_success": "The {{ sourceShareID }} replication volume has been promoted.",
+  "netapp_replications_promote_error": "Failed to promote the {{ sourceShareID }} volume replication."
+}
