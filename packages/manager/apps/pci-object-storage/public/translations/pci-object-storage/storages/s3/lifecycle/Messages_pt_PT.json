@@ -3,11 +3,11 @@
   "createLifecycle": "Criar uma regra",
   "columnName": "Nome da regra",
   "columnStatus": "Estado",
-  "columnScope": "Âmbito",
-  "columnCurrentVersionOperations": "Operações sobre as versões atuais",
-  "columnNoncurrentVersionOperations": "Operações sobre as versões não atuais",
-  "columnDeleteMarker": "Remoção automática de marcadores de exclusão expirados",
-  "columnAbortMultipart": "Remoção automática de MPU não concluídos",
+  "columnScope": "Alcance",
+  "columnCurrentVersionOperations": "Operações nas versões comuns",
+  "columnNoncurrentVersionOperations": "Operações nas versões não comuns",
+  "columnDeleteMarker": "Eliminação automática dos marcadores de eliminação expirados",
+  "columnAbortMultipart": "Eliminação automática dos MPU não completados",
   "columnActions": "Ações",
   "statusEnabled": "Ativado",
   "statusDisabled": "Desativado",
@@ -16,8 +16,8 @@
   "operationsCount": "{{count}} operação(ões)",
   "noOperations": "Nenhuma",
   "openMenu": "Abrir menu",
-  "actionEdit": "Modificar",
+  "actionEdit": "Alterar",
   "actionEnable": "Ativar",
   "actionDisable": "Desativar",
-  "actionDelete": "Suprimir"
+  "actionDelete": "Eliminar"
 }

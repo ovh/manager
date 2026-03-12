@@ -18,5 +18,5 @@
   "agent_status_creating_legend": "Creating your Agent...",
   "agent_status_updating_legend": "Updating your Agent...",
   "agent_status_enabled_legend": "Your Agent is now active, backups of your server will be created.",
-  "no_agent_enabled_banner": "Need help installing your Agent? You can follow <Link>this guide</Link>"
+  "no_agent_enabled_banner": "Need help installing your Agent? You can follow <Link>this guide.</Link>"
 }
