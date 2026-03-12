@@ -81,15 +81,6 @@
                 >
                 </span>
             </div>
-            <div ng-if="$row.progress" class="oui-progress">
-                <div
-                    class="oui-progress__bar oui-progress__bar_info"
-                    role="progressbar"
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    data-ng-style="{ 'width': $row.progress }"
-                ></div>
-            </div>
         </oui-datagrid-column>
         <oui-action-menu
             data-ng-if="$ctrl.canApprouve($row) || $ctrl.canPromote($row) || $ctrl.constructor.canDelete($row)"
