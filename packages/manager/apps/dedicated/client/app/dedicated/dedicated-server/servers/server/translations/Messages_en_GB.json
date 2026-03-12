@@ -836,5 +836,14 @@
   "server_configuration_intervention_activate_failed": "An error has occurred enabling on-site interventions on server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "This dedicated server is part of a Nutanix cluster: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "We recommend making all of the configuration changes directly in the dashboard of the server linked to your Nutanix cluster: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "All billing actions linked to this server are visible on your Nutanix cluster: {{clusterDashboardLink}}",
+  "server_guides": "Guides",
+  "server_guide_ddos_game": "Protect your Game server with application firewall",
+  "ovh_server_game_ddos_information_modal_title": "Protect your game servers against DDoS attacks",
+  "ovh_server_game_ddos_information_modal_button_primary": "I understand",
+  "ovh_server_game_ddos_information_modal_button_secondary": "Close",
+  "ovh_server_game_ddos_information_modal_content_1": "Your GAME server includes advanced DDoS protection to ensure your gaming servers stay available, even during attacks.",
+  "ovh_server_game_ddos_information_modal_content_subtitle": "Key points",
+  "ovh_server_game_ddos_information_modal_content_2": "Protection is configured per public IP address. Your server’s public IPs can each be protected individually. You can enable and adjust security features to your exact requirements.",
+  "ovh_server_game_ddos_information_modal_checkbox_label": "Don’t show this message again"
 }

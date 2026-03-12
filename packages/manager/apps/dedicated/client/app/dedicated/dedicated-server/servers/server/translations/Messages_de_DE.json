@@ -836,5 +836,14 @@
   "server_configuration_intervention_activate_failed": "Bei der Aktivierung der Eingriffe vor Ort auf dem Server {{serverName}} ist ein Fehler aufgetreten.",
   "server_nutanix_cluster_node_warning_1": "Dieser Dedicated Server ist Teil des Nutanix-Clusters: {{clusterName}}",
   "server_nutanix_cluster_node_warning_2": "Wir empfehlen Ihnen, Ihre Konfiguration direkt im Dashboard des Servers zu bearbeiten, der mit Ihrem Nutanix-Cluster verbunden ist. Zum Dashboard: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Alle mit diesem Server verbundenen Abrechnungen sehen Sie in Ihrem Nutanix-Cluster: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Alle mit diesem Server verbundenen Abrechnungen sehen Sie in Ihrem Nutanix-Cluster: {{clusterDashboardLink}}",
+  "server_guides": "Guides",
+  "server_guide_ddos_game": "Einen Server der Game Reihe mit der Application Firewall schützen",
+  "ovh_server_game_ddos_information_modal_title": "Ihre Gameserver vor DDoS-Angriffen schützen",
+  "ovh_server_game_ddos_information_modal_button_primary": "Verstanden",
+  "ovh_server_game_ddos_information_modal_button_secondary": "Schließen",
+  "ovh_server_game_ddos_information_modal_content_1": "Ihr GAME Server verfügt über einen erweiterten DDoS-Schutz, um sicherzustellen, dass Ihre Gameserver auch bei Angriffen verfügbar bleiben.",
+  "ovh_server_game_ddos_information_modal_content_subtitle": "Die wichtigsten Punkte",
+  "ovh_server_game_ddos_information_modal_content_2": "Der Schutz wird über eine öffentliche IP-Adresse konfiguriert. Jede öffentliche IP-Adresse Ihres Servers kann einzeln geschützt werden. Sie können den Schutz entsprechend Ihren spezifischen Anforderungen aktivieren und anpassen.",
+  "ovh_server_game_ddos_information_modal_checkbox_label": "Diese Nachricht nicht mehr anzeigen"
 }
