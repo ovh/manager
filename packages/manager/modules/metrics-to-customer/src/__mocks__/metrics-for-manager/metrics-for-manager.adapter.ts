@@ -12,11 +12,12 @@ import { MetricData } from '@/types/observability.type';
 
 export const fetchChartData = async <TData>(
   params: ObservabilityMetricDataParams,
+  regionCode: string,
   metricToken: string,
 ): Promise<MetricData<TData>> => {
   const isMockEnabled = apiConfig['metrics-for-manager'] === 'mock';
   console.info('[MOCK-ADAPTER][fetchChartData] Mock enabled -> ', isMockEnabled);
   return isMockEnabled
     ? fetchChartDataFromMock<TData>(params)
-    : fetchChartDataFromApi<TData>(params, metricToken);
+    : fetchChartDataFromApi<TData>(params, regionCode, metricToken);
 };

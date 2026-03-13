@@ -20,6 +20,7 @@ const DashboardPage = () => {
   const { t } = useTranslation(NAMESPACES.DASHBOARDS);
 
   const { state: { resourceName, productType, resourceURN, regions, } } = useMetricsToCustomerContext();
+  const { code: regionCode = '', label: regionLabel = '' } = regions[0] ?? {};
   const { state: { regionAvailable } } = useDashboardContext();
 
   const { data: metricToken } = useMetricToken({ resourceName });
@@ -28,6 +29,7 @@ const DashboardPage = () => {
     resourceName,
     productType,
     resourceURN,
+    regionCode,
     metricToken ?? '',
     regionAvailable,
   );
@@ -48,11 +50,11 @@ const DashboardPage = () => {
     <Suspense>
       {
         !regionAvailable && (
-          <Message className='w-full mb-8' color="warning">
+          <Message className='w-full mb-8' color="warning" dismissible={false}>
             <MessageIcon name="triangle-exclamation" />
             <MessageBody>
               <Text preset={TEXT_PRESET.paragraph}>
-                {t(`${NAMESPACES.MODULE}:metrics_region_not_available`, { region: regions[0]?.label })}
+                {t(`${NAMESPACES.MODULE}:metrics_region_not_available`, { region: regionLabel })}
               </Text>
             </MessageBody>
           </Message>

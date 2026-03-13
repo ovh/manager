@@ -24,10 +24,13 @@ export interface PrometheusResult {
   };
 }
 
+
+const getMetricForManagerBaseUrl = (regionCode: string) =>
+  `https://metrics-for-manager.${regionCode}.technicalapis.ovh.net/m4m-single-endpoint-proxy/api/v1`;
+
 // Create prometheus axios instance similar to v2 client
-const metricForManagerClient = axios.create({
-  baseURL: 'https://metrics-for-manager.gra.technicalapis.ovh.net/m4m-single-endpoint-proxy/api/v1',
-});
+// NOTE: baseURL is set per-request to support dynamic regions.
+const metricForManagerClient = axios.create();
 
 // Add request interceptor for headers (same pattern as v2 client)
 metricForManagerClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
@@ -85,6 +88,7 @@ export const prometheusApiClient = {
 };
 
 export interface FetchPrometheusDataParams extends PrometheusQueryParams {
+  regionCode: string;
   metricToken: string;
   signal?: AbortSignal;
 }
@@ -94,10 +98,11 @@ export const fetchPrometheusData = async ({
   start,
   end,
   step,
+  regionCode,
   metricToken,
   signal,
 }: FetchPrometheusDataParams): Promise<PrometheusResult> => {
-  
+  const baseURL = getMetricForManagerBaseUrl(regionCode);
   const { data } = await prometheusApiClient.get<PrometheusResult>(
     '/query_range',
     {
@@ -108,9 +113,10 @@ export const fetchPrometheusData = async ({
         step,
       },
       signal,
+      baseURL,
       headers: {
-        Authorization: `Bearer ${metricToken}`
-      }
+        Authorization: `Bearer ${metricToken}`,
+      },
     },
   );
 

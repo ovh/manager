@@ -5,7 +5,6 @@ import { DashboardContextType } from '@/contexts/Dashboard.context.type';
 import { useMetricsToCustomerContext } from '@/contexts/MetricsToCustomer.context';
 import { TimeRangeOption } from '@/types/TimeRangeOption.type';
 import { calculateDateTimeRange } from '@/utils/dateTimeUtils';
-import { isRegionAvailable } from '@/utils/metrics.utils';
 
 export interface DashboardState {
   isLoading: string | undefined;
@@ -37,11 +36,10 @@ export const DashboardProvider = ({ children, context = {} }: DashboardProviderP
     selectedTimeOption,
     startDateTime,
     endDateTime,
-    regionAvailable,
   } = context;
 
   const {
-    state: { regions },
+    state: { capabilitiesMetrics },
   } = useMetricsToCustomerContext();
 
   const initialSelectedTimeOption =
@@ -56,11 +54,6 @@ export const DashboardProvider = ({ children, context = {} }: DashboardProviderP
     startDateTime: initialStartDateTime,
     endDateTime: initialEndDateTime,
   });
-
-  const computedRegionAvailable = useMemo(
-    () => regionAvailable ?? isRegionAvailable(regions),
-    [regionAvailable, regions],
-  );
 
   const { startDateTime: derivedStartDateTime, endDateTime: derivedEndDateTime } = useMemo(() => {
     if (state.selectedTimeOption.value === 'custom') {
@@ -80,7 +73,7 @@ export const DashboardProvider = ({ children, context = {} }: DashboardProviderP
           ...state,
           startDateTime: derivedStartDateTime,
           endDateTime: derivedEndDateTime,
-          regionAvailable: computedRegionAvailable,
+          regionAvailable: capabilitiesMetrics,
         },
         setState,
       }}

@@ -25,6 +25,7 @@ export type SubscriptionManagementConfig =
 
 type BaseMetricsToCustomerState = BaseM2CProperties & {
   regions: Region[];
+  capabilitiesMetrics: boolean;
 };
 
 export type MetricsToCustomerState = BaseMetricsToCustomerState & SubscriptionManagementConfig;

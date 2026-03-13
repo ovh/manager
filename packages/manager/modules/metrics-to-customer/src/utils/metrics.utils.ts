@@ -9,7 +9,7 @@ import { Region } from '@/types/region.type';
  * @returns true if at least one region supports metric data, false otherwise
  */
 export const isRegionAvailable = (regions: Region[]): boolean => {
-  return regions.some((region) => REGIONS_AVAILABLES.includes(region.code ?? ''));
+  return regions.some((region) => REGIONS_AVAILABLES.includes(region.name ?? ''));
 };
 
 // TODO: update the chart adapter when wired to the real metric APIs.

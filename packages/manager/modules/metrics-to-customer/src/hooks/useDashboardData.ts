@@ -15,6 +15,7 @@ import { buildQueryWithResourceUrn } from '@/utils/metrics.utils';
  * @param resourceName
  * @param productType
  * @param resourceURN
+ * @param regionCode
  * @param metricToken
  * @param fetchData - If false, only retrieves dashboard config without fetching chart data
  * @returns Object containing:
@@ -25,6 +26,7 @@ export const useDashboardData = <TData>(
   resourceName: string,
   productType: string,
   resourceURN: string,
+  regionCode: string,
   metricToken: string,
   fetchData = true,
 ) => {
@@ -53,6 +55,7 @@ export const useDashboardData = <TData>(
     endDateTime,
     selectedTimeOption,
     refreshInterval,
+    regionCode,
     metricToken,
     fetchData,
   });

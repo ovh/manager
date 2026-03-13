@@ -47,7 +47,7 @@ const TenantsSubscriptionsDrawer = ({
 
   const { regionCodes, regionLabels } = useMemo(
     () => ({
-      regionCodes: regions.map(({ code }) => code),
+      regionCodes: regions.map(({ name }) => name),
       regionLabels: regions.map(({ label }) => label),
     }),
     [regions]

@@ -23,7 +23,7 @@ export const useTenantsWithSubscriptions = (
   const { iamTags: additionalIamTags, queryOptions } = options || {};
 
   const iamTags = useMemo<IamTagsFilter | undefined>(() => {
-    const validRegions = regions.map(({ code }) => code).filter((region) => region && region.trim() !== '');
+    const validRegions = regions.map(({ name }) => name).filter((region) => region && region.trim() !== '');
 
     if (
       validRegions.length === 0 &&

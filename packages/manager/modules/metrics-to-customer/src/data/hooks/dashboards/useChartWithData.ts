@@ -19,7 +19,9 @@ type UseChartWithDataParams = {
   endDateTime?: number;
   selectedTimeOption: TimeRangeOption;
   refreshInterval: number;
+  regionCode: string;
   metricToken: string;
+  fetchData?: boolean;
 };
 
 export const useChartWithData = <TData>({
@@ -31,7 +33,9 @@ export const useChartWithData = <TData>({
   endDateTime,
   selectedTimeOption,
   refreshInterval,
+  regionCode,
   metricToken,
+  fetchData = true,
 }: UseChartWithDataParams) => {
 
   const queryClient = useQueryClient();
@@ -66,10 +70,10 @@ export const useChartWithData = <TData>({
     error: dataError,
     isError: isDataError,
     refetch,    
-  } = useChartData<TData>(requestPayload, refreshInterval, metricToken);
+  } = useChartData<TData>(requestPayload, refreshInterval, regionCode, metricToken, fetchData);
 
   const cancel = () => queryClient.cancelQueries({
-    queryKey: getChartDataQueryKey(requestPayload, metricToken),
+    queryKey: getChartDataQueryKey(requestPayload, regionCode, metricToken),
     exact: true,
   });
 
