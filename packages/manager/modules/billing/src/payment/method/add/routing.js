@@ -59,6 +59,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               errorMessage: error,
             }),
           },
+          get($transition$.params(), 'from', null),
         );
       },
       onPaymentMethodAdded: /* @ngInject */ (
@@ -73,6 +74,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
               'billing_payment_method_add_status_success',
             ),
           },
+          get($transition$.params(), 'from', null),
         );
       },
 
