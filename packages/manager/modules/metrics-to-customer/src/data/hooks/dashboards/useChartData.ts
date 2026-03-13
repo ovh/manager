@@ -6,7 +6,9 @@ import { RequestPayload } from '@/types/RequestPayload.type';
 export const useChartData = <TData>(
   payload: RequestPayload,  
   refreshInterval: number,
+  regionCode: string,
   metricToken: string,  
+  fetchData = true,
 ) => {
-  return useQuery(getChartDataOptions<TData>(payload, refreshInterval, metricToken));
+  return useQuery(getChartDataOptions<TData>(payload, refreshInterval, regionCode, metricToken, fetchData));
 };

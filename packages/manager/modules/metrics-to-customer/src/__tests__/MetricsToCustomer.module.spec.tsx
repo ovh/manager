@@ -52,7 +52,7 @@ vi.mock('@/routes/routes', () => ({
   getObservabilityRoute: getObservabilityRouteMock,
 }));
 
-// Mock useIamResourceLocation hook
+// Mock data hooks
 vi.mock('@/data/hooks', () => ({
   useIamResourceLocation: () => ({
     isLoading: false,
@@ -63,6 +63,12 @@ vi.mock('@/data/hooks', () => ({
       location: 'Test Location',
     },
     error: null,
+  }),
+  useIamRegionsAndCapabilitiesMetrics: () => ({
+    isPending: false,
+    isSuccess: true,
+    regions: [],
+    capabilitiesMetrics: [],
   }),
 }));
 

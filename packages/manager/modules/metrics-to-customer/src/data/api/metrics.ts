@@ -35,6 +35,7 @@ export const getMetricKindByName = async ({
 
 export async function fetchChartData<TData>(
   payload: ObservabilityMetricDataParams,
+  regionCode: string,
   metricToken: string,
 ): Promise<MetricData<TData>> {
   const { query, start, end, step } = payload;
@@ -44,6 +45,7 @@ export async function fetchChartData<TData>(
     start,
     end,
     step,
+    regionCode,
     metricToken,
   });
 

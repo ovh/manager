@@ -460,8 +460,9 @@ describe('metrics.utils', () => {
       // Arrange
       const regions: Region[] = [
         {
-          code: 'eu-west-gra',
-          name: 'Gravelines',
+          code: 'gra',
+          label: 'Gravelines',
+          name: 'eu-west-gra',
         },
       ];
 
@@ -519,12 +520,14 @@ describe('metrics.utils', () => {
       // Arrange
       const regions: Region[] = [
         {
-          code: 'us-east-1',
-          name: 'US East',
+          code: 'us',
+          label: 'US East',
+          name: 'us-east-1',
         },
         {
-          code: 'eu-west-gra',
-          name: 'Gravelines',
+          code: 'gra',
+          label: 'Gravelines',
+          name: 'eu-west-gra',
         },
       ];
 
@@ -540,11 +543,13 @@ describe('metrics.utils', () => {
       const regions: Region[] = [
         {
           code: 'us-east-1',
-          name: 'US East',
+          label: 'US East',
+          name: 'us-east-1',
         },
         {
-          code: 'ap-south-1',
-          name: 'Asia Pacific',
+          code: 'ap',
+          label: 'Asia Pacific',
+          name: 'ap-south-1',
         },
       ];
 

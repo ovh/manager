@@ -11,7 +11,7 @@ import getMetricsToCustomerRoutes from '@/routes/routes';
 import { NAMESPACES } from '@/MetricsToCustomer.translations';
 
 import { DashboardProvider, MetricsToCustomerProvider } from '@/contexts';
-import { useIamResourceLocation } from '@/data/hooks';
+import { useIamRegionsAndCapabilitiesMetrics } from '@/data/hooks';
 import { Spinner, SPINNER_SIZE } from '@ovhcloud/ods-react';
 
 export function MetricsToCustomerModule(
@@ -28,21 +28,14 @@ export function MetricsToCustomerModule(
     enableConfigurationManagement,
   } = moduleProps;
 
+  const {
+    isPending,
+    isSuccess,
+    regions,
+    capabilitiesMetrics,
+  } = useIamRegionsAndCapabilitiesMetrics(resourceURN);
 
-  const { 
-    isLoading,
-    isSuccess,    
-    data,    
-  } = useIamResourceLocation(resourceURN);
-
-  const regions = [
-    {
-      code: data?.name ?? "",
-      label: data?.location ?? ""
-    }
-  ];
-
-  if (isLoading) {
+  if (isPending) {
     return <Spinner size={SPINNER_SIZE.xs} />
   }
 
@@ -51,6 +44,7 @@ export function MetricsToCustomerModule(
     resourceName,
     resourceURN,
     regions,
+    capabilitiesMetrics,
   };
 
   const context = enableConfigurationManagement
@@ -64,7 +58,7 @@ export function MetricsToCustomerModule(
     };
 
   return (
-    <Suspense fallback={<div className="flex py-8">{t('loading_metrics_module')}</div>}>      
+    <Suspense fallback={<div className="flex py-8">{t('loading_metrics_module')}</div>}>
       {
         isSuccess && (
           <MetricsToCustomerProvider context={context}>
