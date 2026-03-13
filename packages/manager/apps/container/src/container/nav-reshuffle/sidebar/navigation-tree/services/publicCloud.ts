@@ -139,7 +139,7 @@ pciNode.children = [
         },
         features: ['pci-file-storage'],
         forceVisibility: true,
-        tag: NodeTag.BETA,
+        tag: NodeTag.NEW,
       },
       {
         id: 'pci-volume-backup',
@@ -153,7 +153,6 @@ pciNode.children = [
         },
         features: ['volume-backup'],
         forceVisibility: true,
-        tag: NodeTag.NEW,
       },
       {
         id: 'pci-volume-snapshot',
