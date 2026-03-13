@@ -20,6 +20,7 @@ export default class IpLoadBalancerOrderCtrl {
         subsidiary: this.user.ovhSubsidiary,
         express: {
           backUrl: this.ipLbPublicUrl,
+          openTarget: '_top',
         },
         navbar: {
           enable: true,

@@ -89,74 +89,70 @@ export default function AddVirtualMacModal() {
   } = useForm<VirtualMac>({});
 
   // Mutation function for Adding virtual Mac to Ip on new vmac creation selection
-  const {
-    mutate: addVirtualMacToIp,
-    isPending: addVirtualMacToIpPending,
-  } = useAddVirtualMacToIp({
-    serviceName,
-    ip,
-    type: selectedType,
-    virtualMachineName,
-    onSuccess: () => {
-      closeModal();
-      addSuccess(t('addVirtualMacAddNewSuccess', { t0: ip }));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'add_virtual-mac_success',
-      });
-      invalidateGetTasksQueryKey(serviceName);
-    },
-    onError: (err) => {
-      closeModal();
-      addError(
-        t('addVirtualMacAddNewFailure', {
-          t0: ip,
-          error: err?.response?.data?.message,
-          ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
-        }),
-        true,
-      );
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: 'add_virtual-mac_error',
-      });
-    },
-  });
+  const { mutate: addVirtualMacToIp, isPending: addVirtualMacToIpPending } =
+    useAddVirtualMacToIp({
+      serviceName,
+      ip,
+      type: selectedType,
+      virtualMachineName,
+      onSuccess: () => {
+        closeModal();
+        addSuccess(t('addVirtualMacAddNewSuccess', { t0: ip }));
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'add_virtual-mac_success',
+        });
+        invalidateGetTasksQueryKey(serviceName);
+      },
+      onError: (err) => {
+        closeModal();
+        addError(
+          t('addVirtualMacAddNewFailure', {
+            t0: ip,
+            error: err?.response?.data?.message,
+            ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
+          }),
+          true,
+        );
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'add_virtual-mac_error',
+        });
+      },
+    });
 
   // Mutation function for Adding Ip to Virtual mac on existing vmac creation selection
-  const {
-    mutate: addIpToVirtualMac,
-    isPending: addIpToVirtualMacPending,
-  } = useAddIpToVirtualMac({
-    serviceName,
-    macAddress,
-    ip,
-    virtualMachineName,
-    onSuccess: () => {
-      closeModal();
-      addSuccess(t('addVirtualMacAddExistingSuccess', { t0: ip }));
-      trackPage({
-        pageType: PageType.bannerSuccess,
-        pageName: 'add_virtual-mac_success',
-      });
-      invalidateGetTasksQueryKey(serviceName);
-    },
-    onError: (err) => {
-      closeModal();
-      addError(
-        t('addVirtualMacAddExistingFailure', {
-          t0: ip,
-          error: err?.response?.data?.message,
-          ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
-        }),
-        true,
-      );
-      trackPage({
-        pageType: PageType.bannerError,
-        pageName: 'add_virtual-mac_error',
-      });
-    },
-  });
+  const { mutate: addIpToVirtualMac, isPending: addIpToVirtualMacPending } =
+    useAddIpToVirtualMac({
+      serviceName,
+      macAddress,
+      ip,
+      virtualMachineName,
+      onSuccess: () => {
+        closeModal();
+        addSuccess(t('addVirtualMacAddExistingSuccess', { t0: ip }));
+        trackPage({
+          pageType: PageType.bannerSuccess,
+          pageName: 'add_virtual-mac_success',
+        });
+        invalidateGetTasksQueryKey(serviceName);
+      },
+      onError: (err) => {
+        closeModal();
+        addError(
+          t('addVirtualMacAddExistingFailure', {
+            t0: ip,
+            error: err?.response?.data?.message,
+            ovhQueryId: err?.response?.headers?.['x-ovh-queryid'],
+          }),
+          true,
+        );
+        trackPage({
+          pageType: PageType.bannerError,
+          pageName: 'add_virtual-mac_error',
+        });
+      },
+    });
 
   // Api call to retrive all existing vmacs for a server
   const { vmacs, isLoading: isVmacLoading } = useGetIpVmac({

@@ -90,43 +90,42 @@ export type EdgeNetworkFirewallContextType = {
   setTmpToggleState: Dispatch<SetStateAction<boolean | null>>;
 };
 
-export const EdgeNetworkFirewallContext = createContext<
-  EdgeNetworkFirewallContextType
->({
-  rules: [],
-  ruleSequenceList: [],
-  ip: '',
-  setNewDestinationPort: () => {},
-  setNewSourcePort: () => {},
-  setNewProtocol: () => {},
-  setNewMode: () => {},
-  setNewSource: () => {},
-  setNewSequence: () => {},
-  setNewFragments: () => {},
-  setNewTcpOption: () => {},
-  isNewRuleRowDisplayed: false,
-  showNewRuleRow: () => {},
-  hideNewRuleRow: () => {},
-  createNewRule: () => {},
-  isEnableFirewallModalVisible: false,
-  showEnableFirewallModal: () => {},
-  hideEnableFirewallModal: () => {},
-  isConfirmDeleteModalOpen: false,
-  ruleToDelete: null,
-  showConfirmDeleteModal: () => {},
-  hideConfirmDeleteModal: () => {},
-  setTmpToggleState: () => {},
-  sourceError: undefined,
-  sourcePortError: undefined,
-  destinationPortError: undefined,
-  modeError: undefined,
-  protocolError: undefined,
-  setSourceError: () => {},
-  setSourcePortError: () => {},
-  setDestinationPortError: () => {},
-  setModeError: () => {},
-  setProtocolError: () => {},
-});
+export const EdgeNetworkFirewallContext =
+  createContext<EdgeNetworkFirewallContextType>({
+    rules: [],
+    ruleSequenceList: [],
+    ip: '',
+    setNewDestinationPort: () => {},
+    setNewSourcePort: () => {},
+    setNewProtocol: () => {},
+    setNewMode: () => {},
+    setNewSource: () => {},
+    setNewSequence: () => {},
+    setNewFragments: () => {},
+    setNewTcpOption: () => {},
+    isNewRuleRowDisplayed: false,
+    showNewRuleRow: () => {},
+    hideNewRuleRow: () => {},
+    createNewRule: () => {},
+    isEnableFirewallModalVisible: false,
+    showEnableFirewallModal: () => {},
+    hideEnableFirewallModal: () => {},
+    isConfirmDeleteModalOpen: false,
+    ruleToDelete: null,
+    showConfirmDeleteModal: () => {},
+    hideConfirmDeleteModal: () => {},
+    setTmpToggleState: () => {},
+    sourceError: undefined,
+    sourcePortError: undefined,
+    destinationPortError: undefined,
+    modeError: undefined,
+    protocolError: undefined,
+    setSourceError: () => {},
+    setSourcePortError: () => {},
+    setDestinationPortError: () => {},
+    setModeError: () => {},
+    setProtocolError: () => {},
+  });
 
 export const EdgeFirewallContextProvider: FC<{
   children: ReactNode;
@@ -146,14 +145,10 @@ export const EdgeFirewallContextProvider: FC<{
   // It's a state just to let the toggle animate when we try to change its value
   const [tmpToggleState, setTmpToggleState] = useState<boolean | null>(null);
   const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = useState(false);
-  const [
-    isEnableFirewallModalVisible,
-    setIsEnableFirewallModalVisible,
-  ] = useState(false);
-  const [
-    confirmDeleteModalOpen,
-    setConfirmDeleteModalOpen,
-  ] = useState<IpEdgeFirewallRule | null>(null);
+  const [isEnableFirewallModalVisible, setIsEnableFirewallModalVisible] =
+    useState(false);
+  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] =
+    useState<IpEdgeFirewallRule | null>(null);
   const [sourceError, setSourceError] = useState<string>();
   const [sourcePortError, setSourcePortError] = useState<string>();
   const [destinationPortError, setDestinationPortError] = useState<string>();
@@ -178,9 +173,10 @@ export const EdgeFirewallContextProvider: FC<{
     enabled: !!ipOnFirewall && !isParentIpLoading,
   });
 
-  const hasNoFirewall = useMemo(() => ipEdgeFirewall === null, [
-    ipEdgeFirewall,
-  ]);
+  const hasNoFirewall = useMemo(
+    () => ipEdgeFirewall === null,
+    [ipEdgeFirewall],
+  );
 
   const hideNewRuleRow = useCallback(() => {
     setNewSequence(undefined);

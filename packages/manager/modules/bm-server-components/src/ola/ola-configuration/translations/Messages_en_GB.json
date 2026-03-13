@@ -27,5 +27,7 @@
   "dedicated_server_interfaces_ola_error": "An error has occurred during configuration: {{ errorMessage }}",
   "dedicated_server_interface_ola_new_tab": "(Opens in a new tab)",
   "dedicated_server_interfaces_ola_network_interfaces": "Your current network interface",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "Your network interface after activation"
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Simulate network interface after enabling link aggregation",
+  "dedicated_server_interfaces_ola_column_mac_address": "MAC address",
+  "dedicated_server_interfaces_ola_activate": "Enable Aggregation"
 }

@@ -417,5 +417,9 @@
   "domain_tab_CONTACT_edit_form_submit_btn": "Confirmar",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Cancelar",
   "domain_tab_CONTACT_edit_form_required_error": "Este campo es obligatorio.",
-  "domain_tab_CONTACT_edit_form_change_holder": "Para realizar cambios en los campos marcados con un asterisco *, por favor, realice un <Link>cambio de titular</Link>."
+  "domain_tab_CONTACT_edit_form_change_holder": "Para realizar cambios en los campos marcados con un asterisco *, por favor, realice un <Link>cambio de titular</Link>.",
+  "domain_back_to_zone": "Volver a la zona DNS",
+  "domain_order_activate_zone_message": "Para responder a las consultas DNS, tu nombre de dominio debe estar vinculado a una zona DNS. Podrás configurar a qué dirección IP se redirigirá tu nombre de dominio y sus subdominios. La zona DNS de tu nombre de dominio está desactivada. Para activarla, valida los siguientes pasos.",
+  "domain_action_terminated": "rescindido",
+  "domain_action_restored": "restaurado"
 }

@@ -12,42 +12,6 @@ import FreeHostingDrawer from './FreeHostingDrawer';
 import { FreeHostingOptions } from './Hosting';
 import { TInitialOrderFreeHosting } from '@/domain/types/hosting';
 
-interface MockDrawerProps {
-  children: React.ReactNode;
-  open: boolean;
-  onOpenChange: (detail: { open: boolean }) => void;
-}
-
-interface MockComponentProps {
-  children?: React.ReactNode;
-  className?: string;
-}
-
-interface MockButtonProps extends MockComponentProps {
-  onClick?: () => void;
-  disabled?: boolean;
-  variant?: string;
-}
-
-interface MockCheckboxProps extends MockComponentProps {
-  onCheckedChange?: (detail: { checked: boolean }) => void;
-  checked?: boolean;
-  disabled?: boolean;
-}
-
-interface MockTextProps extends MockComponentProps {
-  preset?: string;
-}
-
-interface MockLinkProps extends MockComponentProps {
-  href?: string;
-  target?: string;
-}
-
-interface MockIconProps {
-  name: string;
-}
-
 interface MockPriceCardProps {
   title?: string;
   checked?: boolean;
@@ -55,81 +19,7 @@ interface MockPriceCardProps {
   footer?: React.ReactNode;
 }
 
-vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
-  return {
-    ...actual,
-    Drawer: ({ children, open, onOpenChange }: MockDrawerProps) =>
-      open ? (
-        <div data-testid="drawer" data-open={open}>
-          {typeof onOpenChange === 'function' && (
-            <button
-              data-testid="drawer-close-trigger"
-              onClick={() => onOpenChange({ open: false })}
-            >
-              Close Drawer
-            </button>
-          )}
-          {children}
-        </div>
-      ) : null,
-    DrawerContent: ({ children }: MockComponentProps) => (
-      <div data-testid="drawer-content">{children}</div>
-    ),
-    DrawerBody: ({ children, className }: MockComponentProps) => (
-      <div data-testid="drawer-body" className={className}>
-        {children}
-      </div>
-    ),
-    Button: ({ children, onClick, disabled, variant }: MockButtonProps) => (
-      <button
-        data-testid={`button-${variant}`}
-        onClick={onClick}
-        disabled={disabled}
-      >
-        {children}
-      </button>
-    ),
-    Card: ({ children, className }: MockComponentProps) => (
-      <div data-testid="card" className={className}>
-        {children}
-      </div>
-    ),
-    Checkbox: ({
-      children,
-      onCheckedChange,
-      checked,
-      disabled,
-    }: MockCheckboxProps) => (
-      <div data-testid="checkbox">
-        <input
-          type="checkbox"
-          onChange={(e) => onCheckedChange?.({ checked: e.target.checked })}
-          checked={checked}
-          disabled={disabled}
-          data-testid="checkbox-input"
-        />
-        {children}
-      </div>
-    ),
-    CheckboxControl: () => <div data-testid="checkbox-control" />,
-    CheckboxLabel: ({ children }: MockComponentProps) => (
-      <label data-testid="checkbox-label">{children}</label>
-    ),
-    Text: ({ children, preset }: MockTextProps) => (
-      <span data-testid={`text-${preset}`}>{children}</span>
-    ),
-    Link: ({ children, href, target }: MockLinkProps) => (
-      <a data-testid="link" href={href} target={target}>
-        {children}
-      </a>
-    ),
-    Icon: ({ name }: MockIconProps) => <span data-testid={`icon-${name}`} />,
-    Spinner: () => <div data-testid="spinner">Loading...</div>,
-  };
-});
-
-vi.mock('../Card/PriceCard', () => ({
+vi.mock('@/common/components/Card/PriceCard', () => ({
   default: ({ title, checked, disabled, footer }: MockPriceCardProps) => (
     <div data-testid="price-card">
       <div data-testid="price-card-title">{title}</div>
@@ -144,6 +34,33 @@ vi.mock('../Card/PriceCard', () => ({
     </div>
   ),
 }));
+
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    Drawer: ({ children, open, onOpenChange, ...props }: any) =>
+      open
+        ? React.createElement(
+          'div',
+          { 'data-ods': 'drawer', ...props },
+          React.createElement(
+            'button',
+            {
+              'data-ods': 'drawer-close-trigger',
+              onClick: () => onOpenChange?.({ open: false }),
+            },
+            'Close',
+          ),
+          children,
+        )
+        : null,
+    DrawerContent: ({ children, ...props }: any) =>
+      React.createElement('div', { 'data-ods': 'drawer-content', ...props }, children),
+    DrawerBody: ({ children, ...props }: any) =>
+      React.createElement('div', { 'data-ods': 'drawer-body', ...props }, children),
+  };
+});
 
 describe('FreeHostingDrawer Component', () => {
   const mockOrderFreeHosting = vi.fn();
@@ -193,18 +110,18 @@ describe('FreeHostingDrawer Component', () => {
   describe('Drawer rendering', () => {
     it('should render drawer when isDrawerOpen is true', () => {
       renderComponent();
-      expect(screen.getByTestId('drawer')).toBeInTheDocument();
-      expect(screen.getByTestId('drawer-content')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer"]')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer-content"]')).toBeInTheDocument();
     });
 
     it('should not render drawer when isDrawerOpen is false', () => {
       renderComponent({ isDrawerOpen: false });
-      expect(screen.queryByTestId('drawer')).not.toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer"]')).toBeNull();
     });
 
     it('should call onClose when drawer is closed', async () => {
       renderComponent();
-      const closeButton = screen.getByTestId('drawer-close-trigger');
+      const closeButton = document.querySelector('[data-ods="drawer-close-trigger"]')!;
       fireEvent.click(closeButton);
 
       await waitFor(() => {
@@ -217,7 +134,7 @@ describe('FreeHostingDrawer Component', () => {
     it('should display loading spinner when isOrderFreeHostingPending is true', () => {
       renderComponent({ isOrderFreeHostingPending: true });
 
-      const spinners = screen.getAllByTestId('spinner');
+      const spinners = Array.from(document.querySelectorAll('[data-ods="spinner"]'));
       expect(spinners.length).toBeGreaterThan(0);
       expect(
         screen.getByText(
@@ -229,7 +146,7 @@ describe('FreeHostingDrawer Component', () => {
     it('should display spinner in activation section when isInitialOrderFreeHostingPending is true', () => {
       renderComponent({ isInitialOrderFreeHostingPending: true });
 
-      expect(screen.getAllByTestId('spinner').length).toBeGreaterThan(0);
+      expect(Array.from(document.querySelectorAll('[data-ods="spinner"]')).length).toBeGreaterThan(0);
     });
   });
 
@@ -259,7 +176,7 @@ describe('FreeHostingDrawer Component', () => {
         ),
       ).toBeInTheDocument();
 
-      const checkboxes = screen.getAllByTestId('checkbox-input');
+      const checkboxes = Array.from(document.querySelectorAll('[data-ods="checkbox"] input, input[type="checkbox"]'));
       // DNS A, DNS MX, Tarification (disabled), and Consent checkboxes
       expect(checkboxes.length).toBeGreaterThanOrEqual(4);
     });
@@ -284,7 +201,7 @@ describe('FreeHostingDrawer Component', () => {
 
     it('should display contract links', () => {
       renderComponent();
-      const links = screen.getAllByTestId('link');
+      const links = Array.from(document.querySelectorAll('[data-ods="link"]'));
       expect(links.length).toBe(2);
       expect(links[0]).toHaveAttribute('href', 'https://example.com/terms');
       expect(links[0]).toHaveTextContent('Terms and Conditions');
@@ -297,8 +214,10 @@ describe('FreeHostingDrawer Component', () => {
     it('should update dnsA option when DNS A checkbox is changed', async () => {
       renderComponent();
 
-      const checkboxes = screen.getAllByTestId('checkbox-input');
-      const dnsACheckbox = checkboxes[0]; // First checkbox should be DNS A
+      const checkboxes = Array.from(
+        document.querySelectorAll('[data-ods="checkbox"] input, input[type="checkbox"]'),
+      ).filter((cb) => !(cb as HTMLInputElement).disabled);
+      const dnsACheckbox = checkboxes[0]; // First non-disabled checkbox should be DNS A
 
       fireEvent.click(dnsACheckbox);
 
@@ -310,8 +229,8 @@ describe('FreeHostingDrawer Component', () => {
     it('should update dnsMx option when DNS MX checkbox is changed', async () => {
       renderComponent();
 
-      const checkboxes = screen.getAllByTestId('checkbox-input');
-      const dnsMxCheckbox = checkboxes[1]; // Second checkbox should be DNS MX
+      const checkboxes = Array.from(document.querySelectorAll('[data-ods="checkbox"] input, input[type="checkbox"]'));
+      const dnsMxCheckbox = checkboxes[1];
 
       fireEvent.click(dnsMxCheckbox);
 
@@ -323,7 +242,7 @@ describe('FreeHostingDrawer Component', () => {
     it('should update consent option when consent checkbox is changed', async () => {
       renderComponent();
 
-      const checkboxes = screen.getAllByTestId('checkbox-input');
+      const checkboxes = Array.from(document.querySelectorAll('[data-ods="checkbox"] input, input[type="checkbox"]'));
       const consentCheckbox = checkboxes.find((cb) => {
         const input = cb as HTMLInputElement;
         return !input.disabled && cb !== checkboxes[0] && cb !== checkboxes[1];
@@ -457,7 +376,7 @@ describe('FreeHostingDrawer Component', () => {
         },
       });
 
-      const links = screen.queryAllByTestId('link');
+      const links = document.querySelectorAll('[data-ods="link"]');
       expect(links.length).toBe(0);
     });
   });
@@ -468,7 +387,7 @@ describe('FreeHostingDrawer Component', () => {
         orderCartDetails: undefined,
       });
 
-      expect(screen.getByTestId('drawer')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer"]')).toBeInTheDocument();
     });
 
     it('should not crash when orderCartDetails.details is empty', () => {
@@ -479,7 +398,7 @@ describe('FreeHostingDrawer Component', () => {
         },
       });
 
-      expect(screen.getByTestId('drawer')).toBeInTheDocument();
+      expect(document.querySelector('[data-ods="drawer"]')).toBeInTheDocument();
     });
   });
 });

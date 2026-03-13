@@ -14,12 +14,8 @@ import { EdgeNetworkFirewallContext } from '../edgeNetworkFirewall.context';
 export const ActionColumn = (
   rule: IpEdgeFirewallRule & { isNew?: boolean },
 ) => {
-  const {
-    newSequence,
-    hideNewRuleRow,
-    showConfirmDeleteModal,
-    createNewRule,
-  } = React.useContext(EdgeNetworkFirewallContext);
+  const { newSequence, hideNewRuleRow, showConfirmDeleteModal, createNewRule } =
+    React.useContext(EdgeNetworkFirewallContext);
 
   return rule?.isNew ? (
     <div className="flex gap-4">

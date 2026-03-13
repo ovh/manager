@@ -1,13 +1,11 @@
 import '@/common/setupTests';
-import React from 'react';
-import { render, renderHook } from '@/common/utils/test.provider';
+import { render, renderHook, wrapper } from '@/common/utils/test.provider';
 import { Mock, vi, expect } from 'vitest';
 import {
   dnsDatagridMock,
   dnsDatagridMockError,
 } from '@/domain/__mocks__/dnsDetails';
 import { serviceInfoDetail } from '@/domain/__mocks__/serviceInfoDetail';
-import { wrapper } from '@/common/utils/test.provider';
 import { computeDnsDetails } from '@/domain/utils/utils';
 import { useDomainDnsDatagridColumns } from '@/domain/hooks/domainTabs/useDomainDnsDatagridColumns';
 import DnsConfigurationTab from './dnsConfiguration';

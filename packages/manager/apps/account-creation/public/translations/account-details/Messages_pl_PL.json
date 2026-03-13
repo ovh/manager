@@ -50,5 +50,20 @@
   "account_details_field_corporation_firstname": "Imię prawnego przedstawiciela",
   "account_details_field_corporation_lastname": "Nazwisko prawnego przedstawiciela",
   "account_details_section_address_kyc_info": "<strong>Przed złożeniem zamówienia pamiętaj o wprowadzeniu wszystkich informacji i upewnij się, że Twoje imię i nazwisko odpowiada danym osobowym podanym w Twoich oficjalnych dokumentach.</strong> <ul><li>Wpisz <strong>pełny adres</strong> </li><li>Adres musi być <strong>zgodny z adresem widniejącym w dokumencie</strong> potwierdzającym Twoją tożsamość</li></ul>",
-  "account_details_field_italian_sdi": "Kod nabywcy na fakturze elektronicznej (SDI)"
+  "account_details_field_italian_sdi": "Kod odbiorcy do fakturowania elektronicznego (SDI)",
+  "account_details_field_corporationType": "Rodzaj przedsiębiorstwa",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Osobowa",
+  "account_details_field_nationalIdentificationNumber": "Numer identyfikacji narodowej",
+  "account_details_field_sex": "Płeć",
+  "account_details_field_birthDay": "Data urodzenia",
+  "account_details_sex_option_female": "Kobieta",
+  "account_details_sex_option_male": "Mężczyzna"
 }

@@ -27,7 +27,9 @@ describe('Contacts component', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(/contacts/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/@ovh-ux\/manager-common-translations\/contact:contacts/i),
+      ).toBeInTheDocument();
       expect(
         screen.getByText(
           /firstname lastname: domain_tab_general_information_subscription_contact_owner/i,

@@ -18,9 +18,9 @@ import {
 
 import { IpTypeEnum } from '@/data/constants';
 import {
-  useGetAttachedServices,
-  useGetIpGameFirewall,
   useGetIpdetails,
+  useGetIpGameFirewall,
+  useGetAttachedServices,
   useIpHasAlerts,
   useIpHasVmac,
 } from '@/data/hooks';
@@ -163,7 +163,7 @@ export const IpActionsCell = ({
     enabled: availableGetGameFirewall,
   });
 
-  const items = [
+  const items: ActionMenuItem[] = [
     !parentIpGroup && {
       id: 0,
       label: ipDetails?.description

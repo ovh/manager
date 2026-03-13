@@ -417,5 +417,9 @@
   "domain_tab_CONTACT_edit_form_submit_btn": "Confermare",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Annullare",
   "domain_tab_CONTACT_edit_form_required_error": "Questo campo è obbligatorio",
-  "domain_tab_CONTACT_edit_form_change_holder": "Per apportare modifiche ai campi contrassegnati con un asterisco *, effettua una <Link>modifica del titolare</Link>."
+  "domain_tab_CONTACT_edit_form_change_holder": "Per apportare modifiche ai campi contrassegnati con un asterisco *, effettua una <Link>modifica del titolare</Link>.",
+  "domain_back_to_zone": "Torna all'area DNS",
+  "domain_order_activate_zone_message": "Per rispondere alle richieste DNS, il tuo nome di dominio deve essere collegato a un'area DNS. Potrai configurare a quale indirizzo IP sarà reindirizzato il tuo nome di dominio e i suoi sottodomini. L'area DNS del tuo nome di dominio è disattivata. Per attivarla, convalida i seguenti passaggi.",
+  "domain_action_terminated": "annullato",
+  "domain_action_restored": "ripristinato"
 }

@@ -43,6 +43,7 @@ export default [
       'no-undef': 'off',
       'react/display-name': 'off',
       'react-hooks/exhaustive-deps': 'off',
+      'prettier/prettier': 'off',
     },
   },
   {

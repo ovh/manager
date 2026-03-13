@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.52.1...@ovh-ux/manager-pm@0.53.0) (2026-03-11)
+
+
+### Features
+
+* **vrack:** init react app ([43389da](https://github.com/ovh/manager/commit/43389da91100cc53699e7e2d6b567ed22bf64198)), closes [#MANAGER-16231](https://github.com/ovh/manager/issues/MANAGER-16231)
+
+
+
+
+
 ## [0.52.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.52.0...@ovh-ux/manager-pm@0.52.1) (2026-02-24)
 
 **Note:** Version bump only for package @ovh-ux/manager-pm

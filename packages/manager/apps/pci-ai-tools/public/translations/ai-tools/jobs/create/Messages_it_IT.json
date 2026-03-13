@@ -47,10 +47,10 @@
   "fieldDockerCommandLabel": "Comandi Docker:",
   "summaryFieldVolumesLabel": "Volumi:",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
-  "defaultAutoRestartInfo": "Il job verrà arrestato automaticamente dopo 7 giorni. La tua configurazione e i tuoi dati verranno salvati. ",
+  "defaultAutoRestartInfo": "Il lavoro verrà interrotto automaticamente dopo 7 giorni di funzionamento consecutivi. La tua configurazione e i tuoi dati verranno salvati. ",
   "fieldTimeOutLabel": "Scadenza",
   "fieldAutoRestartLabel": "Riavvio automatico",
-  "fieldAutoRestartDescription": "Se attivato, il job verrà automaticamente riavviato ogni 7 giorni. Se disattivato, il job verrà automaticamente arrestato dopo 7 giorni. In entrambi i casi, la tua configurazione e i tuoi dati verranno salvati.",
+  "fieldAutoRestartDescription": "Se attivato, il lavoro verrà automaticamente riavviato ogni 7 giorni di funzionamento consecutivi. Se disattivato, il lavoro verrà automaticamente interrotto dopo 7 giorni di funzionamento consecutivi. In entrambi i casi, la tua configurazione e i tuoi dati verranno salvati.",
   "filedEnable": "Attivato",
   "filedDisable": "Disattivato"
 }

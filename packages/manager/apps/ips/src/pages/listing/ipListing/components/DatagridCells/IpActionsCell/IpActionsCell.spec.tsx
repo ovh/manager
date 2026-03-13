@@ -193,9 +193,8 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
-  const original = await importOriginal<
-    typeof import('@ovh-ux/manager-react-shell-client')
-  >();
+  const original =
+    await importOriginal<typeof import('@ovh-ux/manager-react-shell-client')>();
   return {
     ...original,
     useOvhTracking: () => ({ trackClick: trackClickMock() }),
@@ -304,7 +303,7 @@ const setupDefaultMocks = () => {
   });
 };
 
-const setupIpDetailsMock = (overrides?: Partial<typeof ipDetailsList[0]>) => {
+const setupIpDetailsMock = (overrides?: Partial<(typeof ipDetailsList)[0]>) => {
   useGetIpdetailsMock.mockReturnValue({
     ipDetails: (overrides
       ? { ...ipDetailsList[MOCK_DATA_INDICES.DEFAULT_IPV4], ...overrides }

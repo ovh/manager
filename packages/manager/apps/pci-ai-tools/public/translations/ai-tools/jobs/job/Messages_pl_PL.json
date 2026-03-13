@@ -24,5 +24,7 @@
   "restartJobToastSuccessDescription": "Zadanie {{name}} zostało uruchomione",
   "cloneJobTitle": "Sklonuj nowe zadanie",
   "shutdownLabel": "Zatrzymanie dnia ",
-  "restartLabel": "Restart dnia "
+  "restartLabel": "Restart dnia ",
+  "waitingResourceLabel": "Oczekiwanie na dostępny zasób",
+  "pendingTimeoutHint": "Data wygaśnięcia zostanie ustalona, gdy zadanie będzie w toku."
 }

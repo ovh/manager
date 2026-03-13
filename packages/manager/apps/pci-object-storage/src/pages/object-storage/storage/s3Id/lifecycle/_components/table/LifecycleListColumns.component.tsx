@@ -59,13 +59,19 @@ export function getColumns({
       ),
       cell: ({ row }) => (
         <LinkComponent to={`./edit/${row.original.id}`}>
-          <span className="truncate block max-w-32">{row.original.id}</span>
+          <span className="truncate block max-w-32" title={row.original.id}>{row.original.id}</span>
         </LinkComponent>
       ),
     },
 
     {
       id: 'scope',
+      accessorFn: (row) => {
+        const prefix = row.filter?.prefix;
+        const tags = row.filter?.tags;
+        const tagsCount = tags ? Object.keys(tags).length : 0;
+        return Boolean(prefix || tagsCount);
+      },
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           <span className="truncate max-w-20">{t('columnScope')}</span>
@@ -84,6 +90,7 @@ export function getColumns({
     },
     {
       id: 'currentVersionOperations',
+      accessorFn: (row) => getCurrentVersionOperationsCount(row),
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           <span className="block max-w-28 whitespace-normal leading-tight">
@@ -102,6 +109,7 @@ export function getColumns({
     },
     {
       id: 'noncurrentVersionOperations',
+      accessorFn: (row) => getNoncurrentVersionOperationsCount(row),
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           <span className="block max-w-28 whitespace-normal leading-tight">
@@ -123,6 +131,7 @@ export function getColumns({
     },
     {
       id: 'deleteMarker',
+      accessorFn: (row) => Boolean(row.expiration?.expiredObjectDeleteMarker),
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           <span className="block max-w-28 whitespace-normal leading-tight">
@@ -143,6 +152,8 @@ export function getColumns({
     },
     {
       id: 'abortMultipart',
+      accessorFn: (row) =>
+        Boolean(row.abortIncompleteMultipartUpload?.daysAfterInitiation),
       header: ({ column }) => (
         <DataTable.SortableHeader column={column}>
           <span className="block max-w-28 whitespace-normal leading-tight">

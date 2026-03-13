@@ -23,10 +23,7 @@
   "manager_billing_subscription_engagement_commit_cancel": "Annuler la demande d'engagement",
 
   "manager_billing_subscription_autorenew_none": "Aucun",
-  "manager_billing_subscription_autorenew_every_1_month": "Tous les mois",
-  "manager_billing_subscription_autorenew_every_3_month": "Tous les 3 mois",
-  "manager_billing_subscription_autorenew_every_6_month": "Tous les 6 mois",
-  "manager_billing_subscription_autorenew_every_12_month": "Tous les ans",
+  "manager_billing_subscription_autorenew_frequency": "Tous les {{ months }} mois",
   "manager_billing_subscription_resiliate_cancel": "Annuler la résiliation",
   "manager_billing_subscription_autorenew_title": "Renouvellement automatique",
   "manager_billing_subscription_configure_renew": "Configurer le renouvellement",

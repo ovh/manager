@@ -80,5 +80,6 @@
   "domain_webhosting_order_payment_checkout_error": "Ocorreu um erro durante o pagamento do montante do carrinho: {{ message }}",
   "domain_webhosting_order_payment_checkout_error_unknown": "Ocorreu um erro durante o pagamento do montante do carrinho.",
   "domain_webhosting_order_payment_checkout_success": "A sua encomenda para o alojamento partilhado foi devidamente registada. Foi efetuado um débito de {{price}} na sua conta {{accountId}}. O seu produto será automaticamente renovado a {{renewDate}}.<a class=\"d-block\" target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">Ver a minha fatura</a>",
-  "domain_webhosting_order_bill_success": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada. O seu alojamento será ativado quando o validar."
+  "domain_webhosting_order_bill_success": "A sua <a target=\"_blank\" href=\"{{billUrl}}\" rel=\"noopener\">nota de encomenda</a> foi gerada. O seu alojamento será ativado quando o validar.",
+  "domain_webhosting_order_duration": "{{ meses }} meses"
 }

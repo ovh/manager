@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.4...@ovh-ux/ovh-at-internet@0.30.0) (2026-03-04)
+
+
+### Features
+
+* fix ovh at internet behavior ([d81f245](https://github.com/ovh/manager/commit/d81f245b6186d67a200ef073de9745334bd4fbd0)), closes [#MANAGER-20904](https://github.com/ovh/manager/issues/MANAGER-20904)
+
+
+
+
+
 ## [0.29.4](https://github.com/ovh/manager/compare/@ovh-ux/ovh-at-internet@0.29.3...@ovh-ux/ovh-at-internet@0.29.4) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/ovh-at-internet

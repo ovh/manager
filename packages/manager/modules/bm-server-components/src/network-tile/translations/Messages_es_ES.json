@@ -28,5 +28,13 @@
   "server_network_ola_reset": "Desconfigurar la agregación privada",
   "server_network_ola_terminate": "Dar de baja OLA",
   "server_network_ola_mode_vrack_aggregation": "Agregación privada",
-  "server_network_ola_mode_default": "Por defecto"
+  "server_network_ola_mode_default": "Por defecto",
+  "server_network_ola_mode_full_lag": "Activo - Full private",
+  "server_network_ola_mode_double_lag": "Activo - Double LAG",
+  "server_network_ola_mode_available": "Disponible",
+  "server_network_ola_mode_unavailable": "No disponible",
+  "server_network_ola_mode_full_lag_description": "Las interfaces de red están completamente agregadas y son privadas",
+  "server_network_ola_mode_double_lag_description": "Los dos pares de interfaces de red se agregan por separado, lo que permite el tráfico privado y público.",
+  "server_network_ola_mode_available_description": "Las interfaces de red pueden agregarse a través de la interfaz de configuración",
+  "server_network_ola_mode_unavailable_description": "El servidor no permite la agregación de interfaces de red"
 }

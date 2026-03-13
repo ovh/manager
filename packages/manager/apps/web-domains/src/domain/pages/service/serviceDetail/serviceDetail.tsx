@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import {
@@ -14,7 +14,7 @@ import {
 } from '@ovh-ux/manager-react-components';
 import { useGetDomainResource } from '@/domain/hooks/data/query';
 import appConfig from '@/web-domains.config';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import ServiceDetailsTabs from '@/domain/components/ServiceDetail/ServiceDetailTabs';
 import { urls } from '@/domain/routes/routes.constant';
 import { changelogLinks } from '@/domain/constants/serviceDetail';
@@ -22,7 +22,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useLinks } from '@/domain/constants/guideLinks';
 
 export default function ServiceDetail() {
-  const { t } = useTranslation(['domain', 'web-domains/error']);
+  const { t } = useTranslation(['domain', 'web-domains/error', 'zone']);
   const navigate = useNavigate();
   const { serviceName } = useParams<{ serviceName: string }>();
   const { notifications } = useNotifications();
@@ -37,6 +37,18 @@ export default function ServiceDetail() {
       target: '_blank',
       label: t('domain_guide_button_label'),
     },
+    {
+      id: 2,
+      href: guideUrls.DNS_ZONE,
+      target: '_blank',
+      label: t('zone:zone_page_guide_button_edit_label'),
+    },
+    {
+      id: 3,
+      href: guideUrls.DNS_HISTORY,
+      target: '_blank',
+      label: t('zone:zone_page_guide_button_history_label'),
+    },
   ];
 
   const header: HeadersProps = {
@@ -49,7 +61,7 @@ export default function ServiceDetail() {
     domainResourceError,
     isFetchingDomainResource,
     domainResource,
-  } = useGetDomainResource(serviceName);
+  } = useGetDomainResource(serviceName!);
 
   if (isFetchingDomainResource) {
     return <Loading />;
@@ -76,12 +88,12 @@ export default function ServiceDetail() {
         />
       }
       header={header}
-      tabs={<ServiceDetailsTabs domainResource={domainResource} />}
+      tabs={<ServiceDetailsTabs domainResource={domainResource!} />}
       backLinkLabel={t('domain_back_to_service_list')}
       onClickReturn={() => {
         navigate(urls.domainRoot, { replace: true });
       }}
-      message={notifications.length > 0 ? <Notifications /> : null}
+      message={notifications.length > 0 ? <Notifications /> : undefined}
     >
       <Outlet />
     </BaseLayout>

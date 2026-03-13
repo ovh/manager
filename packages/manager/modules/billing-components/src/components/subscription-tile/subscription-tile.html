@@ -145,8 +145,9 @@
                 <span
                     data-ng-if="false"
                     data-translate="{{ :: $ctrl.serviceInfos.hasAutomaticRenew() ?
-                        'manager_billing_subscription_autorenew_every_'+ $ctrl.serviceInfos.renew.period +'_month' :
+                        'manager_billing_subscription_autorenew_frequency' :
                         'manager_billing_subscription_autorenew_none' }}"
+                    data-translate-values="{ months: $ctrl.serviceInfos.renew.period }"
                 ></span>
 
                 <a

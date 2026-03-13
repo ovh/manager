@@ -27,5 +27,7 @@
   "dedicated_server_interfaces_ola_error": "Si è verificato un errore durante la configurazione: {{ errorMessage }}",
   "dedicated_server_interface_ola_new_tab": "(apri in una nuova scheda)",
   "dedicated_server_interfaces_ola_network_interfaces": "La tua interfaccia di rete corrente",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "La tua interfaccia di rete dopo l'attivazione"
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Simulazione dell'interfaccia di rete dopo l'attivazione dell'aggregazione dei collegamenti",
+  "dedicated_server_interfaces_ola_column_mac_address": "Indirizzo MAC",
+  "dedicated_server_interfaces_ola_activate": "Attivare l’aggregazione"
 }

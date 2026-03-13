@@ -40,7 +40,7 @@ export default function DnssecToggleStatus({
 }: DnssecToggleStatusProps) {
   const { t } = useTranslation(['domain', NAMESPACES.IAM, NAMESPACES.STATUS]);
   const { data: dnsZoneIAMRessources } = useGetIAMResource(
-    domainResource.id,
+    domainResource?.id,
     'dnsZone',
   );
   const urn = dnsZoneIAMRessources?.[0]?.urn;
@@ -48,6 +48,13 @@ export default function DnssecToggleStatus({
     ['dnsZone:apiovh:dnssec/create', 'dnsZone:apiovh:dnssec/delete'],
     urn,
   );
+  const isExternalOrMixed =
+    domainResource.currentState.dnsConfiguration.configurationType ===
+      DnsConfigurationTypeEnum.EXTERNAL ||
+    domainResource.currentState.dnsConfiguration.configurationType ===
+      DnsConfigurationTypeEnum.MIXED;
+  const showExternalTooltip = isExternalOrMixed;
+  const showIamTooltip = !isAuthorized && !isPending && !isExternalOrMixed;
   return (
     <ManagerTile.Item>
       <ManagerTile.Item.Label>
@@ -74,11 +81,7 @@ export default function DnssecToggleStatus({
                 dnssecStatus ?? DnssecStatusEnum.NOT_SUPPORTED
               ].toggleStatus === 'disabled' ||
               !isAuthorized ||
-              // Customer should not be able to activate OVH dnssec with an external or mixed DNS configuration
-              domainResource.currentState.dnsConfiguration.configurationType ===
-                DnsConfigurationTypeEnum.MIXED ||
-              domainResource.currentState.dnsConfiguration.configurationType ===
-                DnsConfigurationTypeEnum.EXTERNAL
+              isExternalOrMixed
             }
             checked={
               dnssecStatus === DnssecStatusEnum.ENABLED ||
@@ -88,7 +91,10 @@ export default function DnssecToggleStatus({
             data-testid={'toggle'}
           >
             <Tooltip>
-              <TooltipTrigger asChild disabled={!isAuthorized && !isPending}>
+              <TooltipTrigger
+                asChild
+                disabled={showIamTooltip || showExternalTooltip}
+              >
                 <div className="flex items-end gap-2">
                   <ToggleControl data-testid={'toggle-control'} />
                   <ToggleLabel>
@@ -106,9 +112,13 @@ export default function DnssecToggleStatus({
                   </ToggleLabel>
                 </div>
               </TooltipTrigger>
-              {!isAuthorized && !isPending && (
+              {(showIamTooltip || showExternalTooltip) && (
                 <TooltipContent>
-                  {t(`${NAMESPACES.IAM}:iam_actions_message`)}
+                  {showExternalTooltip
+                    ? t(
+                        'domain_tab_general_information_dnssec_external_zone_tooltip',
+                      )
+                    : t(`${NAMESPACES.IAM}:iam_actions_message`)}
                 </TooltipContent>
               )}
             </Tooltip>

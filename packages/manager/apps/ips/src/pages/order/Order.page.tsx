@@ -14,10 +14,11 @@ import { Ipv4Order } from './Ipv4Order.component';
 import { Ipv6Order } from './Ipv6Order.component';
 import { OrderContextProvider } from './order.context';
 import { IpVersionSection } from './sections/IpVersionSection.component';
+import { TRANSLATION_NAMESPACES } from '@/utils';
 
 export const OrderPage: React.FC = () => {
-  const { t: tOrder } = useTranslation('order');
-  const { t: tCommon } = useTranslation('common');
+  const { t: tOrder } = useTranslation(TRANSLATION_NAMESPACES.order);
+  const { t: tCommon } = useTranslation(TRANSLATION_NAMESPACES.common);
   const navigate = useNavigate();
   const header = useHeader(tOrder('title'));
 

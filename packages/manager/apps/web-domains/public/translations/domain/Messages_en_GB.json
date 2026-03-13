@@ -417,5 +417,9 @@
   "domain_tab_CONTACT_edit_form_submit_btn": "Confirm",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Cancel",
   "domain_tab_CONTACT_edit_form_required_error": "Required field",
-  "domain_tab_CONTACT_edit_form_change_holder": "To edit the fields marked with an asterisk (*), please <Link>change domain owner</Link>."
+  "domain_tab_CONTACT_edit_form_change_holder": "To edit the fields marked with an asterisk (*), please <Link>change domain owner</Link>.",
+  "domain_back_to_zone": "Return to the DNS zone",
+  "domain_order_activate_zone_message": "To respond to DNS queries, your domain name must be linked to a DNS zone. You will be able to configure which IP address your domain name and its subdomains will be redirected to. The DNS zone for your domain name is disabled. To activate it, please validate the following steps.",
+  "domain_action_terminated": "terminated",
+  "domain_action_restored": "restored"
 }

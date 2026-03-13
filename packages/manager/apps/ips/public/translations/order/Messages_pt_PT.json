@@ -47,5 +47,16 @@
   "new_prefix_ipv6_card_description": "Obtenha o seu novo prefixo IPv6 para utilizar nos serviços vRack.",
   "ipv6_limit_reached_error": "O número máximo de blocos IPv6 adicionais já foi atingido",
   "ipv6_region_3_blocks_limit_reached_error": "O número máximo de 3 blocos IPv6 adicionais já foi atingido na região selecionada. Escolha outra região.",
-  "ipv6_region_already_used_error": "Já dispõe de um bloco da região selecionada no seu vRack. Escolha outra região."
+  "ipv6_region_already_used_error": "Já dispõe de um bloco da região selecionada no seu vRack. Escolha outra região.",
+  "vrack_bandwidth_section_title": "Selecionar uma largura de banda pública",
+  "vrack_bandwidth_section_description": "Ao atribuir um IP adicional a uma rede privada vRack, a largura de banda pública deve ser ativada.",
+  "ap_bandwidth_limit_tooltip_info": "A disponibilidade da largura de banda pode ser limitada nas regiões da Ásia-Pacífico.",
+  "ip_order_success_message": "O seu pedido de IP adicional começou numa nova aba. Por favor, termine-o para finalizar a sua compra. Se a nova aba não abrir, <Link>clique aqui.</Link>",
+  "upgrade_bandwidth_order_success_message": "O seu pedido de largura de banda começou numa nova aba. Por favor, termine-o para finalizar a sua compra. Se a nova aba não abrir, <Link>clique aqui.</Link>",
+  "bandwidth_option_card_tooltip": "Um custo proporcional aplica-se aos dias restantes do seu ciclo de faturação atual e a tarifação completa começa no ciclo de faturação seguinte.",
+  "vrack_bandwidth_double_order_info_message": "Um pedido para a largura de banda pública e um pedido para o IP adicional são necessários se já tiver uma largura de banda pública ativada no seu vRack. Se ainda não tiver largura de banda pública ativada, é necessário apenas um pedido.",
+  "upgrade_bandwidth_order_error_message": "Ocorreu um erro ao fazer o pedido da largura de banda pública. Volte a tentar mais tarde",
+  "vrack_bandwidth_section_description_1": "Ao atribuir um endereço IP adicional a uma rede vRack, a largura de banda pública aplica-se ao tráfego entre a OVHcloud e a Internet.",
+  "vrack_bandwidth_section_description_2": "A largura de banda pública selecionada aplica-se a uma rede vRack na região dada e é partilhada entre todos os endereços IP adicionais desse local que estão encaminhados para esta rede.",
+  "vrack_bandwidth_section_description_3": "Por favor, selecione o plano aplicável às suas necessidades (pode ser atualizado posteriormente)."
 }

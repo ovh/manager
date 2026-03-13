@@ -417,5 +417,9 @@
   "domain_tab_CONTACT_edit_form_submit_btn": "Zatwierdź",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Anuluj",
   "domain_tab_CONTACT_edit_form_required_error": "Uzupełnienie tego pola jest obowiązkowe",
-  "domain_tab_CONTACT_edit_form_change_holder": "Aby zmienić pola oznaczone gwiazdką *, <Link>zmień właściciela</Link>."
+  "domain_tab_CONTACT_edit_form_change_holder": "Aby zmienić pola oznaczone gwiazdką *, <Link>zmień właściciela</Link>.",
+  "domain_back_to_zone": "Powrót do strefy DNS",
+  "domain_order_activate_zone_message": "Aby odpowiadać na zapytania DNS, Twoja nazwa domeny musi być powiązana ze strefą DNS. Będziesz mógł skonfigurować, na jaki adres IP będzie przekierowywana Twoja nazwa domeny i jej subdomeny. Strefa DNS Twojej nazwy domeny jest wyłączona. Aby ją aktywować, potwierdź następujące kroki.",
+  "domain_action_terminated": "wypowiedziany",
+  "domain_action_restored": "przywrócony"
 }

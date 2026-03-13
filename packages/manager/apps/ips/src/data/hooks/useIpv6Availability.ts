@@ -63,7 +63,7 @@ export const useIpv6Availability = ({
     IcebergFetchResultV6<IpObject>,
     ApiError
   >({
-    queryKey: ['additionalips', 'ipv6'],
+    queryKey: ['additionalips', ipVersion],
     queryFn: () =>
       getIcebergIpList({
         isAdditionalIp: true,

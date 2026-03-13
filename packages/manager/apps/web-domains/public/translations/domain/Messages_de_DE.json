@@ -417,5 +417,9 @@
   "domain_tab_CONTACT_edit_form_submit_btn": "Bestätigen",
   "domain_tab_CONTACT_edit_form_cancel_btn": "Abbrechen",
   "domain_tab_CONTACT_edit_form_required_error": "Dieses Feld muss ausgefüllt werden.",
-  "domain_tab_CONTACT_edit_form_change_holder": "Zum Vornehmen von Änderungen an den mit einem Sternchen * gekennzeichneten Feldern bedarf es einer <Link>Änderung des Inhabers</Link>."
+  "domain_tab_CONTACT_edit_form_change_holder": "Zum Vornehmen von Änderungen an den mit einem Sternchen * gekennzeichneten Feldern bedarf es einer <Link>Änderung des Inhabers</Link>.",
+  "domain_back_to_zone": "Zurück zur DNS-Zone",
+  "domain_order_activate_zone_message": "Um auf DNS-Anfragen zu antworten, muss Ihr Domainname mit einer DNS-Zone verbunden sein. Sie können dort konfigurieren, auf welche IP-Adresse Ihr Domainname und seine Subdomains umgeleitet werden. Die DNS-Zone Ihres Domainnamens ist deaktiviert. Um sie zu aktivieren, bestätigen Sie die folgenden Schritte.",
+  "domain_action_terminated": "gekündigt",
+  "domain_action_restored": "wiederhergestellt"
 }
