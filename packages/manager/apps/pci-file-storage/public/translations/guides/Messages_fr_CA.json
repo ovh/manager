@@ -1,10 +1,4 @@
 {
-  "learn-more": {
-    "category": "Offre",
-    "title": "En savoir plus",
-    "description": "Page Labs expliquant la fonctionnalité et la tarification de File Storage.",
-    "link-text": "En savoir plus"
-  },
   "get-started": {
     "category": "Guide",
     "title": "Premiers pas",
@@ -15,7 +9,7 @@
   "discord": {
     "category": "Discord",
     "title": "Restez informé(e) des dernières actualités",
-    "description": "Rejoignez-nous directement sur #beta-file-storage : posez vos questions et partagez vos retours.",
+    "description": "Rejoignez-nous directement sur #file-storage : posez vos questions et partagez vos retours.",
     "link-text": "En savoir plus"
   }
 }

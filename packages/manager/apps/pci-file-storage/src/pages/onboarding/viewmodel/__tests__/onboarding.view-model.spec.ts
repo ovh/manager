@@ -19,6 +19,6 @@ describe('getRegionGuides', () => {
     const result = getRegionGuides(Region.US);
 
     expect(result).toHaveLength(1);
-    expect(result[0]).toEqual(GUIDES[1]);
+    expect(result[0]).toEqual(GUIDES[0]);
   });
 });
