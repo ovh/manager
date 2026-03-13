@@ -3,6 +3,8 @@ import { init, loadRemote } from '@module-federation/runtime';
 import component from './component';
 import { getWillPaymentUrl } from '../../../common/module-federation-helper';
 
+// test labeu
+
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'billing.payment.method.add';
 
