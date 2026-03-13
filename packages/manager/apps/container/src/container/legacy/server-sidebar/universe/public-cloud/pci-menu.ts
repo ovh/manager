@@ -120,7 +120,7 @@ export function getPciProjectMenu(
         isFeaturesAvailable('pci-file-storage') && {
           id: 'file-storage',
           title: 'File Storage',
-          badge: 'beta',
+          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/files`,
@@ -129,7 +129,6 @@ export function getPciProjectMenu(
         isFeaturesAvailable('volume-backup') && {
           id: 'volume-backup',
           title: 'Volume Backup',
-          badge: 'new',
           href: getURL(
             'public-cloud',
             `#/pci/projects/${projectId}/storages/volume-backup`,
