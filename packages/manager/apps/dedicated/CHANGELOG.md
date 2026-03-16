@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.4...@ovh-ux/manager-dedicated@20.76.0) (2026-03-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4709] ([4c2bf1b](https://github.com/ovh/manager/commit/4c2bf1b8a1d80a5f0bd9c5285779cf3793abdc31))
+
+
+### Features
+
+* **dedicated:** add guide for game servers ([044fad1](https://github.com/ovh/manager/commit/044fad12cdfb0b13dc9a2568351007ab7b515767)), closes [#MANAGER-20589](https://github.com/ovh/manager/issues/MANAGER-20589)
+* **dedicated:** fix game ddos modale text ([ad89e4a](https://github.com/ovh/manager/commit/ad89e4a48f0c8788bc551707cb5d284cceff2437)), closes [#MANAGER-20590](https://github.com/ovh/manager/issues/MANAGER-20590)
+* **dedicated:** game ddos modal disclamer ([393676e](https://github.com/ovh/manager/commit/393676edf80fdd3c8ee9b71f46dd789307873a6c)), closes [#MANAGER-20590](https://github.com/ovh/manager/issues/MANAGER-20590)
+
+
+
+
+
 ## [20.75.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.3...@ovh-ux/manager-dedicated@20.75.4) (2026-03-16)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

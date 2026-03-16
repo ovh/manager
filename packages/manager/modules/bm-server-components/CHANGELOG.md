@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.22.0...@ovh-ux/manager-bm-server-components@2.23.0) (2026-03-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4709] ([4c2bf1b](https://github.com/ovh/manager/commit/4c2bf1b8a1d80a5f0bd9c5285779cf3793abdc31))
+
+
+### Features
+
+* **dedicated:** add Game anti-DDoS Protection ([9f08426](https://github.com/ovh/manager/commit/9f0842635bacb12a513b0f645eda805fdcceda13)), closes [#MANAGER-20586](https://github.com/ovh/manager/issues/MANAGER-20586)
+* **dedicated:** add Game anti-DDoS Protection ([0de4233](https://github.com/ovh/manager/commit/0de42334d6071cd0305c733ce31be69a9a8d9487)), closes [#MANAGER-20586](https://github.com/ovh/manager/issues/MANAGER-20586)
+* **dedicated:** add game ip ddos tracking ([0df94d4](https://github.com/ovh/manager/commit/0df94d41abbc14c2be8d5e3ea2accff1c94bd11a)), closes [#MANAGER-20588](https://github.com/ovh/manager/issues/MANAGER-20588)
+* **dedicated:** add guide for game servers ([044fad1](https://github.com/ovh/manager/commit/044fad12cdfb0b13dc9a2568351007ab7b515767)), closes [#MANAGER-20589](https://github.com/ovh/manager/issues/MANAGER-20589)
+* **dedicated:** check for gome firewall rules instead of enable ([dd366f3](https://github.com/ovh/manager/commit/dd366f35d7c135f140cfd64fd5b0d58a59ec7e17)), closes [#MANAGEr-20588](https://github.com/ovh/manager/issues/MANAGEr-20588)
+* **dedicated:** game ddos modal disclamer ([393676e](https://github.com/ovh/manager/commit/393676edf80fdd3c8ee9b71f46dd789307873a6c)), closes [#MANAGER-20590](https://github.com/ovh/manager/issues/MANAGER-20590)
+* **dedicated:** show status of advanced GAME protection ([fbda3e6](https://github.com/ovh/manager/commit/fbda3e6e460cef4afce7f3ca128661b6fb895a60)), closes [#MANAGER-20588](https://github.com/ovh/manager/issues/MANAGER-20588)
+
+
+
+
+
 # [2.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.21.1...@ovh-ux/manager-bm-server-components@2.22.0) (2026-03-05)
 
 

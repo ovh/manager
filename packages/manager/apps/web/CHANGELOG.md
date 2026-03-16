@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.5...@ovh-ux/manager-web@19.38.0) (2026-03-16)
+
+
+### Features
+
+* **dedicated:** add Game anti-DDoS Protection ([0de4233](https://github.com/ovh/manager/commit/0de42334d6071cd0305c733ce31be69a9a8d9487)), closes [#MANAGER-20586](https://github.com/ovh/manager/issues/MANAGER-20586)
+
+
+
+
+
 ## [19.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.4...@ovh-ux/manager-web@19.37.5) (2026-03-10)
 
 
