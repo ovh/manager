@@ -7,8 +7,6 @@ import { DescriptionWrapper } from './CreatePlanForm';
 import SimpleTile, { Block } from '../SimpleTile/SimpleTile';
 import { DeploymentMode, getDeploymentOptions } from '@/utils/savingsPlan';
 
-import './select-deployment.css';
-
 type SelectDeploymentProps = {
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;

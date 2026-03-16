@@ -5,6 +5,7 @@
   "model": "Modello",
   "quantity": "Quantità",
   "duration": "Durata",
+  "deployment": "Regione",
   "renew": "Rinnovo",
   "reactivate": "Attivo",
   "terminate": "Disattivo",
