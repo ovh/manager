@@ -125,6 +125,12 @@ export type TCurrentUsage = {
     totalPrice: number;
     type: string;
   }[];
+  totalPrice: {
+    currencyCode: string;
+    priceInUcents: number;
+    text: string;
+    value: number;
+  };
 };
 
 export const getCurrentUsage = async (
