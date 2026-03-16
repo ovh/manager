@@ -46,6 +46,10 @@ export const getDeploymentOptions = (t: TFunction) => [
     description: t('deployment_three_az'),
   },
 ];
+
+export const getDeploymentLabel = (mode: 'REGION-3-AZ' | 'REGION-1-AZ') =>
+  mode === 'REGION-3-AZ' ? '3-AZ' : '1-AZ';
+
 export const getInstancesInformation = (t: TFunction): InstanceInfo[] => [
   {
     id: '1',
