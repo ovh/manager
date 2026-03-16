@@ -15,11 +15,14 @@ import PlannedChangeStatusChip from '../PlannedChangeStatusChip/PlannedChangeSta
 import StatusChip from '../StatusChip/StatusChip';
 import ActionsCell from './ActionsCell';
 import { SavingsPlanDatagridWrapper } from './Table.type';
+import { getDeploymentLabel } from '@/utils/savingsPlan';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
 
 type SortableKey = Pick<
   SavingsPlanService,
   'displayName' | 'endDate' | 'period' | 'periodEndDate'
 >;
+type TDeploymentMode = 'REGION-3-AZ' | 'REGION-1-AZ';
 
 export default function TableContainer({
   data,
@@ -61,6 +64,12 @@ export default function TableContainer({
     );
   }, [data, pagination, sorting]);
 
+  const getDeploymentBadge = (mode: TDeploymentMode) => {
+    const text = getDeploymentLabel(mode);
+    const classname = mode === 'REGION-3-AZ' ? 'chip-3AZ' : 'chip-1AZ';
+    return <OdsBadge className={classname} label={text} />;
+  };
+
   const columns: DatagridColumn<SavingsPlanService>[] = useMemo(
     () => [
       {
@@ -95,6 +104,12 @@ export default function TableContainer({
             {t('months', { count: convertToDuration(props.period) })}
           </DataGridTextCell>
         ),
+      },
+      {
+        id: 'deployment',
+        label: t('region'),
+        cell: (props: SavingsPlanService) =>
+          getDeploymentBadge(props.deploymentMode),
       },
       {
         id: 'periodEndAction',

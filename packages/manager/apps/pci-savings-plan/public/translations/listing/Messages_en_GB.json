@@ -5,6 +5,7 @@
   "model": "Template",
   "quantity": "Quantity",
   "duration": "Duration",
+  "deployment": "Region",
   "renew": "Renewal",
   "reactivate": "Active",
   "terminate": "Disabled",

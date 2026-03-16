@@ -1,9 +1,0 @@
-.chip-3AZ::part(badge) {
-  background-color: var(--ods-color-primary-700);
-  color: var(--ods-color-primary-000);
-}
-
-.chip-1AZ::part(badge) {
-  background-color: var(--ods-color-information-400);
-  color: var(--ods-color-primary-000);
-}
