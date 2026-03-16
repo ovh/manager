@@ -36,5 +36,19 @@
   "server_network_ola_mode_full_lag_description": "Las interfaces de red están completamente agregadas y son privadas",
   "server_network_ola_mode_double_lag_description": "Los dos pares de interfaces de red se agregan por separado, lo que permite el tráfico privado y público.",
   "server_network_ola_mode_available_description": "Las interfaces de red pueden agregarse a través de la interfaz de configuración",
-  "server_network_ola_mode_unavailable_description": "El servidor no permite la agregación de interfaces de red"
+  "server_network_ola_mode_unavailable_description": "El servidor no permite la agregación de interfaces de red",
+  "server_network_game_ddos": "Game DDoS Protection",
+  "server_network_game_ddos_no_ip": "No hay IP asociadas",
+  "server_network_game_ddos_numbers": "{{ total }} dirección(es) IPv4 asociada(s) a este servidor",
+  "server_network_game_ddos_button_configure": "Configurar Game Protection",
+  "server_network_game_ddos_no_ip_configured": "Direcciones IPv4 no protegidas",
+  "server_network_game_ddos_some_ips_configured": "Algunas direcciones IPv4 están protegidas",
+  "server_network_game_ddos_all_ips_configured": "Todas las direcciones IPv4 están protegidas",
+  "server_network_game_protection": "Game anti-DDoS Protection",
+  "server_network_game_protection_no_ip": "No hay IP asociadas",
+  "server_network_game_protection_numbers": "{{ total }} dirección(es) IP asociada(s) a este servidor",
+  "server_network_game_protection_button_configure": "Configurar Game Protection",
+  "server_network_game_protection_no_ip_configured": "Direcciones IP no configuradas",
+  "server_network_game_protection_some_ips_configured": "Algunas direcciones IP configuradas",
+  "server_network_game_protection_all_ips_configured": "Todas las direcciones IP están configuradas"
 }

@@ -836,5 +836,14 @@
   "server_configuration_intervention_activate_failed": "Wystąpił błąd podczas włączania interwencji w centrum danych dla serwera {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Ten serwer dedykowany jest częścią klastra Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Zalecamy przeprowadzenie wszystkich zmian konfiguracji bezpośrednio na dashboardzie serwera powiązanego z klastrem Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Wszystkie operacje płatnicze związane z tym serwerem są widoczne w klastrze Nutanix: {{clusterDashboardLink}}",
+  "server_guides": "Przewodniki",
+  "server_guide_ddos_game": "Ochrona serwera Game za pomocą firewalla aplikacyjnego",
+  "ovh_server_game_ddos_information_modal_title": "Ochrona serwerów gier przed atakami DDoS",
+  "ovh_server_game_ddos_information_modal_button_primary": "Rozumiem",
+  "ovh_server_game_ddos_information_modal_button_secondary": "Zamknij",
+  "ovh_server_game_ddos_information_modal_content_1": "Zaawansowana ochrona DDoS zapewnia nieprzerwaną dostępność serwera GAME nawet w czasie ataków.",
+  "ovh_server_game_ddos_information_modal_content_subtitle": "Najważniejsze informacje",
+  "ovh_server_game_ddos_information_modal_content_2": "Ochrona jest konfigurowana osobno dla każdego publicznego adresu IP. Każdy publiczny adres IP serwera może być indywidualnie chroniony. Możesz włączyć ochronę i dostosować jej parametry do swoich potrzeb.",
+  "ovh_server_game_ddos_information_modal_checkbox_label": "Nie pokazuj więcej tego komunikatu"
 }

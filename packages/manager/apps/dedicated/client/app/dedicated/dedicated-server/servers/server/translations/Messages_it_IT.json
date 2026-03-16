@@ -836,5 +836,14 @@
   "server_configuration_intervention_activate_failed": "Si è verificato un errore durante l'attivazione degli interventi in loco sul server {{serverName}}",
   "server_nutanix_cluster_node_warning_1": "Questo server dedicato fa parte di un cluster Nutanix: {{clusterName}}",
   "server_nutanix_cluster_node_warning_2": "Consigliamo di apportare tutte le modifiche di configurazione direttamente nella dashboard del server associato al cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Tutte le azioni di fatturazione associate a questo server sono visibili sul cluster Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Tutte le azioni di fatturazione associate a questo server sono visibili sul cluster Nutanix: {{clusterDashboardLink}}",
+  "server_guides": "Guide",
+  "server_guide_ddos_game": "Proteggere un server Game con il firewall applicativo",
+  "ovh_server_game_ddos_information_modal_title": "Proteggi i tuoi server di gioco dagli attacchi DDoS",
+  "ovh_server_game_ddos_information_modal_button_primary": "Ho capito",
+  "ovh_server_game_ddos_information_modal_button_secondary": "Chiudere",
+  "ovh_server_game_ddos_information_modal_content_1": "Il tuo server GAME è dotato di una protezione DDoS avanzata per garantire la disponibilità dei server di gioco anche durante gli attacchi.",
+  "ovh_server_game_ddos_information_modal_content_subtitle": "Aspetti da ricordare",
+  "ovh_server_game_ddos_information_modal_content_2": "La protezione è configurata per indirizzo IP pubblico. Ogni IP pubblico del tuo server può essere protetto singolarmente. Puoi attivare e personalizzare la protezione in base alle tue esigenze specifiche.",
+  "ovh_server_game_ddos_information_modal_checkbox_label": "Non mostrare più questo messaggio"
 }
