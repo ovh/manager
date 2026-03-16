@@ -51,7 +51,7 @@ const getTechnicalInfo = async ({
   deploymentMode: DeploymentMode;
 }): Promise<CommercialCatalogTechnicalType[]> => {
   return getCatalogCommercial<CommercialCatalogTechnicalType[]>({
-    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_node:${deploymentMode}`,
+    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_mode:${deploymentMode}`,
     merchant,
   });
 };
