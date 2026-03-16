@@ -14,9 +14,9 @@ export default class PaymentMethodAddController {
   }
 
   $onInit() {
-    const element = document.getElementById('billing-payment-method-add');
+    this.element = document.getElementById('billing-payment-method-add');
 
-    this.setupPaymentAdd(element, {
+    this.teardownPaymentAdd = this.setupPaymentAdd(this.element, {
       configuration: {
         baseUrl: window.location.origin,
         onChange: (state) => {
@@ -48,7 +48,10 @@ export default class PaymentMethodAddController {
               return this.onPaymentMethodAddError(state?.data?.message);
 
             case GlobalStatePaymentMethodStatus.REGISTERED:
+              return null;
+
             case GlobalStatePaymentMethodStatus.PAYMENT_METHOD_SAVED:
+              this.teardownPaymentAdd();
               return this.onPaymentMethodAdded();
 
             default:
@@ -58,7 +61,7 @@ export default class PaymentMethodAddController {
         subsidiary: this.user.ovhSubsidiary,
         language: this.userLocale,
         hostApp: 'manager',
-        eventBus: element,
+        eventBus: this.element,
       },
     });
   }
