@@ -6,12 +6,15 @@ import type {
   TDeploymentModeId,
   TMacroRegion,
   TMicroRegion,
+  TMicroRegionId,
   TShare,
   TShareBandwidth,
   TShareCapacity,
   TShareCatalog,
   TShareIOPS,
   TShareId,
+  TShareSpecVariant,
+  TShareSpecVariantId,
   TShareSpecs,
   TShareSpecsId,
 } from '@/domain/entities/catalog.entity';
@@ -25,7 +28,6 @@ import type {
   TShareCatalogDTO,
   TShareDTO,
   TShareIOPSDTO,
-  TSharePricingDTO,
 } from './dto.type';
 
 type TNormalizedEntity<ID, Entity> = {
@@ -180,37 +182,64 @@ const mapShareBandwidthDTOToEntity = (bandwidth: TShareBandwidthDTO): TShareBand
   unit: bandwidth.unit,
 });
 
-const mapShareSpecsDTOToEntity = (pricing: TSharePricingDTO): TShareSpecs => ({
-  name: pricing.specs.name,
-  capacity: mapShareCapacityDTOToEntity(pricing.specs.volume.capacity),
-  iops: mapShareIOPSDTOToEntity(pricing.specs.volume.iops),
-  bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
-  microRegionIds: pricing.regions,
-  pricing: {
-    price: pricing.price,
-    interval: pricing.interval,
-  },
-});
+type TNormalizedShareSpecs = {
+  specs: TNormalizedEntity<TShareSpecsId, TShareSpecs>;
+  shareSpecVariantIdByRegion: Map<TShareSpecsId, Map<TMicroRegionId, TShareSpecVariantId>>;
+  shareSpecVariants: Map<TShareSpecVariantId, TShareSpecVariant>;
+};
 
-const normalizeShareSpecs = (
-  shares: TShareDTO[],
-): TNormalizedEntity<TShareSpecsId, TShareSpecs> => {
-  const result: TNormalizedEntity<TShareSpecsId, TShareSpecs> = {
+const buildVariantId = (specsId: string, regionId: string): TShareSpecVariantId =>
+  `${specsId}::${regionId}`;
+
+const normalizeShareSpecs = (shares: TShareDTO[]): TNormalizedShareSpecs => {
+  const specs: TNormalizedEntity<TShareSpecsId, TShareSpecs> = {
     byId: new Map(),
     allIds: [],
   };
+  const shareSpecVariantIdByRegion = new Map<
+    TShareSpecsId,
+    Map<TMicroRegionId, TShareSpecVariantId>
+  >();
+  const shareSpecVariants = new Map<TShareSpecVariantId, TShareSpecVariant>();
 
   shares.forEach((share) => {
     share.pricings.forEach((pricing) => {
       const specsId = pricing.specs.name;
-      if (!result.allIds.includes(specsId)) {
-        result.allIds.push(specsId);
+      const [firstRegion] = pricing.regions;
+      if (!firstRegion) return;
+      const existing = specs.byId.get(specsId);
+      const variantId = buildVariantId(specsId, firstRegion);
+
+      shareSpecVariants.set(variantId, {
+        capacity: mapShareCapacityDTOToEntity(pricing.specs.volume.capacity),
+        iops: mapShareIOPSDTOToEntity(pricing.specs.volume.iops),
+        bandwidth: mapShareBandwidthDTOToEntity(pricing.specs.bandwidth),
+        pricing: { price: pricing.price, interval: pricing.interval },
+      });
+
+      if (existing) {
+        pricing.regions.forEach((region) => {
+          if (!existing.microRegionIds.includes(region)) {
+            existing.microRegionIds.push(region);
+          }
+        });
+      } else {
+        specs.allIds.push(specsId);
+        specs.byId.set(specsId, {
+          name: specsId,
+          microRegionIds: [...new Set(pricing.regions)],
+        });
+        shareSpecVariantIdByRegion.set(specsId, new Map());
       }
-      result.byId.set(specsId, mapShareSpecsDTOToEntity(pricing));
+
+      const regionMap = shareSpecVariantIdByRegion.get(specsId)!;
+      pricing.regions.forEach((region) => {
+        regionMap.set(region, variantId);
+      });
     });
   });
 
-  return result;
+  return { specs, shareSpecVariantIdByRegion, shareSpecVariants };
 };
 
 const mapShareDTOToEntity = (share: TShareDTO): TShare => ({
@@ -221,18 +250,26 @@ const mapShareDTOToEntity = (share: TShareDTO): TShare => ({
   specsIds: share.pricings.map((pricing) => pricing.specs.name),
 });
 
-export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => ({
-  entities: {
-    ...normalizeRegions({
-      macroMapper: mapRegionDTOtoRegionEntity,
-      microMapper: mapRegionDTOtoMicroRegionEntity,
-    })(catalogDto.regions),
-    deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
-    continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
-    shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.models, mapShareDTOToEntity),
-    shareSpecs: normalizeShareSpecs(catalogDto.models),
-  },
-  relations: {
-    continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),
-  },
-});
+export const mapCatalogDTOToCatalog = (catalogDto: TShareCatalogDTO): TShareCatalog => {
+  const { specs, shareSpecVariantIdByRegion, shareSpecVariants } = normalizeShareSpecs(
+    catalogDto.models,
+  );
+
+  return {
+    entities: {
+      ...normalizeRegions({
+        macroMapper: mapRegionDTOtoRegionEntity,
+        microMapper: mapRegionDTOtoMicroRegionEntity,
+      })(catalogDto.regions),
+      deploymentModes: normalizeData(catalogDto.filters.deployments, mapDeploymentModeDTOToEntity),
+      continents: normalizeContinent(catalogDto.filters.regions, catalogDto.regions),
+      shares: normalizeData<TShareId, TShareDTO, TShare>(catalogDto.models, mapShareDTOToEntity),
+      shareSpecs: specs,
+    },
+    relations: {
+      continentIdsByDeploymentModeId: getContinentIdsByDeploymentModeId(catalogDto.regions),
+      shareSpecVariantIdByRegion,
+      shareSpecVariants,
+    },
+  };
+};

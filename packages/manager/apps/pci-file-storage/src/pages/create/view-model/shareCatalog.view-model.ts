@@ -6,7 +6,7 @@ import {
   TMacroRegion,
   TMicroRegion,
   TShareCatalog,
-  TShareSpecs,
+  TShareSpecVariant,
 } from '@/domain/entities/catalog.entity';
 import {
   getMicroRegions,
@@ -120,16 +120,19 @@ const mapRegionToLocalizationCard =
     };
   };
 
-const mapShareSpecsToShareSpecData = (spec: TShareSpecs): TShareSpecData => {
-  const calculateProvisionedPerformance = provisionedPerformanceCalculator(spec);
+const mapShareSpecsToShareSpecData = (
+  specName: string,
+  variant: TShareSpecVariant,
+): TShareSpecData => {
+  const calculateProvisionedPerformance = provisionedPerformanceCalculator(variant);
 
   return {
-    name: spec.name,
-    capacityMin: spec.capacity.min,
-    capacityMax: spec.capacity.max,
-    iopsLevel: spec.iops.level,
-    bandwidthLevel: spec.bandwidth.level,
-    bandwidthUnit: spec.bandwidth.unit,
+    name: specName,
+    capacityMin: variant.capacity.min,
+    capacityMax: variant.capacity.max,
+    iopsLevel: variant.iops.level,
+    bandwidthLevel: variant.bandwidth.level,
+    bandwidthUnit: variant.bandwidth.unit,
     calculateProvisionedPerformance,
   };
 };
@@ -244,6 +247,18 @@ export const selectAvailabilityZones =
     }));
   };
 
+const selectVariant = (
+  data: TShareCatalog,
+  specName: string,
+  microRegionId: string,
+): TShareSpecVariant | undefined => {
+  const variantId = data.relations.shareSpecVariantIdByRegion
+    .get(specName)
+    ?.get(microRegionId);
+  if (!variantId) return undefined;
+  return data.relations.shareSpecVariants.get(variantId);
+};
+
 export const selectShareSpecs =
   (microRegionId?: string) =>
   (data?: TShareCatalog): TShareSpecData[] => {
@@ -251,7 +266,19 @@ export const selectShareSpecs =
 
     return Array.from(data.entities.shareSpecs.byId.values())
       .filter((spec) => spec.microRegionIds.includes(microRegionId))
-      .map(mapShareSpecsToShareSpecData);
+      .map((spec) => {
+        const variant = selectVariant(data, spec.name, microRegionId);
+        return variant ? mapShareSpecsToShareSpecData(spec.name, variant) : null;
+      })
+      .filter((spec): spec is TShareSpecData => spec !== null);
+  };
+
+export const selectShareSpecPricing =
+  (specName?: string, microRegionId?: string) =>
+  (data?: TShareCatalog): { price: number; interval: string } | null => {
+    if (!data || !specName || !microRegionId) return null;
+
+    return selectVariant(data, specName, microRegionId)?.pricing ?? null;
   };
 
 export const provisionedPerformancePresenter = ({

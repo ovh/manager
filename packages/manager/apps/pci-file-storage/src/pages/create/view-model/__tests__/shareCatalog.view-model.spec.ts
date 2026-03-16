@@ -7,6 +7,7 @@ import {
   TMacroRegion,
   TMicroRegion,
   TShareCatalog,
+  TShareSpecVariant,
   TShareSpecs,
 } from '@/domain/entities/catalog.entity';
 import { getMicroRegions, isMicroRegionAvailable } from '@/domain/services/catalog.service';
@@ -375,15 +376,12 @@ describe('share catalog selectors', () => {
   });
 
   describe('selectShareSpecs', () => {
-    const createShareSpec = (
-      name: string,
-      microRegionIds: string[],
+    const createVariant = (
       capacityMin: number,
       iopsLevel: number,
       bandwidthLevel: number,
       bandwidthUnit: string,
-    ): TShareSpecs => ({
-      name,
+    ): TShareSpecVariant => ({
       capacity: { min: capacityMin, max: 10240 },
       iops: {
         guaranteed: false,
@@ -400,23 +398,35 @@ describe('share catalog selectors', () => {
         maxUnit: 'MB/s',
         unit: bandwidthUnit,
       },
-      microRegionIds,
-      pricing: {
-        price: 11900,
-        interval: 'hour',
-      },
+      pricing: { price: 11900, interval: 'hour' },
     });
+
+    const spec1Variant = createVariant(150, 30, 0.25, 'MB/s/GB');
+    const spec2Variant = createVariant(200, 50, 0.5, 'MB/s/GB');
+    const spec3Variant = createVariant(300, 100, 1.0, 'MB/s/GB');
 
     const catalog = {
       entities: {
         shareSpecs: {
           byId: new Map<string, TShareSpecs>([
-            ['spec1', createShareSpec('spec1', ['GRA1', 'GRA2'], 150, 30, 0.25, 'MB/s/GB')],
-            ['spec2', createShareSpec('spec2', ['GRA1'], 200, 50, 0.5, 'MB/s/GB')],
-            ['spec3', createShareSpec('spec3', ['GRA2', 'GRA3'], 300, 100, 1.0, 'MB/s/GB')],
+            ['spec1', { name: 'spec1', microRegionIds: ['GRA1', 'GRA2'] }],
+            ['spec2', { name: 'spec2', microRegionIds: ['GRA1'] }],
+            ['spec3', { name: 'spec3', microRegionIds: ['GRA2', 'GRA3'] }],
           ]),
           allIds: ['spec1', 'spec2', 'spec3'],
         },
+      },
+      relations: {
+        shareSpecVariantIdByRegion: new Map([
+          ['spec1', new Map([['GRA1', 'spec1::GRA1'], ['GRA2', 'spec1::GRA1']])],
+          ['spec2', new Map([['GRA1', 'spec2::GRA1']])],
+          ['spec3', new Map([['GRA2', 'spec3::GRA2'], ['GRA3', 'spec3::GRA2']])],
+        ]),
+        shareSpecVariants: new Map([
+          ['spec1::GRA1', spec1Variant],
+          ['spec2::GRA1', spec2Variant],
+          ['spec3::GRA2', spec3Variant],
+        ]),
       },
     } as DeepPartial<TShareCatalog>;
 

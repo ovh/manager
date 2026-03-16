@@ -60,18 +60,23 @@ export type TShareBandwidth = {
   unit: string;
 };
 
-type TSharePricing = {
+export type TSharePricing = {
   price: number;
   interval: string;
 };
 
-export type TShareSpecs = {
-  name: TShareSpecsName;
+export type TShareSpecVariantId = string;
+
+export type TShareSpecVariant = {
   capacity: TShareCapacity;
   iops: TShareIOPS;
   bandwidth: TShareBandwidth;
-  microRegionIds: TMicroRegionId[];
   pricing: TSharePricing;
+};
+
+export type TShareSpecs = {
+  name: TShareSpecsName;
+  microRegionIds: TMicroRegionId[];
 };
 
 type TShareSpecsName = string;
@@ -117,5 +122,7 @@ export type TShareCatalog = {
   };
   relations: {
     continentIdsByDeploymentModeId: Map<TDeploymentModeId, TContinentId[]>;
+    shareSpecVariantIdByRegion: Map<TShareSpecsId, Map<TMicroRegionId, TShareSpecVariantId>>;
+    shareSpecVariants: Map<TShareSpecVariantId, TShareSpecVariant>;
   };
 };
