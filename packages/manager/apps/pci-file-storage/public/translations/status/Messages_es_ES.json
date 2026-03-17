@@ -1,7 +1,7 @@
 {
   "active": "Disponible",
-  "backup_creating": "Creando copia de seguridad en curso",
-  "creating": "Creación en curso",
+  "backup_creating": "Creando copia de seguridad...",
+  "creating": "Creando...",
   "deleting": "Eliminando...",
   "draft": "Borrador",
   "error": "Error",

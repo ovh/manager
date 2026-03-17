@@ -1,15 +1,15 @@
 {
-  "description": "Aggiungi indirizzi o intervalli di IP autorizzati ad accedere a questa condivisione. Per impostazione predefinita, nessun indirizzo o intervallo IP è autorizzato. File Storage può essere utilizzato solo con indirizzi IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
+  "description": "Aggiungi indirizzi o classi di IP autorizzati ad accedere a questo share. Di default non sono autorizzati indirizzi o classi di IP. File Storage può essere utilizzato solo con indirizzi IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
   "add": {
     "label": "Aggiungi un nuovo accesso",
-    "success": "La tua ACL (Lista di controllo degli accessi) è stata aggiunta correttamente",
+    "success": "La tua ACL (lista di controllo degli accessi) è stata aggiunta correttamente",
     "error": "Si è verificato un errore durante l'aggiunta dell'ACL: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
       "header": "Accesso a",
       "placeholder": "10.0.0.0",
-      "invalidFormat": "Formato non valido: inserisci un indirizzo IP o un intervallo di IP valido (ad esempio: 10.0.0.0/24)"
+      "invalidFormat": "Formato non valido: inserisci un indirizzo IP o una classe di IP validi (per esempio: 10.0.0.0/24)"
     },
     "accessPermission": {
       "header": "Diritti di accesso",
@@ -17,20 +17,20 @@
       "readAndWrite": "Lettura e scrittura"
     },
     "status": {
-      "header": "Status"
+      "header": "Stato"
     },
     "actions": {
       "header": "Azioni",
       "delete": {
-        "success": "La tua ACL (Lista di controllo degli accessi) è stata eliminata correttamente",
-        "error": "Si è verificato un errore durante la cancellazione dell'ACL: {{errorMessage}}"
+        "success": "La tua ACL (lista di controllo degli accessi) è stata eliminata correttamente",
+        "error": "Si è verificato un errore nell'eliminazione dell'ACL: {{errorMessage}}"
       }
     }
   },
   "deleteModal": {
-    "title": "Elimina ACL",
-    "description": "Eliminare questa ACL comporterà la perdita di accesso per {{accessTo}} a questa condivisione. Confermi l'eliminazione?",
+    "title": "Eliminare l’ACL",
+    "description": "L’eliminazione di questa ACL comporta la perdita dell’accesso di {{accessTo}} a questo share. Confermi l'eliminazione?",
     "confirmButton": "Eliminare",
-    "close": "Chiudi"
+    "close": "Chiudere"
   }
 }

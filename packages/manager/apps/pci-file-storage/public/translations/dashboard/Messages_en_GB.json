@@ -5,14 +5,14 @@
     "acl": "Access Control List (ACL)"
   },
   "actions": {
-    "back": "Return to the previous page",
-    "edit_name": "Edit the share name"
+    "back": "Back to previous page",
+    "edit_name": "Edit share name"
   },
   "common": {
     "coming_soon": "Coming soon"
   },
   "rename": {
-    "success": "The share update is in progress, this may take a few seconds",
+    "success": "Updating share... This may take a few seconds",
     "error": "An error occurred while updating the share"
   }
 }

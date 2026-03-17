@@ -1,18 +1,18 @@
 {
-  "description": "Add allowed IP addresses or ranges to access this share. By default, no IP address or range is allowed. File Storage can only be used with OVHcloud IP addresses (Public Cloud, Managed Kubernetes Service).",
+  "description": "Add IP addresses or ranges that are authorised to access this share. By default, no IP addresses or ranges are authorised. File Storage can only be used with OVHcloud IPs (Public Cloud, Managed Kubernetes Service).",
   "add": {
     "label": "Add a new access",
-    "success": "Your ACL (Access Control List) has been successfully added",
-    "error": "An error has occurred adding the ACL: {{errorMessage}}"
+    "success": "Your ACL (Access Control List) has been added",
+    "error": "An error occurred while adding the ACL: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
       "header": "Access to",
       "placeholder": "10.0.0.0",
-      "invalidFormat": "Invalid format: please enter a valid IP address or IP range (for example: 10.0.0.0/24)"
+      "invalidFormat": "Invalid format: please enter a valid IP address or IP range (e.g: 10.0.0.0/24"
     },
     "accessPermission": {
-      "header": "Access rights",
+      "header": "Permissions",
       "readOnly": "Read-only",
       "readAndWrite": "Read and write"
     },
@@ -22,14 +22,14 @@
     "actions": {
       "header": "Actions",
       "delete": {
-        "success": "Your ACL (Access Control List) has been deleted successfully",
+        "success": "Your ACL (Access Control List) has been deleted",
         "error": "An error occurred while deleting the ACL: {{errorMessage}}"
       }
     }
   },
   "deleteModal": {
     "title": "Delete ACL",
-    "description": "Deleting this ACL will result in loss of access for {{accessTo}} to this share. Do you confirm the deletion?",
+    "description": "If this ACL is deleted, {{accessTo}} will no longer be able to access the share. Are you sure you want to delete it?",
     "confirmButton": "Delete",
     "close": "Close"
   }
