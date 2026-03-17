@@ -58,7 +58,7 @@ export function ReplicaFields<
                     value={field.value ?? ''}
                     onChange={(event) => {
                       field.onChange(event);
-                      syncReplicasMaxFromMin?.();
+                      syncReplicasMaxFromMin?.(event.target.value);
                     }}
                   />
                 </FormControl>
