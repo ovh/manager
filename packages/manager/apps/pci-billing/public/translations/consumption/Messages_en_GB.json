@@ -13,5 +13,7 @@
   "cpbc_pricing_banner_title": "Public Cloud pricing",
   "cpbc_pricing_banner_body": "The prices of some public cloud services may be changing on 1 April 2026. For more details, please visit our pricing page.",
   "cpbc_pricing_banner_link": "View prices",
-  "cpbc_pricing_banner_close": "Close"
+  "cpbc_pricing_banner_close": "Close",
+  "cpbc_pricing_banner_old_billing_body": "The consumption of previous months is still available in the old billing section.",
+  "cpbc_pricing_banner_old_billing_link": "View previous consumption"
 }

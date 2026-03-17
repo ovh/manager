@@ -19,7 +19,8 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
 import PublicCloudPricingBanner from '@/components/PublicCloudPricingBanner.component';
 import TabsPanel from '@/components/TabsPanel.component';
-import { PCI_FEATURES_FREE_LOCAL_ZONES_BANNER } from '@/constants';
+import { useBillingBannerFeatures } from '@/hooks/useBillingBannerFeatures';
+import { OldBillingBanner } from '@/components/OldBillingBanner.component';
 
 export default function BillingPage() {
   const { t } = useTranslation('consumption');
@@ -31,9 +32,10 @@ export default function BillingPage() {
 
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const { data: availability } = useFeatureAvailability([
-    PCI_FEATURES_FREE_LOCAL_ZONES_BANNER,
-  ]);
+  const {
+    hasFreeLocalZonesBanner,
+    hasOldBillingBanner,
+  } = useBillingBannerFeatures();
 
   // date-fns begin the index of month in 0 instead of 1
   // Ex: January is 0, February is 1, etc.
@@ -81,9 +83,11 @@ export default function BillingPage() {
         />
       </div>
 
+      {hasOldBillingBanner && <OldBillingBanner />}
+
       <PublicCloudPricingBanner />
 
-      {availability && availability[PCI_FEATURES_FREE_LOCAL_ZONES_BANNER] && (
+      {hasFreeLocalZonesBanner && (
         <PciFreeLocalZonesBanner ovhSubsidiary={ovhSubsidiary} showConfirm />
       )}
 
