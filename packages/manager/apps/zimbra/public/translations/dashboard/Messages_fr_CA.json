@@ -11,5 +11,6 @@
   "zimbra_dashboard_tile_status_ongoingTask_viewLess": "Voir moins",
   "zimbra_dashboard_tile_status_ongoingTask_none": "Aucune tâche en cours",
   "zimbra_dashboard_tile_serviceConsumption_title": "Statistiques",
+  "zimbra_dashboard_tile_accounts_using_title": "Utilisation des comptes",
   "zimbra_dashboard_tile_serviceConsumption_accountOffer": "Compte par offre"
 }

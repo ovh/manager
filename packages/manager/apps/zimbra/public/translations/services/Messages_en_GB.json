@@ -1,0 +1,8 @@
+{
+  "zimbra_services_cost": "Cost/mailbox",
+  "zimbra_services_linked_service": "Linked service",
+  "zimbra_services_service_reference": "Service ID",
+  "zimbra_services_renew_date": "Renewal date",
+  "zimbra_services_free": "Free",
+  "zimbra_services_manage": "Manage my services "
+}

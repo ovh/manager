@@ -151,6 +151,8 @@
   "delete_email_accounts": "Accounts löschen",
   "email_address": "E-Mail-Adresse",
   "email_account_company_information": "Angaben zum Unternehmen",
-  "email_account_contact_information": "Kontaktdaten",
-  "email_account_advanced_settings": "Erweiterte Einstellungen"
+  "email_account_advanced_settings": "Erweiterte Einstellungen",
+  "email_account_contact_information": "Kontaktinformationen",
+  "service": "Dienst",
+  "service_manage_action": "Meinen Dienst verwalten"
 }
