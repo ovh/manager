@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.36.1...@ovh-ux/manager-pci-object-storage-app@0.37.0) (2026-03-17)
+
+
+### Features
+
+* **os:** add toggle lyficle rule ([83024c4](https://github.com/ovh/manager/commit/83024c46bb37b21f1f9fb12443c30ee7ecb98a26)), closes [#DATATR-2868](https://github.com/ovh/manager/issues/DATATR-2868)
+
+
+
+
+
 ## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.36.0...@ovh-ux/manager-pci-object-storage-app@0.36.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

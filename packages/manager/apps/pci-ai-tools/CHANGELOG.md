@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.22.1...@ovh-ux/manager-pci-ai-tools-app@1.23.0) (2026-03-17)
+
+
+### Features
+
+* **pci-ai-tools:** correct notification list bug ([ce88fb0](https://github.com/ovh/manager/commit/ce88fb02980d6b9429277cb74435478c07ed0f60)), closes [#AIS-2114](https://github.com/ovh/manager/issues/AIS-2114)
+* **pci-ai-tools:** create the frontend for autoscaling to 0 ([c565e94](https://github.com/ovh/manager/commit/c565e94092bb812088c50b9f94adae9ee38f5516)), closes [#DATATR-3031](https://github.com/ovh/manager/issues/DATATR-3031)
+* **pci-ai-tools:** fix input min replicas value ([b9a4031](https://github.com/ovh/manager/commit/b9a40319be1f2bed9e38192f63fe0722cb1c96e5))
+* **pci-ai-tools:** update DATATR-UX lib to be compatible with toolkit ovh ([fa43ef1](https://github.com/ovh/manager/commit/fa43ef11f84c299bc44d4a10cd840f85174309f2)), closes [#DATATR-3055](https://github.com/ovh/manager/issues/DATATR-3055)
+
+
+
+
+
 ## [1.22.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.22.0...@ovh-ux/manager-pci-ai-tools-app@1.22.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-tools-app
