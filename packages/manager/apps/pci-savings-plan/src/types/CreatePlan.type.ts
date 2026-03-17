@@ -1,4 +1,5 @@
 import { formatTechnicalInfo } from '@/utils/formatter/formatter';
+import { DeploymentMode } from '@/utils/savingsPlan';
 
 export enum ResourceType {
   instance = 'instance',
@@ -26,3 +27,8 @@ export type Resource = {
   label: string;
   img: string;
 };
+
+export type TDeploymentOptions = {
+  name: DeploymentMode;
+  description: string;
+}[];
