@@ -191,12 +191,26 @@ describe('mapCatalogDTOToCatalog', () => {
     const standard1azVariantRBX = {
       capacity: { min: 150, max: 10240 },
       iops: { guaranteed: false, level: 24, max: 16_000, maxUnit: 'IOPS', unit: 'IOPS/GB' },
-      bandwidth: { guaranteed: false, level: 0.25, min: 25, max: 128, maxUnit: 'MB/s', unit: 'MB/s/GB' },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.25,
+        min: 25,
+        max: 128,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
     };
     const standard1azVariantGRA = {
       capacity: { min: 150, max: 20480 },
       iops: { guaranteed: false, level: 48, max: 20_000, maxUnit: 'IOPS', unit: 'IOPS/GB' },
-      bandwidth: { guaranteed: false, level: 0.3, min: 30, max: 1000, maxUnit: 'MB/s', unit: 'MB/s/GB' },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.3,
+        min: 30,
+        max: 1000,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
     };
     const standard2VariantData = { ...standard1azVariantRBX };
 
@@ -220,8 +234,12 @@ describe('mapCatalogDTOToCatalog', () => {
     expect(result.entities.shareSpecs.byId.get('publiccloud-share-standard2')).toEqual({
       name: 'publiccloud-share-standard2',
       microRegionIds: [
-        'EU-WEST-LZ-MRS-A', 'EU-CENTRAL-LZ-BUH-A', 'EU-SOUTH-LZ-MIL-A',
-        'EU-NORTH-LZ-CPH-A', 'EU-WEST-PAR', 'EU-SOUTH-MIL',
+        'EU-WEST-LZ-MRS-A',
+        'EU-CENTRAL-LZ-BUH-A',
+        'EU-SOUTH-LZ-MIL-A',
+        'EU-NORTH-LZ-CPH-A',
+        'EU-WEST-PAR',
+        'EU-SOUTH-MIL',
       ],
     });
 
@@ -259,7 +277,9 @@ describe('mapCatalogDTOToCatalog', () => {
       ...standard1azVariantGRA,
       pricing: { price: 22900, interval: 'hour' },
     });
-    expect(result.relations.shareSpecVariants.get('publiccloud-share-standard2::EU-WEST-LZ-MRS-A')).toEqual({
+    expect(
+      result.relations.shareSpecVariants.get('publiccloud-share-standard2::EU-WEST-LZ-MRS-A'),
+    ).toEqual({
       ...standard2VariantData,
       pricing: { price: 22900, interval: 'hour' },
     });
