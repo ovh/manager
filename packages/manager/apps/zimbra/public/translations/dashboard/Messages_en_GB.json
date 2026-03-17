@@ -64,5 +64,6 @@
   "zimbra_dashboard_domains_diagnostics": "Diagnostics",
   "zimbra_mail_configure_guide": "Log in to an email account",
   "zimbra_mail_migrate_guide": "Migrate an email account",
-  "zimbra_dashboard_ovh_mail_migrator": "Migration tool"
+  "zimbra_dashboard_ovh_mail_migrator": "Migration tool",
+  "zimbra_dashboard_tile_accounts_using_title": "Account usage"
 }

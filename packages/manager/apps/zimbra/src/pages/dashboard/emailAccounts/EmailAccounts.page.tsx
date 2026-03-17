@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Outlet } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
 
-import { Switch, SwitchItem, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { TEXT_PRESET } from '@ovhcloud/ods-react';
 
 import { Link, LinkType, Text } from '@ovh-ux/muk';
 
@@ -16,32 +16,13 @@ import { capitalize } from '@/utils';
 import { IAM_ACTIONS } from '@/utils/iamAction.constants';
 
 import EmailAccountsDatagrid from './EmailAccountsDatagrid.component';
-import SlotsDatagrid from './slots/SlotsDatagrid.component';
-
-const switchStateEnum = {
-  ACCOUNTS: 'ACCOUNTS',
-  SLOTS: 'SLOTS',
-} as const;
 
 export const EmailAccounts = () => {
   const { t } = useTranslation(['accounts', 'common']);
   const { platformUrn } = usePlatform();
-  const { accountsStatistics, accountsConfigured, accountsUnconfigured } = useAccountsStatistics();
+  const { accountsStatistics } = useAccountsStatistics();
 
   const isOverridedPage = useOverridePage();
-  const [switchState, setSwitchState] = useState<keyof typeof switchStateEnum>(
-    switchStateEnum.ACCOUNTS,
-  );
-
-  useEffect(() => {
-    // switch automatically to unconfigured accounts
-    // if no configured accounts and slots available
-    if (accountsConfigured === 0 && accountsUnconfigured > 0) {
-      setSwitchState(switchStateEnum.SLOTS);
-    } else if (switchState === switchStateEnum.SLOTS && accountsUnconfigured === 0) {
-      setSwitchState(switchStateEnum.ACCOUNTS);
-    }
-  }, [accountsConfigured, accountsUnconfigured]);
 
   const webmailUrl = GUIDES_LIST.webmail.url.DEFAULT;
 
@@ -84,33 +65,7 @@ export const EmailAccounts = () => {
               </div>
             </div>
           </div>
-          <Switch
-            key={
-              Date.now() /* This component has an issue where rerender can cause it to loose the checked input inside... */
-            }
-            className="mb-6"
-            value={switchState}
-            data-testid="switch"
-            onValueChange={({ value }: { value: 'ACCOUNTS' | 'SLOTS' }) => setSwitchState(value)}
-          >
-            <SwitchItem
-              data-testid="switch-accounts"
-              value={switchStateEnum.ACCOUNTS}
-              onClick={() => setSwitchState(switchStateEnum.ACCOUNTS)}
-            >
-              {t('zimbra_account_configured', { value: accountsConfigured })}
-            </SwitchItem>
-            <SwitchItem
-              data-testid="switch-slots"
-              value={switchStateEnum.SLOTS}
-              onClick={() => setSwitchState(switchStateEnum.SLOTS)}
-            >
-              {t('zimbra_account_unconfigured', {
-                value: accountsUnconfigured,
-              })}
-            </SwitchItem>
-          </Switch>
-          {switchState === switchStateEnum.ACCOUNTS ? <EmailAccountsDatagrid /> : <SlotsDatagrid />}
+          <EmailAccountsDatagrid />
         </>
       )}
     </div>
