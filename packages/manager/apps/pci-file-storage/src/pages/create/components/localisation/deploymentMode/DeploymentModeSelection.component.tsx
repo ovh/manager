@@ -21,6 +21,8 @@ import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { TDeploymentMode } from '@/domain/entities/catalog.entity';
 import { selectDeploymentModes } from '@/pages/create/view-model/shareCatalog.view-model';
 
+import { DeploymentModeCardPrice } from './DeploymentModeCardPrice.component';
+
 type TDeploymentModeSelection = {
   deploymentModes: TDeploymentMode[];
 };
@@ -75,7 +77,7 @@ export const DeploymentModeSelection = () => {
             name="deploymentModes"
             className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
           >
-            {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image }) => {
+            {deploymentModes?.map(({ mode, labelKey, descriptionKey, Image, monthlyPrice }) => {
               const isSelected = field.value.includes(mode);
               return (
                 <Tile
@@ -103,6 +105,8 @@ export const DeploymentModeSelection = () => {
                   <div className="mt-auto flex w-full justify-center">
                     <Image className="h-28" />
                   </div>
+
+                  <DeploymentModeCardPrice monthlyPrice={monthlyPrice} />
                 </Tile>
               );
             })}

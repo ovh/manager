@@ -26,7 +26,8 @@
           "label": "Region 3-AZ",
           "description": "Wdrożenie o wysokiej odporności i wysokiej dostępności w 3 strefach."
         }
-      }
+      },
+      "leastPrice": "Od {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Wybierz lokalizację"

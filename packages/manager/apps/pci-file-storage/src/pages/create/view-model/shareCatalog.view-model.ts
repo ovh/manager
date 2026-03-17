@@ -1,5 +1,7 @@
 import { ComponentType, SVGProps } from 'react';
 
+import { convertHourlyPriceToMonthly } from '@ovh-ux/muk';
+
 import { TCountryIsoCode } from '@/components/new-lib/flag/country-iso-code';
 import {
   TDeploymentMode,
@@ -23,11 +25,17 @@ export type TSVGImage = ComponentType<SVGProps<SVGSVGElement>>;
 
 export type TDeploymentModeData = 'region' | 'localzone' | 'region-3-az';
 
+export type TDeploymentModePrice = {
+  value: number;
+  isLeastPrice: boolean;
+};
+
 export type TDeploymentModeDataForCard = {
   mode: TDeploymentModeData;
   labelKey: string;
   descriptionKey: string;
   Image: TSVGImage;
+  monthlyPrice: TDeploymentModePrice | null;
 };
 
 export type TRegionData = {
@@ -72,11 +80,15 @@ const getImage = (mode: TDeploymentMode) => {
   }
 };
 
-const mapDeploymentModeForCard = (mode: TDeploymentMode): TDeploymentModeDataForCard => ({
+const mapDeploymentModeForCard = (
+  mode: TDeploymentMode,
+  monthlyPrice: TDeploymentModePrice | null,
+): TDeploymentModeDataForCard => ({
   mode,
   labelKey: `localisation.deploymentMode.modes.${mode}.label`,
   descriptionKey: `localisation.deploymentMode.modes.${mode}.description`,
   Image: getImage(mode) as unknown as TSVGImage,
+  monthlyPrice,
 });
 
 const getLocalZoneTranslationKey = (regionName: string) => regionName.split('-').slice(-1)[0];
@@ -139,8 +151,43 @@ const mapShareSpecsToShareSpecData = (
 
 export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
 
+const getLeastPriceForDeploymentMode = (
+  data: TShareCatalog,
+  deploymentMode: TDeploymentMode,
+): TDeploymentModePrice | null => {
+  const microRegionIds = data.entities.macroRegions.allIds
+    .map((id) => data.entities.macroRegions.byId.get(id))
+    .filter((macro): macro is TMacroRegion => !!macro && macro.deploymentMode === deploymentMode)
+    .flatMap((macro) => macro.microRegions);
+
+  if (microRegionIds.length === 0) return null;
+
+  const prices: number[] = [];
+
+  for (const [, regionMap] of data.relations.shareSpecVariantIdByRegion) {
+    for (const microRegionId of microRegionIds) {
+      const variantId = regionMap.get(microRegionId);
+      if (!variantId) continue;
+      const variant = data.relations.shareSpecVariants.get(variantId);
+      if (variant) prices.push(variant.pricing.price);
+    }
+  }
+
+  if (prices.length === 0) return null;
+
+  const minPrice = Math.min(...prices);
+  const hasMultiplePrices = prices.some((p) => p !== minPrice);
+
+  return {
+    value: convertHourlyPriceToMonthly(minPrice),
+    isLeastPrice: hasMultiplePrices,
+  };
+};
+
 export const selectDeploymentModes = (data?: TShareCatalog): TDeploymentModeDataForCard[] =>
-  (data?.entities?.deploymentModes?.allIds ?? []).map(mapDeploymentModeForCard);
+  (data?.entities?.deploymentModes?.allIds ?? []).map((mode) =>
+    mapDeploymentModeForCard(mode, data ? getLeastPriceForDeploymentMode(data, mode) : null),
+  );
 
 export type SelectLocalizationsParams = {
   deploymentModes: TDeploymentModeData[];
@@ -252,9 +299,7 @@ const selectVariant = (
   specName: string,
   microRegionId: string,
 ): TShareSpecVariant | undefined => {
-  const variantId = data.relations.shareSpecVariantIdByRegion
-    .get(specName)
-    ?.get(microRegionId);
+  const variantId = data.relations.shareSpecVariantIdByRegion.get(specName)?.get(microRegionId);
   if (!variantId) return undefined;
   return data.relations.shareSpecVariants.get(variantId);
 };

@@ -1,10 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  TMacroRegion,
-  TMicroRegion,
-  TShareSpecVariant,
-} from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecVariant } from '@/domain/entities/catalog.entity';
 
 import {
   getMicroRegions,
