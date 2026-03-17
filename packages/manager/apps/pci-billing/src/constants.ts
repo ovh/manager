@@ -100,6 +100,9 @@ export const PCI_FEATURES_FREE_LOCAL_ZONES_BANNER =
   'public-cloud:project:free-local-zones-banner';
 export const PCI_FEATURES_BILLING_POST_PAID = 'billing:postPaid';
 export const TRUSTED_ZONE = 'public-cloud:trusted-zone';
+export const PCI_FEATURES_BILLING_OLD_BILLING_BANNER =
+  'pci-billing:old-billing-banner';
+export const PCI_FEATURES_SVP_CONSUMPTION = 'pci-billing:svp-consumption';
 
 export enum ResourceType {
   REGISTRY = 'registry',
