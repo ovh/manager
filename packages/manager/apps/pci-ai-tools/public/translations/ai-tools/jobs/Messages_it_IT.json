@@ -15,5 +15,7 @@
   "shutdownLabel": "Arresto il {{timeout}}",
   "restartLabel": "Riavvio il {{timeout}}",
   "timeOutLabel": "Scadenza",
-  "tableActionClone": "Clonare il job"
+  "tableActionClone": "Clonare il job",
+  "waitingResourceLabel": "In attesa di una risorsa disponibile",
+  "pendingTimeoutHint": "La data di scadenza sarà impostata quando il lavoro sarà in esecuzione."
 }

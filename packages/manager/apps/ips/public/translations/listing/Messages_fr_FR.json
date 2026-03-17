@@ -114,5 +114,7 @@
   "aggregate_in_progress": "Agrégation en cours",
   "creation_in_progress": "Création en cours",
   "survey_link": "Vous aimez?",
-  "survey_link_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !"
+  "survey_link_tooltip": "Vous aimez cette page ? Faites nous part de vos remarques !",
+  "listingNoResultFoundIpv6": "Aucun résultat (Cliquer <Link>ici</Link> pour configurer un reverse DNS pour que votre IP soit listée)",
+  "intervention_banner": "Cher utilisateur·ice, Dans le cadre de l'amélioration de nos services, une <b>mise à jour</b> de la fonctionalité <b>Mac virtuel</b> est prévue à partir du <b>18 mars 2026</b>.<br>Pour éviter tout impact sur votre service, nous vous recommandons de vous assurer de la <b>cohérence entre le Mac virtuel déclaré sur votre espace client et la configuration de votre serveur</b>.<br>En cas d'incohérence, merci de <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\"><b>mettre à jour</b></a> les informations avant le <b>18 mars 2026</b>.<br>Selon votre configuration, un email avec des indications complémentaires pourra vous être envoyé."
 }

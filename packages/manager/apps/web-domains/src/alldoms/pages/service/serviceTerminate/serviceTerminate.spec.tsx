@@ -5,8 +5,9 @@ import {
   waitFor,
   screen,
   fireEvent,
+  wrapper
 } from '@/common/utils/test.provider';
-import { wrapper } from '@/common/utils/test.provider';
+
 import ServiceTerminate from '@/alldoms/pages/service/serviceTerminate/serviceTerminate';
 import { useGetAllDomResource } from '@/alldoms/hooks/data/query';
 import { alldomService } from '@/alldoms/__mocks__/alldomService';

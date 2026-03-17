@@ -15,12 +15,9 @@ import {
   IpAntiDdosDisplay,
   IpAttachedService,
   IpCell,
-  IpCountry,
   IpEdgeFirewall,
   IpGameFirewallDisplay,
-  IpRegion,
   IpReverse,
-  IpType,
   IpVmacFilterByIp,
 } from '../DatagridCells';
 
@@ -41,12 +38,10 @@ export const useIpGroupDatagridColumns = ({
 }) => {
   const { t } = useTranslation('listing');
 
-  const {
-    ipMitigation,
-    isLoading: isMitigationLoading,
-  } = useGetIpMitigationWithoutIceberg({
-    ip: parentIp,
-  });
+  const { ipMitigation, isLoading: isMitigationLoading } =
+    useGetIpMitigationWithoutIceberg({
+      ip: parentIp,
+    });
 
   const { vmacsWithIp, isLoading: isVmacsLoading } = useGetIpVmacWithIp({
     serviceName,
@@ -64,7 +59,7 @@ export const useIpGroupDatagridColumns = ({
     {
       id: 'ip-type',
       label: t('listingColumnsIpType'),
-      cell: () => <IpType ip={parentIp} />,
+      cell: () => undefined,
       size: parentHeaders?.current['ip-type']?.clientWidth,
     },
     {
@@ -78,13 +73,13 @@ export const useIpGroupDatagridColumns = ({
     {
       id: 'ip-region',
       label: t('listingColumnsIpRegion'),
-      cell: () => <IpRegion ip={parentIp} />,
+      cell: () => undefined,
       size: parentHeaders?.current['ip-region']?.clientWidth,
     },
     {
       id: 'ip-country',
       label: t('listingColumnsIpCountry'),
-      cell: () => <IpCountry ip={parentIp} />,
+      cell: () => undefined,
       size: parentHeaders?.current['ip-country']?.clientWidth,
     },
     {

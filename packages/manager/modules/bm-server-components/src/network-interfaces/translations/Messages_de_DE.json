@@ -11,7 +11,7 @@
   "dedicated_server_interfaces_ola_alert_configuration_needed": "Führen Sie den in der Anleitung beschriebenen Vorgang per KVM IPMI aus, damit Ihr Netzwerk korrekt funktioniert. Andernfalls ist die Konfiguration nicht abgeschlossen.",
   "dedicated_server_interfaces_rename_title": "Interface umbenennen",
   "dedicated_server_interfaces_vrack_operation_attach": "Wird verbunden",
-  "dedicated_server_interfaces": "Netzwerkinterfaces",
+  "dedicated_server_interfaces": "Netzwerkinterface-Controller (NICs)",
   "dedicated_server_interfaces_vrack_information": "Bitte beachten Sie, dass standardmäßig keine IP für das private Netzwerk (vRack) vorhanden ist. Erstellen Sie zuerst ein privates vRack Netzwerk, fügen Sie Ihren Server hinzu und konfigurieren Sie anschließend Ihre IPs.",
   "dedicated_server_interfaces_vrack_information_link_label": "Weitere Informationen zum vRack.",
   "dedicated_server_interfaces_step_checker_title": "OVHcloud Link Aggregation (OLA)",
@@ -69,5 +69,9 @@
   "dedicated_server_interfaces_task_error": "Bei der Konfiguration ist ein Fehler aufgetreten: {{ errorMessage }}",
   "dedicated_server_interfaces_vrack_operation_detach": "Wird getrennt",
   "server_vrack_attach_in_progress": "Das vRack {{vRackname}} wird gerade verbunden",
-  "server_vrack_detach_in_progress": "Das vRack {{vRackname}} wird gerade abgetrennt"
+  "server_vrack_detach_in_progress": "Das vRack {{vRackname}} wird gerade abgetrennt",
+  "dedicated_server_interfaces_aggregate_button": "Netzwerk-Aggregation",
+  "dedicated_server_interfaces_disaggregate_button": "Netzwerke trennen",
+  "dedicated_server_interfaces_breadcrumb": "Netzwerkinterfaces",
+  "dedicated_server_interfaces_type_badge_aggregated": "Aggregiert"
 }

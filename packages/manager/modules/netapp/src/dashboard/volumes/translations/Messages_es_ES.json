@@ -43,5 +43,9 @@
   "netapp_volumes_mount_path_not_configurated": "No configurado",
   "netapp_volumes_edit_volume_size": "Cambiar el tamaño",
   "netapp_volumes_restore_snapshot": "Restaurar el último snapshot",
-  "netapp_volumes_edit_reserve_space": "Modificar el espacio reservados para los snapshots"
+  "netapp_volumes_edit_reserve_space": "Modificar el espacio reservados para los snapshots",
+  "netapp_volumes_button_replications": "Replicar volumen(es)",
+  "netapp_volumes_status_awaiting_replication": "Replicación en curso",
+  "netapp_volumes_edit_create_single_replication": "Replicar este volumen",
+  "netapp_volumes_replications_errors": "No se pudo replicar el volumen {{sourceShareId}} en el servicio {{destinationServiceId}}."
 }

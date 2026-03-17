@@ -1,0 +1,15 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "No replication selected. Please select one.",
+  "netapp_replications_modal_delete_title_delete": "Delete replication",
+  "netapp_replications_modal_delete_title_cancel": "Cancel replication",
+  "netapp_replications_modal_delete_description_pending": "You are about to cancel this replication request without accepting it. Are you sure you want to continue?",
+  "netapp_replications_modal_delete_description_completed": "This action will delete the table row and keep the volumes created during the replication process (source and target). Are you sure you want to continue?",
+  "netapp_replications_modal_delete_description_accepted": "Careful, cancelling this replication will halt synchronisation and delete the target volume. Are you sure you want to continue?",
+  "netapp_replications_modal_delete_description_delete": "Are you sure that you want to delete this replication?",
+  "netapp_replications_modal_delete_primary_label_confirm": "Confirm",
+  "netapp_replications_modal_delete_secondary_label": "Close",
+  "netapp_replications_delete_success": "The {{ sourceShareID }} volume replication has been deleted.",
+  "netapp_replications_cancel_success": "The {{ sourceShareID }} volume is no longer replicated.",
+  "netapp_replications_delete_error": "Unable to delete the {{ sourceShareID }} volume replication.",
+  "netapp_replications_cancel_error": "Failed to undo replication for the {{ sourceShareID }} volume."
+}

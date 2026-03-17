@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.76.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.76.0...@ovh-ux/manager-dedicated@20.76.1) (2026-03-17)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.76.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.4...@ovh-ux/manager-dedicated@20.76.0) (2026-03-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4709] ([4c2bf1b](https://github.com/ovh/manager/commit/4c2bf1b8a1d80a5f0bd9c5285779cf3793abdc31))
+
+
+### Features
+
+* **dedicated:** add guide for game servers ([044fad1](https://github.com/ovh/manager/commit/044fad12cdfb0b13dc9a2568351007ab7b515767)), closes [#MANAGER-20589](https://github.com/ovh/manager/issues/MANAGER-20589)
+* **dedicated:** fix game ddos modale text ([ad89e4a](https://github.com/ovh/manager/commit/ad89e4a48f0c8788bc551707cb5d284cceff2437)), closes [#MANAGER-20590](https://github.com/ovh/manager/issues/MANAGER-20590)
+* **dedicated:** game ddos modal disclamer ([393676e](https://github.com/ovh/manager/commit/393676edf80fdd3c8ee9b71f46dd789307873a6c)), closes [#MANAGER-20590](https://github.com/ovh/manager/issues/MANAGER-20590)
+
+
+
+
+
+## [20.75.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.3...@ovh-ux/manager-dedicated@20.75.4) (2026-03-16)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.75.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.2...@ovh-ux/manager-dedicated@20.75.3) (2026-03-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.75.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.1...@ovh-ux/manager-dedicated@20.75.2) (2026-03-10)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.75.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.75.0...@ovh-ux/manager-dedicated@20.75.1) (2026-03-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.75.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.15...@ovh-ux/manager-dedicated@20.75.0) (2026-03-05)
+
+
+### Features
+
+* **network-interfaces:** reworking the display of aggregated network interfaces ([c451aa6](https://github.com/ovh/manager/commit/c451aa66cca353fda4887a066245bd5f45a613c6)), closes [#MANAGER-17094](https://github.com/ovh/manager/issues/MANAGER-17094)
+* **ola-nics:** adding aggregation/desaggregation buttons to nics lists ([c9b13a2](https://github.com/ovh/manager/commit/c9b13a2c3d987477c34af214f68bcf0249efc850)), closes [#MANAGER-17106](https://github.com/ovh/manager/issues/MANAGER-17106)
+* **ola-nics:** include the OLA information into the bandwidth display ([5c68904](https://github.com/ovh/manager/commit/5c689043c2722c9bba794bb28c833654a69533d1)), closes [#MANAGER-17071](https://github.com/ovh/manager/issues/MANAGER-17071)
+
+
+
+
+
+## [20.74.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.14...@ovh-ux/manager-dedicated@20.74.15) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.74.14](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.74.13...@ovh-ux/manager-dedicated@20.74.14) (2026-03-03)
 
 

@@ -8,6 +8,14 @@ import {
 } from '@/configuration/region.const';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
+export const STORAGE_CLASS_TIER: Record<storages.StorageClassEnum, number> = {
+  STANDARD: 0,
+  HIGH_PERF: 0,
+  STANDARD_IA: 1,
+  GLACIER_IR: 2,
+  DEEP_ARCHIVE: 3,
+};
+
 export function useAvailableStorageClasses(region: string) {
   const { data: featuresAvailable } = useFeatureAvailability([
     'pci-object-storage:storage-class-active-archive',
@@ -55,8 +63,12 @@ export function useAvailableStorageClasses(region: string) {
     }
   });
 
+  const sorted = [...availableStorageClasses].sort(
+    (a, b) => (STORAGE_CLASS_TIER[a] ?? 0) - (STORAGE_CLASS_TIER[b] ?? 0),
+  );
+
   return {
-    availableStorageClasses,
+    availableStorageClasses: sorted,
     isPending: regionQuery.isPending,
   };
 }

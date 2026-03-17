@@ -57,8 +57,11 @@ describe('TransferModal component', () => {
 
       const buttons = screen.getAllByRole('button');
       const confirmButton = buttons.find((btn) =>
-        btn.className.includes('critical'),
+        btn.getAttribute('data-color') === 'critical' || btn.className?.includes('critical'),
       );
+      if (!confirmButton) {
+        throw new Error('Confirm button not found');
+      }
       fireEvent.click(confirmButton);
 
       expect(mockUpdateDomain).toHaveBeenCalled();
@@ -125,8 +128,11 @@ describe('TransferModal component', () => {
 
       const buttons = screen.getAllByRole('button');
       const confirmButton = buttons.find((btn) =>
-        btn.className.includes('information'),
+        btn.getAttribute('data-color') === 'information' || btn.className?.includes('information'),
       );
+      if (!confirmButton) {
+        throw new Error('Confirm button not found');
+      }
       fireEvent.click(confirmButton);
 
       expect(mockUpdateDomain).toHaveBeenCalled();
@@ -146,8 +152,11 @@ describe('TransferModal component', () => {
 
       const buttons = screen.getAllByRole('button');
       const cancelButton = buttons.find((btn) =>
-        btn.className.includes('ghost'),
+        btn.getAttribute('data-variant') === 'ghost' || btn.className?.includes('ghost'),
       );
+      if (!cancelButton) {
+        throw new Error('Cancel button not found');
+      }
       fireEvent.click(cancelButton);
 
       expect(mockOnClose).toHaveBeenCalled();

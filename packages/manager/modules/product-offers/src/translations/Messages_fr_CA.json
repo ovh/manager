@@ -7,6 +7,8 @@
   "ovh_product_offers_pricing_days": "{{ number }} jours",
   "ovh_product_offers_pricing_month": "{{ number }} mois",
   "ovh_product_offers_pricing_months": "{{ number }} mois",
+  "ovh_product_offers_pricing_year": "{{ number }} an",
+  "ovh_product_offers_pricing_years": "{{ number }} ans",
 
   "ovh_product_offers_pricing_extra_pricing": "Frais supplémentaires :",
 

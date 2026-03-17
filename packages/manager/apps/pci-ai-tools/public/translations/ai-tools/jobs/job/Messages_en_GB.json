@@ -24,5 +24,7 @@
   "restartJobToastSuccessDescription": "The {{name}} job has been launched",
   "cloneJobTitle": "Clone a new job",
   "shutdownLabel": "Stops on ",
-  "restartLabel": "Restarts on "
+  "restartLabel": "Restarts on ",
+  "waitingResourceLabel": "Waiting for an available resource",
+  "pendingTimeoutHint": "The expiration date will be set when the job is running."
 }

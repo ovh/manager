@@ -114,7 +114,7 @@ export default function Onboarding() {
         });
         navigate(urls.byoip);
       }}
-      moreInfoButtonIcon={(null as unknown) as ODS_ICON_NAME}
+      moreInfoButtonIcon={null as unknown as ODS_ICON_NAME}
     >
       {guides?.map((tile) => (
         <Card

@@ -836,5 +836,14 @@
   "server_configuration_intervention_activate_failed": "Se ha producido un error al activar las intervenciones in situ en el servidor {{serverName}}.",
   "server_nutanix_cluster_node_warning_1": "Este servidor dedicado forma parte de un cluster Nutanix: {{clusterName}}.",
   "server_nutanix_cluster_node_warning_2": "Le recomendamos que realice las modificaciones de configuración directamente desde el panel de control del servidor asociado a su cluster Nutanix: {{clusterNodeDashboardLink}}",
-  "server_nutanix_cluster_node_warning_3": "Puede consultar todas las acciones de facturación asociadas a este servidor en su cluster Nutanix: {{clusterDashboardLink}}"
+  "server_nutanix_cluster_node_warning_3": "Puede consultar todas las acciones de facturación asociadas a este servidor en su cluster Nutanix: {{clusterDashboardLink}}",
+  "server_guides": "Guías",
+  "server_guide_ddos_game": "Proteger un servidor Game con el firewall de aplicaciones",
+  "ovh_server_game_ddos_information_modal_title": "Proteja sus servidores de juego contra los ataques DDoS",
+  "ovh_server_game_ddos_information_modal_button_primary": "Lo he entendido",
+  "ovh_server_game_ddos_information_modal_button_secondary": "Cerrar",
+  "ovh_server_game_ddos_information_modal_content_1": "Su servidor GAME dispone de una protección DDoS avanzada para garantizar que sus servidores de juego estén disponibles, incluso durante posibles ataques.",
+  "ovh_server_game_ddos_information_modal_content_subtitle": "Aspectos clave",
+  "ovh_server_game_ddos_information_modal_content_2": "La protección se configura por dirección IP pública. Puede proteger cada IP pública de su servidor de forma individual. Puede activar y personalizar la protección según sus necesidades específicas.",
+  "ovh_server_game_ddos_information_modal_checkbox_label": "No volver a mostrar este mensaje"
 }

@@ -23,11 +23,34 @@ export const hasPortRangeError = (port?: string) => {
     return false;
   }
 
-  const portNumber = parseInt(port, 10);
+  if (!port.includes('-')) {
+    const portNumber = parseInt(port, 10);
+
+    return (
+      portNumber < IP_EDGE_FIREWALL_PORT_MIN ||
+      portNumber > IP_EDGE_FIREWALL_PORT_MAX
+    );
+  }
+
+  const parts = port.split('-');
+
+  if (parts.length !== 2) {
+    return true;
+  }
+
+  const [startPort, endPort] = parts;
+
+  const startPortNumber = startPort
+    ? parseInt(startPort, 10)
+    : IP_EDGE_FIREWALL_PORT_MIN;
+  const endPortNumber = endPort
+    ? parseInt(endPort, 10)
+    : IP_EDGE_FIREWALL_PORT_MAX;
 
   return (
-    portNumber < IP_EDGE_FIREWALL_PORT_MIN ||
-    portNumber > IP_EDGE_FIREWALL_PORT_MAX
+    startPortNumber < IP_EDGE_FIREWALL_PORT_MIN ||
+    endPortNumber > IP_EDGE_FIREWALL_PORT_MAX ||
+    startPortNumber > endPortNumber
   );
 };
 
@@ -38,7 +61,12 @@ export const hasDestinationPortLowerThanSourcePortError = ({
   source?: string;
   destination?: string;
 }) => {
-  if (!source || !destination) {
+  if (
+    !source ||
+    !destination ||
+    source.includes('-') ||
+    destination.includes('-')
+  ) {
     return false;
   }
 
@@ -68,6 +96,27 @@ export const formatSourceValue = (source?: string) => {
     return null;
   }
   return !source?.includes('/') ? `${source}/32` : source;
+};
+
+export const formatPortValue = (port?: string) => {
+  if (!port || port.includes('-')) {
+    return undefined;
+  }
+
+  return parseInt(port, 10);
+};
+
+export const formatPortRangeValue = (port?: string) => {
+  if (!port || !port.includes('-')) {
+    return undefined;
+  }
+
+  const [startPort, endPort] = port.split('-');
+
+  return {
+    from: startPort ? parseInt(startPort, 10) : IP_EDGE_FIREWALL_PORT_MIN,
+    to: endPort ? parseInt(endPort, 10) : IP_EDGE_FIREWALL_PORT_MAX,
+  };
 };
 
 export type CreateFirewallRuleParams = {
@@ -187,11 +236,18 @@ export const useCreateIpEdgeNetworkFirewallRule = ({
         ipOnFirewall,
         action,
         protocol,
-        destinationPort:
-          destinationPort && !fragments ? parseInt(destinationPort, 10) : null,
+        destinationPort: fragments
+          ? undefined
+          : formatPortValue(destinationPort),
+        sourcePort: fragments ? undefined : formatPortValue(sourcePort),
+        destinationPortRange: fragments
+          ? undefined
+          : formatPortRangeValue(destinationPort),
+        sourcePortRange: fragments
+          ? undefined
+          : formatPortRangeValue(sourcePort),
         sequence,
         source: formatSourceValue(source),
-        sourcePort: sourcePort && !fragments ? parseInt(sourcePort, 10) : null,
         tcpOption:
           fragments || tcpOption
             ? {

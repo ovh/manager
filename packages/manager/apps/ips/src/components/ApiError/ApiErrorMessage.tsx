@@ -9,11 +9,14 @@ import { ApiError } from '@ovh-ux/manager-core-api';
 
 import { TRANSLATION_NAMESPACES } from '@/utils';
 
-export const useApiErrorMessage = (error?: ApiError | null) => {
+export const useApiErrorMessage = (error?: ApiError | Error | null) => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.error);
 
-  const errorMessage = error?.response?.data?.message || error?.message;
-  const ovhQueryId = error?.response?.headers?.['x-ovh-queryid'] as string;
+  const errorMessage =
+    (error as ApiError)?.response?.data?.message || error?.message;
+  const ovhQueryId = (error as ApiError)?.response?.headers?.[
+    'x-ovh-queryid'
+  ] as string;
 
   if (!errorMessage) {
     return undefined;
@@ -25,7 +28,7 @@ export const useApiErrorMessage = (error?: ApiError | null) => {
 };
 
 export type ApiErrorMessageProps = {
-  error?: ApiError | null;
+  error?: ApiError | Error | null;
   isDismissible?: boolean;
   className?: string;
 };

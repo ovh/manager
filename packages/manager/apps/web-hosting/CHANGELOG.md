@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.2...@ovh-ux/manager-web-hosting-app@0.18.3) (2026-03-17)
+
+
+### Bug Fixes
+
+* **web-hosting:** create portal on select ssl certificat ([5e199a6](https://github.com/ovh/manager/commit/5e199a6537a408d28f6c53ff3bf64ec14197d7ad)), closes [#PUWEBPT-262](https://github.com/ovh/manager/issues/PUWEBPT-262)
+* **web-hosting:** order ssl sectigo ([7934bbd](https://github.com/ovh/manager/commit/7934bbd5e6e4a5930dd07204d5b57e2c591ccde3)), closes [#PUWEBPT-262](https://github.com/ovh/manager/issues/PUWEBPT-262)
+
+
+
+
+
+## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.1...@ovh-ux/manager-web-hosting-app@0.18.2) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-hosting-app
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.0...@ovh-ux/manager-web-hosting-app@0.18.1) (2026-02-27)
 
 

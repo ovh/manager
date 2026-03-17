@@ -50,7 +50,7 @@ export default function DsRecordsListing() {
     serviceName,
   );
   const { data: dnsZoneIAMRessources } = useGetIAMResource(
-    domainResource.id,
+    domainResource?.id,
     'dnsZone',
   );
   const urn = dnsZoneIAMRessources?.[0]?.urn;
@@ -61,13 +61,12 @@ export default function DsRecordsListing() {
 
   const isInternalDnsConfiguration =
     domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.EXTERNAL &&
+    DnsConfigurationTypeEnum.EXTERNAL &&
     domainResource?.currentState?.dnsConfiguration.configurationType !==
-      DnsConfigurationTypeEnum.MIXED;
+    DnsConfigurationTypeEnum.MIXED;
 
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName,
-    domainResource,
     isInternalDnsConfiguration,
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -94,18 +93,26 @@ export default function DsRecordsListing() {
       serviceName,
     },
   );
-  if (!domainResource.currentState.dnssecConfiguration.dnssecSupported) {
-    navigate(generalInformationUrl, { replace: true });
-  }
 
   useEffect(() => {
+    if (
+      domainResource &&
+      !domainResource.currentState.dnssecConfiguration.dnssecSupported
+    ) {
+      navigate(generalInformationUrl, { replace: true });
+    }
+  }, [domainResource, generalInformationUrl, navigate]);
+
+  useEffect(() => {
+    if (!domainResource) return;
+
     const {
       dsData: dsRecordCurrentState,
       supportedAlgorithms,
-    } = domainResource?.currentState.dnssecConfiguration;
+    } = domainResource.currentState.dnssecConfiguration;
     const {
       dsData: dsRecordTargetSpec,
-    } = domainResource?.targetSpec?.dnssecConfiguration;
+    } = domainResource.targetSpec?.dnssecConfiguration ?? { dsData: [] };
 
     if (!dsRecordCurrentState.length && !dsRecordTargetSpec.length) {
       setItems([]);
@@ -177,8 +184,8 @@ export default function DsRecordsListing() {
   });
 
   const { dnssecStatus, isDnssecStatusLoading } = useGetDnssecStatus(
-    domainResource.currentState,
-    domainResource.targetSpec,
+    domainResource?.currentState,
+    domainResource?.targetSpec,
   );
 
   let message: JSX.Element = <></>;
@@ -216,11 +223,11 @@ export default function DsRecordsListing() {
               action:
                 dnssecStatus === DnssecStatusEnum.ENABLE_IN_PROGRESS
                   ? t(
-                      'domain_tab_dsrecords_message_information_action_in_progress_activate',
-                    )
+                    'domain_tab_dsrecords_message_information_action_in_progress_activate',
+                  )
                   : t(
-                      'domain_tab_dsrecords_message_information_action_in_progress_deactivate',
-                    ),
+                    'domain_tab_dsrecords_message_information_action_in_progress_deactivate',
+                  ),
             }}
             components={{
               Link: <LinkToOngoingOperations target="dns" />,

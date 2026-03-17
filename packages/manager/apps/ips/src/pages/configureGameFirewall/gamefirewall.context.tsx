@@ -109,17 +109,14 @@ export const GameFirewallContextProvider: FC<{
   const [newEndPort, setNewEndPort] = useState<string>();
   // It's a state just to let the toggle animate when we try to change its value
   const [tmpToggleState, setTmpToggleState] = useState<boolean | null>(null);
-  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] = useState<boolean>(
-    false,
-  );
+  const [isNewRuleRowDisplayed, setIsNewRuleRowDisplayed] =
+    useState<boolean>(false);
   const [
     isStrategyConfirmationModalVisible,
     setIsStrategyConfirmationModalVisible,
   ] = useState(false);
-  const [
-    confirmDeleteModalOpen,
-    setConfirmDeleteModalOpen,
-  ] = useState<IpGameFirewallRule | null>(null);
+  const [confirmDeleteModalOpen, setConfirmDeleteModalOpen] =
+    useState<IpGameFirewallRule | null>(null);
   const { isLoading, ipGameFirewall, isError, error } = useGetIpGameFirewall({
     ip,
     ipOnGame,

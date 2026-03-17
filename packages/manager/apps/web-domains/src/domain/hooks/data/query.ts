@@ -5,10 +5,7 @@ import {
   useQueries,
 } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import {
-  OvhSubsidiary,
-  useNotifications,
-} from '@ovh-ux/manager-react-components';
+import { useNotifications } from '@ovh-ux/manager-react-components';
 import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   getDomainAnycastOption,
@@ -33,8 +30,6 @@ import {
   getServiceDnssec,
 } from '@/domain/data/api/domainZone';
 import { TDomainZone } from '@/domain/types/domainZone';
-import { order } from '@/domain/types/orderCatalog';
-import { getOrderCatalog } from '@/domain/data/api/order';
 import {
   getDomainContact,
   getMXPlan,
@@ -56,6 +51,8 @@ import {
 import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
+import { ApiError } from '@ovh-ux/manager-core-api';
+export { useGetOrderCatalogDns } from '@/common/hooks/data/query';
 
 export const useGetDomainResource = (serviceName: string) => {
   const { data, isLoading, error } = useQuery<TDomainResource>({
@@ -71,7 +68,6 @@ export const useGetDomainResource = (serviceName: string) => {
 
 export const useGetDomainZone = (
   serviceName: string,
-  domainResource: TDomainResource,
   enabled: boolean = false,
 ) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
@@ -83,20 +79,7 @@ export const useGetDomainZone = (
   return {
     domainZone: data,
     isFetchingDomainZone: isLoading,
-    domainZoneError: error,
-  };
-};
-
-export const useGetOrderCatalogDns = (subsidiary: OvhSubsidiary) => {
-  const { data, isLoading, error } = useQuery<order.publicOrder.Catalog>({
-    queryKey: ['order', 'catalog', 'dns', subsidiary],
-    queryFn: () =>
-      getOrderCatalog({ ovhSubsidiary: subsidiary, productName: 'dns' }),
-  });
-  return {
-    dnsCatalog: data,
-    isFetchingDnsCatalog: isLoading,
-    dnsCatalogError: error,
+    domainZoneError: error as ApiError,
   };
 };
 
@@ -148,8 +131,8 @@ export const useTerminateAnycastMutation = (
       addSuccess(
         t('domain_dns_tab_terminate_anycast_success', {
           action: restore
-            ? t('domain_action_restore')
-            : t('domain_action_terminate'),
+            ? t('domain_action_restored')
+            : t('domain_action_terminated'),
         }),
       );
     },

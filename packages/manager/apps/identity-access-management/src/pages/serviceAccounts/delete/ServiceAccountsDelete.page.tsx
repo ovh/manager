@@ -10,7 +10,7 @@ import { SERVICE_ACCOUNTS_TRACKING } from '@/tracking.constant';
 import { useDeleteIamServiceAccount } from '@/data/hooks/useGetIamServiceAccounts';
 
 export default function ServiceAccountsDelete() {
-  const { t } = useTranslation(['service-accounts', 'permanent-tokens', NAMESPACES.ACTIONS]);
+  const { t } = useTranslation(['service-accounts', NAMESPACES.ACTIONS]);
   const { trackClick, trackPage } = useOvhTracking();
   const { addSuccess, addError } = useNotifications();
   const navigate = useNavigate();
@@ -56,7 +56,9 @@ export default function ServiceAccountsDelete() {
   return (
     <Modal
       type={ODS_MODAL_COLOR.critical}
-      heading={t('iam_user_token_modal_title_delete', { tokenName: clientId, ns: 'permanent-tokens' })}
+      heading={t('iam_service_accounts_modal_title_delete', {
+        serviceName: clientId,
+      })}
       primaryLabel={t('delete', { ns: NAMESPACES.ACTIONS })}
       onPrimaryButtonClick={handleSubmit}
       isPrimaryButtonDisabled={isPending}
@@ -68,9 +70,8 @@ export default function ServiceAccountsDelete() {
       <OdsText>
         <Trans
           t={t}
-          i18nKey="iam_user_token_modal_message_delete"
-          values={{ tokenName: clientId }}
-          ns="permanent-tokens"
+          i18nKey="iam_service_accounts_modal_message_delete"
+          values={{ serviceName: clientId }}
         />
       </OdsText>
     </Modal>

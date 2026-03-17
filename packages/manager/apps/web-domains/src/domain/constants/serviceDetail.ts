@@ -66,7 +66,7 @@ export const ServiceDetailTabsProps: DashboardTabItemProps[] = [
   },
 ];
 
-export const legacyTabs = ['zone', 'redirection', 'dynhost'];
+export const legacyTabs = [ 'redirection', 'dynhost'];
 
 export const changelogLinks: ChangelogLinks = {
   changelog:

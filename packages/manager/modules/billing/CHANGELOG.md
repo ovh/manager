@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.4...@ovh-ux/manager-billing@0.65.5) (2026-03-17)
+
+
+### Bug Fixes
+
+* **billing:** clear state after payment method add ([de6a748](https://github.com/ovh/manager/commit/de6a7487d467dc2d92d0296619359f04abbe0112)), closes [#MANAGER-21181](https://github.com/ovh/manager/issues/MANAGER-21181)
+
+
+
+
+
 ## [0.65.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.3...@ovh-ux/manager-billing@0.65.4) (2026-02-17)
 
 

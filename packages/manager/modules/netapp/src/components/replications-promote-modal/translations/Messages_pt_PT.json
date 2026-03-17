@@ -1,0 +1,10 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Nenhuma replicação selecionada. Selecione uma replicação.",
+  "netapp_replications_modal_title_promote": "Promover o volume",
+  "netapp_replications_modal_description_promote": "Tem a certeza de que pretende promover este volume?",
+  "netapp_replications_modal_primary_label_promote": "Confirmar",
+  "netapp_replications_modal_secondary_label": "Fechar",
+  "netapp_replications_modal_warning_promote": "A promoção de um volume de replicação provoca a interrupção da ligação de replicação ao volume de origem. O volume promovido passará a ser independente. Esta ação não é reversível.",
+  "netapp_replications_promote_success": "A promoção da replicação do volume {{ sourceShareID }} foi realizada com sucesso.",
+  "netapp_replications_promote_error": "A promoção da replicação do volume {{ sourceShareID }} falhou."
+}

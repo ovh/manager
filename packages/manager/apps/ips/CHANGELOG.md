@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.7.0...@ovh-ux/manager-ips-app@0.8.0) (2026-03-17)
+
+
+### Features
+
+* **dedicated:** banner for intervention ([e594ce0](https://github.com/ovh/manager/commit/e594ce0b3bf33d60250ad0fc8f74d15f3cf517a7)), closes [#PUBM-51616](https://github.com/ovh/manager/issues/PUBM-51616)
+
+
+
+
+
+# [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.6.0...@ovh-ux/manager-ips-app@0.7.0) (2026-03-11)
+
+
+### Bug Fixes
+
+* **ips:** fix copilot feedbacks ([5bc3db5](https://github.com/ovh/manager/commit/5bc3db54a0d66172dc129cf0023c62f95902358d)), closes [#MANAGER-19522](https://github.com/ovh/manager/issues/MANAGER-19522)
+* **ips:** fix order feedbacks ([db45f10](https://github.com/ovh/manager/commit/db45f10db4bd24a64f05bf6729f17408fec8bee7)), closes [#MANAGER-19717](https://github.com/ovh/manager/issues/MANAGER-19717)
+* **ips:** updating the description label displayed when selecting a bandwidth in the order page ([c4f49f8](https://github.com/ovh/manager/commit/c4f49f82ee5564bcc09c632f77ad2f8716a5b311)), closes [#MANAGER-21050](https://github.com/ovh/manager/issues/MANAGER-21050)
+
+
+### Features
+
+* **ips:** add bandwidth order ([fc5cd27](https://github.com/ovh/manager/commit/fc5cd27bcd224ba42f1121a50cb5149b6cbde880)), closes [#MANAGER-19717](https://github.com/ovh/manager/issues/MANAGER-19717)
+
+
+
+
+
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.5.2...@ovh-ux/manager-ips-app@0.6.0) (2026-03-09)
+
+
+### Bug Fixes
+
+* **ips:** removing redundant subnet info from the datagrid ([11bc5af](https://github.com/ovh/manager/commit/11bc5af378b5e1da5ddd0790fce2e6e2cb065982)), closes [#MANAGER-20845](https://github.com/ovh/manager/issues/MANAGER-20845)
+
+
+### Features
+
+* **ips:** add button to add reverse DNS on ipv6 empty result ([73a1b4e](https://github.com/ovh/manager/commit/73a1b4e7e1b892fcc31dfc3198f6a2317b0bdd2a)), closes [#MANAGER-20559](https://github.com/ovh/manager/issues/MANAGER-20559)
+* **ips:** add port range support ([417ce7e](https://github.com/ovh/manager/commit/417ce7e71b154e73903b6e380957004166c79e6c)), closes [#MANAGER-20168](https://github.com/ovh/manager/issues/MANAGER-20168)
+
+
+
+
+
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.5.1...@ovh-ux/manager-ips-app@0.5.2) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-ips-app
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.5.0...@ovh-ux/manager-ips-app@0.5.1) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-ips-app

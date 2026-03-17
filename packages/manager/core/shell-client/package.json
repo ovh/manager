@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-react-shell-client",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "OVH manager react shell client",
   "license": "BSD-3-Clause",
   "author": "OVH SAS",
@@ -21,9 +21,9 @@
   },
   "dependencies": {
     "@ovh-ux/manager-config": "^8.9.0",
-    "@ovh-ux/ovh-at-internet": "^0.29.4",
+    "@ovh-ux/ovh-at-internet": "^0.30.0",
     "@ovh-ux/request-tagger": "^0.6.0",
-    "@ovh-ux/shell": "^4.10.6",
+    "@ovh-ux/shell": "^4.10.7",
     "@ovh-ux/url-builder": "^2.4.3",
     "i18next": "^23.8.2",
     "i18next-http-backend": "^2.4.2"

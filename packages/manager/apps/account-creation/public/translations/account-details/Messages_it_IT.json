@@ -50,5 +50,20 @@
   "account_details_field_corporation_firstname": "Nome del rappresentante legale",
   "account_details_field_corporation_lastname": "Cognome del rappresentante legale",
   "account_details_section_address_kyc_info": "<strong>Per effettuare un ordine, ricordati di inserire tutte le informazioni richieste e assicurati che i tuoi dati personali coincidano con il nome e l’indirizzo che appaiono nei documenti ufficiali.</strong> <ul><li>Inserisci <strong>il tuo indirizzo completo</strong> </li><li>L'indirizzo deve <strong>coincidere con quello presente nel giustificativo</strong> richiesto per verificare la tua identità</li></ul>",
-  "account_details_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)"
+  "account_details_field_italian_sdi": "Codice destinatario per fatturazione elettronica (SDI)",
+  "account_details_field_corporationType": "Tipo di impresa",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Personale",
+  "account_details_field_nationalIdentificationNumber": "Numero di identificazione nazionale",
+  "account_details_field_sex": "Genere",
+  "account_details_field_birthDay": "Data di nascita",
+  "account_details_sex_option_female": "F",
+  "account_details_sex_option_male": "M"
 }

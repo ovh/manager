@@ -1,5 +1,4 @@
 import '@/common/setupTests';
-import React, { ReactNode } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
   render,
@@ -7,7 +6,6 @@ import {
   fireEvent,
   waitFor,
 } from '@/common/utils/test.provider';
-import { UseQueryResult } from '@tanstack/react-query';
 import { wrapper } from '@/common/utils/test.provider';
 import Hosting from './Hosting';
 
@@ -18,57 +16,6 @@ vi.mock('@/domain/hooks/data/query', () => ({
   useGetFreeHostingServices: vi.fn(),
   useGetServiceInformation: vi.fn(),
 }));
-
-interface ActionMenuItem {
-  id: number;
-  label: string;
-  onClick?: () => void;
-}
-interface ActionMenuProps {
-  id: string;
-  items: ActionMenuItem[];
-}
-
-vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
-  const actual = await importOriginal<
-    typeof import('@ovh-ux/manager-react-components')
-  >();
-  const ActionMenu = ({ items, id }: ActionMenuProps) => (
-    <div data-testid={id}>
-      {items.map((item) => (
-        <button
-          key={item.id}
-          onClick={item.onClick}
-          data-testid={`action-item-${item.id}`}
-        >
-          {item.label}
-        </button>
-      ))}
-    </div>
-  );
-
-  type ManagerTileItemComponent = React.FC<{ children?: ReactNode }> & {
-    Label: React.FC<{ children?: ReactNode }>;
-  };
-  const ManagerTileItem: ManagerTileItemComponent = Object.assign(
-    ({ children }: { children?: ReactNode }) => (
-      <div data-testid="manager-tile-item">{children}</div>
-    ),
-    {
-      Label: ({ children }: { children?: ReactNode }) => (
-        <div data-testid="tile-label">{children}</div>
-      ),
-    },
-  );
-
-  return {
-    ...actual,
-    ActionMenu,
-    ManagerTile: {
-      Item: ManagerTileItem,
-    },
-  };
-});
 
 interface FreeHostingDrawerMockProps {
   isDrawerOpen: boolean;
@@ -99,35 +46,42 @@ vi.mock('./FreeHostingDrawer', () => ({
   },
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  Link: ({ href, children }: { href: string; children?: ReactNode }) => (
-    <a href={href} data-testid="hosting-link">
-      {children}
-    </a>
-  ),
-  Text: ({ children }: { children?: ReactNode }) => (
-    <span data-testid="text">{children}</span>
-  ),
-}));
+vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
+  const React = await import('react');
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => {
-  const mockShellContext = {
-    environment: {
-      getUser: () => ({
-        ovhSubsidiary: 'FR',
-      }),
-    },
-  };
+  const Label = ({ children }: { children?: React.ReactNode }) =>
+    React.createElement('dt', { 'data-testid': 'tile-label' }, children);
+
+  const Item = Object.assign(
+    ({ children }: { children?: React.ReactNode }) =>
+      React.createElement('div', { 'data-testid': 'manager-tile-item' }, children),
+    { Label },
+  );
 
   return {
-    ShellContext: React.createContext(mockShellContext),
-    useNavigationGetUrl: (
-      linkParams: [string, string, unknown],
-    ): UseQueryResult<unknown, Error> => {
-      return {
-        data: `https://ovh.test/#/${linkParams[0]}${linkParams[1]}`,
-      } as UseQueryResult<unknown, Error>;
-    },
+    ...actual,
+    useResourcesIcebergV6: vi.fn(),
+    useResourcesIcebergV2: vi.fn(),
+    useAuthorizationIam: vi.fn(),
+    ManagerTile: { Item },
+    ActionMenu: ({ id, items }: { id: string; items: Array<{ id: number; label: string; onClick: () => void }> }) =>
+      React.createElement('div', { 'data-testid': id }, items?.map((item) =>
+        React.createElement('button', { key: item.id, 'data-testid': `action-item-${item.id}`, onClick: item.onClick }, item.label),
+      )),
+  };
+});
+
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  const React = await import('react');
+  return {
+    ...actual,
+    Text: ({ children, ...props }: { children?: React.ReactNode;[key: string]: unknown }) =>
+      React.createElement('span', { 'data-testid': 'text', ...props }, children),
+    Link: ({ href, children, ...props }: { href?: string; children?: React.ReactNode;[key: string]: unknown }) =>
+      React.createElement('a', { href, 'data-testid': 'hosting-link', ...props }, children),
+    Skeleton: () => React.createElement('div', { 'data-testid': 'skeleton' }),
   };
 });
 

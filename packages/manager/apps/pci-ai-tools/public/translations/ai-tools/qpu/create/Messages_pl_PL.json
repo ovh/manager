@@ -59,5 +59,5 @@
   "defaultAutoRestartInfo": "Notatniki QPU nie mogą być zatrzymywane bez automatycznego ponownego uruchomienia. Ta funkcjonalność jest domyślnie włączona, aby zapewnić ciągłość obliczeń QPU.",
   "fieldTimeOutLabel": "Data ważności",
   "fieldAutoRestartLabel": "Automatyczny restart",
-  "fieldAutoRestartDescription": "Jeśli opcja jest włączona, notebook będzie automatycznie restartowany co 7 dni. Jeśli opcja jest wyłączona, notebook zostanie automatycznie zatrzymany po 7 dniach. W obu przypadkach konfiguracja i dane zostaną zapisane."
+  "fieldAutoRestartDescription": "Jeśli włączone, notebook zostanie automatycznie uruchomiony ponownie co 7 dni ciągłej pracy. Jeśli wyłączone, notebook zostanie automatycznie zatrzymany po 7 dniach ciągłej pracy. W obu przypadkach twoja konfiguracja i dane zostaną zapisane."
 }

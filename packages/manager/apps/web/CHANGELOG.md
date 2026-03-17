@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.5...@ovh-ux/manager-web@19.38.0) (2026-03-16)
+
+
+### Features
+
+* **dedicated:** add Game anti-DDoS Protection ([0de4233](https://github.com/ovh/manager/commit/0de42334d6071cd0305c733ce31be69a9a8d9487)), closes [#MANAGER-20586](https://github.com/ovh/manager/issues/MANAGER-20586)
+
+
+
+
+
+## [19.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.4...@ovh-ux/manager-web@19.37.5) (2026-03-10)
+
+
+### Bug Fixes
+
+* **billing:** repricing translations more dynamic ([5faa3e4](https://github.com/ovh/manager/commit/5faa3e4ced413c3f4e3b83fa50701bd13a6c8a80)), closes [#MANAGER-21078](https://github.com/ovh/manager/issues/MANAGER-21078)
+* **i18n:** add missing translations [CDS 1209] ([57efff1](https://github.com/ovh/manager/commit/57efff13cde3de0661c07e2afb367447297cb7d0))
+
+
+
+
+
+## [19.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.3...@ovh-ux/manager-web@19.37.4) (2026-03-05)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.2...@ovh-ux/manager-web@19.37.3) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
 ## [19.37.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.37.1...@ovh-ux/manager-web@19.37.2) (2026-02-27)
 
 

@@ -54,10 +54,10 @@
   "sshKeyConfigurationHelperBis": "Use a lista pendente abaixo para associar chaves SSH ao seu notebook",
   "summaryFieldFlavorVMemory": "{{memory}} VRAM",
   "qpuQubits": "Qubits",
-  "defaultAutoRestartInfo": "O notebook será interrompido automaticamente após 7 dias. A sua configuração e os seus dados serão guardados.",
+  "defaultAutoRestartInfo": "O notebook será desligado automaticamente após 7 dias de funcionamento consecutivos. A sua configuração e os seus dados serão guardados.",
   "fieldTimeOutLabel": "Expiração",
   "fieldAutoRestartLabel": "Reinicialização automática",
-  "fieldAutoRestartDescription": "Se ativado, o notebook será automaticamente reiniciado a cada 7 dias. Se desativado, o notebook será automaticamente interrompido após 7 dias. Em ambos os casos, a sua configuração e os seus dados serão guardados.",
+  "fieldAutoRestartDescription": "Se ativado, o notebook será reiniciado automaticamente a cada 7 dias de funcionamento consecutivos. Se desativado, o notebook será desligado automaticamente após 7 dias de funcionamento consecutivos. Em ambos os casos, a sua configuração e os seus dados serão guardados.",
   "filedEnable": "Ativado",
   "filedDisable": "Desativado"
 }

@@ -1,0 +1,14 @@
+{
+  "netapp_network_volumes_replications_title": "Synchronizuj wolumen(y) z inną usługą Enterprise File Storage",
+  "netapp_network_volumes_replications_button_cancel": "Anuluj",
+  "netapp_network_volumes_replications_button_buy": "Zamów",
+  "netapp_network_volumes_replications_button_sync": "Synchronizuj",
+  "netapp_network_volumes_no_selected_volume_replications_subtitle": "Nie wybrano wolumenu",
+  "netapp_network_volumes_no_selected_volume_replications_description": "Aby utworzyć replikację, wybierz jeden lub kilka wolumenów.",
+  "netapp_network_volumes_replications_selected_volumes": "Wybrane wolumeny:",
+  "netapp_network_volumes_no_replications_subtitle": "Nie znaleziono usługi docelowej spełniającej wymagania",
+  "netapp_network_volumes_not_replications_description": "Aby synchronizować wolumeny, musisz mieć co najmniej jedną usługę Enterprise File Storage podłączoną do vRack w tym samym centrum danych. Usługi dostępne przez publiczną sieć nie mogą być używane jako usługi docelowe i wkrótce zostaną wycofane.",
+  "netapp_network_volumes_replications_description": "Replikacja każdego wolumenu zostanie wykonana oddzielnie w docelowej usłudze Enterprise File Storage. Zatwierdź synchronizację w usługach docelowych dla każdego wolumenu. Zsynchronizowane wolumeny będą wtedy dostępne tylko do odczytu. Następnie możesz przełączyć wolumen w tryb odczytu i zapisu na liście wolumenów w usłudze docelowej.",
+  "netapp_network_volumes_replications_form_label": "Docelowy Enterprise File Storage",
+  "netapp_network_volumes_replications_form_placeholder": "Wybierz EFS"
+}

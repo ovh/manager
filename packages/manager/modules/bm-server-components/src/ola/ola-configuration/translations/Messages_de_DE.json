@@ -27,5 +27,7 @@
   "dedicated_server_interfaces_ola_step3_submit": "Erstellen",
   "dedicated_server_interface_ola_new_tab": "(Wird in einem neuen Tab geöffnet)",
   "dedicated_server_interfaces_ola_network_interfaces": "Ihr derzeitiges Netzwerkinterface",
-  "dedicated_server_interfaces_ola_network_interfaces_after": "Ihr Netzwerkinterface nach der Aktivierung"
+  "dedicated_server_interfaces_ola_network_interfaces_after": "Netzwerkinterface-Simulation nach Aktivierung der Linkaggregation",
+  "dedicated_server_interfaces_ola_column_mac_address": "MAC-Adresse",
+  "dedicated_server_interfaces_ola_activate": "Aggregation aktivieren"
 }

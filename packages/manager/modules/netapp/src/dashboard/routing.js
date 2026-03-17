@@ -42,12 +42,9 @@ export default /* @ngInject */ ($stateProvider) => {
       volumes: /* @ngInject */ ($http, serviceName, NetAppDashboardService) =>
         $http
           .get(`/storage/netapp/${serviceName}/share?detail=true`)
-          .then(({ data }) => {
-            return NetAppDashboardService.getListOfAccessPath(
-              serviceName,
-              data,
-            );
-          })
+          .then(({ data }) =>
+            NetAppDashboardService.getListOfAccessPath(serviceName, data),
+          )
           .then((volumes) => volumes.map((volume) => new Share(volume))),
       availableVolumeSize: /* @ngInject */ (storage, volumes) => {
         const storageVolumesSize = volumes.reduce(
@@ -68,6 +65,16 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.href('netapp.dashboard.snapshotPolicies', $transition$.params()),
       volumesLink: /* @ngInject */ ($state, $transition$) =>
         $state.href('netapp.dashboard.volumes', $transition$.params()),
+      replicationsLink: /* @ngInject */ ($state, $transition$) =>
+        $state.href('netapp.dashboard.replications', $transition$.params()),
+      goToReplications: /* @ngInject */ ($state) => (reload = false) =>
+        $state.go(
+          'netapp.dashboard.replications',
+          {},
+          {
+            reload,
+          },
+        ),
       serviceName: /* @ngInject */ ($transition$) =>
         $transition$.params().serviceName,
       storage: /* @ngInject */ ($http, serviceName) =>

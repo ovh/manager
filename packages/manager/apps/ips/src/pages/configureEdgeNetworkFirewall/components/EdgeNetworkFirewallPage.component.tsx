@@ -129,42 +129,44 @@ export default function EdgeNetworkFirewallPage() {
         <OdsText className="mb-3 block">{t('description')}</OdsText>
         <OdsText className="mb-3 block">{t('subDescription')}</OdsText>
         <OdsText className="mb-3 block">{t('tcpNoteDescription')}</OdsText>
-        {rules.length > 0 && rules.every((rule) => rule?.action === 'permit') && (
-          <OdsMessage
-            className="my-3"
-            color={ODS_MESSAGE_COLOR.warning}
-            isDismissible={false}
-          >
-            <div className="block">
-              <Trans
-                t={t}
-                i18nKey="only_permit_rules_warning"
-                components={{
-                  Link: (
-                    <OdsLink
-                      href="!#"
-                      label={t('only_permit_rule_link_label')}
-                      isDisabled={maxRulesReached}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setNewProtocol(IpEdgeFirewallProtocol.IPv4);
-                        const latestValidSequence = validSequenceNumbers
-                          .map((num) => num)
-                          .reverse()
-                          .find(
-                            (sequence) => !ruleSequenceList.includes(sequence),
-                          );
-                        setNewSequence(latestValidSequence);
-                        setNewMode('deny');
-                        showNewRuleRow();
-                      }}
-                    />
-                  ),
-                }}
-              />
-            </div>
-          </OdsMessage>
-        )}
+        {rules.length > 0 &&
+          rules.every((rule) => rule?.action === 'permit') && (
+            <OdsMessage
+              className="my-3"
+              color={ODS_MESSAGE_COLOR.warning}
+              isDismissible={false}
+            >
+              <div className="block">
+                <Trans
+                  t={t}
+                  i18nKey="only_permit_rules_warning"
+                  components={{
+                    Link: (
+                      <OdsLink
+                        href="!#"
+                        label={t('only_permit_rule_link_label')}
+                        isDisabled={maxRulesReached}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setNewProtocol(IpEdgeFirewallProtocol.IPv4);
+                          const latestValidSequence = validSequenceNumbers
+                            .map((num) => num)
+                            .reverse()
+                            .find(
+                              (sequence) =>
+                                !ruleSequenceList.includes(sequence),
+                            );
+                          setNewSequence(latestValidSequence);
+                          setNewMode('deny');
+                          showNewRuleRow();
+                        }}
+                      />
+                    ),
+                  }}
+                />
+              </div>
+            </OdsMessage>
+          )}
         <TopBar />
         <RuleDatagrid />
       </BaseLayout>

@@ -31,5 +31,8 @@
   "iam_user_roles_ADMIN": "Administrador",
   "iam_user_roles_REGULAR": "Administrador restringido",
   "iam_user_roles_UNPRIVILEGED": "Solo lectura",
-  "iam_user_roles_NONE": "Ninguno/a"
+  "iam_user_roles_NONE": "Ninguno/a",
+  "iam_service_accounts_modal_title_delete": "Eliminar la cuenta de servicio {{serviceName}}",
+  "iam_service_accounts_modal_message_delete": "¿Estás seguro de que quieres eliminar la cuenta de servicio <strong>{{serviceName}}</strong> ?",
+  "iam_service_accounts_datagrid_column_associated_policies": "Políticas asociadas"
 }
