@@ -416,5 +416,6 @@
   "domain_tab_dsrecords_message_information_content": "Ces enregistrements DS sont fournis à titre informatif et sont gérés automatiquement par OVHcloud.",
   "domain_tab_dsrecords_message_information_action_in_progress": "DNSSEC est en cours {{action}}: vous pouvez suivre l'avancée de votre demande depuis la page des opérations en cours. <Link />",
   "domain_tab_dsrecords_message_information_action_in_progress_activate": "d'activation",
-  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de désactivation"
+  "domain_tab_dsrecords_message_information_action_in_progress_deactivate": "de désactivation",
+  "domain_tab_general_information_dnssec_external_zone_tooltip": "Votre domaine utilise des serveurs DNS externes. Pour gérer le DNSSEC, rendez-vous dans l'onglet DS Records."
 }
