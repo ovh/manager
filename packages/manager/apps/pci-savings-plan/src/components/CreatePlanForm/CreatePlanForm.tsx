@@ -50,6 +50,7 @@ import {
   InstanceTechnicalName,
   Resource,
   ResourceType,
+  TDeploymentOptions,
   TechnicalInfo,
 } from '@/types/CreatePlan.type';
 import CommitmentWrapper from '../Commitment/CommitmentWrapper';
@@ -63,6 +64,7 @@ import { toLocalDateUTC } from '../../utils/formatter/date';
 import {
   buildDisplayName,
   DeploymentMode,
+  getDeploymentOptions,
   getInstanceDisplayName,
   getInstancesInformation,
   isValidSavingsPlanName,
@@ -70,6 +72,7 @@ import {
 import SelectResource from './SelectResource';
 import CreatePlanConfirmModal from './CreatePlanConfirmModal';
 import { usePlanPricing } from '@/hooks/planCreation/usePlanPricing';
+import { useSavingsPlanCreationOptionsFeatureAvailability } from '@/hooks/useSavingsPlanCreationOptionsFeatureAvailability';
 
 const COMMON_SPACING = 'my-4';
 
@@ -112,6 +115,7 @@ export type CreatePlanFormProps = {
   isDiscoveryProject: boolean;
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
+  deploymentModeOptions: TDeploymentOptions;
   isCreatePlanPending: boolean;
 };
 
@@ -129,6 +133,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   isDiscoveryProject,
   setDeploymentMode,
   deploymentMode,
+  deploymentModeOptions,
   isCreatePlanPending,
 }: CreatePlanFormProps) => {
   const { trackClick } = useOvhTracking();
@@ -334,6 +339,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         <SelectDeployment
           setDeploymentMode={setDeploymentMode}
           deploymentMode={deploymentMode}
+          deploymentModeOptions={deploymentModeOptions}
         />
       )}
       <SelectModel
@@ -431,6 +437,11 @@ export const CreatePlanFormContainer = ({
   const { t } = useTranslation(['create', 'listing']);
   const { addSuccess } = useNotifications();
 
+  const {
+    isDeployment3AZAvailable,
+    isRancherServiceAvailable,
+  } = useSavingsPlanCreationOptionsFeatureAvailability();
+
   const [instanceCategory, setInstanceCategory] = useState<
     InstanceTechnicalName
   >(InstanceTechnicalName.b3);
@@ -487,7 +498,23 @@ export const CreatePlanFormContainer = ({
     (a, b) => (a.duration ?? 0) - (b.duration ?? 0),
   );
 
-  const resources: Resource[] = getResources(t);
+  const availableResourcesOptions = useMemo(() => {
+    const resourcesOptions: Resource[] = getResources(t);
+    return isRancherServiceAvailable
+      ? resourcesOptions
+      : resourcesOptions.filter(
+          (resource) => resource.value !== ResourceType.rancher,
+        );
+  }, [t, isRancherServiceAvailable]);
+
+  const availableDeploymentModeOptions = useMemo(() => {
+    const deploymentModeOptions = getDeploymentOptions(t);
+    return isDeployment3AZAvailable
+      ? deploymentModeOptions
+      : deploymentModeOptions.filter(
+          (mode) => mode.name !== DeploymentMode['3AZ'],
+        );
+  }, [t, isDeployment3AZAvailable]);
 
   const instancesInformation = useMemo(
     () =>
@@ -502,7 +529,7 @@ export const CreatePlanFormContainer = ({
     <Suspense fallback={<OdsSpinner />}>
       <CreatePlanForm
         onCreatePlan={onCreatePlan}
-        resources={resources}
+        resources={availableResourcesOptions}
         instancesInfo={instancesInformation}
         instanceCategory={instanceCategory}
         setInstanceCategory={setInstanceCategory}
@@ -514,6 +541,7 @@ export const CreatePlanFormContainer = ({
         isDiscoveryProject={isDiscoveryProject}
         setDeploymentMode={setDeploymentMode}
         deploymentMode={deploymentMode}
+        deploymentModeOptions={availableDeploymentModeOptions}
         isCreatePlanPending={isCreatePlanPending}
       />
     </Suspense>
