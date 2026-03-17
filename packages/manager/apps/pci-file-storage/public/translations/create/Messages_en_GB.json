@@ -26,7 +26,8 @@
           "label": "3-AZ Region",
           "description": "High-resilience, high-availability deployment in 3 zones."
         }
-      }
+      },
+      "leastPrice": "From {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Choose a location"

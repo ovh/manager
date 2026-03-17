@@ -28,6 +28,10 @@ vi.mock('@/domain/services/catalog.service', () => ({
   provisionedPerformanceCalculator: vi.fn(() => vi.fn(() => ({ iops: 0, throughput: 0 }))),
 }));
 
+vi.mock('@ovh-ux/muk', () => ({
+  convertHourlyPriceToMonthly: vi.fn((price: number) => price * 720),
+}));
+
 vi.mock('../../../../public/assets/1AZ.svg', () => ({ default: 'Region1azImage' }));
 vi.mock('../../../../public/assets/3AZ.svg', () => ({ default: 'Region3azImage' }));
 vi.mock('../../../../public/assets/LZ.svg', () => ({ default: 'LZImage' }));
@@ -45,8 +49,13 @@ describe('share catalog selectors', () => {
             ]),
             allIds: ['region', 'localzone', 'region-3-az'],
           },
+          macroRegions: { byId: new Map(), allIds: [] },
         },
-      } as TShareCatalog;
+        relations: {
+          shareSpecVariantIdByRegion: new Map(),
+          shareSpecVariants: new Map(),
+        },
+      } as unknown as TShareCatalog;
 
       const result = selectDeploymentModes(catalog);
 
@@ -56,6 +65,153 @@ describe('share catalog selectors', () => {
         mode: 'region',
         labelKey: 'localisation.deploymentMode.modes.region.label',
         descriptionKey: 'localisation.deploymentMode.modes.region.description',
+        monthlyPrice: null,
+      });
+    });
+
+    it('should compute least price per deployment mode', () => {
+      const catalog = {
+        entities: {
+          deploymentModes: {
+            byId: new Map([['region', { name: 'region' }]]),
+            allIds: ['region'],
+          },
+          macroRegions: {
+            byId: new Map([
+              [
+                'GRA',
+                {
+                  name: 'GRA',
+                  deploymentMode: 'region',
+                  microRegions: ['GRA1', 'GRA2'],
+                } as TMacroRegion,
+              ],
+            ]),
+            allIds: ['GRA'],
+          },
+        },
+        relations: {
+          shareSpecVariantIdByRegion: new Map([
+            [
+              'spec1',
+              new Map([
+                ['GRA1', 'spec1::GRA1'],
+                ['GRA2', 'spec1::GRA2'],
+              ]),
+            ],
+          ]),
+          shareSpecVariants: new Map<string, TShareSpecVariant>([
+            [
+              'spec1::GRA1',
+              {
+                pricing: { price: 100, interval: 'hour' },
+                capacity: { min: 150, max: 10240 },
+                iops: {
+                  guaranteed: false,
+                  level: 30,
+                  max: 20000,
+                  maxUnit: 'IOPS',
+                  unit: 'IOPS/GB',
+                },
+                bandwidth: {
+                  guaranteed: false,
+                  level: 0.25,
+                  min: 150,
+                  max: 10240,
+                  maxUnit: 'MB/s',
+                  unit: 'MB/s/GB',
+                },
+              },
+            ],
+            [
+              'spec1::GRA2',
+              {
+                pricing: { price: 200, interval: 'hour' },
+                capacity: { min: 150, max: 10240 },
+                iops: {
+                  guaranteed: false,
+                  level: 30,
+                  max: 20000,
+                  maxUnit: 'IOPS',
+                  unit: 'IOPS/GB',
+                },
+                bandwidth: {
+                  guaranteed: false,
+                  level: 0.25,
+                  min: 150,
+                  max: 10240,
+                  maxUnit: 'MB/s',
+                  unit: 'MB/s/GB',
+                },
+              },
+            ],
+          ]),
+        },
+      } as unknown as TShareCatalog;
+
+      const result = selectDeploymentModes(catalog);
+
+      expect(result[0]?.monthlyPrice).toEqual({
+        value: 100 * 720,
+        isLeastPrice: true,
+      });
+    });
+
+    it('should set isLeastPrice to false when all prices are the same', () => {
+      const catalog = {
+        entities: {
+          deploymentModes: {
+            byId: new Map([['region', { name: 'region' }]]),
+            allIds: ['region'],
+          },
+          macroRegions: {
+            byId: new Map([
+              [
+                'GRA',
+                {
+                  name: 'GRA',
+                  deploymentMode: 'region',
+                  microRegions: ['GRA1'],
+                } as TMacroRegion,
+              ],
+            ]),
+            allIds: ['GRA'],
+          },
+        },
+        relations: {
+          shareSpecVariantIdByRegion: new Map([['spec1', new Map([['GRA1', 'spec1::GRA1']])]]),
+          shareSpecVariants: new Map<string, TShareSpecVariant>([
+            [
+              'spec1::GRA1',
+              {
+                pricing: { price: 100, interval: 'hour' },
+                capacity: { min: 150, max: 10240 },
+                iops: {
+                  guaranteed: false,
+                  level: 30,
+                  max: 20000,
+                  maxUnit: 'IOPS',
+                  unit: 'IOPS/GB',
+                },
+                bandwidth: {
+                  guaranteed: false,
+                  level: 0.25,
+                  min: 150,
+                  max: 10240,
+                  maxUnit: 'MB/s',
+                  unit: 'MB/s/GB',
+                },
+              },
+            ],
+          ]),
+        },
+      } as unknown as TShareCatalog;
+
+      const result = selectDeploymentModes(catalog);
+
+      expect(result[0]?.monthlyPrice).toEqual({
+        value: 100 * 720,
+        isLeastPrice: false,
       });
     });
   });
@@ -418,9 +574,21 @@ describe('share catalog selectors', () => {
       },
       relations: {
         shareSpecVariantIdByRegion: new Map([
-          ['spec1', new Map([['GRA1', 'spec1::GRA1'], ['GRA2', 'spec1::GRA1']])],
+          [
+            'spec1',
+            new Map([
+              ['GRA1', 'spec1::GRA1'],
+              ['GRA2', 'spec1::GRA1'],
+            ]),
+          ],
           ['spec2', new Map([['GRA1', 'spec2::GRA1']])],
-          ['spec3', new Map([['GRA2', 'spec3::GRA2'], ['GRA3', 'spec3::GRA2']])],
+          [
+            'spec3',
+            new Map([
+              ['GRA2', 'spec3::GRA2'],
+              ['GRA3', 'spec3::GRA2'],
+            ]),
+          ],
         ]),
         shareSpecVariants: new Map([
           ['spec1::GRA1', spec1Variant],

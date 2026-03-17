@@ -18,36 +18,40 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  FormField: ({ children }: PropsWithChildren) => <div>{children}</div>,
-  FormFieldLabel: ({ children }: PropsWithChildren) => <label>{children}</label>,
-  Select: ({
-    onValueChange,
-    value,
-  }: {
-    onValueChange: ({ value }: { value: string[] }) => void;
-    value: string[];
-  }) => (
-    <div
-      role="combobox"
-      aria-label="continent-select"
-      data-value={JSON.stringify(value)}
-      onClick={() => onValueChange && onValueChange({ value: ['Europe'] })}
-    />
-  ),
-  SelectControl: () => <div />,
-  SelectContent: () => <div />,
-  Controller: ({ render, name }: FieldValues) => {
-    const formContext = useFormContext();
-    const field = {
-      value: formContext.watch(name) || null,
-      onChange: (value: string) => {
-        formContext.setValue(name, value);
-      },
-    };
-    return render({ field });
-  },
-}));
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    FormField: ({ children }: PropsWithChildren) => <div>{children}</div>,
+    FormFieldLabel: ({ children }: PropsWithChildren) => <label>{children}</label>,
+    Select: ({
+      onValueChange,
+      value,
+    }: {
+      onValueChange: ({ value }: { value: string[] }) => void;
+      value: string[];
+    }) => (
+      <div
+        role="combobox"
+        aria-label="continent-select"
+        data-value={JSON.stringify(value)}
+        onClick={() => onValueChange && onValueChange({ value: ['Europe'] })}
+      />
+    ),
+    SelectControl: () => <div />,
+    SelectContent: () => <div />,
+    Controller: ({ render, name }: FieldValues) => {
+      const formContext = useFormContext();
+      const field = {
+        value: formContext.watch(name) || null,
+        onChange: (value: string) => {
+          formContext.setValue(name, value);
+        },
+      };
+      return render({ field });
+    },
+  };
+});
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 
