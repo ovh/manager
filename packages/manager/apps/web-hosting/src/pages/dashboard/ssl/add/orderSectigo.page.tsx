@@ -79,7 +79,7 @@ export default function SectigoModal() {
           onValueChange={(detail) => setSelectedDomain(detail.value as unknown as string)}
         >
           <SelectControl aria-label={t('select_domain')} placeholder={t('select_domain')} />
-          <SelectContent />
+          <SelectContent createPortal={false} />
         </Select>
         <Message color={MESSAGE_COLOR.warning} dismissible={false}>
           {t('ssl_info_warning')}
