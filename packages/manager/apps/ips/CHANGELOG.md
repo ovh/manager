@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.7.0...@ovh-ux/manager-ips-app@0.8.0) (2026-03-17)
+
+
+### Features
+
+* **dedicated:** banner for intervention ([e594ce0](https://github.com/ovh/manager/commit/e594ce0b3bf33d60250ad0fc8f74d15f3cf517a7)), closes [#PUBM-51616](https://github.com/ovh/manager/issues/PUBM-51616)
+
+
+
+
+
 # [0.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.6.0...@ovh-ux/manager-ips-app@0.7.0) (2026-03-11)
 
 
