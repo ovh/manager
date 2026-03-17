@@ -87,12 +87,7 @@ export const CATALOG_SHARE = {
   },
   pricings: [
     {
-      regions: [
-        'RBX-A',
-        'SGP1',
-        'BHS5',
-        'DE1',
-      ],
+      regions: ['RBX-A', 'SGP1', 'BHS5', 'DE1'],
       price: 11900,
       interval: 'hour',
       specs: {
@@ -121,13 +116,7 @@ export const CATALOG_SHARE = {
       },
     },
     {
-      regions: [
-        'GRA7',
-        'GRA9',
-        'GRA11',
-        'SBG7',
-        'SBG5',
-      ],
+      regions: ['GRA7', 'GRA9', 'GRA11', 'SBG7', 'SBG5'],
       price: 22900,
       interval: 'hour',
       specs: {
@@ -147,7 +136,7 @@ export const CATALOG_SHARE = {
         },
         bandwidth: {
           guaranteed: false,
-          level: 0.30,
+          level: 0.3,
           min: 30,
           max: 1000,
           maxUnit: 'MB/s',

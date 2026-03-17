@@ -54,19 +54,23 @@ vi.mock('@/pages/create/components/localisation/macroRegion/ContinentSelection.c
   ),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  RadioGroup: ({
-    children,
-    value,
-  }: PropsWithChildren<{
-    value: string;
-  }>) => (
-    <div role="radiogroup" data-value={value}>
-      {children}
-    </div>
-  ),
-  Text: ({ children }: PropsWithChildren) => <div>{children}</div>,
-}));
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    RadioGroup: ({
+      children,
+      value,
+    }: PropsWithChildren<{
+      value: string;
+    }>) => (
+      <div role="radiogroup" data-value={value}>
+        {children}
+      </div>
+    ),
+    Text: ({ children }: PropsWithChildren) => <div>{children}</div>,
+  };
+});
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 

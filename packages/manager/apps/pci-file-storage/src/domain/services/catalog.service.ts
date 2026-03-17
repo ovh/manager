@@ -1,8 +1,4 @@
-import {
-  TMacroRegion,
-  TMicroRegion,
-  TShareSpecVariant,
-} from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecVariant } from '@/domain/entities/catalog.entity';
 import { isSizeValid } from '@/domain/services/share.service';
 
 export const isMicroRegionAvailable = (microRegion: TMicroRegion): boolean =>

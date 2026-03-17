@@ -26,7 +26,8 @@
           "label": "3-AZ Region",
           "description": "Hochresiliente und hochverfügbare Bereitstellung in 3 Zonen."
         }
-      }
+      },
+      "leastPrice": "Ab {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Wählen Sie einen Standort"

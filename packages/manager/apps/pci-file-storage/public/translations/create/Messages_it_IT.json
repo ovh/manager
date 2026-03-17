@@ -26,7 +26,8 @@
           "label": "Region 3-AZ",
           "description": "Distribuzione ad alta resilienza e alta disponibilità su 3 zone."
         }
-      }
+      },
+      "leastPrice": "A partire da {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Scegli una posizione"
