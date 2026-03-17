@@ -6,10 +6,14 @@ import {
   OsdsRadio,
   OsdsRadioGroup,
 } from '@ovhcloud/ods-components/react';
-import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_SIZE,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
+import BetaManagerButton from './BetaManagerButton.component';
 
 function NavReshuffleSwitchBack(): JSX.Element {
   const { t } = useTranslation('beta-modal');
@@ -18,7 +22,7 @@ function NavReshuffleSwitchBack(): JSX.Element {
   const trackingPlugin = shell.getPlugin('tracking');
 
   if (!betaVersion) {
-    return <></>;
+    return <BetaManagerButton />;
   }
 
   const toggleVersion = (value: 'classic' | 'beta') => {
@@ -31,8 +35,8 @@ function NavReshuffleSwitchBack(): JSX.Element {
   };
 
   return (
-    <>
-      <OsdsRadioGroup name="version" className="d-flex">
+    <div className="flex items-center">
+      <OsdsRadioGroup name="version" className="flex">
         <OsdsRadio
           name="version"
           value="classic"
@@ -76,7 +80,9 @@ function NavReshuffleSwitchBack(): JSX.Element {
           </OsdsRadioButton>
         </OsdsRadio>
       </OsdsRadioGroup>
-    </>
+
+      <BetaManagerButton />
+    </div>
   );
 }
 

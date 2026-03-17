@@ -6,6 +6,7 @@ import { configureTest } from '@/utils/tests/tests.helper';
 import { getPreferencesMocks } from '@/__mocks__/preferences/preferences.handler';
 import { ContainerProvider } from '@/core/container';
 import { getFeatureAvailabilityMocks } from '@/__mocks__/feature-availability/featureAvailability.handler';
+import { BETA_MANAGER_URL } from './BetaManagerButton.constants';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -13,6 +14,7 @@ vi.mock('react-i18next', () => ({
       const translations: Record<string, string> = {
         beta_modal_old: 'Classic',
         beta_modal_new: 'New',
+        manager_beta_button: 'Découvrez notre nouveau manager',
       };
       return translations[key] || key;
     },
@@ -99,6 +101,25 @@ describe('NavReshuffleSwitchBack.component', () => {
 
     // can't test the API call because of page reload
     expect(legacyRadio).toBeTruthy();
+  });
+
+  it('should render the discover button with correct href', async () => {
+    configureTest({
+      mocks: [
+        ...getPreferencesMocks({ betaVersion: 'false' }),
+        ...getFeatureAvailabilityMocks({ pnr: true, betaManager: true, }),
+      ],
+    });
+
+    const { container } = render(wrapper(<NavReshuffleSwitchBack />));
+
+    await waitFor(() => {
+      const button = container.querySelector(`osds-button[href="${BETA_MANAGER_URL}"]`);
+      expect(button).toBeTruthy();
+      expect(button?.textContent).toContain(
+        'Découvrez notre nouveau manager',
+      );
+    });
   });
 
   it('should change preference to beta when new radio is clicked', async () => {
