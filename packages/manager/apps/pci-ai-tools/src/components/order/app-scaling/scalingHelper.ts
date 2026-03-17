@@ -368,14 +368,6 @@ export function useScalingStrategyForm<
       replicasMinValue ??
         form.getValues('replicasMin' as FieldPath<TFieldValues>),
     );
-    form.setValue(
-      'replicasMin' as FieldPath<TFieldValues>,
-      normalizedReplicasMinValue as TFieldValues[FieldPath<TFieldValues>],
-      {
-        shouldDirty: true,
-        shouldValidate: false,
-      },
-    );
 
     const currentReplicasMaxValue = getScalingNumberValue(
       form.getValues('replicasMax' as FieldPath<TFieldValues>),
