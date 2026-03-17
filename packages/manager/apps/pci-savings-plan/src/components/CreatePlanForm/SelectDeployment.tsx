@@ -5,16 +5,19 @@ import { useTranslation } from 'react-i18next';
 import React from 'react';
 import { DescriptionWrapper } from './CreatePlanForm';
 import SimpleTile, { Block } from '../SimpleTile/SimpleTile';
-import { DeploymentMode, getDeploymentOptions } from '@/utils/savingsPlan';
+import { DeploymentMode } from '@/utils/savingsPlan';
+import { TDeploymentOptions } from '@/types/CreatePlan.type';
 
 type SelectDeploymentProps = {
   setDeploymentMode: (deploymentMode: DeploymentMode) => void;
   deploymentMode: DeploymentMode;
+  deploymentModeOptions: TDeploymentOptions;
 };
 
 const SelectDeployment = ({
   setDeploymentMode,
   deploymentMode,
+  deploymentModeOptions,
 }: SelectDeploymentProps) => {
   const { t } = useTranslation(['create', 'listing']);
 
@@ -29,7 +32,7 @@ const SelectDeployment = ({
       </DescriptionWrapper>
 
       <div className="flex flex-row w-full overflow-x-auto mb-[32px] gap-6">
-        {getDeploymentOptions(t).map((option) => (
+        {deploymentModeOptions.map((option) => (
           <SimpleTile
             onClick={() => {
               setDeploymentMode(option.name);

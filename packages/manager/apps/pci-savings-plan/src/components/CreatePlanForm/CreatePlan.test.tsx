@@ -94,6 +94,7 @@ const defaultProps: CreatePlanFormProps = {
   onCreatePlan: mockOnCreatePlan,
   setDeploymentMode: vi.fn(),
   deploymentMode: DeploymentMode['1AZ'],
+  deploymentModeOptions: [],
   isCreatePlanPending: false,
 };
 
@@ -133,6 +134,55 @@ describe('CreatePlanForm', () => {
     );
     fireEvent.change(input, { target: { value: 'Test Plan' } });
     expect(input).toHaveValue('Test Plan');
+  });
+
+  describe('deployment mode options display', () => {
+    it('should not show any deployment option when list is empty', async () => {
+      await setupSpecTest();
+
+      expect(screen.queryByText('region 1AZ')).toBeNull();
+      expect(screen.queryByText('region 3AZ')).toBeNull();
+    });
+
+    it('should show only 1AZ when deploymentModeOptions contains only 1AZ', async () => {
+      await setupSpecTest({
+        ...defaultProps,
+        deploymentModeOptions: [
+          { name: DeploymentMode['1AZ'], description: 'deployment_one_az' },
+        ],
+      });
+
+      expect(screen.getByText('region 1AZ')).toBeDefined();
+      expect(screen.queryByText('region 3AZ')).toBeNull();
+    });
+
+    it('should show both 1AZ and 3AZ when deploymentModeOptions contains both', async () => {
+      await setupSpecTest({
+        ...defaultProps,
+        deploymentModeOptions: [
+          { name: DeploymentMode['1AZ'], description: 'deployment_one_az' },
+          { name: DeploymentMode['3AZ'], description: 'deployment_three_az' },
+        ],
+      });
+
+      expect(screen.getByText('region 1AZ')).toBeDefined();
+      expect(screen.getByText('region 3AZ')).toBeDefined();
+    });
+
+    it('should not show deployment section when Rancher resource is selected', async () => {
+      await setupSpecTest({
+        ...defaultProps,
+        deploymentModeOptions: [
+          { name: DeploymentMode['1AZ'], description: 'deployment_one_az' },
+          { name: DeploymentMode['3AZ'], description: 'deployment_three_az' },
+        ],
+      });
+
+      fireEvent.click(screen.getByText('Rancher'));
+
+      expect(screen.queryByText('region 1AZ')).toBeNull();
+      expect(screen.queryByText('region 3AZ')).toBeNull();
+    });
   });
 
   describe('When we want to submit form', () => {
