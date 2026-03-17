@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_reset_title": "Wyłącz agregację prywatną",
-  "dedicated_server_interfaces_ola_reset_text": "Czy na pewno chcesz wyłączyć agregację prywatną na tym serwerze?",
-  "dedicated_server_interfaces_ola_reset_error": "Wystąpił błąd podczas wyłączania agregacji prywatnej."
+  "dedicated_server_interfaces_ola_reset_title": "Odłącz zagregowaną sieć",
+  "dedicated_server_interfaces_ola_reset_text": "Czy na pewno chcesz odłączyć tę zagregowaną sieć? Po tej operacji interfejsy sieciowe będą działać niezależnie.",
+  "dedicated_server_interfaces_ola_reset_error": "Wystąpił błąd podczas odłączania zagregowanej sieci."
 }

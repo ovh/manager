@@ -1,5 +1,5 @@
 {
-  "dedicated_server_interfaces_ola_reset_title": "Unconfigure private aggregation",
-  "dedicated_server_interfaces_ola_reset_text": "Are you sure you want to unconfigure private aggregation on this server?",
-  "dedicated_server_interfaces_ola_reset_error": "An error has occurred unconfiguring private aggregation."
+  "dedicated_server_interfaces_ola_reset_title": "Detach aggregated network",
+  "dedicated_server_interfaces_ola_reset_text": "Are you sure you want to detach this aggregated network? The network interfaces will operate independently after this action.",
+  "dedicated_server_interfaces_ola_reset_error": "An error occurred while detaching the aggregated network."
 }

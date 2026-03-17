@@ -1,5 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Tráfico",
   "dedicated_server_interfaces_bandwidth_description": "El tráfico entrante (desde y hacia internet) no tiene limitación. Puede aumentar el ancho de banda público y privado contratando la opción correspondiente.",
-  "dedicated_server_interfaces_bandwidth_ola_warning": "Con una configuración de agregación privada completa, no se utilizará la opción de ancho de banda saliente público, ya que la interfaz dedicada a la red pública se utilizará para la red privada."
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Disponible",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Activo - Double LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "Los dos pares de interfaces de red se agregan por separado, lo que permite el tráfico privado y público.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Activo - Full private",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "Las dos interfaces de red están completamente agregadas y son privadas.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "Las cuatro interfaces de red están completamente agregadas y son privadas.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "No disponible"
 }
