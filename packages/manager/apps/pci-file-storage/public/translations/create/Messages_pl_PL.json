@@ -26,7 +26,8 @@
           "label": "Region 3-AZ",
           "description": "Wdrożenia zapewniające odporność infrastruktury i wysoką dostępność w 3 strefach."
         }
-      }
+      },
+      "leastPrice": "Od {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Wybierz lokalizację"
