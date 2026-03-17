@@ -232,6 +232,7 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   onConsentModalDisplay() {
+    debugger;
     debug('tracking consent modal display');
     if (this.shouldUsePianoAnalytics()) {
       window.pa.privacy.createMode('beforeConsent', false);
