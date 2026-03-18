@@ -294,7 +294,7 @@
   "domain_tab_hosts_drawer_modify_title": "Zmień hosta",
   "domain_tab_hosts_drawer_add_form_information": "Wypełnij następujące pola:",
   "domain_tab_hosts_drawer_add_form_hostName_label": "Nazwa hosta - <Required />",
-  "domain_tab_hosts_drawer_add_form_ip_label": "IP(y) docelowe - <Required />",
+  "domain_tab_hosts_drawer_add_form_ip_label": "IP docelowe - <Required />",
   "domain_tab_hosts_drawer_add_form_warning_message": "Uwaga: aby Twój rekord GLUE działał, po zatwierdzeniu zmień strefę DNS, dodając:",
   "domain_tab_hosts_drawer_add_form_warning_list_ipv4": "pole typu A dla adresu IPv4,",
   "domain_tab_hosts_drawer_add_form_warning_list_ipv6": "pole typu AAAA dla adresu IPv6.",

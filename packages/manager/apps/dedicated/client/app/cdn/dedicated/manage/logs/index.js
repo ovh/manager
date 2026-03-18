@@ -3,8 +3,12 @@ import uiRouter from '@uirouter/angularjs';
 import '@ovh-ux/ng-translate-async-loader';
 import 'angular-translate';
 import '@ovh-ux/ui-kit';
+import ovhManagerLogToCustomer from '@ovh-ux/manager-log-to-customer';
 
-import routing from './cdn-dedicated-manage-logs.routes';
+import routing from './logs.routing';
+import service from './logs.service';
+import controller from './logs.controller';
+import dataStreams from './data-streams';
 
 const moduleName = 'cdnDedicatedManageLogs';
 
@@ -14,7 +18,11 @@ angular
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
+    ovhManagerLogToCustomer,
+    dataStreams,
   ])
+  .controller('CdnDedicatedLogsController', controller)
+  .service('cdnDedicatedLogsService', service)
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);
 

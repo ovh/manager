@@ -5,7 +5,7 @@
   "legal_form_administration": "Öffentliche Verwaltung",
   "legal_form_corporation": "Unternehmen",
   "legal_form_individual": "Privatperson",
-  "legal_form_personalcorporation": "Einzelfirma",
+  "legal_form_personalcorporation": "Einpersonengesellschaft",
   "legal_form_tooltip_corporation_description": "Ein Account vom Typ „Unternehmen“ muss von allen <strong>juristischen Personen</strong> (mit Ausnahme von Behörden und Vereinen) und allen <strong>natürlichen Personen (Einzelunternehmer:innen)</strong> erstellt werden, die im Rahmen ihrer <strong>beruflichen Tätigkeit</strong> OVHcloud Produkte erwerben.",
   "legal_form_tooltip_individual_description": "Ein Account vom Typ „Privat“ darf nur von <strong>natürlichen Personen</strong> erstellt werden, die OVHcloud Produkte für ihren<strong> privaten Bedarf</strong> erwerben.",
   "legal_form_tooltip_administration_description": "Ein Account vom Typ „Behörde“ darf nur von <strong>staatlichen Behörden, Gebietskörperschaften oder öffentlichen Einrichtungen</strong> eingerichtet werden.",

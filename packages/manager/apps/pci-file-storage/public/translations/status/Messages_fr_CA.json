@@ -3,8 +3,8 @@
   "backup_creating": "Création de sauvegarde en cours",
   "creating": "Création en cours",
   "deleting": "Suppression en cours",
-  "draft": "Brouillon",
   "error": "Erreur",
   "extending": "Extension en cours",
-  "inactive": "Inactif"
+  "inactive": "Inactif",
+  "draft": "Brouillon"
 }

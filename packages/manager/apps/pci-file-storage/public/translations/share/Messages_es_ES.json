@@ -1,6 +1,6 @@
 {
   "fields": {
-    "name_id": "Nombre / ID",
+    "name_id": "Nombre/ID",
     "region": "Localización",
     "protocol": "Protocolo",
     "allocated_capacity": "Capacidad asignada",

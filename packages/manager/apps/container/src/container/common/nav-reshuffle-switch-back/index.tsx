@@ -5,8 +5,14 @@ import {
   OsdsRadioButton,
   OsdsRadio,
   OsdsRadioGroup,
+  OsdsButton,
 } from '@ovhcloud/ods-components/react';
-import { ODS_RADIO_BUTTON_SIZE, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
+import {
+  ODS_RADIO_BUTTON_SIZE,
+  ODS_TEXT_SIZE,
+  ODS_BUTTON_SIZE,
+  ODS_BUTTON_VARIANT,
+} from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useShell } from '@/context';
 import useContainer from '@/core/container';
@@ -31,8 +37,8 @@ function NavReshuffleSwitchBack(): JSX.Element {
   };
 
   return (
-    <>
-      <OsdsRadioGroup name="version" className="d-flex">
+    <div className="flex items-center">
+      <OsdsRadioGroup name="version" className="flex">
         <OsdsRadio
           name="version"
           value="classic"
@@ -76,7 +82,17 @@ function NavReshuffleSwitchBack(): JSX.Element {
           </OsdsRadioButton>
         </OsdsRadio>
       </OsdsRadioGroup>
-    </>
+
+      <OsdsButton
+        size={ODS_BUTTON_SIZE.sm}
+        variant={ODS_BUTTON_VARIANT.flat}
+        color={ODS_THEME_COLOR_INTENT.primary}
+        href="/beta/#/"
+        className="ml-3"
+      >
+        {t('manager_beta_button')}
+      </OsdsButton>
+    </div>
   );
 }
 

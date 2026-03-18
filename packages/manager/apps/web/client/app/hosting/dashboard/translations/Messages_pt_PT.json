@@ -1411,10 +1411,10 @@
   "hosting_tab_WEBSITE": "Meus sites",
   "hosting_configuration_tab_modules_create_step1_module_domain_placeholder": "Selecionar um domínio",
   "hosting_tab_USER_LOGS": "Logs",
-  "database_tabs_dumps_guide_message_part1": "Você deseja salvar ou restaurar um banco de dados?",
-  "database_tabs_dumps_guide_message_part2": "Encontre nossos guias detalhados para realizar essas ações diretamente do seu espaço de cliente:",
-  "database_tabs_dumps_guide_save": "Salvar e exportar um banco de dados",
-  "database_tabs_dumps_guide_restore": "Restaurar e importar um banco de dados",
-  "hosting_tab_STATISTICS_databases_none": "Nenhum erro detectado nas suas bases de dados. Tudo funciona normalmente.",
-  "hosting_tab_USER_STATISTICS": "estatísticas e logs"
+  "database_tabs_dumps_guide_message_part1": "Deseja efetuar um backup ou restaurar uma base de dados?",
+  "database_tabs_dumps_guide_message_part2": "Encontre os nossos guias detalhados para realizar estas ações diretamente a partir da sua Área de Cliente:",
+  "database_tabs_dumps_guide_save": "Guardar e exportar uma base de dados",
+  "database_tabs_dumps_guide_restore": "Restaurar e importar uma base de dados",
+  "hosting_tab_STATISTICS_databases_none": "Nenhum erro detetado nas suas bases de dados. Está tudo a funcionar normalmente.",
+  "hosting_tab_USER_STATISTICS": "Estatísticas e logs"
 }

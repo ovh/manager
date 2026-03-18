@@ -29,7 +29,7 @@
   "pci_instance_creation_table_header_price": "Cena",
   "pci_instance_creation_table_header_price_hourly_unit": "netto/godz.",
   "pci_instance_creation_table_header_price_monthly_unit": "netto/m-c",
-  "pci_instance_creation_flavor_unavailable": "Niedostępne w tym regionie",
+  "pci_instance_creation_flavor_unavailable": "Niedostępna w tym regionie",
   "pci_instance_creation_flavor_unavailable_quota": "Niedostępny limit",
   "pci_instance_creation_flavor_unavailable_help": "Ten model nie jest dostępny w wybranym regionie. <sb>Możesz go jednak wybrać, ale będziesz musiał wybrać inny region dla tego modelu.</sb>",
   "pci_instance_creation_flavor_unavailable_quota_help": "Twój limit nie pozwala na wybór tego modelu instancji. Proszę zwiększyć swój limit.",
@@ -146,8 +146,8 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotacja 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Spersonalizowany",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "Kopia zapasowa jest tworzona codziennie między 22:00 a 6:00 (UTC), a rotacja utrzymuje historię ostatnich {{ numEntries }} wpisów.",
-    "custom": "Wybierz samodzielnie harmonogram (format UNIX Cron), liczbę rotacji i maksymalne wykonania, które chcesz."
+    "predefined": "Kopia zapasowa wykonywana jest codziennie między 22.00 a 6.00 (UTC). Liczba ostatnich kopii zachowanych w ramach rotacji: {{numEntries}}.",
+    "custom": "Wybierz zarządzanie (format UNIX Cron) oraz maksymalną liczbę rotacji i wykonań zadań."
   },
   "pci_instance_creation_backup_setting_price_unit": "netto/m-c/GB",
   "pci_instance_creation_cart_total_label": "Łącznie",
@@ -164,18 +164,18 @@
   "pci_instance_creation_network_public_connectivity_help_floating_ip": "<h6>Floating IP</h6><p>Dodanie Floating IP do możliwości bramy umożliwia dostęp do instancji z zewnątrz. Floating IP jest trwała i może być zachowana tak długo, jak to konieczne, oraz ponownie przypisana do innej instancji.</p>",
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Basic IP umożliwia łączność przychodzącą i wychodzącą bez ograniczeń użytkowania. Ten adres IP nie jest trwały i jest ponownie przydzielany po usunięciu powiązanej instancji. Nie można go przypisać do innej instancji.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
-    "title": "Przydziel publiczną łączność",
-    "description": "<p>Przydzielenie publicznego adresu IP umożliwia dostęp do twojej instancji z zewnątrz sieci OVHcloud.</p>",
-    "toggle_label": "Przydziel publiczny adres IP",
-    "basic_ip_label": "Podstawowy publiczny adres IP (powiązany z instancją) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "Podstawowy publiczny adres IP to adres IP, który nie utrzymuje się dłużej niż czas życia zasobu. ",
-    "basic_ip_warning": "Wykryliśmy bramę w twojej prywatnej sieci, więc ta opcja nie jest dostępna. Proszę wybrać lub utworzyć prywatną sieć bez bramy.",
-    "floating_ip_label": "Przydziel Floating IP (do ponownego użycia)",
-    "floating_ip_description": "Rezerwacja adresu IP floating przydziela adres do twojego projektu, aż go jawnie zwolnisz. ",
-    "floating_ip_warning": "Wybierając tę opcję, przydzielimy ci bramę o rozmiarze {{ size }}.",
-    "floating_ip_create_new_label": "Utwórz nową - <sb>{{ price }}</sb>",
-    "floating_ip_reuse_existing_label": "Ponownie użyj istniejącego adresu IP floating",
-    "floating_ip_unavailable_LZ_tooltip": "Adresy IP floating nie są dostępne w lokalnych strefach."
+    "title": "Włącz dostęp publiczny",
+    "description": "<p>Przypisanie publicznego adresu IP umożliwia dostęp do Twojej instancji spoza sieci OVHcloud.</p>",
+    "toggle_label": "Przypisz publiczny adres IP",
+    "basic_ip_label": "Basic Public IP (przypisany do instancji) - <sb>{{price}}</sb>",
+    "basic_ip_description": "Podstawowy publiczny adres IP jest przypisany do zasobu tylko na czas jego działania. ",
+    "basic_ip_warning": "Wykryliśmy Gateway w Twojej prywatnej sieci, więc ta opcja nie jest dostępna. Wybierz lub utwórz prywatną sieć bez Gateway.",
+    "floating_ip_label": "Przypisz adres Floating IP (adres wielokrotnego użytku)",
+    "floating_ip_description": "Gdy zarezerwujesz adres Floating IP, pozostanie on przypisany do Twojego projektu, dopóki go nie zwolnisz. ",
+    "floating_ip_warning": "Jeśli wybierzesz tę opcję, przypiszemy do Twojej sieci gateway o rozmiarze {{size}}.",
+    "floating_ip_create_new_label": "Utwórz nowy adres - <sb>{{price}}</sb>",
+    "floating_ip_reuse_existing_label": "Użyj ponownie istniejący Floating IP",
+    "floating_ip_unavailable_LZ_tooltip": "Adresy Floating IP nie są dostępne w Local Zones."
   },
   "pci_instance_creation_network_gateway_unavailable_LZ_tooltip": "Gateway nie jest dostępny w Local Zones.",
   "pci_instance_creation_network_gateway_already_assigned_tooltip": "Do wybranej sieci prywatnej został już przypisany Gateway.",
@@ -196,8 +196,8 @@
   "pci_instance_onboarding_page_creation_pending": "Twoja instancja jest w trakcie tworzenia, dziękujemy za chwilę cierpliwości...",
   "pci_instance_creation_flex_flavor": {
     "title": "Instancje Flex",
-    "disk_capacity": "<span>Instancja flex to instancja z pojedynczym dyskiem (50 Go)</span>, oferująca szybszy proces dla zrzutów.",
-    "resizing_explanation": "Umożliwia skalowanie w górę lub w dół do modeli z ustaloną przestrzenią dyskową, podczas gdy klasyczne modele można skalować tylko w górę."
+    "disk_capacity": "<span>Instancja Flex to instancja z jednym dyskiem (50 GB)</span>, która przyspiesza tworzenie snapshotów.",
+    "resizing_explanation": "Umożliwia zmianę rozmiaru instancji zarówno na większy, jak i mniejszy przy zachowaniu stałej przestrzeni dyskowej. W modelach klasycznych można zmieniać rozmiar tylko na większy."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Przyłączona brama",
   "pci_instance_creation_availabilityZone_help_title": "Zrozumieć strefy dostępności",
@@ -206,7 +206,7 @@
   "pci_instance_creation_availabilityZone_help_manual_title": "Ręcznie wybierz AZ:",
   "pci_instance_creation_availabilityZone_help_manual": "Możesz wybierać spośród trzech dostępnych AZ w regionie. Pozwala to na rozłożenie instancji na kilka AZ i wprowadzenie własnych mechanizmów redundancji.",
   "pci_instance_creation_availabilityZone_help_link": "Dowiedz się więcej o multi-AZ i dobrych praktykach →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Wykryto podstawowy publiczny adres IP w twojej prywatnej sieci, proszę utworzyć lub wybrać inną prywatną sieć, aby utworzyć bramę.",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "W Private Network wykryto adres Basic Public IP. Aby utworzyć gateway, utwórz nową sieć Private Network lub wybierz inną.",
   "pci_instance_creation_region_unavailable": "Region niedostępny",
   "pci_instance_creation_pricing_banner_title": "Cennik Public Cloud",
   "pci_instance_creation_pricing_banner_body": "Ceny niektórych usług public cloud mogą ulec zmianie 1 kwietnia 2026 r. Więcej informacji znajdziesz na naszej stronie z cennikiem.",
