@@ -1,10 +1,10 @@
 {
   "active": "Dostępny",
-  "backup_creating": "Tworzenie kopii zapasowej w toku",
-  "creating": "Tworzenie w toku",
+  "backup_creating": "Trwa tworzenie kopii zapasowej",
+  "creating": "Trwa tworzenie",
   "deleting": "Trwa usuwanie",
-  "draft": "Wersja robocza",
+  "draft": "Szkic",
   "error": "Błąd",
-  "extending": "Rozszerzenie w toku",
+  "extending": "Trwa rozszerzanie",
   "inactive": "Nieaktywny"
 }

@@ -1,14 +1,14 @@
 {
-  "title": "Usunąć swój share",
-  "description": "Na pewno chcesz trwale usunąć share <strong>{{name}}</strong>. Wszystkie dane dotyczące share zostaną utracone.",
+  "title": "Usuń „share”",
+  "description": "Chcesz trwale usunąć „share” <strong>{{name}}</strong>. Wszystkie dane zapisane w „share” zostaną usunięte.",
   "input": {
-    "label": "Wpisz \"DELETE\" w polu poniżej, aby potwierdzić",
-    "error": "Proszę wypełnić to pole."
+    "label": "Aby potwierdzić, wprowadź \"DELETE\" w poniższym polu",
+    "error": "Wypełnij to pole."
   },
-  "submitButton": "Usuń share",
+  "submitButton": "Usuń „share”",
   "message": {
-    "success": "Share {{shareName}} jest w trakcie usuwania",
-    "error": "Wystąpił błąd podczas usuwania share: {{errorMessage}}"
+    "success": "Trwa usuwanie „share” {{shareName}}",
+    "error": "Wystąpił błąd podczas usuwania „share”: {{errorMessage}}"
   },
-  "cannotDelete": "Ten share nie może być usunięty."
+  "cannotDelete": "Ten „share” nie może zostać usunięty."
 }

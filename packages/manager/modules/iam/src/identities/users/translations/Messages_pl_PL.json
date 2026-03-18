@@ -62,6 +62,6 @@
   "user_users_main_group": "Grupa główna",
   "user_users_other_groups": "Grupy dodatkowe",
   "user_main_group_helper_text": "Grupa używana do wyświetlania na liście użytkowników",
-  "user_group_add_error_message": "Wystąpił błąd podczas dodawania użytkownika <strong>{{login}}</strong> do grupy <strong>{{group}}</strong> :",
-  "user_group_remove_error_message": "Wystąpił błąd podczas usuwania użytkownika <strong>{{login}}</strong> z grupy <strong>{{group}}</strong> :"
+  "user_group_add_error_message": "Wystąpił błąd podczas dodawania użytkownika <strong>{{login}}</strong> do grupy <strong>{{group}}</strong>:",
+  "user_group_remove_error_message": "Wystąpił błąd podczas usuwania użytkownika <strong>{{login}}</strong> z grupy <strong>{{group}}</strong>:"
 }

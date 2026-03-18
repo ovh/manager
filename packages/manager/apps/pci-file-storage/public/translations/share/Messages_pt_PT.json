@@ -3,18 +3,18 @@
     "name_id": "Nome / ID",
     "region": "Localização",
     "protocol": "Protocolo",
-    "allocated_capacity": "Capacidade alocada",
+    "allocated_capacity": "Capacidade atribuída",
     "status": "Estado",
     "id": "ID",
     "share_name": "Nome do share",
     "location": "Localização",
     "creation_date": "Data de criação",
     "mount_path": "Caminho de montagem",
-    "private_network": "Rede Privada"
+    "private_network": "Rede privada"
   },
   "actions": {
     "column": "Ações",
     "manage": "Gerir",
-    "delete": "Suprimir"
+    "delete": "Eliminar"
   }
 }
