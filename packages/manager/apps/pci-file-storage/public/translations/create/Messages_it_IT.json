@@ -2,43 +2,43 @@
   "name": {
     "title": "Nome dello share",
     "label": "Scegli un nome per il tuo share",
-    "info": "Deve contenere solo numeri, lettere, underscore, trattini o punti e non superare i 255 caratteri.",
+    "info": "Deve contenere esclusivamente numeri, lettere, underscore, trattini o punti e non deve superare 255 caratteri.",
     "error": {
-      "too_small": "Il nome dello share non può essere vuoto. Si prega di inserire un nome.",
+      "too_small": "Il nome dello share non può essere vuoto. Inserisci un nome",
       "too_big": "Formato del nome non valido",
       "invalid_format": "Formato del nome non valido"
     }
   },
   "localisation": {
-    "title": "Seleziona una posizione",
+    "title": "Seleziona una localizzazione",
     "deploymentMode": {
-      "title": "Filtra una modalità di distribuzione",
+      "title": "Filtra una modalità di deploy",
       "modes": {
         "region": {
           "label": "Region 1-AZ",
-          "description": "Distribuzione resiliente ed economica su 1 zona."
+          "description": "Deploy resiliente ed economico su 1 zona."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Distribuzione il più vicina possibile per una bassa latenza."
+          "description": "Deploy più vicino per una latenza ridotta."
         },
         "region-3-az": {
           "label": "Region 3-AZ",
-          "description": "Distribuzione ad alta resilienza e alta disponibilità su 3 zone."
+          "description": "Deploy a resilienza elevata e alta disponibilità su 3 zone."
         }
       }
     },
     "macroRegion": {
-      "title": "Scegli una posizione"
+      "title": "Scegli una localizzazione"
     },
     "continents": {
-      "label": "Seleziona un'area geografica",
+      "label": "Selezionare una zona geografica",
       "options": {
         "all": "Tutti",
         "asia_oceania": "Asia Pacifica",
         "europe": "Europa",
-        "north_africa": "Africa del Nord",
-        "north_america": "Nord America"
+        "north_africa": "Nord Africa",
+        "north_america": "Nord America "
       }
     },
     "microRegion": {
@@ -46,39 +46,39 @@
       "label": "Scegli un datacenter"
     },
     "availabilityZone": {
-      "title": "Scegli la tua zona di disponibilità",
-      "informations": "È stata selezionata una zona di disponibilità predefinita. Hai la possibilità di personalizzare questa scelta.",
+      "title": "Scegli la zona di disponibilità",
+      "informations": "È stata selezionata una zona di disponibilità predefinita. Puoi personalizzare questa scelta.",
       "choice": {
         "company": "Scegli per me",
-        "user": "Scelgo la mia area di disponibilità"
+        "user": "Scelgo la mia zona di disponibilità"
       }
     }
   },
   "share": {
-    "title": "Modalità di prestazione dello share",
+    "title": "Modalità di performance dello share",
     "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
   },
   "shareSize": {
     "title": "Dimensione dello share",
-    "description": "Il 5 % della capacità di archiviazione è dedicato all'archiviazione degli snapshot",
-    "label": "Allocazione delle prestazioni lineari ($t(units.giga_octet))",
-    "provisionedPerformance": "<strong>Prestazioni fornite :</strong> Fino a {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "description": "Il 5% della capacità è dedicata allo storage degli Snapshot",
+    "label": "Assegnazione lineare delle prestazioni ($t(units.giga_byte))",
+    "provisionedPerformance": "<strong>Prestazioni fornite:</strong> Fino a {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
-      "min_value": "La dimensione dello share è inferiore al minimo consentito per questa offerta.",
-      "max_value": "La dimensione dello share supera il massimo consentito per questa offerta.",
-      "invalid_type": "Questo campo deve essere compilato"
+      "min_value": "La dimensione dello share è inferiore al minimo autorizzato per questa soluzione.",
+      "max_value": "La dimensione dello share supera il limite massimo autorizzato per questa soluzione.",
+      "invalid_type": "Questo campo non può essere vuoto"
     }
   },
   "network": {
     "title": "Rete privata",
-    "description": "Seleziona la rete privata a cui desideri collegare il tuo share",
+    "description": "Seleziona la rete privata a cuie vuoi collegare il tuo share",
     "label": "Seleziona una rete privata esistente",
-    "reloadNetworks": "Ricarica reti private",
-    "empty": "Spiacente, ma non hai una rete privata per questa regione",
-    "createPrivateNetwork": "Crea una rete privata",
+    "reloadNetworks": "Ricaricare le reti private",
+    "empty": "Spiacenti, non hai una rete privata per questa Region",
+    "createPrivateNetwork": "Creare una rete privata",
     "subnet": {
-      "label": "Seleziona una sottorete privata esistente",
-      "empty": "Non hai una sottorete privata per questa rete"
+      "label": "Selezionare una sottorete privata esistente",
+      "empty": "Non hai sottoreti private per questa rete"
     }
   },
   "estimation": {
@@ -87,10 +87,10 @@
   },
   "submit": {
     "error": "Si è verificato un errore durante l'aggiunta dello share: {{error}}",
-    "success": "Lo share {{name}} è in fase di creazione. Potrebbe richiedere alcuni minuti."
+    "success": "Creazione dello share {{name}} in corso... L’operazione potrebbe richiedere qualche minuto."
   },
-  "title": "Crea un share",
-  "description": "Crea un share disponibile nel tuo progetto Public Cloud. Hai bisogno di ulteriori informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>",
+  "title": "Creare uno share",
+  "description": "Crea uno share disponibile nel tuo progetto Public Cloud. Hai bisogno di più informazioni su Public Cloud File Storage? &lt;0>Consulta la nostra documentazione&lt;/0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

@@ -1,18 +1,18 @@
 {
   "name": {
-    "title": "Name des Shares",
-    "label": "Wählen Sie einen Namen für Ihren Share",
-    "info": "Darf nur Zahlen, Buchstaben, Unterstriche, Bindestriche oder Punkte enthalten und darf 255 Zeichen nicht überschreiten.",
+    "title": "Share-Name",
+    "label": "Wählen Sie einen Namen für Ihren Share aus",
+    "info": "Darf ausschließlich Ziffern, Buchstaben, Unterstriche, Gedankenstriche und Punkte enthalten und 255 Zeichen nicht überschreiten.",
     "error": {
-      "too_small": "Der Name des Shares darf nicht leer sein. Bitte geben Sie einen Namen ein.",
+      "too_small": "Der Share-Name darf nicht leer sein. Bitte geben Sie einen Namen ein.",
       "too_big": "Ungültiges Namensformat",
       "invalid_format": "Ungültiges Namensformat"
     }
   },
   "localisation": {
-    "title": "Wählen Sie einen Standort",
+    "title": "Wählen Sie einen Standort aus.",
     "deploymentMode": {
-      "title": "Filtern Sie einen Bereitstellungsmodus",
+      "title": "Bereitstellungsmodus filtern",
       "modes": {
         "region": {
           "label": "1-AZ Region",
@@ -20,7 +20,7 @@
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Bereitstellung so nah wie möglich für geringe Latenz."
+          "description": "Möglichst nahe Bereitstellung für eine niedrige Latenz."
         },
         "region-3-az": {
           "label": "3-AZ Region",
@@ -29,55 +29,55 @@
       }
     },
     "macroRegion": {
-      "title": "Wählen Sie einen Standort"
+      "title": "Standort auswählen"
     },
     "continents": {
-      "label": "Wählen Sie eine geografische Zone",
+      "label": "Geografische Zone auswählen",
       "options": {
         "all": "Alle",
         "asia_oceania": "Asiatisch-pazifischer Raum",
-        "europe": "Europe",
+        "europe": "Europa",
         "north_africa": "Nordafrika",
         "north_america": "Nordamerika"
       }
     },
     "microRegion": {
       "title": "Wählen Sie ein Rechenzentrum",
-      "label": "Wählen Sie ein Rechenzentrum"
+      "label": "Wählen Sie ein Rechenzentrum aus"
     },
     "availabilityZone": {
-      "title": "Wählen Sie Ihre Verfügbarkeitszone",
-      "informations": "Eine Standardverfügbarkeitszone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
+      "title": "Wählen Sie Ihre Availability Zone.",
+      "informations": "Eine Standard-Availability-Zone wurde ausgewählt. Sie haben die Möglichkeit, diese Auswahl anzupassen.",
       "choice": {
         "company": "Für mich auswählen",
-        "user": "Ich wähle meine Verfügbarkeitszone"
+        "user": "Ich wähle meine Availability Zone."
       }
     }
   },
   "share": {
-    "title": "Leistungsmodus des Shares",
-    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS und {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+    "title": "Share-Leistungsmodus",
+    "description": "Min. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS und {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)"
   },
   "shareSize": {
-    "title": "Größe des Shares",
-    "description": "5 % des Speicherplatzes sind für die Speicherung von Snapshots reserviert",
-    "label": "Lineare Leistungszuweisung ($t(units.giga_octet))",
-    "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "title": "Share-Größe",
+    "description": "5 % der Speicherkapazität ist für die Speicherung von Snapshots vorgesehen",
+    "label": "Lineare Leistungszuweisung ($t(units.giga_byte))",
+    "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
     "error": {
-      "min_value": "Die Größe des Shares liegt unter dem für dieses Angebot zulässigen Minimum.",
-      "max_value": "Die Größe des Shares überschreitet das für dieses Angebot zulässige Maximum.",
-      "invalid_type": "Dieses Feld muss ausgefüllt werden"
+      "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
+      "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
+      "invalid_type": "Dieses Feld ist ein Pflichtfeld"
     }
   },
   "network": {
     "title": "Privates Netzwerk",
-    "description": "Wählen Sie das private Netzwerk aus, an das Sie Ihren share verknüpfen möchten",
-    "label": "Wählen Sie ein vorhandenes privates Netzwerk aus",
+    "description": "Wählen Sie das private Netzwerk aus, mit dem Sie Ihren Share verbinden möchten.",
+    "label": "Vorhandenes privates Netzwerk auswählen",
     "reloadNetworks": "Private Netzwerke neu laden",
-    "empty": "Entschuldigung, aber Sie haben kein privates Netzwerk für diese Region",
+    "empty": "Sie haben kein privates Netzwerk für diese Region",
     "createPrivateNetwork": "Privates Netzwerk erstellen",
     "subnet": {
-      "label": "Wählen Sie ein vorhandenes privates Subnetz aus",
+      "label": "Vorhandenes privates Subnetz auswählen",
       "empty": "Sie haben kein privates Subnetz für dieses Netzwerk"
     }
   },
@@ -86,11 +86,11 @@
     "amount": "Geschätzter Betrag: <b>{{amount}}</b>"
   },
   "submit": {
-    "error": "Beim Hinzufügen des Shares ist ein Fehler aufgetreten: {{error}}",
-    "success": "Das Share {{name}} wird erstellt. Dies kann einige Minuten dauern."
+    "error": "Beim Hinzufügen des Share ist ein Fehler aufgetreten: {{error}}",
+    "success": "Share {{name}} wird erstellt. Dies kann einige Minuten dauern."
   },
-  "title": "Erstellen Sie einen Share",
-  "description": "Erstellen Sie einen Share, der in Ihrem Public Cloud-Projekt verfügbar ist. Benötigen Sie weitere Informationen zu Public Cloud File Storage? <0>Sehen Sie sich unsere Dokumentation an</0>",
+  "title": "Share erstellen",
+  "description": "Erstellen Sie einen in Ihrem Public-Cloud-Projekt verfügbaren Share. Sie brauchen mehr Informationen zu Public Cloud File Storage? &lt;0>Lesen Sie unsere Dokumentation&lt;/0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

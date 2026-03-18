@@ -1,10 +1,10 @@
 {
   "active": "Available",
-  "backup_creating": "Backup creation in progress",
-  "creating": "Creation in progress",
-  "deleting": "Deleting",
+  "backup_creating": "Creating backup",
+  "creating": "Creating...",
+  "deleting": "Deleting...",
   "draft": "Draft",
   "error": "Error",
-  "extending": "Extension in progress",
-  "inactive": "Inactive"
+  "extending": "Expanding",
+  "inactive": "Disabled"
 }

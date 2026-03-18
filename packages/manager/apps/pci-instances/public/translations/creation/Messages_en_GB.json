@@ -76,8 +76,8 @@
   "pci_instance_creation_choose_availabilityZone_informations": "A default Availability Zone has been selected. You can customise this choice.",
   "pci_instance_creation_availabilityZone_choose_for_me": "Choose for me",
   "pci_instance_creation_availabilityZone_user_choice": "I choose my availability zone",
-  "pci_instance_creation_availabilityZone_help_description_p1": "A 3-AZ region consists of three physically distinct but interconnected availability zones.",
-  "pci_instance_creation_availabilityZone_help_description_p2": "Each AZ corresponds to an independent data centre, enhancing the resilience and high availability of your deployments.",
+  "pci_instance_creation_availabilityZone_help_description_p1": "A 3-AZ region is made up of three physically separate but interconnected availability zones.",
+  "pci_instance_creation_availabilityZone_help_description_p2": "Each AZ corresponds to a standalone datacentre, which strengthens the resilience and high availability of your deployments.",
   "pci_instance_creation_cart_distribution_image_title": "Image",
   "pci_instance_creation_select_sshKey_title": "Select an SSH key",
   "pci_instance_creation_select_sshKey_description": " An SSH key is required to connect to your service.",
@@ -146,8 +146,8 @@
   "pci_instance_creation_backup_setting_rotation_14_label": "Rotation 14",
   "pci_instance_creation_backup_setting_rotation_custom_label": "Custom",
   "pci_instance_creation_backup_setting_rotation_description": {
-    "predefined": "A backup is performed every day between 10:00 PM and 6:00 AM (UTC) and the rotation maintains a history of the {{ numEntries }} most recent entries.",
-    "custom": "Choose your own scheduling (UNIX Cron format), the number of rotations, and the maximum executions you wish."
+    "predefined": "A backup is taken every day between 22:00 and 06:00 (UTC), and the rotation maintains a log of the {{ numEntries }} latest entries.",
+    "custom": "Choose the scheduling yourself (in UNIX Cron format), the number of rotations, and the maximum executions you want."
   },
   "pci_instance_creation_backup_setting_price_unit": "ex. VAT/month/GB",
   "pci_instance_creation_cart_total_label": "Total",
@@ -165,15 +165,15 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>A Basic IP allows inbound and outbound connectivity with no usage restrictions. This IP is not persistent and is reallocated after the associated instance is deleted. It cannot be allocated to another instance.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Assign public connectivity",
-    "description": "<p>Assigning a public IP address allows access to your instance from outside the OVHcloud network.</p>",
+    "description": "<p>By assigning a public IP address, you can access your instance from outside the OVHcloud network.<br/><span>The Floating IP will be created at the end of the configuration.</span></p>",
     "toggle_label": "Assign a public IP",
-    "basic_ip_label": "Basic Public IP (Linked to the instance) - <sb>{{ price }}</sb>",
-    "basic_ip_description": "A basic public IP is an address that does not persist beyond the lifetime of the resource. ",
-    "basic_ip_warning": "We have detected a gateway on your private network, so this option is not available. Please choose or create a private network without a gateway.",
-    "floating_ip_label": "Assign a Floating IP (Reusable)",
+    "basic_ip_label": "Basic Public IP (linked to the instance) - <sb>{{ price }}</sb>",
+    "basic_ip_description": "A basic public IP is an IP address that only lasts as long as the lifetime of the resource. ",
+    "basic_ip_warning": "Enabling a basic public IP is not compatible with a gateway.",
+    "floating_ip_label": "Create a Floating IP (Reusable) - <sb>{{ price }}</sb>",
     "floating_ip_description": "Reserving a floating IP address assigns the address to your project until you explicitly release it. ",
     "floating_ip_warning": "By selecting this option, we will assign you a {{ size }} sized gateway.",
-    "floating_ip_create_new_label": "Create new - {{ price }}",
+    "floating_ip_create_new_label": "Create new - <sb>{{ price }}</sb>",
     "floating_ip_reuse_existing_label": "Reuse an existing floating IP",
     "floating_ip_unavailable_LZ_tooltip": "Floating IPs are not available in localZones."
   },
@@ -196,20 +196,20 @@
   "pci_instance_onboarding_page_creation_pending": "Your instance is being created, please wait a moment...",
   "pci_instance_creation_flex_flavor": {
     "title": "Flex Instances",
-    "disk_capacity": "<span>A flex instance is a single disk instance (50 GB)</span> offering a faster process for snapshots.",
-    "resizing_explanation": "It allows resizing to higher or lower models with fixed storage space, while classic models can only be resized to higher models."
+    "disk_capacity": "<span>A flex instance is a single-disk instance (50 GB)</span> offering faster snapshot processing.",
+    "resizing_explanation": "It lets you resize to higher or lower models without changing your storage capacity, unlike traditional models that can only be resized to higher models."
   },
   "pci_instance_creation_network_gateway_attached_badge": "Attached gateway",
   "pci_instance_creation_table_header_vram_unit": "(GB)",
   "pci_instance_creation_availabilityZone_help_title": "Understanding availability zones",
-  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Choosing your deployment mode",
-  "pci_instance_creation_availabilityZone_help_automatic": "Let OVHcloud automatically choose the AZ: This option simplifies deployment. The AZ is assigned automatically and you will find the AZ information at the end of your instance deployment. → Ideal for a first deployment or for non-redundant use.",
+  "pci_instance_creation_availabilityZone_help_deployment_mode_title": "Choose your deployment mode",
+  "pci_instance_creation_availabilityZone_help_automatic": "You can let OVHcloud choose the AZ automatically; an option that simplifies deployment. The AZ is assigned automatically, with the details available once your instance is deployed. → Ideal for a first-time deployment or for non-redundant use.",
   "pci_instance_creation_availabilityZone_help_manual_title": "Manually select an AZ:",
-  "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This allows you to distribute your instances across multiple AZs and thus implement your own redundancy mechanisms.",
-  "pci_instance_creation_availabilityZone_help_link": "Learn more about multi-AZ and best practices →",
-  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "A Basic Public IP has been detected on your Private Network, please create or select another Private Network to create a gateway.",
+  "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This way, you can distribute your instances across several AZs, and set up your own redundancy mechanisms.",
+  "pci_instance_creation_availabilityZone_help_link": "Find out more about multi-AZ setups and best practices →",
+  "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "It appears you have a Basic Public IP on your Private Network. Please create or select another Private Network to create a gateway",
   "pci_instance_creation_region_unavailable": "Region unavailable",
   "pci_instance_creation_pricing_banner_title": "Public Cloud pricing",
-  "pci_instance_creation_pricing_banner_body": "The prices of certain public cloud services are likely to change on April 1, 2026. For more details, please visit our pricing page.",
+  "pci_instance_creation_pricing_banner_body": "The prices of some public cloud services may be changing on 1 April 2026. For more details, please visit our pricing page.",
   "pci_instance_creation_pricing_banner_link": "View prices"
 }

@@ -1,6 +1,6 @@
 {
   "fields": {
-    "name_id": "Name / ID",
+    "name_id": "Name/ID",
     "region": "Location",
     "protocol": "Protocol",
     "allocated_capacity": "Allocated capacity",
@@ -8,8 +8,8 @@
     "id": "ID",
     "share_name": "Share name",
     "location": "Location",
-    "creation_date": "Creation date",
-    "mount_path": "Mount path",
+    "creation_date": "Created on",
+    "mount_path": "Mount Path",
     "private_network": "Private network"
   },
   "actions": {

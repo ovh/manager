@@ -1,30 +1,30 @@
 {
   "name": {
     "title": "Share name",
-    "label": "Choose a name for your share file",
-    "info": "Must only contain numbers, letters, underscores, dashes or dots and must not exceed 255 characters.",
+    "label": "Choose a name for your share",
+    "info": "Must only contain numbers, letters, underscores, dashes or full stops and must not exceed 255 characters.",
     "error": {
-      "too_small": "The share name cannot be empty. Please enter a name.",
+      "too_small": "The ‘share name’ field cannot be empty. Please enter a name.",
       "too_big": "Invalid name format",
       "invalid_format": "Invalid name format"
     }
   },
   "localisation": {
-    "title": "Select a location",
+    "title": "Select a region",
     "deploymentMode": {
       "title": "Filter a deployment mode",
       "modes": {
         "region": {
           "label": "1-AZ Region",
-          "description": "Resilient and cost-effective deployment in 1 zone."
+          "description": "Resilient and low-cost deployment in 1 zone."
         },
         "localzone": {
           "label": "Local Zone",
-          "description": "Deployment as close as possible for low latency."
+          "description": "Deploy as close as possible for low latency."
         },
         "region-3-az": {
           "label": "3-AZ Region",
-          "description": "High resilience and high availability deployment across 3 zones."
+          "description": "High-resilience, high-availability deployment in 3 zones."
         }
       }
     },
@@ -32,7 +32,7 @@
       "title": "Choose a location"
     },
     "continents": {
-      "label": "Select a geographical area",
+      "label": "Select a geographic area",
       "options": {
         "all": "All",
         "asia_oceania": "Asia-Pacific",
@@ -46,11 +46,11 @@
       "label": "Choose a datacentre"
     },
     "availabilityZone": {
-      "title": "Choose your availability zone",
-      "informations": "A default availability zone has been selected. You have the option to customize this choice.",
+      "title": "Choose your Availability Zone",
+      "informations": "A default Availability Zone has been selected. You can customise this choice.",
       "choice": {
         "company": "Choose for me",
-        "user": "I choose my availability zone"
+        "user": "Choose your Availability Zone"
       }
     }
   },
@@ -60,25 +60,25 @@
   },
   "shareSize": {
     "title": "Share size",
-    "description": "5% of the storage capacity is dedicated to snapshot storage",
-    "label": "Linear performance allocation ($t(units.giga_octet))",
-    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "description": "5% of the storage capacity is allocated to snapshots",
+    "label": "Linear performance allocation ($t(units.gigabyte))",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/sec",
     "error": {
-      "min_value": "The share size is below the minimum allowed for this offer.",
-      "max_value": "The share size exceeds the maximum allowed for this offer.",
-      "invalid_type": "This field must be filled in"
+      "min_value": "The share size is below the minimum allowed for this option.",
+      "max_value": "The share size is above the maximum allowed for this option.",
+      "invalid_type": "This field cannot be empty"
     }
   },
   "network": {
     "title": "Private network",
-    "description": "Select the private network you want to link your share to",
+    "description": "Select the private network you wish to connect your share to.",
     "label": "Select an existing private network",
     "reloadNetworks": "Reload private networks",
-    "empty": "Sorry, but you do not have a private network for this region",
+    "empty": "You don’t have a private network for this region",
     "createPrivateNetwork": "Create a private network",
     "subnet": {
       "label": "Select an existing private subnet",
-      "empty": "You do not have a private subnet for this network"
+      "empty": "You don’t have a private subnet for this network"
     }
   },
   "estimation": {
@@ -86,11 +86,11 @@
     "amount": "Estimated amount: <b>{{amount}}</b>"
   },
   "submit": {
-    "error": "An error has occurred adding the share: {{error}}",
-    "success": "The share {{name}} is being created. This may take a few minutes."
+    "error": "An error occurred while adding the share: {{error}}",
+    "success": "Creating {{name}} share. This may take a few minutes."
   },
   "title": "Create a share",
-  "description": "Create a share available in your Public Cloud project. Need more information about Public Cloud File Storage? <0>Check our documentation</0>",
+  "description": "Create a share that can be accessed within your Public Cloud project. Need more information about Public Cloud File Storage? &lt;0>See our documentation&lt;/0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"
