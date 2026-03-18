@@ -1,0 +1,56 @@
+{
+  "title": "Painéis de controlo geridos",
+  "description": "Os painéis de controlo geridos permitem-lhe visualizar e analisar facilmente os seus dados de Observabilidade, assim como configurar alertas com a plataforma Grafana®.",
+  "description_bis": "Pode pré-configurar os tenants do serviço Observabilidade que pretende encontrar como fontes de dados, além de definir as permissões de acesso à instância através das políticas de acesso do IAM OVHcloud.",
+  "listing": {
+    "endpoint_cell": "URL do servidor Prometheus",
+    "configuration_cell": "Configuração",
+    "version_cell": "Versão",
+    "isAccessLimited_cell": "Acesso limitado",
+    "lastModified_cell": "Última alteração",
+    "create_grafana_button": "Adicionar uma instância",
+    "open_instance_action": "Abrir a instância Grafana",
+    "copy_urn_action": "Copiar o URN"
+  },
+  "onboarding": {
+    "title": "Painéis de controlo geridos com a plataforma Grafana®",
+    "description": "Os painéis de controlo geridos permitem-lhe visualizar e analisar facilmente os seus dados de Observabilidade, assim como configurar alertas com a plataforma Grafana®. Pode pré-configurar os tenants do serviço Observabilidade que pretende encontrar como fontes de dados, além de definir as permissões de acesso à instância através das políticas de acesso do IAM OVHcloud.",
+    "orderButton": "Adicionar uma instância"
+  },
+  "creation": {
+    "title": "Criar um painel de controlo gerido com a plataforma Grafana®",
+    "information": "Introduzir as informações do painel de controlo gerido",
+    "namePlaceholder": "Nome do painel de controlo",
+    "descriptionPlaceholder": "Descrição do painel de controlo",
+    "success": "O painel de controlo gerido está a ser criado"
+  },
+  "edition": {
+    "title": "Modificar um painel de controlo gerido com a plataforma Grafana®",
+    "success": "A instância foi modificada com sucesso"
+  },
+  "delete": {
+    "delete_managed_dashboard_title": "Eliminar a instância \"{{managedDashboard}}\"",
+    "delete_managed_dashboard_description": "Quer mesmo eliminar a instância \"{{managedDashboard}}\"?",
+    "success": "A instância está a ser eliminada"
+  },
+  "configuration": {
+    "manual": "Manual",
+    "automatic": "Automático"
+  },
+  "version": {
+    "end_of_support": "Fim do suporte"
+  },
+  "grafana": {
+    "title": "Configure os parâmetros",
+    "release": {
+      "label": "Versão do Grafana",
+      "placeholder": "Selecione uma versão"
+    },
+    "allowedNetworks": {
+      "label": "Rede de confiança",
+      "placeholder": "Introduza os seus endereços IP aqui",
+      "helper": "A lista de endereços IP clientes com acesso à ferramenta de recolha (IPv4). Formato: 1.2.3.4, 42.42.42.0/24",
+      "error": "Formato de endereço IP inválido. Utilize o formato IPv4: 1.2.3.4 ou 42.42.42.0/24"
+    }
+  }
+}

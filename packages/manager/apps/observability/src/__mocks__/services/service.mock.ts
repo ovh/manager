@@ -1,3 +1,4 @@
+import mockLogger from '@/__mocks__/mock.logger';
 import { ObservabilityService } from '@/types/observability.type';
 
 const servicesDataset: ObservabilityService[] = [
@@ -202,6 +203,6 @@ const servicesDataset: ObservabilityService[] = [
 export const getObservabilityServices = async (
   signal: AbortSignal,
 ): Promise<ObservabilityService[]> => {
-  console.info(`[MOCK-ADAPTER][getObservabilityServices] > `, signal);
+  mockLogger.info(`[getObservabilityServices] > `, signal);
   return Promise.resolve(servicesDataset);
 };
