@@ -174,12 +174,10 @@ export const IpActionsCell = ({
         : 'add_description',
       onClick: () =>
         navigate(
-          `${urls.upsertDescription
-            .replace(urlDynamicParts.parentId, parentId)
-            .replace(
-              urlDynamicParts.optionalId,
-              isGroup ? '' : id,
-            )}?${search.toString()}`,
+          `${urls.upsertDescription.replace(
+            urlDynamicParts.id,
+            isGroup ? parentId : id,
+          )}?${search.toString()}`,
         ),
     },
     {
