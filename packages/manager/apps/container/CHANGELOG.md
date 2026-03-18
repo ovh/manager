@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.189.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.188.0...@ovh-ux/manager-container-app@0.189.0) (2026-03-18)
+
+
+### Features
+
+* **container:** add manager beta button with ff ([7029688](https://github.com/ovh/manager/commit/702968870e6a2c684796749af750b89897209ab9)), closes [#MANAGER-21229](https://github.com/ovh/manager/issues/MANAGER-21229)
+
+
+
+
+
 # [0.188.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.187.3...@ovh-ux/manager-container-app@0.188.0) (2026-03-18)
 
 
