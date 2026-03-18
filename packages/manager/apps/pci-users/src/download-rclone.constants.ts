@@ -22,7 +22,7 @@ export const S3_REGION_CAPACITY = [
 export const DOWNLOAD_FILETYPE = {
   SWIFT: 'Swift',
   S3: 'S3 Compatible',
-};
+} as const;
 export const RCLONE_SERVICE_TYPE: Record<
   keyof typeof DOWNLOAD_FILETYPE,
   string
