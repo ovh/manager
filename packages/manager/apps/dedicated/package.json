@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-dedicated",
-  "version": "20.77.0",
+  "version": "20.77.1",
   "private": true,
   "description": "OVHcloud Dedicated control panel.",
   "repository": {
@@ -37,7 +37,7 @@
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-dbaas-logs": "^1.37.5",
     "@ovh-ux/manager-error-page": "^2.4.7",
-    "@ovh-ux/manager-exchange": "^4.18.3",
+    "@ovh-ux/manager-exchange": "^4.18.4",
     "@ovh-ux/manager-filters": "^1.2.2",
     "@ovh-ux/manager-iplb": "^1.31.0",
     "@ovh-ux/manager-log-to-customer": "^2.8.2",
@@ -79,7 +79,7 @@
     "@ovh-ux/ng-ovh-toaster": "^2.1.7",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.7",
     "@ovh-ux/ng-ovh-utils": "^14.5.5",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.3",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.4",
     "@ovh-ux/ng-pagination-front": "^10.3.7",
     "@ovh-ux/ng-q-allsettled": "^2.1.7",
     "@ovh-ux/ng-shell-tracking": "^0.7.40",

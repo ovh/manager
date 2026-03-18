@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.5...@ovh-ux/manager-zimbra-app@0.43.6) (2026-03-18)
+
+
+### Bug Fixes
+
+* **zimbra:** create service datagrid ([#21870](https://github.com/ovh/manager/issues/21870)) ([347e043](https://github.com/ovh/manager/commit/347e04392499fbaa9be9849029a17b74273a47b3)), closes [#PRDCOL-333](https://github.com/ovh/manager/issues/PRDCOL-333) [#PRDCOL-334](https://github.com/ovh/manager/issues/PRDCOL-334) [#PRDCOL-338](https://github.com/ovh/manager/issues/PRDCOL-338) [#PRDCOL-336](https://github.com/ovh/manager/issues/PRDCOL-336) [#PRDCOL-337](https://github.com/ovh/manager/issues/PRDCOL-337) [#PRDCOL-339](https://github.com/ovh/manager/issues/PRDCOL-339) [#PRDCOL-342](https://github.com/ovh/manager/issues/PRDCOL-342)
+
+
+
+
+
 ## [0.43.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.4...@ovh-ux/manager-zimbra-app@0.43.5) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-zimbra-app

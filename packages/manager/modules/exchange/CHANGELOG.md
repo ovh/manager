@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.18.3...@ovh-ux/manager-exchange@4.18.4) (2026-03-18)
+
+
+### Bug Fixes
+
+* **exchange:** fix task status and task name in tasks page ([96d5f50](https://github.com/ovh/manager/commit/96d5f50e0f110f98376d5ffbd67018fee1522a0c)), closes [#PRDCOL-303](https://github.com/ovh/manager/issues/PRDCOL-303)
+* **i18n:** add missing translations [CDS 4670] ([d5b6f56](https://github.com/ovh/manager/commit/d5b6f563d5d90bed2a737e80b6ebe33a1302798a))
+* **i18n:** add missing translations [CDS 4703] ([2d8ffc9](https://github.com/ovh/manager/commit/2d8ffc96b5cbcd8c10555d543075577492de51df))
+* **web.exchange:** onboarding configuration page for private ([52e69dd](https://github.com/ovh/manager/commit/52e69dd536f0d15466a5b395005e058f904c7c18)), closes [#PRDCOL-259](https://github.com/ovh/manager/issues/PRDCOL-259) [#PRDCOL-271](https://github.com/ovh/manager/issues/PRDCOL-271) [#PRDCOL-273](https://github.com/ovh/manager/issues/PRDCOL-273) [#PRDCOL-405](https://github.com/ovh/manager/issues/PRDCOL-405)
+
+
+
+
+
 ## [4.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-exchange@4.18.2...@ovh-ux/manager-exchange@4.18.3) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-exchange
