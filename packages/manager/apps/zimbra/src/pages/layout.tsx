@@ -24,9 +24,10 @@ export const Layout = () => {
     shell.ux.hidePreloader();
   }, []);
 
+  const isOnboardingRoute = location.pathname.startsWith('/onboarding');
+
   const isOnboardingNeeded =
-    platform?.currentState?.numberOfOrganizations === 0 &&
-    !location.pathname.startsWith('/onboarding');
+    platform?.currentState?.numberOfOrganizations === 0 && !isOnboardingRoute;
 
   if (isError) {
     return <Error error={error as ErrorProps['error']} />;
@@ -34,7 +35,7 @@ export const Layout = () => {
 
   if (!isLoading) {
     // 1. No platformId → go to onboarding
-    if (!platformId) {
+    if (!platformId && !isOnboardingRoute) {
       return <Navigate to="onboarding" replace />;
     }
 
