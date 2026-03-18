@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-exchange-app",
-  "version": "0.13.49",
+  "version": "0.13.50",
   "private": true,
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "@ovh-ux/manager-advices": "^1.8.7",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core": "^13.4.4",
-    "@ovh-ux/manager-exchange": "^4.18.3",
+    "@ovh-ux/manager-exchange": "^4.18.4",
     "@ovh-ux/manager-log-to-customer": "^2.8.2",
     "@ovh-ux/manager-ng-apiv2-helper": "^0.2.1",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.1",
@@ -37,7 +37,7 @@
     "@ovh-ux/ng-ovh-swimming-poll": "^5.1.7",
     "@ovh-ux/ng-ovh-user-pref": "^2.1.7",
     "@ovh-ux/ng-ovh-utils": "^14.5.5",
-    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.3",
+    "@ovh-ux/ng-ovh-web-universe-components": "^9.21.4",
     "@ovh-ux/ng-translate-async-loader": "^2.2.7",
     "@ovh-ux/ng-ui-router-breadcrumb": "^1.4.3",
     "@ovh-ux/request-tagger": "^0.6.0",

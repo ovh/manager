@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.21.4](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.3...@ovh-ux/ng-ovh-web-universe-components@9.21.4) (2026-03-18)
+
+
+### Bug Fixes
+
+* **web.exchange:** onboarding configuration page for private ([52e69dd](https://github.com/ovh/manager/commit/52e69dd536f0d15466a5b395005e058f904c7c18)), closes [#PRDCOL-259](https://github.com/ovh/manager/issues/PRDCOL-259) [#PRDCOL-271](https://github.com/ovh/manager/issues/PRDCOL-271) [#PRDCOL-273](https://github.com/ovh/manager/issues/PRDCOL-273) [#PRDCOL-405](https://github.com/ovh/manager/issues/PRDCOL-405)
+
+
+
+
+
 ## [9.21.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-web-universe-components@9.21.2...@ovh-ux/ng-ovh-web-universe-components@9.21.3) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-ovh-web-universe-components
