@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.2.1...@ovh-ux/manager-pci-file-storage-app@0.2.2) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1224] ([aa5434e](https://github.com/ovh/manager/commit/aa5434ee92af4e5c172cb16673f330243629a21a))
+
+
+
+
+
 ## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.2.0...@ovh-ux/manager-pci-file-storage-app@0.2.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-file-storage-app

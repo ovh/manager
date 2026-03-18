@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.77.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.76.1...@ovh-ux/manager-dedicated@20.77.0) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4655] ([21006a3](https://github.com/ovh/manager/commit/21006a3583a6eee6f38f90ac52e01185ac2055bd))
+* **i18n:** add missing translations [CDS 4697] ([42e5c0d](https://github.com/ovh/manager/commit/42e5c0df5a745e7ee990fb18db4f74898dc58586))
+* remove unused translations [CDS] ([66bff9b](https://github.com/ovh/manager/commit/66bff9bc633ccc273873c022c11ca8a1487ade21))
+
+
+### Features
+
+* **dedicated.cdn:** service log-tail migration to l2c ([55bc246](https://github.com/ovh/manager/commit/55bc2468569fd54a102f25fa92a0c30d5d58bb3c)), closes [#CDN-1385](https://github.com/ovh/manager/issues/CDN-1385)
+
+
+
+
+
 ## [20.76.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.76.0...@ovh-ux/manager-dedicated@20.76.1) (2026-03-17)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

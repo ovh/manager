@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.3...@ovh-ux/manager-web-hosting-app@0.18.4) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4690] ([e52f222](https://github.com/ovh/manager/commit/e52f2223eb9d9483df604ac8fd1333967a827917))
+* **i18n:** add missing translations [CDS 4691] ([efb894d](https://github.com/ovh/manager/commit/efb894d431aa79b5b2d2326b5ed67fc7e1ce529d))
+* **i18n:** add missing translations [CDS 4704] ([6d8f0b0](https://github.com/ovh/manager/commit/6d8f0b03843a04da3b0838ca85b86716c81d6b5f))
+* **i18n:** add missing translations [CDS 4705] ([0e2ef81](https://github.com/ovh/manager/commit/0e2ef81a12a373911280774a0ec245f6a55e23e6))
+* **i18n:** add missing translations [CDS 4708] ([cca4ac6](https://github.com/ovh/manager/commit/cca4ac654eebdcdb90ce468b7481f6395ba11cb2))
+
+
+
+
+
 ## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.2...@ovh-ux/manager-web-hosting-app@0.18.3) (2026-03-17)
 
 

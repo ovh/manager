@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.27.0...@ovh-ux/manager-iam@1.27.1) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1224] ([aa5434e](https://github.com/ovh/manager/commit/aa5434ee92af4e5c172cb16673f330243629a21a))
+
+
+
+
+
 # [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-iam@1.26.1...@ovh-ux/manager-iam@1.27.0) (2026-03-03)
 
 

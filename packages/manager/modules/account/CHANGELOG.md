@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.21.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.21.2...@ovh-ux/manager-account@0.21.3) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4690] ([e52f222](https://github.com/ovh/manager/commit/e52f2223eb9d9483df604ac8fd1333967a827917))
+* **i18n:** add missing translations [CDS 4692] ([530d13e](https://github.com/ovh/manager/commit/530d13e214c9ae0775166687eb49188457599b13))
+* **i18n:** add missing translations [CDS 4693] ([c29f07c](https://github.com/ovh/manager/commit/c29f07cdcd04ebc429a81ac9d3f15a7758c954eb))
+* **i18n:** add missing translations [CDS 4696] ([49a8caa](https://github.com/ovh/manager/commit/49a8caa93617a79e8b4d25e1fba72aa8df29df1d))
+
+
+
+
+
 ## [0.21.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.21.1...@ovh-ux/manager-account@0.21.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
