@@ -6,6 +6,7 @@ export const getFeatureAvailabilityMocks = (
     agreementsUpdate?: boolean;
     suggestions?: boolean;
     pnr?: boolean;
+    betaManager?: boolean;
     livechat?: boolean;
     aiChatbot?: boolean;
   } = {},
@@ -15,6 +16,7 @@ export const getFeatureAvailabilityMocks = (
     agreementsUpdate = true,
     suggestions = true,
     pnr = true,
+    betaManager = true,
     livechat = true,
     aiChatbot = false,
   } = params;
@@ -78,6 +80,18 @@ export const getFeatureAvailabilityMocks = (
         delay: 0,
       },
     );
+  }
+
+  if (betaManager) {
+    mocks.push({
+      url: 'feature/pnr:beta-manager/availability',
+      response: {
+        'pnr:beta-manager': betaManager,
+      },
+      api: 'aapi',
+      method: 'get',
+      delay: 0,
+    });
   }
 
   if (livechat) {

@@ -6,6 +6,7 @@ import { configureTest } from '@/utils/tests/tests.helper';
 import { getPreferencesMocks } from '@/__mocks__/preferences/preferences.handler';
 import { ContainerProvider } from '@/core/container';
 import { getFeatureAvailabilityMocks } from '@/__mocks__/feature-availability/featureAvailability.handler';
+import { BETA_MANAGER_URL } from './BetaManagerButton.constants';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -106,14 +107,14 @@ describe('NavReshuffleSwitchBack.component', () => {
     configureTest({
       mocks: [
         ...getPreferencesMocks({ betaVersion: 'false' }),
-        ...getFeatureAvailabilityMocks({ pnr: true }),
+        ...getFeatureAvailabilityMocks({ pnr: true, betaManager: true, }),
       ],
     });
 
     const { container } = render(wrapper(<NavReshuffleSwitchBack />));
 
     await waitFor(() => {
-      const button = container.querySelector('osds-button[href="/beta/#/"]');
+      const button = container.querySelector(`osds-button[href="${BETA_MANAGER_URL}"]`);
       expect(button).toBeTruthy();
       expect(button?.textContent).toContain(
         'Découvrez notre nouveau manager',
