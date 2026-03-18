@@ -152,5 +152,7 @@
   "email_address": "Adres e-mail",
   "email_account_company_information": "Informacje o firmie",
   "email_account_contact_information": "Dane kontaktu",
-  "email_account_advanced_settings": "Zaawansowane parametry"
+  "email_account_advanced_settings": "Zaawansowane parametry",
+  "service": "Usługa",
+  "service_manage_action": "Zarządzaj usługą"
 }
