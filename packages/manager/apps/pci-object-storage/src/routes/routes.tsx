@@ -497,6 +497,15 @@ export default [
                       ),
                     ),
                   },
+                  {
+                    path: 'toggle-status/:ruleId',
+                    id: 'lifecycle.toggle-status',
+                    ...lazyLoadRoute(() =>
+                      import(
+                        '@/pages/object-storage/storage/s3Id/lifecycle/toggle-status/ToggleStatus.modal'
+                      ),
+                    ),
+                  },
                 ],
               },
               {

@@ -1,8 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { useForm, FormProvider, Control } from 'react-hook-form';
+import { describe, expect, it } from 'vitest';
+import { FormProvider, useForm } from 'react-hook-form';
 import { ReplicaFields } from './ReplicaFields';
-import { FullScalingFormValues } from '../scalingHelper';
 
 const TestWrapper = () => {
   const methods = useForm({
@@ -14,7 +13,10 @@ const TestWrapper = () => {
 
   return (
     <FormProvider {...methods}>
-      <ReplicaFields />
+      <ReplicaFields
+        control={methods.control}
+        showScaleToZeroWarning={false}
+      />
     </FormProvider>
   );
 };
@@ -37,12 +39,12 @@ describe('ReplicaFields', () => {
     expect(maxInput.value).toBe('3');
   });
 
-  it('should accept numeric input within range', () => {
+  it('should accept numeric input', () => {
     render(<TestWrapper />);
 
     const minInput = screen.getByTestId('min-rep-input') as HTMLInputElement;
-    fireEvent.change(minInput, { target: { value: '50' } });
+    fireEvent.change(minInput, { target: { value: '5' } });
 
-    expect(minInput.value).toBe('50');
+    expect(minInput.value).toBe('5');
   });
 });

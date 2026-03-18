@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.0...@ovh-ux/manager-pci-object-storage-app@0.37.1) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4704] ([6d8f0b0](https://github.com/ovh/manager/commit/6d8f0b03843a04da3b0838ca85b86716c81d6b5f))
+* **i18n:** add missing translations [CDS 4705] ([0e2ef81](https://github.com/ovh/manager/commit/0e2ef81a12a373911280774a0ec245f6a55e23e6))
+* **i18n:** add missing translations [CDS 4708] ([cca4ac6](https://github.com/ovh/manager/commit/cca4ac654eebdcdb90ce468b7481f6395ba11cb2))
+* **i18n:** add missing translations [CDS 4713] ([7c27d31](https://github.com/ovh/manager/commit/7c27d31588856e18e70e19429b7e85d248b00e06))
+
+
+
+
+
+# [0.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.36.1...@ovh-ux/manager-pci-object-storage-app@0.37.0) (2026-03-17)
+
+
+### Features
+
+* **os:** add toggle lyficle rule ([83024c4](https://github.com/ovh/manager/commit/83024c46bb37b21f1f9fb12443c30ee7ecb98a26)), closes [#DATATR-2868](https://github.com/ovh/manager/issues/DATATR-2868)
+
+
+
+
+
 ## [0.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.36.0...@ovh-ux/manager-pci-object-storage-app@0.36.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-object-storage-app

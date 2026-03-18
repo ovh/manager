@@ -50,7 +50,9 @@ const EditLifecycleContent = ({
     onSuccess: () => {
       toast.toast({
         title: t('formEditToastSuccessTitle'),
-        description: t('formEditToastSuccessDescription'),
+        description: t('formEditToastSuccessDescription', {
+          ruleName: form.getValues('ruleId'),
+        }),
       });
       navigate('../');
     },
@@ -91,11 +93,7 @@ const EditLifecycleContent = ({
         >
           {t('formButtonCancel')}
         </Button>
-        <Button
-          type="submit"
-          disabled={isPending || !form.formState.isValid}
-          form="lifecycle-form"
-        >
+        <Button type="submit" disabled={isPending} form="lifecycle-form">
           {t('formEditButtonConfirm')}
         </Button>
       </div>

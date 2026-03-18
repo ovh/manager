@@ -9,7 +9,7 @@ import initI18n from './i18n';
 import './index.css';
 import App from './App';
 
-import '@/vite-hmr.ts';
+import '@/vite-hmr';
 import { LoadingIndicatorProvider } from './contexts/LoadingIndicator.context';
 
 const init = async (

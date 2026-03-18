@@ -2,7 +2,10 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import { QueryClientWrapper } from '@/__tests__/helpers/wrappers/QueryClientWrapper';
 import * as appApi from '@/data/api/ai/app/app.api';
-import { mockedApp, mockedAppSpec } from '@/__tests__/helpers/mocks/app/app';
+import {
+  mockedApp,
+  mockedAppSpecInput,
+} from '@/__tests__/helpers/mocks/app/app';
 import { useAddApp } from './useAddApp.hook';
 
 vi.mock('@/data/api/ai/app/app.api', () => ({
@@ -20,12 +23,12 @@ describe('useAddApp', () => {
       wrapper: QueryClientWrapper,
     });
 
-    result.current.addApp(mockedAppSpec);
+    result.current.addApp(mockedAppSpecInput);
 
     await waitFor(() => {
       expect(appApi.addApp).toHaveBeenCalledWith({
         projectId: undefined,
-        appInfo: mockedAppSpec,
+        appInfo: mockedAppSpecInput,
       });
       expect(onSuccess).toHaveBeenCalledWith(mockedApp);
     });

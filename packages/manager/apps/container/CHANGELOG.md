@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.188.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.187.3...@ovh-ux/manager-container-app@0.188.0) (2026-03-18)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4690] ([e52f222](https://github.com/ovh/manager/commit/e52f2223eb9d9483df604ac8fd1333967a827917))
+* **i18n:** add missing translations [CDS 4692] ([530d13e](https://github.com/ovh/manager/commit/530d13e214c9ae0775166687eb49188457599b13))
+* **i18n:** add missing translations [CDS 4693] ([c29f07c](https://github.com/ovh/manager/commit/c29f07cdcd04ebc429a81ac9d3f15a7758c954eb))
+* **i18n:** add missing translations [CDS 4696] ([49a8caa](https://github.com/ovh/manager/commit/49a8caa93617a79e8b4d25e1fba72aa8df29df1d))
+* **i18n:** add missing translations [CDS 4702] ([0bfc9f5](https://github.com/ovh/manager/commit/0bfc9f55f518a2f895c24bbd6b206cebc36844fc))
+* **i18n:** add missing translations [CDS 4704] ([6d8f0b0](https://github.com/ovh/manager/commit/6d8f0b03843a04da3b0838ca85b86716c81d6b5f))
+* **i18n:** add missing translations [CDS 4705] ([0e2ef81](https://github.com/ovh/manager/commit/0e2ef81a12a373911280774a0ec245f6a55e23e6))
+* **i18n:** add missing translations [CDS 4708] ([cca4ac6](https://github.com/ovh/manager/commit/cca4ac654eebdcdb90ce468b7481f6395ba11cb2))
+* **i18n:** add missing translations [CDS 4710] ([7f3e25b](https://github.com/ovh/manager/commit/7f3e25bd3651c153dbce71f1da868a8821407d2b))
+
+
+### Features
+
+* **container:** add new entry fo manager beta ([b7adaec](https://github.com/ovh/manager/commit/b7adaec2310946f45911e23585d2e433603dbf81)), closes [#MANAGER-21103](https://github.com/ovh/manager/issues/MANAGER-21103)
+
+
+
+
+
 ## [0.187.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.187.2...@ovh-ux/manager-container-app@0.187.3) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-container-app

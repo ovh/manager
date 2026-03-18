@@ -1,0 +1,16 @@
+{
+  "toggleStatusTitleEnable": "Enable a lifecycle rule",
+  "toggleStatusTitleDisable": "Disable a lifecycle rule",
+  "toggleStatusDescriptionEnable": "Are you sure you want to enable the lifecycle rule <strong>{{ruleName}}</strong>?",
+  "toggleStatusDescriptionDisable": "Are you sure you want to disable the lifecycle rule <strong>{{ruleName}}</strong>?",
+  "toggleStatusButtonConfirmEnable": "Enable",
+  "toggleStatusButtonConfirmDisable": "Disable",
+  "toggleStatusButtonCancel": "Cancel",
+  "toggleStatusToastSuccessTitleEnable": "Rule enabled",
+  "toggleStatusToastSuccessTitleDisable": "Rule disabled",
+  "toggleStatusToastSuccessMessageEnable": "Your lifecycle rule has been enabled.",
+  "toggleStatusToastSuccessMessageDisable": "Your lifecycle rule has been disabled.",
+  "toggleStatusToastErrorTitleEnable": "Error enabling the rule",
+  "toggleStatusToastErrorTitleDisable": "Error disabling the rule",
+  "toggleStatusToastErrorMessage": "An error occurred while updating your lifecycle rule: {{ message }}."
+}

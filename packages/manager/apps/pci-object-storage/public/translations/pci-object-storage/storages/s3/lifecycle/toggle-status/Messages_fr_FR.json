@@ -1,0 +1,16 @@
+{
+  "toggleStatusTitleEnable": "Activer une règle de cycle de vie",
+  "toggleStatusTitleDisable": "Désactiver une règle de cycle de vie",
+  "toggleStatusDescriptionEnable": "Voulez-vous vraiment activer la règle de cycle de vie <strong>{{ruleName}}</strong> ?",
+  "toggleStatusDescriptionDisable": "Voulez-vous vraiment désactiver la règle de cycle de vie <strong>{{ruleName}}</strong> ?",
+  "toggleStatusButtonConfirmEnable": "Activer",
+  "toggleStatusButtonConfirmDisable": "Désactiver",
+  "toggleStatusButtonCancel": "Annuler",
+  "toggleStatusToastSuccessTitleEnable": "Règle activée",
+  "toggleStatusToastSuccessTitleDisable": "Règle désactivée",
+  "toggleStatusToastSuccessMessageEnable": "Votre règle de cycle de vie a été activée avec succès.",
+  "toggleStatusToastSuccessMessageDisable": "Votre règle de cycle de vie a été désactivée avec succès.",
+  "toggleStatusToastErrorTitleEnable": "Erreur lors de l'activation de la règle",
+  "toggleStatusToastErrorTitleDisable": "Erreur lors de la désactivation de la règle",
+  "toggleStatusToastErrorMessage": "Une erreur est survenue lors de la mise à jour de votre règle de cycle de vie : {{message}}."
+}

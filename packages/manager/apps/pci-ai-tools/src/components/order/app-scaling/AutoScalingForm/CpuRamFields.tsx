@@ -1,6 +1,6 @@
 import { HelpCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useFormContext, useWatch } from 'react-hook-form';
+import { Control, FieldPath, FieldValues } from 'react-hook-form';
 import {
   FormField,
   FormItem,
@@ -9,18 +9,31 @@ import {
   PopoverTrigger,
   Slider,
 } from '@datatr-ux/uxlib';
-import { ScalingStrategySchema, SCALING_DEFAULTS } from '../scalingHelper';
+import {
+  SCALING_CONSTRAINTS,
+  ScalingStrategySchema,
+} from '../scalingHelper';
 
-export function CpuRamFields() {
+interface CpuRamFieldsProps<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+> {
+  averageUsageTarget: number;
+  control: Control<TFieldValues>;
+}
+
+export function CpuRamFields<
+  TFieldValues extends FieldValues & ScalingStrategySchema,
+>({
+  averageUsageTarget,
+  control,
+}: CpuRamFieldsProps<TFieldValues>) {
   const { t } = useTranslation('ai-tools/components/scaling');
-  const { control } = useFormContext<ScalingStrategySchema>();
-  const averageUsageTarget = useWatch({ control, name: 'averageUsageTarget' });
 
   return (
-    <div className="xl:col-start-2 xl:row-start-2 w-full">
+    <div className="w-full">
       <FormField
         control={control}
-        name="averageUsageTarget"
+        name={'averageUsageTarget' as FieldPath<TFieldValues>}
         render={({ field }) => (
           <FormItem>
             <div className="flex items-center space-x-2 mb-2">
@@ -47,8 +60,8 @@ export function CpuRamFields() {
                 onValueChange={([newValue]) => field.onChange(newValue)}
                 id="resource-usage-select"
                 value={[averageUsageTarget]}
-                min={0}
-                max={100}
+                min={SCALING_CONSTRAINTS.AVERAGE_USAGE_TARGET.MIN}
+                max={SCALING_CONSTRAINTS.AVERAGE_USAGE_TARGET.MAX}
                 step={1}
               />
               <div
