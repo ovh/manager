@@ -29,13 +29,16 @@ import { TRANSLATION_NAMESPACES, fromIdToIp, ipFormatter } from '@/utils';
 
 const MAX_CHARACTERS = 250;
 
+/**
+ * To Add or Edit the description of an IP bloc or a single IP
+ * We can't modify sub-ips descriptions
+ */
 export default function UpsertDescriptionModal() {
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const { trackClick, trackPage } = useOvhTracking();
-  const { id, parentId } = useParams();
-  const { ipAddress: ip } = ipFormatter(fromIdToIp(id));
-  const { ipGroup } = ipFormatter(fromIdToIp(parentId));
+  const { id } = useParams();
+  const { ipGroup } = ipFormatter(fromIdToIp(id));
   const { addSuccess } = useNotifications();
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.listing,
@@ -45,9 +48,7 @@ export default function UpsertDescriptionModal() {
   const [characterCount, setCharacterCount] = React.useState(0);
   const [description, setDescription] = React.useState<string>('');
 
-  const { ipDetails, isLoading } = useGetIpdetails({
-    ip: ipGroup,
-  });
+  const { ipDetails, isLoading } = useGetIpdetails({ ip: ipGroup });
 
   const closeModal = () => {
     trackClick({
@@ -59,19 +60,23 @@ export default function UpsertDescriptionModal() {
     navigate(`..?${search.toString()}`);
   };
 
-  const { mutate: upsertIpDescription, isPending: upsertIpDescriptionPending } =
-    useUpsertIpDescription({
-      ip: ip ?? ipGroup,
-      description,
-      onSuccess: () => {
-        addSuccess(t('listingUpsertDescriptionSuccessMessage', { value: ip }));
-        trackPage({
-          pageType: PageType.bannerSuccess,
-          pageName: 'edit_description_success',
-        });
-        closeModal();
-      },
-    });
+  const {
+    mutate: upsertIpDescription,
+    isPending: upsertIpDescriptionPending,
+  } = useUpsertIpDescription({
+    ip: ipGroup,
+    description,
+    onSuccess: () => {
+      addSuccess(
+        t('listingUpsertDescriptionSuccessMessage', { value: ipGroup }),
+      );
+      trackPage({
+        pageType: PageType.bannerSuccess,
+        pageName: 'edit_description_success',
+      });
+      closeModal();
+    },
+  });
 
   useEffect(() => {
     setDescription(ipDetails?.description || '');
