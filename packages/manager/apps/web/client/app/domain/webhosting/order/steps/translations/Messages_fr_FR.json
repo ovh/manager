@@ -102,7 +102,7 @@
   "domain_webhosting_order_payment_total_price_without_tax": "Prix HT : ",
   "domain_webhosting_order_payment_total_price_with_tax": "Prix TTC : ",
   "domain_webhosting_order_payment_duration": "Durée :",
-  "domain_webhosting_order_duration_P1Y": "12 mois",
+  "domain_webhosting_order_duration": "{{ months }} mois",
   "domain_webhosting_order_payment_choice": "Afin de confirmer votre demande, veuillez choisir votre moyen de paiement, et accepter les conditions d'utilisation.",
   "domain_webhosting_order_payment_get_checkout_error": "Une erreur est survenue lors de la récupération des informations de votre panier : {{ message }}",
   "domain_webhosting_order_payment_get_checkout_error_unknown": "Une erreur est survenue lors de la récupération des informations de votre panier.",

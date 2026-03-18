@@ -9,78 +9,81 @@ import Layout from '@/pages/layout';
 
 // Lazy-loaded pages as components
 const ListingPage = React.lazy(() => import('@/pages/listing'));
-const IpListingPage = React.lazy(() =>
-  import('@/pages/listing/ipListing/ip.listing.page'),
+const IpListingPage = React.lazy(
+  () => import('@/pages/listing/ipListing/ip.listing.page'),
 );
-const ConfigureReverseDnsPage = React.lazy(() =>
-  import('@/pages/actions/configureReverseDns/configureReverseDns.page'),
+const ConfigureReverseDnsPage = React.lazy(
+  () => import('@/pages/actions/configureReverseDns/configureReverseDns.page'),
 );
-const TerminateIpPage = React.lazy(() =>
-  import('@/pages/actions/terminate/terminateIp.page'),
+const TerminateIpPage = React.lazy(
+  () => import('@/pages/actions/terminate/terminateIp.page'),
 );
-const TerminateByoipPage = React.lazy(() =>
-  import('@/pages/actions/terminate/terminateByoip.page'),
+const TerminateByoipPage = React.lazy(
+  () => import('@/pages/actions/terminate/terminateByoip.page'),
 );
-const MoveIpPage = React.lazy(() =>
-  import('@/pages/actions/moveIp/moveIp.page'),
+const MoveIpPage = React.lazy(
+  () => import('@/pages/actions/moveIp/moveIp.page'),
 );
-const UpsertDescriptionPage = React.lazy(() =>
-  import('@/pages/actions/upsertDescription/upsertDescription.page'),
+const UpsertDescriptionPage = React.lazy(
+  () => import('@/pages/actions/upsertDescription/upsertDescription.page'),
 );
-const AddVirtualMacPage = React.lazy(() =>
-  import('@/pages/actions/virtualMac/addVirtualMac.page'),
+const AddVirtualMacPage = React.lazy(
+  () => import('@/pages/actions/virtualMac/addVirtualMac.page'),
 );
-const ViewVirtualMacPage = React.lazy(() =>
-  import('@/pages/actions/virtualMac/viewVirtualMac.page'),
+const ViewVirtualMacPage = React.lazy(
+  () => import('@/pages/actions/virtualMac/viewVirtualMac.page'),
 );
-const IpBlockInformationPage = React.lazy(() =>
-  import(
-    '@/pages/actions/upsertIpBlockInformation/upsertIpBlockInformation.page'
-  ),
+const IpBlockInformationPage = React.lazy(
+  () =>
+    import(
+      '@/pages/actions/upsertIpBlockInformation/upsertIpBlockInformation.page'
+    ),
 );
-const DeleteVirtualMacPage = React.lazy(() =>
-  import('@/pages/actions/virtualMac/deleteVirtualMac.page'),
+const DeleteVirtualMacPage = React.lazy(
+  () => import('@/pages/actions/virtualMac/deleteVirtualMac.page'),
 );
-const ImportIpFromSysPage = React.lazy(() =>
-  import('@/pages/actions/importIpFromSys/importIpFromSys.page'),
+const ImportIpFromSysPage = React.lazy(
+  () => import('@/pages/actions/importIpFromSys/importIpFromSys.page'),
 );
-const UnblockAntiHackPage = React.lazy(() =>
-  import('@/pages/actions/antiHack/unblockAntiHack.page'),
+const UnblockAntiHackPage = React.lazy(
+  () => import('@/pages/actions/antiHack/unblockAntiHack.page'),
 );
-const UnblockAntiSpamPage = React.lazy(() =>
-  import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
+const UnblockAntiSpamPage = React.lazy(
+  () => import('@/pages/actions/antiSpam/unblockAntiSpam.page'),
 );
-const ExportIpToCsvPage = React.lazy(() =>
-  import('@/pages/actions/exportIpToCsv/exportIpToCsv.page'),
+const ExportIpToCsvPage = React.lazy(
+  () => import('@/pages/actions/exportIpToCsv/exportIpToCsv.page'),
 );
 const SlicePage = React.lazy(() => import('@/pages/actions/slice/slice.page'));
-const AggregatePage = React.lazy(() =>
-  import('@/pages/actions/aggregate/aggregate.page'),
+const AggregatePage = React.lazy(
+  () => import('@/pages/actions/aggregate/aggregate.page'),
 );
-const ManageOrganisationsPage = React.lazy(() =>
-  import('@/pages/listing/manageOrganisations/manage.organisations.page'),
+const ManageOrganisationsPage = React.lazy(
+  () => import('@/pages/listing/manageOrganisations/manage.organisations.page'),
 );
-const OrganisationModalPage = React.lazy(() =>
-  import(
-    '@/pages/listing/manageOrganisations/OrganisationModal/OrganisationModal.page'
-  ),
+const OrganisationModalPage = React.lazy(
+  () =>
+    import(
+      '@/pages/listing/manageOrganisations/OrganisationModal/OrganisationModal.page'
+    ),
 );
-const DeleteOrganisationPage = React.lazy(() =>
-  import('@/pages/actions/organisation/deleteOrganisation.page'),
+const DeleteOrganisationPage = React.lazy(
+  () => import('@/pages/actions/organisation/deleteOrganisation.page'),
 );
-const ConfigureGameFirewallPage = React.lazy(() =>
-  import('@/pages/configureGameFirewall/configureGameFirewall.page'),
+const ConfigureGameFirewallPage = React.lazy(
+  () => import('@/pages/configureGameFirewall/configureGameFirewall.page'),
 );
-const ConfigureEdgeNetworkFirewallPage = React.lazy(() =>
-  import(
-    '@/pages/configureEdgeNetworkFirewall/configureEdgeNetworkFirewall.page'
-  ),
+const ConfigureEdgeNetworkFirewallPage = React.lazy(
+  () =>
+    import(
+      '@/pages/configureEdgeNetworkFirewall/configureEdgeNetworkFirewall.page'
+    ),
 );
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
 const ByoipPage = React.lazy(() => import('@/pages/byoip/Byoip.page'));
-const ByoipOrderModalPage = React.lazy(() =>
-  import('@/pages/byoip/ByoipOrderModal/ByoipOrderModal.page'),
+const ByoipOrderModalPage = React.lazy(
+  () => import('@/pages/byoip/ByoipOrderModal/ByoipOrderModal.page'),
 );
 
 export const Routes = [

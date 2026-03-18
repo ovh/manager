@@ -1,5 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Przepustowość",
   "dedicated_server_interfaces_bandwidth_description": "Przepustowość do sieci publicznej (do i z Internetu) nie jest ograniczona na wejściu. Możesz zwiększyć przepustowość do sieci publicznej oraz prywatnej, wykupując odpowiednią opcję.",
-  "dedicated_server_interfaces_bandwidth_ola_warning": "W przypadku pełnej konfiguracji agregacji prywatnej opcja przepustowości do sieci publicznej nie będzie używana, ponieważ interfejs dedykowany dla sieci publicznej będzie używany do obsługi sieci prywatnej."
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Dostępny",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Aktywny - Double LAG",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "Dwie pary interfejsów sieciowych są agregowane oddzielnie, co umożliwia ruch prywatny i publiczny.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Aktywny - Full private",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "Dwa interfejsy sieciowe są w pełni zagregowane i działają w sieci prywatnej.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "Cztery interfejsy sieciowe są w pełni zagregowane i działają w sieci prywatnej.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "Niedostępny"
 }

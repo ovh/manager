@@ -1,0 +1,9 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Nie wybrano replikacji. Prosimy o wybranie replikacji.",
+  "netapp_replications_modal_title_approuve": "Akceptuj replikację",
+  "netapp_replications_modal_description_approuve": "Uwaga: Chcesz zaakceptować replikację.",
+  "netapp_replications_modal_primary_label_approuve": "Synchronizuj",
+  "netapp_replications_modal_secondary_label": "Zamknij",
+  "netapp_replications_approuve_error": "Nie udało się zaakceptować replikacji wolumenu {{sourceShareID}}.",
+  "netapp_replications_approuve_success": "Replikacja wolumenu {{sourceShareID}} została zaakceptowana i rozpoczęła się synchronizacja."
+}

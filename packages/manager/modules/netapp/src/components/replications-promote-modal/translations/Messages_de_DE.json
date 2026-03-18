@@ -1,0 +1,10 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "Es wurde keine Replikation ausgewählt. Bitte wählen Sie eine aus.",
+  "netapp_replications_modal_title_promote": "Volume hochstufen",
+  "netapp_replications_modal_description_promote": "Möchten Sie dieses Volume wirklich hochstufen?",
+  "netapp_replications_modal_primary_label_promote": "Bestätigen",
+  "netapp_replications_modal_secondary_label": "Schließen",
+  "netapp_replications_modal_warning_promote": "Durch das Hochstufen eines Replikationsvolumes wird die Replikationsverbindung mit dem Quellvolume getrennt. Das hochgestufte Volume wird unabhängig. Diese Aktion kann nicht rückgängig gemacht werden.",
+  "netapp_replications_promote_success": "Die Replikation des Volumes {{ sourceShareID }} wurde erfolgreich hochgestuft.",
+  "netapp_replications_promote_error": "Das Hochstufen der Replikation des Volumes {{ sourceShareID }} ist fehlgeschlagen."
+}

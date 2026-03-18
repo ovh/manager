@@ -9,6 +9,8 @@ import {
   BETA_LABEL,
   NO_AUTORENEW_COUNTRIES,
   TAG_TAB_LABEL,
+  GAME_DDOS_GUIDE_URL,
+  GAME_DDOS_GUIDE_PARAMS,
 } from './server.constants';
 
 export default class ServerCtrl {
@@ -29,6 +31,8 @@ export default class ServerCtrl {
     Server,
     User,
     ovhFeatureFlipping,
+    coreConfig,
+    atInternet,
   ) {
     this.$q = $q;
     this.$scope = $scope;
@@ -45,13 +49,22 @@ export default class ServerCtrl {
     this.Server = Server;
     this.User = User;
     this.ovhFeatureFlipping = ovhFeatureFlipping;
+    this.atInternet = atInternet;
+    const { ovhSubsidiary } = coreConfig.getUser();
+    this.gameDDosGuide = {
+      href:
+        GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS[ovhSubsidiary]) ||
+        GAME_DDOS_GUIDE_URL(...GAME_DDOS_GUIDE_PARAMS.DEFAULT),
+      label: $translate.instant('server_guide_ddos_game'),
+    };
   }
 
   $onInit() {
+    this.isGameServer = !!this.server?.commercialRange?.match(/GAME/g)?.length;
+    this.gameDDoSModalStorageKey = 'consent-show-game-ddos-modal-disclamer';
     this.errorStatus = ['customer_error', 'ovh_error', 'error', 'cancelled'];
     this.TAG_TAB_LABEL = TAG_TAB_LABEL;
     this.BETA_LABEL = BETA_LABEL;
-
     this.$scope.RENEW_URL = this.coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/autoRenew',
@@ -344,7 +357,58 @@ export default class ServerCtrl {
 
     this.checkCpanel();
 
+    if (this.isGameServer) this.showGameDDoSModal();
+
     return this.$q.all([this.load()]);
+  }
+
+  showGameDDoSModal() {
+    const storageServersString = localStorage.getItem(
+      this.gameDDoSModalStorageKey,
+    );
+    const serverGameDDoSNotShowModale = storageServersString
+      ? JSON.parse(storageServersString)
+      : [];
+
+    if (!serverGameDDoSNotShowModale.includes(this.server.name)) {
+      $('#game-ddos-modal-disclamer').modal({
+        keyboard: true,
+        backdrop: 'static',
+      });
+    }
+  }
+
+  gameDDoSPrimaryAction() {
+    this.saveNoShowModalAgain();
+    this.atInternet.trackClick({
+      name: `${this.statePrefix ||
+        'app.dedicated-server.server'}::bm_server_network_manage_ips_clicked`,
+      type: 'action',
+    });
+    this.$state.go('app.ip', {
+      serviceName: this.server.name,
+    });
+  }
+
+  closeGameDDoSModal() {
+    this.saveNoShowModalAgain();
+    $('#game-ddos-modal-disclamer').modal('hide');
+  }
+
+  saveNoShowModalAgain() {
+    if (this.noShowModalAgain) {
+      const storageServersString = localStorage.getItem(
+        this.gameDDoSModalStorageKey,
+      );
+
+      const storageServers = storageServersString
+        ? JSON.parse(storageServersString)
+        : [];
+      localStorage.setItem(
+        this.gameDDoSModalStorageKey,
+        JSON.stringify([...storageServers, this.server.name]),
+      );
+    }
   }
 
   checkCpanel() {

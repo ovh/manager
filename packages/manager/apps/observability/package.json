@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-observability-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "OVHCloud Observability µApplication",
   "repository": {
@@ -25,11 +25,11 @@
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-module-order": "*",
-    "@ovh-ux/manager-react-core-application": "*",
-    "@ovh-ux/manager-react-shell-client": "*",
+    "@ovh-ux/manager-react-core-application": "^0.15.5",
+    "@ovh-ux/manager-react-shell-client": "^1.2.4",
     "@ovh-ux/muk": "1.2.0",
     "@ovh-ux/request-tagger": "*",
-    "@ovh-ux/shell": "^4.5.7",
+    "@ovh-ux/shell": "^4.10.7",
     "@ovhcloud/ods-react": "19.5.0",
     "@ovhcloud/ods-themes": "19.5.0",
     "@tanstack/react-query": "5.51.21",

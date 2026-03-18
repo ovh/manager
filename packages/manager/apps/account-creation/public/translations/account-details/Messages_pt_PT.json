@@ -50,5 +50,20 @@
   "account_details_field_corporation_firstname": "Nome próprio do representante legal",
   "account_details_field_corporation_lastname": "Nome do representante legal",
   "account_details_section_address_kyc_info": "<strong>Não se esqueça de introduzir todas as informações e certifique-se de que os seus dados pessoais correspondem ao nome e endereço que constam nos seus documentos oficiais, para que possa efetuar uma encomenda.</strong> <ul><li>Introduza a <strong>sua morada completa</strong> </li><li>A morada deve <strong>corresponder ao que figura no comprovativo</strong> de morada que lhe será pedido para verificar a sua identidade.</li></ul>",
-  "account_details_field_italian_sdi": "Código do destinatário para a faturação eletrónica (SDI)"
+  "account_details_field_italian_sdi": "Código do destinatário para a faturação eletrónica (SDI)",
+  "account_details_field_corporationType": "Tipo de empresa",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Pessoal",
+  "account_details_field_nationalIdentificationNumber": "Número de identificação nacional",
+  "account_details_field_sex": "Género",
+  "account_details_field_birthDay": "Data de nascimento",
+  "account_details_sex_option_female": "Feminino",
+  "account_details_sex_option_male": "Masculino"
 }

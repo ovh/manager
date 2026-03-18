@@ -1,0 +1,14 @@
+{
+  "netapp_network_volumes_replications_title": "Volume(s) auf einem anderen Enterprise File Storage Dienst synchronisieren",
+  "netapp_network_volumes_replications_button_cancel": "Abbrechen",
+  "netapp_network_volumes_replications_button_buy": "Bestellen",
+  "netapp_network_volumes_replications_button_sync": "Synchronisieren",
+  "netapp_network_volumes_no_selected_volume_replications_subtitle": "Kein Volume ausgewählt",
+  "netapp_network_volumes_no_selected_volume_replications_description": "Um eine Replikation durchzuführen, wählen Sie bitte ein oder mehrere Volumes aus.",
+  "netapp_network_volumes_replications_selected_volumes": "Ausgewählte(s) Volume(s):",
+  "netapp_network_volumes_no_replications_subtitle": "Kein qualifizierter Zieldienst gefunden",
+  "netapp_network_volumes_not_replications_description": "Um Volumes zu synchronisieren, muss mindestens ein Enterprise File Storage Dienst mit einer vRack Verbindung im gleichen Rechenzentrum vorhanden sein. Dienste mit öffentlicher Verbindung können nicht als Ziel verwendet werden und sind bald veraltet.",
+  "netapp_network_volumes_replications_description": "Jedes Volume wird einzeln im Enterprise File Storage Zieldienst repliziert. Sie müssen die Synchronisierung auf den Zieldiensten für jedes Volume bestätigen. Die synchronisierten Volumes sind dann schreibgeschützt. Anschließend können Sie die Lese-/Schreibvorgänge über die Liste der Volumes im Zieldienst hochstufen.",
+  "netapp_network_volumes_replications_form_label": "Enterprise File Storage Zieldienst",
+  "netapp_network_volumes_replications_form_placeholder": "EFS auswählen"
+}

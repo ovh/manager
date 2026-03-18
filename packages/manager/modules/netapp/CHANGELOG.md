@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.10...@ovh-ux/manager-netapp@2.18.0) (2026-03-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4707] ([eb7dde7](https://github.com/ovh/manager/commit/eb7dde7a6f26e050f7dd672d6a58da34834233e3))
+
+
+### Features
+
+* **dedicated.netapp:** add cuttingover status for replication ([bc4dc14](https://github.com/ovh/manager/commit/bc4dc14740695600a4807b3e5da6c4de9d2d6993)), closes [#MANAGER-20896](https://github.com/ovh/manager/issues/MANAGER-20896)
+* **dedicated.netapp:** add promote, delete and refactor ([c3ccb5b](https://github.com/ovh/manager/commit/c3ccb5b28e2d154ddc3ef51c55b7dfac47babf4a)), closes [#MANAGER-18942](https://github.com/ovh/manager/issues/MANAGER-18942) [#MANAGER-18941](https://github.com/ovh/manager/issues/MANAGER-18941)
+* **dedicated.netapp:** fix no replication destination services ([f8e49b1](https://github.com/ovh/manager/commit/f8e49b1e8840389e27ba1f7479e3f92962aa483a)), closes [#MANAGER-18706](https://github.com/ovh/manager/issues/MANAGER-18706)
+* **dedicated.netapp:** remove replication progress ([9490501](https://github.com/ovh/manager/commit/949050130b093cad0cc2a05389488d52219cfd5a)), closes [#MANAGER-17429](https://github.com/ovh/manager/issues/MANAGER-17429)
+* **dedicated:** add approuve link ([86c66eb](https://github.com/ovh/manager/commit/86c66ebf3c2f5dca6dda11799202eabf53a72887)), closes [#MANAGER-18941](https://github.com/ovh/manager/issues/MANAGER-18941)
+* **dedicated:** add checkboxes ([23a4d0a](https://github.com/ovh/manager/commit/23a4d0a19cc6496edb1ed790d071eecebaa41876)), closes [#MANAGER-18706](https://github.com/ovh/manager/issues/MANAGER-18706)
+* **dedicated:** add create-replication page ([67768f0](https://github.com/ovh/manager/commit/67768f0212695e12534816fbed829535d29681e0))
+* **dedicated:** add network type in efs dashboard ([f3f3c63](https://github.com/ovh/manager/commit/f3f3c633d1803f9ddecef3c485cfa3b045a5533c)), closes [#MANAGER-18696](https://github.com/ovh/manager/issues/MANAGER-18696)
+* **dedicated:** add volume replications tab ([74790e0](https://github.com/ovh/manager/commit/74790e0769e5f0b2708944f92c48cfbd96827342)), closes [#MANAGER-18825](https://github.com/ovh/manager/issues/MANAGER-18825)
+* **dedicated:** fix staggings ([808cb01](https://github.com/ovh/manager/commit/808cb01ad4554971f4af4ad836339466ab70ab43)), closes [#MANAGER-18941](https://github.com/ovh/manager/issues/MANAGER-18941)
+* **dedicated:** implement post behavior ([bc9bfab](https://github.com/ovh/manager/commit/bc9bfab092d25337e6d6d77594e39111b7fd13dd)), closes [#MANAGER-20520](https://github.com/ovh/manager/issues/MANAGER-20520)
+
+
+
+
+
 ## [2.17.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-netapp@2.17.9...@ovh-ux/manager-netapp@2.17.10) (2026-03-03)
 
 

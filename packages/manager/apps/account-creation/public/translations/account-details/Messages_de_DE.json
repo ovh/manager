@@ -50,5 +50,20 @@
   "account_details_field_corporation_firstname": "Vorname des gesetzlichen Vertreters",
   "account_details_field_corporation_lastname": "Name des gesetzlichen Vertreters",
   "account_details_section_address_kyc_info": "<strong>Achten Sie darauf, alle Informationen einzugeben, und vergewissern Sie sich, dass Ihre persönlichen Daten mit dem Namen und der Adresse in Ihren offiziellen Dokumenten übereinstimmen, um eine Bestellung aufzugeben.</strong> <ul><li>Geben Sie <strong>Ihre vollständige Adresse</strong> an.</li><li>Die Adresse muss <strong>mit der Adresse auf dem Adressnachweis</strong> übereinstimmen, der zur Überprüfung Ihrer Identität angefordert wird.</li></ul>",
-  "account_details_field_italian_sdi": "Empfänger-Code für die elektronische Rechnungsstellung (SDI)"
+  "account_details_field_italian_sdi": "Empfänger-Code für die elektronische Rechnungsstellung (SDI)",
+  "account_details_field_corporationType": "Unternehmensart",
+  "account_details_field_corporationType_sapa": "SAPA",
+  "account_details_field_corporationType_sas": "SAS",
+  "account_details_field_corporationType_sc": "SC",
+  "account_details_field_corporationType_scarl": "SCARL",
+  "account_details_field_corporationType_snc": "SNC",
+  "account_details_field_corporationType_spa": "SPA",
+  "account_details_field_corporationType_srl": "SRL",
+  "account_details_field_corporationType_ss": "SS",
+  "account_details_field_corporationType_personnelle": "Personal",
+  "account_details_field_nationalIdentificationNumber": "Nationale Identifikationsnummer",
+  "account_details_field_sex": "Geschlecht",
+  "account_details_field_birthDay": "Geburtsdatum",
+  "account_details_sex_option_female": "Weiblich",
+  "account_details_sex_option_male": "Männlich"
 }

@@ -1,8 +1,10 @@
+/* eslint-disable class-methods-use-this */
 import { vi } from 'vitest';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { Navigate, NavLinkProps, Path, To } from 'react-router-dom';
 import { ShellContextType } from '@ovh-ux/manager-react-shell-client';
+import { ErrorBoundary } from '@ovh-ux/muk';
 
 const shellMock = ({
   ux: {
@@ -261,6 +263,9 @@ vi.mock('@ovh-ux/muk', async () => {
         {children && <div>{children}</div>}
       </main>
     ),
+    ErrorBoundary: ({ children }: React.PropsWithChildren) => (
+      <div>{children}</div>
+    ),
     useDataApi: vi.fn(() => ({
       flattenData: [],
       hasNextPage: false,
@@ -269,6 +274,10 @@ vi.mock('@ovh-ux/muk', async () => {
       filters: {},
       sorting: {},
     })),
+    TEXT_PRESET: {
+      heading4: 'heading4',
+    },
+    Text: ({ children }: any) => <span>{children}</span>,
   };
 });
 
@@ -288,3 +297,44 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
     },
   };
 });
+
+// ResizeObserver mock
+class ResizeObserverMock {
+  observe = () => {};
+
+  unobserve() {}
+
+  disconnect() {}
+}
+
+global.ResizeObserver = ResizeObserverMock as any;
+
+// matchMedia mock
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: (query: string): MediaQueryList => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {}, // deprecated but required
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  }),
+});
+
+// getBoundingClientRect mock
+HTMLElement.prototype.getBoundingClientRect = function() {
+  return {
+    width: 100,
+    height: 50,
+    top: 0,
+    left: 0,
+    bottom: 50,
+    right: 100,
+    x: 0,
+    y: 0,
+    toJSON: () => {},
+  };
+};

@@ -59,5 +59,5 @@
   "defaultAutoRestartInfo": "I notebook QPU non possono essere spenti senza riavvio automatico. Questa funzionalità è attivata per impostazione predefinita per garantire la continuità dei tuoi calcoli QPU.",
   "fieldTimeOutLabel": "Scadenza",
   "fieldAutoRestartLabel": "Riavvio automatico",
-  "fieldAutoRestartDescription": "Se attivato, il notebook verrà automaticamente riavviato ogni 7 giorni. Se disattivato, il notebook verrà automaticamente arrestato dopo 7 giorni. In entrambi i casi, la tua configurazione e i tuoi dati verranno salvati."
+  "fieldAutoRestartDescription": "Se attivato, il notebook verrà riavviato automaticamente ogni 7 giorni di funzionamento consecutivi. Se disattivato, il notebook verrà arrestato automaticamente dopo 7 giorni di funzionamento consecutivi. In entrambi i casi, la tua configurazione e i tuoi dati verranno salvati."
 }

@@ -25,8 +25,8 @@
   "modeColumnLabel": "Tryb",
   "protocolColumnLabel": "Protokół",
   "sourceColumnLabel": "Źródłowy adres IP",
-  "sourcePortColumnLabel": "Port źródłowy",
-  "destinationPortColumnLabel": "Port docelowy",
+  "sourcePortColumnLabel": "Port źródłowy (zakres)",
+  "destinationPortColumnLabel": "Port docelowy (zakres)",
   "tcpOptionsColumnLabel": "Stan TCP",
   "permit_action": "Zezwalaj",
   "deny_action": "Odrzucaj",
@@ -40,5 +40,6 @@
   "firewall_not_created_tooltip": "Nie można włączyć firewalla, dopóki nie zostanie utworzona pierwsza reguła.",
   "destinationPortLowerThanSourcePortError": "Docelowy port nie może mieć numeru mniejszego niż port źródłowy",
   "createRuleErrorMessage": "Wprowadzone dane zawierają błędy. Sprawdź pola zaznaczone na czerwono.",
-  "requiredFieldError": "Uzupełnienie tego pola jest obowiązkowe"
+  "requiredFieldError": "Uzupełnienie tego pola jest obowiązkowe",
+  "port_format_tooltip": "Format portu może być podany jako pojedyncza liczba (na przykład: \"123\"), lub jako zakres portów (na przykład: \"123-125\")."
 }

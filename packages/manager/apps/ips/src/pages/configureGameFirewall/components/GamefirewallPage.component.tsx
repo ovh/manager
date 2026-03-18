@@ -31,14 +31,8 @@ import { StrategyModal } from './StrategyModal.component';
 import { TopBar } from './TopBar.component';
 
 export default function GameFirewallPage() {
-  const {
-    ip,
-    ipOnGame,
-    isError,
-    isRulesError,
-    rulesError,
-    error,
-  } = React.useContext(GameFirewallContext);
+  const { ip, ipOnGame, isError, isRulesError, rulesError, error } =
+    React.useContext(GameFirewallContext);
   const { t } = useTranslation([
     TRANSLATION_NAMESPACES.gameFirewall,
     NAMESPACES.ACTIONS,

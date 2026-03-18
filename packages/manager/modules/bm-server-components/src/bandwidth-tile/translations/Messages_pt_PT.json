@@ -1,5 +1,12 @@
 {
   "dedicated_server_interfaces_bandwidth_title": "Largura de banda",
   "dedicated_server_interfaces_bandwidth_description": "A largura de banda pública de entrada (desde e para a Internet) não tem limitações. Pode aumentar a largura de banda pública e privada ativando a opção correspondente.",
-  "dedicated_server_interfaces_bandwidth_ola_warning": "No âmbito de uma configuração de agregação privada completa, a sua opção de largura de banda de saída pública não será utilizada, porque a interface dedicada à rede pública será utilizada para a rede privada."
+  "dedicated_server_interfaces_bandwidth_server_ola": "OVHcloud Link Aggregation",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_available": "Disponível",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag": "Ativo - LAG duplo",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_double_lag_tooltip": "Os dois pares de interfaces de rede são agregados separadamente, o que permite um tráfego privado e público.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag": "Ativo - Full private",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_2_tooltip": "As duas interfaces de rede são inteiramente agregadas e privadas.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_full_lag_4_tooltip": "As quatro interfaces de rede são inteiramente agregadas e privadas.",
+  "dedicated_server_interfaces_bandwidth_server_ola_mode_unavailable": "Indisponível"
 }

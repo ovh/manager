@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { format } from 'date-fns';
 import {
   ArrowUpRightFromSquare,
+  CircleAlert,
   Globe,
   LockKeyhole,
   NotebookText,
@@ -11,7 +12,14 @@ import {
   Square,
 } from 'lucide-react';
 import { useState } from 'react';
-import { Badge, Button, Skeleton } from '@datatr-ux/uxlib';
+import {
+  Badge,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Skeleton,
+} from '@datatr-ux/uxlib';
 import ai from '@/types/AI';
 import NotebookStatusBadge from '../../_components/NotebookStatusBadge.component';
 import A from '@/components/links/A.component';
@@ -34,6 +42,63 @@ export const NotebookHeader = ({
   const [isStopOpen, setIsStopOpen] = useState(false);
   const isAutoRestart = notebook.spec.timeoutAutoRestart;
   const dateLocale = useDateFnsLocale();
+  const pendingCode =
+    notebook.status.info?.code ?? notebook.status.lastJobStatus.info?.code;
+  const isPendingState = ['STARTING', 'PENDING', 'QUEUED'].includes(
+    notebook.status.state ?? notebook.status.lastJobStatus.state ?? '',
+  );
+  const isJobPending =
+    ['JOB_PENDING', 'NOTEBOOK_PENDING'].includes(pendingCode ?? '') ||
+    isPendingState;
+  const timeoutAt = notebook.status.lastJobStatus.timeoutAt;
+  const timeoutAtDate = timeoutAt ? new Date(timeoutAt) : null;
+  const hasValidTimeoutAt =
+    !!timeoutAtDate && !Number.isNaN(timeoutAtDate.getTime());
+  const formattedTimeoutAt =
+    hasValidTimeoutAt && timeoutAtDate
+      ? format(timeoutAtDate, 'PPpp', {
+          locale: dateLocale,
+        })
+      : null;
+  let timeoutBadgeContent = null;
+  if (isJobPending) {
+    timeoutBadgeContent = (
+      <>
+        <Popover>
+          <PopoverTrigger>
+            <CircleAlert
+              className="size-3 shrink-0 cursor-pointer"
+              data-testid="notebook-pending-timeout-info-trigger"
+            />
+          </PopoverTrigger>
+          <PopoverContent className="text-sm max-w-xs">
+            <p>{t('pendingTimeoutHint')}</p>
+          </PopoverContent>
+        </Popover>
+        <span>{t('waitingResourceLabel')}</span>
+      </>
+    );
+  } else if (isAutoRestart && formattedTimeoutAt) {
+    timeoutBadgeContent = (
+      <>
+        <RefreshCcw className="size-3" />
+        <span>
+          {t('restartLabel')}
+          {formattedTimeoutAt}
+        </span>
+      </>
+    );
+  } else if (formattedTimeoutAt) {
+    timeoutBadgeContent = (
+      <>
+        <OctagonX className="size-3" />
+        <span>
+          {t('shutdownLabel')}
+          {formattedTimeoutAt}
+        </span>
+      </>
+    );
+  }
   return (
     <>
       <div
@@ -106,34 +171,10 @@ export const NotebookHeader = ({
                 </div>
               </A>
             </Button>
-            {notebook.status.lastJobStatus.timeoutAt && (
+            {(isJobPending || hasValidTimeoutAt) && (
               <Badge variant="outline">
                 <div className=" bottom-0 right-0 flex items-center gap-2 ">
-                  {isAutoRestart ? (
-                    <>
-                      <RefreshCcw className="size-3" />
-                      <span>
-                        {t('restartLabel')}
-                        {format(
-                          notebook.status.lastJobStatus.timeoutAt,
-                          'PPpp',
-                          { locale: dateLocale },
-                        )}
-                      </span>
-                    </>
-                  ) : (
-                    <>
-                      <OctagonX className="size-3" />
-                      <span>
-                        {t('shutdownLabel')}
-                        {format(
-                          notebook.status.lastJobStatus.timeoutAt,
-                          'PPpp',
-                          { locale: dateLocale },
-                        )}
-                      </span>
-                    </>
-                  )}
+                  {timeoutBadgeContent}
                 </div>
               </Badge>
             )}

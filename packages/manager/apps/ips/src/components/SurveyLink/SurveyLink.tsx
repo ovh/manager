@@ -43,7 +43,9 @@ export const SurveyLink: React.FC = () => {
         iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
       />
       <OdsTooltip triggerId="survey-link-tooltip-trigger" withArrow>
-        <OdsText className="p-2">{t('survey_link_tooltip')}</OdsText>
+        <OdsText className="max-w-[200px] p-2">
+          {t('survey_link_tooltip')}
+        </OdsText>
       </OdsTooltip>
     </>
   );

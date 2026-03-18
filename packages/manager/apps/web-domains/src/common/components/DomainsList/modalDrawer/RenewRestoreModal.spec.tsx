@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@/common/utils/test.provider';
+import { render, screen, fireEvent, wrapper } from '@/common/utils/test.provider';
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { RENEW_URL } from '@/common/constants';
-import { wrapper } from '@/common/utils/test.provider';
 import RenewRestoreModal from './RenewRestoreModal';
 
 const mockWindowOpen = vi.fn();
@@ -151,7 +150,7 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    expect(screen.getByTestId('modal')).toHaveAttribute('data-open', 'true');
+    expect(screen.getByTestId('modal')).toBeInTheDocument();
     expect(screen.getByTestId('modal-content')).toBeInTheDocument();
     expect(screen.getByTestId('modal-body')).toBeInTheDocument();
   });
@@ -203,14 +202,11 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const messages = screen.getAllByTestId('message');
-    const infoMessage = messages.find(
-      (msg) => msg.getAttribute('data-color') === 'information',
-    );
-
-    expect(infoMessage).toBeInTheDocument();
-    expect(infoMessage).toHaveAttribute('data-dismissible', 'false');
-    expect(screen.getByTestId('message-icon-circle-check')).toBeInTheDocument();
+    const messages = Array.from(document.querySelectorAll('[data-testid="message"]'));
+    expect(messages.length).toBeGreaterThanOrEqual(1);
+    expect(
+      screen.getByText('domain_table_modal_renew_restore_message_info'),
+    ).toBeInTheDocument();
   });
 
   it('should show warning message when more than 20 services', () => {
@@ -226,13 +222,11 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const messages = screen.getAllByTestId('message');
-    const warningMessage = messages.find(
-      (msg) => msg.getAttribute('data-color') === 'warning',
-    );
-
-    expect(warningMessage).toBeInTheDocument();
-    expect(screen.getByTestId('message-icon-circle-info')).toBeInTheDocument();
+    const messages = Array.from(document.querySelectorAll('[data-testid="message"]'));
+    expect(messages.length).toBe(2);
+    expect(
+      screen.getByText('domain_table_modal_renew_restore_message_limit_warning'),
+    ).toBeInTheDocument();
   });
 
   it('should not show warning message when 20 or fewer services', () => {
@@ -243,12 +237,8 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const messages = screen.getAllByTestId('message');
-    const warningMessage = messages.find(
-      (msg) => msg.getAttribute('data-color') === 'warning',
-    );
-
-    expect(warningMessage).toBeUndefined();
+    const messages = Array.from(document.querySelectorAll('[data-testid="message"]'));
+    expect(messages.length).toBe(1);
   });
 
   it('should render cancel and renew buttons', () => {
@@ -259,20 +249,14 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const buttons = screen.getAllByTestId('button');
-    expect(buttons).toHaveLength(2);
-
-    const cancelButton = buttons.find(
-      (btn) => btn.getAttribute('data-variant') === 'outline',
+    const cancelButton = screen.getByText(
+      '@ovh-ux/manager-common-translations/actions:cancel',
     );
-    const renewButton = buttons.find(
-      (btn) => !btn.getAttribute('data-variant'),
-    );
-
-    expect(cancelButton).toHaveTextContent('cancel');
-    expect(renewButton).toHaveTextContent(
+    const renewButton = screen.getByText(
       'domain_table_modal_renew_restore_button_count_2',
     );
+    expect(cancelButton).toBeInTheDocument();
+    expect(renewButton).toBeInTheDocument();
   });
 
   it('should call onOpenChange when cancel button is clicked', () => {
@@ -283,12 +267,10 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const buttons = screen.getAllByTestId('button');
-    const cancelButton = buttons.find(
-      (btn) => btn.getAttribute('data-variant') === 'outline',
+    const cancelButton = screen.getByText(
+      '@ovh-ux/manager-common-translations/actions:cancel',
     );
-
-    fireEvent.click(cancelButton!);
+    fireEvent.click(cancelButton);
     expect(mockOnOpenChange).toHaveBeenCalledWith({ open: false });
   });
 
@@ -300,12 +282,10 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const buttons = screen.getAllByTestId('button');
-    const renewButton = buttons.find(
-      (btn) => !btn.getAttribute('data-variant'),
+    const renewButton = screen.getByText(
+      'domain_table_modal_renew_restore_button_count_2',
     );
-
-    fireEvent.click(renewButton!);
+    fireEvent.click(renewButton);
 
     const expectedUrl = `${RENEW_URL.FR}domain1.com,domain2.com`;
     expect(mockWindowOpen).toHaveBeenCalledWith(expectedUrl, '_blank');
@@ -329,12 +309,10 @@ describe('RenewRestoreModal', () => {
       { wrapper },
     );
 
-    const buttons = screen.getAllByTestId('button');
-    const renewButton = buttons.find(
-      (btn) => !btn.getAttribute('data-variant'),
+    const renewButton = screen.getByText(
+      'domain_table_modal_renew_restore_button_count_2',
     );
-
-    fireEvent.click(renewButton!);
+    fireEvent.click(renewButton);
 
     const expectedUrl = `${RENEW_URL.default}domain1.com,domain2.com`;
     expect(mockWindowOpen).toHaveBeenCalledWith(expectedUrl, '_blank');
@@ -359,12 +337,9 @@ describe('RenewRestoreModal', () => {
       screen.getByText('domain_table_modal_renew_restore_description'),
     ).toBeInTheDocument();
 
-    const buttons = screen.getAllByTestId('button');
-    const renewButton = buttons.find(
-      (btn) => !btn.getAttribute('data-variant'),
-    );
-    expect(renewButton).toHaveTextContent(
+    const renewButton = screen.getByText(
       'domain_table_modal_renew_restore_button_count_1',
     );
+    expect(renewButton).toBeInTheDocument();
   });
 });

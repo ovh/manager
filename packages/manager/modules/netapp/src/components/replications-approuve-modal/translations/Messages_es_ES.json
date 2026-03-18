@@ -1,0 +1,9 @@
+{
+  "netapp_replications_modal_description_no_replication_selected": "No se ha seleccionado ninguna replicación. Por favor, seleccione una.",
+  "netapp_replications_modal_title_approuve": "Aceptar replicación",
+  "netapp_replications_modal_description_approuve": "¡Atención! Va a aceptar una replicación.",
+  "netapp_replications_modal_primary_label_approuve": "Sincronizar",
+  "netapp_replications_modal_secondary_label": "Cerrar",
+  "netapp_replications_approuve_error": "No se pudo aceptar la replicación del volumen {{ sourceShareID }}.",
+  "netapp_replications_approuve_success": "La replicación del volumen {{ sourceShareID }} se ha aceptado correctamente y se ha iniciado la sincronización."
+}

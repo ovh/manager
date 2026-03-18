@@ -3,6 +3,8 @@ import angular from 'angular';
 import '@uirouter/angularjs';
 import 'oclazyload';
 
+import './order.less';
+
 const moduleName = 'ovhManagerIpLbOrderLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(

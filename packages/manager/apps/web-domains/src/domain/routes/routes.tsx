@@ -3,6 +3,7 @@ import { Navigate, Outlet, Route, useParams } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { urls } from '@/domain/routes/routes.constant';
+import { urls as zoneUrls } from '@/zone/routes/routes.constant';
 import WebHostingOrderPage from '../pages/domainTabs/generalInformations/webhostingOrder';
 
 const LayoutPage = React.lazy(() => import('@/domain/pages/layout'));
@@ -18,8 +19,8 @@ const OnboardingPage = React.lazy(() =>
   import('@/domain/pages/onboarding/onboarding'),
 );
 
-const AnycastOrderPage = React.lazy(() =>
-  import('@/domain/pages/domainTabs/dns/anycastOrder'),
+const DnsOrderPage = React.lazy(() =>
+  import('@/common/pages/DnsOrder/DnsOrder.page'),
 );
 
 const DnsModifyPage = React.lazy(() =>
@@ -49,12 +50,24 @@ const ContactEditPage = React.lazy(() =>
 const DsRecordListingPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dsRecords/dsRecordsListing'),
 );
+// zone routes and pages
+const ZoneLayout = React.lazy(() => import('@/zone/pages/Layout'));
+const ZonePage = React.lazy(() => import('@/zone/pages/zone/Zone.page'));
+const HistoryPage = React.lazy(() =>
+  import('@/zone/pages/zone/history/History.page'),
+);
+const CompareZonesPage = React.lazy(() =>
+  import('@/zone/pages/zone/compare/CompareZones.page'),
+);
+const ModifyTextualRecordPage = React.lazy(() =>
+  import('@/zone/pages/zone/modify/ModifyTextualRecord.page'),
+);
 
 function RedirectToDefaultTab() {
   const { serviceName } = useParams<{ serviceName: string }>();
   return (
     <Navigate
-      to={urls.domainTabInformation.replace(':serviceName', serviceName)}
+      to={urls.domainTabInformation.replace(':serviceName', serviceName ?? '')}
       replace
     />
   );
@@ -103,7 +116,9 @@ export default (
           path={urls.domainTabInformation}
           Component={GeneralInformationsPage}
         />
-        <Route path={urls.domainTabZone} Component={Outlet} />
+        <Route path={urls.domainTabZone} Component={ZoneLayout}>
+          <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
+        </Route>
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
@@ -124,12 +139,19 @@ export default (
           Component={ContactEditPage}
         />
       </Route>
-      <Route path={urls.domainTabOrderAnycast} Component={AnycastOrderPage} />
+      <Route path={urls.domainTabOrderAnycast} Component={DnsOrderPage} />
       <Route
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
+      <Route path={zoneUrls.zoneActivate} Component={DnsOrderPage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
+      <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
+      <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
+      <Route
+        path={zoneUrls.zoneModifyTextualRecord}
+        Component={ModifyTextualRecordPage}
+      />
       <Route
         path={urls.domainOnboarding}
         Component={OnboardingPage}

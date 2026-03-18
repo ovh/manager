@@ -3,6 +3,86 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.0...@ovh-ux/manager-web-domains-app@1.16.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1225] ([0b17052](https://github.com/ovh/manager/commit/0b1705288c31cbda8c826343b551eb6a62ddd602))
+
+
+
+
+
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.15.0...@ovh-ux/manager-web-domains-app@1.16.0) (2026-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1213] ([34ff84b](https://github.com/ovh/manager/commit/34ff84b7399ecca9e33becef2f2ebf21380ee81e))
+* **web-domains:** add tooltip on specific case for DNSSEC ([9efdaa5](https://github.com/ovh/manager/commit/9efdaa5dee68af252f9f9f8df16f36223975714c)), closes [#INC0196463](https://github.com/ovh/manager/issues/INC0196463)
+* **web-domains:** allow underscore labels in NS and CNAME target validation ([b9014dc](https://github.com/ovh/manager/commit/b9014dc9813193a325c13119c65be28c70dd8d67))
+* **web-domains:** auto-append trailing dot on MX record target ([de11f81](https://github.com/ovh/manager/commit/de11f81cfc5fc5a7e0bd90e3322f5553e48d25bc))
+* **web-domains:** improve IAM handling ([1f7c4b5](https://github.com/ovh/manager/commit/1f7c4b5c0644e2ed618d0f9be230fed06aa83e31)), closes [#INC0196628](https://github.com/ovh/manager/issues/INC0196628)
+* **web-domains:** improve IAM handling ([e55c459](https://github.com/ovh/manager/commit/e55c459cebe3eac152ee8ad8c9332ac32f580443)), closes [#INC0196628](https://github.com/ovh/manager/issues/INC0196628)
+* **web-domains:** parse SPF field for modification ([6fbd58e](https://github.com/ovh/manager/commit/6fbd58e09515263a89213f2ee759c1adbe23b4e1)), closes [#INC0196663](https://github.com/ovh/manager/issues/INC0196663)
+* **web-domains:** use past tense in anycast terminate/restore success notification ([d0ab074](https://github.com/ovh/manager/commit/d0ab074f0f28764969bf60e3477519f10b9c92b7))
+* **web-domains:** use regular spaces in record preview instead of EN SPACE characters ([4589bea](https://github.com/ovh/manager/commit/4589bead72f8c423685c4a3c1161058950a1fd04))
+
+
+### Features
+
+* **web-domains:** add live record preview at the bottom of zone record forms ([ed43ec0](https://github.com/ovh/manager/commit/ed43ec0a3ef78ead6c62b18b4d06074e00e5150b))
+
+
+
+
+
+# [1.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.14.0...@ovh-ux/manager-web-domains-app@1.15.0) (2026-03-06)
+
+
+### Features
+
+* **web-domains:** fix read only mod ([f217bb4](https://github.com/ovh/manager/commit/f217bb4eeed7f3a99f54701ce8c8edf1868ac828)), closes [#PUWEBPT-128](https://github.com/ovh/manager/issues/PUWEBPT-128)
+
+
+
+
+
+# [1.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.13.1...@ovh-ux/manager-web-domains-app@1.14.0) (2026-03-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1200] ([e451ce8](https://github.com/ovh/manager/commit/e451ce813b9337d0faba91e5a76d4ae30039c2d6))
+* **web-domains:** fix issue on holder edition + add tests ([7617844](https://github.com/ovh/manager/commit/7617844f11f4acde994dd96bd84520804a6503d7)), closes [#INC0194107](https://github.com/ovh/manager/issues/INC0194107)
+* **web-domains:** fix TypeScript errors in BaseLayout message prop and serviceDetail types ([f76eaa3](https://github.com/ovh/manager/commit/f76eaa3c75f0d856e2abff967141da76d1b8b6d1))
+* **web-domains:** update domain translation wording ([cfff575](https://github.com/ovh/manager/commit/cfff575c18500d131c03b23519c09f7143102860))
+
+
+### Features
+
+* **web-domains:** add fa for zone menu ([66b1431](https://github.com/ovh/manager/commit/66b143161133737a2bcd9ef9693aec793350ae57)), closes [#PUWEBPT-128](https://github.com/ovh/manager/issues/PUWEBPT-128)
+* **web-domains:** add zone DNS history, comparison, and restore ([18af2d3](https://github.com/ovh/manager/commit/18af2d34e7baf8d011799d36318f3e0a97333574))
+* **web-domains:** add zone DNS page with datagrid, routing, and record CRUD ([72d76de](https://github.com/ovh/manager/commit/72d76dea89baead914bc6460520d9bc5dda24b41))
+* **web-domains:** add zone DNS record forms and configuration ([0e8749e](https://github.com/ovh/manager/commit/0e8749efb790823461b4199fa9ab8d99e3c7f45f))
+* **web-domains:** add zone DNS reset drawer ([2ce3817](https://github.com/ovh/manager/commit/2ce38171aa41b7d464a72507b7098d873f13d38a))
+* **web-domains:** add zone DNS textual import/export and TTL modification ([8c760fb](https://github.com/ovh/manager/commit/8c760fb8680b9f8767b3a856418578d73fa44826))
+* **web-domains:** add zone DNS translations ([2ae28be](https://github.com/ovh/manager/commit/2ae28bebe37bd5cb37025401a1e84ac446276846))
+* **web-domains:** dynhost should not be accessible other than EU ([5b02350](https://github.com/ovh/manager/commit/5b02350a688790af422f32d04257a2d27ed0ecd4)), closes [#DCE-189](https://github.com/ovh/manager/issues/DCE-189)
+
+
+
+
+
+## [1.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.13.0...@ovh-ux/manager-web-domains-app@1.13.1) (2026-03-04)
+
+**Note:** Version bump only for package @ovh-ux/manager-web-domains-app
+
+
+
+
+
 # [1.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.12.1...@ovh-ux/manager-web-domains-app@1.13.0) (2026-02-27)
 
 

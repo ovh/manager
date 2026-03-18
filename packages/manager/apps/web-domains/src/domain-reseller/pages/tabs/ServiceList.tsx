@@ -7,7 +7,7 @@ import {
 import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact } from '@/common/utils/utils';
 import AssociateModal from '@/domain-reseller/components/Modal/AssociateModal';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import { useMemo, useState } from 'react';
 
 export default function DomainResellerDomainsList() {

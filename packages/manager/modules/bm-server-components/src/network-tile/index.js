@@ -7,6 +7,8 @@ import ovhManagerCore from '@ovh-ux/manager-core';
 
 import component from './component';
 
+import './styles.scss';
+
 const moduleName = 'ovhManagerBmServerComponentsNetworkTileComponent';
 
 angular

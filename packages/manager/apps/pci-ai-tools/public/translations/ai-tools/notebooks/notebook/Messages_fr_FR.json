@@ -19,16 +19,16 @@
   "startNotebookButtonConfirm": "Démarrer",
   "startNotebookToastSuccessDescription": "Le notebook {{name}} a été démarré",
   "restartNotebookTitle": "Redémarrer le notebook",
-  "restartNotebookDescription": "Êtes-vous sûr de vouloir redémarrer le notebook {{name}} ? Une fois redémarré, il restera actif pendant 7 jours supplémentaires à compter du jour du redémarrage.",
+  "restartNotebookDescription": "Êtes-vous sûr de vouloir redémarrer le notebook {{name}} ? Une fois redémarré, il restera actif pendant 7 jours de fonctionnement consécutifs supplémentaires à compter du jour du redémarrage.",
   "restartNotebookButtonConfirm": "Redémarrer",
   "restartNotebookToastSuccessDescription": "Le notebook {{name}} a été redémarré",
   "restartNotebookToastSuccess": "Le notebook {{name}} a été redémarré",
   "enableAutoRestartTitle": "Activer le redémarrage automatique",
-  "enableAutoRestartDescription": "Êtes-vous sûr de vouloir activer le redémarrage automatique pour le notebook {{name}} ? Une fois cette option activée, le notebook redémarrera automatiquement tous les 7 jours.",
+  "enableAutoRestartDescription": "Êtes-vous sûr de vouloir activer le redémarrage automatique pour le notebook {{name}} ? Une fois cette option activée, le notebook redémarrera automatiquement tous les 7 jours de fonctionnement consécutifs.",
   "enableAutoRestartButtonConfirm": "Activer",
   "enableAutoRestartToastSuccessDescription": "Le redémarrage automatique a été activé pour le notebook {{name}}",
   "disableAutoRestartTitle": "Désactiver le redémarrage automatique",
-  "disableAutoRestartDescription": "Êtes-vous sûr de vouloir désactiver le redémarrage automatique pour le notebook {{name}} ? Une fois cette option désactivée, le notebook ne redémarrera plus automatiquement tous les 7 jours. ",
+  "disableAutoRestartDescription": "Êtes-vous sûr de vouloir désactiver le redémarrage automatique pour le notebook {{name}} ? Une fois cette option désactivée, le notebook ne redémarrera plus automatiquement tous les 7 jours de fonctionnement consécutifs. ",
   "disableAutoRestartButtonConfirm": "Désactiver",
   "disableAutoRestartToastSuccessDescription": "Le redémarrage automatique a été désactivé pour le notebook {{name}}",
   "shutdownLabel": "Arrêt le ",
@@ -45,5 +45,7 @@
   "stopNotebookDescription3": "Nous restaurerons votre Espace de Travail et réallouerons des ressources de calculs.",
   "stopNotebookConfirmation": "Etes-vous sur de vouloir arrêter le notebook {{name}} ?",
   "stopNotebookButtonConfirm": "Arrêter",
-  "stopNotebookToastSuccessDescription": "Le notebook {{name}} a été arrêté"
+  "stopNotebookToastSuccessDescription": "Le notebook {{name}} a été arrêté",
+  "waitingResourceLabel": "En attente d'une ressource disponible",
+  "pendingTimeoutHint": "La date d'expiration sera définie lorsque le notebook sera en cours d'exécution."
 }

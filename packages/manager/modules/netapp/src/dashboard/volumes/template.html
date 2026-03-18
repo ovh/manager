@@ -16,6 +16,16 @@
     >
         <span data-translate="netapp_volumes_create_volume"></span>
     </oui-button>
+    <oui-button
+        aria-label="{{:: 'netapp_volumes_button_replications' | translate }}"
+        data-on-click="$ctrl.goToCreateReplications()"
+        data-icon-left="oui-icon oui-icon-arrow-transfer"
+        class="mr-2"
+        ng-if="!$ctrl.isNetworkAvailable"
+        data-disabled="$ctrl.hasAvailableReplicationsServices && !$ctrl.NetAppDashboardService.replicationsSelectedVolumes.length"
+    >
+        <span data-translate="netapp_volumes_button_replications"></span>
+    </oui-button>
 
     <oui-datagrid
         class="mt-2"
@@ -23,6 +33,14 @@
         data-row-loader="$ctrl.loadVolumeDetail($row)"
         data-customizable
     >
+        <oui-datagrid-column data-prevent-customization>
+            <oui-checkbox
+                data-ng-if="!$ctrl.isNetworkAvailable"
+                data-model="$ctrl.selectedReplicationsCheckboxes[$row.id]"
+                data-on-change="$ctrl.handleCheckboxChange({volumeId: $row.id, checked: modelValue})"
+                data-disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS"
+            ></oui-checkbox>
+        </oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'netapp_volumes_id' | translate"
             data-property="id"
@@ -34,15 +52,8 @@
                 data-ng-bind="$row.id"
                 data-ng-click="$ctrl.goToVolumeDetails($row)"
             ></a>
-            <span
-                data-ng-if="!$ctrl.isDashboardAvailable"
-                data-ng-bind="$row.id"
-            ></span>
+            <p data-ng-bind="$row.name"></p>
         </oui-datagrid-column>
-        <oui-datagrid-column
-            data-title=":: 'netapp_volumes_name' | translate"
-            data-property="name"
-        ></oui-datagrid-column>
         <oui-datagrid-column
             data-title=":: 'netapp_volumes_description' | translate"
             data-property="description"
@@ -66,7 +77,7 @@
             ></oui-clipboard>
             <i
                 data-ng-if="!$row.mountPath"
-                translate="netapp_volumes_mount_path_not_configurated"
+                data-translate="netapp_volumes_mount_path_not_configurated"
             ></i>
         </oui-datagrid-column>
         <oui-datagrid-column
@@ -86,6 +97,15 @@
         <oui-action-menu compact="true" data-ng-if="$ctrl.canEditVolumes">
             <oui-action-menu-item data-ng-click="$ctrl.goToVolumeDetails($row)">
                 <span data-translate="netapp_volumes_edit_volume"></span>
+            </oui-action-menu-item>
+            <oui-action-menu-item
+                data-ng-if="!$ctrl.isNetworkAvailable"
+                data-disabled="$row.status === $ctrl.AWAITING_REPLICATION_STATUS"
+                data-on-click="$ctrl.goToSingleReplication($row.id)"
+            >
+                <span
+                    data-translate="netapp_volumes_edit_create_single_replication"
+                ></span>
             </oui-action-menu-item>
             <oui-action-menu-item
                 data-on-click="$ctrl.goToCreateSnapshot($row)"

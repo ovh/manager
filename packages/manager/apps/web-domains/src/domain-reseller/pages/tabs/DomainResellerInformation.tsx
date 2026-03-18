@@ -17,7 +17,7 @@ import { useGetServiceInformationByRoutes } from '@/common/hooks/data/query';
 import { findContact, handleOrderClick } from '@/common/utils/utils';
 import GeneralInformation from '@/domain-reseller/components/Dashboard/GeneralInformation';
 import Subscription from '@/domain-reseller/components/Dashboard/Subscription';
-import Loading from '@/domain/components/Loading/Loading';
+import Loading from '@/common/components/Loading/Loading';
 import { getOrderURL } from '@ovh-ux/manager-module-order';
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
 import { useGetDomainsListByResellerNicAdmin } from '@/domain-reseller/hooks/data/query';

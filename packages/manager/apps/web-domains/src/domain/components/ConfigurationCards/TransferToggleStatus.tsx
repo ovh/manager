@@ -52,7 +52,7 @@ export default function TransferToggleStatus({
   );
 
   const { data: dnsZoneIAMRessources } = useGetIAMResource(
-    domainResource.id,
+    domainResource?.id,
     'domain',
   );
   const urn = dnsZoneIAMRessources?.[0]?.urn;

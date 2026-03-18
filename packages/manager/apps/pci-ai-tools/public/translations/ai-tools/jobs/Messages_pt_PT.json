@@ -15,5 +15,7 @@
   "shutdownLabel": "Interrupção a {{timeout}}",
   "restartLabel": "Reinicialização a {{timeout}}",
   "timeOutLabel": "Expiração",
-  "tableActionClone": "Clonar o Job"
+  "tableActionClone": "Clonar o Job",
+  "waitingResourceLabel": "Aguardando um recurso disponível",
+  "pendingTimeoutHint": "A data de expiração será definida quando o trabalho estiver em execução."
 }

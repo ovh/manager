@@ -114,5 +114,7 @@
   "survey_link": "¿Le gusta?",
   "survey_link_tooltip": "¿Le gusta esta página? ¡Envíenos sus comentarios!",
   "listingColumnsIpGameFirewallConfigured": "Configurada",
-  "listingColumnsIpGameFirewallConfiguredTooltip": "El Game Firewall está configurado correctamente. Haga clic aquí para volver a configurarlo."
+  "listingColumnsIpGameFirewallConfiguredTooltip": "El Game Firewall está configurado correctamente. Haga clic aquí para volver a configurarlo.",
+  "listingNoResultFoundIpv6": "Ningún resultado (Hacer clic <Link>aquí.</Link> para configurar un reverse DNS para que tu IP esté listada)",
+  "intervention_banner": "Estimado usuario·a, En el marco de la mejora de nuestros servicios, se prevé una <b>actualización</b> de la funcionalidad <b>Mac virtual</b> a partir del <b>18 de marzo de 2026</b>.<br>Para evitar cualquier impacto en su servicio, le recomendamos que se asegure de la <b>coherencia entre el Mac virtual declarado en su espacio de cliente y la configuración de su servidor</b>.<br>En caso de incoherencia, le agradecemos que <a href=\"{{link}}\" target=\"_blank\" rel=\"noopener noreferrer\"><b>actualice</b></a> la información antes del <b>18 de marzo de 2026</b>.<br>Según su configuración, se le podrá enviar un correo electrónico con indicaciones complementarias."
 }
