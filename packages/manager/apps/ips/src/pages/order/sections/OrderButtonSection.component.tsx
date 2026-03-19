@@ -15,6 +15,7 @@ import { useOrderURL } from '@ovh-ux/manager-module-order';
 import {
   ButtonType,
   PageLocation,
+  ShellContext,
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
@@ -39,6 +40,7 @@ import {
 } from '@ovh-ux/manager-network-common';
 
 export const OrderButtonSection: React.FC = () => {
+  const { environment } = React.useContext(ShellContext);
   const {
     ipVersion,
     selectedService,
@@ -66,6 +68,8 @@ export const OrderButtonSection: React.FC = () => {
   });
   const orderBaseUrl = useOrderURL('express_review_base');
   const { trackClick } = useOvhTracking();
+
+  const isUsUser = environment.user.ovhSubsidiary === 'US';
 
   return (
     <div className="flex gap-4">
@@ -101,7 +105,7 @@ export const OrderButtonSection: React.FC = () => {
           let url = `${orderBaseUrl}?products=~(${settings})`;
 
           // Add bandwidth to order if it's an upgrade or downgrade to non-default bandwidth
-          if (selectedServiceType === ServiceType.vrack) {
+          if (selectedServiceType === ServiceType.vrack && !isUsUser) {
             try {
               const upgradedBandwidth = await getUpgradedBandwidth();
 

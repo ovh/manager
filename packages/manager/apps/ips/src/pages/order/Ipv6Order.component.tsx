@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { IpVersion, ServiceType } from '@/types';
 
@@ -11,6 +12,7 @@ import { ServiceSelectionSection } from './sections/ServiceSelectionSection.comp
 import { VrackBandwidthSection } from './sections/VrackBandwidthSection.component';
 
 export const Ipv6Order: React.FC = () => {
+  const { environment } = React.useContext(ShellContext);
   const {
     ipVersion,
     selectedService,
@@ -19,6 +21,8 @@ export const Ipv6Order: React.FC = () => {
     selectedOptions,
     addDisabledService,
   } = React.useContext(OrderContext);
+
+  const isUsUser = environment.user.ovhSubsidiary === 'US';
 
   const { serviceStatus } = useCheckServiceAvailability({
     serviceName: selectedService,
@@ -31,6 +35,7 @@ export const Ipv6Order: React.FC = () => {
     service: !!selectedOptions && selectedOptions.length > 0,
     region: !!selectedService && serviceStatus === 'ok',
     bandwidth:
+      !isUsUser &&
       !!selectedService &&
       serviceStatus === 'ok' &&
       selectedServiceType === ServiceType.vrack &&
