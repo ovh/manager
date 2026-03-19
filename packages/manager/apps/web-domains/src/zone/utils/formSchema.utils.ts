@@ -451,13 +451,15 @@ function spfFieldSchema(key: string, s: FormSchemas): z.ZodTypeAny {
   if (key === 'spf_policy') {
     return z.enum(['~all', '-all', '?all', '+all']).default('~all');
   }
-  // Include domains — each non-empty line must be a valid hostname
+  // Include domains — each non-empty line must be a valid hostname.
+  // HOSTNAME_UNDERSCORE_REGEX is used here because SPF include domains commonly
+  // start with an underscore (e.g. _spf.google.com, _spf.mailchimp.com).
   if (key === 'spf_includesRaw') {
     return z
       .string()
       .default('')
       .refine(
-        (v) => !v || parseSpfLines(v).every((line) => HOSTNAME_REGEX.test(line)),
+        (v) => !v || parseSpfLines(v).every((line) => HOSTNAME_UNDERSCORE_REGEX.test(line)),
         { message: s.zone('zone_page_form_spf_include_invalid') },
       );
   }
