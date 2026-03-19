@@ -43,6 +43,7 @@ export const Ipv4Order: React.FC = () => {
     serviceType: selectedServiceType,
   });
 
+  const isUsUser = environment.user.ovhSubsidiary === 'US';
   const computedRegion = region ?? selectedRegion;
 
   const isOrganisationSectionVisible =
@@ -68,6 +69,7 @@ export const Ipv4Order: React.FC = () => {
       serviceStatus === 'ok' &&
       [ServiceType.ipParking, ServiceType.vrack].includes(selectedServiceType),
     bandwidth:
+      !isUsUser &&
       !!selectedService &&
       serviceStatus === 'ok' &&
       selectedServiceType === ServiceType.vrack &&
