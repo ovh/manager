@@ -1,25 +1,28 @@
 import {
   DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TSnapshot } from '@/api/hook/useConsumption';
 import TooltipIcon from './TooltipIcon.component';
 
 export function useSnapshotListColumns() {
   const { t } = useTranslation('consumption/hourly-instance/snapshot');
-  const { currency } = useContext(ShellContext).environment.getUser();
 
   const { translateMicroRegion } = useTranslatedMicroRegions();
+
+  const { getTextPrice } = useCatalogPrice(2);
 
   const getSnapshotPriceInfoTooltip = (snapshot: TSnapshot) =>
     `${t('cpbc_snapshot_col_usage_info_part1')} ${t(
       'cpbc_snapshot_col_usage_info_part2',
       {
-        amount: (snapshot.instance?.quantity?.value || 0).toFixed(2),
+        amount: getTextPrice(
+          priceToUcent(snapshot.instance?.quantity?.value || 0),
+        ),
       },
     )}`;
 
@@ -43,7 +46,7 @@ export function useSnapshotListColumns() {
       cell: (row: TSnapshot) => (
         <div className="flex gap-2">
           <DataGridTextCell>
-            {`${row?.totalPrice.toFixed(2)} ${currency.symbol}`}
+            {getTextPrice(priceToUcent(row?.totalPrice || 0))}
           </DataGridTextCell>
           <TooltipIcon
             icon={ODS_ICON_NAME.HELP}

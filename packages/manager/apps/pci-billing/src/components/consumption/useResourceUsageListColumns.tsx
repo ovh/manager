@@ -1,9 +1,9 @@
 import {
   DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { COLD_ARCHIVE_FEE_TYPES } from '@/constants';
 import { TQuantity } from '@/api/data/consumption';
@@ -30,8 +30,8 @@ export function useResourceUsageListColumns({
   disabledColumns,
 }: { disabledColumns?: ResourcesColumn[] } = {}) {
   const { t } = useTranslation('consumption/hourly-instance/resource-usage');
-  const { currency } = useContext(ShellContext).environment.getUser();
   const { translateMicroRegion } = useTranslatedMicroRegions();
+  const { getTextPrice } = useCatalogPrice(2);
 
   return [
     {
@@ -71,7 +71,7 @@ export function useResourceUsageListColumns({
       id: ResourcesColumn.price,
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
-          {row?.totalPrice.toFixed(2)} {currency.symbol}
+          {getTextPrice(priceToUcent(row?.totalPrice ?? 0))}
         </DataGridTextCell>
       ),
       label: t('pci_billing_private_registry_price'),

@@ -1,10 +1,10 @@
 import {
   DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import TooltipIcon from './TooltipIcon.component';
 import { TStorage } from '@/api/hook/useConsumption';
@@ -12,7 +12,7 @@ import { TStorage } from '@/api/hook/useConsumption';
 export function useArchiveStorageListColumns() {
   const { t } = useTranslation('consumption/hourly-instance/archive-storage');
 
-  const { currency } = useContext(ShellContext).environment.getUser();
+  const { getTextPrice } = useCatalogPrice(2);
   const { translateMicroRegion } = useTranslatedMicroRegions();
 
   const getStoragePriceInfoTooltip = (storage: TStorage) =>
@@ -52,7 +52,7 @@ export function useArchiveStorageListColumns() {
       cell: (row: TStorage) => (
         <div className="flex gap-2">
           <DataGridTextCell>
-            {`${(row?.stored?.totalPrice || 0).toFixed(2)} ${currency.symbol}`}
+            {getTextPrice(priceToUcent(row?.stored?.totalPrice ?? 0))}
           </DataGridTextCell>
           <TooltipIcon
             icon={ODS_ICON_NAME.HELP}
@@ -67,9 +67,9 @@ export function useArchiveStorageListColumns() {
       cell: (row: TStorage) => (
         <div className="flex gap-2">
           <DataGridTextCell>
-            {`${(row?.incomingBandwidth?.totalPrice || 0).toFixed(2)} ${
-              currency.symbol
-            }`}
+            {getTextPrice(
+              priceToUcent(row?.incomingBandwidth?.totalPrice ?? 0),
+            )}
           </DataGridTextCell>
           <TooltipIcon
             icon={ODS_ICON_NAME.HELP}
@@ -84,9 +84,9 @@ export function useArchiveStorageListColumns() {
       cell: (row: TStorage) => (
         <div className="flex gap-2">
           <DataGridTextCell>
-            {`${(row?.outgoingBandwidth?.totalPrice || 0).toFixed(2)} ${
-              currency.symbol
-            }`}
+            {getTextPrice(
+              priceToUcent(row?.outgoingBandwidth?.totalPrice ?? 0),
+            )}
           </DataGridTextCell>
           <TooltipIcon
             icon={ODS_ICON_NAME.HELP}

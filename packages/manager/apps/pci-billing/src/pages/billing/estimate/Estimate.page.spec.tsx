@@ -88,11 +88,6 @@ describe('EstimatePage', () => {
 
     const call = (EstimatePart as Mock).mock.lastCall?.[0] as TEstimateProps;
 
-    expect(call.currency).toEqual({
-      symbol: '€',
-      code: 'EUR',
-      format: '€0,0.00',
-    });
     expect(call.totalHourlyPrice).toBe(2);
     expect(call.totalMonthlyPrice).toBe(2);
     expect(call.totalPrice).toBe(4);

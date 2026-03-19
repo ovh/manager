@@ -21,9 +21,7 @@ exports[`EstimatePart > Prices rae not pending > should render the component if 
         estimate | cpbe_estimate_summary_header
          
         <strong>
-          765.00
-           
-          €
+          76500000000
         </strong>
       </osds-text>
     </p>
@@ -78,9 +76,7 @@ exports[`EstimatePart > Prices rae not pending > should render the component if 
         estimate | cpbe_estimate_summary_header
          
         <strong>
-          765.00
-           
-          €
+          76500000000
         </strong>
       </osds-text>
     </p>
@@ -135,9 +131,7 @@ exports[`EstimatePart > should render the component if is pending 1`] = `
         estimate | cpbe_estimate_summary_header
          
         <strong>
-          765.00
-           
-          €
+          76500000000
         </strong>
       </osds-text>
     </p>
