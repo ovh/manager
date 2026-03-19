@@ -11,7 +11,6 @@ import {
   AT_INTERNET_LEVEL2,
   AT_INTERNET_WEBSITE,
 } from './constants';
-import { loadManagerTMS } from './manager-tms';
 import { capitalize, debug, mapValues } from './utils';
 
 import initMixCommander from './mix-commander';
@@ -60,8 +59,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   private tag: any = null;
 
   private trackQueue: Array<IOvhAtInternetTrack> = [];
-
-  private afterSendEventHook: CallableFunction = null;
 
   getGenericTrackingData(data: LegacyTrackingData): GenericTrackingData {
     const params = {
@@ -193,28 +190,8 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   }
 
   initVisitorId() {
-    return loadManagerTMS().then(({ getVisitorId, updateVisitorId }) => {
-      const id = getVisitorId();
-      debug(`tracking tms visitor id = '${id}'`);
-      if (this.shouldUsePianoAnalytics()) {
-        if (id) {
-          window.pa.setVisitorId(id);
-        } else {
-          this.afterSendEventHook = () => {
-            updateVisitorId(window.pa.getVisitorId());
-            this.afterSendEventHook = null;
-          };
-        }
-      } else if (window.ATInternet) {
-        if (id) {
-          this.tag.clientSideUserId.set(id);
-        } else {
-          this.tag.clientSideUserId.get();
-          this.tag.clientSideUserId.store();
-          updateVisitorId(this.tag.clientSideUserId.get());
-        }
-      }
-    });
+    // Legacy visitor id synchronization is intentionally disabled.
+    return Promise.resolve();
   }
 
   init(withConsent: boolean): Promise<void> {
@@ -291,9 +268,6 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
       window.pa.sendEvent(type, trackingData);
     } else if (window.ATInternet) {
       this.tag.events.send(type, filterTrackingData(data));
-    }
-    if (this.afterSendEventHook) {
-      this.afterSendEventHook();
     }
   }
 

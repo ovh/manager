@@ -153,7 +153,7 @@ Currently, it handles the state of the account sidebar, notifications sidebar an
 - `isMenuSidebarVisible() => boolean`: Returns if the left Sidebar navigation menu is displayed.
 - `showMenuSidebar() => void`: Shows the PNR menu.
 - `onRequestClientSidebarOpen(callback: CallableFunction) => void`: adds a custom callback that will be trigerred whenever the sidebar is opened.
-- `getUserIdCookie() => string`): Returns the latest value of `USER_ID` cookie.
+- `getUserIdCookie() => string`): Returns the latest value of the SSO session `USERID` cookie.
 - `getSSOAuthModalMode(oldUserID: string) => string`): Returns the mode in which the SSOAuth Modal is in. Three possible values: 'CONNECTED_TO_DISCONNECTED', 'DISCONNECTED_TO_CONNECTED', 'CONNECTED_TO_OTHER'.
 
 __Preloader__:
