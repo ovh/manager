@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.2...@ovh-ux/manager-web-domains-app@1.16.3) (2026-03-19)
+
+
+### Bug Fixes
+
+* **web-domains:** fix regex to allow _ on spf domain fields ([750cd5b](https://github.com/ovh/manager/commit/750cd5bb997900c195762bc58288754b11ea5278)), closes [#DCE-194](https://github.com/ovh/manager/issues/DCE-194)
+
+
+
+
+
 ## [1.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.1...@ovh-ux/manager-web-domains-app@1.16.2) (2026-03-18)
 
 
