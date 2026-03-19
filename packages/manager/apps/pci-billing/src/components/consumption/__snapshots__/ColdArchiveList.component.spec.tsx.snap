@@ -196,7 +196,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    0.00 undefined
+                    0
                   </osds-text>
                 </td>
               </tr>
@@ -242,7 +242,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    0.00 undefined
+                    0
                   </osds-text>
                 </td>
               </tr>
@@ -301,7 +301,7 @@ exports[`ColdArchiveList > matches snapshot with existing coldArchives 1`] = `
                     color="text"
                     level="body"
                   >
-                    0.00 undefined
+                    0
                   </osds-text>
                 </td>
               </tr>

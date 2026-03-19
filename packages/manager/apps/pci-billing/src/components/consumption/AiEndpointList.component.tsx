@@ -1,6 +1,8 @@
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import {
+  DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { TResourceUsage } from '@/api/hook/useConsumption';
 import CommonUsageList from './CommonUsageList';
@@ -13,7 +15,7 @@ export default function AiEndpointList({
   resourcesUsage,
 }: Readonly<TAiEndpointListProps>) {
   const { t } = useTranslation('consumption/hourly-instance/resource-usage');
-  const { currency } = useContext(ShellContext).environment.getUser();
+  const { getTextPrice } = useCatalogPrice(2);
 
   const columns = [
     {
@@ -34,7 +36,7 @@ export default function AiEndpointList({
       id: 'price',
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
-          {row.totalPrice.toFixed(2)} {currency.symbol}
+          {getTextPrice(priceToUcent(row.totalPrice ?? 0))}
         </DataGridTextCell>
       ),
       label: t('pci_billing_private_registry_price'),

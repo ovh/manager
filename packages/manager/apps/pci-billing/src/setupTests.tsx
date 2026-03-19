@@ -51,6 +51,12 @@ vi.mock('@ovh-ux/manager-react-components', async () => {
       addSuccess: vi.fn(),
       clearNotifications: vi.fn(),
     }),
+    useCatalogPrice: () => ({
+      getTextPrice: (price: number) => `${price}`,
+      getFormattedCatalogPrice: (price: number) => `${price}`,
+      getFormattedHourlyCatalogPrice: (price: number) => `${price}`,
+      getFormattedMonthlyCatalogPrice: (price: number) => `${price}`,
+    }),
   };
 });
 

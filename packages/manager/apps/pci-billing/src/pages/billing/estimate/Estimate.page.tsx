@@ -65,7 +65,6 @@ export default function Estimate(): JSX.Element {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <EstimatePart
-        currency={currency}
         totalPrice={forecastPrices.totalPrice}
         totalHourlyPrice={forecastPrices.totalHourlyPrice}
         totalMonthlyPrice={forecastPrices.totalMonthlyPrice}

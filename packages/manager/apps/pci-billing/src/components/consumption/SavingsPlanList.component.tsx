@@ -10,10 +10,10 @@ import { TFunction } from 'i18next';
 import {
   Datagrid,
   DataGridTextCell,
+  useCatalogPrice,
   useDataGrid,
 } from '@ovh-ux/manager-react-components';
-import { useContext, useMemo } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { TSavingsPlan } from '@/api/hook/useConsumption';
@@ -23,9 +23,9 @@ import { useServiceId } from '@/hooks/useServiceId';
 
 const getColumns = ({
   t,
-  currency,
+  getTextPrice,
 }: {
-  currency: Currency;
+  getTextPrice: (nb: number) => string;
   t: TFunction;
 }): {
   id: keyof (TSavingsPlan & { displayName: string });
@@ -52,9 +52,9 @@ const getColumns = ({
   {
     id: 'totalPrice',
     cell: (row) => (
-      <DataGridTextCell>{`${(row.totalPrice || 0).toFixed(2)} ${
-        currency.symbol
-      }`}</DataGridTextCell>
+      <DataGridTextCell>
+        {getTextPrice(row.totalPrice * 100000000)}
+      </DataGridTextCell>
     ),
     label: t('cpbc_savings_plan_col_price'),
   },
@@ -68,15 +68,18 @@ const SavingsPlanList = ({
   const { pagination, setPagination } = useDataGrid();
 
   const { t } = useTranslation('consumption/monthly-instance');
-  const { currency } = useContext(ShellContext).environment.getUser();
   const { projectId } = useParams<{ projectId: string }>();
   const { data: serviceId } = useServiceId(projectId || '');
   const { enrichedSavingsPlans, isLoading } = useSavingsPlanDetails(
     serviceId?.toString() || '',
     monthlySavingsPlanList,
   );
+  const { getTextPrice } = useCatalogPrice(2);
 
-  const columns = useMemo(() => getColumns({ t, currency }), [t, currency]);
+  const columns = useMemo(() => getColumns({ t, getTextPrice }), [
+    t,
+    getTextPrice,
+  ]);
 
   const paginatedData = useMemo(
     () => paginateResults(enrichedSavingsPlans, pagination),

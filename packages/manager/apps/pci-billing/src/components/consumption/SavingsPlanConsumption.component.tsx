@@ -2,8 +2,10 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsAccordion, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  priceToUcent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { TConsumptionDetail } from '@/api/hook/useConsumption';
 import SavingsPlanList from './SavingsPlanList.component';
 
@@ -15,11 +17,11 @@ export default function SavingsPlanConsumption({
   consumption,
 }: Readonly<SavingsPlanConsumptionProps>) {
   const { t } = useTranslation('consumption/monthly-instance');
-  const { currency } = useContext(ShellContext).environment.getUser();
+  const { getTextPrice } = useCatalogPrice(2);
 
-  const svpTotalPrice = `(${consumption?.totals.monthly?.savingsPlan?.toFixed(
-    2,
-  )} ${currency.symbol})`;
+  const svpTotalPrice = `(${getTextPrice(
+    priceToUcent(consumption?.totals.monthly?.savingsPlan ?? 0),
+  )})`;
 
   return (
     <OsdsAccordion>

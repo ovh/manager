@@ -1,8 +1,5 @@
-import {
-  DataGridTextCell,
-  DateFormat,
-  useFormattedDate,
-} from '@ovh-ux/manager-react-components';
+import { DataGridTextCell } from '@ovh-ux/manager-react-components';
+import { getDateFnsLocale } from '@ovh-ux/manager-core-utils';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_BUTTON_SIZE,
@@ -14,6 +11,8 @@ import {
   OsdsPopover,
   OsdsPopoverContent,
 } from '@ovhcloud/ods-components/react';
+import { format } from 'date-fns';
+import * as locales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import InstanceDetailPopover from './InstanceDetailPopover.component';
@@ -48,8 +47,13 @@ export function useInstanceListColumns({
   showAdditionalInstanceDetails = false,
   isMonthlyInstances = false,
 }: UseInstanceListColumnsProps) {
-  const { t } = useTranslation('consumption/hourly-instance/instance');
+  const { t, i18n } = useTranslation('consumption/hourly-instance/instance');
   const navigate = useNavigate();
+  const dateFnsLocale = getDateFnsLocale(i18n.language);
+  const locale =
+    dateFnsLocale === 'enGB'
+      ? locales.enUS
+      : locales[dateFnsLocale as keyof typeof locales] ?? locales.enUS;
   // TO DISPLAY CONFIRM MONTHLY PAYMENT BUTTON
   const displayUpdateToMonthlyBillingButton = (
     instanceConsumption: TInstanceConsumptionDetail,
@@ -90,9 +94,8 @@ export function useInstanceListColumns({
             ['ok', 'resized'].includes(row.monthlyBilling.status ?? '') && (
               <DataGridTextCell>
                 {t('cpbc_hourly_instance_monthly_billing_since', {
-                  since: useFormattedDate({
-                    dateString: row.monthlyBilling.since,
-                    format: DateFormat.compact,
+                  since: format(new Date(row.monthlyBilling.since), 'PPP', {
+                    locale,
                   }),
                 })}
               </DataGridTextCell>
