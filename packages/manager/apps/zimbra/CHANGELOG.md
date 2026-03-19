@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.43.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.6...@ovh-ux/manager-zimbra-app@0.43.7) (2026-03-19)
+
+
+### Bug Fixes
+
+* **zimbra:** fix redirection to onboarding page ([6a713d0](https://github.com/ovh/manager/commit/6a713d04d9d74b03fbf9aab411dcb3246409cbec)), closes [#PRDCOL-436](https://github.com/ovh/manager/issues/PRDCOL-436)
+
+
+
+
+
 ## [0.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.5...@ovh-ux/manager-zimbra-app@0.43.6) (2026-03-18)
 
 
