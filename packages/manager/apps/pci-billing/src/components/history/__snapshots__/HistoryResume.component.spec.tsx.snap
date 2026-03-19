@@ -19,7 +19,7 @@ exports[`HistoryResume > matches snapshot with falsy isPostPaidUsageBilling 1`] 
       level="heading"
       size="700"
     >
-      23.00 undefined
+      2300000000
     </osds-text>
     <osds-link
       color="primary"
@@ -74,7 +74,7 @@ exports[`HistoryResume > matches snapshot with truthy isPostPaidUsageBilling 1`]
       level="heading"
       size="700"
     >
-      2000.00 undefined
+      200000000000
     </osds-text>
     <osds-link
       color="primary"

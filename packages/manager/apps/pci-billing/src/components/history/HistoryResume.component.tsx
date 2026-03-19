@@ -1,4 +1,9 @@
-import { Links, LinkType } from '@ovh-ux/manager-react-components';
+import {
+  Links,
+  LinkType,
+  priceToUcent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
@@ -18,12 +23,12 @@ export default function HistoryResume({
   isPostPaidUsageBilling,
 }: Readonly<HistoryResumeProps>) {
   const { t } = useTranslation('history');
+  const { getTextPrice } = useCatalogPrice(2);
 
   const [billingUrl, setBillingUrl] = useState('');
 
   const {
     shell: { navigation },
-    environment,
   } = useContext(ShellContext);
 
   const { translationValues } = useComputeDate();
@@ -64,7 +69,7 @@ export default function HistoryResume({
         color={ODS_THEME_COLOR_INTENT.text}
         className="block my-4"
       >
-        {`${totalPrice?.toFixed(2)} ${environment?.getUser()?.currency.symbol}`}
+        {getTextPrice(priceToUcent(totalPrice ?? 0))}
       </OsdsText>
 
       <Links

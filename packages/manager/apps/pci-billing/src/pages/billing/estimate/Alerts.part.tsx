@@ -28,7 +28,11 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { useNotifications } from '@ovh-ux/manager-react-components';
+import {
+  priceToUcent,
+  useCatalogPrice,
+  useNotifications,
+} from '@ovh-ux/manager-react-components';
 import { Currency } from '@ovh-ux/manager-config';
 import { AlertModalComponent } from '@/pages/billing/estimate/components/AlertModal.component';
 
@@ -75,6 +79,7 @@ export const AlertsPart = ({
   isLoading,
 }: TAlertsPart): JSX.Element => {
   const { t: tEstimate } = useTranslation('estimate');
+  const { getTextPrice } = useCatalogPrice(2);
 
   const { addError } = useNotifications();
 
@@ -203,7 +208,9 @@ export const AlertsPart = ({
                       stroke="red"
                       label={{
                         position: 'right',
-                        value: `${alert.monthlyThreshold} ${currency.symbol}`,
+                        value: getTextPrice(
+                          priceToUcent(alert.monthlyThreshold),
+                        ),
                         className: 'font-bold text-xs',
                         fill: 'black',
                       }}

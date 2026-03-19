@@ -1,8 +1,9 @@
 import {
   DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import {
@@ -10,7 +11,6 @@ import {
   OsdsTooltip,
   OsdsTooltipContent,
 } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { COLD_ARCHIVE_GRID_DATA } from '@/constants';
 import { TQuantity } from '@/api/data/consumption';
@@ -18,8 +18,8 @@ import { TResourceUsage } from '@/api/hook/useConsumption';
 
 export function useColdArchiveListColumns() {
   const { t } = useTranslation('consumption/hourly-instance/cold-archive');
-  const { currency } = useContext(ShellContext).environment.getUser();
   const { translateMicroRegion } = useTranslatedMicroRegions();
+  const { getTextPrice } = useCatalogPrice(2);
 
   const quantityUnit = (quantity: TQuantity) => {
     if (quantity.unit === COLD_ARCHIVE_GRID_DATA.QUANTITY.HOUR) {
@@ -81,7 +81,7 @@ export function useColdArchiveListColumns() {
       id: 'price',
       cell: (row: TResourceUsage) => (
         <DataGridTextCell>
-          {`${row.totalPrice.toFixed(2)} ${currency.symbol}`}
+          {getTextPrice(priceToUcent(row.totalPrice ?? 0))}
         </DataGridTextCell>
       ),
       label: t('pci_billing_cold_archive_price'),

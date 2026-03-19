@@ -1,8 +1,6 @@
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { ODS_TEXT_LEVEL, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsAccordion, OsdsText } from '@ovhcloud/ods-components/react';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { PRODUCTS, ResourceType, ConsumptionKey } from '@/constants';
 import { TConsumptionDetail } from '@/api/hook/useConsumption';
@@ -17,6 +15,10 @@ import VolumeList from './VolumeList.component';
 import { ResourcesColumn } from './useResourceUsageListColumns';
 import AiEndpointList from './AiEndpointList.component';
 import DataPlatformUsageList from './DataPlatformUsageList.component';
+import {
+  priceToUcent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
@@ -28,8 +30,7 @@ export default function HourlyConsumption({
   isTrustedZone,
 }: Readonly<HourlyConsumptionProps>) {
   const { t } = useTranslation('consumption/hourly-instance');
-
-  const { currency } = useContext(ShellContext).environment.getUser();
+  const { getTextPrice } = useCatalogPrice(2);
 
   const items = [
     {
@@ -209,9 +210,9 @@ export default function HourlyConsumption({
         slot="summary"
         className="my-2"
       >
-        {`${title} (${(consumption.totals.hourly[key] ?? 0).toFixed(2)} ${
-          currency.symbol
-        })`}
+        {`${title} (${getTextPrice(
+          priceToUcent(consumption.totals.hourly[key] ?? 0),
+        )})`}
       </OsdsText>
       {component}
     </OsdsAccordion>

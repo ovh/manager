@@ -1,4 +1,8 @@
-import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import {
+  priceToUcent,
+  useCatalogPrice,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useParam } from '@ovh-ux/manager-pci-common';
 import {
@@ -16,36 +20,31 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
-import { useContext } from 'react';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
 import { useCurrentUsage } from '@/api/hook/useConsumption';
 import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
+import { useSVPConsumptionFeatures } from '@/hooks/useSVPConsumptionFeatures';
 
 export default function Consumption() {
   const { t } = useTranslation('consumption');
 
   const { projectId } = useParam('projectId');
-  const { currency } = useContext(ShellContext).environment.getUser();
 
   const { data: availability } = useFeatureAvailability([
     PCI_FEATURES_BILLING_POST_PAID,
     TRUSTED_ZONE,
   ]);
 
+  const { hasSVPConsumption } = useSVPConsumptionFeatures();
+
   const { data: consumption, isPending, error } = useCurrentUsage(projectId);
 
   const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
 
-  const monthlyTotal = `${consumption?.totals.monthly.total.toFixed(2) || 0} ${
-    currency.symbol
-  }`;
-  const hourlyTotal = `${consumption?.totals.hourly.total?.toFixed(2) || 0} ${
-    currency.symbol
-  }`;
+  const { getTextPrice } = useCatalogPrice(2);
 
   return (
     <>
@@ -63,7 +62,9 @@ export default function Consumption() {
             size={ODS_TEXT_SIZE._500}
             className="block my-5"
           >
-            {t('cpbc_tab_consumption')}
+            {`${t('cpbc_tab_consumption')} (${getTextPrice(
+              priceToUcent(consumption?.totals.total || 0),
+            )})`}
           </OsdsText>
           {error && (
             <OsdsMessage
@@ -98,14 +99,15 @@ export default function Consumption() {
                   color={ODS_THEME_COLOR_INTENT.text}
                   className="mb-5"
                 >
-                  {`${t('cpbc_monthly_header_description')} (${monthlyTotal})`}
+                  {t('cpbc_monthly_header_description')}
                 </OsdsText>
                 {consumption && (
                   <MonthlyConsumption consumption={consumption} />
                 )}
-                {consumption && (
-                  <SavingsPlanConsumption consumption={consumption} />
-                )}
+                {!!hasSVPConsumption ||
+                  (consumption && (
+                    <SavingsPlanConsumption consumption={consumption} />
+                  ))}
               </div>
             </OsdsTile>
 
@@ -129,7 +131,7 @@ export default function Consumption() {
                   color={ODS_THEME_COLOR_INTENT.text}
                   className="mb-5"
                 >
-                  {`${t('cpbc_hourly_header_description')} (${hourlyTotal})`}
+                  {t('cpbc_hourly_header_description')}
                 </OsdsText>
 
                 {consumption && (

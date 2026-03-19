@@ -141,7 +141,7 @@ exports[`SnapshotList > matches snapshot 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.03 undefined
+                      3000000
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon
@@ -199,7 +199,7 @@ exports[`SnapshotList > matches snapshot 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.00 undefined
+                      0
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon
