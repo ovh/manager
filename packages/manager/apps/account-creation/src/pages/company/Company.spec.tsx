@@ -39,11 +39,9 @@ const getCompanySuggestionSpy = vi
   } as CompanySuggestion);
 
 const setSearchValue = async (input: HTMLElement, value: string) => {
-  await act(() =>
-    waitFor(() => {
-      fireEvent.change(input, { target: { value } });
-    }),
-  );
+  await act(() => {
+    fireEvent.change(input, { target: { value } });
+  });
 };
 
 vi.mock('react-router-dom', () => ({
@@ -67,7 +65,11 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
         name={props.name}
         type="text"
         value={props.value}
-        onChange={props.onOdsChange}
+        onChange={(event) =>
+          props.onOdsChange?.({
+            detail: { value: (event.target as HTMLInputElement).value },
+          })
+        }
         onBlur={props.onBlur}
         data-testid="search-input"
       />
@@ -106,6 +108,12 @@ const renderComponent = () =>
 describe('CompanyPage', () => {
   beforeEach(() => {
     getCompanySuggestionSpy.mockClear();
+    mockedTrackClick.mockClear();
+    navigate.mockClear();
+    mocks.setCompany.mockClear();
+    mocks.setLegalForm.mockClear();
+    mocks.legalForm = 'corporation';
+    queryClient.clear();
   });
 
   it('should display an error message if the user try to search with an empty value', async () => {
@@ -212,8 +220,7 @@ describe('CompanyPage', () => {
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
 
-    const companyElement = screen.getByText('test-company');
-    expect(companyElement).toBeInTheDocument();
+    const companyElement = await screen.findByText('test-company');
     await act(() => companyElement.click());
     expect(mockedTrackClick).toHaveBeenCalledWith(
       { pageName: 'page-name', pageType: 'page' },
@@ -244,7 +251,7 @@ describe('CompanyPage', () => {
 
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
-    const nonSatisfactoryLinkElement = screen.getByText(
+    const nonSatisfactoryLinkElement = await screen.findByText(
       `search_not_satisfactory_${mocks.legalForm}`,
     );
     expect(nonSatisfactoryLinkElement).toBeInTheDocument();
