@@ -27,6 +27,7 @@ import HourlyConsumption from '@/components/consumption/HourlyConsumption.compon
 import { useCurrentUsage } from '@/api/hook/useConsumption';
 import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
 import { useSVPConsumptionFeatures } from '@/hooks/useSVPConsumptionFeatures';
+import { useHiddenProducts } from '@/hooks/useHiddenProducts';
 
 export default function Consumption() {
   const { t } = useTranslation('consumption');
@@ -39,6 +40,7 @@ export default function Consumption() {
   ]);
 
   const { hasSVPConsumption } = useSVPConsumptionFeatures();
+  const { hasHiddenProducts } = useHiddenProducts();
 
   const { data: consumption, isPending, error } = useCurrentUsage(projectId);
 
@@ -138,6 +140,7 @@ export default function Consumption() {
                   <HourlyConsumption
                     consumption={consumption}
                     isTrustedZone={isTrustedZone}
+                    hasHiddenProducts={!!hasHiddenProducts}
                   />
                 )}
               </div>
