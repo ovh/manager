@@ -216,7 +216,12 @@ export default function CompanyPage() {
                     isLoading={isFetching}
                     isReadonly={isFetching}
                     hasError={!!errors.search}
-                    onOdsChange={onChange}
+                    onOdsChange={(event) => {
+                      const nextValue = String(
+                        event.detail?.value ?? '',
+                      ).replace(/\s+/g, '');
+                      onChange(nextValue);
+                    }}
                     onBlur={onBlur}
                     placeholder={t(`search_placeholder_${legalForm}`)}
                   />
