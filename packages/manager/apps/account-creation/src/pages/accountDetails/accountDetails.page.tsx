@@ -660,7 +660,12 @@ function AccountDetailsForm({
                             ?.maxLength || undefined
                         }
                         hasError={!!errors[name]}
-                        onOdsChange={onChange}
+                        onOdsChange={(event) => {
+                          const nextValue = String(
+                            event.detail?.value ?? '',
+                          ).replace(/\s+/g, '');
+                          onChange(nextValue);
+                        }}
                         onOdsBlur={onBlur}
                       />
                       {errors.companyNationalIdentificationNumber &&
