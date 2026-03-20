@@ -23,11 +23,13 @@ import {
 type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
   isTrustedZone: boolean;
+  hasHiddenProducts?: boolean;
 };
 
 export default function HourlyConsumption({
   consumption,
   isTrustedZone,
+  hasHiddenProducts,
 }: Readonly<HourlyConsumptionProps>) {
   const { t } = useTranslation('consumption/hourly-instance');
   const { getTextPrice } = useCatalogPrice(2);
@@ -74,7 +76,7 @@ export default function HourlyConsumption({
       key: 'coldArchive',
       title: t('cpbc_cold_archive_detail_title'),
       component: <ColdArchiveList coldArchives={consumption.coldArchive} />,
-      condition: !isTrustedZone,
+      condition: !isTrustedZone && !hasHiddenProducts,
     },
     {
       key: ResourceType.BANDWIDTH,
@@ -103,7 +105,7 @@ export default function HourlyConsumption({
           disabledColumns={[ResourcesColumn.region]}
         />
       ),
-      condition: !isTrustedZone,
+      condition: !isTrustedZone && !hasHiddenProducts,
     },
     {
       key: ResourceType.MANAGED_KUBERNETES_SERVICE,
@@ -147,13 +149,13 @@ export default function HourlyConsumption({
       key: 'aiEndpoints',
       title: t('cpbc_hourly_ai_endpoints_title'),
       component: <AiEndpointList resourcesUsage={consumption.aiEndpoints} />,
-      condition: !isTrustedZone,
+      condition: !isTrustedZone && !hasHiddenProducts,
     },
     {
       key: 'quantum',
       title: t('cpbc_hourly_quantum_title'),
       component: <ResourceUsageList resourcesUsage={consumption.quantum} />,
-      condition: !isTrustedZone,
+      condition: !isTrustedZone && !hasHiddenProducts,
     },
     {
       key: ResourceType.DATAPLATFORM,
@@ -161,7 +163,7 @@ export default function HourlyConsumption({
       component: (
         <DataPlatformUsageList resourcesUsage={consumption.dataplatform} />
       ),
-      condition: !isTrustedZone,
+      condition: !isTrustedZone && !hasHiddenProducts,
     },
     {
       key: ResourceType.DATABASES,
