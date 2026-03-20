@@ -65,5 +65,6 @@
   "account_details_field_sex": "Género",
   "account_details_field_birthDay": "Data de nascimento",
   "account_details_sex_option_female": "Feminino",
-  "account_details_sex_option_male": "Masculino"
+  "account_details_sex_option_male": "Masculino",
+  "account_details_error_birthDay_under_18": "Você deve ter pelo menos 18 anos."
 }
