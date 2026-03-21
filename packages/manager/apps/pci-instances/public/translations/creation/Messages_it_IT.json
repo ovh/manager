@@ -165,12 +165,12 @@
   "pci_instance_creation_network_public_connectivity_help_basic_ip": "<h6>Basic IP</h6><p>Una Basic IP consente la connettività in entrata e in uscita senza restrizioni d'uso. Questa IP non è persistente e viene riassegnata dopo l'eliminazione dell'istanza associata. Non è possibile assegnarla a un'altra istanza.</p>",
   "pci_instance_creation_network_add_public_connectivity": {
     "title": "Attribuire una connettività pubblica",
-    "description": "<p>L’attribuzione di un indirizzo IP pubblico permette l’accesso all’istanza dall’esterno della rete OVHcloud.<br/><span>Il Floating IP verrà creato al termine della configurazione.</span></p>",
+    "description": "<p>L’attribuzione di un indirizzo IP pubblico permette l’accesso all’istanza dall’esterno della rete OVHcloud.</p>",
     "toggle_label": "Assegnare un IP pubblico",
     "basic_ip_label": "Basic Public IP (associato all'istanza) - <sb>{{ price }}</sb>",
     "basic_ip_description": "Un IP pubblico di base è un indirizzo IP che non persiste oltre la durata di vita della risorsa. ",
-    "basic_ip_warning": "L'attivazione dell’IP pubblico di base non è compatibile con un gateway.",
-    "floating_ip_label": "Creare un Floating IP (riutilizzabile) - <sb>{{ price }}</sb>",
+    "basic_ip_warning": "Abbiamo rilevato un gateway sulla tua rete privata quindi questa opzione non è disponibile. Scegli o crea una rete privata senza gateway.",
+    "floating_ip_label": "Assegnare un Floating IP (riutilizzabile)",
     "floating_ip_description": "Se si prenota un Floating IP, l'indirizzo viene assegnato al progetto fino a quando non viene esplicitamente liberato. ",
     "floating_ip_warning": "Selezionando questa opzione ti attribuiremo un gateway di dimensione {{ size }}.",
     "floating_ip_create_new_label": "Creare una nuova - <sb>{{ price }}</sb>",
@@ -208,7 +208,7 @@
   "pci_instance_creation_availabilityZone_help_link": "Scopri di più su multi-AZ e best practice →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Un Basic Public IP è stato rilevato sulla tua Private Network: crea o seleziona un’altra Private Network per creare un gateway",
   "pci_instance_creation_region_unavailable": "Region non disponibile",
-  "pci_instance_creation_pricing_banner_title": "Prezzi Public Cloud",
-  "pci_instance_creation_pricing_banner_body": "I prezzi di alcuni servizi Public Cloud potrebbero cambiare il 1° aprile 2026. Per maggiori dettagli, visitare la nostra pagina dei prezzi.",
-  "pci_instance_creation_pricing_banner_link": "Visualizza i prezzi"
+  "pci_instance_creation_pricing_banner_title": "Tariffe Public Cloud",
+  "pci_instance_creation_pricing_banner_body": "Le tariffe di alcuni servizi Public Cloud verranno aggiornate a partire dal 1° aprile 2026. Per maggiori dettagli, consulta la nostra pagina dei prezzi.",
+  "pci_instance_creation_pricing_banner_link": "Visualizza le tariffe"
 }
