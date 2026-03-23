@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.18.2...@ovh-ux/manager-pci-users-app@0.18.3) (2026-03-23)
+
+
+### Bug Fixes
+
+* **pci-users:** rclone file type selection options ([6ba82a3](https://github.com/ovh/manager/commit/6ba82a337ae871832edc879f72df04c6c6e73229)), closes [#TAPC-6243](https://github.com/ovh/manager/issues/TAPC-6243)
+
+
+
+
+
 ## [0.18.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-users-app@0.18.1...@ovh-ux/manager-pci-users-app@0.18.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-users-app
