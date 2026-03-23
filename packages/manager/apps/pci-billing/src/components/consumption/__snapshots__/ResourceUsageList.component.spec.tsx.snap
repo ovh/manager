@@ -193,7 +193,7 @@ exports[`ResourceUsageList > matches snapshot with existing resourcesUsage 1`] =
                   color="text"
                   level="body"
                 >
-                  0.87 
+                  86750000
                 </osds-text>
               </td>
             </tr>
@@ -239,7 +239,7 @@ exports[`ResourceUsageList > matches snapshot with existing resourcesUsage 1`] =
                   color="text"
                   level="body"
                 >
-                  0.87 
+                  86750000
                 </osds-text>
               </td>
             </tr>

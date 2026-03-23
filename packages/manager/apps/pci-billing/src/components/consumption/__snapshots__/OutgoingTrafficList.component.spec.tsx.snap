@@ -158,7 +158,7 @@ exports[`OutgoingTrafficList > matches snapshot with existing storages 1`] = `
                       color="text"
                       level="body"
                     >
-                      0 undefined
+                      0
                     </osds-text>
                   </div>
                 </td>
@@ -234,7 +234,7 @@ exports[`OutgoingTrafficList > matches snapshot with existing storages 1`] = `
                       color="text"
                       level="body"
                     >
-                      0 undefined
+                      0
                     </osds-text>
                   </div>
                 </td>

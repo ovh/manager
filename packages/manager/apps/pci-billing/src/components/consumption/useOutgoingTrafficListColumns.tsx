@@ -1,9 +1,9 @@
 import {
   DataGridTextCell,
+  priceToUcent,
+  useCatalogPrice,
   useTranslatedMicroRegions,
 } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
-import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CLOUD_GEOLOCALISATION, CLOUD_UNIT_CONVERSION } from '@/constants';
 import { TInstanceBandWith } from '@/api/hook/useConsumption';
@@ -13,7 +13,7 @@ const FREE_TRAFFIC_PER_APAC_REGION = 1024;
 export function useOutgoingTrafficListColumns() {
   const { t } = useTranslation('consumption/hourly-instance/outgoing-traffic');
   const { translateMicroRegion } = useTranslatedMicroRegions();
-  const { currency } = useContext(ShellContext).environment.getUser();
+  const { getTextPrice } = useCatalogPrice(2);
 
   const isAPACRegion = (region: string) =>
     CLOUD_GEOLOCALISATION.instance.APAC.includes(region);
@@ -25,7 +25,7 @@ export function useOutgoingTrafficListColumns() {
         const totalPrice = bandwidth.outgoingBandwidth
           ? bandwidth.outgoingBandwidth.totalPrice
           : 0;
-        return `${totalPrice} ${currency.symbol}`;
+        return getTextPrice(priceToUcent(totalPrice));
       }
     }
     return t('cpbc_hourly_instance_trafic_included');

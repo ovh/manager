@@ -38,16 +38,25 @@ vi.mock('react-i18next', async () => {
     ...rest,
     useTranslation: vi.fn().mockImplementation((namespace: string) => ({
       t: vi.fn().mockImplementation((key: string) => `${namespace} | ${key}`),
+      i18n: { language: 'en_GB' },
     })),
   };
 });
 
+vi.mock('@ovh-ux/manager-react-components', async () => {
+  const actual = await vi.importActual('@ovh-ux/manager-react-components');
+  return {
+    ...actual,
+    useCatalogPrice: () => ({
+      getTextPrice: (price: number) => `${price}`,
+      getFormattedCatalogPrice: (price: number) => `${price}`,
+      getFormattedHourlyCatalogPrice: (price: number) => `${price}`,
+      getFormattedMonthlyCatalogPrice: (price: number) => `${price}`,
+    }),
+  };
+});
+
 const PROPS: TEstimateProps = {
-  currency: {
-    symbol: '€',
-    code: 'EUR',
-    format: '€0,0.00',
-  },
   totalHourlyPrice: 75,
   totalMonthlyPrice: 690,
   totalPrice: 75 + 690,

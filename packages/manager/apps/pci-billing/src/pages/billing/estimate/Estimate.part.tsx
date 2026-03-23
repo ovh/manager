@@ -7,11 +7,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { addMonths, format } from 'date-fns';
 import * as locales from 'date-fns/locale';
-import { Currency } from '@ovh-ux/manager-config';
+import {
+  priceToUcent,
+  useCatalogPrice,
+} from '@ovh-ux/manager-react-components';
 import { useCallback } from 'react';
 
 export type TEstimateProps = {
-  currency: Currency;
   totalMonthlyPrice: number;
   totalHourlyPrice: number;
   totalPrice: number;
@@ -20,7 +22,6 @@ export type TEstimateProps = {
 };
 
 export const EstimatePart = ({
-  currency,
   totalMonthlyPrice,
   totalHourlyPrice,
   isPending,
@@ -29,6 +30,7 @@ export const EstimatePart = ({
 }: TEstimateProps): JSX.Element => {
   const { t: tConsumption } = useTranslation('consumption');
   const { t: tEstimate } = useTranslation('estimate');
+  const { getTextPrice } = useCatalogPrice(2);
 
   const formatMonth = useCallback(
     (stamp: number | Date) =>
@@ -64,9 +66,7 @@ export const EstimatePart = ({
           {tEstimate('cpbe_estimate_summary_header', {
             month: nextMonth,
           })}{' '}
-          <strong>
-            {totalPrice.toFixed(2)} {currency.symbol}
-          </strong>
+          <strong>{getTextPrice(priceToUcent(totalPrice))}</strong>
         </OsdsText>
       </p>
       {isPending ? (
@@ -84,9 +84,7 @@ export const EstimatePart = ({
                   __html: tEstimate(
                     'cpbe_estimate_summary_renew_monthly_sub_label',
                     {
-                      total: `${totalMonthlyPrice.toFixed(2)} ${
-                        currency.symbol
-                      }`,
+                      total: getTextPrice(priceToUcent(totalMonthlyPrice)),
                     },
                   ),
                 }}
@@ -105,9 +103,7 @@ export const EstimatePart = ({
                     'cpbe_estimate_summary_hourly_consumption_label',
                     {
                       month: currentMonth,
-                      total: `${totalHourlyPrice.toFixed(2)} ${
-                        currency.symbol
-                      }`,
+                      total: getTextPrice(priceToUcent(totalHourlyPrice)),
                     },
                   ),
                 }}

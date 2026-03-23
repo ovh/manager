@@ -176,7 +176,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.31 undefined
+                      31000000
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon
@@ -281,7 +281,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.29 undefined
+                      28999999.999999996
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon
@@ -386,7 +386,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.08 undefined
+                      8000000
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon
@@ -490,7 +490,7 @@ exports[`VolumeList > matches snapshot with existing volumes 1`] = `
                       color="text"
                       level="body"
                     >
-                      0.24 undefined
+                      24000000
                     </osds-text>
                     <osds-tooltip>
                       <osds-icon

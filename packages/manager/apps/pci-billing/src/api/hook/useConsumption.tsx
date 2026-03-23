@@ -630,9 +630,7 @@ export const getConsumptionDetails = (
       .reduce((sum, [, price]) => sum + (price ?? 0), 0),
   );
 
-  const finalTotal = roundPrice(
-    (totals.hourly[ResourceType.TOTAL] ?? 0) + totals.monthly.total,
-  );
+  const finalTotal = roundPrice(usage.totalPrice.value);
 
   return {
     hourlyInstances: hourlyInstanceList,

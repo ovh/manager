@@ -10,7 +10,7 @@ exports[`MonthlyConsumption Component > matches snapshot 1`] = `
       size="500"
       slot="summary"
     >
-      cpbc_monthly_instance_detail_title (100.50 undefined)
+      cpbc_monthly_instance_detail_title 10050000000
     </osds-text>
     <div
       class="flex justify-center"
