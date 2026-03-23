@@ -10,9 +10,9 @@
   "cpb_error_message": "Leider konnten wir nicht alle Informationen abrufen.",
   "cpbc_monthly_header_post_paid": "Monatliche Rechnungen",
   "cpbc_hourly_header_post_paid": "Stündliche Rechnungen",
-  "cpbc_pricing_banner_title": "Public Cloud Preise",
-  "cpbc_pricing_banner_body": "Die Preise einiger Public-Cloud-Dienste können sich am 1. April 2026 ändern. Weitere Informationen finden Sie auf unserer Preisseite.",
-  "cpbc_pricing_banner_link": "Preise anzeigen",
+  "cpbc_pricing_banner_title": "Public-Cloud-Preise",
+  "cpbc_pricing_banner_body": "Die Preise für bestimmte Public-Cloud-Dienste können sich ab dem 01. April 2026 ändern. Weitere Informationen finden Sie auf unserer Preisseite.",
+  "cpbc_pricing_banner_link": "Zur Preisübersicht",
   "cpbc_pricing_banner_close": "Schließen",
   "cpbc_pricing_banner_old_billing_body": "Der Verbrauch der Vormonate ist weiterhin im alten Abrechnungsbereich verfügbar.",
   "cpbc_pricing_banner_old_billing_link": "Vorherigen Verbrauch anzeigen"

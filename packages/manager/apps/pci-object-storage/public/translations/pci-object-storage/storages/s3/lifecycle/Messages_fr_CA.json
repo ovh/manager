@@ -1,7 +1,7 @@
 {
   "title": "Règles de cycle de vie",
   "createLifecycle": "Créer une règle",
-  "columnName": "Nom de la règle",
+  "columnName": "Nom",
   "columnStatus": "Statut",
   "columnScope": "Portée",
   "columnCurrentVersionOperations": "Opérations sur les versions courantes",
