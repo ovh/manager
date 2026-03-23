@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 
 import { shareDetailsQueryKey } from '@/adapters/shares/queryKeys';
 import { getShare } from '@/data/api/shares.api';
@@ -21,6 +22,11 @@ export const useShare = <TData>(
     select: options?.select,
     ...getForceReloadUseQueryOptions(),
     retry: 1,
-    throwOnError: true,
+    throwOnError: (error) => {
+      if (isAxiosError(error) && error.response?.status === 404) {
+        return false;
+      }
+      return true;
+    },
   });
 };

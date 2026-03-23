@@ -14,5 +14,11 @@
   "rename": {
     "success": "Share wird aktualisiert. Das kann einige Sekunden dauern",
     "error": "Beim Aktualisieren des Share ist ein Fehler aufgetreten"
+  },
+  "not_found": {
+    "title": "Share nicht gefunden",
+    "description": "Der Share \"{{shareId}}\" wurde nicht gefunden. Er wurde möglicherweise gelöscht oder die ID ist falsch.",
+    "go_back": "Zurück zum File Storage",
+    "reload": "Seite neu laden"
   }
 }
