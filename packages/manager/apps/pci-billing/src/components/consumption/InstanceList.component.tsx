@@ -7,8 +7,12 @@ import {
   useParam,
   useInstances,
 } from '@ovh-ux/manager-pci-common';
-import { Datagrid, useDataGrid } from '@ovh-ux/manager-react-components';
-import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+import {
+  Datagrid,
+  priceToUcent,
+  useCatalogPrice,
+  useDataGrid,
+} from '@ovh-ux/manager-react-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import {
   ODS_SPINNER_SIZE,
@@ -16,7 +20,7 @@ import {
   ODS_TEXT_SIZE,
 } from '@ovhcloud/ods-components';
 import { OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TInstance } from '@/api/hook/useConsumption';
 import { paginateResults } from '@/api/data/consumption';
@@ -42,7 +46,6 @@ export default function InstanceList({
 }: Readonly<InstanceListProps>) {
   const { t } = useTranslation('consumption/hourly-instance/instance');
 
-  const { currency } = useContext(ShellContext).environment.getUser();
   const { projectId } = useParam('projectId');
   const { pagination, setPagination } = useDataGrid();
   const columns = useInstanceListColumns({
@@ -51,6 +54,7 @@ export default function InstanceList({
     showAdditionalInstanceDetails,
     isMonthlyInstances,
   });
+  const { getTextPrice } = useCatalogPrice(2);
 
   const [instanceConsumptionDetails, setInstanceConsumptionDetails] = useState({
     rows: [],
@@ -82,7 +86,7 @@ export default function InstanceList({
     const instanceConsumptionDetail: Partial<TInstanceConsumptionDetail> = {
       instanceId: billingDetail.instanceId,
       instanceName: billingDetail.instanceId,
-      total: `${billingDetail.totalPrice.toFixed(2)} ${currency.symbol}`,
+      total: getTextPrice(priceToUcent(billingDetail.totalPrice ?? 0)),
       region: billingDetail.region,
       reference: billingDetail.reference,
       imageType: getImageTypeFromReference(billingDetail.reference),

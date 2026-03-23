@@ -10,8 +10,10 @@
   "cpb_error_message": "Ops! Impossibile recuperare tutte le informazioni.",
   "cpbc_monthly_header_post_paid": "Fatture mensili",
   "cpbc_hourly_header_post_paid": "Fatture orarie",
-  "cpbc_pricing_banner_title": "Tariffe Public Cloud",
-  "cpbc_pricing_banner_body": "Le tariffe di alcuni servizi Public Cloud verranno aggiornate a partire dal 1° aprile 2026. Per maggiori dettagli, consulta la nostra pagina dei prezzi.",
-  "cpbc_pricing_banner_link": "Visualizza le tariffe",
-  "cpbc_pricing_banner_close": "Chiudere"
+  "cpbc_pricing_banner_title": "Prezzi Public Cloud",
+  "cpbc_pricing_banner_body": "I prezzi di alcuni servizi Public Cloud potrebbero cambiare il 1° aprile 2026. Per maggiori dettagli, visitare la nostra pagina dei prezzi.",
+  "cpbc_pricing_banner_link": "Visualizza i prezzi",
+  "cpbc_pricing_banner_close": "Chiudi",
+  "cpbc_pricing_banner_old_billing_body": "I consumi dei mesi precedenti sono ancora disponibili nella vecchia sezione di fatturazione.",
+  "cpbc_pricing_banner_old_billing_link": "Visualizza i consumi precedenti"
 }
