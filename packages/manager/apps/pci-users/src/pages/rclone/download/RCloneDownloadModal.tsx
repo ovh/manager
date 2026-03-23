@@ -168,7 +168,7 @@ export default function RCloneDownloadModal({
                   'pci_projects_project_users_download-rclone_region_label_global',
                 )}
               </OsdsText>
-              {fileType === DOWNLOAD_FILETYPE.S3 ? (
+              {fileType === 'S3' ? (
                 <S3StorageRegions
                   projectId={projectId}
                   onS3StorageRegionChange={setRegion}
