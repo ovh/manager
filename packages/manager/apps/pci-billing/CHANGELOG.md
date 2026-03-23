@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.15.2...@ovh-ux/manager-pci-billing-app@0.16.0) (2026-03-23)
+
+
+### Bug Fixes
+
+* **pci-billing:** improve history total price display ([d673109](https://github.com/ovh/manager/commit/d673109bc2c67b841b0867c89f96fbbd7714e511)), closes [#TAPC-6148](https://github.com/ovh/manager/issues/TAPC-6148)
+* **pci-billing:** several date & currency issues ([b9ed16c](https://github.com/ovh/manager/commit/b9ed16caa44c3a585bf0353b340a79213f48da20)), closes [#TAPC-6093](https://github.com/ovh/manager/issues/TAPC-6093)
+
+
+### Features
+
+* **pci-billing:** add hidden products feature flag ([8ccf9c5](https://github.com/ovh/manager/commit/8ccf9c5227ea86639a5c7135ab00b0ca76c70204)), closes [#TAPC-6093](https://github.com/ovh/manager/issues/TAPC-6093)
+* **pci-billing:** add us old billing banner ([ef732af](https://github.com/ovh/manager/commit/ef732af124ce575d8adde49cd6590e4ffbe4b16f)), closes [#TAPC-6093](https://github.com/ovh/manager/issues/TAPC-6093)
+
+
+
+
+
 ## [0.15.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.15.1...@ovh-ux/manager-pci-billing-app@0.15.2) (2026-03-18)
 
 
