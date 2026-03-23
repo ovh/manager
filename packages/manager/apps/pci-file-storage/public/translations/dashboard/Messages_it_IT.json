@@ -12,7 +12,13 @@
     "coming_soon": "In arrivo"
   },
   "rename": {
-    "success": "L’aggiornamento dello share è in corso, l’operazione potrebbe richiedere alcuni secondi",
+    "success": "L'aggiornamento dello share è in corso, l'operazione potrebbe richiedere alcuni secondi",
     "error": "Si è verificato un errore durante l'aggiornamento dello share"
+  },
+  "not_found": {
+    "title": "Share non trovato",
+    "description": "Lo share \"{{shareId}}\" non è stato trovato. Potrebbe essere stato eliminato o l'identificativo è errato.",
+    "go_back": "Torna al file storage",
+    "reload": "Ricarica la pagina"
   }
 }
