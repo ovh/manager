@@ -20,7 +20,6 @@ const GeneralInformationPage = React.lazy(
 const SnapshotsPage = React.lazy(() => import('@/pages/dashboard/Snapshots/Snapshots.page'));
 const AclPage = React.lazy(() => import('@/pages/dashboard/Acl/Acl.page'));
 const DeleteSharePage = React.lazy(() => import('@/pages/delete/DeleteShare.page'));
-
 const getDeleteSubroute = () => (
   <>
     <Route index Component={() => <span />} />

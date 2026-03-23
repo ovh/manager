@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
+import { isAxiosError } from 'axios';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -21,6 +22,7 @@ import { useShare } from '@/data/hooks/shares/useShare';
 import { useProjectId } from '@/hooks/useProjectId';
 import { useShareParams } from '@/hooks/useShareParams';
 import { ShareEditableName } from '@/pages/dashboard/ShareEditableName/ShareEditableName.component';
+import ShareNotFound from '@/pages/dashboard/ShareNotFound/ShareNotFound.page';
 import { selectShareDetails } from '@/pages/dashboard/view-model/shareDetails.view-model';
 import { useFileStorageGuideItems } from '@/pages/view-model/guides.view-model';
 import { subRoutes } from '@/routes/Routes.constants';
@@ -46,9 +48,11 @@ const DashboardLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { data: shareDetails } = useShare(region, shareId, {
+  const { data: shareDetails, error: shareError } = useShare(region, shareId, {
     select: selectShareDetails,
   });
+
+  const isShareNotFound = isAxiosError(shareError) && shareError.response?.status === 404;
 
   const guideItems = useFileStorageGuideItems();
 
@@ -61,6 +65,10 @@ const DashboardLayout: React.FC = () => {
     }
     navigate(value === TAB_GENERAL ? '.' : value);
   };
+
+  if (isShareNotFound) {
+    return <ShareNotFound error={shareError} />;
+  }
 
   return (
     <BaseLayout
