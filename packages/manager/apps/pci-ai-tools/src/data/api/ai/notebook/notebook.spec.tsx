@@ -15,7 +15,6 @@ import {
   mockedNotebookSpec,
   mockedNotebookUpdateInput,
 } from '@/__tests__/helpers/mocks/notebook/notebook';
-import { mockedCPUResources } from '@/__tests__/helpers/mocks/shared/resource';
 import { mockedSshKey } from '@/__tests__/helpers/mocks/sshkey';
 import { mockedVolume } from '@/__tests__/helpers/mocks/volume/volume';
 
@@ -145,7 +144,7 @@ describe('notebook functions', () => {
       '/cloud/project/projectId/ai/notebook/notebookId',
       {
         labels: { key: 'label' },
-        resources: mockedCPUResources,
+        resources: mockedNotebookUpdateInput.resources,
         sshPublicKeys: [mockedSshKey.publicKey],
         unsecureHttp: false,
         volumes: [mockedVolume],

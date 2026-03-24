@@ -104,10 +104,9 @@ describe('app functions', () => {
       '/cloud/project/projectId/ai/app/appId',
       {
         command: ['command'],
-        cpu: 1,
         defaultHttpPort: 8080,
         flavor: 'flavor',
-        gpu: 1,
+        flavorCount: 1,
         grpcPort: 8080,
         url: 'test',
       },

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,6 +32,7 @@ import ai from '@/types/AI';
 import { useGetFlavor } from '@/data/hooks/ai/capabilities/useGetFlavor.hook';
 import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 import { useUpdateApp } from '@/data/hooks/ai/app/useUpdateApp.hook';
+import { clampFlavorCount, getFlavorCount } from '@/lib/flavorCountHelper';
 
 const UpdateFlavor = () => {
   const { app, projectId } = useAppData();
@@ -52,17 +53,14 @@ const UpdateFlavor = () => {
 
   const schema = z.object({
     flavor: z.string(),
-    quantity: z.coerce.number(),
+    quantity: z.coerce.number().min(1),
   });
 
   type ValidationSchema = z.infer<typeof schema>;
 
   const defaultValues: ValidationSchema = {
     flavor: app.spec.resources.flavor,
-    quantity:
-      app.spec.resources.gpu > 0
-        ? app.spec.resources.gpu
-        : app.spec.resources.cpu,
+    quantity: getFlavorCount(app.spec.resources),
   };
 
   const form = useForm<ValidationSchema>({
@@ -72,6 +70,20 @@ const UpdateFlavor = () => {
 
   const flavor = form.watch('flavor');
   const quantity = form.watch('quantity');
+  const selectedFlavor = useMemo(
+    () => listFlavor.find((flav) => flav.id === flavor),
+    [flavor, listFlavor],
+  );
+
+  useEffect(() => {
+    if (!selectedFlavor) return;
+
+    const nextQuantity = clampFlavorCount(Number(quantity), selectedFlavor);
+
+    if (nextQuantity !== Number(quantity)) {
+      form.setValue('quantity', nextQuantity);
+    }
+  }, [form, quantity, selectedFlavor]);
 
   const { updateApp, isPending } = useUpdateApp({
     onError: (err) => {
@@ -91,17 +103,10 @@ const UpdateFlavor = () => {
   });
 
   const onSubmit = form.handleSubmit((formValues) => {
-    const updateAppInfo: ai.app.UpdateInput =
-      listFlavor.find((flav) => flav.id === formValues.flavor).type ===
-      ai.capabilities.FlavorTypeEnum.cpu
-        ? {
-            flavor: formValues.flavor,
-            cpu: Number(formValues.quantity),
-          }
-        : {
-            flavor: formValues.flavor,
-            gpu: Number(formValues.quantity),
-          };
+    const updateAppInfo: ai.app.UpdateInput & { flavorCount?: number } = {
+      flavor: formValues.flavor,
+      flavorCount: Number(formValues.quantity),
+    };
     updateApp({ projectId, appId: app.id, appInfo: updateAppInfo });
   });
 
@@ -150,11 +155,7 @@ const UpdateFlavor = () => {
                     <FormControl className="px-2">
                       <Input
                         type="number"
-                        max={
-                          listFlavor.find(
-                            (flav) => flav.id === form.getValues('flavor'),
-                          )?.max
-                        }
+                        max={selectedFlavor?.max}
                         min={1}
                         value={field.value}
                         {...field}
@@ -162,20 +163,14 @@ const UpdateFlavor = () => {
                     </FormControl>
                     <div className="flex flex-row justify-between">
                       <FormMessage />
-                      {form.getValues('quantity') > 1 && (
+                      {selectedFlavor && (
                         <div className="inline-block text-xs">
                           <span>{t('fieldFlavorQuantityInformation')}</span>{' '}
                           <span className="capitalize font-bold">
                             {form.getValues('flavor')}
                           </span>
                           {': '}
-                          <span>
-                            {
-                              listFlavor.find(
-                                (flav) => flav.id === form.getValues('flavor'),
-                              )?.max
-                            }
-                          </span>
+                          <span>{selectedFlavor.max}</span>
                         </div>
                       )}
                     </div>

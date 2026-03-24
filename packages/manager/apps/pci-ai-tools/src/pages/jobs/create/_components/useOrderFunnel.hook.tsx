@@ -19,6 +19,7 @@ import {
   DataStoresWithContainers,
   useGetDatastoresWithContainers,
 } from '@/data/hooks/ai/data/useGetDatastoresWithContainers.hook';
+import { clampFlavorCount } from '@/lib/flavorCountHelper';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -31,7 +32,7 @@ export function useOrderFunnel(
     region: z.string(),
     flavorWithQuantity: z.object({
       flavor: z.string(),
-      quantity: z.coerce.number(),
+      quantity: z.coerce.number().min(1),
     }),
     image: z
       .string()
@@ -121,6 +122,17 @@ export function useOrderFunnel(
     () => listFlavor.find((f) => f.id === flavorWithQuantity.flavor),
     [region, listFlavor, flavorWithQuantity.flavor],
   );
+
+  useEffect(() => {
+    if (!flavorObject) return;
+
+    const quantity = Number(flavorWithQuantity.quantity);
+    const nextQuantity = clampFlavorCount(quantity, flavorObject);
+
+    if (nextQuantity !== quantity) {
+      form.setValue('flavorWithQuantity.quantity', nextQuantity);
+    }
+  }, [flavorObject?.id, flavorObject?.max, flavorWithQuantity.quantity, form]);
 
   const listDatastores: DataStoresWithContainers[] = useMemo(() => {
     if (datastoreQuery.isLoading) return [];

@@ -23,6 +23,7 @@ import publicCatalog from '@/types/Catalog';
 import { useGetFramework } from '@/data/hooks/ai/capabilities/useGetFramework.hook';
 import { useGetEditor } from '@/data/hooks/ai/capabilities/useGetEditor.hook';
 import { useQuantum } from '@/hooks/useQuantum.hook';
+import { clampFlavorCount } from '@/lib/flavorCountHelper';
 
 export function useOrderFunnel(
   regions: ai.capabilities.Region[],
@@ -35,7 +36,7 @@ export function useOrderFunnel(
     region: z.string(),
     flavorWithQuantity: z.object({
       flavor: z.string(),
-      quantity: z.coerce.number(),
+      quantity: z.coerce.number().min(1),
     }),
     frameworkWithVersion: z.object({
       framework: z.string(),
@@ -148,6 +149,17 @@ export function useOrderFunnel(
     () => listFlavor.find((f) => f.id === flavorWithQuantity.flavor),
     [region, listFlavor, flavorWithQuantity.flavor],
   );
+
+  useEffect(() => {
+    if (!flavorObject) return;
+
+    const quantity = Number(flavorWithQuantity.quantity);
+    const nextQuantity = clampFlavorCount(quantity, flavorObject);
+
+    if (nextQuantity !== quantity) {
+      form.setValue('flavorWithQuantity.quantity', nextQuantity);
+    }
+  }, [flavorObject?.id, flavorObject?.max, flavorWithQuantity.quantity, form]);
 
   const frameworkObject:
     | ai.capabilities.notebook.Framework

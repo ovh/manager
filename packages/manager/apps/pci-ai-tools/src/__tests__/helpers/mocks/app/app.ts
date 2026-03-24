@@ -13,12 +13,11 @@ import {
   mockedS3Volume,
 } from '../volume/volume';
 
-export const mockedAppUpdate: ai.app.UpdateInput = {
+export const mockedAppUpdate: ai.app.UpdateInput & { flavorCount?: number } = {
   command: ['command'],
-  cpu: 1,
   defaultHttpPort: 8080,
   flavor: 'flavor',
-  gpu: 1,
+  flavorCount: 1,
   grpcPort: 8080,
   url: 'test',
 };
@@ -79,7 +78,7 @@ export const mockedAppSpecInput: ai.app.AppSpecInput = {
   region: 'GRA',
   image: 'myImage',
   defaultHttpPort: 8080,
-  resources: { flavor: 'ai1-1-cpu', cpu: 2 },
+  resources: { flavor: 'ai1-1-cpu', flavorCount: 2 },
   unsecureHttp: false,
   labels: {
     test: 'testLabel',
@@ -107,7 +106,7 @@ export const mockedAppSpecInputGPU: ai.app.AppSpecInput = {
   command: ['command', 'docker'],
   image: 'sentiment-analysis-app:1',
   partnerId: 'lettria',
-  resources: { flavor: 'ai1-1-gpu', gpu: 2 },
+  resources: { flavor: 'ai1-1-gpu', flavorCount: 2 },
   volumes: [mockedPublicGitVolume],
   scalingStrategy: mockedFixedScalingInput,
 };

@@ -10,6 +10,7 @@ import { mockedUsedNavigate } from '@/__tests__/helpers/mockRouterDomHelper';
 import ResourcesSpec from './ResourcesSpec.component';
 import { mockedGPUResources } from '@/__tests__/helpers/mocks/shared/resource';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
+import ai from '@/types/AI';
 
 describe('ResourcesSpec component', () => {
   beforeEach(() => {
@@ -41,6 +42,25 @@ describe('ResourcesSpec component', () => {
     });
     await waitFor(() => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith('./update-flavor');
+    });
+  });
+
+  it('should display flavor count independently from gpu count', async () => {
+    const h200Resources: ai.Resources = {
+      ...mockedGPUResources,
+      flavor: 'h200-4-gpu',
+      flavorCount: 1,
+      gpu: 4,
+      gpuModel: 'H200',
+    };
+
+    render(<ResourcesSpec resources={h200Resources} />, {
+      wrapper: RouterWithQueryClientWrapper,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('1 x h200-4-gpu')).toBeTruthy();
+      expect(screen.getByText('4 x H200')).toBeTruthy();
     });
   });
 });

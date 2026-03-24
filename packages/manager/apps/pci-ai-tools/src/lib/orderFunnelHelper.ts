@@ -7,6 +7,7 @@ import {
   OrderVolumes,
 } from '@/types/orderFunnel';
 import { ResourceType } from '@/components/order/app-scaling/scalingHelper';
+import { buildFlavorResourcesInput } from '@/lib/flavorCountHelper';
 
 export function humanizeFramework(
   framework: ai.capabilities.notebook.Framework,
@@ -39,16 +40,10 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
     frameworkVersion: formResult.version,
     editorId: formResult.editor.id,
   };
-  const notebookResource: ai.ResourcesInput =
-    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
-      ? {
-          flavor: formResult.flavor.id,
-          cpu: Number(formResult.resourcesQuantity),
-        }
-      : {
-          flavor: formResult.flavor.id,
-          gpu: Number(formResult.resourcesQuantity),
-        };
+  const notebookResource = buildFlavorResourcesInput(
+    formResult.flavor.id,
+    formResult.resourcesQuantity,
+  );
 
   const notebookInfos: ai.notebook.NotebookSpecInput = {
     env: notebookEnv,
@@ -89,16 +84,10 @@ export function getNotebookSpec(formResult: NotebookOrderResult) {
 }
 
 export function getJobSpec(formResult: JobOrderResult) {
-  const jobResource: ai.ResourcesInput =
-    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
-      ? {
-          flavor: formResult.flavor.id,
-          cpu: Number(formResult.resourcesQuantity),
-        }
-      : {
-          flavor: formResult.flavor.id,
-          gpu: Number(formResult.resourcesQuantity),
-        };
+  const jobResource = buildFlavorResourcesInput(
+    formResult.flavor.id,
+    formResult.resourcesQuantity,
+  );
 
   const jobInfos: ai.job.JobSpecInput = {
     resources: jobResource,
@@ -139,16 +128,10 @@ export function getAppSpec(
   formResult: AppOrderResult,
   listAppPartner: ImagePartnerApp[],
 ) {
-  const appResource: ai.ResourcesInput =
-    formResult.flavor.type === ai.capabilities.FlavorTypeEnum.cpu
-      ? {
-          flavor: formResult.flavor.id,
-          cpu: Number(formResult.resourcesQuantity),
-        }
-      : {
-          flavor: formResult.flavor.id,
-          gpu: Number(formResult.resourcesQuantity),
-        };
+  const appResource = buildFlavorResourcesInput(
+    formResult.flavor.id,
+    formResult.resourcesQuantity,
+  );
 
   const appInfos: ai.app.AppSpecInput = {
     resources: appResource,
