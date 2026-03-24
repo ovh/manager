@@ -43,12 +43,5 @@
   "server_network_game_ddos_button_configure": "Configurar Game Protection",
   "server_network_game_ddos_no_ip_configured": "Direcciones IPv4 no protegidas",
   "server_network_game_ddos_some_ips_configured": "Algunas direcciones IPv4 están protegidas",
-  "server_network_game_ddos_all_ips_configured": "Todas las direcciones IPv4 están protegidas",
-  "server_network_game_protection": "Game anti-DDoS Protection",
-  "server_network_game_protection_no_ip": "No hay IP asociadas",
-  "server_network_game_protection_numbers": "{{ total }} dirección(es) IP asociada(s) a este servidor",
-  "server_network_game_protection_button_configure": "Configurar Game Protection",
-  "server_network_game_protection_no_ip_configured": "Direcciones IP no configuradas",
-  "server_network_game_protection_some_ips_configured": "Algunas direcciones IP configuradas",
-  "server_network_game_protection_all_ips_configured": "Todas las direcciones IP están configuradas"
+  "server_network_game_ddos_all_ips_configured": "Todas las direcciones IPv4 están protegidas"
 }
