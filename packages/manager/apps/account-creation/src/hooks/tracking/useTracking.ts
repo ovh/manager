@@ -1,7 +1,12 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
-import { ButtonType, PageLocation, PageType, usePageTracking } from "@ovh-ux/manager-react-shell-client";
-import { useTrackingContext } from "@/context/tracking/useTracking";
+import {
+  ButtonType,
+  PageLocation,
+  PageType,
+  usePageTracking,
+} from '@ovh-ux/manager-react-shell-client';
+import { useTrackingContext } from '@/context/tracking/useTracking';
 
 export const useTrackBackButtonClick = () => {
   const { trackClick } = useTrackingContext();
@@ -25,9 +30,16 @@ export const useTrackBackButtonClick = () => {
 export const useTrackError = (pageName: string) => {
   const { trackPage } = useTrackingContext();
 
-  const trackError = useCallback((error: string) => {
-    trackPage({ pageName: `${pageName}_error_${error}`, pageType: PageType.bannerError, pageCategory: 'banner' });
-  }, [trackPage, pageName]);
+  const trackError = useCallback(
+    (error: string) => {
+      trackPage({
+        pageName: `${pageName}_error_${error}`,
+        pageType: PageType.bannerError,
+        pageCategory: 'banner',
+      });
+    },
+    [trackPage, pageName],
+  );
 
   return {
     trackError,

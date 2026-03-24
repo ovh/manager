@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './helpers/piano-override';
-import 'piano-analytics-js/dist/browser/piano-analytics.js';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { defineApplicationVersion } from '@ovh-ux/request-tagger';

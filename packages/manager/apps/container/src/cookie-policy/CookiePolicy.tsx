@@ -60,6 +60,9 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     },
   ];
 
+  const loadPianoAnalytics = () =>
+    import('piano-analytics-js/dist/browser/piano-analytics.js');
+
   const validate = (agreed: boolean) => {
     const expirationDate = new Date();
     expirationDate.setMonth(expirationDate.getMonth() + 13);
@@ -67,7 +70,11 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       path: '/',
       expires: expirationDate,
     });
-    trackingPlugin.onUserConsentFromModal(agreed);
+    if (agreed) {
+      loadPianoAnalytics().then(() => trackingPlugin.onUserConsentFromModal(true));
+    } else {
+      trackingPlugin.onUserConsentFromModal(false);
+    }
     setShow(false);
     onValidate();
   };
@@ -79,9 +86,8 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
 
     // activate tracking if region is US or if tracking consent cookie is valid
     if (isRegionUS || hasConsent) {
-      trackingPlugin.init(true);
+      loadPianoAnalytics().then(() => trackingPlugin.init(true));
     } else if (cookies[WEBSITE_PRIVACY_COOKIE_NAME] == null) {
-      trackingPlugin.onConsentModalDisplay();
       setShow(true);
     } else {
       trackingPlugin.setEnabled(false);
@@ -94,10 +100,10 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       {show && (
         <OsdsModal dismissible={false} onClick={(e) => e.stopPropagation()}>
           <div className="p-1">
-            <div className="w-full flex justify-center items-center">
+            <div className="flex w-full items-center justify-center">
               <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
             </div>
-            <div className="text-center m-4">
+            <div className="m-4 text-center">
               <Subtitle>{t('cookie_policy_title')}</Subtitle>
             </div>
             <div className="mb-3">

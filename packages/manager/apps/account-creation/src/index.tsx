@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import 'piano-analytics-js/dist/browser/piano-analytics.js';
-
 import {
   useDefaultLanguage,
   findAvailableLocale,

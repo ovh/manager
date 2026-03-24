@@ -40,14 +40,14 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('@/context/user/useUser', () => ({
-    useUserContext: () => ({
-      country: 'FR',
-      ovhSubsidiary,
-      legalForm,
-      setLegalForm,
-      language,
-    }),
-  }));
+  useUserContext: () => ({
+    country: 'FR',
+    ovhSubsidiary,
+    legalForm,
+    setLegalForm,
+    language,
+  }),
+}));
 
 vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
   const module: any = await importOriginal();
@@ -139,7 +139,9 @@ describe('AccountTypePage', () => {
         ],
       },
     );
-    expect(navigate).toHaveBeenCalledWith('/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
+    expect(navigate).toHaveBeenCalledWith(
+      '/company?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+    );
   });
 
   it('should navigate to info page for FR non corporation', async () => {
@@ -160,6 +162,8 @@ describe('AccountTypePage', () => {
         ],
       },
     );
-    expect(navigate).toHaveBeenCalledWith('/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager');
+    expect(navigate).toHaveBeenCalledWith(
+      '/details?onsuccess=https%3A%2F%2Fwww.ovh.com%2Fmanager',
+    );
   });
 });
