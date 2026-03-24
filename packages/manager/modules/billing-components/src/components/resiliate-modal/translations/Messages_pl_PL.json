@@ -2,7 +2,7 @@
   "billing_resiliate_mode_label": "Tryb rezygnacji",
   "billing_resiliate_deleteAtExpiration": "Zrezygnuj z usługi w dniu wygaśnięcia.",
   "billing_resiliate_terminate": "Zrezygnuj z usługi natychmiast.",
-  "billing_resiliate_terminateAtEngagementDate": "Rezygnacja z usługi w dniu zakończenia umowy terminowej",
+  "billing_resiliate_terminateAtEngagementDate": "Zakończyć usługę w dniu zakończenia umowy.",
   "billing_resiliate_terminateAtExpirationDate": "Zrezygnuj z usługi w dniu wygaśnięcia.",
   "billing_resiliate_deleteAtExpiration_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęta.",
   "billing_resiliate_deleteAtExpiration_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
@@ -14,10 +14,15 @@
   "billing_resiliate_terminateAtExpirationDate_success": "Dyspozycja rezygnacji z usługi w dniu wygaśnięcia została przyjęta.",
   "billing_resiliate_terminateAtExpirationDate_error": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu jej wygaśnięcia:",
   "billing_resiliate_error": "Wystąpił błąd podczas rozwiązywania umowy terminowej:",
-  "billing_resiliate_terminateAtEngagementDate_us": "Rezygnacja z usługi w dniu zakończenia umowy terminowej",
+  "billing_resiliate_terminateAtEngagementDate_us": "Zakończyć moją usługę na koniec mojej umowy.",
   "billing_resiliate_terminateAtEngagementDate_error_us": "Wystąpił błąd podczas składania rezygnacji z usługi w dniu zakończenia umowy terminowej.",
   "billing_resiliate_mode_label_us": "Wybierz czynność, którą chcesz wykonać",
-  "billing_resiliate_terminate_us": "Rezygnuję z usługi teraz",
-  "billing_resiliate_terminateAtExpirationDate_us": "Rezygnuję z usługi po zakończeniu umowy terminowej",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Otrzymasz e-mail z potwierdzeniem rezygnacji z usługi"
+  "billing_resiliate_terminate_us": "Zakończyć moją usługę teraz.",
+  "billing_resiliate_terminateAtExpirationDate_us": "Zakończyć moją usługę.",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Otrzymasz e-mail z potwierdzeniem rezygnacji z usługi",
+  "billing_resiliate_terminateAtEngagementDate_monthly_us": "Utrzymać moją usługę, ale bez zobowiązań.",
+  "billing_resiliate_autorenewInProgress": "Zaktualizować moje warunki płatności.",
+  "billing_resiliate_autorenewInProgress_us": "Zaktualizować moje warunki płatności.",
+  "billing_resiliate_autorenewInProgress_error": "Wystąpił błąd podczas rezygnacji z Twojego wniosku.",
+  "billing_resiliate_autorenewInProgress_success": "Twój wniosek został pomyślnie anulowany."
 }

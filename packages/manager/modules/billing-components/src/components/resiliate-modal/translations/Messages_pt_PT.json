@@ -2,7 +2,7 @@
   "billing_resiliate_mode_label": "Modo de rescisão",
   "billing_resiliate_deleteAtExpiration": "Rescindir serviço na data de expiração",
   "billing_resiliate_terminate": "Rescindir o serviço imediatamente",
-  "billing_resiliate_terminateAtEngagementDate": "Rescindir o serviço na data de fim do compromisso",
+  "billing_resiliate_terminateAtEngagementDate": "Cancelar o serviço na data de fim de compromisso.",
   "billing_resiliate_terminateAtExpirationDate": "Rescindir serviço na data de expiração",
   "billing_resiliate_deleteAtExpiration_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
   "billing_resiliate_deleteAtExpiration_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
@@ -14,10 +14,15 @@
   "billing_resiliate_terminateAtExpirationDate_success": "O pedido de rescisão deste serviço na data de expiração foi registado com sucesso.",
   "billing_resiliate_terminateAtExpirationDate_error": "Ocorreu um erro aquando do pedido de rescisão do serviço na data de expiração:",
   "billing_resiliate_error": "Lamentamos, mas ocorreu um erro aquando do pedido de rescisão:",
-  "billing_resiliate_terminateAtEngagementDate_us": "Rescindir o serviço na data de fim do compromisso",
+  "billing_resiliate_terminateAtEngagementDate_us": "Cancelar o meu serviço no final do meu compromisso.",
   "billing_resiliate_terminateAtEngagementDate_error_us": "Ocorreu um erro aquando do pedido de rescisão à data de fim do compromisso deste serviço:",
   "billing_resiliate_mode_label_us": "Selecionar a ação que deseja efetuar",
-  "billing_resiliate_terminate_us": "Rescindir o meu serviço agora",
-  "billing_resiliate_terminateAtExpirationDate_us": "Rescindir o meu serviço uma vez terminado o meu compromisso",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Receberá por e-mail o e-mail da confirmação da rescisão do serviço"
+  "billing_resiliate_terminate_us": "Cancelar o meu serviço agora.",
+  "billing_resiliate_terminateAtExpirationDate_us": "Cancelar o meu serviço.",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Receberá por e-mail o e-mail da confirmação da rescisão do serviço",
+  "billing_resiliate_terminateAtEngagementDate_monthly_us": "Manter o meu serviço, mas sem compromisso.",
+  "billing_resiliate_autorenewInProgress": "Atualizar as minhas modalidades de pagamento.",
+  "billing_resiliate_autorenewInProgress_us": "Atualizar as minhas modalidades de pagamento.",
+  "billing_resiliate_autorenewInProgress_error": "Ocorreu um erro durante o abandono do seu pedido.",
+  "billing_resiliate_autorenewInProgress_success": "O seu pedido foi abandonado com sucesso."
 }

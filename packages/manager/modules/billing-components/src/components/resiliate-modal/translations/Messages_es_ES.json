@@ -2,7 +2,7 @@
   "billing_resiliate_mode_label": "Modalidad de baja",
   "billing_resiliate_deleteAtExpiration": "Dar de baja el servicio en la fecha de expiración.",
   "billing_resiliate_terminate": "Dar de baja el servicio inmediatamente.",
-  "billing_resiliate_terminateAtEngagementDate": "Dar de baja el servicio en la fecha de finalización del compromiso",
+  "billing_resiliate_terminateAtEngagementDate": "Cancelar el servicio en la fecha de finalización del compromiso.",
   "billing_resiliate_terminateAtExpirationDate": "Dar de baja el servicio en la fecha de expiración.",
   "billing_resiliate_deleteAtExpiration_success": "La solicitud para dar de baja este servicio en la fecha de expiración se ha registrado correctamente.",
   "billing_resiliate_deleteAtExpiration_error": "Se ha producido un error al solicitar la baja del servicio en la fecha de expiración:",
@@ -14,10 +14,15 @@
   "billing_resiliate_terminateAtExpirationDate_success": "La solicitud para dar de baja este servicio en la fecha de expiración se ha registrado correctamente.",
   "billing_resiliate_terminateAtExpirationDate_error": "Se ha producido un error al solicitar la baja del servicio en la fecha de expiración:",
   "billing_resiliate_error": "Se ha producido un error al solicitar la baja:",
-  "billing_resiliate_terminateAtEngagementDate_us": "Dar de baja el servicio en la fecha de finalización del compromiso",
+  "billing_resiliate_terminateAtEngagementDate_us": "Cancelar mi servicio al final de mi compromiso.",
   "billing_resiliate_terminateAtEngagementDate_error_us": "Se ha producido un error al solicitar la baja en la fecha de finalización del compromiso del servicio:",
   "billing_resiliate_mode_label_us": "Seleccione la acción que desea realizar",
-  "billing_resiliate_terminate_us": "Dar de baja mi servicio ahora",
-  "billing_resiliate_terminateAtExpirationDate_us": "Dar de baja el servicio una vez finalizado el compromiso de permanencia",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Recibirá un mensaje de correo electrónico confirmándole la baja del servicio"
+  "billing_resiliate_terminate_us": "Cancelar mi servicio ahora.",
+  "billing_resiliate_terminateAtExpirationDate_us": "Cancelar mi servicio.",
+  "billing_resiliate_confirmation_mail_to_be_sent": "Recibirá un mensaje de correo electrónico confirmándole la baja del servicio",
+  "billing_resiliate_terminateAtEngagementDate_monthly_us": "Mantener mi servicio pero sin compromiso.",
+  "billing_resiliate_autorenewInProgress": "Actualizar mis modalidades de pago.",
+  "billing_resiliate_autorenewInProgress_us": "Actualizar mis modalidades de pago.",
+  "billing_resiliate_autorenewInProgress_error": "Se ha producido un error durante la cancelación de su solicitud.",
+  "billing_resiliate_autorenewInProgress_success": "Su solicitud ha sido cancelada correctamente."
 }
