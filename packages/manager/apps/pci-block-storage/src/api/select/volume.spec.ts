@@ -4,10 +4,14 @@ import {
   canRetype,
   EncryptionType,
   getEncryption,
+  getEncryptionForListing,
   mapVolumeAttach,
+  mapVolumeAttachForListing,
   mapVolumeEncryption,
+  mapVolumeEncryptionForListing,
   mapVolumeToRetype,
   mapVolumeType,
+  mapVolumeTypeForListing,
   paginateResults,
   sortResults,
 } from './volume';
@@ -651,6 +655,242 @@ describe('volume', () => {
         projectId: '123',
         originalVolume: mockVolume,
         newType: nonEncryptedSpec.name,
+      });
+    });
+  });
+
+  describe('getEncryptionForListing', () => {
+    const volumeType = 'high-speed';
+    const catalogRegion = 'GRA11';
+    const removedRegion = 'GRA9';
+
+    const catalogWithRemovedRegion = ({
+      models: [
+        {
+          name: 'model',
+          pricings: [
+            {
+              specs: { name: volumeType, encrypted: false },
+              regions: [catalogRegion],
+            },
+          ],
+        },
+      ],
+    } as unknown) as TVolumeCatalog;
+
+    it('should resolve encryption via type-only fallback when region is removed from catalog', () => {
+      const volume = {
+        type: volumeType,
+        region: removedRegion,
+      } as TAPIVolume;
+
+      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
+
+      expect(result).toEqual({
+        encrypted: false,
+        encryptionType: null,
+      });
+    });
+
+    it('should return null encryption when type is completely removed from catalog', () => {
+      const volume = {
+        type: 'unknown-type',
+        region: removedRegion,
+      } as TAPIVolume;
+
+      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
+
+      expect(result).toEqual({
+        encrypted: null,
+        encryptionType: null,
+      });
+    });
+
+    it('should use exact match when region is present in catalog', () => {
+      const volume = {
+        type: volumeType,
+        region: catalogRegion,
+      } as TAPIVolume;
+
+      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
+
+      expect(result).toEqual({
+        encrypted: false,
+        encryptionType: null,
+      });
+    });
+  });
+
+  describe('mapVolumeEncryptionForListing', () => {
+    const mockTranslator = (vi.fn() as unknown) as TFunction<['common']>;
+    vi.mocked(mockTranslator).mockReturnValue('translation');
+
+    const volumeType = 'high-speed';
+    const catalogRegion = 'GRA11';
+    const removedRegion = 'GRA9';
+
+    const catalogWithRemovedRegion = ({
+      models: [
+        {
+          name: 'model',
+          pricings: [
+            {
+              specs: { name: volumeType, encrypted: false },
+              regions: [catalogRegion],
+            },
+          ],
+        },
+      ],
+    } as unknown) as TVolumeCatalog;
+
+    it('should resolve NONE status via fallback when region is removed from catalog', () => {
+      const volume = {
+        type: volumeType,
+        region: removedRegion,
+      } as TAPIVolume;
+
+      const result = mapVolumeEncryptionForListing(
+        mockTranslator,
+        catalogWithRemovedRegion,
+      )(volume);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          encrypted: false,
+          encryptionType: null,
+        }),
+      );
+      expect(mockTranslator).toHaveBeenCalledWith(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: 'NONE',
+          defaultValue: 'NONE',
+        },
+      );
+    });
+
+    it('should resolve UNKNOWN status when type is completely removed from catalog', () => {
+      const volume = {
+        type: 'unknown-type',
+        region: removedRegion,
+      } as TAPIVolume;
+
+      const result = mapVolumeEncryptionForListing(
+        mockTranslator,
+        catalogWithRemovedRegion,
+      )(volume);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          encrypted: null,
+          encryptionType: null,
+        }),
+      );
+      expect(mockTranslator).toHaveBeenCalledWith(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: 'UNKNOWN',
+          defaultValue: 'UNKNOWN',
+        },
+      );
+    });
+  });
+
+  describe('mapVolumeAttachForListing', () => {
+    const volumeType = 'high-speed';
+    const catalogRegion = 'GRA11';
+    const removedRegion = 'GRA9';
+
+    const catalogWithRemovedRegion = ({
+      models: [
+        {
+          name: 'model',
+          pricings: [
+            {
+              specs: {
+                name: volumeType,
+                encrypted: false,
+                maxAttachedInstances: 5,
+              },
+              regions: [catalogRegion],
+            },
+          ],
+        },
+      ],
+    } as unknown) as TVolumeCatalog;
+
+    it('should resolve maxAttachedInstances via fallback when region is removed from catalog', () => {
+      const volume = {
+        type: volumeType,
+        region: removedRegion,
+        attachedTo: [],
+        status: 'available',
+      } as TAPIVolume;
+
+      const result = mapVolumeAttachForListing(catalogWithRemovedRegion)(
+        volume,
+      );
+
+      expect(result).toMatchObject({
+        maxAttachedInstances: 5,
+        canAttachInstance: true,
+        canDetachInstance: false,
+      });
+    });
+
+    it('should default to maxAttachedInstances 1 when type is completely removed from catalog', () => {
+      const volume = {
+        type: 'unknown-type',
+        region: removedRegion,
+        attachedTo: [],
+        status: 'available',
+      } as TAPIVolume;
+
+      const result = mapVolumeAttachForListing(catalogWithRemovedRegion)(
+        volume,
+      );
+
+      expect(result).toMatchObject({
+        maxAttachedInstances: 1,
+        canAttachInstance: true,
+        canDetachInstance: false,
+      });
+    });
+  });
+
+  describe('mapVolumeTypeForListing', () => {
+    const volumeType = 'high-speed';
+    const catalogRegion = 'GRA11';
+    const removedRegion = 'GRA9';
+
+    const catalogWithRemovedRegion = ({
+      models: [
+        {
+          name: 'model',
+          pricings: [
+            {
+              specs: { name: volumeType, encrypted: false },
+              regions: [catalogRegion],
+            },
+          ],
+        },
+      ],
+      regions: [],
+    } as unknown) as TVolumeCatalog;
+
+    it('should resolve canRetype via fallback when region is removed from catalog', () => {
+      vi.mocked(is3az).mockReturnValue(false);
+
+      const volume = {
+        type: volumeType,
+        region: removedRegion,
+      } as TAPIVolume;
+
+      const result = mapVolumeTypeForListing(catalogWithRemovedRegion)(volume);
+
+      expect(result).toMatchObject({
+        canRetype: true,
+        isClassicMultiAttach: false,
       });
     });
   });
