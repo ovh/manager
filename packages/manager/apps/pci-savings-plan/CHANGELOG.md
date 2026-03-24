@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.23.2...@ovh-ux/manager-pci-savings-plan-app@1.24.0) (2026-03-24)
+
+
+### Features
+
+* **pci-savings-plan:** add 3az & rancher ff ([70075f6](https://github.com/ovh/manager/commit/70075f6b62a1adee9155a1515f4bba7199573633)), closes [#TAPC-6091](https://github.com/ovh/manager/issues/TAPC-6091)
+* **pci-savings-plans:** add deployment badge in listing page ([26b182a](https://github.com/ovh/manager/commit/26b182a8308c3be79cf190979217f8565935c129)), closes [#TAPC-5853](https://github.com/ovh/manager/issues/TAPC-5853)
+
+
+
+
+
 ## [1.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.23.1...@ovh-ux/manager-pci-savings-plan-app@1.23.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-savings-plan-app
