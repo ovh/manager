@@ -94,7 +94,16 @@ describe('Update Flavor modal', () => {
       fireEvent.click(screen.getByTestId('update-flavor-submit-button'));
     });
     await waitFor(() => {
-      expect(notebookApi.updateNotebook).toHaveBeenCalled();
+      expect(notebookApi.updateNotebook).toHaveBeenCalledWith({
+        notebookId: mockedNotebook.id,
+        notebookInfo: {
+          resources: {
+            flavor: mockedCapabilitiesFlavorGPU.id,
+            flavorCount: 1,
+          },
+        },
+        projectId: 'projectId',
+      });
       expect(useToast().toast).toHaveBeenCalledWith({
         title: 'updateFlavorToastSuccessTitle',
         description: 'updateFlavorToastSuccessDescription',
