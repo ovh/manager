@@ -39,6 +39,27 @@ export const mockedCapabilitiesFlavorGPU: ai.capabilities.Flavor = {
   type: ai.capabilities.FlavorTypeEnum.gpu,
 };
 
+export const mockedCapabilitiesFlavorH200: ai.capabilities.Flavor = {
+  default: false,
+  description: 'NVIDIA H200 4 GPU',
+  gpuInformation: {
+    gpuBrand: 'nvidia',
+    gpuMemory: 15,
+    gpuModel: 'H200',
+  },
+  id: 'h200-4-gpu',
+  max: 1,
+  resourcesPerUnit: {
+    cpu: 12,
+    gpu: 4,
+    ephemeralStorage: 15,
+    memory: 5,
+    privateNetwork: 5,
+    publicNetwork: 10,
+  },
+  type: ai.capabilities.FlavorTypeEnum.gpu,
+};
+
 export const mockedOrderFlavorCPU: Flavor = {
   ...mockedCapabilitiesFlavorCPU,
   pricing: [mockedPricing],
@@ -46,5 +67,10 @@ export const mockedOrderFlavorCPU: Flavor = {
 
 export const mockedOrderFlavorGPU: Flavor = {
   ...mockedCapabilitiesFlavorGPU,
+  pricing: [mockedPricing],
+};
+
+export const mockedOrderFlavorH200: Flavor = {
+  ...mockedCapabilitiesFlavorH200,
   pricing: [mockedPricing],
 };

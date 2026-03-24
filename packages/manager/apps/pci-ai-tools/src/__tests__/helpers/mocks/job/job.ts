@@ -48,7 +48,7 @@ export const mockedJobSpecInput: ai.job.JobSpecInput = {
   name: 'myNewJob',
   region: 'GRA',
   image: 'myImage',
-  resources: { flavor: 'ai1-1-cpu', cpu: 2 },
+  resources: { flavor: 'ai1-1-cpu', flavorCount: 2 },
   sshPublicKeys: ['myNewSshKey'],
   timeoutAutoRestart: false,
   unsecureHttp: false,
@@ -58,6 +58,6 @@ export const mockedJobSpecInput: ai.job.JobSpecInput = {
 
 export const mockedJobSpecInputGPU: ai.job.JobSpecInput = {
   ...mockedJobSpecInput,
-  resources: { flavor: 'ai1-1-gpu', gpu: 2 },
+  resources: { flavor: 'ai1-1-gpu', flavorCount: 2 },
   volumes: [mockedPublicGitVolume],
 };
