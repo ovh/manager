@@ -149,6 +149,21 @@ export const getVolumePricing = (catalog?: TVolumeCatalog) => {
     );
 };
 
+/**
+ * Listing-only variant: falls back to a type-only match when the volume's
+ * region has been removed from the catalog pricing. This is safe for
+ * type-level specs (encrypted, maxAttachedInstances) that do not vary by
+ * region.
+ */
+export const getVolumePricingWithFallback = (catalog?: TVolumeCatalog) => {
+  const catalogPricing = catalog?.models.flatMap((m) => m.pricings) ?? [];
+
+  return (volume: Pick<TAPIVolume, 'type' | 'region'>) =>
+    catalogPricing.find(
+      (p) => p.specs.name === volume.type && p.regions.includes(volume.region),
+    ) ?? catalogPricing.find((p) => p.specs.name === volume.type);
+};
+
 export type TVolumeAttach = {
   canAttachInstance: boolean;
   canDetachInstance: boolean;
@@ -364,6 +379,87 @@ export const mapVolumeType = <V extends TAPIVolume>(
   is3az: is3az(catalog?.regions || [], volume.region),
   isClassicMultiAttach: isClassicMultiAttach(volume),
   canRetype: canRetype(catalog)(volume),
+});
+
+/**
+ * Listing-only mappers: use getVolumePricingWithFallback so that volumes
+ * whose region was removed from a catalog pricing still resolve type-level
+ * specs (encrypted, maxAttachedInstances) instead of showing "unknown".
+ */
+export const mapVolumeAttachForListing = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => {
+  const getPricing = getVolumePricingWithFallback(catalog);
+
+  return (volume: V): V & TVolumeAttach => {
+    const pricing = getPricing(volume);
+    const maxAttachedInstances = pricing?.specs.maxAttachedInstances || 1;
+    const isVolumeBeingRetyped = volume.status === 'retyping';
+
+    return {
+      ...volume,
+      maxAttachedInstances,
+      canAttachInstance:
+        maxAttachedInstances > volume.attachedTo.length &&
+        !isVolumeBeingRetyped,
+      canDetachInstance: volume.attachedTo.length > 0 && !isVolumeBeingRetyped,
+    };
+  };
+};
+
+export const getEncryptionForListing = (catalog?: TVolumeCatalog) => <
+  V extends TAPIVolume
+>(
+  volume: V,
+) => {
+  const encrypted =
+    getVolumePricingWithFallback(catalog)(volume)?.specs.encrypted ?? null;
+  const encryptionType = encrypted ? EncryptionType.OMK : null;
+
+  return { encrypted, encryptionType };
+};
+
+export const mapVolumeEncryptionForListing = <V extends TAPIVolume>(
+  t: TFunction<['common']>,
+  catalog?: TVolumeCatalog,
+) => {
+  const getEncryptionForVolume = getEncryptionForListing(catalog);
+
+  return (volume: V): V & TVolumeEncryption => {
+    const { encrypted, encryptionType } = getEncryptionForVolume(volume);
+
+    let encryptionStatusContext = 'UNKNOWN';
+    if (encrypted !== null) {
+      encryptionStatusContext = encrypted ? 'ACTIVE' : 'NONE';
+    }
+
+    return {
+      ...volume,
+      encryptionStatus: t(
+        'common:pci_projects_project_storages_blocks_status',
+        {
+          context: encryptionStatusContext,
+          defaultValue: encryptionStatusContext,
+        },
+      ),
+      encryptionType,
+      encrypted,
+    };
+  };
+};
+
+export const mapVolumeTypeForListing = <V extends TAPIVolume>(
+  catalog?: TVolumeCatalog,
+) => (volume: V): V & TVolumeType => ({
+  ...volume,
+  is3az: is3az(catalog?.regions || [], volume.region),
+  isClassicMultiAttach: isClassicMultiAttach(volume),
+  canRetype:
+    !getEncryptionForListing(catalog)(volume).encrypted &&
+    !(
+      is3az(catalog?.regions || [], volume.region) &&
+      isClassicMultiAttach(volume)
+    ),
 });
 
 export type TVolumeToRetype = {

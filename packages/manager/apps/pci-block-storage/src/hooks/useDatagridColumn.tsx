@@ -32,7 +32,11 @@ export const useDatagridColumn = (projectId: string, projectUrl: string) => {
   const columns: DatagridColumn<TVolume>[] = [
     {
       id: BlockStorageListColumn.NAME,
-      cell: (props) => <DataGridTextCell>{props.name}</DataGridTextCell>,
+      cell: (props) => (
+        <DataGridTextCell className="max-w-[320px] min-w-[120px] break-all block">
+          {props.name}
+        </DataGridTextCell>
+      ),
       label: t('pci_projects_project_storages_blocks_name_label'),
     },
     {
