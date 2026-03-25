@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.16.0...@ovh-ux/manager-pci-billing-app@0.16.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* **pci-billing:** update url redirection ([1155d15](https://github.com/ovh/manager/commit/1155d1526aeb7fd59baf9ab1d9346dbd3564d77c))
+
+
+
+
+
 # [0.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.15.2...@ovh-ux/manager-pci-billing-app@0.16.0) (2026-03-23)
 
 
