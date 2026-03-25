@@ -16,7 +16,7 @@
     "filter_search_key": "ricerca"
   },
   "delete": {
-    "delete_tenant_title": "Eliminare il tenant",
+    "delete_tenant_title": "Eliminare il Tenant",
     "delete_tenant_description": "Vuoi davvero eliminare il tenant \"{{tenantName}}\"?",
     "success": "Eliminazione del tenant in corso..."
   },

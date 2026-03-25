@@ -3,10 +3,10 @@
     "name_id": "Nazwa / ID",
     "region": "Lokalizacja",
     "protocol": "Protokół",
-    "allocated_capacity": "Przydzielona pojemność",
+    "allocated_capacity": "Przydzielona przepustowość",
     "status": "Status",
     "id": "ID",
-    "share_name": "Nazwa share",
+    "share_name": "Nazwa „share”",
     "location": "Lokalizacja",
     "creation_date": "Data utworzenia",
     "mount_path": "Ścieżka montowania",
@@ -14,7 +14,7 @@
   },
   "actions": {
     "column": "Operacje",
-    "manage": "Administracja",
+    "manage": "Zarządzaj",
     "delete": "Usuń"
   }
 }

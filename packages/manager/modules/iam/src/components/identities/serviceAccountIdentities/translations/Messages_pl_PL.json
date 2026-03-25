@@ -8,5 +8,5 @@
   "iam_identities_service_accounts_add": "Dodaj konta serwisowe",
   "iam_identities_service_accounts_modal_title": "Dodaj konta serwisowe",
   "iam_identities_service_accounts_modal_empty_state": "Brak kont serwisowych do dodania",
-  "iam_identities_service_accounts_load_error": "Wystąpił błąd podczas pobierania twoich kont serwisowych: {{ message }}"
+  "iam_identities_service_accounts_load_error": "Wystąpił błąd podczas pobierania kont serwisowych: {{message}}"
 }

@@ -1,18 +1,18 @@
 {
-  "description": "Adicione endereços ou intervalos de IP autorizados a acessar este compartilhamento. Por padrão, nenhum endereço ou intervalo de IP é autorizado. O Armazenamento de Arquivos só pode ser usado com endereços IP da OVHcloud (Nuvem Pública, Serviço Kubernetes Gerenciado).",
+  "description": "Adicione endereços ou intervalos de endereços IP autorizados a aceder a este share. Por predefinição, nenhum endereço ou intervalo de endereços IP tem autorização. O File Storage só pode ser utilizado com endereços IP OVHcloud (Public Cloud, Managed Kubernetes Service).",
   "add": {
     "label": "Adicionar um novo acesso",
-    "success": "A sua ACL (Lista de Controle de Acesso) foi adicionada com sucesso",
-    "error": "Ocorreu um erro ao adicionar a ACL: {{errorMessage}}"
+    "success": "A sua ACL (Lista de controlo de acesso) foi adicionada com sucesso",
+    "error": "Ocorreu um erro aquando da adição da ACL: {{errorMessage}}"
   },
   "columns": {
     "accessTo": {
       "header": "Acesso a",
       "placeholder": "10.0.0.0",
-      "invalidFormat": "Formato inválido: por favor insira um endereço IP ou um intervalo de IP válido (por exemplo: 10.0.0.0/24)"
+      "invalidFormat": "Formato inválido: introduza um endereço IP ou um intervalo de endereços IP válido (por exemplo: 10.0.0.0/24"
     },
     "accessPermission": {
-      "header": "Direitos de acesso",
+      "header": "Permissões de acesso",
       "readOnly": "Apenas leitura",
       "readAndWrite": "Leitura e escrita"
     },
@@ -23,14 +23,14 @@
       "header": "Ações",
       "delete": {
         "success": "A sua ACL (Lista de controlo de acesso) foi eliminada com sucesso",
-        "error": "Ocorreu um erro ao eliminar a ACL: {{errorMessage}}"
+        "error": "Ocorreu um erro aquando da eliminação da ACL: {{errorMessage}}"
       }
     }
   },
   "deleteModal": {
     "title": "Eliminar ACL",
     "description": "Eliminar esta ACL implicará a perda de acesso de {{accessTo}} a este share. Confirma a eliminação?",
-    "confirmButton": "Suprimir",
+    "confirmButton": "Eliminar",
     "close": "Fechar"
   }
 }

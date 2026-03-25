@@ -2,7 +2,7 @@
   "listing": {
     "title": "Lista tenantów",
     "description": "Tenanty umożliwiają uporządkowanie metryk od momentu ich pojawienia się w usłudze obserwowalności.",
-    "description_bis": "Dzięki kilku tenantom możesz zorganizować swoje dane według potrzeb: poziom prywatności, polityki dostępu, strategie retencji i odpowiednia lokalizacja.",
+    "description_bis": "Dzięki kilku tenantom zorganizujesz dane według potrzeb. Ustawisz poziom prywatności, polityki dostępu, strategie retencji i wybierzesz odpowiednią lokalizację.",
     "endpoint_cell": "Adres URL serwera Prometheus",
     "retention_cell": "Retencja",
     "active_metrics_cell": "Aktywne metryki",

@@ -43,12 +43,5 @@
   "server_network_game_ddos_button_configure": "Skonfiguruj Anty-DDoS Game",
   "server_network_game_ddos_no_ip_configured": "Adresy IPv4 bez ochrony",
   "server_network_game_ddos_some_ips_configured": "Niektóre adresy IPv4 są chronione",
-  "server_network_game_ddos_all_ips_configured": "Wszystkie adresy IPv4 są chronione",
-  "server_network_game_protection": "Anty-DDoS Game",
-  "server_network_game_protection_no_ip": "Brak przypisanego IP",
-  "server_network_game_protection_numbers": "Liczba adresów IP przypisanych do tego serwera: {{total}}",
-  "server_network_game_protection_button_configure": "Skonfiguruj Anty-DDoS Game",
-  "server_network_game_protection_no_ip_configured": "Nieskonfigurowane adresy IP",
-  "server_network_game_protection_some_ips_configured": "Kilka skonfigurowanych adresów IP",
-  "server_network_game_protection_all_ips_configured": "Wszystkie adresy IP są skonfigurowane"
+  "server_network_game_ddos_all_ips_configured": "Wszystkie adresy IPv4 są chronione"
 }

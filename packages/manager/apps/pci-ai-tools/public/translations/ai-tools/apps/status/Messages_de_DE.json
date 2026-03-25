@@ -9,5 +9,5 @@
   "status-ERROR": "Fehler",
   "status-STOPPED": "Angehalten",
   "status-RUNNING": "In Betrieb",
-  "status-STANDBY": "Bereit"
+  "status-STANDBY": "Standby"
 }

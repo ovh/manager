@@ -95,6 +95,6 @@
   "key_management_service_service-keys_create_protection_level_subtitle": "Indique o nível de proteção utilizado para a Service Key.",
   "key_management_service_service-keys_create_software_protection_title": "Proteção do software",
   "key_management_service_service-keys_create_software_protection_subtitle": "As operações criptográficas são efetuadas num software.",
-  "key_management_service_service-keys_link_download_key_pem": "Baixar a chave pública PEM",
-  "key_management_service_service-keys_link_download_key_jwk": "Baixar a chave pública JWK"
+  "key_management_service_service-keys_link_download_key_pem": "Descarregar a chave pública PEM",
+  "key_management_service_service-keys_link_download_key_jwk": "Descarregar a chave pública JWK"
 }

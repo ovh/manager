@@ -20,5 +20,5 @@
   "agent_status_creating_legend": "Creazione dell'Agent in corso...",
   "agent_status_updating_legend": "Modifica dell'Agent in corso...",
   "agent_status_enabled_legend": "Il tuo Agent è attivo e pronto a effettuare backup del tuo server.",
-  "no_agent_enabled_banner": "Hai bisogno di aiuto per installare il tuo agente? Puoi seguire <Link>Questa guida</Link>"
+  "no_agent_enabled_banner": "Bisogno di aiuto per installare il tuo Agent? Segui <Link>questa guida</Link>"
 }
