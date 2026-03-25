@@ -13,6 +13,12 @@ import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
 vi.mock('@/data/hooks/catalog/useShareCatalog');
 
+vi.mock('@ovh-ux/muk', () => ({
+  useCatalogPrice: () => ({
+    getFormattedMonthlyCatalogPrice: (price: number) => `€${(price / 100000000).toFixed(4)}`,
+  }),
+}));
+
 vi.mock('@ovh-ux/manager-react-shell-client', () => ({
   useOvhTracking: () => ({
     trackClick: vi.fn(),
@@ -37,18 +43,21 @@ const mockDeploymentModes: TDeploymentModeDataForCard[] = [
     labelKey: 'localisation.deploymentMode.modes.region-3-az.label',
     descriptionKey: 'localisation.deploymentMode.modes.region-3-az.description',
     Image: () => <div data-testid="region-3-az-image">Region 3AZ Image</div>,
+    monthlyPrice: { value: 72000, isLeastPrice: true },
   },
   {
     mode: 'region',
     labelKey: 'localisation.deploymentMode.modes.region.label',
     descriptionKey: 'localisation.deploymentMode.modes.region.description',
     Image: () => <div data-testid="region-image">Region Image</div>,
+    monthlyPrice: { value: 36000, isLeastPrice: false },
   },
   {
     mode: 'localzone',
     labelKey: 'localisation.deploymentMode.modes.localzone.label',
     descriptionKey: 'localisation.deploymentMode.modes.localzone.description',
     Image: () => <div data-testid="localzone-image">Localzone Image</div>,
+    monthlyPrice: null,
   },
 ];
 

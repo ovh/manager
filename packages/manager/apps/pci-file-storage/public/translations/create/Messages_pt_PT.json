@@ -26,7 +26,8 @@
           "label": "Região 3-AZ",
           "description": "Implantação de alta resiliência e alta disponibilidade em 3 zonas."
         }
-      }
+      },
+      "leastPrice": "A partir de {{price}} {{unit}}"
     },
     "macroRegion": {
       "title": "Escolha uma localização"

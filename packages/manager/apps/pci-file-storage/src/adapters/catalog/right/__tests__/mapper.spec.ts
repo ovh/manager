@@ -173,6 +173,8 @@ describe('mapCatalogDTOToCatalog', () => {
           ['region', ['europe', 'north_america']],
           ['localzone', ['europe']],
         ]),
+        shareSpecVariantIdByRegion: new Map(),
+        shareSpecVariants: new Map(),
       },
     });
   });
@@ -186,13 +188,39 @@ describe('mapCatalogDTOToCatalog', () => {
 
     const result = mapCatalogDTOToCatalog(catalogDto);
 
+    const standard1azVariantRBX = {
+      capacity: { min: 150, max: 10240 },
+      iops: { guaranteed: false, level: 24, max: 16_000, maxUnit: 'IOPS', unit: 'IOPS/GB' },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.25,
+        min: 25,
+        max: 128,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
+    };
+    const standard1azVariantGRA = {
+      capacity: { min: 150, max: 20480 },
+      iops: { guaranteed: false, level: 48, max: 20_000, maxUnit: 'IOPS', unit: 'IOPS/GB' },
+      bandwidth: {
+        guaranteed: false,
+        level: 0.3,
+        min: 30,
+        max: 1000,
+        maxUnit: 'MB/s',
+        unit: 'MB/s/GB',
+      },
+    };
+    const standard2VariantData = { ...standard1azVariantRBX };
+
     expect(result.entities.shares.allIds).toEqual(['publiccloud-share-standard']);
     expect(result.entities.shares.byId.get('publiccloud-share-standard')).toEqual({
       name: 'publiccloud-share-standard',
       filters: {
         deployment: ['region', 'region-3-az', 'localzone'],
       },
-      specsIds: ['standard-1az', 'publiccloud-share-standard2'],
+      specsIds: ['standard-1az', 'standard-1az', 'publiccloud-share-standard2'],
     });
 
     expect(result.entities.shareSpecs.allIds).toEqual([
@@ -201,74 +229,10 @@ describe('mapCatalogDTOToCatalog', () => {
     ]);
     expect(result.entities.shareSpecs.byId.get('standard-1az')).toEqual({
       name: 'standard-1az',
-      capacity: {
-        min: 150,
-        max: 10240,
-      },
-      iops: {
-        guaranteed: false,
-        level: 24,
-        max: 16_000,
-        maxUnit: 'IOPS',
-        unit: 'IOPS/GB',
-      },
-      bandwidth: {
-        guaranteed: false,
-        level: 0.25,
-        min: 25,
-        max: 128,
-        maxUnit: 'MB/s',
-        unit: 'MB/s/GB',
-      },
-      microRegionIds: [
-        'RBX-A',
-        'SGP1',
-        'BHS5',
-        'DE1',
-        'GRA7',
-        'SBG7',
-        'GRA11',
-        'GRA9',
-        'SBG5',
-        'UK1',
-        'RBX-A',
-        'SGP1',
-        'BHS5',
-        'DE1',
-        'AP-SOUTH-MUM-1',
-        'GRA7',
-        'SBG7',
-        'GRA11',
-        'GRA9',
-        'WAW1',
-        'SBG5',
-      ],
-      pricing: {
-        price: 11900,
-        interval: 'hour',
-      },
+      microRegionIds: ['RBX-A', 'SGP1', 'BHS5', 'DE1', 'GRA7', 'GRA9', 'GRA11', 'SBG7', 'SBG5'],
     });
     expect(result.entities.shareSpecs.byId.get('publiccloud-share-standard2')).toEqual({
       name: 'publiccloud-share-standard2',
-      capacity: {
-        min: 150,
-        max: 10240,
-      },
-      iops: {
-        guaranteed: false,
-        level: 24,
-        max: 16_000,
-        maxUnit: 'IOPS',
-        unit: 'IOPS/GB',
-      },
-      bandwidth: {
-        guaranteed: false,
-        level: 0.25,
-        min: 25,
-        max: 128,
-        maxUnit: 'MB/s',
-        unit: 'MB/s/GB',
-      },
       microRegionIds: [
         'EU-WEST-LZ-MRS-A',
         'EU-CENTRAL-LZ-BUH-A',
@@ -276,13 +240,48 @@ describe('mapCatalogDTOToCatalog', () => {
         'EU-NORTH-LZ-CPH-A',
         'EU-WEST-PAR',
         'EU-SOUTH-MIL',
-        'EU-WEST-PAR',
-        'EU-SOUTH-MIL',
       ],
-      pricing: {
-        price: 22900,
-        interval: 'hour',
-      },
+    });
+
+    // Variant ID mapping: regions point to variant IDs (keyed by first region in group)
+    expect(result.relations.shareSpecVariantIdByRegion.get('standard-1az')).toEqual(
+      new Map([
+        ['RBX-A', 'standard-1az::RBX-A'],
+        ['SGP1', 'standard-1az::RBX-A'],
+        ['BHS5', 'standard-1az::RBX-A'],
+        ['DE1', 'standard-1az::RBX-A'],
+        ['GRA7', 'standard-1az::GRA7'],
+        ['GRA9', 'standard-1az::GRA7'],
+        ['GRA11', 'standard-1az::GRA7'],
+        ['SBG7', 'standard-1az::GRA7'],
+        ['SBG5', 'standard-1az::GRA7'],
+      ]),
+    );
+    expect(result.relations.shareSpecVariantIdByRegion.get('publiccloud-share-standard2')).toEqual(
+      new Map([
+        ['EU-WEST-LZ-MRS-A', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+        ['EU-CENTRAL-LZ-BUH-A', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+        ['EU-SOUTH-LZ-MIL-A', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+        ['EU-NORTH-LZ-CPH-A', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+        ['EU-WEST-PAR', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+        ['EU-SOUTH-MIL', 'publiccloud-share-standard2::EU-WEST-LZ-MRS-A'],
+      ]),
+    );
+
+    // Deduplicated variants
+    expect(result.relations.shareSpecVariants.get('standard-1az::RBX-A')).toEqual({
+      ...standard1azVariantRBX,
+      pricing: { price: 11900, interval: 'hour' },
+    });
+    expect(result.relations.shareSpecVariants.get('standard-1az::GRA7')).toEqual({
+      ...standard1azVariantGRA,
+      pricing: { price: 22900, interval: 'hour' },
+    });
+    expect(
+      result.relations.shareSpecVariants.get('publiccloud-share-standard2::EU-WEST-LZ-MRS-A'),
+    ).toEqual({
+      ...standard2VariantData,
+      pricing: { price: 22900, interval: 'hour' },
     });
   });
 });

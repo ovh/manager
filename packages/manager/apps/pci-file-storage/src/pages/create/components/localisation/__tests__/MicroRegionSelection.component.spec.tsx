@@ -18,42 +18,46 @@ vi.mock('react-router-dom', () => ({
   useParams: () => ({ projectId: 'test-project-id' }),
 }));
 
-vi.mock('@ovhcloud/ods-react', () => ({
-  FormField: ({ children }: PropsWithChildren) => <div>{children}</div>,
-  FormFieldLabel: ({ children }: PropsWithChildren) => <label>{children}</label>,
-  Select: ({
-    onValueChange,
-    value,
-    items,
-  }: {
-    onValueChange: ({ value }: { value: string[] }) => void;
-    value: string[];
-    items: TMicroRegionData[];
-  }) => (
-    <div
-      role="combobox"
-      aria-label="micro-region-select"
-      data-value={JSON.stringify(value)}
-      data-items={JSON.stringify(items)}
-      onClick={() => onValueChange && onValueChange({ value: ['GRA2'] })}
-    />
-  ),
-  SelectControl: () => <div />,
-  SelectContent: () => <div />,
-  Text: ({ children, preset }: PropsWithChildren<{ preset: string }>) => (
-    <div data-testid={`text-${preset}`}>{children}</div>
-  ),
-  Controller: ({ render, name }: FieldValues) => {
-    const formContext = useFormContext<CreateShareFormValues>();
-    const field = {
-      value: formContext.watch(name) || null,
-      onChange: (value: string) => {
-        formContext.setValue(name, value);
-      },
-    };
-    return render({ field });
-  },
-}));
+vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-react')>();
+  return {
+    ...actual,
+    FormField: ({ children }: PropsWithChildren) => <div>{children}</div>,
+    FormFieldLabel: ({ children }: PropsWithChildren) => <label>{children}</label>,
+    Select: ({
+      onValueChange,
+      value,
+      items,
+    }: {
+      onValueChange: ({ value }: { value: string[] }) => void;
+      value: string[];
+      items: TMicroRegionData[];
+    }) => (
+      <div
+        role="combobox"
+        aria-label="micro-region-select"
+        data-value={JSON.stringify(value)}
+        data-items={JSON.stringify(items)}
+        onClick={() => onValueChange && onValueChange({ value: ['GRA2'] })}
+      />
+    ),
+    SelectControl: () => <div />,
+    SelectContent: () => <div />,
+    Text: ({ children, preset }: PropsWithChildren<{ preset: string }>) => (
+      <div data-testid={`text-${preset}`}>{children}</div>
+    ),
+    Controller: ({ render, name }: FieldValues) => {
+      const formContext = useFormContext<CreateShareFormValues>();
+      const field = {
+        value: formContext.watch(name) || null,
+        onChange: (value: string) => {
+          formContext.setValue(name, value);
+        },
+      };
+      return render({ field });
+    },
+  };
+});
 
 const mockUseShareCatalog = vi.mocked(useShareCatalog);
 

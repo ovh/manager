@@ -1,12 +1,14 @@
 import { ComponentType, SVGProps } from 'react';
 
+import { convertHourlyPriceToMonthly } from '@ovh-ux/muk';
+
 import { TCountryIsoCode } from '@/components/new-lib/flag/country-iso-code';
 import {
   TDeploymentMode,
   TMacroRegion,
   TMicroRegion,
   TShareCatalog,
-  TShareSpecs,
+  TShareSpecVariant,
 } from '@/domain/entities/catalog.entity';
 import {
   getMicroRegions,
@@ -23,11 +25,17 @@ export type TSVGImage = ComponentType<SVGProps<SVGSVGElement>>;
 
 export type TDeploymentModeData = 'region' | 'localzone' | 'region-3-az';
 
+export type TDeploymentModePrice = {
+  value: number;
+  isLeastPrice: boolean;
+};
+
 export type TDeploymentModeDataForCard = {
   mode: TDeploymentModeData;
   labelKey: string;
   descriptionKey: string;
   Image: TSVGImage;
+  monthlyPrice: TDeploymentModePrice | null;
 };
 
 export type TRegionData = {
@@ -72,11 +80,15 @@ const getImage = (mode: TDeploymentMode) => {
   }
 };
 
-const mapDeploymentModeForCard = (mode: TDeploymentMode): TDeploymentModeDataForCard => ({
+const mapDeploymentModeForCard = (
+  mode: TDeploymentMode,
+  monthlyPrice: TDeploymentModePrice | null,
+): TDeploymentModeDataForCard => ({
   mode,
   labelKey: `localisation.deploymentMode.modes.${mode}.label`,
   descriptionKey: `localisation.deploymentMode.modes.${mode}.description`,
   Image: getImage(mode) as unknown as TSVGImage,
+  monthlyPrice,
 });
 
 const getLocalZoneTranslationKey = (regionName: string) => regionName.split('-').slice(-1)[0];
@@ -120,24 +132,62 @@ const mapRegionToLocalizationCard =
     };
   };
 
-const mapShareSpecsToShareSpecData = (spec: TShareSpecs): TShareSpecData => {
-  const calculateProvisionedPerformance = provisionedPerformanceCalculator(spec);
+const mapShareSpecsToShareSpecData = (
+  specName: string,
+  variant: TShareSpecVariant,
+): TShareSpecData => {
+  const calculateProvisionedPerformance = provisionedPerformanceCalculator(variant);
 
   return {
-    name: spec.name,
-    capacityMin: spec.capacity.min,
-    capacityMax: spec.capacity.max,
-    iopsLevel: spec.iops.level,
-    bandwidthLevel: spec.bandwidth.level,
-    bandwidthUnit: spec.bandwidth.unit,
+    name: specName,
+    capacityMin: variant.capacity.min,
+    capacityMax: variant.capacity.max,
+    iopsLevel: variant.iops.level,
+    bandwidthLevel: variant.bandwidth.level,
+    bandwidthUnit: variant.bandwidth.unit,
     calculateProvisionedPerformance,
   };
 };
 
 export type TFirstAvailableLocation = { macroRegion: string; microRegion: string };
 
+const getLeastPriceForDeploymentMode = (
+  data: TShareCatalog,
+  deploymentMode: TDeploymentMode,
+): TDeploymentModePrice | null => {
+  const microRegionIds = data.entities.macroRegions.allIds
+    .map((id) => data.entities.macroRegions.byId.get(id))
+    .filter((macro): macro is TMacroRegion => !!macro && macro.deploymentMode === deploymentMode)
+    .flatMap((macro) => macro.microRegions);
+
+  if (microRegionIds.length === 0) return null;
+
+  const prices: number[] = [];
+
+  for (const [, regionMap] of data.relations.shareSpecVariantIdByRegion) {
+    for (const microRegionId of microRegionIds) {
+      const variantId = regionMap.get(microRegionId);
+      if (!variantId) continue;
+      const variant = data.relations.shareSpecVariants.get(variantId);
+      if (variant) prices.push(variant.pricing.price);
+    }
+  }
+
+  if (prices.length === 0) return null;
+
+  const minPrice = Math.min(...prices);
+  const hasMultiplePrices = prices.some((p) => p !== minPrice);
+
+  return {
+    value: convertHourlyPriceToMonthly(minPrice),
+    isLeastPrice: hasMultiplePrices,
+  };
+};
+
 export const selectDeploymentModes = (data?: TShareCatalog): TDeploymentModeDataForCard[] =>
-  (data?.entities?.deploymentModes?.allIds ?? []).map(mapDeploymentModeForCard);
+  (data?.entities?.deploymentModes?.allIds ?? []).map((mode) =>
+    mapDeploymentModeForCard(mode, data ? getLeastPriceForDeploymentMode(data, mode) : null),
+  );
 
 export type SelectLocalizationsParams = {
   deploymentModes: TDeploymentModeData[];
@@ -244,6 +294,16 @@ export const selectAvailabilityZones =
     }));
   };
 
+const selectVariant = (
+  data: TShareCatalog,
+  specName: string,
+  microRegionId: string,
+): TShareSpecVariant | undefined => {
+  const variantId = data.relations.shareSpecVariantIdByRegion.get(specName)?.get(microRegionId);
+  if (!variantId) return undefined;
+  return data.relations.shareSpecVariants.get(variantId);
+};
+
 export const selectShareSpecs =
   (microRegionId?: string) =>
   (data?: TShareCatalog): TShareSpecData[] => {
@@ -251,7 +311,19 @@ export const selectShareSpecs =
 
     return Array.from(data.entities.shareSpecs.byId.values())
       .filter((spec) => spec.microRegionIds.includes(microRegionId))
-      .map(mapShareSpecsToShareSpecData);
+      .map((spec) => {
+        const variant = selectVariant(data, spec.name, microRegionId);
+        return variant ? mapShareSpecsToShareSpecData(spec.name, variant) : null;
+      })
+      .filter((spec): spec is TShareSpecData => spec !== null);
+  };
+
+export const selectShareSpecPricing =
+  (specName?: string, microRegionId?: string) =>
+  (data?: TShareCatalog): { price: number; interval: string } | null => {
+    if (!data || !specName || !microRegionId) return null;
+
+    return selectVariant(data, specName, microRegionId)?.pricing ?? null;
   };
 
 export const provisionedPerformancePresenter = ({

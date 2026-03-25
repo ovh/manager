@@ -108,7 +108,7 @@ describe('OnboardingPage', () => {
       render(<OnboardingPage />);
 
       const links = screen.getAllByRole('link');
-      expect(links).toHaveLength(3);
+      expect(links).toHaveLength(2);
     });
   });
 
@@ -118,20 +118,15 @@ describe('OnboardingPage', () => {
 
       const links = screen.getAllByRole('link');
 
-      expect(links[0]).toHaveAttribute('href', 'https://labs.ovhcloud.com/en/file-storage/');
-      expect(links[1]).toHaveAttribute(
+      expect(links[0]).toHaveAttribute(
         'href',
         'https://help.ovhcloud.com/csm/fr-public-cloud-storage-file-storage-service-getting-started?id=kb_article_view&sysparm_article=KB0072902',
       );
-      expect(links[2]).toHaveAttribute('href', 'https://discord.com/invite/ovhcloud');
+      expect(links[1]).toHaveAttribute('href', 'https://discord.com/invite/ovhcloud');
     });
 
     it('renders link cards with correct translations', () => {
       render(<OnboardingPage />);
-
-      expect(screen.getByText('guides:learn-more.title')).toBeVisible();
-      expect(screen.getByText('guides:learn-more.description')).toBeVisible();
-      expect(screen.getByText('guides:learn-more.category')).toBeVisible();
 
       expect(screen.getByText('guides:get-started.title')).toBeVisible();
       expect(screen.getByText('guides:get-started.description')).toBeVisible();
