@@ -14,6 +14,7 @@
   "cpbc_pricing_banner_body": "I prezzi di alcuni servizi Public Cloud potrebbero cambiare il 1° aprile 2026. Per maggiori dettagli, visitare la nostra pagina dei prezzi.",
   "cpbc_pricing_banner_link": "Visualizza i prezzi",
   "cpbc_pricing_banner_close": "Chiudi",
-  "cpbc_pricing_banner_old_billing_body": "I consumi dei mesi precedenti sono sempre disponibili nella vecchia sezione di fatturazione.",
-  "cpbc_pricing_banner_old_billing_link": "Visualizzare i consumi precedenti"
+  "cpbc_pricing_banner_old_billing_title": "Fatture precedenti",
+  "cpbc_pricing_banner_old_billing_body": "I consumi dei mesi precedenti sono ancora disponibili nella vecchia sezione di fatturazione.",
+  "cpbc_pricing_banner_old_billing_link": "Visualizza i consumi precedenti"
 }
