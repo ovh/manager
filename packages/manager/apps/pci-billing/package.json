@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-billing-app",
-  "version": "0.16.1",
+  "version": "0.16.2",
   "private": true,
   "description": "PCI Billing react app",
   "type": "module",

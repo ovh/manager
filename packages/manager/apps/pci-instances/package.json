@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-pci-instances-app",
-  "version": "0.16.2",
+  "version": "0.16.3",
   "private": true,
   "type": "module",
   "scripts": {
@@ -24,7 +24,7 @@
     "@ovh-ux/manager-react-components": "^1.48.0",
     "@ovh-ux/manager-react-core-application": "^0.15.5",
     "@ovh-ux/manager-react-shell-client": "^1.2.4",
-    "@ovh-ux/metrics-to-customer": "^0.2.1",
+    "@ovh-ux/metrics-to-customer": "^0.2.2",
     "@ovh-ux/muk": "1.2.0",
     "@ovhcloud/ods-common-core": "17.2.2",
     "@ovhcloud/ods-common-stencil": "17.2.2",

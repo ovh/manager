@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.8.3...@ovh-ux/manager-identity-access-management-app@0.8.4) (2026-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4715] ([f3b0efa](https://github.com/ovh/manager/commit/f3b0efa6722c68ca2038dde2e8d1d3dd268d51cd))
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-identity-access-management-app@0.8.2...@ovh-ux/manager-identity-access-management-app@0.8.3) (2026-03-18)
 
 
