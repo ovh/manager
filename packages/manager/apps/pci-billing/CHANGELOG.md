@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.16.1...@ovh-ux/manager-pci-billing-app@0.16.2) (2026-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4718] ([b1921d7](https://github.com/ovh/manager/commit/b1921d7ba9cd1016f80dee44ea953009251b53fc))
+* **i18n:** add missing translations [CDS 4720] ([f3ce184](https://github.com/ovh/manager/commit/f3ce1845f34b72f7d7210902144f2686fea3a5e0))
+* **i18n:** add missing translations [CDS 4721] ([bc6b500](https://github.com/ovh/manager/commit/bc6b500a0168a457b4ebd858f3fdde246b3408a5))
+
+
+
+
+
 ## [0.16.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.16.0...@ovh-ux/manager-pci-billing-app@0.16.1) (2026-03-25)
 
 

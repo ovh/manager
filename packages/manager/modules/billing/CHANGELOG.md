@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.5...@ovh-ux/manager-billing@0.65.6) (2026-03-25)
+
+
+### Bug Fixes
+
+* **billing:** fix LABEU url import ([5a720f0](https://github.com/ovh/manager/commit/5a720f0908150ec0d3662c6db748b9064b8da1d5)), closes [#MANAGER-18916](https://github.com/ovh/manager/issues/MANAGER-18916)
+
+
+
+
+
 ## [0.65.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.4...@ovh-ux/manager-billing@0.65.5) (2026-03-17)
 
 
