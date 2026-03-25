@@ -15,6 +15,6 @@
   "cpbc_pricing_banner_link": "View prices",
   "cpbc_pricing_banner_close": "Close",
   "cpbc_pricing_banner_old_billing_title": "Previous bills",
-  "cpbc_pricing_banner_old_billing_body": "The consumption of previous months is still available in the old billing section.",
-  "cpbc_pricing_banner_old_billing_link": "View previous consumption"
+  "cpbc_pricing_banner_old_billing_body": "Usage from prior months is still available in the previous billing section.",
+  "cpbc_pricing_banner_old_billing_link": "View past usage"
 }
