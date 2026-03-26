@@ -50,8 +50,10 @@ const getTechnicalInfo = async ({
   merchant: string;
   deploymentMode: DeploymentMode;
 }): Promise<CommercialCatalogTechnicalType[]> => {
+  const deploymentModeValue =
+    deploymentMode === DeploymentMode['1AZ'] ? 'REGION-1-AZ' : 'REGION-3-AZ';
   return getCatalogCommercial<CommercialCatalogTechnicalType[]>({
-    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_mode:${deploymentMode}`,
+    additionalParams: `nature=REGULAR&productCode=${productCode}&technicalRequirements=deployment_mode:${deploymentModeValue}`,
     merchant,
   });
 };
