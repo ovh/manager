@@ -53,7 +53,6 @@ export interface SavingsPlanService {
   size: number;
   startDate: string;
   status: SavingsPlanStatus;
-  deploymentMode: 'REGION-3-AZ' | 'REGION-1-AZ';
 }
 
 export type UseSavingsPlanParams = {
