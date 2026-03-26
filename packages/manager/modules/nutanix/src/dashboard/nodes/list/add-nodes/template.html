@@ -1,0 +1,20 @@
+
+<h1
+class="oui-header__title"
+data-translate="nutanix_dashboard_add_nodes_title_main"
+></h1>
+<oui-message
+    data-type="warning"
+    class="my-3"
+>
+    <span
+        data-translate="nutanix_dashboard_add_nodes_single_node_limit_alert"
+    ></span>
+</oui-message>
+<h2 data-translate="nutanix_dashboard_add_nodes_gamme_servers_title"></h2>
+<p data-translate="nutanix_dashboard_add_nodes_gamme_servers_description"></p>
+<div data-ng-repeat="(type, catalog) in $ctrl.publicNutanixCatalogs track by $index">
+<h3 data-translate="nutanix_dashboard_add_nodes_server_model"
+    data-translate-values="{ type: type }"
+></h3>
+</div>

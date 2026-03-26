@@ -1,0 +1,21 @@
+{
+  "nutanix_dashboard_add_nodes_title": "Commande de noeud(s)",
+  "nutanix_dashboard_add_nodes_actual_configuration": "Configuration actuelle des noeuds de votre cluster",
+  "nutanix_dashboard_add_nodes_server_model": "Modèle de serveurs :",
+  "nutanix_dashboard_add_nodes_cpu": "CPU :",
+  "nutanix_dashboard_add_nodes_memory": "Mémoire :",
+  "nutanix_dashboard_add_nodes_stokage": "Stokage :",
+  "nutanix_dashboard_add_nodes_informations": "Informations",
+  "nutanix_dashboard_add_nodes_price_preffix": "Le prix d'un noeud supplémentaire est de",
+  "nutanix_dashboard_add_nodes_price_suffix": "HT/mois",
+  "nutanix_dashboard_add_nodes_number_of_nodes_available": "Votre cluster est composé de {{numberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à 15 noeuds.",
+  "nutanix_dashboard_add_nodes_number_of_additional_nodes_to_command": "Nombre de noeuds supplémentaires à commander.",
+  "nutanix_dashboard_add_nodes_confirm": "Commander",
+  "nutanix_dashboard_add_nodes_cancel": "Annuler",
+  "nutanix_dashboard_add_nodes_success_banner": "Votre commande de noeud(s) a été initiée. Si vous ne l'avez pas encore finalisée, vous pouvez la compléter en cliquant sur le lien suivant : ",
+  "nutanix_dashboard_add_nodes_success_banner_link_label": "Finaliser la commande",
+  "nutanix_dashboard_add_nodes_informations_max_nodes": "Votre cluster est composé de {{currentNumberOfNodes}} noeuds actuellement et vous pouvez l'étendre jusqu'à {{maxNumberOfNodes}} noeuds.",
+  "nutanix_dashboard_add_nodes_error_too_many_nodes": "Vous dépassez le nombre maximum de noeuds autorisés dans un cluster",
+  "nutanix_dashboard_add_nodes_error_not_enough_nodes": "Vous devez commander au moins 1 noeud",
+  "nutanix_dashboard_add_nodes_single_node_limit_alert": "Vous ne pouvez commander qu'un seul noeud supplémentaire actuellement, la commande simultanée de plusieurs noeuds sera disponible prochainement"
+}

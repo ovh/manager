@@ -11,7 +11,7 @@ angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
       url: '/add-nodes',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');
-        return import('./add-nodes.module').then((mod) =>
+        return import('./module').then((mod) =>
           $ocLazyLoad.inject(mod.default || mod),
         );
       },
