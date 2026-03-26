@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.8.0...@ovh-ux/manager-ips-app@0.8.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* **ips:** fix upsert description ([45e0dc2](https://github.com/ovh/manager/commit/45e0dc2e0f96e05f5dc9b1b99ea6d1231868a7cc)), closes [#MANAGER-21233](https://github.com/ovh/manager/issues/MANAGER-21233)
+* **ips:** ipv6 plan incident ([5ec11a7](https://github.com/ovh/manager/commit/5ec11a78da9792e5e09373cb07d30453499d767e)), closes [#MANAGER-21253](https://github.com/ovh/manager/issues/MANAGER-21253)
+
+
+
+
+
 # [0.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.7.0...@ovh-ux/manager-ips-app@0.8.0) (2026-03-17)
 
 
