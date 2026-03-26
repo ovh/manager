@@ -38,6 +38,7 @@ import {
   getIpLoadBalancingMocks,
   getIpsMocks,
   getOrganisationMocks,
+  getIamMocks,
   getOverTheBoxMocks,
   getVpsMocks,
   getVrackMocks,
@@ -89,6 +90,7 @@ export const renderTest = async ({
         ...getIpLoadBalancingMocks(mockParams),
         ...getXdslMocks(),
         ...getOverTheBoxMocks(),
+        ...getIamMocks(),
       ].map((handler) => ({
         ...handler,
         // TODO: Remove when toMswHandlers has default delay 0
