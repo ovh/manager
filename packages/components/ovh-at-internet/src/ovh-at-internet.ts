@@ -234,11 +234,11 @@ export default class OvhAtInternet extends OvhAtInternetConfig {
   onConsentModalDisplay() {
     debug('tracking consent modal display');
     if (this.shouldUsePianoAnalytics()) {
-      window.pa.privacy.createMode('beforeConsent', false);
-      window.pa.privacy.include.property('*', 'beforeConsent');
-      window.pa.privacy.include.event('*', 'beforeConsent');
-      window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
-      window.pa.privacy.setMode('beforeConsent');
+      // window.pa.privacy.createMode('beforeConsent', false);
+      // window.pa.privacy.include.property('*', 'beforeConsent');
+      // window.pa.privacy.include.event('*', 'beforeConsent');
+      // window.pa.privacy.exclude.storageKey('pa_uid', ['beforeConsent']);
+      // window.pa.privacy.setMode('beforeConsent');
       deleteCookieOnAllDomains('pa_privacy');
     }
   }
