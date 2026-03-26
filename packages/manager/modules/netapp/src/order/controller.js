@@ -90,10 +90,17 @@ export default class OvhManagerNetAppOrderCtrl {
         regionName: region.value,
         location: this.$translate.instant(`netapp_location_${region.value}`),
         icon: `oui-flag oui-flag_${flag}`,
+        disabled: this.region ? region.value !== this.region : false,
       };
     });
 
-    [this.selectedRegion] = this.catalogByLocation;
+    if (this.region) {
+      this.selectedRegion = this.catalogByLocation.find(
+        (elem) => elem.regionName === this.region,
+      );
+    } else {
+      [this.selectedRegion] = this.catalogByLocation;
+    }
   }
 
   onSizeStepFocus() {
