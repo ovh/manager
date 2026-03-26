@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
@@ -14,6 +16,8 @@ import {
 } from '@ovhcloud/ods-components';
 import { OsdsIcon, OsdsLink, OsdsMessage, OsdsText } from '@ovhcloud/ods-components/react';
 
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
+
 import { KUBECONFIG_3AZ_GATEWAY } from '@/constants';
 
 type TMultiZoneInfoProps = {
@@ -22,7 +26,11 @@ type TMultiZoneInfoProps = {
 
 const MultiZoneInfo = ({ isStandard = false }: TMultiZoneInfoProps) => {
   const { t } = useTranslation(['network-add', 'service']);
-
+  const context = useContext(ShellContext);
+  const { ovhSubsidiary } = context.environment.getUser();
+  const kubeConfigUrl =
+    KUBECONFIG_3AZ_GATEWAY[ovhSubsidiary as keyof typeof KUBECONFIG_3AZ_GATEWAY] ??
+    KUBECONFIG_3AZ_GATEWAY.DEFAULT;
   return isStandard ? (
     <OsdsMessage
       type={ODS_MESSAGE_TYPE.info}
@@ -40,7 +48,7 @@ const MultiZoneInfo = ({ isStandard = false }: TMultiZoneInfoProps) => {
         <OsdsLink
           target={OdsHTMLAnchorElementTarget._blank}
           color={ODS_THEME_COLOR_INTENT.primary}
-          href={KUBECONFIG_3AZ_GATEWAY}
+          href={kubeConfigUrl}
         >
           {t('service:kube_service_file_more_information')}
           <OsdsIcon
