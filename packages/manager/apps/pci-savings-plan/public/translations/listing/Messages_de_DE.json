@@ -10,6 +10,7 @@
   "terminate": "Inaktiv",
   "startDate": "Startdatum",
   "endDate": "Enddatum",
+  "deployment": "Region",
   "status": "Status",
   "active": "Aktiv",
   "pending": "Ausstehend",
