@@ -473,5 +473,6 @@
   "country_ZA": "Sudafrica",
   "country_ZM": "Zambia",
   "country_ZW": "Zimbawe",
-  "common_field_label_required": "Obbligatorio"
+  "common_field_label_required": "Obbligatorio",
+  "country_AC": "Isola Ascensione"
 }
