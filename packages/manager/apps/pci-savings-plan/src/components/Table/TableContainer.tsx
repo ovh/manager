@@ -64,7 +64,8 @@ export default function TableContainer({
     );
   }, [data, pagination, sorting]);
 
-  const getDeploymentBadge = (mode: TDeploymentMode) => {
+  const getDeploymentBadge = (flavorModel: string) => {
+    const mode = flavorModel.includes('3AZ') ? 'REGION-3-AZ' : 'REGION-1-AZ';
     const text = getDeploymentLabel(mode);
     const classname = mode === 'REGION-3-AZ' ? 'chip-3AZ' : 'chip-1AZ';
     return <OdsBadge className={classname} label={text} />;
@@ -107,9 +108,8 @@ export default function TableContainer({
       },
       {
         id: 'deployment',
-        label: t('region'),
-        cell: (props: SavingsPlanService) =>
-          getDeploymentBadge(props.deploymentMode),
+        label: t('deployment'),
+        cell: (props: SavingsPlanService) => getDeploymentBadge(props.flavor),
       },
       {
         id: 'periodEndAction',
