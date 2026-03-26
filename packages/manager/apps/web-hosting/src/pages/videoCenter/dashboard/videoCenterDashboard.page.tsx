@@ -64,12 +64,6 @@ export default function VideoCenterDashboardPage() {
         changelogButton: <ChangelogMenu links={CHANGELOG_LINKS} />,
       }}
     >
-      <div className="mb-6 flex flex-wrap justify-end">
-        <Button color={BUTTON_COLOR.primary} onClick={() => void onAccessVideoCenter()}>
-          {t('video_manager_service_access_video_center')}
-          <Icon name={ICON_NAME.externalLink}></Icon>
-        </Button>
-      </div>
       <div className="flex flex-row space-x-4">
         <Card className="w-1/3 p-6">
           {t('video_manager_service_current_offer')}
@@ -108,7 +102,17 @@ export default function VideoCenterDashboardPage() {
           </Text>
         </Card>
       </div>
-      <div className="mt-10 flex flex-row space-x-4">
+      <div className="mt-8 flex flex-wrap">
+        <Button
+          color={BUTTON_COLOR.primary}
+          className="w-full"
+          onClick={() => void onAccessVideoCenter()}
+        >
+          {t('video_manager_service_access_video_center')}
+          <Icon name={ICON_NAME.externalLink}></Icon>
+        </Button>
+      </div>
+      <div className="mt-8 flex flex-row space-x-4">
         <Card className="w-1/2 p-6">
           <Text preset={TEXT_PRESET.heading5}>{t(`${NAMESPACES.BILLING}:subscription`)}</Text>
           <Divider />
