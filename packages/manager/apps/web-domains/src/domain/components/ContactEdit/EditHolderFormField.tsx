@@ -47,13 +47,24 @@ const COUNTRY_LABELS = new Set([
   FIELD_NAME_LIST.nationality,
 ]);
 
+const AREA_LABELS = new Set(
+  [FIELD_NAME_LIST.area, FIELD_NAME_LIST.province, 'address.province'].filter(
+    Boolean,
+  ),
+);
+
 export default function EditHolderFormField({
   rule,
   contactInformations,
   formValues,
   onFieldChange,
 }: EditHolderFormFieldProps) {
-  const { t } = useTranslation(['domain', NAMESPACES.COUNTRIES, NAMESPACES.LANGUAGE]);
+  const { t } = useTranslation([
+    'domain',
+    NAMESPACES.COUNTRIES,
+    NAMESPACES.LANGUAGE,
+    ...Object.values(NAMESPACES.AREA),
+  ]);
   const [touched, setTouched] = useState(false);
 
   const isRequired = useMemo((): boolean => {
@@ -107,19 +118,26 @@ export default function EditHolderFormField({
     return 'text';
   }, [rule, enumList]);
 
-  const fieldSubType = useMemo(
-    (): 'text' | 'email' | 'number' | 'search' | 'time' | 'password' | 'url' => {
-      if ([FIELD_NAME_LIST.email].includes(rule.label)) {
-        return 'email';
-      }
-      return 'text';
-    },
-    [rule],
-  );
+  const fieldSubType = useMemo(():
+    | 'text'
+    | 'email'
+    | 'number'
+    | 'search'
+    | 'time'
+    | 'password'
+    | 'url' => {
+    if ([FIELD_NAME_LIST.email].includes(rule.label)) {
+      return 'email';
+    }
+    return 'text';
+  }, [rule]);
 
   const getEnumTranslationKey = (label: string, value: string): string => {
     if (SPECIAL_LABELS.has(label)) {
-      return `domain_tab_CONTACT_edit_form_enum_${label}_${value}`.replaceAll('.', '_');
+      return `domain_tab_CONTACT_edit_form_enum_${label}_${value}`.replaceAll(
+        '.',
+        '_',
+      );
     }
 
     if (label === FIELD_NAME_LIST.language) {
@@ -132,26 +150,64 @@ export default function EditHolderFormField({
         .replace(/address_country|nationality/, 'country');
     }
 
+    if (AREA_LABELS.has(label)) {
+      const country = resolveFormValue(
+        formValues[FIELD_NAME_LIST.addressCountry],
+      );
+      const areaNamespace =
+        country && NAMESPACES.AREA[country as keyof typeof NAMESPACES.AREA];
+      if (areaNamespace) {
+        return `${areaNamespace}:${value}`;
+      }
+    }
+
     return `${label}_${value}`;
   };
 
   const translatedEnums: TTranslatedEnum[] = useMemo(() => {
-    return enumList
-      .map((value) => ({
+    const isAreaField = AREA_LABELS.has(rule.label);
+
+    const translated = enumList.map((value) => {
+      const translationKey = getEnumTranslationKey(rule.label, value);
+      const translatedValue = t(translationKey);
+      const hasTranslation = translatedValue !== translationKey;
+      return {
         key: value,
-        translated: t(getEnumTranslationKey(rule.label, value)),
-      }))
-      .sort((a, b) => a.translated.localeCompare(b.translated));
+        // For area fields, fall back to the raw value when no translation exists
+        // (the value is already a readable name like "Antrim").
+        // For other fields, always use what t() returns (the key itself when untranslated).
+        translated: isAreaField && !hasTranslation ? value : translatedValue,
+        hasTranslation,
+      };
+    });
+
+    // For area fields, only keep values that have a real translation in the
+    // translation file. This filters out full-name duplicates (e.g. "Carlow")
+    // sent by the backend alongside their code counterpart (e.g. "CW").
+    // Also deduplicate by key since the backend may send the same code twice.
+    if (isAreaField) {
+      const seenKeys = new Set<string>();
+      const seenLabels = new Set<string>();
+      return translated
+        .filter((item) => {
+          if (!item.hasTranslation) return false;
+          if (seenKeys.has(item.key) || seenLabels.has(item.translated))
+            return false;
+          seenKeys.add(item.key);
+          seenLabels.add(item.translated);
+          return true;
+        })
+        .sort((a, b) => a.translated.localeCompare(b.translated));
+    }
+
+    return translated.sort((a, b) => a.translated.localeCompare(b.translated));
   }, [enumList, rule.label]);
 
   const labelTranslation = useMemo(() => {
     const readOnly = isReadOnly && isRequired;
-    const translatedLabel = t(
-      getFieldLabelKey(rule.label),
-    );
+    const translatedLabel = t(getFieldLabelKey(rule.label));
     return [translatedLabel, ...(readOnly ? ['*'] : [])].join(' ');
   }, [rule.label, isReadOnly, isRequired]);
-
 
   // Get current value from formValues
   const currentValue = formValues[rule.label];
@@ -239,11 +295,7 @@ export default function EditHolderFormField({
         />
       )}
 
-      {validationError && (
-        <FormFieldError>
-          {validationError}
-        </FormFieldError>
-      )}
+      {validationError && <FormFieldError>{validationError}</FormFieldError>}
     </FormField>
   );
 }
