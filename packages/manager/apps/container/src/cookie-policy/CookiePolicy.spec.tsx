@@ -13,6 +13,7 @@ const trackingSetEnabled = vi.fn().mockResolvedValue(undefined);
 const trackingOnConsentModalDisplay = vi.fn().mockResolvedValue(undefined);
 
 vi.mock('@ovh-ux/shell');
+vi.mock('piano-analytics-js/dist/browser/piano-analytics.js', () => ({}));
 
 const renderCookiePolicy = async () => {
   const shell = initShell({} as Environment);
@@ -93,7 +94,7 @@ describe('CookiePolicy.component', () => {
         expect(container).toBeAccessible();
         expect(trackingInit).not.toHaveBeenCalled();
         expect(trackingSetEnabled).not.toHaveBeenCalled();
-        expect(trackingOnConsentModalDisplay).toHaveBeenCalled();
+        expect(trackingOnConsentModalDisplay).not.toHaveBeenCalled();
       },
       { timeout: 2000 },
     );
