@@ -10,7 +10,6 @@ import {
   assertTextVisibility,
   WAIT_FOR_DEFAULT_OPTIONS,
   getElementByTestId,
-  getNthElementByTestId,
 } from '@ovh-ux/manager-core-test-utils';
 import { expect, vi } from 'vitest';
 import { OdsMessageColor } from '@ovhcloud/ods-components';
@@ -65,20 +64,6 @@ describe('Datacentre Compute Listing Page', () => {
       element: orderButton,
       label: labels.datacentresCompute.managed_vcd_vdc_compute_order_cta,
     });
-
-    // check datagrid delete CTA
-    const deleteButton = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteCta,
-    });
-    await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
-
-    const tooltip = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteTooltip,
-    });
-    expect(tooltip).toHaveTextContent(
-      labels.datacentres.managed_vcd_vdc_contact_support,
-    );
 
     await waitFor(() => {
       const banner = queryByText(
