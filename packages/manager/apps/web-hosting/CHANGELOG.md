@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.4...@ovh-ux/manager-web-hosting-app@0.19.0) (2026-03-26)
+
+
+### Features
+
+* **web-hosting:** video center access visibility ([f8ac8ae](https://github.com/ovh/manager/commit/f8ac8ae1c382a7802fe81a647600d853f63ece1e)), closes [#PUWEBPT-272](https://github.com/ovh/manager/issues/PUWEBPT-272)
+
+
+
+
+
 ## [0.18.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.3...@ovh-ux/manager-web-hosting-app@0.18.4) (2026-03-18)
 
 
