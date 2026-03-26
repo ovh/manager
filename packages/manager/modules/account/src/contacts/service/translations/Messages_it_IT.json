@@ -43,5 +43,6 @@
   "account_contacts_service_category_DEDICATED_CLUSTER": "3-AZ server",
   "account_contacts_service_category_HYCU": "HYCU",
   "account_contacts_service_category_ALL_DOM": "AllDom",
-  "account_contacts_service_category_RESELLER": "Programma Rivenditori di domini"
+  "account_contacts_service_category_RESELLER": "Programma Rivenditori di domini",
+  "account_contacts_service_category_NETWORK_SNC": "Network SNC"
 }

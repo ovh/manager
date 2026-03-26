@@ -43,5 +43,6 @@
   "account_contacts_service_category_LOGS": "Logs Data Platform",
   "account_contacts_service_category_NETAPP": "NetApp",
   "account_contacts_service_category_ALL_DOM": "AllDom",
-  "account_contacts_service_category_RESELLER": "Programme Revendeur de Noms de Domaine"
+  "account_contacts_service_category_RESELLER": "Programme Revendeur de Noms de Domaine",
+  "account_contacts_service_category_NETWORK_SNC": "Network SNC"
 }
