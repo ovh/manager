@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   WebHostingWebsiteV6Mock,
+  attachedDomainsMock,
   domainInformationMock,
   domainZoneMock,
   serviceInfosMock,
@@ -14,6 +15,7 @@ import {
   useCreateAttachedDomainService,
   useCreateAttachedDomainsService,
   useGetAddDomainExisting,
+  useGetAttachedDomains,
   useGetDeploymentLogs,
   useGetDomainService,
   useGetDomainZone,
@@ -23,6 +25,7 @@ import {
   useGetServiceInfos,
   useGetWebsiteDeployments,
   usePostWebsiteDeploy,
+  usePutWebsiteV6,
   useUpdateAttachedDomainService,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
@@ -280,6 +283,24 @@ describe('useWebHostingDashboard', () => {
       wrapper,
     });
     expect(result.current.isFetching).toBe(false);
+  });
+
+  it('useGetAttachedDomains: should return attached domains', async () => {
+    mockGet.mockResolvedValueOnce({ data: attachedDomainsMock });
+    const { result } = renderHook(() => useGetAttachedDomains('serviceName'), {
+      wrapper,
+    });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.data).toEqual(attachedDomainsMock);
+  });
+
+  it('update website v6', () => {
+    const { result } = renderHook(() => usePutWebsiteV6('serviceName', onSuccess, onError), {
+      wrapper,
+    });
+    expect(result.current.isPending).toBe(false);
   });
 
   it('useGetDeploymentLogs: should return logs', async () => {

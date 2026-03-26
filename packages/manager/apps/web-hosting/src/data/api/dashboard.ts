@@ -184,3 +184,8 @@ export const putWebsiteV6 = async (serviceName: string, id: string, vcsBranch?: 
 
   return data;
 };
+
+export const getAttachedDomains = async (serviceName: string): Promise<string[]> => {
+  const { data } = await v6.get<string[]>(`/hosting/web/${serviceName}/attachedDomain`);
+  return data;
+};
