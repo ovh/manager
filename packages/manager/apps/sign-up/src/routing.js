@@ -218,9 +218,6 @@ export const state = {
     subsidiary: /* @ngInject */ ($location, coreConfig) =>
       $location.search().ovhSubsidiary || coreConfig.getUser().ovhSubsidiary,
   },
-  atInternet: {
-    ignore: true,
-  },
   onEnter: /* @ngInject */ (
     $window,
     isNewAccountCreateAvailable,
@@ -233,6 +230,9 @@ export const state = {
         `${url}?onsuccess=${encodeURIComponent(onsuccess)}`,
       );
     }
+  },
+  atInternet: {
+    ignore: true,
   },
 };
 
