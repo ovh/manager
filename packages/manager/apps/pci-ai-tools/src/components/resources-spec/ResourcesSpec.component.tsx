@@ -19,6 +19,7 @@ import {
   TooltipTrigger,
 } from '@datatr-ux/uxlib';
 import { bytesConverter, octetConverter } from '@/lib/bytesHelper';
+import { getFlavorCount } from '@/lib/flavorCountHelper';
 import ai from '@/types/AI';
 import quantum from '@/types/Quantum';
 
@@ -36,6 +37,8 @@ const ResourcesSpec = ({
 }: ResourcesProps) => {
   const { t } = useTranslation('ai-tools/components/resources');
   const navigate = useNavigate();
+  const flavorCount = getFlavorCount(resources);
+
   return (
     <>
       <div className="flex flex-row items-center justify-between gap-2 ">
@@ -45,9 +48,7 @@ const ResourcesSpec = ({
               <h5>{t('powerTitleSection')}</h5>
               <Zap className="size-4" />
             </div>
-            <span className="uppercase">
-              {`${resources.gpu} x ${resources.flavor}`}
-            </span>
+            <span className="uppercase">{`${flavorCount} x ${resources.flavor}`}</span>
             <span>{`${resources.gpu} x ${resources.gpuModel}`}</span>
             <span>
               {t('gpuMemoryField', {
@@ -63,9 +64,7 @@ const ResourcesSpec = ({
               <h5>{t('powerTitleSection')}</h5>
               <Cpu className="size-4" />
             </div>
-            <span className="uppercase">
-              {`${resources.cpu} x ${resources.flavor}`}
-            </span>
+            <span className="uppercase">{`${flavorCount} x ${resources.flavor}`}</span>
             <span>{`${resources.cpu} x INTEL CPU VCORES`}</span>
             {qpuDetail && <span>1 x {qpuDetail.name}</span>}
           </div>

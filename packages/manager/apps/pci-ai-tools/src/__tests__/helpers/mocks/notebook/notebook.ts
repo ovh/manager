@@ -43,7 +43,7 @@ export const mockedNotebookStatus: ai.notebook.NotebookStatus = {
 
 export const mockedNotebookUpdateInput: ai.notebook.NotebookUpdate = {
   labels: { key: 'label' },
-  resources: mockedCPUResources,
+  resources: { flavor: 'ai1-1-cpu', flavorCount: 1 },
   sshPublicKeys: [mockedSshKey.publicKey],
   unsecureHttp: false,
   volumes: [mockedVolume],
@@ -71,7 +71,7 @@ export const mockedNotebookSpecInput: ai.notebook.NotebookSpecInput = {
   name: 'myNewNotebook',
   region: 'GRA',
   unsecureHttp: false,
-  resources: { flavor: 'ai1-1-cpu', cpu: 2 },
+  resources: { flavor: 'ai1-1-cpu', flavorCount: 2 },
   labels: {
     test: 'testLabel',
   },
@@ -81,7 +81,7 @@ export const mockedNotebookSpecInput: ai.notebook.NotebookSpecInput = {
 
 export const mockedNotebookSpecInputGPU: ai.notebook.NotebookSpecInput = {
   ...mockedNotebookSpecInput,
-  resources: { flavor: 'ai1-1-gpu', gpu: 2 },
+  resources: { flavor: 'ai1-1-gpu', flavorCount: 2 },
   labels: {
     test: 'testLabel',
   },
