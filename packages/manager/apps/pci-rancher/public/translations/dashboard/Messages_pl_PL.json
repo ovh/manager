@@ -38,7 +38,12 @@
   "createRancherCTA": "Utwórz usługę Managed Rancher",
   "createRancherError": "Wystąpił błąd podczas tworzenia Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Zalecana wersja",
-  "createRancherOVHCloudPlanDescription": "Twórz lub zarządzaj „downstream clusters” Managed Kubernetes lub „self managed” w chmurze publicznej OVHcloud lub na własnych maszynach. Możesz również rejestrować klastry zewnętrzne (bez zarządzania chmurą)",
+  "createRancherOVHCloudPlanDescription_1": "<b>SLA 99,9%</b>",
+  "createRancherOVHCloudPlanDescription_2": "<b>Aktualna wersja Rancher</b> z 12-miesięcznym wsparciem.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Elastyczne modele rozliczeń</b> : Płać w miarę korzystania lub rezerwuj instancje (opłata za zarządzany vCPU).",
+  "createRancherOVHCloudPlanDescription_4": "<b>Uproszczone wdrażanie i zarządzanie</b> na infrastrukturze OVHcloud (Public Cloud, MKS, Bare Metal itp.).",
+  "createRancherStandardPlanDescription_1": "<b>Wszystkie funkcje</b> planu OVHcloud Edition wliczone.",
+  "createRancherStandardPlanDescription_2": "<b>Zarządzanie wieloma chmurami i hybrydowe</b> : Możliwość wdrażania i zarządzania klastrami Kubernetes wszędzie (wszystkie dostawcy Public Cloud, lokalnie, edge itp.).",
   "createRancherStandardPlanDescription": "Twórz lub rejestruj „downstream clusters” w dowolnej chmurze publicznej wspieranej przez Rancher lub w zautomatyzowanej chmurze prywatnej (np. VMware vSphere), w tym scenariusze obsługiwane w usłudze OVHcloud Edition.",
   "createNameModaleHelperInput": "Nazwa usługi może zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki: „_”, „.” oraz „-”.",
   "generateAccessModalPasswordDescription": "Skopiuj hasło tymczasowe, aby zalogować się do usługi Rancher. Po zalogowaniu zostaniesz poproszony o utworzenie nowego hasła ze względów bezpieczeństwa.",
@@ -85,5 +90,9 @@
   "generateAccessModalIamWarning": "Jeśli <strong>zresetujesz hasło użytkownika „admin”</strong>, gdy uwierzytelnianie IAM jest aktywne, <strong>dostęp dla użytkownika root IAM zostanie tymczasowo wyłączony</strong>.",
   "iam_authentication_warning": "Ograniczenie",
   "generateAccessModalIamWarning2": "Aby przywrócić dostęp za pomocą użytkownika root IAM, należy zalogować się po raz pierwszy przy użyciu lokalnego konta <strong>„admin”</strong>.",
-  "iam_modal_deactivation_warning_continue": "Czy chcesz kontynuować?"
+  "iam_modal_deactivation_warning_continue": "Czy chcesz kontynuować?",
+  "freeTrialBadge": "Darmowy okres próbny",
+  "freeTrialPriceLabel": "Gratis*",
+  "freeTrialThenLabel": "Następnie",
+  "freeTrialVoucherBanner": "Obecnie korzystasz z oferty próbnej na tę usługę. Szczegóły dostępnego kredytu znajdziesz w swoim interfejsie <l>Voucher</l>."
 }

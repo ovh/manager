@@ -15,5 +15,11 @@
   "guide2Title": "Monter votre NAS via un partage NFS",
   "guide2Description": "Découvrez comment monter un NAS via un partage NFS",
   "guide3Title": "Monter votre NAS sur Windows Server via CIFS",
-  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS"
+  "guide3Description": "Découvrez comment monter un NAS sur Windows Server via le protocole CIFS",
+  "orderButtonLabelFreeTrial": "Commencer mon essai gratuit",
+  "rancherGuidesLink": "Accéder aux guides Rancher",
+  "videoTitle": "Vidéo de présentation Rancher",
+  "freeTrialBannerMessageLine1": "Vous êtes éligible à un essai gratuit.",
+  "freeTrialBannerMessageLine2": "Profitez d'un crédit* valable un mois équivalent au prix mensuel de 20 vCPU pour tester nos plans Rancher Standard et OVHcloud Edition.",
+  "freeTrialDisclaimer": "*Le crédit s'applique automatiquement à votre consommation horaire. Une fois ce crédit épuisé ou le mois d'essai terminé, la facturation de vos services prendra le relais."
 }

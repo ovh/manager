@@ -20,5 +20,15 @@
   "managedRancherServiceGettingStartedTitle2": "Set up, update, and access a Managed Rancher Service",
   "managedRancherServiceGettingStartedTitleDescription2": "Find out how to set up, update, and access a Managed Rancher Service",
   "managedRancherServiceGettingStartedTitle3": "Understanding the lifecycle of Managed Rancher Service.",
-  "managedRancherServiceGettingStartedTitleDescription3": "Explore the lifecycle of Rancher on Managed Rancher Service"
+  "managedRancherServiceGettingStartedTitleDescription3": "Explore the lifecycle of Rancher on Managed Rancher Service",
+  "freeTrialEligibilityTitle": "🎉 You are eligible for a free trial",
+  "freeTrialCreditStandard": "{{amount}} of credit for the Standard Plan (~1 month)",
+  "freeTrialCreditOvhEdition": "{{amount}} of credit for the OVHcloud Edition Plan (~1 month)",
+  "freeTrialCreditApplied": "The credit will be automatically applied to your first service.",
+  "orderButtonLabelFreeTrial": "Start my free trial",
+  "rancherGuidesLink": "Access the Rancher guides",
+  "videoTitle": "Rancher presentation video",
+  "freeTrialBannerMessageLine1": "You are eligible for a free trial.",
+  "freeTrialBannerMessageLine2": "Enjoy a credit* valid for one month equivalent to the monthly price of 20 vCPUs to test our Rancher Standard and OVHcloud Edition plans.",
+  "freeTrialDisclaimer": "*The credit automatically applies to your hourly usage. Once this credit is exhausted or the trial month is over, billing for your services will take over."
 }

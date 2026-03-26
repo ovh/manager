@@ -23,6 +23,7 @@ import {
 import { useRancherPrices } from '@/hooks/useRancherPrices';
 import queryClient from '@/queryClient';
 import useVersions from '@/data/hooks/useVersions/useVersions';
+import useRancherEligibility from '@/data/hooks/useRancherEligibility/useRancherEligibility';
 
 export default function Create() {
   const { projectId } = useParams();
@@ -63,6 +64,7 @@ export default function Create() {
     queryKey: [getReferenceRancherInfo(projectId, 'plan')],
     queryFn: () => getRancherPlan(projectId),
   });
+  const { data: eligibility } = useRancherEligibility();
   const { plansPricing } = useRancherPrices();
   const { data: versions } = useVersions();
 
@@ -79,6 +81,7 @@ export default function Create() {
         plans={plans?.data}
         pricing={plansPricing}
         isProjectDiscoveryMode={isDiscoveryProject(project)}
+        isFreeTrialEligible={eligibility?.data?.freeTrial}
       />
     </PageLayout>
   );
