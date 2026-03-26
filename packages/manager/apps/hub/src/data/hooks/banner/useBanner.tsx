@@ -6,7 +6,7 @@ import { Banner } from '@/types/banner.type';
 
 export const useFetchHubBanner = (locale: string) =>
   useQuery<Banner, AxiosError>({
-    queryKey: ['getHubBanner'],
+    queryKey: ['getHubBanner', locale],
     queryFn: () => getBanner(locale),
     retry: 0,
   });

@@ -932,15 +932,6 @@ describe('Layout.page', () => {
       expect(tileGridContentSkeleton).not.toBeNull();
     });
 
-    it('should display skeletons', async () => {
-      const { findByTestId } = renderComponent(<Catalog />);
-
-      const tileGridTitleSkeleton = await findByTestId('tile_grid_title_skeleton');
-      const tileGridContentSkeleton = await findByTestId('tile_grid_content_skeletons');
-      expect(tileGridTitleSkeleton).not.toBeNull();
-      expect(tileGridContentSkeleton).not.toBeNull();
-    });
-
     it('should display correct amount of elements', () => {
       mocks.catalog.isLoading = false;
       const { getAllByTestId } = renderComponent(<Catalog />);
