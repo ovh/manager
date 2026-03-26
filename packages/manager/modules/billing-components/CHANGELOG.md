@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.36.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.8...@ovh-ux/manager-billing-components@4.36.0) (2026-03-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1230] ([da3b7bd](https://github.com/ovh/manager/commit/da3b7bd7d34ceee684ce34d86a57ec895d4a0fd5))
+
+
+### Features
+
+* **billing:** add new resiliation capacity in resilation modal ([3825b58](https://github.com/ovh/manager/commit/3825b5853926106de79b3b5594a3e3b31c150692)), closes [#MANAGER-20850](https://github.com/ovh/manager/issues/MANAGER-20850)
+
+
+
+
+
 ## [4.35.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.35.7...@ovh-ux/manager-billing-components@4.35.8) (2026-03-25)
 
 
