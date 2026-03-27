@@ -528,10 +528,12 @@ function AccountDetailsForm({
                         className="text-critical leading-[0.8]"
                         preset="caption"
                       >
-                        {renderTranslatedZodError(
-                          errors.birthDay.message,
-                          rules?.birthDay,
-                        )}
+                        {errors.birthDay.message === 'error_pattern'
+                          ? t('account_details_error_birthDay_under_18')
+                          : renderTranslatedZodError(
+                              errors.birthDay.message,
+                              rules?.birthDay,
+                            )}
                       </OdsText>
                     )}
                   </OdsFormField>
@@ -660,7 +662,12 @@ function AccountDetailsForm({
                             ?.maxLength || undefined
                         }
                         hasError={!!errors[name]}
-                        onOdsChange={onChange}
+                        onOdsChange={(event) => {
+                          const nextValue = String(
+                            event.detail?.value ?? '',
+                          ).replace(/\s+/g, '');
+                          onChange(nextValue);
+                        }}
                         onOdsBlur={onBlur}
                       />
                       {errors.companyNationalIdentificationNumber &&

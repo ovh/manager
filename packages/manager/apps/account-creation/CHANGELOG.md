@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.3...@ovh-ux/manager-account-creation-app@0.13.4) (2026-03-26)
+
+
+### Bug Fixes
+
+* **account-creation:** add custom error message for age restriction ([367d1f7](https://github.com/ovh/manager/commit/367d1f7bddc59f9d17a8a7fed5b7366b1b5e531d)), closes [#MANAGER-21118](https://github.com/ovh/manager/issues/MANAGER-21118)
+* **account-creation:** auto-remove spaces from cnin ([e54d06d](https://github.com/ovh/manager/commit/e54d06d75d2efc8c4caa52bf62aef1a7f8e90d9b)), closes [#MANAGER-20993](https://github.com/ovh/manager/issues/MANAGER-20993)
+* **i18n:** add missing translations [CDS 1227] ([79bfe67](https://github.com/ovh/manager/commit/79bfe6795c7d632363d383194ac6d3d6e3a6ba24))
+
+
+
+
+
 ## [0.13.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.2...@ovh-ux/manager-account-creation-app@0.13.3) (2026-03-18)
 
 
