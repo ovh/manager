@@ -27,7 +27,7 @@ const loadWasm = async (): Promise<void> => {
   };
   const { instance } = await WebAssembly.instantiateStreaming(
     fetch('https://engineassets.ovhcloud.com/ovhcloud.wasm', {
-      credentials: "omit"
+      credentials: 'omit',
     }),
     goWasm.importObject,
   );
