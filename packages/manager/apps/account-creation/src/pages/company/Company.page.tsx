@@ -217,9 +217,11 @@ export default function CompanyPage() {
                     isReadonly={isFetching}
                     hasError={!!errors.search}
                     onOdsChange={(event) => {
-                      const nextValue = String(
-                        event.detail?.value ?? '',
-                      ).replace(/\s+/g, '');
+                      const rawValue = String(event.detail?.value ?? '');
+                      const numericValue = rawValue.replace(/\s+/g, '');
+                      const nextValue = /^\d+$/.test(numericValue)
+                        ? numericValue
+                        : rawValue;
                       onChange(nextValue);
                     }}
                     onBlur={onBlur}
