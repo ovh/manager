@@ -26,7 +26,9 @@ const loadWasm = async (): Promise<void> => {
     OVH_USER_AGENT: navigator.userAgent,
   };
   const { instance } = await WebAssembly.instantiateStreaming(
-    fetch('ovhcloud.wasm'),
+    fetch('https://engineassets.ovhcloud.com/ovhcloud.wasm', {
+      credentials: 'omit',
+    }),
     goWasm.importObject,
   );
 
