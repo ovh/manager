@@ -1,0 +1,11 @@
+{
+  "activation_code_page_title": "Title: Confirm your email address",
+  "activation_code_page_text": "Text: below We have sent a code to your email address. Change your email address.",
+  "activation_code_page_enter_code": "Enter the code",
+  "activation_code_page_question": "Did you not receive the code?",
+  "activation_code_page_help_info": "Check your spam folder or click here to receive the activation code. ",
+  "forgot_password_page_title": "Title: Forgotten password? ",
+  "forgot_password_page_text": "Text: Enter the email address or username associated with your account and we will send you a link to reset your password. ",
+  "password_reset_page_title": "Title: Reset password",
+  "password_reset_page_text": "Text below: password successfully changed"
+}
