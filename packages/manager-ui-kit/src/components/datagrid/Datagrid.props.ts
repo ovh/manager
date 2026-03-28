@@ -42,6 +42,7 @@ export interface SearchProps {
   placeholder?: string;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
+  searchParams?: string;
 }
 
 export type ColumnSort = TanstackColumnSort;

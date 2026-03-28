@@ -1,0 +1,157 @@
+import { Meta, Source } from '@storybook/blocks';
+
+<Meta title="Manager UI Kit/Hooks/useUrlParams" />
+
+## Overview
+
+The `useUrlParams` hook provides a typed API on top of React Router’s `useSearchParams` to read and update URL query parameters in a consistent way. It returns a typed `params` object for the keys you care about, plus helpers to update, delete, or clear them while keeping the URL clean.
+
+## Key Features
+
+- ✅ Typed params for the provided key list
+- 🔁 Merge updates without losing existing query params
+- 🧹 Auto-clean empty values from the URL
+- 🧰 Helpers for single updates, deletes, and bulk clears
+
+## Usage
+
+Define the keys as a `const` tuple to get strong typing, then connect them to `useDataApi` and `Datagrid` from MUK:
+
+<Source
+  code={`
+import { Datagrid, useDataApi, useUrlParams } from '@ovh-ux/muk';
+import { FilterCategories } from '@ovh-ux/manager-core-api';
+
+const QUERY_KEYS = ['status', 'contact'] as const;
+
+function MyComponent() {
+  const { params, queryString, setQueryParams, deleteQueryParam } =
+    useUrlParams(QUERY_KEYS);
+
+  const deleteParams = (key: string) => {
+    deleteQueryParam(key as (typeof QUERY_KEYS)[number]);
+  };
+
+  const columns = [
+    {
+      id: 'status',
+      label: 'status',
+      accessorKey: 'status',
+      isFilterable: true,
+      comparator: FilterCategories.Options,
+      filterOptions: [
+        { label: 'ACTIVE', value: 'ACTIVE' },
+        { label: 'PAUSED', value: 'PAUSED' },
+      ],
+    },
+    {
+      id: 'contact',
+      label: 'contact',
+      accessorKey: 'contact',
+      isSearchable: true,
+    },
+  ];
+
+  const { filters, search, flattenData, isLoading } = useDataApi({
+    columns,
+    route: queryString ? \`/api/v2/resources?\${queryString}\` : '/api/v2/resources',
+    version: 'v2',
+    cacheKey: ['resources', queryString ?? ''],
+    enabled: true,
+    urlParams: {
+      params,
+      setParams: setQueryParams,
+      deleteParams,
+      paramsToString: () => queryString,
+      searchParams: 'contact',
+    },
+  });
+
+  return (
+    <Datagrid
+      isLoading={isLoading}
+      columns={columns}
+      data={flattenData}
+      filters={filters}
+      search={search}
+    />
+  );
+}
+  `}
+  language="tsx"
+/>
+
+## URL params shape
+
+With `QUERY_KEYS = ['status', 'contact']`, the URL is built from the active filters and search value:
+
+<Source
+  code={`
+// Example URL
+https://manager.example.com/#/app/resources?status=ACTIVE&contact=john
+
+// queryString (from useUrlParams)
+status=ACTIVE&contact=john
+  `}
+  language="ts"
+/>
+
+Notes:
+- Any key set to \`null\`, \`undefined\`, or an empty string is removed from the URL
+- Only the managed keys in \`QUERY_KEYS\` are cleaned by the hook
+
+If you pass an array, the key is repeated in the URL:
+
+<Source
+  code={`
+// Example URL
+https://manager.example.com/#/app/resources?status=ACTIVE&status=PAUSED
+
+// params (from useUrlParams)
+{
+  status: ['ACTIVE', 'PAUSED'],
+}
+  `}
+  language="ts"
+/>
+
+## API
+
+The hook returns:
+
+```ts
+{
+  params: Record<K[number], string | string[] | undefined>;
+  queryString: string;
+  searchParams: URLSearchParams;
+  setQueryParams: (values, options?) => void;
+  setQueryParam: (key, value, options?) => void;
+  deleteQueryParam: (key, options?) => void;
+  clearKeys: (options?) => void;
+}
+```
+
+## Implementation details
+
+The hook keeps the URL clean by removing empty values. This is handled both on effect cleanup and during updates:
+
+<Source
+  code={`
+// When updating, null/undefined/'' removes the key
+if (value == null || value === '') {
+  next.delete(key);
+} else if (Array.isArray(value)) {
+  next.delete(key);
+  value.forEach((item) => next.append(key, item));
+} else {
+  next.set(key, value);
+}
+  `}
+  language="ts"
+/>
+
+## Notes
+
+- ✅ `undefined` means “key not present” in the URL
+- ✅ All setters default to `replace: true` to avoid history noise
+- ✅ `queryString` is useful for displaying or logging the current URL state

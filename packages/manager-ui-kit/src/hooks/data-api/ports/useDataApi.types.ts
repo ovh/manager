@@ -10,6 +10,8 @@ import { TRefetchInterval } from '@/hooks/data-api/infra/tanstack/common.types';
 
 import { UseInifiniteQueryResult, UseQueryResult } from '../infra/tanstack';
 
+export type UrlParamValue = string | string[];
+
 export type UseDataApiOptions<TData = Record<string, unknown>> = {
   route?: string;
   version: 'v2' | 'v6';
@@ -22,6 +24,13 @@ export type UseDataApiOptions<TData = Record<string, unknown>> = {
   fetchAll?: boolean;
   disableCache?: boolean;
   columns?: DatagridColumn<TData>[];
+  urlParams?: {
+    params: Record<string, UrlParamValue | undefined>;
+    setParams: (params: Record<string, UrlParamValue | null | undefined>) => void;
+    deleteParams: (key: string) => void;
+    paramsToString?: () => string;
+    searchParams?: string;
+  };
   fetchDataFn?: (route: string) => Promise<{ data: TData[] }>;
 };
 
@@ -48,5 +57,6 @@ export type UseDataApiResult<TData = Record<string, unknown>> = (
     onSearch: (search: string | undefined) => void;
     searchInput: string;
     setSearchInput: Dispatch<SetStateAction<string>>;
+    searchParams?: string;
   };
 };
