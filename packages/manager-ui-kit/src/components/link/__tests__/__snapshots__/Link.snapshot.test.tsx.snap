@@ -8,6 +8,7 @@ exports[`Link component > renders a back link correctly 1`] = `
     href=https://www.example.com
   >
     <span
+      aria-hidden=true
       class=_icon _icon--arrow-left
       data-ods=icon
       role=presentation
@@ -47,6 +48,7 @@ exports[`Link component > renders a external link correctly with label as prop 1
   >
     External Page
     <span
+      aria-hidden=true
       class=_icon _icon--external-link
       data-ods=icon
       role=presentation
@@ -158,6 +160,7 @@ exports[`Link component > renders a next link correctly 1`] = `
   >
     Next Page
     <span
+      aria-hidden=true
       class=_icon _icon--arrow-right
       data-ods=icon
       role=presentation
