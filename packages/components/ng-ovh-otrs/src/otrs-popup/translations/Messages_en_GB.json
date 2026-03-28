@@ -155,7 +155,7 @@
   "otrs_popup_icon_maximize": "Maximise support request window",
   "otrs_popup_icon_close": "Close support request window",
   "otrs_popup_type": "Ticket type:",
-  "otrs_popup_move": "You can move this pop-up by moving its header.",
+  "otrs_popup_move": "Test changes You can move this pop-up by moving its header.",
   "otrs_popup_sent_error": "An error has occurred creating this ticket.",
   "otrs_popup_sent_error_not_available": "This operation is not available in this datacenter. ",
   "otrs_popup_sent_error_already_exists": "A ticket has already been sent for this issue. <a href=\"{{ticketUrl}}\">Click here to access the ticket.</a>",

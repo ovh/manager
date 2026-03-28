@@ -106,6 +106,7 @@ export const API_EXCLUDED = {
 
 export const API_ALIASES = {
   '/cloud': '/cloud/project',
+  '/ip': '/ip/service',
 };
 export const API_EXTRAS_ENDPOINTS = [
   {
