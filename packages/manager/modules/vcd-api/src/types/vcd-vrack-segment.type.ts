@@ -1,22 +1,12 @@
-export interface VCDVrackSegmentSpec {
+import { BaseResource, ResourceStatus } from './base-resource.type';
+
+export type VCDVrackSegmentSpec = {
   vlanId: string;
-  type: 'DEFAULT' | 'MIGRATED';
+  type?: 'DEFAULT' | 'MIGRATED';
   mode: 'TAGGED' | 'TRUNK' | 'UNTAGGED' | 'PUBLIC';
   networks: string[];
-}
+};
 
-export type VrackSegmentResourceStatus =
-  | 'CREATING'
-  | 'DELETING'
-  | 'ERROR'
-  | 'READY'
-  | 'SUSPENDED'
-  | 'UPDATING';
+export type VrackSegmentResourceStatus = ResourceStatus;
 
-export interface VCDVrackSegment {
-  id: string;
-  resourceStatus: VrackSegmentResourceStatus;
-  targetSpec: VCDVrackSegmentSpec;
-  currentState: VCDVrackSegmentSpec;
-  currentTasks: unknown[];
-}
+export type VCDVrackSegment = BaseResource<VCDVrackSegmentSpec>;
