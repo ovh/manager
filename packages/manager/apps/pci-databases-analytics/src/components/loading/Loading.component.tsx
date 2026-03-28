@@ -1,6 +1,6 @@
 import { Loader2 } from 'lucide-react';
 
-export default function Loading() {
+const Loading = () => {
   return (
     <div className="flex justify-center" data-testid="loading-container">
       <div>
@@ -11,4 +11,6 @@ export default function Loading() {
       </div>
     </div>
   );
-}
+};
+
+export default Loading;

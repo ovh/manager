@@ -10,7 +10,7 @@ import { editor as monaco } from 'monaco-editor';
 import { Skeleton } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { cn } from '@/lib/utils';
-import { useConnectorConfigurationEditor } from './useConnectorConfigurationEditor';
+import { useConnectorConfigurationEditor } from './useConnectorConfigurationEditor.hook';
 
 interface ConnectorConfigurationEditorProps {
   connectorCapabilities: database.kafkaConnect.capabilities.connector.configuration.Property[];

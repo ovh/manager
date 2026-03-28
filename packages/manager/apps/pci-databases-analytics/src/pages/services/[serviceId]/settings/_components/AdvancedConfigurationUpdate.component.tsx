@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Alert, AlertDescription, Skeleton } from '@datatr-ux/uxlib';
 import { useServiceData } from '../../Service.context';
 import AdvancedConfigurationForm from './advancedConfiguration/AdvancedConfigurationForm.component';
-import { useGetAdvancedConfiguration } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfiguration.hook';
-import { useGetAdvancedConfigurationCapabilities } from '@/hooks/api/database/advancedConfiguration/useGetAdvancedConfigurationCapabilities.hook';
+import { useGetAdvancedConfiguration } from '@/data/hooks/database/advancedConfiguration/useGetAdvancedConfiguration.hook';
+import { useGetAdvancedConfigurationCapabilities } from '@/data/hooks/database/advancedConfiguration/useGetAdvancedConfigurationCapabilities.hook';
 
 const AdvancedConfigurationUpdate = () => {
   const { t } = useTranslation(

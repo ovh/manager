@@ -12,11 +12,11 @@ import { useParams } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import onboardingImgSrc from '@/../public/assets/onboarding-databases.png';
 import Link from '@/components/links/Link.component';
-import { useTrackAction } from '@/hooks/useTracking';
+import { useTrackAction } from '@/hooks/useTracking.hook';
 import { TRACKING } from '@/configuration/tracking.constants';
 import OnboardingTile from './OnboardingTile.component';
 import OnboardingLayout from './OnboardingLayout.component';
-import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetAvailabilities } from '@/data/hooks/database/availability/useGetAvailabilities.hook';
 import { EngineEnum } from '@/types/cloud/project/database';
 import A from '@/components/links/A.component';
 

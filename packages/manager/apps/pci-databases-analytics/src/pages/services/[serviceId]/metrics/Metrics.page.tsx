@@ -16,7 +16,7 @@ import MetricChart from './_components/MetricChart.component';
 import { POLLING } from '@/configuration/polling.constants';
 import Guides from '@/components/guides/Guides.component';
 import { GuideSections } from '@/types/guide';
-import { useGetMetrics } from '@/hooks/api/database/metric/useGetMetrics.hook';
+import { useGetMetrics } from '@/data/hooks/database/metric/useGetMetrics.hook';
 import PrometheusConfigTile from './prometheus/PrometheusConfigTile.component';
 import MetricTitle from './_components/MetricTitle.component';
 

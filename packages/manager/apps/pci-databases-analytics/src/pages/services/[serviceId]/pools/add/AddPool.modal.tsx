@@ -1,11 +1,11 @@
 import { Skeleton } from '@datatr-ux/uxlib';
-import { useGetUsers } from '@/hooks/api/database/user/useGetUsers.hook';
+import { useGetUsers } from '@/data/hooks/database/user/useGetUsers.hook';
 import { useServiceData } from '../../Service.context';
 import AddEditPool from '../_components/AddEditPool.component';
-import { useGetConnectionPools } from '@/hooks/api/database/connectionPool/useGetConnectionPools.hook';
-import { useGetDatabases } from '@/hooks/api/database/database/useGetDatabases.hook';
+import { useGetConnectionPools } from '@/data/hooks/database/connectionPool/useGetConnectionPools.hook';
+import { useGetDatabases } from '@/data/hooks/database/database/useGetDatabases.hook';
 
-const AddPoolModal = () => {
+const AddPool = () => {
   const { projectId, service } = useServiceData();
   const usersQuery = useGetUsers(projectId, service.engine, service.id, {
     enabled: !!service.id,
@@ -42,4 +42,4 @@ const AddPoolModal = () => {
   );
 };
 
-export default AddPoolModal;
+export default AddPool;

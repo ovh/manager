@@ -8,7 +8,7 @@ import Loading from './components/loading/Loading.component';
 import { useLoadingIndicatorContext } from './contexts/LoadingIndicator.context';
 import ProgressLoader from './components/loading/ProgressLoader.component';
 
-function App() {
+const AppShell = () => {
   const { loading } = useLoadingIndicatorContext();
   const shell = useShell();
   useEffect(() => {
@@ -24,6 +24,6 @@ function App() {
       </React.Suspense>
     </QueryClientProvider>
   );
-}
+};
 
-export default App;
+export default AppShell;

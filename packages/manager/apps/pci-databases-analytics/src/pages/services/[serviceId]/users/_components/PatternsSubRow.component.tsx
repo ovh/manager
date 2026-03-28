@@ -5,10 +5,10 @@ import DataTable from '@/components/data-table';
 import { DatatableSortableHeader } from '@/components/data-table/DatatableSortableHeader.component';
 import * as database from '@/types/cloud/project/database';
 
-interface PatternSubRowProps {
+interface PatternsSubRowProps {
   user: database.opensearch.User;
 }
-const PatternSubRow = ({ user }: PatternSubRowProps) => {
+const PatternsSubRow = ({ user }: PatternsSubRowProps) => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/users',
   );
@@ -40,4 +40,4 @@ const PatternSubRow = ({ user }: PatternSubRowProps) => {
   );
 };
 
-export default PatternSubRow;
+export default PatternsSubRow;

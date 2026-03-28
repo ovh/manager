@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useLocale } from '@/hooks/useLocale';
-import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
+import { useLocale } from '@/hooks/useLocale.hook';
+import { useGetCatalog } from '@/data/hooks/catalog/useGetCatalog.hook';
 
 interface PriceProps {
   priceInUcents: number;

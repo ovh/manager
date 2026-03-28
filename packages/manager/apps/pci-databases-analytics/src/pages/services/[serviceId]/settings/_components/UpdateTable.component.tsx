@@ -7,7 +7,7 @@ import { humanizeEngine } from '@/lib/engineNameHelper';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { compareStorage, formatStorage } from '@/lib/bytesHelper';
-import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetAvailabilities } from '@/data/hooks/database/availability/useGetAvailabilities.hook';
 import NavLink from '@/components/links/NavLink.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 

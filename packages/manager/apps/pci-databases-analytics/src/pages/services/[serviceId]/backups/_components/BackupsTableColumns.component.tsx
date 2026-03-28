@@ -15,7 +15,7 @@ import { useServiceData } from '../../Service.context';
 import DataTable from '@/components/data-table';
 import { MENU_COLUMN_ID } from '@/components/data-table/DataTable.component';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
-import { BackupWithExpiryDate } from '../Backups.page';
+import { BackupWithExpiryDate } from '../ListBackups.page';
 
 interface BackupsTableColumnsProps {
   onForkClick: (backup: BackupWithExpiryDate) => void;

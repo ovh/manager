@@ -28,10 +28,10 @@ import {
 } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useAddIntegrationForm } from './useAddIntegrationForm.hook';
-import { useAddIntegration } from '@/hooks/api/database/integration/useAddIntegration.hook';
+import { useAddIntegration } from '@/data/hooks/database/integration/useAddIntegration.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useServiceData } from '../../Service.context';
-import RouteModal from '@/components/route-modal/RouteModal';
+import RouteModal from '@/components/route-modal/RouteModal.component';
 
 const AddIntegration = () => {
   const { projectId } = useParams();

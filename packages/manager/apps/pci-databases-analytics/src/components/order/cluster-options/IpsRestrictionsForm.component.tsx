@@ -22,7 +22,7 @@ import {
   Label,
 } from '@datatr-ux/uxlib';
 import { IpRestriction } from '@datatr-ux/ovhcloud-types/cloud/project/database/service';
-import { useGetGeolocation } from '@/hooks/api/me/useGetGeolocation.hook';
+import { useGetGeolocation } from '@/data/hooks/me/useGetGeolocation.hook';
 
 interface IpsRestrictionsFormProps {
   value: Omit<IpRestriction, 'status'>[];

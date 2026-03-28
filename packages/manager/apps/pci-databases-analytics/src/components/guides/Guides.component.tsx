@@ -11,9 +11,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
 import { BookOpen } from 'lucide-react';
-import { useGetGuides } from '@/hooks/api/guides/useGetGuides.hook';
+import { useGetGuides } from '@/data/hooks/guides/useGetGuides.hook';
 import * as database from '@/types/cloud/project/database';
-import { useLocale } from '@/hooks/useLocale';
+import { useLocale } from '@/hooks/useLocale.hook';
 import { Guide } from '@/types/guide';
 
 interface GuidesProps {

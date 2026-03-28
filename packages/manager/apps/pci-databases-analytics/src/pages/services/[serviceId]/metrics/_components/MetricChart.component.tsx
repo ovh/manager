@@ -15,9 +15,9 @@ import { ChartContainer } from '@datatr-ux/uxlib';
 import * as database from '@/types/cloud/project/database';
 import { useServiceData } from '../../Service.context';
 import { cn } from '@/lib/utils';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
-import { useGetMetric } from '@/hooks/api/database/metric/useGetMetric.hook';
-import { useLocale } from '@/hooks/useLocale';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
+import { useGetMetric } from '@/data/hooks/database/metric/useGetMetric.hook';
+import { useLocale } from '@/hooks/useLocale.hook';
 import { colors } from './colors.constants';
 import { MetricChartTooltip } from './MetricChartTooltip.component';
 

@@ -1,13 +1,13 @@
 import { Outlet, redirect, useParams } from 'react-router-dom';
 import { Skeleton } from '@datatr-ux/uxlib';
-import { useGetService } from '@/hooks/api/database/service/useGetService.hook';
+import { useGetService } from '@/data/hooks/database/service/useGetService.hook';
 import LegalMentions from '@/pages/_components/LegalMentions.component';
 import { ServiceHeader } from './_components/ServiceHeader.component';
 import TabsMenu from '@/components/tabs-menu/TabsMenu.component';
 import { POLLING } from '@/configuration/polling.constants';
 import { getService } from '@/data/api/database/service.api';
 import queryClient from '@/query.client';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 import ServiceTabs from './_components/ServiceTabs.component';
 import { ServiceLayoutContext } from './Service.context';
 
@@ -36,7 +36,7 @@ export const Loader = async ({ params }: ServiceLayoutProps) => {
     );
 };
 
-function ServiceName() {
+const ServiceName = () => {
   const { projectId, serviceId } = useParams();
   if (!serviceId) return '';
   const serviceQuery = useGetService(projectId, serviceId);
@@ -45,13 +45,11 @@ function ServiceName() {
   ) : (
     <Skeleton className="h-4 w-20 inline-block align-middle" />
   );
-}
+};
 
-export function breadcrumb() {
-  return <ServiceName />;
-}
+export const breadcrumb = () => <ServiceName />;
 
-export default function ServiceLayout() {
+const Service = () => {
   const { isUserActive } = useUserActivityContext();
   const { projectId, serviceId } = useParams();
   const serviceQuery = useGetService(projectId, serviceId, {
@@ -83,4 +81,6 @@ export default function ServiceLayout() {
       <LegalMentions />
     </>
   );
-}
+};
+
+export default Service;

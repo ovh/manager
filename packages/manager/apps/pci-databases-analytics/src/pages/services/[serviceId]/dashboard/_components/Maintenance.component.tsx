@@ -1,11 +1,11 @@
 import { ArrowRight, Construction } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { useUserActivityContext } from '@/contexts/UserActivityContext';
+import { useUserActivityContext } from '@/contexts/UserActivity.context';
 import { useServiceData } from '../../Service.context';
 import { POLLING } from '@/configuration/polling.constants';
 import * as database from '@/types/cloud/project/database';
 import Link from '@/components/links/Link.component';
-import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
+import { useGetMaintenances } from '@/data/hooks/database/maintenance/useGetMaintenances.hook';
 
 const Maintenance = () => {
   const { projectId, service } = useServiceData();

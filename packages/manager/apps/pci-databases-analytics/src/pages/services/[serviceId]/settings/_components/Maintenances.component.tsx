@@ -18,8 +18,8 @@ import { ChevronDown } from 'lucide-react';
 import { useServiceData } from '../../Service.context';
 import FormattedDate from '@/components/formatted-date/FormattedDate.component';
 import * as database from '@/types/cloud/project/database';
-import { useGetMaintenances } from '@/hooks/api/database/maintenance/useGetMaintenances.hook';
-import { useApplyMaintenance } from '@/hooks/api/database/maintenance/useApplyMaintenance.hook';
+import { useGetMaintenances } from '@/data/hooks/database/maintenance/useGetMaintenances.hook';
+import { useApplyMaintenance } from '@/data/hooks/database/maintenance/useApplyMaintenance.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { isCapabilityDisabled } from '@/lib/capabilitiesHelper';
 
