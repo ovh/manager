@@ -7,6 +7,15 @@ type ApiKey = keyof typeof apiClient;
 
 const defaultAxiosConfig = {};
 
+const getSubscriptionId = (data: unknown): string | undefined => {
+  if (!data || typeof data !== 'object') {
+    return undefined;
+  }
+
+  const subscriptionId = (data as { subscriptionId?: unknown }).subscriptionId;
+  return typeof subscriptionId === 'string' ? subscriptionId : undefined;
+};
+
 function handleAuthenticationError(error: AxiosError) {
   const { response } = error;
   let { status } = response || {};
@@ -55,11 +64,26 @@ export const v2 = axios.create({
   baseURL: '/engine/api/v2',
 });
 
-export const apiClient = { v6, aapi, ws, v2 } as const;
+export const events = axios.create({
+  ...defaultAxiosConfig,
+  baseURL: '/engine/events',
+});
+
+export const apiClient = { v6, aapi, ws, v2, events } as const;
 
 (Object.keys(apiClient) as ApiKey[]).forEach((api) => {
   const client = apiClient[api];
 
+  // if subscriptionId is in the config, add it to the headers
+  if (api === 'v6' || api === 'v2') {
+    client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+      const subscriptionId = getSubscriptionId(config.data);
+      if (subscriptionId) {
+        config.headers['X-Subscription-Id'] = subscriptionId;
+      }
+      return config;
+    });
+  }
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const headers = getHeaders(config.baseURL || '');
     Object.entries(headers).forEach(([key, value]) => {
