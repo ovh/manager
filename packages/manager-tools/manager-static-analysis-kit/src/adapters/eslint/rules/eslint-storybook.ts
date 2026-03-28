@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 import storybook from 'eslint-plugin-storybook';
 
 import { storyFiles } from '../../../configs/file-globs-config';

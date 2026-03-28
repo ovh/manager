@@ -1,4 +1,4 @@
-import { Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { complexityRules } from '../../../configs/complexity-config';
 import { jsTsFiles, jsxTsxFiles } from '../../../configs/file-globs-config';
