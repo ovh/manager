@@ -23,5 +23,8 @@
   "unPaid": "Unpaid bill",
   "error": "Error",
   "ready": "Active",
-  "awaiting_signature": "Awaiting signature"
+  "awaiting_signature": "Awaiting signature",
+  "not_installed": "Not installed",
+  "not_configured": "Not configured",
+  "enabled": "Enabled"
 }

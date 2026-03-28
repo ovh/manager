@@ -23,5 +23,8 @@
   "updating": "Mise à jour",
   "unconfigured": "Non configuré",
   "ready": "Actif",
-  "awaiting_signature": "Attente de signature"
+  "awaiting_signature": "Attente de signature",
+  "not_installed": "Non installé",
+  "not_configured": "Non configuré",
+  "enabled": "Activé"
 }
