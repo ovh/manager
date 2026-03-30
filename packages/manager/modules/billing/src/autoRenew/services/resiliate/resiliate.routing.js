@@ -32,8 +32,8 @@ export default /* @ngInject */ ($stateProvider) => {
         goBack().then(() => {
           Alerter.error(message);
         }),
-      service: /* @ngInject */ (billingServices, serviceId) =>
-        billingServices.find((service) => service.id === serviceId),
+      service: /* @ngInject */ (BillingAutoRenew, serviceId) =>
+        BillingAutoRenew.findService({ serviceId }),
       serviceTypeLabel: /* @ngInject */ ($translate, service) =>
         service.isByoipService()
           ? 'BYOIP'
