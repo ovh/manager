@@ -6,5 +6,5 @@ export const CHAT_TYPE_STORAGE_KEY = 'chat_type';
 
 export const ADRIELLY_CHAT_ORIGIN = 'https://chatbot.ovhcloud.com';
 export function adriellyChatUrl(customerLevel: string, subsidiary: string, language: string): string {
-  return `https://chatbot.ovhcloud.com/livechat-manager/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
+  return `https://chatbot.ovhcloud.com/livechat-manager/static/${customerLevel}/${subsidiary}_${language}/docs/index2.html`;
 }
