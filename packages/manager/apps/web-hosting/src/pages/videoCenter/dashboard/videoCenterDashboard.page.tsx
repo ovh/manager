@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import {
-  BUTTON_COLOR,
   BUTTON_VARIANT,
   Button,
   Card,
@@ -44,6 +43,7 @@ export default function VideoCenterDashboardPage() {
   const vodDurationThresholds = computeThresholdsFromMax(
     data?.currentState?.vodDurationMinutes?.hostable || 0,
   );
+  const hasVideos = data?.currentState?.vodCount?.allocated > 0;
   const { generateVideoCenterTokenAsync } = useGenerateVideoCenterToken(serviceId);
   const onAccessVideoCenter = async () => {
     const popup = window.open('', '_blank');
@@ -102,16 +102,41 @@ export default function VideoCenterDashboardPage() {
           </Text>
         </Card>
       </div>
-      <div className="mt-8 flex flex-wrap">
-        <Button
-          color={BUTTON_COLOR.primary}
-          className="w-full"
-          onClick={() => void onAccessVideoCenter()}
-        >
-          {t('video_manager_service_access_video_center')}
-          <Icon name={ICON_NAME.externalLink}></Icon>
-        </Button>
-      </div>
+      <Card className="mt-6 flex flex-col gap-4 bg-gradient-to-br from-[#2d3e5f] via-[#3b5998] to-[#4a6fa5] p-8 text-white">
+        <Text preset={TEXT_PRESET.heading3} className="!m-0 pb-5 !text-white">
+          {t('title')}
+        </Text>
+        <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-white/10 p-8">
+          <div className="flex flex-1 flex-col gap-1">
+            <div className="flex flex-wrap items-center gap-4 [&_span]:text-white">
+              <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white">
+                1
+              </span>
+              <Text preset={TEXT_PRESET.span}>{t('step1')}</Text>
+              <span className="text-white/50">→</span>
+              <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white">
+                2
+              </span>
+              <Text preset={TEXT_PRESET.span}>{t('step2')}</Text>
+              <span className="text-white/50">→</span>
+              <span className="inline-flex size-6 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white">
+                3
+              </span>
+              <Text preset={TEXT_PRESET.span}>{t('step3')}</Text>
+            </div>
+            <Text preset={TEXT_PRESET.small} className="!text-white/60">
+              {t('hint')}
+            </Text>
+          </div>
+          <Button
+            onClick={() => void onAccessVideoCenter()}
+            className="shrink-0 whitespace-nowrap !border-white !bg-white !text-[#294576] hover:!bg-gray-100"
+          >
+            {hasVideos ? t('video_manager_service_access_video_center') : t('firstVideoButton')}
+            <Icon name="external-link" />
+          </Button>
+        </div>
+      </Card>
       <div className="mt-8 flex flex-row space-x-4">
         <Card className="w-1/2 p-6">
           <Text preset={TEXT_PRESET.heading5}>{t(`${NAMESPACES.BILLING}:subscription`)}</Text>
