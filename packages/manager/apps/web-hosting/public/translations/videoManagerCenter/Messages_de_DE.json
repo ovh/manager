@@ -27,5 +27,11 @@
   "video_manager_service_free": "Video Center Free",
   "video_manager_service_video_free_count": "1 Video",
   "video_manager_service_video_free_duration": "10 Minuten",
-  "video_manager_service_video_free_included": "Inklusive"
+  "video_manager_service_video_free_included": "Inklusive",
+  "title": "Veröffentlichen Sie Ihr Video in wenigen Sekunden",
+  "step1": "Öffnen Sie das Videozentrum",
+  "step2": "Importieren Sie Ihr Video",
+  "step3": "Veröffentlichen Sie!",
+  "hint": "Weniger als 2 Minuten · Keine Fähigkeiten erforderlich",
+  "firstVideoButton": "Laden Sie mein erstes Video hoch"
 }
