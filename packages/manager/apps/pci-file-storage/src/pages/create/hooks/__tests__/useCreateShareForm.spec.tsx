@@ -39,6 +39,7 @@ describe('useCreateShareForm', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 0,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -195,6 +196,7 @@ describe('useCreateShareForm', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 0,
         calculateProvisionedPerformance: () => null,
       },
     ];

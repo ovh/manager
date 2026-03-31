@@ -27,7 +27,7 @@
           "description": "Wdrożenia zapewniające odporność infrastruktury i wysoką dostępność w 3 strefach."
         }
       },
-      "leastPrice": "Od {{price}} {{unit}}"
+      "leastPrice": "Od {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Wybierz lokalizację"
@@ -57,7 +57,8 @@
   },
   "share": {
     "title": "Tryb wydajności „share«",
-    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS i {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS i {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Rozmiar „share”",

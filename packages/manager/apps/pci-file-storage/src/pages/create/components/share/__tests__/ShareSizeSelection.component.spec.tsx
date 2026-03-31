@@ -42,6 +42,7 @@ describe('ShareSizeSelection', () => {
     microRegionIds: [],
     price: 0,
     priceInterval: '',
+    monthlyPrice: 0,
     calculateProvisionedPerformance: () => null,
   };
 
