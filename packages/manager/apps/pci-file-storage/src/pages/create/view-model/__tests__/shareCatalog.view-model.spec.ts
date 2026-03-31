@@ -611,6 +611,7 @@ describe('share catalog selectors', () => {
             iopsLevel: 30,
             bandwidthLevel: 0.25,
             bandwidthUnit: 'MB/s/GB',
+            monthlyPrice: 11900 * 720,
             calculateProvisionedPerformance: expect.any(Function),
           },
           {
@@ -620,6 +621,7 @@ describe('share catalog selectors', () => {
             iopsLevel: 50,
             bandwidthLevel: 0.5,
             bandwidthUnit: 'MB/s/GB',
+            monthlyPrice: 11900 * 720,
             calculateProvisionedPerformance: expect.any(Function),
           },
         ],

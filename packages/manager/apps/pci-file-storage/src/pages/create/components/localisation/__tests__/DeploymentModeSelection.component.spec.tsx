@@ -15,7 +15,7 @@ vi.mock('@/data/hooks/catalog/useShareCatalog');
 
 vi.mock('@ovh-ux/muk', () => ({
   useCatalogPrice: () => ({
-    getFormattedMonthlyCatalogPrice: (price: number) => `€${(price / 100000000).toFixed(4)}`,
+    getFormattedCatalogPrice: (price: number) => `€${(price / 100000000).toFixed(4)}`,
   }),
 }));
 

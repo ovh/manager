@@ -66,6 +66,7 @@ export type TShareSpecData = {
   iopsLevel: number;
   bandwidthLevel: number;
   bandwidthUnit: string;
+  monthlyPrice: number;
   calculateProvisionedPerformance: (shareSize: number) => TProvisionedPerformanceData | null;
 };
 
@@ -145,6 +146,7 @@ const mapShareSpecsToShareSpecData = (
     iopsLevel: variant.iops.level,
     bandwidthLevel: variant.bandwidth.level,
     bandwidthUnit: variant.bandwidth.unit,
+    monthlyPrice: convertHourlyPriceToMonthly(variant.pricing.price),
     calculateProvisionedPerformance,
   };
 };
