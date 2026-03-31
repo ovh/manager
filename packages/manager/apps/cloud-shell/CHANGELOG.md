@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.2.2...@ovh-ux/manager-cloud-shell-app@0.2.3) (2026-03-31)
+
+
+### Bug Fixes
+
+* **cloud-shell:** switch Cloud Shell URL ([d332bac](https://github.com/ovh/manager/commit/d332bac9200d0c53a6cd3de00e9814286254220a))
+
+
+
+
+
 ## [0.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-cloud-shell-app@0.2.1...@ovh-ux/manager-cloud-shell-app@0.2.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-cloud-shell-app
