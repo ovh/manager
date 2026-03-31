@@ -91,7 +91,7 @@
     "success": "Creazione dello share {{name}} in corso... L’operazione potrebbe richiedere qualche minuto."
   },
   "title": "Creare uno share",
-  "description": "Crea uno share disponibile nel tuo progetto Public Cloud. Hai bisogno di più informazioni su Public Cloud File Storage? &lt;0>Consulta la nostra documentazione&lt;/0>",
+  "description": "Crea uno share disponibile nel tuo progetto Public Cloud. Hai bisogno di più informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"
