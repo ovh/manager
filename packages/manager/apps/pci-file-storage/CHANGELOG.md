@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.2.3...@ovh-ux/manager-pci-file-storage-app@0.3.0) (2026-03-31)
+
+
+### Features
+
+* **pci-file-storage:** add custom error page for share not found ([26a7e54](https://github.com/ovh/manager/commit/26a7e5438c6c15e52da5e4d0a2c66ccdf0fc1efc)), closes [#TAPC-6299](https://github.com/ovh/manager/issues/TAPC-6299)
+* **pci-file-storage:** add price on performance mode ([77ea259](https://github.com/ovh/manager/commit/77ea259a72def9cba80b6689c6e73ad3231af0cd)), closes [#TAPC-5823](https://github.com/ovh/manager/issues/TAPC-5823)
+* **pci-file-storage:** change onboarding page ([8ca11d0](https://github.com/ovh/manager/commit/8ca11d070eacd09e433071081b12ddf447729c68)), closes [#TAPC-5946](https://github.com/ovh/manager/issues/TAPC-5946)
+* **pci-file-storage:** fix deployment mode pricing ([8758731](https://github.com/ovh/manager/commit/8758731e34a01d7d78aa8df4960b881836dc5f07)), closes [#TAPC-6078](https://github.com/ovh/manager/issues/TAPC-6078)
+* **pci-file-storage:** fix documentation link ([0bad3c3](https://github.com/ovh/manager/commit/0bad3c380387b222125d09f6e3c8835f6b2d57a9)), closes [#TAPC-5823](https://github.com/ovh/manager/issues/TAPC-5823)
+* **pci-file-storage:** fix price units ([126479d](https://github.com/ovh/manager/commit/126479d387581e9eb9c0c93ea36f4990fdb0a551)), closes [#TAPC-5823](https://github.com/ovh/manager/issues/TAPC-5823)
+* **pci-file-storage:** fix pricing ([1088d3c](https://github.com/ovh/manager/commit/1088d3c8d25b26d71bfff7e5596d2d8a84b387d3)), closes [#TAPC-5946](https://github.com/ovh/manager/issues/TAPC-5946)
+
+
+
+
+
 ## [0.2.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.2.2...@ovh-ux/manager-pci-file-storage-app@0.2.3) (2026-03-25)
 
 
