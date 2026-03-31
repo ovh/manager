@@ -10,6 +10,12 @@ import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema'
 import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-model';
 import { renderWithMockedForm } from '@/test-helpers/renderWithMockedForm';
 
+vi.mock('@ovh-ux/muk', () => ({
+  useCatalogPrice: () => ({
+    getFormattedCatalogPrice: (price: number) => `€${price}`,
+  }),
+}));
+
 vi.mock('@/data/hooks/catalog/useShareCatalog');
 vi.mock('@/pages/create/view-model/network.view-model', () => ({
   generateAutoName: vi.fn((spec: string) => `${spec}_2025_02_09`),
@@ -31,6 +37,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
       {
@@ -40,6 +47,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -69,6 +77,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -95,6 +104,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
       {
@@ -104,6 +114,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -144,6 +155,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
       {
@@ -153,6 +165,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -198,6 +211,7 @@ describe('ShareSelection', () => {
         iopsLevel: 30,
         bandwidthLevel: 0.25,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
       {
@@ -207,6 +221,7 @@ describe('ShareSelection', () => {
         iopsLevel: 50,
         bandwidthLevel: 0.5,
         bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 72000,
         calculateProvisionedPerformance: () => null,
       },
     ];
@@ -240,6 +255,42 @@ describe('ShareSelection', () => {
       // Name should be updated because initial name is not dirty in this test setup
       // To properly test dirty state, we'd need to render the full form with NameInput
     });
+  });
+
+  it('should display monthly price on each share card', () => {
+    const shareOptions: TShareSpecData[] = [
+      {
+        name: 'standard-1az',
+        capacityMin: 150,
+        capacityMax: 1024,
+        iopsLevel: 30,
+        bandwidthLevel: 0.25,
+        bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 50000,
+        calculateProvisionedPerformance: () => null,
+      },
+      {
+        name: 'premium-1az',
+        capacityMin: 200,
+        capacityMax: 10240,
+        iopsLevel: 50,
+        bandwidthLevel: 0.5,
+        bandwidthUnit: 'MB/s/GB',
+        monthlyPrice: 100000,
+        calculateProvisionedPerformance: () => null,
+      },
+    ];
+
+    mockUseShareCatalog.mockReturnValue({
+      data: shareOptions,
+    } as unknown as QueryObserverSuccessResult<TShareSpecData[]>);
+
+    renderWithMockedForm(<ShareSelection />, {
+      defaultValues: { shareData: { microRegion: 'GRA1' } },
+    });
+
+    expect(screen.getByText(/€50000/)).toBeVisible();
+    expect(screen.getByText(/€100000/)).toBeVisible();
   });
 
   it('should handle empty share options', () => {

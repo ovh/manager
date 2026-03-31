@@ -27,7 +27,7 @@
           "description": "Deploy a resilienza elevata e alta disponibilità su 3 zone."
         }
       },
-      "leastPrice": "A partire da {{price}} {{unit}}"
+      "leastPrice": "A partire da {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Scegli una localizzazione"
@@ -57,7 +57,8 @@
   },
   "share": {
     "title": "Modalità di performance dello share",
-    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Dimensione dello share",

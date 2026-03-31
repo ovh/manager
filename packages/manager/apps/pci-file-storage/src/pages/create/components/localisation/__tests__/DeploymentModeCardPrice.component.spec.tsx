@@ -8,7 +8,7 @@ import { TDeploymentModePrice } from '@/pages/create/view-model/shareCatalog.vie
 
 vi.mock('@ovh-ux/muk', () => ({
   useCatalogPrice: () => ({
-    getFormattedMonthlyCatalogPrice: (price: number) => `€${price}`,
+    getFormattedCatalogPrice: (price: number) => `€${price}`,
   }),
 }));
 
