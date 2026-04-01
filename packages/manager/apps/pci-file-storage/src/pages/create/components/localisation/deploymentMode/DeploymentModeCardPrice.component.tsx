@@ -10,7 +10,7 @@ export const DeploymentModeCardPrice = ({
   monthlyPrice,
 }: Readonly<{ monthlyPrice: TDeploymentModePrice | null }>) => {
   const { t } = useTranslation(['create', 'order-price']);
-  const { getFormattedCatalogPrice } = useCatalogPrice();
+  const { getFormattedCatalogPrice } = useCatalogPrice(6);
 
   if (!monthlyPrice) return null;
 

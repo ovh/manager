@@ -16,7 +16,7 @@ import { selectShareSpecs } from '@/pages/create/view-model/shareCatalog.view-mo
 
 export const ShareSelection = () => {
   const { t } = useTranslation(['create', 'order-price']);
-  const { getFormattedCatalogPrice } = useCatalogPrice();
+  const { getFormattedCatalogPrice } = useCatalogPrice(6);
   const {
     control,
     setValue,
