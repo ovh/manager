@@ -64,6 +64,7 @@ describe('useShareColumn', () => {
         original: {
           regionDisplayKey: 'regions:manager_components_region_GRA_micro',
           region: 'GRA11',
+          regionDisplayValue: 'GRA11',
         },
       },
     } as never);

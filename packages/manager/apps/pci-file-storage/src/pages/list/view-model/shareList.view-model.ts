@@ -23,6 +23,7 @@ export type TShareListRow = {
   name: string;
   region: string;
   regionDisplayKey: string;
+  regionDisplayValue: string;
   protocol: string;
   size: number;
   status: string;
@@ -58,6 +59,7 @@ export const mapShareToShareListRow = (share: TShare): TShareListRow => ({
   name: share.name,
   region: share.region,
   regionDisplayKey: `regions:manager_components_region_${getMacroRegion(share.region)}_micro`,
+  regionDisplayValue: share.availabilityZone || share.region,
   protocol: share.protocol,
   size: share.size,
   status: share.status,

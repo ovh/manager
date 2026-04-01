@@ -71,6 +71,7 @@ describe('ShareDatagrid', () => {
         name: 'My Share',
         region: 'GRA9',
         regionDisplayKey: 'regions:manager_components_region_GRA_micro',
+        regionDisplayValue: 'GRA9',
         protocol: 'NFS',
         size: 100,
         status: 'available',

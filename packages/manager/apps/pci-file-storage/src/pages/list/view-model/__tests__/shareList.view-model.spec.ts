@@ -52,12 +52,57 @@ describe('shareList view model', () => {
         name: 'My Share',
         region: 'GRA9',
         regionDisplayKey: `regions:manager_components_region_${defaultMacroRegion}_micro`,
+        regionDisplayValue: 'GRA9',
         protocol: 'NFS',
         size: 161061273600,
         status: 'available',
       });
       expect(row.statusDisplay).toEqual(defaultStatusDisplay);
       expect(row.actions.get('actions')).toHaveLength(1);
+    });
+
+    it('should use availabilityZone as regionDisplayValue when present', () => {
+      const share = {
+        id: 'share-2',
+        name: 'AZ Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 100,
+        status: 'available' as const,
+        type: 'nfs',
+        createdAt: '2026-01-30T09:35:49.615Z',
+        description: '',
+        isPublic: false,
+        enabledActions: [] as const,
+        mountPaths: [],
+        network: { id: 'network-1' },
+        availabilityZone: 'GRA9-A',
+      } as TShare;
+
+      const result = shareListViewModel.selectSharesForList([share]);
+      expect(result[0]!.regionDisplayValue).toBe('GRA9-A');
+    });
+
+    it('should fallback to region as regionDisplayValue when availabilityZone is empty string', () => {
+      const share = {
+        id: 'share-3',
+        name: 'Empty AZ Share',
+        region: 'GRA9',
+        protocol: 'NFS',
+        size: 100,
+        status: 'available' as const,
+        type: 'nfs',
+        createdAt: '2026-01-30T09:35:49.615Z',
+        description: '',
+        isPublic: false,
+        enabledActions: [] as const,
+        mountPaths: [],
+        network: { id: 'network-1' },
+        availabilityZone: '',
+      } as TShare;
+
+      const result = shareListViewModel.selectSharesForList([share]);
+      expect(result[0]!.regionDisplayValue).toBe('GRA9');
     });
   });
 
