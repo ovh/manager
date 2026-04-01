@@ -32,7 +32,7 @@ export const EstimationBlock = () => {
     select,
   });
 
-  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice();
+  const { getFormattedMonthlyCatalogPrice } = useCatalogPrice(6);
 
   const hourlyPrice = pricing ? pricing.price * size : 0;
   const monthlyPrice = convertHourlyPriceToMonthly(hourlyPrice);
