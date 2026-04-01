@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.3.0...@ovh-ux/manager-pci-file-storage-app@0.4.0) (2026-04-01)
+
+
+### Features
+
+* **pci-file-storage:** fix onboarding title ([efa425b](https://github.com/ovh/manager/commit/efa425b36201e32fe61b70c5065561b0d0d08d6f)), closes [#TAPC-5823](https://github.com/ovh/manager/issues/TAPC-5823)
+* **pci-file-storage:** fix price display ([6bf390d](https://github.com/ovh/manager/commit/6bf390d9c5159e57e00b2fe1ed4d69dc5f2e9588)), closes [#TAPC-5823](https://github.com/ovh/manager/issues/TAPC-5823)
+
+
+
+
+
 # [0.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.2.3...@ovh-ux/manager-pci-file-storage-app@0.3.0) (2026-03-31)
 
 
