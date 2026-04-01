@@ -42,9 +42,9 @@ export const restoreZone = async (
   zoneName: string,
   creationDate: string,
 ): Promise<void> => {
-  await v6.post(`/domain/zone/${zoneName}/import`, {
-    zoneFile: creationDate,
-  });
+  await v6.post(
+    `/domain/zone/${zoneName}/history/${encodeURIComponent(creationDate)}/restore`,
+  );
 };
 
 export type TZoneSoa = {
