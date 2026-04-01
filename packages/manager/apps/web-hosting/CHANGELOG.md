@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.19.0...@ovh-ux/manager-web-hosting-app@0.20.0) (2026-04-01)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1231] ([230785a](https://github.com/ovh/manager/commit/230785a1c69c3347b1e9c58bb99833904aa868bd))
+* **i18n:** add missing translations [CDS 1231] ([7eb9027](https://github.com/ovh/manager/commit/7eb90275536cf9c167cfa73d2a83d7cc1ff6f44c))
+* **i18n:** add missing translations [CDS 1232] ([6e3cabe](https://github.com/ovh/manager/commit/6e3cabec50b6c80bc4bf99ebfbb388b5081ab85f))
+* **web-hosting:** update video center wording ([94a6490](https://github.com/ovh/manager/commit/94a64908637f24dae171e925fc9290f4d4775e5d)), closes [#PUWEBPT-274](https://github.com/ovh/manager/issues/PUWEBPT-274)
+
+
+### Features
+
+* **web-hosting:** update video center acces on dashboard ([689c247](https://github.com/ovh/manager/commit/689c247fec5ec23f62d7230e7af937eb85dc809a)), closes [#PUWEBPT-274](https://github.com/ovh/manager/issues/PUWEBPT-274)
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.18.4...@ovh-ux/manager-web-hosting-app@0.19.0) (2026-03-26)
 
 
