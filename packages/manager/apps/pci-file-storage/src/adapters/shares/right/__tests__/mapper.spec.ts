@@ -113,6 +113,7 @@ describe('mapShareDtoToShare', () => {
       enabledActions: [],
       mountPaths: [],
       network: { id: dto.networkId },
+      availabilityZone: undefined,
     });
   });
 

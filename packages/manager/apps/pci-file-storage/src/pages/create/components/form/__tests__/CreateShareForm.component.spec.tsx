@@ -429,4 +429,54 @@ describe('CreateShareForm', () => {
       expect.objectContaining({ duration: expect.any(Number) }),
     );
   });
+
+  it('should pass availabilityZone to createShare on submit', async () => {
+    mockUseShareCatalog.mockReturnValue({
+      data: [],
+    } as unknown as QueryObserverSuccessResult<
+      TMicroRegionData[] | TAvailabilityZoneData[] | TShareSpecData[]
+    >);
+
+    const mockCreateShare = vi.fn();
+
+    vi.mocked(useCreateShareForm).mockReturnValue({
+      control: {},
+      formState: { isValid: true },
+      handleSubmit: vi.fn((onValid) => (e?: React.BaseSyntheticEvent) => {
+        e?.preventDefault?.();
+        onValid({
+          macroRegion: 'GRA',
+          shareData: {
+            name: 'test-share',
+            microRegion: 'GRA1',
+            specName: 'nfs',
+            size: 150,
+            privateNetworkId: 'net-1',
+            subnetId: 'subnet-1',
+          },
+          deploymentModes: [],
+          continent: 'all',
+          availabilityZone: 'GRA1-A',
+        });
+      }),
+    } as unknown as ReturnType<
+      typeof import('@/pages/create/hooks/useCreateShareForm').useCreateShareForm
+    >);
+
+    mockUseShareCreation.mockReturnValue({
+      createShare: mockCreateShare,
+      isPending: false,
+    } as unknown as ReturnType<typeof useShareCreation>);
+
+    renderWithMockedForm(<CreateShareForm />);
+
+    const submitButton = screen.getByText(/actions:validate$/);
+    await userEvent.click(submitButton);
+
+    expect(mockCreateShare).toHaveBeenCalledWith(
+      expect.objectContaining({
+        availabilityZone: 'GRA1-A',
+      }),
+    );
+  });
 });

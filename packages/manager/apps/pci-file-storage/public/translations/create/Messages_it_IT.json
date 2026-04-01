@@ -63,7 +63,7 @@
   "shareSize": {
     "title": "Dimensione dello share",
     "description": "Il 5% della capacità è dedicata allo storage degli Snapshot",
-    "label": "Assegnazione lineare delle prestazioni ($t(units.giga_byte))",
+    "label": "Assegnazione lineare delle prestazioni ($t(units.giga_octet))",
     "provisionedPerformance": "<strong>Prestazioni fornite:</strong> Fino a {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "La dimensione dello share è inferiore al minimo autorizzato per questa soluzione.",

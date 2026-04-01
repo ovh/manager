@@ -52,7 +52,8 @@ export const useShareColumn = (): DatagridColumn<TShareListRow>[] => {
         isSortable: true,
         type: FilterTypeCategories.String,
         comparator: [FilterComparator.IsEqual],
-        cell: ({ row }): string => t(row.original.regionDisplayKey, { micro: row.original.region }),
+        cell: ({ row }): string =>
+          t(row.original.regionDisplayKey, { micro: row.original.regionDisplayValue }),
         minSize: 250,
         maxSize: 250,
       },
