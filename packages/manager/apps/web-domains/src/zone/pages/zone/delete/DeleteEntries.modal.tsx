@@ -11,23 +11,22 @@ import {
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteDomainZoneRecord, refreshZone } from '@/zone/datas/api';
 import { useParams } from 'react-router-dom';
 
 export interface DeleteEntriesModalProps {
   recordIds: string[];
   onCloseCallback?: () => void;
-  onRefetch?: () => void;
 }
 
 export const DeleteEntriesModal = ({
   recordIds,
   onCloseCallback,
-  onRefetch,
 }: DeleteEntriesModalProps) => {
   const { t } = useTranslation(['zone', NAMESPACES.ACTIONS]);
   const { serviceName } = useParams();
+  const queryClient = useQueryClient();
   const { addSuccess, addWarning, clearNotifications } = useNotifications();
 
   const count = recordIds.length;
@@ -40,6 +39,9 @@ export const DeleteEntriesModal = ({
       await refreshZone(serviceName ?? '');
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['get', 'domain', 'zone', 'records', serviceName],
+      });
       clearNotifications();
       addSuccess(t('zone_page_delete_entries_modal_success', { count }), true);
       onCloseCallback?.();
@@ -53,9 +55,6 @@ export const DeleteEntriesModal = ({
         true,
       );
       onCloseCallback?.();
-    },
-    onSettled: () => {
-      onRefetch?.();
     },
   });
 
