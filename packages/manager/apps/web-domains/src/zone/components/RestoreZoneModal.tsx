@@ -50,6 +50,12 @@ export default function RestoreZoneModal({
       { zoneName, creationDate: item.creationDate },
       {
         onSuccess: () => {
+          queryClient.invalidateQueries({
+            queryKey: ['get', 'domain', 'zone', 'records', zoneName],
+          });
+          queryClient.invalidateQueries({
+            queryKey: ['zone', 'history', zoneName],
+          });
           clearNotifications();
           addSuccess(
             <span style={{ display: 'inline' }}>
