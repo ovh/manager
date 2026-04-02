@@ -294,14 +294,12 @@ function ZonePageInner() {
             closeModal();
             setRowSelection({});
           }}
-          onRefetch={refetch}
         />
       )}
       {openModal === 'delete-entry' && (
         <DeleteEntryModal
           record={selectedRecord}
           onCloseCallback={closeModal}
-          onRefetch={refetch}
         />
       )}
     </>

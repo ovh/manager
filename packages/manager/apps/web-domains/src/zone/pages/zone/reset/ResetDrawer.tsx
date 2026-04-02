@@ -157,7 +157,7 @@ export default function ResetDrawer({
         onSuccess: () => {
           clearNotifications();
           addSuccess(t('zone_page_reset_success'), true);
-          queryClient.invalidateQueries({ queryKey: ['zone', 'records', zoneName] });
+          queryClient.invalidateQueries({ queryKey: ['get', 'domain', 'zone', 'records', zoneName] });
           onSuccessCallback?.();
         },
         onError: (error: Error) => {
