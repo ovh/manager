@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.4.0...@ovh-ux/manager-pci-file-storage-app@0.5.0) (2026-04-02)
+
+
+### Features
+
+* **pci-file-storage:** fix 3az availabilityZone ([b46723a](https://github.com/ovh/manager/commit/b46723a9a0080e46f513de0ad56cc0145d8bb267)), closes [#TAPC-6437](https://github.com/ovh/manager/issues/TAPC-6437) [#TAPC-6435](https://github.com/ovh/manager/issues/TAPC-6435)
+
+
+
+
+
 # [0.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.3.0...@ovh-ux/manager-pci-file-storage-app@0.4.0) (2026-04-01)
 
 
