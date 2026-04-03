@@ -21,6 +21,7 @@ import {
 import commitment from './commitment';
 import cancelCommitment from './cancel-commitment';
 import cancelResiliation from './cancel-resiliation';
+import resiliate from './resiliate';
 import resiliation from './resiliation';
 import terminate from '../terminate';
 import upgrade from './upgrade';
@@ -42,6 +43,7 @@ angular
     commitment,
     cancelCommitment,
     cancelResiliation,
+    resiliate,
     atInternet,
     'oui',
     'pascalprecht.translate',

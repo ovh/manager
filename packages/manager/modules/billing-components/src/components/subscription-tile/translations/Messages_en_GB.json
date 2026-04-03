@@ -30,5 +30,6 @@
   "manager_billing_subscription_resiliate": "Cancel",
   "manager_billing_subscription_resiliate_my_engagement": "Cancel commitment",
   "manager_billing_subscription_pay_bill": "Pay",
-  "manager_billing_subscription_pay_bill_renew": "Renew"
+  "manager_billing_subscription_pay_bill_renew": "Renew",
+  "manager_billing_subscription_cancel_service_us": "Cancel my service"
 }

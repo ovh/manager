@@ -24,5 +24,8 @@
   "billing_resiliate_autorenewInProgress_error": "Une erreur s'est produite pendant l'abandon de votre demande.",
   "billing_resiliate_autorenewInProgress_success": "Votre demande a bien été abandonnée.",
   "billing_resiliate_error": "Une erreur est survenue lors de la demande de résiliation :",
-  "billing_resiliate_confirmation_mail_to_be_sent": "Un e-mail vous confirmant la résiliation de votre service vous sera envoyé"
+  "billing_resiliate_confirmation_mail_to_be_sent": "Un e-mail vous confirmant la résiliation de votre service vous a été envoyé.",
+  "billing_resiliate_context_terminateAtExpirationDate_us": "Votre service sera résilié le {{date}}, à la fin de la période de facturation en cours.",
+  "billing_resiliate_context_terminateAtEngagementDate_us": "Votre service restera actif et vous serez facturé jusqu'au {{date}}, la fin de votre engagement.",
+  "billing_resiliate_context_terminateAtEngagementDate_monthly_us": "Après la fin de votre engagement, vous serez facturé mois par mois jusqu'à ce que vous résiliez votre service."
 }

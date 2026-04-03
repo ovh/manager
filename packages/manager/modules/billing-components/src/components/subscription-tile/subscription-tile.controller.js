@@ -235,6 +235,21 @@ export default class ServicesActionsCtrl {
     );
   }
 
+  canResiliateWithFtcFlow() {
+    return (
+      this.coreConfig.isRegion('US') &&
+      this.goToResiliateService &&
+      this.serviceInfos &&
+      !this.serviceInfos.isResiliated() &&
+      !this.serviceInfos.hasDebt()
+    );
+  }
+
+  resiliateService() {
+    this.trackAction('cancel-service', true);
+    return this.goToResiliateService();
+  }
+
   handleClickResiliate(event) {
     this.trackAction('stop', true);
 

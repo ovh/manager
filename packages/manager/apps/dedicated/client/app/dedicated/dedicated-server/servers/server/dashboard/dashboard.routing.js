@@ -186,6 +186,10 @@ export default /* @ngInject */ ($stateProvider) => {
             }),
           )
           .then((url) => () => url),
+      goToResiliateService: /* @ngInject */ ($state, serverName) => () =>
+        $state.go('app.dedicated-server.server.dashboard.resiliate', {
+          productId: serverName,
+        }),
       goToSgxIntroduction: /* @ngInject */ ($state, atInternet) => () => {
         atInternet.trackClick({
           name: 'dedicated::dedicated::server::dashboard::sgx::manage',

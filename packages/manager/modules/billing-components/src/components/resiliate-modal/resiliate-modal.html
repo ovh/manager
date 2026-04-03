@@ -27,10 +27,21 @@
                         data-model="$ctrl.resiliateOption"
                         data-match="label"
                         data-value-property="value"
+                        data-on-change="$ctrl.updateContextMessage()"
                     >
                     </oui-select>
                 </oui-field>
             </form>
+            <div
+                data-ng-if="$ctrl.isUSRegion && $ctrl.contextMessage"
+                class="mt-3"
+            >
+                <oui-message
+                    data-type="{{ $ctrl.contextMessageType }}"
+                >
+                    {{ $ctrl.contextMessage }}
+                </oui-message>
+            </div>
             <span
                 data-ng-if="$ctrl.isUSRegion && $ctrl.resiliateOption === 'terminate'"
                 data-translate="billing_resiliate_confirmation_mail_to_be_sent"

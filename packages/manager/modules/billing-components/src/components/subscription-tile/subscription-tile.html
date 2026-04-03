@@ -202,6 +202,28 @@
     </oui-tile-definition>
 
     <oui-tile-definition
+        data-ng-if="!$ctrl.isLoading && $ctrl.canResiliateWithFtcFlow()"
+    >
+        <oui-tile-description>
+            <a
+                class="oui-link_icon"
+                href=""
+                data-ng-click="$ctrl.resiliateService()"
+            >
+                <p>
+                    <span
+                        data-translate="manager_billing_subscription_cancel_service_us"
+                    ></span>
+                    <span
+                        aria-hidden="true"
+                        class="oui-icon oui-icon-arrow-right"
+                    ></span>
+                </p>
+            </a>
+        </oui-tile-description>
+    </oui-tile-definition>
+
+    <oui-tile-definition
         data-ng-if="$ctrl.canResiliate() && (!$ctrl.serviceInfos.shouldDeleteAtExpiration() || !$ctrl.serviceInfos.isResiliated()) && !$ctrl.serviceInfos.hasDebt() && !$ctrl.serviceInfos.hasPendingResiliation()"
     >
         <oui-tile-description>

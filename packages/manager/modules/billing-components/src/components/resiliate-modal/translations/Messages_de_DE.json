@@ -24,5 +24,8 @@
   "billing_resiliate_autorenewInProgress": "Meine Zahlungsmodalitäten aktualisieren.",
   "billing_resiliate_autorenewInProgress_us": "Meine Zahlungsmodalitäten aktualisieren.",
   "billing_resiliate_autorenewInProgress_error": "Ein Fehler ist während der Stornierung Ihres Antrags aufgetreten.",
-  "billing_resiliate_autorenewInProgress_success": "Ihr Antrag wurde erfolgreich storniert."
+  "billing_resiliate_autorenewInProgress_success": "Ihr Antrag wurde erfolgreich storniert.",
+  "billing_resiliate_context_terminateAtExpirationDate_us": "Your service will be cancelled on {{date}}, the end of the current billing period.",
+  "billing_resiliate_context_terminateAtEngagementDate_us": "Your service will remain active and you will be billed until the end of your commitment on {{date}}.",
+  "billing_resiliate_context_terminateAtEngagementDate_monthly_us": "Upon the end of your current commitment, you will be billed month to month until you cancel your services."
 }

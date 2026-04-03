@@ -24,5 +24,8 @@
   "billing_resiliate_autorenewInProgress": "Actualizar mis modalidades de pago.",
   "billing_resiliate_autorenewInProgress_us": "Actualizar mis modalidades de pago.",
   "billing_resiliate_autorenewInProgress_error": "Se ha producido un error durante la cancelación de su solicitud.",
-  "billing_resiliate_autorenewInProgress_success": "Su solicitud ha sido cancelada correctamente."
+  "billing_resiliate_autorenewInProgress_success": "Su solicitud ha sido cancelada correctamente.",
+  "billing_resiliate_context_terminateAtExpirationDate_us": "Your service will be cancelled on {{date}}, the end of the current billing period.",
+  "billing_resiliate_context_terminateAtEngagementDate_us": "Your service will remain active and you will be billed until the end of your commitment on {{date}}.",
+  "billing_resiliate_context_terminateAtEngagementDate_monthly_us": "Upon the end of your current commitment, you will be billed month to month until you cancel your services."
 }

@@ -42,7 +42,8 @@ export default class BmServerComponentsDashboardServiceStatusController {
     return (
       !this.server.isExpired &&
       !this.server.engagement &&
-      this.serverType !== 'node'
+      this.serverType !== 'node' &&
+      !this.coreConfig.isRegion('US')
     );
   }
 

@@ -12,6 +12,7 @@ export default {
     goToCancelCommit: '&',
     goToCancelResiliation: '&',
     goToResiliation: '&',
+    goToResiliateService: '&?',
     trackingPrefix: '@',
     trackingPage: '@',
     trackingNameSuffix: '@',

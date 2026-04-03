@@ -30,5 +30,6 @@
   "manager_billing_subscription_resiliate": "Disattivare",
   "manager_billing_subscription_resiliate_my_engagement": "Rescindere l’impegno contrattuale",
   "manager_billing_subscription_pay_bill": "Saldare",
-  "manager_billing_subscription_pay_bill_renew": "Rinnovare"
+  "manager_billing_subscription_pay_bill_renew": "Rinnovare",
+  "manager_billing_subscription_cancel_service_us": "Cancel my service"
 }

@@ -63,6 +63,45 @@ export default class ResiliateModalController {
         : this.resiliateOptions.find(
             ({ value }) => value === this.RESILIATION_DEFAULT_CAPABILITY,
           )?.value;
+
+    this.updateContextMessage();
+  }
+
+  getContextMessageKey() {
+    if (!this.isUSRegion || !this.resiliateOption) {
+      return null;
+    }
+    const contextKeys = {
+      terminateAtExpirationDate:
+        'billing_resiliate_context_terminateAtExpirationDate_us',
+      terminateAtEngagementDate:
+        'billing_resiliate_context_terminateAtEngagementDate_us',
+      terminateAtEngagementDate_monthly:
+        'billing_resiliate_context_terminateAtEngagementDate_monthly_us',
+    };
+    return contextKeys[this.resiliateOption] || null;
+  }
+
+  updateContextMessage() {
+    const key = this.getContextMessageKey();
+    if (!key) {
+      this.contextMessage = null;
+      this.contextMessageType = null;
+      return;
+    }
+    const date =
+      this.service?.billing?.engagement?.endDate ||
+      this.service?.billing?.expirationDate ||
+      this.service?.expirationDate ||
+      '';
+    this.contextMessage = this.$translate.instant(key, { date });
+    const warningOptions = [
+      'terminateAtEngagementDate',
+      'terminateAtEngagementDate_monthly',
+    ];
+    this.contextMessageType = warningOptions.includes(this.resiliateOption)
+      ? 'warning'
+      : 'info';
   }
 
   resiliate() {
