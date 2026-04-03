@@ -10,10 +10,6 @@
   "cpb_error_message": "Wystąpił problem z pobraniem wszystkich informacji.",
   "cpbc_monthly_header_post_paid": "Faktury miesięczne",
   "cpbc_hourly_header_post_paid": "Faktury za godzinę",
-  "cpbc_pricing_banner_title": "Cennik Public Cloud",
-  "cpbc_pricing_banner_body": "Ceny niektórych usług Public Cloud mogą zmienić się od 1 kwietnia 2026. Więcej informacji na ten temat znajdziesz na naszej stronie z cennikiem.",
-  "cpbc_pricing_banner_link": "Sprawdź cennik",
-  "cpbc_pricing_banner_close": "Zamknij",
   "cpbc_pricing_banner_old_billing_title": "Poprzednie faktury",
   "cpbc_pricing_banner_old_billing_body": "Zużycie z poprzednich miesięcy jest nadal dostępne w starej sekcji rozliczeń.",
   "cpbc_pricing_banner_old_billing_link": "Zobacz poprzednie zużycie"
