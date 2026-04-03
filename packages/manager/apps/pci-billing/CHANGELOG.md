@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.16.3...@ovh-ux/manager-pci-billing-app@0.17.0) (2026-04-03)
+
+
+### Features
+
+* **public-cloud:** remove repricing banner ([dc6821d](https://github.com/ovh/manager/commit/dc6821d5e562f40c4d2f1c08c9ea4b0e76ed3a3c)), closes [#TAPC-6440](https://github.com/ovh/manager/issues/TAPC-6440)
+
+
+
+
+
 ## [0.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.16.2...@ovh-ux/manager-pci-billing-app@0.16.3) (2026-03-26)
 
 
