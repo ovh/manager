@@ -207,8 +207,5 @@
   "pci_instance_creation_availabilityZone_help_manual": "Puoi scegliere tra le tre AZ disponibili nella Region. Questo ti permette di ripartire le tue istanze su più AZ e realizzare i tuoi meccanismi di ridondanza.",
   "pci_instance_creation_availabilityZone_help_link": "Scopri di più su multi-AZ e best practice →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Un Basic Public IP è stato rilevato sulla tua Private Network: crea o seleziona un’altra Private Network per creare un gateway",
-  "pci_instance_creation_region_unavailable": "Region non disponibile",
-  "pci_instance_creation_pricing_banner_title": "Tariffe Public Cloud",
-  "pci_instance_creation_pricing_banner_body": "Le tariffe di alcuni servizi Public Cloud verranno aggiornate a partire dal 1° aprile 2026. Per maggiori dettagli, consulta la nostra pagina dei prezzi.",
-  "pci_instance_creation_pricing_banner_link": "Visualizza le tariffe"
+  "pci_instance_creation_region_unavailable": "Region non disponibile"
 }

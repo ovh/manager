@@ -17,7 +17,6 @@ import { Outlet, useHref, useResolvedPath } from 'react-router-dom';
 import { sub } from 'date-fns';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { ROUTE_PATHS } from '@/routes';
-import PublicCloudPricingBanner from '@/components/PublicCloudPricingBanner.component';
 import TabsPanel from '@/components/TabsPanel.component';
 import { useBillingBannerFeatures } from '@/hooks/useBillingBannerFeatures';
 import { OldBillingBanner } from '@/components/OldBillingBanner.component';
@@ -85,8 +84,6 @@ export default function BillingPage() {
       </div>
 
       {hasOldBillingBanner && <OldBillingBanner />}
-
-      <PublicCloudPricingBanner />
 
       {hasFreeLocalZonesBanner && (
         <PciFreeLocalZonesBanner ovhSubsidiary={ovhSubsidiary} showConfirm />
