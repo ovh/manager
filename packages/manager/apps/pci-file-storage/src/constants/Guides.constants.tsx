@@ -7,7 +7,6 @@ type OnboardingGuide = {
 };
 
 export const GUIDES: OnboardingGuide[] = [
-  { key: 'learn-more', links: { DEFAULT: 'https://labs.ovhcloud.com/en/file-storage/' } },
   {
     key: 'get-started',
     links: {

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.3...@ovh-ux/manager-web-domains-app@1.16.4) (2026-04-01)
+
+
+### Bug Fixes
+
+* **web-domains:** fix SRV trailing dot and zone history restore ([830d5d7](https://github.com/ovh/manager/commit/830d5d7f58b65335620d9941c78536cd6e4a0e36)), closes [#INC0200916](https://github.com/ovh/manager/issues/INC0200916)
+
+
+
+
+
 ## [1.16.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.2...@ovh-ux/manager-web-domains-app@1.16.3) (2026-03-19)
 
 

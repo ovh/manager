@@ -26,7 +26,8 @@
           "label": "Região 3-AZ",
           "description": "Implementação de alta resiliência e alta disponibilidade em 3 zonas."
         }
-      }
+      },
+      "leastPrice": "A partir de {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Escolha uma localização"
@@ -56,13 +57,14 @@
   },
   "share": {
     "title": "Modo de desempenho do share",
-    "description": "Mín. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)"
+    "description": "Mín. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Tamanho do share",
     "description": "5% da capacidade de armazenamento é dedicada ao armazenamento das snapshots",
-    "label": "Alocação de desempenho linear ($t(units.giga_byte))",
-    "provisionedPerformance": "<strong>Performance provisionada:</strong> Até {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
+    "label": "Alocação de desempenho linear ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Performance provisionada:</strong> Até {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "O tamanho do share é inferior ao mínimo autorizado para esta oferta.",
       "max_value": "O tamanho do share ultrapassa o máximo autorizado para esta oferta.",
@@ -90,7 +92,7 @@
     "success": "A criação do share {{name}} está em curso. Esta operação pode demorar alguns minutos."
   },
   "title": "Criar um share",
-  "description": "Crie um share disponível no seu projeto Public Cloud. Precisa de mais informações sobre o Public Cloud File Storage? &lt;0>Consulte a nossa documentação&lt;/0>",
+  "description": "Crie um share disponível no seu projeto Public Cloud. Precisa de mais informações sobre o Public Cloud File Storage? <0>Consulte a nossa documentação</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

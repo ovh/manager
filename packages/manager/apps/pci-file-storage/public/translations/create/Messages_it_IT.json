@@ -26,7 +26,8 @@
           "label": "Region 3-AZ",
           "description": "Deploy a resilienza elevata e alta disponibilità su 3 zone."
         }
-      }
+      },
+      "leastPrice": "A partire da {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Scegli una localizzazione"
@@ -56,12 +57,13 @@
   },
   "share": {
     "title": "Modalità di performance dello share",
-    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Dimensione dello share",
     "description": "Il 5% della capacità è dedicata allo storage degli Snapshot",
-    "label": "Assegnazione lineare delle prestazioni ($t(units.giga_byte))",
+    "label": "Assegnazione lineare delle prestazioni ($t(units.giga_octet))",
     "provisionedPerformance": "<strong>Prestazioni fornite:</strong> Fino a {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "La dimensione dello share è inferiore al minimo autorizzato per questa soluzione.",
@@ -90,7 +92,7 @@
     "success": "Creazione dello share {{name}} in corso... L’operazione potrebbe richiedere qualche minuto."
   },
   "title": "Creare uno share",
-  "description": "Crea uno share disponibile nel tuo progetto Public Cloud. Hai bisogno di più informazioni su Public Cloud File Storage? &lt;0>Consulta la nostra documentazione&lt;/0>",
+  "description": "Crea uno share disponibile nel tuo progetto Public Cloud. Hai bisogno di più informazioni su Public Cloud File Storage? <0>Consulta la nostra documentazione</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

@@ -55,8 +55,10 @@ export type TShare = {
   enabledActions: readonly TShareEnabledAction[];
   mountPaths: string[];
   network: (Partial<TNetwork> & Pick<TNetwork, 'id'>) | TNetwork;
+  availabilityZone?: string;
 };
 
 export type TShareToCreate = Pick<TShare, 'name' | 'type' | 'size' | 'region'> & {
   network: Pick<TShare['network'], 'id'> & { subnetId: string };
+  availabilityZone?: string | null;
 };

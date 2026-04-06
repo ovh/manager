@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.5...@ovh-ux/manager-account-creation-app@0.13.6) (2026-04-03)
+
+
+### Bug Fixes
+
+* **account-creation:** update website label for ASIA sub ([f25b817](https://github.com/ovh/manager/commit/f25b81748ad464da9e87f1943967ac79112bf28c)), closes [#MANAGER-20710](https://github.com/ovh/manager/issues/MANAGER-20710)
+
+
+
+
+
+## [0.13.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.4...@ovh-ux/manager-account-creation-app@0.13.5) (2026-03-31)
+
+
+### Bug Fixes
+
+* **account-creation:** improve company search ([8051acd](https://github.com/ovh/manager/commit/8051acd7a546ae297f9d4beb230b71de04c8d550)), closes [#MANAGER-20993](https://github.com/ovh/manager/issues/MANAGER-20993)
+
+
+
+
+
 ## [0.13.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.3...@ovh-ux/manager-account-creation-app@0.13.4) (2026-03-26)
 
 

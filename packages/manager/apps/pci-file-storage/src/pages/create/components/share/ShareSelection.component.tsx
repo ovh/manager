@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Radio, RadioControl, RadioGroup, RadioLabel, Text } from '@ovhcloud/ods-react';
 
+import { useCatalogPrice } from '@ovh-ux/muk';
+
 import { PciCard } from '@/components/new-lib/pciCard/PciCard.component';
 import { useShareCatalog } from '@/data/hooks/catalog/useShareCatalog';
 import { CreateShareFormValues } from '@/pages/create/schema/CreateShare.schema';
@@ -13,7 +15,8 @@ import { TShareSpecData } from '@/pages/create/view-model/shareCatalog.view-mode
 import { selectShareSpecs } from '@/pages/create/view-model/shareCatalog.view-model';
 
 export const ShareSelection = () => {
-  const { t } = useTranslation(['create']);
+  const { t } = useTranslation(['create', 'order-price']);
+  const { getFormattedCatalogPrice } = useCatalogPrice(6);
   const {
     control,
     setValue,
@@ -82,6 +85,12 @@ export const ShareSelection = () => {
                         capacityMin: spec.capacityMin,
                         iopsLevel: spec.iopsLevel,
                         bandwidthLevel: spec.bandwidthLevel,
+                      })}
+                    </Text>
+                    <Text preset="span" className="mt-2 text-sm text-[--ods-color-primary-700]">
+                      {t('create:share.price', {
+                        price: getFormattedCatalogPrice(spec.monthlyPrice),
+                        unit: `/${t('order-price:order_catalog_price_interval_month')}/${t('create:units.giga_octet')}`,
                       })}
                     </Text>
                   </PciCard.Content>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { TMacroRegion, TMicroRegion, TShareSpecs } from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecVariant } from '@/domain/entities/catalog.entity';
 
 import {
   getMicroRegions,
@@ -149,9 +149,7 @@ describe('catalog.service', () => {
   });
 
   describe('provisionedPerformanceCalculator', () => {
-    const generalShareSpec: TShareSpecs = {
-      name: 'share-spec',
-      microRegionIds: ['GRA1', 'GRA2'],
+    const generalShareSpecRegionData: TShareSpecVariant = {
       capacity: { min: 150, max: 10240 },
       pricing: { price: 11900, interval: 'hour' },
       iops: {
@@ -177,20 +175,20 @@ describe('catalog.service', () => {
           'should return minimum throughput and calculate IOPS relative to the size for size 99 GiB',
         size: 99,
         expectedResult: { iops: 2376, throughput: 25 },
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
       {
         description: 'should calculate IOPS and throughput relative to the size for size 500 GiB',
         size: 500,
         expectedResult: { iops: 12000, throughput: 125 },
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
       {
         description: 'should return maximum values for IOPS and throughput',
         size: 670,
         expectedResult: { iops: 16000, throughput: 128 },
         expectedThroughput: 128,
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
       {
         description:
@@ -198,27 +196,27 @@ describe('catalog.service', () => {
         size: 99,
         expectedResult: { iops: 99, throughput: 25 },
         shareSpec: {
-          ...generalShareSpec,
-          iops: { ...generalShareSpec.iops, level: 1 },
+          ...generalShareSpecRegionData,
+          iops: { ...generalShareSpecRegionData.iops, level: 1 },
         },
       },
       {
         description: 'should return null when size is 0',
         size: 0,
         expectedResult: null,
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
       {
         description: 'should return null when size is negative',
         size: -1,
         expectedResult: null,
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
       {
         description: 'should return null when size is NaN',
         size: NaN,
         expectedResult: null,
-        shareSpec: generalShareSpec,
+        shareSpec: generalShareSpecRegionData,
       },
     ])('$description', ({ size, expectedResult, shareSpec }) => {
       const calculateProvisionedPerformance = provisionedPerformanceCalculator(shareSpec);

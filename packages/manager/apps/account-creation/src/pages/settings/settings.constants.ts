@@ -16,7 +16,7 @@ export const WEBSITE_LABEL_BY_LOCALE = {
   'en-CA': 'OVHcloud Canada (English)',
   'en-AU': 'OVHcloud Australia (English)',
   'en-SG': 'OVHcloud Singapore (English)',
-  'zh-SG': 'OVHcloud Singapore (Chinese)',
+  'zh-SG': 'OVHcloud Asia (English)',
   'fr-CA': 'OVHcloud Canada (Français)',
   'hi-IN': 'OVHcloud India (Hindi)',
   'en-IN': 'OVHcloud India (English)',

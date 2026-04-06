@@ -41,6 +41,7 @@ export enum RecordTypesTargetWithTrailingDotEnum {
   CNAME = 'CNAME',
   DNAME = 'DNAME',
   MX = 'MX',
+  SRV = 'SRV',
 }
 
 export enum NaptrFlagEnum {

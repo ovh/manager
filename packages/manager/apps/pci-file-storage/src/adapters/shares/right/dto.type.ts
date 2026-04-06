@@ -22,6 +22,7 @@ export type TShareDto = {
   capabilities: TShareCapabilityDto[];
   exportLocations?: TShareExportLocationDto[];
   networkId: string;
+  availabilityZone?: string;
 };
 
 export type TAggregatedSharesDto = {
