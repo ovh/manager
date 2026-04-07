@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.24.0...@ovh-ux/manager-pci-savings-plan-app@1.24.1) (2026-04-07)
+
+
+### Bug Fixes
+
+* **pci-svp:** update region handling ([4982838](https://github.com/ovh/manager/commit/4982838735f1aacb87513ea3e4ec67bfb27c6ece)), closes [#TAPC-5690](https://github.com/ovh/manager/issues/TAPC-5690)
+
+
+
+
+
 # [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.23.2...@ovh-ux/manager-pci-savings-plan-app@1.24.0) (2026-03-24)
 
 
