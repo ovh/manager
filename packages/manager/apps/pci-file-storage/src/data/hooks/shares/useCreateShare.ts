@@ -13,6 +13,7 @@ export type CreateShareCommand = {
   size: number;
   region: string;
   subnetId: string;
+  availabilityZone?: string | null;
 };
 
 const mapCommandToEntity = (command: CreateShareCommand): TShareToCreate => ({
@@ -21,6 +22,7 @@ const mapCommandToEntity = (command: CreateShareCommand): TShareToCreate => ({
   network: { id: command.networkId, subnetId: command.subnetId },
   size: command.size,
   region: command.region,
+  availabilityZone: command.availabilityZone,
 });
 
 export const useCreateShare = ({

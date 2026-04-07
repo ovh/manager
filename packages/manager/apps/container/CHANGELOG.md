@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.190.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.189.1...@ovh-ux/manager-container-app@0.190.0) (2026-03-31)
+
+
+### Features
+
+* **container:** change pci-file-storage tags from beta to new and remove new tag of volume backup ([5ec4862](https://github.com/ovh/manager/commit/5ec48629fc7a59bd4b4eac40b69e25e5e4290967)), closes [#TAPC-5946](https://github.com/ovh/manager/issues/TAPC-5946)
+
+
+
+
+
 ## [0.189.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.189.0...@ovh-ux/manager-container-app@0.189.1) (2026-03-25)
 
 

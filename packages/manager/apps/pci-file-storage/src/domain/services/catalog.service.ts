@@ -1,4 +1,4 @@
-import { TMacroRegion, TMicroRegion, TShareSpecs } from '@/domain/entities/catalog.entity';
+import { TMacroRegion, TMicroRegion, TShareSpecVariant } from '@/domain/entities/catalog.entity';
 import { isSizeValid } from '@/domain/services/share.service';
 
 export const isMicroRegionAvailable = (microRegion: TMicroRegion): boolean =>
@@ -24,7 +24,7 @@ export const isMacroRegionAvailable = (
 };
 
 export const provisionedPerformanceCalculator =
-  ({ iops, bandwidth }: Pick<TShareSpecs, 'iops' | 'bandwidth'>) =>
+  ({ iops, bandwidth }: Pick<TShareSpecVariant, 'iops' | 'bandwidth'>) =>
   (shareSize: number) => {
     if (!isSizeValid(shareSize)) return null;
     const calculatedIops = Math.min(shareSize * iops.level, iops.max);

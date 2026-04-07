@@ -26,7 +26,8 @@
           "label": "Región 3-AZ",
           "description": "Despliegue de alta resiliencia y alta disponibilidad en 3 zonas."
         }
-      }
+      },
+      "leastPrice": "Desde {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Seleccione una localización"
@@ -56,13 +57,14 @@
   },
   "share": {
     "title": "Modo de rendimiento del share",
-    "description": "Mín. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS y {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)"
+    "description": "Mín. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS y {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Tamaño del share",
     "description": "El 5 % de la capacidad de almacenamiento está dedicada al almacenamiento de los snapshots",
-    "label": "Asignación lineal de rendimiento ($t(unidades.giga_byte))",
-    "provisionedPerformance": "<strong>Rendimiento asignado:</strong> Hasta {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
+    "label": "Asignación lineal de rendimiento ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Rendimiento asignado:</strong> Hasta {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "El tamaño del share es inferior al mínimo permitido para este servicio.",
       "max_value": "El tamaño del share supera el máximo permitido para este servicio.",
@@ -90,7 +92,7 @@
     "success": "Creando el share {{name}}... Esta operación puede tardar unos minutos."
   },
   "title": "Crear un share",
-  "description": "Cree un share disponible en su proyecto Public Cloud. ¿Necesita más información sobre Public Cloud File Storage? &lt;0>Consulte nuestra documentación&lt;/0>",
+  "description": "Cree un share disponible en su proyecto Public Cloud. ¿Necesita más información sobre Public Cloud File Storage? <0>Consulte nuestra documentación</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

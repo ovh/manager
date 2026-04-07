@@ -48,8 +48,6 @@ import { CHANGELOG_LINKS } from '@/constants';
 import { useInstanceCreationPolling } from '@/data/hooks/operation/useInstanceCreationPolling';
 import DatagridComponent from './datagrid/components/Datagrid.component';
 import { InstanceCreationBanner } from './components/InstanceCreationBanner.component';
-import { PublicCloudPricingBanner } from './create/components/PublicCloudPricingBanner.component';
-
 const initialSorting = {
   id: 'creationDate',
   desc: true,
@@ -174,7 +172,6 @@ const Instances: FC = () => {
           </div>
         </div>
         <div>
-          <PublicCloudPricingBanner />
           <OsdsDivider />
           <Notifications />
           <SearchNotifications />

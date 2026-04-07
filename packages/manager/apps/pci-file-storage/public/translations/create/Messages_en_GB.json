@@ -26,7 +26,8 @@
           "label": "3-AZ Region",
           "description": "High-resilience, high-availability deployment in 3 zones."
         }
-      }
+      },
+      "leastPrice": "From {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Choose a location"
@@ -56,13 +57,14 @@
   },
   "share": {
     "title": "Share performance mode",
-    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS and {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS and {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Share size",
     "description": "5% of the storage capacity is allocated to snapshots",
-    "label": "Linear performance allocation ($t(units.gigabyte))",
-    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/sec",
+    "label": "Linear performance allocation ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/sec",
     "error": {
       "min_value": "The share size is below the minimum allowed for this option.",
       "max_value": "The share size is above the maximum allowed for this option.",
@@ -90,7 +92,7 @@
     "success": "Creating {{name}} share. This may take a few minutes."
   },
   "title": "Create a share",
-  "description": "Create a share that can be accessed within your Public Cloud project. Need more information about Public Cloud File Storage? &lt;0>See our documentation&lt;/0>",
+  "description": "Create a share that can be accessed within your Public Cloud project. Need more information about Public Cloud File Storage? <0>See our documentation</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

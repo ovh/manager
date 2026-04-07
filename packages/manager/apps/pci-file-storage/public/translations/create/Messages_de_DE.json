@@ -26,7 +26,8 @@
           "label": "3-AZ Region",
           "description": "Hochresiliente und hochverfügbare Bereitstellung in 3 Zonen."
         }
-      }
+      },
+      "leastPrice": "Ab {{price}}{{unit}}"
     },
     "macroRegion": {
       "title": "Standort auswählen"
@@ -56,13 +57,14 @@
   },
   "share": {
     "title": "Share-Leistungsmodus",
-    "description": "Min. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS und {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)"
+    "description": "Min. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS und {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Share-Größe",
     "description": "5 % der Speicherkapazität ist für die Speicherung von Snapshots vorgesehen",
-    "label": "Lineare Leistungszuweisung ($t(units.giga_byte))",
-    "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
+    "label": "Lineare Leistungszuweisung ($t(units.giga_octet))",
+    "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
       "min_value": "Die Share-Größe liegt unter dem für dieses Angebot zulässigen Minimum.",
       "max_value": "Die Share-Größe überschreitet das für dieses Angebot zulässige Maximum.",
@@ -90,7 +92,7 @@
     "success": "Share {{name}} wird erstellt. Dies kann einige Minuten dauern."
   },
   "title": "Share erstellen",
-  "description": "Erstellen Sie einen in Ihrem Public-Cloud-Projekt verfügbaren Share. Sie brauchen mehr Informationen zu Public Cloud File Storage? &lt;0>Lesen Sie unsere Dokumentation&lt;/0>",
+  "description": "Erstellen Sie einen in Ihrem Public-Cloud-Projekt verfügbaren Share. Sie brauchen mehr Informationen zu Public Cloud File Storage? <0>Lesen Sie unsere Dokumentation</0>",
   "units": {
     "giga_octet": "GiB",
     "mega_octet": "MiB"

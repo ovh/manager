@@ -69,6 +69,9 @@ export const createShare = async ({
     networkId: shareToCreate.network.id,
     size: shareToCreate.size,
     subnetId: shareToCreate.network.subnetId,
+    ...(shareToCreate.availabilityZone && {
+      availabilityZone: shareToCreate.availabilityZone,
+    }),
   });
 };
 
