@@ -80,7 +80,7 @@
     "msw": "2.1.7",
     "rollup": "^2.7.8",
     "typescript": "5.4.5",
-    "vite": "6.3.4"
+    "vite": "6.4.2"
   },
   "peerDependencies": {
     "axios": "^1.1.2",
