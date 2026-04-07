@@ -32,7 +32,7 @@
   "formEditTitle": "Edit the lifecycle rule",
   "formEditButtonConfirm": "Save changes",
   "formEditToastSuccessTitle": "Rule updated",
-  "formEditToastSuccessDescription": "The lifecycle rule \"{{ruleName}}\" has been updated successfully.",
+  "formEditToastSuccessDescription": "La regla de ciclo de vida «{{ruleName}}» se ha modificado correctamente.",
   "formEditToastErrorTitle": "Error updating the rule",
   "formRuleIdLabel": "Rule identifier",
   "formRuleIdRequired": "The identifier is required",

@@ -9,5 +9,5 @@
   "status-ERROR": "Error",
   "status-STOPPED": "Detenida",
   "status-RUNNING": "En ejecución",
-  "status-STANDBY": "En espera"
+  "status-STANDBY": "En standby"
 }
