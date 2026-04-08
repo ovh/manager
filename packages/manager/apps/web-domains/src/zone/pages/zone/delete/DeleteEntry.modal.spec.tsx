@@ -10,6 +10,7 @@ const deleteDomainZoneRecord = vi.fn();
 
 vi.mock('@/zone/datas/api', () => ({
   deleteDomainZoneRecord: vi.fn(),
+  refreshZone: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/muk', async (importOriginal) => {
