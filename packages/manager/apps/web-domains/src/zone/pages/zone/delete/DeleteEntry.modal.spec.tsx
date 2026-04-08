@@ -10,6 +10,7 @@ const deleteDomainZoneRecord = vi.fn();
 
 vi.mock('@/zone/datas/api', () => ({
   deleteDomainZoneRecord: vi.fn(),
+  refreshZone: vi.fn(),
 }));
 
 vi.mock('@ovh-ux/muk', async (importOriginal) => {
@@ -27,7 +28,6 @@ vi.mock('@ovh-ux/muk', async (importOriginal) => {
 });
 
 const onCloseCallback = vi.fn();
-const onRefetch = vi.fn();
 
 const record = zoneRecordsMock[0];
 
@@ -44,7 +44,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={record}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
@@ -59,7 +59,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={record}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
@@ -73,7 +73,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={record}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
@@ -88,7 +88,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={record}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
@@ -107,7 +107,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={record}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
@@ -124,7 +124,7 @@ describe('DeleteEntryModal', () => {
       <DeleteEntryModal
         record={null}
         onCloseCallback={onCloseCallback}
-        onRefetch={onRefetch}
+
       />,
       { wrapper },
     );
