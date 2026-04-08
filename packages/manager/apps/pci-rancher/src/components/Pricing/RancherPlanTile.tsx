@@ -3,7 +3,7 @@ import React from 'react';
 import { OsdsTile, OsdsText, OsdsChip } from '@ovhcloud/ods-components/react';
 import clsx from 'clsx';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { RancherPlan } from '@/types/api.type';
 import { ODS_CHIP_SIZE } from '@ovhcloud/ods-components';
 
@@ -12,7 +12,7 @@ export interface RancherPlanTileProps {
   name: string;
   selectedPlan: RancherPlan;
   setSelectedPlan: (plan: RancherPlan) => void;
-  planDescription: string | null;
+  planDescription: Array<string> | null;
   formattedHourlyPrice: string;
   formattedMonthlyPrice: string;
   isPricing: boolean;
@@ -73,7 +73,19 @@ const RancherPlanTile: React.FC<RancherPlanTileProps> = ({
                 isPricing && ' pb-8',
               )}
             >
-              {planDescription}
+              {planDescription && planDescription.length > 0 && (
+                <ul className="list-disc -ml-8 space-y-4 mt-4">
+                  {planDescription.map((key, index) => (
+                    <li key={index}>
+                      <Trans
+                        i18nKey={key}
+                        ns="dashboard"
+                        components={{ b: <b /> }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
           {isPricing && (
