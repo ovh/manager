@@ -5,6 +5,7 @@ import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OsdsInput } from '@ovhcloud/ods-components';
 
 import i18n from 'i18next';
+import onboardingTranslation from '@translation/onboarding/Messages_fr_FR.json';
 import dashboardTranslation from '@translation/dashboard/Messages_fr_FR.json';
 import listingTranslation from '@translation/listing/Messages_fr_FR.json';
 import {
@@ -278,7 +279,7 @@ describe('CreateRancher', () => {
     it('Given that I am eligible for free trial, I should see the free trial banner', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: true });
       const bannerLine = screen.getByText(
-        dashboardTranslation.freeTrialBannerMessageLine1,
+        onboardingTranslation.freeTrialBannerMessageLine1,
       );
 
       expect(bannerLine).toBeInTheDocument();
@@ -287,7 +288,7 @@ describe('CreateRancher', () => {
     it('Given that I am not eligible for free trial, I should not see the free trial banner', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: false });
       const bannerLine = screen.queryByText(
-        dashboardTranslation.freeTrialBannerMessageLine1,
+        onboardingTranslation.freeTrialBannerMessageLine1,
       );
 
       expect(bannerLine).not.toBeInTheDocument();
@@ -296,7 +297,7 @@ describe('CreateRancher', () => {
     it('Given that I am eligible for free trial, I should see the free trial disclaimer below the plan cards', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: true });
       const disclaimer = screen.getByText(
-        dashboardTranslation.freeTrialDisclaimer,
+        onboardingTranslation.freeTrialDisclaimer,
       );
 
       expect(disclaimer).toBeInTheDocument();
@@ -305,7 +306,7 @@ describe('CreateRancher', () => {
     it('Given that I am not eligible for free trial, I should not see the free trial disclaimer', async () => {
       const screen = await setupSpecTest({ isFreeTrialEligible: false });
       const disclaimer = screen.queryByText(
-        dashboardTranslation.freeTrialDisclaimer,
+        onboardingTranslation.freeTrialDisclaimer,
       );
 
       expect(disclaimer).not.toBeInTheDocument();

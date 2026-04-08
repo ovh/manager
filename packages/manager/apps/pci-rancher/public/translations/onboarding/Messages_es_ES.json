@@ -25,7 +25,10 @@
   "freeTrialCreditStandard": "{{amount}} de crédito para el Plan Estándar (~1 mes)",
   "freeTrialCreditOvhEdition": "{{amount}} de crédito para el Plan OVHcloud Edition (~1 mes)",
   "freeTrialCreditApplied": "El crédito se aplicará automáticamente a tu primer servicio.",
-  "orderButtonLabelFreeTrial": "Comenzar mi prueba gratuita",
+  "orderButtonLabelFreeTrial": "Comienza mi prueba gratuita",
   "rancherGuidesLink": "Acceder a las guías de Rancher",
-  "videoTitle": "Video de presentación de Rancher"
+  "videoTitle": "Video de presentación de Rancher",
+  "freeTrialBannerMessageLine1": "Eres elegible para una prueba gratuita.",
+  "freeTrialBannerMessageLine2": "Disfruta de un crédito* válido por un mes equivalente al precio mensual de 20 vCPU para probar nuestros planes Rancher Standard y OVHcloud Edition.",
+  "freeTrialDisclaimer": "*El crédito se aplica automáticamente a tu consumo horario. Una vez que se agote este crédito o termine el mes de prueba, la facturación de tus servicios tomará el relevo."
 }

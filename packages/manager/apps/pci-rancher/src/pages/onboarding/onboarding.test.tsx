@@ -155,7 +155,7 @@ describe('Onboarding', () => {
     const screen = await setupSpecTest();
 
     expect(
-      screen.queryByText(onboardingTranslation.freeTrialEligibilityTitle),
+      screen.queryByText(onboardingTranslation.freeTrialBannerMessageLine1),
     ).not.toBeInTheDocument();
   });
 
@@ -167,13 +167,13 @@ describe('Onboarding', () => {
     const screen = await setupSpecTest();
 
     expect(
-      screen.getByText(onboardingTranslation.freeTrialEligibilityTitle),
+      screen.getByText(onboardingTranslation.freeTrialBannerMessageLine1),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(i18n.t('onboarding:freeTrialEligibilityTitle')),
+      screen.getByText(onboardingTranslation.freeTrialBannerMessageLine2),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(onboardingTranslation.freeTrialCreditApplied),
+      screen.getByText(onboardingTranslation.freeTrialDisclaimer),
     ).toBeInTheDocument();
   });
 });
