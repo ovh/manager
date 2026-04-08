@@ -1,5 +1,6 @@
 import { priceToUcent, useCatalogPrice } from '@ovh-ux/muk';
 import { useMemo } from 'react';
+import { useProjectCredit } from '@/data/hooks/useProjectCredit/useProjectCredit';
 
 // Todo : try to get this from the credit API
 const FREE_TRIAL_CREDIT_OVH_EDITION = priceToUcent(100);
@@ -14,4 +15,22 @@ export const useRancherFreeTrial = () => {
       standard: getTextPrice(FREE_TRIAL_CREDIT_STANDARD),
     };
   }, [getTextPrice]);
+};
+
+const rancherFreeTrialVoucherIdPrefix = 'rancher-freetrial';
+
+export const useRancherFreeTrialVoucher = () => {
+  const { data: credit } = useProjectCredit();
+
+  const freeTrialVoucher = useMemo(
+    () =>
+      credit?.find(
+        (voucher) =>
+          voucher.voucher.startsWith(rancherFreeTrialVoucherIdPrefix) &&
+          voucher.available_credit.value > 0,
+      ),
+    [credit],
+  );
+
+  return freeTrialVoucher;
 };
