@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.4...@ovh-ux/manager-web-domains-app@1.16.5) (2026-04-08)
+
+
+### Bug Fixes
+
+* **web-domains:** fix query invalidation after zone record mutations ([33c42cf](https://github.com/ovh/manager/commit/33c42cf1bcdadd3151aa40954cdd5fd1fb91e261)), closes [#DCE-201](https://github.com/ovh/manager/issues/DCE-201)
+* **web-domains:** fix tests ([dcf5289](https://github.com/ovh/manager/commit/dcf5289ef2e36b43eedb423832801ee061c5971f)), closes [#DCE-201](https://github.com/ovh/manager/issues/DCE-201)
+
+
+
+
+
 ## [1.16.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.3...@ovh-ux/manager-web-domains-app@1.16.4) (2026-04-01)
 
 
