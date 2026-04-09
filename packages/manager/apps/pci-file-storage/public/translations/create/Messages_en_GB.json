@@ -62,7 +62,6 @@
   },
   "shareSize": {
     "title": "Share size",
-    "description": "5% of the storage capacity is allocated to snapshots",
     "label": "Linear performance allocation ($t(units.giga_octet))",
     "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/sec",
     "error": {
