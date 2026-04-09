@@ -4,6 +4,13 @@ import {
   CheckboxCheckedChangeDetail,
   CheckboxControl,
   CheckboxLabel,
+  FormField,
+  FormFieldLabel,
+  Icon,
+  Input,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -13,14 +20,18 @@ import {
   useWatch,
 } from 'react-hook-form';
 import Banner from '@/components/banner/Banner.component';
-import { InputField } from '@/components/form';
+import { InputField, ErrorText } from '@/components/form';
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { selectOvhPrivateNetwork } from '../../view-models/networksViewModel';
 import { usePrivateNetworks } from '@/data/hooks/configuration/usePrivateNetworks';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { selectMicroRegionDeploymentMode } from '../../view-models/microRegionsViewModel';
 
-const AddNetworkForm: FC = () => {
+type AddNetworkFormProps = {
+  isMetal: boolean;
+};
+
+const AddNetworkForm: FC<AddNetworkFormProps> = ({ isMetal }) => {
   const { t } = useTranslation('creation');
   const {
     control,
@@ -58,15 +69,23 @@ const AddNetworkForm: FC = () => {
 
   useEffect(() => {
     if (networks) {
-      const network = isLocalZone
-        ? { ...networks.ovhPrivateNetwork, vlanId: null }
-        : networks.ovhPrivateNetwork;
+      let network;
+      if (isMetal) {
+        network = {
+          ...networks.ovhPrivateNetwork,
+          vlanId: 0,
+        };
+      } else if (isLocalZone) {
+        network = { ...networks.ovhPrivateNetwork, vlanId: null };
+      } else {
+        network = networks.ovhPrivateNetwork;
+      }
       setValue('newPrivateNetwork', network, {
         shouldValidate: true,
       });
     }
     setValue('willGatewayBeAttached', false);
-  }, [networks, isLocalZone, setValue]);
+  }, [networks, isLocalZone, isMetal, setValue]);
 
   return (
     <form
@@ -80,7 +99,7 @@ const AddNetworkForm: FC = () => {
           )}
         </Banner>
       )}
-      {vlanId === 0 && (
+      {vlanId === 0 && !isMetal && (
         <Banner color="warning" className="mb-6">
           {t('creation:pci_instance_creation_network_add_new_vlanID_warning')}
         </Banner>
@@ -95,15 +114,40 @@ const AddNetworkForm: FC = () => {
           {...register('newPrivateNetwork.name')}
         />
         {!isLocalZone && (
-          <InputField
-            label={t(
-              'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+          <FormField invalid={!!errors.newPrivateNetwork?.vlanId}>
+            <FormFieldLabel className="items-center">
+              {t(
+                'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+              )}
+              {isMetal && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="ml-1 inline-flex cursor-help">
+                      <Icon name="circle-info" aria-label="Info" />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t(
+                      'creation:pci_instance_creation_network_metal_vlanid_tooltip',
+                    )}
+                  </TooltipContent>
+                </Tooltip>
+              )}
+            </FormFieldLabel>
+            <Input
+              type="number"
+              disabled={isMetal}
+              invalid={!!errors.newPrivateNetwork?.vlanId}
+              {...register('newPrivateNetwork.vlanId', {
+                valueAsNumber: true,
+              })}
+            />
+            {errors.newPrivateNetwork?.vlanId && (
+              <ErrorText>
+                {t(errors.newPrivateNetwork.vlanId.message ?? '')}
+              </ErrorText>
             )}
-            invalid={!!errors.newPrivateNetwork?.vlanId}
-            errorMessage={t(errors.newPrivateNetwork?.vlanId?.message ?? '')}
-            type="number"
-            {...register('newPrivateNetwork.vlanId', { valueAsNumber: true })}
-          />
+          </FormField>
         )}
         <InputField
           label={t(

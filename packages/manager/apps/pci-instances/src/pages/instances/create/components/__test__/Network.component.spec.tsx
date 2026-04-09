@@ -3,7 +3,10 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Network from '../Network.component';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
-import { mockedPrivateNetworkEntity } from '@/__mocks__/instance/constants';
+import {
+  mockedPrivateNetworkEntity,
+  mockedPrivateNetworkEntityWithMetal,
+} from '@/__mocks__/instance/constants';
 import {
   ButtonType,
   PageLocation,
@@ -31,7 +34,10 @@ vi.mock('@/data/api/privateNetworks');
 vi.mocked(getPrivateNetworks).mockImplementation(getPrivateNetworksMock);
 
 const setupTest = (
-  { networks }: { networks: TPrivateNetwork | null } = {
+  {
+    networks,
+    flavorCategory,
+  }: { networks: TPrivateNetwork | null; flavorCategory?: string | null } = {
     networks: mockedPrivateNetworkEntity,
   },
 ) => {
@@ -41,6 +47,7 @@ const setupTest = (
     <TestCreateInstanceFormWrapper
       defaultValues={{
         microRegion: 'BHS5',
+        flavorCategory: flavorCategory ?? 'General Purpose',
         newPrivateNetwork: {
           name: NETWORK_NAME,
           cidr: DEFAULT_CIDR,
@@ -215,6 +222,32 @@ describe('Considering Network component', () => {
           'creation:pci_instance_creation_network_full_private_warning',
         ),
       ).toBeVisible();
+    });
+  });
+
+  it('should auto-select vlan0 network when flavor is Metal Instances', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntityWithMetal, flavorCategory: 'Metal Instances' });
+
+    await waitFor(() => {
+      const options = screen.getAllByText('test-network-metal');
+      const optionWithValue = options.find((option) =>
+        option.hasAttribute('selected'),
+      );
+
+      expect(optionWithValue).toBeInTheDocument();
+      expect(optionWithValue).toHaveValue('metal-subnet-vlan0');
+    });
+  });
+
+  it('should display metal dropdown tooltip when flavor is Metal Instances', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntityWithMetal, flavorCategory: 'Metal Instances' });
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'creation:pci_instance_creation_network_metal_dropdown_tooltip',
+        ),
+      ).toBeInTheDocument();
     });
   });
 });

@@ -28,9 +28,11 @@ const setupTest = (
   {
     networks,
     deploymentMode,
+    isMetal,
   }: {
     networks: TPrivateNetwork | null;
     deploymentMode?: TDeploymentModeID;
+    isMetal?: boolean;
   } = {
     networks: mockedPrivateNetworkEntity,
   },
@@ -46,7 +48,7 @@ const setupTest = (
         microRegion: 'BHS5',
       }}
     >
-      <AddNetworkForm />
+      <AddNetworkForm isMetal={isMetal ?? false} />
     </TestCreateInstanceFormWrapper>,
   );
 };
@@ -296,6 +298,62 @@ describe('Considering AddNetwork component', () => {
         'creation:pci_instance_creation_network_add_new_vlanID_warning',
       ),
     ).not.toBeInTheDocument();
+  });
+});
+
+describe('Considering AddNetwork component in metal mode', () => {
+  it('should display vlanId as 0 and disabled when isMetal is true', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntity, isMetal: true });
+
+    await waitFor(() => {
+      const input = screen.getByLabelText(
+        'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+      );
+      expect(input).toHaveValue(0);
+      expect(input).toBeDisabled();
+    });
+  });
+
+  it('should display cidr from ovhPrivateNetwork when isMetal is true', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntity, isMetal: true });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_cidr_label_form',
+        ),
+      ).toHaveValue('10.1.0.0/16');
+    });
+  });
+
+  it('should not display vlanId=0 warning when isMetal is true', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntity, isMetal: true });
+
+    await waitFor(() => {
+      expect(
+        screen.getByLabelText(
+          'creation:pci_instance_creation_network_add_new_vlanID_label_form',
+        ),
+      ).toBeInTheDocument();
+    });
+
+    expect(
+      screen.queryByText(
+        'creation:pci_instance_creation_network_add_new_vlanID_warning',
+      ),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should display vlanId tooltip when isMetal is true', async () => {
+    setupTest({ networks: mockedPrivateNetworkEntity, isMetal: true });
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'creation:pci_instance_creation_network_metal_vlanid_tooltip',
+        ),
+      ).toBeInTheDocument();
+    });
   });
 });
 
