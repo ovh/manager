@@ -44,9 +44,9 @@ export default function Create() {
     projectId,
     onMutate: () => setHasRancherCreationError(false),
     onSuccess: (data: { data: RancherService }) => {
-      queryClient.setQueryData(
+      queryClient.setQueryData<RancherService[]>(
         ranchersQueryKeyValue,
-        (old: RancherService[]) => [...old, data.data],
+        (old) => [...(old ?? []), data.data],
       );
       trackingPage(`${TRACKING_PATH}::${TrackingEvent.add}-success`);
       navigate(getRanchersUrl(projectId));

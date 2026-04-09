@@ -10,7 +10,7 @@ export const useRancherFreeTrialVoucher = () => {
     () =>
       credit?.find(
         (voucher) =>
-          voucher.voucher.startsWith(rancherFreeTrialVoucherIdPrefix) &&
+          voucher.voucher?.startsWith(rancherFreeTrialVoucherIdPrefix) &&
           voucher.available_credit.value > 0,
       ),
     [credit],

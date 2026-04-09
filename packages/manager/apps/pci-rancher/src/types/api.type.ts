@@ -174,7 +174,7 @@ export type TVoucher = {
   bill: string | null;
   products: string | null;
   description: string;
-  voucher: string;
+  voucher: string | null;
   validity: {
     from: Date | null;
     to: Date | null;

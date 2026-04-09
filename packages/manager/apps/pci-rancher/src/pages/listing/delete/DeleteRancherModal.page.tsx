@@ -15,6 +15,12 @@ const DeleteRancherModal = () => {
   if (isLoading) {
     return <Loading />;
   }
+
+  if (!selectedRancher) {
+    navigate('..');
+    return null;
+  }
+
   return (
     <DeleteModal
       onClose={() => navigate('..')}
