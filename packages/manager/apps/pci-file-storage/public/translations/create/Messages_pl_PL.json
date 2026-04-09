@@ -62,7 +62,6 @@
   },
   "shareSize": {
     "title": "Rozmiar „share”",
-    "description": "5% przestrzeni dyskowej jest przeznaczone na snapshoty",
     "label": "Liniowe skalowanie wydajności ($t(units.giga_octet))",
     "provisionedPerformance": "<strong>Przydzielona wydajność:</strong> Do {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
