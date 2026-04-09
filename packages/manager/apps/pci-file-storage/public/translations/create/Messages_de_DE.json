@@ -62,7 +62,6 @@
   },
   "shareSize": {
     "title": "Share-Größe",
-    "description": "5 % der Speicherkapazität ist für die Speicherung von Snapshots vorgesehen",
     "label": "Lineare Leistungszuweisung ($t(units.giga_octet))",
     "provisionedPerformance": "<strong>Bereitgestellte Leistung:</strong> Bis zu {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
     "error": {
