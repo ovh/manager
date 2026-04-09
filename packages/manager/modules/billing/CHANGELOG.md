@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.65.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.6...@ovh-ux/manager-billing@0.65.7) (2026-04-09)
+
+
+### Bug Fixes
+
+* **billing:** resolve cancel commitment issue on us side ([f00646c](https://github.com/ovh/manager/commit/f00646c36b9040a1a880851ba4d37feb7d137c8a)), closes [#MANAGER-20713](https://github.com/ovh/manager/issues/MANAGER-20713)
+
+
+
+
+
 ## [0.65.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.5...@ovh-ux/manager-billing@0.65.6) (2026-03-25)
 
 
