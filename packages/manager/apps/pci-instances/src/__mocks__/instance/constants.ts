@@ -1104,6 +1104,7 @@ export const mockedPrivateNetworks: TPrivateNetworkData[] = [
       networkId: 'networkId-1',
       hasGateway: false,
       capabilities: ['PublicIP', 'FloatingIP'],
+      vlanId: 0,
     },
   },
   {
@@ -1113,6 +1114,7 @@ export const mockedPrivateNetworks: TPrivateNetworkData[] = [
       networkId: 'networkId-2',
       hasGateway: true,
       capabilities: ['FloatingIP'],
+      vlanId: 1,
     },
   },
   {
@@ -1122,6 +1124,7 @@ export const mockedPrivateNetworks: TPrivateNetworkData[] = [
       networkId: 'networkId-3',
       hasGateway: false,
       capabilities: ['PublicIP'],
+      vlanId: 2,
     },
   },
   {
@@ -1131,6 +1134,7 @@ export const mockedPrivateNetworks: TPrivateNetworkData[] = [
       networkId: 'networkId-4',
       hasGateway: false,
       capabilities: [],
+      vlanId: null,
     },
   },
 ];
@@ -1502,6 +1506,46 @@ export const mockedPrivateNetworkEntity: TPrivateNetwork = {
     allIds: [
       '22defd89-ab74-4353-8676-6a0ad7a239d3',
       'a1eb85cb-e30d-4523-987e-8ac320c3f9ac',
+    ],
+  },
+};
+
+export const mockedPrivateNetworkEntityWithMetal: TPrivateNetwork = {
+  networks: {
+    byId: new Map([
+      ...mockedPrivateNetworkEntity.networks.byId,
+      [
+        'metal-network-vlan0',
+        {
+          id: 'metal-network-vlan0',
+          name: 'test-network-metal',
+          region: 'BHS5',
+          vlanId: 0,
+          subnets: ['metal-subnet-vlan0'],
+        },
+      ],
+    ]),
+    allIds: [
+      ...mockedPrivateNetworkEntity.networks.allIds,
+      'metal-network-vlan0',
+    ],
+  },
+  subnets: {
+    byId: new Map([
+      ...mockedPrivateNetworkEntity.subnets.byId,
+      [
+        'metal-subnet-vlan0',
+        {
+          id: 'metal-subnet-vlan0',
+          cidr: '10.0.0.0/16',
+          capabilities: ['FloatingIP'],
+          hasGateway: false,
+        },
+      ],
+    ]),
+    allIds: [
+      ...mockedPrivateNetworkEntity.subnets.allIds,
+      'metal-subnet-vlan0',
     ],
   },
 };
