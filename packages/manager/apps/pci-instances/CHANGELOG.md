@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.0...@ovh-ux/manager-pci-instances-app@0.17.1) (2026-04-10)
+
+
+### Bug Fixes
+
+* **compute:** update metal instance handling ([d4382d1](https://github.com/ovh/manager/commit/d4382d1d6f4bb15f16258c1f3a7641da011e4184)), closes [#TAPC-6452](https://github.com/ovh/manager/issues/TAPC-6452)
+
+
+
+
+
 # [0.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.16.3...@ovh-ux/manager-pci-instances-app@0.17.0) (2026-04-03)
 
 
