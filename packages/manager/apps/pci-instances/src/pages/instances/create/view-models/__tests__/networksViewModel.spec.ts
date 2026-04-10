@@ -1,8 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import { mockedPrivateNetworkEntity } from '@/__mocks__/instance/constants';
 import {
+  mockedPrivateNetworkEntity,
+  mockedPrivateNetworkEntityWithMetal,
+} from '@/__mocks__/instance/constants';
+import {
+  applyMetalConstraints,
+  findFirstVlan0Network,
+  isMetalCategory,
+  METAL_FLAVOR_CATEGORY,
   selectPrivateNetworks,
   selectOvhPrivateNetwork,
+  TPrivateNetworkData,
 } from '../networksViewModel';
 
 describe('selectPrivateNetworks ViewModel', () => {
@@ -23,7 +31,7 @@ describe('selectPrivateNetworks ViewModel', () => {
     expect(result).toEqual([]);
   });
 
-  it('should return subnet in the same region', () => {
+  it('should return subnets in the same region with vlanId', () => {
     const result = selectPrivateNetworks('BHS5')(mockedPrivateNetworkEntity);
     expect(result).toEqual([
       {
@@ -33,9 +41,27 @@ describe('selectPrivateNetworks ViewModel', () => {
           networkId: '46d3947f-1098-40a2-be0c-36603b2ab4c3',
           hasGateway: true,
           capabilities: ['FloatingIP'],
+          vlanId: 2100,
         },
       },
     ]);
+  });
+
+  it('should return subnets including vlan0 metal network', () => {
+    const result = selectPrivateNetworks('BHS5')(
+      mockedPrivateNetworkEntityWithMetal,
+    );
+    expect(result).toHaveLength(2);
+    expect(result[1]).toEqual({
+      label: 'test-network-metal',
+      value: 'metal-subnet-vlan0',
+      customRendererData: {
+        networkId: 'metal-network-vlan0',
+        hasGateway: false,
+        capabilities: ['FloatingIP'],
+        vlanId: 0,
+      },
+    });
   });
 });
 
@@ -65,5 +91,82 @@ describe('selectOvhPrivateNetwork ViewModel', () => {
     expect(result.ovhPrivateNetwork.vlanId).toBeGreaterThan(0);
     expect(result.ovhPrivateNetwork.cidr).toMatch(/^10\.\d{1,3}\.0\.0\/16$/);
     expect(result.ovhPrivateNetwork.enableDhcp).toBe(true);
+  });
+});
+
+describe('isMetalCategory', () => {
+  it('should return true for Metal Instances category', () => {
+    expect(isMetalCategory(METAL_FLAVOR_CATEGORY)).toBe(true);
+  });
+
+  it('should return false for other categories', () => {
+    expect(isMetalCategory('General Purpose')).toBe(false);
+    expect(isMetalCategory(null)).toBe(false);
+  });
+});
+
+describe('applyMetalConstraints', () => {
+  const networks: TPrivateNetworkData[] = [
+    {
+      label: 'net-vlan-100',
+      value: 'subnet-1',
+      customRendererData: {
+        networkId: 'n1',
+        hasGateway: false,
+        capabilities: [],
+        vlanId: 100,
+      },
+    },
+    {
+      label: 'net-vlan-0',
+      value: 'subnet-2',
+      customRendererData: {
+        networkId: 'n2',
+        hasGateway: false,
+        capabilities: [],
+        vlanId: 0,
+      },
+    },
+  ];
+
+  it('should disable networks with vlanId !== 0', () => {
+    const result = applyMetalConstraints(networks);
+    expect(result[0]!.disabled).toBe(true);
+    expect(result[1]!.disabled).toBe(false);
+  });
+});
+
+describe('findFirstVlan0Network', () => {
+  const networks: TPrivateNetworkData[] = [
+    {
+      label: 'net-vlan-100',
+      value: 'subnet-1',
+      customRendererData: {
+        networkId: 'n1',
+        hasGateway: false,
+        capabilities: [],
+        vlanId: 100,
+      },
+    },
+    {
+      label: 'net-vlan-0',
+      value: 'subnet-2',
+      customRendererData: {
+        networkId: 'n2',
+        hasGateway: false,
+        capabilities: [],
+        vlanId: 0,
+      },
+    },
+  ];
+
+  it('should return the first network with vlanId === 0', () => {
+    const result = findFirstVlan0Network(networks);
+    expect(result?.value).toBe('subnet-2');
+  });
+
+  it('should return undefined when no vlan0 network exists', () => {
+    const result = findFirstVlan0Network([networks[0]!]);
+    expect(result).toBeUndefined();
   });
 });

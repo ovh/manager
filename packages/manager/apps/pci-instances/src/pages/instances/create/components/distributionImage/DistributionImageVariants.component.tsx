@@ -173,6 +173,11 @@ const Distributionvariants = ({ variants }: TDistributionvariants) => {
 
     if (!previousSelectedVariantAvailable)
       selectFirstAvailableVariant(firstAvailableVariant);
+    else
+      setValue(
+        'distributionImageOsType',
+        previousSelectedVariantAvailable.osType,
+      );
 
     if (distributionImageType === 'windows')
       updateVersionAndSshKey(
