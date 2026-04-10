@@ -80,7 +80,7 @@ export default function DsRecordsDrawer({
       onPrimaryButtonClick={handleSubmit((values) => {
         const data = {
           keyTag: Number(values.keyTag),
-          flags: values.flags,
+          flags: Number(values.flags),
           algorithm: Number(values.algorithm),
           publicKey: values.publicKey,
         };
