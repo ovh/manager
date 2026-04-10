@@ -12,6 +12,7 @@ export type TPrivateNetworkCustomData = {
   hasGateway: boolean;
   capabilities: TCapability[];
   networkId: string;
+  vlanId: number | null;
 };
 
 export type TPrivateNetworkData = SelectOptionItem<TPrivateNetworkCustomData>;
@@ -38,6 +39,7 @@ export const selectPrivateNetworks = (region: string | null) => (
           networkId,
           hasGateway: !!subnet?.hasGateway,
           capabilities: subnet?.capabilities ?? [],
+          vlanId: network.vlanId,
         },
       };
     });
@@ -208,6 +210,24 @@ export const getPublicIpAvailability = ({
     },
   };
 };
+
+export const METAL_FLAVOR_CATEGORY = 'Metal Instances';
+
+export const isMetalCategory = (category: string | null): boolean =>
+  category === METAL_FLAVOR_CATEGORY;
+
+export const applyMetalConstraints = (
+  networks: TPrivateNetworkData[],
+): TPrivateNetworkData[] =>
+  networks.map((network) => ({
+    ...network,
+    disabled: network.customRendererData?.vlanId !== 0,
+  }));
+
+export const findFirstVlan0Network = (
+  networks: TPrivateNetworkData[],
+): TPrivateNetworkData | undefined =>
+  networks.find((n) => n.customRendererData?.vlanId === 0);
 
 export const selectFloatingIps = (floatingIps?: TFloatingIp[]) =>
   floatingIps?.map(({ ip, id }) => ({ label: ip, value: id })) ?? [];

@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect, useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   Button,
@@ -11,6 +11,9 @@ import {
   SelectCustomOptionRendererArg,
   SelectValueChangeDetail,
   Text,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from '@ovhcloud/ods-react';
 import NetworkHelper from './network/NetworkHelper.component';
 import {
@@ -20,6 +23,9 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useFormContext, useWatch } from 'react-hook-form';
 import {
+  applyMetalConstraints,
+  findFirstVlan0Network,
+  isMetalCategory,
   selectPrivateNetworks,
   TPrivateNetworkCustomData,
 } from '../view-models/networksViewModel';
@@ -37,23 +43,35 @@ import SelectOptionRow from '@/components/selectOptionRow/SelectOptionRow.compon
 const Network: FC = () => {
   const { t } = useTranslation('creation');
   const { control, setValue } = useFormContext<TInstanceCreationForm>();
-  const [subnetId, microRegion, ipPublicType, willGatewayBeAttached] = useWatch(
-    {
-      control,
-      name: [
-        'subnetId',
-        'microRegion',
-        'ipPublicType',
-        'willGatewayBeAttached',
-      ],
-    },
-  );
+  const [
+    subnetId,
+    microRegion,
+    ipPublicType,
+    willGatewayBeAttached,
+    flavorCategory,
+  ] = useWatch({
+    control,
+    name: [
+      'subnetId',
+      'microRegion',
+      'ipPublicType',
+      'willGatewayBeAttached',
+      'flavorCategory',
+    ],
+  });
+
+  const isMetal = isMetalCategory(flavorCategory);
 
   const guide = useGuideLink('NETWORK_PRIVATE_MODE');
 
   const { data: networks, isPending } = usePrivateNetworks({
     select: selectPrivateNetworks(microRegion),
   });
+
+  const metalAwareNetworks = useMemo(
+    () => (isMetal ? applyMetalConstraints(networks ?? []) : networks ?? []),
+    [networks, isMetal],
+  );
 
   const { trackClick } = useOvhTracking();
 
@@ -84,14 +102,21 @@ const Network: FC = () => {
   };
 
   const initializePrivateNetworkFields = useCallback(() => {
-    const selectedSubnetId = networks?.[0]?.value ?? null;
-    setValue('subnetId', selectedSubnetId);
-    if (selectedSubnetId) {
-      setValue('newPrivateNetwork', null, {
-        shouldValidate: true,
-      });
+    if (isMetal) {
+      const vlan0Network = findFirstVlan0Network(networks ?? []);
+      const selectedSubnetId = vlan0Network?.value ?? null;
+      setValue('subnetId', selectedSubnetId);
+      if (selectedSubnetId) {
+        setValue('newPrivateNetwork', null, { shouldValidate: true });
+      }
+    } else {
+      const selectedSubnetId = networks?.[0]?.value ?? null;
+      setValue('subnetId', selectedSubnetId);
+      if (selectedSubnetId) {
+        setValue('newPrivateNetwork', null, { shouldValidate: true });
+      }
     }
-  }, [networks, setValue]);
+  }, [networks, isMetal, setValue]);
 
   useEffect(() => {
     initializePrivateNetworkFields();
@@ -122,7 +147,7 @@ const Network: FC = () => {
           <Text className="font-semibold" preset="paragraph">
             {t('creation:pci_instance_creation_network_add_new_warning')}
           </Text>
-          <AddNetworkForm />
+          <AddNetworkForm isMetal={isMetal} />
           {networks.length > 0 && (
             <Button
               variant="outline"
@@ -137,13 +162,27 @@ const Network: FC = () => {
       ) : (
         <>
           <FormField className="my-4 max-w-[45%]">
-            <FormFieldLabel>
+            <FormFieldLabel className="items-center">
               {t(
                 'creation:pci_instance_creation_select_network_dropdown_label',
               )}
+              {isMetal && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="ml-1 inline-flex cursor-help">
+                      <Icon name="circle-info" aria-label="Info" />
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent withArrow>
+                    {t(
+                      'creation:pci_instance_creation_network_metal_dropdown_tooltip',
+                    )}
+                  </TooltipContent>
+                </Tooltip>
+              )}
             </FormFieldLabel>
             <Select
-              items={networks}
+              items={metalAwareNetworks}
               value={[subnetId]}
               onValueChange={handleSelectNetwork}
             >

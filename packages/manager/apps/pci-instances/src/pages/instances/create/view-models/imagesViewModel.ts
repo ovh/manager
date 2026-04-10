@@ -492,6 +492,7 @@ const updateImageVariantAvailability = (
       acc.set(image.variant, {
         ...variantToUpdate,
         available: true,
+        osType: image.osType,
       });
     }
   }
