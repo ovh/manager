@@ -8,7 +8,7 @@ import {
   LANGUAGES_VERSIONS_GUIDE_URL,
 } from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-import { NEW_OFFERS_NAME } from '../hosting.constants';
+import { OFFERS_NAME, NEW_OFFERS_NAME } from '../hosting.constants';
 
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
@@ -33,6 +33,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingLocalSeo,
     HostingRuntimes,
     hostingSSLCertificate,
+    isChangeOfferFeatureAvailable,
     OvhApiScreenshot,
     user,
   ) {
@@ -56,6 +57,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingLocalSeo = HostingLocalSeo;
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
+    this.isChangeOfferFeatureAvailable = isChangeOfferFeatureAvailable;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
     this.Domain = Domain;
@@ -375,6 +377,12 @@ export default class HostingGeneralInformationsCtrl {
   }
 
   getOfferName(offer) {
+    if (this.isChangeOfferFeatureAvailable) {
+      const offerName = OFFERS_NAME[offer];
+      return this.$translate.instant(
+        offerName || `hosting_dashboard_service_offer_${offer}`,
+      );
+    }
     const offerPrefix = NEW_OFFERS_NAME[offer];
     const translateKey = offerPrefix
       ? `hostings_offer_${offerPrefix}`

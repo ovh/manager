@@ -7,6 +7,18 @@ export const NEW_OFFERS_NAME = {
   PERFORMANCE_4: 'performance_4',
 };
 
+export const OFFERS_NAME = {
+  HOSTING_FREE_100_M: 'hosting-free-100M',
+  HOSTING_STARTER: 'hosting-starter',
+  HOSTING_PERSO: 'hosting-perso',
+  HOSTING_STARTUP: 'hosting-startup',
+  HOSTING_PRO: 'hosting-pro',
+  HOSTING_PERFORMANCE_1: 'hosting-performance-1',
+  HOSTING_AGENCY: 'hosting-agence',
+  HOSTING_AGENCY_PLUS: 'hosting-agence-plus',
+  HOSTING_AGENCY_MAX: 'hosting-agence-max',
+};
+
 export const OFFERS_UNELIGIBLE_FOR_MODULE = [
   'START_10_M',
   'HOSTING_FREE_100_M',
