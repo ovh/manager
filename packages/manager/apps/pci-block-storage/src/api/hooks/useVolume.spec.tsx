@@ -23,11 +23,14 @@ import {
 } from '@/api/data/volume';
 import {
   mapVolumeAttach,
+  mapVolumeAttachForListing,
   mapVolumeEncryption,
+  mapVolumeEncryptionForListing,
   mapVolumePricing,
   mapVolumeRegion,
   mapVolumeStatus,
   mapVolumeType,
+  mapVolumeTypeForListing,
   paginateResults,
   sortResults,
 } from '@/api/select/volume';
@@ -49,13 +52,16 @@ vi.mock('@/api/select/volume', async (importOriginal) => {
   return {
     ...actual,
     mapVolumeAttach: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeAttachForListing: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeEncryption: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeEncryptionForListing: vi.fn().mockReturnValue(vi.fn()),
     mapVolumePricing: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeRegion: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeStatus: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeToAdd: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeToEdit: vi.fn().mockReturnValue(vi.fn()),
     mapVolumeType: vi.fn().mockReturnValue(vi.fn()),
+    mapVolumeTypeForListing: vi.fn().mockReturnValue(vi.fn()),
     paginateResults: vi.fn(),
     sortResults: vi.fn(),
   };
@@ -142,9 +148,9 @@ describe('useVolumes', () => {
       expect(getAllVolumes).toHaveBeenCalledWith('123');
       expect(mapVolumeStatus).toHaveBeenCalled();
       expect(mapVolumeRegion).toHaveBeenCalled();
-      expect(mapVolumeAttach).toHaveBeenCalled();
-      expect(mapVolumeEncryption).toHaveBeenCalled();
-      expect(mapVolumeType).toHaveBeenCalled();
+      expect(mapVolumeAttachForListing).toHaveBeenCalled();
+      expect(mapVolumeEncryptionForListing).toHaveBeenCalled();
+      expect(mapVolumeTypeForListing).toHaveBeenCalled();
       expect(paginateResults).toHaveBeenCalled();
       expect(sortResults).toHaveBeenCalled();
       expect(result.current.isPending).toBe(false);
@@ -184,9 +190,9 @@ describe('useAllVolumes', () => {
       expect(getAllVolumes).toHaveBeenCalledWith('123');
       expect(mapVolumeStatus).toHaveBeenCalled();
       expect(mapVolumeRegion).toHaveBeenCalled();
-      expect(mapVolumeAttach).toHaveBeenCalled();
-      expect(mapVolumeEncryption).toHaveBeenCalled();
-      expect(mapVolumeType).toHaveBeenCalled();
+      expect(mapVolumeAttachForListing).toHaveBeenCalled();
+      expect(mapVolumeEncryptionForListing).toHaveBeenCalled();
+      expect(mapVolumeTypeForListing).toHaveBeenCalled();
       expect(result.current.isPending).toBe(false);
     });
   });

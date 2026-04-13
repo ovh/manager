@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.5.0...@ovh-ux/manager-pci-file-storage-app@0.6.0) (2026-04-13)
+
+
+### Features
+
+* **pci-file-storage:** fix onboarding description units ([c321aba](https://github.com/ovh/manager/commit/c321aba815a97f1a89440604c20c8b792d29ed6b)), closes [#TAPC-6466](https://github.com/ovh/manager/issues/TAPC-6466)
+* **pci-file-storage:** fix provisoned performance en units ([ff3aab5](https://github.com/ovh/manager/commit/ff3aab54562d14da681f381743654326124dade5)), closes [#TAPC-6487](https://github.com/ovh/manager/issues/TAPC-6487)
+* **pci-file-storage:** remove share size description ([445181e](https://github.com/ovh/manager/commit/445181ed05e2d0428a34ac9405bb30d9284382e1)), closes [#TAPC-6476](https://github.com/ovh/manager/issues/TAPC-6476)
+
+
+
+
+
 # [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.4.0...@ovh-ux/manager-pci-file-storage-app@0.5.0) (2026-04-02)
 
 

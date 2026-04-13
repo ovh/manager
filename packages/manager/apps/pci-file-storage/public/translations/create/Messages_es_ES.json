@@ -62,7 +62,6 @@
   },
   "shareSize": {
     "title": "Tamaño del share",
-    "description": "El 5 % de la capacidad de almacenamiento está dedicada al almacenamiento de los snapshots",
     "label": "Asignación lineal de rendimiento ($t(unidades.giga_byte))",
     "provisionedPerformance": "<strong>Rendimiento asignado:</strong> Hasta {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
     "error": {
