@@ -1,7 +1,10 @@
 import clone from 'lodash/clone';
 import get from 'lodash/get';
 
-import { OFFERS_UNELIGIBLE_FOR_MODULE } from '../hosting.constants';
+import {
+  OFFERS_UNELIGIBLE_FOR_MODULE,
+  OFFERS_NAME,
+} from '../hosting.constants';
 
 angular.module('App').controller(
   'HostingTabModulesController',
@@ -17,6 +20,7 @@ angular.module('App').controller(
       atInternet,
       Hosting,
       HostingModule,
+      isChangeOfferFeatureAvailable,
       WucUser,
     ) {
       this.$scope = $scope;
@@ -28,6 +32,7 @@ angular.module('App').controller(
       this.atInternet = atInternet;
       this.Hosting = Hosting;
       this.HostingModule = HostingModule;
+      this.isChangeOfferFeatureAvailable = isChangeOfferFeatureAvailable;
       this.WucUser = WucUser;
     }
 
@@ -41,6 +46,9 @@ angular.module('App').controller(
       this.Hosting.getSelected(this.$stateParams.productId)
         .then((hosting) => {
           this.serviceState = hosting.serviceState;
+          this.offerName = this.isChangeOfferFeatureAvailable
+            ? OFFERS_NAME[hosting.offer]
+            : `hosting_dashboard_service_offer_${  hosting.offer}`;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(

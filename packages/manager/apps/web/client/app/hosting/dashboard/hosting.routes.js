@@ -297,6 +297,13 @@ export default /* @ngInject */ ($stateProvider) => {
           configurationSelected: true,
         });
       },
+      isChangeOfferFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:change-offer')
+          .then((featureAvailability) =>
+            featureAvailability.isFeatureAvailable('web-hosting:change-offer'),
+          )
+          .catch(() => false),
       isLocalSeoAvailable: /* @ngInject */ (availableOptions) =>
         availableOptions.find(({ family }) => family === LOCAL_SEO_FAMILY),
 
