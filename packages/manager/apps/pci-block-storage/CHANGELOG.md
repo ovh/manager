@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.25.6...@ovh-ux/manager-pci-block-storage-app@0.26.0) (2026-04-13)
+
+
+### Features
+
+* **pci-block-storage:** fix encryption display for volume types not available ([7689396](https://github.com/ovh/manager/commit/7689396e3b25e7814f864b01e27640fdac8cd856)), closes [#TAPC-6331](https://github.com/ovh/manager/issues/TAPC-6331)
+
+
+
+
+
 ## [0.25.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.25.5...@ovh-ux/manager-pci-block-storage-app@0.25.6) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-block-storage-app
