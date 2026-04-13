@@ -23,6 +23,7 @@ angular.module('App').controller(
       Hosting,
       WucUser,
       ovhManagerProductOffersActionService,
+      ovhFeatureFlipping,
       $anchorScroll,
     ) {
       this.$scope = $scope;
@@ -38,6 +39,7 @@ angular.module('App').controller(
       this.Hosting = Hosting;
       this.WucUser = WucUser;
       this.ovhManagerProductOffersActionService = ovhManagerProductOffersActionService;
+      this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.$anchorScroll = $anchorScroll;
     }
 
@@ -60,8 +62,20 @@ angular.module('App').controller(
         agree: false,
         downgradeAgree: false,
       };
+      this.useNewOffers = false;
 
       const user = this.coreConfig.getUser();
+
+      this.ovhFeatureFlipping
+        .checkFeatureAvailability(['web-hosting:change-offer'])
+        .then((featureAvailability) => {
+          this.useNewOffers = featureAvailability.isFeatureAvailable(
+            'web-hosting:change-offer',
+          );
+        })
+        .catch(() => {
+          this.useNewOffers = false;
+        });
       this.Hosting.getCatalog(user.ovhSubsidiary).then((catalog) => {
         this.user = user;
         this.catalog = catalog;

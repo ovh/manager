@@ -71,6 +71,7 @@ export default class {
     user,
     userStatisticsLink,
     userLogsLink,
+    isChangeOfferFeatureAvailable,
     isWebsiteFeatureAvailable,
     isOslToLdpFeatureAvailable,
     HOSTING_STATUS,
@@ -140,6 +141,7 @@ export default class {
     this.user = user;
     this.userStatisticsLink = userStatisticsLink;
     this.userLogsLink = userLogsLink;
+    this.isChangeOfferFeatureAvailable = isChangeOfferFeatureAvailable;
     this.isOslToLdpFeatureAvailable = isOslToLdpFeatureAvailable;
     this.DOMAIN_ORDER_URL = DOMAIN_ORDER_URL;
     this.HOSTING_ORDER_URL = HOSTING_ORDER_URL;

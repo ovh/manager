@@ -7,6 +7,14 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: '$ctrl',
     template,
     resolve: {
+      isChangeOfferFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:change-offer')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-hosting:change-offer',
+            );
+          }),
       breadcrumb: () => null,
     },
   });
