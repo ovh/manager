@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.33.2...@ovh-ux/manager-pci-rancher-app@1.34.0) (2026-04-15)
+
+
+### Features
+
+* **pci-rancher:** free trial ([313c5e4](https://github.com/ovh/manager/commit/313c5e4b0c83f2a1aba02b831526f62629ef0571)), closes [#TAPC-4947](https://github.com/ovh/manager/issues/TAPC-4947)
+
+
+
+
+
 ## [1.33.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-rancher-app@1.33.1...@ovh-ux/manager-pci-rancher-app@1.33.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-rancher-app
