@@ -4,11 +4,18 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+
 import { SkeletonLoading } from '@/components/Loading/SkeletonLoading';
 import { PageLayout } from '@/components/PageLayout/PageLayout.component';
 import { SessionModals } from '@/context/User/modals/SessionModals';
 import { useProcedures } from '@/data/hooks/useProcedures';
-import { createRoutePath, errorRoutePath, seeRoutePath } from '@/routes/mfa.constants';
+import {
+  BETA_MANAGER_MFA_DISABLE,
+  createRoutePath,
+  errorRoutePath,
+  seeRoutePath,
+} from '@/routes/mfa.constants';
 import { accountDisable2faRoute } from '@/routes/routes';
 import { Status2fa } from '@/types/status.type';
 
@@ -25,6 +32,19 @@ const checkIfCreationIsAllowed = (error: AxiosError<any>) =>
 export default function DisableMFA() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const { data: availability, isLoading: isFeatureLoading } = useFeatureAvailability([
+    BETA_MANAGER_MFA_DISABLE,
+  ]);
+  const isBetaManagerMfaDisableAvailable =
+    availability?.[BETA_MANAGER_MFA_DISABLE] ?? false;
+
+  useEffect(() => {
+    if (isBetaManagerMfaDisableAvailable) {
+      const betaUrl = `/beta/#/procedures${location.pathname}${location.search}`;
+      window.location.assign(betaUrl);
+    }
+  }, [isBetaManagerMfaDisableAvailable, location.pathname, location.search]);
 
   const navigateTo = (url: string): void => {
     if (location.pathname !== url) {
@@ -50,6 +70,14 @@ export default function DisableMFA() {
       }
     }
   }, [isFetched]);
+
+  if (isFeatureLoading || isBetaManagerMfaDisableAvailable) {
+    return (
+      <PageLayout>
+        <SkeletonLoading />
+      </PageLayout>
+    );
+  }
 
   return (
     <>
