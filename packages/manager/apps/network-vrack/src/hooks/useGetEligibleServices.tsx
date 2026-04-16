@@ -60,10 +60,10 @@ export const useGetEligibleServices = (serviceName: string = '', region: string)
 
   return {
     ipv4List: ipv4Results
-      .filter((result) => result.data?.regions.includes(region))
+      .filter((result) => result.data?.regions?.includes(region) ?? false)
       .map(({ data }) => data ?? defaultIpDetailValue),
     ipv6List: ipv6Results
-      .filter((result) => result.data?.regions.includes(region))
+      .filter((result) => result.data?.regions?.includes(region) ?? false)
       .map(({ data }) => data ?? defaultIpDetailValue),
     isComplete: data?.status !== 'pending',
     isLoading:
