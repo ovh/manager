@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.7...@ovh-ux/manager-billing@0.66.0) (2026-04-16)
+
+
+### Features
+
+* **account:** add billing autorenew for network snc ([c8f8774](https://github.com/ovh/manager/commit/c8f87740e41e0f59517c04f454b5a578c0ca74c3)), closes [#MANAGER-20619](https://github.com/ovh/manager/issues/MANAGER-20619)
+
+
+
+
+
 ## [0.65.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.6...@ovh-ux/manager-billing@0.65.7) (2026-04-09)
 
 
