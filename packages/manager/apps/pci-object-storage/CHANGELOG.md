@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.3...@ovh-ux/manager-pci-object-storage-app@0.37.4) (2026-04-17)
+
+
+### Bug Fixes
+
+* **os:** upload field ([acffc0f](https://github.com/ovh/manager/commit/acffc0feec5571e7b7ec1655200128e21cec6b4c))
+
+
+
+
+
 ## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.2...@ovh-ux/manager-pci-object-storage-app@0.37.3) (2026-03-26)
 
 
