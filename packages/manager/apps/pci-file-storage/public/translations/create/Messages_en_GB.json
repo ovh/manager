@@ -63,7 +63,7 @@
   "shareSize": {
     "title": "Share size",
     "label": "Linear performance allocation ($t(units.gigabyte))",
-    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
+    "provisionedPerformance": "<strong>Provisioned performance:</strong> Up to {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/sec",
     "error": {
       "min_value": "The share size is below the minimum allowed for this option.",
       "max_value": "The share size is above the maximum allowed for this option.",
