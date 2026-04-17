@@ -19,7 +19,10 @@ class DownloadCtrl {
       this.$stateParams.type,
       this.$stateParams.extension,
     )
-      .then((url) => this.$window.open(url, '_self'))
+      .then((url) => {
+        this.$window.open(url, '_blank', 'noopener');
+      })
+
       .catch((err) => {
         this.Alerter.error(this.$translate.instant('download_bill_error'));
         return this.$q.reject(err);
