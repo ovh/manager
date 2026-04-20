@@ -1,6 +1,7 @@
 {
-  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "O seu serviço permanecerá ativo até {{expirationDate}}, ou seja, o final do período de faturação atual.",
-  "resiliation_modal_resiliate_service_terminate": "O seu serviço será cancelado imediatamente e você não será mais cobrado por este serviço.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "O seu serviço permanecerá ativo e você será cobrado até ao final do seu compromisso em {{commitmentEndDate}}.",
-  "resiliation_modal_resiliate_service_deleteAtExpiration": "O seu serviço será cancelado imediatamente. No entanto, você ainda será cobrado mensalmente por este serviço até ao final do seu compromisso em {{commitmentEndDate}}."
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "O seu serviço será cancelado a {{expirationDate}}, no final do período de faturação em curso.",
+  "resiliation_modal_resiliate_service_terminate": "O seu serviço será cancelado imediatamente e não será mais faturado por este serviço.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "O seu serviço permanecerá ativo e será faturado até ao final do seu compromisso a {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "O seu serviço será cancelado imediatamente. No entanto, será sempre faturado taxas mensais por este serviço até ao final do seu compromisso a {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "Após o final do seu compromisso, será faturado mês a mês até que cancele o seu serviço."
 }
