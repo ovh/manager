@@ -60,7 +60,7 @@ import SelectQuantity, {
   DEFAULT_QUANTITY,
   MAX_QUANTITY,
 } from './SelectQuantity';
-import { toLocalDateUTC } from '../../utils/formatter/date';
+import { toLocalDateUTC, toUsDateUTC } from '../../utils/formatter/date';
 import {
   buildDisplayName,
   DeploymentMode,
@@ -139,6 +139,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
+  const isUsRegion =
+    useContext(ShellContext).environment?.getRegion?.() === 'US';
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
     ResourceType.instance,
   );
@@ -372,6 +374,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           name="savings-plan-start-date"
           min={minStartDate}
           max={maxStartDate}
+          format={isUsRegion ? 'mm/dd/yyyy' : undefined}
           onOdsChange={(e) => {
             setStartDate(e.target.value);
           }}
@@ -433,6 +436,7 @@ export const CreatePlanFormContainer = ({
 }) => {
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
+  const isUsRegion = environment.getRegion() === 'US';
 
   const { t } = useTranslation(['create', 'listing']);
   const { addSuccess } = useNotifications();
@@ -482,11 +486,13 @@ export const CreatePlanFormContainer = ({
     (data: { startDate: string }) => {
       addSuccess(
         t('listing:banner_create_sp', {
-          startDate: toLocalDateUTC(data.startDate, locale),
+          startDate: isUsRegion
+            ? toUsDateUTC(data.startDate)
+            : toLocalDateUTC(data.startDate, locale),
         }),
       );
     },
-    [addSuccess, t, locale],
+    [addSuccess, t, locale, isUsRegion],
   );
 
   const {
