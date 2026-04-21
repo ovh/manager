@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.6.0...@ovh-ux/manager-pci-file-storage-app@0.6.1) (2026-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4735] ([a847603](https://github.com/ovh/manager/commit/a847603f0c7b48e61c4363a0de39c0b0d8f2b8f9))
+* **i18n:** add missing translations [CDS 4736] ([4fe94cf](https://github.com/ovh/manager/commit/4fe94cfc6356a7083e26a54595474b1021da15c3))
+* **i18n:** add missing translations [CDS 4737] ([28392aa](https://github.com/ovh/manager/commit/28392aa1ca888a30b452457b941d126075b888ad))
+* **i18n:** add missing translations [CDS 4741] ([aa5083b](https://github.com/ovh/manager/commit/aa5083b6a53d73d6f5fec9b8bfb1ea31b6c6aa5a))
+* **i18n:** add missing translations [CDS 4742] ([d3a8e27](https://github.com/ovh/manager/commit/d3a8e278eb1c4432fd7914153e6301b59712eeb1))
+* **i18n:** add missing translations [CDS 4744] ([a2e4de9](https://github.com/ovh/manager/commit/a2e4de93148d25efd6ec4d49ccd0132c257c86e7))
+
+
+
+
+
 # [0.6.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-file-storage-app@0.5.0...@ovh-ux/manager-pci-file-storage-app@0.6.0) (2026-04-13)
 
 
