@@ -43,6 +43,7 @@
   "quantity_label_instance": "Numero di istanze",
   "quantity_label_rancher": "Numero di vCPU",
   "choose_deployment": "Scegli una modalità di deploy",
+  "choose_deployment_badge_new": "Nuovo",
   "choose_deployment_description": "Seleziona la configurazione ottimale per garantire la disponibilità, resilienza e latenza più appropriata per i tuoi dati in base alle modalità di utilizzo.",
   "region": "Region",
   "deployment_one_az": "Deploy resiliente ed economico su 1 zona di disponibilità.",
