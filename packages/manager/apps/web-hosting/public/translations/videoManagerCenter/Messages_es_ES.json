@@ -28,10 +28,10 @@
   "video_manager_service_video_free_count": "1 vídeo",
   "video_manager_service_video_free_duration": "10 min",
   "video_manager_service_video_free_included": "Incluido",
-  "title": "Publica tu vídeo en unos segundos",
-  "step1": "Abre el Centro de Vídeos",
-  "step2": "Importa tu vídeo",
-  "step3": "¡Publica!",
-  "hint": "Menos de 2 minutos · Ninguna habilidad técnica requerida",
-  "firstVideoButton": "Sube mi primer vídeo"
+  "title": "Publique su vídeo en unos segundos",
+  "step1": "Abra el Video Center",
+  "step2": "Importe su vídeo",
+  "step3": "¡Publique!",
+  "hint": "En menos de 2 minutos y sin necesidad de conocimientos técnicos",
+  "firstVideoButton": "Subir mi primer vídeo"
 }

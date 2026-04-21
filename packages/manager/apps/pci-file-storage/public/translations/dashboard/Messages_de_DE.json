@@ -17,7 +17,7 @@
   },
   "not_found": {
     "title": "Share nicht gefunden",
-    "description": "Der Share \"{{shareId}}\" wurde nicht gefunden. Er wurde möglicherweise gelöscht oder die ID ist falsch.",
+    "description": "Der Share „{{shareId}}“ kann nicht gefunden werden. Möglicherweise wurde er gelöscht oder die Kennung ist falsch.",
     "go_back": "Zurück zum File Storage",
     "reload": "Seite neu laden"
   }

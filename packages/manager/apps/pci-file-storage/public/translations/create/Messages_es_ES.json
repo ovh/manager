@@ -2,7 +2,7 @@
   "name": {
     "title": "Nombre del share",
     "label": "Elija un nombre para su share",
-    "info": "Solo debe contener números, letras, guiones, guiones bajos o puntos, y un máximo de 255 caracteres.",
+    "info": "Solo debe contener números, letras, guiones bajos, guiones o puntos, y no debe superar los 255 caracteres.",
     "error": {
       "too_small": "El nombre del share no puede estar vacío. Introduzca un nombre.",
       "too_big": "Formato de nombre no válido",
@@ -57,13 +57,13 @@
   },
   "share": {
     "title": "Modo de rendimiento del share",
-    "description": "Mín. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS y {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "description": "Mín. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS y {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)",
     "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Tamaño del share",
-    "label": "Asignación lineal de rendimiento ($t(units.giga_octet))",
-    "provisionedPerformance": "<strong>Rendimiento asignado:</strong> Hasta {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "label": "Asignación lineal de rendimiento ($t(unidades.giga_byte))",
+    "provisionedPerformance": "<strong>Rendimiento asignado:</strong> Hasta {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
     "error": {
       "min_value": "El tamaño del share es inferior al mínimo permitido para este servicio.",
       "max_value": "El tamaño del share supera el máximo permitido para este servicio.",

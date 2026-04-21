@@ -39,11 +39,11 @@
   "createRancherError": "An error has occurred creating your Managed Rancher Service.{{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Recommended version",
   "createRancherOVHCloudPlanDescription_1": "<b>99.9% SLA</b>",
-  "createRancherOVHCloudPlanDescription_2": "<b>Up-to-date Rancher version</b> with 12 months support.",
-  "createRancherOVHCloudPlanDescription_3": "<b>Flexible billing models</b> : Pay-as-you-go or Reserved Instances (charged per managed vCPU).",
+  "createRancherOVHCloudPlanDescription_2": "<b>Updated Rancher version</b> with 12-month support.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Flexible billing models</b>: Pay-as-you-go or Reserved Instances (billed per managed vCPU).",
   "createRancherOVHCloudPlanDescription_4": "<b>Simplified deployment and management</b> on OVHcloud infrastructure (Public Cloud, MKS, Bare Metal, etc.).",
-  "createRancherStandardPlanDescription_1": "<b>All features</b> of the OVHcloud Edition plan included.",
-  "createRancherStandardPlanDescription_2": "<b>Multi-cloud and hybrid management</b> : Ability to deploy and manage Kubernetes clusters wherever they are (any Public Cloud provider, on-premise, edge, etc.).",
+  "createRancherStandardPlanDescription_1": "<b>All the features</b> of the OVHcloud Edition plan included.",
+  "createRancherStandardPlanDescription_2": "<b>Multi-cloud and hybrid management</b>: You can deploy and manage Kubernetes clusters in any location (Public Cloud, on-prem, edge).",
   "createNameModaleHelperInput": "The service name must be between 3 and 63 characters, must start and end with lower-case alphanumeric characters (a to z and 0 to 9), and may include the following punctuation marks: ‘_’ ‘.’ and ‘-’.",
   "generateAccessModalPasswordDescription": "Copy this temporary password to log in to your Rancher. After logging in, you will be prompted to create a new password for security reasons.",
   "updateOfferModalCancelButton": "Cancel",
@@ -93,5 +93,5 @@
   "freeTrialBadge": "Free Trial",
   "freeTrialPriceLabel": "Free*",
   "freeTrialThenLabel": "Then",
-  "freeTrialVoucherBanner": "You are currently benefiting from the trial offer on this service. Find the details of your available credit in your <l>Voucher</l> interface."
+  "freeTrialVoucherBanner": "You are currently enjoying the free trial offered for this service. You can find the breakdown of your available credit in your <l>Voucher</l> interface"
 }

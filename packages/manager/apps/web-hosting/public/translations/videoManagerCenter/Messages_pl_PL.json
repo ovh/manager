@@ -28,10 +28,10 @@
   "video_manager_service_video_free_count": "1 film",
   "video_manager_service_video_free_duration": "10 minut",
   "video_manager_service_video_free_included": "Zawarte w cenie",
-  "title": "Opublikuj swoje wideo w kilka sekund",
-  "step1": "Otwórz Centrum Wideo",
-  "step2": "Importuj swoje wideo",
-  "step3": "Opublikuj!",
-  "hint": "Mniej niż 2 minuty · Żadne umiejętności techniczne nie są wymagane",
-  "firstVideoButton": "Złóż moje pierwsze wideo"
+  "title": "Opublikuj swój film w kilka sekund",
+  "step1": "Otwórz Video Center",
+  "step2": "Importuj wideo",
+  "step3": "Publikuj!",
+  "hint": "Mniej niż 2 minuty · Nie są wymagane kompetencje techniczne",
+  "firstVideoButton": "Umieszczaj mój pierwszy film"
 }

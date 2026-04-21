@@ -16,9 +16,9 @@
     "error": "Ocorreu um erro aquando da atualização do share"
   },
   "not_found": {
-    "title": "Share não encontrado",
-    "description": "O share \"{{shareId}}\" não foi encontrado. Ele pode ter sido excluído ou o identificador está incorreto.",
-    "go_back": "Voltar ao file storage",
-    "reload": "Recarregar a página"
+    "title": "Não foi possível encontrar o share",
+    "description": "Não foi possível encontrar o share \"{{shareId}}\". Pode ter sido eliminado ou o identificador está incorreto.",
+    "go_back": "Voltar ao File Storage",
+    "reload": "Atualizar a página"
   }
 }

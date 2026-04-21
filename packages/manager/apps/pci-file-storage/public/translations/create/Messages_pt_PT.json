@@ -57,13 +57,13 @@
   },
   "share": {
     "title": "Modo de desempenho do share",
-    "description": "Mín. {{capacityMin}} $t(units.giga_octet), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_octet)/s/$t(units.giga_octet)",
+    "description": "Mín. {{capacityMin}} $t(units.giga_byte), {{iopsLevel}} IOPS e {{bandwidthLevel}} $t(units.mega_byte)/s/$t(units.giga_byte)",
     "price": "{{price}}{{unit}}"
   },
   "shareSize": {
     "title": "Tamanho do share",
-    "label": "Alocação de desempenho linear ($t(units.giga_octet))",
-    "provisionedPerformance": "<strong>Performance provisionada:</strong> Até {{iops}} IOPS - {{throughput}} $t(units.mega_octet)/s",
+    "label": "Alocação de desempenho linear ($t(units.giga_byte))",
+    "provisionedPerformance": "<strong>Performance provisionada:</strong> Até {{iops}} IOPS - {{throughput}} $t(units.mega_byte)/s",
     "error": {
       "min_value": "O tamanho do share é inferior ao mínimo autorizado para esta oferta.",
       "max_value": "O tamanho do share ultrapassa o máximo autorizado para esta oferta.",
