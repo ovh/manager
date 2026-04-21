@@ -43,6 +43,7 @@
   "quantity_label_instance": "Anzahl der Instanzen",
   "quantity_label_rancher": "Anzahl der vCPUs",
   "choose_deployment": "Bereitstellungsmodus auswählen",
+  "choose_deployment_badge_new": "Neu",
   "choose_deployment_description": "Wählen Sie die optimale Konfiguration für Ihre Use Cases aus, um Verfügbarkeit, Resilienz und eine angemessene Latenz für Ihre Daten zu gewährleisten.",
   "region": "Region",
   "deployment_one_az": "Resiliente und kostengünstige Bereitstellung in 1 Verfügbarkeitszone.",
