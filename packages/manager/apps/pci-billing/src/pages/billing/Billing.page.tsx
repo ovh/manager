@@ -27,9 +27,11 @@ export default function BillingPage() {
   const { data: project } = useProject();
   const [activePanelName, setActivePanelName] = useState('');
 
-  const anteriorDate = sub(new Date(), { months: 1 });
+  const { environment } = useContext(ShellContext);
+  const { ovhSubsidiary } = environment.getUser();
+  const isUsRegion = environment.getRegion() === 'US';
 
-  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const historyDate = isUsRegion ? new Date() : sub(new Date(), { months: 1 });
 
   const {
     hasFreeLocalZonesBanner,
@@ -38,7 +40,7 @@ export default function BillingPage() {
 
   // date-fns begin the index of month in 0 instead of 1
   // Ex: January is 0, February is 1, etc.
-  const historyHref = `history/${anteriorDate.getFullYear()}/${anteriorDate.getMonth() +
+  const historyHref = `history/${historyDate.getFullYear()}/${historyDate.getMonth() +
     1}`;
 
   const tabs = [
@@ -56,7 +58,7 @@ export default function BillingPage() {
       name: 'cpbc_tab_history',
       title: t('cpbc_tab_history'),
       to: useResolvedPath(historyHref).pathname,
-      isDisabled: !!hasOldBillingBanner,
+      isDisabled: !!hasOldBillingBanner && !isUsRegion,
     },
   ];
 

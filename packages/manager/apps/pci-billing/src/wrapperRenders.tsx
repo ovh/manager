@@ -8,6 +8,7 @@ import { vi } from 'vitest';
 const shellContext = {
   environment: {
     getUser: () => ({ ovhSubsidiary: 'FR', currency: '€' }),
+    getRegion: () => 'EU',
   },
   shell: {
     navigation: {
