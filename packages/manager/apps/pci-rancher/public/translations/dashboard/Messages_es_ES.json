@@ -39,11 +39,11 @@
   "createRancherError": "Se ha producido un error al crear su Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Versión recomendada",
   "createRancherOVHCloudPlanDescription_1": "<b>SLA del 99,9 %</b>",
-  "createRancherOVHCloudPlanDescription_2": "<b>Versión de Rancher actualizada</b> con un soporte de 12 meses.",
-  "createRancherOVHCloudPlanDescription_3": "<b>Modelos de facturación flexibles</b> : Pago por uso o Instancias reservadas (facturado por vCPU gestionado).",
-  "createRancherOVHCloudPlanDescription_4": "<b>Despliegue y gestión simplificados</b> en la infraestructura de OVHcloud (Nube Pública, MKS, Bare Metal, etc.).",
+  "createRancherOVHCloudPlanDescription_2": "<b>Versión de Rancher actualizada</b> con 12 meses de servicio de soporte.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Modelos de facturación flexibles</b>: Pago por consumo o Instancias reservadas (facturado por vCPU administrada).",
+  "createRancherOVHCloudPlanDescription_4": "<b>Despliegue y gestión simplificados</b> en la infraestructura de OVHcloud (Public Cloud, MKS, Bare Metal, etc.).",
   "createRancherStandardPlanDescription_1": "<b>Todas las funcionalidades</b> del plan OVHcloud Edition incluidas.",
-  "createRancherStandardPlanDescription_2": "<b>Gestión multi-nube e híbrida</b> : Capacidad de desplegar y gestionar clústeres de Kubernetes donde sea (cualquier proveedor de Nube Pública, en las instalaciones, edge, etc.).",
+  "createRancherStandardPlanDescription_2": "<b>Gestión multicloud e híbrida</b>: capacidad de desplegar y gestionar clústeres Kubernetes en cualquier lugar (cualquier proveedor de Public Cloud, on-premise, edge, etc.).",
   "createNameModaleHelperInput": "El nombre del servicio debe tener entre 3 y 63 caracteres; debe empezar y terminar por caracteres alfanuméricos en minúsculas (de la «a» a la «z», y de 0 a 9), y puede contener los siguientes signos de puntuación: guion bajo («_»), punto («.») y guion («-»).",
   "generateAccessModalPasswordDescription": "Copie esta contraseña temporal para conectarse a su Rancher. Una vez conectado, se le solicitará que cree una nueva contraseña por motivos de seguridad.",
   "updateOfferModalCancelButton": "Cancelar",
@@ -90,8 +90,8 @@
   "iam_authentication_warning": "Limitación conocida",
   "generateAccessModalIamWarning2": "Para corregir este problema, deberá conectarse por primera vez con el usuario local <strong>«admin»</strong>, con el fin de restablecer el acceso con el usuario root IAM.",
   "iam_modal_deactivation_warning_continue": "¿Seguro que quiere continuar?",
-  "freeTrialBadge": "Prueba gratuita",
+  "freeTrialBadge": "Free Trial",
   "freeTrialPriceLabel": "Gratis*",
-  "freeTrialThenLabel": "y a partir de entonces",
-  "freeTrialVoucherBanner": "Actualmente se beneficia de la oferta de prueba en este servicio. Encuentre el detalle de su crédito disponible en su interfaz <l>Voucher</l>."
+  "freeTrialThenLabel": "A continuación",
+  "freeTrialVoucherBanner": "Actualmente está disfrutando de la oferta de prueba para este servicio. Consulte los detalles de su crédito disponible en su interfaz de <l>Voucher</l>."
 }
