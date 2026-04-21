@@ -1,4 +1,4 @@
-import { formatDate, getLastXMonths, toIsoDate } from './date';
+import { formatDate, getLastXMonths, toIsoDate, toUsDateUTC } from './date';
 
 describe('Date helper', () => {
   describe('formatDate', () => {
@@ -45,6 +45,22 @@ describe('Date helper', () => {
       const date = new Date('2024-02-29T00:00:00.000Z');
       const formattedDate = toIsoDate(date);
       expect(formattedDate).toBe('2024-02-29');
+    });
+  });
+
+  describe('toUsDateUTC', () => {
+    it('should format date to MM/DD/YYYY in UTC from string', () => {
+      expect(toUsDateUTC('2024-03-05T23:30:00.000Z')).toBe('03/05/2024');
+    });
+
+    it('should pad single digit months and days', () => {
+      expect(toUsDateUTC('2024-01-01T00:00:00.000Z')).toBe('01/01/2024');
+    });
+
+    it('should accept a Date object', () => {
+      expect(toUsDateUTC(new Date('2024-12-25T12:00:00.000Z'))).toBe(
+        '12/25/2024',
+      );
     });
   });
 });
