@@ -1,4 +1,10 @@
-import { formatDate, getLastXMonths, toIsoDate, toUsDateUTC } from './date';
+import {
+  formatDate,
+  getLastXMonths,
+  toIsoDate,
+  toUsDateTimeUTC,
+  toUsDateUTC,
+} from './date';
 
 describe('Date helper', () => {
   describe('formatDate', () => {
@@ -60,6 +66,20 @@ describe('Date helper', () => {
     it('should accept a Date object', () => {
       expect(toUsDateUTC(new Date('2024-12-25T12:00:00.000Z'))).toBe(
         '12/25/2024',
+      );
+    });
+  });
+
+  describe('toUsDateTimeUTC', () => {
+    it('should format date+time as MM/DD/YYYY, HH:mm UTC', () => {
+      expect(toUsDateTimeUTC('2026-04-01T00:00:00.000Z')).toBe(
+        '04/01/2026, 00:00 UTC',
+      );
+    });
+
+    it('should format an afternoon datetime in 24h UTC', () => {
+      expect(toUsDateTimeUTC('2026-04-22T08:57:00.000Z')).toBe(
+        '04/22/2026, 08:57 UTC',
       );
     });
   });
