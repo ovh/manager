@@ -20,7 +20,7 @@ import {
   SavingsPlanFlavorConsumption,
   SavingsPlanPeriodConsumption,
 } from '@/types/savingsPlanConsumption.type';
-import { toLocalDateUTC } from '@/utils/formatter/date';
+import { toLocalDateUTC, toUsDateTimeUTC } from '@/utils/formatter/date';
 import { paginateResults } from '@/utils/paginate/utils';
 import { useProjectId } from '@/hooks/useProject';
 import ConsumptionResourceList from './ConsumptionResourceList';
@@ -43,6 +43,9 @@ const ConsumptionDatagrid = ({
   const { pagination, setPagination } = useDataGrid();
   const { environment } = useContext(ShellContext);
   const locale = environment.getUserLocale();
+  const isUsRegion = environment.getRegion() === 'US';
+  const formatPeriodDate = (date: string) =>
+    isUsRegion ? toUsDateTimeUTC(date) : toLocalDateUTC(date, locale);
   const { t } = useTranslation(['dashboard', 'listing']);
   const { trackClick } = useOvhTracking();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -56,14 +59,14 @@ const ConsumptionDatagrid = ({
       label: t('dashboard_columns_start'),
       id: 'begin',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={toLocalDateUTC(props.begin, locale)} />
+        <CellText text={formatPeriodDate(props.begin)} />
       ),
     },
     {
       label: t('dashboard_columns_end'),
       id: 'end',
       cell: (props: SavingsPlanPeriodConsumption) => (
-        <CellText text={toLocalDateUTC(props.end, locale)} />
+        <CellText text={formatPeriodDate(props.end)} />
       ),
     },
     {
