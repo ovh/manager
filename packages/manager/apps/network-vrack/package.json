@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-network-vrack-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "vrack app react revamp",
   "repository": {
