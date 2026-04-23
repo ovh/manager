@@ -151,7 +151,9 @@ describe('SettingsPage', () => {
       expect(currencySelectElement.getAttribute('value')).toBe('GBP');
       expect(languageSelectElement.getAttribute('value')).toBe('en-GB');
       validateButtonElement = screen.getByTestId('validate-button');
-      expect(validateButtonElement.getAttribute('is-disabled')).not.toBe('true');
+      expect(validateButtonElement.getAttribute('is-disabled')).not.toBe(
+        'true',
+      );
     });
 
     await act(() => validateButtonElement.click());

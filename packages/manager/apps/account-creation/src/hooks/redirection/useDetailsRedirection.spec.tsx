@@ -43,12 +43,12 @@ describe('useDetailsRedirection', () => {
       new URLSearchParams(),
       vi.fn(),
     ]);
-    vi.mocked(MRC.useFeatureAvailability).mockReturnValue({
+    vi.mocked(MRC.useFeatureAvailability).mockReturnValue(({
       data: {
         'identity-documents': false,
       },
       isLoading: false,
-    } as unknown as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
+    } as unknown) as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
 
     const { result } = renderHook(() => useDetailsRedirection(), {
       wrapper,
@@ -67,12 +67,12 @@ describe('useDetailsRedirection', () => {
       }),
       vi.fn(),
     ]);
-    vi.mocked(MRC.useFeatureAvailability).mockReturnValue({
+    vi.mocked(MRC.useFeatureAvailability).mockReturnValue(({
       data: {
         'identity-documents': false,
       },
       isLoading: false,
-    } as unknown as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
+    } as unknown) as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
 
     const { result } = renderHook(() => useDetailsRedirection(), {
       wrapper,
@@ -88,19 +88,21 @@ describe('useDetailsRedirection', () => {
       new URLSearchParams(),
       vi.fn(),
     ]);
-    vi.mocked(MRC.useFeatureAvailability).mockReturnValue({
+    vi.mocked(MRC.useFeatureAvailability).mockReturnValue(({
       data: {
         'identity-documents': true,
       },
       isLoading: false,
-    } as unknown as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
+    } as unknown) as MRC.UseFeatureAvailabilityResult<Record<string, boolean>>);
 
     const { result } = renderHook(() => useDetailsRedirection(), {
       wrapper,
     });
 
     await waitFor(() => {
-      expect(result.current?.url).toEqual('https://manager.com/#/account/identity-documents');
+      expect(result.current?.url).toEqual(
+        'https://manager.com/#/account/identity-documents',
+      );
     });
   });
 });
