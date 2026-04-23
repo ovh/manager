@@ -7,7 +7,10 @@ type DataUsagePolicyProps = {
   region: string;
 };
 
-export const DataUsagePolicy = ({ subsidiary, region }: DataUsagePolicyProps) => (
+export const DataUsagePolicy = ({
+  subsidiary,
+  region,
+}: DataUsagePolicyProps) => (
   <div data-testid="data-usage-policy">
     {subsidiary}-{region}
   </div>
