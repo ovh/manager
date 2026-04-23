@@ -1,6 +1,9 @@
 import { v6 } from '@ovh-ux/manager-core-api';
+import { AxiosError } from 'axios';
 import { Country } from '@ovh-ux/manager-config';
-import { CompanySuggestion } from '@/types/suggestion';
+import { CompanySuggestion, CompanySuggestionError } from '@/types/suggestion';
+
+export type GetCompanySuggestionError = AxiosError<CompanySuggestionError>;
 
 export const getCompanySuggestion = async (
   country: Country,

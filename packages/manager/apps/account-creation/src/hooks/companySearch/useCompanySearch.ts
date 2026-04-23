@@ -1,14 +1,12 @@
 import { z } from 'zod';
-import { searchMinlength } from '@/pages/company/company.constants';
 
 export const useCompanySearchSchema = () => {
   const search = z
     .string({
-      required_error: 'required_field',
+      required_error: 'invalid_format',
     })
     .trim()
-    .min(1, 'required_field')
-    .min(searchMinlength, 'error_min_chars');
+    .regex(/^\d{14}$/, 'invalid_format');
 
   return z.object({
     search,
