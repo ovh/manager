@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
 import { Country } from '@ovh-ux/manager-config';
-import { getCompanySuggestion } from '@/data/api/suggestion';
+import {
+  getCompanySuggestion,
+  GetCompanySuggestionError,
+} from '@/data/api/suggestion';
 import { CompanySuggestion } from '@/types/suggestion';
 
 export const useCompanySuggestionQueryKey = (search?: string) => [
@@ -11,7 +13,11 @@ export const useCompanySuggestionQueryKey = (search?: string) => [
 ];
 
 export const useCompanySuggestion = (country?: Country, search?: string) =>
-  useQuery({
+  useQuery<
+    CompanySuggestion,
+    GetCompanySuggestionError,
+    { companies: CompanySuggestion['entryList']; hasMore?: boolean }
+  >({
     queryKey: useCompanySuggestionQueryKey(search),
     queryFn: () => getCompanySuggestion(country!, search!),
     select: (data: CompanySuggestion) => ({
@@ -19,7 +25,7 @@ export const useCompanySuggestion = (country?: Country, search?: string) =>
       hasMore: data.hasMore,
     }),
     enabled: false,
-    retry: (failureCount: number, error: AxiosError) =>
+    retry: (failureCount: number, error: GetCompanySuggestionError) =>
       Boolean(error.status && error.status >= 500) && failureCount <= 3,
     retryDelay: 5000,
   });

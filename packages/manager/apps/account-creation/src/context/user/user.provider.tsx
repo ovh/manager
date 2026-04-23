@@ -41,16 +41,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   );
   const [localCountry] = useLocalCountry();
   const [country, setCountry] = useState<Country | undefined>(undefined);
-  const [organisation, setOrganisation] = useState<string | undefined>(
+  const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
+  const [companyDetails, setCompanyDetails] = useState<Company | undefined>(
     undefined,
   );
-  const [
-    companyNationalIdentificationNumber,
-    setCompanyNationalIdentificationNumber,
-  ] = useState<string | undefined>(undefined);
-  const [address, setAddress] = useState<string | undefined>(undefined);
-  const [city, setCity] = useState<string | undefined>(undefined);
-  const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
 
   useEffect(() => {
     if (!isUserLoggedIn() && location.pathname !== urls.settings) {
@@ -101,21 +95,9 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
 
   const setCompany = (company: Company | null) => {
     if (company !== null) {
-      setOrganisation(company.name);
-      setCompanyNationalIdentificationNumber(
-        company.secondaryCNIN || company.primaryCNIN,
-      );
-      if (company.address) {
-        setAddress(company.address);
-      }
-      if (company.city) {
-        setCity(company.city);
-      }
+      setCompanyDetails(company);
     } else {
-      setOrganisation(undefined);
-      setCompanyNationalIdentificationNumber(undefined);
-      setAddress(undefined);
-      setCity(undefined);
+      setCompanyDetails(undefined);
     }
   };
 
@@ -124,10 +106,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     setLegalForm,
     ovhSubsidiary,
     country,
-    organisation,
-    companyNationalIdentificationNumber,
-    address,
-    city,
+    companyDetails,
     setCompany,
     language,
     isSMSConsentAvailable: availability?.[SMS_CONSENT_FEATURE] ?? false,

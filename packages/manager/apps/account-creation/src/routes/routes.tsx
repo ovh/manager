@@ -19,10 +19,7 @@ export default (
     path={urls.root}
     Component={LayoutPage}
     errorElement={
-      <ErrorBoundary
-        isRouteShellSync
-        redirectionApp="account-creation"
-      />
+      <ErrorBoundary isRouteShellSync redirectionApp="account-creation" />
     }
   >
     <Route
@@ -39,7 +36,7 @@ export default (
       Component={AccountTypePage}
       handle={{
         tracking: {
-          pageName: 'select-account-type'
+          pageName: 'select-account-type',
         },
       }}
     />

@@ -117,10 +117,7 @@ function AccountDetailsForm({
 
   const {
     legalForm,
-    organisation,
-    companyNationalIdentificationNumber,
-    address,
-    city,
+    companyDetails,
     ovhSubsidiary,
     language,
     isSMSConsentAvailable,
@@ -160,10 +157,13 @@ function AccountDetailsForm({
       language: currentUser.language || 'en_GB',
       phoneType: 'mobile',
       phoneCountry: currentUser.phoneCountry || 'GB',
-      organisation,
-      companyNationalIdentificationNumber,
-      address: address || currentUser.address || '',
-      city: city || currentUser.city || '',
+      organisation: companyDetails?.name,
+      companyNationalIdentificationNumber: companyDetails?.secondaryCNIN,
+      nationalIdentificationNumber: companyDetails?.primaryCNIN,
+      vat: companyDetails?.vatID,
+      address: companyDetails?.address || currentUser.address || '',
+      zip: companyDetails?.zipCode || currentUser.zip || '',
+      city: companyDetails?.city || currentUser.city || '',
       legalform: legalForm,
       smsConsent: false,
     } as Partial<FormValues>,
@@ -566,7 +566,7 @@ function AccountDetailsForm({
                     </OdsText>
                   </label>
                   <OdsInput
-                    isReadonly={Boolean(organisation)}
+                    isReadonly={Boolean(companyDetails?.name)}
                     name="organisation"
                     id={name}
                     value={value}
@@ -651,9 +651,7 @@ function AccountDetailsForm({
                         </OdsText>
                       </label>
                       <OdsInput
-                        isReadonly={Boolean(
-                          companyNationalIdentificationNumber,
-                        )}
+                        isReadonly={Boolean(companyDetails?.secondaryCNIN)}
                         name="companyNationalIdentificationNumber"
                         id={name}
                         value={value}
@@ -955,7 +953,7 @@ function AccountDetailsForm({
                   </OdsText>
                 </label>
                 <OdsInput
-                  isReadonly={Boolean(address)}
+                  isReadonly={Boolean(companyDetails?.address)}
                   name="address"
                   id={name}
                   value={value}
@@ -1046,7 +1044,7 @@ function AccountDetailsForm({
                   </OdsText>
                 </label>
                 <OdsInput
-                  isReadonly={!rules}
+                  isReadonly={Boolean(companyDetails?.zipCode)}
                   name="zip"
                   id={name}
                   value={value}
@@ -1082,7 +1080,7 @@ function AccountDetailsForm({
                   </OdsText>
                 </label>
                 <OdsInput
-                  isReadonly={Boolean(city)}
+                  isReadonly={Boolean(companyDetails?.city)}
                   name="address"
                   id={name}
                   value={value}
@@ -1365,7 +1363,7 @@ export default function AccountDetailsPage() {
   const { t: tCommon } = useTranslation('common');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
   const [searchParams] = useSearchParams();
-  const { legalForm, organisation, country } = useUserContext();
+  const { legalForm, companyDetails, country } = useUserContext();
   const { data: currentUser, isLoading: isCurrentUserLoading } = useMe();
   const wentThroughOrganizationSearch = shouldAccessOrganizationSearch(
     country,
@@ -1376,7 +1374,9 @@ export default function AccountDetailsPage() {
 
   const header = {
     title: t(
-      `account_details_title_${legalForm}${organisation ? '_prefilled' : ''}`,
+      `account_details_title_${legalForm}${
+        companyDetails?.name ? '_prefilled' : ''
+      }`,
     ),
   };
 
