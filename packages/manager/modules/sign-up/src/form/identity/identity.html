@@ -1,27 +1,6 @@
 <div class="sign-up-identity">
     <div class="row">
         <div class="col-lg-6">
-            <!-- name -->
-            <oui-field
-                data-label="{{ 'sign_up_identity_field_name' | translate}}"
-            >
-                <input
-                    type="text"
-                    class="oui-input"
-                    name="name"
-                    id="name"
-                    data-ng-model="$ctrl.signUpFormCtrl.model.name"
-                    data-ng-required="$ctrl.signUpFormCtrl.rules.name.mandatory"
-                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.name.maxLength"
-                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.name.minLength"
-                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.name.regularExpression"
-                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.name)"
-                />
-            </oui-field>
-            <!-- /input[name="name"] -->
-        </div>
-
-        <div class="col-lg-6">
             <!-- firstname -->
             <oui-field
                 data-label="{{ 'sign_up_identity_field_firstname' | translate}}"
@@ -40,6 +19,26 @@
                 />
             </oui-field>
             <!-- /input[name="firstname"] -->
+        </div>
+        <div class="col-lg-6">
+            <!-- name -->
+            <oui-field
+                data-label="{{ 'sign_up_identity_field_name' | translate}}"
+            >
+                <input
+                    type="text"
+                    class="oui-input"
+                    name="name"
+                    id="name"
+                    data-ng-model="$ctrl.signUpFormCtrl.model.name"
+                    data-ng-required="$ctrl.signUpFormCtrl.rules.name.mandatory"
+                    data-ng-maxlength="$ctrl.signUpFormCtrl.rules.name.maxLength"
+                    data-ng-minlength="$ctrl.signUpFormCtrl.rules.name.minLength"
+                    data-ng-pattern="$ctrl.signUpFormCtrl.rules.name.regularExpression"
+                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.name)"
+                />
+            </oui-field>
+            <!-- /input[name="name"] -->
         </div>
     </div>
 </div>

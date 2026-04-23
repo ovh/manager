@@ -1,5 +1,5 @@
 {
-  "sign_up_form_identity_step_title": "Identity",
+  "sign_up_form_identity_step_title": "Personal details",
   "sign_up_form_details_step_title": "Contact details",
   "sign_up_form_activity_step_title": "Activity",
   "sign_up_form_other_informations_step_title": "Additional information",
@@ -10,5 +10,5 @@
   "sign_up_form_global_information_kyc_reminder": "Please remember to fill in every field and confirm that your personal details match the name and address in your official documents before placing your order.",
   "sign_up_form_global_information_kyc_reminder_fill_address": "Enter <strong>your full address</strong> ",
   "sign_up_form_global_information_kyc_reminder_match_address": "The address must <strong>match the one on the proof of address</strong> for identity verification.",
-  "sign_up_form_mandatory_fields": "obligatory fields"
+  "sign_up_form_mandatory_fields": "mandatory fields"
 }
