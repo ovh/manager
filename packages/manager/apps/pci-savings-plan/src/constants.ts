@@ -24,6 +24,13 @@ export const SAVINGS_PLAN_INFO_URL = {
   US: 'https://us.ovhcloud.com/public-cloud/savings-plan/',
 };
 
+export const US_LEGAL_LINKS: Record<string, string> = {
+  'Service Specific Terms':
+    'https://us.ovhcloud.com/legal/service-specific-terms/',
+  'Terms of Service': 'https://us.ovhcloud.com/legal/terms-of-service/',
+  'Privacy Policy': 'https://us.ovhcloud.com/legal/privacy-policy/',
+};
+
 export const CHANGELOG_LINKS: ChangelogLinks = {
   changelog: 'https://github.com/orgs/ovh/projects/16/views/6?pane=info',
   roadmap: 'https://github.com/orgs/ovh/projects/16/views/1?pane=info',
