@@ -15,9 +15,10 @@ import { useNotification } from '@/data';
 import { getFirstCleanEmail } from '@/utils/notifications';
 import { useTracking } from '@/hooks/useTracking/useTracking';
 import { TrackingSubApps } from '@/tracking.constant';
+import AttachmentLink from '@/components/attachmentLink/AttachmentLink.component';
 
 export default function CommunicationsDetailPage() {
-  const { notificationId } = useParams();
+  const { notificationId } = useParams<{ notificationId: string }>();
   const formatDate = useFormatDate();
   const { t } = useTranslation('detail');
   const { t: tCommon } = useTranslation('common');
@@ -137,22 +138,11 @@ export default function CommunicationsDetailPage() {
             <EmailDisplay
               header={
                 notification.attachments.length ? (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      trackClick({
-                        location: PageLocation.page,
-                        buttonType: ButtonType.button,
-                        actionType: 'download',
-                        actions: ['download_subject-file'],
-                        subApp: TrackingSubApps.Communications,
-                      });
-                    }}
-                  >
-                    <Icon name="download" />
-                    {t('button_download_attachment')}
-                  </Button>
+                    <div className="flex flex-wrap gap-4">
+                      {notification.attachments.map((attachment) => (
+                        <AttachmentLink key={attachment.name} notificationId={notification.id} name={attachment.name} />
+                      ))}
+                  </div>
                 ) : (
                   undefined
                 )
