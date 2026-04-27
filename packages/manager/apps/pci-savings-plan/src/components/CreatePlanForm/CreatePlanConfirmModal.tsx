@@ -126,7 +126,7 @@ const CreatePlanConfirmModal = ({
           label={t(`modal_summary_label_start_date`)}
           value={formatDate({
             date: savingsPlanInfo.startDate,
-            ...(isUsRegion && { format: 'MM/dd/yyyy' }),
+            ...(isUsRegion && { format: 'MM-dd-yyyy' }),
           })}
         />
         <hr />
@@ -135,6 +135,9 @@ const CreatePlanConfirmModal = ({
           <div>
             <OriginalPrice price={`~ ${monthlyPriceWithoutDiscount}`} />
             <PromotionPrice price={monthlyPrice} />
+            <OdsText>
+              &nbsp;{isUsRegion ? '/month' : t('commitment_price_month')}
+            </OdsText>
           </div>
         </div>
 

@@ -55,31 +55,31 @@ describe('Date helper', () => {
   });
 
   describe('toUsDateUTC', () => {
-    it('should format date to MM/DD/YYYY in UTC from string', () => {
-      expect(toUsDateUTC('2024-03-05T23:30:00.000Z')).toBe('03/05/2024');
+    it('should format date to MM-DD-YYYY in UTC from string', () => {
+      expect(toUsDateUTC('2024-03-05T23:30:00.000Z')).toBe('03-05-2024');
     });
 
     it('should pad single digit months and days', () => {
-      expect(toUsDateUTC('2024-01-01T00:00:00.000Z')).toBe('01/01/2024');
+      expect(toUsDateUTC('2024-01-01T00:00:00.000Z')).toBe('01-01-2024');
     });
 
     it('should accept a Date object', () => {
       expect(toUsDateUTC(new Date('2024-12-25T12:00:00.000Z'))).toBe(
-        '12/25/2024',
+        '12-25-2024',
       );
     });
   });
 
   describe('toUsDateTimeUTC', () => {
-    it('should format date+time as MM/DD/YYYY, HH:mm UTC', () => {
+    it('should format date+time as MM-DD-YYYY, HH:mm UTC', () => {
       expect(toUsDateTimeUTC('2026-04-01T00:00:00.000Z')).toBe(
-        '04/01/2026, 00:00 UTC',
+        '04-01-2026, 00:00 UTC',
       );
     });
 
     it('should format an afternoon datetime in 24h UTC', () => {
       expect(toUsDateTimeUTC('2026-04-22T08:57:00.000Z')).toBe(
-        '04/22/2026, 08:57 UTC',
+        '04-22-2026, 08:57 UTC',
       );
     });
   });

@@ -374,7 +374,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           name="savings-plan-start-date"
           min={minStartDate}
           max={maxStartDate}
-          format={isUsRegion ? 'mm/dd/yyyy' : undefined}
+          format={isUsRegion ? 'mm-dd-yyyy' : undefined}
           onOdsChange={(e) => {
             setStartDate(e.target.value);
           }}
