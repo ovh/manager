@@ -1,5 +1,5 @@
 import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
-import { useCallback, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
@@ -32,6 +32,58 @@ export const VolumeModelTilesInput = ({
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
 
+  type SpecItem = { key: string; text: string; isBaseRange: boolean };
+
+  const buildSpecItems = useCallback(
+    (m: TVolumeModel | TVolumeRetypeModel): SpecItem[] => {
+      const capacityMax = t(
+        'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+        {
+          capacity: formatBytes(m.capacity.max),
+        },
+      );
+
+      return [
+        { key: `${m.name}-iops`, text: m.iops, isBaseRange: false },
+        ...(m.iopsBaseRange
+          ? [
+              {
+                key: `${m.name}-iops-br`,
+                text: m.iopsBaseRange,
+                isBaseRange: true,
+              },
+            ]
+          : []),
+        { key: `${m.name}-cap`, text: capacityMax, isBaseRange: false },
+        ...(m.bandwidth
+          ? [{ key: `${m.name}-bw`, text: m.bandwidth, isBaseRange: false }]
+          : []),
+        ...(m.bandwidthBaseRange
+          ? [
+              {
+                key: `${m.name}-bw-br`,
+                text: m.bandwidthBaseRange,
+                isBaseRange: true,
+              },
+            ]
+          : []),
+      ];
+    },
+    [t, formatBytes],
+  );
+
+  const renderBaseRangeText = (text: string): ReactNode => (
+    <span className="bs-base-range text-xs opacity-70">{text}</span>
+  );
+
+  const renderSpecsList = (items: SpecItem[]): ReactNode => (
+    <ul className="config-card__features">
+      {items.map(({ key, text, isBaseRange }) => (
+        <li key={key}>{isBaseRange ? renderBaseRangeText(text) : text}</li>
+      ))}
+    </ul>
+  );
+
   const getDescription = useCallback(
     (model: TVolumeModel | TVolumeRetypeModel) => {
       const zoneText = model.availabilityZonesCount
@@ -41,40 +93,44 @@ export const VolumeModelTilesInput = ({
           )
         : undefined;
 
-      const capacityMax = t(
-        'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-        {
-          capacity: formatBytes(model.capacity.max),
-        },
-      );
-
       if (horizontal) {
-        return [zoneText, model.iops, model.bandwidth, capacityMax]
-          .filter(Boolean)
-          .join('.\n');
+        // Horizontal mode hides ConfigCard's features section, so we render the
+        // ticked spec list inside `description` to match the vertical layout.
+        const node = (
+          <>
+            {zoneText && <span className="block">{zoneText}</span>}
+            {renderSpecsList(buildSpecItems(model))}
+          </>
+        );
+        return (node as unknown) as string;
       }
 
       return zoneText;
     },
-    [t, formatBytes],
+    [t, horizontal, buildSpecItems],
   );
 
   const getFeatures = useCallback(
     (m: TVolumeModel | TVolumeRetypeModel) => {
       if (horizontal) return [];
 
-      return [
-        m.iops,
-        t(
-          'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-          {
-            capacity: formatBytes(m.capacity.max),
-          },
-        ),
-        ...(m.bandwidth ? [m.bandwidth] : []),
-      ];
+      const items: ReactNode[] = buildSpecItems(m).map(
+        ({ key, text, isBaseRange }) =>
+          isBaseRange ? (
+            <span key={key} className="bs-base-range text-xs opacity-70">
+              {text}
+            </span>
+          ) : (
+            text
+          ),
+      );
+
+      // ConfigCard's `features` is typed as string[] but renders each entry as
+      // `<li>{entry}</li>` — React renders ReactNode children fine. Cast keeps
+      // the TS contract honest at the boundary.
+      return (items as unknown) as string[];
     },
-    [t, formatBytes],
+    [horizontal, buildSpecItems],
   );
 
   const volumeTypes = useMemo(
@@ -119,11 +175,7 @@ export const VolumeModelTilesInput = ({
   );
 
   return (
-    <div
-      className={clsx(
-        horizontal && 'whitespace-pre-line [&_osds-text]:leading-[130%]',
-      )}
-    >
+    <div className={clsx(horizontal && '[&_osds-text]:leading-[130%]')}>
       <Text preset={TEXT_PRESET.heading5} className="mt-4">
         {label}
       </Text>
