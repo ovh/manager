@@ -141,7 +141,6 @@ export default class PrivateDatabaseOrderCloudDb {
       });
   }
 
-
   static getWebCloudCategory(webCloudCatalog) {
     const offers = webCloudCatalog.plans
       .filter(({ family }) => family === DB_OFFERS.PRIVATE.FAMILY)

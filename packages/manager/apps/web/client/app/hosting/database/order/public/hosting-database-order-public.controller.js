@@ -19,6 +19,22 @@ export default class HostingDatabaseOrderPublicCtrl {
   }
 
   $onInit() {
+    const renewPeriod = this.serviceInfo?.renew?.period;
+    if (renewPeriod != null && this.catalog) {
+      this.catalog = {
+        ...this.catalog,
+        addons: (this.catalog.addons || []).map((addon) => ({
+          ...addon,
+          pricings: (addon.pricings || []).filter(
+            (p) =>
+              !(p.capacities || []).includes(
+                pricingConstants.PRICING_CAPACITIES.RENEW,
+              ) || p.interval === renewPeriod,
+          ),
+        })),
+      };
+    }
+
     const { catalog, catalogItemTypeName } = this.getRightCatalogConfig(true);
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,
