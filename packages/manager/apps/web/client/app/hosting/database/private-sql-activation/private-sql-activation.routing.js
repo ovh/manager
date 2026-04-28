@@ -23,6 +23,8 @@ export default /* @ngInject */ ($stateProvider) => {
         me: /* @ngInject */ (user) => user,
         hosting: /* @ngInject */ ($transition$) =>
           $transition$.params().productId,
+        serviceInfo: /* @ngInject */ (Hosting, hosting) =>
+          Hosting.getServiceInfos(hosting),
         privateSqlCatalog: /* @ngInject */ (HostingDatabasePrivateSql, me) =>
           HostingDatabasePrivateSql.getPrivateSqlCatalogForHosting(
             me.ovhSubsidiary,

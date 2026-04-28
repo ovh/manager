@@ -10,6 +10,7 @@ export default {
     dbCategories: '<',
     privateSqlCatalog: '<',
     hosting: '<',
+    serviceInfo: '<',
     onError: '<',
     onSuccess: '<',
   },
