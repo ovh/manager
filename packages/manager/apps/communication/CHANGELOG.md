@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.11.1...@ovh-ux/manager-communication-app@0.11.2) (2026-04-28)
+
+
+### Bug Fixes
+
+* **communication:** add download attachment functionality ([ec58398](https://github.com/ovh/manager/commit/ec5839832108c41aa9ffd8b87f44e5a443f9505b)), closes [#INC0205629](https://github.com/ovh/manager/issues/INC0205629)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.11.0...@ovh-ux/manager-communication-app@0.11.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-communication-app
