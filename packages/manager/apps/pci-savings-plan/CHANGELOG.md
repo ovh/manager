@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.25.0...@ovh-ux/manager-pci-savings-plan-app@1.26.0) (2026-04-28)
+
+
+### Features
+
+* **pci-savings-plan:** add terms link and update date ([4a09561](https://github.com/ovh/manager/commit/4a09561a590923b28a6ad0428dbf420fe65f873e)), closes [#TAPC-6520](https://github.com/ovh/manager/issues/TAPC-6520)
+
+
+
+
+
 # [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.24.2...@ovh-ux/manager-pci-savings-plan-app@1.25.0) (2026-04-22)
 
 
