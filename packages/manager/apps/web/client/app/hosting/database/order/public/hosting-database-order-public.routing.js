@@ -14,6 +14,8 @@ export default /* @ngInject */ ($stateProvider) => {
       goBack: /* @ngInject */ (goToDatabase) => goToDatabase,
       hosting: /* @ngInject */ (Hosting, serviceName) =>
         Hosting.getSelected(serviceName, true),
+      serviceInfo: /* @ngInject */ (Hosting, serviceName) =>
+        Hosting.getServiceInfos(serviceName),
       onError: /* @ngInject */ ($translate, goBack) => (error) =>
         goBack(
           $translate.instant('ovhManagerHostingDatabaseOrderPublic_error', {

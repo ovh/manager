@@ -25,6 +25,30 @@ export default class PrivateSqlActivationController {
 
   $onInit() {
     this.preselectDbCategory = PRESELECTED_DB_CATEGORY;
+
+    const renewPeriod = this.serviceInfo?.renew?.period;
+    if (this.privateSqlCatalog) {
+      this.privateSqlCatalog = {
+        ...this.privateSqlCatalog,
+        addons: (this.privateSqlCatalog.addons || []).map((addon) => ({
+          ...addon,
+          pricings: (addon.pricings || [])
+            .filter(
+              (p) =>
+                renewPeriod == null ||
+                !(p.capacities || []).includes(
+                  pricingConstants.PRICING_CAPACITIES.RENEW,
+                ) ||
+                p.interval === renewPeriod,
+            )
+            .map((p) => ({
+              ...p,
+              description: `${p.description}-${p.mode}-${p.interval}${p.intervalUnit}`,
+            })),
+        })),
+      };
+    }
+
     const { catalog, catalogItemTypeName } = this.getRightCatalogConfig(true);
     this.productOffers = {
       pricingType: pricingConstants.PRICING_CAPACITIES.RENEW,

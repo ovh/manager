@@ -165,30 +165,50 @@ export default /* @ngInject */ ($stateProvider) => {
     workflowOptions: /* @ngInject */ (
       catalog,
       cdnProperties,
+      serviceInfo,
       serviceName,
       trackClick,
-    ) => ({
-      catalog,
-      catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
-      onPricingSubmit: (pricing) => {
-        trackClick({
-          ...ORDER_CDN_TRACKING.PRICING.NEXT,
-          name: ORDER_CDN_TRACKING.PRICING.NEXT.name.replace(
-            /{{pricing}}/g,
-            `${pricing.interval}M`,
-          ),
-        });
-      },
-      onValidateSubmit() {
-        const newPlanCode = this.getPlanCode();
+    ) => {
+      const renewPeriod = serviceInfo?.renew?.period;
+      const filteredCatalog =
+        renewPeriod != null
+          ? {
+              ...catalog,
+              addons: (catalog.addons || []).map((addon) => ({
+                ...addon,
+                pricings: (addon.pricings || []).filter(
+                  (p) =>
+                    !(p.capacities || []).includes(
+                      pricingConstants.PRICING_CAPACITIES.RENEW,
+                    ) || p.interval === renewPeriod,
+                ),
+              })),
+            }
+          : catalog;
 
-        trackClick('web::hosting::cdn::order::confirm');
-        trackClick(`web_hosting_cdn_order::order::${newPlanCode}`);
-      },
-      productName: HOSTING_PRODUCT_NAME,
-      serviceNameToAddProduct: serviceName,
-      expressOrder: true,
-    }),
+      return {
+        catalog: filteredCatalog,
+        catalogItemTypeName: workflowConstants.CATALOG_ITEM_TYPE_NAMES.ADDON,
+        onPricingSubmit: (pricing) => {
+          trackClick({
+            ...ORDER_CDN_TRACKING.PRICING.NEXT,
+            name: ORDER_CDN_TRACKING.PRICING.NEXT.name.replace(
+              /{{pricing}}/g,
+              `${pricing.interval}M`,
+            ),
+          });
+        },
+        onValidateSubmit() {
+          const newPlanCode = this.getPlanCode();
+
+          trackClick('web::hosting::cdn::order::confirm');
+          trackClick(`web_hosting_cdn_order::order::${newPlanCode}`);
+        },
+        productName: HOSTING_PRODUCT_NAME,
+        serviceNameToAddProduct: serviceName,
+        expressOrder: true,
+      };
+    },
     trackClick: /* @ngInject */ (atInternet) => (hit) => {
       atInternet.trackClick({
         ...hit,
