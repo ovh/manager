@@ -26,7 +26,6 @@ import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.comp
 import HourlyConsumption from '@/components/consumption/HourlyConsumption.component';
 import { useCurrentUsage } from '@/api/hook/useConsumption';
 import SavingsPlanConsumption from '@/components/consumption/SavingsPlanConsumption.component';
-import { useSVPConsumptionFeatures } from '@/hooks/useSVPConsumptionFeatures';
 import { useHiddenProducts } from '@/hooks/useHiddenProducts';
 
 export default function Consumption() {
@@ -39,7 +38,6 @@ export default function Consumption() {
     TRUSTED_ZONE,
   ]);
 
-  const { hasSVPConsumption } = useSVPConsumptionFeatures();
   const { hasHiddenProducts } = useHiddenProducts();
 
   const { data: consumption, isPending, error } = useCurrentUsage(projectId);
@@ -106,10 +104,9 @@ export default function Consumption() {
                 {consumption && (
                   <MonthlyConsumption consumption={consumption} />
                 )}
-                {!!hasSVPConsumption ||
-                  (consumption && (
-                    <SavingsPlanConsumption consumption={consumption} />
-                  ))}
+                {consumption && (
+                  <SavingsPlanConsumption consumption={consumption} />
+                )}
               </div>
             </OsdsTile>
 

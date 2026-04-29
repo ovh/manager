@@ -6,5 +6,6 @@
   "cpbc_savings_plan_col_name": "Nombre",
   "cpbc_savings_plan_col_size": "Tamaño del Savings Plan",
   "cpbc_savings_plan_col_flavor": "Flavor",
-  "cpbc_savings_plan_col_price": "Precio"
+  "cpbc_savings_plan_col_price": "Precio",
+  "cpbc_no_consumption_data": "No hay consumo en el período seleccionado."
 }
