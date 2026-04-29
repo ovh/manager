@@ -18,7 +18,7 @@ const usePostCreationRedirectionUrl = () => {
   const redirectionUrl = sanitizeUrl(queryParamUrl);
   const { data: defaultUrl } = useApplications({
     select: (applications) =>
-      applications.hub?.publicURL ?? `${window.location.origin}/manager`,
+      applications.hub?.publicURL ?? `${window.location.origin}/v6`,
   });
 
   return redirectionUrl || defaultUrl;
