@@ -43,27 +43,28 @@ export const VolumeModelTilesInput = ({
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
 
-  // Ordered spec lines for one tile. A `null` slot means the model has no
-  // value for that line (e.g. no bandwidth, no base-range override).
-  const buildSpecLines = useCallback(
-    (m: AnyVolumeModel): ReactNode[] => {
+  // One ticked line per metric. The optional base-range string is rendered
+  // inline below its parent (no extra <li> → no extra tick).
+  type SpecGroup = { key: string; main: string; sub?: string };
+  const buildSpecGroups = useCallback(
+    (m: AnyVolumeModel): SpecGroup[] => {
       const capacityMax = t(
         'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
         { capacity: formatBytes(m.capacity.max) },
       );
 
-      const items: ReactNode[] = [
-        m.iops,
-        m.iopsBaseRange && (
-          <BaseRangeLine key="iops-br">{m.iopsBaseRange}</BaseRangeLine>
-        ),
-        capacityMax,
-        m.bandwidth,
-        m.bandwidthBaseRange && (
-          <BaseRangeLine key="bw-br">{m.bandwidthBaseRange}</BaseRangeLine>
-        ),
+      const groups: SpecGroup[] = [
+        { key: 'iops', main: m.iops, sub: m.iopsBaseRange },
+        { key: 'cap', main: capacityMax },
       ];
-      return items.filter((line) => line != null && line !== false);
+      if (m.bandwidth) {
+        groups.push({
+          key: 'bw',
+          main: m.bandwidth,
+          sub: m.bandwidthBaseRange,
+        });
+      }
+      return groups;
     },
     [t, formatBytes],
   );
@@ -79,24 +80,43 @@ export const VolumeModelTilesInput = ({
     [t],
   );
 
-  // Horizontal mode hides ConfigCard's features section, so we render the
-  // ticked list inside description ourselves (re-using the same CSS class).
-  const buildHorizontalDescription = useCallback(
+  // Render the spec list ourselves (plain flex rows, manual ✓ marker) and
+  // route it through `description` for both horizontal and vertical layouts.
+  // Going through ConfigCard's <ul>/<li> + `features` slot brings two
+  // problems: (1) ConfigCard uses each feature entry as the <li> React key,
+  // so JSX entries collide on `[object Object]` and stale items pile up
+  // across locale switches; (2) the default `config-card__features` layout
+  // gives us no control over inter-row spacing.
+  const buildSpecListNode = useCallback(
     (m: AnyVolumeModel): ReactNode => {
       const zoneText = buildZoneText(m);
-      const lines = buildSpecLines(m);
+      const groups = buildSpecGroups(m);
       return (
         <>
           {zoneText && <span className="block">{zoneText}</span>}
-          <ul className="config-card__features">
-            {lines.map((line, i) => (
-              <li key={`spec-${m.name}-${i}`}>{line}</li>
+          <div className="flex flex-col gap-4">
+            {groups.map(({ key, main, sub }) => (
+              <div
+                key={`spec-${m.name}-${key}`}
+                className="flex items-start gap-2"
+              >
+                <span
+                  aria-hidden
+                  className="text-[#2b8000] font-bold leading-[1]"
+                >
+                  ✓
+                </span>
+                <div>
+                  <div>{main}</div>
+                  {sub && <BaseRangeLine>{sub}</BaseRangeLine>}
+                </div>
+              </div>
             ))}
-          </ul>
+          </div>
         </>
       );
     },
-    [buildZoneText, buildSpecLines],
+    [buildZoneText, buildSpecGroups],
   );
 
   const buildBadges = useCallback(
@@ -125,26 +145,12 @@ export const VolumeModelTilesInput = ({
         label: capitalizeFirstLetter(m.displayName),
         badges: buildBadges(m),
         price: m.hourlyPrice,
-        ...(horizontal
-          ? {
-              description: asConfigCardSlot<string>(
-                buildHorizontalDescription(m),
-              ),
-              features: [],
-            }
-          : {
-              description: buildZoneText(m),
-              features: asConfigCardSlot<string[]>(buildSpecLines(m)),
-            }),
+        description: asConfigCardSlot<string>(buildSpecListNode(m)),
+        // Intentionally undefined: ConfigCard pushes an empty <ul> body
+        // section for `features: []`, which adds a divider + extra spacing.
+        features: undefined,
       })),
-    [
-      volumeModels,
-      horizontal,
-      buildBadges,
-      buildHorizontalDescription,
-      buildZoneText,
-      buildSpecLines,
-    ],
+    [volumeModels, buildBadges, buildSpecListNode],
   );
 
   const selectedTile = useMemo(

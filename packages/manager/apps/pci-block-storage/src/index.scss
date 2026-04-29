@@ -22,12 +22,3 @@ html {
 osds-search-bar {
   width: initial;
 }
-
-// Hide the green check marker on hard-coded gen2 base-range sub-features.
-// Paired with VolumeModelTilesInput.component.tsx > renderBaseRange.
-.config-card__features li:has(.bs-base-range) {
-  list-style: none;
-}
-.config-card__features li:has(.bs-base-range)::marker {
-  content: '';
-}
