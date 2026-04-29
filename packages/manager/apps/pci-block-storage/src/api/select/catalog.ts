@@ -104,10 +104,16 @@ export const getPricingSpecsFromModelPricings = (
   const pricing = pricings[0];
 
   const iopsSpec = pricing.specs.volume.iops;
-  const iopsRaw = Math.min((capacity ?? 1) * iopsSpec.level, iopsSpec.max);
   const iopsMin =
     typeof iopsSpec.min === 'number' && iopsSpec.min > 0 ? iopsSpec.min : null;
-  const iopsValue = iopsMin !== null ? Math.max(iopsMin, iopsRaw) : iopsRaw;
+
+  const iopsRaw = Math.min((capacity ?? 1) * iopsSpec.level, iopsSpec.max);
+  // Floor only when computing an absolute value for a known capacity. The
+  // per-GB initial display (capacity undefined) must keep the raw level.
+  const iopsValue =
+    capacity !== undefined && iopsMin !== null
+      ? Math.max(iopsMin, iopsRaw)
+      : iopsRaw;
 
   let iops = `${iopsValue} IOPS`;
   if (pricing.areIOPSDynamic && capacity === undefined) {
@@ -138,26 +144,31 @@ export const getPricingSpecsFromModelPricings = (
 
   if (pricing.specs.bandwidth) {
     const bandwidthSpec = pricing.specs.bandwidth;
-    const mbUnit = t(`${NAMESPACES.BYTES}:unit_size_MB`);
-    const bandwidthRaw = Math.min(
-      (capacity ?? 1) * bandwidthSpec.level,
-      bandwidthSpec.max,
-    );
     const bandwidthMin =
       typeof bandwidthSpec.min === 'number' && bandwidthSpec.min > 0
         ? bandwidthSpec.min
         : null;
+
+    const bandwidthRaw = Math.min(
+      (capacity ?? 1) * bandwidthSpec.level,
+      bandwidthSpec.max,
+    );
+    // Same rule as IOPS: floor only when capacity is provided.
     const bandwidthValue =
-      bandwidthMin !== null
+      capacity !== undefined && bandwidthMin !== null
         ? Math.max(bandwidthMin, bandwidthRaw)
         : bandwidthRaw;
-    const level = formatSecondUnit(`${bandwidthValue} ${mbUnit}`);
+    const level = formatSecondUnit(
+      `${bandwidthValue} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
+    );
 
     if (pricing.isBandwidthDynamic) {
       if (typeof capacity === 'number') {
         bandwidth = level;
       } else {
-        const max = formatSecondUnit(`${bandwidthSpec.max} ${mbUnit}`);
+        const max = formatSecondUnit(
+          `${bandwidthSpec.max} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
+        );
 
         bandwidth = [
           [level, t(`${NAMESPACES.BYTES}:unit_size_GB`)].join('/'),
@@ -175,7 +186,7 @@ export const getPricingSpecsFromModelPricings = (
         'common:pci_projects_project_storages_blocks_bandwidth_base_range',
         {
           min: bandwidthMin,
-          unit: formatSecondUnit(mbUnit),
+          unit: formatSecondUnit(t(`${NAMESPACES.BYTES}:unit_size_MB`)),
           minSize: VOLUME_MIN_SIZE,
           maxSize: Math.ceil(bandwidthMin / bandwidthSpec.level),
           sizeUnit: t(`${NAMESPACES.BYTES}:unit_size_GB`),

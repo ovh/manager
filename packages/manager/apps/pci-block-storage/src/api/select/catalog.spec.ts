@@ -204,42 +204,6 @@ describe('select catalog', () => {
       },
     ] as unknown) as TVolumeAddon['pricings'];
 
-    it('floors iops at min when capacity * level is below min', () => {
-      const result = getPricingSpecsFromModelPricings(
-        gen2Pricings,
-        catalogPriceFormatter,
-        translator,
-        10,
-      );
-
-      // 10 * 100 = 1000, floored to min = 3000
-      expect(result.iops).toContain('3000 IOPS');
-    });
-
-    it('does not floor iops above min when capacity * level exceeds min', () => {
-      const result = getPricingSpecsFromModelPricings(
-        gen2Pricings,
-        catalogPriceFormatter,
-        translator,
-        100,
-      );
-
-      // 100 * 100 = 10000, above min — kept
-      expect(result.iops).toContain('10000 IOPS');
-    });
-
-    it('floors bandwidth at min when capacity * level is below min', () => {
-      const result = getPricingSpecsFromModelPricings(
-        gen2Pricings,
-        catalogPriceFormatter,
-        translator,
-        10,
-      );
-
-      // 10 * 1 = 10, floored to min = 50
-      expect(result.bandwidth).toContain('50');
-    });
-
     it('exposes iops and bandwidth base range strings when min is set', () => {
       const result = getPricingSpecsFromModelPricings(
         gen2Pricings,
@@ -266,6 +230,78 @@ describe('select catalog', () => {
 
       expect(result.iopsBaseRange).toBeUndefined();
       expect(result.bandwidthBaseRange).toBeUndefined();
+    });
+
+    describe('conditional floor', () => {
+      it('floors iops at min when capacity * level falls below min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          10, // 10 * 100 = 1000 < min(3000) → floored
+        );
+
+        expect(result.iops).toContain('3000 IOPS');
+        expect(result.iops).not.toContain('1000 IOPS');
+      });
+
+      it('keeps the raw iops value when capacity * level exceeds min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          100, // 100 * 100 = 10000 > min(3000) → kept
+        );
+
+        expect(result.iops).toContain('10000 IOPS');
+      });
+
+      it('does NOT floor the per-GB iops display when capacity is undefined', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          // capacity omitted on purpose
+        );
+
+        // Should be "100 IOPS/<gb-unit>, <up_to> 50000 IOPS" — never the floor.
+        expect(result.iops).toContain('100 IOPS');
+        expect(result.iops).not.toContain('3000 IOPS');
+      });
+
+      it('floors bandwidth at min when capacity * level falls below min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          10, // 10 * 1 = 10 < min(50) → floored
+        );
+
+        expect(result.bandwidth).toContain('50');
+      });
+
+      it('keeps the raw bandwidth value when capacity * level exceeds min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          200, // 200 * 1 = 200 > min(50) → kept
+        );
+
+        expect(result.bandwidth).toContain('200');
+      });
+
+      it('does NOT floor the per-GB bandwidth display when capacity is undefined', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+        );
+
+        // Per-GB level is 1 MB/s/GB; floor (50) must NOT replace it.
+        expect(result.bandwidth).toContain('1');
+        expect(result.bandwidth).not.toContain('50 ');
+      });
     });
   });
 
