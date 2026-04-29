@@ -14,9 +14,9 @@ export const OFFERS_NAME = {
   HOSTING_STARTUP: 'hosting-startup',
   HOSTING_PRO: 'hosting-pro',
   HOSTING_PERFORMANCE_1: 'hosting-performance-1',
-  HOSTING_AGENCY: 'hosting-agence',
-  HOSTING_AGENCY_PLUS: 'hosting-agence-plus',
-  HOSTING_AGENCY_MAX: 'hosting-agence-max',
+  HOSTING_AGENCY: 'hosting-agency',
+  HOSTING_AGENCY_PLUS: 'hosting-agency-plus',
+  HOSTING_AGENCY_MAX: 'hosting-agency-max',
 };
 
 export const OFFERS_UNELIGIBLE_FOR_MODULE = [

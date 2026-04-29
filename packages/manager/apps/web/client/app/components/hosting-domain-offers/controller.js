@@ -119,7 +119,7 @@ export default class WebComponentsHostingDomainOffersController {
           },
         },
       },
-      AGENCE: {
+      AGENCY: {
         TECHNICALS: [
           { prefix: 'sites', values: [200] },
           { prefix: 'disk', values: ['500 Go SSD'] },
@@ -135,12 +135,12 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'git', values: [] },
         ],
         SELECTORS: {
-          AGENCE: {
+          AGENCY: {
             planCode: OFFERS_PLAN_CODES.AGENCY,
           },
         },
       },
-      AGENCE_PLUS: {
+      AGENCY_PLUS: {
         TECHNICALS: [
           { prefix: 'sites', values: [500] },
           { prefix: 'disk', values: ['700 Go SSD'] },
@@ -156,12 +156,12 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'git', values: [] },
         ],
         SELECTORS: {
-          AGENCE_PLUS: {
+          AGENCY_PLUS: {
             planCode: OFFERS_PLAN_CODES.AGENCY_PLUS,
           },
         },
       },
-      AGENCE_MAX: {
+      AGENCY_MAX: {
         TECHNICALS: [
           { prefix: 'sites', values: [3000] },
           { prefix: 'disk', values: ['1 To SSD'] },
@@ -177,7 +177,7 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'git', values: [] },
         ],
         SELECTORS: {
-          AGENCE_MAX: {
+          AGENCY_MAX: {
             planCode: OFFERS_PLAN_CODES.AGENCY_MAX,
           },
         },
