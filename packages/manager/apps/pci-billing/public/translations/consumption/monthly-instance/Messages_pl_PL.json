@@ -6,5 +6,6 @@
   "cpbc_savings_plan_col_name": "Nazwa",
   "cpbc_savings_plan_col_size": "Poziom Savings Plan",
   "cpbc_savings_plan_col_flavor": "Wariant",
-  "cpbc_savings_plan_col_price": "Cena"
+  "cpbc_savings_plan_col_price": "Cena",
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu."
 }
