@@ -1,34 +1,32 @@
-import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
-import { ReactNode, useCallback, useMemo } from 'react';
+import {
+  ConfigCardElementProps,
+  TilesInput,
+  useBytes,
+} from '@ovh-ux/manager-pci-common';
+import {
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { Divider, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { sortByPreselectedModel } from '@/api/select/catalog';
 import { capitalizeFirstLetter } from '@/utils';
 
-type AnyVolumeModel = TVolumeModel | TVolumeRetypeModel;
-
-type Props = {
-  volumeModels: AnyVolumeModel[];
-  value: AnyVolumeModel | null;
-  onChange: (value: AnyVolumeModel) => void;
+type Props<T = TVolumeModel | TVolumeRetypeModel> = {
+  volumeModels: T[];
+  value: T | null;
+  onChange: (value: T) => void;
   label: string;
   locked?: boolean;
   horizontal?: boolean;
   hideBadges?: boolean;
   disabled?: boolean;
 };
-
-// ConfigCard's `description` and `features` are typed as plain strings but
-// render their content via `{children}` — React accepts any ReactNode at
-// runtime. This cast localises the lie to one place.
-const asConfigCardSlot = <T,>(node: ReactNode): T => (node as unknown) as T;
-
-const BaseRangeLine = ({ children }: { children: ReactNode }) => (
-  <span className="bs-base-range text-xs opacity-70">{children}</span>
-);
 
 export const VolumeModelTilesInput = ({
   volumeModels = [],
@@ -43,145 +41,162 @@ export const VolumeModelTilesInput = ({
   const { t } = useTranslation(['add', 'common']);
   const { formatBytes } = useBytes();
 
-  // One ticked line per metric. The optional base-range string is rendered
-  // inline below its parent (no extra <li> → no extra tick).
-  type SpecGroup = { key: string; main: string; sub?: string };
-  const buildSpecGroups = useCallback(
-    (m: AnyVolumeModel): SpecGroup[] => {
+  const getDescription = useCallback(
+    (model: TVolumeModel | TVolumeRetypeModel) => {
+      const availabilityZonesText = model.availabilityZonesCount
+        ? t(
+            'add:pci_projects_project_storages_blocks_add_type_availability_zone',
+            { count: model.availabilityZonesCount },
+          )
+        : undefined;
+
       const capacityMax = t(
         'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
-        { capacity: formatBytes(m.capacity.max) },
+        {
+          capacity: formatBytes(model.capacity.max),
+        },
       );
 
-      const groups: SpecGroup[] = [
-        { key: 'iops', main: m.iops, sub: m.iopsBaseRange },
-        { key: 'cap', main: capacityMax },
-      ];
-      if (m.bandwidth) {
-        groups.push({
-          key: 'bw',
-          main: m.bandwidth,
-          sub: m.bandwidthBaseRange,
-        });
+      if (horizontal) {
+        return (
+          <div>
+            {availabilityZonesText && <div>{availabilityZonesText}</div>}
+            <ul className="pl-5 mb-0 list-['✓']">
+              {model.iops && (
+                <>
+                  <li className="pl-5 marker:text-[#2b8000]">{model.iops}</li>
+                  {model.iopsBaseRange && (
+                    <Text className="pl-5" preset={TEXT_PRESET.caption}>
+                      {model.iopsBaseRange}
+                    </Text>
+                  )}
+                </>
+              )}
+              {model.bandwidth && (
+                <>
+                  <li className="pl-5 marker:text-[#2b8000]">
+                    {model.bandwidth}
+                  </li>
+                  {model.bandwidthBaseRange && (
+                    <Text className="pl-5" preset={TEXT_PRESET.caption}>
+                      {model.bandwidthBaseRange}
+                    </Text>
+                  )}
+                </>
+              )}
+              {capacityMax && (
+                <li className="pl-5 marker:text-[#2b8000]">{capacityMax}</li>
+              )}
+            </ul>
+          </div>
+        );
       }
-      return groups;
+
+      return availabilityZonesText;
     },
     [t, formatBytes],
   );
 
-  const buildZoneText = useCallback(
-    (m: AnyVolumeModel) =>
-      m.availabilityZonesCount
-        ? t(
-            'add:pci_projects_project_storages_blocks_add_type_availability_zone',
-            { count: m.availabilityZonesCount },
-          )
-        : undefined,
-    [t],
-  );
+  const getFeatures = useCallback(
+    (m: TVolumeModel | TVolumeRetypeModel) => {
+      if (horizontal) return [];
 
-  // Render the spec list ourselves (plain flex rows, manual ✓ marker) and
-  // route it through `description` for both horizontal and vertical layouts.
-  // Going through ConfigCard's <ul>/<li> + `features` slot brings two
-  // problems: (1) ConfigCard uses each feature entry as the <li> React key,
-  // so JSX entries collide on `[object Object]` and stale items pile up
-  // across locale switches; (2) the default `config-card__features` layout
-  // gives us no control over inter-row spacing.
-  const buildSpecListNode = useCallback(
-    (m: AnyVolumeModel): ReactNode => {
-      const zoneText = buildZoneText(m);
-      const groups = buildSpecGroups(m);
-      return (
+      return [
         <>
-          {zoneText && <span className="block">{zoneText}</span>}
-          <div className="flex flex-col gap-4">
-            {groups.map(({ key, main, sub }) => (
-              <div
-                key={`spec-${m.name}-${key}`}
-                className="flex items-start gap-2"
-              >
-                <span
-                  aria-hidden
-                  className="text-[#2b8000] font-bold leading-[1]"
-                >
-                  ✓
-                </span>
-                <div>
-                  <div>{main}</div>
-                  {sub && <BaseRangeLine>{sub}</BaseRangeLine>}
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      );
+          <span>{m.iops}</span>
+          {m.iopsBaseRange && (
+            <>
+              <br />
+              <Text preset={TEXT_PRESET.caption}>{m.iopsBaseRange}</Text>
+            </>
+          )}
+        </>,
+        t(
+          'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
+          {
+            capacity: formatBytes(m.capacity.max),
+          },
+        ),
+        ...(m.bandwidth
+          ? [
+              <>
+                <span>{m.bandwidth}</span>
+                {m.bandwidthBaseRange && (
+                  <>
+                    <br />
+                    <Text preset={TEXT_PRESET.caption}>
+                      {m.bandwidthBaseRange}
+                    </Text>
+                  </>
+                )}
+              </>,
+            ]
+          : []),
+      ];
     },
-    [buildZoneText, buildSpecGroups],
+    [t, formatBytes],
   );
 
-  const buildBadges = useCallback(
-    (m: AnyVolumeModel) =>
-      hideBadges
-        ? []
-        : [
-            {
-              label: t(
-                `common:pci_projects_project_storages_blocks_encryption_${
-                  m.encrypted ? 'available' : 'unavailable'
-                }`,
-              ),
-              backgroundColor: m.encrypted ? '#D2F2C2' : '#FFCCD9',
-              textColor: m.encrypted ? '#113300' : '#4D000D',
-              icon: 'lock' as const,
-            },
-          ],
-    [hideBadges, t],
-  );
-
-  const tiles = useMemo(
+  const volumeTypes = useMemo(
     () =>
-      sortByPreselectedModel(volumeModels).map((m) => ({
-        ...m,
-        label: capitalizeFirstLetter(m.displayName),
-        badges: buildBadges(m),
-        price: m.hourlyPrice,
-        description: asConfigCardSlot<string>(buildSpecListNode(m)),
-        // Intentionally undefined: ConfigCard pushes an empty <ul> body
-        // section for `features: []`, which adds a divider + extra spacing.
-        features: undefined,
+      sortByPreselectedModel(volumeModels).map((model) => ({
+        ...model,
+        label: capitalizeFirstLetter(model.displayName),
+        description: getDescription(model) as string,
+        badges: hideBadges
+          ? []
+          : [
+              {
+                label: t(
+                  `common:pci_projects_project_storages_blocks_encryption_${
+                    model.encrypted ? 'available' : 'unavailable'
+                  }`,
+                ),
+                backgroundColor: model.encrypted ? '#D2F2C2' : '#FFCCD9',
+                textColor: model.encrypted ? '#113300' : '#4D000D',
+                icon: 'lock' as const,
+              },
+            ],
+        features: getFeatures(model) as string[],
+        price: model.hourlyPrice,
       })),
-    [volumeModels, buildBadges, buildSpecListNode],
+    [volumeModels, t, getDescription, getFeatures],
   );
 
-  const selectedTile = useMemo(
-    () => tiles.find((tile) => tile.name === value?.name),
-    [tiles, value],
+  const volumeTypeValue = useMemo(
+    () => volumeTypes?.find((v) => v.name === value?.name),
+    [volumeModels, value],
   );
 
-  const setTileDisabled = useCallback(
-    (tile: typeof tiles[number] & { disabled: boolean }) => {
-      // Underlying lib has no disabled prop; mutate per-tile input props.
+  const disableAllProps = useCallback(
+    (e: typeof volumeTypes[number] & { disabled: boolean }) => {
+      // We can't directly disable the input tiles. In waiting for changing the lib used, we do this instead.
       // eslint-disable-next-line no-param-reassign
-      tile.disabled = disabled;
-      return tile;
+      e.disabled = disabled;
+      return e;
     },
     [disabled],
   );
 
   return (
-    <div className={clsx(horizontal && '[&_osds-text]:leading-[130%]')}>
+    <div
+      className={clsx(
+        'whitespace-pre-line',
+        horizontal && '[&_osds-text]:leading-[130%]',
+      )}
+    >
       <Text preset={TEXT_PRESET.heading5} className="mt-4">
         {label}
       </Text>
       <TilesInput
         name="volume-type"
         label={undefined}
-        value={selectedTile}
-        elements={tiles}
-        onChange={(tile) => onChange(tile as AnyVolumeModel)}
+        value={volumeTypeValue}
+        elements={volumeTypes}
+        onChange={(e) => onChange(e)}
         locked={locked}
         horizontal={horizontal}
-        inputProps={setTileDisabled}
+        inputProps={disableAllProps}
       />
     </div>
   );
