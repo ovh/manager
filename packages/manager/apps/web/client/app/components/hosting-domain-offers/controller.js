@@ -383,10 +383,20 @@ export default class WebComponentsHostingDomainOffersController {
         const key = this.useNewOffers
           ? `web_components_hosting_domain_offers_${prefix}`
           : `web_components_hosting_domain_offers_offer_${offerCategory}_technicals_${prefix}`;
-        return this.$translate.instant(key, {
-          value1: values[0],
-          value2: serviceDatas,
-        });
+        // The global $translateProvider.useSanitizeValueStrategy('sanitizeParameters')
+        // HTML-escapes interpolated values, so a literal "< 1" passed as value1
+        // ends up as "&lt; 1" in the rendered string. Since the technical
+        // values here are hardcoded constants (no user input → no XSS risk),
+        // we decode the basic HTML entities back so "< 1 vCore" displays
+        // correctly via ng-bind.
+        return this.$translate
+          .instant(key, {
+            value1: values[0],
+            value2: serviceDatas,
+          })
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&');
       },
     );
   }

@@ -1,5 +1,6 @@
 {
   "web_components_hosting_domain_offers_offer_starter": "Starter",
+  "web_components_hosting_domain_offers_offer_startup": "Startup",
   "web_components_hosting_domain_offers_offer_perso": "Basic",
   "web_components_hosting_domain_offers_offer_perso_technicals_discs": "{{value1}} Speicherplatz",
   "web_components_hosting_domain_offers_offer_perso_technicals_emails": "{{value1}} E-Mail-Adressen",
