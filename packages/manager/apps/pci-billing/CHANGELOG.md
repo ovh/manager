@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.18.0...@ovh-ux/manager-pci-billing-app@0.19.0) (2026-04-30)
+
+
+### Features
+
+* **pci-billing:** add svp into billing for US ([dd904aa](https://github.com/ovh/manager/commit/dd904aa505ff757483cb5dc99f80998a84e27391))
+
+
+
+
+
 # [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.17.1...@ovh-ux/manager-pci-billing-app@0.18.0) (2026-04-22)
 
 
