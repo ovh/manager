@@ -245,7 +245,7 @@ angular
       $scope.loadDomains = () => {
         $scope.loading.domains = true;
 
-         HostingModule.getAttachedDomains($stateParams.productId)
+        HostingModule.getAttachedDomains($stateParams.productId)
           .then((domains) => {
             $scope.loading.domains = false;
             $scope.model.domains = domains;

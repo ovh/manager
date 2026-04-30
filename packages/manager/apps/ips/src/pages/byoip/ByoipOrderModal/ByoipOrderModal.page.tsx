@@ -26,7 +26,12 @@ import {
   useOvhTracking,
 } from '@ovh-ux/manager-react-shell-client';
 
-import { BYOIP_FAILOVER_V4, CONFIG_NAME } from '@/data/hooks/catalog';
+import {
+  BYOIP_FAILOVER_V4,
+  Campus,
+  CONFIG_NAME,
+  useGetCatalog,
+} from '@/data/hooks/catalog';
 import { urls } from '@/routes/routes.constant';
 
 import { ByoipContext } from '../Byoip.context';
@@ -34,6 +39,7 @@ import {
   ByoipPayloadParams,
   ConfigItem,
   getByoipProductSettings,
+  getConfigValues,
 } from '../Byoip.utils';
 
 interface DeclarationItem {
@@ -47,6 +53,17 @@ export const ByoipOrderModal: React.FC = () => {
   const { trackClick } = useOvhTracking();
   const { ipRir, selectedRegion, ipRange, asOwnRirType, asOwnNumberType } =
     React.useContext(ByoipContext);
+  const { data: catalog } = useGetCatalog();
+
+  const campusValues = getConfigValues(
+    catalog?.details?.product.configurations,
+    CONFIG_NAME.CAMPUS,
+  ) as Campus[];
+
+  const selectedCampus = campusValues.find(
+    (campus) => campus.name === selectedRegion,
+  );
+  const selectedPlanCode = selectedCampus?.planCode ?? BYOIP_FAILOVER_V4;
 
   const orderBaseUrl = useOrderURL('express_review_base');
 
@@ -165,7 +182,7 @@ export const ByoipOrderModal: React.FC = () => {
               ipRir,
               campus: {
                 name: selectedRegion,
-                planCode: BYOIP_FAILOVER_V4,
+                planCode: selectedPlanCode,
               },
               ip: ipRange,
               ...(asOwnRirType && { asRir: asOwnRirType }),
@@ -195,7 +212,10 @@ export const ByoipOrderModal: React.FC = () => {
             if (campus && updateConfig[campusId]) {
               updateConfig[campusId].values = [campus.name];
             }
-            const settings = getByoipProductSettings(updateConfig);
+            const settings = getByoipProductSettings(
+              updateConfig,
+              selectedPlanCode,
+            );
             window.open(
               `${orderBaseUrl}?products=~(${settings})`,
               '_blank',

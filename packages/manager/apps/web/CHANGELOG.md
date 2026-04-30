@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.38.3...@ovh-ux/manager-web@19.39.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1234] ([8a16cb8](https://github.com/ovh/manager/commit/8a16cb838f55f7f2fb082e67f5d9e75b28b8efa9))
+* **web-hosting:** manage addon renew period ([012d071](https://github.com/ovh/manager/commit/012d07176c1907c3ef600a2ff7d68a06a987020e)), closes [#PUWEBPT-323](https://github.com/ovh/manager/issues/PUWEBPT-323)
+* **web-hosting:** manage agency offers when channging offers ([fedd06b](https://github.com/ovh/manager/commit/fedd06b9262ef1800b316e9c342e2d29a236578e)), closes [#PUWEBPT-289](https://github.com/ovh/manager/issues/PUWEBPT-289)
+
+
+### Features
+
+* **web-hosting:** add new offer upgrade ([2fb65ec](https://github.com/ovh/manager/commit/2fb65ec758c9983bfc6cb56df8423d48b08f4de9)), closes [#PUWEBPT-289](https://github.com/ovh/manager/issues/PUWEBPT-289)
+
+
+
+
+
 ## [19.38.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.38.2...@ovh-ux/manager-web@19.38.3) (2026-03-25)
 
 

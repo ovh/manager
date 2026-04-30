@@ -27,6 +27,7 @@ export const AVAILABLE_SERVICES = [
   'HYCU',
   'ALL_DOM',
   'RESELLER',
+  'NETWORK_SNC',
 ];
 
 export default {

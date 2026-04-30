@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.25.0...@ovh-ux/manager-pci-savings-plan-app@1.26.0) (2026-04-28)
+
+
+### Features
+
+* **pci-savings-plan:** add terms link and update date ([4a09561](https://github.com/ovh/manager/commit/4a09561a590923b28a6ad0428dbf420fe65f873e)), closes [#TAPC-6520](https://github.com/ovh/manager/issues/TAPC-6520)
+
+
+
+
+
+# [1.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.24.2...@ovh-ux/manager-pci-savings-plan-app@1.25.0) (2026-04-22)
+
+
+### Bug Fixes
+
+* **pci-savings-plan:** update badge translation ([13c42bd](https://github.com/ovh/manager/commit/13c42bd3391c6db058e7d3a0938dc2f03be2377d))
+
+
+### Features
+
+* **pci-savings-plan:** update date format for SVP US ([4b78c16](https://github.com/ovh/manager/commit/4b78c168583753888d45ebe7b48d78e4a2b0871d)), closes [#TAPC-6535](https://github.com/ovh/manager/issues/TAPC-6535)
+* **pci-savings-plan:** update date format in US dashboard ([7acedfd](https://github.com/ovh/manager/commit/7acedfdaccb80a1c356d297f74626fb0b2e19d4a)), closes [#TAPC-6535](https://github.com/ovh/manager/issues/TAPC-6535)
+
+
+
+
+
+## [1.24.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.24.1...@ovh-ux/manager-pci-savings-plan-app@1.24.2) (2026-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4724] ([3ec60be](https://github.com/ovh/manager/commit/3ec60be03e93a6d16032461120be88bf13186389))
+
+
+
+
+
 ## [1.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.24.0...@ovh-ux/manager-pci-savings-plan-app@1.24.1) (2026-04-07)
 
 

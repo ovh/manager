@@ -6,6 +6,7 @@ import {
   NEW_OFFERS_END_DATE,
   BADGES,
   NEW_OFFERS_PLAN_CODES,
+  OFFERS_PLAN_CODES,
   CATEGORIES_MAP,
   VERSION_MAP,
   CLOUDWEB_OFFER,
@@ -15,9 +16,173 @@ import {
 
 export default class WebComponentsHostingDomainOffersController {
   /* @ngInject */
-  constructor($translate, $filter) {
+  constructor($translate, $filter, ovhFeatureFlipping) {
     this.$translate = $translate;
+    this.ovhFeatureFlipping = ovhFeatureFlipping;
     const bytes = $filter('bytes');
+
+    this.OFFERS = {
+      FREE_100M: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [1] },
+          { prefix: 'disk', values: ['100 Mo SSD'] },
+          { prefix: 'emailStorage', values: [1, '5 Go'] },
+        ],
+        SELECTORS: {
+          FREE_100M: {
+            planCode: OFFERS_PLAN_CODES.FREE_100M,
+          },
+        },
+      },
+      STARTER: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [1] },
+          { prefix: 'nddFree', values: [1] },
+          { prefix: 'emailStorage', values: [2, '5 Go'] },
+          { prefix: 'disk', values: ['1 Go SSD'] },
+          { prefix: 'cms', values: [] },
+        ],
+        SELECTORS: {
+          STARTER: {
+            planCode: OFFERS_PLAN_CODES.STARTER,
+          },
+        },
+      },
+      PERSO: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [5] },
+          { prefix: 'nddFree', values: [1] },
+          { prefix: 'emailStorage', values: [10, '5 Go'] },
+          { prefix: 'disk', values: ['100 Go SSD'] },
+          { prefix: 'cms', values: [] },
+        ],
+        SELECTORS: {
+          PERSO: {
+            planCode: OFFERS_PLAN_CODES.PERSO,
+          },
+        },
+      },
+      STARTUP: {
+        TECHNICALS: [
+          { prefix: 'vcores', values: ['< 1'] },
+          { prefix: 'ram', values: ['< 1 Go'] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'disk', values: ['100 Go SSD'] },
+          { prefix: 'sites', values: [5] },
+          { prefix: 'emailStorage', values: [10, '5 Go'] },
+          { prefix: 'dbs', values: [5, '1 Go'] },
+          { prefix: 'nddFree', values: [1] },
+        ],
+        SELECTORS: {
+          STARTUP: {
+            planCode: OFFERS_PLAN_CODES.STARTUP,
+          },
+        },
+      },
+      PRO: {
+        TECHNICALS: [
+          { prefix: 'vcores', values: [1] },
+          { prefix: 'ram', values: ['2 Go'] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'disk', values: ['250 Go SSD'] },
+          { prefix: 'sites', values: [100] },
+          { prefix: 'emailStorage', values: [100, '5 Go'] },
+          { prefix: 'dbs', values: [10, '2 Go'] },
+          { prefix: 'nddFree', values: [1] },
+          { prefix: 'cdn', values: [] },
+        ],
+        SELECTORS: {
+          PRO: {
+            planCode: OFFERS_PLAN_CODES.PRO,
+          },
+        },
+      },
+      PERFORMANCE: {
+        TECHNICALS: [
+          { prefix: 'vcores', values: [2] },
+          { prefix: 'ram', values: ['4 Go'] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'disk', values: ['500 Go'] },
+          { prefix: 'sites', values: [150] },
+          { prefix: 'emailStorage', values: [1000, '5 Go'] },
+          { prefix: 'dbs', values: [20, '2 Go'] },
+          { prefix: 'webcloudDb', values: [] },
+          { prefix: 'nddFree', values: [1] },
+          { prefix: 'cdn', values: [] },
+        ],
+        SELECTORS: {
+          PERFORMANCE_1: {
+            planCode: OFFERS_PLAN_CODES.PERFORMANCE_1,
+          },
+        },
+      },
+      AGENCY: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [200] },
+          { prefix: 'disk', values: ['500 Go SSD'] },
+          { prefix: 'ram', values: ['8 Go'] },
+          { prefix: 'vcores', values: [6] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'userManagement', values: [] },
+          { prefix: 'emailStorage', values: [1000, '5 Go'] },
+          { prefix: 'dbs', values: [30, '2 Go'] },
+          { prefix: 'webcloudDb', values: [] },
+          { prefix: 'cdn', values: [] },
+          { prefix: 'git', values: [] },
+        ],
+        SELECTORS: {
+          AGENCY: {
+            planCode: OFFERS_PLAN_CODES.AGENCY,
+          },
+        },
+      },
+      AGENCY_PLUS: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [500] },
+          { prefix: 'disk', values: ['700 Go SSD'] },
+          { prefix: 'ram', values: ['12 Go'] },
+          { prefix: 'vcores', values: [10] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'userManagement', values: [] },
+          { prefix: 'emailStorage', values: [1000, '5 Go'] },
+          { prefix: 'dbs', values: [40, '2 Go'] },
+          { prefix: 'webcloudDb', values: [] },
+          { prefix: 'cdn', values: [] },
+          { prefix: 'git', values: [] },
+        ],
+        SELECTORS: {
+          AGENCY_PLUS: {
+            planCode: OFFERS_PLAN_CODES.AGENCY_PLUS,
+          },
+        },
+      },
+      AGENCY_MAX: {
+        TECHNICALS: [
+          { prefix: 'sites', values: [3000] },
+          { prefix: 'disk', values: ['1 To SSD'] },
+          { prefix: 'ram', values: ['16 Go'] },
+          { prefix: 'vcores', values: [14] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'userManagement', values: [] },
+          { prefix: 'emailStorage', values: [1000, '5 Go'] },
+          { prefix: 'dbs', values: [50, '2 Go'] },
+          { prefix: 'webcloudDb', values: [] },
+          { prefix: 'cdn', values: [] },
+          { prefix: 'git', values: [] },
+        ],
+        SELECTORS: {
+          AGENCY_MAX: {
+            planCode: OFFERS_PLAN_CODES.AGENCY_MAX,
+          },
+        },
+      },
+    };
 
     this.NEW_OFFERS = {
       PERSO: {
@@ -89,7 +254,19 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   $onInit() {
-    this.groupedOffers = this.buildOffersGroup();
+    return this.ovhFeatureFlipping
+      .checkFeatureAvailability(['web-hosting:change-offer'])
+      .then((featureAvailability) => {
+        this.useNewOffers = featureAvailability.isFeatureAvailable(
+          'web-hosting:change-offer',
+        );
+      })
+      .catch(() => {
+        this.useNewOffers = false;
+      })
+      .finally(() => {
+        this.groupedOffers = this.buildOffersGroup();
+      });
   }
 
   static buildBadgeModel(type, className) {
@@ -193,7 +370,8 @@ export default class WebComponentsHostingDomainOffersController {
   }
 
   getNewOffer(offerCategory) {
-    return this.NEW_OFFERS[offerCategory.toUpperCase()];
+    const offers = this.useNewOffers ? this.OFFERS : this.NEW_OFFERS;
+    return offers[offerCategory.toUpperCase()];
   }
 
   getOfferTechnicalsInfo(offerCategory) {
@@ -202,10 +380,13 @@ export default class WebComponentsHostingDomainOffersController {
         let serviceDatas = values[1];
         if (prefix === 'services' && !serviceDatas)
           serviceDatas = WEB_CLOUD_DB_VALUES;
-        return this.$translate.instant(
-          `web_components_hosting_domain_offers_offer_${offerCategory}_technicals_${prefix}`,
-          { value1: values[0], value2: serviceDatas },
-        );
+        const key = this.useNewOffers
+          ? `web_components_hosting_domain_offers_${prefix}`
+          : `web_components_hosting_domain_offers_offer_${offerCategory}_technicals_${prefix}`;
+        return this.$translate.instant(key, {
+          value1: values[0],
+          value2: serviceDatas,
+        });
       },
     );
   }

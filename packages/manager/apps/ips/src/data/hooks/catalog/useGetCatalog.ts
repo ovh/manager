@@ -17,6 +17,13 @@ export type Campus = {
   planCode: string;
 };
 
+// Extract the RIR from a byoip plan code, e.g. "byoip-failover-v4-arin" -> "ARIN".
+// Returns an empty string when the plan code cannot be decoded.
+export const getRirFromPlanCode = (planCode: string): string => {
+  if (!planCode?.startsWith(`${BYOIP_FAILOVER_V4}-`)) return '';
+  return planCode.slice(BYOIP_FAILOVER_V4.length + 1).toUpperCase();
+};
+
 export type ProductConfiguration = {
   name: string;
   values: string[] | Campus[];
@@ -130,6 +137,37 @@ export const useGetCatalog = () => {
         );
         if (index !== -1 && plan?.details?.product?.configurations?.[index]) {
           plan.details.product.configurations[index].values = campusList;
+        }
+
+        // On some subsidiaries (e.g. US) the catalog does not expose an ipRir
+        // configuration. In that case we derive the available RIRs from the
+        // campus plan codes so the RIR selection step is still usable.
+        const ipRirIndex = plan.details.product.configurations.findIndex(
+          ({ name }) => name === CONFIG_NAME.IPRIR,
+        );
+        const derivedIpRirValues = Array.from(
+          new Set(
+            campusList
+              .map(({ planCode }) => getRirFromPlanCode(planCode))
+              .filter(Boolean),
+          ),
+        );
+
+        if (ipRirIndex === -1) {
+          if (derivedIpRirValues.length > 0) {
+            plan.details.product.configurations.push({
+              name: CONFIG_NAME.IPRIR,
+              values: derivedIpRirValues,
+            });
+          }
+        } else {
+          const existingValues =
+            (plan.details.product.configurations[ipRirIndex]
+              .values as string[]) || [];
+          if (existingValues.length === 0) {
+            plan.details.product.configurations[ipRirIndex].values =
+              derivedIpRirValues;
+          }
         }
       }
 

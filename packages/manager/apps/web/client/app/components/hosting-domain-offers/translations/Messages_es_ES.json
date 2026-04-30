@@ -30,5 +30,22 @@
   "web_components_hosting_domain_offers_offer_badge_current": "Producto actual",
   "web_components_hosting_domain_offers_offer_select_version_placeholder": "Elegir una versión",
   "web_components_hosting_domain_offers_offer_select_version_performance": "{{coreNumber}} vCores, {{ramSize}} RAM",
-  "web_components_hosting_domain_offers_offer_price": "{{priceValue}}/mes + IVA"
+  "web_components_hosting_domain_offers_offer_price": "{{priceValue}}/mes + IVA",
+  "web_components_hosting_domain_offers_offer_agency": "Agencia",
+  "web_components_hosting_domain_offers_offer_agency_plus": "Agencia más",
+  "web_components_hosting_domain_offers_offer_agency_max": "Agencia máxima",
+  "web_components_hosting_domain_offers_sites": "{{value1}} Sitios",
+  "web_components_hosting_domain_offers_disk": "{{value1}}",
+  "web_components_hosting_domain_offers_emailStorage": "{{value1}} correos {{value2}}",
+  "web_components_hosting_domain_offers_cms": "CMS 1clic",
+  "web_components_hosting_domain_offers_nddFree": "{{value1}} ndd gratis",
+  "web_components_hosting_domain_offers_vcores": "{{value1}} vCore",
+  "web_components_hosting_domain_offers_ram": "{{value1}} de RAM",
+  "web_components_hosting_domain_offers_backupIncluded": "Backup incluido",
+  "web_components_hosting_domain_offers_uptime": "Uptime {{value1}}",
+  "web_components_hosting_domain_offers_dbs": "{{value1}} db {{value2}}",
+  "web_components_hosting_domain_offers_webcloudDb": "WebCloud DB",
+  "web_components_hosting_domain_offers_cdn": "CDN",
+  "web_components_hosting_domain_offers_git": "GIT",
+  "web_components_hosting_domain_offers_userManagement": "Gestión de usuario"
 }

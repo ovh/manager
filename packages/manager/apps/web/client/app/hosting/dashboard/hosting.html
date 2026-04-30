@@ -180,6 +180,20 @@
         data-ovh-alert-hide-remove-button
         class="mt-4"
     ></div>
+    <oui-message
+        data-type="info"
+        data-ng-if="$ctrl.isChangeOfferFeatureAvailable"
+        class="mb-3"
+    >
+        <span data-translate="hosting_change_offer_banner"></span>
+        <a
+            data-ng-href="{{ $ctrl.user.ovhSubsidiary === 'FR' ? 'https://blog.ovhcloud.com/fr-webhosting-2026' : 'https://blog.ovhcloud.com/en-webhosting-2026' }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-translate="hosting_change_offer_banner_link"
+        ></a>
+    </oui-message>
+
     <oui-header-tabs>
         <oui-header-tabs-item
             href="{{ $ctrl.generalInformationLink }}"

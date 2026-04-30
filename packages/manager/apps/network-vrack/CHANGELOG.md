@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-vrack-app@0.1.0...@ovh-ux/manager-network-vrack-app@0.1.1) (2026-04-22)
+
+
+### Bug Fixes
+
+* **network-vrack:** fixing the crash of the vrack bandwidth page when any ip's region is null ([b4606fe](https://github.com/ovh/manager/commit/b4606feae4cfead5eed48b8dc98525fd2bb4d11c)), closes [#MANAGER-21445](https://github.com/ovh/manager/issues/MANAGER-21445)
+
+
+
+
+
 # [0.1.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-network-vrack-app@0.0.0...@ovh-ux/manager-network-vrack-app@0.1.0) (2026-03-11)
 
 

@@ -4,8 +4,9 @@ import {
   OdsMessage,
   OdsText,
 } from '@ovhcloud/ods-components/react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { Block } from '../SimpleTile/SimpleTile';
 import LegalLinks from '../LegalLinks/LegalLinks';
 import { DeploymentMode } from '@/utils/savingsPlan';
@@ -57,6 +58,8 @@ const CreatePlanConfirmModal = ({
 }: CreatePlanConfirmModalProps) => {
   const { t } = useTranslation('create');
   const formatDate = useFormatDate();
+  const isUsRegion =
+    useContext(ShellContext).environment?.getRegion?.() === 'US';
   const [isLegalChecked, setIsLegalChecked] = useState(false);
 
   const onPrimaryButtonClick = () => {
@@ -121,7 +124,10 @@ const CreatePlanConfirmModal = ({
         </div>
         <BoldLabelText
           label={t(`modal_summary_label_start_date`)}
-          value={formatDate({ date: savingsPlanInfo.startDate })}
+          value={formatDate({
+            date: savingsPlanInfo.startDate,
+            ...(isUsRegion && { format: 'MM-dd-yyyy' }),
+          })}
         />
         <hr />
         <div className="flex flex-row justify-between">
@@ -129,6 +135,9 @@ const CreatePlanConfirmModal = ({
           <div>
             <OriginalPrice price={`~ ${monthlyPriceWithoutDiscount}`} />
             <PromotionPrice price={monthlyPrice} />
+            <OdsText>
+              &nbsp;{isUsRegion ? '/month' : t('commitment_price_month')}
+            </OdsText>
           </div>
         </div>
 

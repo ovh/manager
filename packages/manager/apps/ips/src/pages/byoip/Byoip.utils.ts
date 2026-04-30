@@ -47,9 +47,12 @@ export type ConfigItem = {
 /**
  * Returns the express order settings
  */
-export const getByoipProductSettings = (config: ConfigItem[]) =>
+export const getByoipProductSettings = (
+  config: ConfigItem[],
+  planCode: string = BYOIP_FAILOVER_V4,
+) =>
   JSURL.stringify({
-    planCode: BYOIP_FAILOVER_V4,
+    planCode,
     configuration: [...config].filter(Boolean),
     option: [],
     quantity: 1,

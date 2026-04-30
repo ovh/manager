@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.5...@ovh-ux/manager-pci-object-storage-app@0.37.6) (2026-04-27)
+
+
+### Bug Fixes
+
+* **pci.object-storage:** region are not filter by type of offer ([f46d5e0](https://github.com/ovh/manager/commit/f46d5e0f7e77aa542cb4dc02f93305046552236b)), closes [#DATATR-3151](https://github.com/ovh/manager/issues/DATATR-3151)
+
+
+
+
+
+## [0.37.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.4...@ovh-ux/manager-pci-object-storage-app@0.37.5) (2026-04-21)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4725] ([98f8a70](https://github.com/ovh/manager/commit/98f8a70a33f4f2950611e043d4e59115dbb8678c))
+* **i18n:** add missing translations [CDS 4735] ([a847603](https://github.com/ovh/manager/commit/a847603f0c7b48e61c4363a0de39c0b0d8f2b8f9))
+
+
+
+
+
+## [0.37.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.3...@ovh-ux/manager-pci-object-storage-app@0.37.4) (2026-04-17)
+
+
+### Bug Fixes
+
+* **os:** upload field ([acffc0f](https://github.com/ovh/manager/commit/acffc0feec5571e7b7ec1655200128e21cec6b4c))
+
+
+
+
+
 ## [0.37.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-object-storage-app@0.37.2...@ovh-ux/manager-pci-object-storage-app@0.37.3) (2026-03-26)
 
 

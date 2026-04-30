@@ -13,6 +13,12 @@ export const CATEGORIES_MAP = {
   'hosting-performance-2': 'PERFORMANCE',
   'hosting-performance-3': 'PERFORMANCE',
   'hosting-performance-4': 'PERFORMANCE',
+  'hosting-free-100M': 'FREE_100M',
+  'hosting-starter': 'STARTER',
+  'hosting-startup': 'STARTUP',
+  'hosting-agency': 'AGENCY',
+  'hosting-agency-plus': 'AGENCY_PLUS',
+  'hosting-agency-max': 'AGENCY_MAX',
 };
 
 export const CLOUDWEB_OFFER = ['cloudweb1', 'cloudweb2', 'cloudweb3'];
@@ -30,6 +36,12 @@ export const VERSION_MAP = {
   'hosting-performance-2': 'PERFORMANCE_2',
   'hosting-performance-3': 'PERFORMANCE_3',
   'hosting-performance-4': 'PERFORMANCE_4',
+  'hosting-free-100M': 'FREE_100M',
+  'hosting-starter': 'STARTER',
+  'hosting-startup': 'STARTUP',
+  'hosting-agency': 'AGENCY',
+  'hosting-agency-plus': 'AGENCY_PLUS',
+  'hosting-agency-max': 'AGENCY_MAX',
 };
 
 export const BADGES = {
@@ -45,6 +57,18 @@ export const NEW_OFFERS_PLAN_CODES = {
   PERFORMANCE_2: 'hosting-performance-2',
   PERFORMANCE_3: 'hosting-performance-3',
   PERFORMANCE_4: 'hosting-performance-4',
+};
+
+export const OFFERS_PLAN_CODES = {
+  FREE_100M: 'hosting-free-100M',
+  STARTER: 'hosting-starter',
+  PERSO: 'hosting-perso',
+  STARTUP: 'hosting-startup',
+  PRO: 'hosting-pro',
+  PERFORMANCE_1: 'hosting-performance-1',
+  AGENCY: 'hosting-agency',
+  AGENCY_PLUS: 'hosting-agency-plus',
+  AGENCY_MAX: 'hosting-agency-max',
 };
 
 export const WEB_CLOUD_DB_VALUES = '512MB RAM - 8GB';

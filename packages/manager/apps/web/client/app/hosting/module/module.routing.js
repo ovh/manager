@@ -7,6 +7,14 @@ export default /* @ngInject */ ($stateProvider) => {
     controllerAs: 'ctrlHostingTabModules',
     template,
     resolve: {
+      isChangeOfferFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:change-offer')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-hosting:change-offer',
+            );
+          }),
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('hosting_module'),
     },

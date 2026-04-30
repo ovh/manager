@@ -129,7 +129,6 @@ const AddUserS3Modal = () => {
                         <ComboboxGroup>
                           {users.map((user, i) => (
                             <ComboboxItem
-                              disabled={i === 2}
                               key={user.id}
                               value={`${user.id}`}
                               keywords={[user.username, user.description]}

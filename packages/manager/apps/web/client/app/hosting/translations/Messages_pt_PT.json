@@ -19,5 +19,14 @@
   "hosting_databgrid_column_state": "Estado",
   "hosting_databgrid_column_resource_type": "Tipo de recurso",
   "hosting_databgrid_column_datacenter": "Localização",
-  "hosting_databgrid_column_service_name": "Nome do serviço"
+  "hosting_databgrid_column_service_name": "Nome do serviço",
+  "hosting-free-100M": "Alojamento gratuito",
+  "hosting-starter": "STARTER",
+  "hosting-perso": "PERSO",
+  "hosting-startup": "STARTUP",
+  "hosting-pro": "PRO",
+  "hosting-performance-1": "PERFORMANCE",
+  "hosting-agency": "AGÊNCIA",
+  "hosting-agency-plus": "AGÊNCIA PLUS",
+  "hosting-agency-max": "AGÊNCIA MAX"
 }

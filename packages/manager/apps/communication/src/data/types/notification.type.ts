@@ -30,3 +30,10 @@ export type Contact = {
   to: string;
   type: ContactType;
 };
+
+export interface NotificationAttachmentDetail {
+  name: string;
+  contentType: string;
+  sizeBytes: number;
+  url: string;
+}

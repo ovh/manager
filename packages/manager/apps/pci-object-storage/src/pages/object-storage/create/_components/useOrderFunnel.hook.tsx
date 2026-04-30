@@ -84,7 +84,9 @@ export function useOrderFunnel({
   const currentRegion = regions.find((r) => r.name === region);
 
   const availableRegions: Region[] = useAvailableRegions({
-    regions,
+    regions: regions.filter((r) =>
+      r.services.some((service) => service.name === offer),
+    ),
     availabilities,
     options: {
       filterDisabledRegions: offer === ObjectContainerOffers['s3-standard'],
