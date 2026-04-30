@@ -16,6 +16,7 @@ import {
   isRetypeModel,
   TVolumeRetypeModel,
 } from '@/api/hooks/useCatalogWithPreselection';
+import { VOLUME_MIN_SIZE } from '@/constants';
 
 export type TModelName = Readonly<{
   name: Opaque<string, TModelName>;
@@ -79,8 +80,10 @@ export type TModelPrice = {
     isLeastPrice: boolean;
   };
   iops: string;
+  iopsBaseRange?: string;
   areIOPSDynamic: boolean;
   bandwidth: string | null;
+  bandwidthBaseRange?: string;
   isBandwidthDynamic: boolean;
   encrypted: boolean;
   capacity: {
@@ -100,31 +103,63 @@ export const getPricingSpecsFromModelPricings = (
 ): TModelPrice => {
   const pricing = pricings[0];
 
-  let iops = `${Math.min(
-    (capacity ?? 1) * pricing.specs.volume.iops.level,
-    pricing.specs.volume.iops.max,
-  )} IOPS`;
+  const iopsSpec = pricing.specs.volume.iops;
+  const iopsMin =
+    typeof iopsSpec.min === 'number' && iopsSpec.min > 0 ? iopsSpec.min : null;
+
+  const iopsRaw = Math.min((capacity ?? 1) * iopsSpec.level, iopsSpec.max);
+  // Floor only when computing an absolute value for a known capacity. The
+  // per-GB initial display (capacity undefined) must keep the raw level.
+  const iopsValue =
+    capacity !== undefined && iopsMin !== null
+      ? Math.max(iopsMin, iopsRaw)
+      : iopsRaw;
+
+  let iops = `${iopsValue} IOPS`;
   if (pricing.areIOPSDynamic && capacity === undefined) {
     iops += [
       `/${t(`${NAMESPACES.BYTES}:unit_size_GB`)}`,
       `${t('common:pci_projects_project_storages_blocks_up_to')} ${
-        pricing.specs.volume.iops.max
+        iopsSpec.max
       } IOPS`,
     ].join(', ');
-  } else if (pricing.specs.volume.iops.guaranteed) {
+  } else if (iopsSpec.guaranteed) {
     iops += ` ${t('common:pci_projects_project_storages_blocks_guaranteed')}`;
-  } else if (!pricing.areIOPSDynamic && !pricing.specs.volume.iops.guaranteed) {
+  } else if (!pricing.areIOPSDynamic && !iopsSpec.guaranteed) {
     iops = `${t('common:pci_projects_project_storages_blocks_up_to')} ${iops}`;
   }
 
+  const iopsBaseRange =
+    iopsMin !== null
+      ? t('common:pci_projects_project_storages_blocks_iops_base_range', {
+          min: iopsMin,
+          minSize: VOLUME_MIN_SIZE,
+          maxSize: Math.ceil(iopsMin / iopsSpec.level),
+          sizeUnit: t(`${NAMESPACES.BYTES}:unit_size_GB`),
+        })
+      : undefined;
+
   let bandwidth: TModelPrice['bandwidth'] = null;
+  let bandwidthBaseRange: string | undefined;
 
   if (pricing.specs.bandwidth) {
+    const bandwidthSpec = pricing.specs.bandwidth;
+    const bandwidthMin =
+      typeof bandwidthSpec.min === 'number' && bandwidthSpec.min > 0
+        ? bandwidthSpec.min
+        : null;
+
+    const bandwidthRaw = Math.min(
+      (capacity ?? 1) * bandwidthSpec.level,
+      bandwidthSpec.max,
+    );
+    // Same rule as IOPS: floor only when capacity is provided.
+    const bandwidthValue =
+      capacity !== undefined && bandwidthMin !== null
+        ? Math.max(bandwidthMin, bandwidthRaw)
+        : bandwidthRaw;
     const level = formatSecondUnit(
-      `${Math.min(
-        (capacity ?? 1) * pricing.specs.bandwidth.level,
-        pricing.specs.bandwidth.max,
-      )} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
+      `${bandwidthValue} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
     );
 
     if (pricing.isBandwidthDynamic) {
@@ -132,9 +167,7 @@ export const getPricingSpecsFromModelPricings = (
         bandwidth = level;
       } else {
         const max = formatSecondUnit(
-          `${pricing.specs.bandwidth.max} ${t(
-            `${NAMESPACES.BYTES}:unit_size_MB`,
-          )}`,
+          `${bandwidthSpec.max} ${t(`${NAMESPACES.BYTES}:unit_size_MB`)}`,
         );
 
         bandwidth = [
@@ -142,10 +175,23 @@ export const getPricingSpecsFromModelPricings = (
           `${t('common:pci_projects_project_storages_blocks_up_to')} ${max}`,
         ].join(', ');
       }
-    } else if (pricing.specs.bandwidth?.guaranteed) {
+    } else if (bandwidthSpec.guaranteed) {
       bandwidth = `${level} ${t(
         'common:pci_projects_project_storages_blocks_guaranteed',
       )}`;
+    }
+
+    if (bandwidthMin !== null) {
+      bandwidthBaseRange = t(
+        'common:pci_projects_project_storages_blocks_bandwidth_base_range',
+        {
+          min: bandwidthMin,
+          unit: formatSecondUnit(t(`${NAMESPACES.BYTES}:unit_size_MB`)),
+          minSize: VOLUME_MIN_SIZE,
+          maxSize: Math.ceil(bandwidthMin / bandwidthSpec.level),
+          sizeUnit: t(`${NAMESPACES.BYTES}:unit_size_GB`),
+        },
+      );
     }
   }
 
@@ -167,8 +213,10 @@ export const getPricingSpecsFromModelPricings = (
       }).trim(),
     },
     iops,
+    iopsBaseRange,
     areIOPSDynamic: pricing.areIOPSDynamic,
     bandwidth,
+    bandwidthBaseRange,
     isBandwidthDynamic: pricing.isBandwidthDynamic,
     encrypted: pricings.some((p) => p.specs.encrypted),
     capacity: {
