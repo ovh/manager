@@ -3,6 +3,7 @@ import { TFunction } from 'i18next';
 import { TVolumeAddon, TVolumeCatalog } from '@/api/data/catalog';
 import { TRegion } from '@/api/data/regions';
 import {
+  getPricingSpecsFromModelPricings,
   is3az,
   mapRetypingVolumeCatalog,
   mapVolumeCatalog,
@@ -169,6 +170,138 @@ describe('select catalog', () => {
           shouldUseMultiAttachFileSystem: true,
         }),
       );
+    });
+  });
+
+  describe('getPricingSpecsFromModelPricings', () => {
+    const catalogPriceFormatter = (price: number) => `price: ${price}`;
+    const translator = ((keyValue: string) => keyValue) as TFunction;
+
+    const gen2Pricings = ([
+      {
+        price: 10,
+        regions: [region.name],
+        areIOPSDynamic: true,
+        isBandwidthDynamic: true,
+        specs: {
+          name: 'high-speed-gen2-spec',
+          volume: {
+            iops: {
+              level: 100,
+              max: 50000,
+              guaranteed: false,
+              min: 3000,
+            },
+            capacity: { max: 4000 },
+          },
+          bandwidth: {
+            level: 1,
+            max: 1000,
+            guaranteed: false,
+            min: 50,
+          },
+        },
+      },
+    ] as unknown) as TVolumeAddon['pricings'];
+
+    it('exposes iops and bandwidth base range strings when min is set', () => {
+      const result = getPricingSpecsFromModelPricings(
+        gen2Pricings,
+        catalogPriceFormatter,
+        translator,
+        10,
+      );
+
+      expect(result.iopsBaseRange).toBe(
+        'common:pci_projects_project_storages_blocks_iops_base_range',
+      );
+      expect(result.bandwidthBaseRange).toBe(
+        'common:pci_projects_project_storages_blocks_bandwidth_base_range',
+      );
+    });
+
+    it('does not expose base range strings when min is missing', () => {
+      const result = getPricingSpecsFromModelPricings(
+        createClassicModel().pricings,
+        catalogPriceFormatter,
+        translator,
+        10,
+      );
+
+      expect(result.iopsBaseRange).toBeUndefined();
+      expect(result.bandwidthBaseRange).toBeUndefined();
+    });
+
+    describe('conditional floor', () => {
+      it('floors iops at min when capacity * level falls below min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          10, // 10 * 100 = 1000 < min(3000) → floored
+        );
+
+        expect(result.iops).toContain('3000 IOPS');
+        expect(result.iops).not.toContain('1000 IOPS');
+      });
+
+      it('keeps the raw iops value when capacity * level exceeds min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          100, // 100 * 100 = 10000 > min(3000) → kept
+        );
+
+        expect(result.iops).toContain('10000 IOPS');
+      });
+
+      it('does NOT floor the per-GB iops display when capacity is undefined', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          // capacity omitted on purpose
+        );
+
+        // Should be "100 IOPS/<gb-unit>, <up_to> 50000 IOPS" — never the floor.
+        expect(result.iops).toContain('100 IOPS');
+        expect(result.iops).not.toContain('3000 IOPS');
+      });
+
+      it('floors bandwidth at min when capacity * level falls below min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          10, // 10 * 1 = 10 < min(50) → floored
+        );
+
+        expect(result.bandwidth).toContain('50');
+      });
+
+      it('keeps the raw bandwidth value when capacity * level exceeds min', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+          200, // 200 * 1 = 200 > min(50) → kept
+        );
+
+        expect(result.bandwidth).toContain('200');
+      });
+
+      it('does NOT floor the per-GB bandwidth display when capacity is undefined', () => {
+        const result = getPricingSpecsFromModelPricings(
+          gen2Pricings,
+          catalogPriceFormatter,
+          translator,
+        );
+
+        // Per-GB level is 1 MB/s/GB; floor (50) must NOT replace it.
+        expect(result.bandwidth).toContain('1');
+        expect(result.bandwidth).not.toContain('50 ');
+      });
     });
   });
 
