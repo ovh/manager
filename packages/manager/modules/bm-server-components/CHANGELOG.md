@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.23.2...@ovh-ux/manager-bm-server-components@2.23.3) (2026-04-30)
+
+
+### Bug Fixes
+
+* **bm-server-components:** preserve all boolean inputs in OS install customizations ([8271996](https://github.com/ovh/manager/commit/8271996b90521860a099aff59dea7862ef716f3d)), closes [#PUBM-52327](https://github.com/ovh/manager/issues/PUBM-52327)
+
+
+
+
+
 ## [2.23.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.23.1...@ovh-ux/manager-bm-server-components@2.23.2) (2026-04-22)
 
 
