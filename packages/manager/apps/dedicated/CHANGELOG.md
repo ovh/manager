@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.77.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.7...@ovh-ux/manager-dedicated@20.77.8) (2026-04-30)
+
+
+### Bug Fixes
+
+* **dedicated.download:** open pdf in new tab to prevent cross origin error ([6c34eec](https://github.com/ovh/manager/commit/6c34eecf32296c97e854bc1078e8dbebd0b74523)), closes [#MANAGER-12345](https://github.com/ovh/manager/issues/MANAGER-12345)
+
+
+
+
+
 ## [20.77.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.6...@ovh-ux/manager-dedicated@20.77.7) (2026-04-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
