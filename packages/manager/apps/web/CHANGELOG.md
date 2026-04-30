@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.39.0...@ovh-ux/manager-web@19.39.1) (2026-04-30)
+
+
+### Bug Fixes
+
+* **web-hosting:** fix display name offer for startup on upgrade ([9a18c5a](https://github.com/ovh/manager/commit/9a18c5ac442b23341249066c690e250e2f5f41f6)), closes [#PUWEBPT-289](https://github.com/ovh/manager/issues/PUWEBPT-289)
+
+
+
+
+
 # [19.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.38.3...@ovh-ux/manager-web@19.39.0) (2026-04-29)
 
 
