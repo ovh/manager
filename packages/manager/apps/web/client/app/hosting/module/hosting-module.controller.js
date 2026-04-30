@@ -48,7 +48,7 @@ angular.module('App').controller(
           this.serviceState = hosting.serviceState;
           this.offerName = this.isChangeOfferFeatureAvailable
             ? OFFERS_NAME[hosting.offer]
-            : `hosting_dashboard_service_offer_${  hosting.offer}`;
+            : `hosting_dashboard_service_offer_${hosting.offer}`;
         })
         .catch((err) => {
           this.Alerter.alertFromSWS(
