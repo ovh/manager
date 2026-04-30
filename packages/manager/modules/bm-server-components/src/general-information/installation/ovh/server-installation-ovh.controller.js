@@ -2156,7 +2156,7 @@ export default class ServerInstallationOvhCtrl {
   getCustomizations() {
     const customizations = {};
     Object.values(this.$scope.installation.inputs).forEach((input) => {
-      if (input.name === 'enableLacpBonding') {
+      if (input.type === 'boolean') {
         customizations[input.name] = !!this.$scope.installation.input[
           input.name
         ];
