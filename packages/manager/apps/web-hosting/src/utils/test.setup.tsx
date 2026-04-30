@@ -473,3 +473,10 @@ vi.mock('@/data/hooks/videoCenter/useVideoCenter', async (importActual) => {
     })),
   };
 });
+
+if (typeof window.CSS === 'undefined') {
+  Object.defineProperty(window, 'CSS', { value: {}, writable: true, configurable: true });
+}
+if (typeof window.CSS.supports !== 'function') {
+  window.CSS.supports = () => false;
+}

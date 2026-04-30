@@ -54,7 +54,7 @@ export default function ImportForm() {
       adminURL: '',
     },
     mode: 'onTouched',
-    resolver: zodResolver(zForm(t).ADD_SITE_FORM_SCHEMA),
+    resolver: zodResolver(zForm(t).IMPORT_SITE_FORM_SCHEMA),
   });
 
   const { data, refetch } = useManagedWordpressWebsiteDetails(serviceName, websiteId);
