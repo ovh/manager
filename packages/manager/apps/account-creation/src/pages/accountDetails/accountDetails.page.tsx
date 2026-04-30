@@ -822,7 +822,6 @@ function AccountDetailsForm({
                     name="vat"
                     id={name}
                     value={value}
-                    isReadonly={Boolean(companyDetails?.vatID)}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}

@@ -44,6 +44,7 @@ import { urls } from '@/routes/routes.constant';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 import { CompanySuggestionErrorClass } from '@/types/suggestion';
+import { calculateFRVATNumber } from './Company.helpers';
 
 type SearchFormData = {
   search: string;
@@ -176,6 +177,12 @@ export default function CompanyPage() {
           `${ovhSubsidiary}_${language}_${legalForm}`,
         ],
       });
+    }
+    if (legalForm === 'corporation' && company.vatID === '') {
+      const vatNumber = calculateFRVATNumber(company.primaryCNIN);
+      if (vatNumber !== null) {
+        company.vatID = vatNumber;
+      }
     }
     setCompany(company);
     navigate(`${urls.accountDetails}?${searchParams.toString()}`);

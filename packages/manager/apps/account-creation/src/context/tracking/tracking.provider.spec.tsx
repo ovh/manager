@@ -47,8 +47,8 @@ describe('TrackingProvider', () => {
     return {
       context: contextValue,
       ...renderResult,
-    }
-  }
+    };
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();

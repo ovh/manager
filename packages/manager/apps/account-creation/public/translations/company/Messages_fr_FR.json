@@ -24,5 +24,6 @@
   "error_invalid_format": "Le numéro SIRET doit contenir 14 chiffres.",
   "error_inactive": "Le numéro SIRET est inactif",
   "error_rate_limit_exceeded": "La recherche a été limitée",
-  "error_internal_server_error": "La recherche a échoué. Veuillez réessayer plus tard ou ajoutez votre entreprise manuellement."
+  "error_internal_server_error": "La recherche a échoué. Veuillez réessayer plus tard ou ajoutez votre entreprise manuellement.",
+  "fallback_nd_label": "Confidentiel"
 }
