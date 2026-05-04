@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.26.0...@ovh-ux/manager-pci-block-storage-app@0.27.0) (2026-05-04)
+
+
+### Features
+
+* **pci-block-storage:** add min value to iops and bandwidth for volume ([8497a15](https://github.com/ovh/manager/commit/8497a152919467d959d79b10fa6b26ca2301c3e2)), closes [#TAPC-6552](https://github.com/ovh/manager/issues/TAPC-6552) [#TAPC-6554](https://github.com/ovh/manager/issues/TAPC-6554)
+
+
+
+
+
 # [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.25.6...@ovh-ux/manager-pci-block-storage-app@0.26.0) (2026-04-13)
 
 
