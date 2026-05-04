@@ -1,8 +1,17 @@
-import { TilesInput, useBytes } from '@ovh-ux/manager-pci-common';
-import { useCallback, useMemo } from 'react';
+import {
+  ConfigCardElementProps,
+  TilesInput,
+  useBytes,
+} from '@ovh-ux/manager-pci-common';
+import {
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import { Text, TEXT_PRESET } from '@ovhcloud/ods-react';
+import { Divider, Text, TEXT_PRESET } from '@ovhcloud/ods-react';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
 import { TVolumeRetypeModel } from '@/api/hooks/useCatalogWithPreselection';
 import { sortByPreselectedModel } from '@/api/select/catalog';
@@ -34,7 +43,7 @@ export const VolumeModelTilesInput = ({
 
   const getDescription = useCallback(
     (model: TVolumeModel | TVolumeRetypeModel) => {
-      const zoneText = model.availabilityZonesCount
+      const availabilityZonesText = model.availabilityZonesCount
         ? t(
             'add:pci_projects_project_storages_blocks_add_type_availability_zone',
             { count: model.availabilityZonesCount },
@@ -49,12 +58,41 @@ export const VolumeModelTilesInput = ({
       );
 
       if (horizontal) {
-        return [zoneText, model.iops, model.bandwidth, capacityMax]
-          .filter(Boolean)
-          .join('.\n');
+        return (
+          <div>
+            {availabilityZonesText && <div>{availabilityZonesText}</div>}
+            <ul className="pl-5 mb-0 list-['✓']">
+              {model.iops && (
+                <>
+                  <li className="pl-5 marker:text-[#2b8000]">{model.iops}</li>
+                  {model.iopsBaseRange && (
+                    <Text className="pl-5" preset={TEXT_PRESET.caption}>
+                      {model.iopsBaseRange}
+                    </Text>
+                  )}
+                </>
+              )}
+              {model.bandwidth && (
+                <>
+                  <li className="pl-5 marker:text-[#2b8000]">
+                    {model.bandwidth}
+                  </li>
+                  {model.bandwidthBaseRange && (
+                    <Text className="pl-5" preset={TEXT_PRESET.caption}>
+                      {model.bandwidthBaseRange}
+                    </Text>
+                  )}
+                </>
+              )}
+              {capacityMax && (
+                <li className="pl-5 marker:text-[#2b8000]">{capacityMax}</li>
+              )}
+            </ul>
+          </div>
+        );
       }
 
-      return zoneText;
+      return availabilityZonesText;
     },
     [t, formatBytes],
   );
@@ -64,14 +102,36 @@ export const VolumeModelTilesInput = ({
       if (horizontal) return [];
 
       return [
-        m.iops,
+        <>
+          <span>{m.iops}</span>
+          {m.iopsBaseRange && (
+            <>
+              <br />
+              <Text preset={TEXT_PRESET.caption}>{m.iopsBaseRange}</Text>
+            </>
+          )}
+        </>,
         t(
           'add:pci_projects_project_storages_blocks_add_type_addon_capacity_max',
           {
             capacity: formatBytes(m.capacity.max),
           },
         ),
-        ...(m.bandwidth ? [m.bandwidth] : []),
+        ...(m.bandwidth
+          ? [
+              <>
+                <span>{m.bandwidth}</span>
+                {m.bandwidthBaseRange && (
+                  <>
+                    <br />
+                    <Text preset={TEXT_PRESET.caption}>
+                      {m.bandwidthBaseRange}
+                    </Text>
+                  </>
+                )}
+              </>,
+            ]
+          : []),
       ];
     },
     [t, formatBytes],
@@ -82,7 +142,7 @@ export const VolumeModelTilesInput = ({
       sortByPreselectedModel(volumeModels).map((model) => ({
         ...model,
         label: capitalizeFirstLetter(model.displayName),
-        description: getDescription(model),
+        description: getDescription(model) as string,
         badges: hideBadges
           ? []
           : [
@@ -97,7 +157,7 @@ export const VolumeModelTilesInput = ({
                 icon: 'lock' as const,
               },
             ],
-        features: getFeatures(model),
+        features: getFeatures(model) as string[],
         price: model.hourlyPrice,
       })),
     [volumeModels, t, getDescription, getFeatures],
@@ -121,7 +181,8 @@ export const VolumeModelTilesInput = ({
   return (
     <div
       className={clsx(
-        horizontal && 'whitespace-pre-line [&_osds-text]:leading-[130%]',
+        'whitespace-pre-line',
+        horizontal && '[&_osds-text]:leading-[130%]',
       )}
     >
       <Text preset={TEXT_PRESET.heading5} className="mt-4">

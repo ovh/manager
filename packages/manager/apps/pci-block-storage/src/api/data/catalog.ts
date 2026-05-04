@@ -1,6 +1,7 @@
 import { TAddon } from '@ovh-ux/manager-pci-common';
 import { v6 } from '@ovh-ux/manager-core-api';
 import { TRegion } from '@/api/data/regions';
+import { applyHardcodedSpecOverrides } from '@/api/data/catalog-spec-overrides';
 
 export type TCatalogGroup = {
   name: string;
@@ -19,6 +20,7 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
       level: number;
       /* in GB */
       max: number;
+      min?: number | null;
     } | null;
     volume: {
       iops: {
@@ -27,6 +29,7 @@ export type TVolumePricing = Pick<TAddon['pricings'][number], 'price'> & {
         guaranteed: boolean;
         unit: string;
         maxUnit: string;
+        min?: number | null;
       };
       capacity: {
         max: number;
@@ -62,6 +65,9 @@ export type TVolumeCatalog = {
 
 export const getVolumeCatalog = async (
   projectId: string,
-): Promise<TVolumeCatalog> =>
-  (await v6.get<TVolumeCatalog>(`/cloud/project/${projectId}/catalog/volume`))
-    .data;
+): Promise<TVolumeCatalog> => {
+  const { data } = await v6.get<TVolumeCatalog>(
+    `/cloud/project/${projectId}/catalog/volume`,
+  );
+  return applyHardcodedSpecOverrides(data);
+};
