@@ -12,6 +12,7 @@ import { OsdsButton, OsdsIcon, OsdsText } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { isSameDay, startOfMonth, isBefore } from 'date-fns';
+import { US_BILLING_HISTORY_MIN_DATE } from '@/constants';
 import { useEnvironment } from '@/hooks/useEnvironment';
 import { useComputeDate } from './useComputeDate.hook';
 
@@ -39,7 +40,12 @@ export default function HistoryHeader({
     ? isBefore(startOfMonth(prevMonthDate), new Date(projectCreationDate))
     : false;
 
-  const isPreviousMonthDisabled = isUsRegion || isPreviousMonthBeforeCreation;
+  const isPreviousMonthBeforeUsMinDate = isUsRegion
+    ? isBefore(startOfMonth(prevMonthDate), US_BILLING_HISTORY_MIN_DATE)
+    : false;
+
+  const isPreviousMonthDisabled =
+    isPreviousMonthBeforeCreation || isPreviousMonthBeforeUsMinDate;
 
   const navigate = useNavigate();
   const navigateToMonth = (date: Date) => {

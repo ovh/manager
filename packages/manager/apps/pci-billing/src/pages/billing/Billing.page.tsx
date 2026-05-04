@@ -31,7 +31,7 @@ export default function BillingPage() {
   const { ovhSubsidiary } = environment.getUser();
   const isUsRegion = environment.getRegion() === 'US';
 
-  const historyDate = isUsRegion ? new Date() : sub(new Date(), { months: 1 });
+  const historyDate = sub(new Date(), { months: 1 });
 
   const {
     hasFreeLocalZonesBanner,
