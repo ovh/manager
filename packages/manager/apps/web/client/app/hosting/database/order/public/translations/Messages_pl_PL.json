@@ -8,5 +8,10 @@
   "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "Twoje zamówienie zostało zarejestrowane. Usługa zostanie włączona za kilka minut.",
   "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Twoje  <a href=\"{{url}}\" target=\"_blank\">zamówienie</a> zostało wygenerowane. Twoja usługa zostanie włączona, kiedy ją zatwierdzisz.",
   "ovhManagerHostingDatabaseOrderPublic_error": "Wystąpił błąd podczas zamawiania bazy danych SQL: {{message}}",
-  "ovhManagerHostingDatabaseOrderPublic_description": "Możesz zamówić jedną bazę danych START SQL, dostępną w  3 rozmiarach, lub ofertę Web Cloud Databases SQL/NoSQL z gwarantowanymi zasobami, dla bardziej zaawansowanych potrzeb."
+  "ovhManagerHostingDatabaseOrderPublic_description": "Możesz zamówić jedną bazę danych START SQL, dostępną w  3 rozmiarach, lub ofertę Web Cloud Databases SQL/NoSQL z gwarantowanymi zasobami, dla bardziej zaawansowanych potrzeb.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution": "Rozwiązanie :",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Oferta :",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_price": "Cena:",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "Proporcjonalna kwota zostanie zastosowana do daty wygaśnięcia Twojego hostingu, aby oba usługi były zgodne w tym samym okresie rozliczeniowym.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "Zostaniesz przekierowany do formularza zamówienia OVHcloud, aby sfinalizować swój zakup."
 }
