@@ -48,7 +48,7 @@ module.exports = (env) => {
       proxy,
     },
     output: {
-      publicPath: isContainer ? '/app/' : '/',
+      publicPath: isContainer ? '/v6/app/' : '/v6/',
     },
   };
 };

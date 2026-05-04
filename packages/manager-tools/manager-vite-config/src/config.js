@@ -51,7 +51,7 @@ const getBaseConfig = (config) => {
   ];
 
   return {
-    base: isContainerApp || !runInContainer ? './' : '/app/',
+    base: isContainerApp || !runInContainer ? '/v6/' : '/v6/app/',
     root: resolve(process.cwd(), 'src'),
     clearScreen: false,
     publicDir: 'public',

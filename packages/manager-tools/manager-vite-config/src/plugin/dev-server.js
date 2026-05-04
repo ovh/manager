@@ -17,10 +17,10 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
       if (isContainerApp) {
         if (process.env.APP) {
           // serve application's dist locally
-          const appDistPath = path.join(process.cwd(), '../', process.env.APP, 'dist');
+          const appDistPath = path.join(process.cwd(), '../v6/', process.env.APP, 'dist');
           const appEntryPoint = path.join(appDistPath, 'index.html');
           if (!fs.existsSync(appEntryPoint)) {
-            app.all('/app', (req, res) => {
+            app.all('/v6/app', (req, res) => {
               res.status(404).send('Application not found');
             });
           } else {
@@ -29,7 +29,7 @@ export default function viteOvhDevServerPlugin({ isContainerApp, envConfig }) {
         } else {
           // proxy to application dev server
           app.use(
-            '/app',
+            '/v6/app',
             createProxyMiddleware({
               target: 'http://localhost:9001/',
               changeOrigin: true,

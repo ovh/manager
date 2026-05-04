@@ -28,8 +28,8 @@ export function setupDevApplication(shell: Shell) {
     if (!containerApp) {
       const devConfig = {
         universe: 'dedicated',
-        url: `https://manager.eu.ovhcloud.com/${devApp}/`,
-        publicURL: `https://manager.eu.ovhcloud.com/#/${devApp}/`,
+        url: `https://manager.eu.ovhcloud.com/v6/${devApp}/`,
+        publicURL: `https://manager.eu.ovhcloud.com/v6/#/${devApp}/`,
         container: {
           enabled: true,
           isDefault: true,
@@ -45,7 +45,7 @@ export function setupDevApplication(shell: Shell) {
       }
       apps[devApp] = devConfig;
       containerApp = devConfig;
-       
+
       console.error(
         `Application '${devApp}' doesn't exist in 2API configuration.`,
       );
@@ -53,7 +53,8 @@ export function setupDevApplication(shell: Shell) {
 
     containerApp.container.enabled = true;
     containerApp.container.isDefault = true;
-    containerApp.url = `${window.location.origin}/app`;
+    debugger;
+    containerApp.url = `${window.location.origin}/v6/app`;
   }
 }
 
