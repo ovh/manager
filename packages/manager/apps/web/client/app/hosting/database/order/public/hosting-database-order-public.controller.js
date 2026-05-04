@@ -11,9 +11,12 @@ import {
   ORDER_DATABASE_TRACKING,
 } from './hosting-database-order-public.constants';
 
+const UCENTS_FACTOR = 100000000;
+
 export default class HostingDatabaseOrderPublicCtrl {
   /* @ngInject */
-  constructor(atInternet) {
+  constructor($translate, atInternet) {
+    this.$translate = $translate;
     this.atInternet = atInternet;
     this.ORDER_DATABASE_TRACKING = ORDER_DATABASE_TRACKING;
   }
@@ -61,6 +64,110 @@ export default class HostingDatabaseOrderPublicCtrl {
     this.model = {
       dbCategory: {},
     };
+  }
+
+  getStarterPricingSummary() {
+    const { category, selectVersion } = this.model?.dbCategory || {};
+    if (category !== DB_OFFERS.STARTER.CATEGORY || !selectVersion) {
+      this.starterPricingSummaryCache = null;
+      return null;
+    }
+    const cacheKey = `${category}|${selectVersion.planCode ||
+      selectVersion.invoiceName}`;
+    if (this.starterPricingSummaryCache?.key === cacheKey) {
+      return this.starterPricingSummaryCache.value;
+    }
+    const PRICE_PLACEHOLDER = '__OVH_PRICE_VALUE__';
+    const priceTemplate = this.$translate.instant(
+      'web_hosting_database_order_components_db_categories_price',
+      { priceValue: PRICE_PLACEHOLDER },
+    );
+    const formattedPrice = this.getStarterPriceLabel(selectVersion);
+    const priceLine = priceTemplate.replace(PRICE_PLACEHOLDER, formattedPrice);
+
+    const value = {
+      rows: [
+        {
+          label: this.$translate.instant(
+            'ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution',
+          ),
+          value: this.$translate.instant(
+            'web_hosting_database_order_components_db_categories_offers_category_starter',
+          ),
+        },
+        {
+          label: this.$translate.instant(
+            'ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer',
+          ),
+          value: selectVersion.invoiceName,
+        },
+        {
+          label: this.$translate.instant(
+            'ovhManagerHostingDatabaseOrderPublic_pricing_summary_price',
+          ),
+          value: priceLine,
+        },
+      ],
+      notes: [
+        this.$translate.instant(
+          'ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata',
+        ),
+        this.$translate.instant(
+          'ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect',
+        ),
+      ],
+    };
+    this.starterPricingSummaryCache = { key: cacheKey, value };
+    return value;
+  }
+
+  getStarterPriceLabel(selectVersion) {
+    const pricePerMonth = selectVersion?.pricings?.find(
+      ({ interval }) => interval === 1,
+    )?.price;
+    const pricePerYear =
+      selectVersion?.pricings?.find(({ interval }) => interval === 12)?.price /
+      12;
+    const priceInUcents = pricePerMonth || pricePerYear || 0;
+    return HostingDatabaseOrderPublicCtrl.formatCurrency(
+      priceInUcents / UCENTS_FACTOR,
+      this.user,
+    );
+  }
+
+  static formatCurrency(price, user) {
+    const code = user?.currency?.code;
+    const locale = (user?.language || 'en_GB').replace('_', '-');
+    if (code) {
+      try {
+        return new Intl.NumberFormat(locale, {
+          style: 'currency',
+          currency: code,
+        }).format(price);
+      } catch (e) {
+        // fall through to fallback below
+      }
+    }
+    // Fallback: decode HTML-encoded symbol (e.g. "&#8364;") if currency
+    // code is missing for some reason.
+    const symbol = HostingDatabaseOrderPublicCtrl.decodeHtmlEntities(
+      user?.currency?.symbol || '',
+    );
+    return `${price.toFixed(2)} ${symbol}`.trim();
+  }
+
+  static decodeHtmlEntities(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&#(\d+);?/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+      .replace(/&#x([0-9a-fA-F]+);?/g, (_, hex) =>
+        String.fromCharCode(parseInt(hex, 16)),
+      )
+      .replace(/&amp;/g, '&')
+      .replace(/&euro;/g, '€')
+      .replace(/&pound;/g, '£')
+      .replace(/&dollar;/g, '$')
+      .replace(/&yen;/g, '¥');
   }
 
   getPlanCode() {
