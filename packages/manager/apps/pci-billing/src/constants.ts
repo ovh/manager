@@ -104,6 +104,11 @@ export const PCI_FEATURES_BILLING_OLD_BILLING_BANNER =
   'pci-billing:old-billing-banner';
 export const PCI_FEATURES_HIDDEN_PRODUCTS = 'pci-billing:hidden-products';
 
+// New US billing system go-live: history before this month is only available
+// via the legacy system (OldBillingBanner > "View past usage").
+// Built in local time so it aligns with date-fns' startOfMonth (also local).
+export const US_BILLING_HISTORY_MIN_DATE = new Date(2026, 3, 1);
+
 export enum ResourceType {
   REGISTRY = 'registry',
   LOADBALANCER = 'loadbalancer',
