@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.19.0...@ovh-ux/manager-pci-billing-app@0.19.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* **pci-billing:** update US display for history billing ([da1989c](https://github.com/ovh/manager/commit/da1989c35825f9b047a82a31414ddee309fe5a55)), closes [#TAPC-6576](https://github.com/ovh/manager/issues/TAPC-6576)
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.18.0...@ovh-ux/manager-pci-billing-app@0.19.0) (2026-04-30)
 
 
