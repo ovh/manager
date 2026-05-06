@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.0...@ovh-ux/manager-web@19.40.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* **web-hosting:** update offercapabilities for new offer ([c6f2f3d](https://github.com/ovh/manager/commit/c6f2f3d82ce9ce2a3ed3274711bec1a6db060d26)), closes [#PUWEBPT-333](https://github.com/ovh/manager/issues/PUWEBPT-333)
+
+
+
+
+
 # [19.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.39.1...@ovh-ux/manager-web@19.40.0) (2026-05-05)
 
 
