@@ -7,7 +7,15 @@ import { useMutation } from '@tanstack/react-query';
 import { FormProvider, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { BUTTON_VARIANT, Button, ICON_NAME, Icon, TEXT_PRESET, Text } from '@ovhcloud/ods-react';
+import {
+  BUTTON_VARIANT,
+  Button,
+  Card,
+  ICON_NAME,
+  Icon,
+  TEXT_PRESET,
+  Text,
+} from '@ovhcloud/ods-react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
@@ -20,12 +28,11 @@ import { useNotifications } from '@ovh-ux/muk';
 
 import { InlineEmailAccountFormItem, Loading } from '@/components';
 import {
-  ZimbraOffer,
   formatAccountPayload,
   getZimbraPlatformListQueryKey,
   postZimbraPlatformAccount,
 } from '@/data/api';
-import { useDomain, usePlatform } from '@/data/hooks';
+import { useDomain, usePlatform, useSlotsWithService } from '@/data/hooks';
 import queryClient from '@/queryClient';
 import { CONFIRM, ONBOARDING_CONFIGURE_EMAIL_ACCOUNTS, SKIP } from '@/tracking.constants';
 import { AddEmailAccountsSchema, addEmailAccountsSchema, allSettledSequential } from '@/utils';
@@ -49,26 +56,23 @@ export const ConfigureEmailAccounts: React.FC = () => {
     domainId,
     enabled: !!domainId,
   });
-  const { data: platform, platformId } = usePlatform();
+  const { platformId } = usePlatform();
+
+  const { slots, isLoadingSlots } = useSlotsWithService({
+    gcTime: 0,
+    used: 'false',
+    shouldFetchAll: true,
+  });
 
   const onClose = () => navigate(`/${platformId}/email_accounts`);
 
-  const availableStarterAccounts = useMemo(() => {
-    return (
-      platform?.currentState?.accountsStatistics.find(
-        (stats) => stats.offer === ZimbraOffer.STARTER,
-      )?.availableAccountsCount || 0
-    );
-  }, [platform]);
+  const totalAvailableSlots = slots.length;
 
   const methods = useForm<AddEmailAccountsSchema>({
     mode: 'onTouched',
     resolver: zodResolver(addEmailAccountsSchema),
     defaultValues: {
-      accounts: [
-        // @TODO: remove offer when backend doesn't require that anymore
-        { domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER },
-      ],
+      accounts: [{ domain: domain?.currentState?.name }],
     },
   });
 
@@ -81,14 +85,22 @@ export const ConfigureEmailAccounts: React.FC = () => {
 
   useEffect(() => {
     methods.reset({
-      accounts: [{ domain: domain?.currentState?.name, offer: ZimbraOffer.STARTER }],
+      accounts: [{ domain: domain?.currentState?.name }],
     });
   }, [domain, methods]);
 
-  const starterAccounts = useMemo(
-    () => (accounts || []).filter((account) => account.offer === ZimbraOffer.STARTER),
-    [accounts],
-  );
+  // Per-row available slots: every free slot minus those already picked by
+  // sibling rows (the current row keeps its own pick to stay selectable).
+  const availableSlotsByRow = useMemo(() => {
+    return (accounts || []).map((row) => {
+      const usedByOthers = new Set(
+        (accounts || [])
+          .filter((other) => other !== row && !!other.slotId)
+          .map((other) => other.slotId),
+      );
+      return slots.filter((slot) => !usedByOthers.has(slot.id));
+    });
+  }, [accounts, slots]);
 
   const { mutate: addEmailAccounts, isPending: isSending } = useMutation({
     mutationFn: (payload: AddEmailAccountsSchema) => {
@@ -97,6 +109,8 @@ export const ConfigureEmailAccounts: React.FC = () => {
       return allSettledSequential(
         payload.accounts.map((acc) => {
           acc.displayName = `${acc.firstName} ${acc.lastName}`.trim();
+          // each row already carries its own slotId / offer (picked in the
+          // per-row Select), so we just forward the row to formatAccountPayload.
           return () => postZimbraPlatformAccount(platformId, formatAccountPayload(acc));
         }),
       );
@@ -141,23 +155,30 @@ export const ConfigureEmailAccounts: React.FC = () => {
     onClose();
   };
 
-  if (isLoadingDomain) {
+  if (isLoadingDomain || isLoadingSlots) {
     return <Loading />;
   }
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(handleConfirmClick)} className="flex flex-col gap-4">
-        <div className="flex flex-col gap-4">
-          <Text
-            preset={TEXT_PRESET.heading5}
-          >{`Zimbra Starter (${starterAccounts.length}/${availableStarterAccounts})`}</Text>
+        <div className="flex max-w-2xl flex-col gap-4">
+          <Text preset={TEXT_PRESET.heading5}>
+            {t('configure_emailAccounts_counter', {
+              count: accounts?.length ?? 0,
+              total: totalAvailableSlots,
+            })}
+          </Text>
           {fields.map((field, index) => (
-            <InlineEmailAccountFormItem
-              key={field.id}
-              index={index}
-              onRemove={() => remove(index)}
-            />
+            <Card key={field.id} color="neutral" className="p-4">
+              <InlineEmailAccountFormItem
+                key={field.id}
+                index={index}
+                onRemove={() => remove(index)}
+                availableSlots={availableSlotsByRow[index] ?? []}
+                isLoadingSlots={isLoadingSlots}
+              />
+            </Card>
           ))}
           <Button
             id="add-starter-account"
@@ -170,24 +191,16 @@ export const ConfigureEmailAccounts: React.FC = () => {
                 // row is validated if added when
                 // there was 0 accounts
                 methods.reset({
-                  accounts: [
-                    {
-                      domain: domain?.currentState?.name,
-                      offer: ZimbraOffer.STARTER,
-                    },
-                  ],
+                  accounts: [{ domain: domain?.currentState?.name }],
                 });
               } else {
-                append({
-                  domain: domain?.currentState?.name,
-                  offer: ZimbraOffer.STARTER,
-                });
+                append({ domain: domain?.currentState?.name });
               }
             }}
             variant={BUTTON_VARIANT.ghost}
             disabled={
-              (!methods.formState.isValid && starterAccounts.length !== 0) ||
-              starterAccounts.length >= availableStarterAccounts ||
+              (!methods.formState.isValid && accounts.length !== 0) ||
+              accounts.length >= totalAvailableSlots ||
               isSending
             }
           >

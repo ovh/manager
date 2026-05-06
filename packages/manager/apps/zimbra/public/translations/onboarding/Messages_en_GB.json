@@ -26,5 +26,6 @@
   "welcome_description": "Would you like to set up your account now?",
   "configure_title": "Let’s configure your service together",
   "configure_exit": "Exit configuration",
-  "configure_success_message": "Congratulations, your service is now configured!"
+  "configure_success_message": "Congratulations, your service is now configured!",
+  "configure_emailAccounts_counter": "Email accounts ({{count}}/{{total}})"
 }
