@@ -26,5 +26,6 @@
   "welcome_description": "Deseja configurar agora a sua conta?",
   "configure_title": "Configuremos em conjunto o seu serviço",
   "configure_exit": "Sair da configuração",
-  "configure_success_message": "Parabéns, o seu serviço já está configurado!"
+  "configure_success_message": "Parabéns, o seu serviço já está configurado!",
+  "configure_emailAccounts_counter": "Contas de email ({{count}}/{{total}})"
 }
