@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.16...@ovh-ux/sign-up-app@4.7.0) (2026-05-06)
+
+
+### Features
+
+* **sign-up:** modify sign-up translations ([e95c538](https://github.com/ovh/manager/commit/e95c53863497fcc77e07df1a59a02fd154cba262)), closes [#MANAGER-21424](https://github.com/ovh/manager/issues/MANAGER-21424)
+
+
+
+
+
 ## [4.6.16](https://github.com/ovh/manager/compare/@ovh-ux/sign-up-app@4.6.15...@ovh-ux/sign-up-app@4.6.16) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/sign-up-app
