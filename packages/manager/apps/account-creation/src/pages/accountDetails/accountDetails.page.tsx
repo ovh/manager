@@ -85,6 +85,7 @@ import {
 } from '@/components/formSkeleton';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
+import VatSelect from './vatSelect/VatSelect.component';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -160,7 +161,7 @@ function AccountDetailsForm({
       organisation: companyDetails?.name,
       companyNationalIdentificationNumber: companyDetails?.secondaryCNIN,
       nationalIdentificationNumber: companyDetails?.primaryCNIN,
-      vat: companyDetails?.vatID,
+      vat: companyDetails?.vatID || currentUser.vat,
       address: companyDetails?.address || currentUser.address || '',
       zip: companyDetails?.zipCode || currentUser.zip || '',
       city: companyDetails?.city || currentUser.city || '',
@@ -779,21 +780,35 @@ function AccountDetailsForm({
                       {rules?.vat?.mandatory && ' *'}
                     </OdsText>
                   </label>
-                  <OdsInput
-                    name="vat"
-                    id={name}
-                    value={value}
-                    hasError={!!errors[name]}
-                    onOdsChange={onChange}
-                    onOdsBlur={onBlur}
-                  />
-                  {errors.vat && rules?.vat && (
-                    <OdsText
-                      className="text-critical leading-[0.8]"
-                      preset="caption"
-                    >
-                      {renderTranslatedZodError(errors.vat.message, rules?.vat)}
-                    </OdsText>
+
+                  {country === 'FR' && value ? (
+                    <VatSelect
+                      vatId={value}
+                      value={value}
+                      onValueChange={onChange}
+                    />
+                  ) : (
+                    <>
+                      <OdsInput
+                        name="vat"
+                        id={name}
+                        value={value}
+                        hasError={!!errors[name]}
+                        onOdsChange={onChange}
+                        onOdsBlur={onBlur}
+                      />
+                      {errors.vat && rules?.vat && (
+                        <OdsText
+                          className="text-critical leading-[0.8]"
+                          preset="caption"
+                        >
+                          {renderTranslatedZodError(
+                            errors.vat.message,
+                            rules?.vat,
+                          )}
+                        </OdsText>
+                      )}
+                    </>
                   )}
                 </OdsFormField>
               )}

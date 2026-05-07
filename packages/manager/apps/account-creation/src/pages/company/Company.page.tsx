@@ -178,7 +178,7 @@ export default function CompanyPage() {
         ],
       });
     }
-    if (legalForm === 'corporation' && company.vatID === '') {
+    if (legalForm === 'corporation' && !company.vatID) {
       const vatNumber = calculateFRVATNumber(company.primaryCNIN);
       if (vatNumber !== null) {
         company.vatID = vatNumber;
