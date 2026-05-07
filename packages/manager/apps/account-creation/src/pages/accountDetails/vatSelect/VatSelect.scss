@@ -1,0 +1,31 @@
+.config-tile {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--ods-theme-row-gap) * 2) calc(var(--ods-theme-column-gap) * 2);
+  padding: calc(var(--ods-theme-padding-vertical) * 2)
+    calc(var(--ods-theme-padding-vertical) * 2);
+  width: 100%;
+  container-type: inline-size;
+
+  &__info {
+    display: flex;
+    flex-flow: column;
+    row-gap: var(--ods-theme-row-gap);
+    width: 100%;
+
+    &__radio {
+      display: flex;
+      column-gap: var(--ods-theme-column-gap);
+      align-items: center;
+    }
+
+    &__description {
+      display: inline-flex;
+      margin-left: 24px;
+      flex-flow: row;
+      flex-wrap: wrap;
+      gap: var(--ods-theme-row-gap) var(--ods-theme-column-gap);
+    }
+  }
+}
