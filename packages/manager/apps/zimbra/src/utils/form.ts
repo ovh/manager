@@ -146,10 +146,11 @@ export const addEmailAccountsSchema = z
   .object({
     accounts: z
       .array(
-        // in this schema first and last names are required
+        // in this schema first/last names AND slotId are required
         baseEmailAccountSchema
           .merge(withPassword)
           .merge(withOffer)
+          .merge(withSlotId)
           .merge(
             z.object({
               firstName: requiredString,
@@ -162,11 +163,13 @@ export const addEmailAccountsSchema = z
   .superRefine((data, ctx) => {
     const emails = data.accounts.map((item) => `${item.account}@${item.domain}`);
     const uniqueEmails = new Set(emails);
-
     if (emails.length !== uniqueEmails.size) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-      });
+      ctx.addIssue({ code: z.ZodIssueCode.custom });
+    }
+    // each account must bind to a distinct slot
+    const slotIds = data.accounts.map((item) => item.slotId);
+    if (new Set(slotIds).size !== slotIds.length) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom });
     }
   });
 
