@@ -26,7 +26,7 @@ export default class WebComponentsHostingDomainOffersController {
         TECHNICALS: [
           { prefix: 'sites', values: [1] },
           { prefix: 'disk', values: ['100 Mo SSD'] },
-          { prefix: 'emailStorage', values: [1, '5 Go'] },
+          { prefix: 'emailStorage', values: [1, '15 Go'] },
         ],
         SELECTORS: {
           FREE_100M: {
@@ -50,7 +50,7 @@ export default class WebComponentsHostingDomainOffersController {
       },
       PERSO: {
         TECHNICALS: [
-          { prefix: 'sites', values: [5] },
+          { prefix: 'sites', values: [15] },
           { prefix: 'nddFree', values: [1] },
           { prefix: 'emailStorage', values: [10, '5 Go'] },
           { prefix: 'disk', values: ['100 Go SSD'] },
@@ -69,7 +69,7 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'backupIncluded', values: [] },
           { prefix: 'uptime', values: ['99,9%'] },
           { prefix: 'disk', values: ['100 Go SSD'] },
-          { prefix: 'sites', values: [5] },
+          { prefix: 'sites', values: [15] },
           { prefix: 'emailStorage', values: [10, '5 Go'] },
           { prefix: 'dbs', values: [5, '1 Go'] },
           { prefix: 'nddFree', values: [1] },
@@ -105,7 +105,7 @@ export default class WebComponentsHostingDomainOffersController {
           { prefix: 'ram', values: ['4 Go'] },
           { prefix: 'backupIncluded', values: [] },
           { prefix: 'uptime', values: ['99,9%'] },
-          { prefix: 'disk', values: ['500 Go'] },
+          { prefix: 'disk', values: ['500 Go SSD'] },
           { prefix: 'sites', values: [150] },
           { prefix: 'emailStorage', values: [1000, '5 Go'] },
           { prefix: 'dbs', values: [20, '2 Go'] },
@@ -121,7 +121,7 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY: {
         TECHNICALS: [
-          { prefix: 'sites', values: [200] },
+          { prefix: 'sitesUnlimited', values: [] },
           { prefix: 'disk', values: ['500 Go SSD'] },
           { prefix: 'ram', values: ['8 Go'] },
           { prefix: 'vcores', values: [6] },
@@ -142,7 +142,7 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY_PLUS: {
         TECHNICALS: [
-          { prefix: 'sites', values: [500] },
+          { prefix: 'sitesUnlimited', values: [] },
           { prefix: 'disk', values: ['700 Go SSD'] },
           { prefix: 'ram', values: ['12 Go'] },
           { prefix: 'vcores', values: [10] },
@@ -163,7 +163,7 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY_MAX: {
         TECHNICALS: [
-          { prefix: 'sites', values: [3000] },
+          { prefix: 'sitesUnlimited', values: [] },
           { prefix: 'disk', values: ['1 To SSD'] },
           { prefix: 'ram', values: ['16 Go'] },
           { prefix: 'vcores', values: [14] },
