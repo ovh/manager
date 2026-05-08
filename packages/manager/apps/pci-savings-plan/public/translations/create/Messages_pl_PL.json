@@ -43,7 +43,7 @@
   "quantity_label_instance": "Liczba instancji",
   "quantity_label_rancher": "Liczba vCPU",
   "choose_deployment": "Wybierz tryb wdrożenia",
-  "choose_deployment_badge_new": "Nowy",
+  "choose_deployment_badge_new": "Nowość",
   "choose_deployment_description": "Wybierz optymalną konfigurację, aby zapewnić dostępność, odporność i odpowiedni czas odpowiedzi w zależności od zastosowań.",
   "region": "Region",
   "deployment_one_az": "Wdrożenia zapewniające odporność infrastruktury i efektywność kosztową w 1 strefie dostępności.",
