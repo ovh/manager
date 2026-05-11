@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.36.1...@ovh-ux/manager-billing-components@4.36.2) (2026-05-11)
+
+
+### Bug Fixes
+
+* **billing-components:** handle missing autorenewLink for US region resiliate link ([c050da8](https://github.com/ovh/manager/commit/c050da834bd9d25908e4d662949d75380acea2e3)), closes [#MANAGER-21566](https://github.com/ovh/manager/issues/MANAGER-21566)
+
+
+
+
+
 ## [4.36.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.36.0...@ovh-ux/manager-billing-components@4.36.1) (2026-04-21)
 
 
