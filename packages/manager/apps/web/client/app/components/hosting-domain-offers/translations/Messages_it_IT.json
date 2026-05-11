@@ -48,5 +48,6 @@
   "web_components_hosting_domain_offers_webcloudDb": "WebCloud DB",
   "web_components_hosting_domain_offers_cdn": "CDN",
   "web_components_hosting_domain_offers_git": "GIT",
-  "web_components_hosting_domain_offers_userManagement": "Gestione utente"
+  "web_components_hosting_domain_offers_userManagement": "Gestione utente",
+  "web_components_hosting_domain_offers_sitesUnlimited": "Siti illimitati"
 }
