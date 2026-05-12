@@ -276,8 +276,7 @@ export default function WebSidebar() {
         label: t('sidebar_web_hosting_video_center'),
         icon: getIcon('ovh-font ovh-font-play'),
         badge: t('sidebar_tag_beta'),
-        routeMatcher: new RegExp('^/video-center'),
-        href: navigation.getURL('web-hosting', '#/video-center'),
+        href: '/beta/#/web-cloud/video-center',
       });
     }
     if (features.zimbra) {
