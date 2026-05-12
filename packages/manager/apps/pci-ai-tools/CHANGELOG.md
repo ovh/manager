@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.23.3...@ovh-ux/manager-pci-ai-tools-app@1.24.0) (2026-05-12)
+
+
+### Features
+
+* **pci-ai-tools:**  Modify the front for H200 flavors ([3e7d30e](https://github.com/ovh/manager/commit/3e7d30ef1e037f7a0d88268cfc1a7ac373c3ba68)), closes [#DATATR-3032](https://github.com/ovh/manager/issues/DATATR-3032)
+
+
+
+
+
 ## [1.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-tools-app@1.23.2...@ovh-ux/manager-pci-ai-tools-app@1.23.3) (2026-04-21)
 
 
