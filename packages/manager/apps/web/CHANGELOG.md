@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.1...@ovh-ux/manager-web@19.41.0) (2026-05-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1238] ([0d46b5c](https://github.com/ovh/manager/commit/0d46b5c8e05e9de449308b1e55a6407203e7195f))
+
+
+### Features
+
+* **web-hosting:** update offers site number on upgrade and downgrade ([1dcae1a](https://github.com/ovh/manager/commit/1dcae1ae12d6ecaec5d0f745292ba8f5be7dedaf)), closes [#PUWEBPT-335](https://github.com/ovh/manager/issues/PUWEBPT-335)
+* **web-hosting:** update offers technical informations ([8d542ee](https://github.com/ovh/manager/commit/8d542ee2e8977ccdf0d0948968fe3938e5518334)), closes [#PUWEBPT-335](https://github.com/ovh/manager/issues/PUWEBPT-335)
+
+
+
+
+
 ## [19.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.0...@ovh-ux/manager-web@19.40.1) (2026-05-06)
 
 
