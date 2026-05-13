@@ -50,6 +50,7 @@ export const useSlotWithService = (options: UseSlotParams = {}) => {
         id: slot.id,
         offer: slot.currentState.offer,
         email: slot.currentState.email,
+        domainPromotionLink: slot.currentState.domainPromotionLink,
         service: makeSlotService(service),
       });
     }
