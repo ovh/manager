@@ -66,5 +66,13 @@
   "account_details_field_birthDay": "Fecha de nacimiento",
   "account_details_sex_option_female": "Femenino",
   "account_details_sex_option_male": "Masculino",
-  "account_details_error_birthDay_under_18": "Debe tener al menos 18 años."
+  "account_details_error_birthDay_under_18": "Debe tener al menos 18 años.",
+  "account_details_title_personalcorporation": "Rellenad las informaciones",
+  "account_details_title_personalcorporation_prefilled": "Comprobad y validad la información personal y de la empresa",
+  "account_details_section_address_personalcorporation": "Dirección postal",
+  "account_details_field_companyNationalIdentificationNumber": "Número de identificación nacional",
+  "account_details_vat_select_detected": "Detecta desde el SIRET",
+  "account_details_vat_select_no_vat": "Mi empresa no está registrada en el IVA",
+  "account_details_vat_select_description_detected": "Número deducido automáticamente de vuestro SIRET",
+  "account_details_vat_select_description_no_vat": "Microempresa en franquicia de base, asociación, etc."
 }
