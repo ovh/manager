@@ -12,6 +12,8 @@ import {
   Clipboard,
   Datagrid,
   DatagridColumn,
+  Link,
+  LinkType,
   OvhSubsidiary,
   Price,
   useFormatDate,
@@ -101,7 +103,7 @@ const Services = () => {
             t('services:zimbra_services_free')
           ) : (
             <Price
-              value={priceInUcents}
+              value={row.original.domainPromotionLink ? 0 : priceInUcents}
               locale={locale}
               ovhSubsidiary={ovhSubsidiary as OvhSubsidiary}
               intervalUnit={getPriceUnit(duration)}
@@ -129,6 +131,25 @@ const Services = () => {
                 format: 'P',
               })}
             </span>
+          ),
+      },
+      {
+        id: 'linked_service',
+        accessorKey: 'domainPromotionLink',
+        label: 'zimbra_services_linked_service',
+        cell: ({ row }) =>
+          row.original.domainPromotionLink ? (
+            <Link
+              type={LinkType.external}
+              href={`/#/web-domains/domain/${row.original.domainPromotionLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t('zimbra_services_linked_service')}
+            >
+              {row.original.domainPromotionLink}
+            </Link>
+          ) : (
+            '-'
           ),
       },
       {
@@ -163,6 +184,7 @@ const Services = () => {
         cost: slot.service?.price,
         status: account?.resourceStatus,
         accountId: account?.id,
+        domainPromotionLink: slot.domainPromotionLink,
       };
     });
   }, [slots, accounts]);
