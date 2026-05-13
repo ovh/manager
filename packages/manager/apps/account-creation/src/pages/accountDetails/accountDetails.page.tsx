@@ -212,6 +212,10 @@ function AccountDetailsForm({
   const phone = watch('phone');
   const country = watch('country');
 
+  const separateSIRENAndSIRET = useMemo(() => {
+    return country === 'FR' && rules?.companyNationalIdentificationNumber;
+  }, [country, rules?.companyNationalIdentificationNumber]);
+
   useEffect(() => {
     setValue('phone', '');
     if (phoneType === 'landline' && isSMSConsentAvailable) {
@@ -386,58 +390,57 @@ function AccountDetailsForm({
             }}
           />
           {/* Display national identification number if legal form is individual and national identification number rule is present */}
-          {isIndividualLegalForm(legalForm) &&
-            rules?.nationalIdentificationNumber && (
-              <>
-                <Controller
-                  control={control}
-                  name="nationalIdentificationNumber"
-                  render={({ field: { name, value, onChange, onBlur } }) => (
-                    <OdsFormField>
-                      <label
-                        htmlFor={name}
-                        slot="label"
-                        aria-label={t(
+          {rules?.nationalIdentificationNumber && !separateSIRENAndSIRET && (
+            <>
+              <Controller
+                control={control}
+                name="nationalIdentificationNumber"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField>
+                    <label
+                      htmlFor={name}
+                      slot="label"
+                      aria-label={t(
+                        'account_details_field_nationalIdentificationNumber',
+                      )}
+                    >
+                      <OdsText preset="caption">
+                        {t(
                           'account_details_field_nationalIdentificationNumber',
                         )}
-                      >
-                        <OdsText preset="caption">
-                          {t(
-                            'account_details_field_nationalIdentificationNumber',
+                        {rules?.firstname?.mandatory && ' *'}
+                      </OdsText>
+                    </label>
+                    <OdsInput
+                      isReadonly={!rules}
+                      name={name}
+                      id={name}
+                      value={value}
+                      maxlength={
+                        rules?.nationalIdentificationNumber.maxLength ||
+                        undefined
+                      }
+                      hasError={!!errors[name]}
+                      onOdsChange={onChange}
+                      onBlur={onBlur}
+                    />
+                    {errors.nationalIdentificationNumber &&
+                      rules?.nationalIdentificationNumber && (
+                        <OdsText
+                          className="text-critical leading-[0.8]"
+                          preset="caption"
+                        >
+                          {renderTranslatedZodError(
+                            errors.nationalIdentificationNumber.message,
+                            rules?.nationalIdentificationNumber,
                           )}
-                          {rules?.firstname?.mandatory && ' *'}
                         </OdsText>
-                      </label>
-                      <OdsInput
-                        isReadonly={!rules}
-                        name={name}
-                        id={name}
-                        value={value}
-                        maxlength={
-                          rules?.nationalIdentificationNumber.maxLength ||
-                          undefined
-                        }
-                        hasError={!!errors[name]}
-                        onOdsChange={onChange}
-                        onBlur={onBlur}
-                      />
-                      {errors.nationalIdentificationNumber &&
-                        rules?.nationalIdentificationNumber && (
-                          <OdsText
-                            className="text-critical leading-[0.8]"
-                            preset="caption"
-                          >
-                            {renderTranslatedZodError(
-                              errors.nationalIdentificationNumber.message,
-                              rules?.nationalIdentificationNumber,
-                            )}
-                          </OdsText>
-                        )}
-                    </OdsFormField>
-                  )}
-                />
-              </>
-            )}
+                      )}
+                  </OdsFormField>
+                )}
+              />
+            </>
+          )}
           {rules?.sex?.mandatory && (
             <Controller
               control={control}
@@ -642,10 +645,20 @@ function AccountDetailsForm({
                       <label
                         htmlFor={name}
                         slot="label"
-                        aria-label={t('account_details_field_siret')}
+                        aria-label={
+                          separateSIRENAndSIRET
+                            ? t('account_details_field_siret')
+                            : t(
+                                'account_details_field_companyNationalIdentificationNumber',
+                              )
+                        }
                       >
                         <OdsText preset="caption">
-                          {t('account_details_field_siret')}
+                          {separateSIRENAndSIRET
+                            ? t('account_details_field_siret')
+                            : t(
+                                'account_details_field_companyNationalIdentificationNumber',
+                              )}
                           {rules?.companyNationalIdentificationNumber
                             ?.mandatory && ' *'}
                         </OdsText>
@@ -704,58 +717,6 @@ function AccountDetailsForm({
                   </>
                 )}
               />
-            )}
-            {rules?.nationalIdentificationNumber && !shouldDisplaySIREN && (
-              <>
-                {/* Display NIN for organisations with NIN rule */}
-                <Controller
-                  control={control}
-                  name="nationalIdentificationNumber"
-                  render={({ field: { name, value, onChange, onBlur } }) => (
-                    <OdsFormField>
-                      <label
-                        htmlFor={name}
-                        slot="label"
-                        aria-label={t(
-                          'account_details_field_nationalIdentificationNumber',
-                        )}
-                      >
-                        <OdsText preset="caption">
-                          {t(
-                            'account_details_field_nationalIdentificationNumber',
-                          )}
-                          {rules?.firstname?.mandatory && ' *'}
-                        </OdsText>
-                      </label>
-                      <OdsInput
-                        isReadonly={!rules}
-                        name={name}
-                        id={name}
-                        value={value}
-                        maxlength={
-                          rules?.nationalIdentificationNumber.maxLength ||
-                          undefined
-                        }
-                        hasError={!!errors[name]}
-                        onOdsChange={onChange}
-                        onBlur={onBlur}
-                      />
-                      {errors.nationalIdentificationNumber &&
-                        rules?.nationalIdentificationNumber && (
-                          <OdsText
-                            className="text-critical leading-[0.8]"
-                            preset="caption"
-                          >
-                            {renderTranslatedZodError(
-                              errors.nationalIdentificationNumber.message,
-                              rules?.nationalIdentificationNumber,
-                            )}
-                          </OdsText>
-                        )}
-                    </OdsFormField>
-                  )}
-                />
-              </>
             )}
             {rules?.italianSDI && (
               <Controller
