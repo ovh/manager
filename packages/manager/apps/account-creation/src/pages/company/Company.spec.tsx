@@ -142,7 +142,7 @@ describe('CompanyPage', () => {
     });
     await waitFor(() => {
       searchInputElement.blur();
-      const errorMessageElement = screen.getByText('invalid_format');
+      const errorMessageElement = screen.getByText('error_invalid_format');
       expect(errorMessageElement).toBeInTheDocument();
     });
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
@@ -159,7 +159,7 @@ describe('CompanyPage', () => {
 
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
-    const errorMessageElement = screen.getByText('invalid_format');
+    const errorMessageElement = screen.getByText('error_invalid_format');
     await waitFor(() => {
       expect(errorMessageElement).toBeInTheDocument();
     });
