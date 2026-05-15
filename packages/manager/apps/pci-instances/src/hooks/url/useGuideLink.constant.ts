@@ -30,6 +30,7 @@ export const GUIDE_LINKS: Record<TGuideKey, TGuideLinkGroup> = {
   LOCATION: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031`,
     FR: `${HELP_URL}/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031`,
+    US: `${US_HELP_URL}/49697579836307-Comparison-and-resilience-of-Deployment-Modes-Understanding-1-AZ-Local-Zones`,
   },
   AVAILABILITY_ZONES: {
     DEFAULT: `${HELP_URL}/fr-public-cloud-deployments-modes?id=kb_article_view&sysparm_article=KB0066031`,
