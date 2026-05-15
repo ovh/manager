@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Text } from '@ovhcloud/ods-react';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { HelpDrawer } from '@/components/helpDrawer/HelpDrawer.component';
 import { useGuideLink } from '@/hooks/url/useGuideLink';
 import { DeploymentModeSelection } from '@/pages/instances/create/components/deploymentMode/DeploymentModeSelection.component';
@@ -8,6 +10,8 @@ import { DeploymentModeSelection } from '@/pages/instances/create/components/dep
 export const DeploymentModeSection = () => {
   const { t } = useTranslation([NAMESPACES.ONBOARDING, 'creation', 'common']);
   const guide = useGuideLink('LOCATION');
+  const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
+  const isUsUser = ovhSubsidiary === 'US';
 
   return (
     <section className="my-8">
@@ -27,9 +31,13 @@ export const DeploymentModeSection = () => {
           <Text preset="paragraph" className="mb-4">
             {t('creation:pci_instance_creation_select_deployment_mode_help_p2')}
           </Text>
-          <Text preset="paragraph" className="mb-4">
-            {t('creation:pci_instance_creation_select_deployment_mode_help_p3')}
-          </Text>
+          {!isUsUser && (
+            <Text preset="paragraph" className="mb-4">
+              {t(
+                'creation:pci_instance_creation_select_deployment_mode_help_p3',
+              )}
+            </Text>
+          )}
           <Text preset="paragraph" className="mb-4">
             {t('creation:pci_instance_creation_select_deployment_mode_help_p4')}
           </Text>
