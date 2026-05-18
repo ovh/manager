@@ -66,5 +66,13 @@
   "account_details_field_birthDay": "Data urodzenia",
   "account_details_sex_option_female": "Kobieta",
   "account_details_sex_option_male": "Mężczyzna",
-  "account_details_error_birthDay_under_18": "Musisz mieć ukończone 18 lat."
+  "account_details_error_birthDay_under_18": "Musisz mieć ukończone 18 lat.",
+  "account_details_title_personalcorporation": "Proszę wprowadzić informacje",
+  "account_details_title_personalcorporation_prefilled": "Proszę sprawdzić i zatwierdzić dane osobowe oraz dane firmy",
+  "account_details_section_address_personalcorporation": "Adres pocztowy",
+  "account_details_field_companyNationalIdentificationNumber": "Numer identyfikacji narodowej",
+  "account_details_vat_select_detected": "Wykryto duplikat na podstawie SIRET",
+  "account_details_vat_select_no_vat": "Moja firma nie jest zarejestrowana do VAT",
+  "account_details_vat_select_description_detected": "Numer automatycznie odczytany z Twojego SIRET",
+  "account_details_vat_select_description_no_vat": "Mikroprzedsiębiorstwo zwolnione z podstawy, stowarzyszenie itp."
 }
