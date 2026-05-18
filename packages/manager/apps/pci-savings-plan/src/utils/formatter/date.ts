@@ -1,4 +1,17 @@
+import {
+  ODS_DATEPICKER_LOCALE,
+  OdsDatepickerLocale,
+} from '@ovhcloud/ods-components';
+
 export const formatDate = (date: Date) => date.toISOString().split('T')[0];
+
+export const getDatepickerLocale = (locale: string): OdsDatepickerLocale => {
+  const language = locale?.split(/[-_]/)[0]?.toLowerCase();
+  return (
+    (ODS_DATEPICKER_LOCALE as Record<string, OdsDatepickerLocale>)[language] ??
+    ODS_DATEPICKER_LOCALE.en
+  );
+};
 
 export const toMonthYear = (date: Date, locale: string) =>
   new Intl.DateTimeFormat(locale.replace('_', '-'), {
