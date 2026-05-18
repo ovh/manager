@@ -23,14 +23,7 @@ const SelectDeployment = ({
 
   return (
     <Block>
-      <Subtitle className="flex items-center gap-2">
-        {t('choose_deployment')}
-        <OdsBadge
-          label={t('choose_deployment_badge_new')}
-          color="new"
-          className="ml-2"
-        />
-      </Subtitle>
+      <Subtitle>{t('choose_deployment')}</Subtitle>
       <DescriptionWrapper>
         {t('choose_deployment_description')}
       </DescriptionWrapper>
