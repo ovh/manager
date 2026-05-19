@@ -13,11 +13,13 @@ import { OFFERS_NAME, NEW_OFFERS_NAME } from '../hosting.constants';
 export default class HostingGeneralInformationsCtrl {
   /* @ngInject */
   constructor(
+    $http,
     $q,
     $scope,
     $state,
     $stateParams,
     $translate,
+    Apiv2Service,
     atInternet,
     coreConfig,
     coreURLBuilder,
@@ -37,11 +39,13 @@ export default class HostingGeneralInformationsCtrl {
     OvhApiScreenshot,
     user,
   ) {
+    this.$http = $http;
     this.$q = $q;
     this.$scope = $scope;
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.Apiv2Service = Apiv2Service;
 
     this.atInternet = atInternet;
     this.coreConfig = coreConfig;
@@ -86,7 +90,25 @@ export default class HostingGeneralInformationsCtrl {
       defaultRuntime: true,
       localSeo: true,
       screenshot: true,
+      videoCenter: true,
     };
+
+    this.videoCenterStatus = 'inactive';
+    this.videoCenterOffer = null;
+    this.videoCenterLink = `/beta/#/web-cloud/hosting/general/${this.serviceName}/general`;
+    this.showVideoCenterTile = false;
+
+    const VIDEO_CENTER_INELIGIBLE_OFFERS = ['START_10_M', 'HOSTING_FREE_100_M', 'HOSTING_FREE_10_M', 'START_100_M'];
+    const deregisterWatch = this.$scope.$watch('hosting.offer', (offer) => {
+      if (!offer) return;
+      this.showVideoCenterTile = VIDEO_CENTER_INELIGIBLE_OFFERS.indexOf(offer.toUpperCase()) === -1;
+      deregisterWatch();
+      if (this.showVideoCenterTile) {
+        this.initializeVideoCenter(this.serviceName);
+      } else {
+        this.loading.videoCenter = false;
+      }
+    });
 
     this.localSeo = {
       isActive: false,
@@ -151,6 +173,89 @@ export default class HostingGeneralInformationsCtrl {
     }
 
     return this.$q.when();
+  }
+
+  initializeVideoCenter(serviceName) {
+    // v6 calls go through the AngularJS $http proxy (no prefix needed)
+    // v2 calls use Apiv2Service.httpApiv2 (handles /engine/api/v2 prefix)
+    return this.$q
+      .all([
+        this.Apiv2Service.httpApiv2({ method: 'get', url: '/engine/api/v2/videocenter/resource' })
+          .then(function(res) { return res.data || []; })
+          .catch(function() { return []; }),
+        this.$http
+          .get('/services', { params: { resourceName: serviceName } })
+          .then(function(res) { return res.data || []; })
+          .catch(function() { return []; }),
+      ])
+      .then((results) => {
+        const allResources = results[0];
+        const hostingServiceIds = results[1];
+
+        if (!allResources.length || !hostingServiceIds.length) {
+          return null;
+        }
+
+        const hostingServiceId = hostingServiceIds[0];
+
+        return allResources.reduce((promise, resource) => {
+          return promise.then((found) => {
+            if (found) return found;
+
+            return this.$http
+              .get('/services', { params: { resourceName: resource.id } })
+              .then(function(res) { return res.data || []; })
+              .catch(function() { return []; })
+              .then((vcServiceIds) => {
+                if (!vcServiceIds.length) return null;
+                return this.$http
+                  .get(`/services/${vcServiceIds[0]}`)
+                  .then(function(res) { return res.data; })
+                  .catch(function() { return null; });
+              })
+              .then((vcService) => {
+                if (!vcService || vcService.parentServiceId !== hostingServiceId) {
+                  return null;
+                }
+                return this.Apiv2Service.httpApiv2({
+                  method: 'get',
+                  url: `/engine/api/v2/videocenter/resource/${resource.id}`,
+                })
+                  .then(function(res) { return res.data; })
+                  .catch(function() { return null; })
+                  .then((detail) => {
+                    const offerName =
+                      detail && detail.currentState && detail.currentState.offerName;
+                    if (!offerName) {
+                      return { status: 'freemium', plan: null };
+                    }
+                    const lower = offerName.toLowerCase();
+                    if (lower.indexOf('pro') !== -1) {
+                      return { status: 'freemium_paid', plan: 'pro' };
+                    }
+                    if (lower.indexOf('plus') !== -1) {
+                      return { status: 'freemium_paid', plan: 'plus' };
+                    }
+                    return { status: 'freemium', plan: null };
+                  });
+              });
+          });
+        }, this.$q.when(null));
+      })
+      .then((result) => {
+        if (!result) {
+          this.videoCenterStatus = 'inactive';
+          return;
+        }
+        this.videoCenterStatus = result.status;
+        this.videoCenterPlan = result.plan;
+      })
+      .catch(() => {
+        this.videoCenterStatus = 'inactive';
+      })
+      .finally(() => {
+        this.loading.videoCenter = false;
+      });
   }
 
   initializeLocalSeo(serviceName) {
