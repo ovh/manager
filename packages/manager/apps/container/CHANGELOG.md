@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.191.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.190.0...@ovh-ux/manager-container-app@0.191.0) (2026-05-19)
+
+
+### Features
+
+* **container:** revamp cookie deletion ([61a9927](https://github.com/ovh/manager/commit/61a9927911c526fe4a3eafac1cd34be0d9961e26)), closes [#MANAGER-21211](https://github.com/ovh/manager/issues/MANAGER-21211)
+
+
+
+
+
 # [0.190.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.189.1...@ovh-ux/manager-container-app@0.190.0) (2026-03-31)
 
 
