@@ -14,18 +14,30 @@ export const useAvailableGeolocationFromPlanCode = ({
   planCode,
   serviceName,
   serviceType,
+  ipQuantity,
 }: {
   planCode?: string;
   serviceName?: string | null;
   serviceType?: ServiceType;
+  ipQuantity?: number;
 }) => {
   const { environment } = React.useContext(ShellContext);
+  const hasMultipleIps = (ipQuantity ?? 1) > 1;
   const { data, ...query } = useCatalogIps({
     subsidiary: environment.user.ovhSubsidiary,
     enabled:
       !!serviceType &&
-      ![ServiceType.dedicatedCloud, ServiceType.vps].includes(serviceType),
+      (![ServiceType.dedicatedCloud, ServiceType.vps].includes(serviceType) ||
+        hasMultipleIps),
   });
+
+  const catalogGeolocations =
+    data?.data?.plans
+      ?.find((plan: CatalogIpPlan) => plan.planCode === planCode)
+      ?.details.product.configurations.find(
+        (config: CatalogIpConfiguration) => config.name === 'country',
+      )
+      ?.values.map((v: string) => v.toLowerCase()) || [];
 
   const { data: dedicatedServerData, ...dedicatedServerQuery } =
     useDedicatedServerGeolocations({
@@ -51,28 +63,28 @@ export const useAvailableGeolocationFromPlanCode = ({
     case ServiceType.server:
       return {
         ...dedicatedServerQuery,
-        geolocations: dedicatedServerData?.data || [],
+        geolocations: hasMultipleIps
+          ? catalogGeolocations
+          : dedicatedServerData?.data || [],
       };
     case ServiceType.dedicatedCloud:
       return {
         ...pccQuery,
-        geolocations: pccData?.data || [],
+        geolocations: hasMultipleIps
+          ? catalogGeolocations
+          : pccData?.data || [],
       };
     case ServiceType.vps:
       return {
         ...vpsQuery,
-        geolocations: vpsData?.data || [],
+        geolocations: hasMultipleIps
+          ? catalogGeolocations
+          : vpsData?.data || [],
       };
     default:
       return {
         ...query,
-        geolocations:
-          data?.data?.plans
-            ?.find((plan: CatalogIpPlan) => plan.planCode === planCode)
-            ?.details.product.configurations.find(
-              (config: CatalogIpConfiguration) => config.name === 'country',
-            )
-            ?.values.map((v: string) => v.toLowerCase()) || [],
+        geolocations: catalogGeolocations,
       };
   }
 };
