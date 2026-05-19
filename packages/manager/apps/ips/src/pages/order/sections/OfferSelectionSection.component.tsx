@@ -103,12 +103,23 @@ export const OfferSelectionSection: React.FC = () => {
               });
             }}
           >
-            <div className="flex min-h-14 flex-col justify-center">
+            <div
+              className="flex min-h-14 flex-col justify-center"
+              onClick={(event) => event.stopPropagation()}
+              onKeyDown={(event) => event.stopPropagation()}
+              role="presentation"
+            >
               <OdsQuantity
                 name="additional_ip_quantity"
                 min={MIN_IP_QUANTITY}
                 max={MAX_IP_QUANTITY}
-                onOdsChange={(event) => setIpQuantity(event.target.value)}
+                onOdsChange={(event) => {
+                  if (selectedOffer !== IpOffer.additionalIp) {
+                    setSelectedOffer(IpOffer.additionalIp);
+                    setSelectedPlanCode(additionalIpPlanCode);
+                  }
+                  setIpQuantity(Number(event.target.value));
+                }}
                 value={ipQuantity}
               />
               <OdsText preset={ODS_TEXT_PRESET.heading4}>

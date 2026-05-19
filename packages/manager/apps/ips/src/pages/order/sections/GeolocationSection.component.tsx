@@ -27,6 +27,7 @@ export const GeolocationSection: React.FC = () => {
     selectedServiceType,
     setSelectedGeolocation,
     selectedOffer,
+    ipQuantity,
   } = React.useContext(OrderContext);
   const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
@@ -34,12 +35,14 @@ export const GeolocationSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
     planCode: selectedPlanCode,
+    ipQuantity,
   });
   const isDisabled =
     !geolocations ||
     geolocations.length < 2 ||
     (selectedOffer === IpOffer.additionalIp &&
-      ServiceType.ipParking === selectedServiceType);
+      ServiceType.ipParking === selectedServiceType &&
+      ipQuantity === 1);
 
   return (
     <OrderSection
