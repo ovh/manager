@@ -531,6 +531,42 @@
                             </oui-action-menu-item>
                         </oui-action-menu>
                     </oui-tile-definition>
+                    <!-- video center -->
+                    <oui-tile-definition
+                        data-term="{{ ::'hosting_dashboard_service_video_center' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                data-ng-if="!$ctrl.loading.videoCenter && $ctrl.videoCenterStatus === 'inactive'"
+                                data-translate="hosting_dashboard_service_video_center_none"
+                            ></span>
+                            <span
+                                data-ng-if="!$ctrl.loading.videoCenter && $ctrl.videoCenterStatus === 'freemium'"
+                                data-translate="hosting_dashboard_service_video_center_freemium"
+                            ></span>
+                            <span
+                                data-ng-if="!$ctrl.loading.videoCenter && $ctrl.videoCenterStatus === 'freemium_paid'"
+                                data-translate="hosting_dashboard_service_video_center_freemium_paid"
+                                data-translate-values="{ plan: $ctrl.videoCenterPlan === 'pro' ? ('hosting_dashboard_service_video_center_plan_pro' | translate) : ('hosting_dashboard_service_video_center_plan_plus' | translate) }"
+                            ></span>
+                            <oui-spinner
+                                data-ng-if="$ctrl.loading.videoCenter"
+                                data-size="s"
+                            ></oui-spinner>
+                        </oui-tile-description>
+                        <oui-action-menu
+                            data-compact
+                            data-placement="end"
+                            data-ng-if="!$ctrl.loading.videoCenter"
+                        >
+                            <oui-action-menu-item
+                                data-href="{{ $ctrl.videoCenterLink }}"
+                            >
+                                <span data-translate="common_manage"></span>
+                            </oui-action-menu-item>
+                        </oui-action-menu>
+                    </oui-tile-definition>
+                    <!-- end video center -->
                     <oui-tile-definition
                         data-term="{{ ::(hosting.isCloudWeb ? 'hosting_tab_DATABASE' : 'hosting_dashboard_databases') | translate }}"
                     >
