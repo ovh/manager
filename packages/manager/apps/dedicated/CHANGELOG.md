@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.10...@ovh-ux/manager-dedicated@20.78.0) (2026-05-19)
+
+
+### Features
+
+* **dedicated:** cancelation FTC on US ([df3f311](https://github.com/ovh/manager/commit/df3f31106a07fc9cdf3340a5aaaeaac58a9a73f1)), closes [#MANAGER-20070](https://github.com/ovh/manager/issues/MANAGER-20070)
+
+
+
+
+
 ## [20.77.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.9...@ovh-ux/manager-dedicated@20.77.10) (2026-05-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

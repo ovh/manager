@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.36.2...@ovh-ux/manager-billing-components@4.37.0) (2026-05-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1233] ([d686444](https://github.com/ovh/manager/commit/d6864443b7660ddc63c3dc8c2b7ae02adff2e709))
+
+
+### Features
+
+* **dedicated:** cancelation FTC on US ([df3f311](https://github.com/ovh/manager/commit/df3f31106a07fc9cdf3340a5aaaeaac58a9a73f1)), closes [#MANAGER-20070](https://github.com/ovh/manager/issues/MANAGER-20070)
+
+
+
+
+
 ## [4.36.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.36.1...@ovh-ux/manager-billing-components@4.36.2) (2026-05-11)
 
 
