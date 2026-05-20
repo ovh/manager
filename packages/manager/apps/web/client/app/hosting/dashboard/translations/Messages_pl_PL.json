@@ -1428,5 +1428,6 @@
   "database_tabs_dumps_guide_save": "Backup i eksport bazy danych",
   "database_tabs_dumps_guide_restore": "Przywracanie i importowanie bazy danych",
   "hosting_tab_STATISTICS_databases_none": "Nie wykryto błędów w bazach danych. Wszystko działa prawidłowo.",
-  "hosting_tab_USER_STATISTICS": "Statystyki i logi"
+  "hosting_tab_USER_STATISTICS": "Statystyki i logi",
+  "hosting_order_upgrade_renewal_after": "Po tej dacie odnowienie będzie naliczane w wysokości {{ price }} netto miesięcznie."
 }

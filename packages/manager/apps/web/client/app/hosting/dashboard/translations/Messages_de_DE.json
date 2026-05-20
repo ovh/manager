@@ -1428,5 +1428,6 @@
   "database_tabs_dumps_guide_save": "Eine Datenbank sichern und exportieren",
   "database_tabs_dumps_guide_restore": "Eine Datenbank wiederherstellen und importieren",
   "hosting_tab_STATISTICS_databases_none": "Es wurden keine Datenbankfehler gefunden. Alles funktioniert normal.",
-  "hosting_tab_USER_STATISTICS": "Statistiken und Logs"
+  "hosting_tab_USER_STATISTICS": "Statistiken und Logs",
+  "hosting_order_upgrade_renewal_after": "Nach diesem Datum wird die Verlängerung mit {{ price }} € netto pro Monat berechnet."
 }
