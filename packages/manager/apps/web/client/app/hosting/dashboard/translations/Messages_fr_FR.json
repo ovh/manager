@@ -1117,6 +1117,7 @@
   "hosting_migrate_my_ovh_org_no_destination": "Vous n'avez pas d'autre hébergement web disponible",
   "hostin_order_select_offer": "Sélectionnez l'offre désirée.",
   "hosting_order_upgrade_select_duration": "Sélectionnez la durée désirée.",
+  "hosting_order_upgrade_renewal_after": "Après cette date, le renouvellement sera facturé au tarif de {{ price }} HT par mois",
   "hosting_order_upgrade_select_noduration": "Choisissez l’offre possédant une capacité supérieure ou inférieure la plus proche de votre offre actuelle.",
   "hosting_order_upgrade_select_noduration_cloudweb": "Il est possible de choisir uniquement une offre supérieure à celle dont vous disposez actuellement.",
   "hosting_order_upgrade_select_noduration_cloudweb_explanation": "Nous vous informons qu’il ne sera pas possible d’opter pour une solution inférieure une fois le changement effectué.",

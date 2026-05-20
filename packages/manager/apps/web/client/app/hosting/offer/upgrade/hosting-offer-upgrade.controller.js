@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import {
   DETACH_DEFAULT_OPTIONS,
   OFFERS_WITHOUT_FREEDOM,
+  RENEWAL_PRICING_PHASE,
+  UCENTS_FACTOR,
 } from './hosting-offer-upgrade.constants';
 import { HOSTING_TRACKING } from '../../hosting.constants';
 
@@ -10,6 +12,7 @@ angular.module('App').controller(
   class HostingUpgradeOfferCtrl {
     /* @ngInject */
     constructor(
+      $http,
       $scope,
       $rootScope,
       $state,
@@ -26,6 +29,7 @@ angular.module('App').controller(
       ovhFeatureFlipping,
       $anchorScroll,
     ) {
+      this.$http = $http;
       this.$scope = $scope;
       this.$rootScope = $rootScope;
       this.$state = $state;
@@ -63,8 +67,19 @@ angular.module('App').controller(
         downgradeAgree: false,
       };
       this.useNewOffers = false;
+      this.pricingMode = null;
 
       const user = this.coreConfig.getUser();
+
+      this.Hosting.getServiceInfos(this.productId)
+        .then(({ serviceId }) =>
+          this.$http.get(`/services/${serviceId}`).then(({ data }) => {
+            this.pricingMode = data?.billing?.pricing?.pricingMode || null;
+          }),
+        )
+        .catch(() => {
+          this.pricingMode = null;
+        });
 
       this.ovhFeatureFlipping
         .checkFeatureAvailability(['web-hosting:change-offer'])
@@ -267,6 +282,22 @@ angular.module('App').controller(
       return price.value === 0
         ? this.$translate.instant('price_free')
         : this.$translate.instant('price_ht_label', { price: price.text });
+    }
+
+    getMonthlyRenewalPrice() {
+      const offer = this.model.offer;
+      if (!offer || !this.pricingMode || !this.user?.currency?.symbol) {
+        return '';
+      }
+      const pricings = offer.pricings || [];
+      const renewal = pricings.find(
+        (p) => p.phase === RENEWAL_PRICING_PHASE && p.mode === this.pricingMode,
+      );
+      if (!renewal || !renewal.interval) {
+        return '';
+      }
+      const monthly = renewal.price / (renewal.interval * UCENTS_FACTOR);
+      return `${monthly.toFixed(2)} ${this.user.currency.symbol}`;
     }
 
     orderUpgrade() {

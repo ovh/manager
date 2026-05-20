@@ -56,6 +56,7 @@
                             data-current-offer="$ctrl.hosting.offer"
                             data-customer-region="$ctrl.coreConfig.getRegion()"
                             data-show-details="true"
+                            data-hide-price="true"
                             data-on-group-offer-click="$ctrl.onHostingGroupOfferClick(groupOffer, versionOffer)"
                         >
                         </web-component-hosting-domain-offers>
@@ -83,6 +84,12 @@
                                 ></span>
                             </oui-radio>
                         </oui-radio-group>
+                        <p
+                            class="mt-2"
+                            data-ng-if="$ctrl.getMonthlyRenewalPrice()"
+                            data-translate="hosting_order_upgrade_renewal_after"
+                            data-translate-values="{ price: $ctrl.getMonthlyRenewalPrice() }"
+                        ></p>
                     </oui-step-form>
 
                     <oui-step-form
