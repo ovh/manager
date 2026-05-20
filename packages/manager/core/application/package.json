@@ -21,7 +21,7 @@
     "prepare": "tsc && tsc-alias"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-shell-client": "^1.2.4",
     "@ovh-ux/ovh-at-internet": "^0.30.0",

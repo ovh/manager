@@ -26,7 +26,7 @@
     "@datatr-ux/ovhcloud-types": "^2.0.79",
     "@datatr-ux/uxlib": "^0.0.11-beta-8",
     "@hookform/resolvers": "5.0.1",
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-react-shell-client": "^0.11.2",
     "@ovh-ux/request-tagger": "^0.6.0",

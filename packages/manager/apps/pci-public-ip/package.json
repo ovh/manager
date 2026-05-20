@@ -14,7 +14,7 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-module-order": "^0.14.1",
     "@ovh-ux/manager-pci-common": "0.17.0",

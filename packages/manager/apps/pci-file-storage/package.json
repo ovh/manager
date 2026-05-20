@@ -21,7 +21,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
     "@ovh-ux/manager-common-translations": "^0.29.0",
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-core-utils": "*",
     "@ovh-ux/manager-pci-common": "^2.8.0",
