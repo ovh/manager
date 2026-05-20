@@ -1428,5 +1428,6 @@
   "database_tabs_dumps_guide_save": "Guardar e exportar uma base de dados",
   "database_tabs_dumps_guide_restore": "Restaurar e importar uma base de dados",
   "hosting_tab_STATISTICS_databases_none": "Nenhum erro detetado nas suas bases de dados. Está tudo a funcionar normalmente.",
-  "hosting_tab_USER_STATISTICS": "Estatísticas e logs"
+  "hosting_tab_USER_STATISTICS": "Estatísticas e logs",
+  "hosting_order_upgrade_renewal_after": "Após esta data, a renovação será cobrada à tarifa de {{ price }} sem IVA por mês."
 }
