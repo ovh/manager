@@ -1,6 +1,8 @@
-import { useMutation } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
-import { ApiError } from '@ovh-ux/manager-core-api';
+import { useInfiniteQuery, useMutation } from '@tanstack/react-query';
+
+import { ApiError, IcebergFetchResultV2 } from '@ovh-ux/manager-core-api';
 
 import {
   createCertificate,
@@ -8,6 +10,34 @@ import {
   createDomainCertificates,
   deleteDomainCertificate,
 } from '../../api/ssl';
+import {
+  getResourceAttachedDomains,
+  getResourceAttachedDomainsQueryKey,
+} from '../../api/webHosting';
+import { WebsiteType } from '../../types/product/website';
+
+export const useResourceAttachedDomains = (serviceName: string) => {
+  const query = useInfiniteQuery({
+    queryKey: getResourceAttachedDomainsQueryKey(serviceName),
+    queryFn: ({ pageParam }) => getResourceAttachedDomains({ serviceName, pageParam: pageParam }),
+    enabled: !!serviceName,
+    initialPageParam: null,
+    getNextPageParam: (lastPage: IcebergFetchResultV2<WebsiteType>) => lastPage.cursorNext ?? null,
+  });
+
+  const { hasNextPage, isFetchingNextPage, fetchNextPage, dataUpdatedAt } = query;
+
+  useEffect(() => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage().catch(console.error);
+    }
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage, dataUpdatedAt]);
+
+  const flattenData: WebsiteType[] =
+    query.data?.pages.flatMap((page: IcebergFetchResultV2<WebsiteType>) => page.data ?? []) ?? [];
+
+  return Object.assign(query, { flattenData });
+};
 
 export const useCreateCertificate = (
   serviceName: string,

@@ -15,13 +15,11 @@ import {
   Text,
 } from '@ovhcloud/ods-react';
 
-import { useDataApi, useNotifications } from '@ovh-ux/muk';
+import { useNotifications } from '@ovh-ux/muk';
 
-import { useCreateDomainCertificates } from '@/data/hooks/ssl/useSsl';
-import { WebsiteType } from '@/data/types/product/website';
+import { useCreateDomainCertificates, useResourceAttachedDomains } from '@/data/hooks/ssl/useSsl';
 import { ServiceStatus } from '@/data/types/status';
 import { subRoutes, urls } from '@/routes/routes.constants';
-import { APIV2_MAX_PAGESIZE } from '@/utils';
 
 export default function Topbar() {
   const navigate = useNavigate();
@@ -29,14 +27,7 @@ export default function Topbar() {
   const { addSuccess, addWarning } = useNotifications();
 
   const [selectedDomains, setSelectedDomains] = useState<string[]>([]);
-  const { flattenData } = useDataApi<WebsiteType>({
-    route: `/webhosting/resource/${serviceName}/attachedDomain`,
-    cacheKey: ['webhosting', 'resource', serviceName, 'attachedDomain'],
-    pageSize: APIV2_MAX_PAGESIZE,
-    enabled: !!serviceName,
-    iceberg: true,
-    version: 'v2',
-  });
+  const { flattenData: attachedDomains } = useResourceAttachedDomains(serviceName ?? '');
 
   const { t } = useTranslation('ssl');
 
@@ -60,16 +51,18 @@ export default function Topbar() {
   };
 
   const selectItems =
-    flattenData
+    attachedDomains
       ?.filter(
         (item) =>
           item?.currentState?.ssl?.status !== ServiceStatus.ACTIVE &&
-          !item?.currentState?.isDefault,
+          !item?.currentState?.isDefault &&
+          !!item?.currentState?.fqdn,
       )
-      ?.map((it) => ({
-        value: it?.currentState?.fqdn,
-        label: it?.currentState?.fqdn,
-      })) || [];
+      .map((it) => ({
+        value: it.currentState.fqdn,
+        label: it.currentState.fqdn,
+      })) ?? [];
+
   return (
     <div className="mb-10 flex flex-col space-y-10">
       <div className="flex space-x-4">
@@ -95,6 +88,7 @@ export default function Topbar() {
         </Text>
         <div className="flex space-x-4">
           <Select
+            key={selectItems.length}
             id="domainName"
             data-testid="domainName"
             name="domainName"

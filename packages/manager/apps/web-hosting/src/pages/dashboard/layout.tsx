@@ -118,7 +118,7 @@ export default function Layout() {
         to: moduleUrl,
       },
       {
-        name: 'logs',
+        name: 'statistics',
         title: t('hosting_tab_USER_STATISTICS'),
         to: statiticsUrl,
       },

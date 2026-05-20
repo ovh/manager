@@ -187,3 +187,28 @@ export const getAttachedDomainDetails = async (
   );
   return data;
 };
+
+export const getResourceAttachedDomainsQueryKey = (serviceName: string) => [
+  'get',
+  'webhosting',
+  'resource',
+  serviceName,
+  'attachedDomain',
+];
+
+export const getResourceAttachedDomains = async ({
+  serviceName,
+  pageParam,
+  pageSize = 500,
+}: {
+  serviceName: string;
+  pageParam?: string;
+  pageSize?: number;
+}) => {
+  const response = await fetchIcebergV2<WebsiteType>({
+    route: `/webhosting/resource/${serviceName}/attachedDomain`,
+    pageSize,
+    cursor: pageParam,
+  });
+  return response;
+};
