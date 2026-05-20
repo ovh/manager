@@ -25,7 +25,7 @@
                                     class="oui-select__input"
                                     id="select-account-size"
                                     data-ng-model="models.boostOffer"
-                                    data-ng-options="offer as (('hosting_dashboard_service_offer_' + offer.offer | translate)  + ' - ' + offer.price.text) for offer in (product.availableBoostOffer | orderBy:'offer') track by offer.offer"
+                                    data-ng-options="offer as formatBoostOfferLabel(offer) for offer in (product.availableBoostOffer | orderBy:'price.value') track by offer.offer"
                                 >
                                     <option
                                         value
