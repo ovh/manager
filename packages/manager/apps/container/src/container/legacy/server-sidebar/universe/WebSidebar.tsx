@@ -25,6 +25,7 @@ export const webFeatures = [
   'web-ongoing-operations',
   'web-hosting:websites',
   'web-hosting:managed-wordpress',
+  'web-hosting:managed-cms-ga',
   'web-hosting:video-center',
   'hosting',
   'private-database',
@@ -237,10 +238,12 @@ export default function WebSidebar() {
       }),
       badge: t('sidebar_tag_beta'),
       routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
-      href: navigation.getURL(
-        'web-hosting',
-        '#/managed-hosting-for-wordpress',
-      ),
+      href: features['web-hosting:managed-cms-ga']
+        ? '/beta/#/web-cloud/wordpress'
+        : navigation.getURL(
+            'web-hosting',
+            '#/managed-hosting-for-wordpress',
+          ),
     });
     if (features['private-database']) {
       menu.push({
