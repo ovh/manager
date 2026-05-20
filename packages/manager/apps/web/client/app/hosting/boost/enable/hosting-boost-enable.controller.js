@@ -1,5 +1,11 @@
 import get from 'lodash/get';
 
+const BOOST_OFFER_DISPLAY_NAMES = {
+  'hosting-agency': 'AGENCY',
+  'hosting-agency-plus': 'AGENCY PLUS',
+  'hosting-agency-max': 'AGENCY MAX',
+};
+
 angular
   .module('App')
   .controller(
@@ -8,6 +14,13 @@ angular
       $scope.product = $scope.currentActionData.product;
       $scope.models = { boostOffer: null };
       $scope.acceptCGV = { value: false };
+
+      $scope.formatBoostOfferLabel = (offer) => {
+        const name =
+          BOOST_OFFER_DISPLAY_NAMES[offer.offer] ||
+          $translate.instant(`hosting_dashboard_service_offer_${offer.offer}`);
+        return offer.price ? `${name} - ${offer.price.text}` : name;
+      };
 
       $scope.loaders = {
         request: false,

@@ -9,6 +9,7 @@ const component = {
     currentOffer: '<',
     customerRegion: '<',
     showDetails: '<',
+    hidePrice: '<',
     onGroupOfferClick: '&',
   },
   controller,
