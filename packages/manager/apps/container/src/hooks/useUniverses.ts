@@ -7,6 +7,11 @@ export type Universe = {
   external?: boolean;
 };
 
+const oldPath = {
+  EU: 'manager.eu.ovhcloud.com',
+  CA: 'manager.ca.ovhcloud.com',
+};
+
 export async function fetchUniverses(): Promise<Universe[]> {
   return fetch('/engine/2api/universes?version=beta', {
     headers: {
@@ -20,7 +25,7 @@ export async function fetchUniverses(): Promise<Universe[]> {
       universes.map((universe: Universe) => ({
         isPrimary: true, //! SECONDARY_UNIVERSES.includes(universe.universe),
         universe: universe.universe,
-        url: universe.url,
+        url: universe.url.replace(oldPath.EU, `${oldPath.EU}/v6`).replace(oldPath.CA, `${oldPath.CA}/v6`),
       })),
     );
 }

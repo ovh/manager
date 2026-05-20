@@ -3,6 +3,7 @@ import type { ApiError } from '@ovh-ux/manager-core-api';
 import { getLogoutUrl } from '@ovh-ux/manager-core-sso';
 import { getHeaders } from '@ovh-ux/request-tagger';
 
+import { Application } from './application';
 import Environment from './environment';
 import { Region } from './environment/region.enum';
 
@@ -41,6 +42,41 @@ export type ErrorResponseData =
       code?: string;
       details?: unknown;
     };
+
+const getNewUrl = (appName = '', currentValue = '', region: 'EU' | 'CA' | 'US') => {
+  if (appName === 'account-creation' || appName === 'sign-up' || region === 'US') {
+    return currentValue;
+  }
+
+  const old = {
+    EU: 'manager.eu.ovhcloud.com',
+    CA: 'manager.ca.ovhcloud.com',
+  };
+
+  return currentValue.replace(old[region], `${old[region]}/v6`);
+};
+
+// TODO: Temporarily add /v6 path of µ-app URLs as they are still pointing to the old ones from BFF. To clean this method after BFF deployment
+const addV6Path = (configObj: Environment) => {
+  if (window.location.pathname?.includes('/manager/')) {
+    // fix to skip updating URLs for LABEU
+    return;
+  }
+  const { region } = configObj;
+  Object.entries(configObj.applicationURLs).forEach(([key, value]) => {
+    configObj.applicationURLs[key] = getNewUrl(key, value, region);
+  });
+  Object.entries(configObj.applications).forEach(([key, value]) => {
+    (configObj.applications[key] as Application).url = getNewUrl(key, value.url, region);
+    if ((configObj.applications[key] as Application).publicURL) {
+      (configObj.applications[key] as Application).publicURL = getNewUrl(
+        key,
+        value.publicURL,
+        region,
+      );
+    }
+  });
+};
 
 const updateEnvironment = (environment: Environment, data: Environment): Environment => {
   environment.setRegion(data.region);
@@ -137,6 +173,7 @@ export const fetchConfiguration = async (applicationName: string): Promise<Envir
       },
     })
     .then(({ data }: { data: Environment }) => {
+      addV6Path(data);
       return updateEnvironment(environment, data);
     })
     .catch((err: ApiError & { response: { data: ConfigurationApiResponse } }) => {
