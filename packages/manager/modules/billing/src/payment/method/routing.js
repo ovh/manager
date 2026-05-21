@@ -1,5 +1,6 @@
 import filter from 'lodash/filter';
 import find from 'lodash/find';
+import { RejectType } from '@uirouter/angularjs';
 
 import {
   SPLIT_PAYMENT,
@@ -87,6 +88,14 @@ export default /* @ngInject */ ($stateProvider) => {
             );
           });
         }
+
+        return stateGoPromise.catch((error) => {
+          if (error.type === RejectType.SUPERSEDED) {
+            return error;
+          }
+
+          throw error;
+        });
       },
       featureAvailability: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping.checkFeatureAvailability([
