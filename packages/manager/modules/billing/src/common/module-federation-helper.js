@@ -12,7 +12,7 @@ const getLabeuEntryPoint = () => {
 
 const getWillPaymentUrl = () => {
   if (isProdEnvironment()) {
-    return '/order/payment/assets/remoteEntry.js';
+    return '/payment/assets/remoteEntry.js';
   }
 
   if (isLabeuEnvironment()) {
