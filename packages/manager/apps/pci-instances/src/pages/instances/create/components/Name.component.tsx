@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
@@ -25,8 +25,13 @@ export const Name = () => {
     select: selectOvhInstanceName(flavorId),
   });
 
+  const hasInitializedName = useRef(false);
+
   useEffect(() => {
-    if (ovhInstanceName) setValue('name', ovhInstanceName);
+    if (ovhInstanceName && !hasInitializedName.current) {
+      setValue('name', ovhInstanceName);
+      hasInitializedName.current = true;
+    }
   }, [ovhInstanceName, setValue]);
 
   return (
