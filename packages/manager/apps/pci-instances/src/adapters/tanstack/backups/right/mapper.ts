@@ -1,6 +1,8 @@
 import { TBackup } from '@/domain/entities/backup';
 import { TBackupDTO } from './dto.type';
 
+const MB_PER_GB = 1024;
+
 export const mapBackupDtoToBackupEntity = (
   backupsDTO: TBackupDTO[],
 ): TBackup[] =>
@@ -10,7 +12,7 @@ export const mapBackupDtoToBackupEntity = (
       name,
       type,
       minDisk,
-      minRam,
+      minRam: minRam / MB_PER_GB,
       region,
       size,
       creationDate,
