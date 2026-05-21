@@ -29,13 +29,19 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
     },
     resolve: {
       setupPaymentAdd: /* @ngInject */ () => {
+        const willPaymentUrl = getWillPaymentUrl();
+        const minute = new Date().toISOString().slice(0, 16);
+        const entry = `${willPaymentUrl}${
+          willPaymentUrl.includes('?') ? '&' : '?'
+        }v=${minute}`;
+
         init({
           remotes: [
             {
               name: '@payment/method/add',
               alias: 'payment_fm',
               type: 'module',
-              entry: getWillPaymentUrl(),
+              entry,
             },
           ],
         });
