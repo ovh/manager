@@ -5,11 +5,11 @@ import {
 
 export default class PaymentMethodAddController {
   /* @ngInject */
-  constructor(coreConfig, $location, $timeout) {
+  constructor(coreConfig, $state, $timeout) {
     this.user = coreConfig.getUser();
     this.userLocale = coreConfig.getUserLocale();
     this.hostname = window.location.hostname;
-    this.$location = $location;
+    this.$state = $state;
     this.$timeout = $timeout;
   }
 
@@ -37,21 +37,30 @@ export default class PaymentMethodAddController {
             case GlobalStatePaymentMethodStatus.ERROR:
               if (state?.data?.status === 'cancel') {
                 this.$timeout(() => {
-                  this.$location
-                    .search('paymentMethod', null)
-                    .search('paymentMethodId', null)
-                    .search('status', null)
-                    .replace();
+                  this.$state.go(
+                    '.',
+                    {
+                      paymentMethod: null,
+                      paymentMethodId: null,
+                      status: null,
+                    },
+                    {
+                      location: 'replace',
+                      reload: false,
+                    },
+                  );
                 }, 0);
                 return null;
               }
-              return this.onPaymentMethodAddError(state?.data?.message);
+              this.onPaymentMethodAddError(state?.data?.message);
+              return null;
 
             case GlobalStatePaymentMethodStatus.REGISTERED:
               return null;
             case GlobalStatePaymentMethodStatus.PAYMENT_METHOD_SAVED:
               this.teardownPaymentAdd();
-              return this.onPaymentMethodAdded();
+              this.onPaymentMethodAdded();
+              return null;
 
             default:
               return null;

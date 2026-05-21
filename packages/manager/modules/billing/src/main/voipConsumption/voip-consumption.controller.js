@@ -17,21 +17,39 @@ export default class BillingVoipConsumptionsCtrl {
 
   loadHistoryConsumption({ billingAccount }) {
     this.availableDatesLoading = true;
-    return this.BillingVoipConsumptionService.getHistoryConsumption(billingAccount).then((consumption) => {
-      // for removing duplicates dates
-      this.availableDates = [...new Set([...this.availableDates, ...consumption.map(({ date }) => date)])].sort((a, b) => new Date(b) - new Date(a));
-      this.selectedDate = this.selectedDate || this.availableDates[0];
-      return consumption.find((({ date }) => date === this.selectedDate)) || { price: { text: null }, priceOutplan: { text: null } };
-    }).finally(() => {
-      // Because the enable date for the calendar is one time binding
-      return this.$timeout(() => {
-        this.availableDatesLoading = false;
-      }, CALENDAR_UPDATE_DELAY_MS);
-    });
+    return this.BillingVoipConsumptionService.getHistoryConsumption(
+      billingAccount,
+    )
+      .then((consumption) => {
+        // for removing duplicates dates
+        this.availableDates = [
+          ...new Set([
+            ...this.availableDates,
+            ...consumption.map(({ date }) => date),
+          ]),
+        ].sort((a, b) => new Date(b) - new Date(a));
+        this.selectedDate = this.selectedDate || this.availableDates[0];
+        return (
+          consumption.find(({ date }) => date === this.selectedDate) || {
+            price: { text: null },
+            priceOutplan: { text: null },
+          }
+        );
+      })
+      .finally(() => {
+        // Because the enable date for the calendar is one time binding
+        return this.$timeout(() => {
+          this.availableDatesLoading = false;
+        }, CALENDAR_UPDATE_DELAY_MS);
+      });
   }
 
   downloadFile({ billingAccount }, extension) {
-    return this.BillingVoipConsumptionService.getHistoryConsumptionFile(billingAccount, this.selectedDate, { extension }).then(({ url }) => {
+    return this.BillingVoipConsumptionService.getHistoryConsumptionFile(
+      billingAccount,
+      this.selectedDate,
+      { extension },
+    ).then(({ url }) => {
       const link = document.createElement('a');
       link.href = url;
       link.target = '_blank';
