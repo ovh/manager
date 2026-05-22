@@ -16,8 +16,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { TestCreateInstanceFormWrapper } from '@/__tests__/CreateInstanceFormWrapper';
 import { getPrivateNetworks } from '@/data/api/privateNetworks';
 import { TPrivateNetwork } from '@/domain/entities/configuration';
+import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 
 const getPrivateNetworksMock = vi.fn();
+const useInstancesCatalogWithSelectMock = vi.fn();
 
 const NETWORK_NAME = 'fake-name';
 const DEFAULT_VLAN_ID = 24;
@@ -33,6 +35,11 @@ vi.mock(
 vi.mock('@/data/api/privateNetworks');
 vi.mocked(getPrivateNetworks).mockImplementation(getPrivateNetworksMock);
 
+vi.mock('@/data/hooks/catalog/useInstancesCatalogWithSelect');
+vi.mocked(useInstancesCatalogWithSelect).mockImplementation(
+  useInstancesCatalogWithSelectMock,
+);
+
 const setupTest = (
   {
     networks,
@@ -42,6 +49,9 @@ const setupTest = (
   },
 ) => {
   getPrivateNetworksMock.mockReturnValue(networks);
+  useInstancesCatalogWithSelectMock.mockReturnValue({
+    data: 'region',
+  });
 
   renderWithMockedWrappers(
     <TestCreateInstanceFormWrapper
@@ -230,6 +240,7 @@ describe('Considering Network component', () => {
 
     await waitFor(() => {
       const options = screen.getAllByText('test-network-metal');
+      // eslint-disable-next-line max-nested-callbacks
       const optionWithValue = options.find((option) =>
         option.hasAttribute('selected'),
       );
