@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.192.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.191.0...@ovh-ux/manager-container-app@0.192.0) (2026-05-25)
+
+
+### Features
+
+* **wordpress:** redirect legacy manager to new manager ([779cfd9](https://github.com/ovh/manager/commit/779cfd9c06fba490552fe5e93e6757178b93c51c)), closes [#PUWEBPT-343](https://github.com/ovh/manager/issues/PUWEBPT-343)
+
+
+
+
+
 # [0.191.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.190.0...@ovh-ux/manager-container-app@0.191.0) (2026-05-19)
 
 

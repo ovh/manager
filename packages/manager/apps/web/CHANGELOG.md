@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.41.0...@ovh-ux/manager-web@19.42.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1243] ([27b869b](https://github.com/ovh/manager/commit/27b869b0d0529268e482ee1de6f70672695fb1a4))
+
+
+### Features
+
+* **web-hosting:** update change offer pricing ([e59d800](https://github.com/ovh/manager/commit/e59d8005d2ffd9ef20f9dd338e7896a639d2d59a)), closes [#PUWEBPT-356](https://github.com/ovh/manager/issues/PUWEBPT-356)
+
+
+
+
+
 # [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.1...@ovh-ux/manager-web@19.41.0) (2026-05-12)
 
 
