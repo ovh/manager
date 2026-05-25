@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.2...@ovh-ux/manager-pci-instances-app@0.18.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* **pci-instances:** fix naming and backup list ([7989dd1](https://github.com/ovh/manager/commit/7989dd1e8b6b10d7d2ff3b00236d56eb17bb215b)), closes [#TAPC-7661](https://github.com/ovh/manager/issues/TAPC-7661)
+* **pci-instances:** update link and text in helper ([da61ca8](https://github.com/ovh/manager/commit/da61ca8b7b5adc06fae9a238e3e21cdf35970c6f)), closes [#TAPC-6674](https://github.com/ovh/manager/issues/TAPC-6674)
+
+
+### Features
+
+* **pci-instances:** add tests for missings ones ([cb705ba](https://github.com/ovh/manager/commit/cb705bafa7f334967143fcc28e8b81b592e50a0a))
+
+
+
+
+
 ## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.1...@ovh-ux/manager-pci-instances-app@0.17.2) (2026-04-21)
 
 
