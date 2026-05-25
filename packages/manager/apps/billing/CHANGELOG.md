@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.6.16...@ovh-ux/manager-billing-app@0.6.17) (2026-05-25)
+
+
+### Bug Fixes
+
+* **billin:** improve will-payment loading and superseded errors ([27172af](https://github.com/ovh/manager/commit/27172af6e14c9fe5ff8e6d6686e7c0356ac95254)), closes [#MANAGER-21605](https://github.com/ovh/manager/issues/MANAGER-21605)
+
+
+
+
+
 ## [0.6.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-app@0.6.15...@ovh-ux/manager-billing-app@0.6.16) (2026-05-19)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-app
