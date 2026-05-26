@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.17...@ovh-ux/manager-email-domain@1.11.18) (2026-05-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1244] ([0a18f61](https://github.com/ovh/manager/commit/0a18f61f198ee2e6c0d3d200fccde6a7722d13cf))
+* **i18n:** add missing translations [CDS 1244] ([b74aeb6](https://github.com/ovh/manager/commit/b74aeb6f35ff466e276b9eef1aa53172d81f8568))
+* **webcloud.emails:** change wording for password success on mxplan ([dc75115](https://github.com/ovh/manager/commit/dc75115def91fbc23c30834f9cae6af501315ed6)), closes [#PRDCOL-485](https://github.com/ovh/manager/issues/PRDCOL-485)
+
+
+
+
+
 ## [1.11.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-email-domain@1.11.16...@ovh-ux/manager-email-domain@1.11.17) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-email-domain

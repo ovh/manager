@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.8...@ovh-ux/manager-zimbra-app@0.44.0) (2026-05-26)
+
+
+### Features
+
+* **zimbra:** add linked domain to services tab ([b0d82da](https://github.com/ovh/manager/commit/b0d82da1c4791c2f46f3d46db2d89d82fb85523a)), closes [#PRDCOL-467](https://github.com/ovh/manager/issues/PRDCOL-467)
+
+
+
+
+
 ## [0.43.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.7...@ovh-ux/manager-zimbra-app@0.43.8) (2026-05-07)
 
 
