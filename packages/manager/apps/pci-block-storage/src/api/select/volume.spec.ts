@@ -4,14 +4,10 @@ import {
   canRetype,
   EncryptionType,
   getEncryption,
-  getEncryptionForListing,
   mapVolumeAttach,
-  mapVolumeAttachForListing,
   mapVolumeEncryption,
-  mapVolumeEncryptionForListing,
   mapVolumeToRetype,
   mapVolumeType,
-  mapVolumeTypeForListing,
   paginateResults,
   sortResults,
 } from './volume';
@@ -659,7 +655,7 @@ describe('volume', () => {
     });
   });
 
-  describe('getEncryptionForListing', () => {
+  describe('getEncryption with delisted region (any-region fallback)', () => {
     const volumeType = 'high-speed';
     const catalogRegion = 'GRA11';
     const removedRegion = 'GRA9';
@@ -678,13 +674,13 @@ describe('volume', () => {
       ],
     } as unknown) as TVolumeCatalog;
 
-    it('should resolve encryption via type-only fallback when region is removed from catalog', () => {
+    it('should resolve encryption via any-region fallback when region is removed from catalog', () => {
       const volume = {
         type: volumeType,
         region: removedRegion,
       } as TAPIVolume;
 
-      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
+      const result = getEncryption(catalogWithRemovedRegion)(volume);
 
       expect(result).toEqual({
         encrypted: false,
@@ -698,30 +694,16 @@ describe('volume', () => {
         region: removedRegion,
       } as TAPIVolume;
 
-      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
+      const result = getEncryption(catalogWithRemovedRegion)(volume);
 
       expect(result).toEqual({
         encrypted: null,
         encryptionType: null,
       });
     });
-
-    it('should use exact match when region is present in catalog', () => {
-      const volume = {
-        type: volumeType,
-        region: catalogRegion,
-      } as TAPIVolume;
-
-      const result = getEncryptionForListing(catalogWithRemovedRegion)(volume);
-
-      expect(result).toEqual({
-        encrypted: false,
-        encryptionType: null,
-      });
-    });
   });
 
-  describe('mapVolumeEncryptionForListing', () => {
+  describe('mapVolumeEncryption with delisted region (any-region fallback)', () => {
     const mockTranslator = (vi.fn() as unknown) as TFunction<['common']>;
     vi.mocked(mockTranslator).mockReturnValue('translation');
 
@@ -749,7 +731,7 @@ describe('volume', () => {
         region: removedRegion,
       } as TAPIVolume;
 
-      const result = mapVolumeEncryptionForListing(
+      const result = mapVolumeEncryption(
         mockTranslator,
         catalogWithRemovedRegion,
       )(volume);
@@ -775,7 +757,7 @@ describe('volume', () => {
         region: removedRegion,
       } as TAPIVolume;
 
-      const result = mapVolumeEncryptionForListing(
+      const result = mapVolumeEncryption(
         mockTranslator,
         catalogWithRemovedRegion,
       )(volume);
@@ -796,7 +778,7 @@ describe('volume', () => {
     });
   });
 
-  describe('mapVolumeAttachForListing', () => {
+  describe('mapVolumeAttach with delisted region (any-region fallback)', () => {
     const volumeType = 'high-speed';
     const catalogRegion = 'GRA11';
     const removedRegion = 'GRA9';
@@ -827,9 +809,7 @@ describe('volume', () => {
         status: 'available',
       } as TAPIVolume;
 
-      const result = mapVolumeAttachForListing(catalogWithRemovedRegion)(
-        volume,
-      );
+      const result = mapVolumeAttach(catalogWithRemovedRegion)(volume);
 
       expect(result).toMatchObject({
         maxAttachedInstances: 5,
@@ -846,9 +826,7 @@ describe('volume', () => {
         status: 'available',
       } as TAPIVolume;
 
-      const result = mapVolumeAttachForListing(catalogWithRemovedRegion)(
-        volume,
-      );
+      const result = mapVolumeAttach(catalogWithRemovedRegion)(volume);
 
       expect(result).toMatchObject({
         maxAttachedInstances: 1,
@@ -858,7 +836,7 @@ describe('volume', () => {
     });
   });
 
-  describe('mapVolumeTypeForListing', () => {
+  describe('mapVolumeType with delisted region (any-region fallback)', () => {
     const volumeType = 'high-speed';
     const catalogRegion = 'GRA11';
     const removedRegion = 'GRA9';
@@ -886,7 +864,7 @@ describe('volume', () => {
         region: removedRegion,
       } as TAPIVolume;
 
-      const result = mapVolumeTypeForListing(catalogWithRemovedRegion)(volume);
+      const result = mapVolumeType(catalogWithRemovedRegion)(volume);
 
       expect(result).toMatchObject({
         canRetype: true,

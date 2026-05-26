@@ -5,8 +5,10 @@ import { TRegion } from '@/api/data/regions';
 import {
   getPricingSpecsFromModelPricings,
   is3az,
+  isModelDisabledForRegion,
   mapRetypingVolumeCatalog,
   mapVolumeCatalog,
+  REGIONS_IGNORING_DISABLED_TAG,
   sortByPreselectedModel,
 } from '@/api/select/catalog';
 import { TVolumeModel } from '@/api/hooks/useCatalog';
@@ -485,6 +487,147 @@ describe('select catalog', () => {
       const result = is3az(mockRegions, matchingRegionName);
 
       expect(result).toBe(true);
+    });
+  });
+
+  describe('isModelDisabledForRegion', () => {
+    const taggedModel = ({
+      name: 'tagged',
+      tags: ['disabled'],
+    } as unknown) as TVolumeAddon;
+    const untaggedModel = ({
+      name: 'untagged',
+      tags: ['something_else'],
+    } as unknown) as TVolumeAddon;
+    const taglessModel = ({ name: 'tagless' } as unknown) as TVolumeAddon;
+
+    it('returns true when the model is tagged disabled in a regular region', () => {
+      expect(isModelDisabledForRegion(taggedModel, 'GRA11')).toBe(true);
+    });
+
+    it('returns false when the model is tagged disabled but the region is in the escape-hatch set', () => {
+      const escapeRegion = [...REGIONS_IGNORING_DISABLED_TAG][0];
+      expect(isModelDisabledForRegion(taggedModel, escapeRegion)).toBe(false);
+    });
+
+    it('returns false when the model has no disabled tag', () => {
+      expect(isModelDisabledForRegion(untaggedModel, 'GRA11')).toBe(false);
+    });
+
+    it('returns false when the model has no tags array at all', () => {
+      expect(isModelDisabledForRegion(taglessModel, 'GRA11')).toBe(false);
+    });
+  });
+
+  describe('mapVolumeCatalog with disabled models', () => {
+    const catalogPriceFormatter = (price: number) => `price: ${price}`;
+    const translator = ((keyValue: string) => keyValue) as TFunction;
+
+    const enabledModel = { ...createClassicModel(), name: 'enabled' };
+    const disabledModel = {
+      ...createClassicModel(),
+      name: 'disabled-model',
+      tags: ['disabled'],
+    } as TVolumeAddon;
+
+    it('filters out models tagged disabled', () => {
+      const catalog = {
+        regions: [region],
+        models: [enabledModel, disabledModel],
+      } as TVolumeCatalog;
+
+      const result = mapVolumeCatalog(
+        region.name,
+        catalogPriceFormatter,
+        translator,
+      )(catalog);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].name).toBe('enabled');
+    });
+
+    it('keeps models tagged disabled in escape-hatch regions', () => {
+      const escapeRegionName = [...REGIONS_IGNORING_DISABLED_TAG][0];
+      const escapeRegion = { ...region, name: escapeRegionName } as TRegion;
+      const disabledForEscape = {
+        ...disabledModel,
+        pricings: [
+          {
+            ...disabledModel.pricings[0],
+            regions: [escapeRegionName],
+          },
+        ],
+      } as TVolumeAddon;
+
+      const catalog = {
+        regions: [escapeRegion],
+        models: [disabledForEscape],
+      } as TVolumeCatalog;
+
+      const result = mapVolumeCatalog(
+        escapeRegionName,
+        catalogPriceFormatter,
+        translator,
+      )(catalog);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].name).toBe('disabled-model');
+      expect(result[0].disabled).toBe(false);
+    });
+  });
+
+  describe('mapRetypingVolumeCatalog with disabled models', () => {
+    const catalogPriceFormatter = (price: number) => `price: ${price}`;
+    const translator = ((keyValue: string) => keyValue) as TFunction;
+
+    const enabledType = 'enabled-spec';
+    const disabledType = 'disabled-spec';
+
+    const enabledModel = ({
+      ...createClassicModel(enabledType),
+      name: 'enabled',
+    } as unknown) as TVolumeAddon;
+    const disabledModel = ({
+      ...createClassicModel(disabledType),
+      name: 'disabled-model',
+      tags: ['disabled'],
+    } as unknown) as TVolumeAddon;
+
+    it('filters out disabled models when none of them match the current type', () => {
+      const catalog = {
+        regions: [region],
+        models: [enabledModel, disabledModel],
+      } as TVolumeCatalog;
+
+      const result = mapRetypingVolumeCatalog(
+        region.name,
+        catalogPriceFormatter,
+        translator,
+        enabledType,
+      )(catalog);
+
+      expect(result).toHaveLength(1);
+      expect(result[0].name).toBe('enabled');
+    });
+
+    it('keeps a disabled model when it matches the current volume type (so the user still sees what they are on)', () => {
+      const catalog = {
+        regions: [region],
+        models: [enabledModel, disabledModel],
+      } as TVolumeCatalog;
+
+      const result = mapRetypingVolumeCatalog(
+        region.name,
+        catalogPriceFormatter,
+        translator,
+        disabledType,
+      )(catalog);
+
+      expect(result).toHaveLength(2);
+      const kept = result.find((m) => m.name === 'disabled-model');
+      expect(kept).toBeDefined();
+      expect(kept?.isPreselected).toBe(true);
+      expect(kept?.disabled).toBe(true);
     });
   });
 
