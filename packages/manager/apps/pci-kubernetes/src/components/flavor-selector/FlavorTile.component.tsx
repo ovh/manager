@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -35,7 +35,7 @@ export interface FlavorTileProps {
   };
   flavorCompatibility: Record<DeploymentMode, boolean>;
   flavorPrice: {
-    hourly: number;
+    hourly?: number;
     monthly?: number;
   };
   isNewFlavor: boolean;
@@ -187,13 +187,15 @@ export function FlavorTile({
             })}
           </OsdsText>
         )}
-        <OsdsText
-          level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
-          size={ODS_THEME_TYPOGRAPHY_SIZE._100}
-          color={ODS_THEME_COLOR_INTENT.text}
-        >
-          {getFormattedHourlyCatalogPrice(flavorPrice.hourly)}
-        </OsdsText>
+        {flavorPrice.hourly !== undefined && (
+          <OsdsText
+            level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+            size={ODS_THEME_TYPOGRAPHY_SIZE._100}
+            color={ODS_THEME_COLOR_INTENT.text}
+          >
+            {getFormattedHourlyCatalogPrice(flavorPrice.hourly)}
+          </OsdsText>
+        )}
         {!hasEnoughQuota && (
           <>
             <hr className={separatorClass} />

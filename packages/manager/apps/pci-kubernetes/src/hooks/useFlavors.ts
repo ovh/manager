@@ -84,23 +84,29 @@ export const useKubeFlavors = (projectId: string, region: string) =>
     enabled: !!projectId && !!region,
   });
 
-export const hasEnoughQuota = (flavor: TFlavor, quota: TQuota) => {
+export const hasEnoughQuota = (flavor: Partial<TFlavor>, quota: TQuota) => {
   if (!quota?.instance) return true;
   const { instance } = quota;
   if (instance.usedInstances + 1 > (instance.maxInstances || 0)) return false;
-  if (instance.usedRAM + flavor.ram > (instance.maxRam || 0)) return false;
-  if (instance.usedCores + flavor.vcpus > (instance.maxCores || 0)) return false;
+  if (instance.usedRAM + (flavor.ram ?? 0) > (instance.maxRam || 0)) return false;
+  if (instance.usedCores + (flavor.vcpus ?? 0) > (instance.maxCores || 0)) return false;
   return true;
 };
 
 export const useMergedKubeFlavors = (projectId: string, region: string | null) => {
-  const { data: flavors, isPending: isFlavorsPending } = useFlavors(projectId, region);
-  const { data: kubeFlavors, isPending: isKubeFlavorsPending } = useKubeFlavors(projectId, region);
+  const { data: flavors, isPending: isFlavorsPending } = useFlavors(projectId, region ?? '');
+  const { data: kubeFlavors, isPending: isKubeFlavorsPending } = useKubeFlavors(
+    projectId,
+    region ?? '',
+  );
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
   const { data: availability, isPending: isAvailabilityPending } =
     useProductAvailability(projectId);
 
-  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(projectId, region);
+  const { data: quota, isPending: isQuotaPending } = useProjectQuotaByRegion(
+    projectId,
+    region ?? '',
+  );
 
   const isPending =
     isFlavorsPending ||
@@ -118,11 +124,12 @@ export const useMergedKubeFlavors = (projectId: string, region: string | null) =
     }));
     return result
       .map((flavor) => {
-        const addon = catalog.addons.find((_addon) => _addon.planCode === flavor.planCodes.hourly);
+        const addon = catalog.addons.find((_addon) => _addon.planCode === flavor.planCodes?.hourly);
         const addonMonthly = catalog.addons.find(
-          (_addon) => _addon.planCode === flavor.planCodes.monthly,
+          (_addon) => _addon.planCode === flavor.planCodes?.monthly,
         );
-        const plan = availability.plans?.find((_plan) => _plan.code === flavor.planCodes.hourly);
+        const plan = availability.plans?.find((_plan) => _plan.code === flavor.planCodes?.hourly);
+        const planRegionTypes = new Set(plan?.regions?.map((_region) => _region.type));
 
         // Bugfix: Issue with selecting the correct monthly price in the US
         // -----------------------------------------------------------
@@ -144,27 +151,25 @@ export const useMergedKubeFlavors = (projectId: string, region: string | null) =
           ...flavor,
           blobs: addon?.blobs,
           compatibility: Object.values(DeploymentMode).reduce(
-            (acc, value) => ({
-              ...acc,
-              [value]: plan?.regions?.some((_region) => _region.type === value),
-            }),
+            (acc, value) => ({ ...acc, [value]: planRegionTypes.has(value) }),
             {},
           ) as Record<DeploymentMode, boolean>,
 
           pricingsHourly: addon?.pricings?.[0],
           pricingsMonthly: priceMonthly,
           isNew: addon?.blobs.tags.includes('is_new'),
-          flavorCategory: FLAVOR_CATEGORIES.find((cat) => cat.pattern.test(flavor.type))?.category,
-          isFlex: /flex$/.test(flavor.name),
-          isLegacy: /eg|sp|hg|vps-ssd/.test(flavor.name),
+          flavorCategory: FLAVOR_CATEGORIES.find((cat) => cat.pattern.test(flavor.type ?? ''))
+            ?.category,
+          isFlex: /flex$/.test(flavor.name ?? ''),
+          isLegacy: /eg|sp|hg|vps-ssd/.test(flavor.name ?? ''),
           hasEnoughQuota: hasEnoughQuota(flavor, quota),
         };
       })
       .sort((a, b) => {
-        const aGroup = Number((a.name.match(/[0-9]+/) || [])[0]);
-        const bGroup = Number((b.name.match(/[0-9]+/) || [])[0]);
-        const aRank = Number((a.name.match(/-([^-]+)$/) || [])[1]);
-        const bRank = Number((b.name.match(/-([^-]+)$/) || [])[1]);
+        const aGroup = Number((a.name?.match(/[0-9]+/) || [])[0]);
+        const bGroup = Number((b.name?.match(/[0-9]+/) || [])[0]);
+        const aRank = Number((a.name?.match(/-([^-]+)$/) || [])[1]);
+        const bRank = Number((b.name?.match(/-([^-]+)$/) || [])[1]);
         if (aGroup === bGroup) return aRank - bRank;
         return bGroup - aGroup;
       });
