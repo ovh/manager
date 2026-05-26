@@ -28,6 +28,25 @@ type TVolumeModelWithName<T extends TVolumeAddon> = T & TModelName;
 export const is3az = (catalogRegions: TRegion[], region: string) =>
   catalogRegions.find((r) => r.name === region)?.type === 'region-3-az';
 
+const DISABLED_TAG = 'disabled';
+
+// Regions where models tagged "disabled" are still offered. high-speed-gen2 is
+// not yet deployed in BHS1 and AP-SOUTHEAST-SYD-2, so high-speed-gen1 (tagged
+// disabled globally) must remain selectable there until gen2 ships. Remove a
+// region from this set as soon as gen2 becomes available there.
+export const REGIONS_IGNORING_DISABLED_TAG = new Set([
+  'BHS1',
+  'AP-SOUTHEAST-SYD-2',
+]);
+
+export const isModelDisabledForRegion = (
+  model: TVolumeAddon,
+  region: string,
+): boolean => {
+  if (REGIONS_IGNORING_DISABLED_TAG.has(region)) return false;
+  return model.tags?.includes(DISABLED_TAG) ?? false;
+};
+
 const isClassicMultiAttach = <T extends TVolumeAddon>(model: T) =>
   model.name === 'classic-multiattach';
 
@@ -312,6 +331,19 @@ export const mapVolumeModelAttach = <T extends TVolumeAddon>(
   shouldUseMultiAttachFileSystem: isClassicMultiAttach(model),
 });
 
+export type TModelDisabled = {
+  disabled: boolean;
+};
+
+export const mapVolumeModelDisabled = (region: string) => <
+  T extends TVolumeAddon
+>(
+  model: T,
+): T & TModelDisabled => ({
+  ...model,
+  disabled: isModelDisabledForRegion(model, region),
+});
+
 export type TFilterTags = {
   beta: boolean;
   comingSoon: boolean;
@@ -418,18 +450,21 @@ export const mapVolumeCatalog = (
   catalogPriceFormatter: (price: number) => string,
   translator: TFunction<['add']>,
 ) => (catalog: TVolumeCatalog) =>
-  filterVolumeModelsForRegion(catalog, region).map<TVolumeModel>(
-    pipe(
-      mapVolumeModelPriceSpecs(
-        catalog.regions,
-        region,
-        catalogPriceFormatter,
-        translator,
+  filterVolumeModelsForRegion(catalog, region)
+    .map<TVolumeModel>(
+      pipe(
+        mapVolumeModelPriceSpecs(
+          catalog.regions,
+          region,
+          catalogPriceFormatter,
+          translator,
+        ),
+        mapVolumeModelName(catalog.regions, region),
+        mapVolumeModelAttach,
+        mapVolumeModelDisabled(region),
       ),
-      mapVolumeModelName(catalog.regions, region),
-      mapVolumeModelAttach,
-    ),
-  );
+    )
+    .filter((model) => !model.disabled);
 
 export const mapRetypingVolumeCatalog = (
   region: string,
@@ -453,8 +488,10 @@ export const mapRetypingVolumeCatalog = (
         mapVolumeModelName(catalog.regions, region),
         mapVolumeModelAttach,
         mapPreselection(type),
+        mapVolumeModelDisabled(region),
       ),
-    );
+    )
+    .filter((model) => !model.disabled || model.isPreselected);
 
 export const sortByPreselectedModel = <
   T extends TVolumeModel | TVolumeRetypeModel

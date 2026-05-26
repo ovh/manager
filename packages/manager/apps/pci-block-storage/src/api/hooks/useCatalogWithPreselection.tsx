@@ -9,6 +9,7 @@ import {
   mapRetypingVolumeCatalog,
   TModelAttach,
   TModelAvailabilityZones,
+  TModelDisabled,
   TModelName,
   TModelPreselection,
   TModelPrice,
@@ -20,7 +21,8 @@ export type TVolumeRetypeModel = TModelPrice &
   TModelAvailabilityZones &
   TModelName &
   TModelAttach &
-  TModelPreselection;
+  TModelPreselection &
+  TModelDisabled;
 
 export const isRetypeModel = (
   model: TVolumeModel | TVolumeRetypeModel,
