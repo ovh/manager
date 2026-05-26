@@ -144,4 +144,21 @@ describe('Edit volume page', () => {
       expect(mockUpdateVolume).toHaveBeenCalledTimes(1);
     });
   });
+
+  it('renders the priceUnavailable message when monthlyPrice cannot be resolved', () => {
+    vi.mocked(useVolume).mockReturnValue({
+      data: {
+        ...mockedVolumeData.data,
+        monthlyPrice: undefined,
+      },
+      isLoading: false,
+      isPending: false,
+    } as UseQueryResult<UseVolumeResult>);
+
+    renderWithMockedWrappers(<EditPage />);
+
+    expect(
+      screen.getByTestId('editPage-text_priceUnavailable'),
+    ).toBeVisible();
+  });
 });

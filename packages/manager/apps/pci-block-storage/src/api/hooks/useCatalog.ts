@@ -13,6 +13,7 @@ import {
   mapVolumeCatalog,
   TModelAttach,
   TModelAvailabilityZones,
+  TModelDisabled,
   TModelName,
   TModelPrice,
 } from '@/api/select/catalog';
@@ -79,7 +80,8 @@ export const useVolumeRegions = (projectId: string) => {
 export type TVolumeModel = TModelPrice &
   TModelAvailabilityZones &
   TModelName &
-  TModelAttach;
+  TModelAttach &
+  TModelDisabled;
 
 export const useVolumeModels = (projectId: string, region: string) => {
   const { t } = useTranslation(['add', 'common', NAMESPACES.BYTES]);
