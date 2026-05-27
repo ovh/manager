@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.42.1...@ovh-ux/manager-web@19.43.0) (2026-05-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1247] ([39a6994](https://github.com/ovh/manager/commit/39a69940ea7ad447cbfe3f5f5ec178421f0d3cfe))
+
+
+### Features
+
+* **video-center:** add redirect to manager beta ([6e5dd3c](https://github.com/ovh/manager/commit/6e5dd3cb17418cbe9d29fb29994ec39e2ec565ba)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
 ## [19.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.42.0...@ovh-ux/manager-web@19.42.1) (2026-05-26)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.193.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.192.0...@ovh-ux/manager-container-app@0.193.0) (2026-05-27)
+
+
+### Features
+
+* **web-hosting:** redirect video center sidebar entry to beta manager ([a17e010](https://github.com/ovh/manager/commit/a17e010255ddb34b43ec10624a843579a18f73c3)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
 # [0.192.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.191.0...@ovh-ux/manager-container-app@0.192.0) (2026-05-25)
 
 
