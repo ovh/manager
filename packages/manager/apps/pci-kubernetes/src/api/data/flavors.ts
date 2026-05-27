@@ -35,8 +35,8 @@ export type TFlavor = {
   osType: string;
   outboundBandwidth?: number;
   planCodes: {
-    hourly?: string;
-    monthly?: string;
+    hourly: string | null;
+    monthly: string | null;
   };
   quota: number;
   ram: number;
