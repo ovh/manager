@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.0...@ovh-ux/manager-web@19.43.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* **web:** video-center redirect ([5bd98f9](https://github.com/ovh/manager/commit/5bd98f9955207f265fc8d1f6ca4c42c9d6b9213a)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
 # [19.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.42.1...@ovh-ux/manager-web@19.43.0) (2026-05-27)
 
 
