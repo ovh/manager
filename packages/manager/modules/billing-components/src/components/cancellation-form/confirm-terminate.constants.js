@@ -13,7 +13,7 @@ export const SERVICE_WITH_AGORA_TERMINATION = [
 
 export const SERVICE_TYPES_WITH_AGORA_TERMINATION = ['domain'];
 
-export const SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX = /hycu-vms-*|(logs-enterprise(-hds)?$)/;
+export const SERVICE_GROUP_WITH_AGORA_TERMINATION_REGEX = /hycu-vms-*|(logs-enterprise(-hds)?$)|^backup-vault-paygo/;
 
 export default {
   SPECIAL_CONDITIONS_SUBSIDIARIES,
