@@ -236,7 +236,6 @@ export default function WebSidebar() {
         name: OvhProductName.WORDPRESS, width: 16,
         height: 16,
       }),
-      badge: t('sidebar_tag_beta'),
       routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
       href: features['web-hosting:managed-cms-ga']
         ? '/beta/#/web-cloud/wordpress'
@@ -275,7 +274,6 @@ export default function WebSidebar() {
         id: 'web-hosting-video-center',
         label: t('sidebar_web_hosting_video_center'),
         icon: getIcon('ovh-font ovh-font-play'),
-        badge: t('sidebar_tag_beta'),
         href: '/beta/#/web-cloud/video-center',
       });
     }
