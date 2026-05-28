@@ -55,8 +55,14 @@ export default /* @ngInject */ function cdnF(
               serviceType: 'aapi',
             })
             .then((result) => {
-              cdnCache.put('cdn', result.data);
-              return result.data;
+              const data = { serviceName: productId, ...result.data };
+              cdnCache.put('cdn', data);
+              return data;
+            })
+            .catch(() => {
+              const data = { serviceName: productId };
+              cdnCache.put('cdn', data);
+              return data;
             });
         }
         return $q.when(requests.cdnDetails);
@@ -108,34 +114,22 @@ export default /* @ngInject */ function cdnF(
    * Add a domain to the CDN linked to the given backend
    */
   this.addDomain = function addDomain(productId, domain) {
-    let result = null;
-    return this.getSelected(productId)
-      .then((cdn) => {
-        if (cdn && cdn.serviceName) {
-          return $http
-            .post([swsCdnProxyPath, cdn.serviceName, 'domains'].join('/'), {
-              domain: domain.domain,
-            })
-            .then(() =>
-              $http
-                .post(
-                  [
-                    swsCdnProxyPath,
-                    cdn.serviceName,
-                    'domains',
-                    domain.domain,
-                    'backends',
-                  ].join('/'),
-                  { ip: domain.backend },
-                )
-                .then((data) => {
-                  result = data;
-                }),
-            );
-        }
-        return $q.reject(cdn);
+    return $http
+      .post([swsCdnProxyPath, productId, 'domains'].join('/'), {
+        domain: domain.domain,
       })
-      .then(() => result)
+      .then(() =>
+        $http.post(
+          [
+            swsCdnProxyPath,
+            productId,
+            'domains',
+            domain.domain,
+            'backends',
+          ].join('/'),
+          { ip: domain.backend },
+        ),
+      )
       .catch((http) => $q.reject(http.data));
   };
 
@@ -143,29 +137,17 @@ export default /* @ngInject */ function cdnF(
    * get the backends for the cdn.
    */
   this.getBackends = function getBackends(productId) {
-    let result = null;
-    return this.getSelected(productId)
-      .then((cdn) => {
-        if (cdn && cdn.serviceName) {
-          return $http
-            .get([aapiRootPath, cdn.serviceName, 'backends'].join('/'), {
-              serviceType: 'aapi',
-            })
-            .then((data) => {
-              result = data.data;
-            });
-        }
-        return $q.reject(cdn);
+    return $http
+      .get([aapiRootPath, productId, 'backends'].join('/'), {
+        serviceType: 'aapi',
       })
-      .then(
-        () => result,
-        (reason) => {
-          if (reason && reason.data !== undefined) {
-            return $q.reject(reason.data);
-          }
-          return $q.reject(reason);
-        },
-      );
+      .then(({ data }) => data)
+      .catch((reason) => {
+        if (reason && reason.data !== undefined) {
+          return $q.reject(reason.data);
+        }
+        return $q.reject(reason);
+      });
   };
 
   /*

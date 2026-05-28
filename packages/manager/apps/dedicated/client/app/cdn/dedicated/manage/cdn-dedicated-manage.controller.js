@@ -36,7 +36,10 @@ export default class CdnManageCtrl {
         this.Cdn.getServiceInfos(this.$stateParams.productId),
       ])
       .then(([selected, serviceInfos]) => {
-        this.cdn = selected;
+        this.cdn = {
+          serviceName: this.$stateParams.productId,
+          ...selected,
+        };
         this.serviceInfos = serviceInfos;
 
         const date = new Date();
@@ -61,8 +64,12 @@ export default class CdnManageCtrl {
 
         if (errCdn.data && errCdn.data.type === 'ERROR') {
           errs.push(errCdn);
+          this.cdn = { serviceName: this.$stateParams.productId };
         } else {
-          this.cdn = errCdn;
+          this.cdn = {
+            serviceName: this.$stateParams.productId,
+            ...errCdn,
+          };
         }
 
         if (errServiceInfos.data && errServiceInfos.data.type === 'ERROR') {

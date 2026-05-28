@@ -4,6 +4,7 @@ import { OsdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_ICON_NAME, ODS_ICON_SIZE } from '@ovhcloud/ods-components';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
+import { apiClient } from '@ovh-ux/manager-core-api';
 import { useShell } from '@/context';
 import { sanitizeMenu, SidebarMenuItem } from '../sidebarMenu';
 import Sidebar from '../Sidebar';
@@ -181,24 +182,41 @@ export default function DedicatedSidebar() {
         id: 'dedicated-cdn',
         label: t('sidebar_cdn'),
         icon: getIcon('ovh-font ovh-font-network'),
+        href: navigation.getURL('dedicated', '#/configuration/cdn'),
         routeMatcher: new RegExp('^(/configuration/cdn)'),
         async loader() {
-          const cdn = await loadServices('/cdn/dedicated');
-          return [
-            ...cdn.map((cdnItem) => ({
-              ...cdnItem,
-              icon: getIcon('ovh-font ovh-font-cdn'),
-              keywords: 'cdn',
-              routeMatcher: new RegExp(
-                `^/configuration/cdn/${cdnItem.serviceName}`,
-              ),
-              async loader() {
-                return loadServices(
-                  `/cdn/dedicated/${cdnItem.serviceName}/domains`,
-                );
-              },
-            })),
-          ];
+          let cdn = await loadServices('/cdn/dedicated');
+          if (cdn.length === 0) {
+            const { data: serviceNames } = await apiClient.v6.get<string[]>(
+              '/cdn/dedicated',
+            );
+            cdn = serviceNames
+              .map((serviceName) => ({
+                id: `service-/cdn/dedicated-${serviceName}`,
+                label: serviceName,
+                serviceName,
+                href: navigation.getURL(
+                  'dedicated',
+                  `#/configuration/cdn/${serviceName}`,
+                ),
+                stateParams: [],
+                searchParams: [],
+              }))
+              .sort((a, b) => a.label.localeCompare(b.label));
+          }
+          return cdn.map((cdnItem) => ({
+            ...cdnItem,
+            icon: getIcon('ovh-font ovh-font-cdn'),
+            keywords: 'cdn',
+            routeMatcher: new RegExp(
+              `^/configuration/cdn/${cdnItem.serviceName}`,
+            ),
+            async loader() {
+              return loadServices(
+                `/cdn/dedicated/${cdnItem.serviceName}/domains`,
+              );
+            },
+          }));
         },
       });
     }

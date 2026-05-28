@@ -8,9 +8,21 @@ export default /* @ngInject */ ($stateProvider) => {
     params: ListLayoutHelper.stateParams,
     resolve: {
       ...ListLayoutHelper.stateResolves,
+      staticResources: () => true,
       apiPath: () => '/cdn/dedicated',
       dataModel: () => 'cdnanycast.Anycast',
       defaultFilterColumn: () => 'service',
+      resources: /* @ngInject */ ($http, $q, apiPath) =>
+        $http.get(apiPath).then(({ data: serviceNames }) =>
+          $q.all(
+            serviceNames.map((serviceName) =>
+              $http
+                .get(`${apiPath}/${serviceName}`)
+                .then(({ data }) => data)
+                .catch(() => ({ service: serviceName })),
+            ),
+          ),
+        ),
       header: /* @ngInject */ ($translate) => $translate.instant('cdn_title'),
       changelog: () => 'cdn',
       customizableColumns: () => true,
@@ -93,7 +105,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .injector()
         .getAsync('resources')
         .then((resources) =>
-          resources.data.length === 0
+          resources.length === 0
             ? { state: 'app.networks.cdn.onboarding' }
             : false,
         ),
