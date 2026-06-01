@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.0...@ovh-ux/manager-pci-instances-app@0.18.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* **pci-instances:** update naming instance ([8288a4e](https://github.com/ovh/manager/commit/8288a4e211c164c1c95bc2e37d06d00c2dfea8d9)), closes [#TAPC-6793](https://github.com/ovh/manager/issues/TAPC-6793)
+
+
+
+
+
 # [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.2...@ovh-ux/manager-pci-instances-app@0.18.0) (2026-05-25)
 
 
