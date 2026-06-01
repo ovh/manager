@@ -37,9 +37,9 @@ describe('getDatagridColumns', () => {
     mockGetProjectUrl.mockClear();
   });
 
-  it('should return an array of 3 columns', () => {
+  it('should return an array of 5 columns', () => {
     const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
-    expect(columns).toHaveLength(3);
+    expect(columns).toHaveLength(5);
   });
 
   describe('description column', () => {
@@ -112,10 +112,65 @@ describe('getDatagridColumns', () => {
     });
   });
 
+  describe('project_id column', () => {
+    it('should have correct configuration', () => {
+      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
+      const projectIdColumn = columns[1];
+      expect(projectIdColumn).toBeDefined();
+
+      expect(projectIdColumn!.id).toBe('project_id');
+      expect(projectIdColumn!.label).toBe('pci_projects_project_id');
+      expect(projectIdColumn!.isSearchable).toBe(true);
+      expect(projectIdColumn!.isSortable).toBe(true);
+      expect(projectIdColumn!.isFilterable).toBe(true);
+      expect(projectIdColumn!.type).toBe(FilterTypeCategories.String);
+    });
+
+    it('should render the project id in cell', () => {
+      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
+      const projectIdColumn = columns[1];
+      expect(projectIdColumn).toBeDefined();
+
+      render(projectIdColumn!.cell(mockProject));
+
+      expect(screen.getByText('test-id')).toBeInTheDocument();
+    });
+  });
+
+  describe('projectName column', () => {
+    it('should have correct configuration', () => {
+      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
+      const projectNameColumn = columns[2];
+      expect(projectNameColumn).toBeDefined();
+
+      expect(projectNameColumn!.id).toBe('projectName');
+      expect(projectNameColumn!.label).toBe('pci_projects_openstack_project_name');
+      expect(projectNameColumn!.isSearchable).toBe(true);
+      expect(projectNameColumn!.isSortable).toBe(true);
+      expect(projectNameColumn!.isFilterable).toBe(true);
+      expect(projectNameColumn!.type).toBe(FilterTypeCategories.String);
+    });
+
+    it('should render the openstack project name in cell', () => {
+      const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
+      const projectNameColumn = columns[2];
+      expect(projectNameColumn).toBeDefined();
+
+      render(
+        projectNameColumn!.cell({
+          ...mockProject,
+          projectName: '6903005992970637',
+        } as unknown as TProjectWithService),
+      );
+
+      expect(screen.getByText('6903005992970637')).toBeInTheDocument();
+    });
+  });
+
   describe('aggregatedStatus column', () => {
     it('should have correct configuration', () => {
       const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
-      const statusColumn = columns[1];
+      const statusColumn = columns[3];
       expect(statusColumn).toBeDefined();
 
       expect(statusColumn!.id).toBe('aggregatedStatus');
@@ -131,7 +186,7 @@ describe('getDatagridColumns', () => {
 
     it('should render StatusComponent in cell', async () => {
       const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
-      const statusColumn = columns[1];
+      const statusColumn = columns[3];
       expect(statusColumn).toBeDefined();
 
       render(statusColumn!.cell(mockProject));
@@ -147,7 +202,7 @@ describe('getDatagridColumns', () => {
   describe('actions column', () => {
     it('should have correct configuration', () => {
       const columns = getDatagridColumns(mockTranslate, mockGetProjectUrl, false);
-      const actionsColumn = columns[2];
+      const actionsColumn = columns[4];
       expect(actionsColumn).toBeDefined();
 
       expect(actionsColumn!.id).toBe('actions');
