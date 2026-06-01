@@ -94,6 +94,26 @@ export const getDatagridColumns = (
     type: FilterTypeCategories.String,
   },
   {
+    id: 'project_id',
+    label: t('pci_projects_project_id'),
+    cell: (props: TProjectWithService) => <DataGridTextCell>{props.project_id}</DataGridTextCell>,
+    isSearchable: true,
+    isSortable: true,
+    isFilterable: true,
+    type: FilterTypeCategories.String,
+  },
+  {
+    id: 'projectName',
+    label: t('pci_projects_openstack_project_name'),
+    cell: (props: TProjectWithService) => (
+      <DataGridTextCell>{props.projectName || ''}</DataGridTextCell>
+    ),
+    isSearchable: true,
+    isSortable: true,
+    isFilterable: true,
+    type: FilterTypeCategories.String,
+  },
+  {
     id: 'aggregatedStatus',
     label: t('status', { ns: NAMESPACES.STATUS }),
     cell: (props: TProjectWithService) => (

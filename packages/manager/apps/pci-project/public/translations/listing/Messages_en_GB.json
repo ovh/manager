@@ -8,5 +8,7 @@
   "pci_projects_create_project": "Create a new project",
   "pci_projects_redirect_to_dedicated_page": "To continue, please select an existing project or create a new project.",
   "pci_projects_project_delete_success": "You have been sent an email confirming the deletion.",
-  "pci_projects_project_default_project": "Default project"
+  "pci_projects_project_default_project": "Default project",
+  "pci_projects_project_id": "Project ID",
+  "pci_projects_openstack_project_name": "OpenStack project name"
 }
