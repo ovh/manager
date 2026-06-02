@@ -254,7 +254,7 @@ export function useTailLogs(
         };
       }[];
     }> =>
-      fetch(`${logsURL?.url}&sort=asc&limit=20`).then((response) =>
+      fetch(`${logsURL?.url}&limit=20`).then((response) =>
         response.json(),
       ),
     select: ({ messages: _msgs }) => _msgs?.map(({ message }) => message),
