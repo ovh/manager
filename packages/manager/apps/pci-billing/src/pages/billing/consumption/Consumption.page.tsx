@@ -20,6 +20,8 @@ import {
 } from '@ovhcloud/ods-components/react';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isApiCustomError } from '@ovh-ux/manager-core-api';
 import { PCI_FEATURES_BILLING_POST_PAID, TRUSTED_ZONE } from '@/constants';
 import MonthlyConsumption from '@/components/consumption/MonthlyConsumption.component';
@@ -39,6 +41,9 @@ export default function Consumption() {
   ]);
 
   const { hasHiddenProducts } = useHiddenProducts();
+
+  const { environment } = useContext(ShellContext);
+  const isUsRegion = environment.getRegion() === 'US';
 
   const { data: consumption, isPending, error } = useCurrentUsage(projectId);
 
@@ -138,6 +143,7 @@ export default function Consumption() {
                     consumption={consumption}
                     isTrustedZone={isTrustedZone}
                     hasHiddenProducts={!!hasHiddenProducts}
+                    isUsRegion={isUsRegion}
                   />
                 )}
               </div>
