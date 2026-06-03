@@ -809,6 +809,15 @@
                             data-ng-bind="::hosting.creation|date:'mediumDate'"
                         ></oui-tile-description>
                     </oui-tile-definition>
+                    <oui-tile-button
+                        data-ng-if="!hosting.isExpired && $ctrl.isManageRenewFeatureAvailable"
+                        data-aria-label="{{ ::'hosting_dashboard_manage_renewal_button' | translate }}"
+                        data-ui-sref="app.hosting.dashboard.renew-period"
+                    >
+                        <span
+                            data-translate="hosting_dashboard_manage_renewal_button"
+                        ></span>
+                    </oui-tile-button>
                 </oui-tile>
             </div>
         </div>

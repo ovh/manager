@@ -1,0 +1,111 @@
+<oui-modal
+    data-heading="{{ 'hosting_renew_period_title' | translate }}"
+    data-primary-action="$ctrl.submit()"
+    data-primary-disabled="!$ctrl.hasSelection() || $ctrl.isSubmitting || $ctrl.isLoading"
+    data-primary-label="{{ 'hosting_renew_period_submit' | translate }}"
+    data-secondary-action="$ctrl.cancel()"
+    data-secondary-label="{{ 'hosting_renew_period_cancel' | translate }}"
+    data-on-dismiss="$ctrl.cancel()"
+    data-loading="$ctrl.isSubmitting"
+>
+    <div>
+        <p
+            class="mb-3"
+            data-translate="hosting_renew_period_description"
+        ></p>
+
+        <div data-ng-if="$ctrl.isLoading" class="text-center">
+            <oui-spinner></oui-spinner>
+        </div>
+
+        <div
+            data-ng-if="!$ctrl.isLoading && $ctrl.loadError"
+            class="oui-message oui-message_warning"
+            data-translate="hosting_renew_period_loadError"
+        ></div>
+
+        <div
+            data-ng-if="!$ctrl.isLoading && !$ctrl.loadError && $ctrl.availableMonths.length === 0 && !$ctrl.manualModeAvailable"
+            class="oui-message oui-message_warning"
+            data-translate="hosting_renew_period_noPeriodsAvailable"
+        ></div>
+
+        <div data-ng-if="!$ctrl.isLoading && !$ctrl.loadError && ($ctrl.availableMonths.length > 0 || $ctrl.manualModeAvailable)">
+            <div
+                data-ng-if="$ctrl.availableMonths.length > 0"
+                class="d-flex flex-wrap"
+                style="gap: 0.5rem;"
+            >
+                <button
+                    type="button"
+                    class="oui-button oui-button_secondary"
+                    data-ng-class="{ 'oui-button_primary': $ctrl.isMonthsSelected(months) }"
+                    data-ng-repeat="months in $ctrl.availableMonths track by months"
+                    data-ng-click="$ctrl.selectMonths(months)"
+                    data-ng-disabled="$ctrl.isSubmitting"
+                >
+                    <span data-ng-bind="$ctrl.periodLabel(months)"></span>
+                    <span
+                        class="d-block oui-text_s"
+                        data-ng-if="$ctrl.isUpfront && $ctrl.optionsByMonths[months].price.text"
+                        data-ng-bind="$ctrl.optionsByMonths[months].price.text"
+                    ></span>
+                </button>
+            </div>
+
+            <div
+                class="d-flex align-items-center mt-3"
+                style="gap: 0.5rem;"
+                data-ng-if="$ctrl.currentPeriod && !$ctrl.isCurrentlyManual"
+            >
+                <span
+                    class="oui-icon oui-icon-info-circle"
+                    aria-hidden="true"
+                ></span>
+                <span
+                    class="mb-0 oui-text_s"
+                    data-translate="hosting_renew_period_currentPeriod"
+                    data-translate-values="{ period: $ctrl.periodLabel($ctrl.currentPeriod) }"
+                ></span>
+            </div>
+
+            <div
+                data-ng-if="$ctrl.manualModeAvailable && !$ctrl.isUpfront"
+                class="mt-3"
+            >
+                <div
+                    data-ng-if="$ctrl.availableMonths.length > 0"
+                    class="d-flex align-items-center mb-3"
+                    style="gap: 0.75rem;"
+                >
+                    <span style="flex: 1; height: 1px; background-color: #e0e0e0;"></span>
+                    <span
+                        class="oui-text_s"
+                        data-translate="hosting_renew_period_or"
+                    ></span>
+                    <span style="flex: 1; height: 1px; background-color: #e0e0e0;"></span>
+                </div>
+
+                <button
+                    type="button"
+                    class="oui-box oui-box_light d-block w-100 text-left"
+                    style="cursor: pointer; padding: 1rem 1.5rem;"
+                    data-ng-style="$ctrl.isManualSelected ? { 'border-color': '#0050d7', 'background-color': '#f5f9ff' } : {}"
+                    data-ng-click="$ctrl.selectManual()"
+                    data-ng-disabled="$ctrl.isSubmitting"
+                >
+                    <span
+                        class="d-block"
+                        style="font-weight: 600;"
+                        data-translate="hosting_renew_period_noPeriod"
+                    ></span>
+                    <span
+                        class="d-block mt-1 oui-text_s"
+                        style="white-space: pre-line;"
+                        data-translate="hosting_renew_period_noPeriodHint"
+                    ></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</oui-modal>
