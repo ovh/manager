@@ -6,6 +6,8 @@ import { PRODUCTS, ResourceType, ConsumptionKey } from '@/constants';
 import { TConsumptionDetail } from '@/api/hook/useConsumption';
 import ArchiveStorageList from './ArchiveStorageList.component';
 import ColdArchiveList from './ColdArchiveList.component';
+import FileStorageList from './FileStorageList.component';
+import FileStorageSnapshotList from './FileStorageSnapshotList.component';
 import InstanceList from './InstanceList.component';
 import ObjectStorageList from './ObjectStorageList.component';
 import OutgoingTrafficList from './OutgoingTrafficList.component';
@@ -24,12 +26,14 @@ type HourlyConsumptionProps = {
   consumption: TConsumptionDetail;
   isTrustedZone: boolean;
   hasHiddenProducts?: boolean;
+  isUsRegion?: boolean;
 };
 
 export default function HourlyConsumption({
   consumption,
   isTrustedZone,
   hasHiddenProducts,
+  isUsRegion,
 }: Readonly<HourlyConsumptionProps>) {
   const { t } = useTranslation('consumption/hourly-instance');
   const { getTextPrice } = useCatalogPrice(2);
@@ -77,6 +81,22 @@ export default function HourlyConsumption({
       title: t('cpbc_cold_archive_detail_title'),
       component: <ColdArchiveList coldArchives={consumption.coldArchive} />,
       condition: !isTrustedZone && !hasHiddenProducts,
+    },
+    {
+      key: ResourceType.SHARE,
+      title: t('cpbc_file_storage_detail_title'),
+      component: <FileStorageList shares={consumption.shares} />,
+      // Not available in the US; only shown once the API returns data.
+      condition: !isUsRegion && consumption.shares.length > 0,
+    },
+    {
+      key: ResourceType.SHARE_SNAPSHOT,
+      title: t('cpbc_file_storage_snapshot_detail_title'),
+      component: (
+        <FileStorageSnapshotList snapshots={consumption.shareSnapshots} />
+      ),
+      // Not available in the US; only shown once the API returns data.
+      condition: !isUsRegion && consumption.shareSnapshots.length > 0,
     },
     {
       key: ResourceType.BANDWIDTH,

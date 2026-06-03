@@ -14,6 +14,8 @@ import {
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { useProject, useParam } from '@ovh-ux/manager-pci-common';
 import {
   useGetUsageHistory,
@@ -50,6 +52,9 @@ export default function History() {
     PCI_FEATURES_BILLING_POST_PAID,
     TRUSTED_ZONE,
   ]);
+
+  const { environment } = useContext(ShellContext);
+  const isUsRegion = environment.getRegion() === 'US';
 
   const isTrustedZone = availability?.[TRUSTED_ZONE] ?? false;
   const isPostPaidUsageBilling =
@@ -120,6 +125,7 @@ export default function History() {
                   <HourlyConsumption
                     consumption={consumption}
                     isTrustedZone={isTrustedZone}
+                    isUsRegion={isUsRegion}
                   />
                 )}
               </div>
