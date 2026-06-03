@@ -21,6 +21,7 @@ import task from '../task/task.module';
 import userLogs from '../user-logs/user-logs.module';
 import hostingDomainOffersComponent from '../../components/hosting-domain-offers';
 import hostingAbuseUnblock from './abuse-unblock';
+import hostingRenewPeriod from './renew-period';
 
 const moduleName = 'ovhManagerHosting';
 
@@ -48,6 +49,7 @@ angular
     userLogs,
     hostingDomainOffersComponent,
     hostingAbuseUnblock,
+    hostingRenewPeriod,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

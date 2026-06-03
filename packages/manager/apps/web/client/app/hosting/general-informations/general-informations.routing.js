@@ -15,6 +15,14 @@ export default /* @ngInject */ ($stateProvider) => {
               'web-hosting:change-offer',
             );
           }),
+      isManageRenewFeatureAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
+        ovhFeatureFlipping
+          .checkFeatureAvailability('web-hosting:manage-renew')
+          .then((featureAvailability) => {
+            return featureAvailability.isFeatureAvailable(
+              'web-hosting:manage-renew',
+            );
+          }),
       breadcrumb: () => null,
     },
   });

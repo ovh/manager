@@ -36,6 +36,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     isChangeOfferFeatureAvailable,
+    isManageRenewFeatureAvailable,
     OvhApiScreenshot,
     user,
   ) {
@@ -62,6 +63,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.isChangeOfferFeatureAvailable = isChangeOfferFeatureAvailable;
+    this.isManageRenewFeatureAvailable = isManageRenewFeatureAvailable;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
     this.Domain = Domain;
@@ -98,10 +100,16 @@ export default class HostingGeneralInformationsCtrl {
     this.videoCenterLink = `/beta/#/web-cloud/hosting/general/${this.serviceName}/general`;
     this.showVideoCenterTile = false;
 
-    const VIDEO_CENTER_INELIGIBLE_OFFERS = ['START_10_M', 'HOSTING_FREE_100_M', 'HOSTING_FREE_10_M', 'START_100_M'];
+    const VIDEO_CENTER_INELIGIBLE_OFFERS = [
+      'START_10_M',
+      'HOSTING_FREE_100_M',
+      'HOSTING_FREE_10_M',
+      'START_100_M',
+    ];
     const deregisterWatch = this.$scope.$watch('hosting.offer', (offer) => {
       if (!offer) return;
-      this.showVideoCenterTile = VIDEO_CENTER_INELIGIBLE_OFFERS.indexOf(offer.toUpperCase()) === -1;
+      this.showVideoCenterTile =
+        VIDEO_CENTER_INELIGIBLE_OFFERS.indexOf(offer.toUpperCase()) === -1;
       deregisterWatch();
       if (this.showVideoCenterTile) {
         this.initializeVideoCenter(this.serviceName);
@@ -180,13 +188,24 @@ export default class HostingGeneralInformationsCtrl {
     // v2 calls use Apiv2Service.httpApiv2 (handles /engine/api/v2 prefix)
     return this.$q
       .all([
-        this.Apiv2Service.httpApiv2({ method: 'get', url: '/engine/api/v2/videocenter/resource' })
-          .then(function(res) { return res.data || []; })
-          .catch(function() { return []; }),
+        this.Apiv2Service.httpApiv2({
+          method: 'get',
+          url: '/engine/api/v2/videocenter/resource',
+        })
+          .then(function(res) {
+            return res.data || [];
+          })
+          .catch(function() {
+            return [];
+          }),
         this.$http
           .get('/services', { params: { resourceName: serviceName } })
-          .then(function(res) { return res.data || []; })
-          .catch(function() { return []; }),
+          .then(function(res) {
+            return res.data || [];
+          })
+          .catch(function() {
+            return [];
+          }),
       ])
       .then((results) => {
         const allResources = results[0];
@@ -204,28 +223,45 @@ export default class HostingGeneralInformationsCtrl {
 
             return this.$http
               .get('/services', { params: { resourceName: resource.id } })
-              .then(function(res) { return res.data || []; })
-              .catch(function() { return []; })
+              .then(function(res) {
+                return res.data || [];
+              })
+              .catch(function() {
+                return [];
+              })
               .then((vcServiceIds) => {
                 if (!vcServiceIds.length) return null;
                 return this.$http
                   .get(`/services/${vcServiceIds[0]}`)
-                  .then(function(res) { return res.data; })
-                  .catch(function() { return null; });
+                  .then(function(res) {
+                    return res.data;
+                  })
+                  .catch(function() {
+                    return null;
+                  });
               })
               .then((vcService) => {
-                if (!vcService || vcService.parentServiceId !== hostingServiceId) {
+                if (
+                  !vcService ||
+                  vcService.parentServiceId !== hostingServiceId
+                ) {
                   return null;
                 }
                 return this.Apiv2Service.httpApiv2({
                   method: 'get',
                   url: `/engine/api/v2/videocenter/resource/${resource.id}`,
                 })
-                  .then(function(res) { return res.data; })
-                  .catch(function() { return null; })
+                  .then(function(res) {
+                    return res.data;
+                  })
+                  .catch(function() {
+                    return null;
+                  })
                   .then((detail) => {
                     const offerName =
-                      detail && detail.currentState && detail.currentState.offerName;
+                      detail &&
+                      detail.currentState &&
+                      detail.currentState.offerName;
                     if (!offerName) {
                       return { status: 'freemium', plan: null };
                     }
