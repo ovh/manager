@@ -129,6 +129,8 @@ export enum ResourceType {
   VOLUME = 'volume',
   OBJECT_STORAGE = 'objectStorage',
   ARCHIVE_STORAGE = 'archiveStorage',
+  SHARE = 'share',
+  SHARE_SNAPSHOT = 'shareSnapshot',
   BANDWIDTH = 'bandwidth',
   RANCHER = 'rancher',
   MANAGED_KUBERNETES_SERVICE = 'managedKubernetesService',
