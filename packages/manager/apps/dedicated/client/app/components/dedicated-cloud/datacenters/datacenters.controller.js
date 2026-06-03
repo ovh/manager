@@ -98,7 +98,10 @@ export default class {
       offset - 1,
     )
       .then((result) => {
-        const data = result.list?.results;
+        // Drop phantom datacenters (no/0 id, e.g. id = 0)
+        const data = (result.list?.results || []).filter(
+          (datacenter) => datacenter.id,
+        );
 
         this.hasLegacyDatacenter =
           !!data.find((datacenter) => {

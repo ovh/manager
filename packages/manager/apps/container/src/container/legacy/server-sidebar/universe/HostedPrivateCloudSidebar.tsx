@@ -96,10 +96,18 @@ export default function HostedPrivateCloudSidebar() {
                   `/dedicatedCloud/${service.serviceName}/datacenter`,
                   'EPCC',
                 );
-                return datacenters.map((datacenter) => ({
-                  ...datacenter,
+                return datacenters
+                  .filter((datacenter) => {
+                    // Drop phantom datacenters (id 0 / missing): they have an
+                    // empty label and navigating to a non-existent
+                    // `datacenterId = 0` errors out.
+                    const datacenterId = datacenter.stateParams?.[1];
+                    return datacenterId && String(datacenterId) !== '0';
+                  })
+                  .map((datacenter) => ({
+                    ...datacenter,
                   routeMatcher: new RegExp(`/datacenter/${datacenter.stateParams[1]}`),
-                }));
+                  }));
               },
             })),
           ];
@@ -296,7 +304,7 @@ export default function HostedPrivateCloudSidebar() {
         label: t('sidebar_storage_backup'),
         icon: (
           <img
-            className="mb-1 mr-1 w-6 aspect-square"
+            className="mb-1 mr-1 aspect-square w-6"
             alt=""
             src={infinityCLoud}
           />
@@ -332,7 +340,7 @@ export default function HostedPrivateCloudSidebar() {
             id: 'hpc-hycu',
             label: t('sidebar_hycu'),
             icon: (
-              <img alt="" src={hycuLogo} className="mb-1 w-6 aspect-square" />
+              <img alt="" src={hycuLogo} className="mb-1 aspect-square w-6" />
             ),
             pathMatcher: new RegExp('^/hycu'),
             badge: 'new',
@@ -358,7 +366,7 @@ export default function HostedPrivateCloudSidebar() {
             id: 'hpc-backup-agent-iaas',
             label: t('sidebar_backup_agent_iaas'),
             icon: (
-              <img alt="" src={backupAgentLogo} className="mb-1 w-6 aspect-square" />
+              <img alt="" src={backupAgentLogo} className="mb-1 aspect-square w-6" />
             ),
             pathMatcher: new RegExp('^/hpc-backup-agent-iaas'),
             badge: 'new',
@@ -424,9 +432,9 @@ export default function HostedPrivateCloudSidebar() {
             label: 'Secret Manager',
             badge: feature['okms:secret-manager:beta-badge'] ? 'beta' : undefined,
             icon: <OsdsIcon
-              name={ODS_ICON_NAME.SHIELD_CONCEPT}
-              size={ODS_ICON_SIZE.xxs}
-              color={ODS_THEME_COLOR_INTENT.text}
+                name={ODS_ICON_NAME.SHIELD_CONCEPT}
+                size={ODS_ICON_SIZE.xxs}
+                color={ODS_THEME_COLOR_INTENT.text}
             />,
             href: navigation.getURL(app, '#/secret-manager'),
             pathMatcher: new RegExp('^/okms/secret-manager/*'),
