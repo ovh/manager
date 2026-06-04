@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.19.1...@ovh-ux/manager-pci-billing-app@0.20.0) (2026-06-04)
+
+
+### Features
+
+* **pci-billing:** add columuns in current billing ([d60906b](https://github.com/ovh/manager/commit/d60906b17d1fd400ad901dbc998a6c270c79a586)), closes [#TAPC-6712](https://github.com/ovh/manager/issues/TAPC-6712)
+
+
+
+
+
 ## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-billing-app@0.19.0...@ovh-ux/manager-pci-billing-app@0.19.1) (2026-05-05)
 
 

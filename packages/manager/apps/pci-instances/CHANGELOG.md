@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.1...@ovh-ux/manager-pci-instances-app@0.19.0) (2026-06-04)
+
+
+### Features
+
+* **pci-instances:** add translation ([6dfb48b](https://github.com/ovh/manager/commit/6dfb48b351caa6a358eaa982038f41cc4fb86de3)), closes [#TAPC-6821](https://github.com/ovh/manager/issues/TAPC-6821)
+* **pci-instances:** remove spaces from naming ([284cd24](https://github.com/ovh/manager/commit/284cd242487e4cd394aa33be78adc2da46c92b72)), closes [#TAPC-6807](https://github.com/ovh/manager/issues/TAPC-6807)
+
+
+
+
+
 ## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.0...@ovh-ux/manager-pci-instances-app@0.18.1) (2026-06-01)
 
 
