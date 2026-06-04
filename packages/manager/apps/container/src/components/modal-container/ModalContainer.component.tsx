@@ -13,11 +13,13 @@ import AgreementsUpdateModal from '@/components/agreements-update-modal/Agreemen
 import PaymentModal from '@/components/payment-modal/PaymentModal.component';
 import { IdentityDocumentsModal } from '@/components/identity-documents-modal/IdentityDocumentsModal.component';
 import { CommunicationAnnounceModal } from '../communication-announce-modal/CommunicationAnnounceModal.component';
+import CompanyInformationModal from '../company-information-modal/CompanyInformationModal.component';
 
 const MODALS: FC[] = [
   IdentityDocumentsModal,
   PaymentModal,
   AgreementsUpdateModal,
+  CompanyInformationModal,
   SuggestionModal,
   CommunicationAnnounceModal,
 ];

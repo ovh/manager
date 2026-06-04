@@ -3,12 +3,14 @@ import { Handler } from "@ovh-ux/manager-core-test-utils";
 export const getPreferencesMocks = (params: {
   identityDocuments?: boolean;
   agreementsUpdate?: boolean;
+  companyInformation?: boolean;
   suggestions?: boolean;
   betaVersion?: boolean | 'true' | 'false';
 } = {}): Handler[] => {
   const {
     identityDocuments = true,
     agreementsUpdate = true,
+    companyInformation = true,
     suggestions = true,
     betaVersion = 'true',
   } = params;
@@ -27,6 +29,15 @@ export const getPreferencesMocks = (params: {
   if (agreementsUpdate) {
     mocks.push({
       url: 'me/preferences/manager/AGREEMENTS_UPDATE_MODAL',
+      response: null,
+      api: 'v6',
+      delay: 0,
+    });
+  }
+
+  if (companyInformation) {
+    mocks.push({
+      url: 'me/preferences/manager/COMPANY_INFORMATION_MODAL',
       response: null,
       api: 'v6',
       delay: 0,
