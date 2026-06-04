@@ -1,9 +1,8 @@
 import { instanceNameRegex } from '@/constants';
 
 describe('Instance creation', () => {
-  test('Should accept only strings and special characters like "-", "_", ":", space and "." with a maximum length of 255', () => {
+  test('Should accept only strings and special characters like "-", "_", ":" and "." with a maximum length of 255', () => {
     const allowedChars = [
-      ' ',
       ':',
       '.',
       '_',
@@ -20,6 +19,8 @@ describe('Instance creation', () => {
 
   test('Should reject all other unauthorized name input', () => {
     const rejectedChars = [
+      ' ',
+      'name with space',
       '!',
       '@',
       '#',
