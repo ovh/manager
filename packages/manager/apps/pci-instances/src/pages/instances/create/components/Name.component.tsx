@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { ChangeEventHandler, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, FormFieldLabel, Input, Text } from '@ovhcloud/ods-react';
 import clsx from 'clsx';
@@ -19,6 +19,16 @@ export const Name = () => {
       errors: { name: error },
     },
   } = useFormContext<TInstanceCreationForm>();
+
+  const { onChange: onNameChange, ...nameField } = register('name');
+
+  const handleNameChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const sanitized = event.target.value.replace(/\s/g, '');
+    if (sanitized !== event.target.value) {
+      event.target.value = sanitized;
+    }
+    void onNameChange(event);
+  };
 
   const flavorId = useWatch({ control, name: 'flavorId' });
 
@@ -47,7 +57,12 @@ export const Name = () => {
           <FormFieldLabel>
             {t('common:pci_instances_common_instance_name')}
           </FormFieldLabel>
-          <Input {...register('name')} invalid={!!error} className="w-full" />
+          <Input
+            {...nameField}
+            onChange={handleNameChange}
+            invalid={!!error}
+            className="w-full"
+          />
         </FormField>
       </div>
       <Text

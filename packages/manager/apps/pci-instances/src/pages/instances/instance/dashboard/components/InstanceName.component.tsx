@@ -66,11 +66,13 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
   };
 
   return (
-    <div className="flex items-center min-w-96">
+    <div className="flex min-w-96 items-center">
       {isEditing ? (
         <InputCancellable
           value={instanceName}
-          onChange={({ target }) => setInstanceName(target.value)}
+          onChange={({ target }) =>
+            setInstanceName(target.value.replace(/\s/g, ''))
+          }
           onCancel={handleCancel}
           onSubmit={handleSubmit}
           className="h-[2.5em]"
@@ -79,7 +81,7 @@ const InstanceName: FC<TInstanceNameProps> = ({ instance }) => {
         <Text
           preset="heading-3"
           className={clsx(
-            `whitespace-nowrap overflow-hidden text-ellipsis max-w-md ${
+            `max-w-md truncate ${
               isPending ? 'opacity-25' : 'opacity-100'
             }`,
           )}
