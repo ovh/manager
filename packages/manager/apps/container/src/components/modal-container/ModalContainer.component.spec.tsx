@@ -1,4 +1,4 @@
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { vi } from "vitest";
 
 import { LegalForm } from "@ovh-ux/manager-config";
@@ -11,6 +11,7 @@ import { getAgreementsMocks } from '@/__mocks__/agreements/agreements.handler';
 import { getPreferencesMocks } from '@/__mocks__/preferences/preferences.handler';
 import { getProcedureMocks } from '@/__mocks__/procedures/procedures.handler';
 import { getSuggestionsMocks } from '@/__mocks__/suggestions/suggestions.handler';
+import { getMeMocks } from '@/__mocks__/me/me.handler';
 import * as agreementsHelper from "@/helpers/agreements/agreementsHelper";
 import * as paymentMethodHelper from "@/helpers/paymentMethod/paymentMethodHelper";
 import * as procedureHelper from "@/helpers/procedures/proceduresHelper";
@@ -64,6 +65,7 @@ const cases: Record<string, GetComponentWrapperParams & ConfigureTestParams> = {
     mocks: [
       ...commonMocks,
       ...getProcedureMocks({ identityStatus: 'required' }),
+      ...getMeMocks({ businessVerificationRequired: true }),
       ...getSuggestionsMocks(),
       ...getPaymentMethodMocks({ hasPaymentMethods: true, status: 'EXPIRED' }),
       ...getAgreementsMocks({ withAgreementsToValidate: true }),
@@ -148,6 +150,16 @@ describe('ModalContainer.component', () => {
     
     const actionButton = screen.getByText('agreements_update_modal_action');
     await act(() => actionButton.click());
+
+    // Check for CompanyInformationModal
+    await waitFor(() => {
+      expect(container.children.length).toBe(1);
+    });
+
+    const companyInformationModal = screen.getByTestId('company-information-modal');
+    await act(() => {
+      fireEvent(companyInformationModal, new CustomEvent('odsModalClose'));
+    });
 
     // Check for SuggestionModal
     await waitFor(() => {
