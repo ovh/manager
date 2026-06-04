@@ -1,0 +1,18 @@
+{
+  "hosting_renew_period_title": "Gestire il rinnovo",
+  "hosting_renew_period_description": "Seleziona la frequenza di rinnovo automatico desiderata.",
+  "hosting_renew_period_periodMonth": "{{count}} mesi",
+  "hosting_renew_period_periodMonth_plural": "{{count}} mesi",
+  "hosting_renew_period_periodYear": "{{count}} anno",
+  "hosting_renew_period_periodYear_plural": "{{count}} anni",
+  "hosting_renew_period_currentPeriod": "Periodo attuale: {{period}}",
+  "hosting_renew_period_noPeriodsAvailable": "Nessun periodo di rinnovo disponibile per questo servizio.",
+  "hosting_renew_period_loadError": "Impossibile caricare i periodi di rinnovo disponibili.",
+  "hosting_renew_period_noPeriod": "Nessuna frequenza — rinnovo manuale",
+  "hosting_renew_period_noPeriodHint": "Attenzione, il tuo servizio non sarà rinnovato automaticamente. Dovrai rinnovarlo manualmente prima della scadenza.",
+  "hosting_renew_period_or": "o",
+  "hosting_renew_period_submit": "Conferma",
+  "hosting_renew_period_cancel": "Annulla",
+  "hosting_renew_period_successToast": "Il periodo di rinnovo è stato aggiornato con successo.",
+  "hosting_renew_period_errorToast": "Si è verificato un errore: {{error}}."
+}

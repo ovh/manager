@@ -11,5 +11,6 @@
   "hosting_dashboard_service_video_center_freemium": "Aktiv - Freemium",
   "hosting_dashboard_service_video_center_freemium_paid": "Aktiv - Freemium + {{plan}}",
   "hosting_dashboard_service_video_center_plan_pro": "Videozentrum Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Videozentrum Plus"
+  "hosting_dashboard_service_video_center_plan_plus": "Videozentrum Plus",
+  "hosting_dashboard_manage_renewal_button": "Die Verwaltung der Erneuerung"
 }
