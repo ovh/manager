@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.11...@ovh-ux/manager-models@2.8.0) (2026-06-08)
+
+
+### Features
+
+* **billing:** disallow configure renewal for new hosting products ([6339174](https://github.com/ovh/manager/commit/6339174d98d67c1c980cddd81a4c0c0d5b58aed8)), closes [#MANAGER-21723](https://github.com/ovh/manager/issues/MANAGER-21723)
+
+
+
+
+
 ## [2.7.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-models@2.7.10...@ovh-ux/manager-models@2.7.11) (2026-02-05)
 
 **Note:** Version bump only for package @ovh-ux/manager-models

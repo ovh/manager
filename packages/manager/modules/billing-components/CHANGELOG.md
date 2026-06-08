@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.37.0...@ovh-ux/manager-billing-components@4.37.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **billing:** fix confirm terminate backup agent ([f9c10d4](https://github.com/ovh/manager/commit/f9c10d4f4bb0e0bc765ae27de38c84f605909098)), closes [#MANAGER-21705](https://github.com/ovh/manager/issues/MANAGER-21705)
+
+
+
+
+
 # [4.37.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.36.2...@ovh-ux/manager-billing-components@4.37.0) (2026-05-19)
 
 

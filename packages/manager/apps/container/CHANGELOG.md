@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.194.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.193.0...@ovh-ux/manager-container-app@0.194.0) (2026-06-08)
+
+
+### Features
+
+* **web-hosting:** remove beta icon sidebar ([957d329](https://github.com/ovh/manager/commit/957d329d646fdc5024980c7b0926644071adb642)), closes [#PUWEBPT-360](https://github.com/ovh/manager/issues/PUWEBPT-360)
+
+
+
+
+
 # [0.193.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.192.0...@ovh-ux/manager-container-app@0.193.0) (2026-05-27)
 
 

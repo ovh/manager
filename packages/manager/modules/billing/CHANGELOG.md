@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.66.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.1...@ovh-ux/manager-billing@0.66.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* **billing:** add missing translation keys ([9e4d006](https://github.com/ovh/manager/commit/9e4d0061d9051ba59b6720c1a5f5f3c097ff3f09))
+
+
+
+
+
 ## [0.66.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.0...@ovh-ux/manager-billing@0.66.1) (2026-05-25)
 
 
