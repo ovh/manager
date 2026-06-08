@@ -45,6 +45,7 @@ import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
 
 import FileStorageAlert from './components/FileStorageAlert.component';
+import LoadBalancerEolBanner from './components/LoadBalancerEolBanner.component';
 import { useDatagridColumn } from './hooks/useDatagridColumn';
 
 export default function ListPage() {
@@ -102,6 +103,7 @@ export default function ListPage() {
       </div>
 
       <Notifications />
+      <LoadBalancerEolBanner />
       {featureFlipping3az && showStorageModal && (
         <FileStorageAlert onRemove={() => setShowStorageModal(false)} />
       )}
