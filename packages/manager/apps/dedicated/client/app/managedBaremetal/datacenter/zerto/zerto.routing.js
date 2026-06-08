@@ -1,6 +1,7 @@
 import get from 'lodash/get';
 
 import { DEDICATED_CLOUD_CONSTANTS } from '../../../components/dedicated-cloud/dedicatedCloud.constant';
+import { DEDICATEDCLOUD_DATACENTER_DRP_STATUS } from '../../../components/dedicated-cloud/datacenter/zerto/dedicatedCloud-datacenter-zerto.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state(
@@ -19,15 +20,23 @@ export default /* @ngInject */ ($stateProvider) => {
           .injector()
           .get('$q')
           .all({
-            isZertoOnPremise: transition
-              .injector()
-              .getAsync('isZertoOnPremise'),
+            zertoState: transition.injector().getAsync('zertoState'),
           })
-          .then(({ isZertoOnPremise }) => {
-            return (
-              isZertoOnPremise &&
-              'app.managedBaremetal.details.datacenters.datacenter.zerto.listing'
+          .then(({ zertoState }) => {
+            const dedicatedCloudZerto = transition
+              .injector()
+              .get('dedicatedCloudZerto');
+            const formattedState = dedicatedCloudZerto.constructor.formatStatus(
+              zertoState.state,
             );
+            if (
+              formattedState ===
+                DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivered ||
+              formattedState === DEDICATEDCLOUD_DATACENTER_DRP_STATUS.delivering
+            ) {
+              return 'app.managedBaremetal.details.datacenters.datacenter.zerto.drp';
+            }
+            return false;
           });
       },
       resolve: {
