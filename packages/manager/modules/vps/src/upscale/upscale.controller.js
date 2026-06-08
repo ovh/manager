@@ -15,6 +15,7 @@ import {
   PRICING_MODES,
   RANGES,
   RANGES_2025,
+  RANGES_2027,
   LE_RANGES,
   UPSCALE_TRACKING_PREFIX,
 } from './upscale.constants';
@@ -197,7 +198,7 @@ export default class UpscaleController {
     let vpsUpgradeRange = '';
     if (LE_RANGES.includes(rangeName)) {
       vpsUpgradeRange = `vps-${rangeName}-${memory}-${storage}`;
-    } else if (RANGES_2025.includes(rangeName)) {
+    } else if ([...RANGES_2025, ...RANGES_2027].includes(rangeName)) {
       vpsUpgradeRange = `vps-${rangeName}`;
     } else {
       vpsUpgradeRange = `vps-${rangeName}-${cores}-${memory}-${storage}`;
@@ -255,7 +256,7 @@ export default class UpscaleController {
     if (LE_RANGES.includes(rangeName)) {
       return `vps-${rangeName}-${memory}-${storage}`;
     }
-    if (RANGES_2025.includes(rangeName)) {
+    if ([...RANGES_2025, ...RANGES_2027].includes(rangeName)) {
       return `vps-${rangeName}`;
     }
     return `vps-${rangeName}-${cores}-${memory}-${storage}`;
@@ -301,9 +302,10 @@ export default class UpscaleController {
         },
       ),
       formattedName: rangeName,
-      displayName: rangeName.includes('2025-model')
-        ? rangeName.replace(/2025-model/, 'VPS-')
-        : rangeName,
+      displayName:
+        rangeName.includes('2025-model') || rangeName.includes('2027-model')
+          ? rangeName.replace(/2025-model|2027-model/, 'VPS-')
+          : rangeName,
     }));
   }
 

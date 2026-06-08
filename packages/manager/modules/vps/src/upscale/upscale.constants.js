@@ -32,6 +32,18 @@ export const RANGES_2025 = [
   MODEL_2025_6,
 ];
 
+const MODEL_2027_1 = '2027-model1';
+const MODEL_2027_2 = '2027-model2';
+const MODEL_2027_3 = '2027-model3';
+const MODEL_2027_4 = '2027-model4';
+
+export const RANGES_2027 = [
+  MODEL_2027_1,
+  MODEL_2027_2,
+  MODEL_2027_3,
+  MODEL_2027_4,
+];
+
 export const RANGES = {
   BESTVALUE: 'bv',
   COMFORT: 'Comfort',
@@ -48,6 +60,10 @@ export const RANGES = {
   MODEL_2025_4,
   MODEL_2025_5,
   MODEL_2025_6,
+  MODEL_2027_1,
+  MODEL_2027_2,
+  MODEL_2027_3,
+  MODEL_2027_4,
 };
 
 export const UPSCALE_TRACKING_PREFIX = 'vps::detail::upscale-step-';
@@ -57,6 +73,7 @@ export default {
   RANGES,
   LE_RANGES,
   RANGES_2025,
+  RANGES_2027,
   PRICING_PERIODS,
   UPSCALE_TRACKING_PREFIX,
 };
