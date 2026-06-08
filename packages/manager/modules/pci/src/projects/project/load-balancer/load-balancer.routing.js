@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .getAsync('loadBalancers')
         .then((loadBalancers) =>
           loadBalancers.length === 0
-            ? { state: 'pci.projects.project.loadbalancer.onboarding' }
+            ? { state: 'pci.projects.project' }
             : false,
         ),
     resolve: {
