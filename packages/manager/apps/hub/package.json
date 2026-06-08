@@ -20,7 +20,7 @@
     "test:watch": "manager-test watch"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "^0.21.2",
     "@ovh-ux/manager-models": "^2.7.11",
     "@ovh-ux/manager-react-components": "^1.48.0",

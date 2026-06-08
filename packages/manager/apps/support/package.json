@@ -15,7 +15,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-support": "^2.1.45",
     "@ovh-ux/ng-at-internet": "^6.0.46",

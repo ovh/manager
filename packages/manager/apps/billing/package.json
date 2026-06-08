@@ -21,7 +21,7 @@
     "@ovh-ux/manager-at-internet-configuration": "^1.5.1",
     "@ovh-ux/manager-billing": "^0.66.1",
     "@ovh-ux/manager-billing-components": "^4.37.0",
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-error-page": "^2.4.7",
     "@ovh-ux/manager-models": "^2.7.11",

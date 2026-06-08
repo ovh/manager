@@ -39,7 +39,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "devDependencies": {
-    "@ovh-ux/manager-config": "*",
+    "@ovh-ux/manager-config": "8.9.0-alpha.0",
     "@ovh-ux/manager-core-api": "*",
     "@ovh-ux/manager-core-test-utils": "*",
     "@ovh-ux/manager-react-shell-client": "1.0.1",

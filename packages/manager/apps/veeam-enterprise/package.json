@@ -17,7 +17,7 @@
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@ovh-ux/manager-config": "^8.9.0",
+    "@ovh-ux/manager-config": "^8.9.0-alpha.0",
     "@ovh-ux/manager-core": "^13.4.4",
     "@ovh-ux/manager-ng-layout-helpers": "^2.13.1",
     "@ovh-ux/manager-veeam-enterprise": "^1.13.3",
