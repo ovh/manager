@@ -1,3 +1,4 @@
+import { Subsidiary } from '@ovh-ux/manager-config';
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
 import { UrlRecord } from './types';
@@ -135,6 +136,41 @@ export const LOAD_BALANCER_DOC = {
   US: 'https://support.us.ovhcloud.com/hc/en-us/articles/21133261407251-Concepts-Load-Balancer',
   WE: 'https://help.ovhcloud.com/csm/en-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059277',
   WS: 'https://help.ovhcloud.com/csm/es-public-cloud-network-load-balancer-concepts?id=kb_article_view&sysparm_article=KB0059278',
+};
+
+export const LOAD_BALANCER_EOL_MIGRATE_DOC: Partial<Record<Subsidiary, string>> & {
+  DEFAULT: string;
+} = {
+  DEFAULT:
+    'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  FR: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  MA: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  TN: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  SN: 'https://help.ovhcloud.com/csm/fr-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  QC: 'https://help.ovhcloud.com/csm/fr-ca-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  GB: 'https://help.ovhcloud.com/csm/en-gb-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  IE: 'https://help.ovhcloud.com/csm/en-ie-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  WE: 'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  CA: 'https://help.ovhcloud.com/csm/en-ca-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  AU: 'https://help.ovhcloud.com/csm/en-au-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  SG: 'https://help.ovhcloud.com/csm/en-sg-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  ASIA: 'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  IN: 'https://help.ovhcloud.com/csm/asia-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  ES: 'https://help.ovhcloud.com/csm/es-es-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  WS: 'https://help.ovhcloud.com/csm/es-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  PT: 'https://help.ovhcloud.com/csm/pt-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  IT: 'https://help.ovhcloud.com/csm/it-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  PL: 'https://help.ovhcloud.com/csm/pl-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  DE: 'https://help.ovhcloud.com/csm/de-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  NL: 'https://help.ovhcloud.com/csm/en-public-cloud-kubernetes-migrate-iolb-to-public-cloud-loadbalancer?id=kb_article_view&sysparm_article=KB0066722',
+  US: 'https://support.us.ovhcloud.com/hc/en-us/articles/38910745064211-How-to-migrate-from-Load-Balancer-for-MKS-IOLB-to-Public-Cloud-Load-Balancer-Octavia',
+};
+
+export const LOAD_BALANCER_EOL_STATUS: Partial<Record<Subsidiary, string>> & {
+  DEFAULT: string;
+} = {
+  DEFAULT: 'https://public-cloud.status-ovhcloud.com/incidents/k3xjppxfyl53',
+  US: 'https://status.us.ovhcloud.com/pages/maintenance/59dd23da8827c804746f1664/6a22ddedf7a0500610c18088',
 };
 
 export const CHANGELOG_LINKS: ChangelogLinks = {

@@ -23,6 +23,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { useAvailableRegions } from '@/api/hooks/useAvailableRegions';
 import { useAllKube } from '@/api/hooks/useKubernetes';
+import LoadBalancerEolBanner from '@/pages/list/components/LoadBalancerEolBanner.component';
 
 import { GUIDES } from './constants';
 
@@ -72,6 +73,7 @@ export default function OnBoardingPage() {
       condition={clusters?.length > 0}
     >
       {project && <OsdsBreadcrumb items={breadcrumbItems} />}
+      <LoadBalancerEolBanner namespace="onboarding" />
       <OnboardingLayout
         title={tOnBoarding('pci_projects_project_kubernetes_title')}
         description={
