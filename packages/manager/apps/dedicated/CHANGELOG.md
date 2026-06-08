@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.78.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.2...@ovh-ux/manager-dedicated@20.78.3) (2026-06-08)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** filter invalid datacenters ([48d0c79](https://github.com/ovh/manager/commit/48d0c791cb7b9c804ebb171e4ce855bb97fea11a)), closes [#MANAGER-21774](https://github.com/ovh/manager/issues/MANAGER-21774)
+
+
+
+
+
 ## [20.78.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.1...@ovh-ux/manager-dedicated@20.78.2) (2026-06-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.194.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.194.0...@ovh-ux/manager-container-app@0.194.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** filter invalid datacenters ([48d0c79](https://github.com/ovh/manager/commit/48d0c791cb7b9c804ebb171e4ce855bb97fea11a)), closes [#MANAGER-21774](https://github.com/ovh/manager/issues/MANAGER-21774)
+
+
+
+
+
 # [0.194.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.193.0...@ovh-ux/manager-container-app@0.194.0) (2026-06-08)
 
 
