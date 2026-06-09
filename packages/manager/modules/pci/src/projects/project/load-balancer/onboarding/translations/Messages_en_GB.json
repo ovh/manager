@@ -4,5 +4,9 @@
   "pci_projects_project_load_balancer_onboarding_content1": "You have not yet created a Load Balancer.",
   "pci_projects_project_load_balancer_onboarding_content2": "Distribute the load of your applications between several instances.",
   "pci_projects_project_load_balancer_onboarding_content3": "With the OVHcloud Load Balancer, you can boost your applications’ scalability, and make them more robust. And it takes just two minutes to create. Once you have created one, simply configure it to balance the load between the instances concerned. And you only pay for what you use, when you use it.",
-  "pci_projects_project_load_balancer_onboarding_guides_using_load_balancer_title": "Configure a load balancer via the Managed Kubernetes service"
+  "pci_projects_project_load_balancer_onboarding_guides_using_load_balancer_title": "Configure a load balancer via the Managed Kubernetes service",
+  "pci_projects_project_load_balancer_welcome_intro_definitive": "The Load Balancer for Managed Kubernetes Service reaches",
+  "pci_projects_project_load_balancer_welcome_end_of_life_date_definitive": "end of life on 9 July 2026",
+  "pci_projects_project_load_balancer_welcome_migration_intro_definitive": ". To ensure continuity of your services, migrate your Load Balancers to Public Load Balancer or delete them before the deadline.",
+  "pci_projects_project_load_balancer_welcome_more_information_definitive": "Consult our migration guide"
 }
