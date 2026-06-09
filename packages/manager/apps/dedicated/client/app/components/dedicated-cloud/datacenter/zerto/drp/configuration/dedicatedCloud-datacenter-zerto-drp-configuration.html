@@ -1,0 +1,449 @@
+<!-- Notifications -->
+<oui-message
+    class="mb-3"
+    data-type="success"
+    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.ovh"
+>
+    <span
+        data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_ovh_' + $ctrl.pccType) | translate:{ pccId: $ctrl.zertoState.remoteSiteInformation.serviceName }"
+    ></span>
+    <span
+        data-ng-if="$ctrl.currentUser.email"
+        data-ng-bind-html="'dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_description' | translate: { email: $ctrl.currentUser.email }"
+    ></span>
+</oui-message>
+
+<oui-message
+    class="mb-3"
+    data-type="success"
+    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise"
+>
+    <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_onPremise"></span>
+    <span
+        data-ng-if="$ctrl.currentUser.email"
+        data-ng-bind-html="'dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_description' | translate: { email: $ctrl.currentUser.email }"
+    ></span>
+</oui-message>
+
+<oui-message
+    class="mb-3"
+    data-type="info"
+    data-dismissible="false"
+    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivering"
+>
+    <span
+        data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivering_' + $ctrl.pccType) | translate"
+    ></span>
+</oui-message>
+
+<oui-message
+    class="mb-3"
+    data-type="warning"
+    data-dismissible="false"
+    data-ng-if="$ctrl.zertoState.vpnStatus === 'notConfigured' && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise"
+>
+    <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_notification_vpn_warning"></span>
+</oui-message>
+
+<h2
+    class="oui-heading_2 mb-4"
+    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_section_title"
+></h2>
+
+<!-- Vue OVH -->
+<div data-ng-if="$ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.ovh">
+    <div class="row">
+        <!-- Carte 1 — Type DRP -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_label"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description oui-text_muted"
+                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_type_desc_ovh_' + $ctrl.pccType) | translate"
+                            ></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 2 — Site principal -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_pcc_label_' + $ctrl.pccType) | translate"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-bind="$ctrl.serviceName"></span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_dc_label"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-if="!$ctrl.primaryDatacenter">
+                                    <oui-spinner size="s"></oui-spinner>
+                                </span>
+                                <span
+                                    data-ng-if="$ctrl.primaryDatacenter"
+                                    data-ng-bind="$ctrl.getPrimaryDcName()"
+                                ></span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 3 — Site secondaire -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_secondary_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div data-ng-if="$ctrl.zertoState.remoteSiteInformation">
+                        <div class="oui-tile__item">
+                            <dl class="oui-tile__definition">
+                                <dt
+                                    class="oui-tile__term"
+                                    data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_secondary_pcc_label_' + $ctrl.pccType) | translate"
+                                ></dt>
+                                <dd class="oui-tile__description">
+                                    <span data-ng-bind="$ctrl.zertoState.remoteSiteInformation.serviceName"></span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="oui-tile__separator"></div>
+                        <div class="oui-tile__item">
+                            <dl class="oui-tile__definition">
+                                <dt
+                                    class="oui-tile__term"
+                                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_secondary_dc_label"
+                                ></dt>
+                                <dd class="oui-tile__description">
+                                    <span data-ng-if="!$ctrl.secondaryDatacenter">
+                                        <oui-spinner size="s"></oui-spinner>
+                                    </span>
+                                    <span
+                                        data-ng-if="$ctrl.secondaryDatacenter"
+                                        data-ng-bind="$ctrl.getSecondaryDcName()"
+                                    ></span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <span data-ng-if="!$ctrl.zertoState.remoteSiteInformation">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 4 — Abonnement -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_service_label"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.serviceName"
+                            ></dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_label"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-if="!$ctrl.serviceInfos">
+                                    <oui-spinner size="s"></oui-spinner>
+                                </span>
+                                <span data-ng-if="$ctrl.serviceInfos && $ctrl.serviceInfos.hasError">
+                                    <oui-message data-type="error">
+                                        <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_error"></span>
+                                    </oui-message>
+                                </span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status === 'ok'"
+                                    class="oui-badge oui-badge_success"
+                                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_ok"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status === 'expired'"
+                                    class="oui-badge oui-badge_error"
+                                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_expired"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status && $ctrl.serviceInfos.status !== 'ok' && $ctrl.serviceInfos.status !== 'expired'"
+                                    class="oui-badge oui-badge_warning"
+                                    data-ng-bind="$ctrl.serviceInfos.status"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && !$ctrl.serviceInfos.status"
+                                >-</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <div class="d-flex flex-column">
+                            <oui-button
+                                data-variant="secondary"
+                                data-color="critical"
+                                data-on-click="$ctrl.openDeleteModal()"
+                                data-disabled="$ctrl.isDeleteDisabled"
+                            >
+                                <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_delete_button"></span>
+                            </oui-button>
+                            <p
+                                class="mt-1 oui-text_small"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_delete_hint"
+                            ></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vue OnPremise -->
+<div data-ng-if="$ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise">
+    <div class="row">
+        <!-- Carte 1 — Type DRP -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_label"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description oui-text_muted"
+                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_type_desc_onPremise_' + $ctrl.pccType) | translate"
+                            ></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 2 — Site principal (OVH) -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_pcc_label_onPremise_' + $ctrl.pccType) | translate"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-bind="$ctrl.serviceName"></span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_primary_dc_label_onPremise"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-if="!$ctrl.primaryDatacenter">
+                                    <oui-spinner size="s"></oui-spinner>
+                                </span>
+                                <span
+                                    data-ng-if="$ctrl.primaryDatacenter"
+                                    data-ng-bind="$ctrl.getPrimaryDcName()"
+                                ></span>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte 3 — Abonnement -->
+        <div class="col-md-4 mb-4">
+            <div class="oui-tile h-100">
+                <h3
+                    class="oui-tile__title oui-heading_4"
+                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_title"
+                ></h3>
+                <div class="oui-tile__body">
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_service_label"
+                            ></dt>
+                            <dd
+                                class="oui-tile__description"
+                                data-ng-bind="$ctrl.serviceName"
+                            ></dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <dl class="oui-tile__definition">
+                            <dt
+                                class="oui-tile__term"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_label"
+                            ></dt>
+                            <dd class="oui-tile__description">
+                                <span data-ng-if="!$ctrl.serviceInfos">
+                                    <oui-spinner size="s"></oui-spinner>
+                                </span>
+                                <span data-ng-if="$ctrl.serviceInfos && $ctrl.serviceInfos.hasError">
+                                    <oui-message data-type="error">
+                                        <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_error"></span>
+                                    </oui-message>
+                                </span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status === 'ok'"
+                                    class="oui-badge oui-badge_success"
+                                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_ok"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status === 'expired'"
+                                    class="oui-badge oui-badge_error"
+                                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_subscription_status_expired"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && $ctrl.serviceInfos.status && $ctrl.serviceInfos.status !== 'ok' && $ctrl.serviceInfos.status !== 'expired'"
+                                    class="oui-badge oui-badge_warning"
+                                    data-ng-bind="$ctrl.serviceInfos.status"
+                                ></span>
+                                <span
+                                    data-ng-if="$ctrl.serviceInfos && !$ctrl.serviceInfos.hasError && !$ctrl.serviceInfos.status"
+                                >-</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="oui-tile__separator"></div>
+                    <div class="oui-tile__item">
+                        <div class="d-flex flex-column">
+                            <oui-button
+                                data-variant="secondary"
+                                data-color="critical"
+                                data-on-click="$ctrl.openDeleteModal()"
+                                data-disabled="$ctrl.isDeleteDisabled"
+                            >
+                                <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_delete_button"></span>
+                            </oui-button>
+                            <p
+                                class="mt-1 oui-text_small"
+                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_delete_hint"
+                            ></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tableau des sites distants -->
+    <section class="d-flex flex-column gap-8 mt-4">
+        <oui-datagrid
+            data-rows="$ctrl.zertoMultiSites"
+            data-page-size="25"
+        >
+            <oui-datagrid-topbar>
+                <oui-button
+                    data-on-click="$ctrl.goToAddSite()"
+                    data-disabled="$ctrl.formattedState === $ctrl.DRP_STATUS.delivering"
+                >
+                    <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_listing_add_site"></span>
+                </oui-button>
+            </oui-datagrid-topbar>
+
+            <oui-datagrid-column
+                data-title="'dedicatedCloud_datacenter_zerto_drp_configuration_listing_column_label' | translate"
+                data-property="label"
+                data-sortable
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'dedicatedCloud_datacenter_zerto_drp_configuration_listing_column_status' | translate"
+                data-property="state"
+            >
+                <dedicatedcloud-datacenter-zerto-state-badge
+                    data-zerto-state="{{:: $row.state }}"
+                ></dedicatedcloud-datacenter-zerto-state-badge>
+            </oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'dedicatedCloud_datacenter_zerto_drp_configuration_listing_column_ip_public' | translate"
+                data-property="remoteEndpointPublicIp"
+                data-sortable
+                data-searchable
+                data-filterable
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'dedicatedCloud_datacenter_zerto_drp_configuration_listing_column_vra_datacenter' | translate"
+                data-property="remoteVraNetwork"
+            ></oui-datagrid-column>
+            <oui-datagrid-column
+                data-title="'dedicatedCloud_datacenter_zerto_drp_configuration_listing_column_ip_zvm' | translate"
+                data-property="remoteZvmInternalIp"
+            ></oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button
+                    size="s"
+                    variant="link"
+                    color="critical"
+                    data-on-click="$ctrl.openDeleteSiteModal($row.id)"
+                >
+                    <span class="oui-icon oui-icon-bin" aria-hidden="true"></span>
+                </oui-button>
+            </oui-datagrid-column>
+        </oui-datagrid>
+    </section>
+</div>

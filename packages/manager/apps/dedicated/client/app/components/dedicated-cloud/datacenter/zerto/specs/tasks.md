@@ -33,7 +33,7 @@ Specs détaillées : [source/spec-shared.md](source/spec-shared.md) · [source/s
 - Endpoints : `GET /dedicatedCloud/{svc}/datacenter/{dcId}`, `GET /dedicatedCloud/{svc}/serviceInfos`, `GET zertoSingle/remoteSites` (spec-tab-configuration.md §2 et §3)
 - Delete API : `POST zerto/disable` (OVH) ou `POST zertoSingle/disable` (OnPremise) (spec-tab-configuration.md §4)
 
-**Statut :** [ ] À faire
+**Statut :** [x] Fait
 
 ---
 

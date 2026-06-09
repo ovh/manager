@@ -4,14 +4,12 @@ import 'angular-translate';
 import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-translate-async-loader';
 
-import configurationModule from './configuration';
-import component from './dedicatedCloud-datacenter-zerto-drp.component';
+import component from './dedicatedCloud-datacenter-zerto-drp-configuration-delete.component';
 
-const moduleName = 'dedicatedCloudDatacenterZertoDrpModule';
+const moduleName = 'dedicatedCloudDatacenterZertoDrpConfigurationDeleteModule';
 
 angular
   .module(moduleName, [
-    configurationModule,
     'ngTranslateAsyncLoader',
     'oui',
     'pascalprecht.translate',
