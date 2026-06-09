@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.27.1...@ovh-ux/manager-pci-block-storage-app@0.28.0) (2026-06-09)
+
+
+### Features
+
+* **pci-block-storage:** wip merge high-speed ([b8c3321](https://github.com/ovh/manager/commit/b8c332104f2a16bb43b5a37c89bf18a55c278a1c)), closes [#TAPC-6629](https://github.com/ovh/manager/issues/TAPC-6629)
+
+
+
+
+
 ## [0.27.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-block-storage-app@0.27.0...@ovh-ux/manager-pci-block-storage-app@0.27.1) (2026-06-09)
 
 
