@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.15...@ovh-ux/manager-vps@2.50.16) (2026-06-09)
+
+
+### Bug Fixes
+
+* **vps:** add vps range 2027 management ([824b11b](https://github.com/ovh/manager/commit/824b11b174c3d0d1f564ce8a6ecb884326bdc11c)), closes [#PRDCOL-517](https://github.com/ovh/manager/issues/PRDCOL-517)
+
+
+
+
+
 ## [2.50.15](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.14...@ovh-ux/manager-vps@2.50.15) (2026-02-04)
 
 
