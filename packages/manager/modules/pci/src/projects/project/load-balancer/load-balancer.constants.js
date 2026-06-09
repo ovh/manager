@@ -86,6 +86,12 @@ export const LOAD_BALANCER_MIGRATE_LINKS = {
     'https://support.us.ovhcloud.com/hc/en-us/articles/38910745064211-How-to-migrate-from-Load-Balancer-for-MKS-IOLB-to-Public-Cloud-Load-Balancer-Octavia',
 };
 
+export const LOAD_BALANCER_STATUS_LINKS = {
+  DEFAULT: 'https://public-cloud.status-ovhcloud.com/incidents/k3xjppxfyl53',
+  US:
+    'https://status.us.ovhcloud.com/pages/maintenance/59dd23da8827c804746f1664/6a22ddedf7a0500610c18088',
+};
+
 export const LOAD_BALANCER_CONFIGURE_TRACKING =
   'public-cloud::pci::projects::project::loadbalancer::configure';
 
