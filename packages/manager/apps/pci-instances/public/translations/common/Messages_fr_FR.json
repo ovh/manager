@@ -21,6 +21,7 @@
   "pci_instances_common_instance_region-3-az_deployment_mode_description": "Déploiement haute résilience et haute disponibilité sur 3 zones",
   "pci_instances_common_instance_localzone_deployment_mode_description": "Déploiement au plus près pour une faible latence.",
   "pci_instances_common_instance_continent_north_america": "Amérique du Nord",
+  "pci_instances_common_instance_continent_south_america": "Amérique du Sud",
   "pci_instances_common_instance_continent_europe": "Europe",
   "pci_instances_common_instance_continent_north_africa": "Afrique du Nord",
   "pci_instances_common_instance_continent_asia_oceania": "Asie-Pacifique",

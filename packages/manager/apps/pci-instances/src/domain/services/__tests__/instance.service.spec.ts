@@ -22,7 +22,7 @@ describe('instance.service', () => {
         'd2-2_GRA-STAGING-A',
       );
 
-      expect(result).toBe(`d2-2 ${CURRENT_DATE_MOCK}`);
+      expect(result).toBe(`d2-2-${CURRENT_DATE_MOCK}`);
     });
 
     it('returns null when regionalizedFlavorId is not in catalog', () => {
@@ -70,7 +70,7 @@ describe('instance.service', () => {
         orphanRegionalizedFlavorId,
       );
 
-      expect(result).toBe(`instance ${CURRENT_DATE_MOCK}`);
+      expect(result).toBe(`instance-${CURRENT_DATE_MOCK}`);
     });
   });
 });

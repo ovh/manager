@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.66.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.1...@ovh-ux/manager-billing@0.66.2) (2026-06-08)
+
+
+### Bug Fixes
+
+* **billing:** add missing translation keys ([9e4d006](https://github.com/ovh/manager/commit/9e4d0061d9051ba59b6720c1a5f5f3c097ff3f09))
+
+
+
+
+
+## [0.66.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.0...@ovh-ux/manager-billing@0.66.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **billing:** add cache invalidation query param for will-payment ([21b1699](https://github.com/ovh/manager/commit/21b16997db85306c2333c6de469db008c86c105f)), closes [#MANAGER-21605](https://github.com/ovh/manager/issues/MANAGER-21605)
+* **billing:** update will-payment prod asset url ([84dc9f0](https://github.com/ovh/manager/commit/84dc9f088f11b321d79bee0e3d5e7339153f8144)), closes [#MANAGER-21605](https://github.com/ovh/manager/issues/MANAGER-21605)
+* **billin:** improve will-payment loading and superseded errors ([27172af](https://github.com/ovh/manager/commit/27172af6e14c9fe5ff8e6d6686e7c0356ac95254)), closes [#MANAGER-21605](https://github.com/ovh/manager/issues/MANAGER-21605)
+
+
+
+
+
 # [0.66.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.65.7...@ovh-ux/manager-billing@0.66.0) (2026-04-16)
 
 

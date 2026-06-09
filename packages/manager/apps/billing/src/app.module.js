@@ -126,6 +126,8 @@ export default async (containerEl, shellClient) => {
           { location: false },
         );
       }
+
+      return error;
     });
   };
 

@@ -135,7 +135,10 @@ const Sidebar = (): JSX.Element => {
   useEffect(() => {
     const initializeNavigationTree = async () => {
       if (currentNavigationNode) return;
-      const features = initFeatureNames(navigationTree);
+      const features = [
+        ...initFeatureNames(navigationTree),
+        'web-hosting:managed-cms-ga',
+      ];
 
       const results = await fetchFeatureAvailabilityData(features);
 
@@ -145,6 +148,14 @@ const Sidebar = (): JSX.Element => {
       const mxPlanNode = findNodeById(tree, 'mxplan');
       if (mxPlanNode && region === 'CA') {
         mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+
+      if (results['web-hosting:managed-cms-ga']) {
+        const managedWordpressNode = findNodeById(tree, 'managed-wordpress');
+        if (managedWordpressNode) {
+          managedWordpressNode.url = '/beta/#/web-cloud/wordpress';
+          delete managedWordpressNode.routing;
+        }
       }
       setAssistanceTree(findNodeById(tree, 'assistance'));
       setCurrentNavigationNode(findNodeById(tree, 'sidebar'));
@@ -328,7 +339,7 @@ const Sidebar = (): JSX.Element => {
 
           <div className={style.sidebar_menu} role="menubar" aria-label={t('sidebar_description')}>
             <ul id="menu" role="menu">
-              <li className="px-3 mb-3 mt-2 h-8">
+              <li className="mb-3 mt-2 h-8 px-3">
                 {open && currentNavigationNode && (
                   <h2 className="whitespace-nowrap">
                     {t(currentNavigationNode.translation)}
@@ -378,7 +389,7 @@ const Sidebar = (): JSX.Element => {
                 role="link"
                 title={t('sidebar_service_add')}
               >
-                <div className="flex justify-center align-middle p-0 m-0">
+                <div className="m-0 flex justify-center p-0 align-middle">
                   <SvgIconWrapper
                     name={OvhProductName.SHOPPINGCARTPLUS}
                     height={24}
@@ -434,7 +445,7 @@ const Sidebar = (): JSX.Element => {
       )}
       {!open && popoverPosition && (
         <div
-          className="flex justify-center my-2 position-fixed left-[2px] z-[10000]"
+          className="position-fixed left-[2px] z-[10000] my-2 flex justify-center"
           style={{
             top: popoverPosition - 70,
           }}
@@ -442,7 +453,7 @@ const Sidebar = (): JSX.Element => {
           <OsdsPopover id="useful-links" role="menu">
             <OsdsButton
               slot="popover-trigger"
-              className="w-[4rem]"
+              className="w-16"
               color={ODS_THEME_COLOR_INTENT.primary}
               variant={ODS_BUTTON_VARIANT.ghost}
               size={ODS_BUTTON_SIZE.md}

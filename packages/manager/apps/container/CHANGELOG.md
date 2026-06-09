@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.194.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.194.0...@ovh-ux/manager-container-app@0.194.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** filter invalid datacenters ([48d0c79](https://github.com/ovh/manager/commit/48d0c791cb7b9c804ebb171e4ce855bb97fea11a)), closes [#MANAGER-21774](https://github.com/ovh/manager/issues/MANAGER-21774)
+
+
+
+
+
+# [0.194.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.193.0...@ovh-ux/manager-container-app@0.194.0) (2026-06-08)
+
+
+### Features
+
+* **web-hosting:** remove beta icon sidebar ([957d329](https://github.com/ovh/manager/commit/957d329d646fdc5024980c7b0926644071adb642)), closes [#PUWEBPT-360](https://github.com/ovh/manager/issues/PUWEBPT-360)
+
+
+
+
+
+# [0.193.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.192.0...@ovh-ux/manager-container-app@0.193.0) (2026-05-27)
+
+
+### Features
+
+* **web-hosting:** redirect video center sidebar entry to beta manager ([a17e010](https://github.com/ovh/manager/commit/a17e010255ddb34b43ec10624a843579a18f73c3)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
+# [0.192.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.191.0...@ovh-ux/manager-container-app@0.192.0) (2026-05-25)
+
+
+### Features
+
+* **wordpress:** redirect legacy manager to new manager ([779cfd9](https://github.com/ovh/manager/commit/779cfd9c06fba490552fe5e93e6757178b93c51c)), closes [#PUWEBPT-343](https://github.com/ovh/manager/issues/PUWEBPT-343)
+
+
+
+
+
+# [0.191.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.190.0...@ovh-ux/manager-container-app@0.191.0) (2026-05-19)
+
+
+### Features
+
+* **container:** revamp cookie deletion ([61a9927](https://github.com/ovh/manager/commit/61a9927911c526fe4a3eafac1cd34be0d9961e26)), closes [#MANAGER-21211](https://github.com/ovh/manager/issues/MANAGER-21211)
+
+
+
+
+
 # [0.190.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.189.1...@ovh-ux/manager-container-app@0.190.0) (2026-03-31)
 
 

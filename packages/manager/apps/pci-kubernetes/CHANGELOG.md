@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.41.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.41.7...@ovh-ux/manager-pci-kubernetes-app@0.41.8) (2026-05-28)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** mks create nodepool pricing type error ([d805d8b](https://github.com/ovh/manager/commit/d805d8bf5b033be5a9bfacaa6063dd77f69104be))
+
+
+
+
+
 ## [0.41.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.41.6...@ovh-ux/manager-pci-kubernetes-app@0.41.7) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-kubernetes-app

@@ -83,7 +83,7 @@
   "email_tab_popover_migrate": "Migrate account",
   "email_tab_modal_change_password_title": "Change the account password",
   "email_tab_modal_change_password_heading": "You are about to change your account password",
-  "email_tab_modal_change_account_password_success": "Changing your password. This operation will be effective in around 5-10 minutes.",
+  "email_tab_modal_change_account_password_success": "Your password is being changed. The operation will take effect in a moment.",
   "email_tab_modal_change_account_password_error": "An error has occurred changing your password:",
   "email_tab_modal_delete_account_title": "Delete an account",
   "email_tab_modal_delete_account_heading": "You are about to delete the <strong>{{t0}}</strong> account",

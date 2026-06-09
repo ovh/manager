@@ -5,5 +5,11 @@
   "hosting_dashboard_config_tile_options_cdn_cancel_terminate_link": "Undo cancellation",
   "hosting_dashboard_general_information_cdn_ip": "IP",
   "hosting_dashboard_general_information_php_more_informations": "Find out more about PHP versions",
-  "hosting_dashboard_general_information_languages_versions_availables": "Available language versions"
+  "hosting_dashboard_general_information_languages_versions_availables": "Available language versions",
+  "hosting_dashboard_service_video_center": "Video Center",
+  "hosting_dashboard_service_video_center_none": "None",
+  "hosting_dashboard_service_video_center_freemium": "Active - Freemium",
+  "hosting_dashboard_service_video_center_freemium_paid": "Active - Freemium + {{plan}}",
+  "hosting_dashboard_service_video_center_plan_pro": "Video Centre Pro",
+  "hosting_dashboard_service_video_center_plan_plus": "Video Centre Plus"
 }

@@ -147,11 +147,14 @@ class DedicatedCloudService {
     return this.icebergUtils
       .icebergQuery(`/dedicatedCloud/${serviceName}/datacenter`, {})
       .then(({ data }) =>
-        data.map((datacenter) => ({
-          ...datacenter,
-          displayName: punycode.toUnicode(datacenter.name),
-          id: datacenter.datacenterId,
-        })),
+        // Drop phantom datacenters (no/0 id, e.g. id = 0)
+        data
+          .filter((datacenter) => datacenter?.datacenterId)
+          .map((datacenter) => ({
+            ...datacenter,
+            displayName: punycode.toUnicode(datacenter.name),
+            id: datacenter.datacenterId,
+          })),
       );
   }
 

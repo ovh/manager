@@ -14,18 +14,21 @@ export default class BillingVoipConsumptionsService {
       .sort(sort.property, sort.dir === 1 ? 'ASC' : 'DESC');
 
     criteria.forEach(({ property, operator, value }) => {
-      res = res.addFilter(property || 'description', ...{
-        bigger: ['gt', value],
-        contains: ['like', `%${value}%`],
-        containsNot: ['nlike', `%${value}%`],
-        endsWith: ['like', `%${value}`],
-        is: ['eq', value],
-        isAfter: ['gt', value],
-        isBefore: ['lt', value],
-        isNot: ['nq', value],
-        smaller: ['lt', value],
-        startsWith: ['like', `${value}%`],
-      }[operator]);
+      res = res.addFilter(
+        property || 'description',
+        ...{
+          bigger: ['gt', value],
+          contains: ['like', `%${value}%`],
+          containsNot: ['nlike', `%${value}%`],
+          endsWith: ['like', `%${value}`],
+          is: ['eq', value],
+          isAfter: ['gt', value],
+          isBefore: ['lt', value],
+          isNot: ['nq', value],
+          smaller: ['lt', value],
+          startsWith: ['like', `${value}%`],
+        }[operator],
+      );
     });
 
     return res.execute().$promise.then((response) => ({
@@ -34,7 +37,9 @@ export default class BillingVoipConsumptionsService {
         totalCount:
           parseInt(response.headers['x-pagination-elements'], 10) || 0,
         currentOffset: offset,
-        pageCount: Math.ceil(parseInt(response.headers['x-pagination-elements'], 10) / pageSize),
+        pageCount: Math.ceil(
+          parseInt(response.headers['x-pagination-elements'], 10) / pageSize,
+        ),
       },
     }));
   }
@@ -48,6 +53,10 @@ export default class BillingVoipConsumptionsService {
   }
 
   getHistoryConsumptionFile(billingAccount, date, params) {
-    return this.$http.get(`/telephony/${billingAccount}/historyConsumption/${date}/file`, { params }).then(({ data }) => data);
+    return this.$http
+      .get(`/telephony/${billingAccount}/historyConsumption/${date}/file`, {
+        params,
+      })
+      .then(({ data }) => data);
   }
 }

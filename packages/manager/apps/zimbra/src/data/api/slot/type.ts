@@ -20,6 +20,7 @@ export type SlotType = {
     email: string;
     offer: keyof typeof ZimbraOffer;
     billingStatus: keyof typeof SlotBillingStatus;
+    domainPromotionLink?: string;
   };
   currentTasks: {
     id: string;

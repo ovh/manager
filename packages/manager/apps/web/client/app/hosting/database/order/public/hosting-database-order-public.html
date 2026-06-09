@@ -18,6 +18,7 @@
     on-success=":: $ctrl.onSuccess(checkout)"
     on-error=":: $ctrl.onError(error)"
     send-current-state=":: $ctrl.getOrderState(state)"
+    data-starter-pricing-overlay="$ctrl.getStarterPricingSummary()"
 >
     <oui-step-form
         header="{{:: 'ovhManagerHostingDatabaseOrderPublic_customization_title' | translate }}"

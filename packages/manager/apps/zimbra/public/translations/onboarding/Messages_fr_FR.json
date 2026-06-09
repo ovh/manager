@@ -8,6 +8,7 @@
   "configure_title": "Configurons ensemble votre service",
   "configure_exit": "Quitter la configuration",
   "configure_success_message": "Félicitations, votre service est maintenant configuré !",
+  "configure_emailAccounts_counter": "Comptes email ({{count}}/{{total}})",
   "card_guide_category": "Tutoriel",
   "card_guide_title_1": "Premiers pas avec l'offre Zimbra",
   "card_guide_title_2": "Configurer son compte Zimbra",

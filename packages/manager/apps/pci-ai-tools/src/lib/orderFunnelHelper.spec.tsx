@@ -7,6 +7,7 @@ import {
 import ai from '@/types/AI';
 import { mockedCapabilitiesRegionGRA } from '@/__tests__/helpers/mocks/capabilities/region';
 import {
+  mockedOrderFlavorH200,
   mockedOrderFlavorCPU,
   mockedOrderFlavorGPU,
 } from '@/__tests__/helpers/mocks/capabilities/flavor';
@@ -68,6 +69,18 @@ describe('orderFunnelHelper', () => {
     expect(getNotebookSpec(orderResultGPU)).toMatchObject(
       mockedNotebookSpecInputGPU,
     );
+    expect(
+      getNotebookSpec({
+        ...orderResultGPU,
+        flavor: mockedOrderFlavorH200,
+        resourcesQuantity: 1,
+      }),
+    ).toMatchObject({
+      resources: {
+        flavor: mockedOrderFlavorH200.id,
+        flavorCount: 1,
+      },
+    });
   });
 
   it('getJobSpec', () => {

@@ -83,7 +83,7 @@
   "email_tab_popover_migrate": "Przeprowadź migrację konta",
   "email_tab_modal_change_password_title": "Zmiana hasła do konta",
   "email_tab_modal_change_password_heading": "Chcesz zmienić hasło do konta",
-  "email_tab_modal_change_account_password_success": "Trwa modyfikacja Twojego hasła. Operacja zostanie zakończona w ciągu 5 - 10 minut.",
+  "email_tab_modal_change_account_password_success": "Twoje hasło jest w trakcie zmiany. Operacja będzie skuteczna za chwilę.",
   "email_tab_modal_change_account_password_error": "Wystąpił błąd podczas zmiany hasła:",
   "email_tab_modal_delete_account_title": "Usuwanie konta",
   "email_tab_modal_delete_account_heading": "Chcesz usunąć konto <strong>{{t0}}</strong>",

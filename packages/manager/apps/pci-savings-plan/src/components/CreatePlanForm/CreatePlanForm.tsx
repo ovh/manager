@@ -60,7 +60,11 @@ import SelectQuantity, {
   DEFAULT_QUANTITY,
   MAX_QUANTITY,
 } from './SelectQuantity';
-import { toLocalDateUTC, toUsDateUTC } from '../../utils/formatter/date';
+import {
+  getDatepickerLocale,
+  toLocalDateUTC,
+  toUsDateUTC,
+} from '../../utils/formatter/date';
 import {
   buildDisplayName,
   DeploymentMode,
@@ -139,8 +143,11 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
   const { t } = useTranslation('create');
-  const isUsRegion =
-    useContext(ShellContext).environment?.getRegion?.() === 'US';
+  const { environment } = useContext(ShellContext);
+  const isUsRegion = environment?.getRegion?.() === 'US';
+  const datepickerLocale = getDatepickerLocale(
+    environment?.getUserLocale?.() ?? '',
+  );
   const [selectedResource, setSelectedResource] = useState<ResourceType>(
     ResourceType.instance,
   );
@@ -374,7 +381,8 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
           name="savings-plan-start-date"
           min={minStartDate}
           max={maxStartDate}
-          format={isUsRegion ? 'mm-dd-yyyy' : undefined}
+          format={isUsRegion ? 'mm-dd-yyyy' : 'dd/mm/yyyy'}
+          locale={datepickerLocale}
           onOdsChange={(e) => {
             setStartDate(e.target.value);
           }}

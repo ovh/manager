@@ -364,6 +364,8 @@ export type TResourceUsage = {
   quantity: TQuantity;
   region: string;
   totalPrice: number;
+  // Underlying resource id (e.g. share id), used to enrich billing rows.
+  resourceId?: string;
 };
 
 export type TInstance = {
@@ -452,6 +454,8 @@ export type TConsumptionDetail = {
   monthlySavingsPlanList: TSavingsPlan[];
   objectStorages: TStorage[];
   archiveStorages: TStorage[];
+  shares: TResourceUsage[];
+  shareSnapshots: TResourceUsage[];
   snapshots: TSnapshot[];
   volumes: TVolume[];
   bandwidthByRegions: TInstanceBandWith[];
@@ -494,6 +498,8 @@ export const initializeTConsumptionDetail = (): TConsumptionDetail => ({
   monthlySavingsPlanList: [],
   objectStorages: [],
   archiveStorages: [],
+  shares: [],
+  shareSnapshots: [],
   snapshots: [],
   volumes: [],
   bandwidthByRegions: [],
@@ -548,6 +554,8 @@ export const getConsumptionDetails = (
     ResourceType.AI_APP,
     ResourceType.PUBLIC_IP,
     ResourceType.DATAPLATFORM,
+    ResourceType.SHARE,
+    ResourceType.SHARE_SNAPSHOT,
   ];
 
   const { resources, totals: hourlyTotals } = apiResourceTypes.reduce(
@@ -638,6 +646,8 @@ export const getConsumptionDetails = (
     monthlySavingsPlanList,
     objectStorages: objectStorageList,
     archiveStorages: archiveStorageList,
+    shares: resources.share,
+    shareSnapshots: resources.shareSnapshot,
     snapshots: snapshotList,
     rancher: rancherList,
     managedKubernetesService: managedKubernetesServiceList,

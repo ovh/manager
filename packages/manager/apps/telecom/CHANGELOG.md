@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [16.26.13](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.12...@ovh-ux/manager-telecom@16.26.13) (2026-06-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-telecom
+
+
+
+
+
+## [16.26.12](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.11...@ovh-ux/manager-telecom@16.26.12) (2026-05-26)
+
+
+### Bug Fixes
+
+* **telephony:** manage translation keys in added value numbers ([c803232](https://github.com/ovh/manager/commit/c803232953bf282ce6ee061ec788da4a7ad11356)), closes [#PRDCOL-497](https://github.com/ovh/manager/issues/PRDCOL-497)
+
+
+
+
+
 ## [16.26.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@16.26.10...@ovh-ux/manager-telecom@16.26.11) (2026-03-18)
 
 

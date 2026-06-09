@@ -22,6 +22,7 @@ import { useApplication } from '@/context';
 import links from './links';
 import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
 import { WEBSITE_PRIVACY_COOKIE_NAME, WEBSITE_TRACKING_CONSENT_VALUE } from './CookiePolicy.constants';
+import { deleteCookie } from '@/helpers';
 
 type Props = {
   shell: Shell;
@@ -85,6 +86,7 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       setShow(true);
     } else {
       trackingPlugin.setEnabled(false);
+      deleteCookie('clientSideUserId');
     }
     onValidate(isRegionUS || hasConsent);
   }, [show]);
@@ -94,10 +96,10 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       {show && (
         <OsdsModal dismissible={false} onClick={(e) => e.stopPropagation()}>
           <div className="p-1">
-            <div className="w-full flex justify-center items-center">
+            <div className="flex w-full items-center justify-center">
               <img src={ovhCloudLogo} alt="ovh-cloud-logo" />
             </div>
-            <div className="text-center m-4">
+            <div className="m-4 text-center">
               <Subtitle>{t('cookie_policy_title')}</Subtitle>
             </div>
             <div className="mb-3">

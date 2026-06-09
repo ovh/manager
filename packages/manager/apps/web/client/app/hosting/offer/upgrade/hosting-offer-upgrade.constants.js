@@ -6,6 +6,9 @@ export const DETACH_DEFAULT_OPTIONS = {
   quantity: 1,
 };
 
+export const UCENTS_FACTOR = 100000000;
+export const RENEWAL_PRICING_PHASE = 2;
+
 export const OFFERS_WITHOUT_FREEDOM = [
   'HOSTING_STARTER',
   'HOSTING_STARTER_OVH',
@@ -44,4 +47,6 @@ export const OFFERS_WITHOUT_FREEDOM = [
 export default {
   DETACH_DEFAULT_OPTIONS,
   OFFERS_WITHOUT_FREEDOM,
+  UCENTS_FACTOR,
+  RENEWAL_PRICING_PHASE,
 };

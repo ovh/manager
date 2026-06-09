@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.20.2...@ovh-ux/manager-web-hosting-app@0.20.3) (2026-05-05)
+
+
+### Bug Fixes
+
+* **web-hosting:** admin password regex for import ([1c95d18](https://github.com/ovh/manager/commit/1c95d1842bee85ac773b7da8336fc72d998c9167)), closes [#PUWEBPT-123456](https://github.com/ovh/manager/issues/PUWEBPT-123456)
+
+
+
+
+
 ## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.20.1...@ovh-ux/manager-web-hosting-app@0.20.2) (2026-04-21)
 
 

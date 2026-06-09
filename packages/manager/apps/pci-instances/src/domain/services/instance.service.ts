@@ -13,7 +13,7 @@ export const getOvhInstanceName = (
 
   const flavor = catalog.entities.flavors.byId.get(regionalizedFlavor.flavorId);
 
-  const dateTime = format(new Date(), 'yyyy_MM_dd HH:mm');
+  const dateTime = format(new Date(), 'yyyy_MM_dd-HH-mm');
 
-  return `${flavor?.name ?? 'instance'} ${dateTime}`;
+  return `${flavor?.name ?? 'instance'}-${dateTime}`;
 };
