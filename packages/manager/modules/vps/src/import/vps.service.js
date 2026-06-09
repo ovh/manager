@@ -817,11 +817,12 @@ export default /* @ngInject */ function VpsService(
   };
 
   this.upgradeAdditionalDisk = function upgradeAdditionalDisk(
-    serviceName,
+    serviceId,
     planCode,
+    params,
   ) {
     return $http
-      .post(`/order/upgrade/vpsAdditionalDisk/${serviceName}/${planCode}`)
+      .post(`/services/${serviceId}/upgrade/${planCode}/execute`, params)
       .then(({ data }) => data);
   };
 
@@ -1374,22 +1375,39 @@ export default /* @ngInject */ function VpsService(
     catalog,
     vpsLinkedDisk,
   ) {
-    return $http
-      .get(`/order/upgrade/vpsAdditionalDisk/${vpsLinkedDisk.serviceName}`)
-      .then(({ data }) => data)
-      .then((disks) =>
-        disks.map((disk) => {
-          return {
-            ...disk,
-            capacity: catalog.products.find(
-              ({ name }) => name === disk.productName,
-            ).blobs.technical.storage.disks[0].capacity,
-          };
-        }),
-      )
-      .then((disks) =>
-        disks.filter(({ capacity }) => capacity > vpsLinkedDisk.size),
-      )
+    return iceberg('/services', { resourceName: vpsLinkedDisk.serviceName })
+      .query()
+      .expand('CachedObjectList-Pages')
+      .execute()
+      .$promise.then(({ data: services }) => {
+        const service = services?.[0];
+        if (!service?.serviceId) {
+          return [];
+        }
+        const { serviceId } = service;
+        return $http
+          .get(`/services/${serviceId}/upgrade`)
+          .then(({ data: disks }) =>
+            disks
+              .map((disk) => {
+                const product = catalog?.products?.find(
+                  ({ name }) => name === disk.productName,
+                );
+                const capacity =
+                  product?.blobs?.technical?.storage?.disks?.[0]?.capacity;
+                return {
+                  ...disk,
+                  serviceId,
+                  capacity,
+                };
+              })
+              .filter(
+                ({ capacity }) =>
+                  capacity != null && capacity > vpsLinkedDisk.size,
+              )
+              .sort((a, b) => a.capacity - b.capacity),
+          );
+      })
       .catch(() => []);
   };
 
