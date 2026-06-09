@@ -229,21 +229,23 @@ export default function WebSidebar() {
         },
       });
     }
-    menu.push({
-      id: 'web-hosting-managed-wordpress',
-      label: t('sidebar_web_hosting_managed_wordpress'),
-      icon: SvgIconWrapper({
-        name: OvhProductName.WORDPRESS, width: 16,
-        height: 16,
-      }),
-      routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
-      href: features['web-hosting:managed-cms-ga']
-        ? '/beta/#/web-cloud/wordpress'
-        : navigation.getURL(
-            'web-hosting',
-            '#/managed-hosting-for-wordpress',
-          ),
-    });
+    if (features['web-hosting:managed-wordpress']) {
+      menu.push({
+        id: 'web-hosting-managed-wordpress',
+        label: t('sidebar_web_hosting_managed_wordpress'),
+        icon: SvgIconWrapper({
+          name: OvhProductName.WORDPRESS, width: 16,
+          height: 16,
+        }),
+        routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
+        href: features['web-hosting:managed-cms-ga']
+          ? '/beta/#/web-cloud/wordpress'
+          : navigation.getURL(
+              'web-hosting',
+              '#/managed-hosting-for-wordpress',
+            ),
+      });
+    }
     if (features['private-database']) {
       menu.push({
         id: 'privateDatabases',

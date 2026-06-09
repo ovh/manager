@@ -160,6 +160,7 @@ webCloudUniverse.children = [
           application: 'web-hosting',
           hash: '#/managed-hosting-for-wordpress',
         },
+        features: ['web-hosting:managed-wordpress'],
       },
       {
         id: 'video-center',
