@@ -1127,7 +1127,7 @@
   "hosting_order_upgrade_summary_options": "Opções",
   "hosting_order_upgrade_summary_included": "Incluído",
   "hosting_order_upgrade_summary_total": "Total",
-  "hosting_order_upgrade_summary_vat_period": "HT/12 meses",
+  "hosting_order_upgrade_summary_vat_period": "+ IVA (12 meses)",
   "hosting_order_upgrade_summary_cta": "Continuar a encomenda",
   "hosting_migrate_my_ovh_org_success": "A migração do seu domínio ovh.org foi registada com êxito. Receberá um e-mail assim que a operação estiver concluída.",
   "hosting_migrate_my_ovh_org_error": "Ocorreu um erro aquando da migração do seu domínio ovh.org.",

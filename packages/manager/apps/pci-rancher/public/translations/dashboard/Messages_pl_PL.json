@@ -39,11 +39,11 @@
   "createRancherError": "Wystąpił błąd podczas tworzenia Managed Rancher Service. {{rancherCreationErrorMessage}}.",
   "createRancherRecomendedVersion": "Zalecana wersja",
   "createRancherOVHCloudPlanDescription_1": "<b>SLA 99,9%</b>",
-  "createRancherOVHCloudPlanDescription_2": "<b>Aktualna wersja Rancher</b> z 12-miesięcznym wsparciem.",
-  "createRancherOVHCloudPlanDescription_3": "<b>Elastyczne modele rozliczeń</b> : Płać w miarę korzystania lub rezerwuj instancje (opłata za zarządzany vCPU).",
-  "createRancherOVHCloudPlanDescription_4": "<b>Uproszczone wdrażanie i zarządzanie</b> na infrastrukturze OVHcloud (Public Cloud, MKS, Bare Metal itp.).",
-  "createRancherStandardPlanDescription_1": "<b>Wszystkie funkcje</b> planu OVHcloud Edition wliczone.",
-  "createRancherStandardPlanDescription_2": "<b>Zarządzanie wieloma chmurami i hybrydowe</b> : Możliwość wdrażania i zarządzania klastrami Kubernetes wszędzie (wszystkie dostawcy Public Cloud, lokalnie, edge itp.).",
+  "createRancherOVHCloudPlanDescription_2": "<b>Zaktualizowana wersja Ranchera</b> z pomocą techniczną gwarantowaną przez 12 miesięcy.",
+  "createRancherOVHCloudPlanDescription_3": "<b>Elastyczne modele płatności</b>: Pay as you go lub zarezerwowane instancje (rozliczane za każdy zarządzany vCPU).",
+  "createRancherOVHCloudPlanDescription_4": "<b>Uproszczone wdrażanie i zarządzanie</b> na infrastrukturze OVHcloud (Public Cloud, MKS, Bare Metal, etc.).",
+  "createRancherStandardPlanDescription_1": "<b>Wszystkie funkcje</b> pakietu OVHcloud Edition są zawarte w ofercie.",
+  "createRancherStandardPlanDescription_2": "<b>Zarządzanie multicloud i hybrydowe</b>: Możliwość wdrażania klastrów Kubernetes i zarządzania nimi, niezależnie od tego, gdzie się znajdują (dowolny dostawca Public Cloud, on-premise, edge, etc.).",
   "createRancherStandardPlanDescription": "Twórz lub rejestruj „downstream clusters” w dowolnej chmurze publicznej wspieranej przez Rancher lub w zautomatyzowanej chmurze prywatnej (np. VMware vSphere), w tym scenariusze obsługiwane w usłudze OVHcloud Edition.",
   "createNameModaleHelperInput": "Nazwa usługi może zawierać od 3 do 63 znaków, musi zaczynać się i kończyć małym znakiem alfanumerycznym (od „a” do „z” i od 0 do 9) i może zawierać następujące znaki: „_”, „.” oraz „-”.",
   "generateAccessModalPasswordDescription": "Skopiuj hasło tymczasowe, aby zalogować się do usługi Rancher. Po zalogowaniu zostaniesz poproszony o utworzenie nowego hasła ze względów bezpieczeństwa.",
@@ -91,8 +91,8 @@
   "iam_authentication_warning": "Ograniczenie",
   "generateAccessModalIamWarning2": "Aby przywrócić dostęp za pomocą użytkownika root IAM, należy zalogować się po raz pierwszy przy użyciu lokalnego konta <strong>„admin”</strong>.",
   "iam_modal_deactivation_warning_continue": "Czy chcesz kontynuować?",
-  "freeTrialBadge": "Darmowy okres próbny",
-  "freeTrialPriceLabel": "Gratis*",
+  "freeTrialBadge": "Free Trial",
+  "freeTrialPriceLabel": "Darmowe*",
   "freeTrialThenLabel": "Następnie",
-  "freeTrialVoucherBanner": "Obecnie korzystasz z oferty próbnej na tę usługę. Szczegóły dostępnego kredytu znajdziesz w swoim interfejsie <l>Voucher</l>."
+  "freeTrialVoucherBanner": "Korzystasz aktualnie z oferty testowej dla tej usługi. Informacje dotyczące dostępnego zasilenia znajdziesz w interfejsie <l>Voucher</l>."
 }
