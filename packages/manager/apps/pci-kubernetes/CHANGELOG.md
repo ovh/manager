@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.41.8...@ovh-ux/manager-pci-kubernetes-app@0.42.0) (2026-06-10)
+
+
+### Features
+
+* **pci-kubernetes:** add iolb banners ([973a32f](https://github.com/ovh/manager/commit/973a32f34edc1e7d9f8140a64c89aecfe2dfa879))
+
+
+
+
+
 ## [0.41.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.41.7...@ovh-ux/manager-pci-kubernetes-app@0.41.8) (2026-05-28)
 
 
