@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.102.1...@ovh-ux/manager-pci@6.103.0) (2026-06-10)
+
+
+### Features
+
+* **pci:** eol load balancer banners ([8d28667](https://github.com/ovh/manager/commit/8d28667d43fb129a320c62f41d5f1c0f5cecc06a))
+
+
+
+
+
 ## [6.102.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.102.0...@ovh-ux/manager-pci@6.102.1) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci
