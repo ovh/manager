@@ -11,5 +11,11 @@
   "access_to_vspc": "Accedere alla VSPC",
   "vspc_reset_password": "Reimpostare la password per l'accesso al Tenant",
   "vspc_reset_password_forgotten": "Se hai dimenticato la tua password, utilizza la funzione “'Forgot password” nella pagina di accesso al VSPC.",
-  "vspc_reset_password_logged_in": "Se sei già connesso alla VSPC, accedi a \"Edit profile\" > \"Login info\" nell’interfaccia."
+  "vspc_reset_password_logged_in": "Se sei già connesso alla VSPC, accedi a \"Edit profile\" > \"Login info\" nell’interfaccia.",
+  "terminate_service_modal_title": "Annullare il servizio",
+  "terminate_service_helper_text": "Ti verrà richiesta una fase di conferma.",
+  "terminate_service_modal_content": "Un <strong>link di conferma</strong> ti sarà inviato via <strong>e-mail</strong>. Dovrai cliccare su questo link per confermare l'annullamento di {{vspcName}}.",
+  "terminate_service_banner_success": "L'annullamento di {{vspcName}} è stato avviato. Controlla la tua e-mail per confermare.",
+  "terminate_service_banner_error": "Si è verificato un errore durante l'annullamento del servizio. Riprova più tardi.",
+  "terminate_service_no_access": "Non hai i permessi sufficienti per annullare questo servizio."
 }
