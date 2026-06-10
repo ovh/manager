@@ -4,6 +4,8 @@ import {
   GUIDES,
   LOAD_BALANCER_CONFIGURE_TRACKING,
   LOAD_BALANCER_LINKS,
+  LOAD_BALANCER_MIGRATE_LINKS,
+  LOAD_BALANCER_STATUS_LINKS,
   USING_LOAD_BALANCER_GUIDE_ID,
 } from '../load-balancer.constants';
 
@@ -23,6 +25,12 @@ export default class {
     this.PciLoadBalancerGuides =
       LOAD_BALANCER_LINKS[this.user.ovhSubsidiary] ||
       LOAD_BALANCER_LINKS.DEFAULT;
+    this.PciLoadBalancerStatusPage =
+      LOAD_BALANCER_STATUS_LINKS[this.user.ovhSubsidiary] ||
+      LOAD_BALANCER_STATUS_LINKS.DEFAULT;
+    this.PciLoadBalancerMigrateGuides =
+      LOAD_BALANCER_MIGRATE_LINKS[this.user.ovhSubsidiary] ||
+      LOAD_BALANCER_MIGRATE_LINKS.DEFAULT;
   }
 
   $onInit() {
@@ -68,6 +76,13 @@ export default class {
       'pci_projects_project_load_balancer_end_service_definitive';
 
     this.getEndServiceWelcomeKey =
-      'pci_projects_project_load_balancer_end_service_welcome_definitive';
+      'pci_projects_project_load_balancer_welcome_intro_definitive';
+
+    this.getWelcomeEndOfLifeDateKey =
+      'pci_projects_project_load_balancer_welcome_end_of_life_date_definitive';
+    this.getWelcomeMigrationIntroKey =
+      'pci_projects_project_load_balancer_welcome_migration_intro_definitive';
+    this.getWelcomeMoreInformationKey =
+      'pci_projects_project_load_balancer_welcome_more_information_definitive';
   }
 }
