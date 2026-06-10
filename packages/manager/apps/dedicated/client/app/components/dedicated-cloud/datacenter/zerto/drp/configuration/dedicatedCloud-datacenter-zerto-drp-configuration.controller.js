@@ -16,6 +16,12 @@ export default class {
 
   $onInit() {
     this.isDeleteDisabled = this.computeIsDeleteDisabled();
+    this.showSuccessAlert = !this.isSuccessAlertDisable;
+  }
+
+  dismissSuccessAlert() {
+    this.showSuccessAlert = false;
+    return this.setDisableSuccessAlertPreference(this.serviceName, true);
   }
 
   computeIsDeleteDisabled() {

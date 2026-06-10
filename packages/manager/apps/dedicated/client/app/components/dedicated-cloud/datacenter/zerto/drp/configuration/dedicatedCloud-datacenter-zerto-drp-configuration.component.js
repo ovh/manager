@@ -16,6 +16,8 @@ export default {
     openDeleteModal: '<',
     goToAddSite: '<',
     openDeleteSiteModal: '<',
+    isSuccessAlertDisable: '<',
+    setDisableSuccessAlertPreference: '<',
   },
   controller,
   name: 'dedicatedCloudDatacenterZertoDrpConfiguration',

@@ -2,7 +2,8 @@
 <oui-message
     class="mb-3"
     data-type="success"
-    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.ovh"
+    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.ovh && $ctrl.showSuccessAlert"
+    data-on-dismiss="$ctrl.dismissSuccessAlert()"
 >
     <span
         data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_ovh_' + $ctrl.pccType) | translate:{ pccId: $ctrl.zertoState.remoteSiteInformation.serviceName }"
@@ -16,7 +17,8 @@
 <oui-message
     class="mb-3"
     data-type="success"
-    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise"
+    data-ng-if="$ctrl.formattedState === $ctrl.DRP_STATUS.delivered && $ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise && $ctrl.showSuccessAlert"
+    data-on-dismiss="$ctrl.dismissSuccessAlert()"
 >
     <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_notification_delivered_onPremise"></span>
     <span
@@ -45,39 +47,21 @@
     <span data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_notification_vpn_warning"></span>
 </oui-message>
 
-<h2
-    class="oui-heading_2 mb-4"
-    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_section_title"
-></h2>
+<div class="mb-4">
+    <h2
+        class="oui-heading_2 mb-1"
+        data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_section_title"
+    ></h2>
+    <p
+        class="oui-text_muted"
+        data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_type_desc_' + $ctrl.zertoState.drpType + '_' + $ctrl.pccType) | translate"
+    ></p>
+</div>
 
 <!-- Vue OVH -->
 <div data-ng-if="$ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.ovh">
     <div class="row">
-        <!-- Carte 1 — Type DRP -->
-        <div class="col-md-4 mb-4">
-            <div class="oui-tile h-100">
-                <h3
-                    class="oui-tile__title oui-heading_4"
-                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_title"
-                ></h3>
-                <div class="oui-tile__body">
-                    <div class="oui-tile__item">
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_label"
-                            ></dt>
-                            <dd
-                                class="oui-tile__description oui-text_muted"
-                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_type_desc_ovh_' + $ctrl.pccType) | translate"
-                            ></dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Carte 2 — Site principal -->
+        <!-- Carte 1 — Site principal -->
         <div class="col-md-4 mb-4">
             <div class="oui-tile h-100">
                 <h3
@@ -245,31 +229,7 @@
 <!-- Vue OnPremise -->
 <div data-ng-if="$ctrl.zertoState.drpType === $ctrl.DRP_OPTIONS.onPremise">
     <div class="row">
-        <!-- Carte 1 — Type DRP -->
-        <div class="col-md-4 mb-4">
-            <div class="oui-tile h-100">
-                <h3
-                    class="oui-tile__title oui-heading_4"
-                    data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_title"
-                ></h3>
-                <div class="oui-tile__body">
-                    <div class="oui-tile__item">
-                        <dl class="oui-tile__definition">
-                            <dt
-                                class="oui-tile__term"
-                                data-translate="dedicatedCloud_datacenter_zerto_drp_configuration_card_type_label"
-                            ></dt>
-                            <dd
-                                class="oui-tile__description oui-text_muted"
-                                data-ng-bind="('dedicatedCloud_datacenter_zerto_drp_configuration_card_type_desc_onPremise_' + $ctrl.pccType) | translate"
-                            ></dd>
-                        </dl>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Carte 2 — Site principal (OVH) -->
+        <!-- Carte 1 — Site principal (OVH) -->
         <div class="col-md-4 mb-4">
             <div class="oui-tile h-100">
                 <h3

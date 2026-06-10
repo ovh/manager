@@ -62,6 +62,12 @@ export default /* @ngInject */ ($stateProvider) => {
               'app.dedicatedCloud.details.datacenter.details.zerto.drp.configuration.deleteSite',
               { siteId },
             ),
+          isSuccessAlertDisable: /* @ngInject */ (currentZerto) =>
+            currentZerto.isSuccessAlertDisable,
+          setDisableSuccessAlertPreference: /* @ngInject */ (
+            dedicatedCloudZerto,
+          ) => (pccId, value) =>
+            dedicatedCloudZerto.setDisableSuccessAlertPreference(pccId, value),
         },
       },
     )
