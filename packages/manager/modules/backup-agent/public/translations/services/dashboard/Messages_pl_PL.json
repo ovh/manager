@@ -11,5 +11,11 @@
   "access_to_vspc": "Dostęp do VSPC",
   "vspc_reset_password": "Zresetuj hasło dostępu do Tenanta",
   "vspc_reset_password_forgotten": "Jeśli nie pamiętasz hasła, użyj opcji „Forgot password” na stronie logowania VSPC.",
-  "vspc_reset_password_logged_in": "Jeśli jesteś już zalogowany w VSPC, przejdź do „Edit profile” > „Login info” w interfejsie."
+  "vspc_reset_password_logged_in": "Jeśli jesteś już zalogowany w VSPC, przejdź do „Edit profile” > „Login info” w interfejsie.",
+  "terminate_service_modal_title": "Zakończyć usługę",
+  "terminate_service_helper_text": "Zostanie poproszony o potwierdzenie kroku.",
+  "terminate_service_modal_content": "Zostanie wysłany <strong>link potwierdzający</strong> na <strong>adres e-mail</strong>. Będzie Pan/Pani musiał/a kliknąć ten link, aby potwierdzić zakończenie {{vspcName}}.",
+  "terminate_service_banner_success": "Zakończenie {{vspcName}} zostało zainicjowane. Proszę sprawdzić swój e-mail, aby potwierdzić.",
+  "terminate_service_banner_error": "Wystąpił błąd podczas zakończenia usługi. Spróbuj ponownie później.",
+  "terminate_service_no_access": "Nie masz wystarczających uprawnień, aby zakończyć tę usługę."
 }
