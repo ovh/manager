@@ -33,5 +33,6 @@
   "siret_manual_company_legal_form_SCOP": "Cooperativa di produzione (Scop)",
   "siret_manual_registration_date": "Data di immatricolazione",
   "siret_manual_registration_date_placeholder": "gg/mm/aaaa",
-  "siret_update_search_assistant": "Assistente di ricerca"
+  "siret_update_search_assistant": "Assistente di ricerca",
+  "siret_non_diffusible": "I dati della tua azienda non sono disponibili pubblicamente (azienda non divulgata). Inserisci manualmente le informazioni della tua organizzazione affinché compaiano correttamente sulle tue fatture."
 }
