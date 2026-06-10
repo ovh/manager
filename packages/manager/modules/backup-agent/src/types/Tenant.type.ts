@@ -13,6 +13,7 @@ export type AssociatedTenantVSPC = {
 export type Tenant = {
   id: string;
   name: string;
+  resourceName: string;
   vaults: (Omit<Vault, 'vspcTenants' | 'buckets'> & Pick<Bucket, 'performance'>)[];
   vspcTenants: AssociatedTenantVSPC[];
 };

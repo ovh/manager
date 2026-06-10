@@ -16,11 +16,13 @@ import {
 export type BillingInformationsTileProps = {
   resourceName?: string;
   onResiliateLinkClick?: () => void;
+  hideResiliateLink?: boolean;
 };
 
 export const BillingInformationsTileStandardContent = ({
   onResiliateLinkClick,
-}: Pick<BillingInformationsTileProps, 'onResiliateLinkClick'>) => {
+  hideResiliateLink,
+}: Pick<BillingInformationsTileProps, 'onResiliateLinkClick' | 'hideResiliateLink'>) => {
   const { t } = useTranslation('billing-informations-tile');
   const {
     data: serviceDetails,
@@ -46,7 +48,8 @@ export const BillingInformationsTileStandardContent = ({
       <BillingInformationsTile.State />
       <BillingInformationsTile.Divider />
       <BillingInformationsTile.NextBillingDate />
-      {!billingDetails?.isResiliated() &&
+      {!hideResiliateLink &&
+        !billingDetails?.isResiliated() &&
         !billingDetails?.shouldDeleteAtExpiration() && (
           <>
             <BillingInformationsTile.Divider />
@@ -62,6 +65,7 @@ export const BillingInformationsTileStandardContent = ({
 export const BillingInformationsTileStandard = ({
   resourceName,
   onResiliateLinkClick,
+  hideResiliateLink,
 }: BillingInformationsTileProps) => {
   const BillingInformationsTileContextValues = useMemo(
     () => ({
@@ -75,6 +79,7 @@ export const BillingInformationsTileStandard = ({
     >
       <BillingInformationsTileStandardContent
         onResiliateLinkClick={onResiliateLinkClick}
+        hideResiliateLink={hideResiliateLink}
       />
     </BillingInformationsTileContext.Provider>
   );
