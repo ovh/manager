@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.7...@ovh-ux/manager-account-creation-app@0.13.8) (2026-06-08)
+
+
+### Bug Fixes
+
+* **account-creation:** fix react types version ([53e93cc](https://github.com/ovh/manager/commit/53e93cc12ffd07ab31a8534b15f3421a086cfb01)), closes [#MANAGER-21183](https://github.com/ovh/manager/issues/MANAGER-21183)
+
+
+
+
+
 ## [0.13.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.6...@ovh-ux/manager-account-creation-app@0.13.7) (2026-04-21)
 
 

@@ -8,5 +8,10 @@
   "ovhManagerHostingDatabaseOrderPublic_success_noCheckout": "L’ordine è stato preso in carico La soluzione scelta sarà attiva entro pochi minuti.",
   "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Il tuo <a href=\"{{url}}\" target=\"_blank\">buono d’ordine</a>è stato generato correttamente! Una volta convalidato, il servizio verrà attivato.",
   "ovhManagerHostingDatabaseOrderPublic_error": "Si è verificato un errore durante l'ordine del database SQL: {{message}}",
-  "ovhManagerHostingDatabaseOrderPublic_description": "Ti consigliamo di ordinare un database Start SQL disponibile in 3 diverse dimensioni o, per esigenze più avanzate, di optare per una dei nostri servizi Web Cloud Databases SQL/NoSQL con risorse garantite."
+  "ovhManagerHostingDatabaseOrderPublic_description": "Ti consigliamo di ordinare un database Start SQL disponibile in 3 diverse dimensioni o, per esigenze più avanzate, di optare per una dei nostri servizi Web Cloud Databases SQL/NoSQL con risorse garantite.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution": "Soluzione :",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Offerta :",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_price": "Prezzo:",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "Un prorata sarà applicato fino alla data di scadenza del tuo alloggio, affinché i due servizi siano allineati sulla stessa periodo di fatturazione.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "Sarai reindirizzato al modulo d'ordine di OVHcloud per finalizzare il tuo acquisto."
 }

@@ -119,6 +119,8 @@ export type TCurrentUsage = {
     resources: {
       components: ({
         name: string;
+        // Underlying resource id (e.g. share id), used to enrich billing rows.
+        resourceId?: string;
       } & ConsumptionItemDetail)[];
       region: string;
     }[];

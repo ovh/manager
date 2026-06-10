@@ -28,16 +28,14 @@ import {
 } from '@/api/hooks/useCatalog';
 import {
   mapVolumeAttach,
-  mapVolumeAttachForListing,
   mapVolumeEncryption,
-  mapVolumeEncryptionForListing,
   mapVolumePricing,
   mapVolumeRegion,
   mapVolumeStatus,
   mapVolumeToAdd,
   mapVolumeToEdit,
   mapVolumeToRetype,
-  mapVolumeTypeForListing,
+  mapVolumeType,
   paginateResults,
   sortResults,
   TErrors,
@@ -88,9 +86,9 @@ export const useAllVolumes = (projectId: string | null) => {
       pipe(
         mapVolumeStatus(t),
         mapVolumeRegion(t),
-        mapVolumeAttachForListing(catalogData),
-        mapVolumeEncryptionForListing(t, catalogData),
-        mapVolumeTypeForListing(catalogData),
+        mapVolumeAttach(catalogData),
+        mapVolumeEncryption(t, catalogData),
+        mapVolumeType(catalogData),
       ),
     [t, catalogData],
   );

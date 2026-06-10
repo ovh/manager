@@ -25,8 +25,8 @@ export default class WebComponentsHostingDomainOffersController {
       FREE_100M: {
         TECHNICALS: [
           { prefix: 'sites', values: [1] },
-          { prefix: 'disk', values: ['100 Mo SSD'] },
-          { prefix: 'emailStorage', values: [1, '5 Go'] },
+          { prefix: 'disk', values: ['100 Mo'] },
+          { prefix: 'emailStorageSingular', values: [1, '15 Go'] },
         ],
         SELECTORS: {
           FREE_100M: {
@@ -37,10 +37,9 @@ export default class WebComponentsHostingDomainOffersController {
       STARTER: {
         TECHNICALS: [
           { prefix: 'sites', values: [1] },
-          { prefix: 'nddFree', values: [1] },
+          { prefix: 'disk', values: ['1 Go'] },
           { prefix: 'emailStorage', values: [2, '5 Go'] },
-          { prefix: 'disk', values: ['1 Go SSD'] },
-          { prefix: 'cms', values: [] },
+          { prefix: 'nddFree', values: [1] },
         ],
         SELECTORS: {
           STARTER: {
@@ -50,11 +49,10 @@ export default class WebComponentsHostingDomainOffersController {
       },
       PERSO: {
         TECHNICALS: [
-          { prefix: 'sites', values: [5] },
-          { prefix: 'nddFree', values: [1] },
+          { prefix: 'sites', values: [15] },
+          { prefix: 'disk', values: ['100 Go'] },
           { prefix: 'emailStorage', values: [10, '5 Go'] },
-          { prefix: 'disk', values: ['100 Go SSD'] },
-          { prefix: 'cms', values: [] },
+          { prefix: 'nddFree', values: [1] },
         ],
         SELECTORS: {
           PERSO: {
@@ -64,12 +62,12 @@ export default class WebComponentsHostingDomainOffersController {
       },
       STARTUP: {
         TECHNICALS: [
-          { prefix: 'vcores', values: ['< 1'] },
-          { prefix: 'ram', values: ['< 1 Go'] },
+          { prefix: 'vcoresUpTo', values: [1] },
+          { prefix: 'ramUpTo', values: ['1 Go'] },
+          { prefix: 'disk', values: ['100 Go'] },
           { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
-          { prefix: 'disk', values: ['100 Go SSD'] },
-          { prefix: 'sites', values: [5] },
+          { prefix: 'uptime', values: ['99,9 %'] },
+          { prefix: 'sites', values: [15] },
           { prefix: 'emailStorage', values: [10, '5 Go'] },
           { prefix: 'dbs', values: [5, '1 Go'] },
           { prefix: 'nddFree', values: [1] },
@@ -84,14 +82,13 @@ export default class WebComponentsHostingDomainOffersController {
         TECHNICALS: [
           { prefix: 'vcores', values: [1] },
           { prefix: 'ram', values: ['2 Go'] },
+          { prefix: 'disk', values: ['250 Go'] },
           { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
-          { prefix: 'disk', values: ['250 Go SSD'] },
+          { prefix: 'uptime', values: ['99,9 %'] },
           { prefix: 'sites', values: [100] },
           { prefix: 'emailStorage', values: [100, '5 Go'] },
           { prefix: 'dbs', values: [10, '2 Go'] },
           { prefix: 'nddFree', values: [1] },
-          { prefix: 'cdn', values: [] },
         ],
         SELECTORS: {
           PRO: {
@@ -101,15 +98,14 @@ export default class WebComponentsHostingDomainOffersController {
       },
       PERFORMANCE: {
         TECHNICALS: [
-          { prefix: 'vcores', values: [2] },
+          { prefix: 'vcoresPlural', values: [2] },
           { prefix: 'ram', values: ['4 Go'] },
-          { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
           { prefix: 'disk', values: ['500 Go'] },
+          { prefix: 'backupIncluded', values: [] },
+          { prefix: 'uptime', values: ['99,9 %'] },
           { prefix: 'sites', values: [150] },
           { prefix: 'emailStorage', values: [1000, '5 Go'] },
           { prefix: 'dbs', values: [20, '2 Go'] },
-          { prefix: 'webcloudDb', values: [] },
           { prefix: 'nddFree', values: [1] },
           { prefix: 'cdn', values: [] },
         ],
@@ -121,16 +117,15 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY: {
         TECHNICALS: [
-          { prefix: 'sites', values: [200] },
-          { prefix: 'disk', values: ['500 Go SSD'] },
+          { prefix: 'sitesUnlimited', values: [] },
+          { prefix: 'disk', values: ['500 Go'] },
+          { prefix: 'vcoresPlural', values: [6] },
           { prefix: 'ram', values: ['8 Go'] },
-          { prefix: 'vcores', values: [6] },
           { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'uptime', values: ['99,9 %'] },
           { prefix: 'userManagement', values: [] },
           { prefix: 'emailStorage', values: [1000, '5 Go'] },
           { prefix: 'dbs', values: [30, '2 Go'] },
-          { prefix: 'webcloudDb', values: [] },
           { prefix: 'cdn', values: [] },
           { prefix: 'git', values: [] },
         ],
@@ -142,16 +137,15 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY_PLUS: {
         TECHNICALS: [
-          { prefix: 'sites', values: [500] },
-          { prefix: 'disk', values: ['700 Go SSD'] },
+          { prefix: 'sitesUnlimited', values: [] },
+          { prefix: 'disk', values: ['700 Go'] },
+          { prefix: 'vcoresPlural', values: [10] },
           { prefix: 'ram', values: ['12 Go'] },
-          { prefix: 'vcores', values: [10] },
           { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'uptime', values: ['99,9 %'] },
           { prefix: 'userManagement', values: [] },
           { prefix: 'emailStorage', values: [1000, '5 Go'] },
           { prefix: 'dbs', values: [40, '2 Go'] },
-          { prefix: 'webcloudDb', values: [] },
           { prefix: 'cdn', values: [] },
           { prefix: 'git', values: [] },
         ],
@@ -163,16 +157,15 @@ export default class WebComponentsHostingDomainOffersController {
       },
       AGENCY_MAX: {
         TECHNICALS: [
-          { prefix: 'sites', values: [3000] },
-          { prefix: 'disk', values: ['1 To SSD'] },
+          { prefix: 'sitesUnlimited', values: [] },
+          { prefix: 'disk', values: ['1 To'] },
+          { prefix: 'vcoresPlural', values: [14] },
           { prefix: 'ram', values: ['16 Go'] },
-          { prefix: 'vcores', values: [14] },
           { prefix: 'backupIncluded', values: [] },
-          { prefix: 'uptime', values: ['99,9%'] },
+          { prefix: 'uptime', values: ['99,9 %'] },
           { prefix: 'userManagement', values: [] },
           { prefix: 'emailStorage', values: [1000, '5 Go'] },
           { prefix: 'dbs', values: [50, '2 Go'] },
-          { prefix: 'webcloudDb', values: [] },
           { prefix: 'cdn', values: [] },
           { prefix: 'git', values: [] },
         ],

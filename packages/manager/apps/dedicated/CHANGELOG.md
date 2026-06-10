@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [20.78.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.3...@ovh-ux/manager-dedicated@20.78.4) (2026-06-09)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.78.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.2...@ovh-ux/manager-dedicated@20.78.3) (2026-06-08)
+
+
+### Bug Fixes
+
+* **dedicated.pcc:** filter invalid datacenters ([48d0c79](https://github.com/ovh/manager/commit/48d0c791cb7b9c804ebb171e4ce855bb97fea11a)), closes [#MANAGER-21774](https://github.com/ovh/manager/issues/MANAGER-21774)
+
+
+
+
+
+## [20.78.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.1...@ovh-ux/manager-dedicated@20.78.2) (2026-06-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+## [20.78.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.0...@ovh-ux/manager-dedicated@20.78.1) (2026-05-25)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
+# [20.78.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.10...@ovh-ux/manager-dedicated@20.78.0) (2026-05-19)
+
+
+### Features
+
+* **dedicated:** cancelation FTC on US ([df3f311](https://github.com/ovh/manager/commit/df3f31106a07fc9cdf3340a5aaaeaac58a9a73f1)), closes [#MANAGER-20070](https://github.com/ovh/manager/issues/MANAGER-20070)
+
+
+
+
+
+## [20.77.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.9...@ovh-ux/manager-dedicated@20.77.10) (2026-05-11)
+
+**Note:** Version bump only for package @ovh-ux/manager-dedicated
+
+
+
+
+
 ## [20.77.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.77.8...@ovh-ux/manager-dedicated@20.77.9) (2026-04-30)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

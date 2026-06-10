@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-billing-components",
-  "version": "4.36.1",
+  "version": "4.37.1",
   "private": true,
   "description": "OVHcloud manager billing components",
   "repository": {
@@ -16,7 +16,7 @@
     "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
   },
   "dependencies": {
-    "@ovh-ux/manager-models": "^2.7.11",
+    "@ovh-ux/manager-models": "^2.8.0",
     "lodash-es": "^4.17.15"
   },
   "devDependencies": {

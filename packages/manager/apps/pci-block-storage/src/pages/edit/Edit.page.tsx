@@ -423,7 +423,7 @@ export default function EditPage() {
 
           {!hasError && (
             <div className="mb-6">
-              {!!volume.monthlyPrice && (
+              {volume.monthlyPrice ? (
                 <OsdsText
                   level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
                   size={ODS_THEME_TYPOGRAPHY_SIZE._400}
@@ -434,6 +434,17 @@ export default function EditPage() {
                     {
                       price: volume.monthlyPrice.value,
                     },
+                  )}
+                </OsdsText>
+              ) : (
+                <OsdsText
+                  level={ODS_THEME_TYPOGRAPHY_LEVEL.body}
+                  size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                  color={ODS_THEME_COLOR_INTENT.text}
+                  data-testid="editPage-text_priceUnavailable"
+                >
+                  {tVolumeEdit(
+                    'pci_projects_project_storages_blocks_block_volume-edit_price_unavailable',
                   )}
                 </OsdsText>
               )}

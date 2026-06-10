@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.8...@ovh-ux/manager-zimbra-app@0.44.0) (2026-05-26)
+
+
+### Features
+
+* **zimbra:** add linked domain to services tab ([b0d82da](https://github.com/ovh/manager/commit/b0d82da1c4791c2f46f3d46db2d89d82fb85523a)), closes [#PRDCOL-467](https://github.com/ovh/manager/issues/PRDCOL-467)
+
+
+
+
+
+## [0.43.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.7...@ovh-ux/manager-zimbra-app@0.43.8) (2026-05-07)
+
+
+### Bug Fixes
+
+* **zimbra:** add slot in account creatioon form on the onboarding page ([2d9fd14](https://github.com/ovh/manager/commit/2d9fd1449588622951513131158f15a1a413187c)), closes [#PRDCOL-475](https://github.com/ovh/manager/issues/PRDCOL-475)
+
+
+
+
+
 ## [0.43.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.6...@ovh-ux/manager-zimbra-app@0.43.7) (2026-03-19)
 
 

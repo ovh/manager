@@ -25,6 +25,6 @@ angular
     retractation,
   ])
   .config(routing)
-  .run(/* @ngTranslationsInject:json ./translations ./../../../alias/special/rsva/translations */);
+  .run(/* @ngTranslationsInject:json ./translations ./../../../../alias/special/rsva/translations */);
 
 export default moduleName;

@@ -3,6 +3,47 @@ import { init, loadRemote } from '@module-federation/runtime';
 import component from './component';
 import { getWillPaymentUrl } from '../../../common/module-federation-helper';
 
+let cachedSetupPaymentAdd;
+let cachedSetupPaymentAddEntry;
+
+const getWillPaymentEntry = () => {
+  const willPaymentUrl = getWillPaymentUrl();
+  const minute = new Date().toISOString().slice(0, 16);
+
+  return `${willPaymentUrl}${
+    willPaymentUrl.includes('?') ? '&' : '?'
+  }v=${minute}`;
+};
+
+const loadSetupPaymentAdd = () => {
+  const entry = getWillPaymentEntry();
+
+  if (!cachedSetupPaymentAdd || cachedSetupPaymentAddEntry !== entry) {
+    cachedSetupPaymentAddEntry = entry;
+
+    init({
+      remotes: [
+        {
+          name: '@payment/method/add',
+          alias: 'payment_fm',
+          type: 'module',
+          entry,
+        },
+      ],
+    });
+
+    cachedSetupPaymentAdd = loadRemote('payment_fm/WillPayment')
+      .then((mod) => get(mod, 'default', mod))
+      .catch((error) => {
+        cachedSetupPaymentAdd = null;
+        cachedSetupPaymentAddEntry = null;
+        throw error;
+      });
+  }
+
+  return cachedSetupPaymentAdd;
+};
+
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   const name = 'billing.payment.method.add';
 
@@ -28,19 +69,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       },
     },
     resolve: {
-      setupPaymentAdd: /* @ngInject */ () => {
-        init({
-          remotes: [
-            {
-              name: '@payment/method/add',
-              alias: 'payment_fm',
-              type: 'module',
-              entry: getWillPaymentUrl(),
-            },
-          ],
-        });
-        return loadRemote('payment_fm/WillPayment');
-      },
+      setupPaymentAdd: /* @ngInject */ () => loadSetupPaymentAdd(),
       getBackButtonHref: /* @ngInject */ ($state, $transition$) => () =>
         $state.href(get($transition$.params(), 'from', '^')),
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.23.3...@ovh-ux/manager-bm-server-components@2.24.0) (2026-05-19)
+
+
+### Features
+
+* **dedicated:** cancelation FTC on US ([df3f311](https://github.com/ovh/manager/commit/df3f31106a07fc9cdf3340a5aaaeaac58a9a73f1)), closes [#MANAGER-20070](https://github.com/ovh/manager/issues/MANAGER-20070)
+
+
+
+
+
 ## [2.23.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-bm-server-components@2.23.2...@ovh-ux/manager-bm-server-components@2.23.3) (2026-04-30)
 
 

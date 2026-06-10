@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.1...@ovh-ux/manager-pci-instances-app@0.19.0) (2026-06-04)
+
+
+### Features
+
+* **pci-instances:** add translation ([6dfb48b](https://github.com/ovh/manager/commit/6dfb48b351caa6a358eaa982038f41cc4fb86de3)), closes [#TAPC-6821](https://github.com/ovh/manager/issues/TAPC-6821)
+* **pci-instances:** remove spaces from naming ([284cd24](https://github.com/ovh/manager/commit/284cd242487e4cd394aa33be78adc2da46c92b72)), closes [#TAPC-6807](https://github.com/ovh/manager/issues/TAPC-6807)
+
+
+
+
+
+## [0.18.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.0...@ovh-ux/manager-pci-instances-app@0.18.1) (2026-06-01)
+
+
+### Bug Fixes
+
+* **pci-instances:** update naming instance ([8288a4e](https://github.com/ovh/manager/commit/8288a4e211c164c1c95bc2e37d06d00c2dfea8d9)), closes [#TAPC-6793](https://github.com/ovh/manager/issues/TAPC-6793)
+
+
+
+
+
+# [0.18.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.2...@ovh-ux/manager-pci-instances-app@0.18.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* **pci-instances:** fix naming and backup list ([7989dd1](https://github.com/ovh/manager/commit/7989dd1e8b6b10d7d2ff3b00236d56eb17bb215b)), closes [#TAPC-7661](https://github.com/ovh/manager/issues/TAPC-7661)
+* **pci-instances:** update link and text in helper ([da61ca8](https://github.com/ovh/manager/commit/da61ca8b7b5adc06fae9a238e3e21cdf35970c6f)), closes [#TAPC-6674](https://github.com/ovh/manager/issues/TAPC-6674)
+
+
+### Features
+
+* **pci-instances:** add tests for missings ones ([cb705ba](https://github.com/ovh/manager/commit/cb705bafa7f334967143fcc28e8b81b592e50a0a))
+
+
+
+
+
 ## [0.17.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.17.1...@ovh-ux/manager-pci-instances-app@0.17.2) (2026-04-21)
 
 

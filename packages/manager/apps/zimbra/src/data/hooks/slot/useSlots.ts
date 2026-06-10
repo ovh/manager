@@ -29,6 +29,7 @@ export type SlotWithService = {
   accountId?: string;
   organizationId?: string;
   status?: keyof typeof ResourceStatus;
+  domainPromotionLink?: string;
 };
 
 type UseSlotsParams = Omit<
@@ -149,6 +150,7 @@ export const useSlotsWithService = (options: UseSlotsParams = {}) => {
           organizationLabel: account?.currentState.organizationLabel,
           organizationId: account?.currentState.organizationId,
           status: account?.resourceStatus,
+          domainPromotionLink: slot.currentState.domainPromotionLink,
         };
       });
 

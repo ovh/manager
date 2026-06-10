@@ -95,12 +95,19 @@ export default class BillingLinksService {
         `${autorenewLink}/resiliation?serviceId=${service.id}&serviceName=${service.serviceId}${serviceTypeParam}`;
 
       if (this.coreConfig.isRegion('US')) {
-        if (service.serviceType !== 'VRACK')
+        if (service.serviceType !== 'VRACK') {
           // Currently vRack termination is not handled by backend for vRack
-          links.resiliateLink = this.buildResiliateModalLink(
-            autorenewLink,
-            service,
-          );
+          if (autorenewLink) {
+            links.resiliateLink = this.buildResiliateModalLink(
+              autorenewLink,
+              service,
+            );
+          } else if (service.serviceType === SERVICE_TYPE.VPS) {
+            links.resiliateLink = getResiliationLink && getResiliationLink();
+          } else if (service.canResiliateByEndRule()) {
+            links.resiliateLink = resiliationByEndRuleLink;
+          }
+        }
         return links;
       }
 

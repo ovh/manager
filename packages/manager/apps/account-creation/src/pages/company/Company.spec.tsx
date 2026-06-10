@@ -197,7 +197,7 @@ describe('CompanyPage', () => {
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
-    const fallbackLinkElement = screen.getByText(
+    const fallbackLinkElement = await screen.findByText(
       `search_not_satisfactory_${mocks.legalForm}`,
     );
     expect(fallbackLinkElement).toBeInTheDocument();

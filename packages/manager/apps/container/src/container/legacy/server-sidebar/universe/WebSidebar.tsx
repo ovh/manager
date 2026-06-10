@@ -25,6 +25,7 @@ export const webFeatures = [
   'web-ongoing-operations',
   'web-hosting:websites',
   'web-hosting:managed-wordpress',
+  'web-hosting:managed-cms-ga',
   'web-hosting:video-center',
   'hosting',
   'private-database',
@@ -235,12 +236,13 @@ export default function WebSidebar() {
         name: OvhProductName.WORDPRESS, width: 16,
         height: 16,
       }),
-      badge: t('sidebar_tag_beta'),
       routeMatcher: new RegExp('^/managed-hosting-for-wordpress'),
-      href: navigation.getURL(
-        'web-hosting',
-        '#/managed-hosting-for-wordpress',
-      ),
+      href: features['web-hosting:managed-cms-ga']
+        ? '/beta/#/web-cloud/wordpress'
+        : navigation.getURL(
+            'web-hosting',
+            '#/managed-hosting-for-wordpress',
+          ),
     });
     if (features['private-database']) {
       menu.push({
@@ -272,9 +274,7 @@ export default function WebSidebar() {
         id: 'web-hosting-video-center',
         label: t('sidebar_web_hosting_video_center'),
         icon: getIcon('ovh-font ovh-font-play'),
-        badge: t('sidebar_tag_beta'),
-        routeMatcher: new RegExp('^/video-center'),
-        href: navigation.getURL('web-hosting', '#/video-center'),
+        href: '/beta/#/web-cloud/video-center',
       });
     }
     if (features.zimbra) {

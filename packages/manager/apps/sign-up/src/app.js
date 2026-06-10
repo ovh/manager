@@ -1,5 +1,9 @@
 // set environment
-import { findLanguage } from '@ovh-ux/manager-config';
+import {
+  detectUserLocale,
+  findAvailableLocale,
+  useDefaultLanguage,
+} from '@ovh-ux/manager-config';
 
 /* eslint-disable import/no-webpack-loader-syntax, import/extensions */
 import 'script-loader!jquery';
@@ -66,26 +70,21 @@ export default (containerEl, environment) => {
     )
     .config(
       /* @ngInject */ ($translateProvider) => {
-        const getQueryVariable = (variable) => {
-          const { hash } = window.location;
-          const query = hash.substring(hash.indexOf('?') + 1);
-          const vars = query.split('&');
-          for (let i = 0; i < vars.length; i += 1) {
-            const pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) === variable) {
-              return decodeURIComponent(pair[1]);
-            }
-          }
-          return '';
-        };
+        // const getQueryVariable = (variable) => {
+        //   const { hash } = window.location;
+        //   const query = hash.substring(hash.indexOf('?') + 1);
+        //   const vars = query.split('&');
+        //   for (let i = 0; i < vars.length; i += 1) {
+        //     const pair = vars[i].split('=');
+        //     if (decodeURIComponent(pair[0]) === variable) {
+        //       return decodeURIComponent(pair[1]);
+        //     }
+        //   }
+        //   return '';
+        // };
 
-        const language =
-          getQueryVariable('lang') ||
-          window.navigator.language ||
-          window.navigator.userLanguage ||
-          'en';
-
-        const userLocale = findLanguage(language);
+        useDefaultLanguage('fr_FR');
+        const userLocale = findAvailableLocale(detectUserLocale());
         environment.setUserLocale(userLocale);
         $translateProvider.use(userLocale);
       },

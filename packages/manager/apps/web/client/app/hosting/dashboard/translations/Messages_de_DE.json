@@ -1,5 +1,5 @@
 {
-  "hosting_change_offer_banner": "Unsere Webhosting-Angebote ändern sich ab dem 01. Juni 2026. Entdecken Sie die Verbesserungen und enthaltenen Neuerungen.",
+  "hosting_change_offer_banner": "Unsere Webhosting-Angebote entwickeln sich weiter. Entdecken Sie die Verbesserungen und Neuheiten, die enthalten sind.",
   "hosting_change_offer_banner_link": "Mehr erfahren",
   "hosting_change_offer_for_service": "Der Dienst ist für dieses Angebot nicht verfügbar.",
   "hosting_change_offer_for_service_offer": "Dieser Dienst ist für das {{offer}} Angebot nicht verfügbar.",
@@ -1428,5 +1428,6 @@
   "database_tabs_dumps_guide_save": "Eine Datenbank sichern und exportieren",
   "database_tabs_dumps_guide_restore": "Eine Datenbank wiederherstellen und importieren",
   "hosting_tab_STATISTICS_databases_none": "Es wurden keine Datenbankfehler gefunden. Alles funktioniert normal.",
-  "hosting_tab_USER_STATISTICS": "Statistiken und Logs"
+  "hosting_tab_USER_STATISTICS": "Statistiken und Logs",
+  "hosting_order_upgrade_renewal_after": "Nach diesem Datum wird die Verlängerung mit {{ price }} € netto pro Monat berechnet."
 }

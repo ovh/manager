@@ -3,6 +3,135 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.3...@ovh-ux/manager-web@19.43.4) (2026-06-09)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4762] ([fd4ca0e](https://github.com/ovh/manager/commit/fd4ca0e34d5379a4fc22ec965c2ad7026b433a7f))
+* **i18n:** add missing translations [CDS 4764] ([97d3009](https://github.com/ovh/manager/commit/97d3009963a58db3716f0b8ba1f632e25c451599))
+* **i18n:** add missing translations [CDS 4765] ([6d2426a](https://github.com/ovh/manager/commit/6d2426aef878654ec8d496fa162d5fbbbc185960))
+
+
+
+
+
+## [19.43.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.2...@ovh-ux/manager-web@19.43.3) (2026-06-08)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+## [19.43.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.1...@ovh-ux/manager-web@19.43.2) (2026-06-03)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 4785] ([3d8f137](https://github.com/ovh/manager/commit/3d8f137ab6544cb8e3bbf4ef9c52874ba788cffb))
+* **i18n:** add missing translations [CDS 4792] ([df440e2](https://github.com/ovh/manager/commit/df440e22ff99201af3cf91bbdfdc0c9ad04f592f))
+
+
+
+
+
+## [19.43.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.0...@ovh-ux/manager-web@19.43.1) (2026-05-27)
+
+
+### Bug Fixes
+
+* **web:** video-center redirect ([5bd98f9](https://github.com/ovh/manager/commit/5bd98f9955207f265fc8d1f6ca4c42c9d6b9213a)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
+# [19.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.42.1...@ovh-ux/manager-web@19.43.0) (2026-05-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1247] ([39a6994](https://github.com/ovh/manager/commit/39a69940ea7ad447cbfe3f5f5ec178421f0d3cfe))
+
+
+### Features
+
+* **video-center:** add redirect to manager beta ([6e5dd3c](https://github.com/ovh/manager/commit/6e5dd3cb17418cbe9d29fb29994ec39e2ec565ba)), closes [#PUWEBPT-342](https://github.com/ovh/manager/issues/PUWEBPT-342)
+
+
+
+
+
+## [19.42.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.42.0...@ovh-ux/manager-web@19.42.1) (2026-05-26)
+
+**Note:** Version bump only for package @ovh-ux/manager-web
+
+
+
+
+
+# [19.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.41.0...@ovh-ux/manager-web@19.42.0) (2026-05-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1243] ([27b869b](https://github.com/ovh/manager/commit/27b869b0d0529268e482ee1de6f70672695fb1a4))
+
+
+### Features
+
+* **web-hosting:** update change offer pricing ([e59d800](https://github.com/ovh/manager/commit/e59d8005d2ffd9ef20f9dd338e7896a639d2d59a)), closes [#PUWEBPT-356](https://github.com/ovh/manager/issues/PUWEBPT-356)
+
+
+
+
+
+# [19.41.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.1...@ovh-ux/manager-web@19.41.0) (2026-05-12)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1238] ([0d46b5c](https://github.com/ovh/manager/commit/0d46b5c8e05e9de449308b1e55a6407203e7195f))
+
+
+### Features
+
+* **web-hosting:** update offers site number on upgrade and downgrade ([1dcae1a](https://github.com/ovh/manager/commit/1dcae1ae12d6ecaec5d0f745292ba8f5be7dedaf)), closes [#PUWEBPT-335](https://github.com/ovh/manager/issues/PUWEBPT-335)
+* **web-hosting:** update offers technical informations ([8d542ee](https://github.com/ovh/manager/commit/8d542ee2e8977ccdf0d0948968fe3938e5518334)), closes [#PUWEBPT-335](https://github.com/ovh/manager/issues/PUWEBPT-335)
+
+
+
+
+
+## [19.40.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.40.0...@ovh-ux/manager-web@19.40.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* **web-hosting:** update offercapabilities for new offer ([c6f2f3d](https://github.com/ovh/manager/commit/c6f2f3d82ce9ce2a3ed3274711bec1a6db060d26)), closes [#PUWEBPT-333](https://github.com/ovh/manager/issues/PUWEBPT-333)
+
+
+
+
+
+# [19.40.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.39.1...@ovh-ux/manager-web@19.40.0) (2026-05-05)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1236] ([942c112](https://github.com/ovh/manager/commit/942c11212993fdf0dc0d1332df3d3f7808cd94af))
+
+
+### Features
+
+* **web-hosting:** update pricing step when order start sql addon ([a908974](https://github.com/ovh/manager/commit/a90897413a09a84144cc187f20f0aac7c766c8e7)), closes [#PUWEBPT-331](https://github.com/ovh/manager/issues/PUWEBPT-331)
+* **web-hosting:** update some wording for new offers ([89e25bd](https://github.com/ovh/manager/commit/89e25bd7d43d9dd2dea234ccc26b8507930c1cd6)), closes [#PUWEBPT-330](https://github.com/ovh/manager/issues/PUWEBPT-330)
+
+
+
+
+
 ## [19.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.39.0...@ovh-ux/manager-web@19.39.1) (2026-04-30)
 
 

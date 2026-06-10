@@ -43,7 +43,6 @@
   "quantity_label_instance": "Number of instances",
   "quantity_label_rancher": "Number of vCPUs",
   "choose_deployment": "Choose a deployment mode",
-  "choose_deployment_badge_new": "New",
   "choose_deployment_description": "Pick the optimal configuration to ensure your data is always accessible, reliable, and has the right latency based on your use cases.",
   "region": "Region",
   "deployment_one_az": "Resilient and low cost deployment in 1 availability zone.",

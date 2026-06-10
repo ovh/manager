@@ -1,6 +1,6 @@
 {
-  "hosting_change_offer_banner": "Nasze rozwiązania hostingowe zmieniają się od 1 czerwca 2026. Sprawdź ulepszenia i nowości zawarte w ofercie.",
-  "hosting_change_offer_banner_link": "Dowiedz się więcej",
+  "hosting_change_offer_banner": "Nasze oferty hostingu internetowego rozwijają się. Odkryj ulepszenia i nowości, które są w zestawie.",
+  "hosting_change_offer_banner_link": "Sprawdź",
   "hosting_change_offer_for_service": "Ta usługa nie jest dostępna dla tej oferty.",
   "hosting_change_offer_for_service_offer": "Ta usługa nie jest dostępna w ramach oferty {{offer}}.",
   "hosting_common_password_conditions": "Uwaga: hasło musi spełniać następujące warunki: <br/>- Minimalna liczba znaków: {{t0}}<br/>- Maksymalna liczba znaków: {{t1}} <br/>- Przynajmniej jedna wielka litera<br/>- Przynajmniej jedna mała litera<br/>- Przynajmniej jedna cyfra<br/>- Może zawierać wyłącznie cyfry i litery",
@@ -1428,5 +1428,6 @@
   "database_tabs_dumps_guide_save": "Backup i eksport bazy danych",
   "database_tabs_dumps_guide_restore": "Przywracanie i importowanie bazy danych",
   "hosting_tab_STATISTICS_databases_none": "Nie wykryto błędów w bazach danych. Wszystko działa prawidłowo.",
-  "hosting_tab_USER_STATISTICS": "Statystyki i logi"
+  "hosting_tab_USER_STATISTICS": "Statystyki i logi",
+  "hosting_order_upgrade_renewal_after": "Po tej dacie odnowienie będzie naliczane w wysokości {{ price }} netto miesięcznie."
 }

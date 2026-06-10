@@ -83,7 +83,7 @@
   "email_tab_popover_migrate": "Account überführen",
   "email_tab_modal_change_password_title": "Das Passwort des Accounts ändern",
   "email_tab_modal_change_password_heading": "Sie sind im Begriff, das Passwort Ihres Accounts zu ändern",
-  "email_tab_modal_change_account_password_success": "Ihr Passwort wird gerade geändert. Der Vorgang wird in 5 bis 10 Minuten abgeschlossen sein.",
+  "email_tab_modal_change_account_password_success": "Ihr Passwort wird gerade geändert. Die Operation wird in einem Moment wirksam sein.",
   "email_tab_modal_change_account_password_error": "Bei der Änderung Ihres Passworts ist ein Fehler aufgetreten:",
   "email_tab_modal_delete_account_title": "Löschung des Accounts",
   "email_tab_modal_delete_account_heading": "Sie sind im Begriff, den Account <strong>{{t0}}</strong> zu löschen",
