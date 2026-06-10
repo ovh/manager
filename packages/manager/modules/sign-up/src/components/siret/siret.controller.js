@@ -5,6 +5,8 @@ import {
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
   LEGAL_FORM_ENTERPRISE,
+  fromSuggestion,
+  isNdValue,
 } from './siret.constants';
 
 export default class SiretCtrl {
@@ -27,6 +29,10 @@ export default class SiretCtrl {
     if (this.mode === 'modification') {
       this.isFirstSearch = false;
       this.displayManualForm = true;
+      this.isSuggestPopulated = !!(
+        this.model.organisation ||
+        this.model.companyNationalIdentificationNumber
+      );
     }
 
     this.legalFormList = LEGAL_FORM.map((value) =>
@@ -80,7 +86,14 @@ export default class SiretCtrl {
     }
     this.model.companyNationalIdentificationNumber =
       suggestSelected.secondaryCNIN;
-    this.model.organisation = suggestSelected.name;
+    const isNonDiffusible = isNdValue(suggestSelected.name);
+    this.model.organisation = fromSuggestion(
+      suggestSelected.name,
+      this.model.organisation,
+    );
+    this.model.vat = fromSuggestion(suggestSelected.vat, this.model.vat);
+    this.isSuggestPopulated = true;
+    this.isNonDiffusible = isNonDiffusible;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
     if (this.mode === 'modification') {
       this.isFirstSearch = false;
@@ -99,6 +112,8 @@ export default class SiretCtrl {
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.isValid = false;
+    this.isSuggestPopulated = false;
+    this.isNonDiffusible = false;
     this.search = '';
     this.model.companyNationalIdentificationNumber = null;
     this.model.organisation = null;
