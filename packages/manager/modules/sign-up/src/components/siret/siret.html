@@ -158,6 +158,13 @@
             data-translate="siret_manual_title"
         ></p>
 
+        <oui-message
+            data-type="info"
+            data-ng-if="$ctrl.isNonDiffusible"
+        >
+            <span data-translate="siret_non_diffusible"></span>
+        </oui-message>
+
         <div class="row mt-2">
             <oui-field
                 class="col-lg-6"
@@ -173,7 +180,7 @@
                     data-ng-maxlength="$ctrl.rules.organisation.maxLength"
                     data-ng-minlength="$ctrl.rules.organisation.minLength"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.companyName)"
-                    data-ng-disabled="$ctrl.disableField"
+                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.organisation)"
                     required
                 />
             </oui-field>
@@ -208,7 +215,7 @@
                     data-ng-pattern="$ctrl.rules.companyNationalIdentificationNumber.regularExpression"
                     type="text"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.siret)"
-                    data-ng-disabled="$ctrl.disableField"
+                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.companyNationalIdentificationNumber)"
                 />
             </oui-field>
 
