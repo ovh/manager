@@ -62,6 +62,22 @@ export default class NewAccountFormFieldController {
       }
     });
 
+    this.$scope.$on(
+      'siret:companySelected',
+      (event, { address, city, zip }) => {
+        if (this.rule.fieldName === FIELD_NAME_LIST.address) {
+          this.value = address;
+          this.onChange();
+        } else if (this.rule.fieldName === FIELD_NAME_LIST.city) {
+          this.value = city;
+          this.onChange();
+        } else if (this.rule.fieldName === FIELD_NAME_LIST.zip) {
+          this.value = zip;
+          this.onChange();
+        }
+      },
+    );
+
     // reset sms consent value when phone type is no longer 'mobile'
     if (this.rule.fieldName === 'smsConsent') {
       this.$scope.$on('account.smsConsent.reset', () => {
