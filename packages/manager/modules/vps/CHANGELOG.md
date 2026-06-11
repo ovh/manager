@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.16...@ovh-ux/manager-vps@2.50.17) (2026-06-11)
+
+
+### Bug Fixes
+
+* **vps:** change api for upgrade additional disk ([258ccc0](https://github.com/ovh/manager/commit/258ccc02d11e83d7bc582d19248df16043a638b8)), closes [#PRDCOL-524](https://github.com/ovh/manager/issues/PRDCOL-524)
+
+
+
+
+
 ## [2.50.16](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.15...@ovh-ux/manager-vps@2.50.16) (2026-06-09)
 
 
