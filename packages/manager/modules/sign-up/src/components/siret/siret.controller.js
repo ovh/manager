@@ -86,12 +86,16 @@ export default class SiretCtrl {
     }
     this.model.companyNationalIdentificationNumber =
       suggestSelected.secondaryCNIN;
-    const isNonDiffusible = isNdValue(suggestSelected.name);
+    const isNonDiffusible =
+      isNdValue(suggestSelected.name) || isNdValue(suggestSelected.address);
     this.model.organisation = fromSuggestion(
       suggestSelected.name,
       this.model.organisation,
     );
     this.model.vat = fromSuggestion(suggestSelected.vat, this.model.vat);
+    this.model.address = fromSuggestion(suggestSelected.address, '');
+    this.model.city = fromSuggestion(suggestSelected.city, '');
+    this.model.zip = fromSuggestion(suggestSelected.zip, '');
     this.isSuggestPopulated = true;
     this.isNonDiffusible = isNonDiffusible;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
