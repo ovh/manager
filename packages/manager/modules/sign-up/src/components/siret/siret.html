@@ -180,7 +180,7 @@
                     data-ng-maxlength="$ctrl.rules.organisation.maxLength"
                     data-ng-minlength="$ctrl.rules.organisation.minLength"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.companyName)"
-                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.organisation)"
+                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.organisation && !$ctrl.isNonDiffusible)"
                     required
                 />
             </oui-field>

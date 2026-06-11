@@ -11,10 +11,11 @@ import {
 
 export default class SiretCtrl {
   /* @ngInject */
-  constructor(atInternet, $translate, SiretService, coreConfig) {
+  constructor(atInternet, $translate, SiretService, coreConfig, $rootScope) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.siretService = SiretService;
+    this.$rootScope = $rootScope;
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
@@ -93,9 +94,11 @@ export default class SiretCtrl {
       this.model.organisation,
     );
     this.model.vat = fromSuggestion(suggestSelected.vat, this.model.vat);
-    this.model.address = fromSuggestion(suggestSelected.address, '');
-    this.model.city = fromSuggestion(suggestSelected.city, '');
-    this.model.zip = fromSuggestion(suggestSelected.zip, '');
+    this.$rootScope.$broadcast('siret:companySelected', {
+      address: fromSuggestion(suggestSelected.address, ''),
+      city: fromSuggestion(suggestSelected.city, ''),
+      zip: fromSuggestion(suggestSelected.zip, ''),
+    });
     this.isSuggestPopulated = true;
     this.isNonDiffusible = isNonDiffusible;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };

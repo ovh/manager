@@ -5,9 +5,10 @@ import { ALLOWED_COUNTRY_EXTRA_INFO, PHONE_PREFIX } from './details.constants';
 
 export default class SignUpDetailsCtrl {
   /* @ngInject */
-  constructor($timeout) {
+  constructor($timeout, $scope) {
     // dependencies injections
     this.$timeout = $timeout;
+    this.$scope = $scope;
     this.ALLOWED_COUNTRY_EXTRA_INFO = ALLOWED_COUNTRY_EXTRA_INFO;
   }
 
@@ -250,6 +251,15 @@ export default class SignUpDetailsCtrl {
     }
 
     this.preselectLanguage(false);
+
+    this.$scope.$on(
+      'siret:companySelected',
+      (event, { address, city, zip }) => {
+        this.signUpFormCtrl.model.address = address;
+        this.signUpFormCtrl.model.city = city;
+        this.zipModel.model(zip);
+      },
+    );
   }
 
   static setElementFocus(elementName) {
