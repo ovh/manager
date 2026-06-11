@@ -133,7 +133,9 @@ export const useSlotsWithService = (options: UseSlotsParams = {}) => {
       .filter((slot) => {
         const account = accountsById.get(slot.currentState.accountId);
         if (
-          (organizationId && account?.currentState.organizationId !== organizationId) ||
+          (organizationId &&
+            slot.currentState.accountId &&
+            account?.currentState.organizationId !== organizationId) ||
           (email && !account)
         )
           return false;
