@@ -57,9 +57,17 @@ export default class VpsDiskUpgradeCtrl {
       `confirm_${this.vpsLinkedDisk?.size}_${this.selectedDiskModel?.capacity}`,
     );
     this.isUpgrading = true;
+    const renewPrice = this.selectedDiskModel.prices.find(({ capacities }) =>
+      capacities.includes('renew'),
+    );
     this.VpsService.upgradeAdditionalDisk(
-      this.vpsLinkedDisk.serviceName,
+      this.selectedDiskModel.serviceId,
       this.selectedDiskModel.planCode,
+      {
+        quantity: 1,
+        duration: renewPrice?.duration,
+        pricingMode: renewPrice?.pricingMode,
+      },
     )
       .then(({ order }) =>
         this.goBack(`
