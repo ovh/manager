@@ -12,6 +12,7 @@
   "signup_section_other": "Ulteriori informazioni",
   "signup_field_date_placeholder": "gg/mm/aaaa",
   "signup_field_date_calendar": "Scegli la data",
+  "signup_field_displayName": "Nome visualizzato",
   "signup_field_legalform": "Tipo di account",
   "signup_field_country": "Paese",
   "signup_field_language": "Lingua",
