@@ -534,18 +534,32 @@ tenants: {
 ## 12. Checklist d'implémentation
 
 ```
-[ ] 1. Créer src/data/api/services/services.requests.ts → terminateService()
-[ ] 2. Créer src/data/hooks/useTerminateVspcService.ts
-[ ] 3. Créer src/pages/services/dashboard/terminate/TerminateService.page.tsx
+[x] 1. Créer src/data/api/services/services.requests.ts → terminateService()
+[x] 2. Créer src/data/hooks/useTerminateVspcService.ts
+[x] 3. Créer src/pages/services/dashboard/terminate/TerminateService.page.tsx
         - useQuery(tenantsQueries.withClient(qc).vspcDetail()) → vspcResourceId + vspcName
         - useQuery(servicesQueries.agoraServiceId(vspcResourceId)) → serviceId
         - Gérer hasNoAccess (serviceId === null après chargement)
         - useMutation useTerminateVspcService → addSuccess/addError/closeModal
-        - navigate('/') après succès (root de l'app = listing)
-[ ] 4. Ajouter subRoutes.terminate + urls.dashboardTenantTerminate dans routes.constants.ts
-[ ] 5. Ajouter <Route path={subRoutes.terminate} Component={TerminateServicePage} /> dans routes.tsx
-[ ] 6. Ajouter le bouton "Terminate service" + helper text dans GeneralInformation.page.tsx
-        - Conditionner l'affichage sur !isServiceIdLoading && !hasNoAccess
-        - Naviguer vers subRoutes.terminate au clic
-[ ] 7. Ajouter les clés de traduction dans les 13 fichiers Messages_*.json du dossier dashboard
+        - navigate('..') à onSettled (fermeture modale = retour parent)
+[x] 4. Ajouter subRoutes.terminate + urls.dashboardTenantTerminate dans routes.constants.ts
+[x] 5. Ajouter <Route path={subRoutes.terminate} Component={TerminateServicePage} /> dans routes.tsx
+[x] 6. Mettre à jour GeneralInformation.page.tsx
+        - BillingInformationsTileStandard déjà présent avec onResiliateLinkClick
+        - onResiliateLinkClick redirige vers urls.dashboardTenantTerminate (était dashboardTenantDelete)
+[x] 7. Ajouter les clés de traduction dans Messages_fr_FR.json (traductions FR uniquement)
 ```
+
+### Notes d'implémentation
+
+- Le bouton "Terminate" est géré par `BillingInformationsTileStandard` (déjà présent dans
+  `GeneralInformation.page.tsx`). Ce composant gère l'appel à `GET /services?resourceName=`
+  en interne et affiche le bouton uniquement si l'utilisateur a les droits IAM. Il n'a pas été
+  nécessaire d'ajouter un bouton manuellement.
+- La gestion des rôles (`hasNoAccess`) est doublement couverte : par `BillingInformationsTileStandard`
+  (qui masque le bouton si pas de droits) et dans la modale elle-même (OdsMessage warning si
+  `serviceId === null` après chargement).
+- `navigate('..')` est utilisé dans `onSettled` (et non après succès uniquement) pour fermer
+  la modale dans tous les cas, conformément au pattern `DeleteTenant.page.tsx`.
+- Traductions ajoutées uniquement en français (`Messages_fr_FR.json`). Les autres langues
+  restent à compléter si nécessaire.

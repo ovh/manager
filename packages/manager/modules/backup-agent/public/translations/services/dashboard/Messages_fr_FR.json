@@ -1,4 +1,11 @@
 {
+  "terminate_service_button": "Résilier le service",
+  "terminate_service_helper_text": "Une étape de confirmation vous sera demandée.",
+  "terminate_service_modal_title": "Résilier le service",
+  "terminate_service_modal_content": "Un <strong>lien de confirmation</strong> vous sera envoyé par <strong>e-mail</strong>. Vous devrez cliquer sur ce lien pour confirmer la résiliation de {{vspcName}}.",
+  "terminate_service_banner_success": "La résiliation de {{vspcName}} a été initiée. Vérifiez votre e-mail pour confirmer.",
+  "terminate_service_banner_error": "Une erreur s'est produite lors de la résiliation du service. Veuillez réessayer ultérieurement.",
+  "terminate_service_no_access": "Vous ne disposez pas des permissions suffisantes pour résilier ce service.",
   "linked_server": "Serveurs Liés",
   "linked_vaults": "Vaults Liés",
   "number_of_linked_vaults": "{{connectedVaultCount}} vault(s)",
