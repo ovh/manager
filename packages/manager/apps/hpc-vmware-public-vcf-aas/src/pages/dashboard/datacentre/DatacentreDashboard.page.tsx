@@ -24,22 +24,20 @@ import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
-// import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility'; // TODO: [EDGE] implement when unmocking (testing only)
+import { useHasEdgeGatewayAccess } from '@/hooks/edge/useHasEdgeGatewayAccess';
 
 function DatacentreDashboardPage() {
+  const navigate = useNavigate();
   const { id, vdcId } = useParams();
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
-    FEATURE_FLAGS.EDGE_GATEWAY,
   ]);
-  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
-  const isEdgeFeatureAvailable =
-    featuresAvailable?.[FEATURE_FLAGS.EDGE_GATEWAY];
+  const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
 
-  const navigate = useNavigate();
+  const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
 
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
@@ -79,8 +77,7 @@ function DatacentreDashboardPage() {
       title: EDGE_GATEWAY_LABEL,
       to: useResolvedPath(subRoutes.edgeGateway).pathname,
       trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
-      disabled: !isEdgeFeatureAvailable, // TODO: [EDGE] replace by !isEdgeCompatible when unmocking (testing only)
-      // disabled: !isEdgeCompatibleVDC(vcdDatacentre?.data) // TODO: [EDGE] implement when unmocking (testing only)
+      disabled: !hasEdgeGatewayAccess,
     },
   ].filter(({ disabled }) => !disabled);
 
