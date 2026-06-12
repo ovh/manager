@@ -15,12 +15,13 @@ import { EDGE_GATEWAY_LABEL } from '../datacentreDashboard.constants';
 import Loading from '@/components/loading/Loading.component';
 import { useEdgeGatewayListingColumns } from './hooks/useEdgeGatewayListingColumns';
 import { EdgeGatewayOrderButton } from './components/EdgeGatewayOrderButton.component';
-import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
+import { useHasEdgeGatewayAccess } from '@/hooks/edge/useHasEdgeGatewayAccess';
 import { EDGE_GATEWAY_MAX_QUANTITY } from './datacentreEdgeGateway.constants';
 
 export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
   const columns = useEdgeGatewayListingColumns();
+  const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
   const edgeQuery = useVcdEdgeGatewaysMocks({ id, vdcId });
 
@@ -44,7 +45,7 @@ export default function EdgeGatewayListingPage() {
     <RedirectionGuard
       isLoading={queries.isLoading}
       route={urls.listing}
-      condition={isEdgeCompatibleVDC(queries.data.vdc)}
+      condition={!hasEdgeGatewayAccess}
     >
       <Suspense fallback={<Loading />}>
         <section className="px-10 flex flex-col">
