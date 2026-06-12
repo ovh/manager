@@ -2,7 +2,6 @@ import chunk from 'lodash/chunk';
 import filter from 'lodash/filter';
 import find from 'lodash/find';
 import get from 'lodash/get';
-import map from 'lodash/map';
 import set from 'lodash/set';
 import sortBy from 'lodash/sortBy';
 
@@ -12,6 +11,7 @@ export default class VpsOrderDiskCtrl {
     $translate,
     $window,
     atInternet,
+    catalog,
     coreConfig,
     CucCloudMessage,
     connectedUser,
@@ -24,6 +24,7 @@ export default class VpsOrderDiskCtrl {
     this.$translate = $translate;
     this.$window = $window;
     this.atInternet = atInternet;
+    this.catalog = catalog;
     this.coreConfig = coreConfig;
     this.CucCloudMessage = CucCloudMessage;
     this.connectedUser = connectedUser;
@@ -118,13 +119,21 @@ export default class VpsOrderDiskCtrl {
         });
 
         // then map the filtered options by adding a capacity attribute
-        // this attribute is calculated from the planCode of the options
-        diskOptions = map(diskOptions, (diskOption) => {
-          const match = diskOption.planCode.match(/-(\d{2,4})g/);
-          const capacity = match ? parseInt(match[1], 10) : 0;
-
+        // this attribute is read from the catalog plan matching the planCode
+        // (e.g. blobs.commercial.name = "10000 GB" -> 10000), with a fallback
+        // parsing the planCode trailing size (e.g. "option-additional-disk-100g" -> 100)
+        diskOptions = diskOptions.map((diskOption) => {
+          const plan = this.catalog?.plans?.find(
+            ({ planCode }) => planCode === diskOption.planCode,
+          );
           set(diskOption, 'capacity', {
-            value: capacity,
+            value:
+              parseInt(
+                plan?.blobs?.commercial?.name?.replace(/[^\d]/g, ''),
+                10,
+              ) ||
+              parseInt(diskOption.planCode.match(/-(\d+)g$/)?.[1], 10) ||
+              0,
             unit: 'Go',
           });
 
