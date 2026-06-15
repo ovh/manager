@@ -5,21 +5,33 @@ import {
   PREFIX_TRANSLATION_LEGAL_FORM,
   TRACKING_PREFIX,
   LEGAL_FORM_ENTERPRISE,
+  LEGAL_FORM_ASSOCIATION,
+  VAT_CHECKBOX_LABEL_BY_LEGAL_FORM,
   fromSuggestion,
   isNdValue,
 } from './siret.constants';
 
 export default class SiretCtrl {
   /* @ngInject */
-  constructor(atInternet, $translate, SiretService, coreConfig, $rootScope) {
+  constructor(
+    atInternet,
+    $translate,
+    SiretService,
+    coreConfig,
+    $rootScope,
+    $timeout,
+  ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.siretService = SiretService;
     this.$rootScope = $rootScope;
+    this.$timeout = $timeout;
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.activeSelectSuggest = null;
+    this.assistantUsed = false;
+    this.assistantEmptyFields = {};
     this.user = coreConfig.getUser();
   }
 
@@ -30,10 +42,16 @@ export default class SiretCtrl {
     if (this.mode === 'modification') {
       this.isFirstSearch = false;
       this.displayManualForm = true;
-      this.isSuggestPopulated = !!(
-        this.model.organisation ||
-        this.model.companyNationalIdentificationNumber
-      );
+
+      this.lastVatValue = this.model.vat;
+      this.hasInitialVat = Boolean(this.model.vat);
+      this.noVat = !this.model.vat;
+
+      this.$timeout(() => {
+        this.$rootScope.$broadcast('siret:autocompleteActive', {
+          active: true,
+        });
+      });
     }
 
     this.legalFormList = LEGAL_FORM.map((value) =>
@@ -93,13 +111,20 @@ export default class SiretCtrl {
       suggestSelected.name,
       this.model.organisation,
     );
-    this.model.vat = fromSuggestion(suggestSelected.vat, this.model.vat);
+    this.lastVatValue = fromSuggestion(suggestSelected.vatID, '');
+    this.noVat = !this.lastVatValue;
+    this.model.vat = this.noVat ? null : this.lastVatValue;
     this.$rootScope.$broadcast('siret:companySelected', {
       address: fromSuggestion(suggestSelected.address, ''),
       city: fromSuggestion(suggestSelected.city, ''),
       zip: fromSuggestion(suggestSelected.zipCode, ''),
     });
-    this.isSuggestPopulated = true;
+    this.assistantUsed = true;
+    this.assistantEmptyFields = {
+      organisation: !this.model.organisation,
+      siret: !this.model.companyNationalIdentificationNumber,
+      vat: !this.lastVatValue,
+    };
     this.isNonDiffusible = isNonDiffusible;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
     if (this.mode === 'modification') {
@@ -119,11 +144,78 @@ export default class SiretCtrl {
     this.isFirstSearch = true;
     this.displayManualForm = false;
     this.isValid = false;
-    this.isSuggestPopulated = false;
+    this.assistantUsed = false;
     this.isNonDiffusible = false;
     this.search = '';
     this.model.companyNationalIdentificationNumber = null;
     this.model.organisation = null;
+    this.$rootScope.$broadcast('siret:autocompleteActive', { active: true });
+  }
+
+  getLegalForm() {
+    return this.model.legalform || this.user.legalform;
+  }
+
+  isAssociation() {
+    return this.getLegalForm() === LEGAL_FORM_ASSOCIATION;
+  }
+
+  isSiretMandatory() {
+    return !this.isAssociation();
+  }
+
+  isManualEntryAllowed(field) {
+    return this.assistantUsed && Boolean(this.assistantEmptyFields[field]);
+  }
+
+  isOrganisationDisabled() {
+    if (this.disableField) {
+      return true;
+    }
+    if (this.mode === 'modification') {
+      return !this.isManualEntryAllowed('organisation');
+    }
+    return (
+      this.assistantUsed &&
+      Boolean(this.model.organisation) &&
+      !this.isNonDiffusible
+    );
+  }
+
+  isSiretDisabled() {
+    if (this.disableField) {
+      return true;
+    }
+    if (this.mode === 'modification') {
+      return this.isAssociation() || !this.isManualEntryAllowed('siret');
+    }
+    return (
+      this.assistantUsed &&
+      Boolean(this.model.companyNationalIdentificationNumber)
+    );
+  }
+
+  isVatDisabled() {
+    if (this.disableField) {
+      return true;
+    }
+    if (this.mode === 'modification') {
+      return !this.isManualEntryAllowed('vat');
+    }
+    return false;
+  }
+
+  getVatCheckboxLabelKey() {
+    return VAT_CHECKBOX_LABEL_BY_LEGAL_FORM[this.getLegalForm()];
+  }
+
+  onNoVatChange(noVat) {
+    if (noVat) {
+      this.lastVatValue = this.model.vat || this.lastVatValue;
+      this.model.vat = null;
+    } else {
+      this.model.vat = this.lastVatValue || null;
+    }
   }
 
   onFieldBlur(field) {

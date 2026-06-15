@@ -32,7 +32,7 @@
             data-ng-focus="$ctrl.focused = true"
             data-ng-blur="$ctrl.focused = false"
             data-ng-pattern="$ctrl.inputValidator"
-            data-ng-disabled="$ctrl.disableInputField"
+            data-ng-disabled="$ctrl.disableInputField || $ctrl.autocompleteDisabled"
             data-ng-required="$ctrl.rule.mandatory"
             data-ng-maxlength="$ctrl.rule.maxLength"
             data-ng-minlength="$ctrl.rule.minLength"
