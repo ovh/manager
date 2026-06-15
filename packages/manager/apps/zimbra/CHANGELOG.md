@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.0...@ovh-ux/manager-zimbra-app@0.44.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* **zimbra:** fix issue on account creation ([6520650](https://github.com/ovh/manager/commit/6520650f4b7e006479fb8ab909c03e2101ec6630)), closes [#PRDCOL-527](https://github.com/ovh/manager/issues/PRDCOL-527)
+
+
+
+
+
 # [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.43.8...@ovh-ux/manager-zimbra-app@0.44.0) (2026-05-26)
 
 
