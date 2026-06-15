@@ -3,6 +3,7 @@ export const READY_ONLY_RULES_PARAMS = [
   'email',
   'nichandle',
   'customerCode',
+  'displayName',
   'state',
   'commercialCommunicationsApproval',
   'managerLanguage',
@@ -10,7 +11,7 @@ export const READY_ONLY_RULES_PARAMS = [
 ];
 
 export const READY_ONLY_PARAMS = [
-  ...READY_ONLY_RULES_PARAMS,
+  ...READY_ONLY_RULES_PARAMS.filter((param) => param !== 'displayName'),
   'ovhCompany',
   'ovhSubsidiary',
 ];
@@ -126,6 +127,7 @@ export const FIELD_NAME_LIST = {
   gst: 'gst',
   iceNumber: 'iceNumber',
   purposeOfPurchase: 'purposeOfPurchase',
+  displayName: 'displayName',
 };
 
 export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
@@ -391,6 +393,8 @@ export const FEATURES = {
 
 export const IN_SUBSIDIARY = 'IN';
 export const USER_TYPE_ENTERPRISE = 'corporation';
+export const USER_TYPE_ASSOCIATION = 'association';
+export const USER_TYPE_ADMINISTRATION = 'administration';
 
 export default {
   ENUM_TRANSLATION_RULES,
@@ -408,4 +412,6 @@ export default {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
+  USER_TYPE_ASSOCIATION,
+  USER_TYPE_ADMINISTRATION,
 };
