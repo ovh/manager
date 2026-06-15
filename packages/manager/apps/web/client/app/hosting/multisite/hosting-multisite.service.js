@@ -82,7 +82,9 @@ angular.module('services').service(
       }
 
       return this.$http.put(
-        `/hosting/web/${serviceName}/attachedDomain/${domain}`,
+        `/hosting/web/${serviceName}/attachedDomain/${punycode.toASCII(
+          domain,
+        )}`,
         payload,
       );
     }
