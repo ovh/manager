@@ -99,7 +99,10 @@ export default class UserAccountInfosController {
         this.userAccountServiceInfos.getUseraccountInfos().then((response) => {
           // pick attributes that belong to /rules
           // add customer code since it will be displayed in the form
-          this.user = pick(response, fieldNames.concat('customerCode'));
+          this.user = pick(
+            response,
+            fieldNames.concat('customerCode', 'displayName'),
+          );
 
           // remove empty attributes
           this.user = pickBy(this.user, identity);
