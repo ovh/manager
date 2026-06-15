@@ -219,7 +219,7 @@ angular
           .then(() =>
             Domain.getRecordsIds($stateParams.productId, {
               fieldType: 'A',
-              subDomain: subDomainName,
+              subDomain: punycode.toASCII(subDomainName),
             })
               .then(() => {
                 $scope.domainWwwAvailable = true;
