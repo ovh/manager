@@ -12,13 +12,13 @@
     <div class="oui-field__header mt-2">
         <label
             class="oui-field__label"
-            data-translate="siret_search_field_label"
+            data-translate="{{ $ctrl.mode === 'modification' ? 'siret_siret' : 'siret_search_field_label' }}"
         ></label>
     </div>
     <div class="d-flex mb-2">
         <input
             class="mr-2 oui-input"
-            placeholder="{{ 'siret_search_field_placeholder' | translate }}"
+            placeholder="{{ ($ctrl.mode === 'modification' ? 'siret_siret' : 'siret_search_field_placeholder') | translate }}"
             name="inputSearch"
             type="text"
             data-ng-model="$ctrl.search"
@@ -143,7 +143,13 @@
 
     <!-- manual form -->
     <div data-ng-if="$ctrl.displayManualForm">
+        <p
+            data-ng-if="$ctrl.mode === 'modification'"
+            class="mb-2"
+            data-translate="siret_update_search_assistant_intro"
+        ></p>
         <oui-button
+            data-ng-class="{ 'siret-search-assistant-button': $ctrl.mode === 'modification' }"
             variant="link"
             icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
             data-on-click="$ctrl.goToSearchMode()"
@@ -180,64 +186,60 @@
                     data-ng-maxlength="$ctrl.rules.organisation.maxLength"
                     data-ng-minlength="$ctrl.rules.organisation.minLength"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.companyName)"
-                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.organisation && !$ctrl.isNonDiffusible)"
+                    data-ng-disabled="$ctrl.isOrganisationDisabled()"
                     required
                 />
-            </oui-field>
-            <oui-field
-                class="col-lg-6"
-                data-label="{{ 'siret_manual_company_legal_form' | translate }}"
-            >
-                <oui-select
-                    data-items="$ctrl.legalFormList"
-                    data-name="corporationType"
-                    data-model="$ctrl.model.corporationType"
-                    data-on-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.corporationType)"
-                    disabled="$ctrl.disableField"
-                    data-required
-                >
-                </oui-select>
             </oui-field>
         </div>
 
         <div class="row">
             <oui-field
                 class="col-lg-6"
-                data-label="{{ 'siret_siret' | translate }} ({{ 'siret_optional' | translate }})"
+                data-label="{{ 'siret_siret' | translate }}{{ ($ctrl.mode === 'modification' && $ctrl.isSiretMandatory()) ? '' : ' (' + ('siret_optional' | translate) + ')' }}"
             >
                 <input
                     class="oui-input"
                     name="siret"
                     data-ng-model="$ctrl.model.companyNationalIdentificationNumber"
-                    data-ng-required="$ctrl.rules.companyNationalIdentificationNumber.mandatory"
+                    data-ng-required="($ctrl.mode === 'modification' && $ctrl.isSiretMandatory()) || $ctrl.rules.companyNationalIdentificationNumber.mandatory"
                     data-ng-maxlength="$ctrl.rules.companyNationalIdentificationNumber.maxLength"
                     data-ng-minlength="$ctrl.rules.companyNationalIdentificationNumber.minLength"
                     data-ng-pattern="$ctrl.rules.companyNationalIdentificationNumber.regularExpression"
                     type="text"
                     data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.siret)"
-                    data-ng-disabled="$ctrl.disableField || ($ctrl.isSuggestPopulated && $ctrl.model.companyNationalIdentificationNumber)"
+                    data-ng-disabled="$ctrl.isSiretDisabled()"
                 />
             </oui-field>
 
-            <oui-field
-                class="col-lg-6"
-                data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
-                data-label-popover="{{ 'siret_vat_helper' | translate }}"
-            >
-                <input
-                    class="oui-input"
-                    name="vat"
-                    data-ng-model="$ctrl.model.vat"
-                    data-ng-required="$ctrl.rules.vat.mandatory"
-                    data-ng-maxlength="$ctrl.rules.vat.maxLength"
-                    data-ng-minlength="$ctrl.rules.vat.minLength"
-                    data-ng-pattern="$ctrl.rules.vat.regularExpression"
-                    type="text"
-                    data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
-                    data-ng-focus="$ctrl.vatFieldTouched = true;"
-                    data-ng-disabled="$ctrl.disableField"
-                />
-            </oui-field>
+            <div class="col-lg-6">
+                <oui-field
+                    data-ng-if="!$ctrl.noVat"
+                    data-label="{{ 'siret_vat' | translate }} ({{ 'siret_optional' | translate }})"
+                    data-label-popover="{{ 'siret_vat_helper' | translate }}"
+                >
+                    <input
+                        class="oui-input"
+                        name="vat"
+                        data-ng-model="$ctrl.model.vat"
+                        data-ng-required="$ctrl.rules.vat.mandatory"
+                        data-ng-maxlength="$ctrl.rules.vat.maxLength"
+                        data-ng-minlength="$ctrl.rules.vat.minLength"
+                        data-ng-pattern="$ctrl.rules.vat.regularExpression"
+                        type="text"
+                        data-ng-blur="$ctrl.onFieldBlur($ctrl.formCtrl.siretForm.vat)"
+                        data-ng-focus="$ctrl.vatFieldTouched = true;"
+                        data-ng-disabled="$ctrl.isVatDisabled()"
+                    />
+                </oui-field>
+                <oui-checkbox
+                    data-ng-if="$ctrl.mode === 'modification' && $ctrl.getVatCheckboxLabelKey() && !$ctrl.hasInitialVat"
+                    data-name="noVatCheckbox"
+                    data-model="$ctrl.noVat"
+                    data-on-change="$ctrl.onNoVatChange(modelValue)"
+                >
+                    <span data-translate="{{ $ctrl.getVatCheckboxLabelKey() }}"></span>
+                </oui-checkbox>
+            </div>
 
             <oui-field class="col-lg-12" data-label="N° SIREN">
                 <input

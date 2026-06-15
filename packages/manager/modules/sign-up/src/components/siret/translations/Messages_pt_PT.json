@@ -34,5 +34,9 @@
   "siret_manual_registration_date": "Data de registo",
   "siret_manual_registration_date_placeholder": "dd/mm/aaaa",
   "siret_update_search_assistant": "Assistente de pesquisa",
-  "siret_non_diffusible": "Os dados da sua empresa não estão disponíveis publicamente (empresa não divulgada). Introduza manualmente as informações da sua organização para que apareçam corretamente nas suas faturas."
+  "siret_update_search_assistant_intro": "Para modificar as suas informações, por favor utilize o assistente de pesquisa introduzindo o seu número de SIRET.",
+  "siret_vat_none_corporation": "A minha empresa não tem número de IVA.",
+  "siret_vat_none_association": "A minha associação não tem número de IVA.",
+  "siret_vat_none_administration": "Esta administração não possui número de IVA.",
+  "siret_non_diffusible": "As informações da sua empresa não são divulgadas publicamente (empresa não divulgável). Por favor, preencha manualmente as informações da sua organização para que apareçam corretamente nas suas faturas."
 }

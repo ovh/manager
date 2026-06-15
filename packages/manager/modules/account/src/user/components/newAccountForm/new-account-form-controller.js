@@ -16,6 +16,8 @@ import {
   FEATURES,
   IN_SUBSIDIARY,
   USER_TYPE_ENTERPRISE,
+  USER_TYPE_ASSOCIATION,
+  USER_TYPE_ADMINISTRATION,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
@@ -224,6 +226,12 @@ export default class NewAccountFormController {
           hasBottomMargin: true,
         });
 
+        rules.push({
+          fieldName: FIELD_NAME_LIST.displayName,
+          initialValue: this.model.displayName,
+          hasBottomMargin: true,
+        });
+
         const languageRuleIdx = rules.findIndex(
           (rule) => rule.fieldName === FIELD_NAME_LIST.language,
         );
@@ -271,7 +279,11 @@ export default class NewAccountFormController {
             return -1;
           });
 
-        return displayRules;
+        return displayRules.filter(
+          (rule, index, all) =>
+            all.findIndex((item) => item.fieldName === rule.fieldName) ===
+            index,
+        );
       })
       .finally(() => {
         this.isLoading = false;
@@ -543,8 +555,21 @@ export default class NewAccountFormController {
 
   siretFieldIsAvailable() {
     return (
-      this.model.legalform === USER_TYPE_ENTERPRISE &&
-      this.model.country === 'FR'
+      [
+        USER_TYPE_ENTERPRISE,
+        USER_TYPE_ASSOCIATION,
+        USER_TYPE_ADMINISTRATION,
+      ].includes(this.model.legalform) && this.model.country === 'FR'
+    );
+  }
+
+  isFieldHiddenForFr(rule) {
+    return (
+      this.model.country === 'FR' &&
+      [
+        FIELD_NAME_LIST.corporationType,
+        FIELD_NAME_LIST.nationalIdentificationNumber,
+      ].includes(rule.fieldName)
     );
   }
 

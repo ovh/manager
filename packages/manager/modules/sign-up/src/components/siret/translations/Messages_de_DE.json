@@ -34,5 +34,9 @@
   "siret_manual_registration_date": "Zulassungsdatum",
   "siret_manual_registration_date_placeholder": "tt/mm/jjjj",
   "siret_update_search_assistant": "Suchassistent",
-  "siret_non_diffusible": "Die Daten Ihres Unternehmens sind nicht öffentlich einsehbar (nicht offengelegtes Unternehmen). Bitte geben Sie die Informationen Ihrer Organisation manuell ein, damit sie korrekt auf Ihren Rechnungen erscheinen."
+  "siret_update_search_assistant_intro": "Um Ihre Informationen zu ändern, verwenden Sie bitte den Suchassistenten, indem Sie Ihre SIRET-Nummer eingeben.",
+  "siret_vat_none_corporation": "Mein Unternehmen hat keine Umsatzsteuer-Identifikationsnummer.",
+  "siret_vat_none_association": "Mein Verein hat keine Umsatzsteuer-Identifikationsnummer.",
+  "siret_vat_none_administration": "Diese Behörde besitzt keine Umsatzsteuer-Identifikationsnummer.",
+  "siret_non_diffusible": "Die Informationen Ihres Unternehmens werden nicht öffentlich verbreitet (nicht veröffentlichbares Unternehmen). Bitte geben Sie die Informationen Ihrer Organisation manuell ein, damit sie korrekt auf Ihren Rechnungen erscheinen."
 }
