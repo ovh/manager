@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.17...@ovh-ux/manager-vps@2.50.18) (2026-06-15)
+
+
+### Bug Fixes
+
+* **vps:** fix issue on order additionnal 10000gb disk ([f943eb3](https://github.com/ovh/manager/commit/f943eb3e6f3cc102526f2ac7254785a2c45d195b)), closes [#PRDCOL-528](https://github.com/ovh/manager/issues/PRDCOL-528)
+
+
+
+
+
 ## [2.50.17](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.16...@ovh-ux/manager-vps@2.50.17) (2026-06-11)
 
 
