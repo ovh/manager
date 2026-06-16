@@ -44,7 +44,7 @@ import { urls } from '@/routes/routes.constant';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 import { CompanySuggestionErrorClass } from '@/types/suggestion';
-import { calculateFRVATNumber } from './Company.helpers';
+import { calculateFRVATNumber, getLegalFormFromCode } from './Company.helpers';
 
 type SearchFormData = {
   search: string;
@@ -201,6 +201,12 @@ export default function CompanyPage() {
   // automatically select the first company if we found one
   useEffect(() => {
     if (isFetched && data && data.companies.length === 1) {
+      const calculatedLegalForm = getLegalFormFromCode(
+        data.companies[0].legalFormCode,
+      );
+      if (calculatedLegalForm !== legalForm) {
+        setLegalForm(calculatedLegalForm);
+      }
       selectCompany(data.companies[0]);
     }
   }, [isFetched, data]);
