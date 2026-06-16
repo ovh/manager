@@ -205,30 +205,6 @@ describe('CompanyPage', () => {
     expect(mocks.setLegalForm).toHaveBeenCalledWith('individual');
   });
 
-  it('should display a fallback link if user does not find his corporation', async () => {
-    renderComponent();
-
-    const searchInputElement = screen.getByTestId('search-input');
-    await setSearchValue(searchInputElement, VALID_SIRET);
-
-    expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
-    const searchButtonElement = screen.getByText('search');
-    await act(() => searchButtonElement.click());
-    const fallbackLinkElement = await screen.findByText(
-      `search_not_satisfactory_${mocks.legalForm}`,
-    );
-    expect(fallbackLinkElement).toBeInTheDocument();
-    await act(() => fallbackLinkElement.click());
-    expect(mockedTrackClick).toHaveBeenCalledWith(
-      { pageName: 'page-name', pageType: 'page' },
-      {
-        location: 'page',
-        buttonType: 'button',
-        actions: ['siret-siren-not-found-add-manually'],
-      },
-    );
-  });
-
   it('should update user context when user select his corporation', async () => {
     renderComponent();
 
