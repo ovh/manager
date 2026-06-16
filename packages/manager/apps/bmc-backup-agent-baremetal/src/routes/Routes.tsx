@@ -9,14 +9,11 @@ import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
 
-import { redirectionApp, subRoutes, urlParams, urls } from './Routes.constants';
+import { redirectionApp, subRoutes, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
-const FirstOrderPage = React.lazy(() => import('@/pages/first-order/FirstOrder.page'));
-const FirstOrderConfirmationModalPage = React.lazy(
-  () => import('@/pages/first-order/confirmation/FirstOrderConfirmationModal.page'),
-);
+const TunnelPage = React.lazy(() => import('@/pages/tunnel/Tunnel.page'));
 
 export default (
   <>
@@ -41,20 +38,12 @@ export default (
         }}
       />
       <Route
-        path={subRoutes.firstOrder}
-        Component={FirstOrderPage}
+        path={subRoutes.tunnel}
+        Component={TunnelPage}
         handle={{
-          tracking: { pageName: 'order', pageType: PageType.funnel },
+          tracking: { pageName: 'tunnel', pageType: PageType.funnel },
         }}
-      >
-        <Route
-          path={`${subRoutes.firstOrderConfirmation}/${urlParams.baremetalName}`}
-          Component={FirstOrderConfirmationModalPage}
-          handle={{
-            tracking: { pageName: 'order-confirmation', pageType: PageType.funnel },
-          }}
-        />
-      </Route>
+      />
       {BackupAgentRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
