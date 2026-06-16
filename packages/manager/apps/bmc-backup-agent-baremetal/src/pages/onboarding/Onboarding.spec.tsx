@@ -128,7 +128,7 @@ vi.mock('@ovh-ux/backup-agent/hooks/useGuideUtils.ts', () => ({
   }),
 }));
 
-describe('FirstOrderPage', () => {
+describe('OnboardingPage', () => {
   beforeAll(() => {
     // useQuery is called twice: 1st for baremetals, 2nd for vaults
     useQueryMock.mockReturnValue({

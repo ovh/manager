@@ -91,7 +91,7 @@ export default function OnboardingPage() {
         moreInfoButtonLabel={t(`${NAMESPACES.ONBOARDING}:more_infos`)}
         onMoreInfoButtonClick={() => {}}
         isOrderLoading={isPending}
-        orderHref={urls.firstOrder}
+        orderHref={urls.tunnel}
         moreInfoHref={links.website}
         isOrderDisabled={!baremetals?.length || !isVaultError || isVaultPending || isOrderSuccess}
         tooltipContent={!baremetals?.length ? t('no_baremetal_available') : undefined}

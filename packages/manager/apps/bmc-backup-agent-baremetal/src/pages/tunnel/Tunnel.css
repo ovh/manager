@@ -1,0 +1,88 @@
+.ba-tunnel-layout {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.ba-tunnel-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .ba-tunnel-content {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.ba-tunnel-sidebar {
+  position: sticky;
+  top: 1.5rem;
+  align-self: start;
+}
+
+.ba-tunnel-step-locked {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Indeterminate progress bar — a sliding segment back and forth. */
+.ba-step2-progress-track {
+  position: relative;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: var(--ods-color-neutral-100);
+}
+
+.ba-step2-progress-bar-indeterminate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  border-radius: 9999px;
+  background-color: var(--ods-color-primary-500);
+  animation: ba-step2-slide 1.5s ease-in-out infinite;
+}
+
+.ba-step2-progress-bar-full {
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: var(--ods-color-success-500);
+}
+
+@keyframes ba-step2-slide {
+  0% {
+    left: -40%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ba-step2-progress-bar-indeterminate {
+    animation: none;
+    width: 100%;
+    opacity: 0.4;
+  }
+}
+
+/* Sidebar step connector line. */
+.ba-tunnel-connector {
+  width: 2px;
+  flex: 1;
+  min-height: 1.5rem;
+}
+
+.ba-tunnel-connector--done {
+  background-color: var(--ods-color-success-500);
+}
+
+.ba-tunnel-connector--todo {
+  background-color: var(--ods-color-neutral-200);
+}
