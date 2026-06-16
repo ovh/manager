@@ -5,6 +5,7 @@ export type Company = {
   city?: string;
   country: Country;
   creationDate: string;
+  legalFormCode: string;
   name?: string;
   zipCode?: string;
   primaryCNIN: string; // SIREN
