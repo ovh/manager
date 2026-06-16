@@ -12,6 +12,7 @@
   "category_product": "Produit",
   "category_product_lifecycle": "Vie du produit",
   "category_billing": "Facturation",
+  "category_billing_invoice": "Facturation (factures et documents)",
   "category_account": "Compte",
   "category_account_lifecycle": "Vie du compte",
   "category_security": "Sécurité",

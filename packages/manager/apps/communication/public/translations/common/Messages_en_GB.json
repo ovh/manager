@@ -12,6 +12,7 @@
   "category_product": "Product",
   "category_product_lifecycle": "Product lifespan",
   "category_billing": "Billing",
+  "category_billing_invoice": "Billing (invoices and documents)",
   "category_account": "Account",
   "category_account_lifecycle": "Account lifespan",
   "category_security": "Security",
