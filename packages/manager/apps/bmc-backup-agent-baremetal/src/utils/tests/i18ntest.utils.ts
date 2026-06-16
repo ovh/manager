@@ -8,12 +8,16 @@ import { appName } from '@/App.constants';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import onboarding from '../../../public/translations/onboarding/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import tunnel from '../../../public/translations/tunnel/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 function addTranslations() {
   i18next
     .addResources(defaultLocale, 'onboarding', onboarding)
+    .addResources(defaultLocale, 'tunnel', tunnel)
     .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
     .use({
       type: 'postProcessor',
@@ -46,5 +50,6 @@ export const initTestI18n = () =>
 
 export const labels = {
   onboarding,
+  tunnel,
   actions,
 };
