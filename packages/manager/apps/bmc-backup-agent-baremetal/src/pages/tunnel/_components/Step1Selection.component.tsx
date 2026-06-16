@@ -292,11 +292,17 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
     <form className="flex flex-col gap-6" noValidate onSubmit={handleSubmit(onSubmit)}>
       <OdsText preset="heading-4">{t('tunnel:step1_title')}</OdsText>
 
-      {renderCombobox()}
+      {/* Persistent live region: announces the combobox skeleton -> populated/error transition. */}
+      <div aria-live="polite" aria-busy={isBaremetalsPending}>
+        {renderCombobox()}
+      </div>
 
       <section className="flex flex-col gap-3" aria-label={t('tunnel:terms_section_label')}>
         <OdsText preset="heading-6">{t('tunnel:terms_section_label')}</OdsText>
-        {renderTermsSection()}
+        {/* Persistent live region: announces the cart skeleton -> contract-links/terms transition. */}
+        <div aria-live="polite" aria-busy={cartPending}>
+          {renderTermsSection()}
+        </div>
       </section>
 
       {checkoutError && (

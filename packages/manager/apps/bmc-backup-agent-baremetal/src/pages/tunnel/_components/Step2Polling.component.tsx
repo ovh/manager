@@ -199,10 +199,7 @@ export const Step2Polling = ({ serverData, onBackToStep1 }: Step2PollingProps) =
 
       {phase === 'ready' && (
         <div className="flex flex-col items-center gap-2 text-center">
-          <OdsIcon
-            name={ODS_ICON_NAME.circleCheck}
-            style={{ color: 'var(--ods-color-success-500)', fontSize: '64px' }}
-          />
+          <OdsIcon name={ODS_ICON_NAME.circleCheck} className="ba-step2-ready-icon" />
           <OdsText preset="heading-5">{t('tunnel:step2_ready_title')}</OdsText>
           <OdsText preset="paragraph">{t('tunnel:step2_ready_description')}</OdsText>
         </div>

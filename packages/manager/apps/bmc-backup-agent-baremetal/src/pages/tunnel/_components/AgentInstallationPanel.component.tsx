@@ -148,7 +148,7 @@ export const AgentInstallationPanel = ({
           name="tunnel-os"
           value={selectedOs}
           placeholder={t('tunnel:agent_select_os_placeholder')}
-          onOdsChange={(event) => setSelectedOs((event.target.value as TunnelOs) ?? '')}
+          onOdsChange={(event) => setSelectedOs((event.detail.value as TunnelOs) ?? '')}
         >
           {OS_OPTIONS.map(({ value, label }) => (
             <option key={value} value={value}>
