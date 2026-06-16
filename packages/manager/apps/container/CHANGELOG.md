@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.194.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.194.1...@ovh-ux/manager-container-app@0.194.2) (2026-06-16)
+
+
+### Bug Fixes
+
+* **wp:** feature flipping for sub ([de88fd4](https://github.com/ovh/manager/commit/de88fd4c491c200e4125b461455a9447719a8e11))
+
+
+
+
+
 ## [0.194.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.194.0...@ovh-ux/manager-container-app@0.194.1) (2026-06-08)
 
 

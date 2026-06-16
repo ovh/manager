@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.4...@ovh-ux/manager-web@19.43.5) (2026-06-16)
+
+
+### Bug Fixes
+
+* **web:** punycode for idn on modify domain multisite ([32bb43d](https://github.com/ovh/manager/commit/32bb43d049b6df3ca4dc94eaa09b3e413185cfe4)), closes [#PUWEBPT-403](https://github.com/ovh/manager/issues/PUWEBPT-403)
+
+
+
+
+
 ## [19.43.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.3...@ovh-ux/manager-web@19.43.4) (2026-06-09)
 
 
