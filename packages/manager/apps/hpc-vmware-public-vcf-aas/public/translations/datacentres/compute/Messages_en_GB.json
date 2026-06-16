@@ -4,5 +4,9 @@
   "managed_vcd_vdc_compute_billing_MONTHLY": "Monthly",
   "managed_vcd_vdc_compute_id": "ID",
   "managed_vcd_vdc_compute_order_cta": "Order a Virtual Host",
-  "managed_vcd_vdc_compute_special_offer": "Monthly subscription valid until 31 December 2025 for any additional {{productName}} resources subscribed to by 30 November 2025. Offer cannot be used in conjunction with any other special offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions."
+  "managed_vcd_vdc_compute_special_offer": "Monthly subscription valid until 31 December 2025 for any additional {{productName}} resources subscribed to by 30 November 2025. Offer cannot be used in conjunction with any other special offers or discounts. To subscribe, you will need to accept the OVHcloud contractual conditions.",
+  "managed_vcd_vdc_compute_delete": "Delete a Virtual Host",
+  "managed_vcd_vdc_compute_delete_modal_description": "Are you sure you want to delete the {{computeId}} compute pack? This action will delete the associated resources.",
+  "managed_vcd_vdc_compute_delete_tooltip_min_quantity": "You cannot remove the latest compute pack from this vDC. A vDC must contain at least one compute pack to remain operational.",
+  "managed_vcd_vdc_compute_delete_tooltip_free_compute": "You need to delete your Freespare first."
 }
