@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.31.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.32.0) (2026-06-16)
+
+
+### Features
+
+* **public-vcf:** add delete compute resource ([41d1161](https://github.com/ovh/manager/commit/41d1161656f086c7cba40167790843db918590bf)), closes [#MANAGER-17950](https://github.com/ovh/manager/issues/MANAGER-17950)
+
+
+
+
+
 ## [0.31.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.31.1...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.31.2) (2026-03-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-hpc-vmware-public-vcf-aas-app
