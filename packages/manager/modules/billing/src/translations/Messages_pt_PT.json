@@ -131,7 +131,7 @@
   "orders_order_loading_error": "Ocorreu um erro durante a recuperação desta encomenda",
   "orders_search_input_title": "Procurar as minhas encomendas por identificador.",
   "orders_table_actions_tooltip": "Mais detalhes sobre esta encomenda",
-  "orders_order_action_retract": "Anular a encomenda",
+  "orders_order_action_retract": "Desejo retractar-me",
   "orders_retract_return_to_orders": "Voltar às minhas encomendas",
   "orders_retract_title": "Cancelamento do/dos serviços da encomenda",
   "orders_retract_confirmation": "Deseja mesmo anular a sua encomenda {{t0}}?",
