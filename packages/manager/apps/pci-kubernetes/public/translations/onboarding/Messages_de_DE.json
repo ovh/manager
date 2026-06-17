@@ -1,5 +1,5 @@
 {
-  "kube_onboarding_load_balancer_eol": "Das Produkt Load Balancer for Managed Kubernetes Service erreicht das <eolLink>End of Life am 9. Juli 2026</eolLink>. Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie Ihre Load Balancer zum Public Load Balancer oder löschen Sie diese vor dem Stichtag. <migrateLink>Konsultieren Sie unseren Migrationsguide</migrateLink>",
+  "kube_onboarding_load_balancer_eol": "Für das Produkt Load Balancer for Managed Kubernetes Service steht das <eolLink>End of Life am 09. Juli 2026</eolLink> an. Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie Ihre Loadbalancer zu Public Load Balancer oder entfernen Sie sie vor dem Ablaufdatum. <migrateLink>Sehen Sie sich unseren Guide zur Migration an.</migrateLink>",
   "pci_projects_project_kubernetes_title": "Kubernetes",
   "pci_projects_project_kubernetes_onboarding_content1": "Sie haben noch keinen Managed Kubernetes Service erstellt.",
   "pci_projects_project_kubernetes_onboarding_content2": "Orchestrieren Sie Ihre containerisierten Anwendungen mit einem CNCF-zertifizierten Kubernetes-Cluster.",

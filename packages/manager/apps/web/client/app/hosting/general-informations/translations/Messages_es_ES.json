@@ -7,9 +7,9 @@
   "hosting_dashboard_general_information_php_more_informations": "Más información sobre las versiones de PHP",
   "hosting_dashboard_general_information_languages_versions_availables": "Versiones de los lenguajes disponibles",
   "hosting_dashboard_service_video_center": "Video Center",
-  "hosting_dashboard_service_video_center_none": "Ninguno",
+  "hosting_dashboard_service_video_center_none": "Ninguno/a",
   "hosting_dashboard_service_video_center_freemium": "Activo - Freemium",
   "hosting_dashboard_service_video_center_freemium_paid": "Activo - Freemium + {{plan}}",
-  "hosting_dashboard_service_video_center_plan_pro": "Centro de Vídeo Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Centro de Vídeo Plus"
+  "hosting_dashboard_service_video_center_plan_pro": "Video Center Pro",
+  "hosting_dashboard_service_video_center_plan_plus": "Video Center Plus"
 }

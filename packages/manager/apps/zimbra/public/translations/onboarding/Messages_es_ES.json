@@ -27,5 +27,5 @@
   "configure_title": "Configuremos juntos su servicio",
   "configure_exit": "Salir de la configuración",
   "configure_success_message": "¡Enhorabuena, el servicio ya está configurado!",
-  "configure_emailAccounts_counter": "Cuentas de correo electrónico ({{count}}/{{total}})"
+  "configure_emailAccounts_counter": "Cuentas de email ({{count}}/{{total}})"
 }
