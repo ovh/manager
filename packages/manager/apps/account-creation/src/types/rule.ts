@@ -1,4 +1,5 @@
 export type RuleField =
+  | 'displayName'
   | 'address'
   | 'area'
   | 'birthCity'
