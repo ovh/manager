@@ -23,6 +23,7 @@
   "account_details_field_corporation_lastname": "Nom du représentant légal",
   "account_details_field_firstname": "Prénom",
   "account_details_field_name": "Nom",
+  "account_details_field_displayName": "Nom d'affichage",
   "account_details_field_corporation_name": "Raison sociale",
   "account_details_field_siret": "SIRET",
   "account_details_field_siren": "SIREN",

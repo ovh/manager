@@ -390,6 +390,45 @@ function AccountDetailsForm({
               );
             }}
           />
+          <Controller
+            control={control}
+            name="displayName"
+            render={({ field: { name, value, onChange, onBlur } }) => (
+              <OdsFormField>
+                <label
+                  htmlFor={name}
+                  slot="label"
+                  aria-label={t('account_details_field_displayName')}
+                >
+                  <OdsText preset="caption">
+                    {t('account_details_field_displayName')}
+                    {rules?.displayName?.mandatory && ' *'}
+                  </OdsText>
+                </label>
+                <OdsInput
+                  isReadonly={!rules}
+                  name={name}
+                  id={name}
+                  value={value}
+                  maxlength={rules?.displayName.maxLength || undefined}
+                  hasError={!!errors[name]}
+                  onOdsChange={onChange}
+                  onOdsBlur={onBlur}
+                />
+                {errors.displayName && rules?.displayName && (
+                  <OdsText
+                    className="text-critical leading-[0.8]"
+                    preset="caption"
+                  >
+                    {renderTranslatedZodError(
+                      errors.displayName.message,
+                      rules?.displayName,
+                    )}
+                  </OdsText>
+                )}
+              </OdsFormField>
+            )}
+          />
           {/* Display national identification number if legal form is individual and national identification number rule is present */}
           {rules?.nationalIdentificationNumber && !separateSIRENAndSIRET && (
             <>
