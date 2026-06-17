@@ -27,7 +27,7 @@
   "orders_order_loading_error": "Si è verificato un errore durante il recupero di questo ordine",
   "orders_search_input_title": "Ricerca i tuoi ordini per identificativo.",
   "orders_table_actions_tooltip": "Maggiori informazioni su questo ordine",
-  "orders_order_action_retract": "Annulla l'ordine",
+  "orders_order_action_retract": "Desidero recedere",
   "orders_tracking": "Stato dell'ordine",
   "orders_order_status_orderExpired": "Ordine scaduto",
   "orders_order_view_bill": "Visualizzare la fattura"
