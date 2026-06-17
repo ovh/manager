@@ -131,7 +131,7 @@
   "orders_order_loading_error": "Error al cargar el pedido.",
   "orders_search_input_title": "Buscar mis pedidos por identificador.",
   "orders_table_actions_tooltip": "Más detalles sobre el pedido",
-  "orders_order_action_retract": "Cancelar el pedido",
+  "orders_order_action_retract": "Deseo retractarme",
   "orders_retract_return_to_orders": "Volver a mis pedidos",
   "orders_retract_title": "Desistimiento de los servicios del pedido",
   "orders_retract_confirmation": "¿Seguro que quiere cancelar el pedido {{t0}}?",
