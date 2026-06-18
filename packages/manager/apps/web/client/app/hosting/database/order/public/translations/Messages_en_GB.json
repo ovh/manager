@@ -10,8 +10,8 @@
   "ovhManagerHostingDatabaseOrderPublic_error": "An error has occurred ordering an SQL database: {{message}}",
   "ovhManagerHostingDatabaseOrderPublic_description": "We recommend ordering a START SQL unit database, with 3 sizes to choose from – or for more advanced needs, one of our SQL/NoSQL Web Cloud Databases offers with guaranteed resources.",
   "ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution": "Solution:",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Offer:",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Plan:",
   "ovhManagerHostingDatabaseOrderPublic_pricing_summary_price": "Price:",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "A pro-rata will be applied until the expiry date of your hosting, so that both services are aligned on the same billing period.",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "You will be redirected to the OVHcloud order form to finalise your purchase."
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "A pro-rata charge will apply until your hosting plan expires, so both services share the same billing date.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "You’ll be redirected to the OVHcloud order form to complete your purchase."
 }

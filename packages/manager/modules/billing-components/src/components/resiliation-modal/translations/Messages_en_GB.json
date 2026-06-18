@@ -1,7 +1,7 @@
 {
-  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Your service will be terminated on {{expirationDate}}, at the end of the current billing period.",
-  "resiliation_modal_resiliate_service_terminate": "Your service will be terminated immediately and you will no longer be charged for this service.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Your service will remain active and you will be charged until the end of your commitment on {{commitmentEndDate}}.",
-  "resiliation_modal_resiliate_service_deleteAtExpiration": "Your service will be terminated immediately. However, you will still be charged monthly fees for this service until the end of your commitment on {{commitmentEndDate}}.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "After the end of your commitment, you will be charged month by month until you terminate your service."
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Your service will be cancelled on {{expirationDate}}, at the end of the current billing period",
+  "resiliation_modal_resiliate_service_terminate": "Your service will be cancelled right away and you’ll no longer be billed.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Your service will remain active and you’ll be billed until the end of your contract on {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Your service will stop immediately. However, you’ll continue to be charged a monthly fee for this service until the end of your contract on {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "After your contract ends, you’ll be billed on a monthly basis until you cancel your service"
 }

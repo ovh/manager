@@ -1,5 +1,5 @@
 {
-  "hosting_change_offer_banner": "Our web hosting offers are evolving. Discover the improvements and new features included.",
+  "hosting_change_offer_banner": "Discover our improved web hosting plans. Discover the new features and improvements.",
   "hosting_change_offer_banner_link": "Find out more",
   "hosting_change_offer_for_service": "This service is not available for this solution.",
   "hosting_change_offer_for_service_offer": "This service is not accessible for the {{offer}} solution.",
@@ -1429,5 +1429,5 @@
   "database_tabs_dumps_guide_restore": "Restore and import a database",
   "hosting_tab_STATISTICS_databases_none": "No errors found on your databases. Everything is working correctly.",
   "hosting_tab_USER_STATISTICS": "Statistics and logs",
-  "hosting_order_upgrade_renewal_after": "After this date, the renewal will be charged at the rate of {{ price }} excluding VAT per month."
+  "hosting_order_upgrade_renewal_after": "After this date, renewal will be charged at {{ price }} (ex. VAT) per month"
 }

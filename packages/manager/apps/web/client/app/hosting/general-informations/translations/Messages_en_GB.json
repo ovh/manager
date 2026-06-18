@@ -10,6 +10,6 @@
   "hosting_dashboard_service_video_center_none": "None",
   "hosting_dashboard_service_video_center_freemium": "Active - Freemium",
   "hosting_dashboard_service_video_center_freemium_paid": "Active - Freemium + {{plan}}",
-  "hosting_dashboard_service_video_center_plan_pro": "Video Centre Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Video Centre Plus"
+  "hosting_dashboard_service_video_center_plan_pro": "Video Center Pro",
+  "hosting_dashboard_service_video_center_plan_plus": "Video Center Plus"
 }
