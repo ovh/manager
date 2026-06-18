@@ -71,8 +71,9 @@
   "account_details_title_personalcorporation_prefilled": "Verifique e valide as informações pessoais e da empresa",
   "account_details_section_address_personalcorporation": "Endereço postal",
   "account_details_field_companyNationalIdentificationNumber": "Número de identificação nacional",
-  "account_details_vat_select_detected": "Detecta a partir do SIRET",
-  "account_details_vat_select_no_vat": "A minha empresa não está registada para IVA",
+  "account_details_vat_select_detected": "Detetado a partir do SIRET",
+  "account_details_vat_select_no_vat": "A minha empresa não está registada para efeitos de IVA",
   "account_details_vat_select_description_detected": "Número deduzido automaticamente do seu SIRET",
-  "account_details_vat_select_description_no_vat": "Microempresa em isenção de base, associação, etc."
+  "account_details_vat_select_description_no_vat": "Microempresa em isenção de base, associação, etc.",
+  "account_details_field_displayName": "Nome de exibição"
 }

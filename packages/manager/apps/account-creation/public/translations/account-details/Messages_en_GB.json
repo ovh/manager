@@ -72,7 +72,8 @@
   "account_details_section_address_personalcorporation": "Postal address",
   "account_details_field_companyNationalIdentificationNumber": "National identification number",
   "account_details_vat_select_detected": "Detected from the SIRET",
-  "account_details_vat_select_no_vat": "My company is not registered for VAT",
-  "account_details_vat_select_description_detected": "Number automatically deducted from your SIRET",
-  "account_details_vat_select_description_no_vat": "Micro-enterprise under basic exemption, association, etc."
+  "account_details_vat_select_no_vat": "My business is not registered for VAT",
+  "account_details_vat_select_description_detected": "Number automatically deduced from your SIRET",
+  "account_details_vat_select_description_no_vat": "Micro-enterprise exempt from VAT, association, etc.",
+  "account_details_field_displayName": "Display name"
 }
