@@ -330,7 +330,7 @@ function AccountDetailsForm({
                     name={name}
                     id={name}
                     value={value}
-                    maxlength={rules?.firstname.maxLength || undefined}
+                    maxlength={rules?.firstname?.maxLength || undefined}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
                     onBlur={onBlur}
@@ -370,7 +370,7 @@ function AccountDetailsForm({
                     name={name}
                     id={name}
                     value={value}
-                    maxlength={rules?.name.maxLength || undefined}
+                    maxlength={rules?.name?.maxLength || undefined}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
@@ -390,45 +390,47 @@ function AccountDetailsForm({
               );
             }}
           />
-          <Controller
-            control={control}
-            name="displayName"
-            render={({ field: { name, value, onChange, onBlur } }) => (
-              <OdsFormField>
-                <label
-                  htmlFor={name}
-                  slot="label"
-                  aria-label={t('account_details_field_displayName')}
-                >
-                  <OdsText preset="caption">
-                    {t('account_details_field_displayName')}
-                    {rules?.displayName?.mandatory && ' *'}
-                  </OdsText>
-                </label>
-                <OdsInput
-                  isReadonly={!rules}
-                  name={name}
-                  id={name}
-                  value={value}
-                  maxlength={rules?.displayName.maxLength || undefined}
-                  hasError={!!errors[name]}
-                  onOdsChange={onChange}
-                  onOdsBlur={onBlur}
-                />
-                {errors.displayName && rules?.displayName && (
-                  <OdsText
-                    className="text-critical leading-[0.8]"
-                    preset="caption"
+          {rules?.displayName && (
+            <Controller
+              control={control}
+              name="displayName"
+              render={({ field: { name, value, onChange, onBlur } }) => (
+                <OdsFormField>
+                  <label
+                    htmlFor={name}
+                    slot="label"
+                    aria-label={t('account_details_field_displayName')}
                   >
-                    {renderTranslatedZodError(
-                      errors.displayName.message,
-                      rules?.displayName,
-                    )}
-                  </OdsText>
-                )}
-              </OdsFormField>
-            )}
-          />
+                    <OdsText preset="caption">
+                      {t('account_details_field_displayName')}
+                      {rules?.displayName?.mandatory && ' *'}
+                    </OdsText>
+                  </label>
+                  <OdsInput
+                    isReadonly={!rules}
+                    name={name}
+                    id={name}
+                    value={value}
+                    maxlength={rules?.displayName?.maxLength || undefined}
+                    hasError={!!errors[name]}
+                    onOdsChange={onChange}
+                    onOdsBlur={onBlur}
+                  />
+                  {errors.displayName && rules?.displayName && (
+                    <OdsText
+                      className="text-critical leading-[0.8]"
+                      preset="caption"
+                    >
+                      {renderTranslatedZodError(
+                        errors.displayName.message,
+                        rules?.displayName,
+                      )}
+                    </OdsText>
+                  )}
+                </OdsFormField>
+              )}
+            />
+          )}
           {/* Display national identification number if legal form is individual and national identification number rule is present */}
           {rules?.nationalIdentificationNumber && !separateSIRENAndSIRET && (
             <>
@@ -457,7 +459,7 @@ function AccountDetailsForm({
                       id={name}
                       value={value}
                       maxlength={
-                        rules?.nationalIdentificationNumber.maxLength ||
+                        rules?.nationalIdentificationNumber?.maxLength ||
                         undefined
                       }
                       hasError={!!errors[name]}
@@ -613,7 +615,7 @@ function AccountDetailsForm({
                     name="organisation"
                     id={name}
                     value={value}
-                    maxlength={rules?.organisation.maxLength || undefined}
+                    maxlength={rules?.organisation?.maxLength || undefined}
                     hasError={!!errors[name]}
                     onOdsChange={onChange}
                     onOdsBlur={onBlur}
@@ -657,11 +659,11 @@ function AccountDetailsForm({
                           onOdsBlur={onBlur}
                           isDisabled={!rules}
                           className="flex-1"
-                          key={`corporation_type_${rules?.corporationType.in?.join(
+                          key={`corporation_type_${rules?.corporationType?.in?.join(
                             '_',
                           ) || 'empty'}`}
                         >
-                          {rules?.corporationType.in?.map((type) => (
+                          {rules?.corporationType?.in?.map((type) => (
                             <option key={type} value={type}>
                               {t(
                                 `account_details_field_corporationType_${type}`,
@@ -778,7 +780,7 @@ function AccountDetailsForm({
                       name="italianSDI"
                       id={name}
                       value={value}
-                      maxlength={rules?.italianSDI.maxLength || undefined}
+                      maxlength={rules?.italianSDI?.maxLength || undefined}
                       hasError={!!errors[name]}
                       onOdsChange={onChange}
                       onOdsBlur={onBlur}
@@ -877,11 +879,11 @@ function AccountDetailsForm({
                           onOdsBlur={onBlur}
                           isDisabled={!rules}
                           className="flex-1"
-                          key={`purpose_purchase_${rules?.purposeOfPurchase.in?.join(
+                          key={`purpose_purchase_${rules?.purposeOfPurchase?.in?.join(
                             '_',
                           ) || 'empty'}`}
                         >
-                          {rules?.purposeOfPurchase.in?.map((type) => (
+                          {rules?.purposeOfPurchase?.in?.map((type) => (
                             <option key={type} value={type}>
                               {t(
                                 `account_details_field_purchase_purpose_reason_for_${type}`,
@@ -938,7 +940,7 @@ function AccountDetailsForm({
                     onOdsBlur={onBlur}
                     className="flex-1"
                   >
-                    {rules?.country.in?.map((countryCode: string) => (
+                    {rules?.country?.in?.map((countryCode: string) => (
                       <option key={countryCode} value={countryCode}>
                         {t(`country_${countryCode}`, {
                           ns: NAMESPACES.COUNTRY,
@@ -972,7 +974,7 @@ function AccountDetailsForm({
                   name="address"
                   id={name}
                   value={value}
-                  maxlength={rules?.address.maxLength || undefined}
+                  maxlength={rules?.address?.maxLength || undefined}
                   hasError={!!errors[name]}
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
@@ -1063,7 +1065,7 @@ function AccountDetailsForm({
                   name="zip"
                   id={name}
                   value={value}
-                  maxlength={rules?.zip.maxLength || undefined}
+                  maxlength={rules?.zip?.maxLength || undefined}
                   hasError={!!errors[name]}
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
@@ -1099,7 +1101,7 @@ function AccountDetailsForm({
                   name="address"
                   id={name}
                   value={value}
-                  maxlength={rules?.city.maxLength || undefined}
+                  maxlength={rules?.city?.maxLength || undefined}
                   hasError={!!errors[name]}
                   onOdsChange={onChange}
                   onOdsBlur={onBlur}
