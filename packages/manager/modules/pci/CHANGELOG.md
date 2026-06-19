@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.104.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.103.0...@ovh-ux/manager-pci@6.104.0) (2026-06-19)
+
+
+### Features
+
+* **pci:** redirect to project on kube load balancer ([fea3c61](https://github.com/ovh/manager/commit/fea3c613e1c375851cdc06e102b9b6f6d6b43da9)), closes [#TAPC-6823](https://github.com/ovh/manager/issues/TAPC-6823)
+
+
+
+
+
 # [6.103.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci@6.102.1...@ovh-ux/manager-pci@6.103.0) (2026-06-10)
 
 
