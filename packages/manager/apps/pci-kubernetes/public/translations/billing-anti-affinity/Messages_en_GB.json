@@ -18,7 +18,7 @@
   "kubernetes_add_error_InsufficientPortsQuota": "Your project’s port quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_InsufficientInstancesQuota": "Your project’s instance quota is too low to complete the operation. Please increase your quota, or request fewer resources.",
   "kubernetes_add_error_quota_link": "Increase your quota.",
-  "kubernetes_add_billing_auto_scaling_monthly_warning": "You can enable auto-scaling and monthly billing at the same time for this node pool. Each time you create a node via auto-scaling, you will be billed for one node immediately, on a pro rata basis for the remaining time in the current month. This combination is not recommended if you plan on frequently downscaling the size of your node pool.",
+  "kubernetes_add_billing_auto_scaling_monthly_warning": "Warning: combining auto-scaling with monthly billing presents a financial risk. Each node created by auto-scaling is billed immediately for the remaining days of the current month. If that node is later removed by a scale-down event, billing continues until the end of the month. You will be billed for a node that is no longer running. Avoid this combination if your workloads require frequent scale-ups and scale-downs.",
   "kubernetes_add_cluster_name_input_pattern_validation_error": "The name must start with an alphabetical character, end with an alpha-numeric character, and the only special characters allowed are hyphens and underscores.",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_title": "Monthly prices",
   "kubernetes_add_billing_anti_affinity_coming_soon_message_description": "With the launch of Saving Plans, we will soon be able to bill you monthly.",

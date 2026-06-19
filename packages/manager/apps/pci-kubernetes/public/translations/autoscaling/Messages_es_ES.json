@@ -8,7 +8,7 @@
   "kubernetes_node_pool_autoscaling_desired_nodes_size": "Número de nodos",
   "kubernetes_node_pool_autoscaling_highest_nodes_size": "Máximo",
   "kubernetes_node_pool_autoscaling_desired_nodes_warning": "Le recomendamos que configure un pool de 3 nodos como mínimo para optimizar el «rolling upgrade» durante las actualizaciones de seguridad («patch updates») o de versión menor.",
-  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Atención: Puede activar simultáneamente el autoscaling y la tarificación mensual para este pool de nodos. Al crear un nodo a través de la funcionalidad de autoscaling, este se facturará de forma inmediata teniendo en cuenta la parte proporcional correspondiente al tiempo restante del mes en curso. Le recomendamos que evite esta combinación si prevé que el tamaño de su pool de nodos se reduzca con frecuencia.",
+  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Advertencia: combinar el autoscaling con la facturación mensual presenta un riesgo financiero. Cada nodo creado por el autoscaling se factura inmediatamente por los días restantes del mes en curso. Si ese nodo se elimina posteriormente por un evento de scale-down, la facturación continúa hasta el final del mes. Se le facturará un nodo que ya no está en funcionamiento. Evite esta combinación si sus cargas de trabajo requieren ampliaciones y reducciones de escala frecuentes.",
   "kubernetes_node_pool_autoscaling_total_nodes": "Número de nodos (total): {{totalNodes}}",
   "kubernetes_node_pool_autoscaling_by_zone": "por zona"
 }
