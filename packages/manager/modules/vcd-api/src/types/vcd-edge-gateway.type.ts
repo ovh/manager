@@ -8,6 +8,7 @@ export type GetEdgeGatewayParams = {
 
 export type UpdateEdgeGatewayPayload = {
   edgeGatewayNewName: string;
+  ipBlock: string;
 };
 
 export type VCDEdgeGatewayState = {
