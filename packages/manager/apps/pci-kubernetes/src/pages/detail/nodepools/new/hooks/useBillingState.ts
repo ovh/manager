@@ -19,6 +19,7 @@ type TUseBillingStateParams = {
   isMonthlyBilling: boolean;
   scaling?: TScalingState;
   onAntiAffinityChange: (val: boolean) => void;
+  onMonthlyBillingChange: (val: boolean) => void;
 };
 
 export function useBillingState({
@@ -26,6 +27,7 @@ export function useBillingState({
   isMonthlyBilling,
   scaling,
   onAntiAffinityChange,
+  onMonthlyBillingChange,
 }: TUseBillingStateParams) {
   const { data: catalog, isPending: isCatalogPending } = useCatalog();
 
@@ -51,6 +53,7 @@ export function useBillingState({
           ...prev,
           monthlyBilling: { ...prev.monthlyBilling, isChecked: val },
         }));
+        onMonthlyBillingChange(val);
       },
     },
     warn: false,
