@@ -66,4 +66,61 @@ describe('Autoscaling', () => {
     fireEvent.click(off);
     expect(off).toBeInTheDocument();
   });
+
+  it('should warn when opted in and monthly billing and autoscaling are both enabled', () => {
+    render(
+      <Autoscaling
+        {...{
+          ...defaultProps,
+          showMonthlyBillingWarning: true,
+          isMonthlyBilling: true,
+          isAutoscale: true,
+        }}
+      />,
+      {
+        wrapper,
+      },
+    );
+    expect(
+      screen.getByText('kubernetes_node_pool_billing_auto_scaling_monthly_warning'),
+    ).toBeInTheDocument();
+  });
+
+  it('should not warn when not opted in even if monthly billing and autoscaling are both enabled', () => {
+    render(
+      <Autoscaling
+        {...{
+          ...defaultProps,
+          showMonthlyBillingWarning: false,
+          isMonthlyBilling: true,
+          isAutoscale: true,
+        }}
+      />,
+      {
+        wrapper,
+      },
+    );
+    expect(
+      screen.queryByText('kubernetes_node_pool_billing_auto_scaling_monthly_warning'),
+    ).not.toBeInTheDocument();
+  });
+
+  it('should not warn when only one of monthly billing or autoscaling is enabled', () => {
+    render(
+      <Autoscaling
+        {...{
+          ...defaultProps,
+          showMonthlyBillingWarning: true,
+          isMonthlyBilling: true,
+          isAutoscale: false,
+        }}
+      />,
+      {
+        wrapper,
+      },
+    );
+    expect(
+      screen.queryByText('kubernetes_node_pool_billing_auto_scaling_monthly_warning'),
+    ).not.toBeInTheDocument();
+  });
 });

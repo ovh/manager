@@ -259,6 +259,7 @@ export default function ScalePage(): ReactElement {
                   isMonthlyBilling={pool.monthlyBilled}
                   isAntiAffinity={pool.antiAffinity}
                   isAutoscale={!!state.scale.isAutoscale}
+                  showMonthlyBillingWarning
                   onChange={({ isAutoscale, quantity }) =>
                     setState({
                       ...state,
