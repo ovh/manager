@@ -45,7 +45,7 @@
   "web_components_hosting_domain_offers_vcoresPlural": "{{value1}} vCores",
   "web_components_hosting_domain_offers_vcoresUpTo": "Up to {{value1}} vCores",
   "web_components_hosting_domain_offers_ram": "{{value1}} of RAM",
-  "web_components_hosting_domain_offers_ramUpTo": "Up to {{value1}} of RAM",
+  "web_components_hosting_domain_offers_ramUpTo": "Up to {{value1}} GB of RAM",
   "web_components_hosting_domain_offers_backupIncluded": "Automatic backups",
   "web_components_hosting_domain_offers_uptime": "{{value1}} observed availability",
   "web_components_hosting_domain_offers_dbs": "{{value1}} x {{value2}} databases",
