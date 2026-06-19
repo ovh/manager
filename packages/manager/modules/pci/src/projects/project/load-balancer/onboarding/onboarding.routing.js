@@ -9,7 +9,7 @@ export default /* @ngInject */ ($stateProvider) => {
         .then((lb) =>
           lb.length > 0
             ? { state: 'pci.projects.project.loadbalancer' }
-            : false,
+            : { state: 'pci.projects.project' },
         ),
     resolve: {
       breadcrumb: () => null, // Hide breadcrumb
