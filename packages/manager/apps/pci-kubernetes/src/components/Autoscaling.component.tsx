@@ -3,9 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
-import { ODS_MESSAGE_TYPE } from '@ovhcloud/ods-components';
-import { OsdsMessage } from '@ovhcloud/ods-components/react';
-import { Icon, Link, Text, Toggle, ToggleControl, ToggleLabel } from '@ovhcloud/ods-react';
+import {
+  ICON_NAME,
+  Icon,
+  Link,
+  Message,
+  MessageBody,
+  MessageIcon,
+  Text,
+  Toggle,
+  ToggleControl,
+  ToggleLabel,
+} from '@ovhcloud/ods-react';
 
 import { useMe } from '@ovh-ux/manager-react-components';
 
@@ -26,14 +35,17 @@ export interface AutoscalingProps {
   isAutoscale: TScalingState['isAutoscale'];
   onChange?: (scaling: TScalingState) => void;
   totalNodes?: number | null;
+  showMonthlyBillingWarning?: boolean;
 }
 
 export function Autoscaling({
   initialScaling,
   isAutoscale,
   isAntiAffinity,
+  isMonthlyBilling,
   onChange,
   totalNodes,
+  showMonthlyBillingWarning = false,
 }: Readonly<AutoscalingProps>) {
   const { t } = useTranslation('autoscaling');
   const ovhSubsidiary = useMe()?.me?.ovhSubsidiary;
@@ -136,9 +148,29 @@ export function Autoscaling({
       )}
 
       {quantity.desired < NODE_RANGE.MIN && (
-        <OsdsMessage className="mt-4" type={ODS_MESSAGE_TYPE.warning}>
-          {t('kubernetes_node_pool_autoscaling_desired_nodes_warning')}
-        </OsdsMessage>
+        <Message
+          data-testid="autoscale_desired_nodes_warning"
+          color="warning"
+          className="mt-4"
+          dismissible={false}
+        >
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>{t('kubernetes_node_pool_autoscaling_desired_nodes_warning')}</MessageBody>
+        </Message>
+      )}
+
+      {showMonthlyBillingWarning && isMonthlyBilling && isAutoscale && (
+        <Message
+          data-testid="autoscale_monthly_billing_warning"
+          color="warning"
+          className="mt-4"
+          dismissible={false}
+        >
+          <MessageIcon name={ICON_NAME.triangleExclamation} />
+          <MessageBody>
+            {t('kubernetes_node_pool_billing_auto_scaling_monthly_warning')}
+          </MessageBody>
+        </Message>
       )}
     </div>
   );

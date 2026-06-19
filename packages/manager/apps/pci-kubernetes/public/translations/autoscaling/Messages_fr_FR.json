@@ -8,7 +8,7 @@
   "kubernetes_node_pool_autoscaling_desired_nodes_size": "Nombre de nœuds",
   "kubernetes_node_pool_autoscaling_highest_nodes_size": "Maximum",
   "kubernetes_node_pool_autoscaling_desired_nodes_warning": "Il est conseillé de configurer un pool de 3 nœuds minimum pour optimiser le rolling upgrade lors des mises à jour de sécurité (patch updates) ou de version mineure.",
-  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Attention : Vous activez simultanément l'autoscaling et le forfait mensuel pour ce nodepool. Chaque création de nœud par l'autoscaling va entrainer la facturation immédiate d'un nœud au prorata du temps restant sur le mois en cours. Nous vous conseillons d'éviter cette combinaison si vous anticipez que la taille de votre nodepool sera fréquemment réduite.",
+  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Avertissement : combiner l'auto-scaling avec une facturation mensuelle présente un risque financier. Chaque nœud créé par l'auto-scaling est facturé immédiatement pour les jours restants du mois en cours. Si ce nœud est ensuite supprimé par un événement de scale-down, la facturation se poursuit jusqu'à la fin du mois. Vous serez facturé pour un nœud qui n'est plus en fonctionnement. Évitez cette combinaison si vos charges de travail nécessitent des montées et descentes en charge fréquentes.",
   "kubernetes_node_pool_autoscaling_total_nodes": "Nombre de nœuds (total): {{totalNodes}}",
   "kubernetes_node_pool_autoscaling_by_zone": "par zone"
 }
