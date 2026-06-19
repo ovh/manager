@@ -7,6 +7,7 @@ import {
   GetEdgeGatewayParams,
   useUpdateEdgeGateway,
   useVcdEdgeGatewayMocks,
+  useVcdIpBlocksMocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
@@ -27,9 +28,19 @@ export default function EditEdgeGatewayPage() {
   const { addSuccess, addError } = useMessageContext();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const { data: edge, isLoading, refetch } = useVcdEdgeGatewayMocks({
+  const {
+    data: edge,
+    isLoading: isLoadingEdge,
+    refetch,
+  } = useVcdEdgeGatewayMocks({
     ...edgeParams,
     staleTime: 5000,
+  });
+
+  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocksMocks({
+    id,
+    select: (data) =>
+      data.filter((ip) => ip.resource_status.status === 'AVAILABLE'),
   });
 
   const {
@@ -62,18 +73,31 @@ export default function EditEdgeGatewayPage() {
     },
   });
 
-  const onSubmit = (data: AddEdgeForm) =>
-    updateEdgeGateway({ edgeGatewayNewName: data.edgeGatewayName });
+  const onSubmit = (data: AddEdgeForm) => {
+    updateEdgeGateway({
+      edgeGatewayNewName: data.edgeGatewayName,
+      ipBlock: data.ipBlock,
+    });
+  };
+
+  const currentIpBlock = edge?.currentState.ipBlock;
+  const availableIpBlocks = ipBlocks?.map((b) => b.ipBlock) ?? [];
+  const ipBlockOptions =
+    currentIpBlock && !availableIpBlocks.includes(currentIpBlock)
+      ? [currentIpBlock, ...availableIpBlocks]
+      : availableIpBlocks;
 
   return (
     <Drawer
       isOpen
       heading={edge?.currentState.edgeGatewayName ?? ''}
-      isLoading={isLoading}
+      isLoading={isLoadingEdge || isLoadingIpBlocks}
       primaryButtonLabel={tActions('modify')}
       onPrimaryButtonClick={handleSubmit(onSubmit)}
       isPrimaryButtonLoading={isUpdating}
-      isPrimaryButtonDisabled={isLoading || isUpdating || !isValid}
+      isPrimaryButtonDisabled={
+        isLoadingEdge || isLoadingIpBlocks || isUpdating || !isValid
+      }
       secondaryButtonLabel={tActions('cancel')}
       onSecondaryButtonClick={closeDrawer}
       onDismiss={closeDrawer}
@@ -104,9 +128,9 @@ export default function EditEdgeGatewayPage() {
             <SelectField
               field={field}
               label={t('edge_ip_block')}
-              options={[field.value]}
-              isDisabled
-              helperText={t('edge_update_ip_block_helper')}
+              options={ipBlockOptions}
+              isDisabled={isLoadingIpBlocks}
+              isLoading={isLoadingIpBlocks}
             />
           )}
         />
