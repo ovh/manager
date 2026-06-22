@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Cancelar el pedido",
   "orders_retract_return_to_orders": "Volver a mis pedidos",
   "orders_retract_title": "Desistimiento de los servicios del pedido",
-  "orders_retract_confirmation": "¿Seguro que quiere cancelar el pedido {{t0}}?",
-  "orders_retract_confirmation_text": "Sí, quiero cancelar el pedido.",
-  "orders_retract_description1": "Le informamos de que dispone del derecho de desistimiento durante 14 días contados desde la fecha del pedido. En caso de ejercitar dicho derecho, se le reembolsará, en un plazo de 30 días contados desde la solicitud de desistimiento, la cantidad inicialmente abonada menos la parte proporcional correspondiente a los días de servicio consumidos.",
-  "orders_retract_description2": "Atención: El desistimiento mediante el presente formulario afecta a todos los productos incluidos en el pedido y se aplica con efecto inmediato.",
+  "orders_retract_confirmation": "¿Realmente desea cancelar su pedido ejerciendo su derecho de desistimiento?",
+  "orders_retract_confirmation_text": "Sí, deseo desistirme",
+  "orders_retract_description1": "Usted dispone de un derecho de desistimiento de catorce (14) días a partir de la fecha de su pedido.",
+  "orders_retract_description2": "Si ejerce este derecho, se le reembolsará en un plazo de catorce (14) días a partir de la confirmación de su solicitud de desistimiento. Recibirá un acuse de recibo en la dirección de correo electrónico proporcionada en su cuenta de cliente.",
   "orders_retract_alert": "La confirmación implicará la eliminación automática, inmediata e irreversible de todos los datos asociados al pedido (incluyendo sus copias de seguridad y backups). Antes de continuar y confirmar el desistimiento, le corresponde adoptar todas las medidas necesarias para conservar sus datos y garantizar la continuidad de su actividad. OVH se exime de toda responsabilidad a este respecto.",
   "orders_retract_success": "Se ha cancelado el pedido {{t0}}.",
   "orders_retract_error": "Se ha producido un error al cancelar el pedido.",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Gestionar mis facturas de OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Gestionar la renovación de mis servicios",
   "fidelity_creditOrder_submit_error": "Se ha producido un error al cargar los puntos.",
-  "fidelity_creditOrder_submit_success": "Su crédito de <strong> {{t0}} points</strong> se ha generado correctamente. Ya puede realizar su pedido en la pestaña <a href=\"#/billing/orders\">Mis pedidos</a>."
+  "fidelity_creditOrder_submit_success": "Su crédito de <strong> {{t0}} points</strong> se ha generado correctamente. Ya puede realizar su pedido en la pestaña <a href=\"#/billing/orders\">Mis pedidos</a>.",
+  "orders_retract_description3": "Procederemos al reembolso de las cantidades inicialmente abonadas por el medio de pago utilizado para su pedido, deduciendo los días de servicios consumidos.",
+  "orders_retract_description4": "Atención, el desistimiento a través de este formulario es válido para todos los productos asociados a este pedido."
 }
