@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.42.0...@ovh-ux/manager-pci-kubernetes-app@0.43.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **pci-kubernetes:** create nodepool billing choice ([226b384](https://github.com/ovh/manager/commit/226b3842a9a2a824343840ca4c6f0fdec90bdaa5)), closes [#TAPC-6953](https://github.com/ovh/manager/issues/TAPC-6953)
+
+
+### Features
+
+* **pci-kubernetes:** improve monthly billing autoscale banner ([1d7b391](https://github.com/ovh/manager/commit/1d7b391bfe52fc56ff9b0d1f4c67fbed73f5e876)), closes [#TAPC-6952](https://github.com/ovh/manager/issues/TAPC-6952)
+
+
+
+
+
 # [0.42.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.41.8...@ovh-ux/manager-pci-kubernetes-app@0.42.0) (2026-06-10)
 
 
