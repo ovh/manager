@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.4.2...@ovh-ux/manager-pci-quota-app@0.4.3) (2026-06-22)
+
+
+### Bug Fixes
+
+* **pci-quota:** missing 10vms translation ([22fbe45](https://github.com/ovh/manager/commit/22fbe45c5833aeba50edb5cb09f7a8392df80d25)), closes [#TAPC-6828](https://github.com/ovh/manager/issues/TAPC-6828)
+
+
+
+
+
 ## [0.4.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-quota-app@0.4.1...@ovh-ux/manager-pci-quota-app@0.4.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-quota-app
