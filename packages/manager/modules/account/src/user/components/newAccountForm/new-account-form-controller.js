@@ -15,6 +15,7 @@ import {
   TRACKING_PREFIX,
   FEATURES,
   IN_SUBSIDIARY,
+  FR_COUNTRIES,
   USER_TYPE_ENTERPRISE,
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,
@@ -176,6 +177,12 @@ export default class NewAccountFormController {
             editedRule.hasBottomMargin = this.coreConfig.isRegion('US');
           } else {
             editedRule.readonly = this.readonly.includes(editedRule.fieldName);
+            if (
+              editedRule.fieldName === FIELD_NAME_LIST.organisation &&
+              this.isFrenchAssociation()
+            ) {
+              editedRule.readonly = false;
+            }
             editedRule.hasBottomMargin = !FIELD_WITHOUT_MARGIN_BOTTOM.includes(
               editedRule.fieldName,
             );
@@ -541,6 +548,7 @@ export default class NewAccountFormController {
         rule.fieldName === FIELD_NAME_LIST.country
       ) {
         this.isSiretAvailable = this.siretFieldIsAvailable();
+        this.syncAddressAutocompleteState();
       }
 
       return this.updateRules();
@@ -553,19 +561,33 @@ export default class NewAccountFormController {
     return !angular.equals(this.originalModel, this.model);
   }
 
+  isFrenchAssociation() {
+    return (
+      this.model.legalform === USER_TYPE_ASSOCIATION &&
+      FR_COUNTRIES.includes(this.model.country)
+    );
+  }
+
+  syncAddressAutocompleteState() {
+    this.$scope.$broadcast('siret:autocompleteActive', {
+      active: this.isSiretAvailable && !this.isFrenchAssociation(),
+    });
+  }
+
   siretFieldIsAvailable() {
     return (
       [
         USER_TYPE_ENTERPRISE,
         USER_TYPE_ASSOCIATION,
         USER_TYPE_ADMINISTRATION,
-      ].includes(this.model.legalform) && this.model.country === 'FR'
+      ].includes(this.model.legalform) &&
+      FR_COUNTRIES.includes(this.model.country)
     );
   }
 
   isFieldHiddenForFr(rule) {
     return (
-      this.model.country === 'FR' &&
+      FR_COUNTRIES.includes(this.model.country) &&
       [
         FIELD_NAME_LIST.corporationType,
         FIELD_NAME_LIST.nationalIdentificationNumber,
