@@ -9,6 +9,7 @@ import {
   Icon,
   Link,
   Message,
+  MessageBody,
   MessageIcon,
   TEXT_PRESET,
   Text,
@@ -175,7 +176,7 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
       {props.warn && (
         <Message data-testid="warn_message" color="warning" className="my-6" dismissible={false}>
           <MessageIcon name={ICON_NAME.triangleExclamation} />
-          <Text>{t('kubernetes_add_billing_auto_scaling_monthly_warning')}</Text>
+          <MessageBody>{t('kubernetes_add_billing_auto_scaling_monthly_warning')}</MessageBody>
         </Message>
       )}
 

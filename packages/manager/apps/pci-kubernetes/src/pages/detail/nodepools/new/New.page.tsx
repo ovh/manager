@@ -55,6 +55,7 @@ export default function NewPage(): ReactElement {
     isMonthlyBilling: store.isMonthlyBilling,
     scaling: store.scaling,
     onAntiAffinityChange: store.set.antiAffinity,
+    onMonthlyBillingChange: store.set.isMonthlyBilling,
   });
 
   const { create, isAdding } = useNodePoolCreation(projectId, clusterId, {
