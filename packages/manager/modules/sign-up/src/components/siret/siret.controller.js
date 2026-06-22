@@ -42,15 +42,21 @@ export default class SiretCtrl {
     if (this.mode === 'modification') {
       this.isFirstSearch = false;
       this.displayManualForm = true;
+      if (this.shouldApplyFrenchAssociationRules()) {
+        this.assistantUsed = true;
+        this.assistantEmptyFields = {
+          organisation: true,
+          siret: true,
+          vat: true,
+        };
+      }
 
       this.lastVatValue = this.model.vat;
       this.hasInitialVat = Boolean(this.model.vat);
       this.noVat = !this.model.vat;
 
       this.$timeout(() => {
-        this.$rootScope.$broadcast('siret:autocompleteActive', {
-          active: true,
-        });
+        this.setAddressAutocompleteActive(true);
       });
     }
 
@@ -147,13 +153,44 @@ export default class SiretCtrl {
     this.assistantUsed = false;
     this.isNonDiffusible = false;
     this.search = '';
-    this.model.companyNationalIdentificationNumber = null;
-    this.model.organisation = null;
-    this.$rootScope.$broadcast('siret:autocompleteActive', { active: true });
+    if (!this.shouldApplyFrenchAssociationRules()) {
+      this.model.companyNationalIdentificationNumber = null;
+      this.model.organisation = null;
+    }
+    this.setAddressAutocompleteActive(true);
+  }
+
+  setAddressAutocompleteActive(active) {
+    this.$rootScope.$broadcast('siret:autocompleteActive', {
+      active: active && !this.shouldApplyFrenchAssociationRules(),
+    });
+  }
+
+  $onChanges(changes) {
+    if (changes.isFrenchAssociation && this.mode === 'modification') {
+      if (this.shouldApplyFrenchAssociationRules()) {
+        this.assistantUsed = true;
+        this.assistantEmptyFields = {
+          organisation: true,
+          siret: true,
+          vat: true,
+        };
+      }
+      if (!changes.isFrenchAssociation.isFirstChange()) {
+        this.setAddressAutocompleteActive(true);
+      }
+    }
   }
 
   getLegalForm() {
     return this.model.legalform || this.user.legalform;
+  }
+
+  shouldApplyFrenchAssociationRules() {
+    if (this.isFrenchAssociation != null) {
+      return this.isFrenchAssociation;
+    }
+    return this.isAssociation();
   }
 
   isAssociation() {
@@ -173,6 +210,9 @@ export default class SiretCtrl {
       return true;
     }
     if (this.mode === 'modification') {
+      if (this.shouldApplyFrenchAssociationRules()) {
+        return false;
+      }
       return !this.isManualEntryAllowed('organisation');
     }
     return (
@@ -187,7 +227,10 @@ export default class SiretCtrl {
       return true;
     }
     if (this.mode === 'modification') {
-      return this.isAssociation() || !this.isManualEntryAllowed('siret');
+      return (
+        this.shouldApplyFrenchAssociationRules() ||
+        !this.isManualEntryAllowed('siret')
+      );
     }
     return (
       this.assistantUsed &&
@@ -200,6 +243,9 @@ export default class SiretCtrl {
       return true;
     }
     if (this.mode === 'modification') {
+      if (this.shouldApplyFrenchAssociationRules()) {
+        return false;
+      }
       return !this.isManualEntryAllowed('vat');
     }
     return false;
