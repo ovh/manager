@@ -6,6 +6,7 @@ export type Step1CompletedData = {
   serverName: string;
   serverIp: string;
   serverRegion: string;
+  os: TunnelOs;
 };
 
 /**

@@ -70,16 +70,11 @@ export const TunnelStepsSidebar = ({ currentStep }: TunnelStepsSidebarProps) => 
       </nav>
 
       <section
-        className="flex flex-col gap-2 rounded-md p-4"
+        className="ml-11 flex flex-col gap-2 rounded-md p-4"
         style={{ backgroundColor: 'var(--ods-color-information-100)' }}
-        aria-label={t('tunnel:faq_title')}
+        aria-label={t('tunnel:faq_subtitle')}
       >
-        <div className="flex items-center gap-2">
-          <OdsIcon name={ODS_ICON_NAME.circleInfo} />
-          <OdsText preset="heading-6">{t('tunnel:faq_title')}</OdsText>
-        </div>
-        <OdsText preset="span">{t('tunnel:faq_subtitle')}</OdsText>
-        <OdsText preset="caption">{t('tunnel:faq_description')}</OdsText>
+        <OdsText preset="heading-6">{t('tunnel:faq_subtitle')}</OdsText>
         <Links
           href={TUNNEL_LINKS.faq}
           target="_blank"

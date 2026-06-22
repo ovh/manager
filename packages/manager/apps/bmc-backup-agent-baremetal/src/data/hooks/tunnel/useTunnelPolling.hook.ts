@@ -45,9 +45,16 @@ export const useTunnelVspcStatusPolling = (tenantId: string, vspcId: string, ena
  * (phase `polling-status`); cached for an hour since the URLs are stable.
  */
 export const useManagementAgent = (tenantId: string, vspcId: string, enabled: boolean) =>
+  // TODO: remove mock
   useQuery({
     queryKey: tunnelQueryKey.managementAgent(tenantId, vspcId),
-    queryFn: () => getTunnelManagementAgent(tenantId, vspcId),
+    queryFn: () =>
+      Promise.resolve({
+        linuxUrl:
+          'https://cdn.example.ovh/backup-agent/linux/backup-management-agent-1.0.0.run',
+        windowsUrl:
+          'https://cdn.example.ovh/backup-agent/windows/backup-management-agent-1.0.0.exe',
+      }),
     enabled: enabled && !!tenantId && !!vspcId,
     staleTime: AGENT_STALE_TIME_MS,
   });

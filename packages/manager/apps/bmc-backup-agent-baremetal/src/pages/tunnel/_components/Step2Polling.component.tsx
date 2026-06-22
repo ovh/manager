@@ -38,9 +38,10 @@ export const Step2Polling = ({ serverData, onBackToStep1 }: Step2PollingProps) =
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const [phase, setPhase] = useState<TunnelPollingPhase>('init');
-  const [tenantId, setTenantId] = useState('');
-  const [vspcId, setVspcId] = useState('');
+  // TODO: remove mock — forces ready state to preview post-loading UI
+  const [phase, setPhase] = useState<TunnelPollingPhase>('ready');
+  const [tenantId, setTenantId] = useState('mock-tenant-id');
+  const [vspcId, setVspcId] = useState('mock-vspc-id');
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const continueButtonRef = useRef<HTMLOdsButtonElement>(null);
@@ -75,11 +76,10 @@ export const Step2Polling = ({ serverData, onBackToStep1 }: Step2PollingProps) =
     return () => clearTimer();
   }, [isLocked, startTimer, clearTimer]);
 
-  const tenantQuery = useTunnelTenantPolling(
-    !isLocked && (phase === 'init' || phase === 'polling-tenant'),
-  );
-  const vspcQuery = useTunnelVspcPolling(tenantId, phase === 'polling-vspc');
-  const statusQuery = useTunnelVspcStatusPolling(tenantId, vspcId, phase === 'polling-status');
+  // TODO: remove mock — queries disabled to preview loading state
+  const tenantQuery = useTunnelTenantPolling(false);
+  const vspcQuery = useTunnelVspcPolling(tenantId, false);
+  const statusQuery = useTunnelVspcStatusPolling(tenantId, vspcId, false);
 
   // Phase 1 → 2: first tenant found.
   useEffect(() => {
@@ -172,38 +172,42 @@ export const Step2Polling = ({ serverData, onBackToStep1 }: Step2PollingProps) =
     <section className="flex flex-col gap-6" aria-label={t('tunnel:step2_title')}>
       <OdsText preset="heading-4">{t('tunnel:step2_title')}</OdsText>
 
-      {showProgress && (
-        <div className="flex flex-col gap-2">
-          <div
-            className="ba-step2-progress-track"
-            role="progressbar"
-            aria-label={t('tunnel:step2_progress_label')}
-            aria-busy={phase !== 'ready'}
-            {...(phase === 'ready'
-              ? { 'aria-valuenow': 100, 'aria-valuemin': 0, 'aria-valuemax': 100 }
-              : {})}
-          >
-            {phase === 'ready' ? (
-              <div className="ba-step2-progress-bar-full" />
-            ) : (
-              <div className="ba-step2-progress-bar-indeterminate" />
+      <div className="flex flex-col gap-2">
+        <OdsText preset="heading-5">{t('tunnel:step2_provisioning_title')}</OdsText>
+
+        {showProgress && (
+          <div className="flex flex-col gap-2">
+            {phase === 'ready' && (
+              <OdsText preset="caption" className="text-center">100%</OdsText>
+            )}
+            <div
+              className="ba-step2-progress-track"
+              role="progressbar"
+              aria-label={t('tunnel:step2_progress_label')}
+              aria-busy={phase !== 'ready'}
+              {...(phase === 'ready'
+                ? { 'aria-valuenow': 100, 'aria-valuemin': 0, 'aria-valuemax': 100 }
+                : {})}
+            >
+              {phase === 'ready' ? (
+                <div className="ba-step2-progress-bar-full" />
+              ) : (
+                <div className="ba-step2-progress-bar-indeterminate" />
+              )}
+            </div>
+            {phase !== 'ready' && (
+              <OdsText preset="paragraph">{t('tunnel:step2_creating')}</OdsText>
             )}
           </div>
-          {phase === 'ready' ? (
-            <OdsText preset="caption">100%</OdsText>
-          ) : (
-            <OdsText preset="paragraph">{t('tunnel:step2_creating')}</OdsText>
-          )}
-        </div>
-      )}
+        )}
 
-      {phase === 'ready' && (
-        <div className="flex flex-col items-center gap-2 text-center">
-          <OdsIcon name={ODS_ICON_NAME.circleCheck} className="ba-step2-ready-icon" />
-          <OdsText preset="heading-5">{t('tunnel:step2_ready_title')}</OdsText>
-          <OdsText preset="paragraph">{t('tunnel:step2_ready_description')}</OdsText>
-        </div>
-      )}
+        {phase === 'ready' && (
+          <div className="flex items-center gap-3 mt-4">
+            <OdsIcon name={ODS_ICON_NAME.check} className="ba-step2-provisioning-check" />
+            <OdsText preset="paragraph">{t('tunnel:step2_ready_description')}</OdsText>
+          </div>
+        )}
+      </div>
 
       {phase === 'error-creation' && (
         <>
@@ -255,7 +259,7 @@ export const Step2Polling = ({ serverData, onBackToStep1 }: Step2PollingProps) =
       )}
 
       {isAgentPanelVisible && (
-        <AgentInstallationPanel tenantId={tenantId} vspcId={vspcId} enabled={isAgentPanelVisible} />
+        <AgentInstallationPanel tenantId={tenantId} vspcId={vspcId} enabled={isAgentPanelVisible} os={serverData!.os} />
       )}
 
       {phase === 'ready' && (

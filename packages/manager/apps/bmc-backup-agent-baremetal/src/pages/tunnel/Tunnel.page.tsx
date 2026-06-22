@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
-import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
-import { OdsCard, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_ICON_NAME, ODS_LINK_ICON_ALIGNMENT } from '@ovhcloud/ods-components';
+import { OdsCard, OdsLink, OdsText } from '@ovhcloud/ods-components/react';
 
 import { vaultsQueries } from '@ovh-ux/backup-agent/data/queries/vaults.queries';
 import { urls as BackupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
@@ -21,6 +21,7 @@ import { TunnelStepsSidebar } from './_components/TunnelStepsSidebar.component';
 
 export default function TunnelPage() {
   const { t } = useTranslation('tunnel');
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   // R08: a user who already owns a READY vault must never re-enter the wizard
@@ -32,7 +33,13 @@ export default function TunnelPage() {
       vaults.filter(({ currentState: { status } }) => status === 'READY').length >= 1,
   });
 
-  const [step1Data, setStep1Data] = useState<Step1CompletedData | null>(null);
+  // TODO: remove mock — bypasses checkout to preview Step 2
+  const [step1Data, setStep1Data] = useState<Step1CompletedData | null>({
+    serverName: 'ns123456.ip-1-2-3.eu',
+    serverIp: '1.2.3.4',
+    serverRegion: 'GRA',
+    os: 'LINUX',
+  });
   const [isCheckoutPending, setIsCheckoutPending] = useState(false);
 
   const step2Ref = useRef<HTMLDivElement>(null);
@@ -55,21 +62,14 @@ export default function TunnelPage() {
     >
       <div className="ba-tunnel-layout flex flex-col gap-6 p-6">
         <header className="flex flex-col gap-4">
-          {isBackDisabled ? (
-            <span
-              className="inline-flex items-center gap-2 opacity-50"
-              aria-disabled="true"
-              title={t('tunnel:back_disabled_tooltip')}
-            >
-              <OdsIcon name={ODS_ICON_NAME.arrowLeft} />
-              <OdsText preset="span">{t('tunnel:back_link')}</OdsText>
-            </span>
-          ) : (
-            <Link to={BackupAgentUrls.dashboardTenant} className="inline-flex items-center gap-2">
-              <OdsIcon name={ODS_ICON_NAME.arrowLeft} />
-              <OdsText preset="span">{t('tunnel:back_link')}</OdsText>
-            </Link>
-          )}
+          <OdsLink
+            icon={ODS_ICON_NAME.arrowLeft}
+            iconAlignment={ODS_LINK_ICON_ALIGNMENT.left}
+            label={t('tunnel:back_link')}
+            isDisabled={isBackDisabled}
+            title={isBackDisabled ? t('tunnel:back_disabled_tooltip') : undefined}
+            onClick={() => !isBackDisabled && navigate(BackupAgentUrls.dashboardTenant)}
+          />
           <OdsText preset="heading-1">{t('tunnel:page_title')}</OdsText>
         </header>
 
@@ -82,8 +82,8 @@ export default function TunnelPage() {
               />
             </OdsCard>
 
-            <div ref={step2Ref}>
-              <OdsCard className="p-6">
+            <div ref={step2Ref} className="w-full">
+              <OdsCard className="p-6 w-full">
                 <Step2Polling serverData={step1Data} onBackToStep1={() => setStep1Data(null)} />
               </OdsCard>
             </div>

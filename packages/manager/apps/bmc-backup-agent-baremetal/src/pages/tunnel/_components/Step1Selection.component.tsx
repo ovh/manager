@@ -25,7 +25,7 @@ import { LinkType, Links } from '@ovh-ux/manager-react-components';
 
 import { useCheckoutBackupAgentCart } from '@/hooks/useCheckoutBackupAgentCart';
 import { useCreateBackupAgentCart } from '@/hooks/useCreateBackupAgentCart';
-import { Step1CompletedData } from '@/types/Tunnel.type';
+import { Step1CompletedData, TunnelOs } from '@/types/Tunnel.type';
 import { TUNNEL_LINKS } from '@/utils/tunnel.constants';
 
 const schema = z.object({
@@ -81,6 +81,7 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
         serverName: server.name,
         serverIp: server.ip,
         serverRegion: server.region,
+        os: /win/i.test(server.os) ? 'WINDOWS' : 'LINUX',
       });
     },
     onError: (error) => {
@@ -188,10 +189,11 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
         control={control}
         name="serverName"
         render={({ field }) => (
-          <OdsFormField>
+          <OdsFormField className="w-full">
             <label htmlFor={comboboxId}>{t('tunnel:step1_server_label')}</label>
             <OdsCombobox
               id={comboboxId}
+              style={{ width: '100%' }}
               name={field.name}
               value={field.value}
               isDisabled={isEmptyBaremetals || checkoutPending}
@@ -254,18 +256,19 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
       return <OdsText preset="caption">{t('tunnel:terms_placeholder')}</OdsText>;
     }
     return (
-      <div className="flex flex-col gap-3">
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-5">
+        <ul className="flex flex-col gap-2 pl-5 list-disc">
           {contractList.map((contract) => (
-            <Links
-              key={contract.name}
-              href={contract.url}
-              target="_blank"
-              type={LinkType.external}
-              label={contract.name}
-            />
+            <li key={contract.name}>
+              <Links
+                href={contract.url}
+                target="_blank"
+                type={LinkType.external}
+                label={contract.name}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
         <Controller
           control={control}
           name="termsAccepted"
@@ -284,13 +287,17 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
             </div>
           )}
         />
+        <OdsText preset="caption">{t('tunnel:step1_order_confirmation_hint')}</OdsText>
       </div>
     );
   };
 
   return (
     <form className="flex flex-col gap-6" noValidate onSubmit={handleSubmit(onSubmit)}>
-      <OdsText preset="heading-4">{t('tunnel:step1_title')}</OdsText>
+      <div className="flex flex-col gap-1">
+        <OdsText preset="heading-4">{t('tunnel:step1_title')}</OdsText>
+        <OdsText preset="caption">{t('tunnel:step1_add_more_servers_hint')}</OdsText>
+      </div>
 
       {/* Persistent live region: announces the combobox skeleton -> populated/error transition. */}
       <div aria-live="polite" aria-busy={isBaremetalsPending}>
@@ -308,14 +315,18 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
       {checkoutError && (
         <OdsMessage color="critical" isDismissible={false} className="w-full">
           <div className="flex flex-col gap-2">
-            <span>{t(`${NAMESPACES.ERROR}:error_message`, { message: checkoutError })}</span>
-            {isPaymentRelated(checkoutError) && (
-              <Links
-                href={TUNNEL_LINKS.paymentSettings}
-                target="_blank"
-                type={LinkType.external}
-                label={t('tunnel:payment_settings_link')}
-              />
+            {isPaymentRelated(checkoutError) ? (
+              <>
+                <span>{t('tunnel:checkout_no_payment_error')}</span>
+                <Links
+                  href={TUNNEL_LINKS.paymentSettings}
+                  target="_blank"
+                  type={LinkType.external}
+                  label={t('tunnel:payment_settings_link')}
+                />
+              </>
+            ) : (
+              <span>{t(`${NAMESPACES.ERROR}:error_message`, { message: checkoutError })}</span>
             )}
           </div>
         </OdsMessage>

@@ -55,10 +55,11 @@
   background-color: var(--ods-color-success-500);
 }
 
-/* READY-state success check icon — color + size owned by the app, not inline-styled. */
-.ba-step2-ready-icon {
+/* Inline check icon next to the provisioning title in the ready state. */
+.ba-step2-provisioning-check {
   color: var(--ods-color-success-500);
-  font-size: 64px;
+  font-size: 20px;
+  flex-shrink: 0;
 }
 
 @keyframes ba-step2-slide {

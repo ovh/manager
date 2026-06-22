@@ -6,10 +6,8 @@ import { ODS_BUTTON_VARIANT, ODS_ICON_NAME } from '@ovhcloud/ods-components';
 import {
   OdsButton,
   OdsCode,
-  OdsFormField,
   OdsIcon,
   OdsMessage,
-  OdsSelect,
   OdsSkeleton,
   OdsTab,
   OdsTabs,
@@ -26,13 +24,14 @@ import {
   getWindowsCommand,
   triggerDownload,
 } from '@/utils/agentCommands';
-import { OS_OPTIONS, TUNNEL_LINKS } from '@/utils/tunnel.constants';
+import { TUNNEL_LINKS } from '@/utils/tunnel.constants';
 
 export type AgentInstallationPanelProps = {
   tenantId: string;
   vspcId: string;
   /** Enabled once tenantId + vspcId resolve (phase `polling-status` or `ready`). */
   enabled: boolean;
+  os: TunnelOs;
 };
 
 type AgentTab = 'terminal' | 'manual';
@@ -41,12 +40,11 @@ export const AgentInstallationPanel = ({
   tenantId,
   vspcId,
   enabled,
+  os,
 }: AgentInstallationPanelProps) => {
   const { t } = useTranslation('tunnel');
-  const selectOsId = useId();
   const copyFeedbackId = useId();
 
-  const [selectedOs, setSelectedOs] = useState<TunnelOs | ''>('');
   const [activeTab, setActiveTab] = useState<AgentTab>('terminal');
   const [copyAnnouncement, setCopyAnnouncement] = useState('');
 
@@ -57,23 +55,15 @@ export const AgentInstallationPanel = ({
     refetch,
   } = useManagementAgent(tenantId, vspcId, enabled);
 
-  const activeUrl =
-    selectedOs === 'LINUX'
-      ? agentLinks?.linuxUrl
-      : selectedOs === 'WINDOWS'
-        ? agentLinks?.windowsUrl
-        : '';
+  const activeUrl = os === 'LINUX' ? agentLinks?.linuxUrl : agentLinks?.windowsUrl;
   const isUrlAvailable = !!activeUrl;
-  const isDownloadEnabled = !!selectedOs && isUrlAvailable;
+  const isDownloadEnabled = isUrlAvailable;
 
   const announceCopy = () => {
     setCopyAnnouncement(t('tunnel:agent_copy_announced'));
   };
 
   const renderTerminalTab = () => {
-    if (!selectedOs) {
-      return <OdsText preset="caption">{t('tunnel:agent_terminal_placeholder')}</OdsText>;
-    }
     if (isPending) {
       return <OdsSkeleton style={{ width: '100%', height: '36px' }} />;
     }
@@ -85,7 +75,7 @@ export const AgentInstallationPanel = ({
     }
     return (
       <section className="flex flex-col gap-4" aria-label={t('tunnel:agent_terminal_label')}>
-        {selectedOs === 'LINUX' ? (
+        {os === 'LINUX' ? (
           <>
             <OdsCode
               className="break-all"
@@ -119,7 +109,7 @@ export const AgentInstallationPanel = ({
   };
 
   const renderManualTab = () => {
-    if (isPending && !!selectedOs) {
+    if (isPending) {
       return <OdsSkeleton style={{ width: '120px', height: '36px' }} />;
     }
     return (
@@ -129,7 +119,7 @@ export const AgentInstallationPanel = ({
           isDisabled={!isDownloadEnabled}
           onClick={() => activeUrl && triggerDownload(activeUrl)}
         />
-        {!!selectedOs && !isPending && !isUrlAvailable && !isError && (
+        {!isUrlAvailable && !isError && (
           <OdsText preset="caption">{t('tunnel:agent_url_unavailable')}</OdsText>
         )}
       </div>
@@ -140,23 +130,6 @@ export const AgentInstallationPanel = ({
     <section className="flex flex-col gap-4" aria-label={t('tunnel:agent_panel_title')}>
       <OdsText preset="heading-5">{t('tunnel:agent_panel_title')}</OdsText>
       <OdsText preset="paragraph">{t('tunnel:agent_panel_description')}</OdsText>
-
-      <OdsFormField>
-        <label htmlFor={selectOsId}>{t('tunnel:agent_select_os')}</label>
-        <OdsSelect
-          id={selectOsId}
-          name="tunnel-os"
-          value={selectedOs}
-          placeholder={t('tunnel:agent_select_os_placeholder')}
-          onOdsChange={(event) => setSelectedOs((event.detail.value as TunnelOs) ?? '')}
-        >
-          {OS_OPTIONS.map(({ value, label }) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
-        </OdsSelect>
-      </OdsFormField>
 
       <OdsTabs>
         <OdsTab isSelected={activeTab === 'terminal'} onClick={() => setActiveTab('terminal')}>
@@ -183,7 +156,7 @@ export const AgentInstallationPanel = ({
       )}
 
       <section
-        className="flex items-center gap-2 rounded-md p-3"
+        className="flex items-center gap-2 rounded-md p-3 mt-4"
         style={{ backgroundColor: 'var(--ods-color-information-100)' }}
       >
         <OdsIcon name={ODS_ICON_NAME.circleInfo} />
