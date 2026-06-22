@@ -392,6 +392,7 @@ export const FEATURES = {
 };
 
 export const IN_SUBSIDIARY = 'IN';
+export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
 export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
 export const USER_TYPE_ADMINISTRATION = 'administration';
@@ -411,6 +412,7 @@ export default {
   TRACKING_PREFIX,
   FEATURES,
   IN_SUBSIDIARY,
+  FR_COUNTRIES,
   USER_TYPE_ENTERPRISE,
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,

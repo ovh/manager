@@ -15,5 +15,6 @@ export default {
     mode: '<',
     fieldToFocus: '<',
     isIndianSubsidiary: '<?',
+    isFrenchAssociation: '<?',
   },
 };
