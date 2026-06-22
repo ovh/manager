@@ -4,12 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useLegacyContainer } from '@/container/legacy/legacy.context';
 import { useShell } from '@/context';
+import { usePublicCloudLoadBalancer } from '@/container/nav-reshuffle/data/hooks/publicCloudLoadBalancer/usePublicCloudLoadBalancer';
 import useProjects from './useProjects';
 import { features, getPciProjectMenu } from './pci-menu';
 import style from './pci-sidebar.module.scss';
 
 import ProjectIdCopy from './ProjectIdCopy';
 import ProjectCreateButton from './ProjectCreateButton';
+
+const LOAD_BALANCER_MENU_ID = 'load-balancer';
 
 export default function PublicCloudSidebar() {
   const location = useLocation();
@@ -27,9 +30,11 @@ export default function PublicCloudSidebar() {
   const projectId = currentProject?.project_id;
 
   const { data: availability } = useFeatureAvailability(features);
+  const { data: loadBalancers } = usePublicCloudLoadBalancer(projectId);
 
   const menu = useMemo(() => {
     if (!availability) return [];
+    const hasLoadBalancer = (loadBalancers?.length ?? 0) > 0;
     const menuItems = getPciProjectMenu(
       projectId,
       region,
@@ -39,14 +44,19 @@ export default function PublicCloudSidebar() {
     return menuItems
       .map((item) => ({
         ...item,
-        subItems: item.subItems?.map((item) => ({
-          ...item,
-          selected:
-            location?.pathname?.indexOf(item.href?.replace(/^.*#/, '')) >= 0,
-        })),
+        subItems: item.subItems
+          ?.filter(
+            (subItem) => subItem.id !== LOAD_BALANCER_MENU_ID || hasLoadBalancer,
+          )
+          .map((subItem) => ({
+            ...subItem,
+            selected:
+              location?.pathname?.indexOf(subItem.href?.replace(/^.*#/, '')) >=
+              0,
+          })),
       }))
       .filter((menu) => menu.subItems?.length > 0);
-  }, [availability, location, projectId, navigation]);
+  }, [availability, location, projectId, navigation, loadBalancers]);
 
   const onShowAllProjectClick = useCallback(() => setShowAllProjects(true), []);
   const onHideAllProjectClick = useCallback(() => {
@@ -114,7 +124,7 @@ export default function PublicCloudSidebar() {
         </h2>
 
         <a
-          className={`oui-button oui-button_secondary m-2 d-block ${style.whiteButtonSecondary}`}
+          className={`oui-button oui-button_secondary d-block m-2 ${style.whiteButtonSecondary}`}
           href={navigation.getURL('public-cloud', '#/pci/projects')}
           onClick={onHideAllProjectClick}
         >
