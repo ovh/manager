@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Anuluj zamówienie",
   "orders_retract_return_to_orders": "Powrót do zamówień",
   "orders_retract_title": "Rezygnacja z usługi lub z usług znajdujących się w zamówieniu",
-  "orders_retract_confirmation": "Czy chcesz anulować zamówienie {{t0}}?",
-  "orders_retract_confirmation_text": "Tak, chcę anulować to zamówienie.",
-  "orders_retract_description1": "Konsument dysponuje prawem do odstąpienia od umowy w ciągu 14 dni od daty złożenia zamówienia. W przypadku odstąpienia od umowy zwrot zostanie wykonany w ciągu 30 dni od zlecenia rezygnacji z usługi. Od wpłaconej kwoty zostanie odliczona proporcjonalna kwota za wykorzystane usługi.",
-  "orders_retract_description2": "Uwaga: rezygnacja za pomocą tego formularza dotyczy wszystkich produktów przypisanych do tego zamówienia. Rezygnacja obowiązuje natychmiastowo.",
+  "orders_retract_confirmation": "Czy naprawdę chcesz anulować swoje zamówienie, korzystając z prawa do odstąpienia od umowy?",
+  "orders_retract_confirmation_text": "Tak, pragnę się wycofać",
+  "orders_retract_description1": "Przysługuje Ci prawo do odstąpienia od umowy w ciągu czternastu (14) dni od daty złożenia zamówienia.",
+  "orders_retract_description2": "Jeśli skorzystasz z tego prawa, zostaniesz zwrócony w ciągu czternastu (14) dni od potwierdzenia Twojej prośby o odstąpienie od umowy. Otrzymasz potwierdzenie na adres e-mail podany w Twoim koncie klienta.",
   "orders_retract_alert": "Potwierdzenie spowoduje automatyczne, natychmiastowe i nieodwracalne usunięcie wszystkich danych przypisanych do tego zamówienia (w tym kopii zapasowych). Przed potwierdzeniem upewnij się, że podjąłeś wszelkie kroki, w celu zachowania danych oraz ciągłości swojej działalności. OVH nie ponosi odpowiedzialności w tym zakresie.",
   "orders_retract_success": "Zamówienie {{t0}} zostało anulowane.",
   "orders_retract_error": "Wystąpił błąd podczas anulowania zamówienia.",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Zarządzaj fakturami OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Zarządzaj odnowieniami usług",
   "fidelity_creditOrder_submit_error": "Wystąpił błąd podczas naliczania punktów.",
-  "fidelity_creditOrder_submit_success": "Zasilenie w kwocie <strong> {{t0}} punktów</strong> zostało wygenerowane. Możesz złożyć zamówienie w zakładce <a href=\"#/billing/orders\">Moje zamówienia</a>"
+  "fidelity_creditOrder_submit_success": "Zasilenie w kwocie <strong> {{t0}} punktów</strong> zostało wygenerowane. Możesz złożyć zamówienie w zakładce <a href=\"#/billing/orders\">Moje zamówienia</a>",
+  "orders_retract_description3": "Przystąpimy do zwrotu kwot pierwotnie wpłaconych na sposób płatności użyty do Twojego zamówienia, po odliczeniu dni wykorzystanych usług.",
+  "orders_retract_description4": "Uwaga, odstąpienie za pomocą tego formularza dotyczy wszystkich produktów związanych z tym zamówieniem."
 }

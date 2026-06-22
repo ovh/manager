@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Anular a encomenda",
   "orders_retract_return_to_orders": "Voltar às minhas encomendas",
   "orders_retract_title": "Cancelamento do/dos serviços da encomenda",
-  "orders_retract_confirmation": "Deseja mesmo anular a sua encomenda {{t0}}?",
-  "orders_retract_confirmation_text": "Sim, desejo cancelar esta encomenda.",
-  "orders_retract_description1": "Dispõe de um direito de retratação de 14 dias a contar da data da encomenda. Em caso de retratação, será reembolsado num prazo de 30 dias depois de realizado o pedido de retratação. Do valor a reembolsar, serão descontados os dias correspondentes à utilização do serviço",
-  "orders_retract_description2": "Atenção, a retratação através deste formulário abrange todos os serviços associados a esta encomenda. A retratação será tomada em conta de imediato.",
+  "orders_retract_confirmation": "Deseja realmente cancelar a sua encomenda ao exercer o seu direito de retratação?",
+  "orders_retract_confirmation_text": "Sim, desejo retratar-me",
+  "orders_retract_description1": "Beneficia de um direito de retratação de catorze (14) dias a contar da data da sua encomenda.",
+  "orders_retract_description2": "Se exercer este direito, será reembolsado num prazo de catorze (14) dias a contar da confirmação do seu pedido de retratação. Receberá um aviso de receção para o endereço de e-mail indicado na sua conta de cliente.",
   "orders_retract_alert": "A confirmação implicará a eliminação automática, imediata e irreversível do conjunto dos dados associados a esta encomenda (incluindo as cópias de segurança e backups). Antes de prosseguir e de confirmar a sua rescisão aos serviços, deve adotar todas as medidas necessárias para que conserve os seus dados e garanta a continuidade da sua atividade. A OVH declina toda a responsabilidade a este respeito.",
   "orders_retract_success": "A sua encomenda {{t0}} foi corretamente anulada.",
   "orders_retract_error": "Ocorreu um erro aquando da anulação da sua encomenda",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Gerir as minhas faturas OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Gerir a renovação dos meus serviços",
   "fidelity_creditOrder_submit_error": "Ocorreu um erro aquando do carregamento dos seus pontos.",
-  "fidelity_creditOrder_submit_success": "O seu crédito de <strong> {{t0}} pontos</strong> foi gerado com êxito. Pode efetuar a sua encomenda no separador <a href=\"#/billing/orders\">As Minhas Encomendas</a>"
+  "fidelity_creditOrder_submit_success": "O seu crédito de <strong> {{t0}} pontos</strong> foi gerado com êxito. Pode efetuar a sua encomenda no separador <a href=\"#/billing/orders\">As Minhas Encomendas</a>",
+  "orders_retract_description3": "Procederemos ao reembolso das quantias inicialmente pagas pelo meio de pagamento utilizado para a sua encomenda, deduzindo os dias de serviços consumidos.",
+  "orders_retract_description4": "Atenção, a retratação através deste formulário é válida para todos os produtos associados a esta encomenda."
 }
