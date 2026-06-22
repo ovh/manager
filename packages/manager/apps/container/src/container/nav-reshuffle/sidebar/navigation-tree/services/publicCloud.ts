@@ -341,7 +341,7 @@ pciNode.children = [
         },
         region: ['EU', 'CA'],
         features: ['load-balancer'],
-        hideIfEmpty: true,
+        forceVisibility: true,
       },
       {
         id: 'pci-kubernetes-load-balancer',
@@ -355,7 +355,7 @@ pciNode.children = [
         },
         region: ['US'],
         features: ['load-balancer'],
-        hideIfEmpty: true,
+        forceVisibility: true,
       },
     ],
   },
