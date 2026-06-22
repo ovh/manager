@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Annulla l'ordine",
   "orders_retract_return_to_orders": "Ritorna ai tuoi ordini",
   "orders_retract_title": "Recesso dei servizi dell'ordine",
-  "orders_retract_confirmation": "Vuoi davvero annullare il tuo ordine {{t0}}?",
-  "orders_retract_confirmation_text": "Sì, voglio annullare questo ordine.",
-  "orders_retract_description1": "Puoi esercitare il diritto di recesso entro 14 giorni a partire dalla data dell'ordine. In caso di rescissione del contratto riceverai un rimborso entro 30 giorni dalla data della tua richiesta, per un importo pari alle somme versate inizialmente al netto dei giorni di servizio effettivamente utilizzati.",
-  "orders_retract_description2": "Attenzione: la richiesta di recesso tramite questo form è valida per tutti i prodotti associati a questo ordine e prende effetto immediato.",
+  "orders_retract_confirmation": "Vuoi davvero annullare il tuo ordine esercitando il diritto di recesso?",
+  "orders_retract_confirmation_text": "Sì, desidero recedere.",
+  "orders_retract_description1": "Hai diritto a un recesso di quattordici (14) giorni a partire dalla data del tuo ordine.",
+  "orders_retract_description2": "Se eserciti questo diritto, sarai rimborsato entro quattordici (14) giorni dalla conferma della tua richiesta di recesso. Riceverai una conferma all'indirizzo e-mail fornito nel tuo account cliente.",
   "orders_retract_alert": "La conferma comporta l'eliminazione automatica, immediata e irreversible di tutti i dati associati all'ordine (backup inclusi). Prima di proseguire e confermare il recesso, è compito del cliente attuare le misure necessarie alla conservazione dei propri dati e al proseguimento della propria attività. A questo titolo, OVH declina qualunque responsabilità.",
   "orders_retract_success": "L'ordine {{t0}} è stato annullato.",
   "orders_retract_error": "Si è verificato un errore durante l'annullamento del tuo ordine.",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Gestire le mie fatture OVHcloud",
   "billing_guides_header_automatic_renewal_guides": "Gestire il rinnovo dei miei servizi",
   "fidelity_creditOrder_submit_error": "Si è verificato un errore durante l'accredito dei punti.",
-  "fidelity_creditOrder_submit_success": "Il credito di <strong>{{t0}} punti</strong> è stato generato correttamente, è possibile procedere con l'ordine nella sezione <a href=\"#/billing/orders\">I miei ordini</a>"
+  "fidelity_creditOrder_submit_success": "Il credito di <strong>{{t0}} punti</strong> è stato generato correttamente, è possibile procedere con l'ordine nella sezione <a href=\"#/billing/orders\">I miei ordini</a>",
+  "orders_retract_description3": "Procederemo al rimborso delle somme inizialmente versate con il metodo di pagamento utilizzato per il tuo ordine, detratte le giornate di servizio consumate.",
+  "orders_retract_description4": "Attenzione, il recesso tramite questo modulo vale per tutti i prodotti associati a questo ordine."
 }
