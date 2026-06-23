@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.8...@ovh-ux/manager-account-creation-app@0.14.0) (2026-06-23)
+
+
+### Bug Fixes
+
+* **account-creation:** rename and move (c)nin for countries except FR ([296e181](https://github.com/ovh/manager/commit/296e181171cb92b8644e2aba37bd75d6440ff657)), closes [#MANAGER-21615](https://github.com/ovh/manager/issues/MANAGER-21615)
+
+
+### Features
+
+* **account-creation:** add display name field ([00aa76d](https://github.com/ovh/manager/commit/00aa76d7ce786e63a1816078e361566afa8151d1)), closes [#MANAGER-21427](https://github.com/ovh/manager/issues/MANAGER-21427)
+* **account-creation:** add FR vat selection ([bbe5bb1](https://github.com/ovh/manager/commit/bbe5bb19c48a7fc5f4885ea2c7d9481e76399250)), closes [#MANAGER-21427](https://github.com/ovh/manager/issues/MANAGER-21427)
+* **account-creation:** adjust account legal form from suggestion api ([4818f5d](https://github.com/ovh/manager/commit/4818f5d88ada35600d3db8352dd4c4bf42aa4af5)), closes [#MANAGER-21805](https://github.com/ovh/manager/issues/MANAGER-21805)
+* **account-creation:** enable company search for fr terretories ([b832f3d](https://github.com/ovh/manager/commit/b832f3d955d7d96478bd9a93e0a5eda5fd306d49)), closes [#MANAGER-21427](https://github.com/ovh/manager/issues/MANAGER-21427)
+* **account-creation:** restrict company search siret ([7d86648](https://github.com/ovh/manager/commit/7d8664840861ab1b716e69cc8bd6aff3f54eb810)), closes [#MANAGER-21427](https://github.com/ovh/manager/issues/MANAGER-21427)
+
+
+
+
+
 ## [0.13.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.7...@ovh-ux/manager-account-creation-app@0.13.8) (2026-06-08)
 
 
