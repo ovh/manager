@@ -39,6 +39,13 @@ export default class ServicesActionsCtrl {
     this.user = this.coreConfig.getUser();
     this.isUSRegion = this.coreConfig.isRegion('US');
 
+    this.isZimbra = this.service.serviceType === this.SERVICE_TYPE.ZIMBRA;
+    this.viewServiceUrl = this.isZimbra
+      ? this.coreURLBuilder.buildURL('zimbra', '#/:platformId', {
+          platformId: this.service.serviceId,
+        })
+      : this.service.url;
+
     this.BillingLinksService.generateAutorenewLinks(this.service, {
       billingManagementAvailability: this.billingManagementAvailability,
       getCommitmentLink: this.getCommitmentLink,
