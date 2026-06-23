@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.4.0...@ovh-ux/sign-up@3.5.0) (2026-06-23)
+
+
+### Bug Fixes
+
+* **account:** allow manual edit for association ([4c1785d](https://github.com/ovh/manager/commit/4c1785da4a9aaa65266d45fd5c2ba70bacef99e8)), closes [#MANAGER-21819](https://github.com/ovh/manager/issues/MANAGER-21819)
+* **sign-up:** fix address/city/zip UI sync and organisation field disable state ([74cc1c8](https://github.com/ovh/manager/commit/74cc1c85e148b590fe2b53b07dc8dbdad604467a))
+
+
+### Features
+
+* **account:** ux improvement siret autocomplete ([c5d3c4c](https://github.com/ovh/manager/commit/c5d3c4cd4111b50d7958052bdb379127bcb70195)), closes [#MANAGER-21781](https://github.com/ovh/manager/issues/MANAGER-21781)
+* **sign-up:** populate address, city and zip from siret suggestion ([ca4638a](https://github.com/ovh/manager/commit/ca4638ab19d268b6996e5c746866575a73b68aff))
+* **sign-up:** update the form fields for non dislosure values ([3c51328](https://github.com/ovh/manager/commit/3c51328df620af85ea359949df0b37a8351d56b1)), closes [#MANAGER-21781](https://github.com/ovh/manager/issues/MANAGER-21781)
+
+
+
+
+
 # [3.4.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.3.18...@ovh-ux/sign-up@3.4.0) (2026-05-06)
 
 
