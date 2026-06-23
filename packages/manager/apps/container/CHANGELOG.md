@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.196.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.195.0...@ovh-ux/manager-container-app@0.196.0) (2026-06-23)
+
+
+### Features
+
+* **container:** add company information modal ([bb20375](https://github.com/ovh/manager/commit/bb203753b5872bd3318a476adbe4da8fd0c43b65)), closes [#MANAGER-21708](https://github.com/ovh/manager/issues/MANAGER-21708)
+
+
+### Reverts
+
+* **container:** hide mks load balancer navigation if empty ([552e202](https://github.com/ovh/manager/commit/552e20289d38bfbe8f7459c936a19ea0f6df6547)), closes [#TAPC-6823](https://github.com/ovh/manager/issues/TAPC-6823)
+
+
+
+
+
 # [0.195.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.194.2...@ovh-ux/manager-container-app@0.195.0) (2026-06-19)
 
 
