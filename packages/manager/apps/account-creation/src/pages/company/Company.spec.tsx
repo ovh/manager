@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   act,
   fireEvent,
@@ -20,19 +20,36 @@ const mocks = vi.hoisted(() => ({
   country: 'FR',
   setLegalForm: vi.fn(),
   setCompany: vi.fn(),
+  isSMSConsentAvailable: false,
 }));
-const company = vi.hoisted(() => ({
-  country: 'FR',
-  creationDate: '23-05-2025',
-  name: 'test-company',
-  primaryCNIN: '123456789',
-}));
+
+/** Valid company identifier per useCompanySearchSchema (14 digits). */
+const VALID_SIRET = '12345678901234';
+
+const { company, company2 } = vi.hoisted(() => {
+  const base = {
+    country: 'FR' as const,
+    creationDate: '23-05-2025',
+    primaryCNIN: '123456789',
+    secondaryCNIN: '12345678901234',
+    vatID: 'FR123',
+  };
+  return {
+    company: { ...base, name: 'test-company' },
+    company2: {
+      ...base,
+      name: 'second-company',
+      primaryCNIN: '987654321',
+      secondaryCNIN: '98765432109876',
+    },
+  };
+});
 const navigate = vi.fn();
 
 const getCompanySuggestionSpy = vi
   .spyOn(companySuggestionAPI, 'getCompanySuggestion')
   .mockResolvedValue({
-    entryList: [company],
+    entryList: [company, company2],
     hasMore: true,
     provider: 'INSEE',
     type: 'name',
@@ -125,7 +142,7 @@ describe('CompanyPage', () => {
     });
     await waitFor(() => {
       searchInputElement.blur();
-      const errorMessageElement = screen.getByText('required_field');
+      const errorMessageElement = screen.getByText('error_invalid_format');
       expect(errorMessageElement).toBeInTheDocument();
     });
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
@@ -142,7 +159,7 @@ describe('CompanyPage', () => {
 
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
-    const errorMessageElement = screen.getByText('error_min_chars');
+    const errorMessageElement = screen.getByText('error_invalid_format');
     await waitFor(() => {
       expect(errorMessageElement).toBeInTheDocument();
     });
@@ -153,7 +170,7 @@ describe('CompanyPage', () => {
     renderComponent();
 
     const searchInputElement = screen.getByTestId('search-input');
-    await setSearchValue(searchInputElement, 'test');
+    await setSearchValue(searchInputElement, VALID_SIRET);
 
     expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
     const searchButtonElement = screen.getByText('search');
@@ -188,35 +205,11 @@ describe('CompanyPage', () => {
     expect(mocks.setLegalForm).toHaveBeenCalledWith('individual');
   });
 
-  it('should display a fallback link if user does not find his corporation', async () => {
-    renderComponent();
-
-    const searchInputElement = screen.getByTestId('search-input');
-    await setSearchValue(searchInputElement, 'test');
-
-    expect(getCompanySuggestionSpy).not.toHaveBeenCalled();
-    const searchButtonElement = screen.getByText('search');
-    await act(() => searchButtonElement.click());
-    const fallbackLinkElement = await screen.findByText(
-      `search_not_satisfactory_${mocks.legalForm}`,
-    );
-    expect(fallbackLinkElement).toBeInTheDocument();
-    await act(() => fallbackLinkElement.click());
-    expect(mockedTrackClick).toHaveBeenCalledWith(
-      { pageName: 'page-name', pageType: 'page' },
-      {
-        location: 'page',
-        buttonType: 'button',
-        actions: ['siret-siren-not-found-add-manually'],
-      },
-    );
-  });
-
   it('should update user context when user select his corporation', async () => {
     renderComponent();
 
     const searchInputElement = screen.getByTestId('search-input');
-    await setSearchValue(searchInputElement, 'test');
+    await setSearchValue(searchInputElement, VALID_SIRET);
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());
 
@@ -247,7 +240,7 @@ describe('CompanyPage', () => {
     expect(fallbackLinkElement).toBeInTheDocument();
 
     const searchInputElement = screen.getByTestId('search-input');
-    await setSearchValue(searchInputElement, 'test');
+    await setSearchValue(searchInputElement, VALID_SIRET);
 
     const searchButtonElement = screen.getByText('search');
     await act(() => searchButtonElement.click());

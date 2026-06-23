@@ -1,6 +1,8 @@
 import { OdsText, OdsIcon } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { Company } from '@/types/company';
+import { useTranslation } from 'react-i18next';
+import { sanitizedLabel } from './CompanyTile.helpers';
 
 type Props = {
   company: Company;
@@ -8,13 +10,16 @@ type Props = {
 };
 
 export default function CompanyTile({ company, onClick }: Props) {
+  const { t } = useTranslation('company');
   return (
     <div
       className="flex border border-solid items-center justify-between rounded-md px-6 py-4"
       onClick={onClick}
     >
       <div className="flex flex-col gap-4">
-        <OdsText preset={ODS_TEXT_PRESET.heading6}>{company.name}</OdsText>
+        <OdsText preset={ODS_TEXT_PRESET.heading6}>
+          {sanitizedLabel(company.name ?? '', t)}
+        </OdsText>
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
           SIREN: {company.primaryCNIN}
         </OdsText>
@@ -23,11 +28,9 @@ export default function CompanyTile({ company, onClick }: Props) {
             SIRET: {company.secondaryCNIN}
           </OdsText>
         )}
-        {company.address && (
-          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-            {company.address}
-          </OdsText>
-        )}
+        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+          {sanitizedLabel(company.address ?? '', t)}
+        </OdsText>
       </div>
       <OdsIcon name="chevron-right" />
     </div>

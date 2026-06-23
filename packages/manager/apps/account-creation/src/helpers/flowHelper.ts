@@ -1,14 +1,19 @@
 import { Country, LegalForm } from '@ovh-ux/manager-config';
 
+export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
+
 export const shouldAccessOrganizationSearch = (
   country?: Country,
   legalForm?: LegalForm,
-) => country === 'FR' && !!legalForm && legalForm !== 'individual';
+) =>
+  FR_COUNTRIES.includes(country || '') &&
+  !!legalForm &&
+  legalForm !== 'individual';
 
 export const shouldEnableSIRENDisplay = (
   country?: Country,
   legalForm?: LegalForm,
-) => country === 'FR' && legalForm === 'corporation';
+) => FR_COUNTRIES.includes(country || '') && legalForm === 'corporation';
 
 export const getSirenFromSiret = (
   siret?: string,

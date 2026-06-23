@@ -62,6 +62,37 @@ export default class NewAccountFormFieldController {
       }
     });
 
+    this.$scope.$on(
+      'siret:companySelected',
+      (event, { address, city, zip }) => {
+        if (this.rule.fieldName === FIELD_NAME_LIST.address) {
+          this.value = address;
+          this.onChange();
+          this.autocompleteDisabled = Boolean(address);
+        } else if (this.rule.fieldName === FIELD_NAME_LIST.city) {
+          this.value = city;
+          this.onChange();
+          this.autocompleteDisabled = Boolean(city);
+        } else if (this.rule.fieldName === FIELD_NAME_LIST.zip) {
+          this.value = zip;
+          this.onChange();
+          this.autocompleteDisabled = Boolean(zip);
+        }
+      },
+    );
+
+    this.$scope.$on('siret:autocompleteActive', (event, { active }) => {
+      if (
+        [
+          FIELD_NAME_LIST.address,
+          FIELD_NAME_LIST.city,
+          FIELD_NAME_LIST.zip,
+        ].includes(this.rule.fieldName)
+      ) {
+        this.autocompleteDisabled = active;
+      }
+    });
+
     // reset sms consent value when phone type is no longer 'mobile'
     if (this.rule.fieldName === 'smsConsent') {
       this.$scope.$on('account.smsConsent.reset', () => {

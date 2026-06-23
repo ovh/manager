@@ -15,7 +15,10 @@ import {
   TRACKING_PREFIX,
   FEATURES,
   IN_SUBSIDIARY,
+  FR_COUNTRIES,
   USER_TYPE_ENTERPRISE,
+  USER_TYPE_ASSOCIATION,
+  USER_TYPE_ADMINISTRATION,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
@@ -174,6 +177,12 @@ export default class NewAccountFormController {
             editedRule.hasBottomMargin = this.coreConfig.isRegion('US');
           } else {
             editedRule.readonly = this.readonly.includes(editedRule.fieldName);
+            if (
+              editedRule.fieldName === FIELD_NAME_LIST.organisation &&
+              this.isFrenchAssociation()
+            ) {
+              editedRule.readonly = false;
+            }
             editedRule.hasBottomMargin = !FIELD_WITHOUT_MARGIN_BOTTOM.includes(
               editedRule.fieldName,
             );
@@ -224,6 +233,12 @@ export default class NewAccountFormController {
           hasBottomMargin: true,
         });
 
+        rules.push({
+          fieldName: FIELD_NAME_LIST.displayName,
+          initialValue: this.model.displayName,
+          hasBottomMargin: true,
+        });
+
         const languageRuleIdx = rules.findIndex(
           (rule) => rule.fieldName === FIELD_NAME_LIST.language,
         );
@@ -271,7 +286,11 @@ export default class NewAccountFormController {
             return -1;
           });
 
-        return displayRules;
+        return displayRules.filter(
+          (rule, index, all) =>
+            all.findIndex((item) => item.fieldName === rule.fieldName) ===
+            index,
+        );
       })
       .finally(() => {
         this.isLoading = false;
@@ -529,6 +548,7 @@ export default class NewAccountFormController {
         rule.fieldName === FIELD_NAME_LIST.country
       ) {
         this.isSiretAvailable = this.siretFieldIsAvailable();
+        this.syncAddressAutocompleteState();
       }
 
       return this.updateRules();
@@ -541,10 +561,37 @@ export default class NewAccountFormController {
     return !angular.equals(this.originalModel, this.model);
   }
 
+  isFrenchAssociation() {
+    return (
+      this.model.legalform === USER_TYPE_ASSOCIATION &&
+      FR_COUNTRIES.includes(this.model.country)
+    );
+  }
+
+  syncAddressAutocompleteState() {
+    this.$scope.$broadcast('siret:autocompleteActive', {
+      active: this.isSiretAvailable && !this.isFrenchAssociation(),
+    });
+  }
+
   siretFieldIsAvailable() {
     return (
-      this.model.legalform === USER_TYPE_ENTERPRISE &&
-      this.model.country === 'FR'
+      [
+        USER_TYPE_ENTERPRISE,
+        USER_TYPE_ASSOCIATION,
+        USER_TYPE_ADMINISTRATION,
+      ].includes(this.model.legalform) &&
+      FR_COUNTRIES.includes(this.model.country)
+    );
+  }
+
+  isFieldHiddenForFr(rule) {
+    return (
+      FR_COUNTRIES.includes(this.model.country) &&
+      [
+        FIELD_NAME_LIST.corporationType,
+        FIELD_NAME_LIST.nationalIdentificationNumber,
+      ].includes(rule.fieldName)
     );
   }
 

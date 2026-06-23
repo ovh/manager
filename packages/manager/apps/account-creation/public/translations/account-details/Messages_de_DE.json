@@ -66,5 +66,14 @@
   "account_details_field_birthDay": "Geburtsdatum",
   "account_details_sex_option_female": "Weiblich",
   "account_details_sex_option_male": "Männlich",
-  "account_details_error_birthDay_under_18": "Sie müssen mindestens 18 Jahre alt sein."
+  "account_details_error_birthDay_under_18": "Sie müssen mindestens 18 Jahre alt sein.",
+  "account_details_title_personalcorporation": "Geben Sie die Informationen ein",
+  "account_details_title_personalcorporation_prefilled": "Überprüfen und validieren Sie die persönlichen und Unternehmensinformationen",
+  "account_details_section_address_personalcorporation": "Postanschrift",
+  "account_details_field_companyNationalIdentificationNumber": "Nationale Identifikationsnummer",
+  "account_details_vat_select_detected": "Vom SIRET erkannt",
+  "account_details_vat_select_no_vat": "Mein Unternehmen ist nicht umsatzsteuerlich registriert",
+  "account_details_vat_select_description_detected": "Nummer automatisch von Ihrem SIRET abgeleitet",
+  "account_details_vat_select_description_no_vat": "Kleinunternehmen mit Grundfreibetrag, Verein usw.",
+  "account_details_field_displayName": "Anzeigename"
 }

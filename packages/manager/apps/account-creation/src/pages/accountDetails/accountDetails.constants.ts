@@ -69,20 +69,3 @@ export const COUNTRIES_VAT_LABEL: Record<string, string> = {
   VE: 'RIF',
   MA: 'ICE',
 };
-
-export const CNIN_RULE: Rule = {
-  minLength: null,
-  fieldName: 'companyNationalIdentificationNumber',
-  in: null,
-  mandatory: true,
-  maxLength: null,
-  regularExpression: '^\\d{9}(?:\\d{5})?$',
-  examples: null,
-  defaultValue: null,
-  prefix: null,
-};
-
-export const CNIN_NON_MANDATORY_RULE: Rule = {
-  ...CNIN_RULE,
-  mandatory: false,
-};

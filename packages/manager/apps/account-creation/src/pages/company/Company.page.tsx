@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -13,6 +13,7 @@ import {
   OdsDivider,
   OdsSpinner,
 } from '@ovhcloud/ods-components/react';
+import { Link } from '@ovhcloud/ods-react';
 import {
   ODS_TEXT_PRESET,
   ODS_LINK_COLOR,
@@ -39,10 +40,11 @@ import {
   useTrackError,
 } from '@/hooks/tracking/useTracking';
 import CompanyTile from '@/pages/company/company-tile/CompanyTile.component';
-import { searchMinlength } from './company.constants';
 import { urls } from '@/routes/routes.constant';
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
+import { CompanySuggestionErrorClass } from '@/types/suggestion';
+import { calculateFRVATNumber, getLegalFormFromCode } from './Company.helpers';
 
 type SearchFormData = {
   search: string;
@@ -52,7 +54,6 @@ export default function CompanyPage() {
   const { t } = useTranslation('company');
   const { t: tCommon } = useTranslation('common');
   const { t: tAction } = useTranslation(NAMESPACES.ACTIONS);
-  const { t: tForm } = useTranslation(NAMESPACES.FORM);
   const { t: tError } = useTranslation(NAMESPACES.ERROR);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -80,7 +81,7 @@ export default function CompanyPage() {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       search: '',
@@ -110,6 +111,23 @@ export default function CompanyPage() {
     }
     navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, [legalForm]);
+
+  const searchErrorMessage = useMemo(
+    () => ({
+      [CompanySuggestionErrorClass.SiretNotFound]: t('error_no_result'),
+      [CompanySuggestionErrorClass.SiretInvalidFormat]: t(
+        'error_invalid_format',
+      ),
+      [CompanySuggestionErrorClass.SiretInactive]: t('error_inactive'),
+      [CompanySuggestionErrorClass.RateLimitExceeded]: t(
+        'error_rate_limit_exceeded',
+      ),
+      [CompanySuggestionErrorClass.InternalServerError]: t(
+        'error_internal_server_error',
+      ),
+    }),
+    [t],
+  );
 
   const submitCompanySearch: SubmitHandler<SearchFormData> = useCallback(
     ({ search: value }: SearchFormData) => {
@@ -160,6 +178,12 @@ export default function CompanyPage() {
         ],
       });
     }
+    if (legalForm === 'corporation' && !company.vatID) {
+      const vatNumber = calculateFRVATNumber(company.primaryCNIN);
+      if (vatNumber !== null) {
+        company.vatID = vatNumber;
+      }
+    }
     setCompany(company);
     navigate(`${urls.accountDetails}?${searchParams.toString()}`);
   }, []);
@@ -173,6 +197,19 @@ export default function CompanyPage() {
       });
     }
   }, [trackClick]);
+
+  // automatically select the first company if we found one
+  useEffect(() => {
+    if (isFetched && data && data.companies.length === 1) {
+      const calculatedLegalForm = getLegalFormFromCode(
+        data.companies[0].legalFormCode,
+      );
+      if (calculatedLegalForm !== legalForm) {
+        setLegalForm(calculatedLegalForm);
+      }
+      selectCompany(data.companies[0]);
+    }
+  }, [isFetched, data]);
 
   return (
     <InvalidationRedirectGuard>
@@ -197,6 +234,20 @@ export default function CompanyPage() {
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>
               {t(`description_${legalForm}`)}
             </OdsText>
+            <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+              <Trans
+                i18nKey={`find_siret_link_${legalForm}`}
+                t={t}
+                components={{
+                  anchor: (
+                    <Link
+                      href="https://annuaire-entreprises.data.gouv.fr/"
+                      target="_blank"
+                    />
+                  ),
+                }}
+              />
+            </OdsText>
           </div>
           <form
             className="flex flex-col gap-5"
@@ -210,19 +261,16 @@ export default function CompanyPage() {
                   <OdsInput
                     className="w-full"
                     name="search"
-                    type="search"
+                    type="text"
                     value={value}
                     isRequired={true}
                     isLoading={isFetching}
                     isReadonly={isFetching}
                     hasError={!!errors.search}
                     onOdsChange={(event) => {
-                      const rawValue = String(event.detail?.value ?? '');
-                      const numericValue = rawValue.replace(/\s+/g, '');
-                      const nextValue = /^\d+$/.test(numericValue)
-                        ? numericValue
-                        : rawValue;
-                      onChange(nextValue);
+                      onChange(
+                        String(event.detail?.value ?? '').replace(/\s+/g, ''),
+                      );
                     }}
                     onBlur={onBlur}
                     placeholder={t(`search_placeholder_${legalForm}`)}
@@ -232,9 +280,11 @@ export default function CompanyPage() {
                       className="text-critical leading-[0.8]"
                       preset={ODS_TEXT_PRESET.caption}
                     >
-                      {tForm(errors.search.message as string, {
-                        value: searchMinlength,
-                      })}
+                      {
+                        searchErrorMessage[
+                          CompanySuggestionErrorClass.SiretInvalidFormat
+                        ]
+                      }
                     </OdsText>
                   )}
                 </OdsFormField>
@@ -244,6 +294,7 @@ export default function CompanyPage() {
               className="w-full"
               label={tAction('search')}
               isLoading={isFetching}
+              isDisabled={!isValid}
               type="submit"
             />
           </form>
@@ -279,12 +330,14 @@ export default function CompanyPage() {
           )}
           {!isFetching && isFetched && error && (
             <>
-              {error.status === 404 ? (
+              {error.status === 404 || error.status === 400 ? (
                 <OdsText
                   preset={ODS_TEXT_PRESET.paragraph}
                   className="text-critical leading-[0.8]"
                 >
-                  {t('no_result')}
+                  {error.response?.data?.class
+                    ? searchErrorMessage[error.response?.data?.class]
+                    : t('error_no_result')}
                 </OdsText>
               ) : (
                 <OdsText
@@ -298,6 +351,7 @@ export default function CompanyPage() {
           )}
           {!isFetching && isFetched && !error && (
             <>
+              {/* This should be obsolete but will be kept for inproper usage */}
               {data?.companies?.length ? (
                 <>
                   {data.hasMore && (
@@ -320,7 +374,7 @@ export default function CompanyPage() {
                 </>
               ) : (
                 <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-                  {t('no_result')}
+                  {t('error_no_result')}
                 </OdsText>
               )}
             </>

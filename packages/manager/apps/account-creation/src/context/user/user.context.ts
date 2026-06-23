@@ -12,10 +12,7 @@ export type UserContext = {
   country?: Country;
   ovhSubsidiary?: Subsidiary;
   setLegalForm: (legalForm: LegalForm) => void;
-  organisation?: string;
-  companyNationalIdentificationNumber?: string;
-  address?: string;
-  city?: string;
+  companyDetails?: Company;
   setCompany: (company: Company | null) => void;
   language?: UserLocales | undefined;
   isSMSConsentAvailable: boolean;

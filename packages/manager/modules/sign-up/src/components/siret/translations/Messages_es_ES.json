@@ -33,5 +33,10 @@
   "siret_manual_company_legal_form_SCOP": "Sociedad cooperativa de producción (SCOP)",
   "siret_manual_registration_date": "Fecha de registro",
   "siret_manual_registration_date_placeholder": "dd/mm/aaaa",
-  "siret_update_search_assistant": "Asistente de búsqueda"
+  "siret_update_search_assistant": "Asistente de búsqueda",
+  "siret_update_search_assistant_intro": "Para modificar vuestra información, utilizad el asistente de búsqueda introduciendo vuestro número de SIRET.",
+  "siret_vat_none_corporation": "Mi empresa no tiene número de IVA.",
+  "siret_vat_none_association": "Mi asociación no tiene número de IVA.",
+  "siret_vat_none_administration": "Esta administración no posee número de IVA.",
+  "siret_non_diffusible": "La información de vuestra empresa no se difunde públicamente (empresa no divulgable). Por favor, introducid manualmente la información de vuestra organización para que figure correctamente en vuestras facturas."
 }
