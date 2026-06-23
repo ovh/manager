@@ -1,7 +1,7 @@
 {
-  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Il tuo servizio sarà annullato il {{expirationDate}}, alla fine del periodo di fatturazione attuale",
-  "resiliation_modal_resiliate_service_terminate": "Il tuo servizio sarà annullato immediatamente e non sarai più addebitato per questo servizio.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Il tuo servizio rimarrà attivo e sarai addebitato fino alla fine del tuo impegno il {{commitmentEndDate}}.",
-  "resiliation_modal_resiliate_service_deleteAtExpiration": "Il tuo servizio sarà annullato immediatamente. Tuttavia, sarai comunque addebitato delle spese mensili per questo servizio fino alla fine del tuo impegno il {{commitmentEndDate}}.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "Dopo la fine del tuo impegno, sarai addebitato mese per mese fino a quando non annullerai il tuo servizio"
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Il tuo servizio verrà disattivato il {{expirationDate}}, al termine del periodo di fatturazione in corso.",
+  "resiliation_modal_resiliate_service_terminate": "Il tuo servizio verrà disattivato immediatamente e non sarà più oggetto di fatturazione.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Il tuo servizio resterà attivo e la fatturazione avverrà fino alla fine dell’impegno contrattuale, il {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Il tuo servizio verrà disattivato immediatamente. Questo servizio sarà comunque soggetto a fatturazione mensile fino al termine dell’impegno contrattuale sottoscritto, il {{commitmentEndDate}}.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "Al termine dell’impegno contrattuale, la fatturazione avverrà mensilmente fino alla disattivazione del servizio."
 }
