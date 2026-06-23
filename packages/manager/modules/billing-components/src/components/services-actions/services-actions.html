@@ -2,7 +2,25 @@
     aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
     compact
     data-placement="end"
-    data-ng-if="!$ctrl.canDisplayMenu && $ctrl.hasActionToDisplay"
+    data-ng-if="$ctrl.isZimbra && $ctrl.viewServiceUrl"
+>
+    <oui-action-menu-item
+        href="{{:: $ctrl.viewServiceUrl }}"
+        on-click="$ctrl.trackAction('go-to-service')"
+        data-navi-id="go-to-service"
+        top
+    >
+        <span
+            data-translate="billing_services_actions_menu_see_dashboard"
+        ></span>
+    </oui-action-menu-item>
+</oui-action-menu>
+
+<oui-action-menu
+    aria-label="{{:: 'billing_services_actions_menu_label' | translate }}"
+    compact
+    data-placement="end"
+    data-ng-if="!$ctrl.isZimbra && !$ctrl.canDisplayMenu && $ctrl.hasActionToDisplay"
 >
     <oui-action-menu-item
         ng-if="::$ctrl.canDisplayWarnPayBillMenuEntry"
