@@ -161,7 +161,7 @@ function AccountDetailsForm({
       organisation: companyDetails?.name,
       companyNationalIdentificationNumber: companyDetails?.secondaryCNIN,
       nationalIdentificationNumber: companyDetails?.primaryCNIN,
-      vat: companyDetails?.vatID || currentUser.vat,
+      vat: companyDetails?.vatID,
       address: companyDetails?.address || currentUser.address || '',
       zip: companyDetails?.zipCode || currentUser.zip || '',
       city: companyDetails?.city || currentUser.city || '',
@@ -822,9 +822,9 @@ function AccountDetailsForm({
                     </OdsText>
                   </label>
 
-                  {country === 'FR' && value ? (
+                  {separateSIRENAndSIRET && companyDetails?.vatID ? (
                     <VatSelect
-                      vatId={value}
+                      vatId={companyDetails.vatID}
                       value={value}
                       onValueChange={onChange}
                     />
