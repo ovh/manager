@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.0...@ovh-ux/manager-account-creation-app@0.14.1) (2026-06-23)
+
+
+### Bug Fixes
+
+* **account-creation:** fix vat on no siret ([e73df8e](https://github.com/ovh/manager/commit/e73df8e081e029636767e9a07914b3b00880fd37)), closes [#MANAGER-21427](https://github.com/ovh/manager/issues/MANAGER-21427)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.13.8...@ovh-ux/manager-account-creation-app@0.14.0) (2026-06-23)
 
 
