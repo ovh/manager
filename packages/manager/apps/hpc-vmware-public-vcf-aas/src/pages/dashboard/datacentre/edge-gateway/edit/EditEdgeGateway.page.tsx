@@ -6,8 +6,8 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   GetEdgeGatewayParams,
   useUpdateEdgeGateway,
-  useVcdEdgeGatewayMocks,
-  useVcdIpBlocksMocks,
+  useVcdEdgeGateway,
+  useVcdIpBlocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
@@ -28,16 +28,12 @@ export default function EditEdgeGatewayPage() {
   const { addSuccess, addError } = useMessageContext();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const {
-    data: edge,
-    isLoading: isLoadingEdge,
-    refetch,
-  } = useVcdEdgeGatewayMocks({
+  const { data: edge, isLoading: isLoadingEdge, refetch } = useVcdEdgeGateway({
     ...edgeParams,
     staleTime: 5000,
   });
 
-  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocksMocks({
+  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
     id,
     select: (data) =>
       data.filter((ip) => ip.resource_status.status === 'AVAILABLE'),
