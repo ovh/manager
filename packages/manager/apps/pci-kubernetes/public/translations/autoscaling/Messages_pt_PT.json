@@ -8,7 +8,7 @@
   "kubernetes_node_pool_autoscaling_desired_nodes_size": "Número de nós",
   "kubernetes_node_pool_autoscaling_highest_nodes_size": "Máximo",
   "kubernetes_node_pool_autoscaling_desired_nodes_warning": "Recomenda-se a configuração de um pool de 3 nós, no mínimo, para otimizar o rolling upgrade durante as atualizações de segurança (patch updates) ou de versão menor.",
-  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Aviso: combinar o autoscaling com a faturação mensal apresenta um risco financeiro. Cada nó criado pelo autoscaling é faturado imediatamente pelos dias restantes do mês em curso. Se esse nó for posteriormente removido por um evento de scale-down, a faturação continua até ao final do mês. Será faturado por um nó que já não está em funcionamento. Evite esta combinação se as suas cargas de trabalho exigirem aumentos e reduções de escala frequentes.",
+  "kubernetes_node_pool_billing_auto_scaling_monthly_warning": "Atenção: a combinação do auto-scaling com uma faturação mensal representa um risco financeiro. Cada nó criado pelo auto-scaling é faturado imediatamente para os dias restantes do mês em curso. Se este nó for eliminado através de um evento de scale-down, a faturação prosseguirá até ao final do mês. Ou seja, o cliente é faturado por um nó que já não se encontra em funcionamento. Evite esta combinação se as suas cargas de trabalho requerem redimensionamentos frequentes.",
   "kubernetes_node_pool_autoscaling_total_nodes": "Número de nós (total): {{totalNodes}}",
   "kubernetes_node_pool_autoscaling_by_zone": "por zona"
 }
