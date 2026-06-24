@@ -1,4 +1,4 @@
-import { useVcdIpBlocksMocks } from '@ovh-ux/manager-module-vcd-api';
+import { useVcdIpBlocks } from '@ovh-ux/manager-module-vcd-api';
 import { ActionMenu } from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
@@ -18,7 +18,7 @@ import { LABELS } from '@/utils/labels.constants';
 export const IpBlockCount = () => {
   const { t } = useTranslation('dashboard');
   const { id } = useParams();
-  const { data: ipBlocks, error, isLoading } = useVcdIpBlocksMocks({ id });
+  const { data: ipBlocks, error, isLoading } = useVcdIpBlocks({ id });
   const { data: networkIpUrl } = useNavigationGetUrl(['dedicated', '#/ip', {}]);
   const { environment } = useContext(ShellContext);
 

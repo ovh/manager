@@ -7,7 +7,7 @@ import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   GetEdgeGatewayParams,
   useDeleteEdgeGateway,
-  useVcdEdgeGatewayMocks,
+  useVcdEdgeGateway,
 } from '@ovh-ux/manager-module-vcd-api';
 import { useMessageContext } from '@/context/Message.context';
 import { subRoutes } from '@/routes/routes.constant';
@@ -21,7 +21,7 @@ export default function DeleteEdgeGatewayPage() {
   const { addSuccess, addError } = useMessageContext();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const { data: edge, isLoading } = useVcdEdgeGatewayMocks(edgeParams);
+  const { data: edge, isLoading } = useVcdEdgeGateway(edgeParams);
   const edgeName = edge?.currentState.edgeGatewayName;
 
   const { mutate: deleteEdge, isPending: isDeleting } = useDeleteEdgeGateway({
