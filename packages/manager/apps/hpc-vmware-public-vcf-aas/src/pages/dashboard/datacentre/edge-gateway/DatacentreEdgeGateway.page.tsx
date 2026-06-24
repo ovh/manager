@@ -1,6 +1,6 @@
 import {
   useVcdDatacentre,
-  useVcdEdgeGatewaysMocks,
+  useVcdEdgeGateways,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   Datagrid,
@@ -23,7 +23,7 @@ export default function EdgeGatewayListingPage() {
   const columns = useEdgeGatewayListingColumns();
   const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
-  const edgeQuery = useVcdEdgeGatewaysMocks({ id, vdcId });
+  const edgeQuery = useVcdEdgeGateways({ id, vdcId });
 
   const queryList = [vdcQuery, edgeQuery];
   const queries = {

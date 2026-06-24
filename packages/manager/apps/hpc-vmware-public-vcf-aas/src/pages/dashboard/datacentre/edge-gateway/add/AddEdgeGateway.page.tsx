@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   useAddEdgeGateway,
-  useVcdIpBlocksMocks,
+  useVcdIpBlocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
@@ -25,7 +25,7 @@ export default function AddEdgeGatewayPage() {
   const closeDrawer = () => navigate('..');
   const { addSuccess, addError } = useMessageContext();
 
-  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocksMocks({
+  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
     id,
     select: (data) =>
       data.filter((ip) => ip.resource_status.status === 'AVAILABLE'),
