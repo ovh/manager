@@ -24,6 +24,10 @@ export const referenceServiceKeyMock: OkmsServiceKeyReference[] = [
       },
     ],
     curves: [],
+    protectionLevel: [
+      { value: 'SOFTWARE', default: true },
+      { value: 'HSM', default: false },
+    ],
   },
   {
     sizes: [],
@@ -40,5 +44,6 @@ export const referenceServiceKeyMock: OkmsServiceKeyReference[] = [
       { default: false, value: 'P-384' },
       { default: false, value: 'P-521' },
     ],
+    protectionLevel: [{ value: 'SOFTWARE', default: false }],
   },
 ];
