@@ -42,6 +42,8 @@ const TEST_IDS = {
   migrationTileError: 'migration-tile-error',
   migrationTileRetryCta: 'migration-tile-retry-cta',
   migrationTab: 'migration-tab',
+  migrationTerminateCta: 'migration-terminate-cta',
+  migrationTerminateDescription: 'migration-terminate-description',
 } as const;
 
 export default TEST_IDS;

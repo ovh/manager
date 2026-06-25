@@ -26,6 +26,15 @@
     }
   },
   "serviceTermination": {
-    "cta": "Résilier le service"
+    "cta": "Résilier le service",
+    "ariaLabel": "Résilier le service VCDA",
+    "modalDescription": "Cette action résiliera le service VCDA à la prochaine date d’expiration de facturation. Cette opération est irréversible depuis cette interface.",
+    "success": "Résiliation programmée. Le service sera supprimé à la prochaine date de facturation.",
+    "disabled": {
+      "updating": "Une opération est en cours.",
+      "suspended": "Le service est suspendu — contactez le support.",
+      "error": "Le service est en erreur — contactez le support.",
+      "deleting": "Résiliation déjà programmée."
+    }
   }
 }
