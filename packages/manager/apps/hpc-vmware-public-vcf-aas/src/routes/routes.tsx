@@ -55,6 +55,11 @@ const MigrationAddIpPage = React.lazy(() =>
 const MigrationDeleteIpPage = React.lazy(() =>
   import('@/pages/dashboard/organization/migration/delete-ip/DeleteIp.page'),
 );
+const TerminateMigrationPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/organization/migration/terminate/TerminateMigration.page'
+  ),
+);
 
 const NetworkAclPage = React.lazy(() =>
   import('@/pages/listing/networkAcl/NetworkAcl.page'),
@@ -231,6 +236,17 @@ export default (
             handle={{
               tracking: {
                 pageName: 'delete_vcfaas',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            id="migration-terminate"
+            path={subRoutes.migrationTerminate}
+            Component={TerminateMigrationPage}
+            handle={{
+              tracking: {
+                pageName: 'terminate_vcda-migration',
                 pageType: PageType.popup,
               },
             }}
