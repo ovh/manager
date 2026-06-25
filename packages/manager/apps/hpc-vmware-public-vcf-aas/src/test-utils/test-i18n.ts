@@ -8,6 +8,7 @@ import datacentresStorage from '../../public/translations/datacentres/storage/Me
 import datacentresVrackSegment from '../../public/translations/datacentres/vrack-segment/Messages_fr_FR.json';
 import terminate from '../../public/translations/terminate/Messages_fr_FR.json';
 import networkAcl from '../../public/translations/networkAcl/Messages_fr_FR.json';
+import migration from '../../public/translations/migration/Messages_fr_FR.json';
 import zodError from '../../public/translations/zodError/Messages_fr_FR.json';
 import vcda from '../../public/translations/vcda/Messages_fr_FR.json';
 
@@ -66,6 +67,7 @@ export const translations = {
   error,
   terminate,
   networkAcl,
+  migration,
   '@ovh-ux/manager-common-translations/dashboard': commun.dashboard,
   '@ovh-ux/manager-common-translations/actions': commun.actions,
   '@ovh-ux/manager-common-translations/status': commun.status,
@@ -88,6 +90,7 @@ export const labels = {
   datacentresVrackSegment,
   terminate,
   networkAcl,
+  migration,
   commun,
   zodError,
   vcda,

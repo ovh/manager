@@ -40,6 +40,7 @@ import {
   getFeatureAvailabilityMocks,
   TFeatureAvailabilityMockParams,
 } from '@/mocks/feature-availability';
+import { getVcdaMocks, TVcdaMockParams } from '@/mocks/vcda';
 import { VMWARE_CLOUD_DIRECTOR_LABEL } from '@/utils/label.constants';
 import { urls } from '@/routes/routes.constant';
 
@@ -59,6 +60,7 @@ export const renderTest = async ({
   GetDatacentreOrderMocksParams &
   GetVeeamBackupMocksParams &
   TFeatureAvailabilityMockParams &
+  TVcdaMockParams &
   GetVrackSegmentsMocksParams &
   GetNetworkAclMocksParams &
   GetServicesMocksParams = {}) => {
@@ -74,6 +76,7 @@ export const renderTest = async ({
       ...getVrackSegmentsMocks(mockParams),
       ...getFeatureAvailabilityMocks(mockParams),
       ...getNetworkAclMock(mockParams),
+      ...getVcdaMocks(mockParams),
     ]),
   );
 
