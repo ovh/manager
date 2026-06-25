@@ -7,4 +7,5 @@ export const iamActions = {
     'vmwareCloudDirector:apiovh:migration/create',
   vmwareCloudDirectorApiovhMigrationEdit:
     'vmwareCloudDirector:apiovh:migration/edit',
+  accountApiovhServicesTerminate: 'account:apiovh:services/terminate',
 };

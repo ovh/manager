@@ -12,7 +12,6 @@ import {
 } from '@ovhcloud/ods-components/react';
 import {
   ODS_BADGE_COLOR,
-  ODS_BUTTON_COLOR,
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
@@ -22,8 +21,8 @@ import { urls } from '@/routes/routes.constant';
 import { iamActions } from '@/utils/iam.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
-import ComingSoonButton from './_components/ComingSoonButton.component';
 import ActiveBody from './_components/ActiveBody.component';
+import TerminateAction from './_components/TerminateAction.component';
 
 const MIGRATION_TILE_ID = 'migration';
 
@@ -98,11 +97,7 @@ export default function MigrationTile() {
               label={t('tile.badge.deleting')}
               data-testid={TEST_IDS.migrationTileDeletingBadge}
             />
-            <ComingSoonButton
-              triggerId="migration-terminate"
-              label={t('serviceTermination.cta')}
-              color={ODS_BUTTON_COLOR.critical}
-            />
+            <TerminateAction resourceStatus="DELETING" />
           </div>
         );
       case 'active':
