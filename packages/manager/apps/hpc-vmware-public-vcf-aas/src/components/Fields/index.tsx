@@ -10,12 +10,11 @@ import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
 import { RhfQuantity } from './RhfQuantity.component';
 import { RhfInput } from './RhfInput.component';
 
-type TranslatorKey = string;
 
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
   helperMessage?: string;
-  errorMessage?: TranslatorKey;
+  errorMessage?: string;
   isHiddenError?: boolean;
   control?: Control;
 };

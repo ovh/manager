@@ -52,9 +52,7 @@ export const useApplicationBreadcrumbItems = () => {
     [subRoutes.migration]: t(
       'migration/order:managed_vcd_migration_breadcrumb',
     ),
-    [subRoutes.migrationOrder]: t(
-      'migration/order:managed_vcd_migration_order_breadcrumb',
-    ),
+    [subRoutes.migrationOrder]: t(`${NAMESPACES.ACTIONS}:order`),
     [subRoutes.vrackSegments]: VRACK_LABEL,
     [subRoutes.vrackEditVlanId]: t(
       'datacentres/vrack-segment:managed_vcd_dashboard_vrack_edit_vlan',

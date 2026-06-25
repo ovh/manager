@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   OdsButton,
   OdsCheckbox,
@@ -29,6 +30,7 @@ export default function MigrationOrderTermsModal({
   onClose,
 }: MigrationOrderTermsModalProps) {
   const { t } = useTranslation('migration/order');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const [accepted, setAccepted] = useState(false);
 
   return (
@@ -85,7 +87,7 @@ export default function MigrationOrderTermsModal({
       <div className="flex gap-x-4 w-fit justify-self-center ml-auto mt-6">
         <OdsButton
           variant={ODS_BUTTON_VARIANT.ghost}
-          label={t('managed_vcd_migration_order_terms_cancel')}
+          label={tActions('cancel')}
           isDisabled={isSubmitting || undefined}
           onClick={onClose}
           data-testid={TEST_IDS.migrationOrderTermsCancelCta}
