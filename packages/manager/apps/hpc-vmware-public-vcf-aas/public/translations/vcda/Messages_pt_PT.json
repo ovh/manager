@@ -1,0 +1,31 @@
+{
+  "tile": {
+    "title": "Migração",
+    "cta": {
+      "order": "Encomendar",
+      "orderDisabledTooltip": {
+        "noPermission": "Não tem permissão para encomendar este serviço."
+      }
+    },
+    "badge": {
+      "actif": "Ativo",
+      "provisioning": "A aprovisionar…",
+      "deleting": "A eliminar…",
+      "suspended": "Suspenso",
+      "error": "Erro",
+      "updateInProgress": "Atualização em curso"
+    },
+    "error": {
+      "fetch": "Estado indisponível.",
+      "retry": "Tentar novamente"
+    },
+    "ariaLabel": {
+      "active": "Migração VCDA: ativa",
+      "inactive": "Migração VCDA: não ativa. Clique em Encomendar para subscrever.",
+      "provisioning": "Migração VCDA: a aprovisionar."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Terminate service"
+  }
+}
