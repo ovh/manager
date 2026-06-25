@@ -1,0 +1,18 @@
+{
+  "hosting_renew_period_title": "Die Verwaltung der Erneuerung",
+  "hosting_renew_period_description": "Wählen Sie die gewünschte Häufigkeit der automatischen Erneuerung aus.",
+  "hosting_renew_period_periodMonth": "{{count}} Monate",
+  "hosting_renew_period_periodMonth_plural": "{{count}} Monate",
+  "hosting_renew_period_periodYear": "{{count}} Jahr",
+  "hosting_renew_period_periodYear_plural": "{{count}} Jahre",
+  "hosting_renew_period_currentPeriod": "Aktuelle Periode: {{period}}",
+  "hosting_renew_period_noPeriodsAvailable": "Für diesen Dienst sind keine Erneuerungszeiträume verfügbar.",
+  "hosting_renew_period_loadError": "Die verfügbaren Erneuerungszeiträume konnten nicht geladen werden.",
+  "hosting_renew_period_noPeriod": "Keine Häufigkeit — manuelle Erneuerung",
+  "hosting_renew_period_noPeriodHint": "Achtung, Ihr Dienst wird nicht automatisch erneuert. Sie müssen ihn manuell vor Ablauf erneuern.",
+  "hosting_renew_period_or": "oder",
+  "hosting_renew_period_submit": "Bestätigen",
+  "hosting_renew_period_cancel": "Abbrechen",
+  "hosting_renew_period_successToast": "Die Erneuerungsperiode wurde erfolgreich aktualisiert.",
+  "hosting_renew_period_errorToast": "Es ist ein Fehler aufgetreten: {{error}}."
+}

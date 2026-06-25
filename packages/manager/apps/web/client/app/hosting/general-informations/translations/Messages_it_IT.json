@@ -11,5 +11,6 @@
   "hosting_dashboard_service_video_center_freemium": "Attivo - Freemium",
   "hosting_dashboard_service_video_center_freemium_paid": "Attivo - Freemium + {{plan}}",
   "hosting_dashboard_service_video_center_plan_pro": "Video Center Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Video Center Plus"
+  "hosting_dashboard_service_video_center_plan_plus": "Video Center Plus",
+  "hosting_dashboard_manage_renewal_button": "Gestire il rinnovo"
 }

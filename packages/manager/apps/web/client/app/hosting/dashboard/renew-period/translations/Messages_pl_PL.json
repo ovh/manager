@@ -1,0 +1,18 @@
+{
+  "hosting_renew_period_title": "Zarządzaj odnawianiem",
+  "hosting_renew_period_description": "Wybierz pożądaną częstotliwość automatycznego odnawiania.",
+  "hosting_renew_period_periodMonth": "{{count}} miesięcy",
+  "hosting_renew_period_periodMonth_plural": "{{count}} miesięcy",
+  "hosting_renew_period_periodYear": "{{count}} rok",
+  "hosting_renew_period_periodYear_plural": "{{count}} lat",
+  "hosting_renew_period_currentPeriod": "Aktualny okres: {{period}}",
+  "hosting_renew_period_noPeriodsAvailable": "Brak dostępnych okresów odnawiania dla tej usługi.",
+  "hosting_renew_period_loadError": "Nie można załadować dostępnych okresów odnawiania.",
+  "hosting_renew_period_noPeriod": "Brak częstotliwości — odnawianie ręczne",
+  "hosting_renew_period_noPeriodHint": "Uwaga, Twoja usługa nie będzie odnawiana automatycznie. Będziesz musiał odnowić ją ręcznie przed jej wygaśnięciem.",
+  "hosting_renew_period_or": "lub",
+  "hosting_renew_period_submit": "Potwierdź",
+  "hosting_renew_period_cancel": "Anuluj",
+  "hosting_renew_period_successToast": "Okres odnawiania został pomyślnie zaktualizowany.",
+  "hosting_renew_period_errorToast": "Wystąpił błąd: {{error}}."
+}

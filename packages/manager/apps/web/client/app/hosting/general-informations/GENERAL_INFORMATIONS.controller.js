@@ -36,6 +36,7 @@ export default class HostingGeneralInformationsCtrl {
     HostingRuntimes,
     hostingSSLCertificate,
     isChangeOfferFeatureAvailable,
+    isManageRenewFeatureAvailable,
     OvhApiScreenshot,
     user,
   ) {
@@ -62,6 +63,7 @@ export default class HostingGeneralInformationsCtrl {
     this.HostingRuntimes = HostingRuntimes;
     this.hostingSSLCertificate = hostingSSLCertificate;
     this.isChangeOfferFeatureAvailable = isChangeOfferFeatureAvailable;
+    this.isManageRenewFeatureAvailable = isManageRenewFeatureAvailable;
     this.OvhApiScreenshot = OvhApiScreenshot;
     this.user = user;
     this.Domain = Domain;
