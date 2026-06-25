@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
-import { ODS_BADGE_COLOR, ODS_BUTTON_COLOR } from '@ovhcloud/ods-components';
+import { ODS_BADGE_COLOR } from '@ovhcloud/ods-components';
 import {
   VcdaResourceStatus,
   VcdaTileStatus,
 } from '@ovh-ux/manager-module-vcd-api';
 import TEST_IDS from '@/utils/testIds.constants';
-import ComingSoonButton from './ComingSoonButton.component';
+import TerminateAction from './TerminateAction.component';
 
 type BadgeConfig = {
   color: ODS_BADGE_COLOR;
@@ -62,11 +62,7 @@ export default function ActiveBody({
       ) : (
         badge
       )}
-      <ComingSoonButton
-        triggerId="migration-terminate"
-        label={t('serviceTermination.cta')}
-        color={ODS_BUTTON_COLOR.critical}
-      />
+      <TerminateAction resourceStatus={status.resourceStatus} />
     </div>
   );
 }
