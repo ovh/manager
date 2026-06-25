@@ -9,6 +9,7 @@ import datacentresVrackSegment from '../../public/translations/datacentres/vrack
 import terminate from '../../public/translations/terminate/Messages_fr_FR.json';
 import networkAcl from '../../public/translations/networkAcl/Messages_fr_FR.json';
 import zodError from '../../public/translations/zodError/Messages_fr_FR.json';
+import vcda from '../../public/translations/vcda/Messages_fr_FR.json';
 
 const error = {
   manager_error_page_title: 'Oops …!',
@@ -89,4 +90,5 @@ export const labels = {
   networkAcl,
   commun,
   zodError,
+  vcda,
 };
