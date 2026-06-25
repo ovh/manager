@@ -4,6 +4,8 @@ export const TERMINATION_FORM_NAME = 'termination';
 
 export const SERVICE_WITH_AGORA_TERMINATION = [
   'backup-veeam-vcd',
+  'backup-tenant',
+  'vspc-tenant',
   'vrack-services',
   'okms',
   'logs-account',
