@@ -35,8 +35,17 @@ const OrganizationResetPasswordPage = React.lazy(() =>
     '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
   ),
 );
+const MigrationPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/Migration.page'),
+);
 const DatacentresPage = React.lazy(() =>
   import('@/pages/listing/datacentres/Datacentres.page'),
+);
+const MigrationAddIpPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/add-ip/AddIp.page'),
+);
+const MigrationDeleteIpPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/delete-ip/DeleteIp.page'),
 );
 
 const NetworkAclPage = React.lazy(() =>
@@ -230,6 +239,40 @@ export default (
             },
           }}
         />
+        <Route
+          id={'migration'}
+          path={urls.migration}
+          Component={MigrationPage}
+          handle={{
+            tracking: {
+              pageName: 'migration',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            id={'migration-add-ip'}
+            path={urls.migrationAddIp}
+            Component={MigrationAddIpPage}
+            handle={{
+              tracking: {
+                pageName: 'migration-add-ip',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            id={'migration-delete-ip'}
+            path={urls.migrationDeleteIp}
+            Component={MigrationDeleteIpPage}
+            handle={{
+              tracking: {
+                pageName: 'migration-delete-ip',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+        </Route>
         <Route
           id={'network-acl'}
           path={urls.networkAcl}
