@@ -106,6 +106,24 @@ export const TRACKING = defineTrackingConfig({
       actionType: 'navigation',
       actions: ['go-to-see-manage_backup'],
     },
+    orderMigration: {
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'action',
+      actions: ['order_vcda-migration'],
+    },
+    orderMigrationCancel: {
+      location: PageLocation.page,
+      buttonType: ButtonType.button,
+      actionType: 'exit',
+      actions: ['order_vcda-migration', 'cancel'],
+    },
+    orderMigrationTile: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: ['order_migration'],
+    },
   },
   vcpuSpeedPopup: {
     cancel: {

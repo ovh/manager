@@ -1,5 +1,7 @@
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
 import { DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   OdsBadge,
@@ -16,6 +18,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useVcdaStatus } from '@/data/hooks/vcda/useVcdaStatus.hook';
 import { urls } from '@/routes/routes.constant';
+import { iamActions } from '@/utils/iam.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import ActiveBody from './_components/ActiveBody.component';
@@ -28,6 +31,7 @@ export default function MigrationTile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
+  const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: status, isPending, isError, refetch } = useVcdaStatus(id);
 
   const renderBody = () => {
@@ -60,16 +64,21 @@ export default function MigrationTile() {
     switch (status.kind) {
       case 'inactive':
         return (
-          <ManagerButton
-            id="migration-tile-order"
-            data-testid={TEST_IDS.migrationTileOrderCta}
-            label={t('tile.cta.order')}
-            aria-label={t('tile.ariaLabel.inactive')}
-            onClick={() => {
-              trackClick(TRACKING.dashboard.orderMigrationTile);
-              navigate(urls.migrationOrder.replace(':id', id ?? ''));
-            }}
-          />
+          <Suspense>
+            <ManagerButton
+              id="migration-tile-order"
+              data-testid={TEST_IDS.migrationTileOrderCta}
+              label={t('tile.cta.order')}
+              aria-label={t('tile.ariaLabel.inactive')}
+              urn={vcdOrganization?.data?.iam?.urn}
+              iamActions={[iamActions.vmwareCloudDirectorApiovhMigrationCreate]}
+              displayTooltip
+              onClick={() => {
+                trackClick(TRACKING.dashboard.orderMigrationTile);
+                navigate(urls.migrationOrder.replace(':id', id ?? ''));
+              }}
+            />
+          </Suspense>
         );
       case 'provisioning':
         return (

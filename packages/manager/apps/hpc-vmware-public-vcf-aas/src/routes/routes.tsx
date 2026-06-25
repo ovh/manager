@@ -38,6 +38,14 @@ const OrganizationResetPasswordPage = React.lazy(() =>
 const MigrationPage = React.lazy(() =>
   import('@/pages/dashboard/organization/migration/Migration.page'),
 );
+const MigrationOrderPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/order/MigrationOrder.page'),
+);
+const MigrationOrderTermsPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/organization/migration/order/terms/MigrationOrderTerms.page'
+  ),
+);
 const DatacentresPage = React.lazy(() =>
   import('@/pages/listing/datacentres/Datacentres.page'),
 );
@@ -239,6 +247,29 @@ export default (
             },
           }}
         />
+        <Route
+          id={'migration-order'}
+          path={urls.migrationOrder}
+          Component={MigrationOrderPage}
+          handle={{
+            tracking: {
+              pageName: 'order_vcda-migration',
+              pageType: PageType.funnel,
+            },
+          }}
+        >
+          <Route
+            id={'migration-order-terms'}
+            path={urls.migrationOrderTerms}
+            Component={MigrationOrderTermsPage}
+            handle={{
+              tracking: {
+                pageName: 'order_vcda-migration-terms',
+                pageType: PageType.funnel,
+              },
+            }}
+          />
+        </Route>
         <Route
           id={'migration'}
           path={urls.migration}
