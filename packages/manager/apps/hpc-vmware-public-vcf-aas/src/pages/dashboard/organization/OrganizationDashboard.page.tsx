@@ -5,7 +5,10 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import {
   ChangelogButton,
   HeadersProps,
+  useFeatureAvailability,
 } from '@ovh-ux/manager-react-components';
+import { useVcdaStatus } from '@/data/hooks/vcda/useVcdaStatus.hook';
+import { FEATURES } from '@/utils/features.constants';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
@@ -22,8 +25,15 @@ export default function DashboardPage() {
   const { t } = useTranslation('dashboard');
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
+  const { t: tMigration } = useTranslation('migration');
   const { data: vcdOrganisation } = useVcdOrganization({ id });
   const navigate = useNavigate();
+  const { data: features } = useFeatureAvailability([FEATURES.HPC_VCFAAS_VCDA]);
+  const isVcdaEnabled = !!features?.[FEATURES.HPC_VCFAAS_VCDA];
+  const { data: vcdaStatus } = useVcdaStatus(id, isVcdaEnabled);
+  const isMigrationTabMounted = isVcdaEnabled && vcdaStatus?.kind === 'active';
+
+  const migrationPath = useResolvedPath(subRoutes.migration).pathname;
 
   const tabsList: DashboardTab[] = [
     {
@@ -43,6 +53,15 @@ export default function DashboardPage() {
       title: t('managed_vcd_dashboard_general_network_acl'),
       to: useResolvedPath(subRoutes.networkAcl).pathname,
     },
+    ...(isMigrationTabMounted
+      ? [
+          {
+            name: 'migration',
+            title: tMigration('migration.tab.title'),
+            to: migrationPath,
+          },
+        ]
+      : []),
   ];
 
   const serviceName = vcdOrganisation?.data?.currentState?.fullName;
