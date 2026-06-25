@@ -18,6 +18,7 @@ export const useApplicationBreadcrumbItems = () => {
     'datacentres/compute',
     'datacentres/storage',
     'datacentres/vrack-segment',
+    'migration/order',
     NAMESPACES.ACTIONS,
   ]);
   const { id, vdcId } = useParams();
@@ -47,6 +48,12 @@ export const useApplicationBreadcrumbItems = () => {
     [subRoutes.datacentreStorage]: STORAGE_LABEL,
     [subRoutes.datacentreStorageOrder]: t(
       'datacentres/storage:managed_vcd_vdc_storage_order_cta',
+    ),
+    [subRoutes.migration]: t(
+      'migration/order:managed_vcd_migration_breadcrumb',
+    ),
+    [subRoutes.migrationOrder]: t(
+      'migration/order:managed_vcd_migration_order_breadcrumb',
     ),
     [subRoutes.vrackSegments]: VRACK_LABEL,
     [subRoutes.vrackEditVlanId]: t(

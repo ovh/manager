@@ -21,7 +21,7 @@ import { useVcdaStatus } from '../../../data/hooks/vcda/useVcdaStatus.hook';
 import { labels, translations } from '../../../test-utils/test-i18n';
 import vcdaMessages from '../../../../public/translations/vcda/Messages_fr_FR.json';
 import TEST_IDS from '../../../utils/testIds.constants';
-import { APP_NAME } from '../../../tracking.constants';
+import { TRACKING, APP_NAME } from '../../../tracking.constants';
 
 const navigateMock = vi.fn();
 const trackClickMock = vi.fn();
@@ -147,6 +147,25 @@ describe('MigrationTile', () => {
     expect(refetchMock).toHaveBeenCalled();
   });
 
+  it('renders the Order CTA in the inactive state and navigates + tracks on click', async () => {
+    const user = userEvent.setup();
+    mockStatus({ data: { kind: 'inactive' } });
+    renderComponent();
+
+    const cta = await getElementByTestId(TEST_IDS.migrationTileOrderCta);
+    await assertElementLabel({
+      element: cta,
+      label: labels.vcda.tile.cta.order,
+    });
+
+    await act(() => user.click(cta));
+    expect(trackClickMock).toHaveBeenCalledWith(
+      TRACKING.dashboard.orderMigrationTile,
+    );
+    expect(navigateMock).toHaveBeenCalledWith(
+      '/public-vcf-aas/org-123/migration/order-migration',
+    );
+  });
 
   it('renders the provisioning badge for CREATING', async () => {
     mockStatus({ data: { kind: 'provisioning' } });
