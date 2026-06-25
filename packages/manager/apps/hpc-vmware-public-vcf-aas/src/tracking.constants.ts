@@ -124,6 +124,12 @@ export const TRACKING = defineTrackingConfig({
       actionType: 'navigation',
       actions: ['order_migration'],
     },
+    terminateMigration: {
+      location: PageLocation.tile,
+      buttonType: ButtonType.button,
+      actionType: 'navigation',
+      actions: ['terminate_vcda-migration'],
+    },
   },
   vcpuSpeedPopup: {
     cancel: {

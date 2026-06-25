@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Control, FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,6 +45,7 @@ export interface MigrationOrderTermsContext {
 
 export default function MigrationOrderContent() {
   const { t } = useTranslation('migration/order');
+  const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
   const { id } = useParams();
   const navigate = useNavigate();
   const { trackClick } = useOvhTracking();
@@ -196,7 +198,7 @@ export default function MigrationOrderContent() {
           <OdsButton
             type="button"
             variant={ODS_BUTTON_VARIANT.ghost}
-            label={t('managed_vcd_migration_order_cancel')}
+            label={tActions('cancel')}
             isDisabled={isPending || undefined}
             onClick={onCancel}
             data-testid={TEST_IDS.migrationOrderCancelCta}
@@ -204,7 +206,7 @@ export default function MigrationOrderContent() {
           <ManagerButton
             id="migration-order-submit"
             type="submit"
-            label={t('managed_vcd_migration_order_order')}
+            label={tActions('order')}
             isDisabled={isOrderDisabled || undefined}
             data-testid={TEST_IDS.migrationOrderSubmitCta}
           >
