@@ -12,7 +12,7 @@ export const NameCell = (server: DedicatedServer) => {
     <OdsLink
       color="primary"
       href={serverUrl}
-      label={t(server?.iam?.displayName)}
+      label={server?.iam?.displayName}
     />
   );
 };
