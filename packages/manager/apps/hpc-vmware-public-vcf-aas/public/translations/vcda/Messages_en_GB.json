@@ -1,0 +1,31 @@
+{
+  "tile": {
+    "title": "Migration",
+    "cta": {
+      "order": "Order",
+      "orderDisabledTooltip": {
+        "noPermission": "You do not have permission to order this service."
+      }
+    },
+    "badge": {
+      "actif": "Active",
+      "provisioning": "Provisioning…",
+      "deleting": "Deleting…",
+      "suspended": "Suspended",
+      "error": "Error",
+      "updateInProgress": "Update in progress"
+    },
+    "error": {
+      "fetch": "Status unavailable.",
+      "retry": "Retry"
+    },
+    "ariaLabel": {
+      "active": "VCDA migration: active",
+      "inactive": "VCDA migration: not active. Click Order to subscribe.",
+      "provisioning": "VCDA migration: provisioning."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Terminate service"
+  }
+}

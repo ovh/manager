@@ -20,6 +20,12 @@ const TEST_IDS = {
   networkAclCta: 'network-acl-cta',
   networkAclAddCurrentIpAction: 'add-current-ip-button',
   networkAclfromAnywhereIpAction: 'from-anywhere-ip-button',
+  migrationTileStatusBadge: 'migration-tile-status-badge',
+  migrationTileProvisioningBadge: 'migration-tile-provisioning-badge',
+  migrationTileDeletingBadge: 'migration-tile-deleting-badge',
+  migrationTileSkeleton: 'migration-tile-skeleton',
+  migrationTileError: 'migration-tile-error',
+  migrationTileRetryCta: 'migration-tile-retry-cta',
 } as const;
 
 export default TEST_IDS;
