@@ -19,6 +19,9 @@ import style from '../style.module.scss';
 import SubTreeSection from '@/container/nav-reshuffle/sidebar/SubTree/SubTreeSection';
 import { PUBLICCLOUD_UNIVERSE_ID } from '../navigation-tree/services/publicCloud';
 import { useDefaultPublicCloudProject } from '@/container/nav-reshuffle/data/hooks/defaultPublicCloudProject/useDefaultPublicCloudProject';
+import { usePublicCloudLoadBalancer } from '@/container/nav-reshuffle/data/hooks/publicCloudLoadBalancer/usePublicCloudLoadBalancer';
+
+const LOAD_BALANCER_NODE_ID = 'pci-kubernetes-load-balancer';
 
 export interface PublicCloudPanelProps {
   rootNode: Node;
@@ -88,6 +91,21 @@ export const PublicCloudPanel: React.FC<ComponentProps<
       !selectedPciProject &&
       !pciProjects,
   });
+
+  const { data: loadBalancers } = usePublicCloudLoadBalancer(
+    selectedPciProject?.project_id,
+  );
+
+  const navigationNodes = useMemo(() => {
+    const hasLoadBalancer = (loadBalancers?.length ?? 0) > 0;
+    const resolveNode = (node: Node): Node => ({
+      ...node,
+      hasService:
+        node.id === LOAD_BALANCER_NODE_ID ? hasLoadBalancer : node.hasService,
+      children: node.children?.map(resolveNode),
+    });
+    return rootNode.children?.map(resolveNode);
+  }, [rootNode.children, loadBalancers]);
 
   /** Watch URL changes to update selected menu dynamically */
   useEffect(() => {
@@ -193,12 +211,12 @@ export const PublicCloudPanel: React.FC<ComponentProps<
             </span>
 
             <span
-              className={`oui-icon oui-icon-copy px-1 mx-1 ml-auto ${style.sidebar_clipboard_copy}`}
+              className={`oui-icon oui-icon-copy mx-1 ml-auto px-1 ${style.sidebar_clipboard_copy}`}
             ></span>
           </button>
         )}
       </li>
-      <li className="px-3 mt-3 flex">
+      <li className="mt-3 flex px-3">
         <OsdsButton
           color={ODS_THEME_COLOR_INTENT.primary}
           type={ODS_BUTTON_TYPE.button}
@@ -214,7 +232,7 @@ export const PublicCloudPanel: React.FC<ComponentProps<
         </OsdsButton>
       </li>
       {selectedPciProject !== null &&
-        rootNode.children
+        navigationNodes
           ?.filter((childNode) => !shouldHideElement(childNode, childNode.hasService ?? true))
           .map((node) => (
             <li
