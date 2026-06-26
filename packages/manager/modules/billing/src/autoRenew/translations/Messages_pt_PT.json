@@ -178,5 +178,6 @@
   "billing_autorenew_service_renew_manual": "Manual",
   "billing_autorenew_service_renew": "Renovação",
   "billing_autorenew_criterion_renew": "Renovação",
-  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC"
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC",
+  "billing_autorenew_service_type_ZIMBRA": "Zimbra"
 }
