@@ -26,6 +26,15 @@
     }
   },
   "serviceTermination": {
-    "cta": "Terminate service"
+    "cta": "Terminate service",
+    "ariaLabel": "Terminate VCDA service",
+    "modalDescription": "This action will terminate the VCDA service at the next billing expiration date. This cannot be undone from this interface.",
+    "success": "Termination scheduled. The service will be deleted at the next billing date.",
+    "disabled": {
+      "updating": "An operation is in progress.",
+      "suspended": "Service is suspended — contact support.",
+      "error": "Service is in error — contact support.",
+      "deleting": "Termination already scheduled."
+    }
   }
 }
