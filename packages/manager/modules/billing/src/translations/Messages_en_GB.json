@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Cancel the order",
   "orders_retract_return_to_orders": "Back to my orders",
   "orders_retract_title": "Withdrawal of the service(s) from the order",
-  "orders_retract_confirmation": "Do you really want to cancel order {{t0}}?",
-  "orders_retract_confirmation_text": "Yes, I want to cancel that order.",
-  "orders_retract_description1": "You have a right of withdrawal for a period of 14 days, starting on the date of the order. In the event of withdrawal, you will receive a refund - within 30 days from the withdrawal - for the money originally paid, minus the days of service usage on a prorate basis. ",
-  "orders_retract_description2": "Warning: withdrawal done through this form is valid for all products associated with this order. Withdrawal is effective immediately.",
+  "orders_retract_confirmation": "Do you really wish to cancel your order by exercising your right of withdrawal?",
+  "orders_retract_confirmation_text": "Yes, I wish to withdraw.",
+  "orders_retract_description1": "You have the right of withdrawal for fourteen (14) days from the date of your order.",
+  "orders_retract_description2": "If you exercise this right, you will be refunded within fourteen (14) days from the confirmation of your withdrawal request. You will receive an acknowledgment of receipt at the email address provided in your customer account.",
   "orders_retract_alert": "Confirmation will result in the automatic and irreversible deletion of all data associated with this order (including backups). Before you continue and confirm your withdrawal, it is your responsibility to take all necessary measures for the safekeeping of your data and the continuity of your activities. OVH assumes no responsibility in this regard.",
   "orders_retract_success": "Order {{t0}} has been cancelled.",
   "orders_retract_error": "An error has occurred during the cancellation of your order.",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Managing OVHcloud bills",
   "billing_guides_header_automatic_renewal_guides": "Managing renewal for your services",
   "fidelity_creditOrder_submit_error": "An error has occurred generating your credit.",
-  "fidelity_creditOrder_submit_success": "Your credit <strong> {{t0}} points</strong> has been generated. You can proceed with your order in the <a href=\"#/billing/orders\">My orders tab</a>"
+  "fidelity_creditOrder_submit_success": "Your credit <strong> {{t0}} points</strong> has been generated. You can proceed with your order in the <a href=\"#/billing/orders\">My orders tab</a>",
+  "orders_retract_description3": "We will proceed with the refund of the amounts initially paid using the payment method used for your order, deducting the days of services consumed.",
+  "orders_retract_description4": "Please note, the withdrawal via this form applies to all products associated with this order."
 }

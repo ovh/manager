@@ -134,10 +134,10 @@
   "orders_order_action_retract": "Die Bestellung stornieren",
   "orders_retract_return_to_orders": "Zurück zu meinen Bestellungen",
   "orders_retract_title": "Widerruf der Dienstleistung/en der Bestellung",
-  "orders_retract_confirmation": "Sind Sie sicher, dass Sie Ihre Bestellung {{t0}} stornieren möchten?",
-  "orders_retract_confirmation_text": "Ja, ich möchte diese Bestellung stornieren.",
-  "orders_retract_description1": "Sie haben das Recht, die Bestellung binnen 14 Tagen zu widerrufen. Bei Widerruf werden Ihnen innerhalb von 30 Tagen nach Widerrufsanfrage die anfänglich gezahlten Beträge abzüglich der Kosten der in Anspruch genommenen Tage der Dienstleistung pro rata temporis erstattet.",
-  "orders_retract_description2": "Achtung, der Widerruf über dieses Formular gilt für alle Produkte der Bestellung und wird umgehend durchgeführt.",
+  "orders_retract_confirmation": "Möchten Sie Ihre Bestellung wirklich stornieren, indem Sie Ihr Widerrufsrecht ausüben?",
+  "orders_retract_confirmation_text": "Ja, ich möchte widerrufen.",
+  "orders_retract_description1": "Sie haben ein Widerrufsrecht von vierzehn (14) Tagen ab dem Datum Ihrer Bestellung.",
+  "orders_retract_description2": "Wenn Sie dieses Recht ausüben, werden Sie innerhalb von vierzehn (14) Tagen nach Bestätigung Ihres Widerrufsgesuchs erstattet. Sie erhalten eine Empfangsbestätigung an die in Ihrem Kundenkonto angegebene E-Mail-Adresse.",
   "orders_retract_alert": "Bei Bestätigung werden sämtliche Daten (inklusive deren Speicherungen und Backups) automatisch, umgehend und unwiderruflich gelöscht. Bevor Sie fortfahren und den Widerruf bestätigen, obliegt es allein Ihnen, die notwendigen Maßnahmen zur Sicherung Ihrer Daten sowie zur Wiederaufnahme Ihrer Aktivitäten zu ergreifen. OVH übernimmt in dieser Hinsicht keinerlei Haftung.",
   "orders_retract_success": "Ihre Bestellung {{t0}} wurde storniert.",
   "orders_retract_error": "Bei der Stornierung Ihrer Bestellung ist ein Fehler aufgetreten.",
@@ -916,5 +916,7 @@
   "billing_guides_header_managing_bills_guides": "Meine Rechnungen von OVHcloud verwalten",
   "billing_guides_header_automatic_renewal_guides": "Die Verlängerung meiner Dienste verwalten",
   "fidelity_creditOrder_submit_error": "Beim Gutschreiben Ihrer Punkte ist ein Fehler aufgetreten.",
-  "fidelity_creditOrder_submit_success": "Ihr Guthaben in Höhe von <strong>{{t0}} Punkten</strong> wurde generiert. Sie können im Tab <a href=\"#/billing/orders\">Meine Bestellungen</a> mit Ihrer Bestellung fortfahren."
+  "fidelity_creditOrder_submit_success": "Ihr Guthaben in Höhe von <strong>{{t0}} Punkten</strong> wurde generiert. Sie können im Tab <a href=\"#/billing/orders\">Meine Bestellungen</a> mit Ihrer Bestellung fortfahren.",
+  "orders_retract_description3": "Wir werden die ursprünglich gezahlten Beträge auf das für Ihre Bestellung verwendete Zahlungsmittel zurückerstatten, abzüglich der in Anspruch genommenen Tage.",
+  "orders_retract_description4": "Achtung, der Widerruf über dieses Formular gilt für alle Produkte, die mit dieser Bestellung verbunden sind."
 }
