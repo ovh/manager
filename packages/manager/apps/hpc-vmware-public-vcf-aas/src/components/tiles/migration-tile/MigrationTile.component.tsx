@@ -1,6 +1,8 @@
+import { Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { DashboardTile } from '@ovh-ux/manager-react-components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useVcdOrganization } from '@ovh-ux/manager-module-vcd-api';
+import { DashboardTile, ManagerButton } from '@ovh-ux/manager-react-components';
 import {
   OdsBadge,
   OdsButton,
@@ -14,8 +16,12 @@ import {
   ODS_BUTTON_SIZE,
   ODS_BUTTON_VARIANT,
 } from '@ovhcloud/ods-components';
+import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import { useVcdaStatus } from '@/data/hooks/vcda/useVcdaStatus.hook';
+import { urls } from '@/routes/routes.constant';
+import { iamActions } from '@/utils/iam.constants';
 import TEST_IDS from '@/utils/testIds.constants';
+import { TRACKING } from '@/tracking.constants';
 import ComingSoonButton from './_components/ComingSoonButton.component';
 import ActiveBody from './_components/ActiveBody.component';
 
@@ -24,6 +30,9 @@ const MIGRATION_TILE_ID = 'migration';
 export default function MigrationTile() {
   const { t } = useTranslation('vcda');
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { trackClick } = useOvhTracking();
+  const { data: vcdOrganization } = useVcdOrganization({ id });
   const { data: status, isPending, isError, refetch } = useVcdaStatus(id);
 
   const renderBody = () => {
@@ -56,10 +65,21 @@ export default function MigrationTile() {
     switch (status.kind) {
       case 'inactive':
         return (
-          <ComingSoonButton
-            triggerId="migration-tile-order"
-            label={t('tile.cta.order')}
-          />
+          <Suspense>
+            <ManagerButton
+              id="migration-tile-order"
+              data-testid={TEST_IDS.migrationTileOrderCta}
+              label={t('tile.cta.order')}
+              aria-label={t('tile.ariaLabel.inactive')}
+              urn={vcdOrganization?.data?.iam?.urn}
+              iamActions={[iamActions.vmwareCloudDirectorApiovhMigrationCreate]}
+              displayTooltip
+              onClick={() => {
+                trackClick(TRACKING.dashboard.orderMigrationTile);
+                navigate(urls.migrationOrder.replace(':id', id ?? ''));
+              }}
+            />
+          </Suspense>
         );
       case 'provisioning':
         return (
