@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.5...@ovh-ux/manager-web@19.43.6) (2026-06-26)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1264] ([088f9dc](https://github.com/ovh/manager/commit/088f9dc329b2c03d0da3e627f863bd74be21a0c9))
+* **web-hosting:** add anticipate renew button on general infos ([b21c1fe](https://github.com/ovh/manager/commit/b21c1fec1e5eb3744033b04b55aaf215936ac538)), closes [#PUWEBPT-426](https://github.com/ovh/manager/issues/PUWEBPT-426)
+
+
+
+
+
 ## [19.43.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.4...@ovh-ux/manager-web@19.43.5) (2026-06-16)
 
 
