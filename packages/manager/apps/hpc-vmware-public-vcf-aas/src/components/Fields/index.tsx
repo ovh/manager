@@ -10,9 +10,12 @@ import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
 import { RhfQuantity } from './RhfQuantity.component';
 import { RhfInput } from './RhfInput.component';
 
+type TranslatorKey = string;
+
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
   helperMessage?: string;
+  errorMessage?: TranslatorKey;
   isHiddenError?: boolean;
   control?: Control;
 };
@@ -21,6 +24,7 @@ export const RhfField = ({
   controllerParams,
   className,
   helperMessage,
+  errorMessage: errorMessageOverride,
   isHiddenError,
   control,
   ...rest
@@ -38,7 +42,10 @@ export const RhfField = ({
   );
 
   const hasError = !isHiddenError && !!controller.fieldState?.error;
-  const errorMessage = helperMessage || controller.fieldState?.error?.message;
+  const errorMessage =
+    errorMessageOverride ||
+    helperMessage ||
+    controller.fieldState?.error?.message;
 
   return (
     <RhfFieldContext.Provider value={contextValues}>

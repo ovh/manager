@@ -12,6 +12,7 @@ export type DashboardTab = {
   title: string;
   to: string;
   trackingActions?: string[];
+  disabled?: boolean;
 };
 
 export type TDashboardLayoutProps = {
