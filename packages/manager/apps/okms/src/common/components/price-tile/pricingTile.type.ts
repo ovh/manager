@@ -1,1 +1,1 @@
-export type PricingProductCode = 'servicekey' | 'secret';
+export type PricingProductCode = 'servicekey' | 'servicekey-hsm' | 'secret';
