@@ -30,7 +30,7 @@
     "@vitejs/plugin-react-swc": "3.10.2",
     "@vitest/coverage-v8": "2.1.9",
     "@vitest/ui": "2.1.9",
-    "vitest": "3.2.4",
+    "vitest": "4.1.0",
     "webdriverio": "9.16.2"
   },
   "peerDependencies": {
@@ -39,7 +39,7 @@
     "@vitest/coverage-v8": "2.1.9",
     "@vitest/ui": "2.1.9",
     "vite": "6.3.4",
-    "vitest": "3.2.4",
+    "vitest": "4.1.0",
     "webdriverio": "9.16.2"
   }
 }
