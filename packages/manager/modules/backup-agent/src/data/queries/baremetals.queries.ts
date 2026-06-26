@@ -10,6 +10,10 @@ const all = () =>
   queryOptions({
     queryKey: queryKeys.baremetals.all,
     queryFn: () => getBaremetals(),
+    select: (data) =>
+      [...data].sort((a, b) =>
+        (a.iam?.displayName ?? a.name).localeCompare(b.iam?.displayName ?? b.name),
+      ),
   });
 
 const detail = (serviceName: string) =>

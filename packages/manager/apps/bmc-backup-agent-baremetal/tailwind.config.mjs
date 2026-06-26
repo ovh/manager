@@ -20,6 +20,21 @@ const baseTailwindConfig = [
 export default {
   ...baseConfig,
   content: baseTailwindConfig,
+  theme: {
+    ...baseConfig.theme,
+    extend: {
+      ...baseConfig.theme?.extend,
+      keyframes: {
+        'ba-step2-slide': {
+          '0%': { left: '-40%' },
+          '100%': { left: '100%' },
+        },
+      },
+      animation: {
+        'ba-step2-slide': 'ba-step2-slide 1.5s ease-in-out infinite',
+      },
+    },
+  },
   corePlugins: {
     preflight: false,
   },
