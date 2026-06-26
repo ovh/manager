@@ -1,0 +1,31 @@
+{
+  "tile": {
+    "title": "Migrazione",
+    "cta": {
+      "order": "Ordina",
+      "orderDisabledTooltip": {
+        "noPermission": "Non disponi dell'autorizzazione per ordinare questo servizio."
+      }
+    },
+    "badge": {
+      "actif": "Attivo",
+      "provisioning": "Provisioning in corso…",
+      "deleting": "Eliminazione in corso…",
+      "suspended": "Sospeso",
+      "error": "Errore",
+      "updateInProgress": "Aggiornamento in corso"
+    },
+    "error": {
+      "fetch": "Stato non disponibile.",
+      "retry": "Riprova"
+    },
+    "ariaLabel": {
+      "active": "Migrazione VCDA: attiva",
+      "inactive": "Migrazione VCDA: non attiva. Clicca su Ordina per sottoscrivere.",
+      "provisioning": "Migrazione VCDA: provisioning in corso."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Terminate service"
+  }
+}
