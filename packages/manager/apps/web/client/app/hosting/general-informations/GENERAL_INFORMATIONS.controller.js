@@ -6,6 +6,7 @@ import {
   CDN_ADVANCED,
   QUOTA_DECIMAL_PRECISION,
   LANGUAGES_VERSIONS_GUIDE_URL,
+  RENEW_URL,
 } from './general-informations.constants';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import { OFFERS_NAME, NEW_OFFERS_NAME } from '../hosting.constants';
@@ -85,7 +86,9 @@ export default class HostingGeneralInformationsCtrl {
           category: 'HOSTING',
         })
       : '';
-
+    this.renewUrl = `${RENEW_URL[this.coreConfig.getUser().ovhSubsidiary]}${
+      this.serviceName
+    }`;
     this.loading = {
       defaultRuntime: true,
       localSeo: true,
@@ -528,5 +531,14 @@ export default class HostingGeneralInformationsCtrl {
       : `hosting_dashboard_service_offer_${offer}`;
 
     return this.$translate.instant(translateKey);
+  }
+
+  onAdvancePaymentClick() {
+    if (typeof this.advancePaymentCallBack === 'function') {
+      this.advancePaymentCallBack({
+        service: this.service,
+        action: this.SERVICE_ACTIONS.ANTICIPATE_PAYMENT,
+      });
+    }
   }
 }
