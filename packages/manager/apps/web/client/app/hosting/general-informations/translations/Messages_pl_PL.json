@@ -11,5 +11,6 @@
   "hosting_dashboard_service_video_center_freemium": "Aktywny - Freemium",
   "hosting_dashboard_service_video_center_freemium_paid": "Aktywny - Freemium + {{plan}}",
   "hosting_dashboard_service_video_center_plan_pro": "Centrum Wideo Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Centrum Wideo Plus"
+  "hosting_dashboard_service_video_center_plan_plus": "Centrum Wideo Plus",
+  "hosting_dashboard_general_information_anticipate_renew": "Antycypować płatność"
 }
