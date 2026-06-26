@@ -809,6 +809,15 @@
                             data-ng-bind="::hosting.creation|date:'mediumDate'"
                         ></oui-tile-description>
                     </oui-tile-definition>
+                    <oui-tile-button
+                        data-aria-label="{{ ::'hosting_dashboard_general_information_anticipate_renew' | translate }}"
+                        data-href="{{ $ctrl.renewUrl }}"
+                        external
+                    >
+                        <span
+                            data-translate="hosting_dashboard_general_information_anticipate_renew"
+                        ></span>
+                    </oui-tile-button>
                 </oui-tile>
             </div>
         </div>
