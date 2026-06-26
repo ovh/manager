@@ -178,5 +178,8 @@
   "billing_autorenew_service_renew_manual": "Manual",
   "billing_autorenew_service_renew": "Renovación",
   "billing_autorenew_criterion_renew": "Renovación",
-  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC"
+  "billing_autorenew_service_type_NETWORK_SNC": "Network SNC",
+  "billing_autorenew_service_type_BACKUP_TENANT": "Backup Agent",
+  "billing_autorenew_service_type_VSPC_TENANT": "Backup Agent - VSPC",
+  "billing_autorenew_service_type_BACKUP_VAULT_PAYGO": "Backup Agent - Vault"
 }
