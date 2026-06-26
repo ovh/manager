@@ -18,11 +18,11 @@ const getWillPaymentUrl = () => {
   if (isLabeuEnvironment()) {
     return (
       getLabeuEntryPoint() ||
-      'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js'
+      'https://www.ovhcloud.com/payment/assets/remoteEntry.js'
     );
   }
 
-  return 'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js';
+  return 'https://www.ovhcloud.com/payment/assets/remoteEntry.js';
 };
 
 exports.isLabeuEnvironment = isLabeuEnvironment;
