@@ -1,5 +1,5 @@
 {
-  "kube_list_load_balancer_eol": "Einer oder mehrere Ihrer Cluster verwenden Load Balancer for Managed Kubernetes Service, die am <eolLink>9. Juli 2026 ihr End of Life erreichen</eolLink>. Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie diese Load Balancer zu Public Load Balancer oder löschen Sie sie vor diesem Stichtag. <migrateLink>Konsultieren Sie unseren Migrationsleitfaden.</migrateLink>",
+  "kube_list_load_balancer_eol": "Einer oder mehrere Ihrer Cluster verwenden Load Balancer for Managed Kubernetes Service, dessen <eolLink>Lebensdauer am 09. Juli 2026 endet</eolLink>. Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie diese Loadbalancer zu Public Load Balancer oder entfernen Sie sie vor dem Ablaufdatum. <migrateLink>Sehen Sie sich unseren Guide zur Migration an.</migrateLink>",
   "kube_list_title": "Managed Kubernetes Service",
   "kube_list_name": "Name des Clusters",
   "kube_list_id": "ID",

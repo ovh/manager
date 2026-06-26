@@ -83,7 +83,7 @@
   "email_tab_popover_migrate": "Migra l'account",
   "email_tab_modal_change_password_title": "Modifica la password dell'account",
   "email_tab_modal_change_password_heading": "Stai per modificare la password del tuo account ",
-  "email_tab_modal_change_account_password_success": "La sua password è in fase di modifica. L'operazione sarà efficace tra un momento.",
+  "email_tab_modal_change_account_password_success": "La modifica della password è in corso. L'operazione diventerà effettiva tra pochi minuti.",
   "email_tab_modal_change_account_password_error": "Si è verificato un errore durante la modifica della password: ",
   "email_tab_modal_delete_account_title": "Elimina l'account ",
   "email_tab_modal_delete_account_heading": "Stai per eliminare l'account <strong>{{t0}}</strong>",

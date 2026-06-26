@@ -1,5 +1,5 @@
 {
-  "hosting_change_offer_banner": "Nasze oferty hostingu internetowego rozwijają się. Odkryj ulepszenia i nowości, które są w zestawie.",
+  "hosting_change_offer_banner": "Stale rozwijamy ofertę hostingu. Sprawdź ulepszenia i nowości.",
   "hosting_change_offer_banner_link": "Sprawdź",
   "hosting_change_offer_for_service": "Ta usługa nie jest dostępna dla tej oferty.",
   "hosting_change_offer_for_service_offer": "Ta usługa nie jest dostępna w ramach oferty {{offer}}.",
@@ -1429,5 +1429,5 @@
   "database_tabs_dumps_guide_restore": "Przywracanie i importowanie bazy danych",
   "hosting_tab_STATISTICS_databases_none": "Nie wykryto błędów w bazach danych. Wszystko działa prawidłowo.",
   "hosting_tab_USER_STATISTICS": "Statystyki i logi",
-  "hosting_order_upgrade_renewal_after": "Po tej dacie odnowienie będzie naliczane w wysokości {{ price }} netto miesięcznie."
+  "hosting_order_upgrade_renewal_after": "Po tym terminie opłata za odnowienie wyniesie {{price}} netto miesięcznie"
 }

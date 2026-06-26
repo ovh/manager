@@ -8,5 +8,5 @@
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_label": "Bootfähig",
   "pci_projects_project_storages_blocks_block_volume-edit_bootable_help": "Indem Sie ein Volume als bootfähig definieren, kann es für den Start Ihrer Instanz verwendet werden.",
   "pci_projects_project_storages_blocks_block_volume-edit_cancel_label": "Abbrechen",
-  "pci_projects_project_storages_blocks_block_volume-edit_price_unavailable": "Schätzung für diese Region nicht verfügbar."
+  "pci_projects_project_storages_blocks_block_volume-edit_price_unavailable": "Für diese Region ist keine Schätzung verfügbar."
 }

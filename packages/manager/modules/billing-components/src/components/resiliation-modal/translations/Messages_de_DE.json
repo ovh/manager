@@ -1,7 +1,7 @@
 {
-  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Ihr Dienst wird am {{expirationDate}} zum Ende des aktuellen Abrechnungszeitraums gekündigt.",
-  "resiliation_modal_resiliate_service_terminate": "Ihr Dienst wird sofort gekündigt und Sie werden für diesen Dienst nicht mehr in Rechnung gestellt.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Ihr Dienst bleibt aktiv und Sie werden bis zum Ende Ihrer Verpflichtung am {{commitmentEndDate}} in Rechnung gestellt.",
-  "resiliation_modal_resiliate_service_deleteAtExpiration": "Ihr Dienst wird sofort gekündigt. Sie werden jedoch weiterhin monatliche Gebühren für diesen Dienst bis zum Ende Ihrer Verpflichtung am {{commitmentEndDate}} in Rechnung gestellt.",
-  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "Nach dem Ende Ihrer Verpflichtung werden Sie monatlich in Rechnung gestellt, bis Sie Ihren Dienst kündigen."
+  "resiliation_modal_resiliate_service_terminateAtExpirationDate": "Ihr Dienst wird am {{expirationDate}} am Ende des aktuellen Abrechnungszeitraums gekündigt.",
+  "resiliation_modal_resiliate_service_terminate": "Ihr Dienst wird sofort gekündigt und Ihnen wird dieser Dienst nicht mehr in Rechnung gestellt.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate": "Ihr Dienst bleibt aktiv und wird Ihnen bis zum Ablauf Ihrer Vertragslaufzeit am {{commitmentEndDate}} in Rechnung gestellt.",
+  "resiliation_modal_resiliate_service_deleteAtExpiration": "Ihr Dienst wird sofort gekündigt. Ihnen werden für diesen Dienst jedoch weiterhin monatliche Gebühren in Rechnung gestellt, bis Ihre Vertragslaufzeit am {{commitmentEndDate}} endet.",
+  "resiliation_modal_resiliate_service_terminateAtEngagementDate_monthly": "Nach Ablauf Ihrer Vertragslaufzeit werden Ihnen monatlich eine Rechnung ausgestellt, bis Sie Ihren Dienst kündigen."
 }

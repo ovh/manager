@@ -47,11 +47,11 @@
   "web_components_hosting_domain_offers_ram": "{{value1}} de RAM",
   "web_components_hosting_domain_offers_ramUpTo": "Até {{value1}} de RAM",
   "web_components_hosting_domain_offers_backupIncluded": "Backups automáticos",
-  "web_components_hosting_domain_offers_uptime": "Disponibilidade observada {{value1}}",
+  "web_components_hosting_domain_offers_uptime": "Disponibilidade observada de {{value1}}",
   "web_components_hosting_domain_offers_dbs": "{{value1}} bases de dados de {{value2}}",
   "web_components_hosting_domain_offers_webcloudDb": "WebCloud DB",
   "web_components_hosting_domain_offers_cdn": "CDN incluído",
   "web_components_hosting_domain_offers_git": "Git",
-  "web_components_hosting_domain_offers_userManagement": "Gestão de acessos",
+  "web_components_hosting_domain_offers_userManagement": "Gestão dos acessos",
   "web_components_hosting_domain_offers_sitesUnlimited": "Sites ilimitados"
 }

@@ -23,6 +23,6 @@
   "cpbc_hourly_data_platform_title": "Data Platform",
   "cpbc_hourly_managed_kubernetes_service_title": "Managed Kubernetes",
   "cpbc_hourly_quantum_title": "Emuladores",
-  "cpbc_file_storage_detail_title": "File storage",
-  "cpbc_file_storage_snapshot_detail_title": "File storage backups"
+  "cpbc_file_storage_detail_title": "Almacenamiento de archivos",
+  "cpbc_file_storage_snapshot_detail_title": "Almacenamiento de las copias de seguridad de los archivos"
 }

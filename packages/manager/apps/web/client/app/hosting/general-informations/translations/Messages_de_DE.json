@@ -6,10 +6,10 @@
   "hosting_dashboard_general_information_cdn_ip": "IP",
   "hosting_dashboard_general_information_php_more_informations": "Mehr Informationen zu den PHP-Versionen",
   "hosting_dashboard_general_information_languages_versions_availables": "Verfügbare Sprachversionen",
-  "hosting_dashboard_service_video_center": "Videozentrum",
+  "hosting_dashboard_service_video_center": "Video Center",
   "hosting_dashboard_service_video_center_none": "Keine",
-  "hosting_dashboard_service_video_center_freemium": "Aktiv - Freemium",
-  "hosting_dashboard_service_video_center_freemium_paid": "Aktiv - Freemium + {{plan}}",
-  "hosting_dashboard_service_video_center_plan_pro": "Videozentrum Pro",
-  "hosting_dashboard_service_video_center_plan_plus": "Videozentrum Plus"
+  "hosting_dashboard_service_video_center_freemium": "Aktiv – Freemium",
+  "hosting_dashboard_service_video_center_freemium_paid": "Aktiv – Freemium + {{plan}}",
+  "hosting_dashboard_service_video_center_plan_pro": "Video Center Pro",
+  "hosting_dashboard_service_video_center_plan_plus": "Video Center Plus"
 }

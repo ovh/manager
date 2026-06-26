@@ -9,9 +9,9 @@
   "ovhManagerHostingDatabaseOrderPublic_success_checkout": "Ihr <a href=\"{{url}}\" target=\"_blank\">Bestellformular</a> wurde erstellt. Ihr Produkt wird aktiviert, sobald Sie es validiert haben.",
   "ovhManagerHostingDatabaseOrderPublic_error": "Bei der Bestellung einer SQL-Datenbank ist ein Fehler aufgetreten: {{message}}",
   "ovhManagerHostingDatabaseOrderPublic_description": "Wir bieten Ihnen die Möglichkeit, eine Start SQL-Datenbank in 3 verschiedenen Größen oder bei erweiterten Anforderungen eines unserer Web Cloud Databases SQL-/NoSQL-Angebote mit garantierten Ressourcen zu bestellen.",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution": "Die Lösung :",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Angebot :",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_solution": "Lösung:",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_offer": "Angebot:",
   "ovhManagerHostingDatabaseOrderPublic_pricing_summary_price": "Preis:",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "Ein Pro-rata wird bis zum Ablaufdatum Ihres Hostings angewendet, damit beide Dienste auf denselben Abrechnungszeitraum abgestimmt sind.",
-  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "Sie werden zur Bestellbestätigung von OVHcloud weitergeleitet, um Ihren Kauf abzuschließen."
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_prorata": "Bis zum Ablaufdatum Ihres Hostings wird ein anteiliger Betrag angewendet, damit beide Dienste auf den gleichen Abrechnungszeitraum abgestimmt sind.",
+  "ovhManagerHostingDatabaseOrderPublic_pricing_summary_redirect": "Sie werden zum Bestellschein von OVHcloud weitergeleitet, um Ihren Kauf abzuschließen."
 }

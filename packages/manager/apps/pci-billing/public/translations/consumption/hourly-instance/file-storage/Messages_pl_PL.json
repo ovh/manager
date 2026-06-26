@@ -1,7 +1,7 @@
 {
-  "cpbc_no_consumption_data": "No usage for the period selected.",
-  "cpbc_file_storage_col_name": "Name",
-  "cpbc_file_storage_col_type": "Type",
+  "cpbc_no_consumption_data": "Brak zużycia dla wybranego okresu.",
+  "cpbc_file_storage_col_name": "Nazwa",
+  "cpbc_file_storage_col_type": "Typ",
   "cpbc_file_storage_col_region": "Region",
-  "cpbc_file_storage_col_price": "Price"
+  "cpbc_file_storage_col_price": "Cena"
 }

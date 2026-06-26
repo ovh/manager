@@ -131,7 +131,7 @@
   "orders_order_loading_error": "Fehler beim Abruf dieser Bestellung",
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
   "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung.",
-  "orders_order_action_retract": "Die Bestellung stornieren",
+  "orders_order_action_retract": "Ich möchte von meinem Rücktritt Gebrauch machen.",
   "orders_retract_return_to_orders": "Zurück zu meinen Bestellungen",
   "orders_retract_title": "Widerruf der Dienstleistung/en der Bestellung",
   "orders_retract_confirmation": "Sind Sie sicher, dass Sie Ihre Bestellung {{t0}} stornieren möchten?",

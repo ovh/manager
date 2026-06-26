@@ -1,6 +1,6 @@
 {
   "company_information_modal_title": "AÇÃO OBRIGATÓRIA",
-  "company_information_modal_description": "As informações relativas à sua organização não estão em conformidade. A atualização destas é obrigatória no âmbito da reforma da faturação eletrónica <anchor>tudo sobre a faturação eletrónica</anchor>. Preencha o seu SIRET, nós encarregamo-nos do resto.",
+  "company_information_modal_description": "As informações sobre a sua organização não são compatíveis. A atualização destas é obrigatória no âmbito da reforma da faturação eletrónica, <anchor>sabendo tudo sobre a faturação eletrónica</anchor>. Insira o seu SIRET, nós encarregamo-nos do resto.",
   "company_information_modal_action_modify": "Atualizar os meus dados",
   "company_information_modal_action_individual": "Sou um particular",
   "company_information_modal_info_individual": "Se a sua conta não for uma empresa, dirija-se ao formulário de edição do seu perfil e altere o tipo de conta para «Particular». "

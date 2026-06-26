@@ -9,6 +9,6 @@
   "pci_projects_create_project": "Neues Projekt erstellen",
   "pci_projects_redirect_to_dedicated_page": "Bitte wählen Sie ein bereits bestehendes Projekt aus oder erstellen Sie ein neues, um fortzufahren.",
   "pci_projects_project_default_project": "Standardprojekt",
-  "pci_projects_project_id": "Project ID",
-  "pci_projects_openstack_project_name": "OpenStack project name"
+  "pci_projects_project_id": "Projekt-ID",
+  "pci_projects_openstack_project_name": "Name des OpenStack-Projekts"
 }
