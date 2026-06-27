@@ -5,15 +5,16 @@ import { isLabeuEnvironment, isProdEnvironment } from './environment';
 export { isProdEnvironment };
 
 const getWillPaymentUrl = (): string => {
-  /** In preprod and prod environments, use a relative path to mitigate potential DDOS attacks */
-  if (isProdEnvironment()) {
-    return '/order/payment/assets/remoteEntry.js';
+  // ISO date prefix truncated to the minute: "2026-06-26T14:30"
+  // Used as CDN cache-busting query parameter (duplicated from Manager/billing pattern)
+  const minute = new Date().toISOString().slice(0, 16);
+
+  /** In known OVHcloud environments (production and labeu), use a relative path to mitigate potential DDOS attacks */
+  if (isProdEnvironment() || isLabeuEnvironment()) {
+    return `/payment/assets/remoteEntry.js?v=${minute}`;
   }
 
-  return (
-    (isLabeuEnvironment() && import.meta.env.VITE_WP_LABEU_ENTRY_POINT) ||
-    'https://www.ovhcloud.com/order/payment/assets/remoteEntry.js'
-  );
+  return `https://www.ovhcloud.com/payment/assets/remoteEntry.js?v=${minute}`;
 };
 
 /**
