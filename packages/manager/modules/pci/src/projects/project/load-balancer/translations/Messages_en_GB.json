@@ -13,9 +13,9 @@
   "pci_projects_project_load_balancer_end_service": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) on 6 November 2025, with EoL scheduled for July 2026. To keep accessing supported services, we recommend starting your migration before 6 November 2025, and ideally completing it before July 2025 to avoid any service interruptions.",
   "pci_projects_project_load_balancer_end_service_welcome": "The Load Balancer for Managed Kubernetes Service will be discontinued (End of Sale and End of Support) on 6 November 2025, with EoL scheduled for July 2026. To avoid the need to migrate later, we recommend switching to the Public Cloud Load Balancer (Octavia) right away.",
   "pci_projects_project_load_balancer_more_information": "More information here",
-  "pci_projects_project_load_balancer_end_service_definitive": "The Load Balancer for Managed Kubernetes Service reaches",
+  "pci_projects_project_load_balancer_end_service_definitive": "The Load Balancer for Managed Kubernetes Service will reach its",
   "pci_projects_project_load_balancer_end_of_life_date_definitive": "end of life on 9 July 2026",
-  "pci_projects_project_load_balancer_migration_intro_definitive": ". To ensure continuity of your services, migrate your Load Balancers to Public Load Balancer or delete them before the deadline.",
-  "pci_projects_project_load_balancer_end_service_welcome_definitive": "The Load Balancer for Managed Kubernetes Service product reaches end of life on 9 July 2026. To ensure continuity of your services, migrate your Load Balancers to Public Load Balancer or delete them before the deadline. Consult our migration guide.",
-  "pci_projects_project_load_balancer_more_information_definitive": "Consult our migration guide"
+  "pci_projects_project_load_balancer_migration_intro_definitive": ". To keep using your services interrupted, please migrate your Load Balancers to Public Load Balancer or delete them before the EOL date.",
+  "pci_projects_project_load_balancer_end_service_welcome_definitive": "The Load Balancer for Managed Kubernetes Service will reach its end of life on 9 July 2026. To keep using your services interrupted, please migrate your Load Balancers to Public Load Balancer or delete them before the EOL date. See our migration guide.",
+  "pci_projects_project_load_balancer_more_information_definitive": "Read our migration guide"
 }

@@ -5,8 +5,8 @@
   "pci_projects_project_load_balancer_onboarding_content2": "Verteilen Sie den Workload Ihrer Anwendungen auf mehrere Instanzen.",
   "pci_projects_project_load_balancer_onboarding_content3": "Mit dem OVHcloud Loadbalancer machen Sie Ihre Anwendungen skalierbarer und stabiler. Das Erstellen dauert höchstens zwei Minuten. Danach müssen Sie ihn nur noch konfigurieren, um den Workload auf die jeweiligen Instanzen zu verteilen. Sie zahlen nur für ihn, wenn Sie ihn auch wirklich nutzen.",
   "pci_projects_project_load_balancer_onboarding_guides_using_load_balancer_title": "Einen Loadbalancer in Managed Kubernetes Service konfigurieren.",
-  "pci_projects_project_load_balancer_welcome_intro_definitive": "Der Load Balancer for Managed Kubernetes Service erreicht sein End of Life",
-  "pci_projects_project_load_balancer_welcome_end_of_life_date_definitive": "am 9. Juli 2026",
-  "pci_projects_project_load_balancer_welcome_migration_intro_definitive": ". Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie Ihre Load Balancer zum Public Load Balancer oder löschen Sie diese vor dem Stichtag.",
-  "pci_projects_project_load_balancer_welcome_more_information_definitive": "Konsultieren Sie unseren Migrationsguide"
+  "pci_projects_project_load_balancer_welcome_intro_definitive": "Für das Produkt Load Balancer for Managed Kubernetes Service steht das ",
+  "pci_projects_project_load_balancer_welcome_end_of_life_date_definitive": "End of Life am 09. Juli 2026 an",
+  "pci_projects_project_load_balancer_welcome_migration_intro_definitive": ". Um die Kontinuität Ihrer Dienste zu gewährleisten, migrieren Sie Ihre Loadbalancer zu Public Load Balancer oder entfernen Sie sie vor dem Ablaufdatum.",
+  "pci_projects_project_load_balancer_welcome_more_information_definitive": "Sehen Sie sich unseren Guide zur Migration an."
 }
