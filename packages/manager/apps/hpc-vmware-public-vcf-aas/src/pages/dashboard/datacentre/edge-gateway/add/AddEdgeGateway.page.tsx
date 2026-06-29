@@ -16,6 +16,7 @@ import {
   EDGE_GATEWAY_NAME_MAX_LENGTH,
   EDGE_GATEWAY_NAME_MIN_LENGTH,
 } from './adgeEdgeGateway.constants';
+import { isIpBlockAvailable } from '@/utils/ipBlockAvailability';
 
 export default function AddEdgeGatewayPage() {
   const { t } = useTranslation('datacentres/edge-gateway');
@@ -27,8 +28,7 @@ export default function AddEdgeGatewayPage() {
 
   const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
     id,
-    select: (data) =>
-      data.filter((ip) => ip.resource_status.status === 'AVAILABLE'),
+    select: (data) => data.filter(isIpBlockAvailable),
   });
 
   const { mutate: addEdgeGateway, isPending: isCreating } = useAddEdgeGateway({
@@ -93,7 +93,7 @@ export default function AddEdgeGatewayPage() {
             <SelectField
               field={field}
               label={t('edge_ip_block')}
-              options={ipBlocks?.map((b) => b.ipBlock)}
+              options={ipBlocks?.map((b) => b.currentState.internalScope) || []}
               isDisabled={isLoadingIpBlocks || !ipBlocks?.length}
               isLoading={isLoadingIpBlocks}
               error={fieldState.error && t('edge_add_input_ip_block_helper')}
