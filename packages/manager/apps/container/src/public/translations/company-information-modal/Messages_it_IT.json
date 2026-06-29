@@ -1,7 +1,7 @@
 {
   "company_information_modal_title": "AZIONE OBBLIGATORIA",
-  "company_information_modal_description": "Le informazioni riguardanti la vostra organizzazione non sono conformi. L'aggiornamento di queste è obbligatorio nell'ambito della riforma della fatturazione elettronica <anchor>tutto sapere sulla fatturazione elettronica</anchor>. Inserite il vostro SIRET, ci occupiamo del resto.",
-  "company_information_modal_action_modify": "Aggiornare i miei dati",
+  "company_information_modal_description": "Alcune informazioni relative alla tua organizzazione non risultano conformi. È necessario procedere al loro aggiornamento nell’ambito della riforma della fatturazione elettronica. <anchor>Maggiori informazioni sulla fatturazione elettronica</anchor>. Inserisci il tuo SIRET, noi ci occuperemo del resto.",
+  "company_information_modal_action_modify": "Aggiorna i tuoi dati",
   "company_information_modal_action_individual": "Sono un privato",
   "company_information_modal_info_individual": "Se il vostro account non è un'azienda, recatevi sul modulo di modifica del vostro profilo e cambiate il tipo di account in « Privato »."
 }
