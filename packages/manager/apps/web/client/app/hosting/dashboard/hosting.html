@@ -322,8 +322,8 @@
             data-translate="common_service_expired_1"
             data-translate-values="{ t0: '<strong>' + hosting.serviceDisplayName + '</strong>'}"
         ></span>
-        <a href="{{::autorenew.url}}"
-            ><span data-translate="common_service_expired_2"></span
+        <a href="{{ $ctrl.renewUrl }}" target="_blank" rel="noopener noreferrer"
+            ><span data-translate="hosting_dashboard_service_renew"></span
         ></a>
     </oui-message>
 </div>

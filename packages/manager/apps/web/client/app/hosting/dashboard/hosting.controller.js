@@ -9,6 +9,7 @@ import some from 'lodash/some';
 import union from 'lodash/union';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import { DATABASES_TRACKING, HOSTING_GUIDES } from '../hosting.constants';
+import { RENEW_URL } from '../general-informations/general-informations.constants';
 
 export default class {
   /* @ngInject */
@@ -169,6 +170,7 @@ export default class {
     this.multisiteLabel = isWebsiteFeatureAvailable
       ? 'hosting_tab_WEBSITE'
       : 'hosting_tab_MULTISITE';
+    this.renewUrl = `${RENEW_URL[this.user.ovhSubsidiary]}${this.serviceName}`;
   }
 
   $onInit() {

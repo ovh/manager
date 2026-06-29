@@ -532,13 +532,4 @@ export default class HostingGeneralInformationsCtrl {
 
     return this.$translate.instant(translateKey);
   }
-
-  onAdvancePaymentClick() {
-    if (typeof this.advancePaymentCallBack === 'function') {
-      this.advancePaymentCallBack({
-        service: this.service,
-        action: this.SERVICE_ACTIONS.ANTICIPATE_PAYMENT,
-      });
-    }
-  }
 }
