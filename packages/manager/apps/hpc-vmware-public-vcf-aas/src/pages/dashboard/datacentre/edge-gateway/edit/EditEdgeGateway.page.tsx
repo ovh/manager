@@ -18,6 +18,7 @@ import {
   EDGE_GATEWAY_NAME_MAX_LENGTH,
   EDGE_GATEWAY_NAME_MIN_LENGTH,
 } from '../add/adgeEdgeGateway.constants';
+import { isIpBlockAvailable } from '@/utils/ipBlockAvailability';
 
 export default function EditEdgeGatewayPage() {
   const { t } = useTranslation('datacentres/edge-gateway');
@@ -35,8 +36,7 @@ export default function EditEdgeGatewayPage() {
 
   const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
     id,
-    select: (data) =>
-      data.filter((ip) => ip.resource_status.status === 'AVAILABLE'),
+    select: (data) => data.filter(isIpBlockAvailable),
   });
 
   const {
@@ -77,7 +77,8 @@ export default function EditEdgeGatewayPage() {
   };
 
   const currentIpBlock = edge?.currentState.ipBlock;
-  const availableIpBlocks = ipBlocks?.map((b) => b.ipBlock) ?? [];
+  const availableIpBlocks =
+    ipBlocks?.map((b) => b.currentState.internalScope) ?? [];
   const ipBlockOptions =
     currentIpBlock && !availableIpBlocks.includes(currentIpBlock)
       ? [currentIpBlock, ...availableIpBlocks]

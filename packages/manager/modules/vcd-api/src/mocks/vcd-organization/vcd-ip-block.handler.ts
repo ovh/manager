@@ -11,7 +11,7 @@ export const getIpBlockMocks = ({
   nbIpBlock = Number.POSITIVE_INFINITY,
 }: GetIpBlockMocksParams): Handler[] => [
   {
-    url: '/vmwareCloudDirector/organization/:id/ipblock',
+    url: '/vmwareCloudDirector/organization/:id/IpSpace',
     response: isIpBlockKO
       ? { message: 'ipBlock error' }
       : IP_BLOCK_MOCKS.slice(0, nbIpBlock),
