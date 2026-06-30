@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.7](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.6...@ovh-ux/manager-web@19.43.7) (2026-06-30)
+
+
+### Bug Fixes
+
+* **web-hosting:** manage renew banner for expired clients ([8270f6d](https://github.com/ovh/manager/commit/8270f6dc2aefd5096ae4868a9b45c459cf3022f0)), closes [#PUWEBPT-429](https://github.com/ovh/manager/issues/PUWEBPT-429)
+
+
+
+
+
 ## [19.43.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.5...@ovh-ux/manager-web@19.43.6) (2026-06-26)
 
 
