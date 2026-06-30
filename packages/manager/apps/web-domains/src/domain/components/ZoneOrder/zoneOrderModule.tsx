@@ -13,6 +13,11 @@ export interface ZoneOptions {
    * the string `'true'`, so it must be passed as a string, not a boolean.
    */
   dnssecSupported?: 'true' | 'false';
+  /**
+   * Navbar config forwarded to the configo. `backUrl` drives the "Return"
+   * button: the MFE navigates `window.location.href = backUrl`.
+   */
+  navbar?: { backUrl?: string };
 }
 
 interface ZoneModuleFederationConfiguration {
@@ -20,6 +25,7 @@ interface ZoneModuleFederationConfiguration {
     subsidiary: Subsidiary;
     language?: string;
     hostAppName?: string;
+    navbar?: { backUrl?: string };
   };
   selection: {
     zoneName?: string;
@@ -50,6 +56,7 @@ export const ZoneComponent = lazy(() =>
           hostAppName,
           zoneName,
           dnssecSupported,
+          navbar,
         }: ZoneOptions) => {
           const containerRef = useRef<HTMLDivElement>(null);
           useEffect(() => {
@@ -63,6 +70,7 @@ export const ZoneComponent = lazy(() =>
                 subsidiary,
                 language,
                 hostAppName,
+                navbar,
               },
               selection: {
                 zoneName,

@@ -25,6 +25,12 @@ export default function ZoneOrderComponent() {
     ? 'true'
     : 'false';
 
+  // Configo "Return" (and post-submit "Finish") buttons should land on the
+  // domain general information tab. The MFE navigates `window.location.href`
+  // to navbar.backUrl, so derive the sibling tab URL from the current
+  // `/zone/activate` location to stay agnostic to the shell URL scheme.
+  const backUrl = window.location.href.replace('/zone/activate', '/information');
+
   return (
     <div className="suspend-module">
       <Suspense fallback={<Loading />}>
@@ -34,6 +40,7 @@ export default function ZoneOrderComponent() {
           hostAppName="manager"
           zoneName={serviceName ?? ''}
           dnssecSupported={dnssecSupported}
+          navbar={{ backUrl }}
         />
       </Suspense>
     </div>
