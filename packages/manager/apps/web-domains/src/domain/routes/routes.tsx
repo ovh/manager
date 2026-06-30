@@ -23,15 +23,8 @@ const AnycastOrderConfigo = React.lazy(() =>
   import('@/domain/components/AnycastOrder/anycastOrderComponent'),
 );
 
-// Legacy order page kept for the zone activation route (rewired to the zone
-// configo by the zone-subscription branch); this PR only replaces the Anycast
-// order path.
-const DnsOrderPage = React.lazy(() =>
-  import('@/common/pages/DnsOrder/DnsOrder.page'),
-);
-
-const ZoneActivatePage = React.lazy(() =>
-  import('@/domain/pages/domainTabs/dns/zoneActivate'),
+const ZoneOrderConfigo = React.lazy(() =>
+  import('@/domain/components/ZoneOrder/zoneOrderComponent'),
 );
 
 const DnsModifyPage = React.lazy(() =>
@@ -130,6 +123,11 @@ export default (
         <Route path={urls.domainTabZone} Component={ZoneLayout}>
           <Route path={zoneUrls.zoneRoot} Component={ZonePage} />
         </Route>
+        {/* Zone order configo. Kept as a sibling of the ZoneLayout route (not
+            nested under it) so it escapes ZoneLayout's route-sync remount on
+            browser-tab focus, while still living under DomainDetailPage so the
+            dashboard chrome stays mounted (fluid, no full reload). */}
+        <Route path={zoneUrls.zoneActivate} Component={ZoneOrderConfigo} />
         {/* Anycast order configo (subscribe/upgrade, picked at runtime). Child
             of DomainDetailPage so the dashboard stays mounted: no focus-driven
             remount loop, and history.back() returns without a full reload. */}
@@ -161,7 +159,6 @@ export default (
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
-      <Route path={zoneUrls.zoneActivate} Component={ZoneActivatePage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
