@@ -385,17 +385,14 @@ function ZonePageInner() {
     setOpenModal('delete-entries');
   }, []);
 
-  // No DNS zone yet → send the user straight to the dedicated order route
-  // (`zoneActivate`). That route lives OUTSIDE the domain tab layout, so —
-  // unlike this tab, whose parent layout tears the subtree down and remounts
-  // it on every browser-tab focus — the federated configo stays mounted and
-  // keeps its in-flight order state (the post-submit confirmation recap).
-  // Same isolation as the webhosting order page. `replace` keeps it instant
-  // with no extra history entry (no banner / no intermediate button).
+  // No DNS zone yet → redirect to the order configo route. That route is a
+  // sibling of this tab's ZoneLayout (still under DomainDetailPage), so the
+  // jump only swaps the dashboard Outlet — the dashboard stays mounted (fluid,
+  // no full reload) — while keeping the configo OUT of ZoneLayout, whose
+  // route-sync remounts the federated MFE on browser-tab focus (which would
+  // drop the post-submit confirmation recap). No banner / no activate button.
   if (!isFetchingDomainZone && !domainZone) {
-    return (
-      <Navigate to={buildUrl(domainUrls.zoneActivate)} replace />
-    );
+    return <Navigate to={buildUrl(domainUrls.zoneActivate)} replace />;
   }
 
   return (
