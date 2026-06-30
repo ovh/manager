@@ -15,7 +15,7 @@ const getWillPaymentUrl = (): string => {
   }
 
   if (isLabeuEnvironment() && import.meta.env.VITE_WP_LABEU_ENTRY_POINT) {
-    return `${import.meta.env.VITE_WP_LABEU_ENTRY_POINT}v=${minute}`;
+    return `${import.meta.env.VITE_WP_LABEU_ENTRY_POINT}?v=${minute}`;
   }
 
   return `https://www.ovhcloud.com/payment/assets/remoteEntry.js?v=${minute}`;
