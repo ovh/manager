@@ -24,7 +24,7 @@ import {
 } from '@ovhcloud/ods-react';
 import { useMemo, useCallback, useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ExpandedState, RowSelectionState } from '@tanstack/react-table';
 import ZoneDnsDatagrid from './components/ZoneDnsDatagrid';
 import UnauthorizedBanner from '@/domain/components/UnauthorizedBanner/UnauthorizedBanner';
@@ -153,13 +153,12 @@ function ZonePageInner() {
   const canReset = isActionAuthorized('dnsZone:apiovh:reset');
   const canImportZone = isActionAuthorized('dnsZone:apiovh:import');
 
-  const { addInfo, clearNotifications } = useNotifications();
+  const { clearNotifications } = useNotifications();
   useEffect(() => {
     if (isFetchingDomainZone) return;
+    // No "no zone" banner: when the zone is missing we render the order
+    // configo inline instead (see the `!domainZone` branch below).
     clearNotifications();
-    if (domainZoneError) {
-      addInfo(t('zone_page_message_no_zone'), false);
-    }
   }, [isFetchingDomainZone, domainZoneError]);
 
   useEffect(() => {
@@ -386,6 +385,19 @@ function ZonePageInner() {
     setOpenModal('delete-entries');
   }, []);
 
+  // No DNS zone yet → send the user straight to the dedicated order route
+  // (`zoneActivate`). That route lives OUTSIDE the domain tab layout, so —
+  // unlike this tab, whose parent layout tears the subtree down and remounts
+  // it on every browser-tab focus — the federated configo stays mounted and
+  // keeps its in-flight order state (the post-submit confirmation recap).
+  // Same isolation as the webhosting order page. `replace` keeps it instant
+  // with no extra history entry (no banner / no intermediate button).
+  if (!isFetchingDomainZone && !domainZone) {
+    return (
+      <Navigate to={buildUrl(domainUrls.zoneActivate)} replace />
+    );
+  }
+
   return (
     <>
       {zoneModals}
@@ -495,19 +507,6 @@ function ZonePageInner() {
             )}
           />
         </>
-      )}
-
-      {!isFetchingDomainZone && !domainZone && (
-        <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-row items-start gap-4">
-            <Button
-              size={BUTTON_SIZE.sm}
-              onClick={() => navigate(buildUrl(`${domainUrls.zoneActivate}`))}
-            >
-              {t('zone_page_activate_zone')}
-            </Button>
-          </div>
-        </div>
       )}
     </>
   );
