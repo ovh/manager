@@ -1,7 +1,7 @@
 {
-  "company_information_modal_title": "DZIAŁANIE OBOWIĄZKOWE",
-  "company_information_modal_description": "Informacje dotyczące Twojej organizacji są niezgodne. Aktualizacja tych informacji jest obowiązkowa w ramach reformy fakturowania elektronicznego <anchor>wszystko o fakturowaniu elektronicznym</anchor>. Wprowadź swój numer SIRET, a my zajmiemy się resztą.",
-  "company_information_modal_action_modify": "Zaktualizuj moje dane",
+  "company_information_modal_title": "WYMAGANE DZIAŁANIE",
+  "company_information_modal_description": "Niektóre dane dotyczące Twojej firmy wymagają aktualizacji. Jest ona obowiązkowa w związku z reformą dotyczącą fakturowania elektronicznego <anchor>dowiedz się więcej o fakturowaniu elektronicznym</anchor>. Podaj numer SIRET, a my zajmiemy się resztą.",
+  "company_information_modal_action_modify": "Zaktualizuj dane",
   "company_information_modal_action_individual": "Jestem osobą prywatną",
   "company_information_modal_info_individual": "Jeśli Twoje konto nie jest kontem firmowym, przejdź do formularza edycji swojego profilu i zmień typ konta na „Osoba fizyczna”."
 }

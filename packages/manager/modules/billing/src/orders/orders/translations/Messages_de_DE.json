@@ -27,7 +27,7 @@
   "orders_order_loading_error": "Fehler beim Abruf dieser Bestellung",
   "orders_search_input_title": "Per ID nach meinen Bestellungen suchen.",
   "orders_table_actions_tooltip": "Weitere Details zu dieser Bestellung",
-  "orders_order_action_retract": "Ich möchte von meinem Rücktritt Gebrauch machen.",
+  "orders_order_action_retract": "Ich möchte widerrufen",
   "orders_tracking": "Bestellungsnachverfolgung",
   "orders_order_status_orderExpired": "Bestellung abgelaufen ",
   "orders_order_view_bill": "Rechnung anzeigen"

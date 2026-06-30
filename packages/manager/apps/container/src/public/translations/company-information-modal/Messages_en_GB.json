@@ -1,7 +1,7 @@
 {
-  "company_information_modal_title": "MANDATORY ACTION",
-  "company_information_modal_description": "Information regarding your organisation is non-compliant. Updating this information is mandatory as part of the electronic invoicing reform <anchor>learn all about electronic invoicing</anchor>. Provide your SIRET, and we will take care of the rest.",
-  "company_information_modal_action_modify": "Update my details",
+  "company_information_modal_title": "ACTION REQUIRED",
+  "company_information_modal_description": "Details about your organisation are currently non-compliant. You need to update them to comply with the new electronic invoicing requirements. <anchor>Find out more about e-invoicing</anchor>. Enter your SIRET (or company registration number) and we will handle the rest.",
+  "company_information_modal_action_modify": "Update",
   "company_information_modal_action_individual": "I’m an individual",
   "company_information_modal_info_individual": "If your account is not a business, please go to the profile editing form and change the account type to 'Individual'."
 }

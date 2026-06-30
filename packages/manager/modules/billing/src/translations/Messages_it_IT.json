@@ -131,7 +131,7 @@
   "orders_order_loading_error": "Si è verificato un errore durante il recupero di questo ordine",
   "orders_search_input_title": "Ricerca i tuoi ordini per identificativo.",
   "orders_table_actions_tooltip": "Più informazioni su questo ordine",
-  "orders_order_action_retract": "Desidero recedere.",
+  "orders_order_action_retract": "Vorrei recedere il contratto",
   "orders_retract_return_to_orders": "Ritorna ai tuoi ordini",
   "orders_retract_title": "Recesso dei servizi dell'ordine",
   "orders_retract_confirmation": "Vuoi davvero annullare il tuo ordine {{t0}}?",

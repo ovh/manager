@@ -131,7 +131,7 @@
   "orders_order_loading_error": "Wystąpił błąd podczas pobierania tego zamówienia.",
   "orders_search_input_title": "Wyszukaj zamówienia na podstawie identyfikatora.",
   "orders_table_actions_tooltip": "Więcej informacji na temat tego zamówienia",
-  "orders_order_action_retract": "Chcę się wycofać",
+  "orders_order_action_retract": "Chcę odstąpić od umowy",
   "orders_retract_return_to_orders": "Powrót do zamówień",
   "orders_retract_title": "Rezygnacja z usługi lub z usług znajdujących się w zamówieniu",
   "orders_retract_confirmation": "Czy chcesz anulować zamówienie {{t0}}?",

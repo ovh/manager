@@ -27,7 +27,7 @@
   "orders_order_loading_error": "Error al cargar el pedido.",
   "orders_search_input_title": "Buscar mis pedidos por identificador.",
   "orders_table_actions_tooltip": "Más detalles sobre el pedido",
-  "orders_order_action_retract": "Deseo retractarme",
+  "orders_order_action_retract": "Quiero desistir del contrato",
   "orders_tracking": "Seguimiento del pedido",
   "orders_order_status_orderExpired": "El pedido ha expirado.",
   "orders_order_view_bill": "Ver mi factura"

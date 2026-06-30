@@ -131,7 +131,7 @@
   "orders_order_loading_error": "An error occurred while retrieving this order",
   "orders_search_input_title": "Search for my orders by ID. ",
   "orders_table_actions_tooltip": "More details about this order",
-  "orders_order_action_retract": "I wish to withdraw.",
+  "orders_order_action_retract": "I wish to cancel my order",
   "orders_retract_return_to_orders": "Back to my orders",
   "orders_retract_title": "Withdrawal of the service(s) from the order",
   "orders_retract_confirmation": "Do you really want to cancel order {{t0}}?",

@@ -27,7 +27,7 @@
   "orders_order_loading_error": "Ocorreu um erro durante a recuperação desta encomenda",
   "orders_search_input_title": "Pesquisar as minhas encomendas por ID.",
   "orders_table_actions_tooltip": "Mais detalhes sobre esta encomenda",
-  "orders_order_action_retract": "Desejo retractar-me",
+  "orders_order_action_retract": "Quero rescindir o contrato",
   "orders_tracking": "Seguir encomenda",
   "orders_order_status_orderExpired": "Encomenda expirada",
   "orders_order_view_bill": "Ver a minha fatura"
