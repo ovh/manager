@@ -8,8 +8,6 @@ import { Message, Skeleton, Text } from '@ovhcloud/ods-react';
 
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 
-import { PriceTilePrice } from '@/common/components/price-tile/PriceTilePrice';
-import { RadioCard } from '@/common/components/radio-card/RadioCard.component';
 import { useOrderCatalogOkms } from '@/common/data/hooks/useOrderCatalogOkms';
 
 import {
@@ -19,6 +17,7 @@ import {
   getDefaultProtectionLevel,
   isProtectionLevel,
 } from '../utils/protectionLevelCards';
+import { ProtectionLevelRadioCard } from './ProtectionLevelRadioCard.component';
 
 export type ProtectionLevelSectionProps = {
   references: OkmsServiceKeyReference[];
@@ -70,28 +69,24 @@ export const ProtectionLevelSection = ({
       ) : (
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {cards.map(({ config, disabled }) => (
-            <RadioCard
+            <ProtectionLevelRadioCard
               key={config.value}
-              id={config.value}
+              value={config.value}
               name="protectionLevel"
               selected={protectionLevel}
               isDisabled={disabled}
               title={t(config.titleKey)}
               subTitle={t(config.subtitleKey)}
+              productCode={config.productCode}
+              comingSoonLabel={t(
+                'key_management_service_service-keys_create_protection_level_coming_soon',
+              )}
               onChange={(event) => {
                 if (isProtectionLevel(event.target.value)) {
                   setProtectionLevel(event.target.value);
                 }
               }}
-            >
-              {disabled ? (
-                <Text preset="heading-6" className="text-[--ods-color-primary-500]">
-                  {t('key_management_service_service-keys_create_protection_level_coming_soon')}
-                </Text>
-              ) : (
-                <PriceTilePrice productCode={config.productCode} />
-              )}
-            </RadioCard>
+            />
           ))}
         </div>
       )}
