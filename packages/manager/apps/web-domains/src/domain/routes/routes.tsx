@@ -23,6 +23,10 @@ const DnsOrderPage = React.lazy(() =>
   import('@/common/pages/DnsOrder/DnsOrder.page'),
 );
 
+const ZoneActivatePage = React.lazy(() =>
+  import('@/domain/pages/domainTabs/dns/zoneActivate'),
+);
+
 const DnsModifyPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dns/dnsModify'),
 );
@@ -144,7 +148,7 @@ export default (
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
-      <Route path={zoneUrls.zoneActivate} Component={DnsOrderPage} />
+      <Route path={zoneUrls.zoneActivate} Component={ZoneActivatePage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
