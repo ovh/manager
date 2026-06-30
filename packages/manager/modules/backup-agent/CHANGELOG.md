@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.15.3...@ovh-ux/backup-agent@1.16.0) (2026-06-30)
+
+
+### Features
+
+* **backup-agent:** add 2-step onboarding wizard for backup-agent baremetal ([8719021](https://github.com/ovh/manager/commit/87190218ca275f77bdfaaf9327a433b01b8df4bd)), closes [#BKP-1190](https://github.com/ovh/manager/issues/BKP-1190)
+
+
+
+
+
 ## [1.15.3](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.15.2...@ovh-ux/backup-agent@1.15.3) (2026-03-25)
 
 
