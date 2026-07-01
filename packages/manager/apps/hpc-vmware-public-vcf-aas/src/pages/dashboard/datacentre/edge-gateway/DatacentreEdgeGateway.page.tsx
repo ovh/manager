@@ -1,6 +1,7 @@
 import {
   useVcdDatacentre,
   useVcdEdgeGateways,
+  useVcdIpBlocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   Datagrid,
@@ -17,6 +18,7 @@ import { useEdgeGatewayListingColumns } from './hooks/useEdgeGatewayListingColum
 import { EdgeGatewayOrderButton } from './components/EdgeGatewayOrderButton.component';
 import { useHasEdgeGatewayAccess } from '@/hooks/edge/useHasEdgeGatewayAccess';
 import { EDGE_GATEWAY_MAX_QUANTITY } from './datacentreEdgeGateway.constants';
+import { aggregateEdgeGateways } from '@/utils/aggregateEdgeGateways';
 
 export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
@@ -24,13 +26,18 @@ export default function EdgeGatewayListingPage() {
   const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
   const edgeQuery = useVcdEdgeGateways({ id, vdcId });
+  const ipBlockQuery = useVcdIpBlocks({ id });
 
-  const queryList = [vdcQuery, edgeQuery];
+  const queryList = [vdcQuery, edgeQuery, ipBlockQuery];
   const queries = {
     isLoading: queryList.some((q) => q.isLoading),
     isError: queryList.some((q) => q.isError),
     error: queryList.find((q) => q.isError)?.error?.message ?? null,
-    data: { vdc: vdcQuery?.data?.data, edges: edgeQuery?.data },
+    data: {
+      vdc: vdcQuery?.data?.data,
+      edges: edgeQuery?.data,
+      ipBlocks: ipBlockQuery?.data,
+    },
   };
   const hasMaxEdges = queries.data?.edges?.length >= EDGE_GATEWAY_MAX_QUANTITY;
 
@@ -40,6 +47,11 @@ export default function EdgeGatewayListingPage() {
       <ErrorBanner error={{ status: 404, data: { message: queries.error } }} />
     );
   }
+
+  const edgesWithIpBlocks = aggregateEdgeGateways({
+    edges: queries.data.edges,
+    ipBlocks: queries.data.ipBlocks,
+  });
 
   return (
     <RedirectionGuard
@@ -56,8 +68,8 @@ export default function EdgeGatewayListingPage() {
           />
           <Datagrid
             columns={columns}
-            items={queries.data.edges}
-            totalItems={queries.data.edges?.length}
+            items={edgesWithIpBlocks}
+            totalItems={edgesWithIpBlocks.length}
           />
         </section>
       </Suspense>
