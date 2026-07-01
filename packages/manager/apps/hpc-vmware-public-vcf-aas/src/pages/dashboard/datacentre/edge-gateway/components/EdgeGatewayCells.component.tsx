@@ -1,5 +1,5 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { VCDEdgeGateway } from '@ovh-ux/manager-module-vcd-api';
+import { VCDEdgeGatewayWithIpBlock } from '@ovh-ux/manager-module-vcd-api';
 import {
   ActionMenu,
   ActionMenuItem,
@@ -11,15 +11,15 @@ import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { subRoutes } from '@/routes/routes.constant';
 
-export const EdgeGatewayNameCell = (edge: VCDEdgeGateway) => (
-  <DataGridTextCell>{edge.currentState.edgeGatewayName}</DataGridTextCell>
+export const EdgeGatewayNameCell = (edge: VCDEdgeGatewayWithIpBlock) => (
+  <DataGridTextCell>{edge.currentState.name}</DataGridTextCell>
 );
 
-export const EdgeGatewayIPBlockCell = (edge: VCDEdgeGateway) => (
-  <DataGridTextCell>{edge.currentState.ipBlock}</DataGridTextCell>
+export const EdgeGatewayIPBlockCell = (edge: VCDEdgeGatewayWithIpBlock) => (
+  <DataGridTextCell>{edge.ipBlock?.internalScope ?? ''}</DataGridTextCell>
 );
 
-export const EdgeGatewayActionCell = (edge: VCDEdgeGateway) => {
+export const EdgeGatewayActionCell = (edge: VCDEdgeGatewayWithIpBlock) => {
   const { t } = useTranslation([
     'datacentres/edge-gateway',
     NAMESPACES.ACTIONS,

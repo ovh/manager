@@ -18,6 +18,8 @@ type UseVcdEdgeGatewayListParams = GetVCDDatacentreParams &
 type UseVcdEdgeGatewayParams = GetEdgeGatewayParams &
   RestrictedQueryOptions<VCDEdgeGateway>;
 
+export const VCF_ADVANCED_TESTING_MODE = false; // TODO: [EDGE] remove after QA tests
+
 export const useVcdEdgeGateways = ({
   id,
   vdcId,
@@ -25,25 +27,18 @@ export const useVcdEdgeGateways = ({
 }: UseVcdEdgeGatewayListParams): UseQueryResult<VCDEdgeGateway[], Error> =>
   useQuery({
     queryKey: getVcdEdgeGatewayListQueryKey(id, vdcId),
-    queryFn: () => getVcdEdgeGateways(id, vdcId),
-    ...options,
-  });
-
-// TODO: [EDGE] remove when unmocking
-export const useVcdEdgeGatewaysMocks = ({
-  id,
-  vdcId,
-  ...options
-}: UseVcdEdgeGatewayListParams): UseQueryResult<VCDEdgeGateway[], Error> =>
-  useQuery({
-    queryKey: getVcdEdgeGatewayListQueryKey(id, vdcId),
-    queryFn: () =>
-      new Promise((resolve) => {
-        console.log('🛜 mocking useVcdEdgeGateways api call...');
-        setTimeout(() => {
-          resolve(EDGE_GATEWAY_MOCKS);
-        }, 2_000);
-      }),
+    queryFn: () => {
+      if (VCF_ADVANCED_TESTING_MODE) {
+        // TODO: [EDGE] remove after QA tests
+        return new Promise((resolve) => {
+          console.log('🛜 mocking useVcdEdgeGateways api call...');
+          setTimeout(() => {
+            resolve(EDGE_GATEWAY_MOCKS);
+          }, 2_000);
+        });
+      }
+      return getVcdEdgeGateways(id, vdcId);
+    },
     ...options,
   });
 
@@ -55,25 +50,19 @@ export const useVcdEdgeGateway = ({
 }: UseVcdEdgeGatewayParams): UseQueryResult<VCDEdgeGateway, Error> =>
   useQuery({
     queryKey: getVcdEdgeGatewayQueryKey({ id, vdcId, edgeGatewayId }),
-    queryFn: () => getVcdEdgeGateway({ id, vdcId, edgeGatewayId }),
-    ...options,
-  });
-
-// TODO: [EDGE] remove when unmocking
-export const useVcdEdgeGatewayMocks = ({
-  id,
-  vdcId,
-  edgeGatewayId,
-  ...options
-}: UseVcdEdgeGatewayParams): UseQueryResult<VCDEdgeGateway, Error> =>
-  useQuery({
-    queryKey: getVcdEdgeGatewayQueryKey({ id, vdcId, edgeGatewayId }),
-    queryFn: () =>
-      new Promise((resolve) => {
-        console.log('🛜 mocking useVcdEdgeGateway api call...');
-        setTimeout(() => {
-          resolve(EDGE_GATEWAY_MOCKS.find((edge) => edge.id === edgeGatewayId));
-        }, 2_000);
-      }),
+    queryFn: () => {
+      if (VCF_ADVANCED_TESTING_MODE) {
+        // TODO: [EDGE] remove after QA tests
+        return new Promise((resolve) => {
+          console.log('🛜 mocking useVcdEdgeGateway api call...');
+          setTimeout(() => {
+            resolve(
+              EDGE_GATEWAY_MOCKS.find((edge) => edge.id === edgeGatewayId),
+            );
+          }, 2_000);
+        });
+      }
+      return getVcdEdgeGateway({ id, vdcId, edgeGatewayId });
+    },
     ...options,
   });

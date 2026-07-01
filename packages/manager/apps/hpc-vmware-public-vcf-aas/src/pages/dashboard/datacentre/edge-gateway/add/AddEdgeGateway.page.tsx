@@ -52,7 +52,23 @@ export default function AddEdgeGatewayPage() {
     },
   });
 
-  const onSubmit = (data: AddEdgeForm) => addEdgeGateway(data);
+  const onSubmit = (data: AddEdgeForm) => {
+    const selectedIpBlock = ipBlocks?.find(
+      (b) => b.currentState.internalScope === data.ipBlock,
+    );
+    if (!selectedIpBlock) {
+      addError({ content: t('edge_operation_error') });
+      return;
+    }
+
+    addEdgeGateway({
+      name: data.edgeGatewayName,
+      ipBlock: {
+        id: selectedIpBlock.id,
+        name: selectedIpBlock.currentState.name,
+      },
+    });
+  };
 
   return (
     <Drawer
@@ -93,6 +109,7 @@ export default function AddEdgeGatewayPage() {
             <SelectField
               field={field}
               label={t('edge_ip_block')}
+              placeholder={t('edge_ip_block_select')}
               options={ipBlocks?.map((b) => b.currentState.internalScope) || []}
               isDisabled={isLoadingIpBlocks || !ipBlocks?.length}
               isLoading={isLoadingIpBlocks}

@@ -2,10 +2,11 @@ import { vi, expect, it, describe } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
 import {
   organizationList,
-  datacentreList,
+  datacentreNsxMock,
 } from '@ovh-ux/manager-module-vcd-api';
 import { labels, renderTest } from '../../../../../test-utils';
 import { urls } from '../../../../../routes/routes.constant';
+import { FEATURE_FLAGS } from '../../../../../app.constants';
 
 vi.mock('@ovh-ux/manager-react-components', async (ogMod) => {
   const actual: typeof import('@ovh-ux/manager-react-components') = await ogMod();
@@ -28,7 +29,7 @@ vi.mock('@ovh-ux/manager-react-components', async (ogMod) => {
 
 const config = {
   org: organizationList[0],
-  vdc: datacentreList[0],
+  vdc: datacentreNsxMock,
   labels: { ...labels.datacentresEdgeGateway, ...labels.actions },
   waitOptions: { timeout: 10_000 },
 };
@@ -50,7 +51,10 @@ describe('Datacentre Edge Gateway Add Page', () => {
     .replace(':vdcId', config.vdc.id);
 
   it('access and display AddEdgeGateway page drawer', async () => {
-    await renderTest({ initialRoute });
+    await renderTest({
+      initialRoute,
+      feature: { [FEATURE_FLAGS.EDGE_GATEWAY]: true },
+    });
 
     // wait for drawer to be loaded
     await waitFor(() => {
