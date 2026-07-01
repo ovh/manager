@@ -92,6 +92,13 @@ export type OkmsServiceKeySize = OkmsServiceKeyTypeOctSize | OkmsServiceKeyTypeR
 /* Elliptic Curve (EC) */
 export type OkmsServiceKeyCurve = 'P-256' | 'P-384' | 'P-521';
 
+/*
+KEY PROTECTION LEVEL
+*/
+export const OKMS_SERVICE_KEY_PROTECTION_LEVELS = ['HSM', 'MANAGED_HSM', 'SOFTWARE'] as const;
+
+export type OkmsServiceKeyProtectionLevel = (typeof OKMS_SERVICE_KEY_PROTECTION_LEVELS)[number];
+
 /* Deactivation reasons */
 export const OkmsServiceKeyDeactivationReasonTypes = [
   'AFFILIATION_CHANGED',
@@ -131,4 +138,5 @@ export type OkmsServiceKeyPostPayload = {
   size?: OkmsServiceKeySize;
   operations: OkmsServiceKeyOperations[];
   type: OkmsKeyTypes;
+  protectionLevel?: OkmsServiceKeyProtectionLevel;
 };
