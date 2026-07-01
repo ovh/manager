@@ -31,6 +31,11 @@
                 data-model="$ctrl.selectedOffer"
                 data-value="$row"
                 ><span data-ng-bind="$row.productName"></span>
+                <span
+                    class="ml-2 oui-badge oui-badge_new"
+                    data-ng-if="$row.isGen2"
+                    data-ng-bind="$ctrl.gen2BadgeLabel"
+                ></span>
             </oui-radio>
         </oui-datagrid-column>
         <oui-datagrid-column
