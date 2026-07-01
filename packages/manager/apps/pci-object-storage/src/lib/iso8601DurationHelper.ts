@@ -13,13 +13,15 @@ export interface Duration {
 
 /**
  * Converts an ISO 8601 duration string to a value and unit object
- * Supports Days (D), Months (M), and Years (Y)
- * @param period - ISO 8601 duration string (e.g., 'P1Y', 'P30D', 'P6M')
+ * Supports Days (D), Weeks (W), Months (M), and Years (Y).
+ * Weeks are normalized to days (1W = 7D) since week is not a display unit.
+ * @param period - ISO 8601 duration string (e.g., 'P1Y', 'P30D', 'P6M', 'P1W')
  * @param defaultValue - Default duration to return if parsing fails (defaults to { value: 1, unit: 'Y' })
  * @returns Object with value and unit
  * @example
  * fromISO8601('P1Y') // { value: 1, unit: 'Y' }
  * fromISO8601('P30D') // { value: 30, unit: 'D' }
+ * fromISO8601('P1W') // { value: 7, unit: 'D' }
  * fromISO8601('invalid') // { value: 1, unit: 'Y' }
  */
 export const fromISO8601 = (
@@ -27,11 +29,18 @@ export const fromISO8601 = (
   defaultValue: Duration = { value: 1, unit: 'Y' },
 ): Duration => {
   if (!period) return defaultValue;
-  const match = period.match(/^P(\d+)([DMY])$/);
+  const match = period.match(/^P(\d+)([DWMY])$/);
   if (!match) return defaultValue;
 
+  const value = parseInt(match[1], 10);
+  // ISO 8601 represents an exact number of weeks (e.g. 7 days as 'P1W').
+  // Normalize to days since weeks are not a supported display unit.
+  if (match[2] === 'W') {
+    return { value: value * 7, unit: 'D' };
+  }
+
   const unit = match[2] as DurationUnit;
-  return { value: parseInt(match[1], 10), unit };
+  return { value, unit };
 };
 
 /**
@@ -58,10 +67,11 @@ export const toISO8601 = (value: number, unit: DurationUnit): string => {
  * @example
  * isValidISO8601('P1Y') // true
  * isValidISO8601('P30D') // true
+ * isValidISO8601('P1W') // true
  * isValidISO8601('invalid') // false
  */
 export const isValidISO8601 = (period: string): boolean => {
-  return /^P(\d+)([DMY])$/.test(period);
+  return /^P(\d+)([DWMY])$/.test(period);
 };
 
 /**
