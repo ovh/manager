@@ -1,0 +1,6 @@
+{
+  "endOfLife": "Votre service utilise une configuration qui a atteint sa fin de vie. Nous vous recommandons de la mettre à jour vers une version prise en charge dès que possible.",
+  "endOfSale": "Votre service utilise une configuration qui approche de sa fin de vie et n'est plus disponible pour de nouveaux déploiements. Nous vous recommandons de la mettre à jour vers une version prise en charge.",
+  "endOfLifeFork": "Ce service utilise une configuration qui a atteint sa fin de vie. Nous vous recommandons de sélectionner une version prise en charge pour votre nouveau service.",
+  "endOfSaleFork": "Ce service utilise une configuration qui approche de sa fin de vie et n'est plus disponible pour de nouveaux déploiements. Nous vous recommandons de sélectionner une version prise en charge pour votre nouveau service."
+}

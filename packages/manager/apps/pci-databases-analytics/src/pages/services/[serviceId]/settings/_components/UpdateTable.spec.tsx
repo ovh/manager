@@ -7,6 +7,7 @@ import {
 import { UseQueryResult } from '@tanstack/react-query';
 import * as ServiceContext from '@/pages/services/[serviceId]/Service.context';
 import * as database from '@/types/cloud/project/database';
+import * as availabilityApi from '@/data/api/database/availability.api';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import { mockedService as mockedServiceOrig } from '@/__tests__/helpers/mocks/services';
 import {
@@ -15,6 +16,18 @@ import {
 } from '@/__tests__/helpers/mocks/availabilities';
 import { CdbError } from '@/data/api/database';
 import UpdateTable from './UpdateTable.component';
+
+// An availability the current service can migrate to: it differs from the
+// current service (mockedAvailabilities) on version, plan and flavor.
+const mockedAvailabilityTarget: database.Availability = {
+  ...mockedAvailabilitiesUpdate,
+  version: 'version2',
+  plan: 'plan2',
+  specifications: {
+    ...mockedAvailabilitiesUpdate.specifications,
+    flavor: 'flavor2',
+  },
+};
 
 // Override mock to add capabilities
 const mockedService = {
@@ -52,7 +65,15 @@ vi.mock('@/pages/services/[serviceId]/Service.context', () => ({
 vi.mock('@/data/api/database/availability.api', () => ({
   getAvailabilities: vi.fn(() => [
     mockedAvailabilities,
-    mockedAvailabilitiesUpdate,
+    {
+      ...mockedAvailabilitiesUpdate,
+      version: 'version2',
+      plan: 'plan2',
+      specifications: {
+        ...mockedAvailabilitiesUpdate.specifications,
+        flavor: 'flavor2',
+      },
+    },
   ]),
 }));
 
@@ -146,6 +167,109 @@ describe('Update table in settings page', () => {
       expect(createNodeButton.className).toContain('cursor-not-allowed');
       expect(deleteNodeButton).toBeInTheDocument();
       expect(deleteNodeButton.className).toContain('cursor-not-allowed');
+    });
+  });
+
+  it('still shows update buttons when the current service is EOS/EOL', async () => {
+    // Simulate an EOS/EOL service: it is filtered out of the status-filtered
+    // availabilities (version/plan/flavor), and is only returned by the 'self'
+    // target which has no status filter.
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(
+      ({ target }) => {
+        if (target === database.availability.TargetEnum.self) {
+          return Promise.resolve([mockedAvailabilities]);
+        }
+        return Promise.resolve([mockedAvailabilityTarget]);
+      },
+    );
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: mockedService,
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('update-button-tableVersion'),
+      ).toBeInTheDocument();
+      expect(screen.getByTestId('update-button-tablePlan')).toBeInTheDocument();
+      expect(
+        screen.getByTestId('update-button-tableFlavor'),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByTestId('update-button-tableStorage'),
+      ).toBeInTheDocument();
+      expect(screen.getByTestId('create-node-button')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-node-button')).toBeInTheDocument();
+    });
+  });
+
+  it('hides storage/nodes controls when the current offer is EOS/EOL', async () => {
+    // The current offer is end of sale: it cannot be modified server-side, so
+    // storage and node scaling controls must not be offered (only migration
+    // buttons remain). The current is returned by the 'self' target.
+    const eosCurrent: database.Availability = {
+      ...mockedAvailabilities,
+      lifecycle: {
+        ...mockedAvailabilities.lifecycle,
+        status: database.availability.StatusEnum.END_OF_SALE,
+      },
+    };
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(
+      ({ target }) => {
+        if (target === database.availability.TargetEnum.self) {
+          return Promise.resolve([eosCurrent]);
+        }
+        return Promise.resolve([mockedAvailabilityTarget]);
+      },
+    );
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: mockedService,
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      // migration buttons remain
+      expect(
+        screen.getByTestId('update-button-tableVersion'),
+      ).toBeInTheDocument();
+    });
+    // storage/nodes controls are hidden
+    expect(
+      screen.queryByTestId('update-button-tableStorage'),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('create-node-button')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('delete-node-button')).not.toBeInTheDocument();
+  });
+
+  it('keeps storage/nodes controls when the self query returns nothing (fallback to flavor list)', async () => {
+    // Healthy service, but the 'self' availability query yields nothing: the
+    // storage/nodes controls must fall back to the current flavor found in the
+    // status-filtered flavor availabilities instead of disappearing.
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(
+      ({ target }) => {
+        if (target === database.availability.TargetEnum.self) {
+          return Promise.resolve([]);
+        }
+        return Promise.resolve([mockedAvailabilities, mockedAvailabilityTarget]);
+      },
+    );
+    vi.mocked(ServiceContext.useServiceData).mockReturnValue({
+      projectId: 'projectId',
+      service: mockedService,
+      category: 'operational',
+      serviceQuery: {} as UseQueryResult<database.Service, CdbError>,
+    });
+    render(<UpdateTable />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(
+        screen.getByTestId('update-button-tableStorage'),
+      ).toBeInTheDocument();
+      expect(screen.getByTestId('create-node-button')).toBeInTheDocument();
+      expect(screen.getByTestId('delete-node-button')).toBeInTheDocument();
     });
   });
 });

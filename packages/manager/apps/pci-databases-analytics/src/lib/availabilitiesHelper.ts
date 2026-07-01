@@ -281,6 +281,47 @@ const setPrices = (
   }
 };
 
+const END_OF_LIFECYCLE_STATUSES = [
+  database.availability.StatusEnum.DEPRECATED,
+  database.availability.StatusEnum.END_OF_SALE,
+  database.availability.StatusEnum.END_OF_LIFE,
+];
+
+/**
+ * Whether an availability is past its supported lifecycle (deprecated, end of
+ * sale or end of life). Such offers cannot be modified (storage/nodes/flavor)
+ * server-side — the service must be migrated to a supported offer first.
+ */
+export const isEndOfLifecycle = (availability?: database.Availability) =>
+  !!availability &&
+  END_OF_LIFECYCLE_STATUSES.includes(availability.lifecycle.status);
+
+const isSameAvailability = (
+  a: database.Availability,
+  b: database.Availability,
+) =>
+  a.engine === b.engine &&
+  a.version === b.version &&
+  a.region === b.region &&
+  a.plan === b.plan &&
+  a.specifications.flavor === b.specifications.flavor;
+
+/**
+ * Merge the current service availabilities (fetched through the 'self' target
+ * with no status filter) into a status-filtered list of availabilities. When
+ * the current service is EOS/EOL it is filtered out of the status-filtered
+ * response, so this ensures the current configuration is always present.
+ */
+export function mergeCurrentAvailability(
+  availabilities: database.Availability[],
+  currentAvailabilities: database.Availability[] = [],
+) {
+  const missingCurrent = currentAvailabilities.filter(
+    (current) => !availabilities.some((a) => isSameAvailability(a, current)),
+  );
+  return [...availabilities, ...missingCurrent];
+}
+
 export function createTree(
   availabilities: database.Availability[],
   capabilities: FullCapabilities,

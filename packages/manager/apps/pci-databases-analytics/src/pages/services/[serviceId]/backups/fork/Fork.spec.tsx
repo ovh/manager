@@ -46,6 +46,7 @@ import {
 } from '@/types/cloud/network';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import * as ServiceAPI from '@/data/api/database/service.api';
+import * as availabilityApi from '@/data/api/database/availability.api';
 
 const mockedFork = {
   source: {
@@ -238,6 +239,29 @@ describe('Fork funnel page', () => {
     await waitFor(() => {
       expect(useToast().toast).toHaveBeenCalledWith(errorMsg);
     });
+  });
+
+  it('renders without crashing when the current service is EOS/EOL', async () => {
+    // Simulate an EOS/EOL service: the status-filtered fork availabilities do
+    // not contain the current service, which is only returned by the unfiltered
+    // 'self' target. The funnel must still render using the current config.
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(
+      ({ target }) => {
+        if (target === database.availability.TargetEnum.self) {
+          return Promise.resolve([mockedAvailabilities]);
+        }
+        return Promise.resolve([]);
+      },
+    );
+    render(<Fork />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('fork-form-container')).toBeInTheDocument();
+      expect(screen.getByTestId('fork-submit-button')).toBeInTheDocument();
+    });
+    // Restore the default mock so this implementation does not leak to other tests.
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(() =>
+      Promise.resolve([mockedAvailabilities]),
+    );
   });
 
   it('Fork Submit button call Add Service and success toast', async () => {

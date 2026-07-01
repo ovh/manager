@@ -1,0 +1,6 @@
+{
+  "endOfLife": "Il tuo servizio utilizza una configurazione che ha raggiunto la fine del ciclo di vita. Ti consigliamo di aggiornarla a una versione supportata il prima possibile.",
+  "endOfSale": "Il tuo servizio utilizza una configurazione che si avvicina alla fine del ciclo di vita e non è più disponibile per nuove implementazioni. Ti consigliamo di aggiornarla a una versione supportata.",
+  "endOfLifeFork": "Questo servizio utilizza una configurazione che ha raggiunto la fine del ciclo di vita. Ti consigliamo di selezionare una versione supportata per il tuo nuovo servizio.",
+  "endOfSaleFork": "Questo servizio utilizza una configurazione che si avvicina alla fine del ciclo di vita e non è più disponibile per nuove implementazioni. Ti consigliamo di selezionare una versione supportata per il tuo nuovo servizio."
+}
