@@ -2,6 +2,7 @@
 
 <form
     novalidate
+    id="siret-search-assistant"
     data-ng-if="!$ctrl.displayManualForm"
     class="mb-2"
     name="searchForm"
@@ -18,10 +19,12 @@
     <div class="d-flex mb-2">
         <input
             class="mr-2 oui-input"
-            placeholder="{{ ($ctrl.mode === 'modification' ? 'siret_siret' : 'siret_search_field_placeholder') | translate }}"
+            placeholder="{{ ($ctrl.mode === 'modification' ? 'siret_modification_search_placeholder' : 'siret_search_field_placeholder') | translate }}"
             name="inputSearch"
             type="text"
             data-ng-model="$ctrl.search"
+            data-ng-change="$ctrl.onSearchChange()"
+            data-ng-pattern="$ctrl.searchPattern"
             required
         />
         <oui-button
@@ -150,7 +153,7 @@
         ></p>
         <oui-button
             data-ng-class="{ 'siret-search-assistant-button': $ctrl.mode === 'modification' }"
-            variant="link"
+            variant="{{ $ctrl.mode === 'modification' ? 'secondary' : 'link' }}"
             icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
             data-on-click="$ctrl.goToSearchMode()"
         >
@@ -174,12 +177,12 @@
         <div class="row mt-2">
             <oui-field
                 class="col-lg-6"
-                data-label="{{ 'siret_manual_company_name' | translate }}"
+                data-label="{{ $ctrl.getCompanyNameLabelKey() | translate }}"
             >
                 <input
                     class="oui-input"
                     name="companyName"
-                    placeholder="{{ 'siret_manual_company_name' | translate }}"
+                    placeholder="{{ $ctrl.getCompanyNameLabelKey() | translate }}"
                     type="text"
                     data-ng-model="$ctrl.model.organisation"
                     data-ng-required="$ctrl.rules.organisation.mandatory"
