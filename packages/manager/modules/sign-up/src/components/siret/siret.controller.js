@@ -7,6 +7,11 @@ import {
   LEGAL_FORM_ENTERPRISE,
   LEGAL_FORM_ASSOCIATION,
   VAT_CHECKBOX_LABEL_BY_LEGAL_FORM,
+  COMPANY_NAME_LABEL_DEFAULT,
+  COMPANY_NAME_LABEL_LEGAL_FORMS,
+  SIRET_SEARCH_REGEXP,
+  SIRET_FOCUS_PARAM,
+  SIRET_SEARCH_ASSISTANT_ANCHOR,
   fromSuggestion,
   isNdValue,
 } from './siret.constants';
@@ -20,12 +25,14 @@ export default class SiretCtrl {
     coreConfig,
     $rootScope,
     $timeout,
+    $anchorScroll,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.siretService = SiretService;
     this.$rootScope = $rootScope;
     this.$timeout = $timeout;
+    this.$anchorScroll = $anchorScroll;
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
@@ -39,9 +46,19 @@ export default class SiretCtrl {
     // disable if its from IN subsidiray and user is enterprise
     this.disableField =
       this.isIndianSubsidiary && this.user.legalform === LEGAL_FORM_ENTERPRISE;
+
+    // In modification mode the assistant searches by SIRET only (14 digits)
+    this.searchPattern =
+      this.mode === 'modification' ? SIRET_SEARCH_REGEXP : undefined;
+
     if (this.mode === 'modification') {
-      this.isFirstSearch = false;
-      this.displayManualForm = true;
+      // Deep-links (container CompanyInformationModal / hub SiretBanner) carry
+      // fieldToFocus=siretForm to land the user directly on the search assistant;
+      // otherwise the manual edition form stays the default.
+      const openSearchAssistant = this.fieldToFocus === SIRET_FOCUS_PARAM;
+      this.isFirstSearch = openSearchAssistant;
+      this.displayManualForm = !openSearchAssistant;
+
       if (this.shouldApplyFrenchAssociationRules()) {
         this.assistantUsed = true;
         this.assistantEmptyFields = {
@@ -57,6 +74,9 @@ export default class SiretCtrl {
 
       this.$timeout(() => {
         this.setAddressAutocompleteActive(true);
+        if (openSearchAssistant) {
+          this.$anchorScroll(SIRET_SEARCH_ASSISTANT_ANCHOR);
+        }
       });
     }
 
@@ -65,6 +85,15 @@ export default class SiretCtrl {
     );
 
     this.trackingPrefix = TRACKING_PREFIX[this.trackingMode];
+  }
+
+  // Strip spaces from the SIRET entered in the assistant (MANAGER-21817).
+  // Scoped to modification mode where the search is SIRET-only; creation keeps
+  // free-text search (company name / SIREN) where spaces are meaningful.
+  onSearchChange() {
+    if (this.mode === 'modification' && this.search) {
+      this.search = this.search.replace(/\s/g, '');
+    }
   }
 
   submitSearch(needTracking = true) {
@@ -77,7 +106,10 @@ export default class SiretCtrl {
       return this.siretService
         .getSiret({
           country: this.country.toUpperCase(),
-          identifier: this.search,
+          identifier:
+            this.mode === 'modification'
+              ? this.search.replace(/\s/g, '')
+              : this.search,
         })
         .then((suggest) => {
           this.searching = false;
@@ -253,6 +285,14 @@ export default class SiretCtrl {
 
   getVatCheckboxLabelKey() {
     return VAT_CHECKBOX_LABEL_BY_LEGAL_FORM[this.getLegalForm()];
+  }
+
+  // "Nom de l'entreprise / l'association / l'administration" depending on the legal form
+  getCompanyNameLabelKey() {
+    const legalForm = this.getLegalForm();
+    return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+      ? `${COMPANY_NAME_LABEL_DEFAULT}_${legalForm}`
+      : COMPANY_NAME_LABEL_DEFAULT;
   }
 
   onNoVatChange(noVat) {
