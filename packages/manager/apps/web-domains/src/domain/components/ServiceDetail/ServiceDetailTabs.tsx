@@ -28,6 +28,8 @@ import {
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
 import { useGetEnvironmentData } from '@/common/hooks/environment/data';
+import { urls } from '@/domain/routes/routes.constant';
+import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
 interface ServiceDetailsTabsProps {
   readonly domainResource: TDomainResource;
@@ -43,6 +45,13 @@ export default function ServiceDetailsTabs({
   const [value, setValue] = useState('');
   const navigate = useNavigate();
   const { clearNotifications } = useNotifications();
+  // The Anycast order tunnel renders in the router Outlet; when on it we keep
+  // the originating tab highlighted but must NOT also render the DNS tab's
+  // own content panel (see the `dns` TabContent below).
+  const isAnycastOrder = !!matchPath(
+    `${urls.domainTabOrderAnycast}/*`,
+    location.pathname,
+  );
   const { data: availability } = useFeatureAvailability([
     'web-domains:zone',
   ]);
@@ -71,10 +80,20 @@ export default function ServiceDetailsTabs({
   };
 
   useEffect(() => {
-    const tab =
+    let tab =
       visibleTabs.find((tabName) =>
         matchPath(`/domain/:serviceName/${tabName.value}/*`, location.pathname),
       )?.value || DEFAULT_TAB;
+
+    // The Anycast order tunnel has its own URL that matches no tab. Keep the
+    // tab it was launched from highlighted: DNS servers vs general information.
+    if (matchPath(`${urls.domainTabOrderAnycast}/*`, location.pathname)) {
+      tab =
+        location.state?.from === AnycastPreviousPages.DNS_SERVERS
+          ? 'dns'
+          : 'information';
+    }
+
     if (location.pathname) {
       setValue(tab);
     }
@@ -112,7 +131,9 @@ export default function ServiceDetailsTabs({
         })}
       </TabList>
       <TabContent value="dns">
-        <DnsConfigurationTab domainResource={domainResource} />
+        {!isAnycastOrder && (
+          <DnsConfigurationTab domainResource={domainResource} />
+        )}
       </TabContent>
     </Tabs>
   );
