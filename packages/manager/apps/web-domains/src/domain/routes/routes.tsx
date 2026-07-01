@@ -19,8 +19,8 @@ const OnboardingPage = React.lazy(() =>
   import('@/domain/pages/onboarding/onboarding'),
 );
 
-const DnsOrderPage = React.lazy(() =>
-  import('@/common/pages/DnsOrder/DnsOrder.page'),
+const AnycastOrderConfigo = React.lazy(() =>
+  import('@/domain/components/AnycastOrder/anycastOrderComponent'),
 );
 
 const ZoneOrderConfigo = React.lazy(() =>
@@ -128,6 +128,14 @@ export default (
             browser-tab focus, while still living under DomainDetailPage so the
             dashboard chrome stays mounted (fluid, no full reload). */}
         <Route path={zoneUrls.zoneActivate} Component={ZoneOrderConfigo} />
+        {/* Anycast order configo (subscribe/upgrade, picked at runtime). Child
+            of DomainDetailPage — like the zone configo — so the dashboard stays
+            mounted: no focus-driven remount loop, and history.back() returns
+            without a full reload. */}
+        <Route
+          path={urls.domainTabOrderAnycast}
+          Component={AnycastOrderConfigo}
+        />
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
         <Route path={urls.domainTabDynHost} Component={Outlet} />
@@ -148,7 +156,6 @@ export default (
           Component={ContactEditPage}
         />
       </Route>
-      <Route path={urls.domainTabOrderAnycast} Component={DnsOrderPage} />
       <Route
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
