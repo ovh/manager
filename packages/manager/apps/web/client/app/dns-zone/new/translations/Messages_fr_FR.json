@@ -11,6 +11,7 @@
   "domains_newdnszone_order_usage": "Vous avez un domaine chez un autre prestataire et vous souhaitez le transférer chez nous. Afin d'éviter l'interruption de services, vous pouvez ajouter une zone DNS avant d'initier le transfert.",
   "domains_newdnszone_order_reminder": "N'oubliez pas de changer les serveurs DNS pour que la zone soit prise en compte.",
   "domains_newdnszone_order_subtitle": "pour configurer votre domaine vers vos différents services.",
+  "domains_newdnszone_zone_exists": "Cette zone est déjà enregistrée chez OVHcloud",
   "domains_newdnszone_zone_invalid_title": "La création d'une zone DNS est possible uniquement si vous remplissez toutes les conditions suivantes :",
   "domains_newdnszone_zone_invalid_domain_active": "Le domaine existe et est actif",
   "domains_newdnszone_zone_invalid_domain_soa": "Le SOA du domaine doit être correctement mis en place dans sa zone DNS",
@@ -19,5 +20,16 @@
   "domains_newdnszone_zone_invalid_domain_guide": "Consulter le guide",
   "domains_newdnszone_order_help_add": "Ajouter une zone DNS",
   "domains_newdnszone_order_success": "L'activation de votre zone DNS a été réalisée",
-  "domains_newdnszone_order_error": "Une erreur est survenue lors de la commande de la zone DNS : {{ message }}"
+  "domains_newdnszone_order_error": "Une erreur est survenue lors de la commande de la zone DNS : {{ message }}",
+  "domains_newdnszone_order_options_title": "Choix des options",
+  "domains_newdnszone_order_option_anycast_label": "Activer DNS Anycast",
+  "domains_newdnszone_order_option_anycast_description": "Améliorez la disponibilité et les temps de réponse de votre zone DNS grâce au réseau Anycast d'OVHcloud.",
+  "domains_newdnszone_order_option_dnssec_label": "Activer DNSSEC",
+  "domains_newdnszone_order_option_dnssec_description": "Sécurisez votre zone DNS contre l'empoisonnement de cache en signant cryptographiquement vos enregistrements.",
+  "domains_newdnszone_order_option_dnssec_included": "Inclus",
+  "domains_newdnszone_order_duration_title": "Durée",
+  "domains_newdnszone_order_duration_value": "12 mois",
+  "domains_newdnszone_order_duration_anycast_renewal_prefix": "L'option DNS Anycast sera automatiquement renouvelée pour",
+  "domains_newdnszone_order_duration_anycast_renewal_suffix": "jusqu'à expiration de votre zone DNS.",
+  "domains_newdnszone_order_submit": "Commander"
 }

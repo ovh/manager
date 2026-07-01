@@ -5,7 +5,6 @@ export default {
   bindings: {
     catalog: '<',
     goBack: '<',
-    isZoneValid: '<',
     user: '<',
   },
   controller,
