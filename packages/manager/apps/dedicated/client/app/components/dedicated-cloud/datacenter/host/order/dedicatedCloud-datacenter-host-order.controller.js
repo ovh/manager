@@ -1,3 +1,8 @@
+import {
+  GEN2_HOST_BADGE_LABEL,
+  isGen2Host,
+} from './dedicatedCloud-datacenter-host-order.constants';
+
 export default class {
   /* @ngInject */
   constructor($q, $translate, $http, OvhHttp, User) {
@@ -13,6 +18,7 @@ export default class {
     this.selectedOffer = null;
     this.quantity = 1;
     this.expressOrderUrl = null;
+    this.gen2BadgeLabel = GEN2_HOST_BADGE_LABEL;
 
     return this.fetchInitialData();
   }
@@ -95,13 +101,15 @@ export default class {
                   ...offer,
                   planCode: privatePlan ? privatePlan.planCode : offer.planCode,
                   profile: profiles.find((p) => p.name === offer.planCode),
+                  isGen2: isGen2Host(offer.planCode),
                   prices,
                 };
               })
               .sort(
                 (offerA, offerB) =>
                   offerA.prices[0].price.value - offerB.prices[0].price.value,
-              );
+              )
+              .sort((offerA, offerB) => offerB.isGen2 - offerA.isGen2);
 
             [this.selectedOffer] = sortedResult;
             return sortedResult;
