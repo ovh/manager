@@ -11,5 +11,11 @@
   "access_to_vspc": "Access the VSPC",
   "vspc_reset_password": "Reset the password for Tenant access",
   "vspc_reset_password_forgotten": "If you have forgotten your password: use ‘Forgot password’ on the VSPC login page.",
-  "vspc_reset_password_logged_in": "If you are already logged in to the VSPC: go to ‘Edit profile’ > ‘Login info’ in the interface."
+  "vspc_reset_password_logged_in": "If you are already logged in to the VSPC: go to ‘Edit profile’ > ‘Login info’ in the interface.",
+  "terminate_service_modal_title": "Terminate the service",
+  "terminate_service_helper_text": "A confirmation step will be required.",
+  "terminate_service_modal_content": "A <strong>confirmation link</strong> will be sent to you by <strong>email</strong>. You will need to click on this link to confirm the termination of {{vspcName}}.",
+  "terminate_service_banner_success": "The termination of {{vspcName}} has been initiated. Check your email to confirm.",
+  "terminate_service_banner_error": "An error occurred while terminating the service. Please try again later.",
+  "terminate_service_no_access": "You do not have sufficient permissions to terminate this service."
 }

@@ -10,6 +10,7 @@ export const subRoutes = {
   billing: 'billing',
   dashboard: 'dashboard',
   delete: 'delete',
+  terminate: 'terminate',
   agents: 'agents',
   buckets: 'buckets',
   add: 'add',
@@ -41,6 +42,7 @@ export const urls = {
   downloadAgentBackup: `/${subRoutes.agents}/${subRoutes.download}`,
   listingTenantDelete: `/${subRoutes.service}/${subRoutes.delete}`,
   dashboardTenantDelete: `/${subRoutes.service}/${subRoutes.delete}`,
+  dashboardTenantTerminate: `/${subRoutes.service}/${subRoutes.terminate}`,
   listingBilling: `/${subRoutes.billing}`,
 } as const;
 

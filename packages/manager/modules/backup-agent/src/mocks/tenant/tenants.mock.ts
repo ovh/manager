@@ -11,6 +11,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t1',
       name: 'Tenant1',
+      resourceName: 'backupServices-tenant-t1',
       vaults: [
         {
           region: 'eu-west-par',
@@ -54,6 +55,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t2',
       name: 'Tenant2',
+      resourceName: 'backupServices-tenant-t2',
       vaults: [
         {
           region: 'eu-west-rbx',
@@ -98,6 +100,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t3',
       name: 'Tenant3',
+      resourceName: 'backupServices-tenant-t3',
       vaults: [
         {
           region: 'ap-southeast-sgp',
@@ -142,6 +145,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t4',
       name: 'Tenant4',
+      resourceName: 'backupServices-tenant-t4',
       vaults: [
         {
           region: 'eu-central-waw',
@@ -186,6 +190,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t5',
       name: 'Tenant5',
+      resourceName: 'backupServices-tenant-t5',
       vaults: [
         {
           region: 'ca-east-tor',
@@ -230,6 +235,7 @@ export const TENANTS_MOCKS: Resource<Tenant>[] = [
     currentState: {
       id: '1999f2f7-5140-4000-t6',
       name: 'Tenant6',
+      resourceName: 'backupServices-tenant-t6',
       vaults: [
         {
           region: 'us-west-lz-pao',

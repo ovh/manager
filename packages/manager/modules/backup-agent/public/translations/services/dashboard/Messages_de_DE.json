@@ -11,5 +11,11 @@
   "access_to_vspc": "Zur VSPC",
   "vspc_reset_password": "Passwort für den Zugriff auf den Tenant zurücksetzen",
   "vspc_reset_password_forgotten": "Wenn Sie Ihr Passwort vergessen haben, verwenden Sie die Funktion „Forgot password“ auf der VSPC Anmeldeseite.",
-  "vspc_reset_password_logged_in": "Wenn Sie bereits bei der VSPC eingeloggt sind, wechseln Sie im Interface zu „Edit profile“ > „Login info“."
+  "vspc_reset_password_logged_in": "Wenn Sie bereits bei der VSPC eingeloggt sind, wechseln Sie im Interface zu „Edit profile“ > „Login info“.",
+  "terminate_service_modal_title": "Den Dienst kündigen",
+  "terminate_service_helper_text": "Ein Bestätigungsschritt wird angefordert.",
+  "terminate_service_modal_content": "Ein <strong>Bestätigungslink</strong> wird Ihnen per <strong>E-Mail</strong> zugesendet. Sie müssen auf diesen Link klicken, um die Kündigung von {{vspcName}} zu bestätigen.",
+  "terminate_service_banner_success": "Die Kündigung von {{vspcName}} wurde eingeleitet. Überprüfen Sie Ihre E-Mail zur Bestätigung.",
+  "terminate_service_banner_error": "Ein Fehler ist bei der Kündigung des Dienstes aufgetreten. Bitte versuchen Sie es später noch einmal.",
+  "terminate_service_no_access": "Sie haben nicht die erforderlichen Berechtigungen, um diesen Dienst zu kündigen."
 }
