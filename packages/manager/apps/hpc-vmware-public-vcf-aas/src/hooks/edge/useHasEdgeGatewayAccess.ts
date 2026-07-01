@@ -1,10 +1,11 @@
 import { FEATURE_FLAGS } from '@/app.constants';
 import { isEdgeCompatibleVDC } from '@/utils/edgeGatewayCompatibility';
-import { useVcdDatacentre } from '@ovh-ux/manager-module-vcd-api';
+import {
+  useVcdDatacentre,
+  VCF_ADVANCED_TESTING_MODE,
+} from '@ovh-ux/manager-module-vcd-api';
 import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { useParams } from 'react-router-dom';
-
-const TESTING_MODE = false; // TODO: [EDGE] remove when unmocking (testing only)
 
 export const useHasEdgeGatewayAccess = () => {
   const { id, vdcId } = useParams();
@@ -13,7 +14,7 @@ export const useHasEdgeGatewayAccess = () => {
   ]);
   const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
 
-  if (TESTING_MODE) {
+  if (VCF_ADVANCED_TESTING_MODE) {
     return true;
   }
 

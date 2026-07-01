@@ -1,43 +1,52 @@
 import { VCDEdgeGateway } from '../../types';
 
+export const EDGE_NAME_MOCKS = {
+  edgeA: 'EdgeGW-A',
+  edgeB: 'EdgeGW-B',
+  edgeC: 'EdgeGW-C',
+} as const;
+
 export const EDGE_GATEWAY_MOCKS: VCDEdgeGateway[] = [
   {
-    id: 'c96b1c7c1b910',
+    id: EDGE_NAME_MOCKS.edgeA,
     targetSpec: {
-      edgeGatewayName: 'EdgeGW-A',
-      ipBlock: '111.111.111.111/42',
+      name: EDGE_NAME_MOCKS.edgeA,
     },
     currentState: {
-      edgeGatewayName: 'EdgeGW-A',
-      ipBlock: '111.111.111.111/42',
+      deploymentMode: 'ACTIVE_STANDBY',
+      idurn: '',
+      name: EDGE_NAME_MOCKS.edgeA,
+      providerGateway: '',
     },
     currentTasks: [],
     resourceStatus: 'READY',
   },
   {
-    id: 'b2d8dded34510',
+    id: EDGE_NAME_MOCKS.edgeB,
     targetSpec: {
-      edgeGatewayName: 'EdgeGW-B',
-      ipBlock: '222.222.222.222/42',
+      name: EDGE_NAME_MOCKS.edgeB,
     },
     currentState: {
-      edgeGatewayName: 'EdgeGW-B',
-      ipBlock: '222.222.222.222/42',
+      deploymentMode: 'ACTIVE_STANDBY',
+      idurn: '',
+      name: EDGE_NAME_MOCKS.edgeB,
+      providerGateway: '',
     },
     currentTasks: [],
-    resourceStatus: 'CREATING',
+    resourceStatus: 'READY',
   },
   {
-    id: 'b2d8dded1c4',
+    id: EDGE_NAME_MOCKS.edgeC,
     targetSpec: {
-      edgeGatewayName: 'EdgeGW-C',
-      ipBlock: '333.333.333.333/42',
+      name: EDGE_NAME_MOCKS.edgeC,
     },
     currentState: {
-      edgeGatewayName: 'EdgeGW-C',
-      ipBlock: '333.333.333.333/42',
+      deploymentMode: 'ACTIVE_STANDBY',
+      idurn: '',
+      name: EDGE_NAME_MOCKS.edgeC,
+      providerGateway: '',
     },
     currentTasks: [],
-    resourceStatus: 'DELETING',
+    resourceStatus: 'READY',
   },
 ];

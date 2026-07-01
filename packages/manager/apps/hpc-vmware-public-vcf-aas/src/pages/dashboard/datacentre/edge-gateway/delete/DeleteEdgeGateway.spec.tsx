@@ -2,16 +2,17 @@ import { expect, it, describe } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
 import {
   organizationList,
-  datacentreList,
+  datacentreNsxMock,
   EDGE_GATEWAY_MOCKS,
 } from '@ovh-ux/manager-module-vcd-api';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { labels, renderTest } from '../../../../../test-utils';
 import { urls } from '../../../../../routes/routes.constant';
+import { FEATURE_FLAGS } from '../../../../../app.constants';
 
 const config = {
   org: organizationList[0],
-  vdc: datacentreList[0],
+  vdc: datacentreNsxMock,
   edge: EDGE_GATEWAY_MOCKS[0],
   labels: { ...labels.datacentresEdgeGateway, ...labels.actions },
   waitOptions: { timeout: 10_000 },
@@ -22,7 +23,7 @@ const content = {
     config.labels.edge_delete_warning,
     config.labels.edge_delete_description.replace(
       '{{edgeName}}',
-      config.edge.currentState.edgeGatewayName,
+      config.edge.currentState.name,
     ),
   ],
   modalButtons: [
@@ -38,13 +39,14 @@ describe('Datacentre Edge Gateway Delete Page', () => {
     .replace(':edgeGatewayId', config.edge.id);
 
   it('access and display DeleteEdgeGateway page modal', async () => {
-    await renderTest({ initialRoute });
+    await renderTest({
+      initialRoute,
+      feature: { [FEATURE_FLAGS.EDGE_GATEWAY]: true },
+    });
 
     // wait for data to be loaded
     await waitFor(() => {
-      expect(
-        screen.getByText(config.edge.currentState.edgeGatewayName),
-      ).toBeVisible();
+      expect(screen.getByText(config.edge.currentState.name)).toBeVisible();
     }, config.waitOptions);
 
     // check modal

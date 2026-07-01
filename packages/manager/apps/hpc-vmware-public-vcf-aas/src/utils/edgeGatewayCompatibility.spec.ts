@@ -10,20 +10,20 @@ describe('isEdgeCompatibleVDC test suite', () => {
   const mockVDC = datacentreList[0];
 
   const testCases: {
-    offerProfile: VCDDatacentreState['offerProfile'];
+    commercialRange: VCDDatacentreState['commercialRange'];
     expected: boolean;
   }[] = [
-    { offerProfile: 'NSX', expected: true },
-    { offerProfile: 'STANDARD', expected: false },
-    { offerProfile: undefined, expected: false },
+    { commercialRange: 'NSX', expected: true },
+    { commercialRange: 'STANDARD', expected: false },
+    { commercialRange: 'VSAN-NSX', expected: false },
   ];
 
   it.each(testCases)(
-    'return $expected if offerProfile is $offerProfile',
-    ({ expected, offerProfile }) => {
+    'return $expected if commercialRange is $commercialRange',
+    ({ expected, commercialRange }) => {
       const testVDC: VCDDatacentre = {
         ...mockVDC,
-        currentState: { ...mockVDC.currentState, offerProfile },
+        currentState: { ...mockVDC.currentState, commercialRange },
       };
 
       expect(isEdgeCompatibleVDC(testVDC)).toBe(expected);
