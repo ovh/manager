@@ -34,9 +34,9 @@
   "siret_manual_registration_date": "Registration date",
   "siret_manual_registration_date_placeholder": "dd/mm/yyyy",
   "siret_update_search_assistant": "Search Assistant",
-  "siret_update_search_assistant_intro": "In order to modify your information, please use the search assistant by entering your SIRET number.",
-  "siret_vat_none_corporation": "My company does not have a VAT number.",
-  "siret_vat_none_association": "My association does not have a VAT number.",
-  "siret_vat_none_administration": "This administration does not possess a VAT number.",
-  "siret_non_diffusible": "The information of your company is not publicly disclosed (non-disclosable company). Please manually enter the information of your organisation so that it appears correctly on your invoices."
+  "siret_update_search_assistant_intro": "To edit your details, please use the search assistant by entering your registration number/SIRET.",
+  "siret_vat_none_corporation": "My company is not registered for VAT",
+  "siret_vat_none_association": "My nonprofit is not registered for VAT",
+  "siret_vat_none_administration": "This public authority is not registered for VAT",
+  "siret_non_diffusible": "Your company information is not publicly disclosed (your company is marked as non-disclosable). To ensure your organisation’s details appear correctly, please enter them manually."
 }

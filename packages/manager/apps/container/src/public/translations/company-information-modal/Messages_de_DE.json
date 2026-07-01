@@ -1,6 +1,6 @@
 {
-  "company_information_modal_title": "VERPFLICHTENDE HANDLUNG",
-  "company_information_modal_description": "Informationen über Ihre Organisation sind nicht konform. Die Aktualisierung dieser Informationen ist im Rahmen der Reform der elektronischen Rechnungsstellung <anchor>alles über die elektronische Rechnungsstellung</anchor> erforderlich. Geben Sie Ihre SIRET-Nummer ein, wir kümmern uns um den Rest.",
+  "company_information_modal_title": "OBLIGATORISCHE MASSNAHME",
+  "company_information_modal_description": "Die Informationen zu Ihrer Organisation entsprechen den Anforderungen nicht. Im Rahmen der Reform der elektronischen Rechnungsstellung ist die Aktualisierung dieser Informationen obligatorisch. <anchor>Mehr Informationen über die elektronische Rechnungsstellung</anchor> Geben Sie Ihre SIRET-Nummer ein. Wir kümmern uns um den Rest.",
   "company_information_modal_action_modify": "Meine Daten aktualisieren",
   "company_information_modal_action_individual": "Ich bin eine Privatperson",
   "company_information_modal_info_individual": "Wenn Ihr Konto kein Unternehmen ist, gehen Sie zum Formular zur Bearbeitung Ihres Profils und ändern Sie den Kontotyp auf „Privatperson“."
