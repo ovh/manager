@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.5.1...@ovh-ux/manager-pci-project-app@0.5.2) (2026-07-01)
+
+
+### Bug Fixes
+
+* **pci-project:** fix url query param ([bf664b7](https://github.com/ovh/manager/commit/bf664b7f9c63a67299c74e812f04f94b375a60d4)), closes [#MANAGER-21788](https://github.com/ovh/manager/issues/MANAGER-21788)
+* **pci-project:** update willPayment urls ([3605a05](https://github.com/ovh/manager/commit/3605a059a2ee6f76034a4ea618675a15b2293a38)), closes [#MANAGER-21788](https://github.com/ovh/manager/issues/MANAGER-21788)
+
+
+
+
+
 ## [0.5.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-project-app@0.5.0...@ovh-ux/manager-pci-project-app@0.5.1) (2026-06-04)
 
 

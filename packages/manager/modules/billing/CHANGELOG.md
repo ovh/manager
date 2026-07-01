@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.67.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.2...@ovh-ux/manager-billing@0.67.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* **billing:** allow to terminate backup services ([789cfd8](https://github.com/ovh/manager/commit/789cfd8fdb023f4ea9e1aa4ec3145656331f09ac)), closes [#MANAGER-21814](https://github.com/ovh/manager/issues/MANAGER-21814)
+* **billing:** update fallback urls ([573fc53](https://github.com/ovh/manager/commit/573fc539f96946ae1975e37598b20d04c096b5f0)), closes [#MANAGER-21788](https://github.com/ovh/manager/issues/MANAGER-21788)
+* **i18n:** add missing translations [CDS 1257] ([4e6d670](https://github.com/ovh/manager/commit/4e6d6702789367efe35796a51587259e59c242c0))
+* **i18n:** add missing translations [CDS 1260] ([c83c470](https://github.com/ovh/manager/commit/c83c47085daea0d711eb931f659ebd552ec30d13))
+* **i18n:** add missing translations [CDS 1262] ([c419dd1](https://github.com/ovh/manager/commit/c419dd1411d91f8862afc74f3c78241b15b83ea4))
+
+
+### Features
+
+* **billing:** aggregate some products on my services ([5de68e0](https://github.com/ovh/manager/commit/5de68e029497f6c461252ce6670287ab5789cb28)), closes [#MANAGER-21697](https://github.com/ovh/manager/issues/MANAGER-21697) [#MANAGER-21696](https://github.com/ovh/manager/issues/MANAGER-21696) [#MANAGER-21695](https://github.com/ovh/manager/issues/MANAGER-21695)
+* **billing:** change content right of withdrawal ([8038a06](https://github.com/ovh/manager/commit/8038a06da48b170be5de12995540acc95c21cc51)), closes [#MANAGER-21769](https://github.com/ovh/manager/issues/MANAGER-21769)
+
+
+
+
+
 ## [0.66.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.66.1...@ovh-ux/manager-billing@0.66.2) (2026-06-08)
 
 

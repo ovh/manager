@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.197.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.196.0...@ovh-ux/manager-container-app@0.197.0) (2026-07-01)
+
+
+### Features
+
+* **container:** hide load balancer for mks navigation ([ec0f43c](https://github.com/ovh/manager/commit/ec0f43cbc94748736bcde3edac00768357227c8d)), closes [#TAPC-6823](https://github.com/ovh/manager/issues/TAPC-6823)
+
+
+
+
+
 # [0.196.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.195.0...@ovh-ux/manager-container-app@0.196.0) (2026-06-23)
 
 

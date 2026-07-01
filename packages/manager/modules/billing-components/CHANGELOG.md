@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.37.1...@ovh-ux/manager-billing-components@4.38.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* **billing:** allow to terminate backup services ([789cfd8](https://github.com/ovh/manager/commit/789cfd8fdb023f4ea9e1aa4ec3145656331f09ac)), closes [#MANAGER-21814](https://github.com/ovh/manager/issues/MANAGER-21814)
+
+
+### Features
+
+* **billing:** aggregate some products on my services ([5de68e0](https://github.com/ovh/manager/commit/5de68e029497f6c461252ce6670287ab5789cb28)), closes [#MANAGER-21697](https://github.com/ovh/manager/issues/MANAGER-21697) [#MANAGER-21696](https://github.com/ovh/manager/issues/MANAGER-21696) [#MANAGER-21695](https://github.com/ovh/manager/issues/MANAGER-21695)
+
+
+
+
+
 ## [4.37.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.37.0...@ovh-ux/manager-billing-components@4.37.1) (2026-06-08)
 
 
