@@ -93,8 +93,11 @@
   "key_management_service_service_keys_back_link": "Zurück zur Liste der Service Keys",
   "key_management_service_service-keys_create_protection_level_title": "Schutzniveau",
   "key_management_service_service-keys_create_protection_level_subtitle": "Geben Sie das für den Service Key verwendete Schutzlevel an.",
-  "key_management_service_service-keys_create_software_protection_title": "Softwareschutz",
+  "key_management_service_service-keys_create_software_protection_title": "Software-Sicherheitsmodul",
   "key_management_service_service-keys_create_software_protection_subtitle": "Kryptografische Operationen werden mit Software ausgeführt.",
   "key_management_service_service-keys_link_download_key_pem": "Öffentlichen PEM-Schlüssel herunterladen",
-  "key_management_service_service-keys_link_download_key_jwk": "Öffentlichen JWK-Schlüssel herunterladen"
+  "key_management_service_service-keys_link_download_key_jwk": "Öffentlichen JWK-Schlüssel herunterladen",
+  "key_management_service_service-keys_create_hardware_protection_title": "Hardware-Sicherheitsmodul",
+  "key_management_service_service-keys_create_hardware_protection_subtitle": "Die kryptografischen Operationen werden auf gemeinsam genutzter spezialisierter Hardware (HSM) durchgeführt.",
+  "key_management_service_service-keys_create_protection_level_coming_soon": "Demnächst verfügbar"
 }

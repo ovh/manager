@@ -10,8 +10,9 @@ type OkmsPricingData = {
   intervalUnit: IntervalUnit;
 };
 
-const PRODUCT_CODE_TO_ADDON_CODE: Record<PricingProductCode, string> = {
+export const OKMS_ADDON_PLAN_CODES: Record<PricingProductCode, string> = {
   servicekey: 'okms-servicekey-monthly-consumption',
+  'servicekey-hsm': 'okms-servicekey-hsm-monthly-consumption',
   secret: 'okms-secret-monthly-consumption',
 };
 
@@ -35,7 +36,7 @@ export const useOkmsPricing = ({ productCode }: UseOkmsPricingProps): UseOkmsPri
     return { isPending: false, isError: true, pricingData: undefined };
   }
 
-  const addonCode = PRODUCT_CODE_TO_ADDON_CODE[productCode];
+  const addonCode = OKMS_ADDON_PLAN_CODES[productCode];
   const addon = catalog.addons.find((a) => a.planCode === addonCode);
   const plan = catalog.plans.find((p) => p.planCode === 'okms');
 
