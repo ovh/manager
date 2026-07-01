@@ -1,0 +1,6 @@
+{
+  "endOfLife": "Ihr Dienst verwendet eine Konfiguration, die das Ende ihrer Lebensdauer erreicht hat. Wir empfehlen, sie so bald wie möglich auf eine unterstützte Version zu aktualisieren.",
+  "endOfSale": "Ihr Dienst verwendet eine Konfiguration, die sich dem Ende ihrer Lebensdauer nähert und nicht mehr für neue Bereitstellungen verfügbar ist. Wir empfehlen, sie auf eine unterstützte Version zu aktualisieren.",
+  "endOfLifeFork": "Dieser Dienst verwendet eine Konfiguration, die das Ende ihrer Lebensdauer erreicht hat. Wir empfehlen, für Ihren neuen Dienst eine unterstützte Version auszuwählen.",
+  "endOfSaleFork": "Dieser Dienst verwendet eine Konfiguration, die sich dem Ende ihrer Lebensdauer nähert und nicht mehr für neue Bereitstellungen verfügbar ist. Wir empfehlen, für Ihren neuen Dienst eine unterstützte Version auszuwählen."
+}

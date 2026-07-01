@@ -31,6 +31,7 @@ const Service = () => {
     null,
     null,
     null,
+    null,
     { refetchOnWindowFocus: false },
   );
   const suggestionsQuery = useGetSuggestions(projectId, {

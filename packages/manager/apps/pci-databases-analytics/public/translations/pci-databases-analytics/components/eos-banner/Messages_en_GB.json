@@ -1,0 +1,6 @@
+{
+  "endOfLife": "Your service is running on a configuration that has reached its end of life. We recommend updating it to a supported version as soon as possible.",
+  "endOfSale": "Your service is running on a configuration that is approaching its end of life and is no longer available for new deployments. We recommend updating it to a supported version.",
+  "endOfLifeFork": "This service is running on a configuration that has reached its end of life. We recommend selecting a supported version for your new service.",
+  "endOfSaleFork": "This service is running on a configuration that is approaching its end of life and is no longer available for new deployments. We recommend selecting a supported version for your new service."
+}

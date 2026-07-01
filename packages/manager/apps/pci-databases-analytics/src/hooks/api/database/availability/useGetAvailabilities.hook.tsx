@@ -10,6 +10,7 @@ export function useGetAvailabilities(
   serviceId?: string,
   action?: database.availability.ActionEnum,
   target?: database.availability.TargetEnum,
+  status?: database.availability.StatusEnum[],
   options?: OptionsFor<typeof getAvailabilities>,
 ) {
   const queryKey = [
@@ -18,6 +19,7 @@ export function useGetAvailabilities(
     serviceId,
     action,
     target,
+    ...(status ? [`status:${status.join(',')}`] : []),
   ].filter(Boolean);
   return useQueryImmediateRefetch({
     queryKey,
@@ -27,6 +29,7 @@ export function useGetAvailabilities(
         ...(serviceId ? { serviceId } : {}),
         ...(action ? { action } : {}),
         ...(target ? { target } : {}),
+        ...(status ? { status } : {}),
       }),
     ...options,
   });
