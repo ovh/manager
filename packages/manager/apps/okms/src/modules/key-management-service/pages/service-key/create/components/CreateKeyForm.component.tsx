@@ -9,6 +9,7 @@ import {
   OkmsKeyTypes,
   OkmsServiceKeyCurve,
   OkmsServiceKeyOperations,
+  OkmsServiceKeyProtectionLevel,
   OkmsServiceKeySize,
 } from '@key-management-service/types/okmsServiceKey.type';
 import { OkmsServiceKeyReference } from '@key-management-service/types/okmsServiceKeyReference.type';
@@ -50,6 +51,9 @@ export const CreateKeyForm = ({
     defaultReference?.curves.find((curve) => curve.default)?.value,
   );
   const [keyOperations, setKeyOperations] = useState<OkmsServiceKeyOperations[]>([]);
+  const [protectionLevel, setProtectionLevel] = useState<
+    OkmsServiceKeyProtectionLevel | undefined
+  >();
   const [keyDisplayName, setKeyDisplayName] = useState<string | undefined>();
   const [serviceKeyNameError, setServiceKeyNameError] = useState<
     ServiceKeyNameErrors | undefined
@@ -99,6 +103,7 @@ export const CreateKeyForm = ({
         size: keySize ? (Number(keySize) as OkmsServiceKeySize) : undefined,
         operations: keyOperations,
         type: keyType,
+        protectionLevel,
       });
 
       navigate(KMS_ROUTES_URLS.serviceKeyListing(okmsId));
@@ -118,7 +123,11 @@ export const CreateKeyForm = ({
     <div className="block w-full">
       <div className="max-w-lg gap-4 lg:gap-6">
         <div className="flex flex-col gap-4 md:gap-8">
-          <ProtectionLevelSection />
+          <ProtectionLevelSection
+            references={references}
+            protectionLevel={protectionLevel}
+            setProtectionLevel={setProtectionLevel}
+          />
           <GeneralInformationSection
             keyDisplayName={keyDisplayName}
             setKeyDisplayName={setKeyDisplayName}
