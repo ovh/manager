@@ -26,9 +26,11 @@ import StorageConfig from '@/components/order/cluster-configuration/StorageConfi
 import { formatStorage } from '@/lib/bytesHelper';
 import PricingDetails from '../_components/PricingDetails.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetUpdateAvailabilities } from '@/hooks/api/database/availability/useGetUpdateAvailabilities.hook';
 import { useUpdateFlavor } from './useUpdateFlavor.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
+import EosBanner from '@/components/eos-banner/EosBanner.component';
+import { isEndOfLifecycle } from '@/lib/availabilitiesHelper';
 
 const UpdateFlavor = () => {
   const navigate = useNavigate();
@@ -37,10 +39,9 @@ const UpdateFlavor = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
-  const availabilitiesQuery = useGetAvailabilities(
+  const { availabilities, currentAvailability } = useGetUpdateAvailabilities(
     projectId,
     service.id,
-    database.availability.ActionEnum.update,
     database.availability.TargetEnum.flavor,
   );
   const {
@@ -51,7 +52,7 @@ const UpdateFlavor = () => {
     initialFlavorObject,
     oldPrice,
     newPrice,
-  } = useUpdateFlavor({ availabilities: availabilitiesQuery.data, service });
+  } = useUpdateFlavor({ availabilities, service });
   const { editService, isPending } = useEditService({
     onError: (err) => {
       toast.toast({
@@ -105,6 +106,7 @@ const UpdateFlavor = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
+          <EosBanner availability={currentAvailability} />
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateFlavorForm">
               <FormField
@@ -187,7 +189,7 @@ const UpdateFlavor = () => {
               </DialogClose>
               <Button
                 form="updateFlavorForm"
-                disabled={isPending}
+                disabled={isPending || isEndOfLifecycle(availability)}
                 data-testid="update-flavor-submit-button"
               >
                 {t('updateFlavorSubmitButton')}

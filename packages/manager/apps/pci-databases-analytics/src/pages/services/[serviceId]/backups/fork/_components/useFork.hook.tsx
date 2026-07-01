@@ -293,6 +293,7 @@ export function useFork(
     const defaultEngine =
       listEngines.find((e) => e.name === suggestedEngine.engine) ??
       listEngines[0];
+    if (!defaultEngine) return;
     form.setValue('engine', defaultEngine.name);
   }, [listEngines, initialValue]);
   // update version
