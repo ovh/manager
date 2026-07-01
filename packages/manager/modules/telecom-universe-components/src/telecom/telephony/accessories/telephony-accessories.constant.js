@@ -220,6 +220,28 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}yealink/accessory-yealink-ehs60-90-90.png`,
   },
+  'yealink.ehs62': {
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-ehs62-90-90.png`,
+  },
+  'yealink.exp55': {
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-exp55-90-90.png`,
+  },
+  'yealink.uh48.dual.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-uh48-dual-teams-90-90.png`,
+  },
+  'yealink.wh64.mono.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh64-mono-teams-90-90.png`,
+  },
+  'yealink.bh74.dual.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-bh74-dual-teams-90-90.png`,
+  },
+  'yealink.wh68.dual.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}yealink/accessory-yealink-wh68-dual-teams-90-90.png`,
+  },
   'orosound.tildeproplus': {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}orosound/accessory-orosound-tildepro-plus-90-90.png`,
@@ -249,6 +271,14 @@ export const TELEPHONY_LINE_PHONE_ACCESSORIES = {
   'epos.impact.1061T.anc': {
     url: URL_ACCESSORIES,
     img: `${PATH_URL_IMG}epos/accessory-epos-impact-1061T-anc-90-90.png`,
+  },
+  'epos.impact.500.dual.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}epos/accessory-epos-impact-500-dual-teams-90-90.png`,
+  },
+  'epos.impact.1030T.dual.teams': {
+    url: URL_ACCESSORIES,
+    img: `${PATH_URL_IMG}epos/accessory-epos-impact-1030T-dual-teams-90-90.png`,
   },
 };
 
