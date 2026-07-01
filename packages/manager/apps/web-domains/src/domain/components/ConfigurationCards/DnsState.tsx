@@ -84,11 +84,12 @@ export default function DnsState({
     if (anycastOption) {
       setAnycastTerminateModalOpen(!anycastTerminateModalOpen);
     } else {
+      // Push (not replace) so the configo's history.back() returns here
+      // without a hard dashboard reload.
       navigate(
         useGenerateUrl(urls.domainTabOrderAnycast, 'path', {
           serviceName,
         }),
-        { replace: true },
       );
     }
   };
