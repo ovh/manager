@@ -19,6 +19,7 @@ import {
   EDGE_GATEWAY_NAME_MIN_LENGTH,
 } from '../add/adgeEdgeGateway.constants';
 import { isIpBlockAvailable } from '@/utils/ipBlockAvailability';
+import { getEdgeGatewayAssignedIpBlock } from '@/utils/aggregateEdgeGateways';
 
 export default function EditEdgeGatewayPage() {
   const { t } = useTranslation('datacentres/edge-gateway');
@@ -29,15 +30,26 @@ export default function EditEdgeGatewayPage() {
   const { addSuccess, addError } = useMessageContext();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const { data: edge, isLoading: isLoadingEdge, refetch } = useVcdEdgeGateway({
+  const {
+    data: edge,
+    isLoading: isLoadingEdge,
+    refetch: refetchEdges,
+  } = useVcdEdgeGateway({
     ...edgeParams,
     staleTime: 5000,
   });
 
-  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
-    id,
-    select: (data) => data.filter(isIpBlockAvailable),
-  });
+  const {
+    data: ipBlocks,
+    isLoading: isLoadingIpBlocks,
+    refetch: refetchIpBlocks,
+  } = useVcdIpBlocks({ id });
+
+  const isLoading = isLoadingEdge || isLoadingIpBlocks;
+  const currentIpBlock =
+    edge && ipBlocks
+      ? getEdgeGatewayAssignedIpBlock(edge, ipBlocks)
+      : undefined;
 
   const {
     mutate: updateEdgeGateway,
@@ -52,49 +64,80 @@ export default function EditEdgeGatewayPage() {
   const {
     control,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, isDirty },
   } = useForm<AddEdgeForm>({
     mode: 'onTouched',
     resolver: zodResolver(EDGE_FORM_SCHEMA),
     defaultValues: async () => {
-      const data = await refetch();
-      const currentEdge = data?.data;
+      const edgeData = await refetchEdges();
+      const blockData = await refetchIpBlocks();
 
+      const currentEdge = edgeData?.data;
       if (!currentEdge) return { edgeGatewayName: '', ipBlock: '' };
 
+      const currentBlock = getEdgeGatewayAssignedIpBlock(
+        currentEdge,
+        blockData?.data ?? [],
+      );
+
+      if (!currentBlock) {
+        return {
+          edgeGatewayName: currentEdge.currentState.name,
+          ipBlock: '',
+        };
+      }
+
       return {
-        edgeGatewayName: currentEdge.currentState.edgeGatewayName,
-        ipBlock: currentEdge.currentState.ipBlock,
+        edgeGatewayName: currentEdge.currentState.name,
+        ipBlock: currentBlock.currentState.internalScope,
       };
     },
   });
 
   const onSubmit = (data: AddEdgeForm) => {
+    const nextBlock = ipBlocks?.find(
+      (b) => b.currentState.internalScope === data.ipBlock,
+    );
+    const nameChanged = data.edgeGatewayName !== edge?.currentState.name;
+    const blockChanged = nextBlock?.id !== currentIpBlock?.id;
+
     updateEdgeGateway({
-      edgeGatewayNewName: data.edgeGatewayName,
-      ipBlock: data.ipBlock,
+      name: nameChanged ? data.edgeGatewayName : undefined,
+      ipBlock: blockChanged
+        ? {
+            previous: currentIpBlock && {
+              id: currentIpBlock.id,
+              name: currentIpBlock.currentState.name,
+            },
+            next: nextBlock && {
+              id: nextBlock.id,
+              name: nextBlock.currentState.name,
+            },
+          }
+        : undefined,
     });
   };
 
-  const currentIpBlock = edge?.currentState.ipBlock;
   const availableIpBlocks =
-    ipBlocks?.map((b) => b.currentState.internalScope) ?? [];
+    ipBlocks
+      ?.filter(isIpBlockAvailable)
+      ?.map((b) => b.currentState.internalScope) ?? [];
+
   const ipBlockOptions =
-    currentIpBlock && !availableIpBlocks.includes(currentIpBlock)
-      ? [currentIpBlock, ...availableIpBlocks]
+    currentIpBlock &&
+    !availableIpBlocks.includes(currentIpBlock.currentState.internalScope)
+      ? [currentIpBlock.currentState.internalScope, ...availableIpBlocks]
       : availableIpBlocks;
 
   return (
     <Drawer
       isOpen
-      heading={edge?.currentState.edgeGatewayName ?? ''}
-      isLoading={isLoadingEdge || isLoadingIpBlocks}
+      heading={edge?.currentState.name ?? ''}
+      isLoading={isLoading}
       primaryButtonLabel={tActions('modify')}
       onPrimaryButtonClick={handleSubmit(onSubmit)}
       isPrimaryButtonLoading={isUpdating}
-      isPrimaryButtonDisabled={
-        isLoadingEdge || isLoadingIpBlocks || isUpdating || !isValid
-      }
+      isPrimaryButtonDisabled={isLoading || isUpdating || !isValid || !isDirty}
       secondaryButtonLabel={tActions('cancel')}
       onSecondaryButtonClick={closeDrawer}
       onDismiss={closeDrawer}
@@ -125,6 +168,7 @@ export default function EditEdgeGatewayPage() {
             <SelectField
               field={field}
               label={t('edge_ip_block')}
+              placeholder={t('edge_ip_block_select')}
               options={ipBlockOptions}
               isDisabled={isLoadingIpBlocks}
               isLoading={isLoadingIpBlocks}

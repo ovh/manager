@@ -1,34 +1,70 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { updateVcdEdgeGateway } from '../api';
+import { assignIpBlock, unassignIpBlock, updateVcdEdgeGateway } from '../api';
+import { GetEdgeGatewayParams, RestrictedMutationOptions } from '../types';
 import {
-  GetEdgeGatewayParams,
-  RestrictedMutationOptions,
-  UpdateEdgeGatewayPayload,
-  VCDEdgeGateway,
-} from '../types';
-import { getVcdEdgeGatewayListQueryKey } from '../utils';
+  getVcdEdgeGatewayListQueryKey,
+  getVcdIpBlockListQueryKey,
+} from '../utils';
+
+type IpBlockRef = { id: string; name: string };
+
+type UpdateEdgeGatewayPayload = {
+  name?: string;
+  ipBlock?: {
+    previous?: IpBlockRef;
+    next?: IpBlockRef;
+  };
+};
 
 type UseUpdateEdgeGatewayParams = GetEdgeGatewayParams &
-  RestrictedMutationOptions<VCDEdgeGateway, UpdateEdgeGatewayPayload>;
+  RestrictedMutationOptions<void, UpdateEdgeGatewayPayload>;
 
 export const useUpdateEdgeGateway = ({
   id,
   vdcId,
   edgeGatewayId,
-  onSuccess,
+  onSettled,
   ...options
 }: UseUpdateEdgeGatewayParams) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: UpdateEdgeGatewayPayload) =>
-      updateVcdEdgeGateway({ id, vdcId, edgeGatewayId, payload }),
+    mutationFn: async ({ name, ipBlock }: UpdateEdgeGatewayPayload) => {
+      if (name !== undefined) {
+        await updateVcdEdgeGateway({
+          id,
+          vdcId,
+          edgeGatewayId,
+          payload: { name },
+        });
+      }
+
+      if (ipBlock) {
+        if (ipBlock.previous) {
+          await unassignIpBlock({
+            id,
+            ipBlockId: ipBlock.previous.id,
+            payload: { name: ipBlock.previous.name, edgeGatewayId: null },
+          });
+        }
+        if (ipBlock.next) {
+          await assignIpBlock({
+            id,
+            ipBlockId: ipBlock.next.id,
+            payload: { name: ipBlock.next.name, edgeGatewayId },
+          });
+        }
+      }
+    },
     ...options,
-    onSuccess: (...params) => {
+    onSettled: (...params) => {
       queryClient.invalidateQueries({
         queryKey: getVcdEdgeGatewayListQueryKey(id, vdcId),
       });
-      onSuccess?.(...params);
+      queryClient.invalidateQueries({
+        queryKey: getVcdIpBlockListQueryKey(id),
+      });
+      onSettled?.(...params);
     },
   });
 };

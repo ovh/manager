@@ -68,6 +68,10 @@ export const getVcdIpBlockListRoute = (id: string) => {
   return `${getVcdOrganizationRoute(id)}/IpSpace`;
 };
 
+export const getVcdIpBlockRoute = (id: string, ipBlockId: string) => {
+  return `${getVcdOrganizationRoute(id)}/IpSpace/${ipBlockId}`;
+};
+
 // Edge Gateway
 export const getVcdEdgeGatewayListRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/edgeGateway`;
