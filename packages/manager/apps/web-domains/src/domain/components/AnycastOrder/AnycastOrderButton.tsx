@@ -74,7 +74,8 @@ export default function AnycastOrderButtonComponent({
                 serviceName,
               }),
               {
-                replace: true,
+                // Push (not replace) so the configo's history.back() returns
+                // to this originating tab without a hard dashboard reload.
                 state: {
                   from: goBack ?? AnycastPreviousPages.GENERAL_INFORMATION,
                 },
