@@ -24,10 +24,11 @@ import { Engine } from '@/types/orderFunnel';
 import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetUpdateAvailabilities } from '@/hooks/api/database/availability/useGetUpdateAvailabilities.hook';
 import { useUpdateTree } from '../_components/useUpdateTree';
 import RouteModal from '@/components/route-modal/RouteModal';
 import VersionSelect from '@/components/order/version/VersionSelect.component';
+import EosBanner from '@/components/eos-banner/EosBanner.component';
 
 const UpdateVersion = () => {
   const { service, projectId } = useServiceData();
@@ -36,10 +37,9 @@ const UpdateVersion = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
-  const availabilitiesQuery = useGetAvailabilities(
+  const { availabilities, currentAvailability } = useGetUpdateAvailabilities(
     projectId,
     service.id,
-    database.availability.ActionEnum.update,
     database.availability.TargetEnum.version,
   );
   const { editService, isPending } = useEditService({
@@ -62,7 +62,7 @@ const UpdateVersion = () => {
   });
 
   const listVersions =
-    useUpdateTree(availabilitiesQuery.data)?.find(
+    useUpdateTree(availabilities)?.find(
       (e: Engine) => e.name === service.engine,
     )?.versions || [];
 
@@ -102,6 +102,7 @@ const UpdateVersion = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
+          <EosBanner availability={currentAvailability} />
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateVersionForm">
               <FormField

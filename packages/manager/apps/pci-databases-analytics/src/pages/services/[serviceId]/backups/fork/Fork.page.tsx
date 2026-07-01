@@ -17,6 +17,9 @@ import {
 import { useGetBackups } from '@/hooks/api/database/backup/useGetBackups.hook';
 import { useGetCatalog } from '@/hooks/api/catalog/useGetCatalog.hook';
 import OrderSkeleton from '@/components/order/skeleton/OrderSkeleton.component';
+import { mergeCurrentAvailability } from '@/lib/availabilitiesHelper';
+import { useGetCurrentAvailability } from '@/hooks/api/database/availability/useGetCurrentAvailability.hook';
+import EosBanner from '@/components/eos-banner/EosBanner.component';
 
 export function breadcrumb() {
   return (
@@ -43,6 +46,15 @@ const Fork = () => {
     projectId,
     service.id,
     database.availability.ActionEnum.fork,
+  );
+  // The fork availabilities above are filtered to STABLE/BETA statuses. When the
+  // current service is EOS/EOL its own availability is missing from them, which
+  // prevents displaying the current configuration and crashes the funnel. Fetch
+  // it explicitly using the 'self' target with no status filter so it is always
+  // available as the fork default.
+  const currentAvailabilityQuery = useGetCurrentAvailability(
+    projectId,
+    service.id,
   );
   const capabilitiesQuery = useGetFullCapabilities(projectId);
   const backupsQuery = useGetBackups(projectId, service.engine, service.id);
@@ -90,10 +102,23 @@ const Fork = () => {
     !networkData.subnetQuery.isSuccess;
   const loading =
     availabilitiesQuery.isLoading ||
+    currentAvailabilityQuery.isLoading ||
     capabilitiesQuery.isLoading ||
     backupsQuery.isLoading ||
     isNetworkLoading ||
     catalogQuery.isLoading;
+
+  // Merge the current service availability into the fork availabilities so the
+  // current configuration can always be selected/displayed, even when it has
+  // been filtered out because of an EOS/EOL status.
+  const availabilities: database.Availability[] = useMemo(
+    () =>
+      mergeCurrentAvailability(
+        availabilitiesQuery.data ?? [],
+        currentAvailabilityQuery.data,
+      ),
+    [availabilitiesQuery.data, currentAvailabilityQuery.data],
+  );
 
   // Add the current tag to selected capabilities.
   const capabilities: FullCapabilities = useMemo(() => {
@@ -126,12 +151,16 @@ const Fork = () => {
     <>
       <h2>{t('title')}</h2>
       <p>{t('description')}</p>
+      <EosBanner
+        availability={currentAvailabilityQuery.data?.[0]}
+        context="fork"
+      />
 
       {loading ? (
         <OrderSkeleton />
       ) : (
         <ForkForm
-          availabilities={availabilitiesQuery.data}
+          availabilities={availabilities}
           capabilities={capabilities}
           initialValue={initialValue}
           catalog={catalogQuery.data}

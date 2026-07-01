@@ -11,6 +11,7 @@ import { useToast } from '@datatr-ux/uxlib';
 import { RouterWithQueryClientWrapper } from '@/__tests__/helpers/wrappers/RouterWithQueryClientWrapper';
 import * as database from '@/types/cloud/project/database';
 import * as serviceApi from '@/data/api/database/service.api';
+import * as availabilityApi from '@/data/api/database/availability.api';
 import { apiErrorMock } from '@/__tests__/helpers/mocks/cdbError';
 import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
 import UpdateFlavor from './UpdateFlavor.modal';
@@ -154,5 +155,32 @@ describe('Update Flavor modal', () => {
         description: 'updateFlavorAndStorageToastSuccessDescription',
       });
     });
+  });
+
+  it('disables submit when the selected (current) flavor is EOS/EOL', async () => {
+    // Current flavor (db1-4) is end of sale: filtered out of the status-filtered
+    // flavor list, present only via 'self'. Submitting a change that stays on
+    // this offer is rejected server-side, so the submit must be disabled.
+    const eosCurrent: database.Availability = {
+      ...mockedAvailabilitiesFlavor,
+      lifecycle: {
+        ...mockedAvailabilitiesFlavor.lifecycle,
+        status: database.availability.StatusEnum.END_OF_SALE,
+      },
+    };
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(
+      ({ target }) =>
+        target === database.availability.TargetEnum.self
+          ? Promise.resolve([eosCurrent])
+          : Promise.resolve([mockedAvailabilitiesFlavorBis]),
+    );
+    render(<UpdateFlavor />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('update-flavor-submit-button')).toBeDisabled();
+    });
+    // restore default mock so it does not leak
+    vi.mocked(availabilityApi.getAvailabilities).mockImplementation(() =>
+      Promise.resolve([mockedAvailabilitiesFlavor, mockedAvailabilitiesFlavorBis]),
+    );
   });
 });

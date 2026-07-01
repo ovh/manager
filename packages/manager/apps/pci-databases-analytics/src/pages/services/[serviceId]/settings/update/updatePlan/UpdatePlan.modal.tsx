@@ -25,9 +25,10 @@ import { useEditService } from '@/hooks/api/database/service/useEditService.hook
 import Price from '@/components/price/Price.component';
 import PricingDetails from '../_components/PricingDetails.component';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
-import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useGetUpdateAvailabilities } from '@/hooks/api/database/availability/useGetUpdateAvailabilities.hook';
 import { useUpdatePlan } from './useUpdatePlan.hook';
 import RouteModal from '@/components/route-modal/RouteModal';
+import EosBanner from '@/components/eos-banner/EosBanner.component';
 
 const UpdatePlan = () => {
   const navigate = useNavigate();
@@ -37,10 +38,9 @@ const UpdatePlan = () => {
   const { t } = useTranslation(
     'pci-databases-analytics/services/service/settings/update',
   );
-  const availabilitiesQuery = useGetAvailabilities(
+  const { availabilities, currentAvailability } = useGetUpdateAvailabilities(
     projectId,
     service.id,
-    database.availability.ActionEnum.update,
     database.availability.TargetEnum.plan,
   );
 
@@ -50,7 +50,7 @@ const UpdatePlan = () => {
     initialFlavorObject,
     oldPrice,
     newPrice,
-  } = useUpdatePlan({ availabilities: availabilitiesQuery.data, service });
+  } = useUpdatePlan({ availabilities, service });
 
   const { editService, isPending } = useEditService({
     onError: (err) => {
@@ -107,6 +107,7 @@ const UpdatePlan = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
+          <EosBanner availability={currentAvailability} />
           <Form {...form}>
             <form onSubmit={onSubmit} id="updatePlanForm">
               <FormField
