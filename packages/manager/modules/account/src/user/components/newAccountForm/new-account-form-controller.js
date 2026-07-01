@@ -455,6 +455,18 @@ export default class NewAccountFormController {
     return Object.keys(this.SECTIONS);
   }
 
+  // displayName ("Libellé du compte") has no fixed section: it sits next to the
+  // company name for business accounts (activity section) and next to the
+  // first/last name for individuals/B2C (personal section).
+  getDisplayNameSection() {
+    const isBusiness = [
+      USER_TYPE_ENTERPRISE,
+      USER_TYPE_ASSOCIATION,
+      USER_TYPE_ADMINISTRATION,
+    ].includes(this.model.legalform);
+    return isBusiness ? 'activity' : 'personal';
+  }
+
   // return the list of fields for a given fieldset name
   // readonly rules are not returned because they are not editable
   getRulesBySection(section) {
@@ -462,10 +474,17 @@ export default class NewAccountFormController {
     if (section === 'other') {
       return this.rules.filter((rule) => {
         const allFields = flatten(values(this.SECTIONS));
-        return !allFields.includes(rule.fieldName) && !rule.readonly;
+        return (
+          !allFields.includes(rule.fieldName) &&
+          rule.fieldName !== FIELD_NAME_LIST.displayName &&
+          !rule.readonly
+        );
       });
     }
-    const fields = this.SECTIONS[section];
+    const fields = [...this.SECTIONS[section]];
+    if (section === this.getDisplayNameSection()) {
+      fields.push(FIELD_NAME_LIST.displayName);
+    }
     return this.rules.filter(
       (rule) => fields.includes(rule.fieldName) && !rule.readonly,
     );

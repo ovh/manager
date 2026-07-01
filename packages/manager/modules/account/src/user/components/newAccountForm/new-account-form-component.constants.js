@@ -99,6 +99,7 @@ export const FIELD_NAME_LIST = {
   legalform: 'legalform',
   firstname: 'firstname',
   name: 'name',
+  displayName: 'displayName',
   sex: 'sex',
   birthDay: 'birthDay',
   birthCity: 'birthCity',
@@ -127,7 +128,6 @@ export const FIELD_NAME_LIST = {
   gst: 'gst',
   iceNumber: 'iceNumber',
   purposeOfPurchase: 'purposeOfPurchase',
-  displayName: 'displayName',
 };
 
 export const SUBSIDIARIES_VAT_FIELD_OVERRIDE = {
