@@ -1,0 +1,40 @@
+{
+  "tile": {
+    "title": "Migration",
+    "cta": {
+      "order": "Order",
+      "orderDisabledTooltip": {
+        "noPermission": "You do not have permission to order this service."
+      }
+    },
+    "badge": {
+      "actif": "Active",
+      "provisioning": "Provisioning…",
+      "deleting": "Deleting…",
+      "suspended": "Suspended",
+      "error": "Error",
+      "updateInProgress": "Update in progress"
+    },
+    "error": {
+      "fetch": "Status unavailable.",
+      "retry": "Retry"
+    },
+    "ariaLabel": {
+      "active": "VCDA migration: active",
+      "inactive": "VCDA migration: not active. Click Order to subscribe.",
+      "provisioning": "VCDA migration: provisioning."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Terminate service",
+    "ariaLabel": "Terminate VCDA service",
+    "modalDescription": "This action will terminate the VCDA service at the next billing expiration date. This cannot be undone from this interface.",
+    "success": "Termination scheduled. The service will be deleted at the next billing date.",
+    "disabled": {
+      "updating": "An operation is in progress.",
+      "suspended": "Service is suspended — contact support.",
+      "error": "Service is in error — contact support.",
+      "deleting": "Termination already scheduled."
+    }
+  }
+}

@@ -35,8 +35,30 @@ const OrganizationResetPasswordPage = React.lazy(() =>
     '@/pages/dashboard/organization/general-information/edit/EditPassword.page'
   ),
 );
+const MigrationPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/Migration.page'),
+);
+const MigrationOrderPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/order/MigrationOrder.page'),
+);
+const MigrationOrderTermsPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/organization/migration/order/terms/MigrationOrderTerms.page'
+  ),
+);
 const DatacentresPage = React.lazy(() =>
   import('@/pages/listing/datacentres/Datacentres.page'),
+);
+const MigrationAddIpPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/add-ip/AddIp.page'),
+);
+const MigrationDeleteIpPage = React.lazy(() =>
+  import('@/pages/dashboard/organization/migration/delete-ip/DeleteIp.page'),
+);
+const TerminateMigrationPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/organization/migration/terminate/TerminateMigration.page'
+  ),
 );
 
 const NetworkAclPage = React.lazy(() =>
@@ -218,6 +240,17 @@ export default (
               },
             }}
           />
+          <Route
+            id="migration-terminate"
+            path={subRoutes.migrationTerminate}
+            Component={TerminateMigrationPage}
+            handle={{
+              tracking: {
+                pageName: 'terminate_vcda-migration',
+                pageType: PageType.popup,
+              },
+            }}
+          />
         </Route>
         <Route
           id={'datacentres'}
@@ -230,6 +263,63 @@ export default (
             },
           }}
         />
+        <Route
+          id={'migration-order'}
+          path={urls.migrationOrder}
+          Component={MigrationOrderPage}
+          handle={{
+            tracking: {
+              pageName: 'order_vcda-migration',
+              pageType: PageType.funnel,
+            },
+          }}
+        >
+          <Route
+            id={'migration-order-terms'}
+            path={urls.migrationOrderTerms}
+            Component={MigrationOrderTermsPage}
+            handle={{
+              tracking: {
+                pageName: 'order_vcda-migration-terms',
+                pageType: PageType.funnel,
+              },
+            }}
+          />
+        </Route>
+        <Route
+          id={'migration'}
+          path={urls.migration}
+          Component={MigrationPage}
+          handle={{
+            tracking: {
+              pageName: 'migration',
+              pageType: PageType.dashboard,
+            },
+          }}
+        >
+          <Route
+            id={'migration-add-ip'}
+            path={urls.migrationAddIp}
+            Component={MigrationAddIpPage}
+            handle={{
+              tracking: {
+                pageName: 'migration-add-ip',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+          <Route
+            id={'migration-delete-ip'}
+            path={urls.migrationDeleteIp}
+            Component={MigrationDeleteIpPage}
+            handle={{
+              tracking: {
+                pageName: 'migration-delete-ip',
+                pageType: PageType.popup,
+              },
+            }}
+          />
+        </Route>
         <Route
           id={'network-acl'}
           path={urls.networkAcl}

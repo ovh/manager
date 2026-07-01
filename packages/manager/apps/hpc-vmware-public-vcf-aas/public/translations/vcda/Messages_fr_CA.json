@@ -1,0 +1,40 @@
+{
+  "tile": {
+    "title": "Migration",
+    "cta": {
+      "order": "Commander",
+      "orderDisabledTooltip": {
+        "noPermission": "Vous n'avez pas l'autorisation de commander ce service."
+      }
+    },
+    "badge": {
+      "actif": "Actif",
+      "provisioning": "Provisionnement…",
+      "deleting": "Suppression…",
+      "suspended": "Suspendu",
+      "error": "Erreur",
+      "updateInProgress": "Mise à jour en cours"
+    },
+    "error": {
+      "fetch": "Statut indisponible.",
+      "retry": "Réessayer"
+    },
+    "ariaLabel": {
+      "active": "Migration VCDA : active",
+      "inactive": "Migration VCDA : non active. Cliquez sur Commander pour souscrire.",
+      "provisioning": "Migration VCDA : provisionnement en cours."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Résilier le service",
+    "ariaLabel": "Résilier le service VCDA",
+    "modalDescription": "Cette action résiliera le service VCDA à la prochaine date d’expiration de facturation. Cette opération est irréversible depuis cette interface.",
+    "success": "Résiliation programmée. Le service sera supprimé à la prochaine date de facturation.",
+    "disabled": {
+      "updating": "Une opération est en cours.",
+      "suspended": "Le service est suspendu — contactez le support.",
+      "error": "Le service est en erreur — contactez le support.",
+      "deleting": "Résiliation déjà programmée."
+    }
+  }
+}

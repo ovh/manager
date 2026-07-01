@@ -3,12 +3,15 @@ import {
   isStatusTerminated,
   useVcdOrganization,
 } from '@ovh-ux/manager-module-vcd-api';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import Errors from '@/components/error/Error.component';
 import Loading from '@/components/loading/Loading.component';
 import OrganizationGenerationInformationTile from '@/components/tiles/organization-general-information-tile/OrganizationGeneralInformationTile.component';
 import OrganizationOptionsTile from '@/components/tiles/organization-options-tile/OrganizationOptionsTile.component';
 import OrganizationDataProtectionTile from '@/components/tiles/organization-data-tile/OrganizationDataProtectionTile.component';
 import OrganizationServiceManagementTile from '@/components/tiles/organization-service-tile/OrganizationServiceManagementTile.component';
+import MigrationTile from '@/components/tiles/migration-tile/MigrationTile.component';
+import { FEATURES } from '@/utils/features.constants';
 
 export default function GeneralInformation() {
   const { id } = useParams();
@@ -22,6 +25,8 @@ export default function GeneralInformation() {
     id,
     refetchInterval: 60 * 1000,
   });
+  const { data: features } = useFeatureAvailability([FEATURES.HPC_VCFAAS_VCDA]);
+  const isVcdaEnabled = !!features?.[FEATURES.HPC_VCFAAS_VCDA];
 
   if (isError || isRefetchError) {
     return <Errors error={error?.response} />;
@@ -48,6 +53,7 @@ export default function GeneralInformation() {
         <OrganizationDataProtectionTile
           vcdOrganization={vcdOrganization.data}
         />
+        {isVcdaEnabled && <MigrationTile />}
       </div>
       <OrganizationServiceManagementTile />
       <Outlet />

@@ -1,0 +1,40 @@
+{
+  "tile": {
+    "title": "Migración",
+    "cta": {
+      "order": "Solicitar",
+      "orderDisabledTooltip": {
+        "noPermission": "No tiene permiso para solicitar este servicio."
+      }
+    },
+    "badge": {
+      "actif": "Activo",
+      "provisioning": "Aprovisionando…",
+      "deleting": "Eliminando…",
+      "suspended": "Suspendido",
+      "error": "Error",
+      "updateInProgress": "Actualización en curso"
+    },
+    "error": {
+      "fetch": "Estado no disponible.",
+      "retry": "Reintentar"
+    },
+    "ariaLabel": {
+      "active": "Migración VCDA: activa",
+      "inactive": "Migración VCDA: no activa. Haga clic en Solicitar para suscribirse.",
+      "provisioning": "Migración VCDA: aprovisionando."
+    }
+  },
+  "serviceTermination": {
+    "cta": "Terminate service",
+    "ariaLabel": "Terminate VCDA service",
+    "modalDescription": "This action will terminate the VCDA service at the next billing expiration date. This cannot be undone from this interface.",
+    "success": "Termination scheduled. The service will be deleted at the next billing date.",
+    "disabled": {
+      "updating": "An operation is in progress.",
+      "suspended": "Service is suspended — contact support.",
+      "error": "Service is in error — contact support.",
+      "deleting": "Termination already scheduled."
+    }
+  }
+}
