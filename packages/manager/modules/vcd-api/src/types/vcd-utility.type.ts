@@ -21,9 +21,19 @@ export type VCDResourceStatus =
   | 'ERROR'
   | 'SUSPENDED';
 
+export type VCFAdvancedResourceStatus =
+  | VCDResourceStatus
+  | 'UNKNOWN'
+  | 'OUT_OF_SYNC';
+
 export type Task = {
   id: string;
   link: string;
   status: 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | null;
   type: string;
+};
+
+export type VCFAdvancedTask = Omit<Task, 'status'> & {
+  status: 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';
+  errors: { message: string }[];
 };
