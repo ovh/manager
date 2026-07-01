@@ -23,6 +23,11 @@ export const subRoutes = {
   addNetwork: 'add-network',
   deleteSegment: 'delete-segment',
   deleteNetwork: 'delete-network',
+  edgeGateway: 'edge-gateway',
+  edgeGatewayId: ':edgeGatewayId',
+  addEdgeGateway: 'add-edge-gateway',
+  editEdgeGateway: 'edit-edge-gateway',
+  deleteEdgeGateway: 'delete-edge-gateway',
   terminate: 'terminate',
   addNetworkAcl: 'add-network-acl',
   deleteNetworkAcl: 'delete-network-acl',
@@ -56,6 +61,10 @@ export const urls = {
   networkAclAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.addNetworkAcl}`,
   networkAclEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.editNetworkAcl}`,
   networkAclDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.deleteNetworkAcl}`,
+  edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
+  edgeGatewayAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.addEdgeGateway}`,
+  edgeGatewayEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGateway}`,
+  edgeGatewayDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.deleteEdgeGateway}`,
 } as const;
 
 export const veeamBackupAppName = 'veeam-backup';

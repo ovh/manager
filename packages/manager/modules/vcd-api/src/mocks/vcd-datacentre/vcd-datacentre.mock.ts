@@ -27,6 +27,16 @@ const datacentre: VCDDatacentre = {
   },
 };
 
+export const datacentreNsxMock: VCDDatacentre = {
+  ...datacentre,
+  id: 'vdc-eu-central-waw-abcd-edge-compatible',
+  currentState: {
+    ...datacentre.currentState,
+    offerProfile: 'NSX',
+    name: 'vdc-eu-central-waw-abcd-edge-compatible',
+  },
+};
+
 export const datacentreList: VCDDatacentre[] = [
   datacentre,
   {
@@ -34,4 +44,5 @@ export const datacentreList: VCDDatacentre[] = [
     resourceStatus: 'SUSPENDED',
     id: 'vdc-eu-central-rbx-adc311b5-0c0b-4071-b48f-b20813868bcf',
   },
+  datacentreNsxMock,
 ];

@@ -1,0 +1,1 @@
+export const EDGE_GATEWAY_MAX_QUANTITY = 5;

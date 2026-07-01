@@ -11,8 +11,11 @@ import { ChangelogButton } from '@ovh-ux/manager-react-components';
 import VcdDashboardLayout, {
   DashboardTab,
 } from '@/components/dashboard/layout/VcdDashboardLayout.component';
-
-import { COMPUTE_LABEL, STORAGE_LABEL } from './datacentreDashboard.constants';
+import {
+  COMPUTE_LABEL,
+  EDGE_GATEWAY_LABEL,
+  STORAGE_LABEL,
+} from './datacentreDashboard.constants';
 import { subRoutes, urls } from '@/routes/routes.constant';
 import { useAutoRefetch } from '@/data/hooks/useAutoRefetch';
 import { isUpdatingTargetSpec } from '@/utils/refetchConditions';
@@ -21,8 +24,10 @@ import { TRACKING_TABS_ACTIONS } from '@/tracking.constants';
 import { VRACK_LABEL } from '../dashboard.constants';
 import { FEATURE_FLAGS } from '@/app.constants';
 import MessageSuspendedService from '@/components/message/MessageSuspendedService.component';
+import { useHasEdgeGatewayAccess } from '@/hooks/edge/useHasEdgeGatewayAccess';
 
 function DatacentreDashboardPage() {
+  const navigate = useNavigate();
   const { id, vdcId } = useParams();
   const { t: tDashboard } = useTranslation(NAMESPACES.DASHBOARD);
   const { t: tActions } = useTranslation(NAMESPACES.ACTIONS);
@@ -30,8 +35,9 @@ function DatacentreDashboardPage() {
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
   ]);
+  const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
+
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
-  const navigate = useNavigate();
 
   useAutoRefetch({
     queryKey: getVcdDatacentreListQueryKey(id),
@@ -65,6 +71,13 @@ function DatacentreDashboardPage() {
       trackingActions: TRACKING_TABS_ACTIONS.vrack,
       disabled:
         !isVrackFeatureAvailable || !vcdDatacentre?.data?.currentState?.vrack,
+    },
+    {
+      name: 'edge-gateway',
+      title: EDGE_GATEWAY_LABEL,
+      to: useResolvedPath(subRoutes.edgeGateway).pathname,
+      trackingActions: TRACKING_TABS_ACTIONS.edgeGateway,
+      disabled: !hasEdgeGatewayAccess,
     },
   ].filter(({ disabled }) => !disabled);
 

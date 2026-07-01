@@ -1,4 +1,4 @@
-import { GetDatacentreComputeParams } from '../types';
+import { GetDatacentreComputeParams, GetEdgeGatewayParams } from '../types';
 
 export const VCD_ORGANIZATION_ROUTE = '/vmwareCloudDirector/organization';
 
@@ -17,6 +17,7 @@ export const getVcdOrganisationNetworkAcl = (id: string, aclId: string) => {
 export const getVcdResetPasswordRoute = (id: string) =>
   `${VCD_ORGANIZATION_ROUTE}/${id}/password`;
 
+// VDC
 export const getVcdDatacentresRoute = (id: string) => {
   return `${VCD_ORGANIZATION_ROUTE}/${id}/virtualDataCenter`;
 };
@@ -45,8 +46,9 @@ export const getVdcOrderableResourceRoute = (id: string, vdcId: string) => {
   return `${getVcdDatacentreRoute(id, vdcId)}/orderableResource`;
 };
 
+// Vrack
 export const getVdcVrackSegmentListRoute = (id: string, vdcId: string) => {
-  return `${getVcdDatacentresRoute(id)}/${vdcId}/vrackSegment`;
+  return `${getVcdDatacentreRoute(id, vdcId)}/vrackSegment`;
 };
 
 export const getVdcVrackSegmentRoute = ({
@@ -59,4 +61,26 @@ export const getVdcVrackSegmentRoute = ({
   vrackSegmentId: string;
 }) => {
   return `${getVdcVrackSegmentListRoute(id, vdcId)}/${vrackSegmentId}`;
+};
+
+// IP Block
+export const getVcdIpBlockListRoute = (id: string) => {
+  return `${getVcdOrganizationRoute(id)}/IpSpace`;
+};
+
+export const getVcdIpBlockRoute = (id: string, ipBlockId: string) => {
+  return `${getVcdOrganizationRoute(id)}/IpSpace/${ipBlockId}`;
+};
+
+// Edge Gateway
+export const getVcdEdgeGatewayListRoute = (id: string, vdcId: string) => {
+  return `${getVcdDatacentreRoute(id, vdcId)}/edgeGateway`;
+};
+
+export const getVcdEdgeGatewayRoute = ({
+  id,
+  vdcId,
+  edgeGatewayId,
+}: GetEdgeGatewayParams) => {
+  return `${getVcdEdgeGatewayListRoute(id, vdcId)}/${edgeGatewayId}`;
 };
