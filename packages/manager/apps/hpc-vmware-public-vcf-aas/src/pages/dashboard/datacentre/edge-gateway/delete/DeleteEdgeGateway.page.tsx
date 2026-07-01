@@ -22,7 +22,7 @@ export default function DeleteEdgeGatewayPage() {
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
   const { data: edge, isLoading } = useVcdEdgeGateway(edgeParams);
-  const edgeName = edge?.currentState.edgeGatewayName;
+  const edgeName = edge?.currentState.name;
 
   const { mutate: deleteEdge, isPending: isDeleting } = useDeleteEdgeGateway({
     ...edgeParams,

@@ -1,4 +1,4 @@
-import { Task, VCDResourceStatus } from './vcd-utility.type';
+import { VCFAdvancedResourceStatus, VCFAdvancedTask } from './vcd-utility.type';
 
 export type GetEdgeGatewayParams = {
   id: string;
@@ -6,21 +6,27 @@ export type GetEdgeGatewayParams = {
   edgeGatewayId: string;
 };
 
-export type UpdateEdgeGatewayPayload = {
-  edgeGatewayNewName: string;
-  ipBlock: string;
-};
-
-export type VCDEdgeGatewayState = {
-  edgeGatewayName: string;
-  ipBlock: string;
+export type VCDEdgeGatewayTargetSpec = {
+  name: string;
 };
 
 export type VCDEdgeGateway = {
   id: string;
-  targetSpec: VCDEdgeGatewayState;
-  currentState: VCDEdgeGatewayState;
-  currentTasks: Task[];
-  resourceStatus: VCDResourceStatus;
-  updatedAt?: string;
+  targetSpec: VCDEdgeGatewayTargetSpec;
+  currentState: {
+    deploymentMode: 'ACTIVE_STANDBY' | 'DISTRIBUTED_ONLY';
+    idurn: string;
+    name: string;
+    providerGateway: string;
+  };
+  currentTasks: VCFAdvancedTask[];
+  resourceStatus: VCFAdvancedResourceStatus;
+};
+
+export type VCDEdgeGatewayWithIpBlock = VCDEdgeGateway & {
+  ipBlock?: {
+    id: string;
+    internalScope: string;
+    name: string;
+  };
 };
