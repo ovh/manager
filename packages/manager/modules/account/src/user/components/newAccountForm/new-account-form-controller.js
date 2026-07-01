@@ -455,9 +455,6 @@ export default class NewAccountFormController {
     return Object.keys(this.SECTIONS);
   }
 
-  // displayName ("Libellé du compte") has no fixed section: it sits next to the
-  // company name for business accounts (activity section) and next to the
-  // first/last name for individuals/B2C (personal section).
   getDisplayNameSection() {
     const isBusiness = [
       USER_TYPE_ENTERPRISE,
