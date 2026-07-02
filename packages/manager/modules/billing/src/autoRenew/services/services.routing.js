@@ -4,7 +4,11 @@ import range from 'lodash/range';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import { NIC_ALL } from '../autorenew.constants';
+import {
+  HOSTING_WEB_MERGED_KEY,
+  HOSTING_WEB_MERGED_TYPES,
+  NIC_ALL,
+} from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.services', {
@@ -93,8 +97,15 @@ export default /* @ngInject */ ($stateProvider) => {
       searchText: /* @ngInject */ ($transition$) =>
         $transition$.params().searchText,
 
-      selectedType: /* @ngInject */ ($transition$, queryParameters) =>
-        $transition$.params().selectedType || queryParameters.selectedType,
+      selectedType: /* @ngInject */ ($transition$, queryParameters) => {
+        const selectedType =
+          $transition$.params().selectedType || queryParameters.selectedType;
+        // Old deep-links may target HOSTING_WEB_NEW; normalize to the merged key
+        // so the filter chip label resolves and both types are queried.
+        return HOSTING_WEB_MERGED_TYPES.includes(selectedType)
+          ? HOSTING_WEB_MERGED_KEY
+          : selectedType;
+      },
 
       refresh: /* @ngInject */ ($transition$, queryParameters) =>
         $transition$.params().refresh === 'true' ||
