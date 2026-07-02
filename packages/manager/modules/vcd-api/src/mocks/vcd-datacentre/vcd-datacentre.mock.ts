@@ -32,7 +32,7 @@ export const datacentreNsxMock: VCDDatacentre = {
   id: 'vdc-eu-central-waw-abcd-edge-compatible',
   currentState: {
     ...datacentre.currentState,
-    offerProfile: 'NSX',
+    commercialRange: 'NSX',
     name: 'vdc-eu-central-waw-abcd-edge-compatible',
   },
 };

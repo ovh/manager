@@ -65,11 +65,11 @@ export const getVdcVrackSegmentRoute = ({
 
 // IP Block
 export const getVcdIpBlockListRoute = (id: string) => {
-  return `${getVcdOrganizationRoute(id)}/IpSpace`;
+  return `${getVcdOrganizationRoute(id)}/ipSpace`;
 };
 
 export const getVcdIpBlockRoute = (id: string, ipBlockId: string) => {
-  return `${getVcdOrganizationRoute(id)}/IpSpace/${ipBlockId}`;
+  return `${getVcdOrganizationRoute(id)}/ipSpace/${ipBlockId}`;
 };
 
 // Edge Gateway
