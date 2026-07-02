@@ -1,6 +1,6 @@
 import { Suspense, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import {
   AnycastSubscribeComponent,
@@ -15,6 +15,7 @@ import {
 export default function AnycastOrderComponent() {
   const { i18n } = useTranslation();
   const { serviceName } = useParams<{ serviceName: string }>();
+  const location = useLocation();
   const {
     environment: { user },
   } = useContext(ShellContext);
@@ -41,11 +42,21 @@ export default function AnycastOrderComponent() {
     ? 'true'
     : 'false';
 
-  // No `navbar.backUrl` is passed: the configo's Return/Finish buttons then
-  // fall back to `window.history.back()` (SPA) instead of a hard
-  // `window.location.href`. Combined with this route being a child of
-  // DomainDetailPage (which stays mounted), returning to the originating tab
-  // is fluid — no full dashboard reload, no focus-driven remount loop.
+  // Back behaviour of the configo's Return/Finish buttons:
+  // - In-app navigation (launched from a tab) → no `navbar.backUrl`, so the
+  //   configo falls back to `window.history.back()` (SPA). Combined with this
+  //   route being a child of DomainDetailPage (which stays mounted), the
+  //   return is fluid — no full dashboard reload, no focus-driven remount loop.
+  // - Direct entry (email link, bookmark, refresh) → there is no in-app
+  //   history to go back to, so `history.back()` would go nowhere / out of the
+  //   app. `location.key === 'default'` marks that case; we then pass an
+  //   explicit backUrl to the DNS servers tab so the buttons always land
+  //   somewhere sensible.
+  const isDirectEntry = location.key === 'default';
+  const navbar = isDirectEntry
+    ? { backUrl: window.location.href.replace('/anycast/order', '/dns') }
+    : undefined;
+
   return (
     <div className="suspend-module">
       <Suspense fallback={<Loading />}>
@@ -55,6 +66,7 @@ export default function AnycastOrderComponent() {
           hostAppName="manager"
           zoneName={serviceName ?? ''}
           dnssecSupported={dnssecSupported}
+          navbar={navbar}
         />
       </Suspense>
     </div>
