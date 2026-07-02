@@ -83,7 +83,6 @@ export default class {
     renewMode,
   ) {
     const headers = refresh ? { Pragma: 'no-cache' } : {};
-    // The single "Web hosting" filter must query both underlying service types.
     const serviceType = HOSTING_WEB_MERGED_TYPES.includes(type)
       ? HOSTING_WEB_MERGED_TYPES.join(',')
       : type;
@@ -124,7 +123,6 @@ export default class {
     return reduce(
       services.servicesTypes,
       (serviceTypes, service) => {
-        // Merge the split web hosting types into a single "Web hosting" entry.
         const type = HOSTING_WEB_MERGED_TYPES.includes(service)
           ? HOSTING_WEB_MERGED_KEY
           : service;
