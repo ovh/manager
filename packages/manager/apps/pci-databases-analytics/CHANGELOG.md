@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.41.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.41.2...@ovh-ux/manager-pci-databases-analytics-app@1.41.3) (2026-07-02)
+
+
+### Bug Fixes
+
+* **pci-databases-analytics:** support update & fork for EOS/EOL services ([a49034b](https://github.com/ovh/manager/commit/a49034b7c372081b8fcb256291b881769879dfd3)), closes [#DATATR-1234](https://github.com/ovh/manager/issues/DATATR-1234)
+
+
+
+
+
 ## [1.41.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-databases-analytics-app@1.41.1...@ovh-ux/manager-pci-databases-analytics-app@1.41.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-databases-analytics-app
