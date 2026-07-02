@@ -81,8 +81,6 @@ export const SERVICE_TYPES = {
   ZIMBRA_SLOT: 'ZIMBRA_SLOT',
 };
 
-// Web hosting is split by the BFF into two service types that share the same
-// "Web hosting" label. They are merged into a single filter entry (front-side).
 export const HOSTING_WEB_MERGED_KEY = 'HOSTING_WEB';
 export const HOSTING_WEB_MERGED_TYPES = ['HOSTING_WEB', 'HOSTING_WEB_NEW'];
 

@@ -100,8 +100,6 @@ export default /* @ngInject */ ($stateProvider) => {
       selectedType: /* @ngInject */ ($transition$, queryParameters) => {
         const selectedType =
           $transition$.params().selectedType || queryParameters.selectedType;
-        // Old deep-links may target HOSTING_WEB_NEW; normalize to the merged key
-        // so the filter chip label resolves and both types are queried.
         return HOSTING_WEB_MERGED_TYPES.includes(selectedType)
           ? HOSTING_WEB_MERGED_KEY
           : selectedType;
