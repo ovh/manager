@@ -81,9 +81,6 @@ export const SERVICE_TYPES = {
   ZIMBRA_SLOT: 'ZIMBRA_SLOT',
 };
 
-export const HOSTING_WEB_MERGED_KEY = 'HOSTING_WEB';
-export const HOSTING_WEB_MERGED_TYPES = ['HOSTING_WEB', 'HOSTING_WEB_NEW'];
-
 const TRACKING_CHAPTER_1 = 'Hub';
 const TRACKING_CHAPTER_2 = 'billing';
 const TRACKING_CHAPTER_3 = 'services';

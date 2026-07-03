@@ -7,8 +7,6 @@ import { BillingService } from '@ovh-ux/manager-models';
 import {
   AUTORENEW_EVENT,
   CONTRACTS_IDS,
-  HOSTING_WEB_MERGED_KEY,
-  HOSTING_WEB_MERGED_TYPES,
   SERVICE_EXPIRATION,
   SERVICE_STATES,
   SERVICE_STATUS,
@@ -83,16 +81,13 @@ export default class {
     renewMode,
   ) {
     const headers = refresh ? { Pragma: 'no-cache' } : {};
-    const serviceType = HOSTING_WEB_MERGED_TYPES.includes(type)
-      ? HOSTING_WEB_MERGED_TYPES.join(',')
-      : type;
     return this.OvhHttp.get('/billing/services', {
       rootPath: '2api',
       params: {
         count,
         offset,
         search,
-        type: serviceType,
+        type,
         renewDateType,
         status,
         state,
@@ -122,17 +117,12 @@ export default class {
   getServicesTypes(services) {
     return reduce(
       services.servicesTypes,
-      (serviceTypes, service) => {
-        const type = HOSTING_WEB_MERGED_TYPES.includes(service)
-          ? HOSTING_WEB_MERGED_KEY
-          : service;
-        return {
-          ...serviceTypes,
-          [type]: this.$translate.instant(
-            `billing_autorenew_service_type_${type}`,
-          ),
-        };
-      },
+      (serviceTypes, service) => ({
+        ...serviceTypes,
+        [service]: this.$translate.instant(
+          `billing_autorenew_service_type_${service}`,
+        ),
+      }),
       {},
     );
   }
