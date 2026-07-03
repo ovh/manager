@@ -4,11 +4,7 @@ import range from 'lodash/range';
 
 import { BillingService } from '@ovh-ux/manager-models';
 
-import {
-  HOSTING_WEB_MERGED_KEY,
-  HOSTING_WEB_MERGED_TYPES,
-  NIC_ALL,
-} from '../autorenew.constants';
+import { NIC_ALL } from '../autorenew.constants';
 
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('billing.autorenew.services', {
@@ -97,13 +93,8 @@ export default /* @ngInject */ ($stateProvider) => {
       searchText: /* @ngInject */ ($transition$) =>
         $transition$.params().searchText,
 
-      selectedType: /* @ngInject */ ($transition$, queryParameters) => {
-        const selectedType =
-          $transition$.params().selectedType || queryParameters.selectedType;
-        return HOSTING_WEB_MERGED_TYPES.includes(selectedType)
-          ? HOSTING_WEB_MERGED_KEY
-          : selectedType;
-      },
+      selectedType: /* @ngInject */ ($transition$, queryParameters) =>
+        $transition$.params().selectedType || queryParameters.selectedType,
 
       refresh: /* @ngInject */ ($transition$, queryParameters) =>
         $transition$.params().refresh === 'true' ||

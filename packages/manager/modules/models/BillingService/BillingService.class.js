@@ -299,7 +299,6 @@ export default class BillingService {
       'SMS',
       'EMAIL_DOMAIN',
       'VEEAM_ENTERPRISE',
-      'HOSTING_WEB_NEW',
     ].includes(this.serviceType);
   }
 

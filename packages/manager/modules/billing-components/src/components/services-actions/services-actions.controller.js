@@ -93,7 +93,7 @@ export default class ServicesActionsCtrl {
           !this.service.isResiliated() &&
           this.service.canHandleRenew() &&
           this.service.serviceType !== this.SERVICE_TYPE.HOSTING_WEB_CDN &&
-          this.service.serviceType !== this.SERVICE_TYPE.HOSTING_WEB_NEW &&
+          !this.service.isNewHostingOffer &&
           !this.service.hasEngagement();
         this.canDisplayAnticipateRenewMenuEntry =
           !this.service.isOneShot() &&
@@ -147,8 +147,7 @@ export default class ServicesActionsCtrl {
         // Grouped actions conditions (combined with the presence of action in the group)
         this.canDisplayRenewManagementMenuEntries =
           links.billingManagementAvailabilityAndHaveAutorenewLink &&
-          (!this.service.hasParticularRenew() ||
-            this.service.serviceType === this.SERVICE_TYPE.HOSTING_WEB_NEW) &&
+          !this.service.hasParticularRenew() &&
           !this.service.hasPendingResiliation() &&
           !this.service.hasDebt() &&
           (this.canDisplayRenewConfigurationMenuEntry ||
