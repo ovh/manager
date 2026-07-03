@@ -8,6 +8,7 @@ export const SERVICE_KEY_TEST_IDS = {
   creationDate: 'service-key-creation-date',
   origin: 'service-key-origin',
   type: 'service-key-type',
+  protectionLevel: 'service-key-protection-level',
   size: 'service-key-size',
   usage: 'service-key-usage',
 };

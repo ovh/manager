@@ -1,4 +1,5 @@
 import { useServiceKeyActionsList } from '@key-management-service/hooks/service-key/useServiceKeyActionsList';
+import { useServiceKeyProtectionLevelTranslations } from '@key-management-service/hooks/service-key/useServiceKeyProtectionLevelTranslations';
 import { useServiceKeyTypeTranslations } from '@key-management-service/hooks/service-key/useServiceKeyTypeTranslations';
 import { useFormattedDate } from '@key-management-service/hooks/useFormattedDate';
 import { KMS_ROUTES_URLS } from '@key-management-service/routes/routes.constants';
@@ -54,6 +55,15 @@ export const DatagridCellType = (props: OkmsServiceKey) => {
   const translatedValue = useServiceKeyTypeTranslations(props.type);
   return (
     <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.type(props.id)}>
+      {translatedValue}
+    </Text>
+  );
+};
+
+export const DatagridServiceKeyProtectionLevel = (props: OkmsServiceKey) => {
+  const translatedValue = useServiceKeyProtectionLevelTranslations(props.protectionLevel ?? '');
+  return (
+    <Text preset="span" data-testid={SERVICE_KEY_LIST_CELL_TEST_IDS.protectionLevel(props.id)}>
       {translatedValue}
     </Text>
   );

@@ -17,6 +17,7 @@ export type OkmsServiceKey = {
   size?: OkmsServiceKeySize;
   curve?: OkmsServiceKeyCurve;
   operations: OkmsServiceKeyOperations[];
+  protectionLevel?: OkmsServiceKeyProtectionLevel;
 };
 
 export type OkmsServiceKeyWithJwkData = OkmsServiceKey & {
