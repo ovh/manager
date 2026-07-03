@@ -6,6 +6,7 @@ import {
   DatagridServiceKeyActionMenu,
   DatagridServiceKeyCellId,
   DatagridServiceKeyCellName,
+  DatagridServiceKeyProtectionLevel,
   DatagridStatus,
 } from '@key-management-service/components/listing/ListingCells';
 import { getOkmsServiceKeyResourceListQueryKey } from '@key-management-service/data/api/okmsServiceKey';
@@ -70,6 +71,11 @@ export default function Keys() {
       id: 'type',
       cell: DatagridCellType,
       label: t('key_management_service_service-keys_column_type'),
+    },
+    {
+      id: 'protection_level',
+      cell: DatagridServiceKeyProtectionLevel,
+      label: t('key_management_service_service-keys_column_protection_level'),
     },
     {
       id: 'creation_date',

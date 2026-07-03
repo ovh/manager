@@ -1,6 +1,7 @@
 import ServiceKeyDownloadActions from '@key-management-service/components/service-key/service-key-download-actions/ServiceKeyDownloadActions.component';
 import { ServiceKeyOperations } from '@key-management-service/components/service-key/service-key-operations/serviceKeyOperations.component';
 import { ServiceKeyType } from '@key-management-service/components/service-key/service-key-type/serviceKeyType.component';
+import { useServiceKeyProtectionLevelTranslations } from '@key-management-service/hooks/service-key/useServiceKeyProtectionLevelTranslations';
 import { OKMS } from '@key-management-service/types/okms.type';
 import { OkmsServiceKey } from '@key-management-service/types/okmsServiceKey.type';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +19,9 @@ type CryptoPropertiesTileProps = {
 
 export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTileProps) => {
   const { t } = useTranslation('key-management-service/serviceKeys');
+  const translatedProtectionLevel = useServiceKeyProtectionLevelTranslations(
+    serviceKey.protectionLevel ?? '',
+  );
 
   return (
     <Tile.Root title={t('key_management_service_service-keys_dashboard_tile_crypto_properties')}>
@@ -37,6 +41,18 @@ export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTilePr
           </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
+      {serviceKey.protectionLevel && (
+        <Tile.Item.Root>
+          <Tile.Item.Term
+            label={t('key_management_service_service-keys_dashboard_field_protection_level')}
+          />
+          <Tile.Item.Description>
+            <Text preset="span" data-testid={SERVICE_KEY_TEST_IDS.protectionLevel}>
+              {translatedProtectionLevel}
+            </Text>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+      )}
       {serviceKey.size && (
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_size')} />
