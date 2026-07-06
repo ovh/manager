@@ -9,6 +9,7 @@ const mocks = vi.hoisted(() => ({
   user: {
     legalform: 'corporation',
     country: 'FR',
+    certificates: ['fr-e-invoicing-warning'],
   },
   businessVerificationRequired: true,
 }));
@@ -74,6 +75,7 @@ describe('CompanyInformationModal', () => {
   beforeEach(() => {
     mocks.user.legalform = 'corporation';
     mocks.user.country = 'FR';
+    mocks.user.certificates = ['fr-e-invoicing-warning'];
     mocks.businessVerificationRequired = true;
     Object.defineProperty(window, 'location', {
       value: {
