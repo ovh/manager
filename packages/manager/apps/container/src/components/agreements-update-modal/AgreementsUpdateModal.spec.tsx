@@ -1,12 +1,31 @@
 import { vi, expect } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider, UseQueryResult } from '@tanstack/react-query';
+import { Handler, toMswHandlers } from '@ovh-ux/manager-core-test-utils';
 import * as MRC from '@ovh-ux/manager-react-components';
 import * as useAccountUrnModule from '@/data/hooks/authorizations/useAccountUrn';
 import * as usePreferencesModule from '@/data/hooks/preferences/usePreferences';
 import * as useTimeModule from '@/data/hooks/time/useTime';
 import AgreementsUpdateModal from '@/components/agreements-update-modal/AgreementsUpdateModal.component';
 import { Agreements } from '@/types/agreements';
+
+const preferenceMocks: Handler[] = [
+  {
+    url: 'me/preferences/manager/AGREEMENTS_UPDATE_MODAL',
+    response: null,
+    api: 'v6',
+    baseUrl: 'https://fake-manager.com/engine/apiv6',
+    delay: 0,
+  },
+  {
+    method: 'post',
+    url: 'me/preferences/manager',
+    response: null,
+    api: 'v6',
+    baseUrl: 'https://fake-manager.com/engine/apiv6',
+    delay: 0,
+  },
+];
 
 const mocks = vi.hoisted(() => ({
   data: [] as Agreements[],
@@ -66,6 +85,7 @@ const renderComponent = () => {
 
 describe('AgreementsUpdateModal', () => {
   beforeEach(() => {
+    global.server?.resetHandlers(...toMswHandlers(preferenceMocks));
     Object.defineProperty(window, 'location', {
       value: {
         href: 'https://fake-manager.com/manager/account/#/useraccount/dashboard',
