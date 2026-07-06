@@ -123,16 +123,20 @@ export default class VpsOrderDiskCtrl {
         // (e.g. blobs.commercial.name = "10000 GB" -> 10000), with a fallback
         // parsing the planCode trailing size (e.g. "option-additional-disk-100g" -> 100)
         diskOptions = diskOptions.map((diskOption) => {
-          const plan = this.catalog?.plans?.find(
+          const plan = this.catalog?.addons?.find(
             ({ planCode }) => planCode === diskOption.planCode,
+          );
+          const product = this.catalog?.products?.find(
+            ({ name }) => name === plan?.product,
           );
           set(diskOption, 'capacity', {
             value:
+              product?.blobs?.technical?.storage?.disks?.[0]?.capacity ||
               parseInt(
                 plan?.blobs?.commercial?.name?.replace(/[^\d]/g, ''),
                 10,
               ) ||
-              parseInt(diskOption.planCode.match(/-(\d+)g$/)?.[1], 10) ||
+              parseInt(diskOption.planCode.match(/-(\d+)g(-eu|-ca)?$/)?.[1], 10) ||
               0,
             unit: 'Go',
           });
