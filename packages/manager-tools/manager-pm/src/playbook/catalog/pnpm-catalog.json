@@ -69,7 +69,7 @@
   "packages/manager/core/shell-client",
   "packages/manager/modules/logs-to-customer",
   "packages/manager/modules/metrics-to-customer",
-  "packages/manager/apps/bmc-backup-licences",
-  "packages/manager/apps/hpc-backup-licences",
-  "packages/manager/modules/backup-licences"
+  "packages/manager/apps/bmc-backup-licenses",
+  "packages/manager/apps/hpc-backup-licenses",
+  "packages/manager/modules/backup-licenses"
 ]

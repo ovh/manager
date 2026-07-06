@@ -1,0 +1,68 @@
+import React from 'react';
+
+import { QueryClient } from '@tanstack/react-query';
+
+import { BackupLicensesProviderProps } from '@/BackupLicenses.context';
+
+import {
+  TestProvider,
+  addAppContextProvider,
+  addI18nextProvider,
+  addQueryClientProvider,
+  addShellContextProvider,
+  createProviderWrapper,
+} from './testWrapperProviders';
+
+type BuilderConfig = {
+  withI18next: boolean;
+  withQueryClient: boolean;
+  withCustomQueryClient?: QueryClient;
+  withShellContext: boolean;
+  withAppContext: boolean;
+  appContext?: BackupLicensesProviderProps;
+};
+type TestWrapperBuilder = {
+  withI18next: () => TestWrapperBuilder;
+  withQueryClient: (queryClient?: QueryClient) => TestWrapperBuilder;
+  withShellContext: () => TestWrapperBuilder;
+  withAppContext: (customAppContext?: BackupLicensesProviderProps) => TestWrapperBuilder;
+  build: () => Promise<React.FC<React.PropsWithChildren>>;
+};
+export const testWrapperBuilder = (): TestWrapperBuilder => {
+  const config: BuilderConfig = {
+    withI18next: false,
+    withQueryClient: false,
+    withShellContext: false,
+    withAppContext: false,
+  };
+  const build = async (): Promise<React.FC<React.PropsWithChildren>> => {
+    const providers: TestProvider[] = [];
+    if (config.withI18next) await addI18nextProvider(providers);
+    if (config.withQueryClient) addQueryClientProvider(providers, config.withCustomQueryClient);
+    if (config.withShellContext) await addShellContextProvider(providers);
+    if (config.withAppContext) addAppContextProvider(providers, config.appContext);
+    return createProviderWrapper(providers);
+  };
+  const builder = {
+    withI18next: () => {
+      config.withI18next = true;
+      return builder;
+    },
+    withQueryClient: (queryClient?: QueryClient) => {
+      config.withQueryClient = true;
+      config.withCustomQueryClient = queryClient;
+      return builder;
+    },
+    withShellContext: () => {
+      config.withShellContext = true;
+      return builder;
+    },
+    withAppContext: (customAppContext?: BackupLicensesProviderProps) => {
+      config.withAppContext = true;
+      config.appContext = customAppContext;
+      return builder;
+    },
+    build,
+  };
+  return builder;
+};
