@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { Message } from '@ovhcloud/ods-react';
 import { Text } from '@ovhcloud/ods-react';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Datagrid } from '@ovh-ux/manager-react-components';
 import { queryClient } from '@ovh-ux/manager-react-core-application';
 import { ButtonType, PageLocation } from '@ovh-ux/manager-react-shell-client';
@@ -27,6 +28,7 @@ import { Button, Error } from '@ovh-ux/muk';
 import Loading from '@/common/components/loading/Loading';
 import { useOkmsTracking } from '@/common/hooks/useOkmsTracking';
 import { useRequiredParams } from '@/common/hooks/useRequiredParams';
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 import { kmsIamActions } from '@/common/utils/iam/iam.constants';
 
 import { SERVICE_KEY_LIST_TEST_IDS } from './ServiceKeyList.constants';
@@ -40,6 +42,8 @@ export default function Keys() {
   const { okmsId } = useRequiredParams('okmsId');
   const { error, data: okmsServiceKey, isLoading } = useOkmsServiceKeys({ okmsId });
   const { okms } = useOutletContext<KmsDashboardOutletContext>();
+  const { data: features } = useFeatureAvailability([KMS_FEATURES.HSM]);
+  const isHsmAvailable = features?.[KMS_FEATURES.HSM] === true;
 
   if (isLoading) return <Loading />;
 
@@ -72,11 +76,15 @@ export default function Keys() {
       cell: DatagridCellType,
       label: t('key_management_service_service-keys_column_type'),
     },
-    {
-      id: 'protection_level',
-      cell: DatagridServiceKeyProtectionLevel,
-      label: t('key_management_service_service-keys_column_protection_level'),
-    },
+    ...(isHsmAvailable
+      ? [
+          {
+            id: 'protection_level',
+            cell: DatagridServiceKeyProtectionLevel,
+            label: t('key_management_service_service-keys_column_protection_level'),
+          },
+        ]
+      : []),
     {
       id: 'creation_date',
       cell: DatagridCreationDate,
