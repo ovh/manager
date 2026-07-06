@@ -1,4 +1,5 @@
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react';
 import { vi } from "vitest";
 
 import { LegalForm } from "@ovh-ux/manager-config";
@@ -33,6 +34,12 @@ const commonMocks = [
   ...getIamMocks(),
   ...getFeatureAvailabilityMocks(),
   ...getPreferencesMocks(),
+  {
+    url: 'me/preferences/manager/COMMUNICATION_CENTER_APP',
+    response: null,
+    api: 'v6' as const,
+    delay: 0,
+  },
 ]
 
 const cases: Record<string, GetComponentWrapperParams & ConfigureTestParams> = {
@@ -60,6 +67,7 @@ const cases: Record<string, GetComponentWrapperParams & ConfigureTestParams> = {
         kycValidated: false,
         legalform: 'corporation' as LegalForm,
         country: 'FR',
+        certificates: ['fr-e-invoicing-warning'],
       },
     },
     mocks: [
@@ -153,7 +161,7 @@ describe('ModalContainer.component', () => {
 
     // Check for CompanyInformationModal
     await waitFor(() => {
-      expect(container.children.length).toBe(1);
+      expect(screen.getByTestId('company-information-modal')).toBeInTheDocument();
     });
 
     const companyInformationModal = screen.getByTestId('company-information-modal');

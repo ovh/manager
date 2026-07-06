@@ -10,7 +10,7 @@ import { ODS_THEME_TYPOGRAPHY_SIZE, ODS_THEME_COLOR_INTENT } from "@ovhcloud/ods
 import { useApplication } from "@/context";
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from "@ovhcloud/ods-components";
 import { Trans, useTranslation } from "react-i18next";
-import { isUserConcernedByBusinessVerification, useBusinessVerificationRequired } from "./companyInformationModal.helpers";
+import { isUserConcernedByBusinessVerification } from "./companyInformationModal.helpers";
 import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from "@ovhcloud/ods-common-core";
 
 
@@ -25,8 +25,8 @@ const CompanyInformationModal: FC = () => {
   const accountEditionLink = useSuggestionTargetUrl();
 
   const shouldDisplayModal = useCheckModalDisplay(
-    useBusinessVerificationRequired,
-    (data) => Boolean(data),
+    undefined,
+    undefined,
     undefined,
     preferenceKey,
     INTERVAL_BETWEEN_DISPLAY_IN_S,
