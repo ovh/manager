@@ -8,7 +8,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Text } from '@ovhcloud/ods-react';
 
+import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Tile } from '@ovh-ux/muk';
+
+import { KMS_FEATURES } from '@/common/utils/feature-availability/feature-availability.constants';
 
 import { SERVICE_KEY_TEST_IDS } from './ServiceKeyDashboard.constants';
 
@@ -22,6 +25,8 @@ export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTilePr
   const translatedProtectionLevel = useServiceKeyProtectionLevelTranslations(
     serviceKey.protectionLevel ?? '',
   );
+  const { data: features } = useFeatureAvailability([KMS_FEATURES.HSM]);
+  const isHsmAvailable = features?.[KMS_FEATURES.HSM] === true;
 
   return (
     <Tile.Root title={t('key_management_service_service-keys_dashboard_tile_crypto_properties')}>
@@ -41,7 +46,7 @@ export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTilePr
           </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
-      {serviceKey.protectionLevel && (
+      {isHsmAvailable && serviceKey.protectionLevel && (
         <Tile.Item.Root>
           <Tile.Item.Term
             label={t('key_management_service_service-keys_dashboard_field_protection_level')}
