@@ -1,0 +1,34 @@
+{
+  "title_fallback": "Backups mais simples não há",
+  "description_part1": "Obtenha uma solução de backups remotos automáticos e diários, alertas pro-ativos, bem como uma monitorização centralizada, com armazenamento seguro num vault do OVHcloud Object Storage. Instale o Backup Agent em menos de 15 minutos, sem o menor custo. Só paga pelo armazenamento Object Storage que utilizar.",
+  "description_part2": "Consulte os nossos guias para um começo veloz.",
+  "guides": {
+    "guide1": {
+      "category": "Custo",
+      "title": "Custo e faturação",
+      "description": "Documentação a explicar o custo e a faturação do Backup Agent.",
+      "cta": "Descobrir"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "Primeira configuração",
+      "description": "Um guia passo a passo para o ajudar a implementar e executar o seu primeiro backup.",
+      "cta": "Ver o tutorial"
+    },
+    "guide3": {
+      "category": "FAQ",
+      "title": "Perguntas frequentes",
+      "description": "Um guia com as perguntas mais frequentes.",
+      "cta": "Ler as FAQ"
+    }
+  },
+  "no_baremetal_available": "Encomendar um servidor Bare Metal e protegê-lo com o Backup Agent",
+  "select_baremetal": "Escolher o seu servidor Bare Metal",
+  "save_a_baremetal_server": "Fazer backup de um servidor Bare Metal",
+  "baremetal_label_delay_order": "Após a validação da sua encomenda, este ecrã será atualizado; receberá um e-mail assim que o seu produto Backup Agent for entregue. Pode consultar o avanço da encomenda <OrderLink>aqui</OrderLink>.",
+  "baremetal_label_order_in_progress": "Acusamos a receção da encomenda; o seu produto será entregue em breve; pode acompanhar o avanço <OrderLink>aqui</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Ativação do Backup Tenant",
+  "first_order_terms_and_conditions_description": "Para ativar o seu serviço, é necessário criar um Backup Tenant. Deseja continuar a ativação do seu serviço?",
+  "first_order_terms_and_conditions_confirm_label": "Li e aceito os termos e condições, o apêndice relacionado ao processamento de dados pessoais e os termos e condições especiais dos serviços da OVH.",
+  "first_order_terms_and_conditions_annexe_label": "Anexo Tratamento de dados pessoais"
+}
