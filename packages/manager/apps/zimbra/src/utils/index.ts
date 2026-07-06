@@ -15,7 +15,7 @@ export const FEATURE_FLAGS = {
   MAILINGLISTS: false,
 };
 
-export const APIV2_MAX_PAGESIZE = 9999;
+export const APIV2_MAX_PAGESIZE = 500;
 export const APIV2_DEFAULT_PAGESIZE = 25;
 
 export function cn(...inputs: ClassValue[]) {
