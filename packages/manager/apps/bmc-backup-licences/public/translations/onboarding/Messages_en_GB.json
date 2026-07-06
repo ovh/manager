@@ -1,0 +1,34 @@
+{
+  "title_fallback": "Backup made simple",
+  "description_part1": "Get a backup solution with automatic daily remote backups, timely notifications, and centralised monitoring – all securely stored in a Vault on OVHcloud Object Storage. Install the backup agent in under 15 minutes at no cost. You only pay for the Object Storage you use.",
+  "description_part2": "Follow our guides to get started quickly.",
+  "guides": {
+    "guide1": {
+      "category": "Cost",
+      "title": "Cost and Billing",
+      "description": "This documentation details the pricing and billing for Backup Agent.",
+      "cta": "Get started"
+    },
+    "guide2": {
+      "category": "Tutorial",
+      "title": "First-time configuration",
+      "description": "A step-by-step guide to help you set up and run your first backup.",
+      "cta": "See tutorial"
+    },
+    "guide3": {
+      "category": "FAQs",
+      "title": "Frequently asked questions",
+      "description": "A guide with frequently asked questions, covering the most common issues.",
+      "cta": "Read the FAQ"
+    }
+  },
+  "no_baremetal_available": "Order a Bare Metal server, and secure it with Backup Agent",
+  "select_baremetal": "Select your Bare Metal server",
+  "save_a_baremetal_server": "Back up a Bare Metal server",
+  "baremetal_label_delay_order": "Once your order is confirmed, this screen will be updated, and you will receive an email when your Backup Agent is delivered. You can track your order’s status <OrderLink>here</OrderLink>.",
+  "baremetal_label_order_in_progress": "Your order has been processed and is on its way. You can track its status <OrderLink>here</OrderLink>.",
+  "first_order_terms_and_conditions_title": "Activation of the Backup Tenant",
+  "first_order_terms_and_conditions_description": "To activate your service, it is necessary to create a Backup Tenant. Do you wish to continue the activation of your service?",
+  "first_order_terms_and_conditions_confirm_label": "I have read and accept the terms and conditions, the appendix relating to the processing of personal data and the special terms and conditions of OVH services.",
+  "first_order_terms_and_conditions_annexe_label": "Annex on the Processing of Personal Data"
+}
