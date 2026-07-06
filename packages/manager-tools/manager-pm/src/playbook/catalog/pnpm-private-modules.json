@@ -12,8 +12,8 @@
     "pnpm": "packages/manager/modules/backup-agent"
   },
   {
-    "turbo": "--filter @ovh-ux/backup-licences",
-    "pnpm": "packages/manager/modules/backup-licences"
+    "turbo": "--filter @ovh-ux/backup-licenses",
+    "pnpm": "packages/manager/modules/backup-licenses"
   },
   {
     "turbo": "--filter @ovh-ux/manager-core-utils",
