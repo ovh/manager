@@ -1,0 +1,59 @@
+import i18next, { InitOptions, i18n } from 'i18next';
+
+import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
+import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
+import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
+import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
+import system from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/system/Messages_fr_FR.json';
+
+import { BACKUP_LICENCES_NAMESPACES } from '@/BackupLicences.translations';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import common from '../../public/translations/common/Messages_fr_FR.json';
+
+export const defaultLocale = 'fr_FR';
+export const defaultAvailableLocales = [defaultLocale];
+function addTranslations() {
+  i18next
+    .addResources(defaultLocale, BACKUP_LICENCES_NAMESPACES.COMMON, common)
+    .use({
+      type: 'postProcessor',
+      name: 'normalize',
+      process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
+    });
+}
+export const getTesti18nParams = (): InitOptions<unknown> => ({
+  lng: defaultLocale,
+  defaultNS: 'no-app',
+  ns: [],
+  supportedLngs: defaultAvailableLocales,
+  postProcess: 'normalize',
+  interpolation: {
+    escapeValue: false,
+  },
+});
+export const initTestI18n = () =>
+  new Promise<i18n>((resolve) => {
+    // eslint-disable-next-line import/no-named-as-default-member
+    void i18next.init(getTesti18nParams());
+    if (i18next.isInitialized) {
+      addTranslations();
+    } else {
+      i18next.on('initialized', () => {
+        addTranslations();
+        resolve(i18next);
+      });
+    }
+  });
+
+export const labels = {
+  common,
+  actions,
+  status,
+  commonDashboard,
+  billing,
+  region,
+  system,
+};
