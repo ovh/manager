@@ -4,6 +4,7 @@ export * from './useDeleteVcdDatacentreCompute';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
+export * from './useReassignEdgeIpBlock';
 export * from './useUpdateEdgeGateway';
 export * from './useUpdateVcdDatacentre';
 export * from './useUpdateVcdOrganization';
