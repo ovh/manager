@@ -9,7 +9,7 @@ import {
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
-import { AddEdgeForm, EDGE_FORM_SCHEMA } from '@/schemas/edge.schema';
+import { AddEdgeForm, EDGE_SCHEMAS } from '@/schemas/edge.schema';
 import { InputField } from '@/components/form/InputField.component';
 import { SelectField } from '@/components/form/SelectField.component';
 import {
@@ -45,9 +45,9 @@ export default function AddEdgeGatewayPage() {
     formState: { isValid },
   } = useForm<AddEdgeForm>({
     mode: 'onTouched',
-    resolver: zodResolver(EDGE_FORM_SCHEMA),
+    resolver: zodResolver(EDGE_SCHEMAS.addEdge),
     defaultValues: {
-      edgeGatewayName: '',
+      name: '',
       ipBlock: '',
     },
   });
@@ -62,7 +62,7 @@ export default function AddEdgeGatewayPage() {
     }
 
     addEdgeGateway({
-      name: data.edgeGatewayName,
+      name: data.name,
       ipBlock: {
         id: selectedIpBlock.id,
         name: selectedIpBlock.currentState.name,
@@ -86,7 +86,7 @@ export default function AddEdgeGatewayPage() {
       <form className="flex flex-col gap-y-6" onSubmit={handleSubmit(onSubmit)}>
         <Controller
           control={control}
-          name="edgeGatewayName"
+          name="name"
           render={({ field, fieldState }) => (
             <InputField
               field={field}

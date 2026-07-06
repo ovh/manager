@@ -26,18 +26,28 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGatewayWithIpBlock) => {
   ]);
   const id = useId();
   const deleteHref = useHref(`${edge.id}/${subRoutes.deleteEdgeGateway}`);
-  const editHref = useHref(`${edge.id}/${subRoutes.editEdgeGateway}`);
+  const editNameHref = useHref(`${edge.id}/${subRoutes.editEdgeGatewayName}`);
+  const editIpBlockHref = useHref(
+    `${edge.id}/${subRoutes.editEdgeGatewayIpBlock}`,
+  );
 
   const actionMenuItems: ActionMenuItem[] = [
     {
       id: 1,
-      label: t('datacentres/edge-gateway:edge_edit_config'),
+      label: t('datacentres/edge-gateway:edge_edit_name'),
       isDisabled: false,
       onClick: () => {},
-      href: editHref,
+      href: editNameHref,
     },
     {
       id: 2,
+      label: t('datacentres/edge-gateway:edge_edit_ip_block'),
+      isDisabled: false,
+      onClick: () => {},
+      href: editIpBlockHref,
+    },
+    {
+      id: 3,
       label: t(`${NAMESPACES.ACTIONS}:delete`),
       isDisabled: false,
       onClick: () => {},
