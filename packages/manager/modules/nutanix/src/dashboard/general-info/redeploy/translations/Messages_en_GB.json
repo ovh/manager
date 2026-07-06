@@ -43,5 +43,7 @@
   "nutanix_redeploy_node_cvm_ip": "CVM IP",
   "nutanix_redeploy_vlan_id": "VLAN ID",
   "nutanix_redeploy_vlan_id_description": "Specify the VLAN ID used for cluster deployment.",
-  "nutanix_redeploy_vlan_id_helper": "VLAN ID must be between 1 and 4000."
+  "nutanix_redeploy_vlan_id_helper": "VLAN ID must be between 1 and 4000.",
+  "nutanix_redeploy_install_prism_central": "Install Prism Central",
+  "nutanix_redeploy_install_prism_central_description": "Prism Central is installed by default. You can choose not to install it only if you use your own licence (BYOL)."
 }
