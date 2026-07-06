@@ -30,6 +30,18 @@ export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTilePr
 
   return (
     <Tile.Root title={t('key_management_service_service-keys_dashboard_tile_crypto_properties')}>
+      {isHsmAvailable && serviceKey.protectionLevel && (
+        <Tile.Item.Root>
+          <Tile.Item.Term
+            label={t('key_management_service_service-keys_dashboard_field_protection_level')}
+          />
+          <Tile.Item.Description>
+            <Text preset="span" data-testid={SERVICE_KEY_TEST_IDS.protectionLevel}>
+              {translatedProtectionLevel}
+            </Text>
+          </Tile.Item.Description>
+        </Tile.Item.Root>
+      )}
       <Tile.Item.Root>
         <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_origin')} />
         <Tile.Item.Description>
@@ -46,18 +58,6 @@ export const CryptoPropertiesTile = ({ kms, serviceKey }: CryptoPropertiesTilePr
           </div>
         </Tile.Item.Description>
       </Tile.Item.Root>
-      {isHsmAvailable && serviceKey.protectionLevel && (
-        <Tile.Item.Root>
-          <Tile.Item.Term
-            label={t('key_management_service_service-keys_dashboard_field_protection_level')}
-          />
-          <Tile.Item.Description>
-            <Text preset="span" data-testid={SERVICE_KEY_TEST_IDS.protectionLevel}>
-              {translatedProtectionLevel}
-            </Text>
-          </Tile.Item.Description>
-        </Tile.Item.Root>
-      )}
       {serviceKey.size && (
         <Tile.Item.Root>
           <Tile.Item.Term label={t('key_management_service_service-keys_dashboard_field_size')} />
