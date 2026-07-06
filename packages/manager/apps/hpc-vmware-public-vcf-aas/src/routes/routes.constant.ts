@@ -32,7 +32,8 @@ export const subRoutes = {
   edgeGateway: 'edge-gateway',
   edgeGatewayId: ':edgeGatewayId',
   addEdgeGateway: 'add-edge-gateway',
-  editEdgeGateway: 'edit-edge-gateway',
+  editEdgeGatewayName: 'edit-edge-gateway-name',
+  editEdgeGatewayIpBlock: 'edit-edge-gateway-ip-block',
   deleteEdgeGateway: 'delete-edge-gateway',
   terminate: 'terminate',
   addNetworkAcl: 'add-network-acl',
@@ -75,7 +76,8 @@ export const urls = {
   networkAclDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.networkAcl}/${subRoutes.deleteNetworkAcl}`,
   edgeGateway: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}`,
   edgeGatewayAdd: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.addEdgeGateway}`,
-  edgeGatewayEdit: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGateway}`,
+  edgeGatewayEditName: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGatewayName}`,
+  edgeGatewayEditIpBlock: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.editEdgeGatewayIpBlock}`,
   edgeGatewayDelete: `/${subRoutes.root}/${subRoutes.dashboard}/${subRoutes.virtualDatacenters}/${subRoutes.vdcId}/${subRoutes.edgeGateway}/${subRoutes.edgeGatewayId}/${subRoutes.deleteEdgeGateway}`,
 } as const;
 
