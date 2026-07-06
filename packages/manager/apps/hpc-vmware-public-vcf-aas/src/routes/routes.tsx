@@ -124,8 +124,16 @@ const EdgeGatewayAddPage = React.lazy(() =>
   import('@/pages/dashboard/datacentre/edge-gateway/add/AddEdgeGateway.page'),
 );
 
-const EdgeGatewayEditPage = React.lazy(() =>
-  import('@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGateway.page'),
+const EdgeGatewayEditNamePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGatewayName.page'
+  ),
+);
+
+const EdgeGatewayEditIpBlockPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGatewayIpBlock.page'
+  ),
 );
 
 const EdgeGatewayDeletePage = React.lazy(() =>
@@ -397,9 +405,14 @@ export default (
             Component={EdgeGatewayAddPage}
           />
           <Route
-            id={subRoutes.editEdgeGateway}
-            path={urls.edgeGatewayEdit}
-            Component={EdgeGatewayEditPage}
+            id={subRoutes.editEdgeGatewayName}
+            path={urls.edgeGatewayEditName}
+            Component={EdgeGatewayEditNamePage}
+          />
+          <Route
+            id={subRoutes.editEdgeGatewayIpBlock}
+            path={urls.edgeGatewayEditIpBlock}
+            Component={EdgeGatewayEditIpBlockPage}
           />
           <Route
             id={subRoutes.deleteEdgeGateway}

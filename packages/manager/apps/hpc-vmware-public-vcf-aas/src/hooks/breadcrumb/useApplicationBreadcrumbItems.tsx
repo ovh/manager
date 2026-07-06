@@ -67,7 +67,12 @@ export const useApplicationBreadcrumbItems = () => {
     ),
     [subRoutes.edgeGateway]: EDGE_GATEWAY_LABEL,
     [subRoutes.addEdgeGateway]: t('datacentres/edge-gateway:edge_add_title'),
-    [subRoutes.editEdgeGateway]: t('datacentres/edge-gateway:edge_edit_config'),
+    [subRoutes.editEdgeGatewayName]: t(
+      'datacentres/edge-gateway:edge_edit_name',
+    ),
+    [subRoutes.editEdgeGatewayIpBlock]: t(
+      'datacentres/edge-gateway:edge_edit_ip_block',
+    ),
     [subRoutes.deleteEdgeGateway]: t(
       'datacentres/edge-gateway:edge_delete_title',
     ),
