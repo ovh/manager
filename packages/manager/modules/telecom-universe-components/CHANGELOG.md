@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.29.6](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.5...@ovh-ux/ng-ovh-telecom-universe-components@7.29.6) (2026-07-07)
+
+
+### Bug Fixes
+
+* **web-cloud.telephony:** add new accessories picture link ([f0d836f](https://github.com/ovh/manager/commit/f0d836f0f51d20db5453ab45cbaf20b53d9a708c)), closes [#PRDCOL-529](https://github.com/ovh/manager/issues/PRDCOL-529)
+
+
+
+
+
 ## [7.29.5](https://github.com/ovh/manager/compare/@ovh-ux/ng-ovh-telecom-universe-components@7.29.4...@ovh-ux/ng-ovh-telecom-universe-components@7.29.5) (2026-02-20)
 
 

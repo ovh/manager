@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.18...@ovh-ux/manager-vps@2.50.19) (2026-07-07)
+
+
+### Bug Fixes
+
+* **vps:** fix display of 10TB additional disk addon during order ([e310810](https://github.com/ovh/manager/commit/e3108106c7bb1a9c363703bdfd8c75fac01591f1)), closes [#MANAGER-21891](https://github.com/ovh/manager/issues/MANAGER-21891)
+
+
+
+
+
 ## [2.50.18](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.17...@ovh-ux/manager-vps@2.50.18) (2026-06-15)
 
 

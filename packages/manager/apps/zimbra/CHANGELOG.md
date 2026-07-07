@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.1...@ovh-ux/manager-zimbra-app@0.44.2) (2026-07-07)
+
+
+### Bug Fixes
+
+* **zimbra:** update max page size ([1070325](https://github.com/ovh/manager/commit/10703256d3e420e04bebde754c9482ac10999037)), closes [#PRDCOL-535](https://github.com/ovh/manager/issues/PRDCOL-535)
+
+
+
+
+
 ## [0.44.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.0...@ovh-ux/manager-zimbra-app@0.44.1) (2026-06-15)
 
 
