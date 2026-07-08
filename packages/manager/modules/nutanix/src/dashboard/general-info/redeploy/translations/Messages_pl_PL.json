@@ -45,5 +45,5 @@
   "nutanix_redeploy_vlan_id_description": "Wskaż VLAN ID używany do wdrażania klastra.",
   "nutanix_redeploy_vlan_id_helper": "VLAN ID musi zawierać się w przedziale między 1 a 4000.",
   "nutanix_redeploy_install_prism_central": "Zainstaluj Prism Central",
-  "nutanix_redeploy_install_prism_central_description": "Prism Central jest instalowany domyślnie. Możesz zrezygnować z instalacji tylko wtedy, gdy korzystasz z własnej licencji (BYOL)."
+  "nutanix_redeploy_install_prism_central_description": "Prism Central jest instalowany domyślnie. Możesz zrezygnować z jego instalacji tylko wtedy, gdy korzystasz z własnej licencji (BYOL)."
 }
