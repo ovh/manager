@@ -1,6 +1,7 @@
 export * from './useAddEdgeGateway';
 export * from './useDeleteEdgeGateway';
 export * from './useDeleteVcdDatacentreCompute';
+export * from './useDeleteVcdDatacentreStorage';
 export * from './useDeleteVcdVrackSegment';
 export * from './useOrderableResource';
 export * from './useResetVcdPassword';
@@ -12,6 +13,7 @@ export * from './useUpdateVcdVrackSegment';
 export * from './useVcdCatalog';
 export * from './useVcdDatacentre';
 export * from './useVcdDatacentreCompute';
+export * from './useVcdDatacentreStorage';
 export * from './useVcdEdgeGateway';
 export * from './useVcdIpBlocks';
 export * from './useVcdOrder';

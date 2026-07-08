@@ -94,6 +94,11 @@ const DatacentreStorageOrderPage = React.lazy(() =>
     '@/pages/dashboard/datacentre/storage-order/DatacentreStorageOrder.page'
   ),
 );
+const DatacentreStorageDeletePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/storage/delete/DatacentreStorageDelete.page'
+  ),
+);
 const DatacentreComputePage = React.lazy(() =>
   import('@/pages/dashboard/datacentre/compute/DatacentreCompute.page'),
 );
@@ -418,7 +423,13 @@ export default (
               pageType: PageType.listing,
             },
           }}
-        />
+        >
+          <Route
+            id={subRoutes.datacentreStorageDelete}
+            path={urls.datacentreStorageDelete}
+            Component={DatacentreStorageDeletePage}
+          />
+        </Route>
         <Route
           id={'vDcStorage-order'}
           path={urls.datacentreStorageOrder}
@@ -427,6 +438,34 @@ export default (
             tracking: {
               pageName: 'storage-order',
               pageType: PageType.funnel,
+            },
+          }}
+        />
+        <Route
+          id={'vDcCompute'}
+          path={urls.datacentreCompute}
+          Component={DatacentreComputePage}
+          handle={{
+            tracking: {
+              pageName: 'compute',
+              pageType: PageType.listing,
+            },
+          }}
+        >
+          <Route
+            id={subRoutes.datacentreComputeDelete}
+            path={urls.datacentreComputeDelete}
+            Component={DatacentreComputeDeletePage}
+          />
+        </Route>
+        <Route
+          id={'vDcCompute-order'}
+          path={urls.datacentreComputeOrder}
+          Component={DatacentreComputeOrderPage}
+          handle={{
+            tracking: {
+              pageName: 'upgrade_vcpu-speed',
+              pageType: PageType.popup,
             },
           }}
         />
@@ -456,34 +495,6 @@ export default (
             Component={AddNetworkInVrackSegmentPage}
           />
         </Route>
-        <Route
-          id={'vDcCompute'}
-          path={urls.datacentreCompute}
-          Component={DatacentreComputePage}
-          handle={{
-            tracking: {
-              pageName: 'compute',
-              pageType: PageType.listing,
-            },
-          }}
-        >
-          <Route
-            id={subRoutes.datacentreComputeDelete}
-            path={urls.datacentreComputeDelete}
-            Component={DatacentreComputeDeletePage}
-          />
-        </Route>
-        <Route
-          id={'vDcCompute-order'}
-          path={urls.datacentreComputeOrder}
-          Component={DatacentreComputeOrderPage}
-          handle={{
-            tracking: {
-              pageName: 'upgrade_vcpu-speed',
-              pageType: PageType.popup,
-            },
-          }}
-        />
         <Route
           id={subRoutes.edgeGateway}
           path={urls.edgeGateway}

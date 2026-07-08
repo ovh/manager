@@ -42,20 +42,6 @@ describe('Datacentre Storage Listing Page', () => {
       element: orderButton,
       label: labels.datacentresStorage.managed_vcd_vdc_storage_order_cta,
     });
-
-    // check datagrid delete CTA
-    const deleteButton = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteCta,
-    });
-    await assertElementVisibility(deleteButton);
-    expect(deleteButton).toBeDisabled();
-
-    const tooltip = await getNthElementByTestId({
-      testId: TEST_IDS.cellDeleteTooltip,
-    });
-    expect(tooltip).toHaveTextContent(
-      labels.datacentres.managed_vcd_vdc_contact_support,
-    );
   });
 
   it('display an error', async () => {
