@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.38.0...@ovh-ux/manager-billing-components@4.39.0) (2026-07-08)
+
+
+### Features
+
+* **billing:** display renew cta ([41c1f85](https://github.com/ovh/manager/commit/41c1f851938f6455d9a76cd88b493126657a3d18))
+* **billing:** remove hosting_web_new service type ([f23aaeb](https://github.com/ovh/manager/commit/f23aaeb3051f7849efa4423668694bf4120d2069)), closes [#MANAGER-21870](https://github.com/ovh/manager/issues/MANAGER-21870)
+
+
+
+
+
 # [4.38.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.37.1...@ovh-ux/manager-billing-components@4.38.0) (2026-07-01)
 
 
