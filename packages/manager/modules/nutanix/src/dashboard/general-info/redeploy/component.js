@@ -7,6 +7,7 @@ export default {
     goBack: '<',
     goToConfirmRedeploy: '<',
     nodes: '<',
+    packType: '<',
     serviceName: '<',
   },
   template,

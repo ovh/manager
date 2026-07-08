@@ -287,6 +287,20 @@
                     <p
                         data-translate="nutanix_redeploy_prism_central_description"
                     ></p>
+                    <oui-checkbox
+                        class="mb-2"
+                        data-name="installPrismCentral"
+                        data-model="$ctrl.installPrismCentral"
+                        data-disabled="!$ctrl.isByol"
+                    >
+                        <span
+                            data-translate="nutanix_redeploy_install_prism_central"
+                        ></span>
+                    </oui-checkbox>
+                    <p
+                        class="oui-field__helper mb-3"
+                        data-translate="nutanix_redeploy_install_prism_central_description"
+                    ></p>
                     <oui-field
                         data-label="{{:: 'nutanix_redeploy_prism_central_type' | translate}}"
                         data-label-popover="{{:: 'nutanix_redeploy_prism_central_type_description' | translate}}"

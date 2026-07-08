@@ -8,6 +8,7 @@ import {
   TRACKING_PREFIX,
   IP_FOR_SCALE_REDEPLOY,
 } from './constants';
+import { NUTANIX_PERSONAL_LICENSE_EDITION } from '../constants';
 
 export default class NutanixGeneralInfoRedeployCtrl {
   /* @ngInject */
@@ -23,6 +24,10 @@ export default class NutanixGeneralInfoRedeployCtrl {
   $onInit() {
     this.initalConfig = cloneDeep(this.cluster.targetSpec);
     this.displayPrismCentralIps = this.initalConfig.prismCentral.ips.join(',');
+    // Prism Central is installed by default, and can only be opted out of
+    // when the customer brings their own licence (BYOL / Personal license).
+    this.installPrismCentral = true;
+    this.isByol = this.packType === NUTANIX_PERSONAL_LICENSE_EDITION;
     this.redeployMethod = REDEPLOY_CONFIG_OPTIONS.INITIAL;
     this.redeployMethods = {
       initialConfig: [REDEPLOY_CONFIG_OPTIONS.INITIAL],
@@ -184,10 +189,10 @@ export default class NutanixGeneralInfoRedeployCtrl {
 
   redeployCustomConfiguration() {
     this.trackClick('confirm_personalized-configuration');
-    return this.goToConfirmRedeploy(
-      REDEPLOY_CONFIG_OPTIONS.CUSTOM,
-      NutanixGeneralInfoRedeployCtrl.preparePayload(this.config),
-    );
+    return this.goToConfirmRedeploy(REDEPLOY_CONFIG_OPTIONS.CUSTOM, {
+      ...NutanixGeneralInfoRedeployCtrl.preparePayload(this.config),
+      installPrismCentral: this.installPrismCentral,
+    });
   }
 
   goToPreviousPage() {
