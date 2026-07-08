@@ -6,6 +6,12 @@ export type GetDatacentreComputeParams = {
   computeId: string;
 };
 
+export type GetDatacentreStorageParams = {
+  id: string;
+  vdcId: string;
+  storageId: string;
+};
+
 export type VCDComputeState = {
   billingType: BillingType;
   profile: string;
