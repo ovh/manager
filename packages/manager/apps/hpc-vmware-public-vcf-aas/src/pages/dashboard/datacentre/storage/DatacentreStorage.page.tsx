@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { OdsButton } from '@ovhcloud/ods-components/react';
 import {
-  getVcdDatacentreStorageRoute,
+  getVcdDatacentreStorageListRoute,
   getVdcStorageQueryKey,
   isStatusTerminated,
   useVcdDatacentre,
@@ -78,30 +78,33 @@ export default function StorageListingPage() {
   ] as DatagridColumn<unknown>[];
 
   return (
-    <DatagridContainer
-      title={STORAGE_LABEL}
-      queryKey={getVdcStorageQueryKey(vdcId)}
-      columns={columns}
-      route={{
-        api: getVcdDatacentreStorageRoute(id, vdcId),
-        onboarding: urls.datacentreStorageOrder
-          .replace(subRoutes.dashboard, id)
-          .replace(subRoutes.vdcId, vdcId),
-      }}
-      shouldFetchAll
-      isEmbedded
-      orderButton={
-        <OdsButton
-          label={t('managed_vcd_vdc_storage_order_cta')}
-          variant="outline"
-          isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
-          onClick={() => {
-            trackClick(TRACKING.storage.addStorage);
-            navigate(subRoutes.datacentreStorageOrder);
-          }}
-          data-testid={TEST_IDS.storageOrderCta}
-        />
-      }
-    />
+    <>
+      <DatagridContainer
+        title={STORAGE_LABEL}
+        queryKey={getVdcStorageQueryKey(vdcId)}
+        columns={columns}
+        route={{
+          api: getVcdDatacentreStorageListRoute(id, vdcId),
+          onboarding: urls.datacentreStorageOrder
+            .replace(subRoutes.dashboard, id)
+            .replace(subRoutes.vdcId, vdcId),
+        }}
+        shouldFetchAll
+        isEmbedded
+        orderButton={
+          <OdsButton
+            label={t('managed_vcd_vdc_storage_order_cta')}
+            variant="outline"
+            isDisabled={isStatusTerminated(vcdDatacentre?.data?.resourceStatus)}
+            onClick={() => {
+              trackClick(TRACKING.storage.addStorage);
+              navigate(subRoutes.datacentreStorageOrder);
+            }}
+            data-testid={TEST_IDS.storageOrderCta}
+          />
+        }
+      />
+      <Outlet />
+    </>
   );
 }

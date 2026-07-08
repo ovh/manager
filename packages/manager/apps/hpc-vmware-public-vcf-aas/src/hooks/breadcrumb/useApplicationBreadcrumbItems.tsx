@@ -53,6 +53,9 @@ export const useApplicationBreadcrumbItems = () => {
     [subRoutes.datacentreStorageOrder]: t(
       'datacentres/storage:managed_vcd_vdc_storage_order_cta',
     ),
+    [subRoutes.datacentreStorageDelete]: t(
+      'datacentres/storage:managed_vcd_vdc_storage_delete',
+    ),
     [subRoutes.migration]: t(
       'migration/order:managed_vcd_migration_breadcrumb',
     ),

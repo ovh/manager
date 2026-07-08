@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { isStatusTerminated, VCDCompute } from '@ovh-ux/manager-module-vcd-api';
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import TEST_IDS from '@/utils/testIds.constants';
-import { useComputeDeletionAccess } from '@/hooks/datacentre/useComputeDeletionAccess';
+import { useVdcResourceDeletionAccess } from '@/hooks/datacentre/useVdcResourceDeletionAccess';
 
 export const DatagridIdCell = (vcdCompute: VCDCompute) => (
   <DataGridTextCell>{vcdCompute?.id}</DataGridTextCell>
@@ -45,7 +45,7 @@ export const ActionDeleteComputeCell = (vcdCompute: VCDCompute) => {
     navigateToDeletePage,
     isDeletionAllowed,
     tooltipLabel,
-  } = useComputeDeletionAccess(vcdCompute);
+  } = useVdcResourceDeletionAccess({ type: 'compute', resource: vcdCompute });
   const buttonId = `delete-tooltip-trigger-${vcdCompute.id}`;
   const shouldShowTooltip = !isDeletionAllowed && tooltipLabel;
 

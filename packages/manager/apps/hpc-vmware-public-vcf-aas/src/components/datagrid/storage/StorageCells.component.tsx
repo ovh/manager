@@ -4,6 +4,7 @@ import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import { capitalize } from '@/utils/capitalize';
 import TEST_IDS from '@/utils/testIds.constants';
+import { useVdcResourceDeletionAccess } from '@/hooks/datacentre/useVdcResourceDeletionAccess';
 
 export const DatagridIdCell = (vcdStorage: VCDStorage) => (
   <DataGridTextCell>{vcdStorage?.id}</DataGridTextCell>
@@ -45,27 +46,34 @@ export const DatagridBillingCell = (vcdStorage: VCDStorage) => {
   );
 };
 
-export const ActionDeleteStorageCell = (resource: VCDStorage) => {
-  const { t } = useTranslation('datacentres');
+export const ActionDeleteStorageCell = (vcdStorage: VCDStorage) => {
+  const {
+    navigateToDeletePage,
+    isDeletionAllowed,
+    tooltipLabel,
+  } = useVdcResourceDeletionAccess({ type: 'storage', resource: vcdStorage });
+  const buttonId = `delete-tooltip-trigger-${vcdStorage.id}`;
+  const shouldShowTooltip = !isDeletionAllowed && tooltipLabel;
 
   return (
     <>
       <OdsButton
-        id={`delete-tooltip-trigger-${resource?.id}`}
+        id={buttonId}
         size="sm"
         variant="ghost"
-        isDisabled
+        isDisabled={!isDeletionAllowed}
+        onClick={navigateToDeletePage}
         label=""
         icon="trash"
         aria-label="delete-datacentre-storage"
         data-testid={TEST_IDS.cellDeleteCta}
       />
-      {!isStatusTerminated(resource.resourceStatus) && (
+      {!isStatusTerminated(vcdStorage.resourceStatus) && shouldShowTooltip && (
         <OdsTooltip
-          triggerId={`delete-tooltip-trigger-${resource?.id}`}
+          triggerId={buttonId}
           data-testid={TEST_IDS.cellDeleteTooltip}
         >
-          <OdsText>{t('managed_vcd_vdc_contact_support')}</OdsText>
+          <OdsText>{tooltipLabel}</OdsText>
         </OdsTooltip>
       )}
     </>
