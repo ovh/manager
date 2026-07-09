@@ -76,6 +76,9 @@ export default function LiveChat({
     LiveChatType
   >(CHAT_TYPE_STORAGE_KEY);
 
+  const chatTypeRef = useRef(chatType);
+  const snowChatQueueRef = useRef(snowChatQueue);
+  
   const [snowContext, setSnowContext] = useState<SnowChatContext>({
     skip_load_history: 'false',
     live_agent_only: 'false',
@@ -96,7 +99,7 @@ export default function LiveChat({
           frame.contentWindow.postMessage({ action: 'endConversation' }, '*')
         }
       }
-      chatIFrame.current.contentWindow.postMessage(
+      chatIFrame.current.contentWindow?.postMessage(
         { action: 'endConversation' },
         '*',
       );
@@ -115,6 +118,14 @@ export default function LiveChat({
     setChatState(reduceChat ? 'reduced' : 'open');
     setChatbotReduced(reduceChat);
   };
+
+  useEffect(() => {
+    chatTypeRef.current = chatType;
+  }, [chatType]);
+
+  useEffect(() => {
+    snowChatQueueRef.current = snowChatQueue;
+  }, [snowChatQueue]);
 
   useEffect(() => {
     if (region === 'US') return;
@@ -136,7 +147,7 @@ export default function LiveChat({
 
       if (typeof ev.data !== 'object' || ev.data.event !== 'open_agent_chat')
         return;
-      if (chatType === 'SNOW' && ev.data.queue === snowChatQueue) return;
+      if (chatTypeRef.current === 'SNOW' && ev.data.queue === snowChatQueueRef.current) return;
 
       const token = await fetchAuthToken();
       setSnowContext((prev) => ({
@@ -178,7 +189,7 @@ export default function LiveChat({
   return (
     <div
       data-testid="live-chat-wrapper"
-      className="absolute w-full h-full xl:h-fit xl:w-auto bottom-0 xl:bottom-2 right-0 xl:right-2 z-[960] flex flex-col justify-end pointer-events-none"
+      className="pointer-events-none absolute bottom-0 right-0 z-[960] flex size-full flex-col justify-end xl:bottom-2 xl:right-2 xl:h-fit xl:w-auto"
     >
       {/* We don't check for chatState here, otherwise the sessions would be reset instead of shown again */}
       {chatType === 'Adrielly' && (
@@ -211,7 +222,7 @@ export default function LiveChat({
         */}
       <div
         data-testid="live-chat-pta-wrapper"
-        className={`order-first xl:order-last relative py-2 px-3 bg-[#000e9c] xl:bg-transparent ${!chatbotReduced ? 'hidden xl:flex' : 'flex'} flex-row items-center justify-between xl:justify-end pointer-events-auto`}
+        className={`relative order-first bg-[#000e9c] px-3 py-2 xl:order-last xl:bg-transparent ${!chatbotReduced ? 'hidden xl:flex' : 'flex'} pointer-events-auto flex-row items-center justify-between xl:justify-end`}
       >
         {!chatbotReduced && (
           <>
@@ -284,7 +295,7 @@ export default function LiveChat({
               data-testid="live-chat-desktop-close-button"
               circle
               contrasted
-              className="hidden xl:flex absolute top-0 right-0 p-2 z-10"
+              className="absolute right-0 top-0 z-10 hidden p-2 xl:flex"
               onClick={handleCloseChat}
             >
               <OsdsIcon
