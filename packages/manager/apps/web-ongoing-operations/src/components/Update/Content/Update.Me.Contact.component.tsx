@@ -63,7 +63,7 @@ export default function ActionMeContactComponent({
           <ul className="m-0 p-0 pl-4">
             {fields.map((item) => (
               <li key={item} className="font-bold text-[var(--ods-color-text)]">
-                {t(`domain_operations_update_${item}`)}
+                {t(`domain_operations_update_${item}`.toLowerCase())}
               </li>
             ))}
           </ul>
@@ -82,7 +82,7 @@ export default function ActionMeContactComponent({
       >
         {t(
           `domain_operations_update_nicowner_click_${argumentKey === 'corporationProof' ? 'nicowner' : argumentKey ?? ''
-          }`,
+          }`.toLowerCase(),
         )}
       </Link>
     </div>
