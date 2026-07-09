@@ -52,7 +52,7 @@ export default function UpdateStringComponent({
     <div>
       <FormField className="w-1/4" invalid={error != null && error.length > 0}>
         <FormFieldLabel>
-          {t(`domain_operations_update_key_${argumentKey}`)}
+          {t(`domain_operations_update_${argumentKey}`.toLowerCase())}
         </FormFieldLabel>
         <Input
           id={argumentKey}
