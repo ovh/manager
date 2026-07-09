@@ -19,6 +19,7 @@ import * as UseBillingServicesHook from '@/data/hooks/billingServices/useBilling
 import * as UseBillsHook from '@/data/hooks/bills/useBills';
 import BillingSummary from '@/pages/dashboard/BillingSummary.component';
 import Catalog from '@/pages/dashboard/Catalog.component';
+import CriticalInfoBanner from '@/pages/dashboard/CriticalInfoBanner.component';
 import EnterpriseBillingSummary from '@/pages/dashboard/EnterpriseBillingSummary.component';
 import KycFraudBanner from '@/pages/dashboard/KycFraudBanner.component';
 import KycIndiaBanner from '@/pages/dashboard/KycIndiaBanner.component';
@@ -94,6 +95,7 @@ const mocks = vi.hoisted(() => ({
     isFreshCustomer: true,
     availability: {
       'billing:management': false,
+      'hub:banner-critical-info': false,
       'hub:banner-hub-invite-customer-siret': true,
       'identity-documents': true,
       'procedures:fraud': true,
@@ -774,6 +776,42 @@ describe('Layout.page', () => {
 
     it('should have a valid html', () => {
       const { container } = renderComponent(<SiretBanner />);
+      const html = container.innerHTML;
+
+      void expect(html).toBeValidHtml();
+    });
+  });
+
+  describe('CriticalInfoBanner component', () => {
+    it('should render the banner with given translation key if feature is available', () => {
+      trackPageMock.mockReset();
+      mocks.hubContext.availability['hub:banner-critical-info'] = true;
+      const { getByTestId, getByText } = renderComponent(
+        <CriticalInfoBanner translationKey="manager_hub_dashboard_banner_critical_info_vps" />,
+      );
+
+      expect(getByTestId('critical_info_banner')).not.toBeNull();
+      expect(getByText('manager_hub_dashboard_banner_critical_info_vps')).not.toBeNull();
+      expect(trackPageMock).toHaveBeenCalledWith({
+        pageType: 'banner-info',
+        pageName: 'critical-info',
+      });
+    });
+
+    it('should render nothing if feature is not available', () => {
+      mocks.hubContext.availability['hub:banner-critical-info'] = false;
+      const { queryByTestId } = renderComponent(
+        <CriticalInfoBanner translationKey="manager_hub_dashboard_banner_critical_info_vps" />,
+      );
+
+      expect(queryByTestId('critical_info_banner')).not.toBeInTheDocument();
+    });
+
+    it('should have a valid html', () => {
+      mocks.hubContext.availability['hub:banner-critical-info'] = true;
+      const { container } = renderComponent(
+        <CriticalInfoBanner translationKey="manager_hub_dashboard_banner_critical_info_vps" />,
+      );
       const html = container.innerHTML;
 
       void expect(html).toBeValidHtml();

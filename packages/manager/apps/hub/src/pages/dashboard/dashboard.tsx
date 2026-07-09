@@ -28,6 +28,7 @@ const EnterpriseBillingSummary = lazy(
   () => import('@/pages/dashboard/EnterpriseBillingSummary.component'),
 );
 const PaymentStatus = lazy(() => import('@/pages/dashboard/PaymentStatus.component'));
+const CriticalInfoBanner = lazy(() => import('@/pages/dashboard/CriticalInfoBanner.component'));
 const SiretBanner = lazy(() => import('@/pages/dashboard/SiretBanner.component'));
 const KycIndiaBanner = lazy(() => import('@/pages/dashboard/KycIndiaBanner.component'));
 const KycFraudBanner = lazy(() => import('@/pages/dashboard/KycFraudBanner.component'));
@@ -102,6 +103,7 @@ export default function Dashboard() {
                     <NotificationsCarousel />
                     <NotificationsEmailUnreachable />
                   </div>
+                  <CriticalInfoBanner translationKey="manager_hub_dashboard_banner_critical_info_vps" />
                   <SiretBanner />
                   <KycIndiaBanner />
                   <KycFraudBanner />
