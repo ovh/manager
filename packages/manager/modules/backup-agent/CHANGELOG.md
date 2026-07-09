@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.16.0...@ovh-ux/backup-agent@1.17.0) (2026-07-09)
+
+
+### Features
+
+* **backup-agent:** add resiliation to backup agent service ([8a1fca7](https://github.com/ovh/manager/commit/8a1fca78ef87a5a463c4b4a2975f5c724bc65938)), closes [#BKP-1042](https://github.com/ovh/manager/issues/BKP-1042)
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.15.3...@ovh-ux/backup-agent@1.16.0) (2026-06-30)
 
 

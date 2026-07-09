@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.6.6...@ovh-ux/manager-billing-informations@1.7.0) (2026-07-09)
+
+
+### Features
+
+* **backup-agent:** add resiliation to backup agent service ([8a1fca7](https://github.com/ovh/manager/commit/8a1fca78ef87a5a463c4b4a2975f5c724bc65938)), closes [#BKP-1042](https://github.com/ovh/manager/issues/BKP-1042)
+
+
+
+
+
 ## [1.6.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-informations@1.6.5...@ovh-ux/manager-billing-informations@1.6.6) (2026-02-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-billing-informations
