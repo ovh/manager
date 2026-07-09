@@ -1550,6 +1550,66 @@ export const mockedPrivateNetworkEntityWithMetal: TPrivateNetwork = {
   },
 };
 
+export const mockedPrivateNetworkEntityWithMultipleSubnets: TPrivateNetwork = {
+  networks: {
+    byId: new Map([
+      [
+        'multi-subnet-network',
+        {
+          id: 'multi-subnet-network',
+          name: 'pn-bhs-1001',
+          region: 'BHS5',
+          vlanId: 1001,
+          subnets: ['multi-subnet-a', 'multi-subnet-b'],
+        },
+      ],
+      [
+        'single-subnet-network',
+        {
+          id: 'single-subnet-network',
+          name: 'pn-bhs-single',
+          region: 'BHS5',
+          vlanId: 52,
+          subnets: ['single-subnet'],
+        },
+      ],
+    ]),
+    allIds: ['multi-subnet-network', 'single-subnet-network'],
+  },
+  subnets: {
+    byId: new Map([
+      [
+        'multi-subnet-a',
+        {
+          id: 'multi-subnet-a',
+          cidr: '10.1.0.0/16',
+          capabilities: ['FloatingIP'],
+          hasGateway: true,
+        },
+      ],
+      [
+        'multi-subnet-b',
+        {
+          id: 'multi-subnet-b',
+          cidr: '10.3.0.0/24',
+          capabilities: ['FloatingIP'],
+          hasGateway: false,
+        },
+      ],
+      [
+        'single-subnet',
+        {
+          id: 'single-subnet',
+          cidr: '10.2.0.0/16',
+          capabilities: ['PublicIP'],
+          hasGateway: false,
+        },
+      ],
+    ]),
+    allIds: ['multi-subnet-a', 'multi-subnet-b', 'single-subnet'],
+  },
+};
+
 const mockedNetworkCatalogPrice = {
   currencyCode: 'EUR',
   priceInUcents: 100,

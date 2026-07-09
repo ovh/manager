@@ -110,7 +110,7 @@ describe('Considering Network component', () => {
     setupTest();
 
     await waitFor(() => {
-      const options = screen.getAllByText('test-network-1');
+      const options = screen.getAllByText('test-network-1 - 10.1.0.0/16');
       // eslint-disable-next-line max-nested-callbacks
       const optionWithValue = options.find((option) =>
         option.hasAttribute('selected'),
@@ -239,7 +239,7 @@ describe('Considering Network component', () => {
     setupTest({ networks: mockedPrivateNetworkEntityWithMetal, flavorCategory: 'Metal Instances' });
 
     await waitFor(() => {
-      const options = screen.getAllByText('test-network-metal');
+      const options = screen.getAllByText('test-network-metal - 10.0.0.0/16');
       // eslint-disable-next-line max-nested-callbacks
       const optionWithValue = options.find((option) =>
         option.hasAttribute('selected'),

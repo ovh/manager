@@ -33,7 +33,9 @@ export const selectPrivateNetworks = (region: string | null) => (
       const subnet = privateNetworks.subnets.byId.get(subnetId);
 
       return {
-        label: network.name,
+        label: subnet?.cidr
+          ? `${network.name} - ${subnet.cidr}`
+          : network.name,
         value: subnetId,
         customRendererData: {
           networkId,
