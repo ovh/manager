@@ -51,7 +51,7 @@ export default function UpdateMeComponent({
           trackPageNavivationLink(url, true);
         }}
       >
-        {t(`domain_operations_update_${argumentKey}_click`)}
+        {t(`domain_operations_update_${argumentKey}_click`.toLowerCase())}
       </Link>
     </>
   );
