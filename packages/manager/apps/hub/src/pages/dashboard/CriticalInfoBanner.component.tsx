@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 
+import DOMPurify from 'dompurify';
 import { useTranslation } from 'react-i18next';
 
 import { ODS_THEME_COLOR_INTENT, ODS_THEME_TYPOGRAPHY_SIZE } from '@ovhcloud/ods-common-theming';
@@ -25,6 +26,11 @@ export default function CriticalInfoBanner({ translationKey }: CriticalInfoBanne
     [availability],
   );
 
+  const sanitizedContent = useMemo(
+    () => DOMPurify.sanitize(t(translationKey)),
+    [t, translationKey],
+  );
+
   useEffect(() => {
     if (shouldBeDisplayed) {
       trackPage({
@@ -47,7 +53,10 @@ export default function CriticalInfoBanner({ translationKey }: CriticalInfoBanne
         color={ODS_THEME_COLOR_INTENT.text}
         className="block"
       >
-        {t(translationKey)}
+        <div
+          data-testid="critical_info_banner_content"
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+        />
       </OsdsText>
     </OsdsMessage>
   ) : null;
