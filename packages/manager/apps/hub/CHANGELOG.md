@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.29.10...@ovh-ux/manager-hub-app@0.30.0) (2026-07-10)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1275] ([65f4f51](https://github.com/ovh/manager/commit/65f4f516778c6233fb8bf9e27a64038050b0cd2f))
+
+
+### Features
+
+* **hub:** add text banner for critical issue ([952e76e](https://github.com/ovh/manager/commit/952e76ebbcfe58dd8b35ff5b6d035bc37117d97f)), closes [#MANAGER-21961](https://github.com/ovh/manager/issues/MANAGER-21961)
+* **hub:** add true content for critical message ([557ddd2](https://github.com/ovh/manager/commit/557ddd24aa512c34e0580fb80cf346bc8a2311f8)), closes [#MANAGER-21961](https://github.com/ovh/manager/issues/MANAGER-21961)
+
+
+
+
+
 ## [0.29.10](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@0.29.9...@ovh-ux/manager-hub-app@0.29.10) (2026-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-hub-app
