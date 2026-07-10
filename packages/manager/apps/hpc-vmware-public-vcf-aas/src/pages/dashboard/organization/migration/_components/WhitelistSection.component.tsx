@@ -25,7 +25,7 @@ export default function WhitelistSection() {
     isPending,
     isError,
     isEditable,
-    organisationUrn,
+    migrationUrn,
     refetch,
   } = useMigrationContext();
 
@@ -46,7 +46,7 @@ export default function WhitelistSection() {
             id={`migration-delete-${row.ip}`}
             label=""
             iamActions={[iamActions.vmwareCloudDirectorApiovhMigrationEdit]}
-            urn={organisationUrn}
+            urn={migrationUrn}
             variant={ODS_BUTTON_VARIANT.ghost}
             color={ODS_BUTTON_COLOR.critical}
             icon={ODS_ICON_NAME.trash}
@@ -82,7 +82,7 @@ export default function WhitelistSection() {
         <ManagerButton
           id="migration-add-cta"
           iamActions={[iamActions.vmwareCloudDirectorApiovhMigrationEdit]}
-          urn={organisationUrn}
+          urn={migrationUrn}
           label={t('migration.cta.add')}
           isDisabled={!isEditable}
           data-testid={TEST_IDS.migrationAddCta}

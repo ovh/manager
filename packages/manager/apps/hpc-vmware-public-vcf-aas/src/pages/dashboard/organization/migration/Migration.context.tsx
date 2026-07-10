@@ -18,6 +18,7 @@ interface MigrationContextValue {
   resourceStatus: VcdaResourceStatus | undefined;
   isEditable: boolean;
   organisationUrn: string | undefined;
+  migrationUrn: string | undefined;
   isPending: boolean;
   isError: boolean;
   error: ApiError | null;
@@ -53,6 +54,7 @@ export function MigrationProvider({ children }: { children: ReactNode }) {
       resourceStatus: migration?.resourceStatus,
       isEditable: migration?.resourceStatus === 'READY',
       organisationUrn: organisation?.data?.iam?.urn,
+      migrationUrn: migration?.iam?.urn,
       isPending,
       isError,
       error: (error as ApiError) ?? null,
