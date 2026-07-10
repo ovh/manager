@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.45.4...@ovh-ux/manager-okms-app@0.46.0) (2026-07-10)
+
+
+### Bug Fixes
+
+* **okms:** add missing protection level translations ([584e463](https://github.com/ovh/manager/commit/584e4635c486442cd80f71e25d56423da2ea06b9)), closes [#EK-3445](https://github.com/ovh/manager/issues/EK-3445)
+* **okms:** gate protection level behind hsm feature flag and use short labels ([89ae345](https://github.com/ovh/manager/commit/89ae345bf2a6073c4ebec1dd066aec70ff9087ae)), closes [#EK-3446](https://github.com/ovh/manager/issues/EK-3446)
+* **okms:** move protection level to top of crypto properties tile ([22a1e11](https://github.com/ovh/manager/commit/22a1e112910d8d0f96fd2b605f1916242c1c5de8)), closes [#EK-3446](https://github.com/ovh/manager/issues/EK-3446)
+
+
+### Features
+
+* **okms:** add hsm protection level to service key creation ([d57b6dc](https://github.com/ovh/manager/commit/d57b6dc52483578d01fa842db69e194973e7b546)), closes [#EK-3445](https://github.com/ovh/manager/issues/EK-3445)
+* **okms:** add protection level to service key list and dashboard ([eef77c0](https://github.com/ovh/manager/commit/eef77c01461d1015a98c42d32bdc09ff8c3454d6)), closes [#EK-3446](https://github.com/ovh/manager/issues/EK-3446)
+
+
+
+
+
 ## [0.45.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-okms-app@0.45.3...@ovh-ux/manager-okms-app@0.45.4) (2026-07-09)
 
 **Note:** Version bump only for package @ovh-ux/manager-okms-app
