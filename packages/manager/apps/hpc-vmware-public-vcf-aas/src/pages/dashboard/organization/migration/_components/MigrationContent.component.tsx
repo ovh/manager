@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
 import { Navigate, Outlet, useParams } from 'react-router-dom';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import Loading from '@/components/loading/Loading.component';
 import { useVcdaStatus } from '@/data/hooks/vcda/useVcdaStatus.hook';
 import { urls } from '@/routes/routes.constant';
+import { FEATURES } from '@/utils/features.constants';
 import { MigrationProvider } from '../Migration.context';
 import EndpointSection from './EndpointSection.component';
 import WhitelistSection from './WhitelistSection.component';
@@ -10,6 +12,12 @@ import WhitelistSection from './WhitelistSection.component';
 export default function MigrationContent() {
   const { id } = useParams();
   const { data: status, isPending, isError } = useVcdaStatus(id ?? '');
+  const { data: features } = useFeatureAvailability([
+    FEATURES.HPC_VCFAAS_VCDA_AUTHORIZED_IPS,
+  ]);
+  const isAuthorizedIpsEnabled = Boolean(
+    features?.[FEATURES.HPC_VCFAAS_VCDA_AUTHORIZED_IPS],
+  );
 
   if (isPending) {
     return <Loading />;
@@ -27,7 +35,7 @@ export default function MigrationContent() {
     <Suspense>
       <MigrationProvider>
         <EndpointSection />
-        <WhitelistSection />
+        {isAuthorizedIpsEnabled && <WhitelistSection />}
         <Outlet />
       </MigrationProvider>
     </Suspense>
