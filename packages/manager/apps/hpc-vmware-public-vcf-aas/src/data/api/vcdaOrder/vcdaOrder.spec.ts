@@ -1,5 +1,6 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
-import { VCDOrganization ,
+import {
+  VCDOrganization,
   checkoutVcdaOrder,
   getVcdaDatacenterZone,
   prepareVcdaOrder,
