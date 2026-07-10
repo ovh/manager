@@ -37,9 +37,7 @@ describe('VCDA — Service termination', () => {
     });
 
     const cta = await getElementByTestId(TEST_IDS.migrationTerminateCta);
-    await waitFor(() =>
-      expect(cta).toHaveAttribute('is-disabled', 'true'),
-    );
+    await waitFor(() => expect(cta).toHaveAttribute('is-disabled', 'true'));
   });
 
   const modalDescription = () =>
