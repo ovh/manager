@@ -26,6 +26,14 @@ export interface PublicVcdaTargetSpec {
   ips: string[];
 }
 
+export interface IamResourceMetadata {
+  id?: string;
+  displayName?: string | null;
+  state?: string | null;
+  tags?: Record<string, string> | null;
+  urn?: string;
+}
+
 export interface PublicVcda {
   id: string;
   resourceStatus: VcdaResourceStatus;
@@ -34,6 +42,7 @@ export interface PublicVcda {
   targetSpec: PublicVcdaTargetSpec;
   createdAt: string;
   updatedAt: string;
+  iam?: IamResourceMetadata | null;
 }
 
 export interface VcdaWhitelistEntry {
