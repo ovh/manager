@@ -3,12 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Control, FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { BaseLayout, ManagerButton } from '@ovh-ux/manager-react-components';
 import {
-  BaseLayout,
-  ManagerButton,
-  useAuthorizationIam,
-} from '@ovh-ux/manager-react-components';
-import { useVcdOrganization , PreparedVcdaOrder } from '@ovh-ux/manager-module-vcd-api';
+  useVcdOrganization,
+  PreparedVcdaOrder,
+} from '@ovh-ux/manager-module-vcd-api';
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 import {
   OdsButton,
@@ -30,7 +29,6 @@ import {
 } from '@/data/hooks/vcdaOrder/useOrderVcda.hook';
 import { useMessageContext } from '@/context/Message.context';
 import { urls, subRoutes } from '@/routes/routes.constant';
-import { iamActions } from '@/utils/iam.constants';
 import TEST_IDS from '@/utils/testIds.constants';
 import { TRACKING } from '@/tracking.constants';
 import { OrderFormSchema, OrderFormValues } from '../order.schema';
@@ -54,12 +52,6 @@ export default function MigrationOrderContent() {
   const dashboardUrl = urls.dashboard.replace(':id', id ?? '');
 
   const { data: organization } = useVcdOrganization({ id });
-  const orgUrn = organization?.data?.iam?.urn;
-
-  const { isAuthorized } = useAuthorizationIam(
-    [iamActions.vmwareCloudDirectorApiovhMigrationCreate],
-    orgUrn ?? '',
-  );
 
   const {
     control,
@@ -122,7 +114,7 @@ export default function MigrationOrderContent() {
     goToDashboard();
   };
 
-  const isOrderDisabled = !isValid || isPending || !isAuthorized;
+  const isOrderDisabled = !isValid || isPending;
 
   return (
     <BaseLayout breadcrumb={<Breadcrumb />}>
@@ -213,9 +205,6 @@ export default function MigrationOrderContent() {
             id="migration-order-submit"
             type="submit"
             label={t('managed_vcd_migration_order_order')}
-            iamActions={[iamActions.vmwareCloudDirectorApiovhMigrationCreate]}
-            urn={orgUrn}
-            displayTooltip={!isAuthorized}
             isDisabled={isOrderDisabled || undefined}
             data-testid={TEST_IDS.migrationOrderSubmitCta}
           >

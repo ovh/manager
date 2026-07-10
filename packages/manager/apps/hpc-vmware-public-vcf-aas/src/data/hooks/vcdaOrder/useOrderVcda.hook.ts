@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@ovh-ux/manager-core-api';
-import { VCDOrganization ,
+import {
+  VCDOrganization,
   checkoutVcdaOrder,
   getVcdaDatacenterZone,
   PreparedVcdaOrder,
