@@ -37,7 +37,7 @@ export const COMPANY_NAME_LABEL_LEGAL_FORMS = [
   LEGAL_FORM_ADMINISTRATION,
 ];
 
-export const SIRET_SEARCH_REGEXP = /^\d{14}$/;
+export const SIRET_SEARCH_REGEXP = /^(?:\d\s*){14}$/;
 
 export const SIRET_FOCUS_PARAM = 'siretForm';
 export const SIRET_SEARCH_ASSISTANT_ANCHOR = 'siret-search-assistant';
