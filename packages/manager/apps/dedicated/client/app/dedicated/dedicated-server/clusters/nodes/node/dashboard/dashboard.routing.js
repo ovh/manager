@@ -351,7 +351,7 @@ export default /* @ngInject */ ($stateProvider) => {
           .catch(() => false);
       },
 
-      upgradeTask: /* @ngInject */ ($http, $q, serverName, features) =>
+      upgradeTask: /* @ngInject */ ($http, $q, serverName) =>
         $http
           .get(
             `/dedicated/server/${serverName}/task?function=hardware_update&status=todo`,
@@ -361,8 +361,8 @@ export default /* @ngInject */ ($stateProvider) => {
               ? $http
                   .get(`/dedicated/server/${serverName}/task/${taskIds[0]}`)
                   .then(({ data: task }) => {
-                    const usePlannedChange = features.isFeatureAvailable(
-                      'dedicated-server:plannedChange',
+                    const usePlannedChange = !!(
+                      task.changeUuid && task.changeUuid !== null
                     );
                     const route = usePlannedChange
                       ? 'plannedChange'

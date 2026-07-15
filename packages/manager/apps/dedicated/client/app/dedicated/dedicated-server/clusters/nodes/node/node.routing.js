@@ -30,7 +30,6 @@ export default /* @ngInject */ ($stateProvider) => {
           'dedicated-server:changeOwner',
           'dedicated-server:dns',
           'dedicated-server:upgradeWithTicket',
-          'dedicated-server:plannedChange',
         ]),
       ola: /* @ngInject */ (
         $stateParams,
