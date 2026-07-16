@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.12.0...@ovh-ux/manager-module-vcd-api@0.13.0) (2026-07-16)
+
+
+### Features
+
+* **dashboard-tile:** add VCDA migration tile, routing & data foundation ([3ec933e](https://github.com/ovh/manager/commit/3ec933eb5a6bc900d958d25309bd3d318b4a4945)), closes [#BKP-1174](https://github.com/ovh/manager/issues/BKP-1174)
+
+
+
+
+
 # [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.11.3...@ovh-ux/manager-module-vcd-api@0.12.0) (2026-06-16)
 
 

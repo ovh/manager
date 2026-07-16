@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.32.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.33.0) (2026-07-16)
+
+
+### Features
+
+* **dashboard-tile:** add VCDA migration tile, routing & data foundation ([3ec933e](https://github.com/ovh/manager/commit/3ec933eb5a6bc900d958d25309bd3d318b4a4945)), closes [#BKP-1174](https://github.com/ovh/manager/issues/BKP-1174)
+* **migration-tab:** add endpoint & authorized-IPs management tab ([ef0fa87](https://github.com/ovh/manager/commit/ef0fa879215b384db72068f604747b7c4acb0567)), closes [#BKP-1174](https://github.com/ovh/manager/issues/BKP-1174)
+* **order:** add VCDA Public VCF migration order with contracts step ([71e898a](https://github.com/ovh/manager/commit/71e898a8002abca64f9fbd9b2d3feae62906c6dc)), closes [#BKP-1174](https://github.com/ovh/manager/issues/BKP-1174)
+* **service-termination:** add VCDA migration service termination ([c0b7e72](https://github.com/ovh/manager/commit/c0b7e72a2762ab58382ec7cee29a6e23bc2dd9ad)), closes [#BKP-1174](https://github.com/ovh/manager/issues/BKP-1174)
+
+
+
+
+
 # [0.32.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.31.2...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.32.0) (2026-06-16)
 
 
