@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.5.0...@ovh-ux/sign-up@3.6.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1276] ([9023037](https://github.com/ovh/manager/commit/9023037adc48fa58b1c8b47bc0ee3c39f97ed7f3))
+
+
+### Features
+
+* **account:** change regex siret ([ffe8233](https://github.com/ovh/manager/commit/ffe8233d5af757893abd0b3f669c50b69a7e4ebe)), closes [#MANAGER-21800](https://github.com/ovh/manager/issues/MANAGER-21800)
+* **account:** improve behavior siret ([1af3383](https://github.com/ovh/manager/commit/1af33831c8a983b63140eeb22796fdba80a492ee)), closes [#MANAGER-21800](https://github.com/ovh/manager/issues/MANAGER-21800)
+
+
+
+
+
 # [3.5.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.4.0...@ovh-ux/sign-up@3.5.0) (2026-06-23)
 
 

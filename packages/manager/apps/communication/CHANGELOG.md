@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.11.2...@ovh-ux/manager-communication-app@0.12.0) (2026-07-16)
+
+
+### Features
+
+* **communication:** add BILLING_INVOICE category translation ([6471d98](https://github.com/ovh/manager/commit/6471d98416721660faa2f3ae75c3b06779fb026e)), closes [#MANAGER-21802](https://github.com/ovh/manager/issues/MANAGER-21802)
+
+
+
+
+
 ## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-communication-app@0.11.1...@ovh-ux/manager-communication-app@0.11.2) (2026-04-28)
 
 

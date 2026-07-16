@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.23.1...@ovh-ux/manager-account@0.24.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1276] ([9023037](https://github.com/ovh/manager/commit/9023037adc48fa58b1c8b47bc0ee3c39f97ed7f3))
+
+
+### Features
+
+* **account:** improve behavior siret ([1af3383](https://github.com/ovh/manager/commit/1af33831c8a983b63140eeb22796fdba80a492ee)), closes [#MANAGER-21800](https://github.com/ovh/manager/issues/MANAGER-21800)
+* **account:** remove comment partially in french ([ad4d6dc](https://github.com/ovh/manager/commit/ad4d6dc453dec4a5db67439febff690485de4262)), closes [#MANAGER-21800](https://github.com/ovh/manager/issues/MANAGER-21800)
+
+
+
+
+
 ## [0.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.23.0...@ovh-ux/manager-account@0.23.1) (2026-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-account
