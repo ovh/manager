@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.79.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.9...@ovh-ux/manager-dedicated@20.79.0) (2026-07-16)
+
+
+### Features
+
+* **dedicated-server:** adopt plannedChange apiv6 route behind feature flag ([#23011](https://github.com/ovh/manager/issues/23011)) ([818c6a4](https://github.com/ovh/manager/commit/818c6a40cea3dee48aaa5719abc49e75c6c0c2cd)), closes [#PUBM-54260](https://github.com/ovh/manager/issues/PUBM-54260)
+
+
+
+
+
 ## [20.78.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.78.8...@ovh-ux/manager-dedicated@20.78.9) (2026-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated
