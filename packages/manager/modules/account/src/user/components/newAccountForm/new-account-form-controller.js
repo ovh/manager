@@ -155,10 +155,10 @@ export default class NewAccountFormController {
           : this.$q.resolve(),
       })
       .then(({ email, sms }) => {
-        this.consentDecision = !!email.value;
+        this.consentDecision = !!email?.value;
         this.smsConsentDecision =
           this.isSmsConsentAvailable &&
-          !!Object.keys(sms.sms).some((key) => sms.sms[key]);
+          !!Object.keys(sms?.sms || {}).some((key) => sms.sms[key]);
       })
       .then(() => this.userAccountServiceInfos.postRules(params))
       .then((result) => {
@@ -488,18 +488,23 @@ export default class NewAccountFormController {
   }
 
   updateRules() {
-    this.fetchRules(this.model).then((newRules) => {
-      this.rules.forEach((rule) => {
-        if (!newRules.find((value) => value.fieldName === rule.fieldName)) {
-          delete this.model[rule.fieldName];
+    return this.fetchRules(this.model)
+      .then((newRules) => {
+        if (!newRules) {
+          return;
         }
-      });
-      this.rules = newRules;
+        (this.rules || []).forEach((rule) => {
+          if (!newRules.find((value) => value.fieldName === rule.fieldName)) {
+            delete this.model[rule.fieldName];
+          }
+        });
+        this.rules = newRules;
 
-      if (this.siretFieldIsAvailable()) {
-        this.formatSiretRules(newRules);
-      }
-    });
+        if (this.siretFieldIsAvailable()) {
+          this.formatSiretRules(newRules);
+        }
+      })
+      .catch(angular.noop);
   }
 
   formatSiretRules(rules) {
@@ -579,8 +584,8 @@ export default class NewAccountFormController {
 
   isFrenchAssociation() {
     return (
-      this.model.legalform === USER_TYPE_ASSOCIATION &&
-      FR_COUNTRIES.includes(this.model.country)
+      this.model?.legalform === USER_TYPE_ASSOCIATION &&
+      FR_COUNTRIES.includes(this.model?.country)
     );
   }
 
@@ -596,25 +601,25 @@ export default class NewAccountFormController {
         USER_TYPE_ENTERPRISE,
         USER_TYPE_ASSOCIATION,
         USER_TYPE_ADMINISTRATION,
-      ].includes(this.model.legalform) &&
-      FR_COUNTRIES.includes(this.model.country)
+      ].includes(this.model?.legalform) &&
+      FR_COUNTRIES.includes(this.model?.country)
     );
   }
 
   isFieldHiddenForFr(rule) {
     return (
-      FR_COUNTRIES.includes(this.model.country) &&
+      FR_COUNTRIES.includes(this.model?.country) &&
       [
         FIELD_NAME_LIST.corporationType,
         FIELD_NAME_LIST.nationalIdentificationNumber,
-      ].includes(rule.fieldName)
+      ].includes(rule?.fieldName)
     );
   }
 
   determineIsEditionDisabledByKyc(kycRequest) {
     this.isEditionDisabledByKyc =
-      this.user.kycValidated ||
-      [KYC_STATUS.OPEN, KYC_STATUS.OK].includes(kycRequest.status);
+      this.user?.kycValidated ||
+      [KYC_STATUS.OPEN, KYC_STATUS.OK].includes(kycRequest?.status);
   }
 
   onDismiss() {
