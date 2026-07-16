@@ -340,15 +340,21 @@ export default /* @ngInject */ ($stateProvider) => {
               ? $http
                   .get(`/dedicated/server/${serverName}/task/${taskIds[0]}`)
                   .then(({ data: task }) => {
-                    return (task.plannedInterventionId
+                    const usePlannedChange = !!(
+                      task.changeUuid && task.changeUuid !== null
+                    );
+                    const route = usePlannedChange
+                      ? 'plannedChange'
+                      : 'plannedIntervention';
+                    const linkageId = usePlannedChange
+                      ? task.changeUuid
+                      : task.plannedInterventionId;
+                    return (linkageId
                       ? $http
                           .get(
-                            `/dedicated/server/${serverName}/plannedIntervention/${task.plannedInterventionId}`,
+                            `/dedicated/server/${serverName}/${route}/${linkageId}`,
                           )
-                          .then(
-                            ({ data: plannedIntervention }) =>
-                              plannedIntervention,
-                          )
+                          .then(({ data }) => data)
                       : $q.when(null)
                     ).then((plannedIntervention) => {
                       return new UpgradeTask({
