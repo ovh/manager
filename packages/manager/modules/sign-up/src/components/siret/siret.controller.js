@@ -43,9 +43,10 @@ export default class SiretCtrl {
   }
 
   $onInit() {
+    this.model = this.model || {};
     // disable if its from IN subsidiray and user is enterprise
     this.disableField =
-      this.isIndianSubsidiary && this.user.legalform === LEGAL_FORM_ENTERPRISE;
+      this.isIndianSubsidiary && this.user?.legalform === LEGAL_FORM_ENTERPRISE;
 
     // In modification mode the assistant searches by SIRET only (14 digits)
     this.searchPattern =
@@ -105,13 +106,13 @@ export default class SiretCtrl {
       this.searching = true;
       return this.siretService
         .getSiret({
-          country: this.country.toUpperCase(),
+          country: (this.country || '').toUpperCase(),
           identifier:
             this.mode === 'modification'
-              ? this.search.replace(/\s/g, '')
+              ? (this.search || '').replace(/\s/g, '')
               : this.search,
         })
-        .then((suggest) => {
+        .then((suggest = {}) => {
           this.searching = false;
           if (needTracking) {
             if (suggest.error) {
@@ -128,12 +129,21 @@ export default class SiretCtrl {
             [this.activeSelectSuggest] = suggest.entryList;
             this.selectSuggest(this.activeSelectSuggest);
           }
+        })
+        .catch(() => {
+          this.searching = false;
+          this.suggest = { error: true, entryList: [] };
         });
     }
     return null;
   }
 
   selectSuggest(suggestSelected) {
+    if (!suggestSelected) {
+      return null;
+    }
+    this.model = this.model || {};
+    this.suggest = this.suggest || {};
     if (this.suggest.type === 'name' || this.suggest.type === 'siren') {
       this.search =
         this.suggest.type === 'name'
@@ -215,7 +225,7 @@ export default class SiretCtrl {
   }
 
   getLegalForm() {
-    return this.model.legalform || this.user.legalform;
+    return this.model?.legalform || this.user?.legalform;
   }
 
   shouldApplyFrenchAssociationRules() {
