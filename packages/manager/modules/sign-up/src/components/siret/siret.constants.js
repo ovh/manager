@@ -49,7 +49,11 @@ const ND_TOKEN = /\[ND\]/gi;
 /** True when a suggestion value contains only [ND] placeholder tokens. */
 export function isNdValue(value) {
   if (!value) return false;
-  return value.replace(ND_TOKEN, '').trim() === '';
+  return (
+    String(value)
+      .replace(ND_TOKEN, '')
+      .trim() === ''
+  );
 }
 
 /** Returns empty string for [ND] values, otherwise the suggestion value or previous. */

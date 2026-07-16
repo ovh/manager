@@ -64,7 +64,7 @@ export default class NewAccountFormFieldController {
 
     this.$scope.$on(
       'siret:companySelected',
-      (event, { address, city, zip }) => {
+      (event, { address, city, zip } = {}) => {
         if (this.rule.fieldName === FIELD_NAME_LIST.address) {
           this.value = address;
           this.onChange();
@@ -81,7 +81,7 @@ export default class NewAccountFormFieldController {
       },
     );
 
-    this.$scope.$on('siret:autocompleteActive', (event, { active }) => {
+    this.$scope.$on('siret:autocompleteActive', (event, { active } = {}) => {
       if (
         [
           FIELD_NAME_LIST.address,
@@ -109,10 +109,13 @@ export default class NewAccountFormFieldController {
       this.$scope.$watch(
         '$ctrl.newAccountForm.rules',
         (rules) => {
+          if (!rules) {
+            return;
+          }
           const rule = rules.find(
             (value) => value.fieldName === this.FIELD_NAME_LIST.phoneCountry,
           );
-          this.phoneCountryList = rule?.in.map((country) => ({
+          this.phoneCountryList = rule?.in?.map((country) => ({
             country,
             prefix: PHONE_PREFIX[country],
             label: this.$translate.instant(`signup_enum_country_${country}`),
@@ -123,6 +126,10 @@ export default class NewAccountFormFieldController {
             false,
             (a, b) => String(a.value).localeCompare(String(b.value)),
           );
+
+          if (!this.phoneCountryList?.length) {
+            return;
+          }
 
           const current = this.phoneCountryList.find(
             (value) => value.country === this.newAccountForm.model.phoneCountry,
@@ -146,7 +153,7 @@ export default class NewAccountFormFieldController {
             subCountry ||
             head(this.phoneCountryList);
 
-          if (current !== this.phoneCountry.country) {
+          if (this.phoneCountry && current !== this.phoneCountry.country) {
             this.$timeout(() => {
               if (this.newAccountForm.onFieldChange) {
                 this.newAccountForm.onFieldChange(
