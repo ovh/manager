@@ -9,6 +9,7 @@ import {
   VAT_CHECKBOX_LABEL_BY_LEGAL_FORM,
   COMPANY_NAME_LABEL_DEFAULT,
   COMPANY_NAME_LABEL_LEGAL_FORMS,
+  UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT,
   SIRET_SEARCH_REGEXP,
   SIRET_FOCUS_PARAM,
   SIRET_SEARCH_ASSISTANT_ANCHOR,
@@ -36,6 +37,7 @@ export default class SiretCtrl {
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
+    this.showUpdateSiretInfo = false;
     this.activeSelectSuggest = null;
     this.assistantUsed = false;
     this.assistantEmptyFields = {};
@@ -191,6 +193,7 @@ export default class SiretCtrl {
     this.trackClick('search-assistant');
     this.isFirstSearch = true;
     this.displayManualForm = false;
+    this.showUpdateSiretInfo = this.mode === 'modification';
     this.isValid = false;
     this.assistantUsed = false;
     this.isNonDiffusible = false;
@@ -303,6 +306,13 @@ export default class SiretCtrl {
     return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
       ? `${COMPANY_NAME_LABEL_DEFAULT}_${legalForm}`
       : COMPANY_NAME_LABEL_DEFAULT;
+  }
+
+  getUpdateSearchAssistantLabelKey() {
+    const legalForm = this.getLegalForm();
+    return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+      ? `${UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT}_${legalForm}`
+      : UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT;
   }
 
   onNoVatChange(noVat) {

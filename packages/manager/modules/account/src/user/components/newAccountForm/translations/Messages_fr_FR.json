@@ -771,6 +771,8 @@
   "signup_information_banner_for_indian_subsidiary": "Pour modifier des informations relatives à votre compte, veuillez contacter notre assistance client en ",
   "signup_information_banner_link_for_indian_subsidiary": "cliquant ici.",
   "new_account_content_check_validation": "Veuillez vérifier les informations saisies (TVA, numéro de téléphone, date de naissance, etc.) pour procéder à la validation du formulaire.",
+  "signup_account_info_update_required_error": "Cette modification nécessite que vos informations d'{{ companyType }} soient à jour. Veuillez les mettre à jour pour continuer.",
+  "signup_account_info_api_error": "Erreur : {{ message }}",
   "signup_enum_purposeOfPurchase_personal": "Utilisation à titre personnel",
   "signup_enum_purposeOfPurchase_commercial": "Utilisation dans le cadre d'une activité commerciale",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilisation dans le cadre d'une activité non lucrative, religieuse ou politique",
