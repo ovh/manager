@@ -127,12 +127,12 @@ describe('CompanyInformationModal', () => {
     });
   });
 
-  it('should not render if the modal was displayed less than a day ago', async () => {
+  it('should not render if the modal was displayed less than an hour ago', async () => {
     vi.spyOn(usePreferencesModule, 'usePreferences').mockReturnValue({
       data: 1,
     } as UseQueryResult<number>);
     vi.spyOn(useTimeModule, 'useTime').mockReturnValue({
-      data: 24 * 60 * 60,
+      data: 60 * 60,
       isFetched: true,
     } as UseQueryResult<number>);
 
@@ -148,6 +148,26 @@ describe('CompanyInformationModal', () => {
 
     await waitFor(() => {
       expect(queryByTestId('company-information-modal')).not.toBeNull();
+    });
+  });
+
+  it('should render if the user holds the fr-e-invoicing-account-to-review certificate', async () => {
+    mocks.user.certificates = ['fr-e-invoicing-account-to-review'];
+
+    const { queryByTestId } = renderComponent();
+
+    await waitFor(() => {
+      expect(queryByTestId('company-information-modal')).not.toBeNull();
+    });
+  });
+
+  it('should not render if the user holds no e-invoicing certificate', async () => {
+    mocks.user.certificates = ['some-unrelated-certificate'];
+
+    const { queryByTestId } = renderComponent();
+
+    await waitFor(() => {
+      expect(queryByTestId('company-information-modal')).toBeNull();
     });
   });
 });

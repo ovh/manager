@@ -1,4 +1,4 @@
-export const INTERVAL_BETWEEN_DISPLAY_IN_S = 24 * 60 * 60;
+export const INTERVAL_BETWEEN_DISPLAY_IN_S = 60 * 60;
 export const MODAL_NAME = 'CompanyInformationModal';
 export const ELECTRONIC_BILLING_REGULATION_LINK = 'https://www.economie.gouv.fr/tout-savoir-sur-la-facturation-electronique-pour-les-entreprises';
 export const TRACKING_PREFIX = 'Hub::account::user';
