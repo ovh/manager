@@ -170,4 +170,26 @@ describe('CompanyInformationModal', () => {
       expect(queryByTestId('company-information-modal')).toBeNull();
     });
   });
+
+  it('should display the legacy content for the warning/critical certificate', async () => {
+    mocks.user.certificates = ['fr-e-invoicing-warning'];
+
+    const { queryByText } = renderComponent();
+
+    await waitFor(() => {
+      expect(queryByText('company_information_modal_action_modify')).not.toBeNull();
+      expect(queryByText('company_information_modal_review_action_modify')).toBeNull();
+    });
+  });
+
+  it('should display the review content for the fr-e-invoicing-account-to-review certificate', async () => {
+    mocks.user.certificates = ['fr-e-invoicing-account-to-review'];
+
+    const { queryByText } = renderComponent();
+
+    await waitFor(() => {
+      expect(queryByText('company_information_modal_review_action_modify')).not.toBeNull();
+      expect(queryByText('company_information_modal_action_modify')).toBeNull();
+    });
+  });
 });
