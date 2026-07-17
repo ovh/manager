@@ -769,6 +769,8 @@
   "signup_field_iceNumber": "Numer ICE",
   "signup_field_purposeOfPurchase": "Przyczyna zakupu",
   "new_account_content_check_validation": "Prosimy o sprawdzenie podanych informacji (numer VAT, numer telefonu, data urodzenia, etc.) w celu zatwierdzenia formularza.",
+  "signup_account_info_update_required_error": "Ta zmiana wymaga, aby dane {{ companyType }} były aktualne. Zaktualizuj je, aby kontynuować.",
+  "signup_account_info_api_error": "Błąd: {{ message }}",
   "signup_enum_country_BV": "Norwegia - Wyspa Bouveta",
   "signup_enum_country_HM": "Zjednoczone Królestwo - Wyspy Heard i MacDonald",
   "signup_enum_purposeOfPurchase_personal": "Do celów prywatnych",

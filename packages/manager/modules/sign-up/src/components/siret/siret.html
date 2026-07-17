@@ -10,6 +10,14 @@
 >
     <span data-translate="siret_search_intro"></span>
 
+    <oui-message
+        class="d-block mt-2"
+        data-type="info"
+        data-ng-if="$ctrl.showUpdateSiretInfo"
+    >
+        <span data-translate="siret_update_search_assistant_info"></span>
+    </oui-message>
+
     <div class="oui-field__header mt-2">
         <label
             class="oui-field__label"
@@ -146,11 +154,6 @@
 
     <!-- manual form -->
     <div data-ng-if="$ctrl.displayManualForm">
-        <p
-            data-ng-if="$ctrl.mode === 'modification'"
-            class="mb-2"
-            data-translate="siret_update_search_assistant_intro"
-        ></p>
         <oui-button
             data-ng-class="{ 'siret-search-assistant-button': $ctrl.mode === 'modification' }"
             variant="{{ $ctrl.mode === 'modification' ? 'secondary' : 'link' }}"
@@ -158,7 +161,7 @@
             data-on-click="$ctrl.goToSearchMode()"
         >
             <span
-                data-translate="{{ $ctrl.mode === 'modification' ? 'siret_update_search_assistant' : 'siret_search_assistant' }}"
+                data-translate="{{ $ctrl.mode === 'modification' ? $ctrl.getUpdateSearchAssistantLabelKey() : 'siret_search_assistant' }}"
             ></span>
         </oui-button>
         <p
@@ -167,10 +170,7 @@
             data-translate="siret_manual_title"
         ></p>
 
-        <oui-message
-            data-type="info"
-            data-ng-if="$ctrl.isNonDiffusible"
-        >
+        <oui-message data-type="info" data-ng-if="$ctrl.isNonDiffusible">
             <span data-translate="siret_non_diffusible"></span>
         </oui-message>
 
@@ -240,7 +240,9 @@
                     data-model="$ctrl.noVat"
                     data-on-change="$ctrl.onNoVatChange(modelValue)"
                 >
-                    <span data-translate="{{ $ctrl.getVatCheckboxLabelKey() }}"></span>
+                    <span
+                        data-translate="{{ $ctrl.getVatCheckboxLabelKey() }}"
+                    ></span>
                 </oui-checkbox>
             </div>
 

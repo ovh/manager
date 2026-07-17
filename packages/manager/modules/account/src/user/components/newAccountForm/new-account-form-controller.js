@@ -19,6 +19,7 @@ import {
   USER_TYPE_ENTERPRISE,
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,
+  USER_TYPE_INDIVIDUAL,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
@@ -436,12 +437,27 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
+        const isPrivateIndividual =
+          this.model.legalform === USER_TYPE_INDIVIDUAL;
+        const genericError = isPrivateIndividual
+          ? this.$translate.instant('user_account_info_error')
+          : this.$translate.instant(
+              'signup_account_info_update_required_error',
+              {
+                companyType: this.$translate.instant(
+                  `signup_enum_legalform_${this.model.legalform}`,
+                ),
+              },
+            );
+        const apiError = err.data?.message
+          ? `<br />${this.$translate.instant('signup_account_info_api_error', {
+              message: err.data.message,
+            })}`
+          : '';
+
         this.Alerter.alertFromSWS(
-          this.$translate.instant('user_account_info_error'),
-          {
-            type: 'ERROR',
-            message: err.data?.message,
-          },
+          `${genericError}${apiError}`,
+          'ERROR',
           'InfoErrors',
         );
       })

@@ -396,6 +396,7 @@ export const FR_COUNTRIES = ['FR', 'GP', 'MQ', 'GF', 'RE', 'YT'];
 export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
 export const USER_TYPE_ADMINISTRATION = 'administration';
+export const USER_TYPE_INDIVIDUAL = 'individual';
 
 export default {
   ENUM_TRANSLATION_RULES,
@@ -416,4 +417,5 @@ export default {
   USER_TYPE_ENTERPRISE,
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,
+  USER_TYPE_INDIVIDUAL,
 };

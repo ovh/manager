@@ -769,6 +769,8 @@
   "signup_field_iceNumber": "ICE-Nummer",
   "signup_field_purposeOfPurchase": "Grund für den Kauf",
   "new_account_content_check_validation": "Bitte überprüfen Sie die eingegebenen Informationen (MwSt., Telefonnummer, Geburtsdatum usw.), um das Formular zu validieren.",
+  "signup_account_info_update_required_error": "Diese Änderung setzt voraus, dass Ihre Informationen als {{ companyType }} aktuell sind. Bitte aktualisieren Sie diese, um fortzufahren.",
+  "signup_account_info_api_error": "Fehler: {{ message }}",
   "signup_enum_country_BV": "Norwegen  – Bouvetinsel",
   "signup_enum_country_HM": "Vereinigtes Königreich – Heard und MacDonald-Inseln",
   "signup_enum_purposeOfPurchase_personal": "Persönliche Nutzung",
