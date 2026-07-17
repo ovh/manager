@@ -86,42 +86,56 @@
         <div class="row mt-3">
             <!-- DNS Anycast -->
             <div class="col-md-6 mb-3">
-                <div class="oui-tile h-100">
-                    <oui-checkbox
-                        id="anycast"
-                        data-model="$ctrl.options.anycast"
-                        data-description="{{:: 'domains_newdnszone_order_option_anycast_description' | translate }}"
-                    >
+                <oui-checkbox
+                    id="anycast"
+                    data-model="$ctrl.options.anycast"
+                    data-thumbnail="true"
+                >
+                    <oui-checkbox-label>
                         <span
                             data-translate="domains_newdnszone_order_option_anycast_label"
                         ></span>
-                    </oui-checkbox>
-                    <ovh-manager-catalog-price
-                        data-ng-if="$ctrl.anycastPrice"
-                        class="d-block mt-2"
-                        data-price="$ctrl.anycastPrice"
-                        data-user="$ctrl.user"
-                    ></ovh-manager-catalog-price>
-                </div>
+                    </oui-checkbox-label>
+                    <oui-checkbox-description>
+                        <span
+                            data-translate="domains_newdnszone_order_option_anycast_description"
+                        ></span>
+                    </oui-checkbox-description>
+                    <oui-checkbox-footer>
+                        <ovh-manager-catalog-price
+                            data-ng-if="$ctrl.anycastPrice"
+                            class="oui-heading_6 mb-0"
+                            data-price="$ctrl.anycastPrice"
+                            data-interval-unit="year"
+                        ></ovh-manager-catalog-price>
+                    </oui-checkbox-footer>
+                </oui-checkbox>
             </div>
 
             <!-- DNSSEC (only when available for the domain extension) -->
             <div class="col-md-6 mb-3" data-ng-if="$ctrl.dnssecAvailable">
-                <div class="oui-tile h-100">
-                    <oui-checkbox
-                        id="dnssec"
-                        data-model="$ctrl.options.dnssec"
-                        data-description="{{:: 'domains_newdnszone_order_option_dnssec_description' | translate }}"
-                    >
+                <oui-checkbox
+                    id="dnssec"
+                    data-model="$ctrl.options.dnssec"
+                    data-thumbnail="true"
+                >
+                    <oui-checkbox-label>
                         <span
                             data-translate="domains_newdnszone_order_option_dnssec_label"
                         ></span>
-                    </oui-checkbox>
-                    <span
-                        class="d-block mt-2 font-weight-bold"
-                        data-translate="domains_newdnszone_order_option_dnssec_included"
-                    ></span>
-                </div>
+                    </oui-checkbox-label>
+                    <oui-checkbox-description>
+                        <span
+                            data-translate="domains_newdnszone_order_option_dnssec_description"
+                        ></span>
+                    </oui-checkbox-description>
+                    <oui-checkbox-footer>
+                        <span
+                            class="oui-heading_6 mb-0"
+                            data-translate="domains_newdnszone_order_option_dnssec_included"
+                        ></span>
+                    </oui-checkbox-footer>
+                </oui-checkbox>
             </div>
         </div>
     </section>
@@ -151,7 +165,6 @@
             <ovh-manager-catalog-price
                 class="d-inline"
                 data-price="$ctrl.anycastPrice"
-                data-user="$ctrl.user"
             ></ovh-manager-catalog-price>
             <span
                 data-translate="domains_newdnszone_order_duration_anycast_renewal_suffix"
