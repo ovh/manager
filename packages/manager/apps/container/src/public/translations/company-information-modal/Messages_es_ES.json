@@ -1,7 +1,10 @@
 {
-  "company_information_modal_title": "UN CLIC PARA CONFIRMAR VUESTROS DATOS",
-  "company_information_modal_description": "La facturación electrónica será obligatoria en Francia a partir del 1 de septiembre de 2026 (<anchor>saberlo todo sobre la facturación electrónica</anchor>). Para asegurar la conformidad de vuestras próximas facturas, confirmad vuestros datos de facturación indicando vuestro número de SIRET. ¡nosotros nos encargamos del resto!",
-  "company_information_modal_action_modify": "Verificar mi SIRET",
+  "company_information_modal_title": "ACCIÓN OBLIGATORIA",
+  "company_information_modal_description": "La información relativa a su organización no es conforme. Su actualización es obligatoria en el marco de la reforma de la facturación electrónica <anchor>todo sobre la facturación electrónica</anchor>. Facilite su SIRET, nosotros nos encargamos del resto.",
+  "company_information_modal_action_modify": "Actualizar mis datos",
   "company_information_modal_action_individual": "Soy un particular",
-  "company_information_modal_info_individual": "Si vuestra cuenta no es una empresa, id al formulario de edición de vuestro perfil y modificad el tipo de cuenta a « Particular »."
+  "company_information_modal_info_individual": "Si vuestra cuenta no es una empresa, id al formulario de edición de vuestro perfil y modificad el tipo de cuenta a « Particular ».",
+  "company_information_modal_review_title": "UN CLIC PARA CONFIRMAR SUS DATOS",
+  "company_information_modal_review_description": "La facturación electrónica será obligatoria en Francia a partir del 1 de septiembre de 2026 (<anchor>todo sobre la facturación electrónica</anchor>). Para garantizar la conformidad de sus próximas facturas, confirme sus datos de facturación facilitando su número de SIRET. ¡nosotros nos encargamos del resto!",
+  "company_information_modal_review_action_modify": "Verificar mi SIRET"
 }

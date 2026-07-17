@@ -1,7 +1,10 @@
 {
-  "company_information_modal_title": "EIN KLICK ZUR BESTÄTIGUNG IHRER DATEN",
-  "company_information_modal_description": "Die elektronische Rechnungsstellung wird in Frankreich ab dem 1. September 2026 verpflichtend (<anchor>alles zur elektronischen Rechnungsstellung erfahren</anchor>). Um die Konformität Ihrer zukünftigen Rechnungen zu gewährleisten, bestätigen Sie bitte Ihre Rechnungsdaten durch Angabe Ihrer SIRET-Nummer. Wir kümmern uns um den Rest.",
-  "company_information_modal_action_modify": "Meine SIRET-Nummer überprüfen",
+  "company_information_modal_title": "OBLIGATORISCHE AKTION",
+  "company_information_modal_description": "Informationen zu Ihrer Organisation sind nicht konform. Die Aktualisierung dieser Informationen ist im Rahmen der Reform der elektronischen Rechnungsstellung obligatorisch <anchor>alles über die elektronische Rechnungsstellung erfahren</anchor>. Geben Sie Ihre SIRET-Nummer ein, wir kümmern uns um den Rest.",
+  "company_information_modal_action_modify": "Meine Daten aktualisieren",
   "company_information_modal_action_individual": "Ich bin eine Privatperson",
-  "company_information_modal_info_individual": "Wenn Ihr Konto kein Unternehmen ist, gehen Sie zum Formular zur Bearbeitung Ihres Profils und ändern Sie den Kontotyp auf „Privatperson“."
+  "company_information_modal_info_individual": "Wenn Ihr Konto kein Unternehmen ist, gehen Sie zum Formular zur Bearbeitung Ihres Profils und ändern Sie den Kontotyp auf „Privatperson“.",
+  "company_information_modal_review_title": "EIN KLICK ZUR BESTÄTIGUNG IHRER DATEN",
+  "company_information_modal_review_description": "Die elektronische Rechnungsstellung wird in Frankreich ab dem 1. September 2026 obligatorisch (<anchor>alles über die elektronische Rechnungsstellung erfahren</anchor>). Um die Konformität Ihrer zukünftigen Rechnungen zu gewährleisten, bestätigen Sie bitte Ihre Rechnungsdaten durch Eingabe Ihrer SIRET-Nummer. Wir kümmern uns um den Rest.",
+  "company_information_modal_review_action_modify": "Meine SIRET-Nummer überprüfen"
 }
