@@ -1,7 +1,7 @@
 {
-  "company_information_modal_title": "DZIAŁANIE OBOWIĄZKOWE",
-  "company_information_modal_description": "Informacje dotyczące Twojej organizacji są niezgodne. Aktualizacja tych informacji jest obowiązkowa w ramach reformy fakturowania elektronicznego <anchor>wszystko o fakturowaniu elektronicznym</anchor>. Wprowadź swój numer SIRET, a my zajmiemy się resztą.",
-  "company_information_modal_action_modify": "Zaktualizuj moje dane",
+  "company_information_modal_title": "JEDNO KLIKNIĘCIE, ABY POTWIERDZIĆ SWOJE DANE",
+  "company_information_modal_description": "Fakturowanie elektroniczne staje się obowiązkowe we Francji od 1 września 2026 r. (<anchor>dowiedz się wszystkiego o fakturowaniu elektronicznym</anchor>). Aby zapewnić zgodność swoich przyszłych faktur, prosimy o potwierdzenie danych rozliczeniowych poprzez podanie numeru SIRET. Kolejne zadania są już po naszej stronie.",
+  "company_information_modal_action_modify": "Zweryfikuj mój numer SIRET",
   "company_information_modal_action_individual": "Jestem osobą prywatną",
   "company_information_modal_info_individual": "Jeśli Twoje konto nie jest kontem firmowym, przejdź do formularza edycji swojego profilu i zmień typ konta na „Osoba fizyczna”."
 }
