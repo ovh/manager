@@ -177,5 +177,10 @@
   "domain_operations_update_spareEmail": "Backup-E-Mail",
   "domain_operations_update_vat": "Umsatzsteuer-Identifikationsnummer",
   "domain_operations_update_firstName": "Vorname",
-  "domain_operations_upload_file_template": "Nur Dateien, die dieser <Link>Dokumentvorlage</Link> entsprechen, werden akzeptiert."
+  "domain_operations_upload_file_template": "Nur Dateien, die dieser <Link>Dokumentvorlage</Link> entsprechen, werden akzeptiert.",
+  "domain_operations_update_companynationalidentificationnumber": "Steuernummer",
+  "domain_operations_update_nationalidentificationnumber": "Steuernummer",
+  "domain_operations_update_identificationnumber": "Identifikationsnummer",
+  "domain_operations_update_nicowner_click_whoiscontactbilling": "Ändern Sie die Informationen des Rechnungskontakts, indem Sie hier klicken",
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Ändern Sie die Informationen des technischen Kontakts, indem Sie hier klicken"
 }
