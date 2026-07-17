@@ -1,14 +1,9 @@
-export const TEMPLATES = {
-  BASIC: 'basic',
-  MINIMIZED: 'minimized',
-};
-
 /**
- * Default template sent to the express order. Aligned with the react-order
- * `zone` configo, which hardcodes `'basic'` (full DNS zone with NS / SOA /
- * parking-A / MX records) and no longer exposes the choice to the user.
+ * Template sent to the express order. Aligned with the react-order `zone`
+ * configo, which hardcodes `'basic'` (full DNS zone with NS / SOA / parking-A /
+ * MX records) and does not expose the choice to the user.
  */
-export const DEFAULT_TEMPLATE = TEMPLATES.BASIC;
+export const DEFAULT_TEMPLATE = 'basic';
 
 export const ZONE_PLAN_CODE = 'zone';
 export const ANYCAST_PLAN_CODE = 'anycast';
@@ -58,7 +53,6 @@ export const TRACKING = {
 };
 
 export default {
-  TEMPLATES,
   DEFAULT_TEMPLATE,
   ZONE_PLAN_CODE,
   ANYCAST_PLAN_CODE,
