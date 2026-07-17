@@ -12,4 +12,6 @@ export const useBusinessVerificationRequired = (enabled: boolean) => useQuery({
 export const isUserConcernedByBusinessVerification = (user: User) =>
   user.legalform === 'corporation' &&
   user.country === 'FR' &&
-  (user.certificates?.includes('fr-e-invoicing-warning') || user.certificates?.includes('fr-e-invoicing-critical'));
+  (user.certificates?.includes('fr-e-invoicing-warning') ||
+    user.certificates?.includes('fr-e-invoicing-critical') ||
+    user.certificates?.includes('fr-e-invoicing-account-to-review'));
