@@ -44,9 +44,8 @@ const CompanyInformationModal: FC = () => {
   const closeModal = useCallback(() => {
     setShowModal(false);
     ux.notifyModalActionDone(CompanyInformationModal.name);
-    // Update preference so the modal is not display until 30 days later, time for the update to be done on our side
-    const DAYS_DELAY = 30;
-    updatePreference(time + DAYS_DELAY * 24 * 60 * 60);
+    // Update preference so the modal is not displayed again until the display interval has elapsed
+    updatePreference(time);
     tracking.trackClick({
       name: `${TRACKING_PREFIX}::pop-up::button::business_verification_required::confirm`,
       type: 'action',
@@ -56,7 +55,7 @@ const CompanyInformationModal: FC = () => {
 
   const goToProfileEdition = useCallback(() => {
     setShowModal(false);
-    // Update preference so the modal is not displayed until a day later
+    // Update preference so the modal is not displayed again until the display interval has elapsed
     updatePreference(time);
     tracking.trackClick({
       name: `${TRACKING_PREFIX}::pop-up::button::business_verification_required::cancel`,
