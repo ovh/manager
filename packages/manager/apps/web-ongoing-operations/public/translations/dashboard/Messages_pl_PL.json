@@ -177,5 +177,10 @@
   "domain_operations_update_spareEmail": "E-mail zapasowy",
   "domain_operations_update_vat": "VAT UE",
   "domain_operations_update_firstName": "Imię",
-  "domain_operations_upload_file_template": "Tylko pliki zgodne <Link>z tym szablonem dokumentu</Link> będą akceptowane."
+  "domain_operations_upload_file_template": "Tylko pliki zgodne <Link>z tym szablonem dokumentu</Link> będą akceptowane.",
+  "domain_operations_update_companynationalidentificationnumber": "NIP",
+  "domain_operations_update_nationalidentificationnumber": "NIP",
+  "domain_operations_update_identificationnumber": "Numer identyfikacyjny",
+  "domain_operations_update_nicowner_click_whoiscontactbilling": "Zmień dane kontaktu do faktur, klikając tutaj",
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Zmień dane kontaktu technicznego, klikając tutaj"
 }
