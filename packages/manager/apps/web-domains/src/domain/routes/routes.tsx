@@ -27,6 +27,10 @@ const ZoneOrderConfigo = React.lazy(() =>
   import('@/domain/components/ZoneOrder/zoneOrderComponent'),
 );
 
+const FreeHostingOrderConfigo = React.lazy(() =>
+  import('@/domain/components/FreeHostingOrder/freeHostingOrderComponent'),
+);
+
 const DnsModifyPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dns/dnsModify'),
 );
@@ -134,6 +138,15 @@ export default (
         <Route
           path={urls.domainTabOrderAnycast}
           Component={AnycastOrderConfigo}
+        />
+        {/* Free hosting order configo. Child of DomainDetailPage so the
+            dashboard stays mounted: launched from the general information tab's
+            associated-services card, it swaps the Outlet in place (fluid, no
+            full reload). The route matches no tab, so DEFAULT_TAB keeps the
+            general information tab highlighted. */}
+        <Route
+          path={urls.domainTabFreeHostingOrder}
+          Component={FreeHostingOrderConfigo}
         />
         <Route path={urls.domainTabDns} Component={Outlet} />
         <Route path={urls.domainTabRedirection} Component={Outlet} />
