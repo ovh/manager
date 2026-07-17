@@ -15,3 +15,9 @@ export const isUserConcernedByBusinessVerification = (user: User) =>
   (user.certificates?.includes('fr-e-invoicing-warning') ||
     user.certificates?.includes('fr-e-invoicing-critical') ||
     user.certificates?.includes('fr-e-invoicing-account-to-review'));
+
+// The modal content depends on the certificate the user holds:
+// - fr-e-invoicing-account-to-review => new "review" content
+// - fr-e-invoicing-warning / fr-e-invoicing-critical => legacy content
+export const isConcernedByAccountToReview = (user: User) =>
+  Boolean(user.certificates?.includes('fr-e-invoicing-account-to-review'));
