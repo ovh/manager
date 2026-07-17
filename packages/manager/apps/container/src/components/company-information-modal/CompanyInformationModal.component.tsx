@@ -10,7 +10,7 @@ import { ODS_THEME_TYPOGRAPHY_SIZE, ODS_THEME_COLOR_INTENT } from "@ovhcloud/ods
 import { useApplication } from "@/context";
 import { ODS_BUTTON_SIZE, ODS_BUTTON_VARIANT } from "@ovhcloud/ods-components";
 import { Trans, useTranslation } from "react-i18next";
-import { isUserConcernedByBusinessVerification } from "./companyInformationModal.helpers";
+import { isConcernedByAccountToReview, isUserConcernedByBusinessVerification } from "./companyInformationModal.helpers";
 import { OdsHTMLAnchorElementRel, OdsHTMLAnchorElementTarget } from "@ovhcloud/ods-common-core";
 
 
@@ -20,6 +20,13 @@ const CompanyInformationModal: FC = () => {
   const ux = shell.getPlugin('ux');
   const tracking = shell.getPlugin('tracking');
   const { t } = useTranslation('company-information-modal');
+
+  // Content varies with the certificate: account-to-review gets the new "review"
+  // wording, warning/critical keep the legacy wording.
+  const user = shell.getPlugin('environment').getEnvironment().getUser();
+  const contentKeyPrefix = isConcernedByAccountToReview(user)
+    ? 'company_information_modal_review'
+    : 'company_information_modal';
 
   const preferenceKey = toScreamingSnakeCase(MODAL_NAME);
   const accountEditionLink = useSuggestionTargetUrl();
@@ -85,7 +92,7 @@ const CompanyInformationModal: FC = () => {
       <OsdsModal
         dismissible={true}
         onOdsModalClose={closeModal}
-        headline={t('company_information_modal_title')}
+        headline={t(`${contentKeyPrefix}_title`)}
         color={ODS_THEME_COLOR_INTENT.info}
         data-testid="company-information-modal"
       >
@@ -94,7 +101,7 @@ const CompanyInformationModal: FC = () => {
           size={ODS_THEME_TYPOGRAPHY_SIZE._400}
         >
           <Trans
-            i18nKey="company_information_modal_description"
+            i18nKey={`${contentKeyPrefix}_description`}
             t={t}
             components={{
               anchor: (
@@ -110,7 +117,7 @@ const CompanyInformationModal: FC = () => {
           variant={ODS_BUTTON_VARIANT.flat}
           size={ODS_BUTTON_SIZE.sm}
         >
-          {t('company_information_modal_action_modify')}
+          {t(`${contentKeyPrefix}_action_modify`)}
         </OsdsButton>
       </OsdsModal>
     )
