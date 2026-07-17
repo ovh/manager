@@ -75,6 +75,13 @@ export const useGetDomainZone = (
     queryFn: () => getDomainZone(serviceName),
     retry: false,
     enabled: enabled,
+    // Whether a domain has a DNS zone does not change just because the tab
+    // regains focus. Left on, the "no zone" case (an errored query, which
+    // `staleTime` never guards) refetches on every focus; after activating a
+    // zone from the Anycast/zone order tunnel, that focus-return refetch flips
+    // `domainZone` undefined → defined and remounts the federated order tunnel,
+    // dropping its post-submit confirmation recap.
+    refetchOnWindowFocus: false,
   });
   return {
     domainZone: data,
