@@ -1,49 +1,22 @@
 import '@/common/setupTests';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-} from '@/common/utils/test.provider';
+import { render, screen, fireEvent } from '@/common/utils/test.provider';
 import { wrapper } from '@/common/utils/test.provider';
 import Hosting from './Hosting';
+import { FREE_HOSTING_PLAN_CODE } from '@/common/constants/order';
+
+const mockNavigate = vi.fn();
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router-dom')>();
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
 
 vi.mock('@/domain/hooks/data/query', () => ({
   useGetAssociatedHosting: vi.fn(),
-  useInitialOrderFreeHosting: vi.fn(),
-  useOrderFreeHosting: vi.fn(),
   useGetFreeHostingServices: vi.fn(),
-  useGetServiceInformation: vi.fn(),
-}));
-
-interface FreeHostingDrawerMockProps {
-  isDrawerOpen: boolean;
-  onClose: () => void;
-  freeHostingOptions: unknown;
-}
-vi.mock('./FreeHostingDrawer', () => ({
-  default: ({
-    isDrawerOpen,
-    onClose,
-    freeHostingOptions,
-  }: FreeHostingDrawerMockProps) => {
-    return (
-      <div data-testid="free-hosting-drawer">
-        {isDrawerOpen && (
-          <>
-            <div data-testid="drawer-open">Drawer Open</div>
-            <button onClick={onClose} data-testid="close-drawer">
-              Close
-            </button>
-            <div data-testid="drawer-options">
-              {JSON.stringify(freeHostingOptions)}
-            </div>
-          </>
-        )}
-      </div>
-    );
-  },
 }));
 
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
@@ -92,30 +65,16 @@ vi.mock('@ovhcloud/ods-react', async (importOriginal) => {
 
 const {
   useGetAssociatedHosting,
-  useInitialOrderFreeHosting,
-  useOrderFreeHosting,
   useGetFreeHostingServices,
 } = await import('@/domain/hooks/data/query');
 
 describe('Hosting Component', () => {
-  const mockGetInitialOrder = vi.fn();
-  const mockOrderFreeHosting = vi.fn();
-
   beforeEach(() => {
     vi.clearAllMocks();
-
-    vi.mocked(useInitialOrderFreeHosting).mockReturnValue({
-      orderCartDetails: null,
-      isInitialOrderFreeHostingPending: false,
-      getInitialOrder: mockGetInitialOrder,
-      orderCartError: (undefined as unknown) as Error,
-    } as ReturnType<typeof useInitialOrderFreeHosting>);
-
-    vi.mocked(useOrderFreeHosting).mockReturnValue({
-      orderFreeHosting: mockOrderFreeHosting,
-      isOrderFreeHostingPending: false,
-      orderCompleted: false,
-    } as ReturnType<typeof useOrderFreeHosting>);
+    // Default: no free hosting service resolved.
+    vi.mocked(useGetFreeHostingServices).mockReturnValue(
+      [] as ReturnType<typeof useGetFreeHostingServices>,
+    );
   });
 
   const renderComponent = (props = {}) => {
@@ -185,157 +144,6 @@ describe('Hosting Component', () => {
     });
   });
 
-  describe('FreeHostingDrawer interactions', () => {
-    beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue({
-        data: undefined,
-      } as ReturnType<typeof useGetAssociatedHosting>);
-    });
-
-    it('should not show drawer initially', () => {
-      renderComponent();
-      expect(screen.queryByTestId('drawer-open')).not.toBeInTheDocument();
-    });
-
-    it('should open drawer when clicking first action menu item', async () => {
-      renderComponent();
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        expect(screen.getByTestId('drawer-open')).toBeInTheDocument();
-      });
-    });
-
-    it('should call getInitialOrder when drawer opens', async () => {
-      renderComponent();
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        expect(mockGetInitialOrder).toHaveBeenCalled();
-      });
-    });
-
-    it('should close drawer when clicking close button', async () => {
-      renderComponent();
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        expect(screen.getByTestId('drawer-open')).toBeInTheDocument();
-      });
-
-      const closeButton = screen.getByTestId('close-drawer');
-      fireEvent.click(closeButton);
-
-      await waitFor(() => {
-        expect(screen.queryByTestId('drawer-open')).not.toBeInTheDocument();
-      });
-    });
-
-    it('should initialize freeHostingOptions with default values', async () => {
-      renderComponent();
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        const options = screen.getByTestId('drawer-options');
-        expect(options).toHaveTextContent(
-          JSON.stringify({ dnsA: false, dnsMx: false, consent: false }),
-        );
-      });
-    });
-  });
-
-  describe('Order completion', () => {
-    it('should close drawer when order is completed', async () => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue({
-        data: undefined,
-      } as ReturnType<typeof useGetAssociatedHosting>);
-
-      const orderState = {
-        completed: false,
-      };
-
-      vi.mocked(useOrderFreeHosting).mockImplementation(() => ({
-        orderFreeHosting: mockOrderFreeHosting,
-        isOrderFreeHostingPending: false,
-        orderCompleted: orderState.completed,
-      }));
-
-      const { rerender } = renderComponent();
-
-      // Open drawer
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        expect(screen.getByTestId('drawer-open')).toBeInTheDocument();
-      });
-
-      // Simulate order completion
-      orderState.completed = true;
-
-      // Re-render to trigger useEffect
-      rerender(<Hosting serviceName="test-domain.com" />);
-
-      await waitFor(() => {
-        expect(screen.queryByTestId('drawer-open')).not.toBeInTheDocument();
-      });
-    });
-  });
-
-  describe('Props passing to FreeHostingDrawer', () => {
-    beforeEach(() => {
-      vi.mocked(useGetAssociatedHosting).mockReturnValue({
-        data: undefined,
-      } as ReturnType<typeof useGetAssociatedHosting>);
-    });
-
-    it('should pass correct serviceName to drawer', async () => {
-      renderComponent({ serviceName: 'custom-domain.com' });
-      expect(screen.getByTestId('free-hosting-drawer')).toBeInTheDocument();
-    });
-
-    it('should pass orderFreeHosting function to drawer', async () => {
-      renderComponent();
-      const actionButton = screen.getByTestId('action-item-1');
-      fireEvent.click(actionButton);
-
-      await waitFor(() => {
-        expect(screen.getByTestId('free-hosting-drawer')).toBeInTheDocument();
-      });
-    });
-
-    it('should pass orderCartDetails to drawer', async () => {
-      const mockCartDetails = {
-        contracts: [
-          {
-            content: '',
-            name: '',
-            url: '',
-          },
-        ],
-        cartId: '',
-        details: [
-          {
-            cartItemID: 0,
-          },
-        ],
-      };
-      vi.mocked(useInitialOrderFreeHosting).mockReturnValue({
-        orderCartDetails: mockCartDetails,
-        isInitialOrderFreeHostingPending: false,
-        getInitialOrder: mockGetInitialOrder,
-        orderCartError: (undefined as unknown) as Error,
-      } as ReturnType<typeof useInitialOrderFreeHosting>);
-
-      renderComponent();
-      expect(screen.getByTestId('free-hosting-drawer')).toBeInTheDocument();
-    });
-  });
-
   describe('Action menu items', () => {
     beforeEach(() => {
       vi.mocked(useGetAssociatedHosting).mockReturnValue({
@@ -356,6 +164,60 @@ describe('Hosting Component', () => {
       );
       expect(screen.getByTestId('action-item-2')).toHaveTextContent(
         'domain_tab_general_information_associated_services_hosting_action_order',
+      );
+    });
+  });
+
+  describe('Free hosting activation (configo route)', () => {
+    beforeEach(() => {
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
+        data: undefined,
+      } as ReturnType<typeof useGetAssociatedHosting>);
+    });
+
+    it('should navigate to the free hosting configo route when clicking activate', () => {
+      renderComponent();
+      fireEvent.click(screen.getByTestId('action-item-1'));
+
+      // Push (not replace) so the configo's history.back() returns here.
+      expect(mockNavigate).toHaveBeenCalledWith(
+        '/domain/test-domain.com/free-hosting/order',
+      );
+    });
+
+    it('should not render the activate action when a free hosting is already active', () => {
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
+        data: ['hosting1.com'],
+      } as ReturnType<typeof useGetAssociatedHosting>);
+      vi.mocked(useGetFreeHostingServices).mockReturnValue([
+        {
+          data: { billing: { plan: { code: FREE_HOSTING_PLAN_CODE } } },
+          isLoading: false,
+          isSuccess: true,
+        },
+      ] as ReturnType<typeof useGetFreeHostingServices>);
+
+      renderComponent();
+      expect(screen.queryByTestId('action-item-1')).not.toBeInTheDocument();
+      // The paid "order" action stays available.
+      expect(screen.getByTestId('action-item-2')).toBeInTheDocument();
+    });
+  });
+
+  describe('Paid hosting order', () => {
+    beforeEach(() => {
+      vi.mocked(useGetAssociatedHosting).mockReturnValue({
+        data: undefined,
+      } as ReturnType<typeof useGetAssociatedHosting>);
+    });
+
+    it('should navigate to the web hosting order route when clicking order', () => {
+      renderComponent();
+      fireEvent.click(screen.getByTestId('action-item-2'));
+
+      expect(mockNavigate).toHaveBeenCalledWith(
+        '/domain/test-domain.com/webhosting/order',
+        { replace: true },
       );
     });
   });

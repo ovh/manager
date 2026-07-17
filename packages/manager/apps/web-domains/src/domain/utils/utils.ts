@@ -11,7 +11,6 @@ import {
 } from '@/domain/utils/dnsUtils';
 import { StatusEnum } from '@/domain/enum/Status.enum';
 import { DNS_UPDATE_OPERATION } from '@/domain/constants/dns.const';
-import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { IpsSupportedEnum } from '@/domain/enum/hostConfiguration.enum';
 import { THost } from '@/domain/types/host';
 import { TDsDataInterface } from '@/domain/types/dnssecConfiguration';
@@ -47,21 +46,6 @@ export function computeDnsDetails(
 
   return [...activated, ...activating, ...deleting];
 }
-
-export const formatConfigurationValue = (
-  options: FreeHostingOptions,
-): string => {
-  if (options.dnsA && options.dnsMx) {
-    return 'RESET_ALL';
-  }
-  if (options.dnsA) {
-    return 'RESET_ONLY_A';
-  }
-  if (options.dnsMx) {
-    return 'RESET_ONLY_MX';
-  }
-  return 'NO_CHANGE';
-};
 
 export function getIpsSupported(
   ipv4Supported: boolean,
