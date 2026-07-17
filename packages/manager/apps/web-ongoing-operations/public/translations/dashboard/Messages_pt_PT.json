@@ -177,5 +177,10 @@
   "domain_operations_update_spareEmail": "E-mail de segurança",
   "domain_operations_update_vat": "NIF intracomunitário",
   "domain_operations_update_firstName": "Nome",
-  "domain_operations_upload_file_template": "Apenas serão aceites ficheiros que sigam <Link>este modelo</Link> de documento."
+  "domain_operations_upload_file_template": "Apenas serão aceites ficheiros que sigam <Link>este modelo</Link> de documento.",
+  "domain_operations_update_companynationalidentificationnumber": "Número de identificação fiscal",
+  "domain_operations_update_nationalidentificationnumber": "Número de identificação fiscal",
+  "domain_operations_update_identificationnumber": "Número de identificação",
+  "domain_operations_update_nicowner_click_whoiscontactbilling": "Altere as informações do contacto de faturação clicando aqui",
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Altere as informações do contacto técnico clicando aqui"
 }
