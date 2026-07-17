@@ -63,7 +63,8 @@ export default class newDnsZoneCtrl {
     this.zoneNameisValid = false;
     this.zoneNameError = null;
     this.resetOptions();
-    const requestId = (this.checkRequestId += 1);
+    this.checkRequestId += 1;
+    const requestId = this.checkRequestId;
     return this.DnsZoneNewService.validateZone(
       this.user.ovhSubsidiary,
       this.configuration.zone,
