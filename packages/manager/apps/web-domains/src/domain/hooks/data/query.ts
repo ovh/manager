@@ -6,7 +6,6 @@ import {
 } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { useNotifications } from '@ovh-ux/manager-react-components';
-import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   getDomainAnycastOption,
   getDomainResource,
@@ -45,10 +44,7 @@ import {
   getAssociatedHosting,
   getAssociatedSubDomainsMultiSite,
   getFreeHostingService,
-  initialOrderFreeHosting,
-  orderFreeHosting,
 } from '@/domain/data/api/hosting';
-import { FreeHostingOptions } from '@/domain/components/AssociatedServicesCards/Hosting';
 import { DnssecStatusEnum } from '@/domain/enum/dnssecStatus.enum';
 import { DnsConfigurationTypeEnum } from '@/domain/enum/dnsConfigurationType.enum';
 import { ApiError } from '@ovh-ux/manager-core-api';
@@ -280,68 +276,6 @@ export function useGetAssociatedHosting(serviceName: string) {
     queryKey: ['associated-hosting', serviceName],
     queryFn: () => getAssociatedHosting(serviceName),
   });
-}
-
-export function useOrderFreeHosting() {
-  const queryClient = useQueryClient();
-  const { t } = useTranslation(['domain', 'web-domains/error']);
-  const { addSuccess, addError } = useNotifications();
-
-  const { mutate, isPending, isSuccess } = useMutation({
-    mutationFn: ({
-      cartId,
-      itemId,
-      options,
-    }: {
-      cartId: string;
-      itemId: number;
-      options: FreeHostingOptions;
-    }) => orderFreeHosting(cartId, itemId, options),
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['associated-hosting'],
-      });
-      addSuccess(
-        t(
-          'domain_tab_general_information_associated_services_hosting_free_order_success',
-        ),
-      );
-    },
-    onError: (error: Error) => {
-      addError(
-        t(
-          'domain_tab_general_information_associated_services_hosting_free_order_error',
-          { error },
-        ),
-      );
-    },
-  });
-
-  return {
-    orderFreeHosting: mutate,
-    isOrderFreeHostingPending: isPending,
-    orderCompleted: isSuccess,
-  };
-}
-
-export function useInitialOrderFreeHosting(
-  serviceName: string,
-  subsidiary: Subsidiary,
-  pricingMode: string,
-) {
-  const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ['initial-order-free-hosting', serviceName, subsidiary],
-    queryFn: () =>
-      initialOrderFreeHosting(serviceName, subsidiary, pricingMode),
-    enabled: false,
-  });
-
-  return {
-    getInitialOrder: refetch,
-    orderCartDetails: data,
-    isInitialOrderFreeHostingPending: isLoading,
-    orderCartError: error,
-  };
 }
 
 // Multi-hosting variant: fetch free hosting service info for each provided hosting name.
