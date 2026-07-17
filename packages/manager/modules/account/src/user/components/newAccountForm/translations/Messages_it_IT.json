@@ -769,6 +769,8 @@
   "signup_field_iceNumber": "Numero ICE",
   "signup_field_purposeOfPurchase": "Motivo dell'acquisto",
   "new_account_content_check_validation": "Verifica le informazioni inserite (P. IVA, numero di telefono, data di nascita, etc.) per procedere alla convalida del modulo.",
+  "signup_account_info_update_required_error": "Questa modifica richiede che le informazioni relative a {{ companyType }} siano aggiornate. Aggiornale per continuare.",
+  "signup_account_info_api_error": "Errore: {{ message }}",
   "signup_enum_country_BV": "Norvegia - Isola Bouvet",
   "signup_enum_country_HM": "Regno Unito - Isole Heard e McDonald",
   "signup_enum_purposeOfPurchase_personal": "Utilizzo a titolo personale",
