@@ -177,5 +177,10 @@
   "domain_operations_update_spareEmail": "Correo electrónico secundario",
   "domain_operations_update_vat": "N.º de IVA intracomunitario",
   "domain_operations_update_firstName": "Nombre",
-  "domain_operations_upload_file_template": "Solo los archivos con este <Link>modelo de documento</Link> serán aceptados."
+  "domain_operations_upload_file_template": "Solo los archivos con este <Link>modelo de documento</Link> serán aceptados.",
+  "domain_operations_update_companynationalidentificationnumber": "NIF",
+  "domain_operations_update_nationalidentificationnumber": "NIF",
+  "domain_operations_update_identificationnumber": "Número de identificación",
+  "domain_operations_update_nicowner_click_whoiscontactbilling": "Cambiad la información del contacto de facturación haciendo clic aquí",
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Cambiad la información del contacto técnico haciendo clic aquí"
 }

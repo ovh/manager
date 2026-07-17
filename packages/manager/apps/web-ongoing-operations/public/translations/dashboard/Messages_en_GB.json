@@ -177,5 +177,10 @@
   "domain_operations_update_spareEmail": "Backup email address",
   "domain_operations_update_vat": "Intra-Community VAT number",
   "domain_operations_update_firstName": "First name",
-  "domain_operations_upload_file_template": "Only files that follow this <Link>document template</Link> will be accepted."
+  "domain_operations_upload_file_template": "Only files that follow this <Link>document template</Link> will be accepted.",
+  "domain_operations_update_companynationalidentificationnumber": "Tax code ",
+  "domain_operations_update_nationalidentificationnumber": "Tax code ",
+  "domain_operations_update_identificationnumber": "Identification number",
+  "domain_operations_update_nicowner_click_whoiscontactbilling": "Change the billing contact information by clicking here",
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Change the technical contact information by clicking here"
 }
