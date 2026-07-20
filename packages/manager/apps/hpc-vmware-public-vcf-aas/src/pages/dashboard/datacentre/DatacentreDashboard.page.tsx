@@ -35,7 +35,7 @@ function DatacentreDashboardPage() {
   const { data: featuresAvailable } = useFeatureAvailability([
     FEATURE_FLAGS.VRACK,
   ]);
-  const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
+  const { hasEdgeGatewayAccess } = useHasEdgeGatewayAccess();
 
   const isVrackFeatureAvailable = featuresAvailable?.[FEATURE_FLAGS.VRACK];
 

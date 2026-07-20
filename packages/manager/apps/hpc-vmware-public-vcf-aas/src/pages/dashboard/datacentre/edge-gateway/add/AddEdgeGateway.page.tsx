@@ -3,12 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import {
-  useAddEdgeGateway,
-  useVcdIpBlocks,
-} from '@ovh-ux/manager-module-vcd-api';
+import { useAddEdgeGateway } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useMessageContext } from '@/context/Message.context';
+import { useHasAvailableIpBlocks } from '@/hooks/edge/useHasAvailableIpBlocks';
 import { AddEdgeForm, EDGE_SCHEMAS } from '@/schemas/edge.schema';
 import { InputField } from '@/components/form/InputField.component';
 import { SelectField } from '@/components/form/SelectField.component';
@@ -16,7 +15,6 @@ import {
   EDGE_GATEWAY_NAME_MAX_LENGTH,
   EDGE_GATEWAY_NAME_MIN_LENGTH,
 } from './adgeEdgeGateway.constants';
-import { isIpBlockAvailable } from '@/utils/ipBlockAvailability';
 
 export default function AddEdgeGatewayPage() {
   const { t } = useTranslation('datacentres/edge-gateway');
@@ -26,10 +24,11 @@ export default function AddEdgeGatewayPage() {
   const closeDrawer = () => navigate('..');
   const { addSuccess, addError } = useMessageContext();
 
-  const { data: ipBlocks, isLoading: isLoadingIpBlocks } = useVcdIpBlocks({
-    id,
-    select: (data) => data.filter(isIpBlockAvailable),
-  });
+  const {
+    isLoading: isLoadingIpBlocks,
+    hasAvailableIpBlocks,
+    availableIpBlocks,
+  } = useHasAvailableIpBlocks();
 
   const { mutate: addEdgeGateway, isPending: isCreating } = useAddEdgeGateway({
     id,
@@ -53,7 +52,7 @@ export default function AddEdgeGatewayPage() {
   });
 
   const onSubmit = (data: AddEdgeForm) => {
-    const selectedIpBlock = ipBlocks?.find(
+    const selectedIpBlock = availableIpBlocks.find(
       (b) => b.currentState.internalScope === data.ipBlock,
     );
     if (!selectedIpBlock) {
@@ -78,12 +77,19 @@ export default function AddEdgeGatewayPage() {
       primaryButtonLabel={t('edge_add_submit')}
       onPrimaryButtonClick={handleSubmit(onSubmit)}
       isPrimaryButtonLoading={isCreating}
-      isPrimaryButtonDisabled={isLoadingIpBlocks || isCreating || !isValid}
+      isPrimaryButtonDisabled={
+        isLoadingIpBlocks || isCreating || !isValid || !hasAvailableIpBlocks
+      }
       secondaryButtonLabel={tActions('cancel')}
       onSecondaryButtonClick={closeDrawer}
       onDismiss={closeDrawer}
     >
       <form className="flex flex-col gap-y-6" onSubmit={handleSubmit(onSubmit)}>
+        {!isLoadingIpBlocks && !hasAvailableIpBlocks && (
+          <OdsMessage color="warning" isDismissible={false}>
+            {t('edge_add_ip_block_no_available')}
+          </OdsMessage>
+        )}
         <Controller
           control={control}
           name="name"
@@ -91,6 +97,7 @@ export default function AddEdgeGatewayPage() {
             <InputField
               field={field}
               label={t('edge_add_input_name_label')}
+              isDisabled={!hasAvailableIpBlocks}
               validator={{ maxlength: EDGE_GATEWAY_NAME_MAX_LENGTH }}
               error={
                 fieldState.error &&
@@ -110,8 +117,10 @@ export default function AddEdgeGatewayPage() {
               field={field}
               label={t('edge_ip_block')}
               placeholder={t('edge_ip_block_select')}
-              options={ipBlocks?.map((b) => b.currentState.internalScope) || []}
-              isDisabled={isLoadingIpBlocks || !ipBlocks?.length}
+              options={availableIpBlocks.map(
+                (b) => b.currentState.internalScope,
+              )}
+              isDisabled={isLoadingIpBlocks || !hasAvailableIpBlocks}
               isLoading={isLoadingIpBlocks}
               error={fieldState.error && t('edge_add_input_ip_block_helper')}
             />
