@@ -202,13 +202,13 @@
             <span data-translate="hosting_tab_GENERAL_INFORMATIONS"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            href="{{ $ctrl.multisiteLink }}"
+            href="{{ hosting.isExpired ? $ctrl.generalInformationLink : $ctrl.multisiteLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.multisiteLink"
         >
             <span data-translate="{{ $ctrl.multisiteLabel }}"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            href="{{ $ctrl.sslCertificateLink }}"
+            href="{{ hosting.isExpired ? $ctrl.generalInformationLink : $ctrl.sslCertificateLink }}"
             data-ng-if="hosting.multipleSSL"
         >
             <span data-translate="hosting_tab_SSL"></span>
@@ -227,7 +227,7 @@
         </oui-header-tabs-item>
         <oui-header-tabs-item
             data-ng-if="$ctrl.isOslToLdpFeatureAvailable"
-            href="{{ $ctrl.userLogsLink }}"
+            href="{{ hosting.isExpired ? $ctrl.generalInformationLink : $ctrl.userLogsLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.userLogsLink"
         >
             <span data-translate="hosting_tab_USER_LOGS"></span>
@@ -246,7 +246,7 @@
             <span data-translate="hosting_tab_DATABASE"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            href="{{ $ctrl.taskLink }}"
+            href="{{ hosting.isExpired ? $ctrl.generalInformationLink : $ctrl.taskLink }}"
             active="$ctrl.currentActiveLink() === $ctrl.taskLink"
         >
             <span data-translate="hosting_tab_TASK"></span>
@@ -282,7 +282,7 @@
             </oui-header-tabs-item>
             <oui-header-tabs-item
                 data-ng-if="$ctrl.isLocalSeoAvailable"
-                href="{{ $ctrl.localSEOLink }}"
+                href="{{ hosting.isExpired ? $ctrl.generalInformationLink : $ctrl.localSEOLink }}"
                 active="$ctrl.currentActiveLink() === $ctrl.localSEOLink"
             >
                 <span data-translate="hosting_tab_LOCAL_SEO"></span>
@@ -306,7 +306,7 @@
             ></oui-header-tabs-divider>
             <oui-header-tabs-item
                 data-ng-if="!$ctrl.hosting.isCloudWeb && $ctrl.isEmailDomainAvailable"
-                data-on-click="$ctrl.goToEmails($ctrl.associatedEmail)"
+                data-on-click="!$ctrl.hosting.isExpired && $ctrl.goToEmails($ctrl.associatedEmail)"
             >
                 <span data-translate="hosting_tab_menu_emails"></span>
             </oui-header-tabs-item>
