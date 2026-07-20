@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Country,
@@ -14,8 +14,9 @@ import { useMe } from '@/data/hooks/useMe';
 import { urls } from '@/routes/routes.constant';
 import { Company } from '@/types/company';
 import { useLegacySignupRedirection } from '@/hooks/legacySignupRedirection/useLegacySignupRedirection';
-import { isUserLoggedIn } from '@/helpers/flowHelper';
+import { isUnknownCountry, isUserLoggedIn } from '@/helpers/flowHelper';
 import { useLocalCountry } from '@/hooks/useLocalCountry/useLocalCountry';
+import CountryRecoveryModal from '@/components/countryRecoveryModal/CountryRecoveryModal.component';
 
 const NEW_ACCOUNT_CREATION_ACCESS_FEATURE = 'account-creation';
 const SMS_CONSENT_FEATURE = 'account:sms-consent';
@@ -39,7 +40,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   const [ovhSubsidiary, setOvhSubsidiary] = useState<Subsidiary | undefined>(
     undefined,
   );
-  const [localCountry] = useLocalCountry();
+  const [localCountry, setLocalCountry] = useLocalCountry();
   const [country, setCountry] = useState<Country | undefined>(undefined);
   const [language, setLanguage] = useState<UserLocales | undefined>(undefined);
   const [companyDetails, setCompanyDetails] = useState<Company | undefined>(
@@ -61,7 +62,7 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     /**
      * TODO: Remove this when the API is updated to return the country
      */
-    if ((me?.country === 'UNKNOWN' || !me?.country) && localCountry) {
+    if (isUnknownCountry(me?.country) && localCountry) {
       setCountry(localCountry);
     } else {
       setCountry(me?.country);
@@ -101,11 +102,24 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
     }
   };
 
+  // Recover the country when it has been lost (see CountryRecoveryModal): persist
+  // it locally so the value survives the next reloads and unblocks the flow.
+  const handleSetCountry = useCallback(
+    (value: Country) => {
+      setCountry(value);
+      if (!isUnknownCountry(value)) {
+        setLocalCountry(value);
+      }
+    },
+    [setLocalCountry],
+  );
+
   const context = {
     legalForm,
     setLegalForm,
     ovhSubsidiary,
     country,
+    setCountry: handleSetCountry,
     companyDetails,
     setCompany,
     language,
@@ -113,7 +127,10 @@ export const UserProvider = ({ children = [] }: Props): JSX.Element => {
   };
 
   return (
-    <userContext.Provider value={context}>{children}</userContext.Provider>
+    <userContext.Provider value={context}>
+      {children}
+      <CountryRecoveryModal />
+    </userContext.Provider>
   );
 };
 

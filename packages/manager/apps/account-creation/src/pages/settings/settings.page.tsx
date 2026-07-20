@@ -43,6 +43,7 @@ import { DEFAULT_REDIRECT_URL } from './settings.constants';
 import { getWebsiteLabel } from './settings.utils';
 import AccountSettingsPopoverContent from './popover-content/PopoverContent';
 import { useLocalCountry } from '@/hooks/useLocalCountry/useLocalCountry';
+import { isUnknownCountry } from '@/helpers/flowHelper';
 
 type SettingsFormData = {
   country: string;
@@ -138,7 +139,7 @@ export default function Settings() {
    * TODO: Remove this effect when the API is updated to return the country code
    */
   useEffect(() => {
-    if (selectedCountry && selectedCountry !== 'UNKNOWN') {
+    if (!isUnknownCountry(selectedCountry)) {
       setLocalCountry(selectedCountry as Country);
     }
   }, [selectedCountry, setLocalCountry]);

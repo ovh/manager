@@ -4,6 +4,7 @@ import {
   shouldEnableSIRENDisplay,
   getSirenFromSiret,
   isIndividualLegalForm,
+  isUnknownCountry,
 } from './flowHelper';
 
 describe('shouldAccessOrganizationSearch', () => {
@@ -84,5 +85,23 @@ describe('isIndividualLegalForm', () => {
 
   it('should return false when legalForm is undefined', () => {
     expect(isIndividualLegalForm(undefined)).toBe(false);
+  });
+});
+
+describe('isUnknownCountry', () => {
+  it('should return true when country is undefined', () => {
+    expect(isUnknownCountry(undefined)).toBe(true);
+  });
+
+  it('should return true when country is an empty string', () => {
+    expect(isUnknownCountry('')).toBe(true);
+  });
+
+  it('should return true when country is the UNKNOWN sentinel', () => {
+    expect(isUnknownCountry('UNKNOWN')).toBe(true);
+  });
+
+  it('should return false for a real country code', () => {
+    expect(isUnknownCountry('FR')).toBe(false);
   });
 });
