@@ -722,11 +722,15 @@ export default class {
       });
   }
 
+  getAutoRenewServiceType() {
+    return this.isChangeOfferFeatureAvailable ? 'HOSTING_WEB_NEW' : 'HOSTING_WEB';
+  }
+
   getAutorenewUrl(guides) {
     this.$scope.autorenew = {
       guide: guides.autorenew,
       url: this.coreURLBuilder.buildURL('dedicated', '#/billing/autoRenew', {
-        selectedType: 'HOSTING_WEB',
+        selectedType: this.getAutoRenewServiceType(),
         searchText: this.$scope.hosting.serviceInfos.domain,
       }),
     };
@@ -760,7 +764,7 @@ export default class {
               'dedicated',
               '#/billing/autoRenew',
               {
-                selectedType: 'HOSTING_WEB',
+                selectedType: this.getAutoRenewServiceType(),
                 searchText: hosting.serviceName,
               },
             );

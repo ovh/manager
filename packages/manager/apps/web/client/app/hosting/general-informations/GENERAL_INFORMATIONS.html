@@ -703,7 +703,7 @@
                     </oui-tile-definition>
                     <wuc-service-status-action
                         data-service-name="$ctrl.serviceName"
-                        data-service-type="'HOSTING_WEB'"
+                        data-service-type="$ctrl.isChangeOfferFeatureAvailable ? 'HOSTING_WEB_NEW' : 'HOSTING_WEB'"
                         data-service-infos="hosting.serviceInfos"
                     >
                     </wuc-service-status-action>
