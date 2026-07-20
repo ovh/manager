@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [19.43.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.8...@ovh-ux/manager-web@19.43.9) (2026-07-20)
+
+
+### Bug Fixes
+
+* **web:** redirect for resiliation ([787fdd6](https://github.com/ovh/manager/commit/787fdd6dd9a14db73b911d4a5b755c92fe1f2ff9)), closes [#PUWEBPT-443](https://github.com/ovh/manager/issues/PUWEBPT-443)
+
+
+
+
+
 ## [19.43.8](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.7...@ovh-ux/manager-web@19.43.8) (2026-07-08)
 
 **Note:** Version bump only for package @ovh-ux/manager-web

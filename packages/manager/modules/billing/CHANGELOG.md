@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.68.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.68.0...@ovh-ux/manager-billing@0.68.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1285] ([7faf2d1](https://github.com/ovh/manager/commit/7faf2d18beb7ae3baac5541a4349ffcce3a94735))
+* **web:** redirect for resiliation ([787fdd6](https://github.com/ovh/manager/commit/787fdd6dd9a14db73b911d4a5b755c92fe1f2ff9)), closes [#PUWEBPT-443](https://github.com/ovh/manager/issues/PUWEBPT-443)
+
+
+
+
+
 # [0.68.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@0.67.0...@ovh-ux/manager-billing@0.68.0) (2026-07-08)
 
 
