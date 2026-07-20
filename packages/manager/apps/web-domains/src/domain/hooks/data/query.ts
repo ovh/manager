@@ -69,19 +69,19 @@ export const useGetDomainResource = (serviceName: string) => {
 export const useGetDomainZone = (
   serviceName: string,
   enabled: boolean = false,
+  options?: { refetchOnWindowFocus?: boolean },
 ) => {
   const { data, isLoading, error } = useQuery<TDomainZone>({
     queryKey: ['domain', 'zone', serviceName],
     queryFn: () => getDomainZone(serviceName),
     retry: false,
     enabled: enabled,
-    // Whether a domain has a DNS zone does not change just because the tab
-    // regains focus. Left on, the "no zone" case (an errored query, which
-    // `staleTime` never guards) refetches on every focus; after activating a
-    // zone from the Anycast/zone order tunnel, that focus-return refetch flips
-    // `domainZone` undefined → defined and remounts the federated order tunnel,
-    // dropping its post-submit confirmation recap.
-    refetchOnWindowFocus: false,
+    // Defaults to the React Query default everywhere. Callers that render a
+    // federated order tunnel opt out (`{ refetchOnWindowFocus: false }`): there
+    // the "no zone" case is an errored query (never guarded by `staleTime`), so
+    // a focus-return refetch would flip `domainZone` undefined → defined and
+    // remount the tunnel, dropping its post-submit confirmation recap.
+    refetchOnWindowFocus: options?.refetchOnWindowFocus,
   });
   return {
     domainZone: data,

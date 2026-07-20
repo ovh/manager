@@ -23,6 +23,13 @@ const AnycastOrderConfigo = React.lazy(() =>
   import('@/domain/components/AnycastOrder/anycastOrderComponent'),
 );
 
+// Legacy order page kept for the zone activation route (rewired to the zone
+// configo by the zone-subscription branch); this PR only replaces the Anycast
+// order path.
+const DnsOrderPage = React.lazy(() =>
+  import('@/common/pages/DnsOrder/DnsOrder.page'),
+);
+
 const DnsModifyPage = React.lazy(() =>
   import('@/domain/pages/domainTabs/dns/dnsModify'),
 );
@@ -150,6 +157,7 @@ export default (
         path={urls.domainTabWebHostingOrder}
         Component={WebHostingOrderPage}
       />
+      <Route path={zoneUrls.zoneActivate} Component={DnsOrderPage} />
       <Route path={urls.domainTabDnsModify} Component={DnsModifyPage} />
       <Route path={zoneUrls.zoneHistory} Component={HistoryPage} />
       <Route path={zoneUrls.zoneCompare} Component={CompareZonesPage} />
