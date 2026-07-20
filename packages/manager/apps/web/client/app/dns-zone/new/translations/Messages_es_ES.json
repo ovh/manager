@@ -19,5 +19,17 @@
   "domains_newdnszone_zone_invalid_domain_guide": "Consultar la guía",
   "domains_newdnszone_order_help_add": "Añadir una zona DNS",
   "domains_newdnszone_order_success": "Se ha activado la zona DNS.",
-  "domains_newdnszone_order_error": "Se ha producido un error al contratar la zona DNS: {{ message }}"
+  "domains_newdnszone_order_error": "Se ha producido un error al contratar la zona DNS: {{ message }}",
+  "domains_newdnszone_zone_exists": "Esta zona ya está registrada en OVHcloud",
+  "domains_newdnszone_order_options_title": "Elección de las opciones",
+  "domains_newdnszone_order_option_anycast_label": "DNS Anycast",
+  "domains_newdnszone_order_option_anycast_description": "Mejorad la disponibilidad y los tiempos de respuesta de vuestra zona DNS gracias a la red Anycast de OVHcloud.",
+  "domains_newdnszone_order_option_dnssec_label": "DNSSEC",
+  "domains_newdnszone_order_option_dnssec_description": "Proteged vuestra zona DNS contra el envenenamiento de caché firmando criptográficamente vuestros registros.",
+  "domains_newdnszone_order_option_dnssec_included": "Incluido",
+  "domains_newdnszone_order_duration_title": "Duración",
+  "domains_newdnszone_order_duration_value": "12 meses",
+  "domains_newdnszone_order_duration_anycast_renewal_prefix": "La opción DNS Anycast se renovará automáticamente para",
+  "domains_newdnszone_order_duration_anycast_renewal_suffix": "hasta la expiración de vuestra zona DNS.",
+  "domains_newdnszone_order_submit": "Contratar"
 }
