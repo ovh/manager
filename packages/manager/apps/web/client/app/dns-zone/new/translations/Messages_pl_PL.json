@@ -19,5 +19,17 @@
   "domains_newdnszone_zone_invalid_domain_guide": "Zapoznaj się z przewodnikiem.",
   "domains_newdnszone_order_help_add": "Dodawanie strefy DNS",
   "domains_newdnszone_order_success": "Włączenie strefy DNS zostało zrealizowane",
-  "domains_newdnszone_order_error": "Wystąpił błąd podczas zamawiania strefy DNS: {{message}}"
+  "domains_newdnszone_order_error": "Wystąpił błąd podczas zamawiania strefy DNS: {{message}}",
+  "domains_newdnszone_zone_exists": "Ta strefa jest już zarejestrowana w OVHcloud",
+  "domains_newdnszone_order_options_title": "Wybór opcji",
+  "domains_newdnszone_order_option_anycast_label": "DNS&amp;#160;Anycast",
+  "domains_newdnszone_order_option_anycast_description": "Popraw dostępność i czas odpowiedzi swojej strefy DNS dzięki sieci Anycast od OVHcloud.",
+  "domains_newdnszone_order_option_dnssec_label": "DNSSEC",
+  "domains_newdnszone_order_option_dnssec_description": "Zabezpiecz swoją strefę DNS przed zatruwaniem pamięci podręcznej (cache poisoning), podpisując kryptograficznie swoje rekordy.",
+  "domains_newdnszone_order_option_dnssec_included": "W cenie",
+  "domains_newdnszone_order_duration_title": "Czas trwania",
+  "domains_newdnszone_order_duration_value": "12 miesięcy",
+  "domains_newdnszone_order_duration_anycast_renewal_prefix": "Opcja DNS Anycast będzie automatycznie odnawiana dla",
+  "domains_newdnszone_order_duration_anycast_renewal_suffix": "do momentu wygaśnięcia Twojej strefy DNS.",
+  "domains_newdnszone_order_submit": "Zamów"
 }
