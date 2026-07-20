@@ -20,13 +20,15 @@ export default function FreeHostingOrderComponent() {
   //   stays mounted), the return is fluid — no full dashboard reload.
   // - Direct entry (email link, bookmark, refresh) → there is no in-app history
   //   to go back to; `location.key === 'default'` marks that case, so we pass an
-  //   explicit backUrl to the general information tab.
+  //   explicit backUrl to the general information tab. The replace is anchored to
+  //   the end of the URL (works with the hash router, where the route lives in
+  //   the hash) and preserves any trailing query string.
   const isDirectEntry = location.key === 'default';
   const navbar = isDirectEntry
     ? {
       backUrl: window.location.href.replace(
-        '/free-hosting/order',
-        '/information',
+        /\/free-hosting\/order\/?(\?.*)?$/,
+        '/information$1',
       ),
     }
     : undefined;
