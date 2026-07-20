@@ -25,6 +25,9 @@ export default function AnycastOrderComponent() {
   const { domainZone, isFetchingDomainZone } = useGetDomainZone(
     serviceName ?? '',
     true,
+    // Opt out of focus refetch: returning from the express tab must not flip
+    // domainZone and remount the federated tunnel (would drop its confirmation).
+    { refetchOnWindowFocus: false },
   );
 
   if (isFetchingDomainResource || isFetchingDomainZone) {
@@ -52,9 +55,17 @@ export default function AnycastOrderComponent() {
   //   app. `location.key === 'default'` marks that case; we then pass an
   //   explicit backUrl to the DNS servers tab so the buttons always land
   //   somewhere sensible.
+  // Anchored to the end of the URL (works with the hash router, where the route
+  // lives in the hash) and preserves any trailing query string, so the wrong
+  // occurrence can't be replaced.
   const isDirectEntry = location.key === 'default';
   const navbar = isDirectEntry
-    ? { backUrl: window.location.href.replace('/anycast/order', '/dns') }
+    ? {
+      backUrl: window.location.href.replace(
+        /\/anycast\/order\/?(\?.*)?$/,
+        '/dns$1',
+      ),
+    }
     : undefined;
 
   return (
