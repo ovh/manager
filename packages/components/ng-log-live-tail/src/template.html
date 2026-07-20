@@ -80,7 +80,7 @@
                     <span
                         data-ng-repeat="key in $ctrl.logKeys track by key"
                         class="log-key"
-                        data-ng-bind-html="log[key + '_highlighted']"
+                        data-ng-bind="log[key + '_highlighted']"
                         data-ng-if="log[key + '_highlighted']"
                     ></span>
                 </span>
