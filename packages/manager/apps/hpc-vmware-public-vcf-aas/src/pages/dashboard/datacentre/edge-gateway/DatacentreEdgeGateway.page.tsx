@@ -23,14 +23,17 @@ import { aggregateEdgeGateways } from '@/utils/aggregateEdgeGateways';
 export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
   const columns = useEdgeGatewayListingColumns();
-  const hasEdgeGatewayAccess = useHasEdgeGatewayAccess();
+  const {
+    hasEdgeGatewayAccess,
+    isLoading: isLoadingAccess,
+  } = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
   const edgeQuery = useVcdEdgeGateways({ id, vdcId });
   const ipBlockQuery = useVcdIpBlocks({ id });
 
   const queryList = [vdcQuery, edgeQuery, ipBlockQuery];
   const queries = {
-    isLoading: queryList.some((q) => q.isLoading),
+    isLoading: isLoadingAccess || queryList.some((q) => q.isLoading),
     isError: queryList.some((q) => q.isError),
     error: queryList.find((q) => q.isError)?.error?.message ?? null,
     data: {

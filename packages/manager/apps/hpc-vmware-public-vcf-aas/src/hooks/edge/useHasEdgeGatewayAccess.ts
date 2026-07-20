@@ -9,17 +9,24 @@ import { useParams } from 'react-router-dom';
 
 export const useHasEdgeGatewayAccess = () => {
   const { id, vdcId } = useParams();
-  const { data: featuresAvailable } = useFeatureAvailability([
-    FEATURE_FLAGS.EDGE_GATEWAY,
-  ]);
-  const { data: vcdDatacentre } = useVcdDatacentre(id, vdcId);
+  const {
+    data: featuresAvailable,
+    isLoading: isLoadingFeatures,
+  } = useFeatureAvailability([FEATURE_FLAGS.EDGE_GATEWAY]);
+  const {
+    data: vcdDatacentre,
+    isLoading: isLoadingDatacentre,
+  } = useVcdDatacentre(id, vdcId);
 
   if (VCF_ADVANCED_TESTING_MODE) {
-    return true;
+    return { hasEdgeGatewayAccess: true, isLoading: false };
   }
 
   const hasFeatureAccess = !!featuresAvailable?.[FEATURE_FLAGS.EDGE_GATEWAY];
   const isCompatibleVDC = isEdgeCompatibleVDC(vcdDatacentre?.data);
 
-  return hasFeatureAccess && isCompatibleVDC;
+  return {
+    hasEdgeGatewayAccess: hasFeatureAccess && isCompatibleVDC,
+    isLoading: isLoadingFeatures || isLoadingDatacentre,
+  };
 };
