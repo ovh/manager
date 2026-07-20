@@ -11,10 +11,9 @@ export const getUserId = async (projectId: string) => {
 export const createUserId = async (projectId: string) => {
   const payload = {
     description: `A user created for AI endpoints, linked to ${projectId}`,
-    email: `ai-endpoints-user-${projectId}@ovhcloud.com`,
     login: `ai-endpoints-user-${projectId}`,
-    password: `${projectId}`,
     group: 'UNPRIVILEGED',
+    type: 'SERVICE',
   };
 
   const { data } = await v6.post('/me/identity/user', payload, {
