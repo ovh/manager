@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.6.0...@ovh-ux/sign-up@3.6.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* **account:** fix some possible js errors ([19a2f6c](https://github.com/ovh/manager/commit/19a2f6c16d42b2bbc16513317480041ae6e5a7d4))
+
+
+
+
+
 # [3.6.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.5.0...@ovh-ux/sign-up@3.6.0) (2026-07-16)
 
 

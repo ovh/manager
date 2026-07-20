@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.24.0...@ovh-ux/manager-account@0.24.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* **account:** fix some possible js errors ([19a2f6c](https://github.com/ovh/manager/commit/19a2f6c16d42b2bbc16513317480041ae6e5a7d4))
+
+
+
+
+
 # [0.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.23.1...@ovh-ux/manager-account@0.24.0) (2026-07-16)
 
 

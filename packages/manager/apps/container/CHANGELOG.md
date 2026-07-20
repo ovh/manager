@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.199.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.198.0...@ovh-ux/manager-container-app@0.199.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1281] ([fd09688](https://github.com/ovh/manager/commit/fd096889b2d67c5e66b9bf88dc2169d7c0c6f125))
+* **i18n:** add missing translations [CDS 1282] ([db92500](https://github.com/ovh/manager/commit/db925000a99046e9af5b5d6a13d8c3b1539ba5bc))
+
+
+### Features
+
+* **container:** filter by certificate ([609a682](https://github.com/ovh/manager/commit/609a68264cb36edfb4feaa5a1c73c99e62f54cf4)), closes [#MANAGER-21985](https://github.com/ovh/manager/issues/MANAGER-21985)
+* **container:** update e-invoincing modal ([e9ac813](https://github.com/ovh/manager/commit/e9ac8132a868576de112d7a12ad8cef5e0836331)), closes [#MANAGER-21985](https://github.com/ovh/manager/issues/MANAGER-21985)
+
+
+
+
+
 # [0.198.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.197.0...@ovh-ux/manager-container-app@0.198.0) (2026-07-08)
 
 
