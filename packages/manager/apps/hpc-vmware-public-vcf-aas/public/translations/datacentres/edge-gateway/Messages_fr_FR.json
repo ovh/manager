@@ -7,6 +7,7 @@
   "edge_edit_name_of": "Modifier le nom de {{edgeName}}",
   "edge_edit_ip_block": "Modifier l'IP Space",
   "edge_edit_ip_block_of": "Modifier l'IP Space de {{edgeName}}",
+  "edge_edit_ip_block_no_available": "Aucun IP Space n'est disponible. Vous devez avoir au moins 1 IP Space disponible pour modifier celui de votre Edge Gateway.",
   "edge_add_title": "Nouvelle Edge Gateway",
   "edge_add_input_name_label": "Nom de la Edge Gateway",
   "edge_add_input_name_helper": "Le nom de la Edge Gateway doit contenir entre {{edgeNameMinLength}} et {{edgeNameMaxLength}} caractères",

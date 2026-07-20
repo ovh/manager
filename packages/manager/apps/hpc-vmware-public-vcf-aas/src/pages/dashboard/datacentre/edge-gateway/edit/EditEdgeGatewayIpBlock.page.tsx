@@ -8,13 +8,12 @@ import {
   GetEdgeGatewayParams,
   useReassignEdgeIpBlock,
   useVcdEdgeGateway,
-  useVcdIpBlocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
+import { useHasAvailableIpBlocks } from '@/hooks/edge/useHasAvailableIpBlocks';
 import { EDGE_SCHEMAS, EditEdgeIpBlockForm } from '@/schemas/edge.schema';
 import { SelectField } from '@/components/form/SelectField.component';
-import { isIpBlockAvailable } from '@/utils/ipBlockAvailability';
 import { getEdgeGatewayAssignedIpBlock } from '@/utils/aggregateEdgeGateways';
 
 export default function EditEdgeGatewayIpBlockPage() {
@@ -27,15 +26,20 @@ export default function EditEdgeGatewayIpBlockPage() {
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
   const { data: edge } = useVcdEdgeGateway(edgeParams);
-  const { data: ipBlocks } = useVcdIpBlocks({ id });
+  const {
+    isLoading: isLoadingIpBlocks,
+    hasAvailableIpBlocks,
+    ipBlocks,
+    availableIpBlocks,
+  } = useHasAvailableIpBlocks();
 
-  const hasData = !!(edge && ipBlocks);
-  const currentIpBlock = hasData
+  const isFormDataReady = !!edge && !isLoadingIpBlocks;
+  const currentIpBlock = isFormDataReady
     ? getEdgeGatewayAssignedIpBlock(edge, ipBlocks)
     : undefined;
   const currentScope = currentIpBlock?.currentState.internalScope;
 
-  const [defaultsReady, setDefaultsReady] = useState(hasData);
+  const [defaultsReady, setDefaultsReady] = useState(isFormDataReady);
 
   const {
     mutate: reassignEdgeIpBlock,
@@ -59,19 +63,19 @@ export default function EditEdgeGatewayIpBlockPage() {
   });
 
   useEffect(() => {
-    if (hasData && !defaultsReady) {
+    if (isFormDataReady && !defaultsReady) {
       reset({ ipBlock: currentScope ?? '' });
       setDefaultsReady(true);
     }
-  }, [hasData, defaultsReady, currentScope, reset]);
+  }, [isFormDataReady, defaultsReady, currentScope, reset]);
 
-  const availableIpBlocks = (ipBlocks ?? [])
-    .filter(isIpBlockAvailable)
-    .map((b) => b.currentState.internalScope);
+  const availableScopes = availableIpBlocks.map(
+    (b) => b.currentState.internalScope,
+  );
 
   const ipBlockOptions = currentIpBlock
-    ? [currentIpBlock.currentState.internalScope, ...availableIpBlocks]
-    : availableIpBlocks;
+    ? [currentIpBlock.currentState.internalScope, ...availableScopes]
+    : availableScopes;
 
   const onSubmit = (data: EditEdgeIpBlockForm) => {
     const nextBlock = ipBlocks?.find(
@@ -119,6 +123,12 @@ export default function EditEdgeGatewayIpBlockPage() {
               label={t('edge_ip_block')}
               placeholder={t('edge_ip_block_select')}
               options={ipBlockOptions}
+              isDisabled={!hasAvailableIpBlocks}
+              helperText={
+                !hasAvailableIpBlocks
+                  ? t('edge_edit_ip_block_no_available')
+                  : undefined
+              }
             />
           )}
         />
