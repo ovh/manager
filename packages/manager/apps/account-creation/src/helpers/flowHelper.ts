@@ -27,4 +27,12 @@ export const getSirenFromSiret = (
 export const isIndividualLegalForm = (legalForm?: LegalForm) =>
   legalForm === 'individual';
 
+/**
+ * A country is unusable for the account creation flow when it is missing or the
+ * `UNKNOWN` sentinel returned by the API. Centralised here because the recovery
+ * logic (provider, settings, CountryRecoveryModal) must stay in sync.
+ */
+export const isUnknownCountry = (country?: string): boolean =>
+  !country || country === 'UNKNOWN';
+
 export const isUserLoggedIn = () => document.cookie.includes('USERID');

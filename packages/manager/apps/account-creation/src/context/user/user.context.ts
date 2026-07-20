@@ -10,6 +10,7 @@ import { Company } from '@/types/company';
 export type UserContext = {
   legalForm?: LegalForm;
   country?: Country;
+  setCountry: (country: Country) => void;
   ovhSubsidiary?: Subsidiary;
   setLegalForm: (legalForm: LegalForm) => void;
   companyDetails?: Company;
