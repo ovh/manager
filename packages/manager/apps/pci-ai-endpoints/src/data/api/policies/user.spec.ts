@@ -39,10 +39,9 @@ describe('User API functions', () => {
       await createUserId(projectId);
       const expectedPayload = {
         description: `A user created for AI endpoints, linked to ${projectId}`,
-        email: `ai-endpoints-user-${projectId}@ovhcloud.com`,
         login: `ai-endpoints-user-${projectId}`,
-        password: `${projectId}`,
         group: 'UNPRIVILEGED',
+        type: 'SERVICE',
       };
       expect(v6.post).toHaveBeenCalledWith(
         '/me/identity/user',
