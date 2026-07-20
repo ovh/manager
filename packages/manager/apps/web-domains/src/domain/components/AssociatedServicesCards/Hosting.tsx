@@ -14,7 +14,6 @@ import {
 
 import { FREE_HOSTING_PLAN_CODE } from '@/common/constants/order';
 import { useNavigate } from 'react-router-dom';
-import { useGenerateUrl } from '@/common/hooks/generateUrl/useGenerateUrl';
 import { urls } from '@/domain/routes/routes.constant';
 
 interface HostingProps {
@@ -61,9 +60,7 @@ export default function Hosting({ serviceName }: HostingProps) {
           // general information tab without a hard dashboard reload.
           onClick: () => {
             navigate(
-              useGenerateUrl(urls.domainTabFreeHostingOrder, 'path', {
-                serviceName,
-              }),
+              urls.domainTabFreeHostingOrder.replace(':serviceName', serviceName),
             );
           },
         },
@@ -76,9 +73,7 @@ export default function Hosting({ serviceName }: HostingProps) {
       ),
       onClick: () => {
         navigate(
-          useGenerateUrl(urls.domainTabWebHostingOrder, 'path', {
-            serviceName,
-          }),
+          urls.domainTabWebHostingOrder.replace(':serviceName', serviceName),
           { replace: true },
         );
       },

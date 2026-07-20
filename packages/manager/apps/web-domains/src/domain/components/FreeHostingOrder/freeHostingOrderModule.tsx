@@ -92,7 +92,10 @@ export const FreeHostingComponent = lazy(() =>
               container.innerHTML = '';
             }
           };
-        }, [subsidiary, language, serviceName]);
+          // Re-mount the remote if any config it captured changes. navbar is a
+          // new object every render, so depend on its stable backUrl string
+          // rather than the object to avoid a remount loop.
+        }, [subsidiary, language, hostAppName, serviceName, navbar?.backUrl]);
 
         return <div ref={containerRef} className="max-w-7xl" />;
       },
