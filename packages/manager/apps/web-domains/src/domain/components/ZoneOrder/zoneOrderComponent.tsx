@@ -29,7 +29,13 @@ export default function ZoneOrderComponent() {
   // domain general information tab. The MFE navigates `window.location.href`
   // to navbar.backUrl, so derive the sibling tab URL from the current
   // `/zone/activate` location to stay agnostic to the shell URL scheme.
-  const backUrl = window.location.href.replace('/zone/activate', '/information');
+  // Anchored to the end of the URL (works with the hash router, where the route
+  // lives in the hash) and preserves any trailing query string, so the wrong
+  // occurrence can't be replaced.
+  const backUrl = window.location.href.replace(
+    /\/zone\/activate\/?(\?.*)?$/,
+    '/information$1',
+  );
 
   return (
     <div className="suspend-module">
