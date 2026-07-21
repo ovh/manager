@@ -598,6 +598,19 @@ export default class NewAccountFormController {
     return !angular.equals(this.originalModel, this.model);
   }
 
+  // The SIRET search assistant detected a legal form from the selected company;
+  // apply it and re-run the same side effects as a manual legalform change so
+  // the rules (mandatory fields, SIRET availability) match the new account type.
+  onSiretLegalFormChange(legalform) {
+    if (!legalform || legalform === this.model.legalform) {
+      return null;
+    }
+    this.model.legalform = legalform;
+    this.isSiretAvailable = this.siretFieldIsAvailable();
+    this.syncAddressAutocompleteState();
+    return this.updateRules();
+  }
+
   isFrenchAssociation() {
     return (
       this.model?.legalform === USER_TYPE_ASSOCIATION &&
