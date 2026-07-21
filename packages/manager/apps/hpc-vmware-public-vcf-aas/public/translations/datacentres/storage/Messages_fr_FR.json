@@ -7,5 +7,5 @@
   "managed_vcd_vdc_storage_delete": "Supprimer un Storage",
   "managed_vcd_vdc_storage_delete_modal_description": "Êtes-vous sûr de vouloir supprimer le storage {{storageId}} ? Cette action entraînera la suppression des ressources associées.",
   "managed_vcd_vdc_storage_delete_tooltip_min_quantity": "Vous ne pouvez pas supprimer le dernier storage de ce vDC. Un vDC doit contenir au moins un storage pour rester opérationnel.",
-  "managed_vcd_vdc_storage_delete_tooltip_free_storage": "Vous devez supprimer vos Freespare en premier."
+  "managed_vcd_vdc_storage_delete_tooltip_not_standard": "Ce storage est issu d'une migration, merci de contacter le support pour sa suppression."
 }
