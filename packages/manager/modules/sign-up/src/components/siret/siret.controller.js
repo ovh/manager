@@ -10,11 +10,14 @@ import {
   COMPANY_NAME_LABEL_DEFAULT,
   COMPANY_NAME_LABEL_LEGAL_FORMS,
   UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT,
+  SIRET_RULE_FIELD,
   SIRET_SEARCH_REGEXP,
   SIRET_FOCUS_PARAM,
   SIRET_SEARCH_ASSISTANT_ANCHOR,
   fromSuggestion,
   isNdValue,
+  getLegalFormFromCode,
+  calculateFRVATNumber,
 } from './siret.constants';
 
 export default class SiretCtrl {
@@ -41,6 +44,7 @@ export default class SiretCtrl {
     this.activeSelectSuggest = null;
     this.assistantUsed = false;
     this.assistantEmptyFields = {};
+    this.assistantInvalidFields = {};
     this.user = coreConfig.getUser();
   }
 
@@ -69,6 +73,7 @@ export default class SiretCtrl {
           siret: true,
           vat: true,
         };
+        this.assistantInvalidFields = {};
       }
 
       this.lastVatValue = this.model.vat;
@@ -164,6 +169,10 @@ export default class SiretCtrl {
     this.lastVatValue = fromSuggestion(suggestSelected.vatID, '');
     this.noVat = !this.lastVatValue;
     this.model.vat = this.noVat ? null : this.lastVatValue;
+    // Drive the account type from the company legal-form code and back-fill the
+    // FR VAT number for corporations, so an erroneous account type can no longer
+    // deadlock the user (mirrors the account-creation flow).
+    this.applyLegalFormFromSuggestion(suggestSelected);
     this.$rootScope.$broadcast('siret:companySelected', {
       address: fromSuggestion(suggestSelected.address, ''),
       city: fromSuggestion(suggestSelected.city, ''),
@@ -175,6 +184,20 @@ export default class SiretCtrl {
       siret: !this.model.companyNationalIdentificationNumber,
       vat: !this.lastVatValue,
     };
+    // When the assistant returns a value that breaks the rules, keep the field
+    // editable so the user can fix erroneous data instead of being deadlocked
+    // (the API would keep rejecting the unchangeable value otherwise).
+    this.assistantInvalidFields = {
+      organisation: this.isAssistantValueInvalid(
+        'organisation',
+        this.model.organisation,
+      ),
+      siret: this.isAssistantValueInvalid(
+        'siret',
+        this.model.companyNationalIdentificationNumber,
+      ),
+      vat: this.isAssistantValueInvalid('vat', this.model.vat),
+    };
     this.isNonDiffusible = isNonDiffusible;
     this.suggest = { ...this.suggest, entryList: [suggestSelected] };
     if (this.mode === 'modification') {
@@ -182,6 +205,35 @@ export default class SiretCtrl {
       this.displayManualForm = true;
     }
     return null;
+  }
+
+  // Detects the account type from the selected company legalFormCode and, for
+  // corporations without a VAT, computes the FR VAT number from the SIREN.
+  // Scoped to modification: creation owns its own account-type selection.
+  applyLegalFormFromSuggestion(suggestSelected) {
+    if (this.mode !== 'modification') {
+      return;
+    }
+    const detectedLegalForm = getLegalFormFromCode(
+      suggestSelected.legalFormCode,
+    );
+    if (detectedLegalForm && detectedLegalForm !== this.model.legalform) {
+      // Shared two-way model keeps the account-type field in sync; the callback
+      // lets the parent form re-fetch its rules for the new legal form.
+      this.model.legalform = detectedLegalForm;
+      if (this.onLegalFormChange) {
+        this.onLegalFormChange({ legalform: detectedLegalForm });
+      }
+    }
+    const effectiveLegalForm = detectedLegalForm || this.getLegalForm();
+    if (effectiveLegalForm === LEGAL_FORM_ENTERPRISE && !this.lastVatValue) {
+      const computedVat = calculateFRVATNumber(suggestSelected.primaryCNIN);
+      if (computedVat) {
+        this.lastVatValue = computedVat;
+        this.noVat = false;
+        this.model.vat = computedVat;
+      }
+    }
   }
 
   onManualFormClick() {
@@ -196,6 +248,7 @@ export default class SiretCtrl {
     this.showUpdateSiretInfo = this.mode === 'modification';
     this.isValid = false;
     this.assistantUsed = false;
+    this.assistantInvalidFields = {};
     this.isNonDiffusible = false;
     this.search = '';
     if (!this.shouldApplyFrenchAssociationRules()) {
@@ -220,6 +273,7 @@ export default class SiretCtrl {
           siret: true,
           vat: true,
         };
+        this.assistantInvalidFields = {};
       }
       if (!changes.isFrenchAssociation.isFirstChange()) {
         this.setAddressAutocompleteActive(true);
@@ -247,7 +301,33 @@ export default class SiretCtrl {
   }
 
   isManualEntryAllowed(field) {
-    return this.assistantUsed && Boolean(this.assistantEmptyFields[field]);
+    return (
+      this.assistantUsed &&
+      (Boolean(this.assistantEmptyFields[field]) ||
+        Boolean(this.assistantInvalidFields[field]))
+    );
+  }
+
+  // Validates a value picked by the search assistant against the field rules
+  // (mandatory + regularExpression), replicating AngularJS ngPattern behaviour
+  // where a string pattern is anchored with ^...$.
+  isAssistantValueInvalid(field, value) {
+    const rule = this.rules?.[SIRET_RULE_FIELD[field]];
+    if (!rule) {
+      return false;
+    }
+    const stringValue = value == null ? '' : String(value);
+    if (stringValue.trim() === '') {
+      return Boolean(rule.mandatory);
+    }
+    if (rule.regularExpression) {
+      const regExp =
+        rule.regularExpression instanceof RegExp
+          ? rule.regularExpression
+          : new RegExp(`^${rule.regularExpression}$`);
+      return !regExp.test(stringValue);
+    }
+    return false;
   }
 
   isOrganisationDisabled() {
