@@ -61,16 +61,15 @@ export const getOdsCheckbox = async ({
   disabled?: boolean;
   nth?: number;
 }) => {
-  const checkbox: HTMLOdsCheckboxElement = Array.from(
-    container.querySelectorAll('ods-checkbox'),
-  )?.[nth] as HTMLOdsCheckboxElement;
+  // `OdsCheckbox` is mocked as a native `<input type="checkbox">` in setupTests.tsx
+  const checkbox: HTMLInputElement = Array.from(
+    container.querySelectorAll('input[type="checkbox"]'),
+  )?.[nth] as HTMLInputElement;
 
   expect(checkbox).toBeDefined();
 
-  const disabledAttribute = checkbox.getAttribute('is-disabled') === 'true';
-
-  if (disabled) expect(disabledAttribute).toBeTruthy();
-  else expect(disabledAttribute).toBeFalsy();
+  if (disabled) expect(checkbox.disabled).toBeTruthy();
+  else expect(checkbox.disabled).toBeFalsy();
 
   return checkbox;
 };

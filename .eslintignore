@@ -74,3 +74,4 @@ packages/manager/apps/pci-project
 packages/manager/apps/hub
 packages/manager/apps/pci-file-storage
 packages/manager/apps/network-vrack
+packages/manager/apps/hpc-backup-licenses

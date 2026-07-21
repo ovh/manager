@@ -57,7 +57,9 @@
     "@ovh-ux/manager-tests-setup": "^0.8.0",
     "@ovh-ux/manager-vite-config": "^0.15.6",
     "@tanstack/react-query-devtools": "^5.90.2",
-    "@types/punycode": "^2.1.4"
+    "@types/punycode": "^2.1.4",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.0"
   },
   "regions": [
     "EU",
