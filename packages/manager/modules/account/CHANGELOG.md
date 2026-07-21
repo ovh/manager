@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.24.1...@ovh-ux/manager-account@0.25.0) (2026-07-21)
+
+
+### Features
+
+* **account:** modifications on new account form ([30dd655](https://github.com/ovh/manager/commit/30dd655e3134fa6f576065a4c98bc185c8a3eb4f)), closes [#MANAGER-21993](https://github.com/ovh/manager/issues/MANAGER-21993)
+
+
+
+
+
 ## [0.24.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.24.0...@ovh-ux/manager-account@0.24.1) (2026-07-20)
 
 
