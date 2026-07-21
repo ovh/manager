@@ -22,7 +22,7 @@
   "domains_newdnszone_order_error": "Wystąpił błąd podczas zamawiania strefy DNS: {{message}}",
   "domains_newdnszone_zone_exists": "Ta strefa jest już zarejestrowana w OVHcloud",
   "domains_newdnszone_order_options_title": "Wybór opcji",
-  "domains_newdnszone_order_option_anycast_label": "DNS&amp;#160;Anycast",
+  "domains_newdnszone_order_option_anycast_label": "DNS Anycast",
   "domains_newdnszone_order_option_anycast_description": "Popraw dostępność i czas odpowiedzi swojej strefy DNS dzięki sieci Anycast od OVHcloud.",
   "domains_newdnszone_order_option_dnssec_label": "DNSSEC",
   "domains_newdnszone_order_option_dnssec_description": "Zabezpiecz swoją strefę DNS przed zatruwaniem pamięci podręcznej (cache poisoning), podpisując kryptograficznie swoje rekordy.",

@@ -100,7 +100,14 @@ const createAnycastComponent = (
                   container.innerHTML = '';
                 }
               };
-            }, [subsidiary, language, zoneName, dnssecSupported]);
+            }, [
+              subsidiary,
+              language,
+              hostAppName,
+              zoneName,
+              dnssecSupported,
+              navbar?.backUrl,
+            ]);
 
             return <div ref={containerRef} className="max-w-7xl" />;
           },
