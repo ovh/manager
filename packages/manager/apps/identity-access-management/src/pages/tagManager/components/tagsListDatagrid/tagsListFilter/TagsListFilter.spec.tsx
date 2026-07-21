@@ -2,7 +2,7 @@ import '@/test-utils/unit-test-setup';
 import React from 'react';
 import { describe, it, vi } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
-import { getButtonByLabel } from '@/test-utils/uiTestHelpers';
+import { getButtonByLabel, getOdsCheckbox } from '@/test-utils/uiTestHelpers';
 import TagsListFilter from './TagsListFilter.component';
 import {
   useTagManagerContext,
@@ -43,7 +43,7 @@ const renderComponent = ({
 describe('TagsListFilter Component', async () => {
   it('Should display filter menu with system checkbox', async () => {
     const toggleSystemCheckMock = vi.fn();
-    const { container, getByText } = renderComponent({
+    const { container } = renderComponent({
       toggleSystemCheck: toggleSystemCheckMock,
     });
 
@@ -54,7 +54,7 @@ describe('TagsListFilter Component', async () => {
 
     fireEvent.click(filterButton);
 
-    const systemCheckbox = getByText('showSystemTag');
+    const systemCheckbox = await getOdsCheckbox({ container, nth: 0 });
     fireEvent.click(systemCheckbox);
 
     expect(toggleSystemCheckMock).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('TagsListFilter Component', async () => {
 
   it('Should display filter menu with unassigned checkbox', async () => {
     const toggleUnassignedResourcesMock = vi.fn();
-    const { container, getByText } = renderComponent({
+    const { container } = renderComponent({
       toggleUnassignedResources: toggleUnassignedResourcesMock,
     });
 
@@ -73,7 +73,7 @@ describe('TagsListFilter Component', async () => {
 
     fireEvent.click(filterButton);
 
-    const unassignedCheckbox = getByText('showUnassignedTag');
+    const unassignedCheckbox = await getOdsCheckbox({ container, nth: 1 });
     fireEvent.click(unassignedCheckbox);
 
     expect(toggleUnassignedResourcesMock).toHaveBeenCalled();

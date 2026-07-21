@@ -3,6 +3,7 @@ import 'element-internals-polyfill';
 import { SetupServer, setupServer } from 'msw/node';
 import { vi } from 'vitest';
 import { fetch } from 'cross-fetch';
+import React from 'react';
 
 declare global {
   // eslint-disable-next-line vars-on-top, no-var
@@ -40,28 +41,36 @@ vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => {
   };
 });
 
-vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => ({
-  ...(await importOriginal()),
-  OdsCheckbox: ({
-    name,
-    inputId,
-    isDisabled,
-    isChecked,
-    onOdsChange,
-  }: {
-    name: string;
-    inputId: string;
-    isDisabled: boolean;
-    isChecked: boolean;
-    onOdsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  }) => (
-    <input
-      type="checkbox"
-      name={name}
-      id={inputId}
-      checked={isChecked}
-      disabled={isDisabled}
-      onChange={onOdsChange}
-    />
-  ),
-}));
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const original: typeof import('@ovhcloud/ods-components/react') = await importOriginal();
+  return {
+    ...original,
+    OdsCheckbox: ({
+      name,
+      inputId,
+      isDisabled,
+      isChecked,
+      isIndeterminate,
+      onOdsChange,
+    }: {
+      name?: string;
+      inputId?: string;
+      isDisabled?: boolean;
+      isChecked?: boolean;
+      isIndeterminate?: boolean;
+      onOdsChange?: (event: { detail: { checked: boolean } }) => void;
+    }) => {
+      const Component = 'ods-checkbox' as React.ElementType;
+      return (
+        <Component
+          input-id={inputId}
+          name={name}
+          is-checked={isChecked?.toString()}
+          is-indeterminate={isIndeterminate?.toString()}
+          is-disabled={isDisabled?.toString()}
+          onClick={() => onOdsChange?.({ detail: { checked: !isChecked } })}
+        />
+      );
+    },
+  };
+});
