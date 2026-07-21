@@ -10,7 +10,6 @@ import { RhfFieldContext, useRhfFieldContext } from './RhfField.context';
 import { RhfQuantity } from './RhfQuantity.component';
 import { RhfInput } from './RhfInput.component';
 
-
 type RhfFieldProps = React.ComponentProps<typeof OdsFormField> & {
   controllerParams: UseControllerProps<FieldValues, string>;
   helperMessage?: string;
