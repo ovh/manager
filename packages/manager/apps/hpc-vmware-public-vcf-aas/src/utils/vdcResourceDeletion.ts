@@ -3,7 +3,10 @@ import {
   VDC_RESOURCE_MIN_QUANTITY,
   FREESPARE_REGEX,
   VDC_RESOURCE_DELETION_TOOLTIPS,
+  STANDARD_STORAGE_REGEX,
 } from './vdcResourceDeletion.constants';
+
+type VdcResource = VCDCompute | VCDStorage;
 
 export type VdcResourceDeletionParams =
   | {
@@ -22,37 +25,65 @@ type VdcResourceDeletionResult = {
   tooltipTranslationKey: string;
 };
 
-export const isVdcFreespareResource = (resource: VCDCompute | VCDStorage) => {
-  return FREESPARE_REGEX.test(resource.currentState.profile);
-};
+const deletable = (): VdcResourceDeletionResult => ({
+  isDeletable: true,
+  tooltipTranslationKey: '',
+});
 
-export const isVdcResourceDeletable = ({
-  type,
-  resourceList,
-  resource,
-}: VdcResourceDeletionParams): VdcResourceDeletionResult => {
-  const tooltips = VDC_RESOURCE_DELETION_TOOLTIPS[type];
+const notDeletable = (
+  tooltipTranslationKey: string,
+): VdcResourceDeletionResult => ({
+  isDeletable: false,
+  tooltipTranslationKey,
+});
 
-  const result: VdcResourceDeletionResult = {
-    isDeletable: false,
-    tooltipTranslationKey: VDC_RESOURCE_DELETION_TOOLTIPS.default,
-  };
+export const isVdcFreespareResource = (resource: VdcResource) =>
+  FREESPARE_REGEX.test(resource.currentState.profile);
 
-  if (!resourceList || !resource) {
-    return result;
-  }
-
-  if (resourceList.length <= VDC_RESOURCE_MIN_QUANTITY) {
-    return { ...result, tooltipTranslationKey: tooltips.minQuantity };
-  }
-
-  const freespareIds = resourceList
+const checkComputeDeletable = (
+  computeList: VdcResource[],
+  compute: VdcResource,
+): VdcResourceDeletionResult => {
+  const freespareIds = computeList
     .filter(isVdcFreespareResource)
     .map((r) => r.id);
 
-  if (freespareIds.length && !freespareIds.includes(resource.id)) {
-    return { ...result, tooltipTranslationKey: tooltips.freeFirst };
+  return freespareIds.length > 0 && !freespareIds.includes(compute.id)
+    ? notDeletable(VDC_RESOURCE_DELETION_TOOLTIPS.compute.freeFirst)
+    : deletable();
+};
+
+const checkStorageDeletable = (
+  storage: VCDStorage,
+): VdcResourceDeletionResult => {
+  const isStandardStorage = STANDARD_STORAGE_REGEX.test(
+    storage.currentState.profile,
+  );
+
+  return isStandardStorage
+    ? deletable()
+    : notDeletable(VDC_RESOURCE_DELETION_TOOLTIPS.storage.notStandard);
+};
+
+export const isVdcResourceDeletable = (
+  params: VdcResourceDeletionParams,
+): VdcResourceDeletionResult => {
+  const { type, resourceList, resource } = params;
+
+  if (!resourceList || !resource) {
+    return notDeletable(VDC_RESOURCE_DELETION_TOOLTIPS.default);
   }
 
-  return { ...result, isDeletable: true, tooltipTranslationKey: '' };
+  if (resourceList.length <= VDC_RESOURCE_MIN_QUANTITY) {
+    return notDeletable(VDC_RESOURCE_DELETION_TOOLTIPS[type].minQuantity);
+  }
+
+  switch (type) {
+    case 'compute':
+      return checkComputeDeletable(resourceList, resource);
+    case 'storage':
+      return checkStorageDeletable(resource);
+    default:
+      return notDeletable(VDC_RESOURCE_DELETION_TOOLTIPS.default);
+  }
 };

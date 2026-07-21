@@ -11,6 +11,8 @@ import {
 } from './vdcResourceDeletion';
 import { VDC_RESOURCE_DELETION_TOOLTIPS } from './vdcResourceDeletion.constants';
 
+const STANDARD_STORAGE_PROFILE = '1TB Standard storage';
+
 describe('isVdcFreespareResource function test suite', () => {
   it.each([
     { type: 'compute', profile: 'vhost-5-0-FREESPARE', expected: true },
@@ -56,8 +58,15 @@ describe('isVdcResourceDeletable function test suite', () => {
 
   const freeCompute = makeFree(computeList[0], 'free-compute-id');
   const freeCompute2 = makeFree(computeList[1], 'free-compute-id-2');
-  const freeStorage = makeFree(storageList[0], 'free-storage-id');
-  const freeStorage2 = makeFree(storageList[1], 'free-storage-id-2');
+
+  const standardStorage: VCDStorage = {
+    ...storageList[0],
+    id: 'standard-storage-id',
+    currentState: {
+      ...storageList[0].currentState,
+      profile: STANDARD_STORAGE_PROFILE,
+    },
+  };
 
   type ComputeCase = {
     type: 'compute';
@@ -160,43 +169,56 @@ describe('isVdcResourceDeletable function test suite', () => {
     {
       type: 'storage',
       desc:
-        'return false & tooltip=freeFirst when deleting a paying storage while a free one exists',
-      resourceList: [...storageList, freeStorage],
-      resource: storageList[1],
+        'return false & tooltip=minQuantity for the last storage even if it has the standard profile',
+      resourceList: [standardStorage],
+      resource: standardStorage,
       expected: {
         isDeletable: false,
-        tooltip: VDC_RESOURCE_DELETION_TOOLTIPS.storage.freeFirst,
+        tooltip: VDC_RESOURCE_DELETION_TOOLTIPS.storage.minQuantity,
       },
     },
     {
       type: 'storage',
-      desc: 'return true & tooltip=empty when deleting the free storage itself',
-      resourceList: [...storageList, freeStorage],
-      resource: freeStorage,
-      expected: { isDeletable: true, tooltip: '' },
-    },
-    {
-      type: 'storage',
       desc:
-        'return true & tooltip=empty when deleting a storage in a list without a free one',
-      resourceList: storageList.filter((s) => !isVdcFreespareResource(s)),
+        'return false & tooltip=notStandard when deleting a non-standard-profile storage',
+      resourceList: storageList,
       resource: storageList[0],
+      expected: {
+        isDeletable: false,
+        tooltip: VDC_RESOURCE_DELETION_TOOLTIPS.storage.notStandard,
+      },
+    },
+    {
+      type: 'storage',
+      desc:
+        'return true & tooltip=empty when deleting a standard-profile storage',
+      resourceList: [...storageList, standardStorage],
+      resource: standardStorage,
       expected: { isDeletable: true, tooltip: '' },
     },
     {
       type: 'storage',
       desc:
-        'return true & tooltip=empty when deleting the first freespare among several',
-      resourceList: [...storageList, freeStorage, freeStorage2],
-      resource: freeStorage,
-      expected: { isDeletable: true, tooltip: '' },
-    },
-    {
-      type: 'storage',
-      desc:
-        'return true & tooltip=empty when deleting a non-first freespare among several',
-      resourceList: [...storageList, freeStorage, freeStorage2],
-      resource: freeStorage2,
+        'return true & tooltip=empty when the standard profile matches case-insensitively',
+      resourceList: [
+        ...storageList,
+        {
+          ...standardStorage,
+          id: 'standard-storage-id-ci',
+          currentState: {
+            ...standardStorage.currentState,
+            profile: 'vcd-1tb standard storage-eu',
+          },
+        },
+      ],
+      resource: {
+        ...standardStorage,
+        id: 'standard-storage-id-ci',
+        currentState: {
+          ...standardStorage.currentState,
+          profile: 'vcd-1tb standard storage-eu',
+        },
+      },
       expected: { isDeletable: true, tooltip: '' },
     },
   ];
