@@ -12,6 +12,7 @@ export default {
     isValid: '=?',
     formCtrl: '<?',
     onFieldError: '<?',
+    onLegalFormChange: '&?',
     mode: '<',
     fieldToFocus: '<',
     isIndianSubsidiary: '<?',
