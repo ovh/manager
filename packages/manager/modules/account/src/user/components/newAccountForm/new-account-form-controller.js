@@ -602,12 +602,18 @@ export default class NewAccountFormController {
   // apply it and re-run the same side effects as a manual legalform change so
   // the rules (mandatory fields, SIRET availability) match the new account type.
   onSiretLegalFormChange(legalform) {
-    if (!legalform || legalform === this.model.legalform) {
+    if (!legalform) {
       return null;
     }
+    // the SIRET component shares our model instance (two-way binding), so it
+    // has already written the new legal form: comparing against
+    // this.model.legalform here would always match and skip the side effects
     this.model.legalform = legalform;
     this.isSiretAvailable = this.siretFieldIsAvailable();
     this.syncAddressAutocompleteState();
+    // the legalform field keeps its displayed value in its own local copy, so
+    // notify it to re-sync the select with the newly detected account type
+    this.$scope.$broadcast('siret:legalFormChanged', { legalform });
     return this.updateRules();
   }
 
