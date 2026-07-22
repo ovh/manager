@@ -58,6 +58,10 @@ const csvRowsMapper: {
 
 const USELESS_COLUMNS = ['actions'];
 
+// Free-form data columns whose values must not go through i18next:
+// values may contain ":" or "." which i18next interprets as ns/key separators.
+const NON_TRANSLATED_COLUMNS = ['iam.displayName', 'tags'];
+
 export default ({ totalCount, columns }: ExportCsvDataType) => {
   const { t } = useTranslation('dedicated-servers');
 
@@ -123,9 +127,11 @@ export default ({ totalCount, columns }: ExportCsvDataType) => {
             },
           }))
           .map((row: FullDedicatedServerType) =>
-            columnsIds.map(
-              (key) => csvRowsMapper[key] && t(csvRowsMapper[key](row)),
-            ),
+            columnsIds.map((key) => {
+              if (!csvRowsMapper[key]) return csvRowsMapper[key];
+              const value = csvRowsMapper[key](row);
+              return NON_TRANSLATED_COLUMNS.includes(key) ? value : t(value);
+            }),
           );
 
         setCsvColumns([columnsHeadings, ...columnsBody]);
