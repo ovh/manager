@@ -151,9 +151,9 @@ export default function DatagridColumnActions({
         label: t('domain_action_cancel_terminate'),
         onClick: () =>
           navigateTo('billing', '/autorenew/services/cancel-resiliation', {
-            selectedType: DOMAIN,
+            serviceId: serviceName,
+            serviceType: DOMAIN,
             searchText: serviceName,
-            serviceId: serviceInfo?.serviceId,
           }),
       });
     }
