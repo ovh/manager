@@ -195,14 +195,7 @@ angular.module('App').controller(
       return this.Hosting.getUpgradePrices(
         get(this.hosting, 'serviceName', this.$stateParams.productId),
         this.model.offer.planCode,
-      ).catch((error) => {
-        this.Alerter.alertFromSWS(
-          this.$translate.instant('hosting_order_upgrade_error'),
-          this.apiTranslator.translate(error),
-          this.$scope.alerts.page,
-        );
-        this.$anchorScroll('topWebUniverse');
-      });
+      );
     }
 
     executeDetachOrder(serviceId, planCode) {
@@ -254,7 +247,7 @@ angular.module('App').controller(
         .catch((err) => {
           this.Alerter.alertFromSWS(
             this.$translate.instant('hosting_order_upgrade_error'),
-            this.apiTranslator.translate(err),
+            this.apiTranslator.translate(err?.data || err),
             this.$scope.alerts.page,
           );
           this.$anchorScroll('topWebUniverse');
