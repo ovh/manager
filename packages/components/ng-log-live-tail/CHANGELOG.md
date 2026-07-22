@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.3](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.7.2...@ovh-ux/ng-log-live-tail@2.7.3) (2026-07-22)
+
+
+### Bug Fixes
+
+* **iam:** fix bind-html on untrusted input in log viewer ([6c3d3ca](https://github.com/ovh/manager/commit/6c3d3ca54473ac9e2129d5dc3d876ad8a51b2f5b)), closes [#MAIAM-143](https://github.com/ovh/manager/issues/MAIAM-143)
+
+
+
+
+
 ## [2.7.2](https://github.com/ovh/manager/compare/@ovh-ux/ng-log-live-tail@2.7.1...@ovh-ux/ng-log-live-tail@2.7.2) (2026-01-30)
 
 **Note:** Version bump only for package @ovh-ux/ng-log-live-tail
