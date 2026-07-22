@@ -2,15 +2,14 @@ import React from 'react';
 
 import { Navigate, Route } from 'react-router-dom';
 
+import { BackupLicensesRoutes } from '@ovh-ux/backup-licenses';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
-import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import NotFound from '@/pages/not-found/404.page';
 
-import { redirectionApp, subRoutes, urls } from './Routes.constants';
+import { redirectionApp, urls } from './Routes.constants';
 
 const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
-const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 export default (
   <>
@@ -27,13 +26,7 @@ export default (
         />
       }
     >
-      <Route
-        path={subRoutes.onboarding}
-        Component={OnboardingPage}
-        handle={{
-          tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
-        }}
-      />
+      {BackupLicensesRoutes}
       <Route path="*" element={<NotFound />} />
     </Route>
   </>

@@ -2,14 +2,10 @@ import i18next, { InitOptions, i18n } from 'i18next';
 
 import { appName } from '@/App.constants';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import onboarding from '../../../public/translations/onboarding/Messages_fr_FR.json';
-
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 function addTranslations() {
-  i18next.addResources(defaultLocale, 'onboarding', onboarding).use({
+  i18next.use({
     type: 'postProcessor',
     name: 'normalize',
     process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
@@ -40,6 +36,3 @@ export const initTestI18n = () =>
     }
   });
 
-export const labels = {
-  onboarding,
-};

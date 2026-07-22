@@ -34,6 +34,7 @@
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/hpc-backup-agent-iaas @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/hpc-backup-licenses @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/iam @ovh/dev-manager-enablers-all
 /packages/manager/apps/identity-access-management @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network @ovh/dev-manager-enablers-all
 /packages/manager/apps/iplb @ovh/dev-manager-infrastructure-network

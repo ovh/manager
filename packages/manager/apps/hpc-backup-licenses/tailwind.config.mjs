@@ -7,12 +7,12 @@ const require = createRequire(import.meta.url);
 const pkgDir = (name) => path.dirname(require.resolve(`${name}/package.json`));
 const toGlob = (dir) => `${dir.replace(/\\/g, '/')}/**/*.{js,jsx,ts,tsx}`;
 
-const reactComponentsDir = pkgDir('@ovh-ux/muk');
+const backupLicensesDir = pkgDir('@ovh-ux/backup-licenses');
 
 const baseTailwindConfig = [
   ...(baseConfig.content ?? []),
   './src/**/*.{js,jsx,ts,tsx}',
-  toGlob(reactComponentsDir),
+  toGlob(backupLicensesDir),
 ];
 
 /** @type {import('tailwindcss').Config} */
