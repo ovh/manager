@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.13.1...@ovh-ux/manager-pci-ai-endpoints-app@0.13.2) (2026-07-22)
+
+
+### Bug Fixes
+
+* **ai-endpoints:** create identity user as SERVICE type without password ([9267b93](https://github.com/ovh/manager/commit/9267b938d8459d575ef9f3db97b1249aa9384d4f)), closes [#DATATR-3720](https://github.com/ovh/manager/issues/DATATR-3720)
+
+
+
+
+
 ## [0.13.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-ai-endpoints-app@0.13.0...@ovh-ux/manager-pci-ai-endpoints-app@0.13.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-ai-endpoints-app
