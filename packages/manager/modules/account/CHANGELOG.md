@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.25.0...@ovh-ux/manager-account@0.26.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* **account:** switch account on siret change ([911b2fe](https://github.com/ovh/manager/commit/911b2fe474e683965d92027567a2996a74ee9c83))
+
+
+### Features
+
+* **account:** make wrong fields editable ([48a9fe3](https://github.com/ovh/manager/commit/48a9fe34e686e1360583c8d0f2a2cf764b8a534b))
+
+
+
+
+
 # [0.25.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account@0.24.1...@ovh-ux/manager-account@0.25.0) (2026-07-21)
 
 

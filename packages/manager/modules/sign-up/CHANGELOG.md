@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.7.0...@ovh-ux/sign-up@3.8.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* **account:** fix vat checkbox behavior ([18e5774](https://github.com/ovh/manager/commit/18e5774904b6748d056b8bb398a066a2dd7d39e5))
+
+
+### Features
+
+* **account:** make wrong fields editable ([48a9fe3](https://github.com/ovh/manager/commit/48a9fe34e686e1360583c8d0f2a2cf764b8a534b))
+
+
+
+
+
 # [3.7.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.6.1...@ovh-ux/sign-up@3.7.0) (2026-07-21)
 
 

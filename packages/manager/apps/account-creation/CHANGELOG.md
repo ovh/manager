@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.1...@ovh-ux/manager-account-creation-app@0.14.2) (2026-07-22)
+
+
+### Bug Fixes
+
+* **account-creation:** add modal when country not setted ([644761e](https://github.com/ovh/manager/commit/644761e95b2f9fe17e350e684096b02246a990ad))
+* **i18n:** add missing translations [CDS 1287] ([df71fb3](https://github.com/ovh/manager/commit/df71fb384dcd9bc353bd92ff1243f256123d520f))
+
+
+
+
+
 ## [0.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.0...@ovh-ux/manager-account-creation-app@0.14.1) (2026-06-23)
 
 
