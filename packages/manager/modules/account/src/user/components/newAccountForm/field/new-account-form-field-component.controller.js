@@ -81,6 +81,23 @@ export default class NewAccountFormFieldController {
       },
     );
 
+    // the SIRET assistant may detect another account type from the company
+    // legal form: re-sync the select with the value applied on the model
+    this.$scope.$on('siret:legalFormChanged', (event, { legalform } = {}) => {
+      if (this.rule.fieldName !== FIELD_NAME_LIST.legalform) {
+        return;
+      }
+      if (!legalform || legalform === this.value?.key) {
+        return;
+      }
+      this.value = {
+        key: legalform,
+        translated: this.$translate.instant(
+          `signup_enum_${FIELD_NAME_LIST.legalform}_${legalform}`,
+        ),
+      };
+    });
+
     this.$scope.$on('siret:autocompleteActive', (event, { active } = {}) => {
       if (
         [
