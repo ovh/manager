@@ -235,7 +235,7 @@
                     />
                 </oui-field>
                 <oui-checkbox
-                    data-ng-if="$ctrl.mode === 'modification' && $ctrl.getVatCheckboxLabelKey() && !$ctrl.hasInitialVat"
+                    data-ng-if="$ctrl.mode === 'modification' && $ctrl.getVatCheckboxLabelKey() && (!$ctrl.hasInitialVat || $ctrl.assistantUsed)"
                     data-name="noVatCheckbox"
                     data-model="$ctrl.noVat"
                     data-on-change="$ctrl.onNoVatChange(modelValue)"
