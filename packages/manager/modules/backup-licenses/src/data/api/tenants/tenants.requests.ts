@@ -12,9 +12,7 @@ export const getBackupServicesTenants = async (): Promise<Resource<BackupService
   return data;
 };
 
-export const getVspcTenants = async (
-  backupServicesId: string,
-): Promise<Resource<VspcTenant>[]> => {
+export const getVspcTenants = async (backupServicesId: string): Promise<Resource<VspcTenant>[]> => {
   const { data } = await fetchIcebergV2<Resource<VspcTenant>>({
     route: getVspcTenantsRoute(backupServicesId),
   });
