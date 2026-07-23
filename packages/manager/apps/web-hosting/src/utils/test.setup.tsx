@@ -232,6 +232,8 @@ vi.mock('@/data/api/webHosting', () => ({
   useWebHostingWebsiteDomain: vi.fn(),
   deleteAttachedDomains: vi.fn(),
   getWebHostingWebsiteV6: vi.fn(() => Promise.resolve(WebHostingWebsiteV6Mock)),
+  getWebHostingSpoofing: vi.fn(() => Promise.resolve([])),
+  getWebHostingSpoofingQueryKey: vi.fn(),
 }));
 
 vi.mock('@/data/api/dashboard', async (importActual) => {

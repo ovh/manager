@@ -25,7 +25,11 @@ import {
   fetchWebsiteDeployments,
   postWebsiteDeploy,
 } from '@/data/api/git';
-import { getWebHostingWebsiteV6 } from '@/data/api/webHosting';
+import {
+  getWebHostingSpoofing,
+  getWebHostingSpoofingQueryKey,
+  getWebHostingWebsiteV6,
+} from '@/data/api/webHosting';
 import { TAttachedDomain, TCreateAttachedDomain } from '@/data/types/product/domain';
 import { Logs } from '@/data/types/product/git';
 import queryClient from '@/utils/queryClient';
@@ -113,6 +117,13 @@ export const useGetServiceInfos = (serviceName: string) =>
   useQuery({
     queryKey: ['hosting', 'web', serviceName, 'serviceInfos'],
     queryFn: () => getServiceInfos(serviceName),
+    enabled: Boolean(serviceName),
+  });
+
+export const useGetWebHostingSpoofing = (serviceName: string) =>
+  useQuery({
+    queryKey: getWebHostingSpoofingQueryKey(serviceName),
+    queryFn: () => getWebHostingSpoofing(serviceName),
     enabled: Boolean(serviceName),
   });
 

@@ -219,5 +219,7 @@
   "hosting_tab_WEBSITE": "My websites",
   "hosting_logs_back_to_general": "Back to general information",
   "hosting_logs_back_to_previous_page": "Back to previous page",
-  "hosting_tab_USER_STATISTICS": "Statistics and logs"
+  "hosting_tab_USER_STATISTICS": "Statistics and logs",
+  "hosting_dashboard_spoofing_banner": "We have detected e-mails sent without authentication from your hosting. To prevent your messages from being blocked, set up authenticated e-mail sending.",
+  "hosting_dashboard_spoofing_banner_link": "See the guide"
 }

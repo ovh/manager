@@ -19,6 +19,17 @@ export const GUIDE_URL: Record<string, string> = {
   SN: `${helpRoot}fr-sn${guideRoot}`,
   TN: `${helpRoot}fr-tn${guideRoot}`,
 };
+
+const emailSendingDoc = 'https://docs.ovhcloud.com';
+const emailSendingPath = '/guides/web-cloud/web-hosting/email-sending-best-practices';
+export const EMAIL_SENDING_GUIDE_URL: Record<string, string> = {
+  DEFAULT: `${emailSendingDoc}/en${emailSendingPath}`,
+  FR: `${emailSendingDoc}/fr${emailSendingPath}`,
+  QC: `${emailSendingDoc}/fr${emailSendingPath}`,
+  MA: `${emailSendingDoc}/fr${emailSendingPath}`,
+  SN: `${emailSendingDoc}/fr${emailSendingPath}`,
+  TN: `${emailSendingDoc}/fr${emailSendingPath}`,
+};
 export const ORDER_URL: Record<string, string> = {
   DEFAULT: `${websiteRoot}en-ie${webSitePath}`,
   IN: `${websiteRoot}en-in${webSitePath}`,
