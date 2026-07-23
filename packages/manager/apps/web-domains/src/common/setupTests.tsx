@@ -35,6 +35,9 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     ...actual,
     useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
+    useFeatureAvailability: vi.fn((features: string[]) => ({
+      data: Object.fromEntries((features ?? []).map((feature) => [feature, true])),
+    })),
     useAuthorizationIam: vi.fn(() => ({
       isPending: false,
       isAuthorized: true,

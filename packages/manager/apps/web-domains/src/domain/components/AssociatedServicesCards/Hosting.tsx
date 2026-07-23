@@ -1,13 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ActionMenu, ManagerTile } from '@ovh-ux/manager-react-components';
+import {
+  ActionMenu,
+  ManagerTile,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import {
   ShellContext,
   useNavigationGetUrl,
 } from '@ovh-ux/manager-react-shell-client';
 import { Link, Skeleton, Text } from '@ovhcloud/ods-react';
-import { Region, Subsidiary } from '@ovh-ux/manager-config';
+import { Subsidiary } from '@ovh-ux/manager-config';
 import {
   useGetAssociatedHosting,
   useGetFreeHostingServices,
@@ -45,9 +49,11 @@ export interface FreeHostingOptions {
 export default function Hosting({ serviceName }: HostingProps) {
   const { t } = useTranslation(['domain']);
   const context = useContext(ShellContext);
-  const region = context.environment.getRegion();
   const ovhSubsidiary = context.environment.getUser()
     .ovhSubsidiary as Subsidiary;
+  const { data: availability } = useFeatureAvailability([
+    'web-domains:domains:freehosting',
+  ]);
   const [isFreeHostingOpen, setIsFreeHostingOpen] = useState(false);
   const [freeHostingOptions, setFreeHostingOptions] = useState<
     FreeHostingOptions
@@ -103,7 +109,7 @@ export default function Hosting({ serviceName }: HostingProps) {
     });
 
   const actionMenuItems = [
-    ...(region === Region.EU && !hasFreeHosting
+    ...(availability?.['web-domains:domains:freehosting'] && !hasFreeHosting
       ? [
         {
           id: 1,
