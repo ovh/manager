@@ -9,7 +9,7 @@ import { Card, OnboardingLayout } from '@ovh-ux/manager-react-components';
 import OnboardingDescription from '@/components/OnboardingDescription/OnboardingDescription.component';
 import OnboardingHighlights from '@/components/OnboardingHighlights/OnboardingHighlights.component';
 import { BACKUP_LICENSES_NAMESPACES, TUTORIAL_DOC_URL } from '@/module.constants';
-import { stubRoutes } from '@/routes/routes.constants';
+import { routeUrls } from '@/routes/routes.constants';
 
 export default function OnboardingPage() {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ONBOARDING);
@@ -23,7 +23,7 @@ export default function OnboardingPage() {
           img={{ alt: t('hero_alt') }}
           description={<OnboardingDescription />}
           orderButtonLabel={t('order_cta')}
-          onOrderButtonClick={() => navigate(stubRoutes.orderFunnel)}
+          onOrderButtonClick={() => navigate(routeUrls.order)}
         />
         <div className="mx-auto max-w-[800px] mt-6 mb-6 sm:px-10">
           <OnboardingHighlights keys={['storage_included', 'pricing', 'compatibility']} />
