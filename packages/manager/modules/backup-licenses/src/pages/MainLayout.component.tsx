@@ -2,7 +2,6 @@ import React, { Suspense, useContext, useMemo } from 'react';
 
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { OdsTab, OdsTabs } from '@ovhcloud/ods-components/react';
@@ -31,7 +30,6 @@ export default function MainLayout() {
   const location = useLocation();
   const { trackClick } = useOvhTracking();
 
-  const queryClient = useQueryClient();
   const tabs = useDashboardTabs();
 
   const activeTab = useMemo(

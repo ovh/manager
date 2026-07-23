@@ -1,5 +1,6 @@
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
-import { ApiError } from '@/types/ClientApi.type';
 import { hasBackupLicensesAddon } from '@/utils/hasBackupLicensesAddon/hasBackupLicensesAddon';
 
 const NOT_FOUND_STATUS = 404;
