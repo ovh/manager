@@ -10,7 +10,9 @@ export const useNichandle = () => {
     const getNichandle = async () => {
       const env = await environment.getEnvironment();
       const user = env.getUser();
-      setNichandle(user.nichandle);
+      // Use the account handle (auth.account), not nichandle: on CA/US
+      // getUser().nichandle is the login email, whereas contactAdmin.id is a handle.
+      setNichandle(user.auth.account);
     };
     getNichandle();
   }, []);
