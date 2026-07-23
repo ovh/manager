@@ -15,6 +15,9 @@ import common from '../../public/translations/common/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import order from '../../public/translations/order/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -22,6 +25,7 @@ function addTranslations() {
   i18next
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.COMMON, common)
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding)
+    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -56,6 +60,7 @@ export const initTestI18n = () =>
 export const labels = {
   common,
   onboarding,
+  order,
   actions,
   status,
   commonDashboard,

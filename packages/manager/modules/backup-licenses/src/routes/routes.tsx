@@ -8,6 +8,7 @@ import { subRoutes } from './routes.constants';
 
 const MainLayout = React.lazy(() => import('../pages/MainLayout.component'));
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
+const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
 
 export default (
   <>
@@ -17,6 +18,13 @@ export default (
       Component={OnboardingGuardPage}
       handle={{
         tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+      }}
+    />
+    <Route
+      path={subRoutes.order}
+      Component={OrderPage}
+      handle={{
+        tracking: { pageName: 'order', pageType: PageType.funnel },
       }}
     />
   </>

@@ -1,5 +1,7 @@
+import { ChangelogLinks } from '@ovh-ux/manager-react-components';
+
 export const LABELS = {
-  BACKUP_LICENSES: 'Backup Agent',
+  BACKUP_LICENSES: 'Backup Licenses',
   BACKUP_POLICY: 'Backup Policy',
   TENANTS: 'Tenants',
   VAULTS: 'Vaults',
@@ -38,3 +40,12 @@ export { NAMESPACE_PREFIX, BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.t
 
 // TODO(BKP-1206): placeholder — real tutorial URL not provided yet, replace once known.
 export const TUTORIAL_DOC_URL = 'https://docs.ovh.com';
+
+// Modèle : apps/hycu/src/constants.ts — même projet GitHub (16), filtré Backup and Disaster Recovery.
+export const CHANGELOG_LINKS: ChangelogLinks = {
+  changelog:
+    'https://github.com/orgs/ovh/projects/16/views/6?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+  roadmap:
+    'https://github.com/orgs/ovh/projects/16/views/1?pane=info&sliceBy%5Bvalue%5D=Backup+and+Disaster+Recovery',
+  'feature-request': 'https://github.com/ovh/private-cloud-roadmap/issues/new',
+};
