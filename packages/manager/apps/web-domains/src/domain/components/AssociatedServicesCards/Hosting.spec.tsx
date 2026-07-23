@@ -64,6 +64,11 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     useResourcesIcebergV6: vi.fn(),
     useResourcesIcebergV2: vi.fn(),
     useAuthorizationIam: vi.fn(),
+    useFeatureAvailability: vi.fn((features: string[]) => ({
+      data: Object.fromEntries(
+        (features ?? []).map((feature) => [feature, true]),
+      ),
+    })),
     ManagerTile: { Item },
     ActionMenu: ({ id, items }: { id: string; items: Array<{ id: number; label: string; onClick: () => void }> }) =>
       React.createElement('div', { 'data-testid': id }, items?.map((item) =>
