@@ -2,6 +2,7 @@ import '@/common/setupTests';
 import React from 'react';
 import { render, screen } from '@/common/utils/test.provider';
 import { vi, describe, it, expect } from 'vitest';
+import { useFeatureAvailability } from '@ovh-ux/manager-react-components';
 import { wrapper } from '@/common/utils/test.provider';
 import AssociatedServicesCards from '@/domain/components/AssociatedServicesCards/AssociatedServicesCards';
 
@@ -45,11 +46,21 @@ describe('AssociatedServicesCards component', () => {
     expect(screen.getByText('Hosting Component')).toBeInTheDocument();
   });
 
-  it('should render Emails component', () => {
+  it('should render Emails component when associated-email feature is enabled', () => {
     render(<AssociatedServicesCards serviceName="example.com" />, { wrapper });
 
     expect(screen.getByTestId('emails-component')).toBeInTheDocument();
     expect(screen.getByText('Emails Component')).toBeInTheDocument();
+  });
+
+  it('should hide Emails component when associated-email feature is disabled', () => {
+    vi.mocked(useFeatureAvailability).mockReturnValueOnce({
+      data: { 'web-domains:domains:associated-email': false },
+    } as ReturnType<typeof useFeatureAvailability>);
+
+    render(<AssociatedServicesCards serviceName="example.com" />, { wrapper });
+
+    expect(screen.queryByTestId('emails-component')).not.toBeInTheDocument();
   });
 
   it('should render SubDomainsMultiSite component', () => {
