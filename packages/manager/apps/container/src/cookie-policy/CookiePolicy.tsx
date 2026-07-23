@@ -19,6 +19,7 @@ import {
 import { ODS_THEME_COLOR_INTENT } from '@ovhcloud/ods-common-theming';
 import { OdsHTMLAnchorElementTarget } from '@ovhcloud/ods-common-core';
 import { useApplication } from '@/context';
+import { cmp } from '@/cmp';
 import links from './links';
 import ovhCloudLogo from '../assets/images/logo-ovhcloud.png';
 import { WEBSITE_PRIVACY_COOKIE_NAME, WEBSITE_TRACKING_CONSENT_VALUE } from './CookiePolicy.constants';
@@ -73,13 +74,22 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
     onValidate();
   };
 
-  useEffect(() => {
-    const isRegionUS = environment.getRegion() === 'US';
-    trackingPlugin.setRegion(environment.getRegion());
-    const hasConsent = cookies[WEBSITE_PRIVACY_COOKIE_NAME]?.includes(WEBSITE_TRACKING_CONSENT_VALUE) ?? false;
+  // Applies an existing consent state to the tracking plugin at boot.
+  const applyInitialConsent = (agreed: boolean) => {
+    if (agreed) {
+      trackingPlugin.init(true);
+    } else {
+      trackingPlugin.setEnabled(false);
+      deleteCookie('clientSideUserId');
+    }
+    onValidate(agreed);
+  };
 
-    // activate tracking if region is US or if tracking consent cookie is valid
-    if (isRegionUS || hasConsent) {
+  // Legacy TC_PRIVACY_CENTER decision — kept as the fallback when the CMP
+  // cannot come up (loader blocked, outage), so consent collection survives.
+  const applyLegacyDecision = () => {
+    const hasConsent = cookies[WEBSITE_PRIVACY_COOKIE_NAME]?.includes(WEBSITE_TRACKING_CONSENT_VALUE) ?? false;
+    if (hasConsent) {
       trackingPlugin.init(true);
     } else if (cookies[WEBSITE_PRIVACY_COOKIE_NAME] == null) {
       trackingPlugin.onConsentModalDisplay();
@@ -88,8 +98,52 @@ const CookiePolicy = ({ shell, onValidate }: Props): JSX.Element => {
       trackingPlugin.setEnabled(false);
       deleteCookie('clientSideUserId');
     }
-    onValidate(isRegionUS || hasConsent);
-  }, [show]);
+    onValidate(hasConsent);
+  };
+
+  useEffect(() => {
+    const region = environment.getRegion();
+    trackingPlugin.setRegion(region);
+
+    // US: no CMP (different legal framework) — tracking auto-enabled, as before.
+    if (region === 'US') {
+      trackingPlugin.init(true);
+      onValidate(true);
+      return undefined;
+    }
+
+    // EU/CA: the CMP owns the consent UI and the cmp_consent cookie; the
+    // Manager V6 maps its single tracking consent onto the CMP `analytics`
+    // category. The CMP injects no script here (scripts: []) — Piano stays
+    // bundled and gated by the tracking plugin.
+    cmp.load({ locale: environment.getUserLocale(), region });
+
+    let unsubscribe: (() => void) | undefined;
+    let cancelled = false;
+    cmp.whenReady().then(() => {
+      if (cancelled) return;
+      if (cmp.isError()) {
+        applyLegacyDecision();
+        return;
+      }
+      const choices = cmp.getConsent();
+      if (choices) {
+        applyInitialConsent(Boolean(choices.analytics));
+      } else {
+        // No consent yet — the CMP banner is on screen.
+        trackingPlugin.onConsentModalDisplay();
+        onValidate(false);
+      }
+      unsubscribe = cmp.onConsentChange((newChoices) => {
+        trackingPlugin.onUserConsentFromModal(Boolean(newChoices.analytics));
+        onValidate(Boolean(newChoices.analytics));
+      });
+    });
+    return () => {
+      cancelled = true;
+      unsubscribe?.();
+    };
+  }, []);
 
   return (
     <>
