@@ -3,13 +3,13 @@
 This project accepts contributions. In order to contribute, you should
 pay attention to a few things:
 
-1. your code must follow the coding style rules
-2. your code must be unit-tested
-3. your code must be documented
-4. your work must be signed (see below)
-5. you may contribute through GitHub [Pull Requests][pull-request] on `develop` branch
+1. Your code must follow the coding style rules
+2. Your code must be unit-tested
+3. Your code must be documented
+4. Your work must be signed (see below)
+5. You may contribute through GitHub [Pull Requests][pull-request] on `develop` branch
 
-# Coding and documentation Style
+# Coding and Documentation Style
 
 - Code must be formatted with `yarn run format`
 - Code must pass `yarn run test`
