@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
+import { ApiError } from '@ovh-ux/manager-core-api';
+
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
-import { ApiError } from '@/types/ClientApi.type';
 
 import { checkHasActiveBackupLicensesSubscription } from './checkHasActiveBackupLicensesSubscription';
 
