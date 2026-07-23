@@ -1,4 +1,7 @@
-import { ManagerTile } from '@ovh-ux/manager-react-components';
+import {
+  ManagerTile,
+  useFeatureAvailability,
+} from '@ovh-ux/manager-react-components';
 import { useTranslation } from 'react-i18next';
 import Emails from './Emails';
 import Hosting from './Hosting';
@@ -15,6 +18,9 @@ export default function AssociatedServicesCards({
   const { t } = useTranslation(['domain']);
 
   const { data: associatedHosting } = useGetAssociatedHosting(serviceName);
+  const { data: availability } = useFeatureAvailability([
+    'web-domains:domains:associated-email',
+  ]);
   return (
     <ManagerTile>
       <ManagerTile.Title>
@@ -24,8 +30,12 @@ export default function AssociatedServicesCards({
       <Hosting serviceName={serviceName} />
       <ManagerTile.Divider />
       <SubDomainMultiSite serviceNames={associatedHosting} />
-      <ManagerTile.Divider />
-      <Emails serviceName={serviceName} />
+      {availability?.['web-domains:domains:associated-email'] && (
+        <>
+          <ManagerTile.Divider />
+          <Emails serviceName={serviceName} />
+        </>
+      )}
     </ManagerTile>
   );
 }

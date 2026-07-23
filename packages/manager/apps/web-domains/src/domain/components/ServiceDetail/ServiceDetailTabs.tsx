@@ -27,7 +27,6 @@ import {
 } from '@/domain/constants/serviceDetail';
 import { TDomainResource } from '@/domain/types/domainResource';
 import DnsConfigurationTab from '@/domain/pages/domainTabs/dns/dnsConfiguration';
-import { useGetEnvironmentData } from '@/common/hooks/environment/data';
 import { urls } from '@/domain/routes/routes.constant';
 import { AnycastPreviousPages } from '@/domain/enum/navigation.enum';
 
@@ -54,12 +53,12 @@ export default function ServiceDetailsTabs({
   );
   const { data: availability } = useFeatureAvailability([
     'web-domains:zone',
+    'web-domains:domains:dynhost',
   ]);
 
-  const { region } = useGetEnvironmentData();
-
   const visibleTabs = ServiceDetailTabsProps.filter(
-    (tab) => tab.id !== 'dynhost' || region === 'EU',
+    (tab) =>
+      tab.id !== 'dynhost' || availability?.['web-domains:domains:dynhost'],
   );
 
   const handleValueChange = async (event: TabsValueChangeEvent) => {
