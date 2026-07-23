@@ -1,10 +1,16 @@
 export const subRoutes = {
   onboarding: 'onboarding' as const,
+  order: 'order' as const,
 } as const;
 
-// TODO(BKP-1206): neither route exists yet (ticket 0.2 — order funnel, ticket 1.1 — dashboard).
-// Until they ship, these intentionally fall through to the consumer app's catch-all "*" route.
+// Absolute paths for cross-page navigation (routes are mounted under "/" by the consumer app).
+export const routeUrls = {
+  onboarding: `/${subRoutes.onboarding}`,
+  order: `/${subRoutes.order}`,
+} as const;
+
+// TODO(BKP-1208): dashboard route does not exist yet (ticket 1.1).
+// Until it ships, this intentionally falls through to the consumer app's catch-all "*" route.
 export const stubRoutes = {
-  orderFunnel: '/order',
   dashboard: '/dashboard',
 } as const;

@@ -14,6 +14,15 @@ const BACKUP_LICENSES_PACKAGE = '@ovh-ux/backup-licenses';
 export default defineConfig({
   ...baseConfig,
   root: resolve(process.cwd()),
+  server: {
+    ...baseConfig.server,
+    watch: {
+      ...baseConfig.server?.watch,
+      // Évite l'erreur ENOSPC (limite inotify) : inutile de surveiller les
+      // dépendances et les artefacts de build dans ce monorepo.
+      ignored: ['**/node_modules/**', '**/dist/**'],
+    },
+  },
   plugins: [
     ...baseConfig.plugins,
     viteStaticCopy({

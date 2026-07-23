@@ -1,0 +1,194 @@
+{
+  "title": "Configura una licenza Veeam",
+  "step": {
+    "license_type": {
+      "label": "Tipo di licenza",
+      "subtitle": "Scegli il tipo di licenza da associare al tuo server Veeam Backup & Replication (VBR)."
+    },
+    "vdp_tier": {
+      "label": "Livello VDP",
+      "subtitle": "Scegli il livello di Veeam Data Platform adatto alla tua infrastruttura."
+    },
+    "server_vault": {
+      "label": "Server e Vault"
+    },
+    "go_to": "Torna al passaggio «{{label}}»"
+  },
+  "badge": {
+    "recommended": "★ Consigliato"
+  },
+  "license": {
+    "enterprise_plus": {
+      "title": "Veeam Enterprise Plus",
+      "price": "██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage",
+      "tag_vbr": "VBR V12 & V13",
+      "tag_os": "Solo Windows"
+    },
+    "data_platform": {
+      "title": "Veeam Data Platform",
+      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage",
+      "tag_vbr": "VBR V13",
+      "tag_os": "Windows & Linux"
+    }
+  },
+  "feature": {
+    "backup_restore": {
+      "label": "Backup e ripristino",
+      "tooltip": "Esegui il backup dei dati e ripristinali rapidamente in caso di guasto o errore"
+    },
+    "vault_500": {
+      "label": "Vault da 500 GB gestito da OVHcloud",
+      "tooltip": "Basato su Object Storage (S3) di OVHcloud (SLA di disponibilità del 99,9%)"
+    },
+    "security_base": {
+      "label": "Base di sicurezza",
+      "tooltip": "Crittografia dei dati, immutabilità e registro delle connessioni"
+    },
+    "security_permissions": {
+      "label": "Sicurezza e controllo dei permessi",
+      "tooltip": "Crittografia, immutabilità, autenticazione a più fattori (MFA)"
+    },
+    "cyber_ai": {
+      "label": "Cybersicurezza, osservabilità e IA",
+      "tooltip": "Panoramica, valutazione dei rischi, rilevamento delle minacce e lettura semplificata degli avvisi"
+    },
+    "orchestration": {
+      "label": "Orchestrazione e conformità",
+      "tooltip": "Organizza un piano di ripristino e supporta la conformità"
+    }
+  },
+  "tier": {
+    "foundation": {
+      "title": "Foundation",
+      "audience": "Consigliato per <b>PMI</b> con flotta limitata (<b>5–30 workload</b>). Backup/ripristino semplici.",
+      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+    },
+    "advanced": {
+      "title": "Advanced",
+      "audience": "Consigliato per <b>PMI</b> con flotta ampia (<b>30–150 workload</b>). Monitoraggio dettagliato e avvisi proattivi.",
+      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+    },
+    "premium": {
+      "title": "Premium",
+      "audience": "Consigliato per <b>medie e grandi imprese</b> con flotta estesa (<b>150–2000+ workload</b>). Orchestrazione del disaster recovery e conformità.",
+      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+    }
+  },
+  "vbr": {
+    "section_title": "Configura il tuo server VBR"
+  },
+  "field": {
+    "service_name": {
+      "label": "Nome del servizio",
+      "placeholder": "Es.: backup-prod-paris",
+      "hint": "Identificatore del tuo server VBR nel Manager OVHcloud.",
+      "error": "Ci manca solo il nome del tuo servizio."
+    },
+    "public_ip": {
+      "label": "Indirizzo IP pubblico",
+      "placeholder": "Es.: 185.26.17.45",
+      "hint": "L'indirizzo IP pubblico del tuo server VBR.",
+      "error": "Questo indirizzo IP non sembra valido — controlla il formato IPv4 o IPv6."
+    },
+    "private_ip": {
+      "label": "Indirizzo IP privato (LAN)",
+      "placeholder": "Es.: 192.168.1.10",
+      "hint": "Indirizzo IP locale del tuo server VBR sulla rete interna.",
+      "error": "Questo indirizzo IP non sembra valido — controlla il formato IPv4 o IPv6."
+    },
+    "vault_name": {
+      "label": "Nome del Vault",
+      "placeholder": "Es.: vault-prod-paris",
+      "hint": "Identificatore del tuo Vault nel Manager. Non può essere modificato dopo la creazione.",
+      "error": "Assegna un nome al tuo Vault per ritrovarlo facilmente."
+    }
+  },
+  "nat": {
+    "toggle_title": "Il mio server Veeam è dietro un NAT",
+    "toggle_desc": "IP pubblico ≠ IP locale sulla rete interna.",
+    "callout": "OVHcloud utilizzerà l'IP pubblico per raggiungere il tuo server e l'IP privato per le connessioni interne al VSPC."
+  },
+  "vault": {
+    "section_title": "Il tuo Vault Object Storage",
+    "section_subtitle": "Provisioning automatico alla sottoscrizione, gestito interamente da OVHcloud."
+  },
+  "vault_panel": {
+    "title": "Object Storage (S3) OVHcloud",
+    "badge": "Incluso nella tua offerta",
+    "summary": "500 GB inclusi, gestito interamente da OVHcloud — SLA 99,9%",
+    "metric": {
+      "included": {
+        "value": "500 GB",
+        "label": "inclusi con la tua licenza"
+      },
+      "overage": {
+        "value": "0,007 €",
+        "label": "IVA esclusa / GB / mese oltre soglia"
+      },
+      "egress": {
+        "value": "0 €",
+        "label": "costi di uscita o ripristino"
+      }
+    },
+    "attr": {
+      "managed": {
+        "title": "Vault gestito interamente",
+        "text": "Pronto all'uso come repository fin dalla sottoscrizione. Nessuna configurazione richiesta."
+      },
+      "secured": {
+        "title": "Vault sicuri",
+        "text": "Crittografia at rest e in transito, immutabilità attivabile, whitelist IP — SLA 99,9%."
+      },
+      "scalable": {
+        "title": "Architettura scalabile",
+        "text": "Amplia le tue capacità aggiungendo Vault nella regione scelta, in base alle tue esigenze."
+      },
+      "pricing": {
+        "title": "Tariffazione trasparente",
+        "text": "500 GB inclusi, poi 0,007 € IVA esclusa/GB/mese. Nessun costo di uscita o ripristino."
+      }
+    }
+  },
+  "region": {
+    "section_title": "Posizione del Vault",
+    "section_subtitle": "Scegli la regione OVHcloud in cui verrà eseguito il provisioning del tuo Vault. Questa scelta è definitiva.",
+    "par": {
+      "name": "France – Paris",
+      "zone": "Europe"
+    },
+    "gra": {
+      "name": "France – Gravelines",
+      "zone": "Europe"
+    },
+    "rbx": {
+      "name": "France – Roubaix",
+      "zone": "Europe"
+    }
+  },
+  "summary": {
+    "title": "Riepilogo del tuo ordine",
+    "edit": "Modifica",
+    "empty": "Da completare",
+    "field": {
+      "family": "Tipo di licenza",
+      "tier": "Livello",
+      "vault_included": "Storage incluso",
+      "vault_name": "Nome del Vault",
+      "region": "Posizione"
+    },
+    "vault_included_value": "500 GB",
+    "price": {
+      "label": "Stima mensile",
+      "value": "██,██ € IVA esclusa/mese"
+    }
+  },
+  "footer": {
+    "cancel": "Annulla",
+    "back": "← Indietro",
+    "continue": "Continua",
+    "to_vdp": "Scegli livello VDP →",
+    "to_server_vault": "Server e Vault →",
+    "order": "Ordina",
+    "disabled_hint": "Ancora qualche campo da compilare e una località da scegliere: il tuo ordine sarà pronto."
+  }
+}

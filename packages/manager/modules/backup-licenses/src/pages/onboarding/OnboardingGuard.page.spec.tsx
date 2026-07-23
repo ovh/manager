@@ -1,6 +1,8 @@
-import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
+
 import { Route, Routes } from 'react-router-dom';
+
+import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useHasActiveBackupLicensesSubscription } from '@/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription';
