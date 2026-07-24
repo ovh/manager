@@ -220,6 +220,6 @@
   "hosting_logs_back_to_general": "Ritorna alle informazioni generali",
   "hosting_logs_back_to_previous_page": "Torna alla pagina precedente",
   "hosting_tab_USER_STATISTICS": "Statistiche e log",
-  "hosting_dashboard_spoofing_banner": "Abbiamo rilevato e-mail inviate senza autenticazione dal tuo hosting. Per evitare che i tuoi invii vengano bloccati, configura l'invio autenticato delle tue e-mail.",
+  "hosting_dashboard_spoofing_banner": "Abbiamo rilevato e-mail inviate senza autenticazione dal tuo hosting. Per evitare che i tuoi invii vengano bloccati, configura i tuoi invii di e-mail autenticati.",
   "hosting_dashboard_spoofing_banner_link": "Consulta la guida"
 }
