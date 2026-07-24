@@ -21,5 +21,6 @@
   "edge_delete_warning": "Attention : supprimer votre Edge Gateway entraînera la suppression définitive de tous ses services réseau et des configurations. Cette action est irréversible.",
   "edge_delete_banner_success": "La demande de suppression de votre {{edgeName}} a été prise en compte.",
   "edge_operation_error": "Une erreur est survenue. Veuillez attendre quelques minutes avant de réessayer.",
-  "edge_actions_creating_tooltip": "Cette Edge Gateway est en cours de création. Ses actions seront disponibles une fois la création terminée."
+  "edge_actions_creating_tooltip": "Cette Edge Gateway est en cours de création. Ses actions seront disponibles une fois la création terminée.",
+  "edge_actions_deleting_tooltip": "Cette Edge Gateway est en cours de suppression. Ses actions ne sont plus disponibles."
 }

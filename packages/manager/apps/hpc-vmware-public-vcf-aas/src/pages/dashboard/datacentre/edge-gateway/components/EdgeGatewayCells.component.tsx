@@ -1,5 +1,8 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { VCDEdgeGatewayWithIpBlock } from '@ovh-ux/manager-module-vcd-api';
+import {
+  VCDEdgeGatewayWithIpBlock,
+  VCFAdvancedResourceStatus,
+} from '@ovh-ux/manager-module-vcd-api';
 import {
   ActionMenu,
   ActionMenuItem,
@@ -11,7 +14,14 @@ import { useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHref } from 'react-router-dom';
 import { subRoutes } from '@/routes/routes.constant';
-import { isEdgeCreating } from '@/utils/edgeGatewayStatus';
+
+const ACTIONS_DISABLED_TOOLTIP: Partial<Record<
+  VCFAdvancedResourceStatus,
+  string
+>> = {
+  CREATING: 'datacentres/edge-gateway:edge_actions_creating_tooltip',
+  DELETING: 'datacentres/edge-gateway:edge_actions_deleting_tooltip',
+};
 
 export const EdgeGatewayNameCell = (edge: VCDEdgeGatewayWithIpBlock) => (
   <DataGridTextCell>{edge.currentState.name}</DataGridTextCell>
@@ -28,7 +38,7 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGatewayWithIpBlock) => {
   ]);
   const id = useId();
   const tooltipId = useId();
-  const isCreating = isEdgeCreating(edge);
+  const disabledTooltipKey = ACTIONS_DISABLED_TOOLTIP[edge.resourceStatus];
   const deleteHref = useHref(`${edge.id}/${subRoutes.deleteEdgeGateway}`);
   const editNameHref = useHref(`${edge.id}/${subRoutes.editEdgeGatewayName}`);
   const editIpBlockHref = useHref(
@@ -65,17 +75,17 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGatewayWithIpBlock) => {
       items={actionMenuItems}
       isCompact
       variant={ODS_BUTTON_VARIANT.ghost}
-      isDisabled={isCreating}
+      isDisabled={!!disabledTooltipKey}
     />
   );
 
-  return isCreating ? (
+  return disabledTooltipKey ? (
     <>
       <div id={tooltipId} className="w-fit">
         {actionMenu}
       </div>
       <OdsTooltip triggerId={tooltipId} withArrow>
-        {t('datacentres/edge-gateway:edge_actions_creating_tooltip')}
+        {t(disabledTooltipKey)}
       </OdsTooltip>
     </>
   ) : (
