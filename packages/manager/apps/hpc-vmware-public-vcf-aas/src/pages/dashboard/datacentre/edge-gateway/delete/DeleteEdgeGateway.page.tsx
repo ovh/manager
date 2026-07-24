@@ -1,11 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Modal } from '@ovh-ux/manager-react-components';
 import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsText, OdsMessage } from '@ovhcloud/ods-components/react';
 import {
   GetEdgeGatewayParams,
+  VCDEdgeGateway,
+  getVcdEdgeGatewayListQueryKey,
   useDeleteEdgeGateway,
   useVcdEdgeGateway,
 } from '@ovh-ux/manager-module-vcd-api';
@@ -19,15 +22,30 @@ export default function DeleteEdgeGatewayPage() {
   const navigate = useNavigate();
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useMessageContext();
+  const queryClient = useQueryClient();
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
   const { data: edge, isLoading } = useVcdEdgeGateway(edgeParams);
   const edgeName = edge?.currentState.name;
 
+  // Optimistic update: mark the edge as DELETING in the query cache
+  const markEdgeAsDeleting = async () => {
+    const queryKey = getVcdEdgeGatewayListQueryKey(id, vdcId);
+    await queryClient.cancelQueries({ queryKey });
+    queryClient.setQueryData<VCDEdgeGateway[]>(queryKey, (edges) =>
+      edges?.map((currentEdge) =>
+        currentEdge.id === edgeGatewayId
+          ? { ...currentEdge, resourceStatus: 'DELETING' }
+          : currentEdge,
+      ),
+    );
+  };
+
   const { mutate: deleteEdge, isPending: isDeleting } = useDeleteEdgeGateway({
     ...edgeParams,
     onSettled: closeModal,
-    onSuccess: () => {
+    onSuccess: async () => {
+      await markEdgeAsDeleting();
       addSuccess({
         content: t('edge_delete_banner_success', { edgeName }),
         includedSubRoutes: [subRoutes.edgeGateway],
