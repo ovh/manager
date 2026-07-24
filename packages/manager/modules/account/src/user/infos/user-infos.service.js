@@ -199,6 +199,43 @@ export default class UserAccountInfosService {
       .then(({ data }) => data);
   }
 
+  /**
+   * Get the e-invoicing billing address rule for a given SIRET (PPF directory).
+   *
+   * Ticket contract: POST /meta/account/rules?action=update with country FR, the
+   * account legal form and the 14-digit SIRET; the response drives the address
+   * picker (RG1-RG4) via `visible`, `value.in`, `default_value`, `mandatory`.
+   *
+   * TODO(back): confirm the exact route/base once the PPF backend is in prod.
+   */
+  getEinvoicingRules({ siret, legalForm }) {
+    return this.$http
+      .post(
+        '/meta/account/rules',
+        {
+          country: 'FR',
+          legal_form: legalForm,
+          company_national_identification_number: siret,
+        },
+        { params: { action: 'update' } },
+      )
+      .then(({ data }) => ({
+        visible: Boolean(data.visible),
+        mandatory: Boolean(data.mandatory),
+        in: (data.value && data.value.in) || null,
+        defaultValue: data.default_value || null,
+      }));
+  }
+
+  /**
+   * Save the selected e-invoicing billing address (RG5). The backend revalidates
+   * it against the PPF directory and rejects with 400 if it is no longer active
+   * (RG6). TODO(public/me): switch to PUT /public/me once available.
+   */
+  saveEinvoicingBillingAddress(einvoicingBillingAddress) {
+    return this.updateUseraccountInfos({ einvoicingBillingAddress });
+  }
+
   getCreationRules(params) {
     // Get creation Rules by user
     return this.$http

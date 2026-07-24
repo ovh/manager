@@ -1,0 +1,51 @@
+<div
+    class="text-center"
+    data-ng-if="$ctrl.loading"
+>
+    <oui-spinner data-size="s"></oui-spinner>
+</div>
+
+<!-- RG1: hidden when the rule is not visible (SIREN absent from the directory) -->
+<div
+    class="oui-field"
+    data-ng-if="!$ctrl.loading && $ctrl.rule.visible"
+>
+    <div class="oui-field__header">
+        <label
+            class="oui-field__label"
+            data-ng-bind="('signup_einvoicing_address_label' | translate) + ' ' + ($ctrl.rule.mandatory ? '' : 'signup_not_mandatory_field' | translate)"
+        ></label>
+    </div>
+    <div class="oui-field__control">
+        <!-- RG4: known SIREN but no active address -->
+        <oui-message
+            type="info"
+            data-ng-if="!$ctrl.hasAddresses()"
+        >
+            <span data-translate="signup_einvoicing_no_active_address"></span>
+        </oui-message>
+
+        <!-- RG2 / RG3: pick an active address -->
+        <oui-radio-group
+            data-ng-if="$ctrl.hasAddresses()"
+            data-model="$ctrl.model.einvoicingBillingAddress"
+            data-on-change="$ctrl.onSelect()"
+        >
+            <oui-radio
+                data-ng-repeat="address in $ctrl.rule.in track by $index"
+                data-value="address"
+            >
+                <span data-ng-bind="address"></span>
+            </oui-radio>
+        </oui-radio-group>
+
+        <!-- RG6: selected address no longer active at save time -->
+        <oui-message
+            class="mt-3"
+            type="warning"
+            data-ng-if="$ctrl.saveError"
+        >
+            <span data-translate="signup_einvoicing_stale_address"></span>
+        </oui-message>
+    </div>
+</div>

@@ -79,6 +79,17 @@
                 data-is-indian-subsidiary="$ctrl.isIndianSubsidiary"
                 data-is-french-association="$ctrl.isFrenchAssociation()"
             ></siret-component>
+
+            <!-- E-INVOICING ADDRESS PICKER (FR B2B/B2G, activity section) -->
+            <new-account-form-einvoicing
+                class="col-sm-12"
+                data-ng-if="$ctrl.isSiretAvailable && section === 'activity'"
+                data-model="$ctrl.model"
+                data-siret="$ctrl.model.companyNationalIdentificationNumber"
+                data-legal-form="$ctrl.model.legalform"
+                data-country="$ctrl.model.country"
+                data-user-account-service-infos="$ctrl.userAccountServiceInfos"
+            ></new-account-form-einvoicing>
         </div>
     </fieldset>
 

@@ -777,5 +777,8 @@
   "signup_enum_purposeOfPurchase_commercial": "Utilisation dans le cadre d'une activité commerciale",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilisation dans le cadre d'une activité non lucrative, religieuse ou politique",
   "signup_enum_purposeOfPurchase_study": "Utilisation à des fins d'étude ou de recherche universitaire",
-  "signup_enum_purposeOfPurchase_public-service": "Utilisation à des fins de service public"
+  "signup_enum_purposeOfPurchase_public-service": "Utilisation à des fins de service public",
+  "signup_einvoicing_address_label": "Adresse de réception de vos factures électroniques",
+  "signup_einvoicing_no_active_address": "Aucune adresse active n'est disponible pour votre SIREN dans l'annuaire. Vous pourrez la renseigner plus tard.",
+  "signup_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
 }
