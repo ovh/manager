@@ -75,5 +75,14 @@
   "account_details_vat_select_no_vat": "My business is not registered for VAT",
   "account_details_vat_select_description_detected": "Number automatically deduced from your SIRET",
   "account_details_vat_select_description_no_vat": "Micro-enterprise exempt from VAT, association, etc.",
-  "account_details_field_displayName": "Display name"
+  "account_details_field_displayName": "Display name",
+  "account_details_einvoicing_section_title": "Electronic invoicing",
+  "account_details_einvoicing_company_type": "enterprise",
+  "account_details_einvoicing_vat_registered": "My {{companyType}} is VAT registered",
+  "account_details_einvoicing_vat_not_registered": "My {{companyType}} is not VAT registered",
+  "account_details_einvoicing_vat_registered_hint": "Number derived from your SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Micro-enterprise with basic franchise, association, etc.",
+  "account_details_einvoicing_address_label": "Address for receiving your electronic invoices",
+  "account_details_einvoicing_no_active_address": "No active address is available for your SIREN in the directory. You will be able to enter it later.",
+  "account_details_einvoicing_stale_address": "The selected address is no longer active. Please select a new one."
 }

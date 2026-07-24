@@ -75,5 +75,14 @@
   "account_details_vat_select_no_vat": "Mi empresa no está registrada en el IVA",
   "account_details_vat_select_description_detected": "Número deducido automáticamente de vuestro SIRET",
   "account_details_vat_select_description_no_vat": "Microempresa en franquicia de base, asociación, etc.",
-  "account_details_field_displayName": "Nombre de exhibición"
+  "account_details_field_displayName": "Nombre de exhibición",
+  "account_details_einvoicing_section_title": "Facturación electrónica",
+  "account_details_einvoicing_company_type": "empresa ",
+  "account_details_einvoicing_vat_registered": "Mi {{companyType}} está registrada a efectos del IVA",
+  "account_details_einvoicing_vat_not_registered": "Mi {{companyType}} no está registrada a efectos del IVA",
+  "account_details_einvoicing_vat_registered_hint": "Número deducido de su SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Microempresa en franquicia de base, asociación, etc.",
+  "account_details_einvoicing_address_label": "Dirección de recepción de sus facturas electrónicas",
+  "account_details_einvoicing_no_active_address": "No hay ninguna dirección activa disponible para su SIREN en el directorio. Podrá indicarla más tarde.",
+  "account_details_einvoicing_stale_address": "La dirección seleccionada ya no está activa. Por favor, seleccione una nueva."
 }

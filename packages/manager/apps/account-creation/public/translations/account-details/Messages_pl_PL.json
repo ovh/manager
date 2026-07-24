@@ -75,5 +75,14 @@
   "account_details_vat_select_no_vat": "Moja firma nie jest zarejestrowana do VAT",
   "account_details_vat_select_description_detected": "Numer automatycznie wyprowadzony z Twojego SIRET",
   "account_details_vat_select_description_no_vat": "Mikroprzedsiębiorstwo zwolnione z podstawy, stowarzyszenie itp.",
-  "account_details_field_displayName": "Nazwa wyświetlana"
+  "account_details_field_displayName": "Nazwa wyświetlana",
+  "account_details_einvoicing_section_title": "Fakturowanie elektroniczne",
+  "account_details_einvoicing_company_type": "firma",
+  "account_details_einvoicing_vat_registered": "Moja {{companyType}} jest zarejestrowana do celów VAT",
+  "account_details_einvoicing_vat_not_registered": "Moja {{companyType}} nie jest zarejestrowana do celów VAT",
+  "account_details_einvoicing_vat_registered_hint": "Numer wywnioskowany z Twojego SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Mikroprzedsiębiorstwo zwolnione z VAT, stowarzyszenie itp.",
+  "account_details_einvoicing_address_label": "Adres odbioru Twoich faktur elektronicznych",
+  "account_details_einvoicing_no_active_address": "Dla Twojego numeru SIREN nie jest dostępny żaden aktywny adres w katalogu. Będziesz mógł podać go później.",
+  "account_details_einvoicing_stale_address": "Wybrany adres nie jest już aktywny. Proszę wybrać nową."
 }

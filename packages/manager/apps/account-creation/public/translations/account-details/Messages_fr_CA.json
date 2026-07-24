@@ -71,5 +71,14 @@
   "account_details_vat_select_detected": "Detecté depuis le SIRET",
   "account_details_vat_select_no_vat": "Mon entreprise n'est pas immatriculée à la TVA",
   "account_details_vat_select_description_detected": "Numéro déduit automatiquement de votre SIRET",
-  "account_details_vat_select_description_no_vat": "Micro-entreprise en franchise de base, association, etc."
+  "account_details_vat_select_description_no_vat": "Micro-entreprise en franchise de base, association, etc.",
+  "account_details_einvoicing_section_title": "Facturation électronique",
+  "account_details_einvoicing_company_type": "entreprise",
+  "account_details_einvoicing_vat_registered": "Mon {{companyType}} est immatriculée à la TVA",
+  "account_details_einvoicing_vat_not_registered": "Mon {{companyType}} n'est pas immatriculée à la TVA",
+  "account_details_einvoicing_vat_registered_hint": "Numéro déduit depuis votre SIRET : {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Micro-entreprise en franchise de base, association, etc.",
+  "account_details_einvoicing_address_label": "Adresse de réception de vos factures électroniques",
+  "account_details_einvoicing_no_active_address": "Aucune adresse active n'est disponible pour votre SIREN dans l'annuaire. Vous pourrez la renseigner plus tard.",
+  "account_details_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
 }

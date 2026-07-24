@@ -75,5 +75,14 @@
   "account_details_vat_select_no_vat": "La mia azienda non è registrata per l'IVA",
   "account_details_vat_select_description_detected": "Numero dedotto automaticamente dal tuo SIRET",
   "account_details_vat_select_description_no_vat": "Micro-impresa in franchigia di base, associazione, ecc.",
-  "account_details_field_displayName": "Nome visualizzato"
+  "account_details_field_displayName": "Nome visualizzato",
+  "account_details_einvoicing_section_title": "Fatturazione elettronica",
+  "account_details_einvoicing_company_type": "impresa",
+  "account_details_einvoicing_vat_registered": "La mia {{companyType}} è registrata ai fini IVA",
+  "account_details_einvoicing_vat_not_registered": "La mia {{companyType}} non è registrata ai fini IVA",
+  "account_details_einvoicing_vat_registered_hint": "Numero dedotto dal tuo SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Microimpresa in franchigia IVA, associazione, ecc.",
+  "account_details_einvoicing_address_label": "Indirizzo di ricezione delle tue fatture elettroniche",
+  "account_details_einvoicing_no_active_address": "Nessun indirizzo attivo è disponibile per il tuo SIREN nell'annuario. Potrai inserirlo in seguito.",
+  "account_details_einvoicing_stale_address": "L'indirizzo selezionato non è più attivo. Si prega di selezionarne una nuova."
 }

@@ -75,5 +75,14 @@
   "account_details_vat_select_no_vat": "Mein Unternehmen ist nicht umsatzsteuerlich registriert",
   "account_details_vat_select_description_detected": "Nummer automatisch von Ihrem SIRET abgeleitet",
   "account_details_vat_select_description_no_vat": "Kleinunternehmen mit Grundfreibetrag, Verein usw.",
-  "account_details_field_displayName": "Anzeigename"
+  "account_details_field_displayName": "Anzeigename",
+  "account_details_einvoicing_section_title": "Elektronische Rechnungsstellung",
+  "account_details_einvoicing_company_type": "Firma",
+  "account_details_einvoicing_vat_registered": "Mein {{companyType}} ist umsatzsteuerpflichtig",
+  "account_details_einvoicing_vat_not_registered": "Mein {{companyType}} ist nicht umsatzsteuerpflichtig",
+  "account_details_einvoicing_vat_registered_hint": "Nummer abgeleitet von Ihrer SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Kleinunternehmen mit Basisbefreiung, Verein usw.",
+  "account_details_einvoicing_address_label": "Empfangsadresse für Ihre elektronischen Rechnungen",
+  "account_details_einvoicing_no_active_address": "Für Ihre SIREN ist keine aktive Adresse im Verzeichnis verfügbar. Sie können diese später angeben.",
+  "account_details_einvoicing_stale_address": "Die ausgewählte Adresse ist nicht mehr aktiv. Bitte wählen Sie eine neue aus."
 }
