@@ -777,5 +777,14 @@
   "signup_enum_purposeOfPurchase_commercial": "Utilizzo nell'ambito di un'attività commerciale",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilizzo nell'ambito di un'attività non lucrativa, religiosa o politica",
   "signup_enum_purposeOfPurchase_study": "Utilizzo a fini di studio o ricerca universitaria",
-  "signup_enum_purposeOfPurchase_public-service": "Utilizzo a fini di servizio pubblico"
+  "signup_enum_purposeOfPurchase_public-service": "Utilizzo a fini di servizio pubblico",
+  "signup_einvoicing_address_label": "Indirizzo di ricezione delle Sue fatture elettroniche",
+  "signup_einvoicing_empty_b2b": "Nessun indirizzo attivo è stato trovato nell'elenco della fatturazione elettronica per il Suo SIREN. Non potrà ricevere fatture elettroniche finché non verrà fornito un indirizzo attivo. La preghiamo di rivolgersi alla Sua Piattaforma Autorizzata.",
+  "signup_einvoicing_empty_b2g": "Nessun indirizzo attivo è stato trovato nell'elenco della fatturazione elettronica per il Suo SIREN. La preghiamo di contattare l'assistenza se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità.",
+  "signup_einvoicing_single_b2b": "L'indirizzo {{address}} sarà utilizzato come indirizzo di fatturazione elettronica predefinito.",
+  "signup_einvoicing_single_b2g": "L'indirizzo {{address}} sarà utilizzato come indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro.",
+  "signup_einvoicing_multi_b2g_hint": "Potrà inoltre configurarne un altro dal Suo spazio di fatturazione.",
+  "signup_einvoicing_stale_address": "L'indirizzo selezionato non è più attivo. La preghiamo di selezionarne uno nuovo.",
+  "signup_einvoicing_multi_b2b": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito.",
+  "signup_einvoicing_multi_b2g": "La preghiamo di selezionare il Suo indirizzo di fatturazione elettronica predefinito. Se il Suo SIREN di fatturazione è diverso dal SIREN della Sua entità, può contattare l'assistenza per indicarne un altro."
 }

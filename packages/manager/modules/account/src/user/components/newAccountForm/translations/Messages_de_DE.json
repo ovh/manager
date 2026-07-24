@@ -777,5 +777,14 @@
   "signup_enum_purposeOfPurchase_commercial": "Nutzung im Rahmen einer Geschäftstätigkeit",
   "signup_enum_purposeOfPurchase_non-commercial": "Nutzung für gemeinnützige, religiöse oder politische Aktivitäten",
   "signup_enum_purposeOfPurchase_study": "Nutzung für Studien oder akademische Forschung",
-  "signup_enum_purposeOfPurchase_public-service": "Nutzung für die Erbringung öffentlicher Dienstleistungen"
+  "signup_enum_purposeOfPurchase_public-service": "Nutzung für die Erbringung öffentlicher Dienstleistungen",
+  "signup_einvoicing_address_label": "Empfangsadresse für Ihre elektronischen Rechnungen",
+  "signup_einvoicing_empty_b2b": "Es wurde keine aktive Adresse im Verzeichnis für elektronische Rechnungsstellung für Ihre SIREN gefunden. Sie können nicht elektronisch in Rechnung gestellt werden, solange keine aktive Adresse bereitgestellt wurde. Bitte wenden Sie sich an Ihre zugelassene Plattform.",
+  "signup_einvoicing_empty_b2g": "Es wurde keine aktive Adresse im Verzeichnis für elektronische Rechnungsstellung für Ihre SIREN gefunden. Bitte kontaktieren Sie den Support, falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht.",
+  "signup_einvoicing_single_b2b": "Die Adresse {{address}} wird als Standardadresse für die elektronische Rechnungsstellung verwendet.",
+  "signup_einvoicing_single_b2g": "Die Adresse {{address}} wird als Standardadresse für die elektronische Rechnungsstellung verwendet. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
+  "signup_einvoicing_multi_b2g_hint": "Sie können auch eine andere in Ihrem Rechnungsstellungsbereich konfigurieren.",
+  "signup_einvoicing_stale_address": "Die ausgewählte Adresse ist nicht mehr aktiv. Bitte wählen Sie eine neue aus.",
+  "signup_einvoicing_multi_b2b": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus.",
+  "signup_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben."
 }

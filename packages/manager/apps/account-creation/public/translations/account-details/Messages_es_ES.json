@@ -75,5 +75,21 @@
   "account_details_vat_select_no_vat": "Mi empresa no está registrada en el IVA",
   "account_details_vat_select_description_detected": "Número deducido automáticamente de vuestro SIRET",
   "account_details_vat_select_description_no_vat": "Microempresa en franquicia de base, asociación, etc.",
-  "account_details_field_displayName": "Nombre de exhibición"
+  "account_details_field_displayName": "Nombre de exhibición",
+  "account_details_einvoicing_section_title": "Facturación",
+  "account_details_einvoicing_company_type": "empresa ",
+  "account_details_einvoicing_vat_registered": "Mi {{companyType}} está registrada a efectos del IVA",
+  "account_details_einvoicing_vat_not_registered": "Mi {{companyType}} no está registrada a efectos del IVA",
+  "account_details_einvoicing_vat_registered_hint": "Número deducido de su SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Microempresa en franquicia de base, asociación, etc.",
+  "account_details_einvoicing_address_label": "Dirección de recepción de sus facturas electrónicas",
+  "account_details_einvoicing_no_active_address": "No hay ninguna dirección activa disponible para su SIREN en el directorio. Podrá indicarla más tarde.",
+  "account_details_einvoicing_stale_address": "La dirección seleccionada ya no está activa. Por favor, seleccione una nueva.",
+  "account_details_einvoicing_empty_b2b": "No se ha encontrado ninguna dirección activa en el directorio de facturación electrónica para su SIREN. No podrá recibir facturas por vía electrónica hasta que no se facilite una dirección activa. Por favor, póngase en contacto con su Plataforma Aprobada.",
+  "account_details_einvoicing_empty_b2g": "No se ha encontrado ninguna dirección activa en el directorio de facturación electrónica para su SIREN. Por favor, contacte con el soporte si su SIREN de facturación es diferente al SIREN de su entidad.",
+  "account_details_einvoicing_single_b2b": "La dirección {{address}} se utilizará como dirección de facturación electrónica por defecto.",
+  "account_details_einvoicing_single_b2g": "La dirección {{address}} se utilizará como dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra.",
+  "account_details_einvoicing_multi_b2g_hint": "También podrá configurar otra desde su espacio de facturación.",
+  "account_details_einvoicing_multi_b2b": "Por favor, seleccione su dirección de facturación electrónica por defecto.",
+  "account_details_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra."
 }

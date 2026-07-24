@@ -1,0 +1,74 @@
+<div class="text-center" data-ng-if="$ctrl.loading">
+    <oui-spinner data-size="s"></oui-spinner>
+</div>
+
+<!-- Hidden when the rule is not visible (SIREN absent from the directory).
+     Stable anchor id for external communications deep-linking to this field
+     (…?fieldToFocus=ovh_field_einvoicing_billing_address); on the wrapper so it
+     resolves in every state (banner or picker). -->
+<div
+    id="ovh_field_einvoicing_billing_address"
+    data-ng-if="!$ctrl.loading && $ctrl.rule.visible"
+>
+    <!-- Empty: informational banner, nothing to select -->
+    <oui-message type="info" data-ng-if="$ctrl.isEmpty()">
+        <span
+            data-ng-if="!$ctrl.isB2g()"
+            data-translate="signup_einvoicing_empty_b2b"
+        ></span>
+        <span
+            data-ng-if="$ctrl.isB2g()"
+            data-translate="signup_einvoicing_empty_b2g"
+        ></span>
+    </oui-message>
+
+    <!-- Single address: informational banner, used automatically -->
+    <oui-message type="info" data-ng-if="$ctrl.hasSingleAddress()">
+        <span
+            data-ng-if="!$ctrl.isB2g()"
+            data-translate="signup_einvoicing_single_b2b"
+            data-translate-values="{ address: $ctrl.getSingleAddress() }"
+        ></span>
+        <span
+            data-ng-if="$ctrl.isB2g()"
+            data-translate="signup_einvoicing_single_b2g"
+            data-translate-values="{ address: $ctrl.getSingleAddress() }"
+        ></span>
+    </oui-message>
+
+    <!-- Multiple addresses: mandatory ui-kit picker -->
+    <div class="oui-field" data-ng-if="$ctrl.hasMultipleAddresses()">
+        <div class="oui-field__header">
+            <label
+                class="oui-field__label"
+                data-translate="signup_einvoicing_address_label"
+            ></label>
+        </div>
+        <div class="oui-field__control">
+            <oui-select
+                name="einvoicingBillingAddress"
+                items="$ctrl.getAddressItems()"
+                match="label"
+                model="$ctrl.selectedAddress"
+                on-change="$ctrl.onAddressChange()"
+                data-ng-required="$ctrl.rule.mandatory"
+                searchable
+            ></oui-select>
+            <p
+                class="mt-2"
+                data-ng-if="!$ctrl.isB2g()"
+                data-translate="signup_einvoicing_multi_b2b"
+            ></p>
+            <p
+                class="mt-2"
+                data-ng-if="$ctrl.isB2g()"
+                data-translate="signup_einvoicing_multi_b2g"
+            ></p>
+        </div>
+    </div>
+
+    <!-- RG6: selected address no longer active at save time -->
+    <oui-message class="mt-3" type="warning" data-ng-if="$ctrl.staleAddress">
+        <span data-translate="signup_einvoicing_stale_address"></span>
+    </oui-message>
+</div>

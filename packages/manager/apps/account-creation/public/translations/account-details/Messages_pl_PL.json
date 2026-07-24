@@ -75,5 +75,21 @@
   "account_details_vat_select_no_vat": "Moja firma nie jest zarejestrowana do VAT",
   "account_details_vat_select_description_detected": "Numer automatycznie wyprowadzony z Twojego SIRET",
   "account_details_vat_select_description_no_vat": "Mikroprzedsiębiorstwo zwolnione z podstawy, stowarzyszenie itp.",
-  "account_details_field_displayName": "Nazwa wyświetlana"
+  "account_details_field_displayName": "Nazwa wyświetlana",
+  "account_details_einvoicing_section_title": "System fakturowania",
+  "account_details_einvoicing_company_type": "firma",
+  "account_details_einvoicing_vat_registered": "Moja {{companyType}} jest zarejestrowana do celów VAT",
+  "account_details_einvoicing_vat_not_registered": "Moja {{companyType}} nie jest zarejestrowana do celów VAT",
+  "account_details_einvoicing_vat_registered_hint": "Numer wywnioskowany z Twojego SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Mikroprzedsiębiorstwo zwolnione z VAT, stowarzyszenie itp.",
+  "account_details_einvoicing_address_label": "Adres odbioru faktur elektronicznych",
+  "account_details_einvoicing_no_active_address": "Dla Twojego numeru SIREN nie jest dostępny żaden aktywny adres w katalogu. Będziesz mógł podać go później.",
+  "account_details_einvoicing_stale_address": "Wybrany adres nie jest już aktywny. Proszę wybrać nowy.",
+  "account_details_einvoicing_empty_b2b": "W katalogu faktur elektronicznych nie znaleziono aktywnego adresu dla Państwa numeru SIREN. Nie będą Państwo mogli otrzymywać faktur drogą elektroniczną, dopóki nie zostanie podany aktywny adres. Proszę skontaktować się ze swoją autoryzowaną platformą.",
+  "account_details_einvoicing_empty_b2g": "W katalogu faktur elektronicznych nie znaleziono aktywnego adresu dla Państwa numeru SIREN. Proszę skontaktować się z działem wsparcia, jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu.",
+  "account_details_einvoicing_single_b2b": "Adres {{address}} będzie używany jako domyślny adres faktur elektronicznych.",
+  "account_details_einvoicing_single_b2g": "Adres {{address}} będzie używany jako domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
+  "account_details_einvoicing_multi_b2g_hint": "Będziesz mógł również skonfigurować inny adres w swoim panelu fakturowania.",
+  "account_details_einvoicing_multi_b2b": "Proszę wybrać domyślny adres faktur elektronicznych.",
+  "account_details_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny."
 }

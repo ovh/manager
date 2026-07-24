@@ -8,6 +8,9 @@ export const READY_ONLY_RULES_PARAMS = [
   'commercialCommunicationsApproval',
   'managerLanguage',
   'smsConsent',
+  // Held in the model for the e-invoicing picker (pre-selection) but not a
+  // /newAccount/rules param — strip it so the endpoint doesn't 400 on it.
+  'einvoicingBillingAddress',
 ];
 
 export const READY_ONLY_PARAMS = [

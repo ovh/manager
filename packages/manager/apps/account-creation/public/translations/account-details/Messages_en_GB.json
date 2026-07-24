@@ -75,5 +75,21 @@
   "account_details_vat_select_no_vat": "My business is not registered for VAT",
   "account_details_vat_select_description_detected": "Number automatically deduced from your SIRET",
   "account_details_vat_select_description_no_vat": "Micro-enterprise exempt from VAT, association, etc.",
-  "account_details_field_displayName": "Display name"
+  "account_details_field_displayName": "Display name",
+  "account_details_einvoicing_section_title": "Billing",
+  "account_details_einvoicing_company_type": "enterprise",
+  "account_details_einvoicing_vat_registered": "My {{companyType}} is VAT registered",
+  "account_details_einvoicing_vat_not_registered": "My {{companyType}} is not VAT registered",
+  "account_details_einvoicing_vat_registered_hint": "Number derived from your SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Micro-enterprise with basic franchise, association, etc.",
+  "account_details_einvoicing_address_label": "Address for receiving your electronic invoices",
+  "account_details_einvoicing_no_active_address": "No active address is available for your SIREN in the directory. You will be able to enter it later.",
+  "account_details_einvoicing_stale_address": "The selected address is no longer active. Please select a new one.",
+  "account_details_einvoicing_empty_b2b": "No active address was found in the electronic invoicing directory for your SIREN. You will not be able to be invoiced electronically until an active address is provided. Please contact your Approved Platform.",
+  "account_details_einvoicing_empty_b2g": "No active address was found in the electronic invoicing directory for your SIREN. Please contact support if your invoicing SIREN is different from your entity's SIREN.",
+  "account_details_einvoicing_single_b2b": "The address {{address}} will be used as the default electronic invoicing address.",
+  "account_details_einvoicing_single_b2g": "The address {{address}} will be used as the default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
+  "account_details_einvoicing_multi_b2g_hint": "You will also be able to configure another one from your invoicing area.",
+  "account_details_einvoicing_multi_b2b": "Please select your default electronic invoicing address.",
+  "account_details_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one."
 }
