@@ -10,6 +10,7 @@ import {
   useVcdEdgeGateway,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
+import { OdsMessage } from '@ovhcloud/ods-components/react';
 import { useMessageContext } from '@/context/Message.context';
 import { useHasAvailableIpBlocks } from '@/hooks/edge/useHasAvailableIpBlocks';
 import { EDGE_SCHEMAS, EditEdgeIpBlockForm } from '@/schemas/edge.schema';
@@ -114,6 +115,11 @@ export default function EditEdgeGatewayIpBlockPage() {
       onDismiss={closeDrawer}
     >
       <form className="flex flex-col gap-y-6" onSubmit={handleSubmit(onSubmit)}>
+        {!isLoadingIpBlocks && !hasAvailableIpBlocks && (
+          <OdsMessage color="warning" isDismissible={false}>
+            {t('edge_edit_ip_block_no_available')}
+          </OdsMessage>
+        )}
         <Controller
           control={control}
           name="ipBlock"
@@ -124,11 +130,6 @@ export default function EditEdgeGatewayIpBlockPage() {
               placeholder={t('edge_ip_block_select')}
               options={ipBlockOptions}
               isDisabled={!hasAvailableIpBlocks}
-              helperText={
-                !hasAvailableIpBlocks
-                  ? t('edge_edit_ip_block_no_available')
-                  : undefined
-              }
             />
           )}
         />

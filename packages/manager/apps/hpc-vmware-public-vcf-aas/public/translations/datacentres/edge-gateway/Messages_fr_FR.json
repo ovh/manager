@@ -12,6 +12,7 @@
   "edge_add_input_name_label": "Nom de la Edge Gateway",
   "edge_add_input_name_helper": "Le nom de la Edge Gateway doit contenir entre {{edgeNameMinLength}} et {{edgeNameMaxLength}} caractères",
   "edge_add_input_ip_block_helper": "Vous devez sélectionner un IP Space",
+  "edge_add_ip_block_no_available": "Aucun IP Space n'est disponible. Vous devez avoir au moins 1 IP Space disponible pour créer une Edge Gateway.",
   "edge_add_submit": "Créer la Edge Gateway",
   "edge_add_banner_success": "La demande de création de votre Edge Gateway a bien été prise en compte.",
   "edge_update_banner_success": "La demande de modification de votre Edge Gateway a bien été prise en compte.",
