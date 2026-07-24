@@ -49,6 +49,8 @@ import {
 } from '@ovh-ux/manager-react-shell-client';
 import { useRules } from '@/data/hooks/useRules';
 import { RulesParam } from '@/data/api/rules';
+import { useEinvoicingRules } from '@/data/hooks/useEinvoicingRules';
+import { isEinvoicingStaleAddressError } from '@/config/einvoicing';
 import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
 import { Rule, RuleField } from '@/types/rule';
@@ -86,6 +88,8 @@ import {
 import ExitGuard from '@/components/exitGuard/ExitGuard.component';
 import InvalidationRedirectGuard from '@/components/invalidationRedirectGuard/InvalidationRedirectGuard.component';
 import VatSelect from './vatSelect/VatSelect.component';
+import EinvoicingAddressSelect from './einvoicingAddressSelect/EinvoicingAddressSelect.component';
+import { calculateFRVATNumber } from '@/pages/company/Company.helpers';
 
 type AccountDetailsFormProps = {
   rules: Record<RuleField, Rule>;
@@ -128,6 +132,9 @@ function AccountDetailsForm({
     confirmSend?: boolean;
     phoneType?: string;
     smsConsent?: boolean;
+    // Local form field until `@ovh-ux/manager-config` User carries it (bumped
+    // once the PPF backend is in prod). Sent to PUT /me as einvoicingBillingAddress.
+    einvoicingBillingAddress?: string;
   };
 
   const zodSchema = useMemo(() => {
@@ -135,6 +142,8 @@ function AccountDetailsForm({
     return baseSchema.extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
+      // Non-blocking (RG7): the customer can skip the e-invoicing address.
+      einvoicingBillingAddress: z.string().optional(),
     });
   }, [rules]);
 
@@ -161,12 +170,20 @@ function AccountDetailsForm({
       organisation: companyDetails?.name,
       companyNationalIdentificationNumber: companyDetails?.secondaryCNIN,
       nationalIdentificationNumber: companyDetails?.primaryCNIN,
-      vat: companyDetails?.vatID,
+      // FR B2B/B2G: the VAT checkbox must be unchecked by default, so start with
+      // an empty value even when a number could be deduced (it gets filled in
+      // when the customer ticks the box). Other flows keep the prefilled value.
+      vat:
+        currentUser.country === 'FR' &&
+        rules?.companyNationalIdentificationNumber
+          ? ''
+          : companyDetails?.vatID,
       address: companyDetails?.address || currentUser.address || '',
       zip: companyDetails?.zipCode || currentUser.zip || '',
       city: companyDetails?.city || currentUser.city || '',
       legalform: legalForm,
       smsConsent: false,
+      einvoicingBillingAddress: '',
     } as Partial<FormValues>,
     mode: 'onTouched',
     resolver: zodResolver(zodSchema),
@@ -217,6 +234,21 @@ function AccountDetailsForm({
     return country === 'FR' && rules?.companyNationalIdentificationNumber;
   }, [country, rules?.companyNationalIdentificationNumber]);
 
+  // FR B2B/B2G flow: shows the reworked VAT checkbox + the PPF e-invoicing
+  // address picker in a dedicated section.
+  const showEinvoicingSection = Boolean(separateSIRENAndSIRET);
+
+  const {
+    data: einvoicingRule,
+    refetch: refetchEinvoicingRules,
+  } = useEinvoicingRules(corporationIdValue, legalForm, showEinvoicingSection);
+
+  // VAT number deduced from the SIRET/SIREN, used when the VAT checkbox is on.
+  const deducedVatNumber = useMemo(
+    () => companyDetails?.vatID || calculateFRVATNumber(sirenValue ?? '') || '',
+    [companyDetails?.vatID, sirenValue],
+  );
+
   useEffect(() => {
     setValue('phone', '');
     if (phoneType === 'landline' && isSMSConsentAvailable) {
@@ -244,9 +276,20 @@ function AccountDetailsForm({
 
   const { mutate: addAccountDetails, isPending: isFormPending } = useMutation({
     mutationFn: async (payload: FormData) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { confirmSend, smsConsent, ...updatedUser } = payload;
-      await putMe(updatedUser);
+      const {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        confirmSend,
+        smsConsent,
+        einvoicingBillingAddress,
+        ...updatedUser
+      } = payload;
+
+      // RG5: save the selected e-invoicing address alongside the account.
+      // TODO(back): add einvoicingBillingAddress to the shared User type.
+      await putMe(({
+        ...updatedUser,
+        einvoicingBillingAddress,
+      } as unknown) as Partial<User>);
 
       if (isSMSConsentAvailable && payload.phoneType === 'mobile') {
         await putSmsConsent(smsConsent);
@@ -267,7 +310,25 @@ function AccountDetailsForm({
       );
       window.location.assign(redirectionUrl!);
     },
-    onError: (error) => {
+    onError: (error, variables) => {
+      // RG6: the selected e-invoicing address is no longer active → re-fetch the
+      // rules and prompt the customer to select again, without the generic error.
+      if (
+        isEinvoicingStaleAddressError(
+          error,
+          Boolean(variables?.einvoicingBillingAddress),
+        )
+      ) {
+        setValue('einvoicingBillingAddress', '');
+        refetchEinvoicingRules();
+        addError(
+          <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+            {t('account_details_einvoicing_stale_address')}
+          </OdsText>,
+          true,
+        );
+        return;
+      }
       trackError(error.message);
       addError(
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
@@ -800,60 +861,64 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            <Controller
-              control={control}
-              name="vat"
-              render={({ field: { name, value, onChange, onBlur } }) => (
-                <OdsFormField>
-                  <label
-                    htmlFor={name}
-                    slot="label"
-                    aria-label={t('account_details_field_vat', {
-                      vatLabel,
-                      interpolation: { escapeValue: false },
-                    })}
-                  >
-                    <OdsText preset="caption">
-                      {t('account_details_field_vat', {
+            {/* FR B2B/B2G: VAT is handled by the checkbox in the e-invoicing
+                section below. Keep the legacy field for the other flows. */}
+            {!showEinvoicingSection && (
+              <Controller
+                control={control}
+                name="vat"
+                render={({ field: { name, value, onChange, onBlur } }) => (
+                  <OdsFormField>
+                    <label
+                      htmlFor={name}
+                      slot="label"
+                      aria-label={t('account_details_field_vat', {
                         vatLabel,
                         interpolation: { escapeValue: false },
                       })}
-                      {rules?.vat?.mandatory && ' *'}
-                    </OdsText>
-                  </label>
+                    >
+                      <OdsText preset="caption">
+                        {t('account_details_field_vat', {
+                          vatLabel,
+                          interpolation: { escapeValue: false },
+                        })}
+                        {rules?.vat?.mandatory && ' *'}
+                      </OdsText>
+                    </label>
 
-                  {separateSIRENAndSIRET && companyDetails?.vatID ? (
-                    <VatSelect
-                      vatId={companyDetails.vatID}
-                      value={value}
-                      onValueChange={onChange}
-                    />
-                  ) : (
-                    <>
-                      <OdsInput
-                        name="vat"
-                        id={name}
+                    {separateSIRENAndSIRET && companyDetails?.vatID ? (
+                      <VatSelect
+                        vatId={companyDetails.vatID}
                         value={value}
-                        hasError={!!errors[name]}
-                        onOdsChange={onChange}
-                        onOdsBlur={onBlur}
+                        onValueChange={onChange}
                       />
-                      {errors.vat && rules?.vat && (
-                        <OdsText
-                          className="text-critical leading-[0.8]"
-                          preset="caption"
-                        >
-                          {renderTranslatedZodError(
-                            errors.vat.message,
-                            rules?.vat,
-                          )}
-                        </OdsText>
-                      )}
-                    </>
-                  )}
-                </OdsFormField>
-              )}
-            />
+                    ) : (
+                      <>
+                        <OdsInput
+                          name="vat"
+                          id={name}
+                          value={value}
+                          hasError={!!errors[name]}
+                          onOdsChange={onChange}
+                          onOdsBlur={onBlur}
+                        />
+                        {errors.vat && rules?.vat && (
+                          <OdsText
+                            className="text-critical leading-[0.8]"
+                            preset="caption"
+                          >
+                            {renderTranslatedZodError(
+                              errors.vat.message,
+                              rules?.vat,
+                            )}
+                          </OdsText>
+                        )}
+                      </>
+                    )}
+                  </OdsFormField>
+                )}
+              />
+            )}
             {rules?.purposeOfPurchase && (
               <Controller
                 control={control}
@@ -893,6 +958,93 @@ function AccountDetailsForm({
                         </OdsSelect>
                       </>
                     )}
+                  </OdsFormField>
+                )}
+              />
+            )}
+          </div>
+        )}
+
+        {showEinvoicingSection && (
+          <div className="flex flex-col">
+            <OdsText className="block" preset={ODS_TEXT_PRESET.heading4}>
+              {t('account_details_einvoicing_section_title')}
+            </OdsText>
+
+            {/* VAT — checkbox unchecked by default (not VAT-registered). */}
+            <Controller
+              control={control}
+              name="vat"
+              render={({ field: { name, value, onChange, onBlur } }) => {
+                const isVatRegistered = Boolean(value);
+                const companyType = t(
+                  'account_details_einvoicing_company_type',
+                );
+                return (
+                  <OdsFormField>
+                    <div className="w-full flex flex-row gap-4 items-start cursor-pointer">
+                      <OdsCheckbox
+                        inputId={name}
+                        id={name}
+                        name={name}
+                        onBlur={onBlur}
+                        isChecked={isVatRegistered}
+                        value={(value as unknown) as string}
+                        onClick={() =>
+                          onChange(isVatRegistered ? '' : deducedVatNumber)
+                        }
+                        class="flex-[0]"
+                      />
+                      <div className="flex flex-col">
+                        <OdsText preset={ODS_TEXT_PRESET.paragraph}>
+                          <label htmlFor={name}>
+                            {isVatRegistered
+                              ? t('account_details_einvoicing_vat_registered', {
+                                  companyType,
+                                })
+                              : t(
+                                  'account_details_einvoicing_vat_not_registered',
+                                  { companyType },
+                                )}
+                          </label>
+                        </OdsText>
+                        <OdsText preset={ODS_TEXT_PRESET.caption}>
+                          {isVatRegistered
+                            ? t(
+                                'account_details_einvoicing_vat_registered_hint',
+                                {
+                                  vatNumber: value,
+                                  interpolation: { escapeValue: false },
+                                },
+                              )
+                            : t(
+                                'account_details_einvoicing_vat_not_registered_hint',
+                              )}
+                        </OdsText>
+                      </div>
+                    </div>
+                  </OdsFormField>
+                );
+              }}
+            />
+
+            {/* PPF e-invoicing address picker (RG1→RG4). Hidden entirely for
+                RG1 (rule not visible). */}
+            {einvoicingRule?.visible && (
+              <Controller
+                control={control}
+                name="einvoicingBillingAddress"
+                render={({ field: { value, onChange } }) => (
+                  <OdsFormField>
+                    <OdsText preset="caption" className="block">
+                      {t('account_details_einvoicing_address_label')}
+                      {einvoicingRule?.mandatory && ' *'}
+                    </OdsText>
+                    <EinvoicingAddressSelect
+                      rule={einvoicingRule}
+                      value={value as string | undefined}
+                      onValueChange={onChange}
+                    />
                   </OdsFormField>
                 )}
               />
