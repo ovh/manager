@@ -4,12 +4,21 @@ import {
   GetVCDDatacentreParams,
   getVcdIpBlockListQueryKey,
   useVcdEdgeGateways,
+  VCDEdgeGateway,
 } from '@ovh-ux/manager-module-vcd-api';
-import { isEdgeCreating } from '@/utils/edgeGatewayStatus';
 
-const EDGE_CREATION_POLL_INTERVAL = 4000;
+const EDGE_LIFECYCLE_POLL_INTERVAL = 4000;
 
-// Follow Edge Gateway lifecycle (CREATING / READY) and refetch IP Blocks when creation is complete.
+const isEdgeTransitioning = (edge: VCDEdgeGateway): boolean => {
+  const transitionStatuses: VCDEdgeGateway['resourceStatus'][] = [
+    'CREATING',
+    'DELETING',
+  ];
+  return transitionStatuses.includes(edge.resourceStatus);
+};
+
+// Follow EdgeGateway lifecycle: poll while transition (CREATING / DELETING)
+// and refetch IP Blocks whenever one settles since the backend assigns on creation and frees on deletion.
 export const useLifecycleAwareEdgeGateways = ({
   id,
   vdcId,
@@ -20,22 +29,23 @@ export const useLifecycleAwareEdgeGateways = ({
     id,
     vdcId,
     refetchInterval: (query) =>
-      query.state.data?.some(isEdgeCreating)
-        ? EDGE_CREATION_POLL_INTERVAL
+      query.state.data?.some(isEdgeTransitioning)
+        ? EDGE_LIFECYCLE_POLL_INTERVAL
         : false,
   });
 
-  const creatingCount = edgeQuery.data?.filter(isEdgeCreating).length ?? 0;
-  const previousCreatingCount = useRef(creatingCount);
+  const transitioningCount =
+    edgeQuery.data?.filter(isEdgeTransitioning).length ?? 0;
+  const previousTransitioningCount = useRef(transitioningCount);
 
   useEffect(() => {
-    if (creatingCount < previousCreatingCount.current) {
+    if (transitioningCount < previousTransitioningCount.current) {
       queryClient.invalidateQueries({
         queryKey: getVcdIpBlockListQueryKey(id),
       });
     }
-    previousCreatingCount.current = creatingCount;
-  }, [creatingCount, queryClient, id]);
+    previousTransitioningCount.current = transitioningCount;
+  }, [transitioningCount, queryClient, id]);
 
   return edgeQuery;
 };
