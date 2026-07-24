@@ -12,29 +12,35 @@ import {
 } from '@ovhcloud/ods-react';
 import './VatSelect.scss';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type VatSelectProps = {
   vatId: string;
-  value?: string;
   onValueChange: (value: string | undefined) => void;
 };
 
-export default function VatSelect({
-  vatId,
-  value,
-  onValueChange,
-}: VatSelectProps) {
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(value);
+export default function VatSelect({ vatId, onValueChange }: VatSelectProps) {
+  // No option is pre-selected: the customer must explicitly choose between the
+  // detected VAT and "no VAT". `undefined` = nothing picked (matches neither the
+  // detected `vatId` nor the "no VAT" empty value).
+  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+    undefined,
+  );
 
   const { t } = useTranslation('account-details');
+
+  // Clear the pre-filled detected VAT so the form value matches the empty UI
+  // selection — submitting without an explicit choice is not allowed.
+  useEffect(() => {
+    onValueChange(undefined);
+  }, []);
+
   return (
     <RadioGroup
       onValueChange={({ value: newValue }) => {
+        setSelectedValue(newValue ?? undefined);
         onValueChange(newValue || undefined);
-        setSelectedValue(newValue || undefined);
       }}
-      defaultValue={vatId}
     >
       <Tile selected={selectedValue === vatId}>
         <Radio value={vatId} className="config-tile">
@@ -66,7 +72,7 @@ export default function VatSelect({
           </div>
         </Radio>
       </Tile>
-      <Tile selected={selectedValue === undefined}>
+      <Tile selected={selectedValue === ''}>
         <Radio value={''} className="config-tile">
           <div className="config-tile__info">
             <div className="config-tile__info__radio">

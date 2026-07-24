@@ -1,7 +1,10 @@
 import { LegalForm } from '@ovh-ux/manager-config';
 
+// INSEE "catégorie juridique" code → account type: 9.* => association,
+// 4.* / 7.* / 8110 => administration (B2G), anything else
+// (1.*, 2.*, 3.*, 5.*, 6.* …) => corporation.
 const LEGAL_FORM_CODE_ASSOCIATION = /^9\d+$/;
-const LEGAL_FORM_CODE_ADMINISTRATION = /^7\d+$/;
+const LEGAL_FORM_CODE_ADMINISTRATION = /^(4\d+|7\d+|8110)$/;
 
 export const calculateFRVATNumber = (siren: string): string | null => {
   const parsedSiren = Number.parseInt(siren, 10);

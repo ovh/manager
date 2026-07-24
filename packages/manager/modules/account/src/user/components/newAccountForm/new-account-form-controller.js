@@ -25,6 +25,15 @@ import {
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
 
+// The e-invoicing billing address rule ships in the /newAccount/rules array but
+// is rendered by its dedicated component inside the SIRET block — never by the
+// generic section loop. apiv6 may expose the field name camelCased, so match
+// both spellings.
+const EINVOICING_FIELD_NAMES = [
+  'einvoicingBillingAddress',
+  'einvoicing_billing_address',
+];
+
 export default class NewAccountFormController {
   /* @ngInject */
   constructor(
@@ -335,6 +344,12 @@ export default class NewAccountFormController {
       }),
     );
 
+    // e-invoicing billing address is driven by a dedicated rule and is not part
+    // of /newAccount/rules, so it is dropped by the pick above. Re-add it (RG5).
+    if (this.model.einvoicingBillingAddress) {
+      model.einvoicingBillingAddress = this.model.einvoicingBillingAddress;
+    }
+
     let promise = this.userAccountServiceInfos
       .updateUseraccountInfos(model)
       .then((result) => {
@@ -437,6 +452,12 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
+        // RG6: the e-invoicing address may have been revalidated against the PPF
+        // directory and rejected with a 400. Ask the field to refresh its rules
+        // and prompt for a new selection.
+        if (err?.status === 400 && this.model.einvoicingBillingAddress) {
+          this.$scope.$broadcast('einvoicing.staleAddress');
+        }
         const isPrivateIndividual =
           this.model.legalform === USER_TYPE_INDIVIDUAL;
         const genericError = isPrivateIndividual
@@ -483,9 +504,15 @@ export default class NewAccountFormController {
   // return the list of fields for a given fieldset name
   // readonly rules are not returned because they are not editable
   getRulesBySection(section) {
+    // Keep the e-invoicing billing address rule out of the generic section loop
+    // (rendered by its dedicated component inside the SIRET block); it otherwise
+    // lands in the "other" section.
+    const sectionRules = (this.rules || []).filter(
+      (rule) => !EINVOICING_FIELD_NAMES.includes(rule.fieldName),
+    );
     // special section to handle fields that does not belong to any section
     if (section === 'other') {
-      return this.rules.filter((rule) => {
+      return sectionRules.filter((rule) => {
         const allFields = flatten(values(this.SECTIONS));
         return (
           !allFields.includes(rule.fieldName) &&
@@ -498,7 +525,7 @@ export default class NewAccountFormController {
     if (section === this.getDisplayNameSection()) {
       fields.push(FIELD_NAME_LIST.displayName);
     }
-    return this.rules.filter(
+    return sectionRules.filter(
       (rule) => fields.includes(rule.fieldName) && !rule.readonly,
     );
   }

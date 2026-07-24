@@ -259,6 +259,11 @@
     </div>
     <!-- end manual form -->
 
+    <!-- Projected content (e.g. e-invoicing billing address picker), shown above
+         the confirmation checkbox. Wrapped in a grid row so a projected col-*
+         clears properly (otherwise the float overlaps the checkbox below). -->
+    <div class="row" ng-transclude></div>
+
     <!-- valid that the information is correct -->
     <oui-checkbox
         class="mb-4"

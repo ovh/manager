@@ -107,6 +107,12 @@ export default class UserAccountInfosController {
           // remove empty attributes
           this.user = pickBy(this.user, identity);
 
+          // FR e-invoicing: the current saved billing address (GET /me) is not a
+          // /rules field, so the pick above drops it. Re-add it so the edition
+          // form can pre-select it (spec: current value handling, edition only).
+          this.user.einvoicingBillingAddress =
+            response.einvoicingBillingAddress ?? null;
+
           // juste in case birthday date is retrieved in legacy format
           // we nullify it so we don't break the first call to /rules
           if (
