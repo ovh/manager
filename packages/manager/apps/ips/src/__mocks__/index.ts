@@ -2,6 +2,7 @@ export * from './catalog/catalog';
 export * from './dedicated/get-dedicated-virtualmac';
 export * from './ip/ip.handler';
 export * from './dedicated-cloud';
+export * from './vmwareCloudDirector';
 export * from './dedicated-server';
 export * from './vps';
 export * from './vrack';

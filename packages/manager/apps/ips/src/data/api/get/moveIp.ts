@@ -12,6 +12,7 @@ export type MoveIpAvailableDestinationsResponse = {
   hostingReseller: MoveIpDestination[];
   cloudProject: MoveIpDestination[];
   dedicatedServer: MoveIpDestination[];
+  vmwareCloudDirector: MoveIpDestination[];
 };
 
 export const getMoveIpAvailableDestinationsQueryKey = (ip: string) => [

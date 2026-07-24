@@ -7,6 +7,7 @@ import { IpTypeEnum } from '@/data/constants';
 import {
   GetProductServicesParams,
   ProductServicesDetails,
+  VmwareCloudDirectorResourceStatus,
   getProductServices,
   getProductServicesQueryKey,
 } from '../api';
@@ -16,6 +17,8 @@ export interface ServiceInfoWithId {
   category: IpTypeEnum;
   serviceName: string;
   displayName: string;
+  region?: string;
+  resourceStatus?: VmwareCloudDirectorResourceStatus;
 }
 
 const getDisplayName = (

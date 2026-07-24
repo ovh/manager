@@ -16,7 +16,7 @@
   "service_selection_select_ip_parking_option_label": "Parking IP",
   "service_selection_select_dedicated_server_option_group_label": "Dedicated servers",
   "service_selection_select_vps_option_group_label": "Virtual private servers",
-  "service_selection_select_dedicated_cloud_option_group_label": "Hosted Private Cloud (VMware)",
+  "service_selection_select_dedicated_cloud_option_group_label": "Hosted Private Cloud",
   "service_selection_region_helper": "Region: ",
   "region_selection_title": "Select a region for your new Additional IP",
   "offer_selection_title": "Choose your solution",

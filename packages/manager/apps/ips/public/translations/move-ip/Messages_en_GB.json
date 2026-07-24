@@ -11,7 +11,7 @@
   "moveIpDoneMessage": "The {{ip}} IP has been moved.",
   "service_destination_ipLoadbalancing_option_group_label": "Load balancing IP",
   "service_destination_dedicatedServer_option_group_label": "Dedicated server",
-  "service_destination_dedicatedCloud_option_group_label": "Dedicated Cloud",
+  "service_destination_dedicatedCloud_option_group_label": "Hosted Private Cloud",
   "service_destination_vps_option_group_label": "VPS",
   "service_destination_cloudProject_option_group_label": "Cloud Project ",
   "service_destination_hostingReseller_option_group_label": "Web hosting reseller",

@@ -13,6 +13,7 @@ import {
   getVpsDatacenter,
 } from '../api';
 import { DATACENTER_TO_REGION } from './catalog';
+import { useGetVCFaaSServices } from './useGetVCFaaSServices';
 
 export const useServiceRegion = ({
   serviceName,
@@ -56,14 +57,24 @@ export const useServiceRegion = ({
     retry: false,
   });
 
+  const { services: vcfaasServices, isLoading: isVcfaasLoading } =
+    useGetVCFaaSServices();
+  const vcfaasRegion =
+    serviceType === ServiceType.vcfaas
+      ? vcfaasServices.find((service) => service.serviceName === serviceName)
+          ?.region
+      : undefined;
+
   return {
     isLoading:
       dedicatedServerData?.isLoading ||
       vpsDatacenter?.isLoading ||
-      dedicatedCloudLocation?.isLoading,
+      dedicatedCloudLocation?.isLoading ||
+      (serviceType === ServiceType.vcfaas && isVcfaasLoading),
     region:
       dedicatedServerData?.data?.data?.region ||
       dedicatedCloudLocation?.data?.data?.region ||
+      vcfaasRegion ||
       DATACENTER_TO_REGION[vpsDatacenter?.data?.data?.name] ||
       vpsDatacenter?.data?.data?.name?.toLowerCase(),
     isError:

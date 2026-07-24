@@ -17,7 +17,7 @@ import {
   PccCatalogResponse,
 } from '@/data/api';
 import { DEFAULT_PRICING_MODE } from '@/pages/order/order.constant';
-import { IpVersion, ServiceType } from '@/types';
+import { IpVersion, ServiceType, isPrivateCloudServiceType } from '@/types';
 
 import {
   getContinentKeyFromRegion,
@@ -55,15 +55,15 @@ export const useAdditionalIpPricings = ({
   const { environment } = React.useContext(ShellContext);
   const { data, ...query } = useCatalogIps({
     subsidiary: environment.user.ovhSubsidiary,
-    enabled: !!region && serviceType !== ServiceType.dedicatedCloud,
+    enabled: !!region && !isPrivateCloudServiceType(serviceType),
   });
 
   const { data: pccData, ...pccQuery } = usePccCatalog({
     serviceName,
-    enabled: serviceType === ServiceType.dedicatedCloud,
+    enabled: isPrivateCloudServiceType(serviceType),
   });
 
-  if (serviceType === ServiceType.dedicatedCloud) {
+  if (isPrivateCloudServiceType(serviceType)) {
     return {
       ...pccQuery,
       additionalIpPlanCode: undefined,

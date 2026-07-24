@@ -52,9 +52,12 @@ export const ServiceRegion = () => {
   if (
     !region ||
     !selectedServiceType ||
-    ![ServiceType.vps, ServiceType.server, ServiceType.dedicatedCloud].includes(
-      selectedServiceType,
-    )
+    ![
+      ServiceType.vps,
+      ServiceType.server,
+      ServiceType.dedicatedCloud,
+      ServiceType.vcfaas,
+    ].includes(selectedServiceType)
   ) {
     return <></>;
   }

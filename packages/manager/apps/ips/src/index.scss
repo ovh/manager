@@ -5,3 +5,19 @@
 html {
   font-family: var(--ods-font-family-default);
 }
+
+// La liste de résultats d'une combobox est positionnée en `absolute` dans le
+// contenu de la modale, qui est rogné (`overflow: hidden` sur le dialog,
+// `overflow-y: auto` sur son contenu) : la liste est donc coupée par le bord
+// bas de la modale au lieu de s'afficher au-dessus d'elle.
+// On lève ce rognage pour les modales contenant une combobox afin que la
+// liste déroulante déborde par-dessus la modale.
+ods-modal:has(ods-combobox) {
+  &::part(dialog) {
+    overflow: visible;
+  }
+
+  &::part(dialog-content) {
+    overflow: visible;
+  }
+}

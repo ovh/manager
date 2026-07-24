@@ -16,6 +16,7 @@ import {
   getVpsServiceInfos,
   getVrackServiceInfos,
 } from '../api';
+import { useGetVCFaaSServices } from './useGetVCFaaSServices';
 
 export const useCheckServiceAvailability = ({
   serviceName,
@@ -84,10 +85,30 @@ export const useCheckServiceAvailability = ({
     retry: false,
   });
 
+  // VCFaaS availability is derived from the organization resourceStatus
+  // (already fetched in V2), not from a V6 serviceInfos call.
+  const { services: vcfaasServices } = useGetVCFaaSServices();
+  const vcfaasStatus =
+    serviceType === ServiceType.vcfaas
+      ? vcfaasServices.find((service) => service.serviceName === serviceName)
+          ?.resourceStatus === 'READY'
+        ? 'ok'
+        : 'expired'
+      : undefined;
+
+  const getServiceStatus = () => {
+    if (serviceType === ServiceType.ipParking) {
+      return 'ok';
+    }
+    if (serviceType === ServiceType.vcfaas) {
+      return vcfaasStatus;
+    }
+    return data?.data?.status;
+  };
+
   return {
     isServiceInfoLoading: isLoading,
-    serviceStatus:
-      serviceType === ServiceType.ipParking ? 'ok' : data?.data?.status,
+    serviceStatus: getServiceStatus(),
     hasServiceInfoError: isError,
     serviceInfoError: error,
   };

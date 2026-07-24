@@ -9,12 +9,14 @@ import {
   assertOdsModalVisibility,
 } from '@ovh-ux/manager-core-test-utils';
 
+import { vmwareCloudDirectorOrganizationMockList } from '@/__mocks__';
 import moveIpResponse from '@/__mocks__/ip/get-ip-move.json';
 import ipList from '@/__mocks__/ip/get-ips.json';
 import { urls } from '@/routes/routes.constant';
 import {
   getButtonByIcon,
   getButtonByLabel,
+  getComboboxByName,
   labels,
   renderTest,
 } from '@/test-utils';
@@ -59,6 +61,78 @@ describe('Move IP modal', () => {
         expect(
           screen.getByText(labels.moveIp.moveIpOnGoingTaskMessage),
         ).toBeVisible(),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+  });
+
+  it('displays the vmwareCloudDirector services inside the Hosted Private Cloud group', async () => {
+    const { container } = await openMoveIpModal();
+
+    const serviceSelect = await getComboboxByName({
+      container,
+      name: 'service',
+    });
+
+    const getGroupTitles = () =>
+      Array.from(serviceSelect.querySelectorAll('ods-combobox-group')).map(
+        (group) => group.querySelector('span[slot="title"]')?.textContent,
+      );
+
+    await waitFor(
+      () =>
+        expect(getGroupTitles()).toContain(
+          labels.moveIp.service_destination_dedicatedCloud_option_group_label,
+        ),
+      WAIT_FOR_DEFAULT_OPTIONS,
+    );
+
+    // The VCFaaS services have no group of their own
+    expect(getGroupTitles()).not.toContain(
+      'service_destination_vmwareCloudDirector_option_group_label',
+    );
+
+    const hostedPrivateCloudGroup = Array.from(
+      serviceSelect.querySelectorAll('ods-combobox-group'),
+    ).find(
+      (group) =>
+        group.querySelector('span[slot="title"]')?.textContent ===
+        labels.moveIp.service_destination_dedicatedCloud_option_group_label,
+    );
+
+    // VCFaaS services come first, sorted alphabetically, then the PCC ones.
+    // The VCFaaS services without id are not displayed.
+    expect(
+      Array.from(
+        hostedPrivateCloudGroup.querySelectorAll('ods-combobox-item'),
+      ).map((item) => item.getAttribute('value')),
+    ).toEqual([
+      ...moveIpResponse.vmwareCloudDirector
+        .map(({ service }) => service)
+        .filter((service) => !!service)
+        .sort((a, b) => a.localeCompare(b)),
+      ...moveIpResponse.dedicatedCloud.map(({ service }) => service),
+    ]);
+  });
+
+  it('displays the display name of the vmwareCloudDirector organizations', async () => {
+    const { container } = await openMoveIpModal();
+
+    const serviceSelect = await getComboboxByName({
+      container,
+      name: 'service',
+    });
+
+    const organization = vmwareCloudDirectorOrganizationMockList.find(
+      ({ id }) => id === 'vcd-org-nsx-1',
+    );
+
+    await waitFor(
+      () =>
+        expect(
+          serviceSelect.querySelector(
+            `ods-combobox-item[value="${organization.id}"]`,
+          ),
+        ).toHaveTextContent(organization.targetSpec.fullName),
       WAIT_FOR_DEFAULT_OPTIONS,
     );
   });

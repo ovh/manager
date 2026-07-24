@@ -56,6 +56,12 @@ export const getLinkByServiceName = ({
         `#/iplb/${serviceName}`,
         {},
       ) as Promise<string>;
+    case IpTypeEnum.VCFAAS:
+      return navigation.getURL(
+        'hpc-vmware-public-vcf-aas',
+        `#/${serviceName}`,
+        {},
+      ) as Promise<string>;
     default:
       return Promise.resolve('#');
   }

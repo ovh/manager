@@ -14,6 +14,7 @@ export * from './organisationsList';
 export * from './organisationsDetails';
 export * from './byoip';
 export * from './productServices';
+export * from './vmwareCloudDirector';
 export * from './ipRipeInformation';
 export * from './ipTask';
 export * from './moveIp';

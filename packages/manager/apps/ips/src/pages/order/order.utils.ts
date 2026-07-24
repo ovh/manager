@@ -1,7 +1,7 @@
 import JSURL from 'jsurl';
 
 import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
-import { IpVersion, ServiceType } from '@/types';
+import { IpVersion, ServiceType, isPrivateCloudServiceType } from '@/types';
 
 import { DEFAULT_PRICING_MODE, IpOffer } from './order.constant';
 
@@ -44,6 +44,7 @@ export const getAdditionalIpsProductSettings = ({
         ![
           ServiceType.vps,
           ServiceType.dedicatedCloud,
+          ServiceType.vcfaas,
           ServiceType.server,
         ].includes(serviceType) && {
           label: 'datacenter',
@@ -53,17 +54,16 @@ export const getAdditionalIpsProductSettings = ({
     duration: 'P1M',
     planCode,
     pricingMode,
-    productId:
-      serviceType === ServiceType.dedicatedCloud ? 'privateCloud' : 'ip',
+    productId: isPrivateCloudServiceType(serviceType) ? 'privateCloud' : 'ip',
     quantity: offer === IpOffer.blockAdditionalIp ? 1 : quantity,
-    serviceName:
-      serviceType === ServiceType.dedicatedCloud ? serviceName : null,
+    serviceName: isPrivateCloudServiceType(serviceType) ? serviceName : null,
     datacenter:
       region &&
       ipVersion === IpVersion.ipv4 &&
       ![
         ServiceType.vps,
         ServiceType.dedicatedCloud,
+        ServiceType.vcfaas,
         ServiceType.server,
       ].includes(serviceType)
         ? getDatacenterFromRegion(region)
@@ -89,6 +89,7 @@ export const getVrackBandwidthUpgradeProductSettings = ({
 export const offerPossibilitiesByServiceType = {
   [IpOffer.blockAdditionalIp]: [
     ServiceType.dedicatedCloud,
+    ServiceType.vcfaas,
     ServiceType.vrack,
     ServiceType.ipParking,
     ServiceType.server,

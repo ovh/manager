@@ -13,6 +13,10 @@ export const getTypeByServiceName = (
   const vpsRegex = new RegExp(/^vps[\w\d-.]+/);
   const vrackRegex = new RegExp(/^pn[\w\d-.]+/);
   const loadBalancerRegex = new RegExp(/^loadbalancer-[\w\d]+/);
+  // VCFaaS is not a real IP type: it is exposed as a "failover" IP whose
+  // routedTo.serviceName starts with "org-". We rely on this prefix to route
+  // to the VCFaaS dashboard.
+  const vcfaasRegex = new RegExp(/^org-[\w\d]+/);
 
   if (dedicatedRegex.test(serviceName)) return IpTypeEnum.DEDICATED;
   if (pccRegex.test(serviceName)) return IpTypeEnum.PCC;
@@ -20,6 +24,7 @@ export const getTypeByServiceName = (
   if (vpsRegex.test(serviceName)) return IpTypeEnum.VPS;
   if (vrackRegex.test(serviceName)) return IpTypeEnum.VRACK;
   if (loadBalancerRegex.test(serviceName)) return IpTypeEnum.LOAD_BALANCING;
+  if (vcfaasRegex.test(serviceName)) return IpTypeEnum.VCFAAS;
 
   return null;
 };

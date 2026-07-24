@@ -11,7 +11,7 @@
   "moveIpDoneMessage": "L'IP {{ip}} è stato trasferito correttamente.",
   "service_destination_ipLoadbalancing_option_group_label": "IP Load Balancing",
   "service_destination_dedicatedServer_option_group_label": "Server dedicati",
-  "service_destination_dedicatedCloud_option_group_label": "Cloud dedicato",
+  "service_destination_dedicatedCloud_option_group_label": "Hosted Private Cloud",
   "service_destination_vps_option_group_label": "VPS",
   "service_destination_cloudProject_option_group_label": "Progetto Cloud",
   "service_destination_hostingReseller_option_group_label": "Hosting Reseller",
