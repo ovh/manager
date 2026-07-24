@@ -1,6 +1,5 @@
 import {
   useVcdDatacentre,
-  useVcdEdgeGateways,
   useVcdIpBlocks,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
@@ -17,6 +16,7 @@ import Loading from '@/components/loading/Loading.component';
 import { useEdgeGatewayListingColumns } from './hooks/useEdgeGatewayListingColumns';
 import { EdgeGatewayOrderButton } from './components/EdgeGatewayOrderButton.component';
 import { useHasEdgeGatewayAccess } from '@/hooks/edge/useHasEdgeGatewayAccess';
+import { useLifecycleAwareEdgeGateways } from '@/hooks/edge/useLifecycleAwareEdgeGateways';
 import { EDGE_GATEWAY_MAX_QUANTITY } from './datacentreEdgeGateway.constants';
 import { aggregateEdgeGateways } from '@/utils/aggregateEdgeGateways';
 
@@ -28,7 +28,7 @@ export default function EdgeGatewayListingPage() {
     isLoading: isLoadingAccess,
   } = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
-  const edgeQuery = useVcdEdgeGateways({ id, vdcId });
+  const edgeQuery = useLifecycleAwareEdgeGateways({ id, vdcId });
   const ipBlockQuery = useVcdIpBlocks({ id });
 
   const queryList = [vdcQuery, edgeQuery, ipBlockQuery];
