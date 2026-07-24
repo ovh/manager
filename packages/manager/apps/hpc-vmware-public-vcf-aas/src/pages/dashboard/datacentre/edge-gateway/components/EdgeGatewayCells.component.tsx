@@ -79,16 +79,16 @@ export const EdgeGatewayActionCell = (edge: VCDEdgeGatewayWithIpBlock) => {
     />
   );
 
-  return disabledTooltipKey ? (
+  return (
     <>
-      <div id={tooltipId} className="w-fit">
+      <div id={tooltipId} className="w-fit ml-auto">
         {actionMenu}
       </div>
-      <OdsTooltip triggerId={tooltipId} withArrow>
-        {t(disabledTooltipKey)}
-      </OdsTooltip>
+      {disabledTooltipKey && (
+        <OdsTooltip triggerId={tooltipId} withArrow>
+          {t(disabledTooltipKey)}
+        </OdsTooltip>
+      )}
     </>
-  ) : (
-    actionMenu
   );
 };

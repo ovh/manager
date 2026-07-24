@@ -34,7 +34,8 @@ export default function AddEdgeGatewayPage() {
     id,
     vdcId,
     onSettled: closeDrawer,
-    onSuccess: () => addSuccess({ content: t('edge_add_banner_success') }),
+    onSuccess: (_edge, { name }) =>
+      addSuccess({ content: t('edge_add_banner_success', { edgeName: name }) }),
     onError: () => addError({ content: t('edge_operation_error') }),
   });
 
