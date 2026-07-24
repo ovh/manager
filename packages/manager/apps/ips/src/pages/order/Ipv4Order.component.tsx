@@ -6,7 +6,7 @@ import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 import { isRegionInUs } from '@/components/RegionSelector/region-selector.utils';
 import { useCheckServiceAvailability } from '@/data/hooks/useCheckServiceAvailability';
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
-import { IpVersion, ServiceType } from '@/types';
+import { IpVersion, ServiceType, isPrivateCloudServiceType } from '@/types';
 
 import { IpOffer } from './order.constant';
 import { OrderContext } from './order.context';
@@ -50,7 +50,7 @@ export const Ipv4Order: React.FC = () => {
     !!selectedService &&
     serviceStatus === 'ok' &&
     selectedOffer === IpOffer.blockAdditionalIp &&
-    selectedServiceType !== ServiceType.dedicatedCloud &&
+    !isPrivateCloudServiceType(selectedServiceType) &&
     !!selectedPlanCode &&
     !!computedRegion &&
     !!selectedGeolocation &&

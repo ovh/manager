@@ -24,6 +24,7 @@ import {
   ServiceInfo,
   useCheckServiceAvailability,
   useGetProductServices,
+  useGetVCFaaSServices,
 } from '@/data/hooks';
 import { ServiceRegion } from '@/pages/order/ServiceRegion.component';
 import { IpVersion, ServiceType, ipParkingOptionValue } from '@/types';
@@ -34,9 +35,13 @@ import { TRANSLATION_NAMESPACES } from '@/utils';
 const getServiceType = (
   serviceId: string,
   servicesByCategory: Record<string, ServiceInfo[]>,
+  vcfaasServices: ServiceInfo[],
 ): ServiceType => {
   if (serviceId === ipParkingOptionValue) {
     return ServiceType.ipParking;
+  }
+  if (vcfaasServices?.some(({ serviceName }) => serviceName === serviceId)) {
+    return ServiceType.vcfaas;
   }
   if (
     servicesByCategory[IpTypeEnum.PCC]?.some(
@@ -79,13 +84,28 @@ export const ServiceSelectionSection: React.FC = () => {
   const { t } = useTranslation(TRANSLATION_NAMESPACES.order);
   const { trackClick } = useOvhTracking();
 
-  const { serviceByCategory, isLoading, isError, error } =
-    useGetProductServices([
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.DEDICATED],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VPS],
-      PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.PCC],
-    ]);
+  const {
+    serviceByCategory,
+    isLoading: areProductServicesLoading,
+    isError: hasProductServicesError,
+    error: productServicesError,
+  } = useGetProductServices([
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VRACK],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.DEDICATED],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.VPS],
+    PRODUCT_PATHS_AND_CATEGORIES[IpTypeEnum.PCC],
+  ]);
+
+  const {
+    services: vcfaas,
+    isLoading: areVcfaasServicesLoading,
+    isError: hasVcfaasServicesError,
+    error: vcfaasServicesError,
+  } = useGetVCFaaSServices();
+
+  const isLoading = areProductServicesLoading || areVcfaasServicesLoading;
+  const isError = hasProductServicesError || hasVcfaasServicesError;
+  const error = productServicesError || vcfaasServicesError;
 
   const {
     [IpTypeEnum.DEDICATED]: server,
@@ -120,7 +140,7 @@ export const ServiceSelectionSection: React.FC = () => {
             const serviceId = event.detail.value;
             setSelectedService(serviceId);
             setSelectedServiceType(
-              getServiceType(serviceId, serviceByCategory),
+              getServiceType(serviceId, serviceByCategory, vcfaas),
             );
             if (serviceId) {
               trackClick({
@@ -145,6 +165,14 @@ export const ServiceSelectionSection: React.FC = () => {
                   'service_selection_select_dedicated_cloud_option_group_label',
                 )}
               </span>
+              {vcfaas?.map((service) => (
+                <ComboboxServiceItem
+                  key={service.id}
+                  name={service.serviceName}
+                  {...service}
+                  isDisabled={disabledServices.includes(service.serviceName)}
+                />
+              ))}
               {dedicatedCloud?.map((service) => (
                 <ComboboxServiceItem
                   key={service.id}

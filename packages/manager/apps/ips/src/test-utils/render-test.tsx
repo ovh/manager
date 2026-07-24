@@ -28,6 +28,7 @@ import {
   GetIpLoadBalancingMocksParams,
   GetIpsMocksParams,
   GetOrganisationMocksParams,
+  GetVmwareCloudDirectorMocksParams,
   GetVpsMocksParams,
   GetVrackMocksParams,
   getCatalogMocks,
@@ -39,6 +40,7 @@ import {
   getIpsMocks,
   getOrganisationMocks,
   getOverTheBoxMocks,
+  getVmwareCloudDirectorMocks,
   getVpsMocks,
   getVrackMocks,
   getXdslMocks,
@@ -55,6 +57,7 @@ export type MockParams = GetIpsMocksParams &
   GetDedicatedMocksParams &
   GetServicesMocksParams &
   GetDedicatedCloudMocksParams &
+  GetVmwareCloudDirectorMocksParams &
   GetDedicatedServerMocksParams &
   GetVrackMocksParams &
   GetVpsMocksParams &
@@ -72,7 +75,7 @@ export const renderTest = async ({
   initialRoute,
   ...mockParams
 }: { initialRoute?: string } & MockParams = {}): Promise<RenderResult> => {
-  ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
+  (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers(
       [
         ...getIpsMocks(mockParams),
@@ -81,6 +84,7 @@ export const renderTest = async ({
         ...getServicesMocks(mockParams),
         ...getCatalogMocks(mockParams),
         ...getDedicatedCloudMocks(mockParams),
+        ...getVmwareCloudDirectorMocks(mockParams),
         ...getDedicatedServerMocks(mockParams),
         ...getVrackMocks(mockParams),
         ...getVpsMocks(mockParams),

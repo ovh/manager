@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useServiceRegion } from '@/data/hooks/useServiceRegion';
-import { IpVersion, ServiceType } from '@/types';
+import { IpVersion, ServiceType, isPrivateCloudServiceType } from '@/types';
 import { getCountryCode } from '@/utils';
 
 import { DEFAULT_PRICING_MODE, IpOffer, Ipv6Options } from './order.constant';
@@ -128,7 +128,7 @@ export const OrderContextProvider: React.FC<React.PropsWithChildren> = ({
       setSelectedOffer: (newOffer?: IpOffer) => {
         const code = getCountryCode(region || selectedRegion);
         setSelectedGeolocation(
-          code === 'gb' && selectedServiceType !== ServiceType.dedicatedCloud
+          code === 'gb' && !isPrivateCloudServiceType(selectedServiceType)
             ? 'uk'
             : code,
         );
