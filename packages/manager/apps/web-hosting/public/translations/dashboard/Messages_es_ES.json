@@ -219,5 +219,7 @@
   "hosting_tab_WEBSITE": "Mis sitios web",
   "hosting_logs_back_to_general": "Volver a la información general",
   "hosting_logs_back_to_previous_page": "Volver a la página anterior",
-  "hosting_tab_USER_STATISTICS": "Estadísticas y logs"
+  "hosting_tab_USER_STATISTICS": "Estadísticas y logs",
+  "hosting_dashboard_spoofing_banner": "Hemos detectado correos electrónicos enviados sin autenticación desde su alojamiento. Para evitar que sus envíos sean bloqueados, configure sus envíos de correo electrónico autenticados.",
+  "hosting_dashboard_spoofing_banner_link": "Consultar la guía"
 }

@@ -219,5 +219,7 @@
   "hosting_tab_WEBSITE": "Meine Websites",
   "hosting_logs_back_to_general": "Zurück zu den allgemeinen Informationen",
   "hosting_logs_back_to_previous_page": "Zur vorherigen Seite",
-  "hosting_tab_USER_STATISTICS": "Statistiken und Logs"
+  "hosting_tab_USER_STATISTICS": "Statistiken und Logs",
+  "hosting_dashboard_spoofing_banner": "Wir haben E-Mails festgestellt, die ohne Authentifizierung von Ihrem Hosting aus versendet wurden. Um zu verhindern, dass Ihre Sendungen blockiert werden, konfigurieren Sie bitte Ihre authentifizierten E-Mail-Versandoptionen.",
+  "hosting_dashboard_spoofing_banner_link": "Zur Anleitung"
 }

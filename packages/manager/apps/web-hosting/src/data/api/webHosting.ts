@@ -5,6 +5,7 @@ import {
   PostWebHostingAttachedDomainPayload,
   PostWebHostingWebsitePayload,
   PutWebHostingWebsitePayload,
+  SpoofingAllowedDomain,
   WebHostingWebsiteDomainType,
   WebHostingWebsiteType,
 } from '../types/product/webHosting';
@@ -186,4 +187,25 @@ export const getAttachedDomainDetails = async (
     `/hosting/web/${serviceName}/attachedDomain/${domain}`,
   );
   return data;
+};
+
+export const getWebHostingSpoofingQueryKey = (serviceName: string) => [
+  'get',
+  'webhosting',
+  'resource',
+  serviceName,
+  'spoofing',
+];
+
+export const getWebHostingSpoofing = async (
+  serviceName: string,
+): Promise<SpoofingAllowedDomain[]> => {
+  try {
+    const { data } = await v2.get<SpoofingAllowedDomain[]>(
+      `/webhosting/resource/${serviceName}/spoofing`,
+    );
+    return data;
+  } catch {
+    return [];
+  }
 };

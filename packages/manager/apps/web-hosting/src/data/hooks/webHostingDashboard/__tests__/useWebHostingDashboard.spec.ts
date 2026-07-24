@@ -10,6 +10,7 @@ import {
   serviceInfosMock,
   webHostingMock,
 } from '@/data/__mocks__';
+import { getWebHostingSpoofing } from '@/data/api/webHosting';
 import {
   useCreateAttachedDomainService,
   useCreateAttachedDomainsService,
@@ -21,6 +22,7 @@ import {
   useGetHostingServiceWebsite,
   useGetHostingWebsiteIds,
   useGetServiceInfos,
+  useGetWebHostingSpoofing,
   useGetWebsiteDeployments,
   usePostWebsiteDeploy,
   useUpdateAttachedDomainService,
@@ -421,5 +423,28 @@ describe('useWebHostingDashboard', () => {
       expect(onError).toHaveBeenCalled();
       expect(onError.mock.calls[0][0]).toEqual(error);
     });
+  });
+});
+
+describe('useGetWebHostingSpoofing', () => {
+  it('returns the detected spoofing sender domains from the API', async () => {
+    const domains = [{ senderDomain: 'foo.ovh', lastAccessAt: '2026-07-20T13:31:39.712Z' }];
+    vi.mocked(getWebHostingSpoofing).mockResolvedValueOnce(domains);
+
+    const { result } = renderHook(() => useGetWebHostingSpoofing('foo.ovh'), {
+      wrapper,
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data).toEqual(domains);
+    expect(getWebHostingSpoofing).toHaveBeenCalledWith('foo.ovh');
+  });
+
+  it('stays idle when no service name is provided', () => {
+    const { result } = renderHook(() => useGetWebHostingSpoofing(''), {
+      wrapper,
+    });
+
+    expect(result.current.fetchStatus).toBe('idle');
   });
 });

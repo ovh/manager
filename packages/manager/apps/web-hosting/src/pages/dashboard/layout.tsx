@@ -28,6 +28,7 @@ import {
   BaseLayout,
   ChangelogMenu,
   GuideMenu,
+  Link,
   Notifications,
   OvhSubsidiary,
   useDataApi,
@@ -37,6 +38,7 @@ import Breadcrumb from '@/components/breadcrumb/Breadcrumb.component';
 import ExpirationDate from '@/components/expirationDate/ExpirationDate.component';
 import {
   useGetHostingService,
+  useGetWebHostingSpoofing,
   useUpdateHostingService,
 } from '@/data/hooks/webHostingDashboard/useWebHostingDashboard';
 import { EmailOptionType } from '@/data/types/product/service';
@@ -46,7 +48,7 @@ import { useOverridePage } from '@/hooks/overridePage/useOverridePage';
 import { useEmailsUrl } from '@/hooks/useEmailsUrl';
 import { CHANGELOG_LINKS } from '@/utils/changelog.constants';
 
-import { GUIDE_URL } from '../websites/constant/websites.constants';
+import { EMAIL_SENDING_GUIDE_URL, GUIDE_URL } from '../websites/constant/websites.constants';
 
 export default function Layout() {
   const { shell } = useContext(ShellContext);
@@ -54,6 +56,8 @@ export default function Layout() {
   const { t } = useTranslation('dashboard');
   const isOverridedPage = useOverridePage();
   const { data } = useGetHostingService(serviceName);
+  const { data: spoofingDomains } = useGetWebHostingSpoofing(serviceName);
+  const isSpoofed = (spoofingDomains?.length ?? 0) > 0;
   const { data: availability } = useFeatureAvailability([
     'web-hosting:multisite-react',
     'web-hosting:osl-to-ldp',
@@ -283,6 +287,21 @@ export default function Layout() {
             <Text>{data?.serviceName}</Text>
           </div>
           <ExpirationDate />
+          {isSpoofed && (
+            <Message className="mb-6 w-full" color={MESSAGE_COLOR.warning}>
+              {t('hosting_dashboard_spoofing_banner')}{' '}
+              <Link
+                href={
+                  EMAIL_SENDING_GUIDE_URL[ovhSubsidiary as OvhSubsidiary] ||
+                  EMAIL_SENDING_GUIDE_URL.DEFAULT
+                }
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('hosting_dashboard_spoofing_banner_link')}
+              </Link>
+            </Message>
+          )}
           {onUpdateError && (
             <Message
               className="mb-10 w-full"
