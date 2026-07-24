@@ -1,4 +1,4 @@
-import { waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
@@ -9,11 +9,14 @@ import {
   dedicatedCloudMockList,
   dedicatedServerMockList,
   organisationMockList,
+  vmwareCloudDirectorNsxOrganizationIds,
+  vmwareCloudDirectorOrganizationMockList,
   vpsMockList,
   vrackMockList,
 } from '@/__mocks__';
 import {
   getButtonByLabel,
+  getComboboxByName,
   getOrganisationSelect,
   goToOrder,
   labels,
@@ -112,6 +115,18 @@ describe('Order', () => {
       offer: IpOffer.blockAdditionalIp,
       expectedOrderLink:
         "https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'pcc-1)~(label~'country~value~'FR))~duration~'P1M~planCode~'pcc-option-ip-ripe-28~pricingMode~'pcc-servicepack-default~productId~'privateCloud~quantity~1~serviceName~'pcc-1~datacenter~null))",
+    },
+    {
+      // VCFaaS behaves like a regular (non-privateCloud) IP order once selected:
+      // catalog comes from /order/catalog/formatted/ip, productId 'ip',
+      // serviceName null, organisation section visible.
+      case: 'VCFaaS',
+      ipVersion: IpVersion.ipv4,
+      serviceName: vmwareCloudDirectorNsxOrganizationIds[0],
+      isOrganisationSectionVisible: true,
+      organisation: organisationMockList[2],
+      offer: IpOffer.blockAdditionalIp,
+      expectedOrderLink: `https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'${vmwareCloudDirectorNsxOrganizationIds[0]})~(label~'country~value~'FR)~(label~'organisation~value~'RIPE_1))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))`,
     },
     {
       case: 'Dedicated server (additional IP)',
@@ -324,5 +339,101 @@ describe('Order', () => {
     await selectService({ container, serviceName: vrackMockList[0]?.name });
 
     await assertTextVisibility(labels.order.ipv6_limit_reached_error);
+  });
+
+  describe('VCFaaS service selection', () => {
+    it('lists only organizations whose first virtualDataCenter is NSX', async () => {
+      const { container } = await goToOrder();
+      await selectIpVersion(IpVersion.ipv4);
+
+      const serviceSelect = await getComboboxByName({
+        container,
+        name: 'service',
+      });
+
+      // The NSX organizations are selectable in the Hosted Private Cloud group
+      await waitFor(() =>
+        vmwareCloudDirectorNsxOrganizationIds.forEach((id) =>
+          expect(
+            serviceSelect.querySelector(`ods-combobox-item[value="${id}"]`),
+          ).toBeInTheDocument(),
+        ),
+      );
+
+      // Non-NSX organizations are excluded
+      const excludedOrganizationIds = vmwareCloudDirectorOrganizationMockList
+        .map(({ id }) => id)
+        .filter((id) => !vmwareCloudDirectorNsxOrganizationIds.includes(id));
+
+      excludedOrganizationIds.forEach((id) =>
+        expect(
+          serviceSelect.querySelector(`ods-combobox-item[value="${id}"]`),
+        ).not.toBeInTheDocument(),
+      );
+    });
+
+    it('lists VCFaaS services first, sorted alphabetically, in the Hosted Private Cloud group', async () => {
+      const { container } = await goToOrder();
+      await selectIpVersion(IpVersion.ipv4);
+
+      const serviceSelect = await getComboboxByName({
+        container,
+        name: 'service',
+      });
+
+      await waitFor(() =>
+        expect(
+          serviceSelect.querySelectorAll(
+            'ods-combobox-group:first-of-type ods-combobox-item',
+          ).length,
+        ).toBe(
+          vmwareCloudDirectorNsxOrganizationIds.length +
+            dedicatedCloudMockList.length,
+        ),
+      );
+
+      const displayedValues = Array.from(
+        serviceSelect.querySelectorAll(
+          'ods-combobox-group:first-of-type ods-combobox-item',
+        ),
+      ).map((item) => item.getAttribute('value'));
+
+      expect(displayedValues).toEqual([
+        ...vmwareCloudDirectorNsxOrganizationIds,
+        ...dedicatedCloudMockList.map(({ serviceName }) => serviceName),
+      ]);
+    });
+
+    it('does not display an availability error when selecting a VCFaaS organization', async () => {
+      const { container } = await goToOrder();
+      await selectIpVersion(IpVersion.ipv4);
+
+      await selectService({
+        container,
+        serviceName: vmwareCloudDirectorNsxOrganizationIds[0],
+      });
+
+      await waitFor(() =>
+        expect(
+          screen.queryByText(
+            labels.order.service_selection_expired_error_message,
+          ),
+        ).not.toBeInTheDocument(),
+      );
+    });
+
+    it('displays the region of the selected VCFaaS organization', async () => {
+      const { container } = await goToOrder();
+      await selectIpVersion(IpVersion.ipv4);
+
+      await selectService({
+        container,
+        serviceName: vmwareCloudDirectorNsxOrganizationIds[0],
+      });
+
+      await assertTextVisibility(labels.order.service_selection_region_helper, {
+        exact: false,
+      });
+    });
   });
 });

@@ -4,6 +4,8 @@ export * from './useGetTokens';
 export * from './useIpv6Availability';
 export * from './useGetProductService';
 export * from './useGetProductServices';
+export * from './useGetVCFaaSServices';
+export * from './useGetVCFaaSOrganizationNames';
 export * from './useGetServerModels';
 export * from './useDedicatedServerIpMigration';
 export * from './useCheckServiceAvailability';

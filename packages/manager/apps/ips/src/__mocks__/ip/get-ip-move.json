@@ -10,5 +10,10 @@
     },
     { "nexthop": [], "service": "0122456" }
   ],
-  "dedicatedServer": [{ "nexthop": [], "service": "1122456" }]
+  "dedicatedServer": [{ "nexthop": [], "service": "1122456" }],
+  "vmwareCloudDirector": [
+    { "nexthop": [], "service": "vcd-org-nsx-2" },
+    { "nexthop": [], "service": "" },
+    { "nexthop": [], "service": "vcd-org-nsx-1" }
+  ]
 }

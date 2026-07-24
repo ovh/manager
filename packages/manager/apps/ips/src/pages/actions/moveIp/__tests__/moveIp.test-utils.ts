@@ -45,7 +45,9 @@ export async function fillStep1({
 
   serviceSelect.value = destinationService;
 
-  const event = new CustomEvent('odsValueChange', {
+  // `onOdsChange` listens to the `odsChange` event: emit it explicitly instead
+  // of relying on the web component internal state, which is not always ready
+  const event = new CustomEvent('odsChange', {
     detail: { value: destinationService },
   });
 
@@ -67,7 +69,7 @@ export async function fillStep1({
 
     nextHopSelect.value = nextHop;
 
-    const event2 = new CustomEvent('odsValueChange', {
+    const event2 = new CustomEvent('odsChange', {
       detail: { value: nextHop },
     });
 

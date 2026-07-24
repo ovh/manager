@@ -3,7 +3,7 @@ import React from 'react';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { CatalogIpConfiguration, CatalogIpPlan } from '@/data/api';
-import { ServiceType } from '@/types';
+import { ServiceType, isPrivateCloudServiceType } from '@/types';
 
 import { useCatalogIps } from './useCatalogIps';
 import { useDedicatedCloudGeolocations } from './useDedicatedCloudGeolocations';
@@ -49,9 +49,7 @@ export const useAvailableGeolocationFromPlanCode = ({
   const { data: pccData, ...pccQuery } = useDedicatedCloudGeolocations({
     serviceName,
     enabled:
-      !!serviceName &&
-      !!serviceType &&
-      serviceType === ServiceType.dedicatedCloud,
+      !!serviceName && !!serviceType && isPrivateCloudServiceType(serviceType),
   });
 
   const { data: vpsData, ...vpsQuery } = useVpsGeolocations({

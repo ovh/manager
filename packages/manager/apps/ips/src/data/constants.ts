@@ -11,6 +11,7 @@ export enum IpTypeEnum {
   PCC = 'pcc',
   PCI = 'pci',
   PRIVATE = 'private',
+  VCFAAS = 'vcfaas',
   VPN = 'vpn',
   VPS = 'vps',
   VRACK = 'vrack',
