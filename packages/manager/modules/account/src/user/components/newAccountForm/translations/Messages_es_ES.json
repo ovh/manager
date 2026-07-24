@@ -777,5 +777,14 @@
   "signup_enum_purposeOfPurchase_commercial": "Utilización en el marco de una actividad comercial",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilización en el marco de actividades no lucrativas, religiosas o políticas",
   "signup_enum_purposeOfPurchase_study": "Utilización con fines académicos o de investigación",
-  "signup_enum_purposeOfPurchase_public-service": "Utilización con fines de servicio público"
+  "signup_enum_purposeOfPurchase_public-service": "Utilización con fines de servicio público",
+  "signup_einvoicing_address_label": "Dirección de recepción de sus facturas electrónicas",
+  "signup_einvoicing_empty_b2b": "No se ha encontrado ninguna dirección activa en el directorio de facturación electrónica para su SIREN. No podrá recibir facturas por vía electrónica hasta que no se facilite una dirección activa. Por favor, póngase en contacto con su Plataforma Aprobada.",
+  "signup_einvoicing_empty_b2g": "No se ha encontrado ninguna dirección activa en el directorio de facturación electrónica para su SIREN. Por favor, contacte con el soporte si su SIREN de facturación es diferente al SIREN de su entidad.",
+  "signup_einvoicing_single_b2b": "La dirección {{address}} se utilizará como dirección de facturación electrónica por defecto.",
+  "signup_einvoicing_single_b2g": "La dirección {{address}} se utilizará como dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra.",
+  "signup_einvoicing_multi_b2g_hint": "También podrá configurar otra desde su espacio de facturación.",
+  "signup_einvoicing_stale_address": "La dirección seleccionada ya no está activa. Por favor, seleccione una nueva.",
+  "signup_einvoicing_multi_b2b": "Por favor, seleccione su dirección de facturación electrónica por defecto.",
+  "signup_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra."
 }

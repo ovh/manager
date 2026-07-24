@@ -199,6 +199,46 @@ export default class UserAccountInfosService {
       .then(({ data }) => data);
   }
 
+  /**
+   * Get the e-invoicing billing address rule for a given SIRET (PPF directory).
+   *
+   * Reuses the existing account rules endpoint (POST /newAccount/rules — the
+   * apiv6 face of the Furry account-rules mechanism; the contract's Furry name is
+   * /meta/account/rules), passing the 14-digit SIRET so the response carries the
+   * `einvoicing_billing_address` entry driving the picker (RG1-RG4).
+   */
+  getEinvoicingRules({ siret, legalForm }) {
+    return this.$http
+      .post('/newAccount/rules', {
+        country: 'FR',
+        legalform: legalForm,
+        companyNationalIdentificationNumber: siret,
+        action: 'update',
+      })
+      .then(({ data }) => {
+        // The endpoint returns the full rules array — pick the e-invoicing entry.
+        // Tolerate both the field-name spelling (apiv6 may camelCase the value)
+        // and the key convention (field_name vs fieldName).
+        const isEinvoicing = (name) =>
+          name === 'einvoicing_billing_address' ||
+          name === 'einvoicingBillingAddress';
+        const entry = (Array.isArray(data) ? data : []).find(
+          (rule) =>
+            isEinvoicing(rule.fieldName) || isEinvoicing(rule.field_name),
+        );
+        return {
+          // The real /newAccount/rules omits `visible`: the entry's PRESENCE
+          // means the field applies (in:[] empty / in:[x] single / in:[x,y] many)
+          // — still honor an explicit visible:false if ever sent.
+          visible: !!entry && entry.visible !== false,
+          mandatory: Boolean(entry && entry.mandatory),
+          in: (entry && ((entry.value && entry.value.in) || entry.in)) || null,
+          defaultValue:
+            (entry && (entry.default_value || entry.defaultValue)) || null,
+        };
+      });
+  }
+
   getCreationRules(params) {
     // Get creation Rules by user
     return this.$http

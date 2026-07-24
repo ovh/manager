@@ -777,5 +777,14 @@
   "signup_enum_purposeOfPurchase_commercial": "Business",
   "signup_enum_purposeOfPurchase_non-commercial": "Non-profit, religious or political",
   "signup_enum_purposeOfPurchase_study": "Academic study/research",
-  "signup_enum_purposeOfPurchase_public-service": "Government services"
+  "signup_enum_purposeOfPurchase_public-service": "Government services",
+  "signup_einvoicing_address_label": "Address for receiving your electronic invoices",
+  "signup_einvoicing_empty_b2b": "No active address was found in the electronic invoicing directory for your SIREN. You will not be able to be invoiced electronically until an active address is provided. Please contact your Approved Platform.",
+  "signup_einvoicing_empty_b2g": "No active address was found in the electronic invoicing directory for your SIREN. Please contact support if your invoicing SIREN is different from your entity's SIREN.",
+  "signup_einvoicing_single_b2b": "The address {{address}} will be used as the default electronic invoicing address.",
+  "signup_einvoicing_single_b2g": "The address {{address}} will be used as the default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one.",
+  "signup_einvoicing_multi_b2g_hint": "You will also be able to configure another one from your invoicing area.",
+  "signup_einvoicing_stale_address": "The selected address is no longer active. Please select a new one.",
+  "signup_einvoicing_multi_b2b": "Please select your default electronic invoicing address.",
+  "signup_einvoicing_multi_b2g": "Please select your default electronic invoicing address. If your invoicing SIREN is different from your entity's SIREN, you can contact support to provide another one."
 }

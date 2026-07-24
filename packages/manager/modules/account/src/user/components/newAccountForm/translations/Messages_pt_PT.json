@@ -777,5 +777,14 @@
   "signup_enum_purposeOfPurchase_commercial": "Utilização no âmbito de uma atividade comercial",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilização sem fins lucrativos, religiosa ou política",
   "signup_enum_purposeOfPurchase_study": "Utilização para fins de estudo ou de investigação universitária",
-  "signup_enum_purposeOfPurchase_public-service": "Utilização para fins de serviço público"
+  "signup_enum_purposeOfPurchase_public-service": "Utilização para fins de serviço público",
+  "signup_einvoicing_address_label": "Endereço de receção das suas faturas eletrónicas",
+  "signup_einvoicing_empty_b2b": "Não foi encontrado nenhum endereço ativo no diretório de faturação eletrónica para o seu SIREN. Não poderá ser faturado por via eletrónica enquanto não for fornecido um endereço ativo. Por favor, contacte a sua Plataforma Acreditada.",
+  "signup_einvoicing_empty_b2g": "Não foi encontrado nenhum endereço ativo no diretório de faturação eletrónica para o seu SIREN. Por favor, contacte o suporte se o seu SIREN de faturação for diferente do SIREN da sua entidade.",
+  "signup_einvoicing_single_b2b": "O endereço {{address}} será utilizado como endereço de faturação eletrónica por defeito.",
+  "signup_einvoicing_single_b2g": "O endereço {{address}} será utilizado como endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro.",
+  "signup_einvoicing_multi_b2g_hint": "Poderá igualmente configurar outro a partir da sua área de faturação.",
+  "signup_einvoicing_stale_address": "O endereço selecionado já não está ativo. Por favor, selecione um novo.",
+  "signup_einvoicing_multi_b2b": "Por favor, selecione o seu endereço de faturação eletrónica por defeito.",
+  "signup_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro."
 }

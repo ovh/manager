@@ -777,5 +777,13 @@
   "signup_enum_purposeOfPurchase_commercial": "Utilisation dans le cadre d'une activité commerciale",
   "signup_enum_purposeOfPurchase_non-commercial": "Utilisation dans le cadre d'une activité non lucrative, religieuse ou politique",
   "signup_enum_purposeOfPurchase_study": "Utilisation à des fins d'étude ou de recherche universitaire",
-  "signup_enum_purposeOfPurchase_public-service": "Utilisation à des fins de service public"
+  "signup_enum_purposeOfPurchase_public-service": "Utilisation à des fins de service public",
+  "signup_einvoicing_address_label": "Adresse de réception de vos factures électroniques",
+  "signup_einvoicing_empty_b2b": "Aucune adresse active n'a été trouvée dans l'annuaire de la facturation électronique pour votre SIREN. Vous ne pourrez pas être facturé par voie électronique tant qu'une adresse active ne sera pas fournie. Veuillez vous rapprocher de votre Plateforme Agréée.",
+  "signup_einvoicing_empty_b2g": "Aucune adresse active n'a été trouvée dans l'annuaire de la facturation électronique pour votre SIREN. Veuillez contacter le support si votre SIREN de facturation est différent du SIREN de votre entité.",
+  "signup_einvoicing_single_b2b": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut.",
+  "signup_einvoicing_single_b2g": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
+  "signup_einvoicing_multi_b2b": "Veuillez sélectionner votre adresse de facturation électronique par défaut.",
+  "signup_einvoicing_multi_b2g": "Veuillez sélectionner votre adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
+  "signup_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
 }

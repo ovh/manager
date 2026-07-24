@@ -75,5 +75,21 @@
   "account_details_vat_select_no_vat": "A minha empresa não está registada para efeitos de IVA",
   "account_details_vat_select_description_detected": "Número deduzido automaticamente do seu SIRET",
   "account_details_vat_select_description_no_vat": "Microempresa em isenção de base, associação, etc.",
-  "account_details_field_displayName": "Nome de exibição"
+  "account_details_field_displayName": "Nome de exibição",
+  "account_details_einvoicing_section_title": "Faturação",
+  "account_details_einvoicing_company_type": "empresa",
+  "account_details_einvoicing_vat_registered": "A minha {{companyType}} está registada para efeitos de IVA",
+  "account_details_einvoicing_vat_not_registered": "A minha {{companyType}} não está registada para efeitos de IVA",
+  "account_details_einvoicing_vat_registered_hint": "Número deduzido a partir do seu SIRET: {{vatNumber}}",
+  "account_details_einvoicing_vat_not_registered_hint": "Microempresa com franquia de base, associação, etc.",
+  "account_details_einvoicing_address_label": "Endereço de receção das suas faturas eletrónicas",
+  "account_details_einvoicing_no_active_address": "Não está disponível nenhum endereço ativo para o seu SIREN no diretório. Poderá indicá-lo mais tarde.",
+  "account_details_einvoicing_stale_address": "O endereço selecionado já não está ativo. Por favor, selecione um novo.",
+  "account_details_einvoicing_empty_b2b": "Não foi encontrado nenhum endereço ativo no diretório de faturação eletrónica para o seu SIREN. Não poderá ser faturado por via eletrónica enquanto não for fornecido um endereço ativo. Por favor, contacte a sua Plataforma Acreditada.",
+  "account_details_einvoicing_empty_b2g": "Não foi encontrado nenhum endereço ativo no diretório de faturação eletrónica para o seu SIREN. Por favor, contacte o suporte se o seu SIREN de faturação for diferente do SIREN da sua entidade.",
+  "account_details_einvoicing_single_b2b": "O endereço {{address}} será utilizado como endereço de faturação eletrónica por defeito.",
+  "account_details_einvoicing_single_b2g": "O endereço {{address}} será utilizado como endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro.",
+  "account_details_einvoicing_multi_b2g_hint": "Poderá igualmente configurar outro a partir da sua área de faturação.",
+  "account_details_einvoicing_multi_b2b": "Por favor, selecione o seu endereço de faturação eletrónica por defeito.",
+  "account_details_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro."
 }
