@@ -1,0 +1,86 @@
+import React from 'react';
+
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+import { getBackupServers } from '@/data/api/backupServers/backupServers.requests';
+import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { mockBackupServers } from '@/mocks/backupServers/backupServers.mock';
+import { labels } from '@/test-utils/i18ntest.utils';
+import { renderWithProviders } from '@/test-utils/renderWithProviders';
+import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
+import { Resource } from '@/types/Resource.type';
+import { VspcTenant } from '@/types/VspcTenant.type';
+
+import LinkedServersPage from './LinkedServers.page';
+
+vi.mock('@/data/api/backupServers/backupServers.requests');
+vi.mock('@/data/api/tenants/tenants.requests');
+
+const mockedGetBackupServers = vi.mocked(getBackupServers);
+
+// NB : le harness i18n du module ne résout que les clés de premier niveau. `empty_state` en
+// est une (d'où l'assertion sur le libellé), `error.loading` n'en est pas une (d'où la clé).
+
+describe('LinkedServersPage', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.mocked(getBackupServicesTenants).mockResolvedValue([
+      {
+        id: 'service-1',
+        resourceStatus: 'READY',
+        currentState: { id: 'service-1', name: 'service' },
+      } as Resource<BackupServicesTenant>,
+    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([
+      {
+        id: 'vspc-1',
+        resourceStatus: 'READY',
+        currentState: { id: 'vspc-1' },
+      } as Resource<VspcTenant>,
+    ]);
+  });
+
+  it('shows the loading state while the servers are being fetched', async () => {
+    mockedGetBackupServers.mockReturnValue(new Promise(() => {}));
+
+    await renderWithProviders(<LinkedServersPage />);
+
+    // La topbar est rendue dès le chargement : le CTA d'ajout est toujours présent.
+    expect(screen.getByTestId('linked-servers-topbar')).toBeInTheDocument();
+    expect(screen.queryByText('error.loading')).not.toBeInTheDocument();
+  });
+
+  it('renders the fetched servers', async () => {
+    mockedGetBackupServers.mockResolvedValue(mockBackupServers.slice(0, 2));
+
+    await renderWithProviders(<LinkedServersPage />);
+
+    await waitFor(() => expect(screen.getByText('VBR-CUST-SERV-01')).toBeInTheDocument());
+    expect(screen.getByText('VBR-CUST-SERV-02')).toBeInTheDocument();
+  });
+
+  it('renders the empty state label and keeps the topbar on an empty list', async () => {
+    mockedGetBackupServers.mockResolvedValue([]);
+
+    await renderWithProviders(<LinkedServersPage />);
+
+    await waitFor(() =>
+      expect(screen.getByText(labels.linkedServers.empty_state)).toBeInTheDocument(),
+    );
+    expect(screen.getByTestId('linked-servers-topbar')).toBeInTheDocument();
+  });
+
+  it('renders an error message and refetches on retry', async () => {
+    mockedGetBackupServers.mockRejectedValue(new Error('boom'));
+
+    await renderWithProviders(<LinkedServersPage />);
+
+    await waitFor(() => expect(screen.getByText('error.loading')).toBeInTheDocument());
+
+    mockedGetBackupServers.mockResolvedValue([]);
+    fireEvent.click(screen.getByTestId('linked-servers-retry'));
+
+    await waitFor(() => expect(mockedGetBackupServers).toHaveBeenCalledTimes(2));
+  });
+});

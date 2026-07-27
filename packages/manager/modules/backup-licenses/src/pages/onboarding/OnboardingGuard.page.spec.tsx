@@ -6,7 +6,7 @@ import { screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { useHasActiveBackupLicensesSubscription } from '@/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription';
-import { stubRoutes } from '@/routes/routes.constants';
+import { routeUrls } from '@/routes/routes.constants';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 
 import OnboardingGuardPage from './OnboardingGuard.page';
@@ -21,7 +21,7 @@ const renderGuard = () =>
   renderWithProviders(
     <Routes>
       <Route path="/" element={<OnboardingGuardPage />} />
-      <Route path={stubRoutes.dashboard} element={<div>dashboard-stub</div>} />
+      <Route path={routeUrls.linkedServers} element={<div>linked-servers-page</div>} />
     </Routes>,
   );
 
@@ -48,7 +48,7 @@ describe('OnboardingGuardPage', () => {
     expect(screen.getByText('title')).toBeInTheDocument();
   });
 
-  it('redirects to the dashboard stub route when a subscription is active', async () => {
+  it('redirects to the linked servers page when a subscription is active', async () => {
     mockedUseHasActiveBackupLicensesSubscription.mockReturnValue({
       data: true,
       isLoading: false,
@@ -56,6 +56,6 @@ describe('OnboardingGuardPage', () => {
 
     await renderGuard();
 
-    await waitFor(() => expect(screen.getByText('dashboard-stub')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText('linked-servers-page')).toBeInTheDocument());
   });
 });

@@ -10,6 +10,13 @@ export const LABELS = {
   VSPC: 'VSPC',
 } as const;
 
+/** Affiché à la place d'une valeur absente dans une cellule du tableau. */
+export const EMPTY_VALUE_PLACEHOLDER = '—';
+
+/** Polling des opérations asynchrones (BKP-1220) : 10 s d'intervalle, 5 min de garde-fou. */
+export const POLLING_INTERVAL_MS = 10_000;
+export const POLLING_TIMEOUT_MS = 300_000;
+
 export const FEATURE_AVAILABILITY = Object.freeze({
   DELETE_TENANT: 'deleteTenant',
   DELETE_VAULT: 'deleteVault',
