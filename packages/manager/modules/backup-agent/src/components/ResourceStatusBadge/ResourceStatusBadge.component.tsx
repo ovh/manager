@@ -14,7 +14,6 @@ export type ResourceStatusBadgeProps = {
 
 export const ResourceStatusBadge = ({ resourceStatus }: ResourceStatusBadgeProps) => {
   const { t } = useTranslation(NAMESPACES.STATUS);
-
   return (
     <OdsBadge
       color={getColorResourceStatus(resourceStatus)}
