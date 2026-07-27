@@ -39,7 +39,7 @@ describe('Delete Vrack Network Page', () => {
     await waitFor(() => checkModalContent(), WAIT_OPTIONS);
     const modal = screen.getByTestId('modal');
 
-    const confirmKeyword = 'DELETE';
+    const confirmKeyword = labels.actions.delete.toUpperCase();
     const confirmInput = screen.getByPlaceholderText(confirmKeyword);
 
     fireEvent(

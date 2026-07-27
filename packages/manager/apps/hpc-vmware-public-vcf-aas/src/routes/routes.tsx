@@ -136,6 +136,34 @@ const DeleteVrackSegmentPage = React.lazy(() =>
   ),
 );
 
+const EdgeGatewayListingPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/DatacentreEdgeGateway.page'
+  ),
+);
+
+const EdgeGatewayAddPage = React.lazy(() =>
+  import('@/pages/dashboard/datacentre/edge-gateway/add/AddEdgeGateway.page'),
+);
+
+const EdgeGatewayEditNamePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGatewayName.page'
+  ),
+);
+
+const EdgeGatewayEditIpBlockPage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/edit/EditEdgeGatewayIpBlock.page'
+  ),
+);
+
+const EdgeGatewayDeletePage = React.lazy(() =>
+  import(
+    '@/pages/dashboard/datacentre/edge-gateway/delete/DeleteEdgeGateway.page'
+  ),
+);
+
 const TerminateOrganizationPage = React.lazy(() =>
   import('@/pages/terminate/TerminateOrganization.page'),
 );
@@ -456,6 +484,32 @@ export default (
             },
           }}
         />
+        <Route
+          id={subRoutes.edgeGateway}
+          path={urls.edgeGateway}
+          Component={EdgeGatewayListingPage}
+        >
+          <Route
+            id={subRoutes.addEdgeGateway}
+            path={urls.edgeGatewayAdd}
+            Component={EdgeGatewayAddPage}
+          />
+          <Route
+            id={subRoutes.editEdgeGatewayName}
+            path={urls.edgeGatewayEditName}
+            Component={EdgeGatewayEditNamePage}
+          />
+          <Route
+            id={subRoutes.editEdgeGatewayIpBlock}
+            path={urls.edgeGatewayEditIpBlock}
+            Component={EdgeGatewayEditIpBlockPage}
+          />
+          <Route
+            id={subRoutes.deleteEdgeGateway}
+            path={urls.edgeGatewayDelete}
+            Component={EdgeGatewayDeletePage}
+          />
+        </Route>
       </Route>
       <Route
         id={'onboarding'}

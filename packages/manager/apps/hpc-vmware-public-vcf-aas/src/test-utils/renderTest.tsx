@@ -1,4 +1,3 @@
-import React from 'react';
 import { SetupServer } from 'msw/node';
 import { i18n } from 'i18next';
 import { I18nextProvider } from 'react-i18next';
@@ -27,6 +26,10 @@ import {
   GetVrackSegmentsMocksParams,
   getNetworkAclMock,
   GetNetworkAclMocksParams,
+  GetIpBlockMocksParams,
+  getIpBlockMocks,
+  getEdgeGatewayMocks,
+  GetEdgeGatewayMocksParams,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   initTestI18n,
@@ -63,6 +66,8 @@ export const renderTest = async ({
   TVcdaMockParams &
   GetVrackSegmentsMocksParams &
   GetNetworkAclMocksParams &
+  GetIpBlockMocksParams &
+  GetEdgeGatewayMocksParams &
   GetServicesMocksParams = {}) => {
   ((global as unknown) as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
@@ -77,6 +82,8 @@ export const renderTest = async ({
       ...getFeatureAvailabilityMocks(mockParams),
       ...getNetworkAclMock(mockParams),
       ...getVcdaMocks(mockParams),
+      ...getIpBlockMocks(mockParams),
+      ...getEdgeGatewayMocks(mockParams),
     ]),
   );
 

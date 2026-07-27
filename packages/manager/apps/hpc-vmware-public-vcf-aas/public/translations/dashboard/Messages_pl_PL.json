@@ -66,5 +66,8 @@
   "managed_vcd_dashboard_tile_ip_block_label": "Liczba bloków publicznych adresów IP:",
   "managed_vcd_dashboard_tile_action_add_ip_block": "Dodaj nowy blok adresów IP",
   "managed_vcd_dashboard_tile_action_manage_vrack_segments": "Zarządzanie segmentami vRack",
-  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "Brama {{gateway}} odpowiadająca blokowi IP {{blockIp}} już istnieje w segmencie vRack, dlatego nie można jej dodać do konfiguracji sieci."
+  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "Brama {{gateway}} odpowiadająca blokowi IP {{blockIp}} już istnieje w segmencie vRack, dlatego nie można jej dodać do konfiguracji sieci.",
+  "managed_vcd_dashboard_ip_block_count": "Liczba IP Space",
+  "managed_vcd_dashboard_ip_block_order": "Zamów IP Space",
+  "managed_vcd_dashboard_ip_block_reroute": "Powiąż IP Space z inną usługą"
 }

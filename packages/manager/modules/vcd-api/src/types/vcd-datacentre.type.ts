@@ -1,12 +1,18 @@
 import { VCDResourceStatus, Task, WithIam } from './vcd-utility.type';
 
+export type GetVCDDatacentreParams = {
+  id: string;
+  vdcId: string;
+};
+
 export type VCDDatacentreTargetSpec = {
   vCPUSpeed: number;
   description: string;
 };
 
 export type VCDDatacentreState = VCDDatacentreTargetSpec & {
-  commercialRange: string;
+  commercialRange: 'STANDARD' | 'NSX' | 'VSAN-NSX';
+  offerProfile?: 'STANDARD' | 'NSX';
   ipQuota: number;
   storageQuota: number;
   vCPUCount: number;
