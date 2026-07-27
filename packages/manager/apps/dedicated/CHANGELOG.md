@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [20.80.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.79.2...@ovh-ux/manager-dedicated@20.80.0) (2026-07-27)
+
+
+### Features
+
+* **dedicated:** adding badge when host is gen 2 ([a4dc0be](https://github.com/ovh/manager/commit/a4dc0be517d767d96a53849b181a50ebf6d465d7)), closes [#MANAGER-21869](https://github.com/ovh/manager/issues/MANAGER-21869)
+
+
+
+
+
 ## [20.79.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@20.79.1...@ovh-ux/manager-dedicated@20.79.2) (2026-07-22)
 
 **Note:** Version bump only for package @ovh-ux/manager-dedicated

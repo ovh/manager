@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.11.1...@ovh-ux/manager-dedicated-servers-app@0.11.2) (2026-07-27)
+
+
+### Bug Fixes
+
+* **dedicated:** fix export csv ([3f4e52b](https://github.com/ovh/manager/commit/3f4e52ba87d06ece97a2fff5550397fc5ba54eb7)), closes [#INC0236602](https://github.com/ovh/manager/issues/INC0236602)
+
+
+
+
+
 ## [0.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated-servers-app@0.11.0...@ovh-ux/manager-dedicated-servers-app@0.11.1) (2026-06-25)
 
 
