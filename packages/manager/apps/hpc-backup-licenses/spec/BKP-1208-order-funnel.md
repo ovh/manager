@@ -148,6 +148,7 @@ Composants **sans** feature/effet notable **n'ont pas de test dédié** (convent
 | **Prix** | Tokens `██,██ €` en dur dans l'i18n. | Câbler `GET /order/catalog/public/backupServices` (recherche par planCode) une fois l'API figée. |
 | **Régions** | 3 régions FR hardcodées (`regions.data.ts`) : Paris/Gravelines/Roubaix. | Remplacer par un chargement dynamique du catalogue Agora. |
 | **`vaultDisplayName`** | Nom de champ utilisé côté front, **non confirmé** côté API. | À valider avec le BE avant le branchement submit. |
+| **Noms des champs IP** | `ServerVaultFormState` utilise `backupServerExternalIp`/`backupServerPrivateIp`, **chaînes simples**. Or le `GET` des serveurs VBR (exemple BE du 27/07/2026, cf. §16 de `BKP-1216-linked-servers-list.md`) expose `externalIps`/`privateIps`, **tableaux de CIDR** (`203.0.113.10/32`). | Aligner le payload du POST sur ces noms/formats (et décider si le front doit suffixer `/32`) au moment de brancher le submit. Le state interne du formulaire peut rester en chaîne simple, la conversion se faisant à la soumission. |
 | **CGV** | **Absente du tunnel** (pas de checkbox, pas de lien). | Décision PO en attente — si ajoutée, prévoir une checkbox bloquant « Commander » + lien vers le doc en nouvel onglet. |
 | **Dashboard (ticket 1.1)** | N'existe pas — `stubRoutes.dashboard` tombe sur le catch-all `*` de l'app. | Une fois 1.1 livré : rediriger vers l'onglet « Linked servers », 1er VBR en `licenseStatus: CREATING`, polling (ticket 2.5). |
 

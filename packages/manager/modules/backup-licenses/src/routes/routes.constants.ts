@@ -5,6 +5,10 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 export const subRoutes = {
   onboarding: 'onboarding' as const,
   order: 'order' as const,
+  linkedServers: 'linked-servers' as const,
+  vaults: 'vaults' as const,
+  billing: 'billing' as const,
+  generalInformation: 'general-information' as const,
 } as const;
 
 export const urlParams = {} as const;
@@ -18,28 +22,53 @@ export const urls = {
 export const routeUrls = {
   onboarding: `/${subRoutes.onboarding}`,
   order: `/${subRoutes.order}`,
+  linkedServers: `/${subRoutes.linkedServers}`,
+  vaults: `/${subRoutes.vaults}`,
+  billing: `/${subRoutes.billing}`,
+  generalInformation: `/${subRoutes.generalInformation}`,
 } as const;
 
-// TODO(BKP-1208): dashboard route does not exist yet on this branch (ticket 1.1).
-// En attendant, on cible directement l'URL du premier onglet du futur dashboard
-// (`/linked-servers`, cf. BKP-1216) plutôt qu'un stub qui tombe dans le catch-all "*".
-export const stubRoutes = {
-  dashboard: '/linked-servers',
-} as const;
+export type ServiceNavTab = {
+  name: string;
+  /** Clé i18n du libellé de l'onglet. */
+  title: string;
+  to: string;
+  trackingActions?: string[];
+  /**
+   * Onglet affiché mais non navigable, tant que son ticket n'est pas livré.
+   * Retirer ce flag et ajouter la route correspondante dans `routes.tsx` suffit à l'activer.
+   */
+  isDisabled?: boolean;
+};
 
-export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
+/**
+ * Barre d'onglets de la page de service (BKP-1215). Ordre imposé par le ticket.
+ * Les onglets 2/3/4 restent visibles mais désactivés jusqu'aux tickets 1.2/1.3/1.4 :
+ * aucun élément d'interface ne doit mener à une route inexistante.
+ */
+export const SERVICE_NAV_TABS: readonly ServiceNavTab[] = Object.freeze([
   {
-    name: 'general_information',
-    title: `${NAMESPACES.DASHBOARD}:general_information`,
-    to: `${urls.root}`,
-    pathMatchers: [/^\/general_information\/[^/]+$/],
-    trackingActions: ['click::general_information-tile-tab'],
+    name: 'linked-servers',
+    title: `${BACKUP_LICENSES_NAMESPACES.DASHBOARD}:tab.linked_servers`,
+    to: routeUrls.linkedServers,
+    trackingActions: ['click::linked-servers-tab'],
   },
   {
-    name: 'other_tab',
-    title: `${BACKUP_LICENSES_NAMESPACES.COMMON}:other_tab`,
-    to: `${urls.root}`,
-    pathMatchers: [/^\/other_tabs\/[^/]+$/],
-    trackingActions: ['click::other_tab-tile-tab'],
+    name: 'vaults',
+    title: `${BACKUP_LICENSES_NAMESPACES.DASHBOARD}:tab.vaults`,
+    to: routeUrls.vaults,
+    isDisabled: true,
+  },
+  {
+    name: 'billing',
+    title: `${BACKUP_LICENSES_NAMESPACES.DASHBOARD}:tab.billing`,
+    to: routeUrls.billing,
+    isDisabled: true,
+  },
+  {
+    name: 'general-information',
+    title: `${NAMESPACES.DASHBOARD}:general_information`,
+    to: routeUrls.generalInformation,
+    isDisabled: true,
   },
 ]);

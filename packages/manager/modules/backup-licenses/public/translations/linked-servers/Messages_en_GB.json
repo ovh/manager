@@ -1,0 +1,39 @@
+{
+  "column": {
+    "name": "Server name",
+    "public_ip": "Public IP",
+    "private_ip": "Private IP",
+    "license": "Licence",
+    "license_status": "Licence status",
+    "vbr_version": "VBR version",
+    "os": "OS"
+  },
+  "status": {
+    "creating": "Creating",
+    "updating": "Updating",
+    "installed": "Active",
+    "expired": "Expired",
+    "not_supported": "Not supported",
+    "error": "Error"
+  },
+  "license": {
+    "foundation": "Foundation",
+    "advanced": "Advanced",
+    "premium": "Premium",
+    "enterprise_plus": "Enterprise Plus"
+  },
+  "os": {
+    "windows": "Windows",
+    "linux": "Linux"
+  },
+  "action": {
+    "add_server": "Add a server"
+  },
+  "empty_state": "No server registered yet. Add your first VBR server to get started.",
+  "error": {
+    "loading": "Your server list could not be loaded."
+  },
+  "polling": {
+    "timeout": "This operation is taking longer than expected. Refresh the list to see where it stands."
+  }
+}
