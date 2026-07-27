@@ -281,27 +281,27 @@ export default function Layout() {
           <GuideMenu items={guideItems} />
         </div>
       </div>
+      {isSpoofed && (
+        <Message className="mb-6 w-full" color={MESSAGE_COLOR.warning}>
+          {t('hosting_dashboard_spoofing_banner')}{' '}
+          <Link
+            href={
+              EMAIL_SENDING_GUIDE_URL[ovhSubsidiary as OvhSubsidiary] ||
+              EMAIL_SENDING_GUIDE_URL.DEFAULT
+            }
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t('hosting_dashboard_spoofing_banner_link')}
+          </Link>
+        </Message>
+      )}
       {!isOverridedPage && (
         <>
           <div className="mb-7 flex items-center justify-between">
             <Text>{data?.serviceName}</Text>
           </div>
           <ExpirationDate />
-          {isSpoofed && (
-            <Message className="mb-6 w-full" color={MESSAGE_COLOR.warning}>
-              {t('hosting_dashboard_spoofing_banner')}{' '}
-              <Link
-                href={
-                  EMAIL_SENDING_GUIDE_URL[ovhSubsidiary as OvhSubsidiary] ||
-                  EMAIL_SENDING_GUIDE_URL.DEFAULT
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t('hosting_dashboard_spoofing_banner_link')}
-              </Link>
-            </Message>
-          )}
           {onUpdateError && (
             <Message
               className="mb-10 w-full"
