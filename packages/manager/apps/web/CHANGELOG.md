@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.11...@ovh-ux/manager-web@19.44.0) (2026-07-27)
+
+
+### Features
+
+* **web-howting:** block expired clients ([533d2ab](https://github.com/ovh/manager/commit/533d2ab3971d9afe803962799b42c9730759f7a1)), closes [#PUWEBPT-428](https://github.com/ovh/manager/issues/PUWEBPT-428)
+
+
+
+
+
 ## [19.43.11](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.10...@ovh-ux/manager-web@19.43.11) (2026-07-22)
 
 

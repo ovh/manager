@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.20.3...@ovh-ux/manager-web-hosting-app@0.21.0) (2026-07-27)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1288] ([cba0a41](https://github.com/ovh/manager/commit/cba0a41393d32aeb71b90d9003372bf80d182e37))
+
+
+### Features
+
+* **web-hosting:** add banner spoofing v6 ([5bb3ce4](https://github.com/ovh/manager/commit/5bb3ce496c4bd37b0d8a35e637853e4e2c8aaa23)), closes [#PUWEBPT-437](https://github.com/ovh/manager/issues/PUWEBPT-437)
+* **web-hosting:** change banner spoofing ([a1d836f](https://github.com/ovh/manager/commit/a1d836fd09f4b1a8d05821df47eceb7a59bfa06b)), closes [#PUWEBPT-437](https://github.com/ovh/manager/issues/PUWEBPT-437)
+
+
+
+
+
 ## [0.20.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.20.2...@ovh-ux/manager-web-hosting-app@0.20.3) (2026-05-05)
 
 
