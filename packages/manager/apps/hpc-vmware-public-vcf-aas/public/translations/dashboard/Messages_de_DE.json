@@ -66,5 +66,8 @@
   "managed_vcd_dashboard_tile_ip_block_label": "Anzahl der öffentlichen IP-Adressblöcke:",
   "managed_vcd_dashboard_tile_action_add_ip_block": "Neuen IP-Adressblock hinzufügen",
   "managed_vcd_dashboard_tile_action_manage_vrack_segments": "Meine vRack-Segmente verwalten",
-  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "Das {{gateway}}-Gateway für den IP-Block {{blockIp}} ist bereits im vRack-Segment vorhanden und kann der Netzwerkkonfiguration nicht hinzugefügt werden."
+  "managed_vcd_dashboard_add_ip_public_block_add_already_exist": "Das {{gateway}}-Gateway für den IP-Block {{blockIp}} ist bereits im vRack-Segment vorhanden und kann der Netzwerkkonfiguration nicht hinzugefügt werden.",
+  "managed_vcd_dashboard_ip_block_count": "Anzahl der IP-Spaces",
+  "managed_vcd_dashboard_ip_block_order": "IP-Spaces bestellen",
+  "managed_vcd_dashboard_ip_block_reroute": "IP-Spaces mit einem anderen Dienst verknüpfen"
 }
