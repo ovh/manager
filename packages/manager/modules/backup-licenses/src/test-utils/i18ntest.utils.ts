@@ -14,6 +14,12 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 import common from '../../public/translations/common/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import linkedServers from '../../public/translations/linked-servers/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -26,6 +32,8 @@ function addTranslations() {
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.COMMON, common)
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding)
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order)
+    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard)
+    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS, linkedServers)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -67,4 +75,6 @@ export const labels = {
   billing,
   region,
   system,
+  dashboard,
+  linkedServers,
 };
