@@ -42,7 +42,7 @@ export default function OrderFooter({
     <div
       className={`mt-10 flex items-center justify-between gap-4 ${
         isSticky
-          ? 'sticky bottom-4 z-10 rounded-xl border border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-000)] px-6 py-4'
+          ? 'sticky bottom-4 z-10 rounded-md border border-[var(--ods-color-form-element-border-default)] bg-[var(--ods-color-neutral-000)] px-6 py-4'
           : 'border-t border-[var(--ods-color-neutral-200)] pt-8'
       }`}
     >

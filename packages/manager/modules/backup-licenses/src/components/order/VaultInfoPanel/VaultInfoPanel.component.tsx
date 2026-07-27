@@ -1,107 +1,98 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import {
-  ODS_BADGE_COLOR,
-  ODS_BADGE_SIZE,
-  ODS_ICON_NAME,
-  ODS_TEXT_PRESET,
-} from '@ovhcloud/ods-components';
-import { OdsBadge, OdsIcon, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { OdsAccordion, OdsBadge, OdsText } from '@ovhcloud/ods-components/react';
 
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
+import { getTwoColumnCellBorders } from '@/utils/gridCellBorders/gridCellBorders';
 
 const METRIC_KEYS = ['included', 'overage', 'egress'] as const;
 const ATTR_KEYS = ['managed', 'secured', 'scalable', 'pricing'] as const;
-const PANEL_ID = 'vault-panel-details';
 
 /**
  * Encart informatif Vault (étape 3) — purement informatif, non éditable.
- * Replié par défaut et dégradé visuellement (bordure neutre, une ligne de synthèse) :
- * sur une étape de configuration, l'attention doit aller aux champs à saisir, pas à
- * un rappel d'offre déjà vu aux étapes précédentes. Le détail (métriques + atouts)
- * reste accessible à la demande.
+ * Replié par défaut et dégradé visuellement (une ligne de synthèse) : sur une étape de
+ * configuration, l'attention doit aller aux champs à saisir, pas à un rappel d'offre déjà
+ * vu aux étapes précédentes. Le détail (métriques + atouts) reste accessible à la demande.
+ *
+ * `order__accordion` donne la bordure permanente, qu'ODS ne montre qu'au survol, et sa
+ * variante `--flush` annule le retrait latéral du contenu pour que la grille de métriques
+ * aille bord à bord. Les deux vivent dans l'`index.scss` de l'app : `::part` n'est pas
+ * exprimable en classes utilitaires.
  */
 export default function VaultInfoPanel() {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
-  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[var(--ods-color-neutral-200)]">
-      <button
-        type="button"
-        onClick={() => setIsExpanded((value) => !value)}
-        aria-expanded={isExpanded}
-        aria-controls={PANEL_ID}
-        className="flex w-full items-center justify-between gap-4 bg-[var(--ods-color-neutral-050)] px-6 py-4 text-left hover:bg-[var(--ods-color-neutral-100)]"
-      >
-        <span className="flex min-w-0 flex-col gap-1">
-          <span className="flex items-center gap-3">
-            <OdsText preset={ODS_TEXT_PRESET.heading6}>
-              {t('vault_panel.title')}
-            </OdsText>
-            <OdsBadge
-              label={t('vault_panel.badge')}
-              color={ODS_BADGE_COLOR.success}
-              size={ODS_BADGE_SIZE.sm}
-            />
-          </span>
-          <OdsText
-            preset={ODS_TEXT_PRESET.caption}
-            className="truncate text-[var(--ods-color-neutral-500)]"
-          >
-            {t('vault_panel.summary')}
-          </OdsText>
+    <OdsAccordion className="order__accordion order__accordion--flush block">
+      <span className="flex min-w-0 flex-col gap-1" slot="summary">
+        <span className="flex items-center gap-3">
+          <OdsText preset={ODS_TEXT_PRESET.heading6}>{t('vault_panel.title')}</OdsText>
+          <OdsBadge
+            label={t('vault_panel.badge')}
+            color={ODS_BADGE_COLOR.success}
+            size={ODS_BADGE_SIZE.sm}
+          />
         </span>
-        <OdsIcon
-          name={ODS_ICON_NAME.chevronDown}
-          aria-hidden="true"
-          className={`shrink-0 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-        />
-      </button>
+        <OdsText
+          preset={ODS_TEXT_PRESET.caption}
+          className="truncate text-[var(--ods-color-neutral-500)]"
+        >
+          {t('vault_panel.summary')}
+        </OdsText>
+      </span>
 
-      {isExpanded && (
-        <div id={PANEL_ID}>
-          <div className="flex border-t border-[var(--ods-color-neutral-100)]">
-            {METRIC_KEYS.map((key) => (
-              <div
-                key={key}
-                className="flex flex-1 flex-col items-center gap-3 border-l border-[var(--ods-color-neutral-100)] p-6 text-center first:border-l-0"
+      <div>
+        {/* Trait de séparation avec l'en-tête : ODS n'en pose pas entre `summary` et `content`. */}
+        <div className="flex border-t border-[var(--ods-color-neutral-100)] bg-[var(--ods-color-neutral-050)]">
+          {METRIC_KEYS.map((key) => (
+            <div
+              key={key}
+              className="flex flex-1 flex-col items-center gap-3 border-l border-[var(--ods-color-neutral-100)] p-6 text-center first:border-l-0"
+            >
+              <OdsText
+                preset={ODS_TEXT_PRESET.heading5}
+                className="text-[var(--ods-color-primary-600)]"
               >
-                <OdsText
-                  preset={ODS_TEXT_PRESET.heading5}
-                  className="text-[var(--ods-color-primary-600)]"
-                >
-                  {t(`vault_panel.metric.${key}.value`)}
-                </OdsText>
-                <OdsText
-                  preset={ODS_TEXT_PRESET.caption}
-                  className="text-[var(--ods-color-neutral-500)]"
-                >
-                  {t(`vault_panel.metric.${key}.label`)}
-                </OdsText>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 border-t border-[var(--ods-color-neutral-100)] sm:grid-cols-2">
-            {ATTR_KEYS.map((key) => (
-              <div key={key} className="flex flex-col gap-3 p-6">
-                <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-semibold">
-                  {t(`vault_panel.attr.${key}.title`)}
-                </OdsText>
-                <OdsText
-                  preset={ODS_TEXT_PRESET.caption}
-                  className="text-[var(--ods-color-neutral-500)]"
-                >
-                  {t(`vault_panel.attr.${key}.text`)}
-                </OdsText>
-              </div>
-            ))}
-          </div>
+                {t(`vault_panel.metric.${key}.value`)}
+              </OdsText>
+              <OdsText
+                preset={ODS_TEXT_PRESET.caption}
+                className="text-[var(--ods-color-neutral-500)]"
+              >
+                {t(`vault_panel.metric.${key}.label`)}
+              </OdsText>
+            </div>
+          ))}
         </div>
-      )}
-    </div>
+
+        <div className="grid grid-cols-1 border-t border-[var(--ods-color-neutral-100)] sm:grid-cols-2">
+          {ATTR_KEYS.map((key, index) => (
+            <div
+              key={key}
+              className={`flex flex-col gap-3 p-6 ${getTwoColumnCellBorders(
+                index,
+                ATTR_KEYS.length,
+              )}`}
+            >
+              <OdsText
+                preset={ODS_TEXT_PRESET.paragraph}
+                className="font-bold text-[var(--ods-color-neutral-800)]"
+              >
+                {t(`vault_panel.attr.${key}.title`)}
+              </OdsText>
+              <OdsText
+                preset={ODS_TEXT_PRESET.caption}
+                className="text-[var(--ods-color-neutral-500)]"
+              >
+                {t(`vault_panel.attr.${key}.text`)}
+              </OdsText>
+            </div>
+          ))}
+        </div>
+      </div>
+    </OdsAccordion>
   );
 }

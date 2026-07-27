@@ -8,6 +8,8 @@ import { subRoutes } from './routes.constants';
 
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
+const ServiceLayoutPage = React.lazy(() => import('@/pages/service/ServiceLayout.page'));
+const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/LinkedServers.page'));
 
 export default (
   <>
@@ -25,5 +27,17 @@ export default (
         tracking: { pageName: 'order', pageType: PageType.funnel },
       }}
     />
+    {/* Route de layout sans path : la barre d'onglets n'est montée qu'une fois, et les
+        onglets 1.2/1.3/1.4 n'auront qu'à s'ajouter en enfants. */}
+    <Route element={<ServiceLayoutPage />}>
+      <Route
+        path={subRoutes.linkedServers}
+        Component={LinkedServersPage}
+        handle={{
+          tracking: { pageName: 'linked-servers', pageType: PageType.listing },
+        }}
+      />
+      {/* TODO(1.2/1.3/1.4) : routes vaults / billing / general-information. */}
+    </Route>
   </>
 );

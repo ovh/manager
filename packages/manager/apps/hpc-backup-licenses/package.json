@@ -42,7 +42,7 @@
     "react-hook-form": "7.54.2",
     "react-i18next": "14.1.0",
     "react-router-dom": "6.16.0",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^3.4.4",
     "zod": "4.1.12"
   },
   "devDependencies": {
@@ -50,7 +50,6 @@
     "@ovh-ux/manager-tailwind-config": "*",
     "@ovh-ux/manager-tests-setup": "^0.6.1",
     "@ovh-ux/manager-vite-config": "*",
-    "@tailwindcss/postcss": "^4.1.17",
     "@tanstack/react-query-devtools": "5.51.21",
     "@testing-library/react": "^16.0.0",
     "@types/react": "^18.2.45",

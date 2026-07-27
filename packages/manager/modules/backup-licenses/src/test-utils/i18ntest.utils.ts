@@ -4,6 +4,12 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import linkedServers from '../../public/translations/linked-servers/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -13,12 +19,10 @@ export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 
 function addTranslations() {
-  i18next.addResources(
-    defaultLocale,
-    BACKUP_LICENSES_NAMESPACES.ONBOARDING,
-    onboarding,
-  );
+  i18next.addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding);
   i18next.addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order);
+  i18next.addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard);
+  i18next.addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS, linkedServers);
 }
 
 export const getTestI18nParams = (): InitOptions<unknown> => ({
@@ -44,4 +48,4 @@ export const initTestI18n = () =>
     }
   });
 
-export const labels = { onboarding, order };
+export const labels = { onboarding, order, dashboard, linkedServers };

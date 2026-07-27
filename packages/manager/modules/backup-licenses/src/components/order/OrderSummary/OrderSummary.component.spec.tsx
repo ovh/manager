@@ -25,11 +25,12 @@ const baseForm: ServerVaultFormState = {
   regionApiValue: 'eu-west-par',
 };
 
-/** L'accordéon est replié par défaut : on clique l'en-tête pour déplier le détail. */
-const expand = () => fireEvent.click(screen.getByText('summary.title'));
+// `OdsAccordion` repose sur `<details>/<summary>` : le détail est toujours monté, le repli
+// est l'affaire du navigateur (et n'est donc pas observable en jsdom). Les assertions portent
+// sur le contenu du récapitulatif, plus sur son montage conditionnel.
 
 describe('OrderSummary', () => {
-  it('est replié par défaut : seul le titre est visible', async () => {
+  it("expose son en-tête d'accordéon", async () => {
     await renderWithProviders(
       <OrderSummary
         family={LicenseFamily.ENTERPRISE_PLUS}
@@ -40,15 +41,11 @@ describe('OrderSummary', () => {
     );
 
     expect(screen.getByText('summary.title')).toBeInTheDocument();
-    // Le prix n'est plus dupliqué ici : il vit dans le footer, près du bouton Commander.
+    // Le prix n'est pas dupliqué ici : il vit dans le footer, près du bouton Commander.
     expect(screen.queryByText('summary.price.value')).not.toBeInTheDocument();
-    // Le détail (offre) n'est pas monté tant que l'accordéon est fermé.
-    expect(
-      screen.queryByText('license.enterprise_plus.title'),
-    ).not.toBeInTheDocument();
   });
 
-  it('rappelle la licence, le niveau VDP et le stockage inclus une fois déplié', async () => {
+  it('rappelle la licence, le niveau VDP et le stockage inclus', async () => {
     await renderWithProviders(
       <OrderSummary
         family={LicenseFamily.DATA_PLATFORM}
@@ -57,7 +54,6 @@ describe('OrderSummary', () => {
         onEdit={vi.fn()}
       />,
     );
-    expand();
 
     expect(screen.getByText('license.data_platform.title')).toBeInTheDocument();
     expect(screen.getByText('summary.field.tier')).toBeInTheDocument();
@@ -76,7 +72,6 @@ describe('OrderSummary', () => {
         onEdit={vi.fn()}
       />,
     );
-    expand();
 
     expect(
       screen.getByText('license.enterprise_plus.title'),
@@ -93,7 +88,6 @@ describe('OrderSummary', () => {
         onEdit={vi.fn()}
       />,
     );
-    expand();
 
     // Les deux décisions définitives sont relues avant de commander.
     expect(screen.getByText('summary.field.vault_name')).toBeInTheDocument();
@@ -114,7 +108,6 @@ describe('OrderSummary', () => {
     await renderWithProviders(
       <OrderSummary family={null} tier={null} form={baseForm} onEdit={vi.fn()} />,
     );
-    expand();
 
     expect(screen.getByText('summary.empty')).toBeInTheDocument();
   });
@@ -129,7 +122,6 @@ describe('OrderSummary', () => {
         onEdit={onEdit}
       />,
     );
-    expand();
 
     fireEvent.click(screen.getByText('summary.edit'));
     expect(onEdit).toHaveBeenCalledWith(OrderStepId.LICENSE_TYPE);

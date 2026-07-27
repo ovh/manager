@@ -9,5 +9,6 @@ export type JsonRequestOptions = {
 export type ApiError = {
   response?: {
     status?: number;
+    data?: unknown;
   };
 };
