@@ -7,6 +7,7 @@ export const ArrowLinkCell = ({
   className = '',
   ...params
 }: React.ComponentProps<typeof OdsLink>) => {
+  console.log('coucou')
   return (
     <DataGridTextCell>
       <OdsLink
