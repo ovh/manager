@@ -76,7 +76,7 @@ export const Domains = () => {
       },
       {
         id: 'account',
-        accessorKey: 'name',
+        accessorKey: 'account',
         label: 'common:number_of_accounts',
       },
       {
