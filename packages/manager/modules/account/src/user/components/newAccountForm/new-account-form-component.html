@@ -100,6 +100,23 @@
 
     <!-- FOOTER BUTTONS -->
     <div class="mb-5">
+        <!-- RG4: switching from "Autre" to a company category prompts a company data check -->
+        <oui-message
+            class="mb-2"
+            type="warning"
+            data-ng-if="$ctrl.shouldShowCategorySwitchWarning()"
+        >
+            <span
+                data-translate="signup_legalform_other_switch_company"
+                data-translate-values="{ category: ('signup_enum_legalform_' + $ctrl.model.legalform | translate) }"
+            ></span>
+            <button
+                class="oui-button oui-button_secondary mt-2"
+                type="button"
+                data-ng-click="$ctrl.scrollToCompanyData()"
+                data-translate="signup_legalform_other_switch_company_cta"
+            ></button>
+        </oui-message>
         <oui-message
             class="mb-2"
             type="warning"

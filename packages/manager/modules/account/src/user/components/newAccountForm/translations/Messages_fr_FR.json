@@ -785,5 +785,9 @@
   "signup_einvoicing_single_b2g": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
   "signup_einvoicing_multi_b2b": "Veuillez sélectionner votre adresse de facturation électronique par défaut.",
   "signup_einvoicing_multi_b2g": "Veuillez sélectionner votre adresse de facturation électronique par défaut. Si votre SIREN de facturation est différent du SIREN de votre entité, vous pouvez contacter le support pour en renseigner une autre.",
-  "signup_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
+  "signup_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle.",
+  "signup_legalform_other_invalid": "La catégorie « Autre » n'est pas valide. Veuillez sélectionner une autre catégorie.",
+  "signup_legalform_other_save_blocked": "Impossible d'enregistrer avec la catégorie « Autre ». Veuillez sélectionner une catégorie valide avant de continuer.",
+  "signup_legalform_other_switch_company": "Vous avez modifié votre catégorie. Veuillez mettre à jour les données de votre {{ category }} avant d'enregistrer.",
+  "signup_legalform_other_switch_company_cta": "Mettre à jour mes données société"
 }

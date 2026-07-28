@@ -185,5 +185,13 @@
             data-translate="{{ 'common_field_error_' + error }}"
             data-translate-values="{ minlength: $ctrl.rule.minLength, maxlength: $ctrl.rule.maxLength }"
         ></span>
+
+        <!-- RG2: informational error when the "Autre" category is selected -->
+        <span
+            class="help-block text-danger"
+            data-ng-if="$ctrl.rule.fieldName === $ctrl.FIELD_NAME_LIST.legalform && $ctrl.newAccountForm.isOtherCategorySelected()"
+            role="alert"
+            data-translate="signup_legalform_other_invalid"
+        ></span>
     </div>
 </div>
