@@ -27,7 +27,7 @@ export default function LicenseTypeCard({ card, selected, onSelect }: LicenseTyp
       role="radio"
       aria-checked={selected}
       onClick={onSelect}
-      className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-500)] ${
+      className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 border-solid bg-white text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-500)] ${
         selected ? SELECTED_CARD_CLASS : 'border-[var(--ods-color-neutral-200)]'
       }`}
     >

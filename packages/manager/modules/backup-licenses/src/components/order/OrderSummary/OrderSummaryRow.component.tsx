@@ -15,11 +15,7 @@ interface OrderSummaryRowProps {
  * Ligne label / valeur du récapitulatif. Une valeur vide bascule en placeholder
  * discret (italique, gris clair) : l'utilisateur voit d'un coup d'œil ce qu'il reste à saisir.
  */
-export default function OrderSummaryRow({
-  label,
-  value,
-  emptyLabel,
-}: OrderSummaryRowProps) {
+export default function OrderSummaryRow({ label, value, emptyLabel }: OrderSummaryRowProps) {
   const isEmpty = value == null || value.trim() === '';
 
   return (

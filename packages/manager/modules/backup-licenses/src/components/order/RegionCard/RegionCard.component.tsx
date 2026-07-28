@@ -27,7 +27,7 @@ export default function RegionCard({ region, selected, onSelect }: RegionCardPro
       role="radio"
       aria-checked={selected}
       onClick={onSelect}
-      className={`flex cursor-pointer flex-col gap-4 rounded-lg border-2 bg-white p-6 text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-200)] ${
+      className={`flex cursor-pointer flex-col gap-4 rounded-lg border-2 border-solid bg-white p-6 text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-200)] ${
         selected ? SELECTED_CARD_CLASS : 'border-[var(--ods-color-neutral-200)]'
       }`}
     >

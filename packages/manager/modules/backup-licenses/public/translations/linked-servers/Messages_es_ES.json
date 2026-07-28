@@ -11,6 +11,7 @@
   "status": {
     "creating": "Creándose",
     "updating": "Actualizándose",
+    "deleting": "Eliminándose",
     "installed": "Activa",
     "expired": "Caducada",
     "not_supported": "No compatible",
@@ -28,6 +29,12 @@
   },
   "action": {
     "add_server": "Añadir un servidor"
+  },
+  "delete": {
+    "title": "Eliminar el servidor",
+    "content": "¿Seguro que quiere eliminar el servidor <strong>{{serverName}}</strong>? La licencia asociada será revocada. Esta acción es irreversible.",
+    "success": "Se ha iniciado la eliminación del servidor {{serverName}}.",
+    "error": "No se ha podido eliminar el servidor {{serverName}}."
   },
   "empty_state": "Todavía no hay ningún servidor registrado. Añada su primer servidor VBR para empezar.",
   "error": {

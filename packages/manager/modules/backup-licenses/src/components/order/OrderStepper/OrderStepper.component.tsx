@@ -26,7 +26,7 @@ const STEP_LABEL_KEY: Record<OrderStepId, string> = {
 const DOT_CLASS: Record<StepState, string> = {
   done: 'bg-[var(--ods-color-success-500)] text-white',
   active:
-    'border-2 border-[var(--ods-color-primary-500)] bg-[var(--ods-color-primary-100)] text-[var(--ods-color-primary-600)]',
+    'border-2 border-solid border-[var(--ods-color-primary-500)] bg-[var(--ods-color-primary-100)] text-[var(--ods-color-primary-600)]',
   idle: 'border-2 border-[var(--ods-color-neutral-300)] bg-white text-[var(--ods-color-neutral-600)]',
 };
 
@@ -41,7 +41,9 @@ export default function OrderStepper({ steps, currentIndex, onStepSelect }: Orde
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
 
   return (
-    <div className="mx-auto max-w-[480px] py-8">
+    // `py-[1.5rem]` et non `py-8` : `py-8` régénéré en local écraserait globalement le `py-8`
+    // déjà utilisé par `BaseLayout` (MRC) — cf. commentaire équivalent dans Order.page.tsx.
+    <div className="mx-auto max-w-[480px] py-[1.5rem]">
       <ol className="flex items-start">
         {steps.map((step, index) => {
           const state: StepState =

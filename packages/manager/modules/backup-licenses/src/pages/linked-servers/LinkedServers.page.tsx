@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+
+import { Outlet } from 'react-router-dom';
 
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
@@ -63,6 +65,11 @@ export default function LinkedServersPage() {
         isLoading={isPending}
         noResultLabel={t('empty_state')}
       />
+      {/* Modales de ligne (suppression, puis édition au ticket 2.3). Le `Suspense` est local
+          pour que le chargement du chunk de la modale ne masque pas la liste. */}
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </section>
   );
 }

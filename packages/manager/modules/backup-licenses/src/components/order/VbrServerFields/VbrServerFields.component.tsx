@@ -61,7 +61,7 @@ export default function VbrServerFields({
 
         <label
           htmlFor="vbr-nat-toggle"
-          className="flex cursor-pointer items-start gap-4 rounded-lg border border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-050)] p-6"
+          className="flex cursor-pointer items-start gap-4 rounded-lg border border-solid border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-050)] p-6"
         >
           {/*
             OdsToggle ne resynchronise pas fiablement sa prop `value` contrôlée

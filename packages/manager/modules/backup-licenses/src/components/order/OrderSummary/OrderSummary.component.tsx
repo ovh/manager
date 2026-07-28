@@ -9,12 +9,7 @@ import OrderSummaryRow from '@/components/order/OrderSummary/OrderSummaryRow.com
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { VAULT_REGIONS } from '@/data/regions.data';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
-import {
-  LicenseFamily,
-  OrderStepId,
-  ServerVaultFormState,
-  VdpTier,
-} from '@/types/Order.type';
+import { LicenseFamily, OrderStepId, ServerVaultFormState, VdpTier } from '@/types/Order.type';
 
 interface OrderSummaryProps {
   family: LicenseFamily | null;
@@ -34,21 +29,13 @@ interface OrderSummaryProps {
  * `order__accordion` donne la bordure permanente, qu'ODS ne montre qu'au survol. La classe
  * vit dans l'`index.scss` de l'app : `::part` n'est pas exprimable en classes utilitaires.
  */
-export default function OrderSummary({
-  family,
-  tier,
-  form,
-  onEdit,
-}: OrderSummaryProps) {
+export default function OrderSummary({ family, tier, form, onEdit }: OrderSummaryProps) {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
 
-  const familyKey =
-    LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
-  const tierKey =
-    VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
+  const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
+  const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
   const regionKey =
-    VAULT_REGIONS.find((region) => region.apiValue === form.regionApiValue)
-      ?.i18nKey ?? null;
+    VAULT_REGIONS.find((region) => region.apiValue === form.regionApiValue)?.i18nKey ?? null;
 
   const emptyLabel = t('summary.empty');
   const isVdp = family === LicenseFamily.DATA_PLATFORM;

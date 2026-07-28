@@ -13,10 +13,7 @@ import OrderStepper from '@/components/order/OrderStepper/OrderStepper.component
 import OrderSummary from '@/components/order/OrderSummary/OrderSummary.component';
 import VbrVaultStep from '@/components/order/VbrVaultStep/VbrVaultStep.component';
 import VdpTierStep from '@/components/order/VdpTierStep/VdpTierStep.component';
-import {
-  OrderFieldName,
-  useOrderForm,
-} from '@/hooks/useOrderForm/useOrderForm';
+import { OrderFieldName, useOrderForm } from '@/hooks/useOrderForm/useOrderForm';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 import { routeUrls } from '@/routes/routes.constants';
 import { LicenseFamily, OrderStepId } from '@/types/Order.type';
@@ -58,11 +55,9 @@ export default function OrderPage() {
 
   const getPrimaryLabel = (): string => {
     if (currentStep === OrderStepId.SERVER_VAULT) return t('footer.order');
-    if (currentStep === OrderStepId.VDP_TIER)
-      return t('footer.to_server_vault');
+    if (currentStep === OrderStepId.VDP_TIER) return t('footer.to_server_vault');
     // LICENSE_TYPE
-    if (family === LicenseFamily.ENTERPRISE_PLUS)
-      return t('footer.to_server_vault');
+    if (family === LicenseFamily.ENTERPRISE_PLUS) return t('footer.to_server_vault');
     if (family === LicenseFamily.DATA_PLATFORM) return t('footer.to_vdp');
     return t('footer.continue');
   };
@@ -80,7 +75,7 @@ export default function OrderPage() {
       if (firstInvalidField) {
         const el = document.getElementById(FIELD_ELEMENT_IDS[firstInvalidField]);
         el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        (el as HTMLElement | null)?.focus?.();
+        el?.focus?.();
       }
       return;
     }
@@ -101,14 +96,13 @@ export default function OrderPage() {
 
   // L'étape VDP affiche 3 cartes côte à côte : elle a besoin de plus de largeur
   // pour ne pas étirer les cartes. Les autres étapes restent en colonne étroite.
-  const containerWidth =
-    currentStep === OrderStepId.VDP_TIER ? 'max-w-[980px]' : 'max-w-[720px]';
+  const containerWidth = currentStep === OrderStepId.VDP_TIER ? 'max-w-[980px]' : 'max-w-[720px]';
 
   return (
-    <div
-      ref={topRef}
-      className={`mx-auto mt-8 px-4 pt-6 scroll-mt-4 ${containerWidth}`}
-    >
+    // `px-[0.5rem]` et non `px-4` : l'échelle `spacing` custom du repo régénère `.px-4` en local,
+    // qui écrase alors globalement le `px-4` déjà utilisé par `BaseLayout` (MRC) — le CSS importé
+    // de MRC est hissé avant `@tailwind utilities` par la règle CSS `@import`, donc perdant.
+    <div ref={topRef} className={`mx-auto mt-8 px-[0.5rem] pt-6 scroll-mt-4 ${containerWidth}`}>
       <OdsText preset={ODS_TEXT_PRESET.heading3} className="block text-center">
         {t('title')}
       </OdsText>
@@ -134,12 +128,7 @@ export default function OrderPage() {
 
       {/* Récap replié en pied de la dernière étape (sous la localisation), avant le footer. */}
       {isLastStep && (
-        <OrderSummary
-          family={family}
-          tier={tier}
-          form={form}
-          onEdit={order.goToStep}
-        />
+        <OrderSummary family={family} tier={tier} form={form} onEdit={order.goToStep} />
       )}
 
       <OrderFooter

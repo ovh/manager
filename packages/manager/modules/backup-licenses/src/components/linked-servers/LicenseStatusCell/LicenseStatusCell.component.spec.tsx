@@ -76,4 +76,29 @@ describe('LicenseStatusCell', () => {
     expect(badge()?.getAttribute('color')).toBe('information');
     expect(spinner()).toBeNull();
   });
+
+  it('renders a dedicated label when a deletion is in flight, instead of the generic updating one', async () => {
+    await renderWithProviders(
+      <LicenseStatusCell licenseStatus={LicenseStatus.INSTALLED} isInFlight isDeleting />,
+    );
+
+    expect(screen.getByText('status.deleting')).toBeInTheDocument();
+    expect(screen.queryByText('status.updating')).not.toBeInTheDocument();
+    expect(spinner()).not.toBeNull();
+    expect(badge()).toBeNull();
+  });
+
+  it('keeps the error rendering when a failed task coexists with a deletion in flight', async () => {
+    await renderWithProviders(
+      <LicenseStatusCell
+        licenseStatus={LicenseStatus.INSTALLED}
+        isInFlight={false}
+        isDeleting
+        hasFailedTask
+      />,
+    );
+
+    expect(badge()?.getAttribute('label')).toBe('status.error');
+    expect(screen.queryByText('status.deleting')).not.toBeInTheDocument();
+  });
 });

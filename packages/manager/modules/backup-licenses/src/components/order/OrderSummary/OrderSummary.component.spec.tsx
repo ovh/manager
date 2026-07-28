@@ -4,12 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
-import {
-  LicenseFamily,
-  OrderStepId,
-  ServerVaultFormState,
-  VdpTier,
-} from '@/types/Order.type';
+import { LicenseFamily, OrderStepId, ServerVaultFormState, VdpTier } from '@/types/Order.type';
 
 import OrderSummary from './OrderSummary.component';
 
@@ -58,9 +53,7 @@ describe('OrderSummary', () => {
     expect(screen.getByText('license.data_platform.title')).toBeInTheDocument();
     expect(screen.getByText('summary.field.tier')).toBeInTheDocument();
     expect(screen.getByText('tier.premium.title')).toBeInTheDocument();
-    expect(
-      screen.getByText('summary.vault_included_value'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('summary.vault_included_value')).toBeInTheDocument();
   });
 
   it("n'affiche pas la ligne « Niveau » hors Data Platform", async () => {
@@ -73,9 +66,7 @@ describe('OrderSummary', () => {
       />,
     );
 
-    expect(
-      screen.getByText('license.enterprise_plus.title'),
-    ).toBeInTheDocument();
+    expect(screen.getByText('license.enterprise_plus.title')).toBeInTheDocument();
     expect(screen.queryByText('summary.field.tier')).not.toBeInTheDocument();
   });
 
@@ -96,12 +87,8 @@ describe('OrderSummary', () => {
     expect(screen.getByText('region.par.name')).toBeInTheDocument();
 
     // Les champs non irréversibles saisis à l'étape ne sont pas répétés ici.
-    expect(
-      screen.queryByText('summary.field.service_name'),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText('summary.field.public_ip'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByText('summary.field.service_name')).not.toBeInTheDocument();
+    expect(screen.queryByText('summary.field.public_ip')).not.toBeInTheDocument();
   });
 
   it("affiche le placeholder « à renseigner » quand la famille n'est pas résolue", async () => {

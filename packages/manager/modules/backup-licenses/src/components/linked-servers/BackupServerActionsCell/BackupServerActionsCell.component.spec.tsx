@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Route, Routes } from 'react-router-dom';
+
 import { screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -18,7 +20,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     ActionMenu: ({ items, isDisabled }: ActionMenuProps) => (
       <div data-testid="action-menu" data-disabled={String(!!isDisabled)}>
         {items.map((item) => (
-          <button key={item.id} type="button" disabled={item.isDisabled}>
+          <button key={item.id} type="button" disabled={item.isDisabled} data-href={item.href}>
             {item.label}
           </button>
         ))}
@@ -28,23 +30,45 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 describe('BackupServerActionsCell', () => {
-  // Les entrées sont volontairement actives mais sans effet le temps de la revue visuelle
-  // (cf. le composant) : à rebasculer sur `toBeDisabled()` quand `isDisabled: true` reviendra.
-  it('exposes both row actions, clickable until tickets 2.3/2.4 ship', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled={false} />);
+  // Le lien est relatif à la route qui rend le tableau : on reproduit cette imbrication,
+  // sans quoi il se résoudrait depuis la racine.
+  it('links the delete action to the deletion modal of the row', async () => {
+    await renderWithProviders(
+      <Routes>
+        <Route
+          path="/linked-servers"
+          element={<BackupServerActionsCell backupServerId="server-1" isDisabled={false} />}
+        />
+      </Routes>,
+      { initialEntries: ['/linked-servers'] },
+    );
 
-    expect(screen.getByRole('button', { name: 'modify' })).toBeEnabled();
-    expect(screen.getByRole('button', { name: 'delete' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'delete' })).toHaveAttribute(
+      'data-href',
+      '/linked-servers/delete/server-1',
+    );
+  });
+
+  // « Modifier » reste inactive jusqu'au ticket 2.3 : à rebasculer sur `toBeEnabled()` à ce
+  // moment-là.
+  it('keeps the modify action disabled until ticket 2.3 ships', async () => {
+    await renderWithProviders(
+      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+    );
+
+    expect(screen.getByRole('button', { name: 'modify' })).toBeDisabled();
   });
 
   it('leaves the menu itself enabled when no operation is in flight', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled={false} />);
+    await renderWithProviders(
+      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+    );
 
     expect(screen.getByTestId('action-menu')).toHaveAttribute('data-disabled', 'false');
   });
 
   it('disables the whole menu while an operation is in flight', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled />);
+    await renderWithProviders(<BackupServerActionsCell backupServerId="server-1" isDisabled />);
 
     expect(screen.getByTestId('action-menu')).toHaveAttribute('data-disabled', 'true');
   });

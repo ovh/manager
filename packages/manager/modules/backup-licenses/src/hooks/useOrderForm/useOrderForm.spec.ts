@@ -1,4 +1,4 @@
-import { createElement, type ReactNode } from 'react';
+import { type ReactNode, createElement } from 'react';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -45,13 +45,13 @@ describe('useOrderForm — flux des étapes selon la famille', () => {
     expect(result.current.isCurrentStepValid).toBe(true);
   });
 
-  it('Enterprise Plus → 2 étapes, sans l\'étape VDP', () => {
+  it("Enterprise Plus → 2 étapes, sans l'étape VDP", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
     expect(result.current.steps).toEqual([OrderStepId.LICENSE_TYPE, OrderStepId.SERVER_VAULT]);
   });
 
-  it('Data Platform → 3 étapes avec l\'étape VDP', () => {
+  it("Data Platform → 3 étapes avec l'étape VDP", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.DATA_PLATFORM));
     expect(result.current.steps).toEqual([
@@ -61,14 +61,14 @@ describe('useOrderForm — flux des étapes selon la famille', () => {
     ]);
   });
 
-  it('goNext saute directement à l\'étape 3 pour Enterprise Plus', () => {
+  it("goNext saute directement à l'étape 3 pour Enterprise Plus", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
     act(() => result.current.goNext());
     expect(result.current.currentStep).toBe(OrderStepId.SERVER_VAULT);
   });
 
-  it('goNext va à l\'étape VDP pour Data Platform', () => {
+  it("goNext va à l'étape VDP pour Data Platform", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.DATA_PLATFORM));
     act(() => result.current.goNext());
@@ -91,12 +91,12 @@ describe('useOrderForm — résolution de la valeur API', () => {
     expect(result.current.resolvedLicenseApiValue).toBe(LicenseApiValue.ENTERPRISE_PLUS);
   });
 
-  it('par défaut (Data Platform + Premium présélectionnés) résout l\'enum du tier recommandé', () => {
+  it("par défaut (Data Platform + Premium présélectionnés) résout l'enum du tier recommandé", () => {
     const { result } = renderOrderForm();
     expect(result.current.resolvedLicenseApiValue).toBe(LicenseApiValue.VDP_PREMIUM);
   });
 
-  it('VDP + Premium résout l\'enum du tier', () => {
+  it("VDP + Premium résout l'enum du tier", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.DATA_PLATFORM));
     act(() => result.current.selectTier(VdpTier.PREMIUM));
@@ -104,7 +104,7 @@ describe('useOrderForm — résolution de la valeur API', () => {
   });
 });
 
-describe('useOrderForm — validation de l\'étape Serveur & Vault', () => {
+describe("useOrderForm — validation de l'étape Serveur & Vault", () => {
   it('canSubmit devient vrai quand tous les champs requis sont valides', () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
@@ -121,7 +121,7 @@ describe('useOrderForm — validation de l\'étape Serveur & Vault', () => {
     expect(result.current.canSubmit).toBe(false);
   });
 
-  it('le NAT activé rend l\'IP privée obligatoire', () => {
+  it("le NAT activé rend l'IP privée obligatoire", () => {
     const { result } = renderOrderForm();
     act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
     fillServerVault(result);
@@ -148,18 +148,18 @@ describe('useOrderForm — validation de l\'étape Serveur & Vault', () => {
 });
 
 describe('useOrderForm — affichage des erreurs', () => {
-  it('n\'affiche pas d\'erreur requise avant interaction', () => {
+  it("n'affiche pas d'erreur requise avant interaction", () => {
     const { result } = renderOrderForm();
     expect(result.current.errors.displayName).toBeNull();
   });
 
-  it('affiche l\'erreur requise après touchField', () => {
+  it("affiche l'erreur requise après touchField", () => {
     const { result } = renderOrderForm();
     act(() => result.current.touchField('displayName'));
     expect(result.current.errors.displayName).toBe('field.service_name.error');
   });
 
-  it('affiche l\'erreur de format IP dès qu\'une valeur invalide est saisie', () => {
+  it("affiche l'erreur de format IP dès qu'une valeur invalide est saisie", () => {
     const { result } = renderOrderForm();
     act(() => result.current.setField('backupServerExternalIp', '10.0.0'));
     expect(result.current.errors.backupServerExternalIp).toBe('field.public_ip.error');

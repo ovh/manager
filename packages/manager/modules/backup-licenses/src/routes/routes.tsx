@@ -4,12 +4,15 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { subRoutes } from './routes.constants';
+import { subRoutes, urlParams } from './routes.constants';
 
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
 const ServiceLayoutPage = React.lazy(() => import('@/pages/service/ServiceLayout.page'));
 const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/LinkedServers.page'));
+const DeleteBackupServerPage = React.lazy(
+  () => import('@/pages/linked-servers/delete/DeleteBackupServer.page'),
+);
 
 export default (
   <>
@@ -36,7 +39,16 @@ export default (
         handle={{
           tracking: { pageName: 'linked-servers', pageType: PageType.listing },
         }}
-      />
+      >
+        {/* Modale enfant : elle se superpose à la liste, qui reste montée derrière. */}
+        <Route
+          path={`${subRoutes.delete}/${urlParams.backupServerId}`}
+          Component={DeleteBackupServerPage}
+          handle={{
+            tracking: { pageName: 'delete-backup-server', pageType: PageType.popup },
+          }}
+        />
+      </Route>
       {/* TODO(1.2/1.3/1.4) : routes vaults / billing / general-information. */}
     </Route>
   </>

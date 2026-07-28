@@ -27,7 +27,7 @@ export default function VdpTierCard({ card, selected, onSelect }: VdpTierCardPro
       role="radio"
       aria-checked={selected}
       onClick={onSelect}
-      className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-500)] ${
+      className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 border-solid bg-white text-left transition-[border-color,box-shadow] hover:border-[var(--ods-color-primary-500)] ${
         selected ? SELECTED_CARD_CLASS : 'border-[var(--ods-color-neutral-200)]'
       }`}
     >
@@ -45,7 +45,7 @@ export default function VdpTierCard({ card, selected, onSelect }: VdpTierCardPro
         <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
           <Trans i18nKey={`${base}.audience`} t={t} components={{ b: <b /> }} />
         </OdsText>
-        <span className="block rounded-md border border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-050)] p-5">
+        <span className="block rounded-md border border-solid border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-050)] p-5">
           <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
             {t(`${base}.price`)}
           </OdsText>

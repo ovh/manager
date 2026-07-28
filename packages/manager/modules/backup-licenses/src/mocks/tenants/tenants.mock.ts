@@ -2,8 +2,8 @@
  * Tenants de développement : ils n'existent que pour satisfaire la cascade
  * service → tenant VSPC quand `USE_API_MOCKS` est actif (cf. mocks.config.ts).
  */
-import { Resource } from '@/types/Resource.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
+import { Resource } from '@/types/Resource.type';
 import { ADVANCED_VSPC_TYPE, BACKUP_LICENSES_ADDON, VspcTenant } from '@/types/VspcTenant.type';
 
 export const mockBackupServicesTenants: Resource<BackupServicesTenant>[] = [

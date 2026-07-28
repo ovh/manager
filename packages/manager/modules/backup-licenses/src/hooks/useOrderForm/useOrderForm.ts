@@ -94,7 +94,9 @@ export function useOrderForm() {
   // L'étape courante est pilotée par l'URL (?step=...) : le bouton « précédent » du
   // navigateur revient ainsi à l'étape précédente au lieu de quitter le funnel.
   const stepFromUrl = SLUG_TO_STEP[searchParams.get(STEP_PARAM) ?? ''] ?? OrderStepId.LICENSE_TYPE;
-  const currentStep = steps.includes(stepFromUrl) ? stepFromUrl : (steps[0] ?? OrderStepId.LICENSE_TYPE);
+  const currentStep = steps.includes(stepFromUrl)
+    ? stepFromUrl
+    : (steps[0] ?? OrderStepId.LICENSE_TYPE);
   const currentIndex = Math.max(0, steps.indexOf(currentStep));
   const isFirstStep = currentIndex === 0;
   const isLastStep = currentIndex === steps.length - 1;

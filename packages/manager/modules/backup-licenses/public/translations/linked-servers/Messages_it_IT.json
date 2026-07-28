@@ -11,6 +11,7 @@
   "status": {
     "creating": "In creazione",
     "updating": "Aggiornamento in corso",
+    "deleting": "Eliminazione in corso",
     "installed": "Attiva",
     "expired": "Scaduta",
     "not_supported": "Non supportata",
@@ -28,6 +29,12 @@
   },
   "action": {
     "add_server": "Aggiungi un server"
+  },
+  "delete": {
+    "title": "Elimina il server",
+    "content": "Vuoi davvero eliminare il server <strong>{{serverName}}</strong>? La licenza associata sarà revocata. Questa azione è irreversibile.",
+    "success": "L'eliminazione del server {{serverName}} è stata avviata.",
+    "error": "Non è stato possibile eliminare il server {{serverName}}."
   },
   "empty_state": "Nessun server registrato. Aggiungi il tuo primo server VBR per iniziare.",
   "error": {

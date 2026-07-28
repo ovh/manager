@@ -11,6 +11,7 @@
   "status": {
     "creating": "Tworzenie w toku",
     "updating": "Aktualizacja w toku",
+    "deleting": "Usuwanie w toku",
     "installed": "Aktywna",
     "expired": "Wygasła",
     "not_supported": "Nieobsługiwana",
@@ -28,6 +29,12 @@
   },
   "action": {
     "add_server": "Dodaj serwer"
+  },
+  "delete": {
+    "title": "Usuń serwer",
+    "content": "Czy na pewno chcesz usunąć serwer <strong>{{serverName}}</strong>? Powiązana licencja zostanie unieważniona. Ta operacja jest nieodwracalna.",
+    "success": "Usuwanie serwera {{serverName}} zostało rozpoczęte.",
+    "error": "Nie udało się usunąć serwera {{serverName}}."
   },
   "empty_state": "Nie zarejestrowano jeszcze żadnego serwera. Dodaj pierwszy serwer VBR, aby rozpocząć.",
   "error": {

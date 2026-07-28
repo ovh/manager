@@ -9,6 +9,11 @@ export const subRoutes = {
   vaults: 'vaults' as const,
   billing: 'billing' as const,
   generalInformation: 'general-information' as const,
+  delete: 'delete' as const,
+} as const;
+
+export const urlParams = {
+  backupServerId: ':backupServerId' as const,
 } as const;
 
 // Absolute paths for cross-page navigation (routes are mounted under "/" by the consumer app).

@@ -46,11 +46,11 @@ export default function VaultInfoPanel() {
 
       <div>
         {/* Trait de séparation avec l'en-tête : ODS n'en pose pas entre `summary` et `content`. */}
-        <div className="flex border-t border-[var(--ods-color-neutral-100)] bg-[var(--ods-color-neutral-050)]">
+        <div className="flex border-0 border-t border-solid border-[var(--ods-color-neutral-100)] bg-[var(--ods-color-neutral-050)]">
           {METRIC_KEYS.map((key) => (
             <div
               key={key}
-              className="flex flex-1 flex-col items-center gap-3 border-l border-[var(--ods-color-neutral-100)] p-6 text-center first:border-l-0"
+              className="flex flex-1 flex-col items-center gap-3 border-0 border-l border-solid border-[var(--ods-color-neutral-100)] p-6 text-center first:border-l-0"
             >
               <OdsText
                 preset={ODS_TEXT_PRESET.heading5}
@@ -68,7 +68,7 @@ export default function VaultInfoPanel() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 border-t border-[var(--ods-color-neutral-100)] sm:grid-cols-2">
+        <div className="grid grid-cols-1 border-0 border-t border-solid border-[var(--ods-color-neutral-100)] sm:grid-cols-2">
           {ATTR_KEYS.map((key, index) => (
             <div
               key={key}

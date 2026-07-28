@@ -11,6 +11,7 @@
   "status": {
     "creating": "Wird erstellt",
     "updating": "Wird aktualisiert",
+    "deleting": "Wird gelöscht",
     "installed": "Aktiv",
     "expired": "Abgelaufen",
     "not_supported": "Nicht unterstützt",
@@ -28,6 +29,12 @@
   },
   "action": {
     "add_server": "Server hinzufügen"
+  },
+  "delete": {
+    "title": "Server löschen",
+    "content": "Möchten Sie den Server <strong>{{serverName}}</strong> wirklich löschen? Die zugehörige Lizenz wird widerrufen. Diese Aktion ist unwiderruflich.",
+    "success": "Die Löschung des Servers {{serverName}} wurde gestartet.",
+    "error": "Der Server {{serverName}} konnte nicht gelöscht werden."
   },
   "empty_state": "Noch kein Server registriert. Fügen Sie Ihren ersten VBR-Server hinzu, um zu beginnen.",
   "error": {
