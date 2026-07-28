@@ -31,7 +31,7 @@ export const useReassignEdgeIpBlock = ({
         await unassignIpBlock({
           id,
           ipBlockId: previous.id,
-          payload: { name: previous.name, edgeGatewayId: null },
+          payload: { name: previous.name },
         });
       }
       await assignIpBlock({

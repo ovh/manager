@@ -1,6 +1,7 @@
 import {
   useVcdDatacentre,
   useVcdIpBlocks,
+  VCDIpBlock,
 } from '@ovh-ux/manager-module-vcd-api';
 import {
   Datagrid,
@@ -20,6 +21,11 @@ import { useLifecycleAwareEdgeGateways } from '@/hooks/edge/useLifecycleAwareEdg
 import { EDGE_GATEWAY_MAX_QUANTITY } from './datacentreEdgeGateway.constants';
 import { aggregateEdgeGateways } from '@/utils/aggregateEdgeGateways';
 
+const IP_BLOCK_POLL_INTERVAL = 4000;
+
+const isIpBlockUpdating = (ipBlock: VCDIpBlock): boolean =>
+  ipBlock.resourceStatus === 'UPDATING';
+
 export default function EdgeGatewayListingPage() {
   const { id, vdcId } = useParams();
   const columns = useEdgeGatewayListingColumns();
@@ -29,7 +35,13 @@ export default function EdgeGatewayListingPage() {
   } = useHasEdgeGatewayAccess();
   const vdcQuery = useVcdDatacentre(id, vdcId);
   const edgeQuery = useLifecycleAwareEdgeGateways({ id, vdcId });
-  const ipBlockQuery = useVcdIpBlocks({ id });
+  const ipBlockQuery = useVcdIpBlocks({
+    id,
+    refetchInterval: (query) =>
+      query.state.data?.some(isIpBlockUpdating)
+        ? IP_BLOCK_POLL_INTERVAL
+        : false,
+  });
 
   const queryList = [vdcQuery, edgeQuery, ipBlockQuery];
   const queries = {

@@ -13,6 +13,7 @@ import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
 import { EDGE_SCHEMAS, EditEdgeNameForm } from '@/schemas/edge.schema';
 import { InputField } from '@/components/form/InputField.component';
+import { subRoutes } from '@/routes/routes.constant';
 import {
   EDGE_GATEWAY_NAME_MAX_LENGTH,
   EDGE_GATEWAY_NAME_MIN_LENGTH,
@@ -38,8 +39,18 @@ export default function EditEdgeGatewayNamePage() {
   } = useUpdateEdgeGateway({
     ...edgeParams,
     onSettled: closeDrawer,
-    onSuccess: () => addSuccess({ content: t('edge_update_banner_success') }),
-    onError: () => addError({ content: t('edge_operation_error') }),
+    onSuccess: () =>
+      addSuccess({
+        content: t('edge_update_banner_success', {
+          edgeName: edge?.currentState.name,
+        }),
+        includedSubRoutes: [subRoutes.edgeGateway],
+      }),
+    onError: () =>
+      addError({
+        content: t('edge_operation_error'),
+        includedSubRoutes: [subRoutes.edgeGateway],
+      }),
   });
 
   const {
