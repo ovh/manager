@@ -182,16 +182,15 @@
     ></div>
     <oui-message
         data-type="info"
-        data-ng-if="$ctrl.isChangeOfferFeatureAvailable"
+        data-ng-if="hosting.isCloudWeb && hosting.serviceState === 'ACTIVE'"
         class="mb-3"
     >
-        <span data-translate="hosting_change_offer_banner"></span>
-        <a
-            data-ng-href="{{ $ctrl.user.ovhSubsidiary === 'FR' ? 'https://blog.ovhcloud.com/fr-webhosting-2026' : 'https://blog.ovhcloud.com/en-webhosting-2026' }}"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-translate="hosting_change_offer_banner_link"
-        ></a>
+        <span
+            data-ng-bind-html="'hosting_cloud_web_migration_banner' | translate: {
+                t0: $ctrl.cloudWebMigrationLearnMoreLink,
+                t1: $ctrl.cloudWebMigrationVpsGuideLink
+            }"
+        ></span>
     </oui-message>
 
     <oui-header-tabs>

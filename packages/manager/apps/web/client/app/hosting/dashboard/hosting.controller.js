@@ -8,7 +8,12 @@ import set from 'lodash/set';
 import some from 'lodash/some';
 import union from 'lodash/union';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
-import { DATABASES_TRACKING, HOSTING_GUIDES } from '../hosting.constants';
+import {
+  CLOUD_WEB_EVOLUTION_BLOG_URL,
+  CLOUD_WEB_MIGRATION_VPS_GUIDE_URL,
+  DATABASES_TRACKING,
+  HOSTING_GUIDES,
+} from '../hosting.constants';
 import { RENEW_URL } from '../general-informations/general-informations.constants';
 
 export default class {
@@ -219,6 +224,15 @@ export default class {
       title: this.$translate.instant(guide.translateKey),
       href: guide.url[this.user.ovhSubsidiary] || guide.url.DEFAULT,
     }));
+
+    this.cloudWebMigrationLearnMoreLink = this.buildCloudWebMigrationLink(
+      CLOUD_WEB_EVOLUTION_BLOG_URL,
+      'hosting_cloud_web_migration_banner_learn_more',
+    );
+    this.cloudWebMigrationVpsGuideLink = this.buildCloudWebMigrationLink(
+      CLOUD_WEB_MIGRATION_VPS_GUIDE_URL,
+      'hosting_cloud_web_migration_banner_vps_link',
+    );
 
     this.$scope.convertBytesSize = (nb, unit, decimalWanted = 0) => {
       if (nb == null || unit == null) {
@@ -481,6 +495,13 @@ export default class {
         this.hosting = hosting;
         this.indys = indys;
       });
+  }
+
+  buildCloudWebMigrationLink(urls, translateKey) {
+    const href = urls[this.user.ovhSubsidiary] || urls.DEFAULT;
+    const label = this.$translate.instant(translateKey);
+
+    return `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
   }
 
   loadOvhConfig() {
