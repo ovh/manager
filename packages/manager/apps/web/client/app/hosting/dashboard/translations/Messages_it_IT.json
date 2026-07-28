@@ -1,8 +1,9 @@
 {
-  "hosting_change_offer_banner": "Le nostre offerte di hosting web si evolvono. Scoprite i miglioramenti e le novità incluse.",
-  "hosting_change_offer_banner_link": "Scopri di più",
   "hosting_change_offer_for_service": "Questo servizio non è disponibile per questa offerta. ",
   "hosting_change_offer_for_service_offer": "Questo servizio non è disponibile per la soluzione {{offer}}.",
+  "hosting_cloud_web_migration_banner": "La nostra offerta Cloud Web evolverà a breve.<br/>Se il tuo progetto utilizza solo PHP, potrà essere migrato verso il nostro hosting Performance {{t0}}. Se si basa su un altro linguaggio, sarà necessaria una migrazione verso un'offerta VPS. Consulta la nostra guida per preparare la migrazione verso {{t1}}.",
+  "hosting_cloud_web_migration_banner_learn_more": "maggiori informazioni",
+  "hosting_cloud_web_migration_banner_vps_link": "le nostre offerte VPS",
   "hosting_common_password_conditions": "Attenzione, la password deve rispettare queste condizioni: <br/>- minimo {{t0}} caratteri<br/>- massimo {{t1}} caratteri<br/>- Almeno una lettera maiuscola<br/>- Almeno una lettera minuscola<br/>- Almeno una cifra<br/>- Deve essere composto esclusivamente da cifre e lettere",
   "hosting_common_path_help_inline": "I caratteri accettati per le cartelle sono lettere, cifre e i caratteri -_./ Non è possibile accedere alle cartelle superiori utilizzando ..",
   "hosting_common_target_new_window": "(nuova finestra)",

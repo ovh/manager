@@ -1,8 +1,9 @@
 {
-  "hosting_change_offer_banner": "Unsere Webhosting-Angebote entwickeln sich weiter. Entdecken Sie die Verbesserungen und Neuheiten, die enthalten sind.",
-  "hosting_change_offer_banner_link": "Mehr erfahren",
   "hosting_change_offer_for_service": "Der Dienst ist für dieses Angebot nicht verfügbar.",
   "hosting_change_offer_for_service_offer": "Dieser Dienst ist für das {{offer}} Angebot nicht verfügbar.",
+  "hosting_cloud_web_migration_banner": "Unser Cloud Web Angebot wird demnächst weiterentwickelt.<br/>Wenn Ihr Projekt ausschließlich PHP verwendet, kann es zu unserem Performance Hosting migriert werden {{t0}}. Basiert es auf einer anderen Sprache, ist eine Migration zu einem VPS Angebot erforderlich. Lesen Sie unsere Anleitung, um Ihre Migration zu {{t1}} vorzubereiten.",
+  "hosting_cloud_web_migration_banner_learn_more": "mehr erfahren",
+  "hosting_cloud_web_migration_banner_vps_link": "unseren VPS Angeboten",
   "hosting_common_password_conditions": "Bitte beachten Sie, dass das Passwort nach folgenden Regeln vergeben werden muss: <br/>- mindestens {{t0}} Zeichen<br/>- höchstens {{t1}} Zeichen<br/>- mindestens ein Großbuchstabe<br/>- mindestens ein Kleinbuchstabe<br/>- mindestens eine Zahl<br/>- ausschließlich Zahlen und Buchstaben",
   "hosting_common_path_help_inline": "Für Ordner erlaubte Zeichen sind Buchstaben, Ziffern sowie die Zeichen -_./ Der Zugriff auf übergeordnete Ordner ist nicht möglich (Verwendung von ..)",
   "hosting_common_target_new_window": "(Neues Fenster)",

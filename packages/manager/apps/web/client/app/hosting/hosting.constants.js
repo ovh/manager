@@ -131,10 +131,35 @@ export const HOSTING_GUIDES = [
 export const SQL_PERSO = 'sqlPerso';
 export const EXTRA_SQL_PERSO_PREFIX = 'extraSqlPerso';
 
+export const CLOUD_WEB_EVOLUTION_BLOG_URL = {
+  FR: 'https://blog.ovhcloud.com/fr-webhosting-2026',
+  DEFAULT: 'https://blog.ovhcloud.com/en-webhosting-2026',
+};
+
+const PREFIX_DOC_URL = 'https://docs.ovhcloud.com';
+const SUFFIX_URL_VPS_MIGRATION =
+  'guides/bare-metal-cloud/virtual-private-servers/starting-with-a-vps';
+export const CLOUD_WEB_MIGRATION_VPS_GUIDE_URL = {
+  FR: `${PREFIX_DOC_URL}/fr/${SUFFIX_URL_VPS_MIGRATION}`,
+  QC: `${PREFIX_DOC_URL}/fr/${SUFFIX_URL_VPS_MIGRATION}`,
+  MA: `${PREFIX_DOC_URL}/fr/${SUFFIX_URL_VPS_MIGRATION}`,
+  SN: `${PREFIX_DOC_URL}/fr/${SUFFIX_URL_VPS_MIGRATION}`,
+  TN: `${PREFIX_DOC_URL}/fr/${SUFFIX_URL_VPS_MIGRATION}`,
+  DE: `${PREFIX_DOC_URL}/de/${SUFFIX_URL_VPS_MIGRATION}`,
+  ES: `${PREFIX_DOC_URL}/es/${SUFFIX_URL_VPS_MIGRATION}`,
+  WS: `${PREFIX_DOC_URL}/es/${SUFFIX_URL_VPS_MIGRATION}`,
+  IT: `${PREFIX_DOC_URL}/it/${SUFFIX_URL_VPS_MIGRATION}`,
+  PL: `${PREFIX_DOC_URL}/pl/${SUFFIX_URL_VPS_MIGRATION}`,
+  PT: `${PREFIX_DOC_URL}/pt/${SUFFIX_URL_VPS_MIGRATION}`,
+  DEFAULT: `${PREFIX_DOC_URL}/en/${SUFFIX_URL_VPS_MIGRATION}`,
+};
+
 export default {
   NEW_OFFERS_NAME,
   OFFERS_UNELIGIBLE_FOR_MODULE,
   HOSTING_GUIDES,
   SQL_PERSO,
   EXTRA_SQL_PERSO_PREFIX,
+  CLOUD_WEB_EVOLUTION_BLOG_URL,
+  CLOUD_WEB_MIGRATION_VPS_GUIDE_URL,
 };

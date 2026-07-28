@@ -1,8 +1,9 @@
 {
-  "hosting_change_offer_banner": "Our web hosting offers are evolving. Discover the improvements and new features included.",
-  "hosting_change_offer_banner_link": "Find out more",
   "hosting_change_offer_for_service": "This service is not available for this solution.",
   "hosting_change_offer_for_service_offer": "This service is not accessible for the {{offer}} solution.",
+  "hosting_cloud_web_migration_banner": "Our Cloud Web plan is changing soon.<br/>If your project only uses PHP, it can be migrated to our Performance hosting {{t0}}. If it relies on another language, migrating to a VPS plan will be required. Read our guide to prepare your migration to {{t1}}.",
+  "hosting_cloud_web_migration_banner_learn_more": "learn more",
+  "hosting_cloud_web_migration_banner_vps_link": "our VPS plans",
   "hosting_common_password_conditions": "Please note that the password must meet the following criteria: <br/>- Minimum {{t0}} characters<br/>- Maximum {{t1}} characters<br/>- At least one capital letter<br/>- At least one lower-case letter<br/>- At least one number<br/>- Must only contain letters and numbers",
   "hosting_common_path_help_inline": "The characters accepted for files are letters, numbers and the following characters -_./ However, you cannot access parent files using ..",
   "hosting_common_target_new_window": "(New window)",
