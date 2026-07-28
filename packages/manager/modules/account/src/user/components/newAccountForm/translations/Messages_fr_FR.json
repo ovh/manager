@@ -779,6 +779,10 @@
   "signup_enum_purposeOfPurchase_study": "Utilisation à des fins d'étude ou de recherche universitaire",
   "signup_enum_purposeOfPurchase_public-service": "Utilisation à des fins de service public",
   "signup_einvoicing_address_label": "Adresse de réception de vos factures électroniques",
-  "signup_einvoicing_no_active_address": "Aucune adresse active n'est disponible pour votre SIREN dans l'annuaire. Vous pourrez la renseigner plus tard.",
+  "signup_einvoicing_empty_b2b": "Votre SIREN {{siren}} sera utilisé comme adresse de facturation électronique par défaut.",
+  "signup_einvoicing_empty_b2g": "Aucune adresse de facturation électronique n'a été trouvée pour ce SIREN. Vous pourrez en configurer une depuis votre espace de facturation.",
+  "signup_einvoicing_single_b2b": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut.",
+  "signup_einvoicing_single_b2g": "L'adresse {{address}} sera utilisée comme adresse de facturation électronique par défaut. Vous pourrez en configurer une autre depuis votre espace de facturation.",
+  "signup_einvoicing_multi_b2g_hint": "Vous pourrez également en configurer une autre depuis votre espace de facturation.",
   "signup_einvoicing_stale_address": "L'adresse sélectionnée n'est plus active. Veuillez en sélectionner une nouvelle."
 }

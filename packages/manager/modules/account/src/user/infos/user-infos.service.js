@@ -227,15 +227,6 @@ export default class UserAccountInfosService {
       }));
   }
 
-  /**
-   * Save the selected e-invoicing billing address (RG5). The backend revalidates
-   * it against the PPF directory and rejects with 400 if it is no longer active
-   * (RG6). TODO(public/me): switch to PUT /public/me once available.
-   */
-  saveEinvoicingBillingAddress(einvoicingBillingAddress) {
-    return this.updateUseraccountInfos({ einvoicingBillingAddress });
-  }
-
   getCreationRules(params) {
     // Get creation Rules by user
     return this.$http

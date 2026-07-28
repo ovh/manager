@@ -335,6 +335,12 @@ export default class NewAccountFormController {
       }),
     );
 
+    // e-invoicing billing address is driven by a dedicated rule and is not part
+    // of /newAccount/rules, so it is dropped by the pick above. Re-add it (RG5).
+    if (this.model.einvoicingBillingAddress) {
+      model.einvoicingBillingAddress = this.model.einvoicingBillingAddress;
+    }
+
     let promise = this.userAccountServiceInfos
       .updateUseraccountInfos(model)
       .then((result) => {
@@ -437,6 +443,12 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
+        // RG6: the e-invoicing address may have been revalidated against the PPF
+        // directory and rejected with a 400. Ask the field to refresh its rules
+        // and prompt for a new selection.
+        if (err?.status === 400 && this.model.einvoicingBillingAddress) {
+          this.$scope.$broadcast('einvoicing.staleAddress');
+        }
         const isPrivateIndividual =
           this.model.legalform === USER_TYPE_INDIVIDUAL;
         const genericError = isPrivateIndividual
