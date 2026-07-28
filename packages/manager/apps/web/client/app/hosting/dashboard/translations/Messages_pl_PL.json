@@ -1,8 +1,9 @@
 {
-  "hosting_change_offer_banner": "Nasze oferty hostingu internetowego rozwijają się. Odkryj ulepszenia i nowości, które są w zestawie.",
-  "hosting_change_offer_banner_link": "Sprawdź",
   "hosting_change_offer_for_service": "Ta usługa nie jest dostępna dla tej oferty.",
   "hosting_change_offer_for_service_offer": "Ta usługa nie jest dostępna w ramach oferty {{offer}}.",
+  "hosting_cloud_web_migration_banner": "Nasza oferta Cloud Web wkrótce się zmieni.<br/>Jeśli Twój projekt wykorzystuje wyłącznie PHP, będzie można go zmigrować do naszego hostingu Performance {{t0}}. Jeśli opiera się na innym języku, konieczna będzie migracja do oferty VPS. Zapoznaj się z naszym przewodnikiem, aby przygotować migrację do {{t1}}.",
+  "hosting_cloud_web_migration_banner_learn_more": "dowiedz się więcej",
+  "hosting_cloud_web_migration_banner_vps_link": "naszych ofert VPS",
   "hosting_common_password_conditions": "Uwaga: hasło musi spełniać następujące warunki: <br/>- Minimalna liczba znaków: {{t0}}<br/>- Maksymalna liczba znaków: {{t1}} <br/>- Przynajmniej jedna wielka litera<br/>- Przynajmniej jedna mała litera<br/>- Przynajmniej jedna cyfra<br/>- Może zawierać wyłącznie cyfry i litery",
   "hosting_common_path_help_inline": "Dozwolonymi znakami w przypadku katalogów są litery, cyfry oraz znaki -_./ Nie ma dostępu do katalogów macierzystych przy użyciu ..",
   "hosting_common_target_new_window": "(Nowe okno)",

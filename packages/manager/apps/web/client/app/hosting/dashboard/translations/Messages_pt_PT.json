@@ -1,8 +1,9 @@
 {
-  "hosting_change_offer_banner": "As nossas ofertas de alojamento web evoluem. Descubra as melhorias e as novidades incluídas.",
-  "hosting_change_offer_banner_link": "Saber mais",
   "hosting_change_offer_for_service": "Este serviço não está disponível para esta oferta.",
   "hosting_change_offer_for_service_offer": "Este serviço não está disponível para a oferta {{offer}}.",
+  "hosting_cloud_web_migration_banner": "A nossa oferta Cloud Web vai evoluir em breve.<br/>Se o seu projeto utilizar apenas PHP, poderá ser migrado para o nosso alojamento Performance {{t0}}. Se depender de outra linguagem, será necessária uma migração para uma oferta VPS. Consulte o nosso guia para preparar a sua migração para {{t1}}.",
+  "hosting_cloud_web_migration_banner_learn_more": "saber mais",
+  "hosting_cloud_web_migration_banner_vps_link": "as nossas ofertas VPS",
   "hosting_common_password_conditions": "Tenha em conta que a palavra-passe deve respeitar as seguintes condições: <br/>- Mínimo de {{t0}} caracteres<br/>- Máximo de {{t1}} caracteres<br/>- Pelo menos uma letra maiúscula<br/>- Pelo menos uma letra minúscula<br/>- Pelo menos um número<br/>- Deve ser composto unicamente por números e letras.",
   "hosting_common_path_help_inline": "Os caracteres aceites para pastas: letras, números e os caracteres -_./ Além disso, não é possível aceder à pasta principal utilizando ..",
   "hosting_common_target_new_window": "(Nova janela)",
