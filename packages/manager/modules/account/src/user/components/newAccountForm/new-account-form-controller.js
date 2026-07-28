@@ -20,6 +20,7 @@ import {
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,
   USER_TYPE_INDIVIDUAL,
+  USER_TYPE_OTHER,
   SUBSIDIARIES_VAT_FIELD_OVERRIDE,
 } from './new-account-form-component.constants';
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
@@ -85,13 +86,21 @@ export default class NewAccountFormController {
     this.smsConsentDecision = null;
 
     return this.ovhFeatureFlipping
-      .checkFeatureAvailability([FEATURES.emailConsent, FEATURES.smsConsent])
+      .checkFeatureAvailability([
+        FEATURES.emailConsent,
+        FEATURES.smsConsent,
+        FEATURES.otherCategory,
+      ])
       .then((result) => {
         this.isEmailConsentAvailable = result.isFeatureAvailable(
           FEATURES.emailConsent,
         );
         this.isSmsConsentAvailable = result.isFeatureAvailable(
           FEATURES.smsConsent,
+        );
+        // Gates the FR e-invoicing "Autre" category controls (RG2/RG3/RG4)
+        this.isOtherCategoryControlEnabled = result.isFeatureAvailable(
+          FEATURES.otherCategory,
         );
       })
       .then(() => this.fetchRules(this.model))
@@ -308,6 +317,17 @@ export default class NewAccountFormController {
       name: 'dedicated::account::user::infos::save',
       type: 'action',
     });
+
+    // RG3: saving is blocked while the category is still "Autre".
+    if (this.isOtherCategorySelected()) {
+      this.Alerter.alertFromSWS(
+        this.$translate.instant('signup_legalform_other_save_blocked'),
+        'ERROR',
+        'InfoErrors',
+      );
+      return null;
+    }
+
     this.isSubmitting = true;
     this.submitError = null;
 
@@ -689,6 +709,42 @@ export default class NewAccountFormController {
       ].includes(this.model?.legalform) &&
       FR_COUNTRIES.includes(this.model?.country)
     );
+  }
+
+  // The FR e-invoicing "Autre" category controls (RG2/RG3/RG4) are gated by a
+  // feature flag and restricted to French customers.
+  isOtherCategoryControlActive() {
+    return (
+      this.isOtherCategoryControlEnabled &&
+      FR_COUNTRIES.includes(this.model?.country)
+    );
+  }
+
+  // RG2/RG3: the currently selected category is the invalid "Autre" value.
+  isOtherCategorySelected() {
+    return (
+      this.isOtherCategoryControlActive() &&
+      this.model?.legalform === USER_TYPE_OTHER
+    );
+  }
+
+  // RG4: the saved category was "Autre" and the customer switched to a category
+  // holding company data (B2B/B2G/association). B2C (individual) is excluded (RG5).
+  shouldShowCategorySwitchWarning() {
+    return (
+      this.isOtherCategoryControlActive() &&
+      this.originalModel?.legalform === USER_TYPE_OTHER &&
+      [
+        USER_TYPE_ENTERPRISE,
+        USER_TYPE_ASSOCIATION,
+        USER_TYPE_ADMINISTRATION,
+      ].includes(this.model?.legalform)
+    );
+  }
+
+  // RG4: bring the customer to the company data (SIRET) section of the form.
+  scrollToCompanyData() {
+    this.$anchorScroll('ovh_form_content_activity');
   }
 
   isFieldHiddenForFr(rule) {
