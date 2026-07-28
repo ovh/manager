@@ -10,7 +10,7 @@ type AssignIpBlock = IpBlockRouteParams & {
   payload: Pick<VCDIpBlockState, 'name' | 'edgeGatewayId'>;
 };
 type UnassignIpBlock = IpBlockRouteParams & {
-  payload: Pick<VCDIpBlockState, 'name'> & { edgeGatewayId: null };
+  payload: Pick<VCDIpBlockState, 'name'>;
 };
 
 export const getVcdIpBlocks = async (id: string): Promise<VCDIpBlock[]> => {

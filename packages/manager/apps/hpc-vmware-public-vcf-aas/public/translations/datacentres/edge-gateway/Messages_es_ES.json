@@ -15,7 +15,7 @@
   "edge_add_ip_block_no_available": "No hay ningún IP Space disponible. Debéis tener al menos 1 IP Space disponible para crear una Edge Gateway.",
   "edge_add_submit": "Crear la Edge Gateway",
   "edge_add_banner_success": "La solicitud de creación de la edge {{edgeName}} se ha tenido en cuenta correctamente.",
-  "edge_update_banner_success": "La solicitud de modificación de vuestra Edge Gateway se ha tenido en cuenta correctamente.",
+  "edge_update_banner_success": "La modificación de la edge {{edgeName}} se ha tenido en cuenta correctamente.",
   "edge_delete_title": "Eliminar la Edge Gateway",
   "edge_delete_description": "¿Realmente queréis eliminar vuestra Edge Gateway {{edgeName}}?",
   "edge_delete_warning": "Atención: eliminar su Edge Gateway conllevará la eliminación definitiva de todos sus servicios de red y configuraciones. Esta acción es irreversible.",
