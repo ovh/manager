@@ -391,6 +391,7 @@ export const TRACKING_PREFIX = 'accountmodification';
 export const FEATURES = {
   emailConsent: 'account:email-consent',
   smsConsent: 'account:sms-consent',
+  otherCategory: 'account:fr-e-invoicing-other-category',
 };
 
 export const IN_SUBSIDIARY = 'IN';
@@ -399,6 +400,7 @@ export const USER_TYPE_ENTERPRISE = 'corporation';
 export const USER_TYPE_ASSOCIATION = 'association';
 export const USER_TYPE_ADMINISTRATION = 'administration';
 export const USER_TYPE_INDIVIDUAL = 'individual';
+export const USER_TYPE_OTHER = 'other';
 
 export default {
   ENUM_TRANSLATION_RULES,
@@ -420,4 +422,5 @@ export default {
   USER_TYPE_ASSOCIATION,
   USER_TYPE_ADMINISTRATION,
   USER_TYPE_INDIVIDUAL,
+  USER_TYPE_OTHER,
 };

@@ -223,6 +223,27 @@ export default class NewAccountFormFieldController {
         return true;
       },
     };
+
+    // RG1: when the customer is redirected here from the "Autre" category modal
+    // (fieldToFocus === legalform select), open the select directly so they can
+    // pick a valid category right away. The parent controller already scrolls to
+    // the field; this focuses/opens it once rendered (best-effort on oui-select).
+    if (
+      this.newAccountForm.fieldToFocus === this.id &&
+      this.rule.fieldName === FIELD_NAME_LIST.legalform &&
+      this.getFieldType() === 'select'
+    ) {
+      this.$timeout(() => {
+        const element = document.getElementById(this.id);
+        if (!element) {
+          return;
+        }
+        const trigger =
+          element.querySelector('button, [role="button"], input') || element;
+        trigger.focus();
+        trigger.click();
+      }, 500);
+    }
   }
 
   $onChanges({ isEditionDisabledByKyc }) {
