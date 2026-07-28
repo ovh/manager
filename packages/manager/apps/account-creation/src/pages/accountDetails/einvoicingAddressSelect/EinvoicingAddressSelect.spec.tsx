@@ -1,89 +1,113 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import { LegalForm } from '@ovh-ux/manager-config';
 import { EinvoicingRule } from '@/types/einvoicing';
 import EinvoicingAddressSelect from './EinvoicingAddressSelect.component';
 
-const renderComponent = (
-  rule: EinvoicingRule | undefined,
-  value?: string,
+const renderComponent = ({
+  rule,
+  legalForm = 'corporation' as LegalForm,
+  siren,
+  value,
   onValueChange = vi.fn(),
-) =>
+}: {
+  rule?: EinvoicingRule;
+  legalForm?: LegalForm;
+  siren?: string;
+  value?: string;
+  onValueChange?: (value: string | undefined) => void;
+}) =>
   render(
     <EinvoicingAddressSelect
       rule={rule}
+      legalForm={legalForm}
+      siren={siren}
       value={value}
       onValueChange={onValueChange}
     />,
   );
 
 describe('EinvoicingAddressSelect', () => {
-  it('RG1: renders nothing when the rule is missing', () => {
-    const { container } = renderComponent(undefined);
-    expect(container).toBeEmptyDOMElement();
-  });
-
-  it('RG1: renders nothing when the rule is not visible', () => {
-    const { container } = renderComponent({
-      visible: false,
-      mandatory: false,
-      in: null,
-      defaultValue: null,
+  it('renders nothing when the rule is missing or not visible', () => {
+    const { container: c1 } = renderComponent({ rule: undefined });
+    expect(c1).toBeEmptyDOMElement();
+    const { container: c2 } = renderComponent({
+      rule: { visible: false, mandatory: false, in: null, defaultValue: null },
     });
-    expect(container).toBeEmptyDOMElement();
+    expect(c2).toBeEmptyDOMElement();
   });
 
-  it('RG2: renders one option per active address', () => {
+  it('empty addresses, B2B → informational banner (no picker)', () => {
     renderComponent({
-      visible: true,
-      mandatory: true,
-      in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
-      defaultValue: null,
+      rule: { visible: true, mandatory: false, in: [], defaultValue: null },
+      legalForm: 'corporation' as LegalForm,
+      siren: '424761419',
     });
-    expect(screen.getByText('1 rue A, 59100 Roubaix')).toBeInTheDocument();
-    expect(screen.getByText('2 rue B, 59100 Roubaix')).toBeInTheDocument();
+    expect(
+      screen.getByText('account_details_einvoicing_empty_b2b'),
+    ).toBeInTheDocument();
   });
 
-  it('RG3: pre-selects the address when there is a single entry / defaultValue', async () => {
+  it('empty addresses, B2G → dedicated informational banner', () => {
+    renderComponent({
+      rule: { visible: true, mandatory: false, in: [], defaultValue: null },
+      legalForm: 'administration' as LegalForm,
+    });
+    expect(
+      screen.getByText('account_details_einvoicing_empty_b2g'),
+    ).toBeInTheDocument();
+  });
+
+  it('single address → banner and the address is auto-selected', async () => {
     const onValueChange = vi.fn();
-    renderComponent(
-      {
+    renderComponent({
+      rule: {
         visible: true,
         mandatory: true,
         in: ['1 rue A, 59100 Roubaix'],
         defaultValue: '1 rue A, 59100 Roubaix',
       },
-      undefined,
+      legalForm: 'corporation' as LegalForm,
       onValueChange,
-    );
+    });
+    expect(
+      screen.getByText('account_details_einvoicing_single_b2b'),
+    ).toBeInTheDocument();
     await waitFor(() =>
       expect(onValueChange).toHaveBeenCalledWith('1 rue A, 59100 Roubaix'),
     );
   });
 
-  it('RG3: does not override an existing selection', () => {
-    const onValueChange = vi.fn();
-    renderComponent(
-      {
+  it('several addresses → renders a select with one option per address', () => {
+    renderComponent({
+      rule: {
         visible: true,
         mandatory: true,
-        in: ['1 rue A, 59100 Roubaix'],
-        defaultValue: '1 rue A, 59100 Roubaix',
+        in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
+        defaultValue: null,
       },
-      '1 rue A, 59100 Roubaix',
-      onValueChange,
-    );
-    expect(onValueChange).not.toHaveBeenCalled();
+      legalForm: 'corporation' as LegalForm,
+    });
+    expect(screen.getByText('1 rue A, 59100 Roubaix')).toBeInTheDocument();
+    expect(screen.getByText('2 rue B, 59100 Roubaix')).toBeInTheDocument();
+    // B2B has no extra directory note.
+    expect(
+      screen.queryByText('account_details_einvoicing_multi_b2g_hint'),
+    ).not.toBeInTheDocument();
   });
 
-  it('RG4: shows the informational message when no active address', () => {
+  it('several addresses, B2G → shows the additional directory note', () => {
     renderComponent({
-      visible: true,
-      mandatory: false,
-      in: [],
-      defaultValue: null,
+      rule: {
+        visible: true,
+        mandatory: true,
+        in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
+        defaultValue: null,
+      },
+      legalForm: 'administration' as LegalForm,
     });
     expect(
-      screen.getByText('account_details_einvoicing_no_active_address'),
+      screen.getByText('account_details_einvoicing_multi_b2g_hint'),
     ).toBeInTheDocument();
   });
 });
