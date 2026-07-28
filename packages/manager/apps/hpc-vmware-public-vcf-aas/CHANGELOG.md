@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.33.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.34.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1290] ([777278f](https://github.com/ovh/manager/commit/777278faf6d41bd9d91344b33ea47bef4adf23be)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf-aas:** fix testing with common-translations ([8929166](https://github.com/ovh/manager/commit/8929166283c8868b9f6f9a743b3b6ff86d148148)), closes [#MANAGER-18400](https://github.com/ovh/manager/issues/MANAGER-18400)
+* **public-vcf-aas:** mock useNavigationGetUrl test fix ([8c80f91](https://github.com/ovh/manager/commit/8c80f91f94b31b190fe5ed2666e2bdc6cfb36de0)), closes [#MANAGER-19356](https://github.com/ovh/manager/issues/MANAGER-19356)
+* **public-vcf:** fix edge success banner delay message ([821db51](https://github.com/ovh/manager/commit/821db513adca2193e26dcb532777207cd60f1d61)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf:** fix edit edit edge ipBlock (payload and poll) ([4c51370](https://github.com/ovh/manager/commit/4c51370c5a4b2c92577d0c4f5ba35a487e3939ec)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf:** improve edge gateway guards ([9763369](https://github.com/ovh/manager/commit/9763369d22267abe4c0f73fa7f14171c54813f27)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+
+
+### Features
+
+* **public-vcf-aas:** add delete edge gateway ([5bee7a1](https://github.com/ovh/manager/commit/5bee7a1121bb2bb5682bb650e924feafdb71ccda)), closes [#MANAGER-18400](https://github.com/ovh/manager/issues/MANAGER-18400)
+* **public-vcf-aas:** add edge gateway tab ([6d2de60](https://github.com/ovh/manager/commit/6d2de60ef082c0c8408516bebb1352b1306b45de)), closes [#MANAGER-18386](https://github.com/ovh/manager/issues/MANAGER-18386)
+* **public-vcf-aas:** add edit edge gateway ([d522a72](https://github.com/ovh/manager/commit/d522a724991a63a994a71f3722d3cdf0556e9991)), closes [#MANAGER-18399](https://github.com/ovh/manager/issues/MANAGER-18399)
+* **public-vcf-aas:** add ip block count on vcf dashboard ([2da6cb3](https://github.com/ovh/manager/commit/2da6cb3a0819d56e2e9c8b28d696af370de360dd)), closes [#MANAGER-19356](https://github.com/ovh/manager/issues/MANAGER-19356)
+* **public-vcf-aas:** add order edge gateway ([4066b1c](https://github.com/ovh/manager/commit/4066b1c83eee03ae78080d24a7982cf61639f26c)), closes [#MANAGER-18387](https://github.com/ovh/manager/issues/MANAGER-18387)
+* **public-vcf-aas:** improve rhf defaultValues and hooks params ([e2f470e](https://github.com/ovh/manager/commit/e2f470e9a231671644b0f74f75782d8bd8bd8888)), closes [#MANAGER-18399](https://github.com/ovh/manager/issues/MANAGER-18399)
+* **public-vcf:** add ipBlock module setup (types/api/hooks..) ([8e7295b](https://github.com/ovh/manager/commit/8e7295b7b81ef2834eb12cac169d2cc10fe6dd5b)), closes [#MANAGER-19356](https://github.com/ovh/manager/issues/MANAGER-19356)
+* **public-vcf:** align edge create/delete banners ([448b7b6](https://github.com/ovh/manager/commit/448b7b6fa718f9eb00ab90685d0650add368af6f)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf:** allow update edge ip block ([1756ec5](https://github.com/ovh/manager/commit/1756ec595e115ddc67c4658f8f55e96bcdf0534f)), closes [#MANAGER-21702](https://github.com/ovh/manager/issues/MANAGER-21702)
+* **public-vcf:** refetch edge listing data on edge creation ([50d6a3c](https://github.com/ovh/manager/commit/50d6a3c4d7bb239f67bb58272c47af012371c2af)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf:** refetch edge listing on edge deletion ([7cc24ac](https://github.com/ovh/manager/commit/7cc24acf755da8cb8c0dd996ceb20741ad9d3b35)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+* **public-vcf:** split update edge into two forms ([a81b944](https://github.com/ovh/manager/commit/a81b9447a42a1ace9c876b047e5a9e74efb124e3)), closes [#MANAGER-18667](https://github.com/ovh/manager/issues/MANAGER-18667)
+
+
+
+
+
 # [0.33.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.32.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.33.0) (2026-07-16)
 
 
