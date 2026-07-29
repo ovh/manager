@@ -12,12 +12,13 @@ const EDGE_LIFECYCLE_POLL_INTERVAL = 4000;
 const isEdgeTransitioning = (edge: VCDEdgeGateway): boolean => {
   const transitionStatuses: VCDEdgeGateway['resourceStatus'][] = [
     'CREATING',
+    'UPDATING',
     'DELETING',
   ];
   return transitionStatuses.includes(edge.resourceStatus);
 };
 
-// Follow EdgeGateway lifecycle: poll while transition (CREATING / DELETING)
+// Follow EdgeGateway lifecycle: poll while transition (CREATING / UPDATING / DELETING)
 // and refetch IP Blocks whenever one settles since the backend assigns on creation and frees on deletion.
 export const useLifecycleAwareEdgeGateways = ({
   id,
