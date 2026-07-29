@@ -57,5 +57,8 @@
     "EU",
     "US"
   ],
-  "universes": []
+  "universes": [
+    "Baremetal",
+    "HostedPrivatedCloud"
+  ]
 }

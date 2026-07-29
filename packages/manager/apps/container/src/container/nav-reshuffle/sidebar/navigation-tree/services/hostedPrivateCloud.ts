@@ -89,7 +89,7 @@ hostedPrivateCloudUniverse.children = [
     idAttr: 'hpc-storage-backup-link',
     universe: hostedPrivateCloudUniverse.id,
     translation: 'sidebar_storage_backup',
-    features: ['veeam-enterprise'],
+    features: ['veeam-enterprise', 'hpc-backup-licenses'],
     children: [
       {
         id: 'veeam-enterprise',
@@ -140,6 +140,18 @@ hostedPrivateCloudUniverse.children = [
           hash: '#/',
         },
         features: ['hpc-backup-agent-iaas'],
+      },
+      {
+        id: 'hpc-backup-licenses',
+        idAttr: 'hpc-backup-licenses-link',
+        universe: hostedPrivateCloudUniverse.id,
+        translation: 'sidebar_backup_licenses',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'hpc-backup-licenses',
+          hash: '#/',
+        },
+        features: ['hpc-backup-licenses'],
       },
     ],
   },
