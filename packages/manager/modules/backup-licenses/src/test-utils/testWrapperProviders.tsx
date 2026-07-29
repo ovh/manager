@@ -62,6 +62,8 @@ export const addAppContextProvider = (
   const backupLicensesContext = appContext ?? { appName: 'backup-licenses', scope: 'Enterprise' };
 
   providers.push(({ children }) => (
-    <BackupLicensesContext.Provider value={backupLicensesContext}>{children}</BackupLicensesContext.Provider>
+    <BackupLicensesContext.Provider value={backupLicensesContext}>
+      {children}
+    </BackupLicensesContext.Provider>
   ));
 };
