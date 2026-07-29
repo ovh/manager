@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.45.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.44.0...@ovh-ux/manager-web@19.45.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1286] ([ca728e2](https://github.com/ovh/manager/commit/ca728e20c174d9117d7fa334625c27ae690d751f))
+* **web-domains:** address Copilot PR review ([2e70a19](https://github.com/ovh/manager/commit/2e70a194cd2734499b3fd5f2a0cb87421af6e9de))
+
+
+### Features
+
+* **web:** improve DNS zone order option tiles ([2d5a1d1](https://github.com/ovh/manager/commit/2d5a1d1dbb7f0e051bd675c3733ec6c6814949b3)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+* **web:** rework the new DNS zone order tunnel (express order + spec-aligned validation) ([fc25d00](https://github.com/ovh/manager/commit/fc25d00b92ec548b59a6caecdf37d07ffff8da09))
+
+
+
+
+
 # [19.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.43.11...@ovh-ux/manager-web@19.44.0) (2026-07-27)
 
 

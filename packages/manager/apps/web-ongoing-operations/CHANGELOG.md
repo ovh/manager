@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.23.1...@ovh-ux/manager-web-ongoing-operations-app@1.24.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1283] ([08d9c8a](https://github.com/ovh/manager/commit/08d9c8a2e00251d3c18d17e7127cf78d7c5ff4ef))
+* **web-ongoing-operations:** pin @types/react to v18 [CDS 1274] ([7a2236a](https://github.com/ovh/manager/commit/7a2236a888643d631accbff29f6f157b9a0c7471))
+* **web-ongoing-operations:** use account handle instead of nichandle for contact admin check ([46949c3](https://github.com/ovh/manager/commit/46949c3694562090719c87794fbc2a29ba660cfc))
+
+
+### Features
+
+* **web-ongoing-operations:** fix translate keys ([f888f96](https://github.com/ovh/manager/commit/f888f9618b2570cd1f330939c1778701403beab6)), closes [#DCE-218](https://github.com/ovh/manager/issues/DCE-218)
+
+
+
+
+
 ## [1.23.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-ongoing-operations-app@1.23.0...@ovh-ux/manager-web-ongoing-operations-app@1.23.1) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-web-ongoing-operations-app

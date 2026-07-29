@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.2...@ovh-ux/manager-zimbra-app@0.44.3) (2026-07-29)
+
+
+### Bug Fixes
+
+* **zimbra:** fix accounts count in domains datagrid ([0f4db2f](https://github.com/ovh/manager/commit/0f4db2fea38c583fc0f791a4e41654292a016b9a))
+
+
+
+
+
 ## [0.44.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.1...@ovh-ux/manager-zimbra-app@0.44.2) (2026-07-07)
 
 

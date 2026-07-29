@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.6...@ovh-ux/manager-web-domains-app@1.17.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* **web-domains:** address Anycast PR review ([b68dce6](https://github.com/ovh/manager/commit/b68dce695e0982ff4d6c748539ba4e6f200dbf56)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+* **web-domains:** address Copilot PR review ([2e70a19](https://github.com/ovh/manager/commit/2e70a194cd2734499b3fd5f2a0cb87421af6e9de))
+* **web-domains:** address free hosting PR review ([58ad98c](https://github.com/ovh/manager/commit/58ad98c83019d9fdc110d7d317d2e34c033a5a8a)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+* **web-domains:** align cancel-resiliation redirect params ([e8f65c1](https://github.com/ovh/manager/commit/e8f65c11bdc980632977c8f810ca01a322117139))
+* **web-domains:** keep the Anycast order back working on direct entry ([9d07613](https://github.com/ovh/manager/commit/9d07613d5377e7494e269db4681828df749a838a))
+* **web-domains:** keep the Anycast order tunnel mounted after submit ([ed0658e](https://github.com/ovh/manager/commit/ed0658e4179702ee43e7fa75bab11b555f056ce6)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+* **web-domains:** pin @types/react to v18 ([45d8b6a](https://github.com/ovh/manager/commit/45d8b6ab62df0124f247406fcf9daff951b07618)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+
+
+### Features
+
+* **web-domains:** activate DNS zone order tunnel in zone tab ([0ba5a6d](https://github.com/ovh/manager/commit/0ba5a6dc7a63113b23488d77804b5a16b5036be3))
+* **web-domains:** gate dynhost, free hosting and associated email behind feature flags ([b0ebd71](https://github.com/ovh/manager/commit/b0ebd71c5175c59f897552a17ffcb5ffe06427c8))
+* **web-domains:** keep the originating tab selected on the Anycast order ([1d58643](https://github.com/ovh/manager/commit/1d5864375ecb177fbf9abd24dd274790e24065ca))
+* **web-domains:** order DNS Anycast via the react-order configo ([bcb2124](https://github.com/ovh/manager/commit/bcb2124bb491dad952e0e312db21a318567855a9))
+* **web-domains:** render zone order configo in-dashboard with general-info return ([5b66656](https://github.com/ovh/manager/commit/5b66656674a6d3343b2fbe893d1c32165e30b78c))
+* **web-domains:** replace free hosting drawer with react-order configo ([fcd96fc](https://github.com/ovh/manager/commit/fcd96fc1f21fed86d87016e2c55c729cf1faeddc)), closes [#DCE-212](https://github.com/ovh/manager/issues/DCE-212)
+
+
+
+
+
 ## [1.16.6](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-domains-app@1.16.5...@ovh-ux/manager-web-domains-app@1.16.6) (2026-04-10)
 
 
