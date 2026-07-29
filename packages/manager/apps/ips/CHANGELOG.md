@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.8.3...@ovh-ux/manager-ips-app@0.9.0) (2026-07-29)
+
+
+### Features
+
+* **ips:** adding VCFaaS as available IP services ([aa209be](https://github.com/ovh/manager/commit/aa209be8492b9d305a634df124a18e091cffa582)), closes [#MANAGER-19361](https://github.com/ovh/manager/issues/MANAGER-19361)
+
+
+
+
+
 ## [0.8.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-ips-app@0.8.2...@ovh-ux/manager-ips-app@0.8.3) (2026-05-20)
 
 
