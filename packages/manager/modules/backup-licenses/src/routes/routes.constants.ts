@@ -1,13 +1,23 @@
-import { BACKUP_LICENSES_NAMESPACES } from "@/BackupLicenses.translations";
-import { NAMESPACES } from "@ovh-ux/manager-common-translations";
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 
-export const subRoutes = {} as const;
+import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
+
+export const subRoutes = {
+  onboarding: 'onboarding',
+} as const;
 
 export const urlParams = {} as const;
 
 export const urls = {
   root: `/`,
-  onboarding: `/onboarding`,
+  onboarding: `/${subRoutes.onboarding}`,
+} as const;
+
+// TODO(BKP-1206): neither route exists yet (ticket 0.2 — order funnel, ticket 1.1 — dashboard).
+// Until they ship, these intentionally fall through to the consumer app's catch-all "*" route.
+export const stubRoutes = {
+  orderFunnel: '/order',
+  dashboard: '/dashboard',
 } as const;
 
 export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
@@ -25,4 +35,4 @@ export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
     pathMatchers: [/^\/other_tabs\/[^/]+$/],
     trackingActions: ['click::other_tab-tile-tab'],
   },
-])
+]);

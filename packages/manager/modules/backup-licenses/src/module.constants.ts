@@ -33,3 +33,8 @@ export const BACKUP_LICENSES_IAM_RULES = {
 export const LOCAL_STORAGE_KEYS = {
   SHOW_NO_AGENT_ENABLED_MESSAGE: 'ovh-backup-licenses-show-no-agent-enabled-message',
 };
+
+export { NAMESPACE_PREFIX, BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
+
+// TODO(BKP-1206): placeholder — real tutorial URL not provided yet, replace once known.
+export const TUTORIAL_DOC_URL = 'https://docs.ovh.com';

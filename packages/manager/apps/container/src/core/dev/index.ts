@@ -45,10 +45,15 @@ export function setupDevApplication(shell: Shell) {
       }
       apps[devApp] = devConfig;
       containerApp = devConfig;
-       
+
       console.error(
         `Application '${devApp}' doesn't exist in 2API configuration.`,
       );
+    }
+
+    // TODO: retirer une fois hpc-backup-licenses enregistrée côté 2API avec universe: 'hpc'
+    if (devApp === 'hpc-backup-licenses') {
+      containerApp.universe = 'hpc';
     }
 
     containerApp.container.enabled = true;
