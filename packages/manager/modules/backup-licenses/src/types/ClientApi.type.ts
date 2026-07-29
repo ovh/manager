@@ -3,6 +3,8 @@ import React from 'react';
 import type { Filter } from '@ovh-ux/manager-core-api';
 import type { ColumnSort, DatagridColumn } from '@ovh-ux/manager-react-components';
 
+export type { ApiError } from '@ovh-ux/manager-core-api';
+
 export type ApiVersion = 'v2' | 'v6';
 
 export type JsonRequestOptions = {
