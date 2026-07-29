@@ -9,6 +9,7 @@
 /packages/manager/apps/account-creation @ovh/dev-manager-gcj-all
 /packages/manager/apps/billing @ovh/dev-manager-gcj-all
 /packages/manager/apps/bmc-backup-agent-baremetal @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/bmc-backup-licenses @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/carbon-calculator @ovh/dev-manager-gcj-all
 /packages/manager/apps/carrier-sip @ovh/dev-manager-web-collaboration
 /packages/manager/apps/catalog @ovh/dev-manager-gcj-all
@@ -34,6 +35,7 @@
 /packages/manager/apps/hub @ovh/dev-manager-gcj-all
 /packages/manager/apps/hycu @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/hpc-backup-agent-iaas @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/apps/hpc-backup-licenses @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/apps/iam @ovh/dev-manager-enablers-all
 /packages/manager/apps/identity-access-management @ovh/dev-manager-infrastructure-baremetalstorage @ovh/dev-manager-infrastructure-network @ovh/dev-manager-enablers-all
 /packages/manager/apps/iplb @ovh/dev-manager-infrastructure-network
@@ -92,6 +94,7 @@
 /packages/manager/modules @ovh/dev-manager-core
 /packages/manager/modules/account @ovh/dev-manager-gcj-all
 /packages/manager/modules/backup-agent @ovh/dev-manager-enterprise-nutanixBackup
+/packages/manager/modules/backup-licenses @ovh/dev-manager-enterprise-nutanixBackup
 /packages/manager/modules/billing @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-components @ovh/dev-manager-gcj-all
 /packages/manager/modules/billing-informations @ovh/dev-manager-enablers-all
