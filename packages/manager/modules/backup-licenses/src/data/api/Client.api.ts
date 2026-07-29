@@ -2,7 +2,7 @@ import { v2 as httpV2, v6 as httpV6 } from '@ovh-ux/manager-core-api';
 
 import { ApiVersion, JsonRequestOptions } from '@/types/ClientApi.type';
 
-type AxiosInstance = typeof httpV2
+type AxiosInstance = typeof httpV2;
 
 const API_CLIENTS: Record<ApiVersion, AxiosInstance> = {
   v2: httpV2,

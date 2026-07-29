@@ -42,11 +42,7 @@ export default function MainLayout() {
   const guideItems = useMainGuideItem();
 
   return (
-    <RedirectionGuard
-      route={urls.onboarding}
-      isLoading={false}
-      condition={false}
-    >
+    <RedirectionGuard route={urls.onboarding} isLoading={false} condition={false}>
       <BaseLayout
         header={{ title: LABELS.BACKUP_LICENSES, headerButton: <GuideButton items={guideItems} /> }}
         message={
