@@ -1,0 +1,18 @@
+{
+  "title": "Backup Licences",
+  "subtitle": "Perdre une donnée critique ne devrait jamais être une option.",
+  "description": "Sauvegardez, restaurez et répliquez vos workloads critiques en toute confiance. Déployez votre socle Veeam Backup & Replication avec les licences Enterprise Plus incluses par OVHcloud.",
+  "hero_alt": "Logo Veeam Enterprise",
+  "highlights": {
+    "storage_included": "<b>500 Go offerts</b> avec votre licence",
+    "pricing": "À partir de 10€/mois · 2 à 3 étapes selon votre licence",
+    "compatibility": "Compatible"
+  },
+  "order_cta": "Configurer mon offre",
+  "tutorial_card": {
+    "category": "Tutoriel",
+    "title": "Installer Veeam Backup & Replication",
+    "description": "Découvrez comment installer un serveur Veeam Backup & Replication avec Veeam Enterprise",
+    "cta": "En savoir plus"
+  }
+}
