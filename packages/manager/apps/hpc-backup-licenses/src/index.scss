@@ -43,3 +43,13 @@ html {
   padding-bottom: 0;
   padding-left: 0;
 }
+
+/**
+ * Variante « sélectionné » des accordéons de licence de la modale d'édition (BKP-1218) :
+ * mêmes valeurs que `SELECTED_CARD_CLASS` (orderAccent.ts) pour les anciennes cards, portées
+ * ici car `::part` n'est pas exprimable en classes utilitaires Tailwind.
+ */
+.order__accordion--selected::part(accordion) {
+  border-color: var(--ods-color-primary-500);
+  box-shadow: 0 0 0 3px var(--ods-color-primary-100);
+}

@@ -36,6 +36,28 @@
     "success": "Usuwanie serwera {{serverName}} zostało rozpoczęte.",
     "error": "Nie udało się usunąć serwera {{serverName}}."
   },
+  "edit": {
+    "title": "Edytuj serwer",
+    "field": {
+      "name": { "label": "Nazwa serwera", "error": "Brakuje nam tylko nazwy Twojego serwera." },
+      "license_type": { "label": "Typ licencji" },
+      "public_ip": {
+        "label": "Publiczny adres IP",
+        "error": "Ten adres IP wydaje się nieprawidłowy — sprawdź format IPv4 lub IPv6."
+      },
+      "private_ip": {
+        "label": "Prywatny adres IP (LAN)",
+        "error": "Ten adres IP wydaje się nieprawidłowy — sprawdź format IPv4 lub IPv6."
+      }
+    },
+    "license_change_notice": "Zmiana licencji zacznie obowiązywać 1. dnia przyszłego miesiąca. Do tego czasu aktualna licencja pozostaje aktywna.",
+    "current_value": "Aktualna wartość: {{value}}",
+    "recap": {
+      "title": "Podsumowanie zmian"
+    },
+    "success": "Zmiany zostały zapisane.",
+    "error": "Nie udało się edytować serwera {{serverName}}."
+  },
   "empty_state": "Nie zarejestrowano jeszcze żadnego serwera. Dodaj pierwszy serwer VBR, aby rozpocząć.",
   "error": {
     "loading": "Nie udało się wczytać listy Twoich serwerów."

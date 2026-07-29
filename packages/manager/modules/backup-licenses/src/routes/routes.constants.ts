@@ -10,6 +10,7 @@ export const subRoutes = {
   billing: 'billing' as const,
   generalInformation: 'general-information' as const,
   delete: 'delete' as const,
+  edit: 'edit' as const,
 } as const;
 
 export const urlParams = {

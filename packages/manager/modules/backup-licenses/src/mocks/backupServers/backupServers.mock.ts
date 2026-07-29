@@ -8,6 +8,13 @@
 import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
 import { LicenseApiValue } from '@/types/Order.type';
 
+type SimulateBackupServerUpdatePayload = {
+  displayName: string;
+  licenseType: string;
+  externalIps: string[];
+  privateIps: string[];
+};
+
 export const mockBackupServers: BackupServerResource[] = [
   // Changement de licence en cours : `currentTasks` non vide et licenseType ≠ licenseTypeRequested.
   {
@@ -226,4 +233,35 @@ export const simulateBackupServerDeletion = (backupServerId: string) => {
       type: 'BACKUP_LICENSES_SERVER_DELETE',
     },
   ];
+};
+
+/**
+ * Mode mock uniquement (cf. §7 de la spec BKP-1218) : simule le `PUT` d'édition. Nom et IP sont
+ * appliqués immédiatement (§1 de la spec) ; un changement de licence est différé, on ne touche
+ * pas `licenseType` (licence installée) mais on pose la cible dans `licenseTypeRequested` et une
+ * tâche programmée, pour que la transition de `LicenseTypeCell` soit revuable sans backend réel.
+ */
+export const simulateBackupServerUpdate = (
+  backupServerId: string,
+  { displayName, licenseType, externalIps, privateIps }: SimulateBackupServerUpdatePayload,
+) => {
+  const server = mockBackupServers.find(({ id }) => id === backupServerId);
+  if (!server) return;
+
+  server.currentState.displayName = displayName;
+  server.currentState.externalIps = externalIps;
+  server.currentState.privateIps = privateIps;
+
+  if (licenseType !== server.currentState.licenseType) {
+    server.currentState.licenseTypeRequested = licenseType;
+    server.currentTasks = [
+      ...server.currentTasks,
+      {
+        id: `${backupServerId}-license-change`,
+        link: `/me/task/${backupServerId}-license-change`,
+        status: 'SCHEDULED',
+        type: 'BACKUP_LICENSES_SERVER_LICENSE_CHANGE',
+      },
+    ];
+  }
 };

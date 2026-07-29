@@ -49,14 +49,21 @@ describe('BackupServerActionsCell', () => {
     );
   });
 
-  // « Modifier » reste inactive jusqu'au ticket 2.3 : à rebasculer sur `toBeEnabled()` à ce
-  // moment-là.
-  it('keeps the modify action disabled until ticket 2.3 ships', async () => {
+  it('links the modify action to the edit modal of the row', async () => {
     await renderWithProviders(
-      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+      <Routes>
+        <Route
+          path="/linked-servers"
+          element={<BackupServerActionsCell backupServerId="server-1" isDisabled={false} />}
+        />
+      </Routes>,
+      { initialEntries: ['/linked-servers'] },
     );
 
-    expect(screen.getByRole('button', { name: 'modify' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'modify' })).toHaveAttribute(
+      'data-href',
+      '/linked-servers/edit/server-1',
+    );
   });
 
   it('leaves the menu itself enabled when no operation is in flight', async () => {

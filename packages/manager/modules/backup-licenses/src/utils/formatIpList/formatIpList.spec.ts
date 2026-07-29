@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { EMPTY_VALUE_PLACEHOLDER } from '@/module.constants';
 
-import { formatIpList } from './formatIpList';
+import { firstIpWithoutMask, formatIpList } from './formatIpList';
 
 describe('formatIpList', () => {
   it('returns the placeholder when the list is missing', () => {
@@ -43,5 +43,24 @@ describe('formatIpList', () => {
   it('ignores blank entries', () => {
     expect(formatIpList(['  ', '203.0.113.10/32'])).toBe('203.0.113.10');
     expect(formatIpList(['  '])).toBe(EMPTY_VALUE_PLACEHOLDER);
+  });
+});
+
+describe('firstIpWithoutMask', () => {
+  it('strips the host mask of the first IPv4 of the list', () => {
+    expect(firstIpWithoutMask(['203.0.113.10/32', '203.0.113.11/32'])).toBe('203.0.113.10');
+  });
+
+  it('strips the host mask of the first IPv6 of the list', () => {
+    expect(firstIpWithoutMask(['2001:db8::1/128'])).toBe('2001:db8::1');
+  });
+
+  it('keeps any other prefix', () => {
+    expect(firstIpWithoutMask(['203.0.113.0/24'])).toBe('203.0.113.0/24');
+  });
+
+  it('returns an empty string when the list is empty or missing', () => {
+    expect(firstIpWithoutMask([])).toBe('');
+    expect(firstIpWithoutMask()).toBe('');
   });
 });

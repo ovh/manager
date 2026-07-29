@@ -36,6 +36,28 @@
     "success": "La suppression du serveur {{serverName}} a bien été lancée.",
     "error": "Le serveur {{serverName}} n'a pas pu être supprimé."
   },
+  "edit": {
+    "title": "Modifier le serveur",
+    "field": {
+      "name": { "label": "Nom du serveur", "error": "Il nous manque juste le nom de votre serveur." },
+      "license_type": { "label": "Type de licence" },
+      "public_ip": {
+        "label": "Adresse IP publique",
+        "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+      },
+      "private_ip": {
+        "label": "Adresse IP privée (LAN)",
+        "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+      }
+    },
+    "license_change_notice": "Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.",
+    "current_value": "Valeur actuelle : {{value}}",
+    "recap": {
+      "title": "Résumé des modifications"
+    },
+    "success": "Les modifications ont été enregistrées.",
+    "error": "Le serveur {{serverName}} n'a pas pu être modifié."
+  },
   "empty_state": "Aucun serveur enregistré. Ajoutez votre premier serveur VBR pour commencer.",
   "error": {
     "loading": "La liste de vos serveurs n'a pas pu être chargée."

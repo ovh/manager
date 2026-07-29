@@ -36,6 +36,28 @@
     "success": "Die Löschung des Servers {{serverName}} wurde gestartet.",
     "error": "Der Server {{serverName}} konnte nicht gelöscht werden."
   },
+  "edit": {
+    "title": "Server bearbeiten",
+    "field": {
+      "name": { "label": "Servername", "error": "Es fehlt nur noch der Name Ihres Servers." },
+      "license_type": { "label": "Lizenztyp" },
+      "public_ip": {
+        "label": "Öffentliche IP-Adresse",
+        "error": "Diese IP-Adresse scheint ungültig zu sein — prüfen Sie das IPv4- oder IPv6-Format."
+      },
+      "private_ip": {
+        "label": "Private IP-Adresse (LAN)",
+        "error": "Diese IP-Adresse scheint ungültig zu sein — prüfen Sie das IPv4- oder IPv6-Format."
+      }
+    },
+    "license_change_notice": "Der Lizenzwechsel wird am 1. des nächsten Monats wirksam. Bis dahin bleibt die aktuelle Lizenz aktiv.",
+    "current_value": "Aktueller Wert: {{value}}",
+    "recap": {
+      "title": "Zusammenfassung der Änderungen"
+    },
+    "success": "Ihre Änderungen wurden gespeichert.",
+    "error": "Der Server {{serverName}} konnte nicht bearbeitet werden."
+  },
   "empty_state": "Noch kein Server registriert. Fügen Sie Ihren ersten VBR-Server hinzu, um zu beginnen.",
   "error": {
     "loading": "Ihre Serverliste konnte nicht geladen werden."

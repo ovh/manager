@@ -23,3 +23,12 @@ export const formatIpList = (ips?: string[]): string => {
 
   return formatted.length ? formatted.join(', ') : EMPTY_VALUE_PLACEHOLDER;
 };
+
+/**
+ * Démasque le premier élément d'une liste d'IP CIDR, pour pré-remplir un champ texte
+ * d'édition (BKP-1218). Chaîne vide si la liste est vide ou absente.
+ */
+export const firstIpWithoutMask = (ips?: string[]): string => {
+  const first = (ips ?? [])[0]?.trim();
+  return first ? stripHostPrefix(first) : '';
+};

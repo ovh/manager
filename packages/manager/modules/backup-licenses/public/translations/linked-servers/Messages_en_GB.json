@@ -36,6 +36,28 @@
     "success": "Deletion of server {{serverName}} has started.",
     "error": "Server {{serverName}} could not be deleted."
   },
+  "edit": {
+    "title": "Edit server",
+    "field": {
+      "name": { "label": "Server name", "error": "We're just missing your server's name." },
+      "license_type": { "label": "Licence type" },
+      "public_ip": {
+        "label": "Public IP address",
+        "error": "This IP address doesn't look valid — check the IPv4 or IPv6 format."
+      },
+      "private_ip": {
+        "label": "Private IP address (LAN)",
+        "error": "This IP address doesn't look valid — check the IPv4 or IPv6 format."
+      }
+    },
+    "license_change_notice": "The licence change will take effect on the 1st of next month. Until then, the current licence stays active.",
+    "current_value": "Current value: {{value}}",
+    "recap": {
+      "title": "Summary of changes"
+    },
+    "success": "Your changes have been saved.",
+    "error": "Server {{serverName}} could not be edited."
+  },
   "empty_state": "No server registered yet. Add your first VBR server to get started.",
   "error": {
     "loading": "Your server list could not be loaded."

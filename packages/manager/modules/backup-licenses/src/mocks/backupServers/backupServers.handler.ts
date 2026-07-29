@@ -7,6 +7,7 @@ export type TBackupServersMockParams = {
   backupServers?: BackupServerResource[];
   isBackupServersError?: boolean;
   isDeleteBackupServerError?: boolean;
+  isEditBackupServerError?: boolean;
 };
 
 const BACKUP_SERVERS_URL =
@@ -16,6 +17,7 @@ export const getBackupServersMocks = ({
   backupServers,
   isBackupServersError,
   isDeleteBackupServerError,
+  isEditBackupServerError,
 }: TBackupServersMockParams): Handler[] => [
   {
     url: BACKUP_SERVERS_URL,
@@ -31,6 +33,14 @@ export const getBackupServersMocks = ({
     api: 'v2',
     method: 'delete',
     status: isDeleteBackupServerError ? 500 : 204,
+    delay: 0,
+  },
+  {
+    url: `${BACKUP_SERVERS_URL}/:backupServerId`,
+    response: () => null,
+    api: 'v2',
+    method: 'put',
+    status: isEditBackupServerError ? 500 : 200,
     delay: 0,
   },
 ];

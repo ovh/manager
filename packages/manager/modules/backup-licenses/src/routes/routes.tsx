@@ -13,6 +13,9 @@ const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/Linked
 const DeleteBackupServerPage = React.lazy(
   () => import('@/pages/linked-servers/delete/DeleteBackupServer.page'),
 );
+const EditBackupServerPage = React.lazy(
+  () => import('@/pages/linked-servers/edit/EditBackupServer.page'),
+);
 
 export default (
   <>
@@ -46,6 +49,13 @@ export default (
           Component={DeleteBackupServerPage}
           handle={{
             tracking: { pageName: 'delete-backup-server', pageType: PageType.popup },
+          }}
+        />
+        <Route
+          path={`${subRoutes.edit}/${urlParams.backupServerId}`}
+          Component={EditBackupServerPage}
+          handle={{
+            tracking: { pageName: 'edit-backup-server', pageType: PageType.popup },
           }}
         />
       </Route>
