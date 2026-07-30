@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "Informações gerais",
+    "service_management": "Gestão do serviço"
+  },
+  "field": {
+    "reference": "Referência",
+    "service_name": "Nome do serviço",
+    "vspc_access": "Acesso ao VSPC",
+    "vspc_access_link": "Aceder ao VSPC",
+    "vspc_provisioning": "Disponível após o provisionamento",
+    "creation_date": "Data de criação",
+    "next_due_date": "Próxima data de vencimento",
+    "contacts": "Contactos",
+    "manage_contacts": "Gerir contactos",
+    "termination": "Resolução",
+    "terminate_link": "Resolver a licença"
+  },
+  "contact_role": {
+    "administrator": "Administrador",
+    "technical": "Técnico",
+    "billing": "Faturação"
+  },
+  "terminate_modal": {
+    "title": "Resolver a licença Backup Licenses",
+    "content": "Esta ação irá resolver a sua licença Backup Licenses. É irreversível.",
+    "confirm": "Confirmar a resolução",
+    "success": "A resolução foi tida em conta.",
+    "error": "Não foi possível efetuar a resolução."
+  },
+  "error": {
+    "loading": "Não foi possível carregar as informações do seu serviço."
+  }
+}

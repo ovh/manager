@@ -17,6 +17,9 @@ import common from '../../public/translations/common/Messages_fr_FR.json';
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import generalInformation from '../../public/translations/general-information/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import linkedServers from '../../public/translations/linked-servers/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -34,6 +37,7 @@ function addTranslations() {
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order)
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard)
     .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS, linkedServers)
+    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.GENERAL_INFORMATION, generalInformation)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -77,4 +81,5 @@ export const labels = {
   system,
   dashboard,
   linkedServers,
+  generalInformation,
 };

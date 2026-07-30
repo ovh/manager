@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "Informations générales",
+    "service_management": "Gestion du service"
+  },
+  "field": {
+    "reference": "Référence",
+    "service_name": "Nom du service",
+    "vspc_access": "Accès VSPC",
+    "vspc_access_link": "Accéder au VSPC",
+    "vspc_provisioning": "Disponible après provisionnement",
+    "creation_date": "Date de création",
+    "next_due_date": "Prochaine échéance",
+    "contacts": "Contacts",
+    "manage_contacts": "Gérer les contacts",
+    "termination": "Résiliation",
+    "terminate_link": "Résilier la licence"
+  },
+  "contact_role": {
+    "administrator": "Administrateur",
+    "technical": "Technique",
+    "billing": "Facturation"
+  },
+  "terminate_modal": {
+    "title": "Résilier la licence Backup Licenses",
+    "content": "Cette action résiliera votre licence Backup Licenses. Elle est irréversible.",
+    "confirm": "Confirmer la résiliation",
+    "success": "La résiliation a bien été prise en compte.",
+    "error": "La résiliation n'a pas pu être effectuée."
+  },
+  "error": {
+    "loading": "Les informations du service n'ont pas pu être chargées."
+  }
+}

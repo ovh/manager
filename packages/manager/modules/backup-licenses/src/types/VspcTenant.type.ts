@@ -10,4 +10,6 @@ export type VspcTenant = {
   id: string;
   vspcType?: string;
   enabledAddons?: string[];
+  /** Aligné sur `currentState.accessUrl` de @ovh-ux/backup-agent (même route .../vspc). */
+  accessUrl?: string;
 };
