@@ -10,6 +10,7 @@ const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/Onboardi
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
 const ServiceLayoutPage = React.lazy(() => import('@/pages/service/ServiceLayout.page'));
 const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/LinkedServers.page'));
+const BillingPage = React.lazy(() => import('@/pages/billing/Billing.page'));
 
 export default (
   <>
@@ -37,7 +38,14 @@ export default (
           tracking: { pageName: 'linked-servers', pageType: PageType.listing },
         }}
       />
-      {/* TODO(1.2/1.3/1.4) : routes vaults / billing / general-information. */}
+      <Route
+        path={subRoutes.billing}
+        Component={BillingPage}
+        handle={{
+          tracking: { pageName: 'billing', pageType: PageType.listing },
+        }}
+      />
+      {/* TODO(1.2/1.4) : routes vaults / general-information. */}
     </Route>
   </>
 );

@@ -63,7 +63,6 @@ export const SERVICE_NAV_TABS: readonly ServiceNavTab[] = Object.freeze([
     name: 'billing',
     title: `${BACKUP_LICENSES_NAMESPACES.DASHBOARD}:tab.billing`,
     to: routeUrls.billing,
-    isDisabled: true,
   },
   {
     name: 'general-information',

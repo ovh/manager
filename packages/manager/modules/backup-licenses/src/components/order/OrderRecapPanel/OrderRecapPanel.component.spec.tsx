@@ -8,9 +8,6 @@ import { LicenseFamily, ServerVaultFormState, VdpTier } from '@/types/Order.type
 
 import OrderRecapPanel from './OrderRecapPanel.component';
 
-// NB : le harness i18n du module ne résout pas les libellés — `t(key)` renvoie la clé.
-// On asserte donc sur les clés i18n (convention en place, cf. OnboardingHighlights.spec).
-
 const EMPTY_FORM: ServerVaultFormState = {
   displayName: '',
   backupServerExternalIp: '',
@@ -31,7 +28,7 @@ describe('OrderRecapPanel', () => {
       />,
     );
 
-    expect(screen.queryByText('summary.field.tier')).not.toBeInTheDocument();
+    expect(screen.queryByText('Niveau')).not.toBeInTheDocument();
   });
 
   it('affiche la ligne "niveau" pour une licence Data Platform', async () => {
@@ -44,7 +41,7 @@ describe('OrderRecapPanel', () => {
       />,
     );
 
-    expect(screen.getByText('summary.field.tier')).toBeInTheDocument();
+    expect(screen.getByText('Niveau')).toBeInTheDocument();
   });
 
   it('affiche le placeholder "à renseigner" pour les valeurs vides', async () => {
@@ -57,7 +54,7 @@ describe('OrderRecapPanel', () => {
       />,
     );
 
-    expect(screen.getAllByText('summary.empty').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('À renseigner').length).toBeGreaterThan(0);
   });
 
   it('affiche la localisation choisie une fois renseignée (pas le placeholder vide)', async () => {
@@ -87,7 +84,7 @@ describe('OrderRecapPanel', () => {
     );
 
     // `label` est un attribut de <ods-button>, pas du texte enfant (cf. OnboardingHighlights.spec).
-    const cta = container.querySelector('ods-button[label="summary.cta"]');
+    const cta = container.querySelector('ods-button[label="Finaliser ma commande"]');
     expect(cta).toBeInTheDocument();
     fireEvent.click(cta as Element);
     expect(onFinalize).toHaveBeenCalledOnce();

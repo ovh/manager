@@ -16,4 +16,8 @@ export const queryKeys = {
   backupServers: {
     all: () => ['backup-licenses', 'backup-servers'],
   },
+  billing: {
+    all: () => ['backup-licenses', 'billing'],
+    consumptionRows: () => [...queryKeys.billing.all(), 'consumption-rows'],
+  },
 } as const;

@@ -1,5 +1,9 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
+/**
+ * Libellés produit non traduits (noms commerciaux).
+ * Graphie de référence : « Backup Licenses » — cf. §11 de la spec BKP-1216.
+ */
 export const LABELS = {
   BACKUP_LICENSES: 'Backup Licenses',
   BACKUP_POLICY: 'Backup Policy',
@@ -42,6 +46,26 @@ export const BACKUP_LICENSES_IAM_RULES = {
 export const LOCAL_STORAGE_KEYS = {
   SHOW_NO_AGENT_ENABLED_MESSAGE: 'ovh-backup-licenses-show-no-agent-enabled-message',
 };
+
+/**
+ * Plan codes du stockage d'un vault Backup Licenses (§3.1 de la spec BKP-1225) : les deux
+ * modes de facturation de l'offre — bundle 500 Go et paygo. Casse exacte non confirmée
+ * côté Agora/BE (cf. §14 de la spec).
+ */
+export const BACKUP_LICENSES_VAULT_PLAN_CODES = [
+  'backup-vault-backuplicenses-500g-consumption',
+  'backup-vault-backuplicenses-paygo-consumption',
+] as const;
+
+/**
+ * Plan code du seul mode de facturation qui inclut un volume de stockage gratuit
+ * (les 500 premiers Go) : sert à distinguer, parmi les deux plan codes ci-dessus, le
+ * vault concerné par `INCLUDED_VAULT_STORAGE_GB` — un vault paygo n'a aucun volume inclus.
+ */
+export const BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE = BACKUP_LICENSES_VAULT_PLAN_CODES[0];
+
+/** Volume de stockage inclus sur le vault en plan bundle (les 500 premiers Go). */
+export const INCLUDED_VAULT_STORAGE_GB = 500;
 
 export { NAMESPACE_PREFIX, BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 

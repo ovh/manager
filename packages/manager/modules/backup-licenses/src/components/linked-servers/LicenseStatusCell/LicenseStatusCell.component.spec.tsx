@@ -8,7 +8,6 @@ import { LicenseStatus } from '@/types/BackupServer.type';
 
 import LicenseStatusCell from './LicenseStatusCell.component';
 
-// NB : le harness i18n du module ne résout pas les libellés — `t(key)` renvoie la clé.
 // Le libellé du badge est une prop du web component (non rendue en texte), d'où la lecture
 // de l'attribut ; le libellé du rendu « en cours » est, lui, un enfant de `OdsText`.
 const badge = () => document.querySelector('ods-badge');
@@ -20,7 +19,7 @@ describe('LicenseStatusCell', () => {
       <LicenseStatusCell licenseStatus={LicenseStatus.INSTALLED} isInFlight={false} />,
     );
 
-    expect(badge()?.getAttribute('label')).toBe('status.installed');
+    expect(badge()?.getAttribute('label')).toBe('Actif');
     expect(badge()?.getAttribute('color')).toBe('success');
     expect(spinner()).toBeNull();
   });
@@ -30,7 +29,7 @@ describe('LicenseStatusCell', () => {
       <LicenseStatusCell licenseStatus={LicenseStatus.INSTALLED} isInFlight />,
     );
 
-    expect(screen.getByText('status.updating')).toBeInTheDocument();
+    expect(screen.getByText('Mise à jour en cours')).toBeInTheDocument();
     expect(spinner()).not.toBeNull();
     expect(badge()).toBeNull();
   });
@@ -40,13 +39,13 @@ describe('LicenseStatusCell', () => {
       <LicenseStatusCell licenseStatus={LicenseStatus.CREATING} isInFlight />,
     );
 
-    expect(screen.getByText('status.creating')).toBeInTheDocument();
+    expect(screen.getByText('En cours de création')).toBeInTheDocument();
   });
 
   it('renders a missing status as a creation in progress', async () => {
     await renderWithProviders(<LicenseStatusCell licenseStatus={null} isInFlight={false} />);
 
-    expect(screen.getByText('status.creating')).toBeInTheDocument();
+    expect(screen.getByText('En cours de création')).toBeInTheDocument();
     expect(spinner()).not.toBeNull();
   });
 
@@ -55,7 +54,7 @@ describe('LicenseStatusCell', () => {
       <LicenseStatusCell licenseStatus={LicenseStatus.CREATING} isInFlight={false} hasFailedTask />,
     );
 
-    expect(badge()?.getAttribute('label')).toBe('status.error');
+    expect(badge()?.getAttribute('label')).toBe('Erreur');
     expect(badge()?.getAttribute('color')).toBe('critical');
     expect(spinner()).toBeNull();
   });
@@ -65,7 +64,7 @@ describe('LicenseStatusCell', () => {
       <LicenseStatusCell licenseStatus={LicenseStatus.CREATING} isInFlight hasFailedTask />,
     );
 
-    expect(screen.getByText('status.creating')).toBeInTheDocument();
+    expect(screen.getByText('En cours de création')).toBeInTheDocument();
     expect(badge()).toBeNull();
   });
 
