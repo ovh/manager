@@ -9,6 +9,7 @@ export const subRoutes = {
   vaults: 'vaults' as const,
   billing: 'billing' as const,
   generalInformation: 'general-information' as const,
+  terminate: 'terminate' as const,
 } as const;
 
 export const urlParams = {} as const;
@@ -69,6 +70,5 @@ export const SERVICE_NAV_TABS: readonly ServiceNavTab[] = Object.freeze([
     name: 'general-information',
     title: `${NAMESPACES.DASHBOARD}:general_information`,
     to: routeUrls.generalInformation,
-    isDisabled: true,
   },
 ]);

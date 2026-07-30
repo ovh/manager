@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "Informacje ogólne",
+    "service_management": "Zarządzanie usługą"
+  },
+  "field": {
+    "reference": "Numer referencyjny",
+    "service_name": "Nazwa usługi",
+    "vspc_access": "Dostęp do VSPC",
+    "vspc_access_link": "Uzyskaj dostęp do VSPC",
+    "vspc_provisioning": "Dostępne po zakończeniu udostępniania",
+    "creation_date": "Data utworzenia",
+    "next_due_date": "Następny termin płatności",
+    "contacts": "Kontakty",
+    "manage_contacts": "Zarządzaj kontaktami",
+    "termination": "Rozwiązanie umowy",
+    "terminate_link": "Rozwiąż licencję"
+  },
+  "contact_role": {
+    "administrator": "Administrator",
+    "technical": "Techniczny",
+    "billing": "Rozliczeniowy"
+  },
+  "terminate_modal": {
+    "title": "Rozwiąż licencję Backup Licenses",
+    "content": "Ta czynność spowoduje rozwiązanie licencji Backup Licenses. Jest nieodwracalna.",
+    "confirm": "Potwierdź rozwiązanie",
+    "success": "Rozwiązanie zostało uwzględnione.",
+    "error": "Nie udało się przeprowadzić rozwiązania."
+  },
+  "error": {
+    "loading": "Nie udało się załadować informacji o usłudze."
+  }
+}
