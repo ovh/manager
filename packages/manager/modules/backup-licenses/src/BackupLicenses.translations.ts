@@ -6,4 +6,5 @@ export const BACKUP_LICENSES_NAMESPACES = {
   ORDER: `${NAMESPACE_PREFIX}/order`,
   DASHBOARD: `${NAMESPACE_PREFIX}/dashboard`,
   LINKED_SERVERS: `${NAMESPACE_PREFIX}/linked-servers`,
+  GENERAL_INFORMATION: `${NAMESPACE_PREFIX}/general-information`,
 };

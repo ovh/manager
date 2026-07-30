@@ -10,6 +10,12 @@ const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/Onboardi
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
 const ServiceLayoutPage = React.lazy(() => import('@/pages/service/ServiceLayout.page'));
 const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/LinkedServers.page'));
+const GeneralInformationPage = React.lazy(
+  () => import('@/pages/general-information/GeneralInformation.page'),
+);
+const TerminateServicePage = React.lazy(
+  () => import('@/pages/general-information/terminate/TerminateService.page'),
+);
 
 export default (
   <>
@@ -37,7 +43,16 @@ export default (
           tracking: { pageName: 'linked-servers', pageType: PageType.listing },
         }}
       />
-      {/* TODO(1.2/1.3/1.4) : routes vaults / billing / general-information. */}
+      <Route
+        path={subRoutes.generalInformation}
+        Component={GeneralInformationPage}
+        handle={{
+          tracking: { pageName: 'general-information', pageType: PageType.dashboard },
+        }}
+      >
+        <Route path={subRoutes.terminate} Component={TerminateServicePage} />
+      </Route>
+      {/* TODO(1.2/1.3) : routes vaults / billing. */}
     </Route>
   </>
 );

@@ -16,4 +16,7 @@ export const queryKeys = {
   backupServers: {
     all: () => ['backup-licenses', 'backup-servers'],
   },
+  backupLicense: {
+    resourceName: () => ['backup-licenses', 'backup-license', 'resource-name'],
+  },
 } as const;

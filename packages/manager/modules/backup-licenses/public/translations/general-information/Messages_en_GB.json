@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "General information",
+    "service_management": "Service management"
+  },
+  "field": {
+    "reference": "Reference",
+    "service_name": "Service name",
+    "vspc_access": "VSPC access",
+    "vspc_access_link": "Access VSPC",
+    "vspc_provisioning": "Available after provisioning",
+    "creation_date": "Creation date",
+    "next_due_date": "Next due date",
+    "contacts": "Contacts",
+    "manage_contacts": "Manage contacts",
+    "termination": "Termination",
+    "terminate_link": "Terminate license"
+  },
+  "contact_role": {
+    "administrator": "Administrator",
+    "technical": "Technical",
+    "billing": "Billing"
+  },
+  "terminate_modal": {
+    "title": "Terminate the Backup Licenses license",
+    "content": "This action will terminate your Backup Licenses license. It is irreversible.",
+    "confirm": "Confirm termination",
+    "success": "The termination has been taken into account.",
+    "error": "The termination could not be completed."
+  },
+  "error": {
+    "loading": "Your service information could not be loaded."
+  }
+}
