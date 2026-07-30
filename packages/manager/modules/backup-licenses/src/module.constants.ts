@@ -1,5 +1,9 @@
 import { ChangelogLinks } from '@ovh-ux/manager-react-components';
 
+/**
+ * Libellés produit non traduits (noms commerciaux).
+ * Graphie de référence : « Backup Licenses » — cf. §11 de la spec BKP-1216.
+ */
 export const LABELS = {
   BACKUP_LICENSES: 'Backup Licenses',
   BACKUP_POLICY: 'Backup Policy',

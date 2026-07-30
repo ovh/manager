@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "Informazioni generali",
+    "service_management": "Gestione del servizio"
+  },
+  "field": {
+    "reference": "Riferimento",
+    "service_name": "Nome del servizio",
+    "vspc_access": "Accesso VSPC",
+    "vspc_access_link": "Accedi a VSPC",
+    "vspc_provisioning": "Disponibile dopo il provisioning",
+    "creation_date": "Data di creazione",
+    "next_due_date": "Prossima scadenza",
+    "contacts": "Contatti",
+    "manage_contacts": "Gestisci contatti",
+    "termination": "Recesso",
+    "terminate_link": "Recedi dalla licenza"
+  },
+  "contact_role": {
+    "administrator": "Amministratore",
+    "technical": "Tecnico",
+    "billing": "Fatturazione"
+  },
+  "terminate_modal": {
+    "title": "Recedi dalla licenza Backup Licenses",
+    "content": "Questa azione comporterà il recesso dalla licenza Backup Licenses. È irreversibile.",
+    "confirm": "Conferma il recesso",
+    "success": "Il recesso è stato preso in carico.",
+    "error": "Non è stato possibile completare il recesso."
+  },
+  "error": {
+    "loading": "Non è stato possibile caricare le informazioni sul servizio."
+  }
+}
