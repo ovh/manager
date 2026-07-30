@@ -1,0 +1,34 @@
+{
+  "tile": {
+    "general_information": "Allgemeine Informationen",
+    "service_management": "Serviceverwaltung"
+  },
+  "field": {
+    "reference": "Referenz",
+    "service_name": "Servicename",
+    "vspc_access": "VSPC-Zugriff",
+    "vspc_access_link": "Auf VSPC zugreifen",
+    "vspc_provisioning": "Verfügbar nach der Bereitstellung",
+    "creation_date": "Erstellungsdatum",
+    "next_due_date": "Nächstes Fälligkeitsdatum",
+    "contacts": "Kontakte",
+    "manage_contacts": "Kontakte verwalten",
+    "termination": "Kündigung",
+    "terminate_link": "Lizenz kündigen"
+  },
+  "contact_role": {
+    "administrator": "Administrator",
+    "technical": "Technisch",
+    "billing": "Abrechnung"
+  },
+  "terminate_modal": {
+    "title": "Backup Licenses-Lizenz kündigen",
+    "content": "Diese Aktion kündigt Ihre Backup Licenses-Lizenz. Sie ist unwiderruflich.",
+    "confirm": "Kündigung bestätigen",
+    "success": "Die Kündigung wurde berücksichtigt.",
+    "error": "Die Kündigung konnte nicht durchgeführt werden."
+  },
+  "error": {
+    "loading": "Ihre Serviceinformationen konnten nicht geladen werden."
+  }
+}

@@ -8,5 +8,8 @@ export const getBackupServicesBaseRoute = (backupServicesId: string) =>
 export const getVspcTenantsRoute = (backupServicesId: string) =>
   `${getBackupServicesBaseRoute(backupServicesId)}/vspc`;
 
+export const getBackupLicensesRoute = (backupServicesId: string, vspcTenantId: string) =>
+  `${getVspcTenantsRoute(backupServicesId)}/${vspcTenantId}/backupLicenses`;
+
 export const getBackupServersRoute = (backupServicesId: string, vspcTenantId: string) =>
   `${getVspcTenantsRoute(backupServicesId)}/${vspcTenantId}/backupLicenses/backupServer`;
