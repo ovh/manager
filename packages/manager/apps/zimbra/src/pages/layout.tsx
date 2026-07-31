@@ -7,6 +7,7 @@ import { ErrorProps } from '@ovh-ux/muk';
 
 import { Error } from '@/components';
 import { usePlatform } from '@/data/hooks';
+import { isPlatformLessPathname } from '@/utils';
 
 export const Layout = () => {
   const location = useLocation();
@@ -44,9 +45,14 @@ export const Layout = () => {
       return <Navigate to="onboarding/welcome" replace />;
     }
 
-    // 3. Root path → redirect to platformId
-    if (location.pathname === '/') {
-      return <Navigate to={platformId} replace />;
+    // 3. Root path, or platform less deep link coming from an app that does not know about
+    //    the platform entity (e.g. /services) → prefix the path with the resolved platformId
+    const isRootPath = location.pathname === '/';
+
+    if (isRootPath || isPlatformLessPathname(location.pathname)) {
+      const pathname = isRootPath ? '' : location.pathname;
+
+      return <Navigate to={`/${platformId}${pathname}${location.search}`} replace />;
     }
   }
 
