@@ -479,6 +479,18 @@ export default class HostingGeneralInformationsCtrl {
     );
   }
 
+  onCancelTermination() {
+    this.sendTrackClick('web::hosting::cancel-termination');
+
+    return this.$state.go(
+      'app.hosting.dashboard.general-informations.cancel-termination',
+      {
+        alerts: this.$scope.alerts,
+        serviceInfos: this.$scope.hosting.serviceInfos,
+      },
+    );
+  }
+
   flushCdn(action) {
     this.sendTrackClick('web::hosting::empty-cdn-cache');
     this.$scope.setAction(action);

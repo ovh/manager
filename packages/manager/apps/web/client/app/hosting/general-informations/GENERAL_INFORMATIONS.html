@@ -33,6 +33,30 @@
                                 data-translate="hosting_dashboard_service_state_DELETE_AT_EXPIRATION"
                                 data-ng-if="hosting.serviceInfos.renew.deleteAtExpiration"
                             ></span>
+                            <div
+                                data-ng-if="hosting.serviceInfos.renew.deleteAtExpiration"
+                            >
+                                <p class="m-0">
+                                    <small
+                                        data-translate="hosting_dashboard_general_information_termination_date"
+                                        data-translate-values="{ terminationDate: '<b>' + (hosting.serviceInfos.expiration | date) + '</b>' }"
+                                    >
+                                    </small>
+                                </p>
+                                <button
+                                    type="button"
+                                    class="oui-button oui-button_s oui-button_ghost oui-button_icon-right"
+                                    data-ng-click="$ctrl.onCancelTermination()"
+                                >
+                                    <span
+                                        data-translate="hosting_dashboard_general_information_manage_termination"
+                                    ></span>
+                                    <span
+                                        class="oui-icon oui-icon-arrow-right"
+                                        aria-hidden="true"
+                                    ></span>
+                                </button>
+                            </div>
                             <div class="mt-2" data-ng-if="guideHostingState">
                                 <a
                                     target="_blank"

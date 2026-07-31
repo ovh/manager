@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Manage cancellation",
+  "hosting_cancel_termination_scheduled": "The cancellation of your {{ serviceName }} service is scheduled for {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "You can undo your cancellation and keep managing your service. The renewal mode will then switch back to automatic.",
+  "hosting_cancel_termination_action_confirm": "Confirm",
+  "hosting_cancel_termination_action_cancel": "Cancel",
+  "hosting_cancel_termination_success": "Your cancellation undo request has been processed.",
+  "hosting_cancel_termination_error": "An error occurred while undoing your cancellation: {{ message }}"
+}

@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Zarządzaj rezygnacją",
+  "hosting_cancel_termination_scheduled": "Rezygnacja z usługi {{ serviceName }} jest zaplanowana na {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "Możesz anulować rezygnację i nadal zarządzać usługą. Tryb odnowienia powróci wtedy do automatycznego.",
+  "hosting_cancel_termination_action_confirm": "Potwierdź",
+  "hosting_cancel_termination_action_cancel": "Anuluj",
+  "hosting_cancel_termination_success": "Twoje żądanie anulowania rezygnacji zostało przyjęte.",
+  "hosting_cancel_termination_error": "Wystąpił błąd podczas anulowania rezygnacji: {{ message }}"
+}

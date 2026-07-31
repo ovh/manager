@@ -12,5 +12,7 @@
   "hosting_dashboard_service_video_center_freemium_paid": "Ativo - Freemium + {{plan}}",
   "hosting_dashboard_service_video_center_plan_pro": "Centro de Vídeo Pro",
   "hosting_dashboard_service_video_center_plan_plus": "Centro de Vídeo Plus",
-  "hosting_dashboard_general_information_anticipate_renew": "Antecipar o pagamento"
+  "hosting_dashboard_general_information_anticipate_renew": "Antecipar o pagamento",
+  "hosting_dashboard_general_information_termination_date": "Rescisão prevista para {{ terminationDate }}",
+  "hosting_dashboard_general_information_manage_termination": "Gerir a rescisão"
 }

@@ -1,0 +1,27 @@
+<oui-modal
+    data-heading="{{:: 'hosting_cancel_termination_title' | translate }}"
+    data-primary-action="$ctrl.onCancelTermination()"
+    data-primary-label="{{:: 'hosting_cancel_termination_action_confirm' | translate }}"
+    data-secondary-action="$ctrl.onDismiss()"
+    data-secondary-label="{{:: 'hosting_cancel_termination_action_cancel' | translate }}"
+    data-on-dismiss="$ctrl.onDismiss()"
+    data-loading="$ctrl.isCancelling"
+>
+    <oui-message
+        data-type="info"
+        data-dismissable="false"
+    >
+        <span
+            data-translate="hosting_cancel_termination_scheduled"
+            data-translate-values="{
+                serviceName: '<b>' + $ctrl.serviceInfos.domain + '</b>',
+                terminationDate: '<b>' + ($ctrl.terminationDate | date:'mediumDate') + '</b>'
+            }"
+        ></span>
+    </oui-message>
+
+    <p
+        class="m-0"
+        data-translate="hosting_cancel_termination_description"
+    ></p>
+</oui-modal>

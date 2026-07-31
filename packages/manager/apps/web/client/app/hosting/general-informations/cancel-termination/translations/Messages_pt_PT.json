@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Gerir a rescisão",
+  "hosting_cancel_termination_scheduled": "A rescisão do seu serviço {{ serviceName }} está agendada para {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "Pode anular a rescisão e continuar a gerir o seu serviço. O modo de renovação passará novamente a automático.",
+  "hosting_cancel_termination_action_confirm": "Confirmar",
+  "hosting_cancel_termination_action_cancel": "Cancelar",
+  "hosting_cancel_termination_success": "O seu pedido de anulação da rescisão foi registado.",
+  "hosting_cancel_termination_error": "Ocorreu um erro ao anular a rescisão: {{ message }}"
+}
