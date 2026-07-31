@@ -41,9 +41,7 @@ export default class ServicesActionsCtrl {
 
     this.isZimbra = this.service.serviceType === this.SERVICE_TYPE.ZIMBRA;
     this.viewServiceUrl = this.isZimbra
-      ? this.coreURLBuilder.buildURL('zimbra', '#/:platformId', {
-          platformId: this.service.serviceId,
-        })
+      ? this.coreURLBuilder.buildURL('zimbra', '#/services')
       : this.service.url;
 
     this.BillingLinksService.generateAutorenewLinks(this.service, {
