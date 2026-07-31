@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Gestionar la baja",
+  "hosting_cancel_termination_scheduled": "La baja de su servicio {{ serviceName }} está programada para el {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "Puede anular la baja y seguir gestionando su servicio. El modo de renovación volverá a ser automático.",
+  "hosting_cancel_termination_action_confirm": "Confirmar",
+  "hosting_cancel_termination_action_cancel": "Cancelar",
+  "hosting_cancel_termination_success": "Su solicitud de anulación de la baja se ha registrado correctamente.",
+  "hosting_cancel_termination_error": "Se ha producido un error al anular la baja: {{ message }}"
+}

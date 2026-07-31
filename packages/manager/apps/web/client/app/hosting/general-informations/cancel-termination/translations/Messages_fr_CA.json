@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Gérer la résiliation",
+  "hosting_cancel_termination_scheduled": "La résiliation de votre service {{ serviceName }} est programmée au {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "Vous pouvez annuler votre résiliation et conserver la gestion de votre service. Le mode de renouvellement repassera alors en automatique.",
+  "hosting_cancel_termination_action_confirm": "Confirmer",
+  "hosting_cancel_termination_action_cancel": "Annuler",
+  "hosting_cancel_termination_success": "Votre demande d'annulation de résiliation a bien été prise en compte.",
+  "hosting_cancel_termination_error": "Une erreur est survenue lors de l'annulation de votre résiliation : {{ message }}"
+}

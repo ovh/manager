@@ -12,5 +12,7 @@
   "hosting_dashboard_service_video_center_freemium_paid": "Aktiv - Freemium + {{plan}}",
   "hosting_dashboard_service_video_center_plan_pro": "Videozentrum Pro",
   "hosting_dashboard_service_video_center_plan_plus": "Videozentrum Plus",
-  "hosting_dashboard_general_information_anticipate_renew": "Die Zahlung antizipieren"
+  "hosting_dashboard_general_information_anticipate_renew": "Die Zahlung antizipieren",
+  "hosting_dashboard_general_information_termination_date": "Kündigung geplant für den {{ terminationDate }}",
+  "hosting_dashboard_general_information_manage_termination": "Kündigung verwalten"
 }

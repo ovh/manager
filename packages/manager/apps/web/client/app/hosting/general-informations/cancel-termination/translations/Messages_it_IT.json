@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Gestisci la disdetta",
+  "hosting_cancel_termination_scheduled": "La disdetta del tuo servizio {{ serviceName }} è programmata per il {{ terminationDate }}.",
+  "hosting_cancel_termination_description": "Puoi annullare la disdetta e continuare a gestire il tuo servizio. La modalità di rinnovo tornerà automatica.",
+  "hosting_cancel_termination_action_confirm": "Conferma",
+  "hosting_cancel_termination_action_cancel": "Annulla",
+  "hosting_cancel_termination_success": "La tua richiesta di annullamento della disdetta è stata registrata.",
+  "hosting_cancel_termination_error": "Si è verificato un errore durante l'annullamento della disdetta: {{ message }}"
+}
