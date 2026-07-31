@@ -54,7 +54,6 @@ import {
   ResourceStatus,
   ZimbraOffer,
   formatAccountPayload,
-  getZimbraPlatformAccountDetailQueryKey,
   getZimbraPlatformListQueryKey,
   postZimbraPlatformAccount,
   putZimbraPlatformAccount,
@@ -84,7 +83,7 @@ export const EmailAccountForm = () => {
   const { data: emailAccount } = useAccount({
     accountId,
     enabled: !!accountId,
-    gcTime: 0,
+    refetchOnMount: 'always',
   });
 
   const { slots, isLoadingSlots } = useSlotsWithService({
@@ -165,13 +164,7 @@ export const EmailAccountForm = () => {
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
-        queryKey: [
-          getZimbraPlatformListQueryKey(),
-          getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
-        ],
-      });
-      await queryClient.invalidateQueries({
-        queryKey: getZimbraPlatformAccountDetailQueryKey(platformId, accountId),
+        queryKey: getZimbraPlatformListQueryKey(),
       });
     },
   });
@@ -215,7 +208,7 @@ export const EmailAccountForm = () => {
   });
 
   useEffect(() => {
-    if (emailAccount) {
+    if (emailAccount && !isFormDirty) {
       reset({
         account: emailAccount?.currentState?.email?.split('@')[0],
         domain: emailAccount?.currentState?.email?.split('@')[1],
