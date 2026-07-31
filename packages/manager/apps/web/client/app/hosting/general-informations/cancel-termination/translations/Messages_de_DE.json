@@ -1,0 +1,9 @@
+{
+  "hosting_cancel_termination_title": "Kündigung verwalten",
+  "hosting_cancel_termination_scheduled": "Die Kündigung Ihres Dienstes {{ serviceName }} ist für den {{ terminationDate }} geplant.",
+  "hosting_cancel_termination_description": "Sie können Ihre Kündigung rückgängig machen und Ihren Dienst weiter verwalten. Der Verlängerungsmodus wird dann wieder auf automatisch gesetzt.",
+  "hosting_cancel_termination_action_confirm": "Bestätigen",
+  "hosting_cancel_termination_action_cancel": "Abbrechen",
+  "hosting_cancel_termination_success": "Ihre Anfrage zur Rücknahme der Kündigung wurde berücksichtigt.",
+  "hosting_cancel_termination_error": "Bei der Rücknahme Ihrer Kündigung ist ein Fehler aufgetreten: {{ message }}"
+}
