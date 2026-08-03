@@ -4,6 +4,7 @@
   "choose_ressource_description": "Die B3, C3 und R3 Instanzen, die für Managed Kubernetes Service Nodes verwendet werden, werden ebenfalls berücksichtigt. Beachten Sie, dass in Local Zones bereitgestellte Instanzen nicht für Savings Plans infrage kommen.",
   "select_model": "Modell auswählen",
   "select_model_description_instance_b3": "Die General Purpose Instanzen verfügen über ausgewogene und garantierte Ressourcen in puncto CPU, Arbeitsspeicher, Storage und Netzwerk.",
+  "select_model_description_instance_b3_without_storage": "Die General Purpose Instanzen verfügen über ausgewogene und garantierte Ressourcen in puncto CPU, Arbeitsspeicher und Netzwerk.",
   "select_model_description_instance_c3": "Die Compute Optimized Instanzen wurden für hohe Anforderungen in Sachen Rechenleistung und rechenintensive Workloads entwickelt.",
   "select_model_description_instance_r3": "Memory Optimized Instanzen sind ideal für In-Memory-Datenbanken und -Anwendungen oder für RAM-intensive Prozesse geeignet.",
   "select_model_description_instance_publiccloud-rancher": "Managed Rancher Service vereinfacht die Verwaltung mehrerer Kubernetes-Cluster, darunter auch mit Managed Kubernetes Service erstellte Cluster.",

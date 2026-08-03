@@ -4,6 +4,7 @@
   "choose_ressource_description": "Planem objęte są również instancje B3, C3, R3 używane dla węzłów Managed Kubernetes Service. W przypadku instancji wdrażanych w Local Zones Savings Plans nie ma zastosowania.",
   "select_model": "Wybierz model",
   "select_model_description_instance_b3": "Instancje General Purpose dysponują zrównoważonymi i gwarantowanymi zasobami: CPU, pamięcią, przestrzenią dyskową i siecią.",
+  "select_model_description_instance_b3_without_storage": "Instancje General Purpose dysponują zrównoważonymi i gwarantowanymi zasobami: CPU, pamięcią i siecią.",
   "select_model_description_instance_c3": "Instancje Compute Optimized doskonale sprawdzają się w zadaniach wymagających dużej mocy obliczeniowej oraz intensywnych obliczeniach.",
   "select_model_description_instance_r3": "Instancje Memory Optimized są idealne do obsługi baz danych oraz aplikacji zużywających duże ilości pamięci. ",
   "select_model_description_instance_publiccloud-rancher": "Usługa Managed Rancher ułatwia zarządzanie wieloma klastrami Kubernetes, w tym klastrami utworzonymi za pomocą Managed Kubernetes Service.",
