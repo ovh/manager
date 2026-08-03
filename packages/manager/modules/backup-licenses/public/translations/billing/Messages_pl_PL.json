@@ -1,0 +1,18 @@
+{
+  "empty_state": "Brak zarejestrowanego zużycia w bieżącym okresie.",
+  "period_notice": "Zużycie za bieżący okres rozliczeniowy, od {{begin}} do {{end}}.",
+  "period_notice_fallback": "Zużycie za bieżący okres rozliczeniowy.",
+  "column": {
+    "license_price": "Cena licencji",
+    "storage_price": "Cena magazynu"
+  },
+  "usage": {
+    "included": "{{quantity}} / {{included}} {{unit}} wliczone"
+  },
+  "badge": {
+    "included": "Wliczone"
+  },
+  "error": {
+    "loading": "Nie udało się załadować danych o zużyciu."
+  }
+}

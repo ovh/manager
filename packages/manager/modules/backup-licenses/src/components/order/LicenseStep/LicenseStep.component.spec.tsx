@@ -8,9 +8,6 @@ import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 import LicenseStep from './LicenseStep.component';
 
-// NB : le harness i18n du module ne résout pas les libellés — `t(key)` renvoie la clé.
-// On asserte donc sur les clés i18n (convention en place, cf. OnboardingHighlights.spec).
-
 describe('LicenseStep', () => {
   it('ne dévoile pas les cartes de niveau VDP quand Enterprise Plus est sélectionné', async () => {
     await renderWithProviders(
@@ -22,9 +19,7 @@ describe('LicenseStep', () => {
       />,
     );
 
-    expect(
-      screen.queryByRole('radiogroup', { name: 'step.vdp_tier.label' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('radiogroup', { name: 'Niveau VDP' })).not.toBeInTheDocument();
   });
 
   it('dévoile les 3 cartes de niveau VDP quand Data Platform est sélectionné', async () => {
@@ -37,7 +32,7 @@ describe('LicenseStep', () => {
       />,
     );
 
-    const tierGroup = screen.getByRole('radiogroup', { name: 'step.vdp_tier.label' });
+    const tierGroup = screen.getByRole('radiogroup', { name: 'Niveau VDP' });
     expect(tierGroup.querySelectorAll('[role="radio"]')).toHaveLength(3);
   });
 
@@ -46,8 +41,6 @@ describe('LicenseStep', () => {
       <LicenseStep family={null} tier={null} onSelectFamily={vi.fn()} onSelectTier={vi.fn()} />,
     );
 
-    expect(
-      screen.queryByRole('radiogroup', { name: 'step.vdp_tier.label' }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole('radiogroup', { name: 'Niveau VDP' })).not.toBeInTheDocument();
   });
 });

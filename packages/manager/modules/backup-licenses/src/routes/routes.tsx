@@ -23,6 +23,7 @@ const EditBackupServerPage = React.lazy(
 const DeleteBackupServerPage = React.lazy(
   () => import('@/pages/linked-servers/delete/DeleteBackupServer.page'),
 );
+const BillingPage = React.lazy(() => import('@/pages/billing/Billing.page'));
 
 export default (
   <>
@@ -78,6 +79,13 @@ export default (
         />
       </Route>
       <Route
+        path={subRoutes.billing}
+        Component={BillingPage}
+        handle={{
+          tracking: { pageName: 'billing', pageType: PageType.listing },
+        }}
+      />
+      <Route
         path={subRoutes.generalInformation}
         Component={GeneralInformationPage}
         handle={{
@@ -86,7 +94,7 @@ export default (
       >
         <Route path={subRoutes.terminate} Component={TerminateServicePage} />
       </Route>
-      {/* TODO(1.2/1.3) : routes vaults / billing. */}
+      {/* TODO(1.2) : route vaults. */}
     </Route>
   </>
 );
