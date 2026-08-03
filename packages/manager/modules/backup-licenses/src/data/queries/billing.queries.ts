@@ -3,7 +3,10 @@ import { QueryClient, queryOptions } from '@tanstack/react-query';
 import { getResourceServiceId } from '@ovh-ux/manager-module-common-api';
 
 import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
-import { getLicenseConsumption, getServiceConsumption } from '@/data/api/services/consumption.requests';
+import {
+  getLicenseConsumption,
+  getServiceConsumption,
+} from '@/data/api/services/consumption.requests';
 import { getVaults } from '@/data/api/vaults/vaults.requests';
 import { matchLicenseToVault } from '@/data/selectors/licenses.selectors';
 import { selectVaultConsumptionElement } from '@/data/selectors/vaultConsumption.selectors';
@@ -15,8 +18,8 @@ import {
 } from '@/module.constants';
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { ServiceConsumption } from '@/types/Consumption.type';
-import { BillingPeriod, VaultConsumptionRow } from '@/types/VaultConsumption.type';
 import { VaultResource } from '@/types/Vault.type';
+import { BillingPeriod, VaultConsumptionRow } from '@/types/VaultConsumption.type';
 
 import { queryKeys } from './queryKeys';
 import { tenantsQueries } from './tenants.queries';

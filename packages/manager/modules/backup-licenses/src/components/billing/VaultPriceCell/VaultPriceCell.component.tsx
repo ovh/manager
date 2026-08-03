@@ -19,7 +19,10 @@ interface VaultPriceCellProps {
  * le type de vault : un bundle en dépassement de ses 500 Go est facturé (§7 de la spec
  * BKP-1225).
  */
-export default function VaultPriceCell({ storagePriceValue, storagePriceText }: VaultPriceCellProps) {
+export default function VaultPriceCell({
+  storagePriceValue,
+  storagePriceText,
+}: VaultPriceCellProps) {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.BILLING);
 
   if (storagePriceValue === 0) {

@@ -23,4 +23,14 @@ export const queryKeys = {
     all: () => ['backup-licenses', 'billing'],
     consumptionRows: () => [...queryKeys.billing.all(), 'consumption-rows'],
   },
+  vaults: {
+    all: () => ['backup-licenses', 'vaults'],
+    bucketAccess: (vaultId: string, bucketId: string) => [
+      ...queryKeys.vaults.all(),
+      vaultId,
+      'bucket',
+      bucketId,
+      'access',
+    ],
+  },
 } as const;

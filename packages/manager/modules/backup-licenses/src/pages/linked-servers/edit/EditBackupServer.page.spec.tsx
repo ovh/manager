@@ -233,11 +233,19 @@ describe('EditBackupServerPage', () => {
     await renderPage();
     await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
 
-    expect(screen.queryByText("Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        "Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.",
+      ),
+    ).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole('radio', { name: /Veeam Enterprise Plus/ }));
 
-    expect(screen.getByText("Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.",
+      ),
+    ).toBeInTheDocument();
   });
 
   it('shows the before/after recap only once a field has changed', async () => {

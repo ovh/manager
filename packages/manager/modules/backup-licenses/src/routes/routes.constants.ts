@@ -13,10 +13,12 @@ export const subRoutes = {
   terminate: 'terminate' as const,
   edit: 'edit' as const,
   delete: 'delete' as const,
+  credentials: 'credentials' as const,
 } as const;
 
 export const urlParams = {
   backupServerId: ':backupServerId' as const,
+  vaultId: ':vaultId' as const,
 } as const;
 
 export const urls = {
@@ -35,7 +37,21 @@ export const routeUrls = {
   generalInformation: `/${subRoutes.generalInformation}`,
   /** Page pleine (sœur de `order`), pas une modale : BKP-1218 reprend le tunnel de commande. */
   edit: (backupServerId: string) => `/${subRoutes.edit}/${backupServerId}`,
+  orderVault: `/${subRoutes.vaults}/${subRoutes.order}`,
 } as const;
+
+// Modales de l'onglet Vaults : routes enfants de la liste, comme `delete` sous `linked-servers`.
+export const terminateVaultRoutePath = `${urlParams.vaultId}/${subRoutes.terminate}`;
+export const vaultCredentialsRoutePath = `${urlParams.vaultId}/${subRoutes.credentials}`;
+export const orderVaultRoutePath = subRoutes.order;
+
+export const getTerminateVaultUrl = (vaultId: string) =>
+  `${routeUrls.vaults}/${vaultId}/${subRoutes.terminate}`;
+
+export const getVaultCredentialsUrl = (vaultId: string) =>
+  `${routeUrls.vaults}/${vaultId}/${subRoutes.credentials}`;
+
+export const getOrderVaultUrl = () => `${routeUrls.vaults}/${subRoutes.order}`;
 
 export type ServiceNavTab = {
   name: string;
@@ -66,7 +82,7 @@ export const SERVICE_NAV_TABS: readonly ServiceNavTab[] = Object.freeze([
     name: 'vaults',
     title: `${BACKUP_LICENSES_NAMESPACES.DASHBOARD}:tab.vaults`,
     to: routeUrls.vaults,
-    isDisabled: true,
+    trackingActions: ['click::vaults-tab'],
   },
   {
     name: 'billing',

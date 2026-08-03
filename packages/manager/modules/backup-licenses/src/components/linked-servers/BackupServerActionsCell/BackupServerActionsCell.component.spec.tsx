@@ -7,6 +7,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { ActionMenuProps } from '@ovh-ux/manager-react-components';
 
+import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 
 import BackupServerActionsCell from './BackupServerActionsCell.component';
@@ -35,7 +36,7 @@ describe('BackupServerActionsCell', () => {
       <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
     );
 
-    expect(screen.getByRole('button', { name: 'modify' })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: labels.actions.modify })).toHaveAttribute(
       'data-href',
       '/edit/server-1',
     );
@@ -54,7 +55,7 @@ describe('BackupServerActionsCell', () => {
       { initialEntries: ['/linked-servers'] },
     );
 
-    expect(screen.getByRole('button', { name: 'delete' })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: labels.actions.delete })).toHaveAttribute(
       'data-href',
       '/linked-servers/delete/server-1',
     );
