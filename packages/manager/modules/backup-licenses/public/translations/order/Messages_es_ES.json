@@ -143,5 +143,21 @@
       "value": "██,██ € sin impuestos/mes"
     },
     "cta": "Finalizar mi pedido"
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "Servidor VBR"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Nombre del servidor"
+      },
+      "cta": "Añadir el servidor"
+    },
+    "error": {
+      "submit": "Se ha producido un error al añadir el servidor. Vuelva a intentarlo."
+    }
   }
 }

@@ -143,5 +143,21 @@
       "value": "€██.██ excl. tax/month"
     },
     "cta": "Finalise my order"
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "VBR Server"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Server name"
+      },
+      "cta": "Add the server"
+    },
+    "error": {
+      "submit": "An error occurred while adding the server. Please try again."
+    }
   }
 }
