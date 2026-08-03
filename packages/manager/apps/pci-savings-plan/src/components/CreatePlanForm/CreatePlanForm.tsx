@@ -121,6 +121,7 @@ export type CreatePlanFormProps = {
   deploymentMode: DeploymentMode;
   deploymentModeOptions: TDeploymentOptions;
   isCreatePlanPending: boolean;
+  isStorageDisplayed?: boolean;
 };
 
 const CreatePlanForm: FC<CreatePlanFormProps> = ({
@@ -139,6 +140,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
   deploymentMode,
   deploymentModeOptions,
   isCreatePlanPending,
+  isStorageDisplayed = true,
 }: CreatePlanFormProps) => {
   const { trackClick } = useOvhTracking();
   const navigate = useNavigate();
@@ -360,6 +362,7 @@ const CreatePlanForm: FC<CreatePlanFormProps> = ({
         isTechnicalInfoLoading={isTechnicalInfoLoading}
         technicalModel={technicalModel}
         onSelectModel={onSelectModel}
+        isStorageDisplayed={isStorageDisplayed}
       />
       <SelectQuantity
         isInstance={isInstance}
@@ -452,6 +455,7 @@ export const CreatePlanFormContainer = ({
   const {
     isDeployment3AZAvailable,
     isRancherServiceAvailable,
+    isInstancesRepricingAvailable,
   } = useSavingsPlanCreationOptionsFeatureAvailability();
 
   const [instanceCategory, setInstanceCategory] = useState<
@@ -557,6 +561,7 @@ export const CreatePlanFormContainer = ({
         deploymentMode={deploymentMode}
         deploymentModeOptions={availableDeploymentModeOptions}
         isCreatePlanPending={isCreatePlanPending}
+        isStorageDisplayed={!isInstancesRepricingAvailable}
       />
     </Suspense>
   );

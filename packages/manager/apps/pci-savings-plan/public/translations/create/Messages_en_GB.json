@@ -4,6 +4,7 @@
   "choose_ressource_description": "B3, C3, R3 instances used for Managed Kubernetes Service nodes are also eligible. Instances deployed in Local Zones are not eligible for Savings Plans.",
   "select_model": "Choose model",
   "select_model_description_instance_b3": "General Purpose instances have balanced and guaranteed resources between CPU, memory, storage and network.",
+  "select_model_description_instance_b3_without_storage": "General Purpose instances have balanced and guaranteed resources between CPU, memory and network.",
   "select_model_description_instance_c3": "Compute Optimized instances are designed for compute-intensive tasks and resource-intensive workloads.",
   "select_model_description_instance_r3": "Memory Optimized instances are ideal for databases and memory-intensive applications, or RAM-intensive usage.",
   "select_model_description_instance_publiccloud-rancher": "The Managed Rancher Service makes it easy to manage multiple Kubernetes clusters, including those created with the Managed Kubernetes Service.",
