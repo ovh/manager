@@ -21,6 +21,7 @@ type SelectModelProps = {
   setInstanceCategory: (category: InstanceTechnicalName) => void;
   tabsList: InstanceInfo[];
   technicalModel: string;
+  isStorageDisplayed?: boolean;
 };
 
 const SelectModel = ({
@@ -32,8 +33,13 @@ const SelectModel = ({
   setInstanceCategory,
   tabsList,
   technicalModel,
+  isStorageDisplayed = true,
 }: SelectModelProps) => {
   const { t } = useTranslation('create');
+
+  const modelDescriptionKey = `select_model_description_instance_${instanceCategory}`;
+  const hasStorageFreeDescription =
+    !isStorageDisplayed && instanceCategory === InstanceTechnicalName.b3;
 
   return (
     <Block>
@@ -54,7 +60,11 @@ const SelectModel = ({
         </div>
       )}
       <DescriptionWrapper>
-        {t(`select_model_description_instance_${instanceCategory}`)}
+        {t(
+          hasStorageFreeDescription
+            ? `${modelDescriptionKey}_without_storage`
+            : modelDescriptionKey,
+        )}
       </DescriptionWrapper>
       {!isTechnicalInfoLoading ? (
         <div className="flex flex-row w-full overflow-x-auto mb-[32px] gap-6">
@@ -65,6 +75,7 @@ const SelectModel = ({
               name={name}
               onClick={() => onSelectModel(name)}
               isActive={technicalModel === name}
+              isStorageDisplayed={isStorageDisplayed}
             />
           ))}
         </div>
