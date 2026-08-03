@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { subRoutes, urlParams } from './routes.constants';
+import { subRoutes, urlParams, vaultCredentialsRoutePath } from './routes.constants';
 
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
@@ -25,6 +25,9 @@ const DeleteBackupServerPage = React.lazy(
 );
 const BillingPage = React.lazy(() => import('@/pages/billing/Billing.page'));
 const VaultsPage = React.lazy(() => import('@/pages/vaults/Vaults.page'));
+const VaultCredentialsPage = React.lazy(
+  () => import('@/pages/vaults/credentials/VaultCredentials.page'),
+);
 
 export default (
   <>
@@ -101,7 +104,16 @@ export default (
         handle={{
           tracking: { pageName: 'vaults', pageType: PageType.listing },
         }}
-      />
+      >
+        {/* Modale enfant : elle se superpose à la liste, qui reste montée derrière. */}
+        <Route
+          path={vaultCredentialsRoutePath}
+          Component={VaultCredentialsPage}
+          handle={{
+            tracking: { pageName: 'vault-credentials', pageType: PageType.popup },
+          }}
+        />
+      </Route>
     </Route>
   </>
 );
