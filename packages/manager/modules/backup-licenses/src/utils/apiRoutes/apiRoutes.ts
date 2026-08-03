@@ -13,3 +13,9 @@ export const getBackupLicensesRoute = (backupServicesId: string, vspcTenantId: s
 
 export const getBackupServersRoute = (backupServicesId: string, vspcTenantId: string) =>
   `${getVspcTenantsRoute(backupServicesId)}/${vspcTenantId}/backupLicenses/backupServer`;
+
+export const getBackupServerRoute = (
+  backupServicesId: string,
+  vspcTenantId: string,
+  backupServerId: string,
+) => `${getBackupServersRoute(backupServicesId, vspcTenantId)}/${backupServerId}`;

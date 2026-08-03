@@ -10,9 +10,12 @@ export const subRoutes = {
   billing: 'billing' as const,
   generalInformation: 'general-information' as const,
   terminate: 'terminate' as const,
+  edit: 'edit' as const,
 } as const;
 
-export const urlParams = {} as const;
+export const urlParams = {
+  backupServerId: ':backupServerId' as const,
+} as const;
 
 export const urls = {
   root: `/`,
@@ -27,6 +30,8 @@ export const routeUrls = {
   vaults: `/${subRoutes.vaults}`,
   billing: `/${subRoutes.billing}`,
   generalInformation: `/${subRoutes.generalInformation}`,
+  /** Page pleine (sœur de `order`), pas une modale : BKP-1218 reprend le tunnel de commande. */
+  edit: (backupServerId: string) => `/${subRoutes.edit}/${backupServerId}`,
 } as const;
 
 export type ServiceNavTab = {

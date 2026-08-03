@@ -1,13 +1,24 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
-import { mockBackupServers } from '@/mocks/backupServers/backupServers.mock';
+import {
+  mockBackupServers,
+  simulateBackupServerUpdate,
+} from '@/mocks/backupServers/backupServers.mock';
 import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import { BackupServerResource } from '@/types/BackupServer.type';
-import { getBackupServersRoute } from '@/utils/apiRoutes/apiRoutes';
+import { getBackupServerRoute, getBackupServersRoute } from '@/utils/apiRoutes/apiRoutes';
 
 export type GetBackupServersParams = {
   backupServicesId: string;
   vspcTenantId: string;
+};
+
+export type EditBackupServerParams = GetBackupServersParams & {
+  backupServerId: string;
+  displayName: string;
+  licenseType: string;
+  externalIps: string[];
+  privateIps: string[];
 };
 
 /**
@@ -25,4 +36,23 @@ export const getBackupServers = async ({
     getBackupServersRoute(backupServicesId, vspcTenantId),
   );
   return data;
+};
+
+/**
+ * Édition d'un serveur VBR (BKP-1218). Nom et IP sont appliqués immédiatement ; un changement
+ * de `licenseType` est différé au 1er du mois suivant côté backend — le front envoie la cible
+ * dans le même corps, il n'y a rien de spécifique à faire ici pour ce décalage.
+ */
+export const editBackupServer = async ({
+  backupServicesId,
+  vspcTenantId,
+  backupServerId,
+  ...payload
+}: EditBackupServerParams): Promise<void> => {
+  if (USE_API_MOCKS) {
+    simulateBackupServerUpdate(backupServerId, payload);
+    return;
+  }
+
+  await v2.put(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId), payload);
 };
