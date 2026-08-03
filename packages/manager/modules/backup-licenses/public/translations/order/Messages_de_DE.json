@@ -143,5 +143,21 @@
       "value": "██,██ € netto/Monat"
     },
     "cta": "Bestellung abschließen"
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "VBR-Server"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Servername"
+      },
+      "cta": "Server hinzufügen"
+    },
+    "error": {
+      "submit": "Beim Hinzufügen des Servers ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+    }
   }
 }
