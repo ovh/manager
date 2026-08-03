@@ -31,5 +31,17 @@ export const isServerInFlight = (server: BackupServerResource): boolean =>
 export const hasFailedTask = (server: BackupServerResource): boolean =>
   (server.currentTasks ?? []).some((task) => task.status === 'ERROR');
 
+/**
+ * Une suppression est en cours sur la ressource (BKP-1219) : la ligne reste affichée tant que
+ * le polling ne l'a pas fait disparaître (§6 de la spec), mais avec un libellé propre plutôt
+ * que le « mise à jour en cours » générique — la ligne va disparaître, pas se rafraîchir.
+ * Valeur de `type` non confirmée par le BE (comme le reste de ce ticket, cf. §11) : posée par
+ * le mock (`BACKUP_LICENSES_SERVER_DELETE`), à ajuster si le contrat réel diffère.
+ */
+export const isServerBeingDeleted = (server: BackupServerResource): boolean =>
+  (server.currentTasks ?? []).some(
+    (task) => isTaskProgressing(task) && task.type.includes('DELETE'),
+  );
+
 export const hasInFlightServers = (servers?: BackupServerResource[]): boolean =>
   (servers ?? []).some(isServerInFlight);
