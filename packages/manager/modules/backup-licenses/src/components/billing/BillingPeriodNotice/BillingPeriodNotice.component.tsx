@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsText } from '@ovhcloud/ods-components/react';

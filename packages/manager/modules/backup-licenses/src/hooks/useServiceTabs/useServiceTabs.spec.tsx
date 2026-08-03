@@ -39,11 +39,13 @@ describe('useServiceTabs', () => {
     expect(await activeTabNames(routeUrls.onboarding)).toEqual([]);
   });
 
-  it('never marks a disabled tab as active, even on its own pathname', async () => {
+  // L'onglet Vaults était affiché désactivé en attendant sa route ; BKP-1221 la livre, donc il est
+  // désormais navigable et actif sur son propre pathname.
+  it('marks the vaults tab as active on its own pathname', async () => {
     const tabs = await renderTabs(routeUrls.vaults);
     const vaultsTab = tabs.find((tab) => tab.name === 'vaults');
 
-    expect(vaultsTab?.isDisabled).toBe(true);
-    expect(vaultsTab?.isActive).toBe(false);
+    expect(vaultsTab?.isDisabled).toBeFalsy();
+    expect(vaultsTab?.isActive).toBe(true);
   });
 });
