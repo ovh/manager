@@ -19,9 +19,6 @@ vi.mock('@/data/api/tenants/tenants.requests');
 
 const mockedGetBackupServers = vi.mocked(getBackupServers);
 
-// NB : le harness i18n du module ne résout que les clés de premier niveau. `empty_state` en
-// est une (d'où l'assertion sur le libellé), `error.loading` n'en est pas une (d'où la clé).
-
 describe('LinkedServersPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -48,7 +45,9 @@ describe('LinkedServersPage', () => {
 
     // La topbar est rendue dès le chargement : le CTA d'ajout est toujours présent.
     expect(screen.getByTestId('linked-servers-topbar')).toBeInTheDocument();
-    expect(screen.queryByText('error.loading')).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("La liste de vos serveurs n'a pas pu être chargée."),
+    ).not.toBeInTheDocument();
   });
 
   it('renders the fetched servers', async () => {
@@ -76,7 +75,11 @@ describe('LinkedServersPage', () => {
 
     await renderWithProviders(<LinkedServersPage />);
 
-    await waitFor(() => expect(screen.getByText('error.loading')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(
+        screen.getByText("La liste de vos serveurs n'a pas pu être chargée."),
+      ).toBeInTheDocument(),
+    );
 
     mockedGetBackupServers.mockResolvedValue([]);
     fireEvent.click(screen.getByTestId('linked-servers-retry'));

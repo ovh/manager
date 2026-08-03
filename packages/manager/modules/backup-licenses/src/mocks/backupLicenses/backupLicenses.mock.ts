@@ -2,8 +2,9 @@ import { BackupLicenseResource, CreateBackupLicenseBody } from '@/types/BackupLi
 import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
 
 /**
- * Un seul mock : la cascade backupServicesId → vspcTenantId → licence ne couvre
- * qu'un client mono-service (même principe que mockBackupServicesTenants/mockVspcTenants).
+ * Jeux de données de développement. `vaultId` (licences 2 et 3) est le champ de jointure
+ * hypothétique lu par `matchLicenseToVault` (cf. §14 de la spec BKP-1225 : nom de champ non
+ * confirmé côté BE). À supprimer une fois l'endpoint déployé (cf. §15 de la spec).
  */
 export const mockBackupLicenses: BackupLicenseResource[] = [
   {
@@ -14,6 +15,21 @@ export const mockBackupLicenses: BackupLicenseResource[] = [
       resourceName: 'backuplicenses-mock-resource',
     },
     currentTasks: [],
+  },
+  {
+    id: 'license-1',
+    resourceStatus: 'READY',
+    currentState: { id: 'license-1', resourceName: 'license-1', vaultId: 'vault-1' },
+  },
+  {
+    id: 'license-2',
+    resourceStatus: 'READY',
+    currentState: { id: 'license-2', resourceName: 'license-2', vaultId: 'vault-2' },
+  },
+  {
+    id: 'license-3',
+    resourceStatus: 'READY',
+    currentState: { id: 'license-3', resourceName: 'license-3', vaultId: 'vault-3' },
   },
 ];
 

@@ -1,0 +1,18 @@
+{
+  "empty_state": "No consumption recorded for the current period.",
+  "period_notice": "Consumption for the current billing period, from {{begin}} to {{end}}.",
+  "period_notice_fallback": "Consumption for the current billing period.",
+  "column": {
+    "license_price": "License price",
+    "storage_price": "Storage price"
+  },
+  "usage": {
+    "included": "{{quantity}} / {{included}} {{unit}} included"
+  },
+  "badge": {
+    "included": "Included"
+  },
+  "error": {
+    "loading": "Your consumption could not be loaded."
+  }
+}
