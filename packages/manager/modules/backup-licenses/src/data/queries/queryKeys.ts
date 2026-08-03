@@ -19,4 +19,8 @@ export const queryKeys = {
   backupLicense: {
     resourceName: () => ['backup-licenses', 'backup-license', 'resource-name'],
   },
+  billing: {
+    all: () => ['backup-licenses', 'billing'],
+    consumptionRows: () => [...queryKeys.billing.all(), 'consumption-rows'],
+  },
 } as const;

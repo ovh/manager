@@ -45,7 +45,7 @@ describe('OnboardingGuardPage', () => {
 
     await renderGuard();
 
-    expect(screen.getByText('title')).toBeInTheDocument();
+    expect(screen.getByText('Backup Licences')).toBeInTheDocument();
   });
 
   it('redirects to the linked servers page when a subscription is active', async () => {

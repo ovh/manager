@@ -6,6 +6,9 @@ import {
   getBackupServerRoute,
   getBackupServersRoute,
   getBackupServicesBaseRoute,
+  getLicenseConsumptionRoute,
+  getServiceConsumptionRoute,
+  getVaultsRoute,
   getVspcTenantsRoute,
 } from './apiRoutes';
 
@@ -34,5 +37,17 @@ describe('apiRoutes', () => {
     expect(getBackupLicensesRoute('tenant-1', 'vspc-1')).toBe(
       `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses`,
     );
+  });
+
+  it('builds the vaults route for a given tenant id', () => {
+    expect(getVaultsRoute('tenant-1')).toBe(`${BACKUP_SERVICES_ROUTE}/tenant-1/vault`);
+  });
+
+  it('builds the storage consumption route (/element) for a given service id', () => {
+    expect(getServiceConsumptionRoute('service-1')).toBe('/services/service-1/consumption/element');
+  });
+
+  it('builds the license consumption route (no /element) for a given service id', () => {
+    expect(getLicenseConsumptionRoute('service-1')).toBe('/services/service-1/consumption');
   });
 });
