@@ -4,6 +4,7 @@
   "choose_ressource_description": "Vengono considerate anche le istanze B3, C3, R3 utilizzate per i nodi Managed Kubernetes Service. Ricordiamo che le istanze eseguite nelle Local Zone non sono idonee ai Savings Plan.",
   "select_model": "Scegliere il modello",
   "select_model_description_instance_b3": "Le istanze General Purpose dispongono di risorse equilibrate e garantite tra CPU, memoria, storage e rete.",
+  "select_model_description_instance_b3_without_storage": "Le istanze General Purpose dispongono di risorse equilibrate e garantite tra CPU, memoria e rete.",
   "select_model_description_instance_c3": "Le istanze Compute Optimized sono progettate per attività che richiedono molta potenza di calcolo e carichi di lavoro intensivi.",
   "select_model_description_instance_r3": "Le istanze Memory Optimized sono ideali per database e applicazioni con un grande consumo di memoria o utilizzo intensivo di RAM.",
   "select_model_description_instance_publiccloud-rancher": "Managed Rancher Service permette di facilitare la gestione di più cluster Kubernetes, inclusi quelli creati con il servizio Managed Kubernetes.",

@@ -6,8 +6,10 @@ import { formatTechnicalInfo } from '@/utils/formatter/formatter';
 
 const DisplayTechnicalInfo = ({
   technical,
+  isStorageDisplayed,
 }: {
   technical: ReturnType<typeof formatTechnicalInfo>['technical'];
+  isStorageDisplayed: boolean;
 }) => {
   const { t } = useTranslation('create');
   const { memory, cpu, storage, bandwidth } = technical;
@@ -24,11 +26,13 @@ const DisplayTechnicalInfo = ({
           ghz: cpu.frequency,
         })}
       </OdsText>
-      <OdsText>
-        {t('resource_model_characteristics_disk', {
-          value: storage.disks[0].capacity,
-        })}
-      </OdsText>
+      {isStorageDisplayed && storage && (
+        <OdsText>
+          {t('resource_model_characteristics_disk', {
+            value: storage.disks[0].capacity,
+          })}
+        </OdsText>
+      )}
       <OdsText>
         {t('resource_model_characteristics_mbits', {
           value: bandwidth.level,
@@ -43,6 +47,7 @@ type TileTechnicalInfoProps = {
   onClick?: () => void;
   isActive?: boolean;
   name: string;
+  isStorageDisplayed?: boolean;
 };
 
 export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
@@ -50,13 +55,19 @@ export const TileTechnicalInfo: React.FC<TileTechnicalInfoProps> = ({
   technical,
   onClick,
   isActive,
+  isStorageDisplayed = true,
 }) => (
   <SimpleTile onClick={onClick} isActive={isActive}>
     <div className="flex flex-col items-center justify-center">
       <OdsText>
         <span className="font-bold">{name}</span>
       </OdsText>
-      {technical?.bandwidth && <DisplayTechnicalInfo technical={technical} />}
+      {technical?.bandwidth && (
+        <DisplayTechnicalInfo
+          technical={technical}
+          isStorageDisplayed={isStorageDisplayed}
+        />
+      )}
     </div>
   </SimpleTile>
 );
