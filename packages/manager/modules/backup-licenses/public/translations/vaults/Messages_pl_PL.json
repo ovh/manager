@@ -1,0 +1,53 @@
+{
+  "service_type": "vault",
+  "cta": {
+    "order": "Order a vault"
+  },
+  "column": {
+    "immutability": "Immutability",
+    "encryption": "Encryption"
+  },
+  "immutability_value_one": "Enabled - {{count}} day",
+  "immutability_value_few": "Enabled - {{count}} days",
+  "immutability_value_many": "Enabled - {{count}} days",
+  "immutability_value_other": "Enabled - {{count}} days",
+  "encryption_value": "Enabled - SSE OMK",
+  "region_single": "{{city}} ({{code}})",
+  "action": {
+    "menu_label": "Vault actions",
+    "show_credentials": "Show credentials",
+    "credentials_disabled_tooltip": "Ten vault nie ma żadnego bucketa, który mógłby udostępnić dane uwierzytelniające S3."
+  },
+  "state": {
+    "empty": {
+      "title": "No vault to display",
+      "description": "No storage vault is attached to this service yet. A vault ordered a few moments ago may still be being created: reload the page in a few minutes."
+    },
+    "error": {
+      "message": "The vault list could not be loaded.",
+      "retry": "Retry"
+    }
+  },
+  "terminate": {
+    "message": "Are you sure you want to terminate the vault {{name}} (region: {{region}})? All data stored in this vault will be permanently lost. This action is irreversible.",
+    "success": "Vault terminated successfully.",
+    "included_tooltip": "The included vault cannot be terminated.",
+    "error": "Terminating the vault failed. Please try again in a few moments."
+  },
+  "credentials": {
+    "title": "Dane uwierzytelniające S3",
+    "field": {
+      "endpoint": "Punkt końcowy S3"
+    },
+    "hide": "Ukryj",
+    "copied_toast": "Skopiowano do schowka",
+    "error": "Nie udało się pobrać danych uwierzytelniających S3. Spróbuj ponownie za chwilę.",
+    "loading": "Pobieranie danych uwierzytelniających S3",
+    "a11y": {
+      "show_secret": "Pokaż klucz tajny",
+      "hide_secret": "Ukryj klucz tajny",
+      "copy_field": "Skopiuj pole {{field}}",
+      "value_hidden": "Wartość ukryta"
+    }
+  }
+}

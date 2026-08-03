@@ -17,7 +17,9 @@ describe('VaultPriceCell', () => {
   });
 
   it('renders the formatted price text when it is defined and non-zero', async () => {
-    await renderWithProviders(<VaultPriceCell storagePriceValue={5000000} storagePriceText="0,05 €" />);
+    await renderWithProviders(
+      <VaultPriceCell storagePriceValue={5000000} storagePriceText="0,05 €" />,
+    );
     expect(screen.getByText('0,05 €')).toBeInTheDocument();
   });
 

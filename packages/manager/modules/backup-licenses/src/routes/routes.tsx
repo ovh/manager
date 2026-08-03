@@ -24,6 +24,7 @@ const DeleteBackupServerPage = React.lazy(
   () => import('@/pages/linked-servers/delete/DeleteBackupServer.page'),
 );
 const BillingPage = React.lazy(() => import('@/pages/billing/Billing.page'));
+const VaultsPage = React.lazy(() => import('@/pages/vaults/Vaults.page'));
 
 export default (
   <>
@@ -94,7 +95,13 @@ export default (
       >
         <Route path={subRoutes.terminate} Component={TerminateServicePage} />
       </Route>
-      {/* TODO(1.2) : route vaults. */}
+      <Route
+        path={subRoutes.vaults}
+        Component={VaultsPage}
+        handle={{
+          tracking: { pageName: 'vaults', pageType: PageType.listing },
+        }}
+      />
     </Route>
   </>
 );

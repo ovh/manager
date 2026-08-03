@@ -1,0 +1,51 @@
+{
+  "service_type": "vault",
+  "cta": {
+    "order": "Commander un vault"
+  },
+  "column": {
+    "immutability": "Immuabilité",
+    "encryption": "Chiffrement"
+  },
+  "immutability_value_one": "Activée - {{count}} jour",
+  "immutability_value_other": "Activée - {{count}} jours",
+  "encryption_value": "Activé - SSE OMK",
+  "region_single": "{{city}} ({{code}})",
+  "action": {
+    "menu_label": "Actions du vault",
+    "show_credentials": "Afficher les identifiants",
+    "credentials_disabled_tooltip": "Ce vault n'a aucun bucket en mesure de fournir des identifiants S3."
+  },
+  "state": {
+    "empty": {
+      "title": "Aucun vault à afficher",
+      "description": "Aucun vault de stockage n'est rattaché à ce service pour le moment. Un vault commandé à l'instant peut être encore en cours de création : rechargez la page dans quelques minutes."
+    },
+    "error": {
+      "message": "La liste des vaults n'a pas pu être chargée.",
+      "retry": "Réessayer"
+    }
+  },
+  "terminate": {
+    "message": "Êtes-vous sûr de vouloir résilier le vault {{name}} (région : {{region}}) ? Toutes les données qu'il contient seront définitivement perdues. Cette action est irréversible.",
+    "success": "Le vault a bien été résilié.",
+    "included_tooltip": "Le vault inclus ne peut pas être résilié.",
+    "error": "La résiliation du vault a échoué. Veuillez réessayer dans quelques instants."
+  },
+  "credentials": {
+    "title": "Identifiants S3",
+    "field": {
+      "endpoint": "Point d'accès S3"
+    },
+    "hide": "Masquer",
+    "copied_toast": "Copié dans le presse-papiers",
+    "error": "Les identifiants S3 n'ont pas pu être récupérés. Veuillez réessayer dans quelques instants.",
+    "loading": "Récupération des identifiants S3",
+    "a11y": {
+      "show_secret": "Afficher la clé secrète",
+      "hide_secret": "Masquer la clé secrète",
+      "copy_field": "Copier le champ {{field}}",
+      "value_hidden": "Valeur masquée"
+    }
+  }
+}

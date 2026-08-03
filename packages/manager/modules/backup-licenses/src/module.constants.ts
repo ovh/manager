@@ -37,6 +37,9 @@ export const VAULT_DEFAULT_IMMUTABILITY = {
   encryption: 'SSE-OMK',
 };
 
+/** Masque de la clé secrète : longueur fixe, pour ne pas révéler celle du secret (BKP-1222). */
+export const VAULT_SECRET_MASK = '••••••••••••';
+
 export const BACKUP_LICENSES_IAM_RULES = {
   'vault/edit': 'backupServices:apiovh:vault/edit',
   'vspc/edit': 'backupServices:apiovh:vspc/edit',

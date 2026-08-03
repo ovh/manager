@@ -1,4 +1,13 @@
-export type ResourceStatus = 'CREATING' | 'DELETING' | 'ERROR' | 'READY' | 'SUSPENDED' | 'UPDATING';
+/** Les 8 membres de `common.ResourceStatusEnum` du contrat v2 `backupServices`. */
+export type ResourceStatus =
+  | 'CREATING'
+  | 'DELETING'
+  | 'ERROR'
+  | 'OUT_OF_SYNC'
+  | 'READY'
+  | 'SUSPENDED'
+  | 'UNKNOWN'
+  | 'UPDATING';
 
 export type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';
 

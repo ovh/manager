@@ -35,13 +35,21 @@ const buildVault = (id: string, resourceName: string): VaultResource => ({
   },
 });
 
-const buildLicense = (id: string, resourceName: string, vaultId: string): BackupLicenseResource => ({
+const buildLicense = (
+  id: string,
+  resourceName: string,
+  vaultId: string,
+): BackupLicenseResource => ({
   id,
   resourceStatus: 'READY',
   currentState: { id, resourceName, vaultId },
 });
 
-const buildConsumption = (planCode: string, quantity: number, priceText: string): ServiceConsumption => ({
+const buildConsumption = (
+  planCode: string,
+  quantity: number,
+  priceText: string,
+): ServiceConsumption => ({
   beginDate: '2026-07-01T00:00:00Z',
   endDate: '2026-07-31T23:59:59Z',
   pricingMode: 'consumption',
@@ -78,7 +86,8 @@ describe('billingQueries', () => {
     ]);
   });
 
-  const fetchRows = () => queryClient.fetchQuery(billingQueries.withClient(queryClient).consumptionRows());
+  const fetchRows = () =>
+    queryClient.fetchQuery(billingQueries.withClient(queryClient).consumptionRows());
 
   it('builds a row with both storage and license prices when both resolve', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
