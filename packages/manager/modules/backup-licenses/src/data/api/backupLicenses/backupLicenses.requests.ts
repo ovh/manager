@@ -1,7 +1,10 @@
 import { fetchIcebergV2 } from '@ovh-ux/manager-core-api';
 
 import { postJSON } from '@/data/api/Client.api';
-import { mockBackupLicenses, mockCreateBackupLicense } from '@/mocks/backupLicenses/backupLicenses.mock';
+import {
+  mockBackupLicenses,
+  mockCreateBackupLicense,
+} from '@/mocks/backupLicenses/backupLicenses.mock';
 import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import { BackupLicenseResource, CreateBackupLicenseParams } from '@/types/BackupLicense.type';
 import { BackupServerResource } from '@/types/BackupServer.type';

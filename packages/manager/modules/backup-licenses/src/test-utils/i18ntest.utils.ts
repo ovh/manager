@@ -1,5 +1,6 @@
 import i18next, { InitOptions, i18n } from 'i18next';
 
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
@@ -11,10 +12,10 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import common from '../../public/translations/common/Messages_fr_FR.json';
+import billingTab from '../../public/translations/billing/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import billingTab from '../../public/translations/billing/Messages_fr_FR.json';
+import common from '../../public/translations/common/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
@@ -30,6 +31,9 @@ import onboarding from '../../public/translations/onboarding/Messages_fr_FR.json
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import order from '../../public/translations/order/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import vaults from '../../public/translations/vaults/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
@@ -58,6 +62,15 @@ function addTranslations() {
       true,
     )
     .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.BILLING, billingTab, true)
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.VAULTS, vaults, true)
+    // Namespaces partagés : les composants les résolvent par `t('region:…')`, donc ils doivent être
+    // enregistrés dans i18next, et pas seulement exposés dans `labels` pour les assertions.
+    .addResourceBundle(defaultLocale, NAMESPACES.REGION, region, true)
+    .addResourceBundle(defaultLocale, NAMESPACES.STATUS, status, true)
+    .addResourceBundle(defaultLocale, NAMESPACES.ACTIONS, actions, true)
+    .addResourceBundle(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard, true)
+    .addResourceBundle(defaultLocale, NAMESPACES.SYSTEM, system, true)
+    .addResourceBundle(defaultLocale, NAMESPACES.BILLING, billing, true)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -97,4 +110,5 @@ export const labels = {
   linkedServers,
   generalInformation,
   billingTab,
+  vaults,
 };

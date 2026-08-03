@@ -1,12 +1,15 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import {
   mockLicenseConsumptions,
   mockStorageConsumptions,
 } from '@/mocks/consumptions/consumptions.mock';
+import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import { ServiceConsumption } from '@/types/Consumption.type';
-import { getLicenseConsumptionRoute, getServiceConsumptionRoute } from '@/utils/apiRoutes/apiRoutes';
+import {
+  getLicenseConsumptionRoute,
+  getServiceConsumptionRoute,
+} from '@/utils/apiRoutes/apiRoutes';
 
 /** Stockage d'un vault (§3.1 de la spec BKP-1225) : `quantity` et `price` en un seul appel. */
 export const getServiceConsumption = async (serviceId: string): Promise<ServiceConsumption[]> => {

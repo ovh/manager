@@ -1,4 +1,12 @@
-export type ResourceStatus = 'CREATING' | 'DELETING' | 'ERROR' | 'READY' | 'SUSPENDED' | 'UPDATING';
+/** Les 7 membres de `common.ResourceStatusEnum` (schéma v2, 2026-06-16). */
+export type ResourceStatus =
+  | 'CREATING'
+  | 'DELETING'
+  | 'ERROR'
+  | 'OUT_OF_SYNC'
+  | 'READY'
+  | 'SUSPENDED'
+  | 'UPDATING';
 
 export type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';
 

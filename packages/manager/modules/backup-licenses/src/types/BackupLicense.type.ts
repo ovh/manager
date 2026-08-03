@@ -1,5 +1,5 @@
-import { Resource } from './Resource.type';
 import { LicenseApiValue } from './Order.type';
+import { Resource } from './Resource.type';
 
 /**
  * Le champ de jointure vers le vault n'est pas confirmé côté API (§14 de la spec

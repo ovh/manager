@@ -1,0 +1,82 @@
+import { QueryClient } from '@tanstack/react-query';
+import { describe, expect, it, vi } from 'vitest';
+
+import { mockEdgeCaseVaults, mockVaultBucketAccess } from '@/mocks/vaults/vaults.mock';
+import { setupMswMock } from '@/test-utils/setupMsw';
+import { VaultResource } from '@/types/Vault.type';
+
+import { vaultsQueries } from './vaults.queries';
+
+/**
+ * `USE_API_MOCKS` renvoie les jeux de données sans passer par le réseau : le module l'utilise pour
+ * développer sans API. Ces tests-ci portent justement sur la couche réseau (erreurs, polling), donc
+ * ils la laissent s'exécuter et servent les réponses par MSW.
+ */
+vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
+
+const createQueryClient = () => new QueryClient({ defaultOptions: { queries: { retry: false } } });
+
+describe('vaultsQueries.list', () => {
+  it('resolves the tenant, then lists its vaults', async () => {
+    setupMswMock();
+    const queryClient = createQueryClient();
+
+    const vaults = await queryClient.fetchQuery(vaultsQueries.withClient(queryClient).list());
+
+    expect(vaults[0]?.currentState.name).toBe('vault-veeam-multi-region');
+  });
+
+  it('rejects when the listing fails, so the error state can be rendered', async () => {
+    setupMswMock({ isVaultListError: true });
+    const queryClient = createQueryClient();
+
+    await expect(
+      queryClient.fetchQuery(vaultsQueries.withClient(queryClient).list()),
+    ).rejects.toThrow();
+  });
+
+  const creatingVault = mockEdgeCaseVaults.filter(({ id }) => id === 'vault-status-creating');
+  const statusOfCreating = (vaults: VaultResource[]) =>
+    vaults.find(({ id }) => id === 'vault-status-creating')?.currentState.status;
+
+  it('flips a creating vault to ready once polling has run, so polling can stop', async () => {
+    setupMswMock({ vaults: creatingVault, vaultCreatingCallsBeforeReady: 1 });
+    const queryClient = createQueryClient();
+    const getVaults = () => queryClient.fetchQuery(vaultsQueries.withClient(queryClient).list());
+
+    expect(statusOfCreating(await getVaults())).toBe('CREATING');
+    expect(statusOfCreating(await getVaults())).toBe('READY');
+  });
+
+  it('keeps a stuck vault creating, so the timeout path can be exercised', async () => {
+    setupMswMock({ vaults: creatingVault, vaultCreatingCallsBeforeReady: Infinity });
+    const queryClient = createQueryClient();
+    const list = vaultsQueries.withClient(queryClient).list();
+
+    await queryClient.fetchQuery(list);
+
+    expect(statusOfCreating(await queryClient.fetchQuery(list))).toBe('CREATING');
+  });
+});
+
+describe('vaultsQueries.bucketAccess', () => {
+  it('returns the S3 keys of the requested bucket', async () => {
+    setupMswMock();
+    const queryClient = createQueryClient();
+
+    const access = await queryClient.fetchQuery(
+      vaultsQueries.withClient(queryClient).bucketAccess('0001', '0001-b1'),
+    );
+
+    expect(access).toEqual(mockVaultBucketAccess);
+  });
+
+  it('rejects when the credentials call fails', async () => {
+    setupMswMock({ isVaultAccessError: true });
+    const queryClient = createQueryClient();
+
+    await expect(
+      queryClient.fetchQuery(vaultsQueries.withClient(queryClient).bucketAccess('0001', '0001-b1')),
+    ).rejects.toThrow();
+  });
+});
