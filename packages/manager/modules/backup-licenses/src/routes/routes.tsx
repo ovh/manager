@@ -20,6 +20,9 @@ const TerminateServicePage = React.lazy(
 const EditBackupServerPage = React.lazy(
   () => import('@/pages/linked-servers/edit/EditBackupServer.page'),
 );
+const DeleteBackupServerPage = React.lazy(
+  () => import('@/pages/linked-servers/delete/DeleteBackupServer.page'),
+);
 
 export default (
   <>
@@ -64,7 +67,16 @@ export default (
         handle={{
           tracking: { pageName: 'linked-servers', pageType: PageType.listing },
         }}
-      />
+      >
+        {/* Modale enfant : elle se superpose à la liste, qui reste montée derrière. */}
+        <Route
+          path={`${subRoutes.delete}/${urlParams.backupServerId}`}
+          Component={DeleteBackupServerPage}
+          handle={{
+            tracking: { pageName: 'delete-backup-server', pageType: PageType.popup },
+          }}
+        />
+      </Route>
       <Route
         path={subRoutes.generalInformation}
         Component={GeneralInformationPage}

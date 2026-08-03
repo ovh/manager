@@ -11,6 +11,7 @@
   "status": {
     "creating": "En cours de création",
     "updating": "Mise à jour en cours",
+    "deleting": "Suppression en cours",
     "installed": "Actif",
     "expired": "Expirée",
     "not_supported": "Non prise en charge",
@@ -55,6 +56,12 @@
     },
     "success": "Les modifications ont été enregistrées.",
     "error": "Le serveur {{serverName}} n'a pas pu être modifié."
+  },
+  "delete": {
+    "title": "Supprimer le serveur",
+    "content": "Voulez-vous vraiment supprimer le serveur <strong>{{serverName}}</strong> ? La licence associée sera révoquée. Cette action est irréversible.",
+    "success": "La suppression du serveur {{serverName}} a bien été lancée.",
+    "error": "Le serveur {{serverName}} n'a pas pu être supprimé."
   },
   "empty_state": "Aucun serveur enregistré. Ajoutez votre premier serveur VBR pour commencer.",
   "error": {

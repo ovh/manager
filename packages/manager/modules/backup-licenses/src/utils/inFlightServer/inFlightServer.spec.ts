@@ -3,13 +3,22 @@ import { describe, expect, it } from 'vitest';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { CurrentTask, TaskStatus } from '@/types/Resource.type';
 
-import { hasFailedTask, hasInFlightServers, isServerInFlight } from './inFlightServer';
+import {
+  hasFailedTask,
+  hasInFlightServers,
+  isServerBeingDeleted,
+  isServerInFlight,
+} from './inFlightServer';
 
-const buildTask = (status: TaskStatus | null, id = 'task-1'): CurrentTask => ({
+const buildTask = (
+  status: TaskStatus | null,
+  id = 'task-1',
+  type = 'BACKUP_LICENSES_SERVER_LICENSE_CHANGE',
+): CurrentTask => ({
   id,
   link: `/me/task/${id}`,
   status,
-  type: 'BACKUP_LICENSES_SERVER_LICENSE_CHANGE',
+  type,
 });
 
 const task = buildTask('SCHEDULED');
@@ -72,6 +81,36 @@ describe('hasFailedTask', () => {
 
   it('returns false when currentTasks is empty', () => {
     expect(hasFailedTask(buildServer('server-1', []))).toBe(false);
+  });
+});
+
+describe('isServerBeingDeleted', () => {
+  it('returns true when a progressing task is of a delete type', () => {
+    const server = buildServer('server-1', [
+      buildTask('SCHEDULED', 'task-1', 'BACKUP_LICENSES_SERVER_DELETE'),
+    ]);
+
+    expect(isServerBeingDeleted(server)).toBe(true);
+  });
+
+  it('returns false when the progressing task is not a delete', () => {
+    const server = buildServer('server-1', [buildTask('RUNNING')]);
+
+    expect(isServerBeingDeleted(server)).toBe(false);
+  });
+
+  // Régression : une suppression déjà terminée en échec ne doit pas garder le libellé
+  // « suppression en cours » — priorité à `hasFailedTask` côté rendu.
+  it('returns false when the only delete task is in ERROR', () => {
+    const server = buildServer('server-1', [
+      buildTask('ERROR', 'task-1', 'BACKUP_LICENSES_SERVER_DELETE'),
+    ]);
+
+    expect(isServerBeingDeleted(server)).toBe(false);
+  });
+
+  it('returns false when currentTasks is empty', () => {
+    expect(isServerBeingDeleted(buildServer('server-1', []))).toBe(false);
   });
 });
 
