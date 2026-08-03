@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 
-import { VaultResource } from '@/types/Vault.type';
+import { VaultProductLine, VaultResource } from '@/types/Vault.type';
 
 import { selectBackupLicensesVaults } from './vaults.selectors';
 
-const buildVault = (id: string, vaultProductLine?: string): VaultResource => ({
+const buildVault = (id: string, vaultProductLine?: VaultProductLine | null): VaultResource => ({
   id,
   resourceStatus: 'READY',
   currentState: {
@@ -23,13 +23,16 @@ describe('selectBackupLicensesVaults', () => {
     expect(selectBackupLicensesVaults(vaults)).toEqual(vaults);
   });
 
-  it('discards vaults whose vaultProductLine is another value', () => {
-    const vaults = [buildVault('v1', 'ICEBERG')];
+  it('discards vaults of the other product line', () => {
+    const vaults = [buildVault('v1', 'BACKUP_AGENT')];
     expect(selectBackupLicensesVaults(vaults)).toEqual([]);
   });
 
-  it('keeps vaults whose vaultProductLine field is absent (BE tolerance, §14)', () => {
-    const vaults = [buildVault('v1', undefined)];
-    expect(selectBackupLicensesVaults(vaults)).toEqual(vaults);
-  });
+  it.each([['absent', undefined] as const, ['null, as the contract allows', null] as const])(
+    'keeps vaults whose vaultProductLine is %s',
+    (_, vaultProductLine) => {
+      const vaults = [buildVault('v1', vaultProductLine)];
+      expect(selectBackupLicensesVaults(vaults)).toEqual(vaults);
+    },
+  );
 });
