@@ -2,6 +2,7 @@ import { v2 } from '@ovh-ux/manager-core-api';
 
 import {
   mockBackupServers,
+  simulateBackupServerDeletion,
   simulateBackupServerUpdate,
 } from '@/mocks/backupServers/backupServers.mock';
 import { USE_API_MOCKS } from '@/mocks/mocks.config';
@@ -19,6 +20,10 @@ export type EditBackupServerParams = GetBackupServersParams & {
   licenseType: string;
   externalIps: string[];
   privateIps: string[];
+};
+
+export type DeleteBackupServerParams = GetBackupServersParams & {
+  backupServerId: string;
 };
 
 /**
@@ -55,4 +60,22 @@ export const editBackupServer = async ({
   }
 
   await v2.put(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId), payload);
+};
+
+/**
+ * Suppression d'un serveur VBR (BKP-1219). Révoque la licence VSPC associée côté backend.
+ * L'opération est asynchrone : la ressource porte une tâche jusqu'à sa fin, c'est le polling
+ * de la liste qui reflète ensuite la disparition de la ligne.
+ */
+export const deleteBackupServer = async ({
+  backupServicesId,
+  vspcTenantId,
+  backupServerId,
+}: DeleteBackupServerParams): Promise<void> => {
+  if (USE_API_MOCKS) {
+    simulateBackupServerDeletion(backupServerId);
+    return;
+  }
+
+  await v2.delete(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId));
 };

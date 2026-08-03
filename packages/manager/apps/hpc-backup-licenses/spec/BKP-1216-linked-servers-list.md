@@ -696,8 +696,10 @@ Rappel : 73 tests / 11 fichiers passants sur le module avant ce ticket.
 ## 15. Reste à faire après ce ticket
 
 - [ ] Confirmer le contrat de `backupServer` avec le BE et retirer les mocks de dev (§11).
-- [ ] Tickets 2.2 / 2.3 / 2.4 : ajout, édition, suppression d'un serveur → **retirer les `isDisabled`** du bouton
-      d'ajout et des 2 entrées du menu ⋮, et brancher les routes/modales correspondantes.
+- [x] Ticket 2.4 (suppression) : livré, cf. `BKP-1219-delete-vbr-server.md` — l'entrée « Supprimer » du menu ⋮
+      pointe désormais sur une modale, et le module a sa première mutation (`data/hooks/`).
+- [ ] Tickets 2.2 / 2.3 : ajout, édition d'un serveur → **retirer les `isDisabled`** du bouton d'ajout et de
+      l'entrée « Modifier » du menu ⋮, et brancher les routes/modales correspondantes.
 - [ ] Tickets 1.2 / 1.3 / 1.4 : contenus réels des onglets Vaults / Billing / General information.
 - [ ] IAM : gater le bouton d'ajout et le menu d'actions.
 - [ ] Relecture CDS des 7 traductions non-fr des 2 nouveaux namespaces.
@@ -794,4 +796,4 @@ Petits ajustements décidés pendant le développement, tous vérifiés dans le 
 | Libellé « en cours » d'une ligne en opération | « identique à `CREATING`/`UPDATING` » | statut déjà `progress` → son libellé ; sinon « Mise à jour en cours » | Une tâche sur une licence déjà provisionnée est une mise à jour, pas une création. |
 | Tests | `useServiceTabs.spec.ts` | `.spec.tsx` | Le hook a besoin d'un wrapper `MemoryRouter` + `I18nextProvider`. |
 | Harness i18n | — | ne résout que les clés de **premier niveau** (`empty_state` oui, `column.name` non) | Constat de `i18next.addResources` avec des ressources imbriquées : les assertions portent donc sur les clés, sauf pour `empty_state`. |
-| Dette lint du module | — | non traitée | Le lint du module était **déjà rouge avant ce ticket** (Order.page.tsx, useOrderForm, isValidIp.spec — erreurs `prettier/prettier`). Seuls les fichiers de ce ticket ont été mis au propre, pour ne pas noyer le diff. **À reprendre dans une passe dédiée.** |
+| Dette lint du module | — | non traitée dans ce ticket | Le lint du module était **déjà rouge avant ce ticket** (Order.page.tsx, useOrderForm, isValidIp.spec — erreurs `prettier/prettier`). Seuls les fichiers de ce ticket ont été mis au propre, pour ne pas noyer le diff. **Soldée depuis, pendant BKP-1219** (cf. §13 de sa spec). |
