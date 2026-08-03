@@ -46,10 +46,16 @@ export type VaultResource = Resource<Vault> & {
  * `backup.tenant.vault.bucket.Credentials` : la réponse porte elle-même l'endpoint S3 et le code
  * de région court (`backup.RegionCodeEnum`), qui n'est pas le `common.RegionEnum` du bucket.
  */
-export type VaultBucketAccess = {
+export type VaultBucketCredentials = {
   accessKey: string;
   bucketName: string;
   endpoint: string;
   regionCode: string;
   secretKey: string;
+};
+
+export type VaultOrder = {
+  name: string;
+  /** Code machine de la région, tel que `GET /location` le nomme (`eu-west-par`). */
+  region: string;
 };
