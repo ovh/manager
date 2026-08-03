@@ -51,7 +51,7 @@ describe('ServiceManagementTile', () => {
   it('always renders the terminate link, even without contacts', async () => {
     await renderWithProviders(<ServiceManagementTile isLoading={false} />);
 
-    expect(document.querySelector('ods-link')).toHaveAttribute('label', 'field.terminate_link');
+    expect(document.querySelector('ods-link')).toHaveAttribute('label', 'Résilier la licence');
   });
 
   it('renders skeletons while loading, without the contacts section', async () => {

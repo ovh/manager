@@ -69,7 +69,7 @@ describe('GeneralInformationPage', () => {
 
     await renderWithProviders(<GeneralInformationPage />);
 
-    await waitFor(() => expect(screen.getByText('error.loading')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByText("Les informations du service n'ont pas pu être chargées.")).toBeInTheDocument());
 
     vi.mocked(getBackupLicenses).mockResolvedValue([
       {
@@ -88,7 +88,7 @@ describe('GeneralInformationPage', () => {
 
     await renderWithProviders(<GeneralInformationPage />);
 
-    await waitFor(() => expect(screen.getByText('error.loading')).toBeInTheDocument(), {
+    await waitFor(() => expect(screen.getByText("Les informations du service n'ont pas pu être chargées.")).toBeInTheDocument(), {
       timeout: 5000,
     });
   });
