@@ -243,3 +243,24 @@ export const simulateBackupServerUpdate = (
     ];
   }
 };
+
+/**
+ * Mode mock uniquement (cf. §7 de la spec BKP-1219) : marque le serveur comme en cours de
+ * suppression au lieu de le retirer de la liste. Reproduit le comportement asynchrone attendu
+ * du vrai `DELETE` — spinner sur la ligne et démarrage du polling — tant que l'endpoint n'est
+ * pas déployé. La ligne ne disparaît donc jamais : la fin de tâche n'est pas simulée.
+ */
+export const simulateBackupServerDeletion = (backupServerId: string) => {
+  const server = mockBackupServers.find(({ id }) => id === backupServerId);
+  if (!server) return;
+
+  server.currentTasks = [
+    ...server.currentTasks,
+    {
+      id: `${backupServerId}-delete`,
+      link: `/me/task/${backupServerId}-delete`,
+      status: 'SCHEDULED',
+      type: 'BACKUP_LICENSES_SERVER_DELETE',
+    },
+  ];
+};
