@@ -1,0 +1,18 @@
+{
+  "empty_state": "No se registró ningún consumo para el período actual.",
+  "period_notice": "Consumo del período de facturación en curso, del {{begin}} al {{end}}.",
+  "period_notice_fallback": "Consumo del período de facturación en curso.",
+  "column": {
+    "license_price": "Precio de la licencia",
+    "storage_price": "Precio del almacenamiento"
+  },
+  "usage": {
+    "included": "{{quantity}} / {{included}} {{unit}} incluidos"
+  },
+  "badge": {
+    "included": "Incluido"
+  },
+  "error": {
+    "loading": "No se ha podido cargar su consumo."
+  }
+}

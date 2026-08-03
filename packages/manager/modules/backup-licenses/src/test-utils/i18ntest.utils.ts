@@ -14,6 +14,9 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 import common from '../../public/translations/common/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
+import billingTab from '../../public/translations/billing/Messages_fr_FR.json';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import dashboard from '../../public/translations/dashboard/Messages_fr_FR.json';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -30,14 +33,31 @@ import order from '../../public/translations/order/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
+/**
+ * `addResources` ignore silencieusement toute valeur imbriquée (seules les chaînes/tableaux
+ * de premier niveau sont pris en compte) : nos JSON de traduction ont des clés imbriquées
+ * (`license.*`, `column.*`, `badge.*`, `usage.*`...), il faut `addResourceBundle` en fusion
+ * profonde pour que les tests résolvent les vrais libellés plutôt que la clé brute.
+ */
 function addTranslations() {
   i18next
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.COMMON, common)
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding)
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order)
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard)
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS, linkedServers)
-    .addResources(defaultLocale, BACKUP_LICENSES_NAMESPACES.GENERAL_INFORMATION, generalInformation)
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.COMMON, common, true)
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding, true)
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order, true)
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard, true)
+    .addResourceBundle(
+      defaultLocale,
+      BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS,
+      linkedServers,
+      true,
+    )
+    .addResourceBundle(
+      defaultLocale,
+      BACKUP_LICENSES_NAMESPACES.GENERAL_INFORMATION,
+      generalInformation,
+      true,
+    )
+    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.BILLING, billingTab, true)
     .use({
       type: 'postProcessor',
       name: 'normalize',
@@ -54,20 +74,14 @@ export const getTesti18nParams = (): InitOptions<unknown> => ({
     escapeValue: false,
   },
 });
-export const initTestI18n = () =>
-  new Promise<i18n>((resolve) => {
+export const initTestI18n = async (): Promise<i18n> => {
+  if (!i18next.isInitialized) {
     // eslint-disable-next-line import/no-named-as-default-member
-    void i18next.init(getTesti18nParams());
-    if (i18next.isInitialized) {
-      addTranslations();
-      resolve(i18next);
-    } else {
-      i18next.on('initialized', () => {
-        addTranslations();
-        resolve(i18next);
-      });
-    }
-  });
+    await i18next.init(getTesti18nParams());
+  }
+  addTranslations();
+  return i18next;
+};
 
 export const labels = {
   common,
@@ -82,4 +96,5 @@ export const labels = {
   dashboard,
   linkedServers,
   generalInformation,
+  billingTab,
 };

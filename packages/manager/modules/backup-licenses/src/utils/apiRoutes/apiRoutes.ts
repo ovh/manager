@@ -19,3 +19,14 @@ export const getBackupServerRoute = (
   vspcTenantId: string,
   backupServerId: string,
 ) => `${getBackupServersRoute(backupServicesId, vspcTenantId)}/${backupServerId}`;
+
+export const getVaultsRoute = (backupServicesId: string) =>
+  `${getBackupServicesBaseRoute(backupServicesId)}/vault`;
+
+/** Stockage d'un vault : `quantity` et `price` en un seul appel (§3.1 de la spec BKP-1225). */
+export const getServiceConsumptionRoute = (serviceId: string) =>
+  `/services/${serviceId}/consumption/element`;
+
+/** Prix de la licence : pas de `quantity` à lire, `/consumption` sans `/element` (§3.2). */
+export const getLicenseConsumptionRoute = (serviceId: string) =>
+  `/services/${serviceId}/consumption`;
