@@ -4,7 +4,12 @@ import { Route } from 'react-router-dom';
 
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
-import { subRoutes, urlParams, vaultCredentialsRoutePath } from './routes.constants';
+import {
+  subRoutes,
+  terminateVaultRoutePath,
+  urlParams,
+  vaultCredentialsRoutePath,
+} from './routes.constants';
 
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
@@ -28,6 +33,7 @@ const VaultsPage = React.lazy(() => import('@/pages/vaults/Vaults.page'));
 const VaultCredentialsPage = React.lazy(
   () => import('@/pages/vaults/credentials/VaultCredentials.page'),
 );
+const TerminateVaultPage = React.lazy(() => import('@/pages/vaults/terminate/TerminateVault.page'));
 
 export default (
   <>
@@ -105,12 +111,19 @@ export default (
           tracking: { pageName: 'vaults', pageType: PageType.listing },
         }}
       >
-        {/* Modale enfant : elle se superpose à la liste, qui reste montée derrière. */}
+        {/* Modales enfants : elles se superposent à la liste, qui reste montée derrière. */}
         <Route
           path={vaultCredentialsRoutePath}
           Component={VaultCredentialsPage}
           handle={{
             tracking: { pageName: 'vault-credentials', pageType: PageType.popup },
+          }}
+        />
+        <Route
+          path={terminateVaultRoutePath}
+          Component={TerminateVaultPage}
+          handle={{
+            tracking: { pageName: 'terminate-vault', pageType: PageType.popup },
           }}
         />
       </Route>
