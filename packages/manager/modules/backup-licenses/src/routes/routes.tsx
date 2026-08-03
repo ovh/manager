@@ -8,6 +8,7 @@ import { subRoutes, urlParams } from './routes.constants';
 
 const OnboardingGuardPage = React.lazy(() => import('@/pages/onboarding/OnboardingGuard.page'));
 const OrderPage = React.lazy(() => import('@/pages/order/Order.page'));
+const AddServerPage = React.lazy(() => import('@/pages/add-server/AddServer.page'));
 const ServiceLayoutPage = React.lazy(() => import('@/pages/service/ServiceLayout.page'));
 const LinkedServersPage = React.lazy(() => import('@/pages/linked-servers/LinkedServers.page'));
 const GeneralInformationPage = React.lazy(
@@ -43,6 +44,15 @@ export default (
       Component={EditBackupServerPage}
       handle={{
         tracking: { pageName: 'edit-backup-server', pageType: PageType.funnel },
+      }}
+    />
+    {/* Ajout d'un serveur supplémentaire (BKP-1217) : vault déjà provisionné, tunnel réduit
+        à la licence + au serveur VBR — cf. AddServer.page. */}
+    <Route
+      path={subRoutes.addServer}
+      Component={AddServerPage}
+      handle={{
+        tracking: { pageName: 'add-server', pageType: PageType.funnel },
       }}
     />
     {/* Route de layout sans path : la barre d'onglets n'est montée qu'une fois, et les

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   BACKUP_SERVICES_ROUTE,
+  getBackupLicensesRoute,
   getBackupServerRoute,
   getBackupServersRoute,
   getBackupServicesBaseRoute,
@@ -26,6 +27,12 @@ describe('apiRoutes', () => {
   it('builds the single backup server route for a given server id', () => {
     expect(getBackupServerRoute('tenant-1', 'vspc-1', 'server-1')).toBe(
       `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses/backupServer/server-1`,
+    );
+  });
+
+  it('builds the backup licenses route for a given tenant and vspc tenant id', () => {
+    expect(getBackupLicensesRoute('tenant-1', 'vspc-1')).toBe(
+      `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses`,
     );
   });
 });
