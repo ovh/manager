@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { mockVaultBucketAccess, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
+import { mockVaultBucketCredentials, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
 import { getVaultCredentialsUrl, routeUrls } from '@/routes/routes.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { stopWatchingApiCalls, watchApiCalls } from '@/test-utils/watchApiCalls';
@@ -36,7 +36,7 @@ describe('[INTEGRATION] Vault credentials route', () => {
     });
 
     expect(
-      await screen.findByText(mockVaultBucketAccess.accessKey, undefined, { timeout: 20_000 }),
+      await screen.findByText(mockVaultBucketCredentials.accessKey, undefined, { timeout: 20_000 }),
     ).toBeVisible();
   });
 });

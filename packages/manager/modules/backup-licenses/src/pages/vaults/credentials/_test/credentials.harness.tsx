@@ -6,7 +6,11 @@ import { RenderResult, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
-import { mockEdgeCaseVaults, mockVaultBucketAccess, mockVaults } from '@/mocks/vaults/vaults.mock';
+import {
+  mockEdgeCaseVaults,
+  mockVaultBucketCredentials,
+  mockVaults,
+} from '@/mocks/vaults/vaults.mock';
 import { getVaultActionsTriggerId } from '@/pages/vaults/vaults.constants';
 import { getVaultCredentialsUrl, routeUrls, subRoutes } from '@/routes/routes.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
@@ -92,4 +96,4 @@ export const copiedMessage = () =>
   within(copyConfirmation()).getByText(labels.vaults.credentials.copied_toast);
 
 export const waitForCredentials = () =>
-  screen.findByText(mockVaultBucketAccess.accessKey, undefined, { timeout: 5000 });
+  screen.findByText(mockVaultBucketCredentials.accessKey, undefined, { timeout: 5000 });
