@@ -53,3 +53,9 @@ export type VaultBucketAccess = {
   regionCode: string;
   secretKey: string;
 };
+
+export type VaultOrder = {
+  name: string;
+  /** Code machine de la région, tel que `GET /location` le nomme (`eu-west-par`). */
+  region: string;
+};

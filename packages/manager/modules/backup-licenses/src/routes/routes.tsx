@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
 import {
+  orderVaultRoutePath,
   subRoutes,
   terminateVaultRoutePath,
   urlParams,
@@ -34,6 +35,7 @@ const VaultCredentialsPage = React.lazy(
   () => import('@/pages/vaults/credentials/VaultCredentials.page'),
 );
 const TerminateVaultPage = React.lazy(() => import('@/pages/vaults/terminate/TerminateVault.page'));
+const OrderVaultPage = React.lazy(() => import('@/pages/vaults/order/OrderVault.page'));
 
 export default (
   <>
@@ -124,6 +126,13 @@ export default (
           Component={TerminateVaultPage}
           handle={{
             tracking: { pageName: 'terminate-vault', pageType: PageType.popup },
+          }}
+        />
+        <Route
+          path={orderVaultRoutePath}
+          Component={OrderVaultPage}
+          handle={{
+            tracking: { pageName: 'order-vault', pageType: PageType.popup },
           }}
         />
       </Route>
