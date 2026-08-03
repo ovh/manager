@@ -5,6 +5,7 @@ import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 export const subRoutes = {
   onboarding: 'onboarding' as const,
   order: 'order' as const,
+  addServer: 'add-server' as const,
   linkedServers: 'linked-servers' as const,
   vaults: 'vaults' as const,
   billing: 'billing' as const,
@@ -26,6 +27,7 @@ export const urls = {
 export const routeUrls = {
   onboarding: `/${subRoutes.onboarding}`,
   order: `/${subRoutes.order}`,
+  addServer: `/${subRoutes.addServer}`,
   linkedServers: `/${subRoutes.linkedServers}`,
   vaults: `/${subRoutes.vaults}`,
   billing: `/${subRoutes.billing}`,

@@ -16,12 +16,12 @@ vi.mock('react-router-dom', async (importOriginal) => {
 });
 
 describe('LinkedServersTopbar', () => {
-  it('navigates to the order funnel when clicking the add CTA', async () => {
+  it('navigates to the additional server funnel when clicking the add CTA', async () => {
     await renderWithProviders(<LinkedServersTopbar isLoading={false} onRefresh={vi.fn()} />);
 
     await userEvent.click(screen.getByTestId('add-backup-server'));
 
-    expect(navigateMock).toHaveBeenCalledWith('/order');
+    expect(navigateMock).toHaveBeenCalledWith('/add-server');
   });
 
   it('refreshes the list when clicking the refresh button', async () => {
