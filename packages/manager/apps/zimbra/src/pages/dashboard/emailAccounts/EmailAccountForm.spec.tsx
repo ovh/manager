@@ -10,11 +10,12 @@ import { describe, expect, vi } from 'vitest';
 
 import actionsCommonTranslation from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 
-import { accountMock, platformMock } from '@/data/api';
+import { ZimbraOffer, accountMock, platformMock } from '@/data/api';
+import { editEmailAccountSchema } from '@/utils';
 import { render } from '@/utils/test.provider';
 import { OdsHTMLElement } from '@/utils/test.utils';
 
-import EmailAccountForm from './EmailAccountForm.component';
+import EmailAccountForm, { getFormValues } from './EmailAccountForm.component';
 
 describe('email account add and edit form', () => {
   it('should be in add mode if no accountId', async () => {
@@ -155,6 +156,42 @@ describe('email account add and edit form', () => {
 
     expect(inputPassword).toHaveAttribute('has-error', 'false');
     expect(button).toHaveAttribute('is-disabled', 'false');
+  });
+
+  describe('form values seeded from the API', () => {
+    const buildAccount = (currentState: Record<string, unknown>) =>
+      ({
+        ...accountMock,
+        currentState: { ...accountMock.currentState, ...currentState },
+      }) as unknown as typeof accountMock;
+
+    it.each([
+      ['null names', { firstName: null, lastName: null, displayName: null }],
+      ['null contact information', { contactInformation: { company: null, phoneNumber: null } }],
+      ['no contact information', { contactInformation: undefined }],
+      ['a null hideInGal', { hideInGal: null }],
+      ['an unknown offer', { offer: 'LEGACY_OFFER' }],
+    ])('stays valid on edit with %s', (_, currentState) => {
+      const values = getFormValues(buildAccount(currentState), true);
+
+      expect(editEmailAccountSchema.safeParse(values).success).toBe(true);
+    });
+
+    it('keeps a known offer', () => {
+      const values = getFormValues(buildAccount({ offer: ZimbraOffer.PRO }), true);
+
+      expect(values.offer).toBe(ZimbraOffer.PRO);
+    });
+
+    it('reports the account field when the local part is invalid', () => {
+      // the account field stays editable on edit, so an invalid local part must be reported
+      // instead of silently disabling the submit button
+      const values = getFormValues(buildAccount({ email: 'o$brien@domain.fr' }), true);
+      const result = editEmailAccountSchema.safeParse(values);
+
+      expect(result.success).toBe(false);
+      expect(result.error.issues[0].path).toEqual(['account']);
+    });
   });
 
   it('should toggle advanced settings button', () => {
