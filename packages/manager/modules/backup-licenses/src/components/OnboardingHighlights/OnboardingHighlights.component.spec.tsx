@@ -22,7 +22,9 @@ describe('OnboardingHighlights', () => {
   it('renders a plain text highlight when key is not "compatibility"', async () => {
     const { container } = await renderWithProviders(<OnboardingHighlights keys={['pricing']} />);
 
-    expect(screen.getByText('highlights.pricing')).toBeInTheDocument();
+    expect(
+      screen.getByText('À partir de 10€/mois · 2 à 3 étapes selon votre licence'),
+    ).toBeInTheDocument();
     expect(container.querySelector('ods-badge')).not.toBeInTheDocument();
   });
 });

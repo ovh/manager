@@ -34,7 +34,7 @@ describe('GeneralInformationTile', () => {
     );
 
     const link = document.querySelector('ods-link');
-    expect(link).toHaveAttribute('label', 'field.vspc_access_link');
+    expect(link).toHaveAttribute('label', 'Accéder au VSPC');
     expect(link).toHaveAttribute('href', 'https://vspc.example.com');
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener');
@@ -51,7 +51,7 @@ describe('GeneralInformationTile', () => {
       />,
     );
 
-    expect(screen.getByText('field.vspc_provisioning')).toBeInTheDocument();
+    expect(screen.getByText('Disponible après provisionnement')).toBeInTheDocument();
     expect(document.querySelector('ods-link')).not.toBeInTheDocument();
   });
 

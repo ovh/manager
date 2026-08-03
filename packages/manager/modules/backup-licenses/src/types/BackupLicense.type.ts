@@ -1,9 +1,15 @@
 import { Resource } from './Resource.type';
 import { LicenseApiValue } from './Order.type';
 
+/**
+ * Le champ de jointure vers le vault n'est pas confirmé côté API (§14 de la spec
+ * BKP-1225) : il n'est donc pas nommé explicitement ici, `matchLicenseToVault` est le
+ * seul point à corriger une fois le contrat connu.
+ */
 export type BackupLicense = {
   id: string;
   resourceName: string;
+  [joinField: string]: unknown;
 };
 
 export type BackupLicenseResource = Resource<BackupLicense>;

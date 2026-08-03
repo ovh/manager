@@ -9,8 +9,6 @@ import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 import AddServerRecapPanel from './AddServerRecapPanel.component';
 
-// NB : le harness i18n du module ne résout pas les libellés — `t(key)` renvoie la clé.
-
 const EMPTY_FORM: AddServerFormState = {
   displayName: '',
   backupServerExternalIp: '',
@@ -30,7 +28,7 @@ describe('AddServerRecapPanel', () => {
       />,
     );
 
-    expect(screen.queryByText('summary.field.tier')).not.toBeInTheDocument();
+    expect(screen.queryByText('Niveau')).not.toBeInTheDocument();
   });
 
   it('affiche la ligne "niveau" pour une licence Data Platform', async () => {
@@ -44,7 +42,7 @@ describe('AddServerRecapPanel', () => {
       />,
     );
 
-    expect(screen.getByText('summary.field.tier')).toBeInTheDocument();
+    expect(screen.getByText('Niveau')).toBeInTheDocument();
   });
 
   it('affiche le nom du serveur saisi', async () => {
@@ -74,7 +72,7 @@ describe('AddServerRecapPanel', () => {
       />,
     );
 
-    const cta = container.querySelector('ods-button[label="add_server.summary.cta"]');
+    const cta = container.querySelector('ods-button[label="Ajouter le serveur"]');
     expect(cta).toBeInTheDocument();
     fireEvent.click(cta as Element);
     expect(onFinalize).toHaveBeenCalledOnce();
@@ -91,7 +89,7 @@ describe('AddServerRecapPanel', () => {
       />,
     );
 
-    const cta = container.querySelector('ods-button[label="add_server.summary.cta"]');
+    const cta = container.querySelector('ods-button[label="Ajouter le serveur"]');
     expect(cta).toHaveAttribute('is-disabled', 'true');
   });
 });

@@ -36,7 +36,7 @@ const LOCATIONS = [
 ];
 
 const showMoreButton = (container: HTMLElement) =>
-  container.querySelector('ods-button[label="region.show_more"]');
+  container.querySelector('ods-button[label^="Voir plus"]');
 
 beforeEach(() => {
   mockedGetLocations.mockResolvedValue(LOCATIONS);
@@ -63,7 +63,7 @@ describe('RegionSelector', () => {
     fireEvent.click(showMoreButton(container) as Element);
 
     await waitFor(() => expect(screen.getAllByRole('radio')).toHaveLength(LOCATIONS.length));
-    const showLess = container.querySelector('ods-button[label="region.show_less"]');
+    const showLess = container.querySelector('ods-button[label="Voir moins"]');
     expect(showLess).toBeInTheDocument();
 
     fireEvent.click(showLess as Element);

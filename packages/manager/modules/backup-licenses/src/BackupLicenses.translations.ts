@@ -7,4 +7,5 @@ export const BACKUP_LICENSES_NAMESPACES = {
   DASHBOARD: `${NAMESPACE_PREFIX}/dashboard`,
   LINKED_SERVERS: `${NAMESPACE_PREFIX}/linked-servers`,
   GENERAL_INFORMATION: `${NAMESPACE_PREFIX}/general-information`,
+  BILLING: `${NAMESPACE_PREFIX}/billing`,
 };
