@@ -113,9 +113,11 @@ export const withOffer = z.object({
   offer: z.enum([ZimbraOffer.STARTER, ZimbraOffer.PRO, ZimbraOffer.BUSINESS]),
 });
 
+export const withDomain = z.object({ domain });
+
 export const baseEmailAccountSchema = z.object({
   account,
-  domain,
+  domain: z.string(),
   lastName: z.string().optional(),
   firstName: z.string().optional(),
   displayName: z.string().optional(),
@@ -140,7 +142,10 @@ export const baseEmailAccountSchema = z.object({
     .optional(),
 });
 
-export const addEmailAccountSchema = baseEmailAccountSchema.merge(withPassword).merge(withOffer);
+export const addEmailAccountSchema = baseEmailAccountSchema
+  .merge(withPassword)
+  .merge(withOffer)
+  .merge(withDomain);
 
 export const addEmailAccountsSchema = z
   .object({
@@ -151,6 +156,7 @@ export const addEmailAccountsSchema = z
           .merge(withPassword)
           .merge(withOffer)
           .merge(withSlotId)
+          .merge(withDomain)
           .merge(
             z.object({
               firstName: requiredString,

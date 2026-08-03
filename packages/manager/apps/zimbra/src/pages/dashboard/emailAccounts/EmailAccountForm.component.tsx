@@ -51,6 +51,7 @@ import { Button, useNotifications } from '@ovh-ux/muk';
 import { GeneratePasswordButton, Loading } from '@/components';
 import {
   AccountBodyParamsType,
+  AccountType,
   ResourceStatus,
   ZimbraOffer,
   formatAccountPayload,
@@ -69,6 +70,29 @@ import {
   editEmailAccountSchema,
   groupBy,
 } from '@/utils';
+
+export const getFormValues = (account?: AccountType, isEdit = false) => {
+  const currentState = account?.currentState;
+  const [localPart = '', domainName = ''] = currentState?.email?.split('@') ?? [];
+
+  return {
+    account: localPart,
+    domain: domainName,
+    firstName: currentState?.firstName ?? '',
+    lastName: currentState?.lastName ?? '',
+    displayName: currentState?.displayName ?? '',
+    password: '',
+    hideInGal: currentState?.hideInGal ?? false,
+    forceChangePasswordAfterLogin: !isEdit,
+    offer: currentState?.offer ? ZimbraOffer[currentState.offer] : undefined,
+    contactInformation: Object.fromEntries(
+      Object.entries(currentState?.contactInformation ?? {}).map(([key, value]) => [
+        key,
+        value ?? '',
+      ]),
+    ),
+  };
+};
 
 export const EmailAccountForm = () => {
   const { trackClick, trackPage } = useOvhTracking();
@@ -188,39 +212,17 @@ export const EmailAccountForm = () => {
     control,
     handleSubmit,
     reset,
-    formState: { isDirty: isFormDirty, isValid: isFormValid, errors },
+    formState: { isDirty: isFormDirty, errors },
     setValue,
   } = useForm({
-    defaultValues: {
-      account: emailAccount?.currentState?.email?.split('@')[0] || '',
-      domain: emailAccount?.currentState?.email?.split('@')[1] || '',
-      firstName: emailAccount?.currentState?.firstName || '',
-      lastName: emailAccount?.currentState?.lastName || '',
-      displayName: emailAccount?.currentState?.displayName || '',
-      password: '',
-      hideInGal: emailAccount?.currentState?.hideInGal || false,
-      forceChangePasswordAfterLogin: !accountId,
-      offer: emailAccount?.currentState?.offer,
-      contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
-    },
+    defaultValues: { ...getFormValues(emailAccount, !!accountId) },
     mode: 'onTouched',
     resolver: zodResolver(accountId ? editEmailAccountSchema : addEmailAccountSchema),
   });
 
   useEffect(() => {
     if (emailAccount && !isFormDirty) {
-      reset({
-        account: emailAccount?.currentState?.email?.split('@')[0],
-        domain: emailAccount?.currentState?.email?.split('@')[1],
-        firstName: emailAccount?.currentState?.firstName,
-        lastName: emailAccount?.currentState?.lastName,
-        displayName: emailAccount?.currentState?.displayName,
-        password: '',
-        hideInGal: emailAccount?.currentState?.hideInGal,
-        forceChangePasswordAfterLogin: !accountId,
-        offer: emailAccount?.currentState?.offer,
-        contactInformation: { ...(emailAccount?.currentState?.contactInformation ?? {}) },
-      });
+      reset(getFormValues(emailAccount, !!accountId));
     }
   }, [emailAccount]);
 
@@ -238,11 +240,8 @@ export const EmailAccountForm = () => {
       <Controller
         control={control}
         name="account"
-        render={({
-          field: { name, value: accountValue, onChange, onBlur },
-          fieldState: { isDirty, isTouched },
-        }) => (
-          <FormField className="w-full" invalid={(isDirty || isTouched) && !!errors?.[name]}>
+        render={({ field: { name, value: accountValue, onChange, onBlur } }) => (
+          <FormField className="w-full" invalid={!!errors?.[name]}>
             <label htmlFor={name} slot="label">
               {t('common:email_address')} *
             </label>
@@ -254,7 +253,7 @@ export const EmailAccountForm = () => {
                 className="flex-1"
                 id={name}
                 name={name}
-                invalid={(isDirty || isTouched) && !!errors[name]}
+                invalid={!!errors[name]}
                 value={accountValue}
                 onBlur={onBlur}
                 onChange={onChange}
@@ -306,9 +305,7 @@ export const EmailAccountForm = () => {
                 )}
               />
             </div>
-            {(isDirty || isTouched) && errors?.[name]?.message && (
-              <FormFieldError>{errors[name].message}</FormFieldError>
-            )}
+            {errors?.[name]?.message && <FormFieldError>{errors[name].message}</FormFieldError>}
           </FormField>
         )}
       />
@@ -632,9 +629,9 @@ export const EmailAccountForm = () => {
                   className="w-full pr-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_company')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     placeholder={t('common:contactInformation_company')}
                     data-testid="input-company"
@@ -661,9 +658,9 @@ export const EmailAccountForm = () => {
                   className="w-full pl-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_service')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     type={INPUT_TYPE.text}
                     data-testid="input-service"
@@ -691,9 +688,9 @@ export const EmailAccountForm = () => {
                   className="w-full pr-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_profession')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     placeholder={t('common:contactInformation_profession')}
                     data-testid="input-profession"
@@ -720,9 +717,9 @@ export const EmailAccountForm = () => {
                   className="w-full pl-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_office')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     type={INPUT_TYPE.text}
                     data-testid="input-office"
@@ -755,9 +752,9 @@ export const EmailAccountForm = () => {
                   className="w-full pr-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_street')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     placeholder={t('common:contactInformation_street')}
                     data-testid="input-street"
@@ -784,9 +781,9 @@ export const EmailAccountForm = () => {
                   className="w-full pl-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_phoneNumber')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     type={INPUT_TYPE.text}
                     placeholder={t('common:contactInformation_phoneNumber')}
@@ -815,9 +812,9 @@ export const EmailAccountForm = () => {
                     className="w-full pr-6 md:w-1/2"
                     invalid={(isDirty || isTouched) && !!errors?.[name]}
                   >
-                    <label htmlFor={name} slot="label">
+                    <FormFieldLabel htmlFor={name} slot="label">
                       {t('common:contactInformation_postcode')}
-                    </label>
+                    </FormFieldLabel>
                     <Input
                       placeholder={t('common:contactInformation_postcode')}
                       data-testid="input-postcode"
@@ -844,9 +841,9 @@ export const EmailAccountForm = () => {
                     className="w-full pr-6 md:w-1/2"
                     invalid={(isDirty || isTouched) && !!errors?.[name]}
                   >
-                    <label htmlFor={name} slot="label">
+                    <FormFieldLabel htmlFor={name} slot="label">
                       {t('common:contactInformation_city')}
-                    </label>
+                    </FormFieldLabel>
                     <Input
                       placeholder={t('common:contactInformation_city')}
                       data-testid="input-city"
@@ -875,9 +872,9 @@ export const EmailAccountForm = () => {
                     className="w-full pl-6"
                     invalid={(isDirty || isTouched) && !!errors?.[name]}
                   >
-                    <label htmlFor={name} slot="label">
+                    <FormFieldLabel htmlFor={name} slot="label">
                       {t('common:contactInformation_mobileNumber')}
-                    </label>
+                    </FormFieldLabel>
                     <Input
                       type={INPUT_TYPE.text}
                       data-testid="input-mobileNumber"
@@ -906,9 +903,9 @@ export const EmailAccountForm = () => {
                   className="w-full pr-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_country')}
-                  </label>
+                  </FormFieldLabel>
                   <div className="flex">
                     <Select
                       items={countryKeys.map((key) => ({
@@ -942,9 +939,9 @@ export const EmailAccountForm = () => {
                   className="w-full pl-6 md:w-1/2"
                   invalid={(isDirty || isTouched) && !!errors?.[name]}
                 >
-                  <label htmlFor={name} slot="label">
+                  <FormFieldLabel htmlFor={name} slot="label">
                     {t('common:contactInformation_faxNumber')}
-                  </label>
+                  </FormFieldLabel>
                   <Input
                     type={INPUT_TYPE.text}
                     data-testid="input-faxNumber"
@@ -967,7 +964,7 @@ export const EmailAccountForm = () => {
         slot="actions"
         type="submit"
         color={BUTTON_COLOR.primary}
-        disabled={!isFormDirty || !isFormValid}
+        disabled={!isFormDirty}
         loading={isSending}
         data-testid="confirm-btn"
       >
