@@ -11,7 +11,11 @@ import OsTypeCell from '@/components/linked-servers/OsTypeCell/OsTypeCell.compon
 import ServerIpsCell from '@/components/linked-servers/ServerIpsCell/ServerIpsCell.component';
 import { BACKUP_LICENSES_NAMESPACES, EMPTY_VALUE_PLACEHOLDER } from '@/module.constants';
 import { BackupServerResource } from '@/types/BackupServer.type';
-import { hasFailedTask, isServerInFlight } from '@/utils/inFlightServer/inFlightServer';
+import {
+  hasFailedTask,
+  isServerBeingDeleted,
+  isServerInFlight,
+} from '@/utils/inFlightServer/inFlightServer';
 
 /**
  * Colonnes du tableau « Linked servers », dans l'ordre imposé par le ticket.
@@ -68,6 +72,7 @@ export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[
             licenseStatus={server.currentState.licenseStatus}
             isInFlight={isServerInFlight(server)}
             hasFailedTask={hasFailedTask(server)}
+            isDeleting={isServerBeingDeleted(server)}
           />
         ),
       },

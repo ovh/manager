@@ -10,3 +10,4 @@
 | [BKP-1216-linked-servers-list.md](./BKP-1216-linked-servers-list.md) | Page de service à onglets (BKP-1215) + liste des serveurs VBR de l'onglet « Linked servers » + polling des opérations async (BKP-1220) | En cours |
 | [BKP-1226-general-information.md](./BKP-1226-general-information.md) | Onglet « General information » : vue d'ensemble du service (référence/nom/VSPC + dates/contacts/résiliation) | En cours |
 | [BKP-1218-edit-vbr-server.md](./BKP-1218-edit-vbr-server.md) | Édition d'un serveur VBR : page pleine reprenant le stepper vertical du tunnel de commande (pas une modale) + `PUT` (première mutation du module sur cette branche) | En cours |
+| [BKP-1219-delete-vbr-server.md](./BKP-1219-delete-vbr-server.md) | Suppression d'un serveur VBR : modale de confirmation + `DELETE` (première mutation du module) | En cours |
