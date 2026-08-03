@@ -1,5 +1,7 @@
 import React, { useId } from 'react';
 
+import { useHref } from 'react-router-dom';
+
 import { useTranslation } from 'react-i18next';
 
 import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
@@ -7,7 +9,10 @@ import { ODS_BUTTON_COLOR, ODS_BUTTON_VARIANT } from '@ovhcloud/ods-components';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { ActionMenu, ActionMenuItem, DataGridTextCell } from '@ovh-ux/manager-react-components';
 
+import { routeUrls } from '@/routes/routes.constants';
+
 interface BackupServerActionsCellProps {
+  backupServerId: string;
   /** Désactive le menu entier : opération en cours sur la ligne. */
   isDisabled: boolean;
 }
@@ -15,26 +20,32 @@ interface BackupServerActionsCellProps {
 /**
  * Menu d'actions de ligne.
  *
- * Les deux entrées sont actives mais sans effet, en attendant les tickets 2.3 (édition) et
- * 2.4 (suppression) : c'est un état de revue visuelle, demandé pour juger le rendu du menu.
- * La spec BKP-1216 (§2.3/2.4) les veut au contraire **désactivées** tant que les modales
- * n'existent pas, une entrée inerte étant trompeuse pour l'utilisateur final : remettre
- * `isDisabled: true` avant la PR, ou brancher les modales sur les `onClick`.
+ * « Modifier » mène à la page d'édition (BKP-1218), montée au même niveau que `order`
+ * (cf. routes.tsx), pas sous `linked-servers`. `ActionMenu` rend un `<a href>` classique (pas
+ * un `Link` React Router) : l'`href` doit passer par `useHref` pour être résolu dans le
+ * référentiel du routeur (préfixe `#`/basename de l'app hôte) plutôt qu'être un chemin de
+ * navigateur littéral, qui sortirait l'utilisateur du SPA.
+ *
+ * « Supprimer » reste inerte (BKP-2.4, hors périmètre de cette branche).
  *
  * Pendant une opération en cours, c'est le menu entier qui est désactivé plutôt que ses deux
  * entrées : un bouton ⋮ grisé est plus lisible qu'un menu qui s'ouvre sur des entrées inertes.
  */
-export default function BackupServerActionsCell({ isDisabled }: BackupServerActionsCellProps) {
+export default function BackupServerActionsCell({
+  backupServerId,
+  isDisabled,
+}: BackupServerActionsCellProps) {
   const id = useId();
   // `actions:modify` et non `actions:edit` : cette dernière clé vaut « Éditer », là où
   // l'AC du ticket demande « Modifier ».
   const { t } = useTranslation(NAMESPACES.ACTIONS);
+  const editHref = useHref(routeUrls.edit(backupServerId));
 
   const actions: ActionMenuItem[] = [
     {
       id: 0,
       label: t('modify'),
-      // TODO(BKP-2.3): brancher la modale d'édition sur `onClick`.
+      href: editHref,
     },
     {
       id: 1,
