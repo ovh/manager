@@ -11,6 +11,7 @@
   "status": {
     "creating": "Creating",
     "updating": "Updating",
+    "deleting": "Deleting",
     "installed": "Active",
     "expired": "Expired",
     "not_supported": "Not supported",
@@ -55,6 +56,12 @@
     },
     "success": "Your changes have been saved.",
     "error": "Server {{serverName}} could not be edited."
+  },
+  "delete": {
+    "title": "Delete server",
+    "content": "Are you sure you want to delete the server <strong>{{serverName}}</strong>? The associated licence will be revoked. This action is irreversible.",
+    "success": "Deletion of server {{serverName}} has started.",
+    "error": "Server {{serverName}} could not be deleted."
   },
   "empty_state": "No server registered yet. Add your first VBR server to get started.",
   "error": {
