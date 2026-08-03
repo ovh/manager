@@ -143,5 +143,21 @@
       "value": "██,██ € IVA esclusa/mese"
     },
     "cta": "Finalizza il mio ordine"
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "Server VBR"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Nome del server"
+      },
+      "cta": "Aggiungi il server"
+    },
+    "error": {
+      "submit": "Si è verificato un errore durante l'aggiunta del server. Riprova."
+    }
   }
 }

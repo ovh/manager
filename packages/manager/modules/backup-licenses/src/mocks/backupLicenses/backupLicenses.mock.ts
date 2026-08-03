@@ -1,4 +1,5 @@
-import { BackupLicenseResource } from '@/types/BackupLicense.type';
+import { BackupLicenseResource, CreateBackupLicenseBody } from '@/types/BackupLicense.type';
+import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
 
 /**
  * Un seul mock : la cascade backupServicesId → vspcTenantId → licence ne couvre
@@ -15,3 +16,22 @@ export const mockBackupLicenses: BackupLicenseResource[] = [
     currentTasks: [],
   },
 ];
+
+/** Réponse simulée du POST de création (cf. mocks.config.ts) : reprend les champs saisis. */
+export const mockCreateBackupLicense = (body: CreateBackupLicenseBody): BackupServerResource => {
+  const id = `mock-backup-server-${Date.now()}`;
+
+  return {
+    id,
+    status: 'CREATING',
+    currentTasks: [],
+    currentState: {
+      id,
+      displayName: body.displayName,
+      externalIps: body.backupServerExternalIp,
+      privateIps: body.backupServerPrivateIp,
+      licenseTypeRequested: body.licenseType,
+      licenseStatus: LicenseStatus.CREATING,
+    },
+  };
+};

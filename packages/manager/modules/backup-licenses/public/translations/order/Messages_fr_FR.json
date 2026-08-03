@@ -143,5 +143,21 @@
       "value": "██,██ € HT/mois"
     },
     "cta": "Finaliser ma commande"
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "Serveur VBR"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Nom du serveur"
+      },
+      "cta": "Ajouter le serveur"
+    },
+    "error": {
+      "submit": "Une erreur est survenue lors de l'ajout du serveur. Veuillez réessayer."
+    }
   }
 }

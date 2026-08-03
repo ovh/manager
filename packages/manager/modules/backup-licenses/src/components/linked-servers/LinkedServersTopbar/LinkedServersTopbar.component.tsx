@@ -28,7 +28,7 @@ export default function LinkedServersTopbar({ isLoading, onRefresh }: LinkedServ
         data-testid="add-backup-server"
         size={ODS_BUTTON_SIZE.md}
         label={t(`${BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS}:action.add_server`)}
-        onClick={() => navigate(routeUrls.order)}
+        onClick={() => navigate(routeUrls.addServer)}
       />
       <OdsButton
         id="refresh-backup-servers"
