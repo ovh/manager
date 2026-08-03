@@ -26,7 +26,8 @@
     "error": {
       "message": "The vault list could not be loaded.",
       "retry": "Retry"
-    }
+    },
+    "polling_timeout": "Operacja trwa dłużej niż oczekiwano. Odśwież stronę."
   },
   "terminate": {
     "message": "Are you sure you want to terminate the vault {{name}} (region: {{region}})? All data stored in this vault will be permanently lost. This action is irreversible.",

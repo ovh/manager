@@ -24,7 +24,8 @@
     "error": {
       "message": "La liste des vaults n'a pas pu être chargée.",
       "retry": "Réessayer"
-    }
+    },
+    "polling_timeout": "L'opération prend plus de temps que prévu. Veuillez actualiser la page."
   },
   "terminate": {
     "message": "Êtes-vous sûr de vouloir résilier le vault {{name}} (région : {{region}}) ? Toutes les données qu'il contient seront définitivement perdues. Cette action est irréversible.",
@@ -46,6 +47,26 @@
       "hide_secret": "Masquer la clé secrète",
       "copy_field": "Copier le champ {{field}}",
       "value_hidden": "Valeur masquée"
+    }
+  },
+  "order": {
+    "title": "Commander un vault supplémentaire",
+    "field": {
+      "name": {
+        "label": "Nom du vault",
+        "hint": "1 à 50 caractères. Caractères alphanumériques et tirets uniquement."
+      },
+      "region": {
+        "label": "Région de stockage"
+      }
+    },
+    "pricing_message": "Ce vault sera facturé au tarif à la consommation de 0,007 €/Gio/mois dès le premier octet consommé.",
+    "success": "Votre commande de vault est en cours de traitement.",
+    "error": {
+      "submit_failed": "La commande du vault n'a pas pu être envoyée. Veuillez réessayer dans quelques instants.",
+      "name_required": "Il nous manque juste un nom pour votre vault.",
+      "name_format": "Utilisez de 1 à 50 caractères : lettres, chiffres et tirets uniquement.",
+      "region_required": "Choisissez la région dans laquelle votre vault sera stocké."
     }
   }
 }

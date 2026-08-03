@@ -8,7 +8,7 @@
  */
 import { getVaultIamUrn } from '@/mocks/iam/iam.mock';
 import { ResourceStatus } from '@/types/Resource.type';
-import { VaultBucket, VaultBucketAccess, VaultResource } from '@/types/Vault.type';
+import { VaultBucket, VaultBucketCredentials, VaultResource } from '@/types/Vault.type';
 
 /**
  * L'API sert chaque vault avec son enveloppe IAM : sans elle, les entrées du menu d'action restent
@@ -222,7 +222,7 @@ export const mockEdgeCaseVaults: VaultResource[] = withIam([
   },
 ]).concat(vaultWithoutIamEnvelope);
 
-export const mockVaultBucketAccess: VaultBucketAccess = {
+export const mockVaultBucketCredentials: VaultBucketCredentials = {
   accessKey: 'AKIAMOCKACCESSKEY',
   bucketName: 'bucket-vault-2-b1',
   endpoint: 's3.eu-west-par.io.cloud.ovh.net',

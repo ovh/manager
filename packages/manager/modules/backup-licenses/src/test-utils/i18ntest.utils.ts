@@ -4,6 +4,7 @@ import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
+import error from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/error/Messages_fr_FR.json';
 import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
 import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
 import system from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/system/Messages_fr_FR.json';
@@ -63,6 +64,7 @@ export const sharedResources: Record<string, unknown> = {
   [NAMESPACES.ACTIONS]: actions,
   [NAMESPACES.BILLING]: billing,
   [NAMESPACES.DASHBOARD]: commonDashboard,
+  [NAMESPACES.ERROR]: error,
   [NAMESPACES.REGION]: region,
   [NAMESPACES.STATUS]: status,
   [NAMESPACES.SYSTEM]: system,
@@ -119,4 +121,5 @@ export const labels = {
   generalInformation,
   billingTab,
   vaults,
+  error,
 };
