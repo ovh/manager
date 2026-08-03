@@ -206,3 +206,40 @@ export const mockBackupServers: BackupServerResource[] = [
     updatedAt: '2026-05-05T09:30:00Z',
   },
 ];
+
+/**
+ * Mode mock uniquement (cf. BKP-1218) : nom et IP sont appliqués immédiatement, comme le fera
+ * le vrai `PUT`. La licence, elle, est différée au 1er du mois suivant côté backend : on ne
+ * touche pas `licenseType` (licence installée), on pose la cible dans `licenseTypeRequested`
+ * et une tâche programmée, pour que la transition `LicenseTypeCell` soit revuable sans
+ * attendre le vrai backend.
+ */
+export const simulateBackupServerUpdate = (
+  backupServerId: string,
+  {
+    displayName,
+    licenseType,
+    externalIps,
+    privateIps,
+  }: { displayName: string; licenseType: string; externalIps: string[]; privateIps: string[] },
+) => {
+  const server = mockBackupServers.find(({ id }) => id === backupServerId);
+  if (!server) return;
+
+  server.currentState.displayName = displayName;
+  server.currentState.externalIps = externalIps;
+  server.currentState.privateIps = privateIps;
+
+  if (licenseType !== server.currentState.licenseType) {
+    server.currentState.licenseTypeRequested = licenseType;
+    server.currentTasks = [
+      ...server.currentTasks,
+      {
+        id: `${backupServerId}-license-change`,
+        link: `/me/task/${backupServerId}-license-change`,
+        status: 'SCHEDULED',
+        type: 'BACKUP_LICENSES_SERVER_LICENSE_CHANGE',
+      },
+    ];
+  }
+};

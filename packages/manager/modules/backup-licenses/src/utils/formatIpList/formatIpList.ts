@@ -23,3 +23,13 @@ export const formatIpList = (ips?: string[]): string => {
 
   return formatted.length ? formatted.join(', ') : EMPTY_VALUE_PLACEHOLDER;
 };
+
+/**
+ * Démasque le premier élément d'un tableau d'IP CIDR, pour pré-remplir un champ texte
+ * d'édition (BKP-1218) — un seul champ par type d'IP, sur le modèle du tunnel de commande.
+ * Tableau vide ou absent : chaîne vide (pas de placeholder, ce n'est pas de l'affichage).
+ */
+export const firstIpWithoutMask = (ips?: string[]): string => {
+  const [first] = (ips ?? []).map((ip) => ip.trim()).filter(Boolean);
+  return first ? stripHostPrefix(first) : '';
+};

@@ -29,6 +29,33 @@
   "action": {
     "add_server": "Add a server"
   },
+  "edit": {
+    "field": {
+      "name": { "label": "Server name", "error": "We just need your server's name." },
+      "license_type": { "label": "Licence type" },
+      "public_ip": {
+        "label": "Public IP address",
+        "error": "This IP address does not look valid — check the IPv4 or IPv6 format."
+      },
+      "private_ip": {
+        "label": "Private IP address (LAN)",
+        "error": "This IP address does not look valid — check the IPv4 or IPv6 format."
+      }
+    },
+    "step": {
+      "server": {
+        "label": "VBR server",
+        "collapsed_title": "VBR server — <b>{{value}}</b>"
+      }
+    },
+    "license_change_notice": "The licence change will take effect on the 1st of next month. Until then, the current licence remains active.",
+    "current_value": "Current value: {{value}}",
+    "recap": {
+      "title": "Summary of changes"
+    },
+    "success": "Your changes have been saved.",
+    "error": "Server {{serverName}} could not be edited."
+  },
   "empty_state": "No server registered yet. Add your first VBR server to get started.",
   "error": {
     "loading": "Your server list could not be loaded."

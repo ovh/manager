@@ -18,7 +18,7 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     ActionMenu: ({ items, isDisabled }: ActionMenuProps) => (
       <div data-testid="action-menu" data-disabled={String(!!isDisabled)}>
         {items.map((item) => (
-          <button key={item.id} type="button" disabled={item.isDisabled}>
+          <button key={item.id} type="button" disabled={item.isDisabled} data-href={item.href}>
             {item.label}
           </button>
         ))}
@@ -28,23 +28,36 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
 });
 
 describe('BackupServerActionsCell', () => {
-  // Les entrées sont volontairement actives mais sans effet le temps de la revue visuelle
-  // (cf. le composant) : à rebasculer sur `toBeDisabled()` quand `isDisabled: true` reviendra.
-  it('exposes both row actions, clickable until tickets 2.3/2.4 ship', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled={false} />);
+  it('links the modify action to the edit page of the row', async () => {
+    await renderWithProviders(
+      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+    );
 
-    expect(screen.getByRole('button', { name: 'modify' })).toBeEnabled();
-    expect(screen.getByRole('button', { name: 'delete' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'modify' })).toHaveAttribute(
+      'data-href',
+      '/edit/server-1',
+    );
+  });
+
+  // « Supprimer » reste inerte (BKP-2.4, hors périmètre de cette branche).
+  it('keeps the delete action inert', async () => {
+    await renderWithProviders(
+      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+    );
+
+    expect(screen.getByRole('button', { name: 'delete' })).not.toHaveAttribute('data-href');
   });
 
   it('leaves the menu itself enabled when no operation is in flight', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled={false} />);
+    await renderWithProviders(
+      <BackupServerActionsCell backupServerId="server-1" isDisabled={false} />,
+    );
 
     expect(screen.getByTestId('action-menu')).toHaveAttribute('data-disabled', 'false');
   });
 
   it('disables the whole menu while an operation is in flight', async () => {
-    await renderWithProviders(<BackupServerActionsCell isDisabled />);
+    await renderWithProviders(<BackupServerActionsCell backupServerId="server-1" isDisabled />);
 
     expect(screen.getByTestId('action-menu')).toHaveAttribute('data-disabled', 'true');
   });
