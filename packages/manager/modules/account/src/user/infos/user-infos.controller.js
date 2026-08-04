@@ -107,9 +107,9 @@ export default class UserAccountInfosController {
           // remove empty attributes
           this.user = pickBy(this.user, identity);
 
-          // FR e-invoicing: the current saved billing address (GET /me) is not a
-          // /rules field, so the pick above drops it. Re-add it so the edition
-          // form can pre-select it (spec: current value handling, edition only).
+          // Not a CreationRules field: the pick above drops it. Re-added (null
+          // included) so the form can pre-select it and hasChanges() stays
+          // clean when the e-invoicing field writes null.
           this.user.einvoicingBillingAddress =
             response.einvoicingBillingAddress ?? null;
 

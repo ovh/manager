@@ -16,6 +16,8 @@ export type RulesParam = {
   phoneType?: PhoneType;
   ovhSubsidiary?: Subsidiary;
   legalform?: LegalForm;
+  companyNationalIdentificationNumber?: string;
+  action?: 'creation' | 'update';
 };
 
 // fields not accepted by PUT /me

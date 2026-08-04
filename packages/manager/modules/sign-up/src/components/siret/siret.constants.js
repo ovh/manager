@@ -50,9 +50,8 @@ export const SIRET_RULE_FIELD = {
 
 // Legal-form code (INSEE "catégorie juridique") prefixes used to derive the
 // account type from a company selected through the search assistant.
-// Rule (mirrors the account-creation flow): 9.* => association (B2B),
-// 4.* / 7.* / 8110 => administration (B2G),
-// anything else (1.*, 2.*, 3.*, 5.*, 6.* …) => corporation (B2B).
+// Rule (mirrors account-creation's Company.helpers): 9.* => association,
+// 4.* / 7.* / 8110 => administration, anything else => corporation.
 export const LEGAL_FORM_CODE_ASSOCIATION = /^9\d+$/;
 export const LEGAL_FORM_CODE_ADMINISTRATION = /^(4\d+|7\d+|8110)$/;
 
