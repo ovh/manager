@@ -8,10 +8,10 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { EinvoicingRule } from '@/types/einvoicing';
+import { Rule } from '@/types/rule';
 
 type EinvoicingAddressSelectProps = {
-  rule?: EinvoicingRule;
+  rule?: Pick<Rule, 'in' | 'defaultValue' | 'mandatory'>;
   legalForm?: LegalForm;
   value?: string;
   onValueChange: (value: string | undefined) => void;
@@ -21,15 +21,8 @@ type EinvoicingAddressSelectProps = {
 const isB2g = (legalForm?: LegalForm) => legalForm === 'administration';
 
 /**
- * E-invoicing billing address field driven by the PPF rule, per the FR
- * e-invoicing front-end spec:
- * - `visible: false` → nothing rendered.
- * - empty `in`      → informational banner (B2B uses the SIREN, B2G a generic
- *   message). No picker, no value.
- * - single `in`     → informational banner (from `defaultValue`), the address is
- *   used automatically. No picker.
- * - multiple `in`   → a mandatory `<select>` the customer must pick from (B2G
- *   gets an extra note below it).
+ * E-invoicing billing address field: informational banner when zero or one
+ * address is available, mandatory select otherwise. No rule → nothing rendered.
  */
 export default function EinvoicingAddressSelect({
   rule,
@@ -45,19 +38,18 @@ export default function EinvoicingAddressSelect({
 
   // Single address → use it automatically. Empty → make sure nothing lingers.
   useEffect(() => {
-    if (!rule?.visible) return;
+    if (!rule) return;
     if (addresses.length === 0 && value) {
       onValueChange(undefined);
     } else if (singleAddress && value !== singleAddress) {
       onValueChange(singleAddress);
     }
-  }, [rule?.visible, addresses.length, singleAddress]);
+  }, [rule, addresses.length, singleAddress]);
 
-  if (!rule?.visible) {
+  if (!rule) {
     return null;
   }
 
-  // Empty → informational banner, nothing to select.
   if (addresses.length === 0) {
     return (
       <OdsMessage color="information" isDismissible={false} className="my-2">
@@ -70,7 +62,6 @@ export default function EinvoicingAddressSelect({
     );
   }
 
-  // Single address → informational banner, used automatically.
   if (addresses.length === 1) {
     return (
       <OdsMessage color="information" isDismissible={false} className="my-2">
@@ -87,7 +78,6 @@ export default function EinvoicingAddressSelect({
     );
   }
 
-  // Multiple addresses → mandatory select.
   return (
     <OdsFormField>
       <label slot="label">

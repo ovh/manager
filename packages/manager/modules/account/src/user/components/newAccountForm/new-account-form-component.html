@@ -66,10 +66,7 @@
             >
             </new-account-form-field>
 
-            <!-- SECTION ACTIVITY FOR ONLY CORPORATION FR.
-                 The e-invoicing address picker is projected (transcluded) inside
-                 the SIRET component, just above its "information is correct"
-                 confirmation checkbox. -->
+            <!-- SECTION ACTIVITY FOR ONLY CORPORATION FR -->
             <siret-component
                 class="col-sm-12"
                 data-country="$ctrl.model.country"
@@ -83,13 +80,15 @@
                 data-is-french-association="$ctrl.isFrenchAssociation()"
                 data-on-legal-form-change="$ctrl.onSiretLegalFormChange(legalform)"
             >
+                <!-- transcluded above the siret confirmation checkbox -->
                 <new-account-form-einvoicing
                     class="col-sm-12"
                     data-model="$ctrl.model"
+                    data-rule="$ctrl.getEinvoicingRule()"
                     data-siret="$ctrl.model.companyNationalIdentificationNumber"
                     data-legal-form="$ctrl.model.legalform"
                     data-country="$ctrl.model.country"
-                    data-user-account-service-infos="$ctrl.userAccountServiceInfos"
+                    data-on-refresh-rules="$ctrl.updateRules()"
                 ></new-account-form-einvoicing>
             </siret-component>
         </div>

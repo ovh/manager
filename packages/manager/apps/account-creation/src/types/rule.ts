@@ -8,6 +8,7 @@ export type RuleField =
   | 'companyNationalIdentificationNumber'
   | 'corporationType'
   | 'country'
+  | 'einvoicingBillingAddress'
   | 'email'
   | 'fax'
   | 'firstname'
@@ -27,8 +28,7 @@ export type RuleField =
   | 'smsConsent'
   | 'spareEmail'
   | 'vat'
-  | 'zip'
-  | 'purposeOfPurchase';
+  | 'zip';
 
 export type Rule = {
   defaultValue: string | null;

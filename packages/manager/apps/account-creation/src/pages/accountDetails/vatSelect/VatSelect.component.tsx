@@ -20,17 +20,15 @@ type VatSelectProps = {
 };
 
 export default function VatSelect({ vatId, onValueChange }: VatSelectProps) {
-  // No option is pre-selected: the customer must explicitly choose between the
-  // detected VAT and "no VAT". `undefined` = nothing picked (matches neither the
-  // detected `vatId` nor the "no VAT" empty value).
+  // undefined = nothing picked: the customer must explicitly choose between
+  // the detected VAT and "no VAT"
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     undefined,
   );
 
   const { t } = useTranslation('account-details');
 
-  // Clear the pre-filled detected VAT so the form value matches the empty UI
-  // selection — submitting without an explicit choice is not allowed.
+  // clear the pre-filled VAT so the form value matches the empty selection
   useEffect(() => {
     onValueChange(undefined);
   }, []);
