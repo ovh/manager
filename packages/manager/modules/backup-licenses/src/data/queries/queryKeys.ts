@@ -25,12 +25,12 @@ export const queryKeys = {
   },
   vaults: {
     all: () => ['backup-licenses', 'vaults'],
-    bucketAccess: (vaultId: string, bucketId: string) => [
+    bucketCredentials: (vaultId: string, bucketId: string) => [
       ...queryKeys.vaults.all(),
       vaultId,
       'bucket',
       bucketId,
-      'access',
+      'credentials',
     ],
   },
 } as const;

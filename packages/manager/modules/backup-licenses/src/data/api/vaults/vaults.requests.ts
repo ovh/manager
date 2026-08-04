@@ -13,7 +13,7 @@ export const getVaults = async (backupServicesId: string): Promise<VaultResource
 };
 
 /** Secrets : le contrat interdit de les journaliser ou de les cacher, d'où `Pragma: no-cache`. */
-export const getVaultBucketAccess = async (
+export const getVaultBucketCredentials = async (
   backupServicesId: string,
   vaultId: string,
   bucketId: string,
