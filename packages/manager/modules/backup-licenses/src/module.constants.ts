@@ -44,6 +44,8 @@ export const BACKUP_LICENSES_IAM_RULES = {
   'vault/edit': 'backupServices:apiovh:vault/edit',
   'vspc/edit': 'backupServices:apiovh:vspc/edit',
   'vspc/attach': 'backupServices:apiovh:vault/attach',
+  'vspc/backupLicenses/delete': 'backupServices:apiovh:vspc/backupLicenses/delete',
+  'vspc/backupLicenses/edit': 'backupServices:apiovh:vspc/backupLicenses/edit',
 };
 
 export const LOCAL_STORAGE_KEYS = {

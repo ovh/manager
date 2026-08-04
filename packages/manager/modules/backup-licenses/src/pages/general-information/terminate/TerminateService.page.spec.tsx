@@ -127,7 +127,7 @@ describe('TerminateServicePage', () => {
     terminateServiceMock.mockReset();
     outcomeRef.current = 'success';
     Object.defineProperty(window, 'location', {
-      value: { ...originalLocation, href: '' },
+      value: { ...originalLocation, href: originalLocation.href },
       writable: true,
     });
     vi.mocked(getBackupServicesTenants).mockResolvedValue([

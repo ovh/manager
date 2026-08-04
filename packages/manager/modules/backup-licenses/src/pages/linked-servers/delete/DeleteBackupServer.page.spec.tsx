@@ -25,16 +25,21 @@ import DeleteBackupServerPage from './DeleteBackupServer.page';
 vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 
-const { addSuccess } = vi.hoisted(() => ({ addSuccess: vi.fn() }));
+const { addSuccess, mockedUseAuthorizationIam } = vi.hoisted(() => ({
+  addSuccess: vi.fn(),
+  mockedUseAuthorizationIam: vi.fn(() => ({ isAuthorized: true, isLoading: false })),
+}));
 
 // `Modal` est un web component ODS sous le capot : on le remplace par un rendu DOM simple, ce
 // qui permet d'asserter exactement ce que la page lui passe (convention du module, cf.
-// BackupServerActionsCell.component.spec.tsx).
+// BackupServerActionsCell.component.spec.tsx). `useAuthorizationIam` par défaut « autorisé » :
+// seul le test dédié au check IAM le fait échouer.
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
     ...actual,
     useNotifications: () => ({ addSuccess, addError: vi.fn() }),
+    useAuthorizationIam: mockedUseAuthorizationIam,
     Modal: ({
       heading,
       type,
@@ -74,6 +79,7 @@ const server: BackupServerResource = {
   status: 'ENABLED',
   currentState: { id: 'server-1', displayName: 'VBR-CUST-SERV-01' },
   currentTasks: [],
+  iam: { id: 'server-1', urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/server-1' },
 };
 
 // La modale est une route enfant de la liste : on reproduit cette imbrication pour que
@@ -98,6 +104,10 @@ const renderModal = (initialEntry = `/linked-servers/delete/${server.id}`) =>
 describe('DeleteBackupServerPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    // Réinitialisé explicitement à chaque test : `mockReturnValue` (et non `-Once`) dans le test
+    // IAM ci-dessous doit survivre aux plusieurs rendus déclenchés par la résolution async de la
+    // liste, donc ne peut pas s'auto-consommer — on le restaure ici plutôt qu'en `afterEach`.
+    mockedUseAuthorizationIam.mockReturnValue({ isAuthorized: true, isLoading: false });
     mockedGetBackupServers.mockResolvedValue([server]);
     mockedDeleteBackupServer.mockResolvedValue(undefined);
     vi.mocked(getBackupServicesTenants).mockResolvedValue([
@@ -166,6 +176,32 @@ describe('DeleteBackupServerPage', () => {
     await waitFor(() =>
       expect(screen.getByTestId('modal-primary')).toHaveAttribute('data-loading', 'true'),
     );
+  });
+
+  it('disables the confirmation and shows the IAM warning when the user lacks the delete permission', async () => {
+    mockedUseAuthorizationIam.mockReturnValue({ isAuthorized: false, isLoading: false });
+
+    await renderModal();
+
+    await waitFor(() =>
+      expect(screen.getByTestId('delete-backup-server-iam-warning')).toBeInTheDocument(),
+    );
+    expect(screen.getByTestId('modal-primary')).toBeDisabled();
+    expect(mockedDeleteBackupServer).not.toHaveBeenCalled();
+  });
+
+  it('disables the confirmation and shows the IAM warning when the server has no urn yet (fail-closed)', async () => {
+    // Contrat API non confirmé : le check ne doit jamais être bypassé au profit de l'autorisation
+    // quand `urn` est absent, même si `useAuthorizationIam` répondrait « autorisé » par défaut.
+    mockedGetBackupServers.mockResolvedValue([{ ...server, iam: undefined }]);
+
+    await renderModal();
+
+    await waitFor(() =>
+      expect(screen.getByTestId('delete-backup-server-iam-warning')).toBeInTheDocument(),
+    );
+    expect(screen.getByTestId('modal-primary')).toBeDisabled();
+    expect(mockedDeleteBackupServer).not.toHaveBeenCalled();
   });
 
   it('closes itself when the server is not in the list anymore', async () => {

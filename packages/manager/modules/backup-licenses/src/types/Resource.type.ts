@@ -1,3 +1,5 @@
+import { IamObject } from '@ovh-ux/manager-react-components';
+
 /** Les 8 membres de `common.ResourceStatusEnum` du contrat v2 `backupServices`. */
 export type ResourceStatus =
   | 'CREATING'
@@ -32,4 +34,6 @@ export type Resource<T> = {
   targetSpec?: Partial<T>;
   createdAt?: string;
   updatedAt?: string;
+  /** Absent tant que le check IAM n'est pas branché sur la ressource concernée. */
+  iam?: IamObject;
 };

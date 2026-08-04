@@ -33,4 +33,12 @@ export const queryKeys = {
       'credentials',
     ],
   },
+  catalog: {
+    backupServices: (ovhSubsidiary: string) => [
+      'backup-licenses',
+      'catalog',
+      'backup-services',
+      ovhSubsidiary,
+    ],
+  },
 } as const;
