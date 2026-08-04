@@ -8,7 +8,7 @@ import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-com
 import status from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/status/Messages_fr_FR.json';
 import system from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/system/Messages_fr_FR.json';
 
-import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
+import { NAMESPACE_PREFIX } from '@/BackupLicenses.translations';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -37,6 +37,37 @@ import vaults from '../../public/translations/vaults/Messages_fr_FR.json';
 
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
+
+/**
+ * Le glob évite qu'un dossier de traduction ajouté soit oublié ici. Le namespace se déduit du nom
+ * du dossier parce que les applis copient `public/translations/*` sous
+ * `translations/<NAMESPACE_PREFIX>/` (staticCopy de leur vite.config).
+ */
+export const moduleResources: Record<string, unknown> = Object.fromEntries(
+  Object.entries(
+    import.meta.glob('../../public/translations/*/Messages_fr_FR.json', {
+      eager: true,
+      import: 'default',
+    }),
+  ).map(([file, resources]) => [
+    file.replace('../../public/translations', NAMESPACE_PREFIX).replace('/Messages_fr_FR.json', ''),
+    resources,
+  ]),
+);
+
+/**
+ * Namespaces partagés : les composants les résolvent par `t('region:…')`, donc ils doivent être
+ * enregistrés dans i18next, et pas seulement exposés dans `labels` pour les assertions.
+ */
+export const sharedResources: Record<string, unknown> = {
+  [NAMESPACES.ACTIONS]: actions,
+  [NAMESPACES.BILLING]: billing,
+  [NAMESPACES.DASHBOARD]: commonDashboard,
+  [NAMESPACES.REGION]: region,
+  [NAMESPACES.STATUS]: status,
+  [NAMESPACES.SYSTEM]: system,
+};
+
 /**
  * `addResources` ignore silencieusement toute valeur imbriquée (seules les chaînes/tableaux
  * de premier niveau sont pris en compte) : nos JSON de traduction ont des clés imbriquées
@@ -44,38 +75,15 @@ export const defaultAvailableLocales = [defaultLocale];
  * profonde pour que les tests résolvent les vrais libellés plutôt que la clé brute.
  */
 function addTranslations() {
-  i18next
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.COMMON, common, true)
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.ONBOARDING, onboarding, true)
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.ORDER, order, true)
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.DASHBOARD, dashboard, true)
-    .addResourceBundle(
-      defaultLocale,
-      BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS,
-      linkedServers,
-      true,
-    )
-    .addResourceBundle(
-      defaultLocale,
-      BACKUP_LICENSES_NAMESPACES.GENERAL_INFORMATION,
-      generalInformation,
-      true,
-    )
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.BILLING, billingTab, true)
-    .addResourceBundle(defaultLocale, BACKUP_LICENSES_NAMESPACES.VAULTS, vaults, true)
-    // Namespaces partagés : les composants les résolvent par `t('region:…')`, donc ils doivent être
-    // enregistrés dans i18next, et pas seulement exposés dans `labels` pour les assertions.
-    .addResourceBundle(defaultLocale, NAMESPACES.REGION, region, true)
-    .addResourceBundle(defaultLocale, NAMESPACES.STATUS, status, true)
-    .addResourceBundle(defaultLocale, NAMESPACES.ACTIONS, actions, true)
-    .addResourceBundle(defaultLocale, NAMESPACES.DASHBOARD, commonDashboard, true)
-    .addResourceBundle(defaultLocale, NAMESPACES.SYSTEM, system, true)
-    .addResourceBundle(defaultLocale, NAMESPACES.BILLING, billing, true)
-    .use({
-      type: 'postProcessor',
-      name: 'normalize',
-      process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
-    });
+  Object.entries({ ...moduleResources, ...sharedResources }).forEach(([namespace, resources]) => {
+    i18next.addResourceBundle(defaultLocale, namespace, resources, true);
+  });
+  // eslint-disable-next-line import/no-named-as-default-member
+  i18next.use({
+    type: 'postProcessor',
+    name: 'normalize',
+    process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
+  });
 }
 export const getTesti18nParams = (): InitOptions<unknown> => ({
   lng: defaultLocale,
