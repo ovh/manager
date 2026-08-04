@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
@@ -19,12 +18,19 @@ describe('OnboardingHighlights', () => {
     expect(container.querySelector('ods-badge[label="NAS"]')).toBeInTheDocument();
   });
 
-  it('renders a plain text highlight when key is not "compatibility"', async () => {
+  it('renders a plain text highlight when key is neither "compatibility" nor "pricing"', async () => {
+    const { container } = await renderWithProviders(
+      <OnboardingHighlights keys={['storage_included']} />,
+    );
+
+    expect(container.textContent).toContain('500 Go offerts avec votre licence');
+    expect(container.querySelector('ods-badge')).not.toBeInTheDocument();
+  });
+
+  it('delegates the "pricing" key to OnboardingPricingHighlight', async () => {
     const { container } = await renderWithProviders(<OnboardingHighlights keys={['pricing']} />);
 
-    expect(
-      screen.getByText('À partir de 10€/mois · 2 à 3 étapes selon votre licence'),
-    ).toBeInTheDocument();
-    expect(container.querySelector('ods-badge')).not.toBeInTheDocument();
+    // Pas de catalogue mocké dans ce test : OnboardingPricingHighlight reste en chargement.
+    expect(container.querySelector('ods-skeleton')).toBeInTheDocument();
   });
 });

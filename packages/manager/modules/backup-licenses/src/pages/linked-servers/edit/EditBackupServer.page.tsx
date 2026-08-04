@@ -69,6 +69,7 @@ export default function EditBackupServerPage() {
     changes,
     isLicenseChanged,
     resolvedLicenseApiValue,
+    licenseEditRules,
     selectFamily,
     selectTier,
     setField,
@@ -180,6 +181,7 @@ export default function EditBackupServerPage() {
               onSelectFamily={selectFamily}
               onSelectTier={selectTier}
               isLicenseChanged={isLicenseChanged}
+              licenseEditRules={licenseEditRules}
             />
           </StepComponent>
 
@@ -235,6 +237,7 @@ export default function EditBackupServerPage() {
             }
             isSaving={isPending}
             onSave={handleSave}
+            urn={server.iam?.urn}
           />
         </aside>
       </div>

@@ -24,13 +24,15 @@
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
-      "price": "€██.██ excl. tax/month — per server, VM, database or 500 GB of storage",
+      "price_prefix": "",
+      "price_suffix": "— per server, VM, database or 500 GB of storage",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Windows only"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
-      "price": "From €██.██ excl. tax/month — per server, VM, database or 500 GB of storage",
+      "price_prefix": "From ",
+      "price_suffix": "— per server, VM, database or 500 GB of storage",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -65,17 +67,20 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Recommended for <b>SMEs</b> with a limited fleet (<b>5–30 workloads</b>). Simple backup/restore.",
-      "price": "From €██.██ excl. tax/month — per server, VM, database or 500 GB of storage"
+      "price_prefix": "From ",
+      "price_suffix": "— per server, VM, database or 500 GB of storage"
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Recommended for <b>SMEs</b> with a larger fleet (<b>30–150 workloads</b>). Fine-grained monitoring and proactive alerts.",
-      "price": "From €██.██ excl. tax/month — per server, VM, database or 500 GB of storage"
+      "price_prefix": "From ",
+      "price_suffix": "— per server, VM, database or 500 GB of storage"
     },
     "premium": {
       "title": "Premium",
       "audience": "Recommended for <b>mid-size and large enterprises</b> with an extensive fleet (<b>150–2000+ workloads</b>). DR orchestration and compliance.",
-      "price": "From €██.██ excl. tax/month — per server, VM, database or 500 GB of storage"
+      "price_prefix": "From ",
+      "price_suffix": "— per server, VM, database or 500 GB of storage"
     }
   },
   "vbr": {
@@ -127,6 +132,10 @@
     "show_less": "Show less"
   },
   "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
     "title": "Order summary",
     "edit": "Edit",
     "empty": "To be filled in",
@@ -139,8 +148,7 @@
     },
     "vault_included_value": "500 GB",
     "price": {
-      "label": "Monthly estimate",
-      "value": "€██.██ excl. tax/month"
+      "label": "Monthly estimate"
     },
     "cta": "Finalise my order"
   },

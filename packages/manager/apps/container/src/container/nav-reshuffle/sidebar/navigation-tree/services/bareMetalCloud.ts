@@ -109,6 +109,7 @@ baremetalUniverse.children = [
       'dedicated-nasha',
       'netapp',
       'cloud-disk-array',
+      'bmc-backup-licenses',
     ],
     children: [
       {
@@ -159,6 +160,18 @@ baremetalUniverse.children = [
           hash: '#/',
         },
         features: ['bmc-backup-agent-baremetal'],
+      },
+      {
+        id: 'bmc-backup-licenses',
+        universe: baremetalUniverse.id,
+        idAttr: 'bmc-backup-licenses-link',
+        translation: 'sidebar_backup_licenses',
+        tag: NodeTag.NEW,
+        routing: {
+          application: 'bmc-backup-licenses',
+          hash: '#/',
+        },
+        features: ['bmc-backup-licenses'],
       },
     ],
   },

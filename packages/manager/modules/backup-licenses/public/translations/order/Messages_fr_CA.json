@@ -24,13 +24,15 @@
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
-      "price": "██,██ € hors taxes/mois — par serveur, VM, base de données ou 500 Go de stockage",
+      "price_prefix": "",
+      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Windows uniquement"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
-      "price": "À partir de ██,██ € hors taxes/mois — par serveur, VM, base de données ou 500 Go de stockage",
+      "price_prefix": "À partir de ",
+      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -65,17 +67,20 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte limitée (<b>5–30 workloads</b>). Sauvegardes/restaurations simples.",
-      "price": "À partir de ██,██ € hors taxes/mois — par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de ",
+      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte importante (<b>30–150 workloads</b>). Monitoring fin et alertes proactives.",
-      "price": "À partir de ██,██ € hors taxes/mois — par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de ",
+      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
     },
     "premium": {
       "title": "Premium",
       "audience": "Recommandé pour <b>ETI/grandes entreprises</b> avec flotte étendue (<b>150–2000+ workloads</b>). Orchestration de PRA et conformité.",
-      "price": "À partir de ██,██ € hors taxes/mois — par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de ",
+      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
     }
   },
   "vbr": {
@@ -127,6 +132,10 @@
     "show_less": "Voir moins"
   },
   "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
     "title": "Récapitulatif de votre commande",
     "edit": "Modifier",
     "empty": "À renseigner",
@@ -139,8 +148,7 @@
     },
     "vault_included_value": "500 Gio",
     "price": {
-      "label": "Estimation mensuelle",
-      "value": "██,██ € HT/mois"
+      "label": "Estimation mensuelle"
     },
     "cta": "Finaliser ma commande"
   },
