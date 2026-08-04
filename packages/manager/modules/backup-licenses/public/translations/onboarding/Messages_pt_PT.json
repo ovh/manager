@@ -5,7 +5,8 @@
   "hero_alt": "Logótipo Veeam Enterprise",
   "highlights": {
     "storage_included": "500 GB incluídos com a sua licença",
-    "pricing": "A partir de 10 €/mês · 2 a 3 passos dependendo da sua licença",
+    "pricing_prefix": "A partir de ",
+    "pricing_suffix": "· 2 a 3 passos dependendo da sua licença",
     "compatibility": "Compatível com"
   },
   "order_cta": "Encomendar",

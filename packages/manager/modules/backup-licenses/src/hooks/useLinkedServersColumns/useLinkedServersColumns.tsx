@@ -100,6 +100,7 @@ export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[
           <BackupServerActionsCell
             backupServerId={server.id}
             isDisabled={isServerInFlight(server)}
+            urn={server.iam?.urn}
           />
         ),
       },

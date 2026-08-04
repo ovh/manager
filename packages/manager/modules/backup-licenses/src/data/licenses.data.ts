@@ -12,7 +12,8 @@ import {
 /**
  * Catalogue HARDCODÉ des cartes de licence (contenu front, cf. spec BKP-1208).
  * Les libellés/tooltips/prix sont dans l'i18n (namespace `module-backup-licenses/order`).
- * Les prix réels viendront du catalogue Agora (API non figée) — tokens `██,██` en attendant.
+ * Les prix réels viennent du catalogue Agora (`GET /order/catalog/public/backupServices`),
+ * cf. `data/hooks/useBackupServicesCatalog` et `utils/planPricing`.
  */
 
 /** Étape 1 — cartes de type de licence. */
@@ -22,6 +23,7 @@ export const LICENSE_CARDS: LicenseCardData[] = [
     i18nKey: 'enterprise_plus',
     recommended: false,
     apiValue: LicenseApiValue.ENTERPRISE_PLUS,
+    planCode: 'vspc-backuplicenses-enterpriseplus-vm',
     features: [{ key: 'backup_restore' }, { key: 'vault_500' }, { key: 'security_base' }],
   },
   {
@@ -30,6 +32,8 @@ export const LICENSE_CARDS: LicenseCardData[] = [
     recommended: true,
     // Carte parente : pas d'apiValue propre, déclenche l'étape 2 (le tier fournit l'enum).
     apiValue: undefined,
+    // Prix « à partir de » = celui du tier le moins cher (Foundation).
+    planCode: 'vspc-backuplicenses-foundation-vm',
     // highlight = ce que Data Platform apporte en plus vs Enterprise Plus (features absentes de l'autre carte).
     features: [
       { key: 'backup_restore' },
@@ -48,6 +52,7 @@ export const VDP_TIER_CARDS: VdpTierCardData[] = [
     i18nKey: 'foundation',
     recommended: false,
     apiValue: LicenseApiValue.VDP_FOUNDATION,
+    planCode: 'vspc-backuplicenses-foundation-vm',
     features: [{ key: 'backup_restore' }, { key: 'vault_500' }, { key: 'security_permissions' }],
   },
   {
@@ -55,6 +60,7 @@ export const VDP_TIER_CARDS: VdpTierCardData[] = [
     i18nKey: 'advanced',
     recommended: false,
     apiValue: LicenseApiValue.VDP_ADVANCED,
+    planCode: 'vspc-backuplicenses-advanced-vm',
     features: [
       { key: 'backup_restore' },
       { key: 'vault_500' },
@@ -67,6 +73,7 @@ export const VDP_TIER_CARDS: VdpTierCardData[] = [
     i18nKey: 'premium',
     recommended: true,
     apiValue: LicenseApiValue.VDP_PREMIUM,
+    planCode: 'vspc-backuplicenses-premium-vm',
     features: [
       { key: 'backup_restore' },
       { key: 'vault_500' },

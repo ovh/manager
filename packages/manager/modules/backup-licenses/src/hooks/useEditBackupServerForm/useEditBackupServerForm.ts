@@ -6,6 +6,7 @@ import { BackupServerResource } from '@/types/BackupServer.type';
 import { LicenseApiValue, LicenseFamily, VdpTier } from '@/types/Order.type';
 import { firstIpWithoutMask } from '@/utils/formatIpList/formatIpList';
 import { isValidIp } from '@/utils/isValidIp/isValidIp';
+import { getLicenseEditRules } from '@/utils/licenseEditRules/licenseEditRules';
 
 export type EditFormField = 'displayName' | 'externalIp' | 'privateIp';
 export type EditFormErrors = Record<EditFormField, string | null>;
@@ -53,6 +54,10 @@ export function useEditBackupServerForm(server?: BackupServerResource) {
   const licenseStep = useStep({ isOpen: true });
   const serverStep = useStep();
 
+  // Règles de changement de licence selon la version VBR/l'OS du serveur installé (cf. utils) :
+  // ne dépend que de `server`, jamais de la sélection en cours.
+  const licenseEditRules = useMemo(() => getLicenseEditRules(server?.currentState), [server]);
+
   // Seeding unique depuis la donnée serveur, ajusté PENDANT LE RENDU plutôt que dans un effet
   // (cf. react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes) :
   // `form` reste `null` tant qu'elle n'est pas chargée, puis se fige à sa première valeur pour
@@ -67,18 +72,28 @@ export function useEditBackupServerForm(server?: BackupServerResource) {
     setTier(tierOf(server.currentState.licenseType));
   }
 
-  const selectFamily = useCallback((next: LicenseFamily) => {
-    setFamily(next);
-    if (next === LicenseFamily.ENTERPRISE_PLUS) {
-      // Enterprise Plus n'a pas de niveau.
-      setTier(null);
-    } else {
-      // Choisir Data Platform pose le niveau recommandé, sauf si on y est déjà.
-      setTier((prev) => prev ?? VDP_TIER_CARDS.find((card) => card.recommended)?.tier ?? null);
-    }
-  }, []);
+  const selectFamily = useCallback(
+    (next: LicenseFamily) => {
+      if (!licenseEditRules.canEditFamily) return;
+      setFamily(next);
+      if (next === LicenseFamily.ENTERPRISE_PLUS) {
+        // Enterprise Plus n'a pas de niveau.
+        setTier(null);
+      } else {
+        // Choisir Data Platform pose le niveau recommandé, sauf si on y est déjà.
+        setTier((prev) => prev ?? VDP_TIER_CARDS.find((card) => card.recommended)?.tier ?? null);
+      }
+    },
+    [licenseEditRules.canEditFamily],
+  );
 
-  const selectTier = useCallback((next: VdpTier) => setTier(next), []);
+  const selectTier = useCallback(
+    (next: VdpTier) => {
+      if (!licenseEditRules.canEditTier) return;
+      setTier(next);
+    },
+    [licenseEditRules.canEditTier],
+  );
 
   const setField = useCallback(<K extends keyof EditFormState>(key: K, value: EditFormState[K]) => {
     setForm((prev) => (prev ? { ...prev, [key]: value } : prev));
@@ -203,6 +218,7 @@ export function useEditBackupServerForm(server?: BackupServerResource) {
     changes,
     isLicenseChanged,
     resolvedLicenseApiValue,
+    licenseEditRules,
     selectFamily,
     selectTier,
     setField,

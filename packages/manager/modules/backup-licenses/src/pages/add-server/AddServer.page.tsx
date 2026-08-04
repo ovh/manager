@@ -29,6 +29,7 @@ import {
 import { useCreateBackupLicense } from '@/hooks/useCreateBackupLicense/useCreateBackupLicense';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import type { OrderFieldName } from '@/hooks/useOrderForm/useOrderForm';
+import { useVspcTenantUrn } from '@/hooks/useVspcTenantUrn/useVspcTenantUrn';
 import { BACKUP_LICENSES_NAMESPACES, CHANGELOG_LINKS, LABELS } from '@/module.constants';
 import { routeUrls } from '@/routes/routes.constants';
 import { CreateBackupLicenseBody } from '@/types/BackupLicense.type';
@@ -54,6 +55,7 @@ export default function AddServerPage() {
   const form = useAddServerForm();
   const guideItems = useMainGuideItem();
   const createBackupLicense = useCreateBackupLicense();
+  const vspcTenantUrn = useVspcTenantUrn();
 
   const { family, tier, firstInvalidField, firstInvalidStepId, canSubmit } = form;
 
@@ -185,6 +187,7 @@ export default function AddServerPage() {
             form={form.form}
             isSubmitting={createBackupLicense.isPending}
             onFinalize={handleFinalize}
+            urn={vspcTenantUrn}
           />
         </aside>
       </div>

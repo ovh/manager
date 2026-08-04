@@ -1,23 +1,18 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import {
-  OdsButton,
-  OdsCard,
-  OdsDivider,
-  OdsMessage,
-  OdsText,
-} from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsDivider, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 
 import EditChangesRecap from '@/components/linked-servers/EditChangesRecap/EditChangesRecap.component';
 import OrderSummaryRow from '@/components/order/OrderRecapPanel/OrderSummaryRow.component';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { EditFormChange } from '@/hooks/useEditBackupServerForm/useEditBackupServerForm';
-import { BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
+import { BACKUP_LICENSES_IAM_RULES, BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
 import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 interface EditRecapPanelProps {
@@ -30,6 +25,8 @@ interface EditRecapPanelProps {
   errorMessage: string | null;
   isSaving: boolean;
   onSave: () => void;
+  /** URN du serveur : accès direct par URL, donc protégé indépendamment du menu ⋮. */
+  urn?: string;
 }
 
 /**
@@ -48,12 +45,14 @@ export default function EditRecapPanel({
   errorMessage,
   isSaving,
   onSave,
+  urn,
 }: EditRecapPanelProps) {
   const { t } = useTranslation([
     BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS,
     BACKUP_LICENSES_NAMESPACES.ORDER,
     NAMESPACES.ACTIONS,
   ]);
+  const saveButtonId = useId();
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -115,16 +114,23 @@ export default function EditRecapPanel({
         </OdsMessage>
       )}
 
-      {/* Jamais désactivé : un clic avec formulaire invalide révèle les erreurs et rouvre
-          l'étape fautive (cf. EditBackupServer.page), feedback actionnable plutôt qu'un
-          bouton grisé silencieux — même parti pris que le CTA du tunnel de commande. */}
-      <OdsButton
+      {/* Jamais désactivé côté validation : un clic avec formulaire invalide révèle les erreurs et
+          rouvre l'étape fautive (cf. EditBackupServer.page), feedback actionnable plutôt qu'un
+          bouton grisé silencieux — même parti pris que le CTA du tunnel de commande. `ManagerButton`
+          y ajoute un check IAM indépendant du menu ⋮ : protège aussi l'accès direct par URL.
+          Fail-closed explicite (`!urn`) : par défaut, `ManagerButton` autorise l'action tant que
+          `urn` est absent (bypass silencieux, cf. son code) — inacceptable ici, donc on force la
+          désactivation nous-mêmes tant que le contrat API ne garantit pas ce champ. */}
+      <ManagerButton
+        id={saveButtonId}
         type="button"
         className="w-full"
         data-testid="edit-backup-server-save"
         label={t(`${NAMESPACES.ACTIONS}:save`)}
-        isDisabled={isSaving}
+        isDisabled={isSaving || !urn}
         onClick={onSave}
+        urn={urn}
+        iamActions={[BACKUP_LICENSES_IAM_RULES['vspc/backupLicenses/edit']]}
       />
     </OdsCard>
   );

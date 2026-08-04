@@ -16,6 +16,7 @@ import { backupServersQueries } from '@/data/queries/backupServers.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
 import { useBackupServersPolling } from '@/hooks/useBackupServersPolling/useBackupServersPolling';
 import { useLinkedServersColumns } from '@/hooks/useLinkedServersColumns/useLinkedServersColumns';
+import { useVspcTenantUrn } from '@/hooks/useVspcTenantUrn/useVspcTenantUrn';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 
 /**
@@ -29,6 +30,7 @@ export default function LinkedServersPage() {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS);
   const queryClient = useQueryClient();
   const columns = useLinkedServersColumns();
+  const vspcTenantUrn = useVspcTenantUrn();
 
   const listOptions = backupServersQueries.withClient(queryClient).list();
 
@@ -58,7 +60,13 @@ export default function LinkedServersPage() {
         </OdsMessage>
       )}
       <Datagrid
-        topbar={<LinkedServersTopbar isLoading={isPending} onRefresh={handleRefresh} />}
+        topbar={
+          <LinkedServersTopbar
+            isLoading={isPending}
+            onRefresh={handleRefresh}
+            urn={vspcTenantUrn}
+          />
+        }
         columns={columns}
         items={data ?? []}
         totalItems={data?.length ?? 0}
