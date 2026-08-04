@@ -8,7 +8,7 @@
  */
 import { getVaultIamUrn } from '@/mocks/iam/iam.mock';
 import { ResourceStatus } from '@/types/Resource.type';
-import { VaultBucket, VaultResource } from '@/types/Vault.type';
+import { VaultBucket, VaultBucketAccess, VaultResource } from '@/types/Vault.type';
 
 /**
  * L'API sert chaque vault avec son enveloppe IAM : sans elle, les entrées du menu d'action restent
@@ -26,7 +26,6 @@ const buildBucket = (overrides: Partial<VaultBucket> & Pick<VaultBucket, 'id'>):
   region: 'eu-west-rbx',
   role: 'PRIMARY',
   status: 'READY',
-  endPoint: `s3.${overrides.region ?? 'eu-west-rbx'}.io.cloud.ovh.net`,
   ...overrides,
 });
 
@@ -40,6 +39,7 @@ export const mockVaults: VaultResource[] = withIam([
       resourceName: 'vault-veeam-multi-region',
       region: 'EU-WEST-PAR',
       type: 'BUNDLE',
+      includedSoftQuotaGb: 487,
       vaultProductLine: 'BACKUP_LICENSES',
       status: 'READY',
       vspcTenants: ['vspc-tenant-backuplicenses-01'],
@@ -130,20 +130,22 @@ export const mockEdgeCaseVaults: VaultResource[] = withIam([
       ['OUT_OF_SYNC', 'vault-status-out-of-sync'],
       ['CREATING', 'vault-status-creating'],
     ] as [ResourceStatus, string][]
-  ).map(([status, name]) => ({
-    id: name,
-    resourceStatus: status,
-    currentState: {
+  ).map(
+    ([status, name]): VaultResource => ({
       id: name,
-      name,
-      resourceName: name,
-      region: 'EU-WEST-PAR',
-      type: 'PAYGO' as const,
-      vaultProductLine: 'BACKUP_LICENSES',
-      status,
-      buckets: [buildBucket({ id: `${name}-b1` })],
-    },
-  })),
+      resourceStatus: status,
+      currentState: {
+        id: name,
+        name,
+        resourceName: name,
+        region: 'EU-WEST-PAR',
+        type: 'PAYGO',
+        vaultProductLine: 'BACKUP_LICENSES',
+        status,
+        buckets: [buildBucket({ id: `${name}-b1` })],
+      },
+    }),
+  ),
   {
     id: 'vault-bundle-purchased',
     resourceStatus: 'READY',
@@ -153,6 +155,7 @@ export const mockEdgeCaseVaults: VaultResource[] = withIam([
       resourceName: 'vault-bundle-purchased',
       region: 'EU-WEST-PAR',
       type: 'BUNDLE',
+      includedSoftQuotaGb: 1024,
       vaultProductLine: 'BACKUP_LICENSES',
       status: 'READY',
       buckets: [buildBucket({ id: 'vault-bundle-purchased-b1' })],
@@ -219,7 +222,10 @@ export const mockEdgeCaseVaults: VaultResource[] = withIam([
   },
 ]).concat(vaultWithoutIamEnvelope);
 
-export const mockVaultBucketAccess = {
+export const mockVaultBucketAccess: VaultBucketAccess = {
   accessKey: 'AKIAMOCKACCESSKEY',
+  bucketName: 'bucket-vault-2-b1',
+  endpoint: 's3.eu-west-par.io.cloud.ovh.net',
+  regionCode: 'eu-west-par',
   secretKey: 'wJalrXUtnFEMIMOCKSECRETKEY',
 };

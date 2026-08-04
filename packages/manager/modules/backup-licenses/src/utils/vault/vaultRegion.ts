@@ -1,5 +1,5 @@
 /**
- * Aucun champ ne porte de libellé de région et `common.RegionEnum` compte 48 membres : seul le
+ * Aucun champ ne porte de libellé de région et `common.RegionEnum` compte 50 membres : seul le
  * sous-ensemble que cette offre provisionne est mappé, le reste retombe sur le code brut, qui reste
  * lisible. Les clés alimentent les libellés de ville du namespace partagé `region`.
  */

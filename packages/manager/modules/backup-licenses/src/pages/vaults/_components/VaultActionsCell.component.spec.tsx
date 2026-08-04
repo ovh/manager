@@ -161,6 +161,17 @@ describe('VaultActionsCell', () => {
     expect(screen.queryByTestId(`vault-credentials-disabled-${vault.id}`)).not.toBeInTheDocument();
   });
 
+  it('disables the credentials entry when the account lacks the credentials action', async () => {
+    setupMswMock({ unauthorizedIamActions: [IAM_ACTIONS.vaultCredentialsGet] });
+
+    await renderWithProviders(<VaultActionsCell vault={paygoVault} />);
+
+    await openMenu(paygoVault.id);
+    await waitForEntryEnabled(`vault-terminate-${paygoVault.id}`);
+
+    expect(entry(`vault-credentials-${paygoVault.id}`)).toHaveAttribute('is-disabled', 'true');
+  });
+
   it('disables the terminate entry when the account lacks the termination action', async () => {
     setupMswMock({ unauthorizedIamActions: [IAM_ACTIONS.servicesTerminate] });
 

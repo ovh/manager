@@ -27,6 +27,7 @@ const ALL_STATUSES: ResourceStatus[] = [
   'OUT_OF_SYNC',
   'READY',
   'SUSPENDED',
+  'UNKNOWN',
   'UPDATING',
 ];
 
@@ -42,7 +43,7 @@ describe('getVaultStatusLabel', () => {
     expect(getVaultStatusLabel(status)).toBe(label);
   });
 
-  it.each(['DELETING', 'ERROR', 'OUT_OF_SYNC', 'SUSPENDED', 'UPDATING'])(
+  it.each(['DELETING', 'ERROR', 'OUT_OF_SYNC', 'SUSPENDED', 'UNKNOWN', 'UPDATING'])(
     'maps %s to error, as the ticket collapses everything but READY and CREATING',
     (status) => {
       expect(getVaultStatusLabel(status)).toBe('error');

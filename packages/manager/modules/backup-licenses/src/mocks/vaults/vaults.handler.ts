@@ -69,7 +69,7 @@ export const getVaultMocks = ({
       delay: 0,
     },
     {
-      url: '/backupServices/tenant/:backupServicesId/vault/:vaultId/bucket/:bucketId/access',
+      url: '/backupServices/tenant/:backupServicesId/vault/:vaultId/bucket/:bucketId/credentials',
       response: () =>
         isVaultAccessError ? { message: 'Internal server error' } : mockVaultBucketAccess,
       api: 'v2',

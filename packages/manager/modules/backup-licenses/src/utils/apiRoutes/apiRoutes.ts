@@ -26,12 +26,11 @@ export const getVaultsRoute = (backupServicesId: string) =>
 export const getVaultRoute = (backupServicesId: string, vaultId: string) =>
   `${getVaultsRoute(backupServicesId)}/${vaultId}`;
 
-// Route supposée : le schéma v2 publié (2026-06-16) s'arrête à vault/{vaultId}, en GET et PUT.
-export const getVaultBucketAccessRoute = (
+export const getVaultBucketCredentialsRoute = (
   backupServicesId: string,
   vaultId: string,
   bucketId: string,
-) => `${getVaultRoute(backupServicesId, vaultId)}/bucket/${bucketId}/access`;
+) => `${getVaultRoute(backupServicesId, vaultId)}/bucket/${bucketId}/credentials`;
 
 /** Stockage d'un vault : `quantity` et `price` en un seul appel (§3.1 de la spec BKP-1225). */
 export const getServiceConsumptionRoute = (serviceId: string) =>

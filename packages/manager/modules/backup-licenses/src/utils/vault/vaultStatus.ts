@@ -16,6 +16,7 @@ export const VAULT_STATUS_LABEL: Record<ResourceStatus, VaultStatusLabel> = Obje
   ERROR: 'error',
   OUT_OF_SYNC: 'error',
   SUSPENDED: 'error',
+  UNKNOWN: 'error',
   UPDATING: 'error',
 });
 
