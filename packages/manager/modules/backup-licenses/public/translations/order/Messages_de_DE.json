@@ -24,13 +24,15 @@
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
-      "price": "██,██ € netto/Monat — pro Server, VM, Datenbank oder 500 GB Speicher",
+      "price_prefix": "",
+      "price_suffix": "— pro Server, VM, Datenbank oder 500 GB Speicher",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Nur Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
-      "price": "Ab ██,██ € netto/Monat — pro Server, VM, Datenbank oder 500 GB Speicher",
+      "price_prefix": "Ab ",
+      "price_suffix": "— pro Server, VM, Datenbank oder 500 GB Speicher",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -65,17 +67,20 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Empfohlen für <b>KMU</b> mit begrenzter Flotte (<b>5–30 Workloads</b>). Einfache Sicherung/Wiederherstellung.",
-      "price": "Ab ██,██ € netto/Monat — pro Server, VM, Datenbank oder 500 GB Speicher"
+      "price_prefix": "Ab ",
+      "price_suffix": "— pro Server, VM, Datenbank oder 500 GB Speicher"
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Empfohlen für <b>KMU</b> mit größerer Flotte (<b>30–150 Workloads</b>). Detailliertes Monitoring und proaktive Warnungen.",
-      "price": "Ab ██,██ € netto/Monat — pro Server, VM, Datenbank oder 500 GB Speicher"
+      "price_prefix": "Ab ",
+      "price_suffix": "— pro Server, VM, Datenbank oder 500 GB Speicher"
     },
     "premium": {
       "title": "Premium",
       "audience": "Empfohlen für <b>mittelständische und große Unternehmen</b> mit umfangreicher Flotte (<b>150–2000+ Workloads</b>). Notfallwiederherstellung und Compliance.",
-      "price": "Ab ██,██ € netto/Monat — pro Server, VM, Datenbank oder 500 GB Speicher"
+      "price_prefix": "Ab ",
+      "price_suffix": "— pro Server, VM, Datenbank oder 500 GB Speicher"
     }
   },
   "vbr": {
@@ -127,6 +132,10 @@
     "show_less": "Weniger anzeigen"
   },
   "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
     "title": "Zusammenfassung Ihrer Bestellung",
     "edit": "Bearbeiten",
     "empty": "Noch auszufüllen",
@@ -139,8 +148,7 @@
     },
     "vault_included_value": "500 GB",
     "price": {
-      "label": "Monatliche Schätzung",
-      "value": "██,██ € netto/Monat"
+      "label": "Monatliche Schätzung"
     },
     "cta": "Bestellung abschließen"
   },

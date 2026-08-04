@@ -22,7 +22,7 @@ export default function BillingPeriodNotice({ beginDate, endDate }: BillingPerio
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.BILLING);
 
   if (!beginDate || !endDate) {
-    return <OdsText preset={ODS_TEXT_PRESET.caption}>{t('period_notice_fallback')}</OdsText>;
+    return <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('period_notice_fallback')}</OdsText>;
   }
 
   const begin = format(new Date(beginDate), 'dd/MM/yyyy');
@@ -32,7 +32,7 @@ export default function BillingPeriodNotice({ beginDate, endDate }: BillingPerio
   const endIndex = text.indexOf(end, beginIndex + begin.length);
 
   return (
-    <OdsText preset={ODS_TEXT_PRESET.caption}>
+    <OdsText preset={ODS_TEXT_PRESET.paragraph}>
       {text.slice(0, beginIndex)}
       <strong>{begin}</strong>
       {text.slice(beginIndex + begin.length, endIndex)}

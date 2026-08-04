@@ -29,7 +29,11 @@ const { addSuccess } = vi.hoisted(() => ({ addSuccess: vi.fn() }));
 
 // Page pleine (BaseLayout + StepComponent), pas une modale : on remplace ces composants MRC
 // par un rendu DOM simple, sur le même principe que le mock de `Modal` pour la suppression
-// (convention du module, cf. DeleteBackupServer.page.spec.tsx).
+// (convention du module, cf. DeleteBackupServer.page.spec.tsx). `ManagerButton` fait son propre
+// check IAM en interne via un import relatif (pas l'export public du package) : le mocker au
+// niveau du package ne suffit pas à le piloter, on le remplace donc entièrement par un bouton
+// natif — son `isDisabled` reflète simplement ce que `EditRecapPanel` lui passe déjà (fail-closed
+// calculé côté composant), ce qui suffit à tester ce comportement sans dépendre du vrai hook.
 vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@ovh-ux/manager-react-components')>();
   return {
@@ -38,6 +42,21 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
     Breadcrumb: () => null,
     ChangelogButton: () => null,
     GuideButton: () => null,
+    ManagerButton: ({
+      label,
+      isDisabled,
+      onClick,
+      'data-testid': testId,
+    }: {
+      label: string;
+      isDisabled?: boolean;
+      onClick?: () => void;
+      'data-testid'?: string;
+    }) => (
+      <button type="button" data-testid={testId} disabled={isDisabled} onClick={onClick}>
+        {label}
+      </button>
+    ),
     BaseLayout: ({
       children,
       onClickReturn,
@@ -145,6 +164,8 @@ vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
 const mockedEditBackupServer = vi.mocked(editBackupServer);
 const mockedGetBackupServers = vi.mocked(getBackupServers);
 
+// Version/OS = cas pleinement éditable (v13 + Windows) : les tests de restriction de licence
+// (version < 13, v13 + Linux) utilisent leur propre fixture, cf. plus bas.
 const server: BackupServerResource = {
   id: 'server-1',
   status: 'ENABLED',
@@ -155,8 +176,11 @@ const server: BackupServerResource = {
     privateIps: ['192.168.10.2/32'],
     licenseType: LicenseApiValue.VDP_PREMIUM,
     licenseStatus: LicenseStatus.INSTALLED,
+    backupServerVersion: '13.0',
+    osType: 'WINDOWS',
   },
   currentTasks: [],
+  iam: { id: 'server-1', urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/server-1' },
 };
 
 const renderPage = (initialEntry = `/edit/${server.id}`) =>
@@ -295,10 +319,91 @@ describe('EditBackupServerPage', () => {
     expect(screen.queryByTestId('linked-servers')).not.toBeInTheDocument();
   });
 
+  it('disables the save button when the server has no urn yet (fail-closed)', async () => {
+    mockedGetBackupServers.mockResolvedValue([{ ...server, iam: undefined }]);
+
+    await renderPage();
+    await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
+
+    expect(screen.getByTestId('edit-backup-server-save')).toBeDisabled();
+  });
+
   it('redirects to the list once the server is not found in the loaded list anymore', async () => {
     await renderPage('/edit/unknown-server');
 
     await waitFor(() => expect(screen.getByTestId('linked-servers')).toBeInTheDocument());
     expect(mockedEditBackupServer).not.toHaveBeenCalled();
+  });
+
+  // Les libellés sont bien résolus dans ce test de page (contrairement au harness isolé de
+  // `LicenseStep.component.spec.tsx`, cf. son commentaire en tête de fichier) : on asserte donc
+  // sur le texte réel plutôt que sur la clé i18n brute.
+  it('disables the whole license step and shows the version restriction for a server below VBR 13', async () => {
+    mockedGetBackupServers.mockResolvedValue([
+      {
+        ...server,
+        currentState: { ...server.currentState, backupServerVersion: '12.1' },
+      },
+    ]);
+
+    await renderPage();
+    await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
+
+    const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
+    familyGroup
+      .querySelectorAll('[role="radio"]')
+      .forEach((radio) => expect(radio).toBeDisabled());
+    expect(
+      screen.getByText(
+        'Le type de licence ne peut pas être modifié pour ce serveur : une mise à niveau vers VBR 13 est requise.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('locks the family cards but keeps the VDP tier cards enabled for a v13 Linux server', async () => {
+    mockedGetBackupServers.mockResolvedValue([
+      {
+        ...server,
+        currentState: { ...server.currentState, backupServerVersion: '13.0', osType: 'LINUX' },
+      },
+    ]);
+
+    await renderPage();
+    await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
+
+    const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
+    familyGroup
+      .querySelectorAll('[role="radio"]')
+      .forEach((radio) => expect(radio).toBeDisabled());
+
+    const tierGroup = screen.getByRole('radiogroup', { name: 'Niveau VDP' });
+    tierGroup
+      .querySelectorAll('[role="radio"]')
+      .forEach((radio) => expect(radio).not.toBeDisabled());
+    expect(
+      screen.getByText(
+        'Le type de licence reste fixé à Data Platform pour ce serveur : seul le niveau peut être modifié.',
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('does not show any license restriction for a v13 Windows server', async () => {
+    await renderPage();
+    await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
+
+    expect(
+      screen.queryByText(
+        'Le type de licence ne peut pas être modifié pour ce serveur : une mise à niveau vers VBR 13 est requise.',
+      ),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(
+        'Le type de licence reste fixé à Data Platform pour ce serveur : seul le niveau peut être modifié.',
+      ),
+    ).not.toBeInTheDocument();
+    const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
+    familyGroup
+      .querySelectorAll('[role="radio"]')
+      .forEach((radio) => expect(radio).not.toBeDisabled());
   });
 });
