@@ -8,6 +8,7 @@ import {
   OdsText,
 } from '@ovhcloud/ods-components/react';
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import { isB2GLegalForm } from '@/helpers/flowHelper';
 import { Rule } from '@/types/rule';
 
 type EinvoicingAddressSelectProps = {
@@ -16,9 +17,6 @@ type EinvoicingAddressSelectProps = {
   value?: string;
   onValueChange: (value: string | undefined) => void;
 };
-
-// B2G = administration ; B2B = corporation / association.
-const isB2g = (legalForm?: LegalForm) => legalForm === 'administration';
 
 /**
  * E-invoicing billing address field: informational banner when zero or one
@@ -54,7 +52,7 @@ export default function EinvoicingAddressSelect({
     return (
       <OdsMessage color="information" isDismissible={false} className="my-2">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {isB2g(legalForm)
+          {isB2GLegalForm(legalForm)
             ? t('account_details_einvoicing_empty_b2g')
             : t('account_details_einvoicing_empty_b2b')}
         </OdsText>
@@ -66,7 +64,7 @@ export default function EinvoicingAddressSelect({
     return (
       <OdsMessage color="information" isDismissible={false} className="my-2">
         <OdsText preset={ODS_TEXT_PRESET.paragraph}>
-          {isB2g(legalForm)
+          {isB2GLegalForm(legalForm)
             ? t('account_details_einvoicing_single_b2g', {
                 address: singleAddress,
               })
@@ -101,7 +99,7 @@ export default function EinvoicingAddressSelect({
         ))}
       </OdsSelect>
       <OdsText preset="caption" className="block mt-2">
-        {isB2g(legalForm)
+        {isB2GLegalForm(legalForm)
           ? t('account_details_einvoicing_multi_b2g')
           : t('account_details_einvoicing_multi_b2b')}
       </OdsText>

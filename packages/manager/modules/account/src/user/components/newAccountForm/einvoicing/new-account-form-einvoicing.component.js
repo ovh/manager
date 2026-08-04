@@ -6,6 +6,7 @@ export default {
     model: '=',
     rule: '<',
     siret: '<',
+    siretRegex: '<',
     legalForm: '<',
     country: '<',
     onRefreshRules: '&',
