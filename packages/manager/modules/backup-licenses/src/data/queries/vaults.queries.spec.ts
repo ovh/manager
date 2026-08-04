@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
 import { describe, expect, it, vi } from 'vitest';
 
-import { mockEdgeCaseVaults, mockVaultBucketAccess } from '@/mocks/vaults/vaults.mock';
+import { mockEdgeCaseVaults, mockVaultBucketCredentials } from '@/mocks/vaults/vaults.mock';
 import { setupMswMock } from '@/test-utils/setupMsw';
 import { VaultResource } from '@/types/Vault.type';
 
@@ -68,7 +68,7 @@ describe('vaultsQueries.bucketCredentials', () => {
       vaultsQueries.withClient(queryClient).bucketCredentials('0001', '0001-b1'),
     );
 
-    expect(credentials).toEqual(mockVaultBucketAccess);
+    expect(credentials).toEqual(mockVaultBucketCredentials);
   });
 
   it('rejects when the credentials call fails', async () => {

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { mockVaultBucketAccess } from '@/mocks/vaults/vaults.mock';
+import { mockVaultBucketCredentials } from '@/mocks/vaults/vaults.mock';
 import { stopWatchingApiCalls, watchApiCalls } from '@/test-utils/watchApiCalls';
 
 import {
@@ -56,10 +56,10 @@ describe('VaultCredentialsPage — requêtes émises', () => {
     // Un client S3 signe avec la région qu'on lui donne et refuse celle que l'endpoint contredit :
     // les deux champs sortent donc de la même réponse, ici sur un bucket en `eu-west-gra`.
     const region = screen.getByTestId('vault-credentials-region');
-    expect(region).toHaveTextContent(mockVaultBucketAccess.regionCode);
+    expect(region).toHaveTextContent(mockVaultBucketCredentials.regionCode);
     expect(region).not.toHaveTextContent('eu-west-gra');
     expect(screen.getByTestId('vault-credentials-endpoint')).toHaveTextContent(
-      mockVaultBucketAccess.endpoint,
+      mockVaultBucketCredentials.endpoint,
     );
   });
 });

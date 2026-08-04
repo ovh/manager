@@ -2,7 +2,7 @@ import { PathParams } from 'msw';
 
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 
-import { mockVaultBucketAccess, mockVaults } from '@/mocks/vaults/vaults.mock';
+import { mockVaultBucketCredentials, mockVaults } from '@/mocks/vaults/vaults.mock';
 import { VaultResource } from '@/types/Vault.type';
 
 export type TVaultMockParams = {
@@ -71,7 +71,7 @@ export const getVaultMocks = ({
     {
       url: '/backupServices/tenant/:backupServicesId/vault/:vaultId/bucket/:bucketId/credentials',
       response: () =>
-        isVaultCredentialsError ? { message: 'Internal server error' } : mockVaultBucketAccess,
+        isVaultCredentialsError ? { message: 'Internal server error' } : mockVaultBucketCredentials,
       api: 'v2',
       method: 'get',
       status: isVaultCredentialsError ? 500 : 200,

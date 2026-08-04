@@ -1,7 +1,7 @@
 import { screen, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { mockVaultBucketAccess, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
+import { mockVaultBucketCredentials, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
 import { VAULT_SECRET_MASK } from '@/module.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
 
@@ -41,7 +41,7 @@ describe('VaultCredentialsPage — what the modal says out loud', () => {
     // A skeleton is an empty shadow root, and a live region announces text changes, not names: the
     // wording has to be a text node the region holds, not an `aria-label` on it.
     expect(await within(status).findByText(labels.vaults.credentials.loading)).toBeInTheDocument();
-    expect(screen.queryByText(mockVaultBucketAccess.accessKey)).not.toBeInTheDocument();
+    expect(screen.queryByText(mockVaultBucketCredentials.accessKey)).not.toBeInTheDocument();
 
     await waitForCredentials();
 
