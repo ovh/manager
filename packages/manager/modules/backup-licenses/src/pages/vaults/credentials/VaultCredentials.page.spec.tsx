@@ -12,7 +12,7 @@ import {
   copiedMessage,
   copyButton,
   copyConfirmation,
-  failingAccessParams,
+  failingCredentialsParams,
   fieldControls,
   findMockVault,
   maskSecret,
@@ -169,7 +169,7 @@ describe('VaultCredentialsPage', () => {
   });
 
   it('reports a failed credentials call inside the modal, without any key material', async () => {
-    const { container } = await renderCredentials(paygoVault.id, failingAccessParams);
+    const { container } = await renderCredentials(paygoVault.id, failingCredentialsParams);
 
     expect(await screen.findByText(labels.vaults.credentials.error)).toBeVisible();
     expect(container.textContent).not.toContain(mockVaultBucketAccess.secretKey);
@@ -179,7 +179,7 @@ describe('VaultCredentialsPage', () => {
 
   // The four values come from the same call, so a failure leaves nothing to read but the message.
   it('shows no field when the keys fail to load, region and endpoint included', async () => {
-    await renderCredentials(paygoVault.id, failingAccessParams);
+    await renderCredentials(paygoVault.id, failingCredentialsParams);
 
     expect(await screen.findByText(labels.vaults.credentials.error)).toBeVisible();
     expect(screen.queryByTestId('vault-credentials-region')).not.toBeInTheDocument();

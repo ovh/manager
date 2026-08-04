@@ -31,9 +31,8 @@ export default function VaultCredentialsPage() {
   ]);
   const { vaultId } = useParams<{ vaultId: string }>();
   const navigate = useNavigate();
-  const { vault, bucket, access, isVaultListResolved, isPending, isError } = useVaultCredentials(
-    vaultId ?? '',
-  );
+  const { vault, bucket, credentials, isVaultListResolved, isPending, isError } =
+    useVaultCredentials(vaultId ?? '');
 
   const returnFocusToTrigger = useReturnFocus(getVaultActionsTriggerId(vaultId ?? ''));
   const hasStatus = isPending || isError;
@@ -83,29 +82,29 @@ export default function VaultCredentialsPage() {
               </OdsMessage>
             )}
           </div>
-          {access && (
+          {credentials && (
             <>
               {/* `regionCode` et non `bucket.region` : le contrat distingue `common.RegionEnum`
                   (`eu-west-gra`) du code S3 court (`gra`) qu'un client S3 doit signer, et seul ce
                   dernier accompagne les clés — avec l'endpoint auquel il correspond. */}
               <VaultCredentialField
                 label={t(`${NAMESPACES.REGION}:region`)}
-                value={access.regionCode}
+                value={credentials.regionCode}
                 testId="vault-credentials-region"
               />
               <VaultCredentialField
                 label={t('credentials.field.endpoint')}
-                value={access.endpoint}
+                value={credentials.endpoint}
                 testId="vault-credentials-endpoint"
               />
               <VaultCredentialField
                 label={t(`${NAMESPACES.SYSTEM}:key_access`)}
-                value={access.accessKey}
+                value={credentials.accessKey}
                 testId="vault-credentials-access-key"
               />
               <VaultSecretField
                 label={t(`${NAMESPACES.SYSTEM}:key_secret`)}
-                value={access.secretKey}
+                value={credentials.secretKey}
               />
             </>
           )}

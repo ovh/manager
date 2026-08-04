@@ -9,7 +9,7 @@ import {
   LIVE_REGION_SELECTOR,
   VALUE_TEST_IDS,
   a11y,
-  failingAccessParams,
+  failingCredentialsParams,
   paygoVault,
   renderCredentials,
   revealSecret,
@@ -33,7 +33,7 @@ describe('VaultCredentialsPage — what the modal says out loud', () => {
     // The answer is held back long enough for the wait to be observed after i18n has resolved.
     await renderCredentials(paygoVault.id, {
       vaults: mockVaultsFromDesign,
-      vaultAccessDelay: 500,
+      vaultCredentialsDelay: 500,
     });
 
     const status = statusRegion();
@@ -51,7 +51,7 @@ describe('VaultCredentialsPage — what the modal says out loud', () => {
   });
 
   it('announces the failure from that same region, without nesting a second one', async () => {
-    await renderCredentials(paygoVault.id, failingAccessParams);
+    await renderCredentials(paygoVault.id, failingCredentialsParams);
 
     const status = statusRegion();
 
@@ -92,7 +92,7 @@ describe('VaultCredentialsPage — what the modal says out loud', () => {
 
     const { container: erroredContainer } = await renderCredentials(
       paygoVault.id,
-      failingAccessParams,
+      failingCredentialsParams,
     );
 
     await screen.findByText(labels.vaults.credentials.error);

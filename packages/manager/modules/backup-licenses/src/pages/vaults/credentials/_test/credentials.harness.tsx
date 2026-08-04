@@ -31,9 +31,9 @@ export const [, paygoVault] = mockVaults as [VaultResource, VaultResource];
 export const writeText = vi.fn<(value: string) => Promise<void>>().mockResolvedValue(undefined);
 Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });
 
-export const failingAccessParams: MockParams = {
+export const failingCredentialsParams: MockParams = {
   vaults: allMockVaults,
-  isVaultAccessError: true,
+  isVaultCredentialsError: true,
 };
 
 export const renderCredentials = async (
