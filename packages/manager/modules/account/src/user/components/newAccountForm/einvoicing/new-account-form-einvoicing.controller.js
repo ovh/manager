@@ -13,14 +13,12 @@ const ELIGIBLE_LEGAL_FORMS = [
   USER_TYPE_ADMINISTRATION,
 ];
 
-const SIRET_REGEX = /^\d{14}$/;
-
 /**
- * E-invoicing billing address field (PPF directory), FR B2B/B2G only. Purely
- * presentational: `rule` is the `einvoicingBillingAddress` entry of the parent
- * form's /newAccount/rules response — no API call here. SIRET edits happen
- * inside the siret component and bypass the parent's onFieldChange, hence
- * `onRefreshRules`.
+ * E-invoicing billing address field (PPF directory), FR B2B/B2G accounts —
+ * DROM included (FR_COUNTRIES). Purely presentational: `rule` is the
+ * `einvoicingBillingAddress` entry of the parent form's /newAccount/rules
+ * response — no API call here. SIRET edits happen inside the siret component
+ * and bypass the parent's onFieldChange, hence `onRefreshRules`.
  */
 export default class NewAccountFormEinvoicingController {
   /* @ngInject */
@@ -65,9 +63,20 @@ export default class NewAccountFormEinvoicingController {
     return (
       FR_COUNTRIES.includes(this.country) &&
       ELIGIBLE_LEGAL_FORMS.includes(this.legalForm) &&
-      !!this.siret &&
-      SIRET_REGEX.test(this.siret)
+      this.isSiretComplete()
     );
+  }
+
+  // tested against the rules regularExpression, compiled once per source change
+  isSiretComplete() {
+    if (!this.siret || !this.siretRegex) {
+      return false;
+    }
+    if (this.siretRegexSource !== this.siretRegex) {
+      this.siretRegexSource = this.siretRegex;
+      this.compiledSiretRegex = new RegExp(this.siretRegex);
+    }
+    return this.compiledSiretRegex.test(this.siret);
   }
 
   // isEligible() hides a stale rule entry while the SIRET is being edited
