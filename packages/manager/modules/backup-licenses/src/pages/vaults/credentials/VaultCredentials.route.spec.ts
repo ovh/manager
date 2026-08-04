@@ -9,11 +9,11 @@ import { VaultResource } from '@/types/Vault.type';
 
 const [, paygoVault] = mockVaultsFromDesign as [VaultResource, VaultResource];
 
-let accessCalls: string[];
+let credentialsCalls: string[];
 
 describe('[INTEGRATION] Vault credentials route', () => {
   beforeEach(() => {
-    accessCalls = watchApiCalls('/access');
+    credentialsCalls = watchApiCalls('/credentials');
   });
 
   afterEach(() => {
@@ -26,7 +26,7 @@ describe('[INTEGRATION] Vault credentials route', () => {
     await waitFor(() => expect(screen.getByText(paygoVault.currentState.name)).toBeVisible(), {
       timeout: 20_000,
     });
-    expect(accessCalls).toHaveLength(0);
+    expect(credentialsCalls).toHaveLength(0);
   });
 
   it('is reachable at /vaults/:vaultId/credentials', async () => {

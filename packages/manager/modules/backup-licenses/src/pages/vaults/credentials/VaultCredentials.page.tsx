@@ -13,7 +13,6 @@ import { Modal } from '@ovh-ux/manager-react-components';
 import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 import { useReturnFocus } from '@/hooks/useReturnFocus/useReturnFocus';
 import { routeUrls } from '@/routes/routes.constants';
-import { getVaultBucketEndpoint } from '@/utils/vault/vaultEndpoint';
 
 import { getVaultActionsTriggerId } from '../vaults.constants';
 import { CopyConfirmation } from './_components/CopyConfirmation.component';
@@ -60,23 +59,6 @@ export default function VaultCredentialsPage() {
     >
       <CopyConfirmation>
         <div className="flex flex-col gap-6" aria-busy={isPending}>
-          {vault && bucket && (
-            <>
-              {/* Both fields describe the bucket that serves the keys, not the vault: an S3 client
-                  signs with the region it is given and refuses one that does not match the endpoint,
-                  and a vault can hold its eligible bucket in another region than its own. */}
-              <VaultCredentialField
-                label={t(`${NAMESPACES.REGION}:region`)}
-                value={bucket.region}
-                testId="vault-credentials-region"
-              />
-              <VaultCredentialField
-                label={t('credentials.field.endpoint')}
-                value={getVaultBucketEndpoint(bucket)}
-                testId="vault-credentials-endpoint"
-              />
-            </>
-          )}
           {/* The only live region, mounted from the first render and never unmounted: a region born
               with its content is silent, so the wait and the failure have to land in a node that was
               already there. The four values stay outside it, so a reveal is never narrated. */}
@@ -103,6 +85,19 @@ export default function VaultCredentialsPage() {
           </div>
           {access && (
             <>
+              {/* `regionCode` et non `bucket.region` : le contrat distingue `common.RegionEnum`
+                  (`eu-west-gra`) du code S3 court (`gra`) qu'un client S3 doit signer, et seul ce
+                  dernier accompagne les clés — avec l'endpoint auquel il correspond. */}
+              <VaultCredentialField
+                label={t(`${NAMESPACES.REGION}:region`)}
+                value={access.regionCode}
+                testId="vault-credentials-region"
+              />
+              <VaultCredentialField
+                label={t('credentials.field.endpoint')}
+                value={access.endpoint}
+                testId="vault-credentials-endpoint"
+              />
               <VaultCredentialField
                 label={t(`${NAMESPACES.SYSTEM}:key_access`)}
                 value={access.accessKey}
