@@ -2,7 +2,7 @@ import { fireEvent, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { mockVaultBucketAccess, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
+import { mockVaultBucketCredentials, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
 import { VAULT_SECRET_MASK } from '@/module.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
 
@@ -50,10 +50,10 @@ describe('VaultCredentialsPage', () => {
 
     await waitForCredentials();
     expect(screen.getByTestId('vault-credentials-region')).toHaveTextContent(
-      mockVaultBucketAccess.regionCode,
+      mockVaultBucketCredentials.regionCode,
     );
     expect(screen.getByTestId('vault-credentials-endpoint')).toHaveTextContent(
-      mockVaultBucketAccess.endpoint,
+      mockVaultBucketCredentials.endpoint,
     );
   });
 
@@ -62,7 +62,7 @@ describe('VaultCredentialsPage', () => {
 
     await waitForCredentials();
     expect(secretField()).toHaveTextContent(VAULT_SECRET_MASK);
-    expect(container.textContent).not.toContain(mockVaultBucketAccess.secretKey);
+    expect(container.textContent).not.toContain(mockVaultBucketCredentials.secretKey);
   });
 
   it('shows the access key in clear, with no reveal control of its own', async () => {
@@ -70,7 +70,7 @@ describe('VaultCredentialsPage', () => {
 
     await waitForCredentials();
     expect(screen.getByTestId('vault-credentials-access-key')).toHaveTextContent(
-      mockVaultBucketAccess.accessKey,
+      mockVaultBucketCredentials.accessKey,
     );
     // Counted, never queried by id: wrapping the access key in the secret field — the mockup
     // regression this guards (ux.md divergence #12) — renames its toggle, so an id query would stay
@@ -89,7 +89,7 @@ describe('VaultCredentialsPage', () => {
 
     await revealSecret();
 
-    expect(secretField()).toHaveTextContent(mockVaultBucketAccess.secretKey);
+    expect(secretField()).toHaveTextContent(mockVaultBucketCredentials.secretKey);
     expect(byName(labels.vaults.credentials.hide)).toHaveAccessibleDescription(a11y.hide_secret);
 
     await maskSecret();
@@ -102,7 +102,7 @@ describe('VaultCredentialsPage', () => {
 
     await waitForCredentials();
     await revealSecret();
-    expect(secretField()).toHaveTextContent(mockVaultBucketAccess.secretKey);
+    expect(secretField()).toHaveTextContent(mockVaultBucketCredentials.secretKey);
 
     unmount();
     await renderCredentials(paygoVault.id);
@@ -112,14 +112,22 @@ describe('VaultCredentialsPage', () => {
   });
 
   it.each([
-    ['vault-credentials-region', mockVaultBucketAccess.regionCode, labels.region.region],
+    ['vault-credentials-region', mockVaultBucketCredentials.regionCode, labels.region.region],
     [
       'vault-credentials-endpoint',
-      mockVaultBucketAccess.endpoint,
+      mockVaultBucketCredentials.endpoint,
       labels.vaults.credentials.field.endpoint,
     ],
-    ['vault-credentials-access-key', mockVaultBucketAccess.accessKey, labels.system.key_access],
-    ['vault-credentials-secret-key', mockVaultBucketAccess.secretKey, labels.system.key_secret],
+    [
+      'vault-credentials-access-key',
+      mockVaultBucketCredentials.accessKey,
+      labels.system.key_access,
+    ],
+    [
+      'vault-credentials-secret-key',
+      mockVaultBucketCredentials.secretKey,
+      labels.system.key_secret,
+    ],
   ])('copies %s and confirms it inside the dialog', async (_, expected, fieldLabel) => {
     await renderCredentials(paygoVault.id);
 
@@ -152,7 +160,7 @@ describe('VaultCredentialsPage', () => {
     await waitForCredentials();
     await userEvent.click(copyButton(labels.system.key_secret));
 
-    expect(writeText).toHaveBeenCalledWith(mockVaultBucketAccess.secretKey);
+    expect(writeText).toHaveBeenCalledWith(mockVaultBucketCredentials.secretKey);
     expect(secretField()).toHaveTextContent(VAULT_SECRET_MASK);
   });
 
@@ -172,8 +180,8 @@ describe('VaultCredentialsPage', () => {
     const { container } = await renderCredentials(paygoVault.id, failingCredentialsParams);
 
     expect(await screen.findByText(labels.vaults.credentials.error)).toBeVisible();
-    expect(container.textContent).not.toContain(mockVaultBucketAccess.secretKey);
-    expect(container.textContent).not.toContain(mockVaultBucketAccess.accessKey);
+    expect(container.textContent).not.toContain(mockVaultBucketCredentials.secretKey);
+    expect(container.textContent).not.toContain(mockVaultBucketCredentials.accessKey);
     expect(screen.queryByTestId('vault-credentials-loading')).not.toBeInTheDocument();
   });
 
