@@ -54,6 +54,12 @@ export interface LicenseCardData {
   recommended: boolean;
   /** Valeur API si la carte est directement commandable. Absente pour la carte parente DATA_PLATFORM. */
   apiValue?: LicenseApiValue;
+  /**
+   * Plan code du catalogue Agora (`GET /order/catalog/public/backupServices`), cf. BKP-1208
+   * §Technical. Pour la carte parente DATA_PLATFORM (pas d'`apiValue` propre), c'est le plan
+   * du tier le moins cher : le prix affiché ici est un « à partir de ».
+   */
+  planCode: string;
   features: LicenseFeatureItem[];
 }
 
@@ -64,6 +70,8 @@ export interface VdpTierCardData {
   i18nKey: string;
   recommended: boolean;
   apiValue: LicenseApiValue;
+  /** Plan code du catalogue Agora, cf. `LicenseCardData.planCode`. */
+  planCode: string;
   features: LicenseFeatureItem[];
 }
 

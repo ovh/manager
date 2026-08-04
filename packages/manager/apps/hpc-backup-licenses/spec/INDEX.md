@@ -12,3 +12,4 @@
 | [BKP-1218-edit-vbr-server.md](./BKP-1218-edit-vbr-server.md) | Édition d'un serveur VBR : page pleine reprenant le stepper vertical du tunnel de commande (pas une modale) + `PUT` (première mutation du module sur cette branche) | En cours |
 | [BKP-1219-delete-vbr-server.md](./BKP-1219-delete-vbr-server.md) | Suppression d'un serveur VBR : modale de confirmation + `DELETE` (première mutation du module) | En cours |
 | [BKP-1225-billing-consumption-table.md](./BKP-1225-billing-consumption-table.md) | Onglet « Facturation » : tableau de consommation des vaults (nom / Go / prix licence / prix stockage) | En cours |
+| [API-STATUS.md](./API-STATUS.md) | Suivi des appels API (implémenté / moqué / manquant) par ticket | En cours |

@@ -24,13 +24,15 @@
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
-      "price": "██,██ € netto/miesiąc — za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
+      "price_prefix": "",
+      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Tylko Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
-      "price": "Od ██,██ € netto/miesiąc — za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
+      "price_prefix": "Od ",
+      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -65,17 +67,20 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Polecane dla <b>MŚP</b> z ograniczoną flotą (<b>5–30 obciążeń</b>). Proste kopie zapasowe/przywracanie.",
-      "price": "Od ██,██ € netto/miesiąc — za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od ",
+      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Polecane dla <b>MŚP</b> z większą flotą (<b>30–150 obciążeń</b>). Szczegółowe monitorowanie i proaktywne alerty.",
-      "price": "Od ██,██ € netto/miesiąc — za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od ",
+      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
     },
     "premium": {
       "title": "Premium",
       "audience": "Polecane dla <b>średnich i dużych przedsiębiorstw</b> z rozbudowaną flotą (<b>150–2000+ obciążeń</b>). Orkiestracja planu odzyskiwania po awarii i zgodność.",
-      "price": "Od ██,██ € netto/miesiąc — za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od ",
+      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
     }
   },
   "vbr": {
@@ -127,6 +132,10 @@
     "show_less": "Pokaż mniej"
   },
   "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
     "title": "Podsumowanie zamówienia",
     "edit": "Edytuj",
     "empty": "Do uzupełnienia",
@@ -139,8 +148,7 @@
     },
     "vault_included_value": "500 GB",
     "price": {
-      "label": "Szacunkowy koszt miesięczny",
-      "value": "██,██ € netto/miesiąc"
+      "label": "Szacunkowy koszt miesięczny"
     },
     "cta": "Sfinalizuj zamówienie"
   },

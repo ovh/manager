@@ -13,6 +13,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '550e8400-e29b-41d4-a716-446655440001',
     status: 'ENABLED',
+    iam: {
+      id: '550e8400-e29b-41d4-a716-446655440001',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/550e8400-e29b-41d4-a716-446655440001',
+      displayName: 'VBR-CUST-SERV-01',
+    },
     targetSpec: {
       displayName: 'VBR-CUST-SERV-01',
       licenseType: LicenseApiValue.VDP_ADVANCED,
@@ -46,6 +51,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000002',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000002',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000002',
+      displayName: 'VBR-CUST-SERV-02',
+    },
     targetSpec: {
       displayName: 'VBR-CUST-SERV-02',
       licenseType: LicenseApiValue.VDP_FOUNDATION,
@@ -72,6 +82,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000003',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000003',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000003',
+      displayName: 'VBR-CUST-SERV-03',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000003',
       displayName: 'VBR-CUST-SERV-03',
@@ -92,6 +107,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000004',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000004',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000004',
+      displayName: 'VBR-CUST-SERV-04',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000004',
       displayName: 'VBR-CUST-SERV-04',
@@ -110,6 +130,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000005',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000005',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000005',
+      displayName: 'VBR-CUST-SERV-05',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000005',
       displayName: 'VBR-CUST-SERV-05',
@@ -128,6 +153,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000006',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000006',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000006',
+      displayName: 'VBR-CUST-SERV-06',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000006',
       displayName: 'VBR-CUST-SERV-06',
@@ -146,6 +176,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000007',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000007',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000007',
+      displayName: 'VBR-CUST-SERV-07',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000007',
       displayName: 'VBR-CUST-SERV-07',
@@ -164,6 +199,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000008',
     status: 'ENABLED',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000008',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000008',
+      displayName: 'VBR-CUST-SERV-08',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000008',
       displayName: 'VBR-CUST-SERV-08',
@@ -184,6 +224,11 @@ export const mockBackupServers: BackupServerResource[] = [
   {
     id: '44665544-a716-41d4-8e9b-550e84000009',
     status: 'ERROR',
+    iam: {
+      id: '44665544-a716-41d4-8e9b-550e84000009',
+      urn: 'urn:v1:eu:resource:backupServices:vspc/backupLicenses/44665544-a716-41d4-8e9b-550e84000009',
+      displayName: 'VBR-CUST-SERV-09',
+    },
     currentState: {
       id: '44665544-a716-41d4-8e9b-550e84000009',
       displayName: 'VBR-CUST-SERV-09',

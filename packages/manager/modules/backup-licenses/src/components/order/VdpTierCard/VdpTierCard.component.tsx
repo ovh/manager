@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { ODS_BADGE_COLOR, ODS_BADGE_SIZE, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsBadge, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 
+import CardPrice from '@/components/order/CardPrice/CardPrice.component';
 import FeatureList from '@/components/order/FeatureList/FeatureList.component';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 import { VdpTierCardData } from '@/types/Order.type';
@@ -13,11 +14,18 @@ import { SELECTED_CARD_CLASS } from '@/utils/orderAccent/orderAccent';
 interface VdpTierCardProps {
   card: VdpTierCardData;
   selected: boolean;
+  /** Carte non sélectionnable (édition restreinte par la version/l'OS du serveur, cf. `licenseEditRules`). */
+  disabled?: boolean;
   onSelect: () => void;
 }
 
 /** Carte de niveau Veeam Data Platform (sous-bloc de l'étape ①) — sélectionnable, comportement radio. */
-export default function VdpTierCard({ card, selected, onSelect }: VdpTierCardProps) {
+export default function VdpTierCard({
+  card,
+  selected,
+  disabled = false,
+  onSelect,
+}: VdpTierCardProps) {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
   const base = `tier.${card.i18nKey}`;
 
@@ -26,11 +34,17 @@ export default function VdpTierCard({ card, selected, onSelect }: VdpTierCardPro
       type="button"
       role="radio"
       aria-checked={selected}
-      onClick={onSelect}
-      className={`relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] ${
+      aria-disabled={disabled}
+      disabled={disabled}
+      onClick={disabled ? undefined : onSelect}
+      className={`relative flex h-full flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] ${
+        disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+      } ${
         selected
           ? SELECTED_CARD_CLASS
-          : 'border-[var(--ods-color-neutral-200)] hover:border-[var(--ods-color-primary-500)]'
+          : disabled
+            ? 'border-[var(--ods-color-neutral-200)] opacity-50'
+            : 'border-[var(--ods-color-neutral-200)] hover:border-[var(--ods-color-primary-500)]'
       }`}
     >
       {card.recommended && (
@@ -52,9 +66,7 @@ export default function VdpTierCard({ card, selected, onSelect }: VdpTierCardPro
       </span>
       <OdsDivider className="m-0" />
       <span className="block bg-[var(--ods-color-neutral-050)] p-8">
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
-          {t(`${base}.price`)}
-        </OdsText>
+        <CardPrice planCode={card.planCode} i18nBase={base} />
       </span>
     </button>
   );
