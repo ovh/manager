@@ -24,13 +24,15 @@
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
-      "price": "██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage",
+      "price_prefix": "",
+      "price_suffix": "— per server, VM, database o 500 GB di storage",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Solo Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
-      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage",
+      "price_prefix": "A partire da ",
+      "price_suffix": "— per server, VM, database o 500 GB di storage",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -65,17 +67,20 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Consigliato per <b>PMI</b> con flotta limitata (<b>5–30 workload</b>). Backup/ripristino semplici.",
-      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da ",
+      "price_suffix": "— per server, VM, database o 500 GB di storage"
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Consigliato per <b>PMI</b> con flotta ampia (<b>30–150 workload</b>). Monitoraggio dettagliato e avvisi proattivi.",
-      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da ",
+      "price_suffix": "— per server, VM, database o 500 GB di storage"
     },
     "premium": {
       "title": "Premium",
       "audience": "Consigliato per <b>medie e grandi imprese</b> con flotta estesa (<b>150–2000+ workload</b>). Orchestrazione del disaster recovery e conformità.",
-      "price": "A partire da ██,██ € IVA esclusa/mese — per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da ",
+      "price_suffix": "— per server, VM, database o 500 GB di storage"
     }
   },
   "vbr": {
@@ -127,6 +132,10 @@
     "show_less": "Mostra meno"
   },
   "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
     "title": "Riepilogo del tuo ordine",
     "edit": "Modifica",
     "empty": "Da completare",
@@ -139,8 +148,7 @@
     },
     "vault_included_value": "500 GB",
     "price": {
-      "label": "Stima mensile",
-      "value": "██,██ € IVA esclusa/mese"
+      "label": "Stima mensile"
     },
     "cta": "Finalizza il mio ordine"
   },

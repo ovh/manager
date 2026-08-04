@@ -3,6 +3,7 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
+import { BackupLicensesContext } from '@/BackupLicenses.context';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { LicenseFamily, ServerVaultFormState, VdpTier } from '@/types/Order.type';
 
@@ -88,5 +89,49 @@ describe('OrderRecapPanel', () => {
     expect(cta).toBeInTheDocument();
     fireEvent.click(cta as Element);
     expect(onFinalize).toHaveBeenCalledOnce();
+  });
+
+  it('n\'affiche pas de sur-titre univers quand le scope n\'est pas déterminé', async () => {
+    await renderWithProviders(
+      <OrderRecapPanel
+        family={LicenseFamily.ENTERPRISE_PLUS}
+        tier={null}
+        form={EMPTY_FORM}
+        onFinalize={vi.fn()}
+      />,
+    );
+
+    expect(screen.queryByText('Hosted Private Cloud')).not.toBeInTheDocument();
+    expect(screen.queryByText('Bare Metal Cloud')).not.toBeInTheDocument();
+  });
+
+  it('affiche le sur-titre "Hosted Private Cloud" pour le scope Enterprise (HPC)', async () => {
+    await renderWithProviders(
+      <BackupLicensesContext.Provider value={{ appName: 'hpc-backup-licenses', scope: 'Enterprise' }}>
+        <OrderRecapPanel
+          family={LicenseFamily.ENTERPRISE_PLUS}
+          tier={null}
+          form={EMPTY_FORM}
+          onFinalize={vi.fn()}
+        />
+      </BackupLicensesContext.Provider>,
+    );
+
+    expect(screen.getByText('Hosted Private Cloud')).toBeInTheDocument();
+  });
+
+  it('affiche le sur-titre "Bare Metal Cloud" pour le scope Baremetal (BMC)', async () => {
+    await renderWithProviders(
+      <BackupLicensesContext.Provider value={{ appName: 'bmc-backup-licenses', scope: 'Baremetal' }}>
+        <OrderRecapPanel
+          family={LicenseFamily.ENTERPRISE_PLUS}
+          tier={null}
+          form={EMPTY_FORM}
+          onFinalize={vi.fn()}
+        />
+      </BackupLicensesContext.Provider>,
+    );
+
+    expect(screen.getByText('Bare Metal Cloud')).toBeInTheDocument();
   });
 });

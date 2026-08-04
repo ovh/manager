@@ -43,4 +43,39 @@ describe('LicenseStep', () => {
 
     expect(screen.queryByRole('radiogroup', { name: 'Niveau VDP' })).not.toBeInTheDocument();
   });
+
+  it('désactive les cartes de famille quand familyDisabled est vrai', async () => {
+    await renderWithProviders(
+      <LicenseStep
+        family={LicenseFamily.DATA_PLATFORM}
+        tier={VdpTier.PREMIUM}
+        onSelectFamily={vi.fn()}
+        onSelectTier={vi.fn()}
+        familyDisabled
+      />,
+    );
+
+    const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
+    familyGroup.querySelectorAll('[role="radio"]').forEach((radio) => expect(radio).toBeDisabled());
+  });
+
+  it('désactive les cartes de niveau VDP quand tierDisabled est vrai, sans toucher aux cartes de famille', async () => {
+    await renderWithProviders(
+      <LicenseStep
+        family={LicenseFamily.DATA_PLATFORM}
+        tier={VdpTier.PREMIUM}
+        onSelectFamily={vi.fn()}
+        onSelectTier={vi.fn()}
+        tierDisabled
+      />,
+    );
+
+    const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
+    familyGroup
+      .querySelectorAll('[role="radio"]')
+      .forEach((radio) => expect(radio).not.toBeDisabled());
+
+    const tierGroup = screen.getByRole('radiogroup', { name: 'Niveau VDP' });
+    tierGroup.querySelectorAll('[role="radio"]').forEach((radio) => expect(radio).toBeDisabled());
+  });
 });

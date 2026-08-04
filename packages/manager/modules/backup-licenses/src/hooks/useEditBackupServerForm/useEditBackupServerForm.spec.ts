@@ -6,6 +6,8 @@ import { LicenseApiValue, LicenseFamily, VdpTier } from '@/types/Order.type';
 
 import { useEditBackupServerForm } from './useEditBackupServerForm';
 
+// Version/OS par défaut = cas pleinement éditable (v13 + Windows), pour ne pas parasiter les
+// tests qui portent sur autre chose que `licenseEditRules` — celle-ci est testée séparément.
 const buildServer = (overrides: Partial<BackupServerResource['currentState']> = {}) =>
   ({
     id: 'server-1',
@@ -17,6 +19,8 @@ const buildServer = (overrides: Partial<BackupServerResource['currentState']> = 
       privateIps: ['192.168.10.2/32'],
       licenseType: LicenseApiValue.VDP_PREMIUM,
       licenseStatus: LicenseStatus.INSTALLED,
+      backupServerVersion: '13.0',
+      osType: 'WINDOWS',
       ...overrides,
     },
     currentTasks: [],
@@ -184,5 +188,46 @@ describe('useEditBackupServerForm', () => {
     act(() => result.current.selectFamily(LicenseFamily.DATA_PLATFORM));
 
     expect(result.current.tier).toBe(VdpTier.PREMIUM);
+  });
+
+  it('exposes fully open license edit rules for a v13 Windows server', () => {
+    const server = buildServer({ backupServerVersion: '13.0', osType: 'WINDOWS' });
+    const { result } = renderHook(() => useEditBackupServerForm(server));
+
+    expect(result.current.licenseEditRules).toEqual({
+      canEditFamily: true,
+      canEditTier: true,
+      lockReason: null,
+    });
+  });
+
+  it('ignores family and tier selection for a server below VBR 13', () => {
+    const server = buildServer({ backupServerVersion: '12.1', osType: 'WINDOWS' });
+    const { result } = renderHook(() => useEditBackupServerForm(server));
+
+    expect(result.current.licenseEditRules.lockReason).toBe('version');
+
+    act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
+    act(() => result.current.selectTier(VdpTier.FOUNDATION));
+
+    expect(result.current.family).toBe(LicenseFamily.DATA_PLATFORM);
+    expect(result.current.tier).toBe(VdpTier.PREMIUM);
+  });
+
+  it('allows only the tier selection for a v13 Linux server', () => {
+    const server = buildServer({ backupServerVersion: '13.0', osType: 'LINUX' });
+    const { result } = renderHook(() => useEditBackupServerForm(server));
+
+    expect(result.current.licenseEditRules).toEqual({
+      canEditFamily: false,
+      canEditTier: true,
+      lockReason: 'os',
+    });
+
+    act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
+    expect(result.current.family).toBe(LicenseFamily.DATA_PLATFORM);
+
+    act(() => result.current.selectTier(VdpTier.FOUNDATION));
+    expect(result.current.tier).toBe(VdpTier.FOUNDATION);
   });
 });

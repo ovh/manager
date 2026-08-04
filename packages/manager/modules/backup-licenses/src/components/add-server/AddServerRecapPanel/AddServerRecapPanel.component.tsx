@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+
+import { ManagerButton } from '@ovh-ux/manager-react-components';
 
 import OrderSummaryRow from '@/components/order/OrderRecapPanel/OrderSummaryRow.component';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { AddServerFormState } from '@/hooks/useAddServerForm/useAddServerForm';
-import { BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
+import { BACKUP_LICENSES_IAM_RULES, BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
 import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 interface AddServerRecapPanelProps {
@@ -17,6 +19,8 @@ interface AddServerRecapPanelProps {
   form: AddServerFormState;
   isSubmitting: boolean;
   onFinalize: () => void;
+  /** URN du tenant VSPC : accès direct par URL au tunnel, donc protégé indépendamment du CTA de la liste. */
+  urn?: string;
 }
 
 /**
@@ -29,8 +33,10 @@ export default function AddServerRecapPanel({
   form,
   isSubmitting,
   onFinalize,
+  urn,
 }: AddServerRecapPanelProps) {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
+  const submitButtonId = useId();
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -74,13 +80,19 @@ export default function AddServerRecapPanel({
           <OdsText preset={ODS_TEXT_PRESET.heading5}>{t('summary.price.value')}</OdsText>
         </div>
         {/* Jamais désactivé pour formulaire invalide (révèle les erreurs et rouvre
-            l'étape fautive, cf. AddServer.page) — seulement pendant la soumission. */}
-        <OdsButton
+            l'étape fautive, cf. AddServer.page) — seulement pendant la soumission. `ManagerButton`
+            y ajoute un check IAM (`vspc/backupLicenses/edit`) : protège aussi l'accès direct par
+            URL, indépendamment du CTA de la liste (cf. LinkedServersTopbar). */}
+        <ManagerButton
+          id={submitButtonId}
           type="button"
           className="w-full"
+          data-testid="add-server-submit"
           label={t('add_server.summary.cta')}
           isDisabled={isSubmitting}
           onClick={onFinalize}
+          urn={urn}
+          iamActions={[BACKUP_LICENSES_IAM_RULES['vspc/backupLicenses/edit']]}
         />
       </div>
     </OdsCard>

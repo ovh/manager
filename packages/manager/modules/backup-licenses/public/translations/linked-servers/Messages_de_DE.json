@@ -49,6 +49,10 @@
         "collapsed_title": "VBR-Server — <b>{{value}}</b>"
       }
     },
+    "license_restriction": {
+      "version": "Der Lizenztyp kann für diesen Server nicht geändert werden: ein Upgrade auf VBR 13 ist erforderlich.",
+      "os": "Der Lizenztyp bleibt für diesen Server auf Data Platform festgelegt: nur die Stufe kann geändert werden."
+    },
     "license_change_notice": "Die Lizenzänderung wird am 1. des nächsten Monats wirksam. Bis dahin bleibt die aktuelle Lizenz aktiv.",
     "current_value": "Aktueller Wert: {{value}}",
     "recap": {

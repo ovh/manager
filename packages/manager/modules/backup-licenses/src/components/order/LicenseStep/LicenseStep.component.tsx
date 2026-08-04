@@ -16,6 +16,10 @@ interface LicenseStepProps {
   tier: VdpTier | null;
   onSelectFamily: (family: LicenseFamily) => void;
   onSelectTier: (tier: VdpTier) => void;
+  /** Cartes de famille non sélectionnables (tunnel d'édition, cf. `licenseEditRules`). */
+  familyDisabled?: boolean;
+  /** Cartes de niveau VDP non sélectionnables (tunnel d'édition, cf. `licenseEditRules`). */
+  tierDisabled?: boolean;
 }
 
 /**
@@ -28,6 +32,8 @@ export default function LicenseStep({
   tier,
   onSelectFamily,
   onSelectTier,
+  familyDisabled = false,
+  tierDisabled = false,
 }: LicenseStepProps) {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
   const isDataPlatform = family === LicenseFamily.DATA_PLATFORM;
@@ -44,6 +50,7 @@ export default function LicenseStep({
             key={card.family}
             card={card}
             selected={family === card.family}
+            disabled={familyDisabled}
             onSelect={() => onSelectFamily(card.family)}
           />
         ))}
@@ -70,6 +77,7 @@ export default function LicenseStep({
                 key={card.tier}
                 card={card}
                 selected={tier === card.tier}
+                disabled={tierDisabled}
                 onSelect={() => onSelectTier(card.tier)}
               />
             ))}
