@@ -62,6 +62,7 @@ import { putSmsConsent } from '@/data/api/marketing';
 import { urls } from '@/routes/routes.constant';
 import { useTrackingContext } from '@/context/tracking/useTracking';
 import {
+  FR_COUNTRIES,
   getSirenFromSiret,
   isIndividualLegalForm,
   shouldAccessOrganizationSearch,
@@ -223,13 +224,22 @@ function AccountDetailsForm({
     return country === 'FR' && rules?.companyNationalIdentificationNumber;
   }, [country, rules?.companyNationalIdentificationNumber]);
 
-  // FR B2B/B2G: VAT + e-invoicing address grouped in a "Facturation" section
-  const showEinvoicingSection = Boolean(separateSIRENAndSIRET);
+  // FR + DROM (FR_COUNTRIES) B2B/B2G: VAT + e-invoicing address grouped in a
+  // "Facturation" section
+  const showEinvoicingSection =
+    FR_COUNTRIES.includes(country || '') &&
+    Boolean(rules?.companyNationalIdentificationNumber);
 
   const {
     data: einvoicingRules,
     refetch: refetchEinvoicingRules,
-  } = useEinvoicingRules(corporationIdValue, legalForm, showEinvoicingSection);
+  } = useEinvoicingRules(
+    corporationIdValue,
+    legalForm,
+    country,
+    // sirenValue is only set when the SIRET matches the rules regularExpression
+    showEinvoicingSection && !!sirenValue,
+  );
   const einvoicingRule = einvoicingRules?.einvoicingBillingAddress;
 
   // A selection is only required when the picker is shown (several addresses):

@@ -4,6 +4,7 @@ import {
   shouldEnableSIRENDisplay,
   getSirenFromSiret,
   isIndividualLegalForm,
+  isB2GLegalForm,
   isUnknownCountry,
 } from './flowHelper';
 
@@ -85,6 +86,21 @@ describe('isIndividualLegalForm', () => {
 
   it('should return false when legalForm is undefined', () => {
     expect(isIndividualLegalForm(undefined)).toBe(false);
+  });
+});
+
+describe('isB2GLegalForm', () => {
+  it('should return true when legalForm is "administration"', () => {
+    expect(isB2GLegalForm('administration')).toBe(true);
+  });
+
+  it('should return false for B2B legal forms', () => {
+    expect(isB2GLegalForm('corporation')).toBe(false);
+    expect(isB2GLegalForm('association')).toBe(false);
+  });
+
+  it('should return false when legalForm is undefined', () => {
+    expect(isB2GLegalForm(undefined)).toBe(false);
   });
 });
 

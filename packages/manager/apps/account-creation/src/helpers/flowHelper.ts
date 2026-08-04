@@ -27,6 +27,10 @@ export const getSirenFromSiret = (
 export const isIndividualLegalForm = (legalForm?: LegalForm) =>
   legalForm === 'individual';
 
+// B2G = administration; B2B = corporation / association
+export const isB2GLegalForm = (legalForm?: LegalForm) =>
+  legalForm === 'administration';
+
 /**
  * A country is unusable for the account creation flow when it is missing or the
  * `UNKNOWN` sentinel returned by the API. Centralised here because the recovery

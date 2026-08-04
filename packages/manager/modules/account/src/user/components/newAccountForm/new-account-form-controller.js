@@ -530,6 +530,13 @@ export default class NewAccountFormController {
     );
   }
 
+  getSiretRegularExpression() {
+    return (this.rules || []).find(
+      (rule) =>
+        rule.fieldName === FIELD_NAME_LIST.companyNationalIdentificationNumber,
+    )?.regularExpression;
+  }
+
   updateRules() {
     return this.fetchRules(this.model)
       .then((newRules) => {
