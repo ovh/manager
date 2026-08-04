@@ -59,24 +59,26 @@ describe('vaultsQueries.list', () => {
   });
 });
 
-describe('vaultsQueries.bucketAccess', () => {
+describe('vaultsQueries.bucketCredentials', () => {
   it('returns the S3 keys of the requested bucket', async () => {
     setupMswMock();
     const queryClient = createQueryClient();
 
-    const access = await queryClient.fetchQuery(
-      vaultsQueries.withClient(queryClient).bucketAccess('0001', '0001-b1'),
+    const credentials = await queryClient.fetchQuery(
+      vaultsQueries.withClient(queryClient).bucketCredentials('0001', '0001-b1'),
     );
 
-    expect(access).toEqual(mockVaultBucketAccess);
+    expect(credentials).toEqual(mockVaultBucketAccess);
   });
 
   it('rejects when the credentials call fails', async () => {
-    setupMswMock({ isVaultAccessError: true });
+    setupMswMock({ isVaultCredentialsError: true });
     const queryClient = createQueryClient();
 
     await expect(
-      queryClient.fetchQuery(vaultsQueries.withClient(queryClient).bucketAccess('0001', '0001-b1')),
+      queryClient.fetchQuery(
+        vaultsQueries.withClient(queryClient).bucketCredentials('0001', '0001-b1'),
+      ),
     ).rejects.toThrow();
   });
 });

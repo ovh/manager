@@ -8,9 +8,9 @@ import { VaultResource } from '@/types/Vault.type';
 export type TVaultMockParams = {
   vaults?: VaultResource[];
   isVaultListError?: boolean;
-  isVaultAccessError?: boolean;
+  isVaultCredentialsError?: boolean;
   /** Holds the credentials answer back, so the in-modal loading state can be observed. */
-  vaultAccessDelay?: number;
+  vaultCredentialsDelay?: number;
   /**
    * Number of list calls a CREATING vault stays CREATING before flipping to READY. A static fixture
    * cannot prove that polling stops, so the handler has to change its answer over time.
@@ -34,8 +34,8 @@ const settleCreatingVaults = (vaults: VaultResource[]): VaultResource[] =>
 export const getVaultMocks = ({
   vaults,
   isVaultListError,
-  isVaultAccessError,
-  vaultAccessDelay = 0,
+  isVaultCredentialsError,
+  vaultCredentialsDelay = 0,
   vaultCreatingCallsBeforeReady,
 }: TVaultMockParams): Handler[] => {
   let listCalls = 0;
@@ -71,11 +71,11 @@ export const getVaultMocks = ({
     {
       url: '/backupServices/tenant/:backupServicesId/vault/:vaultId/bucket/:bucketId/credentials',
       response: () =>
-        isVaultAccessError ? { message: 'Internal server error' } : mockVaultBucketAccess,
+        isVaultCredentialsError ? { message: 'Internal server error' } : mockVaultBucketAccess,
       api: 'v2',
       method: 'get',
-      status: isVaultAccessError ? 500 : 200,
-      delay: vaultAccessDelay,
+      status: isVaultCredentialsError ? 500 : 200,
+      delay: vaultCredentialsDelay,
     },
   ];
 };
