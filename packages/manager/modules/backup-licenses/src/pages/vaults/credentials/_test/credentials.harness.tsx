@@ -12,7 +12,7 @@ import { getVaultCredentialsUrl, routeUrls, subRoutes } from '@/routes/routes.co
 import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { MockParams, setupMswMock } from '@/test-utils/setupMsw';
-import { VaultBucket, VaultResource } from '@/types/Vault.type';
+import { VaultResource } from '@/types/Vault.type';
 
 import VaultCredentialsPage, { VAULT_CREDENTIALS_STATUS_TEST_ID } from '../VaultCredentials.page';
 import { COPY_CONFIRMATION_TEST_ID } from '../_components/CopyConfirmation.component';
@@ -27,7 +27,6 @@ export const findMockVault = (name: string) =>
   allMockVaults.find(({ currentState }) => currentState.name === name) as VaultResource;
 
 export const [, paygoVault] = mockVaults as [VaultResource, VaultResource];
-export const [paygoBucket] = paygoVault.currentState.buckets as [VaultBucket];
 
 export const writeText = vi.fn<(value: string) => Promise<void>>().mockResolvedValue(undefined);
 Object.defineProperty(navigator, 'clipboard', { value: { writeText }, configurable: true });

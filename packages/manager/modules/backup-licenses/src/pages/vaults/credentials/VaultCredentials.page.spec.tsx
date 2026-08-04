@@ -5,7 +5,6 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mockVaultBucketAccess, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
 import { VAULT_SECRET_MASK } from '@/module.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
-import { VaultResource } from '@/types/Vault.type';
 
 import {
   a11y,
@@ -17,7 +16,6 @@ import {
   fieldControls,
   findMockVault,
   maskSecret,
-  paygoBucket,
   paygoVault,
   renderCredentials,
   revealSecret,
@@ -47,32 +45,15 @@ describe('VaultCredentialsPage', () => {
     expect(screen.getByText(labels.system.key_secret)).toBeVisible();
   });
 
-  it('serves the region and the endpoint from the already-loaded list, at no extra call', async () => {
+  it('shows the region code and the endpoint published with the keys', async () => {
     await renderCredentials(paygoVault.id);
 
-    expect(await screen.findByTestId('vault-credentials-region')).toHaveTextContent(
-      paygoBucket.region,
+    await waitForCredentials();
+    expect(screen.getByTestId('vault-credentials-region')).toHaveTextContent(
+      mockVaultBucketAccess.regionCode,
     );
     expect(screen.getByTestId('vault-credentials-endpoint')).toHaveTextContent(
-      's3.eu-west-par.io.cloud.ovh.net',
-    );
-
-    await waitForCredentials();
-  });
-
-  it('derives the endpoint from the bucket region when the API publishes none', async () => {
-    const endpointlessVault: VaultResource = {
-      ...paygoVault,
-      currentState: {
-        ...paygoVault.currentState,
-        buckets: [{ ...paygoBucket, endPoint: undefined }],
-      },
-    };
-
-    await renderCredentials(endpointlessVault.id, { vaults: [endpointlessVault] });
-
-    expect(await screen.findByTestId('vault-credentials-endpoint')).toHaveTextContent(
-      's3.eu-west-par.io.cloud.ovh.net',
+      mockVaultBucketAccess.endpoint,
     );
   });
 
@@ -131,10 +112,10 @@ describe('VaultCredentialsPage', () => {
   });
 
   it.each([
-    ['vault-credentials-region', paygoBucket.region, labels.region.region],
+    ['vault-credentials-region', mockVaultBucketAccess.regionCode, labels.region.region],
     [
       'vault-credentials-endpoint',
-      's3.eu-west-par.io.cloud.ovh.net',
+      mockVaultBucketAccess.endpoint,
       labels.vaults.credentials.field.endpoint,
     ],
     ['vault-credentials-access-key', mockVaultBucketAccess.accessKey, labels.system.key_access],
@@ -196,11 +177,13 @@ describe('VaultCredentialsPage', () => {
     expect(screen.queryByTestId('vault-credentials-loading')).not.toBeInTheDocument();
   });
 
-  it('keeps the region and the endpoint readable even when the keys fail to load', async () => {
+  // The four values come from the same call, so a failure leaves nothing to read but the message.
+  it('shows no field when the keys fail to load, region and endpoint included', async () => {
     await renderCredentials(paygoVault.id, failingAccessParams);
 
     expect(await screen.findByText(labels.vaults.credentials.error)).toBeVisible();
-    expect(screen.getByTestId('vault-credentials-region')).toHaveTextContent(paygoBucket.region);
+    expect(screen.queryByTestId('vault-credentials-region')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('vault-credentials-endpoint')).not.toBeInTheDocument();
   });
 
   it('reports a failed vault list inside the modal instead of loading for ever', async () => {
