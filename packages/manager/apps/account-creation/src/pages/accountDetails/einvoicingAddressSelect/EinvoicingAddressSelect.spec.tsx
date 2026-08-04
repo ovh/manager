@@ -1,23 +1,32 @@
 import { describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import { LegalForm } from '@ovh-ux/manager-config';
-import { EinvoicingRule } from '@/types/einvoicing';
+import { Rule } from '@/types/rule';
 import EinvoicingAddressSelect from './EinvoicingAddressSelect.component';
 
+type SelectRule = Pick<Rule, 'in' | 'defaultValue' | 'mandatory'>;
+
+const rule = (over: Partial<SelectRule> = {}): SelectRule => ({
+  mandatory: true,
+  in: null,
+  defaultValue: null,
+  ...over,
+});
+
 const renderComponent = ({
-  rule,
+  rule: ruleProp,
   legalForm = 'corporation' as LegalForm,
   value,
   onValueChange = vi.fn(),
 }: {
-  rule?: EinvoicingRule;
+  rule?: SelectRule;
   legalForm?: LegalForm;
   value?: string;
   onValueChange?: (value: string | undefined) => void;
 }) =>
   render(
     <EinvoicingAddressSelect
-      rule={rule}
+      rule={ruleProp}
       legalForm={legalForm}
       value={value}
       onValueChange={onValueChange}
@@ -25,18 +34,14 @@ const renderComponent = ({
   );
 
 describe('EinvoicingAddressSelect', () => {
-  it('renders nothing when the rule is missing or not visible', () => {
-    const { container: c1 } = renderComponent({ rule: undefined });
-    expect(c1).toBeEmptyDOMElement();
-    const { container: c2 } = renderComponent({
-      rule: { visible: false, mandatory: false, in: null, defaultValue: null },
-    });
-    expect(c2).toBeEmptyDOMElement();
+  it('renders nothing when the rule is missing (SIRET unknown to the directory)', () => {
+    const { container } = renderComponent({ rule: undefined });
+    expect(container).toBeEmptyDOMElement();
   });
 
   it('empty addresses, B2B → informational banner (no picker)', () => {
     renderComponent({
-      rule: { visible: true, mandatory: false, in: [], defaultValue: null },
+      rule: rule({ mandatory: false, in: [] }),
       legalForm: 'corporation' as LegalForm,
     });
     expect(
@@ -46,7 +51,7 @@ describe('EinvoicingAddressSelect', () => {
 
   it('empty addresses, B2G → dedicated informational banner', () => {
     renderComponent({
-      rule: { visible: true, mandatory: false, in: [], defaultValue: null },
+      rule: rule({ mandatory: false, in: [] }),
       legalForm: 'administration' as LegalForm,
     });
     expect(
@@ -57,12 +62,10 @@ describe('EinvoicingAddressSelect', () => {
   it('single address → banner and the address is auto-selected', async () => {
     const onValueChange = vi.fn();
     renderComponent({
-      rule: {
-        visible: true,
-        mandatory: true,
+      rule: rule({
         in: ['1 rue A, 59100 Roubaix'],
         defaultValue: '1 rue A, 59100 Roubaix',
-      },
+      }),
       legalForm: 'corporation' as LegalForm,
       onValueChange,
     });
@@ -76,12 +79,7 @@ describe('EinvoicingAddressSelect', () => {
 
   it('several addresses → renders a select with one option per address', () => {
     renderComponent({
-      rule: {
-        visible: true,
-        mandatory: true,
-        in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
-        defaultValue: null,
-      },
+      rule: rule({ in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'] }),
       legalForm: 'corporation' as LegalForm,
     });
     expect(screen.getByText('1 rue A, 59100 Roubaix')).toBeInTheDocument();
@@ -97,12 +95,7 @@ describe('EinvoicingAddressSelect', () => {
 
   it('several addresses, B2G → shows the B2G "please select" message', () => {
     renderComponent({
-      rule: {
-        visible: true,
-        mandatory: true,
-        in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
-        defaultValue: null,
-      },
+      rule: rule({ in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'] }),
       legalForm: 'administration' as LegalForm,
     });
     expect(
@@ -113,12 +106,10 @@ describe('EinvoicingAddressSelect', () => {
   it('single address, B2G → dedicated banner and auto-selected', async () => {
     const onValueChange = vi.fn();
     renderComponent({
-      rule: {
-        visible: true,
-        mandatory: true,
+      rule: rule({
         in: ['1 rue A, 59100 Roubaix'],
         defaultValue: '1 rue A, 59100 Roubaix',
-      },
+      }),
       legalForm: 'administration' as LegalForm,
       onValueChange,
     });
@@ -133,7 +124,7 @@ describe('EinvoicingAddressSelect', () => {
   it('empty addresses with a lingering value → clears it', async () => {
     const onValueChange = vi.fn();
     renderComponent({
-      rule: { visible: true, mandatory: false, in: [], defaultValue: null },
+      rule: rule({ mandatory: false, in: [] }),
       legalForm: 'corporation' as LegalForm,
       value: 'stale-value',
       onValueChange,
@@ -144,12 +135,7 @@ describe('EinvoicingAddressSelect', () => {
   it('several addresses → does not auto-select (customer must pick)', () => {
     const onValueChange = vi.fn();
     renderComponent({
-      rule: {
-        visible: true,
-        mandatory: true,
-        in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'],
-        defaultValue: null,
-      },
+      rule: rule({ in: ['1 rue A, 59100 Roubaix', '2 rue B, 59100 Roubaix'] }),
       legalForm: 'corporation' as LegalForm,
       value: '2 rue B, 59100 Roubaix',
       onValueChange,

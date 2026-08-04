@@ -50,7 +50,6 @@ import {
 import { useRules } from '@/data/hooks/useRules';
 import { RulesParam } from '@/data/api/rules';
 import { useEinvoicingRules } from '@/data/hooks/useEinvoicingRules';
-import { isEinvoicingStaleAddressError } from '@/config/einvoicing';
 import { useUserContext } from '@/context/user/useUser';
 import { useMe } from '@/data/hooks/useMe';
 import { Rule, RuleField } from '@/types/rule';
@@ -131,8 +130,6 @@ function AccountDetailsForm({
     confirmSend?: boolean;
     phoneType?: string;
     smsConsent?: boolean;
-    // Local form field until `@ovh-ux/manager-config` User carries it (bumped
-    // once the PPF backend is in prod). Sent to PUT /me as einvoicingBillingAddress.
     einvoicingBillingAddress?: string;
   };
 
@@ -141,7 +138,7 @@ function AccountDetailsForm({
     return baseSchema.extend({
       confirmSend: z.literal(true),
       smsConsent: z.boolean().optional(),
-      // Non-blocking (RG7): the customer can skip the e-invoicing address.
+      // requiredness is enforced by isEinvoicingSelectionMissing, not the schema
       einvoicingBillingAddress: z.string().optional(),
     });
   }, [rules]);
@@ -226,24 +223,73 @@ function AccountDetailsForm({
     return country === 'FR' && rules?.companyNationalIdentificationNumber;
   }, [country, rules?.companyNationalIdentificationNumber]);
 
-  // FR B2B/B2G flow: groups the VAT field and the PPF e-invoicing address field
-  // in a dedicated "Facturation" section.
+  // FR B2B/B2G: VAT + e-invoicing address grouped in a "Facturation" section
   const showEinvoicingSection = Boolean(separateSIRENAndSIRET);
 
   const {
-    data: einvoicingRule,
+    data: einvoicingRules,
     refetch: refetchEinvoicingRules,
   } = useEinvoicingRules(corporationIdValue, legalForm, showEinvoicingSection);
+  const einvoicingRule = einvoicingRules?.einvoicingBillingAddress;
 
-  // A selection is only required when the picker (a select) is actually shown:
-  // rule visible, mandatory, and more than one address to choose from. The empty
-  // and single-address cases are informational only (no action required).
+  // A selection is only required when the picker is shown (several addresses):
+  // the empty and single-address cases are informational only.
   const einvoicingAddressValue = watch('einvoicingBillingAddress');
   const isEinvoicingSelectionMissing =
-    Boolean(einvoicingRule?.visible) &&
     Boolean(einvoicingRule?.mandatory) &&
     (einvoicingRule?.in?.length ?? 0) > 1 &&
     !einvoicingAddressValue;
+
+  // VAT field, rendered in the "Facturation" (FR B2B/B2G) or legal section
+  const vatField = (
+    <Controller
+      control={control}
+      name="vat"
+      render={({ field: { name, value, onChange, onBlur } }) => (
+        <OdsFormField>
+          <label
+            htmlFor={name}
+            slot="label"
+            aria-label={t('account_details_field_vat', {
+              vatLabel,
+              interpolation: { escapeValue: false },
+            })}
+          >
+            <OdsText preset="caption">
+              {t('account_details_field_vat', {
+                vatLabel,
+                interpolation: { escapeValue: false },
+              })}
+              {rules?.vat?.mandatory && ' *'}
+            </OdsText>
+          </label>
+
+          {separateSIRENAndSIRET && companyDetails?.vatID ? (
+            <VatSelect vatId={companyDetails.vatID} onValueChange={onChange} />
+          ) : (
+            <>
+              <OdsInput
+                name="vat"
+                id={name}
+                value={value}
+                hasError={!!errors[name]}
+                onOdsChange={onChange}
+                onOdsBlur={onBlur}
+              />
+              {errors.vat && rules?.vat && (
+                <OdsText
+                  className="text-critical leading-[0.8]"
+                  preset="caption"
+                >
+                  {renderTranslatedZodError(errors.vat.message, rules?.vat)}
+                </OdsText>
+              )}
+            </>
+          )}
+        </OdsFormField>
+      )}
+    />
+  );
 
   useEffect(() => {
     setValue('phone', '');
@@ -280,7 +326,6 @@ function AccountDetailsForm({
         ...updatedUser
       } = payload;
 
-      // RG5: save the selected e-invoicing address alongside the account.
       // TODO(back): add einvoicingBillingAddress to the shared User type.
       await putMe(({
         ...updatedUser,
@@ -307,13 +352,12 @@ function AccountDetailsForm({
       window.location.assign(redirectionUrl!);
     },
     onError: (error, variables) => {
-      // RG6: the selected e-invoicing address is no longer active → re-fetch the
-      // rules and prompt the customer to select again, without the generic error.
+      // Any 400 while an address was selected is treated as "address no longer
+      // active in the PPF directory" (RG6): re-prompt instead of the generic
+      // error. TODO(back): use the backend's specific error code once available.
       if (
-        isEinvoicingStaleAddressError(
-          error,
-          Boolean(variables?.einvoicingBillingAddress),
-        )
+        variables?.einvoicingBillingAddress &&
+        (error as { status?: number })?.status === 400
       ) {
         setValue('einvoicingBillingAddress', '');
         refetchEinvoicingRules();
@@ -857,63 +901,7 @@ function AccountDetailsForm({
                 )}
               />
             )}
-            {/* FR B2B/B2G: the VAT field is moved into the "Facturation" section
-                below (unchanged). Keep it here for the other flows. */}
-            {!showEinvoicingSection && (
-              <Controller
-                control={control}
-                name="vat"
-                render={({ field: { name, value, onChange, onBlur } }) => (
-                  <OdsFormField>
-                    <label
-                      htmlFor={name}
-                      slot="label"
-                      aria-label={t('account_details_field_vat', {
-                        vatLabel,
-                        interpolation: { escapeValue: false },
-                      })}
-                    >
-                      <OdsText preset="caption">
-                        {t('account_details_field_vat', {
-                          vatLabel,
-                          interpolation: { escapeValue: false },
-                        })}
-                        {rules?.vat?.mandatory && ' *'}
-                      </OdsText>
-                    </label>
-
-                    {separateSIRENAndSIRET && companyDetails?.vatID ? (
-                      <VatSelect
-                        vatId={companyDetails.vatID}
-                        onValueChange={onChange}
-                      />
-                    ) : (
-                      <>
-                        <OdsInput
-                          name="vat"
-                          id={name}
-                          value={value}
-                          hasError={!!errors[name]}
-                          onOdsChange={onChange}
-                          onOdsBlur={onBlur}
-                        />
-                        {errors.vat && rules?.vat && (
-                          <OdsText
-                            className="text-critical leading-[0.8]"
-                            preset="caption"
-                          >
-                            {renderTranslatedZodError(
-                              errors.vat.message,
-                              rules?.vat,
-                            )}
-                          </OdsText>
-                        )}
-                      </>
-                    )}
-                  </OdsFormField>
-                )}
-              />
-            )}
+            {!showEinvoicingSection && vatField}
             {rules?.purposeOfPurchase && (
               <Controller
                 control={control}
@@ -966,66 +954,9 @@ function AccountDetailsForm({
               {t('account_details_einvoicing_section_title')}
             </OdsText>
 
-            {/* VAT field, moved here unchanged (see legal section for the other
-                flows). */}
-            <Controller
-              control={control}
-              name="vat"
-              render={({ field: { name, value, onChange, onBlur } }) => (
-                <OdsFormField>
-                  <label
-                    htmlFor={name}
-                    slot="label"
-                    aria-label={t('account_details_field_vat', {
-                      vatLabel,
-                      interpolation: { escapeValue: false },
-                    })}
-                  >
-                    <OdsText preset="caption">
-                      {t('account_details_field_vat', {
-                        vatLabel,
-                        interpolation: { escapeValue: false },
-                      })}
-                      {rules?.vat?.mandatory && ' *'}
-                    </OdsText>
-                  </label>
+            {vatField}
 
-                  {companyDetails?.vatID ? (
-                    <VatSelect
-                      vatId={companyDetails.vatID}
-                      onValueChange={onChange}
-                    />
-                  ) : (
-                    <>
-                      <OdsInput
-                        name="vat"
-                        id={name}
-                        value={value}
-                        hasError={!!errors[name]}
-                        onOdsChange={onChange}
-                        onOdsBlur={onBlur}
-                      />
-                      {errors.vat && rules?.vat && (
-                        <OdsText
-                          className="text-critical leading-[0.8]"
-                          preset="caption"
-                        >
-                          {renderTranslatedZodError(
-                            errors.vat.message,
-                            rules?.vat,
-                          )}
-                        </OdsText>
-                      )}
-                    </>
-                  )}
-                </OdsFormField>
-              )}
-            />
-
-            {/* PPF e-invoicing address field. The component renders nothing for
-                RG1 (rule not visible), a banner for the empty/single cases, or a
-                mandatory select when several addresses are available. */}
-            {einvoicingRule?.visible && (
+            {einvoicingRule && (
               <Controller
                 control={control}
                 name="einvoicingBillingAddress"

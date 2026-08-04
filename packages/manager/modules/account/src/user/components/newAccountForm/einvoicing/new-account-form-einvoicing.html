@@ -1,16 +1,9 @@
-<div class="text-center" data-ng-if="$ctrl.loading">
-    <oui-spinner data-size="s"></oui-spinner>
-</div>
-
-<!-- Hidden when the rule is not visible (SIREN absent from the directory).
-     Stable anchor id for external communications deep-linking to this field
-     (…?fieldToFocus=ovh_field_einvoicing_billing_address); on the wrapper so it
-     resolves in every state (banner or picker). -->
+<!-- Anchor id used by external communications deep links
+     (?fieldToFocus=ovh_field_einvoicing_billing_address) — do not rename. -->
 <div
     id="ovh_field_einvoicing_billing_address"
-    data-ng-if="!$ctrl.loading && $ctrl.rule.visible"
+    data-ng-if="$ctrl.isVisible()"
 >
-    <!-- Empty: informational banner, nothing to select -->
     <oui-message type="info" data-ng-if="$ctrl.isEmpty()">
         <span
             data-ng-if="!$ctrl.isB2g()"
@@ -22,7 +15,6 @@
         ></span>
     </oui-message>
 
-    <!-- Single address: informational banner, used automatically -->
     <oui-message type="info" data-ng-if="$ctrl.hasSingleAddress()">
         <span
             data-ng-if="!$ctrl.isB2g()"
@@ -36,7 +28,6 @@
         ></span>
     </oui-message>
 
-    <!-- Multiple addresses: mandatory ui-kit picker -->
     <div class="oui-field" data-ng-if="$ctrl.hasMultipleAddresses()">
         <div class="oui-field__header">
             <label
@@ -67,7 +58,6 @@
         </div>
     </div>
 
-    <!-- RG6: selected address no longer active at save time -->
     <oui-message class="mt-3" type="warning" data-ng-if="$ctrl.staleAddress">
         <span data-translate="signup_einvoicing_stale_address"></span>
     </oui-message>

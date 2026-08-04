@@ -25,14 +25,9 @@ import {
 import { KYC_STATUS } from '../../../identity-documents/user-identity-documents.constant';
 import { SUPPORT_URLS } from '../../user.constants';
 
-// The e-invoicing billing address rule ships in the /newAccount/rules array but
-// is rendered by its dedicated component inside the SIRET block — never by the
-// generic section loop. apiv6 may expose the field name camelCased, so match
-// both spellings.
-const EINVOICING_FIELD_NAMES = [
-  'einvoicingBillingAddress',
-  'einvoicing_billing_address',
-];
+// rendered by its dedicated component inside the siret block, never by the
+// generic section loop
+const EINVOICING_FIELD_NAME = 'einvoicingBillingAddress';
 
 export default class NewAccountFormController {
   /* @ngInject */
@@ -344,8 +339,8 @@ export default class NewAccountFormController {
       }),
     );
 
-    // e-invoicing billing address is driven by a dedicated rule and is not part
-    // of /newAccount/rules, so it is dropped by the pick above. Re-add it (RG5).
+    // stripped with the other READY_ONLY_PARAMS above (not a /newAccount/rules
+    // param) but accepted by PUT /me — re-add the selected address (RG5)
     if (this.model.einvoicingBillingAddress) {
       model.einvoicingBillingAddress = this.model.einvoicingBillingAddress;
     }
@@ -452,11 +447,11 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
-        // RG6: the e-invoicing address may have been revalidated against the PPF
-        // directory and rejected with a 400. Ask the field to refresh its rules
-        // and prompt for a new selection.
+        // 400 with an address selected = stale PPF address (RG6): warn the
+        // field and refresh the rules
         if (err?.status === 400 && this.model.einvoicingBillingAddress) {
           this.$scope.$broadcast('einvoicing.staleAddress');
+          this.updateRules();
         }
         const isPrivateIndividual =
           this.model.legalform === USER_TYPE_INDIVIDUAL;
@@ -504,11 +499,9 @@ export default class NewAccountFormController {
   // return the list of fields for a given fieldset name
   // readonly rules are not returned because they are not editable
   getRulesBySection(section) {
-    // Keep the e-invoicing billing address rule out of the generic section loop
-    // (rendered by its dedicated component inside the SIRET block); it otherwise
-    // lands in the "other" section.
+    // without this filter the e-invoicing rule lands in the "other" section
     const sectionRules = (this.rules || []).filter(
-      (rule) => !EINVOICING_FIELD_NAMES.includes(rule.fieldName),
+      (rule) => rule.fieldName !== EINVOICING_FIELD_NAME,
     );
     // special section to handle fields that does not belong to any section
     if (section === 'other') {
@@ -527,6 +520,13 @@ export default class NewAccountFormController {
     }
     return sectionRules.filter(
       (rule) => fields.includes(rule.fieldName) && !rule.readonly,
+    );
+  }
+
+  // absent when the PPF directory doesn't know the SIRET
+  getEinvoicingRule() {
+    return (this.rules || []).find(
+      (rule) => rule.fieldName === EINVOICING_FIELD_NAME,
     );
   }
 
