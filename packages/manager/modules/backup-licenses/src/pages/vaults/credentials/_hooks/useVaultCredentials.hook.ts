@@ -24,18 +24,18 @@ export const useVaultCredentials = (vaultId: string) => {
   const bucket = vault && selectVaultCredentialsBucket(vault);
 
   const {
-    data: access,
-    isPending: isAccessPending,
-    isError: isAccessError,
-  } = useQuery(vaultsQueries.withClient(queryClient).bucketAccess(vaultId, bucket?.id ?? ''));
+    data: credentials,
+    isPending: isCredentialsPending,
+    isError: isCredentialsError,
+  } = useQuery(vaultsQueries.withClient(queryClient).bucketCredentials(vaultId, bucket?.id ?? ''));
 
   return {
     vault,
     bucket,
-    access,
+    credentials,
     isVaultListResolved,
     // A disabled query stays `pending` forever, so the keys only count once their bucket is known.
-    isPending: isVaultListPending || (!!bucket && isAccessPending),
-    isError: isVaultListError || isAccessError,
+    isPending: isVaultListPending || (!!bucket && isCredentialsPending),
+    isError: isVaultListError || isCredentialsError,
   };
 };
