@@ -1,11 +1,13 @@
 /**
- * Domaine des vaults Backup Licenses, côté facturation (BKP-1225).
- * Copie réduite du type de `@ovh-ux/backup-agent` : ce module ne peut pas l'importer
+ * Projection de `backup.tenant.vault.CurrentState` et de ses membres (contrat v2 `backupServices`).
+ * Les types ne sont pas importés de `@ovh-ux/backup-agent` : ce module ne peut pas en dépendre
  * (dépendance fantôme, cf. §5 de la spec BKP-1225).
  */
 import { Resource, ResourceStatus } from './Resource.type';
 
 export type VaultBillingType = 'BUNDLE' | 'PAYGO';
+
+export type VaultProductLine = 'BACKUP_AGENT' | 'BACKUP_LICENSES';
 
 export type BucketRole = 'PRIMARY' | 'REPLICA';
 
@@ -18,8 +20,6 @@ export type VaultBucket = {
   region: string;
   role: BucketRole;
   status: ResourceStatus;
-  /** Champ supposé, absent du schéma v2 publié (2026-06-16). */
-  endPoint?: string;
 };
 
 export type Vault = {
@@ -28,8 +28,10 @@ export type Vault = {
   resourceName: string;
   region: string;
   type: VaultBillingType;
-  /** Champ attendu par le ticket, absent de tout contrat connu — cf. §14 de la spec. */
-  vaultProductLine?: string;
+  /** Quota inclus d'un vault BUNDLE ; null pour PAYGO, BACKUP_AGENT ou hors sujet. */
+  includedSoftQuotaGb?: number | null;
+  /** Nullable au contrat, tant que les vaults existants ne sont pas rétro-remplis. */
+  vaultProductLine?: VaultProductLine | null;
   /** Ajoutés pour les vaults (BKP-1221/1222) : la facturation n'en a pas besoin. */
   status?: ResourceStatus;
   buckets?: VaultBucket[];
@@ -40,7 +42,14 @@ export type VaultResource = Resource<Vault> & {
   iam?: { id: string; urn: string; displayName?: string; tags?: Record<string, string> };
 };
 
+/**
+ * `backup.tenant.vault.bucket.Credentials` : la réponse porte elle-même l'endpoint S3 et le code
+ * de région court (`backup.RegionCodeEnum`), qui n'est pas le `common.RegionEnum` du bucket.
+ */
 export type VaultBucketAccess = {
   accessKey: string;
+  bucketName: string;
+  endpoint: string;
+  regionCode: string;
   secretKey: string;
 };

@@ -1,4 +1,4 @@
-/** Les 7 membres de `common.ResourceStatusEnum` (schéma v2, 2026-06-16). */
+/** Les 8 membres de `common.ResourceStatusEnum` du contrat v2 `backupServices`. */
 export type ResourceStatus =
   | 'CREATING'
   | 'DELETING'
@@ -6,6 +6,7 @@ export type ResourceStatus =
   | 'OUT_OF_SYNC'
   | 'READY'
   | 'SUSPENDED'
+  | 'UNKNOWN'
   | 'UPDATING';
 
 export type TaskStatus = 'ERROR' | 'PENDING' | 'RUNNING' | 'SCHEDULED' | 'WAITING_USER_INPUT';

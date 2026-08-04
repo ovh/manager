@@ -2,6 +2,7 @@ export const IAM_ACTIONS = {
   backupServicesGet: 'backupServices:apiovh:get',
   vaultGet: 'backupServices:apiovh:vault/get',
   vaultEdit: 'backupServices:apiovh:vault/edit',
+  vaultCredentialsGet: 'backupServices:apiovh:vault/credentials/get',
   servicesGet: 'account:apiovh:services/get',
   servicesTerminate: 'account:apiovh:services/terminate',
   servicesTerminateWithoutConfirmation: 'account:apiovh:services/terminateWithoutConfirmation',

@@ -114,7 +114,7 @@ export const VaultActionsCell = ({ vault }: VaultActionsCellProps) => {
               {...menuItemProps}
               id={`vault-credentials-${vault.id}`}
               data-testid={`vault-credentials-${vault.id}`}
-              iamActions={[IAM_ACTIONS.vaultGet]}
+              iamActions={[IAM_ACTIONS.vaultCredentialsGet]}
               urn={iamUrn}
               isDisabled={!iamUrn}
               isIamTrigger={isMenuTriggered}
