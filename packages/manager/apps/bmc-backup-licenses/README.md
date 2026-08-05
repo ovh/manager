@@ -1,4 +1,4 @@
-# bmc-backup-licenses-baremetal — OVHcloud Manager Application
+# bmc-backup-licenses — OVHcloud Manager Application
 
 ## Overview
 
@@ -15,7 +15,7 @@ The same codebase supports multiple product universes (PCI, Hub, Web, Zimbra) by
 Single source of truth for app identity, API strategy, feature flags, and tracking. Tokens like `app-gen-test` and `Hub` are filled by the generator.
 
 ```ts
-export const appName = 'bmc-backup-licenses-baremetal';
+export const appName = 'bmc-backup-licenses';
 
 export const APP_FEATURES = {
   // API strategies
