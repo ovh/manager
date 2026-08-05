@@ -19,12 +19,6 @@ export const routeUrls = {
   order: `/${subRoutes.order}`,
 } as const;
 
-// TODO(BKP-1208): dashboard route does not exist yet (ticket 1.1).
-// Until it ships, this intentionally falls through to the consumer app's catch-all "*" route.
-export const stubRoutes = {
-  dashboard: '/dashboard',
-} as const;
-
 export const MAIN_LAYOUT_NAV_TABS = Object.freeze([
   {
     name: 'general_information',

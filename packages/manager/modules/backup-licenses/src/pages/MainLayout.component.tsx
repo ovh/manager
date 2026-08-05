@@ -18,6 +18,7 @@ import {
 import { useOvhTracking } from '@ovh-ux/manager-react-shell-client';
 
 import { BackupLicensesContext } from '@/BackupLicenses.context';
+import { useHasActiveBackupLicensesSubscription } from '@/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { LABELS } from '@/module.constants';
 import { urls } from '@/routes/routes.constants';
@@ -41,11 +42,14 @@ export default function MainLayout() {
 
   const guideItems = useMainGuideItem();
 
+  const { data: hasActiveSubscription, isLoading: isSubscriptionLoading } =
+    useHasActiveBackupLicensesSubscription();
+
   return (
     <RedirectionGuard
       route={urls.onboarding}
-      isLoading={false}
-      condition={false}
+      isLoading={isSubscriptionLoading}
+      condition={!hasActiveSubscription}
     >
       <BaseLayout
         header={{ title: LABELS.BACKUP_LICENSES, headerButton: <GuideButton items={guideItems} /> }}

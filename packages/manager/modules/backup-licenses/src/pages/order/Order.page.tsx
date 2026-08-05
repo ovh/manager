@@ -18,7 +18,7 @@ import {
   useOrderForm,
 } from '@/hooks/useOrderForm/useOrderForm';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
-import { routeUrls, stubRoutes } from '@/routes/routes.constants';
+import { routeUrls, urls } from '@/routes/routes.constants';
 import { LicenseFamily, OrderStepId } from '@/types/Order.type';
 
 /** Champ de formulaire → id de l'élément DOM (cf. OrderTextField), pour le scroll-to-error. */
@@ -87,8 +87,7 @@ export default function OrderPage() {
     // Commande soumise : on repart d'un funnel vierge à la prochaine entrée.
     order.clearPersistedOrder();
     // TODO(BKP-1208): brancher la commande Agora (createCart de @ovh-ux/manager-module-order).
-    // API non figée → stub : redirection vers le dashboard (route 1.1 encore stub).
-    navigate(stubRoutes.dashboard);
+    navigate(urls.root);
   };
 
   const handleLeft = () => {
