@@ -2,7 +2,7 @@ import { OnboardingConfigType } from '@/types/Onboarding.type';
 
 import backupLicensesImage from './assets/backup-licenses.png';
 
-export const appName = 'bmc-backup-licenses-baremetal';
+export const appName = 'bmc-backup-licenses';
 export const productName = 'OVHcloud Backup Licenses';
 
 export const AppConfig = {
