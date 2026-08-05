@@ -4,6 +4,7 @@ import { TInstance } from '@ovh-ux/manager-pci-common';
 import { TDataState } from '@/api/hooks/useData';
 import { TCountry, TRegion } from '@/api/types';
 import { PublicIp } from '@/types/publicip.type';
+import { useRepricing } from '@/hooks/useRepricing';
 
 export type OrderParams = {
   ipType: PublicIp | null;
@@ -14,6 +15,7 @@ export type OrderParams = {
 
 export const useOrderParams = (state: TDataState) => {
   const [searchParams] = useSearchParams();
+  const { isRepricingEnabled } = useRepricing();
 
   return useMemo((): OrderParams => {
     const searchParamsIpType = searchParams.get('ipType') as PublicIp;
@@ -25,7 +27,11 @@ export const useOrderParams = (state: TDataState) => {
     let floatingRegion: TRegion | null = null;
     let instance: TInstance | null = null;
 
-    if (Object.values(PublicIp).includes(searchParamsIpType)) {
+    const isOrderable =
+      Object.values(PublicIp).includes(searchParamsIpType) &&
+      (searchParamsIpType !== PublicIp.BASIC || isRepricingEnabled);
+
+    if (isOrderable) {
       ipType = searchParamsIpType;
     }
 
@@ -53,5 +59,11 @@ export const useOrderParams = (state: TDataState) => {
       floatingRegion,
       instance,
     };
-  }, [searchParams, state.countries, state.instances.all, state.regions]);
+  }, [
+    searchParams,
+    state.countries,
+    state.instances.all,
+    state.regions,
+    isRepricingEnabled,
+  ]);
 };

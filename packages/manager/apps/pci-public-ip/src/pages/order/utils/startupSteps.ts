@@ -50,4 +50,28 @@ export const initStartupSteps = () =>
         open: false,
       },
     ],
+    [
+      StepIdsEnum.BASIC_REGION,
+      {
+        id: StepIdsEnum.BASIC_REGION,
+        key: StepIdsEnum.BASIC_REGION,
+        open: false,
+      },
+    ],
+    [
+      StepIdsEnum.BASIC_INSTANCE,
+      {
+        id: StepIdsEnum.BASIC_INSTANCE,
+        key: StepIdsEnum.BASIC_INSTANCE,
+        open: false,
+      },
+    ],
+    [
+      StepIdsEnum.BASIC_SUMMARY,
+      {
+        id: StepIdsEnum.BASIC_SUMMARY,
+        key: StepIdsEnum.BASIC_SUMMARY,
+        open: false,
+      },
+    ],
   ]);

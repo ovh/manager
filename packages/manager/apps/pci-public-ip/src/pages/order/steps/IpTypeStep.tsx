@@ -22,11 +22,18 @@ import PriceLabel from '@/components/PriceLabel.component';
 import { useAddons } from '@/api/hooks/useAddons/useAddons';
 import { sortProductByPrice } from '@/api/hooks/useAddons/useAddons.select';
 import { FLOATING_IP_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
+import { useBasicIpCatalog } from '@/api/hooks/useBasicIpCatalog';
+import { useRepricing } from '@/hooks/useRepricing';
 
-type TPublicIp = {
+type TIpTypeOption = {
   name: string;
   description: string;
   type: PublicIp;
+};
+
+type TTilePrice = {
+  isLoading: boolean;
+  value: string;
 };
 
 export const IpTypeStep = ({
@@ -39,9 +46,11 @@ export const IpTypeStep = ({
   const { On } = useActions(projectId);
   const { ovhSubsidiary } = useContext(ShellContext).environment.getUser();
 
-  const [publicIp, setPublicIp] = useState<TPublicIp>();
+  const [ipTypeOption, setIpTypeOption] = useState<TIpTypeOption>();
 
-  const publicIps: TPublicIp[] = [
+  const { isRepricingEnabled } = useRepricing();
+
+  const ipTypeOptions: TIpTypeOption[] = [
     {
       name: t('pci_additional_ip_failover_ip'),
       description: t('pci_additional_ip_failover_ip_description'),
@@ -52,6 +61,15 @@ export const IpTypeStep = ({
       description: t('pci_additional_ip_floating_ip_description'),
       type: PublicIp.FLOATING,
     },
+    ...(isRepricingEnabled
+      ? [
+          {
+            name: t('pci_additional_ip_basic_ip'),
+            description: t('pci_additional_ip_basic_ip_description'),
+            type: PublicIp.BASIC,
+          },
+        ]
+      : []),
   ];
 
   const {
@@ -66,36 +84,68 @@ export const IpTypeStep = ({
     select: sortProductByPrice,
   });
 
+  const {
+    cheapestPrice: basicIpPrice,
+    hasPriceVariation: hasBasicIpPriceVariation,
+    isFetching: isBasicIpFetching,
+  } = useBasicIpCatalog(projectId);
+
   const { getFormattedHourlyCatalogPrice } = useCatalogPrice(4);
 
-  const selectPublicIp = (value: TPublicIp) => {
-    setPublicIp(value);
+  const selectIpType = (value: TIpTypeOption) => {
+    setIpTypeOption(value);
     setForm({ ...form, ipType: value.type });
   };
 
-  // if there is only one product it means there is only one price
-  const floatingIpPrice = useMemo(
-    () =>
-      floatingIp.length > 1
+  const prices = useMemo<Record<PublicIp, TTilePrice>>(() => {
+    const fromPrice = (price: number, isCheapestOfSeveral: boolean) =>
+      isCheapestOfSeveral
         ? `${t(
             'pci_floating_ip_price_per_hour',
-          )} ${getFormattedHourlyCatalogPrice(floatingIp[0]?.price)}`
-        : getFormattedHourlyCatalogPrice(floatingIp[0]?.price),
-    [floatingIp, t, getFormattedHourlyCatalogPrice],
-  );
+          )} ${getFormattedHourlyCatalogPrice(price)}`
+        : getFormattedHourlyCatalogPrice(price);
+
+    return {
+      [PublicIp.FAILOVER]: {
+        isLoading: isFailoverFetching,
+        value: t('pci_additional_ip_price_per_month', {
+          price: failoverIp?.details.pricings.default[0].price.text,
+        }),
+      },
+      [PublicIp.FLOATING]: {
+        isLoading: isFloatingIpFetching,
+        // if there is only one product it means there is only one price
+        value: fromPrice(floatingIp[0]?.price, floatingIp.length > 1),
+      },
+      [PublicIp.BASIC]: {
+        isLoading: isBasicIpFetching,
+        value: fromPrice(basicIpPrice, hasBasicIpPriceVariation),
+      },
+    };
+  }, [
+    t,
+    getFormattedHourlyCatalogPrice,
+    failoverIp,
+    isFailoverFetching,
+    floatingIp,
+    isFloatingIpFetching,
+    basicIpPrice,
+    hasBasicIpPriceVariation,
+    isBasicIpFetching,
+  ]);
 
   return (
     <StepComponent
       {...steps.get(StepIdsEnum.IP_TYPE)}
       title={t('pci_additional_ip_create_step_select_ip')}
-      next={publicIp ? { action: On.next } : {}}
+      next={ipTypeOption ? { action: On.next } : {}}
       showDisabledAction
       onEdit={On.edit}
       order={1}
     >
-      <TilesInputComponent<TPublicIp>
-        items={publicIps}
-        value={publicIp}
+      <TilesInputComponent<TIpTypeOption>
+        items={ipTypeOptions}
+        value={ipTypeOption}
         label={({ name, description, type }) => (
           <TileLabel title={name} description={description}>
             <div className="text-sm mt-4 text-center font-bold">
@@ -105,26 +155,15 @@ export const IpTypeStep = ({
                 color={ODS_THEME_COLOR_INTENT.text}
               >
                 <PriceLabel
-                  isLoading={
-                    type === PublicIp.FAILOVER
-                      ? isFailoverFetching
-                      : isFloatingIpFetching
-                  }
-                  value={
-                    type === PublicIp.FAILOVER
-                      ? t('pci_additional_ip_price_per_month', {
-                          price:
-                            failoverIp?.details.pricings.default[0].price.text,
-                        })
-                      : floatingIpPrice
-                  }
+                  isLoading={prices[type].isLoading}
+                  value={prices[type].value}
                   className="font-bold"
                 />
               </OsdsText>
             </div>
           </TileLabel>
         )}
-        onInput={selectPublicIp}
+        onInput={selectIpType}
       />
     </StepComponent>
   );

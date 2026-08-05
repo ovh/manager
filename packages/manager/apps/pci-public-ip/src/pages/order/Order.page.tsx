@@ -20,6 +20,7 @@ import HidePreloader from '@/core/HidePreloader';
 import { IpTypeStep } from '@/pages/order/steps/IpTypeStep';
 import { FailoverSteps } from '@/pages/order/steps/FailoverSteps';
 import { FloatingSteps } from '@/pages/order/steps/FloatingSteps';
+import { BasicSteps } from '@/pages/order/steps/BasicSteps';
 import { useOrderStore } from '@/hooks/order/useStore';
 import { useOrderParams } from '@/hooks/order/useParams';
 import { initStartupSteps } from '@/pages/order/utils/startupSteps';
@@ -86,6 +87,28 @@ export default function OrderPage(): JSX.Element {
     });
   }, [orderParams]);
 
+  const stepsByIpType: Record<PublicIp, JSX.Element> = {
+    [PublicIp.FAILOVER]: (
+      <FailoverSteps
+        projectId={projectId}
+        regionName={context.environment.getRegion()}
+      />
+    ),
+    [PublicIp.FLOATING]: (
+      <FloatingSteps
+        projectId={projectId}
+        regionName={context.environment.getRegion()}
+        instanceId={instanceId}
+      />
+    ),
+    [PublicIp.BASIC]: (
+      <BasicSteps
+        projectId={projectId}
+        regionName={context.environment.getRegion()}
+      />
+    ),
+  };
+
   return (
     <>
       <HidePreloader />
@@ -136,18 +159,7 @@ export default function OrderPage(): JSX.Element {
 
       <div className="flex flex-col gap-y-4 mt-4">
         <IpTypeStep projectId={projectId} />
-        {form.ipType === PublicIp.FAILOVER ? (
-          <FailoverSteps
-            projectId={projectId}
-            regionName={context.environment.getRegion()}
-          />
-        ) : (
-          <FloatingSteps
-            projectId={projectId}
-            regionName={context.environment.getRegion()}
-            instanceId={instanceId}
-          />
-        )}
+        {stepsByIpType[form.ipType] ?? stepsByIpType[PublicIp.FLOATING]}
       </div>
     </>
   );
