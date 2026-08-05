@@ -35,6 +35,11 @@
       "types": "./dist/types/src/hooks/useRequiredParams.d.ts",
       "import": "./dist/src/hooks/useRequiredParams",
       "require": "./dist/src/hooks/useRequiredParams.js"
+    },
+    "./hooks/useHasActiveBackupLicensesSubscription": {
+      "types": "./dist/types/src/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription.d.ts",
+      "import": "./dist/src/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription",
+      "require": "./dist/src/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription.js"
     }
   },
   "main": "./dist/src/lib.js",

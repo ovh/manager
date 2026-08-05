@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Navigate, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { BackupLicensesRoutes } from '@ovh-ux/backup-licenses';
-import { urls as BackupLicensesUrls } from '@ovh-ux/backup-licenses/routes/routes.constants';
 import { ErrorBoundary } from '@ovh-ux/manager-react-components';
 import { PageType } from '@ovh-ux/manager-react-shell-client';
 
@@ -15,29 +14,26 @@ const MainLayoutPage = React.lazy(() => import('@/pages/Main.layout'));
 const OnboardingPage = React.lazy(() => import('@/pages/onboarding/Onboarding.page'));
 
 export default (
-  <>
-    <Route path="/" element={<Navigate to={BackupLicensesUrls.onboarding} replace />} />
-    <Route
-      id="root"
-      path={urls.root}
-      Component={MainLayoutPage}
-      errorElement={
-        <ErrorBoundary
-          isPreloaderHide={true}
-          isRouteShellSync={true}
-          redirectionApp={redirectionApp}
-        />
-      }
-    >
-      <Route
-        path={subRoutes.onboarding}
-        Component={OnboardingPage}
-        handle={{
-          tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
-        }}
+  <Route
+    id="root"
+    path={urls.root}
+    Component={MainLayoutPage}
+    errorElement={
+      <ErrorBoundary
+        isPreloaderHide={true}
+        isRouteShellSync={true}
+        redirectionApp={redirectionApp}
       />
-      {BackupLicensesRoutes}
-      <Route path="*" element={<NotFound />} />
-    </Route>
-  </>
+    }
+  >
+    <Route
+      path={subRoutes.onboarding}
+      Component={OnboardingPage}
+      handle={{
+        tracking: { pageName: 'onboarding', pageType: PageType.onboarding },
+      }}
+    />
+    {BackupLicensesRoutes}
+    <Route path="*" element={<NotFound />} />
+  </Route>
 );

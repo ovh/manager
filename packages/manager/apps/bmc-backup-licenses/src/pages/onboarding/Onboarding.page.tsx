@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 
 import { useGuideUtils } from '@ovh-ux/backup-licenses/hooks/useGuideUtils.ts';
+import { useHasActiveBackupLicensesSubscription } from '@ovh-ux/backup-licenses/hooks/useHasActiveBackupLicensesSubscription';
 import { urls as backupLicensesUrls } from '@ovh-ux/backup-licenses/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { Card, Links, RedirectionGuard } from '@ovh-ux/manager-react-components';
@@ -35,10 +36,13 @@ export default function OnboardingPage() {
     {},
   ]);
 
+  const { data: hasActiveSubscription, isLoading: isSubscriptionLoading } =
+    useHasActiveBackupLicensesSubscription();
+
   return (
     <RedirectionGuard
-      condition={false}
-      isLoading={false}
+      condition={Boolean(hasActiveSubscription)}
+      isLoading={isSubscriptionLoading}
       route={backupLicensesUrls.root}
     >
       <OnboardingLayout
