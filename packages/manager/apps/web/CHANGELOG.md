@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.46.0...@ovh-ux/manager-web@19.47.0) (2026-08-05)
+
+
+### Features
+
+* **web-hosting:** v6 hosting web cloud offer add banner ([edb1f83](https://github.com/ovh/manager/commit/edb1f83f997debe74c2508fe088690de8b25523e)), closes [#PUWEBPT-180](https://github.com/ovh/manager/issues/PUWEBPT-180)
+
+
+
+
+
 # [19.46.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.45.0...@ovh-ux/manager-web@19.46.0) (2026-07-29)
 
 

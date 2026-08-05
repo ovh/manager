@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.39.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.39.0...@ovh-ux/manager-billing-components@4.39.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **zimbra:** fix service tab rediretion ([167953d](https://github.com/ovh/manager/commit/167953d81391a5f60162dd849d02046927835e53)), closes [#DCE-241](https://github.com/ovh/manager/issues/DCE-241)
+
+
+
+
+
 # [4.39.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing-components@4.38.0...@ovh-ux/manager-billing-components@4.39.0) (2026-07-08)
 
 

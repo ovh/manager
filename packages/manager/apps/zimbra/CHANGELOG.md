@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.44.4](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.3...@ovh-ux/manager-zimbra-app@0.44.4) (2026-08-05)
+
+
+### Bug Fixes
+
+* **zimbra:** fix service tab rediretion ([167953d](https://github.com/ovh/manager/commit/167953d81391a5f60162dd849d02046927835e53)), closes [#DCE-241](https://github.com/ovh/manager/issues/DCE-241)
+* **zimbra:** unblock email account form when api returns null values ([5acd189](https://github.com/ovh/manager/commit/5acd1896097c26ddbdca34db163eb45640651982)), closes [#DCE-242](https://github.com/ovh/manager/issues/DCE-242)
+
+
+
+
+
 ## [0.44.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-zimbra-app@0.44.2...@ovh-ux/manager-zimbra-app@0.44.3) (2026-07-29)
 
 
