@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.2...@ovh-ux/manager-account-creation-app@0.15.0) (2026-08-05)
+
+
+### Features
+
+* **accoun:** add einvoicing billign address ([d0dbcd2](https://github.com/ovh/manager/commit/d0dbcd22b008e5c34732f70720b88409bd5ff97b)), closes [#MANAGER-21960](https://github.com/ovh/manager/issues/MANAGER-21960)
+* **account-creation:** add einvoicing address ([9d11700](https://github.com/ovh/manager/commit/9d1170007c17ab3eee4a16467def674db58708d5)), closes [#MANAGER-21960](https://github.com/ovh/manager/issues/MANAGER-21960)
+* **account:** add einvoicingaddress ([0da64f0](https://github.com/ovh/manager/commit/0da64f03229663476fcfa1632c1e32b82fce6dec)), closes [#MANAGER-21960](https://github.com/ovh/manager/issues/MANAGER-21960)
+
+
+
+
+
 ## [0.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.1...@ovh-ux/manager-account-creation-app@0.14.2) (2026-07-22)
 
 
