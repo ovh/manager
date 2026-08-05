@@ -15,7 +15,13 @@ import {
 import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
-import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
+import {
+  Navigate,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 import {
   PciAnnouncementBanner,
   PciDiscoveryBanner,
@@ -24,17 +30,28 @@ import {
 import HidePreloader from '@/core/HidePreloader';
 import FloatingIPComponent from '@/components/list/FloatingIP.component';
 import FailoverIPComponent from '@/components/list/FailoverIP.component';
+import BasicIPComponent from '@/components/list/BasicIP.component';
 import { CHANGELOG_LINKS, IPsTabName } from '@/constants';
 import { useProductMaintenance } from '@/components/maintenance/useMaintenance';
 import { MaintenanceBanner } from '@/components/maintenance/MaintenanceBanner.component';
 import ListGuard from './ListGuard';
 import { CHANGELOG_CHAPTERS } from '@/tracking.constants';
+import { useRepricing } from '@/hooks/useRepricing';
 
 const getActiveTab = (pathname: string) => {
   if (pathname.includes('additional-ips')) {
     return IPsTabName.ADDITIONAL_IP_TAB_NAME;
   }
+  if (pathname.includes('basic-ips')) {
+    return IPsTabName.BASIC_IP_TAB_NAME;
+  }
   return IPsTabName.FLOATING_IP_TAB_NAME;
+};
+
+const TAB_TITLES: Record<IPsTabName, string> = {
+  [IPsTabName.FLOATING_IP_TAB_NAME]: 'pci_additional_ips_floating_ip_title',
+  [IPsTabName.ADDITIONAL_IP_TAB_NAME]: 'pci_additional_ips_failover_ip_title',
+  [IPsTabName.BASIC_IP_TAB_NAME]: 'pci_additional_ips_basic_ip_title',
 };
 
 export default function ListingPage(): JSX.Element {
@@ -47,6 +64,7 @@ export default function ListingPage(): JSX.Element {
   const { projectId } = useParams();
   const { data: project } = useProject();
   const { hasMaintenance, maintenanceURL } = useProductMaintenance(projectId);
+  const { isRepricingEnabled, isLoading: isRepricingLoading } = useRepricing();
   const activeTab = getActiveTab(location.pathname);
 
   const handlerTabChanged = (event: CustomEvent) => {
@@ -54,6 +72,9 @@ export default function ListingPage(): JSX.Element {
     switch (event.detail?.panel) {
       case IPsTabName.FLOATING_IP_TAB_NAME:
         navigate('../floating-ips');
+        break;
+      case IPsTabName.BASIC_IP_TAB_NAME:
+        navigate('../basic-ips');
         break;
       default:
         navigate('../additional-ips');
@@ -67,6 +88,14 @@ export default function ListingPage(): JSX.Element {
         setProjectUrl(data as string);
       });
   }, [projectId, navigation]);
+
+  if (
+    activeTab === IPsTabName.BASIC_IP_TAB_NAME &&
+    !isRepricingLoading &&
+    !isRepricingEnabled
+  ) {
+    return <Navigate to="../floating-ips" replace />;
+  }
 
   return (
     <ListGuard projectId={projectId}>
@@ -83,19 +112,25 @@ export default function ListingPage(): JSX.Element {
                 label: t('pci_additional_ips_title'),
               },
               {
-                label:
-                  activeTab === IPsTabName.ADDITIONAL_IP_TAB_NAME
-                    ? t('pci_additional_ips_failover_ip_title')
-                    : t('pci_additional_ips_floating_ip_title'),
+                label: t(TAB_TITLES[activeTab]),
               },
             ]}
           />
         )}
         <div className="header mb-10 mt-8">
-            <Headers title={t('pci_additional_ips_title')} description={t('pci_additional_ips_additional_ips_description')} headerButton={<PciGuidesHeader category="instances"></PciGuidesHeader>} changelogButton={<ChangelogButton
+          <Headers
+            title={t('pci_additional_ips_title')}
+            description={t('pci_additional_ips_additional_ips_description')}
+            headerButton={
+              <PciGuidesHeader category="instances"></PciGuidesHeader>
+            }
+            changelogButton={
+              <ChangelogButton
                 links={CHANGELOG_LINKS}
                 chapters={CHANGELOG_CHAPTERS}
-              />}/>
+              />
+            }
+          />
         </div>
 
         <PciAnnouncementBanner projectId={projectId} />
@@ -127,6 +162,14 @@ export default function ListingPage(): JSX.Element {
             >
               {t('pci_additional_ips_failover_ip_title')}
             </OsdsTabBarItem>
+            {isRepricingEnabled && (
+              <OsdsTabBarItem
+                panel={IPsTabName.BASIC_IP_TAB_NAME}
+                className="flex items-center justify-center"
+              >
+                {t('pci_additional_ips_basic_ip_title')}
+              </OsdsTabBarItem>
+            )}
           </OsdsTabBar>
 
           <OsdsTabPanel name={IPsTabName.FLOATING_IP_TAB_NAME}>
@@ -145,6 +188,16 @@ export default function ListingPage(): JSX.Element {
               />
             )}
           </OsdsTabPanel>
+          {isRepricingEnabled && (
+            <OsdsTabPanel name={IPsTabName.BASIC_IP_TAB_NAME}>
+              {activeTab === IPsTabName.BASIC_IP_TAB_NAME && (
+                <BasicIPComponent
+                  projectId={projectId}
+                  projectUrl={projectUrl}
+                />
+              )}
+            </OsdsTabPanel>
+          )}
         </OsdsTabs>
         <Outlet />
       </>
