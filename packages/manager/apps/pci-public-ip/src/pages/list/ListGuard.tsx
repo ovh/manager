@@ -4,7 +4,9 @@ import { OsdsSpinner } from '@ovhcloud/ods-components/react';
 import { ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
 import { useAllFailoverIPs } from '@/api/hooks/useFailoverIP';
 import { useAllFloatingIP } from '@/api/hooks/useFloatingIP';
+import { useAllBasicIp } from '@/api/hooks/useBasicIp';
 import { useOrderStore } from '@/hooks/order/useStore';
+import { useRepricing } from '@/hooks/useRepricing';
 
 export default function ListGuard({
   projectId,
@@ -27,12 +29,19 @@ export default function ListGuard({
     isLoading: isFloatingIPsLoading,
   } = useAllFloatingIP(projectId);
 
+  const { isRepricingEnabled } = useRepricing();
+  const { data: basicIPs, isLoading: isBasicIPsLoading } = useAllBasicIp(
+    projectId,
+    isRepricingEnabled,
+  );
+
   useEffect(() => {
-    if (!isFailoverIPsLoading && !isFloatingIPsLoading) {
+    if (!isFailoverIPsLoading && !isFloatingIPsLoading && !isBasicIPsLoading) {
       if (
         floatingIpCreation ||
         failoverIPs?.length > 0 ||
-        floatingIPs?.length > 0
+        floatingIPs?.length > 0 ||
+        basicIPs?.length > 0
       ) {
         setIsValid(true);
       } else {
@@ -43,8 +52,10 @@ export default function ListGuard({
     navigate,
     failoverIPs,
     floatingIPs,
+    basicIPs,
     isFailoverIPsLoading,
     isFloatingIPsLoading,
+    isBasicIPsLoading,
   ]);
 
   return isValid ? (

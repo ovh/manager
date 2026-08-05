@@ -11,9 +11,19 @@ import { getExpressOrderURL } from '@ovh-ux/manager-module-order';
 import { PCI_LEVEL2 } from '@/tracking.constants';
 import { useMe } from '@/api/hooks/useMe';
 import { createFloatingIp } from '@/api/hooks/useCreateFloatingIp';
+import { createBasicIp } from '@/api/data/basic-ip';
 import { StepIdsEnum } from '@/api/types';
 import { useOrderStore } from './useStore';
 import { PublicIp } from '@/types/publicip.type';
+
+// Missing the publicIp/extNet/create IAM action reads as a plain failure otherwise
+const FORBIDDEN_STATUS = 403;
+
+const FIRST_STEP_BY_IP_TYPE: Record<PublicIp, StepIdsEnum> = {
+  [PublicIp.FAILOVER]: StepIdsEnum.FAILOVER_COUNTRY,
+  [PublicIp.FLOATING]: StepIdsEnum.FLOATING_REGION,
+  [PublicIp.BASIC]: StepIdsEnum.BASIC_REGION,
+};
 
 export const useActions = (projectId: string) => {
   const { trackClick } = useTracking();
@@ -111,15 +121,28 @@ export const useActions = (projectId: string) => {
     );
   };
 
+  const doOrderBasicIp = () => {
+    clearNotifications();
+    trackClick({
+      name: `confirm-add-additional-ip::basic-ip::${form.basicRegion?.name}`,
+      type: 'action',
+      level2: PCI_LEVEL2,
+    });
+
+    return createBasicIp({
+      projectId,
+      regionName: form.basicRegion?.name,
+      instanceId: form.instance?.id,
+    });
+  };
+
   const onNext = useCallback(
     (id: string) => {
       switch (id) {
         case StepIdsEnum.IP_TYPE:
-          if (form.ipType === PublicIp.FAILOVER) {
-            openStep(StepIdsEnum.FAILOVER_COUNTRY);
-          } else {
-            openStep(StepIdsEnum.FLOATING_REGION);
-          }
+          openStep(
+            FIRST_STEP_BY_IP_TYPE[form.ipType] ?? StepIdsEnum.FLOATING_REGION,
+          );
           break;
         case StepIdsEnum.FAILOVER_COUNTRY:
           openStep(StepIdsEnum.FAILOVER_INSTANCE);
@@ -159,6 +182,38 @@ export const useActions = (projectId: string) => {
             )
             .finally(() => setForm({ ...form, isSubmitting: false }));
           break;
+        case StepIdsEnum.BASIC_REGION:
+          openStep(StepIdsEnum.BASIC_INSTANCE);
+          break;
+        case StepIdsEnum.BASIC_INSTANCE:
+          openStep(StepIdsEnum.BASIC_SUMMARY);
+          break;
+        case StepIdsEnum.BASIC_SUMMARY:
+          setForm({ ...form, isSubmitting: true });
+
+          doOrderBasicIp()
+            .then(() => {
+              navigate('..');
+              addSuccess(
+                tOrder('pci_additional_ip_create_basic_ip_success'),
+                true,
+              );
+            })
+            .catch((error) =>
+              addError(
+                error.response?.status === FORBIDDEN_STATUS
+                  ? tOrder('pci_additional_ip_create_basic_ip_forbidden_error')
+                  : tOrder('pci_additional_ip_create_basic_ip_error', {
+                      message:
+                        error.response?.data?.message || error.message || null,
+                      interpolation: {
+                        escapeValue: false,
+                      },
+                    }),
+              ),
+            )
+            .finally(() => setForm({ ...form, isSubmitting: false }));
+          break;
         default:
       }
     },
@@ -167,16 +222,14 @@ export const useActions = (projectId: string) => {
   const onEdit = (id: string) => {
     switch (id) {
       case StepIdsEnum.IP_TYPE:
-        if (form.ipType === PublicIp.FAILOVER) {
-          setForm({ ...form, failoverCountry: null, instance: null });
-        } else {
-          setForm({
-            ...form,
-            instance: null,
-            floatingRegion: null,
-            ipAddress: null,
-          });
-        }
+        setForm({
+          ...form,
+          failoverCountry: null,
+          floatingRegion: null,
+          basicRegion: null,
+          instance: null,
+          ipAddress: null,
+        });
 
         Object.keys(StepIdsEnum)
           .filter((key) => StepIdsEnum[key] !== StepIdsEnum.IP_TYPE)
@@ -196,6 +249,14 @@ export const useActions = (projectId: string) => {
       case StepIdsEnum.FLOATING_INSTANCE:
         closeStep(StepIdsEnum.FLOATING_SUMMARY);
         break;
+      case StepIdsEnum.BASIC_REGION:
+        setForm({ ...form, instance: null });
+        closeStep(StepIdsEnum.BASIC_INSTANCE);
+        closeStep(StepIdsEnum.BASIC_SUMMARY);
+        break;
+      case StepIdsEnum.BASIC_INSTANCE:
+        closeStep(StepIdsEnum.BASIC_SUMMARY);
+        break;
       default:
     }
   };
@@ -204,6 +265,7 @@ export const useActions = (projectId: string) => {
     Do: {
       orderFailoverIp: doOrderFailoverIp,
       orderFloatingIp: doOrderFloatingIp,
+      orderBasicIp: doOrderBasicIp,
     },
     On: {
       next: onNext,

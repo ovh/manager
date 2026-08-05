@@ -19,6 +19,7 @@ const initialState = {
     ipType: null,
     failoverCountry: null,
     floatingRegion: null,
+    basicRegion: null,
     instance: null,
     ipAddress: null,
     floatingGatewaySize: null,

@@ -2,7 +2,8 @@ import { DeletionModal } from '@ovh-ux/manager-pci-common';
 import { useTranslation } from 'react-i18next';
 
 type TerminateModalProps = {
-  ip: string;
+  ip?: string;
+  title?: string;
   isPending: boolean;
   isPendingTerminate: boolean;
   onClose: () => void;
@@ -11,6 +12,7 @@ type TerminateModalProps = {
 
 export default function TerminateModal({
   ip,
+  title,
   isPending,
   isPendingTerminate,
   onClose,
@@ -21,7 +23,8 @@ export default function TerminateModal({
     <DeletionModal
       title={
         !isPending
-          ? t('pci_additional_ips_floating_ips_floating_ip_terminate_title', {
+          ? title ??
+            t('pci_additional_ips_floating_ips_floating_ip_terminate_title', {
               ip,
             })
           : ''
