@@ -38,6 +38,9 @@ export enum StepIdsEnum {
   FLOATING_REGION = 'FLOATING_REGION',
   FLOATING_INSTANCE = 'FLOATING_INSTANCE',
   FLOATING_SUMMARY = 'FLOATING_SUMMARY',
+  BASIC_REGION = 'BASIC_REGION',
+  BASIC_INSTANCE = 'BASIC_INSTANCE',
+  BASIC_SUMMARY = 'BASIC_SUMMARY',
 }
 
 export type TInstance = {
@@ -51,6 +54,7 @@ export type TFormState = {
   ipType: PublicIp;
   failoverCountry?: TCountry;
   floatingRegion?: TRegion;
+  basicRegion?: TRegion;
   floatingGatewaySize: string;
   instance?: TInstance;
   ipAddress?: TIpAddress;

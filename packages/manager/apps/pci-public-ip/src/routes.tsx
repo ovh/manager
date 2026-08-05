@@ -28,6 +28,8 @@ export const ROUTE_PATHS = {
   additionalIPs: 'additional-ips',
   additionalIPTerminate: ':ipId/terminate',
   additionalIPEdit: ':ipId/edit',
+  basicIPs: 'basic-ips',
+  basicIPTerminate: ':ipId/terminate',
   imports: 'imports',
   import: ':ip',
   order: 'order',
@@ -102,6 +104,24 @@ export default [
             ),
             handle: {
               tracking: 'edit',
+            },
+          },
+        ],
+      },
+      {
+        path: ROUTE_PATHS.basicIPs,
+        ...lazyRouteConfig(() => import('@/pages/list/List.page')),
+        handle: {
+          tracking: 'basic-ips',
+        },
+        children: [
+          {
+            path: ROUTE_PATHS.basicIPTerminate,
+            ...lazyRouteConfig(() =>
+              import('@/pages/basic-ips/terminate/TerminateBasicIP.page'),
+            ),
+            handle: {
+              tracking: 'terminate',
             },
           },
         ],

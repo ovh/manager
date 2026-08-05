@@ -22,6 +22,7 @@ import {
 } from 'react-router-dom';
 import { PciAnnouncementBanner, TProject } from '@ovh-ux/manager-pci-common';
 import HidePreloader from '@/core/HidePreloader';
+import { useCreateEditBasicIp } from '@/hooks/useCreateEditBasicIp';
 import { GUIDES } from './onboarding.constants';
 import OnBoardingGuard from './OnBoardingGuard';
 
@@ -34,6 +35,7 @@ export default function OnBoardingPage() {
   const project = useRouteLoaderData('public-ips') as TProject;
   const [urlProject, setUrlProject] = useState('');
   const navigate = useNavigate();
+  const { isCreateEditBasicIpEnabled } = useCreateEditBasicIp();
 
   useEffect(() => {
     navigation
@@ -128,7 +130,11 @@ export default function OnBoardingPage() {
                 size={ODS_THEME_TYPOGRAPHY_SIZE._400}
                 className="mt-6 block"
               >
-                {tOnBoarding('pci_additional_ips_onboarding_content3')}
+                {tOnBoarding(
+                  isCreateEditBasicIpEnabled
+                    ? 'pci_additional_ips_onboarding_content3_with_basic_ip'
+                    : 'pci_additional_ips_onboarding_content3',
+                )}
               </OsdsText>
               <OsdsText
                 color={ODS_THEME_COLOR_INTENT.text}
@@ -166,6 +172,30 @@ export default function OnBoardingPage() {
                   'pci_additional_ips_onboarding_content5_description',
                 )}
               </OsdsText>
+              {isCreateEditBasicIpEnabled && (
+                <>
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    level={ODS_TEXT_LEVEL.body}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._500}
+                    className="block mt-6"
+                  >
+                    {tOnBoarding(
+                      'pci_additional_ips_onboarding_content6_heading',
+                    )}
+                  </OsdsText>
+                  <OsdsText
+                    color={ODS_THEME_COLOR_INTENT.text}
+                    level={ODS_TEXT_LEVEL.body}
+                    size={ODS_THEME_TYPOGRAPHY_SIZE._400}
+                    className="block"
+                  >
+                    {tOnBoarding(
+                      'pci_additional_ips_onboarding_content6_description',
+                    )}
+                  </OsdsText>
+                </>
+              )}
             </>
           }
           orderButtonLabel={tOnBoarding(
