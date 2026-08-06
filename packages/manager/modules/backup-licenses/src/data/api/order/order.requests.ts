@@ -27,6 +27,7 @@ import {
   getOrderCartAssignRoute,
   getOrderCartCheckoutRoute,
 } from '@/utils/apiRoutes/apiRoutes';
+import { planCartConfigurations } from '@/utils/cartConfiguration/cartConfiguration';
 
 /**
  * Endpoints confirmés réels (2026-08-06) : la surface de commande Agora répond en production,
@@ -90,6 +91,31 @@ export const executeOrderCartCheckout = (cartId: string): Promise<Order> =>
     autoPayWithPreferredPaymentMethod: true,
     waiveRetractationPeriod: true,
   });
+
+export const UNKNOWN_CART_CONFIGURATION = 'unknown required cart configuration';
+
+/**
+ * Les labels de configuration se découvrent item par item : le catalogue décide lequel du tenant,
+ * des addons VSPC ou du vault porte le nom, la région ou l'édition de licence. On envoie donc à
+ * chacun ce qu'il réclame, et un label réclamé sans valeur candidate arrête la commande — poster un
+ * panier incomplet livrerait un service à moitié configuré.
+ */
+export const configureCartItemFromRequirements = async (
+  cartId: string,
+  itemId: number,
+  values: Record<string, string | undefined>,
+): Promise<void> => {
+  const requirements = await getCartItemRequiredConfiguration(cartId, itemId);
+  const { configurations, missingLabels } = planCartConfigurations(requirements, values);
+
+  if (missingLabels.length > 0) {
+    throw new Error(`${UNKNOWN_CART_CONFIGURATION}: ${missingLabels.join(', ')}`);
+  }
+
+  await Promise.all(
+    configurations.map((configuration) => configureCartItem(cartId, itemId, configuration)),
+  );
+};
 
 export type BackupServicesCartProduct = CartOfferOrderParameters & {
   configurations?: CartItemConfiguration[];

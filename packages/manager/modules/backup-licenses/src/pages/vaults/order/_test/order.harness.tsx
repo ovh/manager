@@ -5,12 +5,17 @@ import { expect, vi } from 'vitest';
 
 import { fieldErrorId } from '@/components/FieldError/FieldError.component';
 import { getLocations } from '@/data/api/locations/locations.requests';
+import { getBackupServicesOffers } from '@/data/api/order/order.requests';
+import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
+import { MOCK_BACKUP_LICENSE_RESOURCE_NAME } from '@/mocks/backupLicenses/backupLicenses.mock';
+import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
 import { Location, LocationSpecificType, LocationType } from '@/types/Location.type';
 
 import { renderWithProviders } from '../../../../test-utils/renderWithProviders';
 import OrderVaultPage, { VAULT_ORDER_TEST_IDS } from '../OrderVault.page';
 import { VAULT_ORDER_NAME_FIELD_ID } from '../_components/VaultNameField.component';
+import { VAULT_ORDER_PRICING_TEST_IDS } from '../_components/VaultPricingMessage.component';
 import {
   VAULT_ORDER_REGION_CONTROL_ID,
   VAULT_ORDER_REGION_FIELD_ID,
@@ -40,6 +45,20 @@ export const LOCATIONS: [Location, Location] = [
 
 export const mockedGetLocations = vi.mocked(getLocations);
 export const mockedOrderVault = vi.mocked(orderVault);
+export const mockedGetBackupServicesOffers = vi.mocked(getBackupServicesOffers);
+export const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
+
+/**
+ * The id cascade the pricing message walks to reach the service its offers hang off. Left to the real
+ * `fetchIcebergV2` it would go to the network, so the modal would render pending for ever and the
+ * pricing states would all look alike.
+ */
+export const resolveServiceName = () => {
+  mockedGetBackupServicesTenants.mockResolvedValue(mockBackupServicesTenants);
+  vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
+};
+
+export const SERVICE_NAME = MOCK_BACKUP_LICENSE_RESOURCE_NAME;
 
 export const renderOrderModal = (): Promise<RenderResult> =>
   renderWithProviders(<OrderVaultPage />);
@@ -50,6 +69,8 @@ export const nameInput = () => host(VAULT_ORDER_NAME_FIELD_ID);
 export const regionSelect = () => host(VAULT_ORDER_REGION_FIELD_ID);
 export const submitButton = () => screen.getByTestId(VAULT_ORDER_TEST_IDS.submit);
 export const cancelButton = () => screen.getByTestId(VAULT_ORDER_TEST_IDS.cancel);
+export const pricingMessage = () => screen.queryByTestId(VAULT_ORDER_PRICING_TEST_IDS.message);
+export const pricingSkeleton = () => screen.queryByTestId(VAULT_ORDER_PRICING_TEST_IDS.skeleton);
 
 /**
  * Both are strict on purpose: the ODS React wrapper applies props after the commit, so a missing

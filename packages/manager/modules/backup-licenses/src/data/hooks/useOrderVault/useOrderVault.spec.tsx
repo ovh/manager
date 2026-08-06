@@ -4,11 +4,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { VAULT_ORDER_CHANNEL_UNAVAILABLE, orderVault } from '@/data/api/vaults/vaults.requests';
+import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
+
+import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { orderVault } from '@/data/api/vaults/vaults.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { MOCK_BACKUP_LICENSE_RESOURCE_NAME } from '@/mocks/backupLicenses/backupLicenses.mock';
+import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
 
 import { useOrderVault } from './useOrderVault';
 
+vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -16,7 +22,15 @@ vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
 
 const mockedOrderVault = vi.mocked(orderVault);
 
+const OVH_SUBSIDIARY = 'FR';
+
+const SERVICE_NAME = MOCK_BACKUP_LICENSE_RESOURCE_NAME;
+
 const order = { name: 'vault-paygo-01', region: 'eu-west-par' };
+
+const shellContext = {
+  environment: { getUser: () => ({ ovhSubsidiary: OVH_SUBSIDIARY }) },
+} as unknown as ShellContextType;
 
 const renderOrderVault = () => {
   const queryClient = new QueryClient({
@@ -34,7 +48,9 @@ const renderOrderVault = () => {
   });
   const { result } = renderHook(() => useOrderVault({ onSuccess }), {
     wrapper: ({ children }) => (
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <ShellContext.Provider value={shellContext}>{children}</ShellContext.Provider>
+      </QueryClientProvider>
     ),
   });
 
@@ -44,16 +60,21 @@ const renderOrderVault = () => {
 describe('useOrderVault', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.mocked(getBackupServicesTenants).mockResolvedValue(mockBackupServicesTenants);
+    vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
   });
 
-  it('sends the name and the region the customer supplied, and nothing else', async () => {
+  it('sends the form values plus the context the customer never supplies', async () => {
     mockedOrderVault.mockResolvedValue(undefined);
     const { result } = renderOrderVault();
 
     result.current.mutate(order);
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-    expect(mockedOrderVault).toHaveBeenCalledWith(order);
+    expect(mockedOrderVault).toHaveBeenCalledWith(order, {
+      ovhSubsidiary: OVH_SUBSIDIARY,
+      serviceName: SERVICE_NAME,
+    });
   });
 
   it('refreshes the vault list before handing back, so the new row is already there', async () => {
@@ -78,11 +99,14 @@ describe('useOrderVault', () => {
     expect(onSuccess).not.toHaveBeenCalled();
   });
 
-  it('fails today, because no ordering channel is published to send an order to', async () => {
-    const { orderVault: realOrderVault } = await vi.importActual<
-      typeof import('@/data/api/vaults/vaults.requests')
-    >('@/data/api/vaults/vaults.requests');
+  it('orders nothing at all when the service it would buy onto cannot be resolved', async () => {
+    vi.mocked(getBackupServicesTenants).mockResolvedValue([]);
+    const { result, onSuccess } = renderOrderVault();
 
-    await expect(realOrderVault(order)).rejects.toThrow(VAULT_ORDER_CHANNEL_UNAVAILABLE);
+    result.current.mutate(order);
+
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(mockedOrderVault).not.toHaveBeenCalled();
+    expect(onSuccess).not.toHaveBeenCalled();
   });
 });

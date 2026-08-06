@@ -5,6 +5,7 @@ import { labels } from '@/test-utils/i18ntest.utils';
 
 import {
   LOCATIONS,
+  SERVICE_NAME,
   blurName,
   chooseRegion,
   clickSubmit,
@@ -16,11 +17,13 @@ import {
   nameFieldError,
   regionSelect,
   renderOrderModal,
+  resolveServiceName,
   submitButton,
   typeName,
 } from './_test/order.harness';
 
 vi.mock('@/data/api/locations/locations.requests');
+vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -32,6 +35,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   mockedGetLocations.mockResolvedValue(LOCATIONS);
   mockedOrderVault.mockResolvedValue(undefined);
+  resolveServiceName();
 });
 
 describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
@@ -106,10 +110,10 @@ describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
     await clickSubmit();
 
     await waitFor(() =>
-      expect(mockedOrderVault).toHaveBeenCalledWith({
-        name: 'vault-01',
-        region: LOCATIONS[0].name,
-      }),
+      expect(mockedOrderVault).toHaveBeenCalledWith(
+        { name: 'vault-01', region: LOCATIONS[0].name },
+        expect.objectContaining({ serviceName: SERVICE_NAME }),
+      ),
     );
   });
 

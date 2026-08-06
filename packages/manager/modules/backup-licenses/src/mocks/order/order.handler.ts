@@ -22,6 +22,7 @@ export type TOrderMockParams = {
   isOrderError?: boolean;
   /** Statut des écritures en échec : un 400/409 dit « ce nom ne va pas », un 5xx parle du canal. */
   orderErrorStatus?: number;
+  orderErrorMessage?: string;
   serviceOffersErrorStatus?: number;
   /** Retient les offres, le temps d'observer l'état de chargement des prix. */
   serviceOffersDelay?: number;
@@ -38,6 +39,7 @@ export const getOrderMocks = ({
   isServiceOffersError,
   isOrderError,
   orderErrorStatus = 500,
+  orderErrorMessage,
   serviceOffersErrorStatus = 500,
   serviceOffersDelay = 0,
   orderDelay = 0,
@@ -46,10 +48,11 @@ export const getOrderMocks = ({
   const offers =
     serviceOffers ??
     (isServiceOfferMissing ? mockCartServiceOffersWithoutVault : mockCartServiceOffers);
+  const orderError = orderErrorMessage ? { message: orderErrorMessage } : ERROR_BODY;
 
   const write = (url: string, response: unknown): Handler => ({
     url,
-    response: () => (isOrderError ? ERROR_BODY : response),
+    response: () => (isOrderError ? orderError : response),
     api: 'v6',
     method: 'post',
     status: isOrderError ? orderErrorStatus : 200,
@@ -85,7 +88,7 @@ export const getOrderMocks = ({
     },
     {
       url: `${ORDER_CART_ROUTE}/:cartId/checkout`,
-      response: () => (isOrderError ? ERROR_BODY : mockCartCheckout),
+      response: () => (isOrderError ? orderError : mockCartCheckout),
       api: 'v6',
       method: 'get',
       status: isOrderError ? orderErrorStatus : 200,
