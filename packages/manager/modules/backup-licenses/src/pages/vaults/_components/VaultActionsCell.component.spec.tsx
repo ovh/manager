@@ -14,12 +14,6 @@ import { IAM_ACTIONS } from '@/utils/iam.constants';
 import { getVaultActionsMenuId } from '../vaults.constants';
 import { VaultActionsCell } from './VaultActionsCell.component';
 
-/**
- * `USE_API_MOCKS` court-circuite le réseau et renvoie les jeux de données du module. Ces tests
- * paramètrent leurs propres fixtures via MSW, donc ils laissent la couche réseau s'exécuter.
- */
-vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
-
 const navigateMock = vi.fn();
 
 vi.mock('react-router-dom', async (importOriginal) => {

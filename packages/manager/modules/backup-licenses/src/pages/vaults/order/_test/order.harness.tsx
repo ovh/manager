@@ -4,11 +4,15 @@ import { RenderResult, fireEvent, screen, waitFor } from '@testing-library/react
 import { expect, vi } from 'vitest';
 
 import { fieldErrorId } from '@/components/FieldError/FieldError.component';
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getLocations } from '@/data/api/locations/locations.requests';
 import { getBackupServicesOffers } from '@/data/api/order/order.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
-import { MOCK_BACKUP_LICENSE_RESOURCE_NAME } from '@/mocks/backupLicenses/backupLicenses.mock';
+import {
+  MOCK_BACKUP_LICENSE_RESOURCE_NAME,
+  mockBackupLicenses,
+} from '@/mocks/backupLicenses/backupLicenses.mock';
 import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
 import { Location, LocationSpecificType, LocationType } from '@/types/Location.type';
 
@@ -56,6 +60,7 @@ export const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants
 export const resolveServiceName = () => {
   mockedGetBackupServicesTenants.mockResolvedValue(mockBackupServicesTenants);
   vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
+  vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
 };
 
 export const SERVICE_NAME = MOCK_BACKUP_LICENSE_RESOURCE_NAME;

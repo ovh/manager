@@ -1,11 +1,5 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
-import {
-  mockBackupServers,
-  simulateBackupServerDeletion,
-  simulateBackupServerUpdate,
-} from '@/mocks/backupServers/backupServers.mock';
-import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { getBackupServerRoute, getBackupServersRoute } from '@/utils/apiRoutes/apiRoutes';
 
@@ -35,8 +29,6 @@ export const getBackupServers = async ({
   backupServicesId,
   vspcTenantId,
 }: GetBackupServersParams): Promise<BackupServerResource[]> => {
-  if (USE_API_MOCKS) return mockBackupServers;
-
   const { data } = await v2.get<BackupServerResource[]>(
     getBackupServersRoute(backupServicesId, vspcTenantId),
   );
@@ -54,11 +46,6 @@ export const editBackupServer = async ({
   backupServerId,
   ...payload
 }: EditBackupServerParams): Promise<void> => {
-  if (USE_API_MOCKS) {
-    simulateBackupServerUpdate(backupServerId, payload);
-    return;
-  }
-
   await v2.put(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId), payload);
 };
 
@@ -72,10 +59,5 @@ export const deleteBackupServer = async ({
   vspcTenantId,
   backupServerId,
 }: DeleteBackupServerParams): Promise<void> => {
-  if (USE_API_MOCKS) {
-    simulateBackupServerDeletion(backupServerId);
-    return;
-  }
-
   await v2.delete(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId));
 };
