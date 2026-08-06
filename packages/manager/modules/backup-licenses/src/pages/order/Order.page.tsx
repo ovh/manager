@@ -18,6 +18,7 @@ import LicenseStep from '@/components/order/LicenseStep/LicenseStep.component';
 import LocationStep from '@/components/order/LocationStep/LocationStep.component';
 import OrderRecapPanel from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
 import ServerVaultStep from '@/components/order/ServerVaultStep/ServerVaultStep.component';
+import { useOrderBackupLicenses } from '@/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { useLocationLabel } from '@/hooks/useLocationLabel/useLocationLabel';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
@@ -41,7 +42,26 @@ export default function OrderPage() {
   const order = useOrderForm();
   const guideItems = useMainGuideItem();
 
-  const { family, tier, form, errors, firstInvalidField, firstInvalidStepId, canSubmit } = order;
+  const {
+    family,
+    tier,
+    form,
+    errors,
+    firstInvalidField,
+    firstInvalidStepId,
+    canSubmit,
+    resolvedLicenseApiValue,
+  } = order;
+
+  // Le brouillon n'est effacé qu'une fois la commande réellement passée : un échec doit laisser
+  // la page rechargeable telle quelle.
+  const submitOrder = useOrderBackupLicenses({
+    onSuccess: () => {
+      order.clearPersistedOrder();
+      navigate(routeUrls.linkedServers);
+    },
+  });
+  const isSubmitting = submitOrder.isPending;
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -56,8 +76,9 @@ export default function OrderPage() {
     .join(' ');
 
   const handleFinalize = () => {
+    if (isSubmitting) return;
     order.setSubmitAttempted(true);
-    if (!canSubmit) {
+    if (!canSubmit || resolvedLicenseApiValue === null) {
       // Feedback actionnable plutôt qu'un bouton grisé : on réouvre l'étape fautive
       // et, pour le bloc serveur/vault, on amène l'utilisateur droit au champ bloquant.
       if (firstInvalidStepId === OrderStepId.LICENSE) {
@@ -74,11 +95,8 @@ export default function OrderPage() {
       }
       return;
     }
-    // Commande soumise : on repart d'une page vierge à la prochaine entrée.
-    order.clearPersistedOrder();
-    // TODO(BKP-1208): brancher la commande Agora (createCart de @ovh-ux/manager-module-order).
-    // API non figée → on redirige vers la page de service, destination du parcours.
-    navigate(routeUrls.linkedServers);
+
+    submitOrder.mutate({ form, licenseType: resolvedLicenseApiValue });
   };
 
   return (
@@ -90,9 +108,12 @@ export default function OrderPage() {
         headerButton: <GuideButton items={guideItems} />,
       }}
       backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
-      onClickReturn={() => navigate(routeUrls.onboarding)}
+      onClickReturn={isSubmitting ? undefined : () => navigate(routeUrls.onboarding)}
     >
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+      <div
+        aria-busy={isSubmitting}
+        className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]"
+      >
         <div className="flex flex-col gap-8">
           <StepComponent
             order={1}
@@ -113,13 +134,19 @@ export default function OrderPage() {
             next={{
               action: order.license.submit,
               label: t('step.continue'),
-              isDisabled: !order.isLicenseValid,
+              isDisabled: !order.isLicenseValid || isSubmitting,
             }}
-            edit={{ action: order.license.edit, label: t('summary.edit') }}
+            edit={{
+              action: order.license.edit,
+              label: t('summary.edit'),
+              isDisabled: isSubmitting,
+            }}
           >
             <LicenseStep
               family={family}
               tier={tier}
+              familyDisabled={isSubmitting}
+              tierDisabled={isSubmitting}
               onSelectFamily={order.selectFamily}
               onSelectTier={order.selectTier}
             />
@@ -143,13 +170,18 @@ export default function OrderPage() {
             next={{
               action: order.serverVault.submit,
               label: t('step.continue'),
-              isDisabled: !order.isServerVaultValid,
+              isDisabled: !order.isServerVaultValid || isSubmitting,
             }}
-            edit={{ action: order.serverVault.edit, label: t('summary.edit') }}
+            edit={{
+              action: order.serverVault.edit,
+              label: t('summary.edit'),
+              isDisabled: isSubmitting,
+            }}
           >
             <ServerVaultStep
               form={form}
               errors={errors}
+              isDisabled={isSubmitting}
               onFieldChange={order.setField}
               onFieldBlur={order.touchField}
               onToggleNat={order.toggleNat}
@@ -171,14 +203,29 @@ export default function OrderPage() {
                 t('region.section_title')
               )
             }
-            edit={{ action: order.location.edit, label: t('summary.edit') }}
+            edit={{
+              action: order.location.edit,
+              label: t('summary.edit'),
+              isDisabled: isSubmitting,
+            }}
           >
-            <LocationStep selected={form.regionApiValue} onSelect={order.selectRegion} />
+            <LocationStep
+              selected={form.regionApiValue}
+              isDisabled={isSubmitting}
+              onSelect={order.selectRegion}
+            />
           </StepComponent>
         </div>
 
         <aside className="sticky top-8 self-start">
-          <OrderRecapPanel family={family} tier={tier} form={form} onFinalize={handleFinalize} />
+          <OrderRecapPanel
+            family={family}
+            tier={tier}
+            form={form}
+            isSubmitting={isSubmitting}
+            submitError={submitOrder.isError ? t('error.submit') : null}
+            onFinalize={handleFinalize}
+          />
         </aside>
       </div>
     </BaseLayout>

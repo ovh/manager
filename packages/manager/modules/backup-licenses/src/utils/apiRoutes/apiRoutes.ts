@@ -17,6 +17,13 @@ export const getOrderCartAssignRoute = (cartId: string) => `${getOrderCartRoute(
 export const getOrderCartCheckoutRoute = (cartId: string) =>
   `${getOrderCartRoute(cartId)}/checkout`;
 
+export const getBackupServicesCartItemRoute = (cartId: string) =>
+  `${getOrderCartRoute(cartId)}/${BACKUP_SERVICES_CART_ITEM_ENDPOINT}`;
+
+/** Addons de l'item principal : c'est le corps, pas la route, qui porte l'`itemId` du parent. */
+export const getBackupServicesCartOptionRoute = (cartId: string) =>
+  `${getBackupServicesCartItemRoute(cartId)}/options`;
+
 export const getCartItemRoute = (cartId: string, itemId: number) =>
   `${getOrderCartRoute(cartId)}/item/${itemId}`;
 

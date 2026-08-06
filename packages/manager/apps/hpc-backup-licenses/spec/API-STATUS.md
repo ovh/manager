@@ -11,11 +11,12 @@ Confluence « 05 - New Veeam Enterprise APIv2 », qui documente le contrat des r
 `USE_API_MOCKS = true`. Tant que ce flag est à `true`, **toutes** les requêtes qui le consultent renvoient
 des données mockées — y compris celles dont le code d'appel réel est déjà écrit et correct. Démoquer un
 endpoint suppose donc deux choses distinctes : (1) que le endpoint soit déployé côté BE et confirmé, (2) que
-le flag global repasse à `false`. Quatre endpoints font exception et appellent le réseau réel sans aucune
-garde `USE_API_MOCKS` : `getLocations` (`/location`), `getBackupServicesCatalog`
-(`/order/catalog/public/backupServices`), `getBackupServicesTenants` (`/v2/backupServices/tenant`), et les
+le flag global repasse à `false`. Font exception, et appellent le réseau réel sans aucune garde
+`USE_API_MOCKS` : `getLocations` (`/location`), `getBackupServicesCatalog`
+(`/order/catalog/public/backupServices`), `getBackupServicesTenants` (`/v2/backupServices/tenant`), les
 appels de `@ovh-ux/manager-module-common-api` utilisés par BKP-1226 (`useServiceDetailsQueryOption`,
-`useDeleteService`).
+`useDeleteService`), et toute la surface de commande Agora de `src/data/api/order/order.requests.ts`
+(BKP-1208, cf. ci-dessous).
 
 Légende : ✅ Implémenté (réel) · 🎭 Moqué · ❌ Manquant · ❓ Ambigu / point d'ombre.
 
@@ -38,19 +39,55 @@ lever côté suivi.
 
 ## BKP-1208 — Page de commande (order)
 
+Submit branché le 2026-08-06 : `src/pages/order/Order.page.tsx:57-64` monte
+`useOrderBackupLicenses` (`src/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses.ts`), qui
+compose le panier depuis l'état du formulaire (`src/utils/orderComposition/orderComposition.ts`) et
+l'exécute. Aucun de ces appels ne consulte `USE_API_MOCKS` : ils partent sur le réseau réel, comme le
+catalogue et `/location`.
+
 | Endpoint | Usage | Statut | Détails / fichiers |
 |---|---|---|---|
-| `createCart` (`@ovh-ux/manager-module-order`) — submit de la commande | Finaliser la commande (association licence + Vault + serveur) | ❌ Manquant | `src/pages/order/Order.page.tsx:78-81` : `clearPersistedOrder()` + `navigate(routeUrls.linkedServers)`, **aucun appel réseau**. `// TODO(BKP-1208): brancher la commande Agora` explicite |
+| `POST /order/cart` | Ouvre le panier pour la subsidiary du compte | ✅ Implémenté (réel) | `order.requests.ts::createOrderCart` |
+| `POST /order/cart/{cartId}/backupServices` | Item principal `backup-tenant` (P1M, `default`, 1) | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItem` |
+| `GET /order/cart/{cartId}/item/{itemId}/requiredConfiguration` | Découverte des labels réclamés, item par item | ✅ Implémenté (réel) | `order.requests.ts::getCartItemRequiredConfiguration`, apparié par `utils/cartConfiguration/cartConfiguration.ts::planCartConfigurations` |
+| `POST /order/cart/{cartId}/item/{itemId}/configuration` | Une configuration par label réclamé | ✅ Implémenté (réel) | `order.requests.ts::configureCartItem` |
+| `POST /order/cart/{cartId}/backupServices/options` | Addons `vspc-tenant`, `vspc-tenant-backuplicenses`, `backup-vault-backuplicenses-500G`, **dans cet ordre** | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItemOption` |
+| `POST /order/cart/{cartId}/assign` | Rattache le panier au compte connecté | ✅ Implémenté (réel) | `order.requests.ts::assignOrderCart` |
+| `GET /order/cart/{cartId}/checkout` | Simulation : contrats (CGV) + prix, n'engage rien | ✅ Implémenté (réel) | `order.requests.ts::getOrderCartCheckout` |
+| `POST /order/cart/{cartId}/checkout` | **Engage la commande** (`autoPayWithPreferredPaymentMethod`, `waiveRetractationPeriod`) | ✅ Implémenté (réel) | `order.requests.ts::executeOrderCartCheckout`, mêmes drapeaux que `bmc-backup-agent-baremetal::useCheckoutBackupAgentCart` |
+
+Le canal est écrit et testé (MSW : `src/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses.spec.tsx`,
+`src/pages/order/Order.page.spec.tsx`), mais **jamais exercé de bout en bout** : le catalogue
+`backupServices` n'est pas déclaré en production EU (vérifié le 2026-08-06), donc `POST
+/order/cart/{cartId}/backupServices` refusera les plan codes ci-dessous jusqu'à publication.
 
 **Points d'ombre**
-- ❓ `vaultDisplayName` (nom du Vault saisi par l'utilisateur) : nom de champ front, **non confirmé côté API** —
-  à valider avec le BE avant le branchement du submit.
-- CGV : viennent du champ `contractList` (`Order.data.contracts`, type `Contract[]`) renvoyé par le `GET
-  /order/cart/{cartId}/checkout` déclenché en interne par `createCart`
-  (`packages/manager/modules/order/src/api/cart.ts:139-143`), même pattern que Veeam
-  (`packages/manager/apps/bmc-backup-agent-baremetal`, `Step1Selection.component.tsx:123,149,264-274`) — le
-  submit `createCart` de BKP-1208 les récupérera « gratuitement », à afficher avec le composant `<Contract>`
-  de `@ovh-ux/manager-module-order`.
+- ❓ **Labels de configuration non vérifiés** — c'est le point d'ombre principal, et il est structurel :
+  les noms envoyés (`displayName`, `backupServerExternalIp`, `backupServerPrivateIp`,
+  `vaultDisplayName`, `region`, `licenseType`) viennent de la colonne « API field » du ticket, et
+  `region` n'est nommé par aucune source. Le code ne devine pas : il lit `requiredConfiguration` de
+  chaque item et, si un label réclamé n'a pas de valeur candidate, **la commande échoue** avec
+  `UNKNOWN_CART_CONFIGURATION` plutôt que de partir incomplète. Premier passage contre un catalogue
+  déclaré = première vérité sur ces graphies.
+- ❓ `vaultDisplayName` : toujours **non confirmé côté API** (inchangé depuis le 2026-08-04).
+- ❓ Plan codes de la composition (`backup-tenant`, `vspc-tenant`, `vspc-tenant-backuplicenses`,
+  `backup-vault-backuplicenses-500G`) : ⭐️4, doc de référencement Agora uniquement. Non confirmé non
+  plus : **quels addons le catalogue attache tout seul** (les plans de consommation par édition) versus
+  ceux que le panier doit ajouter — R2 de la spec.
+- ❓ Où va l'édition de licence dans le panier (R3) : le code envoie `licenseType` à tout item qui le
+  réclame, ce qui couvre les deux hypothèses (configuration sur `vspc-tenant-backuplicenses` ou choix
+  d'addon de consommation) sans en trancher aucune.
+- CGV : `contractList` remonte du `GET .../checkout` et **transite par le hook**
+  (`BackupLicensesOrderResult.contractList`) — rien ne l'affiche, la décision d'inclure la section
+  restant ouverte côté PO (R5). Si elle est retenue, la séquence doit se couper entre le GET et le POST
+  du checkout : c'est le seul changement à faire, le point est commenté dans le hook. Même pattern que
+  `packages/manager/apps/bmc-backup-agent-baremetal`
+  (`Step1Selection.component.tsx:123,149,264-274`), qui lui les affiche et les fait cocher.
+- `createBackupServicesCart` (wrapper une-passe sur `createCart`, `order.requests.ts`) **n'est pas
+  utilisé par le tunnel** : `createCart` poste les configurations à l'aveugle et ajoute les addons en
+  parallèle, incompatible avec la découverte des labels et l'ordre de R2. Il reste le chemin court pour
+  une composition dont les labels seront confirmés — à supprimer s'il ne sert toujours à rien à ce
+  moment-là.
 
 ---
 
@@ -274,12 +311,15 @@ Rappel : même une fois ces endpoints déployés côté BE, il faut aussi repass
 
 ### ❌ Manquants (aucun code d'appel écrit sur cette branche)
 
-| Endpoint | Ticket | Contrat |
-|---|---|---|
-| `createCart` (submit Agora) | 1208 | ❌ non couvert par la spec Confluence (hors périmètre `backup-vspc`/`backup-vem`/`backup-core`) |
+Aucun. La dernière ligne (`createCart`, submit Agora de BKP-1208) est passée ✅ le 2026-08-06 : les 8
+appels de la séquence de panier sont écrits, réels et testés (cf. section BKP-1208). Ils restent
+non exercés de bout en bout tant que le catalogue `backupServices` n'est pas déclaré, et les labels de
+configuration qu'ils envoient ne sont pas vérifiés — ce sont des points d'ombre, pas du code manquant.
 
 ### Points d'ombre transverses à ne pas perdre de vue
 
+- Labels de configuration du panier de commande (1208) inconnus tant que le catalogue `backupServices`
+  n'est pas déclaré : la commande échoue proprement sur un label réclamé sans valeur, elle ne devine pas.
 - Comportement du `PUT` de 1218 (immédiat vs effectif au mois suivant) non répondu par le BE.
 - Synchronicité du `DELETE` de 1219 (tâche asynchrone dans `currentTasks` ou suppression immédiate ?) non
   confirmée.
