@@ -41,4 +41,12 @@ export const queryKeys = {
       ovhSubsidiary,
     ],
   },
+  order: {
+    serviceOffers: (serviceName: string) => [
+      'backup-licenses',
+      'order',
+      'service-offers',
+      serviceName,
+    ],
+  },
 } as const;
