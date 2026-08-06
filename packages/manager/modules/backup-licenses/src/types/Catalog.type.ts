@@ -33,6 +33,9 @@ export interface CatalogLocale {
 }
 
 export interface OrderCatalog {
+  /** `backupServices` n'en publie qu'un, `backup-tenant` : tout le reste est un addon. */
   plans: CatalogPlan[];
+  /** Là où vivent les licences et les vaults, tarifs compris — le prix affiché s'y lit. */
+  addons: CatalogPlan[];
   locale: CatalogLocale;
 }
