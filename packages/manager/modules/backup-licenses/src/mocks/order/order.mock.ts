@@ -2,6 +2,7 @@ import { Cart, Item, Order } from '@ovh-ux/manager-module-order';
 
 import {
   CartItemRequiredConfiguration,
+  CartOfferDefinition,
   CartOfferPricing,
   CartServiceOffer,
 } from '@/types/OrderCart.type';
@@ -59,12 +60,13 @@ export const mockVaultServiceOffer: CartServiceOffer = {
   productType: 'storage',
 };
 
+/** Ni `installation` ni `renew` : un changement de gamme ne se commande pas depuis le tunnel. */
 export const mockUnorderableServiceOffer: CartServiceOffer = {
   exclusive: false,
   family: 'license',
   mandatory: false,
   planCode: 'vspc-tenant-backuplicenses',
-  prices: [buildTestOfferPricing(TEST_TENANT_OFFER_PRICE_IN_UCENTS, { capacities: ['renew'] })],
+  prices: [buildTestOfferPricing(TEST_TENANT_OFFER_PRICE_IN_UCENTS, { capacities: ['upgrade'] })],
   productName: 'Backup Licenses VSPC tenant',
   productType: 'saas_license',
 };
@@ -75,6 +77,51 @@ export const mockCartServiceOffers: CartServiceOffer[] = [
 ];
 
 export const mockCartServiceOffersWithoutVault: CartServiceOffer[] = [mockUnorderableServiceOffer];
+
+/**
+ * Ce que le panier du tunnel offrirait. Les plan codes de BKP-1208 sont écrits en clair, comme
+ * `mockOrderFunnelRequiredConfiguration` : si la composition change, le test le dit bruyamment.
+ */
+export const mockCartProductDefinitions: CartOfferDefinition[] = [
+  {
+    planCode: 'backup-tenant',
+    prices: [buildTestOfferPricing(TEST_TENANT_OFFER_PRICE_IN_UCENTS)],
+    productName: 'Backup Licenses tenant',
+    productType: 'saas_license',
+  },
+];
+
+const buildTestOptionDefinition = (
+  planCode: string,
+  family: string,
+  pricing: Partial<CartOfferPricing> = {},
+): CartServiceOffer => ({
+  exclusive: false,
+  family,
+  mandatory: false,
+  planCode,
+  prices: [buildTestOfferPricing(TEST_TENANT_OFFER_PRICE_IN_UCENTS, pricing)],
+  productName: `Backup Licenses ${planCode}`,
+  productType: 'saas_license',
+});
+
+/**
+ * Deux des trois addons annoncent volontairement autre chose que le mensuel `default`/`P1M` à
+ * l'unité : c'est ce que la commande doit reprendre de l'offre, et non ce qu'elle supposerait.
+ */
+export const mockCartOptionDefinitions: CartServiceOffer[] = [
+  buildTestOptionDefinition('vspc-tenant', 'vspc'),
+  buildTestOptionDefinition('vspc-tenant-backuplicenses', 'license', {
+    pricingMode: 'consumption',
+  }),
+  buildTestOptionDefinition('backup-vault-backuplicenses-500G', 'vault', {
+    duration: 'P1Y',
+    minimumQuantity: 2,
+  }),
+];
+
+export const mockCartOptionDefinitionsWithoutBundledVault: CartServiceOffer[] =
+  mockCartOptionDefinitions.slice(0, 2);
 
 export const MOCK_CART_ID = 'test-cart-id';
 
@@ -106,17 +153,17 @@ export const mockCartRequiredConfiguration: CartItemRequiredConfiguration[] = [
 ];
 
 /**
- * Ce que le panier du tunnel de commande réclamerait : les labels de la colonne « API field » de
- * BKP-1208. Graphies non confirmées côté catalogue (cf. spec order-subscription, technical.md) —
- * écrites en clair ici pour qu'un changement de contrat fasse échouer le test bruyamment.
+ * Ce que le panier du tunnel réclame, relevé item par item sur un panier réel (labeu, 2026-08-06) —
+ * l'union des labels, le handler servant la même réponse à tous les items. Les deux comptes
+ * `Nichandle` que le panier réclame sans les exiger doivent rester ignorés sans bloquer.
  */
 export const mockOrderFunnelRequiredConfiguration: CartItemRequiredConfiguration[] = [
-  { fields: null, label: 'displayName', required: true, type: 'string' },
-  { fields: null, label: 'backupServerExternalIp', required: true, type: 'string' },
-  { fields: null, label: 'backupServerPrivateIp', required: false, type: 'string' },
-  { fields: null, label: 'vaultDisplayName', required: true, type: 'string' },
-  { fields: null, label: 'region', required: true, type: 'string' },
-  { fields: null, label: 'licenseType', required: true, type: 'string' },
+  { fields: null, label: 'backupserver-public-ip', required: true, type: 'String' },
+  { fields: null, label: 'backupserver-private-ip', required: false, type: 'String' },
+  { fields: null, label: 'license-type', required: true, type: 'String' },
+  { fields: null, label: 'vault-azname', required: false, type: 'String' },
+  { fields: null, label: 'TECH_ACCOUNT', required: false, type: 'Nichandle' },
+  { fields: null, label: 'ADMIN_ACCOUNT', required: false, type: 'Nichandle' },
 ];
 
 export const mockCartCheckout: Order = {

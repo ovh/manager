@@ -115,7 +115,27 @@ describe('getOfferOrderParameters', () => {
     expect(getOfferOrderParameters(offer)?.quantity).toBe(5);
   });
 
-  it('returns undefined when no pricing is installable', () => {
+  /**
+   * Forme réelle du catalogue `backupServices` : deux tarifs distincts, l'installation à `P0D`.
+   * Poster cette durée nulle passe l'ajout au panier puis fait échouer le checkout sur
+   * « Invalid duration 0 » — c'est la période de renouvellement qu'Agora attend.
+   */
+  it('takes the billing period from the renewal pricing, never the null installation one', () => {
+    const offer = withPrices([
+      pricing({ capacities: ['installation'], duration: 'P0D', interval: 0 }),
+      pricing({ capacities: ['renew'], duration: 'P1M', interval: 1 }),
+    ]);
+
+    expect(getOfferOrderParameters(offer)).toMatchObject({ duration: 'P1M' });
+  });
+
+  it('falls back to the installation pricing when the offer announces no renewal', () => {
+    const offer = withPrices([pricing({ capacities: ['installation'], duration: 'P1Y' })]);
+
+    expect(getOfferOrderParameters(offer)).toMatchObject({ duration: 'P1Y' });
+  });
+
+  it('returns undefined when nothing is orderable', () => {
     expect(getOfferOrderParameters(mockUnorderableServiceOffer)).toBeUndefined();
   });
 

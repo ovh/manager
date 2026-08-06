@@ -12,6 +12,7 @@ import {
   CartItemConfiguration,
   CartItemOptionCreation,
   CartItemRequiredConfiguration,
+  CartOfferDefinition,
   CartOfferOrderParameters,
   CartServiceOffer,
   CartServiceOptionCreation,
@@ -28,13 +29,13 @@ import {
   getOrderCartCheckoutRoute,
 } from '@/utils/apiRoutes/apiRoutes';
 import { planCartConfigurations } from '@/utils/cartConfiguration/cartConfiguration';
+import { BackupLicensesOrderNode } from '@/utils/orderComposition/orderComposition';
+import { findServiceOffer, getOfferOrderParameters } from '@/utils/serviceOffer/serviceOffer';
 
 /**
- * Endpoints confirmés réels (2026-08-06) : la surface de commande Agora répond en production,
- * `POST /order/cartServiceOption/backupServices/{serviceName}` compris. Pas de garde
- * `USE_API_MOCKS` ici, comme pour le catalogue (cf. `data/api/catalog/catalog.requests.ts`).
- * Le catalogue `backupServices` n'y étant pas encore publié, ces appels peuvent répondre en
- * erreur ou à vide : les appelants dégradent, ils ne replient jamais sur une valeur en dur.
+ * Le catalogue `backupServices` répond sur labeu mais pas encore en production (401) : ces appels
+ * peuvent y répondre en erreur ou à vide, et les appelants dégradent — ils ne replient jamais sur
+ * une valeur en dur.
  */
 
 export const getBackupServicesOffers = (serviceName: string): Promise<CartServiceOffer[]> =>
@@ -42,6 +43,19 @@ export const getBackupServicesOffers = (serviceName: string): Promise<CartServic
 
 export const createOrderCart = (ovhSubsidiary: string): Promise<Cart> =>
   postJSON<Cart>('v6', ORDER_CART_ROUTE, { ovhSubsidiary });
+
+export const getBackupServicesCartProductDefinitions = (
+  cartId: string,
+): Promise<CartOfferDefinition[]> =>
+  getJSON<CartOfferDefinition[]>('v6', getBackupServicesCartItemRoute(cartId));
+
+export const getBackupServicesCartOptionDefinitions = (
+  cartId: string,
+  productPlanCode: string,
+): Promise<CartServiceOffer[]> =>
+  getJSON<CartServiceOffer[]>('v6', getBackupServicesCartOptionRoute(cartId), {
+    params: { planCode: productPlanCode },
+  });
 
 export const addBackupServicesOption = (
   serviceName: string,
@@ -115,6 +129,78 @@ export const configureCartItemFromRequirements = async (
   await Promise.all(
     configurations.map((configuration) => configureCartItem(cartId, itemId, configuration)),
   );
+};
+
+export const UNAVAILABLE_CART_OFFER = 'no orderable cart offer for plan code';
+
+export type ResolvedOrderNode = CartOfferOrderParameters & {
+  options: ResolvedOrderNode[];
+};
+
+/** Chaque niveau s'interroge sous son propre parent : les options d'un addon ne sont pas celles du tenant. */
+const resolveOrderNodeOptions = async (
+  cartId: string,
+  parentPlanCode: string,
+  nodes: readonly BackupLicensesOrderNode[],
+  unavailablePlanCodes: string[],
+): Promise<ResolvedOrderNode[]> => {
+  if (nodes.length === 0) return [];
+
+  const definitions = await getBackupServicesCartOptionDefinitions(cartId, parentPlanCode);
+  const resolved: ResolvedOrderNode[] = [];
+
+  for (const node of nodes) {
+    const parameters = getOfferOrderParameters(findServiceOffer(definitions, node.planCode));
+
+    if (!parameters) {
+      unavailablePlanCodes.push(node.planCode);
+      continue;
+    }
+
+    resolved.push({
+      ...parameters,
+      options: await resolveOrderNodeOptions(
+        cartId,
+        node.planCode,
+        node.options,
+        unavailablePlanCodes,
+      ),
+    });
+  }
+
+  return resolved;
+};
+
+/**
+ * `pricingMode` et `duration` se lisent sur les plans que le panier offre, ils ne se supposent pas :
+ * le `default`/`P1M` mensuel de l'item principal n'est pas le contrat d'un addon à la consommation.
+ * Un plan de la composition que le panier n'offre pas, ou dont aucun tarif n'est commandable, arrête
+ * la commande ici en le nommant — le POST partirait de toute façon en erreur, mais sans dire lequel.
+ */
+export const discoverBackupServicesOrderParameters = async (
+  cartId: string,
+  product: BackupLicensesOrderNode,
+): Promise<ResolvedOrderNode> => {
+  const definitions = await getBackupServicesCartProductDefinitions(cartId);
+  const parameters = getOfferOrderParameters(findServiceOffer(definitions, product.planCode));
+
+  if (!parameters) {
+    throw new Error(`${UNAVAILABLE_CART_OFFER}: ${product.planCode}`);
+  }
+
+  const unavailablePlanCodes: string[] = [];
+  const options = await resolveOrderNodeOptions(
+    cartId,
+    product.planCode,
+    product.options,
+    unavailablePlanCodes,
+  );
+
+  if (unavailablePlanCodes.length > 0) {
+    throw new Error(`${UNAVAILABLE_CART_OFFER}: ${unavailablePlanCodes.join(', ')}`);
+  }
+
+  return { ...parameters, options };
 };
 
 export type BackupServicesCartProduct = CartOfferOrderParameters & {
