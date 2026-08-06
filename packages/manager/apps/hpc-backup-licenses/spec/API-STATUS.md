@@ -16,7 +16,7 @@ le flag global repasse à `false`. Font exception, et appellent le réseau réel
 (`/order/catalog/public/backupServices`), `getBackupServicesTenants` (`/v2/backupServices/tenant`), les
 appels de `@ovh-ux/manager-module-common-api` utilisés par BKP-1226 (`useServiceDetailsQueryOption`,
 `useDeleteService`), et toute la surface de commande Agora de `src/data/api/order/order.requests.ts`
-(BKP-1208, cf. ci-dessous).
+(BKP-1208 et BKP-1223, cf. ci-dessous).
 
 Légende : ✅ Implémenté (réel) · 🎭 Moqué · ❌ Manquant · ❓ Ambigu / point d'ombre.
 
@@ -163,9 +163,8 @@ Purement client, rien à démoquer de spécifique une fois la route de liste ré
   externalIps}`) — un endpoint de **création** de serveur VBR qui n'apparaît dans aucun ticket suivi ici (1216
   liste, 1218 édite, 1219 supprime, mais aucun ticket « ajouter un serveur »). Le bouton « Ajouter » déjà codé
   (`LinkedServersTopbar.component.tsx::add-backup-server`) ne l'appelle pas : il redirige vers le tunnel de
-  commande (`routeUrls.order`, BKP-1208), qui lui-même ne branche encore aucun appel réseau (`createCart`
-  manquant) — à confirmer avec le PO/BE si BKP-1208 doit à terme appeler ce POST plutôt que/en plus de
-  `createCart`.
+  commande (`routeUrls.order`, BKP-1208), qui depuis le 2026-08-06 exécute bien un panier Agora — à
+  confirmer avec le PO/BE si BKP-1208 doit à terme appeler ce POST plutôt que/en plus du panier.
 
 ---
 
@@ -208,6 +207,62 @@ dans `src/mocks/backupServers/backupServers.mock.ts`/`backupServers.handler.ts`,
   module, comme pour BKP-1216/1218.
 - ❓ Une suppression est-elle autorisée pendant qu'une **autre** opération est déjà en cours sur le même
   serveur ? Le menu ⋮ est déjà désactivé dans ce cas (hérité de 1216) — comportement à faire confirmer PO.
+
+---
+
+## BKP-1223 — Commande d'un vault supplémentaire
+
+Canal réel branché le 2026-08-06 : `orderVault` (`data/api/vaults/vaults.requests.ts`) n'est plus un stub
+qui rejette, son canal par défaut est `placeVaultOrder` (`data/api/order/vaultOrder.ts`). Un vault
+supplémentaire s'achète **en option sur le service existant** (`cartServiceOption`), pas comme un item de
+panier neuf — le tunnel de premier abonnement (BKP-1208 ci-dessus) est l'autre forme du même canal Agora.
+La couture `setVaultOrderChannel` reste en place pour les tests qui veulent une issue plutôt qu'une
+séquence.
+
+| Endpoint | Usage | Statut | Détails / fichiers |
+|---|---|---|---|
+| `GET /order/cartServiceOption/backupServices/{serviceName}` | Découverte de l'offre paygo **et de son tarif** : `planCode`, `pricingMode`, `duration`, `minimumQuantity`, `price.text` | ✅ Implémenté (réel) | `order.requests.ts::getBackupServicesOffers`, filtré par `utils/serviceOffer/serviceOffer.ts` |
+| `POST /order/cart` | Ouvre le panier pour la subsidiary du compte | ✅ Implémenté (réel) | `order.requests.ts::createOrderCart` |
+| `POST /order/cartServiceOption/backupServices/{serviceName}` | Achète l'option `backup-vault-backuplicenses-paygo` sur le service | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesOption`, corps assemblé depuis l'offre (`getOfferOrderParameters`) |
+| `GET /order/cart/{cartId}/item/{itemId}/requiredConfiguration` | Découverte des labels réclamés par l'item vault | ✅ Implémenté (réel) | `order.requests.ts::configureCartItemFromRequirements` (partagé avec BKP-1208) |
+| `POST /order/cart/{cartId}/item/{itemId}/configuration` | Nom du vault + région, un appel par label réclamé | ✅ Implémenté (réel) | idem |
+| `POST /order/cart/{cartId}/assign` | Rattache le panier au compte connecté | ✅ Implémenté (réel) | `order.requests.ts::assignOrderCart` |
+| `GET /order/cart/{cartId}/checkout` | Simulation : contrats + prix, n'engage rien | ✅ Implémenté (réel) | `order.requests.ts::getOrderCartCheckout` |
+| `POST /order/cart/{cartId}/checkout` | **Engage la commande** | ✅ Implémenté (réel) | `order.requests.ts::executeOrderCartCheckout`, mêmes drapeaux que le tunnel |
+| `GET /backupServices/tenant` → `.../vspc` → `.../backupLicenses` | Résolution du `serviceName` sur lequel l'option est achetée (`currentState.resourceName` de la licence) | 🎭 Moqué (indirect) | `data/queries/backupLicense.queries.ts::resourceName`, lu par `ensureQueryData` dans `useOrderVault` et par `useVaultOrderPrice` |
+
+**Le tarif affiché ne vient plus d'une traduction (dette R1 payée).** `order.pricing_message` porte
+désormais `{{price}}` dans les 8 locales ; la valeur est `price.text` de l'offre découverte —
+la chaîne déjà formatée par Agora pour la subsidiary du compte. Rendu par
+`pages/vaults/order/_components/VaultPricingMessage.component.tsx` : squelette pendant l'appel, puis
+**la phrase entière disparaît** si aucun tarif ne revient (catalogue non déclaré, offre sans prix, route
+en erreur). Aucun montant en dur ne subsiste dans `src/` ni dans `public/translations/` hors fixtures de
+test explicitement fictives (`mocks/order/order.mock.ts`).
+
+**Points d'ombre**
+- ❓ **Résolution du `serviceName`** : le `resourceName` retenu est celui de la **licence**
+  (`backupLicenses[0].currentState.resourceName`), le seul identifiant `/services` que le module résout
+  déjà — c'est lui que `useServiceDetailsQueryOption` et la résiliation de l'abonnement (BKP-1226)
+  utilisent. Non confirmé côté Agora : le service qui accepte l'option vault pourrait être une autre
+  ressource (le tenant `backupServices` lui-même). `GET /order/cartServiceOption/backupServices` (sans
+  `serviceName`) renvoie la liste des services acceptant des options et tranchera au premier passage
+  contre un catalogue déclaré.
+- ❓ **Labels de configuration non vérifiés**, même angle mort que BKP-1208 : le code propose plusieurs
+  graphies candidates pour le nom (`vault_name`, `vaultDisplayName`, `displayName`) et la région
+  (`vault_region`, `region`), n'envoie que ce que le panier réclame, et **échoue** avec
+  `UNKNOWN_CART_CONFIGURATION` sur un label réclamé qu'aucune ne couvre plutôt que de deviner.
+- ❓ Plan code `backup-vault-backuplicenses-paygo` (`BACKUP_LICENSES_ORDERABLE_VAULT_PLAN_CODE`) : ⭐️4,
+  doc de référencement Agora seulement. À ne pas confondre avec les plan codes de **consommation**
+  (`BACKUP_LICENSES_VAULT_PLAN_CODES`, BKP-1225) : celui-ci s'achète, ceux-là se facturent.
+- ❓ Tarif retenu pour l'affichage **et** pour le POST : celui dont les `capacities` portent
+  `installation`. Une offre à la consommation pourrait n'en publier aucun de ce type — dans ce cas rien
+  n'est commandé et le message disparaît, ce qui est le comportement voulu mais reste non vérifié.
+- Séquence non exercée de bout en bout, comme le tunnel : le catalogue `backupServices` n'est pas déclaré
+  en production EU (vérifié le 2026-08-06). Testée sous MSW
+  (`pages/vaults/order/OrderVault.route.spec.tsx`, `data/api/order/vaultOrder.spec.ts`).
+- La classification des erreurs est inchangée et reste basée sur le **statut** : 400/409 avec message →
+  erreur sur le champ « nom », tout le reste → bannière dans la modale (`utils/vault/vaultOrderError.ts`,
+  point d'ombre R4 côté BE). Elle ne distingue pas *quel* appel de la séquence a échoué.
 
 ---
 
@@ -311,15 +366,20 @@ Rappel : même une fois ces endpoints déployés côté BE, il faut aussi repass
 
 ### ❌ Manquants (aucun code d'appel écrit sur cette branche)
 
-Aucun. La dernière ligne (`createCart`, submit Agora de BKP-1208) est passée ✅ le 2026-08-06 : les 8
-appels de la séquence de panier sont écrits, réels et testés (cf. section BKP-1208). Ils restent
-non exercés de bout en bout tant que le catalogue `backupServices` n'est pas déclaré, et les labels de
-configuration qu'ils envoient ne sont pas vérifiés — ce sont des points d'ombre, pas du code manquant.
+Aucun. Les deux dernières lignes sont passées ✅ le 2026-08-06 : le submit Agora de BKP-1208 (8 appels de
+séquence de panier) puis la commande de vault supplémentaire de BKP-1223, dont le stub `orderVault`
+rejetait volontairement. Tout est écrit, réel et testé (cf. sections BKP-1208 et BKP-1223). Les deux
+séquences restent non exercées de bout en bout tant que le catalogue `backupServices` n'est pas déclaré,
+et les labels de configuration qu'elles envoient ne sont pas vérifiés — ce sont des points d'ombre, pas
+du code manquant.
 
 ### Points d'ombre transverses à ne pas perdre de vue
 
-- Labels de configuration du panier de commande (1208) inconnus tant que le catalogue `backupServices`
-  n'est pas déclaré : la commande échoue proprement sur un label réclamé sans valeur, elle ne devine pas.
+- Labels de configuration du panier de commande (1208, 1223) inconnus tant que le catalogue
+  `backupServices` n'est pas déclaré : la commande échoue proprement sur un label réclamé sans valeur,
+  elle ne devine pas.
+- Le `serviceName` sur lequel l'option vault est achetée (1223) est le `resourceName` de la licence, seul
+  identifiant `/services` que le module résout — non confirmé côté Agora.
 - Comportement du `PUT` de 1218 (immédiat vs effectif au mois suivant) non répondu par le BE.
 - Synchronicité du `DELETE` de 1219 (tâche asynchrone dans `currentTasks` ou suppression immédiate ?) non
   confirmée.

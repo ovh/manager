@@ -41,13 +41,18 @@ export const buildTestOfferPricing = (
 
 export const PAYGO_VAULT_PLAN_CODE = 'backup-vault-backuplicenses-paygo';
 
+/** Le seul tarif commandable de l'offre vault : celui que la commande et l'affichage lisent tous deux. */
+export const mockVaultOfferInstallationPricing = buildTestOfferPricing(
+  TEST_VAULT_OFFER_PRICE_IN_UCENTS,
+);
+
 export const mockVaultServiceOffer: CartServiceOffer = {
   exclusive: false,
   family: 'vault',
   mandatory: false,
   planCode: PAYGO_VAULT_PLAN_CODE,
   prices: [
-    buildTestOfferPricing(TEST_VAULT_OFFER_PRICE_IN_UCENTS),
+    mockVaultOfferInstallationPricing,
     buildTestOfferPricing(TEST_VAULT_OFFER_PRICE_IN_UCENTS, { capacities: ['upgrade'] }),
   ],
   productName: 'Backup Licenses PAYGO vault',
