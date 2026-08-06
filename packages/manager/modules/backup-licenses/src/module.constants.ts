@@ -72,6 +72,14 @@ export const BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE = BACKUP_LICENSES_VAULT_PLAN
 /** Volume de stockage inclus sur le vault en plan bundle (les 500 premiers Go). */
 export const INCLUDED_VAULT_STORAGE_GB = 500;
 
+/**
+ * Plan code de l'offre COMMANDABLE d'un vault paygo supplémentaire (scénario Agora
+ * *BackupLicenses-Order-3*) : celui-ci s'achète, les `BACKUP_LICENSES_VAULT_PLAN_CODES`
+ * ci-dessus se facturent. ⭐️4 — doc de référencement Agora seulement, non confirmé par
+ * l'API tant que le catalogue `backupServices` n'est pas déclaré.
+ */
+export const BACKUP_LICENSES_ORDERABLE_VAULT_PLAN_CODE = 'backup-vault-backuplicenses-paygo';
+
 export { NAMESPACE_PREFIX, BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
 
 // TODO(BKP-1206): placeholder — real tutorial URL not provided yet, replace once known.

@@ -21,6 +21,7 @@ import {
 } from '@/utils/vault/vaultOrderError';
 
 import { VaultNameField } from './_components/VaultNameField.component';
+import { VaultPricingMessage } from './_components/VaultPricingMessage.component';
 import { VaultRegionField } from './_components/VaultRegionField.component';
 import { useVaultOrderForm } from './_hooks/useVaultOrderForm.hook';
 
@@ -28,7 +29,6 @@ export const VAULT_ORDER_TEST_IDS = {
   submit: 'vault-order-submit',
   cancel: 'vault-order-cancel',
   error: 'vault-order-error',
-  pricing: 'vault-order-pricing',
 } as const;
 
 export default function OrderVaultPage() {
@@ -117,18 +117,7 @@ export default function OrderVaultPage() {
           isPending={areLocationsPending}
           isError={isLocationsError}
         />
-        {/* The one price literal of the feature, and a knowing exception: BKP-1223 AC 4 pins this
-            sentence verbatim, rate included, while the conventions want every price read from the
-            catalog. `GET /order/catalog/public/backupServices` is the exit, and this offering's PAYGO
-            planCode is unpublished (technical.md § WRITE — ordering), so the exception is raised as a
-            kickback rather than worked around here — masking the figure only breaks the AC. */}
-        <OdsMessage
-          color={ODS_MESSAGE_COLOR.information}
-          isDismissible={false}
-          data-testid={VAULT_ORDER_TEST_IDS.pricing}
-        >
-          {t('order.pricing_message')}
-        </OdsMessage>
+        <VaultPricingMessage />
       </form>
     </Modal>
   );

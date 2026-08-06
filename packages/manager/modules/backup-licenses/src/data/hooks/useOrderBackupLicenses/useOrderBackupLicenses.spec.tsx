@@ -1,6 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { UNKNOWN_CART_CONFIGURATION } from '@/data/api/order/order.requests';
 import {
   MOCK_CART_ID,
   MOCK_CART_ITEM_ID,
@@ -18,7 +19,7 @@ import {
 import { LicenseApiValue, ServerVaultFormState } from '@/types/Order.type';
 import { BACKUP_LICENSES_ORDER_PLAN_CODES } from '@/utils/orderComposition/orderComposition';
 
-import { UNKNOWN_CART_CONFIGURATION, useOrderBackupLicenses } from './useOrderBackupLicenses';
+import { useOrderBackupLicenses } from './useOrderBackupLicenses';
 
 const form: ServerVaultFormState = {
   displayName: 'backup-prod-paris',

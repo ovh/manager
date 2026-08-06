@@ -10,18 +10,14 @@ import {
   addBackupServicesCartItem,
   addBackupServicesCartItemOption,
   assignOrderCart,
-  configureCartItem,
+  configureCartItemFromRequirements,
   createOrderCart,
   executeOrderCartCheckout,
-  getCartItemRequiredConfiguration,
   getOrderCartCheckout,
 } from '@/data/api/order/order.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
 import { LicenseApiValue, ServerVaultFormState } from '@/types/Order.type';
-import { planCartConfigurations } from '@/utils/cartConfiguration/cartConfiguration';
 import { buildBackupLicensesOrderComposition } from '@/utils/orderComposition/orderComposition';
-
-export const UNKNOWN_CART_CONFIGURATION = 'unknown required cart configuration';
 
 export type BackupLicensesOrder = {
   form: ServerVaultFormState;
@@ -33,29 +29,6 @@ export type BackupLicensesOrderResult = {
   /** CGV du panier (R5) : rendues ou non, elles remontent au parcours dès qu'il en veut. */
   contractList: Contract[];
   order: Order;
-};
-
-/**
- * Les labels de configuration se découvrent item par item : le catalogue décide lequel du tenant,
- * des addons VSPC ou du vault porte le nom du serveur, la région ou l'édition de licence. On envoie
- * donc à chacun ce qu'il réclame, et un label réclamé sans valeur candidate arrête la commande —
- * poster un panier incomplet livrerait un service à moitié configuré.
- */
-const configureItemFromRequirements = async (
-  cartId: string,
-  itemId: number,
-  values: Record<string, string | undefined>,
-): Promise<void> => {
-  const requirements = await getCartItemRequiredConfiguration(cartId, itemId);
-  const { configurations, missingLabels } = planCartConfigurations(requirements, values);
-
-  if (missingLabels.length > 0) {
-    throw new Error(`${UNKNOWN_CART_CONFIGURATION}: ${missingLabels.join(', ')}`);
-  }
-
-  await Promise.all(
-    configurations.map((configuration) => configureCartItem(cartId, itemId, configuration)),
-  );
 };
 
 const placeBackupLicensesOrder = async ({
@@ -70,13 +43,13 @@ const placeBackupLicensesOrder = async ({
 
   const { cartId } = await createOrderCart(ovhSubsidiary);
   const { itemId } = await addBackupServicesCartItem(cartId, product);
-  await configureItemFromRequirements(cartId, itemId, configurationValues);
+  await configureCartItemFromRequirements(cartId, itemId, configurationValues);
 
   // Séquentiel, dans l'ordre de R2 : `Promise.all` (ce que fait `createCart`) les ajouterait
   // en parallèle, alors que le catalogue peut conditionner un addon à la présence du précédent.
   for (const addon of addons) {
     const option = await addBackupServicesCartItemOption(cartId, { itemId, ...addon });
-    await configureItemFromRequirements(cartId, option.itemId, configurationValues);
+    await configureCartItemFromRequirements(cartId, option.itemId, configurationValues);
   }
 
   await assignOrderCart(cartId);

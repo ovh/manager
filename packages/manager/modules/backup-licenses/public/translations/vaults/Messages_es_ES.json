@@ -48,5 +48,25 @@
       "copy_field": "Copiar el campo {{field}}",
       "value_hidden": "Valor oculto"
     }
+  },
+  "order": {
+    "title": "Order an additional vault",
+    "field": {
+      "name": {
+        "label": "Vault name",
+        "hint": "Min 1 char, max 50 chars. Alphanumeric and hyphens only."
+      },
+      "region": {
+        "label": "Storage region"
+      }
+    },
+    "pricing_message": "This vault will be billed at the pay-as-you-go rate of {{price}} from the first byte consumed.",
+    "success": "Vault order is being processed.",
+    "error": {
+      "submit_failed": "The vault order could not be sent. Please try again in a few moments.",
+      "name_required": "We just need a name for your vault.",
+      "name_format": "Use 1 to 50 characters, letters, digits and hyphens only.",
+      "region_required": "Choose the region where your vault will be stored."
+    }
   }
 }

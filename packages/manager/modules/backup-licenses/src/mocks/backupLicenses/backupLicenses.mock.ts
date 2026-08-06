@@ -6,13 +6,16 @@ import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
  * hypothétique lu par `matchLicenseToVault` (cf. §14 de la spec BKP-1225 : nom de champ non
  * confirmé côté BE). À supprimer une fois l'endpoint déployé (cf. §15 de la spec).
  */
+/** Le `resourceName` que la cascade résout : nom de service côté `/services` et côté Agora. */
+export const MOCK_BACKUP_LICENSE_RESOURCE_NAME = 'backuplicenses-mock-resource';
+
 export const mockBackupLicenses: BackupLicenseResource[] = [
   {
     id: 'd3c9e5f6-0000-4000-8000-000000000001',
     resourceStatus: 'READY',
     currentState: {
       id: 'd3c9e5f6-0000-4000-8000-000000000001',
-      resourceName: 'backuplicenses-mock-resource',
+      resourceName: MOCK_BACKUP_LICENSE_RESOURCE_NAME,
     },
     currentTasks: [],
   },
