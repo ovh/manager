@@ -11,7 +11,9 @@ import { z } from 'zod';
 import { OdsButton, OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
 import { Drawer } from '@ovh-ux/manager-react-components';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { BaremetalOption } from '@/components/CommonFields/BaremetalOption/BaremetalOption.component';
@@ -41,6 +43,7 @@ const AddConfigurationPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const goBack = () => navigate('..');
+  const isUsRegion = useEnvironment().getRegion?.() === Region.US;
   const [formSubmitError, setFormSubmitError] = useState<string>();
   const {
     mutate,
@@ -60,7 +63,7 @@ const AddConfigurationPage = () => {
     ...tenantsQueries.withClient(queryClient).vspcAll(),
     select: (data) => getProductResourceNames(data),
   });
-  const { data, isPending } = useQuery(baremetalsQueries.all());
+  const { data, isPending } = useQuery(baremetalsQueries.all(isUsRegion));
 
   const baremetalList =
     !isProductNameExcludedPending && !isPending
@@ -129,6 +132,12 @@ const AddConfigurationPage = () => {
       <OdsText id={FORM_ID} preset="heading-3">
         {t('link_agent_to_a_server')}
       </OdsText>
+
+      {isUsRegion && (
+        <OdsMessage isDismissible={false} color="information">
+          {t(`${BACKUP_AGENT_NAMESPACES.AGENT}:add_server_us_region_note`)}
+        </OdsMessage>
+      )}
 
       <form
         ref={formRef}

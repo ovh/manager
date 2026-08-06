@@ -15,6 +15,7 @@
   "step1_add_more_servers_hint": "Potrai aggiungere altri server da proteggere una volta completata la configurazione iniziale.",
   "step1_server_label": "Server Bare Metal",
   "step1_server_placeholder": "Seleziona il tuo server Bare Metal",
+  "step1_us_region_note": "Nota: i server situati fuori dagli Stati Uniti non sono ancora supportati. Durante l'aggiunta di un server, saranno disponibili per la selezione solo i server ospitati nelle regioni statunitensi.",
   "no_baremetal_hint": "Nessun server Bare Metal disponibile.",
   "order_baremetal_link": "Ordinare un server Bare Metal",
   "baremetals_error": "Si è verificato un errore durante il caricamento dei tuoi server Bare Metal.",

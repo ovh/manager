@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { beforeAll, vi } from 'vitest';
+import { beforeAll, beforeEach, vi } from 'vitest';
 
 import { BAREMETALS_MOCK } from '@ovh-ux/backup-agent/mocks/baremetals/baremetals.mocks';
 import { mockVaults } from '@ovh-ux/backup-agent/mocks/vaults/vaults.mock';
@@ -39,13 +39,20 @@ vi.mock('@tanstack/react-query', () => ({
   useQueryClient: vi.fn(),
 }));
 
+const { useEnvironmentMock } = vi.hoisted(() => ({
+  useEnvironmentMock: vi.fn().mockReturnValue({ getRegion: () => 'EU' }),
+}));
+
 vi.mock('@ovh-ux/manager-react-shell-client', async () => ({
   ...(await vi.importActual('@ovh-ux/manager-react-shell-client')),
   useNavigationGetUrl: vi.fn().mockReturnValue({ isPending: false, data: '' }),
+  useEnvironment: useEnvironmentMock,
 }));
 
+const { baremetalsAllMock } = vi.hoisted(() => ({ baremetalsAllMock: vi.fn() }));
+
 vi.mock('@ovh-ux/backup-agent/data/queries/baremetals.queries', () => ({
-  baremetalsQueries: { all: vi.fn() },
+  baremetalsQueries: { all: baremetalsAllMock },
 }));
 
 vi.mock('@ovh-ux/backup-agent/data/queries/vaults.queries', () => ({
@@ -136,6 +143,21 @@ describe('OnboardingPage', () => {
       isPending: false,
       isError: false,
     });
+  });
+
+  beforeEach(() => {
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'EU' });
+  });
+
+  it('requests US-only baremetals when the customer region is US', () => {
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'US' });
+    render(<OnboardingPage />);
+    expect(baremetalsAllMock).toHaveBeenCalledWith(true);
+  });
+
+  it('requests every baremetal when the customer region is not US', () => {
+    render(<OnboardingPage />);
+    expect(baremetalsAllMock).toHaveBeenCalledWith(false);
   });
 
   it('renders title, description, and order button', () => {
