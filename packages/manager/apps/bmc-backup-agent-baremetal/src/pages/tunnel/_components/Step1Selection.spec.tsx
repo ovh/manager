@@ -104,6 +104,15 @@ vi.mock('@ovh-ux/backup-agent/data/queries/baremetals.queries', () => ({
   baremetalsQueries: { all: baremetalsAllMock },
 }));
 
+const { useEnvironmentMock } = vi.hoisted(() => ({
+  useEnvironmentMock: vi.fn().mockReturnValue({ getRegion: () => 'EU' }),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (orig) => {
+  const actual = await orig<typeof import('@ovh-ux/manager-react-shell-client')>();
+  return { ...actual, useEnvironment: useEnvironmentMock };
+});
+
 vi.mock('@/hooks/useCreateBackupAgentCart', () => ({
   useCreateBackupAgentCart: () => ({ mutateAsync: createCartMock }),
 }));
@@ -172,6 +181,7 @@ const checkTerms = async (container: HTMLElement) => {
 describe('Step1Selection', () => {
   beforeEach(() => {
     baremetalsAllMock.mockReturnValue({});
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'EU' });
     useQueryMock.mockReturnValue({
       data: BAREMETALS,
       isPending: false,
@@ -194,6 +204,32 @@ describe('Step1Selection', () => {
     const items = container.querySelectorAll('mock-combobox-item');
     expect(items).toHaveLength(3);
     expect(items[0]).toHaveTextContent('Server A - 1.2.3.4 (gra1)');
+  });
+
+  it('requests US-only baremetals when the customer region is US', async () => {
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'US' });
+    await renderStep1();
+    expect(baremetalsAllMock).toHaveBeenCalledWith(true);
+  });
+
+  it('requests every baremetal when the customer region is not US', async () => {
+    await renderStep1();
+    expect(baremetalsAllMock).toHaveBeenCalledWith(false);
+  });
+
+  it('shows the US region note when the customer region is US', async () => {
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'US' });
+    await renderStep1();
+    expect(
+      screen.getByText(/hors des États-Unis ne sont pas encore pris en charge/i),
+    ).toBeInTheDocument();
+  });
+
+  it('does not show the US region note when the customer region is not US', async () => {
+    await renderStep1();
+    expect(
+      screen.queryByText(/hors des États-Unis ne sont pas encore pris en charge/i),
+    ).not.toBeInTheDocument();
   });
 
   // TC-TNL-13 — selecting a server triggers cart creation with the server's IP/region/name

@@ -20,8 +20,10 @@ import {
 
 import { baremetalsQueries } from '@ovh-ux/backup-agent/data/queries/baremetals.queries';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
 import { Contract } from '@ovh-ux/manager-module-order';
 import { LinkType, Links } from '@ovh-ux/manager-react-components';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
 import { useCheckoutBackupAgentCart } from '@/hooks/useCheckoutBackupAgentCart';
 import { useCreateBackupAgentCart } from '@/hooks/useCreateBackupAgentCart';
@@ -49,13 +51,14 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
   const { t } = useTranslation(['tunnel', NAMESPACES.ERROR]);
   const comboboxId = useId();
   const termsCheckboxId = useId();
+  const isUsRegion = useEnvironment().getRegion?.() === Region.US;
 
   const {
     data: baremetals,
     isPending: isBaremetalsPending,
     isError: isBaremetalsError,
     refetch: refetchBaremetals,
-  } = useQuery(baremetalsQueries.all());
+  } = useQuery(baremetalsQueries.all(isUsRegion));
 
   const tunnelLinks = useTunnelLinks();
 
@@ -301,6 +304,12 @@ export const Step1Selection = ({ onCheckoutPendingChange, onComplete }: Step1Sel
         <OdsText preset="heading-4">{t('tunnel:step1_title')}</OdsText>
         <OdsText preset="caption">{t('tunnel:step1_add_more_servers_hint')}</OdsText>
       </div>
+
+      {isUsRegion && (
+        <OdsMessage isDismissible={false} color="information">
+          {t('tunnel:step1_us_region_note')}
+        </OdsMessage>
+      )}
 
       {/* Persistent live region: announces the combobox skeleton -> populated/error transition. */}
       <div aria-live="polite" aria-busy={isBaremetalsPending}>

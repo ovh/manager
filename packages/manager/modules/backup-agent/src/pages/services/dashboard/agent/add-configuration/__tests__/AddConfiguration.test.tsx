@@ -56,6 +56,14 @@ vi.mock('@ovh-ux/manager-react-components', () => ({
   Drawer: DrawerMock,
 }));
 
+const { useEnvironmentMock } = vi.hoisted(() => ({
+  useEnvironmentMock: vi.fn().mockReturnValue({ getRegion: () => 'EU' }),
+}));
+
+vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+  useEnvironment: useEnvironmentMock,
+}));
+
 const { useAddConfigurationVSPCTenantAgentMock } = vi.hoisted(() => ({
   useAddConfigurationVSPCTenantAgentMock: vi.fn().mockReturnValue({
     mutate: vi.fn(),
@@ -95,6 +103,7 @@ describe('FirstOrderFormComponent', () => {
 
   beforeEach(() => {
     queryClient = createQueryClientTest();
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'EU' });
   });
 
   it.each([[true], [false]])(
@@ -139,5 +148,32 @@ describe('FirstOrderFormComponent', () => {
       () => expect(screen.queryByText(`translated_error_required_field`)).not.toBeInTheDocument(),
       { timeout: 1000 },
     );
+  });
+
+  it('shows only US datacenter servers and the US region note when region is US', async () => {
+    useEnvironmentMock.mockReturnValue({ getRegion: () => 'US' });
+    seedCommonData();
+
+    const wrapper = await buildWrapper();
+
+    render(<AddConfigurationPage />, { wrapper });
+
+    const usBaremetalsCount = BAREMETALS_MOCK.filter(({ datacenter }) =>
+      ['vin', 'hil'].some((prefix) => datacenter.toLowerCase().startsWith(prefix)),
+    ).length;
+
+    await waitFor(() => expect(getSelectServer().children.length).toBe(usBaremetalsCount));
+    expect(screen.getByText('translated_add_server_us_region_note')).toBeInTheDocument();
+  });
+
+  it('does not show the US region note when region is not US', async () => {
+    seedCommonData();
+
+    const wrapper = await buildWrapper();
+
+    render(<AddConfigurationPage />, { wrapper });
+
+    await waitFor(() => expect(getSelectServer().children.length).toBe(BAREMETALS_MOCK.length));
+    expect(screen.queryByText('translated_add_server_us_region_note')).not.toBeInTheDocument();
   });
 });

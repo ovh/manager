@@ -4,6 +4,7 @@
   "service_informations": "Informations sur le service",
   "link_agent_to_a_server": "Lier un agent à un serveur existant",
   "add_server": "Ajouter un serveur",
+  "add_server_us_region_note": "Remarque : les serveurs situés hors des États-Unis ne sont pas encore pris en charge. Lors de l'ajout d'un serveur, seuls les serveurs hébergés dans les régions américaines seront disponibles à la sélection.",
   "select_server": "Sélectionner le serveur",
   "product_name": "Nom du produit",
   "select_os": "Sélectionner un système d'exploitation",

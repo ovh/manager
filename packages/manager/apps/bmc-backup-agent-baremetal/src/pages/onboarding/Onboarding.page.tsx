@@ -12,8 +12,9 @@ import { vaultsQueries } from '@ovh-ux/backup-agent/data/queries/vaults.queries'
 import { useGuideUtils } from '@ovh-ux/backup-agent/hooks/useGuideUtils.ts';
 import { urls as backupAgentUrls } from '@ovh-ux/backup-agent/routes/routes.constants';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
 import { Card, Links, RedirectionGuard } from '@ovh-ux/manager-react-components';
-import { useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
+import { useEnvironment, useNavigationGetUrl } from '@ovh-ux/manager-react-shell-client';
 
 import { OnboardingDescription } from '@/components/onboarding/onboardingDescription/OnboardingDescription.component';
 import { OnboardingLayout } from '@/components/onboarding/onboardingLayout/OnboardingLayout.component';
@@ -27,7 +28,8 @@ export default function OnboardingPage() {
   const { productName, title, tiles } = useOnboardingContent();
   const links = useGuideUtils();
   const queryClient = useQueryClient();
-  const { data: baremetals, isPending } = useQuery(baremetalsQueries.all());
+  const isUsRegion = useEnvironment().getRegion?.() === Region.US;
+  const { data: baremetals, isPending } = useQuery(baremetalsQueries.all(isUsRegion));
   const isOrderSuccess = searchParams.get('orderSuccess') === 'true';
   const {
     data: isBackupAgentReady,

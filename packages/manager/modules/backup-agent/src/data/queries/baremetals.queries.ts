@@ -1,19 +1,20 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { getBaremetalDetails, getBaremetals } from '@/data/api/baremetal/baremetals.requests';
+import { isUsBaremetal } from '@/utils/isUsBaremetal';
 
 import { queryKeys } from './queryKeys';
 
 // ─── Base queries (no QueryClient needed) ───
 
-const all = () =>
+const all = (isUsRegion = false) =>
   queryOptions({
     queryKey: queryKeys.baremetals.all,
     queryFn: () => getBaremetals(),
     select: (data) =>
-      [...data].sort((a, b) =>
-        (a.iam?.displayName ?? a.name).localeCompare(b.iam?.displayName ?? b.name),
-      ),
+      [...data]
+        .filter((baremetal) => !isUsRegion || isUsBaremetal(baremetal.datacenter))
+        .sort((a, b) => (a.iam?.displayName ?? a.name).localeCompare(b.iam?.displayName ?? b.name)),
   });
 
 const detail = (serviceName: string) =>
