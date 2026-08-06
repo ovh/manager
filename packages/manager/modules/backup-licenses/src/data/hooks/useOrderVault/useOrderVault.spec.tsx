@@ -6,15 +6,20 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
-import { MOCK_BACKUP_LICENSE_RESOURCE_NAME } from '@/mocks/backupLicenses/backupLicenses.mock';
+import {
+  MOCK_BACKUP_LICENSE_RESOURCE_NAME,
+  mockBackupLicenses,
+} from '@/mocks/backupLicenses/backupLicenses.mock';
 import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
 
 import { useOrderVault } from './useOrderVault';
 
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -62,6 +67,7 @@ describe('useOrderVault', () => {
     vi.clearAllMocks();
     vi.mocked(getBackupServicesTenants).mockResolvedValue(mockBackupServicesTenants);
     vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
+    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
   it('sends the form values plus the context the customer never supplies', async () => {

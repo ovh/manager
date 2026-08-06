@@ -36,7 +36,7 @@ export const mockBackupLicenses: BackupLicenseResource[] = [
   },
 ];
 
-/** Réponse simulée du POST de création (cf. mocks.config.ts) : reprend les champs saisis. */
+/** Réponse simulée du POST de création : reprend les champs saisis. */
 export const mockCreateBackupLicense = (body: CreateBackupLicenseBody): BackupServerResource => {
   const id = `mock-backup-server-${Date.now()}`;
 

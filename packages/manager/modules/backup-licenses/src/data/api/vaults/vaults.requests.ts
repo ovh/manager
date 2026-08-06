@@ -1,8 +1,6 @@
 import { v2 } from '@ovh-ux/manager-core-api';
 
 import { placeVaultOrder } from '@/data/api/order/vaultOrder';
-import { USE_API_MOCKS } from '@/mocks/mocks.config';
-import { mockVaultBucketCredentials, mockVaults } from '@/mocks/vaults/vaults.mock';
 import {
   VaultBucketCredentials,
   VaultOrder,
@@ -12,8 +10,6 @@ import {
 import { getVaultBucketCredentialsRoute, getVaultsRoute } from '@/utils/apiRoutes/apiRoutes';
 
 export const getVaults = async (backupServicesId: string): Promise<VaultResource[]> => {
-  if (USE_API_MOCKS) return mockVaults;
-
   const { data } = await v2.get<VaultResource[]>(getVaultsRoute(backupServicesId));
   return data;
 };
@@ -24,8 +20,6 @@ export const getVaultBucketCredentials = async (
   vaultId: string,
   bucketId: string,
 ): Promise<VaultBucketCredentials> => {
-  if (USE_API_MOCKS) return mockVaultBucketCredentials;
-
   const { data } = await v2.get<VaultBucketCredentials>(
     getVaultBucketCredentialsRoute(backupServicesId, vaultId, bucketId),
     { headers: { Pragma: 'no-cache' } },

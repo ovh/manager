@@ -1,18 +1,11 @@
 import { QueryClient } from '@tanstack/react-query';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { mockEdgeCaseVaults, mockVaultBucketCredentials } from '@/mocks/vaults/vaults.mock';
 import { setupMswMock } from '@/test-utils/setupMsw';
 import { VaultResource } from '@/types/Vault.type';
 
 import { vaultsQueries } from './vaults.queries';
-
-/**
- * `USE_API_MOCKS` renvoie les jeux de données sans passer par le réseau : le module l'utilise pour
- * développer sans API. Ces tests-ci portent justement sur la couche réseau (erreurs, polling), donc
- * ils la laissent s'exécuter et servent les réponses par MSW.
- */
-vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
 
 const createQueryClient = () => new QueryClient({ defaultOptions: { queries: { retry: false } } });
 
