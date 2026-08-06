@@ -15,7 +15,8 @@ const mockedGetBackupServicesCatalog = vi.mocked(getBackupServicesCatalog);
 
 const catalog: OrderCatalog = {
   locale: { currencyCode: 'EUR', taxRate: 0.2 },
-  plans: [
+  plans: [{ planCode: 'backup-tenant', pricings: [] }],
+  addons: [
     {
       planCode: 'vspc-backuplicenses-enterpriseplus-vm',
       pricings: [
@@ -79,7 +80,7 @@ describe('OnboardingPricingHighlight', () => {
   });
 
   it('renders nothing when neither license plan is in the catalogue', async () => {
-    mockedGetBackupServicesCatalog.mockResolvedValue({ ...catalog, plans: [] });
+    mockedGetBackupServicesCatalog.mockResolvedValue({ ...catalog, addons: [] });
 
     const { container } = await renderOnboardingPricingHighlight();
 

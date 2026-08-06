@@ -4,11 +4,13 @@ import { OrderCatalog } from '@/types/Catalog.type';
 
 import { getDefaultPricing, getLowestPricing } from './planPricing';
 
-/** Forme réelle observée sur `vspc-backuplicenses-advanced-vm` (2026-08-03) : plan en
- * `pricingType: 'consumption'`, donc `intervalUnit: 'none'` / `interval: 0`. */
+/** Forme réelle observée sur `vspc-backuplicenses-advanced-vm` (2026-08-03) : en
+ * `pricingType: 'consumption'`, donc `intervalUnit: 'none'` / `interval: 0`. Les licences sont
+ * publiées sous `addons`, jamais sous `plans` — `plans` ne porte que `backup-tenant`. */
 const catalog: OrderCatalog = {
   locale: { currencyCode: 'EUR', taxRate: 0.2 },
-  plans: [
+  plans: [{ planCode: 'backup-tenant', pricings: [] }],
+  addons: [
     {
       planCode: 'vspc-backuplicenses-foundation-vm',
       pricings: [
@@ -58,8 +60,8 @@ describe('getDefaultPricing', () => {
 describe('getLowestPricing', () => {
   const twoPlansCatalog: OrderCatalog = {
     ...catalog,
-    plans: [
-      ...catalog.plans,
+    addons: [
+      ...catalog.addons,
       {
         planCode: 'vspc-backuplicenses-enterpriseplus-vm',
         pricings: [
