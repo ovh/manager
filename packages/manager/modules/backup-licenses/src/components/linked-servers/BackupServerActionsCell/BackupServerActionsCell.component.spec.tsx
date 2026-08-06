@@ -7,9 +7,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import type { ActionMenuProps } from '@ovh-ux/manager-react-components';
 
+import { BACKUP_LICENSES_IAM_RULES } from '@/module.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
-import { BACKUP_LICENSES_IAM_RULES } from '@/module.constants';
 
 import BackupServerActionsCell from './BackupServerActionsCell.component';
 
@@ -58,7 +58,13 @@ describe('BackupServerActionsCell', () => {
       <Routes>
         <Route
           path="/"
-          element={<BackupServerActionsCell backupServerId="server-1" isDisabled={false} urn={authorizedUrn} />}
+          element={
+            <BackupServerActionsCell
+              backupServerId="server-1"
+              isDisabled={false}
+              urn={authorizedUrn}
+            />
+          }
         />
         <Route path="/edit/:backupServerId" element={<div data-testid="edit-page" />} />
       </Routes>,
@@ -77,9 +83,18 @@ describe('BackupServerActionsCell', () => {
       <Routes>
         <Route
           path="/linked-servers"
-          element={<BackupServerActionsCell backupServerId="server-1" isDisabled={false} urn={authorizedUrn} />}
+          element={
+            <BackupServerActionsCell
+              backupServerId="server-1"
+              isDisabled={false}
+              urn={authorizedUrn}
+            />
+          }
         />
-        <Route path="/linked-servers/delete/:backupServerId" element={<div data-testid="delete-modal" />} />
+        <Route
+          path="/linked-servers/delete/:backupServerId"
+          element={<div data-testid="delete-modal" />}
+        />
       </Routes>,
       { initialEntries: ['/linked-servers'] },
     );
