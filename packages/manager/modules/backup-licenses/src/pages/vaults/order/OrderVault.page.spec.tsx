@@ -1,11 +1,19 @@
 import { screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import {
+  TEST_VAULT_OFFER_PRICE_IN_UCENTS,
+  buildTestOfferPricing,
+  mockCartServiceOffers,
+  mockCartServiceOffersWithoutVault,
+  mockVaultServiceOffer,
+} from '@/mocks/order/order.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
 
 import { VAULT_ORDER_TEST_IDS } from './OrderVault.page';
 import {
   LOCATIONS,
+  SERVICE_NAME,
   addSuccessMock,
   cancelButton,
   chooseRegion,
@@ -14,6 +22,7 @@ import {
   fillValidOrder,
   isDisabled,
   isEnabled,
+  mockedGetBackupServicesOffers,
   mockedGetLocations,
   mockedOrderVault,
   nameAccessibleName,
@@ -21,17 +30,22 @@ import {
   nameFieldError,
   nameInput,
   navigateMock,
+  pricingMessage,
+  pricingSkeleton,
   regionControlSection,
   regionFieldError,
   regionOptionLabels,
   regionSelect,
   renderOrderModal,
+  resolveServiceName,
   submitButton,
   submitFromKeyboard,
   typeName,
 } from './_test/order.harness';
 
 vi.mock('@/data/api/locations/locations.requests');
+vi.mock('@/data/api/order/order.requests');
+vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -49,11 +63,18 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => ({
 
 const order = labels.vaults.order;
 
+/** The price Agora serves, deliberately fictional — see the warning on `order.mock.ts`. */
+const TEST_PRICE_TEXT = buildTestOfferPricing(TEST_VAULT_OFFER_PRICE_IN_UCENTS).price.text;
+
+const pricingSentence = (price: string) => order.pricing_message.replace('{{price}}', price);
+
 describe('OrderVaultPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockedGetLocations.mockResolvedValue(LOCATIONS);
     mockedOrderVault.mockResolvedValue(undefined);
+    mockedGetBackupServicesOffers.mockResolvedValue(mockCartServiceOffers);
+    resolveServiceName();
   });
 
   it('collects a vault name and a storage region, and asks for nothing else', async () => {
@@ -75,12 +96,57 @@ describe('OrderVaultPage', () => {
     expect(document.querySelectorAll('ods-input, ods-select')).toHaveLength(2);
   });
 
-  it('states how the vault will be billed, which the mockup omits and the ticket requires', async () => {
-    await renderOrderModal();
+  describe('the pay-as-you-go rate, which the mockup omits and the ticket requires', () => {
+    it('states it at the rate the offer serves, interpolated into the sentence', async () => {
+      await renderOrderModal();
 
-    expect(await screen.findByTestId(VAULT_ORDER_TEST_IDS.pricing)).toHaveTextContent(
-      order.pricing_message,
-    );
+      await waitFor(() => expect(pricingMessage()).toBeVisible());
+      expect(pricingMessage()).toHaveTextContent(pricingSentence(TEST_PRICE_TEXT));
+    });
+
+    it('ships no figure of its own: the sentence carries a placeholder, never an amount', () => {
+      expect(order.pricing_message).toContain('{{price}}');
+      expect(order.pricing_message).not.toMatch(/\d/);
+    });
+
+    it('skeletons the sentence while the offers are in flight, rather than half-stating it', async () => {
+      mockedGetBackupServicesOffers.mockReturnValue(new Promise(() => undefined));
+
+      await renderOrderModal();
+
+      await waitFor(() => expect(pricingSkeleton()).toBeVisible());
+      expect(pricingMessage()).not.toBeInTheDocument();
+    });
+
+    it('drops the whole message when the catalogue serves no vault offer', async () => {
+      mockedGetBackupServicesOffers.mockResolvedValue(mockCartServiceOffersWithoutVault);
+
+      await renderOrderModal();
+
+      await waitFor(() => expect(pricingSkeleton()).not.toBeInTheDocument());
+      expect(pricingMessage()).not.toBeInTheDocument();
+      // The sentence is gone whole: no orphan fragment of it survives without its rate.
+      expect(screen.queryByText(/pay-as-you-go/)).not.toBeInTheDocument();
+    });
+
+    it('drops it just as silently when the offers route itself is unreachable', async () => {
+      mockedGetBackupServicesOffers.mockRejectedValue(new Error('catalogue not declared'));
+
+      await renderOrderModal();
+
+      await waitFor(() => expect(pricingSkeleton()).not.toBeInTheDocument());
+      expect(pricingMessage()).not.toBeInTheDocument();
+      expect(screen.getByTestId(VAULT_ORDER_TEST_IDS.submit)).toBeVisible();
+    });
+
+    it('drops it when the vault offer carries no price at all', async () => {
+      mockedGetBackupServicesOffers.mockResolvedValue([{ ...mockVaultServiceOffer, prices: [] }]);
+
+      await renderOrderModal();
+
+      await waitFor(() => expect(pricingSkeleton()).not.toBeInTheDocument());
+      expect(pricingMessage()).not.toBeInTheDocument();
+    });
   });
 
   it('starts with both fields empty and the order control locked', async () => {
@@ -162,10 +228,11 @@ describe('OrderVaultPage', () => {
     await clickSubmit();
 
     await waitFor(() =>
-      expect(mockedOrderVault).toHaveBeenCalledWith({
-        name: 'vault-paygo-01',
-        region: LOCATIONS[0].name,
-      }),
+      expect(mockedOrderVault).toHaveBeenCalledWith(
+        { name: 'vault-paygo-01', region: LOCATIONS[0].name },
+        // The service the option is bought onto is resolved, not asked of the customer.
+        expect.objectContaining({ serviceName: SERVICE_NAME }),
+      ),
     );
     expect(addSuccessMock).toHaveBeenCalledWith(order.success);
     expect(navigateMock).toHaveBeenCalledWith('/vaults');
