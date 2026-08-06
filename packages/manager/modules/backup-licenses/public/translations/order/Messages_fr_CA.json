@@ -152,6 +152,9 @@
     },
     "cta": "Finaliser ma commande"
   },
+  "error": {
+    "submit": "Votre commande n'a pas pu être passée. Veuillez réessayer — vos informations ont été conservées."
+  },
   "add_server": {
     "step": {
       "vbr_server": {
