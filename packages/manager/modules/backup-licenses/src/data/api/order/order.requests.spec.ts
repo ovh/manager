@@ -6,24 +6,33 @@ import { getJSON, postJSON } from '@/data/api/Client.api';
 import {
   MOCK_CART_ID,
   PAYGO_VAULT_PLAN_CODE,
+  mockCartOptionDefinitions,
+  mockCartProductDefinitions,
   mockCartServiceOffers,
 } from '@/mocks/order/order.mock';
 import {
   BACKUP_SERVICES_CART_ITEM_ENDPOINT,
   ORDER_CART_ROUTE,
+  getBackupServicesCartItemRoute,
+  getBackupServicesCartOptionRoute,
   getCartItemConfigurationRoute,
   getCartItemRequiredConfigurationRoute,
   getCartServiceOptionRoute,
   getOrderCartAssignRoute,
   getOrderCartCheckoutRoute,
 } from '@/utils/apiRoutes/apiRoutes';
+import { BACKUP_LICENSES_ORDER_PLAN_CODES } from '@/utils/orderComposition/orderComposition';
 
 import {
+  UNAVAILABLE_CART_OFFER,
   addBackupServicesOption,
   assignOrderCart,
   configureCartItem,
   createBackupServicesCart,
   createOrderCart,
+  discoverBackupServicesOrderParameters,
+  getBackupServicesCartOptionDefinitions,
+  getBackupServicesCartProductDefinitions,
   getBackupServicesOffers,
   getCartItemRequiredConfiguration,
   getOrderCartCheckout,
@@ -53,6 +62,28 @@ describe('order.requests', () => {
 
     await expect(getBackupServicesOffers('backup-vault-1')).resolves.toBe(mockCartServiceOffers);
     expect(mockedGetJSON).toHaveBeenCalledWith('v6', getCartServiceOptionRoute('backup-vault-1'));
+  });
+
+  it('reads the offered plans on the very route that adds the main item', async () => {
+    mockedGetJSON.mockResolvedValue(mockCartProductDefinitions);
+
+    await expect(getBackupServicesCartProductDefinitions(MOCK_CART_ID)).resolves.toBe(
+      mockCartProductDefinitions,
+    );
+    expect(mockedGetJSON).toHaveBeenCalledWith('v6', getBackupServicesCartItemRoute(MOCK_CART_ID));
+  });
+
+  it('reads the offered addons of the main plan, whose plan code goes in the query', async () => {
+    mockedGetJSON.mockResolvedValue(mockCartOptionDefinitions);
+
+    await expect(
+      getBackupServicesCartOptionDefinitions(MOCK_CART_ID, 'backup-tenant'),
+    ).resolves.toBe(mockCartOptionDefinitions);
+    expect(mockedGetJSON).toHaveBeenCalledWith(
+      'v6',
+      getBackupServicesCartOptionRoute(MOCK_CART_ID),
+      { params: { planCode: 'backup-tenant' } },
+    );
   });
 
   it('creates a cart with the subsidiary only', async () => {
@@ -157,5 +188,128 @@ describe('order.requests', () => {
       pricingMode: 'default',
       quantity: 1,
     });
+  });
+});
+
+describe('discoverBackupServicesOrderParameters', () => {
+  const { tenant, vspcTenant, vspcTenantLicenses, bundledVault } = BACKUP_LICENSES_ORDER_PLAN_CODES;
+
+  const product = {
+    planCode: tenant,
+    options: [
+      { planCode: vspcTenant, options: [{ planCode: vspcTenantLicenses, options: [] }] },
+      { planCode: bundledVault, options: [] },
+    ],
+  };
+
+  const optionsFor = (...planCodes: string[]) =>
+    mockCartOptionDefinitions.filter((offer) => planCodes.includes(offer.planCode));
+
+  /** Chaque parent n'offre que ses propres addons, comme le catalogue réel. */
+  const serveDefinitions = (
+    optionsByParent: Record<string, unknown> = {
+      [tenant]: optionsFor(vspcTenant, bundledVault),
+      [vspcTenant]: optionsFor(vspcTenantLicenses),
+    },
+    products: unknown = mockCartProductDefinitions,
+  ) =>
+    mockedGetJSON.mockImplementation((_version, route, config) =>
+      Promise.resolve(
+        route.endsWith('/options')
+          ? (optionsByParent[
+              (config as { params?: { planCode?: string } })?.params?.planCode ?? ''
+            ] ?? [])
+          : products,
+      ),
+    );
+
+  const discover = () => discoverBackupServicesOrderParameters(MOCK_CART_ID, product);
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('asks each parent for its own options, never the tenant for a nested addon', async () => {
+    serveDefinitions();
+
+    await discover();
+
+    expect(mockedGetJSON).toHaveBeenCalledWith('v6', getBackupServicesCartItemRoute(MOCK_CART_ID));
+    expect(mockedGetJSON).toHaveBeenCalledWith(
+      'v6',
+      getBackupServicesCartOptionRoute(MOCK_CART_ID),
+      { params: { planCode: tenant } },
+    );
+    expect(mockedGetJSON).toHaveBeenCalledWith(
+      'v6',
+      getBackupServicesCartOptionRoute(MOCK_CART_ID),
+      { params: { planCode: vspcTenant } },
+    );
+  });
+
+  it('takes the conditions each plan announces, not the monthly pattern', async () => {
+    serveDefinitions();
+
+    await expect(discover()).resolves.toEqual({
+      duration: 'P1M',
+      planCode: tenant,
+      pricingMode: 'default',
+      quantity: 1,
+      options: [
+        {
+          duration: 'P1M',
+          planCode: vspcTenant,
+          pricingMode: 'default',
+          quantity: 1,
+          options: [
+            {
+              duration: 'P1M',
+              planCode: vspcTenantLicenses,
+              pricingMode: 'consumption',
+              quantity: 1,
+              options: [],
+            },
+          ],
+        },
+        {
+          duration: 'P1Y',
+          planCode: bundledVault,
+          pricingMode: 'default',
+          quantity: 2,
+          options: [],
+        },
+      ],
+    });
+  });
+
+  it('keeps the addons in the order asked, so one can depend on the previous', async () => {
+    serveDefinitions({
+      [tenant]: optionsFor(vspcTenant, bundledVault).reverse(),
+      [vspcTenant]: optionsFor(vspcTenantLicenses),
+    });
+
+    const { options } = await discover();
+
+    expect(options.map(({ planCode }) => planCode)).toEqual([vspcTenant, bundledVault]);
+  });
+
+  it('refuses, naming the addon the cart does not offer under its parent', async () => {
+    serveDefinitions({ [tenant]: optionsFor(vspcTenant, bundledVault) });
+
+    await expect(discover()).rejects.toThrow(`${UNAVAILABLE_CART_OFFER}: ${vspcTenantLicenses}`);
+  });
+
+  it('refuses, naming the main plan when the cart offers no product at all', async () => {
+    serveDefinitions(undefined, []);
+
+    await expect(discover()).rejects.toThrow(`${UNAVAILABLE_CART_OFFER}: ${tenant}`);
+  });
+
+  it('names every missing addon at once, so one pass tells the whole story', async () => {
+    serveDefinitions({});
+
+    await expect(discover()).rejects.toThrow(
+      `${UNAVAILABLE_CART_OFFER}: ${[vspcTenant, bundledVault].join(', ')}`,
+    );
   });
 });

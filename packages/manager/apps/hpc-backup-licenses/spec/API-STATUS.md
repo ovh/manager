@@ -48,20 +48,42 @@ catalogue et `/location`.
 | Endpoint | Usage | Statut | Détails / fichiers |
 |---|---|---|---|
 | `POST /order/cart` | Ouvre le panier pour la subsidiary du compte | ✅ Implémenté (réel) | `order.requests.ts::createOrderCart` |
-| `POST /order/cart/{cartId}/backupServices` | Item principal `backup-tenant` (P1M, `default`, 1) | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItem` |
+| `GET /order/cart/{cartId}/backupServices` | Découverte des **plans offerts** pour l'item principal, tarifs compris : c'est de là que sortent `pricingMode`/`duration`/`quantity` du POST | ✅ Implémenté (réel) | `order.requests.ts::getBackupServicesCartProductDefinitions` (`order.cart.GenericProductDefinition[]`) |
+| `GET /order/cart/{cartId}/backupServices/options?planCode={plan de l'item principal}` | Idem pour les **addons offerts** au plan principal | ✅ Implémenté (réel) | `order.requests.ts::getBackupServicesCartOptionDefinitions` (`order.cart.GenericOptionDefinition[]`) |
+| `POST /order/cart/{cartId}/backupServices` | Item principal `backup-tenant`, aux conditions que le GET ci-dessus a annoncées | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItem` |
 | `GET /order/cart/{cartId}/item/{itemId}/requiredConfiguration` | Découverte des labels réclamés, item par item | ✅ Implémenté (réel) | `order.requests.ts::getCartItemRequiredConfiguration`, apparié par `utils/cartConfiguration/cartConfiguration.ts::planCartConfigurations` |
 | `POST /order/cart/{cartId}/item/{itemId}/configuration` | Une configuration par label réclamé | ✅ Implémenté (réel) | `order.requests.ts::configureCartItem` |
-| `POST /order/cart/{cartId}/backupServices/options` | Addons `vspc-tenant`, `vspc-tenant-backuplicenses`, `backup-vault-backuplicenses-500G`, **dans cet ordre** | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItemOption` |
+| `POST /order/cart/{cartId}/backupServices/options` | Addons `vspc-tenant`, `vspc-tenant-backuplicenses`, `backup-vault-backuplicenses-500G`, **dans cet ordre**, chacun aux conditions de sa propre définition | ✅ Implémenté (réel) | `order.requests.ts::addBackupServicesCartItemOption` |
 | `POST /order/cart/{cartId}/assign` | Rattache le panier au compte connecté | ✅ Implémenté (réel) | `order.requests.ts::assignOrderCart` |
 | `GET /order/cart/{cartId}/checkout` | Simulation : contrats (CGV) + prix, n'engage rien | ✅ Implémenté (réel) | `order.requests.ts::getOrderCartCheckout` |
 | `POST /order/cart/{cartId}/checkout` | **Engage la commande** (`autoPayWithPreferredPaymentMethod`, `waiveRetractationPeriod`) | ✅ Implémenté (réel) | `order.requests.ts::executeOrderCartCheckout`, mêmes drapeaux que `bmc-backup-agent-baremetal::useCheckoutBackupAgentCart` |
 
 Le canal est écrit et testé (MSW : `src/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses.spec.tsx`,
 `src/pages/order/Order.page.spec.tsx`), mais **jamais exercé de bout en bout** : le catalogue
-`backupServices` n'est pas déclaré en production EU (vérifié le 2026-08-06), donc `POST
-/order/cart/{cartId}/backupServices` refusera les plan codes ci-dessous jusqu'à publication.
+`backupServices` n'est pas déclaré en production EU (vérifié le 2026-08-06). Jusqu'à publication, la
+séquence s'arrête donc à sa première étape de découverte, sur les plan codes ci-dessous.
+
+**Les conditions de facturation ne sont plus supposées (2026-08-06).** Le tunnel posait `duration:
+'P1M'`, `pricingMode: 'default'`, `quantity: 1` en dur sur les quatre éléments du panier, alors que la
+doc de référencement n'établit ce pattern mensuel que pour l'item principal — « unverified for
+consumption addons » côté spec, et les trois addons sont précisément des plans de consommation. La
+séquence commence désormais, comme le canal vault (BKP-1223), par **découvrir** les deux routes de
+définitions ci-dessus et lit `pricingMode`/`duration`/`quantity` sur le tarif `installation` de chaque
+plan (`utils/serviceOffer/serviceOffer.ts::resolveOfferOrderParameters`,
+`order.requests.ts::discoverBackupServicesOrderParameters`). `utils/orderComposition` ne décide plus
+que *quoi* commander (les plan codes) et *avec quelles valeurs de configuration*.
 
 **Points d'ombre**
+- ❓ **Contenu réel des définitions inconnu** : les deux GET de découverte sont ⭐️5 côté contrat
+  (routes et types relevés sur le schéma apiv6 de production), mais **ce qu'elles renverront pour ce
+  produit reste inconnu tant que le catalogue `backupServices` n'est pas déclaré** — quels plans y
+  figureront, quels tarifs porteront `installation`, quelle `duration`/`pricingMode` chacun annoncera,
+  et si les addons de consommation y sont exposés comme options du plan `backup-tenant`. Le code ne
+  suppose plus rien mais ne peut pas non plus vérifier : un plan de la composition absent des
+  définitions, ou sans tarif `installation`, **arrête la commande** avec `UNAVAILABLE_CART_OFFER` et le
+  nom du ou des plans fautifs, plutôt qu'un POST voué à un rejet indiagnosticable. Premier passage
+  contre un catalogue déclaré = première vérité — y compris sur R2 ci-dessous, qu'un addon absent des
+  définitions d'options tranchera dans un sens ou dans l'autre.
 - ❓ **Labels de configuration non vérifiés** — c'est le point d'ombre principal, et il est structurel :
   les noms envoyés (`displayName`, `backupServerExternalIp`, `backupServerPrivateIp`,
   `vaultDisplayName`, `region`, `licenseType`) viennent de la colonne « API field » du ticket, et
@@ -366,18 +388,23 @@ Rappel : même une fois ces endpoints déployés côté BE, il faut aussi repass
 
 ### ❌ Manquants (aucun code d'appel écrit sur cette branche)
 
-Aucun. Les deux dernières lignes sont passées ✅ le 2026-08-06 : le submit Agora de BKP-1208 (8 appels de
-séquence de panier) puis la commande de vault supplémentaire de BKP-1223, dont le stub `orderVault`
-rejetait volontairement. Tout est écrit, réel et testé (cf. sections BKP-1208 et BKP-1223). Les deux
-séquences restent non exercées de bout en bout tant que le catalogue `backupServices` n'est pas déclaré,
-et les labels de configuration qu'elles envoient ne sont pas vérifiés — ce sont des points d'ombre, pas
-du code manquant.
+Aucun. Les deux dernières lignes sont passées ✅ le 2026-08-06 : le submit Agora de BKP-1208 (10 appels
+de séquence de panier, les deux découvertes de définitions comprises) puis la commande de vault
+supplémentaire de BKP-1223, dont le stub `orderVault` rejetait volontairement. Tout est écrit, réel et
+testé (cf. sections BKP-1208 et BKP-1223). Les deux séquences restent non exercées de bout en bout tant
+que le catalogue `backupServices` n'est pas déclaré, et ni les labels de configuration qu'elles envoient
+ni le contenu des définitions qu'elles lisent ne sont vérifiés — ce sont des points d'ombre, pas du code
+manquant.
 
 ### Points d'ombre transverses à ne pas perdre de vue
 
 - Labels de configuration du panier de commande (1208, 1223) inconnus tant que le catalogue
   `backupServices` n'est pas déclaré : la commande échoue proprement sur un label réclamé sans valeur,
   elle ne devine pas.
+- Même angle mort, un cran plus tôt : le **contenu des définitions de plans** que les deux tunnels
+  lisent pour en tirer `pricingMode`/`duration`/`quantity` (1208, 1223) est inconnu jusqu'à déclaration
+  du catalogue. Les routes et les types sont sûrs, les valeurs non ; une composition qu'elles ne
+  couvrent pas arrête la commande en nommant les plans plutôt que de retomber sur du mensuel en dur.
 - Le `serviceName` sur lequel l'option vault est achetée (1223) est le `resourceName` de la licence, seul
   identifiant `/services` que le module résout — non confirmé côté Agora.
 - Comportement du `PUT` de 1218 (immédiat vs effectif au mois suivant) non répondu par le BE.
