@@ -91,5 +91,7 @@ export const getOrderMocks = ({
       status: isOrderError ? orderErrorStatus : 200,
       delay: orderDelay,
     },
+    // Même route, l'autre méthode : le GET simule, le POST engage.
+    write(`${ORDER_CART_ROUTE}/:cartId/checkout`, mockCartCheckout),
   ];
 };

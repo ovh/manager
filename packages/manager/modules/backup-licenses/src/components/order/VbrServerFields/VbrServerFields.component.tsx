@@ -13,6 +13,7 @@ import { ServerVaultFormState } from '@/types/Order.type';
 interface VbrServerFieldsProps {
   form: ServerVaultFormState;
   errors: OrderFieldErrors;
+  isDisabled?: boolean;
   onFieldChange: (key: OrderFieldName, value: string) => void;
   onFieldBlur: (field: OrderFieldName) => void;
   onToggleNat: (checked: boolean) => void;
@@ -22,6 +23,7 @@ interface VbrServerFieldsProps {
 export default function VbrServerFields({
   form,
   errors,
+  isDisabled = false,
   onFieldChange,
   onFieldBlur,
   onToggleNat,
@@ -43,6 +45,7 @@ export default function VbrServerFields({
           hint={t('field.service_name.hint')}
           error={errors.displayName ? t(errors.displayName) : null}
           required
+          isDisabled={isDisabled}
           onChange={(value) => onFieldChange('displayName', value)}
           onBlur={() => onFieldBlur('displayName')}
         />
@@ -55,6 +58,7 @@ export default function VbrServerFields({
           hint={t('field.public_ip.hint')}
           error={errors.backupServerExternalIp ? t(errors.backupServerExternalIp) : null}
           required
+          isDisabled={isDisabled}
           onChange={(value) => onFieldChange('backupServerExternalIp', value)}
           onBlur={() => onFieldBlur('backupServerExternalIp')}
         />
@@ -75,6 +79,7 @@ export default function VbrServerFields({
             id="vbr-nat-toggle"
             name="vbr-nat-toggle"
             value={form.isBehindNat}
+            isDisabled={isDisabled}
             onOdsChange={(event) => onToggleNat(!!event.detail.value)}
           />
           <span className="flex flex-col">
@@ -101,6 +106,7 @@ export default function VbrServerFields({
               hint={t('field.private_ip.hint')}
               error={errors.backupServerPrivateIp ? t(errors.backupServerPrivateIp) : null}
               required
+              isDisabled={isDisabled}
               onChange={(value) => onFieldChange('backupServerPrivateIp', value)}
               onBlur={() => onFieldBlur('backupServerPrivateIp')}
             />
