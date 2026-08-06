@@ -21,18 +21,20 @@
   "badge": {
     "recommended": "★ Recommandé"
   },
+  "card": {
+    "price_unit": "par workload",
+    "vault_storage_note": "*500 Gio d'Object Storage (S3) inclus avec votre licence, puis {{price}} HT/Gio/mois"
+  },
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
       "price_prefix": "",
-      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Windows uniquement"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
       "price_prefix": "À partir de ",
-      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -43,7 +45,7 @@
       "tooltip": "Sauvegarder les données et restaurer rapidement en cas de panne ou erreur"
     },
     "vault_500": {
-      "label": "Vault de 500 Gio géré par OVHcloud",
+      "label": "Vault de 500 Gio géré par OVHcloud*",
       "tooltip": "Basé sur de l'Object storage (S3) OVHcloud (SLAs de disponibilité de 99,9 %)"
     },
     "security_base": {
@@ -67,20 +69,17 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte limitée (<b>5–30 workloads</b>). Sauvegardes/restaurations simples.",
-      "price_prefix": "À partir de ",
-      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de "
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte importante (<b>30–150 workloads</b>). Monitoring fin et alertes proactives.",
-      "price_prefix": "À partir de ",
-      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de "
     },
     "premium": {
       "title": "Premium",
       "audience": "Recommandé pour <b>ETI/grandes entreprises</b> avec flotte étendue (<b>150–2000+ workloads</b>). Orchestration de PRA et conformité.",
-      "price_prefix": "À partir de ",
-      "price_suffix": "— par serveur, VM, base de données ou 500 Go de stockage"
+      "price_prefix": "À partir de "
     }
   },
   "vbr": {

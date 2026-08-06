@@ -19,9 +19,13 @@ import OrderSummaryRow from '@/components/order/OrderRecapPanel/OrderSummaryRow.
 import { useBackupServicesCatalog } from '@/data/hooks/useBackupServicesCatalog/useBackupServicesCatalog';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { useLocationLabel } from '@/hooks/useLocationLabel/useLocationLabel';
-import { BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
+import {
+  BACKUP_LICENSES_NAMESPACES,
+  BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE,
+  LABELS,
+} from '@/module.constants';
 import { LicenseFamily, ServerVaultFormState, VdpTier } from '@/types/Order.type';
-import { getDefaultPricing } from '@/utils/planPricing/planPricing';
+import { formatCatalogPrice, getDefaultPricing } from '@/utils/planPricing/planPricing';
 
 interface OrderRecapPanelProps {
   family: LicenseFamily | null;
@@ -85,6 +89,14 @@ export default function OrderRecapPanel({
   const { data: catalog } = useBackupServicesCatalog();
   const pricing = selectedPlanCode ? getDefaultPricing(catalog, selectedPlanCode) : undefined;
 
+  // Le tarif du Gio au-delà des 500 Go inclus, annoncé là où le client engage la commande et pas
+  // seulement sur les cartes : c'est le seul montant du récapitulatif qui court après la livraison.
+  const storagePricing = getDefaultPricing(catalog, BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE);
+  const storageRate =
+    catalog && storagePricing
+      ? formatCatalogPrice(storagePricing.price, catalog.locale.currencyCode, i18n.language)
+      : undefined;
+
   return (
     <OdsCard className="flex flex-col gap-6 p-6">
       <div className="flex flex-col gap-1">
@@ -137,17 +149,28 @@ export default function OrderRecapPanel({
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.heading5}>
             {pricing ? (
-              <Price
-                value={pricing.price}
-                tax={pricing.tax}
-                intervalUnit={IntervalUnitType.month}
-                locale={i18nextLocaleToOvh(i18n.language)}
-                ovhSubsidiary={environment.getUser().ovhSubsidiary as OvhSubsidiary}
-              />
+              <>
+                <Price
+                  value={pricing.price}
+                  tax={pricing.tax}
+                  intervalUnit={IntervalUnitType.month}
+                  locale={i18nextLocaleToOvh(i18n.language)}
+                  ovhSubsidiary={environment.getUser().ovhSubsidiary as OvhSubsidiary}
+                />{' '}
+                <span className="text-[var(--ods-color-neutral-600)]">{t('card.price_unit')}</span>
+              </>
             ) : (
               emptyLabel
             )}
           </OdsText>
+          {pricing && storageRate && (
+            <OdsText
+              preset={ODS_TEXT_PRESET.caption}
+              className="text-[var(--ods-color-neutral-500)]"
+            >
+              {t('card.vault_storage_note', { price: storageRate })}
+            </OdsText>
+          )}
         </div>
         {/* Monté dès le premier rendu et jamais démonté : une région live qui naît avec son
             contenu reste muette. Hors flux tant qu'elle est vide, et focalisée à l'apparition de
