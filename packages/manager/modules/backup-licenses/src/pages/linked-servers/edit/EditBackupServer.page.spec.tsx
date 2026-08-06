@@ -350,9 +350,7 @@ describe('EditBackupServerPage', () => {
     await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
 
     const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
-    familyGroup
-      .querySelectorAll('[role="radio"]')
-      .forEach((radio) => expect(radio).toBeDisabled());
+    familyGroup.querySelectorAll('[role="radio"]').forEach((radio) => expect(radio).toBeDisabled());
     expect(
       screen.getByText(
         'Le type de licence ne peut pas être modifié pour ce serveur : une mise à niveau vers VBR 13 est requise.',
@@ -372,9 +370,7 @@ describe('EditBackupServerPage', () => {
     await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());
 
     const familyGroup = screen.getByRole('radiogroup', { name: 'Type de licence' });
-    familyGroup
-      .querySelectorAll('[role="radio"]')
-      .forEach((radio) => expect(radio).toBeDisabled());
+    familyGroup.querySelectorAll('[role="radio"]').forEach((radio) => expect(radio).toBeDisabled());
 
     const tierGroup = screen.getByRole('radiogroup', { name: 'Niveau VDP' });
     tierGroup
