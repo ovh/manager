@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { OrderCatalog } from '@/types/Catalog.type';
 
-import { getDefaultPricing, getLowestPricing } from './planPricing';
+import { formatCatalogPrice, getDefaultPricing, getLowestPricing } from './planPricing';
 
 /** Forme réelle observée sur `vspc-backuplicenses-advanced-vm` (2026-08-03) : en
  * `pricingType: 'consumption'`, donc `intervalUnit: 'none'` / `interval: 0`. Les licences sont
@@ -102,5 +102,28 @@ describe('getLowestPricing', () => {
 
   it("renvoie undefined si aucun des plans demandés n'existe dans le catalogue", () => {
     expect(getLowestPricing(twoPlansCatalog, ['unknown-plan-code'])).toBeUndefined();
+  });
+});
+
+describe('formatCatalogPrice', () => {
+  /**
+   * 700 000 µcents = 0,007 € : c'est le tarif au Gio du vault. `formattedPrice` du catalogue rend
+   * « 0.01 € » et le composant `Price` en fait autant — afficher ce montant demande de le formater
+   * depuis la valeur brute.
+   */
+  it('garde un tarif sous le centime au lieu de l’arrondir à 0,01 €', () => {
+    expect(formatCatalogPrice(700_000, 'EUR', 'fr_FR')).toMatch(/0,007/);
+  });
+
+  it('rend un prix courant à deux décimales, sans zéros superflus', () => {
+    expect(formatCatalogPrice(1_298_999_936, 'EUR', 'fr_FR')).toMatch(/12,99/);
+  });
+
+  it('suit la locale demandée pour le séparateur décimal', () => {
+    expect(formatCatalogPrice(700_000, 'EUR', 'en_GB')).toMatch(/0\.007/);
+  });
+
+  it('rend la devise que le catalogue annonce', () => {
+    expect(formatCatalogPrice(1_298_999_936, 'CAD', 'fr_CA')).toMatch(/\$/);
   });
 });

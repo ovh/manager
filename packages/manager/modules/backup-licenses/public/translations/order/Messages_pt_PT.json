@@ -21,18 +21,20 @@
   "badge": {
     "recommended": "★ Recomendado"
   },
+  "card": {
+    "price_unit": "por workload",
+    "vault_storage_note": "*500 GB de Object Storage (S3) incluídos na sua licença, depois {{price}} sem IVA/GB/mês"
+  },
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
       "price_prefix": "",
-      "price_suffix": "— por servidor, VM, base de dados ou 500 GB de armazenamento",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Apenas Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
       "price_prefix": "A partir de ",
-      "price_suffix": "— por servidor, VM, base de dados ou 500 GB de armazenamento",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -43,7 +45,7 @@
       "tooltip": "Faça cópias de segurança dos seus dados e restaure-os rapidamente em caso de falha ou erro"
     },
     "vault_500": {
-      "label": "Vault de 500 GB gerido pela OVHcloud",
+      "label": "Vault de 500 GB gerido pela OVHcloud*",
       "tooltip": "Baseado no Object Storage (S3) da OVHcloud (SLA de disponibilidade de 99,9%)"
     },
     "security_base": {
@@ -67,20 +69,17 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Recomendado para <b>PME</b> com frota limitada (<b>5–30 workloads</b>). Cópias de segurança/restauros simples.",
-      "price_prefix": "A partir de ",
-      "price_suffix": "— por servidor, VM, base de dados ou 500 GB de armazenamento"
+      "price_prefix": "A partir de "
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Recomendado para <b>PME</b> com frota alargada (<b>30–150 workloads</b>). Monitorização detalhada e alertas proativos.",
-      "price_prefix": "A partir de ",
-      "price_suffix": "— por servidor, VM, base de dados ou 500 GB de armazenamento"
+      "price_prefix": "A partir de "
     },
     "premium": {
       "title": "Premium",
       "audience": "Recomendado para <b>médias e grandes empresas</b> com frota alargada (<b>150–2000+ workloads</b>). Orquestração do plano de recuperação e conformidade.",
-      "price_prefix": "A partir de ",
-      "price_suffix": "— por servidor, VM, base de dados ou 500 GB de armazenamento"
+      "price_prefix": "A partir de "
     }
   },
   "vbr": {
