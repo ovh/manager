@@ -100,6 +100,20 @@ export const mockCartRequiredConfiguration: CartItemRequiredConfiguration[] = [
   { fields: null, label: 'optional_note', required: false, type: 'string' },
 ];
 
+/**
+ * Ce que le panier du tunnel de commande réclamerait : les labels de la colonne « API field » de
+ * BKP-1208. Graphies non confirmées côté catalogue (cf. spec order-subscription, technical.md) —
+ * écrites en clair ici pour qu'un changement de contrat fasse échouer le test bruyamment.
+ */
+export const mockOrderFunnelRequiredConfiguration: CartItemRequiredConfiguration[] = [
+  { fields: null, label: 'displayName', required: true, type: 'string' },
+  { fields: null, label: 'backupServerExternalIp', required: true, type: 'string' },
+  { fields: null, label: 'backupServerPrivateIp', required: false, type: 'string' },
+  { fields: null, label: 'vaultDisplayName', required: true, type: 'string' },
+  { fields: null, label: 'region', required: true, type: 'string' },
+  { fields: null, label: 'licenseType', required: true, type: 'string' },
+];
+
 export const mockCartCheckout: Order = {
   contracts: [
     {

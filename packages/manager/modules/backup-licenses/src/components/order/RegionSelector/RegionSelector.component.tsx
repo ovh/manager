@@ -25,11 +25,16 @@ const GRID_CLASS = 'grid grid-cols-2 gap-6 sm:grid-cols-3';
 
 interface RegionSelectorProps {
   selected: string | null;
+  isDisabled?: boolean;
   onSelect: (locationName: string) => void;
 }
 
 /** Sous-bloc 3 de l'étape 3 : localisation du Vault, alimentée par `GET /location`. */
-export default function RegionSelector({ selected, onSelect }: RegionSelectorProps) {
+export default function RegionSelector({
+  selected,
+  isDisabled = false,
+  onSelect,
+}: RegionSelectorProps) {
   const { t } = useTranslation([BACKUP_LICENSES_NAMESPACES.ORDER, NAMESPACES.ERROR]);
   const { data, isLoading, isError } = useLocations();
   const [isExpanded, setIsExpanded] = useState(false);
@@ -82,6 +87,7 @@ export default function RegionSelector({ selected, onSelect }: RegionSelectorPro
                 key={location.name}
                 location={location}
                 selected={selected === location.name}
+                disabled={isDisabled}
                 onSelect={() => onSelect(location.name)}
               />
             ))}
@@ -90,6 +96,7 @@ export default function RegionSelector({ selected, onSelect }: RegionSelectorPro
             <OdsButton
               type="button"
               className="mt-6"
+              isDisabled={isDisabled}
               variant={ODS_BUTTON_VARIANT.ghost}
               color={ODS_BUTTON_COLOR.primary}
               icon={isExpanded ? ODS_ICON_NAME.chevronUp : ODS_ICON_NAME.chevronDown}

@@ -10,6 +10,7 @@ import {
 import { getJSON, postJSON } from '@/data/api/Client.api';
 import {
   CartItemConfiguration,
+  CartItemOptionCreation,
   CartItemRequiredConfiguration,
   CartOfferOrderParameters,
   CartServiceOffer,
@@ -18,6 +19,8 @@ import {
 import {
   BACKUP_SERVICES_CART_ITEM_ENDPOINT,
   ORDER_CART_ROUTE,
+  getBackupServicesCartItemRoute,
+  getBackupServicesCartOptionRoute,
   getCartItemConfigurationRoute,
   getCartItemRequiredConfigurationRoute,
   getCartServiceOptionRoute,
@@ -44,6 +47,16 @@ export const addBackupServicesOption = (
   body: CartServiceOptionCreation,
 ): Promise<Item> => postJSON<Item>('v6', getCartServiceOptionRoute(serviceName), body);
 
+export const addBackupServicesCartItem = (
+  cartId: string,
+  body: CartOfferOrderParameters,
+): Promise<Item> => postJSON<Item>('v6', getBackupServicesCartItemRoute(cartId), body);
+
+export const addBackupServicesCartItemOption = (
+  cartId: string,
+  body: CartItemOptionCreation,
+): Promise<Item> => postJSON<Item>('v6', getBackupServicesCartOptionRoute(cartId), body);
+
 export const getCartItemRequiredConfiguration = (
   cartId: string,
   itemId: number,
@@ -66,6 +79,17 @@ export const assignOrderCart = (cartId: string): Promise<void> =>
 /** Simulation : le checkout en GET rend contrats et prix sans rien engager. */
 export const getOrderCartCheckout = (cartId: string): Promise<Order> =>
   getJSON<Order>('v6', getOrderCartCheckoutRoute(cartId));
+
+/**
+ * Le seul appel qui engage la commande. Les deux drapeaux reprennent ceux du produit frère sur
+ * le même canal Agora (`bmc-backup-agent-baremetal`, `useCheckoutBackupAgentCart`) : sans
+ * `autoPayWithPreferredPaymentMethod`, la commande part impayée et le service n'est jamais livré.
+ */
+export const executeOrderCartCheckout = (cartId: string): Promise<Order> =>
+  postJSON<Order>('v6', getOrderCartCheckoutRoute(cartId), {
+    autoPayWithPreferredPaymentMethod: true,
+    waiveRetractationPeriod: true,
+  });
 
 export type BackupServicesCartProduct = CartOfferOrderParameters & {
   configurations?: CartItemConfiguration[];
