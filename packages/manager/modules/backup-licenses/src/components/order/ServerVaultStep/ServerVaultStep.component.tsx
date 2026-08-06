@@ -15,6 +15,7 @@ import { ServerVaultFormState } from '@/types/Order.type';
 interface ServerVaultStepProps {
   form: ServerVaultFormState;
   errors: OrderFieldErrors;
+  isDisabled?: boolean;
   onFieldChange: (key: OrderFieldName, value: string) => void;
   onFieldBlur: (field: OrderFieldName) => void;
   onToggleNat: (checked: boolean) => void;
@@ -24,6 +25,7 @@ interface ServerVaultStepProps {
 export default function ServerVaultStep({
   form,
   errors,
+  isDisabled = false,
   onFieldChange,
   onFieldBlur,
   onToggleNat,
@@ -35,6 +37,7 @@ export default function ServerVaultStep({
       <VbrServerFields
         form={form}
         errors={errors}
+        isDisabled={isDisabled}
         onFieldChange={onFieldChange}
         onFieldBlur={onFieldBlur}
         onToggleNat={onToggleNat}
@@ -60,6 +63,7 @@ export default function ServerVaultStep({
           hint={t('field.vault_name.hint')}
           error={errors.vaultDisplayName ? t(errors.vaultDisplayName) : null}
           required
+          isDisabled={isDisabled}
           onChange={(value) => onFieldChange('vaultDisplayName', value)}
           onBlur={() => onFieldBlur('vaultDisplayName')}
         />

@@ -1,9 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
-import { OdsButton, OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
+import { ODS_MESSAGE_COLOR, ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
+import {
+  OdsButton,
+  OdsCard,
+  OdsDivider,
+  OdsMessage,
+  OdsText,
+} from '@ovhcloud/ods-components/react';
 
 import { IntervalUnitType, OvhSubsidiary, Price } from '@ovh-ux/manager-react-components';
 import { ShellContext, i18nextLocaleToOvh } from '@ovh-ux/manager-react-shell-client';
@@ -21,8 +27,13 @@ interface OrderRecapPanelProps {
   family: LicenseFamily | null;
   tier: VdpTier | null;
   form: ServerVaultFormState;
+  isSubmitting: boolean;
+  /** Message d'échec de la commande, déjà traduit, ou null. */
+  submitError: string | null;
   onFinalize: () => void;
 }
+
+export const ORDER_SUBMIT_ERROR_TEST_ID = 'order-submit-error';
 
 /**
  * `backup-licenses` est monté à la fois par `hpc-backup-licenses` (scope `Enterprise`) et
@@ -40,11 +51,23 @@ const UNIVERSE_I18N_KEY: Partial<Record<BackupLicensesScope, string>> = {
  * (visibles quand l'étape est verrouillée) : ce panneau est purement une relecture +
  * le CTA final, cf. spec §11.
  */
-export default function OrderRecapPanel({ family, tier, form, onFinalize }: OrderRecapPanelProps) {
+export default function OrderRecapPanel({
+  family,
+  tier,
+  form,
+  isSubmitting,
+  submitError,
+  onFinalize,
+}: OrderRecapPanelProps) {
   const { t, i18n } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
   const { environment } = useContext(ShellContext);
   const { scope } = useContext(BackupLicensesContext);
   const universeKey = scope ? UNIVERSE_I18N_KEY[scope] : undefined;
+  const errorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (submitError) errorRef.current?.focus();
+  }, [submitError]);
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -60,9 +83,7 @@ export default function OrderRecapPanel({ family, tier, form, onFinalize }: Orde
     ? (VDP_TIER_CARDS.find((card) => card.tier === tier)?.planCode ?? null)
     : (LICENSE_CARDS.find((card) => card.family === family)?.planCode ?? null);
   const { data: catalog } = useBackupServicesCatalog();
-  const pricing = selectedPlanCode
-    ? getDefaultPricing(catalog, selectedPlanCode)
-    : undefined;
+  const pricing = selectedPlanCode ? getDefaultPricing(catalog, selectedPlanCode) : undefined;
 
   return (
     <OdsCard className="flex flex-col gap-6 p-6">
@@ -128,9 +149,37 @@ export default function OrderRecapPanel({ family, tier, form, onFinalize }: Orde
             )}
           </OdsText>
         </div>
-        {/* Jamais désactivé : un clic avec formulaire invalide révèle les erreurs et
-            rouvre l'étape fautive (cf. Order.page) plutôt que de bloquer silencieusement. */}
-        <OdsButton type="button" className="w-full" label={t('summary.cta')} onClick={onFinalize} />
+        {/* Monté dès le premier rendu et jamais démonté : une région live qui naît avec son
+            contenu reste muette. Hors flux tant qu'elle est vide, et focalisée à l'apparition de
+            l'échec pour que la lecture d'écran n'ait pas à le redécouvrir. */}
+        <div
+          ref={errorRef}
+          role="alert"
+          tabIndex={-1}
+          className={submitError ? undefined : 'absolute'}
+        >
+          {submitError && (
+            <OdsMessage
+              color={ODS_MESSAGE_COLOR.critical}
+              isDismissible={false}
+              data-testid={ORDER_SUBMIT_ERROR_TEST_ID}
+            >
+              {submitError}
+            </OdsMessage>
+          )}
+        </div>
+        {/* Désactivé pendant la soumission seulement : hors soumission, un clic avec formulaire
+            invalide révèle les erreurs et rouvre l'étape fautive (cf. Order.page) plutôt que de
+            bloquer silencieusement. C'est ce verrou, pas un debounce, qui garantit un seul panier. */}
+        <OdsButton
+          type="button"
+          className="w-full"
+          data-testid="order-submit"
+          label={t('summary.cta')}
+          isDisabled={isSubmitting}
+          isLoading={isSubmitting}
+          onClick={onFinalize}
+        />
       </div>
     </OdsCard>
   );

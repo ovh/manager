@@ -57,6 +57,11 @@ export type CartServiceOptionCreation = CartOfferOrderParameters & {
   cartId: string;
 };
 
+export type CartItemOptionCreation = CartOfferOrderParameters & {
+  /** Item parent auquel rattacher l'addon. */
+  itemId: number;
+};
+
 /** Les labels que le panier réclame : ils ne sont pas figés, ils se découvrent à l'exécution. */
 export type CartItemRequiredConfiguration = {
   fields: string[] | null;
