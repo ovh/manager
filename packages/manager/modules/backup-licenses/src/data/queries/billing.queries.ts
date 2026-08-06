@@ -11,7 +11,6 @@ import { getVaults } from '@/data/api/vaults/vaults.requests';
 import { matchLicenseToVault } from '@/data/selectors/licenses.selectors';
 import { selectVaultConsumptionElement } from '@/data/selectors/vaultConsumption.selectors';
 import { selectBackupLicensesVaults } from '@/data/selectors/vaults.selectors';
-import { USE_API_MOCKS } from '@/mocks/mocks.config';
 import {
   BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE,
   INCLUDED_VAULT_STORAGE_GB,
@@ -29,15 +28,7 @@ export type BillingConsumption = {
   period: BillingPeriod;
 };
 
-/**
- * En mock, les `resourceName` des jeux de données de développement n'existent sur aucun
- * tenant réel : résoudre leur service Agora échouerait pour de mauvaises raisons. Le
- * `resourceName` sert alors lui-même de clé de recherche dans les mocks de consommation
- * (cf. `consumptions.mock.ts`).
- */
 const resolveServiceId = async (resourceName: string): Promise<string> => {
-  if (USE_API_MOCKS) return resourceName;
-
   const { data } = await getResourceServiceId({ resourceName });
   const serviceId = data[0];
   if (serviceId === undefined) throw new Error(`No service found for resource ${resourceName}`);

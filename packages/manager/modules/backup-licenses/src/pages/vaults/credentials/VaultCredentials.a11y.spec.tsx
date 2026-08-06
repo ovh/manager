@@ -18,12 +18,6 @@ import {
   waitForCredentials,
 } from './_test/credentials.harness';
 
-/**
- * `USE_API_MOCKS` renvoie les jeux de données sans passer par le réseau : ces tests exercent les
- * chemins d'erreur et de chargement, donc ils laissent la couche réseau s'exécuter, MSW répondant.
- */
-vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
-
 describe('VaultCredentialsPage — what the modal says out loud', () => {
   beforeEach(() => {
     vi.clearAllMocks();
