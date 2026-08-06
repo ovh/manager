@@ -7,11 +7,13 @@ import { Contract, Order } from '@ovh-ux/manager-module-order';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import {
+  ResolvedOrderNode,
   addBackupServicesCartItem,
   addBackupServicesCartItemOption,
   assignOrderCart,
   configureCartItemFromRequirements,
   createOrderCart,
+  discoverBackupServicesOrderParameters,
   executeOrderCartCheckout,
   getOrderCartCheckout,
 } from '@/data/api/order/order.requests';
@@ -31,26 +33,42 @@ export type BackupLicensesOrderResult = {
   order: Order;
 };
 
+/**
+ * Séquentiel : `Promise.all` (ce que fait `createCart`) les ajouterait en parallèle, alors que le
+ * catalogue peut conditionner un addon à la présence du précédent. Chaque addon est rattaché à
+ * l'item de son propre parent, pas à celui du tenant — c'est l'`itemId` qui porte la hiérarchie.
+ */
+const addOrderNodeOptions = async (
+  cartId: string,
+  parentItemId: number,
+  nodes: readonly ResolvedOrderNode[],
+  configurationValues: Record<string, string | undefined>,
+): Promise<void> => {
+  for (const { options, ...parameters } of nodes) {
+    const { itemId } = await addBackupServicesCartItemOption(cartId, {
+      itemId: parentItemId,
+      ...parameters,
+    });
+    await configureCartItemFromRequirements(cartId, itemId, configurationValues);
+    await addOrderNodeOptions(cartId, itemId, options, configurationValues);
+  }
+};
+
 const placeBackupLicensesOrder = async ({
   ovhSubsidiary,
   form,
   licenseType,
 }: BackupLicensesOrder & { ovhSubsidiary: string }): Promise<BackupLicensesOrderResult> => {
-  const { product, addons, configurationValues } = buildBackupLicensesOrderComposition(
-    form,
-    licenseType,
-  );
+  const { product, configurationValues } = buildBackupLicensesOrderComposition(form, licenseType);
 
   const { cartId } = await createOrderCart(ovhSubsidiary);
-  const { itemId } = await addBackupServicesCartItem(cartId, product);
+  const { options, ...productParameters } = await discoverBackupServicesOrderParameters(
+    cartId,
+    product,
+  );
+  const { itemId } = await addBackupServicesCartItem(cartId, productParameters);
   await configureCartItemFromRequirements(cartId, itemId, configurationValues);
-
-  // Séquentiel, dans l'ordre de R2 : `Promise.all` (ce que fait `createCart`) les ajouterait
-  // en parallèle, alors que le catalogue peut conditionner un addon à la présence du précédent.
-  for (const addon of addons) {
-    const option = await addBackupServicesCartItemOption(cartId, { itemId, ...addon });
-    await configureCartItemFromRequirements(cartId, option.itemId, configurationValues);
-  }
+  await addOrderNodeOptions(cartId, itemId, options, configurationValues);
 
   await assignOrderCart(cartId);
 
@@ -64,8 +82,9 @@ const placeBackupLicensesOrder = async ({
 
 /**
  * Commande du premier abonnement (BKP-1208) : compose le panier Agora depuis l'état du formulaire,
- * le configure, l'assigne et l'exécute. Un échec à n'importe quelle étape rejette sans rien
- * rattraper — la page garde la saisie et son brouillon, le client réessaie.
+ * découvre les conditions de chaque plan, le configure, l'assigne et l'exécute. Un échec à n'importe
+ * quelle étape rejette sans rien rattraper — la page garde la saisie et son brouillon, le client
+ * réessaie.
  */
 export const useOrderBackupLicenses = ({
   onSuccess,
