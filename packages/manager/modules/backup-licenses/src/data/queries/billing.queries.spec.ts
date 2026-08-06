@@ -22,6 +22,15 @@ vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/services/consumption.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 
+// Le service Agora d'une ressource : les fixtures de consommation ci-dessous sont indexées par
+// `resourceName`, donc la résolution le rend tel quel.
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@ovh-ux/manager-module-common-api')>()),
+  getResourceServiceId: vi.fn(({ resourceName }: { resourceName: string }) =>
+    Promise.resolve({ data: [resourceName] }),
+  ),
+}));
+
 const buildVault = (id: string, resourceName: string): VaultResource => ({
   id,
   resourceStatus: 'READY',
@@ -59,10 +68,6 @@ const buildConsumption = (
   price: { currencyCode: 'EUR', text: priceText, value: 0 },
   uniqueId: null,
 });
-
-// NB : `USE_API_MOCKS` (mocks.config.ts) reste à `true` en dev — `resolveServiceId` court-
-// circuite alors `getResourceServiceId` et renvoie le `resourceName` tel quel comme
-// `serviceId`, d'où son utilisation ci-dessous en clé des mocks de consommation.
 
 describe('billingQueries', () => {
   let queryClient: QueryClient;

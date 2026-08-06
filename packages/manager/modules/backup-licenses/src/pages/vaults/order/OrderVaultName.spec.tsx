@@ -24,6 +24,7 @@ import {
 
 vi.mock('@/data/api/locations/locations.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),

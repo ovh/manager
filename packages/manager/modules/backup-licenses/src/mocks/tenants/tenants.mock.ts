@@ -1,7 +1,4 @@
-/**
- * Tenants de développement : ils n'existent que pour satisfaire la cascade
- * service → tenant VSPC quand `USE_API_MOCKS` est actif (cf. mocks.config.ts).
- */
+/** Tenants de test : ils satisfont la cascade service → tenant VSPC que les écrans traversent. */
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
 import { ADVANCED_VSPC_TYPE, BACKUP_LICENSES_ADDON, VspcTenant } from '@/types/VspcTenant.type';

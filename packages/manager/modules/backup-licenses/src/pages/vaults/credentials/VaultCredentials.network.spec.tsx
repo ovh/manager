@@ -16,7 +16,6 @@ import {
  * du module — sinon les données arrivent sans passer par le réseau et il n'y a rien à observer.
  * Les autres tests de la modale s'en passent et restent dans `VaultCredentials.page.spec.tsx`.
  */
-vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
 
 let credentialsCalls: string[];
 
