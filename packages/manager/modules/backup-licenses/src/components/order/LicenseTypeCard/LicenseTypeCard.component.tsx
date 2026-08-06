@@ -19,7 +19,10 @@ interface LicenseTypeCardProps {
   onSelect: () => void;
 }
 
-/** Carte de type de licence (étape ①) — sélectionnable, comportement radio. */
+/**
+ * Carte de type de licence (étape ①) — sélectionnable, comportement radio. `p-0` sur le bouton :
+ * son padding par défaut laisserait une bande blanche entre le bloc de prix et la bordure.
+ */
 export default function LicenseTypeCard({
   card,
   selected,
@@ -37,7 +40,7 @@ export default function LicenseTypeCard({
       aria-disabled={disabled}
       disabled={disabled}
       onClick={disabled ? undefined : onSelect}
-      className={`relative flex h-full flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-[10px] border-2 bg-white p-0 text-left transition-[border-color,box-shadow] ${
         disabled ? 'cursor-not-allowed' : 'cursor-pointer'
       } ${
         selected

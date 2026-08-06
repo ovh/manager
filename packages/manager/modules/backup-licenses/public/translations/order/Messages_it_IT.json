@@ -21,18 +21,20 @@
   "badge": {
     "recommended": "★ Consigliato"
   },
+  "card": {
+    "price_unit": "per workload",
+    "vault_storage_note": "*500 GB di Object Storage (S3) inclusi nella licenza, poi {{price}} + IVA/GB/mese"
+  },
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
       "price_prefix": "",
-      "price_suffix": "— per server, VM, database o 500 GB di storage",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Solo Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
       "price_prefix": "A partire da ",
-      "price_suffix": "— per server, VM, database o 500 GB di storage",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -43,7 +45,7 @@
       "tooltip": "Esegui il backup dei dati e ripristinali rapidamente in caso di guasto o errore"
     },
     "vault_500": {
-      "label": "Vault da 500 GB gestito da OVHcloud",
+      "label": "Vault da 500 GB gestito da OVHcloud*",
       "tooltip": "Basato su Object Storage (S3) di OVHcloud (SLA di disponibilità del 99,9%)"
     },
     "security_base": {
@@ -67,20 +69,17 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Consigliato per <b>PMI</b> con flotta limitata (<b>5–30 workload</b>). Backup/ripristino semplici.",
-      "price_prefix": "A partire da ",
-      "price_suffix": "— per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da "
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Consigliato per <b>PMI</b> con flotta ampia (<b>30–150 workload</b>). Monitoraggio dettagliato e avvisi proattivi.",
-      "price_prefix": "A partire da ",
-      "price_suffix": "— per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da "
     },
     "premium": {
       "title": "Premium",
       "audience": "Consigliato per <b>medie e grandi imprese</b> con flotta estesa (<b>150–2000+ workload</b>). Orchestrazione del disaster recovery e conformità.",
-      "price_prefix": "A partire da ",
-      "price_suffix": "— per server, VM, database o 500 GB di storage"
+      "price_prefix": "A partire da "
     }
   },
   "vbr": {

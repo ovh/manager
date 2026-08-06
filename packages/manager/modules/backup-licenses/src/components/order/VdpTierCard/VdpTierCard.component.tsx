@@ -37,7 +37,7 @@ export default function VdpTierCard({
       aria-disabled={disabled}
       disabled={disabled}
       onClick={disabled ? undefined : onSelect}
-      className={`relative flex h-full flex-col overflow-hidden rounded-[10px] border-2 bg-white text-left transition-[border-color,box-shadow] ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-[10px] border-2 bg-white p-0 text-left transition-[border-color,box-shadow] ${
         disabled ? 'cursor-not-allowed' : 'cursor-pointer'
       } ${
         selected
