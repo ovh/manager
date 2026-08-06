@@ -13,7 +13,8 @@ const mockedGetBackupServicesCatalog = vi.mocked(getBackupServicesCatalog);
 
 const catalog: OrderCatalog = {
   locale: { currencyCode: 'EUR', taxRate: 0.2 },
-  plans: [
+  plans: [{ planCode: 'backup-tenant', pricings: [] }],
+  addons: [
     {
       planCode: 'vspc-backuplicenses-foundation-vm',
       pricings: [

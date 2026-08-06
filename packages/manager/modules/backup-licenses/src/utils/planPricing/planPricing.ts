@@ -10,7 +10,10 @@ export const getDefaultPricing = (
   catalog: OrderCatalog | undefined,
   planCode: string,
 ): CatalogPricing | undefined => {
-  const plan = catalog?.plans.find((candidate) => candidate.planCode === planCode);
+  // Les licences sont des addons du tenant : les chercher parmi les plans ne rend jamais de prix.
+  const plan = [...(catalog?.plans ?? []), ...(catalog?.addons ?? [])].find(
+    (candidate) => candidate.planCode === planCode,
+  );
   return plan?.pricings.find((pricing) => pricing.mode === 'default' && pricing.commitment === 0);
 };
 
