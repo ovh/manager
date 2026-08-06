@@ -1,7 +1,8 @@
 /**
  * Projections minimales de la surface de commande Agora (schéma apiv6 `order`, relevé 2026-08-06) :
  * champs réellement consommés seulement, comme `types/Catalog.type.ts` pour le catalogue public.
- * Les noms locaux abrègent ceux du contrat — `CartServiceOffer` = `order.cart.GenericOptionDefinition`,
+ * Les noms locaux abrègent ceux du contrat — `CartOfferDefinition` = `order.cart.GenericProductDefinition`,
+ * `CartServiceOffer` = `order.cart.GenericOptionDefinition`,
  * `CartOfferPricing` = `order.cart.GenericProductPricing`,
  * `CartItemRequiredConfiguration` = `order.cart.ConfigurationRequirements`.
  */
@@ -35,14 +36,18 @@ export type CartOfferPricing = {
   pricingType: CartPricingType;
 };
 
-export type CartServiceOffer = {
-  exclusive: boolean;
-  family: string;
-  mandatory: boolean;
+/** Un plan que le panier offre, tarifs compris : la seule source des paramètres de son POST. */
+export type CartOfferDefinition = {
   planCode: string;
   prices: CartOfferPricing[];
   productName: string;
   productType: string;
+};
+
+export type CartServiceOffer = CartOfferDefinition & {
+  exclusive: boolean;
+  family: string;
+  mandatory: boolean;
 };
 
 /** Les quatre paramètres que tout POST de commande exige, aucun optionnel au contrat. */
