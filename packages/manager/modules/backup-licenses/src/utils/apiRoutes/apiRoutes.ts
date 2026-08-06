@@ -4,6 +4,32 @@ export const LOCATIONS_ROUTE = '/location';
 
 export const CATALOG_BACKUP_SERVICES_ROUTE = '/order/catalog/public/backupServices';
 
+export const ORDER_CART_ROUTE = '/order/cart';
+
+export const CART_SERVICE_OPTION_BACKUP_SERVICES_ROUTE = '/order/cartServiceOption/backupServices';
+
+export const BACKUP_SERVICES_CART_ITEM_ENDPOINT = 'backupServices';
+
+export const getOrderCartRoute = (cartId: string) => `${ORDER_CART_ROUTE}/${cartId}`;
+
+export const getOrderCartAssignRoute = (cartId: string) => `${getOrderCartRoute(cartId)}/assign`;
+
+export const getOrderCartCheckoutRoute = (cartId: string) =>
+  `${getOrderCartRoute(cartId)}/checkout`;
+
+export const getCartItemRoute = (cartId: string, itemId: number) =>
+  `${getOrderCartRoute(cartId)}/item/${itemId}`;
+
+export const getCartItemRequiredConfigurationRoute = (cartId: string, itemId: number) =>
+  `${getCartItemRoute(cartId, itemId)}/requiredConfiguration`;
+
+export const getCartItemConfigurationRoute = (cartId: string, itemId: number) =>
+  `${getCartItemRoute(cartId, itemId)}/configuration`;
+
+/** Offres commandables sur un service existant, prix compris : la seule source de prix d'une commande sur service. */
+export const getCartServiceOptionRoute = (serviceName: string) =>
+  `${CART_SERVICE_OPTION_BACKUP_SERVICES_ROUTE}/${serviceName}`;
+
 export const getBackupServicesBaseRoute = (backupServicesId: string) =>
   `${BACKUP_SERVICES_ROUTE}/${backupServicesId}`;
 

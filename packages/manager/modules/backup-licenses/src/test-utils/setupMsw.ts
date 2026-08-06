@@ -4,6 +4,7 @@ import { getAuthenticationMocks, toMswHandlers } from '@ovh-ux/manager-core-test
 import { GetServicesMocksParams, getServicesMocks } from '@ovh-ux/manager-module-common-api';
 
 import { TIamMockParams, getIamMocks } from '@/mocks/iam/iam.handler';
+import { TOrderMockParams, getOrderMocks } from '@/mocks/order/order.handler';
 import { TTenantMockParams, getTenantMocks } from '@/mocks/tenants/tenants.handler';
 import { TVaultMockParams, getVaultMocks } from '@/mocks/vaults/vaults.handler';
 import {
@@ -15,7 +16,8 @@ export type MockParams = GetServicesMocksParams &
   TTenantMockParams &
   TVaultMockParams &
   TIamMockParams &
-  TVaultOrderMockParams;
+  TVaultOrderMockParams &
+  TOrderMockParams;
 
 /**
  * Mocks MSW du service `/services` (v6) consommé par `useServiceDetailsQueryOption`/
@@ -33,6 +35,7 @@ export const setupMswMock = (mockParams: MockParams = {}) => {
       ...getTenantMocks(mockParams),
       ...getVaultMocks(mockParams),
       ...getIamMocks(mockParams),
+      ...getOrderMocks(mockParams),
     ]),
   );
 };
