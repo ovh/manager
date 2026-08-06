@@ -8,7 +8,6 @@ import { getBackupLicensesRoute } from '@/utils/apiRoutes/apiRoutes';
 import { createBackupLicense } from './backupLicenses.requests';
 
 vi.mock('@/data/api/Client.api');
-vi.mock('@/mocks/mocks.config', () => ({ USE_API_MOCKS: false }));
 
 const mockedPostJSON = vi.mocked(postJSON);
 

@@ -21,6 +21,14 @@ vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/services/consumption.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 
+// Les fixtures de consommation sont indexées par `resourceName` : la résolution le rend tel quel.
+vi.mock('@ovh-ux/manager-module-common-api', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@ovh-ux/manager-module-common-api')>()),
+  getResourceServiceId: vi.fn(({ resourceName }: { resourceName: string }) =>
+    Promise.resolve({ data: [resourceName] }),
+  ),
+}));
+
 const mockedGetVaults = vi.mocked(getVaults);
 
 const buildVault = (id: string, resourceName: string): VaultResource => ({
