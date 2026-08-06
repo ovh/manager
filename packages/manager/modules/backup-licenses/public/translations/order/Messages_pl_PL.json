@@ -21,18 +21,20 @@
   "badge": {
     "recommended": "★ Polecane"
   },
+  "card": {
+    "price_unit": "za obciążenie",
+    "vault_storage_note": "*500 GB Object Storage (S3) w cenie licencji, następnie {{price}} netto/GB/miesiąc"
+  },
   "license": {
     "enterprise_plus": {
       "title": "Veeam Enterprise Plus",
       "price_prefix": "",
-      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
       "tag_vbr": "VBR V12 & V13",
       "tag_os": "Tylko Windows"
     },
     "data_platform": {
       "title": "Veeam Data Platform",
       "price_prefix": "Od ",
-      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej",
       "tag_vbr": "VBR V13",
       "tag_os": "Windows & Linux"
     }
@@ -43,7 +45,7 @@
       "tooltip": "Twórz kopie zapasowe danych i szybko je przywracaj w razie awarii lub błędu"
     },
     "vault_500": {
-      "label": "Vault 500 GB zarządzany przez OVHcloud",
+      "label": "Vault 500 GB zarządzany przez OVHcloud*",
       "tooltip": "Oparte na usłudze Object Storage (S3) OVHcloud (SLA dostępności 99,9%)"
     },
     "security_base": {
@@ -67,20 +69,17 @@
     "foundation": {
       "title": "Foundation",
       "audience": "Polecane dla <b>MŚP</b> z ograniczoną flotą (<b>5–30 obciążeń</b>). Proste kopie zapasowe/przywracanie.",
-      "price_prefix": "Od ",
-      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od "
     },
     "advanced": {
       "title": "Advanced",
       "audience": "Polecane dla <b>MŚP</b> z większą flotą (<b>30–150 obciążeń</b>). Szczegółowe monitorowanie i proaktywne alerty.",
-      "price_prefix": "Od ",
-      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od "
     },
     "premium": {
       "title": "Premium",
       "audience": "Polecane dla <b>średnich i dużych przedsiębiorstw</b> z rozbudowaną flotą (<b>150–2000+ obciążeń</b>). Orkiestracja planu odzyskiwania po awarii i zgodność.",
-      "price_prefix": "Od ",
-      "price_suffix": "— za serwer, maszynę wirtualną, bazę danych lub 500 GB przestrzeni dyskowej"
+      "price_prefix": "Od "
     }
   },
   "vbr": {
