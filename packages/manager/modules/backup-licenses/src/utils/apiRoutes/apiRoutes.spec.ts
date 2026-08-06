@@ -2,11 +2,18 @@ import { describe, expect, it } from 'vitest';
 
 import {
   BACKUP_SERVICES_ROUTE,
+  CART_SERVICE_OPTION_BACKUP_SERVICES_ROUTE,
+  ORDER_CART_ROUTE,
   getBackupLicensesRoute,
   getBackupServerRoute,
   getBackupServersRoute,
   getBackupServicesBaseRoute,
+  getCartItemConfigurationRoute,
+  getCartItemRequiredConfigurationRoute,
+  getCartServiceOptionRoute,
   getLicenseConsumptionRoute,
+  getOrderCartAssignRoute,
+  getOrderCartCheckoutRoute,
   getServiceConsumptionRoute,
   getVaultBucketCredentialsRoute,
   getVaultsRoute,
@@ -56,5 +63,25 @@ describe('apiRoutes', () => {
 
   it('builds the license consumption route (no /element) for a given service id', () => {
     expect(getLicenseConsumptionRoute('service-1')).toBe('/services/service-1/consumption');
+  });
+
+  it('builds the service option route for a given service name', () => {
+    expect(getCartServiceOptionRoute('backup-vault-1')).toBe(
+      `${CART_SERVICE_OPTION_BACKUP_SERVICES_ROUTE}/backup-vault-1`,
+    );
+  });
+
+  it('builds the cart assign and checkout routes for a given cart id', () => {
+    expect(getOrderCartAssignRoute('cart-1')).toBe(`${ORDER_CART_ROUTE}/cart-1/assign`);
+    expect(getOrderCartCheckoutRoute('cart-1')).toBe(`${ORDER_CART_ROUTE}/cart-1/checkout`);
+  });
+
+  it('builds the item configuration routes for a given cart and item id', () => {
+    expect(getCartItemRequiredConfigurationRoute('cart-1', 42)).toBe(
+      `${ORDER_CART_ROUTE}/cart-1/item/42/requiredConfiguration`,
+    );
+    expect(getCartItemConfigurationRoute('cart-1', 42)).toBe(
+      `${ORDER_CART_ROUTE}/cart-1/item/42/configuration`,
+    );
   });
 });
