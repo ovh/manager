@@ -6,12 +6,14 @@ import {
   buildTestOfferPricing,
   mockCartServiceOffers,
   mockUnorderableServiceOffer,
+  mockVaultOfferInstallationPricing,
   mockVaultServiceOffer,
 } from '@/mocks/order/order.mock';
 import { CartOfferPricing, CartServiceOffer } from '@/types/OrderCart.type';
 
 import {
   findServiceOffer,
+  getOfferInstallationPriceText,
   getOfferInstallationPricing,
   getOfferOrderParameters,
 } from './serviceOffer';
@@ -53,6 +55,30 @@ describe('getOfferInstallationPricing', () => {
 
   it('returns undefined when the offer is missing', () => {
     expect(getOfferInstallationPricing(undefined)).toBeUndefined();
+  });
+});
+
+describe('getOfferInstallationPriceText', () => {
+  it("hands back Agora's own formatted string, so the front formats no amount", () => {
+    expect(getOfferInstallationPriceText(mockVaultServiceOffer)).toBe(
+      mockVaultOfferInstallationPricing.price.text,
+    );
+  });
+
+  it('returns undefined rather than an empty string when the offer serves no text', () => {
+    const offer = withPrices([
+      pricing({ price: { ...mockVaultOfferInstallationPricing.price, text: '' } }),
+    ]);
+
+    expect(getOfferInstallationPriceText(offer)).toBeUndefined();
+  });
+
+  it('returns undefined when nothing about the offer is installable', () => {
+    expect(getOfferInstallationPriceText(mockUnorderableServiceOffer)).toBeUndefined();
+  });
+
+  it('returns undefined when the offer is missing', () => {
+    expect(getOfferInstallationPriceText(undefined)).toBeUndefined();
   });
 });
 

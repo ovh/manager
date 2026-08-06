@@ -19,6 +19,15 @@ export const getOfferInstallationPricing = (
   offer?.prices.find(({ capacities }) => capacities.includes('installation'));
 
 /**
+ * Le tarif prêt à afficher servi par Agora, celui-là même auquel la commande partira. Le front ne
+ * formate ni n'arrondit aucun montant (R1) : `Price.text` est déjà localisé par subsidiary, là où
+ * un `Intl.NumberFormat` à deux décimales écraserait un tarif au Go sous le centime.
+ */
+export const getOfferInstallationPriceText = (
+  offer: CartServiceOffer | undefined,
+): string | undefined => getOfferInstallationPricing(offer)?.price.text || undefined;
+
+/**
  * Les paramètres du POST lus sur l'offre, jamais devinés : un produit à la conso ne suit pas le
  * `default`/`P1M` mensuel du funnel. `undefined` si l'offre n'est pas commandable en l'état.
  */

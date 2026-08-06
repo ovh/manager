@@ -7,16 +7,11 @@ import { TIamMockParams, getIamMocks } from '@/mocks/iam/iam.handler';
 import { TOrderMockParams, getOrderMocks } from '@/mocks/order/order.handler';
 import { TTenantMockParams, getTenantMocks } from '@/mocks/tenants/tenants.handler';
 import { TVaultMockParams, getVaultMocks } from '@/mocks/vaults/vaults.handler';
-import {
-  TVaultOrderMockParams,
-  installVaultOrderChannel,
-} from '@/mocks/vaults/vaults.orderChannel';
 
 export type MockParams = GetServicesMocksParams &
   TTenantMockParams &
   TVaultMockParams &
   TIamMockParams &
-  TVaultOrderMockParams &
   TOrderMockParams;
 
 /**
@@ -26,8 +21,6 @@ export type MockParams = GetServicesMocksParams &
  * comme le reste des tests de pages de ce module.
  */
 export const setupMswMock = (mockParams: MockParams = {}) => {
-  // La commande d'un vault n'a pas de route : son issue est installée, pas servie par MSW.
-  installVaultOrderChannel(mockParams);
   (global as unknown as { server: SetupServer }).server?.resetHandlers(
     ...toMswHandlers([
       ...getAuthenticationMocks({ isAuthMocked: true }),

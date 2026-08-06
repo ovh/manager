@@ -59,3 +59,9 @@ export type VaultOrder = {
   /** Code machine de la région, tel que `GET /location` le nomme (`eu-west-par`). */
   region: string;
 };
+
+/** Résolu par l'appelant, pas par le canal : celui-ci reste ainsi testable sans shell ni cache. */
+export type VaultOrderContext = {
+  ovhSubsidiary: string;
+  serviceName: string;
+};
