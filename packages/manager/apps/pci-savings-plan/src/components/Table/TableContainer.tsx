@@ -15,8 +15,9 @@ import PlannedChangeStatusChip from '../PlannedChangeStatusChip/PlannedChangeSta
 import StatusChip from '../StatusChip/StatusChip';
 import ActionsCell from './ActionsCell';
 import { SavingsPlanDatagridWrapper } from './Table.type';
-import { getDeploymentLabel } from '@/utils/savingsPlan';
+import { getDeploymentLabel, isRepricedCommitment } from '@/utils/savingsPlan';
 import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { useSavingsPlanCreationOptionsFeatureAvailability } from '@/hooks/useSavingsPlanCreationOptionsFeatureAvailability';
 
 type SortableKey = Pick<
   SavingsPlanService,
@@ -37,6 +38,9 @@ export default function TableContainer({
     setSorting,
   } = useDatagridSearchParams();
   const [searchParams] = useSearchParams();
+  const {
+    isInstancesRepricingAvailable,
+  } = useSavingsPlanCreationOptionsFeatureAvailability();
 
   const paginatedData = useMemo(() => {
     const start = pagination.pageIndex * pagination.pageSize;
@@ -153,6 +157,10 @@ export default function TableContainer({
             flavor={props.flavor}
             status={props.status}
             periodEndAction={props.periodEndAction}
+            isRenewalActivationDisabled={
+              isInstancesRepricingAvailable &&
+              isRepricedCommitment(props.period)
+            }
             onClickRenew={() =>
               navigate({
                 pathname: `./${props.id}/renew`,
@@ -169,7 +177,7 @@ export default function TableContainer({
         ),
       },
     ],
-    [data, searchParams],
+    [data, searchParams, isInstancesRepricingAvailable],
   );
 
   return (

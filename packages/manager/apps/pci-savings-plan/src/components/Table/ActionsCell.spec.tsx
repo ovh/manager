@@ -5,6 +5,7 @@ import { usePciUrl } from '@ovh-ux/manager-pci-common';
 import { useHref, useSearchParams } from 'react-router-dom';
 import ActionsCell from './ActionsCell';
 import { SavingsPlanPlanedChangeStatus, SavingsPlanStatus } from '@/types';
+import { isRepricedCommitment } from '@/utils/savingsPlan';
 
 const pciUrl = 'pciUrl';
 const useSearchParamsMocked = vi
@@ -138,6 +139,77 @@ describe('Considering ActionsCell', () => {
       expect(button).not.toBeInTheDocument();
     },
   );
+
+  describe('Given the instances repricing feature is enabled', () => {
+    it.each([
+      { period: 'P1M', months: 1 },
+      { period: 'P6M', months: 6 },
+      { period: 'P2Y', months: 24 },
+    ])(
+      'should disable the enableAutoRenew action on a $months month commitment',
+      ({ period }) => {
+        render(
+          <ActionsCell
+            {...mockedActionsCellProps}
+            periodEndAction={SavingsPlanPlanedChangeStatus.TERMINATE}
+            isRenewalActivationDisabled={isRepricedCommitment(period)}
+          />,
+        );
+
+        expect(
+          screen.getByRole('button', { name: 'enableAutoRenew' }),
+        ).toHaveAttribute('is-disabled', 'true');
+      },
+    );
+
+    it.each([
+      { period: 'P1Y', months: 12 },
+      { period: 'P3Y', months: 36 },
+    ])(
+      'should keep the enableAutoRenew action available on a $months month commitment',
+      ({ period }) => {
+        render(
+          <ActionsCell
+            {...mockedActionsCellProps}
+            periodEndAction={SavingsPlanPlanedChangeStatus.TERMINATE}
+            isRenewalActivationDisabled={isRepricedCommitment(period)}
+          />,
+        );
+
+        expect(
+          screen.getByRole('button', { name: 'enableAutoRenew' }),
+        ).not.toHaveAttribute('is-disabled', 'true');
+      },
+    );
+
+    it('should keep the disableAutoRenew action available on a repriced commitment', () => {
+      render(
+        <ActionsCell
+          {...mockedActionsCellProps}
+          periodEndAction={SavingsPlanPlanedChangeStatus.REACTIVATE}
+          isRenewalActivationDisabled={isRepricedCommitment('P6M')}
+        />,
+      );
+
+      expect(
+        screen.getByRole('button', { name: 'disableAutoRenew' }),
+      ).not.toHaveAttribute('is-disabled', 'true');
+    });
+  });
+
+  it('should keep the enableAutoRenew action available on a repriced commitment when the feature is disabled', () => {
+    render(
+      <ActionsCell
+        {...mockedActionsCellProps}
+        periodEndAction={SavingsPlanPlanedChangeStatus.TERMINATE}
+        isRenewalActivationDisabled={false}
+      />,
+    );
+
+    expect(
+      screen.getByRole('button', { name: 'enableAutoRenew' }),
+    ).not.toHaveAttribute('is-disabled', 'true');
+  });
 
   it('should display cancelSavingsPlan action when savings plan is on PENDING', () => {
     render(

@@ -8,12 +8,14 @@ type TRenewModal = {
   periodEndAction: SavingsPlanPlanedChangeStatus;
   onClose: () => void;
   onConfirm: () => void;
+  isPending: boolean;
 };
 
 export default function RenewModal({
   periodEndAction,
   onClose,
   onConfirm,
+  isPending,
 }: Readonly<TRenewModal>) {
   const { t } = useTranslation('renew');
 
@@ -38,6 +40,7 @@ export default function RenewModal({
         <OdsButton
           label={t(isReactivate ? 'buttons_deactivate' : 'buttons_activate')}
           onClick={onConfirm}
+          isLoading={isPending}
           data-testid="renewModal-button_confirm"
         />
       </div>

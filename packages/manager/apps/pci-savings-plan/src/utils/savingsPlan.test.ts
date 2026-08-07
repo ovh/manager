@@ -1,4 +1,8 @@
-import { isInstanceFlavor, isValidSavingsPlanName } from './savingsPlan';
+import {
+  isInstanceFlavor,
+  isRepricedCommitment,
+  isValidSavingsPlanName,
+} from './savingsPlan';
 
 describe('isValidSavingsPlanName', () => {
   it('should return true for valid names', () => {
@@ -45,5 +49,25 @@ describe('isInstanceFlavor', () => {
 
   it('should return false if the flavor is not an instance', () => {
     expect(isInstanceFlavor('Rancher')).toBe(false);
+  });
+});
+
+describe('isRepricedCommitment', () => {
+  it.each(['P1M', 'P6M', 'P2Y'])(
+    'should return true for the repriced %s commitment',
+    (period) => {
+      expect(isRepricedCommitment(period)).toBe(true);
+    },
+  );
+
+  it.each(['P3M', 'P1Y', 'P3Y'])(
+    'should return false for the still offered %s commitment',
+    (period) => {
+      expect(isRepricedCommitment(period)).toBe(false);
+    },
+  );
+
+  it('should return false when the period is missing', () => {
+    expect(isRepricedCommitment(undefined)).toBe(false);
   });
 });
