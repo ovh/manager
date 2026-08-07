@@ -63,7 +63,7 @@ export default function LicenseStep({
           </OdsText>
           <OdsText
             preset={ODS_TEXT_PRESET.paragraph}
-            className="mb-8 block text-[var(--ods-color-neutral-600)]"
+            className="mb-8 block [--ods-color-text:var(--ods-color-neutral-600)]"
           >
             {t('step.vdp_tier.subtitle')}
           </OdsText>

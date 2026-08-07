@@ -56,6 +56,9 @@
         "label": "Nom du vault",
         "hint": "1 à 50 caractères. Caractères alphanumériques et tirets uniquement."
       },
+      "country": {
+        "label": "Pays"
+      },
       "region": {
         "label": "Région de stockage"
       }
@@ -68,5 +71,8 @@
       "name_format": "Utilisez de 1 à 50 caractères : lettres, chiffres et tirets uniquement.",
       "region_required": "Choisissez la région dans laquelle votre vault sera stocké."
     }
+  },
+  "badge": {
+    "included": "Inclus"
   }
 }

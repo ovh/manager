@@ -68,5 +68,8 @@
       "name_format": "Use 1 to 50 characters, letters, digits and hyphens only.",
       "region_required": "Choose the region where your vault will be stored."
     }
+  },
+  "badge": {
+    "included": "Inbegriffen"
   }
 }

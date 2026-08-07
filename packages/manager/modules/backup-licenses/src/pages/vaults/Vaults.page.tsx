@@ -52,7 +52,7 @@ export default function VaultsPage() {
       <div className="flex">
         <OdsButton
           data-testid="order-vault"
-          size={ODS_BUTTON_SIZE.sm}
+          size={ODS_BUTTON_SIZE.md}
           label={t('cta.order')}
           onClick={() => navigate(routeUrls.orderVault)}
         />

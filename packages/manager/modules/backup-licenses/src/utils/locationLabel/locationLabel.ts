@@ -16,3 +16,26 @@ export const getFlagEmoji = (countryCode?: string): string => {
 /** Libellé d'une localisation : « France – Paris ». */
 export const formatLocationTitle = (t: TFunction, location: Location): string =>
   t('region.card_title', { country: location.countryName, city: location.cityName });
+
+export type CountryOption = { countryCode: string; countryName: string };
+
+export const selectCountries = (locations: Location[]): CountryOption[] => {
+  const byCode = new Map<string, CountryOption>();
+  locations.forEach(({ countryCode, countryName }) => {
+    if (!byCode.has(countryCode)) byCode.set(countryCode, { countryCode, countryName });
+  });
+  return [...byCode.values()].sort((a, b) => a.countryName.localeCompare(b.countryName));
+};
+
+export const formatCountryTitle = ({ countryCode, countryName }: CountryOption): string => {
+  const flag = getFlagEmoji(countryCode);
+  return flag ? `${flag} ${countryName}` : countryName;
+};
+
+export const selectLocationsByCountry = (locations: Location[], countryCode: string): Location[] =>
+  locations
+    .filter((location) => location.countryCode === countryCode)
+    .sort((a, b) => a.cityName.localeCompare(b.cityName));
+
+export const formatCityOptionLabel = ({ cityName, name }: Location): string =>
+  `${cityName} (${name})`;

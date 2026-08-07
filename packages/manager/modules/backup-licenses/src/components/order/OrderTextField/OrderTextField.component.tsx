@@ -54,6 +54,7 @@ const OrderTextField = forwardRef<HTMLOdsInputElement, OrderTextFieldProps>(func
       )}
       <OdsInput
         ref={ref}
+        className="w-full"
         id={id}
         name={id}
         value={value}

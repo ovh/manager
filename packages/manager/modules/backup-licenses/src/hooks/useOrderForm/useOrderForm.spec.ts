@@ -29,10 +29,10 @@ function progressToLocation(result: { current: ReturnType<typeof useOrderForm> }
 }
 
 describe('useOrderForm — présélection et sélection de licence', () => {
-  it("présélectionne les options recommandées (Data Platform + Premium) sans verrouiller l'étape", () => {
+  it("présélectionne les options recommandées (Data Platform + Advanced) sans verrouiller l'étape", () => {
     const { result } = renderOrderForm();
     expect(result.current.family).toBe(LicenseFamily.DATA_PLATFORM);
-    expect(result.current.tier).toBe(VdpTier.PREMIUM);
+    expect(result.current.tier).toBe(VdpTier.ADVANCED);
     // Présélection = confort pour cliquer "Continuer" tout de suite, pas une validation automatique.
     expect(result.current.license.step.isOpen).toBe(true);
     expect(result.current.license.step.isLocked).toBe(false);
@@ -65,9 +65,9 @@ describe('useOrderForm — résolution de la valeur API', () => {
     expect(result.current.resolvedLicenseApiValue).toBe(LicenseApiValue.ENTERPRISE_PLUS);
   });
 
-  it("par défaut (Data Platform + Premium présélectionnés) résout l'enum du tier recommandé", () => {
+  it("par défaut (Data Platform + Advanced présélectionnés) résout l'enum du tier recommandé", () => {
     const { result } = renderOrderForm();
-    expect(result.current.resolvedLicenseApiValue).toBe(LicenseApiValue.VDP_PREMIUM);
+    expect(result.current.resolvedLicenseApiValue).toBe(LicenseApiValue.VDP_ADVANCED);
   });
 });
 

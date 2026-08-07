@@ -1,17 +1,25 @@
-import React, { useId } from 'react';
+import React, { useContext, useId } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
 import { ODS_TEXT_PRESET } from '@ovhcloud/ods-components';
 import { OdsCard, OdsDivider, OdsText } from '@ovhcloud/ods-components/react';
 
-import { ManagerButton } from '@ovh-ux/manager-react-components';
+import {
+  IntervalUnitType,
+  ManagerButton,
+  OvhSubsidiary,
+  Price,
+} from '@ovh-ux/manager-react-components';
+import { ShellContext, i18nextLocaleToOvh } from '@ovh-ux/manager-react-shell-client';
 
 import OrderSummaryRow from '@/components/order/OrderRecapPanel/OrderSummaryRow.component';
+import { useBackupServicesCatalog } from '@/data/hooks/useBackupServicesCatalog/useBackupServicesCatalog';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { AddServerFormState } from '@/hooks/useAddServerForm/useAddServerForm';
 import { BACKUP_LICENSES_IAM_RULES, BACKUP_LICENSES_NAMESPACES, LABELS } from '@/module.constants';
 import { LicenseFamily, VdpTier } from '@/types/Order.type';
+import { getDefaultPricing } from '@/utils/planPricing/planPricing';
 
 interface AddServerRecapPanelProps {
   family: LicenseFamily | null;
@@ -35,7 +43,8 @@ export default function AddServerRecapPanel({
   onFinalize,
   urn,
 }: AddServerRecapPanelProps) {
-  const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
+  const { t, i18n } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
+  const { environment } = useContext(ShellContext);
   const submitButtonId = useId();
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
@@ -43,6 +52,12 @@ export default function AddServerRecapPanel({
 
   const emptyLabel = t('summary.empty');
   const isVdp = family === LicenseFamily.DATA_PLATFORM;
+
+  const selectedPlanCode = isVdp
+    ? (VDP_TIER_CARDS.find((card) => card.tier === tier)?.planCode ?? null)
+    : (LICENSE_CARDS.find((card) => card.family === family)?.planCode ?? null);
+  const { data: catalog } = useBackupServicesCatalog();
+  const pricing = selectedPlanCode ? getDefaultPricing(catalog, selectedPlanCode) : undefined;
 
   return (
     <OdsCard className="flex flex-col gap-6 p-6">
@@ -74,10 +89,28 @@ export default function AddServerRecapPanel({
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-500)]">
+          <OdsText
+            preset={ODS_TEXT_PRESET.caption}
+            className="[--ods-color-text:var(--ods-color-neutral-500)]"
+          >
             {t('summary.price.label')}
           </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.heading5}>{t('summary.price.value')}</OdsText>
+          <OdsText preset={ODS_TEXT_PRESET.heading5}>
+            {pricing ? (
+              <>
+                <Price
+                  value={pricing.price}
+                  tax={pricing.tax}
+                  intervalUnit={IntervalUnitType.month}
+                  locale={i18nextLocaleToOvh(i18n.language)}
+                  ovhSubsidiary={environment.getUser().ovhSubsidiary as OvhSubsidiary}
+                />{' '}
+                <span className="text-[var(--ods-color-neutral-600)]">{t('card.price_unit')}</span>
+              </>
+            ) : (
+              emptyLabel
+            )}
+          </OdsText>
         </div>
         {/* Jamais désactivé pour formulaire invalide (révèle les erreurs et rouvre
             l'étape fautive, cf. AddServer.page) — seulement pendant la soumission. `ManagerButton`

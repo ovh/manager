@@ -1,6 +1,6 @@
 /**
- * Référentiel des localisations OVHcloud — `GET /location` (API v2).
- * Seuls les champs consommés par le tunnel de commande sont typés.
+ * Localisation d'un vault. Catalogue en dur (BKP-1223, cf. `data/locations.data.ts`) —
+ * seuls les champs consommés par le tunnel de commande sont typés.
  */
 
 /** Typologie générale de la région. */

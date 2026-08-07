@@ -22,7 +22,7 @@ export default function OrderSummaryRow({ label, value, emptyLabel }: OrderSumma
     <div className="flex items-baseline justify-between gap-3">
       <OdsText
         preset={ODS_TEXT_PRESET.paragraph}
-        className="shrink-0 text-[var(--ods-color-neutral-500)]"
+        className="shrink-0 [--ods-color-text:var(--ods-color-neutral-500)]"
       >
         {label}
       </OdsText>
@@ -30,8 +30,8 @@ export default function OrderSummaryRow({ label, value, emptyLabel }: OrderSumma
         preset={ODS_TEXT_PRESET.paragraph}
         className={`min-w-0 truncate text-right ${
           isEmpty
-            ? 'italic text-[var(--ods-color-neutral-400)]'
-            : 'font-medium text-[var(--ods-color-neutral-700)]'
+            ? 'italic [--ods-color-text:var(--ods-color-neutral-400)]'
+            : 'font-medium [--ods-color-text:var(--ods-color-neutral-700)]'
         }`}
       >
         {isEmpty ? emptyLabel : value}

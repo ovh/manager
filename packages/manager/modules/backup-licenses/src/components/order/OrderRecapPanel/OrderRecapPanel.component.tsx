@@ -101,7 +101,10 @@ export default function OrderRecapPanel({
     <OdsCard className="flex flex-col gap-6 p-6">
       <div className="flex flex-col gap-1">
         {universeKey && (
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-500)]">
+          <OdsText
+            preset={ODS_TEXT_PRESET.caption}
+            className="[--ods-color-text:var(--ods-color-neutral-500)]"
+          >
             {t(universeKey)}
           </OdsText>
         )}
@@ -144,7 +147,10 @@ export default function OrderRecapPanel({
 
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1">
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-500)]">
+          <OdsText
+            preset={ODS_TEXT_PRESET.caption}
+            className="[--ods-color-text:var(--ods-color-neutral-500)]"
+          >
             {t('summary.price.label')}
           </OdsText>
           <OdsText preset={ODS_TEXT_PRESET.heading5}>
@@ -166,7 +172,7 @@ export default function OrderRecapPanel({
           {pricing && storageRate && (
             <OdsText
               preset={ODS_TEXT_PRESET.caption}
-              className="text-[var(--ods-color-neutral-500)]"
+              className="[--ods-color-text:var(--ods-color-neutral-500)]"
             >
               {t('card.vault_storage_note', { price: storageRate })}
             </OdsText>

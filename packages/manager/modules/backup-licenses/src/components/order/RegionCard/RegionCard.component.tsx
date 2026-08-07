@@ -53,7 +53,10 @@ export default function RegionCard({
       <OdsText preset={ODS_TEXT_PRESET.paragraph} className="font-semibold">
         {formatLocationTitle(t, location)}
       </OdsText>
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-500)]">
+      <OdsText
+        preset={ODS_TEXT_PRESET.caption}
+        className="[--ods-color-text:var(--ods-color-neutral-500)]"
+      >
         {location.geographyName}
       </OdsText>
       <span>

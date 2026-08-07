@@ -1,9 +1,17 @@
 {
-  "empty_state": "Brak zarejestrowanego zużycia w bieżącym okresie.",
   "period_notice": "Zużycie za bieżący okres rozliczeniowy, od {{begin}} do {{end}}.",
   "period_notice_fallback": "Zużycie za bieżący okres rozliczeniowy.",
+  "licenses": {
+    "title": "Licencje",
+    "empty_state": "Brak licencji rozliczonej w bieżącym okresie.",
+    "column": {
+      "price": "Cena"
+    }
+  },
+  "vaults": {
+    "empty_state": "Brak rozliczonego vaulta w bieżącym okresie."
+  },
   "column": {
-    "license_price": "Cena licencji",
     "storage_price": "Cena magazynu"
   },
   "usage": {

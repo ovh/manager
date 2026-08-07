@@ -114,7 +114,7 @@
   "nat": {
     "toggle_title": "Il mio server Veeam è dietro un NAT",
     "toggle_desc": "IP pubblico ≠ IP locale sulla rete interna.",
-    "callout": "OVHcloud utilizzerà l'IP pubblico per raggiungere il tuo server e l'IP privato per le connessioni interne al VSPC."
+    "callout": "OVHcloud utilizzerà l'IP pubblico NAT per raggiungere il tuo server; l'IP privato verrà utilizzato per identificare il tuo server nel nostro Manager."
   },
   "vault": {
     "section_title": "Il tuo Vault Object Storage",
@@ -164,7 +164,7 @@
       "field": {
         "server_name": "Nome del server"
       },
-      "cta": "Aggiungi il server"
+      "cta": "Ordina"
     },
     "error": {
       "submit": "Si è verificato un errore durante l'aggiunta del server. Riprova."

@@ -58,7 +58,10 @@ export default function VdpTierCard({
       )}
       <span className="flex flex-1 flex-col gap-6 p-8">
         <OdsText preset={ODS_TEXT_PRESET.heading6}>{t(`${base}.title`)}</OdsText>
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
+        <OdsText
+          preset={ODS_TEXT_PRESET.caption}
+          className="[--ods-color-text:var(--ods-color-neutral-600)]"
+        >
           <Trans i18nKey={`${base}.audience`} t={t} components={{ b: <b /> }} />
         </OdsText>
         <OdsDivider className="my-4" />

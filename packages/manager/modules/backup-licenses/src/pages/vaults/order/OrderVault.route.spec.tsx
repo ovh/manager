@@ -1,7 +1,6 @@
 import { screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
-import { getLocations } from '@/data/api/locations/locations.requests';
 import {
   MOCK_CART_ID,
   PAYGO_VAULT_PLAN_CODE,
@@ -22,8 +21,6 @@ import { resetVaultPollingDeadlines } from '@/utils/vault/vaultPolling';
 
 import { VAULT_ORDER_TEST_IDS } from './OrderVault.page';
 import { LOCATIONS, clickSubmit, fillValidOrder, nameFieldError } from './_test/order.harness';
-
-vi.mock('@/data/api/locations/locations.requests');
 
 const order = labels.vaults.order;
 
@@ -47,7 +44,6 @@ const writesOf = (requests: WatchedApiRequest[]) =>
  */
 describe('[INTEGRATION] Order-a-vault route', () => {
   beforeEach(() => {
-    vi.mocked(getLocations).mockResolvedValue(LOCATIONS);
     resetVaultPollingDeadlines();
   });
 
@@ -109,7 +105,7 @@ describe('[INTEGRATION] Order-a-vault route', () => {
     expect(configurations).toEqual(
       expect.arrayContaining([
         { label: 'vault_name', value: 'vault-paygo-01' },
-        { label: 'vault_region', value: LOCATIONS[0].name },
+        { label: 'vault_region', value: LOCATIONS[0]!.name },
       ]),
     );
     // Only the labels the cart claimed: the optional one it declared had no candidate value.
