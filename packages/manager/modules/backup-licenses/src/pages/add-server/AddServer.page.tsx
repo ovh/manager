@@ -169,6 +169,12 @@ export default function AddServerPage() {
             order={2}
             {...form.server.step}
             title={t('add_server.step.vbr_server.label')}
+            next={{
+              action: handleFinalize,
+              label: t('add_server.summary.cta'),
+              isDisabled: createBackupLicense.isPending,
+              isLoading: createBackupLicense.isPending,
+            }}
           >
             <VbrServerFields
               form={{ ...form.form, vaultDisplayName: '', regionApiValue: null }}

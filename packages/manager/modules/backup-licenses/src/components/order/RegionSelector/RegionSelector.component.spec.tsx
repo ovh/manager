@@ -1,46 +1,18 @@
 import React from 'react';
 
 import { fireEvent, screen, waitFor } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import { getLocations } from '@/data/api/locations/locations.requests';
+import { LOCATION_DEFINITIONS } from '@/data/locations.data';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
-import { Location, LocationSpecificType, LocationType } from '@/types/Location.type';
 
 import RegionSelector from './RegionSelector.component';
 
-vi.mock('@/data/api/locations/locations.requests');
-
-const mockedGetLocations = vi.mocked(getLocations);
-
-const buildLocation = (name: string, cityName: string): Location => ({
-  name,
-  code: name.slice(-3).toUpperCase(),
-  cityName,
-  cityCode: name.slice(-3).toUpperCase(),
-  countryCode: 'FR',
-  countryName: 'France',
-  geographyName: 'Europe',
-  geographyCode: 'EU',
-  availabilityZones: [],
-  type: LocationType.REGION_3_AZ,
-  specificType: LocationSpecificType.STANDARD,
-});
-
-const LOCATIONS = [
-  buildLocation('eu-west-par', 'Paris'),
-  buildLocation('eu-west-gra', 'Gravelines'),
-  buildLocation('eu-west-rbx', 'Roubaix'),
-  buildLocation('eu-west-sbg', 'Strasbourg'),
-  buildLocation('eu-west-lim', 'Limburg'),
-];
+const LOCATION_COUNT = LOCATION_DEFINITIONS.length;
+const lastLocationName = LOCATION_DEFINITIONS[LOCATION_COUNT - 1]!.name;
 
 const showMoreButton = (container: HTMLElement) =>
   container.querySelector('ods-button[label^="Voir plus"]');
-
-beforeEach(() => {
-  mockedGetLocations.mockResolvedValue(LOCATIONS);
-});
 
 describe('RegionSelector', () => {
   it("n'affiche que les 3 premières localisations avant le « voir plus »", async () => {
@@ -50,8 +22,12 @@ describe('RegionSelector', () => {
 
     await waitFor(() => expect(screen.getAllByRole('radio')).toHaveLength(3));
     // Le badge ODS expose son libellé via l'attribut `label`, pas comme texte enfant.
-    expect(container.querySelector('ods-badge[label="eu-west-par"]')).toBeInTheDocument();
-    expect(container.querySelector('ods-badge[label="eu-west-lim"]')).not.toBeInTheDocument();
+    expect(
+      container.querySelector(`ods-badge[label="${LOCATION_DEFINITIONS[0]!.name}"]`),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector(`ods-badge[label="${lastLocationName}"]`),
+    ).not.toBeInTheDocument();
   });
 
   it('déplie toutes les localisations au clic sur « voir plus », puis les replie', async () => {
@@ -62,7 +38,7 @@ describe('RegionSelector', () => {
     await waitFor(() => expect(showMoreButton(container)).toBeInTheDocument());
     fireEvent.click(showMoreButton(container) as Element);
 
-    await waitFor(() => expect(screen.getAllByRole('radio')).toHaveLength(LOCATIONS.length));
+    await waitFor(() => expect(screen.getAllByRole('radio')).toHaveLength(LOCATION_COUNT));
     const showLess = container.querySelector('ods-button[label="Voir moins"]');
     expect(showLess).toBeInTheDocument();
 
@@ -72,11 +48,11 @@ describe('RegionSelector', () => {
 
   it('garde la localisation sélectionnée visible même repliée', async () => {
     const { container } = await renderWithProviders(
-      <RegionSelector selected="eu-west-lim" onSelect={vi.fn()} />,
+      <RegionSelector selected={lastLocationName} onSelect={vi.fn()} />,
     );
 
     await waitFor(() =>
-      expect(container.querySelector('ods-badge[label="eu-west-lim"]')).toBeInTheDocument(),
+      expect(container.querySelector(`ods-badge[label="${lastLocationName}"]`)).toBeInTheDocument(),
     );
     expect(screen.getAllByRole('radio')).toHaveLength(4);
     expect(screen.getByRole('radio', { checked: true })).toBeInTheDocument();
@@ -89,17 +65,6 @@ describe('RegionSelector', () => {
     await waitFor(() => expect(screen.getAllByRole('radio')).toHaveLength(3));
     fireEvent.click(screen.getAllByRole('radio')[1] as Element);
 
-    expect(onSelect).toHaveBeenCalledWith('eu-west-gra');
-  });
-
-  it("affiche un message d'erreur quand le référentiel est indisponible", async () => {
-    mockedGetLocations.mockRejectedValue(new Error('boom'));
-
-    const { container } = await renderWithProviders(
-      <RegionSelector selected={null} onSelect={vi.fn()} />,
-    );
-
-    await waitFor(() => expect(container.querySelector('ods-message')).toBeInTheDocument());
-    expect(screen.queryAllByRole('radio')).toHaveLength(0);
+    expect(onSelect).toHaveBeenCalledWith(LOCATION_DEFINITIONS[1]!.name);
   });
 });

@@ -44,14 +44,10 @@ const buildVault = (id: string, resourceName: string): VaultResource => ({
   },
 });
 
-const buildLicense = (
-  id: string,
-  resourceName: string,
-  vaultId: string,
-): BackupLicenseResource => ({
+const buildLicense = (id: string, resourceName: string): BackupLicenseResource => ({
   id,
   resourceStatus: 'READY',
-  currentState: { id, resourceName, vaultId },
+  currentState: { id, resourceName },
 });
 
 const buildConsumption = (
@@ -94,11 +90,9 @@ describe('billingQueries', () => {
   const fetchRows = () =>
     queryClient.fetchQuery(billingQueries.withClient(queryClient).consumptionRows());
 
-  it('builds a row with both storage and license prices when both resolve', async () => {
+  it('builds an independent vault row and license row, with no matching between them', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
-    vi.mocked(getBackupLicenses).mockResolvedValue([
-      buildLicense('license-1', 'lic-resource-1', 'vault-1'),
-    ]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1', 'lic-resource-1')]);
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),
     ]);
@@ -106,64 +100,69 @@ describe('billingQueries', () => {
       buildConsumption('backup-license-backuplicenses-foundation', 1, '4,90 €'),
     ]);
 
-    const { rows } = await fetchRows();
+    const { vaultRows, licenseRows } = await fetchRows();
 
-    expect(rows).toEqual([
+    expect(vaultRows).toEqual([
       {
         vaultId: 'vault-1',
         name: 'vault-1',
         quantityGb: 7,
         storagePriceText: '0,05 €',
         storagePriceValue: 0,
-        licensePriceText: '4,90 €',
       },
+    ]);
+    expect(licenseRows).toEqual([
+      { licenseId: 'license-1', name: 'lic-resource-1', licensePriceText: '4,90 €' },
     ]);
   });
 
-  it('degrades the storage columns to undefined without dropping the row when storage fails', async () => {
+  it('degrades the storage columns to undefined without dropping the vault row when storage fails', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
-    vi.mocked(getBackupLicenses).mockResolvedValue([
-      buildLicense('license-1', 'lic-resource-1', 'vault-1'),
-    ]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([]);
     vi.mocked(getServiceConsumption).mockRejectedValue(new Error('boom'));
-    vi.mocked(getLicenseConsumption).mockResolvedValue([
-      buildConsumption('backup-license-backuplicenses-foundation', 1, '4,90 €'),
-    ]);
 
-    const { rows } = await fetchRows();
+    const { vaultRows } = await fetchRows();
 
-    expect(rows).toEqual([
+    expect(vaultRows).toEqual([
       {
         vaultId: 'vault-1',
         name: 'vault-1',
         quantityGb: undefined,
         storagePriceText: undefined,
         storagePriceValue: undefined,
-        licensePriceText: '4,90 €',
       },
     ]);
   });
 
-  it('degrades only the license column when no license is matched to the vault', async () => {
+  it('degrades the license price to undefined without dropping the license row when it fails', async () => {
+    vi.mocked(getVaults).mockResolvedValue([]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1', 'lic-resource-1')]);
+    vi.mocked(getLicenseConsumption).mockRejectedValue(new Error('boom'));
+
+    const { licenseRows } = await fetchRows();
+
+    expect(licenseRows).toEqual([
+      { licenseId: 'license-1', name: 'lic-resource-1', licensePriceText: undefined },
+    ]);
+  });
+
+  it('resolves more licenses than vaults without dropping either side', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
-    vi.mocked(getBackupLicenses).mockResolvedValue([]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([
+      buildLicense('license-1', 'lic-resource-1'),
+      buildLicense('license-2', 'lic-resource-2'),
+    ]);
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),
     ]);
-
-    const { rows } = await fetchRows();
-
-    expect(rows).toEqual([
-      {
-        vaultId: 'vault-1',
-        name: 'vault-1',
-        quantityGb: 7,
-        storagePriceText: '0,05 €',
-        storagePriceValue: 0,
-        licensePriceText: undefined,
-      },
+    vi.mocked(getLicenseConsumption).mockResolvedValue([
+      buildConsumption('backup-license-backuplicenses-foundation', 1, '4,90 €'),
     ]);
-    expect(getLicenseConsumption).not.toHaveBeenCalled();
+
+    const { vaultRows, licenseRows } = await fetchRows();
+
+    expect(vaultRows).toHaveLength(1);
+    expect(licenseRows).toHaveLength(2);
   });
 
   it('does not let one vault failure prevent the other rows from resolving', async () => {
@@ -178,11 +177,11 @@ describe('billingQueries', () => {
         : [buildConsumption('backup-vault-backuplicenses-paygo-consumption', 142, '0,99 €')],
     );
 
-    const { rows } = await fetchRows();
+    const { vaultRows } = await fetchRows();
 
-    expect(rows).toHaveLength(2);
-    expect(rows[0]).toMatchObject({ vaultId: 'vault-1', quantityGb: undefined });
-    expect(rows[1]).toMatchObject({ vaultId: 'vault-2', quantityGb: 142 });
+    expect(vaultRows).toHaveLength(2);
+    expect(vaultRows[0]).toMatchObject({ vaultId: 'vault-1', quantityGb: undefined });
+    expect(vaultRows[1]).toMatchObject({ vaultId: 'vault-2', quantityGb: 142 });
   });
 
   it('derives the billing period from the first resolved storage consumption element', async () => {

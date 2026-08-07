@@ -89,16 +89,17 @@ describe('BillingPage', () => {
     expect(screen.getByText('0,05 €')).toBeInTheDocument();
   });
 
-  it('renders the empty state label on an empty vault list', async () => {
+  it('renders the empty state label on an empty vault and license list', async () => {
     mockedGetVaults.mockResolvedValue([]);
 
     await renderWithProviders(<BillingPage />);
 
     await waitFor(() =>
       expect(
-        screen.getByText('Aucune consommation enregistrée pour la période en cours.'),
+        screen.getByText('Aucune licence facturée pour la période en cours.'),
       ).toBeInTheDocument(),
     );
+    expect(screen.getByText('Aucun vault facturé pour la période en cours.')).toBeInTheDocument();
   });
 
   it('renders an error message and refetches on retry', async () => {

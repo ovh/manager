@@ -1,20 +1,33 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+
 import { useTranslation } from 'react-i18next';
 
-import { getLocations } from '@/data/api/locations/locations.requests';
-import { queryKeys } from '@/data/queries/queryKeys';
+import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+
+import { LOCATION_DEFINITIONS } from '@/data/locations.data';
 import { Location } from '@/types/Location.type';
-import { toApiLanguage } from '@/utils/locale/apiLanguage';
 
-/** Localisations OVHcloud disponibles, libellés traduits dans la locale courante. */
-export const useLocations = (): UseQueryResult<Location[]> => {
-  const { i18n } = useTranslation();
-  const language = toApiLanguage(i18n.language);
+/**
+ * Localisations disponibles pour un vault : catalogue en dur (cf. `locations.data.ts`), les
+ * libellés (ville/pays/zone géographique) sont résolus dans la locale courante depuis les
+ * référentiels partagés `region`/`country` de `@ovh-ux/manager-common-translations`.
+ */
+export const useLocations = (): Location[] => {
+  const { t, i18n } = useTranslation([NAMESPACES.REGION, NAMESPACES.COUNTRY]);
 
-  return useQuery({
-    queryKey: queryKeys.locations.list(language ?? 'default'),
-    queryFn: () => getLocations(language),
-    // Référentiel géographique : pas de raison de le rafraîchir pendant la session.
-    staleTime: Infinity,
-  });
+  return useMemo(
+    () =>
+      LOCATION_DEFINITIONS.map((definition) => ({
+        ...definition,
+        cityName: t(`region_${definition.code}`, { ns: NAMESPACES.REGION }),
+        geographyName: t(`region_continent_${definition.code}`, {
+          ns: NAMESPACES.REGION,
+        }),
+        countryName: t(`country_${definition.countryCode}`, {
+          ns: NAMESPACES.COUNTRY,
+        }),
+      })),
+
+    [t, i18n.language],
+  );
 };

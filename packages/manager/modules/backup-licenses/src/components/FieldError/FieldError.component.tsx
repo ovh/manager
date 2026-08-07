@@ -16,7 +16,7 @@ export const FieldError = ({ fieldId, message }: { fieldId: string; message?: st
     {message && (
       <OdsText
         preset={ODS_TEXT_PRESET.caption}
-        className="font-semibold text-[var(--ods-color-critical-500)]"
+        className="font-semibold [--ods-color-text:var(--ods-color-critical-500)]"
       >
         {message}
       </OdsText>

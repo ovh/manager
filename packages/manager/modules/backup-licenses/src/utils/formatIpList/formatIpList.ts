@@ -33,3 +33,15 @@ export const firstIpWithoutMask = (ips?: string[]): string => {
   const [first] = (ips ?? []).map((ip) => ip.trim()).filter(Boolean);
   return first ? stripHostPrefix(first) : '';
 };
+
+/**
+ * Formate les IP publiques et privées d'un serveur dans une seule colonne
+ * (`public - private`). Sans NAT, aucune IP privée n'est configurée : on
+ * n'affiche alors que la partie publique plutôt que « IP - — ».
+ */
+export const formatServerIps = (externalIps?: string[], privateIps?: string[]): string => {
+  const hasPrivateIp = (privateIps ?? []).some((ip) => ip.trim());
+  const publicPart = formatIpList(externalIps);
+
+  return hasPrivateIp ? `${publicPart} - ${formatIpList(privateIps)}` : publicPart;
+};

@@ -51,7 +51,10 @@ export default function CardPrice({ planCode, i18nBase }: CardPriceProps) {
 
   return (
     <span className="flex flex-col gap-2">
-      <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
+      <OdsText
+        preset={ODS_TEXT_PRESET.caption}
+        className="[--ods-color-text:var(--ods-color-neutral-600)]"
+      >
         {t(`${i18nBase}.price_prefix`)}
         <Price
           value={pricing.price}
@@ -63,7 +66,10 @@ export default function CardPrice({ planCode, i18nBase }: CardPriceProps) {
         {t('card.price_unit')}
       </OdsText>
       {storageRate && (
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-500)]">
+        <OdsText
+          preset={ODS_TEXT_PRESET.caption}
+          className="[--ods-color-text:var(--ods-color-neutral-500)]"
+        >
           {t('card.vault_storage_note', { price: storageRate })}
         </OdsText>
       )}
