@@ -1,9 +1,17 @@
 {
-  "empty_state": "Nessun consumo registrato per il periodo in corso.",
   "period_notice": "Consumo del periodo di fatturazione in corso, dal {{begin}} al {{end}}.",
   "period_notice_fallback": "Consumo del periodo di fatturazione in corso.",
+  "licenses": {
+    "title": "Licenze",
+    "empty_state": "Nessuna licenza fatturata per il periodo in corso.",
+    "column": {
+      "price": "Prezzo"
+    }
+  },
+  "vaults": {
+    "empty_state": "Nessun vault fatturato per il periodo in corso."
+  },
   "column": {
-    "license_price": "Prezzo licenza",
     "storage_price": "Prezzo archiviazione"
   },
   "usage": {

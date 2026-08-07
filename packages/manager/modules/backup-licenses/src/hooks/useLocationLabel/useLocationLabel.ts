@@ -10,10 +10,10 @@ import { formatLocationTitle } from '@/utils/locationLabel/locationLabel';
  */
 export const useLocationLabel = (locationName: string | null): string => {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.ORDER);
-  const { data: locations } = useLocations();
+  const locations = useLocations();
 
   if (!locationName) return '';
 
-  const location = locations?.find(({ name }) => name === locationName);
+  const location = locations.find(({ name }) => name === locationName);
   return location ? formatLocationTitle(t, location) : locationName;
 };

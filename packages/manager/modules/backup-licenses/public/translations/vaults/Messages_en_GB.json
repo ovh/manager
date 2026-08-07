@@ -56,6 +56,9 @@
         "label": "Vault name",
         "hint": "Min 1 char, max 50 chars. Alphanumeric and hyphens only."
       },
+      "country": {
+        "label": "Country"
+      },
       "region": {
         "label": "Storage region"
       }
@@ -68,5 +71,8 @@
       "name_format": "Use 1 to 50 characters, letters, digits and hyphens only.",
       "region_required": "Choose the region where your vault will be stored."
     }
+  },
+  "badge": {
+    "included": "Included"
   }
 }

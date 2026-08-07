@@ -1,7 +1,5 @@
 export const BACKUP_SERVICES_ROUTE = '/backupServices/tenant';
 
-export const LOCATIONS_ROUTE = '/location';
-
 export const CATALOG_BACKUP_SERVICES_ROUTE = '/order/catalog/public/backupServices';
 
 export const ORDER_CART_ROUTE = '/order/cart';

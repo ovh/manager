@@ -58,7 +58,7 @@ export const VDP_TIER_CARDS: VdpTierCardData[] = [
   {
     tier: VdpTier.ADVANCED,
     i18nKey: 'advanced',
-    recommended: false,
+    recommended: true,
     apiValue: LicenseApiValue.VDP_ADVANCED,
     planCode: 'vspc-backuplicenses-advanced-vm',
     features: [
@@ -71,7 +71,7 @@ export const VDP_TIER_CARDS: VdpTierCardData[] = [
   {
     tier: VdpTier.PREMIUM,
     i18nKey: 'premium',
-    recommended: true,
+    recommended: false,
     apiValue: LicenseApiValue.VDP_PREMIUM,
     planCode: 'vspc-backuplicenses-premium-vm',
     features: [

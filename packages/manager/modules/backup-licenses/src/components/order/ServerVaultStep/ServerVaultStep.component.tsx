@@ -50,7 +50,10 @@ export default function ServerVaultStep({
           <OdsText preset={ODS_TEXT_PRESET.heading5} className="block">
             {t('vault.section_title')}
           </OdsText>
-          <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
+          <OdsText
+            preset={ODS_TEXT_PRESET.caption}
+            className="[--ods-color-text:var(--ods-color-neutral-600)]"
+          >
             {t('vault.section_subtitle')}
           </OdsText>
         </div>

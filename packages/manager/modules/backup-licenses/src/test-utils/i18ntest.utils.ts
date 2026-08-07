@@ -3,6 +3,7 @@ import i18next, { InitOptions, i18n } from 'i18next';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/actions/Messages_fr_FR.json';
 import billing from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/billing/Messages_fr_FR.json';
+import country from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/country/Messages_fr_FR.json';
 import commonDashboard from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/dashboard/Messages_fr_FR.json';
 import error from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/error/Messages_fr_FR.json';
 import region from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-common-translations/region/Messages_fr_FR.json';
@@ -63,6 +64,7 @@ export const moduleResources: Record<string, unknown> = Object.fromEntries(
 export const sharedResources: Record<string, unknown> = {
   [NAMESPACES.ACTIONS]: actions,
   [NAMESPACES.BILLING]: billing,
+  [NAMESPACES.COUNTRY]: country,
   [NAMESPACES.DASHBOARD]: commonDashboard,
   [NAMESPACES.ERROR]: error,
   [NAMESPACES.REGION]: region,

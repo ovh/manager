@@ -6,10 +6,12 @@ import { VaultBucket, VaultResource } from '@/types/Vault.type';
  * rétro-rempli le champ.
  */
 export const selectBackupLicensesVaults = (vaults: VaultResource[]): VaultResource[] =>
-  vaults.filter(
-    ({ currentState: { vaultProductLine } }) =>
-      !vaultProductLine || vaultProductLine === 'BACKUP_LICENSES',
-  );
+  vaults
+    .filter(
+      ({ currentState: { vaultProductLine } }) =>
+        !vaultProductLine || vaultProductLine === 'BACKUP_LICENSES',
+    )
+    .sort((a, b) => a.currentState.name.localeCompare(b.currentState.name));
 
 /**
  * Bucket dont la modale d'identifiants montre les clés (BKP-1222). C'est le statut qui compte,

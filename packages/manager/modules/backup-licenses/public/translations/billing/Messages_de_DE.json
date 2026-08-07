@@ -1,9 +1,17 @@
 {
-  "empty_state": "Für den aktuellen Zeitraum wurde kein Verbrauch erfasst.",
   "period_notice": "Verbrauch für den aktuellen Abrechnungszeitraum, vom {{begin}} bis {{end}}.",
   "period_notice_fallback": "Verbrauch für den aktuellen Abrechnungszeitraum.",
+  "licenses": {
+    "title": "Lizenzen",
+    "empty_state": "Für den aktuellen Zeitraum wurde keine Lizenz abgerechnet.",
+    "column": {
+      "price": "Preis"
+    }
+  },
+  "vaults": {
+    "empty_state": "Für den aktuellen Zeitraum wurde kein Vault abgerechnet."
+  },
   "column": {
-    "license_price": "Lizenzpreis",
     "storage_price": "Speicherpreis"
   },
   "usage": {

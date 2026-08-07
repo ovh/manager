@@ -203,6 +203,12 @@ export default function OrderPage() {
                 t('region.section_title')
               )
             }
+            next={{
+              action: handleFinalize,
+              label: t('summary.cta'),
+              isDisabled: isSubmitting,
+              isLoading: isSubmitting,
+            }}
             edit={{
               action: order.location.edit,
               label: t('summary.edit'),

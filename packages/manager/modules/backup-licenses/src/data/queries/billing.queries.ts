@@ -8,7 +8,6 @@ import {
   getServiceConsumption,
 } from '@/data/api/services/consumption.requests';
 import { getVaults } from '@/data/api/vaults/vaults.requests';
-import { matchLicenseToVault } from '@/data/selectors/licenses.selectors';
 import { selectVaultConsumptionElement } from '@/data/selectors/vaultConsumption.selectors';
 import { selectBackupLicensesVaults } from '@/data/selectors/vaults.selectors';
 import {
@@ -18,13 +17,18 @@ import {
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { ServiceConsumption } from '@/types/Consumption.type';
 import { VaultResource } from '@/types/Vault.type';
-import { BillingPeriod, VaultConsumptionRow } from '@/types/VaultConsumption.type';
+import {
+  BillingPeriod,
+  LicenseConsumptionRow,
+  VaultConsumptionRow,
+} from '@/types/VaultConsumption.type';
 
 import { queryKeys } from './queryKeys';
 import { tenantsQueries } from './tenants.queries';
 
 export type BillingConsumption = {
-  rows: VaultConsumptionRow[];
+  vaultRows: VaultConsumptionRow[];
+  licenseRows: LicenseConsumptionRow[];
   period: BillingPeriod;
 };
 
@@ -47,42 +51,34 @@ const resolveLicensePrice = async (license: BackupLicenseResource) => {
   return (await getLicenseConsumption(serviceId))[0];
 };
 
-/**
- * Deux `Promise.allSettled` indépendants par vault (stockage et licence), pas un seul
- * (§4 de la spec) : chaque colonne de prix dégrade sur son propre échec sans affecter
- * l'autre. Un vault sans licence appariée (jointure non confirmée, §14) rejette
- * volontairement sa branche licence plutôt que d'appeler `resolveLicensePrice`.
- */
-const buildRow = async (
+const buildVaultRow = async (
   vault: VaultResource,
-  licenses: BackupLicenseResource[],
 ): Promise<{ row: VaultConsumptionRow; period?: BillingPeriod }> => {
-  const license = matchLicenseToVault(licenses, vault);
-
-  const [storage, licensePrice] = await Promise.allSettled([
-    resolveVaultStorageConsumption(vault),
-    license ? resolveLicensePrice(license) : Promise.reject(new Error('No matching license')),
-  ]);
-
-  const storageElement = storage.status === 'fulfilled' ? storage.value : undefined;
-  const licenseConsumption = licensePrice.status === 'fulfilled' ? licensePrice.value : undefined;
+  const storage = await resolveVaultStorageConsumption(vault).catch(() => undefined);
 
   return {
     row: {
       vaultId: vault.id,
       name: vault.currentState.name,
-      quantityGb: storageElement?.quantity,
+      quantityGb: storage?.quantity,
       includedStorageGb:
-        storageElement?.planCode === BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE
+        storage?.planCode === BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE
           ? INCLUDED_VAULT_STORAGE_GB
           : undefined,
-      storagePriceText: storageElement?.price.text,
-      storagePriceValue: storageElement?.price.value,
-      licensePriceText: licenseConsumption?.price.text,
+      storagePriceText: storage?.price.text,
+      storagePriceValue: storage?.price.value,
     },
-    period: storageElement
-      ? { beginDate: storageElement.beginDate, endDate: storageElement.endDate }
-      : undefined,
+    period: storage ? { beginDate: storage.beginDate, endDate: storage.endDate } : undefined,
+  };
+};
+
+const buildLicenseRow = async (license: BackupLicenseResource): Promise<LicenseConsumptionRow> => {
+  const licenseConsumption = await resolveLicensePrice(license).catch(() => undefined);
+
+  return {
+    licenseId: license.id,
+    name: license.currentState.resourceName,
+    licensePriceText: licenseConsumption?.price.text,
   };
 };
 
@@ -95,11 +91,18 @@ const consumptionRows = (queryClient: QueryClient) => () =>
       const vaults = selectBackupLicensesVaults(await getVaults(backupServicesId));
       const licenses = await getBackupLicenses({ backupServicesId, vspcTenantId });
 
-      const results = await Promise.all(vaults.map((vault) => buildRow(vault, licenses)));
+      const [vaultResults, licenseRows] = await Promise.all([
+        Promise.all(vaults.map(buildVaultRow)),
+        Promise.all(licenses.map(buildLicenseRow)),
+      ]);
 
       return {
-        rows: results.map(({ row }) => row),
-        period: results.find(({ period }) => period)?.period ?? { beginDate: null, endDate: null },
+        vaultRows: vaultResults.map(({ row }) => row),
+        licenseRows,
+        period: vaultResults.find(({ period }) => period)?.period ?? {
+          beginDate: null,
+          endDate: null,
+        },
       };
     },
   });

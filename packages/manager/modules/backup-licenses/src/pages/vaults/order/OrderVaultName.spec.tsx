@@ -12,7 +12,6 @@ import {
   fillValidOrder,
   isDisabled,
   isEnabled,
-  mockedGetLocations,
   mockedOrderVault,
   nameFieldError,
   regionSelect,
@@ -22,7 +21,6 @@ import {
   typeName,
 } from './_test/order.harness';
 
-vi.mock('@/data/api/locations/locations.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
@@ -34,7 +32,6 @@ const order = labels.vaults.order;
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mockedGetLocations.mockResolvedValue(LOCATIONS);
   mockedOrderVault.mockResolvedValue(undefined);
   resolveServiceName();
 });
@@ -64,7 +61,7 @@ describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
     await waitFor(() => expect(regionSelect()).toBeTruthy());
 
     typeName(name);
-    chooseRegion();
+    await chooseRegion();
 
     await waitFor(() => expect(isEnabled(submitButton())).toBe(true));
   });
@@ -74,7 +71,7 @@ describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
     await waitFor(() => expect(regionSelect()).toBeTruthy());
 
     typeName(name);
-    chooseRegion();
+    await chooseRegion();
     blurName();
 
     await waitFor(() => expect(nameFieldError()).toBe(order.error.name_format));
@@ -97,7 +94,7 @@ describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
     await waitFor(() => expect(regionSelect()).toBeTruthy());
 
     typeName('   ');
-    chooseRegion();
+    await chooseRegion();
     blurName();
 
     await waitFor(() => expect(nameFieldError()).toBe(order.error.name_required));
@@ -112,7 +109,7 @@ describe('vault name rule — min 1, max 50, alphanumeric and hyphens', () => {
 
     await waitFor(() =>
       expect(mockedOrderVault).toHaveBeenCalledWith(
-        { name: 'vault-01', region: LOCATIONS[0].name },
+        { name: 'vault-01', region: LOCATIONS[0]!.name },
         expect.objectContaining({ serviceName: SERVICE_NAME }),
       ),
     );
