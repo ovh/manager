@@ -2,10 +2,14 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge } from '@ovhcloud/ods-components/react';
+
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_LICENSES_NAMESPACES } from '@/BackupLicenses.translations';
+import { selectIsIncludedVault } from '@/data/selectors/vaults.selectors';
 import { VAULT_DEFAULT_IMMUTABILITY } from '@/module.constants';
 import { VaultActionsCell } from '@/pages/vaults/_components/VaultActionsCell.component';
 import { VaultRegionCell } from '@/pages/vaults/_components/VaultRegionCell.component';
@@ -25,8 +29,19 @@ export const useVaultColumns = (): DatagridColumn<VaultResource>[] => {
       id: 'name',
       label: t(`${NAMESPACES.DASHBOARD}:name`),
       isSortable: false,
-      cell: ({ currentState }: VaultResource) => (
-        <DataGridTextCell>{currentState.name}</DataGridTextCell>
+      cell: (vault: VaultResource) => (
+        <DataGridTextCell>
+          <span className="flex items-center gap-2">
+            {vault.currentState.name}
+            {selectIsIncludedVault(vault) && (
+              <OdsBadge
+                color={ODS_BADGE_COLOR.success}
+                size={ODS_BADGE_SIZE.sm}
+                label={t('badge.included')}
+              />
+            )}
+          </span>
+        </DataGridTextCell>
       ),
     },
     {

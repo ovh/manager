@@ -1,4 +1,8 @@
-/** Ligne du tableau « Facturation » (§4 de la spec BKP-1225). Une ligne = un vault. */
+/**
+ * Ligne du tableau « Vaults » de l'onglet Facturation. Une ligne = un vault : licences et
+ * vaults sont deux ressources sans cardinalité fixe entre elles (X licences pour 1 vault, ou
+ * l'inverse), donc pas de colonne prix licence ici — cf. `LicenseConsumptionRow`.
+ */
 export type VaultConsumptionRow = {
   vaultId: string;
   name: string;
@@ -13,10 +17,13 @@ export type VaultConsumptionRow = {
   storagePriceText?: string;
   /** Sert à distinguer « inclus » (0) d'« inconnu » (undefined) — cf. §7. */
   storagePriceValue?: number;
-  /**
-   * Prix de la licence rattachée au vault (via son serveur), formaté par l'API.
-   * `undefined` si la résolution échoue ou si aucune licence n'est appariée.
-   */
+};
+
+/** Ligne du tableau « Licences » de l'onglet Facturation. Une ligne = une licence. */
+export type LicenseConsumptionRow = {
+  licenseId: string;
+  name: string;
+  /** Prix de la licence, montant formaté par l'API. `undefined` si la résolution échoue. */
   licensePriceText?: string;
 };
 

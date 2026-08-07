@@ -16,14 +16,16 @@ import {
   SERVICE_NAME,
   addSuccessMock,
   cancelButton,
+  chooseCountry,
   chooseRegion,
   clickCancel,
   clickSubmit,
+  countryOptionLabels,
+  countrySelect,
   fillValidOrder,
   isDisabled,
   isEnabled,
   mockedGetBackupServicesOffers,
-  mockedGetLocations,
   mockedOrderVault,
   nameAccessibleName,
   nameErrorLiveRegion,
@@ -32,7 +34,6 @@ import {
   navigateMock,
   pricingMessage,
   pricingSkeleton,
-  regionControlSection,
   regionFieldError,
   regionOptionLabels,
   regionSelect,
@@ -43,7 +44,6 @@ import {
   typeName,
 } from './_test/order.harness';
 
-vi.mock('@/data/api/locations/locations.requests');
 vi.mock('@/data/api/order/order.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
@@ -72,16 +72,16 @@ const pricingSentence = (price: string) => order.pricing_message.replace('{{pric
 describe('OrderVaultPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockedGetLocations.mockResolvedValue(LOCATIONS);
     mockedOrderVault.mockResolvedValue(undefined);
     mockedGetBackupServicesOffers.mockResolvedValue(mockCartServiceOffers);
     resolveServiceName();
   });
 
-  it('collects a vault name and a storage region, and asks for nothing else', async () => {
+  it('collects a vault name, a country and a storage region, and asks for nothing else', async () => {
     await renderOrderModal();
 
     expect(await screen.findByText(order.field.name.label)).toBeVisible();
+    expect(screen.getByText(order.field.country.label)).toBeVisible();
     expect(screen.getByText(order.field.region.label)).toBeVisible();
     expect(nameInput()).toBeTruthy();
     await waitFor(() => expect(regionSelect()).toBeTruthy());
@@ -93,8 +93,8 @@ describe('OrderVaultPage', () => {
     await waitFor(() => expect(regionSelect()).toBeTruthy());
     expect(screen.queryByText(labels.order.step.license_type.label)).not.toBeInTheDocument();
     expect(document.querySelectorAll('ods-radio')).toHaveLength(0);
-    // Two form controls in the modal, so no third input slipped in from the mockup.
-    expect(document.querySelectorAll('ods-input, ods-select')).toHaveLength(2);
+    // Three form controls in the modal (name, country, region), so no fourth input slipped in from the mockup.
+    expect(document.querySelectorAll('ods-input, ods-select')).toHaveLength(3);
   });
 
   describe('the pay-as-you-go rate, which the mockup omits and the ticket requires', () => {
@@ -155,60 +155,52 @@ describe('OrderVaultPage', () => {
 
     await waitFor(() => expect(regionSelect()).toBeTruthy());
     expect(nameInput().getAttribute('value')).toBe('');
+    expect(countrySelect().getAttribute('value')).toBe('');
     expect(regionSelect().getAttribute('value')).toBe('');
     expect(isDisabled(submitButton())).toBe(true);
   });
 
-  it('names each region from the referential, exactly as the order funnel names it', async () => {
+  it('disables the region select until a country is picked', async () => {
     await renderOrderModal();
 
-    await waitFor(() => expect(regionOptionLabels()).toHaveLength(LOCATIONS.length));
-    // The label the funnel's region cards render, built from the very Location[] this field receives —
-    // so no machine code can surface here for a region a shared namespace happens not to carry.
-    expect(regionOptionLabels()).toEqual(['France – Paris', 'France – Gravelines']);
+    await waitFor(() => expect(regionSelect()).toBeTruthy());
+    expect(isDisabled(regionSelect())).toBe(true);
+
+    chooseCountry();
+
+    await waitFor(() => expect(isDisabled(regionSelect())).toBe(false));
   });
 
-  it('waits for the referential rather than offering an empty region list', async () => {
-    mockedGetLocations.mockReturnValue(new Promise(() => undefined));
-
+  it('lists each country of the referential, flagged and sorted alphabetically', async () => {
     await renderOrderModal();
 
-    expect(await screen.findByText(order.field.region.label)).toBeVisible();
-    expect(document.querySelector('ods-skeleton')).toBeTruthy();
-    expect(regionSelect()).toBeFalsy();
+    await waitFor(() => expect(countryOptionLabels()).toHaveLength(8));
+    expect(countryOptionLabels()).toEqual([
+      '🇩🇪 Allemagne',
+      '🇦🇺 Australie',
+      '🇨🇦 Canada',
+      '🇫🇷 France',
+      '🇮🇳 Inde',
+      '🇵🇱 Pologne',
+      '🇬🇧 Royaume-Uni',
+      '🇸🇬 Singapour',
+    ]);
   });
 
-  it('says so when the referential cannot be read, and stays unsubmittable', async () => {
-    mockedGetLocations.mockRejectedValue(new Error('referential down'));
-
+  it('lists the region for the picked country only, named as the funnel names it', async () => {
     await renderOrderModal();
+    await waitFor(() => expect(regionSelect()).toBeTruthy());
 
-    expect(await screen.findByText(labels.error.error_loading_page)).toBeVisible();
-    expect(regionSelect()).toBeFalsy();
-    expect(isDisabled(submitButton())).toBe(true);
-  });
+    chooseCountry();
 
-  it('announces the referential landing instead of swapping the control silently', async () => {
-    let resolveLocations: (locations: typeof LOCATIONS) => void = () => undefined;
-    mockedGetLocations.mockReturnValue(
-      new Promise((resolve) => {
-        resolveLocations = resolve;
-      }),
+    // Sorted alphabetically, regardless of the fixture's order.
+    await waitFor(() =>
+      expect(regionOptionLabels()).toEqual([
+        'Gravelines (gra)',
+        'Roubaix (rbx)',
+        'Strasbourg (sbg)',
+      ]),
     );
-
-    await renderOrderModal();
-
-    // One container across skeleton, select and failure message: replaced content is announced, a
-    // replaced container is not (WCAG 2.1 SC 4.1.3).
-    const section = regionControlSection();
-    expect(section.getAttribute('aria-busy')).toBe('true');
-    expect(section.querySelector('ods-skeleton')).toBeTruthy();
-
-    resolveLocations(LOCATIONS);
-
-    await waitFor(() => expect(section.getAttribute('aria-busy')).toBe('false'));
-    expect(section.contains(regionSelect())).toBe(true);
-    expect(regionControlSection()).toBe(section);
   });
 
   it('keeps the order control locked until a region is chosen', async () => {
@@ -230,7 +222,7 @@ describe('OrderVaultPage', () => {
 
     await waitFor(() =>
       expect(mockedOrderVault).toHaveBeenCalledWith(
-        { name: 'vault-paygo-01', region: LOCATIONS[0].name },
+        { name: 'vault-paygo-01', region: LOCATIONS[0]!.name },
         // The service the option is bought onto is resolved, not asked of the customer.
         expect.objectContaining({ serviceName: SERVICE_NAME }),
       ),
@@ -250,7 +242,7 @@ describe('OrderVaultPage', () => {
       order.error.submit_failed,
     );
     expect(nameInput().getAttribute('value')).toBe('vault-paygo-01');
-    expect(regionSelect().getAttribute('value')).toBe(LOCATIONS[0].name);
+    expect(regionSelect().getAttribute('value')).toBe(LOCATIONS[0]!.name);
     expect(navigateMock).not.toHaveBeenCalled();
     expect(addSuccessMock).not.toHaveBeenCalled();
   });
@@ -349,7 +341,7 @@ describe('OrderVaultPage', () => {
     await waitFor(() => expect(regionSelect()).toBeTruthy());
 
     typeName('my_vault');
-    chooseRegion();
+    await chooseRegion();
     // ODS 18 submits the form on Enter inside an input, so the disabled primary button is not the only
     // way in; the ODS host delegates the focus it receives to the control inside its shadow root.
     const focus = vi.spyOn(nameInput() as HTMLElement, 'focus');

@@ -187,7 +187,7 @@ describe('useEditBackupServerForm', () => {
     act(() => result.current.selectFamily(LicenseFamily.ENTERPRISE_PLUS));
     act(() => result.current.selectFamily(LicenseFamily.DATA_PLATFORM));
 
-    expect(result.current.tier).toBe(VdpTier.PREMIUM);
+    expect(result.current.tier).toBe(VdpTier.ADVANCED);
   });
 
   it('exposes fully open license edit rules for a v13 Windows server', () => {

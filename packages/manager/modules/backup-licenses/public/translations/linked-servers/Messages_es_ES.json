@@ -1,8 +1,7 @@
 {
   "column": {
     "name": "Nombre del servidor",
-    "public_ip": "IP pública",
-    "private_ip": "IP privada",
+    "ip": "IP pública / privada",
     "license": "Licencia",
     "license_status": "Estado de la licencia",
     "vbr_version": "Versión de VBR",
@@ -21,7 +20,8 @@
     "foundation": "Foundation",
     "advanced": "Advanced",
     "premium": "Premium",
-    "enterprise_plus": "Enterprise Plus"
+    "enterprise_plus": "Enterprise Plus",
+    "transition_tooltip": "Este cambio se aplicará el día 1 del próximo mes."
   },
   "os": {
     "windows": "Windows",

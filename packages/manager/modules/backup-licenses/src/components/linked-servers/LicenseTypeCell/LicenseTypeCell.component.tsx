@@ -2,12 +2,17 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
+import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
+import { OdsIcon, OdsTooltip } from '@ovhcloud/ods-components/react';
+
 import { DataGridTextCell } from '@ovh-ux/manager-react-components';
 
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 import { getLicenseTypeDisplay } from '@/utils/licenseLabel/licenseLabel';
 
 interface LicenseTypeCellProps {
+  /** Id du serveur, pour générer un id de tooltip unique par ligne. */
+  serverId: string;
   /** Licence effectivement installée. */
   licenseType?: string;
   /** Licence demandée, différente de l'installée pendant un changement. */
@@ -26,6 +31,7 @@ interface LicenseTypeCellProps {
  * changement qui n'arrivera jamais.
  */
 export default function LicenseTypeCell({
+  serverId,
   licenseType,
   licenseTypeRequested,
   isInFlight,
@@ -39,12 +45,26 @@ export default function LicenseTypeCell({
 
   const showTransition =
     isInFlight && !!licenseTypeRequested && licenseTypeRequested !== licenseType;
+  const tooltipTriggerId = `license-transition-${serverId}`;
 
   return (
     <DataGridTextCell>
-      {showTransition
-        ? `${toLabel(licenseType)} → ${toLabel(licenseTypeRequested)}`
-        : toLabel(licenseType)}
+      <span className="flex items-center gap-2">
+        {showTransition
+          ? `${toLabel(licenseType)} → ${toLabel(licenseTypeRequested)}`
+          : toLabel(licenseType)}
+        {showTransition && (
+          <>
+            <OdsIcon
+              id={tooltipTriggerId}
+              name={ODS_ICON_NAME.circleInfo}
+              aria-label={t('license.transition_tooltip')}
+              className="ml-0.5 cursor-help text-[0.95rem] text-[var(--ods-color-neutral-400)]"
+            />
+            <OdsTooltip triggerId={tooltipTriggerId}>{t('license.transition_tooltip')}</OdsTooltip>
+          </>
+        )}
+      </span>
     </DataGridTextCell>
   );
 }

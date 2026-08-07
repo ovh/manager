@@ -1,9 +1,17 @@
 {
-  "empty_state": "No consumption recorded for the current period.",
   "period_notice": "Consumption for the current billing period, from {{begin}} to {{end}}.",
   "period_notice_fallback": "Consumption for the current billing period.",
+  "licenses": {
+    "title": "Licenses",
+    "empty_state": "No license billed for the current period.",
+    "column": {
+      "price": "Price"
+    }
+  },
+  "vaults": {
+    "empty_state": "No vault billed for the current period."
+  },
   "column": {
-    "license_price": "License price",
     "storage_price": "Storage price"
   },
   "usage": {

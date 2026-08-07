@@ -1,13 +1,39 @@
 import React from 'react';
 
-import { fireEvent, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getBackupServicesCatalog } from '@/data/api/catalog/catalog.requests';
 import { AddServerFormState } from '@/hooks/useAddServerForm/useAddServerForm';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
+import { OrderCatalog } from '@/types/Catalog.type';
 import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 import AddServerRecapPanel from './AddServerRecapPanel.component';
+
+vi.mock('@/data/api/catalog/catalog.requests');
+
+const mockedGetBackupServicesCatalog = vi.mocked(getBackupServicesCatalog);
+
+const catalog: OrderCatalog = {
+  locale: { currencyCode: 'EUR', taxRate: 0.2 },
+  plans: [{ planCode: 'backup-tenant', pricings: [] }],
+  addons: [
+    {
+      planCode: 'vspc-backuplicenses-enterpriseplus-vm',
+      pricings: [
+        {
+          mode: 'default',
+          commitment: 0,
+          intervalUnit: 'none',
+          interval: 0,
+          price: 999_000_000,
+          tax: 199_800_000,
+        },
+      ],
+    },
+  ],
+};
 
 // `ManagerButton` s'appuie sur `useAuthorizationIam` (appel réseau réel) : on le remplace par un
 // rendu DOM simple, ce qui permet d'asserter exactement ce que le composant lui passe (convention
@@ -43,6 +69,10 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => {
       </button>
     ),
   };
+});
+
+beforeEach(() => {
+  mockedGetBackupServicesCatalog.mockResolvedValue(catalog);
 });
 
 const EMPTY_FORM: AddServerFormState = {
@@ -147,5 +177,35 @@ describe('AddServerRecapPanel', () => {
       'data-iam-actions',
       'backupServices:apiovh:vspc/backupLicenses/edit',
     );
+  });
+
+  it('affiche le prix catalogue du plan choisi', async () => {
+    const { container } = await renderWithProviders(
+      <AddServerRecapPanel
+        family={LicenseFamily.ENTERPRISE_PLUS}
+        tier={null}
+        form={EMPTY_FORM}
+        isSubmitting={false}
+        onFinalize={vi.fn()}
+      />,
+    );
+
+    await waitFor(() => expect(container.textContent).toContain('9,99'));
+  });
+
+  it('affiche le placeholder "à renseigner" quand le catalogue ne propose pas ce plan', async () => {
+    mockedGetBackupServicesCatalog.mockResolvedValue({ ...catalog, addons: [] });
+
+    await renderWithProviders(
+      <AddServerRecapPanel
+        family={LicenseFamily.ENTERPRISE_PLUS}
+        tier={null}
+        form={EMPTY_FORM}
+        isSubmitting={false}
+        onFinalize={vi.fn()}
+      />,
+    );
+
+    await waitFor(() => expect(screen.getAllByText('À renseigner').length).toBeGreaterThan(0));
   });
 });

@@ -35,11 +35,7 @@ export default function OrderVaultPage() {
   const { t } = useTranslation([BACKUP_LICENSES_NAMESPACES.VAULTS, NAMESPACES.ACTIONS]);
   const navigate = useNavigate();
   const { addSuccess } = useNotifications();
-  const {
-    data: locations,
-    isPending: areLocationsPending,
-    isError: isLocationsError,
-  } = useLocations();
+  const locations = useLocations();
   const {
     control,
     handleSubmit,
@@ -110,13 +106,7 @@ export default function OrderVaultPage() {
           )}
         </div>
         <VaultNameField control={control} isDisabled={isPending} />
-        <VaultRegionField
-          control={control}
-          isDisabled={isPending}
-          locations={locations}
-          isPending={areLocationsPending}
-          isError={isLocationsError}
-        />
+        <VaultRegionField control={control} isDisabled={isPending} locations={locations} />
         <VaultPricingMessage />
       </form>
     </Modal>

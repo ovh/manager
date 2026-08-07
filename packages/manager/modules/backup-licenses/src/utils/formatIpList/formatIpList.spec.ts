@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { EMPTY_VALUE_PLACEHOLDER } from '@/module.constants';
 
-import { firstIpWithoutMask, formatIpList } from './formatIpList';
+import { firstIpWithoutMask, formatIpList, formatServerIps } from './formatIpList';
 
 describe('formatIpList', () => {
   it('returns the placeholder when the list is missing', () => {
@@ -65,5 +65,22 @@ describe('firstIpWithoutMask', () => {
 
   it('ignores blank entries', () => {
     expect(firstIpWithoutMask(['  ', '203.0.113.10/32'])).toBe('203.0.113.10');
+  });
+});
+
+describe('formatServerIps', () => {
+  it('shows only the public IP when no private IP is configured', () => {
+    expect(formatServerIps(['203.0.113.10/32'])).toBe('203.0.113.10');
+    expect(formatServerIps(['203.0.113.10/32'], [])).toBe('203.0.113.10');
+  });
+
+  it('joins public and private IPs with a dash when behind a NAT', () => {
+    expect(formatServerIps(['203.0.113.10/32'], ['10.0.0.5/32'])).toBe('203.0.113.10 - 10.0.0.5');
+  });
+
+  it('shows the placeholder for the public part when missing', () => {
+    expect(formatServerIps(undefined, ['10.0.0.5/32'])).toBe(
+      `${EMPTY_VALUE_PLACEHOLDER} - 10.0.0.5`,
+    );
   });
 });

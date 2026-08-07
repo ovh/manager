@@ -35,4 +35,13 @@ describe('selectBackupLicensesVaults', () => {
       expect(selectBackupLicensesVaults(vaults)).toEqual(vaults);
     },
   );
+
+  it('sorts the kept vaults alphabetically by name', () => {
+    const vaults = [buildVault('charlie'), buildVault('alpha'), buildVault('bravo')];
+    expect(selectBackupLicensesVaults(vaults).map((v) => v.currentState.name)).toEqual([
+      'alpha',
+      'bravo',
+      'charlie',
+    ]);
+  });
 });

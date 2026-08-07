@@ -5,49 +5,31 @@ import { expect, vi } from 'vitest';
 
 import { fieldErrorId } from '@/components/FieldError/FieldError.component';
 import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
-import { getLocations } from '@/data/api/locations/locations.requests';
 import { getBackupServicesOffers } from '@/data/api/order/order.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
+import { LOCATION_DEFINITIONS } from '@/data/locations.data';
 import {
   MOCK_BACKUP_LICENSE_RESOURCE_NAME,
   mockBackupLicenses,
 } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
-import { Location, LocationSpecificType, LocationType } from '@/types/Location.type';
 
 import { renderWithProviders } from '../../../../test-utils/renderWithProviders';
 import OrderVaultPage, { VAULT_ORDER_TEST_IDS } from '../OrderVault.page';
 import { VAULT_ORDER_NAME_FIELD_ID } from '../_components/VaultNameField.component';
 import { VAULT_ORDER_PRICING_TEST_IDS } from '../_components/VaultPricingMessage.component';
 import {
-  VAULT_ORDER_REGION_CONTROL_ID,
+  VAULT_ORDER_COUNTRY_FIELD_ID,
   VAULT_ORDER_REGION_FIELD_ID,
 } from '../_components/VaultRegionField.component';
 
 export const navigateMock = vi.fn();
 export const addSuccessMock = vi.fn();
 
-export const buildLocation = (name: string, cityName: string): Location => ({
-  name,
-  code: name.slice(-3).toUpperCase(),
-  cityName,
-  cityCode: name.slice(-3).toUpperCase(),
-  countryCode: 'FR',
-  countryName: 'France',
-  geographyName: 'Europe',
-  geographyCode: 'EU',
-  availabilityZones: [],
-  type: LocationType.REGION_3_AZ,
-  specificType: LocationSpecificType.STANDARD,
-});
+/** Catalogue en dur réellement servi par `useLocations` (BKP-1223). */
+export const LOCATIONS = LOCATION_DEFINITIONS;
 
-export const LOCATIONS: [Location, Location] = [
-  buildLocation('eu-west-par', 'Paris'),
-  buildLocation('eu-west-gra', 'Gravelines'),
-];
-
-export const mockedGetLocations = vi.mocked(getLocations);
 export const mockedOrderVault = vi.mocked(orderVault);
 export const mockedGetBackupServicesOffers = vi.mocked(getBackupServicesOffers);
 export const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
@@ -71,6 +53,7 @@ export const renderOrderModal = (): Promise<RenderResult> =>
 const host = (id: string) => document.getElementById(id) as Element;
 
 export const nameInput = () => host(VAULT_ORDER_NAME_FIELD_ID);
+export const countrySelect = () => host(VAULT_ORDER_COUNTRY_FIELD_ID);
 export const regionSelect = () => host(VAULT_ORDER_REGION_FIELD_ID);
 export const submitButton = () => screen.getByTestId(VAULT_ORDER_TEST_IDS.submit);
 export const cancelButton = () => screen.getByTestId(VAULT_ORDER_TEST_IDS.cancel);
@@ -105,24 +88,39 @@ export const submitFromKeyboard = () =>
   fireEvent.submit(document.querySelector('form') as HTMLFormElement);
 
 /**
- * ODS 18 controls emit their value through a custom event, and their inner control is a Tom Select
- * instance in a shadow root that a native change never reaches — so the event is what a test fires.
+ * ODS 18 controls emit their value through a custom event, and their inner control lives in a shadow
+ * root that a native change never reaches — so the event is what a test fires.
  */
 const emitChange = (element: Element, value: string) =>
   fireEvent(element, new CustomEvent('odsChange', { detail: { value } }));
 
 export const typeName = (value: string) => emitChange(nameInput(), value);
 export const blurName = () => fireEvent(nameInput(), new CustomEvent('odsBlur'));
-export const chooseRegion = (region = LOCATIONS[0].name) => emitChange(regionSelect(), region);
+
+export const chooseCountry = (countryCode = LOCATIONS[0]!.countryCode) =>
+  emitChange(countrySelect(), countryCode);
+
+export const chooseRegion = async (region = LOCATIONS[0]!.name) => {
+  const location = LOCATIONS.find(
+    (candidate) => candidate.name === region,
+  ) as (typeof LOCATIONS)[number];
+  chooseCountry(location.countryCode);
+  await waitFor(() => expect(isEnabled(regionSelect())).toBe(true));
+  emitChange(regionSelect(), region);
+};
 
 export const fillValidOrder = async (name = 'vault-paygo-01') => {
   await waitFor(() => expect(regionSelect()).toBeTruthy());
   typeName(name);
-  chooseRegion();
+  await chooseRegion();
   await waitFor(() => expect(isEnabled(submitButton())).toBe(true));
 };
 
-/** The options Tom Select took over: it moves them into the shadow root and empties the light DOM. */
+export const countryOptionLabels = () =>
+  [...(countrySelect().shadowRoot?.querySelectorAll('option') ?? [])]
+    .map((option) => option.textContent)
+    .filter(Boolean);
+
 export const regionOptionLabels = () =>
   [...(regionSelect().shadowRoot?.querySelectorAll('option') ?? [])]
     .map((option) => option.textContent)
@@ -139,5 +137,3 @@ export const nameErrorLiveRegion = () =>
   document.getElementById(fieldErrorId(VAULT_ORDER_NAME_FIELD_ID)) as Element;
 
 export const nameAccessibleName = () => nameInput().getAttribute('aria-label');
-
-export const regionControlSection = () => host(VAULT_ORDER_REGION_CONTROL_ID);
