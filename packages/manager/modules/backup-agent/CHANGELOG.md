@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.17.0...@ovh-ux/backup-agent@1.18.0) (2026-08-07)
+
+
+### Features
+
+* **backup-agent:** remove non-us servers from backup agent for us zone ([ec0af8c](https://github.com/ovh/manager/commit/ec0af8cd671db22b78fe7f9eb4ec1efed6168be4)), closes [#USPM-588](https://github.com/ovh/manager/issues/USPM-588)
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.16.0...@ovh-ux/backup-agent@1.17.0) (2026-07-09)
 
 
