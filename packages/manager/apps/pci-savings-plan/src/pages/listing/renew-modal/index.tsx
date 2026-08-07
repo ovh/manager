@@ -16,7 +16,7 @@ const RenewModalPage = () => {
   const savingsPlanId = useSavingsPlanId();
   const { data: savingsPlan, error, isError } = useSavingsPlan();
   const { t } = useTranslation('listing');
-  const { addSuccess } = useNotifications();
+  const { addSuccess, addError, clearNotifications } = useNotifications();
 
   const currentPlan = useMemo(
     () => savingsPlan?.find((p) => p.id === savingsPlanId),
@@ -34,7 +34,7 @@ const RenewModalPage = () => {
     );
   };
 
-  const { mutate: changePeriod } = useSavingsPlanChangePeriod({
+  const { mutate: changePeriod, isPending } = useSavingsPlanChangePeriod({
     savingsPlanId,
     onSuccess,
   });
@@ -49,12 +49,24 @@ const RenewModalPage = () => {
     navigate({ pathname: '..', search: searchParams.toString() });
 
   const onConfirm = () => {
-    changePeriod({
-      periodEndAction: periodEndAction
-        ? SavingsPlanPlanedChangeStatus.TERMINATE
-        : SavingsPlanPlanedChangeStatus.REACTIVATE,
-    });
-    goToPrevious();
+    clearNotifications();
+    changePeriod(
+      {
+        periodEndAction: periodEndAction
+          ? SavingsPlanPlanedChangeStatus.TERMINATE
+          : SavingsPlanPlanedChangeStatus.REACTIVATE,
+      },
+      {
+        onError: (mutationError) =>
+          addError(
+            t('banner_renew_error', {
+              planName: currentPlan?.displayName,
+              error: mutationError?.message,
+            }),
+          ),
+        onSettled: () => goToPrevious(),
+      },
+    );
   };
 
   return currentPlan ? (
@@ -62,6 +74,7 @@ const RenewModalPage = () => {
       periodEndAction={currentPlan.periodEndAction}
       onClose={() => goToPrevious()}
       onConfirm={onConfirm}
+      isPending={isPending}
     />
   ) : (
     <></>

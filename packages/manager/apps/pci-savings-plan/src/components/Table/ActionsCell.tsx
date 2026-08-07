@@ -28,6 +28,7 @@ interface SavingsPlanActionsCell {
   flavor: string;
   status: SavingsPlanStatus;
   periodEndAction: SavingsPlanPlanedChangeStatus;
+  isRenewalActivationDisabled?: boolean;
 }
 
 const MenuItems = ({
@@ -38,6 +39,7 @@ const MenuItems = ({
   onClickRenew,
   periodEndAction,
   pciUrl,
+  isRenewalActivationDisabled,
 }: {
   id: string;
   status: SavingsPlanStatus;
@@ -46,6 +48,7 @@ const MenuItems = ({
   onClickRenew: () => void;
   periodEndAction: SavingsPlanPlanedChangeStatus;
   pciUrl: string;
+  isRenewalActivationDisabled?: boolean;
 }) => {
   const { t } = useTranslation(['listing', 'actions']);
   const { trackClick } = useOvhTracking();
@@ -58,6 +61,8 @@ const MenuItems = ({
     : cancelSavingsPlanPath;
 
   const isInstance = useMemo(() => isInstanceFlavor(flavor), [flavor]);
+  const isRenewalActivation =
+    periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE;
 
   return (
     <OdsPopover triggerId={`popover-trigger-${id}`}>
@@ -74,19 +79,16 @@ const MenuItems = ({
         {status !== SavingsPlanStatus.TERMINATED && (
           <OdsButton
             label={
-              periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
-                ? t('enableAutoRenew')
-                : t('disableAutoRenew')
+              isRenewalActivation ? t('enableAutoRenew') : t('disableAutoRenew')
             }
             size={ODS_BUTTON_SIZE.sm}
             variant={ODS_BUTTON_VARIANT.ghost}
             text-align="start"
             onClick={onClickRenew}
+            isDisabled={isRenewalActivation && isRenewalActivationDisabled}
             role="button"
             aria-label={
-              periodEndAction === SavingsPlanPlanedChangeStatus.TERMINATE
-                ? t('enableAutoRenew')
-                : t('disableAutoRenew')
+              isRenewalActivation ? t('enableAutoRenew') : t('disableAutoRenew')
             }
           />
         )}
@@ -128,6 +130,7 @@ export default function ActionsCell({
   flavor,
   onClickEditName,
   onClickRenew,
+  isRenewalActivationDisabled,
 }: Readonly<SavingsPlanActionsCell>) {
   const pciUrl = usePciUrl();
 
@@ -153,6 +156,7 @@ export default function ActionsCell({
         flavor={flavor}
         status={status}
         periodEndAction={periodEndAction}
+        isRenewalActivationDisabled={isRenewalActivationDisabled}
         onClickEdit={onClickEdit}
         onClickRenew={() => {
           onClickRenew();
