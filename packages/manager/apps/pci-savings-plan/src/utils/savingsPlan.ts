@@ -1,5 +1,6 @@
 import { TFunction } from 'i18next';
 import { formatDate } from './formatter/date';
+import { convertToDuration } from './commercial-catalog/utils';
 import {
   InstanceInfo,
   InstanceTechnicalName,
@@ -80,3 +81,10 @@ export const getInstancesInformation = (t: TFunction): InstanceInfo[] => [
 // We don't have a better way to check that, api return only a specific code and not an id related to scope (instance, rancher),
 // So if we have number in the flavor (b3-8, c3-16) it's an instance else it's a Rancher
 export const isInstanceFlavor = (flavor: string) => /\d/.test(flavor);
+
+// Commitments being repriced are no longer offered for resubscription,
+// so their renewal can be turned off but never back on.
+const REPRICED_COMMITMENT_DURATIONS_IN_MONTHS = [1, 6, 24];
+
+export const isRepricedCommitment = (period?: string) =>
+  REPRICED_COMMITMENT_DURATIONS_IN_MONTHS.includes(convertToDuration(period));
