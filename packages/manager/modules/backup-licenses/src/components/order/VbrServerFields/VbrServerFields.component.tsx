@@ -86,7 +86,7 @@ export default function VbrServerFields({
             <OdsText preset={ODS_TEXT_PRESET.paragraph}>{t('nat.toggle_title')}</OdsText>
             <OdsText
               preset={ODS_TEXT_PRESET.caption}
-              className="text-[var(--ods-color-neutral-500)]"
+              className="[--ods-color-text:var(--ods-color-neutral-500)]"
             >
               {t('nat.toggle_desc')}
             </OdsText>

@@ -1,9 +1,17 @@
 {
-  "empty_state": "Aucune consommation enregistrée pour la période en cours.",
   "period_notice": "Consommation de la période de facturation en cours, du {{begin}} au {{end}}.",
   "period_notice_fallback": "Consommation de la période de facturation en cours.",
+  "licenses": {
+    "title": "Licences",
+    "empty_state": "Aucune licence facturée pour la période en cours.",
+    "column": {
+      "price": "Prix"
+    }
+  },
+  "vaults": {
+    "empty_state": "Aucun vault facturé pour la période en cours."
+  },
   "column": {
-    "license_price": "Prix licence",
     "storage_price": "Prix stockage"
   },
   "usage": {

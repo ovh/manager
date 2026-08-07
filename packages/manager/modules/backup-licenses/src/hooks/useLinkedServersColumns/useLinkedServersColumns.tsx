@@ -36,19 +36,14 @@ export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[
         ),
       },
       {
-        id: 'externalIps',
-        label: t('column.public_ip'),
+        id: 'ips',
+        label: t('column.ip'),
         isSortable: false,
         cell: (server: BackupServerResource) => (
-          <ServerIpsCell ips={server.currentState.externalIps} />
-        ),
-      },
-      {
-        id: 'privateIps',
-        label: t('column.private_ip'),
-        isSortable: false,
-        cell: (server: BackupServerResource) => (
-          <ServerIpsCell ips={server.currentState.privateIps} />
+          <ServerIpsCell
+            externalIps={server.currentState.externalIps}
+            privateIps={server.currentState.privateIps}
+          />
         ),
       },
       {
@@ -57,6 +52,7 @@ export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[
         isSortable: false,
         cell: (server: BackupServerResource) => (
           <LicenseTypeCell
+            serverId={server.id}
             licenseType={server.currentState.licenseType}
             licenseTypeRequested={server.currentState.licenseTypeRequested}
             isInFlight={isServerInFlight(server)}

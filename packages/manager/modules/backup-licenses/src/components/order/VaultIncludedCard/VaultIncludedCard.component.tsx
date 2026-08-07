@@ -31,7 +31,10 @@ export default function VaultIncludedCard() {
             size={ODS_BADGE_SIZE.sm}
           />
         </span>
-        <OdsText preset={ODS_TEXT_PRESET.caption} className="text-[var(--ods-color-neutral-600)]">
+        <OdsText
+          preset={ODS_TEXT_PRESET.caption}
+          className="[--ods-color-text:var(--ods-color-neutral-600)]"
+        >
           {t('vault.included_description')}
         </OdsText>
       </label>

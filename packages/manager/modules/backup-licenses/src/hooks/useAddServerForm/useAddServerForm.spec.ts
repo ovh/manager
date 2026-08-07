@@ -14,10 +14,10 @@ function fillServer(result: { current: ReturnType<typeof useAddServerForm> }) {
 }
 
 describe('useAddServerForm — présélection et sélection de licence', () => {
-  it("présélectionne les options recommandées (Data Platform + Premium) sans verrouiller l'étape", () => {
+  it("présélectionne les options recommandées (Data Platform + Advanced) sans verrouiller l'étape", () => {
     const { result } = renderAddServerForm();
     expect(result.current.family).toBe(LicenseFamily.DATA_PLATFORM);
-    expect(result.current.tier).toBe(VdpTier.PREMIUM);
+    expect(result.current.tier).toBe(VdpTier.ADVANCED);
     expect(result.current.license.step.isOpen).toBe(true);
     expect(result.current.license.step.isLocked).toBe(false);
   });

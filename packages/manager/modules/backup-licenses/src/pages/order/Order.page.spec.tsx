@@ -7,7 +7,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ORDER_SUBMIT_ERROR_TEST_ID } from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
 import { getBackupServicesCatalog } from '@/data/api/catalog/catalog.requests';
-import { getLocations } from '@/data/api/locations/locations.requests';
 import { mockOrderFunnelRequiredConfiguration } from '@/mocks/order/order.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
@@ -22,7 +21,6 @@ import { LicenseFamily, VdpTier } from '@/types/Order.type';
 
 import OrderPage from './Order.page';
 
-vi.mock('@/data/api/locations/locations.requests');
 vi.mock('@/data/api/catalog/catalog.requests');
 vi.mock('@/hooks/useMainGuideItem', () => ({ useMainGuideItem: () => [] }));
 
@@ -149,7 +147,6 @@ describe('OrderPage — submit', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     window.sessionStorage.clear();
-    vi.mocked(getLocations).mockResolvedValue([]);
     vi.mocked(getBackupServicesCatalog).mockResolvedValue(undefined as never);
     requests = watchApiRequests('/order/cart');
   });
