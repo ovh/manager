@@ -4,7 +4,7 @@ import { ODS_ICON_NAME } from '@ovhcloud/ods-components';
 
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
 
-import { NodePool } from '@/api/data/kubernetes';
+import { NodePoolPrice } from '@/api/data/kubernetes';
 import StatusChip from '@/components/StatusChip';
 import RestrictionAction from '@/components/restriction/RestrictionAction.component';
 import { MonthlyBilled } from '@/pages/detail/nodepools/useDatagridColumn';
@@ -30,10 +30,10 @@ const AutoscalingCell = ({
 
 const createTextColumn = (
   id: string,
-  accessor: (props: NodePool) => ReactNode,
+  accessor: (props: NodePoolPrice) => ReactNode,
   labelKey: string,
   t: (text: string) => string,
-): DatagridColumn<NodePool> => ({
+): DatagridColumn<NodePoolPrice> => ({
   id,
   cell: (props) => <TextCell>{accessor(props)}</TextCell>,
   label: t(labelKey),
@@ -43,12 +43,14 @@ export const getDatagridColumns = ({
   onDelete,
   t,
   showFloatingIp = false,
+  showLocalStorage = false,
 }: {
   onDelete: (name: string) => void;
   t: (text: string) => string;
   showFloatingIp: boolean;
+  showLocalStorage?: boolean;
 }) => {
-  const columns: DatagridColumn<NodePool>[] = [
+  const columns: DatagridColumn<NodePoolPrice>[] = [
     createTextColumn('name', (props) => props.name, 'add:kubernetes_add_name', t),
     createTextColumn(
       'localisation',
@@ -68,6 +70,16 @@ export const getDatagridColumns = ({
       'node-pool:kube_common_node_pool_desired_node',
       t,
     ),
+    ...(showLocalStorage
+      ? [
+          createTextColumn(
+            'localStorage',
+            (props) => props.localStorage?.label,
+            'add-form:kube_common_node_pool_volumes_column_storage',
+            t,
+          ),
+        ]
+      : []),
     {
       id: 'autoscaling',
       cell: (props) => (
@@ -94,7 +106,7 @@ export const getDatagridColumns = ({
       ? [
           {
             id: 'floating-ip',
-            cell: (props: NodePool) => (
+            cell: (props: NodePoolPrice) => (
               <TextCell>
                 <StatusChip
                   label={

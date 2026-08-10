@@ -12,6 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Please enter a valid IP address",
   "kubernetes_network_form_label": "Private network attached",
   "kubernetes_network_form_none": "None (public IPs)",
+  "kubernetes_network_form_none_price": "A public IP address is assigned to each node, billed {{price}} per node.",
   "kubernetes_network_form_description": "IP addresses from the selected private network’s VLAN will be assigned to your nodes.",
   "kubernetes_network_form_add": "Create a private network",
   "kubernetes_network_form_subnet": "Choose a subnet for your cluster",

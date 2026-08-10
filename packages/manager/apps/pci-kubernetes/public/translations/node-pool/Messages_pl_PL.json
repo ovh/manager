@@ -54,5 +54,8 @@
   "kube_common_node_pool_deploy_floating_ip_content2": "Bezpośredni <strong>publiczny dostęp</strong> do węzła.",
   "kube_common_node_pool_deploy_floating_ip_content3": "Umożliwia korzystanie z <a>przepustowości do sieci publicznej węzła</a> (zamiast przepustowości Managed Gateway).",
   "kube_common_node_pool_deploy_floating_ip_content4": "Cykl życia Floating IP jest powiązany z cyklem życia węzła (IP jest usuwane razem z węzłem).",
-  "kube_common_node_pool_node": "węzeł"
+  "kube_common_node_pool_node": "węzeł",
+  "kube_common_node_pool_estimation_local_storage": "Pamięć lokalna:",
+  "kube_common_node_pool_estimation_public_ip_price": "Publiczne adresy IP:",
+  "kube_common_node_pool_estimation_approximate_price": "~{{price}}"
 }

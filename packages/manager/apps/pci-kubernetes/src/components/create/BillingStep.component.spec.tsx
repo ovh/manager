@@ -232,4 +232,102 @@ describe('BillingStep', () => {
       expect(hourlyTile.innerHTML).toContain('303 /Hour');
     });
   });
+
+  describe('Local storage and public IP cost', () => {
+    it('should state the local storage node pool total as a price of its own', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        numberOfNodes: 3,
+        priceLocalStorage: { hour: 2, month: 1440 },
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(getByTestId('hourly_local_storage').innerHTML).toContain('6 /Hour');
+      expect(getByTestId('monthly_local_storage')).toBeInTheDocument();
+    });
+
+    it('should state local storage at zero when the catalog does not price the volume', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        numberOfNodes: 3,
+        priceLocalStorage: { hour: 0, month: 0 },
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(getByTestId('hourly_local_storage').innerHTML).toContain('0 /Hour');
+      expect(getByTestId('monthly_local_storage')).toBeInTheDocument();
+    });
+
+    it('should not show a local storage line when the flavor carries no volume', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        numberOfNodes: 3,
+        priceLocalStorage: null,
+      };
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(queryByTestId('hourly_local_storage')).not.toBeInTheDocument();
+      expect(queryByTestId('monthly_local_storage')).not.toBeInTheDocument();
+    });
+
+    it('should state public IPs at zero when the catalog does not price them', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        numberOfNodes: 4,
+        pricePublicIp: { hour: 0, month: 0 },
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(getByTestId('hourly_public_ip').innerHTML).toContain('0 /Hour');
+      expect(getByTestId('monthly_public_ip')).toBeInTheDocument();
+    });
+
+    it('should show the public IP total for every node in both tiles', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        numberOfNodes: 4,
+        pricePublicIp: { hour: 3, month: 2160 },
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(getByTestId('hourly_public_ip').innerHTML).toContain('12 /Hour');
+      expect(getByTestId('monthly_public_ip')).toBeInTheDocument();
+    });
+
+    it('should not show a public IP line when nodes get no public IP', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        monthlyPrice: 15,
+        pricePublicIp: null,
+      };
+      const { queryByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(queryByTestId('hourly_public_ip')).not.toBeInTheDocument();
+      expect(queryByTestId('monthly_public_ip')).not.toBeInTheDocument();
+    });
+
+    it('should add local storage and public IP to the hourly node pool total', () => {
+      const props = {
+        ...defaultProps,
+        price: 100,
+        numberOfNodes: 2,
+        pricePublicIp: { hour: 3, month: 2160 },
+        priceLocalStorage: { hour: 2, month: 1440 },
+      };
+      const { getByTestId } = render(<BillingStep {...props} />, { wrapper });
+
+      expect(getByTestId('hourly_tile').innerHTML).toContain('110 /Hour');
+    });
+  });
 });
