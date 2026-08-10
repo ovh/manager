@@ -15,6 +15,7 @@
   "kubernetes_network_form_label": "Réseau privé attaché",
   "kubernetes_network_form_select_private_option": "Sélectionnez un réseau privé",
   "kubernetes_network_form_none": "Aucun (IPs publiques)",
+  "kubernetes_network_form_none_price": "Une adresse IP publique est attribuée à chaque nœud, facturée {{price}} par nœud.",
   "kubernetes_network_form_description": "Vos noeuds se verront attribuer une IP sur le vLAN du réseau privé choisi.",
   "kubernetes_network_form_add": "Créer un réseau privé",
   "kubernetes_network_form_add_gateway": "Créer une gateway",

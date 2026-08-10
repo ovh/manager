@@ -54,5 +54,8 @@
   "kube_common_node_pool_deploy_floating_ip_content2": "<strong>Accès public</strong> direct au nœud.",
   "kube_common_node_pool_deploy_floating_ip_content3": "Permet d'utiliser la <a>bande passante publique du nœud</a> (au lieu de celle de la Gateway Managée).",
   "kube_common_node_pool_deploy_floating_ip_content4": "Le cycle de vie de la Floating IP est lié à celui du nœud (elle est supprimée avec lui).",
-  "kube_common_node_pool_node": "nœud"
+  "kube_common_node_pool_node": "nœud",
+  "kube_common_node_pool_estimation_local_storage": "Stockage local :",
+  "kube_common_node_pool_estimation_public_ip_price": "IPs publiques :",
+  "kube_common_node_pool_estimation_approximate_price": "~{{price}}"
 }

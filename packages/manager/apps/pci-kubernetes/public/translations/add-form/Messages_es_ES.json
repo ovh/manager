@@ -2,5 +2,16 @@
   "kubernetes_add_node_pool_description": "Una vez creado el clúster, es posible configurar uno o varios pools de nodos. Un pool de nodos consiste en un conjunto de nodos de trabajo del mismo tipo.",
   "kubernetes_add_node_pool_node_count": "Número de nodos",
   "kubernetes_add_node_pool_node_type": "Tipo de nodos",
-  "kube_common_node_pool_model_type_selector": "Seleccione un modelo"
+  "kube_common_node_pool_model_type_selector": "Seleccione un modelo",
+  "kube_common_node_pool_volumes_title": "Añadir volúmenes",
+  "kube_common_node_pool_volumes_description": "Los volúmenes son el almacenamiento asociado a su instancia. Cada instancia necesita al menos un volumen de bloque para su disco de sistema, y puede asociar hasta 16 volúmenes de bloque en total.",
+  "kube_common_node_pool_volumes_system_notice": "<strong>V0 - un volumen fijo.</strong> El volumen de sistema de {{size}} es obligatorio y no puede redimensionarse ni eliminarse. El almacenamiento es ahora una línea de facturación independiente.",
+  "kube_common_node_pool_volumes_column_storage": "Almacenamiento",
+  "kube_common_node_pool_volumes_column_size": "Tamaño",
+  "kube_common_node_pool_volumes_system_badge": "Sistema",
+  "kube_common_node_pool_volumes_local_name": "Block Storage — Low latency (local)",
+  "kube_common_node_pool_volumes_size_locked": "Este tamaño es fijo y no puede modificarse",
+  "kube_common_node_pool_volumes_price_per_hour": "/ hora",
+  "kube_common_node_pool_volumes_price_per_month": "/ mes",
+  "kube_common_node_pool_volumes_local_spec": "{{technology}} local · Low latency"
 }

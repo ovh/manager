@@ -35,6 +35,8 @@ export type TBillingStepProps = {
   selectedAvailabilityZonesNumber?: number;
   numberOfNodes?: number | null;
   priceFloatingIp?: { hour: number | null; month: number | null } | null;
+  pricePublicIp?: { hour: number | null; month: number | null } | null;
+  priceLocalStorage?: { hour: number; month: number } | null;
   monthlyBilling: {
     isComingSoon: boolean;
     isChecked: boolean;
@@ -64,16 +66,33 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
   const savingsPlanUrl = `${projectURL}/savings-plan`;
   const showSavingPlan = useSavingsPlanAvailable();
 
+  const numberOfNodes = props.numberOfNodes ?? 0;
+
+  const publicIpHourlyTotal = (props.pricePublicIp?.hour ?? 0) * numberOfNodes;
+  const localStorageHourlyTotal = (props.priceLocalStorage?.hour ?? 0) * numberOfNodes;
+
+  const hourlyPricePerNode =
+    (props.priceFloatingIp?.hour ?? 0) +
+    (props.pricePublicIp?.hour ?? 0) +
+    (props.priceLocalStorage?.hour ?? 0);
   const computedPrice = calculatePrice(
     props.price,
     props.selectedAvailabilityZonesNumber,
-    (props.priceFloatingIp?.hour ?? 0) * (props.numberOfNodes ?? 0),
+    hourlyPricePerNode * numberOfNodes,
   );
   const hourlyPrice = getFormattedHourlyCatalogPrice(computedPrice);
   const monthlyPrice = getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(computedPrice));
   const monthlyLegacyPrice = getFormattedMonthlyCatalogPrice(
-    (props.monthlyPrice ?? 0) + (props.priceFloatingIp?.month ?? 0),
+    (props.monthlyPrice ?? 0) +
+      (props.priceFloatingIp?.month ?? 0) +
+      ((props.pricePublicIp?.month ?? 0) + (props.priceLocalStorage?.month ?? 0)) * numberOfNodes,
   );
+
+  const approximateMonthly = (hourlyTotal: number) =>
+    t('node-pool:kube_common_node_pool_estimation_approximate_price', {
+      price: getFormattedMonthlyCatalogPrice(convertHourlyPriceToMonthly(hourlyTotal)),
+    });
+
   return (
     <div className="max-w-3xl">
       <div className="my-6">
@@ -129,6 +148,22 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
               </span>
               {monthlyPrice}
             </Text>
+            {props.priceLocalStorage && (
+              <Text className="block" data-testid="hourly_local_storage">
+                <span className="font-bold">
+                  {t('node-pool:kube_common_node_pool_estimation_local_storage')}{' '}
+                </span>
+                {getFormattedHourlyCatalogPrice(localStorageHourlyTotal)}
+              </Text>
+            )}
+            {props.pricePublicIp && (
+              <Text className="block" data-testid="hourly_public_ip">
+                <span className="font-bold">
+                  {t('node-pool:kube_common_node_pool_estimation_public_ip_price')}{' '}
+                </span>
+                {getFormattedHourlyCatalogPrice(publicIpHourlyTotal)}
+              </Text>
+            )}
             {props.priceFloatingIp && (
               <Text className="block italic">
                 {t(
@@ -161,6 +196,22 @@ export default function BillingStep(props: TBillingStepProps): ReactElement {
                 </span>
                 {monthlyLegacyPrice}
               </Text>
+              {props.priceLocalStorage && (
+                <Text className="block" data-testid="monthly_local_storage">
+                  <span className="font-bold">
+                    {t('node-pool:kube_common_node_pool_estimation_local_storage')}{' '}
+                  </span>
+                  {approximateMonthly(localStorageHourlyTotal)}
+                </Text>
+              )}
+              {props.pricePublicIp && (
+                <Text className="block" data-testid="monthly_public_ip">
+                  <span className="font-bold">
+                    {t('node-pool:kube_common_node_pool_estimation_public_ip_price')}{' '}
+                  </span>
+                  {approximateMonthly(publicIpHourlyTotal)}
+                </Text>
+              )}
               {props.priceFloatingIp && (
                 <Text className="block italic">
                   {t(

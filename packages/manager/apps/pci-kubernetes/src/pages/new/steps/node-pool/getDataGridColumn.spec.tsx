@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { NodePool } from '@/api/data/kubernetes';
+import { NodePoolPrice } from '@/api/data/kubernetes';
 import { ResourceStatus } from '@/types';
 
 import { getDatagridColumns } from './getDataGridColumns';
@@ -43,7 +43,8 @@ describe('getDatagridColumns', () => {
     attachFloatingIps: {
       enabled: true,
     },
-  } as NodePool;
+    monthlyPrice: 0,
+  } as NodePoolPrice;
 
   beforeEach(() => {
     vi.clearAllMocks();

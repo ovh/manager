@@ -7,11 +7,16 @@ import { OsdsButton } from '@ovhcloud/ods-components/react';
 import { TProject, isDiscoveryProject, useParam, useProject } from '@ovh-ux/manager-pci-common';
 import { convertHourlyPriceToMonthly, useCatalogPrice } from '@ovh-ux/manager-react-components';
 
+import { getLocalDiskHourlyPrice } from '@/api/data/instance-catalog';
 import { NodePoolPrice } from '@/api/data/kubernetes';
+import { useInstanceCatalog } from '@/api/hooks/useInstanceCatalog';
 import Estimation from '@/components/create/Estimation.component';
 import { isMultiDeploymentZones } from '@/helpers';
+import { nodesAreAssignedPublicIp } from '@/helpers/node-pool';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
+import usePublicIpPrice from '@/hooks/usePublicIpPrice';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
 import useSavingPlanAvailable from '@/hooks/useSavingPlanAvailable';
 import { DeploymentMode, TClusterPlan } from '@/types';
 
@@ -24,6 +29,8 @@ export interface BillingStepProps {
   plan: TClusterPlan;
   type: DeploymentMode;
   codes: string[];
+  region?: string;
+  hasPrivateNetwork?: boolean;
 }
 
 export function ClusterConfirmationStep({
@@ -32,6 +39,8 @@ export function ClusterConfirmationStep({
   plan,
   type,
   codes,
+  region,
+  hasPrivateNetwork,
 }: Readonly<BillingStepProps>) {
   const { t } = useTranslation('stepper');
   const { t: tNode } = useTranslation('node-pool');
@@ -51,11 +60,26 @@ export function ClusterConfirmationStep({
     convertHourlyPriceToMonthly,
   );
   const priceFloatingIp = useFloatingIpsPrice(true, type);
+  const publicIpPrice = usePublicIpPrice(region ?? null);
+  const hasRepricing = useRepricingInstancesAvailable();
+  const { data: instanceCatalog } = useInstanceCatalog(projectId, hasRepricing);
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({
+    hasRepricing,
+    plan,
+    hasPrivateNetwork: !!hasPrivateNetwork,
+  });
 
   const estimationPrices = getEstimationPrices(plan, plans, nodePools, {
     showSavingPlan,
     has3AZ,
     priceFloatingIp: priceFloatingIp.price?.month ?? null,
+    pricePublicIp: nodesUsePublicIp ? (publicIpPrice.price?.month ?? 0) : null,
+    ...(hasRepricing && {
+      getLocalStorageMonthlyPrice: (flavorName: string) => {
+        const hourlyPrice = getLocalDiskHourlyPrice(instanceCatalog, flavorName, region);
+        return hourlyPrice === null ? null : convertHourlyPriceToMonthly(hourlyPrice);
+      },
+    }),
   });
 
   return (

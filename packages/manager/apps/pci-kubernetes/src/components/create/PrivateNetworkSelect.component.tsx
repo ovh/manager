@@ -32,12 +32,15 @@ import {
   getQueryKeyPrivateNetworksByRegion,
 } from '@/api/hooks/useNetwork';
 import { isStandardPlan } from '@/helpers';
+import { nodesAreAssignedPublicIp } from '@/helpers/node-pool';
+import usePublicIpPrice from '@/hooks/usePublicIpPrice';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
 import queryClient from '@/queryClient';
 import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 export type PrivateNetworkSelectProps = {
   network?: TNetworkRegion;
-  onSelect: (network: TNetworkRegion) => void;
+  onSelect: (network?: TNetworkRegion) => void;
   networks?: TNetworkRegion[];
   type: DeploymentMode;
   plan: TClusterPlanEnum;
@@ -62,7 +65,7 @@ export default function PrivateNetworkSelect({
       queryKey: getQueryKeyPrivateNetworksByRegion(projectId, region),
     });
     queryClient.invalidateQueries({
-      queryKey: getListGatewaysQueryKey(projectId, region, subnet.id),
+      queryKey: getListGatewaysQueryKey(projectId, region, subnet?.id),
     });
   };
 
@@ -73,6 +76,14 @@ export default function PrivateNetworkSelect({
 
   const projectURL = useProjectUrl('public-cloud');
   const privateNetworkURL = `${projectURL}/private-networks`;
+
+  const { price: publicIpPrice } = usePublicIpPrice(region);
+  const hasRepricing = useRepricingInstancesAvailable();
+  const isPublicIpSelected = nodesAreAssignedPublicIp({
+    hasRepricing,
+    plan,
+    hasPrivateNetwork: !!network,
+  });
 
   return (
     <section>
@@ -149,6 +160,19 @@ export default function PrivateNetworkSelect({
           />
         </OsdsButton>
       </div>
+      {isPublicIpSelected && publicIpPrice && (
+        <OsdsText
+          data-testid="public-ip-price"
+          level={ODS_TEXT_LEVEL.body}
+          size={ODS_TEXT_SIZE._400}
+          color={ODS_THEME_COLOR_INTENT.text}
+          className="block"
+        >
+          {t('kubernetes_network_form_none_price', {
+            price: publicIpPrice.hourFormatted,
+          })}
+        </OsdsText>
+      )}
     </section>
   );
 }

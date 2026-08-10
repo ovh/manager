@@ -22,6 +22,16 @@ describe('selectEstimationPriceFromPlans', () => {
     { monthlyPrice: 100, attachFloatingIps: { enabled: true }, desiredNodes: 1 },
     { monthlyPrice: 200, attachFloatingIps: { enabled: false }, desiredNodes: 2 },
   ] as NodePoolPrice[];
+  const nodePoolsWithLocalStorage = [
+    { monthlyPrice: 100, desiredNodes: 2, flavorName: 'b3-8' },
+    { monthlyPrice: 200, desiredNodes: 3, flavorName: 'b3-8' },
+  ] as NodePoolPrice[];
+  const nodePoolsPartiallyPricedForLocalStorage = [
+    { monthlyPrice: 100, desiredNodes: 2, flavorName: 'b3-8' },
+    { monthlyPrice: 200, desiredNodes: 3, flavorName: 'b2-7' },
+  ] as NodePoolPrice[];
+  const pricedFlavors: Record<string, number> = { 'b3-8': 7 };
+  const getLocalStorageMonthlyPrice = (flavorName: string) => pricedFlavors[flavorName] ?? null;
 
   it.each([
     {
@@ -160,6 +170,91 @@ describe('selectEstimationPriceFromPlans', () => {
         total: '1030 €/mo',
       },
     },
+    {
+      description: 'STANDARD plan whose flavor the catalog does not price',
+      plan: TClusterPlanEnum.STANDARD,
+      pools: [{ monthlyPrice: 100, desiredNodes: 2, flavorName: 'b2-7' }] as NodePoolPrice[],
+      options: { has3AZ: true, showSavingPlan: true, getLocalStorageMonthlyPrice },
+      expected: {
+        showSavingPlan: true,
+        clusterShow: true,
+        cluster: '720 €/mo',
+        node: '100 €/mo',
+        floatingIpShow: false,
+        localStorageShow: true,
+        localStorage: '',
+        totalShow: true,
+        total: '820 €/mo',
+      },
+    },
+    {
+      description: 'STANDARD plan pricing local storage for only some of its flavors',
+      plan: TClusterPlanEnum.STANDARD,
+      pools: nodePoolsPartiallyPricedForLocalStorage,
+      options: { has3AZ: true, showSavingPlan: true, getLocalStorageMonthlyPrice },
+      expected: {
+        showSavingPlan: true,
+        clusterShow: true,
+        cluster: '720 €/mo',
+        node: '300 €/mo',
+        floatingIpShow: false,
+        localStorageShow: true,
+        localStorage: '14 €/mo',
+        totalShow: true,
+        total: '1034 €/mo',
+      },
+    },
+    {
+      description: 'FREE plan whose public IPs the catalog does not price',
+      plan: TClusterPlanEnum.FREE,
+      pools: nodePools,
+      options: { has3AZ: true, showSavingPlan: true, pricePublicIp: 0 },
+      expected: {
+        showSavingPlan: true,
+        clusterShow: true,
+        cluster: 'kube_common_estimation_price_free',
+        node: '300 €/mo',
+        floatingIpShow: false,
+        publicIpShow: true,
+        publicIp: '0 €/mo',
+        totalShow: true,
+        total: '300 €/mo',
+      },
+    },
+    {
+      description: 'STANDARD plan with local storage billed as its own line item',
+      plan: TClusterPlanEnum.STANDARD,
+      pools: nodePoolsWithLocalStorage,
+      options: { has3AZ: true, showSavingPlan: true, getLocalStorageMonthlyPrice },
+      expected: {
+        showSavingPlan: true,
+        clusterShow: true,
+        cluster: '720 €/mo',
+        node: '300 €/mo',
+        floatingIpShow: false,
+        localStorageShow: true,
+        localStorage: '35 €/mo',
+        totalShow: true,
+        total: '1055 €/mo',
+      },
+    },
+    {
+      description: 'FREE plan with public IPs billed per node',
+      plan: TClusterPlanEnum.FREE,
+      pools: nodePools,
+      options: { has3AZ: true, showSavingPlan: true, pricePublicIp: 5 },
+      expected: {
+        showSavingPlan: true,
+        clusterShow: true,
+        cluster: 'kube_common_estimation_price_free',
+        node: '300 €/mo',
+        floatingIpShow: false,
+        publicIpShow: true,
+        publicIp: '25 €/mo',
+        totalShow: true,
+        total: '325 €/mo',
+      },
+    },
   ])(
     '$description | has3AZ=$options.has3AZ | showSavingPlan=$options.showSavingPlan',
     ({ plan, pools, options, expected }) => {
@@ -169,7 +264,7 @@ describe('selectEstimationPriceFromPlans', () => {
         convertHourlyPriceToMonthly,
       )(plan, plans, pools, options);
 
-      expect(rows).toHaveLength(6);
+      expect(rows).toHaveLength(8);
       // saving plan row
       expect(rows[0]?.show).toBe(expected.showSavingPlan);
       expect(rows[0]?.label).toBe('kube_common_node_pool_estimation_text');
@@ -181,20 +276,28 @@ describe('selectEstimationPriceFromPlans', () => {
       // node pool row
       expect(rows[2]?.show).toBe(true);
       expect(rows[2]?.value).toBe(expected.node);
+      expect(rows[3]?.show).toBe(expected.localStorageShow ?? false);
+      if (rows[3]?.show) {
+        expect(rows[3].value).toBe(expected.localStorage);
+      }
       // floating IP row
-      expect(rows[3]?.show).toBe(expected.floatingIpShow);
+      expect(rows[4]?.show).toBe(expected.floatingIpShow);
 
-      if (rows[3]?.show && expected.floatingIp) {
-        expect(rows[3].value).toBe(expected.floatingIp);
+      if (rows[4]?.show && expected.floatingIp) {
+        expect(rows[4].value).toBe(expected.floatingIp);
+      }
+      expect(rows[5]?.show).toBe(expected.publicIpShow ?? false);
+      if (rows[5]?.show && expected.publicIp) {
+        expect(rows[5].value).toBe(expected.publicIp);
       }
       // total row
-      expect(rows[4]?.show).toBe(expected.totalShow);
-      if (rows[4]?.show) {
-        expect(rows[4].value).toBe(expected.total);
+      expect(rows[6]?.show).toBe(expected.totalShow);
+      if (rows[6]?.show) {
+        expect(rows[6].value).toBe(expected.total);
       }
       // end text row
-      expect(rows[5]?.show).toBe(true);
-      expect(rows[5]?.label).toBe('kube_common_node_pool_estimation_text_end');
+      expect(rows[7]?.show).toBe(true);
+      expect(rows[7]?.label).toBe('kube_common_node_pool_estimation_text_end');
     },
   );
 });
