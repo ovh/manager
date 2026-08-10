@@ -210,5 +210,17 @@
     "title": "Instances Flex",
     "disk_capacity": "<span>Une instance flex est une instance à disque unique (50 Go)</span> offrant un processus plus rapide pour les snapshots.",
     "resizing_explanation": "Elle permet un redimensionnement vers les modèles supérieurs ou inférieurs avec un espace de stockage fixe, tandis que les modèles classiques ne peuvent être redimensionnés que vers les modèles supérieurs."
-  }
+  },
+  "pci_instance_creation_volumes_title": "Ajouter des volumes",
+  "pci_instance_creation_volumes_description": "Les volumes constituent le stockage attaché à votre instance. Chaque instance nécessite au moins un volume block pour son disque système, et vous pouvez attacher jusqu'à 16 volumes block au total.",
+  "pci_instance_creation_volumes_system_notice": "<strong>V0 - un volume fixe.</strong> Le volume système de {{size}} est obligatoire et ne peut être ni redimensionné ni supprimé. Le stockage constitue désormais une ligne de facturation distincte.",
+  "pci_instance_creation_volumes_column_storage": "Stockage",
+  "pci_instance_creation_volumes_column_size": "Taille",
+  "pci_instance_creation_volumes_system_badge": "Système",
+  "pci_instance_creation_volumes_local_name": "Block Storage — Low Latency (local)",
+  "pci_instance_creation_volumes_local_spec": "{{technology}} local · low latency",
+  "pci_instance_creation_volumes_size_locked": "Cette taille est fixe et ne peut pas être modifiée",
+  "pci_instance_creation_volumes_price_per_hour": "/ heure",
+  "pci_instance_creation_volumes_price_per_month": "/ mois",
+  "pci_instance_creation_cart_volumes_title": "Volumes"
 }

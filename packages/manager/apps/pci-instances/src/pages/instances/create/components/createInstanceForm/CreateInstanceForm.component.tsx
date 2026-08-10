@@ -22,6 +22,7 @@ import BillingChoice from '../BillingChoice.component';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
 import { useMemo } from 'react';
 import Backup from '../Backup.component';
+import VolumesBlock from '../volumes/VolumesBlock.component';
 
 export const CreateInstanceForm = () => {
   const { t } = useTranslation(['common', 'creation']);
@@ -73,6 +74,7 @@ export const CreateInstanceForm = () => {
           )}
           <Divider spacing="48" />
           <FlavorBlock />
+          <VolumesBlock />
           {microRegion && <DistributionImage microRegion={microRegion} />}
           {!isWindowsSelected && <SshKey />}
           {microRegion && <Backup microRegion={microRegion} />}

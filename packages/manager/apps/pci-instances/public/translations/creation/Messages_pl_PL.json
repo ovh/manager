@@ -209,5 +209,17 @@
   "pci_instance_creation_availabilityZone_help_manual": "Możesz wybrać jedną z trzech stref dostępnych w regionie, rozdzielić instancje między kilka centrów danych i w ten sposób wdrożyć własne mechanizmy redundancji.",
   "pci_instance_creation_availabilityZone_help_link": "Dowiedz się więcej o systemach multi-AZ i dobrych praktykach →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "W Private Network wykryto adres Basic Public IP. Aby utworzyć gateway, utwórz nową sieć Private Network lub wybierz inną.",
-  "pci_instance_creation_region_unavailable": "Region niedostępny"
+  "pci_instance_creation_region_unavailable": "Region niedostępny",
+  "pci_instance_creation_volumes_title": "Dodaj wolumeny",
+  "pci_instance_creation_volumes_description": "Wolumeny to przestrzeń dyskowa podłączona do Twojej instancji. Każda instancja wymaga co najmniej jednego wolumenu blokowego na dysk systemowy, a łącznie możesz podłączyć maksymalnie 16 wolumenów blokowych.",
+  "pci_instance_creation_volumes_system_notice": "<strong>V0 - jeden stały wolumen.</strong> Wolumen systemowy o rozmiarze {{size}} jest obowiązkowy i nie można go zmienić ani usunąć. Przestrzeń dyskowa stanowi teraz odrębną pozycję na rachunku.",
+  "pci_instance_creation_volumes_column_storage": "Przestrzeń dyskowa",
+  "pci_instance_creation_volumes_column_size": "Rozmiar",
+  "pci_instance_creation_volumes_system_badge": "System",
+  "pci_instance_creation_volumes_local_name": "Block Storage — Low Latency (lokalny)",
+  "pci_instance_creation_volumes_local_spec": "Lokalny {{technology}} · low latency",
+  "pci_instance_creation_volumes_size_locked": "Ten rozmiar jest stały i nie można go zmienić",
+  "pci_instance_creation_volumes_price_per_hour": "/ godz.",
+  "pci_instance_creation_volumes_price_per_month": "/ mies.",
+  "pci_instance_creation_cart_volumes_title": "Wolumeny"
 }

@@ -209,5 +209,17 @@
   "pci_instance_creation_availabilityZone_help_manual": "Puoi scegliere tra le tre AZ disponibili nella Region. Questo ti permette di ripartire le tue istanze su più AZ e realizzare i tuoi meccanismi di ridondanza.",
   "pci_instance_creation_availabilityZone_help_link": "Scopri di più su multi-AZ e best practice →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "Un Basic Public IP è stato rilevato sulla tua Private Network: crea o seleziona un’altra Private Network per creare un gateway",
-  "pci_instance_creation_region_unavailable": "Region non disponibile"
+  "pci_instance_creation_region_unavailable": "Region non disponibile",
+  "pci_instance_creation_volumes_title": "Aggiungi volumi",
+  "pci_instance_creation_volumes_description": "I volumi costituiscono lo storage associato alla tua istanza. Ogni istanza necessita di almeno un volume a blocchi per il disco di sistema e puoi associare fino a 16 volumi a blocchi in totale.",
+  "pci_instance_creation_volumes_system_notice": "<strong>V0 - un volume fisso.</strong> Il volume di sistema da {{size}} è obbligatorio e non può essere ridimensionato né rimosso. Lo storage è ora una voce di fatturazione a sé stante.",
+  "pci_instance_creation_volumes_column_storage": "Storage",
+  "pci_instance_creation_volumes_column_size": "Dimensione",
+  "pci_instance_creation_volumes_system_badge": "Sistema",
+  "pci_instance_creation_volumes_local_name": "Block Storage — Low Latency (locale)",
+  "pci_instance_creation_volumes_local_spec": "{{technology}} locale · low latency",
+  "pci_instance_creation_volumes_size_locked": "Questa dimensione è fissa e non può essere modificata",
+  "pci_instance_creation_volumes_price_per_hour": "/ ora",
+  "pci_instance_creation_volumes_price_per_month": "/ mese",
+  "pci_instance_creation_cart_volumes_title": "Volumi"
 }

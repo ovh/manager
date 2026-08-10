@@ -210,5 +210,17 @@
   "pci_instance_creation_availabilityZone_help_manual": "You can choose from the three AZs available in the region. This way, you can distribute your instances across several AZs, and set up your own redundancy mechanisms.",
   "pci_instance_creation_availabilityZone_help_link": "Find out more about multi-AZ setups and best practices →",
   "pci_instance_creation_network_gateway_basic_public_ip_on_private_network_tooltip": "It appears you have a Basic Public IP on your Private Network. Please create or select another Private Network to create a gateway",
-  "pci_instance_creation_region_unavailable": "Region unavailable"
+  "pci_instance_creation_region_unavailable": "Region unavailable",
+  "pci_instance_creation_volumes_title": "Add volumes",
+  "pci_instance_creation_volumes_description": "Volumes are storage attached to your instance. Every instance needs at least one block volume for its system disk, and you can attach up to 16 block volumes in total.",
+  "pci_instance_creation_volumes_system_notice": "<strong>V0 - one fixed volume.</strong> The {{size}} system volume is mandatory and can't be resized or removed. Process storage is now its own line item.",
+  "pci_instance_creation_volumes_column_storage": "Storage",
+  "pci_instance_creation_volumes_column_size": "Size",
+  "pci_instance_creation_volumes_system_badge": "System",
+  "pci_instance_creation_volumes_local_name": "Block Storage — Low Latency (Local)",
+  "pci_instance_creation_volumes_local_spec": "Local {{technology}} · low latency",
+  "pci_instance_creation_volumes_size_locked": "This size is fixed and cannot be changed",
+  "pci_instance_creation_volumes_price_per_hour": "/ hour",
+  "pci_instance_creation_volumes_price_per_month": "/ month",
+  "pci_instance_creation_cart_volumes_title": "Volumes"
 }

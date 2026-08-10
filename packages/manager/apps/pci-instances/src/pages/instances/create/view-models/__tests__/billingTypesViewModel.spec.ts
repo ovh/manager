@@ -37,4 +37,52 @@ describe('selectBillingTypes ViewModel', () => {
       selectBillingTypes(fakeDeps)('AlmaLinux 8', '', image ?? null),
     ).toStrictEqual([]);
   });
+
+  describe('non-period prices', () => {
+    const selectWithPrices = (prices: { type: string }[]) =>
+      selectBillingTypes({
+        ...fakeDeps,
+        instancesCatalogPort: {
+          selectInstancesCatalog: vi.fn().mockReturnValue({
+            entities: {
+              flavorPrices: {
+                byId: new Map([['flavor_linux_price', { prices }]]),
+              },
+            },
+          }),
+        },
+      } as Deps)('project', 'flavor', 'linux');
+
+    it('offers both periods when the catalog prices both', () => {
+      expect(
+        selectWithPrices([{ type: 'hour' }, { type: 'month' }]),
+      ).toStrictEqual([BILLING_TYPE.Hourly, BILLING_TYPE.Monthly]);
+    });
+
+    it('never turns a localDisk price into a billing option', () => {
+      expect(
+        selectWithPrices([
+          { type: 'hour' },
+          { type: 'month' },
+          { type: 'localDisk' },
+        ]),
+      ).toStrictEqual([BILLING_TYPE.Hourly, BILLING_TYPE.Monthly]);
+    });
+
+    it('keeps an hourly-only flavor hourly-only despite a localDisk price', () => {
+      expect(
+        selectWithPrices([{ type: 'hour' }, { type: 'localDisk' }]),
+      ).toStrictEqual([BILLING_TYPE.Hourly]);
+    });
+
+    it('ignores licence prices', () => {
+      expect(
+        selectWithPrices([
+          { type: 'hour' },
+          { type: 'licence' },
+          { type: 'licenceMonth' },
+        ]),
+      ).toStrictEqual([BILLING_TYPE.Hourly]);
+    });
+  });
 });
