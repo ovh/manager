@@ -16,28 +16,29 @@ import { useEffect, useState } from 'react';
 
 type VatSelectProps = {
   vatId: string;
-  onValueChange: (value: string | undefined) => void;
+  onValueChange: (value: string) => void;
 };
 
 export default function VatSelect({ vatId, onValueChange }: VatSelectProps) {
   // undefined = nothing picked: the customer must explicitly choose between
-  // the detected VAT and "no VAT"
+  // the detected VAT and "no VAT" (neither tile is highlighted on mount)
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     undefined,
   );
 
   const { t } = useTranslation('account-details');
 
-  // clear the pre-filled VAT so the form value matches the empty selection
+  // clear the pre-filled VAT so the form value matches the empty selection.
+  // PUT /me only accepts an empty string or a VAT validated by /newAccount/rules
   useEffect(() => {
-    onValueChange(undefined);
+    onValueChange('');
   }, []);
 
   return (
     <RadioGroup
       onValueChange={({ value: newValue }) => {
         setSelectedValue(newValue ?? undefined);
-        onValueChange(newValue || undefined);
+        onValueChange(newValue || '');
       }}
     >
       <Tile selected={selectedValue === vatId}>
