@@ -265,7 +265,10 @@ export type NodePool = {
   attachFloatingIps?: TAttachFloatingIPs;
 };
 
-export type NodePoolPrice = NodePool & { monthlyPrice: number };
+export type NodePoolPrice = NodePool & {
+  monthlyPrice: number;
+  localStorage?: { label: string | null } | null;
+};
 
 export enum ResourceStatus {
   READY = 'READY',

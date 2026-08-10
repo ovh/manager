@@ -12,6 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Wprowadź poprawny adres IP",
   "kubernetes_network_form_label": "Podłączona sieć prywatna",
   "kubernetes_network_form_none": "Brak (IP publiczne)",
+  "kubernetes_network_form_none_price": "Do każdego węzła przypisywany jest publiczny adres IP, rozliczany {{price}} za węzeł.",
   "kubernetes_network_form_description": "Twoje węzły otrzymają adres IP we VLAN-ie przypisanym do wybranej sieci prywatnej.",
   "kubernetes_network_form_add": "Utwórz prywatną sieć",
   "kubernetes_network_form_subnet": "Wybierz podsieć dla klastra",

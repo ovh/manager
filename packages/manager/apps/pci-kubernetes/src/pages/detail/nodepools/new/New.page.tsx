@@ -219,7 +219,10 @@ export default function NewPage(): ReactElement {
           <FinalBillingStep
             isAdding={isAdding}
             price={price?.hour ?? 0}
+            region={cluster?.region}
             regionType={regionInformations?.type}
+            plan={cluster?.plan}
+            hasPrivateNetwork={!!cluster?.privateNetworkId}
             monthlyPrice={price?.month}
             monthlyBilling={billingState.monthlyBilling}
             warn={billingState.warn}
@@ -236,6 +239,8 @@ export default function NewPage(): ReactElement {
       store.selectedAvailabilityZones,
       isClusterPending,
       cluster?.region,
+      cluster?.plan,
+      cluster?.privateNetworkId,
       projectId,
       regionInformations,
       billingState,

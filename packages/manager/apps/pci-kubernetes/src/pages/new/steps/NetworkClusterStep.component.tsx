@@ -20,6 +20,7 @@ import MultiZoneInfo from '@/components/network/MultiZoneInfo.component';
 import NoGatewayLinkedMessage from '@/components/network/NoGatewayLinkedWarning.component';
 import { isStandardPlan } from '@/helpers';
 import { isValidGateway } from '@/helpers/networks';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
 import { DeploymentMode, TClusterPlanEnum } from '@/types';
 
 export type TNetworkFormState = {
@@ -44,6 +45,7 @@ export default function NetworkClusterStep({
 }: Readonly<NetworkClusterStepProps>) {
   const { projectId } = useParam('projectId');
   const [form, setForm] = useState<TNetworkFormState>({});
+  const hasRepricing = useRepricingInstancesAvailable();
 
   const { data: availablePrivateNetworks, isPending } = useAvailablePrivateNetworks(
     projectId,
@@ -100,14 +102,14 @@ export default function NetworkClusterStep({
             subnet={form.subnet}
             networks={availablePrivateNetworks}
             onSelect={(privateNetwork) => {
-              if (privateNetwork) {
-                setForm((network) => ({
-                  ...network,
-                  privateNetwork,
-                  subnet: null,
-                  loadBalancersSubnet: null,
-                }));
-              }
+              if (!privateNetwork && !hasRepricing) return;
+
+              setForm((network) => ({
+                ...network,
+                privateNetwork,
+                subnet: null,
+                loadBalancersSubnet: null,
+              }));
             }}
           />
           {form.privateNetwork && (

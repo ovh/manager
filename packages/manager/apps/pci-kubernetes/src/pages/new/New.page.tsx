@@ -136,7 +136,7 @@ export default function NewPage() {
         updatePolicy: stepper.form.updatePolicy,
         ...(stepper.form.nodePools && {
           nodepools: stepper.form.nodePools.map(
-            ({ localisation: _1, monthlyPrice: _2, ...nodePool }) => nodePool,
+            ({ localisation: _1, monthlyPrice: _2, localStorage: _3, ...nodePool }) => nodePool,
           ),
         }),
         privateNetworkId: stepper.form.network.privateNetwork?.id,

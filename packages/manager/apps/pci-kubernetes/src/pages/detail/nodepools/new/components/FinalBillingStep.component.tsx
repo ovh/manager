@@ -7,8 +7,12 @@ import { ODS_BUTTON_VARIANT, ODS_TEXT_SIZE } from '@ovhcloud/ods-components';
 import { OsdsButton, OsdsSpinner, OsdsText } from '@ovhcloud/ods-components/react';
 
 import BillingStep, { TBillingStepProps } from '@/components/create/BillingStep.component';
+import { nodesAreAssignedPublicIp } from '@/helpers/node-pool';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
-import { DeploymentMode } from '@/types';
+import useNodeLocalStorage from '@/hooks/useNodeLocalStorage';
+import usePublicIpPrice from '@/hooks/usePublicIpPrice';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
+import { DeploymentMode, TClusterPlan } from '@/types';
 
 import { useNewPoolStore } from '../store';
 
@@ -18,14 +22,20 @@ type TFinalBillingStepProps = {
   monthlyPrice?: number;
   monthlyBilling: TBillingStepProps['monthlyBilling'];
   warn: boolean;
+  region?: string | null;
   regionType?: DeploymentMode | null;
+  plan?: TClusterPlan;
+  hasPrivateNetwork?: boolean;
   onCreate: () => void;
   onCancel: () => void;
 };
 
 export default function FinalBillingStep({
   isAdding,
+  region,
   regionType,
+  plan,
+  hasPrivateNetwork,
   price,
   monthlyPrice,
   monthlyBilling,
@@ -37,6 +47,14 @@ export default function FinalBillingStep({
   const store = useNewPoolStore();
   const floatingIpPriceData = useFloatingIpsPrice(true, regionType ?? null);
   const floatingIpPrice = floatingIpPriceData.price;
+  const hasRepricing = useRepricingInstancesAvailable();
+  const localStorage = useNodeLocalStorage(store.flavor, region);
+  const { price: publicIpPrice } = usePublicIpPrice(region ?? null);
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({
+    hasRepricing,
+    plan,
+    hasPrivateNetwork: !!hasPrivateNetwork,
+  });
 
   return (
     <>
@@ -44,6 +62,8 @@ export default function FinalBillingStep({
         price={price}
         numberOfNodes={store.scaling?.quantity.desired}
         priceFloatingIp={store.attachFloatingIps?.enabled && store.flavor ? floatingIpPrice : null}
+        pricePublicIp={nodesUsePublicIp ? publicIpPrice : null}
+        priceLocalStorage={hasRepricing ? localStorage.price : null}
         monthlyPrice={monthlyPrice}
         monthlyBilling={monthlyBilling}
         warn={warn}
