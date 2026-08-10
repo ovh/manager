@@ -7,6 +7,10 @@ import { TInstance } from '@/types/instance/entity.type';
 import { getVolumes } from '@/data/api/volume';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 
+vi.mock('@/hooks/repricing/useRepricingInstancesAvailable', () => ({
+  useRepricingInstancesAvailable: () => false,
+}));
+
 const fakeInstance = {
   id: 'fake-instance-id',
   name: 'fake-instance',

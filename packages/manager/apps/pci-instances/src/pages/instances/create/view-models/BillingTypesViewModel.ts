@@ -1,6 +1,9 @@
 import { Deps } from '@/deps/deps';
+import { TPrice } from '@/domain/entities/instancesCatalog';
 import { BILLING_TYPE } from '@/types/instance/common.type';
 import { Reader } from '@/types/utils.type';
+
+const BILLING_PERIOD_PRICE_TYPES: readonly TPrice['type'][] = ['hour', 'month'];
 
 type TSelectBillingData = (
   projectId: string,
@@ -22,9 +25,9 @@ export const selectBillingTypes: Reader<Deps, TSelectBillingData> = (deps) => (
   const flavorPriceId = `${flavorId}_${osType}_price`;
   const prices = data.entities.flavorPrices.byId.get(flavorPriceId)?.prices;
   const periodPrices =
-    prices?.filter(
-      (price) => price.type !== 'licence' && price.type !== 'licenceMonth',
-    ) || [];
+    prices?.filter((price) =>
+      BILLING_PERIOD_PRICE_TYPES.includes(price.type),
+    ) ?? [];
 
   return periodPrices.map(({ type }) =>
     type === 'hour' ? BILLING_TYPE.Hourly : BILLING_TYPE.Monthly,

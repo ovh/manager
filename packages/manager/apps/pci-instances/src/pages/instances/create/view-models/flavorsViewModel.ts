@@ -36,7 +36,7 @@ export const getMinimumPrices = (pricings: TFlavorPrices[]) =>
       pricing.prices.forEach(({ price, type, monthlyEquivalent }) => {
         if (
           type === 'hour' &&
-          (!acc.realMinimumHourlyPrice ||
+          (acc.realMinimumHourlyPrice === null ||
             acc.realMinimumHourlyPrice > price.priceInUcents)
         ) {
           acc.realMinimumHourlyPrice = price.priceInUcents;
@@ -44,15 +44,16 @@ export const getMinimumPrices = (pricings: TFlavorPrices[]) =>
 
         if (
           type === 'month' &&
-          (!acc.realMinimumMonthlyPrice ||
+          (acc.realMinimumMonthlyPrice === null ||
             acc.realMinimumMonthlyPrice > price.priceInUcents)
         ) {
           acc.realMinimumMonthlyPrice = price.priceInUcents;
         }
 
         if (
+          type === 'hour' &&
           monthlyEquivalent &&
-          (!acc.estimatedMinimumMonthlyPrice ||
+          (acc.estimatedMinimumMonthlyPrice === null ||
             acc.estimatedMinimumMonthlyPrice > monthlyEquivalent.priceInUcents)
         ) {
           acc.estimatedMinimumMonthlyPrice = monthlyEquivalent.priceInUcents;

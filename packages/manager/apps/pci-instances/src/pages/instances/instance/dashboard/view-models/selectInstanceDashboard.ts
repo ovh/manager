@@ -1,6 +1,6 @@
 import { getInstanceStatus } from '@/pages/instances/mapper/status.mapper';
 import { TAction, TActionLink } from '@/types/instance/action/action.type';
-import { TActionName } from '@/types/instance/common.type';
+import { TActionName, TPriceType } from '@/types/instance/common.type';
 import {
   TInstance,
   TInstanceAction,
@@ -20,10 +20,12 @@ import {
   TDiskViewModel,
 } from '@/pages/instances/create/view-models/mappers/diskMapper';
 
+type TPriceRowLabel = 'instance' | 'licence' | 'local_storage';
+
 type TPrice = {
-  label: string;
-  type: string;
-  value: number;
+  label: TPriceRowLabel;
+  type: TPriceType;
+  value: number | null;
 };
 
 type TFlavor = {
@@ -108,14 +110,29 @@ const mapFlavor = ({ name, specs }: TInstanceFlavor) => ({
     : '-',
 });
 
-const mapPricings = (pricings: TInstancePrice[]) =>
+const PRICE_ROW_LABELS: Record<TPriceType, TPriceRowLabel | null> = {
+  hour: 'instance',
+  month: 'instance',
+  licence: 'licence',
+  licenceMonth: 'licence',
+  localDisk: 'local_storage',
+  savingplans: null,
+};
+
+const mapPricings = (
+  pricings: TInstancePrice[],
+  isStoragePriceDisplayed: boolean,
+): TPrice[] =>
   pricings
     .filter((pricing) => pricing.status === 'enabled')
-    .map((pricing) => ({
-      label: pricing.type !== 'licence' ? 'instance' : 'licence', // label will be a translation key
-      type: pricing.type,
-      value: pricing.priceInUcents,
-    }));
+    .flatMap((pricing) => {
+      const label = PRICE_ROW_LABELS[pricing.type] ?? null;
+
+      if (!label) return [];
+      if (label === 'local_storage' && !isStoragePriceDisplayed) return [];
+
+      return [{ label, type: pricing.type, value: pricing.priceInUcents }];
+    });
 
 const canActivateMonthlyBilling = (actions: TInstanceAction[]) =>
   actions.some(({ name }) => name === 'activate_monthly_billing');
@@ -296,6 +313,7 @@ const getBackupsInfo = (backups: TInstanceBackup[], locale: string) => ({
 export const selectInstanceDashboard = (
   { projectUrl, dedicatedUrl }: TUrlBuilderParams,
   locale: string,
+  isStoragePriceDisplayed: boolean,
   instance?: TInstance,
 ): TInstanceDashboardViewModel => {
   if (!instance) return null;
@@ -307,7 +325,7 @@ export const selectInstanceDashboard = (
     region: instance.region,
     publicNetwork: mapPublicNetwork(dedicatedUrl, instance.addresses),
     privateNetwork: mapPrivateNetwork(instance.addresses),
-    pricings: mapPricings(instance.pricings || []),
+    pricings: mapPricings(instance.pricings || [], isStoragePriceDisplayed),
     task: instance.task,
     status: getInstanceStatus(instance.status),
     image: instance.image?.name ?? '',

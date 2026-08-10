@@ -6,6 +6,10 @@ import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { getInstance } from '@/data/api/instance';
 import { renderWithMockedWrappers } from '@/__tests__/wrapperRenders';
 
+vi.mock('@/hooks/repricing/useRepricingInstancesAvailable', () => ({
+  useRepricingInstancesAvailable: () => false,
+}));
+
 const fakeInstance = {
   id: 'fake-instance-id',
   name: 'fake-instance',

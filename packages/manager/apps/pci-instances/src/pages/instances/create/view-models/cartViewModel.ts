@@ -64,6 +64,7 @@ export type TSelectFlavorDetails = {
   bandwidthPrivate: number;
   bandwidthPrivateUnit: string;
   price: number;
+  localDiskPrice: number | null;
   gpu?: string;
   numberOfGpu?: number;
   vRamTotal?: number;
@@ -101,6 +102,28 @@ const getFlavorPrice = ({
         ? price.type === 'hour'
         : price.type === 'month',
     )?.price.priceInUcents ?? null
+  );
+};
+
+const getLocalDiskPrice = ({
+  flavorName,
+  regionId,
+  osType,
+  flavorPricesById,
+}: Omit<TFlavorPricesArgs, 'billingType'>): number | null => {
+  const flavorOsTypePriceId = getRegionalizedFlavorOsTypePriceId(
+    flavorName,
+    regionId,
+    osType,
+  );
+
+  const flavorPrices = flavorPricesById.get(flavorOsTypePriceId);
+
+  if (!flavorPrices) return null;
+
+  return (
+    flavorPrices.prices.find((price) => price.type === 'localDisk')?.price
+      .priceInUcents ?? null
   );
 };
 
@@ -155,6 +178,12 @@ export const selectFlavorDetails = (catalog: TInstancesCatalog | undefined) => {
       vRamTotal: foundFlavor.specifications.gpu?.memory.size.value,
       gpuMemoryInterface: foundFlavor.specifications.gpu?.memory.interface,
       price,
+      localDiskPrice: getLocalDiskPrice({
+        flavorName: foundFlavor.name,
+        regionId: foundRegionalizedFlavor.regionId,
+        osType,
+        flavorPricesById: data.entities.flavorPrices.byId,
+      }),
     };
   };
 };

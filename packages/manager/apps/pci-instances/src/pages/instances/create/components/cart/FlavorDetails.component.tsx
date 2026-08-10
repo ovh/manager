@@ -8,9 +8,14 @@ import { TSelectFlavorDetails } from '../../view-models/cartViewModel';
 type TFlavorDetails = {
   quantity: number;
   flavor: TSelectFlavorDetails;
+  withStorage: boolean;
 };
 
-export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
+export const FlavorDetails: FC<TFlavorDetails> = ({
+  quantity,
+  flavor,
+  withStorage,
+}) => {
   const { t } = useTranslation('creation');
 
   const formatBandwidth = (value: number, unit: string) => {
@@ -52,16 +57,18 @@ export const FlavorDetails: FC<TFlavorDetails> = ({ quantity, flavor }) => {
         <Text className="font-semibold text-[--ods-color-heading]">
           {flavor.vCore} {t('pci_instance_creation_cart_flavor_vCore')}
         </Text>
-        <div className="flex flex-col">
-          {flavor.disks.map((disk) => (
-            <Text
-              key={disk.id}
-              className="font-semibold text-[--ods-color-heading]"
-            >
-              <DiskDisplayCell disk={disk} />
-            </Text>
-          ))}
-        </div>
+        {withStorage && (
+          <div className="flex flex-col">
+            {flavor.disks.map((disk) => (
+              <Text
+                key={disk.id}
+                className="font-semibold text-[--ods-color-heading]"
+              >
+                <DiskDisplayCell disk={disk} />
+              </Text>
+            ))}
+          </div>
+        )}
         <Text className="font-semibold text-[--ods-color-heading]">
           {formatBandwidth(
             flavor.bandwidthPrivate,

@@ -4,6 +4,7 @@ import { useInstance } from '@/data/hooks/instance/useInstance';
 import { selectInstanceDashboard } from '../view-models/selectInstanceDashboard';
 import { useDedicatedUrl } from '@/hooks/url/useDedicatedUrl';
 import { useTranslation } from 'react-i18next';
+import { useRepricingInstancesAvailable } from '@/hooks/repricing/useRepricingInstancesAvailable';
 
 type TUseDashboardArgs = {
   region: string | null;
@@ -14,6 +15,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
   const projectUrl = useProjectUrl('public-cloud');
   const dedicatedUrl = useDedicatedUrl();
   const { i18n } = useTranslation();
+  const isStoragePriceDisplayed = useRepricingInstancesAvailable();
 
   const locale = i18n.language.replace('_', '-');
 
@@ -32,6 +34,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       instance: selectInstanceDashboard(
         { projectUrl, dedicatedUrl },
         locale,
+        isStoragePriceDisplayed,
         instance,
       ),
       pendingTasks,
@@ -42,6 +45,7 @@ export const useDashboard = ({ region, instanceId }: TUseDashboardArgs) => {
       projectUrl,
       dedicatedUrl,
       locale,
+      isStoragePriceDisplayed,
       instance,
       pendingTasks,
       isPending,
