@@ -126,12 +126,12 @@ const InstanceGeneralInfoBlock: FC = () => {
       >
         <div className="flex flex-col">
           <div>
-            {instance?.pricings.map(({ value, type, label }) => (
-              <div className="my-4" key={type}>
+            {instance?.pricings.map(({ value, type, label }, index) => (
+              <div className="my-4" key={`${type}-${index}`}>
                 <Text preset={TEXT_PRESET.span}>
                   {t(`pci_instances_dashboard_${label}_price_label`)}
                 </Text>
-                <PriceLabel value={value} type={type} />
+                {value !== null && <PriceLabel value={value} type={type} />}
               </div>
             ))}
           </div>
@@ -151,7 +151,7 @@ const InstanceGeneralInfoBlock: FC = () => {
       </DashboardTileBlock>
       {instance && (
         <DashboardTileBlock>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <Text
               className="my-4 text-[var(--ods-color-primary-500)]"
               preset={TEXT_PRESET.label}

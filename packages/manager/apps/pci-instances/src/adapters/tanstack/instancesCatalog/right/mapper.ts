@@ -320,7 +320,7 @@ const mapFlavorPricesDTOToFlavorPricesEntity = (
     priceInUcents: priceDTO.price.priceInUcents,
     text: priceDTO.price.text,
   },
-  monthlyEquivalent: priceDTO.monthlyEquivalent,
+  monthlyEquivalent: priceDTO.monthlyEquivalent ?? null,
   includeVat: priceDTO.includeVat,
 });
 

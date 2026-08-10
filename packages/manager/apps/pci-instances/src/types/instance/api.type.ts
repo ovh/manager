@@ -9,6 +9,7 @@ import {
   TFlavorSpec,
   TImage,
   TBackup,
+  TPriceType,
 } from './common.type';
 
 export type TInstanceAddressTypeDto = TAddressType;
@@ -105,10 +106,10 @@ type TInstanceFlavorDto = {
 };
 
 export type TInstancePriceDto = {
-  type: 'hour' | 'month' | 'licence' | 'savingplans';
+  type: TPriceType;
   status: 'enabled' | 'available' | 'eligible';
   includeVat: boolean;
-  price: {
+  price?: {
     currencyCode: string;
     priceInUcents: number;
     text: string;

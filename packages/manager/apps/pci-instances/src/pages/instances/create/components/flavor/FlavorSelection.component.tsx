@@ -33,6 +33,7 @@ import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstances
 import { TInstanceCreationForm } from '../../CreateInstance.schema';
 import { selectIsBaseFlavorInAvailableListForCreation } from '../../view-models/cartViewModel';
 import { selectBillingTypes } from '../../view-models/BillingTypesViewModel';
+import { useRepricingInstancesAvailable } from '@/hooks/repricing/useRepricingInstancesAvailable';
 
 export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
   withUnavailable,
@@ -100,10 +101,12 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
       ),
     });
 
+  const hasRepricing = useRepricingInstancesAvailable();
+
   const { columns, rows } = useMemo(() => {
     if (isGpu) {
       return {
-        columns: GpuFlavorColumnsBuilder(t),
+        columns: GpuFlavorColumnsBuilder(t, !hasRepricing),
         rows: GpuFlavorRowsBuilder(
           flavors,
           { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
@@ -113,7 +116,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     }
 
     return {
-      columns: FlavorColumnsBuilder(t),
+      columns: FlavorColumnsBuilder(t, !hasRepricing),
       rows: FlavorRowsBuilder(
         flavors,
         { renderName, renderRadio, renderHourlyPrice, renderMonthlyPrice },
@@ -129,6 +132,7 @@ export const FlavorSelection: FC<{ withUnavailable: boolean }> = ({
     renderMonthlyPrice,
     t,
     withUnavailable,
+    hasRepricing,
   ]);
 
   const availableRegions = useMemo(

@@ -59,13 +59,21 @@ export type TInstanceActionGroup =
   | 'lifecycle'
   | 'shelve';
 
+export type TPriceType =
+  | 'hour'
+  | 'month'
+  | 'licence'
+  | 'licenceMonth'
+  | 'localDisk'
+  | 'savingplans';
+
 export type TPrice = {
-  type: 'hour' | 'month' | 'licence' | 'savingplans' | string;
+  type: TPriceType;
   status: 'enabled' | 'available' | 'eligible';
-  value: number;
-  text: string;
-  priceInUcents: number;
-  currencyCode: string;
+  value: number | null;
+  text: string | null;
+  priceInUcents: number | null;
+  currencyCode: string | null;
   includeVat: boolean;
 };
 

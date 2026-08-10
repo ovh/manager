@@ -33,12 +33,15 @@ const mapVolume = (volume: TInstanceVolumeDto): TInstanceVolume => ({
   size: volume.size ?? null,
 });
 
-const mapPricing = (pricingDto: TInstancePriceDto): TInstancePrice => ({
-  ...pricingDto,
-  currencyCode: pricingDto.price.currencyCode,
-  priceInUcents: pricingDto.price.priceInUcents,
-  text: pricingDto.price.text,
-  value: pricingDto.price.value,
+const mapPricing = ({
+  price,
+  ...pricing
+}: TInstancePriceDto): TInstancePrice => ({
+  ...pricing,
+  currencyCode: price?.currencyCode ?? null,
+  priceInUcents: price?.priceInUcents ?? null,
+  text: price?.text ?? null,
+  value: price?.value ?? null,
 });
 
 const mapAddresses = (dto: TInstanceDto) =>
