@@ -345,6 +345,16 @@ export default class NewAccountFormController {
       model.einvoicingBillingAddress = this.model.einvoicingBillingAddress;
     }
 
+    // PUT /me only accepts an empty string or a VAT validated by
+    // /newAccount/rules: the "no VAT" checkbox (siret component) and the
+    // blanking above both set it to null, which the API rejects
+    const hasVatRule = (this.rules || []).some(
+      (rule) => rule.fieldName === FIELD_NAME_LIST.vat,
+    );
+    if (hasVatRule || FIELD_NAME_LIST.vat in model) {
+      model[FIELD_NAME_LIST.vat] = model[FIELD_NAME_LIST.vat] || '';
+    }
+
     let promise = this.userAccountServiceInfos
       .updateUseraccountInfos(model)
       .then((result) => {

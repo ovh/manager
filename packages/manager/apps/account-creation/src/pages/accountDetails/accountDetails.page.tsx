@@ -339,6 +339,11 @@ function AccountDetailsForm({
       // TODO(back): add einvoicingBillingAddress to the shared User type.
       await putMe(({
         ...updatedUser,
+        // PUT /me only accepts an empty string or a VAT validated by
+        // /newAccount/rules. The zod schema turns the "no VAT" selection (and
+        // any empty optional field) back into undefined, which would drop the
+        // attribute from the payload and leave the detected VAT untouched.
+        ...('vat' in updatedUser && { vat: updatedUser.vat ?? '' }),
         einvoicingBillingAddress,
       } as unknown) as Partial<User>);
 
