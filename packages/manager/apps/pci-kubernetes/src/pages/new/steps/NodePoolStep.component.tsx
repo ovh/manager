@@ -16,7 +16,10 @@ import { Datagrid } from '@ovh-ux/manager-react-components';
 
 import BillingStep from '@/components/create/BillingStep.component';
 import { isStandardPlan } from '@/helpers';
+import { nodesAreAssignedPublicIp } from '@/helpers/node-pool';
 import use3AZPlanAvailable from '@/hooks/use3azPlanAvaible';
+import usePublicIpPrice from '@/hooks/usePublicIpPrice';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
 import { TClusterPlanEnum, TScalingState } from '@/types';
 
 import useCreateNodePools from '../hooks/useCreateNodePool';
@@ -37,7 +40,7 @@ const NodePoolStep = ({
   stepper: ReturnType<typeof useClusterCreationStepper>;
   plan: TClusterPlanEnum;
 }) => {
-  const { t } = useTranslation(['stepper', 'node-pool']);
+  const { t } = useTranslation(['stepper', 'node-pool', 'add-form']);
 
   const { state, actions, view } = useCreateNodePools({
     isLocked: stepper.node.step.isLocked,
@@ -49,14 +52,23 @@ const NodePoolStep = ({
 
   const isStandard = has3AZFeature && isStandardPlan(plan);
 
+  const hasRepricing = useRepricingInstancesAvailable();
+  const { price: publicIpPrice } = usePublicIpPrice(stepper.form.region?.name ?? null);
+  const nodesUsePublicIp = nodesAreAssignedPublicIp({
+    hasRepricing,
+    plan,
+    hasPrivateNetwork: !!stepper.form.network?.privateNetwork,
+  });
+
   const columns = useMemo(
     () =>
       getDatagridColumns({
         onDelete: actions.onDelete,
         t,
         showFloatingIp: isStandard,
+        showLocalStorage: hasRepricing,
       }),
-    [actions.onDelete, isStandard, t],
+    [actions.onDelete, isStandard, hasRepricing, t],
   );
 
   const numberOfZoneSelected = state.nodePoolState.selectedAvailabilityZones?.filter(
@@ -154,7 +166,9 @@ const NodePoolStep = ({
                   ? state.priceFloatingIp
                   : null
               }
+              pricePublicIp={nodesUsePublicIp ? publicIpPrice : null}
               numberOfNodes={state.nodePoolState.scaling?.quantity.desired}
+              priceLocalStorage={hasRepricing ? state.localStorage.price : null}
               monthlyPrice={state.price?.month}
               monthlyBilling={{
                 isComingSoon: view.isPricingComingSoon ?? false,

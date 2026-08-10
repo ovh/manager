@@ -35,7 +35,10 @@ export type NodePool = {
   monthlyBilled: boolean;
 };
 
-export type NodePoolPrice = NodePool & { monthlyPrice: number };
+export type NodePoolPrice = NodePool & {
+  monthlyPrice: number;
+  localStorage?: { label: string | null } | null;
+};
 
 export type KubeClusterCreationParams = {
   name: string;

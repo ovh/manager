@@ -54,5 +54,8 @@
   "kube_common_node_pool_deploy_floating_ip_content2": "Direkter <strong>öffentlicher Zugang</strong> zum Node.",
   "kube_common_node_pool_deploy_floating_ip_content3": "Ermöglicht die Verwendung der <a>öffentlichen Bandbreite des Nodes</a> (statt der des Managed Gateway).",
   "kube_common_node_pool_deploy_floating_ip_content4": "Der Lebenszyklus der Floating IP ist mit dem des Nodes verknüpft (und wird mit diesem gelöscht).",
-  "kube_common_node_pool_node": "Node"
+  "kube_common_node_pool_node": "Node",
+  "kube_common_node_pool_estimation_local_storage": "Lokaler Speicher:",
+  "kube_common_node_pool_estimation_public_ip_price": "Öffentliche IPs:",
+  "kube_common_node_pool_estimation_approximate_price": "~{{price}}"
 }

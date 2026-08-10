@@ -2,5 +2,16 @@
   "kubernetes_add_node_pool_description": "Sie können einen oder mehrere Node-Pools direkt nach der Erstellung des Clusters konfigurieren. Ein Node-Pool bezeichnet eine Gruppe von Worker-Nodes des gleichen Typs.",
   "kubernetes_add_node_pool_node_count": "Anzahl an Nodes",
   "kubernetes_add_node_pool_node_type": "Node-Typ",
-  "kube_common_node_pool_model_type_selector": "Wählen Sie ein Modell aus"
+  "kube_common_node_pool_model_type_selector": "Wählen Sie ein Modell aus",
+  "kube_common_node_pool_volumes_title": "Volumes hinzufügen",
+  "kube_common_node_pool_volumes_description": "Volumes sind der Speicher, der an Ihre Instanz angehängt ist. Jede Instanz benötigt mindestens ein Block Volume für ihre Systemfestplatte, und Sie können insgesamt bis zu 16 Block Volumes anhängen.",
+  "kube_common_node_pool_volumes_system_notice": "<strong>V0 - ein festes Volume.</strong> Das {{size}} große Systemvolume ist obligatorisch und kann weder vergrößert noch entfernt werden. Speicher ist ab sofort ein eigener Rechnungsposten.",
+  "kube_common_node_pool_volumes_column_storage": "Speicher",
+  "kube_common_node_pool_volumes_column_size": "Größe",
+  "kube_common_node_pool_volumes_system_badge": "System",
+  "kube_common_node_pool_volumes_local_name": "Block Storage — Low latency (lokal)",
+  "kube_common_node_pool_volumes_size_locked": "Diese Größe ist fest und kann nicht geändert werden",
+  "kube_common_node_pool_volumes_price_per_hour": "/ Stunde",
+  "kube_common_node_pool_volumes_price_per_month": "/ Monat",
+  "kube_common_node_pool_volumes_local_spec": "Lokales {{technology}} · Low latency"
 }

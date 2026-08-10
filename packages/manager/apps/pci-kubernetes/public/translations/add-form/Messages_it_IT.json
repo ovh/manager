@@ -2,5 +2,16 @@
   "kubernetes_add_node_pool_description": "Una volta creato il cluster, puoi configurare uno o più pool di nodi. Un pool di nodi indica un insieme di nodi di lavoro dello stesso tipo.",
   "kubernetes_add_node_pool_node_count": "Numero di nodi",
   "kubernetes_add_node_pool_node_type": "Tipo di nodi",
-  "kube_common_node_pool_model_type_selector": "Seleziona un modello"
+  "kube_common_node_pool_model_type_selector": "Seleziona un modello",
+  "kube_common_node_pool_volumes_title": "Aggiungi volumi",
+  "kube_common_node_pool_volumes_description": "I volumi costituiscono lo storage associato alla tua istanza. Ogni istanza necessita di almeno un volume a blocchi per il disco di sistema e puoi associare fino a 16 volumi a blocchi in totale.",
+  "kube_common_node_pool_volumes_system_notice": "<strong>V0 - un volume fisso.</strong> Il volume di sistema da {{size}} è obbligatorio e non può essere ridimensionato né rimosso. Lo storage è ora una voce di fatturazione a sé stante.",
+  "kube_common_node_pool_volumes_column_storage": "Storage",
+  "kube_common_node_pool_volumes_column_size": "Dimensione",
+  "kube_common_node_pool_volumes_system_badge": "Sistema",
+  "kube_common_node_pool_volumes_local_name": "Block Storage — Low latency (locale)",
+  "kube_common_node_pool_volumes_size_locked": "Questa dimensione è fissa e non può essere modificata",
+  "kube_common_node_pool_volumes_price_per_hour": "/ ora",
+  "kube_common_node_pool_volumes_price_per_month": "/ mese",
+  "kube_common_node_pool_volumes_local_spec": "{{technology}} locale · Low latency"
 }

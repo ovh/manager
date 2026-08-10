@@ -12,6 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Gültige IP-Adresse angeben",
   "kubernetes_network_form_label": "Verbundenes privates Netzwerk",
   "kubernetes_network_form_none": "Keine (öffentlichen IPs)",
+  "kubernetes_network_form_none_price": "Jedem Node wird eine öffentliche IP-Adresse zugewiesen, die mit {{price}} pro Node abgerechnet wird.",
   "kubernetes_network_form_description": "Ihren Nodes wird eine IP-Adresse im VLAN des ausgewählten privaten Netzwerks zugewiesen.",
   "kubernetes_network_form_add": "Privates Netzwerk erstellen",
   "kubernetes_network_form_subnet": "Subnetz für Ihren Cluster auswählen",

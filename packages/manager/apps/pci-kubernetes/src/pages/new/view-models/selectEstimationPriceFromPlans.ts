@@ -26,6 +26,8 @@ const selectEstimationPriceFromPlans =
       has3AZ?: boolean;
       showSavingPlan?: boolean;
       priceFloatingIp?: number | null;
+      pricePublicIp?: number | null;
+      getLocalStorageMonthlyPrice?: (flavorName: string) => number | null;
     },
   ): EstimationPriceViewModel[] => {
     const getClusterPlan = () => {
@@ -45,8 +47,32 @@ const selectEstimationPriceFromPlans =
             return total;
           }, 0)
         : null;
+    const localStorageMonthlyPricePerPool =
+      nodePools?.map((pool) => {
+        const monthlyPrice = options?.getLocalStorageMonthlyPrice?.(pool.flavorName) ?? null;
+        return monthlyPrice === null ? null : monthlyPrice * pool.desiredNodes;
+      }) ?? [];
+    const hasKnownLocalStoragePrice = localStorageMonthlyPricePerPool.some(
+      (monthlyPrice) => monthlyPrice !== null,
+    );
+    const localStoragePrice = localStorageMonthlyPricePerPool.reduce<number>(
+      (total, monthlyPrice) => total + (monthlyPrice ?? 0),
+      0,
+    );
+
+    const totalNodes = nodePools?.reduce((total, item) => total + item.desiredNodes, 0) ?? 0;
+    const nodesCarryPublicIp =
+      options?.pricePublicIp !== null && options?.pricePublicIp !== undefined;
+    const publicIpPrices = nodesCarryPublicIp ? (options?.pricePublicIp ?? 0) * totalNodes : null;
+    const billsLocalStorage = !!options?.getLocalStorageMonthlyPrice;
+
     const clusterPrice = getClusterPlan();
-    const totalPrice = clusterPrice + nodePoolsPrice + (floatingIpPrices ?? 0);
+    const totalPrice =
+      clusterPrice +
+      nodePoolsPrice +
+      localStoragePrice +
+      (floatingIpPrices ?? 0) +
+      (publicIpPrices ?? 0);
 
     const estimations: [string, boolean, string?][] = [
       [t('kube_common_node_pool_estimation_text'), options?.showSavingPlan ?? false],
@@ -63,10 +89,19 @@ const selectEstimationPriceFromPlans =
         getFormattedMonthlyCatalogPrice(nodePoolsPrice),
       ],
       [
-        // no translation
-        'Floating IPs: ',
+        t('kube_common_node_pool_estimation_local_storage'),
+        billsLocalStorage,
+        hasKnownLocalStoragePrice ? getFormattedMonthlyCatalogPrice(localStoragePrice) : undefined,
+      ],
+      [
+        'Floating IPs:',
         !!floatingIpPrices,
         floatingIpPrices ? getFormattedMonthlyCatalogPrice(floatingIpPrices) : undefined,
+      ],
+      [
+        t('kube_common_node_pool_estimation_public_ip_price'),
+        nodesCarryPublicIp,
+        getFormattedMonthlyCatalogPrice(publicIpPrices ?? 0),
       ],
       [
         t('kube_common_estimation_total_price'),
