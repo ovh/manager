@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.18.0...@ovh-ux/backup-agent@1.19.0) (2026-08-11)
+
+
+### Features
+
+* **baremetal:** update us links on onboarding page ([69e638f](https://github.com/ovh/manager/commit/69e638f79eeb1cad73ea843a5777e47072c713aa)), closes [#MANAGER-22103](https://github.com/ovh/manager/issues/MANAGER-22103)
+
+
+
+
+
 # [1.18.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.17.0...@ovh-ux/backup-agent@1.18.0) (2026-08-07)
 
 
