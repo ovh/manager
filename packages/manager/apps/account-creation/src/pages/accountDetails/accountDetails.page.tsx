@@ -243,11 +243,12 @@ function AccountDetailsForm({
   const einvoicingRule = einvoicingRules?.einvoicingBillingAddress;
 
   // A selection is only required when the picker is shown (several addresses):
-  // the empty and single-address cases are informational only.
+  // the empty and single-address cases are informational only. Empty entries are
+  // ignored, /newAccount/rules answers in: [''] when it knows no address.
   const einvoicingAddressValue = watch('einvoicingBillingAddress');
   const isEinvoicingSelectionMissing =
     Boolean(einvoicingRule?.mandatory) &&
-    (einvoicingRule?.in?.length ?? 0) > 1 &&
+    (einvoicingRule?.in?.filter(Boolean).length ?? 0) > 1 &&
     !einvoicingAddressValue;
 
   // VAT field, rendered in the "Facturation" (FR B2B/B2G) or legal section

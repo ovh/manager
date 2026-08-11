@@ -30,7 +30,10 @@ export default function EinvoicingAddressSelect({
 }: EinvoicingAddressSelectProps) {
   const { t } = useTranslation('account-details');
 
-  const addresses = rule?.in ?? [];
+  // /newAccount/rules answers with a single empty entry (in: ['']) when the PPF
+  // directory knows no address for the SIRET: dropping empty entries keeps the
+  // "no address" banner from being mistaken for a "single address" one
+  const addresses = (rule?.in ?? []).filter(Boolean);
   const singleAddress =
     addresses.length === 1 ? rule?.defaultValue ?? addresses[0] : undefined;
 
