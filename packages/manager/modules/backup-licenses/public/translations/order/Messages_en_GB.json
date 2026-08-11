@@ -130,6 +130,14 @@
     "show_more": "Show more ({{total}})",
     "show_less": "Show less"
   },
+  "terms": {
+    "section_title": "General Terms",
+    "placeholder": "Select a region to view the applicable contracts.",
+    "loading": "Loading contracts...",
+    "error": "An error occurred while preparing your order.",
+    "retry": "Try again",
+    "accept_label": "I have read and accept the general and specific terms of service of OVHcloud."
+  },
   "summary": {
     "universe": {
       "enterprise": "Hosted Private Cloud",

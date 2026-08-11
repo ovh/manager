@@ -23,7 +23,7 @@ import {
 import { LicenseApiValue, ServerVaultFormState } from '@/types/Order.type';
 import { BACKUP_LICENSES_ORDER_PLAN_CODES } from '@/utils/orderComposition/orderComposition';
 
-import { useOrderBackupLicenses } from './useOrderBackupLicenses';
+import { usePrepareBackupLicensesCart } from './usePrepareBackupLicensesCart';
 
 const form: ServerVaultFormState = {
   displayName: 'backup-prod-paris',
@@ -34,16 +34,15 @@ const form: ServerVaultFormState = {
   regionApiValue: 'eu-west-par',
 };
 
-const renderOrderHook = async (mockParams: MockParams = {}) => {
+const renderPrepareHook = async (mockParams: MockParams = {}) => {
   setupMswMock({
     cartRequiredConfiguration: mockOrderFunnelRequiredConfiguration,
     ...mockParams,
   });
   const wrapper = await testWrapperBuilder().withQueryClient().withShellContext().build();
-  const onSuccess = vi.fn();
-  const { result } = renderHook(() => useOrderBackupLicenses({ onSuccess }), { wrapper });
+  const { result } = renderHook(() => usePrepareBackupLicensesCart(), { wrapper });
 
-  return { result, onSuccess };
+  return { result };
 };
 
 const posted = (requests: WatchedApiRequest[], fragment: string) =>
@@ -57,7 +56,7 @@ const isDefinitionRead = ({ method, url }: WatchedApiRequest) =>
 const configurations = (requests: WatchedApiRequest[]) =>
   posted(requests, '/configuration').map(({ body }) => body);
 
-describe('useOrderBackupLicenses', () => {
+describe('usePrepareBackupLicensesCart', () => {
   let requests: Promise<WatchedApiRequest>[];
 
   beforeEach(() => {
@@ -69,12 +68,12 @@ describe('useOrderBackupLicenses', () => {
     stopWatchingApiCalls();
   });
 
-  it('walks the cart in order: item, addons, assign, then the checkout that engages', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+  it('walks the cart in order: item, addons, assign, then the checkout that only simulates', async () => {
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
     const sequence = emitted
       .filter(({ method }) => method === 'POST')
@@ -88,23 +87,35 @@ describe('useOrderBackupLicenses', () => {
       `/order/cart/${MOCK_CART_ID}/backupServices/options`,
       `/order/cart/${MOCK_CART_ID}/backupServices/options`,
       `/order/cart/${MOCK_CART_ID}/assign`,
-      `/order/cart/${MOCK_CART_ID}/checkout`,
     ]);
+    expect(
+      emitted.filter(({ method, url }) => method === 'GET' && url.includes('/checkout')),
+    ).toHaveLength(1);
   });
 
-  it('asks the cart what it offers before posting a single item', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+  it('never engages the order: the checkout is only read, never posted', async () => {
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    const emitted = await resolveApiRequests(requests);
+
+    expect(posted(emitted, '/checkout')).toHaveLength(0);
+  });
+
+  it('asks the cart what it offers before posting a single item', async () => {
+    const { result } = await renderPrepareHook();
+
+    result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
     const definitionReads = emitted.filter(isDefinitionRead);
     const firstItemPost = emitted.findIndex(
       ({ method, url }) => method === 'POST' && url.endsWith('/backupServices'),
     );
 
-    // Un niveau, une lecture : la licence ne s'offre que sous son parent VSPC, pas sous le tenant.
     expect(definitionReads.map(({ url }) => cartPath(url))).toEqual([
       `/order/cart/${MOCK_CART_ID}/backupServices`,
       `/order/cart/${MOCK_CART_ID}/backupServices/options?planCode=${BACKUP_LICENSES_ORDER_PLAN_CODES.tenant}`,
@@ -114,11 +125,11 @@ describe('useOrderBackupLicenses', () => {
   });
 
   it('composes the tenant and its three addons of R2 on the conditions the cart announced', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
 
     const mainItem = emitted.find(
@@ -130,9 +141,6 @@ describe('useOrderBackupLicenses', () => {
       pricingMode: 'default',
       quantity: 1,
     });
-    // Deux des trois addons partent sur autre chose que le mensuel à l'unité, comme les définitions
-    // moquées l'annoncent : c'est ce qui distingue une découverte d'un pattern posé en dur.
-    // La licence suit son parent VSPC, puis vient le vault — l'ordre du parcours en profondeur.
     expect(posted(emitted, '/backupServices/options').map(({ body }) => body)).toEqual([
       {
         planCode: BACKUP_LICENSES_ORDER_PLAN_CODES.vspcTenant,
@@ -159,15 +167,14 @@ describe('useOrderBackupLicenses', () => {
   });
 
   it('answers each label the cart asks for, on every item that asks for it', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
     const answered = configurations(emitted);
 
-    // 4 items (le tenant et ses 3 addons) × les 3 labels réclamés auxquels une valeur répond.
     expect(answered).toHaveLength(12);
     expect(answered).toEqual(
       expect.arrayContaining([
@@ -178,13 +185,12 @@ describe('useOrderBackupLicenses', () => {
     );
   });
 
-  /** Aucun label du panier ne les porte : les poster ferait échouer la commande. */
   it('never sends the VBR server name nor the vault name', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
 
     expect(JSON.stringify(configurations(emitted))).not.toMatch(
@@ -193,11 +199,11 @@ describe('useOrderBackupLicenses', () => {
   });
 
   it('never sends the private IP when the NAT toggle is off', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
 
     expect(configurations(emitted)).not.toEqual(
@@ -206,14 +212,14 @@ describe('useOrderBackupLicenses', () => {
   });
 
   it('sends the private IP once the NAT toggle is on', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({
       form: { ...form, isBehindNat: true, backupServerPrivateIp: '192.168.1.10' },
       licenseType: LicenseApiValue.VDP_PREMIUM,
     });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     const emitted = await resolveApiRequests(requests);
 
     expect(configurations(emitted)).toEqual(
@@ -221,19 +227,20 @@ describe('useOrderBackupLicenses', () => {
     );
   });
 
-  it('exposes the contracts the simulated checkout returned, ready to gate on', async () => {
-    const { result, onSuccess } = await renderOrderHook();
+  it('hands back the cart and the contracts the simulated checkout returned', async () => {
+    const { result } = await renderPrepareHook();
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
-    await waitFor(() => expect(onSuccess).toHaveBeenCalled());
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data?.cartId).toBe(MOCK_CART_ID);
     expect(result.current.data?.contractList).toEqual([
       expect.objectContaining({ name: 'Test contract' }),
     ]);
   });
 
   it('refuses to order when the cart does not offer a plan of the composition', async () => {
-    const { result, onSuccess } = await renderOrderHook({
+    const { result } = await renderPrepareHook({
       cartOptionDefinitions: mockCartOptionDefinitionsWithoutBundledVault,
     });
 
@@ -243,19 +250,14 @@ describe('useOrderBackupLicenses', () => {
     expect(result.current.error?.message).toContain(
       `${UNAVAILABLE_CART_OFFER}: ${BACKUP_LICENSES_ORDER_PLAN_CODES.bundledVault}`,
     );
-    expect(onSuccess).not.toHaveBeenCalled();
 
-    // Rien n'est posé, pas même l'item principal : un panier à trois items sur quatre serait pire
-    // qu'un refus — il facturerait un abonnement amputé du vault inclus dans l'offre.
     const emitted = await resolveApiRequests(requests);
     expect(posted(emitted, '/backupServices')).toHaveLength(0);
     expect(posted(emitted, '/assign')).toHaveLength(0);
   });
 
   it('refuses to order when the cart requires a label no form value answers', async () => {
-    // Les libellés du vault (`vault_name`/`vault_region`) ne sont pas ceux du tunnel : rien ne les
-    // couvre, et on ne devine pas lequel des champs saisis leur correspond.
-    const { result, onSuccess } = await renderOrderHook({
+    const { result } = await renderPrepareHook({
       cartRequiredConfiguration: mockCartRequiredConfiguration,
     });
 
@@ -263,7 +265,6 @@ describe('useOrderBackupLicenses', () => {
 
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.error?.message).toContain(UNKNOWN_CART_CONFIGURATION);
-    expect(onSuccess).not.toHaveBeenCalled();
 
     const emitted = await resolveApiRequests(requests);
     expect(posted(emitted, '/assign')).toHaveLength(0);
@@ -271,11 +272,11 @@ describe('useOrderBackupLicenses', () => {
   });
 
   it('reports a failing cart without confirming anything', async () => {
-    const { result, onSuccess } = await renderOrderHook({ isOrderError: true });
+    const { result } = await renderPrepareHook({ isOrderError: true });
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
 
     await waitFor(() => expect(result.current.isError).toBe(true));
-    expect(onSuccess).not.toHaveBeenCalled();
+    expect(result.current.data).toBeUndefined();
   });
 });

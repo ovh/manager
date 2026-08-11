@@ -78,7 +78,7 @@ function computeInitialStepStates(
         ? { isOpen: true }
         : {},
     location: locationOk
-      ? { isChecked: true, isLocked: true }
+      ? { isChecked: true, isOpen: true }
       : serverVaultOk
         ? { isOpen: true }
         : {},
