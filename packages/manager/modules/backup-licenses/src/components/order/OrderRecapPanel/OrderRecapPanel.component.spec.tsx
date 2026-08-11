@@ -26,6 +26,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -41,6 +42,7 @@ describe('OrderRecapPanel', () => {
         tier={VdpTier.PREMIUM}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -56,6 +58,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -72,6 +75,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={form}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -89,6 +93,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={onFinalize}
       />,
@@ -108,6 +113,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -127,6 +133,7 @@ describe('OrderRecapPanel', () => {
           tier={null}
           form={EMPTY_FORM}
           isSubmitting={false}
+          isSubmitDisabled={false}
           submitError={null}
           onFinalize={vi.fn()}
         />
@@ -144,6 +151,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting
+        isSubmitDisabled
         submitError={null}
         onFinalize={onFinalize}
       />,
@@ -163,6 +171,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError={null}
         onFinalize={vi.fn()}
       />,
@@ -178,6 +187,7 @@ describe('OrderRecapPanel', () => {
         tier={null}
         form={EMPTY_FORM}
         isSubmitting={false}
+        isSubmitDisabled={false}
         submitError="La commande a échoué."
         onFinalize={vi.fn()}
       />,
@@ -197,6 +207,7 @@ describe('OrderRecapPanel', () => {
           tier={null}
           form={EMPTY_FORM}
           isSubmitting={false}
+          isSubmitDisabled={false}
           submitError={null}
           onFinalize={vi.fn()}
         />

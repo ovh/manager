@@ -130,6 +130,14 @@
     "show_more": "Mehr anzeigen ({{total}})",
     "show_less": "Weniger anzeigen"
   },
+  "terms": {
+    "section_title": "Allgemeine Geschäftsbedingungen",
+    "placeholder": "Wählen Sie eine Region aus, um die geltenden Verträge anzuzeigen.",
+    "loading": "Laden der Verträge...",
+    "error": "Beim Vorbereiten Ihrer Bestellung ist ein Fehler aufgetreten.",
+    "retry": "Erneut versuchen",
+    "accept_label": "Ich habe die allgemeinen und besonderen Geschäftsbedingungen von OVHcloud zur Kenntnis genommen und akzeptiere sie."
+  },
   "summary": {
     "universe": {
       "enterprise": "Hosted Private Cloud",

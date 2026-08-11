@@ -39,11 +39,13 @@ lever côté suivi.
 
 ## BKP-1208 — Page de commande (order)
 
-Submit branché le 2026-08-06 : `src/pages/order/Order.page.tsx:57-64` monte
-`useOrderBackupLicenses` (`src/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses.ts`), qui
-compose le panier depuis l'état du formulaire (`src/utils/orderComposition/orderComposition.ts`) et
-l'exécute. Aucun de ces appels ne consulte `USE_API_MOCKS` : ils partent sur le réseau réel, comme le
-catalogue et `/location`.
+Submit branché le 2026-08-06, scindé en deux temps le 2026-08-11 : `Order.page.tsx` monte
+`useOrderCartPreparation` (`src/hooks/useOrderCartPreparation/`), qui compose le panier depuis l'état
+du formulaire (`src/utils/orderComposition/orderComposition.ts`) **dès le choix de la région** via
+`usePrepareBackupLicensesCart` (`src/data/hooks/usePrepareBackupLicensesCart/`), puis
+`useCheckoutBackupLicensesCart` (`src/data/hooks/useCheckoutBackupLicensesCart/`) qui engage la
+commande au clic, une fois les contrats acceptés. Aucun de ces appels ne consulte `USE_API_MOCKS` :
+ils partent sur le réseau réel, comme le catalogue et `/location`.
 
 | Endpoint | Usage | Statut | Détails / fichiers |
 |---|---|---|---|
@@ -58,8 +60,9 @@ catalogue et `/location`.
 | `GET /order/cart/{cartId}/checkout` | Simulation : contrats (CGV) + prix, n'engage rien | ✅ Implémenté (réel) | `order.requests.ts::getOrderCartCheckout` |
 | `POST /order/cart/{cartId}/checkout` | **Engage la commande** (`autoPayWithPreferredPaymentMethod`, `waiveRetractationPeriod`) | ✅ Implémenté (réel) | `order.requests.ts::executeOrderCartCheckout`, mêmes drapeaux que `bmc-backup-agent-baremetal::useCheckoutBackupAgentCart` |
 
-Le canal est écrit et testé (MSW : `src/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses.spec.tsx`,
-`src/pages/order/Order.page.spec.tsx`), mais **jamais exercé de bout en bout** : le catalogue
+Le canal est écrit et testé (MSW : `src/data/hooks/usePrepareBackupLicensesCart/usePrepareBackupLicensesCart.spec.tsx`,
+`src/data/hooks/useCheckoutBackupLicensesCart/useCheckoutBackupLicensesCart.spec.tsx`,
+`src/hooks/useOrderCartPreparation/useOrderCartPreparation.spec.tsx`, `src/pages/order/Order.page.spec.tsx`), mais **jamais exercé de bout en bout** : le catalogue
 `backupServices` n'est pas déclaré en production EU (vérifié le 2026-08-06). Jusqu'à publication, la
 séquence s'arrête donc à sa première étape de découverte, sur les plan codes ci-dessous.
 
@@ -99,12 +102,15 @@ que *quoi* commander (les plan codes) et *avec quelles valeurs de configuration*
 - ❓ Où va l'édition de licence dans le panier (R3) : le code envoie `licenseType` à tout item qui le
   réclame, ce qui couvre les deux hypothèses (configuration sur `vspc-tenant-backuplicenses` ou choix
   d'addon de consommation) sans en trancher aucune.
-- CGV : `contractList` remonte du `GET .../checkout` et **transite par le hook**
-  (`BackupLicensesOrderResult.contractList`) — rien ne l'affiche, la décision d'inclure la section
-  restant ouverte côté PO (R5). Si elle est retenue, la séquence doit se couper entre le GET et le POST
-  du checkout : c'est le seul changement à faire, le point est commenté dans le hook. Même pattern que
-  `packages/manager/apps/bmc-backup-agent-baremetal`
-  (`Step1Selection.component.tsx:123,149,264-274`), qui lui les affiche et les fait cocher.
+- CGV (R5) : **tranché et implémenté le 2026-08-11.** La séquence est coupée entre le GET et le POST
+  du checkout. `usePrepareBackupLicensesCart` va du `POST /order/cart` au `GET .../checkout` et rend
+  `{cartId, contractList}` ; `useOrderCartPreparation` la déclenche **au choix de la région** (étape ③)
+  et porte l'acceptation ; `OrderTerms` affiche les contrats en liens externes + la case à cocher ;
+  `useCheckoutBackupLicensesCart` ne fait plus que le `POST .../checkout`, sur le `cartId` déjà
+  préparé. Le CTA est grisé tant que le formulaire est complet mais les contrats non acceptés.
+  Changer de région (ou rouvrir une étape antérieure) refait le panier et redemande l'acceptation.
+  Même pattern que `packages/manager/apps/bmc-backup-agent-baremetal`
+  (`Step1Selection.component.tsx:123,149,264-274`).
 - `createBackupServicesCart` (wrapper une-passe sur `createCart`, `order.requests.ts`) **n'est pas
   utilisé par le tunnel** : `createCart` poste les configurations à l'aveugle et ajoute les addons en
   parallèle, incompatible avec la découverte des labels et l'ordre de R2. Il reste le chemin court pour

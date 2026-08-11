@@ -26,6 +26,7 @@ export type TOrderMockParams = {
   isServiceOfferMissing?: boolean;
   isServiceOffersError?: boolean;
   isOrderError?: boolean;
+  isCheckoutError?: boolean;
   /** Statut des écritures en échec : un 400/409 dit « ce nom ne va pas », un 5xx parle du canal. */
   orderErrorStatus?: number;
   orderErrorMessage?: string;
@@ -47,6 +48,7 @@ export const getOrderMocks = ({
   isServiceOfferMissing,
   isServiceOffersError,
   isOrderError,
+  isCheckoutError,
   orderErrorStatus = 500,
   orderErrorMessage,
   serviceOffersErrorStatus = 500,
@@ -123,6 +125,13 @@ export const getOrderMocks = ({
       delay: orderDelay,
     },
     // Même route, l'autre méthode : le GET simule, le POST engage.
-    write(`${ORDER_CART_ROUTE}/:cartId/checkout`, mockCartCheckout),
+    {
+      url: `${ORDER_CART_ROUTE}/:cartId/checkout`,
+      response: () => (isOrderError || isCheckoutError ? orderError : mockCartCheckout),
+      api: 'v6',
+      method: 'post',
+      status: isOrderError || isCheckoutError ? orderErrorStatus : 200,
+      delay: orderDelay,
+    },
   ];
 };

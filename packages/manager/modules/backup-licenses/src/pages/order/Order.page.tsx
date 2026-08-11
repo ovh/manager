@@ -18,10 +18,11 @@ import LicenseStep from '@/components/order/LicenseStep/LicenseStep.component';
 import LocationStep from '@/components/order/LocationStep/LocationStep.component';
 import OrderRecapPanel from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
 import ServerVaultStep from '@/components/order/ServerVaultStep/ServerVaultStep.component';
-import { useOrderBackupLicenses } from '@/data/hooks/useOrderBackupLicenses/useOrderBackupLicenses';
+import { useCheckoutBackupLicensesCart } from '@/data/hooks/useCheckoutBackupLicensesCart/useCheckoutBackupLicensesCart';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { useLocationLabel } from '@/hooks/useLocationLabel/useLocationLabel';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
+import { useOrderCartPreparation } from '@/hooks/useOrderCartPreparation/useOrderCartPreparation';
 import { OrderFieldName, useOrderForm } from '@/hooks/useOrderForm/useOrderForm';
 import { BACKUP_LICENSES_NAMESPACES, CHANGELOG_LINKS, LABELS } from '@/module.constants';
 import { routeUrls } from '@/routes/routes.constants';
@@ -53,15 +54,17 @@ export default function OrderPage() {
     resolvedLicenseApiValue,
   } = order;
 
-  // Le brouillon n'est effacé qu'une fois la commande réellement passée : un échec doit laisser
-  // la page rechargeable telle quelle.
-  const submitOrder = useOrderBackupLicenses({
+  const cart = useOrderCartPreparation({ form, licenseType: resolvedLicenseApiValue });
+
+  const submitOrder = useCheckoutBackupLicensesCart({
     onSuccess: () => {
       order.clearPersistedOrder();
       navigate(routeUrls.linkedServers);
     },
   });
   const isSubmitting = submitOrder.isPending;
+
+  const isSubmitDisabled = isSubmitting || (canSubmit && !cart.isReadyToCheckout);
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -96,7 +99,9 @@ export default function OrderPage() {
       return;
     }
 
-    submitOrder.mutate({ form, licenseType: resolvedLicenseApiValue });
+    if (!cart.isReadyToCheckout || cart.cartId === null) return;
+
+    submitOrder.mutate({ cartId: cart.cartId });
   };
 
   return (
@@ -206,7 +211,7 @@ export default function OrderPage() {
             next={{
               action: handleFinalize,
               label: t('summary.cta'),
-              isDisabled: isSubmitting,
+              isDisabled: isSubmitDisabled,
               isLoading: isSubmitting,
             }}
             edit={{
@@ -219,6 +224,7 @@ export default function OrderPage() {
               selected={form.regionApiValue}
               isDisabled={isSubmitting}
               onSelect={order.selectRegion}
+              cart={cart}
             />
           </StepComponent>
         </div>
@@ -229,6 +235,7 @@ export default function OrderPage() {
             tier={tier}
             form={form}
             isSubmitting={isSubmitting}
+            isSubmitDisabled={isSubmitDisabled}
             submitError={submitOrder.isError ? t('error.submit') : null}
             onFinalize={handleFinalize}
           />

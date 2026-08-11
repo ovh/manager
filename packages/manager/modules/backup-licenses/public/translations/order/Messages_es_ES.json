@@ -130,6 +130,14 @@
     "show_more": "Ver más ({{total}})",
     "show_less": "Ver menos"
   },
+  "terms": {
+    "section_title": "Condiciones generales",
+    "placeholder": "Seleccione una región para ver los contratos aplicables.",
+    "loading": "Cargando los contratos...",
+    "error": "Se ha producido un error al preparar su pedido.",
+    "retry": "Volver a intentarlo",
+    "accept_label": "He tomado conocimiento y acepto las condiciones generales y particulares de los servicios de OVHcloud."
+  },
   "summary": {
     "universe": {
       "enterprise": "Hosted Private Cloud",
