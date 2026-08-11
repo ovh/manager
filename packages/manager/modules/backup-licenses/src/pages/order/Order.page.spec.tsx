@@ -6,6 +6,7 @@ import { RenderResult, fireEvent, screen, waitFor } from '@testing-library/react
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ORDER_SUBMIT_ERROR_TEST_ID } from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
+import { ORDER_TERMS_ERROR_TEST_ID } from '@/components/order/OrderTerms/OrderTerms.component';
 import { getBackupServicesCatalog } from '@/data/api/catalog/catalog.requests';
 import { mockOrderFunnelRequiredConfiguration } from '@/mocks/order/order.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
@@ -23,6 +24,41 @@ import OrderPage from './Order.page';
 
 vi.mock('@/data/api/catalog/catalog.requests');
 vi.mock('@/hooks/useMainGuideItem', () => ({ useMainGuideItem: () => [] }));
+
+vi.mock('@ovhcloud/ods-components/react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@ovhcloud/ods-components/react')>();
+  const OdsCheckbox = ({
+    onOdsChange,
+    isChecked,
+    isDisabled,
+    inputId,
+  }: {
+    onOdsChange?: (event: CustomEvent) => void;
+    isChecked?: boolean;
+    isDisabled?: boolean;
+    inputId?: string;
+  }) => (
+    <mock-checkbox
+      id={inputId}
+      is-checked={isChecked ? 'true' : undefined}
+      is-disabled={isDisabled ? 'true' : undefined}
+      ref={(node: HTMLElement | null) =>
+        node?.addEventListener('odsChange', ((event: Event) =>
+          onOdsChange?.(event as CustomEvent)) as EventListener)
+      }
+    />
+  );
+  return { ...actual, OdsCheckbox };
+});
+
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'mock-checkbox': Record<string, unknown>;
+    }
+  }
+}
 
 // Page pleine (BaseLayout + StepComponent) : mêmes substituts DOM que
 // `EditBackupServer.page.spec.tsx`, dont ce tunnel partage la structure.
@@ -139,6 +175,17 @@ const submitButton = (container: Element) =>
 
 const clickSubmit = (container: Element) => fireEvent.click(submitButton(container));
 
+const termsCheckbox = (container: Element) => container.querySelector('mock-checkbox');
+
+const acceptTerms = async (container: Element) => {
+  await waitFor(() => expect(termsCheckbox(container)).toBeInTheDocument());
+  fireEvent(
+    termsCheckbox(container) as Element,
+    new CustomEvent('odsChange', { detail: { checked: true } }),
+  );
+  await waitFor(() => expect(submitButton(container)).toHaveAttribute('is-disabled', 'false'));
+};
+
 const persistedDraft = () => window.sessionStorage.getItem(DRAFT_STORAGE_KEY);
 
 describe('OrderPage — submit', () => {
@@ -155,9 +202,48 @@ describe('OrderPage — submit', () => {
     stopWatchingApiCalls();
   });
 
+  it('builds the cart as soon as the region is picked, without engaging anything', async () => {
+    const { container } = await renderOrderPage();
+
+    await waitFor(() => expect(termsCheckbox(container)).toBeInTheDocument());
+    const emitted = await resolveApiRequests(requests);
+    expect(emitted.filter(({ url }) => url.endsWith('/order/cart'))).toHaveLength(1);
+    expect(
+      emitted.filter(({ method, url }) => method === 'POST' && url.includes('/checkout')),
+    ).toHaveLength(0);
+  });
+
+  it('shows the contracts the simulated checkout returned', async () => {
+    const { container } = await renderOrderPage();
+
+    await waitFor(() =>
+      expect(container.querySelector('ods-link[label="Test contract"]')).toBeInTheDocument(),
+    );
+    expect(container.querySelector('ods-link[label="Test contract"]')).toHaveAttribute(
+      'href',
+      'https://example.test/contract',
+    );
+  });
+
+  it('keeps the CTA disabled until the contracts are accepted', async () => {
+    const { container } = await renderOrderPage();
+
+    await waitFor(() => expect(termsCheckbox(container)).toBeInTheDocument());
+    expect(submitButton(container)).toHaveAttribute('is-disabled', 'true');
+
+    clickSubmit(container);
+
+    await waitFor(() => expect(screen.queryByTestId('linked-servers')).not.toBeInTheDocument());
+    const emitted = await resolveApiRequests(requests);
+    expect(
+      emitted.filter(({ method, url }) => method === 'POST' && url.includes('/checkout')),
+    ).toHaveLength(0);
+  });
+
   it('places the order, clears the draft and lands on the linked servers', async () => {
     const { container } = await renderOrderPage();
 
+    await acceptTerms(container);
     clickSubmit(container);
 
     await waitFor(() => expect(screen.getByTestId('linked-servers')).toBeInTheDocument());
@@ -167,11 +253,12 @@ describe('OrderPage — submit', () => {
     expect(screen.queryByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).not.toBeInTheDocument();
   });
 
-  it('locks the form and the CTA while the order is in flight, so one click means one cart', async () => {
+  it('locks the form and the CTA while the order is in flight, so one click means one order', async () => {
     // Retenir chaque écriture suffit à observer l'état en vol : la séquence en compte une dizaine,
     // et un délai plus long ferait expirer l'attente de la navigation finale.
     const { container } = await renderOrderPage({ orderDelay: 20 });
 
+    await acceptTerms(container);
     clickSubmit(container);
 
     await waitFor(() => expect(submitButton(container)).toHaveAttribute('is-loading', 'true'));
@@ -186,12 +273,15 @@ describe('OrderPage — submit', () => {
 
     await waitFor(() => expect(screen.getByTestId('linked-servers')).toBeInTheDocument());
     const emitted = await resolveApiRequests(requests);
-    expect(emitted.filter(({ url }) => url.endsWith('/order/cart'))).toHaveLength(1);
+    expect(
+      emitted.filter(({ method, url }) => method === 'POST' && url.includes('/checkout')),
+    ).toHaveLength(1);
   });
 
   it('keeps the form and its draft, and stays on the page, when the order fails', async () => {
-    const { container } = await renderOrderPage({ isOrderError: true });
+    const { container } = await renderOrderPage({ isCheckoutError: true });
 
+    await acceptTerms(container);
     clickSubmit(container);
 
     await waitFor(() => expect(screen.getByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).toBeInTheDocument());
@@ -204,8 +294,9 @@ describe('OrderPage — submit', () => {
   });
 
   it('announces the failure and takes focus to it', async () => {
-    const { container } = await renderOrderPage({ isOrderError: true });
+    const { container } = await renderOrderPage({ isCheckoutError: true });
 
+    await acceptTerms(container);
     clickSubmit(container);
 
     await waitFor(() => expect(screen.getByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).toBeInTheDocument());
@@ -214,12 +305,21 @@ describe('OrderPage — submit', () => {
     expect(liveRegion).toHaveFocus();
   });
 
-  it('re-enables the CTA after a failure so the customer can retry', async () => {
-    const { container } = await renderOrderPage({ isOrderError: true });
+  it('re-enables the CTA after a failure so the customer can retry the same cart', async () => {
+    const { container } = await renderOrderPage({ isCheckoutError: true });
 
+    await acceptTerms(container);
     clickSubmit(container);
 
     await waitFor(() => expect(screen.getByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).toBeInTheDocument());
     expect(submitButton(container)).toHaveAttribute('is-disabled', 'false');
+  });
+
+  it('reports a cart that could not be prepared, and offers to retry it', async () => {
+    const { container } = await renderOrderPage({ isOrderError: true });
+
+    await waitFor(() => expect(screen.getByTestId(ORDER_TERMS_ERROR_TEST_ID)).toBeInTheDocument());
+    expect(termsCheckbox(container)).not.toBeInTheDocument();
+    expect(submitButton(container)).toHaveAttribute('is-disabled', 'true');
   });
 });

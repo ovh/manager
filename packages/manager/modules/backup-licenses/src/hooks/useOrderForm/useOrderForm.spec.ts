@@ -266,7 +266,7 @@ describe('useOrderForm — persistance et reconstruction depuis sessionStorage',
     expect(restored.current.serverVault.step.isChecked).toBe(false);
   });
 
-  it('reconstruit les 3 étapes repliées quand toutes les données persistées sont valides', () => {
+  it('reconstruit les 2 premières étapes repliées quand toutes les données persistées sont valides', () => {
     const { result, unmount } = renderOrderForm();
     progressToLocation(result);
     act(() => result.current.selectRegion('eu-west-par'));
@@ -277,8 +277,18 @@ describe('useOrderForm — persistance et reconstruction depuis sessionStorage',
     expect(restored.current.license.step.isLocked).toBe(true);
     expect(restored.current.serverVault.step.isChecked).toBe(true);
     expect(restored.current.serverVault.step.isLocked).toBe(true);
+  });
+
+  it("laisse l'étape de localisation ouverte à la reprise, pour que les contrats restent lisibles", () => {
+    const { result, unmount } = renderOrderForm();
+    progressToLocation(result);
+    act(() => result.current.selectRegion('eu-west-par'));
+    unmount();
+
+    const { result: restored } = renderOrderForm();
     expect(restored.current.location.step.isChecked).toBe(true);
-    expect(restored.current.location.step.isLocked).toBe(true);
+    expect(restored.current.location.step.isOpen).toBe(true);
+    expect(restored.current.location.step.isLocked).toBe(false);
   });
 
   it("une session vierge n'auto-verrouille pas la licence malgré la présélection recommandée", () => {
