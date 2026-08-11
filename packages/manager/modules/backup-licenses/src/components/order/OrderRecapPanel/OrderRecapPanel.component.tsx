@@ -32,6 +32,7 @@ interface OrderRecapPanelProps {
   tier: VdpTier | null;
   form: ServerVaultFormState;
   isSubmitting: boolean;
+  isSubmitDisabled: boolean;
   /** Message d'échec de la commande, déjà traduit, ou null. */
   submitError: string | null;
   onFinalize: () => void;
@@ -60,6 +61,7 @@ export default function OrderRecapPanel({
   tier,
   form,
   isSubmitting,
+  isSubmitDisabled,
   submitError,
   onFinalize,
 }: OrderRecapPanelProps) {
@@ -197,15 +199,12 @@ export default function OrderRecapPanel({
             </OdsMessage>
           )}
         </div>
-        {/* Désactivé pendant la soumission seulement : hors soumission, un clic avec formulaire
-            invalide révèle les erreurs et rouvre l'étape fautive (cf. Order.page) plutôt que de
-            bloquer silencieusement. C'est ce verrou, pas un debounce, qui garantit un seul panier. */}
         <OdsButton
           type="button"
           className="w-full"
           data-testid="order-submit"
           label={t('summary.cta')}
-          isDisabled={isSubmitting}
+          isDisabled={isSubmitDisabled}
           isLoading={isSubmitting}
           onClick={onFinalize}
         />
