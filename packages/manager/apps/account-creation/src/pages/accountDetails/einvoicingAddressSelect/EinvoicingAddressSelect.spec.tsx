@@ -59,6 +59,24 @@ describe('EinvoicingAddressSelect', () => {
     ).toBeInTheDocument();
   });
 
+  // /newAccount/rules answers in: [''] when the directory knows no address
+  it('single empty address entry → treated as no address at all', async () => {
+    const onValueChange = vi.fn();
+    renderComponent({
+      rule: rule({ mandatory: false, in: [''], defaultValue: '' }),
+      legalForm: 'corporation' as LegalForm,
+      value: 'stale-value',
+      onValueChange,
+    });
+    expect(
+      screen.getByText('account_details_einvoicing_empty_b2b'),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('account_details_einvoicing_single_b2b'),
+    ).not.toBeInTheDocument();
+    await waitFor(() => expect(onValueChange).toHaveBeenCalledWith(undefined));
+  });
+
   it('single address → banner and the address is auto-selected', async () => {
     const onValueChange = vi.fn();
     renderComponent({

@@ -88,8 +88,18 @@ export default class NewAccountFormEinvoicingController {
     return B2G_LEGAL_FORMS.includes(this.legalForm);
   }
 
+  // /newAccount/rules answers with a single empty entry (in: ['']) when the PPF
+  // directory knows no address for the SIRET: dropping empty entries keeps the
+  // "no address" banner from being mistaken for a "single address" one.
+  // Memoized on the source array so the returned identity stays stable
+  // (see getAddressItems).
   getAddresses() {
-    return (this.rule && this.rule.in) || [];
+    const addresses = (this.rule && this.rule.in) || null;
+    if (this.addressesSource !== addresses) {
+      this.addressesSource = addresses;
+      this.availableAddresses = (addresses || []).filter(Boolean);
+    }
+    return this.availableAddresses;
   }
 
   isEmpty() {

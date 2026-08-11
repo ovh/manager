@@ -340,9 +340,15 @@ export default class NewAccountFormController {
     );
 
     // stripped with the other READY_ONLY_PARAMS above (not a /newAccount/rules
-    // param) but accepted by PUT /me — re-add the selected address (RG5)
-    if (this.model.einvoicingBillingAddress) {
-      model.einvoicingBillingAddress = this.model.einvoicingBillingAddress;
+    // param) but accepted by PUT /me — re-add the selected address (RG5).
+    // When the customer moved to a SIRET without e-invoicing address the picker
+    // cleared the model: the attribute must still be sent, as an empty string,
+    // otherwise PUT /me keeps the address of the previous SIRET and rejects the
+    // update (the stored address is not assignable to the new SIRET).
+    if (this.model[EINVOICING_FIELD_NAME]) {
+      model[EINVOICING_FIELD_NAME] = this.model[EINVOICING_FIELD_NAME];
+    } else if (this.originalModel[EINVOICING_FIELD_NAME]) {
+      model[EINVOICING_FIELD_NAME] = '';
     }
 
     // PUT /me only accepts an empty string or a VAT validated by
