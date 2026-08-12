@@ -1,11 +1,6 @@
 import { MODULE_PRODUCT_LINE } from '@/module.constants';
 import { VaultBucket, VaultResource } from '@/types/Vault.type';
 
-/**
- * Le contrat déclare `vaultProductLine` nullable « until existing vaults are backfilled » : un
- * vault sans product line est écarté quand même, quitte à vider l'écran, plutôt que d'exposer ici
- * un vault d'en face — un vault à tort inclus est indiscernable d'un vault légitime.
- */
 export const selectBackupLicensesVaults = (vaults: VaultResource[]): VaultResource[] =>
   vaults
     .filter(({ currentState: { vaultProductLine } }) => vaultProductLine === MODULE_PRODUCT_LINE)
