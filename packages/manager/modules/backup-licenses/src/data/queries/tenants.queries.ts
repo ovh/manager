@@ -1,6 +1,7 @@
 import { QueryClient, queryOptions } from '@tanstack/react-query';
 
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { selectBackupLicensesVspcTenants } from '@/data/selectors/tenants.selectors';
 import { hasBackupLicensesAddon } from '@/utils/hasBackupLicensesAddon/hasBackupLicensesAddon';
 
 import { queryKeys } from './queryKeys';
@@ -28,6 +29,7 @@ const vspcTenants = (backupServicesId: string) =>
   queryOptions({
     queryKey: queryKeys.vspc.tenants(backupServicesId),
     queryFn: () => getVspcTenants(backupServicesId),
+    select: selectBackupLicensesVspcTenants,
   });
 
 // ─── Queries needing QueryClient ───
