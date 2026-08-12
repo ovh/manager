@@ -7,9 +7,9 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { deleteBackupServer } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import { useDeleteBackupServer } from './useDeleteBackupServer';
 
@@ -43,13 +43,7 @@ describe('useDeleteBackupServer', () => {
         currentState: { id: 'service-1', name: 'service' },
       } as Resource<BackupServicesTenant>,
     ]);
-    vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1' },
-      } as Resource<VspcTenant>,
-    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
   });
 
   it('deletes the server with the ids resolved by the cascade', async () => {

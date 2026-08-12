@@ -11,11 +11,11 @@ import type { ModalProps } from '@ovh-ux/manager-react-components';
 
 import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import TerminateServicePage from './TerminateService.page';
 
@@ -137,13 +137,7 @@ describe('TerminateServicePage', () => {
         currentState: { id: 'service-1', name: 'service' },
       } as Resource<BackupServicesTenant>,
     ]);
-    vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1' },
-      } as Resource<VspcTenant>,
-    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
     vi.mocked(getBackupLicenses).mockResolvedValue([
       {
         id: 'license-1',

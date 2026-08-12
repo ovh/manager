@@ -8,12 +8,12 @@ import {
 } from '@/data/api/services/consumption.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { getVaults } from '@/data/api/vaults/vaults.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { ServiceConsumption } from '@/types/Consumption.type';
 import { Resource } from '@/types/Resource.type';
 import { VaultResource } from '@/types/Vault.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import { billingQueries } from './billing.queries';
 
@@ -78,13 +78,7 @@ describe('billingQueries', () => {
         currentState: { id: 'service-1', name: 'service' },
       } as Resource<BackupServicesTenant>,
     ]);
-    vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1' },
-      } as Resource<VspcTenant>,
-    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
   });
 
   const fetchRows = () =>

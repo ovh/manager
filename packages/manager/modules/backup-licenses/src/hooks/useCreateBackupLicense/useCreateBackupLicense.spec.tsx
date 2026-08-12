@@ -7,12 +7,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { createBackupLicense } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { createQueryClientTest } from '@/test-utils/renderWithProviders';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { LicenseApiValue } from '@/types/Order.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import { useCreateBackupLicense } from './useCreateBackupLicense';
 
@@ -48,7 +48,7 @@ describe('useCreateBackupLicense', () => {
     mockedGetBackupServicesTenants.mockResolvedValue([
       buildResource<BackupServicesTenant>('service-1', { id: 'service-1', name: 'service' }),
     ]);
-    mockedGetVspcTenants.mockResolvedValue([buildResource<VspcTenant>('vspc-1', { id: 'vspc-1' })]);
+    mockedGetVspcTenants.mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
   });
 
   it('résout la cascade backupServicesId → vspcTenantId puis crée la licence, et invalide la liste des serveurs', async () => {

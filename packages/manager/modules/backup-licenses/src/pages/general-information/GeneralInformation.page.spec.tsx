@@ -5,12 +5,12 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { setupMswMock } from '@/test-utils/setupMsw';
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import GeneralInformationPage from './GeneralInformation.page';
 
@@ -30,11 +30,7 @@ describe('GeneralInformationPage', () => {
       } as Resource<BackupServicesTenant>,
     ]);
     vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1', accessUrl: 'https://vspc.example.com' },
-      } as Resource<VspcTenant>,
+      buildBackupLicensesVspcTenant('vspc-1', { accessUrl: 'https://vspc.example.com' }),
     ]);
     vi.mocked(getBackupLicenses).mockResolvedValue([
       {

@@ -84,7 +84,7 @@ describe('Vaults page', () => {
     expect(screen.queryByText('vault-of-backup-agent')).not.toBeInTheDocument();
   });
 
-  it('keeps a vault that carries no product line, rather than emptying the screen', async () => {
+  it('hides a vault that carries no product line, even if the tab ends up empty', async () => {
     const unscopedVault: VaultResource = {
       ...paygoVault,
       currentState: { ...paygoVault.currentState, vaultProductLine: undefined },
@@ -92,10 +92,8 @@ describe('Vaults page', () => {
 
     await renderPage({ vaults: [unscopedVault] });
 
-    // `vaultProductLine` n'est publié par aucun contrat : le filtre du module garde les vaults qui
-    // ne le portent pas, sinon l'onglet serait vide pour tout le monde jusqu'à sa livraison.
-    expect(await screen.findByText(unscopedVault.currentState.name)).toBeVisible();
-    expect(screen.queryByText(labels.vaults.state.empty.title)).not.toBeInTheDocument();
+    expect(await screen.findByText(labels.vaults.state.empty.title)).toBeVisible();
+    expect(screen.queryByText(unscopedVault.currentState.name)).not.toBeInTheDocument();
   });
 
   it('shows the empty state when the list comes back with no entry', async () => {
