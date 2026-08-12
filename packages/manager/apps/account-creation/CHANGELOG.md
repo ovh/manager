@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.15.0...@ovh-ux/manager-account-creation-app@0.15.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* **account-creation:** fix vat select empty value ([ef06acb](https://github.com/ovh/manager/commit/ef06acbbe5e46a001401c1ec3f85aa75650e9a3b)), closes [#MANAGER-22130](https://github.com/ovh/manager/issues/MANAGER-22130)
+* **account:** reset einvoicing address on update ([cb9f286](https://github.com/ovh/manager/commit/cb9f286e9a9b9ec03e587059b515017288664dbe)), closes [#MANAGER-22130](https://github.com/ovh/manager/issues/MANAGER-22130)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-account-creation-app@0.14.2...@ovh-ux/manager-account-creation-app@0.15.0) (2026-08-05)
 
 
