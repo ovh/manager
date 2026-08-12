@@ -6,13 +6,22 @@ import {
   getVSPCTenantDetails,
   getVSPCTenants,
 } from '@/data/api/tenants/tenants.requests';
+import { selectBackupAgentVspcTenants } from '@/data/selectors/tenants.selectors';
 import { Resource } from '@/types/Resource.type';
 import { Tenant } from '@/types/Tenant.type';
 import { WithRegion } from '@/types/Utils.type';
+import { hasBackupAgentAddon } from '@/utils/hasBackupAgentAddon/hasBackupAgentAddon';
 import { mapTenantResourceToTenantResourceWithRegion } from '@/utils/mappers/mapTenantToTenantWithRegion';
 
 import { queryKeys } from './queryKeys';
 import { servicesQueries } from './services.queries';
+
+const resolveVspcTenantId = async (queryClient: QueryClient): Promise<string> => {
+  const tenants = await queryClient.ensureQueryData(vspcAll(queryClient)());
+  const id = tenants?.find(hasBackupAgentAddon)?.id;
+  if (!id) throw new Error('No Backup Agent VSPC Tenant found');
+  return id;
+};
 
 // ─── Standalone functions (all need QueryClient for dependency resolution) ───
 
@@ -34,6 +43,7 @@ const vspcAll = (queryClient: QueryClient) => () =>
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       return getVSPCTenants({ backupServicesId: backupServicesId! });
     },
+    select: selectBackupAgentVspcTenants,
   });
 
 const vspcDetail = (queryClient: QueryClient) => () =>
@@ -41,8 +51,7 @@ const vspcDetail = (queryClient: QueryClient) => () =>
     queryKey: queryKeys.tenants.vspc.detail(),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      const tenants = await queryClient.ensureQueryData(vspcAll(queryClient)());
-      const vspcTenantId = tenants[0]!.id;
+      const vspcTenantId = await resolveVspcTenantId(queryClient);
       return getVSPCTenantDetails(backupServicesId!, vspcTenantId);
     },
   });
@@ -52,8 +61,7 @@ const vspcPolicies = (queryClient: QueryClient) => () =>
     queryKey: queryKeys.tenants.vspc.policies(),
     queryFn: async () => {
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
-      const tenants = await queryClient.ensureQueryData(vspcAll(queryClient)());
-      const vspcTenantId = tenants[0]!.id;
+      const vspcTenantId = await resolveVspcTenantId(queryClient);
       return getBackupPolicies(backupServicesId!, vspcTenantId);
     },
   });
@@ -65,12 +73,7 @@ const withClient = (queryClient: QueryClient) => ({
   vspcAll: vspcAll(queryClient),
   vspcDetail: vspcDetail(queryClient),
   vspcPolicies: vspcPolicies(queryClient),
-  /** Resolves the first vspcTenantId from cache (ensureQueryData). */
-  vspcTenantId: async () => {
-    const tenants = await queryClient.ensureQueryData(vspcAll(queryClient)());
-    if (!tenants?.length) throw new Error('No VSPC Tenant found');
-    return tenants[0]!.id;
-  },
+  vspcTenantId: () => resolveVspcTenantId(queryClient),
 });
 
 export const tenantsQueries = { withClient };
