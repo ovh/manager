@@ -40,7 +40,7 @@ import { useGenerateUrl } from '@/hooks/generate-url/useGenerateUrl';
 
 type FormData = {
   productType: string;
-  quantity: number | null;
+  quantity: number;
 };
 
 export default function ModalOrderLicenses() {
@@ -81,7 +81,7 @@ export default function ModalOrderLicenses() {
   const { handleSubmit, control, watch } = useForm<FormData>({
     defaultValues: {
       productType: '',
-      quantity: null,
+      quantity: 1,
     },
   });
 
@@ -147,10 +147,10 @@ export default function ModalOrderLicenses() {
               name="quantity"
               control={control}
               rules={{ required: true, min: 1 }}
-              render={({ field: { onChange, name } }) => (
+              render={({ field: { onChange, name, value } }) => (
                 <Quantity
                   name={name}
-                  defaultValue={String(1)}
+                  value={String(value)}
                   onValueChange={(event) => onChange(Number(event.value))}
                   max={300}
                   min={1}
