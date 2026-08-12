@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getBackupServers } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
 import { VspcTenant } from '@/types/VspcTenant.type';
@@ -22,6 +23,9 @@ const buildResource = <T>(id: string, currentState: T): Resource<T> => ({
   currentState,
 });
 
+const buildBackupAgentVspcTenant = (id: string) =>
+  buildResource<VspcTenant>(id, { id, vspcType: 'BASIC', enabledAddons: ['BACKUP_AGENT'] });
+
 const createQueryClient = () => new QueryClient({ defaultOptions: { queries: { retry: false } } });
 
 const fetchList = (queryClient: QueryClient) =>
@@ -37,7 +41,7 @@ describe('backupServersQueries.list', () => {
     mockedGetBackupServicesTenants.mockResolvedValue([
       buildResource<BackupServicesTenant>('service-1', { id: 'service-1', name: 'service' }),
     ]);
-    mockedGetVspcTenants.mockResolvedValue([buildResource<VspcTenant>('vspc-1', { id: 'vspc-1' })]);
+    mockedGetVspcTenants.mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
 
     await fetchList(createQueryClient());
 
@@ -63,7 +67,42 @@ describe('backupServersQueries.list', () => {
     ]);
     mockedGetVspcTenants.mockResolvedValue([]);
 
-    await expect(fetchList(createQueryClient())).rejects.toThrow('No VSPC tenant found');
+    await expect(fetchList(createQueryClient())).rejects.toThrow(
+      'No Backup Licenses VSPC tenant found',
+    );
     expect(mockedGetBackupServers).not.toHaveBeenCalled();
+  });
+
+  it('fails when the only VSPC tenant belongs to Backup Agent', async () => {
+    mockedGetBackupServicesTenants.mockResolvedValue([
+      buildResource<BackupServicesTenant>('service-1', { id: 'service-1', name: 'service' }),
+    ]);
+    mockedGetVspcTenants.mockResolvedValue([buildBackupAgentVspcTenant('vspc-agent')]);
+
+    await expect(fetchList(createQueryClient())).rejects.toThrow(
+      'No Backup Licenses VSPC tenant found',
+    );
+    expect(mockedGetBackupServers).not.toHaveBeenCalled();
+  });
+
+  it('skips the services and tenants of the other product line', async () => {
+    mockedGetBackupServicesTenants.mockResolvedValue([
+      buildResource<BackupServicesTenant>('service-agent', { id: 'service-agent', name: 'agent' }),
+      buildResource<BackupServicesTenant>('service-bl', { id: 'service-bl', name: 'licenses' }),
+    ]);
+    mockedGetVspcTenants.mockImplementation((backupServicesId) =>
+      Promise.resolve(
+        backupServicesId === 'service-bl'
+          ? [buildBackupAgentVspcTenant('vspc-agent'), buildBackupLicensesVspcTenant('vspc-bl')]
+          : [buildBackupAgentVspcTenant('vspc-other')],
+      ),
+    );
+
+    await fetchList(createQueryClient());
+
+    expect(mockedGetBackupServers).toHaveBeenCalledWith({
+      backupServicesId: 'service-bl',
+      vspcTenantId: 'vspc-bl',
+    });
   });
 });

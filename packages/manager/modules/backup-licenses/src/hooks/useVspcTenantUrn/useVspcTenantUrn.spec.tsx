@@ -5,10 +5,10 @@ import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { createQueryClientTest } from '@/test-utils/renderWithProviders';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import { useVspcTenantUrn } from './useVspcTenantUrn';
 
@@ -44,11 +44,10 @@ describe('useVspcTenantUrn', () => {
 
   it('résout la cascade backupServicesId → vspcTenantId puis renvoie son urn IAM', async () => {
     mockedGetVspcTenants.mockResolvedValue([
-      buildResource<VspcTenant>(
-        'vspc-1',
-        { id: 'vspc-1' },
-        { id: 'vspc-1', urn: 'urn:v1:eu:resource:backupServices:vspc/vspc-1' },
-      ),
+      {
+        ...buildBackupLicensesVspcTenant('vspc-1'),
+        iam: { id: 'vspc-1', urn: 'urn:v1:eu:resource:backupServices:vspc/vspc-1' },
+      },
     ]);
 
     const { result } = renderUseVspcTenantUrn();
@@ -60,7 +59,7 @@ describe('useVspcTenantUrn', () => {
   });
 
   it("renvoie undefined tant que le tenant n'a pas d'urn IAM (contrat BE non confirmé)", async () => {
-    mockedGetVspcTenants.mockResolvedValue([buildResource<VspcTenant>('vspc-1', { id: 'vspc-1' })]);
+    mockedGetVspcTenants.mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
 
     const { result } = renderUseVspcTenantUrn();
 

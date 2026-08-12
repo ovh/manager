@@ -14,11 +14,11 @@ import {
   getBackupServers,
 } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import DeleteBackupServerPage from './DeleteBackupServer.page';
 
@@ -117,13 +117,7 @@ describe('DeleteBackupServerPage', () => {
         currentState: { id: 'service-1', name: 'service' },
       } as Resource<BackupServicesTenant>,
     ]);
-    vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1' },
-      } as Resource<VspcTenant>,
-    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
   });
 
   it('renders a critical modal and enables the confirmation once the server is known', async () => {

@@ -1,4 +1,6 @@
-export const BACKUP_LICENSES_ADDON = 'BACKUP_LICENSES';
+import { MODULE_PRODUCT_LINE } from '@/module.constants';
+
+export const BACKUP_LICENSES_ADDON = MODULE_PRODUCT_LINE;
 export const ADVANCED_VSPC_TYPE = 'ADVANCED';
 
 // `vspcType`/`enabledAddons` are new fields on the same VSPC tenant resource already queried by

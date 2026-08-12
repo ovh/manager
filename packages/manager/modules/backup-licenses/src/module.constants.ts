@@ -14,6 +14,14 @@ export const LABELS = {
   VSPC: 'VSPC',
 } as const;
 
+/**
+ * Ligne produit servie par ce module. Les routes `/backupServices` sont partagées avec Backup
+ * Agent, et c'est le seul endroit qui déclare laquelle des deux lignes nous concerne : les trois
+ * filtres de périmètre (service, tenant VSPC, vaults) la lisent plutôt que de répéter le littéral.
+ * Cf. spec `backup-licenses/product-line-scoping` R5.
+ */
+export const MODULE_PRODUCT_LINE = 'BACKUP_LICENSES' as const;
+
 /** Affiché à la place d'une valeur absente dans une cellule du tableau. */
 export const EMPTY_VALUE_PLACEHOLDER = '—';
 

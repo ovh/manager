@@ -14,19 +14,33 @@ export const mockBackupServicesTenants: Resource<BackupServicesTenant>[] = [
   },
 ];
 
+export const VSPC_TENANT_ID = 'c2b8d4e5-0000-4000-8000-000000000001';
+
+/**
+ * Tenant VSPC du périmètre Backup Licenses. `vspcType` et `enabledAddons` ne sont pas décoratifs :
+ * la route `.../vspc` sert aussi Backup Agent, et sans eux la cascade écarte le tenant.
+ */
+export const buildBackupLicensesVspcTenant = (
+  id: string,
+  currentState: Partial<VspcTenant> = {},
+): Resource<VspcTenant> => ({
+  id,
+  resourceStatus: 'READY',
+  currentState: {
+    id,
+    vspcType: ADVANCED_VSPC_TYPE,
+    enabledAddons: [BACKUP_LICENSES_ADDON],
+    ...currentState,
+  },
+});
+
 export const mockVspcTenants: Resource<VspcTenant>[] = [
   {
-    id: 'c2b8d4e5-0000-4000-8000-000000000001',
-    resourceStatus: 'READY',
+    ...buildBackupLicensesVspcTenant(VSPC_TENANT_ID),
     iam: {
-      id: 'c2b8d4e5-0000-4000-8000-000000000001',
-      urn: 'urn:v1:eu:resource:backupServices:vspc/c2b8d4e5-0000-4000-8000-000000000001',
-      displayName: 'c2b8d4e5-0000-4000-8000-000000000001',
-    },
-    currentState: {
-      id: 'c2b8d4e5-0000-4000-8000-000000000001',
-      vspcType: ADVANCED_VSPC_TYPE,
-      enabledAddons: [BACKUP_LICENSES_ADDON],
+      id: VSPC_TENANT_ID,
+      urn: `urn:v1:eu:resource:backupServices:vspc/${VSPC_TENANT_ID}`,
+      displayName: VSPC_TENANT_ID,
     },
     currentTasks: [],
   },
