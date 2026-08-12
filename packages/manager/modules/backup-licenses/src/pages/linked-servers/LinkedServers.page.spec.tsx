@@ -6,11 +6,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { getBackupServers } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { mockBackupServers } from '@/mocks/backupServers/backupServers.mock';
+import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
-import { VspcTenant } from '@/types/VspcTenant.type';
 
 import LinkedServersPage from './LinkedServers.page';
 
@@ -29,13 +29,7 @@ describe('LinkedServersPage', () => {
         currentState: { id: 'service-1', name: 'service' },
       } as Resource<BackupServicesTenant>,
     ]);
-    vi.mocked(getVspcTenants).mockResolvedValue([
-      {
-        id: 'vspc-1',
-        resourceStatus: 'READY',
-        currentState: { id: 'vspc-1' },
-      } as Resource<VspcTenant>,
-    ]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
   });
 
   it('shows the loading state while the servers are being fetched', async () => {

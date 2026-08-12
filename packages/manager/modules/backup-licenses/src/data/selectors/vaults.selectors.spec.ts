@@ -29,19 +29,24 @@ describe('selectBackupLicensesVaults', () => {
   });
 
   it.each([['absent', undefined] as const, ['null, as the contract allows', null] as const])(
-    'keeps vaults whose vaultProductLine is %s',
+    'discards vaults whose vaultProductLine is %s',
     (_, vaultProductLine) => {
-      const vaults = [buildVault('v1', vaultProductLine)];
-      expect(selectBackupLicensesVaults(vaults)).toEqual(vaults);
+      expect(selectBackupLicensesVaults([buildVault('v1', vaultProductLine)])).toEqual([]);
     },
   );
 
   it('sorts the kept vaults alphabetically by name', () => {
-    const vaults = [buildVault('charlie'), buildVault('alpha'), buildVault('bravo')];
+    const vaults = ['charlie', 'alpha', 'bravo'].map((name) => buildVault(name, 'BACKUP_LICENSES'));
     expect(selectBackupLicensesVaults(vaults).map((v) => v.currentState.name)).toEqual([
       'alpha',
       'bravo',
       'charlie',
     ]);
+  });
+
+  it('keeps only the Backup Licenses vaults of a mixed list', () => {
+    const ours = buildVault('ours', 'BACKUP_LICENSES');
+    const vaults = [buildVault('theirs', 'BACKUP_AGENT'), ours, buildVault('unset', null)];
+    expect(selectBackupLicensesVaults(vaults)).toEqual([ours]);
   });
 });
