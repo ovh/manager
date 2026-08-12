@@ -1,6 +1,7 @@
 import { QueryClient, queryOptions } from '@tanstack/react-query';
 
 import { getVaultBucketCredentials, getVaults } from '@/data/api/vaults/vaults.requests';
+import { selectBackupLicensesVaults } from '@/data/selectors/vaults.selectors';
 
 import { queryKeys } from './queryKeys';
 import { tenantsQueries } from './tenants.queries';
@@ -9,6 +10,7 @@ const list = (queryClient: QueryClient) => () =>
   queryOptions({
     queryKey: queryKeys.vaults.all(),
     queryFn: async () => getVaults(await tenantsQueries.withClient(queryClient).backupServicesId()),
+    select: selectBackupLicensesVaults,
   });
 
 const bucketCredentials =
