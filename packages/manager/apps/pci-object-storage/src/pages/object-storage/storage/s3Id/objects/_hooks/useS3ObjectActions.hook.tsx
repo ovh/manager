@@ -72,7 +72,7 @@ export const useS3ObjectActions = ({
         method: storages.PresignedURLMethodEnum.GET,
         object: object.key,
         storageClass: object.storageClass,
-        versionId: '',
+        versionId: showVersion ? object.versionId : '',
       },
     });
   };
