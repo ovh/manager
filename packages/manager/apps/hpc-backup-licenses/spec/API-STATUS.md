@@ -30,10 +30,33 @@ Légende : ✅ Implémenté (réel) · 🎭 Moqué · ❌ Manquant · ❓ Ambigu
 
 Contrat de réponse **confirmé par un exemple réel le 2026-08-04** (payload transmis par le PO/BE) : tableau
 d'objets `{createdAt, currentState, currentTasks, iam, id, resourceStatus, targetSpec, updatedAt}`, où
-`currentState` porte `accessUrl`, `backupAgents[]`, `backupLicenses{backupServers[], id}`, `companyName`,
+`currentState` porte `accessUrl`, `backupAgents[]`, `backupLicenses{id}`, `companyName`,
 `enabledAddons[]`, `id`, `name`, `region`, `status`, `vaults[]`, `vspcType`. Structure cohérente avec le
 typage déjà utilisé côté front pour `getVspcTenants` — rien à corriger dans le code d'appel, uniquement à
 lever côté suivi.
+
+**Correction 2026-08-12 (BE)** : `currentState.backupLicenses` ne portera **plus** `backupServers[]` sur
+cette route — seul `id` (l'identifiant de souscription) subsistera. La liste des serveurs VBR s'obtient
+**exclusivement** par un appel dédié à `GET .../vspc/{vspcTenantId}/backupLicenses/backupServer`
+(cf. BKP-1216 ci-dessous), que le front utilise déjà. Le retrait ne concerne que la projection imbriquée
+dans `GET .../vspc` : `GET .../vspc/{vspcTenantId}/backupLicenses` conserve son `currentState.backupServers[]`.
+Aucun type TS ne portait le champ (`src/types/VspcTenant.type.ts` n'expose que `id`, `vspcType`,
+`enabledAddons`, `accessUrl`), donc aucun code d'appel n'est impacté. Attention si un jour on est tenté
+d'élargir ce type : les deux formes diffèrent — la projection imbriquée était **plate**
+(`…backupServer.Summary`), la route dédiée renvoie l'**enveloppe ressource**
+(`{id, status, currentTasks[], targetSpec, currentState:{…}}`), avec `backupServerVersion` en plus.
+
+> **Décision 2026-08-12 : on traite `backupServers[]` comme SUPPRIMÉ, point final.** Le champ est déprécié
+> côté BE ; le front ne doit ni le lire, ni le typer, ni s'appuyer sur sa présence, quel que soit ce que
+> renvoie l'API en attendant.
+>
+> Nuance de traçabilité, pour qui relit ce contrat : le champ est **encore physiquement présent** dans la
+> spec staging (re-fetch du 2026-08-12, publique et sans SSO :
+> `https://api.labeu.build-ovhcloud.com/v2/backupServices.json?format=openapi3` ; par ailleurs
+> structurellement identique au snapshot du 2026-08-04 — mêmes paths, schémas, enums, nullabilités), et
+> **aucun marqueur OpenAPI `deprecated` n'existe nulle part dans ce schéma** (0 occurrence). La dépréciation
+> est donc une information humaine du BE, pas un fait contractuel : ne cherche pas à la retrouver dans le
+> JSON, elle n'y est pas. Traiter comme supprimé est de toute façon le comportement sûr dans les deux cas.
 
 ---
 
