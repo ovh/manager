@@ -19,29 +19,29 @@ const renderUseLocations = async () => {
 };
 
 describe('useLocations', () => {
-  it('expose le catalogue en dur des 11 localisations, traduit dans la locale courante', async () => {
+  it('exposes the hardcoded catalog of 11 locations, translated in the current locale', async () => {
     const { result } = await renderUseLocations();
 
     await waitFor(() => expect(result.current).toHaveLength(11));
     expect(result.current.map(({ name }) => name)).toEqual([
-      'gra',
-      'rbx',
-      'sbg',
-      'de',
-      'uk',
-      'waw',
-      'bhs',
+      'eu-west-gra',
+      'eu-west-rbx',
+      'eu-west-sbg',
+      'eu-west-lim',
+      'eu-west-eri',
+      'eu-central-waw',
+      'ca-east-bhs',
       'ca-east-tor',
-      'sgp',
+      'ap-southeast-sgp',
       'ap-southeast-syd',
       'ap-south-mum',
     ]);
   });
 
-  it('résout les libellés ville / pays / zone géographique depuis les référentiels partagés', async () => {
+  it('resolves the city / country / geography labels from the shared referentials', async () => {
     const { result } = await renderUseLocations();
 
-    const gravelines = result.current.find(({ name }) => name === 'gra');
+    const gravelines = result.current.find(({ name }) => name === 'eu-west-gra');
     expect(gravelines).toMatchObject({
       cityName: 'Gravelines',
       countryName: 'France',

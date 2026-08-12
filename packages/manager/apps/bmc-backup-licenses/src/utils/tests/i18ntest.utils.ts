@@ -5,21 +5,14 @@ import actions from '@ovh-ux/manager-common-translations/dist/@ovh-ux/manager-co
 
 import { appName } from '@/App.constants';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import onboarding from '../../../public/translations/onboarding/Messages_fr_FR.json';
-
 export const defaultLocale = 'fr_FR';
 export const defaultAvailableLocales = [defaultLocale];
 function addTranslations() {
-  i18next
-    .addResources(defaultLocale, 'onboarding', onboarding)
-    .addResources(defaultLocale, NAMESPACES.ACTIONS, actions)
-    .use({
-      type: 'postProcessor',
-      name: 'normalize',
-      process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
-    });
+  i18next.addResources(defaultLocale, NAMESPACES.ACTIONS, actions).use({
+    type: 'postProcessor',
+    name: 'normalize',
+    process: (value: string) => (value ? value.replace(/&amp;/g, '&') : value),
+  });
 }
 export const getTesti18nParams = (): InitOptions<unknown> => ({
   lng: defaultLocale,
@@ -45,6 +38,5 @@ export const initTestI18n = () =>
   });
 
 export const labels = {
-  onboarding,
   actions,
 };

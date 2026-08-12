@@ -19,7 +19,7 @@ export interface LocationDefinition {
 
 export const LOCATION_DEFINITIONS: LocationDefinition[] = [
   {
-    name: 'gra',
+    name: 'eu-west-gra',
     code: 'GRA',
     cityCode: 'GRA',
     countryCode: 'FR',
@@ -29,7 +29,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'rbx',
+    name: 'eu-west-rbx',
     code: 'RBX',
     cityCode: 'RBX',
     countryCode: 'FR',
@@ -39,7 +39,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'sbg',
+    name: 'eu-west-sbg',
     code: 'SBG',
     cityCode: 'SBG',
     countryCode: 'FR',
@@ -49,7 +49,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'de',
+    name: 'eu-west-lim',
     code: 'DE',
     cityCode: 'DE',
     countryCode: 'DE',
@@ -59,7 +59,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'uk',
+    name: 'eu-west-eri',
     code: 'UK',
     cityCode: 'UK',
     countryCode: 'GB',
@@ -69,7 +69,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'waw',
+    name: 'eu-central-waw',
     code: 'WAW',
     cityCode: 'WAW',
     countryCode: 'PL',
@@ -79,7 +79,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'bhs',
+    name: 'ca-east-bhs',
     code: 'BHS',
     cityCode: 'BHS',
     countryCode: 'CA',
@@ -99,7 +99,7 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     specificType: LocationSpecificType.STANDARD,
   },
   {
-    name: 'sgp',
+    name: 'ap-southeast-sgp',
     code: 'SGP',
     cityCode: 'SGP',
     countryCode: 'SG',
