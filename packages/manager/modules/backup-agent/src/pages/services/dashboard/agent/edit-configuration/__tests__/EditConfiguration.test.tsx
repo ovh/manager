@@ -9,6 +9,7 @@ import { queryKeys } from '@/data/queries/queryKeys';
 import { mockAgents } from '@/mocks/agents/agents';
 import { mockTenantBackupPolicies } from '@/mocks/tenant/backupPolicies.mock';
 import { TENANTS_MOCKS } from '@/mocks/tenant/tenants.mock';
+import { VSPC_TENANTS_MOCKS } from '@/mocks/tenant/vspcTenants.mock';
 import { EditConfigurationPage } from '@/pages/services/dashboard/agent/edit-configuration/EditConfiguration.page';
 import { useParamsMock } from '@/test-utils/mocks/react-router-dom';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
@@ -135,7 +136,7 @@ describe('EditConfigurationComponent', () => {
     queryClient.setQueryData(queryKeys.tenants.vspc.policies(), mockTenantBackupPolicies);
     // Seed dependencies for ensureQueryData resolution during refetch
     queryClient.setQueryData(queryKeys.backupServices.all, [{ id: 'backup-service-id' }]);
-    queryClient.setQueryData(queryKeys.tenants.vspc.all(), [TENANTS_MOCKS[0]!]);
+    queryClient.setQueryData(queryKeys.tenants.vspc.all(), [VSPC_TENANTS_MOCKS[0]!]);
 
     const wrapper = await buildWrapper();
 

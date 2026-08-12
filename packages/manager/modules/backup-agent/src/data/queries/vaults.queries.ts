@@ -1,6 +1,7 @@
 import { QueryClient, queryOptions } from '@tanstack/react-query';
 
 import { getVaultDetails, getVaults } from '@/data/api/vaults/vault.requests';
+import { selectBackupAgentVaults } from '@/data/selectors/vaults.selectors';
 
 import { queryKeys } from './queryKeys';
 import { servicesQueries } from './services.queries';
@@ -14,6 +15,7 @@ const list = (queryClient: QueryClient) => () =>
       const backupServicesId = await servicesQueries.withClient(queryClient).backupServicesId();
       return getVaults(backupServicesId!);
     },
+    select: selectBackupAgentVaults,
   });
 
 const detail = (queryClient: QueryClient) => (vaultId: string) =>

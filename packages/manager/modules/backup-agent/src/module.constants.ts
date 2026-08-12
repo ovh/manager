@@ -8,6 +8,10 @@ export const LABELS = {
   VSPC: 'VSPC',
 } as const;
 
+export const MODULE_PRODUCT_LINE = 'BACKUP_AGENT' as const;
+
+export const MODULE_VSPC_TYPE = 'BASIC' as const;
+
 export const FEATURE_AVAILABILITY = Object.freeze({
   DELETE_TENANT: 'deleteTenant',
   DELETE_VAULT: 'deleteVault',
