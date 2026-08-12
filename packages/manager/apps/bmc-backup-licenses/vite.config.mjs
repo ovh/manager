@@ -1,12 +1,20 @@
 import { defineConfig } from 'vite';
 import { resolve, dirname } from 'node:path';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { getBaseConfig } from '@ovh-ux/manager-vite-config';
 import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
-const baseConfig = getBaseConfig()
 const BACKUP_LICENSES_PACKAGE = '@ovh-ux/backup-licenses';
+const backupLicensesRoot = dirname(require.resolve(`${BACKUP_LICENSES_PACKAGE}/package.json`));
+
+const baseConfig = getBaseConfig({
+  staticCopyTargets: [
+    {
+      src: `${backupLicensesRoot}/public/translations/*`,
+      dest: `translations/module-backup-licenses`,
+    },
+  ],
+});
 
 export default defineConfig({
   ...baseConfig,
@@ -18,13 +26,4 @@ export default defineConfig({
       'react-hook-form'
     ],
   },
-  plugins: [
-    ...baseConfig.plugins,
-    viteStaticCopy({
-      targets: [{
-        src: `${dirname(require.resolve(BACKUP_LICENSES_PACKAGE))}/../public/**/*`,
-        dest: `translations/module-backup-licenses`,
-      }],
-    }),
-  ]
 });

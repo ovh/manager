@@ -196,9 +196,9 @@ describe('OrderVaultPage', () => {
     // Sorted alphabetically, regardless of the fixture's order.
     await waitFor(() =>
       expect(regionOptionLabels()).toEqual([
-        'Gravelines (gra)',
-        'Roubaix (rbx)',
-        'Strasbourg (sbg)',
+        'Gravelines (eu-west-gra)',
+        'Roubaix (eu-west-rbx)',
+        'Strasbourg (eu-west-sbg)',
       ]),
     );
   });
