@@ -1,7 +1,3 @@
-import { OnboardingConfigType } from '@/types/Onboarding.type';
-
-import backupLicensesImage from './assets/backup-licenses.png';
-
 export const appName = 'bmc-backup-licenses';
 export const productName = 'OVHcloud Backup Licenses';
 
@@ -13,18 +9,6 @@ export const AppConfig = {
   },
   rootLabel: appName,
 } as const;
-
-export const ONBOARDING_CONFIG: OnboardingConfigType = {
-  productName,
-  productCategory: 'Backup',
-  brand: 'OVHcloud',
-  tiles: [
-    { id: 1, key: 'guide1', linkKey: 'cost' },
-    { id: 2, key: 'guide2', linkKey: 'tutorial' },
-    { id: 3, key: 'guide3', linkKey: 'faq' },
-  ],
-  heroImage: { src: backupLicensesImage },
-};
 
 export type ListingApi = 'v6Iceberg' | 'v6' | 'v2';
 export type DashboardApi = 'v6' | 'v2';
