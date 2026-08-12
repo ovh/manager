@@ -6,6 +6,8 @@ export const ADVANCED_VSPC_TYPE = 'ADVANCED';
 // route — assumed nested under `currentState` like the rest of that resource. The BKP-1206 ticket
 // itself flags this contract as unconfirmed ("Check with Sreekanth if endpoint is good"): adjust
 // here once the real backend response is verified.
+// Deliberately no VBR servers here: the BE dropped them from this route, and the dedicated
+// `getBackupServers` route returns them in a different shape — see spec/API-STATUS.md (BKP-1206).
 export type VspcTenant = {
   id: string;
   vspcType?: string;
