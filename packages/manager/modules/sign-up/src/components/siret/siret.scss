@@ -2,6 +2,13 @@
   margin-top: -30px;
 }
 
+// oui-modal has no scroll container of its own and the bootstrap wrappers only
+// scroll a `.modal-body`, which oui-modal does not render.
+.siret-search-modal__content {
+  max-height: calc(100vh - 15rem);
+  overflow-y: auto;
+}
+
 .siret-search-assistant-button {
   display: block;
   width: 100%;

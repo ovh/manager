@@ -145,6 +145,10 @@ export default class UserAccountInfosController {
   onProfileUpdate() {
     this.isUpdated = true;
     this.user = null;
+    // the form is destroyed and rebuilt below: consume the deep-link focus so a
+    // ?fieldToFocus=siretForm landing does not reopen the SIRET lookup modal
+    // right after a successful save
+    this.fieldToFocus = null;
     return this.$q.all({
       loadUserInfos: this.loadUserInfos(),
       getTaskEmailChange: this.getTaskEmailChange(),

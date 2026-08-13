@@ -10,14 +10,6 @@
 >
     <span data-translate="siret_search_intro"></span>
 
-    <oui-message
-        class="d-block mt-2"
-        data-type="info"
-        data-ng-if="$ctrl.showUpdateSiretInfo"
-    >
-        <span data-translate="siret_update_search_assistant_info"></span>
-    </oui-message>
-
     <div class="oui-field__header mt-2">
         <label
             class="oui-field__label"
@@ -158,7 +150,7 @@
             data-ng-class="{ 'siret-search-assistant-button': $ctrl.mode === 'modification' }"
             variant="{{ $ctrl.mode === 'modification' ? 'secondary' : 'link' }}"
             icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
-            data-on-click="$ctrl.goToSearchMode()"
+            data-on-click="$ctrl.onSearchAssistantClick()"
         >
             <span
                 data-translate="{{ $ctrl.mode === 'modification' ? $ctrl.getUpdateSearchAssistantLabelKey() : 'siret_search_assistant' }}"
@@ -267,6 +259,7 @@
         class="mb-4"
         data-ng-if="$ctrl.suggest.type === 'siret' || $ctrl.displayManualForm"
         data-name="isCorrectCheckbox"
+        data-model="$ctrl.informationConfirmed"
         data-required
     >
         <span data-translate="siret_information_confirmation_is_correct"></span>
@@ -274,3 +267,14 @@
     <!-- valid that the information is correct  -->
 </form>
 <!-- end result of search -->
+
+<!-- SIRET lookup modal (modification): keeps the edition form above intact
+     until the customer validates the company found -->
+<siret-search-modal
+    data-ng-if="$ctrl.searchModalOpen"
+    data-country="$ctrl.country"
+    data-legal-form="$ctrl.getLegalForm()"
+    data-tracking-mode="$ctrl.trackingMode"
+    data-on-validate="$ctrl.onSearchModalValidate(suggestion)"
+    data-on-cancel="$ctrl.closeSearchModal()"
+></siret-search-modal>

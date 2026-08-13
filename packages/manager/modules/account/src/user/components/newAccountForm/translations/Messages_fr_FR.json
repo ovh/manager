@@ -789,5 +789,7 @@
   "signup_legalform_other_invalid": "La catégorie « Autre » n'est pas valide. Veuillez sélectionner une autre catégorie.",
   "signup_legalform_other_save_blocked": "Impossible d'enregistrer avec la catégorie « Autre ». Veuillez sélectionner une catégorie valide avant de continuer.",
   "signup_legalform_other_switch_company": "Vous avez modifié votre catégorie. Veuillez mettre à jour les données de votre {{ category }} avant d'enregistrer.",
-  "signup_legalform_other_switch_company_cta": "Mettre à jour mes données société"
+  "signup_legalform_other_switch_company_cta": "Mettre à jour mes données société",
+  "signup_account_info_siret_lookup_hint": "Vos informations d'entreprise sont peut-être obsolètes.",
+  "signup_account_info_siret_lookup_cta": "Les mettre à jour avec mon numéro de SIRET"
 }

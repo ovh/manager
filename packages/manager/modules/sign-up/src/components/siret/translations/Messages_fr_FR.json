@@ -45,5 +45,8 @@
   "siret_vat_none_corporation": "Mon entreprise n'a pas de numéro de TVA",
   "siret_vat_none_association": "Mon association n'a pas de numéro de TVA",
   "siret_vat_none_administration": "Cette administration ne possède pas de numéro de TVA",
-  "siret_non_diffusible": "Les informations de votre entreprise ne sont pas diffusées publiquement (entreprise non diffusible). Veuillez renseigner manuellement les informations de votre organisation afin qu'elles figurent correctement sur vos factures."
+  "siret_non_diffusible": "Les informations de votre entreprise ne sont pas diffusées publiquement (entreprise non diffusible). Veuillez renseigner manuellement les informations de votre organisation afin qu'elles figurent correctement sur vos factures.",
+  "siret_modal_review_title": "Vérifiez les informations trouvées",
+  "siret_modal_search_again": "Rechercher à nouveau",
+  "siret_modal_validate": "Valider"
 }

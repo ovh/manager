@@ -687,6 +687,12 @@ export default class NewAccountFormController {
     return this.updateRules();
   }
 
+  // Sends the customer back to the SIRET lookup modal, which lives inside the
+  // siret component (a descendant scope), from an error message rendered here.
+  openSiretSearch() {
+    this.$scope.$broadcast('siret:openSearchModal');
+  }
+
   isFrenchAssociation() {
     return (
       this.model?.legalform === USER_TYPE_ASSOCIATION &&

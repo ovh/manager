@@ -4,6 +4,7 @@ import '@ovh-ux/ui-kit';
 import '@ovh-ux/ng-at-internet';
 
 import component from './siret.component';
+import searchModalComponent from './searchModal/siret-search-modal.component';
 import service from './siret.service';
 
 import './siret.scss';
@@ -19,6 +20,7 @@ angular
   ])
   .run(/* @ngTranslationsInject:json ./translations */)
   .component('siretComponent', component)
+  .component('siretSearchModal', searchModalComponent)
   .service('SiretService', service);
 
 export default moduleName;

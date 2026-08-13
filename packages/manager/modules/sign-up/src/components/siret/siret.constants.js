@@ -40,6 +40,20 @@ export const COMPANY_NAME_LABEL_LEGAL_FORMS = [
 export const UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT =
   'siret_update_search_assistant';
 
+/** "Nom de l'entreprise / l'association / l'administration" */
+export function getCompanyNameLabelKey(legalForm) {
+  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+    ? `${COMPANY_NAME_LABEL_DEFAULT}_${legalForm}`
+    : COMPANY_NAME_LABEL_DEFAULT;
+}
+
+/** "Mettre à jour mes informations d'entreprise / d'association / d'administration" */
+export function getUpdateSearchAssistantLabelKey(legalForm) {
+  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+    ? `${UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT}_${legalForm}`
+    : UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT;
+}
+
 // Maps the search-assistant field aliases (used for enabling/disabling inputs)
 // to their matching key in the rules object.
 export const SIRET_RULE_FIELD = {
@@ -82,7 +96,13 @@ export function calculateFRVATNumber(siren) {
 export const SIRET_SEARCH_REGEXP = /^(?:\d\s*){14}$/;
 
 export const SIRET_FOCUS_PARAM = 'siretForm';
-export const SIRET_SEARCH_ASSISTANT_ANCHOR = 'siret-search-assistant';
+
+/**
+ * Broadcast from an ancestor scope to (re)open the SIRET lookup modal, so an
+ * error message rendered outside the siret component can send the customer
+ * straight to the company lookup.
+ */
+export const OPEN_SEARCH_MODAL_EVENT = 'siret:openSearchModal';
 
 export const NON_DISCLOSED_VALUE = '[ND]';
 
@@ -117,5 +137,5 @@ export default {
   SIRET_RULE_FIELD,
   SIRET_SEARCH_REGEXP,
   SIRET_FOCUS_PARAM,
-  SIRET_SEARCH_ASSISTANT_ANCHOR,
+  OPEN_SEARCH_MODAL_EVENT,
 };
