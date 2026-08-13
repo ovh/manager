@@ -46,6 +46,8 @@ const SUBSIDIARY_TO_OVHCLOUD_LOCALE: Record<string, string> = {
 const DOCS_BASE = 'https://docs.ovhcloud.com';
 const AGENT_DOCS_PATH = 'guides/storage-and-backup/backup-agent';
 const OVHCLOUD_BASE = 'https://www.ovhcloud.com';
+const US_INSTALL_GUIDE =
+  'https://support.us.ovhcloud.com/hc/en-us/articles/52036326223635-Backup-Agent-Troubleshooting';
 
 function getDocsLang(ovhSubsidiary: string): string {
   return SUBSIDIARY_TO_DOCS_LANG[ovhSubsidiary] ?? 'en';
@@ -65,7 +67,7 @@ export function useTunnelLinks() {
 
   return {
     faq: `${docsBase}/troubleshooting`,
-    installGuide: `${docsBase}/first-configuration`,
+    installGuide: ovhSubsidiary === 'US' ? US_INSTALL_GUIDE : `${docsBase}/first-configuration`,
     orderBaremetal: `${ovhBase}/bare-metal/`,
     support: `${ovhBase}/support-levels/`,
     paymentSettings: 'https://www.ovh.com/manager/#/dedicated/billing/payment/method',

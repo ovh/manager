@@ -18,7 +18,7 @@
   "help": "Hilfe",
   "type_billing": "Abrechnungstyp",
   "consumption_tooltip": "Der zusätzliche Speicher ist nicht zum Self-Service verfügbar. Um Ihre Speicherkapazität zu erhöhen, wenden Sie sich bitte an den Support.",
-  "vault_price": "Das entspricht {{vaultPrice}} zzgl. MwSt./Monat",
+  "vault_price": "Das entspricht {{vaultPrice}} {{taxLabel}}/Monat",
   "immutability": "Unveränderlichkeit",
   "immutability_duration_enabled": "{{duration}} Tage aktiviert",
   "encryption": "Vault-Verschlüsselung",

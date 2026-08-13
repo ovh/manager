@@ -18,7 +18,7 @@
   "help": "Ajuda",
   "type_billing": "Tipo de faturação",
   "consumption_tooltip": "O armazenamento suplementar não está disponível em self-service. Para aumentar a capacidade de armazenamento, contacte o suporte.",
-  "vault_price": "Ou seja, {{vaultPrice}} /mês + IVA",
+  "vault_price": "Ou seja, {{vaultPrice}} /mês {{taxLabel}}",
   "immutability": "Imutabilidade",
   "immutability_duration_enabled": "{{duration}} dias ativados",
   "encryption": "Encriptação do Vault",

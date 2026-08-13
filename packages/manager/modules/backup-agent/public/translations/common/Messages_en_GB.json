@@ -6,6 +6,8 @@
   "buckets": "Buckets",
   "policy": "Policy",
   "actions": "Actions",
+  "primary": "Primary",
+  "secondary": "Secondary",
   "without_engagement": "without commitment",
   "backup_agent_guide": "Backup Agent Guides",
   "baremetal_label_order_in_progress": "The order has been received, your product is on its way and you can track its progress <OrderLink>here</OrderLink>.",
