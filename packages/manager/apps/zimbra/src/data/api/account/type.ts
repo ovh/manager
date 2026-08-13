@@ -34,7 +34,7 @@ export type AccountType = {
     organizationLabel: string;
     offer: keyof typeof ZimbraOffer;
     quota: {
-      available: number;
+      maximum: number;
       used: number;
     };
     updatedAt: string;
@@ -69,7 +69,7 @@ export type AccountType = {
     hideInGal: boolean;
     lastName: string;
     quota: {
-      available: number;
+      maximum: number;
       used: number;
     };
   };

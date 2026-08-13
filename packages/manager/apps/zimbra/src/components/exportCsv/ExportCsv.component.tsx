@@ -162,8 +162,7 @@ export const ExportCsv = () => {
       {
         id: 'quotaAvailable',
         label: t('common:quota_available'),
-        getValue: (item) =>
-          formatBytes(item?.account?.currentState?.quota.available, 2, 1024) || '',
+        getValue: (item) => formatBytes(item?.account?.currentState?.quota.maximum, 2, 1024) || '',
       },
       {
         id: 'profession',
