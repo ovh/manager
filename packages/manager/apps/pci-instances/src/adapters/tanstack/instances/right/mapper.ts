@@ -114,7 +114,7 @@ export const mapFlavorToDTO = (
   billingPeriod: entity.billingPeriod,
   autobackup: entity.localBackupRotation
     ? {
-        cron: `0 0 */${entity.localBackupRotation} * *`,
+        cron: '0 0 * * *',
         rotation: Number(entity.localBackupRotation),
       }
     : null,
