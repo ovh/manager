@@ -36,7 +36,7 @@ export const accountMock: AccountType = {
     organizationId: '19097ad4-2870-4000-82b3-b71a147bc580',
     organizationLabel: 'string',
     quota: {
-      available: 0,
+      maximum: 0,
       used: 0,
     },
     updatedAt: '2024-07-09T13:27:12.775Z',
@@ -73,7 +73,7 @@ export const accountMock: AccountType = {
     hideInGal: false,
     lastName: 'string',
     quota: {
-      available: 0,
+      maximum: 0,
       used: 0,
     },
   },

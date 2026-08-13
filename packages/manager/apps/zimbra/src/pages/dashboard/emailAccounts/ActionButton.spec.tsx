@@ -21,7 +21,7 @@ describe('EmailAccounts datagrid action menu', () => {
           organizationId: '2',
           organizationLabel: 'testorgLabel',
           used: 1,
-          available: 2,
+          maximum: 2,
           status: 'READY',
           slotId: '123-123',
           detailedStatus: [
