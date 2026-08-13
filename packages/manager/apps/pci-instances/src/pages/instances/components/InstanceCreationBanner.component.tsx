@@ -7,6 +7,7 @@ type TInstanceCreationBannerProps = {
   hasError: boolean;
 };
 
+// US Test
 export const InstanceCreationBanner: FC<TInstanceCreationBannerProps> = ({
   instancesCreationsCount,
   hasError,
