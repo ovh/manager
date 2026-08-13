@@ -16,10 +16,6 @@ export const mockBackupServicesTenants: Resource<BackupServicesTenant>[] = [
 
 export const VSPC_TENANT_ID = 'c2b8d4e5-0000-4000-8000-000000000001';
 
-/**
- * Tenant VSPC du périmètre Backup Licenses. `vspcType` et `enabledAddons` ne sont pas décoratifs :
- * la route `.../vspc` sert aussi Backup Agent, et sans eux la cascade écarte le tenant.
- */
 export const buildBackupLicensesVspcTenant = (
   id: string,
   currentState: Partial<VspcTenant> = {},

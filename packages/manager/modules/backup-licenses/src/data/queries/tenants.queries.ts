@@ -10,11 +10,6 @@ import { queryKeys } from './queryKeys';
  * Cascade de résolution des identifiants (cf. §4 et §6 de la spec BKP-1216) :
  * `backupServicesId` puis `vspcTenantId` ne sont pas dans l'URL, ils sont résolus
  * par API et mis en cache.
- *
- * `/backupServices/tenant` et `.../vspc` servent aussi Backup Agent, et le tenant racine ne porte
- * aucune ligne produit : le périmètre ne se décide qu'au niveau VSPC (`vspcType`/`enabledAddons`).
- * Les deux identifiants sont donc résolus ensemble — prendre le premier de chaque liste
- * indépendamment retiendrait un service ou un tenant d'en face.
  */
 
 // ─── Base queries (no QueryClient needed) ───
