@@ -21,6 +21,7 @@ const getBadgeClassName = (mode: TDeploymentMode) => {
   }
 };
 
+// test
 type TDeploymentModeBadgeProps = {
   mode: TDeploymentMode;
   size?: BADGE_SIZE;
