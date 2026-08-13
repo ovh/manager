@@ -93,7 +93,7 @@ export const EmailAccountsDatagrid = () => {
         organizationId: item.currentState.organizationId,
         organizationLabel: item.currentState.organizationLabel,
         used: item.currentState.quota.used,
-        available: item.currentState.quota.available,
+        maximum: item.currentState.quota.maximum,
         status: item.resourceStatus,
         detailedStatus: item.currentState.detailedStatus,
         slotId: item.currentState.slotId,
@@ -134,7 +134,7 @@ export const EmailAccountsDatagrid = () => {
       },
       {
         id: 'quota',
-        accessorKey: 'available',
+        accessorKey: 'maximum',
         cell: ({ getValue }) => (
           <Text preset={TEXT_PRESET.paragraph}>{formatBytes(getValue<number>(), 0, 1024)}</Text>
         ),

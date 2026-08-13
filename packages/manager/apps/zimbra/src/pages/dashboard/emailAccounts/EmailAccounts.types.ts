@@ -7,7 +7,7 @@ export type EmailAccountItem = {
   organizationId: string;
   organizationLabel: string;
   used: number;
-  available: number;
+  maximum: number;
   status: keyof typeof ResourceStatus;
   detailedStatus: {
     details: string;

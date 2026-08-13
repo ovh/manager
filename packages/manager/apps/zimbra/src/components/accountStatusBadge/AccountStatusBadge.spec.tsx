@@ -15,7 +15,7 @@ const accountMock = {
   organizationId: '2',
   organizationLabel: 'testorgLabel',
   used: 1,
-  available: 2,
+  maximum: 2,
   status: ResourceStatus.READY,
   slotId: '123-123',
   detailedStatus: [] as {
