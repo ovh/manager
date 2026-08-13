@@ -21,6 +21,7 @@ const LABELS_VISIBLES = [
 vi.mock('react-i18next', () => ({
   useTranslation: vi.fn().mockReturnValue({
     t: vi.fn().mockImplementation((key: string) => key),
+    i18n: { language: 'fr_FR' },
   }),
 }));
 

@@ -139,7 +139,7 @@ const GUIDE_LIST = Object.freeze({
   faq: {
     FR: 'https://help.ovhcloud.com/csm/fr-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074396',
     GB: 'https://help.ovhcloud.com/csm/en-gb-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074384',
-    US: 'https://help.ovhcloud.com/csm/en-gb-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074384',
+    US: 'https://support.us.ovhcloud.com/hc/en-us/articles/52036326223635-Backup-Agent-Troubleshooting',
     DE: 'https://help.ovhcloud.com/csm/en-gb-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074384',
     ES: 'https://help.ovhcloud.com/csm/en-gb-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074384',
     IE: 'https://help.ovhcloud.com/csm/en-gb-backup-agent-troubleshooting?id=kb_article_view&sysparm_article=KB0074384',

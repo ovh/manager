@@ -18,7 +18,7 @@
   "help": "Ayuda",
   "type_billing": "Tipo de facturación",
   "consumption_tooltip": "El almacenamiento adicional no está disponible para autoservicio. Para aumentar su capacidad de almacenamiento, contacte con el equipo de soporte.",
-  "vault_price": "Es decir, {{vaultPrice}}/mes + IVA",
+  "vault_price": "Es decir, {{vaultPrice}}/mes {{taxLabel}}",
   "immutability": "Datos inalterables",
   "immutability_duration_enabled": "{{duration}} días activados",
   "encryption": "Cifrado del vault",

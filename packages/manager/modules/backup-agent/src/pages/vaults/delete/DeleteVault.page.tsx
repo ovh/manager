@@ -7,8 +7,10 @@ import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage, OdsText } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { Region } from '@ovh-ux/manager-config';
 import { useFeatureAvailability } from '@ovh-ux/manager-module-common-api';
 import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useDeleteVault } from '@/data/hooks/useDeleteVault';
@@ -33,7 +35,9 @@ export default function DeleteVaultPage() {
   ]);
   const { data: featureAvailabilities } = useFeatureAvailability([deleteVaultFeatureName]);
 
-  const isDeleteVaultFeatureAvailable = featureAvailabilities?.[deleteVaultFeatureName] ?? false;
+  const isUsRegion = useEnvironment().getRegion?.() === Region.US;
+  const isDeleteVaultFeatureAvailable =
+    !isUsRegion && (featureAvailabilities?.[deleteVaultFeatureName] ?? false);
   const doesVaultHaveVSPCTenants = !!vault?.currentState.vspcTenants.length;
 
   const canDeleteVault = isDeleteVaultFeatureAvailable && !doesVaultHaveVSPCTenants;

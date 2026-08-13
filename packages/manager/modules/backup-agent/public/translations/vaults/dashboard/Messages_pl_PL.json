@@ -18,7 +18,7 @@
   "help": "Pomoc",
   "type_billing": "Sposób rozliczania usługi",
   "consumption_tooltip": "Nie możesz samodzielnie dodać przestrzeni dyskowej. Aby zwiększyć przestrzeń dyskową, skontaktuj się z pomocą techniczną.",
-  "vault_price": "Czyli {{vaultPrice}} netto/m-c",
+  "vault_price": "Czyli {{vaultPrice}} {{taxLabel}}/m-c",
   "immutability": "Blokada przed modyfikacją",
   "immutability_duration_enabled": "Aktywacja na {{duration}} dni",
   "encryption": "Szyfrowanie Vault",
