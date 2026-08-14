@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.19.0...@ovh-ux/manager-pci-instances-app@0.19.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **pci-instances:** backup cron value on creation ([b891b96](https://github.com/ovh/manager/commit/b891b96a69361d639996563fee8419eb2a224e4c)), closes [#TAPC-7035](https://github.com/ovh/manager/issues/TAPC-7035)
+
+
+
+
+
 # [0.19.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.18.1...@ovh-ux/manager-pci-instances-app@0.19.0) (2026-06-04)
 
 

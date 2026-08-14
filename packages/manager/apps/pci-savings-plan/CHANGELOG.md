@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.26.2...@ovh-ux/manager-pci-savings-plan-app@1.27.0) (2026-08-14)
+
+
+### Features
+
+* **pci-savings-plan:** add svp auto renewal error handling ([e57dcd8](https://github.com/ovh/manager/commit/e57dcd88e76d427827602f5e300343ea31114327)), closes [#TAPC-7022](https://github.com/ovh/manager/issues/TAPC-7022)
+* **pci-savings-plan:** remove mention of storage on svp create ([34e4b46](https://github.com/ovh/manager/commit/34e4b46128cb97ff9b73463489bc412fb16b6101)), closes [#TAPC-7022](https://github.com/ovh/manager/issues/TAPC-7022)
+
+
+
+
+
 ## [1.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-savings-plan-app@1.26.1...@ovh-ux/manager-pci-savings-plan-app@1.26.2) (2026-06-09)
 
 

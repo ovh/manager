@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.20.2...@ovh-ux/manager-pci-public-ip-app@0.21.0) (2026-08-14)
+
+
+### Features
+
+* **pci-public-ip:** add basic ip creation and listing page ([4201911](https://github.com/ovh/manager/commit/4201911b9f084291923f85e71b7357cb54da1eb2)), closes [#TAPC-7022](https://github.com/ovh/manager/issues/TAPC-7022)
+
+
+
+
+
 ## [0.20.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.20.1...@ovh-ux/manager-pci-public-ip-app@0.20.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-public-ip-app
