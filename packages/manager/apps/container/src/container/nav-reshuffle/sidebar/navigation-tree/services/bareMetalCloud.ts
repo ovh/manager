@@ -58,7 +58,7 @@ baremetalUniverse.children = [
           application: 'dedicated-servers',
           hash: '#/',
           pathMatcher: /(\/dedicated\/(configuration|server))|\/dedicated-servers/,
-          
+
         },
         features: ['dedicated-servers:container'],
       },
@@ -109,7 +109,7 @@ baremetalUniverse.children = [
       'dedicated-nasha',
       'netapp',
       'cloud-disk-array',
-      'bmc-backup-licenses',
+      'bmc-backup-licenses:container',
     ],
     children: [
       {
@@ -166,12 +166,13 @@ baremetalUniverse.children = [
         universe: baremetalUniverse.id,
         idAttr: 'bmc-backup-licenses-link',
         translation: 'sidebar_backup_licenses',
+        serviceType: 'BMC_BACKUP_LICENCES',
         tag: NodeTag.NEW,
         routing: {
           application: 'bmc-backup-licenses',
           hash: '#/',
         },
-        features: ['bmc-backup-licenses'],
+        features: ['bmc-backup-licenses:container'],
       },
     ],
   },
