@@ -40,7 +40,7 @@ const features = [
   'veeam-enterprise:order',
   'hycu',
   'hpc-backup-agent-iaas',
-  'hpc-backup-licenses',
+  'hpc-backup-licenses:container',
   'vrack:bare-metal-cloud',
   'vrack:order',
   'vrack-services',
@@ -303,7 +303,7 @@ export default function HostedPrivateCloudSidebar() {
       feature.hycu ||
       feature['veeam-backup'] ||
       feature['hpc-backup-agent-iaas'] ||
-      feature['hpc-backup-licenses']
+      feature['hpc-backup-licenses:container']
     ) {
       menu.push({
         id: 'hpc-storage-backup',
@@ -377,13 +377,12 @@ export default function HostedPrivateCloudSidebar() {
             pathMatcher: new RegExp('^/hpc-backup-agent-iaas'),
             badge: 'new',
           },
-          feature['hpc-backup-licenses'] && {
+          feature['hpc-backup-licenses:container'] && {
             id: 'hpc-backup-licenses',
             label: t('sidebar_backup_licenses'),
             icon: (
               <img alt="" src={veeamBackupLogo} className="mb-1 aspect-square w-6" />
             ),
-            href: navigation.getURL('hpc-backup-licenses', '#/'),
             pathMatcher: new RegExp('^/hpc-backup-licenses'),
             badge: 'new',
           },

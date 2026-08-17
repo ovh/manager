@@ -16,8 +16,8 @@ import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
 import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 export const features = [
-  'bmc-backup-agent-baremetal',
-  'bmc-backup-licenses',
+  'bmc-backup-agent-baremetal:container',
+  'bmc-backup-licenses:container',
   'dedicated-server',
   'vps',
   'managed-bare-metal',
@@ -345,7 +345,7 @@ export default function DedicatedSidebar() {
       feature.netapp ||
       feature['dedicated-nasha'] ||
       feature['bmc-backup-agent-baremetal'] ||
-      feature['bmc-backup-licenses']
+      feature['bmc-backup-licenses:container']
     ) {
       menu.push({
         id: 'dedicated-storage',
@@ -392,13 +392,12 @@ export default function DedicatedSidebar() {
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
             badge: 'new',
           },
-          feature['bmc-backup-licenses'] && {
+          feature['bmc-backup-licenses:container'] && {
             id: 'bmc-backup-licenses',
             label: t('sidebar_backup_licenses'),
             icon: (
               <img alt="" src={veeamBackupLogo} className="mb-1 aspect-square w-6" />
             ),
-            href: navigation.getURL('bmc-backup-licenses', '#/'),
             pathMatcher: new RegExp('^/bmc-backup-licenses'),
             badge: 'new',
           },
