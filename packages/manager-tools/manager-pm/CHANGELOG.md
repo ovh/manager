@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.54.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.53.0...@ovh-ux/manager-pm@0.54.0) (2026-08-17)
+
+
+### Features
+
+* **backup-licenses:** init modules backup licenses ([fc03260](https://github.com/ovh/manager/commit/fc032606db82d853e285df77f37288e45cd1804c)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+* **hpc-backup-licences:** init hpc backup licences apps ([daf3e9f](https://github.com/ovh/manager/commit/daf3e9f4e1097f301658b4b7e12e085d22ac6561)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 # [0.53.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pm@0.52.1...@ovh-ux/manager-pm@0.53.0) (2026-03-11)
 
 

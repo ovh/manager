@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-licenses-app@0.4.9...@ovh-ux/manager-bmc-backup-licenses-app@0.5.0) (2026-08-17)
+
+
+### Bug Fixes
+
+* **onboarding:** plug onboarding page to bmc and fix translations ([dde37d2](https://github.com/ovh/manager/commit/dde37d2503cdd087e34d4986f01574efb5a96576)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+### Features
+
+* **hpc-backup-licences:** init hpc backup licences apps ([daf3e9f](https://github.com/ovh/manager/commit/daf3e9f4e1097f301658b4b7e12e085d22ac6561)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 ## [0.4.9](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-licenses-baremetal-app@0.4.8...@ovh-ux/manager-bmc-backup-licenses-baremetal-app@0.4.9) (2026-03-25)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-licenses-baremetal-app

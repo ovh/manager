@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.200.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.199.0...@ovh-ux/manager-container-app@0.200.0) (2026-08-17)
+
+
+### Features
+
+* **backup-licenses:** add onboarding page ([#1206](https://github.com/ovh/manager/issues/1206)) ([30d85db](https://github.com/ovh/manager/commit/30d85db6e4ebce96f1cb0f46b9b7b02944d6948c)), closes [#BKP-1206](https://github.com/ovh/manager/issues/BKP-1206)
+* **backup-licenses:** add order tunnel ([bd9dbd1](https://github.com/ovh/manager/commit/bd9dbd148910c312133c6889d8a22f3310a6bc93)), closes [#BKP-1208](https://github.com/ovh/manager/issues/BKP-1208)
+* **backup-licenses:** unmock 1208 and wire bmc-backup-licenses menu entry ([6a936bd](https://github.com/ovh/manager/commit/6a936bddfda52e8aabd63996dfdb9adc8d9bdfbd)), closes [#BKP-1208](https://github.com/ovh/manager/issues/BKP-1208)
+
+
+
+
+
 # [0.199.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.198.0...@ovh-ux/manager-container-app@0.199.0) (2026-07-20)
 
 
