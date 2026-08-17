@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.19.0...@ovh-ux/backup-agent@1.19.1) (2026-08-17)
+
+
+### Bug Fixes
+
+* **backup-agent:** fix translations and links again ([91dbcdb](https://github.com/ovh/manager/commit/91dbcdb876eeb4ed82d72ac037d933a01b1c228f)), closes [#MANAGER-22145](https://github.com/ovh/manager/issues/MANAGER-22145)
+
+
+
+
+
 # [1.19.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.18.0...@ovh-ux/backup-agent@1.19.0) (2026-08-11)
 
 

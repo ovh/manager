@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.1...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.2) (2026-08-17)
+
+
+### Bug Fixes
+
+* **backup-agent:** fix translations and links again ([91dbcdb](https://github.com/ovh/manager/commit/91dbcdb876eeb4ed82d72ac037d933a01b1c228f)), closes [#MANAGER-22145](https://github.com/ovh/manager/issues/MANAGER-22145)
+
+
+
+
+
 ## [0.6.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.0...@ovh-ux/manager-bmc-backup-agent-baremetal-app@0.6.1) (2026-08-11)
 
 **Note:** Version bump only for package @ovh-ux/manager-bmc-backup-agent-baremetal-app
