@@ -786,5 +786,9 @@
   "signup_einvoicing_multi_b2g_hint": "Sie können auch eine andere in Ihrem Rechnungsstellungsbereich konfigurieren.",
   "signup_einvoicing_stale_address": "Die ausgewählte Adresse ist nicht mehr aktiv. Bitte wählen Sie eine neue aus.",
   "signup_einvoicing_multi_b2b": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus.",
-  "signup_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben."
+  "signup_einvoicing_multi_b2g": "Bitte wählen Sie Ihre Standardadresse für die elektronische Rechnungsstellung aus. Falls Ihre SIREN für die Rechnungsstellung von der SIREN Ihrer Einheit abweicht, können Sie den Support kontaktieren, um eine andere anzugeben.",
+  "signup_legalform_other_invalid": "Die Kategorie „Sonstige“ ist nicht gültig. Bitte wählen Sie eine andere Kategorie aus.",
+  "signup_legalform_other_save_blocked": "Speichern mit der Kategorie „Sonstige“ nicht möglich. Bitte wählen Sie eine gültige Kategorie aus, bevor Sie fortfahren.",
+  "signup_legalform_other_switch_company": "Sie haben Ihre Kategorie geändert. Bitte aktualisieren Sie die Daten Ihrer {{ category }}, bevor Sie speichern.",
+  "signup_legalform_other_switch_company_cta": "Meine Unternehmensdaten aktualisieren"
 }

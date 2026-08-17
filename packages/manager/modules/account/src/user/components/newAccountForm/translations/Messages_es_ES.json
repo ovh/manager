@@ -786,5 +786,9 @@
   "signup_einvoicing_multi_b2g_hint": "También podrá configurar otra desde su espacio de facturación.",
   "signup_einvoicing_stale_address": "La dirección seleccionada ya no está activa. Por favor, seleccione una nueva.",
   "signup_einvoicing_multi_b2b": "Por favor, seleccione su dirección de facturación electrónica por defecto.",
-  "signup_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra."
+  "signup_einvoicing_multi_b2g": "Por favor, seleccione su dirección de facturación electrónica por defecto. Si su SIREN de facturación es diferente al SIREN de su entidad, puede contactar con el soporte para indicar otra.",
+  "signup_legalform_other_invalid": "La categoría «Otro» no es válida. Seleccione otra categoría.",
+  "signup_legalform_other_save_blocked": "No es posible guardar con la categoría «Otro». Seleccione una categoría válida antes de continuar.",
+  "signup_legalform_other_switch_company": "Ha modificado su categoría. Actualice los datos de su {{ category }} antes de guardar.",
+  "signup_legalform_other_switch_company_cta": "Actualizar mis datos de empresa"
 }

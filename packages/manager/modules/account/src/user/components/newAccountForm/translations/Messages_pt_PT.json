@@ -786,5 +786,9 @@
   "signup_einvoicing_multi_b2g_hint": "Poderá igualmente configurar outro a partir da sua área de faturação.",
   "signup_einvoicing_stale_address": "O endereço selecionado já não está ativo. Por favor, selecione um novo.",
   "signup_einvoicing_multi_b2b": "Por favor, selecione o seu endereço de faturação eletrónica por defeito.",
-  "signup_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro."
+  "signup_einvoicing_multi_b2g": "Por favor, selecione o seu endereço de faturação eletrónica por defeito. Se o seu SIREN de faturação for diferente do SIREN da sua entidade, pode contactar o suporte para indicar outro.",
+  "signup_legalform_other_invalid": "A categoria «Outro» não é válida. Queira selecionar outra categoria.",
+  "signup_legalform_other_save_blocked": "Impossível guardar com a categoria «Outro». Queira selecionar uma categoria válida antes de continuar.",
+  "signup_legalform_other_switch_company": "Alterou a sua categoria. Queira atualizar os dados da sua {{ category }} antes de guardar.",
+  "signup_legalform_other_switch_company_cta": "Atualizar os meus dados de empresa"
 }
