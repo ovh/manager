@@ -786,5 +786,9 @@
   "signup_einvoicing_multi_b2g_hint": "Będziesz mógł również skonfigurować inny w swoim panelu fakturowania.",
   "signup_einvoicing_stale_address": "Wybrany adres nie jest już aktywny. Proszę wybrać nowy.",
   "signup_einvoicing_multi_b2b": "Proszę wybrać domyślny adres faktur elektronicznych.",
-  "signup_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny."
+  "signup_einvoicing_multi_b2g": "Proszę wybrać domyślny adres faktur elektronicznych. Jeśli Państwa numer SIREN do faktur różni się od numeru SIREN Państwa podmiotu, mogą Państwo skontaktować się z działem wsparcia, aby podać inny.",
+  "signup_legalform_other_invalid": "Kategoria „Inne” jest nieprawidłowa. Wybierz inną kategorię.",
+  "signup_legalform_other_save_blocked": "Zapisanie z kategorią „Inne” jest niemożliwe. Przed kontynuowaniem wybierz prawidłową kategorię.",
+  "signup_legalform_other_switch_company": "Zmieniono kategorię. Przed zapisaniem zaktualizuj dane {{ category }}.",
+  "signup_legalform_other_switch_company_cta": "Zaktualizuj moje dane firmy"
 }
