@@ -13,9 +13,11 @@ import OrderTrigger from '../order/OrderTrigger';
 import { ShopItem } from '../order/OrderPopupContent';
 import getIcon from './GetIcon';
 import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
+import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 export const features = [
   'bmc-backup-agent-baremetal',
+  'bmc-backup-licenses',
   'dedicated-server',
   'vps',
   'managed-bare-metal',
@@ -339,13 +341,18 @@ export default function DedicatedSidebar() {
       });
     }
 
-    if (feature.netapp || feature['dedicated-nasha'] || feature['bmc-backup-agent-baremetal']) {
+    if (
+      feature.netapp ||
+      feature['dedicated-nasha'] ||
+      feature['bmc-backup-agent-baremetal'] ||
+      feature['bmc-backup-licenses']
+    ) {
       menu.push({
         id: 'dedicated-storage',
         label: t('sidebar_storage_backup'),
         icon: getIcon('ovh-font ovh-font-cloudnas'),
         routeMatcher: new RegExp('^(/netapp|/(paas/)?nasha)'),
-        pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
+        pathMatcher: new RegExp('^/(bmc-backup-agent-baremetal|bmc-backup-licenses)'),
         subItems: [
           feature.netapp && {
             id: 'dedicated-storage-netapp',
@@ -383,6 +390,16 @@ export default function DedicatedSidebar() {
             ),
             href: navigation.getURL('bmc-backup-agent-baremetal', '#'),
             pathMatcher: new RegExp('^/bmc-backup-agent-baremetal'),
+            badge: 'new',
+          },
+          feature['bmc-backup-licenses'] && {
+            id: 'bmc-backup-licenses',
+            label: t('sidebar_backup_licenses'),
+            icon: (
+              <img alt="" src={veeamBackupLogo} className="mb-1 aspect-square w-6" />
+            ),
+            href: navigation.getURL('bmc-backup-licenses', '#/'),
+            pathMatcher: new RegExp('^/bmc-backup-licenses'),
             badge: 'new',
           },
         ],

@@ -1,0 +1,72 @@
+{
+  "service_type": "vault",
+  "cta": {
+    "order": "Order a vault"
+  },
+  "column": {
+    "immutability": "Immutability",
+    "encryption": "Encryption"
+  },
+  "immutability_value_one": "Enabled - {{count}} day",
+  "immutability_value_other": "Enabled - {{count}} days",
+  "encryption_value": "Enabled - SSE OMK",
+  "region_single": "{{city}} ({{code}})",
+  "action": {
+    "menu_label": "Vault actions",
+    "show_credentials": "Show credentials",
+    "credentials_disabled_tooltip": "Este vault no tiene ningún bucket capaz de proporcionar credenciales S3."
+  },
+  "state": {
+    "empty": {
+      "title": "No vault to display",
+      "description": "No storage vault is attached to this service yet. A vault ordered a few moments ago may still be being created: reload the page in a few minutes."
+    },
+    "error": {
+      "message": "The vault list could not be loaded.",
+      "retry": "Retry"
+    },
+    "polling_timeout": "La operación está tardando más de lo esperado. Actualiza la página."
+  },
+  "terminate": {
+    "message": "Are you sure you want to terminate the vault {{name}} (region: {{region}})? All data stored in this vault will be permanently lost. This action is irreversible.",
+    "success": "Vault terminated successfully.",
+    "included_tooltip": "The included vault cannot be terminated.",
+    "error": "Terminating the vault failed. Please try again in a few moments."
+  },
+  "credentials": {
+    "title": "Credenciales S3",
+    "field": {
+      "endpoint": "Endpoint S3"
+    },
+    "hide": "Ocultar",
+    "copied_toast": "Copiado al portapapeles",
+    "error": "No se han podido recuperar las credenciales S3. Vuelva a intentarlo en unos instantes.",
+    "loading": "Recuperando las credenciales S3",
+    "a11y": {
+      "show_secret": "Mostrar la clave secreta",
+      "hide_secret": "Ocultar la clave secreta",
+      "copy_field": "Copiar el campo {{field}}",
+      "value_hidden": "Valor oculto"
+    }
+  },
+  "order": {
+    "title": "Order an additional vault",
+    "field": {
+      "name": {
+        "label": "Vault name",
+        "hint": "Min 1 char, max 50 chars. Alphanumeric and hyphens only."
+      },
+      "region": {
+        "label": "Storage region"
+      }
+    },
+    "pricing_message": "This vault will be billed at the pay-as-you-go rate of {{price}} from the first byte consumed.",
+    "success": "Vault order is being processed.",
+    "error": {
+      "submit_failed": "The vault order could not be sent. Please try again in a few moments.",
+      "name_required": "We just need a name for your vault.",
+      "name_format": "Use 1 to 50 characters, letters, digits and hyphens only.",
+      "region_required": "Choose the region where your vault will be stored."
+    }
+  }
+}

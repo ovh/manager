@@ -1,0 +1,19 @@
+{
+  "title": "Backup Licences",
+  "subtitle": "La solución independiente para proteger tus datos",
+  "description": "Realiza copias de seguridad, restaura y replica tus workloads críticos, sin depender de un único proveedor.",
+  "hero_alt": "Logotipo de Veeam Enterprise",
+  "highlights": {
+    "storage_included": "500 GB incluidos con tu licencia",
+    "pricing_prefix": "Desde ",
+    "pricing_suffix": "· De 2 a 3 pasos según tu licencia",
+    "compatibility": "Compatible con"
+  },
+  "order_cta": "Pedir",
+  "tutorial_card": {
+    "category": "Tutorial",
+    "title": "Instalar Veeam Backup & Replication",
+    "description": "Descubre cómo instalar un servidor Veeam Backup & Replication con Veeam Enterprise",
+    "cta": "Saber más"
+  }
+}

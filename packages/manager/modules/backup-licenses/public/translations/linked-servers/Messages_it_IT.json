@@ -1,0 +1,77 @@
+{
+  "column": {
+    "name": "Nome del server",
+    "public_ip": "IP pubblico",
+    "private_ip": "IP privato",
+    "license": "Licenza",
+    "license_status": "Stato della licenza",
+    "vbr_version": "Versione VBR",
+    "os": "SO"
+  },
+  "status": {
+    "creating": "In creazione",
+    "updating": "Aggiornamento in corso",
+    "deleting": "Eliminazione in corso",
+    "installed": "Attiva",
+    "expired": "Scaduta",
+    "not_supported": "Non supportata",
+    "error": "Errore"
+  },
+  "license": {
+    "foundation": "Foundation",
+    "advanced": "Advanced",
+    "premium": "Premium",
+    "enterprise_plus": "Enterprise Plus"
+  },
+  "os": {
+    "windows": "Windows",
+    "linux": "Linux"
+  },
+  "action": {
+    "add_server": "Aggiungi un server"
+  },
+  "edit": {
+    "field": {
+      "name": { "label": "Nome del server", "error": "Ci manca solo il nome del tuo server." },
+      "license_type": { "label": "Tipo di licenza" },
+      "public_ip": {
+        "label": "Indirizzo IP pubblico",
+        "error": "Questo indirizzo IP non sembra valido — verifica il formato IPv4 o IPv6."
+      },
+      "private_ip": {
+        "label": "Indirizzo IP privato (LAN)",
+        "error": "Questo indirizzo IP non sembra valido — verifica il formato IPv4 o IPv6."
+      }
+    },
+    "step": {
+      "server": {
+        "label": "Server VBR",
+        "collapsed_title": "Server VBR — <b>{{value}}</b>"
+      }
+    },
+    "license_restriction": {
+      "version": "Il tipo di licenza non può essere modificato per questo server: è necessario l'aggiornamento a VBR 13.",
+      "os": "Il tipo di licenza rimane fissato su Data Platform per questo server: è possibile modificare solo il livello."
+    },
+    "license_change_notice": "La modifica della licenza avrà effetto il 1° del mese prossimo. Fino ad allora, la licenza attuale resta attiva.",
+    "current_value": "Valore attuale: {{value}}",
+    "recap": {
+      "title": "Riepilogo delle modifiche"
+    },
+    "success": "Le modifiche sono state salvate.",
+    "error": "Non è stato possibile modificare il server {{serverName}}."
+  },
+  "delete": {
+    "title": "Elimina il server",
+    "content": "Vuoi davvero eliminare il server <strong>{{serverName}}</strong>? La licenza associata sarà revocata. Questa azione è irreversibile.",
+    "success": "L'eliminazione del server {{serverName}} è stata avviata.",
+    "error": "Non è stato possibile eliminare il server {{serverName}}."
+  },
+  "empty_state": "Nessun server registrato. Aggiungi il tuo primo server VBR per iniziare.",
+  "error": {
+    "loading": "Non è stato possibile caricare l'elenco dei tuoi server."
+  },
+  "polling": {
+    "timeout": "L'operazione sta richiedendo più tempo del previsto. Aggiorna l'elenco per vedere a che punto è."
+  }
+}

@@ -1,0 +1,45 @@
+@config '../tailwind.config.mjs';
+
+@tailwind utilities;
+
+@import '@ovhcloud/ods-themes/default';
+@import '@ovh-ux/manager-react-components/dist/style.css';
+
+html {
+  font-family: var(--ods-font-family-default);
+}
+
+/**
+ * Accordéons du tunnel de commande (encart Vault, récapitulatif).
+ *
+ * `ods-accordion` borde son en-tête en `transparent` au repos — la bordure n'apparaît qu'au
+ * survol et à l'ouverture — là où un encart informatif doit rester délimité en permanence.
+ * Calqué sur `.form__accordion` de sap-features-hub (mêmes `::part`, mêmes propriétés), aux
+ * valeurs écrites en dur près : les deux apps n'ont pas la même échelle `spacing`, et `@apply`
+ * y donnait des paddings inattendus.
+ *
+ * Ici et non dans @ovh-ux/backup-licenses : le module n'embarque pas de feuille de style.
+ */
+.order__accordion {
+  &::part(accordion) {
+    border: 1px solid var(--ods-color-form-element-border-default);
+    border-radius: var(--ods-border-radius-md, 8px);
+  }
+
+  &::part(summary) {
+    border-style: none;
+    padding: 16px 24px;
+  }
+
+  &::part(content) {
+    border-style: none;
+    padding-top: 8px;
+  }
+}
+
+/** Variante dont le contenu occupe toute la largeur (grille de métriques bord à bord). */
+.order__accordion--flush::part(content) {
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}

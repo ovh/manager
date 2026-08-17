@@ -1,0 +1,77 @@
+{
+  "column": {
+    "name": "Nom du serveur",
+    "public_ip": "IP publique",
+    "private_ip": "IP privée",
+    "license": "Licence",
+    "license_status": "Statut de la licence",
+    "vbr_version": "Version VBR",
+    "os": "OS"
+  },
+  "status": {
+    "creating": "En cours de création",
+    "updating": "Mise à jour en cours",
+    "deleting": "Suppression en cours",
+    "installed": "Actif",
+    "expired": "Expirée",
+    "not_supported": "Non prise en charge",
+    "error": "Erreur"
+  },
+  "license": {
+    "foundation": "Foundation",
+    "advanced": "Advanced",
+    "premium": "Premium",
+    "enterprise_plus": "Enterprise Plus"
+  },
+  "os": {
+    "windows": "Windows",
+    "linux": "Linux"
+  },
+  "action": {
+    "add_server": "Ajouter un serveur"
+  },
+  "edit": {
+    "field": {
+      "name": { "label": "Nom du serveur", "error": "Il nous manque juste le nom de votre serveur." },
+      "license_type": { "label": "Type de licence" },
+      "public_ip": {
+        "label": "Adresse IP publique",
+        "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+      },
+      "private_ip": {
+        "label": "Adresse IP privée (LAN)",
+        "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+      }
+    },
+    "step": {
+      "server": {
+        "label": "Serveur VBR",
+        "collapsed_title": "Serveur VBR — <b>{{value}}</b>"
+      }
+    },
+    "license_restriction": {
+      "version": "Le type de licence ne peut pas être modifié pour ce serveur : une mise à niveau vers VBR 13 est requise.",
+      "os": "Le type de licence reste fixé à Data Platform pour ce serveur : seul le niveau peut être modifié."
+    },
+    "license_change_notice": "Le changement de licence prendra effet le 1er du mois prochain. D'ici là, la licence actuelle reste active.",
+    "current_value": "Valeur actuelle : {{value}}",
+    "recap": {
+      "title": "Résumé des modifications"
+    },
+    "success": "Les modifications ont été enregistrées.",
+    "error": "Le serveur {{serverName}} n'a pas pu être modifié."
+  },
+  "delete": {
+    "title": "Supprimer le serveur",
+    "content": "Voulez-vous vraiment supprimer le serveur <strong>{{serverName}}</strong> ? La licence associée sera révoquée. Cette action est irréversible.",
+    "success": "La suppression du serveur {{serverName}} a bien été lancée.",
+    "error": "Le serveur {{serverName}} n'a pas pu être supprimé."
+  },
+  "empty_state": "Aucun serveur enregistré. Ajoutez votre premier serveur VBR pour commencer.",
+  "error": {
+    "loading": "La liste de vos serveurs n'a pas pu être chargée."
+  },
+  "polling": {
+    "timeout": "L'opération prend plus de temps que prévu. Rafraîchissez la liste pour voir où elle en est."
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "step": {
+    "license_type": {
+      "label": "Licence type",
+      "subtitle": "Choose the licence type to associate with your Veeam Backup & Replication (VBR) server.",
+      "collapsed_title": "Licence — <b>{{value}}</b>"
+    },
+    "vdp_tier": {
+      "label": "VDP tier",
+      "subtitle": "Choose the Veeam Data Platform tier that fits your infrastructure."
+    },
+    "server_vault": {
+      "label": "VBR Server & Vault",
+      "collapsed_title": "VBR Server & Vault — <b>{{value}}</b>"
+    },
+    "location": {
+      "collapsed_title": "Location — <b>{{value}}</b>"
+    },
+    "continue": "Continue"
+  },
+  "badge": {
+    "recommended": "★ Recommended"
+  },
+  "card": {
+    "price_unit": "per workload",
+    "vault_storage_note": "*500 GB of Object Storage (S3) included with your licence, then {{price}} ex. VAT/GB/month"
+  },
+  "license": {
+    "enterprise_plus": {
+      "title": "Veeam Enterprise Plus",
+      "price_prefix": "",
+      "tag_vbr": "VBR V12 & V13",
+      "tag_os": "Windows only"
+    },
+    "data_platform": {
+      "title": "Veeam Data Platform",
+      "price_prefix": "From ",
+      "tag_vbr": "VBR V13",
+      "tag_os": "Windows & Linux"
+    }
+  },
+  "feature": {
+    "backup_restore": {
+      "label": "Backup and restore",
+      "tooltip": "Back up your data and restore it quickly in the event of a failure or error"
+    },
+    "vault_500": {
+      "label": "500 GB Vault managed by OVHcloud*",
+      "tooltip": "Based on OVHcloud Object Storage (S3) (99.9% availability SLA)"
+    },
+    "security_base": {
+      "label": "Security foundation",
+      "tooltip": "Data encryption, immutability and connection logs"
+    },
+    "security_permissions": {
+      "label": "Security and permission control",
+      "tooltip": "Encryption, immutability, multi-factor authentication (MFA)"
+    },
+    "cyber_ai": {
+      "label": "Cybersecurity, observability and AI",
+      "tooltip": "Overview, risk assessment, threat detection and simplified alert reading"
+    },
+    "orchestration": {
+      "label": "Orchestration and compliance",
+      "tooltip": "Organise a recovery plan and support compliance"
+    }
+  },
+  "tier": {
+    "foundation": {
+      "title": "Foundation",
+      "audience": "Recommended for <b>SMEs</b> with a limited fleet (<b>5–30 workloads</b>). Simple backup/restore.",
+      "price_prefix": "From "
+    },
+    "advanced": {
+      "title": "Advanced",
+      "audience": "Recommended for <b>SMEs</b> with a larger fleet (<b>30–150 workloads</b>). Fine-grained monitoring and proactive alerts.",
+      "price_prefix": "From "
+    },
+    "premium": {
+      "title": "Premium",
+      "audience": "Recommended for <b>mid-size and large enterprises</b> with an extensive fleet (<b>150–2000+ workloads</b>). DR orchestration and compliance.",
+      "price_prefix": "From "
+    }
+  },
+  "vbr": {
+    "section_title": "Set up your VBR server"
+  },
+  "field": {
+    "service_name": {
+      "label": "Service name",
+      "placeholder": "E.g.: backup-prod-paris",
+      "hint": "Identifier for your VBR server in the OVHcloud Control Panel.",
+      "error": "We just need the name of your service."
+    },
+    "public_ip": {
+      "label": "Public IP address",
+      "placeholder": "E.g.: 185.26.17.45",
+      "hint": "The public IP address of your VBR server.",
+      "error": "This IP address doesn't look valid — check the IPv4 or IPv6 format."
+    },
+    "private_ip": {
+      "label": "Private IP address (LAN)",
+      "placeholder": "E.g.: 192.168.1.10",
+      "hint": "Local IP address of your VBR server on the internal network.",
+      "error": "This IP address doesn't look valid — check the IPv4 or IPv6 format."
+    },
+    "vault_name": {
+      "label": "Vault name",
+      "placeholder": "E.g.: vault-prod-paris",
+      "hint": "Identifier for your Vault in the Control Panel. Cannot be changed after creation.",
+      "error": "Give your Vault a name so you can find it easily."
+    }
+  },
+  "nat": {
+    "toggle_title": "My Veeam server is behind a NAT",
+    "toggle_desc": "Public IP ≠ local IP on the internal network.",
+    "callout": "OVHcloud will use the public IP to reach your server, and the private IP for internal connections to the VSPC."
+  },
+  "vault": {
+    "section_title": "Your Object Storage Vault",
+    "section_subtitle": "Automatically provisioned on subscription, fully managed by OVHcloud.",
+    "included_label": "Vault",
+    "included_badge": "Included",
+    "included_description": "500 GB of Vault S3 object storage, automatically provisioned by OVHcloud."
+  },
+  "region": {
+    "section_title": "Vault location",
+    "section_subtitle": "Choose the OVHcloud region where your Vault will be provisioned. This choice is final.",
+    "card_title": "{{country}} – {{city}}",
+    "show_more": "Show more ({{total}})",
+    "show_less": "Show less"
+  },
+  "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
+    "title": "Order summary",
+    "edit": "Edit",
+    "empty": "To be filled in",
+    "field": {
+      "family": "Licence type",
+      "tier": "Tier",
+      "vault_included": "Storage included",
+      "vault_name": "Vault name",
+      "region": "Location"
+    },
+    "vault_included_value": "500 GB",
+    "price": {
+      "label": "Monthly estimate"
+    },
+    "cta": "Finalise my order"
+  },
+  "error": {
+    "submit": "Your order could not be placed. Please try again — your entries have been kept."
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "VBR Server"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Server name"
+      },
+      "cta": "Add the server"
+    },
+    "error": {
+      "submit": "An error occurred while adding the server. Please try again."
+    }
+  }
+}

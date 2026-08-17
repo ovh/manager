@@ -1,0 +1,173 @@
+{
+  "step": {
+    "license_type": {
+      "label": "Tipo di licenza",
+      "subtitle": "Scegli il tipo di licenza da associare al tuo server Veeam Backup & Replication (VBR).",
+      "collapsed_title": "Licenza — <b>{{value}}</b>"
+    },
+    "vdp_tier": {
+      "label": "Livello VDP",
+      "subtitle": "Scegli il livello di Veeam Data Platform adatto alla tua infrastruttura."
+    },
+    "server_vault": {
+      "label": "Server VBR e Vault",
+      "collapsed_title": "Server VBR e Vault — <b>{{value}}</b>"
+    },
+    "location": {
+      "collapsed_title": "Posizione — <b>{{value}}</b>"
+    },
+    "continue": "Continua"
+  },
+  "badge": {
+    "recommended": "★ Consigliato"
+  },
+  "card": {
+    "price_unit": "per workload",
+    "vault_storage_note": "*500 GB di Object Storage (S3) inclusi nella licenza, poi {{price}} + IVA/GB/mese"
+  },
+  "license": {
+    "enterprise_plus": {
+      "title": "Veeam Enterprise Plus",
+      "price_prefix": "",
+      "tag_vbr": "VBR V12 & V13",
+      "tag_os": "Solo Windows"
+    },
+    "data_platform": {
+      "title": "Veeam Data Platform",
+      "price_prefix": "A partire da ",
+      "tag_vbr": "VBR V13",
+      "tag_os": "Windows & Linux"
+    }
+  },
+  "feature": {
+    "backup_restore": {
+      "label": "Backup e ripristino",
+      "tooltip": "Esegui il backup dei dati e ripristinali rapidamente in caso di guasto o errore"
+    },
+    "vault_500": {
+      "label": "Vault da 500 GB gestito da OVHcloud*",
+      "tooltip": "Basato su Object Storage (S3) di OVHcloud (SLA di disponibilità del 99,9%)"
+    },
+    "security_base": {
+      "label": "Base di sicurezza",
+      "tooltip": "Crittografia dei dati, immutabilità e registro delle connessioni"
+    },
+    "security_permissions": {
+      "label": "Sicurezza e controllo dei permessi",
+      "tooltip": "Crittografia, immutabilità, autenticazione a più fattori (MFA)"
+    },
+    "cyber_ai": {
+      "label": "Cybersicurezza, osservabilità e IA",
+      "tooltip": "Panoramica, valutazione dei rischi, rilevamento delle minacce e lettura semplificata degli avvisi"
+    },
+    "orchestration": {
+      "label": "Orchestrazione e conformità",
+      "tooltip": "Organizza un piano di ripristino e supporta la conformità"
+    }
+  },
+  "tier": {
+    "foundation": {
+      "title": "Foundation",
+      "audience": "Consigliato per <b>PMI</b> con flotta limitata (<b>5–30 workload</b>). Backup/ripristino semplici.",
+      "price_prefix": "A partire da "
+    },
+    "advanced": {
+      "title": "Advanced",
+      "audience": "Consigliato per <b>PMI</b> con flotta ampia (<b>30–150 workload</b>). Monitoraggio dettagliato e avvisi proattivi.",
+      "price_prefix": "A partire da "
+    },
+    "premium": {
+      "title": "Premium",
+      "audience": "Consigliato per <b>medie e grandi imprese</b> con flotta estesa (<b>150–2000+ workload</b>). Orchestrazione del disaster recovery e conformità.",
+      "price_prefix": "A partire da "
+    }
+  },
+  "vbr": {
+    "section_title": "Configura il tuo server VBR"
+  },
+  "field": {
+    "service_name": {
+      "label": "Nome del servizio",
+      "placeholder": "Es.: backup-prod-paris",
+      "hint": "Identificatore del tuo server VBR nel Manager OVHcloud.",
+      "error": "Ci manca solo il nome del tuo servizio."
+    },
+    "public_ip": {
+      "label": "Indirizzo IP pubblico",
+      "placeholder": "Es.: 185.26.17.45",
+      "hint": "L'indirizzo IP pubblico del tuo server VBR.",
+      "error": "Questo indirizzo IP non sembra valido — controlla il formato IPv4 o IPv6."
+    },
+    "private_ip": {
+      "label": "Indirizzo IP privato (LAN)",
+      "placeholder": "Es.: 192.168.1.10",
+      "hint": "Indirizzo IP locale del tuo server VBR sulla rete interna.",
+      "error": "Questo indirizzo IP non sembra valido — controlla il formato IPv4 o IPv6."
+    },
+    "vault_name": {
+      "label": "Nome del Vault",
+      "placeholder": "Es.: vault-prod-paris",
+      "hint": "Identificatore del tuo Vault nel Manager. Non può essere modificato dopo la creazione.",
+      "error": "Assegna un nome al tuo Vault per ritrovarlo facilmente."
+    }
+  },
+  "nat": {
+    "toggle_title": "Il mio server Veeam è dietro un NAT",
+    "toggle_desc": "IP pubblico ≠ IP locale sulla rete interna.",
+    "callout": "OVHcloud utilizzerà l'IP pubblico per raggiungere il tuo server e l'IP privato per le connessioni interne al VSPC."
+  },
+  "vault": {
+    "section_title": "Il tuo Vault Object Storage",
+    "section_subtitle": "Provisioning automatico alla sottoscrizione, gestito interamente da OVHcloud.",
+    "included_label": "Vault",
+    "included_badge": "Incluso",
+    "included_description": "500 GB di storage a oggetti S3 Vault, fornito automaticamente da OVHcloud."
+  },
+  "region": {
+    "section_title": "Posizione del Vault",
+    "section_subtitle": "Scegli la regione OVHcloud in cui verrà eseguito il provisioning del tuo Vault. Questa scelta è definitiva.",
+    "card_title": "{{country}} – {{city}}",
+    "show_more": "Mostra altre ({{total}})",
+    "show_less": "Mostra meno"
+  },
+  "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
+    "title": "Riepilogo del tuo ordine",
+    "edit": "Modifica",
+    "empty": "Da completare",
+    "field": {
+      "family": "Tipo di licenza",
+      "tier": "Livello",
+      "vault_included": "Storage incluso",
+      "vault_name": "Nome del Vault",
+      "region": "Posizione"
+    },
+    "vault_included_value": "500 GB",
+    "price": {
+      "label": "Stima mensile"
+    },
+    "cta": "Finalizza il mio ordine"
+  },
+  "error": {
+    "submit": "Your order could not be placed. Please try again — your entries have been kept."
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "Server VBR"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Nome del server"
+      },
+      "cta": "Aggiungi il server"
+    },
+    "error": {
+      "submit": "Si è verificato un errore durante l'aggiunta del server. Riprova."
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "step": {
+    "license_type": {
+      "label": "Type de licence",
+      "subtitle": "Choisissez le type de licence à associer à votre serveur Veeam Backup & Replication (VBR).",
+      "collapsed_title": "Licence — <b>{{value}}</b>"
+    },
+    "vdp_tier": {
+      "label": "Niveau VDP",
+      "subtitle": "Choisissez le niveau Veeam Data Platform adapté à votre infrastructure."
+    },
+    "server_vault": {
+      "label": "Serveur VBR & Vault",
+      "collapsed_title": "Serveur VBR & Vault — <b>{{value}}</b>"
+    },
+    "location": {
+      "collapsed_title": "Localisation — <b>{{value}}</b>"
+    },
+    "continue": "Continuer"
+  },
+  "badge": {
+    "recommended": "★ Recommandé"
+  },
+  "card": {
+    "price_unit": "par workload",
+    "vault_storage_note": "*500 Gio d'Object Storage (S3) inclus avec votre licence, puis {{price}} HT/Gio/mois"
+  },
+  "license": {
+    "enterprise_plus": {
+      "title": "Veeam Enterprise Plus",
+      "price_prefix": "",
+      "tag_vbr": "VBR V12 & V13",
+      "tag_os": "Windows uniquement"
+    },
+    "data_platform": {
+      "title": "Veeam Data Platform",
+      "price_prefix": "À partir de ",
+      "tag_vbr": "VBR V13",
+      "tag_os": "Windows & Linux"
+    }
+  },
+  "feature": {
+    "backup_restore": {
+      "label": "Sauvegarde et restauration",
+      "tooltip": "Sauvegarder les données et restaurer rapidement en cas de panne ou erreur"
+    },
+    "vault_500": {
+      "label": "Vault de 500 Gio géré par OVHcloud*",
+      "tooltip": "Basé sur de l'Object storage (S3) OVHcloud (SLAs de disponibilité de 99,9 %)"
+    },
+    "security_base": {
+      "label": "Socle de sécurité",
+      "tooltip": "Chiffrement des données, immutabilité et journal des connexions"
+    },
+    "security_permissions": {
+      "label": "Sécurité et contrôle des permissions",
+      "tooltip": "Chiffrement, immutabilité, authentification multifactorielle (MFA)"
+    },
+    "cyber_ai": {
+      "label": "Cyber Sécurité, observabilité et IA",
+      "tooltip": "Vue d'ensemble, évaluation des risques, détection des menaces et lecture simplifiée des alertes"
+    },
+    "orchestration": {
+      "label": "Orchestration et conformité",
+      "tooltip": "Organiser un plan de reprise et aide à la conformité"
+    }
+  },
+  "tier": {
+    "foundation": {
+      "title": "Foundation",
+      "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte limitée (<b>5–30 workloads</b>). Sauvegardes/restaurations simples.",
+      "price_prefix": "À partir de "
+    },
+    "advanced": {
+      "title": "Advanced",
+      "audience": "Recommandé pour les <b>TPE/PME</b> avec flotte importante (<b>30–150 workloads</b>). Monitoring fin et alertes proactives.",
+      "price_prefix": "À partir de "
+    },
+    "premium": {
+      "title": "Premium",
+      "audience": "Recommandé pour <b>ETI/grandes entreprises</b> avec flotte étendue (<b>150–2000+ workloads</b>). Orchestration de PRA et conformité.",
+      "price_prefix": "À partir de "
+    }
+  },
+  "vbr": {
+    "section_title": "Configurer votre serveur VBR"
+  },
+  "field": {
+    "service_name": {
+      "label": "Nom du service",
+      "placeholder": "Ex : backup-prod-paris",
+      "hint": "Identifiant de votre serveur VBR dans le Manager OVHcloud.",
+      "error": "Il nous manque juste le nom de votre service."
+    },
+    "public_ip": {
+      "label": "Adresse IP publique",
+      "placeholder": "Ex : 185.26.17.45",
+      "hint": "L'adresse IP publique de votre serveur VBR.",
+      "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+    },
+    "private_ip": {
+      "label": "Adresse IP privée (LAN)",
+      "placeholder": "Ex : 192.168.1.10",
+      "hint": "Adresse IP locale de votre serveur VBR sur le réseau interne.",
+      "error": "Cette adresse IP ne semble pas valide — vérifiez le format IPv4 ou IPv6."
+    },
+    "vault_name": {
+      "label": "Nom du Vault",
+      "placeholder": "Ex : vault-prod-paris",
+      "hint": "Identifiant de votre Vault dans le Manager. Ne peut pas être modifié après création.",
+      "error": "Donnez un nom à votre Vault pour le retrouver facilement."
+    }
+  },
+  "nat": {
+    "toggle_title": "Mon serveur Veeam est derrière un NAT",
+    "toggle_desc": "IP publique ≠ IP locale sur le réseau interne.",
+    "callout": "OVHcloud utilisera l'IP publique pour joindre votre serveur, et l'IP privée pour les connexions internes au VSPC."
+  },
+  "vault": {
+    "section_title": "Votre Vault Object Storage",
+    "section_subtitle": "Automatiquement provisionné à la souscription, entièrement administré par OVHcloud.",
+    "included_label": "Vault",
+    "included_badge": "Inclus",
+    "included_description": "500 Go de stockage d'objets S3 Vault, automatiquement provisionné par OVHcloud."
+  },
+  "region": {
+    "section_title": "Localisation du Vault",
+    "section_subtitle": "Choisissez la région OVHcloud dans laquelle votre Vault sera provisionné. Ce choix est définitif.",
+    "card_title": "{{country}} – {{city}}",
+    "show_more": "Voir plus ({{total}})",
+    "show_less": "Voir moins"
+  },
+  "summary": {
+    "universe": {
+      "enterprise": "Hosted Private Cloud",
+      "baremetal": "Bare Metal Cloud"
+    },
+    "title": "Récapitulatif de votre commande",
+    "edit": "Modifier",
+    "empty": "À renseigner",
+    "field": {
+      "family": "Type de licence",
+      "tier": "Niveau",
+      "vault_included": "Stockage inclus",
+      "vault_name": "Nom du Vault",
+      "region": "Localisation"
+    },
+    "vault_included_value": "500 Gio",
+    "price": {
+      "label": "Estimation mensuelle"
+    },
+    "cta": "Finaliser ma commande"
+  },
+  "error": {
+    "submit": "Votre commande n'a pas pu être passée. Veuillez réessayer — vos informations ont été conservées."
+  },
+  "add_server": {
+    "step": {
+      "vbr_server": {
+        "label": "Serveur VBR"
+      }
+    },
+    "summary": {
+      "field": {
+        "server_name": "Nom du serveur"
+      },
+      "cta": "Ajouter le serveur"
+    },
+    "error": {
+      "submit": "Une erreur est survenue lors de l'ajout du serveur. Veuillez réessayer."
+    }
+  }
+}

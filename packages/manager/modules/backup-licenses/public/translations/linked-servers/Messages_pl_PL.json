@@ -1,0 +1,77 @@
+{
+  "column": {
+    "name": "Nazwa serwera",
+    "public_ip": "Publiczny adres IP",
+    "private_ip": "Prywatny adres IP",
+    "license": "Licencja",
+    "license_status": "Status licencji",
+    "vbr_version": "Wersja VBR",
+    "os": "System operacyjny"
+  },
+  "status": {
+    "creating": "Tworzenie w toku",
+    "updating": "Aktualizacja w toku",
+    "deleting": "Usuwanie w toku",
+    "installed": "Aktywna",
+    "expired": "Wygasła",
+    "not_supported": "Nieobsługiwana",
+    "error": "Błąd"
+  },
+  "license": {
+    "foundation": "Foundation",
+    "advanced": "Advanced",
+    "premium": "Premium",
+    "enterprise_plus": "Enterprise Plus"
+  },
+  "os": {
+    "windows": "Windows",
+    "linux": "Linux"
+  },
+  "action": {
+    "add_server": "Dodaj serwer"
+  },
+  "edit": {
+    "field": {
+      "name": { "label": "Nazwa serwera", "error": "Brakuje nam tylko nazwy Twojego serwera." },
+      "license_type": { "label": "Typ licencji" },
+      "public_ip": {
+        "label": "Publiczny adres IP",
+        "error": "Ten adres IP wydaje się nieprawidłowy — sprawdź format IPv4 lub IPv6."
+      },
+      "private_ip": {
+        "label": "Prywatny adres IP (LAN)",
+        "error": "Ten adres IP wydaje się nieprawidłowy — sprawdź format IPv4 lub IPv6."
+      }
+    },
+    "step": {
+      "server": {
+        "label": "Serwer VBR",
+        "collapsed_title": "Serwer VBR — <b>{{value}}</b>"
+      }
+    },
+    "license_restriction": {
+      "version": "Nie można zmienić typu licencji dla tego serwera: wymagana jest aktualizacja do VBR 13.",
+      "os": "Typ licencji pozostaje ustawiony na Data Platform dla tego serwera: można zmienić tylko poziom."
+    },
+    "license_change_notice": "Zmiana licencji zacznie obowiązywać od 1. dnia następnego miesiąca. Do tego czasu aktywna pozostaje obecna licencja.",
+    "current_value": "Bieżąca wartość: {{value}}",
+    "recap": {
+      "title": "Podsumowanie zmian"
+    },
+    "success": "Zmiany zostały zapisane.",
+    "error": "Nie udało się zmodyfikować serwera {{serverName}}."
+  },
+  "delete": {
+    "title": "Usuń serwer",
+    "content": "Czy na pewno chcesz usunąć serwer <strong>{{serverName}}</strong>? Powiązana licencja zostanie unieważniona. Ta operacja jest nieodwracalna.",
+    "success": "Usuwanie serwera {{serverName}} zostało rozpoczęte.",
+    "error": "Nie udało się usunąć serwera {{serverName}}."
+  },
+  "empty_state": "Nie zarejestrowano jeszcze żadnego serwera. Dodaj pierwszy serwer VBR, aby rozpocząć.",
+  "error": {
+    "loading": "Nie udało się wczytać listy Twoich serwerów."
+  },
+  "polling": {
+    "timeout": "Operacja trwa dłużej niż przewidywano. Odśwież listę, aby sprawdzić jej stan."
+  }
+}
