@@ -182,5 +182,16 @@
     "error": {
       "submit": "Se ha producido un error al añadir el servidor. Vuelva a intentarlo."
     }
+  },
+  "pending": {
+    "title": "Su pedido se está procesando",
+    "description": "Su pedido se ha registrado correctamente. La puesta en servicio de su licencia y de su vault está en curso y puede tardar unos minutos. Esta página se actualiza automáticamente.",
+    "order_id": "Pedido n.º {{orderId}}",
+    "progress_label": "Puesta en servicio en curso",
+    "timeout": "La puesta en servicio está tardando más de lo previsto. Sigue en curso: deje esta página abierta o vuelva más tarde. Si no cambia nada, contacte con el soporte.",
+    "restart": "Realizar un nuevo pedido",
+    "error": {
+      "delivery": "No se ha podido poner en servicio su pedido. No se ha entregado ningún recurso: puede realizar un nuevo pedido o contactar con el soporte."
+    }
   }
 }

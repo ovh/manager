@@ -182,5 +182,16 @@
     "error": {
       "submit": "Une erreur est survenue lors de l'ajout du serveur. Veuillez réessayer."
     }
+  },
+  "pending": {
+    "title": "Votre commande est en cours de traitement",
+    "description": "Votre commande a bien été enregistrée. La mise en service de votre licence et de votre vault est en cours et peut prendre quelques minutes. Cette page se met à jour automatiquement.",
+    "order_id": "Commande n° {{orderId}}",
+    "progress_label": "Mise en service en cours",
+    "timeout": "La mise en service est plus longue que prévu. Elle se poursuit : laissez cette page ouverte ou revenez plus tard. Si rien ne change, contactez le soutien.",
+    "restart": "Passer une nouvelle commande",
+    "error": {
+      "delivery": "La mise en service de votre commande a échoué. Aucune ressource n'a été livrée : vous pouvez passer une nouvelle commande ou contacter le soutien."
+    }
   }
 }

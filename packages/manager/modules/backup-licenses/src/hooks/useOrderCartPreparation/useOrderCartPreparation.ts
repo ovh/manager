@@ -28,9 +28,11 @@ const NO_CONTRACT: Contract[] = [];
 export const useOrderCartPreparation = ({
   form,
   licenseType,
+  isEnabled = true,
 }: {
   form: ServerVaultFormState;
   licenseType: LicenseApiValue | null;
+  isEnabled?: boolean;
 }): OrderCartPreparation => {
   const { mutateAsync: prepareCart } = usePrepareBackupLicensesCart();
 
@@ -39,7 +41,7 @@ export const useOrderCartPreparation = ({
   const [retryToken, setRetryToken] = useState(0);
 
   const compositionKey =
-    form.regionApiValue !== null && licenseType !== null
+    isEnabled && form.regionApiValue !== null && licenseType !== null
       ? JSON.stringify({ form, licenseType, retryToken })
       : null;
 
