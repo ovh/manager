@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.200.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.0...@ovh-ux/manager-container-app@0.200.1) (2026-08-18)
+
+
+### Bug Fixes
+
+* **container:** backup licenses declaration ([303f334](https://github.com/ovh/manager/commit/303f334c537e77dc86a5174faa447230630175df)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 # [0.200.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.199.0...@ovh-ux/manager-container-app@0.200.0) (2026-08-17)
 
 
