@@ -5,6 +5,7 @@
  * (produit Veeam sœur, même forme de catalogue).
  */
 export interface CatalogPricing {
+  capacities?: string[];
   /** `'default'` = prix catalogue sans engagement (cf. `pricingMode` du snippet `createCart` du ticket). */
   mode: string;
   /**

@@ -19,15 +19,6 @@ export const getOfferInstallationPricing = (
   offer?.prices.find(({ capacities }) => capacities.includes('installation'));
 
 /**
- * Le tarif prêt à afficher servi par Agora, celui-là même auquel la commande partira. Le front ne
- * formate ni n'arrondit aucun montant (R1) : `Price.text` est déjà localisé par subsidiary, là où
- * un `Intl.NumberFormat` à deux décimales écraserait un tarif au Go sous le centime.
- */
-export const getOfferInstallationPriceText = (
-  offer: CartOfferDefinition | undefined,
-): string | undefined => getOfferInstallationPricing(offer)?.price.text || undefined;
-
-/**
  * Le tarif qui porte la période de facturation à commander. `installation` annonce une durée nulle
  * (`P0D`, c'est un frais ponctuel) : le panier l'accepte à l'ajout, puis le checkout le refuse avec
  * « Invalid duration 0 ». C'est donc `renew` qui fait foi, et `installation` seulement à défaut.
