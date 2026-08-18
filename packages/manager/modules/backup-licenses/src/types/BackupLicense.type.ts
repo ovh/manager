@@ -3,7 +3,6 @@ import { Resource } from './Resource.type';
 
 export type BackupLicense = {
   id: string;
-  resourceName: string;
 };
 
 export type BackupLicenseResource = Resource<BackupLicense>;
@@ -16,7 +15,8 @@ export type BackupLicenseResource = Resource<BackupLicense>;
 export interface CreateBackupLicenseBody {
   displayName: string;
   licenseType: LicenseApiValue;
-  backupServerExternalIp: string[];
+  /** IP publique VBR, et IP du client Veeam si renseignée, jointes par `,`. */
+  backupServerExternalIp: string;
   /** Omise si le serveur n'est pas derrière un NAT — pas d'IP privée à envoyer. */
   backupServerPrivateIp?: string[];
 }

@@ -58,7 +58,7 @@ describe('useCreateBackupLicense', () => {
     result.current.mutate({
       displayName: 'backup-prod',
       licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-      backupServerExternalIp: ['185.26.17.45'],
+      backupServerExternalIp: '185.26.17.45',
     });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
@@ -70,7 +70,7 @@ describe('useCreateBackupLicense', () => {
       body: {
         displayName: 'backup-prod',
         licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-        backupServerExternalIp: ['185.26.17.45'],
+        backupServerExternalIp: '185.26.17.45',
       },
     });
     expect(invalidateSpy).toHaveBeenCalledWith({ queryKey: queryKeys.backupServers.all() });
@@ -83,7 +83,7 @@ describe('useCreateBackupLicense', () => {
     result.current.mutate({
       displayName: 'backup-prod',
       licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-      backupServerExternalIp: ['185.26.17.45'],
+      backupServerExternalIp: '185.26.17.45',
     });
 
     await waitFor(() => expect(result.current.isError).toBe(true));

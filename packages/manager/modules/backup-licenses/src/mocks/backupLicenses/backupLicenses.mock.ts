@@ -2,33 +2,30 @@ import { BackupLicenseResource, CreateBackupLicenseBody } from '@/types/BackupLi
 import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
 
 /** Jeux de données de développement. */
-/** Le `resourceName` que la cascade résout : nom de service côté `/services` et côté Agora. */
-export const MOCK_BACKUP_LICENSE_RESOURCE_NAME = 'backuplicenses-mock-resource';
+/** `id` sert de `resourceName` que la cascade résout : nom de service côté `/services` et côté Agora. */
+export const MOCK_BACKUP_LICENSE_RESOURCE_NAME = 'd3c9e5f6-0000-4000-8000-000000000001';
 
 export const mockBackupLicenses: BackupLicenseResource[] = [
   {
-    id: 'd3c9e5f6-0000-4000-8000-000000000001',
+    id: MOCK_BACKUP_LICENSE_RESOURCE_NAME,
     resourceStatus: 'READY',
-    currentState: {
-      id: 'd3c9e5f6-0000-4000-8000-000000000001',
-      resourceName: MOCK_BACKUP_LICENSE_RESOURCE_NAME,
-    },
+    currentState: { id: MOCK_BACKUP_LICENSE_RESOURCE_NAME },
     currentTasks: [],
   },
   {
     id: 'license-1',
     resourceStatus: 'READY',
-    currentState: { id: 'license-1', resourceName: 'license-1' },
+    currentState: { id: 'license-1' },
   },
   {
     id: 'license-2',
     resourceStatus: 'READY',
-    currentState: { id: 'license-2', resourceName: 'license-2' },
+    currentState: { id: 'license-2' },
   },
   {
     id: 'license-3',
     resourceStatus: 'READY',
-    currentState: { id: 'license-3', resourceName: 'license-3' },
+    currentState: { id: 'license-3' },
   },
 ];
 
@@ -43,7 +40,7 @@ export const mockCreateBackupLicense = (body: CreateBackupLicenseBody): BackupSe
     currentState: {
       id,
       displayName: body.displayName,
-      externalIps: body.backupServerExternalIp,
+      externalIps: body.backupServerExternalIp.split(';').filter(Boolean),
       privateIps: body.backupServerPrivateIp,
       licenseTypeRequested: body.licenseType,
       licenseStatus: LicenseStatus.CREATING,

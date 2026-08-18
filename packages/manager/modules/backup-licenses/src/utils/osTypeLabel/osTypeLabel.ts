@@ -11,6 +11,7 @@ export type OsTypeDisplay = {
 const OS_TYPE_I18N_KEYS: Record<string, string> = {
   WINDOWS: 'os.windows',
   LINUX: 'os.linux',
+  OTHER: 'os.other',
 };
 
 /** Décrit comment afficher un `osType` renvoyé par l'API. */

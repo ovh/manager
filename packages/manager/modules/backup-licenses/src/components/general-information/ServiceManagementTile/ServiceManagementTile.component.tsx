@@ -56,6 +56,7 @@ export default function ServiceManagementTile({
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
+      <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('field.next_due_date')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
@@ -68,7 +69,13 @@ export default function ServiceManagementTile({
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
-      {!isLoading && <ContactsList contacts={contacts} resourceName={resourceName} />}
+      {!isLoading && contacts?.length ? (
+        <>
+          <ManagerTile.Divider />
+          <ContactsList contacts={contacts} resourceName={resourceName} />
+        </>
+      ) : null}
+      <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('field.termination')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>

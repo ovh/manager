@@ -4,13 +4,14 @@ import { RenderResult, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import { mockEdgeCaseVaults, mockVaultsFromDesign } from '@/mocks/vaults/vaults.mock';
 import { VAULT_DEFAULT_IMMUTABILITY } from '@/module.constants';
 import { renderTest } from '@/test-utils/Test.utils';
 import { labels } from '@/test-utils/i18ntest.utils';
-import { renderWithProviders } from '@/test-utils/renderWithProviders';
+import { createQueryClientTest, renderWithProviders } from '@/test-utils/renderWithProviders';
 import { MockParams, setupMswMock } from '@/test-utils/setupMsw';
-import { VaultResource } from '@/types/Vault.type';
+import { PendingVaultRow, VaultResource } from '@/types/Vault.type';
 
 import VaultsPage from './Vaults.page';
 
@@ -203,6 +204,54 @@ describe('Vaults page', () => {
 
     await userEvent.click(orderButton);
     expect(navigateMock).toHaveBeenCalledWith('/vaults/order');
+  });
+
+  describe('a vault order still awaiting confirmation from the API', () => {
+    const pendingOrder: PendingVaultRow = {
+      id: 'pending-my-new-vault',
+      resourceStatus: 'PENDING',
+      currentState: { name: 'my-new-vault', region: paygoVault.currentState.region },
+    };
+
+    const renderWithPendingOrder = async (mockParams: MockParams, pending: PendingVaultRow[]) => {
+      const queryClient = createQueryClientTest();
+      queryClient.setQueryData(vaultsQueries.pending().queryKey, pending);
+      setupMswMock(mockParams);
+      const result = await renderWithProviders(<VaultsPage />, { queryClient });
+      return { ...result, queryClient };
+    };
+
+    it('shows it as a row with a loader in place of the status, so it survives a return to the page', async () => {
+      const { container } = await renderWithPendingOrder({ vaults: [] }, [pendingOrder]);
+
+      await waitForRows(1);
+      const [row] = dataRows() as [HTMLElement];
+      expect(within(row).getByText(pendingOrder.currentState.name)).toBeVisible();
+      expect(within(row).getByText('Paris (PAR)')).toBeVisible();
+      expect(within(row).getByText(labels.vaults.encryption_value)).toBeVisible();
+      expect(within(row).queryByRole('img', { hidden: true })).not.toBeInTheDocument();
+      expect(container.querySelector('ods-spinner')).toBeInTheDocument();
+      expect(container.querySelector('ods-badge')).not.toBeInTheDocument();
+    });
+
+    it('drops the pending row once the real vault settles under the same name', async () => {
+      const settledVault: VaultResource = {
+        ...paygoVault,
+        currentState: { ...paygoVault.currentState, name: pendingOrder.currentState.name },
+      };
+
+      const { container, queryClient } = await renderWithPendingOrder(
+        { vaults: [settledVault] },
+        [pendingOrder],
+      );
+
+      await waitForRows(1);
+      expect(container.querySelector('ods-spinner')).not.toBeInTheDocument();
+      expect(badge(container, labels.status.ready)).toBeInTheDocument();
+      await waitFor(() =>
+        expect(queryClient.getQueryData(vaultsQueries.pending().queryKey)).toEqual([]),
+      );
+    });
   });
 });
 

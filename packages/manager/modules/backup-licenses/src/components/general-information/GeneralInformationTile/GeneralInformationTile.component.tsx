@@ -46,6 +46,7 @@ export default function GeneralInformationTile({
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
+      <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('field.service_name')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>
@@ -58,6 +59,7 @@ export default function GeneralInformationTile({
           )}
         </ManagerTile.Item.Description>
       </ManagerTile.Item>
+      <ManagerTile.Divider />
       <ManagerTile.Item>
         <ManagerTile.Item.Label>{t('field.vspc_access')}</ManagerTile.Item.Label>
         <ManagerTile.Item.Description>

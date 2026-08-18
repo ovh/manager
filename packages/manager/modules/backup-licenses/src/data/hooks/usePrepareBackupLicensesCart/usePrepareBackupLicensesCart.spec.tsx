@@ -8,10 +8,11 @@ import {
 import {
   MOCK_CART_ID,
   MOCK_CART_ITEM_ID,
+  mockCartOptionDefinitions,
   mockCartOptionDefinitionsWithoutBundledVault,
-  mockCartRequiredConfiguration,
   mockOrderFunnelRequiredConfiguration,
 } from '@/mocks/order/order.mock';
+import { mockBackupServicesTenants } from '@/mocks/tenants/tenants.mock';
 import { MockParams, setupMswMock } from '@/test-utils/setupMsw';
 import { testWrapperBuilder } from '@/test-utils/testWrapperBuilder';
 import {
@@ -28,6 +29,7 @@ import { usePrepareBackupLicensesCart } from './usePrepareBackupLicensesCart';
 const form: ServerVaultFormState = {
   displayName: 'backup-prod-paris',
   backupServerExternalIp: '203.0.113.10',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
   vaultDisplayName: 'vault-prod-paris',
@@ -37,6 +39,7 @@ const form: ServerVaultFormState = {
 const renderPrepareHook = async (mockParams: MockParams = {}) => {
   setupMswMock({
     cartRequiredConfiguration: mockOrderFunnelRequiredConfiguration,
+    backupServicesTenants: [],
     ...mockParams,
   });
   const wrapper = await testWrapperBuilder().withQueryClient().withShellContext().build();
@@ -258,7 +261,9 @@ describe('usePrepareBackupLicensesCart', () => {
 
   it('refuses to order when the cart requires a label no form value answers', async () => {
     const { result } = await renderPrepareHook({
-      cartRequiredConfiguration: mockCartRequiredConfiguration,
+      cartRequiredConfiguration: [
+        { fields: null, label: 'unheard_of_label', required: true, type: 'String' },
+      ],
     });
 
     result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
@@ -278,5 +283,85 @@ describe('usePrepareBackupLicensesCart', () => {
 
     await waitFor(() => expect(result.current.isError).toBe(true));
     expect(result.current.data).toBeUndefined();
+  });
+});
+
+describe('usePrepareBackupLicensesCart, with an existing backup-tenant', () => {
+  let requests: Promise<WatchedApiRequest>[];
+  const serviceName = encodeURIComponent(mockBackupServicesTenants[0]!.currentState.name);
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    requests = watchApiRequests('/order/cart');
+  });
+
+  afterEach(() => {
+    stopWatchingApiCalls();
+  });
+
+  const renderExistingTenantHook = () =>
+    renderPrepareHook({
+      backupServicesTenants: mockBackupServicesTenants,
+      serviceOffers: mockCartOptionDefinitions,
+    });
+
+  it('poses vspc-tenant and the vault on the service, never a second backup-tenant', async () => {
+    const { result } = await renderExistingTenantHook();
+
+    result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    const emitted = await resolveApiRequests(requests);
+    const sequence = emitted
+      .filter(({ method }) => method === 'POST')
+      .map(({ url }) => cartPath(url))
+      .filter((url) => !url.includes('/configuration'));
+
+    expect(sequence).toEqual([
+      '/order/cart',
+      `/order/cartServiceOption/backupServices/${serviceName}`,
+      `/order/cart/${MOCK_CART_ID}/backupServices/options`,
+      `/order/cartServiceOption/backupServices/${serviceName}`,
+      `/order/cart/${MOCK_CART_ID}/assign`,
+    ]);
+  });
+
+  it('composes vspc-tenant, its licence addon and the vault on the conditions the service announced', async () => {
+    const { result } = await renderExistingTenantHook();
+
+    result.current.mutate({ form, licenseType: LicenseApiValue.VDP_PREMIUM });
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    const emitted = await resolveApiRequests(requests);
+
+    const servicePosts = emitted.filter(
+      ({ method, url }) =>
+        method === 'POST' && url.includes(`/cartServiceOption/backupServices/${serviceName}`),
+    );
+    expect(servicePosts.map(({ body }) => body)).toEqual([
+      {
+        planCode: BACKUP_LICENSES_ORDER_PLAN_CODES.vspcTenant,
+        duration: 'P1M',
+        pricingMode: 'default',
+        quantity: 1,
+        cartId: MOCK_CART_ID,
+      },
+      {
+        planCode: BACKUP_LICENSES_ORDER_PLAN_CODES.bundledVault,
+        duration: 'P1Y',
+        pricingMode: 'default',
+        quantity: 2,
+        cartId: MOCK_CART_ID,
+      },
+    ]);
+    expect(posted(emitted, '/backupServices/options').map(({ body }) => body)).toEqual([
+      {
+        planCode: BACKUP_LICENSES_ORDER_PLAN_CODES.vspcTenantLicenses,
+        duration: 'P1M',
+        pricingMode: 'consumption',
+        quantity: 1,
+        itemId: MOCK_CART_ITEM_ID,
+      },
+    ]);
   });
 });

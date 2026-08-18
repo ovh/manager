@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { UseMutationResult, useMutation } from '@tanstack/react-query';
 
-import { TApiCustomError } from '@ovh-ux/manager-core-api';
+import { ApiError, TApiCustomError } from '@ovh-ux/manager-core-api';
 import { Contract } from '@ovh-ux/manager-module-order';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
@@ -10,14 +10,31 @@ import {
   ResolvedOrderNode,
   addBackupServicesCartItem,
   addBackupServicesCartItemOption,
+  addBackupServicesOption,
   assignOrderCart,
   configureCartItemFromRequirements,
   createOrderCart,
   discoverBackupServicesOrderParameters,
+  discoverBackupServicesServiceOrderParameters,
   getOrderCartCheckout,
 } from '@/data/api/order/order.requests';
+import { getBackupServicesTenants } from '@/data/api/tenants/tenants.requests';
 import { LicenseApiValue, ServerVaultFormState } from '@/types/Order.type';
 import { buildBackupLicensesOrderComposition } from '@/utils/orderComposition/orderComposition';
+
+const TENANT_NOT_FOUND_STATUS = 404;
+
+const findExistingBackupTenantServiceName = async (): Promise<string | undefined> => {
+  try {
+    const [tenant] = await getBackupServicesTenants();
+    return tenant?.currentState.name;
+  } catch (error) {
+    if ((error as ApiError)?.response?.status === TENANT_NOT_FOUND_STATUS) {
+      return undefined;
+    }
+    throw error;
+  }
+};
 
 export type BackupLicensesCartComposition = {
   form: ServerVaultFormState;
@@ -45,6 +62,18 @@ const addOrderNodeOptions = async (
   }
 };
 
+const addServiceOrderNode = async (
+  cartId: string,
+  serviceName: string,
+  node: ResolvedOrderNode,
+  configurationValues: Record<string, string | undefined>,
+): Promise<void> => {
+  const { options, ...parameters } = node;
+  const { itemId } = await addBackupServicesOption(serviceName, { cartId, ...parameters });
+  await configureCartItemFromRequirements(cartId, itemId, configurationValues);
+  await addOrderNodeOptions(cartId, itemId, options, configurationValues);
+};
+
 export const prepareBackupLicensesCart = async ({
   ovhSubsidiary,
   form,
@@ -53,15 +82,28 @@ export const prepareBackupLicensesCart = async ({
   ovhSubsidiary: string;
 }): Promise<PreparedBackupLicensesCart> => {
   const { product, configurationValues } = buildBackupLicensesOrderComposition(form, licenseType);
+  const existingTenantServiceName = await findExistingBackupTenantServiceName();
 
   const { cartId } = await createOrderCart(ovhSubsidiary);
-  const { options, ...productParameters } = await discoverBackupServicesOrderParameters(
-    cartId,
-    product,
-  );
-  const { itemId } = await addBackupServicesCartItem(cartId, productParameters);
-  await configureCartItemFromRequirements(cartId, itemId, configurationValues);
-  await addOrderNodeOptions(cartId, itemId, options, configurationValues);
+
+  if (existingTenantServiceName) {
+    for (const node of product.options) {
+      const resolved = await discoverBackupServicesServiceOrderParameters(
+        cartId,
+        existingTenantServiceName,
+        node,
+      );
+      await addServiceOrderNode(cartId, existingTenantServiceName, resolved, configurationValues);
+    }
+  } else {
+    const { options, ...productParameters } = await discoverBackupServicesOrderParameters(
+      cartId,
+      product,
+    );
+    const { itemId } = await addBackupServicesCartItem(cartId, productParameters);
+    await configureCartItemFromRequirements(cartId, itemId, configurationValues);
+    await addOrderNodeOptions(cartId, itemId, options, configurationValues);
+  }
 
   await assignOrderCart(cartId);
 

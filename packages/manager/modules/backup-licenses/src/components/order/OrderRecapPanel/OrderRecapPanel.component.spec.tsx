@@ -12,6 +12,7 @@ import OrderRecapPanel from './OrderRecapPanel.component';
 const EMPTY_FORM: ServerVaultFormState = {
   displayName: '',
   backupServerExternalIp: '',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
   vaultDisplayName: '',

@@ -96,14 +96,29 @@ describe('placeVaultOrder', () => {
     );
   });
 
-  it('leaves the cart unassigned rather than engaging a half-configured order', async () => {
+  it('never engages the checkout on a half-configured order', async () => {
     vi.mocked(configureCartItemFromRequirements).mockRejectedValue(
       new Error('unknown required cart configuration: unheard_of_label'),
     );
 
     await expect(placeVaultOrder(order, context)).rejects.toThrow('unheard_of_label');
-    expect(assignOrderCart).not.toHaveBeenCalled();
+    expect(getOrderCartCheckout).not.toHaveBeenCalled();
     expect(executeOrderCartCheckout).not.toHaveBeenCalled();
+  });
+
+  it('assigns the cart to the account before buying the option on it, since the API refuses an unassigned cart', async () => {
+    const calls: string[] = [];
+    vi.mocked(assignOrderCart).mockImplementation(async () => {
+      calls.push('assigned');
+    });
+    vi.mocked(addBackupServicesOption).mockImplementation(async () => {
+      calls.push('option-added');
+      return mockCartItem;
+    });
+
+    await placeVaultOrder(order, context);
+
+    expect(calls).toEqual(['assigned', 'option-added']);
   });
 
   it('simulates the checkout before engaging it, and engages it exactly once', async () => {

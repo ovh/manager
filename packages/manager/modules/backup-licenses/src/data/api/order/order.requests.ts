@@ -138,7 +138,7 @@ export type ResolvedOrderNode = CartOfferOrderParameters & {
 };
 
 /** Chaque niveau s'interroge sous son propre parent : les options d'un addon ne sont pas celles du tenant. */
-const resolveOrderNodeOptions = async (
+export const resolveOrderNodeOptions = async (
   cartId: string,
   parentPlanCode: string,
   nodes: readonly BackupLicensesOrderNode[],
@@ -193,6 +193,33 @@ export const discoverBackupServicesOrderParameters = async (
     cartId,
     product.planCode,
     product.options,
+    unavailablePlanCodes,
+  );
+
+  if (unavailablePlanCodes.length > 0) {
+    throw new Error(`${UNAVAILABLE_CART_OFFER}: ${unavailablePlanCodes.join(', ')}`);
+  }
+
+  return { ...parameters, options };
+};
+
+export const discoverBackupServicesServiceOrderParameters = async (
+  cartId: string,
+  serviceName: string,
+  node: BackupLicensesOrderNode,
+): Promise<ResolvedOrderNode> => {
+  const offers = await getBackupServicesOffers(serviceName);
+  const parameters = getOfferOrderParameters(findServiceOffer(offers, node.planCode));
+
+  if (!parameters) {
+    throw new Error(`${UNAVAILABLE_CART_OFFER}: ${node.planCode}`);
+  }
+
+  const unavailablePlanCodes: string[] = [];
+  const options = await resolveOrderNodeOptions(
+    cartId,
+    node.planCode,
+    node.options,
     unavailablePlanCodes,
   );
 

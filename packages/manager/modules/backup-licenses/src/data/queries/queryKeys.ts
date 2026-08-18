@@ -14,6 +14,7 @@ export const queryKeys = {
     all: () => ['backup-licenses', 'backup-servers'],
   },
   backupLicense: {
+    all: () => ['backup-licenses', 'backup-license'],
     resourceName: () => ['backup-licenses', 'backup-license', 'resource-name'],
   },
   billing: {
@@ -22,6 +23,8 @@ export const queryKeys = {
   },
   vaults: {
     all: () => ['backup-licenses', 'vaults'],
+    /** Commandes acceptées mais pas encore visibles dans `all()` : cache géré côté client uniquement. */
+    pending: () => [...queryKeys.vaults.all(), 'pending'],
     bucketCredentials: (vaultId: string, bucketId: string) => [
       ...queryKeys.vaults.all(),
       vaultId,

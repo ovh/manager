@@ -5,11 +5,13 @@ import { Route, Routes } from 'react-router-dom';
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import {
   editBackupServer,
   getBackupServers,
 } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
@@ -21,6 +23,7 @@ import EditBackupServerPage from './EditBackupServer.page';
 
 vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 // `useGuideUtils` lit `ShellContext`, absent du wrapper de test et hors périmètre de ce test :
 // on court-circuite le guide, non exercé ici.
 vi.mock('@/hooks/useMainGuideItem', () => ({ useMainGuideItem: () => [] }));
@@ -205,6 +208,7 @@ describe('EditBackupServerPage', () => {
       } as Resource<BackupServicesTenant>,
     ]);
     vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
   it('pre-fills the license step (open first) and the server fields from currentState', async () => {
@@ -291,6 +295,7 @@ describe('EditBackupServerPage', () => {
     expect(mockedEditBackupServer).toHaveBeenCalledWith({
       backupServicesId: 'service-1',
       vspcTenantId: 'vspc-1',
+      backupLicensesId: mockBackupLicenses[0]!.id,
       backupServerId: 'server-1',
       displayName: 'VBR-CUST-SERV-01',
       licenseType: LicenseApiValue.VDP_PREMIUM,

@@ -4,16 +4,15 @@ import { RenderResult, fireEvent, screen, waitFor } from '@testing-library/react
 import { expect, vi } from 'vitest';
 
 import { fieldErrorId } from '@/components/FieldError/FieldError.component';
-import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesOffers } from '@/data/api/order/order.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
 import { LOCATION_DEFINITIONS } from '@/data/locations.data';
 import {
-  MOCK_BACKUP_LICENSE_RESOURCE_NAME,
-  mockBackupLicenses,
-} from '@/mocks/backupLicenses/backupLicenses.mock';
-import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
+  BACKUP_SERVICES_TENANT_ID,
+  mockBackupServicesTenants,
+  mockVspcTenants,
+} from '@/mocks/tenants/tenants.mock';
 
 import { renderWithProviders } from '../../../../test-utils/renderWithProviders';
 import OrderVaultPage, { VAULT_ORDER_TEST_IDS } from '../OrderVault.page';
@@ -34,18 +33,12 @@ export const mockedOrderVault = vi.mocked(orderVault);
 export const mockedGetBackupServicesOffers = vi.mocked(getBackupServicesOffers);
 export const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
 
-/**
- * The id cascade the pricing message walks to reach the service its offers hang off. Left to the real
- * `fetchIcebergV2` it would go to the network, so the modal would render pending for ever and the
- * pricing states would all look alike.
- */
 export const resolveServiceName = () => {
   mockedGetBackupServicesTenants.mockResolvedValue(mockBackupServicesTenants);
   vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
-  vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
 };
 
-export const SERVICE_NAME = MOCK_BACKUP_LICENSE_RESOURCE_NAME;
+export const SERVICE_NAME = BACKUP_SERVICES_TENANT_ID;
 
 export const renderOrderModal = (): Promise<RenderResult> =>
   renderWithProviders(<OrderVaultPage />);

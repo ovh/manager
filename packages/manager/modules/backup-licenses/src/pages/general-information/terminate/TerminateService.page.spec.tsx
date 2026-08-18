@@ -142,7 +142,7 @@ describe('TerminateServicePage', () => {
       {
         id: 'license-1',
         resourceStatus: 'READY',
-        currentState: { id: 'license-1', resourceName: 'my-resource' },
+        currentState: { id: 'license-1' },
       } as BackupLicenseResource,
     ]);
   });
@@ -164,7 +164,7 @@ describe('TerminateServicePage', () => {
     await waitFor(() => expect(screen.getByTestId('modal-primary')).toBeEnabled());
     fireEvent.click(screen.getByTestId('modal-primary'));
 
-    expect(terminateServiceMock).toHaveBeenCalledWith({ resourceName: 'my-resource' });
+    expect(terminateServiceMock).toHaveBeenCalledWith({ resourceName: 'license-1' });
     await waitFor(() => expect(addSuccess).toHaveBeenCalledTimes(1));
     expect(addError).not.toHaveBeenCalled();
     expect(window.location.href).toBe('https://manager.eu.ovhcloud.com/#/hub/');

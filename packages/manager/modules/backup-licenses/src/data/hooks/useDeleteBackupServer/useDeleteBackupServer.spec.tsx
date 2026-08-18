@@ -4,9 +4,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { deleteBackupServer } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
@@ -15,6 +17,7 @@ import { useDeleteBackupServer } from './useDeleteBackupServer';
 
 vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 
 const mockedDeleteBackupServer = vi.mocked(deleteBackupServer);
 
@@ -44,6 +47,7 @@ describe('useDeleteBackupServer', () => {
       } as Resource<BackupServicesTenant>,
     ]);
     vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
   it('deletes the server with the ids resolved by the cascade', async () => {
@@ -55,6 +59,7 @@ describe('useDeleteBackupServer', () => {
     expect(mockedDeleteBackupServer).toHaveBeenCalledWith({
       backupServicesId: 'service-1',
       vspcTenantId: 'vspc-1',
+      backupLicensesId: mockBackupLicenses[0]!.id,
       backupServerId: 'server-1',
     });
   });

@@ -44,10 +44,10 @@ const buildVault = (id: string, resourceName: string): VaultResource => ({
   },
 });
 
-const buildLicense = (id: string, resourceName: string): BackupLicenseResource => ({
+const buildLicense = (id: string): BackupLicenseResource => ({
   id,
   resourceStatus: 'READY',
-  currentState: { id, resourceName },
+  currentState: { id },
 });
 
 const buildConsumption = (
@@ -86,7 +86,7 @@ describe('billingQueries', () => {
 
   it('builds an independent vault row and license row, with no matching between them', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
-    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1', 'lic-resource-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1')]);
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),
     ]);
@@ -106,7 +106,7 @@ describe('billingQueries', () => {
       },
     ]);
     expect(licenseRows).toEqual([
-      { licenseId: 'license-1', name: 'lic-resource-1', licensePriceText: '4,90 €' },
+      { licenseId: 'license-1', name: 'license-1', licensePriceText: '4,90 €' },
     ]);
   });
 
@@ -130,21 +130,21 @@ describe('billingQueries', () => {
 
   it('degrades the license price to undefined without dropping the license row when it fails', async () => {
     vi.mocked(getVaults).mockResolvedValue([]);
-    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1', 'lic-resource-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue([buildLicense('license-1')]);
     vi.mocked(getLicenseConsumption).mockRejectedValue(new Error('boom'));
 
     const { licenseRows } = await fetchRows();
 
     expect(licenseRows).toEqual([
-      { licenseId: 'license-1', name: 'lic-resource-1', licensePriceText: undefined },
+      { licenseId: 'license-1', name: 'license-1', licensePriceText: undefined },
     ]);
   });
 
   it('resolves more licenses than vaults without dropping either side', async () => {
     vi.mocked(getVaults).mockResolvedValue([buildVault('vault-1', 'resource-1')]);
     vi.mocked(getBackupLicenses).mockResolvedValue([
-      buildLicense('license-1', 'lic-resource-1'),
-      buildLicense('license-2', 'lic-resource-2'),
+      buildLicense('license-1'),
+      buildLicense('license-2'),
     ]);
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),

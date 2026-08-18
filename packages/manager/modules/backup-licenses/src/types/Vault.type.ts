@@ -43,6 +43,18 @@ export type VaultResource = Resource<Vault> & {
 };
 
 /**
+ * Ligne synthétique ajoutée au tableau juste après la commande : le vault n'existe pas encore
+ * côté API, donc rien d'autre que le nom et la région saisis dans la modale n'est disponible.
+ */
+export type PendingVaultRow = {
+  id: string;
+  resourceStatus: 'PENDING';
+  currentState: Pick<Vault, 'name' | 'region'>;
+};
+
+export type VaultRow = VaultResource | PendingVaultRow;
+
+/**
  * `backup.tenant.vault.bucket.Credentials` : la réponse porte elle-même l'endpoint S3 et le code
  * de région court (`backup.RegionCodeEnum`), qui n'est pas le `common.RegionEnum` du bucket.
  */
