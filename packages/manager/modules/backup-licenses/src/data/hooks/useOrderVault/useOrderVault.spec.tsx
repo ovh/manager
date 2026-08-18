@@ -6,20 +6,19 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ShellContext, ShellContextType } from '@ovh-ux/manager-react-shell-client';
 
-import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
 import {
-  MOCK_BACKUP_LICENSE_RESOURCE_NAME,
-  mockBackupLicenses,
-} from '@/mocks/backupLicenses/backupLicenses.mock';
-import { mockBackupServicesTenants, mockVspcTenants } from '@/mocks/tenants/tenants.mock';
+  BACKUP_SERVICES_TENANT_ID,
+  mockBackupServicesTenants,
+  mockVspcTenants,
+} from '@/mocks/tenants/tenants.mock';
 
 import { useOrderVault } from './useOrderVault';
 
 vi.mock('@/data/api/tenants/tenants.requests');
-vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -29,7 +28,7 @@ const mockedOrderVault = vi.mocked(orderVault);
 
 const OVH_SUBSIDIARY = 'FR';
 
-const SERVICE_NAME = MOCK_BACKUP_LICENSE_RESOURCE_NAME;
+const SERVICE_NAME = BACKUP_SERVICES_TENANT_ID;
 
 const order = { name: 'vault-paygo-01', region: 'eu-west-par' };
 
@@ -41,8 +40,6 @@ const renderOrderVault = () => {
   const queryClient = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   });
-  // A sequence rather than two call counts: what matters is that the refresh completes *before* the
-  // caller is told, which only the order shows.
   const sequence: string[] = [];
   const invalidateQueries = vi.spyOn(queryClient, 'invalidateQueries').mockImplementation(() => {
     sequence.push('refreshed');
@@ -59,7 +56,7 @@ const renderOrderVault = () => {
     ),
   });
 
-  return { result, invalidateQueries, onSuccess, sequence };
+  return { result, queryClient, invalidateQueries, onSuccess, sequence };
 };
 
 describe('useOrderVault', () => {
@@ -67,7 +64,6 @@ describe('useOrderVault', () => {
     vi.clearAllMocks();
     vi.mocked(getBackupServicesTenants).mockResolvedValue(mockBackupServicesTenants);
     vi.mocked(getVspcTenants).mockResolvedValue(mockVspcTenants);
-    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
   it('sends the form values plus the context the customer never supplies', async () => {
@@ -90,8 +86,27 @@ describe('useOrderVault', () => {
     result.current.mutate(order);
 
     await waitFor(() => expect(onSuccess).toHaveBeenCalled());
-    expect(invalidateQueries).toHaveBeenCalledWith({ queryKey: queryKeys.vaults.all() });
+    expect(invalidateQueries).toHaveBeenCalledWith({
+      queryKey: queryKeys.vaults.all(),
+      exact: true,
+    });
     expect(sequence).toEqual(['refreshed', 'confirmed']);
+  });
+
+  it('adds a pending row to the vaults cache, so it survives a return to the page', async () => {
+    mockedOrderVault.mockResolvedValue(undefined);
+    const { result, queryClient } = renderOrderVault();
+
+    result.current.mutate(order);
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(queryClient.getQueryData(vaultsQueries.pending().queryKey)).toEqual([
+      {
+        id: `pending-${order.name}`,
+        resourceStatus: 'PENDING',
+        currentState: { name: order.name, region: order.region },
+      },
+    ]);
   });
 
   it('neither refreshes nor confirms when the order is refused', async () => {

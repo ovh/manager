@@ -71,6 +71,13 @@ describe('[INTEGRATION] Order-a-vault route', () => {
     await waitFor(() => expect(orderModalHeading()).not.toBeInTheDocument());
   });
 
+  it('keeps the pending row on the list after the order refreshes it, instead of wiping it out', async () => {
+    await submitAnOrder();
+
+    await waitFor(() => expect(orderModalHeading()).not.toBeInTheDocument());
+    expect(await screen.findByText('vault-paygo-01')).toBeVisible();
+  });
+
   it('buys the vault as an option on the service, at the parameters the offer announced', async () => {
     await renderTest({ initialRoute: routeUrls.orderVault });
     const requests = watchApiRequests('/order/');
@@ -104,11 +111,10 @@ describe('[INTEGRATION] Order-a-vault route', () => {
 
     expect(configurations).toEqual(
       expect.arrayContaining([
-        { label: 'vault_name', value: 'vault-paygo-01' },
-        { label: 'vault_region', value: LOCATIONS[0]!.name },
+        { label: 'vault-name', value: 'vault-paygo-01' },
+        { label: 'vault-azname', value: LOCATIONS[0]!.name },
       ]),
     );
-    // Only the labels the cart claimed: the optional one it declared had no candidate value.
     expect(configurations).toHaveLength(2);
   });
 

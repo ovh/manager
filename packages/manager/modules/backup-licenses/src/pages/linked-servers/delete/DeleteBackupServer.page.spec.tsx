@@ -9,11 +9,13 @@ import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 
 import type { ModalProps } from '@ovh-ux/manager-react-components';
 
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import {
   deleteBackupServer,
   getBackupServers,
 } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { BackupServerResource } from '@/types/BackupServer.type';
@@ -24,6 +26,7 @@ import DeleteBackupServerPage from './DeleteBackupServer.page';
 
 vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 
 const { addSuccess, mockedUseAuthorizationIam } = vi.hoisted(() => ({
   addSuccess: vi.fn(),
@@ -118,6 +121,7 @@ describe('DeleteBackupServerPage', () => {
       } as Resource<BackupServicesTenant>,
     ]);
     vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
   it('renders a critical modal and enables the confirmation once the server is known', async () => {
@@ -137,6 +141,7 @@ describe('DeleteBackupServerPage', () => {
     expect(mockedDeleteBackupServer).toHaveBeenCalledWith({
       backupServicesId: 'service-1',
       vspcTenantId: 'vspc-1',
+      backupLicensesId: mockBackupLicenses[0]!.id,
       backupServerId: 'server-1',
     });
     await waitFor(() => expect(screen.queryByTestId('modal')).not.toBeInTheDocument());

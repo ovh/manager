@@ -36,7 +36,7 @@ describe('GeneralInformationPage', () => {
       {
         id: 'license-1',
         resourceStatus: 'READY',
-        currentState: { id: 'license-1', resourceName: 'my-resource' },
+        currentState: { id: 'license-1' },
       } as BackupLicenseResource,
     ]);
     setupMswMock();
@@ -75,7 +75,7 @@ describe('GeneralInformationPage', () => {
       {
         id: 'license-1',
         resourceStatus: 'READY',
-        currentState: { id: 'license-1', resourceName: 'my-resource' },
+        currentState: { id: 'license-1' },
       } as BackupLicenseResource,
     ]);
     fireEvent.click(screen.getByTestId('general-information-retry'));

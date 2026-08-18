@@ -98,6 +98,11 @@
       "hint": "The public IP address of your VBR server.",
       "error": "This IP address doesn't look valid — check the IPv4 or IPv6 format."
     },
+    "veeam_client_ip": {
+      "label": "Veeam Client IP address",
+      "placeholder": "E.g.: 185.26.17.45",
+      "hint": "The public IP address of the machine where your Veeam Client will be executed (optional if you're using the client directly on the VBR)."
+    },
     "private_ip": {
       "label": "Private IP address (LAN)",
       "placeholder": "E.g.: 192.168.1.10",

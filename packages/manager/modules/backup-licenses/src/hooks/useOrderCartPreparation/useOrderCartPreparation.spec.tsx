@@ -17,6 +17,7 @@ import { useOrderCartPreparation } from './useOrderCartPreparation';
 const form: ServerVaultFormState = {
   displayName: 'backup-prod-paris',
   backupServerExternalIp: '203.0.113.10',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
   vaultDisplayName: 'vault-prod-paris',
@@ -31,6 +32,7 @@ const renderPreparation = async (
 ) => {
   setupMswMock({
     cartRequiredConfiguration: mockOrderFunnelRequiredConfiguration,
+    backupServicesTenants: [],
     ...mockParams,
   });
   const wrapper = await testWrapperBuilder().withQueryClient().withShellContext().build();

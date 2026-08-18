@@ -47,7 +47,7 @@ const resolveVaultStorageConsumption = async (
 };
 
 const resolveLicensePrice = async (license: BackupLicenseResource) => {
-  const serviceId = await resolveServiceId(license.currentState.resourceName);
+  const serviceId = await resolveServiceId(license.id);
   return (await getLicenseConsumption(serviceId))[0];
 };
 
@@ -77,7 +77,7 @@ const buildLicenseRow = async (license: BackupLicenseResource): Promise<LicenseC
 
   return {
     licenseId: license.id,
-    name: license.currentState.resourceName,
+    name: license.id,
     licensePriceText: licenseConsumption?.price.text,
   };
 };

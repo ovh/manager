@@ -1,11 +1,14 @@
-import { v2 } from '@ovh-ux/manager-core-api';
+import { ApiError, v2 } from '@ovh-ux/manager-core-api';
 
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { getBackupServerRoute, getBackupServersRoute } from '@/utils/apiRoutes/apiRoutes';
 
+const NOT_FOUND_STATUS = 404;
+
 export type GetBackupServersParams = {
   backupServicesId: string;
   vspcTenantId: string;
+  backupLicensesId: string;
 };
 
 export type EditBackupServerParams = GetBackupServersParams & {
@@ -20,19 +23,22 @@ export type DeleteBackupServerParams = GetBackupServersParams & {
   backupServerId: string;
 };
 
-/**
- * Liste des serveurs VBR d'un tenant VSPC.
- * Appel simple et non paginé : la liste est courte et le support Iceberg de cette
- * route n'est pas documenté (cf. §11 de la spec BKP-1216).
- */
 export const getBackupServers = async ({
   backupServicesId,
   vspcTenantId,
+  backupLicensesId,
 }: GetBackupServersParams): Promise<BackupServerResource[]> => {
-  const { data } = await v2.get<BackupServerResource[]>(
-    getBackupServersRoute(backupServicesId, vspcTenantId),
-  );
-  return data;
+  try {
+    const { data } = await v2.get<BackupServerResource[]>(
+      getBackupServersRoute(backupServicesId, vspcTenantId, backupLicensesId),
+    );
+    return data;
+  } catch (error) {
+    if ((error as ApiError)?.response?.status === NOT_FOUND_STATUS) {
+      return [];
+    }
+    throw error;
+  }
 };
 
 /**
@@ -43,10 +49,14 @@ export const getBackupServers = async ({
 export const editBackupServer = async ({
   backupServicesId,
   vspcTenantId,
+  backupLicensesId,
   backupServerId,
   ...payload
 }: EditBackupServerParams): Promise<void> => {
-  await v2.put(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId), payload);
+  await v2.put(
+    getBackupServerRoute(backupServicesId, vspcTenantId, backupLicensesId, backupServerId),
+    payload,
+  );
 };
 
 /**
@@ -57,7 +67,10 @@ export const editBackupServer = async ({
 export const deleteBackupServer = async ({
   backupServicesId,
   vspcTenantId,
+  backupLicensesId,
   backupServerId,
 }: DeleteBackupServerParams): Promise<void> => {
-  await v2.delete(getBackupServerRoute(backupServicesId, vspcTenantId, backupServerId));
+  await v2.delete(
+    getBackupServerRoute(backupServicesId, vspcTenantId, backupLicensesId, backupServerId),
+  );
 };

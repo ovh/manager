@@ -6,28 +6,43 @@ import { queryKeys } from './queryKeys';
 import { tenantsQueries } from './tenants.queries';
 
 /**
- * `resourceName` est le champ de jointure vers /services (cf. §3 de la spec BKP-1226) :
- * la cascade backupServicesId → vspcTenantId → licence n'a qu'un élément par client,
- * même principe que backupServersQueries.list().
+ * La cascade backupServicesId → vspcTenantId → licence n'a qu'un élément par client,
+ * même principe que backupServersQueries.list() (cf. §3 de la spec BKP-1226).
  */
-const resourceName = (queryClient: QueryClient) => () =>
+const list = (queryClient: QueryClient) =>
   queryOptions({
-    queryKey: queryKeys.backupLicense.resourceName(),
+    queryKey: queryKeys.backupLicense.all(),
     queryFn: async () => {
       const tenants = tenantsQueries.withClient(queryClient);
       const backupServicesId = await tenants.backupServicesId();
       const vspcTenantId = await tenants.vspcTenantId();
-      const licenses = await getBackupLicenses({ backupServicesId, vspcTenantId });
-      const name = licenses[0]?.currentState.resourceName;
-      if (!name) throw new Error('No Backup License resource found');
-      return name;
+      return getBackupLicenses({ backupServicesId, vspcTenantId });
     },
   });
 
 // ─── Factory ───
 
-const withClient = (queryClient: QueryClient) => ({
-  resourceName: resourceName(queryClient),
-});
+const withClient = (queryClient: QueryClient) => {
+  const license = async () => {
+    const licenses = await queryClient.ensureQueryData(list(queryClient));
+    const found = licenses[0];
+    if (!found) throw new Error('No Backup License resource found');
+    return found;
+  };
+
+  return {
+    /**
+     * `id` sert de champ de jointure vers /services : la réponse réelle n'a pas de
+     * `currentState.resourceName` distinct (cf. mémoire backup-licenses-resourcename-contract-bug).
+     */
+    resourceName: () =>
+      queryOptions({
+        queryKey: queryKeys.backupLicense.resourceName(),
+        queryFn: async () => (await license()).id,
+      }),
+    /** `backupLicensesId` : scope requis par les routes `backupServer` (cf. BKP-1216). */
+    id: async () => (await license()).id,
+  };
+};
 
 export const backupLicenseQueries = { withClient };

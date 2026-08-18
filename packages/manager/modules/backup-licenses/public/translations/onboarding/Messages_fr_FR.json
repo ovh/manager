@@ -1,5 +1,5 @@
 {
-  "title": "Backup Licences",
+  "title": "Backup Licenses",
   "subtitle": "Perdre une donnée critique ne devrait jamais être une option.",
   "description": "Sauvegardez, restaurez et répliquez vos workloads critiques en toute confiance. Déployez votre socle Veeam Backup & Replication avec les licences Enterprise Plus incluses par OVHcloud.",
   "hero_alt": "Logo Veeam Enterprise",
@@ -14,6 +14,18 @@
     "category": "Tutoriel",
     "title": "Installer Veeam Backup & Replication",
     "description": "Découvrez comment installer un serveur Veeam Backup & Replication avec Veeam Enterprise",
+    "cta": "En savoir plus"
+  },
+  "first_configuration_card": {
+    "category": "Tutoriel",
+    "title": "Commander et configurer votre première licence",
+    "description": "Découvrez comment commander votre première licence Backup Licenses et connecter votre serveur Veeam Backup & Replication à la console de gestion OVHcloud.",
+    "cta": "En savoir plus"
+  },
+  "migration_veeam_enterprise_card": {
+    "category": "Tutoriel",
+    "title": "Migrer depuis Veeam Enterprise vers Backup Licenses",
+    "description": "Découvrez comment migrer votre licence Veeam Enterprise vers Backup Licenses en connectant votre serveur Veeam Backup & Replication à la console de gestion OVHcloud.",
     "cta": "En savoir plus"
   }
 }

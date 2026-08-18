@@ -25,7 +25,8 @@
   },
   "os": {
     "windows": "Windows",
-    "linux": "Linux"
+    "linux": "Linux",
+    "other": "Otro"
   },
   "action": {
     "add_server": "Añadir un servidor"

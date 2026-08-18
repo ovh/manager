@@ -36,6 +36,7 @@
   "credentials": {
     "title": "S3-Zugangsdaten",
     "field": {
+      "bucket_name": "Bucket-Name",
       "endpoint": "S3-Endpunkt"
     },
     "hide": "Ausblenden",

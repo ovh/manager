@@ -63,6 +63,17 @@ export default function VbrServerFields({
           onBlur={() => onFieldBlur('backupServerExternalIp')}
         />
 
+        <OrderTextField
+          id="vbr-veeam-client-ip"
+          label={t('field.veeam_client_ip.label')}
+          value={form.veeamClientIp}
+          placeholder={t('field.veeam_client_ip.placeholder')}
+          hint={t('field.veeam_client_ip.hint')}
+          isDisabled={isDisabled}
+          onChange={(value) => onFieldChange('veeamClientIp', value)}
+          onBlur={() => onFieldBlur('veeamClientIp')}
+        />
+
         <label
           htmlFor="vbr-nat-toggle"
           className="flex cursor-pointer items-start gap-4 rounded-lg border border-[var(--ods-color-neutral-200)] bg-[var(--ods-color-neutral-050)] p-6"

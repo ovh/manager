@@ -11,7 +11,7 @@ export type TBackupServersMockParams = {
 };
 
 const BACKUP_SERVERS_URL =
-  '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupLicenses/backupServer';
+  '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupLicenses/:backupLicensesId/backupServer';
 
 export const getBackupServersMocks = ({
   backupServers,

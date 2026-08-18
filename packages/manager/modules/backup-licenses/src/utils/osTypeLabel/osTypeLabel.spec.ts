@@ -8,6 +8,7 @@ describe('getOsTypeDisplay', () => {
   it.each([
     ['WINDOWS', 'os.windows'],
     ['LINUX', 'os.linux'],
+    ['OTHER', 'os.other'],
   ])('maps %s to its i18n key', (osType, expectedKey) => {
     expect(getOsTypeDisplay(osType).i18nKey).toBe(expectedKey);
   });

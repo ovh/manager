@@ -147,6 +147,7 @@ const validDraft = {
   form: {
     displayName: 'backup-prod-paris',
     backupServerExternalIp: '203.0.113.10',
+    veeamClientIp: '',
     isBehindNat: false,
     backupServerPrivateIp: '',
     vaultDisplayName: 'vault-prod-paris',
@@ -157,6 +158,7 @@ const validDraft = {
 const renderOrderPage = (mockParams: MockParams = {}): Promise<RenderResult> => {
   setupMswMock({
     cartRequiredConfiguration: mockOrderFunnelRequiredConfiguration,
+    backupServicesTenants: [],
     ...mockParams,
   });
   window.sessionStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(validDraft));

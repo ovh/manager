@@ -29,20 +29,24 @@ describe('VaultCredentialsPage', () => {
     vi.clearAllMocks();
   });
 
-  it('shows the four specified fields, region and endpoint included', async () => {
+  it('shows the five specified fields, bucket name, region and endpoint included', async () => {
     await renderCredentials(paygoVault.id);
 
     await waitForCredentials();
+    expect(screen.getByText(labels.vaults.credentials.field.bucket_name)).toBeVisible();
     expect(screen.getByText(labels.region.region)).toBeVisible();
     expect(screen.getByText(labels.vaults.credentials.field.endpoint)).toBeVisible();
     expect(screen.getByText(labels.system.key_access)).toBeVisible();
     expect(screen.getByText(labels.system.key_secret)).toBeVisible();
   });
 
-  it('shows the region code and the endpoint published with the keys', async () => {
+  it('shows the bucket name, the region code and the endpoint published with the keys', async () => {
     await renderCredentials(paygoVault.id);
 
     await waitForCredentials();
+    expect(screen.getByTestId('vault-credentials-bucket-name')).toHaveTextContent(
+      mockVaultBucketCredentials.bucketName,
+    );
     expect(screen.getByTestId('vault-credentials-region')).toHaveTextContent(
       mockVaultBucketCredentials.regionCode,
     );
@@ -106,6 +110,11 @@ describe('VaultCredentialsPage', () => {
   });
 
   it.each([
+    [
+      'vault-credentials-bucket-name',
+      mockVaultBucketCredentials.bucketName,
+      labels.vaults.credentials.field.bucket_name,
+    ],
     ['vault-credentials-region', mockVaultBucketCredentials.regionCode, labels.region.region],
     [
       'vault-credentials-endpoint',
@@ -179,11 +188,12 @@ describe('VaultCredentialsPage', () => {
     expect(screen.queryByTestId('vault-credentials-loading')).not.toBeInTheDocument();
   });
 
-  // The four values come from the same call, so a failure leaves nothing to read but the message.
-  it('shows no field when the keys fail to load, region and endpoint included', async () => {
+  // The five values come from the same call, so a failure leaves nothing to read but the message.
+  it('shows no field when the keys fail to load, bucket name, region and endpoint included', async () => {
     await renderCredentials(paygoVault.id, failingCredentialsParams);
 
     expect(await screen.findByText(labels.vaults.credentials.error)).toBeVisible();
+    expect(screen.queryByTestId('vault-credentials-bucket-name')).not.toBeInTheDocument();
     expect(screen.queryByTestId('vault-credentials-region')).not.toBeInTheDocument();
     expect(screen.queryByTestId('vault-credentials-endpoint')).not.toBeInTheDocument();
   });

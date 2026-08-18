@@ -11,6 +11,7 @@ import {
 const form: ServerVaultFormState = {
   displayName: 'backup-prod-paris',
   backupServerExternalIp: '203.0.113.10',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
   vaultDisplayName: 'vault-prod-paris',
@@ -49,10 +50,18 @@ describe('buildBackupLicensesOrderComposition', () => {
 
   it('names the configuration labels as the cart claims them, in kebab-case', () => {
     expect(Object.keys(build().configurationValues)).toEqual([
+      'backupserver-displayname',
       'backupserver-public-ip',
       'license-type',
       'vault-azname',
+      'vault-name',
     ]);
+  });
+
+  it('carries the vault name, trimmed', () => {
+    expect(build({ vaultDisplayName: '  vault-prod-paris  ' }).configurationValues[LABELS.vaultName]).toBe(
+      'vault-prod-paris',
+    );
   });
 
   it('omits the private IP entirely when the server is not behind a NAT', () => {
@@ -79,10 +88,9 @@ describe('buildBackupLicensesOrderComposition', () => {
     expect(configurationValues[LABELS.backupServerPublicIp]).toBe('203.0.113.10');
   });
 
-  /** Aucun item du panier ne réclame de label qui les porte : les envoyer ferait échouer la commande. */
-  it('leaves the VBR server and vault names out of the cart entirely', () => {
-    expect(JSON.stringify(build().configurationValues)).not.toMatch(
-      /backup-prod-paris|vault-prod-paris/,
+  it('carries the VBR server display name, trimmed', () => {
+    expect(build({ displayName: '  backup-prod-paris  ' }).configurationValues[LABELS.backupServerDisplayName]).toBe(
+      'backup-prod-paris',
     );
   });
 

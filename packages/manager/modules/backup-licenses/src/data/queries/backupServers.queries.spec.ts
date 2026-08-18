@@ -1,8 +1,10 @@
 import { QueryClient } from '@tanstack/react-query';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
 import { getBackupServers } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { Resource } from '@/types/Resource.type';
@@ -12,10 +14,12 @@ import { backupServersQueries } from './backupServers.queries';
 
 vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 
 const mockedGetBackupServers = vi.mocked(getBackupServers);
 const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
 const mockedGetVspcTenants = vi.mocked(getVspcTenants);
+const mockedGetBackupLicenses = vi.mocked(getBackupLicenses);
 
 const buildResource = <T>(id: string, currentState: T): Resource<T> => ({
   id,
@@ -35,6 +39,7 @@ describe('backupServersQueries.list', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockedGetBackupServers.mockResolvedValue([]);
+    mockedGetBackupLicenses.mockResolvedValue(mockBackupLicenses);
   });
 
   it('requests the servers with the ids resolved by the cascade', async () => {
@@ -49,6 +54,7 @@ describe('backupServersQueries.list', () => {
     expect(mockedGetBackupServers).toHaveBeenCalledWith({
       backupServicesId: 'service-1',
       vspcTenantId: 'vspc-1',
+      backupLicensesId: mockBackupLicenses[0]!.id,
     });
   });
 
@@ -103,6 +109,7 @@ describe('backupServersQueries.list', () => {
     expect(mockedGetBackupServers).toHaveBeenCalledWith({
       backupServicesId: 'service-bl',
       vspcTenantId: 'vspc-bl',
+      backupLicensesId: mockBackupLicenses[0]!.id,
     });
   });
 });
