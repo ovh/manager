@@ -182,5 +182,16 @@
     "error": {
       "submit": "An error occurred while adding the server. Please try again."
     }
+  },
+  "pending": {
+    "title": "Your order is being processed",
+    "description": "Your order has been placed. Your licence and vault are being set up, which can take a few minutes. This page updates automatically.",
+    "order_id": "Order no. {{orderId}}",
+    "progress_label": "Setup in progress",
+    "timeout": "Setup is taking longer than expected. It is still running: keep this page open or come back later. If nothing changes, please contact support.",
+    "restart": "Place a new order",
+    "error": {
+      "delivery": "Your order could not be set up. Nothing was delivered: you can place a new order or contact support."
+    }
   }
 }

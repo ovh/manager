@@ -12,6 +12,7 @@ import {
 import { isValidIp } from '@/utils/isValidIp/isValidIp';
 
 import {
+  PersistedOrderState,
   clearPersistedOrderState,
   readPersistedOrderState,
   writePersistedOrderState,
@@ -87,10 +88,15 @@ function computeInitialStepStates(
   };
 }
 
-export function useOrderForm() {
+export type UseOrderFormOptions = {
+  frozenState?: PersistedOrderState | null;
+  isFrozen?: boolean;
+};
+
+export function useOrderForm({ frozenState = null, isFrozen = false }: UseOrderFormOptions = {}) {
   // Reprise des choix persistés en sessionStorage (survit au refresh / au démontage
   // de la page lors d'un aller-retour hors de la page). Lecture unique au montage.
-  const persisted = useMemo(() => readPersistedOrderState(EMPTY_FORM), []);
+  const persisted = useMemo(() => frozenState ?? readPersistedOrderState(EMPTY_FORM), []);
 
   const [family, setFamily] = useState<LicenseFamily | null>(
     persisted ? persisted.family : DEFAULT_FAMILY,
@@ -117,8 +123,9 @@ export function useOrderForm() {
   // Sauvegarde de l'état métier à chaque changement (les états de validation UI
   // — touched / submitAttempted — ne sont volontairement pas persistés).
   useEffect(() => {
+    if (isFrozen) return;
     writePersistedOrderState({ family, tier, form });
-  }, [family, tier, form]);
+  }, [family, tier, form, isFrozen]);
 
   const selectFamily = useCallback((next: LicenseFamily) => {
     setFamily(next);
