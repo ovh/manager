@@ -13,16 +13,16 @@ export type BackupLicensesCheckout = {
 export const useCheckoutBackupLicensesCart = ({
   onSuccess,
 }: {
-  onSuccess: () => void;
+  onSuccess: (order: Order, variables: BackupLicensesCheckout) => void;
 }): UseMutationResult<Order, TApiCustomError, BackupLicensesCheckout> => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({ cartId }: BackupLicensesCheckout) => executeOrderCartCheckout(cartId),
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: queryKeys.subscription.active() });
+    onSuccess: async (order, variables) => {
+      await queryClient.invalidateQueries({ queryKey: queryKeys.subscription.status() });
       await queryClient.invalidateQueries({ queryKey: queryKeys.backupServices.tenants() });
-      onSuccess();
+      onSuccess(order, variables);
     },
   });
 };

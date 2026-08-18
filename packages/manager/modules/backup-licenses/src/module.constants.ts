@@ -52,7 +52,12 @@ export const BACKUP_LICENSES_IAM_RULES = {
 
 export const LOCAL_STORAGE_KEYS = {
   SHOW_NO_AGENT_ENABLED_MESSAGE: 'ovh-backup-licenses-show-no-agent-enabled-message',
+  PENDING_ORDER: 'ovh-backup-licenses-pending-order',
 };
+
+export const PENDING_ORDER_MAX_AGE_MS = 24 * 60 * 60 * 1000;
+
+export const PENDING_ORDER_TIMEOUT_MS = 30 * 60 * 1000;
 
 /**
  * Plan codes du stockage d'un vault Backup Licenses (§3.1 de la spec BKP-1225) : les deux
