@@ -25,7 +25,8 @@
   },
   "os": {
     "windows": "Windows",
-    "linux": "Linux"
+    "linux": "Linux",
+    "other": "Inny"
   },
   "action": {
     "add_server": "Dodaj serwer"

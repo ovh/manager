@@ -21,7 +21,7 @@ describe('createBackupLicense', () => {
       displayName: 'backup-prod',
       licenseType:
         'VEEAM_BACKUP_REPLICATION_ENTERPRISE_PLUS' as CreateBackupLicenseBody['licenseType'],
-      backupServerExternalIp: ['185.26.17.45'],
+      backupServerExternalIp: '185.26.17.45',
     };
     const response = { id: 'server-1' } as BackupServerResource;
     mockedPostJSON.mockResolvedValue(response);

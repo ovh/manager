@@ -32,6 +32,7 @@ import { LicenseFamily, OrderStepId } from '@/types/Order.type';
 const FIELD_ELEMENT_IDS: Record<OrderFieldName, string> = {
   displayName: 'vbr-display-name',
   backupServerExternalIp: 'vbr-external-ip',
+  veeamClientIp: 'vbr-veeam-client-ip',
   backupServerPrivateIp: 'vbr-private-ip',
   vaultDisplayName: 'vault-display-name',
 };

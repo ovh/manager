@@ -36,6 +36,7 @@
   "credentials": {
     "title": "Identifiants S3",
     "field": {
+      "bucket_name": "Nom du bucket",
       "endpoint": "Point d'accès S3"
     },
     "hide": "Masquer",

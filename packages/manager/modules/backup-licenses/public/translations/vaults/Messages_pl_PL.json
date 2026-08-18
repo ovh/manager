@@ -38,6 +38,7 @@
   "credentials": {
     "title": "Dane uwierzytelniające S3",
     "field": {
+      "bucket_name": "Nazwa bucketa",
       "endpoint": "Punkt końcowy S3"
     },
     "hide": "Ukryj",

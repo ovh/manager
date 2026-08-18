@@ -1,19 +1,31 @@
 {
-  "title": "Backup Licences",
-  "subtitle": "The independent solution to protect your data",
-  "description": "Back up, restore and replicate your critical workloads, without relying on a single vendor.",
+  "title": "Backup Licenses",
+  "subtitle": "Losing critical data should never be an option.",
+  "description": "Back up, restore and replicate your critical workloads with confidence. Deploy your Veeam Backup & Replication foundation with Enterprise Plus licences included by OVHcloud.",
   "hero_alt": "Veeam Enterprise logo",
   "highlights": {
-    "storage_included": "500 GB included with your licence",
+    "storage_included": "<b>500 GB included</b> with your licence",
     "pricing_prefix": "From ",
     "pricing_suffix": "· 2 to 3 steps depending on your licence",
-    "compatibility": "Compatible with"
+    "compatibility": "Compatible"
   },
-  "order_cta": "Order",
+  "order_cta": "Configure my offer",
   "tutorial_card": {
     "category": "Tutorial",
     "title": "Install Veeam Backup & Replication",
     "description": "Find out how to install a Veeam Backup & Replication server with Veeam Enterprise",
+    "cta": "Learn more"
+  },
+  "first_configuration_card": {
+    "category": "Tutorial",
+    "title": "Order and set up your first licence",
+    "description": "Find out how to order your first Backup Licenses licence and connect your Veeam Backup & Replication server to the OVHcloud management console.",
+    "cta": "Learn more"
+  },
+  "migration_veeam_enterprise_card": {
+    "category": "Tutorial",
+    "title": "Migrate from Veeam Enterprise to Backup Licenses",
+    "description": "Find out how to migrate your Veeam Enterprise licence to Backup Licenses by connecting your Veeam Backup & Replication server to the OVHcloud management console.",
     "cta": "Learn more"
   }
 }

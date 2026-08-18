@@ -3,6 +3,7 @@ import { type UseMutationOptions, useMutation, useQueryClient } from '@tanstack/
 import { TApiCustomError } from '@ovh-ux/manager-core-api';
 
 import { deleteBackupServer } from '@/data/api/backupServers/backupServers.requests';
+import { backupLicenseQueries } from '@/data/queries/backupLicense.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
 import { tenantsQueries } from '@/data/queries/tenants.queries';
 
@@ -27,7 +28,13 @@ export const useDeleteBackupServer = ({
       const tenants = tenantsQueries.withClient(queryClient);
       const backupServicesId = await tenants.backupServicesId();
       const vspcTenantId = await tenants.vspcTenantId();
-      return deleteBackupServer({ backupServicesId, vspcTenantId, backupServerId });
+      const backupLicensesId = await backupLicenseQueries.withClient(queryClient).id();
+      return deleteBackupServer({
+        backupServicesId,
+        vspcTenantId,
+        backupLicensesId,
+        backupServerId,
+      });
     },
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.backupServers.all() });

@@ -21,7 +21,10 @@ import {
   getOrderCartAssignRoute,
   getOrderCartCheckoutRoute,
 } from '@/utils/apiRoutes/apiRoutes';
-import { BACKUP_LICENSES_ORDER_PLAN_CODES } from '@/utils/orderComposition/orderComposition';
+import {
+  BACKUP_LICENSES_ORDER_PLAN_CODES,
+  BackupLicensesOrderNode,
+} from '@/utils/orderComposition/orderComposition';
 
 import {
   UNAVAILABLE_CART_OFFER,
@@ -31,6 +34,7 @@ import {
   createBackupServicesCart,
   createOrderCart,
   discoverBackupServicesOrderParameters,
+  discoverBackupServicesServiceOrderParameters,
   getBackupServicesCartOptionDefinitions,
   getBackupServicesCartProductDefinitions,
   getBackupServicesOffers,
@@ -311,5 +315,74 @@ describe('discoverBackupServicesOrderParameters', () => {
     await expect(discover()).rejects.toThrow(
       `${UNAVAILABLE_CART_OFFER}: ${[vspcTenant, bundledVault].join(', ')}`,
     );
+  });
+});
+
+describe('discoverBackupServicesServiceOrderParameters', () => {
+  const { vspcTenant, vspcTenantLicenses } = BACKUP_LICENSES_ORDER_PLAN_CODES;
+  const SERVICE_NAME = 'bs-existing';
+
+  const optionsFor = (...planCodes: string[]) =>
+    mockCartOptionDefinitions.filter((offer) => planCodes.includes(offer.planCode));
+
+  const serveDefinitions = (childOptions: unknown[] = optionsFor(vspcTenantLicenses)) =>
+    mockedGetJSON.mockImplementation((_version, route) =>
+      Promise.resolve(route.endsWith('/options') ? childOptions : mockCartOptionDefinitions),
+    );
+
+  const discover = (
+    planCode: string = vspcTenant,
+    options: BackupLicensesOrderNode[] = [{ planCode: vspcTenantLicenses, options: [] }],
+  ) => discoverBackupServicesServiceOrderParameters(MOCK_CART_ID, SERVICE_NAME, { planCode, options });
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('reads the root offer on the service, not the cart product route', async () => {
+    serveDefinitions();
+
+    await discover();
+
+    expect(mockedGetJSON).toHaveBeenCalledWith('v6', getCartServiceOptionRoute(SERVICE_NAME));
+    expect(mockedGetJSON).toHaveBeenCalledWith(
+      'v6',
+      getBackupServicesCartOptionRoute(MOCK_CART_ID),
+      { params: { planCode: vspcTenant } },
+    );
+  });
+
+  it('resolves the addon the same way as the net_new discovery', async () => {
+    serveDefinitions();
+
+    await expect(discover()).resolves.toEqual({
+      duration: 'P1M',
+      planCode: vspcTenant,
+      pricingMode: 'default',
+      quantity: 1,
+      options: [
+        {
+          duration: 'P1M',
+          planCode: vspcTenantLicenses,
+          pricingMode: 'consumption',
+          quantity: 1,
+          options: [],
+        },
+      ],
+    });
+  });
+
+  it('refuses, naming the plan when the service does not offer it', async () => {
+    serveDefinitions();
+
+    await expect(discover('unknown-plan', [])).rejects.toThrow(
+      `${UNAVAILABLE_CART_OFFER}: unknown-plan`,
+    );
+  });
+
+  it('refuses, naming an addon the cart does not offer under this parent', async () => {
+    serveDefinitions([]);
+
+    await expect(discover()).rejects.toThrow(`${UNAVAILABLE_CART_OFFER}: ${vspcTenantLicenses}`);
   });
 });

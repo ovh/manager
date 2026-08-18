@@ -19,10 +19,10 @@ const renderUseLocations = async () => {
 };
 
 describe('useLocations', () => {
-  it('exposes the hardcoded catalog of 11 locations, translated in the current locale', async () => {
+  it('exposes the hardcoded catalog of 10 locations, translated in the current locale', async () => {
     const { result } = await renderUseLocations();
 
-    await waitFor(() => expect(result.current).toHaveLength(11));
+    await waitFor(() => expect(result.current).toHaveLength(10));
     expect(result.current.map(({ name }) => name)).toEqual([
       'eu-west-gra',
       'eu-west-rbx',
@@ -34,7 +34,6 @@ describe('useLocations', () => {
       'ca-east-tor',
       'ap-southeast-sgp',
       'ap-southeast-syd',
-      'ap-south-mum',
     ]);
   });
 
@@ -46,13 +45,6 @@ describe('useLocations', () => {
       cityName: 'Gravelines',
       countryName: 'France',
       geographyName: "Europe de l'Ouest",
-    });
-
-    const mumbai = result.current.find(({ name }) => name === 'ap-south-mum');
-    expect(mumbai).toMatchObject({
-      cityName: 'Mumbai',
-      countryName: 'Inde',
-      geographyName: 'Asie Pacifique',
     });
   });
 });

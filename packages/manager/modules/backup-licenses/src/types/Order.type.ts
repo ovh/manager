@@ -79,6 +79,7 @@ export interface VdpTierCardData {
 export interface ServerVaultFormState {
   displayName: string;
   backupServerExternalIp: string;
+  veeamClientIp: string;
   isBehindNat: boolean;
   backupServerPrivateIp: string;
   vaultDisplayName: string;

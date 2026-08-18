@@ -2,6 +2,7 @@ import { QueryClient, queryOptions } from '@tanstack/react-query';
 
 import { getBackupServers } from '@/data/api/backupServers/backupServers.requests';
 
+import { backupLicenseQueries } from './backupLicense.queries';
 import { queryKeys } from './queryKeys';
 import { tenantsQueries } from './tenants.queries';
 
@@ -14,7 +15,8 @@ const list = (queryClient: QueryClient) => () =>
       const tenants = tenantsQueries.withClient(queryClient);
       const backupServicesId = await tenants.backupServicesId();
       const vspcTenantId = await tenants.vspcTenantId();
-      return getBackupServers({ backupServicesId, vspcTenantId });
+      const backupLicensesId = await backupLicenseQueries.withClient(queryClient).id();
+      return getBackupServers({ backupServicesId, vspcTenantId, backupLicensesId });
     },
   });
 
