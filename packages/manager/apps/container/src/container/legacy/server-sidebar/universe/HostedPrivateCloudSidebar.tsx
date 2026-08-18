@@ -383,6 +383,7 @@ export default function HostedPrivateCloudSidebar() {
             icon: (
               <img alt="" src={veeamBackupLogo} className="mb-1 aspect-square w-6" />
             ),
+            href: navigation.getURL('hpc-backup-licenses', '#'),
             pathMatcher: new RegExp('^/hpc-backup-licenses'),
             badge: 'new',
           },

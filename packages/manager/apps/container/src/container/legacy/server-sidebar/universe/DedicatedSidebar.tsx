@@ -398,6 +398,7 @@ export default function DedicatedSidebar() {
             icon: (
               <img alt="" src={veeamBackupLogo} className="mb-1 aspect-square w-6" />
             ),
+            href: navigation.getURL('bmc-backup-licenses', '#'),
             pathMatcher: new RegExp('^/bmc-backup-licenses'),
             badge: 'new',
           },
