@@ -182,5 +182,16 @@
     "error": {
       "submit": "Beim Hinzufügen des Servers ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
     }
+  },
+  "pending": {
+    "title": "Ihre Bestellung wird bearbeitet",
+    "description": "Ihre Bestellung wurde aufgenommen. Ihre Lizenz und Ihr Vault werden eingerichtet, was einige Minuten dauern kann. Diese Seite wird automatisch aktualisiert.",
+    "order_id": "Bestellung Nr. {{orderId}}",
+    "progress_label": "Einrichtung läuft",
+    "timeout": "Die Einrichtung dauert länger als erwartet. Sie läuft weiter: Lassen Sie diese Seite geöffnet oder kommen Sie später zurück. Wenn sich nichts ändert, wenden Sie sich bitte an den Support.",
+    "restart": "Neue Bestellung aufgeben",
+    "error": {
+      "delivery": "Ihre Bestellung konnte nicht eingerichtet werden. Es wurde nichts bereitgestellt: Sie können eine neue Bestellung aufgeben oder den Support kontaktieren."
+    }
   }
 }

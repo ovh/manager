@@ -5,10 +5,13 @@ import { Route, Routes } from 'react-router-dom';
 import { RenderResult, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { ORDER_PENDING_BANNER_TEST_ID } from '@/components/order/OrderPendingBanner/OrderPendingBanner.component';
 import { ORDER_SUBMIT_ERROR_TEST_ID } from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
 import { ORDER_TERMS_ERROR_TEST_ID } from '@/components/order/OrderTerms/OrderTerms.component';
 import { getBackupServicesCatalog } from '@/data/api/catalog/catalog.requests';
+import { resetPendingOrderStore } from '@/hooks/usePendingOrder/usePendingOrder';
 import { mockOrderFunnelRequiredConfiguration } from '@/mocks/order/order.mock';
+import { LOCAL_STORAGE_KEYS } from '@/module.constants';
 import { labels } from '@/test-utils/i18ntest.utils';
 import { renderWithProviders } from '@/test-utils/renderWithProviders';
 import { MockParams, setupMswMock } from '@/test-utils/setupMsw';
@@ -19,6 +22,7 @@ import {
   watchApiRequests,
 } from '@/test-utils/watchApiCalls';
 import { LicenseFamily, VdpTier } from '@/types/Order.type';
+import { PendingOrder } from '@/types/PendingOrder.type';
 
 import OrderPage from './Order.page';
 
@@ -190,12 +194,16 @@ const acceptTerms = async (container: Element) => {
 
 const persistedDraft = () => window.sessionStorage.getItem(DRAFT_STORAGE_KEY);
 
+const pendingOrder = () => window.localStorage.getItem(LOCAL_STORAGE_KEYS.PENDING_ORDER);
+
 describe('OrderPage — submit', () => {
   let requests: Promise<WatchedApiRequest>[];
 
   beforeEach(() => {
     vi.clearAllMocks();
     window.sessionStorage.clear();
+    window.localStorage.clear();
+    resetPendingOrderStore();
     vi.mocked(getBackupServicesCatalog).mockResolvedValue(undefined as never);
     requests = watchApiRequests('/order/cart');
   });
@@ -242,17 +250,53 @@ describe('OrderPage — submit', () => {
     ).toHaveLength(0);
   });
 
-  it('places the order, clears the draft and lands on the linked servers', async () => {
+  it('places the order, clears the draft and switches the tunnel to delivery tracking', async () => {
     const { container } = await renderOrderPage();
 
     await acceptTerms(container);
     clickSubmit(container);
 
-    await waitFor(() => expect(screen.getByTestId('linked-servers')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByTestId(ORDER_PENDING_BANNER_TEST_ID)).toBeInTheDocument(),
+    );
     const emitted = await resolveApiRequests(requests);
     expect(emitted.filter(({ url }) => url.endsWith('/order/cart'))).toHaveLength(1);
     expect(persistedDraft()).toBeNull();
     expect(screen.queryByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).not.toBeInTheDocument();
+
+    const stored = (
+      JSON.parse(pendingOrder() as string) as { state: { pendingOrder: PendingOrder } }
+    ).state.pendingOrder;
+    expect(stored.order).toEqual(validDraft);
+    expect(stored.cartId).toBeTruthy();
+    expect(stored.submittedAt).toBeGreaterThan(0);
+  });
+
+  it('freezes the whole tunnel once the order is engaged: no step button left to press', async () => {
+    const { container } = await renderOrderPage();
+
+    await acceptTerms(container);
+    clickSubmit(container);
+
+    await waitFor(() =>
+      expect(screen.getByTestId(ORDER_PENDING_BANNER_TEST_ID)).toBeInTheDocument(),
+    );
+    expect(screen.queryByTestId('step-1-edit')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('step-3-next')).not.toBeInTheDocument();
+    expect(screen.getByTestId('back-link')).toBeDisabled();
+    expect(screen.getByText('vault-prod-paris')).toBeInTheDocument();
+  });
+
+  it('records nothing when the order fails: the customer can simply try again', async () => {
+    const { container } = await renderOrderPage({ isCheckoutError: true });
+
+    await acceptTerms(container);
+    clickSubmit(container);
+
+    await waitFor(() => expect(screen.getByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).toBeInTheDocument());
+    expect(pendingOrder()).toBeNull();
+    expect(screen.queryByTestId(ORDER_PENDING_BANNER_TEST_ID)).not.toBeInTheDocument();
+    expect(submitButton(container)).toHaveAttribute('is-disabled', 'false');
   });
 
   it('locks the form and the CTA while the order is in flight, so one click means one order', async () => {
@@ -273,7 +317,9 @@ describe('OrderPage — submit', () => {
     clickSubmit(container);
     clickSubmit(container);
 
-    await waitFor(() => expect(screen.getByTestId('linked-servers')).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByTestId(ORDER_PENDING_BANNER_TEST_ID)).toBeInTheDocument(),
+    );
     const emitted = await resolveApiRequests(requests);
     expect(
       emitted.filter(({ method, url }) => method === 'POST' && url.includes('/checkout')),
@@ -290,7 +336,7 @@ describe('OrderPage — submit', () => {
     expect(screen.getByTestId(ORDER_SUBMIT_ERROR_TEST_ID)).toHaveTextContent(
       labels.order.error.submit,
     );
-    expect(screen.queryByTestId('linked-servers')).not.toBeInTheDocument();
+    expect(screen.queryByTestId(ORDER_PENDING_BANNER_TEST_ID)).not.toBeInTheDocument();
     expect(JSON.parse(persistedDraft() as string)).toEqual(validDraft);
     expect(screen.getByText('vault-prod-paris')).toBeInTheDocument();
   });
