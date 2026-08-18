@@ -1,6 +1,6 @@
 export const queryKeys = {
   subscription: {
-    active: () => ['backup-licenses', 'subscription', 'active'],
+    status: () => ['backup-licenses', 'subscription', 'status'],
   },
   backupServices: {
     tenants: () => ['backup-licenses', 'backup-services', 'tenants'],

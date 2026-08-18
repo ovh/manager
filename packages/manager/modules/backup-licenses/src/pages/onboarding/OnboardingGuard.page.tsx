@@ -2,27 +2,28 @@ import React from 'react';
 
 import { Navigate } from 'react-router-dom';
 
-import { OdsSpinner } from '@ovhcloud/ods-components/react';
+import { RedirectionGuard } from '@ovh-ux/manager-react-components';
 
-import { useHasActiveBackupLicensesSubscription } from '@/hooks/useHasActiveBackupLicensesSubscription/useHasActiveBackupLicensesSubscription';
+import { useBackupLicensesSubscriptionStatus } from '@/hooks/useBackupLicensesSubscriptionStatus/useBackupLicensesSubscriptionStatus';
 import { routeUrls } from '@/routes/routes.constants';
+import { SubscriptionStatus } from '@/types/Subscription.type';
 
 import OnboardingPage from './Onboarding.page';
 
 export default function OnboardingGuardPage() {
-  const { data: hasActiveSubscription, isLoading } = useHasActiveBackupLicensesSubscription();
+  const { status, isLoading } = useBackupLicensesSubscriptionStatus();
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center pt-10">
-        <OdsSpinner />
-      </div>
-    );
+  if (status === SubscriptionStatus.PENDING || status === SubscriptionStatus.ERROR) {
+    return <Navigate to={routeUrls.order} replace />;
   }
 
-  if (hasActiveSubscription) {
-    return <Navigate to={routeUrls.linkedServers} replace />;
-  }
-
-  return <OnboardingPage />;
+  return (
+    <RedirectionGuard
+      condition={status === SubscriptionStatus.READY}
+      isLoading={isLoading}
+      route={routeUrls.linkedServers}
+    >
+      <OnboardingPage />
+    </RedirectionGuard>
+  );
 }
