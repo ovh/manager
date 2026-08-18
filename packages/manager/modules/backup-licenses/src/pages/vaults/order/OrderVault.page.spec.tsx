@@ -2,12 +2,10 @@ import { screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
-  TEST_VAULT_OFFER_PRICE_IN_UCENTS,
-  buildTestOfferPricing,
-  mockCartServiceOffers,
-  mockCartServiceOffersWithoutVault,
-  mockVaultServiceOffer,
-} from '@/mocks/order/order.mock';
+  VAULT_STORAGE_PRICE_IN_UCENTS,
+  mockCatalogWithoutVaultStorage,
+} from '@/mocks/catalog/catalog.mock';
+import { mockCartServiceOffers } from '@/mocks/order/order.mock';
 import { labels } from '@/test-utils/i18ntest.utils';
 
 import { VAULT_ORDER_TEST_IDS } from './OrderVault.page';
@@ -25,6 +23,7 @@ import {
   fillValidOrder,
   isDisabled,
   isEnabled,
+  mockedGetBackupServicesCatalog,
   mockedGetBackupServicesOffers,
   mockedOrderVault,
   nameAccessibleName,
@@ -38,12 +37,14 @@ import {
   regionOptionLabels,
   regionSelect,
   renderOrderModal,
+  resolveCatalog,
   resolveServiceName,
   submitButton,
   submitFromKeyboard,
   typeName,
 } from './_test/order.harness';
 
+vi.mock('@/data/api/catalog/catalog.requests');
 vi.mock('@/data/api/order/order.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
@@ -63,16 +64,16 @@ vi.mock('@ovh-ux/manager-react-components', async (importOriginal) => ({
 
 const order = labels.vaults.order;
 
-/** The price Agora serves, deliberately fictional — see the warning on `order.mock.ts`. */
-const TEST_PRICE_TEXT = buildTestOfferPricing(TEST_VAULT_OFFER_PRICE_IN_UCENTS).price.text;
-
-const pricingSentence = (price: string) => order.pricing_message.replace('{{price}}', price);
+const VAULT_RATE_PATTERN = new RegExp(
+  String(VAULT_STORAGE_PRICE_IN_UCENTS / 100_000_000).replace('.', '[.,]'),
+);
 
 describe('OrderVaultPage', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockedOrderVault.mockResolvedValue(undefined);
     mockedGetBackupServicesOffers.mockResolvedValue(mockCartServiceOffers);
+    resolveCatalog();
     resolveServiceName();
   });
 
@@ -97,11 +98,18 @@ describe('OrderVaultPage', () => {
   });
 
   describe('the pay-as-you-go rate, which the mockup omits and the ticket requires', () => {
-    it('states it at the rate the offer serves, interpolated into the sentence', async () => {
+    it('states the per-gibibyte rate the catalogue serves, interpolated into the sentence', async () => {
       await renderOrderModal();
 
       await waitFor(() => expect(pricingMessage()).toBeVisible());
-      expect(pricingMessage()).toHaveTextContent(pricingSentence(TEST_PRICE_TEXT));
+      expect(pricingMessage()).toHaveTextContent(VAULT_RATE_PATTERN);
+    });
+
+    it('never announces the free subscription rate of the orderable plan', async () => {
+      await renderOrderModal();
+
+      await waitFor(() => expect(pricingMessage()).toBeVisible());
+      expect(pricingMessage()).not.toHaveTextContent(/0[.,]00\s*€/);
     });
 
     it('ships no figure of its own: the sentence carries a placeholder, never an amount', () => {
@@ -109,8 +117,8 @@ describe('OrderVaultPage', () => {
       expect(order.pricing_message).not.toMatch(/\d/);
     });
 
-    it('skeletons the sentence while the offers are in flight, rather than half-stating it', async () => {
-      mockedGetBackupServicesOffers.mockReturnValue(new Promise(() => undefined));
+    it('skeletons the sentence while the catalogue is in flight, rather than half-stating it', async () => {
+      mockedGetBackupServicesCatalog.mockReturnValue(new Promise(() => undefined));
 
       await renderOrderModal();
 
@@ -118,8 +126,8 @@ describe('OrderVaultPage', () => {
       expect(pricingMessage()).not.toBeInTheDocument();
     });
 
-    it('drops the whole message when the catalogue serves no vault offer', async () => {
-      mockedGetBackupServicesOffers.mockResolvedValue(mockCartServiceOffersWithoutVault);
+    it('drops the whole message when the catalogue prices no vault storage', async () => {
+      mockedGetBackupServicesCatalog.mockResolvedValue(mockCatalogWithoutVaultStorage);
 
       await renderOrderModal();
 
@@ -129,23 +137,14 @@ describe('OrderVaultPage', () => {
       expect(screen.queryByText(/pay-as-you-go/)).not.toBeInTheDocument();
     });
 
-    it('drops it just as silently when the offers route itself is unreachable', async () => {
-      mockedGetBackupServicesOffers.mockRejectedValue(new Error('catalogue not declared'));
+    it('drops it just as silently when the catalogue route itself is unreachable', async () => {
+      mockedGetBackupServicesCatalog.mockRejectedValue(new Error('catalogue not declared'));
 
       await renderOrderModal();
 
       await waitFor(() => expect(pricingSkeleton()).not.toBeInTheDocument());
       expect(pricingMessage()).not.toBeInTheDocument();
       expect(screen.getByTestId(VAULT_ORDER_TEST_IDS.submit)).toBeVisible();
-    });
-
-    it('drops it when the vault offer carries no price at all', async () => {
-      mockedGetBackupServicesOffers.mockResolvedValue([{ ...mockVaultServiceOffer, prices: [] }]);
-
-      await renderOrderModal();
-
-      await waitFor(() => expect(pricingSkeleton()).not.toBeInTheDocument());
-      expect(pricingMessage()).not.toBeInTheDocument();
     });
   });
 
@@ -261,7 +260,10 @@ describe('OrderVaultPage', () => {
 
   it('prefers the reason the API gives over its own wording', async () => {
     mockedOrderVault.mockRejectedValue({
-      response: { status: 503, data: { message: 'Ordering is temporarily unavailable' } },
+      response: {
+        status: 503,
+        data: { message: 'Ordering is temporarily unavailable' },
+      },
     });
 
     await renderOrderModal();
@@ -275,7 +277,10 @@ describe('OrderVaultPage', () => {
 
   describe('a name the backend refuses', () => {
     const refused = {
-      response: { status: 409, data: { message: 'This vault name is already taken' } },
+      response: {
+        status: 409,
+        data: { message: 'This vault name is already taken' },
+      },
     };
 
     it('lands on the field the customer has to change, not in a modal-level banner', async () => {

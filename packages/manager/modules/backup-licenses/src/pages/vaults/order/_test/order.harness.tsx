@@ -4,10 +4,12 @@ import { RenderResult, fireEvent, screen, waitFor } from '@testing-library/react
 import { expect, vi } from 'vitest';
 
 import { fieldErrorId } from '@/components/FieldError/FieldError.component';
+import { getBackupServicesCatalog } from '@/data/api/catalog/catalog.requests';
 import { getBackupServicesOffers } from '@/data/api/order/order.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { orderVault } from '@/data/api/vaults/vaults.requests';
 import { LOCATION_DEFINITIONS } from '@/data/locations.data';
+import { mockBackupServicesCatalog } from '@/mocks/catalog/catalog.mock';
 import {
   BACKUP_SERVICES_TENANT_ID,
   mockBackupServicesTenants,
@@ -32,6 +34,10 @@ export const LOCATIONS = LOCATION_DEFINITIONS;
 export const mockedOrderVault = vi.mocked(orderVault);
 export const mockedGetBackupServicesOffers = vi.mocked(getBackupServicesOffers);
 export const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
+export const mockedGetBackupServicesCatalog = vi.mocked(getBackupServicesCatalog);
+
+export const resolveCatalog = () =>
+  mockedGetBackupServicesCatalog.mockResolvedValue(mockBackupServicesCatalog);
 
 export const resolveServiceName = () => {
   mockedGetBackupServicesTenants.mockResolvedValue(mockBackupServicesTenants);

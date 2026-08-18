@@ -1,5 +1,9 @@
 import { CatalogPricing, OrderCatalog } from '@/types/Catalog.type';
 
+const isActivationFee = (pricing: CatalogPricing): boolean =>
+  pricing.capacities?.includes('installation') === true &&
+  !pricing.capacities.includes('consumption');
+
 /**
  * Prix catalogue par défaut d'un plan (sans engagement). Les plans `backupServices` sont en
  * `pricingType: 'consumption'` : `intervalUnit`/`interval` valent `'none'`/`0` dans la réponse
@@ -14,7 +18,10 @@ export const getDefaultPricing = (
   const plan = [...(catalog?.plans ?? []), ...(catalog?.addons ?? [])].find(
     (candidate) => candidate.planCode === planCode,
   );
-  return plan?.pricings.find((pricing) => pricing.mode === 'default' && pricing.commitment === 0);
+  return plan?.pricings.find(
+    (pricing) =>
+      pricing.mode === 'default' && pricing.commitment === 0 && !isActivationFee(pricing),
+  );
 };
 
 const UCENTS_PER_UNIT = 100_000_000;

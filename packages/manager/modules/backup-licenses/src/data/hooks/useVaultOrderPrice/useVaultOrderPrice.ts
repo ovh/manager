@@ -1,34 +1,21 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
-import { getBackupServicesOffers } from '@/data/api/order/order.requests';
-import { queryKeys } from '@/data/queries/queryKeys';
-import { tenantsQueries } from '@/data/queries/tenants.queries';
-import { BACKUP_LICENSES_ORDERABLE_VAULT_PLAN_CODE } from '@/module.constants';
-import { CartServiceOffer } from '@/types/OrderCart.type';
-import { findServiceOffer, getOfferInstallationPriceText } from '@/utils/serviceOffer/serviceOffer';
+import { useBackupServicesCatalog } from '@/data/hooks/useBackupServicesCatalog/useBackupServicesCatalog';
+import { BACKUP_LICENSES_VAULT_PAYGO_CONSUMPTION_PLAN_CODE } from '@/module.constants';
+import { formatCatalogPrice, getDefaultPricing } from '@/utils/planPricing/planPricing';
 
-const selectVaultOfferPriceText = (offers: CartServiceOffer[]): string | undefined =>
-  getOfferInstallationPriceText(
-    findServiceOffer(offers, BACKUP_LICENSES_ORDERABLE_VAULT_PLAN_CODE),
-  );
+export const useVaultOrderPrice = (): {
+  priceText?: string;
+  isPending: boolean;
+} => {
+  const { i18n } = useTranslation();
+  const { data: catalog, isPending } = useBackupServicesCatalog();
 
-export const useVaultOrderPrice = (): { priceText?: string; isPending: boolean } => {
-  const queryClient = useQueryClient();
+  const pricing = getDefaultPricing(catalog, BACKUP_LICENSES_VAULT_PAYGO_CONSUMPTION_PLAN_CODE);
+  const priceText =
+    catalog && pricing
+      ? formatCatalogPrice(pricing.price, catalog.locale.currencyCode, i18n.language)
+      : undefined;
 
-  const { data: serviceIds, isPending: isServiceNamePending } = useQuery({
-    ...tenantsQueries.withClient(queryClient).serviceIds(),
-    retry: false,
-  });
-  const serviceName = serviceIds?.backupServicesId;
-
-  const { data: priceText, isPending: arePricesPending } = useQuery({
-    queryKey: queryKeys.order.serviceOffers(serviceName ?? ''),
-    queryFn: () => getBackupServicesOffers(serviceName as string),
-    enabled: !!serviceName,
-    retry: false,
-    staleTime: Infinity,
-    select: selectVaultOfferPriceText,
-  });
-
-  return { priceText, isPending: isServiceNamePending || (!!serviceName && arePricesPending) };
+  return { priceText, isPending };
 };
