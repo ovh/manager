@@ -61,7 +61,7 @@
         "label": "Storage region"
       }
     },
-    "pricing_message": "This vault will be billed at the pay-as-you-go rate of {{price}} from the first byte consumed.",
+    "pricing_message": "This vault will be billed at the pay-as-you-go rate of {{price}} ex. VAT/GB/month from the first byte consumed.",
     "success": "Vault order is being processed.",
     "error": {
       "submit_failed": "The vault order could not be sent. Please try again in a few moments.",

@@ -12,6 +12,29 @@ const catalog: OrderCatalog = {
   plans: [{ planCode: 'backup-tenant', pricings: [] }],
   addons: [
     {
+      planCode: 'backup-vault-backuplicenses-500g-consumption',
+      pricings: [
+        {
+          capacities: ['installation'],
+          mode: 'default',
+          commitment: 0,
+          intervalUnit: 'none',
+          interval: 0,
+          price: 0,
+          tax: 0,
+        },
+        {
+          capacities: ['consumption'],
+          mode: 'default',
+          commitment: 0,
+          intervalUnit: 'none',
+          interval: 0,
+          price: 700_000,
+          tax: 140_000,
+        },
+      ],
+    },
+    {
       planCode: 'vspc-backuplicenses-foundation-vm',
       pricings: [
         {
@@ -46,6 +69,12 @@ describe('getDefaultPricing', () => {
       price: 1_500_000_000,
       tax: 300_000_000,
     });
+  });
+
+  it("écarte le frais de mise en service et rend le tarif à l'unité consommée", () => {
+    expect(
+      getDefaultPricing(catalog, 'backup-vault-backuplicenses-500g-consumption'),
+    ).toMatchObject({ capacities: ['consumption'], price: 700_000 });
   });
 
   it("renvoie undefined si le plan n'existe pas dans le catalogue", () => {

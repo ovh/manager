@@ -71,6 +71,9 @@ export const BACKUP_LICENSES_VAULT_PLAN_CODES = [
  */
 export const BACKUP_LICENSES_VAULT_BUNDLE_PLAN_CODE = BACKUP_LICENSES_VAULT_PLAN_CODES[0];
 
+export const BACKUP_LICENSES_VAULT_PAYGO_CONSUMPTION_PLAN_CODE =
+  BACKUP_LICENSES_VAULT_PLAN_CODES[1];
+
 /** Volume de stockage inclus sur le vault en plan bundle (les 500 premiers Go). */
 export const INCLUDED_VAULT_STORAGE_GB = 500;
 

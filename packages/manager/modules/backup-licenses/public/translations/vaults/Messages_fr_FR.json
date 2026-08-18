@@ -64,7 +64,7 @@
         "label": "Région de stockage"
       }
     },
-    "pricing_message": "Ce vault sera facturé au tarif à la consommation de {{price}} dès le premier octet consommé.",
+    "pricing_message": "Ce vault sera facturé au tarif à la consommation de {{price}} HT/Gio/mois dès le premier octet consommé.",
     "success": "Votre commande de vault est en cours de traitement.",
     "error": {
       "submit_failed": "La commande du vault n'a pas pu être envoyée. Veuillez réessayer dans quelques instants.",
