@@ -6,12 +6,13 @@ import {
   EditBackupServerParams,
   editBackupServer,
 } from '@/data/api/backupServers/backupServers.requests';
+import { backupLicenseQueries } from '@/data/queries/backupLicense.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
 import { tenantsQueries } from '@/data/queries/tenants.queries';
 
 export type EditBackupServerPayload = Omit<
   EditBackupServerParams,
-  'backupServicesId' | 'vspcTenantId'
+  'backupServicesId' | 'vspcTenantId' | 'backupLicensesId'
 >;
 
 /**
@@ -34,7 +35,8 @@ export const useEditBackupServer = ({
       const tenants = tenantsQueries.withClient(queryClient);
       const backupServicesId = await tenants.backupServicesId();
       const vspcTenantId = await tenants.vspcTenantId();
-      return editBackupServer({ backupServicesId, vspcTenantId, ...payload });
+      const backupLicensesId = await backupLicenseQueries.withClient(queryClient).id();
+      return editBackupServer({ backupServicesId, vspcTenantId, backupLicensesId, ...payload });
     },
     onSuccess: async (...params) => {
       await queryClient.invalidateQueries({ queryKey: queryKeys.backupServers.all() });

@@ -147,9 +147,10 @@ export const mockCartItem: Item = {
 };
 
 export const mockCartRequiredConfiguration: CartItemRequiredConfiguration[] = [
-  { fields: null, label: 'vault_name', required: true, type: 'string' },
-  { fields: null, label: 'vault_region', required: true, type: 'string' },
-  { fields: null, label: 'optional_note', required: false, type: 'string' },
+  { fields: null, label: 'vault-name', required: true, type: 'String' },
+  { fields: null, label: 'vault-azname', required: false, type: 'String' },
+  { fields: null, label: 'TECH_ACCOUNT', required: false, type: 'Nichandle' },
+  { fields: null, label: 'ADMIN_ACCOUNT', required: false, type: 'Nichandle' },
 ];
 
 /**

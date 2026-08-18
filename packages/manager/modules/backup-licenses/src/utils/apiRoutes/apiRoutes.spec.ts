@@ -29,15 +29,15 @@ describe('apiRoutes', () => {
     expect(getVspcTenantsRoute('tenant-1')).toBe(`${BACKUP_SERVICES_ROUTE}/tenant-1/vspc`);
   });
 
-  it('builds the backup servers route for a given tenant and vspc tenant id', () => {
-    expect(getBackupServersRoute('tenant-1', 'vspc-1')).toBe(
-      `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses/backupServer`,
+  it('builds the backup servers route for a given tenant, vspc tenant and license id', () => {
+    expect(getBackupServersRoute('tenant-1', 'vspc-1', 'license-1')).toBe(
+      `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses/license-1/backupServer`,
     );
   });
 
   it('builds the single backup server route for a given server id', () => {
-    expect(getBackupServerRoute('tenant-1', 'vspc-1', 'server-1')).toBe(
-      `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses/backupServer/server-1`,
+    expect(getBackupServerRoute('tenant-1', 'vspc-1', 'license-1', 'server-1')).toBe(
+      `${BACKUP_SERVICES_ROUTE}/tenant-1/vspc/vspc-1/backupLicenses/license-1/backupServer/server-1`,
     );
   });
 

@@ -20,6 +20,7 @@ import {
 const EMPTY_FORM: ServerVaultFormState = {
   displayName: '',
   backupServerExternalIp: '',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
   vaultDisplayName: '',
@@ -37,6 +38,7 @@ const DEFAULT_TIER = VDP_TIER_CARDS.find((card) => card.recommended)?.tier ?? nu
 export type OrderFieldName =
   | 'displayName'
   | 'backupServerExternalIp'
+  | 'veeamClientIp'
   | 'backupServerPrivateIp'
   | 'vaultDisplayName';
 
@@ -170,6 +172,7 @@ export function useOrderForm() {
         form.backupServerExternalIp,
         'field.public_ip.error',
       ),
+      veeamClientIp: null,
       backupServerPrivateIp: form.isBehindNat
         ? ipError('backupServerPrivateIp', form.backupServerPrivateIp, 'field.private_ip.error')
         : null,

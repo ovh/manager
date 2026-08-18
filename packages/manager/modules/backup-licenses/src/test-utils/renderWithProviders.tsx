@@ -23,10 +23,12 @@ let shellContext: ShellContextType;
 
 export const renderWithProviders = async (
   children: React.ReactNode,
-  { initialEntries = ['/'] }: { initialEntries?: string[] } = {},
+  {
+    initialEntries = ['/'],
+    queryClient = createQueryClientTest(),
+  }: { initialEntries?: string[]; queryClient?: QueryClient } = {},
 ): Promise<RenderResult> => {
   const i18n = await initTestI18n();
-  const queryClient = createQueryClientTest();
   if (!shellContext) {
     shellContext = await initShellContext('no-app');
   }

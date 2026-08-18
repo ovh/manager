@@ -44,14 +44,19 @@ export const getVspcTenantsRoute = (backupServicesId: string) =>
 export const getBackupLicensesRoute = (backupServicesId: string, vspcTenantId: string) =>
   `${getVspcTenantsRoute(backupServicesId)}/${vspcTenantId}/backupLicenses`;
 
-export const getBackupServersRoute = (backupServicesId: string, vspcTenantId: string) =>
-  `${getVspcTenantsRoute(backupServicesId)}/${vspcTenantId}/backupLicenses/backupServer`;
+export const getBackupServersRoute = (
+  backupServicesId: string,
+  vspcTenantId: string,
+  backupLicensesId: string,
+) => `${getBackupLicensesRoute(backupServicesId, vspcTenantId)}/${backupLicensesId}/backupServer`;
 
 export const getBackupServerRoute = (
   backupServicesId: string,
   vspcTenantId: string,
+  backupLicensesId: string,
   backupServerId: string,
-) => `${getBackupServersRoute(backupServicesId, vspcTenantId)}/${backupServerId}`;
+) =>
+  `${getBackupServersRoute(backupServicesId, vspcTenantId, backupLicensesId)}/${backupServerId}`;
 
 export const getVaultsRoute = (backupServicesId: string) =>
   `${getBackupServicesBaseRoute(backupServicesId)}/vault`;

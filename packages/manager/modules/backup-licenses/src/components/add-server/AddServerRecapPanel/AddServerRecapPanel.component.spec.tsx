@@ -78,6 +78,7 @@ beforeEach(() => {
 const EMPTY_FORM: AddServerFormState = {
   displayName: '',
   backupServerExternalIp: '',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
 };

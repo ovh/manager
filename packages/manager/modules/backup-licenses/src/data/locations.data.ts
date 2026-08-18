@@ -118,14 +118,4 @@ export const LOCATION_DEFINITIONS: LocationDefinition[] = [
     type: LocationType.REGION_1_AZ,
     specificType: LocationSpecificType.STANDARD,
   },
-  {
-    name: 'ap-south-mum',
-    code: 'MUM',
-    cityCode: 'MUM',
-    countryCode: 'IN',
-    geographyCode: 'AP',
-    availabilityZones: ['ap-south-mum-a'],
-    type: LocationType.REGION_1_AZ,
-    specificType: LocationSpecificType.STANDARD,
-  },
 ];

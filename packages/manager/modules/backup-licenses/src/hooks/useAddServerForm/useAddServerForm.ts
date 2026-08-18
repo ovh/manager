@@ -5,12 +5,17 @@ import { useStep } from '@/hooks/useStep/useStep';
 import { LicenseApiValue, LicenseFamily, VdpTier } from '@/types/Order.type';
 import { isValidIp } from '@/utils/isValidIp/isValidIp';
 
-export type AddServerFieldName = 'displayName' | 'backupServerExternalIp' | 'backupServerPrivateIp';
+export type AddServerFieldName =
+  | 'displayName'
+  | 'backupServerExternalIp'
+  | 'veeamClientIp'
+  | 'backupServerPrivateIp';
 
 /** État du formulaire du serveur VBR — pas de champs vault, le vault existe déjà (cf. BKP-1217). */
 export interface AddServerFormState {
   displayName: string;
   backupServerExternalIp: string;
+  veeamClientIp: string;
   isBehindNat: boolean;
   backupServerPrivateIp: string;
 }
@@ -27,6 +32,7 @@ export enum AddServerStepId {
 const EMPTY_FORM: AddServerFormState = {
   displayName: '',
   backupServerExternalIp: '',
+  veeamClientIp: '',
   isBehindNat: false,
   backupServerPrivateIp: '',
 };
@@ -112,6 +118,7 @@ export function useAddServerForm() {
         form.backupServerExternalIp,
         'field.public_ip.error',
       ),
+      veeamClientIp: null,
       backupServerPrivateIp: form.isBehindNat
         ? ipError('backupServerPrivateIp', form.backupServerPrivateIp, 'field.private_ip.error')
         : null,

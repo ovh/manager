@@ -84,6 +84,11 @@ export default function VaultCredentialsPage() {
           </div>
           {credentials && (
             <>
+              <VaultCredentialField
+                label={t('credentials.field.bucket_name')}
+                value={credentials.bucketName}
+                testId="vault-credentials-bucket-name"
+              />
               {/* `regionCode` et non `bucket.region` : le contrat distingue `common.RegionEnum`
                   (`eu-west-gra`) du code S3 court (`gra`) qu'un client S3 doit signer, et seul ce
                   dernier accompagne les clés — avec l'endpoint auquel il correspond. */}

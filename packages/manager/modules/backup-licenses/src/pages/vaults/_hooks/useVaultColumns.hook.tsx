@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { ODS_BADGE_COLOR, ODS_BADGE_SIZE } from '@ovhcloud/ods-components';
-import { OdsBadge } from '@ovhcloud/ods-components/react';
+import { ODS_BADGE_COLOR, ODS_BADGE_SIZE, ODS_SPINNER_SIZE } from '@ovhcloud/ods-components';
+import { OdsBadge, OdsSpinner } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { DataGridTextCell, DatagridColumn } from '@ovh-ux/manager-react-components';
@@ -14,9 +14,10 @@ import { VAULT_DEFAULT_IMMUTABILITY } from '@/module.constants';
 import { VaultActionsCell } from '@/pages/vaults/_components/VaultActionsCell.component';
 import { VaultRegionCell } from '@/pages/vaults/_components/VaultRegionCell.component';
 import { VaultStatusCell } from '@/pages/vaults/_components/VaultStatusCell.component';
-import { VaultResource } from '@/types/Vault.type';
+import { VaultRow } from '@/types/Vault.type';
+import { isPendingVaultRow } from '@/utils/vault/pendingVaultRow';
 
-export const useVaultColumns = (): DatagridColumn<VaultResource>[] => {
+export const useVaultColumns = (): DatagridColumn<VaultRow>[] => {
   const { t } = useTranslation([
     BACKUP_LICENSES_NAMESPACES.VAULTS,
     NAMESPACES.DASHBOARD,
@@ -29,11 +30,11 @@ export const useVaultColumns = (): DatagridColumn<VaultResource>[] => {
       id: 'name',
       label: t(`${NAMESPACES.DASHBOARD}:name`),
       isSortable: false,
-      cell: (vault: VaultResource) => (
+      cell: (vault: VaultRow) => (
         <DataGridTextCell>
           <span className="flex items-center gap-2">
             {vault.currentState.name}
-            {selectIsIncludedVault(vault) && (
+            {!isPendingVaultRow(vault) && selectIsIncludedVault(vault) && (
               <OdsBadge
                 color={ODS_BADGE_COLOR.success}
                 size={ODS_BADGE_SIZE.sm}
@@ -48,7 +49,7 @@ export const useVaultColumns = (): DatagridColumn<VaultResource>[] => {
       id: 'region',
       label: t(`${NAMESPACES.REGION}:region`),
       isSortable: false,
-      cell: ({ currentState }: VaultResource) => <VaultRegionCell region={currentState.region} />,
+      cell: ({ currentState }: VaultRow) => <VaultRegionCell region={currentState.region} />,
     },
     {
       id: 'immutability',
@@ -70,15 +71,21 @@ export const useVaultColumns = (): DatagridColumn<VaultResource>[] => {
       id: 'status',
       label: t(`${NAMESPACES.STATUS}:status`),
       isSortable: false,
-      cell: ({ resourceStatus }: VaultResource) => (
-        <VaultStatusCell resourceStatus={resourceStatus} />
-      ),
+      cell: (vault: VaultRow) =>
+        isPendingVaultRow(vault) ? (
+          <DataGridTextCell>
+            <OdsSpinner size={ODS_SPINNER_SIZE.xs} />
+          </DataGridTextCell>
+        ) : (
+          <VaultStatusCell resourceStatus={vault.resourceStatus} />
+        ),
     },
     {
       id: 'actions',
       label: '',
       isSortable: false,
-      cell: (vault: VaultResource) => <VaultActionsCell vault={vault} />,
+      cell: (vault: VaultRow) =>
+        isPendingVaultRow(vault) ? <DataGridTextCell /> : <VaultActionsCell vault={vault} />,
     },
   ];
 };

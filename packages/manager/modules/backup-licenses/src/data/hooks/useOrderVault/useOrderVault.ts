@@ -6,9 +6,10 @@ import { TApiCustomError } from '@ovh-ux/manager-core-api';
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { orderVault } from '@/data/api/vaults/vaults.requests';
-import { backupLicenseQueries } from '@/data/queries/backupLicense.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
-import { VaultOrder } from '@/types/Vault.type';
+import { tenantsQueries } from '@/data/queries/tenants.queries';
+import { vaultsQueries } from '@/data/queries/vaults.queries';
+import { PendingVaultRow, VaultOrder } from '@/types/Vault.type';
 
 export const useOrderVault = ({
   onSuccess,
@@ -22,20 +23,28 @@ export const useOrderVault = ({
   const queryClient = useQueryClient();
 
   return useMutation({
-    // `ensureQueryData` rather than a query mounted with the modal: the service name is only needed
-    // to submit, and the id cascade is already cached by the time the service page has been walked.
     mutationFn: async (order: VaultOrder) => {
-      const serviceName = await queryClient.ensureQueryData(
-        backupLicenseQueries.withClient(queryClient).resourceName(),
-      );
+      const serviceName = await tenantsQueries.withClient(queryClient).backupServicesId();
 
       return orderVault(order, { ovhSubsidiary, serviceName });
     },
     onError,
-    onSuccess: async () => {
-      // Awaited, so the confirmation the caller raises lands on a list that already holds the new
-      // row in its "Creating" state rather than on the one the customer saw before ordering.
-      await queryClient.invalidateQueries({ queryKey: queryKeys.vaults.all() });
+    /**
+     * Le panier commandé n'a rien de créé côté API à cet instant (§3) : la seule trace du vault
+     * tant qu'il n'apparaît pas dans `getVaults` est cette ligne posée à la main dans le cache.
+     * `useVaultsList` la retire dès que le vault réel porte le même nom.
+     */
+    onSuccess: async (_data, order) => {
+      const pendingRow: PendingVaultRow = {
+        id: `pending-${order.name}`,
+        resourceStatus: 'PENDING',
+        currentState: { name: order.name, region: order.region },
+      };
+      queryClient.setQueryData<PendingVaultRow[]>(vaultsQueries.pending().queryKey, (previous = []) => [
+        ...previous,
+        pendingRow,
+      ]);
+      await queryClient.invalidateQueries({ queryKey: queryKeys.vaults.all(), exact: true });
       onSuccess();
     },
   });

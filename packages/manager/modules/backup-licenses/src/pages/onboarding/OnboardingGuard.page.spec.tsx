@@ -34,7 +34,7 @@ describe('OnboardingGuardPage', () => {
 
     await renderGuard();
 
-    expect(screen.queryByText('Backup Licences')).not.toBeInTheDocument();
+    expect(screen.queryByText('Backup Licenses')).not.toBeInTheDocument();
   });
 
   it('renders the onboarding page when there is no active subscription', async () => {
@@ -45,7 +45,7 @@ describe('OnboardingGuardPage', () => {
 
     await renderGuard();
 
-    expect(screen.getByText('Backup Licences')).toBeInTheDocument();
+    expect(screen.getByText('Backup Licenses')).toBeInTheDocument();
   });
 
   it('redirects to the linked servers page when a subscription is active', async () => {

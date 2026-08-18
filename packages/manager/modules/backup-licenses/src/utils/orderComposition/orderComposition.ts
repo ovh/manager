@@ -14,10 +14,12 @@ export const BACKUP_LICENSES_ORDER_PLAN_CODES = {
  * ne se découvrent depuis le front.
  */
 export const BACKUP_LICENSES_CONFIGURATION_LABELS = {
+  backupServerDisplayName: 'backupserver-displayname',
   backupServerPublicIp: 'backupserver-public-ip',
   backupServerPrivateIp: 'backupserver-private-ip',
   licenseType: 'license-type',
   vaultAzName: 'vault-azname',
+  vaultName: 'vault-name',
 } as const;
 
 /**
@@ -39,10 +41,6 @@ export type BackupLicensesOrderComposition = {
 /**
  * `configurationValues` n'est pas un corps de requête : c'est le vivier apparié, à l'exécution, aux
  * labels que chaque item déclare dans `requiredConfiguration`.
- *
- * Le nom du serveur VBR et celui du vault n'y figurent pas — aucun item du panier ne réclame de
- * label qui les porte. Ils restent à poser après livraison ; les envoyer ici ferait échouer la
- * commande sur un label inconnu.
  */
 export const buildBackupLicensesOrderComposition = (
   form: ServerVaultFormState,
@@ -59,6 +57,7 @@ export const buildBackupLicensesOrderComposition = (
     ],
   },
   configurationValues: {
+    [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerDisplayName]: form.displayName.trim(),
     [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerPublicIp]: form.backupServerExternalIp.trim(),
     // NAT désactivé : l'IP privée est absente de la commande, pas envoyée vide.
     ...(form.isBehindNat
@@ -69,5 +68,6 @@ export const buildBackupLicensesOrderComposition = (
       : {}),
     [BACKUP_LICENSES_CONFIGURATION_LABELS.licenseType]: licenseType,
     [BACKUP_LICENSES_CONFIGURATION_LABELS.vaultAzName]: form.regionApiValue ?? undefined,
+    [BACKUP_LICENSES_CONFIGURATION_LABELS.vaultName]: form.vaultDisplayName.trim(),
   },
 });

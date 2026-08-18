@@ -46,7 +46,6 @@ import {
 
 vi.mock('@/data/api/order/order.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
-vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 vi.mock('@/data/api/vaults/vaults.requests', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/data/api/vaults/vaults.requests')>()),
   orderVault: vi.fn(),
@@ -174,13 +173,12 @@ describe('OrderVaultPage', () => {
   it('lists each country of the referential, flagged and sorted alphabetically', async () => {
     await renderOrderModal();
 
-    await waitFor(() => expect(countryOptionLabels()).toHaveLength(8));
+    await waitFor(() => expect(countryOptionLabels()).toHaveLength(7));
     expect(countryOptionLabels()).toEqual([
       '🇩🇪 Allemagne',
       '🇦🇺 Australie',
       '🇨🇦 Canada',
       '🇫🇷 France',
-      '🇮🇳 Inde',
       '🇵🇱 Pologne',
       '🇬🇧 Royaume-Uni',
       '🇸🇬 Singapour',

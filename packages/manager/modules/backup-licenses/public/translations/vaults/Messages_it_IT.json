@@ -36,6 +36,7 @@
   "credentials": {
     "title": "Credenziali S3",
     "field": {
+      "bucket_name": "Nome del bucket",
       "endpoint": "Endpoint S3"
     },
     "hide": "Nascondi",

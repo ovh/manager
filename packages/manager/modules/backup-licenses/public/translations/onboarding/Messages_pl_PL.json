@@ -1,19 +1,31 @@
 {
-  "title": "Backup Licences",
-  "subtitle": "Niezależne rozwiązanie do ochrony Twoich danych",
-  "description": "Wykonuj kopie zapasowe, przywracaj i replikuj krytyczne obciążenia bez zależności od jednego dostawcy.",
+  "title": "Backup Licenses",
+  "subtitle": "Utrata krytycznych danych nigdy nie powinna być opcją.",
+  "description": "Wykonuj kopie zapasowe, przywracaj i replikuj krytyczne obciążenia z pełnym zaufaniem. Wdróż swoją infrastrukturę Veeam Backup & Replication z licencjami Enterprise Plus dołączonymi przez OVHcloud.",
   "hero_alt": "Logo Veeam Enterprise",
   "highlights": {
-    "storage_included": "500 GB w cenie licencji",
+    "storage_included": "<b>500 GB w cenie</b> licencji",
     "pricing_prefix": "Od ",
     "pricing_suffix": "· 2 do 3 kroków w zależności od licencji",
-    "compatibility": "Kompatybilne z"
+    "compatibility": "Kompatybilne"
   },
-  "order_cta": "Zamów",
+  "order_cta": "Skonfiguruj moją ofertę",
   "tutorial_card": {
     "category": "Tutorial",
     "title": "Zainstaluj Veeam Backup & Replication",
     "description": "Sprawdź, jak zainstalować serwer Veeam Backup & Replication z Veeam Enterprise",
+    "cta": "Dowiedz się więcej"
+  },
+  "first_configuration_card": {
+    "category": "Tutorial",
+    "title": "Zamów i skonfiguruj swoją pierwszą licencję",
+    "description": "Sprawdź, jak zamówić pierwszą licencję Backup Licenses i połączyć serwer Veeam Backup & Replication z konsolą zarządzania OVHcloud.",
+    "cta": "Dowiedz się więcej"
+  },
+  "migration_veeam_enterprise_card": {
+    "category": "Tutorial",
+    "title": "Migracja z Veeam Enterprise do Backup Licenses",
+    "description": "Sprawdź, jak przenieść licencję Veeam Enterprise do Backup Licenses, łącząc serwer Veeam Backup & Replication z konsolą zarządzania OVHcloud.",
     "cta": "Dowiedz się więcej"
   }
 }

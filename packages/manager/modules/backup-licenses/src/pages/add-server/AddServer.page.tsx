@@ -39,6 +39,7 @@ import { LicenseFamily } from '@/types/Order.type';
 const FIELD_ELEMENT_IDS: Record<AddServerFieldName, string> = {
   displayName: 'vbr-display-name',
   backupServerExternalIp: 'vbr-external-ip',
+  veeamClientIp: 'vbr-veeam-client-ip',
   backupServerPrivateIp: 'vbr-private-ip',
 };
 
@@ -91,7 +92,9 @@ export default function AddServerPage() {
     const body: CreateBackupLicenseBody = {
       displayName: form.form.displayName.trim(),
       licenseType: resolvedLicenseApiValue,
-      backupServerExternalIp: [form.form.backupServerExternalIp.trim()],
+      backupServerExternalIp: [form.form.backupServerExternalIp.trim(), form.form.veeamClientIp.trim()]
+        .filter(Boolean)
+        .join(','),
       ...(form.form.isBehindNat
         ? { backupServerPrivateIp: [form.form.backupServerPrivateIp.trim()] }
         : {}),
