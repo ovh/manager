@@ -177,5 +177,16 @@
     "error": {
       "submit": "Si è verificato un errore durante l'aggiunta del server. Riprova."
     }
+  },
+  "pending": {
+    "title": "Il tuo ordine è in corso di elaborazione",
+    "description": "Il tuo ordine è stato registrato. La messa in servizio della licenza e del vault è in corso e può richiedere qualche minuto. Questa pagina si aggiorna automaticamente.",
+    "order_id": "Ordine n. {{orderId}}",
+    "progress_label": "Messa in servizio in corso",
+    "timeout": "La messa in servizio sta richiedendo più tempo del previsto. È ancora in corso: lascia questa pagina aperta o torna più tardi. Se non cambia nulla, contatta l'assistenza.",
+    "restart": "Effettua un nuovo ordine",
+    "error": {
+      "delivery": "Non è stato possibile mettere in servizio il tuo ordine. Nessuna risorsa è stata consegnata: puoi effettuare un nuovo ordine o contattare l'assistenza."
+    }
   }
 }

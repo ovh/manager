@@ -10,23 +10,29 @@ import {
   Breadcrumb,
   ChangelogButton,
   GuideButton,
+  RedirectionGuard,
   StepComponent,
 } from '@ovh-ux/manager-react-components';
 
 import { BackupLicensesContext } from '@/BackupLicenses.context';
 import LicenseStep from '@/components/order/LicenseStep/LicenseStep.component';
 import LocationStep from '@/components/order/LocationStep/LocationStep.component';
+import OrderPendingBanner from '@/components/order/OrderPendingBanner/OrderPendingBanner.component';
 import OrderRecapPanel from '@/components/order/OrderRecapPanel/OrderRecapPanel.component';
 import ServerVaultStep from '@/components/order/ServerVaultStep/ServerVaultStep.component';
 import { useCheckoutBackupLicensesCart } from '@/data/hooks/useCheckoutBackupLicensesCart/useCheckoutBackupLicensesCart';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
+import { useBackupLicensesSubscriptionStatus } from '@/hooks/useBackupLicensesSubscriptionStatus/useBackupLicensesSubscriptionStatus';
 import { useLocationLabel } from '@/hooks/useLocationLabel/useLocationLabel';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { useOrderCartPreparation } from '@/hooks/useOrderCartPreparation/useOrderCartPreparation';
 import { OrderFieldName, useOrderForm } from '@/hooks/useOrderForm/useOrderForm';
+import { registerPendingOrder } from '@/hooks/usePendingOrder/usePendingOrder';
 import { BACKUP_LICENSES_NAMESPACES, CHANGELOG_LINKS, LABELS } from '@/module.constants';
 import { routeUrls } from '@/routes/routes.constants';
 import { LicenseFamily, OrderStepId } from '@/types/Order.type';
+import { SubscriptionStatus } from '@/types/Subscription.type';
+import { getOrderSubmitErrorMessage } from '@/utils/orderSubmitError/orderSubmitError';
 
 /** Champ de formulaire → id de l'élément DOM (cf. OrderTextField), pour le scroll-to-error. */
 const FIELD_ELEMENT_IDS: Record<OrderFieldName, string> = {
@@ -40,7 +46,14 @@ export default function OrderPage() {
   const { t } = useTranslation([BACKUP_LICENSES_NAMESPACES.ORDER, NAMESPACES.ACTIONS]);
   const { appName } = useContext(BackupLicensesContext);
   const navigate = useNavigate();
-  const order = useOrderForm();
+  const subscription = useBackupLicensesSubscriptionStatus();
+  const isPending =
+    subscription.status === SubscriptionStatus.PENDING ||
+    subscription.status === SubscriptionStatus.ERROR;
+  const order = useOrderForm({
+    frozenState: subscription.pendingOrder?.order ?? null,
+    isFrozen: isPending,
+  });
   const guideItems = useMainGuideItem();
 
   const {
@@ -54,17 +67,27 @@ export default function OrderPage() {
     resolvedLicenseApiValue,
   } = order;
 
-  const cart = useOrderCartPreparation({ form, licenseType: resolvedLicenseApiValue });
+  const cart = useOrderCartPreparation({
+    form,
+    licenseType: resolvedLicenseApiValue,
+    isEnabled: !isPending,
+  });
 
   const submitOrder = useCheckoutBackupLicensesCart({
-    onSuccess: () => {
+    onSuccess: (placedOrder, { cartId }) => {
+      registerPendingOrder({
+        orderId: placedOrder?.orderId ?? null,
+        cartId,
+        submittedAt: Date.now(),
+        order: { family, tier, form },
+      });
       order.clearPersistedOrder();
-      navigate(routeUrls.linkedServers);
     },
   });
   const isSubmitting = submitOrder.isPending;
+  const isFrozen = isSubmitting || isPending;
 
-  const isSubmitDisabled = isSubmitting || (canSubmit && !cart.isReadyToCheckout);
+  const isSubmitDisabled = isFrozen || (canSubmit && !cart.isReadyToCheckout);
 
   const familyKey = LICENSE_CARDS.find((card) => card.family === family)?.i18nKey ?? null;
   const tierKey = VDP_TIER_CARDS.find((card) => card.tier === tier)?.i18nKey ?? null;
@@ -78,8 +101,10 @@ export default function OrderPage() {
     .filter(Boolean)
     .join(' ');
 
+  const submitErrorMessage = getOrderSubmitErrorMessage(submitOrder.error, t('error.submit'));
+
   const handleFinalize = () => {
-    if (isSubmitting) return;
+    if (isFrozen) return;
     order.setSubmitAttempted(true);
     if (!canSubmit || resolvedLicenseApiValue === null) {
       // Feedback actionnable plutôt qu'un bouton grisé : on réouvre l'étape fautive
@@ -104,143 +129,194 @@ export default function OrderPage() {
     submitOrder.mutate({ cartId: cart.cartId });
   };
 
+  const stepProps = (step: { isOpen: boolean; isChecked: boolean; isLocked: boolean }) =>
+    isPending ? { isOpen: true, isChecked: true, isLocked: false } : step;
+
+  const licenseStep = stepProps(order.license.step);
+  const serverVaultStep = stepProps(order.serverVault.step);
+  const locationStep = stepProps(order.location.step);
+
   return (
-    <BaseLayout
-      breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
-      header={{
-        title: LABELS.BACKUP_LICENSES,
-        changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
-        headerButton: <GuideButton items={guideItems} />,
-      }}
-      backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
-      onClickReturn={isSubmitting ? undefined : () => navigate(routeUrls.onboarding)}
+    <RedirectionGuard
+      condition={subscription.status === SubscriptionStatus.READY}
+      isLoading={subscription.isLoading && !isPending}
+      route={routeUrls.linkedServers}
     >
-      <div
-        aria-busy={isSubmitting}
-        className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]"
+      <BaseLayout
+        breadcrumb={<Breadcrumb appName={appName} rootLabel={appName} />}
+        header={{
+          title: LABELS.BACKUP_LICENSES,
+          changelogButton: <ChangelogButton links={CHANGELOG_LINKS} />,
+          headerButton: <GuideButton items={guideItems} />,
+        }}
+        backLinkLabel={t(`${NAMESPACES.ACTIONS}:back`)}
+        onClickReturn={isFrozen ? undefined : () => navigate(routeUrls.onboarding)}
       >
-        <div className="flex flex-col gap-8">
-          <StepComponent
-            order={1}
-            {...order.license.step}
-            title={
-              order.license.step.isLocked ? (
-                <Trans
-                  t={t}
-                  i18nKey="step.license_type.collapsed_title"
-                  values={{ value: licenseCollapsedValue }}
-                  components={{ b: <b /> }}
-                />
-              ) : (
-                t('step.license_type.label')
-              )
-            }
-            subtitle={t('step.license_type.subtitle')}
-            next={{
-              action: order.license.submit,
-              label: t('step.continue'),
-              isDisabled: !order.isLicenseValid || isSubmitting,
-            }}
-            edit={{
-              action: order.license.edit,
-              label: t('summary.edit'),
-              isDisabled: isSubmitting,
-            }}
+        {isPending && (
+          <div className="mb-8">
+            <OrderPendingBanner
+              submittedAt={subscription.pendingOrder?.submittedAt ?? null}
+              orderId={subscription.pendingOrder?.orderId ?? null}
+              hasDeliveryFailed={subscription.status === SubscriptionStatus.ERROR}
+              onRestart={subscription.clearPendingOrder}
+            />
+          </div>
+        )}
+
+        <div
+          aria-busy={isFrozen}
+          className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]"
+        >
+          <div
+            className={`flex flex-col gap-8${isPending ? ' opacity-60 pointer-events-none' : ''}`}
+            aria-disabled={isPending || undefined}
           >
-            <LicenseStep
+            <StepComponent
+              order={1}
+              {...licenseStep}
+              title={
+                licenseStep.isLocked ? (
+                  <Trans
+                    t={t}
+                    i18nKey="step.license_type.collapsed_title"
+                    values={{ value: licenseCollapsedValue }}
+                    components={{ b: <b /> }}
+                  />
+                ) : (
+                  t('step.license_type.label')
+                )
+              }
+              subtitle={t('step.license_type.subtitle')}
+              next={
+                isPending
+                  ? undefined
+                  : {
+                      action: order.license.submit,
+                      label: t('step.continue'),
+                      isDisabled: !order.isLicenseValid || isSubmitting,
+                    }
+              }
+              edit={
+                isPending
+                  ? undefined
+                  : {
+                      action: order.license.edit,
+                      label: t('summary.edit'),
+                      isDisabled: isSubmitting,
+                    }
+              }
+            >
+              <LicenseStep
+                family={family}
+                tier={tier}
+                familyDisabled={isFrozen}
+                tierDisabled={isFrozen}
+                onSelectFamily={order.selectFamily}
+                onSelectTier={order.selectTier}
+              />
+            </StepComponent>
+
+            <StepComponent
+              order={2}
+              {...serverVaultStep}
+              title={
+                serverVaultStep.isLocked ? (
+                  <Trans
+                    t={t}
+                    i18nKey="step.server_vault.collapsed_title"
+                    values={{ value: form.displayName }}
+                    components={{ b: <b /> }}
+                  />
+                ) : (
+                  t('step.server_vault.label')
+                )
+              }
+              next={
+                isPending
+                  ? undefined
+                  : {
+                      action: order.serverVault.submit,
+                      label: t('step.continue'),
+                      isDisabled: !order.isServerVaultValid || isSubmitting,
+                    }
+              }
+              edit={
+                isPending
+                  ? undefined
+                  : {
+                      action: order.serverVault.edit,
+                      label: t('summary.edit'),
+                      isDisabled: isSubmitting,
+                    }
+              }
+            >
+              <ServerVaultStep
+                form={form}
+                errors={errors}
+                isDisabled={isFrozen}
+                onFieldChange={order.setField}
+                onFieldBlur={order.touchField}
+                onToggleNat={order.toggleNat}
+              />
+            </StepComponent>
+
+            <StepComponent
+              order={3}
+              {...locationStep}
+              title={
+                locationStep.isLocked ? (
+                  <Trans
+                    t={t}
+                    i18nKey="step.location.collapsed_title"
+                    values={{ value: locationLabel }}
+                    components={{ b: <b /> }}
+                  />
+                ) : (
+                  t('region.section_title')
+                )
+              }
+              next={
+                isPending
+                  ? undefined
+                  : {
+                      action: handleFinalize,
+                      label: t('summary.cta'),
+                      isDisabled: isSubmitDisabled,
+                      isLoading: isSubmitting,
+                    }
+              }
+              edit={
+                isPending
+                  ? undefined
+                  : {
+                      action: order.location.edit,
+                      label: t('summary.edit'),
+                      isDisabled: isSubmitting,
+                    }
+              }
+            >
+              <LocationStep
+                selected={form.regionApiValue}
+                isDisabled={isFrozen}
+                onSelect={order.selectRegion}
+                cart={cart}
+              />
+            </StepComponent>
+          </div>
+
+          <aside className="sticky top-8 self-start">
+            <OrderRecapPanel
               family={family}
               tier={tier}
-              familyDisabled={isSubmitting}
-              tierDisabled={isSubmitting}
-              onSelectFamily={order.selectFamily}
-              onSelectTier={order.selectTier}
-            />
-          </StepComponent>
-
-          <StepComponent
-            order={2}
-            {...order.serverVault.step}
-            title={
-              order.serverVault.step.isLocked ? (
-                <Trans
-                  t={t}
-                  i18nKey="step.server_vault.collapsed_title"
-                  values={{ value: form.displayName }}
-                  components={{ b: <b /> }}
-                />
-              ) : (
-                t('step.server_vault.label')
-              )
-            }
-            next={{
-              action: order.serverVault.submit,
-              label: t('step.continue'),
-              isDisabled: !order.isServerVaultValid || isSubmitting,
-            }}
-            edit={{
-              action: order.serverVault.edit,
-              label: t('summary.edit'),
-              isDisabled: isSubmitting,
-            }}
-          >
-            <ServerVaultStep
               form={form}
-              errors={errors}
-              isDisabled={isSubmitting}
-              onFieldChange={order.setField}
-              onFieldBlur={order.touchField}
-              onToggleNat={order.toggleNat}
+              isSubmitting={isFrozen}
+              isSubmitDisabled={isSubmitDisabled}
+              submitError={submitOrder.isError ? submitErrorMessage : null}
+              onFinalize={handleFinalize}
             />
-          </StepComponent>
-
-          <StepComponent
-            order={3}
-            {...order.location.step}
-            title={
-              order.location.step.isLocked ? (
-                <Trans
-                  t={t}
-                  i18nKey="step.location.collapsed_title"
-                  values={{ value: locationLabel }}
-                  components={{ b: <b /> }}
-                />
-              ) : (
-                t('region.section_title')
-              )
-            }
-            next={{
-              action: handleFinalize,
-              label: t('summary.cta'),
-              isDisabled: isSubmitDisabled,
-              isLoading: isSubmitting,
-            }}
-            edit={{
-              action: order.location.edit,
-              label: t('summary.edit'),
-              isDisabled: isSubmitting,
-            }}
-          >
-            <LocationStep
-              selected={form.regionApiValue}
-              isDisabled={isSubmitting}
-              onSelect={order.selectRegion}
-              cart={cart}
-            />
-          </StepComponent>
+          </aside>
         </div>
-
-        <aside className="sticky top-8 self-start">
-          <OrderRecapPanel
-            family={family}
-            tier={tier}
-            form={form}
-            isSubmitting={isSubmitting}
-            isSubmitDisabled={isSubmitDisabled}
-            submitError={submitOrder.isError ? t('error.submit') : null}
-            onFinalize={handleFinalize}
-          />
-        </aside>
-      </div>
-    </BaseLayout>
+      </BaseLayout>
+    </RedirectionGuard>
   );
 }

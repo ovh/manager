@@ -177,5 +177,16 @@
     "error": {
       "submit": "Wystąpił błąd podczas dodawania serwera. Spróbuj ponownie."
     }
+  },
+  "pending": {
+    "title": "Twoje zamówienie jest przetwarzane",
+    "description": "Twoje zamówienie zostało zarejestrowane. Uruchamianie licencji i magazynu vault trwa i może potrwać kilka minut. Ta strona odświeża się automatycznie.",
+    "order_id": "Zamówienie nr {{orderId}}",
+    "progress_label": "Uruchamianie w toku",
+    "timeout": "Uruchamianie trwa dłużej niż zwykle. Proces jest kontynuowany: pozostaw tę stronę otwartą lub wróć później. Jeśli nic się nie zmieni, skontaktuj się z pomocą techniczną.",
+    "restart": "Złóż nowe zamówienie",
+    "error": {
+      "delivery": "Nie udało się uruchomić Twojego zamówienia. Żaden zasób nie został dostarczony: możesz złożyć nowe zamówienie lub skontaktować się z pomocą techniczną."
+    }
   }
 }

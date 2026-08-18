@@ -177,5 +177,16 @@
     "error": {
       "submit": "Ocorreu um erro ao adicionar o servidor. Tente novamente."
     }
+  },
+  "pending": {
+    "title": "A sua encomenda está a ser processada",
+    "description": "A sua encomenda foi registada. A colocação em serviço da sua licença e do seu vault está em curso e pode demorar alguns minutos. Esta página é atualizada automaticamente.",
+    "order_id": "Encomenda n.º {{orderId}}",
+    "progress_label": "Colocação em serviço em curso",
+    "timeout": "A colocação em serviço está a demorar mais do que o previsto. Continua em curso: deixe esta página aberta ou volte mais tarde. Se nada mudar, contacte o suporte.",
+    "restart": "Efetuar uma nova encomenda",
+    "error": {
+      "delivery": "Não foi possível colocar a sua encomenda em serviço. Nenhum recurso foi entregue: pode efetuar uma nova encomenda ou contactar o suporte."
+    }
   }
 }
