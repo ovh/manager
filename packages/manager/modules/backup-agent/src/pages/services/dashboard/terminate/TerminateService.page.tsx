@@ -7,12 +7,17 @@ import { ODS_MODAL_COLOR } from '@ovhcloud/ods-components';
 import { OdsMessage } from '@ovhcloud/ods-components/react';
 
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
-import { Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { Region } from '@ovh-ux/manager-config';
+import { Links, Modal, useNotifications } from '@ovh-ux/manager-react-components';
+import { useEnvironment } from '@ovh-ux/manager-react-shell-client';
 
 import { BACKUP_AGENT_NAMESPACES } from '@/BackupAgent.translations';
 import { useTerminateVspcService } from '@/data/hooks/useTerminateVspcService';
 import { servicesQueries } from '@/data/queries/services.queries';
 import { tenantsQueries } from '@/data/queries/tenants.queries';
+
+const US_TERMINATE_SERVICE_GUIDE_URL =
+  'https://support.us.ovhcloud.com/hc/en-us/articles/52076648933779-Backup-Agent-Service-updates';
 
 export default function TerminateServicePage() {
   const { t } = useTranslation([BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD, NAMESPACES.ACTIONS]);
@@ -20,6 +25,7 @@ export default function TerminateServicePage() {
   const closeModal = () => navigate('..');
   const { addSuccess, addError } = useNotifications();
   const queryClient = useQueryClient();
+  const isUsRegion = useEnvironment().getRegion?.() === Region.US;
 
   const { data: tenantDetails } = useQuery(tenantsQueries.withClient(queryClient).details());
   const { data: vspcDetail } = useQuery(tenantsQueries.withClient(queryClient).vspcDetail());
@@ -43,7 +49,7 @@ export default function TerminateServicePage() {
   return (
     <Modal
       isOpen
-      heading={t('terminate_service_modal_title')}
+      heading={t(isUsRegion ? 'terminate_service_modal_us_title' : 'terminate_service_modal_title')}
       primaryLabel={hasNoAccess ? undefined : t(`${NAMESPACES.ACTIONS}:confirm`)}
       onPrimaryButtonClick={hasNoAccess ? undefined : () => terminate(serviceId!)}
       isPrimaryButtonLoading={isPending}
@@ -59,14 +65,40 @@ export default function TerminateServicePage() {
             {t('terminate_service_no_access')}
           </OdsMessage>
         )}
-        <p>
-          <Trans
-            i18nKey="terminate_service_modal_content"
-            ns={BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}
-            values={{ vspcName }}
-            components={{ strong: <strong /> }}
-          />
-        </p>
+        {isUsRegion ? (
+          <>
+            <OdsMessage color="warning" isDismissible={false}>
+              {t('terminate_service_modal_us_warning')}
+            </OdsMessage>
+            <p>{t('terminate_service_modal_us_unavailable')}</p>
+            <p>{t('terminate_service_modal_us_contact_support')}</p>
+            <p>{t('terminate_service_modal_us_single_agent')}</p>
+            <p>
+              <Trans
+                i18nKey="terminate_service_modal_us_guide"
+                ns={BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}
+                components={{
+                  Link: (
+                    <Links
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      href={US_TERMINATE_SERVICE_GUIDE_URL}
+                    />
+                  ),
+                }}
+              />
+            </p>
+          </>
+        ) : (
+          <p>
+            <Trans
+              i18nKey="terminate_service_modal_content"
+              ns={BACKUP_AGENT_NAMESPACES.SERVICE_DASHBOARD}
+              values={{ vspcName }}
+              components={{ strong: <strong /> }}
+            />
+          </p>
+        )}
       </div>
     </Modal>
   );

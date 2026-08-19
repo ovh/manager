@@ -17,5 +17,11 @@
   "terminate_service_modal_content": "A <strong>confirmation link</strong> will be sent to you by <strong>email</strong>. You will need to click on this link to confirm the termination of {{vspcName}}.",
   "terminate_service_banner_success": "The termination of {{vspcName}} has been initiated. Check your email to confirm.",
   "terminate_service_banner_error": "An error occurred while terminating the service. Please try again later.",
-  "terminate_service_no_access": "You do not have sufficient permissions to terminate this service."
+  "terminate_service_no_access": "You do not have sufficient permissions to terminate this service.",
+  "terminate_service_modal_us_title": "Confirm Cancel",
+  "terminate_service_modal_us_warning": "Warning: This will delete your entire Backup Agent service, including all agents.",
+  "terminate_service_modal_us_unavailable": "If you cancel, the entire service will stay unavailable for 14 days (retention policy).",
+  "terminate_service_modal_us_contact_support": "Contact support if this was a mistake.",
+  "terminate_service_modal_us_single_agent": "To delete a single agent instead, close this and go to the Agents tab.",
+  "terminate_service_modal_us_guide": "For more information please see the guide: <Link>Backup Agent - Service updates</Link>"
 }
