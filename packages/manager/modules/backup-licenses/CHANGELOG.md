@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.17.0...@ovh-ux/backup-licenses@1.17.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **backup-licenses:** use the backupLicenses resource urn for the add-server IAM check ([8e9506b](https://github.com/ovh/manager/commit/8e9506b069b6ff4ff7e2b89f6adec9b3a8a2818f)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 # [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.16.0...@ovh-ux/backup-licenses@1.17.0) (2026-08-19)
 
 
