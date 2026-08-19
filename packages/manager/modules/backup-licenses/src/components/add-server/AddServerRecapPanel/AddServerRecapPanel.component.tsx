@@ -27,7 +27,6 @@ interface AddServerRecapPanelProps {
   form: AddServerFormState;
   isSubmitting: boolean;
   onFinalize: () => void;
-  /** URN du tenant VSPC : accès direct par URL au tunnel, donc protégé indépendamment du CTA de la liste. */
   urn?: string;
 }
 

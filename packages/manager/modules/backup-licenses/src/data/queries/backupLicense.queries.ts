@@ -42,6 +42,11 @@ const withClient = (queryClient: QueryClient) => {
       }),
     /** `backupLicensesId` : scope requis par les routes `backupServer` (cf. BKP-1216). */
     id: async () => (await license()).id,
+    urn: () =>
+      queryOptions({
+        queryKey: queryKeys.backupLicense.urn(),
+        queryFn: async () => (await license()).iam?.urn ?? null,
+      }),
   };
 };
 

@@ -11,6 +11,11 @@ export const mockBackupLicenses: BackupLicenseResource[] = [
     resourceStatus: 'READY',
     currentState: { id: MOCK_BACKUP_LICENSE_RESOURCE_NAME },
     currentTasks: [],
+    iam: {
+      id: MOCK_BACKUP_LICENSE_RESOURCE_NAME,
+      urn: `urn:v1:eu:resource:backupServices:vspc/backupLicenses/${MOCK_BACKUP_LICENSE_RESOURCE_NAME}`,
+      displayName: MOCK_BACKUP_LICENSE_RESOURCE_NAME,
+    },
   },
   {
     id: 'license-1',
