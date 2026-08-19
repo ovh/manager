@@ -16,7 +16,6 @@ import { routeUrls } from '@/routes/routes.constants';
 interface LinkedServersTopbarProps {
   isLoading: boolean;
   onRefresh: () => void;
-  /** URN du tenant VSPC : accès direct par URL au tunnel d'ajout, donc protégé indépendamment. */
   urn?: string;
 }
 

@@ -14,16 +14,16 @@ import LinkedServersError from '@/components/linked-servers/LinkedServersError/L
 import LinkedServersTopbar from '@/components/linked-servers/LinkedServersTopbar/LinkedServersTopbar.component';
 import { backupServersQueries } from '@/data/queries/backupServers.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { useBackupLicenseUrn } from '@/hooks/useBackupLicenseUrn/useBackupLicenseUrn';
 import { useBackupServersPolling } from '@/hooks/useBackupServersPolling/useBackupServersPolling';
 import { useLinkedServersColumns } from '@/hooks/useLinkedServersColumns/useLinkedServersColumns';
-import { useVspcTenantUrn } from '@/hooks/useVspcTenantUrn/useVspcTenantUrn';
 import { BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 
 export default function LinkedServersPage() {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS);
   const queryClient = useQueryClient();
   const columns = useLinkedServersColumns();
-  const vspcTenantUrn = useVspcTenantUrn();
+  const backupLicenseUrn = useBackupLicenseUrn();
 
   const listOptions = backupServersQueries.withClient(queryClient).list();
 
@@ -52,7 +52,7 @@ export default function LinkedServersPage() {
 
   return (
     <section className="flex flex-col gap-4">
-      <LinkedServersTopbar isLoading={isLoading} onRefresh={handleRefresh} urn={vspcTenantUrn} />
+      <LinkedServersTopbar isLoading={isLoading} onRefresh={handleRefresh} urn={backupLicenseUrn} />
       {hasTimedOut && (
         <OdsMessage color={ODS_MESSAGE_COLOR.warning} isDismissible={false}>
           <OdsText>{t('polling.timeout')}</OdsText>
