@@ -12,7 +12,7 @@ import {
   SIRET_FOCUS_PARAM,
   OPEN_SEARCH_MODAL_EVENT,
   fromSuggestion,
-  isNdValue,
+  hasMissingValues,
   getLegalFormFromCode,
   getCompanyNameLabelKey as companyNameLabelKey,
   getUpdateSearchAssistantLabelKey as updateSearchAssistantLabelKey,
@@ -29,6 +29,7 @@ export default class SiretCtrl {
     $rootScope,
     $scope,
     $timeout,
+    $element,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
@@ -36,6 +37,7 @@ export default class SiretCtrl {
     this.$rootScope = $rootScope;
     this.$scope = $scope;
     this.$timeout = $timeout;
+    this.$element = $element;
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
@@ -173,12 +175,14 @@ export default class SiretCtrl {
     this.model = this.model || {};
     this.model.companyNationalIdentificationNumber =
       suggestSelected.secondaryCNIN;
-    const isNonDiffusible =
-      isNdValue(suggestSelected.name) || isNdValue(suggestSelected.address);
-    this.model.organisation = fromSuggestion(
-      suggestSelected.name,
-      this.model.organisation,
-    );
+    // Withheld data comes back as [ND] or as an empty string depending on the
+    // provider, and any of the values we fill can be missing — not just the name
+    // and the address.
+    const isNonDiffusible = hasMissingValues(suggestSelected);
+    // Blank rather than keep the previous value: after a search the previous
+    // value belongs to a DIFFERENT company, and keeping it both showed wrong data
+    // and left the field locked (assistantEmptyFields saw it as filled in).
+    this.model.organisation = fromSuggestion(suggestSelected.name, '');
     this.lastVatValue = fromSuggestion(suggestSelected.vatID, '');
     this.noVat = !this.lastVatValue;
     this.model.vat = this.noVat ? null : this.lastVatValue;
@@ -274,9 +278,34 @@ export default class SiretCtrl {
 
   onSearchModalValidate(suggestion) {
     this.searchModalOpen = false;
-    if (suggestion) {
-      this.applySuggestion(suggestion);
+    if (!suggestion) {
+      return;
     }
+    this.applySuggestion(suggestion);
+    // The customer was just asked to complete their information: take them to
+    // the first field to fill instead of leaving them to hunt for it.
+    if (this.isNonDiffusible) {
+      this.focusFirstInvalidField();
+    }
+  }
+
+  /**
+   * Focuses the first invalid control of the surrounding form, in document
+   * order. Runs in a $timeout so the blanked values have been written and their
+   * ng-invalid class applied. The fields to complete sit in the contact section,
+   * rendered ABOVE the activity section the modal was opened from, hence the
+   * scroll that focus() brings along.
+   */
+  focusFirstInvalidField() {
+    this.$timeout(() => {
+      const root = this.$element[0].closest('form') || this.$element[0];
+      const field = root.querySelector(
+        'input.ng-invalid, select.ng-invalid, textarea.ng-invalid',
+      );
+      if (field) {
+        field.focus();
+      }
+    });
   }
 
   goToSearchMode() {

@@ -2,9 +2,11 @@ import {
   TRACKING_PREFIX,
   SIRET_SEARCH_REGEXP,
   fromSuggestion,
+  getCompanyNameLabelKey as companyNameLabelKey,
   getModalReviewIntroKey as modalReviewIntroKey,
   getUpdateSearchAssistantLabelKey as updateSearchAssistantLabelKey,
-  isNdValue,
+  hasMissingValues,
+  isMissingValue,
 } from '../siret.constants';
 
 /**
@@ -190,6 +192,14 @@ export default class SiretSearchModalCtrl {
     return this.suggest?.entryList?.length > 1;
   }
 
+  // Validating an incomplete company lands the customer on fields they must fill
+  // in themselves, so the button says so instead of promising a plain "Validate".
+  getValidateLabelKey() {
+    return this.isNonDiffusible()
+      ? 'siret_modal_complete'
+      : 'siret_modal_validate';
+  }
+
   // Once a company has been found the search button becomes the retry loop.
   getSearchButtonLabelKey() {
     return this.suggest ? 'siret_modal_search_again' : 'siret_search_button';
@@ -214,10 +224,41 @@ export default class SiretSearchModalCtrl {
       .join(' ');
   }
 
-  // Non-disclosable companies come back as [ND]: warn that the details will
-  // have to be filled in by hand instead of showing an empty review block.
+  // A company that does not disclose its data comes back with [ND] tokens or
+  // empty values: warn that those details will have to be filled in by hand
+  // rather than leaving the review block silently showing dashes.
   isNonDiffusible() {
-    return isNdValue(this.selected?.name) || isNdValue(this.selected?.address);
+    return hasMissingValues(this.selected);
+  }
+
+  /**
+   * The values the customer will have to type in themselves, because the
+   * directory withheld them or simply has none. Labelled with the same wording
+   * as the form fields they will land in, so the list and the form read as one.
+   * Memoized on the selection: ng-repeat must not get a fresh array per digest.
+   */
+  getMissingFieldLabelKeys() {
+    if (this.missingFieldsSource !== this.selected) {
+      this.missingFieldsSource = this.selected;
+      this.missingFieldLabelKeys = [
+        { value: this.selected?.name, key: companyNameLabelKey(this.legalForm) },
+        {
+          value: this.selected?.address,
+          key: 'siret_modal_non_diffusible_field_address',
+        },
+        {
+          value: this.selected?.zipCode,
+          key: 'siret_modal_non_diffusible_field_zip',
+        },
+        {
+          value: this.selected?.city,
+          key: 'siret_modal_non_diffusible_field_city',
+        },
+      ]
+        .filter(({ value }) => isMissingValue(value))
+        .map(({ key }) => key);
+    }
+    return this.missingFieldLabelKeys;
   }
 
   trackClick(hit) {

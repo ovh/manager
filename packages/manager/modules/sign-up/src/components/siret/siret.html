@@ -162,7 +162,13 @@
             data-translate="siret_manual_title"
         ></p>
 
-        <oui-message data-type="info" data-ng-if="$ctrl.isNonDiffusible">
+        <!-- d-block mt-3: the assistant button above is full-width in
+             modification mode, the message needs air to read as separate -->
+        <oui-message
+            class="d-block mt-3"
+            data-type="info"
+            data-ng-if="$ctrl.isNonDiffusible"
+        >
             <span data-translate="siret_non_diffusible"></span>
         </oui-message>
 

@@ -117,11 +117,23 @@
 
                         <!-- company found: review before committing -->
                         <div class="mt-3" data-ng-if="$ctrl.selected">
+                            <!-- The review paragraphs below show '-' for every
+                                 withheld value: explain them before they are
+                                 read, and name what has to be completed. -->
                             <oui-message
                                 data-type="info"
                                 data-ng-if="$ctrl.isNonDiffusible()"
                             >
-                                <span data-translate="siret_non_diffusible"></span>
+                                <p
+                                    class="mb-1"
+                                    data-translate="siret_modal_non_diffusible_intro"
+                                ></p>
+                                <ul class="mb-0">
+                                    <li
+                                        data-ng-repeat="labelKey in $ctrl.getMissingFieldLabelKeys()"
+                                        data-translate="{{ labelKey }}"
+                                    ></li>
+                                </ul>
                             </oui-message>
 
                             <p
@@ -153,7 +165,9 @@
                             data-ng-disabled="!$ctrl.selected"
                             data-ng-click="$ctrl.validate()"
                         >
-                            <span data-translate="siret_modal_validate"></span>
+                            <span
+                                data-translate="{{ $ctrl.getValidateLabelKey() }}"
+                            ></span>
                         </button>
                     </div>
                 </div>
