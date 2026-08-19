@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-container-app",
-  "version": "0.200.2",
+  "version": "0.201.0",
   "private": true,
   "description": "OVHcloud Manager Container.",
   "repository": {

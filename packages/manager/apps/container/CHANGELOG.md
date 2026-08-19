@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.201.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.2...@ovh-ux/manager-container-app@0.201.0) (2026-08-19)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1296] ([bef0fb2](https://github.com/ovh/manager/commit/bef0fb2f87377b47bcf8233d712f0a597cbf810e))
+
+
+### Features
+
+* **account:** warn and block the "Autre" category for FR e-invoicing ([06df848](https://github.com/ovh/manager/commit/06df84850a854a957017f32cc802dd6a16ac84e7)), closes [#MANAGER-22014](https://github.com/ovh/manager/issues/MANAGER-22014)
+
+
+
+
+
 ## [0.200.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.1...@ovh-ux/manager-container-app@0.200.2) (2026-08-19)
 
 
