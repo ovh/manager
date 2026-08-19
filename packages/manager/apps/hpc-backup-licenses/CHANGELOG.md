@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-backup-licenses-app@0.2.0...@ovh-ux/manager-hpc-backup-licenses-app@0.2.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **backup-licenses:** fix pages, api calls ([33fe34a](https://github.com/ovh/manager/commit/33fe34a73e5629fc98718a10cc201995eb4c50a4)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 # [0.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-backup-licenses-app@0.1.25...@ovh-ux/manager-hpc-backup-licenses-app@0.2.0) (2026-08-17)
 
 

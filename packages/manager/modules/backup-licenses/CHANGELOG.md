@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.16.0...@ovh-ux/backup-licenses@1.17.0) (2026-08-19)
+
+
+### Bug Fixes
+
+* **backup-licenses:** fix pages, api calls ([33fe34a](https://github.com/ovh/manager/commit/33fe34a73e5629fc98718a10cc201995eb4c50a4)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+* **backup-licenses:** read the vault paygo rate from the catalogue, not the cart ([60a9f15](https://github.com/ovh/manager/commit/60a9f152a9dc87a1f116a3fd8ab2abcc6b6e5cf4)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+### Features
+
+* **backup-licenses:** freeze the order funnel into a delivery tracker ([79a7aaa](https://github.com/ovh/manager/commit/79a7aaaf536e62942c5f3f94ab76a1f7473627d2)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+* **backup-licenses:** resolve the account state around a placed order ([ac5d8ce](https://github.com/ovh/manager/commit/ac5d8ce0b99e360d498689e8ed385445d6ddc3cf)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 # [1.16.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.15.3...@ovh-ux/backup-licenses@1.16.0) (2026-08-17)
 
 

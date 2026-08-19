@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.19.1...@ovh-ux/backup-agent@1.20.0) (2026-08-19)
+
+
+### Features
+
+* **backup-agent:** scope the shared backupServices reads to this product line ([629b92b](https://github.com/ovh/manager/commit/629b92bcd63a464842c56b1e4bac2e3637afe6ab))
+
+
+
+
+
 ## [1.19.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.19.0...@ovh-ux/backup-agent@1.19.1) (2026-08-17)
 
 

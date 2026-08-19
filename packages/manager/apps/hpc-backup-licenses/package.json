@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hpc-backup-licenses-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "OVHcloud Backup Licenses",
   "repository": {
@@ -19,7 +19,7 @@
     "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
-    "@ovh-ux/backup-licenses": "^1.16.0",
+    "@ovh-ux/backup-licenses": "^1.17.0",
     "@ovh-ux/manager-common-translations": "^0.29.0",
     "@ovh-ux/manager-config": "^8.9.0",
     "@ovh-ux/manager-core-api": "^0.21.2",

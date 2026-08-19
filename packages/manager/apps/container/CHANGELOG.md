@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.200.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.1...@ovh-ux/manager-container-app@0.200.2) (2026-08-19)
+
+
+### Bug Fixes
+
+* **container:** link backup licenses on legacy menu ([61459a8](https://github.com/ovh/manager/commit/61459a8113d5491793dc524c306add1c0dc2ca39)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 ## [0.200.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.0...@ovh-ux/manager-container-app@0.200.1) (2026-08-18)
 
 
