@@ -6,6 +6,8 @@ export default {
   controller,
   bindings: {
     country: '<',
+    // SIRET the account already holds: looked up automatically on open
+    initialSearch: '<?',
     // drives the wording (company / association / administration)
     legalForm: '<?',
     trackingMode: '<?',

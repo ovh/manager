@@ -40,18 +40,31 @@ export const COMPANY_NAME_LABEL_LEGAL_FORMS = [
 export const UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT =
   'siret_update_search_assistant';
 
+export const MODAL_REVIEW_INTRO_DEFAULT = 'siret_modal_review_intro';
+
+/**
+ * Appends the legal form to a translation key when a dedicated wording exists
+ * (entreprise / association / administration), otherwise keeps the base key.
+ */
+export function byLegalForm(baseKey, legalForm) {
+  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+    ? `${baseKey}_${legalForm}`
+    : baseKey;
+}
+
 /** "Nom de l'entreprise / l'association / l'administration" */
 export function getCompanyNameLabelKey(legalForm) {
-  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
-    ? `${COMPANY_NAME_LABEL_DEFAULT}_${legalForm}`
-    : COMPANY_NAME_LABEL_DEFAULT;
+  return byLegalForm(COMPANY_NAME_LABEL_DEFAULT, legalForm);
 }
 
 /** "Mettre à jour mes informations d'entreprise / d'association / d'administration" */
 export function getUpdateSearchAssistantLabelKey(legalForm) {
-  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
-    ? `${UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT}_${legalForm}`
-    : UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT;
+  return byLegalForm(UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT, legalForm);
+}
+
+/** "Vérifiez vos informations d'entreprise / d'association / d'administration" */
+export function getModalReviewIntroKey(legalForm) {
+  return byLegalForm(MODAL_REVIEW_INTRO_DEFAULT, legalForm);
 }
 
 // Maps the search-assistant field aliases (used for enabling/disabling inputs)

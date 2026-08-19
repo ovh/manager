@@ -2,6 +2,7 @@ import {
   TRACKING_PREFIX,
   SIRET_SEARCH_REGEXP,
   fromSuggestion,
+  getModalReviewIntroKey as modalReviewIntroKey,
   getUpdateSearchAssistantLabelKey as updateSearchAssistantLabelKey,
   isNdValue,
 } from '../siret.constants';
@@ -25,6 +26,14 @@ export default class SiretSearchModalCtrl {
 
   $onInit() {
     this.trackingPrefix = TRACKING_PREFIX[this.trackingMode || 'modification'];
+    // The account already holds a usable SIRET: look it up straight away so the
+    // customer lands on the company found instead of retyping what we know.
+    // needTracking=false — nothing was clicked, but the outcome is still tracked.
+    const initial = (this.initialSearch || '').replace(/\s/g, '');
+    if (SIRET_SEARCH_REGEXP.test(initial)) {
+      this.search = initial;
+      this.submitSearch(false);
+    }
   }
 
   // The lookup is by SIRET only (14 digits), so spaces are never meaningful
@@ -59,11 +68,55 @@ export default class SiretSearchModalCtrl {
     return !this.searching && SIRET_SEARCH_REGEXP.test(this.search || '');
   }
 
-  submitSearch() {
+  onSearchBlur() {
+    this.searchTouched = true;
+  }
+
+  // Drives the oui-field error state. Only once the customer left a non-empty
+  // field: an empty field is already covered by the disabled search button, and
+  // flagging every half-typed SIRET would flash an error on each keystroke.
+  isSearchInvalid() {
+    return (
+      Boolean(this.searchTouched) &&
+      Boolean(this.search) &&
+      !SIRET_SEARCH_REGEXP.test(this.search)
+    );
+  }
+
+  // Before a company is on screen the intro tells the customer to enter their
+  // SIRET; once one is displayed it asks them to check it instead.
+  getIntroKey() {
+    return this.selected
+      ? modalReviewIntroKey(this.legalForm)
+      : 'siret_update_search_assistant_info';
+  }
+
+  $onDestroy() {
+    this.destroyed = true;
+  }
+
+  /**
+   * A lookup response is worthless in two cases, both reachable because the
+   * auto-search starts as soon as the modal opens — exactly when a customer who
+   * came to CHANGE their SIRET starts typing, or gives up and closes it:
+   *  - the SIRET in the field is no longer the one we searched: showing the old
+   *    company next to the new number would let Validate apply the wrong one;
+   *  - the modal is gone: nothing to render, and no hit worth reporting.
+   */
+  shouldDiscardResponse() {
+    return (
+      this.destroyed ||
+      this.searchedValue !== (this.search || '').replace(/\s/g, '')
+    );
+  }
+
+  submitSearch(needTracking = true) {
     if (this.searching) {
       return null;
     }
-    this.trackClick('search');
+    if (needTracking) {
+      this.trackClick('search');
+    }
     this.searching = true;
     this.suggest = null;
     this.selected = null;
@@ -75,6 +128,9 @@ export default class SiretSearchModalCtrl {
       })
       .then((suggest = {}) => {
         this.searching = false;
+        if (this.shouldDiscardResponse()) {
+          return;
+        }
         if (suggest.error) {
           this.trackPage('error');
         } else {
@@ -88,6 +144,9 @@ export default class SiretSearchModalCtrl {
       })
       .catch(() => {
         this.searching = false;
+        if (this.shouldDiscardResponse()) {
+          return;
+        }
         this.suggest = { error: true, entryList: [] };
       });
   }

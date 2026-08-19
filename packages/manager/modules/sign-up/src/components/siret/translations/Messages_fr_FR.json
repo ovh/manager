@@ -46,7 +46,11 @@
   "siret_vat_none_association": "Mon association n'a pas de numéro de TVA",
   "siret_vat_none_administration": "Cette administration ne possède pas de numéro de TVA",
   "siret_non_diffusible": "Les informations de votre entreprise ne sont pas diffusées publiquement (entreprise non diffusible). Veuillez renseigner manuellement les informations de votre organisation afin qu'elles figurent correctement sur vos factures.",
-  "siret_modal_review_title": "Vérifiez les informations trouvées",
   "siret_modal_search_again": "Rechercher à nouveau",
-  "siret_modal_validate": "Valider"
+  "siret_modal_validate": "Valider",
+  "siret_modal_review_intro": "Vérifiez vos informations.",
+  "siret_modal_review_intro_corporation": "Vérifiez vos informations d'entreprise.",
+  "siret_modal_review_intro_association": "Vérifiez vos informations d'association.",
+  "siret_modal_review_intro_administration": "Vérifiez vos informations d'administration.",
+  "siret_modal_search_invalid": "Le numéro de SIRET doit comporter 14 chiffres."
 }
