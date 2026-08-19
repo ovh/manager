@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.20.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.20.0...@ovh-ux/backup-agent@1.20.1) (2026-08-19)
+
+
+### Bug Fixes
+
+* **backup-agent:** change modal wording for us ([1410403](https://github.com/ovh/manager/commit/14104033bc8fa380b2ccd760354a5b4da355704f)), closes [#MANAGER-22183](https://github.com/ovh/manager/issues/MANAGER-22183)
+
+
+
+
+
 # [1.20.0](https://github.com/ovh/manager/compare/@ovh-ux/backup-agent@1.19.1...@ovh-ux/backup-agent@1.20.0) (2026-08-19)
 
 
