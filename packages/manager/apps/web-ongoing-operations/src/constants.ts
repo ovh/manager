@@ -123,6 +123,9 @@ export const editableArgument: Record<string, z.ZodString> = {
   default: z.string(),
 };
 
+/** APIv2 status of a trade task that may still carry answerable FOAs. */
+export const foaScheduledTaskStatus = 'SCHEDULED';
+
 export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
 export const allDomFeatureAvailibility = 'web-domains:alldoms';
 export const domainFeatureAvailibility = 'web-domains:domain';

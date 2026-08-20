@@ -73,6 +73,12 @@ describe('Domain datagrid', () => {
           data: null,
         };
       }),
+      usePendingFoas: vi.fn(() => ({
+        taskId: null,
+        foas: [],
+        pendingFoas: [],
+        isLoading: false,
+      })),
     }));
 
     const { container } = render(<Domain />, { wrapper });

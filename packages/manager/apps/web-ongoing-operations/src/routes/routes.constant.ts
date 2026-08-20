@@ -5,5 +5,6 @@ export const urls = {
   allDom: 'alldom',
   track: 'tracking/:id',
   update: ':product/update/:id',
+  foa: ':product/foa/:id',
   error404: '404',
 };
