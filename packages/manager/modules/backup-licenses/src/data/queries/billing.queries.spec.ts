@@ -11,7 +11,7 @@ import { getVaults } from '@/data/api/vaults/vaults.requests';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
 import { BackupLicenseResource } from '@/types/BackupLicense.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
-import { ServiceConsumption } from '@/types/Consumption.type';
+import { LicenseConsumption, ServiceConsumption } from '@/types/Consumption.type';
 import { Resource } from '@/types/Resource.type';
 import { VaultResource } from '@/types/Vault.type';
 
@@ -65,6 +65,16 @@ const buildConsumption = (
   uniqueId: null,
 });
 
+const buildLicenseConsumption = (priceText: string): LicenseConsumption => ({
+  beginDate: '2026-07-01T00:00:00Z',
+  endDate: '2026-07-31T23:59:59Z',
+  id: 1,
+  orderId: null,
+  price: { currencyCode: 'EUR', text: priceText, value: 0 },
+  priceByPlanFamily: [{ planFamily: 'backup', price: { currencyCode: 'EUR', text: priceText, value: 0 } }],
+  serviceId: 1,
+});
+
 describe('billingQueries', () => {
   let queryClient: QueryClient;
 
@@ -90,9 +100,7 @@ describe('billingQueries', () => {
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),
     ]);
-    vi.mocked(getLicenseConsumption).mockResolvedValue([
-      buildConsumption('backup-license-backuplicenses-foundation', 1, '4,90 €'),
-    ]);
+    vi.mocked(getLicenseConsumption).mockResolvedValue(buildLicenseConsumption('4,90 €'));
 
     const { vaultRows, licenseRows } = await fetchRows();
 
@@ -149,9 +157,7 @@ describe('billingQueries', () => {
     vi.mocked(getServiceConsumption).mockResolvedValue([
       buildConsumption('backup-vault-backuplicenses-paygo-consumption', 7, '0,05 €'),
     ]);
-    vi.mocked(getLicenseConsumption).mockResolvedValue([
-      buildConsumption('backup-license-backuplicenses-foundation', 1, '4,90 €'),
-    ]);
+    vi.mocked(getLicenseConsumption).mockResolvedValue(buildLicenseConsumption('4,90 €'));
 
     const { vaultRows, licenseRows } = await fetchRows();
 

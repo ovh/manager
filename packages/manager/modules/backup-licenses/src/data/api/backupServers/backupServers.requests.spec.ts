@@ -6,9 +6,10 @@ import { v2 } from '@ovh-ux/manager-core-api';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import { getBackupServersRoute } from '@/utils/apiRoutes/apiRoutes';
 
-import { getBackupServers } from './backupServers.requests';
+import { createBackupServer, getBackupServers } from './backupServers.requests';
 
 type MockableGet = Pick<AxiosInstance, 'get'>;
+type MockablePost = Pick<AxiosInstance, 'post'>;
 
 describe('getBackupServers', () => {
   const mockGet = vi.fn();
@@ -44,5 +45,35 @@ describe('getBackupServers', () => {
     mockGet.mockRejectedValue(new Error('boom'));
 
     await expect(getBackupServers(params)).rejects.toThrow('boom');
+  });
+});
+
+describe('createBackupServer', () => {
+  const mockPost = vi.fn();
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+    Object.assign(v2 as unknown as MockablePost, { post: mockPost });
+  });
+
+  it('posts the payload to the backupServer route, without the scope ids', async () => {
+    mockPost.mockResolvedValue({ data: null });
+
+    await createBackupServer({
+      backupServicesId: 'service-1',
+      vspcTenantId: 'vspc-1',
+      backupLicensesId: 'license-1',
+      displayName: 'VBR-CUST-SERV-02',
+      licenseType: 'VEEAM_BACKUP_REPLICATION_ENTERPRISE_PLUS',
+      externalIps: ['203.0.113.10'],
+      privateIps: ['192.168.10.2'],
+    });
+
+    expect(mockPost).toHaveBeenCalledWith(getBackupServersRoute('service-1', 'vspc-1', 'license-1'), {
+      displayName: 'VBR-CUST-SERV-02',
+      licenseType: 'VEEAM_BACKUP_REPLICATION_ENTERPRISE_PLUS',
+      externalIps: ['203.0.113.10'],
+      privateIps: ['192.168.10.2'],
+    });
   });
 });

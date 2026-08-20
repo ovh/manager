@@ -1,94 +1,105 @@
 import React from 'react';
 
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createBackupLicense } from '@/data/api/backupLicenses/backupLicenses.requests';
+import { getBackupLicenses } from '@/data/api/backupLicenses/backupLicenses.requests';
+import { createBackupServer } from '@/data/api/backupServers/backupServers.requests';
 import { getBackupServicesTenants, getVspcTenants } from '@/data/api/tenants/tenants.requests';
 import { queryKeys } from '@/data/queries/queryKeys';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
 import { buildBackupLicensesVspcTenant } from '@/mocks/tenants/tenants.mock';
-import { createQueryClientTest } from '@/test-utils/renderWithProviders';
-import { BackupServerResource } from '@/types/BackupServer.type';
+import { CreateBackupLicenseBody } from '@/types/BackupLicense.type';
 import { BackupServicesTenant } from '@/types/BackupServicesTenant.type';
 import { LicenseApiValue } from '@/types/Order.type';
 import { Resource } from '@/types/Resource.type';
 
 import { useCreateBackupLicense } from './useCreateBackupLicense';
 
-vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
+vi.mock('@/data/api/backupServers/backupServers.requests');
 vi.mock('@/data/api/tenants/tenants.requests');
+vi.mock('@/data/api/backupLicenses/backupLicenses.requests');
 
-const mockedCreateBackupLicense = vi.mocked(createBackupLicense);
-const mockedGetBackupServicesTenants = vi.mocked(getBackupServicesTenants);
-const mockedGetVspcTenants = vi.mocked(getVspcTenants);
+const mockedCreateBackupServer = vi.mocked(createBackupServer);
 
-const buildResource = <T,>(id: string, currentState: T): Resource<T> => ({
-  id,
-  resourceStatus: 'READY',
-  currentState,
-});
+const body: CreateBackupLicenseBody = {
+  displayName: 'backup-prod',
+  licenseType: LicenseApiValue.ENTERPRISE_PLUS,
+  externalIps: ['185.26.17.45'],
+  privateIps: [],
+};
 
-const renderUseCreateBackupLicense = () => {
-  const queryClient = createQueryClientTest();
-  const invalidateSpy = vi.spyOn(queryClient, 'invalidateQueries');
-
-  const hook = renderHook(() => useCreateBackupLicense(), {
+const renderCreateHook = (
+  queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
+  }),
+) => ({
+  queryClient,
+  ...renderHook(() => useCreateBackupLicense(), {
     wrapper: ({ children }: React.PropsWithChildren) => (
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     ),
-  });
-
-  return { ...hook, invalidateSpy };
-};
+  }),
+});
 
 describe('useCreateBackupLicense', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mockedGetBackupServicesTenants.mockResolvedValue([
-      buildResource<BackupServicesTenant>('service-1', { id: 'service-1', name: 'service' }),
+    mockedCreateBackupServer.mockResolvedValue(undefined);
+    vi.mocked(getBackupServicesTenants).mockResolvedValue([
+      {
+        id: 'service-1',
+        resourceStatus: 'READY',
+        currentState: { id: 'service-1', name: 'service' },
+      } as Resource<BackupServicesTenant>,
     ]);
-    mockedGetVspcTenants.mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
+    vi.mocked(getVspcTenants).mockResolvedValue([buildBackupLicensesVspcTenant('vspc-1')]);
+    vi.mocked(getBackupLicenses).mockResolvedValue(mockBackupLicenses);
   });
 
-  it('résout la cascade backupServicesId → vspcTenantId puis crée la licence, et invalide la liste des serveurs', async () => {
-    mockedCreateBackupLicense.mockResolvedValue({} as BackupServerResource);
-    const { result, invalidateSpy } = renderUseCreateBackupLicense();
+  it('creates the server with the ids resolved by the cascade and the submitted body', async () => {
+    const { result } = renderCreateHook();
 
-    result.current.mutate({
-      displayName: 'backup-prod',
-      licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-      backupServerExternalIp: '185.26.17.45',
-    });
+    result.current.mutate(body);
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-
-    expect(mockedGetVspcTenants).toHaveBeenCalledWith('service-1');
-    expect(mockedCreateBackupLicense).toHaveBeenCalledWith({
+    expect(mockedCreateBackupServer).toHaveBeenCalledWith({
       backupServicesId: 'service-1',
       vspcTenantId: 'vspc-1',
-      body: {
-        displayName: 'backup-prod',
-        licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-        backupServerExternalIp: '185.26.17.45',
-      },
+      backupLicensesId: mockBackupLicenses[0]!.id,
+      ...body,
     });
+  });
+
+  it('invalidates the backup servers list once the server has been added', async () => {
+    const { queryClient, result } = renderCreateHook();
+    const invalidateSpy = vi.spyOn(queryClient, 'invalidateQueries');
+
+    result.current.mutate(body);
+
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(invalidateSpy).toHaveBeenCalledWith({ queryKey: queryKeys.backupServers.all() });
   });
 
-  it("remonte l'erreur sans invalider la liste quand la cascade échoue", async () => {
-    mockedGetBackupServicesTenants.mockResolvedValue([]);
-    const { result, invalidateSpy } = renderUseCreateBackupLicense();
+  it('does not invalidate the list when the creation fails', async () => {
+    mockedCreateBackupServer.mockRejectedValue(new Error('boom'));
+    const { queryClient, result } = renderCreateHook();
+    const invalidateSpy = vi.spyOn(queryClient, 'invalidateQueries');
 
-    result.current.mutate({
-      displayName: 'backup-prod',
-      licenseType: LicenseApiValue.ENTERPRISE_PLUS,
-      backupServerExternalIp: '185.26.17.45',
-    });
+    result.current.mutate(body);
 
     await waitFor(() => expect(result.current.isError).toBe(true));
-
-    expect(mockedCreateBackupLicense).not.toHaveBeenCalled();
     expect(invalidateSpy).not.toHaveBeenCalled();
+  });
+
+  it('fails without calling the API when no service is found', async () => {
+    vi.mocked(getBackupServicesTenants).mockResolvedValue([]);
+    const { result } = renderCreateHook();
+
+    result.current.mutate(body);
+
+    await waitFor(() => expect(result.current.isError).toBe(true));
+    expect(mockedCreateBackupServer).not.toHaveBeenCalled();
   });
 });

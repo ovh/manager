@@ -19,6 +19,13 @@ export type EditBackupServerParams = GetBackupServersParams & {
   privateIps: string[];
 };
 
+export type CreateBackupServerParams = GetBackupServersParams & {
+  displayName: string;
+  licenseType: string;
+  externalIps: string[];
+  privateIps: string[];
+};
+
 export type DeleteBackupServerParams = GetBackupServersParams & {
   backupServerId: string;
 };
@@ -39,6 +46,22 @@ export const getBackupServers = async ({
     }
     throw error;
   }
+};
+
+/**
+ * Ajout d'un serveur VBR supplémentaire sur un vault déjà provisionné (BKP-1217) : un simple
+ * POST sur la ressource `backupServer`, plus de panier Agora pour ce flux.
+ */
+export const createBackupServer = async ({
+  backupServicesId,
+  vspcTenantId,
+  backupLicensesId,
+  ...payload
+}: CreateBackupServerParams): Promise<void> => {
+  await v2.post(
+    getBackupServersRoute(backupServicesId, vspcTenantId, backupLicensesId),
+    payload,
+  );
 };
 
 /**

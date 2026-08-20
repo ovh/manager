@@ -21,7 +21,7 @@ interface BackupServerActionsCellProps {
   backupServerId: string;
   /** Désactive le menu entier : opération en cours sur la ligne. */
   isDisabled: boolean;
-  /** URN du serveur, pour le check IAM des actions « modifier »/« supprimer ». */
+  /** URN de la ressource backupLicense, pour le check IAM des actions « modifier »/« supprimer ». */
   urn?: string;
 }
 
@@ -45,8 +45,8 @@ interface BackupServerActionsCellProps {
  *    pleinement cliquable/navigable : désactiver le bouton intérieur ne bloque pas la navigation.
  * On utilise donc `onClick` + `navigate()` (jamais `href`) pour que `isDisabled` bloque *réellement*
  * l'action — mêmes patron que `veeam-backup` (`DatagridCell.component.tsx::ActionCell`).
- * Fail-closed : tant que `urn` est absent (contrat API non confirmé, cf. API-STATUS.md) ou que
- * le check est en cours/négatif, l'entrée reste désactivée — jamais de bypass permissif.
+ * Fail-closed : tant que `urn` est absent ou que le check est en cours/négatif, l'entrée reste
+ * désactivée — jamais de bypass permissif.
  */
 export default function BackupServerActionsCell({
   backupServerId,

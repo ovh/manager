@@ -1,24 +1,26 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { createBackupLicense } from '@/data/api/backupLicenses/backupLicenses.requests';
+import { createBackupServer } from '@/data/api/backupServers/backupServers.requests';
+import { backupLicenseQueries } from '@/data/queries/backupLicense.queries';
 import { queryKeys } from '@/data/queries/queryKeys';
 import { tenantsQueries } from '@/data/queries/tenants.queries';
 import { CreateBackupLicenseBody } from '@/types/BackupLicense.type';
 
 /**
- * Ajout d'un serveur VBR supplémentaire sur un vault déjà provisionné (BKP-1217) :
- * résout la cascade backupServicesId → vspcTenantId (déjà en cache la plupart du
- * temps, la liste des serveurs l'ayant chargée) puis crée la licence/serveur.
+ * Ajout d'un serveur VBR supplémentaire (BKP-1217), sur le modèle de `useEditBackupServer` : les
+ * identifiants de service et de tenant VSPC ne sont pas dans l'URL, ils sont résolus par la
+ * cascade de queries au moment de la mutation.
  */
 export function useCreateBackupLicense() {
   const queryClient = useQueryClient();
-  const tenants = tenantsQueries.withClient(queryClient);
 
   return useMutation({
     mutationFn: async (body: CreateBackupLicenseBody) => {
+      const tenants = tenantsQueries.withClient(queryClient);
       const backupServicesId = await tenants.backupServicesId();
       const vspcTenantId = await tenants.vspcTenantId();
-      return createBackupLicense({ backupServicesId, vspcTenantId, body });
+      const backupLicensesId = await backupLicenseQueries.withClient(queryClient).id();
+      return createBackupServer({ backupServicesId, vspcTenantId, backupLicensesId, ...body });
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: queryKeys.backupServers.all() });

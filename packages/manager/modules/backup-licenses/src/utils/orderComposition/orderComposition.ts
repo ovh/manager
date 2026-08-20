@@ -1,4 +1,5 @@
 import { LicenseApiValue, ServerVaultFormState } from '@/types/Order.type';
+import { toIpBlock } from '@/utils/formatIpList/formatIpList';
 
 /** Relevés sur le catalogue `backupServices` de labeu (catalogId 3190, 2026-08-06). */
 export const BACKUP_LICENSES_ORDER_PLAN_CODES = {
@@ -58,12 +59,15 @@ export const buildBackupLicensesOrderComposition = (
   },
   configurationValues: {
     [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerDisplayName]: form.displayName.trim(),
-    [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerPublicIp]: form.backupServerExternalIp.trim(),
+    [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerPublicIp]: toIpBlock(
+      form.backupServerExternalIp.trim(),
+    ),
     // NAT désactivé : l'IP privée est absente de la commande, pas envoyée vide.
     ...(form.isBehindNat
       ? {
-          [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerPrivateIp]:
+          [BACKUP_LICENSES_CONFIGURATION_LABELS.backupServerPrivateIp]: toIpBlock(
             form.backupServerPrivateIp.trim(),
+          ),
         }
       : {}),
     [BACKUP_LICENSES_CONFIGURATION_LABELS.licenseType]: licenseType,

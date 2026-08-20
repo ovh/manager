@@ -35,6 +35,18 @@ export const firstIpWithoutMask = (ips?: string[]): string => {
 };
 
 /**
+ * Inverse de `stripHostPrefix` : l'API type ces champs `ipBlock`, une IP hôte seule sans
+ * masque (`185.26.17.45`) est rejetée (`is not valid for type ipBlock`). Laisser l'utilisateur
+ * saisir lui-même le masque serait risqué (il pourrait entrer une plage plus large que sa
+ * propre IP) : le formulaire n'accepte que de l'IPv4 hôte unique, le masque `/32` est donc
+ * toujours ajouté ici, jamais par l'utilisateur.
+ */
+export const toIpBlock = (ip: string): string => {
+  if (!ip || ip.includes('/')) return ip;
+  return `${ip}${IPV4_HOST_PREFIX}`;
+};
+
+/**
  * Formate les IP publiques et privées d'un serveur dans une seule colonne
  * (`public - private`). Sans NAT, aucune IP privée n'est configurée : on
  * n'affiche alors que la partie publique plutôt que « IP - — ».

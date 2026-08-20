@@ -181,7 +181,7 @@ describe('usePrepareBackupLicensesCart', () => {
     expect(answered).toHaveLength(12);
     expect(answered).toEqual(
       expect.arrayContaining([
-        { label: 'backupserver-public-ip', value: '203.0.113.10' },
+        { label: 'backupserver-public-ip', value: '203.0.113.10/32' },
         { label: 'license-type', value: LicenseApiValue.VDP_PREMIUM },
         { label: 'vault-azname', value: 'eu-west-par' },
       ]),
@@ -226,7 +226,7 @@ describe('usePrepareBackupLicensesCart', () => {
     const emitted = await resolveApiRequests(requests);
 
     expect(configurations(emitted)).toEqual(
-      expect.arrayContaining([{ label: 'backupserver-private-ip', value: '192.168.1.10' }]),
+      expect.arrayContaining([{ label: 'backupserver-private-ip', value: '192.168.1.10/32' }]),
     );
   });
 
@@ -319,10 +319,10 @@ describe('usePrepareBackupLicensesCart, with an existing backup-tenant', () => {
 
     expect(sequence).toEqual([
       '/order/cart',
+      `/order/cart/${MOCK_CART_ID}/assign`,
       `/order/cartServiceOption/backupServices/${serviceName}`,
       `/order/cart/${MOCK_CART_ID}/backupServices/options`,
       `/order/cartServiceOption/backupServices/${serviceName}`,
-      `/order/cart/${MOCK_CART_ID}/assign`,
     ]);
   });
 

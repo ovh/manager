@@ -13,6 +13,7 @@ import { Modal, useAuthorizationIam, useNotifications } from '@ovh-ux/manager-re
 
 import { useDeleteBackupServer } from '@/data/hooks/useDeleteBackupServer/useDeleteBackupServer';
 import { backupServersQueries } from '@/data/queries/backupServers.queries';
+import { useBackupLicenseUrn } from '@/hooks/useBackupLicenseUrn/useBackupLicenseUrn';
 import { BACKUP_LICENSES_IAM_RULES, BACKUP_LICENSES_NAMESPACES } from '@/module.constants';
 
 /**
@@ -27,9 +28,8 @@ import { BACKUP_LICENSES_IAM_RULES, BACKUP_LICENSES_NAMESPACES } from '@/module.
  * bouton primaire en `ManagerButton` (rendu en interne, hors de portée), donc pas de tooltip au
  * survol ici — on désactive le bouton et on affiche le même message d'avertissement à la place.
  * Fail-closed : `canDelete` exige un `urn` présent, un check résolu et positif — tant que l'un des
- * trois manque (contrat API pas encore confirmé, requête en cours, ou droit refusé), la
- * suppression reste bloquée. Jamais de bypass permissif comme le ferait `ManagerButton` par défaut
- * quand `urn` est absent.
+ * trois manque, la suppression reste bloquée. Jamais de bypass permissif comme le ferait
+ * `ManagerButton` par défaut quand `urn` est absent.
  */
 export default function DeleteBackupServerPage() {
   const { t } = useTranslation([
@@ -40,6 +40,7 @@ export default function DeleteBackupServerPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
+  const backupLicenseUrn = useBackupLicenseUrn();
   const { backupServerId } = useParams<{ backupServerId: string }>();
 
   const closeModal = () => navigate('..');
@@ -55,11 +56,9 @@ export default function DeleteBackupServerPage() {
 
   const { isAuthorized: isDeleteAuthorized, isLoading: isIamCheckLoading } = useAuthorizationIam(
     [BACKUP_LICENSES_IAM_RULES['vspc/backupLicenses/delete']],
-    server?.iam?.urn ?? '',
+    backupLicenseUrn ?? '',
   );
-  // Fail-closed : pas de `urn` (contrat API pas encore confirmé) ou check pas encore résolu ⇒
-  // bloqué, jamais autorisé par défaut.
-  const canDelete = !!server?.iam?.urn && !isIamCheckLoading && isDeleteAuthorized;
+  const canDelete = !!backupLicenseUrn && !isIamCheckLoading && isDeleteAuthorized;
   const isIamBlocked = !!server && !canDelete;
 
   const {

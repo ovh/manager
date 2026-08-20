@@ -96,7 +96,7 @@
       "label": "Öffentliche IP-Adresse",
       "placeholder": "Bsp.: 185.26.17.45",
       "hint": "Die öffentliche IP-Adresse Ihres VBR-Servers.",
-      "error": "Diese IP-Adresse scheint nicht gültig zu sein — überprüfen Sie das IPv4- oder IPv6-Format."
+      "error": "Diese IP-Adresse scheint nicht gültig zu sein — überprüfen Sie das IPv4-Format."
     },
     "veeam_client_ip": {
       "label": "IP-Adresse des Veeam-Clients",
@@ -107,7 +107,7 @@
       "label": "Private IP-Adresse (LAN)",
       "placeholder": "Bsp.: 192.168.1.10",
       "hint": "Lokale IP-Adresse Ihres VBR-Servers im internen Netzwerk.",
-      "error": "Diese IP-Adresse scheint nicht gültig zu sein — überprüfen Sie das IPv4- oder IPv6-Format."
+      "error": "Diese IP-Adresse scheint nicht gültig zu sein — überprüfen Sie das IPv4-Format."
     },
     "vault_name": {
       "label": "Vault-Name",
