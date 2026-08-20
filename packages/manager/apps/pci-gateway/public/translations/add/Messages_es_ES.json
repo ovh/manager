@@ -42,5 +42,12 @@
   "pci_projects_project_public_gateways_add_region_activate_line3": "y, a continuación, crear su Gateway.",
   "pci_projects_project_public_gateways_3az_guide_description": "Para obtener más información sobre las especificaciones de los servicios 3-AZ y cómo utilizarlos para diseñar una infraestructura resiliente, <Link>haga clic aquí</Link>",
   "pci_projects_project_public_price_from": "Desde {{price}}",
-  "pci_projects_project_public_gateways_quota_error": "No hay cuotas disponibles en esta localización. Para continuar, <Link>aumente sus cuotas</Link>."
+  "pci_projects_project_public_gateways_quota_error": "No hay cuotas disponibles en esta localización. Para continuar, <Link>aumente sus cuotas</Link>.",
+  "pci_projects_project_public_gateways_add_confirm_title": "Confirmar y crear",
+  "pci_projects_project_public_gateways_add_cost_title": "Coste estimado del Gateway",
+  "pci_projects_project_public_gateways_add_cost_gateway": "Gateway (tamaño {{size}}):",
+  "pci_projects_project_public_gateways_add_cost_public_ip": "IP pública:",
+  "pci_projects_project_public_gateways_add_cost_public_ip_info": "Su Gateway necesita una dirección IP pública para acceder a internet. Esta dirección IP se crea junto con su Gateway y se factura de forma adicional.",
+  "pci_projects_project_public_gateways_add_cost_total": "Precio total estimado:",
+  "pci_projects_project_public_gateways_add_cost_hourly_with_monthly": "{{hourlyPrice}} (~{{monthlyPrice}})"
 }
