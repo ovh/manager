@@ -4,7 +4,7 @@
  * `resourceName` du vault/de la licence — les jeux de test n'ont pas de service Agora réel
  * à résoudre. À supprimer une fois l'endpoint déployé (cf. §15 de la spec).
  */
-import { ServiceConsumption } from '@/types/Consumption.type';
+import { LicenseConsumption, ServiceConsumption } from '@/types/Consumption.type';
 
 const PERIOD = { beginDate: '2026-07-01T00:00:00Z', endDate: '2026-07-31T23:59:59Z' };
 
@@ -44,38 +44,35 @@ export const mockStorageConsumptions: Record<string, ServiceConsumption[]> = {
   ],
 };
 
-export const mockLicenseConsumptions: Record<string, ServiceConsumption[]> = {
-  'license-1': [
-    {
-      ...PERIOD,
-      pricingMode: 'consumption',
-      quantity: 1,
-      planCode: 'backup-license-backuplicenses-foundation',
-      planFamily: 'backup',
-      price: { currencyCode: 'EUR', text: '4,90 €', value: 490000000 },
-      uniqueId: null,
-    },
-  ],
-  'license-2': [
-    {
-      ...PERIOD,
-      pricingMode: 'consumption',
-      quantity: 1,
-      planCode: 'backup-license-backuplicenses-advanced',
-      planFamily: 'backup',
-      price: { currencyCode: 'EUR', text: '9,90 €', value: 990000000 },
-      uniqueId: null,
-    },
-  ],
-  'license-3': [
-    {
-      ...PERIOD,
-      pricingMode: 'consumption',
-      quantity: 1,
-      planCode: 'backup-license-backuplicenses-premium',
-      planFamily: 'backup',
-      price: { currencyCode: 'EUR', text: '14,90 €', value: 1490000000 },
-      uniqueId: null,
-    },
-  ],
+export const mockLicenseConsumptions: Record<string, LicenseConsumption> = {
+  'license-1': {
+    ...PERIOD,
+    id: 1,
+    orderId: null,
+    price: { currencyCode: 'EUR', text: '4,90 €', value: 4.9 },
+    priceByPlanFamily: [
+      { planFamily: 'backup', price: { currencyCode: 'EUR', text: '4,90 €', value: 4.9 } },
+    ],
+    serviceId: 1,
+  },
+  'license-2': {
+    ...PERIOD,
+    id: 2,
+    orderId: null,
+    price: { currencyCode: 'EUR', text: '9,90 €', value: 9.9 },
+    priceByPlanFamily: [
+      { planFamily: 'backup', price: { currencyCode: 'EUR', text: '9,90 €', value: 9.9 } },
+    ],
+    serviceId: 2,
+  },
+  'license-3': {
+    ...PERIOD,
+    id: 3,
+    orderId: null,
+    price: { currencyCode: 'EUR', text: '14,90 €', value: 14.9 },
+    priceByPlanFamily: [
+      { planFamily: 'backup', price: { currencyCode: 'EUR', text: '14,90 €', value: 14.9 } },
+    ],
+    serviceId: 3,
+  },
 };

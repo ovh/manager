@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { EMPTY_VALUE_PLACEHOLDER } from '@/module.constants';
 
-import { firstIpWithoutMask, formatIpList, formatServerIps } from './formatIpList';
+import { firstIpWithoutMask, formatIpList, formatServerIps, toIpBlock } from './formatIpList';
 
 describe('formatIpList', () => {
   it('returns the placeholder when the list is missing', () => {
@@ -65,6 +65,20 @@ describe('firstIpWithoutMask', () => {
 
   it('ignores blank entries', () => {
     expect(firstIpWithoutMask(['  ', '203.0.113.10/32'])).toBe('203.0.113.10');
+  });
+});
+
+describe('toIpBlock', () => {
+  it('adds the /32 host mask to a bare IPv4', () => {
+    expect(toIpBlock('185.26.17.45')).toBe('185.26.17.45/32');
+  });
+
+  it('leaves an IP already carrying a prefix untouched', () => {
+    expect(toIpBlock('203.0.113.0/24')).toBe('203.0.113.0/24');
+  });
+
+  it('leaves an empty string untouched', () => {
+    expect(toIpBlock('')).toBe('');
   });
 });
 

@@ -6,6 +6,7 @@ import { BackupServerResource } from '@/types/BackupServer.type';
 export type TBackupServersMockParams = {
   backupServers?: BackupServerResource[];
   isBackupServersError?: boolean;
+  isCreateBackupServerError?: boolean;
   isEditBackupServerError?: boolean;
   isDeleteBackupServerError?: boolean;
 };
@@ -16,6 +17,7 @@ const BACKUP_SERVERS_URL =
 export const getBackupServersMocks = ({
   backupServers,
   isBackupServersError,
+  isCreateBackupServerError,
   isEditBackupServerError,
   isDeleteBackupServerError,
 }: TBackupServersMockParams): Handler[] => [
@@ -25,6 +27,14 @@ export const getBackupServersMocks = ({
     api: 'v2',
     method: 'get',
     status: isBackupServersError ? 500 : 200,
+    delay: 0,
+  },
+  {
+    url: BACKUP_SERVERS_URL,
+    response: () => null,
+    api: 'v2',
+    method: 'post',
+    status: isCreateBackupServerError ? 500 : 201,
     delay: 0,
   },
   {

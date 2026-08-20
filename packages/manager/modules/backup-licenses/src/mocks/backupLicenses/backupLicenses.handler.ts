@@ -1,10 +1,7 @@
 import { Handler } from '@ovh-ux/manager-core-test-utils';
 
-import {
-  mockBackupLicenses,
-  mockCreateBackupLicense,
-} from '@/mocks/backupLicenses/backupLicenses.mock';
-import { BackupLicenseResource, CreateBackupLicenseBody } from '@/types/BackupLicense.type';
+import { mockBackupLicenses } from '@/mocks/backupLicenses/backupLicenses.mock';
+import { BackupLicenseResource } from '@/types/BackupLicense.type';
 
 export type TBackupLicenseMockParams = {
   backupLicenses?: BackupLicenseResource[];
@@ -25,14 +22,6 @@ export const getBackupLicenseMocks = ({
     api: 'v2',
     method: 'get',
     status: isBackupLicensesError ? 500 : 200,
-    delay: 0,
-  },
-  {
-    url: '/backupServices/tenant/:backupServicesId/vspc/:vspcTenantId/backupLicenses',
-    response: () => mockCreateBackupLicense({} as CreateBackupLicenseBody),
-    api: 'v2',
-    method: 'post',
-    status: 200,
     delay: 0,
   },
 ];

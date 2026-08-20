@@ -25,7 +25,7 @@ interface EditRecapPanelProps {
   errorMessage: string | null;
   isSaving: boolean;
   onSave: () => void;
-  /** URN du serveur : accès direct par URL, donc protégé indépendamment du menu ⋮. */
+  /** URN de la ressource backupLicense : accès direct par URL, donc protégé indépendamment du menu ⋮. */
   urn?: string;
 }
 
@@ -114,13 +114,6 @@ export default function EditRecapPanel({
         </OdsMessage>
       )}
 
-      {/* Jamais désactivé côté validation : un clic avec formulaire invalide révèle les erreurs et
-          rouvre l'étape fautive (cf. EditBackupServer.page), feedback actionnable plutôt qu'un
-          bouton grisé silencieux — même parti pris que le CTA du tunnel de commande. `ManagerButton`
-          y ajoute un check IAM indépendant du menu ⋮ : protège aussi l'accès direct par URL.
-          Fail-closed explicite (`!urn`) : par défaut, `ManagerButton` autorise l'action tant que
-          `urn` est absent (bypass silencieux, cf. son code) — inacceptable ici, donc on force la
-          désactivation nous-mêmes tant que le contrat API ne garantit pas ce champ. */}
       <ManagerButton
         id={saveButtonId}
         type="button"

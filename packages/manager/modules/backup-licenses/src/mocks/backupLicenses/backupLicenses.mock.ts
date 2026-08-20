@@ -1,5 +1,4 @@
-import { BackupLicenseResource, CreateBackupLicenseBody } from '@/types/BackupLicense.type';
-import { BackupServerResource, LicenseStatus } from '@/types/BackupServer.type';
+import { BackupLicenseResource } from '@/types/BackupLicense.type';
 
 /** Jeux de données de développement. */
 /** `id` sert de `resourceName` que la cascade résout : nom de service côté `/services` et côté Agora. */
@@ -33,22 +32,3 @@ export const mockBackupLicenses: BackupLicenseResource[] = [
     currentState: { id: 'license-3' },
   },
 ];
-
-/** Réponse simulée du POST de création : reprend les champs saisis. */
-export const mockCreateBackupLicense = (body: CreateBackupLicenseBody): BackupServerResource => {
-  const id = `mock-backup-server-${Date.now()}`;
-
-  return {
-    id,
-    status: 'CREATING',
-    currentTasks: [],
-    currentState: {
-      id,
-      displayName: body.displayName,
-      externalIps: body.backupServerExternalIp.split(';').filter(Boolean),
-      privateIps: body.backupServerPrivateIp,
-      licenseTypeRequested: body.licenseType,
-      licenseStatus: LicenseStatus.CREATING,
-    },
-  };
-};

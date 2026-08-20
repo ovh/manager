@@ -1,6 +1,6 @@
 import { v6 } from '@ovh-ux/manager-core-api';
 
-import { ServiceConsumption } from '@/types/Consumption.type';
+import { LicenseConsumption, ServiceConsumption } from '@/types/Consumption.type';
 import {
   getLicenseConsumptionRoute,
   getServiceConsumptionRoute,
@@ -13,7 +13,7 @@ export const getServiceConsumption = async (serviceId: string): Promise<ServiceC
 };
 
 /** Prix de la licence (§3.2) : pas de `quantity` à lire, `/consumption` sans `/element`. */
-export const getLicenseConsumption = async (serviceId: string): Promise<ServiceConsumption[]> => {
-  const { data } = await v6.get<ServiceConsumption[]>(getLicenseConsumptionRoute(serviceId));
+export const getLicenseConsumption = async (serviceId: string): Promise<LicenseConsumption> => {
+  const { data } = await v6.get<LicenseConsumption>(getLicenseConsumptionRoute(serviceId));
   return data;
 };

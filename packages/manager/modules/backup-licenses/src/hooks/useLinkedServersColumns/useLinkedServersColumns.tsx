@@ -9,6 +9,7 @@ import LicenseStatusCell from '@/components/linked-servers/LicenseStatusCell/Lic
 import LicenseTypeCell from '@/components/linked-servers/LicenseTypeCell/LicenseTypeCell.component';
 import OsTypeCell from '@/components/linked-servers/OsTypeCell/OsTypeCell.component';
 import ServerIpsCell from '@/components/linked-servers/ServerIpsCell/ServerIpsCell.component';
+import { useBackupLicenseUrn } from '@/hooks/useBackupLicenseUrn/useBackupLicenseUrn';
 import { BACKUP_LICENSES_NAMESPACES, EMPTY_VALUE_PLACEHOLDER } from '@/module.constants';
 import { BackupServerResource } from '@/types/BackupServer.type';
 import {
@@ -24,6 +25,7 @@ import {
  */
 export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[] => {
   const { t } = useTranslation(BACKUP_LICENSES_NAMESPACES.LINKED_SERVERS);
+  const backupLicenseUrn = useBackupLicenseUrn();
 
   return useMemo(
     () => [
@@ -96,11 +98,11 @@ export const useLinkedServersColumns = (): DatagridColumn<BackupServerResource>[
           <BackupServerActionsCell
             backupServerId={server.id}
             isDisabled={isServerInFlight(server)}
-            urn={server.iam?.urn}
+            urn={backupLicenseUrn}
           />
         ),
       },
     ],
-    [t],
+    [t, backupLicenseUrn],
   );
 };

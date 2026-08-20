@@ -34,6 +34,7 @@ import { BACKUP_LICENSES_NAMESPACES, CHANGELOG_LINKS, LABELS } from '@/module.co
 import { routeUrls } from '@/routes/routes.constants';
 import { CreateBackupLicenseBody } from '@/types/BackupLicense.type';
 import { LicenseFamily } from '@/types/Order.type';
+import { toIpBlock } from '@/utils/formatIpList/formatIpList';
 
 /** Champ de formulaire → id de l'élément DOM (cf. OrderTextField), pour le scroll-to-error. */
 const FIELD_ELEMENT_IDS: Record<AddServerFieldName, string> = {
@@ -92,12 +93,10 @@ export default function AddServerPage() {
     const body: CreateBackupLicenseBody = {
       displayName: form.form.displayName.trim(),
       licenseType: resolvedLicenseApiValue,
-      backupServerExternalIp: [form.form.backupServerExternalIp.trim(), form.form.veeamClientIp.trim()]
+      externalIps: [form.form.backupServerExternalIp.trim(), form.form.veeamClientIp.trim()]
         .filter(Boolean)
-        .join(','),
-      ...(form.form.isBehindNat
-        ? { backupServerPrivateIp: [form.form.backupServerPrivateIp.trim()] }
-        : {}),
+        .map(toIpBlock),
+      privateIps: form.form.isBehindNat ? [toIpBlock(form.form.backupServerPrivateIp.trim())] : [],
     };
 
     createBackupLicense.mutate(body, {
