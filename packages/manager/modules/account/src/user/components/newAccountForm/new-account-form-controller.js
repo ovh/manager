@@ -483,12 +483,7 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
-        // 400 with an address selected = stale PPF address (RG6): warn the
-        // field and refresh the rules
-        if (err?.status === 400 && this.model.einvoicingBillingAddress) {
-          this.$scope.$broadcast('einvoicing.staleAddress');
-          this.updateRules();
-        }
+        this.refreshEinvoicingAddressOnError(err);
         const isPrivateIndividual =
           this.model.legalform === USER_TYPE_INDIVIDUAL;
         const genericError = isPrivateIndividual
@@ -560,6 +555,28 @@ export default class NewAccountFormController {
   }
 
   // absent when the PPF directory doesn't know the SIRET
+  /**
+   * A submit error never names the field the API rejected. Refresh the rules so
+   * the directory's current view is loaded, but leave the selected address
+   * alone: only a refreshed list that offers other addresses without this one is
+   * evidence against it (RG6). An error raised by any other field — a company
+   * address the API refuses, typically — must not cost the customer a choice the
+   * API never pointed at. An answer with no address at all is not evidence
+   * either, see the picker's getAddresses.
+   */
+  refreshEinvoicingAddressOnError(err) {
+    const submitted = this.model[EINVOICING_FIELD_NAME];
+    if (err?.status !== 400 || !submitted) {
+      return null;
+    }
+    return this.updateRules().then(() => {
+      const offered = (this.getEinvoicingRule()?.in || []).filter(Boolean);
+      if (offered.length && !offered.includes(submitted)) {
+        this.$scope.$broadcast('einvoicing.staleAddress');
+      }
+    });
+  }
+
   getEinvoicingRule() {
     return (this.rules || []).find(
       (rule) => rule.fieldName === EINVOICING_FIELD_NAME,
@@ -579,15 +596,27 @@ export default class NewAccountFormController {
         if (!newRules) {
           return;
         }
+        // The rules are refetched on every field change. An answer that drops
+        // the e-invoicing entry — because another field is being refused —
+        // would take the picker off the screen and delete the selected address
+        // with it, for a field the API never pointed at: carry the entry over.
+        // A company change brings a fresh entry instead, and the picker hides
+        // itself anyway once the account stops being eligible.
+        const previousEinvoicingRule = this.getEinvoicingRule();
+        const rules =
+          previousEinvoicingRule &&
+          !newRules.find((rule) => rule.fieldName === EINVOICING_FIELD_NAME)
+            ? [...newRules, previousEinvoicingRule]
+            : newRules;
         (this.rules || []).forEach((rule) => {
-          if (!newRules.find((value) => value.fieldName === rule.fieldName)) {
+          if (!rules.find((value) => value.fieldName === rule.fieldName)) {
             delete this.model[rule.fieldName];
           }
         });
-        this.rules = newRules;
+        this.rules = rules;
 
         if (this.siretFieldIsAvailable()) {
-          this.formatSiretRules(newRules);
+          this.formatSiretRules(rules);
         }
       })
       .catch(angular.noop);
