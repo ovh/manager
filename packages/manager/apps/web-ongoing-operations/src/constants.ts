@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { StatusEnum } from '@/enum/status.enum';
 
 export const taskMeDomain = ['me', 'task', 'domain'];
 export const taskMeDns = ['me', 'task', 'dns'];
@@ -122,6 +123,21 @@ export const editableArgument: Record<string, z.ZodString> = {
   validationToken: z.string(),
   default: z.string(),
 };
+
+/** APIv2 status of a trade task that may still carry answerable FOAs. */
+export const foaScheduledTaskStatus = 'SCHEDULED';
+
+/**
+ * APIv6 statuses of an operation whose FOAs may still be answered. A done
+ * or cancelled trade is over : whatever the APIv2 task list still returns,
+ * nothing can be validated on it anymore.
+ */
+export const foaEligibleOperationStatuses: readonly string[] = [
+  StatusEnum.TODO,
+  StatusEnum.DOING,
+  StatusEnum.ERROR,
+  StatusEnum.PROBLEM,
+];
 
 export const iamGetAllDomAction = 'domain:apiovh:alldom/get';
 export const allDomFeatureAvailibility = 'web-domains:alldoms';
