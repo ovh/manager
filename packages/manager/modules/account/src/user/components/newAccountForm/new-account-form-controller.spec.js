@@ -23,7 +23,14 @@ const otherRule = { fieldName: 'organisation', in: null };
 // injected services, none of the others are involved.
 const build = ({ address = ADDRESS, rules } = {}) => {
   const broadcasts = [];
-  const $scope = { $broadcast: (name) => broadcasts.push(name) };
+  const listeners = {};
+  const $scope = {
+    $broadcast: (name) => broadcasts.push(name),
+    $on: (name, fn) => {
+      listeners[name] = fn;
+    },
+  };
+  const alerter = { alertFromSWS: vi.fn(), resetMessage: vi.fn() };
   const ctrl = new NewAccountFormCtrl(
     { resolve: (v) => Promise.resolve(v) },
     {},
@@ -31,17 +38,18 @@ const build = ({ address = ADDRESS, rules } = {}) => {
     {},
     { trackClick: vi.fn() },
     { getUser: () => ({}), getUserLocale: () => 'fr_FR' },
-    { alertFromSWS: vi.fn() },
+    alerter,
     { instant: (k) => k },
     vi.fn(),
     $scope,
-    {},
+    // nothing of $onInit past the listener registration is exercised here
+    { checkFeatureAvailability: () => new Promise(() => {}) },
     {},
   );
   ctrl.model = { einvoicingBillingAddress: address, organisation: 'OVH' };
   ctrl.rules = rules || [otherRule, einvoicingRule([ADDRESS, OTHER])];
   ctrl.siretFieldIsAvailable = () => false;
-  return { ctrl, broadcasts };
+  return { ctrl, broadcasts, listeners, alerter };
 };
 
 // stands in for the /newAccount/rules refresh
@@ -160,5 +168,46 @@ describe('a rules refresh that omits the e-invoicing entry', () => {
     await ctrl.updateRules();
 
     expect(ctrl.getEinvoicingRule()).toBeUndefined();
+  });
+});
+
+describe('the API errors the form displays', () => {
+  // validating a company replaces the data those errors were about
+  const validateCompany = () => {
+    const built = build();
+    built.ctrl.$onInit();
+    built.ctrl.submitError = { status: 400, data: { message: 'nope' } };
+    built.listeners['siret:companySelected']();
+    return built;
+  };
+
+  it('are dropped when the customer validates a company', () => {
+    const { ctrl } = validateCompany();
+
+    expect(ctrl.submitError).toBe(null);
+  });
+
+  it('drops the alert banner too, not just the inline message', () => {
+    const { alerter } = validateCompany();
+
+    expect(alerter.resetMessage).toHaveBeenCalledWith('InfoErrors');
+  });
+
+  it('listens for the company the siret component hands over', () => {
+    const { ctrl, listeners } = build();
+
+    ctrl.$onInit();
+
+    expect(listeners['siret:companySelected']).toBeTypeOf('function');
+  });
+
+  it('clears both on demand', () => {
+    const { ctrl, alerter } = build();
+    ctrl.submitError = { status: 400 };
+
+    ctrl.clearApiErrors();
+
+    expect(ctrl.submitError).toBe(null);
+    expect(alerter.resetMessage).toHaveBeenCalledWith('InfoErrors');
   });
 });

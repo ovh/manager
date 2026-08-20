@@ -30,6 +30,12 @@ import { SUPPORT_URLS } from '../../user.constants';
 // generic section loop
 const EINVOICING_FIELD_NAME = 'einvoicingBillingAddress';
 
+// Alerter container the form's API errors are pushed to (see the ovh-alert
+// directive in the template).
+const INFO_ERRORS_CONTAINER = 'InfoErrors';
+// Broadcast by the siret component once the customer validated a company.
+const COMPANY_SELECTED_EVENT = 'siret:companySelected';
+
 export default class NewAccountFormController {
   /* @ngInject */
   constructor(
@@ -84,6 +90,10 @@ export default class NewAccountFormController {
 
     this.consentDecision = null;
     this.smsConsentDecision = null;
+
+    // Validating a company in the SIRET lookup replaces the data the API
+    // complained about, so its errors no longer describe the form.
+    this.$scope.$on(COMPANY_SELECTED_EVENT, () => this.clearApiErrors());
 
     return this.ovhFeatureFlipping
       .checkFeatureAvailability([
@@ -323,7 +333,7 @@ export default class NewAccountFormController {
       this.Alerter.alertFromSWS(
         this.$translate.instant('signup_legalform_other_save_blocked'),
         'ERROR',
-        'InfoErrors',
+        INFO_ERRORS_CONTAINER,
       );
       return null;
     }
@@ -505,7 +515,7 @@ export default class NewAccountFormController {
         this.Alerter.alertFromSWS(
           `${genericError}${apiError}`,
           'ERROR',
-          'InfoErrors',
+          INFO_ERRORS_CONTAINER,
         );
       })
       .finally(() => {
@@ -575,6 +585,16 @@ export default class NewAccountFormController {
         this.$scope.$broadcast('einvoicing.staleAddress');
       }
     });
+  }
+
+  /**
+   * Drops the errors the API raised against data the customer has since
+   * replaced: the banner it pushed to the alert container, and the inline
+   * message the form renders from submitError.
+   */
+  clearApiErrors() {
+    this.submitError = null;
+    this.Alerter.resetMessage(INFO_ERRORS_CONTAINER);
   }
 
   getEinvoicingRule() {
