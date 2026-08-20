@@ -16,7 +16,7 @@ import backupAgentLogo from '@/assets/images/sidebar/backup-agent-logo.png';
 import veeamBackupLogo from '@/assets/images/sidebar/veeam-backup-logo.png';
 
 export const features = [
-  'bmc-backup-agent-baremetal:container',
+  'bmc-backup-agent-baremetal',
   'bmc-backup-licenses:container',
   'dedicated-server',
   'vps',
