@@ -4,6 +4,7 @@ export enum StepsEnum {
   'SIZE' = 'SIZE',
   'LOCATION' = 'LOCATION',
   NETWORK = 'NETWORK',
+  CONFIRM = 'CONFIRM',
 }
 
 export type TStep = {
@@ -73,6 +74,14 @@ const getInitialSteps = () =>
     ],
     [
       StepsEnum.NETWORK,
+      {
+        isOpen: false,
+        isChecked: false,
+        isLocked: false,
+      },
+    ],
+    [
+      StepsEnum.CONFIRM,
       {
         isOpen: false,
         isChecked: false,
