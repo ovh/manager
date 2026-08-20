@@ -28,12 +28,16 @@ export default class SiretSearchModalCtrl {
 
   $onInit() {
     this.trackingPrefix = TRACKING_PREFIX[this.trackingMode || 'modification'];
-    // The account already holds a usable SIRET: look it up straight away so the
-    // customer lands on the company found instead of retyping what we know.
-    // needTracking=false — nothing was clicked, but the outcome is still tracked.
+    // Seed the field with whatever SIRET the account already holds, so the
+    // customer never retypes what we know — a SIREN or a value the directory
+    // would reject still gives them a head start over an empty field.
     const initial = (this.initialSearch || '').replace(/\s/g, '');
+    this.search = initial;
+    // Only a usable 14-digit SIRET is looked up on open: searching a value we
+    // know to be incomplete would greet the customer with an error they did not
+    // ask for. needTracking=false — nothing was clicked, but the outcome is
+    // still tracked.
     if (SIRET_SEARCH_REGEXP.test(initial)) {
-      this.search = initial;
       this.submitSearch(false);
     }
   }

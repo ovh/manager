@@ -104,6 +104,42 @@ describe('auto-search on open', () => {
 
     expect(getSiret).not.toHaveBeenCalled();
   });
+
+  // Regression: the field used to be filled in only when the value was a
+  // searchable 14-digit SIRET, so a customer whose account held anything else
+  // opened the modal on an empty field and had to retype what we already knew.
+  it.each([
+    ['984715045', 'a SIREN'],
+    ['9847150450001A', 'a malformed value'],
+    ['984 715 045 0001', 'an incomplete formatted value'],
+  ])('still fills the field with %p (%s)', (initialSearch) => {
+    const getSiret = vi.fn();
+    const { ctrl } = build({ getSiret, init: false, initialSearch });
+
+    ctrl.$onInit();
+
+    expect(ctrl.search).toBe(initialSearch.replace(/\s/g, ''));
+    expect(getSiret).not.toHaveBeenCalled();
+  });
+
+  it('fills the field with the SIRET it searches', () => {
+    const { ctrl } = build({ init: false, initialSearch: '984 715 045 00014' });
+
+    ctrl.$onInit();
+
+    expect(ctrl.search).toBe('98471504500014');
+  });
+
+  it.each([
+    ['', 'nothing'],
+    [undefined, 'no binding at all'],
+  ])('leaves the field empty when the account holds %p (%s)', (initialSearch) => {
+    const { ctrl } = build({ init: false, initialSearch });
+
+    ctrl.$onInit();
+
+    expect(ctrl.search).toBe('');
+  });
 });
 
 describe('stale responses', () => {
