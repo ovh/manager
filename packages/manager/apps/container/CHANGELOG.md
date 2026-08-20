@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.202.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.201.0...@ovh-ux/manager-container-app@0.202.0) (2026-08-20)
+
+
+### Features
+
+* **container:** fix backup agent declaration ([db70158](https://github.com/ovh/manager/commit/db70158299fff731af1f17ffa5aaf810e5cfd462)), closes [#BKP-1161](https://github.com/ovh/manager/issues/BKP-1161)
+
+
+
+
+
 # [0.201.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-container-app@0.200.2...@ovh-ux/manager-container-app@0.201.0) (2026-08-19)
 
 
