@@ -1,6 +1,7 @@
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
 import { useTranslation } from 'react-i18next';
 import { FlavorDetails } from '../components/cart/FlavorDetails.component';
+import { VolumeDetails } from '../components/cart/VolumeDetails.component';
 import { useInstanceCreation } from './useInstanceCreation';
 import CartOptionDetailItem from '../components/cart/CartOptionDetailItem.component';
 import { useFormContext, useWatch } from 'react-hook-form';
@@ -12,6 +13,7 @@ import {
 } from '../view-models/cartViewModel';
 import { useInstancesCatalogWithSelect } from '@/data/hooks/catalog/useInstancesCatalogWithSelect';
 import { useCatalogPrice } from '@ovh-ux/muk';
+import { useRepricingInstancesAvailable } from '@/hooks/repricing/useRepricingInstancesAvailable';
 
 export type TCartItem = {
   id: string;
@@ -45,6 +47,7 @@ export const useCartItems = (): TCartItems => {
     NAMESPACES.REGION,
   ]);
   const { control } = useFormContext<TInstanceCreationForm>();
+  const hasRepricing = useRepricingInstancesAvailable();
 
   const { instanceData } = useInstanceCreation();
 
@@ -109,7 +112,11 @@ export const useCartItems = (): TCartItems => {
           id: 'flavor',
           name: t('creation:pci_instance_creation_select_flavor_cart_section'),
           description: (
-            <FlavorDetails quantity={quantity} flavor={flavorDetails} />
+            <FlavorDetails
+              quantity={quantity}
+              flavor={flavorDetails}
+              withStorage={!hasRepricing}
+            />
           ),
           price: flavorDetails.price * quantity,
           priceUnit,
@@ -180,6 +187,24 @@ export const useCartItems = (): TCartItems => {
       ]
     : [];
 
+  const volume: TCartItemDetail[] =
+    hasRepricing && flavorDetails
+      ? [
+          {
+            id: 'volume',
+            name: t('creation:pci_instance_creation_cart_volumes_title'),
+            description: <VolumeDetails disks={flavorDetails.disks} />,
+            price:
+              flavorDetails.localDiskPrice === null
+                ? null
+                : flavorDetails.localDiskPrice * quantity,
+            priceUnit: t(
+              'creation:pci_instance_creation_table_header_price_hourly_unit',
+            ),
+          },
+        ]
+      : [];
+
   const network: TCartItemDetail[] = privateNetwork
     ? [
         {
@@ -242,6 +267,7 @@ export const useCartItems = (): TCartItems => {
   const details = [
     ...region,
     ...flavor,
+    ...volume,
     ...distributionImage,
     ...sshKey,
     ...backup,
