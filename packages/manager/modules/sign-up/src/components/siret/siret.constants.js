@@ -40,6 +40,33 @@ export const COMPANY_NAME_LABEL_LEGAL_FORMS = [
 export const UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT =
   'siret_update_search_assistant';
 
+export const MODAL_REVIEW_INTRO_DEFAULT = 'siret_modal_review_intro';
+
+/**
+ * Appends the legal form to a translation key when a dedicated wording exists
+ * (entreprise / association / administration), otherwise keeps the base key.
+ */
+export function byLegalForm(baseKey, legalForm) {
+  return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
+    ? `${baseKey}_${legalForm}`
+    : baseKey;
+}
+
+/** "Nom de l'entreprise / l'association / l'administration" */
+export function getCompanyNameLabelKey(legalForm) {
+  return byLegalForm(COMPANY_NAME_LABEL_DEFAULT, legalForm);
+}
+
+/** "Mettre à jour mes informations d'entreprise / d'association / d'administration" */
+export function getUpdateSearchAssistantLabelKey(legalForm) {
+  return byLegalForm(UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT, legalForm);
+}
+
+/** "Vérifiez vos informations d'entreprise / d'association / d'administration" */
+export function getModalReviewIntroKey(legalForm) {
+  return byLegalForm(MODAL_REVIEW_INTRO_DEFAULT, legalForm);
+}
+
 // Maps the search-assistant field aliases (used for enabling/disabling inputs)
 // to their matching key in the rules object.
 export const SIRET_RULE_FIELD = {
@@ -82,7 +109,13 @@ export function calculateFRVATNumber(siren) {
 export const SIRET_SEARCH_REGEXP = /^(?:\d\s*){14}$/;
 
 export const SIRET_FOCUS_PARAM = 'siretForm';
-export const SIRET_SEARCH_ASSISTANT_ANCHOR = 'siret-search-assistant';
+
+/**
+ * Broadcast from an ancestor scope to (re)open the SIRET lookup modal, so an
+ * error message rendered outside the siret component can send the customer
+ * straight to the company lookup.
+ */
+export const OPEN_SEARCH_MODAL_EVENT = 'siret:openSearchModal';
 
 export const NON_DISCLOSED_VALUE = '[ND]';
 
@@ -103,6 +136,27 @@ export function fromSuggestion(value, previous) {
   return isNdValue(value) ? '' : value || previous;
 }
 
+/**
+ * Suggestion values the search assistant fills the form with. A withheld value
+ * comes back in one of two shapes depending on the provider: the [ND] token, or
+ * an empty string (DATA_GOUV_RECHERCHE_ENTREPRISES answers "" for a company that
+ * does not disclose its data). Both mean the customer must type it in.
+ * The address is only usable when street, postcode AND city are all present.
+ */
+export const ASSISTANT_FILLED_VALUES = ['name', 'address', 'zipCode', 'city'];
+
+/** True when the directory returned nothing usable for a value. */
+export function isMissingValue(value) {
+  return !fromSuggestion(value, '');
+}
+
+/** True when at least one value the assistant fills came back empty or withheld. */
+export function hasMissingValues(suggestion) {
+  return ASSISTANT_FILLED_VALUES.some((key) =>
+    isMissingValue(suggestion?.[key]),
+  );
+}
+
 export default {
   LEGAL_FORM,
   PREFIX_TRANSLATION_LEGAL_FORM,
@@ -117,5 +171,5 @@ export default {
   SIRET_RULE_FIELD,
   SIRET_SEARCH_REGEXP,
   SIRET_FOCUS_PARAM,
-  SIRET_SEARCH_ASSISTANT_ANCHOR,
+  OPEN_SEARCH_MODAL_EVENT,
 };

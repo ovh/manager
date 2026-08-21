@@ -98,6 +98,23 @@
     <!-- ALERT -->
     <div data-ovh-alert="InfoErrors"></div>
 
+    <!-- The alert is rendered with ng-bind-html, so the way back to the SIRET
+         lookup has to be a sibling of it rather than a link inside it. -->
+    <oui-message
+        class="mb-2"
+        type="error"
+        data-ng-if="$ctrl.submitError && $ctrl.isSiretAvailable"
+    >
+        <span data-translate="signup_account_info_siret_lookup_hint"></span>
+        <button
+            type="button"
+            class="oui-button oui-button_link"
+            data-ng-click="$ctrl.openSiretSearch()"
+        >
+            <span data-translate="signup_account_info_siret_lookup_cta"></span>
+        </button>
+    </oui-message>
+
     <!-- FOOTER BUTTONS -->
     <div class="mb-5">
         <!-- RG4: switching from "Autre" to a company category prompts a company data check -->
@@ -120,7 +137,7 @@
         <oui-message
             class="mb-2"
             type="warning"
-            data-ng-if="ovhSignupForm.$invalid && $ctrl.user.ovhSubsidiary === 'FR' && !ovhSignupForm.form_part_activity.searchForm"
+            data-ng-if="ovhSignupForm.$invalid && $ctrl.user.ovhSubsidiary === 'FR'"
         >
             <span data-translate="new_account_content_check_validation"></span>
         </oui-message>
@@ -128,8 +145,7 @@
             class="oui-button oui-button_primary"
             data-ng-disabled="ovhSignupForm.$invalid ||
                 (!$ctrl.hasChanges() && !$ctrl.submitError) ||
-                $ctrl.isSubmitting ||
-                ovhSignupForm.form_part_activity.searchForm"
+                $ctrl.isSubmitting"
             type="submit"
             data-track-on="click"
             data-track-name="account::myaccount::profile::validation_profile_edit"

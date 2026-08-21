@@ -790,5 +790,7 @@
   "signup_legalform_other_invalid": "Kategoria „Inne” jest nieprawidłowa. Wybierz inną kategorię.",
   "signup_legalform_other_save_blocked": "Zapisanie z kategorią „Inne” jest niemożliwe. Przed kontynuowaniem wybierz prawidłową kategorię.",
   "signup_legalform_other_switch_company": "Zmieniono kategorię. Przed zapisaniem zaktualizuj dane {{ category }}.",
-  "signup_legalform_other_switch_company_cta": "Zaktualizuj moje dane firmy"
+  "signup_legalform_other_switch_company_cta": "Zaktualizuj moje dane firmy",
+  "signup_account_info_siret_lookup_hint": "Twoje informacje firmowe mogą być nieaktualne.",
+  "signup_account_info_siret_lookup_cta": "Zaktualizuj je za pomocą mojego numeru SIRET"
 }

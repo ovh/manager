@@ -25,6 +25,7 @@ export default class NewAccountFormEinvoicingController {
   constructor($scope) {
     this.$scope = $scope;
     this.staleAddress = false;
+    this.companyChanged = false;
   }
 
   $onInit() {
@@ -38,6 +39,9 @@ export default class NewAccountFormEinvoicingController {
   $onChanges(changes) {
     if (changes.siret || changes.legalForm || changes.country) {
       this.staleAddress = false;
+      // Rules refreshed after this describe a different company, so an empty
+      // address list really means "this one has none" (RG5).
+      this.companyChanged = true;
     }
     if (changes.siret && !changes.siret.isFirstChange()) {
       if (this.isEligible()) {
@@ -56,6 +60,7 @@ export default class NewAccountFormEinvoicingController {
         // entry gone: the parent's updateRules already dropped the model value
         this.selectedAddress = null;
       }
+      this.companyChanged = false;
     }
   }
 
@@ -97,7 +102,18 @@ export default class NewAccountFormEinvoicingController {
     const addresses = (this.rule && this.rule.in) || null;
     if (this.addressesSource !== addresses) {
       this.addressesSource = addresses;
-      this.availableAddresses = (addresses || []).filter(Boolean);
+      const offered = (addresses || []).filter(Boolean);
+      // The parent refetches /newAccount/rules on every field change, and a
+      // refresh triggered by another field — a company address the API refuses,
+      // typically — can come back without any address at all. That says nothing
+      // about the e-invoicing selection, so keep what the directory offered
+      // last: dropping it here would take the picker off the screen and lose a
+      // choice the API never rejected. Only a company change, or a 400 on
+      // submit, may clear it.
+      this.availableAddresses =
+        offered.length || this.companyChanged
+          ? offered
+          : this.availableAddresses || [];
     }
     return this.availableAddresses;
   }
