@@ -790,5 +790,7 @@
   "signup_legalform_other_invalid": "La categoria \"Altro\" non è valida. Seleziona un'altra categoria.",
   "signup_legalform_other_save_blocked": "Impossibile salvare con la categoria \"Altro\". Seleziona una categoria valida prima di continuare.",
   "signup_legalform_other_switch_company": "Hai modificato la tua categoria. Aggiorna i dati della tua {{ category }} prima di salvare.",
-  "signup_legalform_other_switch_company_cta": "Aggiorna i miei dati aziendali"
+  "signup_legalform_other_switch_company_cta": "Aggiorna i miei dati aziendali",
+  "signup_account_info_siret_lookup_hint": "Le informazioni sulla tua azienda potrebbero essere obsolete.",
+  "signup_account_info_siret_lookup_cta": "Aggiornale con il mio numero SIRET"
 }
