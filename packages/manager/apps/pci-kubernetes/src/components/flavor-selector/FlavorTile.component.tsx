@@ -12,14 +12,8 @@ import { OsdsChip, OsdsLink, OsdsText, OsdsTile } from '@ovhcloud/ods-components
 import { RegionChipByType, useBytes } from '@ovh-ux/manager-pci-common';
 import { useCatalogPrice, useProjectUrl } from '@ovh-ux/manager-react-components';
 
+import { TFlavorDisk } from '@/helpers/flavor-storage';
 import { DeploymentMode } from '@/types';
-
-export interface FlavorDiskType {
-  number: number;
-  capacity: number;
-  sizeUnit: string;
-  technology: string;
-}
 
 export interface FlavorTileProps {
   flavorName: string;
@@ -27,8 +21,8 @@ export interface FlavorTileProps {
     ram: number;
     vcores: number;
     frequency: number;
-    disk: FlavorDiskType[];
-    nvme: FlavorDiskType[];
+    disk?: TFlavorDisk[];
+    nvme?: TFlavorDisk[];
     bandwidth: number;
     gpuNumber: number;
     gpuModel: string;

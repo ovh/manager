@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { DeploymentMode, TScalingState } from '@/types';
+import { DeploymentMode, TClusterPlan, TClusterPlanEnum, TScalingState } from '@/types';
 
 import {
   exceedsMaxNodes,
@@ -8,6 +8,7 @@ import {
   hasMax5NodesAntiAffinity,
   isScalingValid,
   isZoneAzChecked,
+  nodesAreAssignedPublicIp,
 } from './node-pool';
 
 vi.mock('@/constants', () => ({
@@ -40,6 +41,35 @@ describe('zoneAZisChecked', () => {
     expect(isZoneAzChecked(selectedAvailabilityZones)).toBe(false);
   });
 });
+
+describe.each`
+  hasRepricing | plan                         | hasPrivateNetwork | expected
+  ${true}      | ${TClusterPlanEnum.FREE}     | ${false}          | ${true}
+  ${true}      | ${TClusterPlanEnum.FREE}     | ${true}           | ${false}
+  ${true}      | ${TClusterPlanEnum.STANDARD} | ${false}          | ${false}
+  ${true}      | ${TClusterPlanEnum.STANDARD} | ${true}           | ${false}
+  ${false}     | ${TClusterPlanEnum.FREE}     | ${false}          | ${false}
+  ${true}      | ${null}                      | ${false}          | ${false}
+`(
+  'given repricing $hasRepricing, plan $plan, private network $hasPrivateNetwork',
+  ({
+    hasRepricing,
+    plan,
+    hasPrivateNetwork,
+    expected,
+  }: {
+    hasRepricing: boolean;
+    plan: TClusterPlan | null;
+    hasPrivateNetwork: boolean;
+    expected: boolean;
+  }) => {
+    describe('when deciding whether nodes carry a billed public IP', () => {
+      it('answers from repricing, the plan and the private network together', () => {
+        expect(nodesAreAssignedPublicIp({ hasRepricing, plan, hasPrivateNetwork })).toBe(expected);
+      });
+    });
+  },
+);
 
 describe('isScalingValid', () => {
   it.each([

@@ -2,5 +2,16 @@
   "kubernetes_add_node_pool_description": "You can configure one or more node pools as soon as the cluster is created. A node pool is a group of worker nodes that all have the same configuration.",
   "kubernetes_add_node_pool_node_count": "Number of nodes",
   "kubernetes_add_node_pool_node_type": "Node type",
-  "kube_common_node_pool_model_type_selector": "Select a model"
+  "kube_common_node_pool_model_type_selector": "Select a model",
+  "kube_common_node_pool_volumes_title": "Add volumes",
+  "kube_common_node_pool_volumes_description": "Volumes are storage attached to your instance. Every instance needs at least one block volume for its system disk, and you can attach up to 16 block volumes in total.",
+  "kube_common_node_pool_volumes_system_notice": "<strong>V0 - one fixed volume.</strong> The {{size}} system volume is mandatory and can't be resized or removed. Process storage is now its own line item.",
+  "kube_common_node_pool_volumes_column_storage": "Storage",
+  "kube_common_node_pool_volumes_column_size": "Size",
+  "kube_common_node_pool_volumes_system_badge": "System",
+  "kube_common_node_pool_volumes_local_name": "Block Storage — Low latency (Local)",
+  "kube_common_node_pool_volumes_size_locked": "This size is fixed and cannot be changed",
+  "kube_common_node_pool_volumes_price_per_hour": "/ hour",
+  "kube_common_node_pool_volumes_price_per_month": "/ month",
+  "kube_common_node_pool_volumes_local_spec": "Local {{technology}} · Low latency"
 }

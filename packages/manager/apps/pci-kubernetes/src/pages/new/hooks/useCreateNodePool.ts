@@ -10,6 +10,8 @@ import { ensureNameIsUnique, generateUniqueName } from '@/helpers';
 import { hasInvalidScalingOrAntiAffinityConfig } from '@/helpers/node-pool';
 import useFloatingIpsPrice from '@/hooks/useFloatingIpsPrice';
 import useMergedFlavorById, { getPriceByDesiredScale } from '@/hooks/useMergedFlavorById';
+import useNodeLocalStorage from '@/hooks/useNodeLocalStorage';
+import useRepricingInstancesAvailable from '@/hooks/useRepricingInstancesAvailable';
 import { DeploymentMode, NodePoolPrice, NodePoolState } from '@/types';
 
 import { useNodePoolErrors } from './useNodePoolErrors';
@@ -78,6 +80,8 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
   );
 
   const { price: priceFloatingIp } = useFloatingIpsPrice(true, regionInformations?.type ?? null);
+  const hasRepricing = useRepricingInstancesAvailable();
+  const localStorage = useNodeLocalStorage(selectedFlavor, name ?? null);
 
   const price = useMergedFlavorById<{ hour: number; month?: number } | null>(
     projectId,
@@ -119,6 +123,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
         maxNodes: nodePoolState.scaling.quantity.max,
       }),
       flavorName: selectedFlavor.name ?? '',
+      ...(hasRepricing && { localStorage: { label: localStorage.label } }),
       monthlyPrice: isMonthlyBilled
         ? (price?.month ?? 0)
         : convertHourlyPriceToMonthly(price?.hour ?? 0),
@@ -148,6 +153,8 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
     name,
     isMonthlyBilled,
     price,
+    hasRepricing,
+    localStorage,
     clearExistsError,
     handleCreationError,
   ]);
@@ -221,6 +228,7 @@ const useCreateNodePools = ({ name, isLocked }: { name?: string; isLocked: boole
       nodePoolEnabled,
       price,
       priceFloatingIp,
+      localStorage,
     },
 
     actions: {

@@ -12,6 +12,7 @@
   "kubernetes_network_form_gateway_vrack_field_ip_error_pattern": "Introduza um endereço IP válido",
   "kubernetes_network_form_label": "Rede privada associada",
   "kubernetes_network_form_none": "Nenhum (IP públicos)",
+  "kubernetes_network_form_none_price": "Um endereço IP público é atribuído a cada nó, faturado a {{price}} por nó.",
   "kubernetes_network_form_description": "Os seus nós receberão um IP na vLAN da rede privada escolhida.",
   "kubernetes_network_form_add": "Criar uma rede privada",
   "kubernetes_network_form_subnet": "Escolha uma sub-rede para o seu cluster",

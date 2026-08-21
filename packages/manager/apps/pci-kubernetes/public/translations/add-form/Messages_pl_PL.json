@@ -2,5 +2,16 @@
   "kubernetes_add_node_pool_description": "Po utworzeniu klastra możesz skonfigurować jedną lub więcej pul węzłów. Pula węzłów to zestaw węzłów roboczych tego samego typu.",
   "kubernetes_add_node_pool_node_count": "Liczba węzłów",
   "kubernetes_add_node_pool_node_type": "Rodzaj węzła",
-  "kube_common_node_pool_model_type_selector": "Wybierz model"
+  "kube_common_node_pool_model_type_selector": "Wybierz model",
+  "kube_common_node_pool_volumes_title": "Dodaj wolumeny",
+  "kube_common_node_pool_volumes_description": "Wolumeny to przestrzeń dyskowa podłączona do Twojej instancji. Każda instancja wymaga co najmniej jednego wolumenu blokowego na dysk systemowy, a łącznie możesz podłączyć maksymalnie 16 wolumenów blokowych.",
+  "kube_common_node_pool_volumes_system_notice": "<strong>V0 - jeden stały wolumen.</strong> Wolumen systemowy o rozmiarze {{size}} jest obowiązkowy i nie można go zmienić ani usunąć. Przestrzeń dyskowa stanowi teraz odrębną pozycję na rachunku.",
+  "kube_common_node_pool_volumes_column_storage": "Przestrzeń dyskowa",
+  "kube_common_node_pool_volumes_column_size": "Rozmiar",
+  "kube_common_node_pool_volumes_system_badge": "System",
+  "kube_common_node_pool_volumes_local_name": "Block Storage — Low latency (lokalny)",
+  "kube_common_node_pool_volumes_size_locked": "Ten rozmiar jest stały i nie można go zmienić",
+  "kube_common_node_pool_volumes_price_per_hour": "/ godz.",
+  "kube_common_node_pool_volumes_price_per_month": "/ mies.",
+  "kube_common_node_pool_volumes_local_spec": "Lokalny {{technology}} · Low latency"
 }

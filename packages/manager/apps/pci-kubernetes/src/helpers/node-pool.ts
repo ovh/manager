@@ -1,5 +1,7 @@
 import { ANTI_AFFINITY_MAX_NODES, NODE_RANGE } from '@/constants';
-import { DeploymentMode, TScalingState } from '@/types';
+import { DeploymentMode, TClusterPlan, TClusterPlanEnum, TScalingState } from '@/types';
+
+import { isStandardPlan } from './index';
 
 type TScalingStateTest = {
   antiAffinity: boolean;
@@ -49,6 +51,16 @@ export const hasInvalidScalingOrAntiAffinityConfig = (nodePoolState: TScalingSta
     scaling: nodePoolState.scaling,
   }) ||
   !isZoneAzChecked(nodePoolState.selectedAvailabilityZones);
+
+export const nodesAreAssignedPublicIp = ({
+  hasRepricing,
+  plan,
+  hasPrivateNetwork,
+}: {
+  hasRepricing: boolean;
+  plan: TClusterPlan | null | undefined;
+  hasPrivateNetwork: boolean;
+}) => hasRepricing && !!plan && !isStandardPlan(plan as TClusterPlanEnum) && !hasPrivateNetwork;
 
 export const getPlanCodeFloatingIps = (
   time: 'hour' | 'month',
