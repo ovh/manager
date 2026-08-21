@@ -7,16 +7,15 @@ import {
   LEGAL_FORM_ENTERPRISE,
   LEGAL_FORM_ASSOCIATION,
   VAT_CHECKBOX_LABEL_BY_LEGAL_FORM,
-  COMPANY_NAME_LABEL_DEFAULT,
-  COMPANY_NAME_LABEL_LEGAL_FORMS,
-  UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT,
   SIRET_RULE_FIELD,
   SIRET_SEARCH_REGEXP,
   SIRET_FOCUS_PARAM,
-  SIRET_SEARCH_ASSISTANT_ANCHOR,
+  OPEN_SEARCH_MODAL_EVENT,
   fromSuggestion,
-  isNdValue,
+  hasMissingValues,
   getLegalFormFromCode,
+  getCompanyNameLabelKey as companyNameLabelKey,
+  getUpdateSearchAssistantLabelKey as updateSearchAssistantLabelKey,
   calculateFRVATNumber,
 } from './siret.constants';
 
@@ -28,19 +27,21 @@ export default class SiretCtrl {
     SiretService,
     coreConfig,
     $rootScope,
+    $scope,
     $timeout,
-    $anchorScroll,
+    $element,
   ) {
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.siretService = SiretService;
     this.$rootScope = $rootScope;
+    this.$scope = $scope;
     this.$timeout = $timeout;
-    this.$anchorScroll = $anchorScroll;
+    this.$element = $element;
     this.search = '';
     this.isFirstSearch = true;
     this.displayManualForm = false;
-    this.showUpdateSiretInfo = false;
+    this.searchModalOpen = false;
     this.activeSelectSuggest = null;
     this.assistantUsed = false;
     this.assistantEmptyFields = {};
@@ -59,12 +60,16 @@ export default class SiretCtrl {
       this.mode === 'modification' ? SIRET_SEARCH_REGEXP : undefined;
 
     if (this.mode === 'modification') {
+      // The edition form is never swapped out: the SIRET lookup happens in a
+      // modal, so the customer keeps their current data in sight until they
+      // validate the company found.
+      this.isFirstSearch = false;
+      this.displayManualForm = true;
       // Deep-links (container CompanyInformationModal / hub SiretBanner) carry
-      // fieldToFocus=siretForm to land the user directly on the search assistant;
-      // otherwise the manual edition form stays the default.
-      const openSearchAssistant = this.fieldToFocus === SIRET_FOCUS_PARAM;
-      this.isFirstSearch = openSearchAssistant;
-      this.displayManualForm = !openSearchAssistant;
+      // fieldToFocus=siretForm to land the customer straight on the lookup.
+      this.searchModalOpen = this.fieldToFocus === SIRET_FOCUS_PARAM;
+      // an error message rendered by the surrounding form can reopen the modal
+      this.$scope.$on(OPEN_SEARCH_MODAL_EVENT, () => this.openSearchModal());
 
       if (this.shouldApplyFrenchAssociationRules()) {
         this.assistantUsed = true;
@@ -82,9 +87,6 @@ export default class SiretCtrl {
 
       this.$timeout(() => {
         this.setAddressAutocompleteActive(true);
-        if (openSearchAssistant) {
-          this.$anchorScroll(SIRET_SEARCH_ASSISTANT_ANCHOR);
-        }
       });
     }
 
@@ -158,14 +160,29 @@ export default class SiretCtrl {
           : suggestSelected.secondaryCNIN;
       return this.submitSearch(false);
     }
+    this.suggest = { ...this.suggest, entryList: [suggestSelected] };
+    this.applySuggestion(suggestSelected);
+    return null;
+  }
+
+  /**
+   * Writes a company picked through the search assistant into the shared model.
+   * Called from the inline suggestion list (creation) and from the lookup modal
+   * once the customer validated the company found (modification) — never
+   * before, so a dismissed modal changes nothing.
+   */
+  applySuggestion(suggestSelected) {
+    this.model = this.model || {};
     this.model.companyNationalIdentificationNumber =
       suggestSelected.secondaryCNIN;
-    const isNonDiffusible =
-      isNdValue(suggestSelected.name) || isNdValue(suggestSelected.address);
-    this.model.organisation = fromSuggestion(
-      suggestSelected.name,
-      this.model.organisation,
-    );
+    // Withheld data comes back as [ND] or as an empty string depending on the
+    // provider, and any of the values we fill can be missing — not just the name
+    // and the address.
+    const isNonDiffusible = hasMissingValues(suggestSelected);
+    // Blank rather than keep the previous value: after a search the previous
+    // value belongs to a DIFFERENT company, and keeping it both showed wrong data
+    // and left the field locked (assistantEmptyFields saw it as filled in).
+    this.model.organisation = fromSuggestion(suggestSelected.name, '');
     this.lastVatValue = fromSuggestion(suggestSelected.vatID, '');
     this.noVat = !this.lastVatValue;
     this.model.vat = this.noVat ? null : this.lastVatValue;
@@ -199,12 +216,10 @@ export default class SiretCtrl {
       vat: this.isAssistantValueInvalid('vat', this.model.vat),
     };
     this.isNonDiffusible = isNonDiffusible;
-    this.suggest = { ...this.suggest, entryList: [suggestSelected] };
-    if (this.mode === 'modification') {
-      this.isFirstSearch = false;
-      this.displayManualForm = true;
-    }
-    return null;
+    // The confirmation checkbox is bound to controller state, which outlives the
+    // teardown of its own scope: untick it explicitly so freshly fetched company
+    // data always has to be confirmed again.
+    this.informationConfirmed = false;
   }
 
   // Detects the account type from the selected company legalFormCode and, for
@@ -241,12 +256,64 @@ export default class SiretCtrl {
     this.displayManualForm = true;
   }
 
+  onSearchAssistantClick() {
+    return this.mode === 'modification'
+      ? this.openSearchModal()
+      : this.goToSearchMode();
+  }
+
+  /**
+   * Opens the SIRET lookup modal. Deliberately touches nothing but the modal
+   * visibility: the edition form and the shared model must stay intact until
+   * the customer validates a company (or dismisses the modal).
+   */
+  openSearchModal() {
+    this.trackClick('search-assistant');
+    this.searchModalOpen = true;
+  }
+
+  closeSearchModal() {
+    this.searchModalOpen = false;
+  }
+
+  onSearchModalValidate(suggestion) {
+    this.searchModalOpen = false;
+    if (!suggestion) {
+      return;
+    }
+    this.applySuggestion(suggestion);
+    // The customer was just asked to complete their information: take them to
+    // the first field to fill instead of leaving them to hunt for it.
+    if (this.isNonDiffusible) {
+      this.focusFirstInvalidField();
+    }
+  }
+
+  /**
+   * Focuses the first invalid control of the surrounding form, in document
+   * order. Runs in a $timeout so the blanked values have been written and their
+   * ng-invalid class applied. The fields to complete sit in the contact section,
+   * rendered ABOVE the activity section the modal was opened from, hence the
+   * scroll that focus() brings along.
+   */
+  focusFirstInvalidField() {
+    this.$timeout(() => {
+      const root = this.$element[0].closest('form') || this.$element[0];
+      const field = root.querySelector(
+        'input.ng-invalid, select.ng-invalid, textarea.ng-invalid',
+      );
+      if (field) {
+        field.focus();
+      }
+    });
+  }
+
   goToSearchMode() {
     this.trackClick('search-assistant');
     this.isFirstSearch = true;
     this.displayManualForm = false;
-    this.showUpdateSiretInfo = this.mode === 'modification';
     this.isValid = false;
+    this.informationConfirmed = false;
     this.assistantUsed = false;
     this.assistantInvalidFields = {};
     this.isNonDiffusible = false;
@@ -382,17 +449,11 @@ export default class SiretCtrl {
 
   // "Nom de l'entreprise / l'association / l'administration" depending on the legal form
   getCompanyNameLabelKey() {
-    const legalForm = this.getLegalForm();
-    return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
-      ? `${COMPANY_NAME_LABEL_DEFAULT}_${legalForm}`
-      : COMPANY_NAME_LABEL_DEFAULT;
+    return companyNameLabelKey(this.getLegalForm());
   }
 
   getUpdateSearchAssistantLabelKey() {
-    const legalForm = this.getLegalForm();
-    return COMPANY_NAME_LABEL_LEGAL_FORMS.includes(legalForm)
-      ? `${UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT}_${legalForm}`
-      : UPDATE_SEARCH_ASSISTANT_LABEL_DEFAULT;
+    return updateSearchAssistantLabelKey(this.getLegalForm());
   }
 
   onNoVatChange(noVat) {

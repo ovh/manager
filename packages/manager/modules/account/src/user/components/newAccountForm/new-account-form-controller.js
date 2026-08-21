@@ -30,6 +30,12 @@ import { SUPPORT_URLS } from '../../user.constants';
 // generic section loop
 const EINVOICING_FIELD_NAME = 'einvoicingBillingAddress';
 
+// Alerter container the form's API errors are pushed to (see the ovh-alert
+// directive in the template).
+const INFO_ERRORS_CONTAINER = 'InfoErrors';
+// Broadcast by the siret component once the customer validated a company.
+const COMPANY_SELECTED_EVENT = 'siret:companySelected';
+
 export default class NewAccountFormController {
   /* @ngInject */
   constructor(
@@ -84,6 +90,10 @@ export default class NewAccountFormController {
 
     this.consentDecision = null;
     this.smsConsentDecision = null;
+
+    // Validating a company in the SIRET lookup replaces the data the API
+    // complained about, so its errors no longer describe the form.
+    this.$scope.$on(COMPANY_SELECTED_EVENT, () => this.clearApiErrors());
 
     return this.ovhFeatureFlipping
       .checkFeatureAvailability([
@@ -323,7 +333,7 @@ export default class NewAccountFormController {
       this.Alerter.alertFromSWS(
         this.$translate.instant('signup_legalform_other_save_blocked'),
         'ERROR',
-        'InfoErrors',
+        INFO_ERRORS_CONTAINER,
       );
       return null;
     }
@@ -483,12 +493,7 @@ export default class NewAccountFormController {
       })
       .catch((err) => {
         this.submitError = err;
-        // 400 with an address selected = stale PPF address (RG6): warn the
-        // field and refresh the rules
-        if (err?.status === 400 && this.model.einvoicingBillingAddress) {
-          this.$scope.$broadcast('einvoicing.staleAddress');
-          this.updateRules();
-        }
+        this.refreshEinvoicingAddressOnError(err);
         const isPrivateIndividual =
           this.model.legalform === USER_TYPE_INDIVIDUAL;
         const genericError = isPrivateIndividual
@@ -510,7 +515,7 @@ export default class NewAccountFormController {
         this.Alerter.alertFromSWS(
           `${genericError}${apiError}`,
           'ERROR',
-          'InfoErrors',
+          INFO_ERRORS_CONTAINER,
         );
       })
       .finally(() => {
@@ -560,6 +565,38 @@ export default class NewAccountFormController {
   }
 
   // absent when the PPF directory doesn't know the SIRET
+  /**
+   * A submit error never names the field the API rejected. Refresh the rules so
+   * the directory's current view is loaded, but leave the selected address
+   * alone: only a refreshed list that offers other addresses without this one is
+   * evidence against it (RG6). An error raised by any other field — a company
+   * address the API refuses, typically — must not cost the customer a choice the
+   * API never pointed at. An answer with no address at all is not evidence
+   * either, see the picker's getAddresses.
+   */
+  refreshEinvoicingAddressOnError(err) {
+    const submitted = this.model[EINVOICING_FIELD_NAME];
+    if (err?.status !== 400 || !submitted) {
+      return null;
+    }
+    return this.updateRules().then(() => {
+      const offered = (this.getEinvoicingRule()?.in || []).filter(Boolean);
+      if (offered.length && !offered.includes(submitted)) {
+        this.$scope.$broadcast('einvoicing.staleAddress');
+      }
+    });
+  }
+
+  /**
+   * Drops the errors the API raised against data the customer has since
+   * replaced: the banner it pushed to the alert container, and the inline
+   * message the form renders from submitError.
+   */
+  clearApiErrors() {
+    this.submitError = null;
+    this.Alerter.resetMessage(INFO_ERRORS_CONTAINER);
+  }
+
   getEinvoicingRule() {
     return (this.rules || []).find(
       (rule) => rule.fieldName === EINVOICING_FIELD_NAME,
@@ -579,15 +616,27 @@ export default class NewAccountFormController {
         if (!newRules) {
           return;
         }
+        // The rules are refetched on every field change. An answer that drops
+        // the e-invoicing entry — because another field is being refused —
+        // would take the picker off the screen and delete the selected address
+        // with it, for a field the API never pointed at: carry the entry over.
+        // A company change brings a fresh entry instead, and the picker hides
+        // itself anyway once the account stops being eligible.
+        const previousEinvoicingRule = this.getEinvoicingRule();
+        const rules =
+          previousEinvoicingRule &&
+          !newRules.find((rule) => rule.fieldName === EINVOICING_FIELD_NAME)
+            ? [...newRules, previousEinvoicingRule]
+            : newRules;
         (this.rules || []).forEach((rule) => {
-          if (!newRules.find((value) => value.fieldName === rule.fieldName)) {
+          if (!rules.find((value) => value.fieldName === rule.fieldName)) {
             delete this.model[rule.fieldName];
           }
         });
-        this.rules = newRules;
+        this.rules = rules;
 
         if (this.siretFieldIsAvailable()) {
-          this.formatSiretRules(newRules);
+          this.formatSiretRules(rules);
         }
       })
       .catch(angular.noop);
@@ -685,6 +734,12 @@ export default class NewAccountFormController {
     // notify it to re-sync the select with the newly detected account type
     this.$scope.$broadcast('siret:legalFormChanged', { legalform });
     return this.updateRules();
+  }
+
+  // Sends the customer back to the SIRET lookup modal, which lives inside the
+  // siret component (a descendant scope), from an error message rendered here.
+  openSiretSearch() {
+    this.$scope.$broadcast('siret:openSearchModal');
   }
 
   isFrenchAssociation() {

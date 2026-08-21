@@ -10,14 +10,6 @@
 >
     <span data-translate="siret_search_intro"></span>
 
-    <oui-message
-        class="d-block mt-2"
-        data-type="info"
-        data-ng-if="$ctrl.showUpdateSiretInfo"
-    >
-        <span data-translate="siret_update_search_assistant_info"></span>
-    </oui-message>
-
     <div class="oui-field__header mt-2">
         <label
             class="oui-field__label"
@@ -158,7 +150,7 @@
             data-ng-class="{ 'siret-search-assistant-button': $ctrl.mode === 'modification' }"
             variant="{{ $ctrl.mode === 'modification' ? 'secondary' : 'link' }}"
             icon-left="{{ $ctrl.mode === 'modification' ? 'oui-icon-search' : 'oui-icon-arrow-left' }}"
-            data-on-click="$ctrl.goToSearchMode()"
+            data-on-click="$ctrl.onSearchAssistantClick()"
         >
             <span
                 data-translate="{{ $ctrl.mode === 'modification' ? $ctrl.getUpdateSearchAssistantLabelKey() : 'siret_search_assistant' }}"
@@ -170,7 +162,13 @@
             data-translate="siret_manual_title"
         ></p>
 
-        <oui-message data-type="info" data-ng-if="$ctrl.isNonDiffusible">
+        <!-- d-block mt-3: the assistant button above is full-width in
+             modification mode, the message needs air to read as separate -->
+        <oui-message
+            class="d-block mt-3"
+            data-type="info"
+            data-ng-if="$ctrl.isNonDiffusible"
+        >
             <span data-translate="siret_non_diffusible"></span>
         </oui-message>
 
@@ -267,6 +265,7 @@
         class="mb-4"
         data-ng-if="$ctrl.suggest.type === 'siret' || $ctrl.displayManualForm"
         data-name="isCorrectCheckbox"
+        data-model="$ctrl.informationConfirmed"
         data-required
     >
         <span data-translate="siret_information_confirmation_is_correct"></span>
@@ -274,3 +273,15 @@
     <!-- valid that the information is correct  -->
 </form>
 <!-- end result of search -->
+
+<!-- SIRET lookup modal (modification): keeps the edition form above intact
+     until the customer validates the company found -->
+<siret-search-modal
+    data-ng-if="$ctrl.searchModalOpen"
+    data-country="$ctrl.country"
+    data-initial-search="$ctrl.model.companyNationalIdentificationNumber"
+    data-legal-form="$ctrl.getLegalForm()"
+    data-tracking-mode="$ctrl.trackingMode"
+    data-on-validate="$ctrl.onSearchModalValidate(suggestion)"
+    data-on-cancel="$ctrl.closeSearchModal()"
+></siret-search-modal>

@@ -421,10 +421,15 @@ export default class NewAccountFormFieldController {
     return this.value && field && field.$valid;
   }
 
-  // true if current field is dirty and invalid
+  // Only surface the error once the customer has left the field, or once the
+  // form has been submitted — the ui-kit convention ($invalid && ($touched ||
+  // $submitted)). Without it every mandatory empty field of a business account
+  // shows up red on page load, before anything has been typed.
   isInvalid() {
     const field = this.fieldset[this.id];
-    return field && field.$invalid;
+    return Boolean(
+      field && field.$invalid && (field.$touched || this.fieldset.$submitted),
+    );
   }
 
   // returns a normalized identifier (skip spaces)
