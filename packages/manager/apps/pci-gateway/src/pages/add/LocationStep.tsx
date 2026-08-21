@@ -153,6 +153,11 @@ export const LocationStep = ({
           store.updateForm.size(undefined);
           store.updateForm.network(undefined, undefined);
           store.updateStep.close(StepsEnum.NETWORK);
+          store.updateStep.unCheck(StepsEnum.NETWORK);
+          store.updateStep.unlock(StepsEnum.NETWORK);
+          store.updateStep.close(StepsEnum.CONFIRM);
+          store.updateStep.unCheck(StepsEnum.CONFIRM);
+          store.updateStep.unlock(StepsEnum.CONFIRM);
         },
         label: t('stepper:common_stepper_modify_this_step'),
         isDisabled: false,

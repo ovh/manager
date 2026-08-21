@@ -18,6 +18,7 @@ import {
   Headers,
   Notifications,
   PciGuidesHeader,
+  useFeatureAvailability,
   useNotifications,
   useProjectUrl,
 } from '@ovh-ux/manager-react-components';
@@ -32,12 +33,16 @@ import {
 import { SizeStep } from '@/pages/add/SizeStep';
 import { LocationStep } from '@/pages/add/LocationStep';
 import { NetworkStep } from '@/pages/add/NetworkStep';
+import { ConfirmStep } from '@/pages/add/ConfirmStep';
 import { useNewGatewayStore } from '@/pages/add/useStore';
 import { PUBLIC_GATEWAYS_READ_MORE_GUIDE } from '@/constants';
 import { ACTION_PREFIX } from '@/tracking.constants';
 import HidePreloader from '@/core/HidePreloader';
 import { useAddons } from '@/api/hooks/useAddons/useAddons';
 import { GATEWAY_ADDON_FAMILY } from '@/api/hooks/useAddons/useAddons.constant';
+import useRepricingInstancesAvailable, {
+  REPRICING_INSTANCES,
+} from '@/hooks/useRepricingInstancesAvailable';
 
 export default function AddGatewayPage(): JSX.Element {
   const { t } = useTranslation('common');
@@ -60,6 +65,11 @@ export default function AddGatewayPage(): JSX.Element {
     projectId,
     addonFamily: GATEWAY_ADDON_FAMILY,
   });
+
+  const hasRepricing = useRepricingInstancesAvailable();
+  const { isLoading: isRepricingLoading } = useFeatureAvailability([
+    REPRICING_INSTANCES,
+  ]);
 
   const regions = useMemo(
     () => addons.flatMap((addon) => addon.regions || []),
@@ -178,7 +188,7 @@ export default function AddGatewayPage(): JSX.Element {
         <PciDiscoveryBanner project={project} />
       </div>
 
-      {isAddonsFetching ? (
+      {isAddonsFetching || isRepricingLoading ? (
         <div className="text-center">
           <OsdsSpinner inline />
         </div>
@@ -187,6 +197,7 @@ export default function AddGatewayPage(): JSX.Element {
           <LocationStep regions={regions} />
           <SizeStep />
           <NetworkStep />
+          {hasRepricing && <ConfirmStep />}
         </div>
       )}
     </>

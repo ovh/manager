@@ -80,6 +80,11 @@ export const SizeStep = (): JSX.Element => {
           store.updateStep.unlock(id as StepsEnum);
 
           store.updateStep.close(StepsEnum.NETWORK);
+          store.updateStep.unCheck(StepsEnum.NETWORK);
+          store.updateStep.unlock(StepsEnum.NETWORK);
+          store.updateStep.close(StepsEnum.CONFIRM);
+          store.updateStep.unCheck(StepsEnum.CONFIRM);
+          store.updateStep.unlock(StepsEnum.CONFIRM);
 
           store.updateForm.size(undefined);
           store.updateForm.network(undefined, undefined);
