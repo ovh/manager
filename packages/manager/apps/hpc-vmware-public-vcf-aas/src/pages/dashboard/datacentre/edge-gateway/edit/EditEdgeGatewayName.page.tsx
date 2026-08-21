@@ -4,10 +4,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { NAMESPACES } from '@ovh-ux/manager-common-translations';
+import { useQueryClient } from '@tanstack/react-query';
 import {
+  getVcdEdgeGatewayListQueryKey,
   GetEdgeGatewayParams,
   useUpdateEdgeGateway,
   useVcdEdgeGateway,
+  VCDEdgeGateway,
 } from '@ovh-ux/manager-module-vcd-api';
 import { Drawer } from '@ovh-ux/manager-react-components';
 import { useMessageContext } from '@/context/Message.context';
@@ -26,19 +29,39 @@ export default function EditEdgeGatewayNamePage() {
   const navigate = useNavigate();
   const closeDrawer = () => navigate('..');
   const { addSuccess, addError } = useMessageContext();
+  const queryClient = useQueryClient();
+
+  // Optimistic update: mark the edge as UPDATING
+  const markEdgeAsUpdating = async () => {
+    const queryKey = getVcdEdgeGatewayListQueryKey(id, vdcId);
+    await queryClient.cancelQueries({ queryKey });
+    queryClient.setQueryData<VCDEdgeGateway[]>(queryKey, (edges) =>
+      edges?.map((currentEdge) =>
+        currentEdge.id === edgeGatewayId
+          ? { ...currentEdge, resourceStatus: 'UPDATING' }
+          : currentEdge,
+      ),
+    );
+  };
 
   const edgeParams: GetEdgeGatewayParams = { id, vdcId, edgeGatewayId };
-  const { data: edge } = useVcdEdgeGateway(edgeParams);
+  const { data: edge, isFetchedAfterMount } = useVcdEdgeGateway({
+    ...edgeParams,
+    refetchOnMount: 'always',
+  });
   const currentName = edge?.currentState.name;
 
-  const [defaultsReady, setDefaultsReady] = useState(!!edge);
+  const [defaultsReady, setDefaultsReady] = useState(false);
 
   const {
     mutate: updateEdgeGateway,
     isPending: isUpdating,
   } = useUpdateEdgeGateway({
     ...edgeParams,
-    onSettled: closeDrawer,
+    onSettled: (_data, error) => {
+      if (!error) markEdgeAsUpdating();
+      closeDrawer();
+    },
     onSuccess: () =>
       addSuccess({
         content: t('edge_update_banner_success', {
@@ -64,12 +87,14 @@ export default function EditEdgeGatewayNamePage() {
     defaultValues: { name: currentName ?? '' },
   });
 
+  // Seed the input only once the mount refetch has settled, so the default value
+  // is the current name (not a stale cached one being refreshed in the background).
   useEffect(() => {
-    if (currentName !== undefined && !defaultsReady) {
+    if (isFetchedAfterMount && currentName !== undefined && !defaultsReady) {
       reset({ name: currentName });
       setDefaultsReady(true);
     }
-  }, [currentName, defaultsReady, reset]);
+  }, [isFetchedAfterMount, currentName, defaultsReady, reset]);
 
   const onSubmit = (data: EditEdgeNameForm) => {
     updateEdgeGateway({ name: data.name });

@@ -3,5 +3,9 @@
   "managed_vcd_vdc_storage_profile": "Profile",
   "managed_vcd_vdc_storage_type": "Type",
   "managed_vcd_vdc_storage_capacity": "Size",
-  "managed_vcd_vdc_storage_order_cta": "Order storage"
+  "managed_vcd_vdc_storage_order_cta": "Order storage",
+  "managed_vcd_vdc_storage_delete": "Delete a storage",
+  "managed_vcd_vdc_storage_delete_modal_description": "Are you sure you want to delete the storage {{storageId}}? This action will result in the deletion of the associated resources.",
+  "managed_vcd_vdc_storage_delete_tooltip_min_quantity": "You cannot delete the last storage of this vDC. A vDC must contain at least one storage to remain operational.",
+  "managed_vcd_vdc_storage_delete_tooltip_not_standard": "This storage is the result of a migration; please contact support for its deletion."
 }

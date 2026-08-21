@@ -3,5 +3,9 @@
   "managed_vcd_vdc_storage_profile": "Profil",
   "managed_vcd_vdc_storage_type": "Typ",
   "managed_vcd_vdc_storage_capacity": "Rozmiar",
-  "managed_vcd_vdc_storage_order_cta": "Zamów Storage"
+  "managed_vcd_vdc_storage_order_cta": "Zamów Storage",
+  "managed_vcd_vdc_storage_delete": "Usuń Storage",
+  "managed_vcd_vdc_storage_delete_modal_description": "Czy na pewno chcesz usunąć storage {{storageId}}? Ta akcja spowoduje usunięcie powiązanych zasobów.",
+  "managed_vcd_vdc_storage_delete_tooltip_min_quantity": "Nie możesz usunąć ostatniego storage'u z tego vDC. vDC musi zawierać co najmniej jeden storage, aby pozostać operacyjnym.",
+  "managed_vcd_vdc_storage_delete_tooltip_not_standard": "Ten storage pochodzi z migracji, prosimy o kontakt z działem wsparcia w celu jego usunięcia."
 }
