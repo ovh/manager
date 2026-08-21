@@ -45,5 +45,17 @@
   "siret_modification_search_placeholder": "Geben Sie Ihre SIRET-Nummer ein",
   "siret_manual_company_name_corporation": "Name des Unternehmens",
   "siret_manual_company_name_association": "Name des Vereins",
-  "siret_manual_company_name_administration": "Name der Verwaltung"
+  "siret_manual_company_name_administration": "Name der Verwaltung",
+  "siret_modal_search_again": "Erneut suchen",
+  "siret_modal_validate": "Bestätigen",
+  "siret_modal_review_intro": "Überprüfen Sie Ihre Informationen.",
+  "siret_modal_review_intro_corporation": "Überprüfen Sie Ihre Unternehmensinformationen.",
+  "siret_modal_review_intro_association": "Überprüfen Sie Ihre Vereinsinformationen.",
+  "siret_modal_review_intro_administration": "Überprüfen Sie Ihre Verwaltungsinformationen.",
+  "siret_modal_search_invalid": "Die SIRET-Nummer muss 14 Ziffern enthalten.",
+  "siret_modal_non_diffusible_intro": "Ihre Unternehmensinformationen werden nicht öffentlich verbreitet (nicht verbreitungsfähiges Unternehmen). Bitte vervollständigen Sie die folgenden Informationen manuell, damit sie korrekt auf Ihren Rechnungen erscheinen:",
+  "siret_modal_non_diffusible_field_address": "Adresse",
+  "siret_modal_non_diffusible_field_zip": "Postleitzahl",
+  "siret_modal_non_diffusible_field_city": "Stadt",
+  "siret_modal_complete": "Meine Informationen vervollständigen"
 }

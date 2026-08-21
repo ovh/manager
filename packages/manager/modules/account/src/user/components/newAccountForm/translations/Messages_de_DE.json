@@ -790,5 +790,7 @@
   "signup_legalform_other_invalid": "Die Kategorie „Sonstige“ ist nicht gültig. Bitte wählen Sie eine andere Kategorie aus.",
   "signup_legalform_other_save_blocked": "Speichern mit der Kategorie „Sonstige“ nicht möglich. Bitte wählen Sie eine gültige Kategorie aus, bevor Sie fortfahren.",
   "signup_legalform_other_switch_company": "Sie haben Ihre Kategorie geändert. Bitte aktualisieren Sie die Daten Ihrer {{ category }}, bevor Sie speichern.",
-  "signup_legalform_other_switch_company_cta": "Meine Unternehmensdaten aktualisieren"
+  "signup_legalform_other_switch_company_cta": "Meine Unternehmensdaten aktualisieren",
+  "signup_account_info_siret_lookup_hint": "Ihre Unternehmensinformationen sind möglicherweise veraltet.",
+  "signup_account_info_siret_lookup_cta": "Aktualisieren Sie diese mit meiner SIRET-Nummer"
 }
