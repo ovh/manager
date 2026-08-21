@@ -45,5 +45,17 @@
   "siret_modification_search_placeholder": "Enter your SIRET number",
   "siret_manual_company_name_corporation": "Company name",
   "siret_manual_company_name_association": "Name of the association",
-  "siret_manual_company_name_administration": "Name of the administration"
+  "siret_manual_company_name_administration": "Name of the administration",
+  "siret_modal_search_again": "Search again",
+  "siret_modal_validate": "Confirm",
+  "siret_modal_review_intro": "Check your details.",
+  "siret_modal_review_intro_corporation": "Check your business details.",
+  "siret_modal_review_intro_association": "Check your association details.",
+  "siret_modal_review_intro_administration": "Check your administration details.",
+  "siret_modal_search_invalid": "The SIRET number must contain 14 digits.",
+  "siret_modal_non_diffusible_intro": "Your business details are not publicly available (non-disclosable business). Please complete the following details manually so that they appear correctly on your invoices:",
+  "siret_modal_non_diffusible_field_address": "Address ",
+  "siret_modal_non_diffusible_field_zip": "Postcode",
+  "siret_modal_non_diffusible_field_city": "City",
+  "siret_modal_complete": "Complete my details"
 }

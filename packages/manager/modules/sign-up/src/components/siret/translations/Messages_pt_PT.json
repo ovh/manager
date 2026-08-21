@@ -45,5 +45,17 @@
   "siret_modification_search_placeholder": "Introduza o seu número de SIRET",
   "siret_manual_company_name_corporation": "Nome da empresa",
   "siret_manual_company_name_association": "Nome da associação",
-  "siret_manual_company_name_administration": "Nome da administração"
+  "siret_manual_company_name_administration": "Nome da administração",
+  "siret_modal_search_again": "Pesquisar novamente",
+  "siret_modal_validate": "Validar",
+  "siret_modal_review_intro": "Verifique os seus dados.",
+  "siret_modal_review_intro_corporation": "Verifique os dados da sua empresa.",
+  "siret_modal_review_intro_association": "Verifique os dados da sua associação.",
+  "siret_modal_review_intro_administration": "Verifique os dados da sua administração.",
+  "siret_modal_search_invalid": "O número de SIRET deve conter 14 dígitos.",
+  "siret_modal_non_diffusible_intro": "Os dados da sua empresa não são divulgados publicamente (empresa não divulgável). Por favor, preencha manualmente os seguintes dados para que figurem corretamente nas suas faturas:",
+  "siret_modal_non_diffusible_field_address": "Morada",
+  "siret_modal_non_diffusible_field_zip": "Código postal",
+  "siret_modal_non_diffusible_field_city": "Cidade",
+  "siret_modal_complete": "Preencher os meus dados"
 }

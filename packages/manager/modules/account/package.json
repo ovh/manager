@@ -13,7 +13,9 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@ovh-ux/manager-at-internet-configuration": "^1.5.1",
@@ -71,7 +73,8 @@
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-core": "^13.0.0",
