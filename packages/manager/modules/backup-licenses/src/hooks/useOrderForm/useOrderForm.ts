@@ -9,7 +9,7 @@ import {
   ServerVaultFormState,
   VdpTier,
 } from '@/types/Order.type';
-import { isValidIp } from '@/utils/isValidIp/isValidIp';
+import { isValidIpv4 } from '@/utils/isValidIp/isValidIp';
 
 import {
   PersistedOrderState,
@@ -52,8 +52,8 @@ function isLicenseValidFor(family: LicenseFamily | null, tier: VdpTier | null): 
 
 function isServerVaultFieldsValidFor(form: ServerVaultFormState): boolean {
   const nameOk = form.displayName.trim() !== '';
-  const externalOk = isValidIp(form.backupServerExternalIp);
-  const privateOk = !form.isBehindNat || isValidIp(form.backupServerPrivateIp);
+  const externalOk = isValidIpv4(form.backupServerExternalIp);
+  const privateOk = !form.isBehindNat || isValidIpv4(form.backupServerPrivateIp);
   const vaultOk = form.vaultDisplayName.trim() !== '';
   return nameOk && externalOk && privateOk && vaultOk;
 }
@@ -167,7 +167,7 @@ export function useOrderForm({ frozenState = null, isFrozen = false }: UseOrderF
       show(field) && value.trim() === '' ? key : null;
     const ipError = (field: OrderFieldName, value: string, key: string) => {
       const trimmed = value.trim();
-      if (trimmed !== '' && !isValidIp(trimmed)) return key;
+      if (trimmed !== '' && !isValidIpv4(trimmed)) return key;
       if (show(field) && trimmed === '') return key;
       return null;
     };
@@ -196,8 +196,8 @@ export function useOrderForm({ frozenState = null, isFrozen = false }: UseOrderF
   // l'utilisateur droit au champ à corriger.
   const firstInvalidField = useMemo<OrderFieldName | null>(() => {
     if (form.displayName.trim() === '') return 'displayName';
-    if (!isValidIp(form.backupServerExternalIp)) return 'backupServerExternalIp';
-    if (form.isBehindNat && !isValidIp(form.backupServerPrivateIp)) {
+    if (!isValidIpv4(form.backupServerExternalIp)) return 'backupServerExternalIp';
+    if (form.isBehindNat && !isValidIpv4(form.backupServerPrivateIp)) {
       return 'backupServerPrivateIp';
     }
     if (form.vaultDisplayName.trim() === '') return 'vaultDisplayName';

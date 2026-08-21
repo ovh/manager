@@ -41,3 +41,19 @@ export type ServiceConsumption = {
   price: Price;
   uniqueId: string | null;
 };
+
+export type PriceByPlanFamily = {
+  planFamily: string;
+  price: Price;
+};
+
+/** Réponse de `/services/{serviceId}/consumption` (sans `/element`) : un objet agrégé, pas un tableau. */
+export type LicenseConsumption = {
+  beginDate: string | null;
+  endDate: string | null;
+  id: number;
+  orderId: number | null;
+  price: Price;
+  priceByPlanFamily: PriceByPlanFamily[];
+  serviceId: number;
+};

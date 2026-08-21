@@ -3,7 +3,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { useStep } from '@/hooks/useStep/useStep';
 import { LicenseApiValue, LicenseFamily, VdpTier } from '@/types/Order.type';
-import { isValidIp } from '@/utils/isValidIp/isValidIp';
+import { isValidIpv4 } from '@/utils/isValidIp/isValidIp';
 
 export type AddServerFieldName =
   | 'displayName'
@@ -48,8 +48,8 @@ function isLicenseValidFor(family: LicenseFamily | null, tier: VdpTier | null): 
 
 function isServerValidFor(form: AddServerFormState): boolean {
   const nameOk = form.displayName.trim() !== '';
-  const externalOk = isValidIp(form.backupServerExternalIp);
-  const privateOk = !form.isBehindNat || isValidIp(form.backupServerPrivateIp);
+  const externalOk = isValidIpv4(form.backupServerExternalIp);
+  const privateOk = !form.isBehindNat || isValidIpv4(form.backupServerPrivateIp);
   return nameOk && externalOk && privateOk;
 }
 
@@ -106,7 +106,7 @@ export function useAddServerForm() {
       show(field) && value.trim() === '' ? key : null;
     const ipError = (field: AddServerFieldName, value: string, key: string) => {
       const trimmed = value.trim();
-      if (trimmed !== '' && !isValidIp(trimmed)) return key;
+      if (trimmed !== '' && !isValidIpv4(trimmed)) return key;
       if (show(field) && trimmed === '') return key;
       return null;
     };
@@ -129,8 +129,8 @@ export function useAddServerForm() {
   // pour que le CTA final puisse amener l'utilisateur droit au champ à corriger.
   const firstInvalidField = useMemo<AddServerFieldName | null>(() => {
     if (form.displayName.trim() === '') return 'displayName';
-    if (!isValidIp(form.backupServerExternalIp)) return 'backupServerExternalIp';
-    if (form.isBehindNat && !isValidIp(form.backupServerPrivateIp)) {
+    if (!isValidIpv4(form.backupServerExternalIp)) return 'backupServerExternalIp';
+    if (form.isBehindNat && !isValidIpv4(form.backupServerPrivateIp)) {
       return 'backupServerPrivateIp';
     }
     return null;

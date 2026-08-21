@@ -96,7 +96,7 @@
       "label": "Endereço IP público",
       "placeholder": "Ex.: 185.26.17.45",
       "hint": "O endereço IP público do seu servidor VBR.",
-      "error": "Este endereço IP não parece válido — verifique o formato IPv4 ou IPv6."
+      "error": "Este endereço IP não parece válido — verifique o formato IPv4."
     },
     "veeam_client_ip": {
       "label": "Endereço IP do cliente Veeam",
@@ -107,7 +107,7 @@
       "label": "Endereço IP privado (LAN)",
       "placeholder": "Ex.: 192.168.1.10",
       "hint": "Endereço IP local do seu servidor VBR na rede interna.",
-      "error": "Este endereço IP não parece válido — verifique o formato IPv4 ou IPv6."
+      "error": "Este endereço IP não parece válido — verifique o formato IPv4."
     },
     "vault_name": {
       "label": "Nome do Vault",

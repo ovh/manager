@@ -318,8 +318,8 @@ describe('EditBackupServerPage', () => {
     expect(screen.queryByTestId('linked-servers')).not.toBeInTheDocument();
   });
 
-  it('disables the save button when the server has no urn yet (fail-closed)', async () => {
-    mockedGetBackupServers.mockResolvedValue([{ ...server, iam: undefined }]);
+  it('disables the save button when the backup license has no urn yet (fail-closed)', async () => {
+    vi.mocked(getBackupLicenses).mockResolvedValue([mockBackupLicenses[1]!]);
 
     await renderPage();
     await waitFor(() => expect(screen.getByTestId('step-1-content')).toBeInTheDocument());

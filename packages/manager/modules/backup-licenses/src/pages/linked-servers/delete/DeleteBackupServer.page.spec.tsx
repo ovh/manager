@@ -189,10 +189,8 @@ describe('DeleteBackupServerPage', () => {
     expect(mockedDeleteBackupServer).not.toHaveBeenCalled();
   });
 
-  it('disables the confirmation and shows the IAM warning when the server has no urn yet (fail-closed)', async () => {
-    // Contrat API non confirmé : le check ne doit jamais être bypassé au profit de l'autorisation
-    // quand `urn` est absent, même si `useAuthorizationIam` répondrait « autorisé » par défaut.
-    mockedGetBackupServers.mockResolvedValue([{ ...server, iam: undefined }]);
+  it('disables the confirmation and shows the IAM warning when the backup license has no urn yet (fail-closed)', async () => {
+    vi.mocked(getBackupLicenses).mockResolvedValue([mockBackupLicenses[1]!]);
 
     await renderModal();
 

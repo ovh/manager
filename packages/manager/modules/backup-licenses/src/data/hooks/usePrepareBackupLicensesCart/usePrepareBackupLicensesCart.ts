@@ -87,6 +87,8 @@ export const prepareBackupLicensesCart = async ({
   const { cartId } = await createOrderCart(ovhSubsidiary);
 
   if (existingTenantServiceName) {
+    await assignOrderCart(cartId);
+
     for (const node of product.options) {
       const resolved = await discoverBackupServicesServiceOrderParameters(
         cartId,
@@ -103,9 +105,8 @@ export const prepareBackupLicensesCart = async ({
     const { itemId } = await addBackupServicesCartItem(cartId, productParameters);
     await configureCartItemFromRequirements(cartId, itemId, configurationValues);
     await addOrderNodeOptions(cartId, itemId, options, configurationValues);
+    await assignOrderCart(cartId);
   }
-
-  await assignOrderCart(cartId);
 
   const { contracts } = await getOrderCartCheckout(cartId);
 

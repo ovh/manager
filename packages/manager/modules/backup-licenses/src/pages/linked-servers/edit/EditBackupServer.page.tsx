@@ -24,6 +24,7 @@ import EditServerFieldsStep from '@/components/linked-servers/EditServerFieldsSt
 import { useEditBackupServer } from '@/data/hooks/useEditBackupServer/useEditBackupServer';
 import { LICENSE_CARDS, VDP_TIER_CARDS } from '@/data/licenses.data';
 import { backupServersQueries } from '@/data/queries/backupServers.queries';
+import { useBackupLicenseUrn } from '@/hooks/useBackupLicenseUrn/useBackupLicenseUrn';
 import { useEditBackupServerForm } from '@/hooks/useEditBackupServerForm/useEditBackupServerForm';
 import { useMainGuideItem } from '@/hooks/useMainGuideItem';
 import { BACKUP_LICENSES_NAMESPACES, CHANGELOG_LINKS, LABELS } from '@/module.constants';
@@ -52,6 +53,7 @@ export default function EditBackupServerPage() {
   const queryClient = useQueryClient();
   const { addSuccess } = useNotifications();
   const guideItems = useMainGuideItem();
+  const backupLicenseUrn = useBackupLicenseUrn();
   const { backupServerId } = useParams<{ backupServerId: string }>();
 
   const { data: servers, isPending: areServersPending } = useQuery(
@@ -237,7 +239,7 @@ export default function EditBackupServerPage() {
             }
             isSaving={isPending}
             onSave={handleSave}
-            urn={server.iam?.urn}
+            urn={backupLicenseUrn}
           />
         </aside>
       </div>

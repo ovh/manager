@@ -73,19 +73,25 @@ describe('buildBackupLicensesOrderComposition', () => {
     expect(LABELS.backupServerPrivateIp in configurationValues).toBe(false);
   });
 
-  it('carries the private IP when the NAT toggle is on', () => {
+  it('carries the private IP when the NAT toggle is on, with its /32 host mask added', () => {
     const { configurationValues } = build({
       isBehindNat: true,
       backupServerPrivateIp: '192.168.1.10',
     });
 
-    expect(configurationValues[LABELS.backupServerPrivateIp]).toBe('192.168.1.10');
+    expect(configurationValues[LABELS.backupServerPrivateIp]).toBe('192.168.1.10/32');
   });
 
   it('trims what the customer typed, so a stray space never reaches the cart', () => {
     const { configurationValues } = build({ backupServerExternalIp: '  203.0.113.10  ' });
 
-    expect(configurationValues[LABELS.backupServerPublicIp]).toBe('203.0.113.10');
+    expect(configurationValues[LABELS.backupServerPublicIp]).toBe('203.0.113.10/32');
+  });
+
+  it('adds the /32 host mask to the public IP, never left for the customer to type', () => {
+    const { configurationValues } = build({ backupServerExternalIp: '203.0.113.10' });
+
+    expect(configurationValues[LABELS.backupServerPublicIp]).toBe('203.0.113.10/32');
   });
 
   it('carries the VBR server display name, trimmed', () => {
