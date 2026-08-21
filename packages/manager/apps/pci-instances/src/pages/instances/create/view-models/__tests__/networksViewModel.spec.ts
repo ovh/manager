@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   mockedPrivateNetworkEntity,
   mockedPrivateNetworkEntityWithMetal,
+  mockedPrivateNetworkEntityWithMultipleSubnets,
 } from '@/__mocks__/instance/constants';
 import {
   applyMetalConstraints,
@@ -35,7 +36,7 @@ describe('selectPrivateNetworks ViewModel', () => {
     const result = selectPrivateNetworks('BHS5')(mockedPrivateNetworkEntity);
     expect(result).toEqual([
       {
-        label: 'test-network-1',
+        label: 'test-network-1 - 10.1.0.0/16',
         value: '22defd89-ab74-4353-8676-6a0ad7a239d3',
         customRendererData: {
           networkId: '46d3947f-1098-40a2-be0c-36603b2ab4c3',
@@ -47,13 +48,32 @@ describe('selectPrivateNetworks ViewModel', () => {
     ]);
   });
 
+  it('should append the CIDR to the label for every subnet', () => {
+    const result = selectPrivateNetworks('BHS5')(
+      mockedPrivateNetworkEntityWithMultipleSubnets,
+    );
+
+    const labelsByNetwork = (networkId: string) =>
+      result
+        .filter((item) => item.customRendererData?.networkId === networkId)
+        .map((item) => item.label);
+
+    expect(labelsByNetwork('multi-subnet-network')).toEqual([
+      'pn-bhs-1001 - 10.1.0.0/16',
+      'pn-bhs-1001 - 10.3.0.0/24',
+    ]);
+    expect(labelsByNetwork('single-subnet-network')).toEqual([
+      'pn-bhs-single - 10.2.0.0/16',
+    ]);
+  });
+
   it('should return subnets including vlan0 metal network', () => {
     const result = selectPrivateNetworks('BHS5')(
       mockedPrivateNetworkEntityWithMetal,
     );
     expect(result).toHaveLength(2);
     expect(result[1]).toEqual({
-      label: 'test-network-metal',
+      label: 'test-network-metal - 10.0.0.0/16',
       value: 'metal-subnet-vlan0',
       customRendererData: {
         networkId: 'metal-network-vlan0',
