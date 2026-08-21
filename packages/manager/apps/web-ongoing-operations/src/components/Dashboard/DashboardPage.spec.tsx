@@ -19,6 +19,12 @@ vi.mock('react-router-dom', () => ({
 
 vi.mock('@/hooks/data/query', () => ({
   useGetDomainInformation: vi.fn(),
+  usePendingFoas: vi.fn(() => ({
+    taskId: null,
+    foas: [],
+    pendingFoas: [],
+    isLoading: false,
+  })),
 }));
 
 describe('Datagrid template', () => {

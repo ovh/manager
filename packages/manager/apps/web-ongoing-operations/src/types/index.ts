@@ -70,6 +70,10 @@ export interface OngoingOperationDatagridDomainProps {
   props: TOngoingOperations;
 }
 
+export interface OngoingOperationDatagridActionsProps {
+  props: TOngoingOperations;
+}
+
 export interface UploadedArgumentFiles {
   argument: TArgument;
   files: File[];
@@ -80,4 +84,27 @@ export interface UpdateMeDocumentComponentProps {
   readonly setUploadedFiles: React.Dispatch<
     React.SetStateAction<UploadedArgumentFiles[]>
   >;
+}
+
+/**
+ * Domain task as returned by APIv2 /domain/name/{domainName}/task — its id is
+ * a UUID, unlike the numeric id of the APIv6 /me/task/domain operations.
+ */
+export interface TDomainTaskV2 {
+  id: string;
+  type: string;
+  status: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export type TFoaCurrentState = { CHOICE?: string } & Record<string, unknown>;
+
+/**
+ * FOA (Form of Authorization) attached to a DomainTrade task.
+ * A FOA is still pending while its currentState carries no CHOICE property.
+ */
+export interface TFoa {
+  id: string;
+  currentState?: TFoaCurrentState;
 }

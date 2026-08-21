@@ -182,5 +182,14 @@
   "domain_operations_update_nationalidentificationnumber": "NIP",
   "domain_operations_update_identificationnumber": "Numer identyfikacyjny",
   "domain_operations_update_nicowner_click_whoiscontactbilling": "Zmień dane kontaktu do faktur, klikając tutaj",
-  "domain_operations_update_nicowner_click_whoiscontacttech": "Zmień dane kontaktu technicznego, klikając tutaj"
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Zmień dane kontaktu technicznego, klikając tutaj",
+  "domain_operations_foa_cta": "Zatwierdź jako wyznaczony agent",
+  "domain_operations_foa_title": "Zatwierdzenie jako wyznaczony agent dla domeny {{t0}}",
+  "domain_operations_foa_description": "Ta zmiana abonenta oczekuje na odpowiedź na formularze autoryzacji (FOA) wysłane do abonentów. Jako wyznaczony agent możesz zaakceptować lub odrzucić tę zmianę w ich imieniu. Zatwierdzone zostaną tylko formularze, na które nie udzielono jeszcze odpowiedzi.",
+  "domain_operations_foa_certification": "Oświadczam, że jestem należycie upoważniony/a do działania jako wyznaczony agent oraz do udzielania odpowiedzi w imieniu obecnego i nowego abonenta.",
+  "domain_operations_foa_accept": "Zaakceptuj",
+  "domain_operations_foa_reject": "Odrzuć",
+  "domain_operations_foa_accept_success": "Zmiana abonenta została zaakceptowana przez wyznaczonego agenta.",
+  "domain_operations_foa_reject_success": "Zmiana abonenta została odrzucona przez wyznaczonego agenta.",
+  "domain_operations_foa_error": "Wystąpił błąd podczas zatwierdzania jako wyznaczony agent"
 }

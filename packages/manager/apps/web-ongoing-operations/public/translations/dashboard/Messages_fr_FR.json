@@ -153,5 +153,14 @@
   "domain_operations_update_nicbilling_click": "Changez les informations du contact facturation en cliquant ici",
   "domain_operations_accelerate_success": "L'opération a été accélérée avec succès.",
   "domain_operations_cancel_success": "L'opération a été annulée avec succès.",
-  "domain_operations_relaunch_success": "L'opération a été relancée avec succès."
+  "domain_operations_relaunch_success": "L'opération a été relancée avec succès.",
+  "domain_operations_foa_cta": "Valider en tant qu'agent désigné",
+  "domain_operations_foa_title": "Validation en tant qu'agent désigné pour le nom de domaine {{t0}}",
+  "domain_operations_foa_description": "Ce changement de titulaire est en attente de la validation des formulaires d'autorisation (FOA) envoyés aux titulaires. En tant qu'agent désigné, vous pouvez accepter ou rejeter ce changement en leur nom. Seuls les formulaires encore sans réponse seront validés.",
+  "domain_operations_foa_certification": "Je certifie que je suis dûment autorisé(e) à agir en tant qu'agent désigné et à répondre au nom du titulaire actuel et du nouveau titulaire.",
+  "domain_operations_foa_accept": "Accepter",
+  "domain_operations_foa_reject": "Rejeter",
+  "domain_operations_foa_accept_success": "Le changement de titulaire a été accepté en tant qu'agent désigné.",
+  "domain_operations_foa_reject_success": "Le changement de titulaire a été rejeté en tant qu'agent désigné.",
+  "domain_operations_foa_error": "Échec de la validation en tant qu'agent désigné"
 }

@@ -182,5 +182,14 @@
   "domain_operations_update_nationalidentificationnumber": "Tax code ",
   "domain_operations_update_identificationnumber": "Identification number",
   "domain_operations_update_nicowner_click_whoiscontactbilling": "Change the billing contact information by clicking here",
-  "domain_operations_update_nicowner_click_whoiscontacttech": "Change the technical contact information by clicking here"
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Change the technical contact information by clicking here",
+  "domain_operations_foa_cta": "Validate as Designated Agent",
+  "domain_operations_foa_title": "Designated Agent validation for the {{t0}} domain name",
+  "domain_operations_foa_description": "This change of registrant is waiting for the Forms of Authorization (FOA) sent to the holders to be answered. As the Designated Agent, you can accept or reject this change on their behalf. Only the forms still awaiting an answer will be validated.",
+  "domain_operations_foa_certification": "I certify that I am duly authorised to act as the Designated Agent and to answer on behalf of the current and the new registrant.",
+  "domain_operations_foa_accept": "Accept",
+  "domain_operations_foa_reject": "Reject",
+  "domain_operations_foa_accept_success": "The change of registrant has been accepted as Designated Agent.",
+  "domain_operations_foa_reject_success": "The change of registrant has been rejected as Designated Agent.",
+  "domain_operations_foa_error": "Designated Agent validation failed"
 }

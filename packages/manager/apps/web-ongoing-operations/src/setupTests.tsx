@@ -30,6 +30,12 @@ vi.mock('@ovh-ux/manager-core-api', async () => {
       put: vi.fn(),
       delete: vi.fn(),
     },
+    v2: {
+      get: vi.fn(),
+      post: vi.fn(),
+      put: vi.fn(),
+      delete: vi.fn(),
+    },
   };
 });
 
@@ -66,9 +72,18 @@ const mocks = vi.hoisted(() => ({
       },
     },
   },
+  navigate: vi.fn(),
 }));
 
-vi.mock('@ovh-ux/manager-react-shell-client', () => ({
+/** Stable useNavigate spy, so a redirection can be asserted from a spec */
+export const navigateMock = mocks.navigate;
+
+vi.mock('@ovh-ux/manager-react-shell-client', async (importOriginal) => ({
+  // the enums (PageLocation, ButtonType, PageType) are kept as is : the app
+  // tracking helpers read them at call time
+  ...(await importOriginal<
+    typeof import('@ovh-ux/manager-react-shell-client')
+  >()),
   ShellContext: React.createContext({
     shell: mocks.shell,
   }),
@@ -110,7 +125,7 @@ vi.mock('@/hooks/nichandle/useNichandle', () => ({
 }));
 
 vi.mock('react-router-dom', () => ({
-  useNavigate: () => vi.fn(() => null),
+  useNavigate: () => mocks.navigate,
   useSearchParams: vi.fn(() => [new URLSearchParams(), vi.fn()]),
   Navigate: vi.fn(() => null),
   useLocation: vi.fn(() => ({
@@ -124,6 +139,7 @@ vi.mock('react-router-dom', () => ({
     return {
       serviceName: 'foobar',
       id: '1',
+      product: 'domain',
     };
   },
   NavLink: ({ ...params }: NavLinkProps) => params.children,

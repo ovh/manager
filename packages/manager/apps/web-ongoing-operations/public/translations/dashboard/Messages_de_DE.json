@@ -182,5 +182,14 @@
   "domain_operations_update_nationalidentificationnumber": "Steuernummer",
   "domain_operations_update_identificationnumber": "Identifikationsnummer",
   "domain_operations_update_nicowner_click_whoiscontactbilling": "Ändern Sie die Informationen des Rechnungskontakts, indem Sie hier klicken",
-  "domain_operations_update_nicowner_click_whoiscontacttech": "Ändern Sie die Informationen des technischen Kontakts, indem Sie hier klicken"
+  "domain_operations_update_nicowner_click_whoiscontacttech": "Ändern Sie die Informationen des technischen Kontakts, indem Sie hier klicken",
+  "domain_operations_foa_cta": "Als benannter Vertreter bestätigen",
+  "domain_operations_foa_title": "Bestätigung als benannter Vertreter für die Domain {{t0}}",
+  "domain_operations_foa_description": "Dieser Inhaberwechsel wartet auf die Beantwortung der an die Inhaber gesendeten Autorisierungsformulare (FOA). Als benannter Vertreter können Sie diesen Wechsel in ihrem Namen akzeptieren oder ablehnen. Es werden nur die noch unbeantworteten Formulare validiert.",
+  "domain_operations_foa_certification": "Ich bestätige, dass ich ordnungsgemäß bevollmächtigt bin, als benannter Vertreter zu handeln und im Namen des aktuellen und des neuen Inhabers zu antworten.",
+  "domain_operations_foa_accept": "Akzeptieren",
+  "domain_operations_foa_reject": "Ablehnen",
+  "domain_operations_foa_accept_success": "Der Inhaberwechsel wurde als benannter Vertreter akzeptiert.",
+  "domain_operations_foa_reject_success": "Der Inhaberwechsel wurde als benannter Vertreter abgelehnt.",
+  "domain_operations_foa_error": "Bestätigung als benannter Vertreter fehlgeschlagen"
 }

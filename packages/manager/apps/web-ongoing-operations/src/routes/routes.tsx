@@ -14,6 +14,9 @@ const DashboardDomainPage = React.lazy(() =>
 const DashboardDnsPage = React.lazy(() => import('@/pages/dashboard/dns/Dns'));
 const TrackPage = React.lazy(() => import('@/pages/tracking/Tracking'));
 const ActionPage = React.lazy(() => import('@/pages/update/Update'));
+const FoaValidationPage = React.lazy(() =>
+  import('@/pages/foa/FoaValidation'),
+);
 
 export default (
   <Route
@@ -81,6 +84,17 @@ export default (
       handle={{
         tracking: {
           pageName: 'update_operation',
+          pageType: PageType.dashboard,
+        },
+      }}
+    />
+    <Route
+      id="foa"
+      path={urls.foa}
+      Component={FoaValidationPage}
+      handle={{
+        tracking: {
+          pageName: 'foa_designated_agent',
           pageType: PageType.dashboard,
         },
       }}
