@@ -23,6 +23,7 @@ import {
   mockedSuggestionsUpdate,
 } from '@/__tests__/helpers/mocks/updateMock';
 import { setMockedUseParams } from '@/__tests__/helpers/mockRouterDomHelper';
+import * as LocaleHook from '@/hooks/useLocale';
 import UpdateVersion from './UpdateVersion.modal';
 
 export const mockedCapabilitiesUpdate: database.Capabilities = {
@@ -84,9 +85,18 @@ vi.mock('@/hooks/api/catalog/useGetCatalog.hook', () => ({
   })),
 }));
 
+vi.mock('@/hooks/useLocale', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/hooks/useLocale')>();
+  return {
+    ...actual,
+    useLocale: vi.fn(() => actual.Locale.fr_FR),
+  };
+});
+
 describe('Update Version modal', () => {
   beforeEach(async () => {
     vi.restoreAllMocks();
+    vi.mocked(LocaleHook.useLocale).mockReturnValue(LocaleHook.Locale.fr_FR);
     setMockedUseParams({
       projectId: 'projectId',
       serviceId: 'serviceId',
@@ -104,6 +114,12 @@ describe('Update Version modal', () => {
     expect(
       screen.getByTestId('update-version-downtime-warning'),
     ).toBeInTheDocument();
+    expect(
+      screen.getByTestId('update-version-documentation-link'),
+    ).toHaveAttribute(
+      'href',
+      'https://docs.ovhcloud.com/fr/guides/public-cloud/databases/faq#puis-je-mettre-%C3%A0-jour-manuellement-la-version-de-mon-sgbd-',
+    );
     act(() => {
       fireEvent.click(screen.getByTestId('update-version-cancel-button'));
     });
@@ -112,6 +128,20 @@ describe('Update Version modal', () => {
         screen.queryByTestId('update-version-modal'),
       ).not.toBeInTheDocument();
     });
+  });
+
+  it('uses the documentation matching the current locale', async () => {
+    vi.mocked(LocaleHook.useLocale).mockReturnValue(LocaleHook.Locale.en_GB);
+    render(<UpdateVersion />, { wrapper: RouterWithQueryClientWrapper });
+    await waitFor(() => {
+      expect(screen.getByTestId('update-version-modal')).toBeInTheDocument();
+    });
+    expect(
+      screen.getByTestId('update-version-documentation-link'),
+    ).toHaveAttribute(
+      'href',
+      'https://docs.ovhcloud.com/en/guides/public-cloud/databases/faq#can-i-manually-update-my-dbms-version',
+    );
   });
 
   // it('display error on update error', async () => {

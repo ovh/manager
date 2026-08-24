@@ -27,12 +27,16 @@ import { useServiceData } from '@/pages/services/[serviceId]/Service.context';
 import { useEditService } from '@/hooks/api/database/service/useEditService.hook';
 import { getCdbApiErrorMessage } from '@/lib/apiHelper';
 import { useGetAvailabilities } from '@/hooks/api/database/availability/useGetAvailabilities.hook';
+import { useLocale } from '@/hooks/useLocale';
+import { LINKS, getDocumentationUrl } from '@/configuration/documentation';
 import { useUpdateTree } from '../_components/useUpdateTree';
 import RouteModal from '@/components/route-modal/RouteModal';
 import VersionSelect from '@/components/order/version/VersionSelect.component';
+import A from '@/components/links/A.component';
 
 const UpdateVersion = () => {
   const { service, projectId } = useServiceData();
+  const locale = useLocale();
   const navigate = useNavigate();
   const toast = useToast();
   const { t } = useTranslation(
@@ -110,7 +114,15 @@ const UpdateVersion = () => {
             className="rounded-md"
           >
             <AlertDescription>
-              {t('updateVersionDowntimeWarning')}
+              {t('updateVersionDowntimeWarning')}{' '}
+              <A
+                data-testid="update-version-documentation-link"
+                href={getDocumentationUrl(LINKS.DB_VERSION_UPGRADE, locale)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t('updateVersionDowntimeWarningLink')}
+              </A>
             </AlertDescription>
           </Alert>
           <Form {...form}>

@@ -10,6 +10,14 @@ export const LINKS = {
     default:
       'https://docs.ovh.com/gb/en/publiccloud/databases/order-terraform/',
   },
+  DB_VERSION_UPGRADE: {
+    fr_FR:
+      'https://docs.ovhcloud.com/fr/guides/public-cloud/databases/faq#puis-je-mettre-%C3%A0-jour-manuellement-la-version-de-mon-sgbd-',
+    fr_CA:
+      'https://docs.ovhcloud.com/fr/guides/public-cloud/databases/faq#puis-je-mettre-%C3%A0-jour-manuellement-la-version-de-mon-sgbd-',
+    default:
+      'https://docs.ovhcloud.com/en/guides/public-cloud/databases/faq#can-i-manually-update-my-dbms-version',
+  },
   PG_OFFICIAL_DOCUMENTATION: 'https://www.postgresql.org/docs/',
   MySQL_OFFICIAL_DOCUMENTATION: 'https://dev.mysql.com/doc/',
 };
