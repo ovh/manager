@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.2](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.17.1...@ovh-ux/backup-licenses@1.17.2) (2026-08-24)
+
+
+### Bug Fixes
+
+* **backup-licenses:** fix last bugs ([02e7c27](https://github.com/ovh/manager/commit/02e7c27be89f7c7b5bcd6b1b18d1abda9d55f72c)), closes [#bkp-1161](https://github.com/ovh/manager/issues/bkp-1161)
+
+
+
+
+
 ## [1.17.1](https://github.com/ovh/manager/compare/@ovh-ux/backup-licenses@1.17.0...@ovh-ux/backup-licenses@1.17.1) (2026-08-19)
 
 
