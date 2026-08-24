@@ -101,6 +101,9 @@ describe('Update Version modal', () => {
     await waitFor(() => {
       expect(screen.getByTestId('update-version-modal')).toBeInTheDocument();
     });
+    expect(
+      screen.getByTestId('update-version-downtime-warning'),
+    ).toBeInTheDocument();
     act(() => {
       fireEvent.click(screen.getByTestId('update-version-cancel-button'));
     });
