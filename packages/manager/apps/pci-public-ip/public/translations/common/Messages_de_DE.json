@@ -11,7 +11,6 @@
   "pci_additional_ips_basic_ip_terminate_dual_stack": "Eine Basic IP wird als IPv4- und IPv6-Paar bereitgestellt. Das Löschen einer der beiden Adressen löscht die andere nicht.",
   "pci_additional_ips_basic_ip_select": "IP {{ip}} auswählen",
   "pci_additional_ips_basic_ip_delete_selected": "Auswahl löschen",
-  "pci_additional_ips_basic_ip_attached_delete_tooltip": "Diese Basic IP ist mit einer Ressource verbunden und kann nicht gelöscht werden.",
   "pci_additional_ips_basic_ip_attach": "Mit einer Instanz verbinden",
   "pci_additional_ips_basic_ip_detach": "Trennen",
   "pci_additional_ips_basic_ip_attach_title": "IP {{ip}} mit einer Instanz verbinden",
