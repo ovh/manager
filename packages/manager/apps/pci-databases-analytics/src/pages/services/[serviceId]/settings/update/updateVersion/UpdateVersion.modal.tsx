@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslation } from 'react-i18next';
 import {
+  Alert,
+  AlertDescription,
   Button,
   DialogBody,
   DialogClose,
@@ -102,6 +104,15 @@ const UpdateVersion = () => {
           </DialogTitle>
         </DialogHeader>
         <DialogBody>
+          <Alert
+            data-testid="update-version-downtime-warning"
+            variant="warning"
+            className="rounded-md"
+          >
+            <AlertDescription>
+              {t('updateVersionDowntimeWarning')}
+            </AlertDescription>
+          </Alert>
           <Form {...form}>
             <form onSubmit={onSubmit} id="updateVersionForm">
               <FormField
