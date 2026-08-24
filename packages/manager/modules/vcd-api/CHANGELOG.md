@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.14.0...@ovh-ux/manager-module-vcd-api@0.15.0) (2026-08-24)
+
+
+### Features
+
+* **public-vcf:** add delete storage resource ([949b4fe](https://github.com/ovh/manager/commit/949b4febc91c6ede74af20ce787e7130161fd538)), closes [#MANAGER-17968](https://github.com/ovh/manager/issues/MANAGER-17968)
+
+
+
+
+
 # [0.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.13.0...@ovh-ux/manager-module-vcd-api@0.14.0) (2026-07-28)
 
 

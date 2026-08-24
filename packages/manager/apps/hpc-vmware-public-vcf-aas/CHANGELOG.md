@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.34.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.35.0) (2026-08-24)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 1301] ([66b8ab4](https://github.com/ovh/manager/commit/66b8ab49376706767a66bb39f5303447023b28db)), closes [#MANAGER-17968](https://github.com/ovh/manager/issues/MANAGER-17968)
+* **public-vcf:** add polling on edit edge gateway name ([f8d2041](https://github.com/ovh/manager/commit/f8d20410e3a384f454d18a669f8476ad938e5a4b)), closes [#MANAGER-22097](https://github.com/ovh/manager/issues/MANAGER-22097)
+
+
+### Features
+
+* **public-vcf:** add delete storage resource ([949b4fe](https://github.com/ovh/manager/commit/949b4febc91c6ede74af20ce787e7130161fd538)), closes [#MANAGER-17968](https://github.com/ovh/manager/issues/MANAGER-17968)
+* **public-vcf:** update conditions to delete storage ([1627ccc](https://github.com/ovh/manager/commit/1627ccc085f21760663b78ff614c2f0af986335b)), closes [#MANAGER-22019](https://github.com/ovh/manager/issues/MANAGER-22019)
+
+
+
+
+
 # [0.34.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.33.0...@ovh-ux/manager-hpc-vmware-public-vcf-aas-app@0.34.0) (2026-07-28)
 
 
