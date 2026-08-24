@@ -11,7 +11,6 @@
   "pci_additional_ips_basic_ip_terminate_dual_stack": "Um Basic IP é fornecido como um par IPv4 e IPv6. A eliminação de um dos dois endereços não elimina o outro.",
   "pci_additional_ips_basic_ip_select": "Selecionar o IP {{ip}}",
   "pci_additional_ips_basic_ip_delete_selected": "Eliminar seleção",
-  "pci_additional_ips_basic_ip_attached_delete_tooltip": "Este Basic IP está associado a um recurso e não pode ser eliminado.",
   "pci_additional_ips_basic_ip_attach": "Associar a uma instância",
   "pci_additional_ips_basic_ip_detach": "Dissociar",
   "pci_additional_ips_basic_ip_attach_title": "Associar o IP {{ip}} a uma instância",

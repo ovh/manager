@@ -11,23 +11,30 @@ const DELETE_LABEL = 'pci_additional_ips_delete';
 const ATTACH_LABEL = 'pci_additional_ips_basic_ip_attach';
 const DETACH_LABEL = 'pci_additional_ips_basic_ip_detach';
 
-const buildRow = (isAttached: boolean): TBasicIpRow => ({
+const buildRow = (
+  isAttached: boolean,
+  associatedResourceType = 'instance',
+): TBasicIpRow => ({
   id: '203.0.113.42',
   ip: '203.0.113.42',
   ipVersion: 4,
   region: 'GRA11',
   associatedResourceId: isAttached ? 'instance-id' : '',
-  associatedResourceType: isAttached ? 'instance' : '',
+  associatedResourceType: isAttached ? associatedResourceType : '',
   associatedResourceName: isAttached ? 'my-instance' : '',
   isAttached,
   status: 'READY',
   search: '',
 });
 
-const renderActions = (isAttached: boolean, canEditAssociation: boolean) =>
+const renderActions = (
+  isAttached: boolean,
+  canEditAssociation: boolean,
+  associatedResourceType = 'instance',
+) =>
   render(
     <BasicIPActions
-      basicIp={buildRow(isAttached)}
+      basicIp={buildRow(isAttached, associatedResourceType)}
       canEditAssociation={canEditAssociation}
       onAttach={vi.fn()}
       onDetach={vi.fn()}
@@ -40,28 +47,51 @@ const deleteButton = (container: HTMLElement) =>
   );
 
 describe('BasicIPActions', () => {
-  describe('without the create-edit feature', () => {
-    it('lets a detached ip be deleted', () => {
-      const { container, queryByText } = renderActions(false, false);
+  describe.each<{ case: string; isAttached: boolean; resourceType: string }>([
+    { case: 'a parked address', isAttached: false, resourceType: '' },
+    {
+      case: 'an address attached to an instance',
+      isAttached: true,
+      resourceType: 'instance',
+    },
+    {
+      case: 'an address carried by a gateway',
+      isAttached: true,
+      resourceType: 'gateway',
+    },
+  ])(
+    'the api parts with $case, so its deletion is always offered',
+    ({ isAttached, resourceType }) => {
+      it.each([true, false])(
+        'offers the deletion with the create-edit feature set to %s',
+        (canEditAssociation) => {
+          const { container } = renderActions(
+            isAttached,
+            canEditAssociation,
+            resourceType,
+          );
 
-      expect(deleteButton(container)).not.toHaveAttribute('disabled');
+          expect(deleteButton(container)).not.toHaveAttribute('disabled');
+        },
+      );
+    },
+  );
+
+  describe('without the create-edit feature', () => {
+    it('offers no association action', () => {
+      const { queryByText } = renderActions(false, false);
+
       expect(queryByText(ATTACH_LABEL)).not.toBeInTheDocument();
       expect(queryByText(DETACH_LABEL)).not.toBeInTheDocument();
-    });
-
-    it('prevents an attached ip from being deleted', () => {
-      const { container } = renderActions(true, false);
-
-      expect(deleteButton(container)).toHaveAttribute('disabled');
     });
   });
 
   describe('with the create-edit feature', () => {
-    it('lets an attached ip be deleted and offers to detach it', () => {
-      const { container, getByText } = renderActions(true, true);
+    it('offers to detach an attached ip', () => {
+      const { getByText, queryByText } = renderActions(true, true);
 
-      expect(deleteButton(container)).not.toHaveAttribute('disabled');
       expect(getByText(DETACH_LABEL)).toBeInTheDocument();
+      expect(queryByText(ATTACH_LABEL)).not.toBeInTheDocument();
     });
 
     it('offers to attach a detached ip', () => {

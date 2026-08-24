@@ -11,7 +11,6 @@
   "pci_additional_ips_basic_ip_terminate_dual_stack": "A Basic IP is delivered as an IPv4 and IPv6 pair. Deleting one of the two addresses does not delete the other.",
   "pci_additional_ips_basic_ip_select": "Select the IP {{ip}}",
   "pci_additional_ips_basic_ip_delete_selected": "Delete selected",
-  "pci_additional_ips_basic_ip_attached_delete_tooltip": "This Basic IP is attached to a resource and cannot be deleted.",
   "pci_additional_ips_basic_ip_attach": "Attach to an instance",
   "pci_additional_ips_basic_ip_detach": "Detach",
   "pci_additional_ips_basic_ip_attach_title": "Attach the IP {{ip}} to an instance",
