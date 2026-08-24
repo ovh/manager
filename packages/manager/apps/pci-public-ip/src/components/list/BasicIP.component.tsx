@@ -51,7 +51,6 @@ import { ResponseAPIError } from '@/interface';
 import AttachBasicIPModal from './AttachBasicIP.component';
 import BasicIPActions from './BasicIPActions.component';
 import BasicIPStatus from './BasicIPStatus.component';
-import DisabledActionTooltip from './DisabledActionTooltip.component';
 
 export type BasicIPComponentProps = {
   projectId: string;
@@ -99,14 +98,6 @@ export default function BasicIPComponent({
   const [selectedIpIds, setSelectedIpIds] = useState<string[]>([]);
   const [isTerminatingSelection, setIsTerminatingSelection] = useState(false);
   const [attachedIp, setAttachedIp] = useState<TBasicIpRow>(null);
-
-  const isSelectable = (basicIp: TBasicIpRow) =>
-    isCreateEditBasicIpEnabled || !basicIp.isAttached;
-
-  const getUndeletableReason = (basicIp: TBasicIpRow) =>
-    isSelectable(basicIp)
-      ? undefined
-      : t('pci_additional_ips_basic_ip_attached_delete_tooltip');
 
   const notifyAssociationError = (
     key: string,
@@ -202,28 +193,22 @@ export default function BasicIPComponent({
       id: 'selection',
       isSortable: false,
       cell: (props: TBasicIpRow) => (
-        <DisabledActionTooltip reason={getUndeletableReason(props)}>
-          <OsdsCheckbox
-            value={props.id}
-            checked={selectedIpIds.includes(props.id)}
-            {...(!isSelectable(props) && { disabled: true })}
-            ariaLabel={t('pci_additional_ips_basic_ip_select', {
-              ip: props.ip,
-            })}
-            onOdsCheckedChange={(
-              event: OsdsCheckboxCustomEvent<
-                OdsCheckboxCheckedChangeEventDetail
-              >,
-            ) => toggleIpSelection(props.id, event.detail.checked)}
-          >
-            <OsdsCheckboxButton
-              color={ODS_THEME_COLOR_INTENT.primary}
-              size={ODS_CHECKBOX_BUTTON_SIZE.sm}
-              {...(!isSelectable(props) && { disabled: true })}
-              interactive
-            />
-          </OsdsCheckbox>
-        </DisabledActionTooltip>
+        <OsdsCheckbox
+          value={props.id}
+          checked={selectedIpIds.includes(props.id)}
+          ariaLabel={t('pci_additional_ips_basic_ip_select', {
+            ip: props.ip,
+          })}
+          onOdsCheckedChange={(
+            event: OsdsCheckboxCustomEvent<OdsCheckboxCheckedChangeEventDetail>,
+          ) => toggleIpSelection(props.id, event.detail.checked)}
+        >
+          <OsdsCheckboxButton
+            color={ODS_THEME_COLOR_INTENT.primary}
+            size={ODS_CHECKBOX_BUTTON_SIZE.sm}
+            interactive
+          />
+        </OsdsCheckbox>
       ),
       label: '',
     },

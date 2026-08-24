@@ -121,24 +121,17 @@ describe('BasicIP listing', () => {
     } as never);
   });
 
-  it('prevents selecting an attached ip without the create-edit feature', () => {
+  it.each([
+    ['a parked ip', buildRow(false)],
+    ['an ip attached to an instance', buildRow(true)],
+    [
+      'an ip carried by a gateway',
+      buildRow(true, { associatedResourceType: 'gateway' }),
+    ],
+  ])('allows selecting %s for deletion', (_case, row) => {
     renderListing({ canCreateEdit: false });
 
-    expect(renderSelectionCell(buildRow(true))).toHaveAttribute('disabled');
-  });
-
-  it('allows selecting a detached ip without the create-edit feature', () => {
-    renderListing({ canCreateEdit: false });
-
-    expect(renderSelectionCell(buildRow(false))).not.toHaveAttribute(
-      'disabled',
-    );
-  });
-
-  it('allows selecting an attached ip with the create-edit feature', () => {
-    renderListing({ canCreateEdit: true });
-
-    expect(renderSelectionCell(buildRow(true))).not.toHaveAttribute('disabled');
+    expect(renderSelectionCell(row)).not.toHaveAttribute('disabled');
   });
 
   it('hides the creation button without the create-edit feature', () => {
