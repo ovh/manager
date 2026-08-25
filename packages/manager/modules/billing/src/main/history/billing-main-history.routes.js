@@ -4,6 +4,8 @@ import get from 'lodash/get';
 import omit from 'lodash/omit';
 import partition from 'lodash/partition';
 
+import { isSiretMissingOrInvalid } from './billing-main-history.helpers';
+
 const mapDateFilter = (comparator, value) => {
   switch (comparator) {
     case 'isAfter':
@@ -182,9 +184,7 @@ export default /* @ngInject */ ($stateProvider, coreConfigProvider) => {
             .then((feature) => !feature.isFeatureAvailable(featureName));
         },
         canDownloadInvoices: /* @ngInject */ (currentUser) =>
-          currentUser.country !== 'FR' ||
-          currentUser.legalform !== 'corporation' ||
-          currentUser.companyNationalIdentificationNumber,
+          !isSiretMissingOrInvalid(currentUser),
         breadcrumb: () => null,
         hideBreadcrumb: () => true,
       },
