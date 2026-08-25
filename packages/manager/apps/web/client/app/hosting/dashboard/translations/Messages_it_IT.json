@@ -1430,5 +1430,6 @@
   "database_tabs_dumps_guide_restore": "Ripristinare e importare un database",
   "hosting_tab_STATISTICS_databases_none": "Nessun errore rilevato sui tuoi database. Tutto funziona normalmente.",
   "hosting_tab_USER_STATISTICS": "Statistiche e log",
-  "hosting_order_upgrade_renewal_after": "Dopo questa data, il rinnovo sarà addebitato al prezzo di {{ price }} al mese."
+  "hosting_order_upgrade_renewal_after": "Dopo questa data, il rinnovo sarà addebitato al prezzo di {{ price }} al mese.",
+  "hosting_dashboard_spoofing_banner_alert_message": "Abbiamo rilevato e-mail inviate senza autenticazione dal tuo hosting. Per evitare che i tuoi invii vengano bloccati, configura i tuoi invii di e-mail autenticati. <a href=\"{{ href }}\">Scopri di più</a>"
 }

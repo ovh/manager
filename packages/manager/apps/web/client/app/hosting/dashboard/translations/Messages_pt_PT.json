@@ -1430,5 +1430,6 @@
   "database_tabs_dumps_guide_restore": "Restaurar e importar uma base de dados",
   "hosting_tab_STATISTICS_databases_none": "Nenhum erro detetado nas suas bases de dados. Está tudo a funcionar normalmente.",
   "hosting_tab_USER_STATISTICS": "Estatísticas e logs",
-  "hosting_order_upgrade_renewal_after": "Após esta data, a renovação será cobrada à tarifa de {{ price }} sem IVA por mês."
+  "hosting_order_upgrade_renewal_after": "Após esta data, a renovação será cobrada à tarifa de {{ price }} sem IVA por mês.",
+  "hosting_dashboard_spoofing_banner_alert_message": "Detetámos e-mails enviados sem autenticação a partir do seu alojamento. Para evitar que os seus envios sejam bloqueados, configure os seus envios de e-mail autenticados. <a href=\"{{ href }}\">Saber mais</a>"
 }

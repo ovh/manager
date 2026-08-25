@@ -1,0 +1,14 @@
+{
+  "hosting_dashboard_spoofing_modal_title": "Erforderliche Aktion für den Versand Ihrer E-Mails",
+  "hosting_dashboard_spoofing_modal_intro": "Es wurden E-Mails ohne SMTP-Authentifizierung von Ihrem Webhosting festgestellt.<br/>Um Ihren E-Mail-Versand besser vor betrügerischer Nutzung zu schützen, wird dieser Versandmodus in Kürze blockiert.<br/>Ihr Webhosting profitiert derzeit von einer vorübergehenden Ausnahme, um Ihnen Zeit zu geben, Ihre Konfiguration zu ändern.<br/>Wenn Sie nichts unternehmen, können die betroffenen E-Mails nicht mehr von Ihrem Webhosting gesendet werden.",
+  "hosting_dashboard_spoofing_modal_todo_title": "Was Sie tun müssen:",
+  "hosting_dashboard_spoofing_modal_todo_first": "Konsultieren Sie unseren Leitfaden und wenden Sie die für Ihre Konfiguration passende Lösung an.",
+  "hosting_dashboard_spoofing_modal_todo_guide": "Leitfaden zur Konfiguration Ihres E-Mail-Versands",
+  "hosting_dashboard_spoofing_modal_todo_second": "Sobald das Problem behoben ist, bestätigen Sie es unten.",
+  "hosting_dashboard_spoofing_modal_confirm": "Ich bestätige, dass ich die notwendigen Änderungen vorgenommen habe, um das Problem zu beheben.",
+  "hosting_dashboard_spoofing_modal_later": "Später",
+  "hosting_dashboard_spoofing_modal_submit": "Behebung bestätigen",
+  "hosting_dashboard_spoofing_modal_resolve_success": "Ihre Bestätigung wurde berücksichtigt.",
+  "hosting_dashboard_spoofing_modal_error": "Ein Fehler ist aufgetreten: {{error}}.",
+  "hosting_dashboard_spoofing_modal_ndd_impacted": "{{ count }} betroffene(r) Domainname(n)"
+}

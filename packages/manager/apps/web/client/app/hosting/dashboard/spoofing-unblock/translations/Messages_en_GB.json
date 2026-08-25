@@ -1,0 +1,14 @@
+{
+  "hosting_dashboard_spoofing_modal_title": "Action required for your e-mail sending",
+  "hosting_dashboard_spoofing_modal_intro": "E-mails sent without SMTP authentication have been detected from your hosting.<br/>To better protect your e-mail sending against fraudulent use, this sending method will soon be blocked.<br/>Your hosting currently benefits from a temporary exception to give you time to change your configuration.<br/>If you do nothing, the affected e-mails will no longer be sent from your hosting.",
+  "hosting_dashboard_spoofing_modal_todo_title": "What you need to do:",
+  "hosting_dashboard_spoofing_modal_todo_first": "Read our guide and apply the solution suited to your configuration.",
+  "hosting_dashboard_spoofing_modal_todo_guide": "Guide to configure your e-mail sending",
+  "hosting_dashboard_spoofing_modal_todo_second": "Once the problem is resolved, confirm it below.",
+  "hosting_dashboard_spoofing_modal_confirm": "I confirm that I have made the necessary changes to resolve the problem.",
+  "hosting_dashboard_spoofing_modal_later": "Later",
+  "hosting_dashboard_spoofing_modal_submit": "Confirm resolution",
+  "hosting_dashboard_spoofing_modal_resolve_success": "Your confirmation has been taken into account.",
+  "hosting_dashboard_spoofing_modal_error": "An error occurred: {{error}}.",
+  "hosting_dashboard_spoofing_modal_ndd_impacted": "{{ count }} affected domain(s)"
+}

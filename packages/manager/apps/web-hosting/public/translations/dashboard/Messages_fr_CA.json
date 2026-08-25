@@ -218,7 +218,5 @@
   "cdn_shared_modal_confirm_security": "Options de securité",
   "deploy_git": "Déployer GIT",
   "deploy_git_description": "Vous êtes sur le point de déployer ou mettre à jour manuellement le contenu de votre dépôt distant sur votre hébergement.",
-  "deploy_git_overwrite_local_changes": "En cas de conflit de modification, forcer les modifications distantes sur votre dépôt local.",
-  "hosting_dashboard_spoofing_banner": "Nous avons détecté des e-mails envoyés sans authentification depuis votre hébergement. Pour éviter que vos envois soient bloqués, configurez vos envois d'e-mail authentifiés.",
-  "hosting_dashboard_spoofing_banner_link": "Consulter le guide"
+  "deploy_git_overwrite_local_changes": "En cas de conflit de modification, forcer les modifications distantes sur votre dépôt local."
 }
