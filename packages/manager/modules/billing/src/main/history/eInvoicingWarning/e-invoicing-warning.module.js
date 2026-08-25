@@ -6,7 +6,7 @@ import uiRouter from '@uirouter/angularjs';
 
 import component from './e-invoicing-warning.component';
 
-const moduleName = 'ovhManagerBillingMainHistoryPostalMailOptions';
+const moduleName = 'ovhManagerBillingMainHistoryEInvoicingWarning';
 
 angular
   .module(moduleName, [

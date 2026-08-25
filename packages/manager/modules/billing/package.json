@@ -13,7 +13,9 @@
   "main": "./src/index.js",
   "scripts": {
     "lint": "manager-legacy-lint --kinds tsx,js,css,html,md --continue",
-    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue"
+    "lint:fix": "manager-legacy-lint --kinds tsx,js,css,html,md --fix --continue",
+    "test": "manager-test run",
+    "test:coverage": "manager-test run --coverage"
   },
   "dependencies": {
     "@module-federation/runtime": "0.8.12",
@@ -26,7 +28,8 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
-    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0"
+    "@ovh-ux/manager-static-analysis-legacy-kit": "^0.1.0",
+    "@ovh-ux/manager-tests-setup": "^0.8.0"
   },
   "peerDependencies": {
     "@ovh-ux/manager-billing-components": "^2.0.0 || ^3.0.0",

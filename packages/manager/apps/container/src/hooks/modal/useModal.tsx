@@ -21,7 +21,9 @@ export const useCheckModalDisplaySynchronous = (
     return false;
   }
 
-  if (excludedUrls?.length && excludedUrls.indexOf(window.location.href) !== -1) {
+  // The page being displayed carries its own query params (a filter, a field to
+  // focus): an excluded URL matches the current location as a prefix.
+  if (excludedUrls?.length && excludedUrls.some((url) => window.location.href.startsWith(url))) {
     return false;
   }
 

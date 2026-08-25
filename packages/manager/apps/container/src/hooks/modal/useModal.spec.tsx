@@ -57,6 +57,20 @@ describe('useModal', () => {
       )).toEqual(false);
     });
 
+    it('should exclude a url carrying its own query params', () => {
+      const excludedUrl = 'https://fake-manager.com/manager/dedicated/#/billing/history';
+      Object.defineProperty(window, 'location', {
+        value: {
+          href: `${excludedUrl}?page=1&sort=date`,
+        },
+        writable: true,
+      });
+      expect(useCheckModalDisplaySynchronous(
+        undefined,
+        [excludedUrl],
+      )).toEqual(false);
+    });
+
     it('should return false if included urls check is not validated', () => {
       Object.defineProperty(window, 'location', {
         value: {
@@ -91,7 +105,7 @@ describe('useModal', () => {
     it('should skip following tests if any previous fails', () => {
       const excludedUrls = ['https://fake-manager.com/manager/billing/#/autorenew/agreements'];
       const includedUrls = ['https://fake-manager.com/manager/account/#/useraccount/info'];
-      const excludedUrlsCheckSpy = vi.spyOn(excludedUrls, 'indexOf');
+      const excludedUrlsCheckSpy = vi.spyOn(excludedUrls, 'some');
       const includedUrlsCheckSpy = vi.spyOn(includedUrls, 'indexOf');
       useCheckModalDisplaySynchronous(
         (user: User) => user.kycValidated,
