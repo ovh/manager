@@ -1,0 +1,18 @@
+{
+  "hosting_cloud_web_migration_modal_intro_title": "Confirm the migration of your Cloud Web plan",
+  "hosting_cloud_web_migration_modal_intro_evolution": "As part of the evolution of our plans, your Cloud Web plan will soon move to our new Performance plan.",
+  "hosting_cloud_web_migration_modal_intro_schedule": "This migration is scheduled from September 2026. The exact date will be sent to you later by email.",
+  "hosting_cloud_web_migration_modal_intro_question": "Do you accept this automatic migration?",
+  "hosting_cloud_web_migration_modal_intro_accept": "Accept",
+  "hosting_cloud_web_migration_modal_intro_refuse": "Refuse",
+  "hosting_cloud_web_migration_modal_accepted_title": "Migration confirmed",
+  "hosting_cloud_web_migration_modal_accepted_confirmation": "You have accepted the automatic migration.",
+  "hosting_cloud_web_migration_modal_accepted_next_steps": "We will get back to you by email to inform you of the migration date of your service and its options.",
+  "hosting_cloud_web_migration_modal_refused_title": "Migration refused",
+  "hosting_cloud_web_migration_modal_refused_confirmation": "You have refused the automatic migration.",
+  "hosting_cloud_web_migration_modal_refused_shutdown": "Your Cloud Web service will be shut down at the end of October 2026.",
+  "hosting_cloud_web_migration_modal_refused_refund": "If you are eligible for a refund, the corresponding amount will be refunded to you automatically.",
+  "hosting_cloud_web_migration_modal_refused_data_retrieval": "Remember to retrieve your files and data before your service is shut down. After that date, any data that has not been retrieved will be permanently deleted.",
+  "hosting_cloud_web_migration_modal_close": "Close",
+  "hosting_cloud_web_migration_modal_error": "An error occurred while saving your choice: {{error}}"
+}

@@ -1431,5 +1431,8 @@
   "hosting_tab_STATISTICS_databases_none": "Es wurden keine Datenbankfehler gefunden. Alles funktioniert normal.",
   "hosting_tab_USER_STATISTICS": "Statistiken und Logs",
   "hosting_order_upgrade_renewal_after": "Nach diesem Datum wird die Verlängerung mit {{ price }} € netto pro Monat berechnet.",
-  "hosting_dashboard_spoofing_banner_alert_message": "Wir haben E-Mails festgestellt, die ohne Authentifizierung von Ihrem Hosting aus versendet wurden. Um zu verhindern, dass Ihre Sendungen blockiert werden, konfigurieren Sie bitte Ihre authentifizierten E-Mail-Versandoptionen. <a href=\"{{ href }}\">Mehr erfahren</a>"
+  "hosting_dashboard_spoofing_banner_alert_message": "Wir haben E-Mails festgestellt, die ohne Authentifizierung von Ihrem Hosting aus versendet wurden. Um zu verhindern, dass Ihre Sendungen blockiert werden, konfigurieren Sie bitte Ihre authentifizierten E-Mail-Versandoptionen. <a href=\"{{ href }}\">Mehr erfahren</a>",
+  "hosting_dashboard_cloud_web_migration_status": "Migration",
+  "hosting_dashboard_cloud_web_migration_status_approved": "Bestätigt",
+  "hosting_dashboard_cloud_web_migration_status_refused": "Abgelehnt"
 }

@@ -22,6 +22,7 @@ import userLogs from '../user-logs/user-logs.module';
 import hostingDomainOffersComponent from '../../components/hosting-domain-offers';
 import hostingAbuseUnblock from './abuse-unblock';
 import hostingSpoofingUnblock from './spoofing-unblock';
+import hostingCloudWebMigration from './cloud-web-migration';
 
 const moduleName = 'ovhManagerHosting';
 
@@ -50,6 +51,7 @@ angular
     hostingDomainOffersComponent,
     hostingAbuseUnblock,
     hostingSpoofingUnblock,
+    hostingCloudWebMigration,
   ])
   .config(routing)
   .run(/* @ngTranslationsInject:json ./translations */);

@@ -112,6 +112,18 @@
                     </li>
 
                     <oui-tile-definition
+                        data-ng-if="cloudWebMigrationApproval"
+                        data-term="{{ ::'hosting_dashboard_cloud_web_migration_status' | translate }}"
+                    >
+                        <oui-tile-description>
+                            <span
+                                class="oui-badge"
+                                data-ng-class="cloudWebMigrationApproval.approved ? 'oui-badge_success' : 'oui-badge_error'"
+                                data-translate="{{ cloudWebMigrationApproval.approved ? 'hosting_dashboard_cloud_web_migration_status_approved' : 'hosting_dashboard_cloud_web_migration_status_refused' }}"
+                            ></span>
+                        </oui-tile-description>
+                    </oui-tile-definition>
+                    <oui-tile-definition
                         data-term="{{ ::'hosting_dashboard_disk_usage' | translate }}"
                         data-ng-if="!hosting.isExpired && hosting.quotaPercent != null && hosting.quotaPercent >= 0"
                     >

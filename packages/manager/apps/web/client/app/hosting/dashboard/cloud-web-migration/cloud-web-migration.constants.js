@@ -1,0 +1,16 @@
+export const CLOUD_WEB_MIGRATION_HIT_PREFIX =
+  'web::hosting::cloud-web-migration';
+
+export const CLOUD_WEB_MIGRATION_APPROVAL_CODE = 'CLOUDWEB_MIGRATION';
+
+export const CLOUD_WEB_MIGRATION_RESOURCE_TYPE = 'WEB';
+
+export const CUSTOMER_APPROVAL_URL =
+  '/engine/api/v2/webhosting/customerApproval';
+
+export default {
+  CLOUD_WEB_MIGRATION_HIT_PREFIX,
+  CLOUD_WEB_MIGRATION_APPROVAL_CODE,
+  CLOUD_WEB_MIGRATION_RESOURCE_TYPE,
+  CUSTOMER_APPROVAL_URL,
+};

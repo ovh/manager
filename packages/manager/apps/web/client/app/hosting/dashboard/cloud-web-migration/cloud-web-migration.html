@@ -1,0 +1,60 @@
+<oui-modal
+    data-ng-if="$ctrl.isLoading"
+    data-heading="{{:: 'hosting_cloud_web_migration_modal_intro_title' | translate }}"
+    data-loading="true"
+></oui-modal>
+
+<oui-modal
+    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === null"
+    data-heading="{{:: 'hosting_cloud_web_migration_modal_intro_title' | translate }}"
+    data-primary-action="$ctrl.onAccept()"
+    data-primary-label="{{:: 'hosting_cloud_web_migration_modal_intro_accept' | translate }}"
+    data-secondary-action="$ctrl.onRefuse()"
+    data-secondary-label="{{:: 'hosting_cloud_web_migration_modal_intro_refuse' | translate }}"
+    data-on-dismiss="$ctrl.onDismiss()"
+    data-loading="$ctrl.isSubmitting"
+>
+    <p data-translate="hosting_cloud_web_migration_modal_intro_evolution"></p>
+    <p data-translate="hosting_cloud_web_migration_modal_intro_schedule"></p>
+    <strong
+        data-translate="hosting_cloud_web_migration_modal_intro_question"
+    ></strong>
+    <oui-message
+        data-ng-if="$ctrl.errorMessage"
+        data-type="error"
+        data-dismissable="false"
+        class="mt-3"
+    >
+        <span data-ng-bind="$ctrl.errorMessage"></span>
+    </oui-message>
+</oui-modal>
+
+<oui-modal
+    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === true"
+    data-heading="{{:: 'hosting_cloud_web_migration_modal_accepted_title' | translate }}"
+    data-primary-action="$ctrl.onClose()"
+    data-primary-label="{{:: 'hosting_cloud_web_migration_modal_close' | translate }}"
+    data-on-dismiss="$ctrl.onClose()"
+>
+    <p
+        data-translate="hosting_cloud_web_migration_modal_accepted_confirmation"
+    ></p>
+    <p data-translate="hosting_cloud_web_migration_modal_accepted_next_steps"></p>
+</oui-modal>
+
+<oui-modal
+    data-ng-if="!$ctrl.isLoading && $ctrl.recordedDecision === false"
+    data-heading="{{:: 'hosting_cloud_web_migration_modal_refused_title' | translate }}"
+    data-primary-action="$ctrl.onClose()"
+    data-primary-label="{{:: 'hosting_cloud_web_migration_modal_close' | translate }}"
+    data-on-dismiss="$ctrl.onClose()"
+>
+    <p
+        data-translate="hosting_cloud_web_migration_modal_refused_confirmation"
+    ></p>
+    <p data-translate="hosting_cloud_web_migration_modal_refused_shutdown"></p>
+    <p data-translate="hosting_cloud_web_migration_modal_refused_refund"></p>
+    <p
+        data-translate="hosting_cloud_web_migration_modal_refused_data_retrieval"
+    ></p>
+</oui-modal>
