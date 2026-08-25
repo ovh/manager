@@ -1,0 +1,18 @@
+{
+  "hosting_cloud_web_migration_modal_intro_title": "Confirmer la migration de votre offre Cloud Web",
+  "hosting_cloud_web_migration_modal_intro_evolution": "Dans le cadre de l’évolution de nos offres, votre offre Cloud Web évoluera prochainement vers notre nouvelle offre Performance.",
+  "hosting_cloud_web_migration_modal_intro_schedule": "Cette migration est prévue à partir de septembre 2026. La date exacte vous sera communiquée ultérieurement par e-mail.",
+  "hosting_cloud_web_migration_modal_intro_question": "Acceptez-vous cette migration automatique ?",
+  "hosting_cloud_web_migration_modal_intro_accept": "Accepter",
+  "hosting_cloud_web_migration_modal_intro_refuse": "Refuser",
+  "hosting_cloud_web_migration_modal_accepted_title": "Migration confirmée",
+  "hosting_cloud_web_migration_modal_accepted_confirmation": "Vous avez accepté la migration automatique.",
+  "hosting_cloud_web_migration_modal_accepted_next_steps": "Nous reviendrons prochainement vers vous par e-mail afin de vous communiquer la date de migration de votre service et de ses options.",
+  "hosting_cloud_web_migration_modal_refused_title": "Migration refusée",
+  "hosting_cloud_web_migration_modal_refused_confirmation": "Vous avez refusé la migration automatique.",
+  "hosting_cloud_web_migration_modal_refused_shutdown": "Votre service Cloud Web sera arrêté fin octobre 2026.",
+  "hosting_cloud_web_migration_modal_refused_refund": "Si vous êtes éligible à un remboursement, le montant correspondant vous sera automatiquement remboursé.",
+  "hosting_cloud_web_migration_modal_refused_data_retrieval": "Pensez à récupérer vos fichiers et vos données avant l’arrêt de votre service. Après cette date, les données qui n’auront pas été récupérées seront définitivement supprimées.",
+  "hosting_cloud_web_migration_modal_close": "Fermer",
+  "hosting_cloud_web_migration_modal_error": "Une erreur est survenue lors de l’enregistrement de votre choix : {{error}}"
+}

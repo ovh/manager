@@ -1431,5 +1431,8 @@
   "hosting_tab_STATISTICS_databases_none": "Nie wykryto błędów w bazach danych. Wszystko działa prawidłowo.",
   "hosting_tab_USER_STATISTICS": "Statystyki i logi",
   "hosting_order_upgrade_renewal_after": "Po tej dacie odnowienie będzie naliczane w wysokości {{ price }} netto miesięcznie.",
-  "hosting_dashboard_spoofing_banner_alert_message": "Wykryliśmy wiadomości e-mail wysyłane bez uwierzytelnienia z Twojego hostingu. Aby uniknąć blokowania Twoich wysyłek, skonfiguruj uwierzytelnioną wysyłkę wiadomości e-mail. <a href=\"{{ href }}\">Dowiedz się więcej</a>"
+  "hosting_dashboard_spoofing_banner_alert_message": "Wykryliśmy wiadomości e-mail wysyłane bez uwierzytelnienia z Twojego hostingu. Aby uniknąć blokowania Twoich wysyłek, skonfiguruj uwierzytelnioną wysyłkę wiadomości e-mail. <a href=\"{{ href }}\">Dowiedz się więcej</a>",
+  "hosting_dashboard_cloud_web_migration_status": "Migracja",
+  "hosting_dashboard_cloud_web_migration_status_approved": "Zatwierdzona",
+  "hosting_dashboard_cloud_web_migration_status_refused": "Odrzucona"
 }

@@ -1,0 +1,18 @@
+{
+  "hosting_cloud_web_migration_modal_intro_title": "Potwierdź migrację swojej oferty Cloud Web",
+  "hosting_cloud_web_migration_modal_intro_evolution": "W ramach rozwoju naszych ofert Twoja oferta Cloud Web zostanie wkrótce przeniesiona do naszej nowej oferty Performance.",
+  "hosting_cloud_web_migration_modal_intro_schedule": "Migracja jest planowana od września 2026 roku. Dokładna data zostanie Ci przekazana później e-mailem.",
+  "hosting_cloud_web_migration_modal_intro_question": "Czy akceptujesz tę automatyczną migrację?",
+  "hosting_cloud_web_migration_modal_intro_accept": "Akceptuj",
+  "hosting_cloud_web_migration_modal_intro_refuse": "Odrzuć",
+  "hosting_cloud_web_migration_modal_accepted_title": "Migracja potwierdzona",
+  "hosting_cloud_web_migration_modal_accepted_confirmation": "Automatyczna migracja została zaakceptowana.",
+  "hosting_cloud_web_migration_modal_accepted_next_steps": "Wkrótce skontaktujemy się z Tobą e-mailem, aby przekazać datę migracji Twojej usługi i jej opcji.",
+  "hosting_cloud_web_migration_modal_refused_title": "Migracja odrzucona",
+  "hosting_cloud_web_migration_modal_refused_confirmation": "Automatyczna migracja została odrzucona.",
+  "hosting_cloud_web_migration_modal_refused_shutdown": "Twoja usługa Cloud Web zostanie wyłączona z końcem października 2026 roku.",
+  "hosting_cloud_web_migration_modal_refused_refund": "Jeśli kwalifikujesz się do zwrotu, odpowiednia kwota zostanie Ci zwrócona automatycznie.",
+  "hosting_cloud_web_migration_modal_refused_data_retrieval": "Pamiętaj o odzyskaniu swoich plików i danych przed wyłączeniem usługi. Po tej dacie dane, które nie zostaną odzyskane, zostaną trwale usunięte.",
+  "hosting_cloud_web_migration_modal_close": "Zamknij",
+  "hosting_cloud_web_migration_modal_error": "Podczas zapisywania Twojego wyboru wystąpił błąd: {{error}}"
+}

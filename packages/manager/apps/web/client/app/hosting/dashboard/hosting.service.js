@@ -10,6 +10,12 @@ import replace from 'lodash/replace';
 import toLower from 'lodash/toLower';
 import union from 'lodash/union';
 
+import {
+  CLOUD_WEB_MIGRATION_APPROVAL_CODE,
+  CLOUD_WEB_MIGRATION_RESOURCE_TYPE,
+  CUSTOMER_APPROVAL_URL,
+} from './cloud-web-migration/cloud-web-migration.constants';
+
 {
   const hostingCache = 'UNIVERS_WEB_HOSTING';
   const passwordConditions = {
@@ -24,6 +30,7 @@ import union from 'lodash/union';
       constructor(
         $q,
         $http,
+        Apiv2Service,
         $rootScope,
         $stateParams,
         constants,
@@ -40,6 +47,7 @@ import union from 'lodash/union';
       ) {
         this.$q = $q;
         this.$http = $http;
+        this.Apiv2Service = Apiv2Service;
         this.$rootScope = $rootScope;
         this.$stateParams = $stateParams;
         this.constants = constants;
@@ -870,6 +878,40 @@ import union from 'lodash/union';
         })
           .then(({ data }) => data || [])
           .catch(() => []);
+      }
+
+      /**
+       * Cloud Web migration decision recorded for a hosting, or null when the
+       * customer has not answered yet. Read from the v2 API, which filters
+       * server-side and returns a list; several entries resolve to the most
+       * recent one. A failure resolves to null so a v2 outage never blocks the
+       * dashboard — the customer is simply asked again.
+       * @param {string} serviceName
+       */
+      getCloudWebMigrationApproval(serviceName) {
+        return this.Apiv2Service.httpApiv2({
+          method: 'get',
+          url: CUSTOMER_APPROVAL_URL,
+          params: {
+            approvalCode: CLOUD_WEB_MIGRATION_APPROVAL_CODE,
+            resourceId: serviceName,
+            resourceType: CLOUD_WEB_MIGRATION_RESOURCE_TYPE,
+          },
+        })
+          .then(({ data }) => {
+            const approvals = data || [];
+            if (!approvals.length) {
+              return null;
+            }
+
+            return approvals.reduce((latest, current) =>
+              new Date(current.createdAt).getTime() >
+              new Date(latest.createdAt).getTime()
+                ? current
+                : latest,
+            );
+          })
+          .catch(() => null);
       }
     },
   );
