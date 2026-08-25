@@ -3,12 +3,14 @@
         <div class="modal-content">
             <div class="oui-modal-backdrop"></div>
         </div>
-        <oui-modal data-on-dismiss="$ctrl.close()">
-            <p data-translate="e_invoicing_warning_introduction"></p>
-            <p
-                data-translate="e_invoicing_warning_action"
-                data-translate-values="{ 'href': $ctrl.siretEditionLink }"
-            ></p>
+        <oui-modal
+            data-heading="{{:: 'e_invoicing_warning_title' | translate }}"
+            data-primary-label="{{:: 'e_invoicing_warning_cta' | translate }}"
+            data-primary-action="$ctrl.goToSiretEdition()"
+            data-on-dismiss="$ctrl.close()"
+        >
+            <p data-translate="e_invoicing_warning_description"></p>
+            <p data-translate="e_invoicing_warning_compliance"></p>
         </oui-modal>
     </div>
 </div>

@@ -117,6 +117,10 @@ export default class BillingMainHistoryCtrl extends ListLayoutHelper.ListLayoutC
   $onInit() {
     this.selectedBills = [];
     this.defaultFilterColumn = 'billId';
+    // A B2B/B2G account without a valid SIRET gets no invoice through an
+    // approved platform: say so on arrival, not only once a download is
+    // attempted.
+    this.showEInvoicingWarningModal = !this.canDownloadInvoices;
 
     super.$onInit();
 
