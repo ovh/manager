@@ -1430,5 +1430,6 @@
   "database_tabs_dumps_guide_restore": "Restore and import a database",
   "hosting_tab_STATISTICS_databases_none": "No errors found on your databases. Everything is working correctly.",
   "hosting_tab_USER_STATISTICS": "Statistics and logs",
-  "hosting_order_upgrade_renewal_after": "After this date, the renewal will be charged at the rate of {{ price }} excluding VAT per month."
+  "hosting_order_upgrade_renewal_after": "After this date, the renewal will be charged at the rate of {{ price }} excluding VAT per month.",
+  "hosting_dashboard_spoofing_banner_alert_message": "We have detected emails sent without authentication from your hosting. To prevent your emails from being blocked, configure your authenticated email sending. <a href=\"{{ href }}\">Learn more</a>"
 }

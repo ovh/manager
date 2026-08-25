@@ -1,0 +1,14 @@
+{
+  "hosting_dashboard_spoofing_modal_title": "Wymagane działanie dotyczące wysyłania wiadomości e-mail",
+  "hosting_dashboard_spoofing_modal_intro": "Wykryto wiadomości e-mail wysyłane bez uwierzytelniania SMTP z Twojego hostingu.<br/>Aby lepiej chronić wysyłkę wiadomości e-mail przed nieuczciwym wykorzystaniem, ten tryb wysyłki zostanie wkrótce zablokowany.<br/>Twój hosting korzysta obecnie z tymczasowego wyjątku, aby dać Ci czas na zmianę konfiguracji.<br/>Jeśli nic nie zrobisz, objęte wiadomości e-mail nie będą mogły być już wysyłane z Twojego hostingu.",
+  "hosting_dashboard_spoofing_modal_todo_title": "Co musisz zrobić:",
+  "hosting_dashboard_spoofing_modal_todo_first": "Zapoznaj się z naszym przewodnikiem i zastosuj rozwiązanie odpowiednie do Twojej konfiguracji.",
+  "hosting_dashboard_spoofing_modal_todo_guide": "Przewodnik dotyczący konfiguracji wysyłania wiadomości e-mail",
+  "hosting_dashboard_spoofing_modal_todo_second": "Po rozwiązaniu problemu potwierdź to poniżej.",
+  "hosting_dashboard_spoofing_modal_confirm": "Potwierdzam, że wprowadziłem niezbędne zmiany, aby rozwiązać problem.",
+  "hosting_dashboard_spoofing_modal_later": "Później",
+  "hosting_dashboard_spoofing_modal_submit": "Potwierdź rozwiązanie",
+  "hosting_dashboard_spoofing_modal_resolve_success": "Twoje potwierdzenie zostało uwzględnione.",
+  "hosting_dashboard_spoofing_modal_error": "Wystąpił błąd: {{error}}.",
+  "hosting_dashboard_spoofing_modal_ndd_impacted": "Liczba domen, których to dotyczy: {{ count }}"
+}

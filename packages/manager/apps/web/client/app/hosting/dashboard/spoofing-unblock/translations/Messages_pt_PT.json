@@ -1,0 +1,14 @@
+{
+  "hosting_dashboard_spoofing_modal_title": "Ação necessária para o envio dos seus e-mails",
+  "hosting_dashboard_spoofing_modal_intro": "Foram detetados e-mails enviados sem autenticação SMTP a partir do seu alojamento.<br/>Para proteger melhor os seus envios de e-mails contra utilizações fraudulentas, este modo de envio será brevemente bloqueado.<br/>O seu alojamento beneficia atualmente de uma exceção temporária para lhe dar tempo de modificar a sua configuração.<br/>Se não fizer nada, os e-mails em causa deixarão de poder ser enviados a partir do seu alojamento.",
+  "hosting_dashboard_spoofing_modal_todo_title": "O que deve fazer:",
+  "hosting_dashboard_spoofing_modal_todo_first": "Consulte o nosso guia e aplique a solução adaptada à sua configuração.",
+  "hosting_dashboard_spoofing_modal_todo_guide": "Guia para configurar o envio dos seus e-mails",
+  "hosting_dashboard_spoofing_modal_todo_second": "Assim que o problema estiver resolvido, confirme-o abaixo.",
+  "hosting_dashboard_spoofing_modal_confirm": "Confirmo que efetuei as alterações necessárias para resolver o problema.",
+  "hosting_dashboard_spoofing_modal_later": "Mais tarde",
+  "hosting_dashboard_spoofing_modal_submit": "Confirmar a resolução",
+  "hosting_dashboard_spoofing_modal_resolve_success": "A sua confirmação foi tida em conta.",
+  "hosting_dashboard_spoofing_modal_error": "Ocorreu um erro: {{error}}.",
+  "hosting_dashboard_spoofing_modal_ndd_impacted": "{{ count }} domínio(s) afetado(s)"
+}

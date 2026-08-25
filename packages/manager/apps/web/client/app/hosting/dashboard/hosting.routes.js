@@ -260,6 +260,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.hosting.dashboard.abuse-unblock', {
           serviceName,
         }),
+      goToSpoofingUnblock: /* @ngInject */ ($state) => (serviceName) =>
+        $state.go('app.hosting.dashboard.spoofing-unblock', {
+          serviceName,
+        }),
       goToMultisite: /* @ngInject */ (goToState) => (
         message = false,
         type = 'success',
