@@ -9,7 +9,6 @@ import some from 'lodash/some';
 import union from 'lodash/union';
 import { HOSTING_CDN_ORDER_CDN_VERSION_V1 } from '../cdn/order/hosting-cdn-order.constant';
 import {
-  CLOUD_WEB_EVOLUTION_BLOG_URL,
   CLOUD_WEB_MIGRATION_VPS_GUIDE_URL,
   DATABASES_TRACKING,
   HOSTING_GUIDES,
@@ -225,8 +224,11 @@ export default class {
       href: guide.url[this.user.ovhSubsidiary] || guide.url.DEFAULT,
     }));
 
-    this.cloudWebMigrationLearnMoreLink = this.buildCloudWebMigrationLink(
-      CLOUD_WEB_EVOLUTION_BLOG_URL,
+    // "En savoir plus" reopens the migration consent modal rather than the
+    // announcement blog post: it is the customer's way back to the decision
+    // after dismissing the modal, and to their recorded answer afterwards.
+    // Same href mechanism as the abuse banner — no handler inside ng-bind-html.
+    this.cloudWebMigrationLearnMoreLink = this.buildCloudWebMigrationModalLink(
       'hosting_cloud_web_migration_banner_learn_more',
     );
     this.cloudWebMigrationVpsGuideLink = this.buildCloudWebMigrationLink(
@@ -497,6 +499,16 @@ export default class {
       });
   }
 
+  buildCloudWebMigrationModalLink(translateKey) {
+    const href = this.coreURLBuilder.buildURL(
+      'web',
+      `#/hosting/${this.$stateParams.productId}/cloud-web-migration`,
+    );
+    const label = this.$translate.instant(translateKey);
+
+    return `<a href="${href}">${label}</a>`;
+  }
+
   buildCloudWebMigrationLink(urls, translateKey) {
     const href = urls[this.user.ovhSubsidiary] || urls.DEFAULT;
     const label = this.$translate.instant(translateKey);
@@ -744,7 +756,9 @@ export default class {
   }
 
   getAutoRenewServiceType() {
-    return this.isChangeOfferFeatureAvailable ? 'HOSTING_WEB_NEW' : 'HOSTING_WEB';
+    return this.isChangeOfferFeatureAvailable
+      ? 'HOSTING_WEB_NEW'
+      : 'HOSTING_WEB';
   }
 
   getAutorenewUrl(guides) {
@@ -900,6 +914,7 @@ export default class {
       })
       .then(() => this.handlePrivateDatabases())
       .then(() => this.simulateUpgradeAvailability())
+      .then(() => this.handleCloudWebMigration())
       .then(() => {
         this.Hosting.getAbuseState(this.$stateParams.productId).then(
           (abuseState) => {
@@ -942,6 +957,32 @@ export default class {
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });
+  }
+
+  /**
+   * Cloud Web migration consent. The banner is persistent (see hosting.html),
+   * so only the auto-open is gated on the absence of a decision — a customer
+   * who already answered is not asked again, but keeps the banner link to
+   * review their answer. The approval is stored on the scope so the General
+   * information tab shows it without a second call.
+   */
+  handleCloudWebMigration() {
+    const { isCloudWeb, serviceState } = this.$scope.hosting;
+    if (!isCloudWeb || serviceState !== 'ACTIVE') {
+      return this.$q.when(null);
+    }
+
+    return this.Hosting.getCloudWebMigrationApproval(
+      this.$stateParams.productId,
+    ).then((approval) => {
+      this.$scope.cloudWebMigrationApproval = approval;
+
+      if (!approval) {
+        this.$scope.$resolve.goToCloudWebMigration(this.serviceName);
+      }
+
+      return approval;
+    });
   }
 
   handlePrivateDatabases() {

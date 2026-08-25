@@ -264,6 +264,10 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.hosting.dashboard.spoofing-unblock', {
           serviceName,
         }),
+      goToCloudWebMigration: /* @ngInject */ ($state) => (serviceName) =>
+        $state.go('app.hosting.dashboard.cloud-web-migration', {
+          serviceName,
+        }),
       goToMultisite: /* @ngInject */ (goToState) => (
         message = false,
         type = 'success',

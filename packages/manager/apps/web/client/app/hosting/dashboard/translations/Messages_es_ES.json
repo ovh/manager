@@ -1431,5 +1431,8 @@
   "hosting_tab_STATISTICS_databases_none": "No se han detectado errores en las bases de datos. Todo funciona correctamente.",
   "hosting_tab_USER_STATISTICS": "Estadísticas y logs",
   "hosting_order_upgrade_renewal_after": "Después de esta fecha, la renovación se facturará al precio de {{ price }} sin IVA por mes",
-  "hosting_dashboard_spoofing_banner_alert_message": "Hemos detectado correos electrónicos enviados sin autenticación desde su alojamiento. Para evitar que sus envíos sean bloqueados, configure sus envíos de correo electrónico autenticados. <a href=\"{{ href }}\">Más información</a>"
+  "hosting_dashboard_spoofing_banner_alert_message": "Hemos detectado correos electrónicos enviados sin autenticación desde su alojamiento. Para evitar que sus envíos sean bloqueados, configure sus envíos de correo electrónico autenticados. <a href=\"{{ href }}\">Más información</a>",
+  "hosting_dashboard_cloud_web_migration_status": "Migración",
+  "hosting_dashboard_cloud_web_migration_status_approved": "Validada",
+  "hosting_dashboard_cloud_web_migration_status_refused": "Rechazada"
 }
