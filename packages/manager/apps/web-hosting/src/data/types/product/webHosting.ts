@@ -257,8 +257,3 @@ export type AttachedDomainProps = {
   ipLocation?: HostingCountries;
   ownLog?: string | null;
 };
-
-export type SpoofingAllowedDomain = {
-  senderDomain: string;
-  lastAccessAt: string;
-};

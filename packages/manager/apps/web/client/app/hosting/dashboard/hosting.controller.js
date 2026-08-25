@@ -914,6 +914,31 @@ export default class {
           },
         );
       })
+      .then(() => {
+        const serviceName = this.$stateParams.productId;
+        const spoofingLaterKey = `hosting-spoofing-later-${serviceName}`;
+        return this.Hosting.getSpoofing(serviceName).then((spoofing) => {
+          if (!spoofing || spoofing.length === 0) {
+            localStorage.removeItem(spoofingLaterKey);
+            return;
+          }
+          if (localStorage.getItem(spoofingLaterKey) === '1') {
+            const href = this.coreURLBuilder.buildURL(
+              'web',
+              `#/hosting/${serviceName}/spoofing-unblock`,
+            );
+            this.$scope.$resolve.setMessage(
+              this.$translate.instant(
+                'hosting_dashboard_spoofing_banner_alert_message',
+                { href },
+              ),
+              'warning',
+            );
+          } else {
+            this.$scope.$resolve.goToSpoofingUnblock(serviceName);
+          }
+        });
+      })
       .finally(() => {
         this.$scope.loadingHostingInformations = false;
       });

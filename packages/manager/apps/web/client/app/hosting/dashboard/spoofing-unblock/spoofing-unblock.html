@@ -1,0 +1,52 @@
+<oui-modal
+    data-heading="{{'hosting_dashboard_spoofing_modal_title' | translate }}"
+    data-primary-action="$ctrl.primaryAction()"
+    data-primary-disabled="!$ctrl.actionCheckbox"
+    data-secondary-action="$ctrl.secondaryAction()"
+    data-primary-label="{{'hosting_dashboard_spoofing_modal_submit' | translate }}"
+    data-secondary-label="{{'hosting_dashboard_spoofing_modal_later' | translate }}"
+    data-type="warning"
+    data-on-dismiss="$ctrl.secondaryAction()"
+    data-loading="$ctrl.isLoading"
+>
+    <div>
+        <p
+            data-ng-bind-html="'hosting_dashboard_spoofing_modal_intro' | translate"
+        ></p>
+        <strong
+            data-translate="hosting_dashboard_spoofing_modal_todo_title"
+        ></strong>
+        <ol>
+            <li
+                data-translate="hosting_dashboard_spoofing_modal_todo_first"
+            ></li>
+            <a href="{{ :: $ctrl.guideUrl }}" target="_blank" rel="noopener">
+                <span class="oui-icon oui-icon-book" aria-hidden="true"></span>
+                <span
+                    data-translate="hosting_dashboard_spoofing_modal_todo_guide"
+                ></span>
+            </a>
+            <li
+                data-translate="hosting_dashboard_spoofing_modal_todo_second"
+            ></li>
+        </ol>
+        <oui-checkbox data-model="$ctrl.actionCheckbox" class="mt-4">
+            <oui-checkbox-label
+                data-translate="hosting_dashboard_spoofing_modal_confirm"
+            >
+            </oui-checkbox-label>
+        </oui-checkbox>
+        <oui-collapsible
+            class="mt-4"
+            data-ng-if="$ctrl.senderDomains.length"
+            heading="{{ 'hosting_dashboard_spoofing_modal_ndd_impacted' | translate:{ count: $ctrl.senderDomains.length } }}"
+        >
+            <ul>
+                <li
+                    data-ng-repeat="domain in $ctrl.senderDomains track by $index"
+                    data-ng-bind="domain"
+                ></li>
+            </ul>
+        </oui-collapsible>
+    </div>
+</oui-modal>

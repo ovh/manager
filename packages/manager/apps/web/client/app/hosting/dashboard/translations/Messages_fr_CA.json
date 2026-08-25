@@ -1430,5 +1430,6 @@
   "hosting_dashboard_service_common_inactive": "Inactif",
   "hosting_dashboard_email_offer_get_error": "Impossible de récupérer l'adresse e-mail",
   "hosting_dashboard_stats_status": "Bêta",
-  "hosting_dashboard_tabs_dropdown": "Plus"
+  "hosting_dashboard_tabs_dropdown": "Plus",
+  "hosting_dashboard_spoofing_banner_alert_message": "Nous avons détecté des e-mails envoyés sans authentification depuis votre hébergement. Pour éviter que vos envois soient bloqués, configurez vos envois d'e-mail authentifiés. <a href=\"{{ href }}\">En savoir plus</a>"
 }
