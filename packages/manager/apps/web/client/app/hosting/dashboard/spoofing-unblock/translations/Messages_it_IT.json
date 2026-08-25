@@ -1,0 +1,14 @@
+{
+  "hosting_dashboard_spoofing_modal_title": "Azione richiesta per l'invio delle tue e-mail",
+  "hosting_dashboard_spoofing_modal_intro": "Sono state rilevate e-mail inviate senza autenticazione SMTP dal tuo hosting.<br/>Per proteggere meglio i tuoi invii di e-mail da usi fraudolenti, questa modalità di invio sarà presto bloccata.<br/>Il tuo hosting beneficia attualmente di un'eccezione temporanea per darti il tempo di modificare la tua configurazione.<br/>Se non fai nulla, le e-mail interessate non potranno più essere inviate dal tuo hosting.",
+  "hosting_dashboard_spoofing_modal_todo_title": "Cosa devi fare:",
+  "hosting_dashboard_spoofing_modal_todo_first": "Consulta la nostra guida e applica la soluzione adatta alla tua configurazione.",
+  "hosting_dashboard_spoofing_modal_todo_guide": "Guida per configurare l'invio delle tue e-mail",
+  "hosting_dashboard_spoofing_modal_todo_second": "Una volta risolto il problema, confermalo qui sotto.",
+  "hosting_dashboard_spoofing_modal_confirm": "Confermo di aver effettuato le modifiche necessarie per risolvere il problema.",
+  "hosting_dashboard_spoofing_modal_later": "Più tardi",
+  "hosting_dashboard_spoofing_modal_submit": "Conferma la risoluzione",
+  "hosting_dashboard_spoofing_modal_resolve_success": "La tua conferma è stata presa in considerazione.",
+  "hosting_dashboard_spoofing_modal_error": "Si è verificato un errore: {{error}}.",
+  "hosting_dashboard_spoofing_modal_ndd_impacted": "{{ count }} dominio/i interessato/i"
+}

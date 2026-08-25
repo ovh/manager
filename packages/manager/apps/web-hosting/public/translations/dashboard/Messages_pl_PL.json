@@ -219,7 +219,5 @@
   "hosting_tab_WEBSITE": "Moje strony WWW",
   "hosting_logs_back_to_general": "Powrót do informacji ogólnych",
   "hosting_logs_back_to_previous_page": "Powrót do poprzedniej strony",
-  "hosting_tab_USER_STATISTICS": "Statystyki i logi",
-  "hosting_dashboard_spoofing_banner": "Wykryliśmy wiadomości e-mail wysyłane bez uwierzytelnienia z Twojego hostingu. Aby uniknąć blokowania Twoich wysyłek, skonfiguruj uwierzytelnioną wysyłkę wiadomości e-mail.",
-  "hosting_dashboard_spoofing_banner_link": "Sprawdź przewodnik"
+  "hosting_tab_USER_STATISTICS": "Statystyki i logi"
 }

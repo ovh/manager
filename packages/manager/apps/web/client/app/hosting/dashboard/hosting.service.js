@@ -36,6 +36,7 @@ import union from 'lodash/union';
         DETACHABLE_PRODUCT_NAMES,
         OvhHttp,
         Poll,
+        Apiv2Service,
       ) {
         this.$q = $q;
         this.$http = $http;
@@ -51,6 +52,7 @@ import union from 'lodash/union';
         this.DETACHABLE_PRODUCT_NAMES = DETACHABLE_PRODUCT_NAMES;
         this.OvhHttp = OvhHttp;
         this.Poll = Poll;
+        this.Apiv2Service = Apiv2Service;
 
         this.cloudWebUnlimitedQuantity = 100000;
         this.events = {
@@ -855,6 +857,19 @@ import union from 'lodash/union';
         return this.$http
           .get(`/hosting/web/${serviceName}/abuseState`)
           .then(({ data }) => data);
+      }
+
+      /**
+       * List sender domains detected as spoofed
+       * @param {string} serviceName
+       */
+      getSpoofing(serviceName) {
+        return this.Apiv2Service.httpApiv2({
+          method: 'get',
+          url: `/engine/api/v2/webhosting/resource/${serviceName}/spoofing`,
+        })
+          .then(({ data }) => data || [])
+          .catch(() => []);
       }
     },
   );
