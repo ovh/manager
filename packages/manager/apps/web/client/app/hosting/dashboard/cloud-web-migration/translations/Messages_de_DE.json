@@ -1,7 +1,7 @@
 {
   "hosting_cloud_web_migration_modal_intro_title": "Migration Ihres Cloud Web-Angebots bestätigen",
   "hosting_cloud_web_migration_modal_intro_evolution": "Im Rahmen der Weiterentwicklung unserer Angebote wird Ihr Cloud Web-Angebot in Kürze auf unser neues Performance-Angebot umgestellt.",
-  "hosting_cloud_web_migration_modal_intro_schedule": "Diese Migration ist ab September 2026 geplant. Das genaue Datum wird Ihnen später per E-Mail mitgeteilt.",
+  "hosting_cloud_web_migration_modal_intro_schedule": "Diese Migration ist ab Oktober 2026 geplant. Das genaue Datum wird Ihnen später per E-Mail mitgeteilt.",
   "hosting_cloud_web_migration_modal_intro_question": "Akzeptieren Sie diese automatische Migration?",
   "hosting_cloud_web_migration_modal_intro_accept": "Akzeptieren",
   "hosting_cloud_web_migration_modal_intro_refuse": "Ablehnen",
@@ -10,7 +10,7 @@
   "hosting_cloud_web_migration_modal_accepted_next_steps": "Wir melden uns in Kürze per E-Mail bei Ihnen, um Ihnen das Migrationsdatum Ihres Dienstes und seiner Optionen mitzuteilen.",
   "hosting_cloud_web_migration_modal_refused_title": "Migration abgelehnt",
   "hosting_cloud_web_migration_modal_refused_confirmation": "Sie haben die automatische Migration abgelehnt.",
-  "hosting_cloud_web_migration_modal_refused_shutdown": "Ihr Cloud Web-Dienst wird Ende Oktober 2026 abgeschaltet.",
+  "hosting_cloud_web_migration_modal_refused_shutdown": "Ihr Cloud Web-Dienst wird Ende November 2026 abgeschaltet.",
   "hosting_cloud_web_migration_modal_refused_refund": "Wenn Sie Anspruch auf eine Rückerstattung haben, wird der entsprechende Betrag automatisch zurückerstattet.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "Denken Sie daran, Ihre Dateien und Daten vor der Abschaltung Ihres Dienstes zu sichern. Nach diesem Datum werden nicht gesicherte Daten endgültig gelöscht.",
   "hosting_cloud_web_migration_modal_close": "Schließen",
