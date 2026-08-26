@@ -1,7 +1,7 @@
 {
   "hosting_cloud_web_migration_modal_intro_title": "Confirmar la migración de su plan Cloud Web",
   "hosting_cloud_web_migration_modal_intro_evolution": "En el marco de la evolución de nuestros planes, su plan Cloud Web pasará próximamente a nuestro nuevo plan Performance.",
-  "hosting_cloud_web_migration_modal_intro_schedule": "Esta migración está prevista a partir de septiembre de 2026. La fecha exacta se le comunicará más adelante por correo electrónico.",
+  "hosting_cloud_web_migration_modal_intro_schedule": "Esta migración está prevista a partir de octubre de 2026. La fecha exacta se le comunicará más adelante por correo electrónico.",
   "hosting_cloud_web_migration_modal_intro_question": "¿Acepta esta migración automática?",
   "hosting_cloud_web_migration_modal_intro_accept": "Aceptar",
   "hosting_cloud_web_migration_modal_intro_refuse": "Rechazar",
@@ -10,7 +10,7 @@
   "hosting_cloud_web_migration_modal_accepted_next_steps": "Nos pondremos en contacto con usted próximamente por correo electrónico para comunicarle la fecha de migración de su servicio y de sus opciones.",
   "hosting_cloud_web_migration_modal_refused_title": "Migración rechazada",
   "hosting_cloud_web_migration_modal_refused_confirmation": "Ha rechazado la migración automática.",
-  "hosting_cloud_web_migration_modal_refused_shutdown": "Su servicio Cloud Web se detendrá a finales de octubre de 2026.",
+  "hosting_cloud_web_migration_modal_refused_shutdown": "Su servicio Cloud Web se detendrá a finales de noviembre de 2026.",
   "hosting_cloud_web_migration_modal_refused_refund": "Si tiene derecho a un reembolso, el importe correspondiente se le reembolsará automáticamente.",
   "hosting_cloud_web_migration_modal_refused_data_retrieval": "No olvide recuperar sus archivos y sus datos antes de la interrupción de su servicio. Después de esa fecha, los datos que no se hayan recuperado se eliminarán definitivamente.",
   "hosting_cloud_web_migration_modal_close": "Cerrar",
