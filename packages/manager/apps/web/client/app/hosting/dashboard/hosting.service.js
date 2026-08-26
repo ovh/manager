@@ -43,7 +43,6 @@ import {
         DETACHABLE_PRODUCT_NAMES,
         OvhHttp,
         Poll,
-        Apiv2Service,
       ) {
         this.$q = $q;
         this.$http = $http;
@@ -60,7 +59,6 @@ import {
         this.DETACHABLE_PRODUCT_NAMES = DETACHABLE_PRODUCT_NAMES;
         this.OvhHttp = OvhHttp;
         this.Poll = Poll;
-        this.Apiv2Service = Apiv2Service;
 
         this.cloudWebUnlimitedQuantity = 100000;
         this.events = {
