@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.15.0...@ovh-ux/manager-module-vcd-api@0.15.1) (2026-08-26)
+
+
+### Bug Fixes
+
+* **public-vcf:** fix cancel storage api route ([da0f9f5](https://github.com/ovh/manager/commit/da0f9f52153a92c2f53f037f45489d31f179ebee)), closes [#MANAGER-22237](https://github.com/ovh/manager/issues/MANAGER-22237)
+
+
+
+
+
 # [0.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-module-vcd-api@0.14.0...@ovh-ux/manager-module-vcd-api@0.15.0) (2026-08-24)
 
 
