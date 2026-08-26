@@ -21,7 +21,7 @@ export default /* @ngInject */ ($stateProvider) => {
           ? setReactivateEngagementStrategy()
           : $q.when(0)
         ).then(() => {
-          service.cancelResiliation();
+          service.setAutomaticRenew();
           return $http
             .put(`/vps/${service.domain}/serviceInfos`, {
               renew: service.renew,
