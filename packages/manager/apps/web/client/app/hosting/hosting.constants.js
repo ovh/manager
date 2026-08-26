@@ -132,9 +132,7 @@ export const SQL_PERSO = 'sqlPerso';
 export const EXTRA_SQL_PERSO_PREFIX = 'extraSqlPerso';
 
 export const CLOUD_WEB_EVOLUTION_BLOG_URL = {
-  FR: 'https://blog.ovhcloud.com/fr-webhosting-2026',
-  DEFAULT: 'https://blog.ovhcloud.com/en-webhosting-2026',
-};
+  DEFAULT: 'https://blog.ovhcloud.com/fr/posts/evolution-webhosting-2026/',};
 
 const PREFIX_DOC_URL = 'https://docs.ovhcloud.com';
 const SUFFIX_URL_VPS_MIGRATION =
