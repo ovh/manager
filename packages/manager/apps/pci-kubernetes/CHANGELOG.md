@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.44.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.43.0...@ovh-ux/manager-pci-kubernetes-app@0.44.0) (2026-08-27)
+
+
+### Features
+
+* **pci-kubernetes:** add repricing storage and ip price ([fe5bd16](https://github.com/ovh/manager/commit/fe5bd16279a10041b77d71e89c436953a013dd30)), closes [#TAPC-7117](https://github.com/ovh/manager/issues/TAPC-7117)
+
+
+
+
+
 # [0.43.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-kubernetes-app@0.42.0...@ovh-ux/manager-pci-kubernetes-app@0.43.0) (2026-06-22)
 
 

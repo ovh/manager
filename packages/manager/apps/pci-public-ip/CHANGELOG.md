@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.21.0...@ovh-ux/manager-pci-public-ip-app@0.22.0) (2026-08-27)
+
+
+### Features
+
+* **pci-public-ip:** allow disable on attached basic ip ([67e02b1](https://github.com/ovh/manager/commit/67e02b16c4277406e63304fe0e12fc36dc485a51)), closes [#TAPC-7117](https://github.com/ovh/manager/issues/TAPC-7117)
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-public-ip-app@0.20.2...@ovh-ux/manager-pci-public-ip-app@0.21.0) (2026-08-14)
 
 

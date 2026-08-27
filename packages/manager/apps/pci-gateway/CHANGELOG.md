@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.26.2...@ovh-ux/manager-pci-gateway-app@0.27.0) (2026-08-27)
+
+
+### Features
+
+* **pci-gateway:** add public ip price description to gateway create page ([d192d2f](https://github.com/ovh/manager/commit/d192d2f07d590480042f59447a82b434e709c3b5)), closes [#TAPC-7117](https://github.com/ovh/manager/issues/TAPC-7117)
+
+
+
+
+
 ## [0.26.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-gateway-app@0.26.1...@ovh-ux/manager-pci-gateway-app@0.26.2) (2026-03-04)
 
 **Note:** Version bump only for package @ovh-ux/manager-pci-gateway-app

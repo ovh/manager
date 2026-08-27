@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.19.1...@ovh-ux/manager-pci-instances-app@0.20.0) (2026-08-27)
+
+
+### Features
+
+* **pci-instances:** add repricing storage ([e18e289](https://github.com/ovh/manager/commit/e18e28941355254ec2d7c76fc32aaecae621b00b)), closes [#TAPC-7117](https://github.com/ovh/manager/issues/TAPC-7117)
+
+
+
+
+
 ## [0.19.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-pci-instances-app@0.19.0...@ovh-ux/manager-pci-instances-app@0.19.1) (2026-08-14)
 
 
