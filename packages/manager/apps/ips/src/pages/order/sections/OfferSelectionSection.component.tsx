@@ -36,6 +36,7 @@ import {
 } from '../order.constant';
 import { OrderContext } from '../order.context';
 import {
+  filterIpBlockPricingListByServiceType,
   hasAdditionalIpBlockOffer,
   hasAdditionalIpOffer,
 } from '../order.utils';
@@ -63,13 +64,20 @@ export const OfferSelectionSection: React.FC = () => {
     serviceName: selectedService,
     serviceType: selectedServiceType,
   });
-  const { additionalIpPlanCode, ipBlockPricingList, isLoading } =
-    useAdditionalIpPricings({
-      ipVersion,
-      region: region || selectedRegion,
-      serviceName: selectedService,
-      serviceType: selectedServiceType,
-    });
+  const {
+    additionalIpPlanCode,
+    ipBlockPricingList: rawIpBlockPricingList,
+    isLoading,
+  } = useAdditionalIpPricings({
+    ipVersion,
+    region: region || selectedRegion,
+    serviceName: selectedService,
+    serviceType: selectedServiceType,
+  });
+  const ipBlockPricingList = filterIpBlockPricingListByServiceType(
+    rawIpBlockPricingList,
+    selectedServiceType,
+  );
 
   return (
     <OrderSection title={t('offer_selection_title')}>

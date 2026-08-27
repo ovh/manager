@@ -126,7 +126,7 @@ describe('Order', () => {
       isOrganisationSectionVisible: true,
       organisation: organisationMockList[2],
       offer: IpOffer.blockAdditionalIp,
-      expectedOrderLink: `https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'${vmwareCloudDirectorNsxOrganizationIds[0]})~(label~'country~value~'FR)~(label~'organisation~value~'RIPE_1))~duration~'P1M~planCode~'ip-v4-s30-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))`,
+      expectedOrderLink: `https://www.ovh.com/fr/order/express/#/express/review?products=~(~(configuration~(~(label~'destination~value~'${vmwareCloudDirectorNsxOrganizationIds[0]})~(label~'country~value~'FR)~(label~'organisation~value~'RIPE_1))~duration~'P1M~planCode~'ip-v4-s28-ripe~pricingMode~'default~productId~'ip~quantity~1~serviceName~null~datacenter~null))`,
     },
     {
       case: 'Dedicated server (additional IP)',
