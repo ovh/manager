@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.9.0...@ovh-ux/sign-up@3.10.0) (2026-08-27)
+
+
+### Features
+
+* **account:** improve UX design for search assistant for FR e-invoicing ([#23131](https://github.com/ovh/manager/issues/23131)) ([4a8037f](https://github.com/ovh/manager/commit/4a8037f26b75a85da59bfc71cf104ceaaf9bb137)), closes [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144) [#MANAGER-22144](https://github.com/ovh/manager/issues/MANAGER-22144)
+
+
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/sign-up@3.8.0...@ovh-ux/sign-up@3.9.0) (2026-08-05)
 
 
