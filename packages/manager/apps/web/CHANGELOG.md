@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [19.48.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.47.0...@ovh-ux/manager-web@19.48.0) (2026-08-27)
+
+
+### Features
+
+* **web-hosting:** add disclamer modal cloud web migration v6 ([8d193d8](https://github.com/ovh/manager/commit/8d193d8232dbf8486e07ad388fbb5844c72c20df)), closes [#PUWEBPT-440](https://github.com/ovh/manager/issues/PUWEBPT-440)
+* **web-hosting:** change web cloud banner link ([57926a1](https://github.com/ovh/manager/commit/57926a10250dbf94d25c5f347029c0c5d806941d)), closes [#PUWEBPT-461](https://github.com/ovh/manager/issues/PUWEBPT-461)
+* **web-hosting:** correct dates ([d68dc04](https://github.com/ovh/manager/commit/d68dc04045d4b181231deed3de5502873aea4b92)), closes [#PUWEBPT-440](https://github.com/ovh/manager/issues/PUWEBPT-440)
+* **web-hosting:** spoofing v2 add disclamer v8 ([90fe5e0](https://github.com/ovh/manager/commit/90fe5e0bd5f734fa323f44689d5baeb173340cf5)), closes [#PUWEBPT-401](https://github.com/ovh/manager/issues/PUWEBPT-401)
+
+
+
+
+
 # [19.47.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web@19.46.0...@ovh-ux/manager-web@19.47.0) (2026-08-05)
 
 

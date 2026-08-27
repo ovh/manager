@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.21.0...@ovh-ux/manager-web-hosting-app@0.22.0) (2026-08-27)
+
+
+### Features
+
+* **web-hosting:** spoofing v2 add disclamer v8 ([90fe5e0](https://github.com/ovh/manager/commit/90fe5e0bd5f734fa323f44689d5baeb173340cf5)), closes [#PUWEBPT-401](https://github.com/ovh/manager/issues/PUWEBPT-401)
+
+
+
+
+
 # [0.21.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-web-hosting-app@0.20.3...@ovh-ux/manager-web-hosting-app@0.21.0) (2026-07-27)
 
 
