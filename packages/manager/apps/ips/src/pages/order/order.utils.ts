@@ -1,5 +1,6 @@
 import JSURL from 'jsurl';
 
+import { Pricing } from '@/data/hooks/catalog';
 import { getDatacenterFromRegion } from '@/data/hooks/catalog/catalog.utils';
 import { IpVersion, ServiceType, isPrivateCloudServiceType } from '@/types';
 
@@ -114,6 +115,34 @@ export const hasAdditionalIpBlockOffer = (serviceType: ServiceType) =>
   offerPossibilitiesByServiceType[IpOffer.blockAdditionalIp].includes(
     serviceType,
   );
+
+const VCFAAS_MIN_IP_BLOCK_MASK = 24;
+const VCFAAS_MAX_IP_BLOCK_MASK = 28;
+
+const getIpBlockMaskFromPlanCode = (planCode: string) => {
+  const match = planCode.match(/-s(\d+)-/);
+  return match ? Number(match[1]) : undefined;
+};
+
+/**
+ * For VCFaaS, only IP blocks between /24 and /28 are supported
+ */
+export const filterIpBlockPricingListByServiceType = (
+  ipBlockPricingList: Pricing[],
+  serviceType: ServiceType,
+) => {
+  if (serviceType !== ServiceType.vcfaas) {
+    return ipBlockPricingList;
+  }
+  return ipBlockPricingList.filter((pricing) => {
+    const mask = getIpBlockMaskFromPlanCode(pricing.value);
+    return (
+      mask !== undefined &&
+      mask >= VCFAAS_MIN_IP_BLOCK_MASK &&
+      mask <= VCFAAS_MAX_IP_BLOCK_MASK
+    );
+  });
+};
 
 /**
  * Returns a function that returns true if the current organisation is available for the provided region
