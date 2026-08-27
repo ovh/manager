@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.50.20](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.19...@ovh-ux/manager-vps@2.50.20) (2026-08-27)
+
+
+### Bug Fixes
+
+* **vps:** issue with cancelation resiliation ([28a2e8c](https://github.com/ovh/manager/commit/28a2e8cc5117f0d4baa4a60d9edb987bf1fe5aa2)), closes [#INC0277378](https://github.com/ovh/manager/issues/INC0277378)
+
+
+
+
+
 ## [2.50.19](https://github.com/ovh/manager/compare/@ovh-ux/manager-vps@2.50.18...@ovh-ux/manager-vps@2.50.19) (2026-07-07)
 
 
