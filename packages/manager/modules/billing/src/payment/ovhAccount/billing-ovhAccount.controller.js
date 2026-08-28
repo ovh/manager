@@ -27,6 +27,8 @@ export default /* @ngInject */ (
   function init() {
     $scope.ovhAccountsLoading = true;
 
+    BillingOvhAccount.clearCache();
+
     return BillingOvhAccount.getOvhAccount()
       .then((ovhAccountList) => {
         $scope.ovhAccount.list = ovhAccountList;
@@ -105,6 +107,13 @@ export default /* @ngInject */ (
 
   $scope.onDateRangeChanged = function onDateRangeChanged() {
     ouiDatagridService.refresh('ovhAccountMovements', true);
+  };
+
+  $scope.hasSplitAmounts = function hasSplitAmounts() {
+    return !!(
+      $scope.ovhAccount.choice?.retrievableAmount &&
+      $scope.ovhAccount.choice?.availableAfterCredit
+    );
   };
 
   $scope.getPriceClasses = function getPriceClasses(price) {

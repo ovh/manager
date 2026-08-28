@@ -41,6 +41,10 @@ export default /* @ngInject */ function BillingOvhAccount(
       .then((response) => response.data);
   };
 
+  this.clearCache = function clearCache() {
+    billingAccountCache.removeAll();
+  };
+
   this.getOvhAccount = function getOvhAccount() {
     return $http
       .get('apiv6/me/ovhAccount', {
