@@ -1,8 +1,12 @@
-export const getDiffInPercent = (price1: number, price2: number) => {
-  if (price1 === 0 || price2 === 0) {
+export const getDiffInPercent = (
+  referencePrice: number,
+  discountedPrice: number,
+) => {
+  if (referencePrice === 0 || discountedPrice === 0) {
     return null;
   }
-  return price1
-    ? Math.floor(((price1 - price2) / price1) * 100).toFixed(0)
-    : null;
+
+  return String(
+    Math.round(((referencePrice - discountedPrice) / referencePrice) * 100),
+  );
 };
