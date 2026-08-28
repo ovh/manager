@@ -157,6 +157,8 @@
   "ovhAccount_title2": "Mouvements sur mon compte prépayé",
   "ovhAccount_no_account": "Vous n'avez pas de compte prépayé",
   "ovhAccount_balance": "Situation au",
+  "ovhAccount_retrievable_amount": "Le montant de mes avoirs",
+  "ovhAccount_available_after_credit": "Le montant de mon compte prépayé",
   "ovhAccount_table_head_date": "Date",
   "ovhAccount_table_head_id": "Référence",
   "ovhAccount_table_head_product": "Produit",
