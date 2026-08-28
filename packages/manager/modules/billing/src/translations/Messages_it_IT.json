@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "Si è verificato un errore durante l'accredito dei punti.",
   "fidelity_creditOrder_submit_success": "Il credito di <strong>{{t0}} punti</strong> è stato generato correttamente, è possibile procedere con l'ordine nella sezione <a href=\"#/billing/orders\">I miei ordini</a>",
   "orders_retract_description3": "Procederemo al rimborso delle somme inizialmente versate con il metodo di pagamento utilizzato per il tuo ordine, detratte le giornate di servizio consumate.",
-  "orders_retract_description4": "Attenzione, il recesso tramite questo modulo vale per tutti i prodotti associati a questo ordine."
+  "orders_retract_description4": "Attenzione, il recesso tramite questo modulo vale per tutti i prodotti associati a questo ordine.",
+  "ovhAccount_retrievable_amount": "L'importo dei miei averi",
+  "ovhAccount_available_after_credit": "L'importo del mio conto prepagato"
 }

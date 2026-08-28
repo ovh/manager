@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "An error has occurred generating your credit.",
   "fidelity_creditOrder_submit_success": "Your credit <strong> {{t0}} points</strong> has been generated. You can proceed with your order in the <a href=\"#/billing/orders\">My orders tab</a>",
   "orders_retract_description3": "We will proceed with the refund of the amounts initially paid using the payment method used for your order, deducting the days of services consumed.",
-  "orders_retract_description4": "Please note, the withdrawal via this form applies to all products associated with this order."
+  "orders_retract_description4": "Please note, the withdrawal via this form applies to all products associated with this order.",
+  "ovhAccount_retrievable_amount": "The amount of my assets",
+  "ovhAccount_available_after_credit": "The amount of my prepaid account"
 }
