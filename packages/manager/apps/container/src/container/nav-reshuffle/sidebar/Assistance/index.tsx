@@ -5,6 +5,7 @@ import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import useContainer from '@/core/container';
 import { Node } from '../navigation-tree/node';
 import { AssistanceLinkItem } from './AssistanceLinkItem';
+import { isDigitalAgentEnabled } from '@/container/common/digital-agent';
 
 export interface AssistanceProps {
   nodeTree?: Node;
@@ -26,6 +27,10 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
   const urls = useURL(environment);
   const trackingPlugin = shell.getPlugin('tracking');
   const region = environment.getRegion();
+  const isDigitalAgent = isDigitalAgentEnabled(
+    region,
+    environment.getUser()?.ovhSubsidiary,
+  );
 
   const {
     closeNavigationSidebar,
@@ -45,7 +50,8 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       if (
         node.url &&
         typeof node.url === 'string' &&
-        !node.url.startsWith('http')
+        !node.url.startsWith('http') &&
+        !node.url.startsWith('/')
       ) {
         node.url = urls.get(node.url as keyof ContentURLS);
       }
@@ -71,8 +77,12 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
           break;
         case 'livechat':
           node.onClick = () => {
-            shell.getPlugin('ux').openLiveChat();
-            setChatbotReduced(false);
+            // When the Digital Agent is in primary the entry is a plain link
+            // to the Manager V7, the V6 live chat widget is not opened anymore.
+            if (!isDigitalAgent) {
+              shell.getPlugin('ux').openLiveChat();
+              setChatbotReduced(false);
+            }
             trackNode('assistance_live_chat');
             closeNavigationSidebar();
           };
@@ -122,7 +132,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
       <>
         <div
           ref={popoverAnchorRef}
-          className="flex justify-center my-2 h-[3.5rem]"
+          className="my-2 flex h-14 justify-center"
           tabIndex={0}
           onFocus={() =>
             document.getElementById('useful-links-button')?.focus()
@@ -134,7 +144,7 @@ const AssistanceSidebar: React.FC<ComponentProps<AssistanceProps>> = ({
 
   return (
     <ul
-      className="mt-auto pb-3 flex-none"
+      className="mt-auto flex-none pb-3"
       id="useful-links"
       role="menu"
       data-testid="assistance-sidebar"
