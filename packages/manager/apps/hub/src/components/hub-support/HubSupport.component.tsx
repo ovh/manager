@@ -15,17 +15,31 @@ import { OsdsChip, OsdsIcon, OsdsLink, OsdsText, OsdsTile } from '@ovhcloud/ods-
 import { ShellContext } from '@ovh-ux/manager-react-shell-client';
 
 import { Skeletons } from '@/components/skeletons/Skeletons.component';
-import { useFetchHubSupport } from '@/data/hooks/apiHubSupport/useHubSupport';
+import { useHubSupportTickets } from '@/data/hooks/hubSupportTickets/useHubSupportTickets';
 
 import TileError from '../tile-error/TileError.component';
-import { SUPPORT_URLS } from './HubSupport.constants';
+import {
+  DIGITAL_AGENT_URLS,
+  MAX_DIGITAL_AGENT_TICKETS_TO_DISPLAY,
+  MAX_TICKETS_TO_DISPLAY,
+  SUPPORT_URLS,
+} from './HubSupport.constants';
 import { HubSupportHelp } from './hub-support-help/HubSupportHelp.component';
 import { HubSupportTable } from './hub-support-table/HubSupportTable.component';
+
+/**
+ * The Digital Agent lives in the Manager V7, outside of the hub iframe, hence
+ * `_top`. Help Center links stay external, V6 tickets stay in the iframe.
+ */
+const getSeeAllTarget = (isDigitalAgent: boolean, isEUOrCA: boolean) => {
+  if (isDigitalAgent) return OdsHTMLAnchorElementTarget._top;
+  return isEUOrCA ? OdsHTMLAnchorElementTarget._blank : OdsHTMLAnchorElementTarget._self;
+};
 
 export default function HubSupport() {
   const { t } = useTranslation('hub/support');
   const { t: tCommon } = useTranslation('hub');
-  const { data, refetch, isLoading, error } = useFetchHubSupport();
+  const { isDigitalAgent, tickets, count, refetch, isLoading, error } = useHubSupportTickets();
   const context = useContext(ShellContext);
   const { navigation } = context.shell;
   const { environment } = context;
@@ -37,6 +51,10 @@ export default function HubSupport() {
 
   useEffect(() => {
     void (async () => {
+      if (isDigitalAgent) {
+        setUrlSeeAll(DIGITAL_AGENT_URLS.allTickets);
+        return;
+      }
       const url = isEUOrCA
         ? SUPPORT_URLS.allTickets + ovhSubsidiary
         : ((await navigation.getURL('dedicated', '#/ticket', {})) as string);
@@ -57,8 +75,8 @@ export default function HubSupport() {
               refetch={void refetch}
             />
           )}
-          {!error && !data.count && <HubSupportHelp />}
-          {!error && !!data.count && (
+          {!error && !count && <HubSupportHelp />}
+          {!error && !!count && (
             <>
               <div className="mb-2 flex items-center gap-4">
                 <OsdsText
@@ -70,7 +88,7 @@ export default function HubSupport() {
                   {t('hub_support_title')}
                 </OsdsText>
                 <OsdsChip color={ODS_THEME_COLOR_INTENT.primary} size={ODS_CHIP_SIZE.sm}>
-                  {data.count}
+                  {count}
                 </OsdsChip>
                 <div className="ml-auto flex items-center gap-4">
                   <OsdsIcon
@@ -84,29 +102,34 @@ export default function HubSupport() {
                   />
                   <OsdsLink
                     href={urlSeeAll}
-                    target={
-                      isEUOrCA
-                        ? OdsHTMLAnchorElementTarget._blank
-                        : OdsHTMLAnchorElementTarget._self
+                    target={getSeeAllTarget(isDigitalAgent, isEUOrCA)}
+                    rel={
+                      isEUOrCA && !isDigitalAgent ? OdsHTMLAnchorElementRel.noreferrer : undefined
                     }
-                    rel={isEUOrCA ? OdsHTMLAnchorElementRel.noreferrer : undefined}
                     color={ODS_THEME_COLOR_INTENT.primary}
                     className="text-right font-bold"
                   >
                     {tCommon('hub_support_see_more')}
-                    <span slot="end">
-                      <OsdsIcon
-                        hoverable
-                        name={ODS_ICON_NAME.EXTERNAL_LINK}
-                        size={ODS_ICON_SIZE.xs}
-                        color={ODS_THEME_COLOR_INTENT.primary}
-                      />
-                    </span>
+                    {!isDigitalAgent && (
+                      <span slot="end">
+                        <OsdsIcon
+                          hoverable
+                          name={ODS_ICON_NAME.EXTERNAL_LINK}
+                          size={ODS_ICON_SIZE.xs}
+                          color={ODS_THEME_COLOR_INTENT.primary}
+                        />
+                      </span>
+                    )}
                   </OsdsLink>
                 </div>
               </div>
               <div className="w-full">
-                <HubSupportTable tickets={data.data} />
+                <HubSupportTable
+                  tickets={tickets}
+                  maxTickets={
+                    isDigitalAgent ? MAX_DIGITAL_AGENT_TICKETS_TO_DISPLAY : MAX_TICKETS_TO_DISPLAY
+                  }
+                />
               </div>
             </>
           )}
