@@ -50,12 +50,41 @@
         ></span>
         <span
             class="ml-2"
+            data-ng-if="!hasSplitAmounts()"
             data-ng-class="getPriceClasses(ovhAccount.model.balance.value)"
             data-ng-show="ovhAccount.model.balance"
             data-ng-bind="ovhAccount.model.balance.text"
         ></span>
-        <span data-ng-hide="ovhAccount.model.balance">-</span>
+        <span
+            data-ng-if="!hasSplitAmounts()"
+            data-ng-hide="ovhAccount.model.balance"
+            >-</span
+        >
     </p>
+
+    <div
+        data-ng-if="hasSplitAmounts()"
+        data-ng-hide="ovhAccountLoading || !ovhAccount.model.hasOvhAccount"
+    >
+        <p>
+            <strong data-translate="ovhAccount_retrievable_amount"></strong>
+            <br />
+            <span
+                data-ng-class="getPriceClasses(ovhAccount.choice.retrievableAmount.value)"
+                data-ng-bind="ovhAccount.choice.retrievableAmount.text"
+            ></span>
+        </p>
+        <p>
+            <strong
+                data-translate="ovhAccount_available_after_credit"
+            ></strong>
+            <br />
+            <span
+                data-ng-class="getPriceClasses(ovhAccount.choice.availableAfterCredit.value)"
+                data-ng-bind="ovhAccount.choice.availableAfterCredit.text"
+            ></span>
+        </p>
+    </div>
 
     <p data-ng-if="!ovhAccountLoading && ovhAccount.model.hasOvhAccount">
         <span
