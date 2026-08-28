@@ -5,6 +5,7 @@ import ngPaginationFront from '@ovh-ux/ng-pagination-front';
 import set from 'lodash/set';
 import autorenew from './autoRenew/autorenew.module';
 import billingMain from './main/billing-main.module';
+import commitment from './commitment/billing-commitment-entry.module';
 import dateRangeSelectionService from './common/dateRangeSelection';
 import debtAccount from './dbtAccount/billing-debtAccount.service';
 import featureAvailability from './billing-feature-availability';
@@ -57,6 +58,7 @@ angular
     ngPaginationFront,
     autorenew,
     billingMain,
+    commitment,
     history,
     paymentCreditAdd,
     order,

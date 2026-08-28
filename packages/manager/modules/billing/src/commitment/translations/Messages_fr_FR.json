@@ -1,0 +1,12 @@
+{
+  "commitment_entry_title": "Saisir un numéro d'engagement",
+  "commitment_entry_description": "Veuillez renseigner votre numéro d'engagement",
+  "commitment_entry_order_number": "Commande n° {{t0}}",
+  "commitment_entry_number_label": "Numéro d'engagement",
+  "commitment_entry_number_title": "Le numéro saisi doit respecter le format alphanumérique [0-9] [A-Z] et les caractères spéciaux suivants : '-' ; '_' ; '+' ; '/'",
+  "commitment_entry_number_required": "Le numéro d'engagement est requis.",
+  "commitment_entry_number_invalid": "Le numéro d'engagement ne doit contenir que des lettres, des chiffres et les caractères - _ + /.",
+  "commitment_entry_submit": "Valider",
+  "commitment_entry_error": "Une erreur s'est produite lors de la vérification du numéro d'engagement.",
+  "commitment_entry_success": "Le numéro d'engagement {{t0}} a bien été enregistré pour la commande {{t1}}."
+}

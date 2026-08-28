@@ -30,5 +30,6 @@
   "orders_order_action_retract": "Annuler la commande",
   "orders_order_view_bill": "Voir ma facture",
   "orders_tracking": "Suivi de commande",
-  "orders_order_status_orderExpired": "Commande expirée"
+  "orders_order_status_orderExpired": "Commande expirée",
+  "commitment_entry": "Saisir un numéro d'engagement"
 }

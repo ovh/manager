@@ -1,7 +1,11 @@
 import get from 'lodash/get';
 import set from 'lodash/set';
 import omit from 'lodash/omit';
-import { BILLING_ORDERS_STATUS } from './billing-orders.constant';
+import {
+  BILLING_ORDERS_STATUS,
+  COMMITMENT_ENTRY_ALLOWED_LEGALFORM,
+  COMMITMENT_ENTRY_ALLOWED_BILLING_COUNTRY,
+} from './billing-orders.constant';
 
 export default class BillingOrdersCtrl {
   /* @ngInject */
@@ -19,10 +23,12 @@ export default class BillingOrdersCtrl {
     goToOrder,
     goToOrderRetractation,
     goToCorrespondingBill,
+    goToCommitmentEntry,
     updateFilterParam,
     billingFeatureAvailability,
     timeNow,
     kycValidated,
+    currentUser,
   ) {
     this.$q = $q;
     this.$log = $log;
@@ -37,10 +43,21 @@ export default class BillingOrdersCtrl {
     this.goToOrder = goToOrder;
     this.goToOrderRetractation = goToOrderRetractation;
     this.goToCorrespondingBill = goToCorrespondingBill;
+    this.goToCommitmentEntry = goToCommitmentEntry;
     this.updateFilterParam = updateFilterParam;
     this.allowOrderTracking = billingFeatureAvailability.allowOrderTracking();
     this.timeNow = timeNow;
     this.kycValidated = kycValidated;
+    this.currentUser = currentUser;
+  }
+
+  allowCommitmentEntry($row) {
+    return (
+      $row.status === BILLING_ORDERS_STATUS.DELIVERING &&
+      this.currentUser.legalform === COMMITMENT_ENTRY_ALLOWED_LEGALFORM &&
+      this.currentUser.billingCountry ===
+        COMMITMENT_ENTRY_ALLOWED_BILLING_COUNTRY
+    );
   }
 
   descriptionOfHeading() {
