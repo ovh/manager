@@ -39,6 +39,10 @@ import { Node } from './navigation-tree/node';
 import useProductNavReshuffle from '@/core/product-nav-reshuffle';
 import { ExcludedNodeIdsList } from './navigation-tree/excluded';
 import { ShortAssistanceLinkItem } from './Assistance/ShortAssistanceLinkItem';
+import {
+  DIGITAL_AGENT_URL,
+  isDigitalAgentEnabled,
+} from '@/container/common/digital-agent';
 
 interface ServicesCountError {
   url: string;
@@ -143,11 +147,24 @@ const Sidebar = (): JSX.Element => {
       const results = await fetchFeatureAvailabilityData(features);
 
       const region = environmentPlugin.getEnvironment().getRegion();
+      const { ovhSubsidiary } = environmentPlugin.getEnvironment().getUser();
       const [tree] = initTree([navigationTree], results, region);
 
       const mxPlanNode = findNodeById(tree, 'mxplan');
       if (mxPlanNode && region === 'CA') {
         mxPlanNode.routing.hash = '#/email_mxplan';
+      }
+
+      // Digital Agent in primary: the assistance entry points no longer target
+      // the Help Center but the Manager V7 Digital Agent.
+      if (isDigitalAgentEnabled(region, ovhSubsidiary)) {
+        ['createTicket', 'livechat'].forEach((nodeId) => {
+          const node = findNodeById(tree, nodeId);
+          if (!node) return;
+          node.url = DIGITAL_AGENT_URL;
+          node.isExternal = false;
+          delete node.routing;
+        });
       }
 
       if (results['web-hosting:managed-cms-ga']) {

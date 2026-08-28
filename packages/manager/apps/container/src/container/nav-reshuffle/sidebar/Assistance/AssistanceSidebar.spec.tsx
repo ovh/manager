@@ -1,7 +1,7 @@
 import { vi, it, describe, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import AssistanceSidebar, { AssistanceProps } from '.';
-import { mockShell } from '../mocks/sidebarMocks';
+import { mockPlugins, mockShell, mockUser } from '../mocks/sidebarMocks';
 import { assistanceTree } from '../navigation-tree/assistance';
 
 vi.mock('@/context', () => ({
@@ -65,6 +65,7 @@ const id = 'assistance-sidebar';
 describe('AssistanceSidebar.component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    mockUser.ovhSubsidiary = 'FR';
   });
 
   it('should render', () => {
@@ -89,6 +90,29 @@ describe('AssistanceSidebar.component', () => {
     expect(
       screen.queryAllByTestId('short-assistance-link-popover-anchor'),
     ).not.toBeNull();
+  });
+
+  describe('Digital Agent in primary', () => {
+    const clickLivechat = () => {
+      renderAssistanceSidebar({ ...props, isShort: false });
+      assistanceTree.children.find((node) => node.id === 'livechat')?.onClick();
+    };
+
+    it('should not open the V6 live chat for FR customers on the EU manager', () => {
+      mockUser.ovhSubsidiary = 'FR';
+      clickLivechat();
+      expect(mockPlugins.ux.openLiveChat).not.toHaveBeenCalled();
+      expect(mockPlugins.tracking.trackClick).toHaveBeenCalledWith({
+        name: 'navbar_v3_entry_home::assistance_live_chat',
+        type: 'navigation',
+      });
+    });
+
+    it('should still open the V6 live chat for the other subsidiaries', () => {
+      mockUser.ovhSubsidiary = 'GB';
+      clickLivechat();
+      expect(mockPlugins.ux.openLiveChat).toHaveBeenCalled();
+    });
   });
 
   describe('AI Chatbot Integration', () => {

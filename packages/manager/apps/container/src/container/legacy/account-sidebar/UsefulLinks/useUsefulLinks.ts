@@ -5,6 +5,10 @@ import constants from './constants';
 import { UsefulLink } from './Link/usefulLink';
 
 import { useShell } from '@/context/useApplicationContext';
+import {
+  DIGITAL_AGENT_URL,
+  isDigitalAgentEnabled,
+} from '@/container/common/digital-agent';
 import useContainer from '@/core/container';
 
 import getOdsIcon from '../getOdsIcon';
@@ -25,6 +29,7 @@ const useUsefulLinks = (): UseUsefulLinks => {
   const { isLivechatEnabled, setChatbotReduced } = useContainer();
 
   const isEUOrCA = ['EU', 'CA'].includes(region);
+  const isDigitalAgent = isDigitalAgentEnabled(region, user.ovhSubsidiary);
 
   const getUsefulLinks = (): UsefulLink[] => {
     const trackingPrefix = 'hub::sidebar::useful-links';
@@ -45,14 +50,21 @@ const useUsefulLinks = (): UseUsefulLinks => {
       },
       ...(isLivechatEnabled
         ? [
-            {
-              id: 'chatbot',
-              action: () => {
-                shell.getPlugin('ux').openLiveChat();
-                setChatbotReduced(false);
-              },
-              icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
-            },
+            isDigitalAgent
+              ? {
+                  id: 'chatbot',
+                  external: false,
+                  href: DIGITAL_AGENT_URL,
+                  icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
+                }
+              : {
+                  id: 'chatbot',
+                  action: () => {
+                    shell.getPlugin('ux').openLiveChat();
+                    setChatbotReduced(false);
+                  },
+                  icon: getOdsIcon(ODS_ICON_NAME.SPEECH_BUBBLE_CONCEPT),
+                },
           ]
         : []),
       {
@@ -75,8 +87,10 @@ const useUsefulLinks = (): UseUsefulLinks => {
         ? [
             {
               id: 'createTicket',
-              external: true,
-              href: constants[region].support.createTicket(user.ovhSubsidiary),
+              external: !isDigitalAgent,
+              href: isDigitalAgent
+                ? DIGITAL_AGENT_URL
+                : constants[region].support.createTicket(user.ovhSubsidiary),
               tracking: `${trackingPrefix}::go-to-create-ticket`,
               icon: getOdsIcon(ODS_ICON_NAME.USER_SUPPORT_CONCEPT),
             },

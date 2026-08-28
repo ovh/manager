@@ -4,49 +4,40 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { Ticket } from '@/types/support.type';
+import { SupportTicketRow } from '@/types/support.type';
 
 import { HubSupportTable } from './HubSupportTable.component';
 
 vi.mock('./hub-support-table-item/HubSupportTableItem.component', () => ({
-  HubSupportTableItem: ({ ticket }: { ticket: Ticket }) => (
-    <tr data-testid={`support-item-${ticket.ticketId}`}>
-      <td>{ticket.ticketId}</td>
+  HubSupportTableItem: ({ ticket }: { ticket: SupportTicketRow }) => (
+    <tr data-testid={`support-item-${ticket.key}`}>
+      <td>{ticket.label}</td>
     </tr>
   ),
 }));
 
+const tickets: SupportTicketRow[] = [1, 2, 3, 4, 5].map((n) => ({
+  key: `${n}`,
+  label: `service ${n}`,
+  state: `state ${n}`,
+  subject: `subject ${n}`,
+  ticketId: `${n}`,
+}));
+
 describe('HubSupportTable Component', () => {
-  it('renders a table with a maximum of 2 support items', () => {
-    const tickets: Ticket[] = [
-      {
-        ticketId: '1',
-        serviceName: 'service 1',
-        state: 'state 1',
-        subject: 'subject 1',
-      },
-      {
-        ticketId: '2',
-        serviceName: 'service 2',
-        state: 'state 2',
-        subject: 'subject 2',
-      },
-      {
-        ticketId: '3',
-        serviceName: 'service 3',
-        state: 'state 3',
-        subject: 'subject 3',
-      },
-    ];
+  it.each([
+    ['/hub/support', 2],
+    ['the Digital Agent', 4],
+  ])('caps the rows at the %s limit', (_source, maxTickets) => {
+    render(<HubSupportTable tickets={tickets} maxTickets={maxTickets} />);
 
-    render(<HubSupportTable tickets={tickets} />);
-
-    expect(screen.getByTestId('support-item-1')).toBeInTheDocument();
-    expect(screen.getByTestId('support-item-2')).toBeInTheDocument();
-    expect(screen.queryByTestId('support-item-3')).not.toBeInTheDocument();
+    for (let n = 1; n <= maxTickets; n += 1) {
+      expect(screen.getByTestId(`support-item-${n}`)).toBeInTheDocument();
+    }
+    expect(screen.queryByTestId(`support-item-${maxTickets + 1}`)).not.toBeInTheDocument();
 
     const table = screen.getByRole('table');
     expect(table).toBeInTheDocument();
-    expect(table.querySelectorAll('tr')).toHaveLength(2);
+    expect(table.querySelectorAll('tr')).toHaveLength(maxTickets);
   });
 });
