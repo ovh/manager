@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "Se ha producido un error al cargar los puntos.",
   "fidelity_creditOrder_submit_success": "Su crédito de <strong> {{t0}} points</strong> se ha generado correctamente. Ya puede realizar su pedido en la pestaña <a href=\"#/billing/orders\">Mis pedidos</a>.",
   "orders_retract_description3": "Procederemos al reembolso de las cantidades inicialmente abonadas por el medio de pago utilizado para su pedido, deduciendo los días de servicios consumidos.",
-  "orders_retract_description4": "Atención, el desistimiento a través de este formulario es válido para todos los productos asociados a este pedido."
+  "orders_retract_description4": "Atención, el desistimiento a través de este formulario es válido para todos los productos asociados a este pedido.",
+  "ovhAccount_retrievable_amount": "El importe de mis activos",
+  "ovhAccount_available_after_credit": "El importe de mi cuenta prepago"
 }

@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "Beim Gutschreiben Ihrer Punkte ist ein Fehler aufgetreten.",
   "fidelity_creditOrder_submit_success": "Ihr Guthaben in Höhe von <strong>{{t0}} Punkten</strong> wurde generiert. Sie können im Tab <a href=\"#/billing/orders\">Meine Bestellungen</a> mit Ihrer Bestellung fortfahren.",
   "orders_retract_description3": "Wir werden die ursprünglich gezahlten Beträge auf das für Ihre Bestellung verwendete Zahlungsmittel zurückerstatten, abzüglich der in Anspruch genommenen Tage.",
-  "orders_retract_description4": "Achtung, der Widerruf über dieses Formular gilt für alle Produkte, die mit dieser Bestellung verbunden sind."
+  "orders_retract_description4": "Achtung, der Widerruf über dieses Formular gilt für alle Produkte, die mit dieser Bestellung verbunden sind.",
+  "ovhAccount_retrievable_amount": "Der Betrag meines Guthabens",
+  "ovhAccount_available_after_credit": "Der Betrag meines Prepaid-Kontos"
 }
