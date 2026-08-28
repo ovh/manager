@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "Wystąpił błąd podczas naliczania punktów.",
   "fidelity_creditOrder_submit_success": "Zasilenie w kwocie <strong> {{t0}} punktów</strong> zostało wygenerowane. Możesz złożyć zamówienie w zakładce <a href=\"#/billing/orders\">Moje zamówienia</a>",
   "orders_retract_description3": "Przystąpimy do zwrotu kwot pierwotnie wpłaconych na sposób płatności użyty do Twojego zamówienia, po odliczeniu dni wykorzystanych usług.",
-  "orders_retract_description4": "Uwaga, odstąpienie za pomocą tego formularza dotyczy wszystkich produktów związanych z tym zamówieniem."
+  "orders_retract_description4": "Uwaga, odstąpienie za pomocą tego formularza dotyczy wszystkich produktów związanych z tym zamówieniem.",
+  "ovhAccount_retrievable_amount": "Wysokość moich aktywów",
+  "ovhAccount_available_after_credit": "Wysokość mojego konta przedpłaconego"
 }

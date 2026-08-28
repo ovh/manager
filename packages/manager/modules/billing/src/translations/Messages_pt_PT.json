@@ -918,5 +918,7 @@
   "fidelity_creditOrder_submit_error": "Ocorreu um erro aquando do carregamento dos seus pontos.",
   "fidelity_creditOrder_submit_success": "O seu crédito de <strong> {{t0}} pontos</strong> foi gerado com êxito. Pode efetuar a sua encomenda no separador <a href=\"#/billing/orders\">As Minhas Encomendas</a>",
   "orders_retract_description3": "Procederemos ao reembolso das quantias inicialmente pagas pelo meio de pagamento utilizado para a sua encomenda, deduzindo os dias de serviços consumidos.",
-  "orders_retract_description4": "Atenção, a retratação através deste formulário é válida para todos os produtos associados a esta encomenda."
+  "orders_retract_description4": "Atenção, a retratação através deste formulário é válida para todos os produtos associados a esta encomenda.",
+  "ovhAccount_retrievable_amount": "O montante dos meus ativos",
+  "ovhAccount_available_after_credit": "O montante da minha conta pré-paga"
 }
